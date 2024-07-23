@@ -118,6 +118,26 @@ gulp.task('sass', () => {
 });
 
 /**
+ * Compile components to Css
+ *  - Compile
+ *  - Autoprefix
+ *  - Also puts compiled Css into tsc-out
+ */
+gulp.task('build-components', () => {
+  return gulp
+    .src('./src/components/*.scss')
+    .pipe(
+      gulpSass({
+        outputStyle: 'compressed',
+        includePaths: options.includePaths,
+        quietDeps: true,
+      }),
+    )
+    .pipe(gulpPostCss([autoprefixer()]))
+    .pipe(gulp.dest(`${options.outputDir}/components`));
+});
+
+/**
  * Generate uncompressed sass output
  */
 gulp.task('sass:dev', () => {
@@ -160,5 +180,6 @@ exports.default = gulp.task(
   gulp.parallel(
     gulp.series('map-icons', 'copy', 'autoprefixer', 'transform-package-json'),
     gulp.series('sass'),
+    gulp.series('build-components'),
   ),
 );

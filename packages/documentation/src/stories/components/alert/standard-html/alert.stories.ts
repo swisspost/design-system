@@ -1,4 +1,3 @@
-// @ts-ignore
 import { useArgs } from '@storybook/preview-api';
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
@@ -111,7 +110,7 @@ export default meta;
 function externalControl(story: StoryFn, { args, context }: StoryContext) {
   const [_, updateArgs] = useArgs();
 
-  const toggleAlert = (e: MouseEvent, args: Args, updateArgs: Function) => {
+  const toggleAlert = (e: MouseEvent, args: Args, updateArgs: (newArgs: Partial<Args>) => void) => {
     e.preventDefault();
     updateArgs({ show: !args.show });
   };
@@ -120,7 +119,7 @@ function externalControl(story: StoryFn, { args, context }: StoryContext) {
 
   const button = html`
     <a
-      class="btn btn-default btn-animated"
+      class="btn btn-secondary btn-animated"
       href="#"
       @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}"
     >

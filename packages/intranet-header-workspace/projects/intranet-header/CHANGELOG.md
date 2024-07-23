@@ -1,5 +1,45 @@
 # @swisspost/design-system-intranet-header
 
+## 7.4.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.4.0
+
+## 7.3.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.3.1
+
+## 7.3.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.3.0
+
+## 7.2.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.2.1
+
+## 7.2.0
+
+### Minor Changes
+
+- Added the possibility to hide the username in the profile dropdown. (by [@juliandanis](https://github.com/juliandanis) with [#3028](https://github.com/swisspost/design-system/pull/3028))
+
+### Patch Changes
+
+- Enabled keyboard navigation for the user dropdown. (by [@alizedebray](https://github.com/alizedebray) with [#3119](https://github.com/swisspost/design-system/pull/3119))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.2.0
+
 ## 7.1.0
 
 ### Patch Changes

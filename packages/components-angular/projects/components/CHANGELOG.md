@@ -1,5 +1,49 @@
 # @swisspost/design-system-components-angular
 
+## 7.4.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@7.4.0
+
+## 7.3.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@7.3.1
+
+## 7.3.0
+
+### Minor Changes
+
+- Added a `post-collapsible-trigger` component to properly handle the role, ARIA attributes, and event listeners for elements that toggle a `post-collapsible`. (by [@alizedebray](https://github.com/alizedebray) with [#3209](https://github.com/swisspost/design-system/pull/3209))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@7.3.0
+
+## 7.2.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@7.2.1
+
+## 7.2.0
+
+### Patch Changes
+
+- Redefined the dependency to the web components package as a dependency instead of a peer dependency due to a [known bug in changesets](https://github.com/changesets/changesets/issues/1011) that causes major version bumps across all linked workspace packages if one of them is installed as a peer dependency. (by [@gfellerph](https://github.com/gfellerph) with [#3169](https://github.com/swisspost/design-system/pull/3169))
+
+- Updated `PostComponentsModule` to enable its use in lazy-loaded modules. (by [@alizedebray](https://github.com/alizedebray) with [#3118](https://github.com/swisspost/design-system/pull/3118))
+
+- Added `@swisspost/design-system-components` package as a peer dependency as recommended by stenciljs. This way, installing `@swisspost/design-system-components` package as a direct dependency should not be necessary anymore in consumer projects. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3116](https://github.com/swisspost/design-system/pull/3116))
+- Updated dependencies:
+  - @swisspost/design-system-components@7.2.0
+
 ## 7.1.0
 
 ### Minor Changes

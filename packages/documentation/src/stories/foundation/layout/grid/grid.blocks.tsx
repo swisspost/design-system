@@ -3,27 +3,24 @@ import { forEach } from '@/utils/react';
 import { SpecTable } from '@/stories/foundation/layout/shared.blocks';
 import scss from './grid.module.scss';
 
-export const SCSS_VARIABLES = parse(scss);
-
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+export const SCSS_VARIABLES: any = parse(scss);
 export const GridTable = () => (
   <SpecTable>
     <tr>
       <th>Class prefix</th>
-      {forEach(SCSS_VARIABLES.breakpoint, (data: { key: string; value: { infix: string } }) => (
-        <td key={data.key}>
-          <code>.col-{data.value.infix === 'none' ? '' : `${data.value.infix}-`}</code>
+      {forEach(SCSS_VARIABLES.breakpoint, ({ key, value }) => (
+        <td key={key}>
+          <code>.col-{value.infix === 'none' ? '' : `${value.infix}-`}</code>
         </td>
       ))}
     </tr>
 
     <tr>
       <th>Gutter width</th>
-      {forEach(
-        SCSS_VARIABLES.grid,
-        (data: { key: string; value: { ['gutter-width']: string } }) => (
-          <td key={data.key}>{data.value['gutter-width']}</td>
-        ),
-      )}
+      {forEach(SCSS_VARIABLES.grid, ({ key, value }) => (
+        <td key={key}>{value['gutter-width']}</td>
+      ))}
     </tr>
 
     <tr>

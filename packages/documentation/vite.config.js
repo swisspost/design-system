@@ -11,7 +11,7 @@ export default {
   },
   optimizeDeps: {
     include: [
-      '@pxtrn/storybook-addon-docs-stencil',
+      '@kurbar/storybook-addon-docs-stencil',
       'prettier',
       '@storybook/components',
       'react-syntax-highlighter/dist/esm/languages/prism/scss',

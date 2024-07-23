@@ -39,9 +39,10 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   @Input() searchUrl: string = '';
   @Input() hideCurrentUserId: boolean = false;
 
-  @ViewChild('domWrapper')
-  dom!: ElementRef;
+  @ViewChild('domWrapper') dom!: ElementRef;
   @ViewChild('optionDropdown') optionDropdown!: NgbDropdown;
+  @ViewChild('optionDropdown', { read: ElementRef })
+  optionDropdownElement!: ElementRef<HTMLElement>;
 
   appLangs!: string[];
   avatarUrl = this.createSafeAvatarUrl();
@@ -158,6 +159,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
       if (!MutationObserver) {
         return;
       }
+
       this.navChanges = new MutationObserver(m => this.navMutationCallback(m));
       this.navChanges.observe(this.navElement, {
         childList: true,
@@ -165,6 +167,14 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
         subtree: true,
       });
     }
+
+    this.optionDropdownClick();
+    new MutationObserver(() => {
+      this.optionDropdownClick();
+    }).observe(this.optionDropdownElement.nativeElement, {
+      subtree: true,
+      childList: true,
+    });
   }
 
   public navMutationCallback(mutationList: MutationRecord[]) {
@@ -243,14 +253,6 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   public handleOverflowKeyEvent(e: KeyboardEvent) {
     if (e.code === 'Enter' || e.code === 'Space') {
       this.toggleMenuOverflow();
-    }
-  }
-
-  // Close dropdown on link clicks https://github.com/swisspost/design-system/issues/1300
-  public optionDropdownClick(event: MouseEvent) {
-    const target = event.target as HTMLElement;
-    if (target.tagName.toLowerCase() === 'a') {
-      this.optionDropdown.close();
     }
   }
 
@@ -350,5 +352,18 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
 
   private getTextForMoreElement() {
     return this.localization['moreLabel'][this.lang.toLowerCase()];
+  }
+
+  // Close dropdown on link clicks https://github.com/swisspost/design-system/issues/1300
+  private optionDropdownClick() {
+    this.optionDropdownElement.nativeElement.querySelectorAll('a').forEach(anchor => {
+      anchor.addEventListener('click', () => {
+        this.optionDropdown.close();
+      });
+
+      anchor.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'enter') this.optionDropdown.close();
+      });
+    });
   }
 }

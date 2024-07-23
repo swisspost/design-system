@@ -13,10 +13,13 @@
 @use './../variables/components/form-validation';
 @use './../variables/components/forms';
 @use './../variables/spacing';
+@use './../variables/type';
+@use './../mixins/icons';
 
 .invalid-feedback,
 .valid-feedback {
   display: none;
+  align-items: center;
   width: 100%;
   margin-block: form-validation.$form-feedback-margin-top 0;
   padding: form-validation.$form-feedback-padding-y form-validation.$form-feedback-padding-x;
@@ -25,16 +28,32 @@
   @include utilities-mx.high-contrast-mode() {
     padding-inline: 0;
   }
+
+  &::before {
+    content: '';
+    height: form-validation.$form-feedback-font-size * type.$line-height-copy;
+    width: form-validation.$form-feedback-font-size * type.$line-height-copy;
+    display: inline-block;
+    margin-right: spacing.$size-mini;
+  }
 }
 
 .invalid-feedback {
   background: form-validation.$form-feedback-invalid-bg;
   color: form-validation.$form-feedback-invalid-text;
+
+  &::before {
+    @include icons.icon(2413);
+  }
 }
 
 .valid-feedback {
   background: form-validation.$form-feedback-valid-bg;
   color: form-validation.$form-feedback-valid-text;
+
+  &::before {
+    @include icons.icon(2105);
+  }
 }
 
 .valid-feedback.custom-feedback {
@@ -48,31 +67,7 @@
   @include b.form-validation-state-selector($state) {
     ~ .#{$state}-feedback,
     ~ .#{$state}-tooltip {
-      display: block;
-    }
-  }
-
-  .form-control {
-    @include b.form-validation-state-selector($state) {
-      padding-right: b.$input-height-inner;
-      background-repeat: no-repeat;
-      background-position: right b.$input-height-inner-quarter center;
-      background-size: form-validation.$form-feedback-icon-size;
-
-      &.form-control-sm {
-        background-size: forms.$form-bg-size-sm;
-      }
-
-      &.form-control-lg {
-        background-size: forms.$form-bg-size;
-      }
-    }
-  }
-
-  textarea.form-control {
-    @include b.form-validation-state-selector($state) {
-      padding-right: b.$input-height-inner;
-      background-position: top b.$input-height-inner-quarter right b.$input-height-inner-quarter;
+      display: inline-flex;
     }
   }
 
@@ -92,71 +87,38 @@
 }
 
 .is-invalid ~ .invalid-feedback,
-.is-valid ~ .valid-feedback {
-  display: block;
+.is-valid ~ .valid-feedback,
+post-card-control ~ .invalid-feedback {
+  display: inline-flex;
 }
 
 .form-control,
 .form-select {
   &.is-invalid {
-    border-color: form-validation.$form-feedback-invalid-color;
-
-    &:focus {
+    &:not(:disabled) {
       border-color: form-validation.$form-feedback-invalid-color;
-    }
-  }
 
-  &.is-valid {
-    border-color: var(--post-success);
-
-    &:focus {
-      border-color: form-validation.$form-feedback-valid-color;
-    }
-  }
-
-  &.is-invalid,
-  &.is-valid {
-    padding-right: spacing.$size-small-huge; // For deprecated form-control-rg
-    background-repeat: no-repeat;
-    background-size: forms.$form-bg-size; // Duplicated rule in form-select for arrow size.
-    background-position: right b.$input-height-inner-quarter center;
-
-    &.form-select-sm,
-    &.form-control-sm {
-      padding-right: spacing.$size-bigger-big; // Included in bootstrap and prevent native icon (e.g. with input[type=date]) to stack over success icon
-      background-size: forms.$form-bg-size-sm; // Add space between background icons (ours and the one from bootstrap). Duplicated rule in form-select for arrow size.
-    }
-
-    &.form-select-lg,
-    &.form-control-lg {
-      padding-right: spacing.$size-small-huge; // Included in bootstrap and prevent native icon (e.g. with input[type=date]) to stack over success icon
-      background-size: forms.$form-bg-size; // Add space between background icons (ours and the one from bootstrap). Duplicated rule in form-select for arrow size.
-    }
-  }
-}
-
-.form-control:not([type='file']) {
-  &.is-invalid {
-    background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid);
-
-    @include utilities-mx.high-contrast-mode() {
-      background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid-hcm-dark);
-
-      @media (prefers-color-scheme: light) {
-        background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid-hcm-light);
+      &:focus {
+        border-color: form-validation.$form-feedback-invalid-color;
       }
     }
+
+    &.form-control-sm ~ .invalid-feedback {
+      padding: form-validation.$form-feedback-padding-y-sm form-validation.$form-feedback-padding-x;
+    }
   }
 
   &.is-valid {
-    background-image: b.escape-svg(form-validation.$form-feedback-icon-valid);
+    &:not(:disabled) {
+      border-color: var(--post-success);
 
-    @include utilities-mx.high-contrast-mode() {
-      background-image: b.escape-svg(form-validation.$form-feedback-icon-valid-hcm-dark);
-
-      @media (prefers-color-scheme: light) {
-        background-image: b.escape-svg(form-validation.$form-feedback-icon-valid-hcm-light);
+      &:focus {
+        border-color: var(--post-success);
       }
+    }
+
+    &.form-control-sm ~ .valid-feedback {
+      padding: form-validation.$form-feedback-padding-y-sm form-validation.$form-feedback-padding-x;
     }
   }
 }

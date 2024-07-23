@@ -1,9 +1,12 @@
-import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
 import isFocusable from 'ally.js/is/focusable';
 import 'long-press-event';
 import { getAttributeObserver } from '@/utils/attribute-observer';
+import { checkEmptyOrType, timeout } from '@/utils';
+
+const OPEN_DELAY = 650; // matches HTML title delay
 
 /**
  * @slot default - Slot for the content of the tooltip.
@@ -45,9 +48,7 @@ const globalInterestHandler = (e: PointerEvent | FocusEvent) => {
  * @returns
  */
 const globalInterestLostHandler = (e: PointerEvent | FocusEvent) => {
-  const targetElement = (e.target as HTMLElement).closest(
-    tooltipTargetAttributeSelector,
-  ) as HTMLElement;
+  const targetElement = (e.target as HTMLElement).closest(tooltipTargetAttributeSelector);
   if (!targetElement || !('getAttribute' in targetElement)) return;
   const tooltipTarget = targetElement.getAttribute(tooltipTargetAttribute);
   if (!tooltipTarget || tooltipTarget === '') return;
@@ -112,7 +113,25 @@ export class PostTooltip {
    */
   @Prop() readonly arrow?: boolean = true;
 
+  /**
+   * If `true`, the tooltip is displayed a few milliseconds after it is triggered
+   */
+  @Prop() readonly delayed: boolean = false;
+
+  @Watch('delayed')
+  validateDelayed() {
+    checkEmptyOrType(
+      this.delayed,
+      'boolean',
+      'The post-tooltip "delayed" property should be a boolean.',
+    );
+  }
+
   connectedCallback() {
+    this.validateDelayed();
+  }
+
+  componentDidLoad() {
     if (!this.host.id) {
       throw new Error(
         /*prettier-ignore*/
@@ -170,6 +189,7 @@ export class PostTooltip {
    */
   @Method()
   async show(target: HTMLElement) {
+    if (this.delayed) await timeout(OPEN_DELAY);
     this.popoverRef.show(target);
   }
 

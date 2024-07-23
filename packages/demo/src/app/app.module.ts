@@ -26,7 +26,7 @@ import { PostSampleComponentsModule } from './post-sample/post-sample-components
 import { SwissPostIntranetHeaderModule } from '@swisspost/design-system-intranet-header';
 import { HomeComponent } from './home/home.component';
 import { PostCommonModule } from './common/post-common.module';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { LayoutContainerComponent } from './layout-container/layout-container.component';
 
 registerLocaleData(localeDe);
@@ -34,36 +34,29 @@ registerLocaleData(localeFr);
 registerLocaleData(localeIt);
 registerLocaleData(localeEn);
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    IntranetLayoutComponent,
-    LayoutContainerComponent,
-    HomeComponent,
-    CopyToClipboardDirective,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgbModule,
-    HttpClientModule,
-    BootstrapComponentsModule,
-    NgBootstrapComponentsModule,
-    IntranetComponentsModule,
-    PostCommonModule,
-    PostSampleComponentsModule,
-    SwissPostIntranetHeaderModule,
-    ToastrModule.forRoot({
-      extendedTimeOut: 0,
-      closeButton: true,
-      toastClass: 'toast',
-    }),
-    HighlightModule,
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [ErrorService, HighlightProvider.Config],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        IntranetLayoutComponent,
+        LayoutContainerComponent,
+        HomeComponent,
+        CopyToClipboardDirective,
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgbModule,
+        BootstrapComponentsModule,
+        NgBootstrapComponentsModule,
+        IntranetComponentsModule,
+        PostCommonModule,
+        PostSampleComponentsModule,
+        SwissPostIntranetHeaderModule,
+        ToastrModule.forRoot({
+            extendedTimeOut: 0,
+            closeButton: true,
+            toastClass: 'toast',
+        }),
+        HighlightModule], providers: [ErrorService, HighlightProvider.Config, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {}

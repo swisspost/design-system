@@ -5,33 +5,9 @@
 $form-select-border-radius: forms.$input-border-radius;
 $form-select-disabled-color: forms.$input-disabled-color;
 $form-select-disabled-bg: forms.$input-disabled-bg;
-$form-select-disabled-border-color: forms.$input-disabled-border-color;
+$form-select-disabled-border-color: color.$gray-40;
 $form-select-indicator-color: color.$black;
-$_form-select-indicator-icon: icons.get-colored-svg-url('2113', $form-select-indicator-color);
-$form-select-indicator: url($_form-select-indicator-icon) !default;
-$form-select-indicator-disabled: url(icons.get-colored-svg-url(
-  '2113',
-  $form-select-disabled-color
-)) !default;
-$form-select-indicator-hcm-dark: url(icons.get-colored-svg-url('2113', color.$white)) !default;
-$form-select-indicator-hcm-light: url(icons.get-colored-svg-url('2113', color.$black)) !default;
-
-$form-select-indicator-success: url(icons.get-colored-svg-url('2105', color.$success)) !default;
-$form-select-indicator-success-hcm-dark: url(icons.get-colored-svg-url(
-  '2105',
-  color.$white
-)) !default;
-$form-select-indicator-success-hcm-light: url(icons.get-colored-svg-url(
-  '2105',
-  color.$black
-)) !default;
-
-$form-select-indicator-error: url(icons.get-colored-svg-url('2104', color.$error)) !default;
-$form-select-indicator-error-hcm-dark: url(icons.get-colored-svg-url(
-  '2104',
-  color.$white
-)) !default;
-$form-select-indicator-error-hcm-light: url(icons.get-colored-svg-url(
-  '2104',
-  color.$black
-)) !default;
+$form-select-indicator: url('#{icons.get-colored-svg-url('2113', $form-select-indicator-color)}') !default;
+$form-select-indicator-disabled: url('#{icons.get-colored-svg-url('2113', $form-select-disabled-border-color)}') !default;
+$form-select-indicator-hcm-dark: url('#{icons.get-colored-svg-url('2113', color.$white)}') !default;
+$form-select-indicator-hcm-light: url('#{icons.get-colored-svg-url('2113', color.$black)}') !default;

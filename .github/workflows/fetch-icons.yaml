@@ -32,7 +32,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup
-        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+        uses: ./.github/actions/setup-pnpm
 
       - name: Get Date
         id: current-date
@@ -69,7 +69,7 @@ jobs:
 
       - name: Get Changes
         id: changed-files
-        uses: tj-actions/changed-files@v43
+        uses: tj-actions/changed-files@v44
         with:
           files: ./packages/icons/public/post-icons/**
 

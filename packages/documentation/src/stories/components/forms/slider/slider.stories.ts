@@ -228,18 +228,12 @@ function render(args: Args, context: StoryContext) {
   if (args.showValue === 'input') {
     return html`
       <div class="row align-items-end">
-        <div class="col">
-          <div class="form-range-wrapper">
-            ${[label, control, ...contextual].filter(el => el !== null)}
-          </div>
-        </div>
+        <div class="col">${[label, control, ...contextual].filter(el => el !== null)}</div>
         <div class="col-auto">${valueElement}</div>
       </div>
     `;
   } else {
-    return html`<div class="form-range-wrapper">
-      ${[label, control, valueElement, ...contextual].filter(el => el !== null)}
-    </div>`;
+    return html`${[label, control, valueElement, ...contextual].filter(el => el !== null)}`;
   }
 }
 

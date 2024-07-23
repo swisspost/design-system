@@ -1,7 +1,7 @@
+import { MetaComponent } from '@root/types';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { mapClasses } from '@/utils';
-import { MetaComponent } from '@root/types';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -26,8 +26,8 @@ const meta: MetaComponent = {
     floatingLabel: false,
     hiddenLabel: false,
     value: undefined,
-    size: 'null',
-    rows: 4,
+    size: 'form-control-lg',
+    sizeFloatingLabel: 'form-control-lg',
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
     disabled: false,
     validation: 'null',
@@ -99,13 +99,32 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
+    sizeFloatingLabel: {
+      name: 'Size',
+      description: "Sets the size of the component's appearance.",
+      if: {
+        arg: 'floatingLabel',
+        truthy: true,
+      },
+      control: {
+        type: 'select',
+        labels: {
+          'form-control-sm': 'Small',
+          'form-control-lg': 'Large',
+        },
+      },
+      options: ['form-control-sm', 'form-control-lg'],
+      table: {
+        category: 'General',
+      },
+    },
     rows: {
       name: 'Rows',
       description:
         'Attribute to set the initial height, in lines of text, of the `textarea` element.',
       control: {
         type: 'number',
-        min: 3,
+        min: 2,
         max: 10,
         step: 1,
       },
@@ -158,32 +177,31 @@ export default meta;
 type Story = StoryObj;
 
 function renderTextarea(args: Args, context: StoryContext) {
-  const id =
-    context.id ?? `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleTextarea`;
   const classes = mapClasses({
     'form-control': true,
-    [args.size]: args.size && args.size !== 'null',
-    [args.validation]: args.validation && args.validation !== 'null',
+    [args.size]: !args.floatingLabel,
+    [args.sizeFloatingLabel]: args.floatingLabel,
+    [args.validation]: args.validation,
   });
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
   const label = !useAriaLabel
-    ? html` <label for=${id} class="form-label">${args.label}</label> `
+    ? html` <label for=${context.id} class="form-label">${args.label}</label> `
     : null;
   const contextual = [
     args.validation === 'is-valid'
-      ? html` <div class="valid-feedback">Ggranda sukceso!</div> `
+      ? html`<div class="valid-feedback">Ggranda sukceso!</div>`
       : null,
     args.validation === 'is-invalid'
-      ? html` <div class="invalid-feedback">Eraro okazis!</div> `
+      ? html`<div class="invalid-feedback">Eraro okazis!</div>`
       : null,
-    args.hint !== '' ? html` <div class="form-text">${args.hint}</div> ` : null,
+    args.hint !== '' ? html`<div class="form-text">${args.hint}</div>` : null,
   ];
   const control = html`
     <textarea
-      id=${id}
+      id=${context.id}
       class=${classes}
       defaultValue=${args.value ?? nothing}
-      placeholder=${useAriaLabel ? args.label : ' '}
+      placeholder=${useAriaLabel ? args.label : ''}
       rows=${args.rows}
       ?disabled=${args.disabled}
       aria-label=${useAriaLabel ? args.label : nothing}
@@ -195,14 +213,9 @@ ${args.textInside ?? nothing}</textarea
   `;
   if (args.floatingLabel) {
     return html`
-      <div class="form-control-wrapper form-floating">
-        ${[control, label, ...contextual].filter(el => el !== null)}
-      </div>
+      <div class="form-floating">${[control, label, ...contextual].filter(el => el !== null)}</div>
     `;
-  } else
-    return html`<div class="form-control-wrapper">
-      ${[label, control, ...contextual].filter(el => el !== null)}
-    </div>`;
+  } else return html`${[label, control, ...contextual].filter(el => el !== null)}`;
 }
 
 export const Default: Story = {};

@@ -33,7 +33,7 @@ class FormSelectFloatingLabelWrapperUpdate implements DomUpdate {
 }
 
 class FormSelectCustomClassesUpdate implements DomUpdate {
-  cssClassRegex: RegExp = new RegExp(`^form-control-(${breakpoints.join('|')})$`);
+  cssClassRegex = new RegExp(`^form-control-(${breakpoints.join('|')})$`);
   selector = 'select.form-control';
 
   update($elements: Cheerio<AnyNode>, $: CheerioAPI) {

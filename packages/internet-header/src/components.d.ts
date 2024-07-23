@@ -18,6 +18,13 @@ export { StickynessOptions } from "./models/implementor.model";
 export { Environment, ICustomConfig } from "./models/general.model";
 export { IAvailableLanguage } from "./models/language.model";
 export namespace Components {
+    /**
+     * Trap the focus inside a specific container.
+     * @param active activate or deactivate the focus trap
+     */
+    interface FocusTrap {
+        "active": boolean;
+    }
     interface PostKlpLoginWidget {
         /**
           * Override the logout-url provided by the portal config.
@@ -193,6 +200,16 @@ export interface SwisspostInternetHeaderCustomEvent<T> extends CustomEvent<T> {
     target: HTMLSwisspostInternetHeaderElement;
 }
 declare global {
+    /**
+     * Trap the focus inside a specific container.
+     * @param active activate or deactivate the focus trap
+     */
+    interface HTMLFocusTrapElement extends Components.FocusTrap, HTMLStencilElement {
+    }
+    var HTMLFocusTrapElement: {
+        prototype: HTMLFocusTrapElement;
+        new (): HTMLFocusTrapElement;
+    };
     interface HTMLPostKlpLoginWidgetElement extends Components.PostKlpLoginWidget, HTMLStencilElement {
     }
     var HTMLPostKlpLoginWidgetElement: {
@@ -300,6 +317,7 @@ declare global {
         new (): HTMLSwisspostInternetHeaderElement;
     };
     interface HTMLElementTagNameMap {
+        "focus-trap": HTMLFocusTrapElement;
         "post-klp-login-widget": HTMLPostKlpLoginWidgetElement;
         "post-language-switch": HTMLPostLanguageSwitchElement;
         "post-logo": HTMLPostLogoElement;
@@ -313,6 +331,13 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    /**
+     * Trap the focus inside a specific container.
+     * @param active activate or deactivate the focus trap
+     */
+    interface FocusTrap {
+        "active"?: boolean;
+    }
     interface PostKlpLoginWidget {
         /**
           * Override the logout-url provided by the portal config.
@@ -450,6 +475,7 @@ declare namespace LocalJSX {
         "stickyness"?: StickynessOptions;
     }
     interface IntrinsicElements {
+        "focus-trap": FocusTrap;
         "post-klp-login-widget": PostKlpLoginWidget;
         "post-language-switch": PostLanguageSwitch;
         "post-logo": PostLogo;
@@ -466,6 +492,11 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            /**
+             * Trap the focus inside a specific container.
+             * @param active activate or deactivate the focus trap
+             */
+            "focus-trap": LocalJSX.FocusTrap & JSXBase.HTMLAttributes<HTMLFocusTrapElement>;
             "post-klp-login-widget": LocalJSX.PostKlpLoginWidget & JSXBase.HTMLAttributes<HTMLPostKlpLoginWidgetElement>;
             "post-language-switch": LocalJSX.PostLanguageSwitch & JSXBase.HTMLAttributes<HTMLPostLanguageSwitchElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;

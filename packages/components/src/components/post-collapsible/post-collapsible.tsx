@@ -7,7 +7,6 @@ import {
   Host,
   Method,
   Prop,
-  State,
   Watch,
 } from '@stencil/core';
 import { version } from '@root/package.json';
@@ -25,25 +24,24 @@ import { checkEmptyOrType, isMotionReduced } from '@/utils';
 })
 export class PostCollapsible {
   private isLoaded = false;
-  private collapsible: HTMLElement;
+  private isOpen = true;
 
   @Element() host: HTMLPostCollapsibleElement;
 
-  @State() id: string;
-  @State() isOpen = true;
-
   /**
-   * If `true`, the element is initially collapsed otherwise it is displayed.
+   * If `true`, the element is collapsed otherwise it is displayed.
    */
-  @Prop() readonly collapsed?: boolean = false;
+  @Prop({ mutable: true }) collapsed?: boolean = false;
 
   @Watch('collapsed')
-  validateCollapsed(newValue = this.collapsed) {
+  collapsedChange() {
     checkEmptyOrType(
-      newValue,
+      this.collapsed,
       'boolean',
       'The `collapsed` property of the `post-collapsible` must be a boolean.',
     );
+
+    void this.toggle(!this.collapsed);
   }
 
   /**
@@ -53,17 +51,11 @@ export class PostCollapsible {
    */
   @Event() postToggle: EventEmitter<boolean>;
 
-  connectedCallback() {
-    this.validateCollapsed();
-  }
-
-  componentWillRender() {
-    this.id = this.host.id || `c${crypto.randomUUID()}`;
-  }
-
   componentDidLoad() {
-    if (this.collapsed) void this.toggle(false);
+    this.collapsedChange();
     this.isLoaded = true;
+
+    this.updateTriggers();
   }
 
   /**
@@ -75,10 +67,11 @@ export class PostCollapsible {
   async toggle(open = !this.isOpen): Promise<boolean> {
     if (open === this.isOpen) return open;
 
-    this.isOpen = !this.isOpen;
-    if (this.isLoaded) this.postToggle.emit(this.isOpen);
+    this.isOpen = open;
+    this.collapsed = !open;
+    if (this.isLoaded) this.postToggle.emit(open);
 
-    const animation = open ? expand(this.collapsible) : collapse(this.collapsible);
+    const animation = open ? expand(this.host) : collapse(this.host);
 
     if (!this.isLoaded || isMotionReduced()) animation.finish();
 
@@ -86,15 +79,24 @@ export class PostCollapsible {
 
     animation.commitStyles();
 
-    return this.isOpen;
+    return open;
+  }
+
+  /**
+   * Update all post-collapsible-trigger elements referring to the collapsible
+   */
+  private updateTriggers() {
+    const triggers: NodeListOf<HTMLPostCollapsibleTriggerElement> = document.querySelectorAll(
+      `post-collapsible-trigger[for=${this.host.id}]`,
+    );
+
+    triggers.forEach(trigger => trigger.update());
   }
 
   render() {
     return (
-      <Host id={this.id} data-version={version}>
-        <div class="collapse" id={`${this.id}--collapse`} ref={el => (this.collapsible = el)}>
-          <slot />
-        </div>
+      <Host data-version={version}>
+        <slot />
       </Host>
     );
   }

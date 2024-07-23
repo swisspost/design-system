@@ -1,4 +1,6 @@
 @use "sass:map";
+@use 'sass:selector';
+@use 'sass:string';
 @use "@swisspost/design-system-styles/variables/breakpoints";
 
 @mixin min($point) {
@@ -44,4 +46,34 @@
     padding-right: 40px;
     padding-left: 40px;
   }
+}
+
+@mixin set-custom-property($var, $value) {
+  @if (type-of($value) == 'map') {
+    @include _responsive-custom-property($var, $value);
+  } @else {
+    @include _custom-property($var, $value);
+  }
+}
+
+@mixin _responsive-custom-property($var, $values) {
+  $previous-value: null;
+  @each $breakpoint, $value in $values {
+    @if($value == $previous-value) {
+      // no styles
+    } @else if($breakpoint == xs) {
+      @include _custom-property($var, $value);
+    } @else {
+      @include min($breakpoint) {
+        @include _custom-property($var, $value);
+      }
+    }
+
+    $previous-value: $value;
+  }
+}
+
+@mixin _custom-property($var, $value) {
+  $is-root: selector.is-superselector(&, ':root');
+  #{$var}: if($is-root, $value, var(#{string.insert($var, "post-", 3)}, $value));
 }

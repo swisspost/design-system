@@ -1,7 +1,9 @@
+import { useArgs } from '@storybook/preview-api';
 import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { spreadArgs } from '@/utils';
 import { MetaComponent } from '@root/types';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 const meta: MetaComponent<HTMLPostCollapsibleElement> = {
   id: '6a91848c-16ec-4a23-bc45-51c797b5b2c3',
@@ -9,7 +11,7 @@ const meta: MetaComponent<HTMLPostCollapsibleElement> = {
   tags: ['package:WebComponents'],
   component: 'post-collapsible',
   render: renderCollapsible,
-  decorators: [externalControls],
+  decorators: [gap],
   parameters: {
     badges: [],
     controls: {
@@ -25,44 +27,38 @@ const meta: MetaComponent<HTMLPostCollapsibleElement> = {
 export default meta;
 
 // DECORATORS
-function externalControls(story: StoryFn, context: StoryContext) {
-  const { args, canvasElement } = context;
-  const togglerId = `button--${context.id}`;
-
-  let collapsible!: HTMLPostCollapsibleElement;
-  let toggler!: HTMLButtonElement;
-  setTimeout(async () => {
-    collapsible = canvasElement.querySelector('post-collapsible') as HTMLPostCollapsibleElement;
-    toggler = canvasElement.querySelector(`#${togglerId}`) as HTMLButtonElement;
-
-    await collapsible.componentOnReady();
-
-    toggler.setAttribute('aria-controls', collapsible.id);
-  });
-
-  const toggle = async () => {
-    const isOpen = await collapsible.toggle();
-    toggler.setAttribute('aria-expanded', String(isOpen));
-  };
-
-  return html`
-    <button
-      id=${togglerId}
-      aria-controls="${collapsible?.id}"
-      aria-expanded="${!args.collapsed}"
-      class="btn btn-secondary mb-regular"
-      @click="${toggle}"
-    >
-      <span>Toggle Collapsible</span>
-    </button>
-
-    ${story(args, context)}
-  `;
+function gap(story: StoryFn, context: StoryContext) {
+  return html` <div class="d-flex flex-column gap-regular">${story(context.args, context)}</div> `;
 }
 
 //RENDERER
-function renderCollapsible(args: Partial<HTMLPostCollapsibleElement>) {
-  return html` <post-collapsible ${spreadArgs(args)}></post-collapsible> `;
+let ignoreToggle = true;
+function renderCollapsible(
+  { innerHTML, ...args }: Partial<HTMLPostCollapsibleElement>,
+  context: StoryContext<HTMLPostCollapsibleElement>,
+) {
+  const [_, updateArgs] = useArgs();
+  const handleToggle = (e: CustomEvent<boolean>) => {
+    if (ignoreToggle) return;
+
+    const collapsed = !e.detail;
+    updateArgs({ collapsed });
+  };
+
+  // ignore the first toggle event after a collapsed arg update
+  ignoreToggle = true;
+  setTimeout(() => {
+    ignoreToggle = false;
+  }, 200);
+  return html`
+    <post-collapsible-trigger for=${context.id}>
+      <button class="btn btn-secondary">Toggle Collapsible</button>
+    </post-collapsible-trigger>
+
+    <post-collapsible id=${context.id} ${spreadArgs(args)}  @postToggle="${handleToggle}">
+      ${unsafeHTML(innerHTML)}
+    </post-collapsible>
+  `;
 }
 
 // STORIES

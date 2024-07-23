@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property    | Attribute   | Description                                                              | Type      | Default |
-| ----------- | ----------- | ------------------------------------------------------------------------ | --------- | ------- |
-| `collapsed` | `collapsed` | If `true`, the element is initially collapsed otherwise it is displayed. | `boolean` | `false` |
+| Property    | Attribute   | Description                                                    | Type      | Default |
+| ----------- | ----------- | -------------------------------------------------------------- | --------- | ------- |
+| `collapsed` | `collapsed` | If `true`, the element is collapsed otherwise it is displayed. | `boolean` | `false` |
 
 
 ## Events

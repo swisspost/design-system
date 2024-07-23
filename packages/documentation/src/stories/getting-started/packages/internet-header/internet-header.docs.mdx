@@ -21,28 +21,31 @@ import { SourceDarkMode } from '@/../.storybook/preview';
 The header for client-facing applications.
 
 <ul>
-  <li><a href="#configuration" target="_self">Configuration</a></li>
   <li><a href="#installation" target="_self">Installation</a></li>
-  <li><a href="#migration-from-the-old-header" target="_self">Migration Guide</a></li>
+  <li><a href="#css-variables" target="_self">CSS Variables</a></li>
+  <li><a href="#migration-from-the-old-header" target="_self">Migration from the old header</a></li>
 </ul>
 
-## Preparation
+<div class="card my-bigger-big">
+  <div class="card-body">
+    <h5 class="card-title">Request a configuration</h5>
 
-### Request a configuration
+    <p class="card-text">The Internet Header is built to support the already existing Portal Configuration used for the old Internet Header. 
+    <br/>If you're working on a new project, you probably need a new configuration. Please contact the Post Portal Team.</p>
 
-The Internet Header is built to support the already existing Portal Configuration used for the old Internet Header.
+    <a className="mb-small-r btn-primary btn"
+    href="mailto:digitalconsulting@post.ch"
+    rel="noopener">Contact Post Portal Team <post-icon name="1001" className="fs-large" /></a>
 
-If you're working on a new project, you probably need a new configuration. Please click the button below.
-
-<a
-  className="mb-small-r btn-primary btn"
-  href="mailto:digitalconsulting@post.ch"
-  rel="noopener"
->Contact Post Portal Team <post-icon name="1001" className="fs-large" /></a>
-
-Not every Online Service has configurations for all environments.
+    <div className="alert alert-info alert-md">
+      <p>Not every Online Service has configurations for all environments.
 For example, "TOPOS" only has `int02` configured and cannot use `int01` as value for environment.
-If you are not sure what's configured for your project, please reach out to the post-portal team as well.
+If you are not sure what's configured for your project, please reach out to the post-portal team as well.</p>
+    </div>
+  </div>
+</div>
+
+## Installation
 
 ### Choose between lazy-loaded or bare component version
 
@@ -51,57 +54,73 @@ Internet-header package provide two versions:
 - Lazy-loaded (default): it allows better performance by dynamically load the component when used, so it reduces bundle size, startup time and first paint.
 - Bare component: if you already manage the lazy-loading or don't need it for any reason, you can use the component without any overhead.
 
-## Installation
-
-### Install with a bundler
-
-All the popular frameworks come with some form of bundler.
-This makes it easy to use npm packages like the Internet Header as you can import,
-bundle and deliver the header with your own code.
-
-When working with Angular or any other framework, the easiest installation method is via npm.
-
-<Source code={`npm install @swisspost/internet-header`} dark={SourceDarkMode} language="bash" />
-
-<Source code={SampleFrameworks} dark={SourceDarkMode} language="html" />
-
 <PostTabs>
-  <PostTabHeader slot="tabs" panel="lazy-loaded">Lazy-Loaded</PostTabHeader>
-  <PostTabPanel name="lazy-loaded">
-    <Source code={SampleLazyLoaded} dark={SourceDarkMode} language="javascript" />
+  <PostTabHeader panel="with-bundler">Install with a bundler</PostTabHeader>
+  <PostTabPanel name="with-bundler">
+    All the popular frameworks come with some form of bundler.
+    This makes it easy to use npm packages like the Internet Header as you can import,
+    bundle and deliver the header with your own code.
+
+    When working with Angular or any other framework, the easiest installation method is via npm.
+
+    <Source code={`npm install @swisspost/internet-header`} dark={SourceDarkMode} language="bash" />
+
+    <Source code={SampleFrameworks} dark={SourceDarkMode} language="html" />
+
+    <div>
+      <div class="row mb-2">
+        <div class="col-6 fw-bold">Lazy-Loaded</div>
+        <div class="col-6 fw-bold">Bare Component</div>
+      </div>
+      <div class="row">
+        <div class="col-6"><Source code={SampleLazyLoaded} dark={SourceDarkMode} language="javascript" /></div>
+        <div class="col-6"><Source code={SampleBareComponent} dark={SourceDarkMode} language="javascript" /></div>
+      </div>
+    </div>
   </PostTabPanel>
 
-  <PostTabHeader slot="tabs" panel="bareComponent">Bare Component</PostTabHeader>
-  <PostTabPanel name="bareComponent">
-    <Source code={SampleBareComponent} dark={SourceDarkMode} language="javascript" />
+  <PostTabHeader panel="with-cdn">Include from a CDN</PostTabHeader>
+  <PostTabPanel name="with-cdn">
+    If you are not using any bundler or don't want to install from npm, you can load the `internet-header` from your favourite [CDN](https://en.wikipedia.org/wiki/Content_delivery_network).<br/>
+    Make sure to replace `{version}` with the version you want to use or remove `@{version}` to use the latest version.
+
+    Available CDNs:
+
+    - [jsDelivr](https://www.jsdelivr.com/): replace `{cdnURL}` with [https://cdn.jsdelivr.net/npm/@swisspost/internet-header](https://cdn.jsdelivr.net/npm/@swisspost/internet-header).
+    - [unpkg](https://unpkg.com/): replace `{cdnURL}` with [https://unpkg.com/@swisspost/internet-header](https://unpkg.com/@swisspost/internet-header).
+
+    <div>
+      <div class="row mb-2">
+        <div class="col-6 fw-bold">Lazy-Loaded</div>
+        <div class="col-6 fw-bold">Bare Component</div>
+      </div>
+      <div class="row">
+        <div class="col-6"><Source code={SampleCDNLazyLoaded} dark={SourceDarkMode} language="html" /></div>
+        <div class="col-6"><Source code={SampleCDNBareComponent} dark={SourceDarkMode} language="html" /></div>
+      </div>
+    </div>
   </PostTabPanel>
 </PostTabs>
 
-### Include from a CDN
-
-If you are not using any bundler or don't want to install from npm, you can load the `internet-header` from your favourite [CDN](https://en.wikipedia.org/wiki/Content_delivery_network).<br/>
-Make sure to replace `{version}` with the version you want to use or remove `@{version}` to use the latest version.
-
-Available CDNs:
-
-- [jsDelivr](https://www.jsdelivr.com/): replace `{cdnURL}` with [https://cdn.jsdelivr.net/npm/@swisspost/internet-header](https://cdn.jsdelivr.net/npm/@swisspost/internet-header).
-- [unpkg](https://unpkg.com/): replace `{cdnURL}` with [https://unpkg.com/@swisspost/internet-header](https://unpkg.com/@swisspost/internet-header).
-
-<PostTabs>
-  <PostTabHeader slot="tabs" panel="lazy-loaded">Lazy-Loaded</PostTabHeader>
-  <PostTabPanel name="lazy-loaded">
-    <Source code={SampleCDNLazyLoaded} dark={SourceDarkMode} language="html" />
-  </PostTabPanel>
-
-  <PostTabHeader slot="tabs" panel="bareComponent">Bare Component</PostTabHeader>
-  <PostTabPanel name="bareComponent">
-    <Source code={SampleCDNBareComponent} dark={SourceDarkMode} language="html" />
-  </PostTabPanel>
-</PostTabs>
-
-## Usage with Angular
+### Usage with Angular
 
 For Angular user, please have a look at [How to integrate Web Components inside Angular](/?path=/docs/8426deb2-3d6d-4fcc-90e6-1ca9737b2ed0--docs#usage-of-web-components)
+
+## CSS Variables
+
+The internet header package provides a stylesheet aimed at facilitating the use of key CSS variables beyond the header itself.
+This stylesheet allows you to access CSS variables to implement styling relative to the header as needed, but it is completely optional.
+
+<PostTabs>
+  <PostTabHeader panel="sass-import">Sass Import</PostTabHeader>
+  <PostTabPanel name="sass-import">
+    <Source code={`@use "@swisspost/internet-header/dist/siwsspost-internet-header/siwsspost-internet-header.css";`} dark={SourceDarkMode} language="scss" />
+  </PostTabPanel>
+  <PostTabHeader panel="html-import">HTML Import</PostTabHeader>
+  <PostTabPanel name="html-import">
+    <Source code={`<link rel="stylesheet" href="@swisspost/internet-header/dist/siwsspost-internet-header/siwsspost-internet-header.css"/>`} dark={SourceDarkMode} language="html" />
+  </PostTabPanel>
+</PostTabs>
 
 ## Migration from the old header
 

@@ -11,8 +11,8 @@ export default {
 };
 
 const bombedArgs = bombArgs({
-  type: meta.argTypes!.type!.options,
-  validation: meta.argTypes!.validation!.options,
+  type: meta.argTypes?.type?.options,
+  validation: meta.argTypes?.validation?.options,
   checked: [false, true],
   disabled: [false, true],
   label: ['Card check text', 'Really long running choice card text that wraps to two lines'],

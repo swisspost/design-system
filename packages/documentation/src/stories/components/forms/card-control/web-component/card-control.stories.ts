@@ -8,7 +8,7 @@ import './card-control.styles.scss';
 import scss from '../card-control.module.scss';
 import { coloredBackground } from '@/shared/decorators/dark-background';
 
-const SCSS_VARIABLES: any = parse(scss);
+const SCSS_VARIABLES: { [key: string]: string | object } = parse(scss);
 
 const meta: MetaComponent = {
   id: '886fabcf-148b-4054-a2ec-4869668294fb',
@@ -36,6 +36,7 @@ const meta: MetaComponent = {
     'slots-icon': '',
     'event-postInput': '',
     'event-postChange': '',
+    'groupValidation': false,
   },
   argTypes: {
     'type': {
@@ -80,6 +81,12 @@ const meta: MetaComponent = {
         disable: true,
       },
     },
+    'groupValidation': {
+      name: 'groupValidation',
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 };
 
@@ -88,11 +95,21 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
+  parameters: {
+    docs: {
+      controls: {
+        exclude: ['groupValidation'],
+      },
+    },
+  },
   render: (args: Args) => {
     const [, updateArgs] = useArgs();
 
     const content = html`${unsafeHTML(args['slots-default'])}`;
     const icon = html`<span slot="icon">${unsafeHTML(args['slots-icon'])}</span>`;
+    const invalidFeedback = html`<p class="invalid-feedback${args.groupValidation ? '' : ' mt-2'}">
+      Invalid feedback
+    </p>`;
 
     return html`
       <post-card-control
@@ -111,6 +128,7 @@ export const Default: Story = {
       >
         ${args['slots-default'] ? content : null} ${args['slots-icon'] ? icon : null}
       </post-card-control>
+      ${args.validity === 'false' && !args.disabled ? invalidFeedback : nothing}
     `;
   },
 };
@@ -160,18 +178,18 @@ export const FormIntegration: Story = {
   parameters: {
     docs: {
       controls: {
-        include: ['disabled fieldset', 'value', 'disabled'],
+        include: ['disabled fieldset', 'value', 'disabled', 'validity', 'group validity'],
       },
     },
   },
   args: {
     name: 'checkbox',
     checkboxFieldset: false,
-    validity: 'null',
     radioValue: '',
     radioDisabled: '',
     radioFieldset: false,
     radioValidity: 'null',
+    groupValidation: true,
   },
   argTypes: {
     value: {
@@ -264,24 +282,21 @@ export const FormIntegration: Story = {
   render: (args: Args, context: StoryContext) => {
     const [_, updateArgs] = useArgs();
 
-    const invalidFeedback = html`<p
-      id="radio-group-invalid-feedback"
-      class="d-block invalid-feedback"
-    >
+    const invalidFeedback = html`<p id="radio-invalid-feedback" class="invalid-feedback">
       Invalid feedback
     </p>`;
 
     return html` <form
       id="AssociatedForm"
-      @reset="${(e: any) => formHandler(e, updateArgs)}"
-      @submit="${(e: any) => formHandler(e, updateArgs)}"
+      @reset="${(e: SubmitEvent) => formHandler(e, updateArgs)}"
+      @submit="${(e: SubmitEvent) => formHandler(e, updateArgs)}"
     >
       <fieldset .disabled=${args.checkboxFieldset}>
         <legend>Legend</legend>
         ${Default.render?.(args, context)}
       </fieldset>
       <fieldset class="mt-3" .disabled=${args.radioFieldset}>
-        <legend aria-describedby="radio-group-invalid-feedback">Legend</legend>
+        <legend aria-describedby="radio-invalid-feedback">Legend</legend>
         ${[1, 2, 3].map(
           n =>
             html`<post-card-control
@@ -303,15 +318,14 @@ export const FormIntegration: Story = {
   },
 };
 
-function formHandler(e: any, updateArgs: Function) {
+function formHandler(e: SubmitEvent, updateArgs: (newArgs: Partial<Args>) => void) {
   if (e.type === 'submit') e.preventDefault();
 
   setTimeout(() => {
     const formOutput = document.querySelector('#AssociatedFormOutput');
-    const formData: { [key: string]: string } = Array.from(new FormData(e.target).entries()).reduce(
-      (acc, [k, v]) => Object.assign(acc, { [k]: v }),
-      {},
-    );
+    const formData: { [key: string]: string } = Array.from(
+      new FormData(e.target as HTMLFormElement).entries(),
+    ).reduce((acc, [k, v]) => Object.assign(acc, { [k]: v }), {});
 
     if (formOutput) {
       updateArgs({

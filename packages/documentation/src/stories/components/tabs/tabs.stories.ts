@@ -30,9 +30,9 @@ export default meta;
 function renderTabs(args: Partial<HTMLPostTabsElement>) {
   return html`
     <post-tabs active-panel="${ifDefined(args.activePanel)}">
-      <post-tab-header slot="tabs" panel="unua">Unua langeto</post-tab-header>
-      <post-tab-header slot="tabs" panel="dua">Dua langeto</post-tab-header>
-      <post-tab-header slot="tabs" panel="tria">Tria langeto</post-tab-header>
+      <post-tab-header panel="unua">Unua langeto</post-tab-header>
+      <post-tab-header panel="dua">Dua langeto</post-tab-header>
+      <post-tab-header panel="tria">Tria langeto</post-tab-header>
 
       <post-tab-panel name="unua">
         Jen la enhavo de la unua langeto. Defaŭlte ĝi montriĝas komence.
@@ -67,7 +67,7 @@ export const Async: Story = {
 
         tabIndex++;
         const newTab = `
-          <post-tab-header slot="tabs" panel="panel-${tabIndex}">Nova langeto ${tabIndex}</post-tab-header>
+          <post-tab-header panel="panel-${tabIndex}">Nova langeto ${tabIndex}</post-tab-header>
           <post-tab-panel name="panel-${tabIndex}">Jen la enhavo de la nova langeto ${tabIndex}.</post-tab-panel>
         `;
 
@@ -78,8 +78,8 @@ export const Async: Story = {
         const headers: NodeListOf<HTMLPostTabHeaderElement> =
           document.querySelectorAll('post-tab-header');
 
-        const activeHeader: HTMLPostTabHeaderElement | undefined = Array.from(headers).find(
-          header => document.querySelectorAll('post-tab-header.active'),
+        const activeHeader: HTMLPostTabHeaderElement | undefined = Array.from(headers).find(() =>
+          document.querySelectorAll('post-tab-header.active'),
         );
         activeHeader?.remove();
 

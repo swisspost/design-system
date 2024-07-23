@@ -1,8 +1,6 @@
 # Swiss Post Design System
 
-![Swiss Post Design System splash screen](https://github.com/swisspost/design-system/assets/1659006/e58acc52-3e6a-47b3-84b5-0726250ec225)
-
-The Swiss Post Design System pattern library for a unified and accessible user experience across the web platform.
+![The Swiss Post Design System pattern library for a unified and accessible user experience across the web platform](https://github.com/swisspost/design-system/assets/1659006/e58acc52-3e6a-47b3-84b5-0726250ec225)
 
 ## Documentation
 
@@ -10,7 +8,7 @@ The Swiss Post Design System pattern library for a unified and accessible user e
 
 [Figma design files](https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=3209%3A72270&mode=design&t=jhmGcSqeWq2SgQXT-1) - Figma component library
 
-🔒 [Experience Hub](https://www.experience-hub.ch/document/2803) - Pattern usage documentation ([request access](https://www.experience-hub.ch/request-access/))
+[Experience Hub](https://www.experience-hub.ch/document/2803) - Pattern usage documentation ([request access](https://www.experience-hub.ch/request-access/))
 
 ## Packages
 

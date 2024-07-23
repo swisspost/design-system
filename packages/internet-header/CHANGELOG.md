@@ -1,5 +1,45 @@
 # @swisspost/internet-header
 
+## 1.14.2
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.4.0
+
+## 1.14.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.3.1
+
+## 1.14.0
+
+### Minor Changes
+
+- Added a new stylesheet containing `:root` CSS custom properties to facilitate implementing styles relative to the header. This will allow putting sticky content right below the header. (by [@alizedebray](https://github.com/alizedebray) with [#3200](https://github.com/swisspost/design-system/pull/3200))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.3.0
+
+## 1.13.12
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.2.1
+
+## 1.13.11
+
+### Patch Changes
+
+- Fixed focus trap on overlay of the breadcrumb. Added a focus trap on search overlay (by [@imagoiq](https://github.com/imagoiq) with [#2922](https://github.com/swisspost/design-system/pull/2922))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.2.0
+
 ## 1.13.10
 
 ### Patch Changes
