@@ -1,3 +1,4 @@
+import { useArgs } from '@storybook/preview-api';
 import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { spreadArgs } from '@/utils';
@@ -31,16 +32,30 @@ function gap(story: StoryFn, context: StoryContext) {
 }
 
 //RENDERER
+let ignoreToggle = true;
 function renderCollapsible(
   { innerHTML, ...args }: Partial<HTMLPostCollapsibleElement>,
   context: StoryContext<HTMLPostCollapsibleElement>,
 ) {
+  const [_, updateArgs] = useArgs();
+  const handleToggle = (e: CustomEvent<boolean>) => {
+    if (ignoreToggle) return;
+
+    const collapsed = !e.detail;
+    updateArgs({ collapsed });
+  };
+
+  // ignore the first toggle event after a collapsed arg update
+  ignoreToggle = true;
+  setTimeout(() => {
+    ignoreToggle = false;
+  }, 200);
   return html`
     <post-collapsible-trigger for=${context.id}>
       <button class="btn btn-secondary">Toggle Collapsible</button>
     </post-collapsible-trigger>
 
-    <post-collapsible id=${context.id} ${spreadArgs(args)}>
+    <post-collapsible id=${context.id} ${spreadArgs(args)}  @postToggle="${handleToggle}">
       ${unsafeHTML(innerHTML)}
     </post-collapsible>
   `;
