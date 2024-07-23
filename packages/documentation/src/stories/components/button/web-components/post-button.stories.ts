@@ -203,7 +203,7 @@ export const Template = {
 
     return html`
       <post-button
-        class="${additionalClasses.join(' ')}"
+        class="${additionalClasses.length === 0 ? nothing : additionalClasses.join(' ')}"
         variant="${args.variant === 'null' ? nothing : args.variant}"
         size="${args.size === 'null' ? nothing : args.size}"
         icon="${args.icon === 'null' ? nothing : args.icon}"
