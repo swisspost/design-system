@@ -41,11 +41,7 @@ export class PostCollapsibleTrigger {
    * to update the trigger's "aria-expanded" attribute whenever the controlled post-collapsible is toggled
    */
   componentWillLoad() {
-    const previousHost = this.host;
     this.root = getRoot(this.host);
-
-    // make sure the event listener is not attached twice to the same node
-    if (previousHost && this.host.isEqualNode(previousHost)) return;
 
     this.root.addEventListener('postToggle', (e: PostCollapsibleCustomEvent<boolean>) => {
       if (!this.trigger || !e.target.isEqualNode(this.collapsible)) return;
