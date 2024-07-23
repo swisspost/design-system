@@ -35,6 +35,7 @@ body:
       value: |
         ```[tasklist]
         ### 💻 Tasks
+        - [ ] Review Design (All states present? Possible to implement?)
         - [ ] HTML/CSS implementation
         - [ ] Web component implementation
         - [ ] Documentation in Storybook

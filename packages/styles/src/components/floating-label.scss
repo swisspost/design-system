@@ -16,6 +16,8 @@
 @use './../variables/spacing';
 @use './../variables/components/forms';
 @use './../variables/components/form-validation';
+@use './../variables/animation';
+@use './../variables/color' as c;
 
 .form-floating {
   > label {
@@ -43,9 +45,15 @@
     // disable stylelint here, because the classes are coming from bs5
     @extend .form-control-lg; /* stylelint-disable-line */
 
+    @include forms-mx.placeholder {
+      opacity: 0;
+    }
+
     &:focus {
       @include forms-mx.placeholder {
         color: rgba(var(--post-contrast-color-rgb), 0.6);
+        opacity: 1;
+        transition: opacity animation.$transition-base-timing;
       }
     }
 
@@ -68,7 +76,13 @@
 
     &:disabled {
       ~ label {
-        color: forms.$input-disabled-color;
+        color: var(--post-gray-60);
+      }
+    }
+
+    &:hover {
+      ~ label {
+        color: c.$black;
       }
     }
 
@@ -98,7 +112,7 @@
       ~ label {
         font-size: forms.$form-floating-label-font-size-placeholder-sm;
         padding-top: forms.$form-floating-label-padding-t-sm;
-        padding-inline: calc(#{forms.$form-floating-padding-x-sm} - #{forms.$input-border-width});
+        padding-inline: forms.$form-floating-padding-x-sm;
       }
 
       &:focus,
@@ -133,7 +147,7 @@
 
     &:disabled {
       ~ label {
-        color: forms.$input-disabled-color;
+        color: var(--post-gray-60);
       }
     }
 

@@ -1,5 +1,62 @@
 # @swisspost/design-system-documentation
 
+## 5.3.2
+
+### Patch Changes
+
+- Added the slot="tabs" attribute on the post-tab-header per default. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#3282](https://github.com/swisspost/design-system/pull/3282))
+- Updated dependencies:
+  - @swisspost/design-system-icons@7.4.0
+  - @swisspost/design-system-components@7.4.0
+  - @swisspost/design-system-styles@7.4.0
+  - @swisspost/design-system-components-react@7.4.0
+  - @swisspost/internet-header@1.14.2
+
+## 5.3.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.3.1
+  - @swisspost/design-system-components@7.3.1
+  - @swisspost/design-system-components-react@7.3.1
+  - @swisspost/design-system-icons@7.3.1
+  - @swisspost/internet-header@1.14.1
+
+## 5.3.0
+
+### Minor Changes
+
+- Added a new stylesheet containing `:root` CSS custom properties to facilitate implementing styles relative to the header. This will allow putting sticky content right below the header. (by [@alizedebray](https://github.com/alizedebray) with [#3200](https://github.com/swisspost/design-system/pull/3200))
+
+- Added the compatibility table entries for v7. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3294](https://github.com/swisspost/design-system/pull/3294))
+
+- Added a `delayed` property to the `post-tooltip` component to allow delaying its display for a few milliseconds after it is triggered. (by [@alizedebray](https://github.com/alizedebray) with [#3245](https://github.com/swisspost/design-system/pull/3245))
+
+- Added documentation on how to get started with the `@swisspost/design-system-styles-primeng` package. (by [@alizedebray](https://github.com/alizedebray) with [#2718](https://github.com/swisspost/design-system/pull/2718))
+
+- Added a `post-collapsible-trigger` component to properly handle the role, ARIA attributes, and event listeners for elements that toggle a `post-collapsible`. (by [@alizedebray](https://github.com/alizedebray) with [#3209](https://github.com/swisspost/design-system/pull/3209))
+
+### Patch Changes
+
+- Fixed the documentation heading links by adding the rehype-slug plugin (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#3279](https://github.com/swisspost/design-system/pull/3279))
+
+- Deprecated accent colors. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#3195](https://github.com/swisspost/design-system/pull/3195))
+
+- Updated tabs to improve visual continuity and readability. (by [@alizedebray](https://github.com/alizedebray) with [#3254](https://github.com/swisspost/design-system/pull/3254))
+
+- Fixed the wrong implementation of the intranet-header changeset.md file in the changelog/intranet-header docs page. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3293](https://github.com/swisspost/design-system/pull/3293))
+
+- Fix headers for the `versions.json` file. So it can be loaded and used from the version-switcher of older documentation pages. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3267](https://github.com/swisspost/design-system/pull/3267))
+
+- Removed horizontal scrollbar showing up in Firefox, when a docs specific tab component is present on the page. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3268](https://github.com/swisspost/design-system/pull/3268))
+- Updated dependencies:
+  - @swisspost/design-system-icons@7.3.0
+  - @swisspost/design-system-components@7.3.0
+  - @swisspost/design-system-styles@7.3.0
+  - @swisspost/internet-header@1.14.0
+  - @swisspost/design-system-components-react@7.3.0
+
 ## 5.2.1
 
 ### Patch Changes

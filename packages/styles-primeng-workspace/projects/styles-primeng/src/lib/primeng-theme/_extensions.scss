@@ -1,0 +1,161 @@
+@use '@swisspost/design-system-styles/core' as post;
+@use './variables' as variables;
+
+.p-datatable-wrapper {
+  overflow: initial;
+}
+
+.p-datatable {
+  .p-datatable-thead > tr > th {
+    gap: post.$size-mini;
+  }
+
+  .p-sortable-column {
+    &.p-highlight:hover {
+      color: post.$black;
+    }
+
+    p-sorticon {
+      display: inline-flex;
+      align-items: center;
+      height: 1.5rem;
+      transform: translateY(25%);
+    }
+
+    sortalticon,
+    sortamountupalticon,
+    sortamountdownicon {
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+  }
+
+  p-columnfilter {
+    margin-inline: post.$size-mini;
+    height: 1.5rem;
+
+    filtericon {
+      height: 1.25rem;
+      width: 1.25rem;
+    }
+  }
+
+  .p-datatable-tbody > tr > td {
+    border: variables.$tableBodyCellBorder;
+    border-width: variables.$tableBodyCellBorderWidth;
+  }
+
+  &.p-datatable-striped .p-datatable-tbody > tr {
+    > td {
+      border-width: 0;
+    }
+
+    &:nth-child(2n + 1) {
+      background: post.$light;
+      color: post.$black;
+    }
+  }
+}
+
+.p-inputtext {
+  border-radius: 0;
+}
+
+.p-dropdown {
+  &,
+  &-panel {
+    border-radius: 0;
+  }
+
+  .p-dropdown-items {
+    margin: 0;
+    padding: 0;
+  }
+
+  .p-dropdown-trigger chevrondownicon {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+}
+
+.p-paginator {
+  justify-content: flex-end;
+
+  .p-paginator-current {
+    border: 0;
+  }
+
+  .p-dropdown .p-dropdown-label {
+    padding-block: 0.35rem;
+  }
+
+  .p-paginator-first {
+    border-start-start-radius: post.$btn-border-radius;
+    border-end-start-radius: post.$btn-border-radius;
+  }
+
+  .p-paginator-last {
+    border-start-end-radius: post.$btn-border-radius;
+    border-end-end-radius: post.$btn-border-radius;
+  }
+
+  .p-paginator-element {
+    &:not(.p-highlight) {
+      background-color: #fff;
+
+      &:hover {
+        background-color: #faf9f8;
+      }
+
+      &:not(:hover) {
+        color: post.$gray-60;
+      }
+    }
+
+    &:not(.p-paginator-last) {
+      margin-inline-end: -1 * post.$btn-border-width;
+    }
+
+    &.p-disabled {
+      display: none;
+    }
+  }
+}
+
+.p-button {
+  gap: post.$size-mini;
+
+  &.p-button-text {
+    color: post.$dark;
+
+    &:hover {
+      color: post.$black;
+    }
+  }
+}
+
+.p-checkbox-box {
+  border-radius: 0;
+  color: post.$black;
+
+  checkicon,
+  timesicon {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.p-sortable-column,
+.p-column-filter,
+.p-selectable-row,
+.p-link,
+.p-button,
+.p-inputwrapper.p-dropdown,
+.p-inputtext:not(.p-inputwrapper > .p-inputtext),
+.p-checkbox,
+.p-radiobutton {
+  @include post.focus-style() {
+    box-shadow: none;
+    border-radius: post.$border-radius;
+  }
+}

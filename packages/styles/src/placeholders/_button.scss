@@ -2,27 +2,6 @@
 @use './../mixins/color' as color-mx;
 @use './../variables/components/button';
 
-%btn-default {
-  border: button.$btn-border-width solid var(--post-gray-60);
-
-  @include utilities.not-disabled-focus-hover() {
-    border-color: var(--post-contrast-color);
-  }
-
-  @include color-mx.on-dark-background() {
-    border-color: var(--post-contrast-color);
-
-    @include utilities.not-disabled-focus-hover() {
-      border-color: var(--post-gray-40);
-    }
-  }
-
-  &:disabled {
-    border-color: var(--post-gray-40);
-    color: var(--post-gray-60);
-  }
-}
-
 %btn-transparent-background {
   @include utilities.not-disabled-focus-hover() {
     color: var(--post-contrast-color);

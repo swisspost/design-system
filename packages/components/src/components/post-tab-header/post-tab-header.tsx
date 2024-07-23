@@ -39,6 +39,7 @@ export class PostTabHeader {
         aria-selected="false"
         tabindex="-1"
         class="tab-title"
+        slot="tabs"
       >
         <slot />
       </Host>
