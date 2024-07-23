@@ -15,6 +15,11 @@ export class PostButton {
   @State() classes: string;
 
   /**
+   * Defines the class of the component.
+   */
+  @Prop() readonly class: string | null = null;
+
+  /**
    * Defines the variant of the component.
    */
   @Prop() readonly variant: string = 'secondary';
@@ -143,6 +148,11 @@ export class PostButton {
     this.setClasses();
   }
 
+  @Watch('class')
+  classChanged() {
+    this.setClasses();
+  }
+
   private animationClass() {
     if (this.animated === 'start') return 'btn-animated-start';
     if (this.animated === 'end') return 'btn-animated';
@@ -156,6 +166,7 @@ export class PostButton {
       this.size ? `btn-${this.size}` : null,
       this.variant ? `btn-${this.variant}` : null,
       this.iconOnly ? 'btn-icon' : null,
+      ...this.class?.split(' ').filter(c => c.startsWith('w-')),
     ]
       .filter(c => c !== null)
       .join(' ');

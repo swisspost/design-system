@@ -85,6 +85,10 @@ export namespace Components {
          */
         "autofocus": boolean;
         /**
+          * Defines the class of the component.
+         */
+        "class": string | null;
+        /**
           * Defines if the button is disabled.
          */
         "disabled": boolean;
@@ -668,6 +672,10 @@ declare namespace LocalJSX {
           * Defines if the button should be focused on the first render.
          */
         "autofocus"?: boolean;
+        /**
+          * Defines the class of the component.
+         */
+        "class"?: string | null;
         /**
           * Defines if the button is disabled.
          */

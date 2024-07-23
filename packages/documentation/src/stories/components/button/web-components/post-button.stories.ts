@@ -199,8 +199,11 @@ type Story = StoryObj;
 
 export const Template = {
   render: (args: Args) => {
+    const additionalClasses = args.additionalClasses ?? [];
+
     return html`
       <post-button
+        class="${additionalClasses.join(' ')}"
         variant="${args.variant === 'null' ? nothing : args.variant}"
         size="${args.size === 'null' ? nothing : args.size}"
         icon="${args.icon === 'null' ? nothing : args.icon}"
@@ -288,7 +291,13 @@ export const SignalColors: Story = {
   },
 };
 
-// TODO: Add full width example (either prop or forward class names)
+export const FullWidth: Story = {
+  ...VariantsTemplate,
+  args: {
+    variants: ['primary'],
+    additionalClasses: ['w-sm-100', 'w-md-auto'],
+  },
+};
 
 export const Align: Story = {
   render: () => html`
