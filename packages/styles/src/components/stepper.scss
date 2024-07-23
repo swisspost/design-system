@@ -60,7 +60,7 @@
     inset-block-start: math.div((stepper.$stepper-indicator-size - stepper.$stepper-bar-height), 2);
     height: stepper.$stepper-bar-height;
     background-color: stepper.$stepper-bar-color;
-    inset-inline: 0 0;
+    inset-inline: 0;
   }
 
   &:not(:first-child, :last-child) {
