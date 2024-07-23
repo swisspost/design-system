@@ -1,5 +1,13 @@
 # @swisspost/design-system-components
 
+## 7.4.1
+
+### Patch Changes
+
+- Updated the `collapsed` property of the `post-collapsible` and `post-accordion-item` to toggle the content visibility throughout the component lifecycle, rather than only initially. (by [@alizedebray](https://github.com/alizedebray) with [#3205](https://github.com/swisspost/design-system/pull/3205))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.4.1
+
 ## 7.4.0
 
 ### Minor Changes
@@ -8,7 +16,7 @@
 
 ### Patch Changes
 
-- Fixed a bug with the post-collapsible-trigger imports  (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3302](https://github.com/swisspost/design-system/pull/3302))
+- Fixed a bug with the post-collapsible-trigger imports (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3302](https://github.com/swisspost/design-system/pull/3302))
 - Updated dependencies:
   - @swisspost/design-system-styles@7.4.0
 
