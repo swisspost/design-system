@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-removed the icon from inside the input and invalid textarea
+Removed the icon from inside form-controls (`input`, `select`, `textarea`).
