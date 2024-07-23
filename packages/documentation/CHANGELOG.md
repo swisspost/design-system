@@ -1,5 +1,17 @@
 # @swisspost/design-system-documentation
 
+## 5.3.3
+
+### Patch Changes
+
+- Updated the `collapsed` property of the `post-collapsible` and `post-accordion-item` to toggle the content visibility throughout the component lifecycle, rather than only initially. (by [@alizedebray](https://github.com/alizedebray) with [#3205](https://github.com/swisspost/design-system/pull/3205))
+- Updated dependencies:
+  - @swisspost/design-system-components@7.4.1
+  - @swisspost/design-system-components-react@7.4.1
+  - @swisspost/design-system-styles@7.4.1
+  - @swisspost/design-system-icons@7.4.1
+  - @swisspost/internet-header@1.14.3
+
 ## 5.3.2
 
 ### Patch Changes
