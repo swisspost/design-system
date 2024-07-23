@@ -6,28 +6,9 @@ These contribution guidelines apply to this repository in general and describe h
 - [Design System Styles](./packages/styles/CONTRIBUTING.md)
 - [Intranet Header Component](./packages/intranet-header-workspace/projects/intranet-header/CONTRIBUTING.md)
 
-## Prerequisites
-
-In order to be able to use `npm` commands, [node.js](https://nodejs.org/en/) v18+ needs to be installed on your machine.
-
-We use [pnpm](https://pnpm.io/) to manage dependencies, so make sure you have it installed: `npm i -g pnpm`. To install dependencies for all packages in this repo, run `pnpm install` from the root. Adding a new dependency to a package is just a matter of running `pnpm add <PACKAGE_NAME>` in the current packages sub-folder.
-
 ## Setup
 
-To set up the repository and install dependencies for all packages, run (at the root):
-
-```bash
-# If you haven't already
-npm install -g pnpm
-
-# Install dependencies, build local dependencies and finally link them correctly
-pnpm run bootstrap
-
-# Start the design-system-documentation
-pnpm start
-```
-
-Other root scripts are available for convenience:
+To set up the repo for local development, please follow the [Design System Local Setup Guide](https://github.com/swisspost/design-system/wiki/How-to-set-up-the-Design-System-Repo)
 
 ### Development
 

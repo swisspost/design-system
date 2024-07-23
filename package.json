@@ -25,6 +25,7 @@
     "demo:build": "pnpm --filter design-system-demo build",
     "demo:lint": "pnpm --filter design-system-demo lint",
     "docs": "pnpm docs:start",
+    "docs:only": "pnpm --filter design-system-documentation start",
     "docs:start": "pnpm --filter design-system-documentation... --parallel --stream start",
     "docs:build": "pnpm --filter design-system-documentation build",
     "docs:headless": "pnpm --filter design-system-documentation start:headless",
@@ -77,40 +78,33 @@
     "nextjs:lint": "pnpm --filter design-system-nextjs-integration lint",
     "changeset:publish": "pnpm changeset publish",
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only",
-    "tokens:build": "pnpm --filter design-system-tokens build"
+    "tokens:build": "pnpm --filter design-system-tokens build",
+    "primeng": "pnpm primeng:start",
+    "primeng:start": "pnpm --filter design-system-styles-primeng-workspace start",
+    "primeng:build": "pnpm --filter design-system-styles-primeng-workspace build",
+    "primeng:lint": "pnpm --filter design-system-styles-primeng-workspace lint",
+    "primeng:lint:fix": "pnpm --filter design-system-styles-primeng-workspace lint:fix"
   },
   "devDependencies": {
-    "@changesets/cli": "2.27.5",
+    "@changesets/cli": "2.27.7",
     "start-server-and-test": "2.0.4"
   },
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
   },
   "engines": {
-    "node": "20",
-    "pnpm": "9"
+    "node": "20"
   },
+  "packageManager": "pnpm@9.3.0",
   "pnpm": {
     "peerDependencyRules": {
-      "ignoreMissing": [
-        "eslint",
-        "@typescript-eslint/eslint-plugin",
-        "@typescript-eslint/parser"
-      ],
+      "ignoreMissing": {},
       "allowedVersions": {
-        "react": ">=18",
-        "react-dom": ">=18",
-        "stylelint": ">=15"
+        "@typescript-eslint/eslint-plugin": ">=7",
+        "@typescript-eslint/parser": ">=7",
+        "zone.js": ">=0.14"
       }
     },
-    "overrides": {
-      "merge@< 2.1.1": "2.1.1",
-      "glob-parent@< 5.1.2": "5.1.2",
-      "glob-parent@<5.1.2": ">=5.1.2",
-      "merge@<2.1.1": ">=2.1.1",
-      "ip@=2.0.0": ">=2.0.1",
-      "es5-ext@>=0.10.0 <0.10.63": ">=0.10.63",
-      "follow-redirects@<=1.15.5": ">=1.15.6"
-    }
+    "overrides": {}
   }
 }

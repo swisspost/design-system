@@ -30,7 +30,10 @@
 
 <div class="my-4">
   <h2>Post Collapsible</h2>
-  <post-collapsible>
+  <post-collapsible-trigger for="angular-collapsible">
+    <button class="btn btn-secondary mb-mini">Toggle</button>
+  </post-collapsible-trigger>
+  <post-collapsible id="angular-collapsible">
     <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
   </post-collapsible>
 </div>
@@ -69,9 +72,9 @@
 <div class="my-4">
   <h2>Post Tabs</h2>
   <post-tabs>
-    <post-tab-header slot="tabs" panel="unua">Unua langeto</post-tab-header>
-    <post-tab-header slot="tabs" panel="dua">Dua langeto</post-tab-header>
-    <post-tab-header slot="tabs" panel="tria">Tria langeto</post-tab-header>
+    <post-tab-header panel="unua">Unua langeto</post-tab-header>
+    <post-tab-header panel="dua">Dua langeto</post-tab-header>
+    <post-tab-header panel="tria">Tria langeto</post-tab-header>
 
     <post-tab-panel name="unua">
       Jen la enhavo de la unua langeto. Defaŭlte ĝi montriĝas komence.

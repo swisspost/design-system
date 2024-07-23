@@ -36,7 +36,7 @@ export namespace Components {
     }
     interface PostAccordionItem {
         /**
-          * If `true`, the element is initially collapsed otherwise it is displayed.
+          * If `true`, the element is collapsed otherwise it is displayed.
          */
         "collapsed"?: boolean;
         /**
@@ -208,13 +208,23 @@ export namespace Components {
     }
     interface PostCollapsible {
         /**
-          * If `true`, the element is initially collapsed otherwise it is displayed.
+          * If `true`, the element is collapsed otherwise it is displayed.
          */
         "collapsed"?: boolean;
         /**
           * Triggers the collapse programmatically.  If there is a collapsing transition running already, it will be reversed.
          */
         "toggle": (open?: boolean) => Promise<boolean>;
+    }
+    interface PostCollapsibleTrigger {
+        /**
+          * Link the trigger to a post-collapsible with this id
+         */
+        "for": string;
+        /**
+          * Update the "aria-controls" and "aria-expanded" attributes on the trigger button
+         */
+        "update": () => Promise<void>;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -363,6 +373,10 @@ export namespace Components {
          */
         "arrow"?: boolean;
         /**
+          * If `true`, the tooltip is displayed a few milliseconds after it is triggered
+         */
+        "delayed": boolean;
+        /**
           * Programmatically hide this tooltip
          */
         "hide": () => Promise<void>;
@@ -481,6 +495,12 @@ declare global {
         prototype: HTMLPostCollapsibleElement;
         new (): HTMLPostCollapsibleElement;
     };
+    interface HTMLPostCollapsibleTriggerElement extends Components.PostCollapsibleTrigger, HTMLStencilElement {
+    }
+    var HTMLPostCollapsibleTriggerElement: {
+        prototype: HTMLPostCollapsibleTriggerElement;
+        new (): HTMLPostCollapsibleTriggerElement;
+    };
     /**
      * @class PostIcon - representing a stencil component
      */
@@ -579,6 +599,7 @@ declare global {
         "post-button": HTMLPostButtonElement;
         "post-card-control": HTMLPostCardControlElement;
         "post-collapsible": HTMLPostCollapsibleElement;
+        "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
         "post-icon": HTMLPostIconElement;
         "post-popover": HTMLPostPopoverElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
@@ -603,7 +624,7 @@ declare namespace LocalJSX {
     }
     interface PostAccordionItem {
         /**
-          * If `true`, the element is initially collapsed otherwise it is displayed.
+          * If `true`, the element is collapsed otherwise it is displayed.
          */
         "collapsed"?: boolean;
         /**
@@ -771,13 +792,19 @@ declare namespace LocalJSX {
     }
     interface PostCollapsible {
         /**
-          * If `true`, the element is initially collapsed otherwise it is displayed.
+          * If `true`, the element is collapsed otherwise it is displayed.
          */
         "collapsed"?: boolean;
         /**
           * An event emitted when the collapse element is shown or hidden, before the transition.  The event payload is a boolean: `true` if the collapsible was opened, `false` if it was closed.
          */
         "onPostToggle"?: (event: PostCollapsibleCustomEvent<boolean>) => void;
+    }
+    interface PostCollapsibleTrigger {
+        /**
+          * Link the trigger to a post-collapsible with this id
+         */
+        "for"?: string;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -908,6 +935,10 @@ declare namespace LocalJSX {
          */
         "arrow"?: boolean;
         /**
+          * If `true`, the tooltip is displayed a few milliseconds after it is triggered
+         */
+        "delayed"?: boolean;
+        /**
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
@@ -919,6 +950,7 @@ declare namespace LocalJSX {
         "post-button": PostButton;
         "post-card-control": PostCardControl;
         "post-collapsible": PostCollapsible;
+        "post-collapsible-trigger": PostCollapsibleTrigger;
         "post-icon": PostIcon;
         "post-popover": PostPopover;
         "post-popovercontainer": PostPopovercontainer;
@@ -943,6 +975,7 @@ declare module "@stencil/core" {
              */
             "post-card-control": LocalJSX.PostCardControl & JSXBase.HTMLAttributes<HTMLPostCardControlElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
+            "post-collapsible-trigger": LocalJSX.PostCollapsibleTrigger & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
             /**
              * @class PostIcon - representing a stencil component
              */

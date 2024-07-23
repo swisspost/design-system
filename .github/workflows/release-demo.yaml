@@ -1,6 +1,6 @@
 ###
 #
-# Release the demo app whenever it's package json changes on the main branch
+# DEPRECATED: This Action can be removed as soon as we start working on V2/V9
 #
 ###
 
@@ -33,7 +33,7 @@ jobs:
 
       - name: Setup
         if: steps.check.outputs.changed == 'true'
-        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+        uses: ./.github/actions/setup-pnpm
 
       # Install changesets locally
       - name: Install demo app & dependencies
@@ -47,15 +47,13 @@ jobs:
 
       - name: Install netlify cli
         if: steps.check.outputs.changed == 'true'
-        run: pnpm -g i netlify-cli@15
+        run: pnpm -g i netlify-cli@16
 
       # Publish demo only if changesets published any packages
       - name: Publish demo app to netlify
         id: netlify
         if: steps.check.outputs.changed == 'true'
         env:
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        run: |
-          netlify link --id $NETLIFY_SITE_ID
-          netlify deploy --build false --dir packages/demo/dist/demo --prod
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: netlify deploy --filter @swisspost/design-system-demo --build false --dir packages/demo/dist/demo --prod

@@ -102,7 +102,10 @@
           "kommunikation"
         ],
         "keywords": [
+          "Postkarten-Ersteller",
           "PostCard Creator",
+          "Creatore di cartoline",
+          "Créateur de cartes postales",
           "Postkarte",
           "Postcard",
           "Cartolina",
@@ -121,7 +124,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:09:37.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "86819840-c5fc-11e7-a943-005056a94f4a",
@@ -134,7 +137,10 @@
           "kommunikation"
         ],
         "keywords": [
-          "Gratis Poskarte",
+          "Kostenlose Postkarte",
+          "Free postcard",
+          "Cartolina gratuita",
+          "Carte postale gratuite",
           "Geschenkskarte",
           "Carta regalo",
           "Gift card",
@@ -143,9 +149,6 @@
           "Letter",
           "Lettera",
           "Lettre",
-          "Carte postale gratuite",
-          "Free postcard",
-          "Cartolina gratuita",
           "Gratis-Postkarte",
           "carte cadeau",
           "gift card",
@@ -173,7 +176,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:09:37.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "86862c20-c5fc-11e7-a943-005056a94f4a",
@@ -214,7 +217,10 @@
           "letter deposit",
           "deposito di lettere",
           "Briefe aufgeben",
+          "Brief/Paket",
           "Letter/parcel",
+          "Lettre/colis",
+          "Lettera/pacco",
           "posting parcels",
           "Pakete aufgeben",
           "envoi de colis",
@@ -249,7 +255,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:09:38.000Z"
+      "modifiedAt": "2024-07-21T01:05:01.665Z"
     },
     {
       "uuid": "868b3530-c5fc-11e7-a943-005056a94f4a",
@@ -301,7 +307,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:09:39.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "868fc910-c5fc-11e7-a943-005056a94f4a",
@@ -326,7 +332,8 @@
           "ricevere",
           "recevoir",
           "receive",
-          "empfangen"
+          "empfangen",
+          "My Post 24"
         ],
         "year": [
           "2017"
@@ -344,7 +351,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:09:40.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "869435e0-c5fc-11e7-a943-005056a94f4a",
@@ -411,7 +418,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:09:40.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "869917e0-c5fc-11e7-a943-005056a94f4a",
@@ -494,8 +501,7 @@
           "ricevere",
           "recevoir",
           "receive",
-          "empfangen",
-          "Delivery"
+          "empfangen"
         ]
       },
       "file": {
@@ -510,7 +516,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:09:42.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "86a5e920-c5fc-11e7-a943-005056a94f4a",
@@ -558,7 +564,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:09:43.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "86aa7d00-c5fc-11e7-a943-005056a94f4a",
@@ -830,7 +836,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:09:47.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "86c64260-c5fc-11e7-a943-005056a94f4a",
@@ -958,7 +964,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:09:49.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "86d05480-c5fc-11e7-a943-005056a94f4a",
@@ -1035,9 +1041,11 @@
           "Letter",
           "Lettera",
           "Lettre",
+          "Praktisch",
           "Handy",
+          "Maneggevole",
+          "Pratique",
           "iPhone",
-          "Iphone",
           "Android",
           "ricevere",
           "recevoir",
@@ -1064,7 +1072,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:09:51.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "86d9ca60-c5fc-11e7-a943-005056a94f4a",
@@ -1082,10 +1090,12 @@
           "Scansione dei francobolli",
           "Scannage de timbres-poste",
           "Smartphone",
+          "Praktisch",
           "Handy",
+          "Maneggevole",
+          "Pratique",
           "Scan",
           "iPhone",
-          "Iphone",
           "Android",
           "Scanner",
           "Briefmarke",
@@ -1111,7 +1121,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:09:52.000Z"
+      "modifiedAt": "2024-07-20T19:05:10.046Z"
     },
     {
       "uuid": "86de8550-c5fc-11e7-a943-005056a94f4a",
@@ -1157,7 +1167,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:09:52.000Z"
+      "modifiedAt": "2024-07-18T05:05:09.004Z"
     },
     {
       "uuid": "86e34040-c5fc-11e7-a943-005056a94f4a",
@@ -1229,7 +1239,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:09:53.000Z"
+      "modifiedAt": "2024-07-18T05:05:09.004Z"
     },
     {
       "uuid": "86ec40f0-c5fc-11e7-a943-005056a94f4a",
@@ -1269,7 +1279,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:09:54.000Z"
+      "modifiedAt": "2024-07-18T05:05:09.004Z"
     },
     {
       "uuid": "86f17110-c5fc-11e7-a943-005056a94f4a",
@@ -1327,7 +1337,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:09:54.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "86f91230-c5fc-11e7-a943-005056a94f4a",
@@ -1364,8 +1374,7 @@
           "Kalender",
           "Calendar",
           "Calendario",
-          "Calendrier",
-          "Delivery"
+          "Calendrier"
         ],
         "year": [
           "2017"
@@ -1383,7 +1392,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:09:55.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "86fd30e0-c5fc-11e7-a943-005056a94f4a",
@@ -1402,6 +1411,9 @@
           "Notte",
           "Nuit",
           "Sterne",
+          "Stars",
+          "Stelle",
+          "Étoiles",
           "senden",
           "Versenden",
           "Send mail",
@@ -1428,7 +1440,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:09:56.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "87014f90-c5fc-11e7-a943-005056a94f4a",
@@ -1610,7 +1622,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:09:59.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "871350f0-c5fc-11e7-a943-005056a94f4a",
@@ -1623,7 +1635,10 @@
           "kommunikation"
         ],
         "keywords": [
+          "Äußern",
           "Express",
+          "Esprimere",
+          "Exprimer",
           "Pfeile",
           "arrows",
           "Frecce",
@@ -1658,7 +1673,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:10:00.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "8717bdc0-c5fc-11e7-a943-005056a94f4a",
@@ -1705,7 +1720,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:10:00.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "871bdc70-c5fc-11e7-a943-005056a94f4a",
@@ -1754,7 +1769,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:10:01.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "87207050-c5fc-11e7-a943-005056a94f4a",
@@ -1863,7 +1878,10 @@
           "kommunikation"
         ],
         "keywords": [
+          "Melden Sie sich bei Postconnector an",
           "Login Postconnector",
+          "Postconnettore di accesso",
+          "Connexion Postconnecteur",
           "geschlossen",
           "Chiuso",
           "Fermé",
@@ -1893,7 +1911,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:10:03.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "872e5300-c5fc-11e7-a943-005056a94f4a",
@@ -1906,7 +1924,10 @@
           "kommunikation"
         ],
         "keywords": [
-          "SEEB",
+          "SEHEN",
+          "SEE",
+          "VEDERE",
+          "VOIR",
           "Striche",
           "Streifen",
           "Historique",
@@ -1944,7 +1965,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:10:04.000Z"
+      "modifiedAt": "2024-07-20T19:05:10.046Z"
     },
     {
       "uuid": "8732bfd0-c5fc-11e7-a943-005056a94f4a",
@@ -1984,7 +2005,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:10:04.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "87370590-c5fc-11e7-a943-005056a94f4a",
@@ -2041,7 +2062,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:10:05.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "874165d0-c5fc-11e7-a943-005056a94f4a",
@@ -2156,7 +2177,10 @@
           "kommunikation"
         ],
         "keywords": [
+          "Veranstaltungen",
           "Events",
+          "Eventi",
+          "Événements",
           "Person",
           "Persona",
           "Personne",
@@ -2197,7 +2221,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:10:07.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "874efa60-c5fc-11e7-a943-005056a94f4a",
@@ -2254,7 +2278,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:10:08.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "8753b550-c5fc-11e7-a943-005056a94f4a",
@@ -2274,8 +2298,14 @@
           "Person",
           "Persona",
           "Personne",
-          "Pöstlerin",
-          "Bote",
+          "Deine Felle",
+          "your pelts",
+          "le tue pelli",
+          "vos peaux",
+          "Flasche",
+          "bottle",
+          "bottiglia",
+          "bouteille",
           "Motorhaube",
           "Bonnet",
           "Cofano",
@@ -2317,7 +2347,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:10:09.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "873cd1f0-c5fc-11e7-a943-005056a94f4a",
@@ -2352,7 +2382,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:10:05.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "24090480-17cf-11e8-b180-005056a94f4a",
@@ -2405,7 +2435,7 @@
         }
       },
       "createdAt": "2018-02-22T12:51:46.000Z",
-      "modifiedAt": "2024-03-13T08:10:44.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "36d4c3f0-17d0-11e8-b180-005056a94f4a",
@@ -2454,7 +2484,7 @@
         }
       },
       "createdAt": "2018-02-22T12:59:27.000Z",
-      "modifiedAt": "2024-03-13T08:10:45.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "04ea2640-3e50-11e8-b180-005056a94f4a",
@@ -2467,7 +2497,10 @@
           "kommunikation"
         ],
         "keywords": [
+          "Post-App-Store",
           "Post App Store",
+          "Pubblica l'App Store",
+          "Publier l'App Store",
           "einkaufen",
           "buy",
           "Faire ses achats",
@@ -2490,7 +2523,7 @@
         }
       },
       "createdAt": "2018-04-12T12:50:03.000Z",
-      "modifiedAt": "2024-03-13T08:10:45.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "20983320-c5fe-11e7-a943-005056a94f4a",
@@ -2521,7 +2554,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:10.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "209dff80-c5fe-11e7-a943-005056a94f4a",
@@ -2557,7 +2590,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:10.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "20a30890-c5fe-11e7-a943-005056a94f4a",
@@ -2595,7 +2628,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:10.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "20a811a0-c5fe-11e7-a943-005056a94f4a",
@@ -2626,7 +2659,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:11.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "20ac7e70-c5fe-11e7-a943-005056a94f4a",
@@ -2639,8 +2672,7 @@
           "kommunikation"
         ],
         "keywords": [
-          "E-Mail",
-          "E-mail"
+          "E-Mail"
         ],
         "year": [
           "2017"
@@ -2658,7 +2690,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:11.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "20b3d170-c5fe-11e7-a943-005056a94f4a",
@@ -2671,8 +2703,7 @@
           "kommunikation"
         ],
         "keywords": [
-          "E-Mail",
-          "E-mail"
+          "E-Mail"
         ],
         "year": [
           "2017"
@@ -2690,7 +2721,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-05-27T10:38:13.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "20bd9570-c5fe-11e7-a943-005056a94f4a",
@@ -2706,7 +2737,6 @@
           "E-Marketing",
           "E-marketing",
           "E-Mail",
-          "E-mail",
           "Versenden",
           "Send mail",
           "Expédition",
@@ -2741,7 +2771,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:11.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "20c47340-c5fe-11e7-a943-005056a94f4a",
@@ -3064,7 +3094,9 @@
           "Alles Wissenswerte",
           "Tutto quello che dovete sapere",
           "Tout ce que vous devez savoir",
-          "letters"
+          "letters",
+          "lettere",
+          "des lettres"
         ],
         "year": [
           "2017"
@@ -3082,7 +3114,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:15.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "20e4f390-c5fe-11e7-a943-005056a94f4a",
@@ -3111,7 +3143,10 @@
           "lofty",
           "Élevée",
           "Alta",
-          "quer",
+          "er möchte",
+          "he wants",
+          "lui vuole",
+          "il veut",
           "Dokument drehen",
           "Rotate document",
           "Ruotare il documento",
@@ -3158,7 +3193,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-05-27T10:38:13.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "20e9fca0-c5fe-11e7-a943-005056a94f4a",
@@ -3220,7 +3255,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:15.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "20ef2cc0-c5fe-11e7-a943-005056a94f4a",
@@ -3314,7 +3349,9 @@
         ],
         "keywords": [
           "Thermolabel-Drucker",
-          "Termolabel-Drucker",
+          "Stampante termolabel",
+          "thermolabel printer",
+          "Imprimante à étiquettes thermiques",
           "Drucker",
           "Printer",
           "Stampante",
@@ -3338,7 +3375,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:17.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "20fd3680-c5fe-11e7-a943-005056a94f4a",
@@ -3637,7 +3674,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:19.000Z"
+      "modifiedAt": "2024-07-18T13:05:09.299Z"
     },
     {
       "uuid": "213a1870-c5fe-11e7-a943-005056a94f4a",
@@ -3651,11 +3688,17 @@
         ],
         "keywords": [
           "lancieren",
+          "launch",
+          "lancio",
+          "lancement",
           "lancer",
           "starten",
           "throw",
           "lanciare",
+          "Gesendet",
           "Sent",
+          "Inviato",
+          "Envoyé",
           "Lancierung",
           "Launch",
           "Avvia",
@@ -3677,7 +3720,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:20.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "213f4890-c5fe-11e7-a943-005056a94f4a",
@@ -3695,10 +3738,10 @@
           "Faire ses achats",
           "Acquistare",
           "Korb",
-          "Warenkorb",
           "Basket",
           "Cestino",
-          "Panier"
+          "Panier",
+          "Warenkorb"
         ],
         "year": [
           "2017"
@@ -3716,7 +3759,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-05-27T10:38:14.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "21440380-c5fe-11e7-a943-005056a94f4a",
@@ -3743,7 +3786,10 @@
           "buy",
           "Faire ses achats",
           "Acquistare",
+          "UND-",
+          "AND-",
           "E-",
+          "ET-",
           "Boutique en ligne",
           "Online Store",
           "Negozio online",
@@ -3773,7 +3819,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-06-18T06:53:17.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "2148e580-c5fe-11e7-a943-005056a94f4a",
@@ -3790,7 +3836,10 @@
           "Auswahl",
           "Sélection",
           "Selezione",
-          "Regler",
+          "Regeln",
+          "Rules",
+          "Regole",
+          "Règles",
           "Auswahlmöglichkeiten",
           "Options",
           "Opzioni di selezione",
@@ -3831,7 +3880,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:21.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "214e15a0-c5fe-11e7-a943-005056a94f4a",
@@ -3866,7 +3915,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:21.000Z"
+      "modifiedAt": "2024-07-17T23:05:08.990Z"
     },
     {
       "uuid": "2152d090-c5fe-11e7-a943-005056a94f4a",
@@ -3904,7 +3953,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:21.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "215e6950-c5fe-11e7-a943-005056a94f4a",
@@ -4002,7 +4051,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:22.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "2168a280-c5fe-11e7-a943-005056a94f4a",
@@ -4037,7 +4086,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:23.000Z"
+      "modifiedAt": "2024-07-18T05:05:09.004Z"
     },
     {
       "uuid": "216ff580-c5fe-11e7-a943-005056a94f4a",
@@ -4196,7 +4245,13 @@
           "Collegare",
           "Rattacher",
           "verlinken",
-          "Lien"
+          "to link",
+          "per collegare",
+          "lier",
+          "Pfandrecht",
+          "Lien",
+          "Vincolo",
+          "Privilège"
         ],
         "year": [
           "2017"
@@ -4214,7 +4269,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:24.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "2187ea50-c5fe-11e7-a943-005056a94f4a",
@@ -4228,15 +4283,22 @@
         ],
         "keywords": [
           "verlinken",
+          "to link",
+          "per collegare",
+          "lier",
           "Link mit Pfeil",
           "Link with arrow",
           "Link con freccia",
           "Lien avec flèche",
+          "Pfandrecht",
           "Lien",
-          "lier",
-          "Lier",
+          "Vincolo",
+          "Privilège",
           "fegato",
-          "External link"
+          "Externer Link",
+          "External link",
+          "Link esterno",
+          "Lien externe"
         ],
         "year": [
           "2017"
@@ -4254,7 +4316,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:24.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "218ca540-c5fe-11e7-a943-005056a94f4a",
@@ -4315,6 +4377,9 @@
           "Plus",
           "More",
           "Più",
+          "Hinzufügen",
+          "Add",
+          "Aggiungere",
           "Ajouter"
         ],
         "year": [
@@ -4333,7 +4398,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:25.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "2196de70-c5fe-11e7-a943-005056a94f4a",
@@ -4346,7 +4411,10 @@
           "kommunikation"
         ],
         "keywords": [
+          "Neu laden",
           "Reload",
+          "Ricaricare",
+          "Recharger",
           "Laden",
           "shop",
           "Caricare",
@@ -4376,7 +4444,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:25.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "219c83c0-c5fe-11e7-a943-005056a94f4a",
@@ -4472,7 +4540,10 @@
           "come to a stop",
           "S’arrêter",
           "Fermarsi",
+          "Stoppen",
           "Stop",
+          "Fermare",
+          "Arrêt",
           "Arrêter",
           "Arrestare",
           "Herunterfahren",
@@ -4494,7 +4565,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:26.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "21b16b50-c5fe-11e7-a943-005056a94f4a",
@@ -4508,10 +4579,12 @@
         ],
         "keywords": [
           "Play rechts",
+          "Play right",
+          "Gioca bene",
+          "Jouez bien",
           "Dreieck",
           "Triangle",
           "Triangolo",
-          "Play right",
           "Jouer à droite",
           "Gioca a destra"
         ],
@@ -4531,7 +4604,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:27.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "21b785d0-c5fe-11e7-a943-005056a94f4a",
@@ -4822,7 +4895,10 @@
           "kommunikation"
         ],
         "keywords": [
+          "Stoppen",
           "Stop",
+          "Fermare",
+          "Arrêt",
           "Viereck",
           "square",
           "Quadrato",
@@ -4852,7 +4928,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:29.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "21ff6440-c5fe-11e7-a943-005056a94f4a",
@@ -5145,9 +5221,11 @@
         ],
         "keywords": [
           "Anhang",
+          "Attachment",
+          "Allegato",
+          "Pièce jointe",
           "Annexe",
           "Beilage",
-          "Allegato",
           "Posaune",
           "Trombone"
         ],
@@ -5167,7 +5245,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:31.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "22afef90-c5fe-11e7-a943-005056a94f4a",
@@ -5213,7 +5291,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:31.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "22be2060-c5fe-11e7-a943-005056a94f4a",
@@ -5321,7 +5399,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-05-27T10:38:14.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "22d4b5a0-c5fe-11e7-a943-005056a94f4a",
@@ -5334,8 +5412,13 @@
           "kommunikation"
         ],
         "keywords": [
+          "Herunterladen",
           "Download",
-          "downloaden"
+          "Scaricamento",
+          "Télécharger",
+          "herunterladen",
+          "to download",
+          "scaricare"
         ],
         "year": [
           "2017"
@@ -5353,7 +5436,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:32.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "22d997a0-c5fe-11e7-a943-005056a94f4a",
@@ -5366,7 +5449,10 @@
           "kommunikation"
         ],
         "keywords": [
-          "uploaden"
+          "hochladen",
+          "upload",
+          "caricamento",
+          "télécharger"
         ],
         "year": [
           "2017"
@@ -5384,7 +5470,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:32.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "22e1adf0-c5fe-11e7-a943-005056a94f4a",
@@ -5477,7 +5563,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:32.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "22ede2f0-c5fe-11e7-a943-005056a94f4a",
@@ -5561,6 +5647,12 @@
         ],
         "keywords": [
           "Merkliste",
+          "Bookmarks",
+          "Segnalibri",
+          "Signets",
+          "Favoritenliste",
+          "Favorites list",
+          "Elenco dei preferiti",
           "Liste de favoris",
           "établir une liste",
           "stilare un elenco",
@@ -5587,7 +5679,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:34.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "2303dbf0-c5fe-11e7-a943-005056a94f4a",
@@ -5607,7 +5699,10 @@
           "options",
           "opzioni",
           "Wahlmöglichkeiten",
-          "Offer"
+          "Angebot",
+          "Offer",
+          "Offerta",
+          "Offre"
         ],
         "year": [
           "2017"
@@ -5625,7 +5720,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-05-27T10:38:14.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "230a92b0-c5fe-11e7-a943-005056a94f4a",
@@ -5653,7 +5748,10 @@
           "options",
           "opzioni",
           "Wahlmöglichkeiten",
-          "Offer"
+          "Angebot",
+          "Offer",
+          "Offerta",
+          "Offre"
         ],
         "year": [
           "2017"
@@ -5671,7 +5769,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:34.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "230eff80-c5fe-11e7-a943-005056a94f4a",
@@ -5704,8 +5802,10 @@
           "cercare prestazioni",
           "look for benefits",
           "Dienstleistungen suchen",
+          "Aktuelle Dienste",
           "Current services",
-          "Current Services"
+          "Servizi attuali",
+          "Prestations actuelles"
         ],
         "year": [
           "2017"
@@ -5723,7 +5823,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:35.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "23165280-c5fe-11e7-a943-005056a94f4a",
@@ -5764,7 +5864,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:36.000Z"
+      "modifiedAt": "2024-07-20T19:05:10.046Z"
     },
     {
       "uuid": "231c45f0-c5fe-11e7-a943-005056a94f4a",
@@ -5781,8 +5881,10 @@
           "Portatile",
           "Smartphone",
           "iPhone",
-          "Iphone",
+          "Praktisch",
           "Handy",
+          "Maneggevole",
+          "Pratique",
           "Android",
           "Mobiltelefon",
           "Mobile Phone",
@@ -5805,7 +5907,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:36.000Z"
+      "modifiedAt": "2024-07-20T19:05:10.046Z"
     },
     {
       "uuid": "232127f0-c5fe-11e7-a943-005056a94f4a",
@@ -5849,7 +5951,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:37.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "2325bbd0-c5fe-11e7-a943-005056a94f4a",
@@ -5888,7 +5990,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:37.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "232a9dd0-c5fe-11e7-a943-005056a94f4a",
@@ -5905,7 +6007,10 @@
           "connesso",
           "vernetzt",
           "connected",
-          "Connection"
+          "Verbindung",
+          "Connection",
+          "Connessione",
+          "Connexion"
         ],
         "year": [
           "2017"
@@ -5923,7 +6028,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:37.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "2333eca0-c5fe-11e7-a943-005056a94f4a",
@@ -5937,16 +6042,17 @@
         ],
         "keywords": [
           "Smart Metering",
-          "Smart metering",
           "Comptage intelligent",
           "Netzwerkempfang",
           "network reception",
           "Ricezione rete",
           "Réception réseau",
+          "Praktisch",
           "Handy",
+          "Maneggevole",
+          "Pratique",
           "Smartphone",
           "iPhone",
-          "Iphone",
           "km",
           "Meter",
           "metre",
@@ -5977,7 +6083,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:38.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "2338a790-c5fe-11e7-a943-005056a94f4a",
@@ -5990,7 +6096,10 @@
           "kommunikation"
         ],
         "keywords": [
+          "Management-Cockpit",
           "Management Cockpit",
+          "Cabina di gestione",
+          "Cockpit de gestion",
           "Sicherheit",
           "Security",
           "Sicurezza",
@@ -6047,7 +6156,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-05-27T10:38:14.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "233dfec0-c5fe-11e7-a943-005056a94f4a",
@@ -6115,7 +6224,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-05-27T10:38:13.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "234c56a0-c5fe-11e7-a943-005056a94f4a",
@@ -6158,7 +6267,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:38.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "235d94b0-c5fe-11e7-a943-005056a94f4a",
@@ -6172,7 +6281,6 @@
         ],
         "keywords": [
           "World Wide Web",
-          "Web mondial",
           "www",
           "Kontrollieren",
           "Monitor",
@@ -6200,7 +6308,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:39.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "23670a90-c5fe-11e7-a943-005056a94f4a",
@@ -6248,7 +6356,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:39.000Z"
+      "modifiedAt": "2024-07-20T19:05:10.046Z"
     },
     {
       "uuid": "236c61c0-c5fe-11e7-a943-005056a94f4a",
@@ -6262,6 +6370,9 @@
         ],
         "keywords": [
           "Landingpage",
+          "Landing page",
+          "Pagina di destinazione",
+          "Page de destination",
           "Homepage",
           "Home page",
           "Pagina web",
@@ -6296,7 +6407,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:40.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "23745100-c5fe-11e7-a943-005056a94f4a",
@@ -6401,7 +6512,10 @@
           "kommunikation"
         ],
         "keywords": [
+          "Touch-Screen",
           "Touchscreen",
+          "Touch screen",
+          "Écran tactile",
           "Hands",
           "Hände",
           "Mani",
@@ -6410,7 +6524,10 @@
           "affect",
           "Toucher",
           "toccare",
+          "Finger scan",
           "Fingerscan",
+          "Scansione delle dita",
+          "Empreinte digitale",
           "Hand",
           "Mano",
           "Main",
@@ -6422,7 +6539,6 @@
           "scanner digitale",
           "Belegleser",
           "numériseur",
-          "Touch screen",
           "feel",
           "ressentir",
           "Fühlen",
@@ -6444,7 +6560,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:42.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "2386a080-c5fe-11e7-a943-005056a94f4a",
@@ -6457,14 +6573,15 @@
           "kommunikation"
         ],
         "keywords": [
+          "Projektor",
           "Beamer",
+          "Proiettore",
+          "Vidéoprojecteur",
           "Videoprojektor",
           "video projector",
           "Projecteur vidéo",
           "videoproiettore",
-          "Projektor",
           "Projector",
-          "Proiettore",
           "Projecteur"
         ],
         "year": [
@@ -6483,7 +6600,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-05-27T10:38:14.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "238df380-c5fe-11e7-a943-005056a94f4a",
@@ -6536,9 +6653,15 @@
           "kommunikation"
         ],
         "keywords": [
+          "Medienschalter",
           "Mediaswitcher",
+          "Commutatore multimediale",
+          "Changeur de média",
           "Media",
-          "Switcher"
+          "Umschalter",
+          "Switcher",
+          "Interruttore",
+          "Commutateur"
         ],
         "year": [
           "2017"
@@ -6556,7 +6679,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T15:50:14.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "239d35c0-c5fe-11e7-a943-005056a94f4a",
@@ -6574,7 +6697,10 @@
           "Cable",
           "Cavo",
           "Câble",
-          "Connection"
+          "Verbindung",
+          "Connection",
+          "Connessione",
+          "Connexion"
         ],
         "year": [
           "2017"
@@ -6592,7 +6718,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T15:50:14.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "23a461b0-c5fe-11e7-a943-005056a94f4a",
@@ -6610,7 +6736,10 @@
           "Cable",
           "Cavo",
           "Câble",
+          "Verbindung",
           "Connection",
+          "Connessione",
+          "Connexion",
           "Zwischensockel",
           "Adapter",
           "Adattatore",
@@ -6652,7 +6781,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T15:50:14.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "23aa0700-c5fe-11e7-a943-005056a94f4a",
@@ -6686,7 +6815,10 @@
           "conversione",
           "Umrechnung",
           "reconversion",
+          "Ändern",
           "Change",
+          "Modifica",
+          "Changement",
           "Alter",
           "age",
           "Âge",
@@ -6708,7 +6840,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:43.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "23afd360-c5fe-11e7-a943-005056a94f4a",
@@ -6802,7 +6934,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:43.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "23bc7d90-c5fe-11e7-a943-005056a94f4a",
@@ -6847,7 +6979,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "23c1fbd0-c5fe-11e7-a943-005056a94f4a",
@@ -6925,7 +7057,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-07-20T19:05:10.046Z"
     },
     {
       "uuid": "23cf4240-c5fe-11e7-a943-005056a94f4a",
@@ -6984,7 +7116,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T14:47:41.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "23d42440-c5fe-11e7-a943-005056a94f4a",
@@ -7049,7 +7181,10 @@
           "Executed",
           "Erledigt",
           "Giustiziato",
-          "coche",
+          "Trainer",
+          "coach",
+          "allenatore",
+          "entraîneur",
           "Häkchen",
           "Tick",
           "Zecca",
@@ -7075,7 +7210,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-06-19T11:09:00.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "23e33f70-c5fe-11e7-a943-005056a94f4a",
@@ -7522,7 +7657,7 @@
         }
       },
       "createdAt": "2018-04-12T13:12:57.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "a5d35ba0-3e53-11e8-b180-005056a94f4a",
@@ -7609,7 +7744,7 @@
         }
       },
       "createdAt": "2018-04-12T13:17:14.000Z",
-      "modifiedAt": "2024-03-12T14:47:41.000Z"
+      "modifiedAt": "2024-07-19T03:05:01.047Z"
     },
     {
       "uuid": "bd2f30c0-8440-11e8-9f88-005056873709",
@@ -7783,7 +7918,10 @@
           "kommunikation"
         ],
         "keywords": [
+          "Praktisch",
           "Handy",
+          "Maneggevole",
+          "Pratique",
           "Mobile",
           "Portatile",
           "top up",
@@ -7832,7 +7970,7 @@
         }
       },
       "createdAt": "2018-10-15T14:35:05.000Z",
-      "modifiedAt": "2024-03-12T14:47:40.000Z"
+      "modifiedAt": "2024-07-20T19:05:10.046Z"
     },
     {
       "uuid": "05dd6370-d5fc-11e8-b043-005056873709",
@@ -7883,7 +8021,7 @@
         }
       },
       "createdAt": "2018-10-22T13:11:44.000Z",
-      "modifiedAt": "2024-05-27T10:38:13.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "4100da90-d5fc-11e8-b043-005056873709",
@@ -7931,7 +8069,7 @@
         }
       },
       "createdAt": "2018-10-22T13:13:23.000Z",
-      "modifiedAt": "2024-03-12T14:47:41.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "8d6cdd60-3390-11e9-b9ae-005056873709",
@@ -7981,7 +8119,7 @@
         }
       },
       "createdAt": "2019-02-18T15:19:15.000Z",
-      "modifiedAt": "2024-03-12T14:47:41.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "e8ca8f52-6dc7-11ea-9425-005056873709",
@@ -8083,7 +8221,7 @@
         }
       },
       "createdAt": "2020-03-24T12:11:06.000Z",
-      "modifiedAt": "2024-03-12T14:47:41.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "164746a0-6dcb-11ea-9425-005056873709",
@@ -8339,7 +8477,7 @@
         }
       },
       "createdAt": "2020-03-24T12:52:50.000Z",
-      "modifiedAt": "2024-03-12T14:47:40.000Z"
+      "modifiedAt": "2024-07-18T05:05:09.004Z"
     },
     {
       "uuid": "59e68982-6dcf-11ea-9425-005056873709",
@@ -8716,7 +8854,7 @@
         }
       },
       "createdAt": "2021-12-11T11:23:34.000Z",
-      "modifiedAt": "2024-03-12T14:47:41.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "a7bacc60-297d-11eb-a8df-005056873709",
@@ -8776,9 +8914,7 @@
           "Dispositif Électrique",
           "Mikrofon",
           "Microphone",
-          "Microfono",
-          "microphone",
-          "Mikrophon"
+          "Microfono"
         ],
         "year": [
           "2020"
@@ -8796,7 +8932,7 @@
         }
       },
       "createdAt": "2020-11-18T13:21:37.000Z",
-      "modifiedAt": "2024-03-12T14:47:41.000Z"
+      "modifiedAt": "2024-07-20T17:05:05.795Z"
     },
     {
       "uuid": "785f77f0-29a4-11eb-a8df-005056873709",
@@ -8806,7 +8942,10 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/534673/storage/NTM0Njc1LzAvbWFzdGVy",
         "keywords": [
-          ""
+          "Brief und Kleinsendungen",
+          "Letters and small consignments",
+          "Lettre et petits envois",
+          "Lettera e invii di piccole dimensioni"
         ],
         "year": [
           "2020"
@@ -8824,7 +8963,7 @@
         }
       },
       "createdAt": "2020-11-18T13:46:33.000Z",
-      "modifiedAt": "2024-03-12T14:47:40.000Z"
+      "modifiedAt": "2024-07-11T07:18:33.000Z"
     },
     {
       "uuid": "e1252530-29a6-11eb-a8df-005056873709",
@@ -8870,7 +9009,7 @@
         }
       },
       "createdAt": "2020-11-18T14:03:48.000Z",
-      "modifiedAt": "2024-05-27T10:38:13.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "dc40ac90-2a48-11eb-a8df-005056873709",
@@ -8979,7 +9118,7 @@
         }
       },
       "createdAt": "2020-11-23T13:04:25.000Z",
-      "modifiedAt": "2024-03-12T14:47:40.000Z"
+      "modifiedAt": "2024-07-18T05:05:09.004Z"
     },
     {
       "uuid": "9f7a6320-2e33-11eb-a8df-005056873709",
@@ -9748,7 +9887,14 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/535226/storage/NTM1MjI4LzAvbWFzdGVy",
         "keywords": [
-          ""
+          "Briefeinwurf",
+          "letter box",
+          "Buca delle lettere",
+          "Boîte aux lettres",
+          "Briefe in Briefeinwurf werfen",
+          "Posting letters in letter boxes",
+          "Inserire le lettere nella buca delle lettere",
+          "Déposer les lettres dans la boîte aux lettres"
         ],
         "year": [
           "2020"
@@ -9766,7 +9912,7 @@
         }
       },
       "createdAt": "2020-11-26T12:15:02.000Z",
-      "modifiedAt": "2024-05-27T10:38:13.000Z"
+      "modifiedAt": "2024-07-11T07:19:46.000Z"
     },
     {
       "uuid": "a702fcb0-2fe1-11eb-a8df-005056873709",
@@ -9884,7 +10030,7 @@
         }
       },
       "createdAt": "2020-11-26T12:31:44.000Z",
-      "modifiedAt": "2024-03-12T14:47:40.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "04db1e10-2fe4-11eb-a8df-005056873709",
@@ -9981,7 +10127,10 @@
           "Checkliste",
           "Checklist",
           "Lista di controllo",
+          "Einhaltung",
           "Compliance",
+          "Conformità",
+          "Conformité",
           "System Audit",
           "Audit di sistema",
           "Audit du système",
@@ -10022,7 +10171,7 @@
         }
       },
       "createdAt": "2020-11-26T12:45:06.000Z",
-      "modifiedAt": "2024-05-27T10:38:13.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "06dca880-2fe6-11eb-a8df-005056873709",
@@ -10184,7 +10333,7 @@
         }
       },
       "createdAt": "2020-11-26T13:02:37.000Z",
-      "modifiedAt": "2024-05-27T10:38:14.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "55e82f10-2fe8-11eb-a8df-005056873709",
@@ -10273,7 +10422,7 @@
         }
       },
       "createdAt": "2020-12-01T07:19:00.000Z",
-      "modifiedAt": "2024-03-12T14:47:40.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "e6000200-33a6-11eb-9f99-005056873709",
@@ -10328,7 +10477,7 @@
         }
       },
       "createdAt": "2020-12-01T07:29:08.000Z",
-      "modifiedAt": "2024-05-27T10:38:13.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "202107d0-33a8-11eb-9f99-005056873709",
@@ -10379,7 +10528,7 @@
         }
       },
       "createdAt": "2020-12-01T07:37:55.000Z",
-      "modifiedAt": "2024-03-12T14:47:41.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "9cde9ca0-33a4-11eb-9f99-005056873709",
@@ -10415,7 +10564,7 @@
         }
       },
       "createdAt": "2020-12-01T07:12:46.000Z",
-      "modifiedAt": "2024-03-12T14:47:40.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "15192810-33a6-11eb-9f99-005056873709",
@@ -10447,7 +10596,7 @@
         }
       },
       "createdAt": "2020-12-01T07:23:17.000Z",
-      "modifiedAt": "2024-05-27T10:38:13.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "bb94e160-33ac-11eb-9f99-005056873709",
@@ -10457,7 +10606,10 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/535470/storage/NTM1NDc3LzAvbWFzdGVy",
         "keywords": [
+          "ES",
           "IT",
+          "ESSO",
+          "IL",
           "Maschine",
           "Machine",
           "Macchina",
@@ -10482,7 +10634,7 @@
         }
       },
       "createdAt": "2020-12-01T08:10:53.000Z",
-      "modifiedAt": "2024-05-27T10:38:13.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "d9171720-33ad-11eb-9f99-005056873709",
@@ -10514,7 +10666,7 @@
         }
       },
       "createdAt": "2020-12-01T08:18:52.000Z",
-      "modifiedAt": "2024-03-12T14:47:40.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "64f60ec0-33b0-11eb-9f99-005056873709",
@@ -10689,7 +10841,7 @@
         }
       },
       "createdAt": "2020-12-01T08:50:23.000Z",
-      "modifiedAt": "2024-03-12T14:47:41.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "8cca2fe0-3080-11eb-a2c4-005056873709",
@@ -10958,7 +11110,7 @@
         }
       },
       "createdAt": "2020-12-01T08:04:04.000Z",
-      "modifiedAt": "2024-03-12T14:47:40.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "061d0900-395d-11eb-9f99-005056873709",
@@ -10995,7 +11147,7 @@
         }
       },
       "createdAt": "2020-12-08T13:55:26.000Z",
-      "modifiedAt": "2024-03-12T14:47:40.000Z"
+      "modifiedAt": "2024-07-18T22:05:00.974Z"
     },
     {
       "uuid": "fa4e69c0-3bbe-11eb-9f99-005056873709",
@@ -11007,9 +11159,7 @@
         "keywords": [
           "Mikrofon",
           "Microphone",
-          "Microfono",
-          "microphone",
-          "Mikrophon"
+          "Microfono"
         ],
         "year": [
           "2020"
@@ -11027,7 +11177,7 @@
         }
       },
       "createdAt": "2020-12-11T14:41:39.000Z",
-      "modifiedAt": "2024-03-12T14:47:41.000Z"
+      "modifiedAt": "2024-07-20T17:05:05.795Z"
     },
     {
       "uuid": "7d075670-3bbe-11eb-9f99-005056873709",
@@ -11068,7 +11218,7 @@
         }
       },
       "createdAt": "2020-12-11T14:38:09.000Z",
-      "modifiedAt": "2024-03-12T14:47:41.000Z"
+      "modifiedAt": "2024-07-20T19:05:10.046Z"
     },
     {
       "uuid": "150ed0b0-4100-11eb-9f99-005056873709",
@@ -11198,7 +11348,7 @@
         }
       },
       "createdAt": "2020-12-18T07:19:10.000Z",
-      "modifiedAt": "2024-03-12T14:48:20.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "a999e520-4101-11eb-9f99-005056873709",
@@ -11380,7 +11530,7 @@
         }
       },
       "createdAt": "2021-01-21T13:49:50.000Z",
-      "modifiedAt": "2024-03-12T14:48:21.000Z"
+      "modifiedAt": "2024-07-12T14:09:52.000Z"
     },
     {
       "uuid": "044e0500-5bf1-11eb-9f99-005056873709",
@@ -11420,7 +11570,7 @@
         }
       },
       "createdAt": "2021-01-21T14:00:28.000Z",
-      "modifiedAt": "2024-03-12T14:48:21.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "a0f0e580-5bf1-11eb-9f99-005056873709",
@@ -12020,7 +12170,7 @@
         }
       },
       "createdAt": "2021-03-12T09:54:54.000Z",
-      "modifiedAt": "2024-03-12T14:48:21.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "fb843a20-8319-11eb-95dd-005056873709",
@@ -12269,7 +12419,10 @@
           "growth",
           "Crescita",
           "Croissance",
+          "ES",
           "IT",
+          "ESSO",
+          "IL",
           "Elektronik",
           "Electronics",
           "Elettronica",
@@ -12314,7 +12467,7 @@
         }
       },
       "createdAt": "2021-03-12T10:27:42.000Z",
-      "modifiedAt": "2024-03-12T14:48:22.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "54b70470-831e-11eb-95dd-005056873709",
@@ -13183,7 +13336,7 @@
         }
       },
       "createdAt": "2021-04-09T07:20:50.000Z",
-      "modifiedAt": "2024-03-12T14:48:21.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "ebda9c70-be17-11eb-b1e9-005056873709",
@@ -13473,7 +13626,7 @@
         }
       },
       "createdAt": "2021-06-15T11:10:54.000Z",
-      "modifiedAt": "2024-03-12T14:48:19.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "e59335d0-cdca-11eb-b1e9-005056873709",
@@ -13514,7 +13667,7 @@
         }
       },
       "createdAt": "2021-06-15T11:14:48.000Z",
-      "modifiedAt": "2024-03-12T14:48:22.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "6ee63d50-cdcb-11eb-b1e9-005056873709",
@@ -13547,7 +13700,7 @@
         }
       },
       "createdAt": "2021-06-15T11:18:38.000Z",
-      "modifiedAt": "2024-03-12T14:48:21.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "081f4610-e60e-11eb-94c2-005056873709",
@@ -13638,7 +13791,7 @@
         }
       },
       "createdAt": "2021-07-16T08:22:40.000Z",
-      "modifiedAt": "2024-03-12T14:48:19.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "713f6f60-e610-11eb-94c2-005056873709",
@@ -13648,7 +13801,10 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/608048/storage/NjA4MDUwLzAvbWFzdGVy",
         "keywords": [
+          "Arbeit",
           "Labor",
+          "Lavoro",
+          "Travail",
           "Laboratorium",
           "Laboratory",
           "Laboratorio",
@@ -13681,7 +13837,7 @@
         }
       },
       "createdAt": "2021-07-16T08:33:05.000Z",
-      "modifiedAt": "2024-03-12T14:48:19.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "2a0c3e10-e611-11eb-94c2-005056873709",
@@ -13738,7 +13894,7 @@
         }
       },
       "createdAt": "2021-07-16T08:38:15.000Z",
-      "modifiedAt": "2024-03-12T14:48:22.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "bf0265d0-e611-11eb-94c2-005056873709",
@@ -13831,7 +13987,7 @@
         }
       },
       "createdAt": "2021-07-16T08:47:49.000Z",
-      "modifiedAt": "2024-03-12T14:48:19.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "1cd9b950-e613-11eb-94c2-005056873709",
@@ -14092,7 +14248,7 @@
         }
       },
       "createdAt": "2021-07-16T09:18:34.000Z",
-      "modifiedAt": "2024-03-12T14:48:19.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "89a350b0-e617-11eb-94c2-005056873709",
@@ -14187,7 +14343,7 @@
         }
       },
       "createdAt": "2021-07-16T09:31:31.000Z",
-      "modifiedAt": "2024-03-12T14:48:20.000Z"
+      "modifiedAt": "2024-07-20T19:05:10.046Z"
     },
     {
       "uuid": "2656dd91-e619-11eb-94c2-005056873709",
@@ -14394,7 +14550,7 @@
         }
       },
       "createdAt": "2021-07-12T06:51:50.000Z",
-      "modifiedAt": "2024-03-12T14:48:20.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "a63dd7e0-e2de-11eb-94c2-005056873709",
@@ -14432,7 +14588,7 @@
         }
       },
       "createdAt": "2021-07-12T06:59:06.000Z",
-      "modifiedAt": "2024-03-12T14:48:21.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "96d46b60-e2df-11eb-94c2-005056873709",
@@ -14475,7 +14631,7 @@
         }
       },
       "createdAt": "2021-07-12T07:05:50.000Z",
-      "modifiedAt": "2024-03-12T14:48:19.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "3c28c400-e39c-11eb-94c2-005056873709",
@@ -14775,8 +14931,7 @@
           "Symbol",
           "Simbolo",
           "Symbole",
-          "CHF",
-          "Loans CHF"
+          "CHF"
         ],
         "year": [
           "2021"
@@ -14794,7 +14949,7 @@
         }
       },
       "createdAt": "2021-07-27T09:33:41.000Z",
-      "modifiedAt": "2024-03-12T14:48:20.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "36559f30-eebe-11eb-9ea7-005056873709",
@@ -14836,8 +14991,7 @@
           "Computer Hardware",
           "Hardware del computer",
           "Matériel informatique",
-          "CHF",
-          "Loans CHF"
+          "CHF"
         ],
         "year": [
           "2021"
@@ -14855,7 +15009,7 @@
         }
       },
       "createdAt": "2021-07-27T09:37:08.000Z",
-      "modifiedAt": "2024-03-12T14:48:21.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "faddda10-fa90-11eb-9ea7-005056873709",
@@ -14950,7 +15104,7 @@
         }
       },
       "createdAt": "2021-08-13T08:00:23.000Z",
-      "modifiedAt": "2024-03-12T14:48:21.000Z"
+      "modifiedAt": "2024-07-18T13:05:09.299Z"
     },
     {
       "uuid": "57bfe3e0-fc0d-11eb-9ea7-005056873709",
@@ -15012,7 +15166,7 @@
         }
       },
       "createdAt": "2021-08-13T08:06:20.000Z",
-      "modifiedAt": "2024-03-12T14:48:21.000Z"
+      "modifiedAt": "2024-07-18T13:05:09.299Z"
     },
     {
       "uuid": "d1e62d51-0bb2-11ec-9ea7-005056873709",
@@ -15071,7 +15225,7 @@
         }
       },
       "createdAt": "2021-09-02T05:58:39.000Z",
-      "modifiedAt": "2024-03-12T14:48:19.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "9b23ff70-2838-11ec-b5ef-005056873709",
@@ -15809,7 +15963,7 @@
         }
       },
       "createdAt": "2021-12-03T15:05:52.000Z",
-      "modifiedAt": "2024-03-12T14:49:11.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "eec47c70-5666-11ec-a5b2-005056873709",
@@ -15849,7 +16003,7 @@
         }
       },
       "createdAt": "2021-12-06T07:34:23.000Z",
-      "modifiedAt": "2024-03-12T14:49:11.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "c048a7d0-5667-11ec-a5b2-005056873709",
@@ -15935,8 +16089,6 @@
           "Mikrofon",
           "Microphone",
           "Microfono",
-          "microphone",
-          "Mikrophon",
           "Dynamit",
           "Dynamite",
           "Dinamite",
@@ -15961,7 +16113,7 @@
         }
       },
       "createdAt": "2022-01-19T13:57:16.000Z",
-      "modifiedAt": "2024-03-12T14:49:12.000Z"
+      "modifiedAt": "2024-07-20T17:05:05.795Z"
     },
     {
       "uuid": "547f1370-79d2-11ec-a5b2-005056873709",
@@ -16045,7 +16197,7 @@
         }
       },
       "createdAt": "2022-01-20T10:30:08.000Z",
-      "modifiedAt": "2024-03-12T14:49:10.000Z"
+      "modifiedAt": "2024-07-18T05:05:09.004Z"
     },
     {
       "uuid": "d8ccbca0-7e81-11ec-a5b2-005056873709",
@@ -16506,7 +16658,7 @@
         }
       },
       "createdAt": "2022-02-01T10:17:27.000Z",
-      "modifiedAt": "2024-03-12T14:49:11.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "20dbcdd0-8349-11ec-a5b2-005056873709",
@@ -16794,7 +16946,7 @@
         }
       },
       "createdAt": "2022-02-01T11:07:14.000Z",
-      "modifiedAt": "2024-03-12T14:49:09.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "b7e4e850-834f-11ec-a5b2-005056873709",
@@ -16885,7 +17037,7 @@
         }
       },
       "createdAt": "2022-02-01T11:18:27.000Z",
-      "modifiedAt": "2024-03-12T14:49:09.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "b1e8b3d0-8351-11ec-a5b2-005056873709",
@@ -16974,6 +17126,9 @@
           "delicate",
           "fragile",
           "Fragile",
+          "Glas",
+          "Glass",
+          "Bicchiere",
           "Verre",
           "Wegweiser",
           "Sign",
@@ -17004,7 +17159,7 @@
         }
       },
       "createdAt": "2022-03-11T08:21:22.000Z",
-      "modifiedAt": "2024-03-12T14:49:10.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "16df2d00-a116-11ec-9bee-005056873709",
@@ -17592,7 +17747,6 @@
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/636513/storage/NjM2NTE3LzAvbWFzdGVy",
         "keywords": [
           "Swiss-Express Innight",
-          "Swiss-Express notte",
           "Day and night delivery",
           "Tag- und Nachtzustellung",
           "Consegna diurna e notturna",
@@ -17623,7 +17777,7 @@
         }
       },
       "createdAt": "2022-04-20T11:48:23.000Z",
-      "modifiedAt": "2024-03-12T14:49:11.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "b8bae840-c0a0-11ec-8e26-005056873709",
@@ -17701,7 +17855,7 @@
         }
       },
       "createdAt": "2022-04-20T12:00:21.000Z",
-      "modifiedAt": "2024-03-12T14:49:11.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "c269ab30-c0a3-11ec-8e26-005056873709",
@@ -17803,7 +17957,7 @@
         }
       },
       "createdAt": "2022-04-20T12:26:04.000Z",
-      "modifiedAt": "2024-03-12T14:49:10.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "64aef8b0-c0a8-11ec-8e26-005056873709",
@@ -18101,7 +18255,7 @@
         }
       },
       "createdAt": "2022-04-20T15:07:35.000Z",
-      "modifiedAt": "2024-03-12T14:49:12.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "6dcae1c0-c0bc-11ec-8e26-005056873709",
@@ -18137,7 +18291,7 @@
         }
       },
       "createdAt": "2022-04-20T15:13:27.000Z",
-      "modifiedAt": "2024-03-12T14:49:10.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "b370d510-c529-11ec-8e26-005056873709",
@@ -18181,7 +18335,7 @@
         }
       },
       "createdAt": "2022-04-26T06:25:43.000Z",
-      "modifiedAt": "2024-03-12T14:49:09.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "f8275300-cb7d-11ec-a47e-005056873709",
@@ -18432,7 +18586,7 @@
         }
       },
       "createdAt": "2022-05-20T08:41:35.000Z",
-      "modifiedAt": "2024-03-12T14:49:10.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "f4ddc780-d819-11ec-9011-005056873709",
@@ -18623,13 +18777,11 @@
           "IT-Shop",
           "Achetez-le",
           "Software",
-          "software",
           "Logiciel",
           "Telefonia",
           "Telefonie",
           "Telephony",
           "Téléphonie",
-          "Matériel",
           "Wegweiser",
           "Sign",
           "Segno",
@@ -18675,7 +18827,7 @@
         }
       },
       "createdAt": "2022-05-20T09:23:16.000Z",
-      "modifiedAt": "2024-03-12T14:49:11.000Z"
+      "modifiedAt": "2024-07-20T19:05:10.046Z"
     },
     {
       "uuid": "585edb00-d81f-11ec-9011-005056873709",
@@ -18709,7 +18861,10 @@
           "my",
           "mon",
           "mio",
-          "IT"
+          "ES",
+          "IT",
+          "ESSO",
+          "IL"
         ],
         "year": [
           "2022"
@@ -18727,7 +18882,7 @@
         }
       },
       "createdAt": "2022-05-20T09:29:27.000Z",
-      "modifiedAt": "2024-03-12T14:49:11.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "af9dfd90-d821-11ec-9011-005056873709",
@@ -19049,8 +19204,6 @@
           "Mikrofon",
           "Microphone",
           "Microfono",
-          "microphone",
-          "Mikrophon",
           "Schablone",
           "Stencil",
           "Pochoir"
@@ -19071,7 +19224,7 @@
         }
       },
       "createdAt": "2022-06-01T05:12:15.000Z",
-      "modifiedAt": "2024-03-12T14:49:10.000Z"
+      "modifiedAt": "2024-07-20T17:05:05.795Z"
     },
     {
       "uuid": "31a520d0-e271-11ec-aa92-005056873709",
@@ -19338,7 +19491,7 @@
         }
       },
       "createdAt": "2022-06-02T13:00:19.000Z",
-      "modifiedAt": "2024-03-12T14:49:11.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "ac7a1b50-e274-11ec-aa92-005056873709",
@@ -20009,7 +20162,7 @@
         }
       },
       "createdAt": "2022-06-15T08:39:47.000Z",
-      "modifiedAt": "2024-03-12T14:49:09.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "be23cc80-ec87-11ec-aa92-005056873709",
@@ -20040,7 +20193,7 @@
         }
       },
       "createdAt": "2022-06-15T08:47:09.000Z",
-      "modifiedAt": "2024-03-12T14:50:06.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "6d6e1430-ec8c-11ec-aa92-005056873709",
@@ -20091,7 +20244,7 @@
         }
       },
       "createdAt": "2022-06-15T09:20:41.000Z",
-      "modifiedAt": "2024-03-12T14:50:06.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "5f4034f0-ec8d-11ec-aa92-005056873709",
@@ -20130,7 +20283,7 @@
         }
       },
       "createdAt": "2022-06-15T09:27:27.000Z",
-      "modifiedAt": "2024-03-12T14:50:06.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "a433e550-ee33-11ec-aa92-005056873709",
@@ -20183,7 +20336,7 @@
         }
       },
       "createdAt": "2022-06-17T11:50:10.000Z",
-      "modifiedAt": "2024-03-12T14:50:08.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "8fa6b4e0-ee34-11ec-aa92-005056873709",
@@ -20585,7 +20738,10 @@
           "Security",
           "Sicurezza",
           "Sécurité",
+          "Warnung",
           "Warning",
+          "Avvertimento",
+          "Avertissement",
           "Dreieck",
           "Triangle",
           "Triangolo"
@@ -20606,7 +20762,7 @@
         }
       },
       "createdAt": "2022-07-13T11:27:00.000Z",
-      "modifiedAt": "2024-03-12T14:50:08.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "167ba150-029f-11ed-999e-005056873709",
@@ -20895,7 +21051,10 @@
           "Stopps",
           "Stops",
           "Hold",
+          "Stoppen",
           "Stop",
+          "Fermare",
+          "Arrêt",
           "Kleider",
           "Clothing",
           "Abbigliamento",
@@ -20925,7 +21084,7 @@
         }
       },
       "createdAt": "2022-08-04T06:05:40.000Z",
-      "modifiedAt": "2024-03-12T14:50:08.000Z"
+      "modifiedAt": "2024-07-18T13:05:09.299Z"
     },
     {
       "uuid": "cd3b1a30-13be-11ed-84aa-005056873709",
@@ -21085,7 +21244,7 @@
         }
       },
       "createdAt": "2022-08-10T08:24:55.000Z",
-      "modifiedAt": "2024-03-12T14:50:07.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "f7679b40-1886-11ed-84aa-005056873709",
@@ -21478,7 +21637,10 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/649525/storage/NjQ5NTI3LzAvbWFzdGVy",
         "keywords": [
+          "Mannschaften",
           "Teams",
+          "Squadre",
+          "Équipes",
           "Microsoft Teams",
           "durchqueren",
           "Cross",
@@ -21505,7 +21667,7 @@
         }
       },
       "createdAt": "2022-08-11T13:36:03.000Z",
-      "modifiedAt": "2024-03-12T14:50:06.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "66193300-197c-11ed-84aa-005056873709",
@@ -21515,7 +21677,10 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/649530/storage/NjQ5NTMyLzAvbWFzdGVy",
         "keywords": [
+          "Mannschaften",
           "Teams",
+          "Squadre",
+          "Équipes",
           "Microsoft Teams",
           "Maschine",
           "Machine",
@@ -21541,7 +21706,7 @@
         }
       },
       "createdAt": "2022-08-11T13:49:19.000Z",
-      "modifiedAt": "2024-03-12T14:50:06.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "c98b44a0-197c-11ed-84aa-005056873709",
@@ -21999,7 +22164,7 @@
         }
       },
       "createdAt": "2022-09-09T06:20:38.000Z",
-      "modifiedAt": "2024-03-12T14:50:08.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "d320db30-32a2-11ed-84db-005056873709",
@@ -22513,7 +22678,7 @@
         }
       },
       "createdAt": "2022-09-16T12:04:59.000Z",
-      "modifiedAt": "2024-03-12T14:50:07.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "9be91060-494f-11ed-9430-005056873709",
@@ -22523,7 +22688,10 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/656177/storage/NjU2MTc2LzAvbWFzdGVy",
         "keywords": [
+          "Smarter Shuttle",
           "Smart Shuttle",
+          "Navetta intelligente",
+          "Navette intelligente",
           "Postauto",
           "PostBus",
           "Autopostale",
@@ -22566,7 +22734,7 @@
         }
       },
       "createdAt": "2022-10-11T10:29:38.000Z",
-      "modifiedAt": "2024-03-12T14:50:09.000Z"
+      "modifiedAt": "2024-07-20T19:05:10.046Z"
     },
     {
       "uuid": "aab567a0-4950-11ed-9430-005056873709",
@@ -22606,7 +22774,7 @@
         }
       },
       "createdAt": "2022-10-11T10:37:12.000Z",
-      "modifiedAt": "2024-03-12T14:50:07.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "c60020c0-494d-11ed-9430-005056873709",
@@ -22645,7 +22813,7 @@
         }
       },
       "createdAt": "2022-10-11T10:16:30.000Z",
-      "modifiedAt": "2024-03-12T14:50:07.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "6ecf10d0-431d-11ed-9430-005056873709",
@@ -23017,7 +23185,7 @@
         }
       },
       "createdAt": "2022-11-18T14:59:09.000Z",
-      "modifiedAt": "2024-03-12T14:50:07.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "db279650-6751-11ed-8607-005056873709",
@@ -23124,7 +23292,10 @@
           "person with ID",
           "Titolare del documento",
           "Titulaire de la carte d’identité",
-          "Holder"
+          "Halter",
+          "Holder",
+          "Titolare",
+          "Titulaire"
         ],
         "year": [
           "2022"
@@ -23142,7 +23313,7 @@
         }
       },
       "createdAt": "2022-11-21T06:12:05.000Z",
-      "modifiedAt": "2024-03-12T14:50:08.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "39a23050-6964-11ed-8607-005056873709",
@@ -23343,7 +23514,7 @@
         }
       },
       "createdAt": "2022-11-30T06:56:03.000Z",
-      "modifiedAt": "2024-03-12T14:50:08.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "72929ca0-707c-11ed-8faa-005056873709",
@@ -23392,9 +23563,7 @@
           "Dispositif Électrique",
           "Mikrofon",
           "Microphone",
-          "Microfono",
-          "microphone",
-          "Mikrophon"
+          "Microfono"
         ],
         "year": [
           "2022"
@@ -23412,7 +23581,7 @@
         }
       },
       "createdAt": "2022-11-30T07:02:37.000Z",
-      "modifiedAt": "2024-03-12T14:50:06.000Z"
+      "modifiedAt": "2024-07-20T17:05:05.795Z"
     },
     {
       "uuid": "7f7fb710-7b06-11ed-8faa-005056873709",
@@ -23447,7 +23616,7 @@
         }
       },
       "createdAt": "2022-12-13T16:52:15.000Z",
-      "modifiedAt": "2024-03-12T14:50:05.000Z"
+      "modifiedAt": "2024-07-17T11:23:33.627Z"
     },
     {
       "uuid": "25055fe0-7b76-11ed-8faa-005056873709",
@@ -23455,13 +23624,15 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/667450/storage/NjY3NDQ5LzAvbWFzdGVy",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/667450/storage/ODEwODg4LzAvbWFzdGVy",
         "keywords": [
           "GCRS",
           "Ereignis- und Krisenmanagement",
           "Incident and crisis management",
           "Gestion des événements et des crises",
-          "Gestione di crisi ed eventi"
+          "Gestione di crisi ed eventi",
+          "Signal",
+          "Segnale"
         ],
         "year": [
           "2022"
@@ -23479,7 +23650,7 @@
         }
       },
       "createdAt": "2022-12-14T06:11:27.000Z",
-      "modifiedAt": "2024-03-12T14:50:06.000Z"
+      "modifiedAt": "2024-07-17T11:23:33.627Z"
     },
     {
       "uuid": "482a9bb0-7b77-11ed-8faa-005056873709",
@@ -23514,7 +23685,7 @@
         }
       },
       "createdAt": "2022-12-14T06:19:36.000Z",
-      "modifiedAt": "2024-03-12T14:50:07.000Z"
+      "modifiedAt": "2024-07-17T11:23:33.627Z"
     },
     {
       "uuid": "b24eb260-7b77-11ed-8faa-005056873709",
@@ -23563,7 +23734,7 @@
         }
       },
       "createdAt": "2022-12-14T06:22:34.000Z",
-      "modifiedAt": "2024-03-12T14:50:06.000Z"
+      "modifiedAt": "2024-07-17T11:23:33.627Z"
     },
     {
       "uuid": "722e91e0-7b78-11ed-8faa-005056873709",
@@ -23619,7 +23790,7 @@
         }
       },
       "createdAt": "2022-12-14T06:27:56.000Z",
-      "modifiedAt": "2024-03-12T14:50:08.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "d6011300-7b78-11ed-8faa-005056873709",
@@ -23662,7 +23833,7 @@
         }
       },
       "createdAt": "2022-12-14T06:30:43.000Z",
-      "modifiedAt": "2024-03-12T14:50:07.000Z"
+      "modifiedAt": "2024-07-17T11:23:33.627Z"
     },
     {
       "uuid": "3fd81b20-7b79-11ed-8faa-005056873709",
@@ -23721,7 +23892,7 @@
         }
       },
       "createdAt": "2022-12-14T06:33:41.000Z",
-      "modifiedAt": "2024-03-12T14:50:08.000Z"
+      "modifiedAt": "2024-07-17T11:23:33.627Z"
     },
     {
       "uuid": "c8e36b44-7b79-11ed-8faa-005056873709",
@@ -23765,7 +23936,7 @@
         }
       },
       "createdAt": "2022-12-14T06:37:30.000Z",
-      "modifiedAt": "2024-03-12T14:50:07.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "4b6266c0-7b7a-11ed-8faa-005056873709",
@@ -23816,7 +23987,7 @@
         }
       },
       "createdAt": "2022-12-14T06:41:09.000Z",
-      "modifiedAt": "2024-03-12T14:50:08.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "a9f6be20-7b7a-11ed-8faa-005056873709",
@@ -23830,7 +24001,10 @@
           "Owl",
           "Gufo",
           "Hibou",
+          "Dunkelmodus",
           "Darkmode",
+          "Modalità scura",
+          "Mode sombre",
           "Tag",
           "Day",
           "Giorno",
@@ -23839,10 +24013,7 @@
           "Night",
           "Notte",
           "Nuit",
-          "Dunkelmodus",
-          "Mode sombre",
           "dark mode",
-          "Modalità scura",
           "Vignette",
           "Sticker",
           "Adesivo",
@@ -23867,7 +24038,7 @@
         }
       },
       "createdAt": "2022-12-14T06:43:48.000Z",
-      "modifiedAt": "2024-03-12T14:50:07.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "ebf569c0-85d9-11ed-9686-005056873709",
@@ -24082,6 +24253,7 @@
           "Wagengruppe",
           "Wagon Group",
           "Wagongroup",
+          "Gruppo di carri",
           "Bahn",
           "Railway",
           "Ferrovia",
@@ -24122,7 +24294,7 @@
         }
       },
       "createdAt": "2023-03-10T07:04:06.000Z",
-      "modifiedAt": "2024-03-12T14:50:08.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "7c1c2810-bf12-11ed-8a02-005056873709",
@@ -24154,7 +24326,7 @@
         }
       },
       "createdAt": "2023-03-10T07:09:23.000Z",
-      "modifiedAt": "2024-03-12T14:50:49.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "f2237540-bf12-11ed-8a02-005056873709",
@@ -24186,7 +24358,7 @@
         }
       },
       "createdAt": "2023-03-10T07:12:41.000Z",
-      "modifiedAt": "2024-03-12T14:50:50.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "7b054460-bf13-11ed-8a02-005056873709",
@@ -24198,7 +24370,6 @@
         "keywords": [
           "WCM",
           "Software",
-          "software",
           "Logiciel",
           "Dreieck",
           "Triangle",
@@ -24220,7 +24391,7 @@
         }
       },
       "createdAt": "2023-03-10T07:16:30.000Z",
-      "modifiedAt": "2024-03-12T14:50:51.000Z"
+      "modifiedAt": "2024-07-20T19:05:10.046Z"
     },
     {
       "uuid": "5f58f530-bf14-11ed-8a02-005056873709",
@@ -24232,7 +24403,6 @@
         "keywords": [
           "WCM",
           "Software",
-          "software",
           "Logiciel",
           "Révision du logiciel",
           "Revisione del software",
@@ -24268,7 +24438,7 @@
         }
       },
       "createdAt": "2023-03-10T07:22:53.000Z",
-      "modifiedAt": "2024-03-12T14:50:50.000Z"
+      "modifiedAt": "2024-07-20T19:05:10.046Z"
     },
     {
       "uuid": "e65a92a0-bf14-11ed-8a02-005056873709",
@@ -24309,7 +24479,7 @@
         }
       },
       "createdAt": "2023-03-10T07:26:40.000Z",
-      "modifiedAt": "2024-03-12T14:50:51.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "ef79aaa0-bf15-11ed-8a02-005056873709",
@@ -24348,7 +24518,7 @@
         }
       },
       "createdAt": "2023-03-10T07:34:05.000Z",
-      "modifiedAt": "2024-03-12T14:50:51.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "6fb8c840-bf16-11ed-8a02-005056873709",
@@ -24379,7 +24549,7 @@
         }
       },
       "createdAt": "2023-03-10T07:37:40.000Z",
-      "modifiedAt": "2024-03-12T14:50:51.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "3adc9b90-bf18-11ed-8a02-005056873709",
@@ -24419,7 +24589,7 @@
         }
       },
       "createdAt": "2023-03-10T07:50:30.000Z",
-      "modifiedAt": "2024-03-12T14:50:52.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "8dc79121-bf18-11ed-8a02-005056873709",
@@ -24459,7 +24629,7 @@
         }
       },
       "createdAt": "2023-03-10T07:52:49.000Z",
-      "modifiedAt": "2024-03-12T14:50:49.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "a8030050-bf19-11ed-8a02-005056873709",
@@ -24487,7 +24657,7 @@
         }
       },
       "createdAt": "2023-03-10T08:00:43.000Z",
-      "modifiedAt": "2024-03-12T14:50:50.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "107ebe34-bf1a-11ed-8a02-005056873709",
@@ -24519,7 +24689,7 @@
         }
       },
       "createdAt": "2023-03-10T08:03:38.000Z",
-      "modifiedAt": "2024-03-12T14:50:49.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "71a902b0-bf1a-11ed-8a02-005056873709",
@@ -24558,7 +24728,7 @@
         }
       },
       "createdAt": "2023-03-10T08:06:21.000Z",
-      "modifiedAt": "2024-03-12T14:50:51.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "ab6c5ec2-cf9b-11ed-93da-005056873709",
@@ -24594,7 +24764,7 @@
         }
       },
       "createdAt": "2023-03-31T08:11:42.000Z",
-      "modifiedAt": "2024-03-12T14:50:50.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "604a6710-cf9c-11ed-93da-005056873709",
@@ -24739,7 +24909,7 @@
         }
       },
       "createdAt": "2023-05-02T06:04:28.000Z",
-      "modifiedAt": "2024-03-12T14:50:50.000Z"
+      "modifiedAt": "2024-07-19T03:05:01.047Z"
     },
     {
       "uuid": "a6c591c0-e8af-11ed-a8be-005056873709",
@@ -24841,7 +25011,7 @@
         }
       },
       "createdAt": "2023-05-02T06:13:09.000Z",
-      "modifiedAt": "2024-03-12T14:50:50.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "c2950710-e8b3-11ed-a8be-005056873709",
@@ -24983,7 +25153,7 @@
         }
       },
       "createdAt": "2023-05-15T07:25:59.000Z",
-      "modifiedAt": "2024-03-12T14:50:49.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "7e65c680-f2f2-11ed-a8be-005056873709",
@@ -24997,7 +25167,9 @@
           "Commande vocale",
           "voice control",
           "comando vocale",
+          "Sprachbefehl",
           "Voice Command",
+          "Comando vocale",
           "Schablone",
           "Stencil",
           "Pochoir",
@@ -25030,7 +25202,7 @@
         }
       },
       "createdAt": "2023-05-15T07:31:23.000Z",
-      "modifiedAt": "2024-03-12T14:50:50.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "17b03cb0-f863-11ed-a8be-005056873709",
@@ -25040,7 +25212,10 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/681861/storage/NjgxODYwLzAvbWFzdGVy",
         "keywords": [
+          "Wallet-App",
           "Wallet App",
+          "Applicazione Portafoglio",
+          "Application de portefeuille",
           "Zwischensockel",
           "Adapter",
           "Adattatore",
@@ -25074,7 +25249,7 @@
         }
       },
       "createdAt": "2023-05-22T05:40:00.000Z",
-      "modifiedAt": "2024-03-12T14:50:51.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "bf70b9c0-f863-11ed-a8be-005056873709",
@@ -25156,7 +25331,7 @@
         }
       },
       "createdAt": "2023-05-22T05:49:44.000Z",
-      "modifiedAt": "2024-03-12T14:50:50.000Z"
+      "modifiedAt": "2024-07-18T13:05:09.299Z"
     },
     {
       "uuid": "97d90bd0-f866-11ed-a8be-005056873709",
@@ -25216,7 +25391,7 @@
         }
       },
       "createdAt": "2023-05-22T06:05:03.000Z",
-      "modifiedAt": "2024-03-12T14:50:51.000Z"
+      "modifiedAt": "2024-07-18T13:05:09.299Z"
     },
     {
       "uuid": "d7da6ed0-f867-11ed-a8be-005056873709",
@@ -25304,7 +25479,7 @@
         }
       },
       "createdAt": "2023-06-08T08:51:28.000Z",
-      "modifiedAt": "2024-03-12T14:50:52.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "cf6fe3d0-05da-11ee-8c71-005056873709",
@@ -25328,9 +25503,7 @@
           "Dispositif Électrique",
           "Mikrofon",
           "Microphone",
-          "Microfono",
-          "microphone",
-          "Mikrophon"
+          "Microfono"
         ],
         "year": [
           "2023"
@@ -25348,7 +25521,7 @@
         }
       },
       "createdAt": "2023-06-08T08:59:43.000Z",
-      "modifiedAt": "2024-03-12T14:50:49.000Z"
+      "modifiedAt": "2024-07-20T17:05:05.795Z"
     },
     {
       "uuid": "23a2da00-05ec-11ee-8c71-005056873709",
@@ -25587,7 +25760,10 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/686170/storage/Njg2MTY5LzAvbWFzdGVy",
         "keywords": [
-          "Planon",
+          "ein Plan",
+          "a plan",
+          "un piano",
+          "un plan",
           "IMS",
           "Dynamit",
           "Dynamite",
@@ -25626,7 +25802,7 @@
         }
       },
       "createdAt": "2023-07-04T10:56:09.000Z",
-      "modifiedAt": "2024-03-12T14:50:52.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "d411a890-1af9-11ee-8c71-005056873709",
@@ -25751,7 +25927,10 @@
           "Rues",
           "Vie",
           "Roads",
+          "Straßen",
           "Streets",
+          "Strade",
+          "Des rues",
           "Gabel",
           "Fork",
           "Forchetta",
@@ -25776,7 +25955,7 @@
         }
       },
       "createdAt": "2023-07-06T14:26:46.000Z",
-      "modifiedAt": "2024-03-12T14:50:50.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "b925b190-1c0a-11ee-8c71-005056873709",
@@ -25818,7 +25997,6 @@
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/686439/storage/Njg2NDM4LzAvbWFzdGVy",
         "keywords": [
           "Social Media",
-          "Social media",
           "Réseaux sociaux",
           "mezzi di comunicazione sociale",
           "means of social communication",
@@ -25869,7 +26047,7 @@
         }
       },
       "createdAt": "2023-07-06T14:42:39.000Z",
-      "modifiedAt": "2024-03-12T14:50:49.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "0cbc6e60-27ba-11ee-8c71-005056873709",
@@ -26011,7 +26189,7 @@
         }
       },
       "createdAt": "2023-08-30T08:17:57.000Z",
-      "modifiedAt": "2024-03-12T14:50:50.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "496e1750-470e-11ee-9f2c-005056873709",
@@ -26049,7 +26227,7 @@
         }
       },
       "createdAt": "2023-08-30T08:21:58.000Z",
-      "modifiedAt": "2024-03-12T14:50:50.000Z"
+      "modifiedAt": "2024-07-20T19:05:10.046Z"
     },
     {
       "uuid": "30809a00-470f-11ee-9f2c-005056873709",
@@ -26350,7 +26528,10 @@
           "muscles",
           "Muscles",
           "Muscoli",
+          "Gewalt",
           "Force",
+          "Forza",
+          "Forcer",
           "Kleider",
           "Clothing",
           "Abbigliamento",
@@ -26383,7 +26564,7 @@
         }
       },
       "createdAt": "2023-08-30T11:00:46.000Z",
-      "modifiedAt": "2024-03-12T14:50:49.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "b7fbf950-4725-11ee-9f2c-005056873709",
@@ -26554,7 +26735,7 @@
         }
       },
       "createdAt": "2023-11-24T09:18:01.000Z",
-      "modifiedAt": "2024-03-12T14:50:50.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "6d26bd90-8cec-11ee-aba1-005056873709",
@@ -26572,7 +26753,10 @@
           "Main",
           "Smartphone",
           "Stelenticket",
+          "Ticket de Bahnhof",
           "ticket de station",
+          "biglietto della stazione",
+          "billet de gare",
           "inscription filiale",
           "subsidiary registration",
           "iscrizione filiale",
@@ -26621,7 +26805,7 @@
         }
       },
       "createdAt": "2023-11-27T06:15:56.000Z",
-      "modifiedAt": "2024-03-12T14:50:49.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "be07a060-8cee-11ee-aba1-005056873709",
@@ -26677,7 +26861,7 @@
         }
       },
       "createdAt": "2023-11-27T06:32:31.000Z",
-      "modifiedAt": "2024-03-12T14:50:50.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "6b7571d0-8cf1-11ee-aba1-005056873709",
@@ -26774,7 +26958,7 @@
         }
       },
       "createdAt": "2023-11-27T06:56:13.000Z",
-      "modifiedAt": "2024-03-12T14:50:50.000Z"
+      "modifiedAt": "2024-07-18T22:05:00.974Z"
     },
     {
       "uuid": "28558960-8cf3-11ee-aba1-005056873709",
@@ -26805,7 +26989,7 @@
         }
       },
       "createdAt": "2023-11-27T07:04:07.000Z",
-      "modifiedAt": "2024-03-12T14:50:49.000Z"
+      "modifiedAt": "2024-07-18T22:05:00.974Z"
     },
     {
       "uuid": "97652b10-8cf5-11ee-aba1-005056873709",
@@ -26838,7 +27022,7 @@
         }
       },
       "createdAt": "2023-11-27T07:21:32.000Z",
-      "modifiedAt": "2024-03-12T14:50:52.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "83da9d90-8cf6-11ee-aba1-005056873709",
@@ -26860,6 +27044,8 @@
           "MIT-Hilfe",
           "aiuto MIT",
           "MIT Help",
+          "Aiuto del MIT",
+          "Aide MIT",
           "Sinnbild",
           "Symbol",
           "Simbolo",
@@ -26904,7 +27090,7 @@
         }
       },
       "createdAt": "2023-11-27T07:28:09.000Z",
-      "modifiedAt": "2024-03-12T14:50:51.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "24e60ea0-92a5-11ee-aba1-005056873709",
@@ -26944,7 +27130,7 @@
         }
       },
       "createdAt": "2023-12-04T13:00:48.000Z",
-      "modifiedAt": "2024-03-12T14:50:50.000Z"
+      "modifiedAt": "2024-07-18T04:05:09.003Z"
     },
     {
       "uuid": "c4d86840-92a5-11ee-aba1-005056873709",
@@ -27002,7 +27188,7 @@
         }
       },
       "createdAt": "2023-12-04T13:05:16.000Z",
-      "modifiedAt": "2024-03-12T14:50:51.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "441b66a0-980c-11ee-aba1-005056873709",
@@ -27096,7 +27282,7 @@
         }
       },
       "createdAt": "2023-12-14T13:55:28.000Z",
-      "modifiedAt": "2024-03-12T14:50:51.000Z"
+      "modifiedAt": "2024-07-18T22:05:00.974Z"
     },
     {
       "uuid": "250941d0-b114-11ee-90e8-005056873709",
@@ -27232,7 +27418,7 @@
         }
       },
       "createdAt": "2024-01-26T11:48:12.000Z",
-      "modifiedAt": "2024-03-12T14:50:52.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "baf20cb0-c017-11ee-8059-005056873709",
@@ -27481,8 +27667,7 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/793441/storage/NzkzNDQwLzAvbWFzdGVy",
         "keywords": [
-          "E-Commerce",
-          "E-commerce"
+          "E-Commerce"
         ]
       },
       "file": {
@@ -27497,7 +27682,7 @@
         }
       },
       "createdAt": "2024-03-04T09:05:25.000Z",
-      "modifiedAt": "2024-03-12T14:50:50.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "c1adce40-da0c-11ee-9708-005056873709",
@@ -27653,7 +27838,7 @@
         }
       },
       "createdAt": "2024-04-25T05:57:10.000Z",
-      "modifiedAt": "2024-04-25T06:17:16.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "244ef270-0c2d-11ef-93cb-005056873709",
@@ -27747,7 +27932,7 @@
         }
       },
       "createdAt": "2024-05-23T05:32:03.000Z",
-      "modifiedAt": "2024-05-23T05:34:52.000Z"
+      "modifiedAt": "2024-07-18T13:05:09.299Z"
     },
     {
       "uuid": "ff32e6a0-1987-11ef-93cb-005056873709",
@@ -27816,6 +28001,250 @@
       "modifiedAt": "2024-05-24T04:50:37.000Z"
     },
     {
+      "uuid": "2cc0daa0-3deb-11ef-b101-005056873709",
+      "id": 810603,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/810603/storage/ODEwNjAyLzAvbWFzdGVy",
+        "keywords": [
+          "Ampel",
+          "Traffic Light",
+          "Semaforo",
+          "Feu De Circulation",
+          "Licht",
+          "Lumière",
+          "Luce",
+          "light",
+          "Light",
+          "luce",
+          "léger"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2592.svg",
+        "basename": "2592",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-09T12:02:54.000Z",
+      "modifiedAt": "2024-07-09T12:05:12.000Z"
+    },
+    {
+      "uuid": "da46b2d0-3deb-11ef-b101-005056873709",
+      "id": 810607,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/810607/storage/ODEwNjA2LzAvbWFzdGVy",
+        "keywords": [
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2593.svg",
+        "basename": "2593",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-09T12:07:46.000Z",
+      "modifiedAt": "2024-07-09T12:11:39.000Z"
+    },
+    {
+      "uuid": "a9a8c180-3dec-11ef-b101-005056873709",
+      "id": 810611,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/810611/storage/ODEwNjEwLzAvbWFzdGVy",
+        "keywords": [
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site",
+          "Ampel",
+          "Traffic Light",
+          "Semaforo",
+          "Feu De Circulation",
+          "traffic light system",
+          "Lichtsignalanlage",
+          "Installation de signaux lumineux",
+          "Segnale luminoso"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2594.svg",
+        "basename": "2594",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-09T12:13:33.000Z",
+      "modifiedAt": "2024-07-10T12:05:01.006Z"
+    },
+    {
+      "uuid": "ddc27230-3e92-11ef-b101-005056873709",
+      "id": 810661,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/810661/storage/ODEwNjYwLzAvbWFzdGVy",
+        "keywords": [
+          "Audio",
+          "Tonspur"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2595.svg",
+        "basename": "2595",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-10T08:03:17.000Z",
+      "modifiedAt": "2024-07-11T07:05:01.540Z"
+    },
+    {
+      "uuid": "d156ce70-45bc-11ef-b101-005056873709",
+      "id": 811110,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811110/storage/ODExMTA5LzAvbWFzdGVy",
+        "keywords": [
+          "M365",
+          "Microsoft 365"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2596.svg",
+        "basename": "2596",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-19T10:51:14.000Z",
+      "modifiedAt": "2024-07-19T10:53:29.000Z"
+    },
+    {
+      "uuid": "9a815f42-45bd-11ef-b101-005056873709",
+      "id": 811114,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811114/storage/ODExMTEzLzAvbWFzdGVy",
+        "keywords": [
+          "engage",
+          "Microsoft Engage",
+          "MS Engage"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2597.svg",
+        "basename": "2597",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-19T10:56:51.000Z",
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
+    },
+    {
+      "uuid": "3cba9ba0-45be-11ef-b101-005056873709",
+      "id": 811121,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811121/storage/ODExMTIwLzAvbWFzdGVy",
+        "keywords": [
+          "MS Learning",
+          "Apprentissage MS",
+          "Microsoft Learning",
+          "Formation Microsoft",
+          "Apprendimento Microsoft"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2598.svg",
+        "basename": "2598",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-19T11:01:23.000Z",
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
+    },
+    {
+      "uuid": "27ca9ba0-45c8-11ef-b101-005056873709",
+      "id": 811128,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811128/storage/ODExMTI3LzAvbWFzdGVy",
+        "keywords": [
+          "Microsoft Loop",
+          "MS Loop",
+          "Anzahl",
+          "Number",
+          "Numero",
+          "Nombre",
+          "Sinnbild",
+          "Symbol",
+          "Simbolo",
+          "Symbole",
+          "Text",
+          "Testo",
+          "Texte"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2599.svg",
+        "basename": "2599",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-19T12:12:23.000Z",
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
+    },
+    {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
       "id": 352241,
       "type": "picture.pictogram.",
@@ -27868,6 +28297,9 @@
           "Section 2",
           "chiffre 2",
           "Articolo 2",
+          "Nummer 2",
+          "Number 2",
+          "Numero 2",
           "Chiffre 2",
           "Anzahl",
           "Number",
@@ -27890,7 +28322,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:50:52.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "6fbba3f0-c5ff-11e7-a943-005056a94f4a",
@@ -27983,6 +28415,9 @@
           "Section 5",
           "Articolo 5",
           "chiffre 5",
+          "Nummer 5",
+          "Number 5",
+          "Numero 5",
           "Chiffre 5",
           "Anzahl",
           "Number",
@@ -28005,7 +28440,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:50:50.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "6fca22e0-c5ff-11e7-a943-005056a94f4a",
@@ -28174,6 +28609,9 @@
           "Section 10",
           "chiffre 10",
           "Articolo 10",
+          "Nummer 10",
+          "Number 10",
+          "Numero 10",
           "Chiffre 10",
           "Anzahl",
           "Number",
@@ -28196,7 +28634,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "6fe54c00-c5ff-11e7-a943-005056a94f4a",
@@ -28213,6 +28651,9 @@
           "Section 11",
           "Articolo 11",
           "chiffre 11",
+          "Nummer 11",
+          "Number 11",
+          "Numero 11",
           "Chiffre 11",
           "Anzahl",
           "Number",
@@ -28235,7 +28676,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "6fea7c20-c5ff-11e7-a943-005056a94f4a",
@@ -28252,6 +28693,9 @@
           "Section 12",
           "chiffre 12",
           "Articolo 12",
+          "Nummer 12",
+          "Number 12",
+          "Numero 12",
           "Chiffre 12",
           "Anzahl",
           "Number",
@@ -28274,7 +28718,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "6ff02170-c5ff-11e7-a943-005056a94f4a",
@@ -28291,6 +28735,9 @@
           "Section 13",
           "Articolo 13",
           "chiffre 13",
+          "Nummer 13",
+          "Number 13",
+          "Numero 13",
           "Chiffre 13",
           "Anzahl",
           "Number",
@@ -28313,7 +28760,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "6ff63bf0-c5ff-11e7-a943-005056a94f4a",
@@ -28330,6 +28777,9 @@
           "Section 14",
           "Articolo 14",
           "chiffre 14",
+          "Nummer 14",
+          "Number 14",
+          "Numero 14",
           "Chiffre 14",
           "Anzahl",
           "Number",
@@ -28352,7 +28802,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "6ffc0850-c5ff-11e7-a943-005056a94f4a",
@@ -28483,6 +28933,9 @@
           "Section 18",
           "Articolo 18",
           "chiffre 18",
+          "Nummer 18",
+          "Number 18",
+          "Numero 18",
           "Chiffre 18",
           "Anzahl",
           "Number",
@@ -28505,7 +28958,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "7011b330-c5ff-11e7-a943-005056a94f4a",
@@ -28560,6 +29013,9 @@
           "Section 20",
           "Articolo 20",
           "chiffre 20",
+          "Nummer 20",
+          "Number 20",
+          "Numero 20",
           "Chiffre 20",
           "Anzahl",
           "Number",
@@ -28582,7 +29038,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "701b9e40-c5ff-11e7-a943-005056a94f4a",
@@ -29019,7 +29475,10 @@
           "remplacer",
           "replace",
           "ersetzen",
+          "Ändern",
           "Change",
+          "Modifica",
+          "Changement",
           "Pfeil",
           "Arrow",
           "Freccia",
@@ -29045,7 +29504,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "70757e10-c5ff-11e7-a943-005056a94f4a",
@@ -29105,7 +29564,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "707a11f0-c5ff-11e7-a943-005056a94f4a",
@@ -29172,7 +29631,10 @@
           "Executed",
           "Erledigt",
           "Giustiziato",
-          "coche",
+          "Trainer",
+          "coach",
+          "allenatore",
+          "entraîneur",
           "Häkchen",
           "Tick",
           "Zecca",
@@ -29198,7 +29660,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "7083aee0-c5ff-11e7-a943-005056a94f4a",
@@ -29265,7 +29727,9 @@
           "cauto",
           "reserved",
           "zurückhaltend",
-          "Reserved"
+          "Reserviert",
+          "Reserved",
+          "Riservato"
         ],
         "year": [
           "2017"
@@ -29283,7 +29747,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "709254e0-c5ff-11e7-a943-005056a94f4a",
@@ -29348,7 +29812,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "7097fa30-c5ff-11e7-a943-005056a94f4a",
@@ -29397,7 +29861,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "709dc690-c5ff-11e7-a943-005056a94f4a",
@@ -29446,7 +29910,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "70a42f30-c5ff-11e7-a943-005056a94f4a",
@@ -29487,7 +29951,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "70aa49b0-c5ff-11e7-a943-005056a94f4a",
@@ -29528,7 +29992,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "70b5e270-c5ff-11e7-a943-005056a94f4a",
@@ -29541,7 +30005,10 @@
           "kommunikation"
         ],
         "keywords": [
-          "lift"
+          "Aufzug",
+          "lift",
+          "sollevare",
+          "ascenseur"
         ],
         "year": [
           "2017"
@@ -29559,7 +30026,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "70ba4f40-c5ff-11e7-a943-005056a94f4a",
@@ -29610,7 +30077,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "70bff490-c5ff-11e7-a943-005056a94f4a",
@@ -29651,7 +30118,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "70c4af80-c5ff-11e7-a943-005056a94f4a",
@@ -29692,7 +30159,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "70caa2f0-c5ff-11e7-a943-005056a94f4a",
@@ -29769,7 +30236,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "70d180c0-c5ff-11e7-a943-005056a94f4a",
@@ -29793,7 +30260,10 @@
           "Person",
           "Persona",
           "Personne",
+          "Herrentoilette",
           "Gents’ toilet",
+          "Toilette per uomini",
+          "Toilettes pour hommes",
           "Toilette",
           "Toilet",
           "Servizi igienici",
@@ -29815,7 +30285,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "70d63bb0-c5ff-11e7-a943-005056a94f4a",
@@ -29868,7 +30338,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "70dbe100-c5ff-11e7-a943-005056a94f4a",
@@ -29973,7 +30443,10 @@
           "kommunikation"
         ],
         "keywords": [
-          "lift"
+          "Aufzug",
+          "lift",
+          "sollevare",
+          "ascenseur"
         ],
         "year": [
           "2017"
@@ -29991,7 +30464,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "70ec34b0-c5ff-11e7-a943-005056a94f4a",
@@ -30022,7 +30495,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-18T04:05:09.003Z"
     },
     {
       "uuid": "70f0efa0-c5ff-11e7-a943-005056a94f4a",
@@ -30090,7 +30563,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-11T05:25:53.000Z"
     },
     {
       "uuid": "7102c9f0-c5ff-11e7-a943-005056a94f4a",
@@ -30103,7 +30576,10 @@
           "kommunikation"
         ],
         "keywords": [
-          ""
+          "ziehen",
+          "tug",
+          "tirare",
+          "Tirer"
         ],
         "year": [
           "2017"
@@ -30121,7 +30597,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-12T05:05:01.765Z"
     },
     {
       "uuid": "710fc240-c5ff-11e7-a943-005056a94f4a",
@@ -30134,7 +30610,10 @@
           "kommunikation"
         ],
         "keywords": [
-          ""
+          "Push",
+          "Pushing",
+          "Spingere",
+          "Poussée"
         ],
         "year": [
           "2017"
@@ -30152,7 +30631,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-11T05:15:40.000Z"
     },
     {
       "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
@@ -30196,7 +30675,10 @@
           "kommunikation"
         ],
         "keywords": [
-          ""
+          "Push",
+          "Pushing",
+          "Spingere",
+          "Poussée"
         ],
         "year": [
           "2017"
@@ -30214,7 +30696,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-11T05:19:51.000Z"
     },
     {
       "uuid": "7124f7f0-c5ff-11e7-a943-005056a94f4a",
@@ -30227,7 +30709,10 @@
           "kommunikation"
         ],
         "keywords": [
-          ""
+          "ziehen",
+          "tug",
+          "tirare",
+          "Tirer"
         ],
         "year": [
           "2017"
@@ -30245,7 +30730,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-11T05:29:34.000Z"
     },
     {
       "uuid": "712a2810-c5ff-11e7-a943-005056a94f4a",
@@ -30258,7 +30743,10 @@
           "kommunikation"
         ],
         "keywords": [
-          ""
+          "Push",
+          "Pushing",
+          "Spingere",
+          "Poussée"
         ],
         "year": [
           "2017"
@@ -30276,7 +30764,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-11T05:33:00.000Z"
     },
     {
       "uuid": "712ebbf0-c5ff-11e7-a943-005056a94f4a",
@@ -30344,7 +30832,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-11T06:00:55.000Z"
     },
     {
       "uuid": "7142e030-c5ff-11e7-a943-005056a94f4a",
@@ -30375,7 +30863,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "71479b20-c5ff-11e7-a943-005056a94f4a",
@@ -30404,8 +30892,13 @@
           "Appuyer",
           "bring down",
           "PREMERE",
+          "Türöffner",
           "Door opener",
-          "open door"
+          "Ouvre-porte",
+          "offene Tür",
+          "open door",
+          "porta aperta",
+          "porte ouverte"
         ],
         "year": [
           "2017"
@@ -30423,7 +30916,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "714ca430-c5ff-11e7-a943-005056a94f4a",
@@ -30581,7 +31074,6 @@
           "kommunikation"
         ],
         "keywords": [
-          "Service",
           "Catering"
         ],
         "year": [
@@ -30600,7 +31092,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "71611690-c5ff-11e7-a943-005056a94f4a",
@@ -30656,7 +31148,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "7167f460-c5ff-11e7-a943-005056a94f4a",
@@ -30711,11 +31203,17 @@
           "kommunikation"
         ],
         "keywords": [
-          "Garderobe",
+          "Kleiderschrank",
+          "Wardrobe",
+          "Armadio",
+          "Garde-robe",
           "aufhängen",
           "hang up",
           "affiggere",
           "Accrocher",
+          "Aufhänger",
+          "Hanger",
+          "Appendiabiti",
           "Cintre",
           "vêtements",
           "abbigliamento",
@@ -30739,7 +31237,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
@@ -30851,7 +31349,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-20T19:05:10.046Z"
     },
     {
       "uuid": "7191ea90-c5ff-11e7-a943-005056a94f4a",
@@ -30919,7 +31417,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "71967e70-c5ff-11e7-a943-005056a94f4a",
@@ -30936,7 +31434,10 @@
           "Elektronische Geräte",
           "Dispositivi elettronici",
           "Appareils électroniques",
+          "Praktisch",
           "Handy",
+          "Maneggevole",
+          "Pratique",
           "Bohrer",
           "drill",
           "trapano",
@@ -30945,8 +31446,14 @@
           "craftsman",
           "Artisan",
           "Artigiani",
+          "Elektronisch",
+          "Electronic",
+          "Elettronico",
           "Electronique",
-          "foret",
+          "wäre",
+          "would be",
+          "sarebbe",
+          "serait",
           "Elektronik",
           "Electronics",
           "Elettronica",
@@ -30976,7 +31483,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "71a1a200-c5ff-11e7-a943-005056a94f4a",
@@ -30993,7 +31500,6 @@
           "Bulky luggage",
           "Bagages encombrants",
           "Bagaglio ingombrante",
-          "Velo",
           "Rennvelo",
           "Gepäckaufgabe",
           "Baggage check-in",
@@ -31033,7 +31539,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "71fcba50-c5ff-11e7-a943-005056a94f4a",
@@ -31212,7 +31718,10 @@
           "Carrello bagagli",
           "baggage car",
           "Chariot à bagages",
+          "Überweisen",
           "Transfer",
+          "Trasferimento",
+          "Transfert",
           "Koffer",
           "Suitcase",
           "Valigia",
@@ -31238,7 +31747,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "726eb600-c5ff-11e7-a943-005056a94f4a",
@@ -31253,6 +31762,8 @@
         "keywords": [
           "Sport",
           "Sports",
+          "Gli sport",
+          "Des sports",
           "Ball",
           "Palla",
           "Boule"
@@ -31273,7 +31784,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "72ca1c70-c5ff-11e7-a943-005056a94f4a",
@@ -31308,7 +31819,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "72ceb050-c5ff-11e7-a943-005056a94f4a",
@@ -31357,7 +31868,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "72d3b960-c5ff-11e7-a943-005056a94f4a",
@@ -31438,6 +31949,7 @@
           "itineraries",
           "Routen",
           "Leisure time",
+          "Temps libre",
           "Travel",
           "Wegweiser",
           "Sign",
@@ -31460,7 +31972,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "732e5c80-c5ff-11e7-a943-005056a94f4a",
@@ -31480,7 +31992,10 @@
           "Natur",
           "Nature",
           "Natura",
-          "foret",
+          "wäre",
+          "would be",
+          "sarebbe",
+          "serait",
           "Baum",
           "Tree",
           "Albero",
@@ -31502,7 +32017,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "7332c950-c5ff-11e7-a943-005056a94f4a",
@@ -31570,6 +32085,9 @@
           "sleeping facility",
           "Possibilité de dormir",
           "Possibilità di dormire",
+          "schlafen",
+          "sleep",
+          "sonno",
           "dormir",
           "coucher",
           "mettere a dormire",
@@ -31596,7 +32114,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "733d77b0-c5ff-11e7-a943-005056a94f4a",
@@ -31633,7 +32151,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "73420b90-c5ff-11e7-a943-005056a94f4a",
@@ -31681,7 +32199,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-20T19:05:10.046Z"
     },
     {
       "uuid": "73469f70-c5ff-11e7-a943-005056a94f4a",
@@ -31741,7 +32259,10 @@
         ],
         "keywords": [
           "Webcam",
-          "filmen",
+          "der Film",
+          "the movie",
+          "il film",
+          "le film",
           "aufnehmen",
           "Enregistrer",
           "Registrare",
@@ -31772,7 +32293,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "734fa020-c5ff-11e7-a943-005056a94f4a",
@@ -31789,7 +32310,10 @@
           "Videosorveglianza",
           "Video surveillance",
           "Vidéosurveillance",
-          "filmen",
+          "der Film",
+          "the movie",
+          "il film",
+          "le film",
           "aufnehmen",
           "Enregistrer",
           "Registrare",
@@ -31824,7 +32348,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "73545b10-c5ff-11e7-a943-005056a94f4a",
@@ -31842,10 +32366,15 @@
           "Vidéo sur smartphone",
           "Video smartphone",
           "Smartphone",
-          "filmen",
+          "der Film",
+          "the movie",
+          "il film",
+          "le film",
+          "Praktisch",
           "Handy",
+          "Maneggevole",
+          "Pratique",
           "iPhone",
-          "Iphone",
           "Android",
           "Vidéo de smartphone",
           "Video di smartphone",
@@ -31876,7 +32405,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "735fccc0-c5ff-11e7-a943-005056a94f4a",
@@ -31889,7 +32418,10 @@
           "kommunikation"
         ],
         "keywords": [
-          "filmen",
+          "der Film",
+          "the movie",
+          "il film",
+          "le film",
           "aufnehmen",
           "Enregistrer",
           "Registrare",
@@ -31934,7 +32466,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "7364aec0-c5ff-11e7-a943-005056a94f4a",
@@ -31948,7 +32480,10 @@
         ],
         "keywords": [
           "Filmkamera",
-          "filmen",
+          "der Film",
+          "the movie",
+          "il film",
+          "le film",
           "aufnahme",
           "shot",
           "Registrazione",
@@ -31983,7 +32518,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "736a2d00-c5ff-11e7-a943-005056a94f4a",
@@ -32018,9 +32553,11 @@
           "Hybrid",
           "ibrido",
           "iPhone",
-          "Iphone",
           "Android",
+          "Praktisch",
           "Handy",
+          "Maneggevole",
+          "Pratique",
           "Dokument",
           "Document",
           "Documento",
@@ -32045,7 +32582,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "736e99d0-c5ff-11e7-a943-005056a94f4a",
@@ -32087,7 +32624,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "737306a0-c5ff-11e7-a943-005056a94f4a",
@@ -32173,7 +32710,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:46.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "7384b9e0-c5ff-11e7-a943-005056a94f4a",
@@ -32250,7 +32787,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:47.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "73955bb0-c5ff-11e7-a943-005056a94f4a",
@@ -32302,7 +32839,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-06-19T11:09:00.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "739caeb0-c5ff-11e7-a943-005056a94f4a",
@@ -32356,7 +32893,10 @@
           "Informazioni di guida AutoPostale",
           "Bus",
           "Autobus",
-          "öv",
+          "Verteidigen",
+          "Defend",
+          "Difendere",
+          "Défendre",
           "Mobility",
           "Mobilität",
           "Mobilité",
@@ -32366,8 +32906,10 @@
           "trasporto pubblico",
           "Transports publics",
           "CarPostal",
-          "TP",
+          "Reiseinfos zum Postauto",
           "Postbus travel info",
+          "Informazioni sul viaggio con l'autopostale",
+          "Infos voyage en CarPostal",
           "Fahrzeug",
           "Vehicle",
           "Veicolo",
@@ -32390,7 +32932,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:47.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "73a699c0-c5ff-11e7-a943-005056a94f4a",
@@ -32492,14 +33034,13 @@
         "keywords": [
           "Garage",
           "Autogarage",
+          "Car garage",
+          "Box auto",
+          "Garage automobile",
           "mechanic",
           "Mechaniker",
           "Mécanicien",
           "Meccanico",
-          "Car",
-          "PKW",
-          "AUTOVETTURE",
-          "Voiture de tourisme",
           "VL",
           "LV",
           "Fahrzeug",
@@ -32520,7 +33061,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:47.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "73b9fab0-c5ff-11e7-a943-005056a94f4a",
@@ -32653,11 +33194,10 @@
           "scavenge",
           "Nettoyer",
           "pulizia",
-          "Car",
-          "PKW",
-          "AUTOVETTURE",
-          "Voiture de tourisme",
-          "laver",
+          "tun",
+          "doing",
+          "facendo",
+          "faire",
           "nettoyer",
           "clean up",
           "Reinigen",
@@ -32687,7 +33227,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:47.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "73cc7140-c5ff-11e7-a943-005056a94f4a",
@@ -32749,11 +33289,10 @@
           "kommunikation"
         ],
         "keywords": [
-          "Car",
-          "PKW",
-          "AUTOVETTURE",
-          "Voiture de tourisme",
+          "UND-",
+          "AND-",
           "E-",
+          "ET-",
           "VL",
           "LV",
           "Fahrzeug",
@@ -32778,7 +33317,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-06-18T06:53:17.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "73d990a0-c5ff-11e7-a943-005056a94f4a",
@@ -32875,15 +33414,14 @@
           "kommunikation"
         ],
         "keywords": [
+          "Anlasszentrum",
           "Occasionscenter",
+          "Centro occasioni",
+          "Centre d'occasions",
           "Garage",
           "Occasion",
           "Occasione",
           "Gelegenheit",
-          "Car",
-          "PKW",
-          "AUTOVETTURE",
-          "Voiture de tourisme",
           "VL",
           "LV",
           "Used vehicle dealer",
@@ -32912,7 +33450,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:48.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "73edb4e0-c5ff-11e7-a943-005056a94f4a",
@@ -32948,7 +33486,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:49.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "73f41d80-c5ff-11e7-a943-005056a94f4a",
@@ -33020,7 +33558,10 @@
           "kommunikation"
         ],
         "keywords": [
+          "UND-",
+          "AND-",
           "E-",
+          "ET-",
           "Treibstoff",
           "Fuel",
           "Carburant",
@@ -33043,7 +33584,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-06-18T06:53:17.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "73ff4110-c5ff-11e7-a943-005056a94f4a",
@@ -33092,7 +33633,13 @@
         ],
         "keywords": [
           "Räder",
+          "Wheels",
+          "Ruote",
+          "roues",
+          "Reifen",
           "Tyres",
+          "Pneumatici",
+          "Pneus",
           "Rad",
           "Wheel",
           "Ruota",
@@ -33111,7 +33658,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:47.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "740ad9d0-c5ff-11e7-a943-005056a94f4a",
@@ -33151,7 +33698,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:46.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "7417d220-c5ff-11e7-a943-005056a94f4a",
@@ -33173,8 +33720,6 @@
           "Parken",
           "stationnement",
           "parcheggio",
-          "Car park",
-          "Car Park",
           "Garage",
           "parkieren",
           "Park",
@@ -33194,7 +33739,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:47.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "741deca0-c5ff-11e7-a943-005056a94f4a",
@@ -33207,7 +33752,6 @@
           "kommunikation"
         ],
         "keywords": [
-          "Velo",
           "Rennvelo",
           "vélo de course",
           "bicicletta da corsa",
@@ -33227,7 +33771,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:48.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "742343d0-c5ff-11e7-a943-005056a94f4a",
@@ -33241,6 +33785,9 @@
         ],
         "keywords": [
           "Parkplatz Velo",
+          "Parking lot for bicycles",
+          "Parcheggio per biciclette",
+          "Parking pour vélos",
           "Parkplatz Bike",
           "Bike parking space",
           "Parking vélo",
@@ -33249,7 +33796,6 @@
           "Racing bike parking space",
           "Parcheggio bici da corsa",
           "Parking vélo de course",
-          "Velo",
           "Rennvelo",
           "parking VTT",
           "mountain bike parking",
@@ -33285,7 +33831,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:46.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "7429ac70-c5ff-11e7-a943-005056a94f4a",
@@ -33356,15 +33902,14 @@
           "Ladestation",
           "Die Dienstleistung",
           "La attestazione",
+          "UND-",
+          "AND-",
           "E-",
+          "ET-",
           "top up",
           "aufladen",
           "Recharger",
           "ricaricare",
-          "Car",
-          "PKW",
-          "AUTOVETTURE",
-          "Voiture de tourisme",
           "parking",
           "Parken",
           "stationnement",
@@ -33401,7 +33946,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:47.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "7436f2e0-c5ff-11e7-a943-005056a94f4a",
@@ -33415,6 +33960,9 @@
         ],
         "keywords": [
           "Parkplatz Velo",
+          "Parking lot for bicycles",
+          "Parcheggio per biciclette",
+          "Parking pour vélos",
           "Parkplatz Bike",
           "Bike parking space",
           "Parking vélo",
@@ -33423,7 +33971,6 @@
           "Racing bike parking space",
           "Parcheggio bici da corsa",
           "Parking vélo de course",
-          "Velo",
           "Rennvelo",
           "Ladestation",
           "Die Dienstleistung",
@@ -33462,7 +34009,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:46.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "743ce650-c5ff-11e7-a943-005056a94f4a",
@@ -33486,7 +34033,10 @@
           "AND",
           "E",
           "ET",
+          "UND-",
+          "AND-",
           "E-",
+          "ET-",
           "top up",
           "aufladen",
           "Recharger",
@@ -33495,7 +34045,6 @@
           "Parken",
           "stationnement",
           "parcheggio",
-          "moto",
           "recharger",
           "Aufladen",
           "reload",
@@ -33526,7 +34075,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:47.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "74984cc0-c5ff-11e7-a943-005056a94f4a",
@@ -33540,6 +34089,9 @@
         ],
         "keywords": [
           "Parkkarte",
+          "Parking map",
+          "Mappa dei parcheggi",
+          "Plan de stationnement",
           "Ticket de stationnement",
           "Biglietto di parcheggio",
           "Parkticket",
@@ -33570,7 +34122,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:48.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "74a1c2a0-c5ff-11e7-a943-005056a94f4a",
@@ -33623,7 +34175,12 @@
           "kommunikation"
         ],
         "keywords": [
-          "Alarm Glocke"
+          "Alarm Glocke",
+          "Alarm",
+          "Alarm bell",
+          "Alarmglocke",
+          "Campanello di allarme",
+          "Sonnette d'alarme"
         ]
       },
       "file": {
@@ -33638,7 +34195,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:48.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "74acbf20-c5ff-11e7-a943-005056a94f4a",
@@ -33715,7 +34272,10 @@
           "Inland Schweiz",
           "Domestique en Suisse",
           "Residenti nazionali in Svizzera",
+          "Schweiz",
           "Switzerland",
+          "Svizzera",
+          "Suisse",
           "Landkarte",
           "Map",
           "Mappa",
@@ -33734,7 +34294,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:48.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "74baa1d0-c5ff-11e7-a943-005056a94f4a",
@@ -33764,7 +34324,10 @@
           "Town",
           "Luogo",
           "verorten",
+          "Schweiz",
           "Switzerland",
+          "Svizzera",
+          "Suisse",
           "map of Switzerland",
           "carte de la Suisse",
           "Schweizerische Karte",
@@ -33783,7 +34346,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:47.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "74bf83d0-c5ff-11e7-a943-005056a94f4a",
@@ -33823,7 +34386,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:46.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "74c995f0-c5ff-11e7-a943-005056a94f4a",
@@ -33867,7 +34430,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:49.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "74cf3b40-c5ff-11e7-a943-005056a94f4a",
@@ -34063,7 +34626,6 @@
           "Price in CHF",
           "Prezzo in CHF",
           "CHF",
-          "Loans CHF",
           "Monnaie",
           "Währung",
           "Currency",
@@ -34090,7 +34652,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:47.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "74e8ddc0-c5ff-11e7-a943-005056a94f4a",
@@ -34140,7 +34702,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:48.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "74edbfc0-c5ff-11e7-a943-005056a94f4a",
@@ -34212,15 +34774,14 @@
           "Indennità",
           "indemnification",
           "Indemnisation",
+          "Erreichen",
+          "Reach",
+          "Portata",
           "Bief",
           "Münzen",
           "Coins",
           "Pièces",
           "Monete",
-          "Argent",
-          "Soldi",
-          "Silber",
-          "Silver",
           "Dokument",
           "Document",
           "Documento",
@@ -34242,7 +34803,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:48.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "74f70e90-c5ff-11e7-a943-005056a94f4a",
@@ -34317,15 +34878,14 @@
           "Finance",
           "Finances",
           "Finanze",
-          "Argent",
-          "Soldi",
-          "Silber",
-          "Silver",
           "devise",
           "escogitare",
           "erfinden",
           "mettre au point",
-          "coche",
+          "Trainer",
+          "coach",
+          "allenatore",
+          "entraîneur",
           "Häkchen",
           "Tick",
           "Zecca",
@@ -34348,7 +34908,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:46.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "750120b0-c5ff-11e7-a943-005056a94f4a",
@@ -34655,7 +35215,6 @@
           "Ricaricare il cellulare",
           "Charger le téléphone mobile",
           "CHF",
-          "Loans CHF",
           "Smartphone",
           "Abo",
           "Subscription",
@@ -34663,7 +35222,6 @@
           "Abonnement",
           "Abokosten",
           "iPhone",
-          "Iphone",
           "Android",
           "Zahlen",
           "Chiffres",
@@ -34673,10 +35231,6 @@
           "Charger téléphone mobile",
           "Handy aufladen",
           "Charge Mobile Phone",
-          "Argent",
-          "Soldi",
-          "Silber",
-          "Silver",
           "frais d’abonnement",
           "subscription fee",
           "canone di abbonamento",
@@ -34699,7 +35253,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:48.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "75c88f60-c5ff-11e7-a943-005056a94f4a",
@@ -34948,7 +35502,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:48.000Z"
+      "modifiedAt": "2024-07-18T04:05:09.003Z"
     },
     {
       "uuid": "75e69eb0-c5ff-11e7-a943-005056a94f4a",
@@ -34982,10 +35536,6 @@
           "Spartipps",
           "tips for saving",
           "consigli per risparmiare",
-          "Argent",
-          "Soldi",
-          "Silber",
-          "Silver",
           "Tierisch",
           "Animal",
           "Animale",
@@ -35015,7 +35565,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:46.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "75f40c30-c5ff-11e7-a943-005056a94f4a",
@@ -35048,7 +35598,10 @@
           "Hacken",
           "hoe",
           "Hacker",
-          "coche",
+          "Trainer",
+          "coach",
+          "allenatore",
+          "entraîneur",
           "setup successful",
           "installazione completata",
           "Setup erfolgreich",
@@ -35075,7 +35628,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:48.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "75fce5d0-c5ff-11e7-a943-005056a94f4a",
@@ -35111,7 +35664,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:48.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "760215f0-c5ff-11e7-a943-005056a94f4a",
@@ -35146,7 +35699,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:47.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "760dfcd0-c5ff-11e7-a943-005056a94f4a",
@@ -35161,6 +35714,9 @@
         "keywords": [
           "Restaurant",
           "Ristorante",
+          "Café-Restaurant",
+          "Cafe Restaurant",
+          "Ristorante Caffetteria",
           "Café/restaurant",
           "Catering",
           "Messer",
@@ -35193,7 +35749,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:46.000Z"
+      "modifiedAt": "2024-07-20T19:05:10.046Z"
     },
     {
       "uuid": "7613a220-c5ff-11e7-a943-005056a94f4a",
@@ -35213,12 +35769,14 @@
           "Mostrare",
           "point to",
           "Montrer",
-          "Doigt",
           "montrer",
           "mostrare",
           "Zeigen",
           "show",
+          "Geheimtipp",
           "Insider tip",
+          "Consiglio dell'esperto",
+          "Conseil d'initié",
           "Display"
         ]
       },
@@ -35234,7 +35792,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:48.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "7618d240-c5ff-11e7-a943-005056a94f4a",
@@ -35265,7 +35823,6 @@
           "show of hands",
           "alzata di mano",
           "Signe de la main",
-          "Doigt",
           "montrer",
           "mostrare",
           "Zeigen",
@@ -35288,7 +35845,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:47.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "761e7790-c5ff-11e7-a943-005056a94f4a",
@@ -35494,7 +36051,10 @@
           "Unterschrift",
           "Signature",
           "Firma",
+          "Angebot",
           "Offer",
+          "Offerta",
+          "Offre",
           "Dossier",
           "File",
           "Fichier",
@@ -35530,7 +36090,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:47.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "7631d880-c5ff-11e7-a943-005056a94f4a",
@@ -35678,7 +36238,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:48.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "764846b0-c5ff-11e7-a943-005056a94f4a",
@@ -35692,8 +36252,13 @@
         ],
         "keywords": [
           "Kleber",
+          "Glue",
+          "Colla",
+          "Colle",
           "Etikett",
           "Label",
+          "Etichetta",
+          "Étiquette",
           "Vignette",
           "Sticker",
           "Adesivo",
@@ -35715,7 +36280,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:48.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "764d01a0-c5ff-11e7-a943-005056a94f4a",
@@ -35729,7 +36294,6 @@
         ],
         "keywords": [
           "CHF",
-          "Loans CHF",
           "Abfallgebühren",
           "waste disposal charges",
           "Tasse rifiuti",
@@ -35755,7 +36319,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:49.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "76519580-c5ff-11e7-a943-005056a94f4a",
@@ -35789,7 +36353,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:47.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "7656ecb0-c5ff-11e7-a943-005056a94f4a",
@@ -35820,7 +36384,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:49.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "765b3270-c5ff-11e7-a943-005056a94f4a",
@@ -35844,7 +36408,15 @@
           "more than 100",
           "Business to Customer",
           "Entreprise à client",
-          "Business-to-Customer"
+          "Business-to-Customer",
+          "100K",
+          "100’000",
+          "100 000",
+          "100'000",
+          "Issue over one hundred thousand",
+          "Auflage über hunderttausend",
+          "Tirage supérieur à cent mille",
+          "Tiratura superiore a 100’000 copie"
         ]
       },
       "file": {
@@ -35859,7 +36431,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:48.000Z"
+      "modifiedAt": "2024-07-12T06:05:01.772Z"
     },
     {
       "uuid": "765f9f40-c5ff-11e7-a943-005056a94f4a",
@@ -36123,7 +36695,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:48.000Z"
+      "modifiedAt": "2024-07-20T19:05:10.046Z"
     },
     {
       "uuid": "767dae90-c5ff-11e7-a943-005056a94f4a",
@@ -36281,7 +36853,10 @@
           "kommunikation"
         ],
         "keywords": [
+          "Einhaltung",
           "Compliance",
+          "Conformità",
+          "Conformité",
           "Waage",
           "balance",
           "equilibrio",
@@ -36309,7 +36884,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:49.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "769e55f0-c5ff-11e7-a943-005056a94f4a",
@@ -36325,14 +36900,14 @@
           "Orientation",
           "Orientierung",
           "Orientamento",
+          "Kompass",
+          "Compass",
+          "Bussola",
           "Compas",
           "sens",
           "sense",
           "senso",
           "Sinn",
-          "Kompass",
-          "Compass",
-          "Bussola",
           "Boussole"
         ]
       },
@@ -36348,7 +36923,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-05-20T09:08:03.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "76a310e0-c5ff-11e7-a943-005056a94f4a",
@@ -36369,9 +36944,7 @@
           "appuntare",
           "pin",
           "Anheften",
-          "PIN",
-          "Pin",
-          "Épingle"
+          "PIN"
         ],
         "year": [
           "2017"
@@ -36389,7 +36962,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:49.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "76a7cbd0-c5ff-11e7-a943-005056a94f4a",
@@ -36492,7 +37065,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:37.000Z"
+      "modifiedAt": "2024-07-18T13:05:09.299Z"
     },
     {
       "uuid": "76b2c850-c5ff-11e7-a943-005056a94f4a",
@@ -36510,6 +37083,9 @@
           "vaisselle",
           "stoviglie",
           "Fragile",
+          "Glas",
+          "Glass",
+          "Bicchiere",
           "Verre",
           "Fragile general safety/bans",
           "Sicurezza generale fragile/divieti",
@@ -36536,7 +37112,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:38.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "76b7f870-c5ff-11e7-a943-005056a94f4a",
@@ -36602,7 +37178,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:37.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "76bcb360-c5ff-11e7-a943-005056a94f4a",
@@ -36673,6 +37249,9 @@
           "Parcours à avertisseur à trois tons",
           "Tratta del corno a tre suoni",
           "Töne",
+          "tones",
+          "toni",
+          "tons",
           "Dreiklang",
           "triad",
           "corno a tre suoni",
@@ -36704,7 +37283,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:37.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "76c90f70-c5ff-11e7-a943-005056a94f4a",
@@ -36854,6 +37433,9 @@
           "Europe",
           "Europa",
           "Sterne",
+          "Stars",
+          "Stelle",
+          "Étoiles",
           "Kreis",
           "Cercle",
           "circle",
@@ -36872,7 +37454,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:38.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "76dee160-c5ff-11e7-a943-005056a94f4a",
@@ -36925,7 +37507,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:36.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "76e34e30-c5ff-11e7-a943-005056a94f4a",
@@ -37021,7 +37603,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:36.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "76f0e2c0-c5ff-11e7-a943-005056a94f4a",
@@ -37149,7 +37731,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:37.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "770b6fa0-c5ff-11e7-a943-005056a94f4a",
@@ -37198,7 +37780,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:37.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "77161e00-c5ff-11e7-a943-005056a94f4a",
@@ -37256,7 +37838,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:36.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "7720cc60-c5ff-11e7-a943-005056a94f4a",
@@ -37294,7 +37876,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:37.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "7725d570-c5ff-11e7-a943-005056a94f4a",
@@ -37319,10 +37901,7 @@
           "Customer Service help desk",
           "Servizio assistenza clienti",
           "Helpdesk Kundendienst",
-          "Centre d'assistance du service client",
-          "call center",
-          "Call-Center",
-          "centre d'appels"
+          "Centre d'assistance du service client"
         ]
       },
       "file": {
@@ -37337,7 +37916,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:37.000Z"
+      "modifiedAt": "2024-07-20T20:05:00.059Z"
     },
     {
       "uuid": "772f9970-c5ff-11e7-a943-005056a94f4a",
@@ -37383,7 +37962,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:37.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "773788b0-c5ff-11e7-a943-005056a94f4a",
@@ -37437,7 +38016,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:38.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "773e8d90-c5ff-11e7-a943-005056a94f4a",
@@ -37487,7 +38066,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:36.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "77440bd0-c5ff-11e7-a943-005056a94f4a",
@@ -37529,7 +38108,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:38.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "774914e0-c5ff-11e7-a943-005056a94f4a",
@@ -37579,7 +38158,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:37.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "774e6c10-c5ff-11e7-a943-005056a94f4a",
@@ -37618,7 +38197,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:38.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "77559800-c5ff-11e7-a943-005056a94f4a",
@@ -37664,7 +38243,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:36.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "775d1210-c5ff-11e7-a943-005056a94f4a",
@@ -37730,7 +38309,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:36.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "d17532d0-17d2-11e8-b180-005056a94f4a",
@@ -37753,8 +38332,6 @@
           "Preferito",
           "Stern",
           "PIN",
-          "Pin",
-          "Épingle",
           "Sinnbild",
           "Symbol",
           "Simbolo",
@@ -37780,7 +38357,7 @@
         }
       },
       "createdAt": "2018-02-22T13:18:06.000Z",
-      "modifiedAt": "2024-03-12T14:52:37.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "1e036f40-17d3-11e8-b180-005056a94f4a",
@@ -37798,8 +38375,6 @@
           "Site",
           "Ubicazione",
           "PIN",
-          "Pin",
-          "Épingle",
           "Brief",
           "Letter",
           "Lettera",
@@ -37818,7 +38393,7 @@
         }
       },
       "createdAt": "2018-02-22T13:20:14.000Z",
-      "modifiedAt": "2024-03-12T14:52:38.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "136f25c0-50eb-11eb-9f99-005056873709",
@@ -37833,8 +38408,6 @@
           "Site",
           "Ubicazione",
           "PIN",
-          "Pin",
-          "Épingle",
           "Paket",
           "Parcel",
           "Pacco",
@@ -37867,7 +38440,7 @@
         }
       },
       "createdAt": "2021-01-07T13:20:13.000Z",
-      "modifiedAt": "2024-03-12T14:52:36.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "4390faf0-3e54-11e8-b180-005056a94f4a",
@@ -37885,6 +38458,9 @@
           "Gruppo",
           "Groupe",
           "Privat",
+          "Private",
+          "Privato",
+          "Privé",
           "eingeschränkter Zugriff",
           "Accesso limitato",
           "Restricted access",
@@ -37907,7 +38483,7 @@
         }
       },
       "createdAt": "2018-04-12T13:20:26.000Z",
-      "modifiedAt": "2024-03-12T14:52:36.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "8047e350-3e54-11e8-b180-005056a94f4a",
@@ -38317,6 +38893,9 @@
           "Pilules",
           "pillole",
           "Antibiotika",
+          "Antibiotics",
+          "Antibiotici",
+          "Antibiotiques",
           "Generica",
           "Générique",
           "Generisch",
@@ -38347,7 +38926,7 @@
         }
       },
       "createdAt": "2018-09-18T06:36:50.000Z",
-      "modifiedAt": "2024-03-12T14:52:38.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "1596ad60-bb0f-11e8-b043-005056873709",
@@ -38396,7 +38975,7 @@
         }
       },
       "createdAt": "2018-09-18T06:50:09.000Z",
-      "modifiedAt": "2024-03-12T14:52:38.000Z"
+      "modifiedAt": "2024-07-18T04:05:09.003Z"
     },
     {
       "uuid": "2be65d80-d087-11e8-b043-005056873709",
@@ -38425,7 +39004,7 @@
         }
       },
       "createdAt": "2018-10-15T14:32:41.000Z",
-      "modifiedAt": "2024-03-12T14:52:36.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "e0877040-d68f-11e8-b043-005056873709",
@@ -38504,7 +39083,7 @@
         }
       },
       "createdAt": "2018-10-23T06:51:41.000Z",
-      "modifiedAt": "2024-03-12T14:52:36.000Z"
+      "modifiedAt": "2024-07-20T19:05:10.046Z"
     },
     {
       "uuid": "962baec0-d690-11e8-b043-005056873709",
@@ -38517,7 +39096,10 @@
           "kommunikation"
         ],
         "keywords": [
-          "Diagnostik",
+          "Diagnose",
+          "Diagnostic",
+          "Diagnostico",
+          "Diagnostique",
           "MedTech",
           "Forschung",
           "research",
@@ -38548,7 +39130,7 @@
         }
       },
       "createdAt": "2018-10-23T06:55:11.000Z",
-      "modifiedAt": "2024-03-12T14:52:38.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "d4dba800-d690-11e8-b043-005056873709",
@@ -38601,7 +39183,7 @@
         }
       },
       "createdAt": "2018-10-23T06:56:56.000Z",
-      "modifiedAt": "2024-03-12T14:52:37.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "79a3c4c0-e196-11e8-b0ff-005056873709",
@@ -38893,7 +39475,7 @@
         }
       },
       "createdAt": "2019-03-05T15:31:30.000Z",
-      "modifiedAt": "2024-03-12T14:52:37.000Z"
+      "modifiedAt": "2024-07-18T13:05:09.299Z"
     },
     {
       "uuid": "1ef8f7f0-70c2-11e9-9a3a-005056873709",
@@ -38953,7 +39535,7 @@
         }
       },
       "createdAt": "2019-05-07T12:17:45.000Z",
-      "modifiedAt": "2024-03-12T14:52:37.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "8a2a8960-7d2b-11e9-9a3a-005056873709",
@@ -38996,7 +39578,7 @@
         }
       },
       "createdAt": "2019-05-23T07:22:36.000Z",
-      "modifiedAt": "2024-03-12T14:52:37.000Z"
+      "modifiedAt": "2024-07-20T19:05:10.046Z"
     },
     {
       "uuid": "aa80dc60-56e6-11ea-9425-005056873709",
@@ -39035,7 +39617,7 @@
         }
       },
       "createdAt": "2020-02-24T09:18:49.000Z",
-      "modifiedAt": "2024-03-12T14:52:38.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "66560f60-6dac-11ea-9425-005056873709",
@@ -39052,7 +39634,8 @@
           "Knowledge",
           "Sapere",
           "Connaissances",
-          "Knowlege",
+          "Conoscenza",
+          "Connaissance",
           "Text",
           "Testo",
           "Texte",
@@ -39081,7 +39664,7 @@
         }
       },
       "createdAt": "2020-03-24T08:49:40.000Z",
-      "modifiedAt": "2024-03-12T14:52:38.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "d1690b32-6db2-11ea-9425-005056873709",
@@ -39128,7 +39711,7 @@
         }
       },
       "createdAt": "2020-03-24T09:35:37.000Z",
-      "modifiedAt": "2024-03-12T14:52:36.000Z"
+      "modifiedAt": "2024-07-18T21:05:00.962Z"
     },
     {
       "uuid": "e80efac0-6db7-11ea-9425-005056873709",
@@ -39353,7 +39936,7 @@
         }
       },
       "createdAt": "2020-03-24T11:17:19.000Z",
-      "modifiedAt": "2024-03-12T14:52:37.000Z"
+      "modifiedAt": "2024-07-19T05:05:01.090Z"
     },
     {
       "uuid": "cc1c6f42-6dc2-11ea-9425-005056873709",
@@ -39370,7 +39953,10 @@
           "Zoug",
           "Zugo",
           "platoon",
-          "öv",
+          "Verteidigen",
+          "Defend",
+          "Difendere",
+          "Défendre",
           "Logo"
         ],
         "year": [
@@ -39389,7 +39975,7 @@
         }
       },
       "createdAt": "2020-03-24T11:30:00.000Z",
-      "modifiedAt": "2024-03-12T14:52:36.000Z"
+      "modifiedAt": "2024-07-18T09:05:09.019Z"
     },
     {
       "uuid": "c756db70-6dc3-11ea-9425-005056873709",
@@ -39419,7 +40005,6 @@
           "Furgone elettrico",
           "Véhicule de livraison électrique",
           "Laster",
-          "Pflaster",
           "Elektroantrieb",
           "Motori elettrici",
           "electric drive",
@@ -39460,7 +40045,7 @@
         }
       },
       "createdAt": "2020-03-24T11:37:01.000Z",
-      "modifiedAt": "2024-06-18T06:53:17.000Z"
+      "modifiedAt": "2024-07-20T18:05:09.867Z"
     },
     {
       "uuid": "980ecb40-6dc6-11ea-9425-005056873709",
@@ -39552,7 +40137,7 @@
         }
       },
       "createdAt": "2020-07-31T12:58:09.000Z",
-      "modifiedAt": "2024-03-12T14:52:37.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "9fe0a270-c603-11e7-a943-005056a94f4a",
@@ -39593,7 +40178,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-19T03:05:01.047Z"
     },
     {
       "uuid": "9fed4ca0-c603-11e7-a943-005056a94f4a",
@@ -39621,7 +40206,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "9ff9a8b0-c603-11e7-a943-005056a94f4a",
@@ -39634,8 +40219,7 @@
           "kommunikation"
         ],
         "keywords": [
-          "Youtube",
-          "YouTube"
+          "Youtube"
         ]
       },
       "file": {
@@ -39650,7 +40234,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "a00c4650-c603-11e7-a943-005056a94f4a",
@@ -39678,7 +40262,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-18T22:05:00.974Z"
     },
     {
       "uuid": "a0110140-c603-11e7-a943-005056a94f4a",
@@ -39691,8 +40275,7 @@
           "kommunikation"
         ],
         "keywords": [
-          "Linkedin",
-          "LinkedIn"
+          "Linkedin"
         ]
       },
       "file": {
@@ -39707,7 +40290,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-18T22:05:00.974Z"
     },
     {
       "uuid": "a0163160-c603-11e7-a943-005056a94f4a",
@@ -39735,7 +40318,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-18T22:05:00.974Z"
     },
     {
       "uuid": "a01fa740-c603-11e7-a943-005056a94f4a",
@@ -39763,7 +40346,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-18T22:05:00.974Z"
     },
     {
       "uuid": "a02a2e90-c603-11e7-a943-005056a94f4a",
@@ -39791,7 +40374,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-11T06:48:01.000Z"
     },
     {
       "uuid": "a033cb80-c603-11e7-a943-005056a94f4a",
@@ -39821,7 +40404,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-11T06:26:29.000Z"
     },
     {
       "uuid": "a0446d50-c603-11e7-a943-005056a94f4a",
@@ -39849,7 +40432,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-11T06:37:00.000Z"
     },
     {
       "uuid": "a04a87d0-c603-11e7-a943-005056a94f4a",
@@ -39877,7 +40460,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-11T06:47:09.000Z"
     },
     {
       "uuid": "11f1ed50-3e55-11e8-b180-005056a94f4a",
@@ -39890,7 +40473,10 @@
           "kommunikation"
         ],
         "keywords": [
+          "Wort",
           "Word",
+          "Parola",
+          "Mot",
           "Vignette",
           "Sticker",
           "Adesivo",
@@ -39914,7 +40500,7 @@
         }
       },
       "createdAt": "2018-04-12T13:26:13.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "c830be20-3e55-11e8-b180-005056a94f4a",
@@ -39948,7 +40534,7 @@
         }
       },
       "createdAt": "2018-04-12T13:31:18.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-19T03:05:01.047Z"
     },
     {
       "uuid": "eec43b20-3e55-11e8-b180-005056a94f4a",
@@ -39988,7 +40574,7 @@
         }
       },
       "createdAt": "2018-04-12T13:32:23.000Z",
-      "modifiedAt": "2024-04-30T21:44:16.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "1d559e20-3e56-11e8-b180-005056a94f4a",
@@ -40001,7 +40587,10 @@
           "kommunikation"
         ],
         "keywords": [
+          "Eine Note",
           "OneNote",
+          "Una nota",
+          "Une note",
           "durchqueren",
           "Cross",
           "Incrocio",
@@ -40026,7 +40615,7 @@
         }
       },
       "createdAt": "2018-04-12T13:33:41.000Z",
-      "modifiedAt": "2024-04-30T21:44:16.000Z"
+      "modifiedAt": "2024-07-17T15:31:27.596Z"
     },
     {
       "uuid": "4aa1fe00-3e56-11e8-b180-005056a94f4a",
@@ -40074,7 +40663,7 @@
         }
       },
       "createdAt": "2018-04-12T13:34:57.000Z",
-      "modifiedAt": "2024-04-30T21:44:16.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "792c1940-6e12-11e8-b180-005056a94f4a",
@@ -40124,7 +40713,7 @@
         }
       },
       "createdAt": "2018-06-12T07:30:25.000Z",
-      "modifiedAt": "2024-04-30T21:44:16.000Z"
+      "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
       "uuid": "fae6bb20-d690-11e8-b043-005056873709",
@@ -40163,7 +40752,7 @@
         }
       },
       "createdAt": "2018-10-23T06:58:00.000Z",
-      "modifiedAt": "2024-04-30T21:44:17.000Z"
+      "modifiedAt": "2024-07-18T22:05:00.974Z"
     },
     {
       "uuid": "db608140-3576-11eb-9f99-005056873709",
@@ -40209,192 +40798,6 @@
   "wrongViewBox": [],
   "noKeywords": [
     {
-      "uuid": "710fc240-c5ff-11e7-a943-005056a94f4a",
-      "id": 352298,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352298/storage/NTM3MTg5LzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3057.svg",
-        "basename": "3057",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
-    },
-    {
-      "uuid": "712a2810-c5ff-11e7-a943-005056a94f4a",
-      "id": 352302,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352302/storage/NTM3MjAwLzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3061.svg",
-        "basename": "3061",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
-    },
-    {
-      "uuid": "7102c9f0-c5ff-11e7-a943-005056a94f4a",
-      "id": 352297,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352297/storage/NTM3MTIwLzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3056.svg",
-        "basename": "3056",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
-    },
-    {
-      "uuid": "7124f7f0-c5ff-11e7-a943-005056a94f4a",
-      "id": 352301,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352301/storage/NTM3MTk1LzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3060.svg",
-        "basename": "3060",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
-    },
-    {
-      "uuid": "712015f0-c5ff-11e7-a943-005056a94f4a",
-      "id": 352300,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352300/storage/NTM3MTkzLzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3059.svg",
-        "basename": "3059",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
-    },
-    {
-      "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
-      "id": 352299,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352299/storage/NTM3MTkxLzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3058.svg",
-        "basename": "3058",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
-    },
-    {
       "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
       "id": 352314,
       "type": "picture.pictogram.",
@@ -40426,23 +40829,26 @@
       "modifiedAt": "2024-03-12T14:51:51.000Z"
     },
     {
-      "uuid": "785f77f0-29a4-11eb-a8df-005056873709",
-      "id": 534673,
+      "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
+      "id": 352299,
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/534673/storage/NTM0Njc1LzAvbWFzdGVy",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352299/storage/NTM3MTkxLzAvbWFzdGVy",
+        "businessfield": [
+          "kommunikation"
+        ],
         "keywords": [
           ""
         ],
         "year": [
-          "2020"
+          "2017"
         ]
       },
       "file": {
         "mime": "image/svg+xml",
-        "name": "2143.svg",
-        "basename": "2143",
+        "name": "3058.svg",
+        "basename": "3058",
         "ext": ".svg",
         "size": {
           "width": 0,
@@ -40450,36 +40856,8 @@
           "height": 0
         }
       },
-      "createdAt": "2020-11-18T13:46:33.000Z",
-      "modifiedAt": "2024-03-12T14:47:40.000Z"
-    },
-    {
-      "uuid": "0303cd60-2fe1-11eb-a8df-005056873709",
-      "id": 535226,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/535226/storage/NTM1MjI4LzAvbWFzdGVy",
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2020"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "2166.svg",
-        "basename": "2166",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2020-11-26T12:15:02.000Z",
-      "modifiedAt": "2024-05-27T10:38:13.000Z"
+      "createdAt": "2017-11-10T10:11:07.000Z",
+      "modifiedAt": "2024-03-12T14:51:50.000Z"
     },
     {
       "uuid": "6b09bf30-9901-11eb-935b-005056873709",
@@ -40568,11 +40946,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2024-06-23T01:18:58.887Z",
+  "created": "2024-07-21T01:22:39.886Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 921
+    "success": 929
   },
-  "version": "7.1.0"
+  "version": "7.3.1"
 }

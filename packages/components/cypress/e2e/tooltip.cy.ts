@@ -4,7 +4,7 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
       cy.visit('./cypress/fixtures/post-tooltip.test.html');
       cy.get('#target1').as('target1');
       cy.get('#target2').as('target2');
-      cy.get('#tooltip-one').find('div[popover]').as('tooltip');
+      cy.get('#tooltip-one').find('post-popovercontainer[popover]').as('tooltip');
     });
 
     it('should display a tooltip', () => {
@@ -54,7 +54,7 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
       cy.visit('./cypress/fixtures/post-tooltip.test.html');
       cy.get('#target-child-element').as('target');
       cy.get('#target-child-element span').as('target-child');
-      cy.get('#tooltip-one').find('div[popover]').as('tooltip');
+      cy.get('#tooltip-one').find('post-popovercontainer[popover]').as('tooltip');
     });
 
     it('should show tooltip on hovered child element', () => {

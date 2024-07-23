@@ -1,5 +1,41 @@
 # @swisspost/design-system-demo
 
+## 7.3.6
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.4.0
+  - @swisspost/design-system-intranet-header@7.4.0
+  - @swisspost/design-system-migrations@7.4.0
+
+## 7.3.5
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.3.1
+  - @swisspost/design-system-intranet-header@7.3.1
+  - @swisspost/design-system-migrations@7.3.1
+
+## 7.3.4
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.3.0
+  - @swisspost/design-system-intranet-header@7.3.0
+  - @swisspost/design-system-migrations@7.3.0
+
+## 7.3.3
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.2.1
+  - @swisspost/design-system-intranet-header@7.2.1
+  - @swisspost/design-system-migrations@7.2.1
+
 ## 7.3.2
 
 ### Patch Changes

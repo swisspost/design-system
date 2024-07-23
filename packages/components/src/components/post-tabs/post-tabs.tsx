@@ -5,6 +5,8 @@ import { fadeIn, fadeOut } from '@/animations';
 /**
  * @slot tabs - Slot for placing tab headers. Each tab header should be a <post-tab-header> element.
  * @slot default - Slot for placing tab panels. Each tab panel should be a <post-tab-panel> element.
+ * @part tabs - Add custom styles for the tab header container.
+ * @part content - Add custom styles for the tab panel container.
  */
 
 @Component({
@@ -72,23 +74,17 @@ export class PostTabs {
     }
 
     // hide the currently visible panel only if no other animation is running
-    if (previousTab && !this.showing && !this.hiding) {
-      this.hidePanel(previousTab.panel);
-    }
+    if (previousTab && !this.showing && !this.hiding) this.hidePanel(previousTab.panel);
 
     // wait for any hiding animation to complete before showing the selected tab
-    if (this.hiding) {
-      await this.hiding.finished;
-    }
+    if (this.hiding) await this.hiding.finished;
 
     this.showSelectedPanel();
 
     // wait for any display animation to complete for the returned promise to fully resolve
-    if (this.showing) {
-      await this.showing.finished;
-    }
+    if (this.showing) await this.showing.finished;
 
-    this.postChange.emit(this.activeTab.panel);
+    if (this.isLoaded) this.postChange.emit(this.activeTab.panel);
   }
 
   private moveMisplacedTabs() {
@@ -196,12 +192,12 @@ export class PostTabs {
   render() {
     return (
       <Host data-version={version}>
-        <div class="tabs-wrapper">
+        <div class="tabs-wrapper" part="tabs">
           <div class="tabs" role="tablist">
             <slot name="tabs" onSlotchange={() => this.enableTabs()} />
           </div>
         </div>
-        <div class="tab-content">
+        <div class="tab-content" part="content">
           <slot onSlotchange={() => this.moveMisplacedTabs()} />
         </div>
       </Host>

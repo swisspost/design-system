@@ -60,6 +60,12 @@ These colors are also available via the **Sass map** `$signal-background-colors`
 </section>
 
 ## Accent colors
+
+<div className="alert alert-md alert-warning">
+  <h2 className="alert-heading">The accent colors are deprecated</h2>
+  <p>Its CSS and SASS variables will be removed in the future.</p>
+</div>
+
 These colors are also available via the **Sass map** `$accent-colors`.
 
 <section className="color-swatch__section">
@@ -97,7 +103,7 @@ These colors are also available via the **Sass map** `$post-white-alphas`.
 # Usage
 
 <PostTabs>
-  <PostTabHeader slot="tabs" panel="css">CSS</PostTabHeader>
+  <PostTabHeader panel="css">CSS</PostTabHeader>
   <PostTabPanel name="css">
     CSS variables are globally available on your page.
 
@@ -105,7 +111,7 @@ These colors are also available via the **Sass map** `$post-white-alphas`.
 
   </PostTabPanel>
 
-  <PostTabHeader slot="tabs" panel="sass">Sass</PostTabHeader>
+  <PostTabHeader panel="sass">Sass</PostTabHeader>
   <PostTabPanel name="sass">
     Import the color variables from the `core` file with `@use`. This way, the color variables are scoped and don't mix with your own variables.
 

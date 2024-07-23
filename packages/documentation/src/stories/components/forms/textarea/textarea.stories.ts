@@ -189,19 +189,19 @@ function renderTextarea(args: Args, context: StoryContext) {
     : null;
   const contextual = [
     args.validation === 'is-valid'
-      ? html` <div class="valid-feedback">Ggranda sukceso!</div> `
+      ? html`<div class="valid-feedback">Ggranda sukceso!</div>`
       : null,
     args.validation === 'is-invalid'
-      ? html` <div class="invalid-feedback">Eraro okazis!</div> `
+      ? html`<div class="invalid-feedback">Eraro okazis!</div>`
       : null,
-    args.hint !== '' ? html` <div class="form-text">${args.hint}</div> ` : null,
+    args.hint !== '' ? html`<div class="form-text">${args.hint}</div>` : null,
   ];
   const control = html`
     <textarea
       id=${context.id}
       class=${classes}
       defaultValue=${args.value ?? nothing}
-      placeholder=${useAriaLabel ? args.label : ' '}
+      placeholder=${useAriaLabel ? args.label : ''}
       rows=${args.rows}
       ?disabled=${args.disabled}
       aria-label=${useAriaLabel ? args.label : nothing}
@@ -213,14 +213,9 @@ ${args.textInside ?? nothing}</textarea
   `;
   if (args.floatingLabel) {
     return html`
-      <div class="form-control-wrapper form-floating">
-        ${[control, label, ...contextual].filter(el => el !== null)}
-      </div>
+      <div class="form-floating">${[control, label, ...contextual].filter(el => el !== null)}</div>
     `;
-  } else
-    return html`<div class="form-control-wrapper">
-      ${[label, control, ...contextual].filter(el => el !== null)}
-    </div>`;
+  } else return html`${[label, control, ...contextual].filter(el => el !== null)}`;
 }
 
 export const Default: Story = {};
