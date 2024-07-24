@@ -469,16 +469,16 @@ importers:
   packages/documentation:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:*
+        specifier: workspace:8.0.0
         version: link:../components
       '@swisspost/design-system-components-react':
-        specifier: workspace:*
+        specifier: workspace:8.0.0
         version: link:../components-react
       '@swisspost/design-system-icons':
-        specifier: workspace:*
+        specifier: workspace:8.0.0
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:*
+        specifier: workspace:8.0.0
         version: link:../styles/dist
       '@swisspost/internet-header':
         specifier: workspace:1.14.3
@@ -539,10 +539,10 @@ importers:
         specifier: 8.2.5
         version: 8.2.5(lit@3.1.4)(storybook@8.2.5(@babel/preset-env@7.24.7(@babel/core@7.24.9)))(typescript@5.5.4)(vite@5.3.2(@types/node@20.14.12)(less@4.2.0)(sass@1.77.8)(terser@5.29.2))
       '@swisspost/design-system-components-angular':
-        specifier: workspace:*
+        specifier: workspace:8.0.0
         version: link:../components-angular/dist/components
       '@swisspost/design-system-intranet-header':
-        specifier: workspace:*
+        specifier: workspace:8.0.0
         version: link:../intranet-header-workspace/dist/intranet-header
       '@types/css-modules':
         specifier: 1.0.5
