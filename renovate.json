@@ -15,7 +15,7 @@
     },
     {
       "matchPackagePatterns": ["*"],
-      "excludePackageNames": ["typescript", "bootstrap", "@types/node"],
+      "excludePackageNames": ["typescript", "bootstrap"],
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "all non-major dependencies",
       "groupSlug": "all-minor-patch"
@@ -39,6 +39,11 @@
       "matchPackagePatterns": ["^stylelint"],
       "matchUpdateTypes": ["major"],
       "groupName": "Stylelint major"
+    },
+    {
+      "matchPackagePatterns": ["^eslint"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "Eslint major"
     }
   ],
   "timezone": "Europe/Zurich",

@@ -48,7 +48,7 @@
     "karma-jasmine-html-reporter": "2.1.0",
     "ng-packagr": "18.1.0",
     "rimraf": "6.0.1",
-    "typescript": "5.4.5"
+    "typescript": "5.5.4"
   },
   "keywords": [
     "components",
