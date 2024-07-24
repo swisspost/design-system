@@ -64,4 +64,19 @@ export const translations = {
     fr: 'Supprimer le terme de recherche',
     it: 'Elimina termine di ricerca',
   },
+  'Enter search term. Press "Enter" to search.': {
+    de: 'Suchbegriff eingeben. Drücken Sie "Enter", um zu suchen.',
+    fr: 'Entrez le terme de recherche. Appuyez sur "Entrée" pour rechercher.',
+    it: 'Inserisci il termine di ricerca. Premi "Invio" per cercare.',
+  },
+  'most searched topics available, press the tab key to continue.': {
+    de: 'meistgesuchte Themen verfügbar, drücken Sie die Tabulatortaste, um fortzufahren.',
+    fr: 'sujets les plus recherchés disponibles, appuyez sur la touche de tabulation pour continuer.',
+    it: 'argomenti più cercati disponibili, premi il tasto tab per continuare.',
+  },
+  'search result(s)': {
+    de: 'Suchergebnis(se)',
+    fr: 'résultat(s) de recherche',
+    it: 'risultato/i di ricerca',
+  },
 };

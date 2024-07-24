@@ -359,8 +359,17 @@ export class PostSearch implements HasDropdown, IsFocusable {
     }
     const { translations, search } = state.localizedConfig.header;
     const isParcelTrackingNr = this.parcelSuggestion && 'sending' in this.parcelSuggestion;
-    const showPortalRecommendations =
-      this.searchBox?.value === '' && search.searchRecommendations?.links.length > 0;
+    const portalRecommendationCount = search.searchRecommendations?.links.length;
+    const showPortalRecommendations = this.searchBox?.value === '' && portalRecommendationCount > 0;
+    const inputHint = translate('Enter search term. Press "Enter" to search.');
+    const searchRecommendationHint = `${portalRecommendationCount} ${translate(
+      'most searched topics available, press the tab key to continue.',
+    )}`;
+    const suggestionCount =
+      (isParcelTrackingNr ? 1 : 0) +
+      (showPortalRecommendations
+        ? portalRecommendationCount
+        : this.coveoSuggestions.length + this.placeSuggestions.length);
 
     return (
       <Host role="search">
@@ -398,6 +407,11 @@ export class PostSearch implements HasDropdown, IsFocusable {
                           ref={el => (this.searchBox = el)}
                           onInput={() => void this.handleSearchInput()}
                           onKeyDown={e => this.handleKeyDown(e)}
+                          title={
+                            showPortalRecommendations
+                              ? `${inputHint} ${searchRecommendationHint}`
+                              : inputHint
+                          }
                         />
                         <label htmlFor="searchBox">
                           {translations.flyoutSearchBoxFloatingLabel}
@@ -417,6 +431,9 @@ export class PostSearch implements HasDropdown, IsFocusable {
                           <SvgIcon name="pi-search" />
                         </button>
                       </div>
+                      <p class="visually-hidden" role="region" aria-live="polite">
+                        {suggestionCount} {translate('search result(s)')}
+                      </p>
                       {showPortalRecommendations && (
                         <h2 id="post-internet-header-search-recommendations-title" class="bold">
                           {search.searchRecommendations.title}
