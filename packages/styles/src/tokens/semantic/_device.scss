@@ -1,0 +1,19 @@
+@use '@swisspost/design-system-tokens/device' as device;
+
+:root {
+  @each $key, $value in device.$post-mobile {
+    --#{$key}: #{$value};
+  }
+
+  @media (min-width: 600px) {
+    @each $key, $value in device.$post-tablet {
+      --#{$key}: #{$value};
+    }
+  }
+
+  @media (min-width: 1024px) {
+    @each $key, $value in device.$post-desktop {
+      --#{$key}: #{$value};
+    }
+  }
+}
