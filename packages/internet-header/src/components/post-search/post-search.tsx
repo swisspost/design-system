@@ -409,7 +409,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
                           onKeyDown={e => this.handleKeyDown(e)}
                           title={
                             translate('Enter search term. Press "Enter" to search.') +
-                            (isSearchEmpty ? ` ${suggestionHint}` : '')
+                            (isSearchEmpty && suggestionCount > 0 ? ` ${suggestionHint}` : '')
                           }
                         />
                         <label htmlFor="searchBox">
