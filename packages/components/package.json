@@ -52,7 +52,7 @@
     "@stencil/react-output-target": "0.5.3",
     "@stencil/sass": "3.0.12",
     "@types/jest": "29.5.12",
-    "@types/node": "20.14.11",
+    "@types/node": "20.14.12",
     "@typescript-eslint/eslint-plugin": "5.62.0",
     "@typescript-eslint/parser": "5.62.0",
     "bootstrap": "5.3.3",
