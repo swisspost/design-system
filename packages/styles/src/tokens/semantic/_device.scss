@@ -2,17 +2,18 @@
 
 @use './core';
 @use './../../mixins/tokens';
+@use './../../mixins/media';
 
 :root {
-  @media (max-width: 599.9px) {
+  @include media.max(600px) {
     @include tokens.from(device.$post-mobile);
   }
 
-  @media (min-width: 600px) {
+  @include media.between(600px, 1024px) {
     @include tokens.from(device.$post-tablet);
   }
 
-  @media (min-width: 1024px) {
+  @include media.min(1024px) {
     @include tokens.from(device.$post-desktop);
   }
 }
