@@ -1,0 +1,13 @@
+@use '@swisspost/design-system-tokens/mode' as mode;
+
+%post-light {
+  @each $key, $value in mode.$post-light {
+    --#{$key}: #{$value};
+  }
+}
+
+%post-dark {
+  @each $key, $value in mode.$post-dark {
+    --#{$key}: #{$value};
+  }
+}

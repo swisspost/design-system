@@ -1,0 +1,10 @@
+@use '../../placeholders/modes';
+
+:root,
+[data-color-mode='light'] {
+  @extend %post-light;
+}
+
+[data-color-mode='dark'] {
+  @extend %post-dark;
+}
