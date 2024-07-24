@@ -1,5 +1,5 @@
 @use '@swisspost/design-system-tokens/device' as device;
-@use '../../mixins/tokens';
+@use './../../mixins/tokens';
 
 :root {
   @include tokens.from(device.$post-mobile);

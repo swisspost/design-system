@@ -1,5 +1,5 @@
 @use '@swisspost/design-system-tokens/mode' as mode;
-@use '../mixins/tokens';
+@use './../mixins/tokens';
 
 %post-light {
   @include tokens.from(mode.$post-light);

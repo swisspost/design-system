@@ -28,10 +28,10 @@
     "lint": "eslint **/*.{js,ts,tsx,mdx}"
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:8.0.0",
-    "@swisspost/design-system-components-react": "workspace:8.0.0",
-    "@swisspost/design-system-icons": "workspace:8.0.0",
-    "@swisspost/design-system-styles": "workspace:8.0.0",
+    "@swisspost/design-system-components": "workspace:*",
+    "@swisspost/design-system-components-react": "workspace:*",
+    "@swisspost/design-system-icons": "workspace:*",
+    "@swisspost/design-system-styles": "workspace:*",
     "@swisspost/internet-header": "workspace:1.14.3",
     "bootstrap": "5.3.3"
   },
@@ -53,8 +53,8 @@
     "@storybook/types": "8.2.5",
     "@storybook/web-components": "8.2.5",
     "@storybook/web-components-vite": "8.2.5",
-    "@swisspost/design-system-components-angular": "workspace:8.0.0",
-    "@swisspost/design-system-intranet-header": "workspace:8.0.0",
+    "@swisspost/design-system-components-angular": "workspace:*",
+    "@swisspost/design-system-intranet-header": "workspace:*",
     "@types/css-modules": "1.0.5",
     "@types/mdx": "2.0.13",
     "@types/react": "18.3.3",

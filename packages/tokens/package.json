@@ -27,7 +27,7 @@
   ],
   "publishConfig": {
     "directory": "./dist",
-    "access": "restricted",
+    "access": "public",
     "linkDirectory": true
   },
   "devDependencies": {
