@@ -1,6 +1,6 @@
 import meta from '@/stories/components/internet-header/header/header.stories';
 import * as HeaderStories from '@/stories/components/internet-header/header/header.stories';
-import { Args } from '@storybook/web-components';
+import { Args, StoryContext, WebComponentsRenderer } from '@storybook/web-components';
 import { html } from 'lit';
 
 export default {
@@ -10,7 +10,7 @@ export default {
 };
 
 export const Default = {
-  render: (args: Args, context: any) => {
+  render: (args: Args, context: StoryContext<WebComponentsRenderer>) => {
     return html`
       <style>
         #my-div {

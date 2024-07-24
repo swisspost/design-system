@@ -52,9 +52,9 @@
     "@stencil/react-output-target": "0.5.3",
     "@stencil/sass": "3.0.12",
     "@types/jest": "29.5.12",
-    "@types/node": "20.14.11",
-    "@typescript-eslint/eslint-plugin": "5.62.0",
-    "@typescript-eslint/parser": "5.62.0",
+    "@types/node": "20.14.12",
+    "@typescript-eslint/eslint-plugin": "7.17.0",
+    "@typescript-eslint/parser": "7.17.0",
     "bootstrap": "5.3.3",
     "cypress": "13.13.1",
     "cypress-axe": "1.5.0",
@@ -65,7 +65,7 @@
     "rollup-plugin-postcss": "4.0.2",
     "sass": "1.77.8",
     "ts-jest": "29.2.3",
-    "typescript": "5.3.3"
+    "typescript": "5.5.4"
   },
   "keywords": [
     "components",
