@@ -1,8 +1,8 @@
 @use '@swisspost/design-system-tokens/channel' as channel;
 
 @use './core';
-@use './../../mixins/tokens';
+@use './../mixins/tokens';
 
 :root {
-  @include tokens.from(channel.$post-edk);
+  @include tokens.from(channel.$post-idk);
 }

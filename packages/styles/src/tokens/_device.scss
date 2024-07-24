@@ -1,8 +1,8 @@
 @use '@swisspost/design-system-tokens/device' as device;
 
 @use './core';
-@use './../../mixins/tokens';
-@use './../../mixins/media';
+@use './../mixins/tokens';
+@use './../mixins/media';
 
 :root {
   @include media.max(600px) {
