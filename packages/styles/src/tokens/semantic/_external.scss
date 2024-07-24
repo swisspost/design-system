@@ -1,4 +1,6 @@
 @use '@swisspost/design-system-tokens/channel' as channel;
+
+@use './core';
 @use './../../mixins/tokens';
 
 :root {

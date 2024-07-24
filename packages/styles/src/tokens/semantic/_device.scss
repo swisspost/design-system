@@ -1,8 +1,12 @@
 @use '@swisspost/design-system-tokens/device' as device;
+
+@use './core';
 @use './../../mixins/tokens';
 
 :root {
-  @include tokens.from(device.$post-mobile);
+  @media (max-width: 599.9px) {
+    @include tokens.from(device.$post-mobile);
+  }
 
   @media (min-width: 600px) {
     @include tokens.from(device.$post-tablet);
