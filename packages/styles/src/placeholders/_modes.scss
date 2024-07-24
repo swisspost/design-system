@@ -1,13 +1,10 @@
 @use '@swisspost/design-system-tokens/mode' as mode;
+@use '../mixins/tokens';
 
 %post-light {
-  @each $key, $value in mode.$post-light {
-    --#{$key}: #{$value};
-  }
+  @include tokens.from(mode.$post-light);
 }
 
 %post-dark {
-  @each $key, $value in mode.$post-dark {
-    --#{$key}: #{$value};
-  }
+  @include tokens.from(mode.$post-dark);
 }
