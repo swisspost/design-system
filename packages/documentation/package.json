@@ -79,6 +79,6 @@
     "rimraf": "6.0.1",
     "sass": "1.77.8",
     "storybook": "8.2.5",
-    "typescript": "5.3.3"
+    "typescript": "5.5.4"
   }
 }
