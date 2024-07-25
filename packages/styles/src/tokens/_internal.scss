@@ -1,4 +1,4 @@
-@use '@swisspost/design-system-tokens/channel' as channel;
+@use './temp/channel' as channel;
 
 @use './core';
 @use './../mixins/tokens';

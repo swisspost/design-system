@@ -1036,9 +1036,6 @@ importers:
       '@popperjs/core':
         specifier: 2.11.8
         version: 2.11.8
-      '@swisspost/design-system-tokens':
-        specifier: workspace:*
-        version: link:../tokens/dist
       bootstrap:
         specifier: 5.3.3
         version: 5.3.3(@popperjs/core@2.11.8)
@@ -1046,6 +1043,9 @@ importers:
       '@swisspost/design-system-icons':
         specifier: workspace:8.0.0
         version: link:../icons
+      '@swisspost/design-system-tokens':
+        specifier: workspace:*
+        version: link:../tokens/dist
       '@types/node':
         specifier: 20.14.12
         version: 20.14.12

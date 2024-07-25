@@ -1,4 +1,4 @@
-@use '@swisspost/design-system-tokens/device' as device;
+@use './temp/device' as device;
 
 @use './core';
 @use './../mixins/tokens';

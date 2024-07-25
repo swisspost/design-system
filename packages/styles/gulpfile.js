@@ -20,6 +20,10 @@ gulp.task('copy', () => {
     .pipe(gulp.dest(options.outputDir));
 });
 
+gulp.task('temprarily-copy-token-files', () => {
+  return gulp.src(['../tokens/dist/*.scss']).pipe(gulp.dest('./src/tokens/temp'));
+});
+
 /**
  * Autoprefix SCSS files
  */
@@ -168,9 +172,12 @@ gulp.task('sass:tests', () => {
 /**
  * Watch task for scss development
  */
-gulp.task('watch', () => {
-  return gulp.watch('./src/**/*.scss', gulp.series('copy'));
-});
+gulp.task(
+  'watch',
+  gulp.series('temprarily-copy-token-files', () => {
+    return gulp.watch('./src/**/*.scss', 'copy');
+  }),
+);
 
 /**
  * Run copy and sass task in parallel per default
@@ -179,7 +186,7 @@ exports.default = gulp.task(
   'build',
   gulp.parallel(
     gulp.series('map-icons', 'copy', 'autoprefixer', 'transform-package-json'),
-    gulp.series('sass'),
+    gulp.series('temprarily-copy-token-files', 'sass'),
     gulp.series('build-components'),
   ),
 );
