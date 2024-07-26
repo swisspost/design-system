@@ -76,10 +76,11 @@
       > ::slotted(.btn) {
         flex: 1 0 0;
         width: 100%;
+      }
 
-        &:first-child {
-          margin-inline-start: 0;
-        }
+      > .btn:first-child,
+      > ::slotted(.btn:first-child) {
+        margin-inline-start: 0;
       }
     }
   }
