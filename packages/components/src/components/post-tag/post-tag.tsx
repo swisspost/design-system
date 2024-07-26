@@ -64,6 +64,7 @@ export class PostTag {
       <Host data-version={version}>
         <div class={this.classes}>
           {this.icon ? <post-icon name={this.icon}></post-icon> : null}
+          HELLO
           <div class="tag-text">
             <slot></slot>
           </div>
