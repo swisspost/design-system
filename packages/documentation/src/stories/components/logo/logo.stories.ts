@@ -1,0 +1,46 @@
+import { StoryObj } from '@storybook/web-components';
+import { html } from 'lit';
+import { MetaComponent } from '@root/types';
+import { ifDefined } from 'lit/directives/if-defined.js';
+
+const meta: MetaComponent<HTMLPostLogoElement> = {
+  id: '73066e1c-0720-4a9b-8f81-a29d4250872a',
+  title: 'Components/Post Logo',
+  tags: ['package:WebComponents'],
+  component: 'post-logo',
+  render: renderLogo(),
+  parameters: {
+    design: {},
+  },
+  argTypes: {
+    url: {
+      control: {
+        type: 'text',
+      },
+    },
+  },
+};
+
+export default meta;
+
+// RENDERER
+function renderLogo(pageTitle = '[page title]') {
+  return (args: Partial<HTMLPostLogoElement>) => {
+    const url = args.url || undefined;
+    const description = `Logo of the Post${url ? `, To ${pageTitle}` : ''}`;
+
+    return html` <post-logo url=${ifDefined(url)}>${description}</post-logo> `;
+  };
+}
+
+// STORIES
+type Story = StoryObj;
+
+export const Default: Story = {};
+
+export const Link: Story = {
+  args: {
+    url: 'https://www.post.ch/en',
+  },
+  render: renderLogo('the homepage'),
+};

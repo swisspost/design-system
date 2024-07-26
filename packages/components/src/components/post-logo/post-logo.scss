@@ -1,0 +1,19 @@
+@use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/mixins/utilities';
+
+post-logo {
+  display: inline-block;
+  height: 100%;
+
+  .logo,
+  svg {
+    display: block;
+    height: 100%;
+    aspect-ratio: 1/1;
+  }
+
+  .description {
+    @include utilities.visuallyhidden;
+  }
+}
+
