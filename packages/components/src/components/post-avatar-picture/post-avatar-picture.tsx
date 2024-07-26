@@ -74,7 +74,9 @@ export class PostAvatarPicture {
   render() {
     return (
       <Host data-version={version} class={this.size}>
-        {this.avatarType === 'gravatar' && <img src={this.gravatarUrl} />}
+        {this.avatarType === 'gravatar' && (
+          <img src={this.gravatarUrl} alt="gravatar profile picture" />
+        )}
         {this.avatarType === 'initials' && <div>{this.initials}</div>}
         {this.avatarType === 'fallback' && <post-icon name="3260"></post-icon>}
       </Host>
