@@ -2,8 +2,10 @@
 
 @use 'sass:map';
 @use 'sass:math';
+@use 'sass:string';
 
 @use './../tokens/temp/components';
+@use './../tokens/temp/mode';
 @use './../mixins/tokens';
 
 @use './../variables/components/button';
@@ -103,6 +105,12 @@
   border-color: transparent;
   background-color: tokens.component('post-comp-interactive-button-primary-color-bg-enabled');
   color: tokens.component('post-comp-interactive-button-primary-color-fg-enabled');
+  $color-key: string.slice(
+    tokens.component('post-comp-interactive-button-primary-color-fg-enabled'),
+    7,
+    -2
+  );
+  color: light-dark(map.get(mode.$post-light, $color-key), map.get(mode.$post-dark, $color-key));
 
   &:disabled {
     background-color: color.$gray-10;

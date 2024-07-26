@@ -1,6 +1,14 @@
 @use './core';
 @use './../placeholders/modes';
 
+:root {
+  color-scheme: light dark;
+}
+
+[data-color-mode='light'] {
+  color-scheme: light;
+}
+
 :root,
 [data-color-mode='light'] {
   @extend %post-light;
@@ -8,4 +16,5 @@
 
 [data-color-mode='dark'] {
   @extend %post-dark;
+  color-scheme: dark;
 }
