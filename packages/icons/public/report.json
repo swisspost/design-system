@@ -255,7 +255,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-07-21T01:05:01.665Z"
+      "modifiedAt": "2024-07-21T04:05:01.665Z"
     },
     {
       "uuid": "868b3530-c5fc-11e7-a943-005056a94f4a",
@@ -28245,6 +28245,366 @@
       "modifiedAt": "2024-07-20T05:24:06.034Z"
     },
     {
+      "uuid": "c8694760-4824-11ef-b101-005056873709",
+      "id": 811211,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811211/storage/ODExMjEwLzAvbWFzdGVy",
+        "keywords": [
+          "Microsoft AI Builder",
+          "MS AI Builder",
+          "Microsoft"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2600.svg",
+        "basename": "2600",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-22T12:20:29.000Z",
+      "modifiedAt": "2024-07-23T12:05:03.450Z"
+    },
+    {
+      "uuid": "870d7d22-4826-11ef-b101-005056873709",
+      "id": 811223,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811223/storage/ODExMjIyLzAvbWFzdGVy",
+        "keywords": [
+          "Microsoft"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2601.svg",
+        "basename": "2601",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-22T12:32:58.000Z",
+      "modifiedAt": "2024-07-23T12:05:03.450Z"
+    },
+    {
+      "uuid": "693d6390-4827-11ef-b101-005056873709",
+      "id": 811231,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811231/storage/ODExMjMwLzAvbWFzdGVy",
+        "keywords": [
+          "Microsoft",
+          "Microsoft Powerapps",
+          "Microsoft PowerApps",
+          "MS Powerapps",
+          "Powerapps"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2602.svg",
+        "basename": "2602",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-22T12:39:17.000Z",
+      "modifiedAt": "2024-07-23T12:05:03.450Z"
+    },
+    {
+      "uuid": "7dd5f3c0-4828-11ef-b101-005056873709",
+      "id": 811239,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811239/storage/ODExMjM4LzAvbWFzdGVy",
+        "keywords": [
+          "Microsoft",
+          "Microsoft Power Automate",
+          "Microsoft Power Automate Corporation",
+          "MS Power Automate",
+          "Power terminals",
+          "Power Automate",
+          "Powerautomate",
+          "Power distributori automatici",
+          "Sinnbild",
+          "Symbol",
+          "Simbolo",
+          "Symbole"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2603.svg",
+        "basename": "2603",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-22T12:47:01.000Z",
+      "modifiedAt": "2024-07-23T12:05:03.450Z"
+    },
+    {
+      "uuid": "995218f0-482c-11ef-b101-005056873709",
+      "id": 811247,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811247/storage/ODExMjQ2LzAvbWFzdGVy",
+        "keywords": [
+          "Microsoft"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2604.svg",
+        "basename": "2604",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-22T13:16:25.000Z",
+      "modifiedAt": "2024-07-23T12:05:03.450Z"
+    },
+    {
+      "uuid": "3d8b6b10-482d-11ef-b101-005056873709",
+      "id": 811254,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811254/storage/ODExMjUzLzAvbWFzdGVy",
+        "keywords": [
+          "Microsoft"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2605.svg",
+        "basename": "2605",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-22T13:21:01.000Z",
+      "modifiedAt": "2024-07-23T12:05:03.450Z"
+    },
+    {
+      "uuid": "de898f60-482d-11ef-b101-005056873709",
+      "id": 811260,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811260/storage/ODExMjU5LzAvbWFzdGVy",
+        "keywords": [
+          "Microsoft"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2606.svg",
+        "basename": "2606",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-22T13:25:31.000Z",
+      "modifiedAt": "2024-07-23T12:05:03.450Z"
+    },
+    {
+      "uuid": "890004b0-482e-11ef-b101-005056873709",
+      "id": 811266,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811266/storage/ODExMjY1LzAvbWFzdGVy",
+        "keywords": [
+          "Microsoft"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2607.svg",
+        "basename": "2607",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-22T13:30:17.000Z",
+      "modifiedAt": "2024-07-23T12:05:03.450Z"
+    },
+    {
+      "uuid": "57a1d0a0-482f-11ef-b101-005056873709",
+      "id": 811272,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811272/storage/ODExMjcxLzAvbWFzdGVy",
+        "keywords": [
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "Hinzufügen",
+          "Add",
+          "Aggiungere",
+          "Ajouter",
+          "Sinnbild",
+          "Symbol",
+          "Simbolo",
+          "Symbole",
+          "durchqueren",
+          "Cross",
+          "Incrocio",
+          "Traverser",
+          "Wegweiser",
+          "Sign",
+          "Segno",
+          "Signer",
+          "Wegweisen",
+          "Segnalare",
+          "Indiquer",
+          "unterscheiben",
+          "sign",
+          "Firmare",
+          "Wegweisern",
+          "Indicazioni",
+          "Indicateurs"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2608.svg",
+        "basename": "2608",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-22T13:36:04.000Z",
+      "modifiedAt": "2024-07-22T13:38:22.000Z"
+    },
+    {
+      "uuid": "ad12ff10-4833-11ef-b101-005056873709",
+      "id": 811276,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811276/storage/ODExMjc1LzAvbWFzdGVy",
+        "keywords": [
+          "Microsoft",
+          "Schornstein",
+          "Smoke Pipe",
+          "Tubo Fumo",
+          "Tuyau De Fumée"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2609.svg",
+        "basename": "2609",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-22T14:07:05.000Z",
+      "modifiedAt": "2024-07-23T12:05:03.450Z"
+    },
+    {
+      "uuid": "70985c00-4a5a-11ef-b101-005056873709",
+      "id": 811432,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811432/storage/ODExNDMxLzAvbWFzdGVy",
+        "keywords": [
+          "Marktplatz"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2610.svg",
+        "basename": "2610",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-25T07:49:36.000Z",
+      "modifiedAt": "2024-07-26T07:05:02.718Z"
+    },
+    {
+      "uuid": "d73262b0-4b38-11ef-b101-005056873709",
+      "id": 811531,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811531/storage/ODExNTMwLzAvbWFzdGVy",
+        "keywords": [
+          "Filter",
+          "filter",
+          "Filtre",
+          "Filtro",
+          "Reset filter",
+          "Filter zurücksetzen",
+          "Réinitialiser le filtre",
+          "Ripristinare il filtro",
+          "Clear Filter",
+          "Filter leeren",
+          "Vider le filtre",
+          "Svuotare il filtro"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2611.svg",
+        "basename": "2611",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-26T10:21:37.000Z",
+      "modifiedAt": "2024-07-27T10:05:03.215Z"
+    },
+    {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
       "id": 352241,
       "type": "picture.pictogram.",
@@ -40798,37 +41158,6 @@
   "wrongViewBox": [],
   "noKeywords": [
     {
-      "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
-      "id": 352314,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352314/storage/NTM3MjI0LzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3073.svg",
-        "basename": "3073",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
-    },
-    {
       "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
       "id": 352299,
       "type": "picture.pictogram.",
@@ -40858,6 +41187,37 @@
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
       "modifiedAt": "2024-03-12T14:51:50.000Z"
+    },
+    {
+      "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
+      "id": 352314,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352314/storage/NTM3MjI0LzAvbWFzdGVy",
+        "businessfield": [
+          "kommunikation"
+        ],
+        "keywords": [
+          ""
+        ],
+        "year": [
+          "2017"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "3073.svg",
+        "basename": "3073",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2017-11-10T10:11:07.000Z",
+      "modifiedAt": "2024-03-12T14:51:51.000Z"
     },
     {
       "uuid": "6b09bf30-9901-11eb-935b-005056873709",
@@ -40946,11 +41306,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2024-07-21T01:22:39.886Z",
+  "created": "2024-07-28T01:22:49.946Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 929
+    "success": 941
   },
-  "version": "7.3.1"
+  "version": "8.0.0"
 }
