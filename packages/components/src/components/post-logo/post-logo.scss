@@ -1,10 +1,7 @@
 @use '@swisspost/design-system-styles/variables/color';
 @use '@swisspost/design-system-styles/mixins/utilities';
 
-:host {
-  display: contents;
-}
-
+:host,
 .logo {
   display: inline-block;
   height: 100%;

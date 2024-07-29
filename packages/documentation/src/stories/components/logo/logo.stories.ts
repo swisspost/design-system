@@ -32,9 +32,12 @@ function containerWithHeight(story: StoryFn, context: StoryContext) {
 function renderLogo(pageTitle = '[page title]') {
   return (args: Partial<HTMLPostLogoElement>) => {
     const url = args.url || undefined;
-    const description = `Logo of the Post${url ? `, To ${pageTitle}` : ''}`;
+    const imageDescription = `Logo of the Post`;
+    const linkDescription = `${imageDescription}, To ${pageTitle}`;
 
-    return html` <post-logo url=${ifDefined(url)}>${description}</post-logo> `;
+    return html`
+      <post-logo url=${ifDefined(url)}>${url ? linkDescription : imageDescription}</post-logo>
+    `;
   };
 }
 
