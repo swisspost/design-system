@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 8.1.0
+
+### Patch Changes
+
+- Fixed a broken CSS selector in the alerts styles. The file now produces valid output again. (by [@gfellerph](https://github.com/gfellerph) with [#3343](https://github.com/swisspost/design-system/pull/3343))
+
 ## 8.0.0
 
 ### Major Changes
