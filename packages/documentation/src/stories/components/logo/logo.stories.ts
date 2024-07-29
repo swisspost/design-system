@@ -1,4 +1,4 @@
-import { StoryObj } from '@storybook/web-components';
+import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -9,6 +9,7 @@ const meta: MetaComponent<HTMLPostLogoElement> = {
   tags: ['package:WebComponents'],
   component: 'post-logo',
   render: renderLogo(),
+  decorators: [containerWithHeight],
   parameters: {
     design: {},
   },
@@ -22,6 +23,11 @@ const meta: MetaComponent<HTMLPostLogoElement> = {
 };
 
 export default meta;
+
+// DECORATORS
+function containerWithHeight(story: StoryFn, context: StoryContext) {
+  return html` <div class="h-giant">${story(context.args, context)}</div> `;
+}
 
 // RENDERER
 function renderLogo(pageTitle = '[page title]') {
