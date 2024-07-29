@@ -9,7 +9,6 @@ const meta: MetaComponent<HTMLPostLogoElement> = {
   tags: ['package:WebComponents'],
   component: 'post-logo',
   render: renderLogo(),
-  decorators: [containerWithHeight],
   parameters: {
     design: {},
   },
@@ -42,11 +41,18 @@ function renderLogo(pageTitle = '[page title]') {
 // STORIES
 type Story = StoryObj;
 
-export const Default: Story = {};
+export const Default: Story = {
+  decorators: [containerWithHeight],
+};
 
 export const Link: Story = {
   args: {
     url: 'https://www.post.ch/en',
   },
   render: renderLogo('the homepage'),
+  decorators: [containerWithHeight],
+};
+
+export const Height: Story = {
+  render: () => html` <post-logo class="h-huge">Logo of the Post</post-logo> `,
 };
