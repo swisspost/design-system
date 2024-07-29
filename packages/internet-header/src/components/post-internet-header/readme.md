@@ -55,7 +55,7 @@ string
 - [post-skiplinks](../post-skiplinks)
 - [post-meta-navigation](../post-meta-navigation)
 - [post-language-switch](../post-language-switch)
-- [post-logo](../post-logo)
+- post-logo
 - [post-main-navigation](../post-main-navigation)
 - [post-search](../post-search)
 - [post-klp-login-widget](../post-klp-login-widget)

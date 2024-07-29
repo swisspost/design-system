@@ -30,6 +30,9 @@ import packageJson from '../../../package.json';
 import { registerLogoAnimationObserver } from './logo-animation/logo-animation';
 import { getScrollParent } from '../../utils/scrollparent';
 import { getLogoScale } from './logo-animation/logo-scale';
+import { defineCustomElement as definePostLogo } from '@swisspost/design-system-components/dist/components/post-logo';
+
+if (typeof customElements.get('post-logo') === 'undefined') definePostLogo();
 
 @Component({
   tag: 'swisspost-internet-header',

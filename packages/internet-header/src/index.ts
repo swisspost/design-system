@@ -8,7 +8,6 @@ export { PostInternetFooter } from './components/post-internet-footer/post-inter
 export { PostSkiplinks } from './components/post-skiplinks/post-skiplinks';
 export { PostMetaNavigation } from './components/post-meta-navigation/post-meta-navigation';
 export { PostLanguageSwitch } from './components/post-language-switch/post-language-switch';
-export { PostLogo } from './components/post-logo/post-logo';
 export { PostMainNavigation } from './components/post-main-navigation/post-main-navigation';
 export { PostSearch } from './components/post-search/post-search';
 export { PostKlpLoginWidget } from './components/post-klp-login-widget/post-klp-login-widget';

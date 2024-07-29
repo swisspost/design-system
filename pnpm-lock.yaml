@@ -676,6 +676,9 @@ importers:
 
   packages/internet-header:
     dependencies:
+      '@swisspost/design-system-components':
+        specifier: workspace:*
+        version: link:../components
       '@swisspost/design-system-styles':
         specifier: workspace:8.0.0
         version: link:../styles/dist
