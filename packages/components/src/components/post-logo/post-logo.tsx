@@ -8,6 +8,7 @@ import { checkEmptyOrUrl } from '@/utils';
 @Component({
   tag: 'post-logo',
   styleUrl: 'post-logo.scss',
+  shadow: true,
 })
 export class PostLogo {
   @Element() host: HTMLPostLogoElement;

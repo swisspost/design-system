@@ -14,30 +14,30 @@ type Story = StoryObj<HTMLPostLogoElement>;
 export const PostLogo: Story = {
   render: (_args: Partial<HTMLPostLogoElement>, context: StoryContext<HTMLPostLogoElement>) => {
     return html`
-      <div class="row">
-        <div class="col">
-          <p>Images</p>
-        </div>
-        <div class="col">
-          <p>Links</p>
-        </div>
+      <div class="row gx-5">
+        ${['', 'https://www.post.ch'].map(
+          url => html`
+            <div class="col">
+              <p>${url ? 'Links' : 'Images'}</p>
+              <div class="row">
+                ${['white', 'dark'].map(
+                  color => html`
+                    <div class="col bg-${color}">
+                      ${['big', 'huge', 'giant'].map(
+                        (height, i) => html`
+                          <div class="h-${height} ${i === 0 ? 'my' : 'mb'}-mini">
+                            ${meta.render?.({ ...context.args, url }, context)}
+                          </div>
+                        `,
+                      )}
+                    </div>
+                  `,
+                )}
+              </div>
+            </div>
+          `,
+        )}
       </div>
-
-      ${['big', 'huge', 'giant'].map(
-        height => html`
-          <div class="row h-${height}">
-            ${['', 'https://www.post.ch'].map(url =>
-              ['white', 'dark'].map(
-                bg => html`
-                  <div class="col p-small-regular bg-${bg}">
-                    ${meta.render?.({ ...context.args, url }, context)}
-                  </div>
-                `,
-              ),
-            )}
-          </div>
-        `,
-      )}
     `;
   },
 };
