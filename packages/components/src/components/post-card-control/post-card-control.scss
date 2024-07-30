@@ -9,6 +9,11 @@
 */
 
 :host {
+
+  // remove as soon as all browser support :host-context()
+  // https://caniuse.com/?search=%3Ahost-context()
+  --post-card-control-bg-context: #{post.$backgrounds};
+
   display: flex;
   width: 100%;
 }
@@ -417,10 +422,6 @@
 
 // remove as soon as all browser support :host-context()
 // https://caniuse.com/?search=%3Ahost-context()
-:host {
-  --post-card-control-bg-context: #{post.$backgrounds};
-}
-
 :host(:not([data-context])) {
   display: none;
 }

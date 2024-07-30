@@ -314,9 +314,8 @@ export class PostCardControl {
     }
   }
 
-  /**
-   * @deprecated Will be removed as soon as all browser support the :host-context() selector
-   */
+  // remove as soon as all browser support :host-context()
+  // https://caniuse.com/?search=%3Ahost-context()
   private setHostContext() {
     let bgContext: string;
     const possibleBgContexts = window
