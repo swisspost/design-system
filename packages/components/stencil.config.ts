@@ -61,6 +61,7 @@ export const config: Config = {
   rollupPlugins: {
     before: [
       postcss({
+        modules: true,
         use: {
           sass: {
             includePaths: ['node_modules'],

@@ -14,6 +14,14 @@ import {
 import { checkNonEmpty, checkOneOf } from '@/utils';
 import { version } from '@root/package.json';
 
+// remove as soon as all browser support :host-context()
+// https://caniuse.com/?search=%3Ahost-context()
+import scss from './post-card-control.module.scss';
+import { parse } from '@/utils/sass-export';
+
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+const SCSS_VARIABLES: any = parse(scss);
+
 let cardControlIds = 0;
 
 /**
@@ -90,23 +98,23 @@ export class PostCardControl {
   @Prop() readonly value: string = null;
 
   /**
-   * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms' data.
+   * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms data.
    */
   @Prop({ mutable: true }) checked = false;
 
   /**
-   * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms' data.
+   * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms data.
    */
   @Prop({ mutable: true }) disabled = false;
 
   /**
    * Defines the validation `validity` of the control.
-   * To reset validity to an undefined state, simply remove the attribute from the control.
+   * To reset validity to an undefiend state, simply remove the attribute from the control.
    */
   @Prop({ mutable: true }) validity: null | 'true' | 'false' = null;
 
   /**
-   * Defines the icon `name` inside the card.
+   * Defines the icon `name` inside of the card.
    * <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
    */
   @Prop() readonly icon: string = null;
@@ -166,7 +174,7 @@ export class PostCardControl {
   }
 
   @Watch('disabled')
-  updateControlDisabled() {
+  updateControlDisbled() {
     this.controlSetChecked(this.checked);
   }
 
@@ -314,31 +322,33 @@ export class PostCardControl {
     }
   }
 
-  // remove as soon as all browser support :host-context()
-  // https://caniuse.com/?search=%3Ahost-context()
+  // remove as soon as all browser support the :host-context() selector
+  private readonly HOST_CONTEXT_FILTERS = ['fieldset', ...SCSS_VARIABLES['dark-bg-selectors']];
+  private hostContext: string[];
+
   private setHostContext() {
-    let bgContext: string;
-    const possibleBgContexts = window
-      .getComputedStyle(this.host)
-      .getPropertyValue('--post-card-control-bg-context')
-      .split(', ');
-
-    let formContext: string;
-    const possibleFromContexts = ['fieldset'];
-
+    this.hostContext = [];
     let element = this.host as HTMLElement;
-    while (element && (!bgContext || !formContext)) {
-      bgContext = bgContext ?? possibleBgContexts.find(selector => element.matches(selector));
-      formContext = formContext ?? possibleFromContexts.find(selector => element.matches(selector));
 
+    while (element) {
+      const localName = element.localName;
+      const id = element.id ? `#${element.id}` : '';
+      const classes =
+        element.classList.length > 0 ? `.${Array.from(element.classList).join('.')}` : '';
+
+      this.hostContext.push(`${localName}${id}${classes}`);
       element = element.parentElement;
     }
 
-    const hostContext = [bgContext, formContext].filter(context => !!context).join(' ');
-    this.host.setAttribute('data-context', hostContext);
+    this.hostContext = this.hostContext.filter(ctx =>
+      this.HOST_CONTEXT_FILTERS.find(f => ctx.includes(f)),
+    );
   }
 
   connectedCallback() {
+    // remove as soon as all browser support :host-context()
+    this.setHostContext();
+
     this.initialChecked = this.checked;
   }
 
@@ -358,6 +368,8 @@ export class PostCardControl {
             'is-valid': this.validity !== null && this.validity !== 'false',
             'is-invalid': this.validity === 'false',
           }}
+          // remove as soon as all browser support :host-context()
+          data-host-context={this.hostContext.join(' ')}
         >
           <input
             ref={el => (this.control = el)}
@@ -404,7 +416,6 @@ export class PostCardControl {
   }
 
   componentDidRender() {
-    this.setHostContext();
     this.groupCollectMembers();
   }
 
