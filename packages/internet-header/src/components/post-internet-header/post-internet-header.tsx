@@ -30,10 +30,6 @@ import packageJson from '../../../package.json';
 import { registerLogoAnimationObserver } from './logo-animation/logo-animation';
 import { getScrollParent } from '../../utils/scrollparent';
 import { getLogoScale } from './logo-animation/logo-scale';
-import { defineCustomElement as definePostLogo } from '@swisspost/design-system-components/dist/components/post-logo';
-
-// define the post-logo component if it does not exist already
-if (typeof customElements.get('post-logo') === 'undefined') definePostLogo();
 
 @Component({
   tag: 'swisspost-internet-header',
@@ -497,9 +493,7 @@ export class PostInternetHeader {
             </post-meta-navigation>
           </If>
           <div class="main-navigation-container wide-container">
-            <post-logo url={config.header.logo.logoLink}>
-              {config.header.logo.logoLinkTitle}
-            </post-logo>
+            <post-header-logo></post-header-logo>
             <button
               class="menu-button nav-link"
               onClick={() => this.toggleMobileDropdown()}

@@ -25,6 +25,8 @@ export namespace Components {
     interface FocusTrap {
         "active": boolean;
     }
+    interface PostHeaderLogo {
+    }
     interface PostKlpLoginWidget {
         /**
           * Override the logout-url provided by the portal config.
@@ -208,6 +210,12 @@ declare global {
         prototype: HTMLFocusTrapElement;
         new (): HTMLFocusTrapElement;
     };
+    interface HTMLPostHeaderLogoElement extends Components.PostHeaderLogo, HTMLStencilElement {
+    }
+    var HTMLPostHeaderLogoElement: {
+        prototype: HTMLPostHeaderLogoElement;
+        new (): HTMLPostHeaderLogoElement;
+    };
     interface HTMLPostKlpLoginWidgetElement extends Components.PostKlpLoginWidget, HTMLStencilElement {
     }
     var HTMLPostKlpLoginWidgetElement: {
@@ -310,6 +318,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "focus-trap": HTMLFocusTrapElement;
+        "post-header-logo": HTMLPostHeaderLogoElement;
         "post-klp-login-widget": HTMLPostKlpLoginWidgetElement;
         "post-language-switch": HTMLPostLanguageSwitchElement;
         "post-main-navigation": HTMLPostMainNavigationElement;
@@ -328,6 +337,8 @@ declare namespace LocalJSX {
      */
     interface FocusTrap {
         "active"?: boolean;
+    }
+    interface PostHeaderLogo {
     }
     interface PostKlpLoginWidget {
         /**
@@ -465,6 +476,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "focus-trap": FocusTrap;
+        "post-header-logo": PostHeaderLogo;
         "post-klp-login-widget": PostKlpLoginWidget;
         "post-language-switch": PostLanguageSwitch;
         "post-main-navigation": PostMainNavigation;
@@ -485,6 +497,7 @@ declare module "@stencil/core" {
              * @param active activate or deactivate the focus trap
              */
             "focus-trap": LocalJSX.FocusTrap & JSXBase.HTMLAttributes<HTMLFocusTrapElement>;
+            "post-header-logo": LocalJSX.PostHeaderLogo & JSXBase.HTMLAttributes<HTMLPostHeaderLogoElement>;
             "post-klp-login-widget": LocalJSX.PostKlpLoginWidget & JSXBase.HTMLAttributes<HTMLPostKlpLoginWidgetElement>;
             "post-language-switch": LocalJSX.PostLanguageSwitch & JSXBase.HTMLAttributes<HTMLPostLanguageSwitchElement>;
             "post-main-navigation": LocalJSX.PostMainNavigation & JSXBase.HTMLAttributes<HTMLPostMainNavigationElement>;
