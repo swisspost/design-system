@@ -41,6 +41,7 @@
     "@oddbird/popover-polyfill": "0.3.7",
     "@swisspost/design-system-styles": "workspace:8.0.0",
     "ally.js": "1.4.1",
+    "crypto-js": "4.2.0",
     "long-press-event": "2.5.0"
   },
   "devDependencies": {

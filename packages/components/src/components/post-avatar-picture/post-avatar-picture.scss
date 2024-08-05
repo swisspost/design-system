@@ -1,0 +1,35 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+:host {
+  display: block;
+  width: 40px;
+  aspect-ratio: 1;
+}
+
+:host(.small) {
+  width: 32px;
+}
+
+img {
+  display: block;
+  width: 100%;
+  border-radius: 50%;
+}
+
+div,
+post-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #004976;
+  border-radius: 50%;
+  color: post.get-best-contrast-text(#004976);
+  text-transform: uppercase;
+  box-sizing: border-box;
+}
+
+post-icon {
+  padding: 4px;
+}
