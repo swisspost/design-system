@@ -50,6 +50,7 @@ function renderCollapsible(
   setTimeout(() => {
     ignoreToggle = false;
   }, 200);
+
   return html`
     <post-collapsible-trigger for=${context.id}>
       <button class="btn btn-secondary">Toggle Collapsible</button>

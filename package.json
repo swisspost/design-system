@@ -87,7 +87,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "2.27.7",
-    "start-server-and-test": "2.0.4"
+    "start-server-and-test": "2.0.5"
   },
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
@@ -95,7 +95,7 @@
   "engines": {
     "node": "20"
   },
-  "packageManager": "pnpm@9.3.0",
+  "packageManager": "pnpm@9.6.0",
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": {},
