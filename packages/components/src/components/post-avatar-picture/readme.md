@@ -17,6 +17,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [post-avatar](../post-avatar)
+
 ### Depends on
 
 - [post-icon](../post-icon)
@@ -25,6 +29,7 @@
 ```mermaid
 graph TD;
   post-avatar-picture --> post-icon
+  post-avatar --> post-avatar-picture
   style post-avatar-picture fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

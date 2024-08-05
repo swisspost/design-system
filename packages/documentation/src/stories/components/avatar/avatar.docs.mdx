@@ -1,0 +1,40 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as AvatarStories from './avatar.stories';
+
+<Meta of={AvatarStories} />
+
+<div className="docs-title">
+  # Avatar
+
+  <nav>
+    <link-design of={JSON.stringify(AvatarStories)}></link-design>
+  </nav>
+</div>
+
+<p className="lead">Represent a user or a business within the UI.</p>
+
+<Canvas of={AvatarStories.Default} />
+<Controls of={AvatarStories.Default} />
+
+## Installation
+
+The `<post-avatar>` element is part of the `@swisspost/design-system-components` package.
+For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
+
+## Examples
+
+### Size
+
+You can change the size of the avatar using the `size` property.
+
+<Canvas of={AvatarStories.Size} />
+
+### Picture
+
+By default, the avatar picture displays the user's initials.
+However, if you provide the `email` property for a user who owns a Gravatar,
+their preferred profile picture will be used instead.
+
+For more information, see the <a href="/?path=/docs/09aac03d-220e-4885-8fb8-1cfa01add188--docs">post-avatar-picture documentation</a>.
+
+<Canvas of={AvatarStories.Picture} />

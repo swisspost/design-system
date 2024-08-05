@@ -7,9 +7,11 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { AlertType } from "./components/post-alert/alert-types";
+import { PictureSize } from "./components/post-avatar-picture/picture-sizes";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { AlertType } from "./components/post-alert/alert-types";
+export { PictureSize } from "./components/post-avatar-picture/picture-sizes";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
     interface PostAccordion {
@@ -75,6 +77,28 @@ export namespace Components {
          */
         "type": AlertType;
     }
+    interface PostAvatar {
+        /**
+          * The user's company name
+         */
+        "company"?: string;
+        /**
+          * The user's email address
+         */
+        "email"?: string;
+        /**
+          * The user's firstname
+         */
+        "firstname"?: string;
+        /**
+          * The user's lastname
+         */
+        "lastname"?: string;
+        /**
+          * The size of the avatar
+         */
+        "size"?: PictureSize;
+    }
     interface PostAvatarPicture {
         /**
           * Defines the users email address.
@@ -91,7 +115,7 @@ export namespace Components {
         /**
           * Defines the size of the avatar-picture.
          */
-        "size"?: 'large' | 'small';
+        "size"?: PictureSize;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -387,6 +411,12 @@ declare global {
         prototype: HTMLPostAlertElement;
         new (): HTMLPostAlertElement;
     };
+    interface HTMLPostAvatarElement extends Components.PostAvatar, HTMLStencilElement {
+    }
+    var HTMLPostAvatarElement: {
+        prototype: HTMLPostAvatarElement;
+        new (): HTMLPostAvatarElement;
+    };
     interface HTMLPostAvatarPictureElement extends Components.PostAvatarPicture, HTMLStencilElement {
     }
     var HTMLPostAvatarPictureElement: {
@@ -532,6 +562,7 @@ declare global {
         "post-accordion": HTMLPostAccordionElement;
         "post-accordion-item": HTMLPostAccordionItemElement;
         "post-alert": HTMLPostAlertElement;
+        "post-avatar": HTMLPostAvatarElement;
         "post-avatar-picture": HTMLPostAvatarPictureElement;
         "post-card-control": HTMLPostCardControlElement;
         "post-collapsible": HTMLPostCollapsibleElement;
@@ -595,6 +626,28 @@ declare namespace LocalJSX {
          */
         "type"?: AlertType;
     }
+    interface PostAvatar {
+        /**
+          * The user's company name
+         */
+        "company"?: string;
+        /**
+          * The user's email address
+         */
+        "email"?: string;
+        /**
+          * The user's firstname
+         */
+        "firstname"?: string;
+        /**
+          * The user's lastname
+         */
+        "lastname"?: string;
+        /**
+          * The size of the avatar
+         */
+        "size"?: PictureSize;
+    }
     interface PostAvatarPicture {
         /**
           * Defines the users email address.
@@ -611,7 +664,7 @@ declare namespace LocalJSX {
         /**
           * Defines the size of the avatar-picture.
          */
-        "size"?: 'large' | 'small';
+        "size"?: PictureSize;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -819,6 +872,7 @@ declare namespace LocalJSX {
         "post-accordion": PostAccordion;
         "post-accordion-item": PostAccordionItem;
         "post-alert": PostAlert;
+        "post-avatar": PostAvatar;
         "post-avatar-picture": PostAvatarPicture;
         "post-card-control": PostCardControl;
         "post-collapsible": PostCollapsible;
@@ -841,6 +895,7 @@ declare module "@stencil/core" {
             "post-accordion": LocalJSX.PostAccordion & JSXBase.HTMLAttributes<HTMLPostAccordionElement>;
             "post-accordion-item": LocalJSX.PostAccordionItem & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
             "post-alert": LocalJSX.PostAlert & JSXBase.HTMLAttributes<HTMLPostAlertElement>;
+            "post-avatar": LocalJSX.PostAvatar & JSXBase.HTMLAttributes<HTMLPostAvatarElement>;
             "post-avatar-picture": LocalJSX.PostAvatarPicture & JSXBase.HTMLAttributes<HTMLPostAvatarPictureElement>;
             /**
              * @class PostCardControl - representing a stencil component
