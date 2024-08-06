@@ -15,15 +15,15 @@ describe('avatar', () => {
     });
 
     it("should show the user's firstname", () => {
-      cy.get('@avatar').shadow().find('.userInfo__username').should('include.text', 'Mika');
+      cy.get('@avatar').shadow().find('.username').should('include.text', 'Mika');
     });
 
     it("should show the user's lastname", () => {
-      cy.get('@avatar').shadow().find('.userInfo__username').should('include.text', 'Muster');
+      cy.get('@avatar').shadow().find('.username').should('include.text', 'Muster');
     });
 
     it("should show the user's company name", () => {
-      cy.get('@avatar').shadow().find('.userInfo__company').should('include.text', 'Muster AG');
+      cy.get('@avatar').shadow().find('.company').should('include.text', 'Muster AG');
     });
   });
 });

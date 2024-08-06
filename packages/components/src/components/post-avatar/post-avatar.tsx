@@ -1,6 +1,7 @@
 import { Component, Host, h, Prop, Watch } from '@stencil/core';
 import { checkEmptyOrType } from '@/utils';
 import { PictureSize } from '@/components/post-avatar-picture/picture-sizes';
+import { version } from '@root/package.json';
 
 @Component({
   tag: 'post-avatar',
@@ -49,17 +50,15 @@ export class PostAvatar {
   render() {
     const username = [this.firstname, this.lastname].filter(name => !!name).join(' ');
     return (
-      <Host>
+      <Host data-version={version}>
         <post-avatar-picture
           email={this.email}
           firstname={this.firstname}
           lastname={this.lastname}
           size={this.size}
         ></post-avatar-picture>
-        <div class="userInfo">
-          {username && <span class="userInfo__username">{username}</span>}
-          {this.company && <span class="userInfo__company">{this.company}</span>}
-        </div>
+        {username && <span class="username">{username}</span>}
+        {this.company && <span class="company">{this.company}</span>}
       </Host>
     );
   }

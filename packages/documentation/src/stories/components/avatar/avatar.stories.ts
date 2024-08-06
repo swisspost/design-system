@@ -1,6 +1,5 @@
 import { Args, StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
-import { ifDefined } from 'lit/directives/if-defined.js';
+import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent<HTMLPostAvatarElement> = {
@@ -36,11 +35,11 @@ export default meta;
 // RENDERER
 function getAvatar(args: Args) {
   return html`<post-avatar
-    company=${ifDefined(args.company || undefined)}
-    email=${ifDefined(args.email || undefined)}
-    firstname=${ifDefined(args.firstname || undefined)}
-    lastname=${ifDefined(args.lastname || undefined)}
-    size=${args.size}
+    company=${args.company || nothing}
+    email=${args.email || nothing}
+    firstname=${args.firstname || nothing}
+    lastname=${args.lastname || nothing}
+    size=${args.size === 'large' ? nothing : args.size}
   ></post-avatar>`;
 }
 
