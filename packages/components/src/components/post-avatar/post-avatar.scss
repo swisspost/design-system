@@ -2,31 +2,32 @@
 
 :host {
   max-width: 16.5rem;
-  display: flex;
-  align-items: flex-start;
-  gap: post.$size-mini;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr auto;
+  column-gap: post.$size-mini;
+  justify-items: start;
+  align-items: center;
   padding: post.$size-micro;
 }
 
 post-avatar-picture {
-  flex: 0 0 auto;
+  grid-row: span 2;
+  align-self: start;
 }
 
-.userInfo {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  gap: post.$size-micro;
+.username {
+  font-size: post.$font-size-16;
+  font-weight: post.$font-weight-bold;
+  line-height: post.$line-height-heading;
+}
 
-  &__username {
-    font-size: post.$font-size-16;
-    font-weight: post.$font-weight-bold;
-    line-height: post.$line-height-heading;
-  }
+.company {
+  font-size: post.$font-size-14;
+  font-weight: post.$font-weight-normal;
+  line-height: post.$line-height-copy;
 
-  &__company {
-    font-size: post.$font-size-14;
-    font-weight: post.$font-weight-normal;
-    line-height: post.$line-height-copy;
+  .username + & {
+    margin-top: post.$size-micro;
   }
 }
