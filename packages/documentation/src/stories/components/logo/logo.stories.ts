@@ -1,7 +1,6 @@
 import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
-import { ifDefined } from 'lit/directives/if-defined.js';
 
 const meta: MetaComponent<HTMLPostLogoElement> = {
   id: '73066e1c-0720-4a9b-8f81-a29d4250872a',
@@ -31,12 +30,13 @@ function containerWithHeight(story: StoryFn, context: StoryContext) {
 // RENDERER
 function renderLogo(pageTitle = '[page title]') {
   return (args: Partial<HTMLPostLogoElement>) => {
-    const url = args.url || undefined;
     const imageDescription = `Logo of the Post`;
     const linkDescription = `${imageDescription}, To ${pageTitle}`;
 
     return html`
-      <post-logo url=${ifDefined(url)}>${url ? linkDescription : imageDescription}</post-logo>
+      <post-logo url=${args.url || nothing}
+        >${args.url ? linkDescription : imageDescription}</post-logo
+      >
     `;
   };
 }
