@@ -2,6 +2,7 @@ import { Component, h, Host, Prop, State } from '@stencil/core';
 import { version } from '@root/package.json';
 import sha256 from 'crypto-js/sha256';
 import aiconizer from './aiconizer';
+import { PictureSize } from '@/components/post-avatar-picture/picture-sizes';
 
 // https://docs.gravatar.com/api/avatars/images/
 const GRAVATAR_REQUESTED_IMAGE_SIZE = 40;
@@ -19,7 +20,7 @@ export class PostAvatarPicture {
   /**
    * Defines the size of the avatar-picture.
    */
-  @Prop() readonly size?: 'large' | 'small' = 'large';
+  @Prop() readonly size?: PictureSize = 'large';
 
   /**
    * Defines the users email address.

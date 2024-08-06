@@ -84,31 +84,36 @@ jobs:
       - name: Install Dependencies
         run: pnpm i
 
-      # Create Status Files
       - name: Create Status Files
         run: |
           pnpm m ls --depth=0 --json > monorepo.json
           pnpm changeset status --output=changesets.json
 
       # Read the status Files and collect release data on the @swisspost/design-system-styles package
-      - name: Collect Release Data
-        id: release-data
+      - name: Prepare Release Data
+        id: release-data-pre
         uses: actions/github-script@v7
         with:
           script: |
             const fs = require('fs')
-            const monorepo = JSON.parse(fs.readFileSync('monorepo.json', 'utf8'))
-            const styles = JSON.parse(fs.readFileSync('./packages/styles/package.json', 'utf8'))
+
             const changesets = JSON.parse(fs.readFileSync('changesets.json', 'utf8'))
             const release = changesets.releases.find(r => r.name === '@swisspost/design-system-styles')
+            const monorepo = JSON.parse(fs.readFileSync('monorepo.json', 'utf8'))
+            const styles = JSON.parse(fs.readFileSync('./packages/styles/package.json', 'utf8'))
+
+            fs.unlinkSync('changesets.json')
+            fs.unlinkSync('monorepo.json')
 
             if (!release) return null
 
             const oldMajor = release.oldVersion.split('.')[0];
             const newMajor = release.newVersion.split('.')[0];
+
+            const updatedVersions = changesets.releases.reduce((deps, r) => ({ ...deps, [r.name]: r.newVersion }), {})
             const dependencies = monorepo
-              .filter(pkg => pkg.private === false && pkg.version !== undefined)
-              .reduce((packages, pkg) => ({ ...packages, [pkg.name]: pkg.version }), { ...(styles.peerDependencies ?? {}) })
+              .filter(pkg => pkg.version !== undefined)
+              .reduce((packages, pkg) => ({ ...packages, [pkg.name]: updatedVersions[pkg.name] ?? pkg.version }), { ...(styles.peerDependencies ?? {}) })
 
             return {
               isMajor: release.type === 'major',
@@ -116,14 +121,17 @@ jobs:
                 version: release.oldVersion,
                 major: oldMajor,
                 siteUrl: `design-system-version-${oldMajor}`,
-                dependencies
+                dependencies: {}
               },
               new: {
                 version: release.newVersion,
                 major: newMajor,
-                siteUrl: 'design-system'
+                siteUrl: 'design-system',
+                dependencies
               },
-              branchName: `release/v${oldMajor}`
+              branchName: `release/v${oldMajor}`,
+              tagName: `@swisspost/design-system-styles@${release.oldVersion}`,
+              tagPattern: `@swisspost/design-system-styles@${oldMajor}.*`
             }
 
       - name: Check if changset-release/main Branch exists
@@ -136,13 +144,52 @@ jobs:
         id: release-branch-exists
         uses: GuillaumeFalourd/branch-exists@v1
         with:
-          branch: ${{ fromJSON(steps.release-data.outputs.result).branchName }}
+          branch: ${{ fromJSON(steps.release-data-pre.outputs.result).branchName }}
 
       - name: Check if changeset-release/release/v* Branch exists
         id: release-changeset-branch-exists
         uses: GuillaumeFalourd/branch-exists@v1
         with:
-          branch: changeset-release/${{ fromJSON(steps.release-data.outputs.result).branchName }}
+          branch: changeset-release/${{ fromJSON(steps.release-data-pre.outputs.result).branchName }}
+
+      - name: Get previous Major Version Tag Name
+        id: previous-major-version
+        run: |
+          tagNameList=$(git tag --list ${{ fromJSON(steps.release-data-pre.outputs.result).tagPattern }} --sort="-refname")
+          set -- $tagNameList
+          echo "tagName=$1" >> $GITHUB_OUTPUT
+
+      - name: Checkout previous Major Version
+        if: fromJSON(steps.release-data-pre.outputs.result).isMajor == true
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.release-branch-exists.outputs.exists == 'true' && fromJSON(steps.release-data-pre.outputs.result).branchName || steps.previous-major-version.outputs.tagName }}
+
+      - name: Create Status Files
+        if: fromJSON(steps.release-data-pre.outputs.result).isMajor == true
+        run: pnpm m ls --depth=0 --json > monorepo.json
+
+      - name: Finalize Release Data
+        id: release-data
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+
+            const releaseData = ${{ steps.release-data-pre.outputs.result }}
+
+            if (!releaseData) return null
+
+            if (releaseData.isMajor) {
+              const monorepo = JSON.parse(fs.readFileSync('monorepo.json', 'utf8'))
+              const styles = JSON.parse(fs.readFileSync('./packages/styles/package.json', 'utf8'))
+
+              releaseData.old.dependencies = monorepo
+                .filter(pkg => pkg.version !== undefined)
+                .reduce((packages, pkg) => ({ ...packages, [pkg.name]: pkg.version }), { ...(styles.peerDependencies ?? {}) })
+            }
+
+            return releaseData
 
       - name: Create Summary
         id: summary
@@ -185,15 +232,12 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-          ref: changeset-release/${{ github.ref_name }}
+          ref: changeset-release/main
 
       - name: Setup Node & pnpm
         uses: ./.github/actions/setup-pnpm
         with:
           use_cache: false # do not use the pnpm cache if you do not install any dependencies
-
-      - name: Output Status Files
-        run: pnpm m ls --depth=0 --json > monorepo.json
 
       # Only run this Step if a major release was detected
       - name: Update or create Documentation _redirects
@@ -229,16 +273,10 @@ jobs:
 
             const versionsPath = './packages/documentation/public/assets/versions.json'
             const versions = JSON.parse(fs.readFileSync(versionsPath, 'utf8'))
-            const monorepo = JSON.parse(fs.readFileSync('monorepo.json', 'utf8'))
-            const styles = JSON.parse(fs.readFileSync('./packages/styles/package.json', 'utf8'))
-
-            const dependencies = monorepo
-              .filter(pkg => pkg.private === false && pkg.version !== undefined)
-              .reduce((packages, pkg) => ({ ...packages, [pkg.name]: pkg.version }), { ...(styles.peerDependencies ?? {}) })
 
             const currentVersion = versions.find(version => version.version.startsWith(release.old.major))
             currentVersion.version = release.new.version
-            currentVersion.dependencies = dependencies
+            currentVersion.dependencies = release.new.dependencies
 
             if (release.isMajor) {
               currentVersion.version = release.old.version
@@ -250,7 +288,7 @@ jobs:
                 version: release.new.version,
                 description: 'Pattern documentation, code snippets and implementation guidelines for the Design System Styles.',
                 url: `https://${release.new.siteUrl}.post.ch`,
-                dependencies
+                dependencies: release.new.dependencies
               })
             }
 
@@ -304,7 +342,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-          ref: '@swisspost/design-system-styles@${{ fromJSON(needs.collect-release-data.outputs.release-data).old.version }}'
+          ref: ${{ fromJSON(needs.collect-release-data.outputs.release-data).tagName }}
 
       - name: Remove Documentation versions.json
         run: rm -f ./packages/documentation/public/assets/versions.json

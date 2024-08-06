@@ -1,0 +1,33 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+:host {
+  max-width: 16.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr auto;
+  column-gap: post.$size-mini;
+  justify-items: start;
+  align-items: center;
+  padding: post.$size-micro;
+}
+
+post-avatar-picture {
+  grid-row: span 2;
+  align-self: start;
+}
+
+.username {
+  font-size: post.$font-size-16;
+  font-weight: post.$font-weight-bold;
+  line-height: post.$line-height-heading;
+}
+
+.company {
+  font-size: post.$font-size-14;
+  font-weight: post.$font-weight-normal;
+  line-height: post.$line-height-copy;
+
+  .username + & {
+    margin-top: post.$size-micro;
+  }
+}
