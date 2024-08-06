@@ -35,4 +35,9 @@ body {
       font-family: var(--bs-font-monospace) !important;
     }
   }
+
+  // full-screen preview
+  #storybook-root {
+    font-family: var(--bs-body-font-family);
+  }
 }
