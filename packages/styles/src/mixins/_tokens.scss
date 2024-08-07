@@ -1,12 +1,5 @@
-@use './../tokens/temp/components';
-@use 'sass:map';
-
 @mixin from($list) {
   @each $key, $value in $list {
     --#{$key}: #{$value};
   }
-}
-
-@function component($name) {
-  @return #{map.get(components.$post-interactives, $name)};
 }

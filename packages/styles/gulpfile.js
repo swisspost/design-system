@@ -169,14 +169,15 @@ gulp.task('sass:tests', () => {
   );
 });
 
-gulp.task('watchfiles', () => {
-  return gulp.watch('./src/**/*.scss', gulp.series('copy'));
-});
-
 /**
  * Watch task for scss development
  */
-gulp.task('watch', gulp.series('temprarily-copy-token-files', 'watchfiles'));
+gulp.task(
+  'watch',
+  gulp.series('temprarily-copy-token-files', () => {
+    return gulp.watch('./src/**/*.scss', 'copy');
+  }),
+);
 
 /**
  * Run copy and sass task in parallel per default

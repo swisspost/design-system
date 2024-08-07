@@ -3,9 +3,6 @@
 @use 'sass:map';
 @use 'sass:math';
 
-@use './../tokens/temp/components';
-@use './../mixins/tokens';
-
 @use './../variables/components/button';
 @use './../variables/color';
 @use './../variables/commons';
@@ -101,8 +98,8 @@
 // Primary
 .btn-primary {
   border-color: transparent;
-  background-color: tokens.component('post-comp-interactive-button-primary-color-bg-enabled');
-  color: tokens.component('post-comp-interactive-button-primary-color-fg-enabled');
+  background-color: var(--post-gray-80);
+  color: var(--post-contrast-color-inverted);
 
   &:disabled {
     background-color: color.$gray-10;
