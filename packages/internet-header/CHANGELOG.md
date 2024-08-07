@@ -1,5 +1,13 @@
 # @swisspost/internet-header
 
+## 1.14.4
+
+### Patch Changes
+
+- Improved accessibility of the header search by improving announcement of suggestions to screen reader users. (by [@alizedebray](https://github.com/alizedebray) with [#3328](https://github.com/swisspost/design-system/pull/3328))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.1.0
+
 ## 1.14.3
 
 ### Patch Changes

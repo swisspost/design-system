@@ -255,7 +255,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-07-21T01:05:01.665Z"
+      "modifiedAt": "2024-07-21T04:05:01.665Z"
     },
     {
       "uuid": "868b3530-c5fc-11e7-a943-005056a94f4a",
@@ -8069,7 +8069,7 @@
         }
       },
       "createdAt": "2018-10-22T13:13:23.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "8d6cdd60-3390-11e9-b9ae-005056873709",
@@ -8119,7 +8119,7 @@
         }
       },
       "createdAt": "2019-02-18T15:19:15.000Z",
-      "modifiedAt": "2024-07-20T05:24:06.034Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "e8ca8f52-6dc7-11ea-9425-005056873709",
@@ -8932,7 +8932,7 @@
         }
       },
       "createdAt": "2020-11-18T13:21:37.000Z",
-      "modifiedAt": "2024-07-20T17:05:05.795Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "785f77f0-29a4-11eb-a8df-005056873709",
@@ -9009,7 +9009,7 @@
         }
       },
       "createdAt": "2020-11-18T14:03:48.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "dc40ac90-2a48-11eb-a8df-005056873709",
@@ -10030,7 +10030,7 @@
         }
       },
       "createdAt": "2020-11-26T12:31:44.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "04db1e10-2fe4-11eb-a8df-005056873709",
@@ -10333,7 +10333,7 @@
         }
       },
       "createdAt": "2020-11-26T13:02:37.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "55e82f10-2fe8-11eb-a8df-005056873709",
@@ -10422,7 +10422,7 @@
         }
       },
       "createdAt": "2020-12-01T07:19:00.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "e6000200-33a6-11eb-9f99-005056873709",
@@ -10477,7 +10477,7 @@
         }
       },
       "createdAt": "2020-12-01T07:29:08.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "202107d0-33a8-11eb-9f99-005056873709",
@@ -10528,7 +10528,7 @@
         }
       },
       "createdAt": "2020-12-01T07:37:55.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "9cde9ca0-33a4-11eb-9f99-005056873709",
@@ -10564,7 +10564,7 @@
         }
       },
       "createdAt": "2020-12-01T07:12:46.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "15192810-33a6-11eb-9f99-005056873709",
@@ -10596,7 +10596,7 @@
         }
       },
       "createdAt": "2020-12-01T07:23:17.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "bb94e160-33ac-11eb-9f99-005056873709",
@@ -10666,7 +10666,7 @@
         }
       },
       "createdAt": "2020-12-01T08:18:52.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "64f60ec0-33b0-11eb-9f99-005056873709",
@@ -10841,7 +10841,7 @@
         }
       },
       "createdAt": "2020-12-01T08:50:23.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "8cca2fe0-3080-11eb-a2c4-005056873709",
@@ -11110,7 +11110,7 @@
         }
       },
       "createdAt": "2020-12-01T08:04:04.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "061d0900-395d-11eb-9f99-005056873709",
@@ -11147,7 +11147,7 @@
         }
       },
       "createdAt": "2020-12-08T13:55:26.000Z",
-      "modifiedAt": "2024-07-18T22:05:00.974Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "fa4e69c0-3bbe-11eb-9f99-005056873709",
@@ -11348,7 +11348,7 @@
         }
       },
       "createdAt": "2020-12-18T07:19:10.000Z",
-      "modifiedAt": "2024-07-20T18:05:09.867Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "a999e520-4101-11eb-9f99-005056873709",
@@ -12170,7 +12170,7 @@
         }
       },
       "createdAt": "2021-03-12T09:54:54.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "fb843a20-8319-11eb-95dd-005056873709",
@@ -13336,7 +13336,7 @@
         }
       },
       "createdAt": "2021-04-09T07:20:50.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "ebda9c70-be17-11eb-b1e9-005056873709",
@@ -13626,7 +13626,7 @@
         }
       },
       "createdAt": "2021-06-15T11:10:54.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "e59335d0-cdca-11eb-b1e9-005056873709",
@@ -13667,7 +13667,7 @@
         }
       },
       "createdAt": "2021-06-15T11:14:48.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "6ee63d50-cdcb-11eb-b1e9-005056873709",
@@ -13700,7 +13700,7 @@
         }
       },
       "createdAt": "2021-06-15T11:18:38.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "081f4610-e60e-11eb-94c2-005056873709",
@@ -13791,7 +13791,7 @@
         }
       },
       "createdAt": "2021-07-16T08:22:40.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "713f6f60-e610-11eb-94c2-005056873709",
@@ -13894,7 +13894,7 @@
         }
       },
       "createdAt": "2021-07-16T08:38:15.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "bf0265d0-e611-11eb-94c2-005056873709",
@@ -13987,7 +13987,7 @@
         }
       },
       "createdAt": "2021-07-16T08:47:49.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "1cd9b950-e613-11eb-94c2-005056873709",
@@ -14248,7 +14248,7 @@
         }
       },
       "createdAt": "2021-07-16T09:18:34.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "89a350b0-e617-11eb-94c2-005056873709",
@@ -14550,7 +14550,7 @@
         }
       },
       "createdAt": "2021-07-12T06:51:50.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "a63dd7e0-e2de-11eb-94c2-005056873709",
@@ -14588,7 +14588,7 @@
         }
       },
       "createdAt": "2021-07-12T06:59:06.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "96d46b60-e2df-11eb-94c2-005056873709",
@@ -14631,7 +14631,7 @@
         }
       },
       "createdAt": "2021-07-12T07:05:50.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "3c28c400-e39c-11eb-94c2-005056873709",
@@ -15225,7 +15225,7 @@
         }
       },
       "createdAt": "2021-09-02T05:58:39.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "9b23ff70-2838-11ec-b5ef-005056873709",
@@ -15963,7 +15963,7 @@
         }
       },
       "createdAt": "2021-12-03T15:05:52.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "eec47c70-5666-11ec-a5b2-005056873709",
@@ -16003,7 +16003,7 @@
         }
       },
       "createdAt": "2021-12-06T07:34:23.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "c048a7d0-5667-11ec-a5b2-005056873709",
@@ -16946,7 +16946,7 @@
         }
       },
       "createdAt": "2022-02-01T11:07:14.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "b7e4e850-834f-11ec-a5b2-005056873709",
@@ -17037,7 +17037,7 @@
         }
       },
       "createdAt": "2022-02-01T11:18:27.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "b1e8b3d0-8351-11ec-a5b2-005056873709",
@@ -17777,7 +17777,7 @@
         }
       },
       "createdAt": "2022-04-20T11:48:23.000Z",
-      "modifiedAt": "2024-07-20T18:05:09.867Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "b8bae840-c0a0-11ec-8e26-005056873709",
@@ -17855,7 +17855,7 @@
         }
       },
       "createdAt": "2022-04-20T12:00:21.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "c269ab30-c0a3-11ec-8e26-005056873709",
@@ -18255,7 +18255,7 @@
         }
       },
       "createdAt": "2022-04-20T15:07:35.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "6dcae1c0-c0bc-11ec-8e26-005056873709",
@@ -18335,7 +18335,7 @@
         }
       },
       "createdAt": "2022-04-26T06:25:43.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "f8275300-cb7d-11ec-a47e-005056873709",
@@ -20336,7 +20336,7 @@
         }
       },
       "createdAt": "2022-06-17T11:50:10.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "8fa6b4e0-ee34-11ec-aa92-005056873709",
@@ -23790,7 +23790,7 @@
         }
       },
       "createdAt": "2022-12-14T06:27:56.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "d6011300-7b78-11ed-8faa-005056873709",
@@ -23936,7 +23936,7 @@
         }
       },
       "createdAt": "2022-12-14T06:37:30.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "4b6266c0-7b7a-11ed-8faa-005056873709",
@@ -23987,7 +23987,7 @@
         }
       },
       "createdAt": "2022-12-14T06:41:09.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "a9f6be20-7b7a-11ed-8faa-005056873709",
@@ -26189,7 +26189,7 @@
         }
       },
       "createdAt": "2023-08-30T08:17:57.000Z",
-      "modifiedAt": "2024-07-20T05:24:06.034Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "496e1750-470e-11ee-9f2c-005056873709",
@@ -26735,7 +26735,7 @@
         }
       },
       "createdAt": "2023-11-24T09:18:01.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "6d26bd90-8cec-11ee-aba1-005056873709",
@@ -28243,6 +28243,402 @@
       },
       "createdAt": "2024-07-19T12:12:23.000Z",
       "modifiedAt": "2024-07-20T05:24:06.034Z"
+    },
+    {
+      "uuid": "c8694760-4824-11ef-b101-005056873709",
+      "id": 811211,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811211/storage/ODExMjEwLzAvbWFzdGVy",
+        "keywords": [
+          "Microsoft AI Builder",
+          "MS AI Builder",
+          "Microsoft"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2600.svg",
+        "basename": "2600",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-22T12:20:29.000Z",
+      "modifiedAt": "2024-07-23T12:05:03.450Z"
+    },
+    {
+      "uuid": "870d7d22-4826-11ef-b101-005056873709",
+      "id": 811223,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811223/storage/ODExMjIyLzAvbWFzdGVy",
+        "keywords": [
+          "Microsoft"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2601.svg",
+        "basename": "2601",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-22T12:32:58.000Z",
+      "modifiedAt": "2024-07-23T12:05:03.450Z"
+    },
+    {
+      "uuid": "693d6390-4827-11ef-b101-005056873709",
+      "id": 811231,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811231/storage/ODExMjMwLzAvbWFzdGVy",
+        "keywords": [
+          "Microsoft",
+          "Microsoft Powerapps",
+          "Microsoft PowerApps",
+          "MS Powerapps",
+          "Powerapps"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2602.svg",
+        "basename": "2602",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-22T12:39:17.000Z",
+      "modifiedAt": "2024-07-23T12:05:03.450Z"
+    },
+    {
+      "uuid": "7dd5f3c0-4828-11ef-b101-005056873709",
+      "id": 811239,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811239/storage/ODExMjM4LzAvbWFzdGVy",
+        "keywords": [
+          "Microsoft",
+          "Microsoft Power Automate",
+          "Microsoft Power Automate Corporation",
+          "MS Power Automate",
+          "Power terminals",
+          "Power Automate",
+          "Powerautomate",
+          "Power distributori automatici",
+          "Sinnbild",
+          "Symbol",
+          "Simbolo",
+          "Symbole"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2603.svg",
+        "basename": "2603",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-22T12:47:01.000Z",
+      "modifiedAt": "2024-07-23T12:05:03.450Z"
+    },
+    {
+      "uuid": "995218f0-482c-11ef-b101-005056873709",
+      "id": 811247,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811247/storage/ODExMjQ2LzAvbWFzdGVy",
+        "keywords": [
+          "Microsoft"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2604.svg",
+        "basename": "2604",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-22T13:16:25.000Z",
+      "modifiedAt": "2024-07-23T12:05:03.450Z"
+    },
+    {
+      "uuid": "3d8b6b10-482d-11ef-b101-005056873709",
+      "id": 811254,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811254/storage/ODExMjUzLzAvbWFzdGVy",
+        "keywords": [
+          "Microsoft"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2605.svg",
+        "basename": "2605",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-22T13:21:01.000Z",
+      "modifiedAt": "2024-07-23T12:05:03.450Z"
+    },
+    {
+      "uuid": "de898f60-482d-11ef-b101-005056873709",
+      "id": 811260,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811260/storage/ODExMjU5LzAvbWFzdGVy",
+        "keywords": [
+          "Microsoft"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2606.svg",
+        "basename": "2606",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-22T13:25:31.000Z",
+      "modifiedAt": "2024-07-23T12:05:03.450Z"
+    },
+    {
+      "uuid": "890004b0-482e-11ef-b101-005056873709",
+      "id": 811266,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811266/storage/ODExMjY1LzAvbWFzdGVy",
+        "keywords": [
+          "Microsoft"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2607.svg",
+        "basename": "2607",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-22T13:30:17.000Z",
+      "modifiedAt": "2024-07-23T12:05:03.450Z"
+    },
+    {
+      "uuid": "57a1d0a0-482f-11ef-b101-005056873709",
+      "id": 811272,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811272/storage/ODExMjcxLzAvbWFzdGVy",
+        "keywords": [
+          "Benutzer",
+          "Utilisateur",
+          "user",
+          "Utente",
+          "Hinzufügen",
+          "Add",
+          "Aggiungere",
+          "Ajouter",
+          "Sinnbild",
+          "Symbol",
+          "Simbolo",
+          "Symbole",
+          "durchqueren",
+          "Cross",
+          "Incrocio",
+          "Traverser",
+          "Wegweiser",
+          "Sign",
+          "Segno",
+          "Signer",
+          "Wegweisen",
+          "Segnalare",
+          "Indiquer",
+          "unterscheiben",
+          "sign",
+          "Firmare",
+          "Wegweisern",
+          "Indicazioni",
+          "Indicateurs"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2608.svg",
+        "basename": "2608",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-22T13:36:04.000Z",
+      "modifiedAt": "2024-07-22T13:38:22.000Z"
+    },
+    {
+      "uuid": "ad12ff10-4833-11ef-b101-005056873709",
+      "id": 811276,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811276/storage/ODExMjc1LzAvbWFzdGVy",
+        "keywords": [
+          "Microsoft",
+          "Schornstein",
+          "Smoke Pipe",
+          "Tubo Fumo",
+          "Tuyau De Fumée"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2609.svg",
+        "basename": "2609",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-22T14:07:05.000Z",
+      "modifiedAt": "2024-07-23T12:05:03.450Z"
+    },
+    {
+      "uuid": "70985c00-4a5a-11ef-b101-005056873709",
+      "id": 811432,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811432/storage/ODExNDMxLzAvbWFzdGVy",
+        "keywords": [
+          "Marktplatz"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2610.svg",
+        "basename": "2610",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-25T07:49:36.000Z",
+      "modifiedAt": "2024-07-26T07:05:02.718Z"
+    },
+    {
+      "uuid": "d73262b0-4b38-11ef-b101-005056873709",
+      "id": 811531,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811531/storage/ODExNTMwLzAvbWFzdGVy",
+        "keywords": [
+          "Filter",
+          "filter",
+          "Filtre",
+          "Filtro",
+          "Reset filter",
+          "Filter zurücksetzen",
+          "Réinitialiser le filtre",
+          "Ripristinare il filtro",
+          "Clear Filter",
+          "Filter leeren",
+          "Vider le filtre",
+          "Svuotare il filtro"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2611.svg",
+        "basename": "2611",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-26T10:21:37.000Z",
+      "modifiedAt": "2024-07-27T10:05:03.215Z"
+    },
+    {
+      "uuid": "32f87450-4da9-11ef-b9cd-005056873709",
+      "id": 811646,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/811646/storage/ODExNjQ1LzAvbWFzdGVy",
+        "keywords": [
+          "Ordinazione",
+          "Bestellung",
+          "Ordering",
+          "Commande",
+          "Onlinebestellung",
+          "Online order",
+          "Commande en ligne",
+          "Ordinazione online",
+          "Order history",
+          "Bestell Historie",
+          "Historique des commandes",
+          "Cronologia dell’ordine"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2612.svg",
+        "basename": "2612",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-29T12:50:57.000Z",
+      "modifiedAt": "2024-07-30T12:05:02.402Z"
     },
     {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
@@ -39004,7 +39400,7 @@
         }
       },
       "createdAt": "2018-10-15T14:32:41.000Z",
-      "modifiedAt": "2024-07-18T21:05:00.962Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "e0877040-d68f-11e8-b043-005056873709",
@@ -39183,7 +39579,7 @@
         }
       },
       "createdAt": "2018-10-23T06:56:56.000Z",
-      "modifiedAt": "2024-07-20T05:24:06.034Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "79a3c4c0-e196-11e8-b0ff-005056873709",
@@ -39975,7 +40371,7 @@
         }
       },
       "createdAt": "2020-03-24T11:30:00.000Z",
-      "modifiedAt": "2024-07-18T09:05:09.019Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "c756db70-6dc3-11ea-9425-005056873709",
@@ -40137,7 +40533,7 @@
         }
       },
       "createdAt": "2020-07-31T12:58:09.000Z",
-      "modifiedAt": "2024-07-20T05:24:06.034Z"
+      "modifiedAt": "2024-08-03T17:05:06.929Z"
     },
     {
       "uuid": "9fe0a270-c603-11e7-a943-005056a94f4a",
@@ -40798,37 +41194,6 @@
   "wrongViewBox": [],
   "noKeywords": [
     {
-      "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
-      "id": 352314,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352314/storage/NTM3MjI0LzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3073.svg",
-        "basename": "3073",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
-    },
-    {
       "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
       "id": 352299,
       "type": "picture.pictogram.",
@@ -40858,6 +41223,37 @@
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
       "modifiedAt": "2024-03-12T14:51:50.000Z"
+    },
+    {
+      "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
+      "id": 352314,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352314/storage/NTM3MjI0LzAvbWFzdGVy",
+        "businessfield": [
+          "kommunikation"
+        ],
+        "keywords": [
+          ""
+        ],
+        "year": [
+          "2017"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "3073.svg",
+        "basename": "3073",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2017-11-10T10:11:07.000Z",
+      "modifiedAt": "2024-03-12T14:51:51.000Z"
     },
     {
       "uuid": "6b09bf30-9901-11eb-935b-005056873709",
@@ -40946,11 +41342,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2024-07-21T01:22:39.886Z",
+  "created": "2024-08-04T01:23:09.453Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 929
+    "success": 942
   },
-  "version": "7.3.1"
+  "version": "8.1.0"
 }
