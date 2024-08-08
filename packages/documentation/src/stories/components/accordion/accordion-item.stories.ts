@@ -18,6 +18,9 @@ const meta: Meta = {
     headingLevel: {
       name: 'heading-level',
       control: false, // disable the control since it is not usable on the story
+      table: {
+        disable:true,
+      }
     },
   },
 };
