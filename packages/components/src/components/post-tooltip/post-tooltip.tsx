@@ -63,7 +63,7 @@ export class PostTooltip {
   /**
    * Toggle tooltip display
    * @param target An element where the tooltip should be shown
-   * @param force Pass true to always show or false to always hide
+   * @param [force] Pass true to always show or false to always hide
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean) {
