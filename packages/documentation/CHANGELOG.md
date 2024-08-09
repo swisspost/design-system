@@ -1,5 +1,19 @@
 # @swisspost/design-system-documentation
 
+## 5.3.5
+
+### Patch Changes
+
+- Fixed the font in the full page previews. (by [@alizedebray](https://github.com/alizedebray) with [#3378](https://github.com/swisspost/design-system/pull/3378))
+
+- Marked the card button and the carousel as deprecated (will be removed in a future version). (by [@schaertim](https://github.com/schaertim) with [#3380](https://github.com/swisspost/design-system/pull/3380))
+- Updated dependencies:
+  - @swisspost/design-system-icons@8.2.0
+  - @swisspost/design-system-styles@8.2.0
+  - @swisspost/design-system-components@8.2.0
+  - @swisspost/design-system-components-react@8.2.0
+  - @swisspost/internet-header@1.14.5
+
 ## 5.3.4
 
 ### Patch Changes
