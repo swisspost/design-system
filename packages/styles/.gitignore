@@ -13,3 +13,6 @@ storybook-static
 # Mac OSX Finder files.
 **/.DS_Store
 .DS_Store
+
+# Temporary files
+src/tokens/temp/
