@@ -1,13 +1,19 @@
+@use 'sass:list';
 @use 'sass:math';
 @use '@swisspost/design-system-styles/core' as post;
 @use '@swisspost/design-system-styles/components/form-check';
 
 /*
-* There are a whole bunch of !important statments in this file.
+* There are a whole bunch of !important statements in this file.
 * They are necessary and should not be removed, because we need to override the .form-check styles here.
 */
 
 :host {
+
+  // remove as soon as all browser support :host-context()
+  // https://caniuse.com/?search=%3Ahost-context()
+  --post-card-control-bg-context: #{post.$backgrounds};
+
   display: flex;
   width: 100%;
 }
@@ -416,14 +422,22 @@
 
 // remove as soon as all browser support :host-context()
 // https://caniuse.com/?search=%3Ahost-context()
-:host(:not(:last-child)) {
-  .card-control[data-host-context*='fieldset'] {
+:host(:not([data-context])) {
+  display: none;
+}
+
+:host([data-context*='fieldset']:not(:last-child)) {
+  .card-control {
     margin-bottom: post.$size-regular;
   }
 }
 
+$dark-bg-context: ();
 @each $bg in post.$dark-backgrounds {
-  .card-control[data-host-context*='#{$bg}'] {
+  $dark-bg-context: list.append($dark-bg-context, "[data-context*='#{$bg}']", $separator: comma);
+}
+:host(:is(#{$dark-bg-context})) {
+  .card-control {
     --post-card-control-border-color: #{post.$white};
     --post-card-control-bg: transparent;
     --post-card-control-color: #{post.$white};
