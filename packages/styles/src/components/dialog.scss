@@ -234,6 +234,7 @@ dialog:not([data-animation='none']) {
     &[data-position='top'] {
       --_dialog-slide-in-offset: -3rem;
     }
+
     &[data-position='bottom'] {
       --_dialog-slide-in-offset: 3rem;
     }
