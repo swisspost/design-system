@@ -1,4 +1,4 @@
-import { registerTransforms } from '@tokens-studio/sd-transforms';
+import { register } from '@tokens-studio/sd-transforms';
 import StyleDictionary from 'style-dictionary';
 import { usesReferences } from 'style-dictionary/utils';
 import { promises } from 'fs';
@@ -9,7 +9,7 @@ const FILE_HEADER =
   '// Do not edit manually!\n// This file was generated on:\n// {date} by the @swisspost/design-system-tokens package build command\n\n';
 const GLOBAL_TOKEN_NAMESPACES = ['post'];
 
-registerTransforms(StyleDictionary);
+register(StyleDictionary);
 
 /**
  * @function StyleDictionary.registerFilter()

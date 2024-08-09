@@ -37,7 +37,7 @@ $table-cell-padding: $table-cell-padding-y $table-cell-padding-x !default;
 $table-cell-padding-sm: $table-cell-padding-y-sm $table-cell-padding-x-sm !default;
 
 // DEPRECATED
-$table-head-color: red !default;
+$table-head-color: color.$error !default;
 $table-dark-bg: color.$gray-80 !default;
 $table-dark-accent-bg: rgba(color.$white, 0.05) !default;
 $table-dark-hover-bg: rgba(color.$white, 0.075) !default;
