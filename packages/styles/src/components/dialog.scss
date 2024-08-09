@@ -6,12 +6,6 @@
 
 @use './../themes/bootstrap/core' as *;
 
-// Prevent page from scrolling while a dialog is open
-// Missing support for :has is negligible, it's progressive enhancement. It will magically work some day
-html:has(dialog[open]) {
-  overflow: hidden;
-}
-
 dialog {
   @include elevation.elevation('elevation-5');
 
