@@ -10,7 +10,6 @@ const meta: Meta = {
     },
   },
   args: {
-    notificationType: 'general',
     title: 'Dialog',
     content: 'This is a dialog',
     size: 'medium',
@@ -18,19 +17,9 @@ const meta: Meta = {
     backgroundColor: 'bg-white',
     animation: 'pop-in',
     closeButton: true,
+    open: false,
   },
   argTypes: {
-    notificationType: {
-      name: 'Notification type',
-      description: 'Choose the type of notification to display',
-      control: 'select',
-      options: ['general', 'error', 'warning', 'success', 'brand'],
-      if: {
-        arg: 'variant',
-        eq: 'notification',
-      },
-      table: { category: 'Variant' },
-    },
     title: {
       name: 'Title',
       description: 'Optional title',
@@ -99,6 +88,12 @@ const meta: Meta = {
       control: 'boolean',
       table: { category: 'Content' },
     },
+    open: {
+      name: 'Default open',
+      description: 'Test property for snapshots',
+      control: 'boolean',
+      table: { disable: true },
+    },
   },
   decorators: [
     (story: Function) =>
@@ -115,14 +110,6 @@ const meta: Meta = {
 };
 
 export default meta;
-
-const notificationTypeIconMap: { [key: string]: { icon: number; color: string } } = {
-  general: { icon: 1034, color: 'bg-info' },
-  error: { icon: 2104, color: 'bg-danger' },
-  warning: { icon: 2106, color: 'bg-warning' },
-  success: { icon: 2105, color: 'bg-success' },
-  brand: { icon: 1034, color: 'bg-yellow' },
-};
 
 const getHeader = (text: string) => {
   return html`<h2>${text}</h2>`;
@@ -164,6 +151,7 @@ const Template = {
         data-size="${args.size}"
         data-position="${args.position}"
         data-animation="${args.animation}"
+        open="${args.open || nothing}"
       >
         <form method="dialog" class="dialog-grid">
           ${postDialogIcon}
@@ -219,9 +207,9 @@ const FormTemplate = {
 
 const CustomContentTemplate = {
   ...Template,
-  render: (args: Args) => {
+  render: () => {
     return html`
-      <dialog>
+      <dialog open>
         <form method="dialog" onsubmit="console.log(event)" class="p-regular-r">
           <h2>Custom content</h2>
           <p>This is some other content, just placed inside the dialog.</p>
