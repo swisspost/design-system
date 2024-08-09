@@ -11,6 +11,7 @@
 @use '../mixins/utilities' as utility-mx;
 
 .form-check {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
   row-gap: form-check.$form-check-row-gap;
