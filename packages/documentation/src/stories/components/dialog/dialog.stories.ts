@@ -96,7 +96,7 @@ const meta: Meta = {
     },
   },
   decorators: [
-    (story: Function) =>
+    story =>
       html`<div>
         <button
           id="show-dialog-button"
