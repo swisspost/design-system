@@ -1,12 +1,10 @@
-import { BADGE } from '@geometricpanda/storybook-addon-badges';
 import { Args, Meta, StoryObj } from '@storybook/web-components';
-import { TemplateResult, html, nothing } from 'lit-html';
+import { html, nothing } from 'lit-html';
 
 const meta: Meta = {
   id: '562eac2b-6dc1-4007-ba8e-4e981cef0cbc',
   title: 'Components/Dialog',
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
     design: {
       type: 'figma',
     },
@@ -84,6 +82,7 @@ const meta: Meta = {
         },
       },
       options: ['none', '1034', '2105', '2104', '2106'],
+      table: { category: 'Content' },
     },
     backgroundColor: {
       name: 'Background color',
@@ -223,22 +222,13 @@ const CustomContentTemplate = {
   render: (args: Args) => {
     return html`
       <dialog>
-        <form method="dialog" onsubmit="console.log(event)">
+        <form method="dialog" onsubmit="console.log(event)" class="p-regular-r">
           <h2>Custom content</h2>
           <p>This is some other content, just placed inside the dialog.</p>
           <button class="btn btn-primary">Ok</button>
         </form>
       </dialog>
     `;
-  },
-};
-
-const CookieTemplate = {
-  ...Template,
-  args: {
-    variant: 'cookie',
-    closeButton: false,
-    size: 'large',
   },
 };
 
@@ -250,10 +240,6 @@ export const Default: Story = {
 
 export const Form: Story = {
   ...FormTemplate,
-};
-
-export const Cookie: Story = {
-  ...CookieTemplate,
 };
 
 export const Custom: Story = {
