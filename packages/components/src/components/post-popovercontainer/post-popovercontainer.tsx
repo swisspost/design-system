@@ -64,7 +64,7 @@ export class PostPopovercontainer {
   /**
    * Animation style
    */
-  @Prop() readonly animation?: 'pop-in' = null;
+  @Prop() readonly animation?: 'pop-in';
 
   /**
    * Wheter or not to display a little pointer arrow
