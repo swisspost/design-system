@@ -42,7 +42,7 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@swisspost/design-system-styles": "workspace:7.4.1",
+    "@swisspost/design-system-styles": "workspace:7.4.2",
     "body-scroll-lock": "4.0.0-beta.0",
     "iframe-resizer": "4.4.2",
     "jquery": "3.7.1",

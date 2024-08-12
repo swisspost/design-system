@@ -32,7 +32,7 @@
     "@swisspost/design-system-components-react": "workspace:7.4.2",
     "@swisspost/design-system-icons": "workspace:7.4.2",
     "@swisspost/design-system-styles": "workspace:7.4.2",
-    "@swisspost/internet-header": "workspace:1.14.4",
+    "@swisspost/internet-header": "workspace:1.14.3",
     "bootstrap": "5.3.3"
   },
   "devDependencies": {
