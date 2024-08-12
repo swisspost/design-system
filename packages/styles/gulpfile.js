@@ -25,7 +25,7 @@ gulp.task('copy', () => {
  * pnpm does not correctly install dependencies of dependencies for workspace packages.
  * See https://github.com/pnpm/pnpm/issues/8338 for more information and reproduction
  */
-gulp.task('temprarily-copy-token-files', () => {
+gulp.task('temporarily-copy-token-files', () => {
   return gulp.src(['../tokens/dist/*.scss']).pipe(gulp.dest('./src/tokens/temp'));
 });
 
@@ -179,7 +179,7 @@ gulp.task('sass:tests', () => {
  */
 gulp.task(
   'watch',
-  gulp.series('temprarily-copy-token-files', () => {
+  gulp.series('temporarily-copy-token-files', () => {
     return gulp.watch('./src/**/*.scss', 'copy');
   }),
 );
@@ -191,7 +191,7 @@ exports.default = gulp.task(
   'build',
   gulp.parallel(
     gulp.series('map-icons', 'copy', 'autoprefixer', 'transform-package-json'),
-    gulp.series('temprarily-copy-token-files', 'sass'),
+    gulp.series('temporarily-copy-token-files', 'sass'),
     gulp.series('build-components'),
   ),
 );
