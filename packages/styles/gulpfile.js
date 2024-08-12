@@ -174,7 +174,7 @@ gulp.task('sass:tests', () => {
  */
 gulp.task(
   'watch',
-  gulp.series('temprarily-copy-token-files', () => {
+  gulp.series('temporarily-copy-token-files', () => {
     return gulp.watch('./src/**/*.scss', 'copy');
   }),
 );
