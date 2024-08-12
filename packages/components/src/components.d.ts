@@ -83,7 +83,7 @@ export namespace Components {
         /**
           * Defines the users firstname.
          */
-        "firstname"?: string;
+        "firstname": string;
         /**
           * Defines the users lastname.
          */
@@ -603,7 +603,7 @@ declare namespace LocalJSX {
         /**
           * Defines the users firstname.
          */
-        "firstname"?: string;
+        "firstname": string;
         /**
           * Defines the users lastname.
          */

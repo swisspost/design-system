@@ -8,6 +8,7 @@
 
 :host(.small) {
   width: 32px;
+  font-size: post.$font-size-12;
 }
 
 img {
@@ -31,5 +32,5 @@ post-icon {
 }
 
 post-icon {
-  padding: 4px;
+  padding: post.$size-micro;
 }

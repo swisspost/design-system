@@ -1,14 +1,20 @@
-import { Component, h, Host, Prop, State } from '@stencil/core';
+import { Component, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import sha256 from 'crypto-js/sha256';
+import { checkNonEmpty, checkOneOf } from '@/utils';
 import aiconizer from './aiconizer';
 
 // https://docs.gravatar.com/api/avatars/images/
-const GRAVATAR_REQUESTED_IMAGE_SIZE = 40;
-const GRAVATAR_REQUESTED_IMAGE_DEFAULT = '404';
-const GRAVATAR_REQUESTED_IMAGE_RATING = 'g';
+const GRAVATAR_DEFAULT = '404';
+const GRAVATAR_RATING = 'g';
 
-const GRAVATAR_BASE_URL = `https://www.gravatar.com/avatar/{email}?s=${GRAVATAR_REQUESTED_IMAGE_SIZE}&d=${GRAVATAR_REQUESTED_IMAGE_DEFAULT}&r=${GRAVATAR_REQUESTED_IMAGE_RATING}`;
+const GRAVATAR_BASE_URL = `https://www.gravatar.com/avatar/{email}?s={size}&d=${GRAVATAR_DEFAULT}&r=${GRAVATAR_RATING}`;
+
+enum AvatarType {
+  Gravatar = 'gravatar',
+  Initials = 'initials',
+  Null = null,
+}
 
 @Component({
   tag: 'post-avatar-picture',
@@ -29,38 +35,66 @@ export class PostAvatarPicture {
   /**
    * Defines the users firstname.
    */
-  @Prop() readonly firstname?: string;
+  @Prop() readonly firstname!: string;
 
   /**
    * Defines the users lastname.
    */
   @Prop() readonly lastname?: string;
 
-  @State() avatarType: 'gravatar' | 'initials' | 'fallback' | null = null;
+  private static GRAVATAR_SIZES = {
+    large: 40,
+    small: 32,
+  };
+
+  @State() avatarType: AvatarType = null;
   @State() gravatarUrl = '';
   @State() initials = '';
 
+  @Watch('size')
+  firstnameChanged() {
+    checkNonEmpty(
+      this.firstname,
+      'The `firstname` property of the `post-avatar-picture` is required!',
+    );
+  }
+
+  @Watch('size')
+  sizeChanged() {
+    checkOneOf(
+      this.size,
+      ['large', 'small'],
+      'The `size` property of the `post-avatar-picture` must be either `large` or `small`.',
+    );
+  }
+
   private async getAvatarType() {
-    let response = { ok: false, url: null };
+    let response: Response = new Response();
 
     if (this.email) {
-      const gravatarUrl = GRAVATAR_BASE_URL.replace('{email}', sha256(this.email));
+      const gravatarUrl = GRAVATAR_BASE_URL.replace(
+        '{size}',
+        (PostAvatarPicture.GRAVATAR_SIZES[this.size] ?? '').toString(),
+      ).replace('{email}', sha256(this.email));
       response = await fetch(gravatarUrl);
     }
 
     if (this.email && response.ok) {
       this.gravatarUrl = response.url;
-      this.avatarType = 'gravatar';
-    } else if (this.firstname || this.lastname) {
-      this.initials = `${this.firstname?.charAt(0) ?? ''}${this.lastname?.charAt(0) ?? ''}`.trim();
-      this.avatarType = 'initials';
+      this.avatarType = AvatarType.Gravatar;
     } else {
-      this.avatarType = 'fallback';
+      this.initials = `${this.firstname?.charAt(0) ?? ''}${this.lastname?.charAt(0) ?? ''}`.trim();
+      this.avatarType = AvatarType.Initials;
     }
   }
 
   connectedCallback() {
     aiconizer.register();
+  }
+
+  componentDidLoad() {
+    this.firstnameChanged();
+    this.sizeChanged();
   }
 
   componentWillRender() {
@@ -75,10 +109,9 @@ export class PostAvatarPicture {
     return (
       <Host data-version={version} class={this.size}>
         {this.avatarType === 'gravatar' && (
-          <img src={this.gravatarUrl} alt="gravatar profile picture" />
+          <img src={this.gravatarUrl} alt={`${this.email} gravatar`} />
         )}
         {this.avatarType === 'initials' && <div>{this.initials}</div>}
-        {this.avatarType === 'fallback' && <post-icon name="3260"></post-icon>}
       </Host>
     );
   }
