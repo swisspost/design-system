@@ -31,7 +31,7 @@
     "linkDirectory": true
   },
   "devDependencies": {
-    "@tokens-studio/sd-transforms": "1.2.0",
+    "@tokens-studio/sd-transforms": "1.2.2",
     "style-dictionary": "4.0.1"
   }
 }
