@@ -1,6 +1,6 @@
 # @swisspost/design-system-documentation
 
-## 5.3.4
+## 5.3.3-patch.1
 
 ### Patch Changes
 
