@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as AvatarPictureStories from './avatar-picture.stories';
 
 <Meta of={AvatarPictureStories} />
@@ -13,17 +13,17 @@ import * as AvatarPictureStories from './avatar-picture.stories';
 
 <p className="lead">Avatar picture is used to display a user profile as a picture, initials, or an icon.</p>
 
-The `<post-avatar-picture>` component provides several properties to change its appereance. The most important one is probably the `email` property, which is used to request a gravatar picture.
+The `<post-avatar-picture>` component provides several properties to change its appearance. The most important one is probably the `email` property, which is used to request a Gravatar picture.
 
-Don't know gravatar or haven't set up a profile yet, let's change this: [Signup](https://gravatar.com) now!
+Don't know Gravatar or haven't set up a profile yet, let's change this: [Signup](https://gravatar.com) now!
 
 <Canvas of={AvatarPictureStories.Default} />
 <Controls of={AvatarPictureStories.Default} />
 
 ## Property order
 
-1. If an email address (with a gravatar profile behind) is defined on the component, this will be used before anything else.
-2. If the component can't get a picture from gravatar, but instead a firstname and/or lastname is defined on the component, this will be used next.
+1. If an email address (with a Gravatar profile behind) is defined on the component, this will be used before anything else.
+2. If the component can't get a picture from Gravatar, but instead a firstname and/or lastname is defined on the component, this will be used next.
 3. If none of the above cases is true, the component will render a specific fallback icon.
 
 ## Check the Content Security Policy
