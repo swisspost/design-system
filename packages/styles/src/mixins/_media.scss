@@ -5,7 +5,7 @@
 }
 
 @mixin max($device-size) {
-  @media screen and (max-width: ($device-size - 0.1)) {
+  @media screen and (max-width: ($device-size - 0.01)) {
     @content;
   }
 }
