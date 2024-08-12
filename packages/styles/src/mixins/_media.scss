@@ -11,7 +11,7 @@
 }
 
 @mixin between($min-size, $max-size) {
-  @media screen and (min-width: $min-size) and (max-width: ($max-size - 0.1)) {
+  @media screen and (min-width: $min-size) and (max-width: ($max-size - 0.01)) {
     @content;
   }
 }
