@@ -1,0 +1,11 @@
+@use './core';
+@use './../placeholders/modes';
+
+:root,
+[data-color-mode='light'] {
+  @extend %color-mode-light;
+}
+
+[data-color-mode='dark'] {
+  @extend %color-mode-dark;
+}

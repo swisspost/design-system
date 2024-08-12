@@ -1,0 +1,17 @@
+@mixin min($device-size) {
+  @media screen and (min-width: $device-size) {
+    @content;
+  }
+}
+
+@mixin max($device-size) {
+  @media screen and (max-width: ($device-size - 0.01)) {
+    @content;
+  }
+}
+
+@mixin between($min-size, $max-size) {
+  @media screen and (min-width: $min-size) and (max-width: ($max-size - 0.01)) {
+    @content;
+  }
+}
