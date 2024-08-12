@@ -1,6 +1,5 @@
 import { Component, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import sha256 from 'crypto-js/sha256';
 import { checkNonEmpty, checkOneOf } from '@/utils';
 import aiconizer from './aiconizer';
 
@@ -72,10 +71,16 @@ export class PostAvatarPicture {
     let response: Response = new Response();
 
     if (this.email) {
-      const gravatarUrl = GRAVATAR_BASE_URL.replace(
-        '{size}',
-        (PostAvatarPicture.GRAVATAR_SIZES[this.size] ?? '').toString(),
-      ).replace('{email}', sha256(this.email));
+      const email = await crypto.subtle
+        .digest('SHA-256', new TextEncoder().encode(this.email))
+        .then(buffer => {
+          return Array.from(new Uint8Array(buffer))
+            .map(bytes => bytes.toString(16).padStart(2, '0'))
+            .join('');
+        });
+      const size = (PostAvatarPicture.GRAVATAR_SIZES[this.size] ?? '').toString();
+      const gravatarUrl = GRAVATAR_BASE_URL.replace('{size}', size).replace('{email}', email);
+
       response = await fetch(gravatarUrl);
     }
 
