@@ -4,8 +4,11 @@
 :host,
 .logo {
   display: inline-block;
-  height: 100%;
-  aspect-ratio: 1 / 1;
+
+  &,
+  .logo > svg {
+    height: 100%;
+  }
 }
 
 .description {
