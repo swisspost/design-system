@@ -11,7 +11,7 @@ import * as AvatarPictureStories from './avatar-picture.stories';
   </nav>
 </div>
 
-<p className="lead">Avatar picture is used to display a user profile as a picture, initials, or an icon.</p>
+<p className="lead">Avatar picture is used to display a user profile as a picture or the user initials.</p>
 
 The `<post-avatar-picture>` component provides several properties to change its appearance. The most important one is probably the `email` property, which is used to request a Gravatar picture.
 
@@ -22,9 +22,8 @@ Don't know Gravatar or haven't set up a profile yet, let's change this: [Signup]
 
 ## Property order
 
-1. If an email address (with a Gravatar profile behind) is defined on the component, this will be used before anything else.
-2. If the component can't get a picture from Gravatar, but instead a firstname and/or lastname is defined on the component, this will be used next.
-3. If none of the above cases is true, the component will render a specific fallback icon.
+1. If an `email` address (with a general Gravatar profile picture behind) is defined on the component, the picture from there will be used.
+2. If the `email` attribute is not defined or the component can't get a picture from Gravatar, the component will use the initials from the `firstname` and `lastname` attributes.
 
 ## Check the Content Security Policy
 

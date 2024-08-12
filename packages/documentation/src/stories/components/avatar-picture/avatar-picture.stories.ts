@@ -20,7 +20,7 @@ const meta: MetaComponent = {
   args: {
     size: 'default',
     email: '',
-    firstname: '',
+    firstname: 'Firstname',
     lastname: '',
   },
   argTypes: {
