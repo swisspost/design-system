@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 7.4.2
+
+### Patch Changes
+
+- Set the `max-width` constraint of the tag component to 100% for improved accessibility. Try to keep tag text as short as possible though. (by [@gfellerph](https://github.com/gfellerph) with [#3387](https://github.com/swisspost/design-system/pull/3387))
+
 ## 7.4.1
 
 ## 7.4.0
