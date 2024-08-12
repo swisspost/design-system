@@ -20,6 +20,11 @@ gulp.task('copy', () => {
     .pipe(gulp.dest(options.outputDir));
 });
 
+/**
+ * Temporary task to copy token files from tokens package to the styles package since
+ * pnpm does not correctly install dependencies of dependencies for workspace packages.
+ * See https://github.com/pnpm/pnpm/issues/8338 for more information and reproduction
+ */
 gulp.task('temprarily-copy-token-files', () => {
   return gulp.src(['../tokens/dist/*.scss']).pipe(gulp.dest('./src/tokens/temp'));
 });
