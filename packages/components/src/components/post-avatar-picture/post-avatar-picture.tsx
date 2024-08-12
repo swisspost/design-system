@@ -21,6 +21,11 @@ enum AvatarType {
   shadow: true,
 })
 export class PostAvatarPicture {
+  private static GRAVATAR_SIZES = {
+    large: 40,
+    small: 32,
+  };
+
   /**
    * Defines the size of the avatar-picture.
    */
@@ -40,11 +45,6 @@ export class PostAvatarPicture {
    * Defines the users lastname.
    */
   @Prop() readonly lastname?: string;
-
-  private static GRAVATAR_SIZES = {
-    large: 40,
-    small: 32,
-  };
 
   @State() avatarType: AvatarType = null;
   @State() gravatarUrl = '';
