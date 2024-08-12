@@ -1,4 +1,4 @@
-@mixin from($list) {
+@mixin from($map) {
   @each $key, $value in $list {
     --#{$key}: #{$value};
   }
