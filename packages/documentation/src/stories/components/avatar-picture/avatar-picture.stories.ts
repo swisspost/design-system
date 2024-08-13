@@ -18,23 +18,12 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    size: 'default',
+    size: 'large',
     email: '',
     firstname: 'Firstname',
     lastname: '',
   },
   argTypes: {
-    size: {
-      control: {
-        type: 'radio',
-        labels: {
-          default: 'Default',
-          large: 'Large',
-          small: 'Small',
-        },
-      },
-      options: ['default', 'large', 'small'],
-    },
     email: {
       description: `${
         ARGS_EMAIL_ARGTYPE?.docs ?? ''
@@ -50,7 +39,7 @@ type Story = StoryObj;
 export const Default: Story = {
   render: (args: Args) => {
     return html`<post-avatar-picture
-      size="${args.size !== 'default' ? args.size : nothing}"
+      size="${args.size !== 'large' ? args.size : nothing}"
       email="${args.email || nothing}"
       firstname="${args.firstname || nothing}"
       lastname="${args.lastname || nothing}"
