@@ -195,6 +195,12 @@ export namespace Components {
          */
         "scale"?: number | null;
     }
+    interface PostLogo {
+        /**
+          * The URL to which the user is redirected upon clicking the logo.
+         */
+        "url": string | URL;
+    }
     interface PostPopover {
         /**
           * Show a little indicator arrow
@@ -446,6 +452,12 @@ declare global {
         prototype: HTMLPostIconElement;
         new (): HTMLPostIconElement;
     };
+    interface HTMLPostLogoElement extends Components.PostLogo, HTMLStencilElement {
+    }
+    var HTMLPostLogoElement: {
+        prototype: HTMLPostLogoElement;
+        new (): HTMLPostLogoElement;
+    };
     interface HTMLPostPopoverElement extends Components.PostPopover, HTMLStencilElement {
     }
     var HTMLPostPopoverElement: {
@@ -537,6 +549,7 @@ declare global {
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
         "post-icon": HTMLPostIconElement;
+        "post-logo": HTMLPostLogoElement;
         "post-popover": HTMLPostPopoverElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-rating": HTMLPostRatingElement;
@@ -711,6 +724,12 @@ declare namespace LocalJSX {
          */
         "scale"?: number | null;
     }
+    interface PostLogo {
+        /**
+          * The URL to which the user is redirected upon clicking the logo.
+         */
+        "url"?: string | URL;
+    }
     interface PostPopover {
         /**
           * Show a little indicator arrow
@@ -824,6 +843,7 @@ declare namespace LocalJSX {
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
         "post-icon": PostIcon;
+        "post-logo": PostLogo;
         "post-popover": PostPopover;
         "post-popovercontainer": PostPopovercontainer;
         "post-rating": PostRating;
@@ -852,6 +872,7 @@ declare module "@stencil/core" {
              * @class PostIcon - representing a stencil component
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
+            "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
