@@ -18,7 +18,7 @@
 
 .invalid-feedback,
 .valid-feedback {
-  display: none;
+  display: flex;
   align-items: center;
   width: 100%;
   margin-block: form-validation.$form-feedback-margin-top 0;
@@ -31,9 +31,9 @@
 
   &::before {
     content: '';
+    flex-shrink: 0;
     height: form-validation.$form-feedback-font-size * type.$line-height-copy;
     width: form-validation.$form-feedback-font-size * type.$line-height-copy;
-    display: inline-block;
     margin-right: spacing.$size-mini;
   }
 }
