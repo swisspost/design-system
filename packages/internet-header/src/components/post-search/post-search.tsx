@@ -359,8 +359,17 @@ export class PostSearch implements HasDropdown, IsFocusable {
     }
     const { translations, search } = state.localizedConfig.header;
     const isParcelTrackingNr = this.parcelSuggestion && 'sending' in this.parcelSuggestion;
-    const showPortalRecommendations =
-      this.searchBox?.value === '' && search.searchRecommendations?.links.length > 0;
+    const isSearchEmpty = this.searchBox?.value === '';
+
+    const portalRecommendationCount = search.searchRecommendations?.links.length;
+    const showPortalRecommendations = isSearchEmpty && portalRecommendationCount > 0;
+
+    const suggestionCount = showPortalRecommendations
+      ? portalRecommendationCount
+      : this.coveoSuggestions.length + this.placeSuggestions.length;
+    const suggestionHint = ` ${suggestionCount} ${translate(
+      'most searched topics available, press the tab key to continue.',
+    )}`;
 
     return (
       <Host role="search">
@@ -398,6 +407,10 @@ export class PostSearch implements HasDropdown, IsFocusable {
                           ref={el => (this.searchBox = el)}
                           onInput={() => void this.handleSearchInput()}
                           onKeyDown={e => this.handleKeyDown(e)}
+                          title={
+                            translate('Enter search term. Press "Enter" to search.') +
+                            (isSearchEmpty && suggestionCount > 0 ? ` ${suggestionHint}` : '')
+                          }
                         />
                         <label htmlFor="searchBox">
                           {translations.flyoutSearchBoxFloatingLabel}
@@ -417,6 +430,9 @@ export class PostSearch implements HasDropdown, IsFocusable {
                           <SvgIcon name="pi-search" />
                         </button>
                       </div>
+                      <p class="visually-hidden" role="region" aria-live="polite">
+                        {isParcelTrackingNr ? 1 : suggestionCount} {translate('search result(s)')}
+                      </p>
                       {showPortalRecommendations && (
                         <h2 id="post-internet-header-search-recommendations-title" class="bold">
                           {search.searchRecommendations.title}

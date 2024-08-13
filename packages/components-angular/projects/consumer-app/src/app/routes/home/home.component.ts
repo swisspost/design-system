@@ -4,4 +4,6 @@ import { Component } from '@angular/core';
   selector: 'home-page',
   templateUrl: './home.component.html',
 })
-export class HomeComponent {}
+export class HomeComponent {
+  isCollapsed = false;
+}

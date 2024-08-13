@@ -1,5 +1,23 @@
 # @swisspost/design-system-components-angular
 
+## 8.1.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@8.1.0
+
+## 8.0.0
+
+### Major Changes
+
+- Upgraded to Angular 18 (by [@gfellerph](https://github.com/gfellerph) with [#3243](https://github.com/swisspost/design-system/pull/3243))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@8.0.0
+
 ## 7.4.0
 
 ### Patch Changes

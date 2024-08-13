@@ -9,7 +9,7 @@
 
 | Property       | Attribute       | Description                                                                                                                                                                                                                  | Type                         | Default |
 | -------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- | ------- |
-| `collapsed`    | `collapsed`     | If `true`, the element is initially collapsed otherwise it is displayed.                                                                                                                                                     | `boolean`                    | `false` |
+| `collapsed`    | `collapsed`     | If `true`, the element is collapsed otherwise it is displayed.                                                                                                                                                               | `boolean`                    | `false` |
 | `headingLevel` | `heading-level` | <span style="color:red">**[DEPRECATED]**</span> set the `heading-level` property on the parent `post-accordion` instead.<br/><br/>Defines the hierarchical level of the accordion item header within the headings structure. | `1 \| 2 \| 3 \| 4 \| 5 \| 6` | `2`     |
 
 
@@ -51,11 +51,13 @@ Type: `Promise<boolean>`
 
 ### Depends on
 
+- [post-collapsible-trigger](../post-collapsible-trigger)
 - [post-collapsible](../post-collapsible)
 
 ### Graph
 ```mermaid
 graph TD;
+  post-accordion-item --> post-collapsible-trigger
   post-accordion-item --> post-collapsible
   style post-accordion-item fill:#f9f,stroke:#333,stroke-width:4px
 ```

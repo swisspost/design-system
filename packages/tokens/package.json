@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-tokens",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "description": "Design Tokens for the Swiss Post.",
   "author": "Swiss Post <design-system@post.ch>",
@@ -31,7 +31,7 @@
     "linkDirectory": true
   },
   "devDependencies": {
-    "@tokens-studio/sd-transforms": "0.16.1",
-    "style-dictionary": "4.0.0"
+    "@tokens-studio/sd-transforms": "1.2.2",
+    "style-dictionary": "4.0.1"
   }
 }
