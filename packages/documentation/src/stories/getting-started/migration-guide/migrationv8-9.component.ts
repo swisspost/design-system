@@ -48,13 +48,13 @@ export class MigrationV89Component extends LitElement {
               <ul>
                 <li class="mb-3">
                   <p>
-                    Removed the heading-level property from the <em>post-accordion-item</em>
+                    Removed the <code>heading-level</code> property from the <em>post-accordion-item</em>
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <p class="info">
                     Instead use the heading-level property of the 
                     <a href="/?path=/docs/4d1b4185-e04d-494a-ab38-2b56c1778b0b--docs">post-accordion</a
-                    > component to specify the heading size.
+                    > component.
                   </p>
                 </li>
               </ul>
