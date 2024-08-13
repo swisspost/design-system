@@ -107,44 +107,7 @@ $form-switch-disabled-border-color: color.$gray-40 !default;
 $form-switch-label-padding-top: ($form-switch-height - type.$line-height-copy) * 0.5 !default;
 
 // DEPRECATED
-$form-check-inline-margin-left: spacing.$size-large !default;
-$form-check-input-width: spacing.$size-large !default;
-$form-check-min-height: $form-check-input-width !default;
-$form-check-padding-start: 0 !default;
-$form-check-input-color: forms.$input-border-color !default;
-$form-check-input-bg: transparent !default;
-$form-check-input-border: $form-check-input-border-width solid $form-check-input-color !default;
-$form-check-input-border-radius: forms.$input-border-radius !default;
-$form-check-radio-border-radius: 50% !default;
-$form-check-input-focus-border: forms.$input-focus-border-color !default;
-$form-check-input-focus-width: forms.$input-focus-width !default;
-$form-check-input-focus-box-shadow: 0 0 0 $form-check-input-focus-width
-  rgba($form-check-input-focus-border, 0.25) !default;
-$form-check-input-active-filter: none;
-$form-check-input-hover-color: forms.$input-focus-border-color !default;
-$form-check-input-checked-color: forms.$input-focus-border-color !default;
-$form-check-input-checked-bg-color: transparent !default;
-$form-check-input-checked-border-color: $form-check-input-checked-color !default;
-$form-check-input-checked-bg-icon: 3035 !default;
-$form-check-input-checked-bg-image: url('#{icons.get-colored-svg-url($form-check-input-checked-bg-icon, $form-check-input-checked-color)}') !default;
-$form-check-radio-checked-bg-icon: "data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='-3 -3 6 6'%3E%3Ccircle r='2'%3E%3C/circle%3E%3C/svg%3E" !default;
-$form-check-radio-checked-bg-image: url('#{icons.add-fill-color($form-check-radio-checked-bg-icon, $form-check-input-checked-color)}') !default;
-$form-check-input-indeterminate-color: $form-check-input-checked-color !default;
-$form-check-input-indeterminate-bg-color: transparent !default;
-$form-check-input-indeterminate-border-color: $form-check-input-indeterminate-color !default;
-$form-check-input-indeterminate-bg-icon: 2039 !default;
-$form-check-input-indeterminate-bg-image: url('#{icons.get-colored-svg-url($form-check-input-indeterminate-bg-icon, $form-check-input-indeterminate-color)}') !default;
-$form-check-inline-margin-end: spacing.$size-large !default;
-$form-check-label-cursor: pointer !default;
-$form-check-label-color: forms.$form-label-color !default;
-$form-check-label-padding-x: spacing.$size-mini !default;
-$form-check-label-padding-top: (
-    $form-check-input-width + sizing.px-to-rem($form-check-input-border-width) -
-      type.$line-height-copy
-  ) * 0.5 !default;
-$form-check-label-padding-start: $form-check-label-padding-top 0 0 $form-check-label-padding-x !default;
-$form-check-label-padding-end: $form-check-label-padding-top $form-check-label-padding-x 0 0 !default;
-$form-check-feedback-margin-top: spacing.$size-small-regular !default;
+
 $form-switch-padding-start: 0 !default;
 $form-switch-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-16 -16 32 32'><circle r='15' stroke='#{$form-switch-border-color}' stroke-width='2' fill='#{$form-switch-color}'/></svg>") !default;
 $form-switch-border-radius: $form-switch-width !default;
