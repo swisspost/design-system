@@ -1,13 +1,14 @@
 @use '@swisspost/design-system-styles/core' as post;
 
 :host {
-  display: block;
+  display: inline-block;
   width: 40px;
-  aspect-ratio: 1;
+  height: 40px;
 }
 
 :host(.small) {
   width: 32px;
+  height: 32px;
   font-size: post.$font-size-12;
 }
 
