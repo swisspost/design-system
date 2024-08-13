@@ -50,7 +50,7 @@ export class PostAvatarPicture {
   @State() gravatarUrl = '';
   @State() initials = '';
 
-  @Watch('size')
+  @Watch('firstname')
   firstnameChanged() {
     checkNonEmpty(
       this.firstname,
