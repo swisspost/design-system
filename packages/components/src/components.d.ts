@@ -80,7 +80,7 @@ export namespace Components {
      */
     interface PostCardControl {
         /**
-          * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms data.
+          * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms' data.
          */
         "checked": boolean;
         /**
@@ -88,7 +88,7 @@ export namespace Components {
          */
         "description": string;
         /**
-          * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms data.
+          * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms' data.
          */
         "disabled": boolean;
         /**
@@ -96,7 +96,7 @@ export namespace Components {
          */
         "groupReset": () => Promise<void>;
         /**
-          * Defines the icon `name` inside of the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
+          * Defines the icon `name` inside the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
          */
         "icon": string;
         /**
@@ -116,7 +116,7 @@ export namespace Components {
          */
         "type": 'checkbox' | 'radio';
         /**
-          * Defines the validation `validity` of the control. To reset validity to an undefiend state, simply remove the attribute from the control.
+          * Defines the validation `validity` of the control. To reset validity to an undefined state, simply remove the attribute from the control.
          */
         "validity": null | 'true' | 'false';
         /**
@@ -176,6 +176,12 @@ export namespace Components {
           * The number for the css scale transformation.
          */
         "scale"?: number | null;
+    }
+    interface PostLogo {
+        /**
+          * The URL to which the user is redirected upon clicking the logo.
+         */
+        "url": string | URL;
     }
     interface PostPopover {
         /**
@@ -422,6 +428,12 @@ declare global {
         prototype: HTMLPostIconElement;
         new (): HTMLPostIconElement;
     };
+    interface HTMLPostLogoElement extends Components.PostLogo, HTMLStencilElement {
+    }
+    var HTMLPostLogoElement: {
+        prototype: HTMLPostLogoElement;
+        new (): HTMLPostLogoElement;
+    };
     interface HTMLPostPopoverElement extends Components.PostPopover, HTMLStencilElement {
     }
     var HTMLPostPopoverElement: {
@@ -512,6 +524,7 @@ declare global {
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
         "post-icon": HTMLPostIconElement;
+        "post-logo": HTMLPostLogoElement;
         "post-popover": HTMLPostPopoverElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-rating": HTMLPostRatingElement;
@@ -575,7 +588,7 @@ declare namespace LocalJSX {
      */
     interface PostCardControl {
         /**
-          * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms data.
+          * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms' data.
          */
         "checked"?: boolean;
         /**
@@ -583,11 +596,11 @@ declare namespace LocalJSX {
          */
         "description"?: string;
         /**
-          * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms data.
+          * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms' data.
          */
         "disabled"?: boolean;
         /**
-          * Defines the icon `name` inside of the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
+          * Defines the icon `name` inside the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
          */
         "icon"?: string;
         /**
@@ -611,7 +624,7 @@ declare namespace LocalJSX {
          */
         "type": 'checkbox' | 'radio';
         /**
-          * Defines the validation `validity` of the control. To reset validity to an undefiend state, simply remove the attribute from the control.
+          * Defines the validation `validity` of the control. To reset validity to an undefined state, simply remove the attribute from the control.
          */
         "validity"?: null | 'true' | 'false';
         /**
@@ -667,6 +680,12 @@ declare namespace LocalJSX {
           * The number for the css scale transformation.
          */
         "scale"?: number | null;
+    }
+    interface PostLogo {
+        /**
+          * The URL to which the user is redirected upon clicking the logo.
+         */
+        "url"?: string | URL;
     }
     interface PostPopover {
         /**
@@ -780,6 +799,7 @@ declare namespace LocalJSX {
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
         "post-icon": PostIcon;
+        "post-logo": PostLogo;
         "post-popover": PostPopover;
         "post-popovercontainer": PostPopovercontainer;
         "post-rating": PostRating;
@@ -807,6 +827,7 @@ declare module "@stencil/core" {
              * @class PostIcon - representing a stencil component
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
+            "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
