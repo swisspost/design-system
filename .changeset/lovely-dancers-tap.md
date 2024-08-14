@@ -3,4 +3,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Simplify individual component imports.
+Simplified individual web component imports.
