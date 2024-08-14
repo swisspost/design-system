@@ -49,20 +49,20 @@ interface Header {
      * The company logo
      * Data owner: Company
      */
-    logoLink: HyperLink;
+    logoLink: Link;
 
     /**
      * For switching between different contexts
      * Private Customers | Business Customers | Government Customers
      * Data owner: Company
      */
-    businessDomains?: StatefulHyperLink[]; //
+    businessDomains?: LinkList<StatefulLink>;
 
     /**
      * Generic links like Jobs | About
      * Data owner: Company
      */
-    metaNavigation?: StatefulHyperLink[]; //
+    metaNavigation?: LinkList<StatefulLink>;
 
     /**
      * Optional language switch (optional only if the page is not offered in multiple languages)
@@ -70,7 +70,7 @@ interface Header {
      */
     languages?: {
       changeLanguageButton: Button; // Text: 'DE', Label: 'Sprache wechseln', Description: 'Aktuelle Sprache ist Detusch'
-      availableLanguages: LanguageOption[];
+      availableLanguages: LinkList<LanguageOption>;
     };
 
     /**
@@ -98,13 +98,10 @@ interface Header {
         weight: SuggestionWeight;
         suggestionUrl: string;
         environment: CoveoEnvironment;
-      };
-      suggestions: {
-        title: string;
         charThreshold: number; // Currently hard-coded to 2, minimum amount of chars before suggestions are starting to be fetched
         maxSuggestions: number; // Currently hard-coded to 8
-        initialSuggestions?: LinkWithIcon[];
       };
+      initialSuggestions: LinkList<LinkWithIcon>;
     };
 
     /**
@@ -114,11 +111,11 @@ interface Header {
      * - User infos come from n.account.post.ch
      */
     KLP?: {
-      loginLink: HyperLink;
+      loginLink: Link;
       messagesAvailableText: AccessibleText; // "Neue Nachrichten verfügbar", description for the little red dot signaling that new messages arrived
       openUserMenuButton: Button; // "Benutzermenu öffnen", Button for opening user menu when logged in
       closeUserMenuButton: Button; // "Benutzermenu schliessen", X Button for closing user menu
-      userMenu: LinkWithIcon[]; // List of links with icons, My profile, messages, settings, change account, logout
+      userMenu: LinkList<LinkWithIcon>; // List of links with icons, My profile, messages, settings, change account, logout
       notificationsEndpoint: string;
 
       // Not sure how they are used within the widget
@@ -136,7 +133,7 @@ interface Header {
     menuButton: Button; // "Menü", displayed on mobile
     pageTitle?: AccessibleText;
     navigationTitle: AccessibleText; // "Hauptnavigation", accessible name for the navigation
-    linkList: Array<MainNavigationEntry | HyperLink>; // Either a link or a megadropdown
+    linkList: LinkList<LinkList<StatefulLink>> | StatefulLink; // Either a link or a megadropdown
   };
 
   /**
@@ -147,7 +144,7 @@ interface Header {
     menuButton: Button; // "Menü"
     navigationTitle: AccessibleText; // "Hauptnavigation", accessible name for the navigation
     applicationTitle?: AccessibleText;
-    linkList: Array<LinkList | HyperLink>; // No megadropdown possible, just a simple link list or a link
+    linkList: LinkList<StatefulLink> | StatefulLink; // No megadropdown possible, just a simple link list or a link
   };
 }
 
@@ -228,7 +225,7 @@ interface AccessibleText {
 /**
  * Link with optional attributes for Google Analytics tracking
  */
-interface HyperLink extends AccessibleText {
+interface Link extends AccessibleText {
   href: string;
   attributes?: AnalyticsAttribute[];
 }
@@ -243,14 +240,14 @@ interface Button extends AccessibleText {
 /**
  * A link that can be active (active menu item)
  */
-interface StatefulHyperLink extends HyperLink {
+interface StatefulLink extends Link {
   active: boolean;
 }
 
 /**
  * An option for the language switch
  */
-interface LanguageOption extends StatefulHyperLink {
+interface LanguageOption extends Link {
   label: string; // Label is not optional for languages
   languageShortCode: string; // ISO 639 2 char short code https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes
 }
@@ -271,20 +268,12 @@ interface CoveoEnvironment {
 }
 
 interface Icon {
-  inlineSvg: string;
+  iconNumber: number;
 }
 
-type LinkWithIcon = HyperLink & Icon;
+type LinkWithIcon = Link & Icon;
 
-/**
- * Extends accessible text because entries with megadropdown can't be links themselves
- */
-interface MainNavigationEntry {
-  title: AccessibleText;
-  flyout: LinkList[];
-}
-
-interface LinkList<T = HyperLink> {
+interface LinkList<T = Link> {
   title: AccessibleText;
   linkList: T[];
 }
