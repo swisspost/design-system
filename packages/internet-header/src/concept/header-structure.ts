@@ -18,13 +18,21 @@
  */
 
 /**
+ * Config for the currently active language, parameter set in the query
+ * https://api.post.ch/whatever/?service=[serviceID]&language=[currentLanguage]&environment=[currentEnvironment]&version=[supportedVersion]
+ */
+interface Config {
+  // See questions above, could also be a response header
+  version: string;
+  header: Header;
+  footer: Footer;
+}
+
+/**
  * Configuration for the Header
  * Design: https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=558-7012&t=aD9LT13cyCMwoTig-1
  */
 interface Header {
-  // See questions above, could also be a response header
-  version: string;
-
   /**
    * A generic title for the whole header navigation
    * Example: "Navigieren auf post.ch"
