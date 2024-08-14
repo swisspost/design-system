@@ -16,7 +16,8 @@
   },
   "files": [
     "dist/",
-    "loader/"
+    "loader/",
+    "loaders/"
   ],
   "publishConfig": {
     "access": "public",
@@ -26,7 +27,7 @@
     "dev": "stencil build --dev --port 9200 --serve --watch --docs --docs-readme",
     "start": "stencil build --dev --watch --docs --docs-readme",
     "build": "stencil build --docs-readme",
-    "clean": "rimraf www dist loader",
+    "clean": "rimraf www dist loader loaders",
     "test": "pnpm run unit",
     "unit": "stencil test --spec",
     "unit:watch": "stencil test --spec --watchAll --silent",
