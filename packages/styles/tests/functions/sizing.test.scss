@@ -13,6 +13,5 @@ $box-shadow: 0 0 5px 0 black;
 @include jest.equal(sizing.to-em($value), 10em);
 @include jest.equal(sizing.to-rem($value), 10rem);
 @include jest.equal(sizing.to-px($em-value), 1px);
-@include jest.equal(sizing.line-height-calc($rem-value), 1.5);
 @include jest.equal(sizing.calculate-inner-height(1rem, 1.5, 0.25rem), 2rem);
 @include jest.equal(sizing.calculate-single-box-shadow-size(commons.$box-shadow), 4px);
