@@ -156,12 +156,10 @@ export const FormGoodExample: Story = {
         loader.setAttribute('aria-hidden', 'true');
 
         // Simulate form submission (loader and button behavior)
-        submitButton.setAttribute('disabled', 'disabled');
         submitButton.innerHTML = 'Sending…'; // Replace inner text
         submitButton.appendChild(loader);
 
         setTimeout(function () {
-          submitButton.removeAttribute('disabled');
           submitButton.innerHTML = 'Send';
           submitButton.removeChild(loader); // Remove loader
         }, 2000);
