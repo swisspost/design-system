@@ -78,10 +78,12 @@ interface Header {
      * Data owner: Portal
      */
     search?: {
+      title: AccessibleText; // Title of the search dropdown
       searchToggleButton: Button; // "Suche" | "Suche öffnen", opens or closes the search overlay
       searchButton: Button; // Label: "Suche starten", starts a search
       closeButton: Button; // Label: "Suche schliessen", The X, closes the search overlay
       clearSearchButton: Button; // The button that clears the current search term
+      searchField: InputField; // Label and placeholder for the search input
       trackAndTrace: {
         redirectPattern: string; // Regex for parcel numbers
         redirectUrl: string;
@@ -131,6 +133,8 @@ interface Header {
    */
   contentNavigation?: {
     menuButton: Button; // "Menü", displayed on mobile
+    closeButton: Button; // Button for closing megadropdown
+    backButton: Button; // "Zurück", "Zurück zur vorherigen Navigation", Button for goin back in the mobile menu
     pageTitle?: AccessibleText;
     navigationTitle: AccessibleText; // "Hauptnavigation", accessible name for the navigation
     linkList: LinkList<LinkList<StatefulLink>> | StatefulLink; // Either a link or a megadropdown
@@ -165,13 +169,13 @@ interface Footer {
    * Links about the company
    * Data owner: OD, Company
    */
-  aboutLinks: LinkList;
+  aboutLinks?: LinkList;
 
   /**
    * Getting help
    * Data owner: OD, Company
    */
-  helpAndContactLinks: LinkList;
+  helpAndContactLinks?: LinkList;
 
   /**
    * Customizable links
@@ -214,13 +218,23 @@ interface Footer {
 
 /**
  * String with optional possibilities for alternative screen reader text and additional description
+ * At least text or label has to be present
  */
 interface AccessibleText {
-  text: string; // What's displayed on screen
+  text?: string; // What's displayed on screen
   label?: string; // aria-label, replaces text for screenreaders
   description?: string; // aria-description, being read after text or label
-  // title?: string; // Intended to be displayed as tooltip, acts like description for screenreaders
+  // title?: string; // Intended to be displayed as tooltip, acts like description for screenreaders <-- not used in the header
 }
+
+/**
+ * Setup with enforced text or label:
+ *
+ * interface Description { description?: string; title?: string; }
+ * interface Text extends Description { text?: string; }
+ * interface Label extends Description { label?: string; }
+ * type AccessibleText = Text | Label | (Text & Label);
+ */
 
 /**
  * Link with optional attributes for Google Analytics tracking
@@ -276,4 +290,18 @@ type LinkWithIcon = Link & Icon;
 interface LinkList<T = Link> {
   title: AccessibleText;
   linkList: T[];
+}
+
+/**
+ * For re-usability, AccessibleText maps like this:
+ * <label>{text}</label>
+ * <input
+ *   placeholder={placeholder}
+ *   aria-label={label}
+ *   aria-description={description}
+ * />
+ * <post-tooltip>{title}</post-tooltip>
+ */
+interface InputField extends AccessibleText {
+  placeholder?: string;
 }
