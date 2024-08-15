@@ -25,6 +25,8 @@ export namespace Components {
     interface FocusTrap {
         "active": boolean;
     }
+    interface PostHeaderLogo {
+    }
     interface PostKlpLoginWidget {
         /**
           * Override the logout-url provided by the portal config.
@@ -46,8 +48,6 @@ export namespace Components {
           * @returns Boolean indicating new state
          */
         "toggleDropdown": (force?: boolean) => Promise<boolean>;
-    }
-    interface PostLogo {
     }
     interface PostMainNavigation {
         /**
@@ -210,6 +210,12 @@ declare global {
         prototype: HTMLFocusTrapElement;
         new (): HTMLFocusTrapElement;
     };
+    interface HTMLPostHeaderLogoElement extends Components.PostHeaderLogo, HTMLStencilElement {
+    }
+    var HTMLPostHeaderLogoElement: {
+        prototype: HTMLPostHeaderLogoElement;
+        new (): HTMLPostHeaderLogoElement;
+    };
     interface HTMLPostKlpLoginWidgetElement extends Components.PostKlpLoginWidget, HTMLStencilElement {
     }
     var HTMLPostKlpLoginWidgetElement: {
@@ -233,12 +239,6 @@ declare global {
     var HTMLPostLanguageSwitchElement: {
         prototype: HTMLPostLanguageSwitchElement;
         new (): HTMLPostLanguageSwitchElement;
-    };
-    interface HTMLPostLogoElement extends Components.PostLogo, HTMLStencilElement {
-    }
-    var HTMLPostLogoElement: {
-        prototype: HTMLPostLogoElement;
-        new (): HTMLPostLogoElement;
     };
     interface HTMLPostMainNavigationElementEventMap {
         "dropdownToggled": DropdownEvent;
@@ -318,9 +318,9 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "focus-trap": HTMLFocusTrapElement;
+        "post-header-logo": HTMLPostHeaderLogoElement;
         "post-klp-login-widget": HTMLPostKlpLoginWidgetElement;
         "post-language-switch": HTMLPostLanguageSwitchElement;
-        "post-logo": HTMLPostLogoElement;
         "post-main-navigation": HTMLPostMainNavigationElement;
         "post-meta-navigation": HTMLPostMetaNavigationElement;
         "post-search": HTMLPostSearchElement;
@@ -337,6 +337,8 @@ declare namespace LocalJSX {
      */
     interface FocusTrap {
         "active"?: boolean;
+    }
+    interface PostHeaderLogo {
     }
     interface PostKlpLoginWidget {
         /**
@@ -357,8 +359,6 @@ declare namespace LocalJSX {
           * Fires when the language has been changed.
          */
         "onLanguageChanged"?: (event: PostLanguageSwitchCustomEvent<string>) => void;
-    }
-    interface PostLogo {
     }
     interface PostMainNavigation {
         /**
@@ -476,9 +476,9 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "focus-trap": FocusTrap;
+        "post-header-logo": PostHeaderLogo;
         "post-klp-login-widget": PostKlpLoginWidget;
         "post-language-switch": PostLanguageSwitch;
-        "post-logo": PostLogo;
         "post-main-navigation": PostMainNavigation;
         "post-meta-navigation": PostMetaNavigation;
         "post-search": PostSearch;
@@ -497,9 +497,9 @@ declare module "@stencil/core" {
              * @param active activate or deactivate the focus trap
              */
             "focus-trap": LocalJSX.FocusTrap & JSXBase.HTMLAttributes<HTMLFocusTrapElement>;
+            "post-header-logo": LocalJSX.PostHeaderLogo & JSXBase.HTMLAttributes<HTMLPostHeaderLogoElement>;
             "post-klp-login-widget": LocalJSX.PostKlpLoginWidget & JSXBase.HTMLAttributes<HTMLPostKlpLoginWidgetElement>;
             "post-language-switch": LocalJSX.PostLanguageSwitch & JSXBase.HTMLAttributes<HTMLPostLanguageSwitchElement>;
-            "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
             "post-main-navigation": LocalJSX.PostMainNavigation & JSXBase.HTMLAttributes<HTMLPostMainNavigationElement>;
             "post-meta-navigation": LocalJSX.PostMetaNavigation & JSXBase.HTMLAttributes<HTMLPostMetaNavigationElement>;
             "post-search": LocalJSX.PostSearch & JSXBase.HTMLAttributes<HTMLPostSearchElement>;
