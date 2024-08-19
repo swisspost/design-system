@@ -1,8 +1,12 @@
 /**
  * Questions:
  *
- * - How can icons be loaded/displayed efficiently (SSR)?
- * - How can the logo image be loaded/displayed efficiently?
+ * Meeting 19.08.:
+ * - How can icons be loaded/displayed efficiently (SSR)? -> Store number in sanity (create icon select component for sanity)
+ * - How can the logo image be loaded/displayed efficiently? -> Sanity Asset Management CDN, maybe not only link but also size information available via config
+ * - Does it make sense/is it possible to version the API? -> Possible when implementing an API on next.js
+ *
+ * Open:
  * - Does it make sense to handle skiplinks through the config?
  * - Not sure if user menu really is a generic array
  * - Does it make sense/is it possible to version the API?
