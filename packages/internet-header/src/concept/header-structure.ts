@@ -13,12 +13,13 @@
  */
 
 /**
- * Props coming from the <swisspost-internet-header> component
+ * API request params
  *
  * - Project ID
  * - Environment
  * - Current language
- * - Currently selected main navigation entry
+ * - Current URL (referrer enough?)
+ * - API version
  */
 
 /**
@@ -26,8 +27,6 @@
  * https://api.post.ch/whatever/?service=[serviceID]&language=[currentLanguage]&environment=[currentEnvironment]&version=[supportedVersion]
  */
 interface Config {
-  // See questions above, could also be a response header
-  version: string;
   header: Header;
   footer: Footer;
 }
