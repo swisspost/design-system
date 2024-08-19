@@ -52,7 +52,10 @@ interface Header {
      * The company logo
      * Data owner: Company
      */
-    logoLink: Link;
+    logo: {
+      link: Link;
+      image: Image;
+    };
 
     /**
      * For switching between different contexts
@@ -272,6 +275,13 @@ interface CoveoEnvironment {
 
 interface Icon {
   iconNumber: number;
+}
+
+interface Image {
+  src: string; // Source URL
+  width?: number; // Width in pixels
+  height?: number; // Height in pixels
+  alt: string; // Alternative text
 }
 
 type LinkWithIcon = Link & Icon;
