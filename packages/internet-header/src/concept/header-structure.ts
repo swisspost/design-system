@@ -8,8 +8,8 @@
  *
  * Open:
  * - Does it make sense to handle skiplinks through the config?
- * - Not sure if user menu really is a generic array
- * - Does it make sense/is it possible to version the API?
+ * - Not sure if user menu really is a generic array?
+ * - Should header and footer config be separate endpoints (so they can be used independently of each other or footer data can be lazy loaded)?
  */
 
 /**
