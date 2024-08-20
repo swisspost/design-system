@@ -90,26 +90,31 @@ interface Header {
       closeButton: Button; // Label: "Suche schliessen", The X, closes the search overlay
       clearSearchButton: Button; // The button that clears the current search term
       searchField: InputField; // Label and placeholder for the search input
-      trackAndTrace: {
+      maxSuggestions: number; // Currently hard-coded to 8
+      charThreshold: number; // Currently hard-coded to 2, minimum amount of chars before suggestions are starting to be fetched
+      initialRecommendations: LinkList<LinkWithIcon>; // Initially shown search recommendations
+
+      trackAndTrace?: {
+        suggestionIcon: Icon;
         redirectPattern: string; // Regex for parcel numbers
         redirectUrl: string;
-        weight: SuggestionWeight; // How many suggestions are displayed when there are multiple results
       };
-      places: {
+
+      places?: {
+        suggestionIcon: Icon;
         redirectUrl: string;
-        weight: SuggestionWeight;
+        maxPlacesSuggestions: number;
       };
-      coveo: {
+
+      coveo?: {
+        suggestionIcon: Icon;
         redirectUrl: string;
         searchHub: string;
         pipeline: string;
-        weight: SuggestionWeight;
+        maxCoveoSuggestions: number;
         suggestionUrl: string;
         environment: CoveoEnvironment;
-        charThreshold: number; // Currently hard-coded to 2, minimum amount of chars before suggestions are starting to be fetched
-        maxSuggestions: number; // Currently hard-coded to 8
       };
-      initialSuggestions: LinkList<LinkWithIcon>;
     };
 
     /**
@@ -279,8 +284,6 @@ interface AnalyticsAttribute {
   name: string;
   value: string;
 }
-
-type SuggestionWeight = number; // 0 = Not weighted, will always be displayed, 1 = basic weight, 2 = double weighted, 3 triple weighted, ...
 
 interface CoveoEnvironment {
   organisation: string;
