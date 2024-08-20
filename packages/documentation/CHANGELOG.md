@@ -1,5 +1,23 @@
 # @swisspost/design-system-documentation
 
+## 5.4.0
+
+### Minor Changes
+
+- Added the post-logo component, which enables displaying the Post's logo either as a clickable link or as a simple image. (by [@alizedebray](https://github.com/alizedebray) with [#3354](https://github.com/swisspost/design-system/pull/3354))
+
+### Patch Changes
+
+- Fixed the font in the full page previews. (by [@alizedebray](https://github.com/alizedebray) with [#3378](https://github.com/swisspost/design-system/pull/3378))
+
+- Marked the card button and the carousel as deprecated (will be removed in a future version). (by [@schaertim](https://github.com/schaertim) with [#3380](https://github.com/swisspost/design-system/pull/3380))
+- Updated dependencies:
+  - @swisspost/design-system-icons@8.2.0
+  - @swisspost/design-system-styles@8.2.0
+  - @swisspost/design-system-components@8.2.0
+  - @swisspost/design-system-components-react@8.2.0
+  - @swisspost/internet-header@1.14.5
+
 ## 5.3.4
 
 ### Patch Changes
