@@ -1,19 +1,19 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
-import * as AvatarPictureStories from './avatar-picture.stories';
+import * as AvatarPictureStories from './avatar.stories';
 
 <Meta of={AvatarPictureStories} />
 
 <div className="docs-title">
-  # Avatar-Picture
+  # Avatar
 
   <nav>
     <link-design of={JSON.stringify(AvatarPictureStories)}></link-design>
   </nav>
 </div>
 
-<p className="lead">Avatar picture is used to display a user profile as a picture or the user initials.</p>
+<p className="lead">Display a user's profile picture or their initials if the picture is unavailable.</p>
 
-The `<post-avatar-picture>` component provides several properties to change its appearance. The most important one is probably the `email` property, which is used to request a Gravatar picture.
+The `<post-avatar>` component provides several properties to change its appearance. The most important one is probably the `email` property, which is used to request a Gravatar picture.
 
 Don't know Gravatar or haven't set up a profile yet, let's change this: [Signup](https://gravatar.com) now!
 
@@ -28,4 +28,4 @@ Don't know Gravatar or haven't set up a profile yet, let's change this: [Signup]
 ## Check the Content Security Policy
 
 If your project includes the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy">Content-Security-Policy</a> response header (usually in `index.html`),
-make sure that `default-src` is set to `'self'`. In case you are using the `<post-avatar-picture>` component you need to add [`https://gravatar.com`](https://gravatar.com/) to the `connect-src` in index.html. This is because the component tries to load a profile picture from there, through the provided `email` property.
+make sure that `default-src` is set to `'self'`. In case you are using the `<post-avatar>` component you need to add [`https://gravatar.com`](https://gravatar.com/) to the `connect-src` in index.html. This is because the component tries to load a profile picture from there, through the provided `email` property.

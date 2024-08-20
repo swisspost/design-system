@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import meta, { Default } from './avatar-picture.stories';
+import meta, { Default } from './avatar.stories';
 import { html } from 'lit';
 import { bombArgs } from '@/utils';
 

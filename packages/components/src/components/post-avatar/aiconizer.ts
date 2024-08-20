@@ -31,7 +31,7 @@ function aiconizer(e) {
         .join(', ');
 
       console.log(
-        `%cCongrats, you have found an easter egg!%c\nClick in an empty area of the page and type:\n%c"${ACTIVATOR}"%c\nAnd then one of the following phrases:\n%c${keys}%c\nThis will let the post-avatar-picture component display different icons.\nHave fun!`,
+        `%cCongrats, you have found an easter egg!%c\nClick in an empty area of the page and type:\n%c"${ACTIVATOR}"%c\nAnd then one of the following phrases:\n%c${keys}%c\nThis will let the post-avatar component display different icons.\nHave fun!`,
         'font-size: 20px; font-weight: bold;',
         'font-size: unset; font-weight: normal;',
         'font-weight: bold; color: red;',
@@ -45,7 +45,7 @@ function aiconizer(e) {
     }
 
     if (match) {
-      Array.from(document.querySelectorAll('post-avatar-picture')).forEach(el => {
+      Array.from(document.querySelectorAll('post-avatar')).forEach(el => {
         const postIcon = document.createElement('post-icon');
         postIcon.setAttribute('name', match[1]);
 

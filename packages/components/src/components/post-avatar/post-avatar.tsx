@@ -16,18 +16,18 @@ enum AvatarType {
 }
 
 @Component({
-  tag: 'post-avatar-picture',
-  styleUrl: 'post-avatar-picture.scss',
+  tag: 'post-avatar',
+  styleUrl: 'post-avatar.scss',
   shadow: true,
 })
-export class PostAvatarPicture {
+export class PostAvatar {
   private static GRAVATAR_SIZES = {
     large: 40,
     small: 32,
   };
 
   /**
-   * Defines the size of the avatar-picture.
+   * Defines the size of the avatar.
    */
   @Prop() readonly size?: 'large' | 'small' = 'large';
 
@@ -52,10 +52,7 @@ export class PostAvatarPicture {
 
   @Watch('firstname')
   firstnameChanged() {
-    checkNonEmpty(
-      this.firstname,
-      'The `firstname` property of the `post-avatar-picture` is required!',
-    );
+    checkNonEmpty(this.firstname, 'The `firstname` property of the `post-avatar` is required!');
   }
 
   @Watch('size')
@@ -63,7 +60,7 @@ export class PostAvatarPicture {
     checkOneOf(
       this.size,
       ['large', 'small'],
-      'The `size` property of the `post-avatar-picture` must be either `large` or `small`.',
+      'The `size` property of the `post-avatar` must be either `large` or `small`.',
     );
   }
 
@@ -78,7 +75,7 @@ export class PostAvatarPicture {
             .map(bytes => bytes.toString(16).padStart(2, '0'))
             .join('');
         });
-      const size = (PostAvatarPicture.GRAVATAR_SIZES[this.size] ?? '').toString();
+      const size = (PostAvatar.GRAVATAR_SIZES[this.size] ?? '').toString();
       const gravatarUrl = GRAVATAR_BASE_URL.replace('{size}', size).replace('{email}', email);
 
       response = await fetch(gravatarUrl);

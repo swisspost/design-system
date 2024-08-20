@@ -3,13 +3,13 @@ import { MetaComponent } from '@root/types';
 import { html, nothing } from 'lit';
 import { components } from '@swisspost/design-system-components/dist/docs.json';
 
-const AVATAR_PICTURE_ARGTYPES = components.find(c => c.tag === 'post-avatar-picture');
+const AVATAR_PICTURE_ARGTYPES = components.find(c => c.tag === 'post-avatar');
 const ARGS_EMAIL_ARGTYPE = AVATAR_PICTURE_ARGTYPES?.props.find(p => p.name === 'email');
 
 const meta: MetaComponent = {
   id: '09aac03d-220e-4885-8fb8-1cfa01add188',
-  title: 'Components/Avatar-Picture',
-  component: 'post-avatar-picture',
+  title: 'Components/Avatar',
+  component: 'post-avatar',
   tags: ['package:WebComponents'],
   parameters: {
     design: {
@@ -20,8 +20,8 @@ const meta: MetaComponent = {
   args: {
     size: 'large',
     email: '',
-    firstname: 'Firstname',
-    lastname: '',
+    firstname: 'John',
+    lastname: 'Doe',
   },
   argTypes: {
     email: {
@@ -38,11 +38,11 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: (args: Args) => {
-    return html`<post-avatar-picture
+    return html`<post-avatar
       size="${args.size !== 'large' ? args.size : nothing}"
       email="${args.email || nothing}"
       firstname="${args.firstname || nothing}"
       lastname="${args.lastname || nothing}"
-    ></post-avatar-picture>`;
+    ></post-avatar>`;
   },
 };

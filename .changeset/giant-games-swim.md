@@ -4,4 +4,4 @@
 '@swisspost/design-system-documentation': minor
 ---
 
-Added component `post-avatar-picture` to show an avatar, based on different possible input data (gravatar by email, initials by first- and/or lastname, fallback).
+Added component `post-avatar` to show an avatar, based on different possible input data (gravatar by email, initials by first- and/or lastname, fallback).
