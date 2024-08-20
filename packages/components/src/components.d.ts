@@ -98,7 +98,7 @@ export namespace Components {
      */
     interface PostCardControl {
         /**
-          * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms data.
+          * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms' data.
          */
         "checked": boolean;
         /**
@@ -106,7 +106,7 @@ export namespace Components {
          */
         "description": string;
         /**
-          * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms data.
+          * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms' data.
          */
         "disabled": boolean;
         /**
@@ -114,7 +114,7 @@ export namespace Components {
          */
         "groupReset": () => Promise<void>;
         /**
-          * Defines the icon `name` inside of the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
+          * Defines the icon `name` inside the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
          */
         "icon": string;
         /**
@@ -134,7 +134,7 @@ export namespace Components {
          */
         "type": 'checkbox' | 'radio';
         /**
-          * Defines the validation `validity` of the control. To reset validity to an undefiend state, simply remove the attribute from the control.
+          * Defines the validation `validity` of the control. To reset validity to an undefined state, simply remove the attribute from the control.
          */
         "validity": null | 'true' | 'false';
         /**
@@ -631,7 +631,7 @@ declare namespace LocalJSX {
      */
     interface PostCardControl {
         /**
-          * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms data.
+          * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms' data.
          */
         "checked"?: boolean;
         /**
@@ -639,11 +639,11 @@ declare namespace LocalJSX {
          */
         "description"?: string;
         /**
-          * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms data.
+          * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms' data.
          */
         "disabled"?: boolean;
         /**
-          * Defines the icon `name` inside of the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
+          * Defines the icon `name` inside the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
          */
         "icon"?: string;
         /**
@@ -667,7 +667,7 @@ declare namespace LocalJSX {
          */
         "type": 'checkbox' | 'radio';
         /**
-          * Defines the validation `validity` of the control. To reset validity to an undefiend state, simply remove the attribute from the control.
+          * Defines the validation `validity` of the control. To reset validity to an undefined state, simply remove the attribute from the control.
          */
         "validity"?: null | 'true' | 'false';
         /**
