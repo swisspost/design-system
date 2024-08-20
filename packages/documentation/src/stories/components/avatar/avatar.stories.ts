@@ -20,8 +20,8 @@ const meta: MetaComponent = {
   args: {
     size: 'large',
     email: '',
-    firstname: 'John',
-    lastname: 'Doe',
+    firstname: 'Firstname',
+    lastname: '',
   },
   argTypes: {
     email: {
