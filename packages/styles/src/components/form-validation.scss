@@ -18,7 +18,7 @@
 
 .invalid-feedback,
 .valid-feedback {
-  display: flex;
+  display: none;
   align-items: center;
   width: 100%;
   margin-block: form-validation.$form-feedback-margin-top 0;
