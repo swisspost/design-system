@@ -1,5 +1,17 @@
 # @swisspost/design-system-components
 
+## 8.2.0
+
+### Minor Changes
+
+- Added the post-logo component, which enables displaying the Post's logo either as a clickable link or as a simple image. (by [@alizedebray](https://github.com/alizedebray) with [#3354](https://github.com/swisspost/design-system/pull/3354))
+
+### Patch Changes
+
+- Fixed the `post-card-control` component to use the correct color scheme when placed on nested colored backgrounds. (by [@alizedebray](https://github.com/alizedebray) with [#3358](https://github.com/swisspost/design-system/pull/3358))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.2.0
+
 ## 8.1.0
 
 ### Patch Changes
