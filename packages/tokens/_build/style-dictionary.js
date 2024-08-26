@@ -1,8 +1,8 @@
 import StyleDictionary from 'style-dictionary';
-import { sortByReference, usesReferences } from 'style-dictionary/utils';
+import { sortByReference } from 'style-dictionary/utils';
 import { register } from '@tokens-studio/sd-transforms';
 import { SCSS_MAP_PREFIX } from './constants.js';
-import { getFileHeader } from './methods.js';
+import { getFileHeader, normalizeTokenName, normalizeTokenValueReference } from './methods.js';
 
 register(StyleDictionary);
 
@@ -73,18 +73,19 @@ StyleDictionary.registerFilter({
 StyleDictionary.registerFormat({
   name: 'swisspost/scss-format',
   format: ({ dictionary, options }) => {
-    const { meta, outputReferences } = options;
+    const { meta } = options;
 
     return (
       getFileHeader() +
       meta.setNames
         .map(setName => {
+          const scssMapPrefix = SCSS_MAP_PREFIX ? SCSS_MAP_PREFIX + '-' : '';
           const tokens = dictionary.allTokens
             .filter(token => token.path[0] === setName)
             .sort(sortByReference(dictionary))
             .map(token => {
-              const tokenName = normalizeTokenName(token);
-              const tokenValue = normalizeTokenValueReference(token);
+              const tokenName = normalizeTokenName(options, token);
+              const tokenValue = normalizeTokenValueReference(options, token);
 
               return meta.core
                 ? `  --${tokenName}: ${tokenValue};`
@@ -94,59 +95,10 @@ StyleDictionary.registerFormat({
 
           return meta.core
             ? `:root {\n${tokens}\n}\n`
-            : `$${SCSS_MAP_PREFIX ? SCSS_MAP_PREFIX + '-' : ''}${setName}: (\n${tokens}\n);\n`;
+            : `$${scssMapPrefix}${setName}: (\n${tokens}\n);\n`;
         })
         .join('\n')
     );
-
-    function normalizeTokenName(token) {
-      return token.path.slice(1).join('-');
-    }
-
-    function normalizeTokenValueReference(token) {
-      // Can be removed, as soon as box-shadow tokens can be outputted with references
-      const boxShadowKeepRefsWorkaroundValue = token?.$extensions?.[
-        'studio.tokens'
-      ]?.boxShadowKeepRefsWorkaroundValue?.replace(/(\[\[|\]\])/g, match =>
-        match === '[[' ? '{' : '}',
-      );
-
-      const usesDtcg = token.$type && token.$value;
-      const originalTokenValue =
-        boxShadowKeepRefsWorkaroundValue ??
-        (usesDtcg ? token.original.$value : token.original.value);
-      let tokenValue = usesDtcg ? token.$value : token.value;
-
-      if (outputReferences && usesReferences(originalTokenValue)) {
-        tokenValue = replaceAllReferences(originalTokenValue);
-      }
-
-      function replaceAllReferences(value) {
-        if (typeof value === 'string') {
-          return replaceReferences(value);
-        }
-
-        if (typeof value === 'object') {
-          for (const key in value) {
-            if (Object.hasOwn(value, key)) {
-              if (typeof value[key] === 'string') value[key] = replaceReferences(value[key]);
-              if (typeof value[key] === 'object') value[key] = replaceAllReferences(value[key]);
-            }
-          }
-
-          return Object.values(value).join(' ');
-        }
-
-        function replaceReferences(value) {
-          return value.replace(
-            /({[^}]+})/g,
-            match => `var(--${match.replace(/[{}]/g, '').replace(/\./g, '-')})`,
-          );
-        }
-      }
-
-      return tokenValue;
-    }
   },
 });
 

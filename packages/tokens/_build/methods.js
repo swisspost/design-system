@@ -1,4 +1,5 @@
 import StyleDictionary from './style-dictionary.js';
+import { usesReferences } from 'style-dictionary/utils';
 import { expandTypesMap } from '@tokens-studio/sd-transforms';
 import { promises } from 'fs';
 import { SOURCE_PATH, OUTPUT_PATH, FILE_HEADER } from './constants.js';
@@ -217,4 +218,70 @@ export async function removeTokenSetFiles() {
  */
 export function getFileHeader() {
   return FILE_HEADER.replace('{date}', new Date().toUTCString());
+}
+
+/**
+ * @function normalizeTokenName(option, token)
+ *
+ * @param options Config
+ * @param token DesignToken object
+ *
+ * @returns the tokens name, without the group prefix
+ */
+export function normalizeTokenName(_options, token) {
+  return token.path.slice(1).join('-');
+}
+
+/**
+ * @function normalizeTokenValueReference(token)
+ *
+ * @param options Config
+ * @param token DesignToken object
+ *
+ * @returns the tokens value, with referenced css custom-properties
+ */
+export function normalizeTokenValueReference(options, token) {
+  const { outputReferences } = options;
+
+  // Can be removed, as soon as box-shadow tokens can be outputted with references
+  const boxShadowKeepRefsWorkaroundValue = token?.$extensions?.[
+    'studio.tokens'
+  ]?.boxShadowKeepRefsWorkaroundValue?.replace(/(\[\[|\]\])/g, match =>
+    match === '[[' ? '{' : '}',
+  );
+
+  const usesDtcg = token.$type && token.$value;
+  const originalTokenValue =
+    boxShadowKeepRefsWorkaroundValue ?? (usesDtcg ? token.original.$value : token.original.value);
+  let tokenValue = usesDtcg ? token.$value : token.value;
+
+  if (outputReferences && usesReferences(originalTokenValue)) {
+    tokenValue = replaceAllReferences(originalTokenValue);
+  }
+
+  function replaceAllReferences(value) {
+    if (typeof value === 'string') {
+      return replaceReferences(value);
+    }
+
+    if (typeof value === 'object') {
+      for (const key in value) {
+        if (Object.hasOwn(value, key)) {
+          if (typeof value[key] === 'string') value[key] = replaceReferences(value[key]);
+          if (typeof value[key] === 'object') value[key] = replaceAllReferences(value[key]);
+        }
+      }
+
+      return Object.values(value).join(' ');
+    }
+  }
+
+  function replaceReferences(value) {
+    return value.replace(
+      /({[^}]+})/g,
+      match => `var(--${match.replace(/[{}]/g, '').replace(/\./g, '-')})`,
+    );
+  }
+
+  return tokenValue;
 }
