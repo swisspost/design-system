@@ -2,7 +2,7 @@ import StyleDictionary from './style-dictionary.js';
 import { usesReferences } from 'style-dictionary/utils';
 import { expandTypesMap } from '@tokens-studio/sd-transforms';
 import { promises } from 'fs';
-import { SOURCE_PATH, OUTPUT_PATH, FILE_HEADER, SCSS_MAP_PREFIX } from './constants.js';
+import { SOURCE_PATH, OUTPUT_PATH, FILE_HEADER, TOKENSET_PREFIX } from './constants.js';
 
 let CLI_OPTIONS;
 let tokenSets;
@@ -229,7 +229,7 @@ export function getFileHeader() {
  * @returns the normalized set name
  */
 export function normalizeSetName(_options, setName) {
-  return `${SCSS_MAP_PREFIX ? SCSS_MAP_PREFIX + '-' : ''}${setName.trim().replace(/\s/g, '-')}`;
+  return `${TOKENSET_PREFIX ? TOKENSET_PREFIX + '-' : ''}${setName.trim().replace(/\s/g, '-')}`;
 }
 
 /**
