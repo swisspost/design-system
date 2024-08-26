@@ -278,7 +278,7 @@ export function normalizeTokenValueReference(options, token) {
 
   function replaceReferences(value) {
     return value.replace(
-      /{[0-9a-z-._]+}/g,
+      /{[0-9a-zA-Z-._]+}/g,
       match => `var(--${match.replace(/[{}]/g, '').replace(/\./g, '-')})`,
     );
   }
