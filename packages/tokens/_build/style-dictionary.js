@@ -98,7 +98,7 @@ StyleDictionary.registerFormat({
 
         function replaceReferences(value) {
           return value.replace(
-            /{[^}]+}/g,
+            /({[^}]+})/g,
             match => `var(--${match.replace(/[{}]/g, '').replace(/\./g, '-')})`,
           );
         }
