@@ -2,7 +2,7 @@ import StyleDictionary from './style-dictionary.js';
 import { usesReferences } from 'style-dictionary/utils';
 import { expandTypesMap } from '@tokens-studio/sd-transforms';
 import { promises } from 'fs';
-import { SOURCE_PATH, OUTPUT_PATH, FILE_HEADER } from './constants.js';
+import { SOURCE_PATH, OUTPUT_PATH, FILE_HEADER, SCSS_MAP_PREFIX } from './constants.js';
 
 let CLI_OPTIONS;
 let tokenSets;
@@ -218,6 +218,18 @@ export async function removeTokenSetFiles() {
  */
 export function getFileHeader() {
   return FILE_HEADER.replace('{date}', new Date().toUTCString());
+}
+
+/**
+ * @function normalizeSetName(option, setName)
+ *
+ * @param options Config
+ * @param setName String
+ *
+ * @returns the normalized set name
+ */
+export function normalizeSetName(_options, setName) {
+  return `${SCSS_MAP_PREFIX ? SCSS_MAP_PREFIX + '-' : ''}${setName.trim().replace(/[ ]/g, '-')}`;
 }
 
 /**

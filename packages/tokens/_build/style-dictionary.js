@@ -1,8 +1,12 @@
 import StyleDictionary from 'style-dictionary';
 import { sortByReference } from 'style-dictionary/utils';
 import { register } from '@tokens-studio/sd-transforms';
-import { SCSS_MAP_PREFIX } from './constants.js';
-import { getFileHeader, normalizeTokenName, normalizeTokenValueReference } from './methods.js';
+import {
+  getFileHeader,
+  normalizeSetName,
+  normalizeTokenName,
+  normalizeTokenValueReference,
+} from './methods.js';
 
 register(StyleDictionary);
 
@@ -79,7 +83,7 @@ StyleDictionary.registerFormat({
       getFileHeader() +
       meta.setNames
         .map(setName => {
-          const scssMapPrefix = SCSS_MAP_PREFIX ? SCSS_MAP_PREFIX + '-' : '';
+          const tokenSetName = normalizeSetName(options, setName);
           const tokens = dictionary.allTokens
             .filter(token => token.path[0] === setName)
             .sort(sortByReference(dictionary))
@@ -93,9 +97,7 @@ StyleDictionary.registerFormat({
             })
             .join('\n');
 
-          return meta.core
-            ? `:root {\n${tokens}\n}\n`
-            : `$${scssMapPrefix}${setName}: (\n${tokens}\n);\n`;
+          return meta.core ? `:root {\n${tokens}\n}\n` : `$${tokenSetName}: (\n${tokens}\n);\n`;
         })
         .join('\n')
     );
