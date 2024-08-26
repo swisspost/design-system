@@ -24,7 +24,7 @@ StyleDictionary.registerPreprocessor({
           if (tokenType === 'shadow' && typeof tokenValue === 'string') {
             context[key].$extensions[
               'studio.tokens'
-            ].boxShadowKeepRefsWorkaroundValue = `${tokenValue.replace(/({|})/g, match =>
+            ].boxShadowKeepRefsWorkaroundValue = `${tokenValue.replace(/[{}]/g, match =>
               match === '{' ? '[[' : ']]',
             )}`;
           }
