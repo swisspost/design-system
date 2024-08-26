@@ -1,5 +1,21 @@
 # @swisspost/design-system-styles
 
+## 8.2.0
+
+### Minor Changes
+
+- Added four new entry files that enable working with Design Tokens:
+  - post-external.(s)css: For portal and other external pages
+  - post-internal.(s)css: For applications and other internal pages
+  - post-tokens-external.(s)css: External tokens only
+  - post-tokens-internal.(s)css: Internal tokens only (by [@gfellerph](https://github.com/gfellerph) with [#3349](https://github.com/swisspost/design-system/pull/3349))
+
+### Patch Changes
+
+- Realigned the checkbox and the radio button with the label. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#3366](https://github.com/swisspost/design-system/pull/3366))
+
+- Set the `max-width` constraint of the tag component to 100% for improved accessibility. Try to keep tag text as short as possible though. (by [@gfellerph](https://github.com/gfellerph) with [#3388](https://github.com/swisspost/design-system/pull/3388))
+
 ## 8.1.0
 
 ### Patch Changes

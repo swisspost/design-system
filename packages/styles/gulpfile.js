@@ -180,7 +180,7 @@ gulp.task('sass:tests', () => {
 gulp.task(
   'watch',
   gulp.series('temporarily-copy-token-files', () => {
-    return gulp.watch('./src/**/*.scss', 'copy');
+    return gulp.watch('./src/**/*.scss', gulp.series('copy'));
   }),
 );
 
