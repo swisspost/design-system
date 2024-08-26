@@ -229,7 +229,7 @@ export function getFileHeader() {
  * @returns the normalized set name
  */
 export function normalizeSetName(_options, setName) {
-  return `${SCSS_MAP_PREFIX ? SCSS_MAP_PREFIX + '-' : ''}${setName.trim().replace(/[ ]/g, '-')}`;
+  return `${SCSS_MAP_PREFIX ? SCSS_MAP_PREFIX + '-' : ''}${setName.trim().replace(/\s/g, '-')}`;
 }
 
 /**
