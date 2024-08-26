@@ -137,7 +137,7 @@ export async function createOutputFiles() {
         },
         source: [`${SOURCE_PATH}/_temp/grouped/${filePath}`],
         include: [`${SOURCE_PATH}/_temp/raw/**/*.json`],
-        preprocessors: ['tokens-studio'],
+        preprocessors: ['swisspost/box-shadow-keep-refs-workaround', 'tokens-studio'],
         platforms: {
           scss: {
             transformGroup: 'tokens-studio',

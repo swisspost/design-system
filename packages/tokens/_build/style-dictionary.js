@@ -6,6 +6,38 @@ import { getFileHeader } from './methods.js';
 
 register(StyleDictionary);
 
+// Can be removed, as soon as box-shadow tokens can be outputted with references
+StyleDictionary.registerPreprocessor({
+  name: 'swisspost/box-shadow-keep-refs-workaround',
+  preprocessor: dictionary => {
+    traverse(dictionary);
+
+    function traverse(context) {
+      Object.entries(context).forEach(([key, value]) => {
+        const usesDtcg = context[key].$type && context[key].$value;
+        const isToken = context[key][usesDtcg ? '$type' : 'type'] !== undefined;
+
+        if (isToken) {
+          const tokenType = context[key][usesDtcg ? '$type' : 'type'];
+          const tokenValue = context[key][usesDtcg ? '$value' : 'value'];
+
+          if (tokenType === 'shadow' && typeof tokenValue === 'string') {
+            context[key].$extensions[
+              'studio.tokens'
+            ].boxShadowKeepRefsWorkaroundValue = `${tokenValue.replace(/({|})/g, match =>
+              match === '{' ? '[[' : ']]',
+            )}`;
+          }
+        } else if (typeof context[key] === 'object') {
+          traverse(value);
+        }
+      });
+    }
+
+    return dictionary;
+  },
+});
+
 /**
  * @function StyleDictionary.registerFilter()
  * Defines a custom StyleDictionary filter.
@@ -72,8 +104,17 @@ StyleDictionary.registerFormat({
     }
 
     function normalizeTokenValueReference(token) {
+      // Can be removed, as soon as box-shadow tokens can be outputted with references
+      const boxShadowKeepRefsWorkaroundValue = token?.$extensions?.[
+        'studio.tokens'
+      ]?.boxShadowKeepRefsWorkaroundValue?.replace(/(\[\[|\]\])/g, match =>
+        match === '[[' ? '{' : '}',
+      );
+
       const usesDtcg = token.$type && token.$value;
-      const originalTokenValue = usesDtcg ? token.original.$value : token.original.value;
+      const originalTokenValue =
+        boxShadowKeepRefsWorkaroundValue ??
+        (usesDtcg ? token.original.$value : token.original.value);
       let tokenValue = usesDtcg ? token.$value : token.value;
 
       if (outputReferences && usesReferences(originalTokenValue)) {
