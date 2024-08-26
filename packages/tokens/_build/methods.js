@@ -85,7 +85,7 @@ export async function createTokenSetFiles() {
   console.log(`\x1b[90mProcessing data...`);
   const rawTokenFolders = Object.keys(tokenSets.raw)
     .filter(name => name.includes('/'))
-    .map(name => `${SOURCE_PATH}/_temp/raw/${name.replace(/\/.*$/, '')}`);
+    .map(name => `${SOURCE_PATH}/_temp/raw/${name.replace(/\/[a-z-_ ]$/, '')}`);
 
   await Promise.all([
     promises.mkdir(`${SOURCE_PATH}/_temp/grouped`, { recursive: true }),
