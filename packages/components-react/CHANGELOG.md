@@ -1,16 +1,5 @@
 # @swisspost/design-system-components-react
 
-## 8.2.0
-
-### Minor Changes
-
-- Added the post-logo component, which enables displaying the Post's logo either as a clickable link or as a simple image. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3465](https://github.com/swisspost/design-system/pull/3465))
-
-### Patch Changes
-
-- Updated dependencies:
-  - @swisspost/design-system-components@8.2.0
-
 ## 8.1.0
 
 ### Patch Changes
