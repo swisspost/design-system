@@ -1044,7 +1044,7 @@ importers:
         specifier: workspace:8.1.0
         version: link:../icons
       '@swisspost/design-system-tokens':
-        specifier: workspace:*
+        specifier: workspace:0.1.0
         version: link:../tokens/dist
       '@types/node':
         specifier: 20.14.14
