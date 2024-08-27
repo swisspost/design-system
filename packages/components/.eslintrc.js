@@ -18,6 +18,7 @@ module.exports = {
     'cypress.config.js',
     'dist',
     'loader',
+    'loaders',
     'stencil.config.ts',
     'www',
   ],
