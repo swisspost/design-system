@@ -53,7 +53,7 @@ export class PostAccordion {
     const toggledItem = event.target as HTMLElement;
     const closestParentAccordion = toggledItem.closest('post-accordion');
 
-    if (closestParentAccordion === this.host) {
+    if (closestParentAccordion === this.host && toggledItem.localName === 'post-accordion-item') {
       const toggledAccordionItem = event.target as HTMLPostAccordionItemElement;
       const isClosing = this.expandedItems.has(toggledAccordionItem);
 
