@@ -62,13 +62,12 @@ export const applyToolbarSelection = (story: StoryFn, context: object) => {
   // mode is added through the `data-color-mode` attribute, we also set a dark background color when necessary
   const mode = context.globals.mode || 'light';
   const classes = {
-    'custom-story-container': true,
     'bg-dark': mode === 'dark',
   };
 
   return html`
     <${unsafeStatic(storyContainerComponentName)}
-      class=${classMap(classes)}
+      class="custom-story-container ${classMap(classes)}"
       data-color-mode=${mode}
       .story=${story}
       .context=${context}
