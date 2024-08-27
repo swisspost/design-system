@@ -1,10 +1,7 @@
-import { html, unsafeStatic } from 'lit/static-html.js';
-import { classMap } from 'lit-html/directives/class-map.js';
+import { html } from 'lit/static-html.js';
 
-import './story-container-post-external';
-import './story-container-post-internal';
+import './story-container';
 import { StoryFn } from '@storybook/web-components';
-import { TemplateResult } from 'lit';
 
 /**
  * Configuration of the buttons displayed in the Storybook toolbar
@@ -12,8 +9,9 @@ import { TemplateResult } from 'lit';
 export const toolbarConfig = {
   // Theme: Post, Cargo, etc.
   theme: {
+    description: 'Switch component themes between different branding colors.',
+    defaultValue: 'post',
     toolbar: {
-      title: 'Post Theme', // label when no option is selected (default value)
       items: [
         {
           title: 'Post Theme', // label of the option in the dropdown list
@@ -26,8 +24,9 @@ export const toolbarConfig = {
 
   // Channel: External, Internal
   channel: {
+    description: 'Toggle component appearance between internal and external application styles.',
+    defaultValue: 'external',
     toolbar: {
-      title: 'External',
       items: [
         { value: 'external', title: 'External' },
         { value: 'internal', title: 'Internal' },
@@ -38,8 +37,9 @@ export const toolbarConfig = {
 
   // Mode: Light, Dark
   mode: {
+    description: 'Switch component color schemes between light and dark modes.',
+    defaultValue: 'light',
     toolbar: {
-      title: 'Light',
       items: [
         { value: 'light', title: 'Light' },
         { value: 'dark', title: 'Dark' },
@@ -54,21 +54,15 @@ export const toolbarConfig = {
  * Stories are then rendered in a shadow dom were the expected styles are applied
  */
 export const applyToolbarSelection = (story: StoryFn, context: object) => {
-  // theme and channel require importing a specific CSS file, this is handled by specific web-components
-  const theme = context.globals.theme || 'post';
-  const channel = context.globals.channel || 'external';
-  const storyContainerComponentName = `${theme}-${channel}`;
-
   // mode is added through the `data-color-mode` attribute, we also set a dark background color when necessary
   const mode = context.globals.mode || 'light';
-  const classes = {
-    'bg-dark': mode === 'dark',
-  };
 
   return html`
-    <${unsafeStatic(storyContainerComponentName)}
-      class="custom-story-container ${classMap(classes)}"
+    <story-container
+      class=${mode === 'dark' ? 'bg-dark' : ''}
       data-color-mode=${mode}
+      theme=${context.globals.theme}
+      channel=${context.globals.channel}
       .story=${story}
       .context=${context}
     />
