@@ -49,6 +49,7 @@
 
 .chip-filter {
   display: inline-block;
+  max-width: 100%;
 
   &-label {
     @include chip-mx.chip-styles();

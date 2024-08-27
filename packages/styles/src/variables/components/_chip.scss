@@ -14,7 +14,7 @@ $chip-border-width: commons.$border-thick;
 $chip-border-radius: commons.$border-radius-pill;
 
 $chip-height: button.$btn-height-rg;
-$chip-max-width: sizing.px-to-rem(296px);
+$chip-max-width: 100%;
 $chip-padding-x: spacing.$size-regular;
 $chip-gap: spacing.$size-mini;
 
