@@ -239,15 +239,6 @@ interface AccessibleText {
 }
 
 /**
- * Setup with enforced text or label:
- *
- * interface Description { description?: string; title?: string; }
- * interface Text extends Description { text?: string; }
- * interface Label extends Description { label?: string; }
- * type AccessibleText = Text | Label | (Text & Label);
- */
-
-/**
  * Link with optional attributes for Google Analytics tracking
  */
 interface Link extends AccessibleText {
