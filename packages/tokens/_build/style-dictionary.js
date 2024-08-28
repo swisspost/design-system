@@ -1,46 +1,8 @@
 import StyleDictionary from 'style-dictionary';
-import { sortByReference } from 'style-dictionary/utils';
 import { register } from '@tokens-studio/sd-transforms';
-import {
-  getFileHeader,
-  normalizeSetName,
-  normalizeTokenName,
-  normalizeTokenValueReference,
-} from './methods.js';
+import { getFileHeader, getSetName, getSet, getTokenValue } from './methods.js';
 
 register(StyleDictionary);
-
-// Can be removed, as soon as box-shadow tokens can be outputted with references
-StyleDictionary.registerPreprocessor({
-  name: 'swisspost/box-shadow-keep-refs-workaround',
-  preprocessor: dictionary => {
-    traverse(dictionary);
-
-    function traverse(context) {
-      Object.entries(context).forEach(([key, value]) => {
-        const usesDtcg = context[key].$type && context[key].$value;
-        const isToken = context[key][usesDtcg ? '$type' : 'type'] !== undefined;
-
-        if (isToken) {
-          const tokenType = context[key][usesDtcg ? '$type' : 'type'];
-          const tokenValue = context[key][usesDtcg ? '$value' : 'value'];
-
-          if (tokenType === 'shadow' && typeof tokenValue === 'string') {
-            context[key].$extensions[
-              'studio.tokens'
-            ].boxShadowKeepRefsWorkaroundValue = `${tokenValue.replace(/[{}]/g, match =>
-              match === '{' ? '[[' : ']]',
-            )}`;
-          }
-        } else if (typeof context[key] === 'object') {
-          traverse(value);
-        }
-      });
-    }
-
-    return dictionary;
-  },
-});
 
 /**
  * @function StyleDictionary.registerFilter()
@@ -83,21 +45,20 @@ StyleDictionary.registerFormat({
       getFileHeader() +
       meta.setNames
         .map(setName => {
-          const tokenSetName = normalizeSetName(options, setName);
-          const tokens = dictionary.allTokens
-            .filter(token => token.path[0] === setName)
-            .sort(sortByReference(dictionary))
+          const tokenSetName = getSetName(options, setName);
+          const tokenSet = getSet(options, dictionary, setName)
             .map(token => {
-              const tokenName = normalizeTokenName(options, token);
-              const tokenValue = normalizeTokenValueReference(options, token);
+              const tokenValue = getTokenValue(options, token);
 
-              return meta.core
-                ? `  --${tokenName}: ${tokenValue};`
-                : `  ${tokenName}: ${tokenValue},`;
+              return meta.layer === 'core'
+                ? `  --${token.name}: ${tokenValue};`
+                : `  ${token.name}: ${tokenValue},`;
             })
             .join('\n');
 
-          return meta.core ? `:root {\n${tokens}\n}\n` : `$${tokenSetName}: (\n${tokens}\n);\n`;
+          return meta.layer === 'core'
+            ? `:root {\n${tokenSet}\n}\n`
+            : `$${tokenSetName}: (\n${tokenSet}\n);\n`;
         })
         .join('\n')
     );

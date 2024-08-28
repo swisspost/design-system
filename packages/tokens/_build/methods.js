@@ -2,10 +2,48 @@ import StyleDictionary from './style-dictionary.js';
 import { usesReferences } from 'style-dictionary/utils';
 import { expandTypesMap } from '@tokens-studio/sd-transforms';
 import { promises } from 'fs';
-import { SOURCE_PATH, OUTPUT_PATH, FILE_HEADER, TOKENSET_PREFIX } from './constants.js';
+import {
+  SOURCE_PATH,
+  OUTPUT_PATH,
+  FILE_HEADER,
+  TOKENSET_LAYERS,
+  TOKENSET_PREFIX,
+} from './constants.js';
 
 let CLI_OPTIONS;
 let tokenSets;
+
+// Can be removed, as soon as box-shadow tokens can be outputted with references
+StyleDictionary.registerPreprocessor({
+  name: 'swisspost/box-shadow-keep-refs-workaround',
+  preprocessor: dictionary => {
+    traverse(dictionary);
+
+    function traverse(context) {
+      Object.entries(context).forEach(([key, value]) => {
+        const usesDtcg = context[key].$type && context[key].$value;
+        const isToken = context[key][usesDtcg ? '$type' : 'type'] !== undefined;
+
+        if (isToken) {
+          const tokenType = context[key][usesDtcg ? '$type' : 'type'];
+          const tokenValue = context[key][usesDtcg ? '$value' : 'value'];
+
+          if (tokenType === 'shadow' && typeof tokenValue === 'string') {
+            context[key].$extensions[
+              'studio.tokens'
+            ].boxShadowKeepRefsWorkaroundValue = `${tokenValue.replace(/[{}]/g, match =>
+              match === '{' ? '[[' : ']]',
+            )}`;
+          }
+        } else if (typeof context[key] === 'object') {
+          traverse(value);
+        }
+      });
+    }
+
+    return dictionary;
+  },
+});
 
 export async function setup() {
   CLI_OPTIONS = createCliOptions();
@@ -52,18 +90,23 @@ function createTokenSets(tokensFile) {
     .filter(([name]) => !/^\$/.test(name))
     .reduce((sets, [name, set]) => ({ ...sets, [name.toLowerCase()]: set }), {});
 
-  const grouped = Object.entries(raw).reduce((d, [name, set]) => {
+  const grouped = Object.entries(raw).reduce((definition, [name, set]) => {
     const [groupSlug, setSlug] = name.toLowerCase().split('/');
     const groupName = setSlug ? groupSlug : null;
     const setName = setSlug ?? groupSlug;
     const type = !groupName ? 'singleton' : 'collection';
-    const existingGroup = d[groupSlug];
+    const existingGroup = definition[groupSlug];
+    const isCore = type === 'singleton' && setName === 'core';
+    const isComponent = type === 'singleton' || groupName === 'components';
 
     return {
-      ...d,
+      ...definition,
       [groupSlug]: {
         type,
-        core: type === 'singleton' && setName === 'core',
+        layer:
+          (isCore && TOKENSET_LAYERS.core) ||
+          (isComponent && TOKENSET_LAYERS.component) ||
+          TOKENSET_LAYERS.semantic,
         filePath: `${groupName ?? setName}.json`,
         sets: { ...existingGroup?.sets, [setName]: set },
       },
@@ -86,7 +129,7 @@ export async function createTokenSetFiles() {
   console.log(`\x1b[90mProcessing data...`);
   const rawTokenFolders = Object.keys(tokenSets.raw)
     .filter(name => name.includes('/'))
-    .map(name => `${SOURCE_PATH}/_temp/raw/${name.replace(/\/[a-z-_ ]$/, '')}`);
+    .map(name => `${SOURCE_PATH}/_temp/raw/${name.replace(/\/[a-z-_ ]+$/, '')}`);
 
   await Promise.all([
     promises.mkdir(`${SOURCE_PATH}/_temp/grouped`, { recursive: true }),
@@ -125,14 +168,14 @@ export async function createOutputFiles() {
    * @returns Config[]
    */
   function getConfigs() {
-    return Object.entries(tokenSets.grouped).map(([name, { type, core, filePath, sets }]) => {
+    return Object.entries(tokenSets.grouped).map(([name, { type, layer, filePath, sets }]) => {
       return {
         log: {
           verbosity: CLI_OPTIONS.verbosity,
         },
         meta: {
           type,
-          core,
+          layer,
           filePath,
           setNames: Object.keys(sets),
         },
@@ -183,7 +226,7 @@ export async function createOutputFiles() {
    */
   async function createIndexFile() {
     const imports = Object.entries(tokenSets.grouped)
-      .map(([name, { core }]) => `@${core ? 'use' : 'forward'} './${name}';`)
+      .map(([name, { layer }]) => `@${layer === 'core' ? 'use' : 'forward'} './${name}';`)
       .join('\n');
 
     await promises.writeFile(`${OUTPUT_PATH}/index.scss`, `${getFileHeader()}${imports}\n`);
@@ -221,50 +264,110 @@ export function getFileHeader() {
 }
 
 /**
- * @function normalizeSetName(option, setName)
+ * @function getSetName(option, setName)
  *
  * @param options Config
  * @param setName String
  *
  * @returns the normalized set name
  */
-export function normalizeSetName(_options, setName) {
+export function getSetName(_options, setName) {
   return `${TOKENSET_PREFIX ? TOKENSET_PREFIX + '-' : ''}${setName.trim().replace(/\s/g, '-')}`;
 }
 
 /**
- * @function normalizeTokenName(option, token)
+ * @function getSet(option, dictionary, setName)
  *
  * @param options Config
- * @param token DesignToken object
+ * @param dictionary Dictionary
+ * @param setName String
  *
- * @returns the tokens name, without the group prefix
+ * @returns a normalized set
+ *
+ * This method uses the first col in a tokenset as the base and overrides only the changes values from further cols.
+ * This allows us to define tokenSets like this:
+ *
+ * | desktop | tablet | mobile |
+ * | a       |        |        | desktop/tablet/mobile = a
+ * | a       | b      |        | desktop = a, tablet/mobile = b
+ * | a       |        | b      | desktop/tablet = a, mobile = b
+ * | a       | b      | c      | desttop = a, tablet = b, mobile = c
  */
-export function normalizeTokenName(_options, token) {
-  return token.path.slice(1).join('-');
+export function getSet(options, dictionary, currentSetName) {
+  const { meta } = options;
+  let tokenSet = [];
+
+  if (meta.layer === 'semantic') {
+    const baseSetName = meta.setNames[0];
+    const overrideSetNameIndex = meta.setNames.findIndex(setName => setName === currentSetName) + 1;
+    const overrideSetNames = meta.setNames.slice(1, overrideSetNameIndex);
+
+    tokenSet = dictionary.allTokens
+      .filter(token => token.path[0] === baseSetName)
+      .map(normalizeToken);
+
+    overrideSetNames.forEach(overrideSetName => {
+      const overrideTokenSet = dictionary.allTokens
+        .filter(token => token.path[0] === overrideSetName)
+        .map(normalizeToken);
+
+      tokenSet.map(token => {
+        const overrideToken = overrideTokenSet.find(
+          overrideToken => overrideToken.name === token.name,
+        );
+
+        if (overrideToken) token = overrideToken;
+      });
+    });
+  } else {
+    tokenSet = dictionary.allTokens
+      .filter(token => token.path[0] === currentSetName)
+      .map(normalizeToken);
+  }
+
+  return tokenSet;
+
+  function normalizeToken(token) {
+    const usesDtcg = token.$type && token.$value;
+    const name = token.path.slice(1).join('-');
+    const path = name.split('-');
+    const original = token.original;
+    // Can be removed, as soon as box-shadow tokens can be outputted with references
+    const boxShadowKeepRefsWorkaroundValue = token?.original?.$extensions?.[
+      'studio.tokens'
+    ]?.boxShadowKeepRefsWorkaroundValue?.replace(/(\[\[|\]\])/g, match =>
+      match === '[[' ? '{' : '}',
+    );
+
+    if (boxShadowKeepRefsWorkaroundValue) {
+      original[usesDtcg ? '$value' : 'value'] = boxShadowKeepRefsWorkaroundValue;
+    }
+
+    return {
+      ...token,
+      name,
+      path,
+      original: {
+        ...token.original,
+        ...original,
+      },
+    };
+  }
 }
 
 /**
- * @function normalizeTokenValueReference(token)
+ * @function getTokenValue(token)
  *
  * @param options Config
  * @param token DesignToken object
  *
- * @returns the tokens value, with referenced css custom-properties
+ * @returns the tokens value, with referenced css custom-properties (if original value uses references)
  */
-export function normalizeTokenValueReference(options, token) {
+export function getTokenValue(options, token) {
   const { outputReferences } = options;
 
-  // Can be removed, as soon as box-shadow tokens can be outputted with references
-  const boxShadowKeepRefsWorkaroundValue = token?.$extensions?.[
-    'studio.tokens'
-  ]?.boxShadowKeepRefsWorkaroundValue?.replace(/(\[\[|\]\])/g, match =>
-    match === '[[' ? '{' : '}',
-  );
-
   const usesDtcg = token.$type && token.$value;
-  const originalTokenValue =
-    boxShadowKeepRefsWorkaroundValue ?? (usesDtcg ? token.original.$value : token.original.value);
+  const originalTokenValue = usesDtcg ? token.original.$value : token.original.value;
   let tokenValue = usesDtcg ? token.$value : token.value;
 
   if (outputReferences && usesReferences(originalTokenValue)) {
