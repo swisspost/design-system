@@ -43,7 +43,11 @@ $datatable-progressbar-backgroundcolor: color.$gray-10;
 $datatable-progressbar-activecolor: color.$yellow;
 
 // DEPRECATED
-$datatable-sort-asc-icon: url('#{icons.get-colored-svg-url('2112', color.$gray-80)}');
-$datatable-sort-desc-icon: url('#{icons.get-colored-svg-url('2113', color.$gray-80)}');
-$datatable-sort-unset-icon: url('#{icons.get-colored-svg-url('2127', color.$gray-80)}');
-$datatable-editable-icon: url('#{icons.get-colored-svg-url('3193', color.$gray-80)}');
+$_datatable-sort-asc-icon: icons.get-colored-svg-url('2112', color.$gray-80);
+$_datatable-sort-desc-icon: icons.get-colored-svg-url('2113', color.$gray-80);
+$_datatable-sort-unset-icon: icons.get-colored-svg-url('2127', color.$gray-80);
+$_datatable-editable-icon: icons.get-colored-svg-url('3193', color.$gray-80);
+$datatable-sort-asc-icon: url('#{$_datatable-sort-asc-icon}');
+$datatable-sort-desc-icon: url('#{$_datatable-sort-desc-icon}');
+$datatable-sort-unset-icon: url('#{$_datatable-sort-unset-icon}');
+$datatable-editable-icon: url('#{$_datatable-editable-icon}');
