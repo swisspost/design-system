@@ -1,0 +1,25 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@swisspost/design-system-changelog-github": "1.0.2",
+    "@swisspost/design-system-components": "8.2.0",
+    "@swisspost/design-system-components-angular-workspace": "1.1.9",
+    "@swisspost/design-system-components-angular": "8.2.0",
+    "@swisspost/design-system-components-react": "8.2.0",
+    "@swisspost/design-system-demo": "8.0.2",
+    "@swisspost/design-system-documentation": "5.4.0",
+    "@swisspost/design-system-icons": "8.2.0",
+    "@swisspost/internet-header": "1.14.5",
+    "@swisspost/design-system-intranet-header-workspace": "3.0.21",
+    "@swisspost/design-system-intranet-header": "8.2.0",
+    "@swisspost/design-system-intranet-header-showcase": "1.0.9",
+    "@swisspost/design-system-migrations": "8.2.0",
+    "@swisspost/design-system-nextjs-integration": "0.1.13",
+    "@swisspost/design-system-styles": "8.2.0",
+    "@swisspost/design-system-styles-primeng-workspace": "1.0.5",
+    "@swisspost/design-system-styles-primeng": "8.2.0",
+    "@swisspost/design-system-tokens": "8.2.0"
+  },
+  "changesets": []
+}
