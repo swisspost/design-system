@@ -86,37 +86,63 @@ function createCliOptions() {
  * @returns group-nested tokensets object
  */
 function createTokenSets(tokensFile) {
-  const raw = Object.entries(tokensFile)
+  // remove $themes and $metadata objects
+  // lowercase set names
+  const normalized = Object.entries(tokensFile)
     .filter(([name]) => !/^\$/.test(name))
     .reduce((sets, [name, set]) => ({ ...sets, [name.toLowerCase()]: set }), {});
 
-  const grouped = Object.entries(raw).reduce((definition, [name, set]) => {
-    const [groupSlug, setSlug] = name.toLowerCase().split('/');
-    const groupName = setSlug ? groupSlug : null;
-    const setName = setSlug ?? groupSlug;
-    const type = !groupName ? 'singleton' : 'collection';
+  // only add source files for non component layer tokensets
+  const source = Object.entries(normalized).reduce((sets, [name, set]) => {
+    const { baseDefinition } = getConfig(name);
+
+    if (baseDefinition.layer !== TOKENSET_LAYERS.component) {
+      return { ...sets, [name]: set };
+    } else {
+      return sets;
+    }
+  }, {});
+
+  // combine tokensets by group so they can be outputted in a single file
+  const output = Object.entries(normalized).reduce((definition, [name, set]) => {
+    const { groupSlug, setName, baseDefinition } = getConfig(name);
     const existingGroup = definition[groupSlug];
-    const isCore = type === 'singleton' && setName === 'core';
-    const isComponent = type === 'singleton' || groupName === 'components';
 
     return {
       ...definition,
       [groupSlug]: {
-        type,
-        layer:
-          (isCore && TOKENSET_LAYERS.core) ||
-          (isComponent && TOKENSET_LAYERS.component) ||
-          TOKENSET_LAYERS.semantic,
-        filePath: `${groupName ?? setName}.json`,
+        ...baseDefinition,
         sets: { ...existingGroup?.sets, [setName]: set },
       },
     };
   }, {});
 
   return {
-    raw,
-    grouped,
+    source,
+    output,
   };
+
+  function getConfig(name) {
+    const [groupSlug, setSlug] = name.split('/');
+    const groupName = setSlug ? groupSlug : null;
+    const setName = setSlug ?? groupSlug;
+    const type = !groupName ? 'singleton' : 'collection';
+    const isCore = type === 'singleton' && setName === 'core';
+    const isComponent = !isCore && (type === 'singleton' || groupName === 'components');
+
+    return {
+      groupSlug,
+      setName,
+      baseDefinition: {
+        type,
+        layer:
+          (isCore && TOKENSET_LAYERS.core) ||
+          (isComponent && TOKENSET_LAYERS.component) ||
+          TOKENSET_LAYERS.semantic,
+        filePath: `${groupName ?? setName}.json`,
+      },
+    };
+  }
 }
 
 /**
@@ -127,21 +153,21 @@ function createTokenSets(tokensFile) {
  */
 export async function createTokenSetFiles() {
   console.log(`\x1b[90mProcessing data...`);
-  const rawTokenFolders = Object.keys(tokenSets.raw)
+  const sourceTokenFolders = Object.keys(tokenSets.source)
     .filter(name => name.includes('/'))
-    .map(name => `${SOURCE_PATH}/_temp/raw/${name.replace(/\/[a-z-_ ]+$/, '')}`);
+    .map(name => `${SOURCE_PATH}/_temp/source/${name.replace(/\/[a-z-_ ]+$/, '')}`);
 
   await Promise.all([
-    promises.mkdir(`${SOURCE_PATH}/_temp/grouped`, { recursive: true }),
-    ...rawTokenFolders.map(folder => promises.mkdir(folder, { recursive: true })),
+    promises.mkdir(`${SOURCE_PATH}/_temp/output`, { recursive: true }),
+    ...sourceTokenFolders.map(folder => promises.mkdir(folder, { recursive: true })),
   ]);
 
   await Promise.all([
-    ...Object.entries(tokenSets.raw).map(([name, set]) =>
-      promises.writeFile(`${SOURCE_PATH}/_temp/raw/${name}.json`, JSON.stringify(set, null, 2)),
+    ...Object.entries(tokenSets.source).map(([name, set]) =>
+      promises.writeFile(`${SOURCE_PATH}/_temp/source/${name}.json`, JSON.stringify(set, null, 2)),
     ),
-    ...Object.values(tokenSets.grouped).map(({ sets, filePath }) =>
-      promises.writeFile(`${SOURCE_PATH}/_temp/grouped/${filePath}`, JSON.stringify(sets, null, 2)),
+    ...Object.values(tokenSets.output).map(({ sets, filePath }) =>
+      promises.writeFile(`${SOURCE_PATH}/_temp/output/${filePath}`, JSON.stringify(sets, null, 2)),
     ),
   ]);
 
@@ -168,7 +194,7 @@ export async function createOutputFiles() {
    * @returns Config[]
    */
   function getConfigs() {
-    return Object.entries(tokenSets.grouped).map(([name, { type, layer, filePath, sets }]) => {
+    return Object.entries(tokenSets.output).map(([name, { type, layer, filePath, sets }]) => {
       return {
         log: {
           verbosity: CLI_OPTIONS.verbosity,
@@ -179,8 +205,8 @@ export async function createOutputFiles() {
           filePath,
           setNames: Object.keys(sets),
         },
-        source: [`${SOURCE_PATH}/_temp/grouped/${filePath}`],
-        include: [`${SOURCE_PATH}/_temp/raw/**/*.json`],
+        source: [`${SOURCE_PATH}/_temp/output/${filePath}`],
+        include: [`${SOURCE_PATH}/_temp/source/**/*.json`],
         preprocessors: ['swisspost/box-shadow-keep-refs-workaround', 'tokens-studio'],
         platforms: {
           scss: {
@@ -225,7 +251,7 @@ export async function createOutputFiles() {
    * Creates the index.scss file (which uses/forwards the other output files) in the "OUTPUT_PATH" directory.
    */
   async function createIndexFile() {
-    const imports = Object.entries(tokenSets.grouped)
+    const imports = Object.entries(tokenSets.output)
       .map(([name, { layer }]) => `@${layer === 'core' ? 'use' : 'forward'} './${name}';`)
       .join('\n');
 

@@ -20,7 +20,7 @@ register(StyleDictionary);
 StyleDictionary.registerFilter({
   name: 'swisspost/tokenset-filter',
   filter: (token, { meta }) => {
-    return token.filePath.includes(`/grouped/${meta.filePath}`);
+    return token.filePath.includes(`/output/${meta.filePath}`);
   },
 });
 
