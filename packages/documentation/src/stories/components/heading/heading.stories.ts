@@ -89,8 +89,7 @@ export const Default: Story = {
     const tagName = unsafeStatic(args.level);
     const content = args.showSubtitle
       ? html`
-          <span>${args.title}</span>
-          <br />
+          <span class="d-block">${args.title}</span>
           <span class="fw-light">${args.subtitle}</span>
         `
       : args.title;
