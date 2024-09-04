@@ -2,6 +2,8 @@ import { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 
+// TODO: discuss documentation v2
+// TODO: discuss MetaComponent type errors
 const meta: MetaComponent = {
   id: '77cbd9b3-dc27-4c2f-b6bc-a706c1b4d0e5',
   title: 'Components/Forms/Text Input',

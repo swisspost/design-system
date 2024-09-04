@@ -6,11 +6,7 @@
 @use './../../tokens/components' as tokens;
 @use './../../variables/animation';
 
-$border-width: 2px;
-
-@function post-input($name) {
-  @return map.get(tokens.$post-text-input, post-input-#{$name});
-}
+$border-width: 2px; // TODO: discuss non-tokenized variables
 
 .text-input {
   position: relative;
@@ -18,13 +14,20 @@ $border-width: 2px;
   label {
     @include typo-mx.use(label-default);
     position: absolute;
-    transition: animation.$transition-base;
-    inset-inline-start: calc.add($border-width, post-input(spacing-padding-inline-text-start));
-    inset-inline-end: calc.add($border-width, post-input(spacing-padding-inline-text-end));
+    transition: animation.$transition-base; // TODO: discuss animations
+    inset-inline-start: calc.add(
+      $border-width,
+      map.get(tokens.$post-text-input, post-input-spacing-padding-inline-text-start)
+    );
+    inset-inline-end: calc.add(
+      $border-width,
+      map.get(tokens.$post-text-input, post-input-spacing-padding-inline-text-end)
+    );
+    // TODO: discuss long variable names
     inset-block-start: calc.add(
       $border-width,
-      post-input(spacing-padding-block-text1),
-      post-input(spacing-padding-block-text5)
+      map.get(tokens.$post-text-input, post-input-spacing-padding-block-text1),
+      map.get(tokens.$post-text-input, post-input-spacing-padding-block-text5)
     );
   }
 
@@ -33,51 +36,63 @@ $border-width: 2px;
 
     width: 100%;
     transition: animation.$transition-base;
-    border-radius: post-input(border-radius-surface);
-    padding-inline-start: post-input(spacing-padding-inline-text-start);
-    padding-inline-end: post-input(spacing-padding-inline-text-end);
+    border-radius: map.get(tokens.$post-text-input, post-input-border-radius-surface);
+    padding-inline-start: map.get(
+      tokens.$post-text-input,
+      post-input-spacing-padding-inline-text-start
+    );
+    padding-inline-end: map.get(
+      tokens.$post-text-input,
+      post-input-spacing-padding-inline-text-end
+    );
     padding-block: calc.add(
-      post-input(spacing-padding-block-text1),
-      post-input(spacing-padding-block-text5)
+      map.get(tokens.$post-text-input, post-input-spacing-padding-block-text1),
+      map.get(tokens.$post-text-input, post-input-spacing-padding-block-text5)
     );
 
-    color: post-input(color-primary-enabled-fg);
-    border: $border-width solid post-input(color-primary-enabled-stroke);
-    background-color: post-input(color-primary-enabled-bg);
+    color: map.get(tokens.$post-text-input, post-input-color-primary-enabled-fg);
+    border: $border-width solid
+      map.get(tokens.$post-text-input, post-input-color-primary-enabled-stroke);
+    background-color: map.get(tokens.$post-text-input, post-input-color-primary-enabled-bg);
 
     &:placeholder-shown:focus,
     &:not(:placeholder-shown) {
-      padding-block-start: calc(#{post-input(spacing-padding-block-text2)} + 21px);
-      padding-block-end: post-input(spacing-padding-block-text2);
+      padding-block-start: calc(
+        #{map.get(tokens.$post-text-input, post-input-spacing-padding-block-text2)} + 21px
+      );
+      padding-block-end: map.get(tokens.$post-text-input, post-input-spacing-padding-block-text2);
 
       + label {
         @include typo-mx.use(label-smaller);
-        inset-block-start: calc.add($border-width, post-input(spacing-padding-block-text2));
+        inset-block-start: calc.add(
+          $border-width,
+          map.get(tokens.$post-text-input, post-input-spacing-padding-block-text2)
+        );
       }
     }
 
     &:hover {
-      border-color: post-input(color-primary-hover-stroke);
-      background-color: post-input(color-primary-hover-bg);
+      border-color: map.get(tokens.$post-text-input, post-input-color-primary-hover-stroke);
+      background-color: map.get(tokens.$post-text-input, post-input-color-primary-hover-bg);
 
       + label {
-        color: post-input(color-primary-hover-fg);
+        color: map.get(tokens.$post-text-input, post-input-color-primary-hover-fg);
       }
     }
 
     &:disabled {
-      color: post-input(color-primary-disabled-fg);
+      color: map.get(tokens.$post-text-input, post-input-color-primary-disabled-fg);
       border-style: dashed;
-      border-color: post-input(color-primary-disabled-stroke);
-      background-color: post-input(color-primary-disabled-bg);
+      border-color: map.get(tokens.$post-text-input, post-input-color-primary-disabled-stroke);
+      background-color: map.get(tokens.$post-text-input, post-input-color-primary-disabled-bg);
 
       + label {
-        color: post-input(color-primary-disabled-fg);
+        color: map.get(tokens.$post-text-input, post-input-color-primary-disabled-fg);
       }
     }
 
     @include utility-mx.focus-style {
-      border-color: post-input(color-primary-focus-stroke);
+      border-color: map.get(tokens.$post-text-input, post-input-color-primary-focus-stroke);
     }
   }
 }

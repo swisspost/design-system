@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use './../tokens/temp/figmaonly' as tokens;
 
+// TODO: discuss typo temporary solution
 @mixin use($name) {
   font-family:
     map.get(tokens.$post-figmaonly, utility-typo-#{$name}-fontFamily),
