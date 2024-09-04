@@ -80,6 +80,10 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   private moreElement!: HTMLElement;
   private navElement!: HTMLElement;
   private navItems!: Array<HTMLElement>;
+  private logoElement!: HTMLElement;
+  private titleElement!: HTMLElement;
+  private optionHeaderContentElement!: HTMLElement;
+  private profileMenuElement!: HTMLElement;
   private navChanges!: MutationObserver;
 
   constructor(
@@ -142,6 +146,11 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
       }" id="more">
                                     <span class="nav-link col-auto py-3 px-4"></span>
                                 </li>`;
+      this.logoElement = this.dom.nativeElement.querySelector('#logo');
+      this.titleElement = this.dom.nativeElement.querySelector('#title');
+      this.optionHeaderContentElement =
+        this.dom.nativeElement.querySelector('#optionHeaderContent');
+      this.profileMenuElement = this.dom.nativeElement.querySelector('#profileMenu');
       this.navElement = this.dom.nativeElement.querySelector('#nav');
       if (this.navElement == null) {
         return;
@@ -280,19 +289,19 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
     const listMargin = 40;
     const navItemWidth = navItems.reduce((acc, el) => acc + el.scrollWidth, listMargin);
 
-    // Get document width
-    const documentWidth = document.documentElement.scrollWidth;
+    // Get available width for the navigation bar
+    const availableNavWidth = this.getAvailableNavWidth();
 
     // Display the more element if necessary, hide it otherwise
-    this.moreElement.style.display = navItemWidth > documentWidth ? '' : 'none';
+    this.moreElement.style.display = navItemWidth > availableNavWidth ? '' : 'none';
 
     // If the navbar is too wide, turn the nav items into overflow items one by one
-    if (navItemWidth > documentWidth) {
+    if (navItemWidth > availableNavWidth) {
       let navWidth = navItemWidth + this.moreElement.scrollWidth;
       let lastNavItem: HTMLElement;
       let greaterWidth = 0;
 
-      while (navWidth > documentWidth) {
+      while (navWidth > availableNavWidth) {
         lastNavItem = navItems[navItems.length - 1];
 
         if (lastNavItem === undefined) {
@@ -332,6 +341,22 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
 
   public isLanguageActive(lang: string) {
     return this.lang.toLowerCase() === lang.toLowerCase();
+  }
+
+  private getAvailableNavWidth(): number {
+    if (!this.condenseHeader) {
+      return document.documentElement.scrollWidth;
+    }
+
+    const elements = [
+      this.logoElement,
+      this.titleElement,
+      this.optionHeaderContentElement,
+      this.profileMenuElement,
+    ];
+    const totalWidth = elements.reduce((sum, element) => sum + (element?.scrollWidth || 0), 0);
+
+    return document.documentElement.scrollWidth - totalWidth;
   }
 
   private createSafeAvatarUrl(): SafeUrl {

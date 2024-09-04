@@ -2,21 +2,25 @@
   <div class="nav-down">
     <div class="intranet-header">
       <div class="d-flex align-items-center flex-nowrap">
-        <div class="bg-logo d-sm-block">
+        <div id="logo" class="bg-logo d-sm-block">
           <a [href]="this.logoUrl" class="navbar-brand header-logo">
             <span class="visually-hidden">{{ getPostLogoText() }}</span>
           </a>
         </div>
-        <div class="title flex-shrink-1 px-4" [ngClass]="{ 'overflow-auto': condenseHeader }">
+        <div
+          class="title px-4"
+          id="title"
+          [ngClass]="{ 'flex-shrink-1': !condenseHeader, 'flex-shrink-0': condenseHeader }"
+        >
           <h1 class="m-0 font-weight-bold">{{ siteTitle }}</h1>
         </div>
 
         <nav
-          *ngIf="condenseHeader"
+          *ngIf="condenseHeader && hasNavbar"
           class="justify-content-start top-navigation condense m-0 d-md-flex"
           [ngClass]="{ 'd-none': !openedMenu }"
         >
-          <ng-container *ngTemplateOutlet="responsiveContent"></ng-container>
+          <ng-container *ngTemplateOutlet="navbar"></ng-container>
         </nav>
         <div *ngIf="showIntranetSearch" class="col search-textbox d-none d-md-block">
           <form [action]="searchUrl">
@@ -36,6 +40,7 @@
           </form>
         </div>
         <div
+          id="optionHeaderContent"
           *ngIf="optionHeaderContent"
           class="settings ms-auto flex-shrink-0 d-flex align-self-stretch"
         >
@@ -115,11 +120,11 @@
       </div>
     </div>
     <nav
-      *ngIf="hasNavbar === true"
+      *ngIf="hasNavbar === true && !condenseHeader"
       class="row justify-content-center top-navigation m-0 d-md-flex"
       [ngClass]="{ 'd-none': !openedMenu }"
     >
-      <ng-container *ngTemplateOutlet="responsiveContent"></ng-container>
+      <ng-container *ngTemplateOutlet="navbar"></ng-container>
     </nav>
     <div *ngIf="showIntranetSearch" class="search-textbox d-md-none">
       <form [action]="this.searchUrl">
@@ -141,7 +146,7 @@
   </div>
 </header>
 
-<ng-template #responsiveContent>
+<ng-template #navbar>
   <div class="navbar-collapse" id="navbarsDefault">
     <ul
       id="nav"
