@@ -4,13 +4,15 @@
 
 ### Minor Changes
 
-- Added the post-logo component, which enables displaying the Post's logo either as a clickable link or as a simple image. (by [@alizedebray](https://github.com/alizedebray) with [#3354](https://github.com/swisspost/design-system/pull/3354))
+- Added the post-logo component, which enables displaying the Post's logo either as a clickable link or as a simple image. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3477](https://github.com/swisspost/design-system/pull/3477))
 
 ### Patch Changes
 
-- Fixed the font in the full page previews. (by [@alizedebray](https://github.com/alizedebray) with [#3378](https://github.com/swisspost/design-system/pull/3378))
+- Simplified individual web component imports. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3477](https://github.com/swisspost/design-system/pull/3477))
 
-- Marked the card button and the carousel as deprecated (will be removed in a future version). (by [@schaertim](https://github.com/schaertim) with [#3380](https://github.com/swisspost/design-system/pull/3380))
+- Fixed the font in the full page previews. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3477](https://github.com/swisspost/design-system/pull/3477))
+
+- Marked the card button and the carousel as deprecated (will be removed in a future version). (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3477](https://github.com/swisspost/design-system/pull/3477))
 - Updated dependencies:
   - @swisspost/design-system-icons@8.2.0
   - @swisspost/design-system-styles@8.2.0
