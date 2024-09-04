@@ -24,6 +24,7 @@ $border-width: 2px; // TODO: discuss non-tokenized variables
       map.get(tokens.$post-text-input, post-input-spacing-padding-inline-text-end)
     );
     // TODO: discuss long variable names
+    // TODO: discuss multiple tokens for the same spacing
     inset-block-start: calc.add(
       $border-width,
       map.get(tokens.$post-text-input, post-input-spacing-padding-block-text1),
