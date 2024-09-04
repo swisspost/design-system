@@ -443,7 +443,7 @@ importers:
         version: 2.1.0(jasmine-core@5.2.0)(karma-jasmine@5.1.0(karma@6.4.4))(karma@6.4.4)
       raw-loader:
         specifier: 4.0.2
-        version: 4.0.2(webpack@5.93.0)
+        version: 4.0.2(webpack@5.94.0)
       rimraf:
         specifier: 6.0.1
         version: 6.0.1
@@ -463,8 +463,8 @@ importers:
         specifier: 6.19.5
         version: 6.19.5
       webpack:
-        specifier: 5.93.0
-        version: 5.93.0
+        specifier: 5.94.0
+        version: 5.94.0
 
   packages/documentation:
     dependencies:
@@ -736,7 +736,7 @@ importers:
         version: 5.0.2
       babel-loader:
         specifier: 9.1.3
-        version: 9.1.3(@babel/core@7.25.2)(webpack@5.93.0)
+        version: 9.1.3(@babel/core@7.25.2)(webpack@5.94.0)
       bootstrap:
         specifier: 5.3.3
         version: 5.3.3(@popperjs/core@2.11.8)
@@ -1044,7 +1044,7 @@ importers:
         specifier: workspace:8.2.0
         version: link:../icons
       '@swisspost/design-system-tokens':
-        specifier: workspace:*
+        specifier: workspace:8.2.0
         version: link:../tokens/dist
       '@types/node':
         specifier: 20.14.14
@@ -5587,6 +5587,10 @@ packages:
 
   enhanced-resolve@5.17.0:
     resolution: {integrity: sha512-dwDPwZL0dmye8Txp2gzFmA6sxALaSvdRDjPH0viLcKrtlOL3tw62nWWweVD1SdILDTJrbrL6tdWVN58Wo6U3eA==}
+    engines: {node: '>=10.13.0'}
+
+  enhanced-resolve@5.17.1:
+    resolution: {integrity: sha512-LMHl3dXhTcfv8gM4kEzIUeTQ+7fpdA0l2tUf34BddXPkz2A5xJ5L/Pchd5BL6rdccM9QGvu0sWZzK1Z1t4wwyg==}
     engines: {node: '>=10.13.0'}
 
   enquirer@2.3.6:
@@ -10672,8 +10676,8 @@ packages:
       webpack-cli:
         optional: true
 
-  webpack@5.93.0:
-    resolution: {integrity: sha512-Y0m5oEY1LRuwly578VqluorkXbvXKh7U3rLoQCEO04M97ScRr44afGVkI0FQFsXzysk5OgFAxjZAb9rsGQVihA==}
+  webpack@5.94.0:
+    resolution: {integrity: sha512-KcsGn50VT+06JH/iunZJedYGUJS5FGjow8wb9c0v5n1Om8O1g4L6LjtfxwlXIATopoQu+vOXXa7gYisWxCoPyg==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     peerDependencies:
@@ -15874,12 +15878,12 @@ snapshots:
       schema-utils: 4.0.1
       webpack: 5.92.1(esbuild@0.21.5)
 
-  babel-loader@9.1.3(@babel/core@7.25.2)(webpack@5.93.0):
+  babel-loader@9.1.3(@babel/core@7.25.2)(webpack@5.94.0):
     dependencies:
       '@babel/core': 7.25.2
       find-cache-dir: 4.0.0
       schema-utils: 4.0.1
-      webpack: 5.93.0
+      webpack: 5.94.0
 
   babel-plugin-istanbul@6.1.1:
     dependencies:
@@ -17005,6 +17009,11 @@ snapshots:
       - utf-8-validate
 
   enhanced-resolve@5.17.0:
+    dependencies:
+      graceful-fs: 4.2.11
+      tapable: 2.2.1
+
+  enhanced-resolve@5.17.1:
     dependencies:
       graceful-fs: 4.2.11
       tapable: 2.2.1
@@ -21705,11 +21714,11 @@ snapshots:
       iconv-lite: 0.4.24
       unpipe: 1.0.0
 
-  raw-loader@4.0.2(webpack@5.93.0):
+  raw-loader@4.0.2(webpack@5.94.0):
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.1.2
-      webpack: 5.93.0
+      webpack: 5.94.0
 
   react-colorful@5.6.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
@@ -22987,14 +22996,14 @@ snapshots:
     optionalDependencies:
       esbuild: 0.21.5
 
-  terser-webpack-plugin@5.3.10(webpack@5.93.0):
+  terser-webpack-plugin@5.3.10(webpack@5.94.0):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       jest-worker: 27.5.1
       schema-utils: 3.3.0
       serialize-javascript: 6.0.2
       terser: 5.29.2
-      webpack: 5.93.0
+      webpack: 5.94.0
 
   terser@5.29.2:
     dependencies:
@@ -23781,18 +23790,17 @@ snapshots:
       - esbuild
       - uglify-js
 
-  webpack@5.93.0:
+  webpack@5.94.0:
     dependencies:
-      '@types/eslint-scope': 3.7.4
       '@types/estree': 1.0.5
       '@webassemblyjs/ast': 1.12.1
       '@webassemblyjs/wasm-edit': 1.12.1
       '@webassemblyjs/wasm-parser': 1.12.1
       acorn: 8.11.3
       acorn-import-attributes: 1.9.5(acorn@8.11.3)
-      browserslist: 4.23.0
+      browserslist: 4.23.2
       chrome-trace-event: 1.0.3
-      enhanced-resolve: 5.17.0
+      enhanced-resolve: 5.17.1
       es-module-lexer: 1.5.3
       eslint-scope: 5.1.1
       events: 3.3.0
@@ -23804,7 +23812,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 3.3.0
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.10(webpack@5.93.0)
+      terser-webpack-plugin: 5.3.10(webpack@5.94.0)
       watchpack: 2.4.1
       webpack-sources: 3.2.3
     transitivePeerDependencies:

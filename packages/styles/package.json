@@ -47,7 +47,7 @@
     "bootstrap": "5.3.3"
   },
   "devDependencies": {
-    "@swisspost/design-system-tokens": "workspace:*",
+    "@swisspost/design-system-tokens": "workspace:8.2.0",
     "@swisspost/design-system-icons": "workspace:8.2.0",
     "@types/node": "20.14.14",
     "autoprefixer": "10.4.19",

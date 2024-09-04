@@ -4,11 +4,15 @@
 
 ### Minor Changes
 
-- Added the post-logo component, which enables displaying the Post's logo either as a clickable link or as a simple image. (by [@alizedebray](https://github.com/alizedebray) with [#3354](https://github.com/swisspost/design-system/pull/3354))
+- Added the post-logo component, which enables displaying the Post's logo either as a clickable link or as a simple image. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3477](https://github.com/swisspost/design-system/pull/3477))
 
 ### Patch Changes
 
-- Fixed the `post-card-control` component to use the correct color scheme when placed on nested colored backgrounds. (by [@alizedebray](https://github.com/alizedebray) with [#3358](https://github.com/swisspost/design-system/pull/3358))
+- Fixed the `post-card-control` component to use the correct color scheme when placed on nested colored backgrounds. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3477](https://github.com/swisspost/design-system/pull/3477))
+
+- Simplified individual web component imports. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3477](https://github.com/swisspost/design-system/pull/3477))
+
+- Fixed the post-tabs component throwing an error when imported individually. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3477](https://github.com/swisspost/design-system/pull/3477))
 - Updated dependencies:
   - @swisspost/design-system-styles@8.2.0
 
