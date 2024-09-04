@@ -21,23 +21,16 @@
           [ngClass]="{ 'd-none': !openedMenu }"
         >
           <ng-container *ngTemplateOutlet="navbar"></ng-container>
+          <div *ngIf="showIntranetSearch" class="col search-textbox d-md-none">
+            <ng-template [ngTemplateOutlet]="intranetSearch"></ng-template>
+          </div>
         </nav>
-        <div *ngIf="showIntranetSearch" class="col search-textbox d-none d-md-block">
-          <form [action]="searchUrl">
-            <div class="input-group mx-auto">
-              <input
-                type="text"
-                name="k"
-                class="form-control"
-                placeholder="{{ getPlaceholderSearchIntranet() }}"
-              />
-              <div class="input-group-append d-flex align-items-center">
-                <button class="btn pr-4" type="submit">
-                  <span><em class="pi pi-2069"></em></span>
-                </button>
-              </div>
-            </div>
-          </form>
+        <div
+          *ngIf="showIntranetSearch"
+          id="intranetSearch"
+          class="col-3 search-textbox d-none d-md-block"
+        >
+          <ng-template [ngTemplateOutlet]="intranetSearch"></ng-template>
         </div>
         <div
           id="optionHeaderContent"
@@ -126,22 +119,11 @@
     >
       <ng-container *ngTemplateOutlet="navbar"></ng-container>
     </nav>
-    <div *ngIf="showIntranetSearch" class="search-textbox d-md-none">
-      <form [action]="this.searchUrl">
-        <div class="input-group mx-auto">
-          <input
-            type="text"
-            name="k"
-            class="form-control"
-            placeholder="{{ getPlaceholderSearchIntranet() }}"
-          />
-          <div class="input-group-append d-flex align-items-center">
-            <button class="btn pr-4" type="submit">
-              <span><em class="pi pi-2069"></em></span>
-            </button>
-          </div>
-        </div>
-      </form>
+    <div
+      *ngIf="showIntranetSearch && condenseHeader && !openedMenu"
+      class="search-textbox d-md-none"
+    >
+      <ng-template [ngTemplateOutlet]="intranetSearch"></ng-template>
     </div>
   </div>
 </header>
@@ -156,4 +138,22 @@
       <ng-content></ng-content>
     </ul>
   </div>
+</ng-template>
+
+<ng-template #intranetSearch>
+  <form [action]="searchUrl">
+    <div class="input-group mx-auto">
+      <input
+        type="text"
+        name="k"
+        class="form-control"
+        placeholder="{{ getPlaceholderSearchIntranet() }}"
+      />
+      <div class="input-group-append d-flex align-items-center">
+        <button class="btn pr-4" type="submit">
+          <span><em class="pi pi-2069"></em></span>
+        </button>
+      </div>
+    </div>
+  </form>
 </ng-template>

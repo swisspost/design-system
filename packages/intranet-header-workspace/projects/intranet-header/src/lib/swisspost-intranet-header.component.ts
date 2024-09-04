@@ -83,6 +83,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   private logoElement!: HTMLElement;
   private titleElement!: HTMLElement;
   private optionHeaderContentElement!: HTMLElement;
+  private intranetSearchElement!: HTMLElement;
   private profileMenuElement!: HTMLElement;
   private navChanges!: MutationObserver;
 
@@ -151,6 +152,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
       this.optionHeaderContentElement =
         this.dom.nativeElement.querySelector('#optionHeaderContent');
       this.profileMenuElement = this.dom.nativeElement.querySelector('#profileMenu');
+      this.intranetSearchElement = this.dom.nativeElement.querySelector('#intranetSearch');
       this.navElement = this.dom.nativeElement.querySelector('#nav');
       if (this.navElement == null) {
         return;
@@ -353,6 +355,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
       this.titleElement,
       this.optionHeaderContentElement,
       this.profileMenuElement,
+      this.intranetSearchElement,
     ];
     const totalWidth = elements.reduce((sum, element) => sum + (element?.scrollWidth || 0), 0);
 
