@@ -13,7 +13,7 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 </div>
 
 <div className="lead">
-  Customize the native `<input>` with CSS that changes the element’s initial appearance.
+  Customize the native `input` with CSS that changes the element’s initial appearance.
 </div>
 
 Custom input elements need only the class `.form-control` to trigger the custom styles.
@@ -25,43 +25,18 @@ Custom input elements need only the class `.form-control` to trigger the custom 
 
 <StylesPackageImport components={["forms"]} required={{ 'floating-label': true, 'form-feedback': true }} />
 
-## Concrete Examples of Application
+## Examples
 
-The following examples show the different characteristics of the component. These can differ in the type of visualization, the HTML structure, as well as when, how and why they are displayed.
+### Standard Label Positioning
 
-### Floating Label
+If you prefer to use standard label positioning instead of floating labels, there is no need to wrap the `input` and `label` elements in a `.form-floating` container.
+This will keep the label in its standard position above the input field.
 
-Wrap a pair of `<input>` and `<label>` elements in a `.form-floating` container to enable floating labels.<br/>
-But note that the `<input>` element must come first, so we can ensure the correct styles.
-
-Ensure that `placeholder` attribute is set (even with an empty value) so the label can act as a placeholder when no value is set.
-
-    <Canvas of={InputStories.FloatingLabel} />
-
-### Sizing
-
-<div className="alert alert-warning">
-  <h4 className="alert-heading">We're deprecating the regular and medium sizes for text input, textarea and select.</h4>
-  <p className="mt-0">This will make it easier to select the appropriate size variant: small for internal applications, large for external applications.<br />
-    `.form-control-rg` and `.form-control-md` are deprecated and will be removed in the next major version.</p>
-</div>
-
-The size can be changed by simply adding one of four classes:
-
-- Small: `.form-control-sm`
-- Regular: `.form-control-rg`
-- Medium: default or `.form-control-md`
-- Large: `.form-control-lg`
-
-<div className="alert alert-info">
-  Regular and medium size classes are not available on floating-label elements
-</div>
-
-<Canvas of={InputStories.Size} />
+<Canvas of={InputStories.StandardLabel} />
 
 ### Validation
 
-Simply add the classes `.is-valid` or `.is-invalid` to the `<input>` element to show it in the expected state.<br/>
+Simply add the classes `.is-valid` or `.is-invalid` to the `input` element to show it in the expected state.<br/>
 When the component has been validated, don't forget to add a `<p class="valid-feedback">...</p>` or `<p class="invalid-feedback">...</p>` element after the `input` element to explain what went wrong. This enables the user to correct the mistake.
 
 <Canvas of={InputStories.Validation} />

@@ -1,6 +1,7 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing, TemplateResult } from 'lit';
 import { MetaComponent } from '@root/types';
+import { classMap } from 'lit-html/directives/class-map.js';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -22,13 +23,11 @@ const meta: MetaComponent = {
   },
   args: {
     label: 'Label',
-    floatingLabel: false,
+    floatingLabel: true,
     hiddenLabel: false,
     placeholder: 'Placeholder',
     type: 'text',
-    size: 'form-control-lg',
     sizeFloatingLabel: 'form-control-lg',
-    hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
     disabled: false,
     validation: 'null',
   },
@@ -102,46 +101,6 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
-    size: {
-      name: 'Size',
-      description: "Sets the size of the component's appearance.",
-      if: {
-        arg: 'floatingLabel',
-        truthy: false,
-      },
-      control: {
-        type: 'select',
-        labels: {
-          'form-control-sm': 'Small',
-          'form-control-rg': 'Regular (deprecated)',
-          'null': 'Middle (deprecated)',
-          'form-control-lg': 'Large',
-        },
-      },
-      options: ['form-control-sm', 'form-control-rg', 'null', 'form-control-lg'],
-      table: {
-        category: 'General',
-      },
-    },
-    sizeFloatingLabel: {
-      name: 'Size',
-      description: "Sets the size of the component's appearance.",
-      if: {
-        arg: 'floatingLabel',
-        truthy: true,
-      },
-      control: {
-        type: 'select',
-        labels: {
-          'form-control-sm': 'Small',
-          'form-control-lg': 'Large',
-        },
-      },
-      options: ['form-control-sm', 'form-control-lg'],
-      table: {
-        category: 'General',
-      },
-    },
     hint: {
       name: 'Helper Text',
       description: 'Text to place in the help text area of the component.',
@@ -186,87 +145,77 @@ export default meta;
 
 type Story = StoryObj;
 
-function render(args: Args, context: StoryContext) {
-  const id = context.id ?? `ExampleTextarea_${context.name}`;
-  const classes = [
-    'form-control',
-    args.size,
-    args.floatingLabel ? args.sizeFloatingLabel : '',
-    args.validation,
-  ]
-    .filter(c => c && c !== 'null')
-    .join(' ');
+// RENDERERS
+function getLabel(id: string, args: Args) {
+  return html` <label for="${id}" class="form-label">${args.label}</label> `;
+}
 
-  const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
-  const label: TemplateResult | null = !useAriaLabel
-    ? html` <label for="${id}" class="form-label">${args.label}</label> `
-    : null;
+function getInput(id: string, args: Args) {
+  const classes = {
+    [args.validation]: args.validation !== 'null',
+  };
 
   if (args.floatingLabel && !args.placeholder) {
     args.placeholder = ' '; // a placeholder must always be defined for the floating label to work properly
   }
 
-  const contextual: (TemplateResult | null)[] = [
-    args.validation === 'is-valid' ? html` <p class="valid-feedback">Ggranda sukceso!</p> ` : null,
-    args.validation === 'is-invalid' ? html` <p class="invalid-feedback">Eraro okazis!</p> ` : null,
-    args.hint !== '' ? html` <div class="form-text">${args.hint}</div> ` : null,
-  ];
-
-  const control: TemplateResult = html`
+  return html`
     <input
-      id="${id}"
-      class="${classes}"
-      type="${args.type}"
-      placeholder="${args.placeholder || nothing}"
-      ?disabled="${args.disabled}"
-      aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
+      aria-label="${args.hiddenLabel ? args.label : nothing}"
+      class="form-control ${classMap(classes)}"
+      ?disabled="${args.disabled}"
+      id="${id}"
+      placeholder="${args.placeholder || nothing}"
+      type="${args.type}"
       value="${args.value ? args.value : nothing}"
     />
   `;
-  if (args.floatingLabel) {
-    return html`
-      <div class="form-floating">${[control, label, ...contextual].filter(el => el !== null)}</div>
-    `;
-  } else {
-    return html`${[label, control, ...contextual].filter(el => el !== null)}`;
-  }
 }
 
-export const Default: Story = {};
+function getFormFloating(id: string, args: Args, messages: TemplateResult) {
+  // TODO: discuss class names
+  return html`
+    <div class="form-floating-v2">${getInput(id, args)} ${getLabel(id, args)} ${messages}</div>
+  `;
+}
 
-export const FloatingLabel: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Hidden Label', 'Size', 'Helper Text', 'Disabled', 'Validation'],
-    },
-  },
+function render(args: Args, context: StoryContext) {
+  const id = context.id ?? `ExampleTextarea_${context.name}`;
+
+  const messages = html`
+    ${args.validation === 'is-valid'
+      ? html` <p class="valid-feedback">Ggranda sukceso!</p> `
+      : nothing}
+    ${args.validation === 'is-invalid'
+      ? html` <p class="invalid-feedback">Eraro okazis!</p> `
+      : nothing}
+    ${args.hint !== '' ? html` <div class="form-text">${args.hint}</div> ` : nothing}
+  `;
+
+  if (args.floatingLabel) {
+    return getFormFloating(id, args, messages);
+  }
+
+  return html`
+    ${args.hiddenLabel ? nothing : getLabel(id, args)} ${getInput(id, args)} ${messages}
+  `;
+}
+
+export const Default: Story = {
   args: {
-    floatingLabel: true,
-    hint: '',
+    hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
   },
 };
 
-export const Size: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Label', 'Floating Label', 'Hidden Label', 'Helper Text', 'Disabled', 'Validation'],
-    },
-  },
+export const StandardLabel: Story = {
   args: {
-    size: 'form-control-sm',
-    hint: '',
+    floatingLabel: false,
   },
 };
 
 export const Validation: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Label', 'Floating Label', 'Hidden Label', 'Size', 'Helper Text', 'Disabled'],
-    },
-  },
   args: {
     validation: 'is-invalid',
-    hint: '',
   },
 };

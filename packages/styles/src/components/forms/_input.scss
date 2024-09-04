@@ -8,10 +8,10 @@
 
 $border-width: 2px; // TODO: discuss non-tokenized variables
 
-.text-input {
+.form-floating-v2 {
   position: relative;
 
-  label {
+  .form-label {
     @include typo-mx.use(label-default);
     position: absolute;
     transition: animation.$transition-base; // TODO: discuss animations
@@ -32,7 +32,7 @@ $border-width: 2px; // TODO: discuss non-tokenized variables
     );
   }
 
-  input {
+  .form-control {
     @include typo-mx.use(label-default);
 
     width: 100%;
@@ -46,24 +46,18 @@ $border-width: 2px; // TODO: discuss non-tokenized variables
       tokens.$post-text-input,
       post-input-spacing-padding-inline-text-end
     );
-    padding-block: calc.add(
-      map.get(tokens.$post-text-input, post-input-spacing-padding-block-text1),
-      map.get(tokens.$post-text-input, post-input-spacing-padding-block-text5)
+    padding-block-start: calc(
+      #{map.get(tokens.$post-text-input, post-input-spacing-padding-block-text2)} + 21px // TODO: use label height and lin-height
     );
+    padding-block-end: map.get(tokens.$post-text-input, post-input-spacing-padding-block-text2);
 
     color: map.get(tokens.$post-text-input, post-input-color-primary-enabled-fg);
     border: $border-width solid
       map.get(tokens.$post-text-input, post-input-color-primary-enabled-stroke);
     background-color: map.get(tokens.$post-text-input, post-input-color-primary-enabled-bg);
 
-    &:placeholder-shown:focus,
-    &:not(:placeholder-shown) {
-      padding-block-start: calc(
-        #{map.get(tokens.$post-text-input, post-input-spacing-padding-block-text2)} + 21px
-      );
-      padding-block-end: map.get(tokens.$post-text-input, post-input-spacing-padding-block-text2);
-
-      + label {
+    &:is(:not(:placeholder-shown), :placeholder-shown:focus) {
+      + .form-label {
         @include typo-mx.use(label-smaller);
         inset-block-start: calc.add(
           $border-width,
@@ -72,11 +66,18 @@ $border-width: 2px; // TODO: discuss non-tokenized variables
       }
     }
 
+    &:placeholder-shown:not(:focus) {
+      &::placeholder {
+        transition: animation.$transition-base;
+        color: transparent;
+      }
+    }
+
     &:hover {
       border-color: map.get(tokens.$post-text-input, post-input-color-primary-hover-stroke);
       background-color: map.get(tokens.$post-text-input, post-input-color-primary-hover-bg);
 
-      + label {
+      + .form-label {
         color: map.get(tokens.$post-text-input, post-input-color-primary-hover-fg);
       }
     }
@@ -87,7 +88,7 @@ $border-width: 2px; // TODO: discuss non-tokenized variables
       border-color: map.get(tokens.$post-text-input, post-input-color-primary-disabled-stroke);
       background-color: map.get(tokens.$post-text-input, post-input-color-primary-disabled-bg);
 
-      + label {
+      + .form-label {
         color: map.get(tokens.$post-text-input, post-input-color-primary-disabled-fg);
       }
     }
