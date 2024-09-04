@@ -1,0 +1,11 @@
+@use 'sass:list';
+
+@function add($list...) {
+  $calc: list.nth($list, 1);
+
+  @for $i from 2 through list.length($list) {
+    $calc: '#{$calc} + #{list.nth($list, $i)}';
+  }
+
+  @return calc(#{$calc});
+}
