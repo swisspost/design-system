@@ -28,7 +28,8 @@
         <div
           *ngIf="showIntranetSearch"
           id="intranetSearch"
-          class="col-3 search-textbox d-none d-md-block"
+          class="col search-textbox d-none d-md-block"
+          [ngClass]="{ 'col-3': condenseHeader }"
         >
           <ng-template [ngTemplateOutlet]="intranetSearch"></ng-template>
         </div>
