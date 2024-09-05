@@ -83,6 +83,16 @@ export const OrderedList: Story = {
   `,
 };
 
+export const CheckList: Story = {
+  render: () => html`
+    <ul class="list-checks">
+      <li>This is a check list item.</li>
+      <li>And another one.</li>
+      <li>And one more.</li>
+    </ul>
+  `,
+};
+
 export const DescriptionList: Story = {
   render: () => html`
     <dl>
