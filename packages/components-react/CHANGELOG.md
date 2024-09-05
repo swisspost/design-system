@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- Added the post-logo component, which enables displaying the Post's logo either as a clickable link or as a simple image. (by [@alizedebray](https://github.com/alizedebray) with [#3354](https://github.com/swisspost/design-system/pull/3354))
+- Added the post-logo component, which enables displaying the Post's logo either as a clickable link or as a simple image. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3477](https://github.com/swisspost/design-system/pull/3477))
 
 ### Patch Changes
 
