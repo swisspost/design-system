@@ -1,0 +1,8 @@
+@use 'sass:map';
+@use '../tokens/components' as tokens;
+
+$text-padding: map.get(tokens.$post-list, 'post-list-checks-spacing-padding-text');
+
+.list-checks {
+  list-style: none;
+}
