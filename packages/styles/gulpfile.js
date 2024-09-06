@@ -151,7 +151,7 @@ gulp.task('build-components', () => {
  */
 gulp.task('sass:dev', () => {
   return gulp
-    .src('./src/*.scss', { since: gulp.lastRun('sass:dev') })
+    .src('./src/post-*.scss')
     .pipe(
       gulpSass({
         includePaths: options.includePaths,
@@ -180,7 +180,7 @@ gulp.task('sass:tests', () => {
 gulp.task(
   'watch',
   gulp.series('temporarily-copy-token-files', () => {
-    return gulp.watch('./src/**/*.scss', gulp.series('copy'));
+    return gulp.watch('./src/**/*.scss', gulp.series('copy', 'sass:dev'));
   }),
 );
 
