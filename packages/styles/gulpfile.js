@@ -151,7 +151,7 @@ gulp.task('build-components', () => {
  */
 gulp.task('sass:dev', () => {
   return gulp
-    .src('./src/post-*.scss')
+    .src('./src/*.scss')
     .pipe(
       gulpSass({
         includePaths: options.includePaths,
