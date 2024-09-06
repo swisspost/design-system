@@ -94,12 +94,12 @@
   outline: none;
 }
 
-@mixin focus-style($additional-selector: '') {
+@mixin focus-style($additional-selector: '', $outline-color: var(--post-focus-color)) {
   &#{$additional-selector} {
     outline-style: none !important; // !important is needed to override bootstrap .form-control:focus
     outline-offset: spacing.$size-line !important;
     outline-width: spacing.$size-line !important;
-    outline-color: var(--post-focus-color) !important;
+    outline-color: $outline-color !important;
   }
 
   // :has(:focus-visible) mimic a focus-visible-within pseudo-class

@@ -1,0 +1,52 @@
+@use './../../functions/calc';
+@use './../../functions/tokens';
+@use './../../mixins/typo' as typo-mx;
+@use './../../mixins/components/forms/input' as input-mx;
+@use './../../tokens/components' as token-maps;
+@use './../../variables/components/forms/input';
+
+$m: token-maps.$post-text-input;
+
+.form-floating-v2 {
+  position: relative;
+
+  .form-label-v2 {
+    @include typo-mx.use(label-default);
+
+    position: absolute;
+    inset-inline: input.$input-border-width;
+    inset-block-start: input.$input-border-width;
+    padding-inline-start: tokens.get($m, input-spacing-padding-inline-text-start);
+    padding-block-start: calc.add(
+      tokens.get($m, input-spacing-padding-block-text1),
+      tokens.get($m, input-spacing-padding-block-text5)
+    );
+
+    color: tokens.get($m, input-color-primary-enabled-fg);
+  }
+
+  .form-control-v2 {
+    + .form-label-v2 {
+      @include input-mx.padding-inline-end();
+    }
+
+    &:is(:not(:placeholder-shown), :placeholder-shown:focus) {
+      + .form-label-v2 {
+        @include typo-mx.use(label-smaller);
+        padding-block-start: tokens.get($m, input-spacing-padding-block-text2);
+      }
+    }
+
+    &:hover {
+      + .form-label-v2 {
+        color: tokens.get($m, input-color-primary-hover-fg);
+      }
+    }
+
+    &:disabled {
+      + .form-label-v2 {
+        color: tokens.get($m, input-color-primary-disabled-fg);
+      }
+    }
+  }
+}

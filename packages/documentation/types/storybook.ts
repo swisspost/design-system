@@ -10,9 +10,9 @@ export interface MetaExtended<T = Args> extends Meta<T> {
 export type TagPackagePrefix<K> = K extends string ? `package:${K}` : K;
 
 export interface MetaComponent<T = Args> extends MetaExtended<T> {
-  tags: [TagPackagePrefix<PackageType>, ...string[]];
-  parameters: {
+  // tags: [TagPackagePrefix<PackageType>, ...string[]];
+  /* parameters: {
     [key: string]: unknown;
     design: DesignParameter;
-  };
+  }; */
 }
