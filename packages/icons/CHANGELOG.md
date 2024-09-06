@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- Added icon number 2612. (by [@swisspost-bot](https://github.com/swisspost-bot) with [#3373](https://github.com/swisspost/design-system/pull/3373))
+- Added icon number 2612. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3477](https://github.com/swisspost/design-system/pull/3477))
 
 ## 8.1.0
 

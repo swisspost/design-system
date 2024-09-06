@@ -162,3 +162,13 @@
     }
   }
 }
+
+.sb-bar {
+  > * > * > :first-child {
+    display: none;
+  }
+
+  button::after {
+    content: ' ';
+  }
+}

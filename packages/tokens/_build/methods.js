@@ -7,6 +7,9 @@ import {
   OUTPUT_PATH,
   FILE_HEADER,
   TOKENSET_LAYERS,
+  EXPLICIT_COMPONENT_LAYER_GROUPNAMES,
+  EXPLICIT_FIGMAONLY_GROUPNAMES,
+  EXPLICIT_FIGMAONLY_SETNAMES,
   TOKENSET_PREFIX,
 } from './constants.js';
 
@@ -92,7 +95,8 @@ function createTokenSets(tokensFile) {
     .filter(([name]) => !/^\$/.test(name))
     .reduce((sets, [name, set]) => ({ ...sets, [name.toLowerCase()]: set }), {});
 
-  // only add source files for non component layer tokensets
+  // only add non component layer sets to source files
+  // component layer sets can not be resolved in the browser, and therefore are not usable as sources
   const source = Object.entries(normalized).reduce((sets, [name, set]) => {
     const { baseDefinition } = getConfig(name);
 
@@ -105,16 +109,23 @@ function createTokenSets(tokensFile) {
 
   // combine tokensets by group so they can be outputted in a single file
   const output = Object.entries(normalized).reduce((definition, [name, set]) => {
-    const { groupSlug, setName, baseDefinition } = getConfig(name);
+    const { groupSlug, groupName, setName, baseDefinition } = getConfig(name);
     const existingGroup = definition[groupSlug];
 
-    return {
-      ...definition,
-      [groupSlug]: {
-        ...baseDefinition,
-        sets: { ...existingGroup?.sets, [setName]: set },
-      },
-    };
+    if (
+      EXPLICIT_FIGMAONLY_GROUPNAMES.includes(groupName) ||
+      EXPLICIT_FIGMAONLY_SETNAMES.includes(setName)
+    ) {
+      return definition;
+    } else {
+      return {
+        ...definition,
+        [groupSlug]: {
+          ...baseDefinition,
+          sets: { ...existingGroup?.sets, [setName]: set },
+        },
+      };
+    }
   }, {});
 
   return {
@@ -128,10 +139,12 @@ function createTokenSets(tokensFile) {
     const setName = setSlug ?? groupSlug;
     const type = !groupName ? 'singleton' : 'collection';
     const isCore = type === 'singleton' && setName === 'core';
-    const isComponent = !isCore && (type === 'singleton' || groupName === 'components');
+    const isComponent =
+      !isCore && (type === 'singleton' || EXPLICIT_COMPONENT_LAYER_GROUPNAMES.includes(groupName));
 
     return {
       groupSlug,
+      groupName,
       setName,
       baseDefinition: {
         type,
