@@ -33,11 +33,11 @@
  * }
  */
 
-$-namespace: 'post';
+$_namespace: 'post';
 $default-map: null !default;
 
 @function get($prefix, $key-name, $map: $default-map) {
-  $key-name: _normalize-key-name($prefix, $key-name);
+  $key-name: normalize-key-name($prefix, $key-name);
 
   @if not map.has-key($map, $key-name) {
     @error 'No such key "#{$key-name}" in given map! Available keys are: #{meta.inspect(map.keys($map))}.';
@@ -46,28 +46,28 @@ $default-map: null !default;
   @return map.get($map, $key-name);
 }
 
-@function _normalize-key-name($original-prefix, $key-name) {
-  $namespaced-prefix: _normalize-prefix($original-prefix);
-  $prefix: string.slice($namespaced-prefix, string.length('#{$-namespace}-') + 1);
-  $key-contains-namespace: string.index($key-name, '#{$-namespace}-') == 1;
+@function normalize-key-name($original-prefix, $key-name) {
+  $namespaced-prefix: normalize-prefix($original-prefix);
+  $prefix: string.slice($namespaced-prefix, string.length('#{$_namespace}-') + 1);
+  $key-contains-namespace: string.index($key-name, '#{$_namespace}-') == 1;
   $key-contains-prefix: string.index($key-name, '#{$prefix}-') == 1;
 
   @if not $key-contains-namespace {
     @if not $key-contains-prefix {
       $key-name: '#{$namespaced-prefix}-#{$key-name}';
     } @else {
-      $key-name: '#{$-namespace}-#{$key-name}';
+      $key-name: '#{$_namespace}-#{$key-name}';
     }
   }
 
   @return $key-name;
 }
 
-@function _normalize-prefix($prefix) {
-  $prefix-contains-namespace: string.index($prefix, '#{$-namespace}-') == 1;
+@function normalize-prefix($prefix) {
+  $prefix-contains-namespace: string.index($prefix, '#{$_namespace}-') == 1;
 
   @if not $prefix-contains-namespace {
-    $prefix: '#{$-namespace}-#{$prefix}';
+    $prefix: '#{$_namespace}-#{$prefix}';
   }
 
   @return $prefix;

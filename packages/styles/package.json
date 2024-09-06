@@ -23,8 +23,8 @@
     "unit": "gulp sass:tests",
     "clean": "rimraf out-tsc dist",
     "format": "prettier src/**/*.scss --write",
-    "lint": "stylelint src/**/*.scss",
-    "lint:fix": "stylelint src/**/*.scss --fix"
+    "lint": "stylelint src/**/*.scss !src/tokens/temp/**",
+    "lint:fix": "stylelint src/**/*.scss !src/tokens/temp/** --fix"
   },
   "peerDependencies": {
     "@angular/core": "^18.0.0",
