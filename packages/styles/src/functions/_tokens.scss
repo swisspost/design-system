@@ -1,0 +1,41 @@
+@use 'sass:map';
+@use 'sass:string';
+
+/**
+ * @function get($key-name, $m: $map)
+ * Gets token-key, normalizes and resolved it with the $map or the one specified in the second parameter.
+ *
+ * @param {string} $key-name - The token key to get (with or without the "post" prefix).
+ * @param {map} $m - The map to get the token key from.
+ *                   The $map variable can be specified through the "with" keyword in the import statement:
+ *                   @use '../functions/tokens' with ($map: namespace.$my-default-map);
+ *
+ * @returns {any} $value of $map[$key]
+ *
+ * @example
+ * @use '../tokens/components' as componentTokens;
+ * @use '../functions/tokens' with ($map: componentTokens.$post-body);
+ *
+ * body {
+ *   font-family: tokens.get('body-font-family');
+ *
+ *   h1 {
+ *     font-family: tokens.get('h1-font-family', elements.$post-heading);
+ *   }
+ * }
+ */
+
+$map: null !default;
+
+@function get($m: $map, $key-name) {
+  $key-prefix: '';
+  $is-prefixed: string.index($key-name, 'post-') == 1;
+
+  @if not $is-prefixed {
+    $key-prefix: 'post-';
+  }
+
+  $normalized-key-name: '#{$key-prefix}#{$key-name}';
+
+  @return map.get($m, $normalized-key-name);
+}

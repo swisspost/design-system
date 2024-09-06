@@ -146,14 +146,12 @@ export default meta;
 type Story = StoryObj;
 
 // RENDERERS
-function getLabel(id: string, args: Args) {
-  return html` <label for="${id}" class="form-label">${args.label}</label> `;
+function getFormLabel(id: string, args: Args, versionSuffix: string) {
+  return html` <label for="${id}" class="form-label${versionSuffix}">${args.label}</label> `;
 }
 
-function getInput(id: string, args: Args) {
-  const classes = {
-    [args.validation]: args.validation !== 'null',
-  };
+function getFormControl(id: string, args: Args, versionSuffix: string) {
+  const validationClass = args.validation !== 'null' ? ` ${args.validation}${versionSuffix}` : '';
 
   if (args.floatingLabel && !args.placeholder) {
     args.placeholder = ' '; // a placeholder must always be defined for the floating label to work properly
@@ -163,7 +161,7 @@ function getInput(id: string, args: Args) {
     <input
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
       aria-label="${args.hiddenLabel ? args.label : nothing}"
-      class="form-control ${classMap(classes)}"
+      class="form-control${versionSuffix}${validationClass}"
       ?disabled="${args.disabled}"
       id="${id}"
       placeholder="${args.placeholder || nothing}"
@@ -173,32 +171,38 @@ function getInput(id: string, args: Args) {
   `;
 }
 
-function getFormFloating(id: string, args: Args, messages: TemplateResult) {
-  // TODO: discuss class names
+function getFormFloating(id: string, args: Args, messages: TemplateResult, versionSuffix: string) {
   return html`
-    <div class="form-floating-v2">${getInput(id, args)} ${getLabel(id, args)} ${messages}</div>
+    <div class="form-floating${versionSuffix}">
+      ${getFormControl(id, args, versionSuffix)} ${getFormLabel(id, args, versionSuffix)}
+      ${messages}
+    </div>
   `;
 }
 
 function render(args: Args, context: StoryContext) {
   const id = context.id ?? `ExampleTextarea_${context.name}`;
+  const versionSuffix = args.floatingLabel ? '-v2' : '';
 
   const messages = html`
     ${args.validation === 'is-valid'
-      ? html` <p class="valid-feedback">Ggranda sukceso!</p> `
+      ? html` <p class="valid-feedback${versionSuffix}">Ggranda sukceso!</p> `
       : nothing}
     ${args.validation === 'is-invalid'
-      ? html` <p class="invalid-feedback">Eraro okazis!</p> `
+      ? html` <p class="invalid-feedback${versionSuffix}">Eraro okazis!</p> `
       : nothing}
-    ${args.hint !== '' ? html` <div class="form-text">${args.hint}</div> ` : nothing}
+    ${args.hint !== ''
+      ? html` <div class="form-text${versionSuffix}">${args.hint}</div> `
+      : nothing}
   `;
 
   if (args.floatingLabel) {
-    return getFormFloating(id, args, messages);
+    return getFormFloating(id, args, messages, versionSuffix);
   }
 
   return html`
-    ${args.hiddenLabel ? nothing : getLabel(id, args)} ${getInput(id, args)} ${messages}
+    ${args.hiddenLabel ? nothing : getFormLabel(id, args, versionSuffix)}
+    ${getFormControl(id, args, versionSuffix)} ${messages}
   `;
 }
 

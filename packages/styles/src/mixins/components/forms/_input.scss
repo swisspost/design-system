@@ -1,0 +1,29 @@
+@use 'sass:selector';
+@use 'sass:string';
+
+@use './../../../functions/calc';
+@use './../../../functions/tokens';
+@use './../../../tokens/components' as token-maps;
+
+$m: token-maps.$post-text-input;
+
+/**
+ * This mixin sets the inline padding at the end of an element to match the padding of a post-text-input.
+ * It dynamically updates the padding based on the form-control's validation state, ensuring there is enough space for the validation icon when the form is valid or invalid.
+ */
+@mixin padding-inline-end() {
+  padding-inline-end: calc.add(
+    var(--post-input-bg-size, 0px), /* stylelint-disable-line */ // unit is necessary
+    tokens.get($m, input-spacing-padding-inline-text-end)
+  );
+
+  @if string.index(#{&}, '.form-control-v2') == null {
+    @warn 'The current "&" selector is missing a ".form-control" class, so the padding will not adjust for valid or invalid states.';
+  } @else {
+    @at-root #{selector.replace(&, '.form-control-v2', '.form-control-v2:where(.is-valid-v2, .is-invalid-v2)')} {
+      --post-input-bg-size: calc(
+        #{tokens.get($m, input-spacing-gap-inline-1)} + #{tokens.get($m, input-sizing-icon)}
+      );
+    }
+  }
+}

@@ -1,10 +1,9 @@
 @use 'sass:map';
 @use './../tokens/temp/figmaonly' as tokens;
 
-// TODO: discuss typo temporary solution
-@mixin use($name) {
+@mixin use($typo-name) {
   font-family:
-    map.get(tokens.$post-figmaonly, utility-typo-#{$name}-fontFamily),
+    map.get(tokens.$post-figmaonly, utility-typo-#{$typo-name}-fontFamily),
     'Frutiger Neue For Post',
     -apple-system,
     BlinkMacSystemFont,
@@ -13,8 +12,8 @@
     'Helvetica Neue',
     Arial,
     sans-serif;
-  font-weight: map.get(tokens.$post-figmaonly, utility-typo-#{$name}-fontWeight);
-  font-size: map.get(tokens.$post-figmaonly, utility-typo-#{$name}-fontSize);
-  line-height: map.get(tokens.$post-figmaonly, utility-typo-#{$name}-lineHeight);
-  letter-spacing: map.get(tokens.$post-figmaonly, utility-typo-#{$name}-letterSpacing);
+  font-weight: map.get(tokens.$post-figmaonly, utility-typo-#{$typo-name}-fontWeight);
+  font-size: map.get(tokens.$post-figmaonly, utility-typo-#{$typo-name}-fontSize);
+  line-height: map.get(tokens.$post-figmaonly, utility-typo-#{$typo-name}-lineHeight);
+  letter-spacing: map.get(tokens.$post-figmaonly, utility-typo-#{$typo-name}-letterSpacing);
 }
