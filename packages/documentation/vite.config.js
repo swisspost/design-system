@@ -22,4 +22,11 @@ export default {
       '@storybook/addon-links',
     ],
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        silenceDeprecations: ['mixed-decls'],
+      },
+    },
+  },
 };

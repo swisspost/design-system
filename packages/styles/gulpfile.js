@@ -120,6 +120,7 @@ gulp.task('sass', () => {
         outputStyle: 'compressed',
         includePaths: options.includePaths,
         quietDeps: true,
+        silenceDeprecations: ['mixed-decls'],
       }),
     )
     .pipe(gulpPostCss([autoprefixer()]))
@@ -140,6 +141,7 @@ gulp.task('build-components', () => {
         outputStyle: 'compressed',
         includePaths: options.includePaths,
         quietDeps: true,
+        silenceDeprecations: ['mixed-decls'],
       }),
     )
     .pipe(gulpPostCss([autoprefixer()]))
@@ -156,6 +158,7 @@ gulp.task('sass:dev', () => {
       gulpSass({
         includePaths: options.includePaths,
         quietDeps: true,
+        silenceDeprecations: ['mixed-decls'],
       }),
     )
     .pipe(gulpPostCss([autoprefixer()]))
