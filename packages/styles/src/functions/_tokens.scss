@@ -1,41 +1,74 @@
+@use 'sass:meta';
 @use 'sass:map';
 @use 'sass:string';
 
 /**
- * @function get($key-name, $m: $map)
- * Gets token-key, normalizes and resolved it with the $map or the one specified in the second parameter.
+ * @function get($prefix, $key-name)
+ * Gets a token-key, normalizes and resolves it with the $default-map.
  *
- * @param {string} $key-name - The token key to get (with or without the "post" prefix).
- * @param {map} $m - The map to get the token key from.
- *                   The $map variable can be specified through the "with" keyword in the import statement:
- *                   @use '../functions/tokens' as tokens with ($map: namespace.$my-default-map);
+ * @param {string} $prefix - The token map name.
+ * @param {string} $key-name - The token key name.
+ * @param {map} $map - The map to get the token key from.
  *
- * @returns {any} $value of $map[$key]
+ * @returns {any} $value of $normalized-prefix[$normalized-key-name]
  *
  * @example
- * @use '../tokens/components' as componentTokens;
- * @use '../functions/tokens' as tokens with ($map: componentTokens.$post-body);
+ * @use '../tokens/components' as components;
+ * @use '../functions/tokens' as tokens;
  *
- * body {
- *   font-family: tokens.get('body-font-family');
- *   
- *   h1 {
- *     font-family: tokens.get('h1-font-family', componentTokens.$post-heading);
- *   }
+ * // set the default map to use or always use the third function parameter to specify a different map.
+ * tokens.$default-map: components.$post-body;
+ *
+ * // lets say you have two keys: 'post-selector-font-family' and 'post-selector-font-size' in the same map.
+ * // then use it like so:
+ *
+ * selector {
+ *   font-family: tokens.get('post-selector', 'font-family');
+ *   font-family: tokens.get('selector', 'font-family');
+ *
+ *   font-family: tokens.get('selector-font', 'family');
+ *   font-size: tokens.get('selector-font', 'size');
+ *
+ *   font-family: tokens.get('selector', 'font-family', $my-custom-map);  // use a different map than the default one
  * }
  */
 
-$map: null !default;
+$-namespace: 'post';
+$default-map: null !default;
 
-@function get($key-name, $m: $map) {
-  $prefix: '';
-  $is-prefixed: string.index($key-name, 'post-') == 1;
+@function get($prefix, $key-name, $map: $default-map) {
+  $key-name: _normalize-key-name($prefix, $key-name);
 
-  @if not $is-prefixed {
-    $prefix: 'post-';
+  @if not map.has-key($map, $key-name) {
+    @error 'No such key "#{$key-name}" in given map! Available keys are: #{meta.inspect(map.keys($map))}.';
   }
 
-  $normalized-key-name: '#{$prefix}#{$key-name}';
+  @return map.get($map, $key-name);
+}
 
-  @return map.get($m, $normalized-key-name);
+@function _normalize-key-name($original-prefix, $key-name) {
+  $namespaced-prefix: _normalize-prefix($original-prefix);
+  $prefix: string.slice($namespaced-prefix, string.length('#{$-namespace}-') + 1);
+  $key-contains-namespace: string.index($key-name, '#{$-namespace}-') == 1;
+  $key-contains-prefix: string.index($key-name, '#{$prefix}-') == 1;
+
+  @if not $key-contains-namespace {
+    @if not $key-contains-prefix {
+      $key-name: '#{$namespaced-prefix}-#{$key-name}';
+    } @else {
+      $key-name: '#{$-namespace}-#{$key-name}';
+    }
+  }
+
+  @return $key-name;
+}
+
+@function _normalize-prefix($prefix) {
+  $prefix-contains-namespace: string.index($prefix, '#{$-namespace}-') == 1;
+
+  @if not $prefix-contains-namespace {
+    $prefix: '#{$-namespace}-#{$prefix}';
+  }
+
+  @return $prefix;
 }
