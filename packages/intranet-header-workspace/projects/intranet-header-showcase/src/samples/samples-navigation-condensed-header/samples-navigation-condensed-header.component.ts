@@ -5,8 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './samples-navigation-condensed-header.component.html',
   styleUrl: './samples-navigation-condensed-header.component.scss',
 })
-export class SamplesNavigationCondensedHeaderComponent {
-  title = 'samples-navigation-condensed-header';
-  public headerOptions = null;
-  public count = 0;
-}
+export class SamplesNavigationCondensedHeaderComponent {}
