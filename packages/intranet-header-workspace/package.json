@@ -39,6 +39,7 @@
     "@types/node": "20.14.14",
     "@typescript-eslint/eslint-plugin": "7.18.0",
     "@typescript-eslint/parser": "7.18.0",
+    "cypress": "13.13.2",
     "eslint": "8.57.0",
     "jasmine-core": "5.2.0",
     "karma": "6.4.4",
