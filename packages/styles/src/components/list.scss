@@ -11,7 +11,7 @@ $padding-icon: map.get(tokens.$post-list, 'post-list-checks-spacing-padding-icon
   padding-block: map.get(tokens.$post-list, 'post-list-checks-spacing-padding-block-outer');
   margin-bottom: 0;
 
-  & > li {
+  > li {
     position: relative;
     padding-left: calc(
       #{map.get(tokens.$post-list, 'post-list-checks-spacing-gap-inline-text')} + #{$sizing-icon}
@@ -33,12 +33,12 @@ $padding-icon: map.get(tokens.$post-list, 'post-list-checks-spacing-padding-icon
       background-image: url('#{icons.get-colored-svg-url("2105", "white")}'); // 'white' should be changed with variable
     }
 
-    & > ul {
+    > ul {
       padding-bottom: 0;
     }
   }
 
-  & > li:not(:last-child) {
+  > li:not(:last-child) {
     margin-bottom: map.get(tokens.$post-list, 'post-list-checks-spacing-gap-block-text');
   }
 }
