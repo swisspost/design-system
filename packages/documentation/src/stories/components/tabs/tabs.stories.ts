@@ -63,9 +63,7 @@ export const Async: Story = {
     story => {
       let tabIndex = 0;
       const addTab = () => {
-        const tabs = document
-          .querySelector('story-container')
-          ?.shadowRoot?.querySelector('post-tabs');
+        const tabs = document.querySelector('post-tabs');
 
         tabIndex++;
         const newTab = `
@@ -77,22 +75,16 @@ export const Async: Story = {
       };
 
       const removeActiveTab = () => {
-        const headers: NodeListOf<HTMLPostTabHeaderElement> | undefined = document
-          .querySelector('story-container')
-          ?.shadowRoot?.querySelectorAll('post-tab-header');
+        const headers: NodeListOf<HTMLPostTabHeaderElement> | undefined =
+          document.querySelectorAll('post-tab-header');
 
         const activeHeader: HTMLPostTabHeaderElement | undefined = Array.from(headers ?? []).find(
-          () =>
-            document
-              .querySelector('story-container')
-              ?.shadowRoot?.querySelectorAll('post-tab-header.active'),
+          () => document.querySelectorAll('post-tab-header.active'),
         );
         activeHeader?.remove();
 
         const activePanel: HTMLPostTabPanelElement | null =
-          document
-            .querySelector('story-container')
-            ?.shadowRoot?.querySelector(`post-tab-panel[name=${activeHeader?.panel}]`) ?? null;
+          document.querySelector(`post-tab-panel[name=${activeHeader?.panel}]`) ?? null;
         activePanel?.remove();
       };
 
