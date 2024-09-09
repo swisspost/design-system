@@ -21,7 +21,7 @@ $gap-block-text: map.get(tokens.$post-list, 'post-list-checks-spacing-gap-block-
 
   & > li {
     position: relative;
-    padding-left: calc(#{$padding-block-outer} + #{$sizing-icon});
+    padding-left: calc(#{$gap-inline-text} + #{$sizing-icon});
 
     &::before {
       content: '';
@@ -38,9 +38,13 @@ $gap-block-text: map.get(tokens.$post-list, 'post-list-checks-spacing-gap-block-
       background-size: calc(#{$sizing-icon} - #{$padding-icon} * 2);
       background-image: url('#{icons.get-colored-svg-url("2105", "white")}');
     }
+
+    & > ul {
+      padding-bottom: 0;
+    }
   }
 
   & > li:not(:last-child) {
-    padding-bottom: $gap-block-text;
+    margin-bottom: $gap-block-text;
   }
 }
