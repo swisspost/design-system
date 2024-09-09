@@ -301,6 +301,21 @@
           </td>
           <td>The website/application name, shown next to the Logo.</td>
         </tr>
+        <tr>
+          <td>
+            <code>condenseHeader</code>
+          </td>
+          <td>
+            <code>boolean</code>
+          </td>
+          <td>
+            <code>false</code>
+          </td>
+          <td>
+            Arranges the header in a single line, displaying the title, menu items, and settings
+            (such as language options).
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -379,6 +394,28 @@
   <code
     class="block"
     [highlight]="codeTemplateBig"
+    [languages]="['html', 'scss', 'css', 'typescript', 'javascript']"
+  ></code>
+
+  <h4 class="bold mt-5">Condensed Intranet-Header (single-line)</h4>
+</div>
+
+<div class="header-showcase-container p-huge-r">
+  <div class="header-showcase-page">
+    <iframe
+      title="Intranet-header 'postweb' example with top navigation and with sidenav"
+      src="/#/samples/intranet-layout-condensed"
+      class="w-100"
+      style="min-height: 500px"
+    ></iframe>
+  </div>
+</div>
+
+<div class="container">
+  <span class="spacer"></span>
+  <code
+    class="block"
+    [highlight]="codeTemplateCondensed"
     [languages]="['html', 'scss', 'css', 'typescript', 'javascript']"
   ></code>
 </div>

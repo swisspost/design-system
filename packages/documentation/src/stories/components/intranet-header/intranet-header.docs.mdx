@@ -5,6 +5,7 @@ import SampleNavigationBar from './intranet-header-navigation-bar.sample.html?ra
 import SampleSideNavigation from './intranet-header-side-navigation.sample.html?raw';
 import SampleSideUserMenuDropdown from './intranet-header-user-menu-dropdown.sample.html?raw';
 import SamplePostweb from './intranet-header-postweb.sample.html?raw';
+import SampleNavigationBarSingleLine from './intranet-header-single-line.sample.html?raw';
 import PostComponentDemoLink from '@/shared/post-component-demo-link.mdx';
 
 <Meta of={IntranetHeaderStories} />
@@ -49,6 +50,11 @@ For installation and usage see the <a href="/?path=/docs/7068be42-1a20-4a34-9e79
   <PostTabHeader panel="headerPostweb">"Postweb" intranet header</PostTabHeader>
   <PostTabPanel name="headerPostweb">
     <Source code={SamplePostweb} language="html" />
+  </PostTabPanel>
+
+  <PostTabHeader panel="headerSingleLine">Condensed intranet header (single-line)</PostTabHeader>
+  <PostTabPanel name="headerSingleLine">
+    <Source code={SampleNavigationBarSingleLine} language="html" />
   </PostTabPanel>
 </PostTabs>
 
