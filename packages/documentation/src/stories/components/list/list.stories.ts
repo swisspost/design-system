@@ -85,7 +85,6 @@ export const OrderedList: Story = {
 
 export const CheckList: Story = {
   render: () => html`
-    <p>Text to show alignment of check mark with text</p>
     <ul class="list-checks">
       <li>This is a check list item.</li>
       <li>And another one.</li>
@@ -99,7 +98,6 @@ export const CheckList: Story = {
       </li>
       <li>And another one.</li>
     </ul>
-    <p>Text to show alignment of check mark with text</p>
   `,
 };
 
