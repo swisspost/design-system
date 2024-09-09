@@ -23,4 +23,11 @@ export default {
     ],
     exclude: ['@swisspost/design-system-styles'],
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        silenceDeprecations: ['mixed-decls'],
+      },
+    },
+  },
 };
