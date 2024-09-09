@@ -2,26 +2,20 @@
 @use '../tokens/components' as tokens;
 @use './../functions/icons';
 
-$text-padding: map.get(tokens.$post-list, 'post-list-checks-spacing-padding-text');
 $sizing-icon: map.get(tokens.$post-list, 'post-list-checks-sizing-icon');
-$icon-bg: map.get(tokens.$post-list, 'post-list-checks-color-icon-bg');
-$icon-fg: map.get(tokens.$post-list, 'post-list-checks-color-icon-fg');
-$text-fg: map.get(tokens.$post-list, 'post-list-checks-color-text-fg');
 $padding-icon: map.get(tokens.$post-list, 'post-list-checks-spacing-padding-icon');
-$padding-text: map.get(tokens.$post-list, 'post-list-checks-spacing-padding-text');
-$padding-block-outer: map.get(tokens.$post-list, 'post-list-checks-spacing-padding-block-outer');
-$gap-inline-text: map.get(tokens.$post-list, 'post-list-checks-spacing-gap-inline-text');
-$gap-block-text: map.get(tokens.$post-list, 'post-list-checks-spacing-gap-block-text');
 
 .list-checks {
   list-style: none;
   padding-left: 0;
-  padding-block: $padding-block-outer;
+  padding-block: map.get(tokens.$post-list, 'post-list-checks-spacing-padding-block-outer');
   margin-bottom: 0;
 
   & > li {
     position: relative;
-    padding-left: calc(#{$gap-inline-text} + #{$sizing-icon});
+    padding-left: calc(
+      #{map.get(tokens.$post-list, 'post-list-checks-spacing-gap-inline-text')} + #{$sizing-icon}
+    );
 
     &::before {
       content: '';
@@ -33,10 +27,10 @@ $gap-block-text: map.get(tokens.$post-list, 'post-list-checks-spacing-gap-block-
       background-repeat: no-repeat;
       background-position-x: 50%;
       background-position-y: center;
-      background-color: $icon-bg;
+      background-color: map.get(tokens.$post-list, 'post-list-checks-color-icon-bg');
       border-radius: 50%;
       background-size: calc(#{$sizing-icon} - #{$padding-icon} * 2);
-      background-image: url('#{icons.get-colored-svg-url("2105", "white")}');
+      background-image: url('#{icons.get-colored-svg-url("2105", "white")}'); // 'white' should be changed with variable
     }
 
     & > ul {
@@ -45,6 +39,6 @@ $gap-block-text: map.get(tokens.$post-list, 'post-list-checks-spacing-gap-block-
   }
 
   & > li:not(:last-child) {
-    margin-bottom: $gap-block-text;
+    margin-bottom: map.get(tokens.$post-list, 'post-list-checks-spacing-gap-block-text');
   }
 }
