@@ -60,7 +60,7 @@ export class MigrationV89Component extends LitElement {
                 </li>
                 <li class="mb-3">
                   <p>
-                    Remove grid container helper classes
+                    Removed grid container helper classes
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <ul>
