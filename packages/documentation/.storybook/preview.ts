@@ -1,4 +1,4 @@
-import type { Args, Preview } from '@storybook/web-components';
+import type { Preview } from '@storybook/web-components';
 import { extractArgTypes, extractComponentDescription } from '@kurbar/storybook-addon-docs-stencil';
 import { format } from 'prettier';
 import DocsLayout from './blocks/layout/layout';
@@ -10,15 +10,12 @@ import './styles/preview.scss';
 
 import { SyntaxHighlighter } from '@storybook/components';
 import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
-import { toolbarConfig, applyToolbarSelection } from './toolbar';
 
 SyntaxHighlighter.registerLanguage('scss', scss);
 
 export const SourceDarkMode = true;
 
 const preview: Preview = {
-  globalTypes: toolbarConfig,
-  decorators: [applyToolbarSelection],
   parameters: {
     options: {
       storySort: {
