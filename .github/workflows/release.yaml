@@ -25,18 +25,7 @@ jobs:
       # This will fail the build if something in the publish setup is not correct
       # before changeset magic is starting to run
       - name: Test publish step
-        id: publish
-        run: |
-          branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD);
-
-          if [ $branch != 'main' ];
-            then
-              echo "command=pnpm changeset publish --tag latest-${branch:8:2}" >> "$GITHUB_OUTPUT";
-              pnpm -r publish --publish-branch $branch --tag latest-${branch:8:2} --dry-run;
-            else
-              echo "command=pnpm changeset:publish" >> "$GITHUB_OUTPUT";
-              pnpm -r publish --dry-run;
-          fi
+        run: pnpm -r publish --dry-run;
 
       # The changeset action will behave differently based on whether there are
       # new changesets on the github.ref branch:
@@ -52,7 +41,7 @@ jobs:
         with:
           title: 'chore(changesets): 🦋📦 publish packages (${{ github.ref_name }})'
           commit: 'chore(changesets): publish packages'
-          publish: ${{ steps.publish.outputs.command }}
+          publish: pnpm changeset:publish
           version: pnpm changeset:version
 
       - name: Create Summary
