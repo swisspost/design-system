@@ -493,7 +493,7 @@ export class PostInternetHeader {
             </post-meta-navigation>
           </If>
           <div class="main-navigation-container wide-container">
-            <post-logo></post-logo>
+            <post-header-logo></post-header-logo>
             <button
               class="menu-button nav-link"
               onClick={() => this.toggleMobileDropdown()}

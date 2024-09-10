@@ -2,12 +2,12 @@ import { Component, Host, h, Element } from '@stencil/core';
 import { state } from '../../data/store';
 
 @Component({
-  tag: 'post-logo',
+  tag: 'post-header-logo',
   styleUrl: 'post-logo.scss',
   shadow: true,
 })
 export class PostLogo {
-  @Element() host: HTMLPostLogoElement;
+  @Element() host: HTMLPostHeaderLogoElement;
 
   render() {
     if (state.localizedConfig?.header.logo === undefined) return;

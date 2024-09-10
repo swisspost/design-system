@@ -14,8 +14,8 @@
 ### Graph
 ```mermaid
 graph TD;
-  swisspost-internet-header --> post-logo
-  style post-logo fill:#f9f,stroke:#333,stroke-width:4px
+  swisspost-internet-header --> post-header-logo
+  style post-header-logo fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

@@ -9,13 +9,20 @@ export const config: Config = {
   namespace: 'post-components',
   buildDist: true,
   sourceMap: false,
+  validatePrimaryPackageOutputTarget: true,
   outputTargets: [
     {
       type: 'dist',
       esmLoaderPath: '../loader',
+      isPrimaryPackageOutputTarget: true,
     },
     {
       type: 'dist-custom-elements',
+    },
+    {
+      type: 'dist-custom-elements',
+      customElementsExportBehavior: 'single-export-module',
+      dir: 'loaders',
     },
     {
       type: 'www',
@@ -61,7 +68,6 @@ export const config: Config = {
   rollupPlugins: {
     before: [
       postcss({
-        modules: true,
         use: {
           sass: {
             includePaths: ['node_modules'],
@@ -76,6 +82,7 @@ export const config: Config = {
     testPathIgnorePatterns: [
       '<rootDir>/dist/',
       '<rootDir>/loader/',
+      '<rootDir>/loaders/',
       '<rootDir>/www/',
       '<rootDir>/cypress',
     ],

@@ -21,5 +21,13 @@ export default {
       '@storybook/theming',
       '@storybook/addon-links',
     ],
+    exclude: ['@swisspost/design-system-styles'],
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        silenceDeprecations: ['mixed-decls'],
+      },
+    },
   },
 };

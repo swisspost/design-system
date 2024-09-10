@@ -1,0 +1,5 @@
+@mixin from($map) {
+  @each $key, $value in $map {
+    --#{$key}: #{$value};
+  }
+}

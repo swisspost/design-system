@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components",
-  "version": "8.1.0",
+  "version": "8.2.0",
   "description": "A collection of web components built with Stencil JS for the Swiss Post Design System.",
   "license": "Apache-2.0",
   "main": "dist/index.cjs.js",
@@ -16,7 +16,8 @@
   },
   "files": [
     "dist/",
-    "loader/"
+    "loader/",
+    "loaders/"
   ],
   "publishConfig": {
     "access": "public",
@@ -26,7 +27,7 @@
     "dev": "stencil build --dev --port 9200 --serve --watch --docs --docs-readme",
     "start": "stencil build --dev --watch --docs --docs-readme",
     "build": "stencil build --docs-readme",
-    "clean": "rimraf www dist loader",
+    "clean": "rimraf www dist loader loaders",
     "test": "pnpm run unit",
     "unit": "stencil test --spec",
     "unit:watch": "stencil test --spec --watchAll --silent",
@@ -39,7 +40,7 @@
   "dependencies": {
     "@floating-ui/dom": "1.6.8",
     "@oddbird/popover-polyfill": "0.3.7",
-    "@swisspost/design-system-styles": "workspace:8.1.0",
+    "@swisspost/design-system-styles": "workspace:8.2.0",
     "ally.js": "1.4.1",
     "long-press-event": "2.5.0"
   },
@@ -63,7 +64,7 @@
     "eslint-plugin-react": "7.35.0",
     "rimraf": "6.0.1",
     "rollup-plugin-postcss": "4.0.2",
-    "sass": "1.77.8",
+    "sass": "1.78.0",
     "ts-jest": "29.2.4",
     "typescript": "5.5.4"
   },

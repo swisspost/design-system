@@ -1,6 +1,5 @@
 // importing the complete styles package scss
-// TODO: replace intranet.scss with index.scss as soon as the issues in the portal.scss are fixed
-@use '@swisspost/design-system-styles/intranet.scss';
+@use '@swisspost/design-system-styles/post-external.scss';
 @use '@swisspost/design-system-styles/core.scss' as post;
 @use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css';

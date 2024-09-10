@@ -1,0 +1,74 @@
+@use 'sass:meta';
+@use 'sass:map';
+@use 'sass:string';
+
+/**
+ * @function get($prefix, $key-name)
+ * Gets a token-key, normalizes and resolves it with the $default-map.
+ *
+ * @param {string} $prefix - The token map name.
+ * @param {string} $key-name - The token key name.
+ * @param {map} $map - The map to get the token key from.
+ *
+ * @returns {any} $value of $normalized-prefix[$normalized-key-name]
+ *
+ * @example
+ * @use '../tokens/components' as components;
+ * @use '../functions/tokens' as tokens;
+ *
+ * // set the default map to use or always use the third function parameter to specify a different map.
+ * tokens.$default-map: components.$post-body;
+ *
+ * // lets say you have two keys: 'post-selector-font-family' and 'post-selector-font-size' in the same map.
+ * // then use it like so:
+ *
+ * selector {
+ *   font-family: tokens.get('post-selector', 'font-family');
+ *   font-family: tokens.get('selector', 'font-family');
+ *
+ *   font-family: tokens.get('selector-font', 'family');
+ *   font-size: tokens.get('selector-font', 'size');
+ *
+ *   font-family: tokens.get('selector', 'font-family', $my-custom-map);  // use a different map than the default one
+ * }
+ */
+
+$_namespace: 'post';
+$default-map: null !default;
+
+@function get($prefix, $key-name, $map: $default-map) {
+  $key-name: normalize-key-name($prefix, $key-name);
+
+  @if not map.has-key($map, $key-name) {
+    @error 'No such key "#{$key-name}" in given map! Available keys are: #{meta.inspect(map.keys($map))}.';
+  }
+
+  @return map.get($map, $key-name);
+}
+
+@function normalize-key-name($original-prefix, $key-name) {
+  $namespaced-prefix: normalize-prefix($original-prefix);
+  $prefix: string.slice($namespaced-prefix, string.length('#{$_namespace}-') + 1);
+  $key-contains-namespace: string.index($key-name, '#{$_namespace}-') == 1;
+  $key-contains-prefix: string.index($key-name, '#{$prefix}-') == 1;
+
+  @if not $key-contains-namespace {
+    @if not $key-contains-prefix {
+      $key-name: '#{$namespaced-prefix}-#{$key-name}';
+    } @else {
+      $key-name: '#{$_namespace}-#{$key-name}';
+    }
+  }
+
+  @return $key-name;
+}
+
+@function normalize-prefix($prefix) {
+  $prefix-contains-namespace: string.index($prefix, '#{$_namespace}-') == 1;
+
+  @if not $prefix-contains-namespace {
+    $prefix: '#{$_namespace}-#{$prefix}';
+  }
+
+  @return $prefix;
+}

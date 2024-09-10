@@ -1,0 +1,10 @@
+@use '../tokens/temp/mode' as mode;
+@use './../mixins/tokens';
+
+%color-mode-light {
+  @include tokens.from(mode.$post-light);
+}
+
+%color-mode-dark {
+  @include tokens.from(mode.$post-dark);
+}

@@ -21,6 +21,15 @@ gulp.task('copy', () => {
 });
 
 /**
+ * Temporary task to copy token files from tokens package to the styles package since
+ * pnpm does not correctly install dependencies of dependencies for workspace packages.
+ * See https://github.com/pnpm/pnpm/issues/8338 for more information and reproduction
+ */
+gulp.task('temporarily-copy-token-files', () => {
+  return gulp.src(['../tokens/dist/*.scss']).pipe(gulp.dest('./src/tokens/temp'));
+});
+
+/**
  * Autoprefix SCSS files
  */
 gulp.task('autoprefixer', function () {
@@ -111,6 +120,7 @@ gulp.task('sass', () => {
         outputStyle: 'compressed',
         includePaths: options.includePaths,
         quietDeps: true,
+        silenceDeprecations: ['mixed-decls'],
       }),
     )
     .pipe(gulpPostCss([autoprefixer()]))
@@ -131,6 +141,7 @@ gulp.task('build-components', () => {
         outputStyle: 'compressed',
         includePaths: options.includePaths,
         quietDeps: true,
+        silenceDeprecations: ['mixed-decls'],
       }),
     )
     .pipe(gulpPostCss([autoprefixer()]))
@@ -142,11 +153,12 @@ gulp.task('build-components', () => {
  */
 gulp.task('sass:dev', () => {
   return gulp
-    .src('./src/*.scss', { since: gulp.lastRun('sass:dev') })
+    .src('./src/*.scss')
     .pipe(
       gulpSass({
         includePaths: options.includePaths,
         quietDeps: true,
+        silenceDeprecations: ['mixed-decls'],
       }),
     )
     .pipe(gulpPostCss([autoprefixer()]))
@@ -168,9 +180,12 @@ gulp.task('sass:tests', () => {
 /**
  * Watch task for scss development
  */
-gulp.task('watch', () => {
-  return gulp.watch('./src/**/*.scss', gulp.series('copy'));
-});
+gulp.task(
+  'watch',
+  gulp.series('temporarily-copy-token-files', () => {
+    return gulp.watch('./src/**/*.scss', gulp.series('copy', 'sass:dev'));
+  }),
+);
 
 /**
  * Run copy and sass task in parallel per default
@@ -179,7 +194,7 @@ exports.default = gulp.task(
   'build',
   gulp.parallel(
     gulp.series('map-icons', 'copy', 'autoprefixer', 'transform-package-json'),
-    gulp.series('sass'),
+    gulp.series('temporarily-copy-token-files', 'sass'),
     gulp.series('build-components'),
   ),
 );
