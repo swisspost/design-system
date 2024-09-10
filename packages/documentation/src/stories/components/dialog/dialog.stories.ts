@@ -135,11 +135,9 @@ const Template = {
     const controls = getControls();
     const postDialogIcon =
       args.icon && args.icon !== 'none'
-        ? html`<post-dialog-icon><post-icon name="${args.icon}"></post-icon></post-dialog-icon>`
+        ? html`<post-icon name="${args.icon}"></post-icon>`
         : nothing;
-    const postDialogCloseButton = args.closeButton
-      ? html`<post-dialog-close>${getCloseButton()}</post-dialog-close>`
-      : nothing;
+    const postDialogCloseButton = args.closeButton ? getCloseButton() : nothing;
 
     // Don't declare default values or show empty containers
     if (args.backgroundColor === 'bg-white') args.backgroundColor = nothing;
@@ -157,9 +155,9 @@ const Template = {
       >
         <form method="dialog" class="dialog-grid">
           ${postDialogIcon}
-          <post-dialog-header>${header}</post-dialog-header>
-          <post-dialog-body>${body}</post-dialog-body>
-          <post-dialog-controls>${controls}</post-dialog-controls>
+          <h3 class="dialog-header">${header}</h3>
+          <div class="dialog-body">${body}</div>
+          <div class="dialog-controls">${controls}</div>
           ${postDialogCloseButton}
         </form>
       </dialog>
@@ -178,8 +176,8 @@ const FormTemplate = {
           class="dialog-grid"
           onsubmit="console.log(Object.fromEntries(new FormData(event.target)))"
         >
-          <post-dialog-header><h3>Form example</h3></post-dialog-header>
-          <post-dialog-body>
+          <h3 class="dialog-header">Form example</h3>
+          <div class="dialog-body">
             <div class="form-floating mt-3">
               <input
                 id="example-dialog-text-field"
@@ -195,12 +193,12 @@ const FormTemplate = {
                 consequat, vel illum dolore eu feugiat nulla facilisis.
               </div>
             </div>
-          </post-dialog-body>
+          </div>
 
-          <post-dialog-controls>
+          <div class="dialog-controls">
             <button class="btn btn-primary">Confirm</button>
             <button class="btn btn-secondary" formnovalidate>Cancel</button>
-          </post-dialog-controls>
+          </div>
         </form>
       </dialog>
     `;

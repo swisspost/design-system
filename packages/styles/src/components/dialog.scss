@@ -84,43 +84,32 @@ dialog > .dialog-grid {
   background-color: inherit;
 }
 
-:where(
-    post-dialog-icon,
-    post-dialog-header,
-    post-dialog-body,
-    post-dialog-controls,
-    post-dialog-close
-  ):empty {
+:where(.dialog-icon, .dialog-header, .dialog-body, .dialog-controls, .dialog-close):empty {
   display: none;
 }
 
-post-dialog-icon {
+.dialog-grid > post-icon {
   grid-area: icon;
   display: block;
 
-  > post-icon {
-    width: spacing.$size-big;
-    height: spacing.$size-big;
+  width: spacing.$size-big;
+  height: spacing.$size-big;
 
-    // Larger icon for bigger notification dialogs
-    dialog:not([size='small']) & {
-      @include media-breakpoint-up(rg) {
-        width: spacing.$size-small-huge;
-        height: spacing.$size-small-huge;
-      }
+  // Larger icon for bigger notification dialogs
+  dialog:not([size='small']) & {
+    @include media-breakpoint-up(rg) {
+      width: spacing.$size-small-huge;
+      height: spacing.$size-small-huge;
     }
   }
 }
 
-post-dialog-header {
+.dialog-header {
   grid-area: header;
-
-  > *:first-child {
-    margin-top: 0;
-  }
+  margin-top: 0;
 }
 
-post-dialog-body {
+.dialog-body {
   grid-area: body;
   margin-bottom: 0;
 
@@ -129,7 +118,7 @@ post-dialog-body {
   }
 }
 
-post-dialog-controls {
+.dialog-controls {
   grid-area: controls;
   position: sticky;
   bottom: 0;
@@ -147,16 +136,13 @@ post-dialog-controls {
   }
 }
 
-post-dialog-close {
+.dialog-grid > .btn-close {
   position: sticky;
   top: 0;
   grid-area: close-button;
-
-  > .btn-close {
-    width: spacing.$size-large;
-    height: spacing.$size-large;
-    min-height: 0;
-  }
+  width: spacing.$size-large;
+  height: spacing.$size-large;
+  min-height: 0;
 }
 
 // Animations
