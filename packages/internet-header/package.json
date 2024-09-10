@@ -20,7 +20,8 @@
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/swisspost-internet-header/swisspost-internet-header.esm.js",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "tag": "latest-v7"
   },
   "files": [
     "dist/",

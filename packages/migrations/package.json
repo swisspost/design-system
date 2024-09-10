@@ -12,7 +12,8 @@
     "dist/"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "tag": "latest-v7"
   },
   "scripts": {
     "copy-files": "copyfiles -f LICENSE README.md package.json CONTRIBUTING.md CHANGELOG.md src/migrations.json dist",
