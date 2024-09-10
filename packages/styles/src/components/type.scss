@@ -16,19 +16,15 @@
 @use './../layouts/portal/type' as portal;
 @use './../placeholders/text';
 @use './../mixins/type' as type-mx;
+@use '../functions/tokens' as tokens;
+@use '../tokens/elements' as elements;
+
+tokens.$default-map: elements.$post-heading;
 
 // Deprecated
 @each $key, $curve in type.$font-curves {
   .font-curve-#{$key} {
     @include type-mx.font-curve($key);
-  }
-}
-
-// Generate heading sizes using the sizes map and the font-curve mixin
-@each $heading in ('h1', 'h2', 'h3', 'h4', 'h5', 'h6') {
-  #{$heading},
-  .#{$heading} {
-    @include type-mx.font-curve('heading-sizes-#{$heading}', heading.$heading-sizes);
   }
 }
 
@@ -41,6 +37,63 @@
       line-height: type.$line-height-heading;
     }
   }
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  line-height: tokens.get('post-heading', 'line-height');
+  font-weight: tokens.get('post-heading', 'font-weight');
+}
+
+h1,
+.h1 {
+  font-size: tokens.get('post-h1', 'font-size');
+  margin-block-start: tokens.get('post-h1', 'margin-block-start');
+  margin-block-end: tokens.get('post-h1', 'margin-block-end');
+}
+
+h2,
+.h2 {
+  font-size: tokens.get('post-h2', 'font-size');
+  margin-block-start: tokens.get('post-h2', 'margin-block-start');
+  margin-block-end: tokens.get('post-h2', 'margin-block-end');
+}
+
+h3,
+.h3 {
+  font-size: tokens.get('post-h3', 'font-size');
+  margin-block-start: tokens.get('post-h3', 'margin-block-start');
+  margin-block-end: tokens.get('post-h3', 'margin-block-end');
+}
+h4,
+.h4 {
+  font-size: tokens.get('post-h4', 'font-size');
+  margin-block-start: tokens.get('post-h4', 'margin-block-start');
+  margin-block-end: tokens.get('post-h4', 'margin-block-end');
+}
+
+h5,
+.h5 {
+  font-size: tokens.get('post-h5', 'font-size');
+  margin-block-start: tokens.get('post-h5', 'margin-block-start');
+  margin-block-end: tokens.get('post-h5', 'margin-block-end');
+}
+
+h6,
+.h6 {
+  font-size: tokens.get('post-h6', 'font-size');
+  margin-block-start: tokens.get('post-h6', 'margin-block-start');
+  margin-block-end: tokens.get('post-h6', 'margin-block-end');
 }
 
 fieldset {
