@@ -1,6 +1,6 @@
 import meta, { Default } from './dialog.stories';
 import { html } from 'lit';
-import { bombArgs } from '@root/src/utils';
+import { bombArgs } from '@/utils';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 
 const { id, ...metaWithoutId } = meta;
