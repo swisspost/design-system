@@ -4,6 +4,7 @@
 @use '@swisspost/design-system-styles/components/spinner';
 @use '@swisspost/design-system-styles/variables/color';
 @use '@swisspost/design-system-styles/functions';
+@use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/variables/components/button' as button-var;
 @use '../../utils/utils.scss';
 @use '../../utils/mixins.scss';
@@ -63,6 +64,9 @@
     width: 1.5em;
     height: 1.5em;
     color: rgba(color.$black, 0.6);
+    @include utilities.high-contrast-mode() {
+      forced-color-adjust: auto;
+    }
   }
 }
 
