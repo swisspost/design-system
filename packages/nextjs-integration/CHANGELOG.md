@@ -1,5 +1,14 @@
 # @swisspost/design-system-nextjs-integration
 
+## 0.1.13
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.2.0
+  - @swisspost/design-system-components-react@8.2.0
+  - @swisspost/internet-header@1.14.5
+
 ## 0.1.12
 
 ### Patch Changes

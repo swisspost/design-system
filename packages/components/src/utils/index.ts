@@ -1,3 +1,4 @@
+export * from './component-on-ready';
 export * from './property-checkers';
 export * from './debounce';
 export * from './get-root';

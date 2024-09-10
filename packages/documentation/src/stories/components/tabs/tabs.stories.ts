@@ -75,17 +75,16 @@ export const Async: Story = {
       };
 
       const removeActiveTab = () => {
-        const headers: NodeListOf<HTMLPostTabHeaderElement> =
+        const headers: NodeListOf<HTMLPostTabHeaderElement> | undefined =
           document.querySelectorAll('post-tab-header');
 
-        const activeHeader: HTMLPostTabHeaderElement | undefined = Array.from(headers).find(() =>
-          document.querySelectorAll('post-tab-header.active'),
+        const activeHeader: HTMLPostTabHeaderElement | undefined = Array.from(headers ?? []).find(
+          () => document.querySelectorAll('post-tab-header.active'),
         );
         activeHeader?.remove();
 
-        const activePanel: HTMLPostTabPanelElement | null = document.querySelector(
-          `post-tab-panel[name=${activeHeader?.panel}]`,
-        );
+        const activePanel: HTMLPostTabPanelElement | null =
+          document.querySelector(`post-tab-panel[name=${activeHeader?.panel}]`) ?? null;
         activePanel?.remove();
       };
 
