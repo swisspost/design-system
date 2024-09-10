@@ -52,11 +52,16 @@ const config: StorybookConfig = {
     '@storybook/addon-links',
     '@kurbar/storybook-addon-docs-stencil',
     './addons/version-switcher/register',
+    './addons/styles-switcher/register',
   ],
   staticDirs: [
     {
       from: '../public/assets',
       to: '/assets',
+    },
+    {
+      from: '../node_modules/@swisspost/design-system-styles',
+      to: '/styles',
     },
     '../public',
     '../node_modules/@swisspost/design-system-icons/public',
