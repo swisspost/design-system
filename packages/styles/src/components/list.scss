@@ -1,3 +1,4 @@
+@use './../themes/bootstrap/core' as *;
 @use '../tokens/components' as components;
 @use '../functions/tokens' as tokens;
 @use './../functions/icons';
@@ -34,6 +35,12 @@ $padding-icon: tokens.get('post-list-checks', 'spacing-padding-icon');
       border-radius: 50%;
       background-size: calc(#{$sizing-icon} - #{$padding-icon} * 2);
       background-image: url('#{icons.get-colored-svg-url("2105", "white")}'); // 'white' should be changed with variable
+    }
+
+    @include media-breakpoint-down(sm) {
+      &::before {
+        margin: tokens.get('post-list-checks', 'spacing-padding-icon');
+      }
     }
 
     > ul {
