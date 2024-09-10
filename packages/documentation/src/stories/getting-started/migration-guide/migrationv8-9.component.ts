@@ -33,14 +33,6 @@ export class MigrationV89Component extends LitElement {
         <ol class="bubble-tea">
           <li>
             <h3>Component Migration 🤓</h3>
-            ${this.angular
-              ? html`
-                  <p class="info">
-                    Changes flagged with the ⚙️ symbol should be automatically migrated with our
-                    migration tool.
-                  </p>
-                `
-              : nothing}
 
             <section>
               <h4>Styles</h4>
@@ -52,6 +44,7 @@ export class MigrationV89Component extends LitElement {
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <ul>
+                    <li><code>$line-heights</code></li>
                     <li><code>$line-height-tiny</code></li>
                     <li><code>$line-height-small</code></li>
                     <li><code>$line-height-regular</code></li>
