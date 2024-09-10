@@ -1,6 +1,7 @@
 dist/
 www/
 loader/
+loaders/
 storybook-static/
 
 *~

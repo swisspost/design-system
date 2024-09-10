@@ -120,6 +120,7 @@ gulp.task('sass', () => {
         outputStyle: 'compressed',
         includePaths: options.includePaths,
         quietDeps: true,
+        silenceDeprecations: ['mixed-decls'],
       }),
     )
     .pipe(gulpPostCss([autoprefixer()]))
@@ -140,6 +141,7 @@ gulp.task('build-components', () => {
         outputStyle: 'compressed',
         includePaths: options.includePaths,
         quietDeps: true,
+        silenceDeprecations: ['mixed-decls'],
       }),
     )
     .pipe(gulpPostCss([autoprefixer()]))
@@ -151,11 +153,12 @@ gulp.task('build-components', () => {
  */
 gulp.task('sass:dev', () => {
   return gulp
-    .src('./src/*.scss', { since: gulp.lastRun('sass:dev') })
+    .src('./src/*.scss')
     .pipe(
       gulpSass({
         includePaths: options.includePaths,
         quietDeps: true,
+        silenceDeprecations: ['mixed-decls'],
       }),
     )
     .pipe(gulpPostCss([autoprefixer()]))
@@ -180,7 +183,7 @@ gulp.task('sass:tests', () => {
 gulp.task(
   'watch',
   gulp.series('temporarily-copy-token-files', () => {
-    return gulp.watch('./src/**/*.scss', gulp.series('copy'));
+    return gulp.watch('./src/**/*.scss', gulp.series('copy', 'sass:dev'));
   }),
 );
 

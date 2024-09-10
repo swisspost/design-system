@@ -1,6 +1,7 @@
 import { Component, Element, Event, EventEmitter, h, Host, Method, Prop } from '@stencil/core';
 import { version } from '@root/package.json';
 import { fadeIn, fadeOut } from '@/animations';
+import { componentOnReady } from '@/utils';
 
 /**
  * @slot tabs - Slot for placing tab headers. Each tab header should be a <post-tab-header> element.
@@ -100,7 +101,7 @@ export class PostTabs {
     if (!this.tabs) return;
 
     this.tabs.forEach(async tab => {
-      await tab.componentOnReady();
+      await componentOnReady(tab);
 
       // if the tab has an "aria-controls" attribute it was already linked to its panel: do nothing
       if (tab.getAttribute('aria-controls')) return;
@@ -120,8 +121,8 @@ export class PostTabs {
         }
       });
 
-      tab.addEventListener('keydown', ({ key }) => {
-        if (key === 'ArrowRight' || key === 'ArrowLeft') this.navigateTabs(tab, key);
+      tab.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') this.navigateTabs(tab, e.key);
       });
     });
 
