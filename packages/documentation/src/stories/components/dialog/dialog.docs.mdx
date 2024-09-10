@@ -2,6 +2,7 @@ import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
 import * as DialogStories from './dialog.stories';
 import JSFormData from './samples/js-form-data?raw';
 import AngularFormData from './samples/angular-form-data?raw';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
 <Meta of={DialogStories} />
 
@@ -14,10 +15,14 @@ import AngularFormData from './samples/angular-form-data?raw';
   <Controls of={DialogStories.Default} />
 </div>
 
+<StylesPackageImport components={['dialog']} />
+
+## Examples
+
 ### Form dialog
 <Canvas sourceState="hidden" of={DialogStories.Form} />
 
-### Using form data
+#### Using form data
 
 <post-tabs>
   <post-tab-header slot="tabs" panel="dialog-form-html-css">HTML & CSS</post-tab-header>
@@ -39,6 +44,6 @@ import AngularFormData from './samples/angular-form-data?raw';
   </post-tab-panel>
 </post-tabs>
 
-## Custom content dialog
+### Custom content dialog
 The dialog can also contain arbitrary content.
 <Canvas sourceState="hidden" of={DialogStories.Custom} />

@@ -7,6 +7,7 @@ const meta: Meta = {
   parameters: {
     design: {
       type: 'figma',
+      url: 'https://www.figma.com/design/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?node-id=20215-22938&m=dev',
     },
   },
   args: {
@@ -14,6 +15,7 @@ const meta: Meta = {
     content: 'This is a dialog',
     size: 'medium',
     position: 'center',
+    icon: 'none',
     backgroundColor: 'bg-white',
     animation: 'pop-in',
     closeButton: true,
