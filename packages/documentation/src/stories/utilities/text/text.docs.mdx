@@ -4,6 +4,7 @@ import * as TextStories from './text.stories';
 import SampleFontFamily from './text-font-family.sample.scss?raw';
 import SampleFontSize from './text-font-size.sample.scss?raw';
 import SampleFontWeight from './text-font-weight.sample.scss?raw';
+import SampleLineHeight from './text-line-height.sample.scss?raw';
 import SampleColor from './text-color.sample.scss?raw';
 
 <Meta of={TextStories} />
@@ -79,7 +80,18 @@ import SampleColor from './text-color.sample.scss?raw';
 
 ### Line Heights
 
+<div className="alert alert-warning my-4">
+  Fixed-size line heights are deprecated in favor of relative line height utility classes.
+</div>
+
 <Canvas of={TextStories.LineHeight} sourceState="shown" />
+
+#### Set Line Height in SCSS
+
+<Source
+  code={SampleLineHeight}
+  language="scss"
+/>
 
 #### Possible Values
 
