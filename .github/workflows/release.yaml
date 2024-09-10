@@ -25,7 +25,7 @@ jobs:
       # This will fail the build if something in the publish setup is not correct
       # before changeset magic is starting to run
       - name: Test publish step
-        run: pnpm -r publish --dry-run;
+        run: pnpm -r publish --dry-run
 
       # The changeset action will behave differently based on whether there are
       # new changesets on the github.ref branch:
