@@ -16,7 +16,7 @@
   "private": true,
   "scripts": {
     "prebuild:managerui": "sass --update --load-path=node_modules .storybook/styles/manager.scss public/manager/ui.css",
-    "start": "pnpm clean && pnpm prebuild:managerui --style=expanded & storybook dev -p 9000 --quiet",
+    "start": "pnpm clean && pnpm prebuild:managerui --style=expanded & storybook dev -p 9000 --quiet --docs",
     "start:headless": "pnpm clean && pnpm prebuild:managerui --style=expanded && storybook dev -p 9001 --quiet --no-open --docs",
     "build": "pnpm clean && pnpm prebuild:managerui --style=compressed --no-source-map & storybook build --quiet --docs",
     "clean": "rimraf storybook-static public/manager",
