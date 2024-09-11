@@ -69,7 +69,7 @@ Disabled states of input fields or buttons pose many accessibility issues.
         </td>
         <td>
           <ul class="list-unstyled d-flex gap-mini">
-            <div>✔️</div><li>Provide a loading indicator or display a message that shows current progress when uploading large files. Disable duplicate form submissions internally. Inform users that the form was already submitted if they continue to click submit and offer a remedy if the request timed out or an error occurred on the server (reload the page, retry form submission, ...).</li>
+            <div>✔️</div><li>Provide a loading indicator or display a message that shows current progress when uploading large files. Disable duplicate form submissions internally by either aborting the current request and sending a new one or supressing new submissions during loading. Offer a remedy if the request timed out or an error occurred on the server (reload the page, retry form submission, ...).</li>
           </ul>
         </td>
       </tr>

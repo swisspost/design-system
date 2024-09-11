@@ -25,6 +25,8 @@ $stepper-indicator-hover-bg: var(--post-contrast-color);
 
 $stepper-indicator-future-bg: color.$gray-60;
 $stepper-indicator-future-color: color.$white;
+$stepper-indicator-check-icon: url('#{icon-fn.get-colored-svg-url('2105', $stepper-indicator-color)}');
+$stepper-indicator-check-icon-size: $stepper-indicator-check-size;
 
 $stepper-link-line-height: type.$line-height-sm;
 $stepper-link-gap: spacing.$size-mini;
@@ -34,12 +36,3 @@ $stepper-link-color: var(--post-gray-60);
 $stepper-link-current-color: var(--post-gray-80);
 $stepper-link-current-font-weight: type.$font-weight-bold;
 
-// DEPRECATED
-$stepper-link-hover-color: $stepper-link-color;
-$stepper-indicator-hover-outline: spacing.$size-line solid var(--post-focus-color);
-$stepper-indicator-font-size: type.$font-size-16;
-$stepper-link-current-font-size: type.$font-size-16;
-$stepper-indicator-check-icon: url('#{icon-fn.get-colored-svg-url('2105', $stepper-indicator-color)}');
-$stepper-indicator-hover-check-icon: url('#{icon-fn.get-colored-svg-url('2105',$stepper-indicator-hover-color)}');
-$stepper-indicator-height: $stepper-indicator-size;
-$stepper-indicator-check-icon-size: $stepper-indicator-check-size;

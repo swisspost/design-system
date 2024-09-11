@@ -8,6 +8,7 @@
   "fixed": [
     [
       "@swisspost/design-system-styles",
+      "@swisspost/design-system-tokens",
       "@swisspost/design-system-components",
       "@swisspost/design-system-components-angular",
       "@swisspost/design-system-components-react",

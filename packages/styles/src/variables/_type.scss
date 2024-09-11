@@ -53,19 +53,6 @@ $line-height-sm: 1;
 $line-height-copy: 1.5;
 $line-height-heading: 1.2;
 
-// Deprecated
-$line-height-tiny: $line-height-copy;
-$line-height-small: $line-height-copy;
-$line-height-regular: $line-height-copy;
-$line-height-bigger-regular: $line-height-copy;
-$line-height-medium: $line-height-copy;
-$line-height-large: $line-height-heading;
-$line-height-small-big: $line-height-heading;
-$line-height-big: $line-height-heading;
-$line-height-bigger-big: $line-height-heading;
-$line-height-small-huge: $line-height-heading;
-$line-height-huge: $line-height-heading;
-
 $font-weight-light: 300 !default; // Design System -> Frutiger Neue Light
 $font-weight-normal: 400 !default; // Design System -> Frutiger Neue Roman
 $font-weight-bold: 700 !default; // Design System -> Frutiger Neue Bold
@@ -97,20 +84,6 @@ $font-size-map: (
   40: $font-size-40,
   48: $font-size-48,
   56: $font-size-56,
-);
-
-$line-heights: (
-  'tiny': $line-height-tiny,
-  'small': $line-height-small,
-  'regular': $line-height-regular,
-  'bigger-regular': $line-height-bigger-regular,
-  'medium': $line-height-medium,
-  'large': $line-height-large,
-  'small-big': $line-height-small-big,
-  'big': $line-height-big,
-  'bigger-big': $line-height-bigger-big,
-  'small-huge': $line-height-small-huge,
-  'huge': $line-height-huge,
 );
 
 // Deprecated
@@ -200,12 +173,6 @@ $headings-font-family: inherit !default;
 $headings-font-weight: 700 !default;
 $headings-line-height: $line-height-heading;
 $headings-color: inherit !default;
-
-// Deprecated because unused
-$display1-size: 6rem !default;
-$display2-size: 5.5rem !default;
-$display3-size: 4.5rem !default;
-$display4-size: 3.5rem !default;
 
 // Deprecated because unused
 $display1-weight: 300 !default;

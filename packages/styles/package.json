@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-styles",
-  "version": "8.1.0",
+  "version": "8.2.0",
   "description": "Design System Styles for the Swiss Post web platform.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -23,8 +23,8 @@
     "unit": "gulp sass:tests",
     "clean": "rimraf out-tsc dist",
     "format": "prettier src/**/*.scss --write",
-    "lint": "stylelint src/**/*.scss",
-    "lint:fix": "stylelint src/**/*.scss --fix"
+    "lint": "stylelint src/**/*.scss !src/tokens/temp/**",
+    "lint:fix": "stylelint src/**/*.scss !src/tokens/temp/** --fix"
   },
   "peerDependencies": {
     "@angular/core": "^18.0.0",
@@ -47,8 +47,8 @@
     "bootstrap": "5.3.3"
   },
   "devDependencies": {
-    "@swisspost/design-system-tokens": "workspace:*",
-    "@swisspost/design-system-icons": "workspace:8.1.0",
+    "@swisspost/design-system-tokens": "workspace:8.2.0",
+    "@swisspost/design-system-icons": "workspace:8.2.0",
     "@types/node": "20.14.14",
     "autoprefixer": "10.4.19",
     "copyfiles": "2.4.1",
@@ -62,11 +62,11 @@
     "postcss-scss": "4.0.9",
     "prettier": "3.3.3",
     "rimraf": "6.0.1",
-    "sass": "1.77.8",
-    "stylelint": "16.8.1",
+    "sass": "1.78.0",
+    "stylelint": "16.9.0",
     "stylelint-config-sass-guidelines": "11.1.0",
     "stylelint-prettier": "5.0.2",
-    "stylelint-scss": "6.4.1",
+    "stylelint-scss": "6.5.1",
     "typescript": "5.5.4"
   },
   "sass": {

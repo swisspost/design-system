@@ -1,7 +1,7 @@
 name: Component v2
 description: Add a working item for a component targeted at the new Design v2
 title: '[component]: '
-labels: ['📦 components']
+labels: ['📦 components', 'needs:refinement']
 projects: ['swisspost/3']
 assignees: []
 body:
