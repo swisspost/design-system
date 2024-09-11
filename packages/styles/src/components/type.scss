@@ -74,6 +74,7 @@ h3,
   margin-block-start: tokens.get('post-h3', 'margin-block-start');
   margin-block-end: tokens.get('post-h3', 'margin-block-end');
 }
+
 h4,
 .h4 {
   font-size: tokens.get('post-h4', 'font-size');
