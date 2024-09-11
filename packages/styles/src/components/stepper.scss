@@ -88,6 +88,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  counter-increment: step-index;
   position: relative;
   z-index: 2;
   overflow: hidden;
@@ -120,7 +121,6 @@
 
 // step indicator
 .stepper-link::before {
-  counter-increment: step-index;
   content: counter(step-index);
   display: flex;
   align-items: center;
