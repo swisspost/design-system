@@ -64,6 +64,7 @@
     "header:snapshots": "start-server-and-test docs:headless 9001 'pnpm --filter internet-header snapshots'",
     "intranet-header": "pnpm intranet-header:start",
     "intranet-header:start": "pnpm --filter design-system-intranet-header-workspace start",
+    "intranet-header:build": "pnpm --filter design-system-intranet-header-workspace build",
     "icons": "pnpm icons:start",
     "icons:start": "pnpm --filter design-system-icons dev",
     "icons:test": "pnpm --filter design-system-icons test",
