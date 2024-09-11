@@ -1,5 +1,13 @@
 # @swisspost/design-system-styles
 
+## 8.2.1
+
+### Patch Changes
+
+- Resolved issue where validation message icons repeated on each line of multi-line messages. Implemented flexbox layout to ensure a single, vertically centered icon regardless of message length. (by [@schaertim](https://github.com/schaertim) with [#3396](https://github.com/swisspost/design-system/pull/3396))
+
+- Refactored icon declarations to comply with Angular 18's new build system requirements. (by [@schaertim](https://github.com/schaertim) with [#3482](https://github.com/swisspost/design-system/pull/3482))
+
 ## 8.2.0
 
 ### Minor Changes
