@@ -131,7 +131,7 @@ jobs:
               old: {
                 version: release.oldVersion,
                 major: oldMajor,
-                siteUrl: `design-system-version-${oldMajor}`,
+                siteUrl: `swisspost-design-system-version-${oldMajor}`,
                 dependencies: {}
               },
               new: {
