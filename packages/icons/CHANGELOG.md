@@ -1,5 +1,7 @@
 # @swisspost/design-system-icons
 
+## 9.0.0-next.0
+
 ## 8.2.0
 
 ### Minor Changes

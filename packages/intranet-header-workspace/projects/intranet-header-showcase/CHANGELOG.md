@@ -1,5 +1,12 @@
 # @swisspost/design-system-intranet-header-showcase
 
+## 1.0.10-next.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-intranet-header@9.0.0-next.0
+
 ## 1.0.9
 
 ### Patch Changes
