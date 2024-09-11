@@ -2,13 +2,13 @@
 
 :host {
   display: inline-block;
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 :host(.small) {
-  width: 32px;
-  height: 32px;
+  width: 2rem;
+  height: 2rem;
   font-size: post.$font-size-12;
 }
 
