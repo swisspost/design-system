@@ -65,20 +65,31 @@ export class PostAvatar {
   }
 
   private async getAvatarType() {
-    let response: Response = new Response();
+    const storage = window?.sessionStorage;
+    const baseRes = { ok: false, url: '' };
+    const response = storage ? JSON.parse(storage.getItem(this.email)) ?? baseRes : baseRes;
 
-    if (this.email) {
-      const email = await crypto.subtle
-        .digest('SHA-256', new TextEncoder().encode(this.email))
-        .then(buffer => {
-          return Array.from(new Uint8Array(buffer))
-            .map(bytes => bytes.toString(16).padStart(2, '0'))
-            .join('');
-        });
-      const size = (PostAvatar.GRAVATAR_SIZES[this.size] ?? '').toString();
-      const gravatarUrl = GRAVATAR_BASE_URL.replace('{size}', size).replace('{email}', email);
+    if (this.email && !response.ok) {
+      try {
+        const email = await crypto.subtle
+          .digest('SHA-256', new TextEncoder().encode(this.email))
+          .then(buffer => {
+            return Array.from(new Uint8Array(buffer))
+              .map(bytes => bytes.toString(16).padStart(2, '0'))
+              .join('');
+          });
+        const size = (PostAvatar.GRAVATAR_SIZES[this.size] ?? '').toString();
+        const gravatarUrl = GRAVATAR_BASE_URL.replace('{size}', size).replace('{email}', email);
+        const r = await fetch(gravatarUrl);
 
-      response = await fetch(gravatarUrl);
+        response.ok = r.ok;
+        response.url = r.url;
+
+        if (storage) storage.setItem(this.email, JSON.stringify(response));
+      } catch (error) {
+        console.warn(error);
+        console.info('Component will continue without avatar image.');
+      }
     }
 
     if (this.email && response.ok) {
