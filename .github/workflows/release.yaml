@@ -67,7 +67,7 @@ jobs:
     name: Collect Release Data
     runs-on: ubuntu-latest
     needs: changeset-magic
-    if: github.ref_name == 'main'
+    if: github.ref_name == 'release/v8'
     outputs:
       release-data: ${{ steps.release-data.outputs.result }}
       changeset-branch-exists: ${{ steps.changeset-branch-exists.outputs.exists }}
@@ -138,7 +138,7 @@ jobs:
         id: changeset-branch-exists
         uses: GuillaumeFalourd/branch-exists@v1
         with:
-          branch: changeset-release/main
+          branch: changeset-release/release/v8
 
       - name: Check if release/v* Branch exists
         id: release-branch-exists
@@ -225,14 +225,14 @@ jobs:
     name: Update changeset-release/{main,release/v*} Branch
     runs-on: ubuntu-latest
     needs: collect-release-data
-    if: github.ref_name == 'main' && needs.collect-release-data.outputs.changeset-branch-exists == 'true' && fromJSON(needs.collect-release-data.outputs.release-data) != null
+    if: github.ref_name == 'release/v8' && needs.collect-release-data.outputs.release-changeset-branch-exists == 'true' && fromJSON(needs.collect-release-data.outputs.release-data) != null
     steps:
       # Checkout the changeset Branch
       - name: Checkout
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-          ref: changeset-release/main
+          ref: changeset-release/changeset-release/release/v8
 
       - name: Setup Node & pnpm
         uses: ./.github/actions/setup-pnpm
@@ -311,7 +311,7 @@ jobs:
         env:
           REF_NAME: ${{ github.ref_name }}
           RELEASE_DATA: ${{ needs.collect-release-data.outputs.release-data }}
-          RELEASE_BRANCH_EXISTS: ${{ needs.collect-release-data.outputs.release-branch-exists }}
+          RELEASE_BRANCH_EXISTS: ${{ needs.collect-release-data.outputs.release-changeset-branch-exists }}
         with:
           script: |
             const release = JSON.parse(process.env.RELEASE_DATA)
@@ -321,163 +321,6 @@ jobs:
             In addition to that, the following updates have been made to this Branch:
             ${release.isMajor && process.env.RELEASE_BRANCH_EXISTS === 'false' ? `- Netlify <code>_redirects</code> File has been created on to the <code>changeset-release/${process.env.REF_NAME}</code> Branch.` : ''}
             - The Netlify <code>versions.json</code> File has been updated on to the <code>changeset-release/${process.env.REF_NAME}</code> Branch.
-            `
-
-      - name: Output Summary
-        run: echo -e ${{ steps.summary.outputs.result }} >> $GITHUB_STEP_SUMMARY
-
-  # Only run this Job if:
-  # - Workflow runs on the 'main' Branch
-  # - Release Branch does not already exist
-  # - Release Data exists
-  # - A Major Release was detected
-  create-release-branch:
-    name: Create release/v* Branch
-    runs-on: ubuntu-latest
-    needs: collect-release-data
-    if: github.ref_name == 'main' && needs.collect-release-data.outputs.release-branch-exists == 'false' && fromJSON(needs.collect-release-data.outputs.release-data) != null && fromJSON(needs.collect-release-data.outputs.release-data).isMajor == true
-    steps:
-      # Checkout the commit with the release.old.version tag (e.g. @swisspost/design-system-styles@5.3.2)
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-          ref: ${{ fromJSON(needs.collect-release-data.outputs.release-data).tagName }}
-
-      - name: Remove Documentation versions.json
-        run: rm -f ./packages/documentation/public/assets/versions.json
-
-      - name: Remove Documentation _headers
-        run: rm -f ./packages/documentation/public/_headers
-
-      - name: Remove Documentation _redirects
-        run: rm -f ./packages/documentation/public/_redirects
-
-      - name: Setup pnpm & node
-        uses: ./.github/actions/setup-pnpm
-
-      - name: Install documentation & dependencies
-        run: pnpm --filter "design-system-documentation..." install
-
-      - name: Build documentation & dependencies
-        run: pnpm --filter "design-system-documentation..." build
-
-      - name: Setup netlify-cli
-        uses: ./.github/actions/setup-netlify-cli
-
-      - name: Check if a Netlify Site with given siteUrl already exists
-        id: netlify-sites
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        run: |
-          mkdir -p packages/documentation/.netlify
-          netlify sites:list --filter @swisspost/design-system-documentation --json > packages/documentation/.netlify/swisspost-sites.json
-          exists=$(jq -r 'any(.[]; .name=="${{ fromJSON(needs.collect-release-data.outputs.release-data).old.siteUrl }}")' packages/documentation/.netlify/swisspost-sites.json)
-          echo "exists=$exists" >> $GITHUB_OUTPUT
-
-      - name: Create Netlify Site (if it does not exist)
-        if: steps.netlify-sites.outputs.exists == 'false'
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        run: netlify sites:create --filter @swisspost/design-system-documentation --account-slug oss-udwyths --name ${{ fromJSON(needs.collect-release-data.outputs.release-data).old.siteUrl }} --manual
-
-      - name: Deploy Netlify Site
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        run: |
-          netlify link --filter @swisspost/design-system-documentation --name ${{ fromJSON(needs.collect-release-data.outputs.release-data).old.siteUrl }}
-          netlify deploy --filter @swisspost/design-system-documentation --build false --dir packages/documentation/storybook-static --prod
-
-      - name: Update Changeset config.json
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs')
-            const release = ${{ needs.collect-release-data.outputs.release-data }}
-
-            const changesetConfigPath = './.changeset/config.json'
-            const changesetConfig = JSON.parse(fs.readFileSync(changesetConfigPath, 'utf8'))
-            fs.writeFileSync(changesetConfigPath, JSON.stringify({
-              ...changesetConfig,
-              baseBranch: release.branchName
-            }, null, 2) + '\n')
-
-      - name: Update Documentation netlify.config.json
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs')
-            const release = ${{ needs.collect-release-data.outputs.release-data }}
-
-            const netlifyState = JSON.parse(fs.readFileSync('./packages/documentation/.netlify/state.json', 'utf8'))
-            fs.writeFileSync('./packages/documentation/netlify.config.json', JSON.stringify({
-              ...netlifyState,
-              siteUrl: `${release.old.siteUrl}.netlify.app`
-            }, null, 2) + '\n')
-
-      # Commit the changes to a new release/v* branch
-      - name: Commit Changes and Push Release Branch
-        uses: EndBug/add-and-commit@v9
-        with:
-          author_name: Swiss Post Bot
-          author_email: 103635272+swisspost-bot@users.noreply.github.com
-          new_branch: ${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}
-          message: 'chore(setup): create "${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}" branch'
-          push: true
-
-      - name: Create Summary
-        id: summary
-        uses: actions/github-script@v7
-        env:
-          RELEASE_DATA: ${{ needs.collect-release-data.outputs.release-data }}
-        with:
-          script: |
-            const release = JSON.parse(process.env.RELEASE_DATA)
-
-            return `# Release Branch
-            - A new <code>${release.branchName}</code> Branch has been created.
-            - The file <code>.changeset/config.json</code> (which holds the <code>baseBranch</code> property) has been updated on to the <code>${release.branchName}</code> Branch.
-            - The file <code>documentation/netlify.config.json</code> (which holds the <code>siteId</code> and <code>siteUrl</code>) has been created on to the <code>${release.branchName}</code> Branch.
-            - A new Netlify Site has been created and the build has been deployed to <code>https://${release.old.siteUrl}.netlify.app</code>.
-            `
-
-      - name: Output Summary
-        run: echo -e ${{ steps.summary.outputs.result }} >> $GITHUB_STEP_SUMMARY
-
-  # Only run this Job if:
-  # - Workflow runs on the 'main' Branch
-  # - Either a Release Branch or a Changeset Branch exists
-  # - A non-Major Release was detected
-  remove-release-branch:
-    name: Remove release/v* Branch
-    runs-on: ubuntu-latest
-    needs: collect-release-data
-    if: github.ref_name == 'main' && (needs.collect-release-data.outputs.release-branch-exists == 'true' || needs.collect-release-data.outputs.release-changeset-branch-exists == 'true') && fromJSON(needs.collect-release-data.outputs.release-data) != null && fromJSON(needs.collect-release-data.outputs.release-data).isMajor == false
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-
-      - name: Remove Changeset Branch
-        if: needs.collect-release-data.outputs.release-changeset-branch-exists == 'true'
-        run: git push origin --delete changeset-release/${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}
-
-      - name: Remove Release Branch
-        if: needs.collect-release-data.outputs.release-branch-exists == 'true'
-        run: git push origin --delete ${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}
-
-      - name: Create Summary
-        id: summary
-        uses: actions/github-script@v7
-        env:
-          RELEASE_DATA: ${{ needs.collect-release-data.outputs.release-data }}
-        with:
-          script: |
-            const release = JSON.parse(process.env.RELEASE_DATA)
-
-            return `# Release Branches
-            There once was a Changeset with a Major update, which has been deleted with the latest commit, therefore the before created <code>${release.branchName}</code> and <code>changeset-release/${release.branchName}</code> Branches have been deleted.
             `
 
       - name: Output Summary

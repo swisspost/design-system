@@ -1,0 +1,6 @@
+# Redirects from what the browser requests to what we serve
+# This file is used by Netlify to handle redirects
+
+/v5   https://6401b58ebf0f4e298ee2dbe7--swisspost-web-frontend.netlify.app
+/v6   https://design-system-version-6.netlify.app
+/v7   https://design-system-version-7.netlify.app
