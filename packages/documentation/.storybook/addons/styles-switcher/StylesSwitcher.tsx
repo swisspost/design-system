@@ -55,9 +55,15 @@ function StylesSwitcher() {
    */
   const setDataColorModeAttribute = () => {
     const preview = getPreviewDocument();
-    if (!preview?.body) return;
+    if (!preview) return;
 
-    preview.body.setAttribute('data-color-mode', currentMode.toLowerCase());
+    const mode = currentMode.toLowerCase();
+    const storyContainers = preview.querySelectorAll('.sbdocs-preview, .sb-main-padded');
+    storyContainers.forEach(storyContainer => {
+      storyContainer.classList.remove('bg-light', 'bg-dark');
+      storyContainer.classList.add(`bg-${mode}`);
+      storyContainer.setAttribute('data-color-mode', mode);
+    });
   };
 
   /**
