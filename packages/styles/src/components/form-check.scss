@@ -30,7 +30,7 @@ tokens.$default-map: components.$post-radio-button;
     }
 
     // TODO: Use tokens for these (not yet provided)
-    outline-offset: spacing.$size-line !important;
+    outline-offset: 3px !important;
     border-radius: commons.$border-radius;
   }
 
@@ -79,7 +79,7 @@ tokens.$default-map: components.$post-radio-button;
     height: tokens.get('radio-button','icon-height-inner');
     width: tokens.get('radio-button', 'icon-width-inner');
     border: tokens.get('radio-button', 'icon-border-width') solid tokens.get('radio-button', 'enabled-stroke');
-    margin-top: 10px;
+    margin-top: 1px;
 
     @include utility-mx.high-contrast-mode {
       border-color: FieldText; // For blink-browser as otherwise the default color (which is not a full color) will be converted to Highlight
@@ -113,7 +113,8 @@ tokens.$default-map: components.$post-radio-button;
       border-radius: tokens.get('radio-button', 'border-radius-round');
 
       &:checked::after {
-        border: spacing.$size-micro solid transparent;
+        // TODO: Use tokens
+        border: 3px solid transparent;
         background-color: currentColor;
         border-radius: inherit;
         background-clip: padding-box;
