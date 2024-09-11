@@ -17,6 +17,7 @@
 
         <nav
           *ngIf="condenseHeader && hasNavbar"
+          aria-label="navigation"
           class="justify-content-start top-navigation condense m-0 d-md-flex"
           [ngClass]="{ 'd-none': !openedMenu }"
         >
@@ -116,6 +117,7 @@
     <nav
       *ngIf="hasNavbar === true && !condenseHeader"
       class="row justify-content-center top-navigation m-0 d-md-flex"
+      aria-label="navigation"
       [ngClass]="{ 'd-none': !openedMenu }"
     >
       <ng-container *ngTemplateOutlet="navbar"></ng-container>
