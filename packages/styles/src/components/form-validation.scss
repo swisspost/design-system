@@ -31,9 +31,11 @@
 
   &::before {
     content: '';
+    flex-shrink: 0;
+    mask-repeat: no-repeat;
+    align-self: flex-start;
     height: form-validation.$form-feedback-font-size * type.$line-height-copy;
     width: form-validation.$form-feedback-font-size * type.$line-height-copy;
-    display: inline-block;
     margin-right: spacing.$size-mini;
   }
 }
