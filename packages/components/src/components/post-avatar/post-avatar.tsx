@@ -1,4 +1,4 @@
-import { Component, h, Host, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkNonEmpty, checkOneOf } from '@/utils';
 import aiconizer from './aiconizer';
@@ -10,11 +10,15 @@ const GRAVATAR_RATING = 'g';
 const GRAVATAR_BASE_URL = `https://www.gravatar.com/avatar/{email}?s={size}&d=${GRAVATAR_DEFAULT}&r=${GRAVATAR_RATING}`;
 
 enum AvatarType {
-  Gravatar = 'gravatar',
+  Slotted = 'slotted',
+  Image = 'image',
   Initials = 'initials',
   Null = null,
 }
 
+/**
+ * @slot default - Slot for inserting a custom image as avatar.
+ */
 @Component({
   tag: 'post-avatar',
   styleUrl: 'post-avatar.scss',
@@ -26,10 +30,19 @@ export class PostAvatar {
     small: 32,
   };
 
+  private static INTERNAL_USERID_IMAGE_SRC = 'https://web.post.ch/UserProfileImage/${userid}.png';
+
+  @Element() host: HTMLPostAvatarElement;
+
   /**
    * Defines the size of the avatar.
    */
   @Prop() readonly size?: 'large' | 'small' = 'large';
+
+  /**
+   * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
+   */
+  @Prop() readonly userid?: string;
 
   /**
    * Defines the users email address.
@@ -46,8 +59,10 @@ export class PostAvatar {
    */
   @Prop() readonly lastname?: string;
 
+  @State() slottedImage: HTMLImageElement;
   @State() avatarType: AvatarType = null;
-  @State() gravatarUrl = '';
+  @State() imageUrl = '';
+  @State() imageAlt = '';
   @State() initials = '';
 
   @Watch('firstname')
@@ -64,54 +79,115 @@ export class PostAvatar {
     );
   }
 
-  private async getAvatarType() {
-    const storage = window?.sessionStorage;
-    const baseRes = { ok: false, url: '' };
-    const response = storage ? JSON.parse(storage.getItem(this.email)) ?? baseRes : baseRes;
-
-    if (this.email && !response.ok) {
-      try {
-        const email = await crypto.subtle
-          .digest('SHA-256', new TextEncoder().encode(this.email))
-          .then(buffer => {
-            return Array.from(new Uint8Array(buffer))
-              .map(bytes => bytes.toString(16).padStart(2, '0'))
-              .join('');
-          });
-        const size = (PostAvatar.GRAVATAR_SIZES[this.size] ?? '').toString();
-        const gravatarUrl = GRAVATAR_BASE_URL.replace('{size}', size).replace('{email}', email);
-        const r = await fetch(gravatarUrl);
-
-        response.ok = r.ok;
-        response.url = r.url;
-
-        if (storage) storage.setItem(this.email, JSON.stringify(response));
-      } catch (error) {
-        console.warn(error);
-        console.info('Component will continue without avatar image.');
-      }
-    }
-
-    if (this.email && response.ok) {
-      this.gravatarUrl = response.url;
-      this.avatarType = AvatarType.Gravatar;
+  private async getAvatar() {
+    if (this.slottedImage !== null) {
+      if (!this.slottedImage.getAttribute('alt'))
+        this.slottedImage.setAttribute('alt', this.getInitials());
+      this.avatarType = AvatarType.Slotted;
     } else {
-      this.initials = `${this.firstname?.charAt(0) ?? ''}${this.lastname?.charAt(0) ?? ''}`.trim();
-      this.avatarType = AvatarType.Initials;
+      let imageLoaded = false;
+
+      if (!imageLoaded)
+        imageLoaded = await this.getImageByProp(this.userid, this.fetchImageByUserId.bind(this));
+
+      if (!imageLoaded)
+        imageLoaded = await this.getImageByProp(this.email, this.fetchImageByEmail.bind(this));
+
+      if (!imageLoaded) this.getAvatarByInitials();
     }
+  }
+
+  private async getImageByProp(prop: string, fetchImage: () => Promise<Response>) {
+    if (prop) {
+      const imageResponse = (await this.getStorageItem(prop)) ?? { ok: false, url: '' };
+
+      if (!imageResponse.ok) {
+        try {
+          const r = await fetchImage();
+
+          imageResponse.ok = r.ok;
+          imageResponse.url = r.url;
+
+          this.imageUrl = imageResponse.url;
+          this.imageAlt = `${this.firstname} ${this.lastname} avatar`;
+          this.avatarType = AvatarType.Image;
+
+          this.setStorageItem(this.userid, JSON.stringify(imageResponse));
+        } catch (error) {
+          this.removeStorageItem(prop);
+          console.info(`Loading avatar by type "${AvatarType.Image}" failed.`);
+        }
+      }
+
+      return imageResponse.ok;
+    }
+
+    return false;
+  }
+
+  private async fetchImageByUserId() {
+    return await fetch(
+      PostAvatar.INTERNAL_USERID_IMAGE_SRC.replace('{userid}', encodeURIComponent(this.userid)),
+    );
+  }
+
+  private async fetchImageByEmail() {
+    const email = await this.cryptify(this.email);
+    const size = (PostAvatar.GRAVATAR_SIZES[this.size] ?? '').toString();
+    const imageUrl = GRAVATAR_BASE_URL.replace('{size}', size).replace('{email}', email);
+    return await fetch(imageUrl);
+  }
+
+  private getAvatarByInitials() {
+    this.initials = this.getInitials();
+    this.avatarType = AvatarType.Initials;
+  }
+
+  private getInitials() {
+    return `${this.firstname?.charAt(0) ?? ''}${this.lastname?.charAt(0) ?? ''}`.trim();
+  }
+
+  private async getStorageItem(keyToken: string) {
+    const key = await this.cryptify(keyToken);
+    const value = window?.sessionStorage?.getItem(key);
+    return value ? JSON.parse(value) : null;
+  }
+
+  private async setStorageItem(keyToken: string, value: string) {
+    const key = await this.cryptify(keyToken);
+    window?.sessionStorage?.setItem(key, value);
+  }
+
+  private async removeStorageItem(keyToken: string) {
+    const key = await this.cryptify(keyToken);
+    window?.sessionStorage?.removeItem(key);
+  }
+
+  private async cryptify(key: string) {
+    return await crypto.subtle.digest('SHA-256', new TextEncoder().encode(key)).then(buffer => {
+      return Array.from(new Uint8Array(buffer))
+        .map(bytes => bytes.toString(16).padStart(2, '0'))
+        .join('');
+    });
+  }
+
+  private onSlotDefaultChange() {
+    this.slottedImage = this.host.querySelector('img');
+    this.getAvatar();
   }
 
   connectedCallback() {
     aiconizer.register();
   }
 
+  componentWillRender() {
+    this.slottedImage = this.host.querySelector('img');
+    this.getAvatar();
+  }
+
   componentDidLoad() {
     this.firstnameChanged();
     this.sizeChanged();
-  }
-
-  componentWillRender() {
-    this.getAvatarType();
   }
 
   disconnectedCallback() {
@@ -121,10 +197,10 @@ export class PostAvatar {
   render() {
     return (
       <Host data-version={version} class={this.size}>
-        {this.avatarType === 'gravatar' && (
-          <img src={this.gravatarUrl} alt={`${this.email} gravatar`} />
-        )}
-        {this.avatarType === 'initials' && <div>{this.initials}</div>}
+        <slot onSlotchange={this.onSlotDefaultChange.bind(this)}>
+          {this.avatarType === 'image' && <img src={this.imageUrl} alt={this.imageAlt} />}
+          {this.avatarType === 'initials' && <div class="initials">{this.initials}</div>}
+        </slot>
       </Host>
     );
   }

@@ -1,7 +1,7 @@
 @use '@swisspost/design-system-styles/core' as post;
 
 :host {
-  display: inline-block;
+  display: block;
   width: 2.5rem;
   height: 2.5rem;
 }
@@ -12,14 +12,18 @@
   font-size: post.$font-size-12;
 }
 
-img {
+img,
+::slotted(img) {
   display: block;
   width: 100%;
   border-radius: 50%;
 }
 
-div,
-post-icon {
+::slotted(:not(img)) {
+  display: none;
+}
+
+.initials {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,6 +36,14 @@ post-icon {
   box-sizing: border-box;
 }
 
-post-icon {
-  padding: post.$size-micro;
+.visually-hidden {
+  position: absolute !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  width: 1px !important;
+  height: 1px !important;
+  border: 0 none !important;
+  white-space: nowrap !important;
 }

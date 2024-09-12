@@ -13,17 +13,24 @@ import * as AvatarPictureStories from './avatar.stories';
 
 <p className="lead">Display a user's profile picture or their initials if the picture is unavailable.</p>
 
-The `<post-avatar>` component provides several properties to change its appearance. The most important one is probably the `email` property, which is used to request a Gravatar picture.
-
-Don't know Gravatar or haven't set up a profile yet, let's change this: [Signup](https://gravatar.com) now!
-
 <Canvas of={AvatarPictureStories.Default} />
 <Controls of={AvatarPictureStories.Default} />
 
-## Property order
+## Properties
 
-1. If an `email` address (with a general Gravatar profile picture behind) is defined on the component, the picture from there will be used.
-2. If the `email` attribute is not defined or the component can't get a picture from Gravatar, the component will use the initials from the `firstname` and `lastname` attributes.
+The `<post-avatar>` component provides several possibilities to change its appearance. While the only required property is `firstname`, you can choose freely, which of the other properties you want to use. You can even combine them. The component will always try to show a picture, if possible, and fallback to initials, if not.
+Please notice, that if you combine several methods to show a picture, the component will use the first one it can get a picture from.
+
+The properties are used in the order as follows:
+
+1. If you use an `<img>` tag in the default slot (for example to show a self hosted image), this will override the other properties.<br/><br/>
+  <div className="mb-regular alert alert-info alert-md">We do not check if the image can be loaded, so make sure the image is available!</div>
+2. If you use the `userid` property (to show a company internal user picture) and a picture is available, this will override the `email` property, as well as `firstname` and `lastname`.<br/><br/>
+  <div className="mb-regular alert alert-info alert-md">This will only work on `post.ch` urls and only in internal projects.</div>
+3. If you use the `email` property (to show a users picture provided through gravatar.com) and a picture is available, this will override the `firstname` and `lastname` properties.<br/><br/>
+  <div className="mb-regular alert alert-info alert-md">Don't know Gravatar or haven't set up a profile yet, let's change this: [Signup](https://gravatar.com) now!</div>
+4. As an overall fallback the `firstname` and `lastname` properties are used to show at least some initials. And as an addition, `firstname` and `lastname` (if defined) are also used on all the other methods to set the `alt` tag of the image (if not already defined).<br/><br/>
+  <div className="mb-regular alert alert-info alert-md">Because of big differences in the naming convenions around the world, we only set the `firstname` as required property.</div>
 
 ## Check the Content Security Policy
 

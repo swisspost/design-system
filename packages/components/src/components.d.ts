@@ -92,6 +92,10 @@ export namespace Components {
           * Defines the size of the avatar.
          */
         "size"?: 'large' | 'small';
+        /**
+          * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
+         */
+        "userid"?: string;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -625,6 +629,10 @@ declare namespace LocalJSX {
           * Defines the size of the avatar.
          */
         "size"?: 'large' | 'small';
+        /**
+          * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
+         */
+        "userid"?: string;
     }
     /**
      * @class PostCardControl - representing a stencil component
