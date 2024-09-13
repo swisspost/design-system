@@ -16,7 +16,7 @@ $padding-icon: tokens.get('post-list-checks', 'spacing-padding-icon');
 
   > li {
     position: relative;
-    padding-left: calc(
+    padding-inline-start: calc(
       #{tokens.get('post-list-checks', 'spacing-gap-inline-text'),
       } + #{$sizing-icon}
     );
@@ -49,6 +49,6 @@ $padding-icon: tokens.get('post-list-checks', 'spacing-padding-icon');
   }
 
   > li:not(:last-child) {
-    margin-bottom: tokens.get('post-list-checks', 'spacing-gap-block-text');
+    margin-block-end: tokens.get('post-list-checks', 'spacing-gap-block-text');
   }
 }
