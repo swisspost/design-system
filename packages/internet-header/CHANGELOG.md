@@ -1,5 +1,13 @@
 # @swisspost/internet-header
 
+## 1.14.6-next.0
+
+### Patch Changes
+
+- Applied High Contrast Mode mixin to breadcrumb SVGs for proper color inversion. (by [@schaertim](https://github.com/schaertim) with [#3480](https://github.com/swisspost/design-system/pull/3480))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.0
+
 ## 1.14.5
 
 ### Patch Changes
