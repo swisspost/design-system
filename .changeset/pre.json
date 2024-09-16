@@ -21,5 +21,20 @@
     "@swisspost/design-system-styles-primeng": "8.2.0",
     "@swisspost/design-system-tokens": "8.2.0"
   },
-  "changesets": []
+  "changesets": [
+    "clean-icons-complain",
+    "cold-baboons-appear",
+    "cold-panthers-vanish",
+    "fair-actors-scream",
+    "friendly-insects-breathe",
+    "funny-shrimps-care",
+    "gorgeous-flowers-flow",
+    "great-humans-talk",
+    "heavy-rats-explode",
+    "ninety-nails-float",
+    "pink-weeks-relate",
+    "plenty-apricots-raise",
+    "selfish-bats-run",
+    "sharp-crews-watch"
+  ]
 }
