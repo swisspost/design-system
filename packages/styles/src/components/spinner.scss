@@ -2,7 +2,6 @@
 @forward './../variables/options';
 @use './../variables/type';
 
-@use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as *;
 @use './../themes/bootstrap/progress' as bp;
 
@@ -168,3 +167,4 @@ $progress-step-3-inner:
     clip-path: polygon(0 0, 0 100%, 100% 100%, $progress-step-3-inner, 50% 50%, 100% 100%, 100% 0);
   }
 }
+

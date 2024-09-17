@@ -2,7 +2,6 @@
 
 @use 'sass:map';
 
-@use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as b;
 @use './../themes/bootstrap/forms/validation' as bfv;
 
@@ -146,3 +145,4 @@ post-card-control ~ .invalid-feedback {
     }
   }
 }
+

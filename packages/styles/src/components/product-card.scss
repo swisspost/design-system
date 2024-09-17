@@ -2,7 +2,6 @@
 
 @use 'sass:map';
 
-@use './../lic/bootstrap-license';
 @use './../themes/bootstrap/card' as bootstrap-card;
 @use './../variables/color';
 @use './../variables/spacing';
@@ -76,3 +75,4 @@
     color: currentColor;
   }
 }
+

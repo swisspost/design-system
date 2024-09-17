@@ -1,6 +1,5 @@
 @forward './../variables/options';
 
-@use './../lic/bootstrap-license';
 @use './../themes/bootstrap/tooltip' as bt;
 
 @use './../variables/components/tooltips';
@@ -39,3 +38,4 @@
     right: 1px;
   }
 }
+

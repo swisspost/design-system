@@ -1,6 +1,5 @@
 @forward './../variables/options';
 
-@use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as *;
 
 @use './../mixins/utilities';
@@ -149,3 +148,4 @@ $module-name: 'subnavigation';
     }
   }
 }
+

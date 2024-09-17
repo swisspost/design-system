@@ -1,6 +1,5 @@
 @forward './../variables/options';
 
-@use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as b;
 @use './../themes/bootstrap/forms/form-select' as bffs;
 @use './../mixins/forms' as forms-mixins;
@@ -96,3 +95,4 @@
   @include forms-mixins.form-lg;
   background-size: forms.$form-bg-size; // Set arrow size. Duplicated rule in form-validation for is-valid/is-invalid icon.
 }
+

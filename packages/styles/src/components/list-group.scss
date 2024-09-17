@@ -2,7 +2,6 @@
 
 @use 'sass:map';
 
-@use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as *;
 @use './../themes/bootstrap/list-group' as bl;
 
@@ -161,3 +160,4 @@
       rgba(var(--post-contrast-color-inverted-rgb), 0.2);
   }
 }
+

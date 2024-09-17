@@ -3,7 +3,6 @@
 
 @forward './../variables/options';
 
-@use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as b;
 @use './../themes/bootstrap/forms/floating-labels' as bffl;
 @use './../themes/bootstrap/forms/form-control' as bffc;
@@ -352,3 +351,4 @@
     }
   }
 }
+

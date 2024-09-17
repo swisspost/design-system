@@ -1,6 +1,5 @@
 @forward './../variables/options';
 
-@use './../lic/bootstrap-license';
 @use './../themes/bootstrap/carousel' as bc;
 @use './../themes/bootstrap/core' as *;
 
@@ -177,3 +176,4 @@
 .carousel-control-next {
   display: none;
 }
+
