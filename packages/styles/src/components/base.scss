@@ -1,4 +1,11 @@
 @forward './../variables/options';
 
-// Resets, type
+// Resets type
 @use './fonts';
+// fixes for color in buttons
+@use './../mixins/color' as mx-color;
+@use './../variables/color';
+
+body {
+  @include mx-color.colored-background(color.$white);
+}
