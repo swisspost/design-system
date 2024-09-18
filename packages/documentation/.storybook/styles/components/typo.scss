@@ -24,7 +24,7 @@ body {
     }
 
     .docs-story > :first-child {
-      font-family: var(--bs-body-font-family);
+      font-family: var(--post-device-font-family-default);
     }
 
     .font-sans-serif {
@@ -38,6 +38,6 @@ body {
 
   // full-screen preview
   #storybook-root {
-    font-family: var(--bs-body-font-family);
+    font-family: var(--post-device-font-family-default);
   }
 }
