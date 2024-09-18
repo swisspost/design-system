@@ -21,7 +21,7 @@ export class PostAccordion {
   /**
    * Defines the hierarchical level of the `post-accordion-item` headers within the headings structure.
    */
-  @Prop() readonly headingLevel?: HeadingLevel;
+  @Prop() readonly headingLevel!: HeadingLevel;
 
   @Watch('headingLevel')
   validateHeadingLevel(newValue = this.headingLevel) {
@@ -50,23 +50,24 @@ export class PostAccordion {
 
   @Listen('postToggle')
   collapseToggleHandler(event: CustomEvent<boolean>) {
-    if ((event.target as HTMLElement).localName === 'post-accordion-item') {
-      event.stopPropagation();
+    const toggledItem = event.target as HTMLElement;
+    const closestParentAccordion = toggledItem.closest('post-accordion');
 
-      const toggledItem = event.target as HTMLPostAccordionItemElement;
-      const isClosing = this.expandedItems.has(toggledItem);
+    if (closestParentAccordion === this.host && toggledItem.localName === 'post-accordion-item') {
+      const toggledAccordionItem = event.target as HTMLPostAccordionItemElement;
+      const isClosing = this.expandedItems.has(toggledAccordionItem);
 
       if (isClosing) {
-        this.expandedItems.delete(toggledItem);
+        this.expandedItems.delete(toggledAccordionItem);
       } else {
-        this.expandedItems.add(toggledItem);
+        this.expandedItems.add(toggledAccordionItem);
       }
 
       if (this.multiple || isClosing) return;
 
       // close other open accordion items to have only one opened at a time
       Array.from(this.expandedItems.values())
-        .filter(item => item !== toggledItem)
+        .filter(item => item !== toggledAccordionItem)
         .forEach(item => {
           item.toggle(false);
         });
