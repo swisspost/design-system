@@ -218,8 +218,8 @@ tokens.$default-map: components.$post-switch;
     width: tokens.get('switch', 'element-width');
     border: 0;
     border-radius: tokens.get('switch', 'element-width');
-    padding-inline-start: tokens.get('switch', 'padding-inline-handle');
     background-color: tokens.get('switch', 'element-enabled-bg');
+    padding: tokens.get('switch', 'padding-block-text') 0 tokens.get('switch', 'padding-block-text') tokens.get('switch', 'padding-inline-handle');
     transition:
       background-color animation.$transition-base-timing;
     
@@ -280,6 +280,15 @@ tokens.$default-map: components.$post-switch;
 
     &[disabled] {
       background-color: tokens.get('switch', 'element-disabled-bg');
+      background-image: url('#{form-check.$form-check-input-switch-disabled-background-url-light}');
+      
+      @include color-mx.on-dark-background {
+        background-image: url('#{form-check.$form-check-input-switch-disabled-background-url-dark}');
+      }
+
+      @include utility-mx.high-contrast-mode {
+        background-image: url('#{form-check.$form-check-input-switch-disabled-background-url-hcm}') !important;
+      }
 
       & + .form-check-label {
         color: tokens.get('switch', 'text-disabled-fg');
@@ -287,7 +296,19 @@ tokens.$default-map: components.$post-switch;
 
       &::after {
         background-color: tokens.get('switch', 'element-disabled-fg');
-        border-color: tokens.get('switch', 'element-disabled-stroke');
+        background-image: url('#{form-check.$form-check-input-switch-handle-disabled-background-url-light}');
+   
+        @include color-mx.on-dark-background {
+          background-image: url('#{form-check.$form-check-input-switch-handle-disabled-background-url-dark}');
+        }
+  
+        @include utility-mx.high-contrast-mode {
+          background-image: url('#{form-check.$form-check-input-switch-handle-disabled-background-url-hcm}') !important;
+        }
+      }
+
+      &::before {
+        background-color: transparent;
       }
 
       @include utility-mx.high-contrast-mode {

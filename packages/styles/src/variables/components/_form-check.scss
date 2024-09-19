@@ -7,6 +7,11 @@
 @use './../../functions/sizing';
 @use './../../functions/forms' as forms-fn;
 
+@use '../../tokens/components' as components;
+@use '../../functions/tokens' as tokens;
+
+tokens.$default-map: components.$post-switch;
+
 $form-check-row-gap: spacing.$size-small-regular !default;
 $form-check-column-gap: spacing.$size-mini !default;
 $form-check-margin-bottom: spacing.$size-regular !default;
@@ -21,6 +26,13 @@ $form-check-input-disabled-svg-stroke-square-pathlength-lg: 88;
 $form-check-input-disabled-svg-stroke-square-pattern-sm: '2 1.5 4 1.5 4 1.5 2 3.5 4 1.5 4 1.5 2 3.5 4 1.5 4 1.5 2 3.5 4 1.5 4 1.5 4';
 $form-check-input-disabled-svg-stroke-square-pathlength-sm: 66;
 $form-check-input-disabled-svg-stroke-circle-pattern: '4 2';
+
+// Switch
+$form-check-input-disabled-svg-stroke-switch-color: #696864;
+$form-check-input-disabled-svg-stroke-switch-border-width: 2px;
+$form-check-input-disabled-svg-stroke-switch-pattern:'4 2';
+$form-check-input-disabled-svg-stroke-switch-pathlength: 138;
+$form-check-input-disabled-svg-stroke-switch-handle-pathlength: 48;
 
 // Checkbox lg
 $form-check-input-disabled-background-url-light-lg: forms-fn.get-background-svg-stroke(
@@ -87,6 +99,52 @@ $form-check-input-radio-disabled-background-url-hcm: forms-fn.get-background-svg
   $form-check-input-disabled-svg-stroke-circle-pattern,
   initial,
   $form-check-input-disabled-svg-border-width
+);
+
+// Switch
+$form-check-input-switch-disabled-background-url-light: forms-fn.get-background-svg-stroke(
+  'switch',
+  $form-check-input-disabled-svg-stroke-switch-color,
+  $form-check-input-disabled-svg-stroke-switch-pattern,
+  $form-check-input-disabled-svg-stroke-switch-pathlength,
+  $form-check-input-disabled-svg-stroke-switch-border-width
+);
+$form-check-input-switch-disabled-background-url-dark: forms-fn.get-background-svg-stroke(
+  'switch',
+  color.$white-alpha-80,
+  $form-check-input-disabled-svg-stroke-switch-pattern,
+  $form-check-input-disabled-svg-stroke-switch-pathlength,
+  $form-check-input-disabled-svg-stroke-switch-border-width
+);
+$form-check-input-switch-disabled-background-url-hcm: forms-fn.get-background-svg-stroke(
+  'switch',
+  'GrayText',
+  $form-check-input-disabled-svg-stroke-switch-pattern,
+  $form-check-input-disabled-svg-stroke-switch-pathlength,
+  $form-check-input-disabled-svg-stroke-switch-border-width
+);
+
+// Switch handle
+$form-check-input-switch-handle-disabled-background-url-light: forms-fn.get-background-svg-stroke(
+  'circle',
+  $form-check-input-disabled-svg-stroke-switch-color,
+  $form-check-input-disabled-svg-stroke-switch-pattern,
+  $form-check-input-disabled-svg-stroke-switch-handle-pathlength,
+  $form-check-input-disabled-svg-stroke-switch-border-width
+);
+$form-check-input-switch-handle-disabled-background-url-dark: forms-fn.get-background-svg-stroke(
+  'circle',
+  color.$white-alpha-80,
+  $form-check-input-disabled-svg-stroke-switch-pattern,
+  $form-check-input-disabled-svg-stroke-switch-handle-pathlength,
+  $form-check-input-disabled-svg-stroke-switch-border-width
+);
+$form-check-input-switch-handle-disabled-background-url-hcm: forms-fn.get-background-svg-stroke(
+  'circle',
+  'GrayText',
+  $form-check-input-disabled-svg-stroke-switch-pattern,
+  $form-check-input-disabled-svg-stroke-switch-handle-pathlength,
+  $form-check-input-disabled-svg-stroke-switch-border-width
 );
 
 $form-switch-column-gap: spacing.$size-regular !default;
