@@ -11,34 +11,6 @@
 }
 
 .version-switcher__dropdown {
-  display: flex;
-  flex-flow: column nowrap;
-  gap: post.$size-line;
-  position: absolute;
-  top: -5px;
-  right: 0;
-  padding: post.$size-mini;
-  background-color: var(--post-light);
-  border: post.$border-width solid post.$border-color;
-  border-radius: post.$border-radius;
-  font-size: post.$font-size-sm;
-
-  .dropdown__item {
-    display: block;
-    padding: post.$size-mini post.$size-small-regular;
-    border-radius: post.$border-radius-sm;
-    text-decoration: none;
-    color: inherit;
-
-    &:hover {
-      background-color: post.$gray-10;
-    }
-
-    &.active {
-      background-color: post.$yellow;
-    }
-  }
-
   .item__title {
     display: block;
   }

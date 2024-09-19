@@ -1,6 +1,7 @@
 @use '@swisspost/design-system-styles/components/root';
 @use '@swisspost/design-system-styles/mixins/utilities';
 @use './components';
+@use '../addons/addons';
 @use '../addons/version-switcher/version-switcher';
 
 .sidebar-header {
