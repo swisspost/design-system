@@ -1,3 +1,9 @@
+@use '@swisspost/design-system-styles/functions/tokens' as tokens;
+@use '@swisspost/design-system-styles/tokens/elements' as elements;
+
+tokens.$default-map: elements.$post-body;
+
+// Deprecated
 :root {
   --post-docs-font-serif: 'FiraCode', sans-serif;
   --post-docs-font-monospace: 'Reddit Mono', monospace;
@@ -24,7 +30,7 @@ body {
     }
 
     .docs-story > :first-child {
-      font-family: var(--post-core-font-family-frutiger);
+      font-family: tokens.get('post-body', 'font-family');
     }
 
     .font-sans-serif {
@@ -38,6 +44,6 @@ body {
 
   // full-screen preview
   #storybook-root {
-    font-family: var(--post-core-font-family-frutiger);
+    font-family: tokens.get('post-body', 'font-family');
   }
 }
