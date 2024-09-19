@@ -5,6 +5,25 @@
 @font-face {
   font-display: swap;
   font-family: 'Swiss Post Sans v005';
+  font-weight: 900;
+  src:
+    url('#{options.$font-base-path}/FrutigerNeueforPostW05-XBlk.woff2') format('woff2'),
+    url('#{options.$font-base-path}/FrutigerNeueforPostW05-XBlk.woff') format('woff');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Swiss Post Sans v005';
+  font-weight: 900;
+  font-style: italic;
+  src:
+    url('#{options.$font-base-path}/FrutigerNeueforPostW05-XBlkIt.woff2') format('woff2'),
+    url('#{options.$font-base-path}/FrutigerNeueforPostW05-XBlkIt.woff') format('woff');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Swiss Post Sans v005';
   font-weight: 700;
   src:
     url('#{options.$font-base-path}/FrutigerNeueforPostW05-Bold.woff2') format('woff2'),
@@ -38,23 +57,4 @@
   src:
     url('#{options.$font-base-path}/FrutigerNeueforPostW05-It.woff2') format('woff2'),
     url('#{options.$font-base-path}/FrutigerNeueforPostW05-It.woff') format('woff');
-}
-
-@font-face {
-  font-display: swap;
-  font-family: 'Swiss Post Sans v005';
-  font-weight: 300;
-  src:
-    url('#{options.$font-base-path}/FrutigerNeueforPostW05-Lt.woff2') format('woff2'),
-    url('#{options.$font-base-path}/FrutigerNeueforPostW05-Lt.woff') format('woff');
-}
-
-@font-face {
-  font-display: swap;
-  font-family: 'Frutiger Neue For Post';
-  font-weight: 300;
-  font-style: italic;
-  src:
-    url('#{options.$font-base-path}/FrutigerNeueforPostW05-LtIt.woff2') format('woff2'),
-    url('#{options.$font-base-path}/FrutigerNeueforPostW05-LtIt.woff') format('woff');
 }
