@@ -1,7 +1,7 @@
 @forward './../variables/options';
 
 // Resets type
-@use './fonts';
+@use '../components/fonts';
 // fixes for color in buttons
 @use './../mixins/color' as mx-color;
 @use './../variables/color';
