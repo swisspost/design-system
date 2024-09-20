@@ -9,7 +9,7 @@ addons.register(ADDON_ID, () => {
   addons.add(ADDON_ID, {
     title: 'Switch to another version',
     type: types.TOOLEXTRA,
-    match: ({ viewMode }) => !!(viewMode && viewMode.match(/^(story|docs)$/)),
+    match: ({ viewMode }) => !!(viewMode && viewMode.match(/^(docs)$/)),
     render: () => {
       return <VersionSwitcher />;
     },
