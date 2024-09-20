@@ -1,2 +1,17 @@
+@use 'sass:map';
+@use '../functions/tokens' as tokens;
+@use '../tokens/elements' as elements;
+
+tokens.$default-map: elements.$post-body;
+
 // Resets type
 @use '../components/fonts';
+
+body {
+  font-family: tokens.get('post-body', 'font-family');
+  font-size: tokens.get('post-body', 'font-size');
+  font-weight: tokens.get('post-body', 'font-weight');
+  line-height: tokens.get('post-body', 'line-height');
+  letter-spacing: tokens.get('post-body', 'letter-spacing');
+  color: tokens.get('post-body', 'color');
+}
