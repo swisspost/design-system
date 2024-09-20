@@ -47,7 +47,7 @@ importers:
         specifier: 0.3.7
         version: 0.3.7
       '@swisspost/design-system-styles':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../styles/dist
       ally.js:
         specifier: 1.4.1
@@ -150,10 +150,10 @@ importers:
         specifier: 18.1.3
         version: 18.1.3(@angular/common@18.1.3(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8))(rxjs@7.8.1))(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8))(@angular/platform-browser@18.1.3(@angular/animations@18.1.3(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8)))(@angular/common@18.1.3(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8))(rxjs@7.8.1))(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8)))(rxjs@7.8.1)
       '@swisspost/design-system-components':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../components
       '@swisspost/design-system-styles':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../styles/dist
       rxjs:
         specifier: 7.8.1
@@ -218,7 +218,7 @@ importers:
         version: 2.1.0(jasmine-core@5.2.0)(karma-jasmine@5.1.0(karma@6.4.4))(karma@6.4.4)
       ng-packagr:
         specifier: 18.1.0
-        version: 18.1.0(@angular/compiler-cli@18.1.3(@angular/compiler@18.1.3(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8)))(typescript@5.5.4))(tailwindcss@3.4.7(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.5.4)))(tslib@2.6.3)(typescript@5.5.4)
+        version: 18.1.0(@angular/compiler-cli@18.1.3(@angular/compiler@18.1.3(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8)))(typescript@5.5.4))(tailwindcss@3.4.7)(tslib@2.6.3)(typescript@5.5.4)
       typescript:
         specifier: 5.5.4
         version: 5.5.4
@@ -232,7 +232,7 @@ importers:
         specifier: ^16.0.0 || ^17.0.0 || ^18.0.0
         version: 18.1.1(rxjs@7.8.1)(zone.js@0.14.8)
       '@swisspost/design-system-components':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../../../components
       tslib:
         specifier: 2.6.3
@@ -242,7 +242,7 @@ importers:
   packages/components-react:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../components
     devDependencies:
       '@types/node':
@@ -333,13 +333,13 @@ importers:
         specifier: 20.1.0
         version: 20.1.0(@angular/common@18.1.3(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8))(rxjs@7.8.1))(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8))(@angular/platform-browser@18.1.3(@angular/animations@18.1.3(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8)))(@angular/common@18.1.3(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8))(rxjs@7.8.1))(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8)))(rxjs@7.8.1)
       '@swisspost/design-system-intranet-header':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../intranet-header-workspace/dist/intranet-header
       '@swisspost/design-system-migrations':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../migrations
       '@swisspost/design-system-styles':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../styles/dist
       bootstrap:
         specifier: 5.3.3
@@ -469,19 +469,19 @@ importers:
   packages/documentation:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../components
       '@swisspost/design-system-components-react':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../components-react
       '@swisspost/design-system-icons':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: workspace:1.14.5
+        specifier: workspace:1.14.6-next.0
         version: link:../internet-header
       bootstrap:
         specifier: 5.3.3
@@ -539,10 +539,10 @@ importers:
         specifier: 8.2.7
         version: 8.2.7(lit@3.1.4)(storybook@8.2.7(@babel/preset-env@7.24.7(@babel/core@7.25.2)))(typescript@5.5.4)(vite@5.3.2(@types/node@20.14.14)(less@4.2.0)(sass@1.78.0)(terser@5.29.2))
       '@swisspost/design-system-components-angular':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../components-angular/dist/components
       '@swisspost/design-system-intranet-header':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../intranet-header-workspace/dist/intranet-header
       '@types/css-modules':
         specifier: 1.0.5
@@ -677,7 +677,7 @@ importers:
   packages/internet-header:
     dependencies:
       '@swisspost/design-system-styles':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../styles/dist
       body-scroll-lock:
         specifier: 4.0.0-beta.0
@@ -763,7 +763,7 @@ importers:
         version: 14.0.2
       jest:
         specifier: 29.7.0
-        version: 29.7.0(@types/node@20.14.14)
+        version: 29.7.0(@types/node@20.14.14)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.4))
       jest-environment-jsdom:
         specifier: 29.7.0
         version: 29.7.0
@@ -828,7 +828,7 @@ importers:
         specifier: 2.11.8
         version: 2.11.8
       '@swisspost/design-system-styles':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../styles/dist
       rxjs:
         specifier: 7.8.1
@@ -899,7 +899,7 @@ importers:
         version: 2.1.0(jasmine-core@5.2.0)(karma-jasmine@5.1.0(karma@6.4.4))(karma@6.4.4)
       ng-packagr:
         specifier: 18.1.0
-        version: 18.1.0(@angular/compiler-cli@18.1.3(@angular/compiler@18.1.3(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8)))(typescript@5.5.4))(tailwindcss@3.4.7(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.5.4)))(tslib@2.6.3)(typescript@5.5.4)
+        version: 18.1.0(@angular/compiler-cli@18.1.3(@angular/compiler@18.1.3(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8)))(typescript@5.5.4))(tailwindcss@3.4.7)(tslib@2.6.3)(typescript@5.5.4)
       rimraf:
         specifier: 6.0.1
         version: 6.0.1
@@ -916,21 +916,21 @@ importers:
         specifier: ^16.0.0 || ^17.0.0 || ^18.0.0
         version: 18.1.1(rxjs@7.8.1)(zone.js@0.14.8)
       '@swisspost/design-system-styles':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../../../styles/dist
       tslib:
         specifier: 2.6.3
         version: 2.6.3
     devDependencies:
       '@swisspost/design-system-intranet-header-workspace':
-        specifier: workspace:3.0.21
+        specifier: workspace:3.0.22-next.0
         version: link:../..
     publishDirectory: ../../dist/intranet-header
 
   packages/intranet-header-workspace/projects/intranet-header-showcase:
     dependencies:
       '@swisspost/design-system-intranet-header':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../../dist/intranet-header
 
   packages/migrations:
@@ -976,13 +976,13 @@ importers:
   packages/nextjs-integration:
     dependencies:
       '@swisspost/design-system-components-react':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../components-react
       '@swisspost/design-system-styles':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: workspace:1.14.5
+        specifier: workspace:1.14.6-next.0
         version: link:../internet-header
       next:
         specifier: 14.2.5
@@ -1041,10 +1041,10 @@ importers:
         version: 5.3.3(@popperjs/core@2.11.8)
     devDependencies:
       '@swisspost/design-system-icons':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../icons
       '@swisspost/design-system-tokens':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../tokens/dist
       '@types/node':
         specifier: 20.14.14
@@ -1072,7 +1072,7 @@ importers:
         version: 5.1.0
       jest:
         specifier: 29.7.0
-        version: 29.7.0(@types/node@20.14.14)
+        version: 29.7.0(@types/node@20.14.14)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.4))
       postcss:
         specifier: 8.4.40
         version: 8.4.40
@@ -1132,7 +1132,7 @@ importers:
         specifier: 18.1.3
         version: 18.1.3(@angular/common@18.1.3(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8))(rxjs@7.8.1))(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8))(@angular/platform-browser@18.1.3(@angular/animations@18.1.3(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8)))(@angular/common@18.1.3(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8))(rxjs@7.8.1))(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8)))(rxjs@7.8.1)
       '@swisspost/design-system-styles':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../styles/dist
       primeng:
         specifier: 17.18.7
@@ -1179,7 +1179,7 @@ importers:
         version: 2.1.0(jasmine-core@5.2.0)(karma-jasmine@5.1.0(karma@6.4.4))(karma@6.4.4)
       ng-packagr:
         specifier: 18.1.0
-        version: 18.1.0(@angular/compiler-cli@18.1.3(@angular/compiler@18.1.3(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8)))(typescript@5.5.4))(tailwindcss@3.4.7(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.5.4)))(tslib@2.6.3)(typescript@5.5.4)
+        version: 18.1.0(@angular/compiler-cli@18.1.3(@angular/compiler@18.1.3(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8)))(typescript@5.5.4))(tailwindcss@3.4.7)(tslib@2.6.3)(typescript@5.5.4)
       npm-run-all2:
         specifier: 6.2.2
         version: 6.2.2
@@ -1208,7 +1208,7 @@ importers:
         specifier: ^18.0.0
         version: 18.1.1(rxjs@7.8.1)(zone.js@0.14.8)
       '@swisspost/design-system-styles':
-        specifier: workspace:8.2.0
+        specifier: workspace:9.0.0-next.0
         version: link:../../../styles/dist
       primeng:
         specifier: ^17.18.0
@@ -11092,7 +11092,7 @@ snapshots:
       '@vitejs/plugin-basic-ssl': 1.1.0(vite@5.3.2(@types/node@20.12.7)(less@4.2.0)(sass@1.77.6)(terser@5.29.2))
       ansi-colors: 4.1.3
       autoprefixer: 10.4.19(postcss@8.4.38)
-      babel-loader: 9.1.3(@babel/core@7.24.7)(webpack@5.92.1(esbuild@0.21.5))
+      babel-loader: 9.1.3(@babel/core@7.24.7)(webpack@5.92.1)
       browserslist: 4.23.2
       copy-webpack-plugin: 12.0.2(webpack@5.92.1(esbuild@0.21.5))
       critters: 0.0.24
@@ -11185,7 +11185,7 @@ snapshots:
       '@vitejs/plugin-basic-ssl': 1.1.0(vite@5.3.2(@types/node@20.14.14)(less@4.2.0)(sass@1.77.6)(terser@5.29.2))
       ansi-colors: 4.1.3
       autoprefixer: 10.4.19(postcss@8.4.38)
-      babel-loader: 9.1.3(@babel/core@7.24.7)(webpack@5.92.1(esbuild@0.21.5))
+      babel-loader: 9.1.3(@babel/core@7.24.7)(webpack@5.92.1)
       browserslist: 4.23.2
       copy-webpack-plugin: 12.0.2(webpack@5.92.1(esbuild@0.21.5))
       critters: 0.0.24
@@ -11236,8 +11236,8 @@ snapshots:
       jest: 29.7.0(@types/node@20.14.14)
       jest-environment-jsdom: 29.7.0
       karma: 6.4.4
-      ng-packagr: 18.1.0(@angular/compiler-cli@18.1.3(@angular/compiler@18.1.3(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8)))(typescript@5.5.4))(tailwindcss@3.4.7(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.5.4)))(tslib@2.6.3)(typescript@5.5.4)
-      tailwindcss: 3.4.7(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.5.4))
+      ng-packagr: 18.1.0(@angular/compiler-cli@18.1.3(@angular/compiler@18.1.3(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8)))(typescript@5.5.4))(tailwindcss@3.4.7)(tslib@2.6.3)(typescript@5.5.4)
+      tailwindcss: 3.4.7(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.4))
     transitivePeerDependencies:
       - '@rspack/core'
       - '@swc/core'
@@ -11448,7 +11448,7 @@ snapshots:
       '@angular/localize': 18.1.3(@angular/compiler-cli@18.1.3(@angular/compiler@18.1.3(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8)))(typescript@5.5.4))(@angular/compiler@18.1.3(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8)))
       less: 4.2.0
       postcss: 8.4.38
-      tailwindcss: 3.4.7(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.5.4))
+      tailwindcss: 3.4.7(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.4))
     transitivePeerDependencies:
       - '@types/node'
       - chokidar
@@ -13924,6 +13924,7 @@ snapshots:
       - babel-plugin-macros
       - supports-color
       - ts-node
+    optional: true
 
   '@jest/core@29.7.0(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.4))':
     dependencies:
@@ -16033,14 +16034,6 @@ snapshots:
 
   axe-core@4.7.0: {}
 
-  axios@1.6.2:
-    dependencies:
-      follow-redirects: 1.15.6(debug@4.3.7)
-      form-data: 4.0.0
-      proxy-from-env: 1.1.0
-    transitivePeerDependencies:
-      - debug
-
   axios@1.6.2(debug@4.3.6):
     dependencies:
       follow-redirects: 1.15.6(debug@4.3.6)
@@ -16074,7 +16067,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  babel-loader@9.1.3(@babel/core@7.24.7)(webpack@5.92.1(esbuild@0.21.5)):
+  babel-loader@9.1.3(@babel/core@7.24.7)(webpack@5.92.1):
     dependencies:
       '@babel/core': 7.24.7
       find-cache-dir: 4.0.0
@@ -16715,21 +16708,6 @@ snapshots:
       - supports-color
       - ts-node
     optional: true
-
-  create-jest@29.7.0(@types/node@20.14.14):
-    dependencies:
-      '@jest/types': 29.6.3
-      chalk: 4.1.2
-      exit: 0.1.2
-      graceful-fs: 4.2.11
-      jest-config: 29.7.0(@types/node@20.14.14)(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.5.4))
-      jest-util: 29.7.0
-      prompts: 2.4.2
-    transitivePeerDependencies:
-      - '@types/node'
-      - babel-plugin-macros
-      - supports-color
-      - ts-node
 
   create-jest@29.7.0(@types/node@20.14.14)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.4)):
     dependencies:
@@ -18693,7 +18671,7 @@ snapshots:
   http-proxy-middleware@2.0.6(@types/express@4.17.21):
     dependencies:
       '@types/http-proxy': 1.17.11
-      http-proxy: 1.18.1(debug@4.3.7)
+      http-proxy: 1.18.1
       is-glob: 4.0.3
       is-plain-obj: 3.0.0
       micromatch: 4.0.8
@@ -18713,6 +18691,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  http-proxy@1.18.1:
+    dependencies:
+      eventemitter3: 4.0.7
+      follow-redirects: 1.15.6(debug@4.3.6)
+      requires-port: 1.0.0
+    transitivePeerDependencies:
+      - debug
+
   http-proxy@1.18.1(debug@4.3.7):
     dependencies:
       eventemitter3: 4.0.7
@@ -18728,7 +18714,7 @@ snapshots:
       corser: 2.0.1
       he: 1.2.0
       html-encoding-sniffer: 3.0.0
-      http-proxy: 1.18.1(debug@4.3.7)
+      http-proxy: 1.18.1
       mime: 1.6.0
       minimist: 1.2.8
       opener: 1.5.2
@@ -19300,25 +19286,6 @@ snapshots:
       - ts-node
     optional: true
 
-  jest-cli@29.7.0(@types/node@20.14.14):
-    dependencies:
-      '@jest/core': 29.7.0(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.5.4))
-      '@jest/test-result': 29.7.0
-      '@jest/types': 29.6.3
-      chalk: 4.1.2
-      create-jest: 29.7.0(@types/node@20.14.14)
-      exit: 0.1.2
-      import-local: 3.2.0
-      jest-config: 29.7.0(@types/node@20.14.14)(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.5.4))
-      jest-util: 29.7.0
-      jest-validate: 29.7.0
-      yargs: 17.7.2
-    transitivePeerDependencies:
-      - '@types/node'
-      - babel-plugin-macros
-      - supports-color
-      - ts-node
-
   jest-cli@29.7.0(@types/node@20.14.14)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.4)):
     dependencies:
       '@jest/core': 29.7.0(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.4))
@@ -19400,6 +19367,7 @@ snapshots:
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
+    optional: true
 
   jest-config@29.7.0(@types/node@20.14.14)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.4)):
     dependencies:
@@ -19683,10 +19651,10 @@ snapshots:
 
   jest@29.7.0(@types/node@20.14.14):
     dependencies:
-      '@jest/core': 29.7.0(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.5.4))
+      '@jest/core': 29.7.0(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.4))
       '@jest/types': 29.6.3
       import-local: 3.2.0
-      jest-cli: 29.7.0(@types/node@20.14.14)
+      jest-cli: 29.7.0(@types/node@20.14.14)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.4))
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -19936,7 +19904,7 @@ snapshots:
       dom-serialize: 2.2.1
       glob: 7.2.3
       graceful-fs: 4.2.11
-      http-proxy: 1.18.1(debug@4.3.7)
+      http-proxy: 1.18.1
       isbinaryfile: 4.0.10
       lodash: 4.17.21
       log4js: 6.9.1
@@ -20842,6 +20810,40 @@ snapshots:
       tailwindcss: 3.4.7(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.5.4))
     transitivePeerDependencies:
       - supports-color
+    optional: true
+
+  ng-packagr@18.1.0(@angular/compiler-cli@18.1.3(@angular/compiler@18.1.3(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8)))(typescript@5.5.4))(tailwindcss@3.4.7)(tslib@2.6.3)(typescript@5.5.4):
+    dependencies:
+      '@angular/compiler-cli': 18.1.3(@angular/compiler@18.1.3(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8)))(typescript@5.5.4)
+      '@rollup/plugin-json': 6.1.0(rollup@4.18.1)
+      '@rollup/plugin-node-resolve': 15.2.3(rollup@4.18.1)
+      '@rollup/wasm-node': 4.18.1
+      ajv: 8.16.0
+      ansi-colors: 4.1.3
+      browserslist: 4.23.0
+      cacache: 18.0.0
+      chokidar: 3.6.0
+      commander: 12.0.0
+      convert-source-map: 2.0.0
+      dependency-graph: 1.0.0
+      esbuild: 0.23.0
+      fast-glob: 3.3.2
+      find-cache-dir: 3.3.2
+      injection-js: 2.4.0
+      jsonc-parser: 3.3.1
+      less: 4.2.0
+      ora: 5.4.1
+      piscina: 4.6.1
+      postcss: 8.4.39
+      rxjs: 7.8.1
+      sass: 1.78.0
+      tslib: 2.6.3
+      typescript: 5.5.4
+    optionalDependencies:
+      rollup: 4.18.1
+      tailwindcss: 3.4.7(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.4))
+    transitivePeerDependencies:
+      - supports-color
 
   ngx-highlightjs@10.0.0(@angular/common@18.1.3(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8))(rxjs@7.8.1))(@angular/core@18.1.3(rxjs@7.8.1)(zone.js@0.14.8))(rxjs@7.8.1):
     dependencies:
@@ -21007,7 +21009,7 @@ snapshots:
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.0-rc.46
       '@zkochan/js-yaml': 0.0.7
-      axios: 1.6.2
+      axios: 1.6.2(debug@4.3.6)
       chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1

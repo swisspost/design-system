@@ -1,5 +1,29 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.0
+
+### Major Changes
+
+- Removed the Monospace font from the typography page of the documentation (will not be available once Bootstrap isn't included anymore). (by [@schaertim](https://github.com/schaertim) with [#3384](https://github.com/swisspost/design-system/pull/3384))
+
+### Minor Changes
+
+- Removed deprecated line-height variables. (by [@veyaromain](https://github.com/veyaromain) with [#3521](https://github.com/swisspost/design-system/pull/3521))
+
+### Patch Changes
+
+- Improved accessibility of headings with subheadings by removing the <br> element and added the utility class d-block. Consult https://design-system.post.ch/?path=/docs/7ecd87f1-de96-4e39-a057-ba1798eb6959--docs for updated markup. (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3491](https://github.com/swisspost/design-system/pull/3491))
+
+- Refactored the stepper component to handle `updateArgs` directly within the `getStepperItem` function, fixing the issue where stepper examples were not independent and resolving unreliable step changes that sometimes caused clicks to be unrecognized or froze the page. (by [@schaertim](https://github.com/schaertim) with [#3499](https://github.com/swisspost/design-system/pull/3499))
+
+- Removed disabling of the button in the "Good form example" of the accessibility documentation. Repeated requests should be handled internally as described in the accessibility documentation. (by [@schaertim](https://github.com/schaertim) with [#3403](https://github.com/swisspost/design-system/pull/3403))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.0
+  - @swisspost/internet-header@1.14.6-next.0
+  - @swisspost/design-system-components@9.0.0-next.0
+  - @swisspost/design-system-components-react@9.0.0-next.0
+  - @swisspost/design-system-icons@9.0.0-next.0
+
 ## 5.4.0
 
 ### Minor Changes
