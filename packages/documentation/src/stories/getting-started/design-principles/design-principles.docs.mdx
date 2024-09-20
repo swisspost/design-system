@@ -1,5 +1,6 @@
 import { Meta } from '@storybook/blocks';
 import * as DesignPrinciplesStories from './design-principles.stories';
+import { principles } from './design-principles.data';
 
 <Meta of={DesignPrinciplesStories} />
 
@@ -7,3 +8,16 @@ import * as DesignPrinciplesStories from './design-principles.stories';
 
 Our aim is to make things simple, trustworthy, and inclusive. We create easy-to-use designs, build trust with clear communication, and ensure everyone feels included.
 
+## Core Principles
+
+<div className="row g-4">
+  {principles.map((principle, index) => (
+    <div className="col-md-3 d-flex align-items-stretch" key={index}>
+      <div className="principle p-4 border h-100">
+        <post-icon name={principle.icon} style={{ fontSize: '3rem' }}></post-icon>
+        <h3 className="principle--title">{principle.title}</h3>
+        <p className="principle--description mt-3">{principle.description}</p>
+      </div>
+    </div>
+  ))}
+</div>
