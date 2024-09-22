@@ -11,20 +11,20 @@ The Swiss Post Design System enables project teams to create seamless user exper
 
 ## Who Uses the Design System?
 
-<ul>
+<ul className="list--roles d-flex m-0 p-0">
   {roles.map((role, index) => (
-    <li key={index}>
+    <li key={index} className="list--roles__item mb-3 p-3 h-100">
       <strong>{role.role}</strong>
-      <div>{role.description}</div>
+      <div className="mt-2">{role.description}</div>
     </li>
   ))}
 </ul>
 
 ### The Design System is well represented and supported by our stakeholders, including:
 
-<ul>
+<ul className="list-group">
   {stakeholders.map((stakeholder, index) => (
-    <li key={index}>{stakeholder.role}</li>
+    <li key={index} className="list-group-item w-sm-100 w-md-50 w-lg-25">{stakeholder.role}</li>
   ))}
 </ul>
 
@@ -34,9 +34,9 @@ Entry points to the Design System are public. All documentation is written in En
 
 ### Core Team
 
-<ul>
+<ul className="list-group list-group-horizontal-md mb-3 p-0 justify-content-center-lg align-items-center-lg">
   {teamMembers.map((teamMember, index) => (
-    <li key={index}>
+    <li key={index} className="list-group-item py-4 gap-3 fw-bold display-flex flex-lg-column w-md-25 justify-content-center">
       <post-icon name={teamMember.icon} style={{ fontSize: '3rem' }}></post-icon>
       {teamMember.name}
     </li>
@@ -49,15 +49,18 @@ These contributors are responsible for major implementations and play a central 
 
 People are using the Design System because it has a low barrier of entry, excellent documentation, is easy to use and improves the time to market for their product significantly. It fulfills the standards of the Web Content Accessibility Guidelines (WCAG), Level AA.
 
-<div>
+<div className="d-flex align-items-center mt-4 gap-2">
   <post-icon name="2022" style={{ fontSize: '2rem' }}></post-icon>
   <p>Onboarding is mandatory for external agencies.</p>
 </div>
 
-<p>
+<p className="mt-4 mb-1 text-align-start">
   The quality of the Design System is being measured by pre-defined KPIs and is constantly improved.
 </p>
 
+<div className="progress-system-quality">
+  <div className="progress-system-quality__bar"></div>
+</div>
 
 ### Tooling
 

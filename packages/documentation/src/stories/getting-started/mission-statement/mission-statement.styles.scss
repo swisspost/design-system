@@ -1,0 +1,43 @@
+@use '@swisspost/design-system-styles/core.scss' as post;
+
+.list--roles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  &__item {
+    list-style-type: none;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      background-color: #f8f9fa;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+.list-group-item {
+  border: 1px solid #dee2e6;
+  transition: background-color 0.3s ease;
+
+  &:last-child {
+    border-bottom: 1px solid #dee2e6 !important;
+  }
+
+  &:hover {
+    background-color: post.$light;
+  }
+}
+
+.progress-system-quality {
+  background-color: post.$gray-10;
+  height: 1.5rem;
+
+  &__bar {
+    background-color: post.$yellow;
+    height: 100%;
+    width: 90%;
+  }
+}
