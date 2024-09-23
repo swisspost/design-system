@@ -1,13 +1,18 @@
 @use '@swisspost/design-system-styles/core.scss' as post;
 
+.principle-container {
+  padding: 0;
+
+  &-container--item {
+    display: flex;
+    align-items: stretch;
+  }
+}
+
 .principle {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease, background-color 0.3s ease;
-
-  &:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    background-color: post.$light;
-  }
+  padding: 2rem;
+  height: 100%;
 
   &--title {
     font-size: post.$font-size-regular;
@@ -15,5 +20,6 @@
 
   &--description {
     font-size: post.$font-size-sm;
+    margin-top: 1rem;
   }
 }
