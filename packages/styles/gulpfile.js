@@ -168,14 +168,17 @@ gulp.task('sass:dev', () => {
 /**
  * Compile scss tests
  */
-gulp.task('sass:tests', () => {
-  return gulp.src('./tests/**/*.scss').pipe(
-    gulpSass.sync({
-      includePaths: options.includePaths,
-      quietDeps: true,
-    }),
-  );
-});
+gulp.task(
+  'sass:tests',
+  gulp.series('temporarily-copy-token-files', () => {
+    return gulp.src('./tests/**/*.scss').pipe(
+      gulpSass.sync({
+        includePaths: options.includePaths,
+        quietDeps: true,
+      }),
+    );
+  }),
+);
 
 /**
  * Watch task for scss development
