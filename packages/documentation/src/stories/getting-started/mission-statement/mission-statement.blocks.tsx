@@ -1,18 +1,18 @@
-interface IRole {
+interface Role {
   role: string;
   description: string;
 }
 
-interface IStakeholder {
+interface Stakeholder {
   role: string;
 }
 
-interface ITeamMembers {
+interface TeamMembers {
   name: string;
   icon: string;
 }
 
-export const stakeholders: IStakeholder[] = [
+export const stakeholders: Stakeholder[] = [
   {
     role: 'Management',
   },
@@ -30,7 +30,7 @@ export const stakeholders: IStakeholder[] = [
   },
 ];
 
-export const roles: IRole[] = [
+export const roles: Role[] = [
   {
     role: 'Web & Mobile Developers',
     description: 'Utilize the system to build responsive, accessible, and consistent interfaces.',
@@ -47,7 +47,7 @@ export const roles: IRole[] = [
   },
 ];
 
-export const teamMembers: ITeamMembers[] = [
+export const teamMembers: TeamMembers[] = [
   { name: 'Development', icon: '2546' },
   { name: 'Visual Design', icon: '2591' },
   { name: 'User Experience', icon: '2336' },
