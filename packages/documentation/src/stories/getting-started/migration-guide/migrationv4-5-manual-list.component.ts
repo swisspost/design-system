@@ -108,8 +108,8 @@ export class MigrationV45ManualListComponent extends LitElement {
 
   render() {
     return html`
-      <post-accordion multiple @change="${this._onChange}">
-        <post-accordion-item collapsed heading-level="5">
+      <post-accordion heading-level="5" multiple @change="${this._onChange}">
+        <post-accordion-item collapsed>
           <span slot="header">
             General
             <span class="todo-list-status"> ${this._templateGroupTodoListStatus('general')} </span>
@@ -643,7 +643,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           </section>
         </post-accordion-item>
 
-        <post-accordion-item collapsed heading-level="5">
+        <post-accordion-item collapsed>
           <span slot="header">
             Bootstrap
             <span class="todo-list-status">
@@ -1610,7 +1610,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           </section>
         </post-accordion-item>
 
-        <post-accordion-item collapsed heading-level="5">
+        <post-accordion-item collapsed>
           <span slot="header">
             NgBootstrap
             <span class="todo-list-status">
@@ -1758,7 +1758,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           </div>
         </post-accordion-item>
 
-        <post-accordion-item collapsed heading-level="5">
+        <post-accordion-item collapsed>
           <span slot="header">
             jQuery
             <span class="todo-list-status"> ${this._templateGroupTodoListStatus('jquery')} </span>
@@ -1802,7 +1802,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           </div>
         </post-accordion-item>
 
-        <post-accordion-item collapsed heading-level="5">
+        <post-accordion-item collapsed>
           <span slot="header">
             Post
             <span class="todo-list-status"> ${this._templateGroupTodoListStatus('post')} </span>
