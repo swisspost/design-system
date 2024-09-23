@@ -1,12 +1,15 @@
 @use '@swisspost/design-system-styles/core.scss' as post;
 
-.roles-list {
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  justify-content: space-between;
+.no-style-list {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.roles-list {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  justify-content: center;
 }
 
 .role-item {
@@ -17,22 +20,19 @@
 }
 
 .stakeholders-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  justify-content: center;
+  align-items: center;
 }
 
 .stakeholder-item {
   padding: 1rem;
   border: 1px solid #dee2e6;
+  text-align: center;
 }
 
 .team-list {
-  justify-content: start;
-  list-style: none;
-  gap: 1rem;
-  padding: 0;
-  margin: 0 0 1rem;
+  justify-content: center;
+  margin-bottom: 1rem;
 }
 
 .team-item {
@@ -45,15 +45,8 @@
   font-weight: bold;
 }
 
-.onboarding-info {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+.alert {
   margin-top: 1rem;
-}
-
-.onboarding-icon {
-  font-size: 2rem;
 }
 
 .quality-text {

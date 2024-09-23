@@ -11,9 +11,9 @@ The Swiss Post Design System enables project teams to create seamless user exper
 
 ## Who Uses the Design System?
 
-<ul className="roles-list">
+<ul className="roles-list no-style-list">
   {roles.map((role, index) => (
-    <li key={index} className="role-item">
+    <li key={index} className="role-item list-item">
       <strong>{role.role}</strong>
       <div className="role-description">{role.description}</div>
     </li>
@@ -22,11 +22,14 @@ The Swiss Post Design System enables project teams to create seamless user exper
 
 ### The Design System is well represented and supported by our stakeholders, including:
 
-<ul className="stakeholders-list col-12 col-md-4 col-lg-3">
+<ul className="stakeholders-list no-style-list row row-cols-1 row-cols-md-3">
   {stakeholders.map((stakeholder, index) => (
-    <li key={index} className="stakeholder-item">{stakeholder.role}</li>
+    <li key={index} className="stakeholder-item list-item centered-item col">
+      {stakeholder.role}
+    </li>
   ))}
 </ul>
+
 
 ### Documentation
 
@@ -34,9 +37,9 @@ Entry points to the Design System are public. All documentation is written in En
 
 ### Core Team
 
-<ul className="team-list row">
+<ul className="team-list no-style-list row">
   {teamMembers.map((teamMember, index) => (
-    <li key={index} className="team-item col-12 col-sm-12 col-md-3 col-lg-3 flex-lg-column">
+    <li key={index} className="team-item list-item centered-item col-sm-12 col-md-4 col-lg-3 flex-lg-column">
       <post-icon name={teamMember.icon} style={{ fontSize: '3rem' }} className="team-icon"></post-icon>
       {teamMember.name}
     </li>
@@ -49,8 +52,7 @@ These contributors are responsible for major implementations and play a central 
 
 People are using the Design System because it has a low barrier of entry, excellent documentation, is easy to use, and improves the time to market for their product significantly. It fulfills the standards of the Web Content Accessibility Guidelines (WCAG), Level AA.
 
-<div className="onboarding-info">
-  <post-icon name="2022" className="onboarding-icon"></post-icon>
+<div role="alert" class="alert alert-primary">
   <p>Onboarding is mandatory for external agencies.</p>
 </div>
 
