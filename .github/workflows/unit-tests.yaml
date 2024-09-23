@@ -27,7 +27,7 @@ jobs:
         run: pnpm --filter "...[origin/main]..." install
 
       - name: Build dependencies
-        run: pnpm --filter "...[origin/main]..." install
+        run: pnpm --filter "...[origin/main]..." build
 
       - name: Run unit tests
         run: pnpm --filter "...[origin/main]" unit
