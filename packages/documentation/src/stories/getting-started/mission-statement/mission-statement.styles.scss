@@ -1,43 +1,73 @@
 @use '@swisspost/design-system-styles/core.scss' as post;
 
-.list--roles {
-  display: flex;
-  flex-wrap: wrap;
+.roles-list {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
   justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
-  &__item {
-    list-style-type: none;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+.role-item {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
-    &:hover {
-      background-color: #f8f9fa;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
+  &:hover {
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
 }
 
-.list-group-item {
+.stakeholders-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stakeholder-item {
+  padding: 1rem;
   border: 1px solid #dee2e6;
   transition: background-color 0.3s ease;
-
-  &:last-child {
-    border-bottom: 1px solid #dee2e6 !important;
-  }
 
   &:hover {
     background-color: post.$light;
   }
 }
 
-.progress-system-quality {
-  background-color: post.$gray-10;
-  height: 1.5rem;
+.team-list {
+  justify-content: start;
+  list-style: none;
+  gap: 1rem;
+  padding: 0;
+  margin: 0 0 1rem;
+}
 
-  &__bar {
-    background-color: post.$yellow;
-    height: 100%;
-    width: 90%;
-  }
+.team-item {
+  display: flex;
+  justify-content: center;
+  border: 1px solid #dee2e6;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+  font-weight: bold;
+}
+
+.onboarding-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.onboarding-icon {
+  font-size: 2rem;
+}
+
+.quality-text {
+  margin-top: 1rem;
+  text-align: left;
 }
