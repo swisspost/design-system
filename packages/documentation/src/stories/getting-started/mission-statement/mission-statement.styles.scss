@@ -14,12 +14,6 @@
   padding: 1rem;
   border: 1px solid #ddd;
   border-radius: 6px;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-
-  &:hover {
-    background-color: #f8f9fa;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
 }
 
 .stakeholders-list {
@@ -31,11 +25,6 @@
 .stakeholder-item {
   padding: 1rem;
   border: 1px solid #dee2e6;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: post.$light;
-  }
 }
 
 .team-list {
