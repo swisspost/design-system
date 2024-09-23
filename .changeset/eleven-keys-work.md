@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Updated the style of Headings with design token
+Updated the style of Headings (h1-h6) using design tokens.
