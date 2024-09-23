@@ -1,0 +1,9 @@
+@use 'sass:map';
+@use '../functions/tokens';
+@use '../tokens/elements';
+
+tokens.$default-map: elements.$post-paragraph;
+
+p {
+  margin-block-start: tokens.get('post-paragraph', 'margin-block-start');
+}
