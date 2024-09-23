@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use '../functions/tokens' as tokens;
-@use '../tokens/elements' as elements;
+@use '../functions/tokens';
+@use '../tokens/elements';
 
 tokens.$default-map: elements.$post-body;
 
