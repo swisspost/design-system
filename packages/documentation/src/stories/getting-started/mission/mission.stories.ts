@@ -3,7 +3,7 @@ import { StoryObj } from '@storybook/web-components';
 
 const meta: MetaExtended = {
   id: 'b421ac9b-bac4-4e95-a909-64fdb58fc3a6',
-  title: 'Getting started/Mission',
+  title: 'Getting Started/Mission',
   parameters: {
     badges: [],
   },
