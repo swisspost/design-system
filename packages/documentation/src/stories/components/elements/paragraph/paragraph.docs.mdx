@@ -1,0 +1,17 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as ParagraphStories from './paragraph.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={ParagraphStories} />
+
+<div className="docs-title">
+  # Paragraph
+
+  <nav>
+    <link-design of={JSON.stringify(ParagraphStories)}></link-design>
+  </nav>
+</div>
+
+This is a default paragraph without size variants.
+
+<Canvas of={ParagraphStories.Default} sourceState="shown" />
