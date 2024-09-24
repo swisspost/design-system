@@ -3,4 +3,4 @@
 '@swisspost/design-system-documentation': minor
 ---
 
-Removed grid container helper classes.
+Removed deprecated grid container helper classes.

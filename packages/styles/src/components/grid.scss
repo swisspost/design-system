@@ -87,16 +87,3 @@ $gutter-x-cache: 0;
     }
   }
 }
-
-//the following classes are all deprecated and wil be removed in next major version
-
-//deprecated
-$container-cache: 0;
-
-//deprecated
-@each $breakpoint in grid.$grid-breakpoints-list {
-  $container-padding: map.get(grid.$grid-container-padding, $breakpoint);
-
-  //deprecated
-  $container-cache: $container-padding;
-}
