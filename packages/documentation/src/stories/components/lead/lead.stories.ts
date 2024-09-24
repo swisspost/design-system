@@ -3,7 +3,7 @@ import { html } from 'lit';
 import { MetaExtended } from '@root/types';
 
 const meta: MetaExtended = {
-  id: 'e76192bb-b2eb-487a-b9c1-ef938bccdfc4',
+  id: 'b2b49569-42b8-40bb-93b3-a874415f625d',
   title: 'Components/Lead',
   parameters: {
     badges: [],
@@ -19,12 +19,11 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: () =>
-    html`
-      <p class="lead">
-        Lead text nullam quis risus eget urna mollis ornare veleu leo. Cum sociis natoque penatibus
-        et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies
-        vehicula.
-      </p>
-    `,
+  render: () => html`
+    <p class="lead">
+      Lead text nullam quis risus eget urna mollis ornare veleu leo. Cum sociis natoque penatibus et
+      magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies
+      vehicula.
+    </p>
+  `,
 };
