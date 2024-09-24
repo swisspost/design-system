@@ -1,0 +1,30 @@
+@use '../functions/tokens';
+@use '../tokens/elements';
+@use '../mixins/utilities';
+
+tokens.$default-map: elements.$post-link;
+
+a {
+  text-decoration: tokens.get('post-link', 'decoration');
+  border-radius: tokens.get('post-link', 'border-radius');
+  color: inherit;
+
+  &:hover {
+    color: tokens.get('post-link', 'hover-fg');
+  }
+
+  &:focus {
+    outline: tokens.get('post-link', 'focus-outline-color')
+      tokens.get('post-link', 'focus-outline-style') tokens.get('post-link', 'focus-outline-width');
+    outline-offset: tokens.get('post-link', 'focus-outline-offset');
+  }
+
+  @include utilities.high-contrast-mode() {
+    &,
+    &:visited,
+    &:focus,
+    &:hover {
+      color: LinkText !important;
+    }
+  }
+}
