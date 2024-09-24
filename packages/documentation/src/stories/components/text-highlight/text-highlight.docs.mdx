@@ -1,0 +1,13 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import * as TextHighlightStories from './text-highlight.stories';
+
+<Meta of={TextHighlightStories} />
+
+# Text highlight
+
+<div>
+  Text highlighted can be used when a certain paragraph needs a higher attention than the other
+  paragraphs.
+</div>
+
+<Canvas of={TextHighlightStories.Default} sourceState="shown" />
