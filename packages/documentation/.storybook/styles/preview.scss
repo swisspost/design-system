@@ -177,6 +177,13 @@
   overflow-x: hidden;
 }
 
+.sbdocs-preview,
+.sb-main-padded {
+  &:not([data-color-mode]) {
+    display: none;
+  }
+}
+
 .fake-content {
   position: relative;
   min-height: calc(1.6rem * 8);
