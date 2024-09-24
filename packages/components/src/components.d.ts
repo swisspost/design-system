@@ -24,7 +24,7 @@ export namespace Components {
         /**
           * Defines the hierarchical level of the `post-accordion-item` headers within the headings structure.
          */
-        "headingLevel"?: HeadingLevel;
+        "headingLevel": HeadingLevel;
         /**
           * If `true`, multiple `post-accordion-item` can be open at the same time.
          */
@@ -540,7 +540,7 @@ declare namespace LocalJSX {
         /**
           * Defines the hierarchical level of the `post-accordion-item` headers within the headings structure.
          */
-        "headingLevel"?: HeadingLevel;
+        "headingLevel": HeadingLevel;
         /**
           * If `true`, multiple `post-accordion-item` can be open at the same time.
          */
