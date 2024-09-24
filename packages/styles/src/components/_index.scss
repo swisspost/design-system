@@ -1,7 +1,5 @@
 @forward './../variables/options';
 
-@use 'base';
-
 @use 'accordion';
 @use 'alert';
 @use 'badge';
@@ -40,7 +38,6 @@
 @use 'tooltip';
 @use 'topic-teaser';
 @use 'transitions';
-@use 'type';
 @use 'utilities';
 @use 'tag';
 
