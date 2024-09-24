@@ -67,31 +67,3 @@ span.spacer {
     @include color-mx.colored-background($color);
   }
 }
-
-// TODO: refactor to link default styles
-.text-auto {
-  a {
-    color: inherit;
-
-    &:hover {
-      opacity: 0.8;
-    }
-  }
-}
-
-a {
-  color: var(--post-contrast-color);
-
-  &:hover {
-    color: rgba(var(--post-contrast-color-rgb), 0.8);
-  }
-
-  @include utilities.high-contrast-mode() {
-    &,
-    &:visited,
-    &:focus,
-    &:hover {
-      color: LinkText !important;
-    }
-  }
-}
