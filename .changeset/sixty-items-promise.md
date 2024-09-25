@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': minor
 ---
 
-Added paragraph style
+Added paragraph style.
