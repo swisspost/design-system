@@ -68,13 +68,6 @@
       }
     }
 
-    // General styles for content
-    a:not(.sb-story a) {
-      @include utilities.focus-style() {
-        border-radius: post.$border-radius;
-      }
-    }
-
     // Style buttons related to the current page next to the tile
     .docs-title,
     .docs-title nav {
