@@ -5,5 +5,5 @@
 tokens.$default-map: elements.$post-paragraph;
 
 p {
-  margin-block-start: tokens.get('post-paragraph', 'margin-block-start');
+  margin-block-start: tokens.get('paragraph', 'margin-block-start');
 }
