@@ -13,22 +13,7 @@
 @use '../tokens/components' as components;
 @use '../functions/tokens' as tokens;
 
-$temp-map: (
-  'post-switch-disabled-border-width': 1px,
-  'post-switch-disabled-border-stroke': grey,
-  'post-switch-disabled-border-style': dashed,
-  'post-switch-border-width': 1px,
-  'post-switch-border-stroke': tokens.get('switch', 'element-enabled-bg'),
-  'post-switch-handle-disabled-border-width': 1px,
-  'post-switch-handle-disabled-border-stroke': grey,
-  'post-switch-handle-disabled-border-style': dashed,
-  'post-switch-handle-border-width': 1px,
-  'post-switch-handle-border-stroke': tokens.get('switch', 'element-enabled-fg'),
-);
-
-$merged-map: map.merge(components.$post-switch, $temp-map);
-
-tokens.$default-map: $merged-map;
+tokens.$default-map: components.$post-switch;
 
 .form-check {
   display: flex;
@@ -235,8 +220,9 @@ $switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' x
     align-items: center;
     height: tokens.get('switch', 'element-height');
     width: tokens.get('switch', 'element-width');
-    border: tokens.get('switch', 'border-width') solid tokens.get('switch', 'border-stroke');
-    border-radius: tokens.get('switch', 'element-width');
+    border: tokens.get('switch', 'border-width') tokens.get('switch', 'border-style-default')
+      tokens.get('switch', 'element-enabled-stroke');
+    border-radius: tokens.get('switch', 'border-radius-round');
     background-color: tokens.get('switch', 'element-enabled-bg');
     padding: tokens.get('switch', 'padding-block-text') 0 tokens.get('switch', 'padding-block-text')
       tokens.get('switch', 'padding-inline-handle');
@@ -250,7 +236,7 @@ $switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' x
       display: block;
       width: tokens.get('switch', 'element-handle');
       height: tokens.get('switch', 'element-handle');
-      background-color: tokens.get('switch', 'element-enabled-fg');
+      background-color: tokens.get('switch', 'handle-enabled');
       border-radius: tokens.get('switch', 'border-radius-round');
       transition:
         transform animation.$transition-base-timing,
@@ -265,13 +251,13 @@ $switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' x
     }
 
     &::after {
-      border: tokens.get('switch', 'handle-border-width') solid
-        tokens.get('switch', 'handle-border-stroke');
+      border: tokens.get('switch', 'border-width') tokens.get('switch', 'border-style-default')
+        tokens.get('switch', 'handle-enabled-stroke');
     }
 
     &:checked {
       background-color: tokens.get('switch', 'element-selected-bg');
-      border-color: tokens.get('switch', 'element-selected-bg');
+      border-color: tokens.get('switch', 'element-selected-stroke');
 
       &::before,
       &::after {
@@ -286,7 +272,8 @@ $switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' x
 
       &::after {
         @include icons-mx.remove-icon;
-        background-color: tokens.get('switch', 'element-selected-fg');
+        background-color: tokens.get('switch', 'handle-selected');
+        border-color: tokens.get('switch', 'handle-selected-stroke');
       }
 
       & + .form-check-label {
@@ -296,7 +283,8 @@ $switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' x
 
     @include utility-mx.high-contrast-mode {
       transition: none;
-      border: form-check.$form-check-input-border-width solid CanvasText;
+      border: form-check.$form-check-input-border-width tokens.get('switch', 'border-style-default')
+        CanvasText;
 
       &:checked {
         background-color: SelectedItem !important;
@@ -322,17 +310,17 @@ $switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' x
 
     &[disabled] {
       background-color: tokens.get('switch', 'element-disabled-bg');
-      border: tokens.get('switch', 'disabled-border-width')
-        tokens.get('switch', 'disabled-border-style') tokens.get('switch', 'disabled-border-stroke');
+      border: tokens.get('switch', 'border-width') tokens.get('switch', 'border-style-disabled')
+        tokens.get('switch', 'element-disabled-stroke');
 
       @include color-mx.on-dark-background {
-        border: tokens.get('switch', 'disabled-border-width')
-          tokens.get('switch', 'disabled-border-style') color.$white-alpha-80;
+        border: tokens.get('switch', 'border-width') tokens.get('switch', 'border-style-disabled')
+          color.$white-alpha-80;
       }
 
       @include utility-mx.high-contrast-mode {
-        border: tokens.get('switch', 'disabled-border-width')
-          tokens.get('switch', 'disabled-border-style') GrayText;
+        border: tokens.get('switch', 'border-width') tokens.get('switch', 'border-style-disabled')
+          GrayText;
       }
 
       & + .form-check-label {
@@ -340,24 +328,23 @@ $switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' x
       }
 
       &::after {
-        background-color: tokens.get('switch', 'element-disabled-fg');
-        border: tokens.get('switch', 'handle-disabled-border-width')
-          tokens.get('switch', 'handle-disabled-border-style')
-          tokens.get('switch', 'handle-disabled-border-stroke');
+        background-color: tokens.get('switch', 'handle-disabled');
+        border: tokens.get('switch', 'border-width') tokens.get('switch', 'border-style-disabled')
+          tokens.get('switch', 'handle-disabled-stroke');
 
         @include color-mx.on-dark-background {
-          border: tokens.get('switch', 'handle-disabled-border-width')
-            tokens.get('switch', 'handle-disabled-border-style') color.$white-alpha-80;
+          border: tokens.get('switch', 'border-width') tokens.get('switch', 'border-style-disabled')
+            color.$white-alpha-80;
         }
 
         @include utility-mx.high-contrast-mode {
-          border: tokens.get('switch', 'handle-disabled-border-width')
-            tokens.get('switch', 'handle-disabled-border-style') GrayText;
+          border: tokens.get('switch', 'border-width') tokens.get('switch', 'border-style-disabled')
+            GrayText;
         }
       }
 
       &:checked::before {
-        background-color: tokens.get('switch', 'disabled-border-stroke');
+        background-color: tokens.get('switch', 'icon-disabled');
         mask-image: $switch-handle-icon-disabled;
       }
 
@@ -375,11 +362,11 @@ $switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' x
 
   &:hover > .form-check-input:not([disabled]) {
     background-color: tokens.get('switch', 'element-hover-bg');
-    border-color: tokens.get('switch', 'element-hover-bg');
+    border-color: tokens.get('switch', 'element-hover-stroke');
 
     &::after {
-      background-color: tokens.get('switch', 'element-hover-fg');
-      border-color: tokens.get('switch', 'element-hover-fg');
+      background-color: tokens.get('switch', 'handle-hover');
+      border-color: tokens.get('switch', 'handle-hover-stroke');
     }
 
     &::before {
