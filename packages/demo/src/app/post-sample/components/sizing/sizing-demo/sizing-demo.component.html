@@ -2,21 +2,21 @@
   ~ Copyright 2021 by Swiss Post, Information Technology
   -->
 
-<div class="d-flex bg-primary p-regular" style="height: 150px">
+<div class="d-flex bg-primary p-16" style="height: 150px">
   <div class="flex-fill">
     <div class="bg-light" [class]="demoClass"></div>
   </div>
 
   <!-- Legend -->
-  <ul class="ps-regular text-white">
-    <li class="d-flex align-items-center mb-regular">
-      <div class="bg-light h-regular w-regular me-mini"></div>
+  <ul class="ps-16 text-white">
+    <li class="d-flex align-items-center mb-16">
+      <div class="bg-light h-regular w-regular me-8"></div>
       <span>content</span>
     </li>
   </ul>
 </div>
 
-<form [formGroup]="demoForm" class="row mt-regular">
+<form [formGroup]="demoForm" class="row mt-16">
   <!-- Width control -->
   <div class="col" formGroupName="width">
     <label class="form-label" for="width">Width</label>
@@ -79,5 +79,5 @@
 </form>
 
 <!-- Code sample -->
-<p class="h5 bold mt-4">sizing-demo.component.html</p>
+<p class="h5 bold mt-24">sizing-demo.component.html</p>
 <code [highlight]="highlight" [languages]="['html']" class="block"></code>

@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
 })
 export class ResponsiveSizingDemoComponent {
   get highlightManualDemo(): string {
-    return `<div class="p-regular p-lg-big"></div>`;
+    return `<div class="p-16 p-lg-32"></div>`;
   }
 
   get highlightAutomaticDemo(): string {

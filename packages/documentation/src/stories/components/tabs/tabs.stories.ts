@@ -91,7 +91,7 @@ export const Async: Story = {
       return html`
         ${story()}
         <hr />
-        <div class="d-flex gap-mini">
+        <div class="d-flex gap-8">
           <button class="btn btn-default" id="add-tab" type="button" @click="${addTab}">
             <post-icon name="2040"></post-icon>
             Add tab

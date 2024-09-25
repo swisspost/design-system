@@ -18,10 +18,10 @@ type Story = StoryObj;
 
 export const Alert: Story = {
   render: () => html`
-    <div class="d-flex gap-3 flex-wrap">
+    <div class="d-flex gap-16 flex-wrap">
       ${['bg-white', 'bg-dark'].map(
         bg => html`
-          <div class="${bg + ' d-flex flex-column gap-3 flex-wrap p-3'}">
+          <div class="${bg + ' d-flex flex-column gap-16 flex-wrap p-16'}">
             ${bombArgs({
               type: alertMeta?.argTypes?.type?.options,
               icon: ['no-icon', undefined, '1001'],
@@ -107,10 +107,10 @@ export const PostAlert: Story = {
       '</button>';
 
     return html`
-      <div class="d-flex gap-3 flex-wrap">
+      <div class="d-flex gap-16 flex-wrap">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div class="${bg + ' d-flex flex-column gap-3 flex-wrap p-3'}">
+            <div class="${bg + ' d-flex flex-column gap-16 flex-wrap p-16'}">
               ${bombArgs({
                 type: ['primary', 'success', 'danger', 'warning', 'info', 'gray'],
                 icon: ['none', undefined, '1001'],
