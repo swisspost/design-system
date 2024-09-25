@@ -1,4 +1,4 @@
-interface IPrinciples {
+interface Principles {
   icon: string;
   title: string;
   description: string;
