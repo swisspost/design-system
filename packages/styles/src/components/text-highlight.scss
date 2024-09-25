@@ -4,7 +4,7 @@
 
 tokens.$default-map: components.$post-text-highlighted;
 
-.text-highlight {
+.text-highlighted {
   background-color: tokens.get('post-text', 'highlighted-bg');
   color: tokens.get('post-text', 'highlighted-fg');
   padding: tokens.get('post-text', 'highlighted-padding-text');

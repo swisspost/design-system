@@ -20,12 +20,12 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: () => html`
-    <p class="text-highlight">
+    <p class="text-highlighted">
       Lead text nullam quis risus eget urna mollis ornare veleu leo. Cum sociis natoque penatibus et
       magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies
       vehicula.
     </p>
-    <p class="text-highlight">
+    <p class="text-highlighted">
       Lead text nullam quis risus eget urna mollis ornare veleu leo. Cum sociis natoque penatibus et
       magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies
       vehicula.
