@@ -4,7 +4,7 @@ interface Principles {
   description: string;
 }
 
-export const principles: IPrinciples[] = [
+export const principles: Principles[] = [
   {
     icon: '2525',
     title: 'Easy to use',
