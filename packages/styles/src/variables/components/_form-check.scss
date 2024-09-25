@@ -7,10 +7,10 @@
 @use './../../functions/sizing';
 @use './../../functions/forms' as forms-fn;
 
-@use '../../tokens/components' as components;
-@use '../../functions/tokens' as tokens;
+// @use '../../tokens/components' as components;
+// @use '../../functions/tokens' as tokens;
 
-tokens.$default-map: components.$post-switch;
+// tokens.$default-map: components.$post-switch;
 
 $form-check-row-gap: spacing.$size-small-regular !default;
 $form-check-column-gap: spacing.$size-mini !default;
@@ -26,13 +26,6 @@ $form-check-input-disabled-svg-stroke-square-pathlength-lg: 88;
 $form-check-input-disabled-svg-stroke-square-pattern-sm: '2 1.5 4 1.5 4 1.5 2 3.5 4 1.5 4 1.5 2 3.5 4 1.5 4 1.5 2 3.5 4 1.5 4 1.5 4';
 $form-check-input-disabled-svg-stroke-square-pathlength-sm: 66;
 $form-check-input-disabled-svg-stroke-circle-pattern: '4 2';
-
-// Switch
-$form-check-input-disabled-svg-stroke-switch-color: #696864;
-$form-check-input-disabled-svg-stroke-switch-border-width: 2px;
-$form-check-input-disabled-svg-stroke-switch-pattern:'4 2';
-$form-check-input-disabled-svg-stroke-switch-pathlength: 138;
-$form-check-input-disabled-svg-stroke-switch-handle-pathlength: 48;
 
 // Checkbox lg
 $form-check-input-disabled-background-url-light-lg: forms-fn.get-background-svg-stroke(
@@ -100,91 +93,3 @@ $form-check-input-radio-disabled-background-url-hcm: forms-fn.get-background-svg
   initial,
   $form-check-input-disabled-svg-border-width
 );
-
-// Switch
-$form-check-input-switch-disabled-background-url-light: forms-fn.get-background-svg-stroke(
-  'switch',
-  $form-check-input-disabled-svg-stroke-switch-color,
-  $form-check-input-disabled-svg-stroke-switch-pattern,
-  $form-check-input-disabled-svg-stroke-switch-pathlength,
-  $form-check-input-disabled-svg-stroke-switch-border-width
-);
-$form-check-input-switch-disabled-background-url-dark: forms-fn.get-background-svg-stroke(
-  'switch',
-  color.$white-alpha-80,
-  $form-check-input-disabled-svg-stroke-switch-pattern,
-  $form-check-input-disabled-svg-stroke-switch-pathlength,
-  $form-check-input-disabled-svg-stroke-switch-border-width
-);
-$form-check-input-switch-disabled-background-url-hcm: forms-fn.get-background-svg-stroke(
-  'switch',
-  'GrayText',
-  $form-check-input-disabled-svg-stroke-switch-pattern,
-  $form-check-input-disabled-svg-stroke-switch-pathlength,
-  $form-check-input-disabled-svg-stroke-switch-border-width
-);
-
-// Switch handle
-$form-check-input-switch-handle-disabled-background-url-light: forms-fn.get-background-svg-stroke(
-  'circle',
-  $form-check-input-disabled-svg-stroke-switch-color,
-  $form-check-input-disabled-svg-stroke-switch-pattern,
-  $form-check-input-disabled-svg-stroke-switch-handle-pathlength,
-  $form-check-input-disabled-svg-stroke-switch-border-width
-);
-$form-check-input-switch-handle-disabled-background-url-dark: forms-fn.get-background-svg-stroke(
-  'circle',
-  color.$white-alpha-80,
-  $form-check-input-disabled-svg-stroke-switch-pattern,
-  $form-check-input-disabled-svg-stroke-switch-handle-pathlength,
-  $form-check-input-disabled-svg-stroke-switch-border-width
-);
-$form-check-input-switch-handle-disabled-background-url-hcm: forms-fn.get-background-svg-stroke(
-  'circle',
-  'GrayText',
-  $form-check-input-disabled-svg-stroke-switch-pattern,
-  $form-check-input-disabled-svg-stroke-switch-handle-pathlength,
-  $form-check-input-disabled-svg-stroke-switch-border-width
-);
-
-$form-switch-column-gap: spacing.$size-regular !default;
-$form-switch-height: spacing.$size-big !default;
-$form-switch-width: 2 * spacing.$size-big !default;
-$form-switch-bg: rgba(var(--post-contrast-color-rgb), 0.3) !default;
-$form-switch-checked-bg: var(--post-success) !default;
-$form-switch-disabled-bg: color.$gray-20 !default;
-$form-switch-background-image: linear-gradient(
-  to right,
-  #{$form-switch-bg} 50%,
-  #{$form-switch-checked-bg} 50%
-) !default;
-$form-switch-color: color.$white !default;
-$form-switch-border-color: color.$gray-60 !default;
-$form-switch-checked-border-color: color.$black !default;
-$form-switch-disabled-border-color: color.$gray-40 !default;
-$form-switch-label-padding-top: ($form-switch-height - type.$line-height-copy) * 0.5 !default;
-$form-switch-handle-checkmark: url("data:image/svg+xml,<svg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'><path d='m12.667 24.533-7.6-7.6 1.867-1.867 5.733 5.733 12.4-12.4 1.867 1.867z'/></svg>") !default;
-
-// DEPRECATED
-
-$form-switch-padding-start: 0 !default;
-$form-switch-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-16 -16 32 32'><circle r='15' stroke='#{$form-switch-border-color}' stroke-width='2' fill='#{$form-switch-color}'/></svg>") !default;
-$form-switch-border-radius: $form-switch-width !default;
-$form-switch-transition:
-  background-position animation.$transition-base-timing,
-  background-color animation.$transition-time-default !default;
-$form-switch-checked-color: color.$white !default;
-$form-switch-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-16 -16 32 32'><circle r='15' stroke='#{$form-switch-checked-border-color}' stroke-width='2' fill='#{$form-switch-checked-color}'/></svg>") !default;
-$form-switch-focus-bg-image: $form-switch-checked-bg-image;
-$form-switch-checked-bg-image-size: $form-switch-height;
-$form-switch-hover-bg: rgba(var(--post-contrast-color-rgb), 0.1) !default;
-$form-switch-linear-gradient: linear-gradient(
-  to right,
-  #{$form-switch-bg} 50%,
-  #{$form-switch-checked-bg} 50%
-);
-$form-switch-linear-gradient-size: (2 * $form-switch-width - $form-switch-height)
-  $form-switch-height;
-$form-switch-label-padding-x: spacing.$size-regular !default;
-$form-switch-label-padding-start: $form-switch-label-padding-top 0 0 $form-switch-label-padding-x !default;
-$form-switch-label-padding-end: $form-switch-label-padding-top $form-switch-label-padding-x 0 0 !default;

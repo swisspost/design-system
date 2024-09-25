@@ -1,5 +1,6 @@
 @forward './../variables/options';
 
+@use 'sass:map';
 @use '../variables/color';
 @use '../variables/commons';
 @use '../variables/type';
@@ -12,7 +13,22 @@
 @use '../tokens/components' as components;
 @use '../functions/tokens' as tokens;
 
-tokens.$default-map: components.$post-switch;
+$temp-map: (
+  'post-switch-disabled-border-width': 1px,
+  'post-switch-disabled-border-stroke': grey,
+  'post-switch-disabled-border-style': dashed,
+  'post-switch-border-width': 1px,
+  'post-switch-border-stroke': tokens.get('switch', 'element-enabled-bg'),
+  'post-switch-handle-disabled-border-width': 1px,
+  'post-switch-handle-disabled-border-stroke': grey,
+  'post-switch-handle-disabled-border-style': dashed,
+  'post-switch-handle-border-width': 1px,
+  'post-switch-handle-border-stroke': tokens.get('switch', 'element-enabled-fg'),
+);
+
+$merged-map: map.merge(components.$post-switch, $temp-map);
+
+tokens.$default-map: $merged-map;
 
 .form-check {
   display: flex;
@@ -152,14 +168,14 @@ tokens.$default-map: components.$post-switch;
       }
 
       border: 0;
-      background-image: url('#{form-check.$form-check-input-disabled-background-url-light-lg}');
+      // background-image: url('#{form-check.$form-check-input-disabled-background-url-light-lg}');
 
       @include color-mx.on-dark-background {
-        background-image: url('#{form-check.$form-check-input-disabled-background-url-dark-lg}');
+        // background-image: url('#{form-check.$form-check-input-disabled-background-url-dark-lg}');
       }
 
       @include utility-mx.high-contrast-mode {
-        background-image: url('#{form-check.$form-check-input-disabled-background-url-hcm-lg}') !important;
+        // background-image: url('#{form-check.$form-check-input-disabled-background-url-hcm-lg}') !important;
       }
 
       .form-check-sm &[type='checkbox'] {
@@ -209,6 +225,9 @@ tokens.$default-map: components.$post-switch;
   }
 }
 
+$switch-handle-icon: url("data:image/svg+xml,<svg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'><path d='m12.667 24.533-7.6-7.6 1.867-1.867 5.733 5.733 12.4-12.4 1.867 1.867z'/></svg>");
+$switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'><path d='m12.667 23.6-7.2-7.067 1.067-1.067 6.133 6.267L25.467 8.8l1.067 1.067z'/></svg>");
+
 .form-switch {
   .form-check-input {
     position: relative;
@@ -216,44 +235,60 @@ tokens.$default-map: components.$post-switch;
     align-items: center;
     height: tokens.get('switch', 'element-height');
     width: tokens.get('switch', 'element-width');
-    border: 0;
+    border: tokens.get('switch', 'border-width') solid tokens.get('switch', 'border-stroke');
     border-radius: tokens.get('switch', 'element-width');
     background-color: tokens.get('switch', 'element-enabled-bg');
-    padding: tokens.get('switch', 'padding-block-text') 0 tokens.get('switch', 'padding-block-text') tokens.get('switch', 'padding-inline-handle');
+    padding: tokens.get('switch', 'padding-block-text') 0 tokens.get('switch', 'padding-block-text')
+      tokens.get('switch', 'padding-inline-handle');
     transition:
-      background-color animation.$transition-base-timing;
-    
-    &::before, &::after {
+      background-color animation.$transition-base-timing,
+      border-color animation.$transition-base-timing;
+
+    &::before,
+    &::after {
       position: absolute;
       display: block;
       width: tokens.get('switch', 'element-handle');
       height: tokens.get('switch', 'element-handle');
       background-color: tokens.get('switch', 'element-enabled-fg');
       border-radius: tokens.get('switch', 'border-radius-round');
-      transition: 
+      transition:
         transform animation.$transition-base-timing,
         background-color animation.$transition-base-timing;
     }
 
     &::before {
       content: '';
-      mask-image: form-check.$form-switch-handle-checkmark;
+      mask-image: $switch-handle-icon;
       background-color: transparent;
       z-index: 1;
     }
 
+    &::after {
+      border: tokens.get('switch', 'handle-border-width') solid
+        tokens.get('switch', 'handle-border-stroke');
+    }
+
     &:checked {
       background-color: tokens.get('switch', 'element-selected-bg');
+      border-color: tokens.get('switch', 'element-selected-bg');
 
-      &::before{
-        transform: translateX(calc(tokens.get('switch', 'element-width') - tokens.get('switch', 'element-handle') - tokens.get('switch', 'padding-inline-handle') * 2));
+      &::before,
+      &::after {
+        transform: translateX(
+          calc(tokens.get('switch', 'element-width') - tokens.get('switch', 'element-handle') * 1.5)
+        );
+      }
+
+      &::before {
         background-color: tokens.get('switch', 'icon-success');
-      } 
+      }
+
       &::after {
         @include icons-mx.remove-icon;
         background-color: tokens.get('switch', 'element-selected-fg');
-        transform: translateX(calc(tokens.get('switch', 'element-width') - tokens.get('switch', 'element-handle') - tokens.get('switch', 'padding-inline-handle') * 2));
       }
+
       & + .form-check-label {
         color: tokens.get('switch', 'text-selected-fg');
       }
@@ -262,11 +297,11 @@ tokens.$default-map: components.$post-switch;
     @include utility-mx.high-contrast-mode {
       transition: none;
       border: form-check.$form-check-input-border-width solid CanvasText;
-      
+
       &:checked {
         background-color: SelectedItem !important;
       }
-    
+
       &::after {
         max-width: tokens.get('switch', 'element-handle');
         border-color: Canvas;
@@ -274,20 +309,30 @@ tokens.$default-map: components.$post-switch;
       }
 
       &:checked::after {
-        transform: translateX(calc(tokens.get('switch', 'element-width') - tokens.get('switch', 'element-handle') - tokens.get('switch', 'padding-inline-handle') * 2 - form-check.$form-check-input-border-width * 2));
+        transform: translateX(
+          calc(
+            tokens.get('switch', 'element-width') - tokens.get('switch', 'element-handle') - tokens.get(
+                'switch',
+                'padding-inline-handle'
+              ) * 2 - form-check.$form-check-input-border-width * 2
+          )
+        );
       }
     }
 
     &[disabled] {
       background-color: tokens.get('switch', 'element-disabled-bg');
-      background-image: url('#{form-check.$form-check-input-switch-disabled-background-url-light}');
-      
+      border: tokens.get('switch', 'disabled-border-width')
+        tokens.get('switch', 'disabled-border-style') tokens.get('switch', 'disabled-border-stroke');
+
       @include color-mx.on-dark-background {
-        background-image: url('#{form-check.$form-check-input-switch-disabled-background-url-dark}');
+        border: tokens.get('switch', 'disabled-border-width')
+          tokens.get('switch', 'disabled-border-style') color.$white-alpha-80;
       }
 
       @include utility-mx.high-contrast-mode {
-        background-image: url('#{form-check.$form-check-input-switch-disabled-background-url-hcm}') !important;
+        border: tokens.get('switch', 'disabled-border-width')
+          tokens.get('switch', 'disabled-border-style') GrayText;
       }
 
       & + .form-check-label {
@@ -296,19 +341,24 @@ tokens.$default-map: components.$post-switch;
 
       &::after {
         background-color: tokens.get('switch', 'element-disabled-fg');
-        background-image: url('#{form-check.$form-check-input-switch-handle-disabled-background-url-light}');
-   
+        border: tokens.get('switch', 'handle-disabled-border-width')
+          tokens.get('switch', 'handle-disabled-border-style')
+          tokens.get('switch', 'handle-disabled-border-stroke');
+
         @include color-mx.on-dark-background {
-          background-image: url('#{form-check.$form-check-input-switch-handle-disabled-background-url-dark}');
+          border: tokens.get('switch', 'handle-disabled-border-width')
+            tokens.get('switch', 'handle-disabled-border-style') color.$white-alpha-80;
         }
-  
+
         @include utility-mx.high-contrast-mode {
-          background-image: url('#{form-check.$form-check-input-switch-handle-disabled-background-url-hcm}') !important;
+          border: tokens.get('switch', 'handle-disabled-border-width')
+            tokens.get('switch', 'handle-disabled-border-style') GrayText;
         }
       }
 
-      &::before {
-        background-color: transparent;
+      &:checked::before {
+        background-color: tokens.get('switch', 'disabled-border-stroke');
+        mask-image: $switch-handle-icon-disabled;
       }
 
       @include utility-mx.high-contrast-mode {
@@ -325,9 +375,11 @@ tokens.$default-map: components.$post-switch;
 
   &:hover > .form-check-input:not([disabled]) {
     background-color: tokens.get('switch', 'element-hover-bg');
+    border-color: tokens.get('switch', 'element-hover-bg');
 
     &::after {
       background-color: tokens.get('switch', 'element-hover-fg');
+      border-color: tokens.get('switch', 'element-hover-fg');
     }
 
     &::before {
@@ -336,7 +388,7 @@ tokens.$default-map: components.$post-switch;
 
     @include utility-mx.high-contrast-mode {
       border-color: Highlight;
-      &::after{
+      &::after {
         background-color: CanvasText;
       }
     }
