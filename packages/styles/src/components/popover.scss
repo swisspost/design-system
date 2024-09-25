@@ -1,18 +1,9 @@
-@forward './../variables/options';
-
-@use './../themes/bootstrap/core' as *;
-@use './../themes/bootstrap/popover' as bp;
-
-@use './../variables/type';
-
-// Popover
 .popover {
   border-radius: 0;
   background-clip: border-box;
   text-align: left;
 }
 
-// Popover Header
 .popover-header {
   border-bottom: 0;
   font-weight: type.$font-weight-bold;
