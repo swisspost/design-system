@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Added v2 styles for the ´switch´ component and utilised available tokens.
+Added v2 styles for the ´switch´ component utilizing tokens.
