@@ -214,6 +214,15 @@ $switch-handle-icon: url("data:image/svg+xml,<svg viewBox='0 0 32 32' xmlns='htt
 $switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'><path d='m12.667 23.6-7.2-7.067 1.067-1.067 6.133 6.267L25.467 8.8l1.067 1.067z'/></svg>");
 
 .form-switch {
+  @include utility-mx.focus-style(
+    $offset: tokens.get('switch', 'focus-outline-offset'),
+    $width: tokens.get('switch', 'focus-border-width'),
+    $color: tokens.get('switch', 'focus-stroke')
+  ) {
+    border-radius: tokens.get('switch', 'focus-border-radius');
+    border-style: tokens.get('switch', 'focus-border-style');
+  }
+
   .form-check-input {
     position: relative;
     display: flex;
