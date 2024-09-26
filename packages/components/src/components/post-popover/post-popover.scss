@@ -34,5 +34,14 @@ tokens.$default-map: components.$post-popover;
   position: absolute;
   top: var(--post-device-spacing-gap-1);
   right: var(--post-device-spacing-gap-1);
-  color: inherit;
+  color: tokens.get('popover', 'close-button-enabled-fg');
+
+  &:not(:disabled):hover {
+    color: tokens.get('popover', 'close-button-hover-fg');
+    background-color: tokens.get('popover', 'close-button-hover-bg');
+  }
+  &:focus,
+  &:focus-visible {
+    outline-color: tokens.get('popover', 'close-button-focus-stroke');
+  }
 }
