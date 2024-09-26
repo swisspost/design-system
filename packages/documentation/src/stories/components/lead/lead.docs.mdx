@@ -1,5 +1,6 @@
 import { Meta, Canvas } from '@storybook/blocks';
 import * as LeadStories from './lead.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
 <Meta of={LeadStories} />
 
@@ -16,3 +17,4 @@ import * as LeadStories from './lead.stories';
 </div>
 
 <Canvas of={LeadStories.Default} sourceState="shown" />
+<StylesPackageImport components={['lead']} />
