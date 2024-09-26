@@ -1,0 +1,25 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as LinkStories from './link.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={LinkStories} />
+
+<div className="docs-title">
+  # Link
+
+  <nav>
+    <link-design of={JSON.stringify(LinkStories)}></link-design>
+  </nav>
+</div>
+<div className="lead">
+  Use links to navigate users to another location, such as a different site, resource, or section within the same page.
+</div>
+
+Apply the override classes for custom styling as needed.
+
+<Canvas sourceState="shown" of={LinkStories.Default} />
+<div className="hide-col-default">
+  <Controls of={LinkStories.Default} />
+</div>
+
+<StylesPackageImport components={["elements/link"]} />
