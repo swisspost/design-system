@@ -1,11 +1,35 @@
+@use 'sass:map';
+@use '../functions/tokens';
+@use '../tokens/components';
+
+tokens.$default-map: components.$post-popover;
+
 .popover {
-  border-radius: 0;
-  background-clip: border-box;
-  text-align: left;
+  font-size: tokens.get('popover', 'paragraph-font-size');
+
+  > a {
+    font-size: tokens.get('popover', 'link-font-size');
+    font-weight: tokens.get('popover', 'link-font-weight');
+    color: tokens.get('popover', 'link-enabled-fg');
+    padding-block: tokens.get('popover', 'link-padding-block');
+
+    &:hover {
+      color: tokens.get('popover', 'link-hover-fg');
+    }
+    &:focus,
+    &:focus-visible {
+      outline: tokens.get('popover', 'link-focus-stroke');
+      border-radius: tokens.get('popover', 'link-focus-border-radius');
+    }
+  }
+}
+
+.popover::selection {
+  // color: tokens.get('popover', 'text-selection-fg');
+  color: green;
+  background-color: red;
 }
 
 .popover-header {
-  border-bottom: 0;
-  font-weight: type.$font-weight-bold;
-  text-align: left;
+  font-size: tokens.get('popover', 'legend-font-size');
 }

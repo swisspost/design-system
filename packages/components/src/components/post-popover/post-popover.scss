@@ -1,40 +1,38 @@
-@use '@swisspost/design-system-styles/core' as post;
+@use 'sass:map';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/components/close';
 
-* {
-  box-sizing: border-box;
-}
-
-:host {
-  --post-contrast-color: #{post.$white};
-  --post-bg-rgb: #{post.rgb-values(post.$gray-80)};
-
-  display: block;
-}
-
-.visually-hidden {
-  @include post.visuallyhidden();
-}
+tokens.$default-map: components.$post-popover;
 
 .popover-container {
-  display: flex;
-  align-items: self-start;
-  padding: 0.5em;
-
+  position: relative;
   min-width: 160px;
   max-width: 280px;
+  color: tokens.get('popover', 'surface-fg');
+  background-color: tokens.get('popover', 'surface-bg');
+  border-radius: tokens.get('popover', 'surface-border-radius');
+  padding-block: tokens.get('popover', 'surface-padding-block');
+  padding-inline-start: tokens.get('popover', 'surface-padding-inline-start');
+  padding-inline-end: tokens.get('popover', 'surface-padding-inline-end');
+  box-shadow: tokens.get('popover', 'elevation');
 
   // Max available width on mobile, popovercontainer will handle offsets
-  @include post.media-breakpoint-down(rg) {
-    max-width: 100%;
-  }
+  // @include post.media-breakpoint-down(rg) {
+  //   max-width: 100%;
+  // }
 }
 
 .popover-content {
-  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
+  gap: tokens.get('popover', 'surface-gap-inline');
 }
 
 .btn-close {
+  position: absolute;
+  top: var(--post-device-spacing-gap-1);
+  right: var(--post-device-spacing-gap-1);
   color: inherit;
 }
