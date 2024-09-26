@@ -14,9 +14,13 @@ a {
   }
 
   &:focus {
-    outline: tokens.get('post-link', 'focus-outline-color')
-      tokens.get('post-link', 'focus-outline-style') tokens.get('post-link', 'focus-outline-width');
-    outline-offset: tokens.get('post-link', 'focus-outline-offset');
+    @include utilities.focus-style(
+      '',
+      tokens.get('post-link', 'focus-outline-offset'),
+      tokens.get('post-link', 'focus-outline-width'),
+      tokens.get('post-link', 'focus-outline-color'),
+      tokens.get('post-link', 'focus-outline-style')
+    );
   }
 
   @include utilities.high-contrast-mode() {
