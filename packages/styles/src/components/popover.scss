@@ -18,16 +18,14 @@ tokens.$default-map: components.$post-popover;
     }
     &:focus,
     &:focus-visible {
-      outline: tokens.get('popover', 'link-focus-stroke');
+      outline-color: tokens.get('popover', 'link-focus-stroke');
       border-radius: tokens.get('popover', 'link-focus-border-radius');
     }
   }
 }
 
 .popover::selection {
-  // color: tokens.get('popover', 'text-selection-fg');
-  color: green;
-  background-color: red;
+  color: tokens.get('popover', 'text-selected-fg');
 }
 
 .popover-header {
