@@ -33,6 +33,7 @@ const preview: Preview = {
           'Getting Started',
           [
             'Introduction',
+            'Design Principles',
             'Mission',
             'Angular',
             'Compatibility',
