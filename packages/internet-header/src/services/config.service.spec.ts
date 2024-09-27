@@ -32,6 +32,12 @@ const customConfig = {
             },
           ],
         },
+        {
+          title: 'Mein Link (custom config, no flyout)',
+          text: 'Mein Link',
+          url: '#',
+          noFlyout: true,
+        },
       ],
     },
     footer: {
