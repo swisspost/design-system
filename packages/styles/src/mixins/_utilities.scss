@@ -94,17 +94,23 @@
   outline: none;
 }
 
-@mixin focus-style($additional-selector: '') {
+@mixin focus-style(
+  $additional-selector: '',
+  $offset: spacing.$size-line,
+  $width: spacing.$size-line,
+  $color: var(--post-focus-color),
+  $style: solid
+) {
   &#{$additional-selector} {
     outline-style: none !important; // !important is needed to override bootstrap .form-control:focus
-    outline-offset: spacing.$size-line !important;
-    outline-width: spacing.$size-line !important;
-    outline-color: var(--post-focus-color) !important;
+    outline-offset: $offset !important;
+    outline-width: $width !important;
+    outline-color: $color !important;
   }
 
   // :has(:focus-visible) mimic a focus-visible-within pseudo-class
   &:is(:focus-visible, :has(:focus-visible), .pretend-focus)#{$additional-selector} {
-    outline-style: solid !important;
+    outline-style: $style !important;
 
     @include high-contrast-mode() {
       outline-color: Highlight !important;
@@ -117,7 +123,7 @@
   // When a browser doesn't support :has, use focus-within as a fallback. This means that focus state is displayed on focus and not on focus-visible only (except some browsers like Safari).
   @supports not selector(:has(:focus-visible)) {
     &:is(:focus-visible, :focus-within, .pretend-focus)#{$additional-selector} {
-      outline-style: solid !important;
+      outline-style: $style !important;
 
       @include high-contrast-mode() {
         outline-color: Highlight !important;
