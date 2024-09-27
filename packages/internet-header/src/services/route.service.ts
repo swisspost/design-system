@@ -76,10 +76,13 @@ const resetOverrideConfig = (config: NavMainEntity[]): NavMainEntity[] => {
   return config.map(nav => ({
     ...nav,
     isActiveOverride: false,
-    flyout: nav.flyout.map(flyout => ({
-      ...flyout,
-      linkList: flyout.linkList.map(link => ({ ...link, isActiveOverride: false })),
-    })),
+    // Check if flyout exists before attempting to map
+    flyout: nav.flyout
+      ? nav.flyout.map(flyout => ({
+          ...flyout,
+          linkList: flyout.linkList.map(link => ({ ...link, isActiveOverride: false })),
+        }))
+      : [],
   }));
 };
 
