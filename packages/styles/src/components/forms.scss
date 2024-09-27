@@ -1,7 +1,5 @@
 @forward './../variables/options';
 
-@use './../lic/bootstrap-license';
-
 @use './../variables/commons';
 @use './../variables/components/forms';
 @use './../variables/type';
@@ -13,7 +11,6 @@
 @use './../mixins/utilities';
 @use './../mixins/forms' as form-mixins;
 
-@use './../themes/bootstrap/forms/labels' as bfl;
 @use './../themes/bootstrap/forms/form-text' as bfft;
 @use './../themes/bootstrap/forms/form-control' as bffc;
 @use './../themes/bootstrap/forms/input-group' as bfig;

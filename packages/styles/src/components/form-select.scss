@@ -1,6 +1,5 @@
 @forward './../variables/options';
 
-@use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as b;
 @use './../themes/bootstrap/forms/form-select' as bffs;
 @use './../mixins/forms' as forms-mixins;
