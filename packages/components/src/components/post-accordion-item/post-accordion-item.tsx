@@ -29,7 +29,7 @@ export class PostAccordionItem {
    * Defines the hierarchical level of the accordion item header within the headings structure.
    * @deprecated set the `heading-level` property on the parent `post-accordion` instead.
    */
-  @Prop() readonly headingLevel?: HeadingLevel = 2;
+  @Prop() readonly headingLevel?: HeadingLevel;
 
   @Watch('headingLevel')
   validateHeadingLevel(newValue = this.headingLevel) {
@@ -51,7 +51,7 @@ export class PostAccordionItem {
   // capture to make sure the "collapsed" property is updated before the event is consumed
   @Listen('postToggle', { capture: true })
   onCollapseToggle(event: CustomEvent<boolean>): void {
-    if ((event.target as HTMLElement).localName === 'post-accordion-item') {
+    if (event.target === this.host && (event.target as HTMLElement).localName === 'post-accordion-item') {
       this.collapsed = !event.detail;
     }
   }

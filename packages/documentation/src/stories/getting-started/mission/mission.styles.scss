@@ -1,0 +1,55 @@
+@use '@swisspost/design-system-styles/core.scss' as post;
+
+.no-style-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.roles-list {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  justify-content: center;
+}
+
+.role-item {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.stakeholders-list {
+  justify-content: center;
+  align-items: center;
+}
+
+.stakeholder-item {
+  padding: 1rem;
+  border: 1px solid #dee2e6;
+  text-align: center;
+}
+
+.team-list {
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.team-item {
+  display: flex;
+  justify-content: center;
+  border: 1px solid #dee2e6;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+  font-weight: bold;
+}
+
+.alert {
+  margin-top: 1rem;
+}
+
+.quality-text {
+  margin-top: 1rem;
+  text-align: left;
+}
