@@ -170,6 +170,10 @@
   overflow-x: hidden;
 }
 
+.sbdocs-preview:not([data-color-mode]) {
+  display: none;
+}
+
 .fake-content {
   position: relative;
   min-height: calc(1.6rem * 8);
