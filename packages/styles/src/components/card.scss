@@ -24,6 +24,7 @@
   // Outline with card-group margin trick prevents double/jumping (on hover) borders
   outline: 1px solid card.$card-border-color;
   box-shadow: commons.$box-shadow-lg;
+  color: card.$card-color;
 
   &.product-card,
   &.card-button {
