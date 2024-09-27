@@ -34,6 +34,7 @@ const preview: Preview = {
           [
             'Introduction',
             'Design Principles',
+            'Mission',
             'Angular',
             'Compatibility',
             'Packages',

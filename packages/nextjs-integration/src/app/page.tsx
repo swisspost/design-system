@@ -242,7 +242,7 @@ export default function Home() {
           </PostTabPanel>
         </PostTabs>
         <h3>Frequently asked questions</h3>
-        <PostAccordion className="mt-big-r" multiple>
+        <PostAccordion headingLevel={4} className="mt-big-r" multiple>
           <PostAccordionItem>
             <span slot="header">Is this for real?</span>
             <p>No, this is just a fantasy.</p>
