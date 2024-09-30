@@ -100,8 +100,8 @@ function render(args: Args) {
       placement="${args.placement}"
       ?arrow="${args.arrow}"
     >
-      ${args.title ? html` <h2 class="h6">Optional title</h2> ` : null}
-      <p class="mb-0">${unsafeHTML(args.innerHtml)}</p>
+      ${args.title ? html` <h2 class="popover-header">Optional title</h2> ` : null}
+      <p class="popover">${unsafeHTML(args.innerHtml)}</p>
     </post-popover>
   `;
 }
