@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/components/close';
@@ -15,7 +15,7 @@ tokens.$default-map: components.$post-popover;
   padding-inline-end: tokens.get('popover', 'surface-padding-inline-end');
 
   // Max available width on mobile, popovercontainer will handle offsets
-  @include post.media-breakpoint-down(rg) {
+  @include media.max(600px) {
     max-width: 100%;
   }
 }
