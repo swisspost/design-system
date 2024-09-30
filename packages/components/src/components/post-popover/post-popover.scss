@@ -1,9 +1,8 @@
+@use '@swisspost/design-system-styles/core' as post;
 @use 'sass:map';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/components/close';
-
-@use '@swisspost/design-system-styles/core' as post;
 
 tokens.$default-map: components.$post-popover;
 
@@ -11,13 +10,9 @@ tokens.$default-map: components.$post-popover;
   position: relative;
   min-width: 160px;
   max-width: 280px;
-  color: tokens.get('popover', 'surface-fg');
-  background-color: tokens.get('popover', 'surface-bg');
-  border-radius: tokens.get('popover', 'surface-border-radius');
   padding-block: tokens.get('popover', 'surface-padding-block');
   padding-inline-start: tokens.get('popover', 'surface-padding-inline-start');
   padding-inline-end: tokens.get('popover', 'surface-padding-inline-end');
-  box-shadow: tokens.get('popover', 'elevation');
 
   // Max available width on mobile, popovercontainer will handle offsets
   @include post.media-breakpoint-down(rg) {
