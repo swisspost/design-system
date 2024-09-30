@@ -28,10 +28,6 @@ tokens.$default-map: components.$post-popover;
   }
 }
 
-.popover::selection {
-  color: tokens.get('popover', 'text-selected-fg');
-}
-
 .popover-header {
   font-size: tokens.get('popover', 'legend-font-size');
   font-weight: tokens.get('legend', 'font-weight', elements.$post-legend);
