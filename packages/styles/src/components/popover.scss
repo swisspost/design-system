@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use '../functions/tokens';
 @use '../tokens/components';
+@use '../tokens/elements';
 
 tokens.$default-map: components.$post-popover;
 
@@ -30,4 +31,6 @@ tokens.$default-map: components.$post-popover;
 
 .popover-header {
   font-size: tokens.get('popover', 'legend-font-size');
+  font-weight: tokens.get('legend', 'font-weight', elements.$post-legend);
+  margin: 0;
 }
