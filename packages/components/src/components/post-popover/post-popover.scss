@@ -3,6 +3,8 @@
 @use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/components/close';
 
+@use '@swisspost/design-system-styles/core' as post;
+
 tokens.$default-map: components.$post-popover;
 
 .popover-container {
@@ -18,9 +20,9 @@ tokens.$default-map: components.$post-popover;
   box-shadow: tokens.get('popover', 'elevation');
 
   // Max available width on mobile, popovercontainer will handle offsets
-  // @include post.media-breakpoint-down(rg) {
-  //   max-width: 100%;
-  // }
+  @include post.media-breakpoint-down(rg) {
+    max-width: 100%;
+  }
 }
 
 .popover-content {
