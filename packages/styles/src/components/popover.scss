@@ -21,6 +21,9 @@ tokens.$default-map: components.$post-popover;
     &:focus-visible {
       outline-color: tokens.get('popover', 'link-focus-stroke');
       border-radius: tokens.get('popover', 'link-focus-border-radius');
+      outline-width: tokens.get('popover', 'focus-border-width');
+      outline-offset: tokens.get('popover', 'focus-padding');
+      outline-style: solid;
     }
   }
 }
