@@ -1,7 +1,7 @@
-@use './../themes/bootstrap/core' as *;
-@use '../tokens/components' as components;
-@use '../functions/tokens' as tokens;
-@use './../functions/icons';
+@use './../mixins/media';
+@use '../tokens/components';
+@use '../functions/tokens';
+@use '../mixins/icons';
 
 tokens.$default-map: components.$post-list;
 
@@ -21,24 +21,34 @@ $padding-icon: tokens.get('post-list-checks', 'spacing-padding-icon');
       } + #{$sizing-icon}
     );
 
-    &::before {
+    &::before,
+    &::after {
       content: '';
       position: absolute;
-      left: 0;
-      width: $sizing-icon;
-      height: $sizing-icon;
-      padding: $padding-icon;
-      background-repeat: no-repeat;
-      background-position-x: 50%;
-      background-position-y: center;
-      background-color: tokens.get('post-list-checks', 'color-icon-bg');
-      border-radius: 50%;
-      background-size: calc(#{$sizing-icon} - #{$padding-icon} * 2);
-      background-image: url('#{icons.get-colored-svg-url("2105", "white")}'); // 'white' should be changed with variable
     }
 
-    @include media-breakpoint-down(sm) {
-      &::before {
+    &::before {
+      @include icons.icon(2105);
+      left: calc($padding-icon);
+      top: calc($padding-icon);
+      width: $sizing-icon;
+      height: $sizing-icon;
+      background-color: tokens.get('post-list-checks', 'color-icon-fg');
+      z-index: 2;
+    }
+
+    &::after {
+      left: 0;
+      top: 0;
+      width: calc(#{$sizing-icon} + (#{$padding-icon} * 2));
+      height: calc(#{$sizing-icon} + (#{$padding-icon} * 2));
+      background-color: tokens.get('post-list-checks', 'color-icon-bg');
+      border-radius: 50%;
+    }
+
+    @include media.max(400px) {
+      &::before,
+      &::after {
         margin: tokens.get('post-list-checks', 'spacing-padding-icon');
       }
     }
