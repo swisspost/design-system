@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "gulp watch",
-    "play": "vite",
+    "play": "vite --open",
     "build": "pnpm clean && gulp build",
     "unit": "gulp sass:tests",
     "clean": "rimraf out-tsc dist",
