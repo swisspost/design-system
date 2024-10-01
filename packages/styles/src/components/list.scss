@@ -17,8 +17,8 @@ $padding-icon: tokens.get('list-simple-checks', 'spacing-padding-icon');
   > li {
     position: relative;
     padding-inline-start: calc(
-      #{tokens.get('list-simple-checks', 'spacing-gap-inline-text'),
-      } + #{$sizing-icon}
+      #{tokens.get('list-simple-checks', 'spacing-gap-inline-text')} + #{$sizing-icon} +
+        (#{$padding-icon} * 2)
     );
 
     &::before,
