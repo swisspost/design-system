@@ -12,27 +12,53 @@
 @use '../tokens/components' as components;
 @use '../functions/tokens' as tokens;
 
-tokens.$default-map: components.$post-radio-button;
-
+tokens.$default-map: components.$post-switch;
 
 .form-check {
   display: flex;
   flex-wrap: wrap;
-  row-gap: form-check.$form-check-row-gap;
-  margin-bottom: form-check.$form-check-margin-bottom;
+  align-items: center;
+  &[type='radio'] {
+    row-gap: tokens.get('radio-button', 'gap-block-group', components.$post-radio-button);
+    padding-block: tokens.get('radio-button', 'padding-block-text', components.$post-radio-button);
 
-  @include utility-mx.focus-style-custom() {
-    outline: tokens.get('radio-button', 'focus-border-width') solid tokens.get('radio-button', 'focus-stroke');
-    color: tokens.get('radio-button', 'selected-fg');
-    background-color: tokens.get('radio-button', 'selected-bg');
-    .form-check-input[type='radio'] {
-      border-color: tokens.get('radio-button', 'selected-stroke');
+    @include utility-mx.focus-style(
+      // $offset: tokens.get('radio-button', 'focus-border-offset', components.$post-radio-button),
+      $width: tokens.get('radio-button', 'focus-border-width', components.$post-radio-button),
+      $color: tokens.get('radio-button', 'focus-stroke', components.$post-radio-button),
+      // $style: tokens.get('radio-button', 'focus-border-style', components.$post-radio-button)
+    ) {
+      color: tokens.get('radio-button', 'selected-fg', components.$post-radio-button);
+      background-color: tokens.get('radio-button', 'selected-bg', components.$post-radio-button);
+      border-radius: tokens.get(
+        'radio-button',
+        'border-radius-round',
+        components.$post-radio-button
+      );
+      .form-check-input[type='radio'] {
+        border-color: tokens.get('radio-button', 'selected-stroke', components.$post-radio-button);
+      }
     }
-
-    // TODO: Use tokens for these (not yet provided)
-    outline-offset: 3px !important;
-    border-radius: commons.$border-radius;
   }
+
+  &[type='checkbox'] {
+    row-gap: tokens.get('checkbox', 'gap-block-group', components.$post-checkbox);
+    padding-block: tokens.get('checkbox', 'padding-block-text', components.$post-checkbox);
+    @include utility-mx.focus-style(
+      // $offset: tokens.get('checkbox', 'focus-border-offset', components.$post-checkbox),
+      $width: tokens.get('checkbox', 'focus-border-width', components.$post-checkbox),
+      $color: tokens.get('checkbox', 'focus-stroke', components.$post-checkbox),
+      // $style: tokens.get('checkbox', 'focus-border-style', components.$post-checkbox)
+    ) {
+      color: tokens.get('checkbox', 'selected-fg', components.$post-checkbox);
+      background-color: tokens.get('checkbox', 'selected-bg', components.$post-checkbox);
+      border-radius: tokens.get('checkbox', 'border-radius', components.$post-checkbox);
+      .form-check-input[type='radio'] {
+        border-color: tokens.get('checkbox', 'selected-stroke', components.$post-checkbox);
+      }
+    }
+  }
+  margin-bottom: form-check.$form-check-margin-bottom;
 
   &-inline {
     display: inline-flex;
@@ -44,8 +70,15 @@ tokens.$default-map: components.$post-radio-button;
 
   &-input,
   &-label {
-    color: tokens.get('radio-button', 'enabled-fg');
-    background-color: tokens.get('radio-button', 'enabled-bg');
+    &[type='radio'] {
+      color: tokens.get('radio-button', 'enabled-fg', components.$post-radio-button);
+      background-color: tokens.get('radio-button', 'enabled-bg', components.$post-radio-button);
+    }
+
+    &[type='checkbox'] {
+      color: tokens.get('checkbox', 'enabled-fg', components.$post-checkbox);
+      background-color: tokens.get('checkbox', 'enabled-bg', components.$post-checkbox);
+    }
     transition: color #{animation.$transition-base-timing};
 
     @include utility-mx.high-contrast-mode {
@@ -54,9 +87,17 @@ tokens.$default-map: components.$post-radio-button;
 
     &:hover:not([disabled]),
     &:hover:not([disabled]) ~ &-label {
-      color: tokens.get('radio-button', 'hover-fg');
-      background-color: tokens.get('radio-button', 'hover-bg');
-      border-color: tokens.get('radio-button', 'hover-stroke');
+      &[type='radio'] {
+        color: tokens.get('radio-button', 'hover-fg', components.$post-radio-button);
+        background-color: tokens.get('radio-button', 'hover-bg', components.$post-radio-button);
+        border-color: tokens.get('radio-button', 'hover-stroke', components.$post-radio-button);
+      }
+
+      &[type='checkbox'] {
+        color: tokens.get('checkbox', 'hover-fg', components.$post-checkbox);
+        background-color: tokens.get('checkbox', 'hover-bg', components.$post-checkbox);
+        border-color: tokens.get('checkbox', 'hover-stroke', components.$post-checkbox);
+      }
 
       @include utility-mx.high-contrast-mode() {
         border-color: Highlight;
@@ -76,10 +117,32 @@ tokens.$default-map: components.$post-radio-button;
     flex: 0 auto;
     appearance: none;
     background: transparent;
-    height: tokens.get('radio-button','icon-height-inner');
-    width: tokens.get('radio-button', 'icon-width-inner');
-    border: tokens.get('radio-button', 'icon-border-width') solid tokens.get('radio-button', 'enabled-stroke');
-    margin-top: 1px;
+
+    &[type='radio'] {
+      height: tokens.get('radio-button', 'icon-height-inner', components.$post-radio-button);
+      width: tokens.get('radio-button', 'icon-width-inner', components.$post-radio-button);
+      border: tokens.get('radio-button', 'icon-border-width', components.$post-radio-button) solid
+        tokens.get('radio-button', 'enabled-stroke', components.$post-radio-button);
+      padding-block: tokens.get(
+        'radio-button',
+        'icon-padding-block-inner',
+        components.$post-radio-button
+      );
+      padding-inline: tokens.get(
+        'radio-button',
+        'icon-padding-inline-inner',
+        components.$post-radio-button
+      );
+    }
+
+    &[type='checkbox'] {
+      height: tokens.get('checkbox', 'icon-height-inner', components.$post-checkbox);
+      width: tokens.get('checkbox', 'icon-width-inner', components.$post-checkbox);
+      border: tokens.get('checkbox', 'icon-border-width', components.$post-checkbox) solid
+        tokens.get('checkbox', 'enabled-stroke', components.$post-checkbox);
+      padding-block: tokens.get('checkbox', 'icon-padding-inline-inner', components.$post-checkbox);
+      padding-inline: tokens.get('checkbox', 'icon-padding-block-inner', components.$post-checkbox);
+    }
 
     @include utility-mx.high-contrast-mode {
       border-color: FieldText; // For blink-browser as otherwise the default color (which is not a full color) will be converted to Highlight
@@ -93,7 +156,7 @@ tokens.$default-map: components.$post-radio-button;
 
     &[type='checkbox'] {
       &:checked::after {
-        @include icons-mx.icon(3035);
+        @include icons-mx.icon(2105);
       }
 
       &:indeterminate::after {
@@ -110,12 +173,16 @@ tokens.$default-map: components.$post-radio-button;
     }
 
     &[type='radio'] {
-      border-radius: tokens.get('radio-button', 'border-radius-round');
+      border-radius: tokens.get(
+        'radio-button',
+        'border-radius-round',
+        components.$post-radio-button
+      );
 
       &:checked::after {
         // TODO: Use tokens
-        border: 3px solid transparent;
-        background-color: currentColor;
+        border: 3px solid tokens.get('radio-button', 'enabled-bg', components.$post-radio-button);
+        background-color: tokens.get('radio-button', 'enabled-fg', components.$post-radio-button);
         border-radius: inherit;
         background-clip: padding-box;
 
@@ -126,15 +193,37 @@ tokens.$default-map: components.$post-radio-button;
       }
 
       &[disabled] {
-        padding: spacing.$size-line; // Used to mimic border width because it is used in combination with background-clip: padding-box; to size the selected shape
-        background-image: url('#{form-check.$form-check-input-radio-disabled-background-url-light}');
+        &[type='radio'] {
+          background-color: tokens.get(
+            'radio-button',
+            'disabled-bg',
+            components.$post-radio-button
+          );
+          border: tokens.get('radio-button', 'icon-border-width', components.$post-radio-button)
+            dashed tokens.get('radio-button', 'disabled-stroke', components.$post-radio-button);
 
-        @include color-mx.on-dark-background {
-          background-image: url('#{form-check.$form-check-input-radio-disabled-background-url-dark}');
+          @include color-mx.on-dark-background {
+            border: tokens.get('radio-button', 'icon-border-width', components.$post-radio-button)
+              dashed color.$white-alpha-80;
+          }
+          @include utility-mx.high-contrast-mode {
+            border: tokens.get('radio-button', 'icon-border-width', components.$post-radio-button)
+              dashed GrayText;
+          }
         }
 
-        @include utility-mx.high-contrast-mode {
-          background-image: url('#{form-check.$form-check-input-radio-disabled-background-url-hcm}') !important;
+        &[type='checkbox'] {
+          background-color: tokens.get('checkbox', 'disabled-bg', components.$post-checkbox);
+          border: tokens.get('checkbox', 'icon-border-width', components.$post-checkbox) dashed
+            tokens.get('checkbox', 'disabled-stroke', components.$post-checkbox);
+          @include color-mx.on-dark-background {
+            border: tokens.get('checkbox', 'icon-border-width', components.$post-checkbox) dashed
+              color.$white-alpha-80;
+          }
+          @include utility-mx.high-contrast-mode {
+            border: tokens.get('checkbox', 'icon-border-width', components.$post-checkbox) dashed
+              GrayText;
+          }
         }
       }
     }
@@ -165,48 +254,32 @@ tokens.$default-map: components.$post-radio-button;
         }
       }
 
-      border: 0;
-      background-image: url('#{form-check.$form-check-input-disabled-background-url-light-lg}');
+      // border: 0;
+      // background-image: url('#{form-check.$form-check-input-disabled-background-url-light-lg}');
 
-      @include color-mx.on-dark-background {
-        background-image: url('#{form-check.$form-check-input-disabled-background-url-dark-lg}');
-      }
+      // @include color-mx.on-dark-background {
+      //   background-image: url('#{form-check.$form-check-input-disabled-background-url-dark-lg}');
+      // }
 
-      @include utility-mx.high-contrast-mode {
-        background-image: url('#{form-check.$form-check-input-disabled-background-url-hcm-lg}') !important;
-      }
-
-      .form-check-sm &[type='checkbox'] {
-        background-image: url('#{form-check.$form-check-input-disabled-background-url-light-sm}');
-
-        @include color-mx.on-dark-background {
-          background-image: url('#{form-check.$form-check-input-disabled-background-url-dark-sm}');
-        }
-
-        @include utility-mx.high-contrast-mode {
-          background-image: url('#{form-check.$form-check-input-disabled-background-url-hcm-sm}') !important;
-        }
-      }
+      // @include utility-mx.high-contrast-mode {
+      //   background-image: url('#{form-check.$form-check-input-disabled-background-url-hcm-lg}') !important;
+      // }
     }
 
     &[disabled],
     &[disabled] ~ .form-check-label {
-      color: tokens.get('radio-button', 'disabled-fg');
-      background-color: tokens.get('radio-button', 'disabled-bg');
+      &[type='radio'] {
+        color: tokens.get('radio-button', 'disabled-fg', components.$post-radio-button);
+        background-color: tokens.get('radio-button', 'disabled-bg', components.$post-radio-button);
+      }
+
+      &[type='checkbox'] {
+        color: tokens.get('checkbox', 'disabled-fg', components.$post-checkbox);
+        background-color: tokens.get('checkbox', 'disabled-bg', components.$post-checkbox);
+      }
 
       @include color-mx.on-dark-background() {
         color: color.$white-alpha-80;
-      }
-    }
-
-    .form-check-sm & {
-      height: form-check.$form-check-input-size-sm;
-      width: form-check.$form-check-input-size-sm;
-
-      &[type='radio'] {
-        &:checked::after {
-          border-width: spacing.$size-line;
-        }
       }
     }
   }
@@ -216,10 +289,6 @@ tokens.$default-map: components.$post-radio-button;
 
     :not(.form-switch, .radio-button-card, .checkbox-button-card) > & {
       padding-inline-start: form-check.$form-check-column-gap;
-    }
-
-    .form-check-sm & {
-      font-size: type.$font-size-12;
     }
   }
 }
