@@ -1,23 +1,23 @@
 @use '../mixins/media';
 @use '../mixins/icons';
-@use '../tokens/components';
 @use '../functions/tokens';
+@use '../tokens/components';
 
 tokens.$default-map: components.$post-list;
 
-$sizing-icon: tokens.get('post-list-checks', 'sizing-icon');
-$padding-icon: tokens.get('post-list-checks', 'spacing-padding-icon');
+$sizing-icon: tokens.get('list-simple-checks', 'sizing-icon');
+$padding-icon: tokens.get('list-simple-checks', 'spacing-padding-icon');
 
 .list-checks {
   list-style: none;
   padding-left: 0;
-  padding-block: tokens.get('post-list-checks', 'spacing-padding-block-outer');
+  padding-block: tokens.get('list-simple-checks', 'spacing-padding-block-outer');
   margin-bottom: 0;
 
   > li {
     position: relative;
     padding-inline-start: calc(
-      #{tokens.get('post-list-checks', 'spacing-gap-inline-text'),
+      #{tokens.get('list-simple-checks', 'spacing-gap-inline-text'),
       } + #{$sizing-icon}
     );
 
@@ -33,7 +33,7 @@ $padding-icon: tokens.get('post-list-checks', 'spacing-padding-icon');
       top: calc($padding-icon);
       width: $sizing-icon;
       height: $sizing-icon;
-      background-color: tokens.get('post-list-checks', 'color-icon-fg');
+      background-color: tokens.get('list-checks', 'color-icon-fg');
       z-index: 2;
     }
 
@@ -42,14 +42,14 @@ $padding-icon: tokens.get('post-list-checks', 'spacing-padding-icon');
       top: 0;
       width: calc(#{$sizing-icon} + (#{$padding-icon} * 2));
       height: calc(#{$sizing-icon} + (#{$padding-icon} * 2));
-      background-color: tokens.get('post-list-checks', 'color-icon-bg');
+      background-color: tokens.get('list-checks', 'color-icon-bg');
       border-radius: 50%;
     }
 
     @include media.max(400px) {
       &::before,
       &::after {
-        margin: tokens.get('post-list-checks', 'spacing-padding-icon');
+        margin: tokens.get('list-simple-checks', 'spacing-padding-icon');
       }
     }
 
@@ -59,6 +59,6 @@ $padding-icon: tokens.get('post-list-checks', 'spacing-padding-icon');
   }
 
   > li:not(:last-child) {
-    margin-block-end: tokens.get('post-list-checks', 'spacing-gap-block-text');
+    margin-block-end: tokens.get('list-simple-checks', 'spacing-gap-block-text');
   }
 }
