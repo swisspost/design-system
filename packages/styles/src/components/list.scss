@@ -1,7 +1,7 @@
-@use './../mixins/media';
+@use '../mixins/media';
+@use '../mixins/icons';
 @use '../tokens/components';
 @use '../functions/tokens';
-@use '../mixins/icons';
 
 tokens.$default-map: components.$post-list;
 
