@@ -17,6 +17,7 @@ tokens.$default-map: components.$post-popover;
     &:hover {
       color: tokens.get('popover', 'link-hover-fg');
     }
+
     &:focus,
     &:focus-visible {
       outline-color: tokens.get('popover', 'link-focus-stroke');
