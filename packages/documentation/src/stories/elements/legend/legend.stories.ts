@@ -21,9 +21,7 @@ type Story = StoryObj;
 export const Default: Story = {
   render: () => html`
     <fieldset>
-      <fieldset>
-        <legend>Default legend</legend>
-      </fieldset>
+      <legend>Default legend</legend>
     </fieldset>
   `,
 };
@@ -31,7 +29,7 @@ export const Default: Story = {
 export const Large: Story = {
   render: () => html`
     <fieldset>
-      <legend post-size="large">Large legend</legend>
+      <legend class="legend-large">Large legend</legend>
     </fieldset>
   `,
 };
