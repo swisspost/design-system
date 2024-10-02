@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': minor
 ---
 
-Added Lead component
+Added lead text component for introductory paragraphs.
