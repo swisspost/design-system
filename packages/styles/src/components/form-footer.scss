@@ -6,23 +6,27 @@
 @use '../variables/spacing';
 @use './../variables/breakpoints';
 @use '../mixins/utilities' as utility-mx;
+@use '../tokens/components' as components;
+@use '../functions/tokens' as tokens;
+
+tokens.$default-map: components.$post-form-footer;
 
 .form-footer {
-  border-top: $border-thick solid $black;
-  padding-top: $size-large;
+  border-top: tokens.get('post-form-footer', 'post-form-footer-border-top-width') solid
+    tokens.get('post-form-footer', 'post-form-footer-border-top-color');
+  padding-top: tokens.get('post-form-footer', 'post-form-footer-padding-top-s');
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: $size-mini;
+  gap: tokens.get('post-form-footer', 'post-form-footer-gap');
 
   &-right-actions {
     @include utility-mx.responsive-actions();
-    gap: $size-mini;
+    gap: tokens.get('post-form-footer', 'post-form-footer-gap');
   }
 
   @include media-breakpoint-up(md) {
-    padding-top: $size-big;
+    padding-top: tokens.get('post-form-footer', 'post-form-footer-padding-top-m');
     flex-direction: row;
   }
 }
-
