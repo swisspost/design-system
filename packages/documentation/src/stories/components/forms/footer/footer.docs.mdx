@@ -1,0 +1,22 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as FooterStories from './footer.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={FooterStories} />
+
+<div className="docs-title">
+  # Footer
+
+  <nav>
+    <link-design of={JSON.stringify(FooterStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  The form footer is placed at the end/bottom of a form or a form step, in case the form is splitted with a stepper. It provides workflow-related actions to the form or form step.
+</div>
+
+<Canvas sourceState="shown" of={FooterStories.Default} />
+<div className="hide-col-default">
+  <Controls of={FooterStories.Default} />
+</div>

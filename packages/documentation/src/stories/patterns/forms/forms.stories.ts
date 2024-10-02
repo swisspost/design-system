@@ -355,21 +355,17 @@ export const Hints: Story = {
 
 export const Footer: Story = {
   render: () => html`
-    <div class="border-light border border-2 border-bottom-0 border-start-0 border-end-0">
-      <div
-        class="pt-large pt-md-big d-flex flex-column flex-md-row justify-content-between gap-mini"
-      >
-        <button class="btn btn-tertiary">
-          <post-icon aria-hidden="true" name="3024"></post-icon>
-          Back
+    <div class="form-footer">
+      <button class="btn btn-tertiary">
+        <post-icon aria-hidden="true" name="3024"></post-icon>
+        Back
+      </button>
+      <div class="form-footer-right-actions">
+        <button class="btn btn-primary">
+          Send
+          <post-icon aria-hidden="true" name="3020"></post-icon>
         </button>
-        <div class="d-flex flex-column flex-md-row-reverse gap-mini">
-          <button class="btn btn-primary">
-            Send
-            <post-icon aria-hidden="true" name="3020"></post-icon>
-          </button>
-          <button class="btn btn-secondary">Cancel</button>
-        </div>
+        <button class="btn btn-secondary">Cancel</button>
       </div>
     </div>
   `,

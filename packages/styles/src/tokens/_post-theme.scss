@@ -5,7 +5,4 @@
 
 :root {
   @include tokens.from(themes.$post-post);
-  --bs-border-width: 1px;
-  --bs-border-color: var(--post-core-color-brand-black);
-  --bs-border-style: solid;
 }

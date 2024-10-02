@@ -1,5 +1,7 @@
+@use './../themes/bootstrap/core' as *;
 @use '../variables/spacing';
 @use '../variables/commons';
+@use '../variables/breakpoints';
 
 @mixin reset-list() {
   margin: 0;
@@ -174,5 +176,14 @@
       color: GrayText;
       border-color: GrayText;
     }
+  }
+}
+
+@mixin responsive-actions {
+  display: flex;
+  flex-direction: column;
+
+  @include media-breakpoint-up(md) {
+    flex-direction: row-reverse;
   }
 }
