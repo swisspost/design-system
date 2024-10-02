@@ -8,6 +8,7 @@ import { HighlightProvider } from '../common/highlight.provider';
 import { IntranetHeaderDemoRegularComponent } from './components/intranet-header-demo-regular/intranet-header-demo-regular.component';
 import { IntranetHeaderDemoBigSidebarComponent } from './components/intranet-header-demo-big-sidebar/intranet-header-demo-big-sidebar.component';
 import { IntranetHeaderDemoSmallSidebarComponent } from './components/intranet-header-demo-small-sidebar/intranet-header-demo-small-sidebar.component';
+import { IntranetHeaderDemoCondensedComponent } from './components/intranet-header-demo-condensed/intranet-header-demo-condensedomponent.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule, NgbModule, SwissPostIntranetHeaderModule, HighlightModule],
@@ -16,11 +17,13 @@ import { IntranetHeaderDemoSmallSidebarComponent } from './components/intranet-h
     IntranetHeaderDemoRegularComponent,
     IntranetHeaderDemoBigSidebarComponent,
     IntranetHeaderDemoSmallSidebarComponent,
+    IntranetHeaderDemoCondensedComponent,
   ],
   exports: [
     IntranetHeaderDemoRegularComponent,
     IntranetHeaderDemoBigSidebarComponent,
     IntranetHeaderDemoSmallSidebarComponent,
+    IntranetHeaderDemoCondensedComponent,
   ],
   providers: [HighlightProvider.Config],
 })

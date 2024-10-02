@@ -180,6 +180,20 @@ const meta: MetaComponent = {
         },
       },
     },
+    condenseHeader: {
+      name: 'condenseHeader',
+      description:
+        'Arranges the header in a single line, displaying the title, menu items, and settings (such as language options)',
+      control: 'boolean',
+      table: {
+        defaultValue: {
+          summary: 'false',
+        },
+        type: {
+          summary: 'boolean',
+        },
+      },
+    },
   },
 };
 
