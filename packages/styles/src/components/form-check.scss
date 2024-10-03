@@ -223,7 +223,15 @@ $switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' x
     $color: tokens.get('switch', 'focus-stroke'),
     $style: tokens.get('switch', 'focus-border-style')
   ) {
-    border-radius: tokens.get('switch', 'focus-border-radius');
+    width: fit-content;
+
+    &:not(:has(> input[aria-label])) {
+      border-radius: tokens.get('switch', 'focus-border-radius');
+    }
+
+    &:has(> input[aria-label]) {
+      border-radius: tokens.get('switch', 'border-radius-round');
+    }
   }
 
   .form-check-input {
@@ -288,7 +296,7 @@ $switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' x
         border-color: tokens.get('switch', 'handle-selected-stroke');
       }
 
-      & + .form-check-label {
+      + .form-check-label {
         color: tokens.get('switch', 'text-selected-fg');
       }
     }
@@ -335,7 +343,7 @@ $switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' x
           GrayText;
       }
 
-      & + .form-check-label {
+      + .form-check-label {
         color: tokens.get('switch', 'text-disabled-fg');
       }
 
@@ -381,12 +389,13 @@ $switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' x
       border-color: tokens.get('switch', 'handle-hover-stroke');
     }
 
-    &::before {
-      background-color: transparent;
+    &:checked::before {
+      background-color: tokens.get('switch', 'element-hover-bg');
     }
 
     @include utility-mx.high-contrast-mode {
       border-color: Highlight;
+
       &::after {
         background-color: CanvasText;
       }

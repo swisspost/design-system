@@ -18,7 +18,7 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    labelPosition: 'before',
+    labelPosition: 'after',
     label: 'Notifications',
     hiddenLabel: false,
     checked: false,
