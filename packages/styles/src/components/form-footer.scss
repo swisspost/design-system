@@ -6,7 +6,7 @@
 @use '../variables/spacing';
 @use './../variables/breakpoints';
 @use '../mixins/utilities' as utility-mx;
-@use '../tokens/components' as components;
+@use '../tokens/temp-form-footer' as components;
 @use '../functions/tokens' as tokens;
 
 tokens.$default-map: components.$post-form-footer;
