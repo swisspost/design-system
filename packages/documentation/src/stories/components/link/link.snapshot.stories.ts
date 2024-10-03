@@ -18,7 +18,10 @@ export const Link: Story = {
       <div>
         ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div class="${bg} d-flex flex-column gap-regular p-regular mt-regular">
+            <div
+              class="${bg} d-flex flex-column gap-regular p-regular mt-regular"
+              data-color-mode="${bg === 'bg-white' ? 'light' : 'dark'}"
+            >
               ${bombArgs({
                 text: ['Link Text', 'Lorem ipsum dolor sit amet consectetur'],
                 href: ['https://example.com', 'https://imgur.com/FKmX7dt'],
