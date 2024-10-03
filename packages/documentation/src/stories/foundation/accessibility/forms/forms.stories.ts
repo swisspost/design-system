@@ -3,8 +3,8 @@ import { MetaExtended } from '@root/types';
 import { html } from 'lit';
 
 const meta: MetaExtended = {
-  id: '46da78e8-e83b-4ca1-aaf6-bbc662efef14',
-  title: 'Foundations/Accessibility',
+  id: 'cb34361c-7d3f-4c21-bb9c-874c73e82578',
+  title: 'Foundations/Accessibility/Forms',
   parameters: {
     badges: [],
   },
@@ -298,4 +298,36 @@ export const FormBadExample: Story = {
 
       addInputChangeListener();
     </script>`,
+};
+
+
+export const FieldsetDontExample: Story = {
+  render: () => html`<fieldset>
+  <div>
+    <legend>Gender</legend>
+     <input type="radio" name="gender" value="male"> Male
+     <input type="radio" name="gender" value="female"> Female
+  </div>
+</fieldset>`,
+};
+
+
+
+export const FieldsetDoExample: Story = {
+  render: () => html`<fieldset>
+  <legend>Gender</legend>
+  <input type="radio" name="gender" value="male"> Male
+  <input type="radio" name="gender" value="female"> Female
+</fieldset>`,
+};
+
+
+
+
+export const DivForGroupingExample: Story = {
+  render: () => html`<div role="group" aria-labelledby="group-label">
+  <span id="group-label">Gender</span>
+  <input type="radio" name="gender" value="male"> Male
+  <input type="radio" name="gender" value="female"> Female
+</div>`,
 };
