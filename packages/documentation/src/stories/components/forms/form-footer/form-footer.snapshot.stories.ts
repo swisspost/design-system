@@ -20,27 +20,30 @@ export const FormFooter: Story = {
           bg => html`
             <div class="${bg} d-flex flex-column p-3 gap-3">
               ${bombArgs({
-                leftAction: [true, false],
-              })
-                .map(
-                  args => html`
-                    <div class="form-footer">
-                      ${args.leftAction
-                        ? html`
-                            <button class="btn btn-tertiary">
-                              <post-icon aria-hidden="true" name="3024"></post-icon>Back
-                            </button>
-                          `
+                secondaryButton: [true, false],
+                tertiaryButton: [true, false],
+              }).map(
+                args => html`
+                  <div class="form-footer">
+                    ${args.tertiaryButton
+                      ? html`
+                          <button class="btn btn-tertiary">
+                            <post-icon aria-hidden="true" name="3024"></post-icon>Back
+                          </button>
+                        `
+                      : null}
+                    <div class="form-footer-right-actions">
+                      <button class="btn btn-primary">
+                        Send<post-icon aria-hidden="true" name="3020"></post-icon>
+                      </button>
+
+                      ${args.secondaryButton
+                        ? html` <button class="btn btn-secondary">Cancel</button> `
                         : null}
-                      <div class="form-footer-right-actions">
-                        <button class="btn btn-primary">
-                          Send<post-icon aria-hidden="true" name="3020"></post-icon>
-                        </button>
-                        <button class="btn btn-secondary">Cancel</button>
-                      </div>
                     </div>
-                  `,
-                )}
+                  </div>
+                `,
+              )}
             </div>
           `,
         )}

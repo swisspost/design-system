@@ -16,15 +16,23 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    leftAction: '<button class="btn btn-tertiary"><post-icon aria-hidden="true" name="3024"></post-icon>Back</button>',
-    rightActions: '<button class="btn btn-primary">Send<post-icon aria-hidden="true" name="3020"></post-icon></button><button class="btn btn-secondary">Cancel</button>'  },
+    primaryButton:
+      '<button class="btn btn-primary">Send<post-icon aria-hidden="true" name="3020"></post-icon></button>',
+    secondaryButton: '<button class="btn btn-secondary">Cancel</button>',
+    tertiaryButton:
+      '<button class="btn btn-tertiary"><post-icon aria-hidden="true" name="3024"></post-icon>Back</button>',
+  },
   argTypes: {
-    leftAction: {
-      name: 'Left action',
+    primaryButton: {
+      name: 'Primary button',
       control: { type: 'text' },
     },
-    rightActions: {
-      name: 'Right actions',
+    secondaryButton: {
+      name: 'Secondary button',
+      control: { type: 'text' },
+    },
+    tertiaryButton: {
+      name: 'Tertiary button',
       control: { type: 'text' },
     },
   },
@@ -35,15 +43,14 @@ export default meta;
 type Story = StoryObj;
 
 function render(args: Args) {
-
-return html`
-  <div class="form-footer">
-    ${unsafeHTML(args.leftAction)}
-    <div class="form-footer-right-actions">
-      ${unsafeHTML(args.rightActions)}
+  return html`
+    <div class="form-footer">
+      ${unsafeHTML(args.tertiaryButton)}
+      <div class="form-footer-right-actions">
+        ${unsafeHTML(args.primaryButton)} ${unsafeHTML(args.secondaryButton)}
+      </div>
     </div>
-  </div>
-`;
+  `;
 }
 
 export const Default: Story = {};
