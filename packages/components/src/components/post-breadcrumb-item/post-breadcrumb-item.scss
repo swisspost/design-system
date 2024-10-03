@@ -1,0 +1,18 @@
+@use 'sass:map';
+@use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/components';
+
+tokens.$default-map: components.$post-breadcrumb;
+
+:host {
+  display: block;
+}
+
+a {
+  display: inline-flex;
+  align-items: center;
+  padding-block: tokens.get('post-breadcrumb', 'padding-block-text');
+  gap: tokens.get('post-breadcrumb', 'gap-inline-inner');
+  text-decoration: none;
+}
