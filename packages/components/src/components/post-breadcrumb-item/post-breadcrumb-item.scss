@@ -14,5 +14,16 @@ a {
   align-items: center;
   padding-block: tokens.get('post-breadcrumb', 'padding-block-text');
   gap: tokens.get('post-breadcrumb', 'gap-inline-inner');
+  color: tokens.get('post-breadcrumb', 'enabled-fg');
   text-decoration: none;
+
+  &:hover {
+    color: tokens.get('post-breadcrumb', 'hover-fg');
+    text-decoration: underline;
+  }
+
+  :focus,
+  &:focus-visible {
+    outline: tokens.get('post-breadcrumb', 'focus-stroke') solid tokens.get('post-breadcrumb', 'focus-border-width');
+  }
 }
