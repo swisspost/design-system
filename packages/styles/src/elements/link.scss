@@ -22,10 +22,10 @@ a {
   );
 
   @include utilities.high-contrast-mode() {
-    &,
-    &:visited,
-    &:focus,
-    &:hover {
+    color: CanvasText !important;
+
+    &:hover,
+    &:focus {
       color: LinkText !important;
     }
   }
