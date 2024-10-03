@@ -3,4 +3,4 @@
 '@swisspost/design-system-documentation': minor
 ---
 
-Tokenized the Link component styles, added a documentation page outlining the usage of the component.
+Updated the Link component styles to align with the new design, added a documentation page outlining the usage of the component.
