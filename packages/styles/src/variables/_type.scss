@@ -181,9 +181,6 @@ $display3-weight: 300 !default;
 $display4-weight: 300 !default;
 $display-line-height: $headings-line-height !default;
 
-$lead-font-size: 1em !default;
-$lead-font-weight: 700 !default;
-
 $small-font-size: 80% !default;
 
 $text-muted: color.$gray-60;
@@ -195,10 +192,7 @@ $blockquote-padding-left: spacing.$size-small-regular !default;
 $blockquote-padding-left-xxl: spacing.$size-big !default;
 $blockquote-margin-top: spacing.$size-large !default;
 $blockquote-margin-y: spacing.$size-regular !default;
-$blockquote-footer-font-size: math.div(
-  $lead-font-size * sizing.strip-unit($small-font-size),
-  100
-) !default;
+$blockquote-footer-font-size: math.div(1em * sizing.strip-unit($small-font-size), 100) !default;
 $blockquote-cite-font-weight: $font-weight-normal !default;
 
 $hr-border-color: rgba(color.$black, 0.1) !default; // Design System
