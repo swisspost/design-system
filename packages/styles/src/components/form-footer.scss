@@ -23,6 +23,10 @@ tokens.$default-map: components.$post-form-footer;
   &-right-actions {
     @include utility-mx.responsive-actions();
     gap: tokens.get('post-form-footer', 'post-form-footer-gap');
+
+    @include media-breakpoint-up(md) {
+      margin-left: auto;
+    }
   }
 
   @include media-breakpoint-up(md) {
