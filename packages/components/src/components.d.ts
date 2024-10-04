@@ -311,8 +311,9 @@ export namespace Components {
         /**
           * Programmatically display the tooltip
           * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+          * @param triggeredByFocus A boolean indicating if the tooltip was triggered by a focus event.
          */
-        "show": (target: HTMLElement) => Promise<void>;
+        "show": (target: HTMLElement, triggeredByFocus?: boolean) => Promise<void>;
         /**
           * Toggle tooltip display
           * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown

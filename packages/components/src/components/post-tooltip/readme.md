@@ -26,15 +26,16 @@ Type: `Promise<void>`
 
 
 
-### `show(target: HTMLElement) => Promise<void>`
+### `show(target: HTMLElement, triggeredByFocus?: boolean) => Promise<void>`
 
 Programmatically display the tooltip
 
 #### Parameters
 
-| Name     | Type          | Description                                                                  |
-| -------- | ------------- | ---------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | An element with [data-tooltip-target="id"] where the tooltip should be shown |
+| Name               | Type          | Description                                                                  |
+| ------------------ | ------------- | ---------------------------------------------------------------------------- |
+| `target`           | `HTMLElement` | An element with [data-tooltip-target="id"] where the tooltip should be shown |
+| `triggeredByFocus` | `boolean`     | A boolean indicating if the tooltip was triggered by a focus event.          |
 
 #### Returns
 
