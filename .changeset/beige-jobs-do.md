@@ -4,4 +4,4 @@
 '@swisspost/design-system-tokens': minor
 ---
 
-Added Legend element.
+Added legend element.
