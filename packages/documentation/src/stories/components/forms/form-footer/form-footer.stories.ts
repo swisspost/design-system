@@ -3,7 +3,7 @@ import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
-export const ArgsFormFooter = {
+export const FooterArgs = {
   primaryButton:
     '<button class="btn btn-primary">Send<post-icon aria-hidden="true" name="3020"></post-icon></button>',
   secondaryButton: '<button class="btn btn-secondary">Cancel</button>',
@@ -15,7 +15,7 @@ const meta: MetaComponent = {
   id: 'f2eddf67-2c3c-40c4-bfec-df49bd028001',
   title: 'Components/Forms/Form Footer',
   tags: ['package:HTML'],
-  render: renderFormFooter,
+  render: render,
   parameters: {
     badges: [],
     design: {
@@ -23,7 +23,7 @@ const meta: MetaComponent = {
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=1498-28215',
     },
   },
-  args: ArgsFormFooter,
+  args: FooterArgs,
   argTypes: {
     primaryButton: {
       name: 'Primary button',
@@ -56,7 +56,7 @@ export default meta;
 
 type Story = StoryObj;
 
-export function renderFormFooter(args: Args) {
+export function render(args: Args) {
   return html`
     <div class="form-footer">
       ${unsafeHTML(args.tertiaryButton)}

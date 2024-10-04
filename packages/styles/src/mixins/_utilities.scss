@@ -182,9 +182,19 @@
 @mixin responsive-actions {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
   @include media-breakpoint-up(md) {
-    flex-direction: row-reverse;
-    margin-left: auto;
+    flex-direction: row;
+  }
+
+  &-right-actions {
+    display: flex;
+    flex-direction: column;
+
+    @include media-breakpoint-up(md) {
+      flex-direction: row-reverse;
+      margin-left: auto;
+    }
   }
 }
