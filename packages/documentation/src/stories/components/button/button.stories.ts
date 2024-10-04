@@ -143,7 +143,7 @@ const meta: MetaComponent = {
       name: 'Icon',
       description:
         'Defines a custom icon.' +
-        '<span className="mt-mini alert alert-info alert-sm">' +
+        '<span className="mt-8 alert alert-info alert-sm">' +
         'To use a custom icon, you must first ' +
         '<a href="/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs">set up the icons in your project</a>' +
         '.</span>',
@@ -203,7 +203,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, makes the component appear inactive and disables its functionality.<div className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
+        'When set to `true`, makes the component appear inactive and disables its functionality.<div className="mt-8 alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
       control: {
         type: 'boolean',
       },
@@ -271,7 +271,7 @@ export const Inverted: Story = {
   ...Template,
   decorators: [
     (story: StoryFn, context: StoryContext) =>
-      html` <div class="p-3 bg-dark">${story(context.args, context)}</div> `,
+      html` <div class="p-16 bg-dark">${story(context.args, context)}</div> `,
   ],
 };
 
@@ -334,7 +334,7 @@ export const FullWidth: Story = {
 
 export const Align: Story = {
   render: () => html`
-    <div class="d-flex flex-row-reverse gap-mini justify-content-end">
+    <div class="d-flex flex-row-reverse gap-8 justify-content-end">
       <button class="btn btn-primary">Send</button>
       <button class="btn btn-secondary">Cancel</button>
     </div>

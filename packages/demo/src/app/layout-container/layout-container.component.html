@@ -10,7 +10,7 @@
       <div ngbDropdownMenu aria-labelledby="versionDropdown" class="dropdown-menu-end">
         <a *ngFor="let version of versions$ | async" [href]="version.url" ngbDropdownItem>
           <span class="bold">{{ version.title }}</span>
-          <div class="small mt-2 icons" *ngIf="version.dependencies">
+          <div class="small mt-8 icons" *ngIf="version.dependencies">
             <span
               title="Angular"
               *ngIf="version.dependencies.get('@angular/core') as angularVersion"
