@@ -44,6 +44,21 @@
   )
 */
 
+// To delete from here
+$post-display: (
+  -none: none,
+  -inline: inline,
+  -inline-block: inline-block,
+  -block: block,
+  -grid: grid,
+  -inline-grid: inline-grid,
+  -table: table,
+  -table-cell: table-cell,
+  -table-row: table-row,
+  -flex: flex,
+  -inline-flex: inline-flex
+);
+
 $utilities: (
   spacing: (
     tokens: tokens.$post-spacing,
@@ -82,5 +97,16 @@ $utilities: (
       ),
     ),
   ),
-  // IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`.
+  display: (
+    tokens: $post-display,
+    classes: (
+      display: (
+        responsive: true,
+        prefixes: (
+          d: display,
+        ),
+      ),
+    ),
+  )
+  // IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`.,,,,,,,,,,,,
 );
