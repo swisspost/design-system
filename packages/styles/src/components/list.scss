@@ -1,5 +1,6 @@
 @use '../mixins/media';
 @use '../mixins/icons';
+@use '../mixins/utilities';
 @use '../functions/tokens';
 @use '../tokens/components';
 
@@ -35,6 +36,10 @@ $padding-icon: tokens.get('list-simple-checks', 'spacing-padding-icon');
       height: $sizing-icon;
       background-color: tokens.get('list-checks', 'color-icon-fg');
       z-index: 2;
+
+      @include utilities.high-contrast-mode() {
+        background-color: Canvas;
+      }
     }
 
     &::after {
@@ -44,6 +49,11 @@ $padding-icon: tokens.get('list-simple-checks', 'spacing-padding-icon');
       height: calc(#{$sizing-icon} + (#{$padding-icon} * 2));
       background-color: tokens.get('list-checks', 'color-icon-bg');
       border-radius: 50%;
+
+      @include utilities.high-contrast-mode() {
+        background-color: CanvasText;
+        color: Canvas;
+      }
     }
 
     @include media.max(400px) {
