@@ -16,13 +16,15 @@
     $prefixes: map.get($classesConfig, prefixes);
 
     @each $key, $value in $tokens {
-      $suffix: string.replace($key, 'post-utility-#{$group}');
+      @if (string.contains($key, 'post-utility-#{$group}')) {
+        $suffix: string.replace($key, 'post-utility-#{$group}', '');
 
-      @each $prefix, $properties in $prefixes {
-        @if $responsive {
-          @include generate-responsive-utilities($properties, $value, $prefix, $suffix);
-        } @else {
-          @include generate-utilities($properties, $value, $prefix, $suffix);
+        @each $prefix, $properties in $prefixes {
+          @if $responsive {
+            @include generate-responsive-utilities($properties, $value, $prefix, $suffix);
+          } @else {
+            @include generate-utilities($properties, $value, $prefix, $suffix);
+          }
         }
       }
     }
