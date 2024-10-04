@@ -1,0 +1,57 @@
+import { Canvas, Meta } from '@storybook/blocks';
+import { forEach } from '@/utils/react';
+import { parse } from '@/utils/sass-export';
+import { DisplayContainer } from './display.blocks';
+import * as DisplayStories from './display.stories';
+import './display.styles.scss';
+
+<Meta of={DisplayStories} />
+
+# Display
+
+<div className="lead">
+  Use the display utility classes to set the display of an element to any possible display CSS
+  value.
+</div>
+
+The available display utilities values are the following:
+
+- none
+- inline
+- inline-block
+- block
+- grid
+- inline-grid
+- table
+- table-cell
+- table-row
+- flex
+- inline-flex
+
+To set a display on an element, simply add a `.d-{display}` class to it.
+// TODO: Explain the breakpoints
+
+<Canvas of={DisplayStories.Default} sourceState="shown" />
+
+### Available Display
+
+<section className="display-container__section">
+  {forEach(
+    [
+      'none',
+      'inline',
+      'inline-block',
+      'block',
+      'grid',
+      'inline-grid',
+      'table',
+      'table-cell',
+      'table-row',
+      'flex',
+      'inline-flex',
+    ],
+    function ({ key, value }) {
+      return <DisplayContainer key={key} name={value} />;
+    },
+  )}
+</section>
