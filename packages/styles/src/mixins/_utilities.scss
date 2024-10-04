@@ -185,5 +185,6 @@
 
   @include media-breakpoint-up(md) {
     flex-direction: row-reverse;
+    margin-left: auto;
   }
 }

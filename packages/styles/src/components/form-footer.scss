@@ -12,25 +12,21 @@
 tokens.$default-map: components.$post-form-footer;
 
 .form-footer {
-  border-top: tokens.get('post-form-footer', 'post-form-footer-border-top-width') solid
-    tokens.get('post-form-footer', 'post-form-footer-border-top-color');
-  padding-top: tokens.get('post-form-footer', 'post-form-footer-padding-top-s');
+  border-block-start: tokens.get('form-footer', 'border-block-start-width')
+    tokens.get('form-footer', 'border-block-start-color');
+  border-block-start-style: tokens.get('form-footer', 'border-block-start-style');
+  padding-block-start: tokens.get('form-footer', 'padding-block-start');
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: tokens.get('post-form-footer', 'post-form-footer-gap');
+  gap: tokens.get('form-footer', 'gap');
 
   &-right-actions {
     @include utility-mx.responsive-actions();
-    gap: tokens.get('post-form-footer', 'post-form-footer-gap');
-
-    @include media-breakpoint-up(md) {
-      margin-left: auto;
-    }
+    gap: tokens.get('form-footer', 'gap');
   }
 
   @include media-breakpoint-up(md) {
-    padding-top: tokens.get('post-form-footer', 'post-form-footer-padding-top-m');
     flex-direction: row;
   }
 }

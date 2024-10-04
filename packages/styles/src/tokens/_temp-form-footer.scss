@@ -1,7 +1,7 @@
 $post-form-footer: (
-  post-form-footer-border-top-width: var(--post-core-dimension-2),
-  post-form-footer-border-top-color: var(--post-core-color-brand-black),
-  post-form-footer-padding-top-s: var(--post-core-dimension-24),
-  post-form-footer-padding-top-m: var(--post-core-dimension-32),
+  post-form-footer-border-block-start-width: var(--post-core-dimension-2),
+  post-form-footer-border-block-start-style: var(--post-core-border-style-solid),
+  post-form-footer-border-block-start-color: var(--post-core-color-brand-black),
+  post-form-footer-padding-block-start: var(--post-core-dimension-24),
   post-form-footer-gap: var(--post-core-dimension-8),
 );

@@ -1,6 +1,10 @@
 import { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { MetaExtended } from '@root/types';
+import {
+  ArgsFormFooter,
+  renderFormFooter,
+} from '../../components/forms/form-footer/form-footer.stories';
 
 const meta: MetaExtended = {
   id: 'd83829b2-7de2-48d2-be64-07a80c9caef3',
@@ -354,19 +358,6 @@ export const Hints: Story = {
 };
 
 export const Footer: Story = {
-  render: () => html`
-    <div class="form-footer">
-      <button class="btn btn-tertiary">
-        <post-icon aria-hidden="true" name="3024"></post-icon>
-        Back
-      </button>
-      <div class="form-footer-right-actions">
-        <button class="btn btn-primary">
-          Send
-          <post-icon aria-hidden="true" name="3020"></post-icon>
-        </button>
-        <button class="btn btn-secondary">Cancel</button>
-      </div>
-    </div>
-  `,
+  render: renderFormFooter,
+  args: ArgsFormFooter,
 };
