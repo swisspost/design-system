@@ -110,7 +110,7 @@ export class MigrationV45Component extends LitElement {
                 `
               : nothing}
             <h4>Deprecations</h4>
-            <ul class="mt-2 mb-3">
+            <ul class="mt-8 mb-16">
               <li>
                 <p>
                   <strong>Dropped jQuery dependency</strong>

@@ -10,7 +10,7 @@ const meta: MetaExtended = {
   },
   decorators: [
     (story: StoryFn, { args, context }: StoryContext) => html`
-      <div class="p-regular column-example text-center">${story(args, context)}</div>
+      <div class="p-16 column-example text-center">${story(args, context)}</div>
     `,
   ],
   args: {
@@ -252,7 +252,7 @@ export const ResetOffsetExample: Story = {
   decorators: [
     (story: StoryFn, { args, context }: StoryContext) => html`
       ${story(args, context)}
-      <p class="mt-regular"><small>Resize the browser window to see changes.</small></p>
+      <p class="mt-16"><small>Resize the browser window to see changes.</small></p>
     `,
   ],
   render: () => html`

@@ -123,8 +123,8 @@ export const Contents: Story = {
     innerHTML:
       '<h4 slot="heading">Titulum</h4>' +
       '<ul class="list-unstyled">' +
-      '<li class="d-flex gap-mini"><post-icon name="1027"></post-icon>Un orde redlis titem</li>' +
-      '<li class="d-flex gap-mini"><post-icon name="1028"></post-icon>An deven moreun orde redlis titem</li>' +
+      '<li class="d-flex gap-8"><post-icon name="1027"></post-icon>Un orde redlis titem</li>' +
+      '<li class="d-flex gap-8"><post-icon name="1028"></post-icon>An deven moreun orde redlis titem</li>' +
       '</ul>' +
       '<hr/>' +
       '<p>Contentum momentum ipsum tipsum sit amet, consetetur sadipscing elitr.</p>' +

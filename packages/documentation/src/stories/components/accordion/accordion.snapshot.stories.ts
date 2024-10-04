@@ -20,7 +20,7 @@ export const Accordion: Story = {
       <div>
         ${['bg-white', 'bg-light', 'bg-dark'].map(
           bg => html`
-            <div class="${bg} d-flex flex-column gap-regular p-regular mt-regular">
+            <div class="${bg} d-flex flex-column gap-16 p-16 mt-16">
               ${meta.render?.({ ...context.args }, context)}
             </div>
           `,

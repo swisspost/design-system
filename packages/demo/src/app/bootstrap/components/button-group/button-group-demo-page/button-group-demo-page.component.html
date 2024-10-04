@@ -1,4 +1,4 @@
-<div class="heading py-5">
+<div class="heading py-48">
   <h1 class="bold font-curve-large">Button Group</h1>
   <app-dependency-link></app-dependency-link>
 </div>
@@ -42,18 +42,18 @@
   </div>
 
   <ng-container *ngIf="checkboxType === FormType.TemplateDriven">
-    <code class="block mt-large" [highlight]="checkboxTemplate" [languages]="['html']"></code>
-    <code class="block mt-regular" [highlight]="checkboxController" [languages]="['ts']"></code>
+    <code class="block mt-24" [highlight]="checkboxTemplate" [languages]="['html']"></code>
+    <code class="block mt-16" [highlight]="checkboxController" [languages]="['ts']"></code>
   </ng-container>
 
   <ng-container *ngIf="checkboxType === FormType.Reactive">
     <code
-      class="block mt-large"
+      class="block mt-24"
       [highlight]="reactiveCheckboxTemplate"
       [languages]="['html']"
     ></code>
     <code
-      class="block mt-regular"
+      class="block mt-16"
       [highlight]="reactiveCheckboxController"
       [languages]="['ts']"
     ></code>
@@ -99,14 +99,14 @@
   </div>
 
   <ng-container *ngIf="radioType === FormType.TemplateDriven">
-    <code class="block mt-large" [highlight]="radioTemplate" [languages]="['html']"></code>
-    <code class="block mt-regular" [highlight]="radioController" [languages]="['ts']"></code>
+    <code class="block mt-24" [highlight]="radioTemplate" [languages]="['html']"></code>
+    <code class="block mt-16" [highlight]="radioController" [languages]="['ts']"></code>
   </ng-container>
 
   <ng-container *ngIf="radioType === FormType.Reactive">
-    <code class="block mt-large" [highlight]="reactiveRadioTemplate" [languages]="['html']"></code>
+    <code class="block mt-24" [highlight]="reactiveRadioTemplate" [languages]="['html']"></code>
     <code
-      class="block mt-regular"
+      class="block mt-16"
       [highlight]="reactiveRadioController"
       [languages]="['ts']"
     ></code>
