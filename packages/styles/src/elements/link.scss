@@ -23,13 +23,16 @@ a {
 
   @include utilities.high-contrast-mode() {
     &,
-    &:focus,
-    &:hover {
+    &:focus {
       color: LinkText !important;
     }
-  }
 
-  &:visited {
-    color: VisitedText;
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:visited {
+      color: VisitedText;
+    }
   }
 }
