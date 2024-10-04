@@ -98,11 +98,11 @@ Disabled states of input fields or buttons pose many accessibility issues.
 
 ## Controls Grouping
 
-When grouping form controls for accessibility, the `<fieldset>`and `<legend>` elements play a critical role in providing context to screen readers. However, improper usage of these elements can lead to confusion for users with disabilities. 
+When grouping `<form controls>`, the `<fieldset>`and `<legend>` elements play a critical role in providing context to screen readers. However, improper usage of these elements can lead to confusion for users with disabilities. 
 
 <div class="table-responsive">
   <table className="table caption-top">
-    <caption>Common use cases and how to handle them.</caption>
+    <caption>Common mistakes and how to avoid them.</caption>
     <colgroup>
       <col style={{width: '50%'}} />
       <col style={{width: '50%'}} />
@@ -114,13 +114,13 @@ When grouping form controls for accessibility, the `<fieldset>`and `<legend>` el
       <tr>
         <td>
           <ul class="list-unstyled d-flex gap-mini">
-            <div>❌</div><li>A div or other element is incorrectly used as the first child of a `<fieldset>` with the `<legend>` nested inside this element. However, improper usage of these elements can lead to confusion for screen readers.</li>
+            <div>❌</div><li>A `<div>` or other element is incorrectly used as the first child of a `<fieldset>` with the `<legend>` nested inside this element.</li>
           </ul>
           
         </td>
         <td>
           <ul class="list-unstyled d-flex gap-mini">
-            <div>✔️</div><li>Always place the `<legend>` before any other content within the `<fieldset>`to preserve the association.</li>
+            <div>✔️</div><li>Always place the `<legend>` right after the `<fieldset>` to preserve the association.</li>
           </ul>
         </td>
       </tr>
@@ -136,7 +136,7 @@ When grouping form controls for accessibility, the `<fieldset>`and `<legend>` el
         </td>
         <td>
           <ul class="list-unstyled d-flex gap-mini">
-            <div>✔️</div><li>Assign the role="group" to the `<div>` element inorder to provide it with the semantic meaning of a fieldset. Use 'aria-labelledby' or 'aria-describedby' to associate any descriptive text with the grouping container to ensure that screen readers can provide context to users.</li>
+              <div>✔️</div><li>Assign the `role="group"` to the `<div>` element to provide it with the semantic meaning of a `<fieldset>`. Use `aria-labelledby` or `aria-describedby` to associate any descriptive text with the grouping container to ensure that screen readers can provide context to users.</li>
           </ul>
         </td>
       </tr>
@@ -158,4 +158,4 @@ When grouping form controls for accessibility, the `<fieldset>`and `<legend>` el
 
 #### Alternative using div
 
-<Canvas of={FormsStories.FieldsetDoExample}/>
+<Canvas of={FormsStories.DivForGroupingExample}/>
