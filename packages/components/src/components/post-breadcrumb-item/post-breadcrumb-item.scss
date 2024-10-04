@@ -23,12 +23,14 @@ a {
     text-decoration: underline;
   }
 
-  :focus,
+  &:focus,
   &:focus-visible {
     border-radius: tokens.get('post-breadcrumb', 'focus-outline-radius');
-    padding: tokens.get('post-breadcrumb', 'focus-padding-outline');
-    outline-offset: tokens.get('post-breadcrumb', 'focus-padding-outline');
     outline: tokens.get('post-breadcrumb', 'focus-outline') solid tokens.get('post-breadcrumb', 'focus-outline-width');
+
+    ::slotted(*) {
+      padding: tokens.get('post-breadcrumb', 'focus-padding-outline');
+    }
   }
 
   @include utilities.high-contrast-mode() {
