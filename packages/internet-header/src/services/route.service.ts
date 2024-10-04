@@ -76,12 +76,13 @@ const resetOverrideConfig = (config: NavMainEntity[]): NavMainEntity[] => {
   return config.map(nav => ({
     ...nav,
     isActiveOverride: false,
-    // Initialize flyout as an empty array if it's undefined
-    flyout:
-      nav.flyout?.map(flyout => ({
-        ...flyout,
-        linkList: flyout.linkList.map(link => ({ ...link, isActiveOverride: false })),
-      })) || [], // Fallback to an empty array if nav.flyout is undefined
+    // Check if flyout exists before attempting to map
+    flyout: nav.flyout
+      ? nav.flyout.map(flyout => ({
+          ...flyout,
+          linkList: flyout.linkList.map(link => ({ ...link, isActiveOverride: false })),
+        }))
+      : [],
   }));
 };
 
