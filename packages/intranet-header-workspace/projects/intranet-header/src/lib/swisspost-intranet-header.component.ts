@@ -139,7 +139,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
       const extensionElement = `<li tabindex="0" class="nav-item${
         this.openedMenuOverflow ? '' : ' hidden'
       }" id="more">
-                                    <span class="nav-link col-auto py-3 px-4"></span>
+                                    <span class="nav-link col-auto py-16 px-24"></span>
                                 </li>`;
       this.navElement = this.dom.nativeElement.querySelector('#nav');
       if (this.navElement == null) {

@@ -1,24 +1,55 @@
+@use 'sass:color';
 @use '@swisspost/design-system-styles/core' as post;
 
-.spacing-example {
+$margin-color: color.adjust(post.$coral-bright, $lightness: 30%);
+$padding-color: color.complement($margin-color);
+$gap-color: color.adjust(post.$aubergine-bright, $lightness: 30%);
+$content-color: post.$white;
+$border: 1px solid post.$gray-40;
+
+.margin-padding-example {
+  display: flex;
+  width: fit-content;
+  background-color: $margin-color;
+
+  > div {
+    height: 100px;
+    width: 100px;
+    background-image: linear-gradient($content-color, $content-color), linear-gradient($padding-color, $padding-color);
+    background-clip: content-box, padding-box;
+    border: $border;
+  }
+}
+
+.gap-example {
+  > div {
+    width: fit-content;
+    background-color: $gap-color;
+    border: $border;
+    text-align: center;
+
+    > div {
+      background-color: $content-color;
+      padding: 12px 16px;
+    }
+  }
+}
+
+.legend {
   .margin {
-    background-color: #f4cea3;
+    background-color: $margin-color;
   }
+
   .padding {
-    background-color: #c4dab9;
-    border: 1px solid post.$gray-40;
-  }
-  .content {
-    background-color: post.$white;
+    background-color: $padding-color;
   }
 
-  .legend {
-    .padding {
-      border: 0 none;
-    }
+  .gap {
+    background-color: $gap-color;
+  }
 
-    .content {
-      border: 1px solid post.$gray-40;
-    }
+  .element {
+    background-color: $content-color;
+    border: $border;
   }
 }

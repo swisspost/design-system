@@ -38,19 +38,19 @@ export class FormsDemoPageComponent {
     <input type="text" id="city" class="form-control" placeholder="City">
   </div>
 </div>`;
-  verticalSpacing = `<div class="mb-regular">
+  verticalSpacing = `<div class="mb-16">
   <label for="firstname">Firstname</label>
   <input type="text" id="firstname" class="form-control" placeholder="Firstname">
 </div>
-<div class="mb-regular">
+<div class="mb-16">
   <label for="lastname">Lastname</label>
   <input type="text" id="lastname" class="form-control" placeholder="Lastname">
 </div>`;
-  buttons = `<div class="mb-regular">
+  buttons = `<div class="mb-16">
   <label for="firstname">Firstname</label>
   <input type="text" id="firstname" class="form-control" placeholder="Firstname">
 </div>
-<div class="d-flex flex-row-reverse gap-mini">
+<div class="d-flex flex-row-reverse gap-8">
   <button class="btn btn-primary">Send</button>
   <button class="btn btn-secondary">Cancel</button>
 </div>`;

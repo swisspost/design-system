@@ -19,7 +19,7 @@ const meta: MetaComponent<HTMLPostCollapsibleElement> = {
     },
   },
   args: {
-    innerHTML: `<p class='border rounded p-large'>Contentus momentus vero siteos et accusam iretea et justo.</p>`,
+    innerHTML: `<p class='border rounded p-24'>Contentus momentus vero siteos et accusam iretea et justo.</p>`,
     collapsed: false,
   },
 };
@@ -28,7 +28,7 @@ export default meta;
 
 // DECORATORS
 function gap(story: StoryFn, context: StoryContext) {
-  return html` <div class="d-flex flex-column gap-regular">${story(context.args, context)}</div> `;
+  return html` <div class="d-flex flex-column gap-16">${story(context.args, context)}</div> `;
 }
 
 //RENDERER

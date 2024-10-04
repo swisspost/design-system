@@ -5,11 +5,11 @@
   </p>
   <h4>Example:</h4>
   <div class="row">
-    <div class="col-2 mb-3"><strong>Rendered</strong></div>
+    <div class="col-2 mb-16"><strong>Rendered</strong></div>
     <div class="col-2"><strong>Applied classes</strong></div>
     <div class="col-4"><strong>Markup</strong></div>
     <div class="col-4"><strong>SASS</strong></div>
-    <div class="col-2 mb-3 text-center">
+    <div class="col-2 mb-16 text-center">
       <i class="pi pi-1000" aria-hidden="true"></i>
     </div>
     <div class="col-2">pi pi-1000</div>
@@ -19,7 +19,7 @@
     <div class="col-4">
       <code class="sass">// No additional SASS necessary</code>
     </div>
-    <div class="col-2 mb-3 text-center">
+    <div class="col-2 mb-16 text-center">
       <i class="pi pi-1000-warning" aria-hidden="true"></i>
     </div>
     <div class="col-2">
@@ -41,7 +41,7 @@
         &#125;
       </code>
     </div>
-    <div class="col-2 mb-3 text-center">
+    <div class="col-2 mb-16 text-center">
       <i class="pi pi-heart" aria-hidden="true"></i>
     </div>
     <div class="col-2">pi pi-heart</div>
@@ -59,7 +59,7 @@
         &#125;
       </code>
     </div>
-    <div class="col-2 mb-3 text-center">
+    <div class="col-2 mb-16 text-center">
       <i class="pi pi-heart-coral pi-border" aria-hidden="true"></i>
     </div>
     <div class="col-2">pi pi-heart-coral pi-border</div>
@@ -87,7 +87,7 @@
   </p>
   <section class="row">
     <div
-      class="col-12 p-2"
+      class="col-12 p-8"
       *ngFor="let color of colors"
       [ngClass]="color === 'white' ? 'bg-primary' : ''"
     >
@@ -105,7 +105,7 @@
         </code>
       </div>
     </div>
-    <div class="col-12 mt-3">
+    <div class="col-12 mt-16">
       Include a certain icon in all contextual colors (Example for pi-1000):
       <br />
       <code class="sass">
@@ -122,7 +122,7 @@
         &#125;
       </code>
     </div>
-    <div class="col-12 mt-3">
+    <div class="col-12 mt-16">
       Include the entire icon set in a specific color (Example for Post-Color "Nightblue"):
       <br />
       <code class="sass">
@@ -143,35 +143,35 @@
   </section>
   <h4>Available Adjustments</h4>
   <section class="row">
-    <div class="col-2 text-center mb-3">
+    <div class="col-2 text-center mb-16">
       <i class="pi pi-border pi-1000" aria-hidden="true"></i>
     </div>
     <div class="col-3">
       <strong>With border</strong>
     </div>
     <code class="col-7">&lt;i class="pi pi-border pi-1000"&gt;&lt;/i&gt;</code>
-    <div class="col-2 text-center mb-3">
+    <div class="col-2 text-center mb-16">
       <i class="pi pi-1000 pi-small" aria-hidden="true"></i>
     </div>
     <div class="col-3">
       <strong>Small</strong>
     </div>
     <code class="col-7">&lt;i class="pi pi-small pi-1000"&gt;&lt;/i&gt;</code>
-    <div class="col-2 text-center mb-3">
+    <div class="col-2 text-center mb-16">
       <i class="pi pi-1000 pi-2x" aria-hidden="true"></i>
     </div>
     <div class="col-3">
       <strong>2x</strong>
     </div>
     <code class="col-7">&lt;i class="pi pi-2x pi-1000"&gt;&lt;/i&gt;</code>
-    <div class="col-2 text-center mb-3">
+    <div class="col-2 text-center mb-16">
       <i class="pi pi-1000 pi-3x" aria-hidden="true"></i>
     </div>
     <div class="col-3">
       <strong>3x</strong>
     </div>
     <code class="col-7">&lt;i class="pi pi-3x pi-1000"&gt;&lt;/i&gt;</code>
-    <div class="col-2 text-center mb-3">
+    <div class="col-2 text-center mb-16">
       <i class="pi pi-1000 pi-4x" aria-hidden="true"></i>
     </div>
     <div class="col-3">
@@ -186,17 +186,17 @@
     .
   </p>
   <section class="row">
-    <div class="col-auto mb-2 text-center" *ngFor="let iconName of preColored">
+    <div class="col-auto mb-8 text-center" *ngFor="let iconName of preColored">
       <i class="pi" [class]="'pi-' + iconName" aria-hidden="true"></i>
       <br />
-      <code class="text-dark mt-1">pi-{{ iconName }}</code>
+      <code class="text-dark mt-4">pi-{{ iconName }}</code>
     </div>
   </section>
   <section class="row">
-    <div class="col-auto mb-2 text-center" *ngFor="let nr of range">
+    <div class="col-auto mb-8 text-center" *ngFor="let nr of range">
       <i class="pi" [class]="'pi-' + nr" aria-hidden="true"></i>
       <br />
-      <code class="text-dark mt-1">pi-{{ nr }}</code>
+      <code class="text-dark mt-4">pi-{{ nr }}</code>
     </div>
   </section>
 </section>
