@@ -22,11 +22,14 @@ a {
   );
 
   @include utilities.high-contrast-mode() {
-    color: CanvasText !important;
-
-    &:hover,
-    &:focus {
+    &,
+    &:focus,
+    &:hover {
       color: LinkText !important;
     }
+  }
+
+  &:visited {
+    color: VisitedText;
   }
 }
