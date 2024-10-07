@@ -165,11 +165,11 @@ export const Default: Story = {
 
     const content = html`
       <div class="topic-teaser-content">
-        <h2 class="topic-teaser-title font-curve-large mb-large">
+        <h2 class="topic-teaser-title font-curve-large mb-24">
           <span class="bold">${args.title}</span>
           <span class="light">${args.subtitle}</span>
         </h2>
-        <ul class="link-list mb-large">
+        <ul class="link-list mb-24">
           ${links}
         </ul>
       </div>

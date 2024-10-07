@@ -26,7 +26,7 @@ const bombedArgs = bombArgs({
 export const CardControl: StoryObj = {
   render: () => {
     return html`
-      <div class="d-flex gap-3 flex-wrap">
+      <div class="d-flex gap-16 flex-wrap">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
             <div class="${bg + ' row g-3'}">
