@@ -1,0 +1,94 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+//TODO: Voir ce qu'il faut enlever?
+.flex-container {
+  display: flex;
+  align-items: flex-start;
+
+  > * {
+    flex-basis: auto;
+    flex-grow: 1;
+    padding: post.$size-mini (post.$size-regular * 0.5);
+    border-top: post.$border-width solid post.$border-color;
+
+    &:first-child {
+      padding-inline-start: 0;
+      flex: 0 0 20%;
+    }
+
+    &:last-child {
+      padding-inline-end: 0;
+      flex: 0 0 30%;
+    }
+  }
+
+  .flex-container__description {
+    .description__title {
+      margin-block-end: 0.5rem;
+      margin-block-start: 0.5rem;
+
+      &:first-letter {
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .flex-container__flex {
+    border: post.$border-width solid post.$border-color;
+    padding: post.$size-mini;
+
+    .flex__tile {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      border-radius: post.$border-radius;
+      box-shadow: post.$elevation-1;
+      min-height: 1rem * post.$line-height-base * 2;
+    }
+  }
+
+  &:not(:last-child) {
+    .flex-container__flex {
+      border-bottom: 0;
+    }
+  }
+
+  .flex-container__props {
+    dl {
+      display: grid;
+      grid-template-columns: max-content auto;
+      gap: 0 post.$size-mini;
+      margin: 0;
+
+      dt,
+      dd {
+        margin: 0;
+      }
+    }
+  }
+
+  @include post.media-breakpoint-down(md) {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 40% 60%;
+
+    .flex-container__description {
+      grid-row: 1;
+      grid-column: 1;
+    }
+
+    .flex-container__flex {
+      grid-row: 2;
+      grid-column: 1 / 3;
+      padding-top: 0;
+      padding-inline: 0;
+      border-top: 0 none;
+    }
+
+    .flex-container__props {
+      grid-row: 1;
+      grid-column: 2;
+    }
+  }
+}
