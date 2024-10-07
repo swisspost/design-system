@@ -1,4 +1,4 @@
-import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
+import { Component, Element, Host, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkEmptyOrUrl } from '@/utils';
 
