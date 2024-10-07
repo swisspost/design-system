@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property       | Attribute       | Description                                                                                                                                                                                                                  | Type                         | Default |
-| -------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- | ------- |
-| `collapsed`    | `collapsed`     | If `true`, the element is collapsed otherwise it is displayed.                                                                                                                                                               | `boolean`                    | `false` |
-| `headingLevel` | `heading-level` | <span style="color:red">**[DEPRECATED]**</span> set the `heading-level` property on the parent `post-accordion` instead.<br/><br/>Defines the hierarchical level of the accordion item header within the headings structure. | `1 \| 2 \| 3 \| 4 \| 5 \| 6` | `2`     |
+| Property       | Attribute       | Description                                                                                                                                                                                                                  | Type                         | Default     |
+| -------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- | ----------- |
+| `collapsed`    | `collapsed`     | If `true`, the element is collapsed otherwise it is displayed.                                                                                                                                                               | `boolean`                    | `false`     |
+| `headingLevel` | `heading-level` | <span style="color:red">**[DEPRECATED]**</span> set the `heading-level` property on the parent `post-accordion` instead.<br/><br/>Defines the hierarchical level of the accordion item header within the headings structure. | `1 \| 2 \| 3 \| 4 \| 5 \| 6` | `undefined` |
 
 
 ## Methods

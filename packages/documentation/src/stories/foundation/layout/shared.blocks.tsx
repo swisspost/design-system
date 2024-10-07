@@ -6,7 +6,7 @@ import scss from './shared.module.scss';
 export const SCSS_VARIABLES: any = parse(scss);
 
 export const SpecTable = (props: { children: string | JSX.Element | JSX.Element[] }) => (
-  <div className="table-responsive my-big">
+  <div className="table-responsive my-32">
     <table className="table">
       <thead>
         <tr>

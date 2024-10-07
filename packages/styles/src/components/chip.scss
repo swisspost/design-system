@@ -9,6 +9,8 @@
 .chip-dismissible {
   @include chip-mx.chip-styles();
   position: relative;
+  padding-inline-start: chip.$chip-dismissable-padding-start;
+  gap: chip.$chip-gap;
 
   &::before,
   &::after {
@@ -26,13 +28,13 @@
 
   &:hover::before {
     background-color: chip.$chip-hover-bg;
+    border: chip.$chip-close-button-border;
   }
 
   &::after {
     @include icons-mx.icon(chip.$chip-close-button-icon);
     position: absolute;
     top: 50%;
-    left: chip.$chip-padding-x;
     transform: translateY(-50%);
   }
 
@@ -47,15 +49,19 @@
 
 .chip-filter {
   display: inline-block;
+  max-width: 100%;
 
   &-label {
     @include chip-mx.chip-styles();
     cursor: pointer;
 
     > .badge {
+      box-sizing: border-box;
+      min-width: var(--post-badge-height);
+      padding-inline: calc(var(--post-badge-padding-x) * 0.75);
       color: chip.$chip-hover-color;
       background-color: chip.$chip-hover-bg;
-      border-color: transparent;
+      border: chip.$chip-border-width solid chip.$chip-border-color;
       transition: chip.$chip-transition;
     }
   }
@@ -67,7 +73,6 @@
       + .chip-filter-label {
         color: chip.$chip-active-color;
         background-color: chip.$chip-active-bg;
-        border-color: transparent;
 
         > .badge {
           background-color: chip.$chip-bg;
@@ -135,15 +140,13 @@
 .chip-sm {
   &.chip-dismissible {
     @include chip-mx.chip-styles-sm();
+    padding-inline-start: chip.$chip-dismissable-padding-start;
+    gap: chip.$chip-gap-sm;
 
     &::before,
     &::after {
       height: chip.$chip-close-button-height-sm;
       width: chip.$chip-close-button-height-sm;
-    }
-
-    &::after {
-      left: chip.$chip-padding-x-sm;
     }
   }
 
@@ -152,6 +155,9 @@
 
     > .badge {
       @extend %badge-sm;
+      line-height: chip.$chip-badge-line-height;
+      border-width: chip.$chip-badge-border-width;
+      padding-inline: calc(var(--post-badge-padding-x) * 1.2);
     }
   }
 }

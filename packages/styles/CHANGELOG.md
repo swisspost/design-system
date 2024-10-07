@@ -1,5 +1,33 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.0
+
+### Major Changes
+
+- Removed deprecated `datatable` variables. (by [@schaertim](https://github.com/schaertim) with [#3395](https://github.com/swisspost/design-system/pull/3395))
+
+- Removed deprecated `display-size` variables. (by [@schaertim](https://github.com/schaertim) with [#3430](https://github.com/swisspost/design-system/pull/3430))
+
+- Removed deprecated `line-height-calc` function. (by [@schaertim](https://github.com/schaertim) with [#3409](https://github.com/swisspost/design-system/pull/3409))
+
+- Removed deprecated `form-check` variables. (by [@schaertim](https://github.com/schaertim) with [#3393](https://github.com/swisspost/design-system/pull/3393))
+
+- Removed deprecated `stepper` variables. (by [@schaertim](https://github.com/schaertim) with [#3394](https://github.com/swisspost/design-system/pull/3394))
+
+- Removed deprecated line-height variables. (by [@veyaromain](https://github.com/veyaromain) with [#3521](https://github.com/swisspost/design-system/pull/3521))
+
+### Minor Changes
+
+- Added tokens file for elements, components and utilties. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3495](https://github.com/swisspost/design-system/pull/3495))
+
+### Patch Changes
+
+- Improved accessibility of headings with subheadings by removing the <br> element and added the utility class d-block. Consult https://design-system.post.ch/?path=/docs/7ecd87f1-de96-4e39-a057-ba1798eb6959--docs for updated markup. (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3491](https://github.com/swisspost/design-system/pull/3491))
+
+- Aligned chip styles with the latest design specifications from Figma. (by [@schaertim](https://github.com/schaertim) with [#3463](https://github.com/swisspost/design-system/pull/3463))
+
+- Resolved issue where validation message icons repeated on each line of multi-line messages. Implemented flexbox layout to ensure a single, vertically centered icon regardless of message length. (by [@schaertim](https://github.com/schaertim) with [#3517](https://github.com/swisspost/design-system/pull/3517))
+
 ## 8.2.0
 
 ### Minor Changes
@@ -514,7 +542,7 @@
 
 - Deprecated the base64 icons defined as CSS backgrounds. This technology is outdated and contributes a large amount to the CSS bloat. The current approach for using icons is the `post-icon` web-component. (by [@gfellerph](https://github.com/gfellerph) with [#1226](https://github.com/swisspost/design-system/pull/1226))
 
-- Deprecated the post-specific sizing variables (e.g. `$size-hair`, `$size-huge`, etc.) and classes (`.m-hair`, `.mt-sm-micro`, etc.) for all of the following properties: `margin`, `padding`, `line-height`, `height`, `max-height`, `width`, `max-width` and `gap`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1267](https://github.com/swisspost/design-system/pull/1267))
+- Deprecated the post-specific sizing variables (e.g. `$size-hair`, `$size-huge`, etc.) and classes (`.m-1`, `.mt-sm-4`, etc.) for all of the following properties: `margin`, `padding`, `line-height`, `height`, `max-height`, `width`, `max-width` and `gap`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1267](https://github.com/swisspost/design-system/pull/1267))
 
 ## 5.4.1
 

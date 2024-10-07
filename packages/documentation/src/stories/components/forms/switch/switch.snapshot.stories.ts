@@ -30,7 +30,7 @@ export const Switch: Story = {
         .map(
           (args: Args) =>
             html`
-              <div class="col-6 p-3">
+              <div class="col-6 p-16">
                 ${meta.render?.({ ...context.args, ...args }, { ...context, id: args.id })}
               </div>
             `,

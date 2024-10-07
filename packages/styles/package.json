@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-styles",
-  "version": "8.2.0",
+  "version": "9.0.0-next.0",
   "description": "Design System Styles for the Swiss Post web platform.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -19,6 +19,7 @@
   },
   "scripts": {
     "start": "gulp watch",
+    "play": "vite --open",
     "build": "pnpm clean && gulp build",
     "unit": "gulp sass:tests",
     "clean": "rimraf out-tsc dist",
@@ -47,8 +48,8 @@
     "bootstrap": "5.3.3"
   },
   "devDependencies": {
-    "@swisspost/design-system-tokens": "workspace:8.2.0",
-    "@swisspost/design-system-icons": "workspace:8.2.0",
+    "@swisspost/design-system-icons": "workspace:9.0.0-next.0",
+    "@swisspost/design-system-tokens": "workspace:9.0.0-next.0",
     "@types/node": "20.14.14",
     "autoprefixer": "10.4.19",
     "copyfiles": "2.4.1",
@@ -67,7 +68,8 @@
     "stylelint-config-sass-guidelines": "11.1.0",
     "stylelint-prettier": "5.0.2",
     "stylelint-scss": "6.5.1",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "vite": "5.4.8"
   },
   "sass": {
     "includePaths": [

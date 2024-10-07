@@ -1,10 +1,8 @@
 @forward './variables/options';
 
-@use './lic/bootstrap-license';
+@use 'elements';
+@use 'utilities';
 
-@use 'components/base';
 @use 'components/elevation';
-@use 'components/type';
-@use 'components/utilities';
 @use 'components/sizing';
 @use 'components/grid';

@@ -50,7 +50,7 @@ function VersionSwitcher() {
       closeOnOutsideClick
       tooltip={() => (
         <>
-          <div className="version-switcher__dropdown">
+          <div className="addon-dropdown version-switcher__dropdown">
             {versions.map(version => {
               const isActive =
                 getVersion(version.version ?? '', 'major') === CURRENT_MAJOR_VERSION
@@ -66,7 +66,7 @@ function VersionSwitcher() {
 
               return (
                 <a
-                  className={['dropdown__item', isActive].filter(c => c).join(' ')}
+                  className={['addon-dropdown__item', isActive].filter(c => c).join(' ')}
                   key={version.title}
                   href={version.url}
                 >

@@ -31,25 +31,6 @@
   @return (strip-unit($val) + 0px);
 }
 
-// Hardcoded numbers come directly from design (new CI/CD)
-// line-height always depends on font-size
-// Deprecated
-@function line-height-calc($val) {
-  @if $val < px-to-rem(17) {
-    @return 1.5;
-  } @else if $val < px-to-rem(21) {
-    @return 1.4;
-  } @else if $val < px-to-rem(25) {
-    @return 1.3;
-  } @else if $val < px-to-rem(33) {
-    @return 1.2;
-  } @else if $val < px-to-rem(49) {
-    @return 1.1;
-  } @else {
-    @return 1;
-  }
-}
-
 @function calculate-inner-height(
   $font-size,
   $line-height,
