@@ -38,7 +38,7 @@ export class MigrationV89Component extends LitElement {
               <h4>Styles</h4>
 
               <ul>
-                <li class="mb-3">
+                <li class="mb-16">
                   <p>
                     Removed deprecated line-height variables
                     <span class="tag tag-sm tag-danger">breaking</span>

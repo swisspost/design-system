@@ -6,4 +6,24 @@
 // manipulate $utilities before you import utilities/api
 $utilities: map.remove($utilities, 'background-color');
 
+$utilities: map.remove($utilities, 'margin');
+$utilities: map.remove($utilities, 'margin-x');
+$utilities: map.remove($utilities, 'margin-y');
+$utilities: map.remove($utilities, 'margin-top');
+$utilities: map.remove($utilities, 'margin-end');
+$utilities: map.remove($utilities, 'margin-bottom');
+$utilities: map.remove($utilities, 'margin-start');
+
+$utilities: map.remove($utilities, 'padding');
+$utilities: map.remove($utilities, 'padding-x');
+$utilities: map.remove($utilities, 'padding-y');
+$utilities: map.remove($utilities, 'padding-top');
+$utilities: map.remove($utilities, 'padding-end');
+$utilities: map.remove($utilities, 'padding-bottom');
+$utilities: map.remove($utilities, 'padding-start');
+
+$utilities: map.remove($utilities, 'gap');
+$utilities: map.remove($utilities, 'row-gap');
+$utilities: map.remove($utilities, 'column-gap');
+
 @import 'bootstrap/scss/utilities/api';

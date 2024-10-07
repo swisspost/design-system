@@ -17,7 +17,7 @@ export class SetupComponent extends LitElement {
   render() {
     return html`
       <section>
-        <div class="row gap-large migration-options">
+        <div class="row gap-24 migration-options">
           <div class="col-auto">
             <label class="form-label font-curve-small bold" for="docs_Default_ExampleSelect">
               What currentVersion of the Design System is your application currently using?

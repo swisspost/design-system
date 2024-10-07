@@ -32,14 +32,14 @@ function getGitHubUrl(path: String) {
 
 export default (params: { pathToStoryFile?: String }) => (
   <>
-    <div className="container mt-huge font-size-18 text-end">
+    <div className="container mt-56 font-size-18 text-end">
       {params.pathToStoryFile && (
         <a href={getGitHubUrl(params.pathToStoryFile)} rel="noopener">
           Edit this page on GitHub
         </a>
       )}
     </div>
-    <footer className="docs-footer mt-huge">
+    <footer className="docs-footer mt-56">
       <div className="bg-light">
         <div className="container">
           <div className="pt-big-r pb-big-r">
@@ -72,9 +72,9 @@ export default (params: { pathToStoryFile?: String }) => (
         </div>
       </div>
 
-      <div className="container d-flex justify-content-between py-regular">
+      <div className="container d-flex justify-content-between py-16">
         <strong>&copy; {new Date().getFullYear()} Swiss Post Ltd.</strong>
-        <div className="d-flex gap-3">
+        <div className="d-flex gap-16">
           <a
             href="https://www.post.ch/en/pages/footer/data-protection-and-disclaimer"
             rel="noopener"

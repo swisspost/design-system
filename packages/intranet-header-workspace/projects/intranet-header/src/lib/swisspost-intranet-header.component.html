@@ -7,7 +7,7 @@
             <span class="visually-hidden">{{ getPostLogoText() }}</span>
           </a>
         </div>
-        <div class="title flex-shrink-1 px-4">
+        <div class="title flex-shrink-1 px-24">
           <h1 class="m-0 font-weight-bold">{{ siteTitle }}</h1>
         </div>
         <div *ngIf="showIntranetSearch" class="col search-textbox d-none d-md-block">
@@ -32,7 +32,7 @@
           class="settings ms-auto flex-shrink-0 d-flex align-self-stretch"
         >
           <div class="align-self-stretch d-flex" display="dynamic" container="body">
-            <div class="align-self-center p-3">
+            <div class="align-self-center p-16">
               <div #headerExtraContent>
                 <ng-container
                   [ngTemplateOutlet]="optionHeaderContent"
@@ -56,7 +56,7 @@
             placement="bottom-right"
           >
             <button
-              class="btn btn-tertiary px-3 rounded-0 flex-shrink-0 no-toggle-arrow"
+              class="btn btn-tertiary px-16 rounded-0 flex-shrink-0 no-toggle-arrow"
               id="profileMenu"
               ngbDropdownToggle
             >
@@ -100,7 +100,7 @@
           *ngIf="hasNavbar === true"
           (click)="toggleMenu()"
           id="nav-toggler"
-          class="btn btn-lg btn-tertiary px-3 border-left rounded-0 flex-shrink-0 align-self-stretch d-md-none"
+          class="btn btn-lg btn-tertiary px-16 border-left rounded-0 flex-shrink-0 align-self-stretch d-md-none"
         >
           <em class="pi pi-2070"></em>
         </button>
