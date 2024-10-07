@@ -84,17 +84,17 @@ $utilities: (
   ),
   display: (
     tokens: (
-      -none: none,
-      -inline: inline,
-      -inline-block: inline-block,
-      -block: block,
-      -grid: grid,
-      -inline-grid: inline-grid,
-      -table: table,
-      -table-cell: table-cell,
-      -table-row: table-row,
-      -flex: flex,
-      -inline-flex: inline-flex,
+      post-utility-display-none: none,
+      post-utility-display-inline: inline,
+      post-utility-display-inline-block: inline-block,
+      post-utility-display-block: block,
+      post-utility-display-grid: grid,
+      post-utility-display-inline-grid: inline-grid,
+      post-utility-display-table: table,
+      post-utility-display-table-cell: table-cell,
+      post-utility-display-table-row: table-row,
+      post-utility-display-flex: flex,
+      post-utility-display-inline-flex: inline-flex,
     ),
     classes: (
       display: (
@@ -104,6 +104,7 @@ $utilities: (
         ),
       ),
     ),
-  )
-  // IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`.,,,,,,,,,,,,,,,,
+  ),
 );
+
+// IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`.
