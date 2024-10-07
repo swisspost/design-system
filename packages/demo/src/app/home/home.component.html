@@ -1,5 +1,5 @@
 <div *ngIf="isIE11" class="container">
-  <div class="alert alert-warning mt-3">
+  <div class="alert alert-warning mt-16">
     <h4 class="alert-heading">IE11 not supported</h4>
     <p>
       This app uses Angular {{ getVersion(angularVersion, 'M') }} and therefore does not support
@@ -9,7 +9,7 @@
 </div>
 
 <div class="heading">
-  <div class="container py-5">
+  <div class="container py-48">
     <h1 class="bold font-curve-large" id="home">Swiss Post</h1>
     <h2 class="font-curve-large">Design System</h2>
     <p class="font-monospace small">
@@ -49,7 +49,7 @@
   </div>
 </ng-template>
 
-<div class="bg-light py-5">
+<div class="bg-light py-48">
   <div class="container">
     <div class="alert alert-info" role="alert">
       <h4 class="alert-heading">
@@ -60,7 +60,7 @@
         Since it is still a beta version it is not yet complete, but in general the new storybook
         version gives you a much better overview of the components and their possible states.
       </p>
-      <div class="mt-3">
+      <div class="mt-16">
         <a
           href="https://design-system.post.ch"
           rel="noopener"
@@ -90,7 +90,7 @@
 
       <p id="compatibility-desc">List of compatible version numbers with external dependencies.</p>
 
-      <div class="row gx-5 mt-4">
+      <div class="row gx-5 mt-24">
         <div class="col-md-6 col-sm-12 table-responsive">
           <h4>Styles</h4>
           <table aria-describedby="compatibility-desc" class="table caption-top">
@@ -158,7 +158,7 @@
 
     <section>
       <h3>Setup for migration instructions</h3>
-      <div class="row migration-options mb-huge">
+      <div class="row migration-options mb-56">
         <div class="col-md-6">
           <fieldset>
             <legend class="font-curve-small bold">What environment is your application for?</legend>
@@ -226,8 +226,8 @@
       </div>
     </section>
 
-    <section id="v5-to-6" class="mb-huge">
-      <h3 class="bold mb-4">Migration from v5 to v6</h3>
+    <section id="v5-to-6" class="mb-56">
+      <h3 class="bold mb-24">Migration from v5 to v6</h3>
 
       <div class="alert alert-info" role="alert">
         <h4 class="alert-heading">
@@ -276,7 +276,7 @@
                 :
                 <code
                   appCopyToClipboard
-                  class="d-block mt-1 p-3"
+                  class="d-block mt-4 p-16"
                   [languages]="['bash']"
                   [highlight]="
                     'npm install bootstrap@5.3' +
@@ -290,7 +290,7 @@
                 Update Design System style package to version 6:
                 <code
                   appCopyToClipboard
-                  class="d-block mt-1 p-3"
+                  class="d-block mt-4 p-16"
                   [languages]="['bash']"
                   highlight="npm install @swisspost/design-system-styles@6"
                 ></code>
@@ -312,7 +312,7 @@
               to your application:
               <code
                 appCopyToClipboard
-                class="d-block mt-1 p-3"
+                class="d-block mt-4 p-16"
                 [languages]="['bash']"
                 highlight="npm install @swisspost/design-system-migrations
 npx ng update @swisspost/design-system-migrations --from=5 --to=6 --migrate-only --allow-dirty
@@ -327,7 +327,7 @@ npm uninstall @swisspost/design-system-migrations"
             Changes flagged with the ⚙️ symbol should be automatically migrated with our migration
             tool.
           </p>
-          <h5 class="h6 bold mt-4">Accessibility</h5>
+          <h5 class="h6 bold mt-24">Accessibility</h5>
           <ul>
             <li>
               <h6>
@@ -358,7 +358,7 @@ npm uninstall @swisspost/design-system-migrations"
               </ul>
             </li>
           </ul>
-          <h5 class="h6 bold mt-4">Deprecations</h5>
+          <h5 class="h6 bold mt-24">Deprecations</h5>
           <ul>
             <li *ngIf="isMigratingAngular">
               <h6>
@@ -399,8 +399,8 @@ npm uninstall @swisspost/design-system-migrations"
       </ol>
     </section>
 
-    <section id="v4-to-5" class="mb-huge">
-      <h3 class="bold mb-4">Migration from v4 to v5</h3>
+    <section id="v4-to-5" class="mb-56">
+      <h3 class="bold mb-24">Migration from v4 to v5</h3>
 
       <ol class="bubble-tea">
         <li>
@@ -419,7 +419,7 @@ npm uninstall @swisspost/design-system-migrations"
             *ngIf="isMigratingIntranet">s</span>.</p>
           <code
             appCopyToClipboard
-            class="d-block p-3"
+            class="d-block p-16"
             [languages]="['bash']"
             [highlight]="
               'npm uninstall @******/common-web-frontend' +
@@ -434,7 +434,7 @@ npm uninstall @swisspost/design-system-migrations"
           </h4>
           <code
             appCopyToClipboard
-            class="d-block p-3"
+            class="d-block p-16"
             [languages]="['bash']"
             [highlight]="
               'npm install @swisspost/design-system-styles@5' +
@@ -479,7 +479,7 @@ npm uninstall @swisspost/design-system-migrations"
             :
             <code
               appCopyToClipboard
-              class="d-block mt-1 p-3"
+              class="d-block mt-4 p-16"
               [languages]="['bash']"
               [highlight]="
                 'npm install bootstrap@5.1' +
@@ -502,7 +502,7 @@ npm uninstall @swisspost/design-system-migrations"
               to your application:
               <code
                 appCopyToClipboard
-                class="d-block mt-1 p-3"
+                class="d-block mt-4 p-16"
                 [languages]="['bash']"
                 highlight="npm install @swisspost/design-system-migrations
 npx ng update @swisspost/design-system-migrations --from=4 --to=5 --migrate-only --allow-dirty
@@ -519,7 +519,7 @@ npm uninstall @swisspost/design-system-migrations"
           </p>
 
           <h5 class="h6 bold">Deprecations</h5>
-          <ul class="mt-2 mb-3">
+          <ul class="mt-8 mb-16">
             <li>
               <p>
                 <strong>Dropped jQuery dependency</strong>
@@ -576,8 +576,8 @@ npm uninstall @swisspost/design-system-migrations"
                 <div ngbAccordionBody>
                   <!-- General Files -->
                   <div>
-                    <h5 class="mt-4 h6 bold">Paths &amp; Files</h5>
-                    <ul class="list-unstyled my-3">
+                    <h5 class="mt-24 h6 bold">Paths &amp; Files</h5>
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -593,7 +593,7 @@ npm uninstall @swisspost/design-system-migrations"
                           <label class="form-check-label" for="generalnaming_cwfpackagename">
                             <span class="change-badge bg-danger">breaking</span> Renamed <span
                             class="highlight">packages</span>.
-                            <ul class="mt-2">
+                            <ul class="mt-8">
                               <li><code appCopyToClipboard>&#64;******/common-web-frontend</code> became <code
                                 appCopyToClipboard>&#64;swisspost/design-system-styles</code></li>
                               <li><code appCopyToClipboard>&#64;******/common-web-frontend-demo</code> became <code
@@ -620,8 +620,8 @@ npm uninstall @swisspost/design-system-migrations"
                             Renamed entry files.
                             <br />
 
-                            <ul class="mt-2">
-                              <li class="mb-2">
+                            <ul class="mt-8">
+                              <li class="mb-8">
                                 <strong>Default (index)</strong>
                                 for default Post styles:
                                 <br />
@@ -633,7 +633,7 @@ npm uninstall @swisspost/design-system-migrations"
                                   &#64;use "&#64;swisspost/design-system-styles";
                                 </code>
                               </li>
-                              <li class="mb-2">
+                              <li class="mb-8">
                                 <strong>Intranet</strong>
                                 for default Post styles + intranet header styles:
                                 <br />
@@ -645,7 +645,7 @@ npm uninstall @swisspost/design-system-migrations"
                                   &#64;use "&#64;swisspost/design-system-styles/intranet.scss";
                                 </code>
                               </li>
-                              <li class="mb-2">
+                              <li class="mb-8">
                                 <strong>Basics</strong>
                                 for resets, typography, utilities and grid only (use this for small
                                 pages with lots of custom styles):
@@ -658,7 +658,7 @@ npm uninstall @swisspost/design-system-migrations"
                                   &#64;use "&#64;swisspost/design-system-styles/basics.scss";
                                 </code>
                               </li>
-                              <li class="mb-2">
+                              <li class="mb-8">
                                 <strong>Core</strong>
                                 for functions, mixins, variables and placeholders:
                                 <br />
@@ -744,8 +744,8 @@ npm uninstall @swisspost/design-system-migrations"
 
                   <!-- General Variables -->
                   <div>
-                    <h5 class="mt-4 h6 bold">Variables</h5>
-                    <ul class="list-unstyled my-3">
+                    <h5 class="mt-24 h6 bold">Variables</h5>
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -817,7 +817,7 @@ npm uninstall @swisspost/design-system-migrations"
                           <label class="form-check-label" for="generalvariables_floatinglabel">
                             <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">floating-label</span>
                             variables.<br>
-                            <ul class="mt-2">
+                            <ul class="mt-8">
                               <li><code appCopyToClipboard>$form-floating-label-padding-t</code></li>
                               <li><code appCopyToClipboard>$form-floating-label-padding-b</code></li>
                               <li><code appCopyToClipboard>$form-floating-textarea-line-height</code></li>
@@ -842,7 +842,7 @@ npm uninstall @swisspost/design-system-migrations"
                           <label class="form-check-label" for="generalvariables_colorsremoved">
                             <span class="change-badge bg-danger">breaking</span> Removed <span
                             class="highlight">color</span> variables.<br>
-                            <ul class="mt-2">
+                            <ul class="mt-8">
                               <li><code appCopyToClipboard>$white-alpha-10</code>, <code appCopyToClipboard>$white-alpha-20</code>,
                                 <code appCopyToClipboard>$white-alpha-40</code>, <code
                                   appCopyToClipboard>$white-alpha-60</code>, <code
@@ -884,7 +884,7 @@ npm uninstall @swisspost/design-system-migrations"
                           <label class="form-check-label" for="generalvariables_colorsrenamed">
                             <span class="change-badge bg-danger">breaking</span> Renamed <span
                             class="highlight">color</span> variables.
-                            <ul class="mt-2">
+                            <ul class="mt-8">
                               <li><code appCopyToClipboard>$gray-pampas</code> became <code appCopyToClipboard>$gray-background-light</code>
                               </li>
                               <li><code appCopyToClipboard>$gray-cararra</code> became <code appCopyToClipboard>$gray-background</code>
@@ -917,7 +917,7 @@ npm uninstall @swisspost/design-system-migrations"
                           <!-- prettier-ignore -->
                           <label class="form-check-label" for="generalvariables_lineheigts">
                             Dropped usage of <span class="highlight">line-height</span> variables.<br>
-                            <ul class="mt-2">
+                            <ul class="mt-8">
                               <li><code appCopyToClipboard>$line-height-sm</code></li>
                               <li><code appCopyToClipboard>$line-height-lg</code></li>
                             </ul>
@@ -960,7 +960,7 @@ npm uninstall @swisspost/design-system-migrations"
                           <label class="form-check-label" for="generalvariables_headingfontsizes">
                             Dropped usage of <span class="highlight">font-size</span> variables.<br>
                             Headings now have responsive font-sizes.<br>
-                            <ul class="mt-2">
+                            <ul class="mt-8">
                               <li><code appCopyToClipboard>$h1-font-size</code></li>
                               <li><code appCopyToClipboard>$h2-font-size</code></li>
                               <li><code appCopyToClipboard>$h3-font-size</code></li>
@@ -977,8 +977,8 @@ npm uninstall @swisspost/design-system-migrations"
 
                   <!-- General Mixins -->
                   <div>
-                    <h5 class="mt-4 h6 bold">Mixins</h5>
-                    <ul class="list-unstyled my-3">
+                    <h5 class="mt-24 h6 bold">Mixins</h5>
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -994,7 +994,7 @@ npm uninstall @swisspost/design-system-migrations"
                           <label class="form-check-label" for="generalmixins_fontsizelineheight">
                             <span class="change-badge bg-danger">breaking</span> Removed <span
                             class="highlight">font-size</span> and <span class="highlight">line-height</span> mixins:<br>
-                            <ul class="mt-2">
+                            <ul class="mt-8">
                               <li><code appCopyToClipboard>font-size-calc()</code></li>
                               <li><code appCopyToClipboard>font-size-and-lineheight()</code></li>
                               <li><code appCopyToClipboard>font-line-height()</code></li>
@@ -1007,8 +1007,8 @@ npm uninstall @swisspost/design-system-migrations"
 
                   <!-- General Classes -->
                   <div>
-                    <h5 class="mt-4 h6 bold">Classes</h5>
-                    <ul class="list-unstyled my-3">
+                    <h5 class="mt-24 h6 bold">Classes</h5>
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -1048,7 +1048,7 @@ npm uninstall @swisspost/design-system-migrations"
                             <span *ngIf="isMigratingAngular">⚙️ </span><span
                             class="change-badge bg-danger">breaking</span> Removed <span
                             class="highlight">secondary</span> classes.<br>
-                            <ul class="mt-2">
+                            <ul class="mt-8">
                               <li><code appCopyToClipboard>.bg-secondary</code></li>
                               <li><code appCopyToClipboard>.border-secondary</code></li>
                               <li><code appCopyToClipboard>.text-secondary</code></li>
@@ -1072,7 +1072,7 @@ npm uninstall @swisspost/design-system-migrations"
                             <span *ngIf="isMigratingAngular">⚙️ </span><span
                             class="change-badge bg-danger">breaking</span> Updated spacing and alignment helper classes,
                             for better support of <span class="highlight">rtl-mode</span>.
-                            <ul class="mt-2">
+                            <ul class="mt-8">
                               <li><code appCopyToClipboard>.ml-[size]</code> became <code
                                 appCopyToClipboard>.ms-[size]</code></li>
                               <li><code appCopyToClipboard>.ml-[breakpoint]-[size]</code> became <code appCopyToClipboard>.ms-[breakpoint]-[size]</code>
@@ -1129,7 +1129,7 @@ npm uninstall @swisspost/design-system-migrations"
                             <span *ngIf="isMigratingAngular">⚙️ </span><span
                             class="change-badge bg-danger">breaking</span> Updated <span class="highlight">sr-only</span>
                             classes.
-                            <ul class="mt-2">
+                            <ul class="mt-8">
                               <li><code appCopyToClipboard>.sr-only</code> became <code appCopyToClipboard>.visually-hidden</code>
                               </li>
                               <li><code appCopyToClipboard>.sr-only-focusable</code> became <code appCopyToClipboard>.visually-hidden-focusable</code>
@@ -1162,7 +1162,7 @@ npm uninstall @swisspost/design-system-migrations"
                   <!-- Bootstrap Alert / Notifications -->
                   <div>
                     <h5 class="h6 bold">Alert / Notification</h5>
-                    <ul class="list-unstyled my-3">
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -1214,8 +1214,8 @@ npm uninstall @swisspost/design-system-migrations"
 
                   <!-- Bootstrap Badge -->
                   <div>
-                    <h5 class="mt-4 h6 bold">Badge</h5>
-                    <ul class="list-unstyled my-3">
+                    <h5 class="mt-24 h6 bold">Badge</h5>
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -1232,7 +1232,7 @@ npm uninstall @swisspost/design-system-migrations"
                             <span *ngIf="isMigratingAngular">⚙️ </span><span
                             class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">badge</span>
                             classes.<br>
-                            <ul class="mt-2">
+                            <ul class="mt-8">
                               <li><code appCopyToClipboard>.badge-pill</code> became <code appCopyToClipboard>.rounded-pill</code>
                               </li>
                               <li><code appCopyToClipboard>.badge-[colorname]</code> became <code appCopyToClipboard>.bg-[colorname]</code>
@@ -1258,8 +1258,8 @@ npm uninstall @swisspost/design-system-migrations"
 
                   <!-- Bootstrap Background -->
                   <div>
-                    <h5 class="mt-4 h6 bold">Background</h5>
-                    <ul class="list-unstyled my-3">
+                    <h5 class="mt-24 h6 bold">Background</h5>
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -1292,8 +1292,8 @@ npm uninstall @swisspost/design-system-migrations"
 
                   <!-- Bootstrap Blockquote -->
                   <div>
-                    <h5 class="mt-4 h6 bold">Blockquote</h5>
-                    <ul class="list-unstyled my-3">
+                    <h5 class="mt-24 h6 bold">Blockquote</h5>
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -1346,8 +1346,8 @@ npm uninstall @swisspost/design-system-migrations"
 
                   <!-- Bootstrap Button -->
                   <div>
-                    <h5 class="mt-4 h6 bold">Button</h5>
-                    <ul class="list-unstyled my-3">
+                    <h5 class="mt-24 h6 bold">Button</h5>
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -1385,7 +1385,7 @@ npm uninstall @swisspost/design-system-migrations"
                           <label class="form-check-label" for="bootstrapbuttons_borderradius">
                             <span class="change-badge bg-danger">breaking</span> Removed <span
                             class="highlight">button</span> variables.<br>
-                            <ul class="mt-2">
+                            <ul class="mt-8">
                               <li><code appCopyToClipboard>$btn-border-radius-rg</code></li>
                               <li><code appCopyToClipboard>$btn-border-radius-map</code></li>
                             </ul>
@@ -1406,7 +1406,7 @@ npm uninstall @swisspost/design-system-migrations"
                           <!-- prettier-ignore -->
                           <label class="form-check-label" for="bootstrapbuttons_borderradius2">
                             Dropped the usage of <span class="highlight">button</span> variables.
-                            <ul class="mt-2">
+                            <ul class="mt-8">
                               <li><code appCopyToClipboard>$btn-border-radius-sm</code></li>
                               <li><code appCopyToClipboard>$btn-border-radius-lg</code></li>
                             </ul>
@@ -1463,8 +1463,8 @@ npm uninstall @swisspost/design-system-migrations"
 
                   <!-- Bootstrap Button Close -->
                   <div>
-                    <h5 class="mt-4 h6 bold">Button Close</h5>
-                    <ul class="list-unstyled my-3">
+                    <h5 class="mt-24 h6 bold">Button Close</h5>
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -1536,8 +1536,8 @@ npm uninstall @swisspost/design-system-migrations"
 
                   <!-- Bootstrap Cards -->
                   <div>
-                    <h5 class="mt-4 h6 bold">Card</h5>
-                    <ul class="list-unstyled my-3">
+                    <h5 class="mt-24 h6 bold">Card</h5>
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -1568,8 +1568,8 @@ npm uninstall @swisspost/design-system-migrations"
 
                   <!-- Bootstrap Forms -->
                   <div>
-                    <h5 class="mt-4 h6 bold">Forms</h5>
-                    <ul class="list-unstyled my-3">
+                    <h5 class="mt-24 h6 bold">Forms</h5>
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -1605,7 +1605,7 @@ npm uninstall @swisspost/design-system-migrations"
                             <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code appCopyToClipboard>.form-group</code>
                             class.<br>
                             Use <span class="highlight">utility-class</span>&nbsp;<code
-                            appCopyToClipboard>.mb-regular</code> instead.<br>
+                            appCopyToClipboard>.mb-16</code> instead.<br>
                           </label>
                         </div>
                       </li>
@@ -1638,8 +1638,8 @@ npm uninstall @swisspost/design-system-migrations"
 
                   <!-- Bootstrap Form-Controls -->
                   <div>
-                    <h5 class="mt-4 h6 bold">From Control</h5>
-                    <ul class="list-unstyled my-3">
+                    <h5 class="mt-24 h6 bold">From Control</h5>
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -1690,8 +1690,8 @@ npm uninstall @swisspost/design-system-migrations"
 
                   <!-- Bootstrap Form-Select -->
                   <div>
-                    <h5 class="mt-4 h6 bold">From Select</h5>
-                    <ul class="list-unstyled my-3">
+                    <h5 class="mt-24 h6 bold">From Select</h5>
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -1730,7 +1730,7 @@ npm uninstall @swisspost/design-system-migrations"
                             class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">select</span>,
                             <span class="highlight">multi-select</span> and <span class="highlight">custom-select</span>
                             classes.
-                            <ul class="mt-2">
+                            <ul class="mt-8">
                               <li><code appCopyToClipboard>.form-control</code> became <code appCopyToClipboard>.form-select</code>
                               </li>
                               <li><code appCopyToClipboard>.form-control-lg</code> became <code appCopyToClipboard>.form-select-lg</code>
@@ -1780,8 +1780,8 @@ npm uninstall @swisspost/design-system-migrations"
 
                   <!-- Bootstrap Form-Textarea -->
                   <div>
-                    <h5 class="mt-4 h6 bold">From Textarea</h5>
-                    <ul class="list-unstyled my-3">
+                    <h5 class="mt-24 h6 bold">From Textarea</h5>
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -1813,8 +1813,8 @@ npm uninstall @swisspost/design-system-migrations"
 
                   <!-- Bootstrap Form-File -->
                   <div>
-                    <h5 class="mt-4 h6 bold">Form File</h5>
-                    <ul class="list-unstyled my-3">
+                    <h5 class="mt-24 h6 bold">Form File</h5>
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -1843,8 +1843,8 @@ npm uninstall @swisspost/design-system-migrations"
 
                   <!-- Bootstrap Form-Checkbox -->
                   <div>
-                    <h5 class="mt-4 h6 bold">From Checkbox</h5>
-                    <ul class="list-unstyled my-3">
+                    <h5 class="mt-24 h6 bold">From Checkbox</h5>
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -1861,7 +1861,7 @@ npm uninstall @swisspost/design-system-migrations"
                             <span *ngIf="isMigratingAngular">⚙️ </span><span
                             class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">control</span>
                             classes.
-                            <ul class="mt-2">
+                            <ul class="mt-8">
                               <li><code appCopyToClipboard>.custom-control.custom-checkbox</code> became <code
                                 appCopyToClipboard>.form-check</code></li>
                               <li><code appCopyToClipboard>.custom-control-input</code> became <code appCopyToClipboard>.form-check-input</code>
@@ -1928,8 +1928,8 @@ npm uninstall @swisspost/design-system-migrations"
 
                   <!-- Bootstrap Form-Radio -->
                   <div>
-                    <h5 class="mt-4 h6 bold">From Radio</h5>
-                    <ul class="list-unstyled my-3">
+                    <h5 class="mt-24 h6 bold">From Radio</h5>
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -1946,7 +1946,7 @@ npm uninstall @swisspost/design-system-migrations"
                             <span *ngIf="isMigratingAngular">⚙️ </span><span
                             class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">control</span>
                             classes.
-                            <ul class="mt-2">
+                            <ul class="mt-8">
                               <li><code appCopyToClipboard>.custom-control.custom-radio</code> became <code
                                 appCopyToClipboard>.form-check</code></li>
                               <li><code appCopyToClipboard>.custom-control-input</code> became <code appCopyToClipboard>.form-check-input</code>
@@ -2013,7 +2013,7 @@ npm uninstall @swisspost/design-system-migrations"
 
                   <!-- Post Switch -->
                   <div>
-                    <h5 class="mt-4 h6 bold">Form Switch</h5>
+                    <h5 class="mt-24 h6 bold">Form Switch</h5>
 
                     <p>
                       The
@@ -2027,7 +2027,7 @@ npm uninstall @swisspost/design-system-migrations"
                       </span>
                     </p>
 
-                    <ul class="list-unstyled my-3">
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -2044,7 +2044,7 @@ npm uninstall @swisspost/design-system-migrations"
                             <span *ngIf="isMigratingAngular">⚙️ </span><span
                             class="change-badge bg-danger">breaking</span> Refactored <span
                             class="highlight">switch</span> classes.<br>
-                            <ul class="mt-2">
+                            <ul class="mt-8">
                               <li><code appCopyToClipboard>.switch</code> became <code appCopyToClipboard>.form-check.form-switch</code>
                               </li>
                               <li><code appCopyToClipboard>.switch input.switch</code> became <code appCopyToClipboard>input.form-check-input</code>
@@ -2070,7 +2070,7 @@ npm uninstall @swisspost/design-system-migrations"
                             <span *ngIf="isMigratingAngular">⚙️ </span><span
                             class="change-badge bg-danger">breaking</span> Refactored <span
                             class="highlight">switch-label</span>.<br>
-                            <ul class="mt-2">
+                            <ul class="mt-8">
                               <li><code appCopyToClipboard>div.switch label</code> (before <code appCopyToClipboard>label.switch-toggler</code>)
                                 became <code appCopyToClipboard>label.form-check-label.order-first</code></li>
                               <li><code appCopyToClipboard>div.switch label.switch-toggler</code> has been removed</li>
@@ -2153,7 +2153,7 @@ npm uninstall @swisspost/design-system-migrations"
                   <!-- ngBootstrap Buttons -->
                   <div>
                     <h5 class="h6 bold">Buttons</h5>
-                    <ul class="list-unstyled my-3">
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -2221,8 +2221,8 @@ npm uninstall @swisspost/design-system-migrations"
 
                   <!-- ngBootstrap DatePicker -->
                   <div>
-                    <h5 class="mt-4 h6 bold">DatePicker</h5>
-                    <ul class="list-unstyled my-3">
+                    <h5 class="mt-24 h6 bold">DatePicker</h5>
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -2238,7 +2238,7 @@ npm uninstall @swisspost/design-system-migrations"
                           <label class="form-check-label" for="ngbootstrapdatepickers_variables">
                             <span class="change-badge bg-danger">breaking</span> Removed <span
                             class="highlight">padding</span> variables.
-                            <ul class="mt-2">
+                            <ul class="mt-8">
                               <li><code appCopyToClipboard>$ngb-dp-icon-padding</code></li>
                               <li><code appCopyToClipboard>$ngb-dp-icon-padding-sm</code></li>
                               <li><code appCopyToClipboard>$ngb-dp-icon-padding-rg</code></li>
@@ -2257,8 +2257,8 @@ npm uninstall @swisspost/design-system-migrations"
 
                   <!-- ngBootstrap Modal -->
                   <div>
-                    <h5 class="mt-4 h6 bold">Modal</h5>
-                    <ul class="list-unstyled my-3">
+                    <h5 class="mt-24 h6 bold">Modal</h5>
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -2330,7 +2330,7 @@ npm uninstall @swisspost/design-system-migrations"
                   <!-- jQuery Accordion -->
                   <div>
                     <h5 class="h6 bold">Accordion</h5>
-                    <ul class="list-unstyled my-3">
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -2381,7 +2381,7 @@ npm uninstall @swisspost/design-system-migrations"
                   <!-- Post Accordion -->
                   <div>
                     <h5 class="h6 bold">Accordion</h5>
-                    <ul class="list-unstyled my-3">
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -2412,8 +2412,8 @@ npm uninstall @swisspost/design-system-migrations"
 
                   <!-- Post Custom-Select -->
                   <div>
-                    <h5 class="mt-4 h6 bold">Custom-Select</h5>
-                    <ul class="list-unstyled my-3">
+                    <h5 class="mt-24 h6 bold">Custom-Select</h5>
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -2486,8 +2486,8 @@ npm uninstall @swisspost/design-system-migrations"
 
                   <!-- Post Subnavigation -->
                   <div>
-                    <h5 class="mt-4 h6 bold">Subnavigation</h5>
-                    <ul class="list-unstyled my-3">
+                    <h5 class="mt-24 h6 bold">Subnavigation</h5>
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -2516,8 +2516,8 @@ npm uninstall @swisspost/design-system-migrations"
 
                   <!-- Post Topic Teaser -->
                   <div>
-                    <h5 class="mt-4 h6 bold">Topic Teaser</h5>
-                    <ul class="list-unstyled my-3">
+                    <h5 class="mt-24 h6 bold">Topic Teaser</h5>
+                    <ul class="list-unstyled my-16">
                       <li>
                         <div class="form-check">
                           <input
@@ -2534,7 +2534,7 @@ npm uninstall @swisspost/design-system-migrations"
                             <span *ngIf="isMigratingAngular">⚙️ </span><span
                             class="change-badge bg-danger">breaking</span> Required <span class="highlight">image</span>
                             attributes.
-                            <ul class="mt-2">
+                            <ul class="mt-8">
                               <li><code appCopyToClipboard>width="100%"</code></li>
                               <li><code appCopyToClipboard>height="100%"</code></li>
                             </ul>
@@ -2623,11 +2623,11 @@ npm uninstall @swisspost/design-system-migrations"
     <div class="topic-teaser-container bg-nightblue">
       <div class="row pt-huge-r">
         <div class="topic-teaser-content">
-          <h2 class="topic-teaser-title font-curve-large mb-large">
+          <h2 class="topic-teaser-title font-curve-large mb-24">
             <span class="bold">Resources</span>
             <span class="light">For a consistent user experience</span>
           </h2>
-          <ul class="link-list mb-large">
+          <ul class="link-list mb-24">
             <li class="link-list-item">
               <a
                 target="_blank"

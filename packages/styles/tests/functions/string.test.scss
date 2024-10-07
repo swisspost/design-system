@@ -1,0 +1,22 @@
+@use 'tests/jest';
+@use 'src/functions/string';
+
+$paragraph: "I think Ruth's dog is cuter than your dog!";
+
+// it should replace a term by another
+@include jest.equal(
+    'I think my dog is cuter than your dog!',
+    string.replace($paragraph, "Ruth's", 'my')
+);
+
+// it should replace all occurrences
+@include jest.equal(
+    "I think Ruth's cat is cuter than your cat!",
+    string.replace($paragraph, "dog", 'cat')
+);
+
+// it should return the original string when it does not contain the term to replace
+@include jest.equal(
+    $paragraph,
+    string.replace($paragraph, "Sandy's", 'my')
+);
