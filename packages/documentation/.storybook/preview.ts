@@ -31,7 +31,16 @@ const preview: Preview = {
 
           // Category - Getting Started
           'Getting Started',
-          ['Introduction', 'Angular', 'Compatibility', 'Packages', 'Changelogs', 'Migration Guide'],
+          [
+            'Introduction',
+            'Design Principles',
+            'Mission',
+            'Angular',
+            'Compatibility',
+            'Packages',
+            'Changelogs',
+            'Migration Guide',
+          ],
 
           // Category - Foundations
           'Foundations',

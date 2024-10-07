@@ -15,7 +15,7 @@ enum PostSizeImplementation {
 
 const heightWidth = `<div class="d-block bg-primary w-bigger-giant h-small-regular"></div>`;
 const paddingMargin = `<div class="bg-primary d-inline-block">
-    <div class="bg-white d-inline-block p-regular m-mini ms-huge">Text</div>
+    <div class="bg-white d-inline-block p-16 m-8 ms-56">Text</div>
 </div>`;
 
 @Component({

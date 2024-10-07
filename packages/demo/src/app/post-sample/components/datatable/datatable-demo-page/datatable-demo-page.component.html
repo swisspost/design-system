@@ -1,4 +1,4 @@
-<div class="heading py-5">
+<div class="heading py-48">
   <h1 class="bold font-curve-large">Datatable</h1>
   <h2 class="font-curve-medium">Using ngx-datatable 20.0.0</h2>
   <a
@@ -20,7 +20,7 @@
   </a>
 </div>
 
-<div class="alert alert-warning mb-bigger-big" role="alert">
+<div class="alert alert-warning mb-40" role="alert">
   <h4 class="alert-heading">Ngx-datatable is not fully accessible</h4>
   <p>
     The datatable offered by the ngx-datatable package does not meet the required accessibility
@@ -30,7 +30,7 @@
 
 <section>
   <h3>Basic datatable</h3>
-  <div class="row my-large align-items-end">
+  <div class="row my-24 align-items-end">
     <div class="col">
       <label class="form-label" for="tableType">Table style</label>
       <select id="tableType" class="form-select" [(ngModel)]="tableType">
@@ -62,12 +62,12 @@
       </div>
     </div>
   </div>
-  <div [ngClass]="{ 'bg-light p-regular': tableType === 'inverted-colors' }">
+  <div [ngClass]="{ 'bg-light p-16': tableType === 'inverted-colors' }">
     <app-datatable-demo [tableType]="tableType" [headerColumn]="headerColumn"></app-datatable-demo>
   </div>
-  <p class="h5 bold mt-4">datatable-demo.component.html</p>
+  <p class="h5 bold mt-24">datatable-demo.component.html</p>
   <code class="block" [highlight]="basicTemplate" [languages]="['html']"></code>
-  <p class="h5 bold mt-4">datatable-demo.component.ts</p>
+  <p class="h5 bold mt-24">datatable-demo.component.ts</p>
   <code class="block" [highlight]="basicComponent" [languages]="['typescript']"></code>
 </section>
 
@@ -75,7 +75,7 @@
 
 <section>
   <h3>Paginated datatable</h3>
-  <div class="my-large w-25">
+  <div class="my-24 w-25">
     <label class="form-label" for="paginationMode">Pagination mode</label>
     <select class="form-select" id="paginationMode" [(ngModel)]="paginationMode">
       <option value="standard">Standard pagination</option>
@@ -83,7 +83,7 @@
     </select>
   </div>
   <app-datatable-paginated-demo [paginationMode]="paginationMode"></app-datatable-paginated-demo>
-  <p class="h5 bold mt-4">datatable-paginated-demo.component.html</p>
+  <p class="h5 bold mt-24">datatable-paginated-demo.component.html</p>
   <code class="block" [highlight]="paginationTemplate" [languages]="['html']"></code>
 </section>
 
@@ -92,13 +92,13 @@
 <section>
   <h3>Editable datatable</h3>
   <app-datatable-editable-demo></app-datatable-editable-demo>
-  <p class="h5 bold mt-4">datatable-editable-demo.component.html</p>
+  <p class="h5 bold mt-24">datatable-editable-demo.component.html</p>
   <code class="block" [highlight]="editionTemplate" [languages]="['html']"></code>
 </section>
 
 <section>
   <h3>Datatable with loading indicator</h3>
   <app-datatable-loading-demo></app-datatable-loading-demo>
-  <p class="h5 bold mt-4">datatable-loading-demo.component.html</p>
+  <p class="h5 bold mt-24">datatable-loading-demo.component.html</p>
   <code class="block" [highlight]="loadingTemplate" [languages]="['html']"></code>
 </section>

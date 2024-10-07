@@ -1,9 +1,9 @@
-<div class="heading py-5">
+<div class="heading py-48">
   <h1 class="bold font-curve-large">Datepicker</h1>
   <app-dependency-link></app-dependency-link>
 </div>
 
-<div class="alert alert-warning mb-bigger-big">
+<div class="alert alert-warning mb-40">
   <p>
     The
     <code>.pi-calendar</code>
@@ -17,7 +17,7 @@
 <section>
   <p id="languageSelectorTitle" class="light font-curve-regular">Choose a language:</p>
 
-  <fieldset aria-labelledby="languageSelectorTitle" class="btn-group mb-3">
+  <fieldset aria-labelledby="languageSelectorTitle" class="btn-group mb-16">
     <input
       [(ngModel)]="language"
       autocomplete="off"
@@ -71,9 +71,9 @@
 <section>
   <h3 class="bold">Simple datepicker</h3>
 
-  <div class="row row-cols-md-2 row-cols-lg-3 mb-3 align-items-end">
+  <div class="row row-cols-md-2 row-cols-lg-3 mb-16 align-items-end">
     <div class="col">
-      <div class="mb-4">
+      <div class="mb-24">
         <app-datepicker-simple
           *ngIf="dpSimpleSize !== 'lg'"
           [inputSize]="dpSimpleSize"
@@ -111,7 +111,7 @@
     </div>
   </div>
 
-  <h4 class="h5 bold mt-4">datepicker.component.html</h4>
+  <h4 class="h5 bold mt-24">datepicker.component.html</h4>
   <code
     *ngIf="dpSimpleSize !== 'lg'"
     [highlight]="dpSimpleHtml"
@@ -124,15 +124,15 @@
     [languages]="['html']"
     class="block"
   ></code>
-  <h4 class="h5 bold mt-4">datepicker-simple.component.ts</h4>
+  <h4 class="h5 bold mt-24">datepicker-simple.component.ts</h4>
   <code class="block" [highlight]="dpSimpleTs" [languages]="['typescript', 'javascript']"></code>
 </section>
 
 <section>
-  <h3 class="bold mt-5">Datepicker with validation</h3>
+  <h3 class="bold mt-48">Datepicker with validation</h3>
   <div class="row row-cols-md-2 row-cols-lg-3">
     <div class="col">
-      <div class="mb-4">
+      <div class="mb-24">
         <app-datepicker-validation
           *ngIf="dpValidationSize !== 'lg'"
           [inputSize]="dpValidationSize"
@@ -161,7 +161,7 @@
     </div>
   </div>
 
-  <h4 class="h5 bold mt-4">datepicker.component.html</h4>
+  <h4 class="h5 bold mt-24">datepicker.component.html</h4>
   <code
     *ngIf="dpValidationSize !== 'lg'"
     [highlight]="dpValidationHtml"
@@ -174,7 +174,7 @@
     [languages]="['html']"
     class="block"
   ></code>
-  <h4 class="h5 bold mt-4">datepicker-simple.component.ts</h4>
+  <h4 class="h5 bold mt-24">datepicker-simple.component.ts</h4>
   <code
     class="block"
     [highlight]="dpValidationTs"
@@ -183,7 +183,7 @@
 </section>
 
 <app-ngb-localization>
-  <p class="light font-curve-regular mt-4">
+  <p class="light font-curve-regular mt-24">
     The datepicker requires additional translations for months and days of the week. These can be
     configured using the service below:
   </p>

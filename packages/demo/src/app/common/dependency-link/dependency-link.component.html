@@ -5,7 +5,7 @@
 <h2 class="font-curve-medium">Using {{ dependency }} v{{ dependencyVersion }}</h2>
 
 <ng-container *ngIf="documentationPaths; else singleButton">
-  <div class="d-flex gap-2">
+  <div class="d-flex gap-8">
     <ng-container
       *ngFor="let path of documentationPaths | keyvalue"
       [ngTemplateOutletContext]="{
