@@ -1,17 +1,25 @@
-@mixin min($device-size) {
-  @media screen and (min-width: $device-size) {
+@use '../functions/breakpoint';
+
+@mixin breakpoint-up($breakpoint) {
+  @media screen and (min-width: breakpoint.min-width($breakpoint)) {
     @content;
   }
 }
 
-@mixin max($device-size) {
-  @media screen and (max-width: ($device-size - 0.01)) {
+@mixin breakpoint-down($breakpoint) {
+  @media screen and (max-width: breakpoint.max-width($breakpoint)) {
     @content;
   }
 }
 
-@mixin between($min-size, $max-size) {
-  @media screen and (min-width: $min-size) and (max-width: ($max-size - 0.01)) {
+@mixin breakpoint-between($breakpoint-min, $breakpoint-max) {
+  @media screen and (min-width: breakpoint.min-width($breakpoint-min)) and (max-width: breakpoint.max-width($breakpoint-max)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-only($breakpoint) {
+  @media screen and (min-width: breakpoint.min-width($breakpoint)) and (max-width: breakpoint.max-width($breakpoint)) {
     @content;
   }
 }

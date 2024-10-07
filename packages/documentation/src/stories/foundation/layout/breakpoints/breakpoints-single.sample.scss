@@ -1,7 +1,7 @@
 @use '@swisspost/design-system-styles/core' as post;
 
-@include post.media-breakpoint-only(xs) {
+@include post.breakpoint-only(md) {
   .custom-class {
-    display: block;
+    display: block; // Show this element only on medium screens (≥780px and <1024px)
   }
 }

@@ -1,0 +1,16 @@
+@use 'tests/jest';
+@use 'sass:map';
+@use 'src/functions/breakpoint';
+@use 'src/variables/breakpoints';
+
+// it should return the next available breakpoint
+@include jest.equal(lg, breakpoint.next(md));
+
+// it should return null if the breakpoint is the last one available
+@include jest.equal(null, breakpoint.next(xl));
+
+// it should return the min-width corresponding to the breakpoint
+@include jest.equal(map.get(breakpoints.$grid-breakpoints, sm), breakpoint.min-width(sm));
+
+// it should return the max-width corresponding to the breakpoint
+@include jest.equal(map.get(breakpoints.$grid-breakpoints, sm) - 0.01, breakpoint.max-width(xs));

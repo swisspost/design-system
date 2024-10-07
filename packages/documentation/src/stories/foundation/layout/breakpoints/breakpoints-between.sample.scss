@@ -1,7 +1,7 @@
 @use '@swisspost/design-system-styles/core' as post;
 
-@include post.media-breakpoint-between(sm, lg) {
+@include post.breakpoint-between(sm, lg) {
   .custom-class {
-    display: block;
+    display: block; // Show the element on screens between 600px and 1024px
   }
 }

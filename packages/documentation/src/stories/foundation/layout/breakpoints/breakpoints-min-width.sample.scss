@@ -1,12 +1,11 @@
 @use '@swisspost/design-system-styles/core' as post;
 
-// No media query necessary for xs breakpoint as it's effectively @media (min-width: 0) { ... }
 .custom-class {
-  display: none;
+  display: none; // By default, this element is hidden
 }
 
-@include post.media-breakpoint-up(lg) {
+@include post.breakpoint-up(lg) {
   .custom-class {
-    display: block;
+    display: block; // On screens 1024px or wider, this element is shown
   }
 }
