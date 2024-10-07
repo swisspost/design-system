@@ -66,7 +66,7 @@ function clickBlocker(story: StoryFn, context: StoryContext) {
 }
 
 function paddedContainer(story: StoryFn, context: StoryContext) {
-  return html` <div class="p-mini">${story(context.args, context)}</div> `;
+  return html` <div class="p-8">${story(context.args, context)}</div> `;
 }
 
 function gridContainer(story: StoryFn, context: StoryContext) {
@@ -82,7 +82,7 @@ function getTitle(args: Args) {
   if (!args.title) return nothing;
 
   const headingTag = unsafeStatic(args.level);
-  const headingClass = `mb-regular${args.level === 'h3' ? '' : ' h3'}`;
+  const headingClass = `mb-16${args.level === 'h3' ? '' : ' h3'}`;
   return html`<${headingTag} class="${headingClass}">${args.title}</${headingTag}>`;
 }
 
@@ -147,7 +147,7 @@ export const Multipart: Story = {
             <div class="product-navigation">
               <div>
                 <h3>Preiswert</h3>
-                <h4 class="mb-regular">Sample Product</h4>
+                <h4 class="mb-16">Sample Product</h4>
                 <p class="lead">
                   Mit SAMPLE PRODUCT kommen Ihre Briefe kostengünstig und zuverlässig ans Ziel.
                 </p>
@@ -164,7 +164,7 @@ export const Multipart: Story = {
           <div class="card-body bg-light" data-sync-height-with="product-body-1">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
-            <dl class="mt-3">
+            <dl class="mt-16">
               <dt>bis 500 g</dt>
               <dd class="h3">1.20</dd>
 
@@ -176,7 +176,7 @@ export const Multipart: Story = {
           <div class="card-body bg-white" data-sync-height-with="product-body-2">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
-            <dl class="mt-3 align-items-stretch">
+            <dl class="mt-16 align-items-stretch">
               <div class="horizontal-list-item justify-content-between d-flex flex-column">
                 <dt>
                   so zwischen ca. 5g
@@ -211,7 +211,7 @@ export const Multipart: Story = {
           <div class="card-body bg-light" data-sync-height-with="product-body-3">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
-            <dl class="mt-3">
+            <dl class="mt-16">
               <dt>bis 500 g</dt>
               <dd class="h3">1.20</dd>
 
@@ -224,7 +224,7 @@ export const Multipart: Story = {
           </div>
 
           <div class="card-body bg-light">
-            <button class="btn btn-secondary btn-animated w-100 mb-small-regular">
+            <button class="btn btn-secondary btn-animated w-100 mb-12">
               <span>Order Sample Product</span>
             </button>
 
@@ -241,7 +241,7 @@ export const Multipart: Story = {
             <div class="product-navigation">
               <div>
                 <h3>Schneller</h3>
-                <h4 class="mb-regular">Sample Product</h4>
+                <h4 class="mb-16">Sample Product</h4>
                 <p class="lead">
                   Lorem ipsum aafw ea aewfwe awef awfeaea awefa wawef waf wawefa ea dolor sit amet
                   consectetur adipisicing elit. Iusto nulla laboriosam nesciunt. Unde velit dolores
@@ -260,7 +260,7 @@ export const Multipart: Story = {
           <div class="card-body bg-light" data-sync-height-with="product-body-1">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
-            <dl class="mt-3">
+            <dl class="mt-16">
               <dt>bis 500 g</dt>
               <dd class="h3">1.20</dd>
 
@@ -275,7 +275,7 @@ export const Multipart: Story = {
           <div class="card-body bg-white" data-sync-height-with="product-body-2">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
-            <dl class="mt-3 align-items-stretch">
+            <dl class="mt-16 align-items-stretch">
               <div class="horizontal-list-item justify-content-between d-flex flex-column">
                 <dt>
                   so zwischen ca. 5g
@@ -298,7 +298,7 @@ export const Multipart: Story = {
           <div class="card-body bg-light" data-sync-height-with="product-body-3">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
-            <dl class="mt-3">
+            <dl class="mt-16">
               <dt>bis 500 g</dt>
               <dd class="h3">1.20</dd>
 
@@ -311,7 +311,7 @@ export const Multipart: Story = {
           </div>
 
           <div class="card-body bg-light">
-            <button class="btn btn-secondary btn-animated w-100 mb-small-regular">
+            <button class="btn btn-secondary btn-animated w-100 mb-12">
               <span>Order Sample Product</span>
             </button>
 

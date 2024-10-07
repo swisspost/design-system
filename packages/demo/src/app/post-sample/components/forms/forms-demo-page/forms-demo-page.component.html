@@ -30,7 +30,7 @@
     label, screen-reader users have no idea what the input should be, even if there is other text
     next to the field.
   </p>
-  <div class="bg-light p-big">
+  <div class="bg-light p-32">
     <label class="form-label" for="basic-input-firstname">Firstname</label>
     <input type="text" id="basic-input-firstname" class="form-control" placeholder="Firstname" />
   </div>
@@ -42,8 +42,8 @@
     <a routerLink="/post-samples/sizing#padding-and-margin">margin utilities</a>
     .
   </p>
-  <div class="bg-light p-big">
-    <div class="mb-regular">
+  <div class="bg-light p-32">
+    <div class="mb-16">
       <label class="form-label" for="vertical-spacing-firstname">Firstname</label>
       <input
         type="text"
@@ -52,7 +52,7 @@
         placeholder="Firstname"
       />
     </div>
-    <div class="mb-regular">
+    <div class="mb-16">
       <label class="form-label" for="vertical-spacing-lastname">Lastname</label>
       <input
         type="text"
@@ -80,7 +80,7 @@
     <a href="https://getbootstrap.com/docs/5.1/layout/grid/#row-columns">Bootstrap Row Columns</a>
     ).
   </p>
-  <div class="bg-light p-big">
+  <div class="bg-light p-32">
     <div class="row row-cols-1 row-cols-md-2">
       <div class="col">
         <label class="form-label" for="rows-n-cols-firstname">Firstname</label>
@@ -113,7 +113,7 @@
     <code>.col-4</code>
     to you two columns respectively.
   </p>
-  <div class="bg-light p-big">
+  <div class="bg-light p-32">
     <div class="row">
       <div class="col-8">
         <label class="form-label" for="rows-n-cols-city">City</label>
@@ -137,7 +137,7 @@
     class, this col is sized based on it's content. The other row is stretched to the container
     width. With this setup, we can define a max-width on the input field to shrink it.
   </p>
-  <div class="bg-light p-big">
+  <div class="bg-light p-32">
     <div class="row">
       <div class="col-auto">
         <label class="form-label" for="custom-width-zip">Zip</label>
@@ -164,19 +164,19 @@
     <code>d-flex flex-row-reverse</code>
     . This will ensure that the primary button is focused first (because of the markup order) but is
     still aligned to the right. To get some margin between the button we can use the
-    <code>.gap-mini</code>
+    <code>.gap-8</code>
     class. Note that for the buttons, we don't need any row/col structure. Read more about gap
     classes at
     <a routerLink="https://getbootstrap.com/docs/5.1/utilities/spacing/#gap">Bootstrap Gaps</a>
     .
   </p>
-  <div class="bg-light p-big">
-    <div class="mb-regular">
+  <div class="bg-light p-32">
+    <div class="mb-16">
       <label class="form-label" for="form-buttons-firstname">Firstname</label>
       <input type="text" id="form-buttons-firstname" class="form-control" placeholder="Firstname" />
     </div>
 
-    <div class="d-flex flex-row-reverse gap-mini">
+    <div class="d-flex flex-row-reverse gap-8">
       <button class="btn btn-primary">Send</button>
       <button class="btn btn-secondary">Cancel</button>
     </div>
@@ -195,7 +195,7 @@
     div. In addition, the input field needs a placeholder attribute, preferably equal to a single
     space.
   </p>
-  <div class="bg-light p-big">
+  <div class="bg-light p-32">
     <div class="row">
       <div class="col">
         <div class="form-floating">
@@ -222,7 +222,7 @@
     in the case of floating label). Showing and hiding of these messages is typically controlled by
     adding and removing validation classes on the input:
   </p>
-  <ul class="light font-curve-regular px-giant">
+  <ul class="light font-curve-regular px-80">
     <li>
       The message needs the class
       <code>.invalid-feedback/.valid-feedback</code>
@@ -245,7 +245,7 @@
       </ul>
     </li>
   </ul>
-  <div class="bg-light p-big">
+  <div class="bg-light p-32">
     <form action="/" class="was-validated">
       <!-- Form Control -->
       <div class="row">
@@ -299,7 +299,7 @@
     <code>&lt;input&gt;</code>
     with the aria-labelledby attribute to the hint via id.
   </p>
-  <div class="bg-light p-big">
+  <div class="bg-light p-32">
     <div class="form-floating">
       <input
         id="hints-firstname"
@@ -309,7 +309,7 @@
         placeholder=" "
       />
       <label class="form-label" for="hints-firstname">Firstname</label>
-      <div id="firstname-hint" class="form-text d-flex align-items-center gap-mini">
+      <div id="firstname-hint" class="form-text d-flex align-items-center gap-8">
         <i class="pi pi-info" aria-hidden="true"></i>
         <span>Also provide any middle names in this field</span>
       </div>

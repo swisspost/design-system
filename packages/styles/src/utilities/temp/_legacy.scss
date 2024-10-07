@@ -1,16 +1,14 @@
-@forward './../variables/options';
-
 @use 'sass:map';
 @use 'sass:color' as sass-color;
 @use 'sass:list';
 
-@use './../themes/bootstrap/core' as *;
-@use './../themes/bootstrap/utilities' as bu; // TODO: Move Design System utilities to utilities folder.
-@use './../mixins/color' as color-mx;
-@use './../mixins/utilities';
-@use './../variables/color';
-@use './../variables/spacing';
-@use './../variables/grid';
+@use '../../themes/bootstrap/core' as *;
+@use '../../themes/bootstrap/utilities' as bu; // TODO: Move Design System utilities to utilities folder.
+@use '../../mixins/color' as color-mx;
+@use '../../mixins/utilities';
+@use '../../variables/color';
+@use '../../variables/spacing';
+@use '../../variables/grid';
 
 .bold {
   font-weight: 700;

@@ -124,7 +124,7 @@ export const Icon: Story = {
 export const Variants: Story = {
   decorators: [
     (story: StoryFn, context: StoryContext) =>
-      html`<div class="d-flex flex-wrap gap-3">${story(context.args, context)}</div>`,
+      html`<div class="d-flex flex-wrap gap-16">${story(context.args, context)}</div>`,
   ],
   render: (args: Args, context: StoryContext) => {
     const variants: string[] = context.argTypes.variant.options.slice(1);

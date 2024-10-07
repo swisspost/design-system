@@ -16,7 +16,7 @@ export const PostTag: Story = {
   render: (args: Args, context: StoryContext) =>
     html` ${['bg-white', 'bg-dark'].map(
       bg => html`
-        <div class="${bg} p-3">
+        <div class="${bg} p-16">
           ${bombArgs({
             'size': context.argTypes.size.options,
             'icon': ['', '1001'],
@@ -27,7 +27,7 @@ export const PostTag: Story = {
             ],
           }).map(
             (bombArgs: Args) =>
-              html`<div class="d-flex flex-wrap gap-1 mb-4">
+              html`<div class="d-flex flex-wrap gap-4 mb-24">
                 ${context.argTypes.variant.options
                   .filter((v: string) => v !== 'null')
                   .map((variant: string) =>

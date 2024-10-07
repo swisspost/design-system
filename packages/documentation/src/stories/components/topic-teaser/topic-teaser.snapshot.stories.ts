@@ -31,7 +31,7 @@ export const TopicTeaser: Story = {
                 .filter((args: Args) => args.title !== args.subtitle || args.linkCount == 5)
                 .map((args: Args) => {
                   return html`
-                    <div class="p-3">
+                    <div class="p-16">
                       ${Default.render?.({ ...context.args, ...Default.args, ...args }, context)}
                     </div>
                   `;

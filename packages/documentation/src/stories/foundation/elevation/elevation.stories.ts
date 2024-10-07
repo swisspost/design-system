@@ -16,5 +16,5 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: () =>
-    html` <div class="w-50 rounded p-regular bg-aubergine elevation-5">I'm elevated!</div> `,
+    html` <div class="w-50 rounded p-16 bg-aubergine elevation-5">I'm elevated!</div> `,
 };

@@ -115,7 +115,7 @@ export const Table: Story = {
                             <span class="visually-hidden">Edit</span>
                             <i class="pi pi-2012"></i>
                           </button>
-                          <button class="btn btn-primary btn-icon btn-md ms-2">
+                          <button class="btn btn-primary btn-icon btn-md ms-8">
                             <span class="visually-hidden">Edit</span>
                             <i class="pi pi-3193"></i>
                           </button>
@@ -130,7 +130,7 @@ export const Table: Story = {
                             <span class="visually-hidden">Edit</span>
                             <i class="pi pi-2012"></i>
                           </button>
-                          <button class="btn btn-primary btn-icon btn-md ms-2">
+                          <button class="btn btn-primary btn-icon btn-md ms-8">
                             <span class="visually-hidden">Edit</span>
                             <i class="pi pi-3193"></i>
                           </button>
@@ -145,7 +145,7 @@ export const Table: Story = {
                             <span class="visually-hidden">Edit</span>
                             <i class="pi pi-2012"></i>
                           </button>
-                          <button class="btn btn-primary btn-icon btn-md ms-2">
+                          <button class="btn btn-primary btn-icon btn-md ms-8">
                             <span class="visually-hidden">Edit</span>
                             <i class="pi pi-3193"></i>
                           </button>
