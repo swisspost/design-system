@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/web-components';
+import type { StoryObj, StoryFn, StoryContext } from '@storybook/web-components';
 import { html } from 'lit';
 import { MetaExtended } from '@root/types';
 
@@ -19,6 +19,9 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
+  decorators: [
+    (story: StoryFn, context: StoryContext) => html` <div>${story(context.args, context)}</div> `,
+  ],
   render: () => html`
     <p>
       This is a paragraph. It is a block of text that is separated from other blocks of text by a
