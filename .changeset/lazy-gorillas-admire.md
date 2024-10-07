@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-styles': major
+'@swisspost/design-system-styles': minor
 '@swisspost/design-system-documentation': minor
 ---
 
