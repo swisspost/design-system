@@ -9,7 +9,7 @@ const meta: MetaExtended = {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=26-49',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=178-6713&node-type=frame&t=Zs4iDGVBTA88pChW-0',
     },
   },
 };
