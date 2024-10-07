@@ -19,7 +19,13 @@
 }
 
 @mixin breakpoint-only($breakpoint) {
-  @media screen and (min-width: breakpoint.min-width($breakpoint)) and (max-width: breakpoint.max-width($breakpoint)) {
-    @content;
+  @if (breakpoint.next($breakpoint)) {
+    @include breakpoint-between($breakpoint, $breakpoint) {
+      @content;
+    }
+  } @else {
+    @include breakpoint-up($breakpoint) {
+      @content;
+    }
   }
 }

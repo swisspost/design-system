@@ -41,7 +41,7 @@ tokens.$default-map: layout.$post-grid;
 }
 
 @each $breakpoint, $device-size in breakpoints.$grid-breakpoints {
-  @include media.min($device-size) {
+  @include media.breakpoint-up($breakpoint) {
     $infix: if($device-size == 0, '', '-#{$breakpoint}');
 
     .col#{$infix} {

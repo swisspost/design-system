@@ -14,7 +14,7 @@
     @if ($min-width == 0) {
       @include generate-utilities($properties, $value, $prefix, $suffix);
     } @else {
-      @include media.min($min-width) {
+      @include media.breakpoint-up($breakpoint) {
         $infix: '-#{$breakpoint}';
         @include generate-utilities($properties, $value, $prefix, $suffix, $infix);
       }

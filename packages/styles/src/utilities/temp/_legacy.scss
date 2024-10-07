@@ -6,6 +6,7 @@
 @use '../../themes/bootstrap/utilities' as bu; // TODO: Move Design System utilities to utilities folder.
 @use '../../mixins/color' as color-mx;
 @use '../../mixins/utilities';
+@use '../../mixins/media';
 @use '../../variables/color';
 @use '../../variables/spacing';
 @use '../../variables/grid';
@@ -27,19 +28,13 @@
 }
 
 .h-visuallyhidden-up-md {
-  @include media-breakpoint-up(md) {
-    @include utilities.visuallyhidden;
-  }
-}
-
-.h-visuallyhidden-down-rg {
-  @include media-breakpoint-down(rg) {
+  @include media.breakpoint-up(md) {
     @include utilities.visuallyhidden;
   }
 }
 
 .h-visuallyhidden-down-lg {
-  @include media-breakpoint-down(lg) {
+  @include media.breakpoint-down(lg) {
     @include utilities.visuallyhidden;
   }
 }

@@ -6,6 +6,7 @@
 
 @use './../../mixins/button' as button-mixins;
 @use './../../mixins/utilities';
+@use './../../mixins/media';
 
 @use './../../themes/bootstrap/navbar' as bn;
 @use './../../themes/bootstrap/core' as *;
@@ -17,7 +18,7 @@
     align-items: center;
     padding: nav.$nav-link-padding-y navbar.$navbar-nav-link-padding-x;
 
-    @include media-breakpoint-down(md) {
+    @include media.breakpoint-down(md) {
       padding: 1rem 3rem 1rem 0;
     }
   }
@@ -72,13 +73,13 @@
   }
 }
 
-@include media-breakpoint-down(rg) {
+@include media.breakpoint-down(sm) {
   .top-navigation #navbarsDefault {
     border-top: commons.$border-width solid rgba(var(--post-contrast-color-rgb), 0.2);
   }
 }
 
-@include media-breakpoint-up(md) {
+@include media.breakpoint-up(md) {
   .top-navigation {
     border-top: commons.$border-width solid rgba(var(--post-contrast-color-rgb), 0.2);
   }

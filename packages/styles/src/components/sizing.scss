@@ -5,10 +5,11 @@
 @use './../variables/spacing';
 @use './../variables/breakpoints';
 @use './../mixins/utilities';
+@use './../mixins/media';
 
 // Post sizes
 @each $breakpoint in map.keys(breakpoints.$grid-breakpoints) {
-  @include media-breakpoint-up($breakpoint) {
+  @include media.breakpoint-up($breakpoint) {
     $infix: if($breakpoint == 'xs', '', '-#{$breakpoint}');
 
     @each $prop,
@@ -26,7 +27,7 @@
 
 // Post breakpoints width - e.g. w-sm-100
 @each $breakpoint in map.keys(breakpoints.$grid-breakpoints) {
-  @include media-breakpoint-up($breakpoint) {
+  @include media.breakpoint-up($breakpoint) {
     @if $breakpoint != 'xs' {
       @each $prop, $abbrev in (width: w) {
         @each $size, $length in spacing.$sizes {
@@ -72,7 +73,7 @@ $cache: ();
     }
 
     // Render the stack
-    @include media-breakpoint-up($breakpoint-key) {
+    @include media.breakpoint-up($breakpoint-key) {
       @each $classname, $class-map in $stack {
         @each $curve-name, $curve-map in $class-map {
           @each $property, $value in $curve-map {

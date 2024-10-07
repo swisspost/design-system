@@ -3,6 +3,7 @@
 
 @use './../themes/bootstrap/core' as *;
 
+@use './../mixins/media';
 @use './../variables/spacing';
 @use './../functions/utilities';
 
@@ -52,7 +53,7 @@
       } @else {
         // Don't write unnecessary media queries
         @if ($cache != $value) {
-          @include media-breakpoint-up($key) {
+          @include media.breakpoint-up($key) {
             #{$property-key}: string.unquote(utilities.replace($template, '$value', $value));
           }
         }

@@ -2,6 +2,7 @@
 @use 'sass:map';
 @use 'sass:list';
 
+@use './../mixins/media';
 @use './../variables/breakpoints';
 @use './../variables/type';
 @use './../functions/sizing';
@@ -19,7 +20,7 @@
         font-size: $value;
       } @else {
         @if ($font-cache != $value) {
-          @include media-breakpoint-up($key) {
+          @include media.breakpoint-up($key) {
             font-size: $value;
           }
         }

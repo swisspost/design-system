@@ -1,4 +1,5 @@
 @use './../../mixins/utilities';
+@use './../../mixins/media';
 @use './../../variables/color';
 @use './../../variables/commons';
 @use './../../variables/spacing';
@@ -33,17 +34,17 @@
     }
   }
 
-  @include media-breakpoint-down(md) {
+  @include media.breakpoint-down(md) {
     flex: 0 0 auto;
   }
 
-  @include media-breakpoint-down(md) {
+  @include media.breakpoint-down(md) {
     &.closed .sidebar-sticky {
       background-color: transparent !important;
     }
   }
 
-  @include media-breakpoint-down(md) {
+  @include media.breakpoint-down(md) {
     > div > ul > li:first-child {
       display: block;
 
@@ -99,7 +100,7 @@
     overflow-x: hidden;
     overflow-y: auto; // Scrollable contents if viewport is shorter than content.
 
-    @include media-breakpoint-down(md) {
+    @include media.breakpoint-down(md) {
       bottom: auto;
     }
 
@@ -120,7 +121,7 @@
   }
 }
 
-@include media-breakpoint-down(md) {
+@include media.breakpoint-down(md) {
   #sidebar .sidebar-sticky,
   #navbarsDefault {
     max-height: calc(100vh - 65px);

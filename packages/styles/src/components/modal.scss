@@ -4,6 +4,7 @@
 @use './../themes/bootstrap/core' as *;
 
 @use './../mixins/scroll-shadows' as scroll-shadows-mixin;
+@use './../mixins/media';
 
 @use './../variables/commons';
 @use './../variables/components/modal';
@@ -41,7 +42,7 @@ post-ngb-modal-content {
   outline: none; // Removes focus styles when you manually set focus to title with ngbAutofocus https://ng-github.io/#/components/modal/examples#focus
 }
 
-@include media-breakpoint-up(sm) {
+@include media.breakpoint-up(sm) {
   post-ngb-modal-content {
     // prevents the modal from exceeding the height of the screen
     max-height: calc(100vh - #{2 * modal.$modal-dialog-margin-y-sm-up});
@@ -55,7 +56,7 @@ post-ngb-modal-content {
   }
 }
 
-@include media-breakpoint-down(sm) {
+@include media.breakpoint-down(sm) {
   post-ngb-modal-content {
     // make the modal cover the full height available on small screens
     height: calc(100vh - #{2 * modal.$modal-dialog-margin});
