@@ -1,0 +1,40 @@
+@use '../../mixins/media';
+@use '../../mixins/tokens';
+
+$_post-grid-mobile: (
+  post-grid-gutter: 16px,
+  post-grid-container-max-width: none,
+  post-grid-container-padding-inline: 16px,
+);
+
+$_post-grid-tablet: (
+  post-grid-gutter: 16px,
+  post-grid-container-max-width: 1280px,
+  post-grid-container-padding-inline: 24px,
+);
+
+$_post-grid-desktop: (
+  post-grid-gutter: 24px,
+  post-grid-container-max-width: 1280px,
+  post-grid-container-padding-inline: 40px,
+);
+
+:root {
+  @include media.max(600px) {
+    @include tokens.from($_post-grid-mobile);
+  }
+
+  @include media.between(600px, 1024px) {
+    @include tokens.from($_post-grid-tablet);
+  }
+
+  @include media.min(1024px) {
+    @include tokens.from($_post-grid-desktop);
+  }
+}
+
+$post-grid: (
+  post-grid-gutter: var(--post-grid-gutter),
+  post-grid-container-max-width: var(--post-grid-container-max-width),
+  post-grid-container-padding-inline: var(--post-grid-container-padding-inline),
+);

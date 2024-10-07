@@ -1,25 +1,22 @@
 @use '@swisspost/design-system-styles/core' as post;
+@use '../column.styles' as *;
 
 .column-example {
   font-size: post.$font-size-sm;
 
   .row > *:not(.w-100) {
-    padding-block: 0.75rem;
-    background-color: lighten(post.$nightblue-bright, 55%);
-    border: 1px solid lighten(post.$nightblue-dark, 45%);
+    @include column-styles;
   }
 
   .row {
-    background-color: lighten(post.$nightblue-bright, 61.5%);
+    background-color: lighten(post.$nightblue-bright, 63%);
   }
 
-  .row-height {
+  .row-height .row {
     min-height: 10rem;
   }
 
   .standalone-columns > *:not(p){
-    padding-block: 0.75rem;
-    background-color: lighten(post.$nightblue-bright, 55%);
-    border: 1px solid lighten(post.$nightblue-dark, 45%);
+    @include column-styles;
   }
 }

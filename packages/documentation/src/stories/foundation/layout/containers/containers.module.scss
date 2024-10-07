@@ -3,7 +3,6 @@
 @use '../shared.module' as shared;
 
 :export {
-  // Variables used in the spec table (some variables used on the page are defined in the shared module)
   @each $breakpoint, $value in post.$grid-breakpoints {
     container_#{$breakpoint}_max-width: map.get(post.$container-max-widths, $breakpoint) or none;
     container_#{$breakpoint}_padding: map.get(post.$grid-container-padding, $breakpoint);
@@ -11,20 +10,5 @@
       post.$grid-container-fluid-padding,
       $breakpoint
     );
-  }
-
-  // Variables to expose under sass variables section
-  @each $breakpoint, $value in post.$grid-breakpoints {
-    variables_container-max-widths_#{$breakpoint}: map.get(post.$container-max-widths, $breakpoint);
-    variables_grid-container-padding_#{$breakpoint}: map.get(
-        post.$grid-container-padding,
-        $breakpoint
-      ) or
-      none;
-    variables_grid-container-fluid-padding_#{$breakpoint}: map.get(
-        post.$grid-container-fluid-padding,
-        $breakpoint
-      ) or
-      none;
   }
 }

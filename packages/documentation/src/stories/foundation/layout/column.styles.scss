@@ -1,0 +1,8 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+@mixin column-styles {
+  background: linear-gradient(lighten(post.$nightblue-bright, 55%), lighten(post.$nightblue-bright, 55%)), linear-gradient(lighten(post.$nightblue-bright, 60%), lighten(post.$nightblue-bright, 60%));
+  background-clip: content-box, border-box;
+  border: 1px solid lighten(post.$nightblue-dark, 55%);
+  line-height: 3;
+}

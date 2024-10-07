@@ -1,0 +1,28 @@
+@use 'sass:math';
+
+@mixin make-col($size: false, $columns) {
+  @if $size {
+    flex: 0 0 auto;
+    width: math.percentage(math.div($size, $columns));
+  } @else {
+    flex: 1 1 0;
+    max-width: 100%;
+  }
+}
+
+@mixin make-col-auto() {
+  flex: 0 0 auto;
+  width: auto;
+}
+
+@mixin row-cols($count) {
+  > * {
+    flex: 0 0 auto;
+    width: math.percentage(math.div(1, $count));
+  }
+}
+
+@mixin make-col-offset($size, $columns) {
+  $num: math.div($size, $columns);
+  margin-left: if($num == 0, 0, math.percentage($num));
+}
