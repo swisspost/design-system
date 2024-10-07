@@ -1,11 +1,10 @@
 import { Canvas, Meta, Source } from '@storybook/blocks';
 import { parse } from '@/utils/sass-export';
-import scss from '../breakpoints.module.scss';
+import scss from '../shared.module.scss';
 import SampleContainer from './grid-container.sample.html?raw';
 import * as GridStories from './grid.stories';
-import './grid.styles.scss';
 
-export const BREAKPOINT_COUNT = Object.keys(parse(scss).breakpoint).length;
+export const BREAKPOINT_COUNT = parse(scss)['breakpoint-count'];
 
 <Meta of={GridStories} />
 

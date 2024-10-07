@@ -1,5 +1,5 @@
 @use '@swisspost/design-system-styles/core' as post;
-@use '../column.styles' as *;
+@use '../shared.styles' as *;
 
 .grid-example {
   font-size: post.$font-size-sm;

@@ -1,6 +1,7 @@
 import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { MetaExtended } from '@root/types';
+import './grid.styles.scss';
 
 const meta: MetaExtended = {
   id: '7240f2ef-216a-490e-9bd8-c0cef19f7b31',
@@ -9,9 +10,9 @@ const meta: MetaExtended = {
     badges: [],
   },
   decorators: [
-    (story: StoryFn, { args, context }: StoryContext) => html`
-      <div class="grid-example text-center ${args?.additionalDecoratorsClasses}">
-        ${story(args, context)}
+    (story: StoryFn, context: StoryContext) => html`
+      <div class="grid-example text-center ${context.args?.additionalDecoratorsClasses}">
+        ${story(context.args, context)}
       </div>
     `,
   ],

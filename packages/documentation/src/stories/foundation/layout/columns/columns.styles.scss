@@ -1,5 +1,5 @@
 @use '@swisspost/design-system-styles/core' as post;
-@use '../column.styles' as *;
+@use '../shared.styles' as *;
 
 .column-example {
   font-size: post.$font-size-sm;
@@ -9,14 +9,14 @@
   }
 
   .row {
-    background-color: lighten(post.$nightblue-bright, 63%);
+    background-color: lighten(post.$petrol-dark, 75%);
   }
 
   .row-height .row {
     min-height: 10rem;
   }
 
-  .standalone-columns > *:not(p){
+  .standalone-columns > *:not(p) {
     @include column-styles;
   }
 }

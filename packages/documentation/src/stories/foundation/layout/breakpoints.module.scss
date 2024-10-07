@@ -1,9 +1,0 @@
-@use '@swisspost/design-system-styles/core' as post;
-@use 'shared.module' as shared;
-
-:export {
-  // Variables to expose under sass variables section
-  @each $breakpoint, $value in post.$grid-breakpoints {
-    variables_grid-breakpoints_#{$breakpoint}: $value;
-  }
-}
