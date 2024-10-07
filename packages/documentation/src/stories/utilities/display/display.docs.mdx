@@ -1,6 +1,21 @@
 import { Canvas, Meta } from '@storybook/blocks';
 import * as DisplayStories from './display.stories';
 import { breakpoints, firstBreakpoint } from '../spacing/spacing.docs.mdx';
+import { forEach } from '@/utils/react';
+
+export const displayOptions = [
+  'none',
+  'inline',
+  'inline-block',
+  'block',
+  'grid',
+  'inline-grid',
+  'table',
+  'table-cell',
+  'table-row',
+  'flex',
+  'inline-flex',
+];
 
 <Meta of={DisplayStories} />
 
@@ -12,23 +27,19 @@ import { breakpoints, firstBreakpoint } from '../spacing/spacing.docs.mdx';
 </div>
 
 The naming convention for display utilities follows this pattern:
+
 - For all breakpoints (<code>{firstBreakpoint}</code> and up): `d-{display}`
-- Starting from a specific breakpoint  ({breakpoints.map(([b, isLast]) => (<span key={b}><code>{b}</code>{isLast ? ', ' : ''}</span>))}): `d-{breakpoint}-{display}`
+- Starting from a specific breakpoint ({breakpoints.map(([b, isLast]) => (<span key={b}><code>{b}</code>{isLast ? ', ' : ''}</span>))}): `d-{breakpoint}-{display}`
 
 ### Available display values
 
 The available display utilities values are the following:
-- none
-- inline
-- inline-block
-- block
-- grid
-- inline-grid
-- table
-- table-cell
-- table-row
-- flex
-- inline-flex
+
+<ul>
+  {forEach(displayOptions, function ({ value }) {
+    return <li>{value}</li>;
+  })}
+</ul>
 
 ### Usage
 

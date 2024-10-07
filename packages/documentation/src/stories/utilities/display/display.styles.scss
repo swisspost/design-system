@@ -1,0 +1,11 @@
+@use 'sass:color';
+@use '@swisspost/design-system-styles/core' as post;
+
+.display-container {
+  border: post.$border-width solid post.$border-color;
+
+  > * {
+    border: post.$border-width solid post.$border-color;
+    background-color: color.adjust(post.$border-color, $lightness: 15%);
+  }
+}
