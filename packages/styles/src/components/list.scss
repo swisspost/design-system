@@ -7,18 +7,18 @@
 tokens.$default-map: components.$post-list;
 
 $sizing-icon: tokens.get('list-simple-checks', 'sizing-icon');
-$padding-icon: tokens.get('list-simple-checks', 'spacing-padding-icon');
+$padding-icon: tokens.get('list-simple-checks', 'padding-icon');
 
 .list-checks {
   list-style: none;
   padding-left: 0;
-  padding-block: tokens.get('list-simple-checks', 'spacing-padding-block-outer');
+  padding-block: tokens.get('list-simple-checks', 'padding-block-outer');
   margin-bottom: 0;
 
   > li {
     position: relative;
     padding-inline-start: calc(
-      #{tokens.get('list-simple-checks', 'spacing-gap-inline-text')} + #{$sizing-icon} +
+      #{tokens.get('list-simple-checks', 'gap-inline-text')} + #{$sizing-icon} +
         (#{$padding-icon} * 2)
     );
 
@@ -59,7 +59,8 @@ $padding-icon: tokens.get('list-simple-checks', 'spacing-padding-icon');
     @include media.max(400px) {
       &::before,
       &::after {
-        margin: tokens.get('list-simple-checks', 'spacing-padding-icon');
+        margin-inline: tokens.get('list-simple-checks', 'icon-container-inline');
+        margin-block: tokens.get('list-simple-checks', 'icon-container-block');
       }
     }
 
@@ -69,6 +70,6 @@ $padding-icon: tokens.get('list-simple-checks', 'spacing-padding-icon');
   }
 
   > li:not(:last-child) {
-    margin-block-end: tokens.get('list-simple-checks', 'spacing-gap-block-text');
+    margin-block-end: tokens.get('list-simple-checks', 'gap-block-text');
   }
 }
