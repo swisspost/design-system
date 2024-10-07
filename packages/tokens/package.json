@@ -28,7 +28,8 @@
   "publishConfig": {
     "directory": "./dist",
     "access": "restricted",
-    "linkDirectory": true
+    "linkDirectory": true,
+    "tag": "latest-v7"
   },
   "devDependencies": {
     "@tokens-studio/sd-transforms": "0.16.1",

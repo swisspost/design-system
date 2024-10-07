@@ -15,7 +15,8 @@
   "publishConfig": {
     "directory": "./dist",
     "access": "public",
-    "linkDirectory": true
+    "linkDirectory": true,
+    "tag": "latest-v7"
   },
   "scripts": {
     "start": "gulp watch",

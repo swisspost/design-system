@@ -20,7 +20,8 @@
   ],
   "publishConfig": {
     "access": "public",
-    "linkDirectory": true
+    "linkDirectory": true,
+    "tag": "latest-v7"
   },
   "scripts": {
     "dev": "stencil build --dev --port 9200 --serve --watch --docs --docs-readme",

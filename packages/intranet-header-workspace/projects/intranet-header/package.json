@@ -15,7 +15,8 @@
   "publishConfig": {
     "directory": "../../dist/intranet-header",
     "access": "public",
-    "linkDirectory": true
+    "linkDirectory": true,
+    "tag": "latest-v7"
   },
   "dependencies": {
     "@swisspost/design-system-styles": "workspace:7.4.2",

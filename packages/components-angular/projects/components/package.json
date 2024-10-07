@@ -15,7 +15,8 @@
   "publishConfig": {
     "directory": "../../dist/components",
     "access": "public",
-    "linkDirectory": true
+    "linkDirectory": true,
+    "tag": "latest-v7"
   },
   "dependencies": {
     "tslib": "2.6.3",

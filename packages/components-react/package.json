@@ -10,7 +10,8 @@
   ],
   "publishConfig": {
     "access": "restricted",
-    "linkDirectory": true
+    "linkDirectory": true,
+    "tag": "latest-v7"
   },
   "scripts": {
     "build": "pnpm run clean && pnpm run compile",

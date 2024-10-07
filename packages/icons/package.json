@@ -14,7 +14,8 @@
   },
   "publishConfig": {
     "access": "public",
-    "linkDirectory": true
+    "linkDirectory": true,
+    "tag": "latest-v7"
   },
   "files": [
     "public"
