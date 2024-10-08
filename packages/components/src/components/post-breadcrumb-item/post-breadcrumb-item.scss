@@ -1,0 +1,47 @@
+@use 'sass:map';
+@use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/mixins/utilities';
+
+tokens.$default-map: components.$post-breadcrumb;
+
+:host {
+  display: block;
+}
+
+a {
+  display: inline-flex;
+  align-items: center;
+  padding-block: tokens.get('post-breadcrumb', 'padding-block-text');
+  gap: tokens.get('post-breadcrumb', 'gap-inline-inner');
+  color: tokens.get('post-breadcrumb', 'enabled-fg');
+  text-decoration: none;
+
+  &:hover {
+    color: tokens.get('post-breadcrumb', 'hover-fg');
+    text-decoration: underline;
+  }
+
+  &:focus,
+  &:focus-visible {
+    border-radius: tokens.get('post-breadcrumb', 'focus-outline-radius');
+    outline: tokens.get('post-breadcrumb', 'focus-outline') solid tokens.get('post-breadcrumb', 'focus-outline-width');
+
+    ::slotted(*) {
+      padding: tokens.get('post-breadcrumb', 'focus-padding-outline');
+    }
+  }
+
+  @include utilities.high-contrast-mode() {
+    &,
+    &:focus,
+    &:hover {
+      color: LinkText !important;
+    }
+
+    &:visited {
+      color: VisitedText !important;
+    }
+  }
+}
