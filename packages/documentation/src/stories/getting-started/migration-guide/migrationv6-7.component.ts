@@ -119,7 +119,7 @@ export class MigrationV67Component extends LitElement {
               <h4>Styles</h4>
 
               <ul>
-                <li class="mb-3">
+                <li class="mb-16">
                   <p>
                     Removed the following <em>color</em> variables
                     <span class="tag tag-sm tag-danger">breaking</span>
@@ -136,27 +136,27 @@ export class MigrationV67Component extends LitElement {
                     <code>$warning</code>.
                   </p>
                 </li>
-                <li class="mb-3">
+                <li class="mb-16">
                   <p>
                     Removed the Sass map <code>$contextual-colors</code>
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <p class="info">Instead use the map <code>$signal-colors</code>.</p>
                 </li>
-                <li class="mb-3">
+                <li class="mb-16">
                   <p>
                     Removed the Sass variable <code>$gray-background-light</code>
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <p class="info">Instead use the variable <code>$light</code>.</p>
                 </li>
-                <li class="mb-3">
+                <li class="mb-16">
                   <p>
                     Renamed the Sass variable <code>$gray-background</code> to <code>$gray</code>
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                 </li>
-                <li class="mb-3">
+                <li class="mb-16">
                   <p>
                     Removed the following classes out of the <em>background-utilities</em>
                     <span class="tag tag-sm tag-danger">breaking</span>
@@ -172,7 +172,7 @@ export class MigrationV67Component extends LitElement {
                     <code>.bg-warning</code>.
                   </p>
                 </li>
-                <li class="mb-3">
+                <li class="mb-16">
                   <p>
                     Restricted the <em>badge</em> usage to showcasing counts exclusively ⚙️
                     <span class="tag tag-sm tag-danger">breaking</span>
@@ -185,7 +185,7 @@ export class MigrationV67Component extends LitElement {
                     </p>
                   </p>
                 </li>
-                <li class="mb-3">
+                <li class="mb-16">
                   <p>
                     Updated the <em>badge</em> color to red.
                   </p>
@@ -202,7 +202,7 @@ export class MigrationV67Component extends LitElement {
               <h4>Web Components</h4>
 
               <ul>
-                <li class="mb-3">
+                <li class="mb-16">
                   <p>
                     Updated the package entry file paths within the <em>package.json</em> to the
                     paths, recommended by stencil
@@ -229,7 +229,7 @@ export class MigrationV67Component extends LitElement {
                     lazy-loaded components.
                   </p>
                 </li>
-                <li class="mb-3">
+                <li class="mb-16">
                   <p>
                     Renamed all <em>custom-events</em> in our existing web-components
                     <span class="tag tag-sm tag-danger">breaking</span>
@@ -264,7 +264,7 @@ export class MigrationV67Component extends LitElement {
                 ${
                   this.angular
                     ? html`
-                        <li class="mb-3">
+                        <li class="mb-16">
                           <h5>
                             ngbAccordion
                             <span class="tag tag-sm tag-danger">breaking</span>

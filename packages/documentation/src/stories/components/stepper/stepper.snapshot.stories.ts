@@ -21,10 +21,10 @@ export const Stepper: Story = {
       'Sed vulputate lacinia eros, sit amet mattis sem luctus sit amet. Vestibulum pharetra tortor a laoreet malesuada.',
     ];
     return html`
-      <div class="d-flex flex-column gap-1">
+      <div class="d-flex flex-column gap-4">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div class="${bg} d-flex flex-column gap-regular p-regular">
+            <div class="${bg} d-flex flex-column gap-16 p-16">
               ${bombArgs({
                 currentStepNumber: meta.argTypes?.currentStepNumber?.options,
               }).map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}

@@ -69,11 +69,11 @@ export const CustomWidth: Story = {
 
 export const VerticalSpacing: Story = {
   render: () => html`
-    <div class="mb-regular">
+    <div class="mb-16">
       <label for="firstname">Firstname</label>
       <input type="text" id="firstname" class="form-control" />
     </div>
-    <div class="mb-regular">
+    <div class="mb-16">
       <label for="lastname">Lastname</label>
       <input type="text" id="lastname" class="form-control" />
     </div>
@@ -82,11 +82,11 @@ export const VerticalSpacing: Story = {
 
 export const Buttons: Story = {
   render: () => html`
-    <div class="mb-regular">
+    <div class="mb-16">
       <label for="firstname">Firstname</label>
       <input type="text" id="firstname" class="form-control" />
     </div>
-    <div class="d-flex flex-row-reverse gap-mini">
+    <div class="d-flex flex-row-reverse gap-8">
       <button class="btn btn-primary">Send</button>
       <button class="btn btn-secondary">Cancel</button>
     </div>
@@ -116,7 +116,7 @@ export const Validation: Story = {
   render: () => html`
     <form action="/">
       <!-- Form Control -->
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <div class="form-floating">
             <input
@@ -146,7 +146,7 @@ export const Validation: Story = {
       </div>
 
       <!-- Form Select -->
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <div class="form-floating">
             <select id="FormSelectInvalid" class="form-select is-invalid" required></select>
@@ -168,7 +168,7 @@ export const Validation: Story = {
       </div>
 
       <!-- Form Select Multiple-->
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <div class="form-floating">
             <select
@@ -196,7 +196,7 @@ export const Validation: Story = {
       </div>
 
       <!-- Form File -->
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <div class="form-floating">
             <input id="FormFileInvalid" type="file" class="form-control is-invalid" required />
@@ -214,7 +214,7 @@ export const Validation: Story = {
       </div>
 
       <!-- Form Textarea -->
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <div class="form-floating">
             <textarea
@@ -245,7 +245,7 @@ Value</textarea
       </div>
 
       <!-- Form Checkbox -->
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <div class="form-check">
             <input class="form-check-input is-invalid" id="FormCheckboxInvalid" type="checkbox" />
@@ -268,7 +268,7 @@ Value</textarea
       </div>
 
       <!-- Form Radio -->
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <div class="form-check">
             <input class="form-check-input is-invalid" id="FormRadioInvalid" type="radio" />
@@ -286,7 +286,7 @@ Value</textarea
       </div>
 
       <!-- Form Range -->
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <div class="">
             <label class="form-label" for="FormRangeInvalid">Invalid Range</label>
@@ -304,7 +304,7 @@ Value</textarea
       </div>
 
       <!-- Form Switch -->
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <div class="form-check form-switch">
             <input

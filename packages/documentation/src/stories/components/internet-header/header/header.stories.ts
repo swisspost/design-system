@@ -166,11 +166,11 @@ const meta: MetaComponent = {
         >
           ${story()}
           <div class="container">
-            <p class="fake-content my-big"></p>
-            <p class="fake-content my-big"></p>
-            <p class="fake-content my-big"></p>
-            <p class="fake-content my-big"></p>
-            <p class="fake-content my-big"></p>
+            <p class="fake-content my-32"></p>
+            <p class="fake-content my-32"></p>
+            <p class="fake-content my-32"></p>
+            <p class="fake-content my-32"></p>
+            <p class="fake-content my-32"></p>
           </div>
         </div>
       `,
@@ -222,6 +222,6 @@ export const OSFlyoutOverrides: Story = {
 
 export const CustomContent: Story = {
   args: {
-    innerHTML: `<p class="mx-regular mb-0" slot="main">Hello, User!</p>`,
+    innerHTML: `<p class="mx-16 mb-0" slot="main">Hello, User!</p>`,
   },
 };
