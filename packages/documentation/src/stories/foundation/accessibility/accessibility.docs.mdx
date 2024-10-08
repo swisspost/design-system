@@ -25,12 +25,12 @@ Bedingungen wie Menschen ohne Behinderungen beanspruchen können.</p>
 
 Disabled states of input fields or buttons pose many accessibility issues.
 
-<ul class="list-unstyled ms-regular">
-  <div class="d-flex gap-mini"><div>❌</div><li>Disabled fields cannot be reached by pressing tab</li></div>
-  <div class="d-flex gap-mini"><div>❌</div><li>It's often unclear why something is disabled</li></div>
-  <div class="d-flex gap-mini"><div>❌</div><li>It's often unclear how to enable a disabled field or button</li></div>
-  <div class="d-flex gap-mini"><div>❌</div><li>Disabled fields have low contrast</li></div>
-  <div class="d-flex gap-mini"><div>❌</div><li>The disabled state of a field is not always obvious (hard to discern from an enabled field)</li></div>
+<ul class="list-unstyled ms-16">
+  <div class="d-flex gap-8"><div>❌</div><li>Disabled fields cannot be reached by pressing tab</li></div>
+  <div class="d-flex gap-8"><div>❌</div><li>It's often unclear why something is disabled</li></div>
+  <div class="d-flex gap-8"><div>❌</div><li>It's often unclear how to enable a disabled field or button</li></div>
+  <div class="d-flex gap-8"><div>❌</div><li>Disabled fields have low contrast</li></div>
+  <div class="d-flex gap-8"><div>❌</div><li>The disabled state of a field is not always obvious (hard to discern from an enabled field)</li></div>
 </ul>
 
 <div class="table-responsive">
@@ -46,16 +46,16 @@ Disabled states of input fields or buttons pose many accessibility issues.
       </tr>
       <tr>
         <td>
-          <ul class="list-unstyled d-flex gap-mini">
+          <ul class="list-unstyled d-flex gap-8">
             <div>❌</div><li>Forms with required fields tend to have the send button disabled until all required fields are correctly filled. The issue here is that with long forms or on small devices it's sometimes hard to spot the one field that was missed.</li>
           </ul>
-          
+
         </td>
         <td>
-          <ul class="list-unstyled d-flex gap-mini">
+          <ul class="list-unstyled d-flex gap-8">
             <div>✔️</div><li>Let the user make mistakes and help them to correct them. Mark the required fields with error messages, scroll to the first invalid field and help the user fill the form correctly.</li>
           </ul>
-        
+
         </td>
       </tr>
       <tr>
@@ -63,12 +63,12 @@ Disabled states of input fields or buttons pose many accessibility issues.
       </tr>
       <tr>
         <td>
-          <ul class="list-unstyled d-flex gap-mini">
+          <ul class="list-unstyled d-flex gap-8">
             <div>❌</div><li>The user submits a form. While the client waits for the server response and to prevent double submission, the submit button gets disabled. The reason why this button gets disabled might not be obvious.</li>
           </ul>
         </td>
         <td>
-          <ul class="list-unstyled d-flex gap-mini">
+          <ul class="list-unstyled d-flex gap-8">
             <div>✔️</div><li>Provide a loading indicator or display a message that shows current progress when uploading large files. Disable duplicate form submissions internally by either aborting the current request and sending a new one or supressing new submissions during loading. Offer a remedy if the request timed out or an error occurred on the server (reload the page, retry form submission, ...).</li>
           </ul>
         </td>
@@ -78,12 +78,12 @@ Disabled states of input fields or buttons pose many accessibility issues.
       </tr>
       <tr>
         <td>
-          <ul class="list-unstyled d-flex gap-mini">
+          <ul class="list-unstyled d-flex gap-8">
             <div>❌</div><li>Some options in a radio button group or select field are disabled because they are not available at this time or with the current configuration. This can be confusing because it's often unclear why these options are not available or how to enable them.</li>
           </ul>
         </td>
         <td>
-          <ul class="list-unstyled d-flex gap-mini">
+          <ul class="list-unstyled d-flex gap-8">
             <div>✔️</div>
             <li>
             There are multiple possible solutions, depending on the situation:

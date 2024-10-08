@@ -2,7 +2,7 @@ import React from 'react';
 
 export default () => (
   <header className="docs-header bg-yellow">
-    <div className="container py-5">
+    <div className="container py-48">
       <h1 className="mt-0 bold font-curve-large">
         Swiss Post
         <br />

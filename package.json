@@ -30,6 +30,7 @@
     "docs:e2e:watch": "start-server-and-test docs:headless 9001 'pnpm --filter design-system-documentation e2e:watch'",
     "styles": "pnpm styles:start",
     "styles:start": "pnpm --filter design-system-styles start",
+    "styles:play": "pnpm --filter design-system-styles play",
     "styles:build": "pnpm --filter design-system-styles build",
     "styles:lint": "pnpm --filter design-system-styles lint",
     "styles:lint:fix": "pnpm --filter design-system-styles lint:fix",
