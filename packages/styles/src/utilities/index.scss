@@ -1,6 +1,8 @@
 @use 'sass:map';
 
 @use '../functions/string';
+@use '../mixins/media';
+@use '../variables/breakpoints';
 
 @use './mixins' as *;
 @use './variables' as *;
@@ -15,15 +17,23 @@
     $responsive: map.get($classesConfig, responsive);
     $prefixes: map.get($classesConfig, prefixes);
 
-    @each $key, $value in $tokens {
-      $suffix: string.replace($key, 'post-utility-#{$group}');
-
-      @each $prefix, $properties in $prefixes {
-        @if $responsive {
-          @include generate-responsive-utilities($properties, $value, $prefix, $suffix);
-        } @else {
-          @include generate-utilities($properties, $value, $prefix, $suffix);
+    @each $prefix, $properties in $prefixes {
+      @if $responsive {
+        @each $breakpoint, $min-width in breakpoints.$grid-breakpoints {
+          @if ($min-width == 0) {
+            // responsive utilities on smaller breakpoint (no breakpoint infix)
+            @include generate-utilities($group, $tokens, $properties, $prefix);
+          } @else {
+            // responsive utilities on all breakpoints that are not the smallest (with breakpoint infix)
+            @include media.min($min-width) {
+              $infix: '-#{$breakpoint}';
+              @include generate-utilities($group, $tokens, $properties, $prefix, $infix);
+            }
+          }
         }
+      } @else {
+        // non-responsive utilities
+        @include generate-utilities($group, $tokens, $properties, $prefix);
       }
     }
   }
