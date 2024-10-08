@@ -298,7 +298,8 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
               </a>
             </h2>
             <div class="flyout-row container">
-              {levelOne.flyout.map((flyout, i) => (
+              {/* Ensure flyout exists before mapping over it */}
+              {levelOne.flyout?.map((flyout, i) => (
                 <div key={flyout.title} class="flyout-column">
                   {flyout.title !== undefined ? (
                     <h3 id={`${levelOne.id}-column-${i}`}>{flyout.title}</h3>
