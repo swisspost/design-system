@@ -283,11 +283,6 @@
   }
 }
 
-// Color variants
-@each $name, $color in color.$accent-colors {
-  @include button-mx.button-color-variant($name, $color);
-}
-
 // Intranet signal buttons
 @each $name, $color in color.$signal-colors {
   @include button-mx.button-color-variant($name, $color);
