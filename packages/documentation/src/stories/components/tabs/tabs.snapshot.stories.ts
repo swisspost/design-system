@@ -18,7 +18,7 @@ export const Tabs: Story = {
       <div>
         ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div class="${bg} d-flex flex-column gap-regular p-regular mt-regular">
+            <div class="${bg} d-flex flex-column gap-16 p-16 mt-16">
               ${bombArgs({
                 activePanel: [undefined, 'tria'],
               }).map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}

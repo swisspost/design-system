@@ -15,10 +15,10 @@ type Story = StoryObj;
 export const Radio: Story = {
   render: (_args: Args, context: StoryContext) => {
     return html`
-      <div class="d-flex flex-wrap gap-1 align-items-start">
+      <div class="d-flex flex-wrap gap-4 align-items-start">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div class="${bg} d-flex gap-3 flex-column p-3">
+            <div class="${bg} d-flex gap-16 flex-column p-16">
               ${[
                 ...bombArgs({
                   label: [

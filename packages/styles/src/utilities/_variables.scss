@@ -1,0 +1,86 @@
+@use '../tokens/utilities' as tokens;
+
+/*
+  Add new utilities using the following structure:
+    [set]: (
+      tokens: map (required),
+      classes: (
+        [group]: (
+          responsive: boolean (optional),
+          prefixes: map (required),
+        )
+      )
+    )
+
+    - `set`:
+      The name of the token set (e.g., if the tokens are contained in the "$post-spacing" map, the set is "spacing").
+
+    - `tokens`:
+      The map of tokens that should be used to generate the utility classes.
+
+    - `group`:
+      The group name used in the token keys (e.g., if the tokens are named "post-utility-margin-*", the group is "margin").
+
+    - `responsive`:
+      If set to `true`, the utility classes will be generated for all breakpoints (e.g., `-sm`, `-md`, `-lg`, etc.).
+      If set to `false` or omitted, utilities will be generated without a breakpoint infix.
+
+    - `prefixes`:
+      A map where each key is the class name prefix and the value is the CSS property (or properties) that the class will set.
+
+  Example:
+  spacing: (
+    tokens: tokens.$post-spacing,       // Refers to the token map containing all spacing values
+    classes: (
+      margin: (                         // Refers to the token "post-utility-margin-*" token in above map
+        classes: (
+          m: margin,                    // Generates `.m-*` classes to set the `margin` property
+          mx: margin-left margin-right, // Generates `.mx-*` classes to set `margin-left` and `margin-right` properties
+          ...
+        ),
+        responsive: true,               // Generates responsive classes
+      )
+    )
+  )
+*/
+
+$utilities: (
+  spacing: (
+    tokens: tokens.$post-spacing,
+    classes: (
+      margin: (
+        responsive: true,
+        prefixes: (
+          m: margin,
+          mx: margin-inline,
+          ms: margin-inline-start,
+          me: margin-inline-end,
+          my: margin-block,
+          mt: margin-block-start,
+          mb: margin-block-end,
+        ),
+      ),
+      padding: (
+        responsive: true,
+        prefixes: (
+          p: padding,
+          px: padding-inline,
+          ps: padding-inline-start,
+          pe: padding-inline-end,
+          py: padding-block,
+          pt: padding-block-start,
+          pb: padding-block-end,
+        ),
+      ),
+      gap: (
+        responsive: true,
+        prefixes: (
+          gap: gap,
+          row-gap: row-gap,
+          column-gap: column-gap,
+        ),
+      ),
+    ),
+  ),
+  // IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`.
+);

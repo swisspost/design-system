@@ -1,0 +1,11 @@
+@use 'sass:map';
+@use 'sass:meta';
+@use 'tests/jest';
+@use 'src/utilities/mixins';
+
+
+.test {
+  @include mixins.generate-utilities('font-weight', '400', 'fw', 'normal');
+  @include mixins.generate-utilities('font-size', '1.5rem', 'fs', 'large', 'sm');
+  @include mixins.generate-responsive-utilities('row-gap', '48px', 'rg', '48');
+}

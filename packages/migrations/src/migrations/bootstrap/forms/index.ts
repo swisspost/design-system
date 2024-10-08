@@ -24,7 +24,7 @@ class FormGroupClassUpdate implements DomUpdate {
         if (!isFloatingLabel) {
           $element
             .removeClass('form-group')
-            .addClass('mb-regular');
+            .addClass('mb-16');
         }
       });
   }
