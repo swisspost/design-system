@@ -89,7 +89,7 @@ $utilities: (
       flex-direction: (
         responsive: true,
         prefixes: (
-          flex-direction: flex-direction,
+          flex: flex-direction,
         ),
       ),
     ),
@@ -97,10 +97,10 @@ $utilities: (
   fill: (
     tokens: flex.$fill,
     classes: (
-      flex-fill: (
+      flex: (
         responsive: true,
         prefixes: (
-          flex-fill: flex,
+          flex: flex,
         ),
       ),
     ),
@@ -108,10 +108,10 @@ $utilities: (
   flex-grow: (
     tokens: flex.$grow,
     classes: (
-      flex-grow: (
+      flex: (
         responsive: true,
         prefixes: (
-          flex-grow: flex-grow,
+          flex: flex-grow,
         ),
       ),
     ),
@@ -119,10 +119,10 @@ $utilities: (
   flex-shrink: (
     tokens: flex.$shrink,
     classes: (
-      flex-shrink: (
+      flex: (
         responsive: true,
         prefixes: (
-          flex-shrink: flex-shrink,
+          flex: flex-shrink,
         ),
       ),
     ),
@@ -177,7 +177,7 @@ $utilities: (
       flex-wrap: (
         responsive: true,
         prefixes: (
-          flex-wrap: flex-wrap,
+          flex: flex-wrap,
         ),
       ),
     ),

@@ -115,7 +115,11 @@ export function ShrinkContainer(props: { name: number }) {
   return (
     <FlexDocContainer name={props.name.toString()} prefix="flex-shrink">
       <div className="d-flex align-items-start grow-shrink-container">
-        <div className="bg-gray p-12">Content with a lot more text than the yellow tile</div>
+        <div className="bg-gray p-12">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </div>
         <div className={`bg-yellow p-12 flex-shrink-${props.name}`}>
           I {props.name === 0 ? "don't" : ''} shrink
         </div>
@@ -157,5 +161,3 @@ export function WrapContainer(props: { name: string }) {
     </FlexDocContainer>
   );
 }
-
-// TODO: Test de non régression visuels (snapshots)
