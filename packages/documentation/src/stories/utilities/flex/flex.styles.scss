@@ -2,9 +2,7 @@
 
 .flex-doc-container {
   > * {
-    flex-basis: auto;
     align-self: stretch;
-    flex-grow: 1;
     padding: post.$size-mini (post.$size-regular * 0.5);
     border-top: post.$border-width solid post.$border-color;
     flex: 0 0 50%;
