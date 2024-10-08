@@ -4,11 +4,11 @@ import './sizing.styles.scss';
 import scss from './sizing.module.scss';
 import { MetaExtended } from '@root/types';
 
+
 export const SCSS_VARIABLES = scss;
 
-const sizingOptions = ['auto', ...Object.keys(SCSS_VARIABLES)];
 
-const sizeOptionsPercent = ['auto', '25', '50', '75', '100'];
+const sizeOptionsPercent = ['auto', '0', '25', '50', '75', '100'];
 
 const meta: MetaExtended = {
   render: renderSizing,
@@ -18,10 +18,12 @@ const meta: MetaExtended = {
     badges: [],
   },
   args: {
-    height: 'bigger-giant',
-    width: 'bigger-giant',
+    height: 'null',
+    width: 'null',
     maxHeight: 'null',
     maxWidth: 'null',
+    minHeight: 'null',
+    minWidth: 'null',
   },
   argTypes: {
     height: {
@@ -30,7 +32,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: sizingOptions,
+      options: sizeOptionsPercent,
     },
     width: {
       name: 'width',
@@ -38,7 +40,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: sizingOptions,
+      options: sizeOptionsPercent,
     },
     maxHeight: {
       name: 'max-height',
@@ -46,7 +48,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['none', ...sizingOptions],
+      options: ['none', ...sizeOptionsPercent],
     },
     maxWidth: {
       name: 'max-width',
@@ -54,7 +56,23 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['none', ...sizingOptions],
+      options: ['none', ...sizeOptionsPercent],
+    },
+    minHeight: {
+      name: 'min-height',
+      description: 'Set the minimum height of the rectangle',
+      control: {
+        type: 'select',
+      },
+      options: ['none', ...sizeOptionsPercent],
+    },
+    minWidth: {
+      name: 'min-width',
+      description: 'Set the minimum width of the rectangle',
+      control: {
+        type: 'select',
+      },
+      options: ['none', ...sizeOptionsPercent],
     },
   },
 };
@@ -66,7 +84,9 @@ type Story = StoryObj;
 function renderSizing(args: Args) {
   const maximumHeight = args.maxHeight && args.maxHeight !== 'null' ? `mh-${args.maxHeight}` : '';
   const maximumWidth = args.maxWidth && args.maxWidth !== 'null' ? `mw-${args.maxWidth}` : '';
-  const classes = `content h-${args.height} w-${args.width} ${maximumHeight} ${maximumWidth}`;
+  const minimumHeight = args.minHeight && args.minHeight !== 'null' ? `min-h-${args.minHeight}` : '';
+  const minimumWidth = args.minWidth && args.minWidth !== 'null' ? `min-w-${args.minWidth}` : '';
+  const classes = `content h-${args.height} w-${args.width} ${maximumHeight} ${maximumWidth} ${minimumHeight} ${minimumWidth}`;
 
   return html`
     <div class="sizing-example">
@@ -79,7 +99,7 @@ function renderSizing(args: Args) {
   `;
 }
 
-export const Sizes: Story = {};
+
 export const SizesPercent: Story = {
   args: {
     width: '25',
@@ -94,3 +114,82 @@ export const SizesPercent: Story = {
     },
   },
 };
+
+
+export const Sizing: Story = {
+
+  render: (args: Args) => {
+    const samples = [
+      ['0', '100', '0', '100'],
+      ['25', '50', '25', '50'],
+      ['50', '25', '50', '25'],
+      ['75', '75', '75', '75'],
+      ['100', '0', '100', '0']
+    ];
+
+    // used only for the snapshots
+    return html`
+      ${samples.map(([w, wMd, h, hXl]) => {
+      return html`
+          <div class="grid-item">
+            <div class="w-${w} w-md-${wMd} h-${h} h-xl-${hXl}">
+            </div>
+          </div>
+          `;
+    })}
+    `;
+  }
+}
+
+
+export const SizingVp: Story = {
+
+  render: (args: Args) => {
+    const samples = [
+      ['0', '100', '0', '100'],
+      ['25', '50', '25', '50'],
+      ['50', '25', '50', '25'],
+      ['75', '75', '75', '75'],
+      ['100', '0', '100', '0']
+    ];
+
+    // used only for the snapshots
+    return html`
+      ${samples.map(([vw, vwMd, vh, vhXl]) => {
+      return html`
+          <div class="grid-item">
+            <div class="vw-${vw} vw-md-${vwMd} vh-${vh} vh-xl-${vhXl}">
+            </div>
+          </div>
+          `;
+    })}
+    `;
+  }
+}
+
+
+
+export const SizingAuto: Story = {
+
+  render: (args: Args) => {
+    const samples = [
+      ['100', 'auto', '50', '100'],
+      ['auto', '100', 'auto', '50'],
+      ['auto', 'auto', 'auto', 'auto'],
+      ['50', 'auto', 'auto', 'auto']
+    ];
+
+    // used only for the snapshots
+    return html`
+      ${samples.map(([w, wMd, h, hXl]) => {
+      return html`
+          <div class="grid-item">
+            <div class="w-${w} w-md-${wMd} h-${h} h-xl-${hXl}">
+            <div class="inner-div">
+            </div>
+          </div>
+          `;
+    })}
+    `;
+  }
+}

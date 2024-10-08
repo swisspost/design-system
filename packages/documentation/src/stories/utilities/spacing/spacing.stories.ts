@@ -45,13 +45,13 @@ function withLegend(template: TemplateResult, ...legendItems: string[]) {
       ${template}
       <ul class="legend list-unstyled">
         ${legendItems.map(
-          item => html`
+    item => html`
             <li class="d-flex align-items-center">
               <div class="h-regular w-regular me-8 ${item}"></div>
               <span>${item}</span>
             </li>
           `,
-        )}
+  )}
       </ul>
     </div>
   `;

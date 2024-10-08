@@ -9,5 +9,11 @@
   "sonarlint.connectedMode.project": {
     "connectionId": "swisspost",
     "projectKey": "swisspost_common-web-frontend"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
   }
 }

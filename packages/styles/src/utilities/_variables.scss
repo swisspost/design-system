@@ -1,5 +1,5 @@
 @use '../tokens/utilities' as tokens;
-
+@use './temp/sizing';
 /*
   Add new utilities using the following structure:
     [set]: (
@@ -45,13 +45,50 @@
 */
 
 $utilities: (
+  sizing: (
+    tokens: sizing.$post-sizing,
+    classes:(
+      width:(
+        responsive: true,
+        prefixes: (
+          w: width,
+          mw: max-width,
+          min-w: min-width,
+         ),
+      ),  
+      height:(
+        responsive: true,
+        prefixes: (
+          h: height,
+          mh: max-height,
+          min-h: min-height,
+         ),
+      ), 
+      viewport-width:(
+        responsive: true,
+        prefixes: (
+          vw: width,
+          max-vw: max-width,
+          min-vw: min-width
+         ),
+      ),  
+      viewport-height:(
+        responsive: true,
+        prefixes: (
+          vh: height,
+          max-vh: max-height,
+          min-vh: min-height
+         ),
+      ),  
+    ),
+  ),
   spacing: (
     tokens: tokens.$post-spacing,
     classes: (
       margin: (
         responsive: true,
         prefixes: (
-          m: margin,
+          m:margin,
           mx: margin-inline,
           ms: margin-inline-start,
           me: margin-inline-end,

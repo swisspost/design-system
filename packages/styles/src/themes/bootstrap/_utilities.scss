@@ -26,4 +26,12 @@ $utilities: map.remove($utilities, 'gap');
 $utilities: map.remove($utilities, 'row-gap');
 $utilities: map.remove($utilities, 'column-gap');
 
+$utilities: map.remove($utilities, 'width');
+$utilities: map.remove($utilities, 'height');
+$utilities: map.remove($utilities, 'max-width');
+$utilities: map.remove($utilities, 'max-height');
+$utilities: map.remove($utilities, 'min-width');
+$utilities: map.remove($utilities, 'min-height');
+
+
 @import 'bootstrap/scss/utilities/api';
