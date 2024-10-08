@@ -1,0 +1,79 @@
+@use 'sass:map';
+@use 'sass:math';
+
+@use '../functions/tokens';
+@use '../mixins/media';
+@use '../variables/breakpoints';
+@use './temp/tokens' as layout;
+
+@use './constants' as const;
+@use './mixins' as mx;
+
+tokens.$default-map: layout.$post-grid;
+
+.container,
+.container-fluid {
+  width: 100%;
+  padding-inline: tokens.get('grid', 'container-padding-inline');
+  margin-inline: auto;
+}
+
+.container {
+  max-width: tokens.get('grid', 'container-max-width');
+}
+
+.row {
+  --post-grid-gutter-x: #{tokens.get('grid', 'gutter')};
+  --post-grid-gutter-y: 0;
+
+  display: flex;
+  flex-wrap: wrap;
+  margin-block-start: calc(-1 * var(--post-grid-gutter-y));
+  margin-inline: calc(-0.5 * var(--post-grid-gutter-x));
+
+  > * {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    margin-block-start: var(--post-grid-gutter-y);
+    padding-inline: calc(var(--post-grid-gutter-x) * 0.5);
+  }
+}
+
+@each $breakpoint, $device-size in breakpoints.$grid-breakpoints {
+  @include media.min($device-size) {
+    $infix: if($device-size == 0, '', '-#{$breakpoint}');
+
+    .col#{$infix} {
+      flex: 1 0 0%;
+    }
+
+    .row-cols#{$infix}-auto > * {
+      @include mx.make-col-auto();
+    }
+
+    @for $i from 1 through const.$grid-row-columns {
+      .row-cols#{$infix}-#{$i} {
+        @include mx.row-cols($i);
+      }
+    }
+
+    .col#{$infix}-auto {
+      @include mx.make-col-auto();
+    }
+
+    @for $i from 1 through const.$grid-columns {
+      .col#{$infix}-#{$i} {
+        @include mx.make-col($i, const.$grid-columns);
+      }
+    }
+
+    @for $i from 0 through (const.$grid-columns - 1) {
+      @if not($infix == '' and $i == 0) {
+        .offset#{$infix}-#{$i} {
+          @include mx.make-col-offset($i, const.$grid-columns);
+        }
+      }
+    }
+  }
+}

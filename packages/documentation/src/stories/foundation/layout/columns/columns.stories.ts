@@ -9,8 +9,8 @@ const meta: MetaExtended = {
     badges: [],
   },
   decorators: [
-    (story: StoryFn, { args, context }: StoryContext) => html`
-      <div class="p-16 column-example text-center">${story(args, context)}</div>
+    (story: StoryFn, context: StoryContext) => html`
+      <div class="p-16 column-example text-center">${story(context.args, context)}</div>
     `,
   ],
   args: {
@@ -19,7 +19,7 @@ const meta: MetaExtended = {
     justifyContent: 'justify-content-start',
     offsetItem: 'offset-1',
     renderBreakingElement: true,
-    ColumnOneOrder: 'no order',
+    ColumnOneOrder: 'no order class',
     ColumnTwoOrder: 'order-5',
     ColumnThreeOrder: 'order-1',
     ColumnWidth: 'col-4',
@@ -141,9 +141,14 @@ export const VerticalExample: Story = {
       include: ['Align Items', 'Align Item 1'],
     },
   },
+  decorators: [
+    (story: StoryFn, context: StoryContext) => html`
+      <div class="row-height">${story(context.args, context)}</div>
+    `,
+  ],
   render: (args: Args) => html`
     <div class="container">
-      <div class="row-height row ${args.alignItems}">
+      <div class="row ${args.alignItems}">
         <div class="col${args.alignSelf === 'no self alignment' ? '' : ` ${args.alignSelf}`}">
           Item 1
         </div>
@@ -250,8 +255,8 @@ export const ColumnBreakExample: Story = {
 
 export const ResetOffsetExample: Story = {
   decorators: [
-    (story: StoryFn, { args, context }: StoryContext) => html`
-      ${story(args, context)}
+    (story: StoryFn, context: StoryContext) => html`
+      ${story(context.args, context)}
       <p class="mt-16"><small>Resize the browser window to see changes.</small></p>
     `,
   ],
