@@ -7,11 +7,6 @@
 @use './../../functions/sizing';
 @use './../../functions/forms' as forms-fn;
 
-// @use '../../tokens/components' as components;
-// @use '../../functions/tokens' as tokens;
-
-// tokens.$default-map: components.$post-switch;
-
 $form-check-row-gap: spacing.$size-small-regular !default;
 $form-check-column-gap: spacing.$size-mini !default;
 $form-check-margin-bottom: spacing.$size-regular !default;
