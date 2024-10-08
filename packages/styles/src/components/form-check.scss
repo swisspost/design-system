@@ -153,14 +153,11 @@ tokens.$default-map: components.$post-switch;
       }
 
       border: 0;
-      // background-image: url('#{form-check.$form-check-input-disabled-background-url-light-lg}');
 
       @include color-mx.on-dark-background {
-        // background-image: url('#{form-check.$form-check-input-disabled-background-url-dark-lg}');
       }
 
       @include utility-mx.high-contrast-mode {
-        // background-image: url('#{form-check.$form-check-input-disabled-background-url-hcm-lg}') !important;
       }
 
       .form-check-sm &[type='checkbox'] {
@@ -303,7 +300,7 @@ $switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' x
 
     @include utility-mx.high-contrast-mode {
       transition: none;
-      border: form-check.$form-check-input-border-width tokens.get('switch', 'border-style-default')
+      border: tokens.get('switch', 'border-width') tokens.get('switch', 'border-style-default')
         CanvasText;
 
       &:checked {
@@ -316,7 +313,8 @@ $switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' x
         background-color: CanvasText;
       }
 
-      &:checked::after {
+      &:checked::after,
+      &:checked:before {
         transform: translateX(
           calc(
             tokens.get('switch', 'element-width') - tokens.get('switch', 'element-handle') - tokens.get(
@@ -332,11 +330,6 @@ $switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' x
       background-color: tokens.get('switch', 'element-disabled-bg');
       border: tokens.get('switch', 'border-width') tokens.get('switch', 'border-style-disabled')
         tokens.get('switch', 'element-disabled-stroke');
-
-      @include color-mx.on-dark-background {
-        border: tokens.get('switch', 'border-width') tokens.get('switch', 'border-style-disabled')
-          color.$white-alpha-80;
-      }
 
       @include utility-mx.high-contrast-mode {
         border: tokens.get('switch', 'border-width') tokens.get('switch', 'border-style-disabled')
