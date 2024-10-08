@@ -1,4 +1,5 @@
 @use '../tokens/utilities' as tokens;
+@use './temp/flex' as flex;
 
 /*
   Add new utilities using the following structure:
@@ -82,36 +83,8 @@ $utilities: (
       ),
     ),
   ),
-  display: (
-    tokens: (
-      post-utility-display-none: none,
-      post-utility-display-inline: inline,
-      post-utility-display-inline-block: inline-block,
-      post-utility-display-block: block,
-      post-utility-display-grid: grid,
-      post-utility-display-inline-grid: inline-grid,
-      post-utility-display-table: table,
-      post-utility-display-table-cell: table-cell,
-      post-utility-display-table-row: table-row,
-      post-utility-display-flex: flex,
-      post-utility-display-inline-flex: inline-flex,
-    ),
-    classes: (
-      display: (
-        responsive: true,
-        prefixes: (
-          d: display,
-        ),
-      ),
-    ),
-  ),
   flex-direction: (
-    tokens: (
-      post-utility-flex-direction-row: row,
-      post-utility-flex-direction-row-reverse: row-reverse,
-      post-utility-flex-direction-column: column,
-      post-utility-flex-direction-column-reverse: column-reverse,
-    ),
+    tokens: flex.$direction,
     classes: (
       flex-direction: (
         responsive: true,
@@ -121,28 +94,19 @@ $utilities: (
       ),
     ),
   ),
-  flex: (
-    tokens: (
-      post-utility-flex-fill: '1 1 auto',
-      post-utility-flex-grow-0: '',
-      post-utility-flex-grow-1: '',
-      post-utility-flex-shrink-0: '',
-      post-utility-flex-shrink-1: '',
-    ),
+  fill: (
+    tokens: flex.$fill,
     classes: (
-      flex: (
+      flex-fill: (
         responsive: true,
         prefixes: (
-          flex: flex,
+          flex-fill: flex,
         ),
       ),
     ),
   ),
   flex-grow: (
-    tokens: (
-      post-utility-flex-grow-0: '0',
-      post-utility-flex-grow-1: '1',
-    ),
+    tokens: flex.$grow,
     classes: (
       flex-grow: (
         responsive: true,
@@ -153,10 +117,7 @@ $utilities: (
     ),
   ),
   flex-shrink: (
-    tokens: (
-      post-utility-flex-shrink-0: '0',
-      post-utility-flex-shrink-1: '1',
-    ),
+    tokens: flex.$shrink,
     classes: (
       flex-shrink: (
         responsive: true,
@@ -167,14 +128,7 @@ $utilities: (
     ),
   ),
   justify-content: (
-    tokens: (
-      post-utility-justify-content-end: end,
-      post-utility-justify-content-start: start,
-      post-utility-justify-content-center: center,
-      post-utility-justify-content-between: between,
-      post-utility-justify-content-around: around,
-      post-utility-justify-content-evenly: evenly,
-    ),
+    tokens: flex.$justify-content,
     classes: (
       justify-content: (
         responsive: true,
@@ -185,14 +139,7 @@ $utilities: (
     ),
   ),
   align-content: (
-    tokens: (
-      post-utility-align-content-end: flex-end,
-      post-utility-align-content-start: flex-start,
-      post-utility-align-content-center: center,
-      post-utility-align-content-between: between,
-      post-utility-align-content-around: around,
-      post-utility-align-content-stretch: stretch,
-    ),
+    tokens: flex.$align-content,
     classes: (
       align-content: (
         responsive: true,
@@ -203,13 +150,7 @@ $utilities: (
     ),
   ),
   align-items: (
-    tokens: (
-      post-utility-align-items-end: flex-end,
-      post-utility-align-items-start: flex-start,
-      post-utility-align-items-center: center,
-      post-utility-align-items-baseline: baseline,
-      post-utility-align-items-stretch: stretch,
-    ),
+    tokens: flex.$align-items,
     classes: (
       align-items: (
         responsive: true,
@@ -220,13 +161,7 @@ $utilities: (
     ),
   ),
   align-self: (
-    tokens: (
-      post-utility-align-self-end: flex-end,
-      post-utility-align-self-start: flex-start,
-      post-utility-align-self-center: center,
-      post-utility-align-self-baseline: baseline,
-      post-utility-align-self-stretch: stretch,
-    ),
+    tokens: flex.$align-self,
     classes: (
       align-self: (
         responsive: true,
@@ -237,11 +172,7 @@ $utilities: (
     ),
   ),
   flex-wrap: (
-    tokens: (
-      post-utility-flex-wrap-nowrap: nowrap,
-      post-utility-flex-wrap-wrap: wrap,
-      post-utility-flex-wrap-wrap-reverse: wrap-reverse,
-    ),
+    tokens: flex.$wrap,
     classes: (
       flex-wrap: (
         responsive: true,
@@ -252,16 +183,7 @@ $utilities: (
     ),
   ),
   order: (
-    tokens: (
-      post-utility-order-first: -1,
-      post-utility-order-0: 0,
-      post-utility-order-1: 1,
-      post-utility-order-2: 2,
-      post-utility-order-3: 3,
-      post-utility-order-4: 4,
-      post-utility-order-5: 5,
-      post-utility-order-last: 6,
-    ),
+    tokens: flex.$order,
     classes: (
       order: (
         responsive: true,

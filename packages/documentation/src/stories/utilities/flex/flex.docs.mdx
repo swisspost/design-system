@@ -2,14 +2,27 @@ import { Canvas, Meta } from '@storybook/blocks';
 import * as FlexStories from './flex.stories';
 import { breakpoints, firstBreakpoint } from '../spacing/spacing.docs.mdx';
 import {
+  FlexBreakpointBlock,
+  FlexValuesBlock,
   FlexDirectionContainer,
   AlignItemsContainer,
   JustifyContentContainer,
   AlignSelfContainer,
-  GrowShrinkContainer,
+  GrowContainer,
+  ShrinkContainer,
+  AlignContentContainer,
+  WrapContainer,
 } from './flex.blocks';
 import { forEach } from '@/utils/react';
 import './flex.styles.scss';
+
+export const flexOrderValues = ['0', '1', '2', '3', '4', '5', 'first', 'last'];
+export const flexDirectionValues = ['row', 'row-reverse', 'column', 'column-reverse'];
+export const flexAlignItemsValues = ['start', 'end', 'center', 'baseline', 'stretch'];
+export const flexJustifyContentValues = ['start', 'end', 'center', 'between', 'around', 'evenly'];
+export const flexAlignSelfValues = ['start', 'end', 'center', 'baseline', 'stretch'];
+export const flexAlignContentValues = ['start', 'end', 'center', 'between', 'around', 'stretch'];
+export const flexWrapValues = ['wrap', 'nowrap', 'wrap-reverse'];
 
 <Meta of={FlexStories} />
 
@@ -24,135 +37,177 @@ Flex utilities work alongside the <code>display: flex</code> css class that can 
 
 ## Flex direction
 
-The available utility values for the flex direction are the following:
+Flex direction is used on a flex container element to set the direction of its children.
 
-- row (default)
-- row-reverse
-- column
-- column-reverse
-  <br />
-  Naming convention for flex direction:
-- For all breakpoints (<code>{firstBreakpoint}</code> and up): `flex-{value}`
-- Starting from a specific breakpoint ({breakpoints.map(([b, isLast]) => (<span key={b}><code>{b}</code>{isLast ? ', ' : ''}</span>))}): `flex-{breakpoint}-{value}`
+<FlexValuesBlock name="flex-direction" values={flexDirectionValues} />
 
 ### Usage
 
 To set the direction of elements within a flex container, simply add a `flex-{value}` class to the container.
 
+<FlexBreakpointBlock display="flex-{breakpoint}-{value}" />
+
 <Canvas of={FlexStories.Default} sourceState="shown" />
 
 <section>
-  {forEach(['row', 'row-reverse', 'column', 'column-reverse'], function ({ key, value }) {
+  {forEach(flexDirectionValues, function ({ key, value }) {
     return <FlexDirectionContainer key={key} name={value} />;
   })}
 </section>
 
 ## Align items
 
-The available utility values for the flex alignment are the following:
+Align items is used on a flex container element to set the horizontal alignement (vertical alignment if set to `flex-direction: column`) of its children.
 
-- start (default)
-- end
-- center
-- baseline
-- stretch
-  <br />
-  Naming convention for flex alignment:
-- For all breakpoints (<code>{firstBreakpoint}</code> and up): `align-items-{value}`
-- Starting from a specific breakpoint ({breakpoints.map(([b, isLast]) => (<span key={b}><code>{b}</code>{isLast ? ', ' : ''}</span>))}): `align-items-{breakpoint}-{value}`
+<FlexValuesBlock name="align-items" values={flexAlignItemsValues} />
 
 ### Usage
 
 To set the alignment of elements within a flex container, simply add a `align-items-{value}` class to the container.
 
+<FlexBreakpointBlock display="align-items-{breakpoint}-{value}" />
+
 <Canvas of={FlexStories.AlignItems} sourceState="shown" />
 
 <section>
-  {forEach(['start', 'end', 'center', 'baseline', 'stretch'], function ({ key, value }) {
+  {forEach(flexAlignItemsValues, function ({ key, value }) {
     return <AlignItemsContainer key={key} name={value} />;
   })}
 </section>
 
 ## Justify content
 
-The available utility values for the flex justify-content are the following:
+Justify content is used on a flex container element to set the vertical alignment (horizontal alignment if set to `flex-direction: column`).
 
-- start (default)
-- end
-- center
-- between
-- around
-- evenly
-  <br />
-  Naming convention for flex justify-content:
-- For all breakpoints (<code>{firstBreakpoint}</code> and up): `justify-content-{value}`
-- Starting from a specific breakpoint ({breakpoints.map(([b, isLast]) => (<span key={b}><code>{b}</code>{isLast ? ', ' : ''}</span>))}): `justify-content-{breakpoint}-{value}`
+<FlexValuesBlock name="justify-content" values={flexJustifyContentValues} />
 
 ### Usage
 
 To set the alignment of elements within a flex container, simply add a `justify-content-{value}` class to the container.
 
+<FlexBreakpointBlock display="justify-content-{breakpoint}-{value}" />
+
 <Canvas of={FlexStories.JustifyContent} sourceState="shown" />
 
 <section>
-  {forEach(['start', 'end', 'center', 'between', 'around', 'evenly'], function ({ key, value }) {
+  {forEach(flexJustifyContentValues, function ({ key, value }) {
     return <JustifyContentContainer key={key} name={value} />;
   })}
 </section>
 
 ## Align self
 
-The available utility values for the flex align-self are the same as the align-items one:
+Align self is used on a child of a flex container element to set its horizontal alignement (vertical alignment if parent is set to `flex-direction: column`).
 
-- start
-- end
-- center
-- baseline
-- stretch (default)
-  <br />
-  Naming convention for flex align-self:
-- For all breakpoints (<code>{firstBreakpoint}</code> and up): `align-self-{value}`
-- Starting from a specific breakpoint ({breakpoints.map(([b, isLast]) => (<span key={b}><code>{b}</code>{isLast ? ', ' : ''}</span>))}): `align-self-{breakpoint}-{value}`
+<FlexValuesBlock name="align-self" values={flexAlignSelfValues} />
 
 ### Usage
 
-To set the alignment of a specific element within a flex container, simply add a `align-self-{value}` class to the child element.
+To set the alignment of the child element within a flex container, simply add a `align-self-{value}` class to the child.
+
+<FlexBreakpointBlock display="align-self-{breakpoint}-{value}" />
 
 <Canvas of={FlexStories.AlignSelf} sourceState="shown" />
 
 <section>
-  {forEach(['start', 'end', 'center', 'baseline', 'stretch'], function ({ key, value }) {
+  {forEach(flexAlignSelfValues, function ({ key, value }) {
     return <AlignSelfContainer key={key} name={value} />;
   })}
 </section>
 
 ## Grow / Shrink
 
-The available utility values for the flex align-self are the same as the align-items one:
-
-- start
-- end
-- center
-- baseline
-- stretch (default)
-  <br />
-  Naming convention for flex align-self:
-- For all breakpoints (<code>{firstBreakpoint}</code> and up): `align-self-{value}`
-- Starting from a specific breakpoint ({breakpoints.map(([b, isLast]) => (<span key={b}><code>{b}</code>{isLast ? ', ' : ''}</span>))}): `align-self-{breakpoint}-{value}`
+The grow and shrink utilities are used on children of a flex container to tell the child element to fill the available space.
+The available values are the following: `grow-{0|1}`, `shrink-{0|1}`.
 
 ### Usage
 
-To set the alignment of a specific element within a flex container, simply add a `align-self-{value}` class to the child element.
+To set the grow/shrink of a child element within a flex container, simply add a `flex-{grow|shrink-{0|1}` class to the child.
 
-<Canvas of={FlexStories.AlignSelf} sourceState="shown" />
+<FlexBreakpointBlock display="flex-{breakpoint}-{grow|shrink}-{0|1}" />
+
+<Canvas of={FlexStories.GrowShrink} sourceState="shown" />
+
+#### Grow
 
 <section>
-  {forEach(['grow', 'shrink'], function ({ key, value }) {
-    return (
-      <>
-        <GrowShrinkContainer key={key} name={value} value="0" />
-        <GrowShrinkContainer key={key} name={value} value="1" />
-      </>
-    );
+  <GrowContainer name={0} />
+  <GrowContainer name={1} />
+</section>
+
+#### Shrink
+
+<section>
+  <ShrinkContainer name={0} />
+  <ShrinkContainer name={1} />
+</section>
+
+## Align content
+
+Align content is used on a flex container to set the horizontal alignment of the element's children <u>together</u>.
+
+Note that align-content will only work if there are more than one row of elements of children.
+
+<FlexValuesBlock name="align-content" values={flexAlignContentValues} />
+
+### Usage
+
+To set the alignment of the child elements within a flex container, simply add a `align-content-{value}` class to the flex container.
+
+<FlexBreakpointBlock display="align-content-{breakpoint}-{value}" />
+
+<Canvas of={FlexStories.AlignContent} sourceState="shown" />
+
+<section>
+  {forEach(flexAlignContentValues, function ({ key, value }) {
+    return <AlignContentContainer key={key} name={value} />;
   })}
 </section>
+
+## Order
+
+Order is used on a child element of a `d-flex` parent. It's used to reorder the elements within the parent.
+
+<FlexValuesBlock name="order" values={flexOrderValues} />
+
+### Usage
+
+To set the alignment of a specific element within a flex container, simply add a `order-{value}` class to the child element.
+
+<FlexBreakpointBlock display="order-{breakpoint}-{value}" />
+
+<Canvas of={FlexStories.Order} sourceState="shown" />
+
+## Wrap
+
+Flex wrap is used on a flex parent container to define the wrapping of its children.
+
+<FlexValuesBlock name="wrap" values={flexWrapValues} />
+
+### Usage
+
+To set the alignment of a specific element within a flex container, simply add a `flex-{value}` class to the child element.
+
+<FlexBreakpointBlock display="flex-{breakpoint}-{value}" />
+
+<Canvas of={FlexStories.Wrap} sourceState="shown" />
+
+<section>
+  {forEach(flexWrapValues, function ({ key, value }) {
+    return <WrapContainer key={key} name={value} />;
+  })}
+</section>
+
+## Fill
+
+The fill utility is used on children of a flex container to force them to take all of the available space (divide equally if content is smaller than container, or divide depending on child's contents)
+The fill value is the following: `fill`.
+
+### Usage
+
+To set the grow/shrink of a child element within a flex container, simply add a `flex-fill` class to the child.
+
+<FlexBreakpointBlock display="flex-{breakpoint}-fill" />
+
+<Canvas of={FlexStories.FillEqual} sourceState="shown" />
+<Canvas of={FlexStories.Fill} sourceState="shown" />
