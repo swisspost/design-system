@@ -1,0 +1,26 @@
+import { Canvas, Meta } from '@storybook/blocks';
+import * as AppStoreBadgeStories from './app-store-badge.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={AppStoreBadgeStories} />
+
+<div className="docs-title">
+  # App Store Badge
+
+  <nav>
+    <link-design of={JSON.stringify(AppStoreBadgeStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">The App Store Badge component is used to display badges for app promotion, providing variants for both Google Play and Apple App Stores.</div>
+
+<Canvas of={AppStoreBadgeStories.Default} sourceState="shown" />
+
+Projects must provide and host the images for the badges locally to ensure they remain up-to-date.
+
+## Links to download the official badge assets:
+
+<div className="d-flex flex-column">
+  <a href="https://developer.apple.com/app-store/marketing/guidelines/">Apple App Store</a>
+  <a href="https://partnermarketinghub.withgoogle.com/brands/google-play/visual-identity/badge-guidelines/?folder=65628">Google Play</a>
+</div>
