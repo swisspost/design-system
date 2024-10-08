@@ -6,47 +6,16 @@
 @use './../variables/breakpoints';
 @use './../mixins/utilities';
 
-// Post margins, paddings and sizes
+// Post sizes
 @each $breakpoint in map.keys(breakpoints.$grid-breakpoints) {
   @include media-breakpoint-up($breakpoint) {
     $infix: if($breakpoint == 'xs', '', '-#{$breakpoint}');
 
     @each $prop,
       $abbrev
-        in (
-          margin: m,
-          padding: p,
-          /* Deprecated */ line-height: lh,
-          height: h,
-          max-height: mh,
-          width: w,
-          max-width: mw,
-          gap: gap
-        )
+        in (/* Deprecated */ line-height: lh, height: h, max-height: mh, width: w, max-width: mw)
     {
       @each $size, $length in spacing.$post-sizes {
-        @if ($prop == margin or $prop == padding) {
-          .#{$abbrev}t#{$infix}-#{$size},
-          .#{$abbrev}y#{$infix}-#{$size} {
-            #{$prop}-top: $length !important;
-          }
-
-          .#{$abbrev}e#{$infix}-#{$size},
-          .#{$abbrev}x#{$infix}-#{$size} {
-            #{$prop}-right: $length !important;
-          }
-
-          .#{$abbrev}b#{$infix}-#{$size},
-          .#{$abbrev}y#{$infix}-#{$size} {
-            #{$prop}-bottom: $length !important;
-          }
-
-          .#{$abbrev}s#{$infix}-#{$size},
-          .#{$abbrev}x#{$infix}-#{$size} {
-            #{$prop}-left: $length !important;
-          }
-        }
-
         .#{$abbrev}#{$infix}-#{$size} {
           #{$prop}: $length !important;
         }
