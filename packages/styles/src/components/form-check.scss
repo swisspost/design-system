@@ -236,8 +236,6 @@ $switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' x
 
   .form-check-input {
     position: relative;
-    display: flex;
-    align-items: center;
     height: tokens.get('switch', 'element-height');
     width: tokens.get('switch', 'element-width');
     border: tokens.get('switch', 'border-width') tokens.get('switch', 'border-style-default')
