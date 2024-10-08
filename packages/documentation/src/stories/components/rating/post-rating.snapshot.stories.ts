@@ -15,16 +15,16 @@ type Story = StoryObj;
 export const Rating: Story = {
   render: (_args: Args, context: StoryContext) => {
     return html`
-      <div class="p-5">
+      <div class="p-48">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div class="${bg} p-3">
-              <div class="d-flex gap-3 mb-3">
-                <div class="w-50 d-flex gap-1">
+            <div class="${bg} p-16">
+              <div class="d-flex gap-16 mb-16">
+                <div class="w-50 d-flex gap-4">
                   readonly:
                   <pre>false</pre>
                 </div>
-                <div class="w-50 d-flex gap-1">
+                <div class="w-50 d-flex gap-4">
                   readonly:
                   <pre>true</pre>
                 </div>
@@ -37,7 +37,7 @@ export const Rating: Story = {
                 .map(
                   (args: Args) =>
                     html`
-                      <div class="d-flex gap-3">
+                      <div class="d-flex gap-16">
                         <div class="w-50">
                           ${meta.render?.({ ...context.args, ...args, readonly: false }, context)}
                         </div>
