@@ -14,6 +14,7 @@ dialog {
   max-width: 590px;
   max-height: 90vh;
   overflow: auto;
+  margin: revert;
   overscroll-behavior: contain;
   border: 2px solid var(--post-contrast-color); // Ensures good contrast when bg is dark against dark backdrop
 
