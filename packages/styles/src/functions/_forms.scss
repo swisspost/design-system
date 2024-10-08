@@ -1,6 +1,6 @@
 // Source: https://kovart.github.io/dashed-border-generator/ + added stroke-vector-effect
-@use './color' as color;
-@use '../functions/tokens' as tokens;
+@use './color';
+@use '../functions/tokens';
 
 @function get-background-svg-stroke(
   $type,
