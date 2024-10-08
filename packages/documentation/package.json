@@ -25,7 +25,7 @@
     "e2e:watch": "cypress open",
     "doctor": "storybook doctor",
     "snapshots": "percy exec -- cypress run --config-file ./cypress.snapshot.config.js --record --key 0995e768-43ec-42bd-a127-ff944a2ad8c9",
-    "lint": "eslint **/*.{js,ts,tsx,mdx}"
+    "lint": "eslint **/*.{ts,tsx,mdx}"
   },
   "dependencies": {
     "@swisspost/design-system-components": "workspace:8.2.2",
