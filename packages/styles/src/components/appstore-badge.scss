@@ -1,0 +1,21 @@
+@use '../functions/tokens';
+@use '../tokens/components';
+@use '../mixins/utilities';
+
+tokens.$default-map: components.$post-app-store-badge;
+
+.app-store-badge {
+  display: inline-flex;
+  border-radius: tokens.get('post-app-store', 'border-radius');
+
+  img {
+    display: block;
+    height: tokens.get('post-app-store', 'height');
+  }
+
+  @include utilities.focus-style(
+    '',
+    tokens.get('post-app-store', 'focus-outline-width'),
+    tokens.get('post-app-store', 'focus-outline')
+  );
+}
