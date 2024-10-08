@@ -1,6 +1,6 @@
 import { breakpoints } from '../spacing/spacing.docs.mdx';
 
-export const FlexDocContainer = (props: {
+const FlexDocContainer = (props: {
   children: string | JSX.Element | JSX.Element[];
   name: string;
   prefix: string;

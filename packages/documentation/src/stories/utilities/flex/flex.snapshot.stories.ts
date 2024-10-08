@@ -1,4 +1,4 @@
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import meta from './flex.stories';
 import './flex.styles.scss';
@@ -97,23 +97,20 @@ export const GrowShrink: Story = {
         ${bombArgs({
           type: ['grow', 'shrink'],
           value: [0, 1],
-        })
-          .map(args => ({ ...args, show: true } as Args))
-
-          .map(
-            args => html`
-              <div class="d-flex align-items-start grow-shrink-container">
-                <div class="bg-yellow p-12 flex-${args.type}-${args.value}">
-                  I'm ${args.value === 0 ? 'not' : ''} ${args.type}ing
-                </div>
-                <div class="bg-gray p-12">
-                  ${args.type === 'grow'
-                    ? 'Content'
-                    : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'}
-                </div>
+        }).map(
+          args => html`
+            <div class="d-flex align-items-start grow-shrink-container">
+              <div class="bg-yellow p-12 flex-${args.type}-${args.value}">
+                I'm ${args.value === 0 ? 'not' : ''} ${args.type}ing
               </div>
-            `,
-          )}
+              <div class="bg-gray p-12">
+                ${args.type === 'grow'
+                  ? 'Content'
+                  : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'}
+              </div>
+            </div>
+          `,
+        )}
       </div>
     `;
   },
