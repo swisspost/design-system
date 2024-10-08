@@ -21,6 +21,7 @@
 @use 'forms';
 @use 'grid';
 @use 'icons';
+@use 'lead';
 @use 'list-group';
 @use 'modal';
 @use 'pagination';
@@ -33,12 +34,12 @@
 @use 'subnavigation';
 @use 'tables';
 @use 'tabs';
+@use 'text-highlight';
 @use 'timepicker';
 @use 'toast';
 @use 'tooltip';
 @use 'topic-teaser';
 @use 'transitions';
-@use 'utilities';
 @use 'tag';
 
 // Imports depending on source order to override bootstrap styles

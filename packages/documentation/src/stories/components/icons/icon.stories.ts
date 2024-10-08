@@ -112,7 +112,7 @@ export const Color: Story = {
   render: args => renderVariants(args, colorVariants),
   decorators: [
     (story: StoryFn, context: StoryContext) =>
-      generateDecorators(story, context, 'd-flex flex-wrap gap-2'),
+      generateDecorators(story, context, 'd-flex flex-wrap gap-8'),
   ],
 };
 
@@ -139,9 +139,9 @@ export const Size: Story = {
 };
 
 const styleVariants = [
-  { class: 'border rounded p-3', style: 'font-size: 4rem' },
-  { class: 'border border-success rounded p-3 text-success', style: 'font-size: 4rem' },
-  { class: 'rounded-circle bg-info p-3', style: 'font-size: 4rem' },
+  { class: 'border rounded p-16', style: 'font-size: 4rem' },
+  { class: 'border border-success rounded p-16 text-success', style: 'font-size: 4rem' },
+  { class: 'rounded-circle bg-info p-16', style: 'font-size: 4rem' },
 ];
 
 export const Style: Story = {
@@ -153,7 +153,7 @@ export const Style: Story = {
   render: args => renderVariants(args, styleVariants),
   decorators: [
     (story: StoryFn, context: StoryContext) =>
-      generateDecorators(story, context, 'd-flex flex-wrap gap-2'),
+      generateDecorators(story, context, 'd-flex flex-wrap gap-8'),
   ],
 };
 
@@ -173,7 +173,7 @@ export const Flip: Story = {
   render: args => renderVariants(args, flipVariants),
   decorators: [
     (story: StoryFn, context: StoryContext) =>
-      generateDecorators(story, context, 'd-flex flex-wrap gap-2'),
+      generateDecorators(story, context, 'd-flex flex-wrap gap-8'),
   ],
 };
 
@@ -192,7 +192,7 @@ export const Scale: Story = {
   render: args => renderVariants(args, scaleVariants),
   decorators: [
     (story: StoryFn, context: StoryContext) =>
-      generateDecorators(story, context, 'd-flex flex-wrap gap-4'),
+      generateDecorators(story, context, 'd-flex flex-wrap gap-24'),
   ],
 };
 
@@ -215,7 +215,7 @@ export const Rotate: Story = {
   render: args => renderVariants(args, rotateVariants),
   decorators: [
     (story: StoryFn, context: StoryContext) =>
-      generateDecorators(story, context, 'd-flex flex-wrap gap-2'),
+      generateDecorators(story, context, 'd-flex flex-wrap gap-8'),
   ],
 };
 
@@ -233,7 +233,7 @@ const renderAnimateVariants = (args: Args, customAttrs: { name: string; animatio
     ${customAttrs.map(
       variantArgs =>
         html`
-          <div class="w-50 py-3">
+          <div class="w-50 py-16">
             <p class="text-muted fs-tiny">Animation: ${variantArgs.animation}</p>
             <post-icon ${spread(normalizeArgs(args))} ${spread(variantArgs)}></post-icon>
           </div>

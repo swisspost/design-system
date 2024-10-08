@@ -1,0 +1,10 @@
+@use 'sass:map';
+@use '../functions/tokens';
+@use '../tokens/components';
+
+tokens.$default-map: components.$post-lead;
+
+.lead {
+  font-size: tokens.get('post-lead', 'font-size');
+  font-weight: tokens.get('post-lead', 'font-weight');
+}
