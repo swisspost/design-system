@@ -65,7 +65,7 @@ export const resetActiveStateToPortalConfig = (config: NavMainEntity[]): NavMain
   return config.map(nav => ({
     ...nav,
     isActiveOverride: nav.isActive,
-    flyout: nav.flyout.map(flyout => ({
+    flyout: nav.flyout?.map(flyout => ({
       ...flyout,
       linkList: flyout.linkList.map(link => ({ ...link, isActiveOverride: link.isActive })),
     })),
@@ -122,7 +122,7 @@ export const compileScoreList = (
       }
 
       // Loop through flyout links 2nd level
-      mainNav.flyout.forEach(flyout => {
+      mainNav.flyout?.forEach(flyout => {
         flyout.linkList?.forEach(linklist => {
           // Don't override if any link is already active
           if (linklist.isActive && (activeRouteProp === 'auto' || activeRouteProp === 'exact')) {
