@@ -7,21 +7,8 @@
 @use './../../functions/sizing';
 @use './../../functions/forms' as forms-fn;
 
-$form-check-row-gap: spacing.$size-small-regular !default;
-$form-check-column-gap: spacing.$size-mini !default;
-$form-check-margin-bottom: spacing.$size-regular !default;
 $form-check-inline-margin-right: spacing.$size-large !default;
-$form-check-input-size: 1.375rem !default;
-$form-check-input-size-sm: spacing.$size-regular !default;
 $form-check-input-border-width: forms.$input-border-width !default;
-$form-check-input-focus-box-shadow: forms.$input-focus-box-shadow !default;
-$form-check-input-disabled-svg-border-width: $form-check-input-border-width * 2;
-$form-check-input-disabled-svg-stroke-square-pattern-lg: '2 1.5 4 1.5 4 1.5 4 1.5 2 3.5 4 1.5 4 1.5 4 1.5 2 3.5 4 1.5 4 1.5 4 1.5 2 3.5 4 1.5 4 1.5 4';
-$form-check-input-disabled-svg-stroke-square-pathlength-lg: 88;
-$form-check-input-disabled-svg-stroke-square-pattern-sm: '2 1.5 4 1.5 4 1.5 2 3.5 4 1.5 4 1.5 2 3.5 4 1.5 4 1.5 2 3.5 4 1.5 4 1.5 4';
-$form-check-input-disabled-svg-stroke-square-pathlength-sm: 66;
-$form-check-input-disabled-svg-stroke-circle-pattern: '4 2';
-
 $form-switch-column-gap: spacing.$size-regular !default;
 $form-switch-height: spacing.$size-big !default;
 $form-switch-width: 2 * spacing.$size-big !default;
