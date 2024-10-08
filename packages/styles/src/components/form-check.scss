@@ -18,37 +18,44 @@ tokens.$default-map: components.$post-switch;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-bottom: form-check.$form-check-margin-bottom;
 
-  // Focus styles
-  &:has(.form-check-input[type='radio']):focus-within {
-    @include utility-mx.focus-style(
-      $offset: tokens.get('radio-button', 'focus-outline-offset', components.$post-radio-button),
-      $width: tokens.get('radio-button', 'focus-border-width', components.$post-radio-button),
-      $color: tokens.get('radio-button', 'focus-stroke', components.$post-radio-button),
-      $style: tokens.get('radio-button', 'focus-border-style', components.$post-radio-button)
-    ) {
-      color: tokens.get('radio-button', 'selected-fg', components.$post-radio-button);
-      background-color: tokens.get('radio-button', 'selected-bg', components.$post-radio-button);
-      border-radius: tokens.get(
-        'radio-button',
-        'focus-border-radius',
-        components.$post-radio-button
-      );
-      border-color: tokens.get('radio-button', 'selected-stroke', components.$post-radio-button);
+  &:has(.form-check-input[type='radio']) {
+    margin-bottom: tokens.get('radio-button', 'gap-block-group', components.$post-radio-button);
+
+    &:focus-within {
+      @include utility-mx.focus-style(
+        $offset: tokens.get('radio-button', 'focus-outline-offset', components.$post-radio-button),
+        $width: tokens.get('radio-button', 'focus-border-width', components.$post-radio-button),
+        $color: tokens.get('radio-button', 'focus-stroke', components.$post-radio-button),
+        $style: tokens.get('radio-button', 'focus-border-style', components.$post-radio-button)
+      ) {
+        color: tokens.get('radio-button', 'selected-fg', components.$post-radio-button);
+        background-color: tokens.get('radio-button', 'selected-bg', components.$post-radio-button);
+        border-radius: tokens.get(
+          'radio-button',
+          'focus-border-radius',
+          components.$post-radio-button
+        );
+        border-color: tokens.get('radio-button', 'selected-stroke', components.$post-radio-button);
+      }
     }
   }
-  &:has(.form-check-input[type='checkbox']):focus-within {
-    @include utility-mx.focus-style(
-      $offset: tokens.get('checkbox', 'focus-outline-offset', components.$post-checkbox),
-      $width: tokens.get('checkbox', 'focus-border-width', components.$post-checkbox),
-      $color: tokens.get('checkbox', 'focus-stroke', components.$post-checkbox),
-      $style: tokens.get('checkbox', 'focus-border-style', components.$post-checkbox)
-    ) {
-      color: tokens.get('checkbox', 'selected-fg', components.$post-checkbox);
-      background-color: tokens.get('checkbox', 'selected-bg', components.$post-checkbox);
-      border-radius: tokens.get('checkbox', 'focus-border-radius', components.$post-checkbox);
-      border-color: tokens.get('checkbox', 'selected-stroke', components.$post-checkbox);
+
+  &:has(.form-check-input[type='checkbox']) {
+    margin-bottom: tokens.get('checkbox', 'gap-block-group', components.$post-checkbox);
+
+    &:focus-within {
+      @include utility-mx.focus-style(
+        $offset: tokens.get('checkbox', 'focus-outline-offset', components.$post-checkbox),
+        $width: tokens.get('checkbox', 'focus-border-width', components.$post-checkbox),
+        $color: tokens.get('checkbox', 'focus-stroke', components.$post-checkbox),
+        $style: tokens.get('checkbox', 'focus-border-style', components.$post-checkbox)
+      ) {
+        color: tokens.get('checkbox', 'selected-fg', components.$post-checkbox);
+        background-color: tokens.get('checkbox', 'selected-bg', components.$post-checkbox);
+        border-radius: tokens.get('checkbox', 'focus-border-radius', components.$post-checkbox);
+        border-color: tokens.get('checkbox', 'selected-stroke', components.$post-checkbox);
+      }
     }
   }
 
