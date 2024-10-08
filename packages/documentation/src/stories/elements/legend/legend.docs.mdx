@@ -1,4 +1,4 @@
-import { Meta, Canvas } from '@storybook/blocks';
+import { Meta, Controls, Canvas } from '@storybook/blocks';
 import * as LegendStories from './legend.stories';
 
 <Meta of={LegendStories} />
@@ -12,10 +12,6 @@ import * as LegendStories from './legend.stories';
 
 A legend is in general the title of a group of related (interactive) elements in a form. Not to be confused with caption.
 
-### Default
-
 <Canvas of={LegendStories.Default} sourceState="shown" />
 
-### Large
-
-<Canvas of={LegendStories.Large} sourceState="shown" />
+<Controls of={LegendStories.Default} />
