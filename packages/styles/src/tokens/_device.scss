@@ -5,15 +5,15 @@
 @use './../mixins/media';
 
 :root {
-  @include media.max(600px) {
+  @include media.breakpoint-down(sm) {
     @include tokens.from(device.$post-mobile);
   }
 
-  @include media.between(600px, 1024px) {
+  @include media.breakpoint-between(sm, lg) {
     @include tokens.from(device.$post-tablet);
   }
 
-  @include media.min(1024px) {
+  @include media.breakpoint-up(lg) {
     @include tokens.from(device.$post-desktop);
   }
 }

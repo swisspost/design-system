@@ -90,65 +90,51 @@ $font-size-map: (
 $font-curve-tiny: (
   'xs': $font-size-tiny,
   'sm': $font-size-tiny,
-  'rg': $font-size-small,
   'md': $font-size-small,
   'lg': $font-size-regular,
   'xl': $font-size-regular,
-  'xxl': $font-size-bigger-regular,
 );
 $font-curve-small: (
   'xs': $font-size-small,
   'sm': $font-size-small,
-  'rg': $font-size-regular,
   'md': $font-size-regular,
   'lg': $font-size-bigger-regular,
   'xl': $font-size-bigger-regular,
-  'xxl': $font-size-bigger-regular,
 );
 $font-curve-regular: (
   'xs': $font-size-bigger-regular,
   'sm': $font-size-bigger-regular,
-  'rg': $font-size-bigger-regular,
   'md': $font-size-bigger-regular,
   'lg': $font-size-medium,
   'xl': $font-size-medium,
-  'xxl': $font-size-medium,
 );
 $font-curve-bigger-regular: (
   'xs': $font-size-bigger-regular,
   'sm': $font-size-bigger-regular,
-  'rg': $font-size-medium,
   'md': $font-size-medium,
   'lg': $font-size-large,
   'xl': $font-size-large,
-  'xxl': $font-size-large,
 );
 $font-curve-medium: (
   'xs': $font-size-medium,
   'sm': $font-size-medium,
-  'rg': $font-size-medium,
   'md': $font-size-medium,
   'lg': $font-size-large,
   'xl': $font-size-large,
-  'xxl': $font-size-small-big,
 );
 $font-curve-large: (
   'xs': $font-size-large,
   'sm': $font-size-large,
-  'rg': $font-size-small-big,
   'md': $font-size-small-big,
   'lg': $font-size-big,
   'xl': $font-size-big,
-  'xxl': $font-size-bigger-big,
 );
 $font-curve-big: (
   'xs': $font-size-small-big,
   'sm': $font-size-small-big,
-  'rg': $font-size-big,
   'md': $font-size-big,
   'lg': $font-size-bigger-big,
   'xl': $font-size-bigger-big,
-  'xxl': $font-size-small-huge,
 );
 
 // Deprecated

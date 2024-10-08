@@ -2,6 +2,7 @@
 
 @use './../themes/bootstrap/core' as *;
 
+@use './../mixins/media';
 @use './../mixins/utilities';
 @use './../functions/utilities' as utility-functions;
 @use './../variables/components/subnavigation';
@@ -39,10 +40,10 @@ $module-name: 'subnavigation';
   &-item {
     min-height: subnavigation.$subnavigation-height-xs;
 
-    @include media-breakpoint-up(lg) {
+    @include media.breakpoint-up(lg) {
       min-height: subnavigation.$subnavigation-height-lg;
     }
-    @include media-breakpoint-up(xl) {
+    @include media.breakpoint-up(xl) {
       min-height: subnavigation.$subnavigation-height-xl;
     }
   }
@@ -66,7 +67,7 @@ $module-name: 'subnavigation';
     text-decoration: none;
     white-space: nowrap;
 
-    @include media-breakpoint-up(lg) {
+    @include media.breakpoint-up(lg) {
       padding: subnavigation.$subnavigation-link-padding-lg;
     }
 
@@ -105,7 +106,7 @@ $module-name: 'subnavigation';
       left: animation.$transition-distance-medium;
       opacity: 0;
 
-      @include media-breakpoint-up(lg) {
+      @include media.breakpoint-up(lg) {
         right: animation.$transition-distance-medium-md;
         left: animation.$transition-distance-medium-md;
       }

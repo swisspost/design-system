@@ -8,6 +8,7 @@
 @use './../variables/components/card';
 @use './../functions/sizing';
 @use './../mixins/icons' as icons-mixins;
+@use './../mixins/media';
 @use './../variables/icons';
 @use './../variables/animation';
 
@@ -95,20 +96,16 @@
 
   .product-card &,
   .card-button & {
-    @include media-breakpoint-down(sm) {
+    @include media.breakpoint-down(sm) {
       padding: spacing.$size-regular;
     }
 
-    @include media-breakpoint-between(sm, md) {
+    @include media.breakpoint-between(sm, md) {
       padding: spacing.$size-large;
     }
 
-    @include media-breakpoint-between(md, xxl) {
+    @include media.breakpoint-up(md) {
       padding: spacing.$size-big;
-    }
-
-    @include media-breakpoint-up(xxl) {
-      padding: spacing.$size-bigger-big;
     }
   }
 

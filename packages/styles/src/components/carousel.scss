@@ -9,6 +9,7 @@
 @use './../variables/type';
 @use './../variables/spacing';
 @use './../mixins/utilities';
+@use './../mixins/media';
 
 .carousel {
   &:focus-visible {
@@ -32,11 +33,11 @@
 .carousel-inner {
   padding-bottom: calc(10% - 0.5rem);
 
-  @include media-breakpoint-down(rg) {
+  @include media.breakpoint-down(sm) {
     padding-bottom: 1.5rem;
   }
 
-  @include media-breakpoint-down(md) {
+  @include media.breakpoint-down(md) {
     padding-bottom: calc(10% - 1rem);
   }
 
@@ -56,28 +57,23 @@
   color: color.$white;
   text-align: left;
 
-  @include media-breakpoint-up(lg) {
+  @include media.breakpoint-up(lg) {
     bottom: -7rem;
   }
 
-  @include media-breakpoint-down(lg) {
+  @include media.breakpoint-down(lg) {
     width: 50%;
     padding: 1.5rem;
     padding-bottom: 5rem;
   }
 
-  @include media-breakpoint-down(md) {
+  @include media.breakpoint-down(md) {
     width: 55%;
   }
 
-  @include media-breakpoint-down(rg) {
+  @include media.breakpoint-down(sm) {
     position: relative;
     bottom: 0;
-    width: 75%;
-    margin-top: -7rem;
-  }
-
-  @include media-breakpoint-down(sm) {
     width: calc(100% - 2rem);
     margin-top: -3rem;
     margin-left: 1rem;
@@ -105,7 +101,7 @@
   width: 192px; //width from logo
   border-bottom: 10px solid color.$yellow;
 
-  @include media-breakpoint-down(lg) {
+  @include media.breakpoint-down(lg) {
     bottom: 2.5rem;
   }
 }
@@ -128,15 +124,11 @@
   float: right;
   text-align: right;
 
-  @include media-breakpoint-down(lg) {
+  @include media.breakpoint-down(lg) {
     bottom: 2rem;
   }
 
-  @include media-breakpoint-down(rg) {
-    bottom: 1.5rem;
-  }
-
-  @include media-breakpoint-down(sm) {
+  @include media.breakpoint-down(sm) {
     right: 0;
     bottom: 0.8rem;
     left: 0;

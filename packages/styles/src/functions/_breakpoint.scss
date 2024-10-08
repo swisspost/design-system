@@ -1,0 +1,36 @@
+@use 'sass:map';
+@use 'sass:list';
+@use '../variables/breakpoints';
+
+@function next($breakpoint) {
+  $breakpoints: map.keys(breakpoints.$grid-breakpoints);
+  $index: list.index($breakpoints, $breakpoint);
+
+  @if ($index == null) {
+    @error 'Breakpoint #{$breakpoint} does not exist.';
+  }
+
+  @if ($index == list.length($breakpoints)) {
+    @return null;
+  }
+
+  @return list.nth($breakpoints, $index + 1);
+}
+
+@function min-width($breakpoint) {
+  @if (not map.has-key(breakpoints.$grid-breakpoints, $breakpoint)) {
+    @error 'Breakpoint #{$breakpoint} does not exist.';
+  }
+
+  @return map.get(breakpoints.$grid-breakpoints, $breakpoint);
+}
+
+@function max-width($breakpoint) {
+  $next: next($breakpoint);
+
+  @if ($next == null) {
+    @error '#{$breakpoint} is the last breakpoint, it has no max width.';
+  }
+
+  @return map.get(breakpoints.$grid-breakpoints, $next) - 0.01;
+}

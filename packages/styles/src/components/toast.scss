@@ -3,6 +3,7 @@
 @use './../themes/bootstrap/core' as *;
 
 @use './../mixins/notification' as notification-mx;
+@use './../mixins/media';
 @use './../placeholders/close' as close-ph;
 
 @use './../variables/commons';
@@ -53,13 +54,13 @@
     width: 25rem;
   }
 
-  @include media-breakpoint-down(md) {
+  @include media.breakpoint-down(md) {
     .toast {
       max-width: 25rem;
     }
   }
 
-  @include media-breakpoint-down(md) {
+  @include media.breakpoint-down(md) {
     right: spacing.$spacer;
     left: spacing.$spacer;
 

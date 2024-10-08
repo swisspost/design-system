@@ -12,28 +12,26 @@ import SampleBetween from './breakpoints-between.sample.scss?raw';
 # Breakpoints
 
 <div className="lead">
-  Breakpoints are widths that determine how the responsive layout behaves across device or viewport
-  sizes.
+  Breakpoints are specific screen widths that allow your design to be responsive.
 </div>
 
-## Available breakpoints
+A responsive design ensures that the layout of your application adapts to different screen sizes,
+making it look good and function well on all types of devices.
 
-The Swiss Post Design System includes
-<span>{Object.keys(SCSS_VARIABLES.breakpoint).length}</span>
-breakpoints, sometimes referred to as grid tiers, for building responsively. These breakpoints can be customized if you’re using our source Sass files.
+## Available Breakpoints
 
-<div className="alert alert-md alert-warning">
-  <h2 className="alert-heading">The <code>regular</code> Breakpoint is deprecated</h2>
-  <p>Its CSS helper classes, as well as its SASS variables and mixins will be removed in the future.</p>
-</div>
+The Swiss Post Design System uses <strong>{Object.keys(SCSS_VARIABLES.breakpoint).length} breakpoints</strong> to help you build responsive applications:
 
 <BreakpointTable />
 
-## CSS
+## Using Breakpoints in CSS
 
-When using our source Sass files, you have the option of using Sass variables to change the breakpoints (not recommended).
+You can use these breakpoints in your CSS to control how your layout adjusts to different screen sizes.
+If you're working with Sass, you can also use special variables and functions (called mixins) to simplify this process.
 
-### Sass variables
+### Sass Variables
+
+Breakpoints are defined in the `post.$grid-breakpoints` map, which links each breakpoint to its corresponding minimum screen size:
 
 <Source
   language="scss"
@@ -45,11 +43,12 @@ When using our source Sass files, you have the option of using Sass variables to
 
 ### Sass mixins
 
-There are several mixins available to use in your own Sass to help with building responsive layouts.
+Media queries are used in CSS to apply different styles at different screen sizes.
+The Swiss Post Design System provides several mixins to help you use these media queries easily in your Sass code.
 
 #### Min-width
 
-We primarily use the following media query ranges—or breakpoints—in our source Sass files for our layout, grid system, and components.
+The min-width query applies styles when the screen is at least as wide as the given breakpoint. For example:
 
 <Source
   code={SampleMinWidth}
@@ -58,7 +57,7 @@ We primarily use the following media query ranges—or breakpoints—in our sour
 
 #### Max-width
 
-We occasionally use media queries that go in the other direction.
+The max-width query applies styles when the screen is narrower than the given breakpoint:
 
 <Source
   code={SampleMaxWidth}
@@ -67,7 +66,7 @@ We occasionally use media queries that go in the other direction.
 
 #### Single breakpoint
 
-There are also media queries and mixins for targeting a single segment of screen sizes using the minimum and maximum breakpoint widths.
+To target only one specific range of screen sizes, use the following mixin:
 
 <Source
   code={SampleSingle}
@@ -76,7 +75,7 @@ There are also media queries and mixins for targeting a single segment of screen
 
 #### Between breakpoints
 
-Similarly, media queries may span multiple breakpoint widths.
+You can also target a range between two breakpoints, like so:
 
 <Source
   code={SampleBetween}

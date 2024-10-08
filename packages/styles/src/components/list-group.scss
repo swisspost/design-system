@@ -11,6 +11,7 @@
 @use './../variables/commons';
 @use './../variables/animation';
 @use './../variables/components/list-group';
+@use './../mixins/media';
 @use './../mixins/type' as type-mixins;
 
 // Base class
@@ -75,7 +76,7 @@
   border-right: 0;
   border-left: 0;
 
-  @include media-breakpoint-up(rg) {
+  @include media.breakpoint-up(md) {
     padding-left: map.get(spacing.$post-sizes, 'large');
 
     &-minimal {
@@ -88,7 +89,7 @@
     }
   }
 
-  @include media-breakpoint-up(lg) {
+  @include media.breakpoint-up(lg) {
     &-big {
       padding: map.get(spacing.$post-sizes, 'small-large') map.get(spacing.$post-sizes, 'mini')
         map.get(spacing.$post-sizes, 'small-large') map.get(spacing.$post-sizes, 'regular');
@@ -103,14 +104,14 @@
     justify-content: flex-start;
     padding-left: map.get(spacing.$post-sizes, 'mini');
 
-    @include media-breakpoint-up(rg) {
+    @include media.breakpoint-up(md) {
       padding-left: map.get(spacing.$post-sizes, 'small-regular');
     }
 
     .list-group-item-svg {
       margin-right: map.get(spacing.$post-sizes, 'mini');
 
-      @include media-breakpoint-up(rg) {
+      @include media.breakpoint-up(md) {
         margin-right: map.get(spacing.$post-sizes, 'small-regular');
       }
     }
@@ -129,7 +130,7 @@
   &-transparent {
     background-color: transparent;
 
-    @include media-breakpoint-up(rg) {
+    @include media.breakpoint-up(md) {
       padding-left: map.get(spacing.$post-sizes, 'regular');
     }
 

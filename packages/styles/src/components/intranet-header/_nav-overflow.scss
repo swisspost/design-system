@@ -1,13 +1,14 @@
 @use './../../variables/color';
 @use './../../variables/commons';
 @use './../../mixins/icons' as icons-mx;
+@use './../../mixins/media';
 
 @use './../../themes/bootstrap/core' as *;
 @use './../../placeholders/dropdown';
 
 .top-navigation {
   .nav-item#more {
-    @include media-breakpoint-down(rg) {
+    @include media.breakpoint-down(sm) {
       > span {
         display: none !important;
       }
@@ -31,7 +32,7 @@
   }
 
   .nav-overflow {
-    @include media-breakpoint-up(md) {
+    @include media.breakpoint-up(md) {
       position: absolute;
       z-index: 0;
       top: 100%;
@@ -52,7 +53,7 @@
       }
     }
 
-    @include media-breakpoint-down(rg) {
+    @include media.breakpoint-down(sm) {
       display: list-item !important;
       width: auto !important;
       transform: none !important;

@@ -3,6 +3,7 @@
 @use './../mixins/icons' as icons-mx;
 @use './../mixins/size' as size-mx;
 @use './../mixins/utilities';
+@use './../mixins/media';
 
 @use './../variables/color';
 @use './../variables/commons';
@@ -220,7 +221,7 @@
 }
 
 // smaller screens
-@include media-breakpoint-down(rg) {
+@include media.breakpoint-down(sm) {
   .stepper-item:first-child,
   .stepper-item:last-child {
     padding-inline: 0;

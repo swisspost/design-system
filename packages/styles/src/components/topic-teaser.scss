@@ -10,25 +10,13 @@
 @use './../variables/type';
 @use './../variables/components/topic-teaser';
 @use './../mixins/size';
+@use './../mixins/media';
 @use './../mixins/icons' as icons-mx;
 
 .topic-teaser {
-  &[class*='bg-'] {
-    @include media-breakpoint-up(xxl) {
-      background-color: transparent !important;
-    }
-  }
-
-  .topic-teaser-container {
-    @include media-breakpoint-up(xxl) {
-      padding-left: map.get(grid.$grid-container-padding, xxl) * 0.5;
-      padding-right: map.get(grid.$grid-container-padding, xxl) * 0.5;
-    }
-  }
-
   &:not(.topic-teaser-reverse) {
     @each $breakpoint in topic-teaser.$grid-breakpoints-upper {
-      @include media-breakpoint-only($breakpoint) {
+      @include media.breakpoint-only($breakpoint) {
         .container {
           padding-right: 0;
         }
@@ -36,13 +24,6 @@
     }
 
     .topic-teaser-container {
-      @include media-breakpoint-up(xxl) {
-        padding-right: 0;
-        // webkit subpixel-issue fix
-        margin-right: -1px;
-        clip-path: inset(0 1px (map.get(spacing.$size-curve-huge, 'xxl') * -1) 0);
-      }
-
       > .row {
         justify-content: flex-end;
       }
@@ -50,7 +31,7 @@
 
     .topic-teaser-image-container {
       @each $breakpoint in topic-teaser.$grid-breakpoints-lower {
-        @include media-breakpoint-only($breakpoint) {
+        @include media.breakpoint-only($breakpoint) {
           margin-right: map.get(grid.$grid-container-padding, $breakpoint) * -1;
         }
       }
@@ -60,7 +41,7 @@
 
 .topic-teaser-reverse {
   @each $breakpoint in topic-teaser.$grid-breakpoints-upper {
-    @include media-breakpoint-only($breakpoint) {
+    @include media.breakpoint-only($breakpoint) {
       .container {
         padding-left: 0;
       }
@@ -68,12 +49,8 @@
   }
 
   .topic-teaser-container {
-    @include media-breakpoint-up(xxl) {
-      padding-left: 0;
-    }
-
     > .row {
-      @include media-breakpoint-down(lg) {
+      @include media.breakpoint-down(lg) {
         flex-direction: column-reverse;
       }
     }
@@ -81,7 +58,7 @@
 
   .topic-teaser-image-container {
     @each $breakpoint in topic-teaser.$grid-breakpoints-lower {
-      @include media-breakpoint-only($breakpoint) {
+      @include media.breakpoint-only($breakpoint) {
         margin-left: map.get(grid.$grid-container-padding, $breakpoint) * -1;
       }
     }
@@ -93,7 +70,7 @@
   @include size.responsive-size('huge', 'margin-bottom', '-$value');
 
   @each $breakpoint, $size in topic-teaser.$image-cols {
-    @include media-breakpoint-up($breakpoint) {
+    @include media.breakpoint-up($breakpoint) {
       @include make-col($size);
     }
   }
@@ -103,7 +80,7 @@
   object-fit: cover;
 
   @each $breakpoint, $aspectratio in topic-teaser.$image-aspectratio {
-    @include media-breakpoint-up($breakpoint) {
+    @include media.breakpoint-up($breakpoint) {
       aspect-ratio: $aspectratio;
     }
   }
@@ -115,17 +92,17 @@
   flex-direction: column;
 
   @each $breakpoint, $size in topic-teaser.$content-cols {
-    @include media-breakpoint-up($breakpoint) {
+    @include media.breakpoint-up($breakpoint) {
       @include make-col($size);
     }
   }
   @each $breakpoint, $gap in topic-teaser.$content-gap {
-    @include media-breakpoint-up($breakpoint) {
+    @include media.breakpoint-up($breakpoint) {
       gap: $gap;
     }
   }
 
-  @include media-breakpoint-up(rg) {
+  @include media.breakpoint-up(md) {
     flex-direction: row;
   }
 }
@@ -133,7 +110,7 @@
 .topic-teaser-content > .link-list {
   width: 50%;
 
-  @include media-breakpoint-down(rg) {
+  @include media.breakpoint-down(sm) {
     width: 100%;
   }
 }
@@ -141,7 +118,7 @@
 .topic-teaser-title {
   width: 50%;
 
-  @include media-breakpoint-down(rg) {
+  @include media.breakpoint-down(sm) {
     width: auto;
   }
 }
@@ -155,7 +132,7 @@
   list-style-type: none;
   font-size: type.$font-size-small;
 
-  @include media-breakpoint-up(lg) {
+  @include media.breakpoint-up(lg) {
     font-size: type.$font-size-medium;
   }
 }
@@ -185,7 +162,7 @@
     transform: translateX(#{spacing.$size-mini});
   }
 
-  @include media-breakpoint-up(lg) {
+  @include media.breakpoint-up(lg) {
     padding-top: spacing.$size-small-large;
     padding-bottom: spacing.$size-small-large;
   }

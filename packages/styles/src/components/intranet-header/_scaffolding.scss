@@ -1,3 +1,4 @@
+@use './../../mixins/media';
 @use './../../variables/color';
 @use './../../variables/spacing';
 @use './../../variables/commons';
@@ -35,7 +36,7 @@
   }
 }
 
-@include media-breakpoint-up(md) {
+@include media.breakpoint-up(md) {
   .navbar-expand-md .navbar-nav {
     flex-wrap: wrap;
   }
@@ -63,7 +64,7 @@
     flex-direction: column;
   }
 
-  @include media-breakpoint-down(rg) {
+  @include media.breakpoint-down(sm) {
     &.header-big {
       .header-margin {
         margin-top: intranet-header.$header-size;
