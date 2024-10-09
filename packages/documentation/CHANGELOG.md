@@ -1,5 +1,19 @@
 # @swisspost/design-system-documentation
 
+## 5.4.2
+
+### Patch Changes
+
+- Improved accessibility of headings with subheadings by removing the <br> element and added the utility class d-block. Consult https://design-system.post.ch/?path=/docs/7ecd87f1-de96-4e39-a057-ba1798eb6959--docs for updated markup. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3680](https://github.com/swisspost/design-system/pull/3680))
+
+- Refactored the stepper component to handle `updateArgs` directly within the `getStepperItem` function, fixing the issue where stepper examples were not independent and resolving unreliable step changes that sometimes caused clicks to be unrecognized or froze the page. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3686](https://github.com/swisspost/design-system/pull/3686))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.2.2
+  - @swisspost/design-system-components@8.2.2
+  - @swisspost/internet-header@1.14.7
+  - @swisspost/design-system-components-react@8.2.2
+  - @swisspost/design-system-icons@8.2.2
+
 ## 5.4.1
 
 ### Patch Changes

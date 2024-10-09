@@ -1,5 +1,13 @@
 # @swisspost/design-system-styles
 
+## 8.2.2
+
+### Patch Changes
+
+- Improved accessibility of headings with subheadings by removing the <br> element and added the utility class d-block. Consult https://design-system.post.ch/?path=/docs/7ecd87f1-de96-4e39-a057-ba1798eb6959--docs for updated markup. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3680](https://github.com/swisspost/design-system/pull/3680))
+
+- Fixed step numbering in stepper component. Moved `counter-increment`to `stepper-link` selector to ensure correct step numbers are displayed throughout progression. (by [@schaertim](https://github.com/schaertim) with [#3519](https://github.com/swisspost/design-system/pull/3519))
+
 ## 8.2.1
 
 ### Patch Changes
