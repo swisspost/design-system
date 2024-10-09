@@ -1,5 +1,17 @@
 # @swisspost/design-system-documentation
 
+## 5.3.3
+
+### Patch Changes
+
+- Fixed documentation release workflow. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3691](https://github.com/swisspost/design-system/pull/3691))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.4.3
+  - @swisspost/design-system-components@7.4.3
+  - @swisspost/internet-header@1.14.4
+  - @swisspost/design-system-components-react@7.4.3
+  - @swisspost/design-system-icons@7.4.3
+
 ## 5.3.3-patch.1
 
 ### Patch Changes

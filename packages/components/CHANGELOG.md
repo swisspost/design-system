@@ -1,5 +1,12 @@
 # @swisspost/design-system-components
 
+## 7.4.3
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.4.3
+
 ## 7.4.2
 
 ### Patch Changes

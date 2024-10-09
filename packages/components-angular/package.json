@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components-angular-workspace",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "scripts": {
     "start": "ng serve --port 9210",
     "build": "ng build components",
@@ -18,8 +18,8 @@
     "@angular/platform-browser": "17.3.11",
     "@angular/platform-browser-dynamic": "17.3.11",
     "@angular/router": "17.3.11",
-    "@swisspost/design-system-components": "workspace:7.4.2",
-    "@swisspost/design-system-styles": "workspace:7.4.2",
+    "@swisspost/design-system-components": "workspace:7.4.3",
+    "@swisspost/design-system-styles": "workspace:7.4.3",
     "rxjs": "7.8.1",
     "tslib": "2.6.3",
     "zone.js": "0.14.7"
