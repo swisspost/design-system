@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-intranet-header",
-  "version": "7.4.2",
+  "version": "7.4.3",
   "description": "Intranet header for internal Swiss Post applications as an Angular component.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -19,11 +19,11 @@
     "tag": "latest-v7"
   },
   "dependencies": {
-    "@swisspost/design-system-styles": "workspace:7.4.2",
+    "@swisspost/design-system-styles": "workspace:7.4.3",
     "tslib": "2.6.3"
   },
   "devDependencies": {
-    "@swisspost/design-system-intranet-header-workspace": "workspace:3.0.20"
+    "@swisspost/design-system-intranet-header-workspace": "workspace:3.0.21"
   },
   "peerDependencies": {
     "@angular/common": "^16.0.0 || ^17.0.0",

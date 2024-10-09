@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 7.4.3
+
+### Patch Changes
+
+- Fixed step numbering in stepper component. Moved `counter-increment`to `stepper-link` selector to ensure correct step numbers are displayed throughout progression. (by [@schaertim](https://github.com/schaertim) with [#3513](https://github.com/swisspost/design-system/pull/3513))
+
 ## 7.4.2
 
 ### Patch Changes
