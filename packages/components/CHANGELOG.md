@@ -1,5 +1,13 @@
 # @swisspost/design-system-components
 
+## 8.2.2
+
+### Patch Changes
+
+- Fixed an issue related to conflicting pointer and focus events hiding the tooltip unexpectedly in some situations. The tooltip now behaves as expected in this situation. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3681](https://github.com/swisspost/design-system/pull/3681))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.2.2
+
 ## 8.2.1
 
 ### Patch Changes
