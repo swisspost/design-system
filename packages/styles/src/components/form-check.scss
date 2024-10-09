@@ -9,6 +9,11 @@
 @use '../mixins/color' as color-mx;
 @use '../mixins/icons' as icons-mx;
 @use '../mixins/utilities' as utility-mx;
+@use '../tokens/components' as components;
+@use '../functions/tokens' as tokens;
+
+tokens.$default-map: components.$post-radio-button;
+
 
 .form-check {
   display: flex;
@@ -16,7 +21,16 @@
   row-gap: form-check.$form-check-row-gap;
   margin-bottom: form-check.$form-check-margin-bottom;
 
-  @include utility-mx.focus-style() {
+  @include utility-mx.focus-style-custom() {
+    outline: tokens.get('radio-button', 'focus-border-width') solid tokens.get('radio-button', 'focus-stroke');
+    color: tokens.get('radio-button', 'selected-fg');
+    background-color: tokens.get('radio-button', 'selected-bg');
+    .form-check-input[type='radio'] {
+      border-color: tokens.get('radio-button', 'selected-stroke');
+    }
+
+    // TODO: Use tokens for these (not yet provided)
+    outline-offset: 3px !important;
     border-radius: commons.$border-radius;
   }
 
@@ -30,8 +44,9 @@
 
   &-input,
   &-label {
-    color: rgba(var(--post-contrast-color-rgb), 0.8);
-    transition: color animation.$transition-base-timing;
+    color: tokens.get('radio-button', 'enabled-fg');
+    background-color: tokens.get('radio-button', 'enabled-bg');
+    transition: color #{animation.$transition-base-timing};
 
     @include utility-mx.high-contrast-mode {
       transition: none;
@@ -39,7 +54,9 @@
 
     &:hover:not([disabled]),
     &:hover:not([disabled]) ~ &-label {
-      color: var(--post-contrast-color);
+      color: tokens.get('radio-button', 'hover-fg');
+      background-color: tokens.get('radio-button', 'hover-bg');
+      border-color: tokens.get('radio-button', 'hover-stroke');
 
       @include utility-mx.high-contrast-mode() {
         border-color: Highlight;
@@ -59,9 +76,9 @@
     flex: 0 auto;
     appearance: none;
     background: transparent;
-    height: form-check.$form-check-input-size;
-    width: form-check.$form-check-input-size;
-    border: form-check.$form-check-input-border-width solid currentColor;
+    height: tokens.get('radio-button','icon-height-inner');
+    width: tokens.get('radio-button', 'icon-width-inner');
+    border: tokens.get('radio-button', 'icon-border-width') solid tokens.get('radio-button', 'enabled-stroke');
     margin-top: 1px;
 
     @include utility-mx.high-contrast-mode {
@@ -93,10 +110,11 @@
     }
 
     &[type='radio'] {
-      border-radius: 50%;
+      border-radius: tokens.get('radio-button', 'border-radius-round');
 
       &:checked::after {
-        border: spacing.$size-micro solid transparent;
+        // TODO: Use tokens
+        border: 3px solid transparent;
         background-color: currentColor;
         border-radius: inherit;
         background-clip: padding-box;
@@ -173,8 +191,8 @@
 
     &[disabled],
     &[disabled] ~ .form-check-label {
-      text-decoration: line-through;
-      color: color.$black-alpha-60;
+      color: tokens.get('radio-button', 'disabled-fg');
+      background-color: tokens.get('radio-button', 'disabled-bg');
 
       @include color-mx.on-dark-background() {
         color: color.$white-alpha-80;
