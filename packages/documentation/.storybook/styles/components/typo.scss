@@ -30,7 +30,7 @@ body {
     }
 
     .docs-story > :first-child {
-      font-family: tokens.get('post-body', 'font-family');
+      font-family: tokens.get('post-body-font-family');
     }
 
     .font-sans-serif {
@@ -44,6 +44,6 @@ body {
 
   // full-screen preview
   #storybook-root {
-    font-family: tokens.get('post-body', 'font-family');
+    font-family: tokens.get('post-body-font-family');
   }
 }
