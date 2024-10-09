@@ -3,9 +3,26 @@
 @use 'tests/jest';
 @use 'src/utilities/mixins';
 
-
 .test {
-  @include mixins.generate-utilities('font-weight', '400', 'fw', 'normal');
-  @include mixins.generate-utilities('font-size', '1.5rem', 'fs', 'large', 'sm');
-  @include mixins.generate-responsive-utilities('row-gap', '48px', 'rg', '48');
+  @include mixins.generate-utilities(
+    $group: 'font-weight',
+    $tokens: (
+      post-utility-font-weight-normal: 400,
+    ),
+    $properties: font-weight,
+    $prefix: 'fw'
+  );
+
+  @include mixins.generate-utilities(
+    $group: 'gutter',
+    $tokens: (
+      post-utility-gutter-12: 12px,
+    ),
+    $properties: (
+      --gutter-x,
+      --gutter-y,
+    ),
+    $prefix: 'g',
+    $infix: '-lg'
+  );
 }
