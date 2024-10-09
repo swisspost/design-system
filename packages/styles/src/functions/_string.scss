@@ -1,6 +1,11 @@
 @use 'sass:string';
 
-@function replace($string, $term, $replacement: '') {
+@function contains($string, $term) {
+  $index: string.index($string, $term);
+  @return if($index == null, false, true);
+}
+
+@function replace($string, $term, $replacement) {
   $index: string.index($string, $term);
 
   @if $index {

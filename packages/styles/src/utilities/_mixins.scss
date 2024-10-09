@@ -1,22 +1,15 @@
+@use '../functions/string';
 @use '../mixins/media';
 @use '../variables/breakpoints';
 
-@mixin generate-utilities($properties, $value, $prefix, $suffix, $infix: '') {
-  .#{$prefix}#{$infix}#{$suffix} {
-    @each $property in $properties {
-      #{$property}: #{$value};
-    }
-  }
-}
-
-@mixin generate-responsive-utilities($properties, $value, $prefix, $suffix) {
-  @each $breakpoint, $min-width in breakpoints.$grid-breakpoints {
-    @if ($min-width == 0) {
-      @include generate-utilities($properties, $value, $prefix, $suffix);
-    } @else {
-      @include media.min($min-width) {
-        $infix: '-#{$breakpoint}';
-        @include generate-utilities($properties, $value, $prefix, $suffix, $infix);
+@mixin generate-utilities($group, $tokens, $properties, $prefix, $infix: '') {
+  @each $key, $value in $tokens {
+    @if (string.contains($key, 'post-utility-#{$group}')) {
+      $suffix: string.replace($key, 'post-utility-#{$group}', '');
+      .#{$prefix}#{$infix}#{$suffix} {
+        @each $property in $properties {
+          #{$property}: #{$value} !important;
+        }
       }
     }
   }
