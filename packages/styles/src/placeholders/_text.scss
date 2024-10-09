@@ -7,6 +7,7 @@
     @include type-mx.font-curve($key);
   }
 }
+
 %text-bottom-spacer {
   margin-bottom: paragraph.$text-bottom-space; // 0.8 times the size of the current font (20px) = 16px
 }
