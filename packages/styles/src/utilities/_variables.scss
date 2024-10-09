@@ -1,99 +1,134 @@
 @use '../tokens/utilities' as tokens;
 @use './temp/display' as display;
 
+@use './functions' as *;
+
 /*
-  Add new utilities using the following structure:
-    [set]: (
-      tokens: map (required),
-      classes: (
-        [group]: (
-          responsive: boolean (optional),
-          prefixes: map (required),
-        )
-      )
-    )
+  Utilities are generated with our utility API using bellow $utilities map.
 
-    - `set`:
-      The name of the token set (e.g., if the tokens are contained in the "$post-spacing" map, the set is "spacing").
+  The utility map contains a keyed list of utility groups which accept the following options:
 
-    - `tokens`:
-      The map of tokens that should be used to generate the utility classes.
+  | Option            | Type     | Default value | Description                                                                                                                                                                                                                              |
+  |-------------------|----------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  | property          | Required | –             | Name of the property, this can be a string or an array of strings (e.g., horizontal paddings or margins).                                                                                                                                |
+  | values            | Required | –             | List of values, or a map if you don’t want the class name to be the same as the value. If null is used as map key, class is not prepended to the class name.                                                                             |
+  | class             | Optional | null          | Name of the generated class. If not provided and property is an array of strings, class will default to the first element of the property array. If not provided and property is a string, the values keys are used for the class names. |
+  | css-var           | Optional | false         | Boolean to generate CSS variables instead of CSS rules.                                                                                                                                                                                  |
+  | css-variable-name | Optional | null          | Custom un-prefixed name for the CSS variable inside the ruleset.                                                                                                                                                                         |
+  | local-vars        | Optional | null          | Map of local CSS variables to generate in addition to the CSS rules.                                                                                                                                                                     |
+  | state             | Optional | null          | List of pseudo-class variants (e.g., :hover or :focus) to generate.                                                                                                                                                                      |
+  | responsive        | Optional | false         | Boolean indicating if responsive classes should be generated.                                                                                                                                                                            |
 
-    - `group`:
-      The group name used in the token keys (e.g., if the tokens are named "post-utility-margin-*", the group is "margin").
-
-    - `responsive`:
-      If set to `true`, the utility classes will be generated for all breakpoints (e.g., `-sm`, `-md`, `-lg`, etc.).
-      If set to `false` or omitted, utilities will be generated without a breakpoint infix.
-
-    - `prefixes`:
-      A map where each key is the class name prefix and the value is the CSS property (or properties) that the class will set.
-
-  Example:
-  spacing: (
-    tokens: tokens.$post-spacing,       // Refers to the token map containing all spacing values
-    classes: (
-      margin: (                         // Refers to the token "post-utility-margin-*" token in above map
-        classes: (
-          m: margin,                    // Generates `.m-*` classes to set the `margin` property
-          mx: margin-left margin-right, // Generates `.mx-*` classes to set `margin-left` and `margin-right` properties
-          ...
-        ),
-        responsive: true,               // Generates responsive classes
-      )
-    )
-  )
+  Our API is based on bootstrap utility API, more information is available here: https://getbootstrap.com/docs/5.3/utilities/api/
 */
 
 $utilities: (
-  spacing: (
-    tokens: tokens.$post-spacing,
-    classes: (
-      margin: (
-        responsive: true,
-        prefixes: (
-          m: margin,
-          mx: margin-inline,
-          ms: margin-inline-start,
-          me: margin-inline-end,
-          my: margin-block,
-          mt: margin-block-start,
-          mb: margin-block-end,
-        ),
-      ),
-      padding: (
-        responsive: true,
-        prefixes: (
-          p: padding,
-          px: padding-inline,
-          ps: padding-inline-start,
-          pe: padding-inline-end,
-          py: padding-block,
-          pt: padding-block-start,
-          pb: padding-block-end,
-        ),
-      ),
-      gap: (
-        responsive: true,
-        prefixes: (
-          gap: gap,
-          row-gap: row-gap,
-          column-gap: column-gap,
-        ),
-      ),
-    ),
+  'margin': (
+    responsive: true,
+    property: margin,
+    class: m,
+    values: from-tokens('spacing', 'margin'),
   ),
-  display: (
-    tokens: display.$variables,
-    classes: (
-      display: (
-        responsive: true,
-        prefixes: (
-          d: display,
-        ),
-      ),
-    ),
+  'margin-x': (
+    responsive: true,
+    property: margin-right margin-left,
+    class: mx,
+    values: from-tokens('spacing', 'margin'),
   ),
+  'margin-y': (
+    responsive: true,
+    property: margin-top margin-bottom,
+    class: my,
+    values: from-tokens('spacing', 'margin'),
+  ),
+  'margin-top': (
+    responsive: true,
+    property: margin-top,
+    class: mt,
+    values: from-tokens('spacing', 'margin'),
+  ),
+  'margin-end': (
+    responsive: true,
+    property: margin-right,
+    class: me,
+    values: from-tokens('spacing', 'margin'),
+  ),
+  'margin-bottom': (
+    responsive: true,
+    property: margin-bottom,
+    class: mb,
+    values: from-tokens('spacing', 'margin'),
+  ),
+  'margin-start': (
+    responsive: true,
+    property: margin-left,
+    class: ms,
+    values: from-tokens('spacing', 'margin'),
+  ),
+
+  'padding': (
+    responsive: true,
+    property: padding,
+    class: p,
+    values: from-tokens('spacing', 'padding'),
+  ),
+  'padding-x': (
+    responsive: true,
+    property: padding-right padding-left,
+    class: px,
+    values: from-tokens('spacing', 'padding'),
+  ),
+  'padding-y': (
+    responsive: true,
+    property: padding-top padding-bottom,
+    class: py,
+    values: from-tokens('spacing', 'padding'),
+  ),
+  'padding-top': (
+    responsive: true,
+    property: padding-top,
+    class: pt,
+    values: from-tokens('spacing', 'padding'),
+  ),
+  'padding-end': (
+    responsive: true,
+    property: padding-right,
+    class: pe,
+    values: from-tokens('spacing', 'padding'),
+  ),
+  'padding-bottom': (
+    responsive: true,
+    property: padding-bottom,
+    class: pb,
+    values: from-tokens('spacing', 'padding'),
+  ),
+  'padding-start': (
+    responsive: true,
+    property: padding-left,
+    class: ps,
+    values: from-tokens('spacing', 'padding'),
+  ),
+
+  'gap': (
+    responsive: true,
+    property: gap,
+    class: gap,
+    values: from-tokens('spacing', 'gap'),
+  ),
+  'row-gap': (
+    responsive: true,
+    property: row-gap,
+    class: row-gap,
+    values: from-tokens('spacing', 'gap'),
+  ),
+  'column-gap': (
+    responsive: true,
+    property: column-gap,
+    class: column-gap,
+    values: from-tokens('spacing', 'gap'),
+  ),
+
+  // IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`.
 );
 
 // IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`.

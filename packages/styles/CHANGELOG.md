@@ -1,5 +1,27 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.1
+
+### Major Changes
+
+- Removed the following placeholders: `%list-adjustment`, `%module-container`, `%default-module-spacer`, `%text-container`. (by [@leagrdv](https://github.com/leagrdv) with [#3623](https://github.com/swisspost/design-system/pull/3623))
+
+- Updated the margin, padding, and gap utility classes to use the pixel values (1, 2, ... , 112) instead of size names (hair, line, ..., bigger-giant). (by [@alizedebray](https://github.com/alizedebray) with [#3557](https://github.com/swisspost/design-system/pull/3557))
+
+### Minor Changes
+
+- Added Text Highlighted component. (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3586](https://github.com/swisspost/design-system/pull/3586))
+
+- Added lead text component for introductory paragraphs. (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3575](https://github.com/swisspost/design-system/pull/3575))
+
+### Patch Changes
+
+- styles: Added reset styles (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3545](https://github.com/swisspost/design-system/pull/3545))
+
+- Removed global styles (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3554](https://github.com/swisspost/design-system/pull/3554))
+
+- Updated the style of headings (h1-h6). (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3534](https://github.com/swisspost/design-system/pull/3534))
+
 ## 9.0.0-next.0
 
 ### Major Changes

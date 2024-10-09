@@ -4,6 +4,7 @@ const gulp = require('gulp');
 const sass = require('sass');
 const newer = require('gulp-newer');
 const gulpSass = require('gulp-sass')(sass);
+const sourcemaps = require('gulp-sourcemaps');
 const gulpPostCss = require('gulp-postcss');
 const postcssScss = require('postcss-scss');
 const autoprefixer = require('autoprefixer');
@@ -154,6 +155,7 @@ gulp.task('build-components', () => {
 gulp.task('sass:dev', () => {
   return gulp
     .src('./src/*.scss')
+    .pipe(sourcemaps.init())
     .pipe(
       gulpSass({
         includePaths: options.includePaths,
@@ -162,6 +164,7 @@ gulp.task('sass:dev', () => {
       }),
     )
     .pipe(gulpPostCss([autoprefixer()]))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest(options.outputDir));
 });
 
