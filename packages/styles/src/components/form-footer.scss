@@ -12,7 +12,7 @@ tokens.$default-map: components.$post-form-footer;
   padding-block-start: tokens.get('form-footer', 'padding-block-start');
   gap: tokens.get('form-footer', 'gap');
 
-  &-right-actions {
+  &-primary-actions {
     gap: tokens.get('form-footer', 'gap');
   }
 }

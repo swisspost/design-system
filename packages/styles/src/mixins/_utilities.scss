@@ -185,10 +185,10 @@
   justify-content: space-between;
 
   @include media-breakpoint-up(md) {
-    flex-direction: row;
+    flex-direction: row-reverse;
   }
 
-  &-right-actions {
+  &-primary-actions {
     display: flex;
     flex-direction: column;
 

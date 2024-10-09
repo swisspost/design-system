@@ -25,14 +25,7 @@ export const FormFooter: Story = {
               }).map(
                 args => html`
                   <div class="form-footer">
-                    ${args.tertiaryButton
-                      ? html`
-                          <button class="btn btn-tertiary">
-                            <post-icon aria-hidden="true" name="3024"></post-icon>Back
-                          </button>
-                        `
-                      : null}
-                    <div class="form-footer-right-actions">
+                    <div class="form-footer-primary-actions">
                       <button class="btn btn-primary">
                         Send<post-icon aria-hidden="true" name="3020"></post-icon>
                       </button>
@@ -41,6 +34,13 @@ export const FormFooter: Story = {
                         ? html` <button class="btn btn-secondary">Cancel</button> `
                         : null}
                     </div>
+                    ${args.tertiaryButton
+                      ? html`
+                          <button class="btn btn-tertiary">
+                            <post-icon aria-hidden="true" name="3024"></post-icon>Back
+                          </button>
+                        `
+                      : null}
                   </div>
                 `,
               )}

@@ -59,10 +59,10 @@ type Story = StoryObj;
 export function render(args: Args) {
   return html`
     <div class="form-footer">
-      ${unsafeHTML(args.tertiaryButton)}
-      <div class="form-footer-right-actions">
+      <div class="form-footer-primary-actions">
         ${unsafeHTML(args.primaryButton)} ${unsafeHTML(args.secondaryButton)}
       </div>
+      ${unsafeHTML(args.tertiaryButton)}
     </div>
   `;
 }
