@@ -6,6 +6,11 @@
 @use './../variables/color' as color-var;
 @use './../functions/contrast' as contrast-fn;
 @use 'utilities';
+@use './../mixins/color' as color-mx;
+@use '../functions/tokens';
+@use '../tokens/components';
+
+tokens.$default-map: components.$post-button;
 
 @mixin reset-button {
   padding: 0;
@@ -18,10 +23,62 @@
   appearance: button; // for input
 }
 
+@mixin new-button-size($size: md) {
+  min-height: map.get(button.$new-btn-height-map, $size);
+  gap: map.get(button.$new-btn-gap-x-map, $size);
+  padding: 0 map.get(button.$new-btn-padding-x-map, $size);
+
+  > .pi,
+  > post-icon {
+    width: map.get(button.$new-btn-icon-size-map, $size);
+    height: map.get(button.$new-btn-icon-size-map, $size);
+  }
+}
+
+@mixin new-button-variant($variant: secondary) {
+  border-color: map.get(button.$new-btn-enabled-stroke, $variant);
+  background-color: map.get(button.$new-btn-enabled-bg, $variant);
+  color: map.get(button.$new-btn-enabled-fg, $variant);
+
+  @if ($variant != 'link' and $variant != 'tertiary') {
+    box-shadow: tokens.get('post-button', 'elevation');
+  }
+
+  &:disabled {
+    border-color: map.get(button.$new-btn-disabled-stroke, $variant);
+    background-color: map.get(button.$new-btn-disabled-bg, $variant);
+    color: map.get(button.$new-btn-disabled-fg, $variant);
+  }
+
+  @include utilities.not-disabled-hover() {
+    border-color: map.get(button.$new-btn-hover-stroke, $variant);
+    background-color: map.get(button.$new-btn-hover-bg, $variant);
+    color: map.get(button.$new-btn-hover-fg, $variant);
+  }
+
+  @include color-mx.on-dark-background {
+    border-color: map.get(button.$new-btn-inverted-enabled-stroke, $variant);
+    background-color: map.get(button.$new-btn-inverted-enabled-bg, $variant);
+    color: map.get(button.$new-btn-inverted-enabled-fg, $variant);
+
+    &:disabled {
+      border-color: map.get(button.$new-btn-inverted-enabled-stroke, $variant);
+      background-color: map.get(button.$new-btn-inverted-enabled-bg, $variant);
+      color: map.get(button.$new-btn-inverted-enabled-fg, $variant);
+    }
+
+    @include utilities.not-disabled-hover() {
+      border-color: map.get(button.$new-btn-inverted-enabled-stroke, $variant);
+      background-color: map.get(button.$new-btn-inverted-enabled-bg, $variant);
+      color: map.get(button.$new-btn-inverted-enabled-fg, $variant);
+    }
+  }
+}
+
 @mixin button-size($size: md) {
   min-height: map.get(button.$btn-height-map, $size);
   font-size: map.get(button.$btn-font-size-map, $size);
-  gap: map.get(button.$btn-gap-x-map, $size);
+  gap: map.get(button.$new-btn-gap-x-map, $size);
 
   &:where(:not(.btn-link, .btn-tertiary)) {
     padding: 0 map.get(button.$btn-padding-x-map, $size);
