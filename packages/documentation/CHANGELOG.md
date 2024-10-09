@@ -1,5 +1,11 @@
 # @swisspost/design-system-documentation
 
+## 5.4.3
+
+### Patch Changes
+
+- Fixed documentaion release workflow. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3690](https://github.com/swisspost/design-system/pull/3690))
+
 ## 5.4.2
 
 ### Patch Changes
