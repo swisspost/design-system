@@ -27,22 +27,30 @@ const meta: MetaComponent = {
     imageSrc: '',
   },
   argTypes: {
-    userid: {
+    'userid': {
       description: `${
         ARGS_USERID_ARGTYPE?.docs ?? ''
       }<div className="alert alert-info alert-sm">Do you need an example userid? Try it out with the username of your own post account.</div>`,
     },
-    email: {
+    'email': {
       description: `${
         ARGS_EMAIL_ARGTYPE?.docs ?? ''
       } <div className="alert alert-info alert-sm">Do you need an example email address? Try it out with <strong>oss@post.ch</strong>.</div>`,
     },
-    imageSrc: {
+    'imageSrc': {
       control: 'text',
       description:
         'Define an image `src` to insert a custom image.<div className="alert alert-info alert-sm">Do you need an example? Try our logo <strong>/assets/images/logo-swisspost.svg</strong>.</div>',
       table: {
         category: 'Content',
+      },
+    },
+    'slots-default': {
+      name: 'default',
+      table: {
+        type: {
+          summary: 'HTMLImageElement',
+        },
       },
     },
   },
@@ -53,14 +61,17 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: (args: Args) => {
-    return html`<post-avatar
-      size="${args.size !== 'large' ? args.size : nothing}"
-      userid="${args.userid || nothing}"
-      email="${args.email || nothing}"
-      firstname="${args.firstname || nothing}"
-      lastname="${args.lastname || nothing}"
-      >${args.imageSrc ? html`<img src="${args.imageSrc}" />` : nothing}</post-avatar
-    >`;
-  },
+  render: (args: Args) => html`<post-avatar
+    size="${args.size !== 'large' ? args.size : nothing}"
+    userid="${args.userid || nothing}"
+    email="${args.email || nothing}"
+    firstname="${args.firstname || nothing}"
+    lastname="${args.lastname || nothing}"
+    >${args.imageSrc
+      ? html`<img
+          src="${args.imageSrc}"
+          alt="${args.firstname}${args.lastname ? ' ' + args.lastname : null}"
+        />`
+      : nothing}</post-avatar
+  >`,
 };

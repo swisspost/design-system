@@ -1,7 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkNonEmpty, checkOneOf } from '@/utils';
-import aiconizer from './aiconizer';
 
 // https://docs.gravatar.com/api/avatars/images/
 const GRAVATAR_DEFAULT = '404';
@@ -30,7 +29,7 @@ export class PostAvatar {
     small: 32,
   };
 
-  private static INTERNAL_USERID_IMAGE_SRC = 'https://web.post.ch/UserProfileImage/${userid}.png';
+  private static INTERNAL_USERID_IMAGE_SRC = 'https://web.post.ch/UserProfileImage/{userid}.png';
 
   @Element() host: HTMLPostAvatarElement;
 
@@ -176,10 +175,6 @@ export class PostAvatar {
     this.getAvatar();
   }
 
-  connectedCallback() {
-    aiconizer.register();
-  }
-
   componentWillRender() {
     this.slottedImage = this.host.querySelector('img');
     this.getAvatar();
@@ -188,10 +183,6 @@ export class PostAvatar {
   componentDidLoad() {
     this.firstnameChanged();
     this.sizeChanged();
-  }
-
-  disconnectedCallback() {
-    aiconizer.destroy();
   }
 
   render() {

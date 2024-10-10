@@ -23,7 +23,6 @@ some content
 ### Used by
 
  - [post-alert](../post-alert)
- - [post-avatar](../post-avatar)
  - [post-card-control](../post-card-control)
  - [post-rating](../post-rating)
  - [post-tag](../post-tag)
@@ -32,7 +31,6 @@ some content
 ```mermaid
 graph TD;
   post-alert --> post-icon
-  post-avatar --> post-icon
   post-card-control --> post-icon
   post-rating --> post-icon
   post-tag --> post-icon

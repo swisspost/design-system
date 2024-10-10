@@ -23,19 +23,6 @@
 | `"default"` | Slot for inserting a custom image as avatar. |
 
 
-## Dependencies
-
-### Depends on
-
-- [post-icon](../post-icon)
-
-### Graph
-```mermaid
-graph TD;
-  post-avatar --> post-icon
-  style post-avatar fill:#f9f,stroke:#333,stroke-width:4px
-```
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
