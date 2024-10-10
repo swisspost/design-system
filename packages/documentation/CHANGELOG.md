@@ -1,5 +1,20 @@
 # @swisspost/design-system-documentation
 
+## 5.5.0
+
+### Minor Changes
+
+- Added styling support and documentation for the `<dialog>` element. The dialog will replace the current modal and notification overlay components coming from ng-bootstrap. (by [@leagrdv](https://github.com/leagrdv) with [#3713](https://github.com/swisspost/design-system/pull/3713))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.3.0
+  - @swisspost/design-system-components@8.3.0
+  - @swisspost/internet-header@1.14.8
+  - @swisspost/design-system-components-react@8.3.0
+  - @swisspost/design-system-icons@8.3.0
+
 ## 5.4.3
 
 ### Patch Changes
