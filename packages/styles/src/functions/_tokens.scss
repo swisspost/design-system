@@ -1,6 +1,7 @@
 @use 'sass:meta';
 @use 'sass:map';
 @use 'sass:string';
+@use 'sass:list';
 
 $_namespace: 'post';
 $default-map: null !default;
@@ -43,7 +44,7 @@ $default-map: null !default;
 
 @function normalize-key($key) {
   $key-parts: string.split($key, '-');
-  $key-contains-namespace: key-parts.nth($key-parts, 1) == $_namespace;
+  $key-contains-namespace: list.nth($key-parts, 1) == $_namespace;
 
   @if not $key-contains-namespace {
     $key: '#{$_namespace}-#{$key}';
