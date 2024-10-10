@@ -1,5 +1,6 @@
 @forward './../variables/options';
 
+@use 'sass:map';
 @use '../variables/color';
 @use '../variables/commons';
 @use '../variables/type';
@@ -9,6 +10,10 @@
 @use '../mixins/color' as color-mx;
 @use '../mixins/icons' as icons-mx;
 @use '../mixins/utilities' as utility-mx;
+@use '../tokens/components' as components;
+@use '../functions/tokens' as tokens;
+
+tokens.$default-map: components.$post-switch;
 
 .form-check {
   display: flex;
@@ -148,14 +153,11 @@
       }
 
       border: 0;
-      background-image: url('#{form-check.$form-check-input-disabled-background-url-light-lg}');
 
       @include color-mx.on-dark-background {
-        background-image: url('#{form-check.$form-check-input-disabled-background-url-dark-lg}');
       }
 
       @include utility-mx.high-contrast-mode {
-        background-image: url('#{form-check.$form-check-input-disabled-background-url-hcm-lg}') !important;
       }
 
       .form-check-sm &[type='checkbox'] {
@@ -173,7 +175,6 @@
 
     &[disabled],
     &[disabled] ~ .form-check-label {
-      text-decoration: line-through;
       color: color.$black-alpha-60;
 
       @include color-mx.on-dark-background() {
@@ -206,61 +207,158 @@
   }
 }
 
+$switch-handle-icon: url("data:image/svg+xml,<svg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'><path d='m12.667 24.533-7.6-7.6 1.867-1.867 5.733 5.733 12.4-12.4 1.867 1.867z'/></svg>");
+$switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'><path d='m12.667 23.6-7.2-7.067 1.067-1.067 6.133 6.267L25.467 8.8l1.067 1.067z'/></svg>");
+
 .form-switch {
+  display: flex;
+  align-items: center;
+
+  @include utility-mx.focus-style(
+    $offset: tokens.get('switch', 'focus-outline-offset'),
+    $width: tokens.get('switch', 'focus-border-width'),
+    $color: tokens.get('switch', 'focus-stroke'),
+    $style: tokens.get('switch', 'focus-border-style')
+  ) {
+    width: fit-content;
+
+    &:not(:has(> input:only-child)) {
+      border-radius: tokens.get('switch', 'focus-border-radius');
+    }
+
+    &:has(> input:only-child) {
+      border-radius: tokens.get('switch', 'border-radius-round');
+    }
+  }
+
   .form-check-input {
-    height: form-check.$form-switch-height;
-    width: form-check.$form-switch-width;
-    border: 0;
-    border-radius: form-check.$form-switch-width;
-    background-image: form-check.$form-switch-background-image;
-    background-size: 2 * form-check.$form-switch-width;
-    background-position-x: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: tokens.get('switch', 'element-height');
+    width: tokens.get('switch', 'element-width');
+    border: tokens.get('switch', 'border-width') tokens.get('switch', 'border-style-default')
+      tokens.get('switch', 'element-enabled-stroke');
+    border-radius: tokens.get('switch', 'border-radius-round');
+    background-color: tokens.get('switch', 'element-enabled-bg');
+    padding: tokens.get('switch', 'padding-block-text') 0 tokens.get('switch', 'padding-block-text')
+      tokens.get('switch', 'padding-inline-handle');
     transition:
       background-color animation.$transition-base-timing,
-      background-position animation.$transition-base-timing;
+      border-color animation.$transition-base-timing;
+
+    &::before,
+    &::after {
+      position: absolute;
+      display: block;
+      width: tokens.get('switch', 'element-handle');
+      height: tokens.get('switch', 'element-handle');
+      background-color: tokens.get('switch', 'handle-enabled');
+      border-radius: tokens.get('switch', 'border-radius-round');
+      transition:
+        transform animation.$transition-base-timing,
+        background-color animation.$transition-base-timing;
+    }
+
+    &::before {
+      content: '';
+      mask-image: $switch-handle-icon;
+      background-color: transparent;
+      z-index: 1;
+    }
 
     &::after {
-      max-width: form-check.$form-switch-height;
-      background-color: form-check.$form-switch-color;
-      border: form-check.$form-check-input-border-width solid form-check.$form-switch-border-color;
-      border-radius: 50%;
-      transition: transform animation.$transition-base-timing;
+      border: tokens.get('switch', 'border-width') tokens.get('switch', 'border-style-default')
+        tokens.get('switch', 'handle-enabled-stroke');
     }
 
     &:checked {
-      background-position-x: form-check.$form-switch-width;
+      background-color: tokens.get('switch', 'element-selected-bg');
+      border-color: tokens.get('switch', 'element-selected-stroke');
+
+      &::before,
+      &::after {
+        transform: translateX(
+          calc(tokens.get('switch', 'element-width') - tokens.get('switch', 'element-handle') * 1.5)
+        );
+      }
+
+      &::before {
+        background-color: tokens.get('switch', 'icon-success');
+      }
 
       &::after {
         @include icons-mx.remove-icon;
-        background-color: form-check.$form-switch-color;
-        border-color: form-check.$form-switch-checked-border-color;
-        transform: translateX(2rem);
+        background-color: tokens.get('switch', 'handle-selected');
+        border-color: tokens.get('switch', 'handle-selected-stroke');
+      }
+
+      + .form-check-label {
+        color: tokens.get('switch', 'text-selected-fg');
       }
     }
 
     @include utility-mx.high-contrast-mode {
       transition: none;
-      border: form-check.$form-check-input-border-width solid CanvasText;
+      border: tokens.get('switch', 'border-width') tokens.get('switch', 'border-style-default')
+        CanvasText;
 
       &:checked {
         background-color: SelectedItem !important;
       }
 
-      &::after,
-      &:checked::after {
-        max-width: calc(
-          form-check.$form-switch-height - (form-check.$form-check-input-border-width * 2)
-        );
+      &::after {
+        max-width: tokens.get('switch', 'element-handle');
         border-color: Canvas;
         background-color: CanvasText;
+      }
+
+      &:checked::after,
+      &:checked:before {
+        transform: translateX(
+          calc(
+            tokens.get('switch', 'element-width') - tokens.get('switch', 'element-handle') - tokens.get(
+                'switch',
+                'padding-inline-handle'
+              ) * 2 - form-check.$form-check-input-border-width * 2
+          )
+        );
       }
     }
 
     &[disabled] {
-      background: form-check.$form-switch-disabled-bg;
+      background-color: tokens.get('switch', 'element-disabled-bg');
+      border: tokens.get('switch', 'border-width') tokens.get('switch', 'border-style-disabled')
+        tokens.get('switch', 'element-disabled-stroke');
+
+      @include utility-mx.high-contrast-mode {
+        border: tokens.get('switch', 'border-width') tokens.get('switch', 'border-style-disabled')
+          GrayText;
+      }
+
+      + .form-check-label {
+        color: tokens.get('switch', 'text-disabled-fg');
+      }
 
       &::after {
-        border-color: form-check.$form-switch-disabled-border-color;
+        background-color: tokens.get('switch', 'handle-disabled');
+        border: tokens.get('switch', 'border-width') tokens.get('switch', 'border-style-disabled')
+          tokens.get('switch', 'handle-disabled-stroke');
+
+        @include color-mx.on-dark-background {
+          border: tokens.get('switch', 'border-width') tokens.get('switch', 'border-style-disabled')
+            color.$white-alpha-80;
+        }
+
+        @include utility-mx.high-contrast-mode {
+          border: tokens.get('switch', 'border-width') tokens.get('switch', 'border-style-disabled')
+            GrayText;
+        }
+      }
+
+      &:checked::before {
+        background-color: tokens.get('switch', 'icon-disabled');
+        mask-image: $switch-handle-icon-disabled;
       }
 
       @include utility-mx.high-contrast-mode {
@@ -276,23 +374,37 @@
   }
 
   &:hover > .form-check-input:not([disabled]) {
-    background-color: rgba(var(--post-contrast-color-rgb), 0.1);
+    background-color: tokens.get('switch', 'element-hover-bg');
+    border-color: tokens.get('switch', 'element-hover-stroke');
+
+    &::after {
+      background-color: tokens.get('switch', 'handle-hover');
+      border-color: tokens.get('switch', 'handle-hover-stroke');
+    }
+
+    &:checked::before {
+      background-color: tokens.get('switch', 'element-hover-bg');
+    }
 
     @include utility-mx.high-contrast-mode {
       border-color: Highlight;
+
+      &::after {
+        background-color: CanvasText;
+      }
     }
   }
 
   .form-check-label {
-    padding-top: form-check.$form-switch-label-padding-top;
+    color: tokens.get('switch', 'text-enabled-fg');
 
     &.order-first {
       flex: 0 auto;
-      padding-inline-end: form-check.$form-switch-column-gap;
+      padding-inline-end: tokens.get('switch', 'gap-inline-text');
     }
 
     &:not(.order-first) {
-      padding-inline-start: form-check.$form-switch-column-gap;
+      padding-inline-start: tokens.get('switch', 'gap-inline-text');
     }
   }
 }
