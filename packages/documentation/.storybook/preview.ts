@@ -64,6 +64,9 @@ const preview: Preview = {
           // Category - Utilities
           'Utilities',
 
+          'Health',
+          ['Icons'],
+
           // Category - Misc
           'Misc',
           ['Migration Guide', 'Changelog', 'Versions'],
