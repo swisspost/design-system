@@ -86,6 +86,38 @@ tokens.$default-map: components.$post-button;
   }
 }
 
+// Type variants
+@each $variant in button.$btn-variants {
+  .btn-#{$variant} {
+    $color: if($variant == 'default', 'secondary', if($variant == 'link', 'tertiary', $variant));
+    @include button-mx.button-variant-def('enabled', $color);
+
+    &:disabled {
+      @include button-mx.button-variant-def('disabled', $color);
+    }
+
+    @include utilities.not-disabled-hover() {
+      @include button-mx.button-variant-def('hover', $color);
+    }
+
+    @if ($variant != 'link' and $variant != 'tertiary') {
+      box-shadow: tokens.get('post-button', 'elevation');
+    }
+
+    @include color-mx.on-dark-background {
+      @include button-mx.button-variant-def('enabled', $color, true);
+
+      &:disabled {
+        @include button-mx.button-variant-def('disabled', $color, true);
+      }
+
+      @include utilities.not-disabled-hover() {
+        @include button-mx.button-variant-def('hover', $color, true);
+      }
+    }
+  }
+}
+
 // Primary
 .btn-primary {
   .pi {
@@ -107,13 +139,6 @@ tokens.$default-map: components.$post-button;
   @include utilities.high-contrast-mode() {
     color: linktext;
     text-decoration: underline !important;
-  }
-}
-
-// Type variants
-@each $variant in button.$btn-variants {
-  .btn-#{$variant} {
-    @include button-mx.new-button-variant($variant);
   }
 }
 

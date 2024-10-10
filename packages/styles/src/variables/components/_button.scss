@@ -75,7 +75,7 @@ $btn-font-size-lg: type.$font-size-18 !default;
 $btn-icon-size-lg: 1.375rem !default;
 
 // Available button sizes except the default, which is md
-$btn-non-default-sizes: sm, rg, lg !default;
+$btn-non-default-sizes: sm, lg !default;
 
 $btn-animation-distance-map: (
   'sm': $btn-animation-distance-sm,
@@ -138,167 +138,21 @@ $btn-variants: primary, default, secondary, tertiary, link !default;
 // For sizes
 $new-btn-padding-x-map: (
   'sm': tokens.get('post-button', 'small-padding-inline'),
-  'rg': tokens.get('post-button', 'medium-padding-inline'),
   'md': tokens.get('post-button', 'medium-padding-inline'),
   'lg': tokens.get('post-button', 'large-padding-inline'),
 );
 $new-btn-gap-x-map: (
   'sm': tokens.get('post-button', 'small-gap-inline'),
-  'rg': tokens.get('post-button', 'medium-gap-inline'),
   'md': tokens.get('post-button', 'medium-gap-inline'),
   'lg': tokens.get('post-button', 'large-gap-inline'),
 );
 $new-btn-height-map: (
   'sm': tokens.get('post-button', 'small-height'),
-  'rg': tokens.get('post-button', 'medium-height'),
   'md': tokens.get('post-button', 'medium-height'),
   'lg': tokens.get('post-button', 'large-height'),
 );
 $new-btn-icon-size-map: (
   'sm': tokens.get('post-button', 'small-icon'),
-  'rg': tokens.get('post-button', 'medium-icon'),
   'md': tokens.get('post-button', 'medium-icon'),
   'lg': tokens.get('post-button', 'large-icon'),
 );
-
-// For variants
-$new-btn-enabled-stroke: (
-  'primary': tokens.get('post-button', 'primary-enabled-stroke'),
-  'default': tokens.get('post-button', 'secondary-enabled-stroke'),
-  'secondary': tokens.get('post-button', 'secondary-enabled-stroke'),
-  'tertiary': tokens.get('post-button', 'tertiary-enabled-stroke'),
-  'link': tokens.get('post-button', 'tertiary-enabled-stroke'),
-);
-$new-btn-enabled-bg: (
-  'primary': tokens.get('post-button', 'primary-enabled-bg'),
-  'default': tokens.get('post-button', 'secondary-enabled-bg'),
-  'secondary': tokens.get('post-button', 'secondary-enabled-bg'),
-  'tertiary': tokens.get('post-button', 'tertiary-enabled-bg'),
-  'link': tokens.get('post-button', 'tertiary-enabled-bg'),
-);
-$new-btn-enabled-fg: (
-  'primary': tokens.get('post-button', 'primary-enabled-fg'),
-  'default': tokens.get('post-button', 'secondary-enabled-fg'),
-  'secondary': tokens.get('post-button', 'secondary-enabled-fg'),
-  'tertiary': tokens.get('post-button', 'tertiary-enabled-fg'),
-  'link': tokens.get('post-button', 'tertiary-enabled-fg'),
-);
-$new-btn-disabled-stroke: (
-  'primary': tokens.get('post-button', 'primary-disabled-stroke'),
-  'default': tokens.get('post-button', 'secondary-disabled-stroke'),
-  'secondary': tokens.get('post-button', 'secondary-disabled-stroke'),
-  'tertiary': tokens.get('post-button', 'tertiary-disabled-stroke'),
-  'link': tokens.get('post-button', 'tertiary-disabled-stroke'),
-);
-$new-btn-disabled-bg: (
-  'primary': tokens.get('post-button', 'primary-disabled-bg'),
-  'default': tokens.get('post-button', 'secondary-disabled-bg'),
-  'secondary': tokens.get('post-button', 'secondary-disabled-bg'),
-  'tertiary': tokens.get('post-button', 'tertiary-disabled-bg'),
-  'link': tokens.get('post-button', 'tertiary-disabled-bg'),
-);
-$new-btn-disabled-fg: (
-  'primary': tokens.get('post-button', 'primary-disabled-fg'),
-  'default': tokens.get('post-button', 'secondary-disabled-fg'),
-  'secondary': tokens.get('post-button', 'secondary-disabled-fg'),
-  'tertiary': tokens.get('post-button', 'tertiary-disabled-fg'),
-  'link': tokens.get('post-button', 'tertiary-disabled-fg'),
-);
-$new-btn-hover-stroke: (
-  'primary': tokens.get('post-button', 'primary-hover-stroke'),
-  'default': tokens.get('post-button', 'secondary-hover-stroke'),
-  'secondary': tokens.get('post-button', 'secondary-hover-stroke'),
-  'tertiary': tokens.get('post-button', 'tertiary-hover-stroke'),
-  'link': tokens.get('post-button', 'tertiary-hover-stroke'),
-);
-$new-btn-hover-bg: (
-  'primary': tokens.get('post-button', 'primary-hover-bg'),
-  'default': tokens.get('post-button', 'secondary-hover-bg'),
-  'secondary': tokens.get('post-button', 'secondary-hover-bg'),
-  'tertiary': tokens.get('post-button', 'tertiary-hover-bg'),
-  'link': tokens.get('post-button', 'tertiary-hover-bg'),
-);
-$new-btn-hover-fg: (
-  'primary': tokens.get('post-button', 'primary-hover-fg'),
-  'default': tokens.get('post-button', 'secondary-hover-fg'),
-  'secondary': tokens.get('post-button', 'secondary-hover-fg'),
-  'tertiary': tokens.get('post-button', 'tertiary-hover-fg'),
-  'link': tokens.get('post-button', 'tertiary-hover-fg'),
-);
-
-$new-btn-inverted-enabled-stroke: (
-  'primary': tokens.get('post-button', 'primary-inverted-enabled-stroke'),
-  'default': tokens.get('post-button', 'secondary-inverted-enabled-stroke'),
-  'secondary': tokens.get('post-button', 'secondary-inverted-enabled-stroke'),
-  'tertiary': tokens.get('post-button', 'tertiary-inverted-enabled-stroke'),
-  'link': tokens.get('post-button', 'tertiary-inverted-enabled-stroke'),
-);
-$new-btn-inverted-enabled-bg: (
-  'primary': tokens.get('post-button', 'primary-inverted-enabled-bg'),
-  'default': tokens.get('post-button', 'secondary-inverted-enabled-bg'),
-  'secondary': tokens.get('post-button', 'secondary-inverted-enabled-bg'),
-  'tertiary': tokens.get('post-button', 'tertiary-inverted-enabled-bg'),
-  'link': tokens.get('post-button', 'tertiary-inverted-enabled-bg'),
-);
-$new-btn-inverted-enabled-fg: (
-  'primary': tokens.get('post-button', 'primary-inverted-enabled-fg'),
-  'default': tokens.get('post-button', 'secondary-inverted-enabled-fg'),
-  'secondary': tokens.get('post-button', 'secondary-inverted-enabled-fg'),
-  'tertiary': tokens.get('post-button', 'tertiary-inverted-enabled-fg'),
-  'link': tokens.get('post-button', 'tertiary-inverted-enabled-fg'),
-);
-$new-btn-inverted-disabled-stroke: (
-  'primary': tokens.get('post-button', 'primary-inverted-disabled-stroke'),
-  'default': tokens.get('post-button', 'secondary-inverted-disabled-stroke'),
-  'secondary': tokens.get('post-button', 'secondary-inverted-disabled-stroke'),
-  'tertiary': tokens.get('post-button', 'tertiary-inverted-disabled-stroke'),
-  'link': tokens.get('post-button', 'tertiary-inverted-disabled-stroke'),
-);
-$new-btn-inverted-disabled-bg: (
-  'primary': tokens.get('post-button', 'primary-inverted-disabled-bg'),
-  'default': tokens.get('post-button', 'secondary-inverted-disabled-bg'),
-  'secondary': tokens.get('post-button', 'secondary-inverted-disabled-bg'),
-  'tertiary': tokens.get('post-button', 'tertiary-inverted-disabled-bg'),
-  'link': tokens.get('post-button', 'tertiary-inverted-disabled-bg'),
-);
-$new-btn-inverted-disabled-fg: (
-  'primary': tokens.get('post-button', 'primary-inverted-disabled-fg'),
-  'default': tokens.get('post-button', 'secondary-inverted-disabled-fg'),
-  'secondary': tokens.get('post-button', 'secondary-inverted-disabled-fg'),
-  'tertiary': tokens.get('post-button', 'tertiary-inverted-disabled-fg'),
-  'link': tokens.get('post-button', 'tertiary-inverted-disabled-fg'),
-);
-$new-btn-inverted-hover-stroke: (
-  'primary': tokens.get('post-button', 'primary-inverted-hover-stroke'),
-  'default': tokens.get('post-button', 'secondary-inverted-hover-stroke'),
-  'secondary': tokens.get('post-button', 'secondary-inverted-hover-stroke'),
-  'tertiary': tokens.get('post-button', 'tertiary-inverted-hover-stroke'),
-  'link': tokens.get('post-button', 'tertiary-inverted-hover-stroke'),
-);
-$new-btn-inverted-hover-bg: (
-  'primary': tokens.get('post-button', 'primary-inverted-hover-bg'),
-  'default': tokens.get('post-button', 'secondary-inverted-hover-bg'),
-  'secondary': tokens.get('post-button', 'secondary-inverted-hover-bg'),
-  'tertiary': tokens.get('post-button', 'tertiary-inverted-hover-bg'),
-  'link': tokens.get('post-button', 'tertiary-inverted-hover-bg'),
-);
-$new-btn-inverted-hover-fg: (
-  'primary': tokens.get('post-button', 'primary-inverted-hover-fg'),
-  'default': tokens.get('post-button', 'secondary-inverted-hover-fg'),
-  'secondary': tokens.get('post-button', 'secondary-inverted-hover-fg'),
-  'tertiary': tokens.get('post-button', 'tertiary-inverted-hover-fg'),
-  'link': tokens.get('post-button', 'tertiary-inverted-hover-fg'),
-);
-
-//box-shadow: tokens.get('post-button', 'elevation');
-
-//.pi {
-//  filter: invert(1);
-//  forced-color-adjust: none;
-//}
-
-//@include color-mx.on-dark-background {
-// .pi {
-//  filter: invert(0);
-// }
-//}
