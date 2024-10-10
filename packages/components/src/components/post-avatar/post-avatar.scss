@@ -1,6 +1,9 @@
 @use '@swisspost/design-system-styles/core' as post;
 
 :host {
+  --post-avatar-bg: #004976;
+  --post-avatar-fg: #{post.get-best-contrast-text(#004976)};
+
   display: block;
   width: 2.5rem;
   height: 2.5rem;
@@ -29,9 +32,9 @@ img,
   align-items: center;
   width: 100%;
   height: 100%;
-  background-color: #004976;
+  background-color: var(--post-avatar-bg);
   border-radius: 50%;
-  color: post.get-best-contrast-text(#004976);
+  color: var(--post-avatar-fg);
   text-transform: uppercase;
   box-sizing: border-box;
 }

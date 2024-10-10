@@ -16,6 +16,19 @@ import * as AvatarPictureStories from './avatar.stories';
 <Canvas of={AvatarPictureStories.Default} />
 <Controls of={AvatarPictureStories.Default} />
 
+## Customize background and forground colors
+
+The component provides two css-variables, which allow you to switch the background and the foreground color if needed (this gets visible when used with initials only).
+
+<post-alert type="warning">Please ensure at all times, that the background and foreground colors have sufficient contrast!</post-alert>
+
+```scss
+post-avatar {
+  --post-avatar-bg: #f00;
+  --post-avatar-fg: #000;
+}
+```
+
 ## Properties
 
 The `<post-avatar>` component provides several possibilities to change its appearance. While the only required property is `firstname`, you can choose freely, which of the other properties you want to use. You can even combine them. The component will always try to show a picture, if possible, and fallback to initials, if not.
