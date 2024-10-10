@@ -1,4 +1,8 @@
-@use './tokens/modes';
-@use './tokens/device';
-@use './tokens/internal';
-@use './tokens/post-theme';
+@use 'sass:meta';
+
+@layer design-system {
+  @include meta.load-css('./tokens/modes');
+  @include meta.load-css('./tokens/device');
+  @include meta.load-css('./tokens/internal');
+  @include meta.load-css('./tokens/post-theme');
+}
