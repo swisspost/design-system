@@ -60,7 +60,7 @@
               id="profileMenu"
               ngbDropdownToggle
             >
-              <img [src]="avatarUrl" class="profile-image align-self-center" alt="" />
+              <img [src]="avatarUrl" class="profile-image align-self-center" [alt]="getAvatarUserText()" />
             </button>
             <div class="dropdown-menu" id="languageParent" ngbDropdownMenu>
               <div class="language-menu">
