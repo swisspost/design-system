@@ -1,0 +1,48 @@
+import { Canvas, Meta } from '@storybook/blocks';
+import * as DisplayStories from './display.stories';
+import { breakpoints, firstBreakpoint } from '../spacing/spacing.docs.mdx';
+import { forEach } from '@/utils/react';
+
+export const displayOptions = [
+  'none',
+  'inline',
+  'inline-block',
+  'block',
+  'grid',
+  'inline-grid',
+  'table',
+  'table-cell',
+  'table-row',
+  'flex',
+  'inline-flex',
+];
+
+<Meta of={DisplayStories} />
+
+# Display
+
+<div className="lead">
+  Use the display utility classes to set the display of an element to any possible display CSS
+  value.
+</div>
+
+The naming convention for display utilities follows this pattern:
+
+- For all breakpoints (<code>{firstBreakpoint}</code> and up): `d-{display}`
+- Starting from a specific breakpoint ({breakpoints.map(([b, isLast]) => (<span key={b}><code>{b}</code>{isLast ? ', ' : ''}</span>))}): `d-{breakpoint}-{display}`
+
+### Available display values
+
+The available display utilities values are the following:
+
+<ul>
+  {forEach(displayOptions, function ({ value }) {
+    return <li>{value}</li>;
+  })}
+</ul>
+
+### Usage
+
+To set a display on an element, simply add a `d-{display}` class to it.
+
+<Canvas of={DisplayStories.Default} sourceState="shown" />
