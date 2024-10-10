@@ -21,10 +21,10 @@ export default {
 
 type Story = StoryObj;
 
-export const Direction: Story = {
-  render: () => {
-    return html`
-      <div class="flex-example flex-direction-example gap-8 d-flex flex-column">
+function getFlex(type: string) {
+  switch (type) {
+    case 'Direction':
+      return html`
         ${flexDirectionValues.map(
           val => html`
             <div class="d-flex flex-${val}">
@@ -33,15 +33,9 @@ export const Direction: Story = {
             </div>
           `,
         )}
-      </div>
-    `;
-  },
-};
-
-export const AlignItems: Story = {
-  render: () => {
-    return html`
-      <div class="flex-example flex-align-items-example gap-8 d-flex flex-column">
+      `;
+    case 'Align Items':
+      return html`
         ${flexAlignItemsValues.map(
           val => html`
             <div class="d-flex align-items-${val}">
@@ -50,15 +44,9 @@ export const AlignItems: Story = {
             </div>
           `,
         )}
-      </div>
-    `;
-  },
-};
-
-export const JustifyContent: Story = {
-  render: () => {
-    return html`
-      <div class="flex-example flex-justify-content-example gap-8 d-flex flex-column">
+      `;
+    case 'Justify Content':
+      return html`
         ${flexJustifyContentValues.map(
           val => html`
             <div class="d-flex justify-content-${val}">
@@ -67,15 +55,9 @@ export const JustifyContent: Story = {
             </div>
           `,
         )}
-      </div>
-    `;
-  },
-};
-
-export const AlignSelf: Story = {
-  render: () => {
-    return html`
-      <div class="flex-example flex-align-self-example gap-8 d-flex flex-column">
+      `;
+    case 'Align Self':
+      return html`
         ${flexAlignSelfValues.map(
           val => html`
             <div class="d-flex align-items-start">
@@ -85,15 +67,9 @@ export const AlignSelf: Story = {
             </div>
           `,
         )}
-      </div>
-    `;
-  },
-};
-
-export const GrowShrink: Story = {
-  render: () => {
-    return html`
-      <div class="flex-example flex-grow-shrink-example gap-8 d-flex flex-column">
+      `;
+    case 'Grow / Shrink':
+      return html`
         ${bombArgs({
           type: ['grow', 'shrink'],
           value: [0, 1],
@@ -111,71 +87,36 @@ export const GrowShrink: Story = {
             </div>
           `,
         )}
-      </div>
-    `;
-  },
-};
-
-export const AlignContent: Story = {
-  render: () => {
-    return html`
-      <div class="flex-example flex-align-content-example gap-8 d-flex flex-column">
+      `;
+    case 'Align Content':
+      return html`
         ${flexAlignContentValues.map(
           val => html`
             <div class="align-content-container d-flex flex-wrap align-content-${val}">
-              <div class="bg-yellow p-12">Content</div>
-              <div class="bg-gray p-12">Content</div>
-              <div class="bg-yellow p-12">Content</div>
-              <div class="bg-gray p-12">Content</div>
-              <div class="bg-yellow p-12">Content</div>
-              <div class="bg-gray p-12">Content</div>
+              ${Array.from({ length: 8 }).map(
+                (_, i) =>
+                  html` <div class="${i % 2 === 0 ? 'bg-gray' : 'bg-yellow'} p-12">Content</div> `,
+              )}
             </div>
           `,
         )}
-      </div>
-    `;
-  },
-};
-
-export const Wrap: Story = {
-  render: () => {
-    return html`
-      <div class="flex-example flex-wrap-example gap-8 d-flex flex-column">
+      `;
+    case 'Wrap':
+      return html`
         ${flexWrapValues.map(
           val => html`
             <div class="d-flex flex-${val}">
-              <div class="bg-yellow p-12">Content</div>
-              <div class="bg-gray p-12">Content</div>
-              <div class="bg-yellow p-12">Content</div>
-              <div class="bg-gray p-12">Content</div>
-              <div class="bg-yellow p-12">Content</div>
-              <div class="bg-gray p-12">Content</div>
-              <div class="bg-yellow p-12">Content</div>
-              <div class="bg-gray p-12">Content</div>
-              <div class="bg-yellow p-12">Content</div>
-              <div class="bg-gray p-12">Content</div>
-              <div class="bg-yellow p-12">Content</div>
-              <div class="bg-gray p-12">Content</div>
-              <div class="bg-yellow p-12">Content</div>
-              <div class="bg-gray p-12">Content</div>
-              <div class="bg-yellow p-12">Content</div>
-              <div class="bg-gray p-12">Content</div>
-              <div class="bg-yellow p-12">Content</div>
-              <div class="bg-gray p-12">Content</div>
-              <div class="bg-yellow p-12">Content</div>
-              <div class="bg-gray p-12">Content</div>
+              ${Array.from({ length: 30 }).map(
+                (_, i) => html`
+                  <div class="${i % 2 === 0 ? 'bg-gray' : 'bg-yellow'} p-12">Content ${i + 1}</div>
+                `,
+              )}
             </div>
           `,
         )}
-      </div>
-    `;
-  },
-};
-
-export const Order: Story = {
-  render: () => {
-    return html`
-      <div class="flex-example flex-order-example gap-8 d-flex flex-column">
+      `;
+    case 'Order':
+      return html`
         ${[
           [4, 5, 2, 3, 'last', 'first', 0, 1],
           ['last', 5, 4, 3, 2, 1, 0, 'first'],
@@ -191,15 +132,9 @@ export const Order: Story = {
             </div>
           `,
         )}
-      </div>
-    `;
-  },
-};
-
-export const Fill: Story = {
-  render: () => {
-    return html`
-      <div class="flex-example flex-order-example gap-8 d-flex flex-column">
+      `;
+    case 'Fill':
+      return html`
         ${[true, false].map(
           isEqual => html`
             <div class="d-flex">
@@ -211,7 +146,29 @@ export const Fill: Story = {
             </div>
           `,
         )}
-      </div>
-    `;
+      `;
+  }
+}
+
+export const Flex: Story = {
+  render: () => {
+    return html` <div class="flex-example">
+      ${[
+        'Direction',
+        'Align Items',
+        'Justify Content',
+        'Align Self',
+        'Grow / Shrink',
+        'Align Content',
+        'Wrap',
+        'Order',
+        'Fill',
+      ].map(
+        val => html`
+          <h1>${val}</h1>
+          <div class="flex-example-child gap-8 d-flex flex-column">${getFlex(val)}</div>
+        `,
+      )}
+    </div>`;
   },
 };
