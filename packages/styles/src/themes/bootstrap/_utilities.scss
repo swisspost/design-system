@@ -35,5 +35,6 @@ $utilities: map.remove($utilities, 'flex-grow');
 $utilities: map.remove($utilities, 'flex-shrink');
 $utilities: map.remove($utilities, 'flex-wrap');
 $utilities: map.remove($utilities, 'order');
+$utilities: map.remove($utilities, 'justify-content');
 
 @import 'bootstrap/scss/utilities/api';
