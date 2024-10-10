@@ -1,5 +1,26 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.1
+
+### Major Changes
+
+- Made the heading-level property required for the accordion and removed it from the accordion-item docs. (by [@schaertim](https://github.com/schaertim) with [#3383](https://github.com/swisspost/design-system/pull/3383))
+
+### Patch Changes
+
+- Fixed a bug in nested accordions where closing a child item unintentionally closed all parent accordion elements. (by [@schaertim](https://github.com/schaertim) with [#3427](https://github.com/swisspost/design-system/pull/3427))
+
+- Fixed an issue related to conflicting pointer and focus events hiding the tooltip unexpectedly in some situations. The tooltip now behaves as expected in this situation. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3592](https://github.com/swisspost/design-system/pull/3592))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.1
+
+## 9.0.0-next.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.0
+
 ## 8.2.0
 
 ### Minor Changes

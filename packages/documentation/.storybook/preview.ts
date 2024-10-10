@@ -2,7 +2,12 @@ import type { Preview } from '@storybook/web-components';
 import { extractArgTypes, extractComponentDescription } from '@kurbar/storybook-addon-docs-stencil';
 import { format } from 'prettier';
 import DocsLayout from './blocks/layout/layout';
-import { openFullScreenDemo, prettierOptions, resetComponents } from './helpers';
+import {
+  fullScreenUrlDecorator,
+  openFullScreenDemo,
+  prettierOptions,
+  resetComponents,
+} from './helpers';
 import './helpers/register-web-components';
 import './addons/cypress-storybook/client';
 
@@ -16,6 +21,7 @@ SyntaxHighlighter.registerLanguage('scss', scss);
 export const SourceDarkMode = true;
 
 const preview: Preview = {
+  decorators: [fullScreenUrlDecorator],
   parameters: {
     options: {
       storySort: {
@@ -25,7 +31,16 @@ const preview: Preview = {
 
           // Category - Getting Started
           'Getting Started',
-          ['Introduction', 'Angular', 'Compatibility', 'Packages', 'Changelogs', 'Migration Guide'],
+          [
+            'Introduction',
+            'Design Principles',
+            'Mission',
+            'Angular',
+            'Compatibility',
+            'Packages',
+            'Changelogs',
+            'Migration Guide',
+          ],
 
           // Category - Foundations
           'Foundations',

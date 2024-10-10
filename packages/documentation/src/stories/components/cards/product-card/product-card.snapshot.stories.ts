@@ -27,7 +27,7 @@ export const ProductCard: Story = {
         args.title = `${args.title} (${args.level})`;
 
         return html`
-          <div class="col-12 mb-large">${Default.render && Default.render(args, context)}</div>
+          <div class="col-12 mb-24">${Default.render && Default.render(args, context)}</div>
         `;
       });
 
@@ -36,7 +36,7 @@ export const ProductCard: Story = {
       // Map custom template variants
       .map(
         story => html`
-          <div class="mb-large">
+          <div class="mb-24">
             ${story.render && story.render({ ...meta.args, ...story.args }, context)}
           </div>
         `,
@@ -47,7 +47,7 @@ export const ProductCard: Story = {
       <div>
         ${['white', 'dark'].map(
           bg => html`
-            <div class=${'p-regular bg-' + bg}>
+            <div class=${'p-16 bg-' + bg}>
               <div class="row row-cols-md-2 row-cols-xl-3">${defaultTemplateVariants}</div>
               ${customTemplateVariants}
             </div>

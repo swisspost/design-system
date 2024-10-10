@@ -21,5 +21,34 @@
     "@swisspost/design-system-styles-primeng": "8.2.0",
     "@swisspost/design-system-tokens": "8.2.0"
   },
-  "changesets": []
+  "changesets": [
+    "big-frogs-admire",
+    "breezy-cups-add",
+    "clean-icons-complain",
+    "cold-baboons-appear",
+    "cold-panthers-vanish",
+    "cuddly-bears-check",
+    "eleven-keys-work",
+    "empty-islands-kneel",
+    "fair-actors-scream",
+    "friendly-insects-breathe",
+    "funny-shrimps-care",
+    "gorgeous-flowers-flow",
+    "great-humans-talk",
+    "heavy-rats-explode",
+    "kind-papayas-provide",
+    "lemon-clocks-clean",
+    "nervous-rocks-shop",
+    "ninety-nails-float",
+    "pink-weeks-relate",
+    "plenty-apricots-raise",
+    "proud-actors-knock",
+    "red-lies-lick",
+    "selfish-bats-run",
+    "sharp-crews-watch",
+    "six-spiders-smoke",
+    "tame-terms-push",
+    "tidy-dolls-walk",
+    "yellow-yaks-jog"
+  ]
 }
