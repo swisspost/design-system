@@ -81,6 +81,8 @@ export const AlignContent: Story = {
         <div class="bg-gray p-8">Content</div>
         <div class="bg-yellow p-8">Content</div>
         <div class="bg-gray p-8">Content</div>
+        <div class="bg-yellow p-8">Content</div>
+        <div class="bg-gray p-8">Content</div>
       </div>
     `,
 };
@@ -100,6 +102,8 @@ export const Wrap: Story = {
   render: () =>
     html`
       <div class="d-flex flex-wrap">
+        <div class="bg-yellow p-8">Content</div>
+        <div class="bg-gray p-8">Content</div>
         <div class="bg-yellow p-8">Content</div>
         <div class="bg-gray p-8">Content</div>
         <div class="bg-yellow p-8">Content</div>
