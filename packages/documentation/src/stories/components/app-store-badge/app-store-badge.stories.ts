@@ -24,9 +24,9 @@ export const Default: Story = {
     (story: StoryFn, context: StoryContext) => html` <div>${story(context.args, context)}</div> `,
   ],
   render: () => html`
-    <div class="app-store-badge">
-      <img src="/assets/images/app-store-badge-google.png" alt="App Store" />
-      <span>Download on the App Store</span>
-    </div>
+    <a class="app-store-badge" href="#">
+      <img src="/assets/images/google-play-badge.png" alt="Google Play Store badge" />
+      <span class="visually-hidden">Download the App on the Google Play</span>
+    </a>
   `,
 };

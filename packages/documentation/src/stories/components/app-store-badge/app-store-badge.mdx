@@ -12,13 +12,15 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
   </nav>
 </div>
 
-<div className="lead">The App Store Badge component is used to display badges for app promotion, providing variants for both Google Play and Apple App Stores.</div>
+<div className="lead">
+  The App Store Badge component is used to display badges for app promotion, providing variants for both Google Play and Apple App Stores.
+</div>
 
-<Canvas of={AppStoreBadgeStories.Default} sourceState="shown" />
+<Canvas of={AppStoreBadgeStories.Default} sourceState="shown" controls={['store', 'language']} />
 
-Projects must provide and host the images for the badges locally to ensure they remain up-to-date.
+Projects provide and host the images for the badges locally to ensure they remain up-to-date. Additionally, the alt attribute and the span text should be adjusted according to the store (Apple Store/Google play) and language.
 
-## Links to download the official badge assets:
+## Links to download the official badge assets in multiple languages:
 
 <div className="d-flex flex-column">
   <a href="https://developer.apple.com/app-store/marketing/guidelines/">Apple App Store</a>
