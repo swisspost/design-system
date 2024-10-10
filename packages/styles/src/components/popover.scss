@@ -1,20 +1,36 @@
-@forward './../variables/options';
+@use 'sass:map';
+@use '../functions/tokens';
+@use '../tokens/components';
+@use '../tokens/elements';
 
-@use './../themes/bootstrap/core' as *;
-@use './../themes/bootstrap/popover' as bp;
+tokens.$default-map: components.$post-popover;
 
-@use './../variables/type';
-
-// Popover
 .popover {
-  border-radius: 0;
-  background-clip: border-box;
-  text-align: left;
+  font-size: tokens.get('popover', 'paragraph-font-size');
+
+  > a {
+    font-size: tokens.get('popover', 'link-font-size');
+    font-weight: tokens.get('popover', 'link-font-weight');
+    color: tokens.get('popover', 'link-enabled-fg');
+    padding-block: tokens.get('popover', 'link-padding-block');
+
+    &:hover {
+      color: tokens.get('popover', 'link-hover-fg');
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline-color: tokens.get('popover', 'link-focus-stroke');
+      border-radius: tokens.get('popover', 'link-focus-border-radius');
+      outline-width: tokens.get('popover', 'focus-border-width');
+      outline-offset: tokens.get('popover', 'focus-padding');
+      outline-style: solid;
+    }
+  }
 }
 
-// Popover Header
 .popover-header {
-  border-bottom: 0;
-  font-weight: type.$font-weight-bold;
-  text-align: left;
+  font-size: tokens.get('popover', 'legend-font-size');
+  font-weight: tokens.get('legend', 'font-weight', elements.$post-legend);
+  margin: 0;
 }
