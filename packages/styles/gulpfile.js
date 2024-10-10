@@ -115,7 +115,7 @@ gulp.task('transform-package-json', done => {
  */
 gulp.task('sass', () => {
   return gulp
-    .src('./src/*.scss')
+    .src('./src/**/*.scss')
     .pipe(
       gulpSass({
         outputStyle: 'compressed',
@@ -136,7 +136,7 @@ gulp.task('sass', () => {
  */
 gulp.task('build-components', () => {
   return gulp
-    .src('./src/components/*.scss')
+    .src('./src/**/*.scss')
     .pipe(
       gulpSass({
         outputStyle: 'compressed',
@@ -146,7 +146,7 @@ gulp.task('build-components', () => {
       }),
     )
     .pipe(gulpPostCss([autoprefixer()]))
-    .pipe(gulp.dest(`${options.outputDir}/components`));
+    .pipe(gulp.dest(`${options.outputDir}/`));
 });
 
 /**
@@ -201,6 +201,5 @@ exports.default = gulp.task(
   gulp.parallel(
     gulp.series('map-icons', 'copy', 'autoprefixer', 'transform-package-json'),
     gulp.series('temporarily-copy-token-files', 'sass'),
-    gulp.series('build-components'),
   ),
 );
