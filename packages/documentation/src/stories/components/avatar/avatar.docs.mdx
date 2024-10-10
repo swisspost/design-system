@@ -35,4 +35,4 @@ The properties are used in the order as follows:
 ## Check the Content Security Policy
 
 If your project includes the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy">Content-Security-Policy</a> response header (usually in `index.html`),
-make sure that `default-src` is set to `'self'`. In case you are using the `<post-avatar>` component you need to add [`https://gravatar.com`](https://gravatar.com/) to the `connect-src` in index.html. This is because the component tries to load a profile picture from there, through the provided `email` property.
+make sure that `default-src` is set to `'self'`. The `<post-avatar>` component is capable of loading images from gravatar, therefore you need to add [`https://gravatar.com`](https://gravatar.com/) to the `connect-src` in index.html. This is because the component tries to load a profile picture from there, through the provided `email` property.
