@@ -1,5 +1,9 @@
 @mixin min($device-size) {
-  @media screen and (min-width: $device-size) {
+  @if $device-size != 0 {
+    @media screen and (min-width: $device-size) {
+      @content;
+    }
+  } @else {
     @content;
   }
 }
