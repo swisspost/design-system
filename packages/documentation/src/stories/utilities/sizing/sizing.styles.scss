@@ -1,8 +1,58 @@
 @use '@swisspost/design-system-styles/core' as post;
 
-.sizing-example {
+
+.sizing-example,
+.sizing-vp-example,
+.sizing-auto-example {
+  gap: 30px;
+
+  &.snapshot {
+    height: 200vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+  }
+
   .content {
     background-color: post.$white;
     border: 1px solid post.$gray-40;
+
+  }
+
+  .info {
+    padding: 15px;
+    font-size: 0.8em;
+  }
+
+  .grid-item {
+    width: 300px;
+    height: 300px;
+    border: 1px solid post.$gray-40;
+
+    div {
+      background-color: post.$gray-40;
+    }
+  }
+}
+
+.sizing-vp-example {
+  &.snapshot {
+    display: grid;
+    grid-template-columns: 100vw;
+    grid-template-rows: 100vh;
+
+  }
+
+  .grid-item {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+.sizing-auto-example {
+  .inner-div {
+    width: 50px;
+    height: 50px;
+    background-color: post.$coral-bright !important;
   }
 }
