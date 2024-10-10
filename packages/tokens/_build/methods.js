@@ -232,7 +232,7 @@ export async function createOutputFiles() {
             },
             files: [
               {
-                destination: `${name}.scss`.toLowerCase(),
+                destination: `_${name}.scss`.toLowerCase(),
                 format: 'swisspost/scss-format',
                 filter: 'swisspost/tokenset-filter',
                 options: {
@@ -268,7 +268,7 @@ export async function createOutputFiles() {
       .map(([name, { layer }]) => `@${layer === 'core' ? 'use' : 'forward'} './${name}';`)
       .join('\n');
 
-    await promises.writeFile(`${OUTPUT_PATH}/index.scss`, `${getFileHeader()}${imports}\n`);
+    await promises.writeFile(`${OUTPUT_PATH}/_index.scss`, `${getFileHeader()}${imports}\n`);
   }
 
   /**

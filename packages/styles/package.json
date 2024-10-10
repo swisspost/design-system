@@ -22,7 +22,7 @@
     "play": "vite --open",
     "build": "pnpm clean && gulp build",
     "unit": "gulp sass:tests",
-    "clean": "rimraf out-tsc dist",
+    "clean": "rimraf out-tsc dist src/tokens/temp",
     "format": "prettier src/**/*.scss --write",
     "lint": "stylelint src/**/*.scss !src/tokens/temp/**",
     "lint:fix": "stylelint src/**/*.scss !src/tokens/temp/** --fix"
