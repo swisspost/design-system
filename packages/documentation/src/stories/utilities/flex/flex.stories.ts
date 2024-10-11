@@ -103,9 +103,6 @@ export const Wrap: Story = {
         <div class="bg-yellow p-8">Content</div>
         <div class="bg-gray p-8">Content</div>
       </div>
-          `,
-        )}
-      </div>
     `,
 };
 
