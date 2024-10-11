@@ -1,5 +1,21 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.2
+
+### Minor Changes
+
+- Updated and tokenized styles for the legend element. (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3614](https://github.com/swisspost/design-system/pull/3614))
+
+- Added styling support and documentation for the `<dialog>` element. The dialog will replace the current modal and notification overlay components coming from ng-bootstrap. (by [@gfellerph](https://github.com/gfellerph) with [#2772](https://github.com/swisspost/design-system/pull/2772))
+
+### Patch Changes
+
+- Wrapped new token only entry files in a CSS layer called 'design-system'. The two files affected are 'post-tokens-external.scss' and 'post-tokens-internal.scss' as well as their compiled CSS counterparts. (by [@gfellerph](https://github.com/gfellerph) with [#3720](https://github.com/swisspost/design-system/pull/3720))
+
+- Deprecated the ng-bootstrap components Modal and Notification overlay in favor of the new Dialog component. The styles for these ng-bootstrap components will be removed in a future major version. (by [@gfellerph](https://github.com/gfellerph) with [#2772](https://github.com/swisspost/design-system/pull/2772))
+
+- Fixed an issue with element styles that were not compiled to the output as CSS. (by [@gfellerph](https://github.com/gfellerph) with [#3709](https://github.com/swisspost/design-system/pull/3709))
+
 ## 9.0.0-next.1
 
 ### Major Changes
