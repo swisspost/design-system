@@ -52,32 +52,66 @@ function gridContainer(story: StoryFn, context: StoryContext) {
 
 function getSwitchList() {
   return html`
-    ${['Ero', 'Dua ero', 'Alio ero'].map(
-      label => html` <li class="list-group-item">${label}</li> `,
-    )}
+    <li class="list-group-item">
+      <div class="form-check form-switch">
+        <input
+          type="checkbox"
+          role="switch"
+          id="7fb639f8-86f6-4937-999c-4ee15f81643b--default"
+          class="form-check-input"
+        />
+        <label
+          class="form-check-label order-first"
+          for="7fb639f8-86f6-4937-999c-4ee15f81643b--default"
+          >Notifications</label
+        >
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="form-check form-switch">
+        <input
+          type="checkbox"
+          role="switch"
+          id="7fb639f8-86f6-4937-999c-4ee15f81643b--default"
+          class="form-check-input"
+        />
+        <label
+          class="form-check-label order-first"
+          for="7fb639f8-86f6-4937-999c-4ee15f81643b--default"
+          >Notifications</label
+        >
+      </div>
+    </li>
   `;
 }
 
 function getLinksList() {
   return html`
-    ${[
-      '<a href="#">Label <post-icon name="3020"></post-icon></a>',
-      '<a href="#">Label <post-icon name="3020"></post-icon></a>',
-      '<a href="#">Label <post-icon name="3020"></post-icon></a>',
-    ].map(
+    ${['Label', 'Label', 'Label'].map(
       label =>
-        html` <li class="list-group-item list-group-item-animate">${unsafeHTML(label)}</li> `,
+        html`
+          <li class="list-group-item list-group-item-action">
+            <a href="#"
+              >${label} <post-icon class="list-group-item-right-svg" name="3020"></post-icon
+            ></a>
+          </li>
+        `,
     )}
   `;
 }
 
 function getDocumentsList() {
   return html`
-    ${[
-      '<a href="#" download><post-icon name="3169"></post-icon> Label <post-icon name="2066"></post-icon></a>',
-      '<a href="#" download><post-icon name="3169"></post-icon> Label <post-icon name="2066"></post-icon></a>',
-      '<a href="#" download><post-icon name="3169"></post-icon> Label <post-icon name="2066"></post-icon></a>',
-    ].map(label => html` <li class="list-group-item">${unsafeHTML(label)}</li> `)}
+    ${['Label', 'Label', 'Label'].map(
+      label =>
+        html`
+          <li class="list-group-item">
+            <a href="#" download
+              ><post-icon name="3169"></post-icon> ${label} <post-icon name="2066"></post-icon
+            ></a>
+          </li>
+        `,
+    )}
   `;
 }
 
@@ -100,7 +134,7 @@ function renderListGroup(args: Args) {
   }
 
   return html`
-    <ul class="list-group list-group-${listType}">
+    <ul class="list-group">
       ${content}
     </ul>
   `;
@@ -116,33 +150,13 @@ const listGroupStory: Story = {
 
 export const Default: Story = {
   ...listGroupStory,
-  parameters: {
-    controls: {
-      exclude: ['Show List Group'],
-    },
-  },
   args: {
-    showSimpleList: true,
-  },
-};
-
-export const ListGroup: Story = {
-  ...listGroupStory,
-  parameters: {
-    controls: {
-      include: ['Show Header', 'Show Body'],
-    },
-  },
-  args: {
-    showImage: false,
-    showBody: false,
-    showSimpleList: true,
+    listType: 'links',
   },
 };
 
 export const ListLinks: Story = {
   ...listGroupStory,
-  parameters: {},
   args: {
     listType: 'links',
   },
@@ -150,7 +164,6 @@ export const ListLinks: Story = {
 
 export const ListDocuments: Story = {
   ...listGroupStory,
-  parameters: {},
   args: {
     listType: 'documents',
   },
@@ -158,7 +171,6 @@ export const ListDocuments: Story = {
 
 export const ListSwitch: Story = {
   ...listGroupStory,
-  parameters: {},
   args: {
     listType: 'switch',
   },

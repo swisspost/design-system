@@ -1,35 +1,21 @@
-@forward './../variables/options';
-
-@use 'sass:map';
-
 @use './../themes/bootstrap/core' as *;
-@use './../themes/bootstrap/list-group' as bl;
 
-@use './../variables/color';
-@use './../variables/spacing';
-@use './../variables/type';
-@use './../variables/commons';
 @use './../variables/animation';
-@use './../variables/components/list-group';
-@use './../mixins/type' as type-mixins;
+@use './../mixins/utilities' as utilities-mx;
+
+@use '../functions/tokens';
+@use '../tokens/components';
+
+tokens.$default-map: components.$post-list;
 
 // Base class
 .list-group {
   background-color: transparent;
-
-  &-box {
-    padding-top: map.get(spacing.$post-sizes, 'mini');
-    padding-bottom: map.get(spacing.$post-sizes, 'mini');
-    box-shadow: commons.$box-shadow;
-  }
+  list-style: none;
+  padding: 0;
 }
 
 .list-group-item-action {
-  @include transition(
-    color animation.$transition-time-simple animation.$transition-easing-default,
-    background-color animation.$transition-time-simple animation.$transition-easing-default
-  );
-
   &:hover,
   &:focus {
     .list-group-item-right-svg {
@@ -42,121 +28,69 @@
       transform animation.$transition-time-area-small animation.$transition-easing-default
     );
   }
-
-  &-minimal,
-  &-transparent {
-    &:hover,
-    &:focus {
-      background-color: transparent;
-    }
-  }
-
-  &-inverted {
-    background-color: transparent;
-
-    &:hover,
-    &:focus {
-      background-color: list-group.$list-group-hover-bg-inverted;
-    }
-  }
 }
 
 .list-group-item {
-  display: flex;
-  align-content: center;
-  align-items: center;
-  justify-content: space-between;
-  padding-right: map.get(spacing.$post-sizes, 'small-regular');
-  padding-left: map.get(spacing.$post-sizes, 'small-regular');
-  background-color: transparent;
-  font-weight: normal;
-  text-decoration: none;
-  border-collapse: collapse;
-  border-right: 0;
-  border-left: 0;
+  border: none;
+  padding: 0;
+  background: transparent;
 
-  @include media-breakpoint-up(rg) {
-    padding-left: map.get(spacing.$post-sizes, 'large');
+  > a,
+  > div {
+    display: flex;
+    position: relative;
+    padding-block-start: tokens.get('post-list', 'item-padding-block-start');
+    padding-block-end: tokens.get('post-list', 'item-padding-block-end');
+    padding-inline-start: tokens.get('post-list', 'item-padding-inline-start');
+    padding-inline-end: tokens.get('post-list', 'item-padding-inline-end');
+    border-radius: tokens.get('post-list', 'item-focus-outline-radius'); // Used for the focus only
+    color: tokens.get('post-list', 'item-enabled-fg');
 
-    &-minimal {
-      padding-left: 0;
-    }
-
-    &-transparent {
-      padding-right: map.get(spacing.$post-sizes, 'mini');
-      padding-left: map.get(spacing.$post-sizes, 'regular');
-    }
-  }
-
-  @include media-breakpoint-up(lg) {
-    &-big {
-      padding: map.get(spacing.$post-sizes, 'small-large') map.get(spacing.$post-sizes, 'mini')
-        map.get(spacing.$post-sizes, 'small-large') map.get(spacing.$post-sizes, 'regular');
-    }
-  }
-
-  &-svg {
-    flex: 0 0 auto;
-  }
-
-  &-left-icon {
-    justify-content: flex-start;
-    padding-left: map.get(spacing.$post-sizes, 'mini');
-
-    @include media-breakpoint-up(rg) {
-      padding-left: map.get(spacing.$post-sizes, 'small-regular');
-    }
-
-    .list-group-item-svg {
-      margin-right: map.get(spacing.$post-sizes, 'mini');
-
-      @include media-breakpoint-up(rg) {
-        margin-right: map.get(spacing.$post-sizes, 'small-regular');
-      }
-    }
-  }
-
-  &-no-border {
-    border: 0;
-  }
-
-  &-minimal {
-    @include type-mixins.font-curve('bigger-regular');
-    padding-right: 0;
-    padding-left: 0;
-  }
-
-  &-transparent {
-    background-color: transparent;
-
-    @include media-breakpoint-up(rg) {
-      padding-left: map.get(spacing.$post-sizes, 'regular');
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      background-color: tokens.get('post-list', 'item-enabled-border');
+      height: 1px;
+      bottom: 0;
+      left: 0;
     }
 
     &:hover {
-      background-color: transparent;
+      border-block-end-color: tokens.get('post-list', 'item-hover-border');
+      color: tokens.get('post-list', 'item-hover-fg');
     }
   }
 
-  &-white {
-    background-color: transparent;
-    color: color.$white;
+  > div {
+    justify-content: space-between;
 
-    &:hover {
-      background-color: transparent;
-      color: rgba(var(--post-contrast-color-inverted-rgb), 0.8);
+    .form-check-label {
+      color: tokens.get('post-list', 'item-enabled-fg');
     }
   }
 
-  .list-group &:last-child {
-    border-bottom: 0;
+  a,
+  input,
+  div.form-check {
+    @include utilities-mx.focus-style(
+      null,
+      tokens.get('post-list', 'item-focus-outline-offset'),
+      tokens.get('post-list', 'item-focus-outline-width'),
+      tokens.get('post-list', 'item-focus-outline-color'),
+      tokens.get('post-list', 'item-focus-outline-style')
+    ) {
+    }
   }
-}
 
-.list-group-white {
-  .list-group-item {
-    border: 0;
-    border-top: list-group.$list-group-border-width solid
-      rgba(var(--post-contrast-color-inverted-rgb), 0.2);
+  > a {
+    align-items: center;
+    flex-grow: 1;
+    text-decoration: none;
+    gap: tokens.get('post-list', 'item-gap-inline');
+
+    > *:last-child {
+      margin-left: auto;
+    }
   }
 }
