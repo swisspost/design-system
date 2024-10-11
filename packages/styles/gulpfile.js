@@ -129,27 +129,6 @@ gulp.task('sass', () => {
 });
 
 /**
- * Compile components to Css
- *  - Compile
- *  - Autoprefix
- *  - Also puts compiled Css into tsc-out
- */
-gulp.task('build-components', () => {
-  return gulp
-    .src('./src/**/*.scss')
-    .pipe(
-      gulpSass({
-        outputStyle: 'compressed',
-        includePaths: options.includePaths,
-        quietDeps: true,
-        silenceDeprecations: ['mixed-decls'],
-      }),
-    )
-    .pipe(gulpPostCss([autoprefixer()]))
-    .pipe(gulp.dest(`${options.outputDir}/`));
-});
-
-/**
  * Generate uncompressed sass output
  */
 gulp.task('sass:dev', () => {
