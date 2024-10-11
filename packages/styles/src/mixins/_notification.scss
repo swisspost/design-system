@@ -79,6 +79,7 @@
 @mixin notification-body($size) {
   $hr-margin-block: map.get(notification.$notification-hr-margin-block-map, $size);
 
+  /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
   & {
     display: flex;
     flex-direction: column;
@@ -126,6 +127,7 @@
 @mixin notification-dismissible($size, $close: 'btn-close') {
   $padding-x: map.get(notification.$notification-padding-x-map, $size);
 
+  /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
   & {
     pointer-events: auto;
     position: relative;
