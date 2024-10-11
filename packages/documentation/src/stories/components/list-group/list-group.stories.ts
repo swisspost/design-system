@@ -52,36 +52,22 @@ function gridContainer(story: StoryFn, context: StoryContext) {
 
 function getSwitchList() {
   return html`
-    <li class="list-group-item">
-      <div class="form-check form-switch">
-        <input
-          type="checkbox"
-          role="switch"
-          id="7fb639f8-86f6-4937-999c-4ee15f81643b--default"
-          class="form-check-input"
-        />
-        <label
-          class="form-check-label order-first"
-          for="7fb639f8-86f6-4937-999c-4ee15f81643b--default"
-          >Notifications</label
-        >
-      </div>
-    </li>
-    <li class="list-group-item">
-      <div class="form-check form-switch">
-        <input
-          type="checkbox"
-          role="switch"
-          id="7fb639f8-86f6-4937-999c-4ee15f81643b--default"
-          class="form-check-input"
-        />
-        <label
-          class="form-check-label order-first"
-          for="7fb639f8-86f6-4937-999c-4ee15f81643b--default"
-          >Notifications</label
-        >
-      </div>
-    </li>
+    ${[
+      '7fb639f8-86f6-4937-999c-4ee15f81643b',
+      '7fb639f8-4421-4937-999c-4ee15f81643b',
+      '7fb639f8-5221-4937-999c-4ee15f81643b',
+    ].map(id => {
+      return html`
+        <li class="list-group-item">
+          <div class="form-check form-switch">
+            <div>
+              <input type="checkbox" role="switch" id="${id}" class="form-check-input" />
+            </div>
+            <label class="form-check-label order-first" for="${id}">Label</label>
+          </div>
+        </li>
+      `;
+    })}
   `;
 }
 
@@ -127,9 +113,6 @@ function renderListGroup(args: Args) {
       break;
     case 'switch':
       content = getSwitchList();
-      break;
-
-    default:
       break;
   }
 

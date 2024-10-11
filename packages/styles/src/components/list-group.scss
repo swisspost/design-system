@@ -24,6 +24,9 @@ tokens.$default-map: components.$post-list;
   }
 
   .list-group-item-right-svg {
+    padding-block: tokens.get('post-list', 'icon-container-padding-block');
+    padding-inline: tokens.get('post-list', 'icon-container-padding-inline');
+
     @include transition(
       transform animation.$transition-time-area-small animation.$transition-easing-default
     );
@@ -36,7 +39,7 @@ tokens.$default-map: components.$post-list;
   background: transparent;
 
   > a,
-  > div {
+  .form-check {
     display: flex;
     position: relative;
     padding-block-start: tokens.get('post-list', 'item-padding-block-start');
@@ -50,8 +53,9 @@ tokens.$default-map: components.$post-list;
       content: '';
       position: absolute;
       width: 100%;
-      background-color: tokens.get('post-list', 'item-enabled-border');
       height: 1px;
+      border-block-end: tokens.get('post-list', 'item-border-width')
+        tokens.get('post-list', 'item-border-style') tokens.get('post-list', 'item-enabled-border');
       bottom: 0;
       left: 0;
     }
@@ -59,27 +63,6 @@ tokens.$default-map: components.$post-list;
     &:hover {
       border-block-end-color: tokens.get('post-list', 'item-hover-border');
       color: tokens.get('post-list', 'item-hover-fg');
-    }
-  }
-
-  > div {
-    justify-content: space-between;
-
-    .form-check-label {
-      color: tokens.get('post-list', 'item-enabled-fg');
-    }
-  }
-
-  a,
-  input,
-  div.form-check {
-    @include utilities-mx.focus-style(
-      null,
-      tokens.get('post-list', 'item-focus-outline-offset'),
-      tokens.get('post-list', 'item-focus-outline-width'),
-      tokens.get('post-list', 'item-focus-outline-color'),
-      tokens.get('post-list', 'item-focus-outline-style')
-    ) {
     }
   }
 
@@ -91,6 +74,31 @@ tokens.$default-map: components.$post-list;
 
     > *:last-child {
       margin-left: auto;
+    }
+  }
+
+  .form-check {
+    justify-content: space-between;
+
+    .form-check-label {
+      color: tokens.get('post-list', 'item-enabled-fg');
+    }
+
+    > div {
+      display: inline-flex;
+      padding-block: tokens.get('post-list', 'switch-padding-block');
+    }
+  }
+
+  a,
+  div.form-check {
+    @include utilities-mx.focus-style(
+      null,
+      tokens.get('post-list', 'item-focus-outline-offset'),
+      tokens.get('post-list', 'item-focus-outline-width'),
+      tokens.get('post-list', 'item-focus-outline-color'),
+      tokens.get('post-list', 'item-focus-outline-style')
+    ) {
     }
   }
 }
