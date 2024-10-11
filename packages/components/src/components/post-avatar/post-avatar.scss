@@ -17,16 +17,16 @@ tokens.$default-map: (
 );
 
 :host {
-  --post-avatar-bg: #{tokens.get('avatar', 'bg')};
-  --post-avatar-fg: #{tokens.get('avatar', 'fg')};
+  --post-avatar-bg: #{tokens.get('avatar-bg')};
+  --post-avatar-fg: #{tokens.get('avatar-fg')};
 
   display: block;
-  width: tokens.get('avatar', 'size');
-  height: tokens.get('avatar', 'size');
-  background-color: tokens.get('avatar', 'border-color');
-  border: tokens.get('avatar', 'border-width') solid tokens.get('avatar', 'border-color');
-  border-radius: tokens.get('avatar', 'border-radius');
-  font-size: tokens.get('avatar', 'font-size');
+  width: tokens.get('avatar-size');
+  height: tokens.get('avatar-size');
+  background-color: tokens.get('avatar-border-color');
+  border: tokens.get('avatar-border-width') solid tokens.get('avatar-border-color');
+  border-radius: tokens.get('avatar-border-radius');
+  font-size: tokens.get('avatar-font-size');
   line-height: 1;
 }
 
@@ -39,9 +39,8 @@ tokens.$default-map: (
 }
 
 :host([role]:focus-visible) {
-  outline: tokens.get('avatar', 'focus-outline-width') solid
-    tokens.get('avatar', 'focus-outline-color');
-  outline-offset: tokens.get('avatar', 'focus-outline-offset');
+  outline: tokens.get('avatar-focus-outline-width') solid tokens.get('avatar-focus-outline-color');
+  outline-offset: tokens.get('avatar-focus-outline-offset');
 }
 
 slot {
@@ -55,7 +54,7 @@ img,
   display: block;
   width: 100%;
   height: 100%;
-  border-radius: tokens.get('avatar', 'border-radius');
+  border-radius: tokens.get('avatar-border-radius');
 }
 
 ::slotted(:not(img)) {
@@ -68,7 +67,7 @@ img,
   align-items: center;
   height: 100%;
   background-color: var(--post-avatar-bg);
-  border-radius: tokens.get('avatar', 'border-radius');
+  border-radius: tokens.get('avatar-border-radius');
   color: var(--post-avatar-fg);
   text-transform: uppercase;
 }
