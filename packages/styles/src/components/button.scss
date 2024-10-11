@@ -13,6 +13,7 @@
 @use './../mixins/utilities';
 @use './../mixins/forms';
 @use './../mixins/button' as button-mx;
+@use './../mixins/icon-button' as icon-button-mx;
 @use './../functions/icons' as icon-fn;
 @use './../functions/color' as color-fn;
 @use './../placeholders/button' as button-ph;
@@ -32,36 +33,31 @@ tokens.$default-map: components.$post-button;
   max-width: 100%;
   overflow: hidden;
   transition: button.$btn-transition;
-  border-width: tokens.get('post-button', 'border-width');
+  border-width: tokens.get('button-border-width');
   border-style: solid;
-  border-radius: tokens.get('post-button', 'border-radius-round');
+  border-radius: tokens.get('button-border-radius-round');
   background-color: transparent;
   box-shadow: none;
   color: var(--post-gray-80);
   font-family: inherit;
-  font-weight: tokens.get('post-button', 'label-font-weight');
+  font-weight: tokens.get('button-label-font-weight');
   text-decoration: none !important; // For <a> tags, !important for hover
   white-space: nowrap; // Long content should never break in buttons
 
   &:disabled {
-    border-style: tokens.get('post-button', 'border-style-disabled');
+    border-style: tokens.get('button-border-style-disabled');
   }
 
   @include utilities.focus-style(
     null,
-    tokens.get('post-button', 'focus-outline-offset'),
-    tokens.get('post-button', 'focus-border-width'),
-    tokens.get('post-button', 'focus-stroke')
+    tokens.get('button-focus-outline-offset'),
+    tokens.get('button-focus-border-width'),
+    tokens.get('button-focus-stroke')
   ) {
   }
 
   @include color-mx.on-dark-background {
-    @include utilities.focus-style(
-      null,
-      null,
-      null,
-      tokens.get('post-button', 'focus-stroke-inverted')
-    ) {
+    @include utilities.focus-style(null, null, null, tokens.get('button-focus-stroke-inverted')) {
     }
   }
 
@@ -101,7 +97,7 @@ tokens.$default-map: components.$post-button;
     }
 
     @if ($variant != 'link' and $variant != 'tertiary') {
-      box-shadow: tokens.get('post-button', 'elevation');
+      box-shadow: tokens.get('button-elevation');
     }
 
     @include color-mx.on-dark-background {
@@ -148,19 +144,7 @@ tokens.$default-map: components.$post-button;
   padding-inline-end: 0;
 }
 
-// Icon
-.btn-icon {
-  @include button-mx.icon-button();
-
-  @each $size in button.$btn-non-default-sizes {
-    &.btn-#{$size} {
-      @include button-mx.icon-button($size);
-    }
-  }
-}
-
 // Animated
-
 .btn-animated,
 .btn-animated-start {
   &:not(.btn-link, .btn-tertiary) {
@@ -264,19 +248,9 @@ tokens.$default-map: components.$post-button;
   }
 }
 
-// Size variants, default is rg
+// Size variants, default is md
 @each $size in button.$btn-non-default-sizes {
   .btn-#{$size} {
     @include button-mx.new-button-size($size);
   }
-}
-
-// Color variants
-@each $name, $color in color.$accent-colors {
-  @include button-mx.button-color-variant($name, $color);
-}
-
-// Intranet signal buttons
-@each $name, $color in color.$signal-colors {
-  @include button-mx.button-color-variant($name, $color);
 }

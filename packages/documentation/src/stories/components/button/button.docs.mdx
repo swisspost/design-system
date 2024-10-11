@@ -22,7 +22,7 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
   <Controls of={ButtonStories.Default} />
 </div>
 
-<StylesPackageImport components={["button"]} required={{ icons: true }} />
+<StylesPackageImport components={['button']} required={{ icons: true }} />
 
 ## Concrete Examples of Application
 
@@ -34,31 +34,13 @@ Inverted buttons don't need special classes anymore, just use any of the [backgr
 
 <Canvas of={ButtonStories.Inverted} />
 
-### Accent colors
-
-<div className="alert alert-md alert-warning">
-  <h2 className="alert-heading">The accent colors are deprecated</h2>
-  <p>The CSS classes to apply to the buttons will be removed in the future.</p>
-</div>
-
-There are a number of accent colors that you can apply to buttons instead of the usual colors.
-
-<Canvas of={ButtonStories.AccentColors} />
-
-### Signal colors
-
-Besides the usual and the accent button variations, there are also signal button colors.
-
-<p className="alert alert-md alert-warning">These are only allowed for intranet applications!</p>
-
-<Canvas of={ButtonStories.SignalColors} />
-
 ### Full-width
 
 In some situation, it is desirable to display a button using the full available width,
 for example when the button is displayed on mobile and stacked vertically with others.
 
 To achieve that, you can use classes in the format:
+
 - `.w-{size}` for the xs breakpoint,
 - `.w-{breakpoint}-{size}` for breakpoints from sm to xxl.
 

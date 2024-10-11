@@ -111,12 +111,11 @@ const meta: MetaComponent = {
         type: 'select',
         labels: {
           'btn-sm': 'Small',
-          'btn-rg': 'Regular',
           'null': 'Medium',
           'btn-lg': 'Large',
         },
       },
-      options: ['btn-sm', 'btn-rg', 'null', 'btn-lg'],
+      options: ['btn-sm', 'null', 'btn-lg'],
       table: {
         category: 'General',
       },
@@ -297,33 +296,6 @@ const VariantsTemplate = {
         }),
       )}
     `,
-};
-
-export const AccentColors: Story = {
-  ...VariantsTemplate,
-  args: {
-    variants: [
-      'btn-nightblue',
-      'btn-nightblue-bright',
-      'btn-petrol',
-      'btn-petrol-bright',
-      'btn-coral',
-      'btn-coral-bright',
-      'btn-olive',
-      'btn-olive-bright',
-      'btn-purple',
-      'btn-purple-bright',
-      'btn-aubergine',
-      'btn-aubergine-bright',
-    ],
-  },
-};
-
-export const SignalColors: Story = {
-  ...VariantsTemplate,
-  args: {
-    variants: ['btn-success', 'btn-warning', 'btn-error', 'btn-info'],
-  },
 };
 
 export const FullWidth: Story = {

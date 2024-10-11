@@ -24,7 +24,7 @@ tokens.$default-map: components.$post-button;
 }
 
 @mixin new-button-size($size: md) {
-  min-height: map.get(button.$new-btn-height-map, $size);
+  min-height: map.get(button.$btn-height-map, $size);
   gap: map.get(button.$new-btn-gap-x-map, $size);
   padding: 0 map.get(button.$new-btn-padding-x-map, $size);
 
@@ -37,11 +37,12 @@ tokens.$default-map: components.$post-button;
 
 @mixin button-variant-def($type, $color, $inverted: false) {
   $inverted-suffix: if($inverted, '-inverted', '');
-  border-color: tokens.get('post-button', '#{$color}#{$inverted-suffix}-#{$type}-stroke');
-  background-color: tokens.get('post-button', '#{$color}-#{$type}-bg');
-  color: tokens.get('post-button', '#{$color}-#{$type}-fg');
+  border-color: tokens.get('button-#{$color}#{$inverted-suffix}-#{$type}-stroke');
+  background-color: tokens.get('button-#{$color}-#{$type}-bg');
+  color: tokens.get('button-#{$color}-#{$type}-fg');
 }
 
+// Used on timepicker
 @mixin button-size($size: md) {
   min-height: map.get(button.$btn-height-map, $size);
   font-size: map.get(button.$btn-font-size-map, $size);
@@ -56,16 +57,6 @@ tokens.$default-map: components.$post-button;
     width: map.get(button.$btn-icon-size-map, $size);
     height: map.get(button.$btn-icon-size-map, $size);
   }
-}
-
-@mixin icon-button($size: md) {
-  // Padding for icon buttons is (button-height - font-size) / 2
-  $icon-size: map.get(button.$btn-icon-size-map, $size);
-  $button-height: map.get(button.$btn-height-map, $size);
-  $padding-y: ($button-height - $icon-size) * 0.5 - button.$input-btn-focus-width;
-  min-width: $button-height;
-  padding-right: $padding-y;
-  padding-left: $padding-y;
 }
 
 @mixin button-color-variant($name, $color) {

@@ -51,7 +51,6 @@ $btn-font-size-sm: type.$font-size-12 !default;
 $btn-icon-size-sm: spacing.$size-regular !default;
 
 // rg
-$btn-padding-x-rg: sizing.px-to-rem(14) !default;
 $btn-animation-distance-rg: spacing.$size-mini !default;
 // Design System only
 $btn-height-rg: 2.5rem;
@@ -79,28 +78,27 @@ $btn-non-default-sizes: sm, lg !default;
 
 $btn-animation-distance-map: (
   'sm': $btn-animation-distance-sm,
-  'rg': $btn-animation-distance-rg,
   'md': $btn-animation-distance-md,
   'lg': $btn-animation-distance-lg,
 );
 $btn-padding-x-map: (
-  'sm': tokens.get('post-button', 'small-padding-inline'),
-  'rg': tokens.get('post-button', 'medium-padding-inline'),
-  'md': tokens.get('post-button', 'medium-padding-inline'),
-  'lg': tokens.get('post-button', 'large-padding-inline'),
+  'sm': tokens.get('button-small-padding-inline'),
+  'md': tokens.get('button-medium-padding-inline'),
+  'lg': tokens.get('button-large-padding-inline'),
 );
+
 $btn-height-map: (
-  'sm': $btn-height-sm,
-  'rg': $btn-height-rg,
-  'md': $btn-height-md,
-  'lg': $btn-height-lg,
+  'sm': tokens.get('button-small-height'),
+  'md': tokens.get('button-medium-height'),
+  'lg': tokens.get('button-large-height'),
 );
 $btn-font-size-map: (
   'sm': $btn-font-size-sm,
-  'rg': $btn-font-size-rg,
   'md': $btn-font-size-md,
   'lg': $btn-font-size-lg,
 );
+
+// Used on timepicker
 $btn-icon-size-map: (
   'sm': $btn-icon-size-sm,
   'rg': $btn-icon-size-rg,
@@ -111,7 +109,6 @@ $btn-icon-size-map: (
 $btn-border-width: $input-btn-border-width !default;
 
 $btn-font-weight: type.$font-weight-normal !default;
-$btn-box-shadow: none !default;
 $btn-focus-width: $input-btn-focus-width !default;
 $btn-focus-box-shadow: $input-btn-focus-box-shadow !default;
 $btn-disabled-opacity: 0.4 !default;
@@ -137,22 +134,17 @@ $btn-variants: primary, default, secondary, tertiary, link !default;
 
 // For sizes
 $new-btn-padding-x-map: (
-  'sm': tokens.get('post-button', 'small-padding-inline'),
-  'md': tokens.get('post-button', 'medium-padding-inline'),
-  'lg': tokens.get('post-button', 'large-padding-inline'),
+  'sm': tokens.get('button-small-padding-inline'),
+  'md': tokens.get('button-medium-padding-inline'),
+  'lg': tokens.get('button-large-padding-inline'),
 );
 $new-btn-gap-x-map: (
-  'sm': tokens.get('post-button', 'small-gap-inline'),
-  'md': tokens.get('post-button', 'medium-gap-inline'),
-  'lg': tokens.get('post-button', 'large-gap-inline'),
-);
-$new-btn-height-map: (
-  'sm': tokens.get('post-button', 'small-height'),
-  'md': tokens.get('post-button', 'medium-height'),
-  'lg': tokens.get('post-button', 'large-height'),
+  'sm': tokens.get('button-small-gap-inline'),
+  'md': tokens.get('button-medium-gap-inline'),
+  'lg': tokens.get('button-large-gap-inline'),
 );
 $new-btn-icon-size-map: (
-  'sm': tokens.get('post-button', 'small-icon'),
-  'md': tokens.get('post-button', 'medium-icon'),
-  'lg': tokens.get('post-button', 'large-icon'),
+  'sm': tokens.get('button-small-icon'),
+  'md': tokens.get('button-medium-icon'),
+  'lg': tokens.get('button-large-icon'),
 );

@@ -1,0 +1,23 @@
+@use 'sass:map';
+@use 'sass:color';
+
+@use '../functions/tokens';
+@use '../tokens/components';
+
+tokens.$default-map: components.$post-icon-button;
+
+@mixin icon-button($size: md) {
+  $actualSize: if(
+    $size == 'sm',
+    'small',
+    if($size == 'md', 'medium', if($size == 'lg', 'large', $size))
+  );
+  min-width: tokens.get('icon-button-#{$actualSize}-outer');
+  height: tokens.get('icon-button-#{$actualSize}-outer');
+
+  > .pi,
+  > post-icon {
+    min-width: tokens.get('icon-button-#{$actualSize}-icon');
+    height: tokens.get('icon-button-#{$actualSize}-icon');
+  }
+}
