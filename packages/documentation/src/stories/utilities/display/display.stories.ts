@@ -5,9 +5,6 @@ import { MetaExtended } from '@root/types';
 const meta: MetaExtended = {
   id: '1bb8a4a7-8205-4dcb-a41c-8f7ab1de1c99',
   title: 'Utilities/Display',
-  parameters: {
-    badges: [],
-  },
 };
 
 export default meta;
