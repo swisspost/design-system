@@ -8,9 +8,6 @@ const meta: MetaComponent = {
   tags: ['package:HTML'],
   decorators: [gridContainer],
   parameters: {
-    controls: {
-      exclude: ['Custom Body'],
-    },
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=21-170',
