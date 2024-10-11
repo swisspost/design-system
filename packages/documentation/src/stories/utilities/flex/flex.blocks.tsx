@@ -153,10 +153,10 @@ export function WrapContainer(props: { name: string }) {
         <div className="bg-yellow p-12">Content 2</div>
         <div className="bg-gray p-12">Content 3</div>
         <div className="bg-yellow p-12">Content 4</div>
-        <div className="bg-gray p-12">Content</div>
-        <div className="bg-yellow p-12">Content 5</div>
-        <div className="bg-gray p-12">Content 6</div>
-        <div className="bg-yellow p-12">Content 7</div>
+        <div className="bg-gray p-12">Content 5</div>
+        <div className="bg-yellow p-12">Content 6</div>
+        <div className="bg-gray p-12">Content 7</div>
+        <div className="bg-yellow p-12">Content 8</div>
       </div>
     </FlexDocContainer>
   );
