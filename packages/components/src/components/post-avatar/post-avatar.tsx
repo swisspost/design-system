@@ -1,12 +1,18 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkNonEmpty, checkOneOf } from '@/utils';
+import { checkNonEmpty } from '@/utils';
+
+enum TAG_ROLES {
+  a = 'link',
+  button = 'button',
+}
 
 // https://docs.gravatar.com/api/avatars/images/
 const GRAVATAR_DEFAULT = '404';
 const GRAVATAR_RATING = 'g';
+const GRAVATAR_SIZE = 40;
 
-const GRAVATAR_BASE_URL = `https://www.gravatar.com/avatar/{email}?s={size}&d=${GRAVATAR_DEFAULT}&r=${GRAVATAR_RATING}`;
+const GRAVATAR_BASE_URL = `https://www.gravatar.com/avatar/{email}?s=${GRAVATAR_SIZE}&d=${GRAVATAR_DEFAULT}&r=${GRAVATAR_RATING}`;
 
 enum AvatarType {
   Slotted = 'slotted',
@@ -24,29 +30,14 @@ enum AvatarType {
   shadow: true,
 })
 export class PostAvatar {
-  private static GRAVATAR_SIZES = {
-    large: 40,
-    small: 32,
-  };
-
   private static INTERNAL_USERID_IMAGE_SRC = 'https://web.post.ch/UserProfileImage/{userid}.png';
 
   @Element() host: HTMLPostAvatarElement;
 
   /**
-   * Defines the size of the avatar.
+   * Defines the tag, the component represents.
    */
-  @Prop() readonly size?: 'large' | 'small' = 'large';
-
-  /**
-   * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
-   */
-  @Prop() readonly userid?: string;
-
-  /**
-   * Defines the users email address.
-   */
-  @Prop() readonly email?: string;
+  @Prop() readonly tag: keyof typeof TAG_ROLES = null;
 
   /**
    * Defines the users firstname.
@@ -58,6 +49,16 @@ export class PostAvatar {
    */
   @Prop() readonly lastname?: string;
 
+  /**
+   * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
+   */
+  @Prop() readonly userid?: string;
+
+  /**
+   * Defines the users email address associated with a gravatar profile picture.
+   */
+  @Prop() readonly email?: string;
+
   @State() slottedImage: HTMLImageElement;
   @State() avatarType: AvatarType = null;
   @State() imageUrl = '';
@@ -67,15 +68,6 @@ export class PostAvatar {
   @Watch('firstname')
   firstnameChanged() {
     checkNonEmpty(this.firstname, 'The `firstname` property of the `post-avatar` is required!');
-  }
-
-  @Watch('size')
-  sizeChanged() {
-    checkOneOf(
-      this.size,
-      ['large', 'small'],
-      'The `size` property of the `post-avatar` must be either `large` or `small`.',
-    );
   }
 
   private async getAvatar() {
@@ -132,8 +124,7 @@ export class PostAvatar {
 
   private async fetchImageByEmail() {
     const email = await this.cryptify(this.email);
-    const size = (PostAvatar.GRAVATAR_SIZES[this.size] ?? '').toString();
-    const imageUrl = GRAVATAR_BASE_URL.replace('{size}', size).replace('{email}', email);
+    const imageUrl = GRAVATAR_BASE_URL.replace('{email}', email);
     return await fetch(imageUrl);
   }
 
@@ -182,12 +173,11 @@ export class PostAvatar {
 
   componentDidLoad() {
     this.firstnameChanged();
-    this.sizeChanged();
   }
 
   render() {
     return (
-      <Host data-version={version} class={this.size}>
+      <Host data-version={version} role={TAG_ROLES[this.tag]} tabindex={TAG_ROLES[this.tag] && 0}>
         <slot onSlotchange={this.onSlotDefaultChange.bind(this)}>
           {this.avatarType === 'image' && <img src={this.imageUrl} alt={this.imageAlt} />}
           {this.avatarType === 'initials' && <div class="initials">{this.initials}</div>}

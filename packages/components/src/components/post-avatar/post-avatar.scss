@@ -1,25 +1,61 @@
-@use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/tokens/elements';
+@use '@swisspost/design-system-styles/functions/tokens';
+
+// tokens.$default-map: elements.$post-avatar;
+
+tokens.$default-map: (
+  'post-avatar-size': 2.5rem,
+  'post-avatar-bg': #050400,
+  'post-avatar-fg': #fff,
+  'post-avatar-border-width': 2px,
+  'post-avatar-border-color': #fff,
+  'post-avatar-border-radius': 50%,
+  'post-avatar-font-size': 16px,
+  'post-avatar-focus-outline-width': 2px,
+  'post-avatar-focus-outline-color': #000,
+  'post-avatar-focus-outline-offset': 2px
+);
 
 :host {
-  --post-avatar-bg: #004976;
-  --post-avatar-fg: #{post.get-best-contrast-text(#004976)};
+  --post-avatar-bg: #{tokens.get('avatar', 'bg')};
+  --post-avatar-fg: #{tokens.get('avatar', 'fg')};
 
   display: block;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: tokens.get('avatar', 'size');
+  height: tokens.get('avatar', 'size');
+  background-color: tokens.get('avatar', 'border-color');
+  border: tokens.get('avatar', 'border-width') solid tokens.get('avatar', 'border-color');
+  border-radius: tokens.get('avatar', 'border-radius');
+  font-size: tokens.get('avatar', 'font-size');
+  line-height: 1;
 }
 
-:host(.small) {
-  width: 2rem;
-  height: 2rem;
-  font-size: post.$font-size-12;
+:host([role]) {
+  cursor: pointer;
+}
+
+:host([role]:hover) {
+  transform: scale(1.15);
+}
+
+:host([role]:focus-visible) {
+  outline: tokens.get('avatar', 'focus-outline-width') solid
+    tokens.get('avatar', 'focus-outline-color');
+  outline-offset: tokens.get('avatar', 'focus-outline-offset');
+}
+
+slot {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 img,
 ::slotted(img) {
   display: block;
   width: 100%;
-  border-radius: 50%;
+  height: 100%;
+  border-radius: tokens.get('avatar', 'border-radius');
 }
 
 ::slotted(:not(img)) {
@@ -30,11 +66,9 @@ img,
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   height: 100%;
   background-color: var(--post-avatar-bg);
-  border-radius: 50%;
+  border-radius: tokens.get('avatar', 'border-radius');
   color: var(--post-avatar-fg);
   text-transform: uppercase;
-  box-sizing: border-box;
 }

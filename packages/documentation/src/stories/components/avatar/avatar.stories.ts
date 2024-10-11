@@ -1,11 +1,12 @@
-import { Args, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { MetaComponent } from '@root/types';
 import { html, nothing } from 'lit';
 import { components } from '@swisspost/design-system-components/dist/docs.json';
+import { coloredBackground } from '@/shared/decorators/dark-background';
 
-const AVATAR_PICTURE_ARGTYPES = components.find(c => c.tag === 'post-avatar');
-const ARGS_USERID_ARGTYPE = AVATAR_PICTURE_ARGTYPES?.props.find(p => p.name === 'userid');
-const ARGS_EMAIL_ARGTYPE = AVATAR_PICTURE_ARGTYPES?.props.find(p => p.name === 'email');
+const AVATAR_ARGTYPES = components.find(c => c.tag === 'post-avatar');
+const USERID_ARGTYPE = AVATAR_ARGTYPES?.props.find(p => p.name === 'userid');
+const EMAIL_ARGTYPE = AVATAR_ARGTYPES?.props.find(p => p.name === 'email');
 
 const meta: MetaComponent = {
   id: '09aac03d-220e-4885-8fb8-1cfa01add188',
@@ -19,22 +20,22 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    size: 'large',
-    userid: '',
-    email: '',
+    tag: null,
     firstname: 'Firstname',
     lastname: '',
+    userid: '',
+    email: '',
     imageSrc: '',
   },
   argTypes: {
     'userid': {
       description: `${
-        ARGS_USERID_ARGTYPE?.docs ?? ''
+        USERID_ARGTYPE?.docs ?? ''
       }<div className="alert alert-info alert-sm">Do you need an example userid? Try it out with the username of your own post account.</div>`,
     },
     'email': {
       description: `${
-        ARGS_EMAIL_ARGTYPE?.docs ?? ''
+        EMAIL_ARGTYPE?.docs ?? ''
       } <div className="alert alert-info alert-sm">Do you need an example email address? Try it out with <strong>oss@post.ch</strong>.</div>`,
     },
     'imageSrc': {
@@ -61,12 +62,16 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
+  decorators: [
+    (story: StoryFn, context: StoryContext) => coloredBackground(story, context, 'light'),
+  ],
   render: (args: Args) => html`<post-avatar
-    size="${args.size !== 'large' ? args.size : nothing}"
-    userid="${args.userid || nothing}"
-    email="${args.email || nothing}"
+    tag="${args.tag || nothing}"
+    href="${(args.tag === 'a' && '#') || nothing}"
     firstname="${args.firstname || nothing}"
     lastname="${args.lastname || nothing}"
+    userid="${args.userid || nothing}"
+    email="${args.email || nothing}"
     >${args.imageSrc
       ? html`<img
           src="${args.imageSrc}"

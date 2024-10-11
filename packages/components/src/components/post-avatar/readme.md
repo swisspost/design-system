@@ -7,13 +7,13 @@
 
 ## Properties
 
-| Property                 | Attribute   | Description                                                                                                                       | Type                 | Default     |
-| ------------------------ | ----------- | --------------------------------------------------------------------------------------------------------------------------------- | -------------------- | ----------- |
-| `email`                  | `email`     | Defines the users email address.                                                                                                  | `string`             | `undefined` |
-| `firstname` _(required)_ | `firstname` | Defines the users firstname.                                                                                                      | `string`             | `undefined` |
-| `lastname`               | `lastname`  | Defines the users lastname.                                                                                                       | `string`             | `undefined` |
-| `size`                   | `size`      | Defines the size of the avatar.                                                                                                   | `"large" \| "small"` | `'large'`   |
-| `userid`                 | `userid`    | Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div> | `string`             | `undefined` |
+| Property                 | Attribute   | Description                                                                                                                       | Type              | Default     |
+| ------------------------ | ----------- | --------------------------------------------------------------------------------------------------------------------------------- | ----------------- | ----------- |
+| `email`                  | `email`     | Defines the users email address associated with a gravatar profile picture.                                                       | `string`          | `undefined` |
+| `firstname` _(required)_ | `firstname` | Defines the users firstname.                                                                                                      | `string`          | `undefined` |
+| `lastname`               | `lastname`  | Defines the users lastname.                                                                                                       | `string`          | `undefined` |
+| `tag`                    | `tag`       | Defines the tag, the component represents.                                                                                        | `"a" \| "button"` | `null`      |
+| `userid`                 | `userid`    | Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div> | `string`          | `undefined` |
 
 
 ## Slots

@@ -77,7 +77,7 @@ export namespace Components {
     }
     interface PostAvatar {
         /**
-          * Defines the users email address.
+          * Defines the users email address associated with a gravatar profile picture.
          */
         "email"?: string;
         /**
@@ -89,9 +89,9 @@ export namespace Components {
          */
         "lastname"?: string;
         /**
-          * Defines the size of the avatar.
+          * Defines the tag, the component represents.
          */
-        "size"?: 'large' | 'small';
+        "tag": keyof typeof TAG_ROLES;
         /**
           * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
          */
@@ -615,7 +615,7 @@ declare namespace LocalJSX {
     }
     interface PostAvatar {
         /**
-          * Defines the users email address.
+          * Defines the users email address associated with a gravatar profile picture.
          */
         "email"?: string;
         /**
@@ -627,9 +627,9 @@ declare namespace LocalJSX {
          */
         "lastname"?: string;
         /**
-          * Defines the size of the avatar.
+          * Defines the tag, the component represents.
          */
-        "size"?: 'large' | 'small';
+        "tag"?: keyof typeof TAG_ROLES;
         /**
           * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
          */
