@@ -34,7 +34,7 @@ tokens.$default-map: components.$post-list;
 }
 
 .list-group-item {
-  border: none;
+  border: unset;
   padding: 0;
   background: transparent;
 
@@ -105,7 +105,6 @@ tokens.$default-map: components.$post-list;
       tokens.get('list-item-focus-outline-width'),
       tokens.get('list-item-focus-outline-color'),
       tokens.get('list-item-focus-outline-style')
-    ) {
-    }
+    );
   }
 }
