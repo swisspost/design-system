@@ -164,7 +164,9 @@ function StylesSwitcher() {
           </div>
         }
       >
-        <IconButton size="medium">Theme: {currentTheme}</IconButton>
+        <IconButton className="addon-label" size="medium">
+          Theme: {currentTheme}
+        </IconButton>
       </WithTooltip>
 
       {/* Channel dropdown */}
@@ -186,7 +188,9 @@ function StylesSwitcher() {
           </div>
         }
       >
-        <IconButton size="medium">Chanel: {currentChannel}</IconButton>
+        <IconButton className="addon-label" size="medium">
+          Chanel: {currentChannel}
+        </IconButton>
       </WithTooltip>
 
       {/* Mode dropdown */}
@@ -208,7 +212,9 @@ function StylesSwitcher() {
           </div>
         }
       >
-        <IconButton size="medium">Mode: {currentMode}</IconButton>
+        <IconButton className="addon-label" size="medium">
+          Mode: {currentMode}
+        </IconButton>
       </WithTooltip>
     </>
   );
