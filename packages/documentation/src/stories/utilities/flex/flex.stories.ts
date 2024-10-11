@@ -88,9 +88,21 @@ export const Wrap: Story = {
   render: () =>
     html`
       <div class="d-flex flex-wrap">
-        ${Array.from({ length: 14 }).map(
-          (_, i) => html`
-            <div class="${i % 2 === 0 ? 'bg-gray' : 'bg-yellow'} p-8">Content ${i + 1}</div>
+        <div class="bg-yellow p-8">Content</div>
+        <div class="bg-gray p-8">Content</div>
+        <div class="bg-yellow p-8">Content</div>
+        <div class="bg-gray p-8">Content</div>
+        <div class="bg-yellow p-8">Content</div>
+        <div class="bg-gray p-8">Content</div>
+        <div class="bg-yellow p-8">Content</div>
+        <div class="bg-gray p-8">Content</div>
+        <div class="bg-yellow p-8">Content</div>
+        <div class="bg-gray p-8">Content</div>
+        <div class="bg-yellow p-8">Content</div>
+        <div class="bg-gray p-8">Content</div>
+        <div class="bg-yellow p-8">Content</div>
+        <div class="bg-gray p-8">Content</div>
+      </div>
           `,
         )}
       </div>
