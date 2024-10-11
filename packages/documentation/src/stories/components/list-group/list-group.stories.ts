@@ -1,15 +1,13 @@
 import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '5a47ba70-7831-4e59-b83e-81b6e6c32372',
   title: 'Components/List Group',
   tags: ['package:HTML'],
-  decorators: [paddedContainer],
+  decorators: [gridContainer],
   parameters: {
-    badges: [],
     controls: {
       exclude: ['Custom Body'],
     },
@@ -38,10 +36,6 @@ const meta: MetaComponent = {
 
 export default meta;
 
-function paddedContainer(story: StoryFn, context: StoryContext) {
-  return html` <div class="p-8">${story(context.args, context)}</div> `;
-}
-
 function gridContainer(story: StoryFn, context: StoryContext) {
   return html`
     <div class="row">
@@ -56,18 +50,17 @@ function getSwitchList() {
       '7fb639f8-86f6-4937-999c-4ee15f81643b',
       '7fb639f8-4421-4937-999c-4ee15f81643b',
       '7fb639f8-5221-4937-999c-4ee15f81643b',
-    ].map(id => {
-      return html`
-        <li class="list-group-item">
-          <div class="form-check form-switch">
-            <div>
+    ].map(
+      id =>
+        html`
+          <li class="list-group-item">
+            <div class="form-check form-switch">
               <input type="checkbox" role="switch" id="${id}" class="form-check-input" />
+              <label class="form-check-label order-first" for="${id}">Label</label>
             </div>
-            <label class="form-check-label order-first" for="${id}">Label</label>
-          </div>
-        </li>
-      `;
-    })}
+          </li>
+        `,
+    )}
   `;
 }
 
@@ -101,7 +94,7 @@ function getDocumentsList() {
   `;
 }
 
-function renderListGroup(args: Args) {
+export function renderListGroup(args: Args) {
   const { listType } = args;
   let content;
   switch (listType) {
@@ -123,37 +116,28 @@ function renderListGroup(args: Args) {
   `;
 }
 
-// STORIES
 type Story = StoryObj;
 
-const listGroupStory: Story = {
-  decorators: [gridContainer],
+export const Default: Story = {
   render: renderListGroup,
 };
 
-export const Default: Story = {
-  ...listGroupStory,
-  args: {
-    listType: 'links',
-  },
-};
-
 export const ListLinks: Story = {
-  ...listGroupStory,
+  render: renderListGroup,
   args: {
     listType: 'links',
   },
 };
 
 export const ListDocuments: Story = {
-  ...listGroupStory,
+  render: renderListGroup,
   args: {
     listType: 'documents',
   },
 };
 
 export const ListSwitch: Story = {
-  ...listGroupStory,
+  render: renderListGroup,
   args: {
     listType: 'switch',
   },
