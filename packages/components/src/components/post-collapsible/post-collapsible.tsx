@@ -87,7 +87,7 @@ export class PostCollapsible {
    */
   private updateTriggers() {
     const triggers: NodeListOf<HTMLPostCollapsibleTriggerElement> = document.querySelectorAll(
-      `post-collapsible-trigger[for=${this.host.id}]`,
+      `post-collapsible-trigger[for="${this.host.id}"]`,
     );
 
     triggers.forEach(trigger => trigger.update());
