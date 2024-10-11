@@ -70,7 +70,7 @@ export const Default: Story = {
     >${args.imageSrc
       ? html`<img
           src="${args.imageSrc}"
-          alt="${args.firstname}${args.lastname ? ' ' + args.lastname : null}"
+          alt="${[args.firstname, args.lastname].filter(n => n).join(' ')}"
         />`
       : nothing}</post-avatar
   >`,
