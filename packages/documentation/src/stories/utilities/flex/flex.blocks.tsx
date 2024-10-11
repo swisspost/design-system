@@ -149,14 +149,14 @@ export function WrapContainer(props: { name: string }) {
   return (
     <FlexDocContainer name={props.name} prefix="flex">
       <div className={`d-flex flex-${props.name}`}>
+        <div className="bg-gray p-12">Content 1</div>
+        <div className="bg-yellow p-12">Content 2</div>
+        <div className="bg-gray p-12">Content 3</div>
+        <div className="bg-yellow p-12">Content 4</div>
         <div className="bg-gray p-12">Content</div>
-        <div className="bg-yellow p-12">Content</div>
-        <div className="bg-gray p-12">Content</div>
-        <div className="bg-yellow p-12">Content</div>
-        <div className="bg-gray p-12">Content</div>
-        <div className="bg-yellow p-12">Content</div>
-        <div className="bg-gray p-12">Content</div>
-        <div className="bg-yellow p-12">Content</div>
+        <div className="bg-yellow p-12">Content 5</div>
+        <div className="bg-gray p-12">Content 6</div>
+        <div className="bg-yellow p-12">Content 7</div>
       </div>
     </FlexDocContainer>
   );
