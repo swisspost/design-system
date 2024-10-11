@@ -115,7 +115,7 @@ gulp.task('transform-package-json', done => {
  */
 gulp.task('sass', () => {
   return gulp
-    .src('./src/*.scss')
+    .src('./src/**/*.scss')
     .pipe(
       gulpSass({
         outputStyle: 'compressed',
@@ -126,27 +126,6 @@ gulp.task('sass', () => {
     )
     .pipe(gulpPostCss([autoprefixer()]))
     .pipe(gulp.dest(options.outputDir));
-});
-
-/**
- * Compile components to Css
- *  - Compile
- *  - Autoprefix
- *  - Also puts compiled Css into tsc-out
- */
-gulp.task('build-components', () => {
-  return gulp
-    .src('./src/components/*.scss')
-    .pipe(
-      gulpSass({
-        outputStyle: 'compressed',
-        includePaths: options.includePaths,
-        quietDeps: true,
-        silenceDeprecations: ['mixed-decls'],
-      }),
-    )
-    .pipe(gulpPostCss([autoprefixer()]))
-    .pipe(gulp.dest(`${options.outputDir}/components`));
 });
 
 /**
@@ -201,6 +180,5 @@ exports.default = gulp.task(
   gulp.parallel(
     gulp.series('map-icons', 'copy', 'autoprefixer', 'transform-package-json'),
     gulp.series('temporarily-copy-token-files', 'sass'),
-    gulp.series('build-components'),
   ),
 );
