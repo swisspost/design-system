@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': minor
 ---
 
-Added legend element.
+Updated and tokenized styles for the legend element.
