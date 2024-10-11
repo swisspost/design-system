@@ -1,35 +1,21 @@
-@forward './../variables/options';
-
-@use 'sass:map';
-
 @use './../themes/bootstrap/core' as *;
-@use './../themes/bootstrap/list-group' as bl;
 
-@use './../variables/color';
-@use './../variables/spacing';
-@use './../variables/type';
-@use './../variables/commons';
 @use './../variables/animation';
-@use './../variables/components/list-group';
-@use './../mixins/type' as type-mixins;
+@use './../mixins/utilities' as utilities-mx;
+
+@use '../functions/tokens';
+@use '../tokens/components';
+
+tokens.$default-map: components.$post-list;
 
 // Base class
 .list-group {
   background-color: transparent;
-
-  &-box {
-    padding-top: map.get(spacing.$post-sizes, 'mini');
-    padding-bottom: map.get(spacing.$post-sizes, 'mini');
-    box-shadow: commons.$box-shadow;
-  }
+  list-style: none;
+  padding: 0;
 }
 
 .list-group-item-action {
-  @include transition(
-    color animation.$transition-time-simple animation.$transition-easing-default,
-    background-color animation.$transition-time-simple animation.$transition-easing-default
-  );
-
   &:hover,
   &:focus {
     .list-group-item-right-svg {
@@ -38,125 +24,87 @@
   }
 
   .list-group-item-right-svg {
+    padding-block: tokens.get('list-icon-container-padding-block');
+    padding-inline: tokens.get('list-icon-container-padding-inline');
+
     @include transition(
       transform animation.$transition-time-area-small animation.$transition-easing-default
     );
   }
-
-  &-minimal,
-  &-transparent {
-    &:hover,
-    &:focus {
-      background-color: transparent;
-    }
-  }
-
-  &-inverted {
-    background-color: transparent;
-
-    &:hover,
-    &:focus {
-      background-color: list-group.$list-group-hover-bg-inverted;
-    }
-  }
 }
 
 .list-group-item {
-  display: flex;
-  align-content: center;
-  align-items: center;
-  justify-content: space-between;
-  padding-right: map.get(spacing.$post-sizes, 'small-regular');
-  padding-left: map.get(spacing.$post-sizes, 'small-regular');
-  background-color: transparent;
-  font-weight: normal;
-  text-decoration: none;
-  border-collapse: collapse;
-  border-right: 0;
-  border-left: 0;
+  border: unset;
+  padding: 0;
+  background: transparent;
 
-  @include media-breakpoint-up(rg) {
-    padding-left: map.get(spacing.$post-sizes, 'large');
+  > a,
+  .form-check {
+    display: flex;
+    position: relative;
+    padding-block-start: tokens.get('list-item-padding-block-start');
+    padding-block-end: tokens.get('list-item-padding-block-end');
+    padding-inline-start: tokens.get('list-item-padding-inline-start');
+    padding-inline-end: tokens.get('list-item-padding-inline-end');
+    border-radius: tokens.get('list-item-focus-outline-radius'); // Used for the focus only
+    color: tokens.get('list-item-enabled-fg');
 
-    &-minimal {
-      padding-left: 0;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      border-block-end: tokens.get('list-item-border-width') tokens.get('list-item-border-style')
+        tokens.get('list-item-enabled-border');
+      bottom: 0;
+      left: 0;
     }
 
-    &-transparent {
-      padding-right: map.get(spacing.$post-sizes, 'mini');
-      padding-left: map.get(spacing.$post-sizes, 'regular');
-    }
-  }
+    &:hover {
+      color: tokens.get('list-item-hover-fg');
 
-  @include media-breakpoint-up(lg) {
-    &-big {
-      padding: map.get(spacing.$post-sizes, 'small-large') map.get(spacing.$post-sizes, 'mini')
-        map.get(spacing.$post-sizes, 'small-large') map.get(spacing.$post-sizes, 'regular');
-    }
-  }
-
-  &-svg {
-    flex: 0 0 auto;
-  }
-
-  &-left-icon {
-    justify-content: flex-start;
-    padding-left: map.get(spacing.$post-sizes, 'mini');
-
-    @include media-breakpoint-up(rg) {
-      padding-left: map.get(spacing.$post-sizes, 'small-regular');
-    }
-
-    .list-group-item-svg {
-      margin-right: map.get(spacing.$post-sizes, 'mini');
-
-      @include media-breakpoint-up(rg) {
-        margin-right: map.get(spacing.$post-sizes, 'small-regular');
+      &::before {
+        border-block-end-color: tokens.get('list-item-hover-border');
       }
     }
   }
 
-  &-no-border {
-    border: 0;
-  }
+  > a {
+    align-items: center;
+    flex-grow: 1;
+    text-decoration: none;
+    gap: tokens.get('list-item-gap-inline');
 
-  &-minimal {
-    @include type-mixins.font-curve('bigger-regular');
-    padding-right: 0;
-    padding-left: 0;
-  }
-
-  &-transparent {
-    background-color: transparent;
-
-    @include media-breakpoint-up(rg) {
-      padding-left: map.get(spacing.$post-sizes, 'regular');
-    }
-
-    &:hover {
-      background-color: transparent;
+    > *:last-child {
+      margin-left: auto;
     }
   }
 
-  &-white {
-    background-color: transparent;
-    color: color.$white;
+  .form-check {
+    justify-content: space-between;
 
-    &:hover {
-      background-color: transparent;
-      color: rgba(var(--post-contrast-color-inverted-rgb), 0.8);
+    &:hover .form-check-label {
+      color: tokens.get('list-item-hover-fg');
+    }
+
+    .form-check-label {
+      color: tokens.get('list-item-enabled-fg');
+    }
+
+    > div {
+      display: inline-flex;
+      padding-block: tokens.get('list-switch-padding-block');
     }
   }
 
-  .list-group &:last-child {
-    border-bottom: 0;
-  }
-}
-
-.list-group-white {
-  .list-group-item {
-    border: 0;
-    border-top: list-group.$list-group-border-width solid
-      rgba(var(--post-contrast-color-inverted-rgb), 0.2);
+  a,
+  div.form-check {
+    @include utilities-mx.focus-style(
+      null,
+      tokens.get('list-item-focus-outline-offset'),
+      tokens.get('list-item-focus-outline-width'),
+      tokens.get('list-item-focus-outline-color'),
+      tokens.get('list-item-focus-outline-style')
+    );
   }
 }
