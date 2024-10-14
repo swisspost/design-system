@@ -28,7 +28,7 @@ const TEAM_MEMBERS: ITeamMember[] = [
   },
   {
     name: 'Myrta Sakellariou',
-    title: 'UI Developer',
+    title: 'Mama Pigxel',
     githubImageId: '66249294',
     githubUsername: 'myrta2302',
   },
@@ -40,7 +40,7 @@ const TEAM_MEMBERS: ITeamMember[] = [
   },
   {
     name: 'Alona Zherdetska',
-    title: 'Cookie Master',
+    title: 'Component Fairy',
     githubImageId: '138328641',
     githubUsername: 'alionazherdetska',
   },
