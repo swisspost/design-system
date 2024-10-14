@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-styles",
-  "version": "7.4.2",
+  "version": "7.4.3",
   "description": "Design System Styles for the Swiss Post web platform.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -48,7 +48,7 @@
     "bootstrap": "5.3.3"
   },
   "devDependencies": {
-    "@swisspost/design-system-icons": "workspace:7.4.2",
+    "@swisspost/design-system-icons": "workspace:7.4.3",
     "@types/node": "20.14.9",
     "autoprefixer": "10.4.19",
     "copyfiles": "2.4.1",
