@@ -26,4 +26,19 @@ $utilities: map.remove($utilities, 'gap');
 $utilities: map.remove($utilities, 'row-gap');
 $utilities: map.remove($utilities, 'column-gap');
 
+$utilities: map.remove($utilities, 'border');
+$utilities: map.remove($utilities, 'border-top');
+$utilities: map.remove($utilities, 'border-bottom');
+$utilities: map.remove($utilities, 'border-start');
+$utilities: map.remove($utilities, 'border-end');
+$utilities: map.remove($utilities, 'border-width');
+$utilities: map.remove($utilities, 'border-color');
+$utilities: map.remove($utilities, 'subtle-border-color');
+$utilities: map.remove($utilities, 'border-opacity');
+$utilities: map.remove($utilities, 'border-radius');
+$utilities: map.remove($utilities, 'border-radius-top');
+$utilities: map.remove($utilities, 'border-radius-bottom');
+$utilities: map.remove($utilities, 'border-radius-start');
+$utilities: map.remove($utilities, 'border-radius-end');
+
 @import 'bootstrap/scss/utilities/api';
