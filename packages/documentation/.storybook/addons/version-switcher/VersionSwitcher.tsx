@@ -102,7 +102,7 @@ function VersionSwitcher() {
         </>
       )}
     >
-      <IconButton placeholder="Versions">
+      <IconButton placeholder="Versions" className="addon-label">
         v{CURRENT_MINOR_VERSION}
         <post-icon name="2052"></post-icon>
       </IconButton>

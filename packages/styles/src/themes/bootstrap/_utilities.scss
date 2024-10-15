@@ -41,4 +41,17 @@ $utilities: map.remove($utilities, 'border-radius-bottom');
 $utilities: map.remove($utilities, 'border-radius-start');
 $utilities: map.remove($utilities, 'border-radius-end');
 
+$utilities: map.remove($utilities, 'flex');
+$utilities: map.remove($utilities, 'flex-direction');
+$utilities: map.remove($utilities, 'align-items');
+$utilities: map.remove($utilities, 'align-content');
+$utilities: map.remove($utilities, 'align-self');
+$utilities: map.remove($utilities, 'flex-grow');
+$utilities: map.remove($utilities, 'flex-shrink');
+$utilities: map.remove($utilities, 'flex-wrap');
+$utilities: map.remove($utilities, 'order');
+$utilities: map.remove($utilities, 'justify-content');
+
+$utilities: map.remove($utilities, 'display');
+
 @import 'bootstrap/scss/utilities/api';
