@@ -7,7 +7,7 @@ interface TeamMember {
   githubUsername: string;
 }
 
-const TEAM_MEMBERS: ITeamMember[] = [
+const TEAM_MEMBERS: TeamMember[] = [
   {
     name: 'Philipp Gfeller',
     title: 'Lead Potato',
