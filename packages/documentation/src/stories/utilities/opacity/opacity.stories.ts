@@ -8,7 +8,7 @@ const meta: MetaExtended = {
   title: 'Utilities/Opacity',
 };
 
-const opacityOptions = [0, 25, 50, 75, 100];
+export const opacityOptions = [0, 25, 50, 75, 100];
 
 export default meta;
 
@@ -33,20 +33,6 @@ export const Opacity: Story = {
       <div class="opacity-${args.opacity}">
         <div class="opacity-content">Opacity ${args.opacity}%</div>
       </div>
-    `;
-  },
-};
-
-export const OpacitySnapshot: Story = {
-  render: () => {
-    return html`
-      ${opacityOptions.map(opacity => {
-        return html`
-          <div class="opacity-${opacity}">
-            <div class="opacity-content">Opacity ${opacity}%</div>
-          </div>
-        `;
-      })}
     `;
   },
 };
