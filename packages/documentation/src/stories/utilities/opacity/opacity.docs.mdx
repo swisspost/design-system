@@ -1,0 +1,25 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import { formatAsMap } from '@/utils/sass-export';
+import * as OpacityStories from './opacity.stories';
+
+<Meta of={OpacityStories} />
+
+# Opacity
+
+<div className="lead">
+  The `opacity` property controls an element's transparency, with 1 being fully opaque and 0 fully
+  transparent. Use `.opacity-{value}` utility classes to adjust accordingly.
+</div>
+
+> - `*-0`
+> - `*-25`
+> - `*-50`
+> - `*-75`
+> - `*-100`
+
+#### Example
+
+<Canvas sourceState="shown" of={OpacityStories.Opacity} />
+<div className="hide-col-default">
+  <Controls of={OpacityStories.Opacity} />
+</div>
