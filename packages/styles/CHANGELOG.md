@@ -1,5 +1,43 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.2
+
+### Minor Changes
+
+- Updated and tokenized styles for the legend element. (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3614](https://github.com/swisspost/design-system/pull/3614))
+
+- Added styling support and documentation for the `<dialog>` element. The dialog will replace the current modal and notification overlay components coming from ng-bootstrap. (by [@gfellerph](https://github.com/gfellerph) with [#2772](https://github.com/swisspost/design-system/pull/2772))
+
+### Patch Changes
+
+- Wrapped new token only entry files in a CSS layer called 'design-system'. The two files affected are 'post-tokens-external.scss' and 'post-tokens-internal.scss' as well as their compiled CSS counterparts. (by [@gfellerph](https://github.com/gfellerph) with [#3720](https://github.com/swisspost/design-system/pull/3720))
+
+- Deprecated the ng-bootstrap components Modal and Notification overlay in favor of the new Dialog component. The styles for these ng-bootstrap components will be removed in a future major version. (by [@gfellerph](https://github.com/gfellerph) with [#2772](https://github.com/swisspost/design-system/pull/2772))
+
+- Fixed an issue with element styles that were not compiled to the output as CSS. (by [@gfellerph](https://github.com/gfellerph) with [#3709](https://github.com/swisspost/design-system/pull/3709))
+
+## 9.0.0-next.1
+
+### Major Changes
+
+- Removed the following placeholders: `%list-adjustment`, `%module-container`, `%default-module-spacer`, `%text-container`. (by [@leagrdv](https://github.com/leagrdv) with [#3623](https://github.com/swisspost/design-system/pull/3623))
+
+- Updated the margin, padding, and gap utility classes to use the pixel values (1, 2, ... , 112) instead of size names (hair, line, ..., bigger-giant). (by [@alizedebray](https://github.com/alizedebray) with [#3557](https://github.com/swisspost/design-system/pull/3557))
+
+### Minor Changes
+
+- Added Text Highlighted component. (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3586](https://github.com/swisspost/design-system/pull/3586))
+
+- Added lead text component for introductory paragraphs. (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3575](https://github.com/swisspost/design-system/pull/3575))
+
+### Patch Changes
+
+- styles: Added reset styles (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3545](https://github.com/swisspost/design-system/pull/3545))
+
+- Removed global styles (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3554](https://github.com/swisspost/design-system/pull/3554))
+
+- Updated the style of headings (h1-h6). (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3534](https://github.com/swisspost/design-system/pull/3534))
+
 ## 9.0.0-next.0
 
 ### Major Changes
@@ -542,7 +580,7 @@
 
 - Deprecated the base64 icons defined as CSS backgrounds. This technology is outdated and contributes a large amount to the CSS bloat. The current approach for using icons is the `post-icon` web-component. (by [@gfellerph](https://github.com/gfellerph) with [#1226](https://github.com/swisspost/design-system/pull/1226))
 
-- Deprecated the post-specific sizing variables (e.g. `$size-hair`, `$size-huge`, etc.) and classes (`.m-hair`, `.mt-sm-micro`, etc.) for all of the following properties: `margin`, `padding`, `line-height`, `height`, `max-height`, `width`, `max-width` and `gap`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1267](https://github.com/swisspost/design-system/pull/1267))
+- Deprecated the post-specific sizing variables (e.g. `$size-hair`, `$size-huge`, etc.) and classes (`.m-1`, `.mt-sm-4`, etc.) for all of the following properties: `margin`, `padding`, `line-height`, `height`, `max-height`, `width`, `max-width` and `gap`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1267](https://github.com/swisspost/design-system/pull/1267))
 
 ## 5.4.1
 

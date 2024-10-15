@@ -1,12 +1,18 @@
 @use 'sass:list';
 @use 'sass:map';
 @use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/tokens/utilities' as tokens;
 
 :export {
-  @each $key, $value in post.$post-sizes {
-    sizes_#{$key}: #{$value};
+  @each $key, $value in tokens.$post-spacing {
+    spacing_#{$key}: #{$value};
   }
   @each $breakpoint in post.$grid-breakpoints-list {
-    breakpoints_#{$breakpoint}: $breakpoint;
+    @if (map.get(post.$grid-breakpoints, $breakpoint) == 0) {
+      firstBreakpoint_#{$breakpoint}: $breakpoint;
+    }
+    @if (map.get(post.$grid-breakpoints, $breakpoint) != 0) {
+      breakpoints_#{$breakpoint}: $breakpoint;
+    }
   }
 }

@@ -1,0 +1,14 @@
+@use 'sass:map';
+@use '../functions/tokens';
+@use '../tokens/components';
+
+tokens.$default-map: components.$post-text-highlighted;
+
+.text-highlighted {
+  background-color: tokens.get('text-highlighted-bg');
+  color: tokens.get('text-highlighted-fg');
+  padding: tokens.get('text-highlighted-padding-text');
+  margin-block-start: tokens.get('text-highlighted-height-space-bottom');
+  margin-block-end: tokens.get('text-highlighted-height-space-bottom');
+  border-radius: tokens.get('text-highlighted-border-radius');
+}

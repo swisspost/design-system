@@ -15,10 +15,10 @@ type Story = StoryObj;
 export const Chip: Story = {
   render: (_args: Args, context: StoryContext) => {
     return html`
-      <div class="d-flex flex-wrap gap-1 align-items-start">
+      <div class="d-flex flex-wrap gap-4 align-items-start">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div class="${bg} d-flex flex-wrap align-items-start gap-regular p-regular">
+            <div class="${bg} d-flex flex-wrap align-items-start gap-16 p-16">
               ${bombArgs({
                 text: [
                   'Malakceptebla Insigno',

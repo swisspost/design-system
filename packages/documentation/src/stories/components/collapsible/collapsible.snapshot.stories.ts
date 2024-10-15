@@ -24,7 +24,7 @@ export const Collapsible: Story = {
                 collapsed: [false, true],
               }).map(
                 (args: Args, i: number) => html`
-                  <div class="col-6 p-3 d-flex flex-column gap-regular">
+                  <div class="col-6 p-16 d-flex flex-column gap-16">
                     <p class="m-0">collapsed: ${args.collapsed}</p>
                     ${meta.render?.(
                       { ...context.args, ...args },
