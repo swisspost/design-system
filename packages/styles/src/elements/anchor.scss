@@ -5,20 +5,20 @@
 tokens.$default-map: elements.$post-link;
 
 a {
-  text-decoration: tokens.get('post-link', 'decoration');
-  border-radius: tokens.get('post-link', 'border-radius');
+  text-decoration: tokens.get('link-decoration');
+  border-radius: tokens.get('link-border-radius');
   color: inherit;
 
   &:hover {
-    color: tokens.get('post-link', 'hover-fg');
+    color: tokens.get('link-hover-fg');
   }
 
   @include utilities.focus-style(
     '',
-    tokens.get('post-link', 'focus-outline-offset'),
-    tokens.get('post-link', 'focus-outline-width'),
-    tokens.get('post-link', 'focus-outline-color'),
-    tokens.get('post-link', 'focus-outline-style')
+    tokens.get('link-focus-outline-offset'),
+    tokens.get('link-focus-outline-width'),
+    tokens.get('link-focus-outline-color'),
+    tokens.get('link-focus-outline-style')
   );
 
   @include utilities.high-contrast-mode() {
