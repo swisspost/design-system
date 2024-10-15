@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface ITeamMember {
+interface TeamMember {
   name: string;
   title: string;
   githubImageId: string;
