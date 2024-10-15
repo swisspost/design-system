@@ -21,13 +21,13 @@ tokens.$default-map: components.$post-radio-button;
   margin-bottom: form-check.$form-check-margin-bottom;
 
   @include utility-mx.focus-style-custom() {
-    outline: tokens.get('radio-button', 'focus-border-width') solid
-      tokens.get('radio-button', 'focus-stroke');
-    color: tokens.get('radio-button', 'selected-fg');
-    background-color: tokens.get('radio-button', 'selected-bg');
+    outline: tokens.get('radio-button-focus-border-width') solid
+      tokens.get('radio-button-focus-stroke');
+    color: tokens.get('radio-button-selected-fg');
+    background-color: tokens.get('radio-button-selected-bg');
 
     .form-check-input[type='radio'] {
-      border-color: tokens.get('radio-button', 'selected-stroke');
+      border-color: tokens.get('radio-button-selected-stroke');
     }
 
     // TODO: Use tokens for these (not yet provided)
@@ -45,8 +45,8 @@ tokens.$default-map: components.$post-radio-button;
 
   &-input,
   &-label {
-    color: tokens.get('radio-button', 'enabled-fg');
-    background-color: tokens.get('radio-button', 'enabled-bg');
+    color: tokens.get('radio-button-enabled-fg');
+    background-color: tokens.get('radio-button-enabled-bg');
     transition: color #{animation.$transition-base-timing};
 
     @include utility-mx.high-contrast-mode {
@@ -55,9 +55,9 @@ tokens.$default-map: components.$post-radio-button;
 
     &:hover:not([disabled]),
     &:hover:not([disabled]) ~ &-label {
-      color: tokens.get('radio-button', 'hover-fg');
-      background-color: tokens.get('radio-button', 'hover-bg');
-      border-color: tokens.get('radio-button', 'hover-stroke');
+      color: tokens.get('radio-button-hover-fg');
+      background-color: tokens.get('radio-button-hover-bg');
+      border-color: tokens.get('radio-button-hover-stroke');
 
       @include utility-mx.high-contrast-mode() {
         border-color: Highlight;
@@ -66,21 +66,22 @@ tokens.$default-map: components.$post-radio-button;
   }
 
   &-input {
-    display: inline-flex;
-    flex: 0 auto;
-    appearance: none;
-    background: transparent;
-    height: tokens.get('radio-button', 'icon-height-inner');
-    width: tokens.get('radio-button', 'icon-width-inner');
-    border: tokens.get('radio-button', 'icon-border-width') solid
-      tokens.get('radio-button', 'enabled-stroke');
-    margin-top: 1px;
-    @include utility-mx.focus-style-none();
-
     &:not([disabled]),
     &:not([disabled]) ~ .form-check-label {
       cursor: pointer;
     }
+
+    @include utility-mx.focus-style-none();
+
+    display: inline-flex;
+    flex: 0 auto;
+    appearance: none;
+    background: transparent;
+    height: tokens.get('radio-button-icon-ring');
+    width: tokens.get('radio-button-icon-ring');
+    border: tokens.get('radio-button-icon-border-width') solid
+      tokens.get('radio-button-enabled-stroke');
+    margin-top: 1px;
 
     @include utility-mx.high-contrast-mode {
       border-color: FieldText; // For blink-browser as otherwise the default color (which is not a full color) will be converted to Highlight
@@ -111,7 +112,7 @@ tokens.$default-map: components.$post-radio-button;
     }
 
     &[type='radio'] {
-      border-radius: tokens.get('radio-button', 'border-radius-round');
+      border-radius: tokens.get('radio-button-icon-border-radius-round');
 
       &:checked::after {
         // TODO: Use tokens
@@ -141,9 +142,6 @@ tokens.$default-map: components.$post-radio-button;
     }
 
     &[disabled] {
-      border: 0;
-      background-image: url('#{form-check.$form-check-input-disabled-background-url-light-lg}');
-
       &[type='checkbox'],
       &[type='radio'] {
         @include utility-mx.high-contrast-mode {
@@ -169,6 +167,9 @@ tokens.$default-map: components.$post-radio-button;
         }
       }
 
+      border: 0;
+      background-image: url('#{form-check.$form-check-input-disabled-background-url-light-lg}');
+
       @include color-mx.on-dark-background {
         background-image: url('#{form-check.$form-check-input-disabled-background-url-dark-lg}');
       }
@@ -192,8 +193,8 @@ tokens.$default-map: components.$post-radio-button;
 
     &[disabled],
     &[disabled] ~ .form-check-label {
-      color: tokens.get('radio-button', 'disabled-fg');
-      background-color: tokens.get('radio-button', 'disabled-bg');
+      color: tokens.get('radio-button-disabled-fg');
+      background-color: tokens.get('radio-button-disabled-bg');
 
       @include color-mx.on-dark-background() {
         color: color.$white-alpha-80;
