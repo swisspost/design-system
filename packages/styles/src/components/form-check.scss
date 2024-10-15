@@ -14,7 +14,6 @@
 
 tokens.$default-map: components.$post-radio-button;
 
-
 .form-check {
   display: flex;
   flex-wrap: wrap;
@@ -22,9 +21,11 @@ tokens.$default-map: components.$post-radio-button;
   margin-bottom: form-check.$form-check-margin-bottom;
 
   @include utility-mx.focus-style-custom() {
-    outline: tokens.get('radio-button', 'focus-border-width') solid tokens.get('radio-button', 'focus-stroke');
+    outline: tokens.get('radio-button', 'focus-border-width') solid
+      tokens.get('radio-button', 'focus-stroke');
     color: tokens.get('radio-button', 'selected-fg');
     background-color: tokens.get('radio-button', 'selected-bg');
+
     .form-check-input[type='radio'] {
       border-color: tokens.get('radio-button', 'selected-stroke');
     }
@@ -76,9 +77,10 @@ tokens.$default-map: components.$post-radio-button;
     flex: 0 auto;
     appearance: none;
     background: transparent;
-    height: tokens.get('radio-button','icon-height-inner');
+    height: tokens.get('radio-button', 'icon-height-inner');
     width: tokens.get('radio-button', 'icon-width-inner');
-    border: tokens.get('radio-button', 'icon-border-width') solid tokens.get('radio-button', 'enabled-stroke');
+    border: tokens.get('radio-button', 'icon-border-width') solid
+      tokens.get('radio-button', 'enabled-stroke');
     margin-top: 1px;
 
     @include utility-mx.high-contrast-mode {
