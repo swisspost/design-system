@@ -16,9 +16,25 @@ import * as AvatarPictureStories from './avatar.stories';
 <Canvas of={AvatarPictureStories.Default} sourceState="shown" />
 <Controls of={AvatarPictureStories.Default} />
 
+## Interactive Wrapper Element
+
+### Anchor
+
+Nest the `<post-avatar>` component inside an anchor tag to make it clickable.
+Use this approach to create a link to the user profile.
+
+<Canvas of={AvatarPictureStories.AnchorWrapped} sourceState="shown" />
+
+### Button
+
+Nest the `<post-avatar>` component inside a button tag to make it clickable.
+Use this approach to use the component as a menu toggler, ...
+
+<Canvas of={AvatarPictureStories.ButtonWrapped} sourceState="shown" />
+
 ## Customize background and forground colors
 
-The component provides two css-variables, which allow you to switch the background and the foreground color if needed (this gets visible when used with initials only).
+The component provides some css-variables, which allow you to switch the background and the foreground color if needed.
 
 <post-alert type="warning">Please ensure at all times, that the background and foreground colors have sufficient contrast!</post-alert>
 
@@ -26,6 +42,7 @@ The component provides two css-variables, which allow you to switch the backgrou
 post-avatar {
   --post-avatar-bg: #f00;
   --post-avatar-fg: #000;
+  --post-avatar-bg-img-overlay: transparent;
 }
 ```
 

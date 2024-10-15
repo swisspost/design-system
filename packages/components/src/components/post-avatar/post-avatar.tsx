@@ -2,11 +2,6 @@ import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkNonEmpty } from '@/utils';
 
-enum TAG_ROLES {
-  a = 'link',
-  button = 'button',
-}
-
 // https://docs.gravatar.com/api/avatars/images/
 const GRAVATAR_DEFAULT = '404';
 const GRAVATAR_RATING = 'g';
@@ -33,11 +28,6 @@ export class PostAvatar {
   private static INTERNAL_USERID_IMAGE_SRC = 'https://web.post.ch/UserProfileImage/{userid}.png';
 
   @Element() host: HTMLPostAvatarElement;
-
-  /**
-   * Defines the tag, the component represents.
-   */
-  @Prop() readonly tag: keyof typeof TAG_ROLES = null;
 
   /**
    * Defines the users firstname.
@@ -177,10 +167,17 @@ export class PostAvatar {
 
   render() {
     return (
-      <Host data-version={version} role={TAG_ROLES[this.tag]} tabindex={TAG_ROLES[this.tag] && 0}>
+      <Host data-version={version}>
         <slot onSlotchange={this.onSlotDefaultChange.bind(this)}>
           {this.avatarType === 'image' && <img src={this.imageUrl} alt={this.imageAlt} />}
-          {this.avatarType === 'initials' && <div class="initials">{this.initials}</div>}
+          {this.avatarType === 'initials' && (
+            <div class="initials">
+              <span aria-hidden="true">{this.initials}</span>
+              <span class="visually-hidden">
+                {this.firstname} {this.lastname}
+              </span>
+            </div>
+          )}
         </slot>
       </Host>
     );

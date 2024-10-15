@@ -1,6 +1,7 @@
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { MetaComponent } from '@root/types';
 import { html, nothing } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { components } from '@swisspost/design-system-components/dist/docs.json';
 import { coloredBackground } from '@/shared/decorators/dark-background';
 
@@ -20,7 +21,6 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    tag: null,
     firstname: 'Firstname',
     lastname: '',
     userid: '',
@@ -38,20 +38,20 @@ const meta: MetaComponent = {
         EMAIL_ARGTYPE?.docs ?? ''
       } <div className="alert alert-info alert-sm">Do you need an example email address? Try it out with <strong>oss@post.ch</strong>.</div>`,
     },
-    'imageSrc': {
-      control: 'text',
-      description:
-        'Define an image `src` to insert a custom image.<div className="alert alert-info alert-sm">Do you need an example? Try our logo <strong>/assets/images/logo-swisspost.svg</strong>.</div>',
-      table: {
-        category: 'Content',
-      },
-    },
     'slots-default': {
       name: 'default',
       table: {
         type: {
           summary: 'HTMLImageElement',
         },
+      },
+    },
+    'imageSrc': {
+      control: 'text',
+      description:
+        'Define an image `src` to insert a custom image.<div className="alert alert-info alert-sm">Do you need an example? Try our logo <strong>/assets/images/logo-swisspost.svg</strong>.</div>',
+      table: {
+        category: 'Content',
       },
     },
   },
@@ -66,8 +66,6 @@ export const Default: Story = {
     (story: StoryFn, context: StoryContext) => coloredBackground(story, context, 'light'),
   ],
   render: (args: Args) => html`<post-avatar
-    tag="${args.tag || nothing}"
-    href="${(args.tag === 'a' && '#') || nothing}"
     firstname="${args.firstname || nothing}"
     lastname="${args.lastname || nothing}"
     userid="${args.userid || nothing}"
@@ -79,4 +77,16 @@ export const Default: Story = {
         />`
       : nothing}</post-avatar
   >`,
+};
+
+export const AnchorWrapped: Story = {
+  render: (args: Args, context: StoryContext) => {
+    return html`<a href="#">${Default.render?.(args, context)}</a>`;
+  },
+};
+
+export const ButtonWrapped: Story = {
+  render: (args: Args, context: StoryContext) => {
+    return html`<button>${Default.render?.(args, context)}</button>`;
+  },
 };

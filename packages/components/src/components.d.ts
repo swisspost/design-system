@@ -89,10 +89,6 @@ export namespace Components {
          */
         "lastname"?: string;
         /**
-          * Defines the tag, the component represents.
-         */
-        "tag": keyof typeof TAG_ROLES;
-        /**
           * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
          */
         "userid"?: string;
@@ -626,10 +622,6 @@ declare namespace LocalJSX {
           * Defines the users lastname.
          */
         "lastname"?: string;
-        /**
-          * Defines the tag, the component represents.
-         */
-        "tag"?: keyof typeof TAG_ROLES;
         /**
           * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
          */
