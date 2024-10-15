@@ -12,4 +12,4 @@ runs:
   steps:
     - name: Install netlify-cli
       shell: bash
-      run: pnpm i -g netlify-cli@17
+      run: pnpm i -g netlify-cli@17.36.1

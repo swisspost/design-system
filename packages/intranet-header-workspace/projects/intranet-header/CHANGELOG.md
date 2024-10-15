@@ -1,5 +1,20 @@
 # @swisspost/design-system-intranet-header
 
+## 8.3.0
+
+### Patch Changes
+
+- Improve accessibility of intranet header by adding an alternative text to the user profile image. (by [@leagrdv](https://github.com/leagrdv) with [#3711](https://github.com/swisspost/design-system/pull/3711))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.3.0
+
+## 8.2.2
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.2.2
+
 ## 8.2.1
 
 ### Patch Changes

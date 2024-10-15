@@ -32,7 +32,7 @@
     "title": "Version 7",
     "version": "7.4.0",
     "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
-    "url": "https://swisspost-design-system-version-7.netlify.app",
+    "url": "https://design-system-version-7.netlify.app",
     "dependencies": {
       "@angular/core": "^18.0.0",
       "@ng-bootstrap/ng-bootstrap": "^17.0.0",
@@ -52,7 +52,7 @@
     "title": "Version 6",
     "version": "6.6.1",
     "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
-    "url": "https://swisspost-design-system-version-6.netlify.app",
+    "url": "https://design-system-version-6.netlify.app",
     "dependencies": {
       "@angular/core": "16.2.3",
       "@ng-bootstrap/ng-bootstrap": "15.1.1",

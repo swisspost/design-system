@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components-react",
-  "version": "8.2.1",
+  "version": "8.3.0",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,7 +20,7 @@
     "lint": "eslint src/**/*.ts"
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:8.2.1"
+    "@swisspost/design-system-components": "workspace:8.3.0"
   },
   "devDependencies": {
     "@types/node": "20.14.14",

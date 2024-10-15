@@ -1,5 +1,23 @@
 # @swisspost/design-system-styles
 
+## 8.3.0
+
+### Minor Changes
+
+- Added styling support and documentation for the `<dialog>` element. The dialog will replace the current modal and notification overlay components coming from ng-bootstrap. (by [@leagrdv](https://github.com/leagrdv) with [#3713](https://github.com/swisspost/design-system/pull/3713))
+
+### Patch Changes
+
+- Deprecated the ng-bootstrap components Modal and Notification overlay in favor of the new Dialog component. The styles for these ng-bootstrap components will be removed in a future major version. (by [@leagrdv](https://github.com/leagrdv) with [#3713](https://github.com/swisspost/design-system/pull/3713))
+
+## 8.2.2
+
+### Patch Changes
+
+- Improved accessibility of headings with subheadings by removing the <br> element and added the utility class d-block. Consult https://design-system.post.ch/?path=/docs/7ecd87f1-de96-4e39-a057-ba1798eb6959--docs for updated markup. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3680](https://github.com/swisspost/design-system/pull/3680))
+
+- Fixed step numbering in stepper component. Moved `counter-increment`to `stepper-link` selector to ensure correct step numbers are displayed throughout progression. (by [@schaertim](https://github.com/schaertim) with [#3519](https://github.com/swisspost/design-system/pull/3519))
+
 ## 8.2.1
 
 ### Patch Changes
