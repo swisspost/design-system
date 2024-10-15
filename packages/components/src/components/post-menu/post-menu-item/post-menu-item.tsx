@@ -11,14 +11,14 @@ export class PostMenuItem {
   render() {
     if (this.href) {
       return (
-        <a href={this.href} role="menuitem" tabindex="0">
+        <a href={this.href} role="menuitem">
           <slot></slot>
         </a>
       );
     }
 
     return (
-      <div role="menuitem" tabindex="0">
+      <div role="menuitem">
         <slot></slot>
       </div>
     );

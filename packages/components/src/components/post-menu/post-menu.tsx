@@ -36,7 +36,7 @@ const triggerObserver = getAttributeObserver(menuTargetAttribute, trigger => {
 export class PostMenu {
   private popoverRef: HTMLPostPopovercontainerElement;
   private localBeforeToggleHandler;
-  private currentTrigger: HTMLElement | null = null;
+  private triggerElement: HTMLElement;
 
   private readonly KEYCODES = {
     SPACE: 'Space',
@@ -44,7 +44,7 @@ export class PostMenu {
     UP: 'ArrowUp',
     RIGHT: 'ArrowRight',
     DOWN: 'ArrowDown',
-    ESC: 'Escape',
+    ESCAPE: 'Escape',
   };
 
   @Element() host: HTMLPostMenuElement;
@@ -107,10 +107,8 @@ export class PostMenu {
   }
 
   private handleKeyDown = (e: KeyboardEvent) => {
-    if (['ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'Space'].includes(e.key)) {
+    if (['ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'Space', 'Escape'].includes(e.key)) {
       this.controlKeyDownHandler(e);
-    } else if (e.key === 'Escape') {
-      this.currentTrigger.focus();
     }
   };
 
@@ -124,7 +122,7 @@ export class PostMenu {
     let currentIndex = focusableItems.findIndex(el => el === currentFocusedElement);
 
     if (Object.values(this.KEYCODES).includes(e.code)) e.preventDefault();
-
+    console.log(currentFocusedElement.tagName);
     switch (e.code) {
       case this.KEYCODES.UP:
       case this.KEYCODES.LEFT:
@@ -135,9 +133,13 @@ export class PostMenu {
         currentIndex = currentIndex === focusableItems.length - 1 ? 0 : currentIndex + 1;
         break;
       case this.KEYCODES.SPACE:
+        // If the current element can be activated (e.g., a button or link), trigger it
         if (currentFocusedElement.tagName === 'BUTTON' || currentFocusedElement.tagName === 'A') {
           currentFocusedElement.click();
         }
+        break;
+      case this.KEYCODES.ESCAPE:
+        this.hide();
         break;
       default:
         break;
@@ -153,8 +155,9 @@ export class PostMenu {
     const slot = this.host.shadowRoot.querySelector('slot');
     const slottedElements = slot ? slot.assignedElements() : [];
 
-    const focusableItems = slottedElements.filter(el => el.tagName === 'post-menu-item');
+    const focusableItems = slottedElements.filter(el => el.tagName === 'POST-MENU-ITEM');
 
+    // Ensure each item can be focused
     focusableItems.forEach(el => {
       el.setAttribute('tabindex', '0');
     });
@@ -171,7 +174,6 @@ export class PostMenu {
     if (this.popoverRef) {
       await this.popoverRef.show(target);
       target.setAttribute('aria-expanded', 'true');
-      this.currentTrigger = target; // Store the trigger element
     } else {
       console.error('show: popoverRef is null or undefined');
     }
@@ -184,15 +186,18 @@ export class PostMenu {
   async hide() {
     if (this.popoverRef) {
       await this.popoverRef.hide();
+
+      if (this.triggerElement) {
+        this.triggerElement.focus();
+      }
     } else {
       console.error('hide: popoverRef is null or undefined');
     }
 
+    // Reset aria-expanded attributes on triggers
     this.triggers.forEach(trigger => {
       trigger.setAttribute('aria-expanded', 'false');
     });
-
-    this.currentTrigger = null; // Reset the current trigger when hidden
   }
 
   /**
@@ -204,9 +209,9 @@ export class PostMenu {
   async toggle(target: HTMLElement, force?: boolean) {
     if (this.popoverRef) {
       const newState = await this.popoverRef.toggle(target, force);
+      this.triggerElement = target;
       this.triggers.forEach(trigger => trigger.setAttribute('aria-expanded', 'false'));
       target.setAttribute('aria-expanded', `${newState}`);
-      this.currentTrigger = newState ? target : null; // Store or reset the trigger based on the state
     } else {
       console.error('toggle: popoverRef is null or undefined');
     }
