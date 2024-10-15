@@ -19,10 +19,10 @@
   </head>
   <body style="padding: 1rem">
     <!-- This is a very simple icons debug page that can also be accessed via CDN in order to quickly check on a specific package version or to test locally -->
-    <div class="container my-5" x-data="icons">
+    <div class="container my-48" x-data="icons">
       <section>
         <h1 id="converted">Icons</h1>
-        <code class="my-big d-block">
+        <code class="my-32 d-block">
           Version:
           <span x-text="icons.version"></span>
           <br />
@@ -52,7 +52,7 @@
       </section>
 
       <section x-show="icons.wrongViewBox.length > 0">
-        <h1 class="mt-huge mb-big">Wrong ViewBox</h1>
+        <h1 class="mt-56 mb-32">Wrong ViewBox</h1>
         <p>The viewBox attribute of the incoming SVG file is not set to "0 0 32 32".</p>
         <div class="converted-icons icons">
           <template x-for="icon in icons.wrongViewBox">
@@ -69,7 +69,7 @@
       </section>
 
       <section x-show="icons.noKeywords.length > 0">
-        <h1 class="mt-huge mb-big">No Keywords</h1>
+        <h1 class="mt-56 mb-32">No Keywords</h1>
         <p>The incoming SVG file has no keywords specified.</p>
         <div class="converted-icons icons">
           <template x-for="icon in icons.noKeywords">
@@ -86,7 +86,7 @@
       </section>
 
       <section x-show="icons.errored.length > 0">
-        <h1 class="mt-huge mb-big">Errored</h1>
+        <h1 class="mt-56 mb-32">Errored</h1>
         <ul>
           <template x-for="icon in icons.errored">
             <li>
@@ -99,7 +99,7 @@
       </section>
 
       <section x-show="icons.notFound && icons.notFound.length > 0">
-        <h1 class="mt-huge mb-big">SVG file not found</h1>
+        <h1 class="mt-56 mb-32">SVG file not found</h1>
         <ul>
           <template x-for="icon in icons.noSVG">
             <li x-text="icon.file.basename"></li>

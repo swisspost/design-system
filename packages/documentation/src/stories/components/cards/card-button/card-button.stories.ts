@@ -91,7 +91,7 @@ function cardButtonRender(args: Args, count = 42) {
       <a href="#" class="card-body d-flex align-items-center">
         <post-icon name=${args.icon}></post-icon>
         <div>
-          <p class="mb-1">${args.focus}</p>
+          <p class="mb-4">${args.focus}</p>
           <h5 class="font-weight-bold mb-0">${args.title}</h5>
         </div>
       </a>

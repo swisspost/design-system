@@ -1,5 +1,9 @@
 @use '@swisspost/design-system-styles/core' as post;
 
+.addon-label {
+  color: post.$body-color !important;
+}
+
 .addon-dropdown {
   min-width: 12rem;
   display: flex;
@@ -9,7 +13,7 @@
   top: -5px;
   right: 0;
   padding: post.$size-mini;
-  background-color: var(--post-light);
+  background-color: post.$white;
   border: post.$border-width solid post.$border-color;
   border-radius: post.$border-radius;
   font-size: post.$font-size-sm;
