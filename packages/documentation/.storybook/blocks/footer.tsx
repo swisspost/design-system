@@ -16,7 +16,7 @@ const TEAM_MEMBERS: ITeamMember[] = [
   },
   {
     name: 'Alizé Debray',
-    title: 'UI Developer',
+    title: 'UI Mademoiselle',
     githubImageId: '33580481',
     githubUsername: 'alizedebray',
   },
