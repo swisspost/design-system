@@ -5,6 +5,6 @@
 tokens.$default-map: components.$post-lead;
 
 .lead {
-  font-size: tokens.get('post-lead-font-size');
-  font-weight: tokens.get('post-lead-font-weight');
+  font-size: tokens.get('lead-font-size');
+  font-weight: tokens.get('lead-font-weight');
 }

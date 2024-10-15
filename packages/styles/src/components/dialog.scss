@@ -212,6 +212,8 @@ dialog:not([data-animation='none']) {
   }
 
   &[data-animation='slide-in'] {
+    transform: translateY(calc(var(--_dialog-slide-in-offset)));
+
     &[data-position='top'] {
       --_dialog-slide-in-offset: -3rem;
     }
@@ -219,8 +221,6 @@ dialog:not([data-animation='none']) {
     &[data-position='bottom'] {
       --_dialog-slide-in-offset: 3rem;
     }
-
-    transform: translateY(calc(var(--_dialog-slide-in-offset)));
 
     &[open] {
       transform: translateY(0);
