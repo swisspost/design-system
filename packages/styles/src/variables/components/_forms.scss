@@ -51,9 +51,9 @@ $input-border-radius-lg: 0 !default;
 $input-border-radius-rg: 0 !default;
 $input-border-radius-sm: 0 !default;
 
-$input-focus-bg: inherit !default;
+$input-focus-bg: $input-bg !default;
 $input-focus-border-color: inherit !default;
-$input-focus-color: inherit !default;
+$input-focus-color: $input-color !default;
 $input-focus-width: button.$input-btn-focus-width !default;
 $input-focus-box-shadow: none !default;
 $input-focus-outline-thickness: spacing.$size-line;

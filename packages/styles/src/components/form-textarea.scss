@@ -15,8 +15,5 @@ textarea.form-control {
     }
   }
 
-  &:focus {
-    background-color: #{forms.$input-bg};
-    color: #{forms.$input-color};
-  }
+
 }
