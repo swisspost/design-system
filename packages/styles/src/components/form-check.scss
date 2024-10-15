@@ -288,6 +288,9 @@ tokens.$default-map: components.$post-switch;
 
     // Shared disabled styles
     &[disabled] {
+      border: 0;
+      background-image: url('#{form-check.$form-check-input-disabled-background-url-light-lg}');
+
       &[type='checkbox'],
       &[type='radio'] {
         @include utility-mx.high-contrast-mode {
