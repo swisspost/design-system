@@ -96,6 +96,10 @@
   }
 }
 
+#storybook-explorer-tree [data-item-id^='health'] {
+  display: none;
+}
+
 #downshift-1-menu {
   .search-result-item {
     svg {

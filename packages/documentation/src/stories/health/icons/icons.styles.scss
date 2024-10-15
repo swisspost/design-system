@@ -1,0 +1,39 @@
+.report-container {
+  border: 1px hsl(0, 0%, 80%) solid;
+  border-radius: 0.5rem;
+  padding: 2rem;
+}
+
+.status {
+  line-height: 1.25rem;
+  font-size: 1rem;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid hsl(0, 0%, 80%);
+}
+
+.icons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(35px, 1fr));
+  gap: 1rem;
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.icon img {
+  width: 24px;
+  height: 24px;
+  margin: 0.2rem 0;
+}
+pre {
+  white-space: pre-wrap;
+  word-break: break-all;
+}

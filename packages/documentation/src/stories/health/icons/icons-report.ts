@@ -1,5 +1,3 @@
-// icon-report.interface.ts
-
 export interface IconReport {
   version: string;
   created: string;

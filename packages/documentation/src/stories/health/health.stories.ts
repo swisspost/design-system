@@ -7,4 +7,4 @@ export default meta;
 
 type Story = StoryObj;
 
-export const Default: Story = {};
+export const Health: Story = {};

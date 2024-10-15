@@ -64,12 +64,13 @@ const preview: Preview = {
           // Category - Utilities
           'Utilities',
 
-          'Health',
-          ['Icons'],
-
           // Category - Misc
           'Misc',
           ['Migration Guide', 'Changelog', 'Versions'],
+
+          // Category - Health
+          'Health',
+          ['Icons'],
 
           // Category - Snapshots (hidden)
           'Snapshots',
