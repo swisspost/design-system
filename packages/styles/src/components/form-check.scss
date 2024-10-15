@@ -20,41 +20,40 @@ tokens.$default-map: components.$post-switch;
   align-items: center;
 
   &:has(.form-check-input[type='radio']) {
-    margin-bottom: tokens.get('radio-button', 'gap-block-group', components.$post-radio-button);
+    margin-bottom: tokens.get('radio-button-gap-block-group', components.$post-radio-button);
 
     &:focus-within {
       @include utility-mx.focus-style(
-        $offset: tokens.get('radio-button', 'focus-outline-offset', components.$post-radio-button),
-        $width: tokens.get('radio-button', 'focus-border-width', components.$post-radio-button),
-        $color: tokens.get('radio-button', 'focus-stroke', components.$post-radio-button),
-        $style: tokens.get('radio-button', 'focus-border-style', components.$post-radio-button)
+        $offset: tokens.get('radio-button-focus-outline-offset', components.$post-radio-button),
+        $width: tokens.get('radio-button-focus-border-width', components.$post-radio-button),
+        $color: tokens.get('radio-button-focus-stroke', components.$post-radio-button),
+        $style: tokens.get('radio-button-focus-border-style', components.$post-radio-button)
       ) {
-        color: tokens.get('radio-button', 'selected-fg', components.$post-radio-button);
-        background-color: tokens.get('radio-button', 'selected-bg', components.$post-radio-button);
+        color: tokens.get('radio-button-selected-fg', components.$post-radio-button);
+        background-color: tokens.get('radio-button-selected-bg', components.$post-radio-button);
         border-radius: tokens.get(
-          'radio-button',
-          'focus-border-radius',
+          'radio-button-focus-border-radius',
           components.$post-radio-button
         );
-        border-color: tokens.get('radio-button', 'selected-stroke', components.$post-radio-button);
+        border-color: tokens.get('radio-button-selected-stroke', components.$post-radio-button);
       }
     }
   }
 
   &:has(.form-check-input[type='checkbox']) {
-    margin-bottom: tokens.get('checkbox', 'gap-block-group', components.$post-checkbox);
+    margin-bottom: tokens.get('checkbox-gap-block-group', components.$post-checkbox);
 
     &:focus-within {
       @include utility-mx.focus-style(
-        $offset: tokens.get('checkbox', 'focus-outline-offset', components.$post-checkbox),
-        $width: tokens.get('checkbox', 'focus-border-width', components.$post-checkbox),
-        $color: tokens.get('checkbox', 'focus-stroke', components.$post-checkbox),
-        $style: tokens.get('checkbox', 'focus-border-style', components.$post-checkbox)
+        $offset: tokens.get('checkbox-focus-outline-offset', components.$post-checkbox),
+        $width: tokens.get('checkbox-focus-border-width', components.$post-checkbox),
+        $color: tokens.get('checkbox-focus-stroke', components.$post-checkbox),
+        $style: tokens.get('checkbox-focus-border-style', components.$post-checkbox)
       ) {
-        color: tokens.get('checkbox', 'selected-fg', components.$post-checkbox);
-        background-color: tokens.get('checkbox', 'selected-bg', components.$post-checkbox);
-        border-radius: tokens.get('checkbox', 'focus-border-radius', components.$post-checkbox);
-        border-color: tokens.get('checkbox', 'selected-stroke', components.$post-checkbox);
+        color: tokens.get('checkbox-selected-fg', components.$post-checkbox);
+        background-color: tokens.get('checkbox-selected-bg', components.$post-checkbox);
+        border-radius: tokens.get('checkbox-focus-border-radius', components.$post-checkbox);
+        border-color: tokens.get('checkbox-selected-stroke', components.$post-checkbox);
       }
     }
   }
@@ -102,48 +101,42 @@ tokens.$default-map: components.$post-switch;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: tokens.get('radio-button', 'icon-ring', components.$post-radio-button);
-      width: tokens.get('radio-button', 'icon-ring', components.$post-radio-button);
-      border: tokens.get('radio-button', 'icon-border-width', components.$post-radio-button)
-        tokens.get('radio-button', 'icon-border-style-default', components.$post-radio-button)
-        tokens.get('radio-button', 'enabled-stroke', components.$post-radio-button);
+      height: tokens.get('radio-button-icon-ring', components.$post-radio-button);
+      width: tokens.get('radio-button-icon-ring', components.$post-radio-button);
+      border: tokens.get('radio-button-icon-border-width', components.$post-radio-button)
+        tokens.get('radio-button-icon-border-style-default', components.$post-radio-button)
+        tokens.get('radio-button-enabled-stroke', components.$post-radio-button);
       padding-block: tokens.get(
-        'radio-button',
-        'icon-padding-block-inner',
+        'radio-button-icon-padding-block-inner',
         components.$post-radio-button
       );
       padding-inline: tokens.get(
-        'radio-button',
-        'icon-padding-inline-inner',
+        'radio-button-icon-padding-inline-inner',
         components.$post-radio-button
       );
       margin-block: tokens.get(
-        'radio-button',
-        'icon-padding-block-container',
+        'radio-button-icon-padding-block-container',
         components.$post-radio-button
       );
       border-radius: tokens.get(
-        'radio-button',
-        'icon-border-radius-round',
+        'radio-button-icon-border-radius-round',
         components.$post-radio-button
       );
 
-      color: tokens.get('radio-button', 'enabled-fg', components.$post-radio-button);
-      background-color: tokens.get('radio-button', 'enabled-bg', components.$post-radio-button);
+      color: tokens.get('radio-button-enabled-fg', components.$post-radio-button);
+      background-color: tokens.get('radio-button-enabled-bg', components.$post-radio-button);
 
       & + .form-check-label {
         flex: 1;
 
         padding-block: tokens.get(
-          'radio-button',
-          'label-padding-block',
+          'radio-button-label-padding-block',
           components.$post-radio-button
         );
 
         :not(.form-switch, .radio-button-card) > & {
           padding-inline-start: tokens.get(
-            'radio-button',
-            'gap-inline-text-start',
+            'radio-button-gap-inline-text-start',
             components.$post-radio-button
           );
         }
@@ -151,12 +144,12 @@ tokens.$default-map: components.$post-switch;
 
       &:hover:not([disabled]),
       &:hover:not([disabled]) ~ .form-check-label {
-        color: tokens.get('radio-button', 'hover-fg', components.$post-radio-button);
-        background-color: tokens.get('radio-button', 'hover-bg', components.$post-radio-button);
-        border-color: tokens.get('radio-button', 'hover-stroke', components.$post-radio-button);
+        color: tokens.get('radio-button-hover-fg', components.$post-radio-button);
+        background-color: tokens.get('radio-button-hover-bg', components.$post-radio-button);
+        border-color: tokens.get('radio-button-hover-stroke', components.$post-radio-button);
 
         &::after {
-          background-color: tokens.get('radio-button', 'hover-fg', components.$post-radio-button);
+          background-color: tokens.get('radio-button-hover-fg', components.$post-radio-button);
         }
 
         @include utility-mx.high-contrast-mode() {
@@ -165,9 +158,9 @@ tokens.$default-map: components.$post-switch;
       }
 
       &:checked::after {
-        background-color: tokens.get('radio-button', 'enabled-fg', components.$post-radio-button);
-        width: tokens.get('radio-button', 'icon-dot', components.$post-radio-button);
-        height: tokens.get('radio-button', 'icon-dot', components.$post-radio-button);
+        background-color: tokens.get('radio-button-enabled-fg', components.$post-radio-button);
+        width: tokens.get('radio-button-icon-dot', components.$post-radio-button);
+        height: tokens.get('radio-button-icon-dot', components.$post-radio-button);
         border-radius: inherit;
 
         @include utility-mx.high-contrast-mode {
@@ -177,27 +170,27 @@ tokens.$default-map: components.$post-switch;
       }
 
       &[disabled] {
-        background-color: tokens.get('radio-button', 'disabled-bg', components.$post-radio-button);
-        border: tokens.get('radio-button', 'icon-border-width', components.$post-radio-button)
-          tokens.get('radio-button', 'icon-border-style-disabled', components.$post-radio-button)
-          tokens.get('radio-button', 'disabled-stroke', components.$post-radio-button);
+        background-color: tokens.get('radio-button-disabled-bg', components.$post-radio-button);
+        border: tokens.get('radio-button-icon-border-width', components.$post-radio-button)
+          tokens.get('radio-button-icon-border-style-disabled', components.$post-radio-button)
+          tokens.get('radio-button-disabled-stroke', components.$post-radio-button);
 
         @include color-mx.on-dark-background {
-          border: tokens.get('radio-button', 'icon-border-width', components.$post-radio-button)
-            tokens.get('radio-button', 'icon-border-style-disabled', components.$post-radio-button)
+          border: tokens.get('radio-button-icon-border-width', components.$post-radio-button)
+            tokens.get('radio-button-icon-border-style-disabled', components.$post-radio-button)
             color.$white-alpha-80;
         }
         @include utility-mx.high-contrast-mode {
-          border: tokens.get('radio-button', 'icon-border-width', components.$post-radio-button)
-            tokens.get('radio-button', 'icon-border-style-disabled', components.$post-radio-button)
+          border: tokens.get('radio-button-icon-border-width', components.$post-radio-button)
+            tokens.get('radio-button-icon-border-style-disabled', components.$post-radio-button)
             GrayText;
         }
       }
 
       &[disabled],
       &[disabled] ~ .form-check-label {
-        color: tokens.get('radio-button', 'disabled-fg', components.$post-radio-button);
-        background-color: tokens.get('radio-button', 'disabled-bg', components.$post-radio-button);
+        color: tokens.get('radio-button-disabled-fg', components.$post-radio-button);
+        background-color: tokens.get('radio-button-disabled-bg', components.$post-radio-button);
 
         @include color-mx.on-dark-background() {
           color: color.$white-alpha-80;
@@ -207,23 +200,22 @@ tokens.$default-map: components.$post-switch;
 
     // Checkbox specific styles
     &[type='checkbox'] {
-      height: tokens.get('checkbox', 'icon-size', components.$post-checkbox);
-      width: tokens.get('checkbox', 'icon-size', components.$post-checkbox);
-      border: tokens.get('checkbox', 'icon-border-width', components.$post-checkbox) solid
-        tokens.get('checkbox', 'enabled-stroke', components.$post-checkbox);
-      border-radius: tokens.get('checkbox', 'border-radius', components.$post-checkbox);
-      padding: tokens.get('checkbox', 'icon-padding-container', components.$post-checkbox);
+      height: tokens.get('checkbox-icon-size', components.$post-checkbox);
+      width: tokens.get('checkbox-icon-size', components.$post-checkbox);
+      border: tokens.get('checkbox-icon-border-width', components.$post-checkbox) solid
+        tokens.get('checkbox-enabled-stroke', components.$post-checkbox);
+      border-radius: tokens.get('checkbox-border-radius', components.$post-checkbox);
+      padding: tokens.get('checkbox-icon-padding-container', components.$post-checkbox);
 
-      color: tokens.get('checkbox', 'enabled-fg', components.$post-checkbox);
-      background-color: tokens.get('checkbox', 'enabled-bg', components.$post-checkbox);
+      color: tokens.get('checkbox-enabled-fg', components.$post-checkbox);
+      background-color: tokens.get('checkbox-enabled-bg', components.$post-checkbox);
 
       & + .form-check-label {
         flex: 1;
-        padding-block: tokens.get('checkbox', 'label-padding-block', components.$post-checkbox);
+        padding-block: tokens.get('checkbox-label-padding-block', components.$post-checkbox);
         :not(.form-switch, .checkbox-button-card) > & {
           padding-inline-start: tokens.get(
-            'checkbox',
-            'gap-inline-text-start',
+            'checkbox-gap-inline-text-start',
             components.$post-checkbox
           );
         }
@@ -233,9 +225,9 @@ tokens.$default-map: components.$post-switch;
       }
       &:hover:not([disabled]),
       &:hover:not([disabled]) ~ .form-check-label {
-        color: tokens.get('checkbox', 'hover-fg', components.$post-checkbox);
-        background-color: tokens.get('checkbox', 'hover-bg', components.$post-checkbox);
-        border-color: tokens.get('checkbox', 'hover-stroke', components.$post-checkbox);
+        color: tokens.get('checkbox-hover-fg', components.$post-checkbox);
+        background-color: tokens.get('checkbox-hover-bg', components.$post-checkbox);
+        border-color: tokens.get('checkbox-hover-stroke', components.$post-checkbox);
 
         @include utility-mx.high-contrast-mode() {
           border-color: Highlight;
@@ -259,26 +251,26 @@ tokens.$default-map: components.$post-switch;
       }
 
       &[disabled] {
-        background-color: tokens.get('checkbox', 'disabled-bg', components.$post-checkbox);
-        border: tokens.get('checkbox', 'icon-border-width', components.$post-checkbox)
-          tokens.get('checkbox', 'border-style-disabled', components.$post-checkbox)
-          tokens.get('checkbox', 'disabled-stroke', components.$post-checkbox);
+        background-color: tokens.get('checkbox-disabled-bg', components.$post-checkbox);
+        border: tokens.get('checkbox-icon-border-width', components.$post-checkbox)
+          tokens.get('checkbox-border-style-disabled', components.$post-checkbox)
+          tokens.get('checkbox-disabled-stroke', components.$post-checkbox);
 
         @include color-mx.on-dark-background {
-          border: tokens.get('checkbox', 'icon-border-width', components.$post-checkbox)
-            tokens.get('checkbox', 'border-style-disabled', components.$post-checkbox)
+          border: tokens.get('checkbox-icon-border-width', components.$post-checkbox)
+            tokens.get('checkbox-border-style-disabled', components.$post-checkbox)
             color.$white-alpha-80;
         }
         @include utility-mx.high-contrast-mode {
-          border: tokens.get('checkbox', 'icon-border-width', components.$post-checkbox)
-            tokens.get('checkbox', 'border-style-disabled', components.$post-checkbox) GrayText;
+          border: tokens.get('checkbox-icon-border-width', components.$post-checkbox)
+            tokens.get('checkbox-border-style-disabled', components.$post-checkbox) GrayText;
         }
       }
 
       &[disabled],
       &[disabled] ~ .form-check-label {
-        color: tokens.get('checkbox', 'disabled-fg', components.$post-checkbox);
-        background-color: tokens.get('checkbox', 'disabled-bg', components.$post-checkbox);
+        color: tokens.get('checkbox-disabled-fg', components.$post-checkbox);
+        background-color: tokens.get('checkbox-disabled-bg', components.$post-checkbox);
 
         @include color-mx.on-dark-background() {
           color: color.$white-alpha-80;
@@ -288,9 +280,6 @@ tokens.$default-map: components.$post-switch;
 
     // Shared disabled styles
     &[disabled] {
-      border: 0;
-      background-image: url('#{form-check.$form-check-input-disabled-background-url-light-lg}');
-
       &[type='checkbox'],
       &[type='radio'] {
         @include utility-mx.high-contrast-mode {
