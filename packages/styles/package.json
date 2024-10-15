@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-styles",
-  "version": "9.0.0-next.0",
+  "version": "9.0.0-next.2",
   "description": "Design System Styles for the Swiss Post web platform.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -8,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git"
   },
-  "homepage": "https://swisspost-web-frontend.netlify.app",
+  "homepage": "https://design-system.post.ch",
   "bugs": {
     "url": "https://github.com/swisspost/design-system/issues"
   },
@@ -19,9 +19,10 @@
   },
   "scripts": {
     "start": "gulp watch",
+    "play": "vite --open",
     "build": "pnpm clean && gulp build",
     "unit": "gulp sass:tests",
-    "clean": "rimraf out-tsc dist",
+    "clean": "rimraf out-tsc dist src/tokens/temp",
     "format": "prettier src/**/*.scss --write",
     "lint": "stylelint src/**/*.scss !src/tokens/temp/**",
     "lint:fix": "stylelint src/**/*.scss !src/tokens/temp/** --fix"
@@ -44,11 +45,12 @@
   },
   "dependencies": {
     "@popperjs/core": "2.11.8",
-    "bootstrap": "5.3.3"
+    "bootstrap": "5.3.3",
+    "gulp-sourcemaps": "3.0.0"
   },
   "devDependencies": {
-    "@swisspost/design-system-tokens": "workspace:9.0.0-next.0",
-    "@swisspost/design-system-icons": "workspace:9.0.0-next.0",
+    "@swisspost/design-system-icons": "workspace:9.0.0-next.2",
+    "@swisspost/design-system-tokens": "workspace:9.0.0-next.2",
     "@types/node": "20.14.14",
     "autoprefixer": "10.4.19",
     "copyfiles": "2.4.1",
@@ -67,7 +69,8 @@
     "stylelint-config-sass-guidelines": "11.1.0",
     "stylelint-prettier": "5.0.2",
     "stylelint-scss": "6.5.1",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "vite": "5.4.8"
   },
   "sass": {
     "includePaths": [

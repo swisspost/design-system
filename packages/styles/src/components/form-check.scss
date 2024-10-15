@@ -66,13 +66,6 @@ tokens.$default-map: components.$post-radio-button;
   }
 
   &-input {
-    &:not([disabled]),
-    &:not([disabled]) ~ .form-check-label {
-      cursor: pointer;
-    }
-
-    @include utility-mx.focus-style-none();
-
     display: inline-flex;
     flex: 0 auto;
     appearance: none;
@@ -82,6 +75,12 @@ tokens.$default-map: components.$post-radio-button;
     border: tokens.get('radio-button', 'icon-border-width') solid
       tokens.get('radio-button', 'enabled-stroke');
     margin-top: 1px;
+    @include utility-mx.focus-style-none();
+
+    &:not([disabled]),
+    &:not([disabled]) ~ .form-check-label {
+      cursor: pointer;
+    }
 
     @include utility-mx.high-contrast-mode {
       border-color: FieldText; // For blink-browser as otherwise the default color (which is not a full color) will be converted to Highlight
@@ -142,6 +141,9 @@ tokens.$default-map: components.$post-radio-button;
     }
 
     &[disabled] {
+      border: 0;
+      background-image: url('#{form-check.$form-check-input-disabled-background-url-light-lg}');
+
       &[type='checkbox'],
       &[type='radio'] {
         @include utility-mx.high-contrast-mode {
@@ -166,9 +168,6 @@ tokens.$default-map: components.$post-radio-button;
           }
         }
       }
-
-      border: 0;
-      background-image: url('#{form-check.$form-check-input-disabled-background-url-light-lg}');
 
       @include color-mx.on-dark-background {
         background-image: url('#{form-check.$form-check-input-disabled-background-url-dark-lg}');

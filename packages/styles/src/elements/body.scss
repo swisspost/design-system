@@ -8,10 +8,10 @@ tokens.$default-map: elements.$post-body;
 @use '../components/fonts';
 
 body {
-  font-family: tokens.get('post-body', 'font-family');
-  font-size: tokens.get('post-body', 'font-size');
-  font-weight: tokens.get('post-body', 'font-weight');
-  line-height: tokens.get('post-body', 'line-height');
-  letter-spacing: tokens.get('post-body', 'letter-spacing');
-  color: tokens.get('post-body', 'color');
+  font-family: tokens.get('body-font-family');
+  font-size: tokens.get('body-font-size');
+  font-weight: tokens.get('body-font-weight');
+  line-height: tokens.get('body-line-height');
+  letter-spacing: tokens.get('body-letter-spacing');
+  color: tokens.get('body-color');
 }
