@@ -14,7 +14,7 @@ $spacers: (
   3: $spacer,
   4: $spacer * 1.5,
   5: $spacer * 3,
-  ) !default;
+) !default;
 
 // Post-Sizes
 $size-hair: 1px !default;
@@ -33,38 +33,40 @@ $size-small-giant: 4.5rem !default; //  ~72px
 $size-giant: 5rem !default; //  ~80px
 $size-bigger-giant: 7rem !default; // ~112px
 
-$post-sizes: (
-  ) !default;
-$post-sizes: map.merge(('hair': $size-hair,
-      'line': $size-line,
-      'micro': $size-micro,
-      'mini': $size-mini,
-      'small-regular': $size-small-regular,
-      'regular': $size-regular,
-      'small-large': $size-small-large,
-      'large': $size-large,
-      'big': $size-big,
-      'bigger-big': $size-bigger-big,
-      'small-huge': $size-small-huge,
-      'huge': $size-huge,
-      'small-giant': $size-small-giant,
-      'giant': $size-giant,
-      'bigger-giant': $size-bigger-giant,
-    ),
-    $post-sizes
+$post-sizes: () !default;
+$post-sizes: map.merge(
+  (
+    'hair': $size-hair,
+    'line': $size-line,
+    'micro': $size-micro,
+    'mini': $size-mini,
+    'small-regular': $size-small-regular,
+    'regular': $size-regular,
+    'small-large': $size-small-large,
+    'large': $size-large,
+    'big': $size-big,
+    'bigger-big': $size-bigger-big,
+    'small-huge': $size-small-huge,
+    'huge': $size-huge,
+    'small-giant': $size-small-giant,
+    'giant': $size-giant,
+    'bigger-giant': $size-bigger-giant,
+  ),
+  $post-sizes
 );
 
 // This variable affects the `.h-*` and `.w-*` classes.
-$sizes: (
-  ) !default;
-$sizes: map.merge((0: 0,
-      25: 25%,
-      50: 50%,
-      75: 75%,
-      100: 100%,
-      auto: auto,
-    ),
-    $sizes
+$sizes: () !default;
+$sizes: map.merge(
+  (
+    0: 0,
+    25: 25%,
+    50: 50%,
+    75: 75%,
+    100: 100%,
+    auto: auto,
+  ),
+  $sizes
 );
 
 // Abstand Gross, Section
@@ -76,7 +78,7 @@ $size-curve-giant: (
   'lg': $size-giant,
   'xl': $size-giant,
   'xxl': $size-giant,
-  ) !default;
+) !default;
 
 // Abstand standard
 $size-curve-huge: (
@@ -87,7 +89,7 @@ $size-curve-huge: (
   'lg': $size-bigger-big,
   'xl': $size-huge,
   'xxl': $size-huge,
-  ) !default;
+) !default;
 
 // Abstand Section halb
 $size-curve-bigger-big: (
@@ -98,7 +100,7 @@ $size-curve-bigger-big: (
   'lg': $size-small-huge,
   'xl': $size-small-huge,
   'xxl': $size-small-huge,
-  ) !default;
+) !default;
 
 // Abstand Breadcrumb, Stepper
 $size-curve-big: (
@@ -109,7 +111,7 @@ $size-curve-big: (
   'lg': $size-big,
   'xl': $size-bigger-big,
   'xxl': $size-bigger-big,
-  ) !default;
+) !default;
 
 // H2
 $size-curve-large: (
@@ -120,7 +122,7 @@ $size-curve-large: (
   'lg': $size-small-large,
   'xl': $size-big,
   'xxl': $size-big,
-  ) !default;
+) !default;
 
 // Button
 $size-curve-regular: (
@@ -131,7 +133,7 @@ $size-curve-regular: (
   'lg': $size-large,
   'xl': $size-large,
   'xxl': $size-large,
-  ) !default;
+) !default;
 
 // Teaser
 $size-curve-small: (
@@ -142,7 +144,7 @@ $size-curve-small: (
   'lg': $size-regular,
   'xl': $size-regular,
   'xxl': $size-regular,
-  ) !default;
+) !default;
 
 // Eingabefelder, p, h3, h4
 $size-curve-tiny: (
@@ -153,7 +155,7 @@ $size-curve-tiny: (
   'lg': $size-regular,
   'xl': $size-regular,
   'xxl': $size-regular,
-  ) !default;
+) !default;
 
 // List of all adaptive size curves
 $size-curves: (
@@ -165,7 +167,7 @@ $size-curves: (
   'regular': $size-curve-regular,
   'small': $size-curve-small,
   'tiny': $size-curve-tiny,
-  ) !default;
+) !default;
 
 $responsive-spacing-properties: (
   'm': 'margin',
