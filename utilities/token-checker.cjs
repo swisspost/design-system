@@ -57,6 +57,20 @@ async function getTokens(inputFile, includedMaps) {
   }
 }
 
+async function searchFileForTokens(filePath, patterns) {
+  try {
+    const content = await fs.readFile(filePath, 'utf8');
+    for (const pattern of patterns) {
+      if (content.includes(pattern)) {
+        return { found: true, file: filePath, pattern };
+      }
+    }
+  } catch (err) {
+    console.error(`Error reading file ${filePath}:`, err);
+  }
+  return { found: false };
+}
+
 async function searchDirectoryForToken(dir, patterns) {
   try {
     const entries = await fs.readdir(dir, { withFileTypes: true });
@@ -68,12 +82,8 @@ async function searchDirectoryForToken(dir, patterns) {
         if (found.found) return found;
       } else if (entry.isFile() && path.extname(entry.name) === '.scss') {
         // If it's a .scss file, check its content
-        const content = await fs.readFile(fullPath, 'utf8');
-        for (const pattern of patterns) {
-          if (content.includes(pattern)) {
-            return { found: true, file: fullPath, pattern };
-          }
-        }
+        const result = await searchFileForTokens(fullPath, patterns);
+        if (result.found) return result;
       }
     }
   } catch (err) {
