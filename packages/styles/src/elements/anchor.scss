@@ -17,7 +17,7 @@ a {
     $offset: tokens.get('link-focus-outline-offset'),
     $width: tokens.get('link-focus-outline-width'),
     $color: tokens.get('link-focus-outline-color'),
-    $style: tokens.get('link-focus-outline-style'),
+    $style: tokens.get('link-focus-outline-style')
   );
 
   @include utilities.high-contrast-mode() {
