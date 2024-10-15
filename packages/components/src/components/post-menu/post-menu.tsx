@@ -155,12 +155,18 @@ export class PostMenu {
     const slot = this.host.shadowRoot.querySelector('slot');
     const slottedElements = slot ? slot.assignedElements() : [];
 
-    const focusableItems = slottedElements.filter(el => el.tagName === 'POST-MENU-ITEM');
+    const focusableItems = slottedElements
+  .filter(el => el.tagName === 'POST-MENU-ITEM')
+  .map(el => {
+    const slot = el.shadowRoot.querySelector('slot');
+    
+    const assignedElements = slot ? slot.assignedElements() : [];
 
-    // Ensure each item can be focused
-    focusableItems.forEach(el => {
-      el.setAttribute('tabindex', '0');
-    });
+    return assignedElements;
+  })
+  .flat();
+
+  console.log(focusableItems);
 
     return focusableItems;
   }
