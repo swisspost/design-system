@@ -1,29 +1,12 @@
-@use '@swisspost/design-system-styles/tokens/elements';
+@use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/core' as post;
 
-// tokens.$default-map: elements.$post-avatar;
-
-tokens.$default-map: (
-  'post-avatar-size': 2.5rem,
-  'post-avatar-bg': #050400,
-  'post-avatar-fg': #fff,
-  'post-avatar-border-width': 2px,
-  'post-avatar-border-color': #fff,
-  'post-avatar-border-radius': 50%,
-  'post-avatar-font-size': 16px,
-  'post-avatar-hover-bg': #666,
-  'post-avatar-hover-fg': white,
-  'post-avatar-hover-bg-img-overlay': #ffffff77,
-  'post-avatar-focus-outline-width': 2px,
-  'post-avatar-focus-outline-color': #000,
-  'post-avatar-focus-outline-offset': 2px
-);
+tokens.$default-map: components.$post-avatar;
 
 :host {
-  --post-avatar-bg: #{tokens.get('avatar-bg')};
-  --post-avatar-fg: #{tokens.get('avatar-fg')};
-  --post-avatar-bg-img-overlay: transparent;
+  --post-avatar-bg: #{tokens.get('avatar-enabled-bg')};
+  --post-avatar-fg: #{tokens.get('avatar-enabled-fg')};
 
   display: inline-flex;
   position: relative;
@@ -41,7 +24,6 @@ tokens.$default-map: (
     position: absolute;
     inset: 0;
     z-index: 1;
-    background-color: var(--post-avatar-bg-img-overlay);
     border-radius: inherit;
   }
 }

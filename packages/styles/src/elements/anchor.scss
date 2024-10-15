@@ -1,34 +1,27 @@
-// @use '../tokens/elements';
+@use '../tokens/components';
 @use '../functions/tokens';
 
-$post-avatar: (
-  'post-avatar-size': 2.5rem,
-  'post-avatar-bg': #050400,
-  'post-avatar-fg': #fff,
-  'post-avatar-border-width': 2px,
-  'post-avatar-border-color': #fff,
-  'post-avatar-border-radius': 50%,
-  'post-avatar-font-size': 16px,
-  'post-avatar-hover-bg': #666,
-  'post-avatar-hover-fg': white,
-  'post-avatar-hover-bg-img-overlay': #ffffff77,
-  'post-avatar-focus-outline-width': 2px,
-  'post-avatar-focus-outline-color': #000,
-  'post-avatar-focus-outline-offset': 2px,
-);
-
 a {
-  &:hover {
-    post-avatar {
-      --post-avatar-bg: #{tokens.get('avatar-hover-bg', $post-avatar)};
-      --post-avatar-fg: #{tokens.get('avatar-hover-fg', $post-avatar)};
-      --post-avatar-bg-img-overlay: #{tokens.get('avatar-hover-bg-img-overlay', $post-avatar)};
+  &:has(post-avatar:only-child) {
+    display: inline-flex;
+    border-radius: tokens.get('avatar-border-radius', components.$post-avatar);
+    text-decoration: none;
+
+    &:focus-visible {
+      outline: tokens.get('avatar-focus-outline-width', components.$post-avatar) solid
+        tokens.get('avatar-focus-outline-color', components.$post-avatar);
+      outline-offset: tokens.get('avatar-focus-outline-offset', components.$post-avatar);
     }
   }
 
-  &:has(post-avatar:only-child) {
-    display: inline-flex;
-    border-radius: tokens.get('avatar-border-radius', $post-avatar);
-    text-decoration: none;
+  &:hover {
+    post-avatar {
+      --post-avatar-bg: #{tokens.get('avatar-hover-bg', components.$post-avatar)};
+      --post-avatar-fg: #{tokens.get('avatar-hover-fg', components.$post-avatar)};
+
+      &::after {
+        background-color: tokens.get('avatar-image-hover-opacity', components.$post-avatar);
+      }
+    }
   }
 }
