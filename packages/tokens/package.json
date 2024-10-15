@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-tokens",
-  "version": "9.0.0-next.0",
+  "version": "9.0.0-next.2",
   "private": true,
   "description": "Design Tokens for the Swiss Post.",
   "author": "Swiss Post <design-system@post.ch>",
@@ -9,13 +9,14 @@
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git"
   },
-  "homepage": "https://swisspost-web-frontend.netlify.app",
+  "homepage": "https://design-system.post.ch",
   "bugs": {
     "url": "https://github.com/swisspost/design-system/issues"
   },
   "type": "module",
   "scripts": {
-    "build": "node ./build.js",
+    "build": "pnpm clean && node ./build.js",
+    "clean": "rimraf dist",
     "build:verbose": "node ./build.js --verbosity=verbose"
   },
   "keywords": [
@@ -33,6 +34,7 @@
   },
   "devDependencies": {
     "@tokens-studio/sd-transforms": "1.2.2",
+    "rimraf": "6.0.1",
     "style-dictionary": "4.0.1"
   }
 }

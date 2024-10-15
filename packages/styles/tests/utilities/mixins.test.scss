@@ -3,9 +3,89 @@
 @use 'tests/jest';
 @use 'src/utilities/mixins';
 
-
 .test {
-  @include mixins.generate-utilities('font-weight', '400', 'fw', 'normal');
-  @include mixins.generate-utilities('font-size', '1.5rem', 'fs', 'large', 'sm');
-  @include mixins.generate-responsive-utilities('row-gap', '48px', 'rg', '48');
+  // it should work with only "property" and "values"
+  @include mixins.generate-utility(
+    (
+      property: text-decoration,
+      values: none underline line-through,
+    )
+  );
+
+  // it should work with "class"
+  @include mixins.generate-utility(
+    (
+      property: opacity,
+      class: o,
+      values: (
+        0: 0,
+        25: 0.25,
+        50: 0.5,
+        75: 0.75,
+        100: 1,
+      ),
+    )
+  );
+
+  // it should work with "css-var" and "css-variable-name"
+  @include mixins.generate-utility(
+    (
+      css-var: true,
+      css-variable-name: text-alpha,
+      class: text-opacity,
+      values: (
+        25: 0.25,
+        50: 0.5,
+        75: 0.75,
+        100: 1,
+      ),
+    )
+  );
+
+  // it should work with "local-vars"
+  @include mixins.generate-utility(
+    (
+      property: background-color,
+      class: bg,
+      local-vars: (
+        'bg-opacity': 1,
+      ),
+      values: (
+        'transparent': transparent,
+        'error': red,
+        'success': green,
+      ),
+    )
+  );
+
+  // it should work with "state"
+  @include mixins.generate-utility(
+    (
+      property: opacity,
+      class: opacity,
+      state: hover,
+      values: (
+        0: 0,
+        25: 0.25,
+        50: 0.5,
+        75: 0.75,
+        100: 1,
+      ),
+    )
+  );
+
+  // it should work with "responsive"
+  @include mixins.generate-utility(
+    (
+      property: opacity,
+      responsive: true,
+      values: (
+        0: 0,
+        25: 0.25,
+        50: 0.5,
+        75: 0.75,
+        100: 1,
+      ),
+    )
+  );
 }
