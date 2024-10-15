@@ -185,7 +185,7 @@ export namespace Components {
     }
     interface PostMenu {
         /**
-          * Programmatically hide this popover
+          * Programmatically hide this menu
          */
         "hide": () => Promise<void>;
         /**
@@ -193,13 +193,13 @@ export namespace Components {
          */
         "placement"?: Placement;
         /**
-          * Programmatically display the popover
-          * @param target An element with [data-menu-target="id"] where the popover should be shown
+          * Programmatically display the menu
+          * @param target An element with [data-menu-target="id"] where the menu should be shown
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
-          * Toggle popover display
-          * @param target An element with [data-menu-target="id"] where the popover should be anchored to
+          * Toggle menu display
+          * @param target An element with [data-menu-target="id"] where the menu should be anchored to
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;

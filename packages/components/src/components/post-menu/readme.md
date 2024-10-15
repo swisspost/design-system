@@ -16,7 +16,7 @@
 
 ### `hide() => Promise<void>`
 
-Programmatically hide this popover
+Programmatically hide this menu
 
 #### Returns
 
@@ -26,13 +26,13 @@ Type: `Promise<void>`
 
 ### `show(target: HTMLElement) => Promise<void>`
 
-Programmatically display the popover
+Programmatically display the menu
 
 #### Parameters
 
-| Name     | Type          | Description                                                               |
-| -------- | ------------- | ------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | An element with [data-menu-target="id"] where the popover should be shown |
+| Name     | Type          | Description                                                            |
+| -------- | ------------- | ---------------------------------------------------------------------- |
+| `target` | `HTMLElement` | An element with [data-menu-target="id"] where the menu should be shown |
 
 #### Returns
 
@@ -42,14 +42,14 @@ Type: `Promise<void>`
 
 ### `toggle(target: HTMLElement, force?: boolean) => Promise<void>`
 
-Toggle popover display
+Toggle menu display
 
 #### Parameters
 
-| Name     | Type          | Description                                                                     |
-| -------- | ------------- | ------------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | An element with [data-menu-target="id"] where the popover should be anchored to |
-| `force`  | `boolean`     | Pass true to always show or false to always hide                                |
+| Name     | Type          | Description                                                                  |
+| -------- | ------------- | ---------------------------------------------------------------------------- |
+| `target` | `HTMLElement` | An element with [data-menu-target="id"] where the menu should be anchored to |
+| `force`  | `boolean`     | Pass true to always show or false to always hide                             |
 
 #### Returns
 

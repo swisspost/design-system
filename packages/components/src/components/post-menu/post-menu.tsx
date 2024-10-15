@@ -36,6 +36,7 @@ const triggerObserver = getAttributeObserver(menuTargetAttribute, trigger => {
 export class PostMenu {
   private popoverRef: HTMLPostPopovercontainerElement;
   private localBeforeToggleHandler;
+  private currentTrigger: HTMLElement | null = null;
 
   private readonly KEYCODES = {
     SPACE: 'Space',
@@ -43,6 +44,7 @@ export class PostMenu {
     UP: 'ArrowUp',
     RIGHT: 'ArrowRight',
     DOWN: 'ArrowDown',
+    ESC: 'Escape',
   };
 
   @Element() host: HTMLPostMenuElement;
@@ -106,7 +108,9 @@ export class PostMenu {
 
   private handleKeyDown = (e: KeyboardEvent) => {
     if (['ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'Space'].includes(e.key)) {
-      this.controlKeyDownHandler(e); // Call the new focus handling method
+      this.controlKeyDownHandler(e);
+    } else if (e.key === 'Escape') {
+      this.currentTrigger.focus();
     }
   };
 
@@ -149,7 +153,7 @@ export class PostMenu {
     const slot = this.host.shadowRoot.querySelector('slot');
     const slottedElements = slot ? slot.assignedElements() : [];
 
-    const focusableItems = slottedElements.filter(el => el.tagName === 'POST-MENU-ITEM');
+    const focusableItems = slottedElements.filter(el => el.tagName === 'post-menu-item');
 
     focusableItems.forEach(el => {
       el.setAttribute('tabindex', '0');
@@ -159,21 +163,22 @@ export class PostMenu {
   }
 
   /**
-   * Programmatically display the popover
-   * @param target An element with [data-menu-target="id"] where the popover should be shown
+   * Programmatically display the menu
+   * @param target An element with [data-menu-target="id"] where the menu should be shown
    */
   @Method()
   async show(target: HTMLElement) {
     if (this.popoverRef) {
       await this.popoverRef.show(target);
       target.setAttribute('aria-expanded', 'true');
+      this.currentTrigger = target; // Store the trigger element
     } else {
       console.error('show: popoverRef is null or undefined');
     }
   }
 
   /**
-   * Programmatically hide this popover
+   * Programmatically hide this menu
    */
   @Method()
   async hide() {
@@ -186,11 +191,13 @@ export class PostMenu {
     this.triggers.forEach(trigger => {
       trigger.setAttribute('aria-expanded', 'false');
     });
+
+    this.currentTrigger = null; // Reset the current trigger when hidden
   }
 
   /**
-   * Toggle popover display
-   * @param target An element with [data-menu-target="id"] where the popover should be anchored to
+   * Toggle menu display
+   * @param target An element with [data-menu-target="id"] where the menu should be anchored to
    * @param force Pass true to always show or false to always hide
    */
   @Method()
@@ -199,6 +206,7 @@ export class PostMenu {
       const newState = await this.popoverRef.toggle(target, force);
       this.triggers.forEach(trigger => trigger.setAttribute('aria-expanded', 'false'));
       target.setAttribute('aria-expanded', `${newState}`);
+      this.currentTrigger = newState ? target : null; // Store or reset the trigger based on the state
     } else {
       console.error('toggle: popoverRef is null or undefined');
     }
