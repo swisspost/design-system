@@ -1,0 +1,26 @@
+:host {
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 8px 0;
+  border-radius: 4px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-menu.visible {
+  opacity: 1;
+  visibility: visible;
+  display: block;
+  transform: translateY(0);
+}
