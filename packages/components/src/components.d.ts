@@ -183,6 +183,32 @@ export namespace Components {
          */
         "url": string | URL;
     }
+    interface PostMenu {
+        /**
+          * Programmatically hide this popover
+         */
+        "hide": () => Promise<void>;
+        /**
+          * Defines the placement of the popover according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
+         */
+        "placement"?: Placement;
+        /**
+          * Programmatically display the popover
+          * @param target An element with [data-menu-target="id"] where the popover should be shown
+         */
+        "show": (target: HTMLElement) => Promise<void>;
+        /**
+          * Toggle popover display
+          * @param target An element with [data-menu-target="id"] where the popover should be anchored to
+          * @param force Pass true to always show or false to always hide
+         */
+        "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
+    }
+    interface PostMenuItem {
+        "href"?: string;
+    }
+    interface PostMenuToggle {
+    }
     interface PostPopover {
         /**
           * Show a little indicator arrow
@@ -435,6 +461,24 @@ declare global {
         prototype: HTMLPostLogoElement;
         new (): HTMLPostLogoElement;
     };
+    interface HTMLPostMenuElement extends Components.PostMenu, HTMLStencilElement {
+    }
+    var HTMLPostMenuElement: {
+        prototype: HTMLPostMenuElement;
+        new (): HTMLPostMenuElement;
+    };
+    interface HTMLPostMenuItemElement extends Components.PostMenuItem, HTMLStencilElement {
+    }
+    var HTMLPostMenuItemElement: {
+        prototype: HTMLPostMenuItemElement;
+        new (): HTMLPostMenuItemElement;
+    };
+    interface HTMLPostMenuToggleElement extends Components.PostMenuToggle, HTMLStencilElement {
+    }
+    var HTMLPostMenuToggleElement: {
+        prototype: HTMLPostMenuToggleElement;
+        new (): HTMLPostMenuToggleElement;
+    };
     interface HTMLPostPopoverElement extends Components.PostPopover, HTMLStencilElement {
     }
     var HTMLPostPopoverElement: {
@@ -526,6 +570,9 @@ declare global {
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
         "post-icon": HTMLPostIconElement;
         "post-logo": HTMLPostLogoElement;
+        "post-menu": HTMLPostMenuElement;
+        "post-menu-item": HTMLPostMenuItemElement;
+        "post-menu-toggle": HTMLPostMenuToggleElement;
         "post-popover": HTMLPostPopoverElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-rating": HTMLPostRatingElement;
@@ -688,6 +735,17 @@ declare namespace LocalJSX {
          */
         "url"?: string | URL;
     }
+    interface PostMenu {
+        /**
+          * Defines the placement of the popover according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
+         */
+        "placement"?: Placement;
+    }
+    interface PostMenuItem {
+        "href"?: string;
+    }
+    interface PostMenuToggle {
+    }
     interface PostPopover {
         /**
           * Show a little indicator arrow
@@ -801,6 +859,9 @@ declare namespace LocalJSX {
         "post-collapsible-trigger": PostCollapsibleTrigger;
         "post-icon": PostIcon;
         "post-logo": PostLogo;
+        "post-menu": PostMenu;
+        "post-menu-item": PostMenuItem;
+        "post-menu-toggle": PostMenuToggle;
         "post-popover": PostPopover;
         "post-popovercontainer": PostPopovercontainer;
         "post-rating": PostRating;
@@ -829,6 +890,9 @@ declare module "@stencil/core" {
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
+            "post-menu": LocalJSX.PostMenu & JSXBase.HTMLAttributes<HTMLPostMenuElement>;
+            "post-menu-item": LocalJSX.PostMenuItem & JSXBase.HTMLAttributes<HTMLPostMenuItemElement>;
+            "post-menu-toggle": LocalJSX.PostMenuToggle & JSXBase.HTMLAttributes<HTMLPostMenuToggleElement>;
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
