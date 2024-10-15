@@ -53,13 +53,6 @@ tokens.$default-map: components.$post-switch;
   }
 
   &-input {
-    &:not([disabled]),
-    &:not([disabled]) ~ .form-check-label {
-      cursor: pointer;
-    }
-
-    @include utility-mx.focus-style-none();
-
     display: inline-flex;
     flex: 0 auto;
     appearance: none;
@@ -68,6 +61,12 @@ tokens.$default-map: components.$post-switch;
     width: form-check.$form-check-input-size;
     border: form-check.$form-check-input-border-width solid currentColor;
     margin-top: 1px;
+    @include utility-mx.focus-style-none();
+
+    &:not([disabled]),
+    &:not([disabled]) ~ .form-check-label {
+      cursor: pointer;
+    }
 
     @include utility-mx.high-contrast-mode {
       border-color: FieldText; // For blink-browser as otherwise the default color (which is not a full color) will be converted to Highlight
@@ -127,6 +126,9 @@ tokens.$default-map: components.$post-switch;
     }
 
     &[disabled] {
+      border: 0;
+      background-image: url('#{form-check.$form-check-input-disabled-background-url-light-lg}');
+
       &[type='checkbox'],
       &[type='radio'] {
         @include utility-mx.high-contrast-mode {
