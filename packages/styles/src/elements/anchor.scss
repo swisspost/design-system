@@ -14,11 +14,10 @@ a {
   }
 
   @include utilities.focus-style(
-    '',
-    tokens.get('link-focus-outline-offset'),
-    tokens.get('link-focus-outline-width'),
-    tokens.get('link-focus-outline-color'),
-    tokens.get('link-focus-outline-style')
+    $offset: tokens.get('link-focus-outline-offset'),
+    $width: tokens.get('link-focus-outline-width'),
+    $color: tokens.get('link-focus-outline-color'),
+    $style: tokens.get('link-focus-outline-style'),
   );
 
   @include utilities.high-contrast-mode() {
