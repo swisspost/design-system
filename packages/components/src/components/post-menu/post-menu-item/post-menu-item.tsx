@@ -1,4 +1,5 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Element, Host } from '@stencil/core';
+import { version } from '@root/package.json';
 
 @Component({
   tag: 'post-menu-item',
@@ -6,21 +7,13 @@ import { Component, h, Prop } from '@stencil/core';
   styleUrl: 'post-menu-item.scss',
 })
 export class PostMenuItem {
-  @Prop() href?: string;
-
+  @Element() host: HTMLPostMenuItemElement;
+  
   render() {
-    if (this.href) {
-      return (
-        <a href={this.href} role="menuitem">
-          <slot></slot>
-        </a>
-      );
-    }
-
     return (
-      <div role="menuitem">
+      <Host role="menuitem" data-version={version}>
         <slot></slot>
-      </div>
+      </Host>
     );
   }
 }

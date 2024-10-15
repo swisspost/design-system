@@ -205,7 +205,6 @@ export namespace Components {
         "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
     }
     interface PostMenuItem {
-        "href"?: string;
     }
     interface PostMenuToggle {
     }
@@ -742,7 +741,6 @@ declare namespace LocalJSX {
         "placement"?: Placement;
     }
     interface PostMenuItem {
-        "href"?: string;
     }
     interface PostMenuToggle {
     }
