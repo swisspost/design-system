@@ -10,26 +10,27 @@ tokens.$default-map: components.$post-breadcrumb;
   display: block;
 }
 
-a {
+a,
+.breadcrumb-item-text {
   display: inline-flex;
   align-items: center;
-  padding-block: tokens.get('post-breadcrumb', 'padding-block-text');
-  gap: tokens.get('post-breadcrumb', 'gap-inline-inner');
-  color: tokens.get('post-breadcrumb', 'enabled-fg');
+  padding-block: tokens.get('breadcrumb-padding-block-text');
+  gap: tokens.get('breadcrumb-gap-inline-inner');
+  color: tokens.get('breadcrumb-enabled-fg');
   text-decoration: none;
 
   &:hover {
-    color: tokens.get('post-breadcrumb', 'hover-fg');
+    color: tokens.get('breadcrumb-hover-fg');
     text-decoration: underline;
   }
 
   &:focus,
   &:focus-visible {
-    border-radius: tokens.get('post-breadcrumb', 'focus-outline-radius');
-    outline: tokens.get('post-breadcrumb', 'focus-outline') solid tokens.get('post-breadcrumb', 'focus-outline-width');
+    border-radius: tokens.get('breadcrumb-focus-outline-radius');
+    outline: tokens.get('breadcrumb-focus-outline') solid tokens.get('breadcrumb-focus-outline-width');
 
     ::slotted(*) {
-      padding: tokens.get('post-breadcrumb', 'focus-padding-outline');
+      padding: tokens.get('breadcrumb-focus-padding-outline');
     }
   }
 
