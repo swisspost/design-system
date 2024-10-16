@@ -20,7 +20,7 @@ const meta: MetaComponent = {
     subtitle: 'Vero siteos et accusam iretea et justo',
     linkCount: 5,
     alignment: 'null',
-    backgroundColor: 'bg-dark',
+    backgroundColor: 'bg-yellow',
   },
   argTypes: {
     title: {
