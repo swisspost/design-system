@@ -1,7 +1,0 @@
-@use '@swisspost/design-system-styles/core' as post;
-
-:export {
-  @each $key, $value in post.$post-sizes {
-    #{$key}: #{$value};
-  }
-}

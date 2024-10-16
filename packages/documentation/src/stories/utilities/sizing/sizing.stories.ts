@@ -1,13 +1,7 @@
 import type { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './sizing.styles.scss';
-import scss from './sizing.module.scss';
 import { MetaExtended } from '@root/types';
-
-
-export const SCSS_VARIABLES = scss;
-
-
 const sizeOptionsPercent = ['auto', '0', '25', '50', '75', '100'];
 
 const meta: MetaExtended = {
@@ -84,7 +78,8 @@ type Story = StoryObj;
 function renderSizing(args: Args) {
   const maximumHeight = args.maxHeight && args.maxHeight !== 'null' ? `mh-${args.maxHeight}` : '';
   const maximumWidth = args.maxWidth && args.maxWidth !== 'null' ? `mw-${args.maxWidth}` : '';
-  const minimumHeight = args.minHeight && args.minHeight !== 'null' ? `min-h-${args.minHeight}` : '';
+  const minimumHeight =
+    args.minHeight && args.minHeight !== 'null' ? `min-h-${args.minHeight}` : '';
   const minimumWidth = args.minWidth && args.minWidth !== 'null' ? `min-w-${args.minWidth}` : '';
   const classes = `content h-${args.height} w-${args.width} ${maximumHeight} ${maximumWidth} ${minimumHeight} ${minimumWidth}`;
 
@@ -98,7 +93,6 @@ function renderSizing(args: Args) {
     </div>
   `;
 }
-
 
 export const SizesPercent: Story = {
   args: {
@@ -114,82 +108,3 @@ export const SizesPercent: Story = {
     },
   },
 };
-
-
-export const Sizing: Story = {
-
-  render: (args: Args) => {
-    const samples = [
-      ['0', '100', '0', '100'],
-      ['25', '50', '25', '50'],
-      ['50', '25', '50', '25'],
-      ['75', '75', '75', '75'],
-      ['100', '0', '100', '0']
-    ];
-
-    // used only for the snapshots
-    return html`
-      ${samples.map(([w, wMd, h, hXl]) => {
-      return html`
-          <div class="grid-item">
-            <div class="w-${w} w-md-${wMd} h-${h} h-xl-${hXl}">
-            </div>
-          </div>
-          `;
-    })}
-    `;
-  }
-}
-
-
-export const SizingVp: Story = {
-
-  render: (args: Args) => {
-    const samples = [
-      ['0', '100', '0', '100'],
-      ['25', '50', '25', '50'],
-      ['50', '25', '50', '25'],
-      ['75', '75', '75', '75'],
-      ['100', '0', '100', '0']
-    ];
-
-    // used only for the snapshots
-    return html`
-      ${samples.map(([vw, vwMd, vh, vhXl]) => {
-      return html`
-          <div class="grid-item">
-            <div class="vw-${vw} vw-md-${vwMd} vh-${vh} vh-xl-${vhXl}">
-            </div>
-          </div>
-          `;
-    })}
-    `;
-  }
-}
-
-
-
-export const SizingAuto: Story = {
-
-  render: (args: Args) => {
-    const samples = [
-      ['100', 'auto', '50', '100'],
-      ['auto', '100', 'auto', '50'],
-      ['auto', 'auto', 'auto', 'auto'],
-      ['50', 'auto', 'auto', 'auto']
-    ];
-
-    // used only for the snapshots
-    return html`
-      ${samples.map(([w, wMd, h, hXl]) => {
-      return html`
-          <div class="grid-item">
-            <div class="w-${w} w-md-${wMd} h-${h} h-xl-${hXl}">
-            <div class="inner-div">
-            </div>
-          </div>
-          `;
-    })}
-    `;
-  }
-}
