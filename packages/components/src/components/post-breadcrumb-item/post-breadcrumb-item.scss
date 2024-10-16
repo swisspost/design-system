@@ -7,10 +7,9 @@
 tokens.$default-map: components.$post-breadcrumb;
 
 :host {
-  display: block;
+  display: inline-block;
 }
 
-a,
 .breadcrumb-item-text {
   display: inline-flex;
   align-items: center;
@@ -28,10 +27,7 @@ a,
   &:focus-visible {
     border-radius: tokens.get('breadcrumb-focus-outline-radius');
     outline: tokens.get('breadcrumb-focus-outline') solid tokens.get('breadcrumb-focus-outline-width');
-
-    ::slotted(*) {
-      padding: tokens.get('breadcrumb-focus-padding-outline');
-    }
+    offset: tokens.get('breadcrumb-focus-padding-outline');
   }
 
   @include utilities.high-contrast-mode() {
