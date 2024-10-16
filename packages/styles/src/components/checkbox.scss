@@ -1,0 +1,118 @@
+@use '_form-check';
+@use '../variables/color';
+@use '../variables/animation';
+@use '../mixins/color' as color-mx;
+@use '../mixins/icons' as icons-mx;
+@use '../mixins/utilities' as utility-mx;
+@use '../tokens/components' as components;
+@use '../functions/tokens' as tokens;
+
+tokens.$default-map: components.$post-checkbox;
+
+.form-check,
+.checkbox {
+  &:has(.form-check-input[type='checkbox']) {
+    margin-bottom: tokens.get('checkbox-gap-block-group');
+
+    &:focus-within {
+      @include utility-mx.focus-style(
+        $offset: tokens.get('checkbox-focus-outline-offset'),
+        $width: tokens.get('checkbox-focus-border-width'),
+        $color: tokens.get('checkbox-focus-stroke'),
+        $style: tokens.get('checkbox-focus-border-style')
+      ) {
+        color: tokens.get('checkbox-selected-fg');
+        background-color: tokens.get('checkbox-selected-bg');
+        border-radius: tokens.get('checkbox-focus-border-radius');
+        border-color: tokens.get('checkbox-selected-stroke');
+      }
+    }
+  }
+
+  &-input[type='checkbox'] {
+    height: tokens.get('checkbox-icon-size');
+    width: tokens.get('checkbox-icon-size');
+    border: tokens.get('checkbox-icon-border-width') tokens.get('checkbox-border-style-default')
+      tokens.get('checkbox-enabled-stroke');
+    border-radius: tokens.get('checkbox-border-radius');
+    padding: tokens.get('checkbox-icon-padding-container');
+
+    color: tokens.get('checkbox-enabled-fg');
+    background-color: tokens.get('checkbox-enabled-bg');
+
+    & + .form-check-label {
+      flex: 1;
+      padding-block: tokens.get('checkbox-label-padding-block');
+      :not(.form-switch, .checkbox-button-card) > & {
+        padding-inline-start: tokens.get(
+          'checkbox-gap-inline-text-start',
+          components.$post-checkbox
+        );
+      }
+    }
+    &::after {
+      flex: 1;
+    }
+    &:hover:not([disabled]),
+    &:hover:not([disabled]) ~ .form-check-label {
+      color: tokens.get('checkbox-hover-fg');
+      background-color: tokens.get('checkbox-hover-bg');
+      border-color: tokens.get('checkbox-hover-stroke');
+
+      @include utility-mx.high-contrast-mode() {
+        border-color: Highlight;
+      }
+    }
+
+    &:checked::after {
+      @include icons-mx.icon(2105);
+    }
+
+    &:indeterminate::after {
+      @include icons-mx.icon(2039);
+    }
+
+    &:checked,
+    &:indeterminate {
+      @include utility-mx.high-contrast-mode {
+        background-color: SelectedItem !important;
+        color: SelectedItemText !important;
+      }
+    }
+
+    &[disabled] {
+      background-color: tokens.get('checkbox-disabled-bg');
+      border: tokens.get('checkbox-icon-border-width') tokens.get('checkbox-border-style-disabled')
+        tokens.get('checkbox-disabled-stroke');
+
+      @include color-mx.on-dark-background {
+        border: tokens.get('checkbox-icon-border-width')
+          tokens.get('checkbox-border-style-disabled') color.$white-alpha-80;
+      }
+      @include utility-mx.high-contrast-mode {
+        border: tokens.get('checkbox-icon-border-width')
+          tokens.get('checkbox-border-style-disabled') GrayText;
+      }
+    }
+
+    &[disabled],
+    &[disabled] ~ .form-check-label {
+      color: tokens.get('checkbox-disabled-fg');
+      background-color: tokens.get('checkbox-disabled-bg');
+
+      @include color-mx.on-dark-background() {
+        color: color.$white-alpha-80;
+      }
+    }
+
+    &[disabled] {
+      &:checked,
+      &:indeterminate {
+        @include utility-mx.high-contrast-mode {
+          background-color: Field !important;
+          color: GrayText !important;
+        }
+      }
+    }
+  }
+}
