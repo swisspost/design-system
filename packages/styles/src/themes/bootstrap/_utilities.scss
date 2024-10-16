@@ -26,4 +26,17 @@ $utilities: map.remove($utilities, 'gap');
 $utilities: map.remove($utilities, 'row-gap');
 $utilities: map.remove($utilities, 'column-gap');
 
+$utilities: map.remove($utilities, 'flex');
+$utilities: map.remove($utilities, 'flex-direction');
+$utilities: map.remove($utilities, 'align-items');
+$utilities: map.remove($utilities, 'align-content');
+$utilities: map.remove($utilities, 'align-self');
+$utilities: map.remove($utilities, 'flex-grow');
+$utilities: map.remove($utilities, 'flex-shrink');
+$utilities: map.remove($utilities, 'flex-wrap');
+$utilities: map.remove($utilities, 'order');
+$utilities: map.remove($utilities, 'justify-content');
+
+$utilities: map.remove($utilities, 'display');
+
 @import 'bootstrap/scss/utilities/api';

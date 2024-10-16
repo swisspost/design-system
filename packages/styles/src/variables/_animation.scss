@@ -21,6 +21,25 @@ $transition-time-area-large: 500ms !default;
 $transition-easing-default: cubic-bezier(0.4, 0, 0.2, 1) !default;
 $transition-easing-decelerate: cubic-bezier(0, 0, 0.2, 1) !default;
 $transition-easing-accelerate: cubic-bezier(0.4, 0, 1, 1) !default;
+$transition-easing-bump-in: linear(
+  0,
+  0.007,
+  0.029 2.2%,
+  0.118 4.7%,
+  0.625 14.4%,
+  0.826 19%,
+  0.902,
+  0.962,
+  1.008 26.1%,
+  1.041 28.7%,
+  1.064 32.1%,
+  1.07 36%,
+  1.061 40.5%,
+  1.015 53.4%,
+  0.999 61.6%,
+  0.995 71.2%,
+  1
+);
 
 // Distances
 $transition-distance-xsmall: map.get(spacing.$post-sizes, 'micro') !default;
