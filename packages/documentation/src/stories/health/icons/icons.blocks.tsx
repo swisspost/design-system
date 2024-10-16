@@ -22,7 +22,7 @@ export const IconsBlock: React.FC = () => (
   <section>
     <div className="icons">
       {report.icons.map((icon, index) => (
-        <div key={index} className="icon">
+        <div key={icon.file.name} className="icon">
           <img src={`./post-icons/${icon.file.name}`} alt="icon" />
           <span>{icon.file.basename}</span>
         </div>
@@ -40,7 +40,7 @@ export const WrongViewBoxBlock: React.FC = () => {
       <p>The viewBox attribute of the incoming SVG file is not set to "0 0 32 32".</p>
       <div className="icons">
         {report.wrongViewBox.map((icon, index) => (
-          <div key={index} className="icon">
+          <div key={icon.file.name} className="icon">
             <img src={`./post-icons/${icon.file.name}`} alt="icon" />
             <span>{icon.file.basename}</span>
           </div>
@@ -59,7 +59,7 @@ export const NoKeywordsBlock: React.FC = () => {
       <p>The incoming SVG file has no keywords specified.</p>
       <div className="icons">
         {report.noKeywords.map((icon, index) => (
-          <div key={index} className="icon">
+          <div key={icon.file.name} className="icon">
             <img src={`./post-icons/${icon.file.name}`} alt="icon" />
             <span>{icon.file.basename}</span>
           </div>
@@ -77,7 +77,7 @@ export const ErroredBlock: React.FC = () => {
       <h1>Errored</h1>
       <ul>
         {report.errored.map((icon, index) => (
-          <li key={index}>
+          <li key={icon.file.name}>
             <a href={icon.meta.downloadLink}>{icon.file.name}</a>
             <br />
             <pre>{icon.errorMessage}</pre>
@@ -96,7 +96,7 @@ export const NoSVGBlock: React.FC = () => {
       <h1>SVG file not found.</h1>
       <ul>
         {report.noSVG.map((icon, index) => (
-          <li key={index}>{icon.file.basename}</li>
+          <li key={icon.file.name}>{icon.file.basename}</li>
         ))}
       </ul>
     </section>
