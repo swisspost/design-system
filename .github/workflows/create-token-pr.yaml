@@ -44,7 +44,7 @@ jobs:
         run: |
           git config user.name "Swiss Post Bot"
           git config user.email "103635272+swisspost-bot@users.noreply.github.com"
-          git fetch origin/${{ github.ref_name }}
+          git fetch origin
           git merge ${{ github.ref_name }} -X theirs --no-edit
           git push origin ${{ steps.pr-branch.outputs.name }}
         env:
