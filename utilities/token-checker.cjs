@@ -23,9 +23,8 @@ function parseArgs() {
 const argv = parseArgs();
 
 const inputFiles = [
-  './packages/tokens/dist/components.scss',
-  './packages/tokens/dist/elements.scss',
-  './packages/tokens/dist/utilities.scss',
+  './packages/tokens/dist/_components.scss',
+  './packages/tokens/dist/_elements.scss',
 ];
 const styleDirs = ['./packages/styles/src', './packages/components/src'];
 
