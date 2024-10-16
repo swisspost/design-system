@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': minor
 ---
 
-Updated Opacity utility Styles & Documentation
+Updated the utility classes for opacity.
