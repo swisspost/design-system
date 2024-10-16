@@ -50,7 +50,8 @@ jobs:
         if: steps.git-branch.outputs.pr_branch == ''
         run: |
           git checkout -b $PR_BRANCH ${{ github.ref_name }}
-          gh pr create --title "chore(tokens): :art: update tokens" --body "Merge this PR to update the tokens in the main branch." --base main --head $PR_BRANCH
+          git push --set-upstream origin merge-tokens-v2-24-10
+          gh pr create --title "chore(tokens): :art: update tokens" --body "Merge this PR to update the tokens in the main branch." --base main
         env:
           PR_BRANCH: ${{ steps.branch-names.outputs.pr-branch }}
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
