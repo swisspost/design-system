@@ -1,5 +1,6 @@
 ---
 '@swisspost/design-system-styles': minor
+'@swisspost/design-system-documentation': minor
 ---
 
-Updated float utility (styles & documentation)
+Updated the utility classes for float
