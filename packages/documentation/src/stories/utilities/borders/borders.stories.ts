@@ -77,13 +77,13 @@ export const Borders: Story = {
   },
   render: (args: Args) => {
     const border = args.border != 'none' ? args.border : '';
-    const borderWidthClass = args.borderWidth != 'none' ? `border-${args.borderWidth}` : '';
-    const borderColorClass = args.borderColor != 'none' ? `border-${args.borderColor}` : '';
+    const borderWidthClass = args.borderWidth != 'none' ? ` border-${args.borderWidth}` : '';
+    const borderColorClass = args.borderColor != 'none' ? ` border-${args.borderColor}` : '';
     return html`
       <div class="border-example">
         <div class="d-flex p-2 gap-2" style="height: auto">
           <div class="flex-fill">
-            <div class="${border} ${borderWidthClass} ${borderColorClass}">Sample Text</div>
+            <div class="${border}${borderWidthClass}${borderColorClass}">Sample Text</div>
           </div>
         </div>
       </div>
@@ -107,16 +107,16 @@ export const RemoveBorders: Story = {
     },
   },
   args: {
-    borderToRemove: '-',
+    borderToRemove: 'none',
   },
   render: (args: Args) => {
-    const borderToRemove = args.borderWidth != '-' ? `${args.borderToRemove}` : '';
+    const borderToRemove = args.borderToRemove != 'none' ? ` ${args.borderToRemove}` : '';
 
     return html`
       <div class="border-example">
         <div class="d-flex p-2 gap-2" style="height: auto">
           <div class="flex-fill">
-            <div class="border ${borderToRemove}">Sample Text</div>
+            <div class="border${borderToRemove}">Sample Text</div>
           </div>
         </div>
       </div>
@@ -189,80 +189,6 @@ export const BorderRounded: Story = {
           </div>
         </div>
       </div>
-    `;
-  },
-};
-
-export const BorderSnapshot: Story = {
-  render: (args: Args) => {
-    const samples = [
-      ['border', 'null', 'null', 'null'],
-      ['border-top', 'null', 'null', 'null'],
-      ['border-end', 'null', 'null', 'null'],
-      ['border-bottom', 'null', 'null', 'null'],
-      ['border-start', 'null', 'null', 'null'],
-      ['border', '10', 'null', 'null'],
-      ['border-top', '10', 'null', 'null'],
-      ['border-end', '10', 'null', 'null'],
-      ['border-bottom', '10', 'null', 'null'],
-      ['border-start', '10', 'null', 'null'],
-      ['border', '2', 'primary', 'null'],
-      ['border-top', '2', 'secondary', 'null'],
-      ['border', '2', 'info', 'null'],
-      ['border', '2', 'success', 'null'],
-      ['border', '2', 'danger', 'null'],
-      ['border', '5', 'secondary', '100'],
-      ['border', '5', 'secondary', '75'],
-      ['border', '5', 'secondary', '50'],
-      ['border', '5', 'secondary', '25'],
-      ['border', '5', 'secondary', '10'],
-      ['border', '5', 'secondary', '0'],
-    ];
-
-    return html`
-      ${samples.map(([borderSide, borderWidth, borderColor, borderOpacity]) => {
-        return html`
-          <div
-            class="${borderSide} ${borderWidth !== 'null'
-              ? `border-${borderWidth}`
-              : ''} ${borderColor !== 'null' ? `border-${borderColor}` : ''} ${borderOpacity !==
-            'null'
-              ? `border-opacity-${borderOpacity}`
-              : ''}"
-          >
-            Sample Text
-          </div>
-        `;
-      })}
-    `;
-  },
-};
-
-export const RoundedSnapshot: Story = {
-  render: (args: Args) => {
-    const samples = [
-      ['rounded', 'null'],
-      ['rounded-top', 'null'],
-      ['rounded-end', 'null'],
-      ['rounded-bottom', 'null'],
-      ['rounded-start', 'null'],
-      ['rounded', '1'],
-      ['rounded', '2'],
-      ['rounded', '3'],
-      ['rounded', '4'],
-      ['rounded', '5'],
-      ['rounded', 'circle'],
-      ['rounded', 'pill'],
-    ];
-
-    return html`
-      ${samples.map(([roundedSide, radius]) => {
-        return html`
-          <div class="border ${roundedSide}${radius !== 'null' ? `-${radius}` : ''}">
-            Sample Text
-          </div>
-        `;
-      })}
     `;
   },
 };
