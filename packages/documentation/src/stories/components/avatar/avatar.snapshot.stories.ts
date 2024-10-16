@@ -19,28 +19,30 @@ export const AvatarPicture: Story = {
         <h1 class="h4">Avatar</h1>
         ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div class="${bg}">
-              ${context.argTypes.size.options.map(
-                (size: string) => html`
-                  <div class="d-flex flex-column gap-regular p-regular mt-regular">
-                    <h2 class="h5">size: ${size}</h2>
-                    <div class="row">
-                      ${bombArgs({
-                        size: [size],
-                        lastname: [null, 'S'],
-                        firstname: [null, 'O'],
-                      }).map(
-                        (bombArgs: Args) => html`<div class="col">
-                          ${Default.render?.({ ...context.args, ...bombArgs }, context)}
-                        </div>`,
-                      )}
-                      <div class="col">
-                        ${Default.render?.({ ...args, size, email: 'oss@post.ch' }, context)}
-                      </div>
-                    </div>
+            <div class="${bg} mt-16 p-16">
+              <div class="d-flex flex-column gap-regular">
+                  ${bombArgs({
+                    lastname: [null, 'Source'],
+                    firstname: ['Open'],
+                  }).map(
+                    (bombArgs: Args) =>
+                      html`<div class="py-8">
+                        ${Default.render?.({ ...context.args, ...bombArgs }, context)}
+                      </div>`,
+                  )}
+
+                  <div class="py-8">
+                    ${Default.render?.({ ...args, email: 'oss@post.ch' }, context)}
                   </div>
-                `,
-              )}
+
+                  <div class="py-8">
+                    ${Default.render?.(
+                      { ...args, imageSrc: '/assets/images/logo-swisspost.svg' },
+                      context,
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
           `,
         )}

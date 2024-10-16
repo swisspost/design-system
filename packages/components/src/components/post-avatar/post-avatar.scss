@@ -34,10 +34,6 @@ tokens.$default-map: components.$post-avatar;
   box-sizing: border-box;
 }
 
-.visually-hidden {
-  @include post.visually-hidden();
-}
-
 slot,
 img,
 ::slotted(img) {
@@ -67,4 +63,8 @@ img,
   border-radius: tokens.get('avatar-border-radius');
   color: var(--post-avatar-fg);
   text-transform: uppercase;
+
+  span {
+    @include post.visually-hidden();
+  }
 }

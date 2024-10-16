@@ -166,18 +166,21 @@ export class PostAvatar {
   }
 
   render() {
+    const initials = [this.firstname, this.lastname]
+      .filter(n => n)
+      .reduce((acc, n, i) => {
+        if (i > 0) acc.push(<span> </span>);
+        acc.push(n.charAt(0));
+        acc.push(<span>{n.slice(1)}</span>);
+        // eslint-disable-next-line @stencil-community/render-returns-host
+        return acc;
+      }, []);
+
     return (
       <Host data-version={version}>
         <slot onSlotchange={this.onSlotDefaultChange.bind(this)}>
           {this.avatarType === 'image' && <img src={this.imageUrl} alt={this.imageAlt} />}
-          {this.avatarType === 'initials' && (
-            <div class="initials">
-              <span aria-hidden="true">{this.initials}</span>
-              <span class="visually-hidden">
-                {this.firstname} {this.lastname}
-              </span>
-            </div>
-          )}
+          {this.avatarType === 'initials' && <div class="initials">{initials}</div>}
         </slot>
       </Host>
     );
