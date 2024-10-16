@@ -19,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Get the name of the token branch which was pushed and the corresponding PR branch
+      # Get the name of the PR branch corresponding to the token branch
       - name: Get Branch Name
         id: branch-names
         run: |
@@ -27,16 +27,15 @@ jobs:
 
       # Check if the PR branch already exists
       - name: Check PR Branch
-        id: git-branch
+        id: ls-remote
         run: |
-          GIT_BRANCH="$(git branch -l $PR_BRANCH)"
-          echo "pr_branch=${GIT_BRANCH}" >> $GITHUB_OUTPUT
+          echo "pr_branch=$(git ls-remote origin $PR_BRANCH)" >> $GITHUB_OUTPUT
         env:
           PR_BRANCH: ${{ steps.branch-names.outputs.pr-branch }}
 
       # if the branch already exits, update the PR
       - name: Update Branch
-        if: steps.git-branch.outputs.pr_branch != ''
+        if: steps.ls-remote.outputs.pr_branch != ''
         run: |
           git checkout $PR_BRANCH
           git merge ${{ github.ref_name }} -X theirs --no-edit
@@ -47,7 +46,7 @@ jobs:
 
       # if the branch does not exit, create the PR
       - name: Create PR
-        if: steps.git-branch.outputs.pr_branch == ''
+        if: steps.ls-remote.outputs.pr_branch == ''
         run: |
           git checkout -b $PR_BRANCH ${{ github.ref_name }}
           git push --set-upstream origin merge-tokens-v2-24-10
