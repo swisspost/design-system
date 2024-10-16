@@ -1,7 +1,6 @@
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { MetaComponent } from '@root/types';
 import { html, nothing } from 'lit';
-import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { components } from '@swisspost/design-system-components/dist/docs.json';
 import { coloredBackground } from '@/shared/decorators/dark-background';
 
