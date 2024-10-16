@@ -25,7 +25,7 @@ export const TopicTeaser: Story = {
                 subtitle: [short, long],
                 title: [short, long],
                 alignment: context.argTypes.alignment.options,
-                backgroundColor: ['bg-light', 'bg-dark'],
+                backgroundColor: ['bg-light', 'bg-yellow'],
                 linkCount: [1, 5, 10],
               })
                 .filter((args: Args) => args.title !== args.subtitle || args.linkCount == 5)
