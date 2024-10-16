@@ -40,6 +40,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ steps.pr-branch.outputs.name }}
+          clean: false
 
       - name: Update PR Branch
         if: steps.pr-branch.outputs.exists == 'true'
