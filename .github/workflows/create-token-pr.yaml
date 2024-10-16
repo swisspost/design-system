@@ -16,10 +16,8 @@ jobs:
 
     steps:
       # Checkout the token branch which was pushed
-      - name: Checkout Token Branch
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref_name }}
 
       # Check if the PR branch corresponding to the token branch exists
       - name: Get PR Branch
@@ -35,20 +33,12 @@ jobs:
           fi
 
       # if the branch exits, update the PR
-      - name: Checkout PR Branch
-        if: steps.pr-branch.outputs.exists == 'true'
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ steps.pr-branch.outputs.name }}
-          clean: false
-
-      - name: Update PR Branch
+      - name: Update PR
         if: steps.pr-branch.outputs.exists == 'true'
         run: |
-          git config user.name "Swiss Post Bot"
-          git config user.email "103635272+swisspost-bot@users.noreply.github.com"
-          git merge ${{ github.ref_name }} -X theirs --no-edit
-          git push origin ${{ steps.pr-branch.outputs.name }}
+          gh pr edit ${{ steps.pr-branch.outputs.name }} --base ${{ github.ref_name }}
+          gh pr update-branch ${{ steps.pr-branch.outputs.name }}
+          gh pr edit ${{ steps.pr-branch.outputs.name }} --base main
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
 
