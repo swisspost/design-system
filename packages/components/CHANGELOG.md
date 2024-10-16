@@ -1,5 +1,13 @@
 # @swisspost/design-system-components
 
+## 7.4.4
+
+### Patch Changes
+
+- Fixed an issue with the post-collapsible throwing an invalid selector error. (by [@alizedebray](https://github.com/alizedebray) with [#3759](https://github.com/swisspost/design-system/pull/3759))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.4.4
+
 ## 7.4.3
 
 ### Patch Changes

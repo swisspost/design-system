@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components-angular",
-  "version": "7.4.3",
+  "version": "7.4.4",
   "description": "Swiss Post Design System - Angular Wrapper Components",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "tslib": "2.6.3",
-    "@swisspost/design-system-components": "workspace:7.4.3"
+    "@swisspost/design-system-components": "workspace:7.4.4"
   },
   "peerDependencies": {
     "@angular/common": "^16.0.0 || ^17.0.0",

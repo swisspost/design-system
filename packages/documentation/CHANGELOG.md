@@ -1,5 +1,17 @@
 # @swisspost/design-system-documentation
 
+## 5.3.4
+
+### Patch Changes
+
+- Fixed the dropdown toggle in the example of the intranet header with a navigation bar. (by [@alizedebray](https://github.com/alizedebray) with [#3762](https://github.com/swisspost/design-system/pull/3762))
+- Updated dependencies:
+  - @swisspost/design-system-components@7.4.4
+  - @swisspost/design-system-components-react@7.4.4
+  - @swisspost/design-system-styles@7.4.4
+  - @swisspost/design-system-icons@7.4.4
+  - @swisspost/internet-header@1.14.5
+
 ## 5.3.3
 
 ### Patch Changes
