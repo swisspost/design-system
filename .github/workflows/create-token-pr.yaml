@@ -16,41 +16,45 @@ jobs:
 
     steps:
       # Checkout the token branch which was pushed
-      - name: Checkout
+      - name: Checkout Token Branch
         uses: actions/checkout@v4
 
-      # Get the name of the PR branch corresponding to the token branch
-      - name: Get Branch Name
-        id: branch-names
+      # Check if the PR branch corresponding to the token branch exists
+      - name: Get PR Branch
+        id: pr-branch
         run: |
-          echo "pr-branch=merge-tokens-$(echo ${GITHUB_REF##*/})" >> $GITHUB_OUTPUT
+          PR_BRANCH="merge-tokens-${GITHUB_REF##*/}"
+          echo "name=${PR_BRANCH}" >> $GITHUB_OUTPUT
 
-      # Check if the PR branch already exists
-      - name: Check PR Branch
-        id: ls-remote
-        run: |
-          echo "pr_branch=$(git ls-remote origin $PR_BRANCH)" >> $GITHUB_OUTPUT
-        env:
-          PR_BRANCH: ${{ steps.branch-names.outputs.pr-branch }}
+          if [[ -n $(git ls-remote origin "${PR_BRANCH}") ]]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
 
-      # if the branch already exits, update the PR
-      - name: Update Branch
-        if: steps.ls-remote.outputs.pr_branch != ''
+      # if the branch exits, update the PR
+      - name: Checkout PR Branch
+        if: steps.pr-branch.outputs.exists == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.pr-branch.outputs.name }}
+
+      - name: Update PR Branch
+        if: steps.pr-branch.outputs.exists == 'true'
         run: |
-          git checkout $PR_BRANCH
+          git config user.name "Swiss Post Bot"
+          git config user.email "103635272+swisspost-bot@users.noreply.github.com"
           git merge ${{ github.ref_name }} -X theirs --no-edit
-          git push
+          git push origin ${{ steps.pr-branch.outputs.name }}
         env:
-          PR_BRANCH: ${{ steps.branch-names.outputs.pr-branch }}
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
 
       # if the branch does not exit, create the PR
       - name: Create PR
-        if: steps.ls-remote.outputs.pr_branch == ''
+        if: steps.pr-branch.outputs.exists == 'false'
         run: |
-          git checkout -b $PR_BRANCH ${{ github.ref_name }}
-          git push --set-upstream origin merge-tokens-v2-24-10
+          git checkout -b ${{ steps.pr-branch.outputs.name }} ${{ github.ref_name }}
+          git push --set-upstream origin ${{ steps.pr-branch.outputs.name }}
           gh pr create --title "chore(tokens): :art: update tokens" --body "Merge this PR to update the tokens in the main branch." --base main
         env:
-          PR_BRANCH: ${{ steps.branch-names.outputs.pr-branch }}
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
