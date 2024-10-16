@@ -25,7 +25,7 @@ export const Default: Story = {
   ],
   render: () => html`
     <a class="app-store-badge" href="#">
-      <img src="/assets/images/google-play-badge.png" alt="Google Play Store badge" />
+      <img src="/assets/images/google-play-badge.svg" alt="Google Play Store badge" />
       <span class="visually-hidden">Download the App on the Google Play</span>
     </a>
   `,

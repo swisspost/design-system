@@ -15,7 +15,7 @@ export const AppStoreBadge: Story = {
   render: () => {
     const appStoreDarkBadge = '/assets/images/apple-store-badge.svg';
     const appStoreLightBadge = '/assets/images/apple-store-badge-white.svg';
-    const googlePlayBadge = '/assets/images/google-play-badge.png';
+    const googlePlayBadge = '/assets/images/google-play-badge.svg';
 
     const renderBadge = (badgeSrc: string, altText: string) => html`
       <a class="app-store-badge" href="#">
