@@ -31,7 +31,7 @@ export const Opacity: Story = {
   render: (args: Args) => {
     return html`
       <div class="opacity-${args.opacity}">
-        <div class="opacity-content">Opacity ${args.opacity}%</div>
+        <div>Opacity ${args.opacity}%</div>
       </div>
     `;
   },
