@@ -77,9 +77,9 @@ export namespace Components {
     }
     interface PostBreadcrumbItem {
         /**
-          * The URL to which the breadcrumb item will link.
+          * The optional URL to which the breadcrumb item will link.
          */
-        "url": string;
+        "url"?: string;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -599,9 +599,9 @@ declare namespace LocalJSX {
     }
     interface PostBreadcrumbItem {
         /**
-          * The URL to which the breadcrumb item will link.
+          * The optional URL to which the breadcrumb item will link.
          */
-        "url": string;
+        "url"?: string;
     }
     /**
      * @class PostCardControl - representing a stencil component
