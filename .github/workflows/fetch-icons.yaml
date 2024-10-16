@@ -57,7 +57,7 @@ jobs:
           CEN_URL: ${{ secrets.CEN_URL }}
 
       - name: Build styles
-        run: pnpm styles:build
+        run: pnpm --filter design-system-styles... build
 
       - name: Commit Changes
         run: |
