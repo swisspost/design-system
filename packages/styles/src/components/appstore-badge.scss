@@ -6,18 +6,17 @@ tokens.$default-map: components.$post-app-store-badge;
 
 .app-store-badge {
   display: inline-flex;
-  border-radius: tokens.get('post-app-store', 'border-radius');
+  border-radius: tokens.get('app-store-border-radius');
 
   img {
     display: block;
-    height: tokens.get('post-app-store', 'height');
+    height: tokens.get('app-store-height');
   }
 
   @include utilities.focus-style(
-    '',
-    tokens.get('post-app-store', 'focus-outline-offset'),
-    tokens.get('post-app-store', 'focus-outline-width'),
-    tokens.get('post-app-store', 'focus-outline-color')
+    $offset: tokens.get('app-store-focus-outline-offset'),
+    $width: tokens.get('app-store-focus-outline-width'),
+    $color: tokens.get('app-store-focus-outline-color')
   );
 }
 
