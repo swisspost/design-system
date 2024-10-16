@@ -40,10 +40,10 @@ export const NestedBackgrounds: Story = {
 
 export const TranslucentBackgrounds: Story = {
   render: () => html`
-    <div class="bg-aubergine p-16">Container with default opacity (1).</div>
-    <div class="bg-aubergine p-16" style="--post-bg-opacity: 0.8">Container with opacity 0.8.</div>
-    <div class="bg-aubergine p-16" style="--post-bg-opacity: 0.6">Container with opacity 0.6.</div>
-    <div class="bg-aubergine p-16" style="--post-bg-opacity: 0.4">Container with opacity 0.4.</div>
-    <div class="bg-aubergine p-16" style="--post-bg-opacity: 0.2">Container with opacity 0.2.</div>
+    <div class="bg-dark p-16">Container with default opacity (1).</div>
+    <div class="bg-dark p-16" style="--post-bg-opacity: 0.8">Container with opacity 0.8.</div>
+    <div class="bg-dark p-16" style="--post-bg-opacity: 0.6">Container with opacity 0.6.</div>
+    <div class="bg-dark p-16" style="--post-bg-opacity: 0.4">Container with opacity 0.4.</div>
+    <div class="bg-dark p-16" style="--post-bg-opacity: 0.2">Container with opacity 0.2.</div>
   `,
 };

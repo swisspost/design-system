@@ -19,7 +19,7 @@ interface Product {
 })
 export class AppComponent {
   @HostBinding('class') containerClasses = 'd-block container my-32 py-24';
-  @HostBinding('class.bg-nightblue') hasDarkBackground = false;
+  @HostBinding('class.bg-dark') hasDarkBackground = false;
 
   datatableStyleClass = '';
 

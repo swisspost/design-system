@@ -28,6 +28,4 @@ $expected-add-stroke-color-output: "data:image/svg+xml,%3Csvg viewBox='0 0 32 32
       background-image: url(icons.get-colored-svg-url($name, $value));
     }
   }
-
-  background-image: url(icons.get-colored-svg-url('1000', map.get(color.$accent-colors, 'coral')));
 }
