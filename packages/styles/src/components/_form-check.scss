@@ -1,0 +1,156 @@
+@forward './../variables/options';
+
+@use '../variables/color';
+@use '../variables/commons';
+@use '../variables/type';
+@use '../variables/spacing';
+@use '../variables/animation';
+@use '../variables/components/form-check';
+@use '../mixins/color' as color-mx;
+@use '../mixins/icons' as icons-mx;
+@use '../mixins/utilities' as utility-mx;
+
+.form-check {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  &-inline {
+    display: inline-flex;
+    &:not(:last-of-type) {
+      margin-right: form-check.$form-check-inline-margin-right;
+    }
+  }
+
+  &-input,
+  &-label {
+    transition: color #{animation.$transition-base-timing};
+
+    @include utility-mx.high-contrast-mode {
+      transition: none;
+    }
+  }
+
+  &-input {
+    &:not([disabled]),
+    &:not([disabled]) ~ .form-check-label {
+      cursor: pointer;
+    }
+
+    @include utility-mx.focus-style-none();
+    display: inline-flex;
+    flex: 0 auto;
+    appearance: none;
+    background: transparent;
+
+    @include utility-mx.high-contrast-mode {
+      border-color: FieldText;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+    }
+
+    // Shared disabled styles
+    &[disabled] {
+      &[type='checkbox'],
+      &[type='radio'] {
+        @include utility-mx.high-contrast-mode {
+          border-color: GrayText !important;
+        }
+      }
+    }
+  }
+}
+
+.form-switch {
+  .form-check-input {
+    height: form-check.$form-switch-height;
+    width: form-check.$form-switch-width;
+    border: 0;
+    border-radius: form-check.$form-switch-width;
+    background-image: form-check.$form-switch-background-image;
+    background-size: 2 * form-check.$form-switch-width;
+    background-position-x: 0;
+    transition:
+      background-color animation.$transition-base-timing,
+      background-position animation.$transition-base-timing;
+
+    &::after {
+      max-width: form-check.$form-switch-height;
+      background-color: form-check.$form-switch-color;
+      border: form-check.$form-check-input-border-width solid form-check.$form-switch-border-color;
+      border-radius: 50%;
+      transition: transform animation.$transition-base-timing;
+    }
+
+    &:checked {
+      background-position-x: form-check.$form-switch-width;
+
+      &::after {
+        @include icons-mx.remove-icon;
+        background-color: form-check.$form-switch-color;
+        border-color: form-check.$form-switch-checked-border-color;
+        transform: translateX(2rem);
+      }
+    }
+
+    @include utility-mx.high-contrast-mode {
+      transition: none;
+      border: form-check.$form-check-input-border-width solid CanvasText;
+
+      &:checked {
+        background-color: SelectedItem !important;
+      }
+
+      &::after,
+      &:checked::after {
+        max-width: calc(
+          form-check.$form-switch-height - (form-check.$form-check-input-border-width * 2)
+        );
+        border-color: Canvas;
+        background-color: CanvasText;
+      }
+    }
+
+    &[disabled] {
+      background: form-check.$form-switch-disabled-bg;
+
+      &::after {
+        border-color: form-check.$form-switch-disabled-border-color;
+      }
+
+      @include utility-mx.high-contrast-mode {
+        &::after {
+          border-color: Field;
+        }
+
+        &:checked {
+          background-color: GrayText !important;
+        }
+      }
+    }
+  }
+
+  &:hover > .form-check-input:not([disabled]) {
+    background-color: rgba(var(--post-contrast-color-rgb), 0.1);
+
+    @include utility-mx.high-contrast-mode {
+      border-color: Highlight;
+    }
+  }
+
+  .form-check-label {
+    padding-top: form-check.$form-switch-label-padding-top;
+
+    &.order-first {
+      flex: 0 auto;
+      padding-inline-end: form-check.$form-switch-column-gap;
+    }
+
+    &:not(.order-first) {
+      padding-inline-start: form-check.$form-switch-column-gap;
+    }
+  }
+}

@@ -1,0 +1,137 @@
+@use '_form-check';
+@use '../variables/color';
+@use '../variables/animation';
+@use '../mixins/color' as color-mx;
+@use '../mixins/icons' as icons-mx;
+@use '../mixins/utilities' as utility-mx;
+@use '../tokens/components' as components;
+@use '../functions/tokens' as tokens;
+
+tokens.$default-map: components.$post-radio-button;
+
+.form-check,
+.radio-button {
+  &:has(.form-check-input[type='radio']) {
+    margin-bottom: tokens.get('radio-button-gap-block-group');
+
+    &:focus-within {
+      @include utility-mx.focus-style(
+        $offset: tokens.get('radio-button-focus-outline-offset'),
+        $width: tokens.get('radio-button-focus-border-width'),
+        $color: tokens.get('radio-button-focus-stroke'),
+        $style: tokens.get('radio-button-focus-border-style')
+      ) {
+        color: tokens.get('radio-button-selected-fg');
+        background-color: tokens.get('radio-button-selected-bg');
+        border-radius: tokens.get(
+          'radio-button-focus-border-radius',
+          components.$post-radio-button
+        );
+        border-color: tokens.get('radio-button-selected-stroke');
+      }
+    }
+  }
+
+  &-input[type='radio'] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: tokens.get('radio-button-icon-ring');
+    width: tokens.get('radio-button-icon-ring');
+    border: tokens.get('radio-button-icon-border-width')
+      tokens.get('radio-button-icon-border-style-default') tokens.get('radio-button-enabled-stroke');
+    padding-block: tokens.get(
+      'radio-button-icon-padding-block-inner',
+      components.$post-radio-button
+    );
+    padding-inline: tokens.get(
+      'radio-button-icon-padding-inline-inner',
+      components.$post-radio-button
+    );
+    margin-block: tokens.get(
+      'radio-button-icon-padding-block-container',
+      components.$post-radio-button
+    );
+    border-radius: tokens.get(
+      'radio-button-icon-border-radius-round',
+      components.$post-radio-button
+    );
+
+    color: tokens.get('radio-button-enabled-fg');
+    background-color: tokens.get('radio-button-enabled-bg');
+
+    & + .form-check-label {
+      flex: 1;
+
+      padding-block: tokens.get('radio-button-label-padding-block');
+
+      :not(.form-switch, .radio-button-card) > & {
+        padding-inline-start: tokens.get(
+          'radio-button-gap-inline-text-start',
+          components.$post-radio-button
+        );
+      }
+    }
+
+    &:hover:not([disabled]),
+    &:hover:not([disabled]) ~ .form-check-label {
+      color: tokens.get('radio-button-hover-fg');
+      background-color: tokens.get('radio-button-hover-bg');
+      border-color: tokens.get('radio-button-hover-stroke');
+
+      &::after {
+        background-color: tokens.get('radio-button-hover-fg');
+      }
+
+      @include utility-mx.high-contrast-mode() {
+        border-color: Highlight;
+      }
+    }
+
+    &:checked::after {
+      background-color: tokens.get('radio-button-enabled-fg');
+      width: tokens.get('radio-button-icon-dot');
+      height: tokens.get('radio-button-icon-dot');
+      border-radius: inherit;
+
+      @include utility-mx.high-contrast-mode {
+        background-color: SelectedItem;
+        border-color: Canvas;
+      }
+    }
+
+    &[disabled] {
+      background-color: tokens.get('radio-button-disabled-bg');
+      border: tokens.get('radio-button-icon-border-width')
+        tokens.get('radio-button-icon-border-style-disabled')
+        tokens.get('radio-button-disabled-stroke');
+
+      @include color-mx.on-dark-background {
+        border: tokens.get('radio-button-icon-border-width')
+          tokens.get('radio-button-icon-border-style-disabled') color.$white-alpha-80;
+      }
+      @include utility-mx.high-contrast-mode {
+        border: tokens.get('radio-button-icon-border-width')
+          tokens.get('radio-button-icon-border-style-disabled') GrayText;
+      }
+    }
+
+    &[disabled],
+    &[disabled] ~ .form-check-label {
+      color: tokens.get('radio-button-disabled-fg');
+      background-color: tokens.get('radio-button-disabled-bg');
+
+      @include color-mx.on-dark-background() {
+        color: color.$white-alpha-80;
+      }
+    }
+
+    &[disabled] {
+      &:checked::after {
+        @include utility-mx.high-contrast-mode {
+          background-color: GrayText;
+        }
+      }
+    }
+  }
+}
