@@ -7,16 +7,16 @@
 
 ## Properties
 
-| Property | Attribute | Description                                              | Type     | Default     |
-| -------- | --------- | -------------------------------------------------------- | -------- | ----------- |
-| `url`    | `url`     | The optional URL to which the breadcrumb item will link. | `string` | `undefined` |
+| Property | Attribute | Description                                              | Type            | Default     |
+| -------- | --------- | -------------------------------------------------------- | --------------- | ----------- |
+| `url`    | `url`     | The optional URL to which the breadcrumb item will link. | `URL \| string` | `undefined` |
 
 
 ## Slots
 
 | Slot        | Description                                           |
 | ----------- | ----------------------------------------------------- |
-| `"default"` | Slot for placing the text inside the breadcrumb link. |
+| `"default"` | Slot for placing the text inside the breadcrumb item. |
 
 
 ## Dependencies

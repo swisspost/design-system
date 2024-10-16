@@ -3,9 +3,8 @@ import { version } from '@root/package.json';
 import { checkUrl } from '@/utils';
 
 /**
- * @slot default - Slot for placing the text inside the breadcrumb link.
+ * @slot default - Slot for placing the text inside the breadcrumb item.
  */
-
 @Component({
   tag: 'post-breadcrumb-item',
   styleUrl: 'post-breadcrumb-item.scss',
@@ -17,13 +16,11 @@ export class PostBreadcrumbItem {
   /**
    * The optional URL to which the breadcrumb item will link.
    */
-  @Prop() readonly url?: string;
+  @Prop() url?: string | URL;
 
   @Watch('url')
   validateUrl() {
-    if (this.url) {
-      checkUrl(this.url, 'The "url" property is invalid');
-    }
+    checkUrl(this.url, 'The "url" property of the post-breadcrumb-item is invalid');
   }
 
   connectedCallback() {
@@ -31,21 +28,19 @@ export class PostBreadcrumbItem {
   }
 
   render() {
-    const isLink = this.url && !this.url.startsWith('#') && /^(\/|https?:\/\/)/.test(this.url);
-    
+    let breadcrumbLink: string | undefined;
+    if (this.url) {
+      breadcrumbLink = typeof this.url === 'string' ? this.url : (this.url as URL).href;
+    }
+
+    const BreadcrumbTag = breadcrumbLink ? 'a' : 'span';
+
     return (
       <Host data-version={version}>
-        {isLink ? (
-          <a href={this.url}>
-            <post-icon name="2111" class="breadcrumb-item-icon" />
-            <slot></slot>
-          </a>
-        ) : (
-          <span class="breadcrumb-item-text">
-            <post-icon name="2111" class="breadcrumb-item-icon" />
-            <slot></slot>
-          </span>
-        )}
+        <BreadcrumbTag class="breadcrumb-item-text" {...(breadcrumbLink ? { href: breadcrumbLink } : {})}>
+          <post-icon name="2111" class="breadcrumb-item-icon" />
+          <slot></slot>
+        </BreadcrumbTag>
       </Host>
     );
   }

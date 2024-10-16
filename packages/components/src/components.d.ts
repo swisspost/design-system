@@ -79,7 +79,7 @@ export namespace Components {
         /**
           * The optional URL to which the breadcrumb item will link.
          */
-        "url"?: string;
+        "url"?: string | URL;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -601,7 +601,7 @@ declare namespace LocalJSX {
         /**
           * The optional URL to which the breadcrumb item will link.
          */
-        "url"?: string;
+        "url"?: string | URL;
     }
     /**
      * @class PostCardControl - representing a stencil component
