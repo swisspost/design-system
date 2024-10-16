@@ -1,4 +1,4 @@
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import type { StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import meta from './borders.stories';
 import './borders.styles.scss';

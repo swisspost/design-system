@@ -52,7 +52,7 @@ export const Borders: Story = {
       control: {
         type: 'select',
       },
-      options: ['none', , ...border_args.border],
+      options: ['none', ...border_args.border],
       table: {
         category: 'Set Border Width',
       },
@@ -64,7 +64,7 @@ export const Borders: Story = {
       control: {
         type: 'select',
       },
-      options: ['none', , ...border_args.color],
+      options: ['none', ...border_args.color],
       table: {
         category: 'Set Border Color',
       },
