@@ -35,7 +35,7 @@ jobs:
           fi
 
       # If the branch exits, update the PR
-     - name: Update PR
+      - name: Update PR
         if: steps.pr-branch.outputs.exists == 'true'
         run: |
           git config user.name "Swiss Post Bot"
