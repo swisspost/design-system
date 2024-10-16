@@ -5,20 +5,6 @@ import './opacity.styles.scss';
 
 const { id, ...metaWithoutId } = meta;
 
-// const OpacitySnapshot: Story = {
-//   render: () => {
-//     return html`
-//       ${opacityOptions.map(opacity => {
-//         return html`
-//           <div class="opacity-${opacity}">
-//             <div class="opacity-content">Opacity ${opacity}%</div>
-//           </div>
-//         `;
-//       })}
-//     `;
-//   },
-// };
-
 export default {
   ...metaWithoutId,
   title: 'Snapshots',
