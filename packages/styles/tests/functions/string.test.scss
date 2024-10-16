@@ -3,6 +3,18 @@
 
 $paragraph: "I think Ruth's dog is cuter than your dog!";
 
+// it should return true if the term is found
+@include jest.equal(
+    true,
+    string.contains($paragraph, 'dog')
+);
+
+// it should return false if the term is not found
+@include jest.equal(
+    false,
+    string.contains($paragraph, 'cat')
+);
+
 // it should replace a term by another
 @include jest.equal(
     'I think my dog is cuter than your dog!',
