@@ -104,7 +104,7 @@ export class PostAlert {
    */
   @Event() postDismissed: EventEmitter<void>;
 
-  connectedCallback() {
+  componentDidLoad() {
     this.validateDismissible();
     this.validateFixed();
     this.validateIcon();
