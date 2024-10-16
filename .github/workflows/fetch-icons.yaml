@@ -41,7 +41,7 @@ jobs:
       - name: Create Branch
         id: current-branch
         run: |
-          git checkout -b $BRANCH_NAME
+          git checkout -b $BRANCH_NAME release/v8
           echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
         env:
           BRANCH_NAME: ${{ steps.current-date.outputs.date }}-update-icons
@@ -169,6 +169,6 @@ jobs:
       - name: Create PR
         if: steps.changed-files.outputs.any_modified != 'false'
         run: |
-          gh pr create --title "chore(icons): :point_up: update icons" --body-file ${{ steps.pr-body.outputs.file }}
+          gh pr create --title "chore(icons): :point_up: update icons" --body-file ${{ steps.pr-body.outputs.file }} --base release/v8
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
