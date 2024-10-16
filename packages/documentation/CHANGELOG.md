@@ -1,5 +1,54 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.2
+
+### Minor Changes
+
+- Updated and tokenized styles for the legend element. (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3614](https://github.com/swisspost/design-system/pull/3614))
+
+- Added styling support and documentation for the `<dialog>` element. The dialog will replace the current modal and notification overlay components coming from ng-bootstrap. (by [@gfellerph](https://github.com/gfellerph) with [#2772](https://github.com/swisspost/design-system/pull/2772))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.2
+  - @swisspost/design-system-components-react@9.0.0-next.2
+  - @swisspost/design-system-components@9.0.0-next.2
+  - @swisspost/internet-header@1.14.6-next.2
+  - @swisspost/design-system-icons@9.0.0-next.2
+
+## 6.0.0-next.1
+
+### Major Changes
+
+- Made the heading-level property required for the accordion and removed it from the accordion-item docs. (by [@schaertim](https://github.com/schaertim) with [#3383](https://github.com/swisspost/design-system/pull/3383))
+
+### Minor Changes
+
+- Added a toolbar for switching the theme, channel, and mode of all stories. (by [@alizedebray](https://github.com/alizedebray) with [#3528](https://github.com/swisspost/design-system/pull/3528))
+
+- Added documentation outlining the mission statement of the Design System. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3568](https://github.com/swisspost/design-system/pull/3568))
+
+- Added Text Highlighted component. (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3586](https://github.com/swisspost/design-system/pull/3586))
+
+- Updated the margin, padding, and gap utility classes to use the pixel values (1, 2, ... , 112) instead of size names (hair, line, ..., bigger-giant). (by [@alizedebray](https://github.com/alizedebray) with [#3557](https://github.com/swisspost/design-system/pull/3557))
+
+- Added documentation for design principles. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3565](https://github.com/swisspost/design-system/pull/3565))
+
+- Added lead text component for introductory paragraphs. (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3575](https://github.com/swisspost/design-system/pull/3575))
+
+### Patch Changes
+
+- Updated the style of headings (h1-h6). (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3534](https://github.com/swisspost/design-system/pull/3534))
+
+- Fixed typos in the Sass and HTML href paths. (by [@schaertim](https://github.com/schaertim) with [#3466](https://github.com/swisspost/design-system/pull/3466))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.1
+  - @swisspost/design-system-styles@9.0.0-next.1
+  - @swisspost/design-system-components-react@9.0.0-next.1
+  - @swisspost/internet-header@1.14.6-next.1
+  - @swisspost/design-system-icons@9.0.0-next.1
+
 ## 6.0.0-next.0
 
 ### Major Changes

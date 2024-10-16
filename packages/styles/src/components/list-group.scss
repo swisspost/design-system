@@ -121,9 +121,9 @@
   }
 
   &-minimal {
-    @include type-mixins.font-curve('bigger-regular');
     padding-right: 0;
     padding-left: 0;
+    @include type-mixins.font-curve('bigger-regular');
   }
 
   &-transparent {
