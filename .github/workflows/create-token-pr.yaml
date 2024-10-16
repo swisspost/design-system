@@ -15,13 +15,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the token branch which was pushed
-      - name: Checkout Token Branch
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # Check if the PR branch corresponding to the token branch exists
+      # Check if a PR branch corresponding to the token branch exists
       - name: Get PR Branch
         id: pr-branch
         run: |
