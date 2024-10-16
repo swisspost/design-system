@@ -18,6 +18,8 @@ jobs:
       # Checkout the token branch which was pushed
       - name: Checkout Token Branch
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
 
       # Check if the PR branch corresponding to the token branch exists
       - name: Get PR Branch
@@ -44,7 +46,6 @@ jobs:
         run: |
           git config user.name "Swiss Post Bot"
           git config user.email "103635272+swisspost-bot@users.noreply.github.com"
-          git fetch origin ${{ github.ref_name }}
           git merge ${{ github.ref_name }} -X theirs --no-edit
           git push origin ${{ steps.pr-branch.outputs.name }}
         env:
