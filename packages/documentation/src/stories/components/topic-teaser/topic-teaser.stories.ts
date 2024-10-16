@@ -80,7 +80,7 @@ const meta: MetaComponent = {
           'bg-dark': 'Dark',
         },
       },
-      options: ['bg-light', 'bg-dark'],
+      options: ['bg-light', 'bg-yellow'],
       table: {
         category: 'General',
       },
