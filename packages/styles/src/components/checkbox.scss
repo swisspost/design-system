@@ -1,4 +1,4 @@
-@use '_form-check';
+@use 'form-check';
 @use '../variables/color';
 @use '../variables/animation';
 @use '../mixins/color' as color-mx;
@@ -28,6 +28,7 @@ $checkbox-icon-intermediate: url("data:image/svg+xml,<svg width='16' height='16'
         background-color: tokens.get('checkbox-selected-bg');
         border-radius: tokens.get('checkbox-focus-border-radius');
         border-color: tokens.get('checkbox-selected-stroke');
+        width: fit-content;
       }
     }
   }
@@ -123,6 +124,12 @@ $checkbox-icon-intermediate: url("data:image/svg+xml,<svg width='16' height='16'
           background-color: Field !important;
           color: GrayText !important;
         }
+      }
+    }
+    &.is-invalid {
+      border-color: tokens.get('checkbox-enabled-stroke');
+      & + .form-check-label {
+        color: tokens.get('checkbox-enabled-fg');
       }
     }
   }
