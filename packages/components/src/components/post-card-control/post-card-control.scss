@@ -1,7 +1,7 @@
 @use 'sass:list';
 @use 'sass:math';
 @use '@swisspost/design-system-styles/core' as post;
-@use '@swisspost/design-system-styles/components/form-check';
+@use '@swisspost/design-system-styles/components/_form-check';
 
 /*
 * There are a whole bunch of !important statements in this file.
@@ -9,7 +9,6 @@
 */
 
 :host {
-
   // remove as soon as all browser support :host-context()
   // https://caniuse.com/?search=%3Ahost-context()
   --post-card-control-bg-context: #{post.$backgrounds};

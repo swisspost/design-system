@@ -13,8 +13,7 @@
 
 tokens.$default-map: components.$post-switch;
 
-$switch-handle-icon: url("data:image/svg+xml,<svg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'><path d='m12.667 24.533-7.6-7.6 1.867-1.867 5.733 5.733 12.4-12.4 1.867 1.867z'/></svg>");
-$switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'><path d='m12.667 23.6-7.2-7.067 1.067-1.067 6.133 6.267L25.467 8.8l1.067 1.067z'/></svg>");
+$switch-handle-icon: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='M7.51712 12.1332L4.30712 8.69325C4.02712 8.39325 4.03712 7.91325 4.34712 7.63325C4.64712 7.35325 5.12712 7.36325 5.40712 7.67325L7.31712 9.72325L10.7171 4.57325C10.9471 4.22325 11.4071 4.13325 11.7571 4.36325C12.1071 4.59325 12.1971 5.05325 11.9671 5.40325L7.51712 12.1332Z'/></svg>");
 
 .form-switch {
   display: flex;
@@ -71,6 +70,9 @@ $switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' x
       mask-image: $switch-handle-icon;
       background-color: transparent;
       z-index: 1;
+      mask-size: tokens.get('switch-element-handle');
+      mask-repeat: no-repeat;
+      mask-position: center;
     }
 
     &::after {
@@ -162,7 +164,9 @@ $switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' x
 
       &:checked::before {
         background-color: tokens.get('switch-icon-disabled');
-        mask-image: $switch-handle-icon-disabled;
+        mask-image: $switch-handle-icon;
+        mask-repeat: no-repeat;
+        mask-position: center;
       }
 
       @include utility-mx.high-contrast-mode {
@@ -174,6 +178,10 @@ $switch-handle-icon-disabled: url("data:image/svg+xml,<svg viewBox='0 0 32 32' x
           background-color: GrayText !important;
         }
       }
+    }
+
+    &.is-invalid {
+      border-color: transparent;
     }
   }
 
