@@ -1,5 +1,13 @@
 # @swisspost/design-system-components
 
+## 8.4.0
+
+### Patch Changes
+
+- Fixed a bug in nested accordions where closing a child item unintentionally closed all parent accordion elements. (by [@gfellerph](https://github.com/gfellerph) with [#3773](https://github.com/swisspost/design-system/pull/3773))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.4.0
+
 ## 8.3.0
 
 ### Patch Changes
