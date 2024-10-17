@@ -198,8 +198,11 @@ export class PostMenu {
       return true;
     }
 
-    if (tabIndex !== null && tabIndex !== '-1') {
-      return true;
+    if (tabIndex !== null) {
+      const parsedTabIndex = parseInt(tabIndex, 10);
+      if (parsedTabIndex > 0) {
+        return true;
+      }
     }
 
     return false;
@@ -299,7 +302,9 @@ export class PostMenu {
     return (
       <Host data-version={version} id="menu-one">
         <post-popovercontainer placement={this.placement} ref={e => (this.popoverRef = e)}>
+          <div class="popover-container">
           <slot></slot>
+          </div>
         </post-popovercontainer>
       </Host>
     );
