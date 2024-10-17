@@ -10,6 +10,10 @@ export const config: Config = {
   buildDist: true,
   sourceMap: false,
   validatePrimaryPackageOutputTarget: true,
+  hydratedFlag: {
+    name: 'data-hydrated',
+    selector: 'attribute',
+  },
   outputTargets: [
     {
       type: 'dist',
