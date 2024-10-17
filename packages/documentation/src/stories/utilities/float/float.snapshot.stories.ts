@@ -1,7 +1,6 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import meta, { Float as F } from './float.stories';
-import './float.styles.scss';
 import { bombArgs } from '@/utils';
 
 const { id, ...metaWithoutId } = meta;
