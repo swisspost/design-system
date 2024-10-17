@@ -38,14 +38,15 @@ const meta: MetaComponent = {
 
 function render(args: Args) {
   return html`
-    <post-menu-toggle class="d-flex justify-content-start">
-      <button class="btn btn-secondary btn-large" data-menu-target="${args.id}">Menu button</button>
+    <post-menu-toggle>
+      <button class="btn btn-secondary" data-menu-target="${args.id}">Menu button</button>
     </post-menu-toggle>
     <post-menu class="hydrated" id="${args.id}" placement="${args.placement}">
-      <post-menu-item><button>Example 1</button></post-menu-item>
       <post-menu-item><button>Example 2</button></post-menu-item>
-      <post-menu-item><button>Example 3</button></post-menu-item>
-      <post-menu-item>Hello there</post-menu-item>
+      <post-menu-item>
+        <a href="#" class="text-decoration-none">Example 1</a></post-menu-item>
+        <hr />
+      <post-menu-item><div>Example 3</div></post-menu-item>
     </post-menu>
   `;
 }
