@@ -3,4 +3,4 @@
 '@swisspost/design-system-documentation': minor
 ---
 
-Updated the utility classes for float
+Internalized bootstraps floating utilities into the design system.
