@@ -1,7 +1,7 @@
 import type { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit/static-html.js';
 import { MetaExtended } from '@root/types';
-import './float.styles.scss';
+import { nothing } from 'lit';
 
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 
@@ -28,55 +28,29 @@ export const Float: Story = {
       },
     },
     floatBreakPoint: {
-      name: 'float',
+      name: 'breakpoint',
       description: 'Sets the float for a specific breakpoint. ',
       control: {
         type: 'select',
       },
-      options: ['', 'sm', 'md', 'lg', 'xl', 'xxl'],
+      options: ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
       table: {
         category: 'Add float',
       },
     },
   },
   args: {
-    floatPosition: '',
-    floatBreakPoint: '',
+    floatPosition: null,
+    floatBreakPoint: null,
   },
   render: (args: Args) => {
-    const float = args.floatPosition !== '' ? `float` : '';
-    const floatPosition = args.floatPosition !== '' ? `-${args.floatPosition}` : '';
-    const floatBreakPoint = args.floatBreakPoint !== '' ? `-${args.floatBreakPoint}` : '';
+    const classMembers = ['float', args.floatBreakPoint ?? 'xs', args.floatPosition].filter(m => m);
+    const floatClass =
+      classMembers.length === 3 ? classMembers.filter(m => m !== 'xs').join('-') : nothing;
 
     return html`
-      <div class="float-example">
-        <div class="${float}${floatBreakPoint}${floatPosition}">Sample Text</div>
-      </div>
-    `;
-  },
-};
-
-export const FloatSnapshot: Story = {
-  render: () => {
-    const samples = [
-      ['null', 'none'],
-      ['null', 'start'],
-      ['null', 'end'],
-      ['sm', 'start'],
-      ['md', 'end'],
-      ['lg', 'none'],
-      ['xl', 'start'],
-      ['xxl', 'none'],
-    ];
-
-    return html`
-      ${samples.map(([floatBreakPoint, floatPosition]) => {
-        const fbp = floatBreakPoint !== 'null' ? `${floatBreakPoint}-` : '';
-        return html`
-          <div class="float-${fbp}${floatPosition}">Sample Text</div>
-          <div class="clearfix"></div>
-        `;
-      })}
+      <div class="${floatClass}">Sample Text</div>
+      <div class="clearfix"></div>
     `;
   },
 };
