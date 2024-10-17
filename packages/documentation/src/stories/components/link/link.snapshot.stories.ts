@@ -20,7 +20,7 @@ export const Link: Story = {
           bg => html`
             <div
               class="${bg} d-flex flex-column gap-regular p-regular mt-regular"
-              data-color-mode="${bg === 'bg-white' ? 'light' : 'dark'}"
+              data-color-scheme="${bg === 'bg-white' ? 'light' : 'dark'}"
             >
               ${bombArgs({
                 text: ['Link Text', 'Lorem ipsum dolor sit amet consectetur'],
