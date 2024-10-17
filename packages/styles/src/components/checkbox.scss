@@ -44,9 +44,10 @@ $checkbox-icon-intermediate: url("data:image/svg+xml,<svg width='16' height='16'
     color: tokens.get('checkbox-enabled-fg');
     background-color: tokens.get('checkbox-enabled-bg');
 
-    & + .form-check-label {
+    + .form-check-label {
       flex: 1;
       padding-block: tokens.get('checkbox-label-padding-block');
+
       :not(.form-switch, .checkbox-button-card) > & {
         padding-inline-start: tokens.get(
           'checkbox-gap-inline-text-start',
@@ -54,9 +55,11 @@ $checkbox-icon-intermediate: url("data:image/svg+xml,<svg width='16' height='16'
         );
       }
     }
+
     &::after {
       flex: 1;
     }
+
     &:hover:not([disabled]),
     &:hover:not([disabled]) ~ .form-check-label {
       color: tokens.get('checkbox-hover-fg');
@@ -126,9 +129,11 @@ $checkbox-icon-intermediate: url("data:image/svg+xml,<svg width='16' height='16'
         }
       }
     }
+
     &.is-invalid {
       border-color: tokens.get('checkbox-enabled-stroke');
-      & + .form-check-label {
+
+      + .form-check-label {
         color: tokens.get('checkbox-enabled-fg');
       }
     }

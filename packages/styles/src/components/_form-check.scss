@@ -17,6 +17,7 @@
 
   &-inline {
     display: inline-flex;
+
     &:not(:last-of-type) {
       margin-right: form-check.$form-check-inline-margin-right;
     }
