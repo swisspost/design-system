@@ -819,6 +819,12 @@ importers:
         specifier: ^18
         version: 18.3.1(react@18.3.1)
     devDependencies:
+      '@swisspost/design-system-tokens':
+        specifier: workspace:9.0.0-next.1
+        version: link:../tokens/dist
+      '@tokens-studio/sd-transforms':
+        specifier: 1.2.2
+        version: 1.2.2(style-dictionary@4.0.1)
       '@types/node':
         specifier: 20.14.14
         version: 20.14.14
@@ -843,6 +849,12 @@ importers:
       sass:
         specifier: 1.78.0
         version: 1.78.0
+      sd-tailwindcss-transformer:
+        specifier: 2.0.0
+        version: 2.0.0(style-dictionary@4.0.1)
+      style-dictionary:
+        specifier: 4.0.1
+        version: 4.0.1
       tailwindcss:
         specifier: ^3.3.0
         version: 3.4.7(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.6.2))
@@ -9540,6 +9552,11 @@ packages:
   schema-utils@4.2.0:
     resolution: {integrity: sha512-L0jRsrPpjdckP3oPug3/VxNKt2trR8TcabrM6FOAAlvC/9Phcmm+cuAgTlxBqdBR1WJx7Naj9WHw+aOmheSVbw==}
     engines: {node: '>= 12.13.0'}
+
+  sd-tailwindcss-transformer@2.0.0:
+    resolution: {integrity: sha512-pFifCvawV1zD0+pghctfIBSD4yq1zFhVN8UXvao3jjm+D61DcsT5cJwmZABZVVAu8zyvDONg1fcOQRi9hDkZOg==}
+    peerDependencies:
+      style-dictionary: '>=4.0.0'
 
   secure-compare@3.0.1:
     resolution: {integrity: sha512-AckIIV90rPDcBcglUwXPF3kg0P0qmPsPXAj6BBEENQE1p5yA1xfmDJzfi1Tappj37Pv2mVbKpL3Z1T+Nn7k1Qw==}
@@ -21142,7 +21159,7 @@ snapshots:
     dependencies:
       '@yarnpkg/lockfile': 1.1.0
       chalk: 4.1.2
-      ci-info: 3.8.0
+      ci-info: 3.9.0
       cross-spawn: 7.0.3
       find-yarn-workspace-root: 2.0.0
       fs-extra: 9.1.0
@@ -21151,10 +21168,10 @@ snapshots:
       minimist: 1.2.8
       open: 7.4.2
       rimraf: 2.7.1
-      semver: 7.6.2
+      semver: 7.6.3
       slash: 2.0.0
       tmp: 0.0.33
-      yaml: 2.4.5
+      yaml: 2.5.1
 
   path-exists@3.0.0: {}
 
@@ -22243,6 +22260,10 @@ snapshots:
       ajv: 8.17.1
       ajv-formats: 2.1.1(ajv@8.17.1)
       ajv-keywords: 5.1.0(ajv@8.17.1)
+
+  sd-tailwindcss-transformer@2.0.0(style-dictionary@4.0.1):
+    dependencies:
+      style-dictionary: 4.0.1
 
   secure-compare@3.0.1: {}
 
