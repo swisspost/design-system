@@ -90,21 +90,6 @@ const meta: MetaComponent = {
         category: 'States',
       },
     },
-    size: {
-      name: 'Size',
-      description: "Sets the size of the component's appearance.",
-      control: {
-        type: 'select',
-        labels: {
-          'form-check-sm': 'Small',
-          'null': 'Large',
-        },
-      },
-      options: ['form-check-sm', 'null'],
-      table: {
-        category: 'General',
-      },
-    },
     disabled: {
       name: 'Disabled',
       description:
@@ -236,17 +221,6 @@ export const Validation: Story = {
   },
   args: {
     validation: 'invalid',
-  },
-};
-
-export const Size: Story = {
-  args: {
-    size: 'form-check-sm',
-  },
-  parameters: {
-    controls: {
-      exclude: ['Hidden Legend', 'Inline Layout'],
-    },
   },
 };
 

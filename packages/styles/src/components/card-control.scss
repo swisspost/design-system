@@ -4,6 +4,8 @@
 @use '../variables/components/forms';
 @use '../variables/components/form-check';
 @use '../mixins/utilities';
+@use '../tokens/components' as components;
+@use '../functions/tokens' as tokens;
 
 /*
 * There are a whole bunch of !important statments in this file.
@@ -136,7 +138,7 @@ fieldset {
 
     input.form-check-input[type] {
       border: 0 none;
-      padding: form-check.$form-check-input-border-width;
+      padding: forms.$input-border-width;
     }
   }
 
