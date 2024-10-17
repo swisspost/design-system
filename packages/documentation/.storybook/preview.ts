@@ -68,10 +68,6 @@ const preview: Preview = {
           'Misc',
           ['Migration Guide', 'Changelog', 'Versions'],
 
-          // Category - Health
-          'Health',
-          ['Icons'],
-
           // Category - Snapshots (hidden)
           'Snapshots',
         ],

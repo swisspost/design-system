@@ -94,10 +94,9 @@
       color: var(--post-contrast-color);
     }
   }
-}
-
-#storybook-explorer-tree [data-item-id^='health'] {
-  display: none;
+  [data-item-id^='health'] {
+    display: none;
+  }
 }
 
 #downshift-1-menu {
