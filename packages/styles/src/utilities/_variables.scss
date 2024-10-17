@@ -26,8 +26,8 @@ $utilities: (
     responsive: true,
     property: float,
     values: (
-      start: left,
-      end: right,
+      start: inline-start,
+      end: inline-end,
       none: none,
     ),
   ),
