@@ -114,8 +114,8 @@ importers:
         specifier: 4.0.2
         version: 4.0.2(postcss@8.4.45)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.4))
       sass:
-        specifier: 1.78.0
-        version: 1.78.0
+        specifier: 1.80.2
+        version: 1.80.2
       ts-jest:
         specifier: 29.2.4
         version: 29.2.4(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(jest@29.7.0(@types/node@20.14.14))(typescript@5.5.4)
@@ -362,7 +362,7 @@ importers:
         version: 8.3.5(lit@3.1.4)(storybook@8.2.7(@babel/preset-env@7.24.7(@babel/core@7.25.2)))
       '@storybook/web-components-vite':
         specifier: 8.3.5
-        version: 8.3.5(lit@3.1.4)(storybook@8.2.7(@babel/preset-env@7.24.7(@babel/core@7.25.2)))(typescript@5.5.4)(vite@5.4.8(@types/node@20.14.14)(less@4.2.0)(sass@1.78.0)(terser@5.29.2))
+        version: 8.3.5(lit@3.1.4)(storybook@8.2.7(@babel/preset-env@7.24.7(@babel/core@7.25.2)))(typescript@5.5.4)(vite@5.4.8(@types/node@20.14.14)(less@4.2.0)(sass@1.80.2)(terser@5.29.2))
       '@swisspost/design-system-components-angular':
         specifier: workspace:9.0.0-next.2
         version: link:../components-angular/dist/components
@@ -433,8 +433,8 @@ importers:
         specifier: 6.0.1
         version: 6.0.1
       sass:
-        specifier: 1.78.0
-        version: 1.78.0
+        specifier: 1.80.2
+        version: 1.80.2
       storybook:
         specifier: 8.2.7
         version: 8.2.7(@babel/preset-env@7.24.7(@babel/core@7.25.2))
@@ -605,8 +605,8 @@ importers:
         specifier: 5.12.0
         version: 5.12.0(rollup@4.23.0)
       sass:
-        specifier: 1.78.0
-        version: 1.78.0
+        specifier: 1.80.2
+        version: 1.80.2
       start-server-and-test:
         specifier: 2.0.5
         version: 2.0.5
@@ -817,7 +817,7 @@ importers:
         version: link:../internet-header
       next:
         specifier: 14.2.10
-        version: 14.2.10(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.78.0)
+        version: 14.2.10(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.2)
       react:
         specifier: ^18
         version: 18.3.1
@@ -847,8 +847,8 @@ importers:
         specifier: ^8
         version: 8.4.40
       sass:
-        specifier: 1.78.0
-        version: 1.78.0
+        specifier: 1.80.2
+        version: 1.80.2
       tailwindcss:
         specifier: ^3.3.0
         version: 3.4.7(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.6.2))
@@ -920,8 +920,8 @@ importers:
         specifier: 6.0.1
         version: 6.0.1
       sass:
-        specifier: 1.78.0
-        version: 1.78.0
+        specifier: 1.80.2
+        version: 1.80.2
       stylelint:
         specifier: 16.9.0
         version: 16.9.0(typescript@5.5.4)
@@ -939,7 +939,7 @@ importers:
         version: 5.5.4
       vite:
         specifier: 5.4.8
-        version: 5.4.8(@types/node@20.14.14)(less@4.2.0)(sass@1.78.0)(terser@5.29.2)
+        version: 5.4.8(@types/node@20.14.14)(less@4.2.0)(sass@1.80.2)(terser@5.29.2)
     publishDirectory: ./dist
 
   packages/styles-primeng-workspace:
@@ -3066,6 +3066,82 @@ packages:
     peerDependencies:
       lit: ^2.0.0 || ^3.0.0
 
+  '@parcel/watcher-android-arm64@2.4.1':
+    resolution: {integrity: sha512-LOi/WTbbh3aTn2RYddrO8pnapixAziFl6SMxHM69r3tvdSm94JtCenaKgk1GRg5FJ5wpMCpHeW+7yqPlvZv7kg==}
+    engines: {node: '>= 10.0.0'}
+    cpu: [arm64]
+    os: [android]
+
+  '@parcel/watcher-darwin-arm64@2.4.1':
+    resolution: {integrity: sha512-ln41eihm5YXIY043vBrrHfn94SIBlqOWmoROhsMVTSXGh0QahKGy77tfEywQ7v3NywyxBBkGIfrWRHm0hsKtzA==}
+    engines: {node: '>= 10.0.0'}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@parcel/watcher-darwin-x64@2.4.1':
+    resolution: {integrity: sha512-yrw81BRLjjtHyDu7J61oPuSoeYWR3lDElcPGJyOvIXmor6DEo7/G2u1o7I38cwlcoBHQFULqF6nesIX3tsEXMg==}
+    engines: {node: '>= 10.0.0'}
+    cpu: [x64]
+    os: [darwin]
+
+  '@parcel/watcher-freebsd-x64@2.4.1':
+    resolution: {integrity: sha512-TJa3Pex/gX3CWIx/Co8k+ykNdDCLx+TuZj3f3h7eOjgpdKM+Mnix37RYsYU4LHhiYJz3DK5nFCCra81p6g050w==}
+    engines: {node: '>= 10.0.0'}
+    cpu: [x64]
+    os: [freebsd]
+
+  '@parcel/watcher-linux-arm-glibc@2.4.1':
+    resolution: {integrity: sha512-4rVYDlsMEYfa537BRXxJ5UF4ddNwnr2/1O4MHM5PjI9cvV2qymvhwZSFgXqbS8YoTk5i/JR0L0JDs69BUn45YA==}
+    engines: {node: '>= 10.0.0'}
+    cpu: [arm]
+    os: [linux]
+
+  '@parcel/watcher-linux-arm64-glibc@2.4.1':
+    resolution: {integrity: sha512-BJ7mH985OADVLpbrzCLgrJ3TOpiZggE9FMblfO65PlOCdG++xJpKUJ0Aol74ZUIYfb8WsRlUdgrZxKkz3zXWYA==}
+    engines: {node: '>= 10.0.0'}
+    cpu: [arm64]
+    os: [linux]
+
+  '@parcel/watcher-linux-arm64-musl@2.4.1':
+    resolution: {integrity: sha512-p4Xb7JGq3MLgAfYhslU2SjoV9G0kI0Xry0kuxeG/41UfpjHGOhv7UoUDAz/jb1u2elbhazy4rRBL8PegPJFBhA==}
+    engines: {node: '>= 10.0.0'}
+    cpu: [arm64]
+    os: [linux]
+
+  '@parcel/watcher-linux-x64-glibc@2.4.1':
+    resolution: {integrity: sha512-s9O3fByZ/2pyYDPoLM6zt92yu6P4E39a03zvO0qCHOTjxmt3GHRMLuRZEWhWLASTMSrrnVNWdVI/+pUElJBBBg==}
+    engines: {node: '>= 10.0.0'}
+    cpu: [x64]
+    os: [linux]
+
+  '@parcel/watcher-linux-x64-musl@2.4.1':
+    resolution: {integrity: sha512-L2nZTYR1myLNST0O632g0Dx9LyMNHrn6TOt76sYxWLdff3cB22/GZX2UPtJnaqQPdCRoszoY5rcOj4oMTtp5fQ==}
+    engines: {node: '>= 10.0.0'}
+    cpu: [x64]
+    os: [linux]
+
+  '@parcel/watcher-win32-arm64@2.4.1':
+    resolution: {integrity: sha512-Uq2BPp5GWhrq/lcuItCHoqxjULU1QYEcyjSO5jqqOK8RNFDBQnenMMx4gAl3v8GiWa59E9+uDM7yZ6LxwUIfRg==}
+    engines: {node: '>= 10.0.0'}
+    cpu: [arm64]
+    os: [win32]
+
+  '@parcel/watcher-win32-ia32@2.4.1':
+    resolution: {integrity: sha512-maNRit5QQV2kgHFSYwftmPBxiuK5u4DXjbXx7q6eKjq5dsLXZ4FJiVvlcw35QXzk0KrUecJmuVFbj4uV9oYrcw==}
+    engines: {node: '>= 10.0.0'}
+    cpu: [ia32]
+    os: [win32]
+
+  '@parcel/watcher-win32-x64@2.4.1':
+    resolution: {integrity: sha512-+DvS92F9ezicfswqrvIRM2njcYJbd5mb9CUgtrHCHmvn7pPPa+nMDRu1o1bYYz/l5IB2NVGNJWiH7h1E58IF2A==}
+    engines: {node: '>= 10.0.0'}
+    cpu: [x64]
+    os: [win32]
+
+  '@parcel/watcher@2.4.1':
+    resolution: {integrity: sha512-HNjmfLQEVRZmHRET336f20H/8kOozUGwk7yajvsonjNxbj2wBTK1WsQuHkD5yYh9RxFGL2EyDHryOihOwUoKDA==}
+    engines: {node: '>= 10.0.0'}
+
   '@percy/cli-app@1.29.1':
     resolution: {integrity: sha512-qtTcvs4kf72BTMfaSdC3oppPIJ5fE+rCI1Refr4WDUEXqYfG6nkRQ4HmdyAIluDwVz+fTEQPxM1xU+mjOTlAWw==}
     engines: {node: '>=14'}
@@ -4842,6 +4918,10 @@ packages:
     resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
     engines: {node: '>= 8.10.0'}
 
+  chokidar@4.0.1:
+    resolution: {integrity: sha512-n8enUVCED/KVRQlab1hr3MVpcVMvxtZjmEa956u+4YijlmQED223XMSYj2tLuKvr4jcCTzNNMpQDUer72MMmzA==}
+    engines: {node: '>= 14.16.0'}
+
   chownr@2.0.0:
     resolution: {integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==}
     engines: {node: '>=10'}
@@ -5438,6 +5518,11 @@ packages:
   detect-indent@6.1.0:
     resolution: {integrity: sha512-reYkTUJAZb9gUuZ2RvVCNhVHdg62RHnJ7WJl8ftMi4diZ6NWlciOzQN88pUhSELEwflJht4oQDv0F0BMlwaYtA==}
     engines: {node: '>=8'}
+
+  detect-libc@1.0.3:
+    resolution: {integrity: sha512-pGjwhsmsp4kL2RTz08wcOlGN83otlqHeD/Z5T8GXZB+/YcpQ/dgo+lbU8ZsGxV0HIvqqxo9l7mqYwyYMD9bKDg==}
+    engines: {node: '>=0.10'}
+    hasBin: true
 
   detect-libc@2.0.3:
     resolution: {integrity: sha512-bwy0MGW55bG41VqxxypOsdSdGqLwXPI/focwgTYCFMbdUiBAxLg9CFzG08sz2aqzknwiX7Hkl0bQENjg8iLByw==}
@@ -8161,6 +8246,9 @@ packages:
   node-addon-api@6.1.0:
     resolution: {integrity: sha512-+eawOlIgy680F0kBzPUNFhMZGtJ1YmqM6l4+Crf4IkImjYrO/mqPwRMh352g23uIaQKFItcQ64I7KMaJxHgAVA==}
 
+  node-addon-api@7.1.1:
+    resolution: {integrity: sha512-5m3bsyrjFWE1xf7nz7YXdN4udnVtXK6/Yfgn5qnahL6bCkf2yKt4k3nuTKAtT4r3IG8JNR2ncsIMdZuAzJjHQQ==}
+
   node-dir@0.1.17:
     resolution: {integrity: sha512-tmPX422rYgofd4epzrNoOXiE8XFZYOcCq1vD7MAXCDO+O+zndlA2ztdKKMa+EeuBG5tHETpr4ml4RGgpqDCCAg==}
     engines: {node: '>= 0.10.5'}
@@ -9284,6 +9372,10 @@ packages:
     resolution: {integrity: sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==}
     engines: {node: '>=8.10.0'}
 
+  readdirp@4.0.2:
+    resolution: {integrity: sha512-yDMz9g+VaZkqBYS/ozoBJwaBhTbZo3UNYQHNRw1D3UFQB8oHB4uS/tAODO+ZLjGWmUbKnIlOWO+aaIiAxrUWHA==}
+    engines: {node: '>= 14.16.0'}
+
   recast@0.23.6:
     resolution: {integrity: sha512-9FHoNjX1yjuesMwuthAmPKabxYQdOgihFYmT5ebXfYGBcnqXZf3WOVz+5foEZ8Y83P4ZY6yQD5GMmtV+pgCCAQ==}
     engines: {node: '>= 4'}
@@ -9582,8 +9674,8 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  sass@1.78.0:
-    resolution: {integrity: sha512-AaIqGSrjo5lA2Yg7RvFZrlXDBCp3nV4XP73GrLGvdRWWwk+8H3l0SDvq/5bA4eF+0RFPLuWUk3E+P1U/YqnpsQ==}
+  sass@1.80.2:
+    resolution: {integrity: sha512-9wXY8cGBlUmoUoT+vwOZOFCiS+naiWVjqlreN9ar9PudXbGwlMTFwCR5K9kB4dFumJ6ib98wZyAObJKsWf1nAA==}
     engines: {node: '>=14.0.0'}
     hasBin: true
 
@@ -14295,6 +14387,62 @@ snapshots:
     dependencies:
       lit: 3.1.4
 
+  '@parcel/watcher-android-arm64@2.4.1':
+    optional: true
+
+  '@parcel/watcher-darwin-arm64@2.4.1':
+    optional: true
+
+  '@parcel/watcher-darwin-x64@2.4.1':
+    optional: true
+
+  '@parcel/watcher-freebsd-x64@2.4.1':
+    optional: true
+
+  '@parcel/watcher-linux-arm-glibc@2.4.1':
+    optional: true
+
+  '@parcel/watcher-linux-arm64-glibc@2.4.1':
+    optional: true
+
+  '@parcel/watcher-linux-arm64-musl@2.4.1':
+    optional: true
+
+  '@parcel/watcher-linux-x64-glibc@2.4.1':
+    optional: true
+
+  '@parcel/watcher-linux-x64-musl@2.4.1':
+    optional: true
+
+  '@parcel/watcher-win32-arm64@2.4.1':
+    optional: true
+
+  '@parcel/watcher-win32-ia32@2.4.1':
+    optional: true
+
+  '@parcel/watcher-win32-x64@2.4.1':
+    optional: true
+
+  '@parcel/watcher@2.4.1':
+    dependencies:
+      detect-libc: 1.0.3
+      is-glob: 4.0.3
+      micromatch: 4.0.8
+      node-addon-api: 7.1.1
+    optionalDependencies:
+      '@parcel/watcher-android-arm64': 2.4.1
+      '@parcel/watcher-darwin-arm64': 2.4.1
+      '@parcel/watcher-darwin-x64': 2.4.1
+      '@parcel/watcher-freebsd-x64': 2.4.1
+      '@parcel/watcher-linux-arm-glibc': 2.4.1
+      '@parcel/watcher-linux-arm64-glibc': 2.4.1
+      '@parcel/watcher-linux-arm64-musl': 2.4.1
+      '@parcel/watcher-linux-x64-glibc': 2.4.1
+      '@parcel/watcher-linux-x64-musl': 2.4.1
+      '@parcel/watcher-win32-arm64': 2.4.1
+      '@parcel/watcher-win32-ia32': 2.4.1
+      '@parcel/watcher-win32-x64': 2.4.1
+
   '@percy/cli-app@1.29.1':
     dependencies:
       '@percy/cli-command': 1.29.1
@@ -14826,7 +14974,7 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@storybook/builder-vite@8.3.5(storybook@8.2.7(@babel/preset-env@7.24.7(@babel/core@7.25.2)))(typescript@5.5.4)(vite@5.4.8(@types/node@20.14.14)(less@4.2.0)(sass@1.78.0)(terser@5.29.2))':
+  '@storybook/builder-vite@8.3.5(storybook@8.2.7(@babel/preset-env@7.24.7(@babel/core@7.25.2)))(typescript@5.5.4)(vite@5.4.8(@types/node@20.14.14)(less@4.2.0)(sass@1.80.2)(terser@5.29.2))':
     dependencies:
       '@storybook/csf-plugin': 8.3.5(storybook@8.2.7(@babel/preset-env@7.24.7(@babel/core@7.25.2)))
       '@types/find-cache-dir': 3.2.1
@@ -14838,7 +14986,7 @@ snapshots:
       magic-string: 0.30.10
       storybook: 8.2.7(@babel/preset-env@7.24.7(@babel/core@7.25.2))
       ts-dedent: 2.2.0
-      vite: 5.4.8(@types/node@20.14.14)(less@4.2.0)(sass@1.78.0)(terser@5.29.2)
+      vite: 5.4.8(@types/node@20.14.14)(less@4.2.0)(sass@1.80.2)(terser@5.29.2)
     optionalDependencies:
       typescript: 5.5.4
     transitivePeerDependencies:
@@ -14936,9 +15084,9 @@ snapshots:
     dependencies:
       storybook: 8.2.7(@babel/preset-env@7.24.7(@babel/core@7.25.2))
 
-  '@storybook/web-components-vite@8.3.5(lit@3.1.4)(storybook@8.2.7(@babel/preset-env@7.24.7(@babel/core@7.25.2)))(typescript@5.5.4)(vite@5.4.8(@types/node@20.14.14)(less@4.2.0)(sass@1.78.0)(terser@5.29.2))':
+  '@storybook/web-components-vite@8.3.5(lit@3.1.4)(storybook@8.2.7(@babel/preset-env@7.24.7(@babel/core@7.25.2)))(typescript@5.5.4)(vite@5.4.8(@types/node@20.14.14)(less@4.2.0)(sass@1.80.2)(terser@5.29.2))':
     dependencies:
-      '@storybook/builder-vite': 8.3.5(storybook@8.2.7(@babel/preset-env@7.24.7(@babel/core@7.25.2)))(typescript@5.5.4)(vite@5.4.8(@types/node@20.14.14)(less@4.2.0)(sass@1.78.0)(terser@5.29.2))
+      '@storybook/builder-vite': 8.3.5(storybook@8.2.7(@babel/preset-env@7.24.7(@babel/core@7.25.2)))(typescript@5.5.4)(vite@5.4.8(@types/node@20.14.14)(less@4.2.0)(sass@1.80.2)(terser@5.29.2))
       '@storybook/web-components': 8.3.5(lit@3.1.4)(storybook@8.2.7(@babel/preset-env@7.24.7(@babel/core@7.25.2)))
       magic-string: 0.30.10
       storybook: 8.2.7(@babel/preset-env@7.24.7(@babel/core@7.25.2))
@@ -16426,6 +16574,10 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
+  chokidar@4.0.1:
+    dependencies:
+      readdirp: 4.0.2
+
   chownr@2.0.0: {}
 
   chrome-trace-event@1.0.3: {}
@@ -17050,6 +17202,8 @@ snapshots:
   detect-file@1.0.0: {}
 
   detect-indent@6.1.0: {}
+
+  detect-libc@1.0.3: {}
 
   detect-libc@2.0.3: {}
 
@@ -20689,7 +20843,7 @@ snapshots:
 
   next-tick@1.1.0: {}
 
-  next@14.2.10(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.78.0):
+  next@14.2.10(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.2):
     dependencies:
       '@next/env': 14.2.10
       '@swc/helpers': 0.5.5
@@ -20710,7 +20864,7 @@ snapshots:
       '@next/swc-win32-arm64-msvc': 14.2.10
       '@next/swc-win32-ia32-msvc': 14.2.10
       '@next/swc-win32-x64-msvc': 14.2.10
-      sass: 1.78.0
+      sass: 1.80.2
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
@@ -20739,7 +20893,7 @@ snapshots:
       piscina: 4.6.1
       postcss: 8.4.39
       rxjs: 7.8.1
-      sass: 1.78.0
+      sass: 1.80.2
       tslib: 2.6.3
       typescript: 5.5.4
     optionalDependencies:
@@ -20760,6 +20914,8 @@ snapshots:
     optional: true
 
   node-addon-api@6.1.0: {}
+
+  node-addon-api@7.1.1: {}
 
   node-dir@0.1.17:
     dependencies:
@@ -21977,6 +22133,8 @@ snapshots:
     dependencies:
       picomatch: 2.3.1
 
+  readdirp@4.0.2: {}
+
   recast@0.23.6:
     dependencies:
       ast-types: 0.16.1
@@ -22361,9 +22519,10 @@ snapshots:
       immutable: 4.3.7
       source-map-js: 1.2.0
 
-  sass@1.78.0:
+  sass@1.80.2:
     dependencies:
-      chokidar: 3.6.0
+      '@parcel/watcher': 2.4.1
+      chokidar: 4.0.1
       immutable: 4.3.7
       source-map-js: 1.2.0
 
@@ -23893,7 +24052,7 @@ snapshots:
       sass: 1.77.6
       terser: 5.29.2
 
-  vite@5.4.8(@types/node@20.14.14)(less@4.2.0)(sass@1.78.0)(terser@5.29.2):
+  vite@5.4.8(@types/node@20.14.14)(less@4.2.0)(sass@1.80.2)(terser@5.29.2):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.45
@@ -23902,7 +24061,7 @@ snapshots:
       '@types/node': 20.14.14
       fsevents: 2.3.3
       less: 4.2.0
-      sass: 1.78.0
+      sass: 1.80.2
       terser: 5.29.2
 
   void-elements@2.0.1: {}
