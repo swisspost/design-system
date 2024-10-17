@@ -1,0 +1,59 @@
+###
+#
+# Creates a PR from the token branch whenever is has commits ahead of main.
+#
+###
+
+name: Create Token PR
+on:
+  push:
+    branches:
+      - tokens/v*
+
+jobs:
+  create_pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the token branch which was pushed
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Get the name of the token branch which was pushed and the corresponding PR branch
+      - name: Get Branch Name
+        id: branch-names
+        run: |
+          echo "pr-branch=merge-tokens-$(echo ${GITHUB_REF##*/})" >> $GITHUB_OUTPUT
+
+      # Check if the PR branch already exists
+      - name: Check PR Branch
+        id: git-branch
+        run: |
+          if git branch --list "$PR_BRANCH"; then
+            echo "pr_branch=true" >> $GITHUB_OUTPUT
+          else
+            echo "pr_branch=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          PR_BRANCH: ${{ steps.branch-names.outputs.pr-branch }}
+
+      # if the branch already exits, update the PR
+      - name: Update Branch
+        if: steps.git-branch.outputs.pr_branch == 'true'
+        run: |
+          git checkout $PR_BRANCH
+          git merge ${{ github.ref_name }} -X theirs --no-edit
+          git push
+        env:
+          PR_BRANCH: ${{ steps.branch-names.outputs.pr-branch }}
+          GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+
+      # if the branch does not exit, create the PR
+      - name: Create PR
+        if: steps.git-branch.outputs.pr_branch == 'false'
+        run: |
+          git checkout -b $PR_BRANCH ${{ github.ref_name }}
+          gh pr create --title "chore(tokens): :art: update tokens" --body "Merge this PR to update the tokens in the main branch." --base main --head $PR_BRANCH
+        env:
+          PR_BRANCH: ${{ steps.branch-names.outputs.pr-branch }}
+          GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
