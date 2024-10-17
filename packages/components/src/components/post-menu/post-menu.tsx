@@ -10,16 +10,26 @@ import { getAttributeObserver } from '@/utils/attribute-observer';
 let menuInstances = 0;
 const menuTargetAttribute = 'data-menu-target';
 
+// Handles global pointer and keyboard events for toggling menus
 const globalToggleHandler = (e: PointerEvent | KeyboardEvent) => {
   const triggerElement = e.target as HTMLElement;
   if (!triggerElement || !('getAttribute' in triggerElement)) return;
 
   const menuId = triggerElement.getAttribute(menuTargetAttribute);
-  if (!menuId || (e instanceof KeyboardEvent && e.key !== 'Enter')) return;
+  if (!menuId) return;
 
   const menuElement = document.getElementById(menuId) as HTMLPostMenuElement;
 
-  menuElement?.toggle(triggerElement);
+  // Handle Enter, Space, and Arrow keys for keyboard events
+  if (e instanceof KeyboardEvent) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      menuElement?.toggle(triggerElement);
+    }
+  } else {
+    // Handle pointer events (e.g., clicks)
+    menuElement?.toggle(triggerElement);
+  }
 };
 
 // Initialize a mutation observer for patching accessibility features
@@ -45,6 +55,8 @@ export class PostMenu {
     RIGHT: 'ArrowRight',
     DOWN: 'ArrowDown',
     ESCAPE: 'Escape',
+    HOME: 'Home',
+    END: 'End'
   };
 
   @Element() host: HTMLPostMenuElement;
@@ -64,6 +76,16 @@ export class PostMenu {
       window.addEventListener('keydown', globalToggleHandler);
       this.host.addEventListener('keydown', this.handleKeyDown);
 
+      this.triggers.forEach(trigger => {
+        const triggerElement = trigger as HTMLElement;
+        triggerElement.addEventListener('keydown', (e: KeyboardEvent) => {
+          if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            this.toggle(triggerElement, true);
+          }
+        });
+      });
+
       triggerObserver.observe(document.body, {
         subtree: true,
         childList: true,
@@ -74,7 +96,8 @@ export class PostMenu {
     menuInstances++;
 
     this.triggers.forEach(trigger => {
-      trigger.setAttribute('aria-expanded', 'false');
+      const triggerElement = trigger as HTMLElement;
+      triggerElement.setAttribute('aria-expanded', 'false');
     });
   }
 
@@ -89,7 +112,6 @@ export class PostMenu {
   disconnectedCallback() {
     menuInstances--;
 
-    // Remove listeners and observer after the last popover has been destructed
     if (menuInstances === 0) {
       window.removeEventListener('pointerup', globalToggleHandler);
       window.removeEventListener('keydown', globalToggleHandler);
@@ -106,12 +128,14 @@ export class PostMenu {
     });
   }
 
+  // Handles keydown events on the menu to support keyboard navigation
   private handleKeyDown = (e: KeyboardEvent) => {
-    if (['ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'Space', 'Escape'].includes(e.key)) {
+    if (['ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'Space', 'Escape', 'Home', 'End'].includes(e.key)) {
       this.controlKeyDownHandler(e);
     }
   };
 
+  // Controls keyboard navigation within the menu
   private controlKeyDownHandler(e: KeyboardEvent) {
     e.stopPropagation();
 
@@ -122,19 +146,28 @@ export class PostMenu {
     let currentIndex = focusableItems.findIndex(el => el === currentFocusedElement);
 
     if (Object.values(this.KEYCODES).includes(e.code)) e.preventDefault();
-    console.log(currentFocusedElement.tagName);
+
     switch (e.code) {
       case this.KEYCODES.UP:
       case this.KEYCODES.LEFT:
-        currentIndex = currentIndex <= 0 ? focusableItems.length - 1 : currentIndex - 1;
+        if (currentIndex > 0) {
+          currentIndex = currentIndex - 1;
+        }
         break;
       case this.KEYCODES.DOWN:
       case this.KEYCODES.RIGHT:
-        currentIndex = currentIndex === focusableItems.length - 1 ? 0 : currentIndex + 1;
+        if (currentIndex < focusableItems.length - 1) {
+          currentIndex = currentIndex + 1;
+        }
+        break;
+      case this.KEYCODES.HOME:
+        currentIndex = 0;
+        break;
+      case this.KEYCODES.END:
+        currentIndex = focusableItems.length - 1;
         break;
       case this.KEYCODES.SPACE:
-        // If the current element can be activated (e.g., a button or link), trigger it
-        if (currentFocusedElement.tagName === 'BUTTON' || currentFocusedElement.tagName === 'A') {
+        if (currentFocusedElement.tagName === 'BUTTON' || currentFocusedElement.tagName === 'A' || currentFocusedElement.tagName === 'INPUT' || currentFocusedElement.tagName === 'SELECT' || currentFocusedElement.tagName === 'TEXTAREA') {
           currentFocusedElement.click();
         }
         break;
@@ -151,22 +184,41 @@ export class PostMenu {
     }
   }
 
+  // Checks if the given element is focusable
+  private isFocusable(element: HTMLElement): boolean {
+    const focusableTags = ['A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT'];
+    const tabIndex = element.getAttribute('tabindex');
+
+    if (focusableTags.includes(element.tagName)) {
+      return true;
+    }
+
+    const role = element.getAttribute('role');
+    if (role === 'button' || role === 'link') {
+      return true;
+    }
+
+    if (tabIndex !== null && tabIndex !== '-1') {
+      return true;
+    }
+
+    return false;
+  }
+
+  // Returns all slotted, focusable items within the menu
   private getSlottedItems() {
     const slot = this.host.shadowRoot.querySelector('slot');
     const slottedElements = slot ? slot.assignedElements() : [];
 
     const focusableItems = slottedElements
-  .filter(el => el.tagName === 'POST-MENU-ITEM')
-  .map(el => {
-    const slot = el.shadowRoot.querySelector('slot');
-    
-    const assignedElements = slot ? slot.assignedElements() : [];
+      .filter(el => el.tagName === 'POST-MENU-ITEM')
+      .map(el => {
+        const slot = el.shadowRoot.querySelector('slot');
+        const assignedElements = slot ? slot.assignedElements() : [];
 
-    return assignedElements;
-  })
-  .flat();
-
-  console.log(focusableItems);
+        return assignedElements.filter(this.isFocusable);
+      })
+      .flat();
 
     return focusableItems;
   }
@@ -200,7 +252,6 @@ export class PostMenu {
       console.error('hide: popoverRef is null or undefined');
     }
 
-    // Reset aria-expanded attributes on triggers
     this.triggers.forEach(trigger => {
       trigger.setAttribute('aria-expanded', 'false');
     });
@@ -217,7 +268,18 @@ export class PostMenu {
       const newState = await this.popoverRef.toggle(target, force);
       this.triggerElement = target;
       this.triggers.forEach(trigger => trigger.setAttribute('aria-expanded', 'false'));
-      target.setAttribute('aria-expanded', `${newState}`);
+      target.setAttribute('aria-expanded', String(newState));
+      if (newState) {
+        const focusableItems = this.getSlottedItems();
+        if (focusableItems.length) {
+          const firstFocusableItem = focusableItems[0] as HTMLElement;
+
+          // Focus the first item if focusable
+          if (typeof firstFocusableItem.focus === 'function') {
+            firstFocusableItem.focus();
+          }
+        }
+      }
     } else {
       console.error('toggle: popoverRef is null or undefined');
     }
@@ -228,6 +290,7 @@ export class PostMenu {
     return triggers;
   }
 
+  // Handles before the toggle of the menu (reset aria-expanded attributes)
   private beforeToggleHandler() {
     this.triggers.forEach(trigger => trigger.setAttribute('aria-expanded', 'false'));
   }
