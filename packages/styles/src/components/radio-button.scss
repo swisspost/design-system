@@ -1,4 +1,4 @@
-@use '_form-check';
+@use 'form-check';
 @use '../variables/color';
 @use '../variables/animation';
 @use '../mixins/color' as color-mx;
@@ -28,6 +28,7 @@ tokens.$default-map: components.$post-radio-button;
           components.$post-radio-button
         );
         border-color: tokens.get('radio-button-selected-stroke');
+        width: fit-content;
       }
     }
   }
@@ -60,7 +61,7 @@ tokens.$default-map: components.$post-radio-button;
     color: tokens.get('radio-button-enabled-fg');
     background-color: tokens.get('radio-button-enabled-bg');
 
-    & + .form-check-label {
+    + .form-check-label {
       flex: 1;
 
       padding-block: tokens.get('radio-button-label-padding-block');
@@ -128,9 +129,18 @@ tokens.$default-map: components.$post-radio-button;
 
     &[disabled] {
       &:checked::after {
+        background-color: tokens.get('radio-button-disabled-fg');
         @include utility-mx.high-contrast-mode {
           background-color: GrayText;
         }
+      }
+    }
+
+    &.is-invalid {
+      border-color: tokens.get('radio-button-enabled-stroke');
+
+      + .form-check-label {
+        color: tokens.get('radio-button-enabled-fg');
       }
     }
   }

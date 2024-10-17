@@ -74,21 +74,6 @@ const meta: MetaComponent = {
         category: 'States',
       },
     },
-    size: {
-      name: 'Size',
-      description: "Sets the size of the component's appearance.",
-      control: {
-        type: 'select',
-        labels: {
-          'form-check-sm': 'Small',
-          'null': 'Large',
-        },
-      },
-      options: ['form-check-sm', 'null'],
-      table: {
-        category: 'General',
-      },
-    },
     disabled: {
       name: 'Disabled',
       description:
@@ -232,14 +217,6 @@ export function renderInline(args: Args, context: Partial<StoryContext>) {
     </fieldset>
   `;
 }
-
-export const Size: Story = {
-  render,
-  args: {
-    size: 'form-check-sm',
-    checkedRadio: null,
-  },
-};
 
 export const Inline: Story = {
   render: renderInline,
