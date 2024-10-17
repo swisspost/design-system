@@ -10,7 +10,7 @@ import SampleInstall from './internet-header-install.sample.html?raw';
 import SampleFixAppStyles from './internet-header-fix-app-styles.sample.html?raw';
 import SampleOld from './internet-header-old.sample.html?raw';
 import * as GettingStartedStories from './internet-header.stories';
-import { SourceDarkMode } from '@/../.storybook/preview';
+import { SourceDarkScheme } from '@/../.storybook/preview';
 
 <Meta of={GettingStartedStories} />
 
@@ -75,9 +75,9 @@ Internet-header package provide two versions:
 
     When working with Angular or any other framework, the easiest installation method is via npm.
 
-    <Source code={`npm install @swisspost/internet-header`} dark={SourceDarkMode} language="bash" />
+    <Source code={`npm install @swisspost/internet-header`} dark={SourceDarkScheme} language="bash" />
 
-    <Source code={SampleFrameworks} dark={SourceDarkMode} language="html" />
+    <Source code={SampleFrameworks} dark={SourceDarkScheme} language="html" />
 
     <div>
       <div class="row mb-8">
@@ -85,8 +85,8 @@ Internet-header package provide two versions:
         <div class="col-6 fw-bold">Bare Component</div>
       </div>
       <div class="row">
-        <div class="col-6"><Source code={SampleLazyLoaded} dark={SourceDarkMode} language="javascript" /></div>
-        <div class="col-6"><Source code={SampleBareComponent} dark={SourceDarkMode} language="javascript" /></div>
+        <div class="col-6"><Source code={SampleLazyLoaded} dark={SourceDarkScheme} language="javascript" /></div>
+        <div class="col-6"><Source code={SampleBareComponent} dark={SourceDarkScheme} language="javascript" /></div>
       </div>
     </div>
   </PostTabPanel>
@@ -107,8 +107,8 @@ Internet-header package provide two versions:
         <div class="col-6 fw-bold">Bare Component</div>
       </div>
       <div class="row">
-        <div class="col-6"><Source code={SampleCDNLazyLoaded} dark={SourceDarkMode} language="html" /></div>
-        <div class="col-6"><Source code={SampleCDNBareComponent} dark={SourceDarkMode} language="html" /></div>
+        <div class="col-6"><Source code={SampleCDNLazyLoaded} dark={SourceDarkScheme} language="html" /></div>
+        <div class="col-6"><Source code={SampleCDNBareComponent} dark={SourceDarkScheme} language="html" /></div>
       </div>
     </div>
   </PostTabPanel>
@@ -126,11 +126,11 @@ This stylesheet allows you to access CSS variables to implement styling relative
 <PostTabs>
   <PostTabHeader panel="sass-import">Sass Import</PostTabHeader>
   <PostTabPanel name="sass-import">
-    <Source code={`@use "@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css";`} dark={SourceDarkMode} language="scss" />
+    <Source code={`@use "@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css";`} dark={SourceDarkScheme} language="scss" />
   </PostTabPanel>
   <PostTabHeader panel="html-import">HTML Import</PostTabHeader>
   <PostTabPanel name="html-import">
-    <Source code={`<link rel="stylesheet" href="@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css"/>`} dark={SourceDarkMode} language="html" />
+    <Source code={`<link rel="stylesheet" href="@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css"/>`} dark={SourceDarkScheme} language="html" />
   </PostTabPanel>
 </PostTabs>
 
@@ -201,7 +201,7 @@ Please refer to the [Internet Header installation instructions](/?path=/docs/9b0
 
 After installation, you're ready to add the new tags to your markup:
 
-<Source code={SampleInstall} dark={SourceDarkMode} language="html" />
+<Source code={SampleInstall} dark={SourceDarkScheme} language="html" />
 
 Place the new elements as described (and needed) as shown above.
 The breadcrumbs need a `container` wrapper to align themselves with the content of your page,
@@ -212,6 +212,6 @@ If you don't have breadcrumbs, you can just delete the `<aside>` and the `<swiss
 
 If you need to change settings during runtime, you can get a reference to the header by querying:
 
-<Source code={SampleReference} dark={SourceDarkMode} language="typescript" />
+<Source code={SampleReference} dark={SourceDarkScheme} language="typescript" />
 
 At the [Internet Header configuration page](/?path=/docs/ebb11274-091b-4cb7-9a3f-3e0451c9a865--docs) you can find a list of possible options.

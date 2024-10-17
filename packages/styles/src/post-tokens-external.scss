@@ -1,7 +1,7 @@
 @use 'sass:meta';
 
 @layer design-system {
-  @include meta.load-css('./tokens/modes');
+  @include meta.load-css('./tokens/schemes');
   @include meta.load-css('./tokens/device');
   @include meta.load-css('./tokens/external');
   @include meta.load-css('./tokens/post-theme');

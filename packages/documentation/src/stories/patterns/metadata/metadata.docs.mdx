@@ -1,7 +1,7 @@
 import { Meta, Source } from '@storybook/blocks';
 import METADATA_SNIPPETS, {METADATA_OPEN_GRAPH_SNIPPET , METADATA_COMBINED_SNIPPET} from './metadata.sample';
 import MetadataStories from './metadata.stories';
-import { SourceDarkMode } from '@/../.storybook/preview';
+import { SourceDarkScheme } from '@/../.storybook/preview';
 
 <Meta of={MetadataStories} />
 
@@ -17,19 +17,19 @@ On this page you will find links to other pages that explain some of those names
     - [General attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta#attributes)
     - [Standard names](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name)
 
-<Source code={METADATA_SNIPPETS.general} dark={SourceDarkMode} language="html" />
+<Source code={METADATA_SNIPPETS.general} dark={SourceDarkScheme} language="html" />
 
 ## Viewport
 
 This meta-tag can be used to manipulate the size and shape of the viewport. [More information](https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag)
 
-<Source code={METADATA_SNIPPETS.viewport} dark={SourceDarkMode} language="html" />
+<Source code={METADATA_SNIPPETS.viewport} dark={SourceDarkScheme} language="html" />
 
 ## Search engines
 
 There are some meta-tags that change the way search engines or google in particular treat the website. [More information](https://developers.google.com/search/docs/crawling-indexing/special-tags?hl=en)
 
-<Source code={METADATA_SNIPPETS.searchEngines} dark={SourceDarkMode} language="html" />
+<Source code={METADATA_SNIPPETS.searchEngines} dark={SourceDarkScheme} language="html" />
 
 ## Open Graph Tags
 
@@ -41,21 +41,21 @@ To use open grah tags you should put `prefix="og: http://ogp.me/ns#"` as attribu
 - Open Graph Tags explained by [open graph](https://ogp.me/)
 - Cards and Open Graph Tags explained by [X](https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started)
 
-<Source code={METADATA_OPEN_GRAPH_SNIPPET} dark={SourceDarkMode} language="html" />
+<Source code={METADATA_OPEN_GRAPH_SNIPPET} dark={SourceDarkScheme} language="html" />
 
 ## Favicon
 
 The favicon is the little icon that is displayed on tabs in webbowsers. You can see it as the program icon of a website.
 [More information](https://dev.to/masakudamatsu/favicon-nightmare-how-to-maintain-sanity-3al7)
 
-<Source code={METADATA_SNIPPETS.favicon} dark={SourceDarkMode} language="html" />
+<Source code={METADATA_SNIPPETS.favicon} dark={SourceDarkScheme} language="html" />
 
 ## Language
 
-There is the possibility to provide a specific page in different languages using metadata. The page specififed with `hreflang="x-default"` is the page that will match for any language that is not specified in any `hreflang` attribute on this page. 
+There is the possibility to provide a specific page in different languages using metadata. The page specififed with `hreflang="x-default"` is the page that will match for any language that is not specified in any `hreflang` attribute on this page.
 Please note that the current page and its language alternatives must be listed on each of this pages. [More information](https://developers.google.com/search/docs/specialty/international/localized-versions)
 
-<Source code={METADATA_SNIPPETS.language} dark={SourceDarkMode} language="html" />
+<Source code={METADATA_SNIPPETS.language} dark={SourceDarkScheme} language="html" />
 
 ## Content Security Policy
 
@@ -66,10 +66,10 @@ In that case it must be the first meta-tag in the header.
 - [More in depth information](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
 - [Impementation notes and examples](https://infosec.mozilla.org/guidelines/web_security#content-security-policy)
 
-<Source code={METADATA_SNIPPETS.cors} dark={SourceDarkMode} language="html" />
+<Source code={METADATA_SNIPPETS.cors} dark={SourceDarkScheme} language="html" />
 
 ## Example
 
 This is how metadata of a webpage called "Metadata Example" could look like.
 
-<Source code={METADATA_COMBINED_SNIPPET} dark={SourceDarkMode} language="html" />
+<Source code={METADATA_COMBINED_SNIPPET} dark={SourceDarkScheme} language="html" />
