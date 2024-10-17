@@ -1,0 +1,67 @@
+@forward './../variables/options';
+
+@use 'sass:map';
+@use '../variables/color';
+@use '../variables/commons';
+@use '../variables/type';
+@use '../variables/spacing';
+@use '../variables/animation';
+@use '../variables/components/form-check';
+@use '../mixins/color' as color-mx;
+@use '../mixins/icons' as icons-mx;
+@use '../mixins/utilities' as utility-mx;
+
+.form-check {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  &-inline {
+    display: inline-flex;
+
+    &:not(:last-of-type) {
+      margin-right: form-check.$form-check-inline-margin-right;
+    }
+  }
+
+  &-input,
+  &-label {
+    transition: color #{animation.$transition-base-timing};
+
+    @include utility-mx.high-contrast-mode {
+      transition: none;
+    }
+  }
+
+  &-input {
+    &:not([disabled]),
+    &:not([disabled]) ~ .form-check-label {
+      cursor: pointer;
+    }
+
+    @include utility-mx.focus-style-none();
+    display: inline-flex;
+    flex: 0 auto;
+    appearance: none;
+    background: transparent;
+
+    @include utility-mx.high-contrast-mode {
+      border-color: FieldText;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+    }
+
+    // Shared disabled styles
+    &[disabled] {
+      &[type='checkbox'],
+      &[type='radio'] {
+        @include utility-mx.high-contrast-mode {
+          border-color: GrayText !important;
+        }
+      }
+    }
+  }
+}
