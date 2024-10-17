@@ -256,7 +256,6 @@ export class PostTooltip {
     return (
       <Host
         data-version={version}
-        role="tooltip"
         onPointerOver={this.handleInterest}
         onPointerOut={this.handleInterestLost}
         onFocusIn={this.handleInterest}
@@ -264,6 +263,7 @@ export class PostTooltip {
       >
         <post-popovercontainer
           class={popoverClass}
+          role="tooltip"
           arrow={this.arrow}
           placement={this.placement}
           ref={(el: HTMLPostPopovercontainerElement) => (this.popoverRef = el)}
