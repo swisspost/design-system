@@ -79,10 +79,13 @@
 @mixin notification-body($size) {
   $hr-margin-block: map.get(notification.$notification-hr-margin-block-map, $size);
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: notification.$notification-body-gap;
+  /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
+  & {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: notification.$notification-body-gap;
+  }
 
   a {
     font-weight: notification.$notification-link-font-weight;
@@ -124,9 +127,12 @@
 @mixin notification-dismissible($size, $close: 'btn-close') {
   $padding-x: map.get(notification.$notification-padding-x-map, $size);
 
-  pointer-events: auto;
-  position: relative;
-  padding-inline-end: $padding-x + notification.$notification-gap + close.$close-size;
+  /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
+  & {
+    pointer-events: auto;
+    position: relative;
+    padding-inline-end: $padding-x + notification.$notification-gap + close.$close-size;
+  }
 
   > .#{$close} {
     position: absolute;
