@@ -1,5 +1,6 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as MenuButtonStories from './menu-button.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
 <Meta of={MenuButtonStories} />
 
@@ -12,14 +13,11 @@ import * as MenuButtonStories from './menu-button.stories';
 </div>
 
 <div className="lead">
-  For longer, informative messages or explanations and also simple interactive elements like links.
+  A dropdown component for displaying a list of links or actions with flexible alignment.
 </div>
 
 <Canvas sourceState="shown" of={MenuButtonStories.Default} />
 <Controls of={MenuButtonStories.Default} />
 
-## Installation
 
-<div>
-  The `<post-menu>` element is part of the `@swisspost/design-system-components` package. For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
-</div>
+<StylesPackageImport components={['menu-button']} />

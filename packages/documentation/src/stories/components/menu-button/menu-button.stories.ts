@@ -19,7 +19,7 @@ const meta: MetaComponent = {
   render,
   args: {
     id: 'menu-one',
-    placement: 'top',
+    placement: 'bottom',
   },
   argTypes: {
     id: {
