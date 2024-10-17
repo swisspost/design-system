@@ -100,6 +100,13 @@ $checkbox-icon-intermediate: url("data:image/svg+xml,<svg width='16' height='16'
       border: tokens.get('checkbox-icon-border-width') tokens.get('checkbox-border-style-disabled')
         tokens.get('checkbox-disabled-stroke');
 
+      &:checked,
+      &:indeterminate {
+        @include utility-mx.high-contrast-mode {
+          background-color: Field !important;
+          color: GrayText !important;
+        }
+      }
       @include color-mx.on-dark-background {
         border: tokens.get('checkbox-icon-border-width')
           tokens.get('checkbox-border-style-disabled') color.$white-alpha-80;
@@ -117,16 +124,6 @@ $checkbox-icon-intermediate: url("data:image/svg+xml,<svg width='16' height='16'
 
       @include color-mx.on-dark-background() {
         color: color.$white-alpha-80;
-      }
-    }
-
-    &[disabled] {
-      &:checked,
-      &:indeterminate {
-        @include utility-mx.high-contrast-mode {
-          background-color: Field !important;
-          color: GrayText !important;
-        }
       }
     }
 
