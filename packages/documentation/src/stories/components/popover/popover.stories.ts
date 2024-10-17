@@ -46,24 +46,6 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
-    backgroundColor: {
-      name: 'Background color',
-      description: 'Define a background color, either `bg-primary` or `bg-yellow`.',
-      control: {
-        type: 'radio',
-        labels: {
-          yellow: 'Yellow',
-          primary: 'Primary',
-        },
-      },
-      options: ['primary', 'yellow'],
-      table: {
-        category: 'General',
-        type: {
-          summary: 'HTML class attribute',
-        },
-      },
-    },
     closeButtonCaption: {
       name: 'Close button caption',
     },
@@ -95,13 +77,13 @@ function render(args: Args) {
       </button>
     </div>
     <post-popover
-      class="hydrated bg-${args.backgroundColor}"
+      class="hydrated"
       id="${args.id}"
       placement="${args.placement}"
       ?arrow="${args.arrow}"
     >
-      ${args.title ? html` <h2 class="h6">Optional title</h2> ` : null}
-      <p class="mb-0">${unsafeHTML(args.innerHtml)}</p>
+      ${args.title ? html` <h2 class="popover-header">Optional title</h2> ` : null}
+      <p class="popover">${unsafeHTML(args.innerHtml)}</p>
     </post-popover>
   `;
 }
