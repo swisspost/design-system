@@ -57,7 +57,7 @@ Cypress.Commands.add('getComponents', (id: string, story: string, ...components:
 
   components.forEach(component => {
     const alias = component.replace(/^post-/, '');
-    cy.get(`post-${alias}.hydrated`, { timeout: 30000 }).as(alias);
+    cy.get(`post-${alias}:is(.hydrated, [data-hydrated])`, { timeout: 30000 }).as(alias);
   });
 
   cy.injectAxe();
@@ -67,7 +67,7 @@ Cypress.Commands.add('getSnapshots', (story: string) => {
   cy.visit(`/iframe.html?id=snapshots--${story}`);
 
   const alias = story.replace(/^post-/, '');
-  cy.get(`post-${alias}.hydrated`, { timeout: 30000 }).as(alias);
+  cy.get(`post-${alias}:is(.hydrated, [data-hydrated])`, { timeout: 30000 }).as(alias);
 
   cy.injectAxe();
 });
