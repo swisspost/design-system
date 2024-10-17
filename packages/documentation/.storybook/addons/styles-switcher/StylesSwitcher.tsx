@@ -3,7 +3,7 @@ import { IconButton, WithTooltip } from '@storybook/components';
 
 const THEMES = ['Post'] as const;
 const CHANNELS = ['External', 'Internal'] as const;
-const MODES = ['Light', 'Dark'] as const;
+const SCHEMES = ['Light', 'Dark'] as const;
 
 /*
  * Stylesheets
@@ -18,14 +18,14 @@ const possibleStylesheets = THEMES.flatMap(theme => {
 /*
  * Backgrounds
  */
-const backgroundClasses: { [key in (typeof MODES)[number]]: string } = {
+const backgroundClasses: { [key in (typeof SCHEMES)[number]]: string } = {
   Light: 'bg-white',
   Dark: 'bg-dark',
 };
-const getBackgroundClass = (mode: string) => {
-  return mode in backgroundClasses ? backgroundClasses[mode] : '';
+const getBackgroundClass = (scheme: string) => {
+  return scheme in backgroundClasses ? backgroundClasses[scheme] : '';
 };
-const possibleBackgrounds = MODES.map(mode => getBackgroundClass(mode));
+const possibleBackgrounds = SCHEMES.map(scheme => getBackgroundClass(scheme));
 
 /*
  * Local storage access
@@ -56,7 +56,7 @@ function StylesSwitcher() {
 
   const [currentTheme, setCurrentTheme] = useState<string>(stored('theme') || THEMES[0]);
   const [currentChannel, setCurrentChannel] = useState<string>(stored('channel') || CHANNELS[0]);
-  const [currentMode, setCurrentMode] = useState<string>(stored('mode') || MODES[0]);
+  const [currentScheme, setCurrentScheme] = useState<string>(stored('scheme') || SCHEMES[0]);
 
   const [preview, setPreview] = useState<Document>();
   const [stories, setStories] = useState<NodeListOf<Element>>();
@@ -107,17 +107,17 @@ function StylesSwitcher() {
   }, [preview, currentTheme, currentChannel]);
 
   /**
-   * Sets the expected 'data-color-mode' attribute on all story containers when the mode changes
+   * Sets the expected 'data-color-scheme' attribute on all story containers when the scheme changes
    */
   useEffect(() => {
     if (!stories) return;
 
     stories.forEach(story => {
       story.classList.remove(...possibleBackgrounds);
-      story.classList.add(getBackgroundClass(currentMode));
-      story.setAttribute('data-color-mode', currentMode.toLowerCase());
+      story.classList.add(getBackgroundClass(currentScheme));
+      story.setAttribute('data-color-scheme', currentScheme.toLowerCase());
     });
-  }, [stories, currentMode]);
+  }, [stories, currentScheme]);
 
   /**
    * Applies selected theme and registers it to the local storage
@@ -136,11 +136,11 @@ function StylesSwitcher() {
   };
 
   /**
-   * Applies selected mode and registers it to the local storage
+   * Applies selected scheme and registers it to the local storage
    */
-  const applyMode = (mode: string) => {
-    store('mode', mode);
-    setCurrentMode(mode);
+  const applyScheme = (scheme: string) => {
+    store('scheme', scheme);
+    setCurrentScheme(scheme);
   };
 
   return (
@@ -193,27 +193,27 @@ function StylesSwitcher() {
         </IconButton>
       </WithTooltip>
 
-      {/* Mode dropdown */}
+      {/* Scheme dropdown */}
       <WithTooltip
         placement="bottom-end"
         trigger="click"
         closeOnOutsideClick
         tooltip={
           <div className="addon-dropdown">
-            {MODES.map(mode => (
+            {SCHEMES.map(scheme => (
               <IconButton
-                className={'addon-dropdown__item' + (mode === currentMode ? ' active' : '')}
-                key={mode}
-                onClick={() => applyMode(mode)}
+                className={'addon-dropdown__item' + (scheme === currentScheme ? ' active' : '')}
+                key={scheme}
+                onClick={() => applyScheme(scheme)}
               >
-                {mode}
+                {scheme}
               </IconButton>
             ))}
           </div>
         }
       >
         <IconButton className="addon-label" size="medium">
-          Mode: {currentMode}
+          Color Scheme: {currentScheme}
         </IconButton>
       </WithTooltip>
     </>
