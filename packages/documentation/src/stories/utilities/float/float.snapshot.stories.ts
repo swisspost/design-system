@@ -12,7 +12,6 @@ export default {
 
 type Story = StoryObj;
 
-console.log(F.argTypes?.floatPosition?.options);
 export const Float: Story = {
   render: (_args: Args, context: StoryContext) => {
     return html`
