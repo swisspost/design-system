@@ -22,6 +22,147 @@
 */
 
 $utilities: (
+  'border': (
+    responsive: true,
+    property: border,
+    class: border,
+    values: (
+      null: var(--post-border-width) var(--post-border-style) var(--post-border-color),
+      0: 0,
+    ),
+  ),
+  'border-top': (
+    property: border-top,
+    values: (
+      null: var(--post-border-width) var(--post-border-style) var(--post-border-color),
+      0: 0,
+    ),
+  ),
+  'border-end': (
+    property: border-right,
+    class: border-end,
+    values: (
+      null: var(--post-border-width) var(--post-border-style) var(--post-border-color),
+      0: 0,
+    ),
+  ),
+  'border-bottom': (
+    property: border-bottom,
+    values: (
+      null: var(--post-border-width) var(--post-border-style) var(--post-border-color),
+      0: 0,
+    ),
+  ),
+  'border-start': (
+    property: border-left,
+    class: border-start,
+    values: (
+      null: var(--post-border-width) var(--post-border-style) var(--post-border-color),
+      0: 0,
+    ),
+  ),
+  'border-width': (
+    responsive: true,
+    css-var: true,
+    css-variable-name: border-width,
+    class: border,
+    values: from-tokens('border-widths', 'border'),
+  ),
+  'border-color': (
+    property: border-color,
+    class: border,
+    local-vars: (
+      'border-opacity': 1,
+    ),
+    values: from-tokens('border-colors', 'border'),
+  ),
+  'border-opacity': (
+    css-var: true,
+    class: border-opacity,
+    values: (
+      0: 0,
+      10: 0.1,
+      25: 0.25,
+      50: 0.5,
+      75: 0.75,
+      100: 1,
+    ),
+  ),
+  'rounded': (
+    property: border-radius,
+    class: rounded,
+    values: (
+      null: var(--post-border-radius),
+      0: 0,
+      1: var(--post-border-radius-sm),
+      2: var(--post-border-radius),
+      3: var(--post-border-radius-lg),
+      4: var(--post-border-radius-xl),
+      5: var(--post-border-radius-xxl),
+      circle: 50%,
+      pill: var(--post-border-radius-pill),
+    ),
+  ),
+  'rounded-top': (
+    property: border-top-left-radius border-top-right-radius,
+    class: rounded-top,
+    values: (
+      null: var(--post-border-radius),
+      0: 0,
+      1: var(--post-border-radius-sm),
+      2: var(--post-border-radius),
+      3: var(--post-border-radius-lg),
+      4: var(--post-border-radius-xl),
+      5: var(--post-border-radius-xxl),
+      circle: 50%,
+      pill: var(--post-border-radius-pill),
+    ),
+  ),
+  'rounded-end': (
+    property: border-top-right-radius border-bottom-right-radius,
+    class: rounded-end,
+    values: (
+      null: var(--post-border-radius),
+      0: 0,
+      1: var(--post-border-radius-sm),
+      2: var(--post-border-radius),
+      3: var(--post-border-radius-lg),
+      4: var(--post-border-radius-xl),
+      5: var(--post-border-radius-xxl),
+      circle: 50%,
+      pill: var(--post-border-radius-pill),
+    ),
+  ),
+  'rounded-bottom': (
+    property: border-bottom-right-radius border-bottom-left-radius,
+    class: rounded-bottom,
+    values: (
+      null: var(--post-border-radius),
+      0: 0,
+      1: var(--post-border-radius-sm),
+      2: var(--post-border-radius),
+      3: var(--post-border-radius-lg),
+      4: var(--post-border-radius-xl),
+      5: var(--post-border-radius-xxl),
+      circle: 50%,
+      pill: var(--post-border-radius-pill),
+    ),
+  ),
+  'rounded-start': (
+    property: border-bottom-left-radius border-top-left-radius,
+    class: rounded-start,
+    values: (
+      null: var(--post-border-radius),
+      0: 0,
+      1: var(--post-border-radius-sm),
+      2: var(--post-border-radius),
+      3: var(--post-border-radius-lg),
+      4: var(--post-border-radius-xl),
+      5: var(--post-border-radius-xxl),
+      circle: 50%,
+      pill: var(--post-border-radius-pill),
+    ),
+  ),
   'margin': (
     responsive: true,
     property: margin,
