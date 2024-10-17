@@ -102,7 +102,7 @@ describe('meta-navigation', () => {
         cy.changeArg('language', 'de');
 
         // Assert the header is hydrated
-        cy.get('swisspost-internet-header').should('have.class', 'hydrated');
+        cy.get('swisspost-internet-header').should('have.attr', 'data-hydrated');
 
         // With the modified configuration the meta navigation should be removed from the DOM
         cy.get('post-meta-navigation').should('not.exist');
@@ -128,7 +128,7 @@ describe('meta-navigation', () => {
         cy.changeArg('language', 'de');
 
         // Assert the header is hydrated
-        cy.get('swisspost-internet-header').should('have.class', 'hydrated');
+        cy.get('swisspost-internet-header').should('have.attr', 'data-hydrated');
 
         // With the modified configuration the meta navigation should be removed from the DOM
         cy.get('post-meta-navigation').should('not.exist');
