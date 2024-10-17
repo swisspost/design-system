@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use '_form-check';
+@use 'form-check';
 @use '../variables/color';
 @use '../variables/commons';
 @use '../variables/type';
@@ -121,7 +121,7 @@ $switch-handle-icon: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='htt
       }
 
       &:checked::after,
-      &:checked:before {
+      &:checked::before {
         transform: translateX(
           calc(
             tokens.get('switch-element-width') - tokens.get('switch-element-handle') - tokens.get(
