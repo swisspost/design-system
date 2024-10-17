@@ -23,7 +23,7 @@ export class PostLogo {
     checkEmptyOrUrl(this.url, 'The "url" property of the post-logo is invalid');
   }
 
-  connectedCallback() {
+  componentDidLoad() {
     this.validateUrl();
     this.checkDescription();
   }

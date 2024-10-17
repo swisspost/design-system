@@ -45,6 +45,9 @@ export class PostAccordion {
 
   componentWillLoad() {
     this.registerAccordionItems();
+  }
+
+  componentDidLoad() {
     this.validateHeadingLevel();
   }
 
