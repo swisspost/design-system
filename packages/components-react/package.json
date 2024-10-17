@@ -1,15 +1,24 @@
 {
   "name": "@swisspost/design-system-components-react",
-  "version": "9.0.0-next.1",
+  "version": "9.0.0-next.2",
+  "description": "Design System React Components for easy integration with the React ecosystem",
+  "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git"
+  },
+  "homepage": "https://design-system.post.ch",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "private": true,
   "files": [
     "dist"
   ],
   "publishConfig": {
-    "access": "restricted",
+    "access": "public",
     "linkDirectory": true
   },
   "scripts": {
@@ -20,7 +29,7 @@
     "lint": "eslint src/**/*.ts"
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:9.0.0-next.1"
+    "@swisspost/design-system-components": "workspace:9.0.0-next.2"
   },
   "devDependencies": {
     "@types/node": "20.14.14",

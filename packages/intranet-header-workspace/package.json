@@ -1,11 +1,13 @@
 {
   "name": "@swisspost/design-system-intranet-header-workspace",
-  "version": "3.0.22-next.1",
+  "version": "3.0.22-next.2",
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
     "clean": "rimraf dist",
-    "start": "ng serve --port 9320",
+    "start": "npm-run-all --parallel --print-label start:**",
+    "start:lib": "rimraf dist/intranet-header && ng build intranet-header --watch",
+    "start:app": "wait-on dist/intranet-header && ng serve --port 9320",
     "build": "ng build intranet-header",
     "lint": "ng lint"
   },
@@ -21,7 +23,7 @@
     "@angular/router": "18.1.3",
     "@ng-bootstrap/ng-bootstrap": "17.0.0",
     "@popperjs/core": "2.11.8",
-    "@swisspost/design-system-styles": "workspace:9.0.0-next.1",
+    "@swisspost/design-system-styles": "workspace:9.0.0-next.2",
     "rxjs": "7.8.1",
     "tslib": "2.6.3",
     "watch": "1.0.2",
@@ -47,8 +49,10 @@
     "karma-jasmine": "5.1.0",
     "karma-jasmine-html-reporter": "2.1.0",
     "ng-packagr": "18.1.0",
+    "npm-run-all": "4.1.5",
     "rimraf": "6.0.1",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "wait-on": "8.0.1"
   },
   "keywords": [
     "components",
