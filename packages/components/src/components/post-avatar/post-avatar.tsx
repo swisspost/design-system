@@ -62,8 +62,6 @@ export class PostAvatar {
 
   private async getAvatar() {
     if (this.slottedImage !== null) {
-      if (!this.slottedImage.getAttribute('alt'))
-        this.slottedImage.setAttribute('alt', this.getNames().join(' '));
       this.avatarType = AvatarType.Slotted;
     } else {
       let imageLoaded = false;
