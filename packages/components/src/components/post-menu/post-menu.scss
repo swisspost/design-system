@@ -1,0 +1,10 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+:host {
+  display: block;
+}
+
+.popover-container {
+  padding: post.$size-mini;
+  background-color: (post.$white);
+}
