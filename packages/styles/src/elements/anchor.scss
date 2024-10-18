@@ -42,13 +42,6 @@ a {
     display: inline-flex;
     border-radius: tokens.get('avatar-border-radius', components.$post-avatar);
     text-decoration: none;
-
-    @include utilities.focus-style(
-      $offset: tokens.get('avatar-focus-outline-offset', components.$post-avatar),
-      $width: tokens.get('avatar-focus-outline-color', components.$post-avatar),
-      $color: tokens.get('avatar-focus-outline-width', components.$post-avatar),
-      $style: tokens.get('link-focus-outline-style', elements.$post-link)
-    );
   }
 
   &:hover {
