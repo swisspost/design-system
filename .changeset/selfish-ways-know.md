@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Fixed post-card-control label double reference
+Fixed the `post-card-control` label read twice by screen readers.
