@@ -177,6 +177,28 @@ export namespace Components {
          */
         "scale"?: number | null;
     }
+    interface PostLanguageOption {
+        /**
+          * If set to `true`, the language option is considered the current language for the page.
+         */
+        "active": boolean;
+        /**
+          * The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
+         */
+        "code": string;
+        /**
+          * The full name of the language. For example, "Deutsch".
+         */
+        "name": string;
+        /**
+          * Selects the language option programmatically.
+         */
+        "select": () => Promise<void>;
+        /**
+          * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
+         */
+        "url": string;
+    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -334,6 +356,10 @@ export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
 }
+export interface PostLanguageOptionCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostLanguageOptionElement;
+}
 export interface PostPopovercontainerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostPopovercontainerElement;
@@ -428,6 +454,23 @@ declare global {
     var HTMLPostIconElement: {
         prototype: HTMLPostIconElement;
         new (): HTMLPostIconElement;
+    };
+    interface HTMLPostLanguageOptionElementEventMap {
+        "postClick": string;
+    }
+    interface HTMLPostLanguageOptionElement extends Components.PostLanguageOption, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostLanguageOptionElementEventMap>(type: K, listener: (this: HTMLPostLanguageOptionElement, ev: PostLanguageOptionCustomEvent<HTMLPostLanguageOptionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostLanguageOptionElementEventMap>(type: K, listener: (this: HTMLPostLanguageOptionElement, ev: PostLanguageOptionCustomEvent<HTMLPostLanguageOptionElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostLanguageOptionElement: {
+        prototype: HTMLPostLanguageOptionElement;
+        new (): HTMLPostLanguageOptionElement;
     };
     interface HTMLPostLogoElement extends Components.PostLogo, HTMLStencilElement {
     }
@@ -525,6 +568,7 @@ declare global {
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
         "post-icon": HTMLPostIconElement;
+        "post-language-option": HTMLPostLanguageOptionElement;
         "post-logo": HTMLPostLogoElement;
         "post-popover": HTMLPostPopoverElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
@@ -682,6 +726,28 @@ declare namespace LocalJSX {
          */
         "scale"?: number | null;
     }
+    interface PostLanguageOption {
+        /**
+          * If set to `true`, the language option is considered the current language for the page.
+         */
+        "active"?: boolean;
+        /**
+          * The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
+         */
+        "code": string;
+        /**
+          * The full name of the language. For example, "Deutsch".
+         */
+        "name"?: string;
+        /**
+          * An event emitted when the language option is clicked. The payload is the ISO 639 code of the language.
+         */
+        "onPostClick"?: (event: PostLanguageOptionCustomEvent<string>) => void;
+        /**
+          * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
+         */
+        "url"?: string;
+    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -800,6 +866,7 @@ declare namespace LocalJSX {
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
         "post-icon": PostIcon;
+        "post-language-option": PostLanguageOption;
         "post-logo": PostLogo;
         "post-popover": PostPopover;
         "post-popovercontainer": PostPopovercontainer;
@@ -828,6 +895,7 @@ declare module "@stencil/core" {
              * @class PostIcon - representing a stencil component
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
+            "post-language-option": LocalJSX.PostLanguageOption & JSXBase.HTMLAttributes<HTMLPostLanguageOptionElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
