@@ -5,7 +5,7 @@ import { checkNonEmpty } from '@/utils';
 // https://docs.gravatar.com/api/avatars/images/
 const GRAVATAR_DEFAULT = '404';
 const GRAVATAR_RATING = 'g';
-const GRAVATAR_SIZE = 40;
+const GRAVATAR_SIZE = 80;
 
 const GRAVATAR_BASE_URL = `https://www.gravatar.com/avatar/{email}?s=${GRAVATAR_SIZE}&d=${GRAVATAR_DEFAULT}&r=${GRAVATAR_RATING}`;
 
@@ -56,22 +56,22 @@ export class PostAvatar {
   @State() initials = '';
 
   @Watch('firstname')
-  firstnameChanged() {
+  validateFirstname() {
     checkNonEmpty(this.firstname, 'The `firstname` property of the `post-avatar` is required!');
   }
 
   private async getAvatar() {
     if (this.slottedImage !== null) {
       if (!this.slottedImage.getAttribute('alt'))
-        this.slottedImage.setAttribute('alt', this.getInitials());
+        this.slottedImage.setAttribute('alt', this.getNames().join(' '));
       this.avatarType = AvatarType.Slotted;
     } else {
       let imageLoaded = false;
 
-      if (!imageLoaded)
+      if (!imageLoaded && this.userid)
         imageLoaded = await this.getImageByProp(this.userid, this.fetchImageByUserId.bind(this));
 
-      if (!imageLoaded)
+      if (!imageLoaded && this.email)
         imageLoaded = await this.getImageByProp(this.email, this.fetchImageByEmail.bind(this));
 
       if (!imageLoaded) this.getAvatarByInitials();
@@ -79,31 +79,29 @@ export class PostAvatar {
   }
 
   private async getImageByProp(prop: string, fetchImage: () => Promise<Response>) {
-    if (prop) {
-      const imageResponse = (await this.getStorageItem(prop)) ?? { ok: false, url: '' };
+    if (!prop) return false;
 
-      if (!imageResponse.ok) {
-        try {
-          const r = await fetchImage();
+    const imageResponse = (await this.getStorageItem(prop)) ?? { ok: false, url: '' };
 
-          imageResponse.ok = r.ok;
-          imageResponse.url = r.url;
+    if (!imageResponse.ok) {
+      try {
+        const r = await fetchImage();
 
-          this.imageUrl = imageResponse.url;
-          this.imageAlt = `${this.firstname} ${this.lastname} avatar`;
-          this.avatarType = AvatarType.Image;
+        imageResponse.ok = r.ok;
+        imageResponse.url = r.url;
 
-          this.setStorageItem(this.userid, JSON.stringify(imageResponse));
-        } catch (error) {
-          this.removeStorageItem(prop);
-          console.info(`Loading avatar by type "${AvatarType.Image}" failed.`);
-        }
+        this.imageUrl = imageResponse.url;
+        this.imageAlt = `${this.firstname} ${this.lastname} avatar`;
+        this.avatarType = AvatarType.Image;
+
+        this.setStorageItem(this.userid, JSON.stringify(imageResponse));
+      } catch (error) {
+        this.removeStorageItem(prop);
+        console.info(`Loading avatar by type "${AvatarType.Image}" failed.`);
       }
-
-      return imageResponse.ok;
     }
 
-    return false;
+    return imageResponse.ok;
   }
 
   private async fetchImageByUserId() {
@@ -123,8 +121,15 @@ export class PostAvatar {
     this.avatarType = AvatarType.Initials;
   }
 
+  private getNames() {
+    return [this.firstname, this.lastname].filter(n => n);
+  }
+
   private getInitials() {
-    return `${this.firstname?.charAt(0) ?? ''}${this.lastname?.charAt(0) ?? ''}`.trim();
+    return this.getNames()
+      .map(n => n.charAt(0))
+      .join('')
+      .trim();
   }
 
   private async getStorageItem(keyToken: string) {
@@ -162,19 +167,17 @@ export class PostAvatar {
   }
 
   componentDidLoad() {
-    this.firstnameChanged();
+    this.validateFirstname();
   }
 
   render() {
-    const initials = [this.firstname, this.lastname]
-      .filter(n => n)
-      .reduce((acc, n, i) => {
-        if (i > 0) acc.push(<span> </span>);
-        acc.push(n.charAt(0));
-        acc.push(<span>{n.slice(1)}</span>);
-        // eslint-disable-next-line @stencil-community/render-returns-host
-        return acc;
-      }, []);
+    const initials = this.getNames().reduce((acc, n, i) => {
+      if (i > 0) acc.push(<span> </span>);
+      acc.push(n.charAt(0));
+      acc.push(<span>{n.slice(1)}</span>);
+      // eslint-disable-next-line @stencil-community/render-returns-host
+      return acc;
+    }, []);
 
     return (
       <Host data-version={version}>

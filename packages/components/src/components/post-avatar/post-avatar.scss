@@ -16,6 +16,7 @@ tokens.$default-map: components.$post-avatar;
   border: tokens.get('avatar-border-width') solid tokens.get('avatar-border-color');
   border-radius: tokens.get('avatar-border-radius');
   font-size: tokens.get('avatar-font-size');
+  vertical-align: top;
   line-height: 1;
 
   &::after {
