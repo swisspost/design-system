@@ -1,20 +1,7 @@
 @use '@swisspost/design-system-styles/core' as post;
 
-.opacity-example [class^='opacity-'] {
+.opacity-example > div {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  width: 100px;
-  height: 100px;
-  margin: 2vw;
-  background-color: post.$black;
-  color: post.$white;
-}
-
-.opacity-example-snapshot [class^='opacity-'] div {
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;

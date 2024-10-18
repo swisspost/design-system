@@ -1,4 +1,4 @@
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj, StoryFn, StoryContext } from '@storybook/web-components';
 import { html } from 'lit';
 import './opacity.styles.scss';
 import { MetaExtended } from '@root/types';
@@ -6,15 +6,6 @@ import { MetaExtended } from '@root/types';
 const meta: MetaExtended = {
   id: '5e27e48d-a5f6-4e57-a343-7f40507fc27b',
   title: 'Utilities/Opacity',
-};
-
-export const opacityOptions = [0, 25, 50, 75, 100];
-
-export default meta;
-
-type Story = StoryObj;
-
-export const Opacity: Story = {
   args: {
     opacity: '100',
   },
@@ -25,14 +16,24 @@ export const Opacity: Story = {
       control: {
         type: 'select',
       },
-      options: opacityOptions,
+      options: [0, 25, 50, 75, 100],
     },
   },
   render: (args: Args) => {
-    return html`
-      <div class="opacity-${args.opacity}">
-        <div>Opacity ${args.opacity}%</div>
-      </div>
-    `;
+    return html` <div class="opacity-${args.opacity}">Opacity ${args.opacity}%</div> `;
   },
+  decorators: [
+    (story: StoryFn, context: StoryContext) => {
+      const storyTemplate = html`<div class="opacity-example">
+        ${story(context.args, context)}
+      </div>`;
+      return storyTemplate;
+    },
+  ],
 };
+
+export default meta;
+
+type Story = StoryObj;
+
+export const Opacity: Story = {};
