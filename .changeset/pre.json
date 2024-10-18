@@ -22,6 +22,7 @@
     "@swisspost/design-system-tokens": "8.2.0"
   },
   "changesets": [
+    "2024-10-17-update-icons",
     "beige-jobs-do",
     "big-frogs-admire",
     "breezy-cups-add",
@@ -39,7 +40,9 @@
     "heavy-rats-explode",
     "kind-buses-trade",
     "kind-papayas-provide",
+    "lazy-gorillas-admire",
     "lemon-clocks-clean",
+    "loud-dingos-remember",
     "lovely-mirrors-travel",
     "nervous-rocks-shop",
     "ninety-nails-float",
@@ -50,11 +53,16 @@
     "red-lies-lick",
     "selfish-bats-run",
     "shaggy-experts-give",
+    "sharp-baboons-smile",
     "sharp-crews-watch",
+    "shiny-ears-care",
     "six-spiders-smoke",
+    "sixty-items-promise",
+    "strange-bottles-impress",
     "tame-terms-push",
     "three-lies-do",
     "tidy-dolls-walk",
+    "tiny-socks-count",
     "yellow-yaks-jog"
   ]
 }

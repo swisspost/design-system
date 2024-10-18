@@ -1,5 +1,11 @@
 # @swisspost/design-system-icons
 
+## 9.0.0-next.3
+
+### Minor Changes
+
+- Added icons number 2613, 2614, 2615, 2616, 2617, 2618, 2619 and 2620. (by [@gfellerph](https://github.com/gfellerph) with [#3781](https://github.com/swisspost/design-system/pull/3781))
+
 ## 9.0.0-next.2
 
 ## 9.0.0-next.1
