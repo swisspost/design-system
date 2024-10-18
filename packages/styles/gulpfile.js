@@ -4,6 +4,7 @@ const gulp = require('gulp');
 const sass = require('sass');
 const newer = require('gulp-newer');
 const gulpSass = require('gulp-sass')(sass);
+const sourcemaps = require('gulp-sourcemaps');
 const gulpPostCss = require('gulp-postcss');
 const postcssScss = require('postcss-scss');
 const autoprefixer = require('autoprefixer');
@@ -114,38 +115,16 @@ gulp.task('transform-package-json', done => {
  */
 gulp.task('sass', () => {
   return gulp
-    .src('./src/*.scss')
+    .src('./src/**/*.scss')
     .pipe(
       gulpSass({
         outputStyle: 'compressed',
         includePaths: options.includePaths,
         quietDeps: true,
-        silenceDeprecations: ['mixed-decls'],
       }),
     )
     .pipe(gulpPostCss([autoprefixer()]))
     .pipe(gulp.dest(options.outputDir));
-});
-
-/**
- * Compile components to Css
- *  - Compile
- *  - Autoprefix
- *  - Also puts compiled Css into tsc-out
- */
-gulp.task('build-components', () => {
-  return gulp
-    .src('./src/components/*.scss')
-    .pipe(
-      gulpSass({
-        outputStyle: 'compressed',
-        includePaths: options.includePaths,
-        quietDeps: true,
-        silenceDeprecations: ['mixed-decls'],
-      }),
-    )
-    .pipe(gulpPostCss([autoprefixer()]))
-    .pipe(gulp.dest(`${options.outputDir}/components`));
 });
 
 /**
@@ -154,14 +133,15 @@ gulp.task('build-components', () => {
 gulp.task('sass:dev', () => {
   return gulp
     .src('./src/*.scss')
+    .pipe(sourcemaps.init())
     .pipe(
       gulpSass({
         includePaths: options.includePaths,
         quietDeps: true,
-        silenceDeprecations: ['mixed-decls'],
       }),
     )
     .pipe(gulpPostCss([autoprefixer()]))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest(options.outputDir));
 });
 
@@ -198,6 +178,5 @@ exports.default = gulp.task(
   gulp.parallel(
     gulp.series('map-icons', 'copy', 'autoprefixer', 'transform-package-json'),
     gulp.series('temporarily-copy-token-files', 'sass'),
-    gulp.series('build-components'),
   ),
 );

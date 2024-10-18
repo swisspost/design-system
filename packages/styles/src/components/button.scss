@@ -18,8 +18,6 @@
 @use './../placeholders/button' as button-ph;
 
 .btn {
-  @include button-mx.button-size();
-
   // Resets
   display: inline-flex;
   position: relative;
@@ -38,6 +36,8 @@
   font-weight: button.$btn-font-weight;
   text-decoration: none !important; // For <a> tags, !important for hover
   white-space: nowrap; // Long content should never break in buttons
+
+  @include button-mx.button-size();
 
   @include utilities.disabled-style() {
     text-decoration: line-through !important;
