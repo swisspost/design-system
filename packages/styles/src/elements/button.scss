@@ -1,7 +1,10 @@
 @use '../tokens/components';
 @use '../functions/tokens';
+@use '../mixins/utilities';
 
 button {
+  // <post-avatar> styles (when nested within a button tag)
+  // Always keep this after the base button styles!
   &:has(post-avatar:only-child) {
     display: inline-flex;
     padding: 0;
@@ -9,11 +12,12 @@ button {
     border: 0 none;
     border-radius: tokens.get('avatar-border-radius', components.$post-avatar);
 
-    &:focus-visible {
-      outline: tokens.get('avatar-focus-outline-width', components.$post-avatar) solid
-        tokens.get('avatar-focus-outline-color', components.$post-avatar);
-      outline-offset: tokens.get('avatar-focus-outline-offset', components.$post-avatar);
-    }
+    @include utilities.focus-style(
+      $offset: tokens.get('avatar-focus-outline-offset', components.$post-avatar),
+      $width: tokens.get('avatar-focus-outline-color', components.$post-avatar),
+      $color: tokens.get('avatar-focus-outline-width', components.$post-avatar),
+      $style: solid
+    );
   }
 
   &:hover {

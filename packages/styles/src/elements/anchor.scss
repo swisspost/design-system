@@ -1,17 +1,54 @@
+@use '../tokens/elements';
 @use '../tokens/components';
 @use '../functions/tokens';
+@use '../mixins/utilities';
+
+tokens.$default-map: elements.$post-link;
 
 a {
+  text-decoration: tokens.get('link-decoration');
+  border-radius: tokens.get('link-border-radius');
+  color: inherit;
+
+  &:hover {
+    color: tokens.get('link-hover-fg');
+  }
+
+  @include utilities.focus-style(
+    $offset: tokens.get('link-focus-outline-offset'),
+    $width: tokens.get('link-focus-outline-width'),
+    $color: tokens.get('link-focus-outline-color'),
+    $style: tokens.get('link-focus-outline-style')
+  );
+
+  @include utilities.high-contrast-mode() {
+    &,
+    &:focus {
+      color: LinkText !important;
+    }
+
+    &:hover {
+      text-decoration-thickness: 2px;
+    }
+
+    &:visited {
+      color: VisitedText;
+    }
+  }
+
+  // <post-avatar> styles (when nested within an anchor tag)
+  // Always keep this after the base anchor styles!
   &:has(post-avatar:only-child) {
     display: inline-flex;
     border-radius: tokens.get('avatar-border-radius', components.$post-avatar);
     text-decoration: none;
 
-    &:focus-visible {
-      outline: tokens.get('avatar-focus-outline-width', components.$post-avatar) solid
-        tokens.get('avatar-focus-outline-color', components.$post-avatar);
-      outline-offset: tokens.get('avatar-focus-outline-offset', components.$post-avatar);
-    }
+    @include utilities.focus-style(
+      $offset: tokens.get('avatar-focus-outline-offset', components.$post-avatar),
+      $width: tokens.get('avatar-focus-outline-color', components.$post-avatar),
+      $color: tokens.get('avatar-focus-outline-width', components.$post-avatar),
+      $style: tokens.get('link-focus-outline-style', elements.$post-link)
+    );
   }
 
   &:hover {
