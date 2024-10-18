@@ -1,5 +1,4 @@
 @use '../tokens/elements';
-@use '../tokens/components';
 @use '../functions/tokens';
 @use '../mixins/utilities';
 
@@ -33,25 +32,6 @@ a {
 
     &:visited {
       color: VisitedText;
-    }
-  }
-
-  // <post-avatar> styles (when nested within an anchor tag)
-  // Always keep this after the base anchor styles!
-  &:has(post-avatar:only-child) {
-    display: inline-flex;
-    border-radius: tokens.get('avatar-border-radius', components.$post-avatar);
-    text-decoration: none;
-  }
-
-  &:hover {
-    post-avatar {
-      --post-avatar-bg: #{tokens.get('avatar-hover-bg', components.$post-avatar)};
-      --post-avatar-fg: #{tokens.get('avatar-hover-fg', components.$post-avatar)};
-
-      &::after {
-        background-color: tokens.get('avatar-image-hover-opacity', components.$post-avatar);
-      }
     }
   }
 }
