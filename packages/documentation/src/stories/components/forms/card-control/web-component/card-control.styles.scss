@@ -1,9 +1,0 @@
-// This is necessary, because we overrite the css classes by a custom control
-// which removes the hydrated class from the componentn,
-// which then causes the component to be visibly hidden
-
-#story--886fabcf-148b-4054-a2ec-4869668294fb--lined-up {
-  post-card-control {
-    visibility: visible;
-  }
-}

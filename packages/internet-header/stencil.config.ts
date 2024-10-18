@@ -7,6 +7,10 @@ export const config: Config = {
   globalStyle: 'src/root.scss',
   buildEs5: 'prod',
   sourceMap: false,
+  hydratedFlag: {
+    name: 'data-hydrated',
+    selector: 'attribute',
+  },
   bundles: [
     {
       components: ['swisspost-internet-header'],
