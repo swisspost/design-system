@@ -338,8 +338,8 @@ export function getSet(options, dictionary, currentSetName) {
 
   if (meta.layer === 'semantic') {
     const baseSetName = meta.setNames[0];
-    const overrideSetNameIndex = meta.setNames.findIndex(setName => setName === currentSetName) + 1;
-    const overrideSetNames = meta.setNames.slice(1, overrideSetNameIndex);
+    const overrideSetNameIndex = meta.setNames.findIndex(setName => setName === currentSetName);
+    const overrideSetNames = meta.setNames.slice(1, overrideSetNameIndex + 1);
 
     tokenSet = dictionary.allTokens
       .filter(token => token.path[0] === baseSetName)
@@ -350,13 +350,9 @@ export function getSet(options, dictionary, currentSetName) {
         .filter(token => token.path[0] === overrideSetName)
         .map(normalizeToken);
 
-      tokenSet.map(token => {
-        const overrideToken = overrideTokenSet.find(
-          overrideToken => overrideToken.name === token.name,
-        );
-
-        if (overrideToken) token = overrideToken;
-      });
+      tokenSet = tokenSet.map(
+        token => overrideTokenSet.find(overrideToken => overrideToken.name === token.name) ?? token,
+      );
     });
   } else {
     tokenSet = dictionary.allTokens
