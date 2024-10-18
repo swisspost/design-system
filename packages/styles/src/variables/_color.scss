@@ -51,20 +51,6 @@ $success-background: #c0debb;
 $error-background: #ffdade;
 $warning-background: #fce2b2;
 
-// Accent colors
-$nightblue-dark: #004976;
-$nightblue-bright: #0076a8;
-$petrol-dark: #006d68;
-$petrol-bright: #00968f;
-$coral-dark: #9e2a2f;
-$coral-bright: #e03c31;
-$purple-dark: #80276c;
-$purple-bright: #c5299b;
-$olive-dark: #716135;
-$olive-bright: #aa9d2e;
-$aubergine-dark: #523178;
-$aubergine-bright: #7566a0;
-
 /**
  * Maps. Allow maps to have custom colors from the project
  * by always merging into a default empty map
@@ -127,25 +113,6 @@ $signal-background-colors: map.merge(
   )
 );
 
-$accent-colors: () !default;
-$accent-colors: map.merge(
-  $accent-colors,
-  (
-    'nightblue': $nightblue-dark,
-    'nightblue-bright': $nightblue-bright,
-    'petrol': $petrol-dark,
-    'petrol-bright': $petrol-bright,
-    'coral': $coral-dark,
-    'coral-bright': $coral-bright,
-    'olive': $olive-dark,
-    'olive-bright': $olive-bright,
-    'purple': $purple-dark,
-    'purple-bright': $purple-bright,
-    'aubergine': $aubergine-dark,
-    'aubergine-bright': $aubergine-bright,
-  )
-);
-
 // List of possible background colors with some synonyms for easier usage
 $background-colors: () !default;
 $background-colors: map.merge(
@@ -182,7 +149,6 @@ $notification-colors: list.join(
 // Merge with the other color maps
 $background-colors: map.merge($background-colors, $signal-colors);
 $background-colors: map.merge($background-colors, $signal-background-colors);
-$background-colors: map.merge($background-colors, $accent-colors);
 
 // Compile a list of light and dark backgrounds, used in the :is selector mixin at mixins/color
 $_backgrounds: (
