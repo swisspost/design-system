@@ -19,8 +19,9 @@
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/swisspost-internet-header/swisspost-internet-header.esm.js",
+  "private": true,
   "publishConfig": {
-    "access": "public"
+    "access": "restricted"
   },
   "files": [
     "dist/",
