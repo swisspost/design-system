@@ -2,24 +2,31 @@ import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as SpacingStories from './spacing.stories';
 
 export const firstBreakpoint = Object.values(SpacingStories.SCSS_VARIABLES.firstBreakpoint)[0];
-export const breakpoints = Object.values(SpacingStories.SCSS_VARIABLES.breakpoints).map((breakpoint, i, arr) => [breakpoint, i !== arr.length - 1]);
+export const breakpoints = Object.values(SpacingStories.SCSS_VARIABLES.breakpoints).map(
+  (breakpoint, i, arr) => [breakpoint, i !== arr.length - 1],
+);
 
 <Meta of={SpacingStories} />
 
 # Spacing
 
-<div className="lead">
-Ensure consistent spacing across all pages.
-</div>
+<div className="lead">Ensure consistent spacing across all pages.</div>
 
 ## Margin and Padding
 
 <div className="alert alert-info">
-  <h4 className="alert-heading">Avoid applying spacing classes to grid elements (e.g. `.row`, `.col`, `.col-*`).</h4>
-  <p>The grid system uses negative margins and positive padding along the horizontal axis, and applying additional spacing classes can affect the layout unless done with careful consideration.</p>
+  <h4 className="alert-heading">
+    Avoid applying spacing classes to grid elements (e.g. `.row`, `.col`, `.col-*`).
+  </h4>
+  <p>
+    The grid system uses negative margins and positive padding along the horizontal axis, and
+    applying additional spacing classes can affect the layout unless done with careful
+    consideration.
+  </p>
 </div>
 
 The naming convention for spacing utilities follows this pattern:
+
 - For all breakpoints (<code>{firstBreakpoint}</code> and up): `{property}{sides}-{size}`
 - Starting from a specific breakpoint ({breakpoints.map(([b, isLast]) => (<span key={b}><code>{b}</code>{isLast ? ', ' : ''}</span>))}): `{property}{sides}-{breakpoint}-{size}`
 
@@ -55,6 +62,7 @@ When using `display: grid` or `display: flex`, you can use the gap utilities to 
 These classes simplify the process of managing spacing without needing to individually add margin utilities to each child element.
 
 The format for gap classes is as follows:
+
 - For all breakpoints (<code>{firstBreakpoint}</code> and up): `{property}-{size}`
 - Starting from a specific breakpoint ({breakpoints.map(([b, isLast]) => (<span key={b}><code>{b}</code>{isLast ? ', ' : ''}</span>))}): `gap-{breakpoint}-{size}`
 
