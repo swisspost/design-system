@@ -75,6 +75,12 @@ export namespace Components {
          */
         "type": AlertType;
     }
+    interface PostBreadcrumbItem {
+        /**
+          * The optional URL to which the breadcrumb item will link.
+         */
+        "url"?: string | URL;
+    }
     /**
      * @class PostCardControl - representing a stencil component
      */
@@ -376,6 +382,12 @@ declare global {
         prototype: HTMLPostAlertElement;
         new (): HTMLPostAlertElement;
     };
+    interface HTMLPostBreadcrumbItemElement extends Components.PostBreadcrumbItem, HTMLStencilElement {
+    }
+    var HTMLPostBreadcrumbItemElement: {
+        prototype: HTMLPostBreadcrumbItemElement;
+        new (): HTMLPostBreadcrumbItemElement;
+    };
     interface HTMLPostCardControlElementEventMap {
         "postInput": { state: boolean; value: string };
         "postChange": { state: boolean; value: string };
@@ -521,6 +533,7 @@ declare global {
         "post-accordion": HTMLPostAccordionElement;
         "post-accordion-item": HTMLPostAccordionItemElement;
         "post-alert": HTMLPostAlertElement;
+        "post-breadcrumb-item": HTMLPostBreadcrumbItemElement;
         "post-card-control": HTMLPostCardControlElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
@@ -583,6 +596,12 @@ declare namespace LocalJSX {
           * The type of the alert.
          */
         "type"?: AlertType;
+    }
+    interface PostBreadcrumbItem {
+        /**
+          * The optional URL to which the breadcrumb item will link.
+         */
+        "url"?: string | URL;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -796,6 +815,7 @@ declare namespace LocalJSX {
         "post-accordion": PostAccordion;
         "post-accordion-item": PostAccordionItem;
         "post-alert": PostAlert;
+        "post-breadcrumb-item": PostBreadcrumbItem;
         "post-card-control": PostCardControl;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
@@ -818,6 +838,7 @@ declare module "@stencil/core" {
             "post-accordion": LocalJSX.PostAccordion & JSXBase.HTMLAttributes<HTMLPostAccordionElement>;
             "post-accordion-item": LocalJSX.PostAccordionItem & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
             "post-alert": LocalJSX.PostAlert & JSXBase.HTMLAttributes<HTMLPostAlertElement>;
+            "post-breadcrumb-item": LocalJSX.PostBreadcrumbItem & JSXBase.HTMLAttributes<HTMLPostBreadcrumbItemElement>;
             /**
              * @class PostCardControl - representing a stencil component
              */
