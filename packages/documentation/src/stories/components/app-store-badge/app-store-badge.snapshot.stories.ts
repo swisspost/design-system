@@ -1,5 +1,5 @@
 import type { StoryObj } from '@storybook/web-components';
-import meta from './app-store-badge.stories';
+import meta, { renderBadge } from './app-store-badge.stories';
 import { html } from 'lit';
 
 const { id, ...metaWithoutId } = meta;
@@ -17,13 +17,6 @@ export const AppStoreBadge: Story = {
     const appStoreLightBadge = '/assets/images/apple-store-badge-white.svg';
     const googlePlayBadge = '/assets/images/google-play-badge.svg';
 
-    const renderBadge = (badgeSrc: string, altText: string) => html`
-      <a class="app-store-badge" href="#">
-        <img src="${badgeSrc}" alt="${altText}" />
-        <span class="visually-hidden">${altText}</span>
-      </a>
-    `;
-
     return html`
       <div class="d-flex flex-wrap gap-4 align-items-start flex-column">
         ${['bg-white', 'bg-dark'].map(
@@ -33,9 +26,9 @@ export const AppStoreBadge: Story = {
               data-color-mode="${bg === 'bg-white' ? 'light' : 'dark'}"
             >
               ${bg === 'bg-white'
-                ? renderBadge(appStoreDarkBadge, 'Download on the Apple Store')
-                : renderBadge(appStoreLightBadge, 'Download on the Apple Store')}
-              ${renderBadge(googlePlayBadge, 'Download on the Google Play')}
+                ? renderBadge('apple-store')
+                : renderBadge('apple-store')}
+              ${renderBadge('google-play')}
             </div>
           `,
         )}
