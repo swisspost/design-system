@@ -9,10 +9,55 @@
     <title>Stencil Component Starter</title>
 
     <link rel="stylesheet" href="/assets/css/index.css" />
+    <link rel="stylesheet" href="/assets/css/post-tokens-external.css" />
     <script type="module" src="/build/post-components.esm.js"></script>
     <script nomodule src="/build/post-components.js"></script>
   </head>
   <body>
+    <post-header>
+      <post-logo></post-logo>
+      <ul slot="audience-navigation">
+        <li>Privatkunden</li>
+        <li>Geschäftskunden</li>
+        <li>Behörden</li>
+      </ul>
+      <ul slot="meta-navigation">
+        <li>Über uns</li>
+        <li>Jobs</li>
+      </ul>
+
+      <button slot="post-togglebutton">= Menu</button>
+
+      <ul slot="post-language-switch">
+        <li>
+          <a href="#">DE</a>
+        </li>
+        <li>
+          <a href="#">FR</a>
+        </li>
+        <li>
+          <a href="#">IT</a>
+        </li>
+        <li>
+          <a href="#">EN</a>
+        </li>
+      </ul>
+
+      <h1 slot="title">Application title</h1>
+      <ul>
+        <li><a href="#">Search</a></li>
+        <li><a href="#">Login</a></li>
+      </ul>
+
+      <post-mainnavigation slot="post-mainnavigation">
+        <a href="#">Briefe</a>
+        <a href="#">Pakete</a>
+        <a href="#">Standorte</a>
+        <a href="#">Pfeffer</a>
+        <a href="#">Seemannsgarn</a>
+      </post-mainnavigation>
+    </post-header>
     <div class="p-48">Add your component here and start developing!</div>
+    <div style="height: 200vh; background-color: darkblue; width: 200px"></div>
   </body>
 </html>

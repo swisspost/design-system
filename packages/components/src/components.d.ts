@@ -144,6 +144,8 @@ export namespace Components {
          */
         "update": () => Promise<void>;
     }
+    interface PostHeader {
+    }
     /**
      * @class PostIcon - representing a stencil component
      */
@@ -420,6 +422,12 @@ declare global {
         prototype: HTMLPostCollapsibleTriggerElement;
         new (): HTMLPostCollapsibleTriggerElement;
     };
+    interface HTMLPostHeaderElement extends Components.PostHeader, HTMLStencilElement {
+    }
+    var HTMLPostHeaderElement: {
+        prototype: HTMLPostHeaderElement;
+        new (): HTMLPostHeaderElement;
+    };
     /**
      * @class PostIcon - representing a stencil component
      */
@@ -524,6 +532,7 @@ declare global {
         "post-card-control": HTMLPostCardControlElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
+        "post-header": HTMLPostHeaderElement;
         "post-icon": HTMLPostIconElement;
         "post-logo": HTMLPostLogoElement;
         "post-popover": HTMLPostPopoverElement;
@@ -648,6 +657,8 @@ declare namespace LocalJSX {
           * Link the trigger to a post-collapsible with this id
          */
         "for"?: string;
+    }
+    interface PostHeader {
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -799,6 +810,7 @@ declare namespace LocalJSX {
         "post-card-control": PostCardControl;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
+        "post-header": PostHeader;
         "post-icon": PostIcon;
         "post-logo": PostLogo;
         "post-popover": PostPopover;
@@ -824,6 +836,7 @@ declare module "@stencil/core" {
             "post-card-control": LocalJSX.PostCardControl & JSXBase.HTMLAttributes<HTMLPostCardControlElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             "post-collapsible-trigger": LocalJSX.PostCollapsibleTrigger & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
+            "post-header": LocalJSX.PostHeader & JSXBase.HTMLAttributes<HTMLPostHeaderElement>;
             /**
              * @class PostIcon - representing a stencil component
              */

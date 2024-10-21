@@ -7,6 +7,10 @@ tokens.$default-map: elements.$post-body;
 // Resets type
 @use '../components/fonts';
 
+html {
+  background-color: #ffcc00;
+}
+
 body {
   font-family: tokens.get('body-font-family');
   font-size: tokens.get('body-font-size');
@@ -14,4 +18,5 @@ body {
   line-height: tokens.get('body-line-height');
   letter-spacing: tokens.get('body-letter-spacing');
   color: tokens.get('body-color');
+  background-color: white;
 }

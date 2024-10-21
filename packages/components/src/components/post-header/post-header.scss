@@ -1,0 +1,86 @@
+:host {
+  --global-header-height: 72px;
+  --main-header-height: 56px;
+  --header-height: calc(var(--global-header-height) + var(--main-header-height));
+
+  @media screen and (max-width: 1024px) {
+    --global-header-height: 64px;
+  }
+}
+
+.d-flex {
+  display: flex;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.global-header {
+  background-color: #ffcc00;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: calc((var(--global-header-height) - 24px) * -1);
+  padding-inline-start: 4px;
+  padding-inline-end: 12px;
+
+  height: var(--global-header-height);
+
+  &.collapsed {
+    --global-header-height: 24px;
+    slot:not([name='post-logo']) {
+      display: none;
+    }
+  }
+}
+
+.main-navigation {
+  position: sticky;
+  top: 24px;
+}
+
+slot[name='post-logo'] {
+  align-self: flex-end;
+}
+
+.global-sub {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+::slotted(post-logo) {
+  flex: 1 0 auto;
+  height: calc(var(--global-header-height) - var(--header-scroll-top));
+  width: var(--global-header-height);
+  min-height: 24px;
+  align-self: flex-end;
+}
+
+::slotted(ul),
+::slotted(post-mainnavigation) {
+  list-style: none;
+  display: flex;
+  padding-left: 0;
+  gap: 1rem;
+}
+
+::slotted(h1) {
+  margin: 0 !important;
+  font-size: 28px !important;
+}
+
+.title-header,
+.main-navigation {
+  display: flex;
+  align-items: center;
+  padding-inline: 12px;
+  height: var(--main-header-height);
+  background: white;
+}
+
+.main-navigation {
+  border-bottom: 1px solid gray;
+}
