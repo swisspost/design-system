@@ -13,9 +13,7 @@ type Story = StoryObj;
 
 export const AppStoreBadge: Story = {
   render: () => {
-    const appStoreDarkBadge = '/assets/images/apple-store-badge.svg';
     const appStoreLightBadge = '/assets/images/apple-store-badge-white.svg';
-    const googlePlayBadge = '/assets/images/google-play-badge.svg';
 
     return html`
       <div class="d-flex flex-wrap gap-4 align-items-start flex-column">
@@ -27,7 +25,12 @@ export const AppStoreBadge: Story = {
             >
               ${bg === 'bg-white'
                 ? renderBadge('apple-store')
-                : renderBadge('apple-store')}
+                : html`
+                    <a class="app-store-badge" href="#">
+                      <img src="${appStoreLightBadge}" alt="Apple App Store badge (white)" />
+                      <span class="visually-hidden">Download the App on the Apple Store</span>
+                    </a>
+                  `}
               ${renderBadge('google-play')}
             </div>
           `,
