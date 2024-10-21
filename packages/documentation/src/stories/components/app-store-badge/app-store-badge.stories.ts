@@ -1,4 +1,4 @@
-import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 
@@ -13,20 +13,58 @@ const meta: MetaComponent = {
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=2513-10518&node-type=instance&t=YDywHpWmdpWu1a5h-0',
     },
   },
+  args: {
+    store: 'google-play',
+  },
+  argTypes: {
+    store: {
+      name: 'Store',
+      description: 'Select between Google Play and Apple Store badge',
+      control: {
+        type: 'radio',
+      },
+      options: ['google-play', 'apple-store'],
+      labels: {
+        'google-play': 'Google Play',
+        'apple-store': 'Apple Store',
+      },
+      table: {
+        category: 'General',
+      },
+    },
+  },
 };
 
 export default meta;
 
-type Story = StoryObj;
+type StoreType = 'google-play' | 'apple-store';
+
+export const renderBadge = (store: StoreType) => {
+  const badgeInfo = {
+    'google-play': {
+      src: '/assets/images/google-play-badge.svg',
+      alt: 'Google Play Store badge',
+      spanText: 'Download the App on Google Play',
+    },
+    'apple-store': {
+      src: '/assets/images/apple-store-badge.svg',
+      alt: 'Apple App Store badge',
+      spanText: 'Download the App on the Apple Store',
+    },
+  };
+
+  const { src, alt, spanText } = badgeInfo[store];
+
+  return html`
+    <a class="app-store-badge" href="#">
+      <img src="${src}" alt="${alt}" />
+      <span class="visually-hidden">${spanText}</span>
+    </a>
+  `;
+};
+
+type Story = StoryObj<{ store: StoreType }>;
 
 export const Default: Story = {
-  decorators: [
-    (story: StoryFn, context: StoryContext) => html` <div>${story(context.args, context)}</div> `,
-  ],
-  render: () => html`
-    <a class="app-store-badge" href="#">
-      <img src="/assets/images/google-play-badge.svg" alt="Google Play Store badge" />
-      <span class="visually-hidden">Download the App on the Google Play</span>
-    </a>
-  `,
+  render: (args) => renderBadge(args.store),
 };

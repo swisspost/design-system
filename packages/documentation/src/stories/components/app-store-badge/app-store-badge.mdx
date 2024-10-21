@@ -1,4 +1,4 @@
-import { Canvas, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as AppStoreBadgeStories from './app-store-badge.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
@@ -16,15 +16,18 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
   The app store badge leads the user to the respective product page in the Apple Store or Google Play, so the user can download the app.
 </div>
 
-<Canvas of={AppStoreBadgeStories.Default} sourceState="shown" controls={['store', 'language']} />
+<Canvas sourceState="shown" of={AppStoreBadgeStories.Default} />
 
-Projects provide and host the images for the badges locally to ensure they remain up-to-date. Additionally, the alt attribute and the span text should be adjusted according to the store (Apple Store/Google play) and language.
+<div className="hide-col-default">
+  <Controls of={AppStoreBadgeStories.Default} />
+</div>
 
 ## Ressources
 
-You can download the official badge assets in multiple languages from the following links:
+You can download the official badge assets from the following links:
 
 <ul>
   <li><a href="https://developer.apple.com/app-store/marketing/guidelines/">Apple App Store</a></li>
   <li><a href="https://partnermarketinghub.withgoogle.com/brands/google-play/visual-identity/badge-guidelines/?folder=65628">Google Play</a></li>
 </ul>
+
