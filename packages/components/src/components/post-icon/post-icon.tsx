@@ -110,7 +110,7 @@ export class PostIcon {
     checkEmptyOrType(newValue, 'number', 'The post-icon "scale" prop should be a number.');
   }
 
-  componentWillLoad() {
+  componentDidLoad() {
     this.validateBase();
     this.validateName();
     this.validateFlipH();
