@@ -1,0 +1,74 @@
+
+.segmented-button {
+	height: var(--height);
+	display: grid;
+	grid-auto-flow: column;
+	background: hsl(0 0% 0%);
+	border-radius: var(--radius);
+	grid-auto-columns: 1fr;
+	position: relative;
+	border: var(--border) solid hsl(0 0% 0%);
+}
+
+.segmented-button > input,
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
+
+.segmented-button:has(:checked:nth-of-type(1)) { --active: 0; }
+.segmented-button:has(:checked:nth-of-type(2)) { --active: 1; }
+.segmented-button:has(:checked:nth-of-type(3)) { --active: 2; }
+.segmented-button:has(:checked:nth-of-type(4)) { --active: 3; }
+
+.segmented-button :checked + label { --highlight: 1; }
+
+.segmented-button:has(input:nth-of-type(2)) { --count: 2; }
+.segmented-button:has(input:nth-of-type(3)) { --count: 3; }
+.segmented-button:has(input:nth-of-type(4)) { --count: 4; }
+
+.segmented-button label {
+	padding: 0 clamp(0.5rem, 2vw + 0.25rem, 2rem);
+	cursor: pointer;
+	text-align: center;
+	height: 100%;
+	display: grid;
+	border-radius: calc(var(--radius) - var(--border));
+	place-items: center;
+	color: hsl(0 0% 100% / calc(0.5 + var(--highlight, 0)));
+	transition: background, color;
+  transition-duration: 0.25s;
+  transition-timing-function: var(--ease, ease);
+}
+
+input:not(:checked) + label:hover {
+	--highlight: 0.35;
+	background: hsl(0 0% 20%);
+}
+
+.segmented-button::after {
+	pointer-events: none;
+	content: "";
+	width: calc(100% / var(--count));
+	height: 100%;
+	background: hsl(0 0% 100%);
+	position: absolute;
+	border-radius: calc(var(--radius) - var(--border));
+	mix-blend-mode: difference;
+	translate: calc(var(--active, 0) * 100%) 0;
+	transition: translate, outline-color;
+  transition-duration: var(--speed);
+  transition-timing-function: var(--ease, ease);
+	outline: 2px solid transparent;
+}
+
+.segmented-button:has(:focus-visible)::after {
+	outline-color: red;
+}
