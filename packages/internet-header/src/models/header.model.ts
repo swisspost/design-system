@@ -98,7 +98,7 @@ export interface NavMainEntity {
   isActive?: boolean;
   isActiveOverride?: boolean;
   noFlyout?: boolean;
-  flyout: FlyoutEntity[];
+  flyout?: FlyoutEntity[];
 }
 
 export interface FlyoutEntity {
