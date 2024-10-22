@@ -28,7 +28,7 @@
       id="tokens-select"
       value="external"
       class="mb-4"
-      onchange="if (['external', 'internal'].includes(this.value)) { document.getElementById('tokens').setAttribute('href', `/assets/css/post-tokens-${this.value}.css`); }"
+      onchange="if (['external', 'internal'].includes(this.value)) { document.getElementById('tokens').setAttribute('href', `/assets/css/post-tokens-${encodeURIComponent(this.value)}.css`); }"
     >
       <option value="external">Post external</option>
       <option value="internal">Post internal</option>
