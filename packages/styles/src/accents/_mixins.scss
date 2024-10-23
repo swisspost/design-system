@@ -1,0 +1,31 @@
+@use '../functions/contrast';
+@use '../placeholders/schemes';
+
+@use './functions' as *;
+
+@mixin generate-accent($name, $theme) {
+  .accent-#{$name} {
+    &,
+    [data-color-scheme='light'] & {
+      @include accent-styles($name, $theme, 'light');
+    }
+
+    [data-color-scheme='dark'] & {
+      @include accent-styles($name, $theme, 'dark');
+    }
+  }
+}
+
+@mixin accent-styles($name, $theme, $scheme) {
+  $fg: value('post-accent-#{$name}-fg', '#{$theme}-test', '#{$scheme}-test');
+  $bg: value('post-accent-#{$name}-bg', '#{$theme}-test', '#{$scheme}-test');
+
+  --post-accent-fg: #{$fg};
+  background-color: $bg;
+
+  @if (contrast.light-or-dark($bg) == 'light') {
+    @extend %color-scheme-light;
+  } @else {
+    @extend %color-scheme-dark;
+  }
+}

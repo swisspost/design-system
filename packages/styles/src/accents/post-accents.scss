@@ -1,0 +1,6 @@
+@use 'mixins' as *;
+@use 'variables' as *;
+
+@each $accent in $accents {
+  @include generate-accent($accent, 'post');
+}
