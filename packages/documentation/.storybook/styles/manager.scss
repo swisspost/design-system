@@ -94,6 +94,9 @@
       color: var(--post-contrast-color);
     }
   }
+  [data-item-id^='health'] {
+    display: none;
+  }
 }
 
 #downshift-1-menu {
