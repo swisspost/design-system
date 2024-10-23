@@ -1,1 +1,14 @@
 @forward './temp/components';
+
+@use './../functions/tokens';
+
+$post-accent: (
+  post-accent-default-bg: var(--post-scheme-accent-default-bg),
+  post-accent-default-fg: var(--post-scheme-accent-default-fg),
+  post-accent-brand-bg: var(--post-theme-accent-brand-bg),
+  post-accent-brand-fg: var(--post-theme-accent-brand-fg),
+  post-accent-emphasis-bg: var(--post-theme-accent-emphasis-bg),
+  post-accent-emphasis-fg: var(--post-theme-accent-emphasis-fg),
+  post-accent-alternate-bg: var(--post-scheme-accent-alternate-bg),
+  post-accent-alternate-fg: var(--post-scheme-accent-alternate-fg),
+);
