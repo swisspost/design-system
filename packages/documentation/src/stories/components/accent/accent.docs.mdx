@@ -1,0 +1,14 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as accentStories from './accent.stories';
+
+<Meta of={accentStories} />
+
+<div className="docs-title">
+  # Accent
+</div>
+
+<Canvas sourceState="shown" of={accentStories.Default} />
+
+<div className="hide-col-default">
+  <Controls of={accentStories.Default} />
+</div>

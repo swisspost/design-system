@@ -16,18 +16,6 @@ const possibleStylesheets = THEMES.flatMap(theme => {
 });
 
 /*
- * Backgrounds
- */
-const backgroundClasses: { [key in (typeof SCHEMES)[number]]: string } = {
-  Light: 'bg-white',
-  Dark: 'bg-dark',
-};
-const getBackgroundClass = (scheme: string) => {
-  return scheme in backgroundClasses ? backgroundClasses[scheme] : '';
-};
-const possibleBackgrounds = SCHEMES.map(scheme => getBackgroundClass(scheme));
-
-/*
  * Local storage access
  */
 const STORAGE_KEY_PREFIX = 'swisspost-documentation';
@@ -113,9 +101,8 @@ function StylesSwitcher() {
     if (!stories) return;
 
     stories.forEach(story => {
-      story.classList.remove(...possibleBackgrounds);
-      story.classList.add(getBackgroundClass(currentScheme));
       story.setAttribute('data-color-scheme', currentScheme.toLowerCase());
+      if (!story.classList.contains('accent-default')) story.classList.add('accent-default');
     });
   }, [stories, currentScheme]);
 
