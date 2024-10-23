@@ -6,6 +6,7 @@ tokens.$default-map: elements.$post-legend;
 legend {
   font-weight: tokens.get('legend-font-weight');
   line-height: tokens.get('legend-line-height');
+  margin-bottom: tokens.get('legend-large-padding-block-end');
   width: 100%;
 
   &.large {
