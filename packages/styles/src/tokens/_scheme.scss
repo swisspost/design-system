@@ -5,6 +5,8 @@ $post-light-test: (
   post-scheme-accent-default-fg: var(--post-core-color-sandgrey-100),
   post-scheme-accent-alternate-bg: var(--post-core-color-sandgrey-006),
   post-scheme-accent-alternate-fg: var(--post-core-color-sandgrey-100),
+  post-scheme-accent-emphasis-bg: var(--post-core-color-sandgrey-080),
+  post-scheme-accent-emphasis-fg: var(--post-core-color-brand-white),
 );
 
 $post-dark-test: (
@@ -12,4 +14,6 @@ $post-dark-test: (
   post-scheme-accent-default-fg: var(--post-core-color-brand-white),
   post-scheme-accent-alternate-bg: var(--post-core-color-sandgrey-090),
   post-scheme-accent-alternate-fg: var(--post-core-color-brand-white),
+  post-scheme-accent-emphasis-bg: var(--post-core-color-sandgrey-002),
+  post-scheme-accent-emphasis-fg: var(--post-core-color-sandgrey-100),
 );

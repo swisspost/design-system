@@ -2,7 +2,6 @@
 @use 'sass:meta';
 
 @use '../functions/string';
-@use '../functions/tokens';
 @use '../tokens/components';
 @use '../tokens/theme';
 @use '../tokens/scheme';
@@ -14,24 +13,28 @@
  */
 
 @function value($key, $theme: 'post', $scheme: 'light') {
-  $normalized-key: tokens.normalize-key($key);
-  $value: map.get(components.$post-accent, $normalized-key);
-
-  $semantic-key: string.replace($value, 'var(--', '');
-  $semantic-key: string.replace($semantic-key, ')', '');
+  $value: _get-value(components.$post-accent, $key);
 
   $theme-map: map.get(meta.module-variables(theme), 'post-#{$theme}');
+  $value: _get-value($theme-map, $value);
+
   $scheme-map: map.get(meta.module-variables(scheme), 'post-#{$scheme}');
-  $semantic-value: if(
-      map.has-key($theme-map, $semantic-key),
-      map.get($theme-map, $semantic-key),
-      map.get($scheme-map, $semantic-key)
-  );
+  $value: _get-value($scheme-map, $value);
 
-  $core-key: string.replace($semantic-value, 'var(--', '');
-  $core-key: string.replace($core-key, ')', '');
+  @return _get-value(core.$post-core, $value);
+}
 
-  $core-value: map.get(core.$post-core, $core-key);
+@function _get-value($map, $key) {
+  @if (map.has-key($map, $key)) {
+    $value: map.get($map, $key);
 
-  @return $core-value;
+    @if (meta.type-of($value) == 'string') {
+      $value: string.replace($value, 'var(--', '');
+      $value: string.replace($value, ')', '');
+    }
+
+    @return $value;
+  }
+
+  @return $key;
 }
