@@ -50,6 +50,8 @@ export class PostAccordion {
 
   @Listen('postToggle')
   collapseToggleHandler(event: CustomEvent<boolean>) {
+    event.stopPropagation();
+
     const toggledItem = event.target as HTMLElement;
     const closestParentAccordion = toggledItem.closest('post-accordion');
 
