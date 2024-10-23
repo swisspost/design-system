@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as MenuButtonStories from './menu-button.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={MenuButtonStories} />
+
+<div className="docs-title">
+  # Menu Button
+
+  <nav>
+    <link-design of={JSON.stringify(MenuButtonStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  A dropdown component for displaying a list of links or actions with flexible alignment.
+</div>
+
+<Canvas sourceState="shown" of={MenuButtonStories.Default} />
+<Controls of={MenuButtonStories.Default} />
+
+
+<StylesPackageImport components={['menu-button']} />
