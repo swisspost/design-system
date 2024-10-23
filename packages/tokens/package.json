@@ -15,7 +15,8 @@
   },
   "type": "module",
   "scripts": {
-    "build": "node ./build.js"
+    "build": "pnpm clean && node ./build.js",
+    "clean": "rimraf dist"
   },
   "keywords": [
     "tokens",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@tokens-studio/sd-transforms": "1.2.2",
+    "rimraf": "6.0.1",
     "style-dictionary": "4.0.1"
   }
 }

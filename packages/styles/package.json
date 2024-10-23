@@ -21,7 +21,7 @@
     "start": "gulp watch",
     "build": "pnpm clean && gulp build",
     "unit": "gulp sass:tests",
-    "clean": "rimraf out-tsc dist",
+    "clean": "rimraf out-tsc dist src/tokens/temp",
     "format": "prettier src/**/*.scss --write",
     "lint": "stylelint src/**/*.scss",
     "lint:fix": "stylelint src/**/*.scss --fix"
