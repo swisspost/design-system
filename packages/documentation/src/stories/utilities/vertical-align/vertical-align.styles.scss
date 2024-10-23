@@ -1,0 +1,41 @@
+.vertical-align-example {
+  border: 1px solid rgb(204, 204, 204);
+  table {
+    height: 100px;
+  }
+  span,
+  td {
+    padding: 0.4rem;
+    &:nth-of-type(7) {
+      padding-left: 2rem;
+      color: red;
+    }
+  }
+  .snapshot {
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    & > div {
+      border: 1px solid rgb(204, 204, 204);
+      width: 320px;
+      span {
+        min-width: 150px;
+      }
+      span:nth-of-type(2) {
+        color: gray;
+        // font-size: 2rem;
+      }
+    }
+  }
+  .box {
+    border: 1px solid rgb(204, 204, 204);
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+    text-align: center;
+  }
+}
+
+#storybook-root .vertical-align-example {
+  border: none;
+}
