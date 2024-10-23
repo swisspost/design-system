@@ -1,5 +1,7 @@
 @use '../functions/contrast';
+@use '../functions/tokens';
 @use '../placeholders/schemes';
+@use '../tokens/elements';
 
 @use './functions' as *;
 
@@ -7,25 +9,30 @@
   .accent-#{$name} {
     &,
     [data-color-scheme='light'] & {
-      @include accent-styles($name, $theme, 'light');
+      @include accent-styles($name, $theme, 'light', $redefine-tokens: true);
     }
 
     [data-color-scheme='dark'] & {
-      @include accent-styles($name, $theme, 'dark');
+      @include accent-styles($name, $theme, 'dark', $redefine-tokens: true);
     }
   }
 }
 
-@mixin accent-styles($name, $theme, $scheme) {
+@mixin accent-styles($name, $theme, $scheme, $redefine-tokens: false) {
   $fg: value('post-accent-#{$name}-fg', '#{$theme}-test', '#{$scheme}-test');
   $bg: value('post-accent-#{$name}-bg', '#{$theme}-test', '#{$scheme}-test');
 
   --post-accent-fg: #{$fg};
   background-color: $bg;
 
-  @if (contrast.light-or-dark($bg) == 'light') {
-    @extend %color-scheme-light;
-  } @else {
-    @extend %color-scheme-dark;
+  @if ($redefine-tokens == true) {
+    // redefining the body color is required so that the new color scheme is taken into account
+    color: tokens.get('body-color', elements.$post-body);
+
+    @if (contrast.light-or-dark($bg) == 'light') {
+      @extend %color-scheme-light;
+    } @else {
+      @extend %color-scheme-dark;
+    }
   }
 }
