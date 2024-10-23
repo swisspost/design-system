@@ -1,0 +1,22 @@
+@use 'sass:color';
+@use '@swisspost/design-system-styles/core' as post;
+
+$margin-color: color.adjust(post.$coral-bright, $lightness: 30%);
+$padding-color: color.complement($margin-color);
+$gap-color: color.adjust(post.$aubergine-bright, $lightness: 30%);
+$content-color: post.$white;
+$border: 1px solid post.$gray-40;
+
+.borders-example {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  width: fit-content;
+  gap: 4vw;
+
+  > div {
+    height: auto;
+    padding: 10px;
+    width: 160px;
+    text-align: center;
+  }
+}
