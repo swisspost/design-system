@@ -14,7 +14,7 @@ const meta: Meta = {
     },
   },
   args: {
-    accent: 'emphasis',
+    accent: 'default',
   },
   argTypes: {
     accent: {
