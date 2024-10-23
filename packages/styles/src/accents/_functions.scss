@@ -13,18 +13,18 @@
  */
 
 @function value($key, $theme: 'post', $scheme: 'light') {
-  $value: _get-value(components.$post-accent, $key);
+  $value: get-upper-value(components.$post-accent, $key);
 
   $theme-map: map.get(meta.module-variables(theme), 'post-#{$theme}');
-  $value: _get-value($theme-map, $value);
+  $value: get-upper-value($theme-map, $value);
 
   $scheme-map: map.get(meta.module-variables(scheme), 'post-#{$scheme}');
-  $value: _get-value($scheme-map, $value);
+  $value: get-upper-value($scheme-map, $value);
 
-  @return _get-value(core.$post-core, $value);
+  @return get-upper-value(core.$post-core, $value);
 }
 
-@function _get-value($map, $key) {
+@function get-upper-value($map, $key) {
   @if (map.has-key($map, $key)) {
     $value: map.get($map, $key);
 

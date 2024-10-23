@@ -6,3 +6,10 @@ $post-post-test: (
   post-theme-accent-emphasis-bg: var(--post-scheme-accent-emphasis-bg),
   post-theme-accent-emphasis-fg: var(--post-scheme-accent-emphasis-fg),
 );
+
+$post-cargo-test: (
+  post-theme-accent-brand-bg: var(--post-core-color-cargo-green),
+  post-theme-accent-brand-fg: var(--post-core-color-cargo-blue),
+  post-theme-accent-emphasis-bg: var(--post-core-color-cargo-blue),
+  post-theme-accent-emphasis-fg: var(--post-core-color-cargo-green),
+);

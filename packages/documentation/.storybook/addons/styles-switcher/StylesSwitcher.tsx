@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { IconButton, WithTooltip } from '@storybook/components';
 
-const THEMES = ['Post'] as const;
+const THEMES = ['Post', 'Cargo'] as const;
 const CHANNELS = ['External', 'Internal'] as const;
 const SCHEMES = ['Light', 'Dark'] as const;
 
