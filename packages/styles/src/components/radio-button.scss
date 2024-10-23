@@ -115,6 +115,13 @@ tokens.$default-map: components.$post-radio-button;
         border: tokens.get('radio-button-icon-border-width')
           tokens.get('radio-button-icon-border-style-disabled') GrayText;
       }
+
+      &:checked::after {
+        background-color: tokens.get('radio-button-disabled-fg');
+        @include utility-mx.high-contrast-mode {
+          background-color: GrayText;
+        }
+      }
     }
 
     &[disabled],
@@ -124,15 +131,6 @@ tokens.$default-map: components.$post-radio-button;
 
       @include color-mx.on-dark-background() {
         color: color.$white-alpha-80;
-      }
-    }
-
-    &[disabled] {
-      &:checked::after {
-        background-color: tokens.get('radio-button-disabled-fg');
-        @include utility-mx.high-contrast-mode {
-          background-color: GrayText;
-        }
       }
     }
 
