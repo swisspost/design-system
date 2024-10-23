@@ -50,15 +50,11 @@ StyleDictionary.registerFormat({
             .map(token => {
               const tokenValue = getTokenValue(options, token);
 
-              return meta.layer === 'core'
-                ? `  --${token.name}: ${tokenValue};`
-                : `  ${token.name}: ${tokenValue},`;
+              return `  ${token.name}: ${tokenValue},`;
             })
             .join('\n');
 
-          return meta.layer === 'core'
-            ? `:root {\n${tokenSet}\n}\n`
-            : `$${tokenSetName}: (\n${tokenSet}\n);\n`;
+          return `$${tokenSetName}: (\n${tokenSet}\n);\n`;
         })
         .join('\n')
     );
