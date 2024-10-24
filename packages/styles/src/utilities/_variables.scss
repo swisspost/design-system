@@ -232,5 +232,10 @@ $utilities: (
     values: inline inline-block block grid inline-grid table table-row table-cell flex inline-flex
       none,
   ),
+  'accent-text': (
+    css-var: true,
+    css-variable-name: accent-fg,
+    values: null,
+  ),
   // IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`.
 );

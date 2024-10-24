@@ -2,9 +2,9 @@
 @use 'variables' as *;
 
 body {
-  @include accent-styles($default-accent, 'cargo', 'light');
+  @include default-accent-styles('cargo');
 }
 
 @each $accent in $accents {
-  @include generate-accent($accent, 'cargo');
+  @include generate-accent-class($accent, 'cargo');
 }

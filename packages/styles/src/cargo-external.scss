@@ -1,5 +1,8 @@
-@use './cargo-tokens-external';
-@use './accents/cargo-accents';
-@use './utilities';
+@use './tokens/schemes';
+@use './tokens/device';
+@use './tokens/external';
+@use './tokens/cargo-theme';
+@use 'accents/cargo-accents';
+@use 'utilities/index';
 @use './elements';
 @use './components';

@@ -1,5 +1,8 @@
-@use './post-tokens-internal';
-@use './accents/post-accents';
-@use './utilities';
+@use './tokens/schemes';
+@use './tokens/device';
+@use './tokens/internal';
+@use './tokens/post-theme';
+@use 'accents/post-accents';
+@use 'utilities/index';
 @use './elements';
 @use './components';

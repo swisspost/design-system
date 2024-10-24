@@ -3,7 +3,7 @@ import { html } from 'lit';
 
 const meta: Meta = {
   id: '43481535-5b39-40b5-a273-478b07dc3b31',
-  title: 'Components/Accent',
+  title: 'Utilities/Accent',
   tags: ['package:HTML'],
   render: renderAccent,
   parameters: {
@@ -14,7 +14,7 @@ const meta: Meta = {
     },
   },
   args: {
-    accent: 'default',
+    accent: 'Default',
   },
   argTypes: {
     accent: {
@@ -22,10 +22,16 @@ const meta: Meta = {
       description: 'The accent variant.',
       control: {
         type: 'radio',
+        labels: {
+          default: 'Default',
+          alternate: 'Alternate',
+          brand: 'Brand',
+          emphasis: 'Emphasis',
+        },
       },
       options: ['default', 'alternate', 'brand', 'emphasis'],
       table: {
-        category: 'Generaly',
+        category: 'General',
       },
     },
   },
@@ -37,8 +43,11 @@ export default meta;
 function renderAccent(args: Args) {
   return html`
     <div class="accent-${args.accent} p-24">
-      <p style="color: var(--post-accent-fg)">I use the accent foreground color.</p>
       <p>I use the body color.</p>
+      <p style="accent-text">
+        I use a text color specific to the accent (which can be the same as the body color depending
+        on the theme).
+      </p>
     </div>
   `;
 }
