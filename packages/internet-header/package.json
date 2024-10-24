@@ -55,7 +55,7 @@
     "@percy/cli": "1.29.1",
     "@percy/cypress": "3.1.2",
     "@stencil-community/eslint-plugin": "0.8.0",
-    "@stencil/core": "4.19.2",
+    "@stencil/core": "4.22.1",
     "@stencil/sass": "3.0.12",
     "@stencil/store": "2.0.16",
     "@types/body-scroll-lock": "3.1.2",
