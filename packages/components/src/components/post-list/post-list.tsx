@@ -39,12 +39,6 @@ export class PostList {
    * e.g. --post-list-heading-gap: 2rem;
    */
 
-  /* connectedCallback() {
-    Array.from(this.host.querySelectorAll('post-list-item')).forEach(item => {
-      item.setAttribute('slot', 'post-list-item');
-    });
-  } */
-
   componentWillLoad() {
     /**
      * Get the id set on the host element or use a random id by default
