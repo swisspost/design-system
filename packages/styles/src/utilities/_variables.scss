@@ -22,6 +22,11 @@
 */
 
 $utilities: (
+  'align': (
+    property: vertical-align,
+    class: align,
+    values: baseline top middle bottom text-bottom text-top,
+  ),
   'margin': (
     responsive: true,
     property: margin,
