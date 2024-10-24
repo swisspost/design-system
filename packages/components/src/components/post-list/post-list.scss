@@ -11,6 +11,8 @@ post-list {
 
   & > div[role='list'] {
     flex-direction: column;
+    display: flex;
+    gap: var(--post-list-item-gap);
   }
 
   &[horizontal]:not([horizontal='false']) {
@@ -20,11 +22,6 @@ post-list {
       flex-direction: row;
       align-items: center;
     }
-  }
-
-  > div[role='list'] {
-    display: flex;
-    gap: var(--post-list-item-gap);
   }
 
   > div[id^='list-'].visually-hidden {

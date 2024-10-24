@@ -1,4 +1,4 @@
-import { Component, Element, Prop, Host, h, State } from '@stencil/core';
+import { Component, Element, Prop, Host, State } from '@stencil/core';
 import { version } from '@root/package.json';
 
 /**
