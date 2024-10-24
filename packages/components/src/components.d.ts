@@ -75,6 +75,24 @@ export namespace Components {
          */
         "type": AlertType;
     }
+    interface PostAvatar {
+        /**
+          * Defines the users email address associated with a gravatar profile picture.
+         */
+        "email"?: string;
+        /**
+          * Defines the users firstname.
+         */
+        "firstname": string;
+        /**
+          * Defines the users lastname.
+         */
+        "lastname"?: string;
+        /**
+          * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
+         */
+        "userid"?: string;
+    }
     /**
      * @class PostCardControl - representing a stencil component
      */
@@ -402,6 +420,12 @@ declare global {
         prototype: HTMLPostAlertElement;
         new (): HTMLPostAlertElement;
     };
+    interface HTMLPostAvatarElement extends Components.PostAvatar, HTMLStencilElement {
+    }
+    var HTMLPostAvatarElement: {
+        prototype: HTMLPostAvatarElement;
+        new (): HTMLPostAvatarElement;
+    };
     interface HTMLPostCardControlElementEventMap {
         "postInput": { state: boolean; value: string };
         "postChange": { state: boolean; value: string };
@@ -456,7 +480,7 @@ declare global {
         new (): HTMLPostIconElement;
     };
     interface HTMLPostLanguageOptionElementEventMap {
-        "postClick": string;
+        "postChange": string;
     }
     interface HTMLPostLanguageOptionElement extends Components.PostLanguageOption, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostLanguageOptionElementEventMap>(type: K, listener: (this: HTMLPostLanguageOptionElement, ev: PostLanguageOptionCustomEvent<HTMLPostLanguageOptionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -564,6 +588,7 @@ declare global {
         "post-accordion": HTMLPostAccordionElement;
         "post-accordion-item": HTMLPostAccordionItemElement;
         "post-alert": HTMLPostAlertElement;
+        "post-avatar": HTMLPostAvatarElement;
         "post-card-control": HTMLPostCardControlElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
@@ -627,6 +652,24 @@ declare namespace LocalJSX {
           * The type of the alert.
          */
         "type"?: AlertType;
+    }
+    interface PostAvatar {
+        /**
+          * Defines the users email address associated with a gravatar profile picture.
+         */
+        "email"?: string;
+        /**
+          * Defines the users firstname.
+         */
+        "firstname": string;
+        /**
+          * Defines the users lastname.
+         */
+        "lastname"?: string;
+        /**
+          * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
+         */
+        "userid"?: string;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -742,7 +785,7 @@ declare namespace LocalJSX {
         /**
           * An event emitted when the language option is clicked. The payload is the ISO 639 code of the language.
          */
-        "onPostClick"?: (event: PostLanguageOptionCustomEvent<string>) => void;
+        "onPostChange"?: (event: PostLanguageOptionCustomEvent<string>) => void;
         /**
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
@@ -862,6 +905,7 @@ declare namespace LocalJSX {
         "post-accordion": PostAccordion;
         "post-accordion-item": PostAccordionItem;
         "post-alert": PostAlert;
+        "post-avatar": PostAvatar;
         "post-card-control": PostCardControl;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
@@ -885,6 +929,7 @@ declare module "@stencil/core" {
             "post-accordion": LocalJSX.PostAccordion & JSXBase.HTMLAttributes<HTMLPostAccordionElement>;
             "post-accordion-item": LocalJSX.PostAccordionItem & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
             "post-alert": LocalJSX.PostAlert & JSXBase.HTMLAttributes<HTMLPostAlertElement>;
+            "post-avatar": LocalJSX.PostAvatar & JSXBase.HTMLAttributes<HTMLPostAvatarElement>;
             /**
              * @class PostCardControl - representing a stencil component
              */

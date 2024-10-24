@@ -96,7 +96,7 @@ export class PostLanguageOption {
   /**
    * An event emitted when the language option is clicked. The payload is the ISO 639 code of the language.
    */
-  @Event() postClick: EventEmitter<string>;
+  @Event() postChange: EventEmitter<string>;
 
   /**
    * Selects the language option programmatically.
@@ -104,11 +104,11 @@ export class PostLanguageOption {
   @Method()
   async select() {
     this.active = true;
+    this.emitChange();
   }
 
-  private handleClick() {
-    this.active = true;
-    this.postClick.emit(this.code);
+  private emitChange() {
+    this.postChange.emit(this.code);
   }
 
   private isNameRequired(): boolean {
@@ -122,21 +122,21 @@ export class PostLanguageOption {
       <Host data-version={version} role="listitem">
         {this.url ? (
           <a
-            aria-current="page"
+            aria-current={this.active ? 'page' : undefined}
             aria-label={this.name}
             href={this.url}
             hrefLang={lang}
             lang={lang}
-            onClick={() => this.handleClick()}
+            onClick={() => this.emitChange()}
           >
             <slot />
           </a>
         ) : (
           <button
-            aria-current="true"
+            aria-current={this.active ? 'true' : undefined}
             aria-label={this.name}
             lang={lang}
-            onClick={() => this.handleClick()}
+            onClick={() => this.emitChange()}
           >
             <slot />
           </button>
