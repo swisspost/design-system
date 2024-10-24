@@ -177,6 +177,18 @@ export namespace Components {
          */
         "scale"?: number | null;
     }
+    interface PostList {
+        /**
+          * The list can become horizontal by setting `horizontal="true"` or just `horizontal`
+         */
+        "horizontal": boolean;
+        /**
+          * The list title can be hidden be setting `title-hidden="true"` or just `title-hidden`
+         */
+        "titleHidden": boolean;
+    }
+    interface PostListItem {
+    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -429,6 +441,18 @@ declare global {
         prototype: HTMLPostIconElement;
         new (): HTMLPostIconElement;
     };
+    interface HTMLPostListElement extends Components.PostList, HTMLStencilElement {
+    }
+    var HTMLPostListElement: {
+        prototype: HTMLPostListElement;
+        new (): HTMLPostListElement;
+    };
+    interface HTMLPostListItemElement extends Components.PostListItem, HTMLStencilElement {
+    }
+    var HTMLPostListItemElement: {
+        prototype: HTMLPostListItemElement;
+        new (): HTMLPostListItemElement;
+    };
     interface HTMLPostLogoElement extends Components.PostLogo, HTMLStencilElement {
     }
     var HTMLPostLogoElement: {
@@ -525,6 +549,8 @@ declare global {
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
         "post-icon": HTMLPostIconElement;
+        "post-list": HTMLPostListElement;
+        "post-list-item": HTMLPostListItemElement;
         "post-logo": HTMLPostLogoElement;
         "post-popover": HTMLPostPopoverElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
@@ -682,6 +708,18 @@ declare namespace LocalJSX {
          */
         "scale"?: number | null;
     }
+    interface PostList {
+        /**
+          * The list can become horizontal by setting `horizontal="true"` or just `horizontal`
+         */
+        "horizontal"?: boolean;
+        /**
+          * The list title can be hidden be setting `title-hidden="true"` or just `title-hidden`
+         */
+        "titleHidden"?: boolean;
+    }
+    interface PostListItem {
+    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -800,6 +838,8 @@ declare namespace LocalJSX {
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
         "post-icon": PostIcon;
+        "post-list": PostList;
+        "post-list-item": PostListItem;
         "post-logo": PostLogo;
         "post-popover": PostPopover;
         "post-popovercontainer": PostPopovercontainer;
@@ -828,6 +868,8 @@ declare module "@stencil/core" {
              * @class PostIcon - representing a stencil component
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
+            "post-list": LocalJSX.PostList & JSXBase.HTMLAttributes<HTMLPostListElement>;
+            "post-list-item": LocalJSX.PostListItem & JSXBase.HTMLAttributes<HTMLPostListItemElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;

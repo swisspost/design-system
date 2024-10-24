@@ -1,0 +1,37 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+post-list {
+  --post-list-item-gap: 1rem 0.5rem;
+  --post-list-heading-gap: 1rem;
+
+  display: flex;
+  gap: var(--post-list-heading-gap);
+  flex-direction: column;
+  align-items: flex-start;
+
+  & > div[role='list'] {
+    flex-direction: column;
+  }
+
+  &[horizontal]:not([horizontal='false']) {
+    flex-direction: row;
+    align-items: baseline;
+    & > div[role='list'] {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  > div[role='list'] {
+    display: flex;
+    gap: var(--post-list-item-gap);
+  }
+
+  > div[id^='list-'].visually-hidden {
+    @include post.visually-hidden();
+  }
+
+  > div[id^='list-']:not(.visually-hidden) {
+    gap: var(--post-list-heading-gap);
+  }
+}

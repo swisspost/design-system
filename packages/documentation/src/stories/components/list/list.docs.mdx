@@ -1,0 +1,29 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as ListStories from './list.stories';
+
+<Meta of={ListStories} />
+
+<div className="docs-title">
+  # List
+
+  <nav>
+    <link-design of={JSON.stringify(ListStories)}></link-design>
+  </nav>
+</div>
+
+The `<post-list>` is a container for `<post-list-item>` components.
+
+<Canvas sourceState="shown" of={ListStories.Default} />
+
+## `<post-list>`
+
+<Controls of={ListStories.Default} />
+
+## `<post-list-item>`
+
+A `<post-list-item>` element is added for each item in the list.
+
+## Installation
+
+The `<post-list>` element is part of the `@swisspost/design-system-components` package.
+For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
