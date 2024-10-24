@@ -24,7 +24,7 @@ export const Default = {
         }
       </style>
       ${meta.render && meta.render(args, context)}
-      <p id="my-div" class="position-sticky bg-nightblue p-regular">
+      <p id="my-div" class="position-sticky bg-nightblue p-16">
         I am sticky! I am always positioned right below the header when you scroll up and down.
       </p>
     `;

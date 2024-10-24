@@ -22,7 +22,7 @@ export const PostCardControl: Story = {
             <div class="${bg}">
               ${context.argTypes.type.options.map(
                 (type: string) => html`
-                  <div class="d-flex flex-column gap-regular p-regular mt-regular">
+                  <div class="d-flex flex-column gap-16 p-16 mt-16">
                     <h2 class="h5">type: ${type}</h2>
                     ${bombArgs({
                       icon: ['1001'],

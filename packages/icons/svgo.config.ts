@@ -27,7 +27,7 @@ export default {
       name: 'removeAttrs',
       params: {
         elemSeparator: '::',
-        attrs: ['style', 'svg::(width|height|xml:space)'],
+        attrs: ['style', 'data-.*', 'svg::(width|height|xml:space)'],
       },
     },
   ],

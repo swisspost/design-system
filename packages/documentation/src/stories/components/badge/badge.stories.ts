@@ -131,7 +131,7 @@ export const Position: Story = {
   `,
   decorators: [
     (story: StoryFn, { args, context }: StoryContext) => html`
-      <div class="d-flex gap-large align-items-center">${story(args, context)}</div>
+      <div class="d-flex gap-24 align-items-center">${story(args, context)}</div>
     `,
   ],
 };

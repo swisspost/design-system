@@ -84,7 +84,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</span>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-8 alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -161,7 +161,7 @@ export const Default = {
     const controlId = `CardControl_${id}`;
     const description = html`<span class="font-size-12">${args.description}</span>`;
     const icon = html` <post-icon name="${args.icon}" aria-hidden="true"></post-icon> `;
-    const invalidFeedback = html`<p class="invalid-feedback mt-2">Invalid feedback</p>`;
+    const invalidFeedback = html`<p class="invalid-feedback mt-8">Invalid feedback</p>`;
 
     return html`
       <div class="${cardClasses}">
@@ -246,7 +246,7 @@ export const Group = {
   },
   render: (args: Args) => {
     const invalidFeedback = html`
-      <p id="invalid-feedback" class="d-inline-flex mt-3 invalid-feedback">Invalid choice</p>
+      <p id="invalid-feedback" class="d-inline-flex mt-16 invalid-feedback">Invalid choice</p>
     `;
 
     return html`
