@@ -5,7 +5,7 @@ import * as ListStories from './list.stories';
 
 # Lists
 
-<p className="lead">Use lists to group a collection  of related items.</p>
+<p className="lead">Use lists to group a collection of related items.</p>
 
 There are three types of HTML lists: unordered lists, ordered lists, and description lists.
 Utility classes allow you to style each of these lists in different ways.
@@ -29,7 +29,7 @@ This only applies to immediate child list items, meaning you will need to add th
 Remove a list’s bullets and apply some light margin with a combination of two classes,
 `.list-inline` and `.list-inline-item`.
 
-<Canvas of={ListStories.InlineList} sourceState="shown"/>
+<Canvas of={ListStories.InlineList} sourceState="shown" />
 
 ## Ordered List
 
@@ -39,6 +39,13 @@ It is created using a `<ol>` tag and list items are preceded by ascending number
 <strong>All of the above utility classes also apply to ordered lists.</strong>
 
 <Canvas of={ListStories.OrderedList} sourceState="shown" />
+
+## Check List
+
+An unordered list groups related items in no specific order.
+It is created using a `<ul>` tag with `list-checks` class. Each list item is preceded with check icon.
+
+<Canvas of={ListStories.CheckList} sourceState="shown" />
 
 ## Description List
 
