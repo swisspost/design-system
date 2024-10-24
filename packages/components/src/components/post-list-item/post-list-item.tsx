@@ -1,4 +1,4 @@
-import { Component, Element, Host, h } from '@stencil/core';
+import { Component, Element, Host} from '@stencil/core';
 
 /**
  * @slot default- Slot for placing list item content
