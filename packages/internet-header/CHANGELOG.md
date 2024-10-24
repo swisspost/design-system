@@ -1,5 +1,16 @@
 # @swisspost/internet-header
 
+## 2.0.0-next.3
+
+### Major Changes
+
+- Switched stencil hydrated flag from class (`hydrated`) to attribute (`data-hydrated`). This flag indicates when a component finished rendering on the page. If your tests relied on the class being present, please rewrite the selector to use the new attribute selector. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3783](https://github.com/swisspost/design-system/pull/3783))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.3
+
 ## 1.14.6-next.2
 
 ### Patch Changes
