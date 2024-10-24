@@ -1,5 +1,21 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.3
+
+### Major Changes
+
+- Switched stencil hydrated flag from class (`hydrated`) to attribute (`data-hydrated`). This flag indicates when a component finished rendering on the page. If your tests relied on the class being present, please rewrite the selector to use the new attribute selector. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3783](https://github.com/swisspost/design-system/pull/3783))
+
+### Minor Changes
+
+- Added component `post-avatar` to show an avatar, based on different possible input data (gravatar by email, initials by first- and/or lastname, fallback). (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3352](https://github.com/swisspost/design-system/pull/3352))
+
+### Patch Changes
+
+- Fixed an issue with property validation where some checks were run before the framework had the chance to add computed properties (for example Angular bindings like `[for]="$id"`). The checks are now delayed to work around this issue. (by [@gfellerph](https://github.com/gfellerph) with [#3775](https://github.com/swisspost/design-system/pull/3775))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.3
+
 ## 9.0.0-next.2
 
 ### Patch Changes

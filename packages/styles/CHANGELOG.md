@@ -1,5 +1,21 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.3
+
+### Major Changes
+
+- Removed deprecated grid container helper classes. (by [@veyaromain](https://github.com/veyaromain) with [#3527](https://github.com/swisspost/design-system/pull/3527))
+
+### Minor Changes
+
+- Updated the Link component styles to align with the new design, added a documentation page outlining the usage of the component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3590](https://github.com/swisspost/design-system/pull/3590))
+
+- Added paragraph style. (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3569](https://github.com/swisspost/design-system/pull/3569))
+
+### Patch Changes
+
+- Updated margin styles according to the contribution guidelines. Content elements like headings and paragraphs no longer have a margin top if they're the first child and no margin bottom if they're the last child in a container. (by [@gfellerph](https://github.com/gfellerph) with [#3667](https://github.com/swisspost/design-system/pull/3667))
+
 ## 9.0.0-next.2
 
 ### Minor Changes
