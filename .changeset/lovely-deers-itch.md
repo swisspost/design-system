@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Moved the 'role=tooltip' to 'post-popovercontainer' to fix accessibility issue.
+Made the ´<post-popovercontainer>´ visually hidden for tooltips to fix accessability issue.

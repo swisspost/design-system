@@ -256,11 +256,11 @@ export class PostTooltip {
     return (
       <Host
         data-version={version}
+        role="tooltip"
         onPointerOver={this.handleInterest}
         onPointerOut={this.handleInterestLost}
         onFocusIn={this.handleInterest}
         onFocusOut={this.handleInterestLost}
-        role="tooltip"
       >
         <post-popovercontainer
           class={popoverClass}
