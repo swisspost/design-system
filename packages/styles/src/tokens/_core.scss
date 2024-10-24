@@ -1,1 +1,6 @@
 @use './temp/core';
+@use './../mixins/tokens';
+
+:root {
+  @include tokens.from(core.$post-core);
+}

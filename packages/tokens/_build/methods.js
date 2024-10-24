@@ -261,7 +261,7 @@ export async function createOutputFiles() {
 
   /**
    * @function createIndexFile()
-   * Creates the index.scss file (which uses/forwards the other output files) in the "OUTPUT_PATH" directory.
+   * Creates the post-accents.scss file (which uses/forwards the other output files) in the "OUTPUT_PATH" directory.
    */
   async function createIndexFile() {
     const imports = Object.entries(tokenSets.output)
@@ -431,6 +431,10 @@ export function getTokenValue(options, token) {
       /{[0-9a-zA-Z-._]+}/g,
       match => `var(--${match.replace(/[{}]/g, '').replace(/\./g, '-')})`,
     );
+  }
+
+  if (typeof tokenValue === 'string' && tokenValue.includes(',')) {
+    tokenValue = `(${tokenValue})`;
   }
 
   return tokenValue;
