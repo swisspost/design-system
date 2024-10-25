@@ -17,7 +17,7 @@ const meta: MetaComponent<HTMLPostLanguageOptionElement> = {
     },
   },
   args: {
-    active: false,
+    active: true,
     code: 'en',
     name: 'English',
     innerHTML: 'EN',
