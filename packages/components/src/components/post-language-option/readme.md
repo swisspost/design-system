@@ -17,9 +17,9 @@
 
 ## Events
 
-| Event       | Description                                                                                            | Type                  |
-| ----------- | ------------------------------------------------------------------------------------------------------ | --------------------- |
-| `postClick` | An event emitted when the language option is clicked. The payload is the ISO 639 code of the language. | `CustomEvent<string>` |
+| Event        | Description                                                                                            | Type                  |
+| ------------ | ------------------------------------------------------------------------------------------------------ | --------------------- |
+| `postChange` | An event emitted when the language option is clicked. The payload is the ISO 639 code of the language. | `CustomEvent<string>` |
 
 
 ## Methods

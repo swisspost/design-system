@@ -23,12 +23,12 @@ describe('language-option', () => {
         .and('have.attr', 'lang', 'en');
     });
 
-    it('should emit postClick event when clicked', () => {
+    it('should emit postChange event when clicked', () => {
       cy.get('@language-option').then($languageOption => {
-        $languageOption.on('postClick', cy.spy().as('postClickSpy'));
+        $languageOption.on('postChange', cy.spy().as('postChangeSpy'));
       });
       cy.get('@button').click({ force: true });
-      cy.get('@postClickSpy').should('have.been.called');
+      cy.get('@postChangeSpy').should('have.been.called');
     });
   });
 
