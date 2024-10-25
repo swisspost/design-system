@@ -60,7 +60,7 @@ export const Card: Story = {
       // Map default template variants
       .map(
         args => html`
-          <div class="col-6 p-3">
+          <div class="col-6 p-16">
             ${Default.render && Default.render({ ...meta.args, ...args }, context)}
           </div>
         `,
@@ -74,7 +74,7 @@ export const Card: Story = {
       // Map custom template variants
       .map(
         ({ story, colWidth }) => html`
-          <div class=${'p-3 col-' + colWidth}>
+          <div class=${'p-16 col-' + colWidth}>
             ${story.render && story.render({ ...meta.args, ...story.args }, context)}
           </div>
         `,

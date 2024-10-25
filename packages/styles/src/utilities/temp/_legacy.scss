@@ -1,0 +1,67 @@
+@use 'sass:map';
+@use 'sass:color' as sass-color;
+@use 'sass:list';
+
+@use '../../themes/bootstrap/core' as *;
+@use '../../themes/bootstrap/utilities' as bu; // TODO: Move Design System utilities to utilities folder.
+@use '../../mixins/color' as color-mx;
+@use '../../mixins/utilities';
+@use '../../variables/color';
+@use '../../variables/spacing';
+@use '../../variables/grid';
+
+.bold {
+  font-weight: 700;
+}
+
+.light {
+  font-weight: 300;
+}
+
+.regular {
+  font-weight: 400;
+}
+
+.h-visuallyhidden {
+  @include utilities.visuallyhidden;
+}
+
+.h-visuallyhidden-up-md {
+  @include media-breakpoint-up(md) {
+    @include utilities.visuallyhidden;
+  }
+}
+
+.h-visuallyhidden-down-rg {
+  @include media-breakpoint-down(rg) {
+    @include utilities.visuallyhidden;
+  }
+}
+
+.h-visuallyhidden-down-lg {
+  @include media-breakpoint-down(lg) {
+    @include utilities.visuallyhidden;
+  }
+}
+
+.h-clearfix {
+  @include clearfix;
+}
+
+//-- Legacy --
+span.spacer {
+  display: block;
+  width: spacing.$spacer;
+  height: spacing.$spacer;
+}
+
+.no-toggle-arrow::after {
+  display: none !important;
+}
+
+// Background Utility
+@each $name, $color in color.$background-colors {
+  .bg-#{$name} {
+    @include color-mx.colored-background($color);
+  }
+}

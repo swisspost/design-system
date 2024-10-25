@@ -86,7 +86,7 @@ function render(args: Args) {
     <button class="btn btn-secondary btn-large" data-tooltip-target="${args.id}">Button</button>
     <post-tooltip
       id="${args.id}"
-      class="hydrated bg-${args.backgroundColor}"
+      class="bg-${args.backgroundColor}"
       placement="${ifDefined(args.placement)}"
       arrow="${ifDefined(args.arrow)}"
       delayed="${ifDefined(args.delayed)}"
@@ -108,7 +108,6 @@ export const NonFocusable: StoryObj = {
       <cite data-tooltip-target="${args.id}">This is a cite element with a tooltip on it.</cite>
       <post-tooltip
         id="${args.id}"
-        class="hydrated"
         background-color=" ${ifDefined(args.backgroundColor)}"
         placement="${ifDefined(args.placement)}"
       >
@@ -132,7 +131,7 @@ export const Multiple: StoryObj = {
       </button>
       <post-tooltip
         id="${args.id}"
-        class="hydrated bg-${args.background}"
+        class="bg-${args.background}"
         placement="${ifDefined(args.placement)}"
       >
         I'm the same, no matter what

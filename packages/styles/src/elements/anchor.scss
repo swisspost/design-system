@@ -1,0 +1,37 @@
+@use '../tokens/elements';
+@use '../functions/tokens';
+@use '../mixins/utilities';
+
+tokens.$default-map: elements.$post-link;
+
+a {
+  text-decoration: tokens.get('link-decoration');
+  border-radius: tokens.get('link-border-radius');
+  color: inherit;
+
+  &:hover {
+    color: tokens.get('link-hover-fg');
+  }
+
+  @include utilities.focus-style(
+    $offset: tokens.get('link-focus-outline-offset'),
+    $width: tokens.get('link-focus-outline-width'),
+    $color: tokens.get('link-focus-outline-color'),
+    $style: tokens.get('link-focus-outline-style')
+  );
+
+  @include utilities.high-contrast-mode() {
+    &,
+    &:focus {
+      color: LinkText !important;
+    }
+
+    &:hover {
+      text-decoration-thickness: 2px;
+    }
+
+    &:visited {
+      color: VisitedText;
+    }
+  }
+}

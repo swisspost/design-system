@@ -7,10 +7,11 @@
 @use './../placeholders/badge' as badge-ph;
 
 .chip-dismissible {
-  @include chip-mx.chip-styles();
   position: relative;
   padding-inline-start: chip.$chip-dismissable-padding-start;
   gap: chip.$chip-gap;
+  @include utilities.focus-style-none();
+  @include chip-mx.chip-styles();
 
   &::before,
   &::after {
@@ -39,7 +40,6 @@
   }
 
   // set the focus ring on the close button only
-  @include utilities.focus-style-none();
   @include utilities.focus-style('::before') {
     background-color: chip.$chip-hover-bg;
   }
@@ -52,8 +52,8 @@
   max-width: 100%;
 
   &-label {
-    @include chip-mx.chip-styles();
     cursor: pointer;
+    @include chip-mx.chip-styles();
 
     > .badge {
       box-sizing: border-box;
