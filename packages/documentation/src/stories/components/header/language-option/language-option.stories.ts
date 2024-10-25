@@ -51,7 +51,7 @@ function renderLanguageOption(args: Partial<HTMLPostLanguageOptionElement>) {
     url=${args.url ? args.url : nothing}
     onClick=${args.url ? nothing : 'e => changeLangTo(e.detail)'}
   >
-    EN
+    ${args.innerHTML}
   </post-language-option>`;
 }
 
