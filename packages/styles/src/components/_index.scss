@@ -43,6 +43,7 @@
 @use 'topic-teaser';
 @use 'transitions';
 @use 'tag';
+@use 'validation';
 
 // Imports depending on source order to override bootstrap styles
 @use 'datepicker';
