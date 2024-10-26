@@ -1,74 +1,163 @@
+@use '../functions/tokens';
+@use '../tokens/components';
+
+tokens.$default-map: components.$post-segmented-button;
+
+$label-height: tokens.get('button-segmented-elements-height');
+$border-width: tokens.get('button-segmented-border-width');
+
+.segmented-button-container {
+    container-type: inline-size;
+    container-name: segmented-container;
+}
 
 .segmented-button {
-	height: var(--height);
-	display: grid;
-	grid-auto-flow: column;
-	background: hsl(0 0% 0%);
-	border-radius: var(--radius);
-	grid-auto-columns: 1fr;
-	position: relative;
-	border: var(--border) solid hsl(0 0% 0%);
+    display: flex;
+    gap: tokens.get('button-segmented-gap-inline');
+    background-color: transparent;
+    width: 100%;
+    margin: 0;
+    position: relative;
+    border-radius: tokens.get('button-segmented-horizontal-border-radius');
+    border: tokens.get('button-segmented-border-width') solid tokens.get('button-segmented-enabled-border');
+    transition: all 0.4s cubic-bezier(0.25, 1.5, 0.5, 1.0);
+    box-shadow: tokens.get('button-segmented-elevation');
+    overflow: hidden;
 }
 
-.segmented-button > input,
-.sr-only {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap;
-	border-width: 0;
+.segmented-button label:last-of-type::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -2;
+    background-color: black;
+    height: tokens.get('button-segmented-elements-height');
+    border-radius: tokens.get('button-segmented-horizontal-border-radius');
+    border: tokens.get('button-segmented-border-width') solid tokens.get('button-segmented-selected-border');
+    opacity: 0;
+    transform: scaleX(0);
+    transition: transform 0.4s cubic-bezier(0.25, 1.5, 0.5, 1);
 }
 
-.segmented-button:has(:checked:nth-of-type(1)) { --active: 0; }
-.segmented-button:has(:checked:nth-of-type(2)) { --active: 1; }
-.segmented-button:has(:checked:nth-of-type(3)) { --active: 2; }
-.segmented-button:has(:checked:nth-of-type(4)) { --active: 3; }
-
-.segmented-button :checked + label { --highlight: 1; }
-
-.segmented-button:has(input:nth-of-type(2)) { --count: 2; }
-.segmented-button:has(input:nth-of-type(3)) { --count: 3; }
-.segmented-button:has(input:nth-of-type(4)) { --count: 4; }
+.segmented-button input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    appearance: none;
+    border: none;
+    outline: none;
+    opacity: 1;
+}
 
 .segmented-button label {
-	padding: 0 clamp(0.5rem, 2vw + 0.25rem, 2rem);
-	cursor: pointer;
-	text-align: center;
-	height: 100%;
-	display: grid;
-	border-radius: calc(var(--radius) - var(--border));
-	place-items: center;
-	color: hsl(0 0% 100% / calc(0.5 + var(--highlight, 0)));
-	transition: background, color;
-  transition-duration: 0.25s;
-  transition-timing-function: var(--ease, ease);
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    flex: 1 1 0px;
+    position: relative;
+    padding-inline: tokens.get('post-button-segmented-padding-inline');
+    height: tokens.get('button-segmented-elements-height');
+    z-index: 2;
+    font-weight: 500;
+    transition: inherit;
 }
 
-input:not(:checked) + label:hover {
-	--highlight: 0.35;
-	background: hsl(0 0% 20%);
+.segmented-button input:checked ~ label:last-of-type::after {
+    color: white;
+}
+.segmented-button input:checked + label {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: white;
+    z-index: 100;
 }
 
-.segmented-button::after {
-	pointer-events: none;
-	content: "";
-	width: calc(100% / var(--count));
-	height: 100%;
-	background: hsl(0 0% 100%);
-	position: absolute;
-	border-radius: calc(var(--radius) - var(--border));
-	mix-blend-mode: difference;
-	translate: calc(var(--active, 0) * 100%) 0;
-	transition: translate, outline-color;
-  transition-duration: var(--speed);
-  transition-timing-function: var(--ease, ease);
-	outline: 2px solid transparent;
+.segmented-button input:checked + label:last-of-type {
+    color: white;
+    z-index: 104;
 }
 
-.segmented-button:has(:focus-visible)::after {
-	outline-color: red;
+@container segmented-container (max-width: 500px) {
+    .segmented-button {
+        display: inline-flex;
+        flex-direction: column;
+        border-radius: 0;
+        border: none;
+    }
+
+    .segmented-button input:checked + label:last-of-type::after {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+
+    .segmented-button label {
+        flex: 0 0 auto;
+        margin-bottom: -2px;
+        z-index: 1;
+        border: tokens.get('button-segmented-border-width') solid tokens.get('button-segmented-enabled-border'); // Apply borders on the top, left, and right
+    
+        &:last-of-type {
+            margin-bottom: 0; // Keep the last element’s bottom border in place
+        }    
+    
+        &:hover {
+            z-index: 2;
+            border-color: tokens.get('button-segmented-hover-border'); // Hover color for the existing borders
+        }
+    }    
+    
+    @for $i from 1 through 9 {
+        .segmented-button input:nth-last-of-type(#{$i + 1}):checked ~ label:last-of-type::after {
+            transform: translateY($i * -100%) scaleY(1);
+            opacity: 1;
+        }
+    }
+
+    .segmented-button label:first-of-type {
+        border-top-left-radius: tokens.get('button-segmented-vertical-border-radius');
+        border-top-right-radius: tokens.get('button-segmented-vertical-border-radius');
+        margin-top: 0;
+    }
+
+    .segmented-button label:last-of-type {
+        border-bottom-left-radius: tokens.get('button-segmented-vertical-border-radius');
+        border-bottom-right-radius: tokens.get('button-segmented-vertical-border-radius');
+    }
+}
+
+@container segmented-container (min-width: 501px) {
+
+    .segmented-button input:checked + label:last-of-type::after {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+
+    @for $i from 1 through 9 {
+        .segmented-button input:nth-last-of-type(#{$i + 1}):checked ~ label:last-of-type::after {
+            transform: translateX($i * -100%) scaleX(1);
+            opacity: 1;
+        }
+    }
+
+    .segmented-button label {
+        border-radius: tokens.get('button-segmented-horizontal-border-radius');
+        border: tokens.get('button-segmented-border-width') solid transparent;
+        box-sizing: border-box;
+
+        &:hover {
+            border-color: tokens.get('button-segmented-hover-border');
+        }
+
+        &:focus {
+            border-color: tokens.get('button-segmented-enabled-border'); 
+        }
+    }
 }
