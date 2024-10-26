@@ -1,10 +1,13 @@
 @use '../functions/tokens';
 @use '../tokens/components';
+@use '../mixins/utilities';
+
 
 tokens.$default-map: components.$post-segmented-button;
 
 $label-height: tokens.get('button-segmented-elements-height');
 $border-width: tokens.get('button-segmented-border-width');
+$gap: tokens.get('button-segmented-gap-inline');
 
 .segmented-button-container {
     container-type: inline-size;
@@ -22,7 +25,6 @@ $border-width: tokens.get('button-segmented-border-width');
     border: tokens.get('button-segmented-border-width') solid tokens.get('button-segmented-enabled-border');
     transition: all 0.4s cubic-bezier(0.25, 1.5, 0.5, 1.0);
     box-shadow: tokens.get('button-segmented-elevation');
-    overflow: hidden;
 }
 
 .segmented-button label:last-of-type::after {
@@ -34,9 +36,7 @@ $border-width: tokens.get('button-segmented-border-width');
     left: 0;
     z-index: -2;
     background-color: black;
-    height: tokens.get('button-segmented-elements-height');
     border-radius: tokens.get('button-segmented-horizontal-border-radius');
-    border: tokens.get('button-segmented-border-width') solid tokens.get('button-segmented-selected-border');
     opacity: 0;
     transform: scaleX(0);
     transition: transform 0.4s cubic-bezier(0.25, 1.5, 0.5, 1);
@@ -57,6 +57,7 @@ $border-width: tokens.get('button-segmented-border-width');
 .segmented-button label {
     display: flex;
     width: 100%;
+    box-sizing: border-box;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -70,9 +71,6 @@ $border-width: tokens.get('button-segmented-border-width');
     transition: inherit;
 }
 
-.segmented-button input:checked ~ label:last-of-type::after {
-    color: white;
-}
 .segmented-button input:checked + label {
     font-weight: 600;
     font-size: 0.875rem;
@@ -96,6 +94,8 @@ $border-width: tokens.get('button-segmented-border-width');
     .segmented-button input:checked + label:last-of-type::after {
         opacity: 1;
         transform: scaleY(1);
+        box-sizing: border-box;
+        border: tokens.get('button-segmented-border-width') solid tokens.get('button-segmented-selected-border');
     }
 
     .segmented-button label {
@@ -105,26 +105,36 @@ $border-width: tokens.get('button-segmented-border-width');
         border: tokens.get('button-segmented-border-width') solid tokens.get('button-segmented-enabled-border'); // Apply borders on the top, left, and right
     
         &:last-of-type {
-            margin-bottom: 0; // Keep the last element’s bottom border in place
+            margin-bottom: 0;
         }    
     
         &:hover {
             z-index: 2;
             border-color: tokens.get('button-segmented-hover-border'); // Hover color for the existing borders
         }
+
+        @include utilities.focus-style(
+            $offset: tokens.get('button-segmented-focus-outline-offset'),
+            $width: tokens.get('button-segmented-focus-outline-width'),
+            $color: tokens.get('button-segmented-focus-outline-color'),
+        );
+    }    
+
+    .segmented-button label:last-of-type::after {
+        height: calc($label-height - $border-width * 2);
+        border-radius: 0;
     }    
     
     @for $i from 1 through 9 {
         .segmented-button input:nth-last-of-type(#{$i + 1}):checked ~ label:last-of-type::after {
-            transform: translateY($i * -100%) scaleY(1);
+            transform: translateY(calc(#{$i * -100%} - #{$i} * #{$border-width})) scaleY(1);
             opacity: 1;
         }
     }
 
     .segmented-button label:first-of-type {
         border-top-left-radius: tokens.get('button-segmented-vertical-border-radius');
-        border-top-right-radius: tokens.get('button-segmented-vertical-border-radius');
-        margin-top: 0;
+        border-top-right-radius: tokens.get('button-segmented-vertical-border-radius'); 
     }
 
     .segmented-button label:last-of-type {
@@ -134,15 +144,15 @@ $border-width: tokens.get('button-segmented-border-width');
 }
 
 @container segmented-container (min-width: 501px) {
-
     .segmented-button input:checked + label:last-of-type::after {
         opacity: 1;
         transform: scaleX(1);
+        border: tokens.get('button-segmented-border-width') solid tokens.get('button-segmented-selected-border');
     }
 
     @for $i from 1 through 9 {
         .segmented-button input:nth-last-of-type(#{$i + 1}):checked ~ label:last-of-type::after {
-            transform: translateX($i * -100%) scaleX(1);
+            transform: translateX(calc(#{$i * -100%} - #{$i} * #{$border-width} * 2 - #{$i} * #{$gap})) scaleX(1);
             opacity: 1;
         }
     }
@@ -150,7 +160,6 @@ $border-width: tokens.get('button-segmented-border-width');
     .segmented-button label {
         border-radius: tokens.get('button-segmented-horizontal-border-radius');
         border: tokens.get('button-segmented-border-width') solid transparent;
-        box-sizing: border-box;
 
         &:hover {
             border-color: tokens.get('button-segmented-hover-border');
@@ -159,5 +168,9 @@ $border-width: tokens.get('button-segmented-border-width');
         &:focus {
             border-color: tokens.get('button-segmented-enabled-border'); 
         }
+    }
+
+    .segmented-button input:checked + label {
+        border: none;
     }
 }
