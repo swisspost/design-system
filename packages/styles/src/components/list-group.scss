@@ -100,11 +100,10 @@ tokens.$default-map: components.$post-list;
   a,
   div.form-check {
     @include utilities-mx.focus-style(
-      null,
-      tokens.get('list-item-focus-outline-offset'),
-      tokens.get('list-item-focus-outline-width'),
-      tokens.get('list-item-focus-outline-color'),
-      tokens.get('list-item-focus-outline-style')
+      $offset: tokens.get('list-item-focus-outline-offset'),
+      $width: tokens.get('list-item-focus-outline-width'),
+      $color: tokens.get('list-item-focus-outline-color'),
+      $style: tokens.get('list-item-focus-outline-style')
     );
   }
 }
