@@ -20,6 +20,19 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Configure GitHub User
+        run: |
+          git config user.name "Swiss Post Bot"
+          git config user.email "103635272+swisspost-bot@users.noreply.github.com"
+
+      - name: Update Tokens Branch
+        run: |
+          git checkout ${{ github.ref_name }}
+          git merge origin/main -X yours --no-edit
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+
       # Check if a PR branch corresponding to the token branch exists
       - name: Get PR Branch
         id: pr-branch
@@ -37,8 +50,6 @@ jobs:
       - name: Update PR
         if: steps.pr-branch.outputs.exists == 'true'
         run: |
-          git config user.name "Swiss Post Bot"
-          git config user.email "103635272+swisspost-bot@users.noreply.github.com"
           git checkout ${{ steps.pr-branch.outputs.name }}
           git merge ${{ github.ref_name }} -X theirs --no-edit
           git push
