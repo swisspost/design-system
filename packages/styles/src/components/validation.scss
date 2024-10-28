@@ -9,15 +9,10 @@ tokens.$default-map: (
   post-device-font-size-9: 14px,
   post-radio-button-icon-width-inner: 24px,
   post-radio-button-icon-height-inner: 24px,
-  post-validation-list-gap-inline: 8px
+  post-validation-list-gap-inline: 8px,
+  post-input-spacing-padding-block-text-assist: 6px,
+  post-input-spacing-padding-inline-text-assist: 2px
 );
-
-$post-validation-error: tokens.get('post-validation-error');
-$post-validation-success: tokens.get('post-validation-success');
-$post-device-font-size-9: tokens.get('post-device-font-size-9');
-$post-radio-button-icon-width-inner: tokens.get('post-radio-button-icon-width-inner');
-$post-radio-button-icon-height-inner: tokens.get('post-radio-button-icon-height-inner');
-$post-validation-list-gap-inline: tokens.get('post-validation-list-gap-inline');
 
 .validation-msg {
   display: none;
@@ -30,47 +25,37 @@ $post-validation-list-gap-inline: tokens.get('post-validation-list-gap-inline');
     align-items: center;
     width: 100%;
     margin: 0;
-    padding: var(--post-input-spacing-padding-block-text-assist, 6px)
-      var(--post-input-spacing-padding-inline-text-assist, 2px);
-    font-size: $post-device-font-size-9;
+    padding: tokens.get('post-input-spacing-padding-block-text-assist')
+      tokens.get('post-input-spacing-padding-inline-text-assist');
+    font-size: tokens.get('post-device-font-size-9');
   }
   input.valid ~ .validation-msg {
-    color: $post-validation-success;
+    color: tokens.get('post-validation-success');
   }
   input.invalid ~ .validation-msg {
-    color: $post-validation-error;
+    color: tokens.get('post-validation-error');
   }
   input[type='radio'],
   input[type='checkbox'] {
     &.invalid ~ .validation-msg:before {
-      height: $post-radio-button-icon-height-inner;
-      width: $post-radio-button-icon-width-inner;
+      height: tokens.get('post-radio-button-icon-height-inner');
+      width: tokens.get('post-radio-button-icon-width-inner');
       display: inline-block;
-      margin-inline-end: $post-validation-list-gap-inline;
+      margin-inline-end: tokens.get('post-validation-list-gap-inline');
       mask-image: url('error-icon.svg');
       background-color: currentColor;
       content: '';
-      flex-shrink: 0;
     }
     &.valid ~ .validation-msg {
       &:before {
-        height: $post-radio-button-icon-height-inner;
-        width: $post-radio-button-icon-width-inner;
+        height: tokens.get('post-radio-button-icon-height-inner');
+        width: tokens.get('post-radio-button-icon-width-inner');
         display: inline-block;
-        margin-inline-end: $post-validation-list-gap-inline;
+        margin-inline-end: tokens.get('post-validation-list-gap-inline');
         mask-image: url('success-icon.svg');
         background-color: currentColor;
         content: '';
-        flex-shrink: 0;
       }
     }
-  }
-}
-
-// example only
-.form-control {
-  & > div.form-text,
-  & > div.form-check {
-    margin-bottom: 24px;
   }
 }
