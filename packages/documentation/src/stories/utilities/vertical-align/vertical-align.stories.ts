@@ -28,7 +28,7 @@ const meta: MetaExtended = {
       <span class="align-bottom">bottom</span>
       <span class="align-text-bottom">text-bottom</span>
       <span class="align-text-top">text-top</span>
-      <span class="${args.align ? `align-${args.align}` : nothing}">${args.align || 'text'}</span>`;
+      <span class="${args.align ? 'align-' + args.align : nothing}">${args.align || 'text'}</span>`;
   },
   decorators: [
     (story: StoryFn, context: StoryContext) => {
@@ -60,7 +60,7 @@ export const tableVersion: Story = {
           <td class="align-top">top</td>
           <td class="align-middle">middle</td>
           <td class="align-bottom">bottom</td>
-          <td class="${args.align ? `align-${args.align}` : nothing}">${args.align || 'text'}</td>
+          <td class="${args.align ? 'align-' + args.align : nothing}">${args.align || 'text'}</td>
         </tr>
       </tbody>
     </table>`;
