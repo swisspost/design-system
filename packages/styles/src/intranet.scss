@@ -1,5 +1,6 @@
 @forward './variables/options';
 
-@use './elements';
+@use 'utilities';
+@use 'elements';
 @use 'components';
 @use 'components/intranet-header';

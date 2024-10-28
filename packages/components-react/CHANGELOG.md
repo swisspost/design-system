@@ -1,5 +1,20 @@
 # @swisspost/design-system-components-react
 
+## 9.0.0-next.2
+
+### Patch Changes
+
+- Initial release! (by [@gfellerph](https://github.com/gfellerph) with [#3718](https://github.com/swisspost/design-system/pull/3718))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.2
+
+## 9.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.1
+
 ## 9.0.0-next.0
 
 ### Patch Changes

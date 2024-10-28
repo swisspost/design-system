@@ -113,6 +113,7 @@ export const Nested: Story = {
       <post-accordion-item>
         ${getAccordionItemContent(mainAccordionIndex + 1, args.headingLevel)}
         ${mainAccordionIndex === 0 ? getNestedAccordion() : nothing}
+        <div>${mainAccordionIndex === 1 ? getNestedAccordion() : nothing}</div>
       </post-accordion-item>
     `;
   }),

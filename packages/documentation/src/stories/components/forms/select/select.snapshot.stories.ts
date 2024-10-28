@@ -70,10 +70,10 @@ export const Select: Story = {
       .map(args => ({ ...args, id: `a-${crypto.randomUUID()}` }));
 
     return html`
-      <div class="d-flex gap-3 flex-column">
+      <div class="d-flex gap-16 flex-column">
         ${['bg-white', 'bg-dark'].map(bg => {
           return html`
-            <div class="${bg} d-flex gap-3 flex-column p-3">
+            <div class="${bg} d-flex gap-16 flex-column p-16">
               <h2>Default</h2>
               ${bombArgsGeneratedDefault.map((args: Args) => {
                 return html`

@@ -2,6 +2,8 @@
 
 @use 'accordion';
 @use 'alert';
+@use 'appstore-badge';
+@use 'avatar';
 @use 'badge';
 @use 'breadcrumb';
 @use 'button';
@@ -17,6 +19,7 @@
 @use 'form-select';
 @use 'form-textarea';
 @use 'datatable';
+@use 'dialog';
 @use 'form-check';
 @use 'forms';
 @use 'grid';
@@ -40,7 +43,6 @@
 @use 'tooltip';
 @use 'topic-teaser';
 @use 'transitions';
-@use 'utilities';
 @use 'tag';
 
 // Imports depending on source order to override bootstrap styles

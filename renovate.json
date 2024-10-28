@@ -15,10 +15,37 @@
     },
     {
       "matchPackagePatterns": ["*"],
-      "excludePackageNames": ["typescript", "bootstrap"],
+      "excludePackageNames": [
+        "typescript",
+        "bootstrap",
+        "sass",
+        "@storybook/*",
+        "@angular/*",
+        "@stencil/*"
+      ],
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "all non-major dependencies",
       "groupSlug": "all-minor-patch"
+    },
+    {
+      "matchPackagePatterns": ["@storybook/*"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Storybook"
+    },
+    {
+      "matchPackagePatterns": ["@stencil/*"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Stencil"
+    },
+    {
+      "matchPackagePatterns": ["sass"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Sass"
+    },
+    {
+      "matchPackagePatterns": ["@angular/*"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Angular"
     },
     {
       "matchFiles": ["packages/migrations/package.json"],

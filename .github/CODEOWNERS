@@ -5,5 +5,9 @@
 #
 # https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 
-# Maintainers have to sign off PRs to main as required in branch protection rules
+# Code owners for the entire repository
 * @swisspost/design-system-maintainers
+
+# Specific ownership for certain folders/files
+/packages/documentation @swisspost/design-system-members @swisspost/design-system-maintainers
+/packages/tokens/tokensstudio-generated/tokens.json @swisspost/design-system-members @swisspost/design-system-maintainers
