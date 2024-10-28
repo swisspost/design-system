@@ -48,6 +48,24 @@ The only and default theme used currently is Bootstrap. When adding themings for
 
 Licenses of third party packages that are bundled with the output (e.g. Bootstrap) need to be included in the output and delivered with the output code.
 
+### Margins
+
+Block level content elements (headings, paragraphs, images, lists, ...; html tags without any classes or context) should use the following margin system: define block margins but reset the margin start for the first child and the margin end for the last child. The rules for first and last child should have low specificity.
+
+```html
+p {
+  margin-block: 1rem;
+
+  :where(:first-child) {
+    margin-block-start: 0;
+  }
+
+  :where(:last-child) {
+    margin-block-end: 0;
+  }
+}
+```
+
 ## Bundling the styles
 
 Run the following command to lint all scss files, create a dist folder and build the output CSS files using [gulp](https://gulpjs.com/). This command also copies the entire Scss source files into the dist folder, making them available for developers.
