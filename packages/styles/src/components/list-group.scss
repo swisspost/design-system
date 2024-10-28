@@ -50,15 +50,13 @@ tokens.$default-map: components.$post-list;
     border-radius: tokens.get('list-item-focus-outline-radius'); // Used for the focus only
     color: tokens.get('list-item-enabled-fg');
 
-    &::before {
+    &::after {
+      display: block;
       content: '';
       position: absolute;
-      width: 100%;
-      height: 1px;
+      inset: auto 0 0;
       border-block-end: tokens.get('list-item-border-width') tokens.get('list-item-border-style')
         tokens.get('list-item-enabled-border');
-      bottom: 0;
-      left: 0;
     }
 
     &:hover {
