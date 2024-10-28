@@ -33,7 +33,7 @@ const meta: MetaComponent = {
 
 export default meta;
 
-function gridContainer(story: StoryFn, context: StoryContext) {
+function gridDecorator(story: StoryFn, context: StoryContext) {
   return html`
     <div class="row">
       <div class="col-lg-4 col-rg-6 col-12">${story(context.args, context)}</div>
