@@ -26,7 +26,7 @@ $utilities: (
     property: vertical-align,
     class: align,
     values: baseline top middle bottom text-bottom text-top,
-   ),
+  ),
   'opacity': (
     property: opacity,
     values: (
@@ -35,6 +35,7 @@ $utilities: (
       50: 0.5,
       75: 0.75,
       100: 1,
+    ),
   ),
   'margin': (
     responsive: true,
