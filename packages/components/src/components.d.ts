@@ -225,6 +225,30 @@ export namespace Components {
          */
         "url": string | URL;
     }
+    interface PostMainnavigation {
+    }
+    interface PostMegadropdown {
+        /**
+          * Hide megadropdown
+          * @returns boolean
+         */
+        "hide": () => Promise<void>;
+        /**
+          * Show megadropdown
+          * @param element HTMLElement
+          * @returns boolean
+         */
+        "show": (element: HTMLElement) => Promise<void>;
+        /**
+          * Toggle megadropdown
+          * @param element HTMLElement
+          * @param force boolean
+          * @returns boolean
+         */
+        "toggle": (element: HTMLElement, force?: boolean) => Promise<boolean>;
+    }
+    interface PostMegadropdownToggle {
+    }
     interface PostPopover {
         /**
           * Show a little indicator arrow
@@ -380,6 +404,14 @@ export interface PostLanguageOptionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostLanguageOptionElement;
 }
+export interface PostMainnavigationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostMainnavigationElement;
+}
+export interface PostMegadropdownToggleCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostMegadropdownToggleElement;
+}
 export interface PostPopovercontainerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostPopovercontainerElement;
@@ -510,6 +542,46 @@ declare global {
         prototype: HTMLPostLogoElement;
         new (): HTMLPostLogoElement;
     };
+    interface HTMLPostMainnavigationElementEventMap {
+        "postMainNavigationClosed": any;
+    }
+    interface HTMLPostMainnavigationElement extends Components.PostMainnavigation, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostMainnavigationElementEventMap>(type: K, listener: (this: HTMLPostMainnavigationElement, ev: PostMainnavigationCustomEvent<HTMLPostMainnavigationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostMainnavigationElementEventMap>(type: K, listener: (this: HTMLPostMainnavigationElement, ev: PostMainnavigationCustomEvent<HTMLPostMainnavigationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostMainnavigationElement: {
+        prototype: HTMLPostMainnavigationElement;
+        new (): HTMLPostMainnavigationElement;
+    };
+    interface HTMLPostMegadropdownElement extends Components.PostMegadropdown, HTMLStencilElement {
+    }
+    var HTMLPostMegadropdownElement: {
+        prototype: HTMLPostMegadropdownElement;
+        new (): HTMLPostMegadropdownElement;
+    };
+    interface HTMLPostMegadropdownToggleElementEventMap {
+        "postMegadropdownToggled": any;
+    }
+    interface HTMLPostMegadropdownToggleElement extends Components.PostMegadropdownToggle, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostMegadropdownToggleElementEventMap>(type: K, listener: (this: HTMLPostMegadropdownToggleElement, ev: PostMegadropdownToggleCustomEvent<HTMLPostMegadropdownToggleElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostMegadropdownToggleElementEventMap>(type: K, listener: (this: HTMLPostMegadropdownToggleElement, ev: PostMegadropdownToggleCustomEvent<HTMLPostMegadropdownToggleElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostMegadropdownToggleElement: {
+        prototype: HTMLPostMegadropdownToggleElement;
+        new (): HTMLPostMegadropdownToggleElement;
+    };
     interface HTMLPostPopoverElement extends Components.PostPopover, HTMLStencilElement {
     }
     var HTMLPostPopoverElement: {
@@ -604,6 +676,9 @@ declare global {
         "post-icon": HTMLPostIconElement;
         "post-language-option": HTMLPostLanguageOptionElement;
         "post-logo": HTMLPostLogoElement;
+        "post-mainnavigation": HTMLPostMainnavigationElement;
+        "post-megadropdown": HTMLPostMegadropdownElement;
+        "post-megadropdown-toggle": HTMLPostMegadropdownToggleElement;
         "post-popover": HTMLPostPopoverElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-rating": HTMLPostRatingElement;
@@ -808,6 +883,17 @@ declare namespace LocalJSX {
          */
         "url"?: string | URL;
     }
+    interface PostMainnavigation {
+        /**
+          * Gets emitted when a user closes the main navigation on mobile
+         */
+        "onPostMainNavigationClosed"?: (event: PostMainnavigationCustomEvent<any>) => void;
+    }
+    interface PostMegadropdown {
+    }
+    interface PostMegadropdownToggle {
+        "onPostMegadropdownToggled"?: (event: PostMegadropdownToggleCustomEvent<any>) => void;
+    }
     interface PostPopover {
         /**
           * Show a little indicator arrow
@@ -924,6 +1010,9 @@ declare namespace LocalJSX {
         "post-icon": PostIcon;
         "post-language-option": PostLanguageOption;
         "post-logo": PostLogo;
+        "post-mainnavigation": PostMainnavigation;
+        "post-megadropdown": PostMegadropdown;
+        "post-megadropdown-toggle": PostMegadropdownToggle;
         "post-popover": PostPopover;
         "post-popovercontainer": PostPopovercontainer;
         "post-rating": PostRating;
@@ -955,6 +1044,9 @@ declare module "@stencil/core" {
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
             "post-language-option": LocalJSX.PostLanguageOption & JSXBase.HTMLAttributes<HTMLPostLanguageOptionElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
+            "post-mainnavigation": LocalJSX.PostMainnavigation & JSXBase.HTMLAttributes<HTMLPostMainnavigationElement>;
+            "post-megadropdown": LocalJSX.PostMegadropdown & JSXBase.HTMLAttributes<HTMLPostMegadropdownElement>;
+            "post-megadropdown-toggle": LocalJSX.PostMegadropdownToggle & JSXBase.HTMLAttributes<HTMLPostMegadropdownToggleElement>;
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;

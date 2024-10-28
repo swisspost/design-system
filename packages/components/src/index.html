@@ -17,13 +17,13 @@
     <post-header>
       <post-logo>Homepage</post-logo>
       <ul slot="audience-navigation">
-        <li>Privatkunden</li>
-        <li>Geschäftskunden</li>
-        <li>Behörden</li>
+        <li><a href="">Privatkunden</a></li>
+        <li><a href="">Geschäftskunden</a></li>
+        <li><a href="">Behörden</a></li>
       </ul>
       <ul slot="meta-navigation">
-        <li>Über uns</li>
-        <li>Jobs</li>
+        <li><a href="">Über uns</a></li>
+        <li><a href="">Jobs</a></li>
       </ul>
 
       <button slot="post-togglebutton">= Menu</button>
@@ -49,14 +49,62 @@
         <li><a href="#">Login</a></li>
       </ul>
 
-      <post-mainnavigation slot="post-mainnavigation">
-        <a href="#">Briefe</a>
-        <a href="#">Pakete</a>
-        <a href="#">Standorte</a>
-        <a href="#">Pfeffer</a>
-        <a href="#">Seemannsgarn</a>
+      <post-mainnavigation caption="Hauptnavigation">
+        <button slot="back-button"><- Back</button>
+        <post-list>
+          <h2><a href="/privatkunden">Privatkunden</a></h2>
+          <!-- Link only level 1 -->
+          <post-list-item><a href="/briefe">Briefe</a></post-list-item>
+
+          <!-- Level 1 with megadropdown -->
+          <post-list-item>
+            <post-megadropdown-toggle> Briefe </post-megadropdown-toggle>
+            <post-megadropdown>
+              <button slot="back-button"><- Zurück</button>
+              <h2><a href="">Briefe title</a></h2>
+              <post-list>
+                <h3>Briefe senden</h3>
+                <post-list-item><a href="/sch">Pakete Schweiz</a></post-list-item>
+                <post-list-item><a href="/kl">Kleinwaren Ausland</a></post-list-item>
+                <post-list-item><a href="">Waren Ausland</a></post-list-item>
+                <post-list-item><a href="">Express und Kurier</a></post-list-item>
+              </post-list>
+              <post-list>
+                <h3><a href="/schritt-für-schritt">Schritt für Schritt</a></h3>
+                <post-list-item><a href="/sch">Pakete Schweiz</a></post-list-item>
+                <post-list-item><a href="/kl">Kleinwaren Ausland</a></post-list-item>
+                <post-list-item><a href="">Waren Ausland</a></post-list-item>
+                <post-list-item><a href="">Express und Kurier</a></post-list-item>
+              </post-list>
+              <post-closebutton>Schliessen</post-closebutton>
+            </post-megadropdown>
+          </post-list-item>
+          <post-list-item>
+            <post-megadropdown-toggle> Pakete </post-megadropdown-toggle>
+            <post-megadropdown>
+              <button slot="back-button"><- Zurück</button>
+              <h2><a href="">Pakete title</a></h2>
+              <post-list>
+                <h3>Pakete senden</h3>
+                <post-list-item><a href="/sch">Pakete Schweiz</a></post-list-item>
+                <post-list-item><a href="/kl">Kleinwaren Ausland</a></post-list-item>
+                <post-list-item><a href="">Waren Ausland</a></post-list-item>
+                <post-list-item><a href="">Express und Kurier</a></post-list-item>
+              </post-list>
+              <post-list>
+                <h3><a href="/schritt-für-schritt">Schritt für Schritt</a></h3>
+                <post-list-item><a href="/sch">Pakete Schweiz</a></post-list-item>
+                <post-list-item><a href="/kl">Kleinwaren Ausland</a></post-list-item>
+                <post-list-item><a href="">Waren Ausland</a></post-list-item>
+                <post-list-item><a href="">Express und Kurier</a></post-list-item>
+              </post-list>
+              <post-closebutton>Schliessen</post-closebutton>
+            </post-megadropdown>
+          </post-list-item>
+        </post-list>
       </post-mainnavigation>
     </post-header>
+
     <h1>Components package playground</h1>
     <p class="mb-4">
       Use this playground for quickly developing Stencil web-components. Run

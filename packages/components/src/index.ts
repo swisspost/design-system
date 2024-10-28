@@ -20,3 +20,5 @@ export { PostTabPanel } from './components/post-tab-panel/post-tab-panel';
 export { PostTooltip } from './components/post-tooltip/post-tooltip';
 export { PostTag } from './components/post-tag/post-tag';
 export { PostHeader } from './components/post-header/post-header';
+export { PostMainnavigation } from './components/post-mainnavigation/post-mainnavigation';
+export { PostMegadropdown } from './components/post-megadropdown/post-megadropdown';
