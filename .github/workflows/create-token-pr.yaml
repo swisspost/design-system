@@ -28,7 +28,7 @@ jobs:
       - name: Update Tokens Branch
         run: |
           git checkout ${{ github.ref_name }}
-          git merge origin/main -X yours --no-edit
+          git merge origin/main -X ours --no-edit
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
