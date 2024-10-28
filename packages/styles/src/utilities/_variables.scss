@@ -29,9 +29,10 @@ $utilities: (
       start: inline-start,
       end: inline-end,
       none: none,
-     ),
+    ),
   )
-  'opacity': (
+  'opacity':
+  (
     property: opacity,
     values: (
       0: 0,
