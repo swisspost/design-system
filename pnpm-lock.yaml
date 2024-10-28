@@ -47,7 +47,7 @@ importers:
         specifier: 0.3.7
         version: 0.3.7
       '@swisspost/design-system-styles':
-        specifier: workspace:9.0.0-next.2
+        specifier: workspace:9.0.0-next.3
         version: link:../styles/dist
       ally.js:
         specifier: 1.4.1
@@ -150,10 +150,10 @@ importers:
         specifier: 18.2.9
         version: 18.2.9(@angular/common@18.2.9(@angular/core@18.2.9(rxjs@7.8.1)(zone.js@0.14.8))(rxjs@7.8.1))(@angular/core@18.2.9(rxjs@7.8.1)(zone.js@0.14.8))(@angular/platform-browser@18.2.9(@angular/animations@18.2.9(@angular/core@18.2.9(rxjs@7.8.1)(zone.js@0.14.8)))(@angular/common@18.2.9(@angular/core@18.2.9(rxjs@7.8.1)(zone.js@0.14.8))(rxjs@7.8.1))(@angular/core@18.2.9(rxjs@7.8.1)(zone.js@0.14.8)))(rxjs@7.8.1)
       '@swisspost/design-system-components':
-        specifier: workspace:9.0.0-next.2
+        specifier: workspace:9.0.0-next.3
         version: link:../components
       '@swisspost/design-system-styles':
-        specifier: workspace:9.0.0-next.2
+        specifier: workspace:9.0.0-next.3
         version: link:../styles/dist
       rxjs:
         specifier: 7.8.1
@@ -232,7 +232,7 @@ importers:
         specifier: ^16.0.0 || ^17.0.0 || ^18.0.0
         version: 18.1.1(rxjs@7.8.1)(zone.js@0.14.8)
       '@swisspost/design-system-components':
-        specifier: workspace:9.0.0-next.2
+        specifier: workspace:9.0.0-next.3
         version: link:../../../components
       tslib:
         specifier: 2.6.3
@@ -242,7 +242,7 @@ importers:
   packages/components-react:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:9.0.0-next.2
+        specifier: workspace:9.0.0-next.3
         version: link:../components
     devDependencies:
       '@types/node':
@@ -294,19 +294,19 @@ importers:
   packages/documentation:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:9.0.0-next.2
+        specifier: workspace:9.0.0-next.3
         version: link:../components
       '@swisspost/design-system-components-react':
-        specifier: workspace:9.0.0-next.2
+        specifier: workspace:9.0.0-next.3
         version: link:../components-react
       '@swisspost/design-system-icons':
-        specifier: workspace:9.0.0-next.2
+        specifier: workspace:9.0.0-next.3
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:9.0.0-next.2
+        specifier: workspace:9.0.0-next.3
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: workspace:1.14.6-next.2
+        specifier: workspace:2.0.0-next.3
         version: link:../internet-header
       bootstrap:
         specifier: 5.3.3
@@ -364,10 +364,10 @@ importers:
         specifier: 8.3.6
         version: 8.3.6(lit@3.1.4)(storybook@8.2.7(@babel/preset-env@7.25.3(@babel/core@7.25.2)))(typescript@5.5.4)(vite@5.4.8(@types/node@22.7.9)(less@4.2.0)(sass@1.78.0)(terser@5.31.6))
       '@swisspost/design-system-components-angular':
-        specifier: workspace:9.0.0-next.2
+        specifier: workspace:9.0.0-next.3
         version: link:../components-angular/dist/components
       '@swisspost/design-system-intranet-header':
-        specifier: workspace:9.0.0-next.2
+        specifier: workspace:9.0.0-next.3
         version: link:../intranet-header-workspace/dist/intranet-header
       '@types/css-modules':
         specifier: 1.0.5
@@ -502,7 +502,7 @@ importers:
   packages/internet-header:
     dependencies:
       '@swisspost/design-system-styles':
-        specifier: workspace:9.0.0-next.2
+        specifier: workspace:9.0.0-next.3
         version: link:../styles/dist
       body-scroll-lock:
         specifier: 4.0.0-beta.0
@@ -653,7 +653,7 @@ importers:
         specifier: 2.11.8
         version: 2.11.8
       '@swisspost/design-system-styles':
-        specifier: workspace:9.0.0-next.2
+        specifier: workspace:9.0.0-next.3
         version: link:../styles/dist
       rxjs:
         specifier: 7.8.1
@@ -747,21 +747,21 @@ importers:
         specifier: ^16.0.0 || ^17.0.0 || ^18.0.0
         version: 18.1.1(rxjs@7.8.1)(zone.js@0.14.8)
       '@swisspost/design-system-styles':
-        specifier: workspace:9.0.0-next.2
+        specifier: workspace:9.0.0-next.3
         version: link:../../../styles/dist
       tslib:
         specifier: 2.6.3
         version: 2.6.3
     devDependencies:
       '@swisspost/design-system-intranet-header-workspace':
-        specifier: workspace:3.0.22-next.2
+        specifier: workspace:3.0.22-next.3
         version: link:../..
     publishDirectory: ../../dist/intranet-header
 
   packages/intranet-header-workspace/projects/intranet-header-showcase:
     dependencies:
       '@swisspost/design-system-intranet-header':
-        specifier: workspace:9.0.0-next.2
+        specifier: workspace:9.0.0-next.3
         version: link:../../dist/intranet-header
 
   packages/migrations:
@@ -807,13 +807,13 @@ importers:
   packages/nextjs-integration:
     dependencies:
       '@swisspost/design-system-components-react':
-        specifier: workspace:9.0.0-next.2
+        specifier: workspace:9.0.0-next.3
         version: link:../components-react
       '@swisspost/design-system-styles':
-        specifier: workspace:9.0.0-next.2
+        specifier: workspace:9.0.0-next.3
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: workspace:1.14.6-next.2
+        specifier: workspace:2.0.0-next.3
         version: link:../internet-header
       next:
         specifier: 15.0.1
@@ -875,10 +875,10 @@ importers:
         version: 3.0.0
     devDependencies:
       '@swisspost/design-system-icons':
-        specifier: workspace:9.0.0-next.2
+        specifier: workspace:9.0.0-next.3
         version: link:../icons
       '@swisspost/design-system-tokens':
-        specifier: workspace:9.0.0-next.2
+        specifier: workspace:9.0.0-next.3
         version: link:../tokens/dist
       '@types/node':
         specifier: 20.14.14
@@ -969,7 +969,7 @@ importers:
         specifier: 18.2.9
         version: 18.2.9(@angular/common@18.2.9(@angular/core@18.2.9(rxjs@7.8.1)(zone.js@0.14.8))(rxjs@7.8.1))(@angular/core@18.2.9(rxjs@7.8.1)(zone.js@0.14.8))(@angular/platform-browser@18.2.9(@angular/animations@18.2.9(@angular/core@18.2.9(rxjs@7.8.1)(zone.js@0.14.8)))(@angular/common@18.2.9(@angular/core@18.2.9(rxjs@7.8.1)(zone.js@0.14.8))(rxjs@7.8.1))(@angular/core@18.2.9(rxjs@7.8.1)(zone.js@0.14.8)))(rxjs@7.8.1)
       '@swisspost/design-system-styles':
-        specifier: workspace:9.0.0-next.2
+        specifier: workspace:9.0.0-next.3
         version: link:../styles/dist
       primeng:
         specifier: 17.18.7
@@ -1045,7 +1045,7 @@ importers:
         specifier: ^18.0.0
         version: 18.1.1(rxjs@7.8.1)(zone.js@0.14.8)
       '@swisspost/design-system-styles':
-        specifier: workspace:9.0.0-next.2
+        specifier: workspace:9.0.0-next.3
         version: link:../../../styles/dist
       primeng:
         specifier: ^17.18.0
@@ -5200,6 +5200,7 @@ packages:
 
   critters@0.0.24:
     resolution: {integrity: sha512-Oyqew0FGM0wYUSNqR0L6AteO5MpMoUU0rhKRieXeiKs+PmRTxiJMyaunYB2KF6fQ3dzChXKCpbFOEJx3OQ1v/Q==}
+    deprecated: Ownership of Critters has moved to the Nuxt team, who will be maintaining the project going forward. If you'd like to keep using Critters, please switch to the actively-maintained fork at https://github.com/danielroe/beasties
 
   cross-spawn@5.1.0:
     resolution: {integrity: sha512-pTgQJ5KC0d2hcY8eyL1IzlBPYjTkyH72XRZPnLyKus2mBfNjQs3klqbJU2VILqZryAZUt9JOb3h/mWMy23/f5A==}
