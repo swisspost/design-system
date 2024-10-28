@@ -1,9 +1,6 @@
 {
   "plugins": ["stylelint-scss"],
-  "extends": [
-    "stylelint-config-sass-guidelines",
-    "stylelint-prettier/recommended"
-  ],
+  "extends": ["stylelint-config-sass-guidelines", "stylelint-prettier/recommended"],
   "rules": {
     "max-nesting-depth": 5,
     "selector-max-compound-selectors": 5,

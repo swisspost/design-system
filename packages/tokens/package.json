@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-tokens",
-  "version": "9.0.0-next.1",
+  "version": "9.0.0-next.2",
   "private": true,
   "description": "Design Tokens for the Swiss Post.",
   "author": "Swiss Post <design-system@post.ch>",
@@ -9,7 +9,7 @@
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git"
   },
-  "homepage": "https://swisspost-web-frontend.netlify.app",
+  "homepage": "https://design-system.post.ch",
   "bugs": {
     "url": "https://github.com/swisspost/design-system/issues"
   },
