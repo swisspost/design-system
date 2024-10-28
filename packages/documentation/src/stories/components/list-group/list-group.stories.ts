@@ -6,8 +6,8 @@ const meta: MetaComponent = {
   id: '5a47ba70-7831-4e59-b83e-81b6e6c32372',
   title: 'Components/List Group',
   tags: ['package:HTML'],
-  decorators: [gridContainer],
   render: renderListGroup,
+  decorators: [gridDecorator],
   parameters: {
     design: {
       type: 'figma',
@@ -34,7 +34,7 @@ const meta: MetaComponent = {
 
 export default meta;
 
-function gridContainer(story: StoryFn, context: StoryContext) {
+function gridDecorator(story: StoryFn, context: StoryContext) {
   return html`
     <div class="row">
       <div class="col-lg-4 col-rg-6 col-12">${story(context.args, context)}</div>
