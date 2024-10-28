@@ -38,8 +38,9 @@ tokens.$default-map: components.$post-list;
   padding: 0;
   background: transparent;
 
-  > a,
-  .form-check {
+  .list-group-link,
+  .list-group-document,
+  .list-group-switch {
     display: flex;
     position: relative;
     padding-block-start: tokens.get('list-item-padding-block-start');
