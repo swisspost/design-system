@@ -78,17 +78,18 @@ export function renderListGroup(args: Args) {
       case 'switch':
         return html`
           ${items.map(
-            id => html`
+            i => html`
               <li>
                 <div class="list-group-${listType} form-check form-switch">
                   <!-- it's important to set custom ids here -->
                   <input
                     type="checkbox"
                     role="switch"
-                    id="list-switch-item-${id}"
+                    id="list-switch-item-${i}"
                     class="form-check-input"
+                    ?checked=${i === 0}
                   />
-                  <label class="form-check-label order-first" for="list-switch-item-${id}"
+                  <label class="form-check-label order-first" for="list-switch-item-${i}"
                     >Label</label
                   >
                 </div>
