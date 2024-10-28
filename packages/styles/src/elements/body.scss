@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use '../variables/color';
 @use '../functions/tokens';
 @use '../tokens/elements';
 
@@ -8,7 +9,11 @@ tokens.$default-map: elements.$post-body;
 @use '../components/fonts';
 
 html {
-  background-color: #ffcc00;
+  // This in combination with a white background on the body creates a nice effect when overscrolling
+  // in Safari and Chrome because the header and the footer are yellow, the yellow surface stretches
+  // beyond the body. If this is not yellow, overscrolling reveals a white background and the header
+  // suddenly seems in the middle of the page.
+  background-color: color.$yellow;
 }
 
 body {
@@ -18,5 +23,5 @@ body {
   line-height: tokens.get('body-line-height');
   letter-spacing: tokens.get('body-letter-spacing');
   color: tokens.get('body-color');
-  background-color: white;
+  background-color: color.$white;
 }
