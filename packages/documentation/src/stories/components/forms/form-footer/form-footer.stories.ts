@@ -89,21 +89,19 @@ export default meta;
 type Story = StoryObj;
 
 export function render(args: Args) {
+  const primaryButton = args.showPrimaryButton
+    ? html`<button class="btn btn-primary">
+        ${args.primaryButtonText}<post-icon aria-hidden="true" name="3020"></post-icon>
+      </button>`
+    : null;
+  const secondaryButton = args.showSecondaryButton
+    ? html`<button class="btn btn-secondary">${args.secondaryButtonText}</button>`
+    : null;
+
   return html`
     <div class="form-footer">
       ${args.showPrimaryButton || args.showSecondaryButton
-        ? html`
-            <div class="form-footer-primary-actions">
-              ${args.showPrimaryButton
-                ? html`<button class="btn btn-primary">
-                    ${args.primaryButtonText}<post-icon aria-hidden="true" name="3020"></post-icon>
-                  </button>`
-                : null}
-              ${args.showSecondaryButton
-                ? html`<button class="btn btn-secondary">${args.secondaryButtonText}</button>`
-                : null}
-            </div>
-          `
+        ? html` <div class="form-footer-primary-actions">${primaryButton} ${secondaryButton}</div> `
         : null}
       ${args.showTertiaryButton
         ? html`<button class="btn btn-tertiary">
