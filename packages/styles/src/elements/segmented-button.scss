@@ -83,12 +83,13 @@ $gap: tokens.get('button-segmented-gap-inline');
     z-index: 104;
 }
 
-@container segmented-container (max-width: 500px) {
+@container segmented-container (max-width: 501px) {
     .segmented-button {
         display: inline-flex;
         flex-direction: column;
-        border-radius: 0;
+        border-radius: tokens.get('button-segmented-vertical-border-radius'); 
         border: none;
+        overflow-y: hidden;
     }
 
     .segmented-button input:checked + label:last-of-type::after {
