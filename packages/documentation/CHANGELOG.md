@@ -1,5 +1,11 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.4
+
+### Patch Changes
+
+- Updated roles (by [@gfellerph](https://github.com/gfellerph) with [#3829](https://github.com/swisspost/design-system/pull/3829))
+
 ## 6.0.0-next.3
 
 ### Minor Changes
