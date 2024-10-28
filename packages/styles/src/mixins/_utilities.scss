@@ -186,6 +186,10 @@
 
   @include media-breakpoint-up(md) {
     flex-direction: row-reverse;
+
+    > .btn {
+      margin-right: auto;
+    }
   }
 
   &-primary-actions {

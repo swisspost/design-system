@@ -1,5 +1,6 @@
 import type { StoryObj } from '@storybook/web-components';
 import meta from './form-footer.stories';
+import { FooterArgs } from './form-footer.stories';
 import { html } from 'lit';
 import { bombArgs } from '@/utils';
 
@@ -20,24 +21,40 @@ export const FormFooter: Story = {
           bg => html`
             <div class="${bg} d-flex flex-column p-3 gap-3">
               ${bombArgs({
-                secondaryButton: [true, false],
-                tertiaryButton: [true, false],
+                showPrimaryButton: [true, false],
+                showSecondaryButton: [true, false],
+                showTertiaryButton: [true, false],
               }).map(
                 args => html`
                   <div class="form-footer">
-                    <div class="form-footer-primary-actions">
-                      <button class="btn btn-primary">
-                        Send<post-icon aria-hidden="true" name="3020"></post-icon>
-                      </button>
-
-                      ${args.secondaryButton
-                        ? html` <button class="btn btn-secondary">Cancel</button> `
-                        : null}
-                    </div>
-                    ${args.tertiaryButton
+                    ${args.showPrimaryButton || args.showSecondaryButton
+                      ? html`
+                          <div class="form-footer-primary-actions">
+                            ${args.showPrimaryButton
+                              ? html`
+                                  <button class="btn btn-primary">
+                                    ${FooterArgs.primaryButtonText}<post-icon
+                                      aria-hidden="true"
+                                      name="3020"
+                                    ></post-icon>
+                                  </button>
+                                `
+                              : null}
+                            ${args.showSecondaryButton
+                              ? html`
+                                  <button class="btn btn-secondary">
+                                    ${FooterArgs.secondaryButtonText}
+                                  </button>
+                                `
+                              : null}
+                          </div>
+                        `
+                      : null}
+                    ${args.showTertiaryButton
                       ? html`
                           <button class="btn btn-tertiary">
-                            <post-icon aria-hidden="true" name="3024"></post-icon>Back
+                            <post-icon aria-hidden="true" name="3024"></post-icon
+                            >${FooterArgs.tertiaryButtonText}
                           </button>
                         `
                       : null}

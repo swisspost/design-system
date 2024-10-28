@@ -1,14 +1,14 @@
 import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
-import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 export const FooterArgs = {
-  primaryButton:
-    '<button class="btn btn-primary">Send<post-icon aria-hidden="true" name="3020"></post-icon></button>',
-  secondaryButton: '<button class="btn btn-secondary">Cancel</button>',
-  tertiaryButton:
-    '<button class="btn btn-tertiary"><post-icon aria-hidden="true" name="3024"></post-icon>Back</button>',
+  showPrimaryButton: true,
+  primaryButtonText: 'Send',
+  showSecondaryButton: true,
+  secondaryButtonText: 'Cancel',
+  showTertiaryButton: true,
+  tertiaryButtonText: 'Back',
 };
 
 const meta: MetaComponent = {
@@ -25,28 +25,60 @@ const meta: MetaComponent = {
   },
   args: FooterArgs,
   argTypes: {
-    primaryButton: {
-      name: 'Primary button',
-      description: 'First button on the right',
-      control: { type: 'text' },
+    showPrimaryButton: {
+      name: 'Show primary button',
+      description: 'Show or hide the primary button (last one on the right)',
+      control: { type: 'boolean' },
       table: {
-        category: 'Right actions',
+        category: 'Primary button',
       },
     },
-    secondaryButton: {
-      name: 'Secondary button',
-      description: 'Second button on the right (optional)',
+    primaryButtonText: {
+      name: 'Primary button text',
+      description: 'Text to display on the primary button',
       control: { type: 'text' },
       table: {
-        category: 'Right actions',
+        category: 'Primary button',
       },
     },
-    tertiaryButton: {
-      name: 'Tertiary button',
-      description: 'Button on the left (optional)',
+    primaryButtonIcon: {
+      name: 'Primary button icon',
+      description: 'Icon to display on the primary button',
       control: { type: 'text' },
       table: {
-        category: 'Left action',
+        category: 'Primary button',
+      },
+    },
+    showSecondaryButton: {
+      name: 'Show secondary button',
+      description: 'Show or hide the secondary button (first one on the right)',
+      control: { type: 'boolean' },
+      table: {
+        category: 'Secondary button',
+      },
+    },
+    secondaryButtonText: {
+      name: 'Secondary button text',
+      description: 'Text to display on the secondary button',
+      control: { type: 'text' },
+      table: {
+        category: 'Secondary button',
+      },
+    },
+    showTertiaryButton: {
+      name: 'Show tertiary button',
+      description: 'Show or hide the tertiary button (button on the left)',
+      control: { type: 'boolean' },
+      table: {
+        category: 'Tertiary button',
+      },
+    },
+    tertiaryButtonText: {
+      name: 'Tertiary button text',
+      description: 'Text to display on the tertiary button',
+      control: { type: 'text' },
+      table: {
+        category: 'Tertiary button',
       },
     },
   },
@@ -59,10 +91,25 @@ type Story = StoryObj;
 export function render(args: Args) {
   return html`
     <div class="form-footer">
-      <div class="form-footer-primary-actions">
-        ${unsafeHTML(args.primaryButton)} ${unsafeHTML(args.secondaryButton)}
-      </div>
-      ${unsafeHTML(args.tertiaryButton)}
+      ${args.showPrimaryButton || args.showSecondaryButton
+        ? html`
+            <div class="form-footer-primary-actions">
+              ${args.showPrimaryButton
+                ? html`<button class="btn btn-primary">
+                    ${args.primaryButtonText}<post-icon aria-hidden="true" name="3020"></post-icon>
+                  </button>`
+                : null}
+              ${args.showSecondaryButton
+                ? html`<button class="btn btn-secondary">${args.secondaryButtonText}</button>`
+                : null}
+            </div>
+          `
+        : null}
+      ${args.showTertiaryButton
+        ? html`<button class="btn btn-tertiary">
+            <post-icon aria-hidden="true" name="3024"></post-icon>${args.tertiaryButtonText}
+          </button>`
+        : null}
     </div>
   `;
 }
