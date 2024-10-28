@@ -43,15 +43,13 @@ const meta: MetaExtended = {
 
     return html`
       <div class="${floatClass}">
-        Sample Text ${args.floatPosition ? '(float-' + args.floatPosition + ')' : ''}
+        Content ${floatClass !== nothing ? '(' + String(floatClass) + ')' : ''}
       </div>
     `;
   },
   decorators: [
     (story: StoryFn, context: StoryContext) => {
-      const storyTemplate = html`<div class="clearfix float-example">
-        ${story(context.args, context)}
-      </div>`;
+      const storyTemplate = html`<div class="clearfix">${story(context.args, context)}</div>`;
       return storyTemplate;
     },
   ],
