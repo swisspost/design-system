@@ -19,7 +19,7 @@ export const Default: Story = {};
 export const FormGoodExample: Story = {
   render: () => html`
     <form id="myForm" onsubmit="validateForm(event)" novalidate>
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <label class="form-label" for="firstname">Firstname</label>
           <input type="text" id="firstname" class="form-control" required />
@@ -31,7 +31,7 @@ export const FormGoodExample: Story = {
           <div class="invalid-feedback">Please enter your lastname.</div>
         </div>
       </div>
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <label class="form-label" for="phonenumber">Phone Number</label>
           <input type="tel" id="phonenumber" class="form-control" />
@@ -43,7 +43,7 @@ export const FormGoodExample: Story = {
           <div class="invalid-feedback">Please enter a valid email address.</div>
         </div>
       </div>
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <label class="form-label" for="address">Address</label>
           <input type="text" id="address" class="form-control" />
@@ -54,7 +54,7 @@ export const FormGoodExample: Story = {
           <div class="invalid-feedback">Please enter your city.</div>
         </div>
       </div>
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <label class="form-label" for="country">Country</label>
           <input type="text" id="country" class="form-control" />
@@ -66,7 +66,7 @@ export const FormGoodExample: Story = {
           <div class="invalid-feedback">Please enter your zip code.</div>
         </div>
       </div>
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <label class="form-label" for="question1">Random Question 1</label>
           <input type="text" id="question1" class="form-control" required />
@@ -77,7 +77,7 @@ export const FormGoodExample: Story = {
           <input type="text" id="question2" class="form-control" />
         </div>
       </div>
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <label class="form-label" for="question3">Random Question 3</label>
           <input type="text" id="question3" class="form-control" />
@@ -88,7 +88,7 @@ export const FormGoodExample: Story = {
           <div class="invalid-feedback">Please answer this question.</div>
         </div>
       </div>
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <div class="form-check">
             <input class="form-check-input" type="checkbox" id="terms" required />
@@ -99,7 +99,7 @@ export const FormGoodExample: Story = {
           </div>
         </div>
       </div>
-      <div class="d-flex flex-row-reverse gap-mini">
+      <div class="d-flex flex-row-reverse gap-8">
         <button class="btn btn-primary" type="submit">Send</button>
       </div>
     </form>
@@ -150,7 +150,7 @@ export const FormGoodExample: Story = {
 
         // Create loader element
         const loader = document.createElement('div');
-        loader.classList.add('loader', 'loader-16', 'd-inline-block', 'me-1');
+        loader.classList.add('loader', 'loader-16', 'd-inline-block', 'me-4');
         loader.setAttribute('role', 'status');
         loader.setAttribute('aria-live', 'polite');
         loader.setAttribute('aria-hidden', 'true');
@@ -170,7 +170,7 @@ export const FormGoodExample: Story = {
 
 export const FormBadExample: Story = {
   render: () => html` <form id="myBadForm" onsubmit="submitBadForm(event)" novalidate>
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <label class="form-label" for="firstname">Firstname</label>
           <input type="text" id="firstname" class="form-control" required />
@@ -180,7 +180,7 @@ export const FormBadExample: Story = {
           <input type="text" id="lastname" class="form-control" required />
         </div>
       </div>
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <label class="form-label" for="phonenumber">Phone Number</label>
           <input type="tel" id="phonenumber" class="form-control" />
@@ -190,7 +190,7 @@ export const FormBadExample: Story = {
           <input type="email" id="email" class="form-control" required />
         </div>
       </div>
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <label class="form-label" for="address">Address</label>
           <input type="text" id="address" class="form-control" />
@@ -200,7 +200,7 @@ export const FormBadExample: Story = {
           <input type="text" id="city" class="form-control" />
         </div>
       </div>
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <label class="form-label" for="country">Country</label>
           <input type="text" id="country" class="form-control" />
@@ -210,7 +210,7 @@ export const FormBadExample: Story = {
           <input type="number" id="zip" class="form-control" />
         </div>
       </div>
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <label class="form-label" for="question1">Random Question 1</label>
           <input type="text" id="question1" class="form-control" required />
@@ -220,7 +220,7 @@ export const FormBadExample: Story = {
           <input type="text" id="question2" class="form-control" />
         </div>
       </div>
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <label class="form-label" for="question3">Random Question 3</label>
           <input type="text" id="question3" class="form-control" />
@@ -230,7 +230,7 @@ export const FormBadExample: Story = {
           <input type="text" id="question4" class="form-control" required />
         </div>
       </div>
-      <div class="row mb-regular">
+      <div class="row mb-16">
         <div class="col">
           <div class="form-check">
             <input class="form-check-input" type="checkbox" id="termsBad" required />
@@ -240,7 +240,7 @@ export const FormBadExample: Story = {
           </div>
         </div>
       </div>
-      <div class="d-flex flex-row-reverse gap-mini">
+      <div class="d-flex flex-row-reverse gap-8">
         <button class="btn btn-primary" type="submit" disabled>Send</button>
       </div>
     </form>

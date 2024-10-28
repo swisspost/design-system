@@ -70,7 +70,7 @@ function renderSizing(args: Args) {
 
   return html`
     <div class="sizing-example">
-      <div class="d-flex p-regular gap-regular" style="height: 150px">
+      <div class="d-flex p-16 gap-16" style="height: 150px">
         <div class="flex-fill">
           <div class="${classes}"></div>
         </div>

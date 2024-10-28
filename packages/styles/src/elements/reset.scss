@@ -10,19 +10,13 @@
 }
 
 /*
-  Remove default margin
-*/
-* {
-  margin: 0;
-}
-
-/*
   Typographic tweaks!
   - Add accessible line-height
   - Improve text rendering
 */
 body {
   -webkit-font-smoothing: antialiased;
+  margin: 0;
 }
 
 /*
@@ -141,4 +135,13 @@ th {
   border-color: inherit;
   border-style: solid;
   border-width: 0;
+}
+
+fieldset,
+legend {
+  padding: 0;
+}
+
+fieldset {
+  border: 0;
 }
