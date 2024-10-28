@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 8.4.0
+
+### Patch Changes
+
+- Fixed the issue where the background became transparent on `textarea` focus (by [@veyaromain](https://github.com/veyaromain) with [#3573](https://github.com/swisspost/design-system/pull/3573))
+
 ## 8.3.0
 
 ### Minor Changes
