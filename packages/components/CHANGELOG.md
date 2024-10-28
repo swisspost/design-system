@@ -1,5 +1,15 @@
 # @swisspost/design-system-components
 
+## 8.4.0
+
+### Patch Changes
+
+- Fixed a bug in nested accordions where closing a child item unintentionally closed all parent accordion elements. (by [@gfellerph](https://github.com/gfellerph) with [#3773](https://github.com/swisspost/design-system/pull/3773))
+
+- Fixed an issue with property validation where some checks were run before the framework had the chance to add computed properties (for example Angular bindings like `[for]="$id"`). The checks are now delayed to work around this issue. (by [@gfellerph](https://github.com/gfellerph) with [#3796](https://github.com/swisspost/design-system/pull/3796))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.4.0
+
 ## 8.3.0
 
 ### Patch Changes
