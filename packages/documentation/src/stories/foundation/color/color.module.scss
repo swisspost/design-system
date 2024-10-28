@@ -16,7 +16,6 @@ $contrast-color-maps: (
   post.$post-grays,
   post.$signal-colors,
   post.$signal-background-colors,
-  post.$accent-colors
 );
 
 :export {
@@ -50,10 +49,6 @@ $contrast-color-maps: (
 
   @each $colorName, $value in post.$signal-background-colors {
     signal-background_#{$colorName}: $value;
-  }
-
-  @each $colorName, $value in post.$accent-colors {
-    accent_#{$colorName}: $value;
   }
 
   @each $map in $contrast-color-maps {
