@@ -1,19 +1,6 @@
 .vertical-align-example {
-  &:not(:has(table)) {
-    position: relative;
-    border: 1px solid rgb(204, 204, 204);
-    line-height: 2;
-
-    &::before {
-      display: block;
-      content: '';
-      position: absolute;
-      inset: 0;
-      margin: 0.6rem 0;
-      height: 1.7rem;
-      border-block: 1px solid rgb(204, 204, 204);
-    }
-  }
+  border: 1px solid rgb(204, 204, 204);
+  line-height: 3;
 
   table {
     margin: 0;
@@ -29,9 +16,15 @@
   }
 
   table {
-    td:nth-of-type(7) {
+    td:nth-of-type(5) {
       color: red;
     }
+  }
+
+  .logo {
+    width: 64px;
+    height: 64px;
+    display: inline-block;
   }
 
   .snapshot {

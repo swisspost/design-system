@@ -3,7 +3,7 @@ import { html, nothing } from 'lit';
 import './vertical-align.styles.scss';
 import { MetaExtended } from '@root/types';
 
-export const alignOptions = ['baseline', 'top', 'middle', 'bottom', 'text-bottom', 'text-top'];
+const alignOptions = ['baseline', 'top', 'middle', 'bottom', 'text-bottom', 'text-top'];
 
 const meta: MetaExtended = {
   id: 'cf01f6d1-970f-444e-aaa9-8a96c25cc8b2',
@@ -28,9 +28,7 @@ const meta: MetaExtended = {
       <span class="align-bottom">bottom</span>
       <span class="align-text-bottom">text-bottom</span>
       <span class="align-text-top">text-top</span>
-      <span class="${args.align ? `align-'${args.align}` : nothing}"
-        >${args.align || 'text'}</span
-      >`;
+      <span class="${args.align ? `align-${args.align}` : nothing}">${args.align || 'text'}</span>`;
   },
   decorators: [
     (story: StoryFn, context: StoryContext) => {
@@ -49,6 +47,11 @@ type Story = StoryObj;
 export const Default: Story = {};
 
 export const tableVersion: Story = {
+  argTypes: {
+    align: {
+      options: alignOptions.filter(o => !o.includes('text-')),
+    },
+  },
   render: (args: Args) => {
     return html`<table class="table table-bordered">
       <tbody>
@@ -57,9 +60,7 @@ export const tableVersion: Story = {
           <td class="align-top">top</td>
           <td class="align-middle">middle</td>
           <td class="align-bottom">bottom</td>
-          <td class="align-text-top">text-top</td>
-          <td class="align-text-bottom">text-bottom</td>
-          <td class="${args.align ? `align-'${args.align}` : nothing}">${args.align || 'text'}</td>
+          <td class="${args.align ? `align-${args.align}` : nothing}">${args.align || 'text'}</td>
         </tr>
       </tbody>
     </table>`;
