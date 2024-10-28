@@ -21,7 +21,7 @@ body {
     outline: 1px solid gray;
     line-height: 1;
 
-    &.active {
+    &.current {
       background-color: red;
     }
   }

@@ -1,9 +1,6 @@
-import icons from './report.json' with { type: 'json' };
-
-const SIZES = [16,24,32,40,48,64];
+const SIZES = [16, 24, 32, 40, 48, 64];
 
 document.addEventListener('alpine:init', () => {
-  Alpine.data('icons', () => ({ icons }));
   Alpine.data('TEST_ICONS', () => ({
     sizes: SIZES,
     sourceIcons: [
@@ -56,7 +53,7 @@ document.addEventListener('alpine:init', () => {
           <path fill="#fff" stroke="#fff" stroke-width="5.5px" stroke-miterlimit="10" d="M48.18,26.67c0,8.33-6.76,15.09-15.09,15.09-8.33,0-15.09-6.76-15.09-15.09,0-8.33,6.76-15.09,15.09-15.09,8.33,0,15.09,6.76,15.09,15.09Z"/>
           <ellipse fill="none" stroke="#1e1e1c" stroke-width="2.75px" stroke-miterlimit="10" cx="33.2" cy="26.44" rx="14.77" ry="14.78"/>
           <path fill="none" stroke="#1e1e1c" stroke-width="2.75px" stroke-miterlimit="10" stroke-linecap="round" d="M46.15,34.89l11.45,11.46c1.24,1.24,1.24,3.24,0,4.48h0c-1.24,1.24-3.24,1.24-4.48,0l-11.45-11.46"/>
-        </svg>`
+        </svg>`,
       ],
       [
         `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
@@ -123,7 +120,7 @@ document.addEventListener('alpine:init', () => {
           <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="23.54" y1="19.97" x2="40.46" y2="19.97"/>
           <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="23.54" y1="27.98" x2="32" y2="27.98"/>
           <path fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" d="M17.38,1.38h29.2c1.38,0,2.5,1.12,2.5,2.5v37.59H14.88V3.87c0-1.38,1.12-2.5,2.5-2.5Z"/>
-        </svg>`
+        </svg>`,
       ],
       [
         `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16">
@@ -257,30 +254,35 @@ document.addEventListener('alpine:init', () => {
             <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="12.07" y1="53.57" x2="20.14" y2="45.5"/>
             <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1=".02" y1="65.62" x2="8.09" y2="57.55"/>
           </g>
-        </svg>`
-      ]
+        </svg>`,
+      ],
     ],
     spriteIconNames: ['test', 'print', 'street'],
-    getSpriteIcon (name) {
-      return this.sizes.map(size => `<use href="/assets/sprite.svg?v=${new Date().getTime()}#post-icon-${name}-${size}" style="display: var(--post-icon-size-${size}, none)"/>`);
-    }
+    getSpriteIcon(name) {
+      return this.sizes.map(
+        size =>
+          `<use href="/assets/sprite.svg?v=${new Date().getTime()}#post-icon-${name}-${size}" style="display: var(--post-icon-size-${size}, none)"/>`,
+      );
+    },
   }));
 
-  Alpine.nextTick(() => {
-    Array.from(document.querySelectorAll('.resize .post-icon')).forEach((icon, iIndex) => {
-      const iconVariants = Array.from(document.querySelectorAll('.icon-variants'))[iIndex];
-    
-      const resizeObserver = new ResizeObserver(entries => {
-        const currentSize = [...SIZES].reverse().find(size => entries[0].contentRect.width >= size);
-        const currentIndex = SIZES.findIndex(size => size === currentSize);
-
-        Array.from(iconVariants.querySelectorAll('[class^="icon-"]')).forEach((variant, vIndex) => {
-          if (vIndex === currentIndex) variant.classList.add('active');
-          else variant.classList.remove('active');
-        });
-      });
-    
-      resizeObserver.observe(icon);
-    });
-  });
+  Alpine.nextTick(setupCurrentSpriteIcon);
 });
+
+function setupCurrentSpriteIcon() {
+  Array.from(document.querySelectorAll('.resize .post-icon')).forEach((icon, iIndex) => {
+    const iconVariants = Array.from(document.querySelectorAll('.icon-variants'))[iIndex];
+
+    const resizeObserver = new ResizeObserver(entries => {
+      const currentSize = [...SIZES].reverse().find(size => entries[0].contentRect.width >= size);
+      const currentIndex = SIZES.findIndex(size => size === currentSize);
+
+      Array.from(iconVariants.querySelectorAll('[class^="icon-"]')).forEach((variant, vIndex) => {
+        if (vIndex === currentIndex) variant.classList.add('current');
+        else variant.classList.remove('current');
+      });
+    });
+
+    resizeObserver.observe(icon);
+  });
+}
