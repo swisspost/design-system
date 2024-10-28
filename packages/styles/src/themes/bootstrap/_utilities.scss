@@ -41,4 +41,6 @@ $utilities: map.remove($utilities, 'display');
 
 $utilities: map.remove($utilities, 'vertical-align');
 
+$utilities: map.remove($utilities, 'opacity');
+
 @import 'bootstrap/scss/utilities/api';

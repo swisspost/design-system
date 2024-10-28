@@ -80,19 +80,22 @@
       color: var(--post-gray-60);
     }
     &[data-nodetype='component'] svg {
-      color: var(--post-nightblue-bright);
+      color: #0076a8;
     }
     &[data-nodetype='document'] svg {
-      color: var(--post-coral-bright);
+      color: #e03c31;
     }
     &[data-nodetype='story'] svg {
-      color: var(--post-aubergine-bright);
+      color: #7566a0;
     }
 
     &[data-selected='true'] {
       background-color: rgba(var(--post-yellow-rgb), 0.4);
       color: var(--post-contrast-color);
     }
+  }
+  [data-item-id^='health'] {
+    display: none;
   }
 }
 
@@ -102,10 +105,10 @@
       margin-top: 1px;
       width: 1.2em;
       height: 1.2em;
-      color: var(--post-aubergine-bright);
+      color: #7566a0;
 
       &[color='secondary'] {
-        color: var(--post-nightblue-bright);
+        color: #0076a8;
       }
     }
 
