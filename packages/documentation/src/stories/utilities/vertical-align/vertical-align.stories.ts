@@ -1,5 +1,5 @@
 import type { Args, StoryObj, StoryFn, StoryContext } from '@storybook/web-components';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import './vertical-align.styles.scss';
 import { MetaExtended } from '@root/types';
 
@@ -28,8 +28,8 @@ const meta: MetaExtended = {
       <span class="align-bottom">bottom</span>
       <span class="align-text-bottom">text-bottom</span>
       <span class="align-text-top">text-top</span>
-      <span class="${args.align ? 'align-' + args.align : ''}"
-        >${args.align ? args.align : 'text'}</span
+      <span class="${args.align ? `align-'${args.align}` : nothing}"
+        >${args.align || 'text'}</span
       >`;
   },
   decorators: [
@@ -50,7 +50,7 @@ export const Default: Story = {};
 
 export const tableVersion: Story = {
   render: (args: Args) => {
-    return html`<table>
+    return html`<table class="table table-bordered">
       <tbody>
         <tr>
           <td class="align-baseline">baseline</td>
@@ -59,9 +59,7 @@ export const tableVersion: Story = {
           <td class="align-bottom">bottom</td>
           <td class="align-text-top">text-top</td>
           <td class="align-text-bottom">text-bottom</td>
-          <td class="${args.align ? 'align-' + args.align : ''}">
-            ${args.align ? args.align : 'text'}
-          </td>
+          <td class="${args.align ? `align-'${args.align}` : nothing}">${args.align || 'text'}</td>
         </tr>
       </tbody>
     </table>`;
