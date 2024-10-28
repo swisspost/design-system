@@ -29,6 +29,7 @@ $gap: tokens.get('button-segmented-gap-inline');
 
 .segmented-button label:last-of-type::after {
     content: "";
+    display: block;
     position: absolute;
     top: 0;
     right: 0;
@@ -103,7 +104,7 @@ $gap: tokens.get('button-segmented-gap-inline');
         flex: 0 0 auto;
         margin-bottom: -2px;
         z-index: 1;
-        border: tokens.get('button-segmented-border-width') solid tokens.get('button-segmented-enabled-border'); // Apply borders on the top, left, and right
+        border: tokens.get('button-segmented-border-width') solid tokens.get('button-segmented-enabled-border');
     
         &:last-of-type {
             margin-bottom: 0;
