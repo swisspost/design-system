@@ -10,7 +10,7 @@ interface TeamMember {
 const TEAM_MEMBERS: TeamMember[] = [
   {
     name: 'Philipp Gfeller',
-    title: 'Lead Potato',
+    title: 'Context switcher',
     githubImageId: '1659006',
     githubUsername: 'gfellerph',
   },
