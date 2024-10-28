@@ -1,5 +1,6 @@
 import { Component, h, Host, State, Element } from '@stencil/core';
-import { debounce } from 'throttle-debounce';
+import { throttle } from 'throttle-debounce';
+import { version } from '@root/package.json';
 
 @Component({
   tag: 'post-header',
@@ -9,15 +10,16 @@ import { debounce } from 'throttle-debounce';
 export class PostHeader {
   @Element() host: HTMLPostHeaderElement;
   @State() device: 'mobile' | 'tablet' | 'desktop' = null;
+  @State() mobileMenuExtended: boolean = false;
 
   private scrollParent = null;
   private throttledScroll = () => this.handleScrollEvent();
-  private debouncedResize = debounce(200, () => this.handleResize());
+  private debouncedResize = throttle(50, () => this.handleResize());
 
   componentWillRender() {
     this.scrollParent = this.getScrollParent(this.host);
     this.scrollParent.addEventListener('scroll', this.throttledScroll, { passive: true });
-    this.scrollParent.addEventListener('resize', this.debouncedResize, { passive: true });
+    window.addEventListener('resize', this.debouncedResize, { passive: true });
     this.handleResize();
     this.handleScrollEvent();
   }
@@ -30,6 +32,7 @@ export class PostHeader {
         ? this.scrollParent.documentElement.scrollTop
         : this.scrollParent.scrollTop,
     );
+
     this.host.style.setProperty('--header-scroll-top', `${st}px`);
   }
 
@@ -69,27 +72,36 @@ export class PostHeader {
     }
   }
 
+  private handleMobileMenuToggle() {
+    this.mobileMenuExtended = !this.mobileMenuExtended;
+  }
+
   render() {
-    const globalHeaderClassList = ['bg-yellow', 'global-header', 'd-flex', 'space-between'];
+    const mainNavClasses = ['main-navigation'];
+    if (this.mobileMenuExtended) {
+      mainNavClasses.push('extended');
+    }
 
     return (
-      <Host>
-        <div class={globalHeaderClassList.join(' ')}>
-          <div class="global-sub left-part">
-            <slot name="post-logo"></slot>
+      <Host version={version}>
+        <div class="global-header">
+          <div class="global-sub">
+            <div class="logo">
+              <slot name="post-logo"></slot>
+            </div>
             {this.device === 'desktop' && <slot name="audience-navigation"></slot>}
           </div>
           <div class="global-sub">
             {this.device === 'desktop' && <slot name="meta-navigation"></slot>}
             <slot name="global-controls"></slot>
             {this.device === 'desktop' && <slot name="post-language-switch"></slot>}
-            {(this.device === 'mobile' || this.device === 'tablet') && (
+            <div onClick={() => this.handleMobileMenuToggle()} class="mobile-toggle">
               <slot name="post-togglebutton"></slot>
-            )}
+            </div>
           </div>
         </div>
 
-        <div class="title-header d-flex space-between">
+        <div class="title-header d-flex space-between align-center">
           <slot name="title"></slot>
           <div class="global-sub">
             <slot name="local-controls"></slot>
@@ -97,7 +109,7 @@ export class PostHeader {
           </div>
         </div>
 
-        <div class="main-navigation">
+        <div class={mainNavClasses.join(' ')}>
           {(this.device === 'mobile' || this.device === 'tablet') && (
             <slot name="audience-navigation"></slot>
           )}

@@ -1,9 +1,17 @@
+@use '@swisspost/design-system-styles/mixins/media';
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
 :host {
   --global-header-height: 72px;
   --main-header-height: 56px;
   --header-height: calc(var(--global-header-height) + var(--main-header-height));
 
-  @media screen and (max-width: 1024px) {
+  @include media.max(lg) {
     --global-header-height: 64px;
   }
 }
@@ -22,17 +30,17 @@
   justify-content: space-between;
   align-items: center;
   position: sticky;
-  top: calc((var(--global-header-height) - 24px) * -1);
   padding-inline-start: 4px;
   padding-inline-end: 12px;
 
   height: var(--global-header-height);
 
-  &.collapsed {
-    --global-header-height: 24px;
-    slot:not([name='post-logo']) {
-      display: none;
-    }
+  @include media.max(lg) {
+    top: 0;
+  }
+
+  @include media.min(lg) {
+    top: calc((var(--global-header-height) - 24px) * -1);
   }
 }
 
@@ -49,27 +57,32 @@ slot[name='post-logo'] {
   display: flex;
   align-items: center;
   gap: 2rem;
+  height: var(--global-header-height);
 }
 
-::slotted(post-logo) {
+.align-end {
+  align-items: flex-end;
+}
+
+.logo {
   flex: 1 0 auto;
-  height: calc(var(--global-header-height) - var(--header-scroll-top));
+  height: var(--global-header-height);
   width: var(--global-header-height);
   min-height: 24px;
   align-self: flex-end;
+
+  @include media.min(lg) {
+    height: calc(var(--global-header-height) - var(--header-scroll-top));
+  }
 }
 
 ::slotted(ul),
 ::slotted(post-mainnavigation) {
+  margin-block: 0;
   list-style: none;
   display: flex;
   padding-left: 0;
   gap: 1rem;
-}
-
-::slotted(h1) {
-  margin: 0 !important;
-  font-size: 28px !important;
 }
 
 .title-header,
@@ -77,10 +90,51 @@ slot[name='post-logo'] {
   display: flex;
   align-items: center;
   padding-inline: 12px;
-  height: var(--main-header-height);
   background: white;
 }
 
+.title-header {
+  height: var(--main-header-height);
+  display: flex;
+  align-items: center;
+
+  @include media.max(lg) {
+    border-bottom: 1px solid black;
+  }
+}
+:host(:not(:has([slot='title']))) .title-header {
+  display: none;
+}
+
+::slotted(h1) {
+  margin: 0 !important;
+  font-size: 28px !important;
+}
+
 .main-navigation {
-  border-bottom: 1px solid gray;
+  height: var(--main-header-height);
+
+  @include media.min(lg) {
+    border-bottom: 1px solid black;
+  }
+
+  @include media.max(lg) {
+    display: none;
+    position: absolute;
+    top: var(--header-height);
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    height: auto;
+
+    &.extended {
+      display: block;
+    }
+  }
+}
+
+.mobile-toggle {
+  @include media.min(lg) {
+    display: none;
+  }
 }
