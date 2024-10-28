@@ -14,10 +14,14 @@ type Story = StoryObj;
 export const ListGroup: Story = {
   render: () => {
     return html`
-      <div class="bg-white list-group-example">
-        ${renderListGroup({ listType: 'links' })} ${renderListGroup({ listType: 'documents' })}
-        ${renderListGroup({ listType: 'switch' })}
-      </div>
+      ${['white', 'dark'].map(
+        bg => html`
+          <div class=${'list-group-example bg-' + bg}>
+            ${renderListGroup({ listType: 'link' })} ${renderListGroup({ listType: 'document' })}
+            ${renderListGroup({ listType: 'switch' })}
+          </div>
+        `,
+      )}
     `;
   },
 };

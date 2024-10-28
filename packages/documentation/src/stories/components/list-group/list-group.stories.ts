@@ -7,6 +7,7 @@ const meta: MetaComponent = {
   title: 'Components/List Group',
   tags: ['package:HTML'],
   decorators: [gridContainer],
+  render: renderListGroup,
   parameters: {
     design: {
       type: 'figma',
@@ -14,13 +15,13 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    listType: 'links',
+    listType: 'link',
   },
   argTypes: {
     listType: {
       name: 'List type',
       description: 'Type of list elements to show in the list group.',
-      options: ['links', 'documents', 'switch'],
+      options: ['link', 'document', 'switch'],
       control: {
         type: 'radio',
       },
@@ -41,100 +42,81 @@ function gridContainer(story: StoryFn, context: StoryContext) {
   `;
 }
 
-function getSwitchList() {
-  return html`
-    ${[
-      '7fb639f8-86f6-4937-999c-4ee15f81643b',
-      '7fb639f8-4421-4937-999c-4ee15f81643b',
-      '7fb639f8-5221-4937-999c-4ee15f81643b',
-    ].map(
-      id =>
-        html`
-          <li class="list-group-item">
-            <div class="form-check form-switch">
-              <input type="checkbox" role="switch" id="${id}" class="form-check-input" />
-              <label class="form-check-label order-first" for="${id}">Label</label>
-            </div>
-          </li>
-        `,
-    )}
-  `;
-}
-
-function getLinksList() {
-  return html`
-    ${['Label', 'Label', 'Label'].map(
-      label =>
-        html`
-          <li class="list-group-item list-group-item-action">
-            <a href="#"
-              >${label} <post-icon class="list-group-item-right-svg" name="3020"></post-icon
-            ></a>
-          </li>
-        `,
-    )}
-  `;
-}
-
-function getDocumentsList() {
-  return html`
-    ${['Label', 'Label', 'Label'].map(
-      label =>
-        html`
-          <li class="list-group-item">
-            <a href="#" download
-              ><post-icon name="3169"></post-icon> ${label} <post-icon name="2066"></post-icon
-            ></a>
-          </li>
-        `,
-    )}
-  `;
-}
-
 export function renderListGroup(args: Args) {
-  const { listType } = args;
-  let content;
-  switch (listType) {
-    case 'links':
-      content = getLinksList();
-      break;
-    case 'documents':
-      content = getDocumentsList();
-      break;
-    case 'switch':
-      content = getSwitchList();
-      break;
-  }
-
   return html`
     <ul class="list-group">
-      ${content}
+      ${getContent(args.listType, 3)}
     </ul>
   `;
+
+  function getIcon(name: string) {
+    return html`<post-icon name="${name}"></post-icon>`;
+  }
+
+  function getContent(listType: string, itemsCount: number) {
+    const linkIcon = getIcon('3020');
+    const fileIcon = getIcon('3169');
+    const downloadIcon = getIcon('2066');
+
+    const isDoc = listType === 'document';
+    const items = Array.from(Array(itemsCount).keys());
+
+    switch (listType) {
+      case 'link':
+      case 'document':
+        return html`
+          ${items.map(
+            () => html`
+              <li>
+                <a href="#" download=${isDoc || null} class="list-group-${listType}">
+                  ${isDoc ? fileIcon : null}Text${isDoc ? downloadIcon : linkIcon}
+                </a>
+              </li>
+            `,
+          )}
+        `;
+      case 'switch':
+        return html`
+          ${items.map(
+            id => html`
+              <li>
+                <div class="list-group-${listType} form-check form-switch">
+                  <!-- it's important to set custom ids here -->
+                  <input
+                    type="checkbox"
+                    role="switch"
+                    id="list-switch-item-${id}"
+                    class="form-check-input"
+                  />
+                  <label class="form-check-label order-first" for="list-switch-item-${id}"
+                    >Label</label
+                  >
+                </div>
+              </li>
+            `,
+          )}
+        `;
+    }
+  }
 }
 
 type Story = StoryObj;
 
-export const Default: Story = {
-  render: renderListGroup,
-};
+export const Default: Story = {};
 
 export const ListLinks: Story = {
-  render: renderListGroup,
   args: {
-    listType: 'links',
+    listType: 'link',
   },
 };
 
 export const ListDocuments: Story = {
-  render: renderListGroup,
   args: {
-    listType: 'documents',
+    listType: 'document',
   },
 };
 
 export const ListSwitch: Story = {
-  render: renderListGroup,
   args: {
     listType: 'switch',
   },

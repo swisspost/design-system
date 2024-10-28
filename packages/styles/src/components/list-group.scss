@@ -13,98 +13,94 @@ tokens.$default-map: components.$post-list;
   background-color: transparent;
   list-style: none;
   padding: 0;
-}
 
-.list-group-item-action {
-  &:hover,
-  &:focus {
-    .list-group-item-right-svg {
-      transform: translateX(animation.$transition-distance-xsmall);
-    }
-  }
+  > li {
+    border: unset;
+    padding: 0;
+    background: transparent;
 
-  .list-group-item-right-svg {
-    padding-block: tokens.get('list-icon-container-padding-block');
-    padding-inline: tokens.get('list-icon-container-padding-inline');
-
-    @include transition(
-      transform animation.$transition-time-area-small animation.$transition-easing-default
-    );
-  }
-}
-
-.list-group-item {
-  border: unset;
-  padding: 0;
-  background: transparent;
-
-  > a,
-  .form-check {
-    display: flex;
-    position: relative;
-    padding-block-start: tokens.get('list-item-padding-block-start');
-    padding-block-end: tokens.get('list-item-padding-block-end');
-    padding-inline-start: tokens.get('list-item-padding-inline-start');
-    padding-inline-end: tokens.get('list-item-padding-inline-end');
-    border-radius: tokens.get('list-item-focus-outline-radius'); // Used for the focus only
-    color: tokens.get('list-item-enabled-fg');
-
-    &::before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 1px;
-      border-block-end: tokens.get('list-item-border-width') tokens.get('list-item-border-style')
-        tokens.get('list-item-enabled-border');
-      bottom: 0;
-      left: 0;
-    }
-
-    &:hover {
-      color: tokens.get('list-item-hover-fg');
+    > a,
+    .form-check {
+      display: flex;
+      position: relative;
+      padding-block-start: tokens.get('list-item-padding-block-start');
+      padding-block-end: tokens.get('list-item-padding-block-end');
+      padding-inline-start: tokens.get('list-item-padding-inline-start');
+      padding-inline-end: tokens.get('list-item-padding-inline-end');
+      border-radius: tokens.get('list-item-focus-outline-radius'); // Used for the focus only
+      color: tokens.get('list-item-enabled-fg');
 
       &::before {
-        border-block-end-color: tokens.get('list-item-hover-border');
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        border-block-end: tokens.get('list-item-border-width') tokens.get('list-item-border-style')
+          tokens.get('list-item-enabled-border');
+        bottom: 0;
+        left: 0;
+      }
+
+      &:hover {
+        color: tokens.get('list-item-hover-fg');
+
+        &::before {
+          border-block-end-color: tokens.get('list-item-hover-border');
+        }
       }
     }
-  }
 
-  > a {
-    align-items: center;
-    flex-grow: 1;
-    text-decoration: none;
-    gap: tokens.get('list-item-gap-inline');
+    > a {
+      align-items: center;
+      flex-grow: 1;
+      text-decoration: none;
+      gap: tokens.get('list-item-gap-inline');
 
-    > *:last-child {
-      margin-left: auto;
-    }
-  }
-
-  .form-check {
-    justify-content: space-between;
-
-    &:hover .form-check-label {
-      color: tokens.get('list-item-hover-fg');
+      > *:last-child {
+        margin-left: auto;
+      }
     }
 
-    .form-check-label {
-      color: tokens.get('list-item-enabled-fg');
+    .form-check {
+      justify-content: space-between;
+
+      &:hover .form-check-label {
+        color: tokens.get('list-item-hover-fg');
+      }
+
+      .form-check-label {
+        color: tokens.get('list-item-enabled-fg');
+      }
+
+      > div {
+        display: inline-flex;
+        padding-block: tokens.get('list-switch-padding-block');
+      }
     }
 
-    > div {
-      display: inline-flex;
-      padding-block: tokens.get('list-switch-padding-block');
+    a,
+    div.form-check {
+      @include utilities-mx.focus-style(
+        null,
+        tokens.get('list-item-focus-outline-offset'),
+        tokens.get('list-item-focus-outline-width'),
+        tokens.get('list-item-focus-outline-color'),
+        tokens.get('list-item-focus-outline-style')
+      );
     }
-  }
 
-  a,
-  div.form-check {
-    @include utilities-mx.focus-style(
-      null,
-      tokens.get('list-item-focus-outline-offset'),
-      tokens.get('list-item-focus-outline-width'),
-      tokens.get('list-item-focus-outline-color'),
-      tokens.get('list-item-focus-outline-style')
-    );
+    .list-group-link:hover post-icon,
+    .list-group-link:focus post-icon {
+      transform: translateX(animation.$transition-distance-xsmall);
+    }
+
+    .list-group-link post-icon {
+      padding-block: tokens.get('list-icon-container-padding-block');
+      padding-inline: tokens.get('list-icon-container-padding-inline');
+
+      @include transition(
+        transform animation.$transition-time-area-small animation.$transition-easing-default
+      );
+    }
   }
 }
