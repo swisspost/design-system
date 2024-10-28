@@ -48,6 +48,13 @@ tokens.$default-map: components.$post-list;
           border-block-end-color: tokens.get('list-item-hover-border');
         }
       }
+
+      @include utilities-mx.focus-style(
+        $offset: tokens.get('list-item-focus-outline-offset'),
+        $width: tokens.get('list-item-focus-outline-width'),
+        $color: tokens.get('list-item-focus-outline-color'),
+        $style: tokens.get('list-item-focus-outline-style')
+      );
     }
 
     .list-group-link,
@@ -77,17 +84,6 @@ tokens.$default-map: components.$post-list;
         display: inline-flex;
         padding-block: tokens.get('list-switch-padding-block');
       }
-    }
-
-    .list-group-link,
-    .list-group-document,
-    .list-group-switch {
-      @include utilities-mx.focus-style(
-        $offset: tokens.get('list-item-focus-outline-offset'),
-        $width: tokens.get('list-item-focus-outline-width'),
-        $color: tokens.get('list-item-focus-outline-color'),
-        $style: tokens.get('list-item-focus-outline-style')
-      );
     }
 
     .list-group-link:hover post-icon,
