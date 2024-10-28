@@ -367,7 +367,7 @@ export class PostCardControl {
             name={this.name}
             value={this.value}
             checked={this.checked}
-            aria-describedby={`${this.controlId}_label ${this.controlId}_content`}
+            aria-describedby={`${this.controlId}_content`}
             aria-disabled={this.disabled}
             aria-invalid={this.validity === 'false'}
             onClick={this.controlClickHandler}
