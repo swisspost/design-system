@@ -32,5 +32,9 @@ $utilities: map.remove($utilities, 'max-width');
 $utilities: map.remove($utilities, 'max-height');
 $utilities: map.remove($utilities, 'min-width');
 $utilities: map.remove($utilities, 'min-height');
+$utilities: map.remove($utilities, 'viewport-width');
+$utilities: map.remove($utilities, 'viewport-height');
+$utilities: map.remove($utilities, 'min-viewport-width');
+$utilities: map.remove($utilities, 'min-viewport-height');
 
 @import 'bootstrap/scss/utilities/api';

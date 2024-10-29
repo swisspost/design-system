@@ -27,6 +27,9 @@ const meta: MetaExtended = {
         type: 'select',
       },
       options: sizeOptionsPercent,
+      table: {
+        category: 'Height',
+      },
     },
     width: {
       name: 'width',
@@ -35,6 +38,9 @@ const meta: MetaExtended = {
         type: 'select',
       },
       options: sizeOptionsPercent,
+      table: {
+        category: 'Width',
+      },
     },
     maxHeight: {
       name: 'max-height',
@@ -43,6 +49,9 @@ const meta: MetaExtended = {
         type: 'select',
       },
       options: ['none', ...sizeOptionsPercent],
+      table: {
+        category: 'Height',
+      },
     },
     maxWidth: {
       name: 'max-width',
@@ -51,6 +60,9 @@ const meta: MetaExtended = {
         type: 'select',
       },
       options: ['none', ...sizeOptionsPercent],
+      table: {
+        category: 'Width',
+      },
     },
     minHeight: {
       name: 'min-height',
@@ -59,6 +71,9 @@ const meta: MetaExtended = {
         type: 'select',
       },
       options: ['none', ...sizeOptionsPercent],
+      table: {
+        category: 'Height',
+      },
     },
     minWidth: {
       name: 'min-width',
@@ -67,6 +82,9 @@ const meta: MetaExtended = {
         type: 'select',
       },
       options: ['none', ...sizeOptionsPercent],
+      table: {
+        category: 'Width',
+      },
     },
   },
 };
