@@ -3,20 +3,18 @@
 
 tokens.$default-map: elements.$post-heading;
 
-h1,
-.h1,
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4,
-h5,
-.h5,
-h6,
-.h6 {
+// :is keeps specificity which is handy here
+:is(h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6) {
   line-height: tokens.get('heading-line-height');
   font-weight: tokens.get('heading-font-weight');
+
+  &:first-child {
+    margin-block-start: 0;
+  }
+
+  &:last-child {
+    margin-block-end: 0;
+  }
 }
 
 h1,
