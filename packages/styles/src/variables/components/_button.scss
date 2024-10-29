@@ -112,3 +112,55 @@ $btn-icon-size-map: (
   'md': tokens.get('button-medium-icon'),
   'lg': tokens.get('button-large-icon'),
 );
+
+// Old variables / Used elsewhere than on the v2 button component
+$btn-animation-distance-factor: 0.5 !default;
+$btn-padding-y-sm: spacing.$size-mini !default;
+$btn-gap-x-sm: sizing.px-to-rem(6) !default;
+$btn-height-sm: 2rem;
+$btn-icon-size-sm: spacing.$size-regular !default;
+$btn-padding-y-rg: spacing.$size-small-regular !default;
+$btn-padding-x-rg: sizing.px-to-rem(14) !default;
+$btn-gap-x-rg: sizing.px-to-rem(8) !default;
+$btn-animation-distance-rg: spacing.$size-mini !default;
+$btn-height-rg: 2.5rem;
+$btn-font-size-rg: type.$font-size-14 !default;
+$btn-icon-size-rg: 1.125rem !default;
+$btn-padding-y-md: spacing.$size-regular !default;
+$btn-gap-x-md: sizing.px-to-rem(10) !default;
+$btn-height-md: 3rem;
+$btn-icon-size-md: spacing.$size-small-large !default;
+$btn-padding-y-lg: spacing.$size-small-large !default;
+$btn-gap-x-lg: sizing.px-to-rem(12) !default;
+$btn-height-lg: 3.5rem;
+$btn-icon-size-lg: 1.375rem !default;
+$btn-padding-y-map: (
+  'sm': $btn-padding-y-sm,
+  'rg': $btn-padding-y-rg,
+  'md': $btn-padding-y-md,
+  'lg': $btn-padding-y-lg,
+);
+$btn-gap-x-map: (
+  'sm': $btn-gap-x-sm,
+  'rg': $btn-gap-x-rg,
+  'md': $btn-gap-x-md,
+  'lg': $btn-gap-x-lg,
+);
+$old-btn-icon-size-map: (
+  'sm': $btn-icon-size-sm,
+  'rg': $btn-icon-size-rg,
+  'md': $btn-icon-size-md,
+  'lg': $btn-icon-size-lg,
+);
+
+$btn-font-weight: type.$font-weight-normal !default;
+$btn-box-shadow: none !default;
+$btn-focus-width: $input-btn-focus-width !default;
+$btn-focus-box-shadow: $input-btn-focus-box-shadow !default;
+$btn-disabled-opacity: 0.4 !default;
+$btn-disabled-background: rgba(color.$black, 0.4) !default;
+$btn-active-box-shadow: none !default;
+
+$btn-link-disabled-color: color.$gray-20 !default;
+
+$btn-block-spacing-y: 0.5rem !default;

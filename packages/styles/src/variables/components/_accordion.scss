@@ -21,8 +21,8 @@ $accordion-header-line-height: type.$line-height-copy !default;
 $accordion-button-transition: button.$btn-transition !default;
 $accordion-button-padding: $accordion-padding !default;
 $accordion-button-gap: $accordion-gap !default;
-$accordion-button-disabled-opacity: 0.4 !default;
-$accordion-button-focus-box-shadow: button.$input-btn-focus-box-shadow !default;
+$accordion-button-disabled-opacity: button.$btn-disabled-opacity !default;
+$accordion-button-focus-box-shadow: button.$btn-focus-box-shadow !default;
 $accordion-button-hover-color: color.$black !default;
 $accordion-button-hover-bg: color.$gray-10 !default;
 

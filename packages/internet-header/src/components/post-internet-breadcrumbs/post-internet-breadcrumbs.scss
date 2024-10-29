@@ -22,7 +22,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  min-height: 3rem; // Avoid visual shift when buttons are hidden.
+  min-height: button-var.$btn-height-md; // Avoid visual shift when buttons are hidden.
 
   @include mixins.max(rg) {
     font-size: functions.px-to-rem(14px);

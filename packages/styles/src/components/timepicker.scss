@@ -6,24 +6,10 @@
 @use './../mixins/icons' as icon-mixins;
 @use './../mixins/forms' as form-mixins;
 @use './../mixins/button' as button-mixins;
-@use './../variables/type';
-@use './../variables/spacing';
 
 @use './../variables/color';
 @use './../variables/components/forms';
 @use './../variables/components/button';
-
-$tp-icon-sm: spacing.$size-regular !default;
-$tp-icon-rg: 1.125rem !default;
-$tp-icon-md: spacing.$size-small-large !default;
-$tp-icon-lg: 1.375rem !default;
-
-$tp-icon-map: (
-  'sm': $tp-icon-sm,
-  'rg': $tp-icon-rg,
-  'md': $tp-icon-md,
-  'lg': $tp-icon-lg,
-);
 
 // Basic timepicker overrides
 .ngb-tp {
@@ -51,8 +37,8 @@ $tp-icon-map: (
   .ngb-tp-chevron {
     &::before {
       @include icon-mixins.icon('2051');
-      width: map.get($tp-icon-map, 'md');
-      height: map.get($tp-icon-map, 'md');
+      width: map.get(button.$old-btn-icon-size-map, 'md');
+      height: map.get(button.$old-btn-icon-size-map, 'md');
       transform: none;
     }
 
@@ -63,8 +49,8 @@ $tp-icon-map: (
 
   @each $size in sm, lg {
     .btn-#{$size} .ngb-tp-chevron::before {
-      width: map.get($tp-icon-map, $size);
-      height: map.get($tp-icon-map, $size);
+      width: map.get(button.$old-btn-icon-size-map, $size);
+      height: map.get(button.$old-btn-icon-size-map, $size);
     }
   }
 
@@ -81,23 +67,11 @@ $tp-icon-map: (
 // Regular-sized timepicker
 .timepicker-rg {
   .btn {
-    min-height: map.get(button.$btn-height-map, 'rg');
-    font-size: type.$font-size-16;
-    gap: map.get(button.$btn-gap-x-map, 'rg');
-
-    &:where(:not(.btn-link, .btn-tertiary)) {
-      padding: 0 map.get(button.$btn-padding-x-map, 'rg');
-    }
-
-    > .pi,
-    > post-icon {
-      width: map.get($tp-icon-map, 'rg');
-      height: map.get($tp-icon-map, 'rg');
-    }
+    @include button-mixins.old-button-size(rg);
 
     .ngb-tp-chevron::before {
-      width: map.get($tp-icon-map, 'rg');
-      height: map.get($tp-icon-map, 'rg');
+      width: map.get(button.$old-btn-icon-size-map, 'rg');
+      height: map.get(button.$old-btn-icon-size-map, 'rg');
     }
   }
 
