@@ -13,7 +13,7 @@ $chip-border-color: color.$gray-60;
 $chip-border-width: commons.$border-thick;
 $chip-border-radius: commons.$border-radius-pill;
 
-$chip-height: button.$btn-height-rg;
+$chip-height: 2.5rem;
 $chip-max-width: 100%;
 $chip-padding-x: spacing.$size-regular;
 $chip-gap: spacing.$size-mini;
@@ -27,7 +27,7 @@ $chip-transition:
   background-color animation.$transition-base-timing,
   border-color animation.$transition-base-timing;
 
-$chip-height-sm: button.$btn-height-sm;
+$chip-height-sm: 2rem;
 $chip-gap-sm: sizing.px-to-rem(6px);
 $chip-font-size-sm: type.$font-size-14;
 $chip-padding-x-sm: spacing.$size-small-regular;

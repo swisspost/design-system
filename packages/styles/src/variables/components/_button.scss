@@ -40,38 +40,24 @@ $input-btn-focus-color: rgba(color.$gray-80, 0.25) !default;
 $input-btn-focus-box-shadow: 0 0 0 $input-btn-focus-width $input-btn-focus-color !default;
 
 // Buttons
-$btn-animation-distance-factor: 0.5 !default;
 
 // sm
 $btn-padding-x-sm: sizing.px-to-rem(12) !default;
 $btn-animation-distance-sm: spacing.$size-mini !default;
 // Design System only
-$btn-height-sm: 2rem;
 $btn-font-size-sm: type.$font-size-12 !default;
-$btn-icon-size-sm: spacing.$size-regular !default;
-
-// rg
-$btn-animation-distance-rg: spacing.$size-mini !default;
-// Design System only
-$btn-height-rg: 2.5rem;
-$btn-font-size-rg: type.$font-size-14 !default;
-$btn-icon-size-rg: 1.125rem !default;
 
 // md
 $btn-padding-x-md: sizing.px-to-rem(16) !default;
 $btn-animation-distance-md: spacing.$size-mini !default;
 // Design System only
-$btn-height-md: 3rem;
 $btn-font-size-md: type.$font-size-16 !default;
-$btn-icon-size-md: spacing.$size-small-large !default;
 
 // lg
 $btn-padding-x-lg: sizing.px-to-rem(18) !default;
 $btn-animation-distance-lg: spacing.$size-mini !default;
 // Design System only
-$btn-height-lg: 3.5rem;
 $btn-font-size-lg: type.$font-size-18 !default;
-$btn-icon-size-lg: 1.375rem !default;
 
 // Available button sizes except the default, which is md
 $btn-non-default-sizes: sm, lg !default;
@@ -81,6 +67,7 @@ $btn-animation-distance-map: (
   'md': $btn-animation-distance-md,
   'lg': $btn-animation-distance-lg,
 );
+
 $btn-padding-x-map: (
   'sm': tokens.get('button-small-padding-inline'),
   'md': tokens.get('button-medium-padding-inline'),
@@ -92,32 +79,14 @@ $btn-height-map: (
   'md': tokens.get('button-medium-height'),
   'lg': tokens.get('button-large-height'),
 );
+
 $btn-font-size-map: (
   'sm': $btn-font-size-sm,
   'md': $btn-font-size-md,
   'lg': $btn-font-size-lg,
 );
 
-// Used on timepicker
-$btn-icon-size-map: (
-  'sm': $btn-icon-size-sm,
-  'rg': $btn-icon-size-rg,
-  'md': $btn-icon-size-md,
-  'lg': $btn-icon-size-lg,
-);
-
 $btn-border-width: $input-btn-border-width !default;
-
-$btn-font-weight: type.$font-weight-normal !default;
-$btn-focus-width: $input-btn-focus-width !default;
-$btn-focus-box-shadow: $input-btn-focus-box-shadow !default;
-$btn-disabled-opacity: 0.4 !default;
-$btn-disabled-background: rgba(color.$black, 0.4) !default;
-$btn-active-box-shadow: none !default;
-
-$btn-link-disabled-color: color.$gray-20 !default;
-
-$btn-block-spacing-y: 0.5rem !default;
 
 // Allows for customizing button radius independently from global border radius
 $btn-border-radius: commons.$border-radius !default;
@@ -133,17 +102,12 @@ $btn-transition: (
 $btn-variants: primary, default, secondary, tertiary, link !default;
 
 // For sizes
-$new-btn-padding-x-map: (
-  'sm': tokens.get('button-small-padding-inline'),
-  'md': tokens.get('button-medium-padding-inline'),
-  'lg': tokens.get('button-large-padding-inline'),
-);
-$new-btn-gap-x-map: (
+$btn-gap-x-map: (
   'sm': tokens.get('button-small-gap-inline'),
   'md': tokens.get('button-medium-gap-inline'),
   'lg': tokens.get('button-large-gap-inline'),
 );
-$new-btn-icon-size-map: (
+$btn-icon-size-map: (
   'sm': tokens.get('button-small-icon'),
   'md': tokens.get('button-medium-icon'),
   'lg': tokens.get('button-large-icon'),

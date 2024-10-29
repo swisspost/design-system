@@ -23,7 +23,7 @@
 tokens.$default-map: components.$post-button;
 
 .btn {
-  @include button-mx.new-button-size();
+  @include button-mx.button-size();
 
   // Resets
   display: inline-flex;
@@ -251,6 +251,6 @@ tokens.$default-map: components.$post-button;
 // Size variants, default is md
 @each $size in button.$btn-non-default-sizes {
   .btn-#{$size} {
-    @include button-mx.new-button-size($size);
+    @include button-mx.button-size($size);
   }
 }

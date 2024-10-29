@@ -33,10 +33,10 @@ $datatable-footer-separator: $datatable-flush-border-width solid $datatable-flus
 
 $datatable-row-count-input-width: spacing.$size-bigger-giant;
 
-$datatable-button-margin: button.$btn-focus-width;
+$datatable-button-margin: button.$input-btn-focus-width;
 $datatable-button-width: calc(100% - 2 * #{$datatable-button-margin});
 $datatable-button-height: $datatable-button-width;
-$datatable-button-focus-shadow: button.$btn-focus-box-shadow;
+$datatable-button-focus-shadow: button.$input-btn-focus-box-shadow;
 
 $datatable-progressbar-height: spacing.$size-micro;
 $datatable-progressbar-backgroundcolor: color.$gray-10;
