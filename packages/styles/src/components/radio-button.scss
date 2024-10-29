@@ -4,8 +4,8 @@
 @use '../mixins/color' as color-mx;
 @use '../mixins/icons' as icons-mx;
 @use '../mixins/utilities' as utility-mx;
-@use '../tokens/components' as components;
-@use '../functions/tokens' as tokens;
+@use '../tokens/components';
+@use '../functions/tokens';
 
 tokens.$default-map: components.$post-radio-button;
 
