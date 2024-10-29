@@ -1,5 +1,5 @@
-import type { Args, StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
+import type { Args, StoryObj, StoryFn, StoryContext } from '@storybook/web-components';
+import { html, nothing } from 'lit';
 import './sizing.styles.scss';
 import { MetaExtended } from '@root/types';
 export const sizeOptionsPercent = ['auto', '0', '25', '50', '75', '100'];
@@ -12,12 +12,12 @@ const meta: MetaExtended = {
     badges: [],
   },
   args: {
-    height: 'null',
-    width: 'null',
-    maxHeight: 'null',
-    maxWidth: 'null',
-    minHeight: 'null',
-    minWidth: 'null',
+    height: 'none',
+    width: 'none',
+    maxHeight: 'none',
+    maxWidth: 'none',
+    minHeight: 'none',
+    minWidth: 'none',
   },
   argTypes: {
     height: {
@@ -87,6 +87,18 @@ const meta: MetaExtended = {
       },
     },
   },
+  decorators: [
+    (story: StoryFn, context: StoryContext) => {
+      const storyTemplate = html`
+        <div class="sizing-example">
+          <div class="d-flex p-16 gap-16" style="height: 150px">
+            <div class="flex-fill">${story(context.args, context)}</div>
+          </div>
+        </div>
+      `;
+      return storyTemplate;
+    },
+  ],
 };
 
 export default meta;
@@ -94,36 +106,24 @@ export default meta;
 type Story = StoryObj;
 
 function renderSizing(args: Args) {
-  const maximumHeight =
-    args.maxHeight && args.maxHeight !== 'none' ? `max-h-${args.maxHeight}` : '';
-  const maximumWidth = args.maxWidth && args.maxWidth !== 'none' ? `max-w-${args.maxWidth}` : '';
-  const minimumHeight =
-    args.minHeight && args.minHeight !== 'none' ? `min-h-${args.minHeight}` : '';
-  const minimumWidth = args.minWidth && args.minWidth !== 'none' ? `min-w-${args.minWidth}` : '';
-  const classes = `content h-${args.height} w-${args.width} ${maximumHeight} ${maximumWidth} ${minimumHeight} ${minimumWidth}`;
+  const classNames = [
+    `content`,
+    `h-${args.height}`,
+    `w-${args.width}`,
+    args.maxHeight && args.maxHeight !== 'none' ? `max-h-${args.maxHeight}` : '',
+    args.maxWidth && args.maxWidth !== 'none' ? `max-w-${args.maxWidth}` : '',
+    args.minHeight && args.minHeight !== 'none' ? `min-h-${args.minHeight}` : '',
+    args.minWidth && args.minWidth !== 'none' ? `min-w-${args.minWidth}` : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
-  return html`
-    <div class="sizing-example">
-      <div class="d-flex p-16 gap-16" style="height: 150px">
-        <div class="flex-fill">
-          <div class="${classes}"></div>
-        </div>
-      </div>
-    </div>
-  `;
+  return html`<div class="${classNames}"></div>`;
 }
 
 export const SizesPercent: Story = {
   args: {
     width: '25',
     height: '100',
-  },
-  argTypes: {
-    height: {
-      options: sizeOptionsPercent,
-    },
-    width: {
-      options: sizeOptionsPercent,
-    },
   },
 };
