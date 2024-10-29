@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': minor
 ---
 
-Implemented new ordered list
+Added custom styles for the ordered lists.
