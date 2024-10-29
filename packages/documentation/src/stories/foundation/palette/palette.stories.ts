@@ -3,33 +3,33 @@ import { html } from 'lit';
 
 const meta: Meta = {
   id: '43481535-5b39-40b5-a273-478b07dc3b31',
-  title: 'Utilities/Accent',
+  title: 'Foundations/Palettes',
   tags: ['package:HTML'],
-  render: renderAccent,
+  render: renderPalette,
   parameters: {
-    accents: [],
+    palettes: [],
     design: {
       type: 'figma',
       url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=18172-73431&mode=design&t=3lniLiZhl7q9Gqgn-4',
     },
   },
   args: {
-    accent: 'Default',
+    palette: 'default',
   },
   argTypes: {
-    accent: {
-      name: 'Accent',
-      description: 'The accent variant.',
+    palette: {
+      name: 'Palette',
+      description: 'The set of colors used for a section of the page.',
       control: {
         type: 'radio',
         labels: {
           default: 'Default',
           alternate: 'Alternate',
           brand: 'Brand',
-          emphasis: 'Emphasis',
+          accent: 'Accent',
         },
       },
-      options: ['default', 'alternate', 'brand', 'emphasis'],
+      options: ['default', 'alternate', 'accent', 'brand'],
       table: {
         category: 'General',
       },
@@ -40,13 +40,12 @@ const meta: Meta = {
 export default meta;
 
 // RENDERER
-function renderAccent(args: Args) {
+function renderPalette(args: Args) {
   return html`
-    <div class="accent-${args.accent} p-24">
-      <p>I use the body color.</p>
-      <p style="accent-text">
-        I use a text color specific to the accent (which can be the same as the body color depending
-        on the theme).
+    <div class="palette-${args.palette} p-24">
+      <p>I use the main body color.</p>
+      <p style="palette-text">
+        I use a specific color from the palette (it might be the same as the body color).
       </p>
     </div>
   `;

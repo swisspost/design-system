@@ -261,7 +261,7 @@ export async function createOutputFiles() {
 
   /**
    * @function createIndexFile()
-   * Creates the post-accents.scss file (which uses/forwards the other output files) in the "OUTPUT_PATH" directory.
+   * Creates the post-palettes.scss file (which uses/forwards the other output files) in the "OUTPUT_PATH" directory.
    */
   async function createIndexFile() {
     const imports = Object.entries(tokenSets.output)

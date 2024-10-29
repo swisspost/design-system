@@ -1,0 +1,50 @@
+@use '../functions/contrast';
+@use '../functions/tokens';
+@use '../placeholders/schemes';
+@use '../tokens/elements';
+
+@use './functions' as *;
+@use './variables' as *;
+
+@mixin generate-palette-class($name, $theme) {
+  .palette-#{$name} {
+    &,
+    &:is([data-color-scheme='light'], [data-color-scheme='light'] *) {
+      @include palette-styles($name, $theme, 'light', $redefine-tokens: true);
+    }
+
+    &:is([data-color-scheme='dark'], [data-color-scheme='dark'] *) {
+      @include palette-styles($name, $theme, 'dark', $redefine-tokens: true);
+    }
+  }
+}
+
+@mixin default-palette-styles($theme) {
+  &:not([data-color-scheme='dark']) {
+    @include palette-styles($default-palette, $theme, 'light');
+  }
+
+  &[data-color-scheme='dark'] {
+    @include palette-styles($default-palette, $theme, 'dark');
+  }
+}
+
+@mixin palette-styles($name, $theme, $scheme, $redefine-tokens: false) {
+  $bg: value('post-palette-#{$name}-bg', '#{$theme}-test', '#{$scheme}-test');
+  $fg: value('post-palette-#{$name}-fg', '#{$theme}-test', '#{$scheme}-test');
+
+  --post-palette-fg: #{$fg};
+  background-color: $bg !important;
+
+  @if ($redefine-tokens == true) {
+    // redefining the body color is required so that the new color scheme is taken into account
+    color: tokens.get('body-color', elements.$post-body);
+
+    $bg: value('post-palette-#{$name}-bg', '#{$theme}-test', '#{$scheme}-test');
+    @if (contrast.light-or-dark($bg) == 'light') {
+      @extend %color-scheme-light;
+    } @else {
+      @extend %color-scheme-dark;
+    }
+  }
+}

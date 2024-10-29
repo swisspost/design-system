@@ -1,15 +1,15 @@
 @forward './temp/theme';
 
 $post-post-test: (
-  post-theme-accent-brand-bg: var(--post-core-color-brand-postyellow),
-  post-theme-accent-brand-fg: var(--post-core-color-sandgrey-100),
-  post-theme-accent-emphasis-bg: var(--post-scheme-accent-emphasis-bg),
-  post-theme-accent-emphasis-fg: var(--post-scheme-accent-emphasis-fg),
+  post-theme-palette-brand-bg: var(--post-core-color-brand-postyellow),
+  post-theme-palette-brand-fg: var(--post-core-color-sandgrey-100),
+  post-theme-palette-accent-bg: var(--post-scheme-palette-accent-bg),
+  post-theme-palette-accent-fg: var(--post-scheme-palette-accent-fg),
 );
 
 $post-cargo-test: (
-  post-theme-accent-brand-bg: var(--post-core-color-cargo-green),
-  post-theme-accent-brand-fg: var(--post-core-color-cargo-blue),
-  post-theme-accent-emphasis-bg: var(--post-core-color-cargo-blue),
-  post-theme-accent-emphasis-fg: var(--post-core-color-cargo-green),
+  post-theme-palette-brand-bg: var(--post-core-color-cargo-green),
+  post-theme-palette-brand-fg: var(--post-core-color-cargo-blue),
+  post-theme-palette-accent-bg: var(--post-core-color-cargo-blue),
+  post-theme-palette-accent-fg: var(--post-core-color-cargo-green),
 );
