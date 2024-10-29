@@ -102,7 +102,7 @@ function StylesSwitcher() {
 
     stories.forEach(story => {
       story.setAttribute('data-color-scheme', currentScheme.toLowerCase());
-      if (!story.classList.contains('accent-default')) story.classList.add('accent-default');
+      if (!story.classList.contains('palette-default')) story.classList.add('palette-default');
     });
   }, [stories, currentScheme]);
 
