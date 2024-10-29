@@ -117,7 +117,7 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
     }
 
     &[disabled],
-    &[disabled] ~ .form-check-label {
+    &[disabled] + label {
       color: tokens.get('checkbox-disabled-fg');
       background-color: tokens.get('checkbox-disabled-bg');
 
