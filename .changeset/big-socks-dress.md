@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Added focus styles for chips.
+Fixed issue where the focus ring was not appearing on inactive chips.
