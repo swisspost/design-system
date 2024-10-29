@@ -1,6 +1,8 @@
 .vertical-align-example {
-  border: 1px solid rgb(204, 204, 204);
-  line-height: 3;
+  :not(:has(table))& {
+    border: 1px solid rgb(204, 204, 204);
+    line-height: 3;
+  }
 
   table {
     margin: 0;
