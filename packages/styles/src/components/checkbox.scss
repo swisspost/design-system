@@ -43,7 +43,7 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
     color: tokens.get('checkbox-enabled-fg');
     background-color: tokens.get('checkbox-enabled-bg');
 
-    + .form-check-label {
+    & + label {
       flex: 1;
       padding-block: tokens.get('checkbox-label-padding-block');
 
