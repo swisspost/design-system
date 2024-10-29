@@ -37,6 +37,10 @@ const meta: MetaComponent = {
       table: {
         category: 'Content',
       },
+      if: {
+        arg: 'iconOnly',
+        truthy: false,
+      },
     },
     tag: {
       name: 'Tag',
