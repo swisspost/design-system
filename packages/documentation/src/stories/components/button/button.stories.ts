@@ -297,26 +297,6 @@ const VariantsTemplate = {
     `,
 };
 
-export const AccentColors: Story = {
-  ...VariantsTemplate,
-  args: {
-    variants: [
-      'btn-nightblue',
-      'btn-nightblue-bright',
-      'btn-petrol',
-      'btn-petrol-bright',
-      'btn-coral',
-      'btn-coral-bright',
-      'btn-olive',
-      'btn-olive-bright',
-      'btn-purple',
-      'btn-purple-bright',
-      'btn-aubergine',
-      'btn-aubergine-bright',
-    ],
-  },
-};
-
 export const SignalColors: Story = {
   ...VariantsTemplate,
   args: {
