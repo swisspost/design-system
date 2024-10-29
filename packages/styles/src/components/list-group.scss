@@ -64,7 +64,8 @@ tokens.$default-map: components.$post-list;
       text-decoration: none;
       gap: tokens.get('list-item-gap-inline');
 
-      > *:last-child {
+      > post-icon {
+        flex: 0 0 auto;
         margin-left: auto;
       }
     }
