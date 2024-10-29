@@ -60,7 +60,7 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
     }
 
     &:hover:not([disabled]),
-    &:hover:not([disabled]) ~ .form-check-label {
+    &:hover:not([disabled]) + label {
       color: tokens.get('checkbox-hover-fg');
       background-color: tokens.get('checkbox-hover-bg');
       border-color: tokens.get('checkbox-hover-stroke');
