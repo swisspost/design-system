@@ -11,95 +11,93 @@ tokens.$default-map: components.$post-list;
 
 // Base class
 .list-group {
-  background-color: transparent;
+  background-color: tokens.get('list-bg');
   list-style: none;
   padding: 0;
 
   > li {
     border: unset;
     padding: 0;
-    background: transparent;
+  }
+}
 
-    .list-group-link,
-    .list-group-document,
-    .list-group-switch {
-      display: flex;
-      position: relative;
-      padding-block-start: tokens.get('list-item-padding-block-start');
-      padding-block-end: tokens.get('list-item-padding-block-end');
-      padding-inline-start: tokens.get('list-item-padding-inline-start');
-      padding-inline-end: tokens.get('list-item-padding-inline-end');
-      border-radius: tokens.get('list-item-focus-outline-radius'); // Used for the focus only
-      color: tokens.get('list-item-enabled-fg');
+.list-group-link,
+.list-group-document,
+.list-group-switch {
+  display: flex;
+  position: relative;
+  padding-block-start: tokens.get('list-item-padding-block-start');
+  padding-block-end: tokens.get('list-item-padding-block-end');
+  padding-inline-start: tokens.get('list-item-padding-inline-start');
+  padding-inline-end: tokens.get('list-item-padding-inline-end');
+  border-radius: tokens.get('list-item-focus-outline-radius'); // Used for the focus only
+  color: tokens.get('list-item-enabled-fg');
 
-      &::after {
-        display: block;
-        content: '';
-        position: absolute;
-        inset: auto 0 0;
-        border-block-end: tokens.get('list-item-border-width') tokens.get('list-item-border-style')
-          tokens.get('list-item-enabled-border');
-      }
+  &::after {
+    display: block;
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    border-block-end: tokens.get('list-item-border-width') tokens.get('list-item-border-style')
+      tokens.get('list-item-enabled-border');
+  }
 
-      &:hover {
-        color: tokens.get('list-item-hover-fg');
+  &:hover {
+    color: tokens.get('list-item-hover-fg');
 
-        &::after {
-          border-block-end-color: tokens.get('list-item-hover-border');
-        }
-      }
-
-      @include utilities-mx.focus-style(
-        $offset: tokens.get('list-item-focus-outline-offset'),
-        $width: tokens.get('list-item-focus-outline-width'),
-        $color: tokens.get('list-item-focus-outline-color'),
-        $style: tokens.get('list-item-focus-outline-style')
-      );
-    }
-
-    .list-group-link,
-    .list-group-document {
-      align-items: center;
-      flex-grow: 1;
-      text-decoration: none;
-      gap: tokens.get('list-item-gap-inline');
-
-      > post-icon {
-        flex: 0 0 auto;
-        margin-left: auto;
-      }
-    }
-
-    .list-group-switch {
-      justify-content: space-between;
-      margin-bottom: 0;
-
-      &:hover .form-check-label {
-        color: tokens.get('list-item-hover-fg');
-      }
-
-      .form-check-label {
-        color: tokens.get('list-item-enabled-fg');
-      }
-
-      > div {
-        display: inline-flex;
-        padding-block: tokens.get('list-switch-padding-block');
-      }
-    }
-
-    .list-group-link:hover post-icon,
-    .list-group-link:focus post-icon {
-      transform: translateX(animation.$transition-distance-xsmall);
-    }
-
-    .list-group-link post-icon {
-      padding-block: tokens.get('list-icon-container-padding-block');
-      padding-inline: tokens.get('list-icon-container-padding-inline');
-
-      @include transition(
-        transform animation.$transition-time-area-small animation.$transition-easing-default
-      );
+    &::after {
+      border-block-end-color: tokens.get('list-item-hover-border');
     }
   }
+
+  @include utilities-mx.focus-style(
+    $offset: tokens.get('list-item-focus-outline-offset'),
+    $width: tokens.get('list-item-focus-outline-width'),
+    $color: tokens.get('list-item-focus-outline-color'),
+    $style: tokens.get('list-item-focus-outline-style')
+  );
+}
+
+.list-group-link,
+.list-group-document {
+  align-items: center;
+  text-decoration: none;
+  gap: tokens.get('list-item-gap-inline');
+
+  > post-icon {
+    flex: 0 0 auto;
+    margin-left: auto;
+  }
+}
+
+.list-group-switch {
+  justify-content: space-between;
+  margin-bottom: 0;
+
+  &:hover .form-check-label {
+    color: tokens.get('list-item-hover-fg');
+  }
+
+  .form-check-label {
+    color: tokens.get('list-item-enabled-fg');
+  }
+
+  > div {
+    display: inline-flex;
+    padding-block: tokens.get('list-switch-padding-block');
+  }
+}
+
+.list-group-link:hover post-icon,
+.list-group-link:focus post-icon {
+  transform: translateX(animation.$transition-distance-xsmall);
+}
+
+.list-group-link post-icon {
+  padding-block: tokens.get('list-icon-container-padding-block');
+  padding-inline: tokens.get('list-icon-container-padding-inline');
+
+  @include transition(
+    transform animation.$transition-time-area-small animation.$transition-easing-default
+  );
 }
