@@ -14,7 +14,7 @@ export interface PostTogglebuttonProps {
 
 const meta: MetaComponent<PostTogglebuttonProps> = {
   id: '12345-abcde',
-  title: 'Components/Post Toggle Button',
+  title: 'Components/Toggle Button',
   tags: ['package:WebComponents'],
   component: 'post-togglebutton',
   parameters: {
@@ -87,7 +87,12 @@ const meta: MetaComponent<PostTogglebuttonProps> = {
     },
     variant: {
       name: 'Variant',
-      description: 'Defines a style variant.',
+      description:
+        'Defines a style variant.' +
+        '<span className="mt-8 alert alert-info alert-sm">' +
+        'For more options, please see the ' +
+        '<a href="/?path=/docs/eb78afcb-ce92-4990-94b6-6536d5ec6af4--docs">button component</a>' +
+        '.</span>',
       control: {
         type: 'inline-radio',
         labels: {
