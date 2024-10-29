@@ -18,9 +18,31 @@ export class PostBreadcrumbItem {
    */
   @Prop() url?: string | URL;
 
+  private validUrl?: string;
+
   @Watch('url')
   validateUrl() {
-    checkUrl(this.url, 'The "url" property of the post-breadcrumb-item is invalid');
+    try {
+      this.validUrl = this.constructUrl(this.url);
+    } catch (error) {
+      console.error(error);
+      this.validUrl = undefined;
+    }
+  }
+
+  // Helper to construct a valid URL string or return undefined
+  private constructUrl(value: unknown): string | undefined {
+    if (typeof value === 'string') {
+      const urlString = this.isAbsoluteUrl(value)
+        ? value
+        : `${window.location.origin}${value}`;
+      checkUrl(urlString, 'The "url" property of the post-breadcrumb-item is invalid');
+      return urlString;
+    } return undefined;
+  }
+
+  private isAbsoluteUrl(url: string): boolean {
+    return /^[a-z][a-z\d+\-.]*:\/\//i.test(url);
   }
 
   connectedCallback() {
@@ -28,16 +50,11 @@ export class PostBreadcrumbItem {
   }
 
   render() {
-    let breadcrumbLink: string | undefined;
-    if (this.url) {
-      breadcrumbLink = typeof this.url === 'string' ? this.url : this.url.href;
-    }
-
-    const BreadcrumbTag = breadcrumbLink ? 'a' : 'span';
+    const BreadcrumbTag = this.validUrl ? 'a' : 'span';
 
     return (
       <Host data-version={version}>
-        <BreadcrumbTag class="breadcrumb-item-text" {...(breadcrumbLink ? { href: breadcrumbLink } : {})}>
+        <BreadcrumbTag class="breadcrumb-item-text" {...(this.validUrl ? { href: this.validUrl } : {})}>
           <post-icon name="2111" class="breadcrumb-item-icon" />
           <slot></slot>
         </BreadcrumbTag>
@@ -45,5 +62,3 @@ export class PostBreadcrumbItem {
     );
   }
 }
-
-
