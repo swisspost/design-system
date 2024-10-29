@@ -111,12 +111,6 @@
             text-decoration-color: initial;
           }
         }
-
-        @include utilities.focus-style('+ .chip-filter-label') {
-          > .chip-text {
-            text-decoration-color: transparent;
-          }
-        }
       }
     }
 
