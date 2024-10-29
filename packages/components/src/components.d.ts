@@ -80,6 +80,7 @@ export namespace Components {
           * The optional URL to which the breadcrumb item will link.
          */
         "url"?: string | URL;
+    }
     interface PostAvatar {
         /**
           * Defines the users email address associated with a gravatar profile picture.
@@ -430,6 +431,7 @@ declare global {
     var HTMLPostBreadcrumbItemElement: {
         prototype: HTMLPostBreadcrumbItemElement;
         new (): HTMLPostBreadcrumbItemElement;
+    }
     interface HTMLPostAvatarElement extends Components.PostAvatar, HTMLStencilElement {
     }
     var HTMLPostAvatarElement: {
