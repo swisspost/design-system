@@ -669,6 +669,7 @@ declare namespace LocalJSX {
           * The optional URL to which the breadcrumb item will link.
          */
         "url"?: string | URL;
+    }
     interface PostAvatar {
         /**
           * Defines the users email address associated with a gravatar profile picture.
