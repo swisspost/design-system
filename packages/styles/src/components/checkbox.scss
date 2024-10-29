@@ -32,7 +32,7 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
     }
   }
 
-  & > input[type='checkbox'] {
+  > input[type='checkbox'] {
     height: tokens.get('checkbox-icon-size');
     width: tokens.get('checkbox-icon-size');
     border: tokens.get('checkbox-icon-border-width') tokens.get('checkbox-border-style-default')
@@ -43,7 +43,7 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
     color: tokens.get('checkbox-enabled-fg');
     background-color: tokens.get('checkbox-enabled-bg');
 
-    & + label {
+    + label {
       flex: 1;
       padding-block: tokens.get('checkbox-label-padding-block');
 
@@ -129,7 +129,7 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
     &.is-invalid {
       border-color: tokens.get('checkbox-enabled-stroke');
 
-      & + label {
+      + label {
         color: tokens.get('checkbox-enabled-fg');
       }
     }
