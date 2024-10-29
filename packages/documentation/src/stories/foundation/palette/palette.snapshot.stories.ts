@@ -1,7 +1,6 @@
 import type { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import meta from './palette.stories';
-import './display.styles.scss';
 
 const { id, ...metaWithoutId } = meta;
 
@@ -14,6 +13,12 @@ type Story = StoryObj;
 
 export const Palette: Story = {
   render: () => {
-    return html` <div>Hello, world!</div> `;
+    return html`${['light', 'dark'].map(
+      scheme => html`
+        <div class="palette-default p-24" data-color-scheme=${scheme}>
+          ${meta.argTypes.palette.options.map(palette => meta.render({ palette }))}
+        </div>
+      `,
+    )}`;
   },
 };
