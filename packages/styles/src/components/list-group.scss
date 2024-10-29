@@ -44,7 +44,7 @@ tokens.$default-map: components.$post-list;
       &:hover {
         color: tokens.get('list-item-hover-fg');
 
-        &::before {
+        &::after {
           border-block-end-color: tokens.get('list-item-hover-border');
         }
       }
