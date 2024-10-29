@@ -28,7 +28,7 @@ export const FormFooter: Story = {
                   ? html`<button class="btn btn-primary">
                       ${FooterArgs.primaryButtonText}<post-icon
                         aria-hidden="true"
-                        name="3020"
+                        name="${FooterArgs.primaryButtonIcon}"
                       ></post-icon>
                     </button>`
                   : null;
@@ -50,7 +50,10 @@ export const FormFooter: Story = {
                     ${args.showTertiaryButton
                       ? html`
                           <button class="btn btn-tertiary">
-                            <post-icon aria-hidden="true" name="3024"></post-icon
+                            <post-icon
+                              aria-hidden="true"
+                              name="${FooterArgs.tertiaryButtonIcon}"
+                            ></post-icon
                             >${FooterArgs.tertiaryButtonText}
                           </button>
                         `

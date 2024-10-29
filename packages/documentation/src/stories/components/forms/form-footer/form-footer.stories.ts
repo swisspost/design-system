@@ -5,10 +5,12 @@ import { MetaComponent } from '@root/types';
 export const FooterArgs = {
   showPrimaryButton: true,
   primaryButtonText: 'Send',
+  primaryButtonIcon: '3020',
   showSecondaryButton: true,
   secondaryButtonText: 'Cancel',
   showTertiaryButton: true,
   tertiaryButtonText: 'Back',
+  tertiaryButtonIcon: '3024',
 };
 
 const meta: MetaComponent = {
@@ -40,6 +42,9 @@ const meta: MetaComponent = {
       table: {
         category: 'Primary button',
       },
+      if: {
+        arg: 'showPrimaryButton',
+      },
     },
     primaryButtonIcon: {
       name: 'Primary button icon',
@@ -47,6 +52,9 @@ const meta: MetaComponent = {
       control: { type: 'text' },
       table: {
         category: 'Primary button',
+      },
+      if: {
+        arg: 'showPrimaryButton',
       },
     },
     showSecondaryButton: {
@@ -64,6 +72,9 @@ const meta: MetaComponent = {
       table: {
         category: 'Secondary button',
       },
+      if: {
+        arg: 'showSecondaryButton',
+      },
     },
     showTertiaryButton: {
       name: 'Show tertiary button',
@@ -80,6 +91,20 @@ const meta: MetaComponent = {
       table: {
         category: 'Tertiary button',
       },
+      if: {
+        arg: 'showTertiaryButton',
+      },
+    },
+    tertiaryButtonIcon: {
+      name: 'Tertiary button icon',
+      description: 'Icon to display on the tertiary button',
+      control: { type: 'text' },
+      table: {
+        category: 'Tertiary button',
+      },
+      if: {
+        arg: 'showTertiaryButton',
+      },
     },
   },
 };
@@ -91,7 +116,10 @@ type Story = StoryObj;
 export function render(args: Args) {
   const primaryButton = args.showPrimaryButton
     ? html`<button class="btn btn-primary">
-        ${args.primaryButtonText}<post-icon aria-hidden="true" name="3020"></post-icon>
+        ${args.primaryButtonText}<post-icon
+          aria-hidden="true"
+          name="${args.primaryButtonIcon}"
+        ></post-icon>
       </button>`
     : null;
   const secondaryButton = args.showSecondaryButton
@@ -105,7 +133,8 @@ export function render(args: Args) {
         : null}
       ${args.showTertiaryButton
         ? html`<button class="btn btn-tertiary">
-            <post-icon aria-hidden="true" name="3024"></post-icon>${args.tertiaryButtonText}
+            <post-icon aria-hidden="true" name="${args.tertiaryButtonIcon}"></post-icon
+            >${args.tertiaryButtonText}
           </button>`
         : null}
     </div>
