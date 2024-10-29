@@ -1,5 +1,5 @@
 .vertical-align-example {
-  :not(:has(table))& {
+  &:not(:has(table)) {
     border: 1px solid rgb(204, 204, 204);
     line-height: 3;
   }
