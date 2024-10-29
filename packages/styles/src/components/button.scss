@@ -52,12 +52,10 @@ tokens.$default-map: components.$post-button;
     $offset: tokens.get('button-focus-outline-offset'),
     $width: tokens.get('button-focus-border-width'),
     $color: tokens.get('button-focus-stroke')
-  ) {
-  }
+  );
 
   @include color-mx.on-dark-background {
-    @include utilities.focus-style($color: tokens.get('button-focus-stroke-inverted')) {
-    }
+    @include utilities.focus-style($color: tokens.get('button-focus-stroke-inverted'));
   }
 
   // Styles  to improve accessibility in high contrast mode

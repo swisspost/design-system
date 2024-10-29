@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import meta, { Default, SignalColors } from './button.stories';
+import meta, { Default } from './button.stories';
 import { html } from 'lit';
 import { bombArgs } from '@/utils';
 

@@ -7,18 +7,18 @@
 tokens.$default-map: components.$post-icon-button;
 
 @mixin icon-button($size: md) {
-  $actualSize: if(
+  $actual-size: if(
     $size == 'sm',
     'small',
     if($size == 'md', 'medium', if($size == 'lg', 'large', $size))
   );
-  min-width: tokens.get('icon-button-#{$actualSize}-outer');
-  width: tokens.get('icon-button-#{$actualSize}-outer');
-  height: tokens.get('icon-button-#{$actualSize}-outer');
+  min-width: tokens.get('icon-button-#{$actual-size}-outer');
+  width: tokens.get('icon-button-#{$actual-size}-outer');
+  height: tokens.get('icon-button-#{$actual-size}-outer');
 
   > .pi,
   > post-icon {
-    min-width: tokens.get('icon-button-#{$actualSize}-icon');
-    height: tokens.get('icon-button-#{$actualSize}-icon');
+    min-width: tokens.get('icon-button-#{$actual-size}-icon');
+    height: tokens.get('icon-button-#{$actual-size}-icon');
   }
 }
