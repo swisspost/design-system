@@ -2,7 +2,7 @@ import type { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './sizing.styles.scss';
 import { MetaExtended } from '@root/types';
-const sizeOptionsPercent = ['auto', '0', '25', '50', '75', '100'];
+export const sizeOptionsPercent = ['auto', '0', '25', '50', '75', '100'];
 
 const meta: MetaExtended = {
   render: renderSizing,
@@ -48,7 +48,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['none', ...sizeOptionsPercent],
+      options: ['none', ...sizeOptionsPercent.filter(value => value !== 'auto')],
       table: {
         category: 'Height',
       },
@@ -59,7 +59,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['none', ...sizeOptionsPercent],
+      options: ['none', ...sizeOptionsPercent.filter(value => value !== 'auto')],
       table: {
         category: 'Width',
       },
@@ -70,7 +70,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['none', ...sizeOptionsPercent],
+      options: ['none', ...sizeOptionsPercent.filter(value => value !== 'auto')],
       table: {
         category: 'Height',
       },
@@ -81,7 +81,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['none', ...sizeOptionsPercent],
+      options: ['none', ...sizeOptionsPercent.filter(value => value !== 'auto')],
       table: {
         category: 'Width',
       },
@@ -94,11 +94,12 @@ export default meta;
 type Story = StoryObj;
 
 function renderSizing(args: Args) {
-  const maximumHeight = args.maxHeight && args.maxHeight !== 'null' ? `mh-${args.maxHeight}` : '';
-  const maximumWidth = args.maxWidth && args.maxWidth !== 'null' ? `mw-${args.maxWidth}` : '';
+  const maximumHeight =
+    args.maxHeight && args.maxHeight !== 'none' ? `max-h-${args.maxHeight}` : '';
+  const maximumWidth = args.maxWidth && args.maxWidth !== 'none' ? `max-w-${args.maxWidth}` : '';
   const minimumHeight =
-    args.minHeight && args.minHeight !== 'null' ? `min-h-${args.minHeight}` : '';
-  const minimumWidth = args.minWidth && args.minWidth !== 'null' ? `min-w-${args.minWidth}` : '';
+    args.minHeight && args.minHeight !== 'none' ? `min-h-${args.minHeight}` : '';
+  const minimumWidth = args.minWidth && args.minWidth !== 'none' ? `min-w-${args.minWidth}` : '';
   const classes = `content h-${args.height} w-${args.width} ${maximumHeight} ${maximumWidth} ${minimumHeight} ${minimumWidth}`;
 
   return html`

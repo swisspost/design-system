@@ -1,6 +1,5 @@
 @use '@swisspost/design-system-styles/core' as post;
 
-
 .sizing-example,
 .sizing-vp-example,
 .sizing-auto-example {
@@ -16,7 +15,6 @@
   .content {
     background-color: post.$white;
     border: 1px solid post.$gray-40;
-
   }
 
   .info {
@@ -40,7 +38,6 @@
     display: grid;
     grid-template-columns: 100vw;
     grid-template-rows: 100vh;
-
   }
 
   .grid-item {

@@ -55,19 +55,17 @@ $utilities: (
       50: 50%,
       75: 75%,
       100: 100%,
-      auto: auto,
     ),
   ),
   'max-height': (
     property: max-height,
-    class: mh,
+    class: max-h,
     values: (
       0: 0,
       25: 25%,
       50: 50%,
       75: 75%,
       100: 100%,
-      auto: auto,
     ),
   ),
   'min-width': (
@@ -79,7 +77,6 @@ $utilities: (
       50: 50%,
       75: 75%,
       100: 100%,
-      auto: auto,
     ),
   ),
   'min-height': (
@@ -91,7 +88,6 @@ $utilities: (
       50: 50%,
       75: 75%,
       100: 100%,
-      auto: auto,
     ),
   ),
   'viewport-width': (
@@ -117,7 +113,7 @@ $utilities: (
     ),
   ),
   'min-viewport-width': (
-    property: width,
+    property: min-width,
     class: min-vw,
     values: (
       0: 0,
