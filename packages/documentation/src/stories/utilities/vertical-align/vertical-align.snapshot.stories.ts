@@ -19,8 +19,8 @@ export const VerticalAlign: Story = {
       ${meta?.argTypes?.align?.options?.map(
         align =>
           html`<div>
-            <img class="logo" alt="logo" src="/assets/images/logo-swisspost.svg" />
-            <span class="align-${align}">${align ? `align-${align}` : 'text'}</span>
+            <span>${align ? `align-${align}` : 'text'}</span>
+            <img class="logo align-${align}" alt="logo" src="/assets/images/logo-swisspost.svg" />
           </div>`,
       )}
     `;
