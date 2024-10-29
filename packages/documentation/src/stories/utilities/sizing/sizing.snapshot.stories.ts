@@ -35,7 +35,7 @@ export const Sizing: Story = {
 
     return html`
       <div class="sizing-example snapshot">
-        ${nonViewportSamples.map((sample, index) => {
+        ${nonViewportSamples.map(sample => {
           return html`
             <div class="grid-item">
               <div
@@ -47,7 +47,7 @@ export const Sizing: Story = {
       </div>
 
       <div class="sizing-vp-example snapshot">
-        ${viewportSamples.map((sample, index) => {
+        ${viewportSamples.map(sample => {
           return html`
             <div class="grid-item">
               <div

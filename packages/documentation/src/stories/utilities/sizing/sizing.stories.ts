@@ -2,7 +2,7 @@ import type { Args, StoryObj, StoryFn, StoryContext } from '@storybook/web-compo
 import { html } from 'lit';
 import './sizing.styles.scss';
 import { MetaExtended } from '@root/types';
-export const sizeOptionsPercent = ['auto', '0', '25', '50', '75', '100'];
+export const SizeOptionsPercent = ['auto', '0', '25', '50', '75', '100'];
 
 const meta: MetaExtended = {
   render: renderSizing,
@@ -26,7 +26,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: sizeOptionsPercent,
+      options: SizeOptionsPercent,
       table: {
         category: 'Height',
       },
@@ -37,7 +37,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: sizeOptionsPercent,
+      options: SizeOptionsPercent,
       table: {
         category: 'Width',
       },
@@ -48,7 +48,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['none', ...sizeOptionsPercent.filter(value => value !== 'auto')],
+      options: ['none', ...SizeOptionsPercent.filter(value => value !== 'auto')],
       table: {
         category: 'Height',
       },
@@ -59,7 +59,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['none', ...sizeOptionsPercent.filter(value => value !== 'auto')],
+      options: ['none', ...SizeOptionsPercent.filter(value => value !== 'auto')],
       table: {
         category: 'Width',
       },
@@ -70,7 +70,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['none', ...sizeOptionsPercent.filter(value => value !== 'auto')],
+      options: ['none', ...SizeOptionsPercent.filter(value => value !== 'auto')],
       table: {
         category: 'Height',
       },
@@ -81,7 +81,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['none', ...sizeOptionsPercent.filter(value => value !== 'auto')],
+      options: ['none', ...SizeOptionsPercent.filter(value => value !== 'auto')],
       table: {
         category: 'Width',
       },
