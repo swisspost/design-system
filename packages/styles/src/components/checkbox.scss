@@ -80,7 +80,7 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
     }
 
     &:indeterminate::after {
-      mask-image: $checkbox-icon-intermediate;
+      mask-image: $checkbox-icon-indeterminate;
       mask-size: tokens.get('checkbox-icon-size');
       mask-repeat: no-repeat;
       mask-position: center;
