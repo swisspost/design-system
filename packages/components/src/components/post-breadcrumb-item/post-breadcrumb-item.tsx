@@ -30,7 +30,7 @@ export class PostBreadcrumbItem {
   render() {
     let breadcrumbLink: string | undefined;
     if (this.url) {
-      breadcrumbLink = typeof this.url === 'string' ? this.url : (this.url as URL).href;
+      breadcrumbLink = typeof this.url === 'string' ? this.url : this.url.href;
     }
 
     const BreadcrumbTag = breadcrumbLink ? 'a' : 'span';
@@ -45,3 +45,5 @@ export class PostBreadcrumbItem {
     );
   }
 }
+
+
