@@ -32,7 +32,7 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
     }
   }
 
-  &-input[type='checkbox'] {
+  & > input[type='checkbox'] {
     height: tokens.get('checkbox-icon-size');
     width: tokens.get('checkbox-icon-size');
     border: tokens.get('checkbox-icon-border-width') tokens.get('checkbox-border-style-default')
