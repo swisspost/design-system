@@ -291,6 +291,12 @@ export namespace Components {
          */
         "variant": 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
+    interface PostTogglebutton {
+        /**
+          * The component state
+         */
+        "toggled": boolean;
+    }
     interface PostTooltip {
         /**
           * Wheter or not to display a little pointer arrow
@@ -511,6 +517,12 @@ declare global {
         prototype: HTMLPostTagElement;
         new (): HTMLPostTagElement;
     };
+    interface HTMLPostTogglebuttonElement extends Components.PostTogglebutton, HTMLStencilElement {
+    }
+    var HTMLPostTogglebuttonElement: {
+        prototype: HTMLPostTogglebuttonElement;
+        new (): HTMLPostTogglebuttonElement;
+    };
     interface HTMLPostTooltipElement extends Components.PostTooltip, HTMLStencilElement {
     }
     var HTMLPostTooltipElement: {
@@ -533,6 +545,7 @@ declare global {
         "post-tab-panel": HTMLPostTabPanelElement;
         "post-tabs": HTMLPostTabsElement;
         "post-tag": HTMLPostTagElement;
+        "post-togglebutton": HTMLPostTogglebuttonElement;
         "post-tooltip": HTMLPostTooltipElement;
     }
 }
@@ -778,6 +791,12 @@ declare namespace LocalJSX {
          */
         "variant"?: 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
+    interface PostTogglebutton {
+        /**
+          * The component state
+         */
+        "toggled"?: boolean;
+    }
     interface PostTooltip {
         /**
           * Wheter or not to display a little pointer arrow
@@ -808,6 +827,7 @@ declare namespace LocalJSX {
         "post-tab-panel": PostTabPanel;
         "post-tabs": PostTabs;
         "post-tag": PostTag;
+        "post-togglebutton": PostTogglebutton;
         "post-tooltip": PostTooltip;
     }
 }
@@ -836,6 +856,7 @@ declare module "@stencil/core" {
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
             "post-tag": LocalJSX.PostTag & JSXBase.HTMLAttributes<HTMLPostTagElement>;
+            "post-togglebutton": LocalJSX.PostTogglebutton & JSXBase.HTMLAttributes<HTMLPostTogglebuttonElement>;
             "post-tooltip": LocalJSX.PostTooltip & JSXBase.HTMLAttributes<HTMLPostTooltipElement>;
         }
     }
