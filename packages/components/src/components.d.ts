@@ -75,12 +75,6 @@ export namespace Components {
          */
         "type": AlertType;
     }
-    interface PostBreadcrumbItem {
-        /**
-          * The optional URL to which the breadcrumb item will link.
-         */
-        "url"?: string | URL;
-    }
     interface PostAvatar {
         /**
           * Defines the users email address associated with a gravatar profile picture.
@@ -98,6 +92,12 @@ export namespace Components {
           * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
          */
         "userid"?: string;
+    }
+    interface PostBreadcrumbItem {
+        /**
+          * The optional URL to which the breadcrumb item will link.
+         */
+        "url"?: string | URL;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -426,17 +426,17 @@ declare global {
         prototype: HTMLPostAlertElement;
         new (): HTMLPostAlertElement;
     };
-    interface HTMLPostBreadcrumbItemElement extends Components.PostBreadcrumbItem, HTMLStencilElement {
-    }
-    var HTMLPostBreadcrumbItemElement: {
-        prototype: HTMLPostBreadcrumbItemElement;
-        new (): HTMLPostBreadcrumbItemElement;
-    }
     interface HTMLPostAvatarElement extends Components.PostAvatar, HTMLStencilElement {
     }
     var HTMLPostAvatarElement: {
         prototype: HTMLPostAvatarElement;
         new (): HTMLPostAvatarElement;
+    };
+    interface HTMLPostBreadcrumbItemElement extends Components.PostBreadcrumbItem, HTMLStencilElement {
+    }
+    var HTMLPostBreadcrumbItemElement: {
+        prototype: HTMLPostBreadcrumbItemElement;
+        new (): HTMLPostBreadcrumbItemElement;
     };
     interface HTMLPostCardControlElementEventMap {
         "postInput": { state: boolean; value: string };
@@ -600,8 +600,8 @@ declare global {
         "post-accordion": HTMLPostAccordionElement;
         "post-accordion-item": HTMLPostAccordionItemElement;
         "post-alert": HTMLPostAlertElement;
-        "post-breadcrumb-item": HTMLPostBreadcrumbItemElement;
         "post-avatar": HTMLPostAvatarElement;
+        "post-breadcrumb-item": HTMLPostBreadcrumbItemElement;
         "post-card-control": HTMLPostCardControlElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
@@ -666,12 +666,6 @@ declare namespace LocalJSX {
          */
         "type"?: AlertType;
     }
-    interface PostBreadcrumbItem {
-        /**
-          * The optional URL to which the breadcrumb item will link.
-         */
-        "url"?: string | URL;
-    }
     interface PostAvatar {
         /**
           * Defines the users email address associated with a gravatar profile picture.
@@ -689,6 +683,12 @@ declare namespace LocalJSX {
           * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
          */
         "userid"?: string;
+    }
+    interface PostBreadcrumbItem {
+        /**
+          * The optional URL to which the breadcrumb item will link.
+         */
+        "url"?: string | URL;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -924,8 +924,8 @@ declare namespace LocalJSX {
         "post-accordion": PostAccordion;
         "post-accordion-item": PostAccordionItem;
         "post-alert": PostAlert;
-        "post-breadcrumb-item": PostBreadcrumbItem;
         "post-avatar": PostAvatar;
+        "post-breadcrumb-item": PostBreadcrumbItem;
         "post-card-control": PostCardControl;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
@@ -949,8 +949,8 @@ declare module "@stencil/core" {
             "post-accordion": LocalJSX.PostAccordion & JSXBase.HTMLAttributes<HTMLPostAccordionElement>;
             "post-accordion-item": LocalJSX.PostAccordionItem & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
             "post-alert": LocalJSX.PostAlert & JSXBase.HTMLAttributes<HTMLPostAlertElement>;
-            "post-breadcrumb-item": LocalJSX.PostBreadcrumbItem & JSXBase.HTMLAttributes<HTMLPostBreadcrumbItemElement>;
             "post-avatar": LocalJSX.PostAvatar & JSXBase.HTMLAttributes<HTMLPostAvatarElement>;
+            "post-breadcrumb-item": LocalJSX.PostBreadcrumbItem & JSXBase.HTMLAttributes<HTMLPostBreadcrumbItemElement>;
             /**
              * @class PostCardControl - representing a stencil component
              */
