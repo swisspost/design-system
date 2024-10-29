@@ -1,5 +1,5 @@
 import type { Args, StoryObj, StoryFn, StoryContext } from '@storybook/web-components';
-import { html, nothing } from 'lit';
+import { html } from 'lit';
 import './sizing.styles.scss';
 import { MetaExtended } from '@root/types';
 export const sizeOptionsPercent = ['auto', '0', '25', '50', '75', '100'];
