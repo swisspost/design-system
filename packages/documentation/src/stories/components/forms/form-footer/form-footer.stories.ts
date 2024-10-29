@@ -25,7 +25,9 @@ const meta: MetaComponent = {
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=1498-28215',
     },
   },
-  args: FooterArgs,
+  args: {
+    ...FooterArgs,
+  },
   argTypes: {
     showPrimaryButton: {
       name: 'Show primary button',
