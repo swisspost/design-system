@@ -4,11 +4,9 @@
 @use './jest';
 
 .test {
-  background-image: url(post.get-colored-svg-url('2063', map.get(post.$accent-colors, 'coral')));
   background-image: url(post.get-colored-svg-url('2063', #ff0080));
   background-image: url(post.get-colored-svg-url('2063', post.$white));
 
-  @include post.pi(2063, map.get(post.$accent-colors, 'coral'));
   @include post.pi(2063, #ff0080);
   @include post.pi(2063, post.$white);
   @include post.pi(2063, midnightblue);
