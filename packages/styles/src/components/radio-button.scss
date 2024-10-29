@@ -9,8 +9,7 @@
 
 tokens.$default-map: components.$post-radio-button;
 
-.form-check,
-.radio-button {
+.form-check {
   &:has(.form-check-input[type='radio']) {
     margin-bottom: tokens.get('radio-button-gap-block-group');
 
@@ -33,7 +32,7 @@ tokens.$default-map: components.$post-radio-button;
     }
   }
 
-  &-input[type='radio'] {
+  > input[type='radio'] {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,7 +60,7 @@ tokens.$default-map: components.$post-radio-button;
     color: tokens.get('radio-button-enabled-fg');
     background-color: tokens.get('radio-button-enabled-bg');
 
-    + .form-check-label {
+    + label {
       flex: 1;
 
       padding-block: tokens.get('radio-button-label-padding-block');
@@ -75,7 +74,7 @@ tokens.$default-map: components.$post-radio-button;
     }
 
     &:hover:not([disabled]),
-    &:hover:not([disabled]) ~ .form-check-label {
+    &:hover:not([disabled]) + label {
       color: tokens.get('radio-button-hover-fg');
       background-color: tokens.get('radio-button-hover-bg');
       border-color: tokens.get('radio-button-hover-stroke');
@@ -125,7 +124,7 @@ tokens.$default-map: components.$post-radio-button;
     }
 
     &[disabled],
-    &[disabled] ~ .form-check-label {
+    &[disabled] + label {
       color: tokens.get('radio-button-disabled-fg');
       background-color: tokens.get('radio-button-disabled-bg');
 
@@ -137,7 +136,7 @@ tokens.$default-map: components.$post-radio-button;
     &.is-invalid {
       border-color: tokens.get('radio-button-enabled-stroke');
 
-      + .form-check-label {
+      + label {
         color: tokens.get('radio-button-enabled-fg');
       }
     }

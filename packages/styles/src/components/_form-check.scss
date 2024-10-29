@@ -24,8 +24,8 @@
     }
   }
 
-  &-input,
-  &-label {
+  > input,
+  > label {
     transition: color #{animation.$transition-base-timing};
 
     @include utility-mx.high-contrast-mode {
@@ -33,7 +33,7 @@
     }
   }
 
-  &-input {
+  > input {
     &:not([disabled]),
     &:not([disabled]) ~ .form-check-label {
       cursor: pointer;
