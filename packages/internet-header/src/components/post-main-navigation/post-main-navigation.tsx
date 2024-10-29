@@ -143,7 +143,12 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
       this.mouseLeaveTimer = null;
     }
 
-    if (window.innerWidth >= 1024 && level.flyout.length > 0 && this.activeFlyout !== level.id) {
+    if (
+      window.innerWidth >= 1024 &&
+      level.flyout &&
+      level.flyout.length > 0 &&
+      this.activeFlyout !== level.id
+    ) {
       // Delay opening the flyout for a moment to give users a chance to move the mouse over the navigation without triggering the flyout
       this.mouseEnterTimer = window.setTimeout(() => {
         this.mouseEnterTimer = null;
@@ -163,7 +168,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
       return;
     }
 
-    if (window.innerWidth >= 1024 && level.flyout.length > 0) {
+    if (window.innerWidth >= 1024 && level.flyout && level.flyout.length > 0) {
       // Allow the pointer to shortly leave the flyout without closing it. This
       // allows for user mistakes and makes the experience less nervous
       this.mouseLeaveTimer = window.setTimeout(() => {
@@ -298,7 +303,8 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
               </a>
             </h2>
             <div class="flyout-row container">
-              {levelOne.flyout.map((flyout, i) => (
+              {/* Ensure flyout exists before mapping over it */}
+              {levelOne.flyout?.map((flyout, i) => (
                 <div key={flyout.title} class="flyout-column">
                   {flyout.title !== undefined ? (
                     <h3 id={`${levelOne.id}-column-${i}`}>{flyout.title}</h3>
