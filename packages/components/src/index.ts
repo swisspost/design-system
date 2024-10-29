@@ -9,6 +9,7 @@ export { PostCardControl } from './components/post-card-control/post-card-contro
 export { PostCollapsible } from './components/post-collapsible/post-collapsible';
 export { PostCollapsibleTrigger } from './components/post-collapsible-trigger/post-collapsible-trigger';
 export { PostIcon } from './components/post-icon/post-icon';
+export { PostLanguageOption } from './components/post-language-option/post-language-option';
 export { PostLogo } from './components/post-logo/post-logo';
 export { PostPopover } from './components/post-popover/post-popover';
 export { PostPopovercontainer } from './components/post-popovercontainer/post-popovercontainer';
