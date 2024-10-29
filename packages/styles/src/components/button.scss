@@ -23,8 +23,6 @@
 tokens.$default-map: components.$post-button;
 
 .btn {
-  @include button-mx.button-size();
-
   // Resets
   display: inline-flex;
   position: relative;
@@ -43,6 +41,8 @@ tokens.$default-map: components.$post-button;
   font-weight: tokens.get('button-label-font-weight');
   text-decoration: none !important; // For <a> tags, !important for hover
   white-space: nowrap; // Long content should never break in buttons
+
+  @include button-mx.button-size();
 
   &:disabled {
     border-style: tokens.get('button-border-style-disabled');
@@ -86,6 +86,11 @@ tokens.$default-map: components.$post-button;
 @each $variant in button.$btn-variants {
   .btn-#{$variant} {
     $color: if($variant == 'default', 'secondary', if($variant == 'link', 'tertiary', $variant));
+
+    @if ($variant != 'link' and $variant != 'tertiary') {
+      box-shadow: tokens.get('button-elevation');
+    }
+
     @include button-mx.button-variant-def('enabled', $color);
 
     &:disabled {
@@ -94,10 +99,6 @@ tokens.$default-map: components.$post-button;
 
     @include utilities.not-disabled-hover() {
       @include button-mx.button-variant-def('hover', $color);
-    }
-
-    @if ($variant != 'link' and $variant != 'tertiary') {
-      box-shadow: tokens.get('button-elevation');
     }
 
     @include color-mx.on-dark-background {

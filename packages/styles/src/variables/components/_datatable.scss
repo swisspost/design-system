@@ -24,7 +24,7 @@ $datatable-flush-border-color: color.$gray-10;
 $datatable-flush-border: $datatable-flush-border-width solid $datatable-flush-border-color;
 
 $datatable-footer-padding-x: spacing.$size-regular;
-$datatable-footer-padding-y: button.$btn-focus-width;
+$datatable-footer-padding-y: button.$input-btn-focus-width;
 $datatable-footer-padding: $datatable-footer-padding-y $datatable-footer-padding-x;
 
 $datatable-footer-separator-width: spacing.$size-line;
@@ -36,7 +36,7 @@ $datatable-row-count-input-width: spacing.$size-bigger-giant;
 $datatable-button-margin: button.$btn-focus-width;
 $datatable-button-width: calc(100% - 2 * #{$datatable-button-margin});
 $datatable-button-height: $datatable-button-width;
-$datatable-button-focus-shadow: button.$input-btn-focus-box-shadow;
+$datatable-button-focus-shadow: button.$btn-focus-box-shadow;
 
 $datatable-progressbar-height: spacing.$size-micro;
 $datatable-progressbar-backgroundcolor: color.$gray-10;

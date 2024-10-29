@@ -13,48 +13,19 @@
 
 tokens.$default-map: components.$post-button;
 
-// Buttons + Forms
-//
-// Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
-$input-btn-border-width: commons.$border-thick !default;
-$input-btn-border-width-rem: sizing.px-to-rem($input-btn-border-width);
-
-$input-btn-padding-y: spacing.$size-regular - $input-btn-border-width-rem !default;
-$input-btn-padding-x: spacing.$size-small-large - $input-btn-border-width-rem !default;
-$input-btn-line-height: type.$line-height-copy !default;
-
-$input-btn-padding-y-sm: spacing.$size-micro !default;
-$input-btn-padding-x-sm: spacing.$size-regular !default;
-$input-btn-line-height-sm: type.$line-height-copy !default;
-
-$input-btn-padding-y-rg: spacing.$size-small-regular - $input-btn-border-width-rem !default;
-$input-btn-padding-x-rg: spacing.$size-regular - $input-btn-border-width-rem !default;
-$input-btn-line-height-rg: type.$line-height-copy !default;
-
-$input-btn-padding-y-lg: spacing.$size-small-regular !default;
-$input-btn-padding-x-lg: spacing.$size-regular !default;
-$input-btn-line-height-lg: type.$line-height-copy !default;
-
-$input-btn-focus-width: 0.125rem !default; // 2px
-$input-btn-focus-color: rgba(color.$gray-80, 0.25) !default;
-$input-btn-focus-box-shadow: 0 0 0 $input-btn-focus-width $input-btn-focus-color !default;
-
 // Buttons
-
 // sm
-$btn-padding-x-sm: sizing.px-to-rem(12) !default;
 $btn-animation-distance-sm: spacing.$size-mini !default;
 // Design System only
 $btn-font-size-sm: type.$font-size-12 !default;
 
 // md
-$btn-padding-x-md: sizing.px-to-rem(16) !default;
+$btn-padding-x-md: tokens.get('button-medium-padding-inline');
 $btn-animation-distance-md: spacing.$size-mini !default;
 // Design System only
 $btn-font-size-md: type.$font-size-16 !default;
 
 // lg
-$btn-padding-x-lg: sizing.px-to-rem(18) !default;
 $btn-animation-distance-lg: spacing.$size-mini !default;
 // Design System only
 $btn-font-size-lg: type.$font-size-18 !default;
@@ -86,10 +57,11 @@ $btn-font-size-map: (
   'lg': $btn-font-size-lg,
 );
 
+$input-btn-border-width: commons.$border-thick !default;
 $btn-border-width: $input-btn-border-width !default;
 
 // Allows for customizing button radius independently from global border radius
-$btn-border-radius: commons.$border-radius !default;
+$btn-border-radius: tokens.get('button-border-radius-round') !default;
 
 $btn-transition-duration: animation.$transition-time-default;
 $btn-transition: (
@@ -107,6 +79,7 @@ $btn-gap-x-map: (
   'md': tokens.get('button-medium-gap-inline'),
   'lg': tokens.get('button-large-gap-inline'),
 );
+
 $btn-icon-size-map: (
   'sm': tokens.get('button-small-icon'),
   'md': tokens.get('button-medium-icon'),
@@ -114,38 +87,32 @@ $btn-icon-size-map: (
 );
 
 // Old variables / Used elsewhere than on the v2 button component
-$btn-animation-distance-factor: 0.5 !default;
-$btn-padding-y-sm: spacing.$size-mini !default;
-$btn-gap-x-sm: sizing.px-to-rem(6) !default;
+$input-btn-border-width-rem: sizing.px-to-rem($input-btn-border-width);
+
+$input-btn-padding-y: spacing.$size-regular - $input-btn-border-width-rem !default;
+$input-btn-padding-x: spacing.$size-small-large - $input-btn-border-width-rem !default;
+$input-btn-line-height: type.$line-height-copy !default;
+
+$input-btn-padding-y-sm: spacing.$size-micro !default;
+$input-btn-padding-x-sm: spacing.$size-regular !default;
+
+$input-btn-padding-y-rg: spacing.$size-small-regular - $input-btn-border-width-rem !default;
+$input-btn-padding-x-rg: spacing.$size-regular - $input-btn-border-width-rem !default;
+
+$input-btn-padding-y-lg: spacing.$size-small-regular !default;
+$input-btn-padding-x-lg: spacing.$size-regular !default;
+
+$input-btn-focus-width: 0.125rem !default; // 2px
+$input-btn-focus-color: rgba(color.$gray-80, 0.25) !default;
+$input-btn-focus-box-shadow: 0 0 0 $input-btn-focus-width $input-btn-focus-color !default;
+
 $btn-height-sm: 2rem;
 $btn-icon-size-sm: spacing.$size-regular !default;
-$btn-padding-y-rg: spacing.$size-small-regular !default;
-$btn-padding-x-rg: sizing.px-to-rem(14) !default;
-$btn-gap-x-rg: sizing.px-to-rem(8) !default;
-$btn-animation-distance-rg: spacing.$size-mini !default;
-$btn-height-rg: 2.5rem;
 $btn-font-size-rg: type.$font-size-14 !default;
 $btn-icon-size-rg: 1.125rem !default;
-$btn-padding-y-md: spacing.$size-regular !default;
-$btn-gap-x-md: sizing.px-to-rem(10) !default;
 $btn-height-md: 3rem;
 $btn-icon-size-md: spacing.$size-small-large !default;
-$btn-padding-y-lg: spacing.$size-small-large !default;
-$btn-gap-x-lg: sizing.px-to-rem(12) !default;
-$btn-height-lg: 3.5rem;
 $btn-icon-size-lg: 1.375rem !default;
-$btn-padding-y-map: (
-  'sm': $btn-padding-y-sm,
-  'rg': $btn-padding-y-rg,
-  'md': $btn-padding-y-md,
-  'lg': $btn-padding-y-lg,
-);
-$btn-gap-x-map: (
-  'sm': $btn-gap-x-sm,
-  'rg': $btn-gap-x-rg,
-  'md': $btn-gap-x-md,
-  'lg': $btn-gap-x-lg,
-);
 $old-btn-icon-size-map: (
   'sm': $btn-icon-size-sm,
   'rg': $btn-icon-size-rg,
@@ -153,14 +120,6 @@ $old-btn-icon-size-map: (
   'lg': $btn-icon-size-lg,
 );
 
-$btn-font-weight: type.$font-weight-normal !default;
-$btn-box-shadow: none !default;
 $btn-focus-width: $input-btn-focus-width !default;
 $btn-focus-box-shadow: $input-btn-focus-box-shadow !default;
 $btn-disabled-opacity: 0.4 !default;
-$btn-disabled-background: rgba(color.$black, 0.4) !default;
-$btn-active-box-shadow: none !default;
-
-$btn-link-disabled-color: color.$gray-20 !default;
-
-$btn-block-spacing-y: 0.5rem !default;
