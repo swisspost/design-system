@@ -16,7 +16,7 @@ export const ListGroup: Story = {
     return html`
       ${['white', 'dark'].map(
         bg => html`
-          <div class=${'list-group-example bg-' + bg}>
+          <div class=${'list-group-example bg-' + bg} data-color-scheme=${bg}>
             ${renderListGroup({ listType: 'link' })} ${renderListGroup({ listType: 'document' })}
             ${renderListGroup({ listType: 'switch' })}
           </div>
