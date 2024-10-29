@@ -26,6 +26,15 @@ $utilities: (
     property: vertical-align,
     class: align,
     values: baseline top middle bottom text-bottom text-top,
+),
+  'float': (
+    responsive: true,
+    property: float,
+    values: (
+      start: inline-start,
+      end: inline-end,
+      none: none,
+    ),
   ),
   'opacity': (
     property: opacity,
