@@ -6,6 +6,7 @@
 @use '@swisspost/design-system-styles/mixins/color' as color-mx;
 @use '@swisspost/design-system-styles/mixins/elevation' as elevation-mx;
 @use '@swisspost/design-system-styles/functions/color' as color-fn;
+@use '@swisspost/design-system-styles/mixins/utilities';
 
 // Puts polyfilled styles in a separate layer so they are easy to override
 // Can be removed as soon as popover is supported by all major browsers
@@ -27,6 +28,10 @@
   width: max-content;
   margin: 0;
   padding: 0;
+
+  &[tooltip] {
+    @include utilities.visuallyhidden();
+  }
 
   box-sizing: border-box;
   color: var(--post-contrast-color);
