@@ -95,7 +95,7 @@ function render(args: Args) {
       </button>
     </div>
     <post-popover
-      class="hydrated bg-${args.backgroundColor}"
+      class="bg-${args.backgroundColor}"
       id="${args.id}"
       placement="${args.placement}"
       ?arrow="${args.arrow}"

@@ -232,7 +232,7 @@ export async function createOutputFiles() {
             },
             files: [
               {
-                destination: `${name}.scss`.toLowerCase(),
+                destination: `_${name}.scss`.toLowerCase(),
                 format: 'swisspost/scss-format',
                 filter: 'swisspost/tokenset-filter',
                 options: {
@@ -268,7 +268,7 @@ export async function createOutputFiles() {
       .map(([name, { layer }]) => `@${layer === 'core' ? 'use' : 'forward'} './${name}';`)
       .join('\n');
 
-    await promises.writeFile(`${OUTPUT_PATH}/index.scss`, `${getFileHeader()}${imports}\n`);
+    await promises.writeFile(`${OUTPUT_PATH}/_index.scss`, `${getFileHeader()}${imports}\n`);
   }
 
   /**
@@ -338,8 +338,8 @@ export function getSet(options, dictionary, currentSetName) {
 
   if (meta.layer === 'semantic') {
     const baseSetName = meta.setNames[0];
-    const overrideSetNameIndex = meta.setNames.findIndex(setName => setName === currentSetName) + 1;
-    const overrideSetNames = meta.setNames.slice(1, overrideSetNameIndex);
+    const overrideSetNameIndex = meta.setNames.findIndex(setName => setName === currentSetName);
+    const overrideSetNames = meta.setNames.slice(1, overrideSetNameIndex + 1);
 
     tokenSet = dictionary.allTokens
       .filter(token => token.path[0] === baseSetName)
@@ -350,13 +350,9 @@ export function getSet(options, dictionary, currentSetName) {
         .filter(token => token.path[0] === overrideSetName)
         .map(normalizeToken);
 
-      tokenSet.map(token => {
-        const overrideToken = overrideTokenSet.find(
-          overrideToken => overrideToken.name === token.name,
-        );
-
-        if (overrideToken) token = overrideToken;
-      });
+      tokenSet = tokenSet.map(
+        token => overrideTokenSet.find(overrideToken => overrideToken.name === token.name) ?? token,
+      );
     });
   } else {
     tokenSet = dictionary.allTokens
