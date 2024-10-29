@@ -129,7 +129,7 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
     &.is-invalid {
       border-color: tokens.get('checkbox-enabled-stroke');
 
-      + .form-check-label {
+      & + label {
         color: tokens.get('checkbox-enabled-fg');
       }
     }
