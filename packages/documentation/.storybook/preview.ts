@@ -52,6 +52,7 @@ const preview: Preview = {
             ['Breakpoints', 'Containers', 'Grid', 'Columns', 'TODOS'],
             'Elevation',
             'Accessibility',
+            ['Regulation'],
           ],
 
           // Category - Components
