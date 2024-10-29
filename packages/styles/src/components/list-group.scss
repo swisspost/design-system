@@ -72,6 +72,7 @@ tokens.$default-map: components.$post-list;
 
     .list-group-switch {
       justify-content: space-between;
+      margin-bottom: 0;
 
       &:hover .form-check-label {
         color: tokens.get('list-item-hover-fg');
