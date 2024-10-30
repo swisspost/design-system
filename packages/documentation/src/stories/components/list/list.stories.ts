@@ -33,6 +33,29 @@ export const UnorderedList: Story = {
   `,
 };
 
+export const CheckList: Story = {
+  render: () => html`
+    <ul class="list-checks">
+      <li>This is a checks list.</li>
+      <li>It shows a check icon in front of each item.</li>
+      <li>
+        Nested list:
+        <ul class="list-checks">
+          <li>This is a nested list item.</li>
+          <li>And another one.</li>
+          <li>And one more.</li>
+        </ul>
+      </li>
+      <li>
+        This item belongs to the parent list. Lorem Ipsum is simply dummy text of the printing and
+        typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+        1500s, when an unknown printer took a galley of type and scrambled it to make a type
+        specimen book
+      </li>
+    </ul>
+  `,
+};
+
 export const UnstyledList: Story = {
   render: () => html`
     <ul class="list-unstyled">
@@ -80,29 +103,6 @@ export const OrderedList: Story = {
       </li>
       <li>This item belongs to the parent list.</li>
     </ol>
-  `,
-};
-
-export const CheckList: Story = {
-  render: () => html`
-    <ul class="list-checks">
-      <li>This is a check list item.</li>
-      <li>And another one.</li>
-      <li>
-        Nested list:
-        <ul class="list-checks">
-          <li>This is a check list item.</li>
-          <li>And another one.</li>
-          <li>And one more.</li>
-        </ul>
-      </li>
-      <li>
-        And another long text to check how it look like. Lorem Ipsum is simply dummy text of the
-        printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-        ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-        a type specimen book
-      </li>
-    </ul>
   `,
 };
 

@@ -17,6 +17,13 @@ It is created using a `<ul>` tag and each list item is preceded by a bullet (sma
 
 <Canvas of={ListStories.UnorderedList} sourceState="shown" />
 
+### Checks
+
+By default, unordered lists show a bullet in front of each item.
+Use the `.list-check` class to replace the bullet with check icons.
+
+<Canvas of={ListStories.CheckList} sourceState="shown" />
+
 ### Unstyled
 
 Remove the default list-style and left margin on list items (immediate children only).
@@ -39,13 +46,6 @@ It is created using a `<ol>` tag and list items are preceded by ascending number
 <strong>All of the above utility classes also apply to ordered lists.</strong>
 
 <Canvas of={ListStories.OrderedList} sourceState="shown" />
-
-## Check List
-
-An unordered list groups related items in no specific order.
-It is created using a `<ul>` tag with `list-checks` class. Each list item is preceded with check icon.
-
-<Canvas of={ListStories.CheckList} sourceState="shown" />
 
 ## Description List
 

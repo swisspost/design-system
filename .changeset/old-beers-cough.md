@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': minor
 ---
 
-Added Check List, which is an unordered list. Each list item is preceded with check icon.
+Added the checks list component, an unordered list where each item is preceded by a check icon.
