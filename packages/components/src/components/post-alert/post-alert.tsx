@@ -115,7 +115,7 @@ export class PostAlert {
     this.hasHeading = this.host.querySelectorAll('[slot=heading]').length > 0;
     this.hasActions = this.host.querySelectorAll('[slot=actions]').length > 0;
 
-    this.classes = `alert alert-${this.type ?? 'primary'}`;
+    this.classes = `alert ${this.type ? 'alert-' + this.type : ''}`;
     if (this.dismissible) this.classes += ' alert-dismissible';
     if (this.hasActions) this.classes += ' alert-action';
     if (this.fixed) this.classes += ' alert-fixed-bottom';
@@ -138,9 +138,9 @@ export class PostAlert {
   render() {
     const defaultAlertContent = [
       this.hasHeading && (
-        <div key={`${this.alertId}-heading`} class="alert-heading">
+        <h4 key={`${this.alertId}-heading`} class="alert-heading">
           <slot name="heading" />
-        </div>
+        </h4>
       ),
       <slot key={`${this.alertId}-message`} />,
     ];

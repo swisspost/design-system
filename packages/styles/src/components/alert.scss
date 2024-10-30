@@ -11,41 +11,51 @@
 @use './../variables/grid';
 @use './../variables/components/close';
 @use './../variables/components/notification';
+@use '../tokens/components';
+@use '../functions/tokens';
 
+tokens.$default-map: components.$post-banner;
+
+.banner,
 .alert {
+  $default-variant: nth(notification.$notification-variants, 1);
+
+  border-style: tokens.get('banner-border-style');
+  border-width: tokens.get('banner-border-width');
   @include notification-mx.notification-size(alert);
+
+  // Set the neutral banner as the default color
+  @include notification-mx.notification-variant(
+    nth($default-variant, 2),
+    nth($default-variant, 3),
+    nth($default-variant, 4),
+    nth($default-variant, 5),
+    nth($default-variant, 6)
+  );
 
   &:not(.alert-action) {
     @include notification-mx.notification-body(alert);
   }
 }
 
-.alert-heading {
-  @include notification-mx.notification-heading(alert);
-}
-
 .alert-dismissible {
   @include notification-mx.notification-dismissible(alert);
 }
 
-.alert-action {
+.alert-buttons {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: notification.$notification-gap;
+  justify-content: flex-end;
+  margin-block-start: tokens.get('banner-actions-margin-top');
+  gap: tokens.get('banner-actions-gap');
+}
 
+.alert-action {
   > .alert-content {
-    flex: 1 1 auto;
     @include notification-mx.notification-body(alert);
   }
 
-  > .alert-buttons {
-    flex: 0 0 auto;
-    display: flex;
-    align-items: center;
-    gap: notification.$notification-buttons-gap;
-  }
-
+  //TODO: Alert dismissible? Check que ça fonctionne
   @include media-breakpoint-up(md) {
     &.alert-dismissible > .btn-close {
       inset-block-start: calc(50% - #{0.5 * close.$close-size});
@@ -55,13 +65,10 @@
   @include media-breakpoint-down(md) {
     flex-direction: column;
     align-items: stretch;
-    padding-inline: map.get(notification.$notification-padding-x-map, alert);
 
     > .alert-content {
-      $icon-size: map.get(notification.$notification-icon-size-map, alert);
-
-      padding-inline-start: notification.$notification-gap + $icon-size;
-      padding-inline-end: notification.$notification-gap + close.$close-size;
+      padding-inline-start: tokens.get('banner-gap') + tokens.get('banner-icon-size');
+      padding-inline-end: tokens.get('banner-gap') + close.$close-size;
     }
 
     &.no-icon > .alert-content {
@@ -95,19 +102,20 @@
   z-index: commons.$zindex-fixed;
 
   @include media-breakpoint-up(xxl) {
+    //TODO: Tokens?
     $container-max-width: map.get(breakpoints.$grid-breakpoints, 'xxl') - 1;
     $container-padding-x: map.get(grid.$grid-container-padding, 'xxl');
-    $alert-padding-x: map.get(notification.$notification-padding-x-map, alert);
-    $alert-icon-size: map.get(notification.$notification-icon-size-map, alert);
+    $alert-padding-x: tokens.get('banner-padding');
+    $alert-icon-size: tokens.get('banner-icon-size');
     $fixed-alert-padding-x: '(100% - #{$container-max-width}) / 2 + #{$container-padding-x} + #{$alert-padding-x}';
 
     padding-inline-end: calc(#{$fixed-alert-padding-x});
     padding-inline-start: calc(
-      #{$fixed-alert-padding-x} + #{$alert-icon-size} + #{notification.$notification-gap}
+      #{$fixed-alert-padding-x} + #{$alert-icon-size} + #{tokens.get('banner-gap')}
     );
 
     // for alerts with .pi-* icons (deprecated)
-    background-position-x: calc(#{$fixed-alert-padding-x} + #{0.5 * $alert-icon-size});
+    background-position-x: calc(#{$fixed-alert-padding-x} + (0.5 * #{$alert-icon-size}));
 
     // for alerts with mask-image icons
     &::before {
@@ -120,7 +128,7 @@
 
     &.alert-dismissible {
       padding-inline-end: calc(
-        #{$fixed-alert-padding-x} + #{notification.$notification-gap} + #{close.$close-size}
+        #{$fixed-alert-padding-x} + #{tokens.get('banner-gap')} + #{close.$close-size}
       );
 
       > .btn-close {
@@ -130,8 +138,16 @@
   }
 }
 
-@each $name, $color, $icon in notification.$notification-variants {
+@each $name, $color, $icon, $border-color, $icon-color,
+  $scheme in notification.$notification-variants
+{
   .alert-#{$name} {
-    @include notification-mx.notification-variant($color, $icon);
+    @include notification-mx.notification-variant(
+      $color,
+      $icon,
+      $border-color,
+      $icon-color,
+      $scheme
+    );
   }
 }

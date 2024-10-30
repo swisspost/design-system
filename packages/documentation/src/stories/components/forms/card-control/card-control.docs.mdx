@@ -27,7 +27,10 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 
 <PostAlert type="info">
   <p slot="heading">There are various methods to integrate this component into your project.</p>
-  <p>We advise opting for the "Standard HTML" approach for when you need full access to the input field and using the "Web Component" method in every other case.</p>
+  <p>
+    We advise opting for the "Standard HTML" approach for when you need full access to the input
+    field and using the "Web Component" method in every other case.
+  </p>
 </PostAlert>
 
 <PostTabs>
@@ -84,6 +87,7 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
     <Source code={firefoxFallbackSnippet} dark={true} language="typescript" />
 
     <StylesPackageImport components={['choice-control-card']} />
+
   </PostTabPanel>
 
   <PostTabHeader panel="webcomponent">Webcomponent</PostTabHeader>
@@ -94,7 +98,11 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
     ## Installation
 
 The `<post-card-control>` element is part of the `@swisspost/design-system-components` package. For more information, read the
-<a href="/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs">getting started with components guide</a>.
+
+<a href="/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs">
+  getting started with components guide
+</a>
+.
 
     ## Examples
 
@@ -120,7 +128,7 @@ The `<post-card-control>` element is part of the `@swisspost/design-system-compo
     If you need to add other content to the component, you can use the default slot to do so.
 
     <div className="alert alert-md alert-warning">
-      <p className="alert-heading">Even if it is generally possible, we do not recommend using interactive elements in this slot because the background of the card control is clickable.</p>
+      <h4 className="alert-heading">Even if it is generally possible, we do not recommend using interactive elements in this slot because the background of the card control is clickable.</h4>
       <p>This can lead to confusion when the hit box of nested interactive controls is not clearly separated from the background, is invalid HTML and click events bubbling up to the card control will unexpectedly toggle it if they're not captured. More info: <a href="https://accessibilityinsights.io/info-examples/web/nested-interactive/">https://accessibilityinsights.io/info-examples/web/nested-interactive/</a></p>
     </div>
 
@@ -161,5 +169,6 @@ The `<post-card-control>` element is part of the `@swisspost/design-system-compo
       code={SampleCardControlMethods}
       language="typescript"
     />
+
   </PostTabPanel>
 </PostTabs>

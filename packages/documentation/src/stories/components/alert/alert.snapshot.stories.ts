@@ -21,13 +21,18 @@ export const Alert: Story = {
     <div class="d-flex gap-16 flex-wrap">
       ${['bg-white', 'bg-dark'].map(
         bg => html`
-          <div class="${bg + ' d-flex flex-column gap-16 flex-wrap p-16'}">
+          <div class="${bg + ' d-flex flex-column gap-16 flex-wrap p-16'}" data-color-scheme=${bg}>
             ${bombArgs({
               type: alertMeta?.argTypes?.type?.options,
               icon: ['no-icon', undefined, '1001'],
               action: [true, false],
             })
-              .map(args => ({ ...args, show: true } as Args))
+              .map(args => {
+                if (args.icon === 'no-icon') {
+                  args.noIcon = true;
+                }
+                return { ...args, show: true } as Args;
+              })
               .map(
                 args => html`
                   <div class="${getAlertClasses(args)}" role="alert">
@@ -38,7 +43,7 @@ export const Alert: Story = {
                           </button>
                         `
                       : null}
-                    ${args.icon && args.icon !== 'no-icon'
+                    ${args.icon && !args.noIcon
                       ? html`
                           <post-icon
                             aria-hidden="true"

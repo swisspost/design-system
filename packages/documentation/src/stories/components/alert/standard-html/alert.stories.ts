@@ -7,7 +7,7 @@ import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '105e67d8-31e9-4d0b-87ff-685aba31fd4c',
-  title: 'Components/Alert',
+  title: 'Components/Banner',
   tags: ['package:HTML'],
   render: renderAlert,
   decorators: [externalControl],
@@ -18,17 +18,17 @@ const meta: MetaComponent = {
     },
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=17001-2244&mode=design&t=3lniLiZhl7q9Gqgn-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=1447-8848&node-type=instance&t=NVtE44T0sX5wsag9-0',
     },
   },
   args: {
     content: '<p>Contentus momentus vero siteos et accusam iretea et justo.</p>',
     show: true,
-    action: false,
+    action: true,
     fixed: false,
     noIcon: false,
     icon: undefined,
-    type: 'alert-primary',
+    type: 'alert-neutral',
   },
   argTypes: {
     title: {
@@ -92,14 +92,7 @@ const meta: MetaComponent = {
       control: {
         type: 'select',
       },
-      options: [
-        'alert-primary',
-        'alert-success',
-        'alert-danger',
-        'alert-warning',
-        'alert-info',
-        'alert-gray',
-      ],
+      options: ['alert-neutral', 'alert-info', 'alert-success', 'alert-error', 'alert-warning'],
     },
   },
 };

@@ -5,12 +5,12 @@
 tokens.$default-map: components.$post-form-footer;
 
 .form-footer {
-  @include utility-mx.responsive-actions();
   border-block-start-width: tokens.get('form-footer-border-block-start-width');
   border-block-start-color: tokens.get('form-footer-border-start-color');
   border-block-start-style: tokens.get('form-footer-border-block-start-style');
   padding-block-start: tokens.get('form-footer-padding-block-start');
   gap: tokens.get('form-footer-gap');
+  @include utility-mx.responsive-actions();
 
   &-primary-actions {
     gap: tokens.get('form-footer-gap');

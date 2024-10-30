@@ -5,7 +5,7 @@ import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent<HTMLPostAlertElement> = {
   id: '8fd36823-966e-46a8-8432-a4439f6e208f',
-  title: 'Components/Alert',
+  title: 'Components/Banner',
   tags: ['package:WebComponents', 'redirect:105e67d8-31e9-4d0b-87ff-685aba31fd4c'],
   component: 'post-alert',
   render: renderAlert,
@@ -14,7 +14,7 @@ const meta: MetaComponent<HTMLPostAlertElement> = {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=17001-2244&mode=design&t=3lniLiZhl7q9Gqgn-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=1447-8848&node-type=instance&t=NVtE44T0sX5wsag9-0',
     },
   },
   args: {
