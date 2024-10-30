@@ -3,7 +3,7 @@ export { Components, JSX } from './components';
 // Export every single component so it gets included in the dist output
 export { PostAccordion } from './components/post-accordion/post-accordion';
 export { PostAccordionItem } from './components/post-accordion-item/post-accordion-item';
-export { PostAlert } from './components/post-alert/post-alert';
+export { PostBanner } from './components/post-banner/post-banner';
 export { PostAvatar } from './components/post-avatar/post-avatar';
 export { PostCardControl } from './components/post-card-control/post-card-control';
 export { PostCollapsible } from './components/post-collapsible/post-collapsible';

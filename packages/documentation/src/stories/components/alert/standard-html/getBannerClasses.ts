@@ -1,11 +1,11 @@
 import { Args } from '@storybook/web-components';
 
-export const getAlertClasses = (args: Args): string =>
+export const getBannerClasses = (args: Args): string =>
   [
-    'alert',
+    'banner',
     args.type,
-    args.fixed ? 'alert-fixed-bottom' : '',
-    args.action ? 'alert-action' : '',
+    args.fixed ? 'banner-fixed-bottom' : '',
+    args.action ? 'banner-action' : '',
     args.noIcon ? 'no-icon' : '',
     args.show ? '' : 'd-none',
   ]

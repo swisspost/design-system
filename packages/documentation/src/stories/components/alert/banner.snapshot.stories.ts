@@ -1,10 +1,10 @@
 import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { bombArgs, spreadArgs } from '@/utils';
-import alertMeta from './standard-html/alert.stories';
-import { getAlertClasses } from './standard-html/getAlertClasses';
+import bannerMeta from './standard-html/banner.stories';
+import { getBannerClasses } from './standard-html/getBannerClasses';
 
-const { id, ...metaWithoutId } = alertMeta;
+const { id, ...metaWithoutId } = bannerMeta;
 
 export default {
   ...metaWithoutId,
@@ -16,14 +16,14 @@ export default {
 
 type Story = StoryObj;
 
-export const Alert: Story = {
+export const Banner: Story = {
   render: () => html`
     <div class="d-flex gap-16 flex-wrap">
       ${['bg-white', 'bg-dark'].map(
         bg => html`
           <div class="${bg + ' d-flex flex-column gap-16 flex-wrap p-16'}" data-color-scheme=${bg}>
             ${bombArgs({
-              type: alertMeta?.argTypes?.type?.options,
+              type: bannerMeta?.argTypes?.type?.options,
               icon: ['no-icon', undefined, '1001'],
               action: [true, false],
             })
@@ -35,7 +35,7 @@ export const Alert: Story = {
               })
               .map(
                 args => html`
-                  <div class="${getAlertClasses(args)}" role="alert">
+                  <div class="${getBannerClasses(args)}" role="alert">
                     ${args.dismissible || args.fixed
                       ? html`
                           <button class="btn-close">
@@ -47,15 +47,15 @@ export const Alert: Story = {
                       ? html`
                           <post-icon
                             aria-hidden="true"
-                            class="alert-icon"
+                            class="banner-icon"
                             name="${args.icon}"
                           ></post-icon>
                         `
                       : null}
                     ${args.action
                       ? html`
-                          <div class="alert-content">
-                            <h4 class="alert-heading">Alert</h4>
+                          <div class="banner-content">
+                            <h4 class="banner-heading">Banner</h4>
                             <p>
                               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis
                               temporibus blanditiis expedita inventore atque. Numquam velit aut
@@ -64,7 +64,7 @@ export const Alert: Story = {
                           </div>
                         `
                       : html`
-                          <h4 class="alert-heading">Alert</h4>
+                          <h4 class="banner-heading">Banner</h4>
                           <p>
                             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis
                             temporibus blanditiis expedita inventore atque. Numquam velit aut
@@ -73,7 +73,7 @@ export const Alert: Story = {
                         `}
                     ${args.action
                       ? html`
-                          <div class="alert-buttons">
+                          <div class="banner-buttons">
                             <button class="btn btn-primary btn-animated">
                               <span>Akcepti</span>
                             </button>
@@ -93,10 +93,10 @@ export const Alert: Story = {
   `,
 };
 
-export const PostAlert: Story = {
+export const PostBanner: Story = {
   render: () => {
     const textContent =
-      '<h4 slot="heading">post-alert</h4>' +
+      '<h4 slot="heading">post-banner</h4>' +
       '<p>' +
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis' +
       'temporibus blanditiis expedita inventore atque. Numquam velit aut' +
@@ -123,10 +123,10 @@ export const PostAlert: Story = {
                 innerHTML: [textContent + actionButton, textContent],
               }).map(
                 args => html`
-                  <post-alert
+                  <post-banner
                     ${spreadArgs(args)}
                     dismiss-label="${args.dismissible ? 'Dismiss' : undefined}"
-                  ></post-alert>
+                  ></post-banner>
                 `,
               )}
             </div>

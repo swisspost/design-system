@@ -2,14 +2,14 @@ import { useArgs } from '@storybook/preview-api';
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { getAlertClasses } from './getAlertClasses';
+import { getBannerClasses } from './getBannerClasses';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '105e67d8-31e9-4d0b-87ff-685aba31fd4c',
   title: 'Components/Banner',
   tags: ['package:HTML'],
-  render: renderAlert,
+  render: renderBanner,
   decorators: [externalControl],
   parameters: {
     badges: [],
@@ -28,7 +28,7 @@ const meta: MetaComponent = {
     fixed: false,
     noIcon: false,
     icon: undefined,
-    type: 'alert-neutral',
+    type: 'banner-neutral',
   },
   argTypes: {
     title: {
@@ -47,17 +47,17 @@ const meta: MetaComponent = {
     action: {
       name: 'Action Buttons',
       description:
-        'If `true`, the alert contains action buttons on its right side.<span className="mt-8 alert alert-info alert-sm">Alert content must then be wrapped in a `.alert-content` container.</span>',
+        'If `true`, the banner contains action buttons on its right side.<span className="mt-8 banner banner-info">Banner content must then be wrapped in a `.banner-content` container.</span>',
       control: { type: 'boolean' },
     },
     fixed: {
       name: 'Fixed',
-      description: 'If `true`, the alert anchored at the bottom of the page, from edge to edge.',
+      description: 'If `true`, the banner anchored at the bottom of the page, from edge to edge.',
       control: { type: 'boolean' },
     },
     noIcon: {
       name: 'No Icon',
-      description: 'If `true`, no icon is displayed on the left side of the alert.',
+      description: 'If `true`, no icon is displayed on the left side of the banner.',
       control: {
         type: 'boolean',
       },
@@ -65,8 +65,8 @@ const meta: MetaComponent = {
     icon: {
       name: 'Icon',
       description:
-        'The icon to display in the alert. By default, the icon depends on the alert type.' +
-        '<span className="mt-8 alert alert-info alert-sm">' +
+        'The icon to display in the banner. By default, the icon depends on the banner type.' +
+        '<span className="mt-8 banner banner-info">' +
         'To use a custom icon, you must first ' +
         '<a href="/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs">set up the icons in your project</a>' +
         '.</span>',
@@ -88,11 +88,17 @@ const meta: MetaComponent = {
     },
     type: {
       name: 'Type',
-      description: 'The type of the alert.',
+      description: 'The type of the banner.',
       control: {
         type: 'select',
       },
-      options: ['alert-neutral', 'alert-info', 'alert-success', 'alert-error', 'alert-warning'],
+      options: [
+        'banner-neutral',
+        'banner-info',
+        'banner-success',
+        'banner-error',
+        'banner-warning',
+      ],
     },
   },
 };
@@ -103,7 +109,11 @@ export default meta;
 function externalControl(story: StoryFn, { args, context }: StoryContext) {
   const [_, updateArgs] = useArgs();
 
-  const toggleAlert = (e: MouseEvent, args: Args, updateArgs: (newArgs: Partial<Args>) => void) => {
+  const toggleBanner = (
+    e: MouseEvent,
+    args: Args,
+    updateArgs: (newArgs: Partial<Args>) => void,
+  ) => {
     e.preventDefault();
     updateArgs({ show: !args.show });
   };
@@ -114,9 +124,9 @@ function externalControl(story: StoryFn, { args, context }: StoryContext) {
     <a
       class="btn btn-secondary btn-animated"
       href="#"
-      @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}"
+      @click="${(e: MouseEvent) => toggleBanner(e, args, updateArgs)}"
     >
-      <span>Toggle Fixed Alert</span>
+      <span>Toggle Fixed Banner</span>
     </a>
   `;
 
@@ -125,29 +135,29 @@ function externalControl(story: StoryFn, { args, context }: StoryContext) {
 
 // RENDERER
 
-function renderAlert(args: Args) {
-  const classes = getAlertClasses(args);
+function renderBanner(args: Args) {
+  const classes = getBannerClasses(args);
 
   const content = html`
-    ${args.title ? html` <h4 class="alert-heading">${args.title}</h4> ` : nothing}
+    ${args.title ? html` <h4 class="banner-heading">${args.title}</h4> ` : nothing}
     ${unsafeHTML(args.content)}
   `;
 
   return html`
     <div class="${classes}" role="alert">
       ${
-        /* Alert Icon */
+        /* Banner Icon */
         args.icon ? html` <post-icon name=${args.icon}></post-icon> ` : nothing
       }
       ${
-        /* Alert Content */
-        args.action ? html` <div class="alert-content">${content}</div> ` : content
+        /* Banner Content */
+        args.action ? html` <div class="banner-content">${content}</div> ` : content
       }
       ${
-        /* Alert Action Buttons */
+        /* Banner Action Buttons */
         args.action
           ? html`
-              <div class="alert-buttons">
+              <div class="banner-buttons">
                 <button class="btn btn-primary btn-animated">
                   <span>Akcepti</span>
                 </button>

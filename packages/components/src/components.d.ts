@@ -6,10 +6,10 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
-import { AlertType } from "./components/post-alert/alert-types";
+import { BannerType } from "./components/post-banner/banner-types";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
-export { AlertType } from "./components/post-alert/alert-types";
+export { BannerType } from "./components/post-banner/banner-types";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
     interface PostAccordion {
@@ -49,32 +49,6 @@ export namespace Components {
          */
         "toggle": (force?: boolean) => Promise<boolean>;
     }
-    interface PostAlert {
-        /**
-          * Triggers alert dismissal programmatically (same as clicking on the close button (×)).
-         */
-        "dismiss": () => Promise<void>;
-        /**
-          * The label to use for the close button of a dismissible alert.
-         */
-        "dismissLabel": string;
-        /**
-          * If `true`, a close button (×) is displayed and the alert can be dismissed by the user.
-         */
-        "dismissible": boolean;
-        /**
-          * If `true`, the alert is positioned at the bottom of the window, from edge to edge.
-         */
-        "fixed": boolean;
-        /**
-          * The icon to display in the alert. By default, the icon depends on the alert type.  If `none`, no icon is displayed.
-         */
-        "icon": string;
-        /**
-          * The type of the alert.
-         */
-        "type": AlertType;
-    }
     interface PostAvatar {
         /**
           * Defines the users email address associated with a gravatar profile picture.
@@ -92,6 +66,32 @@ export namespace Components {
           * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
          */
         "userid"?: string;
+    }
+    interface PostBanner {
+        /**
+          * Triggers banner dismissal programmatically (same as clicking on the close button (×)).
+         */
+        "dismiss": () => Promise<void>;
+        /**
+          * The label to use for the close button of a dismissible banner.
+         */
+        "dismissLabel": string;
+        /**
+          * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
+         */
+        "dismissible": boolean;
+        /**
+          * If `true`, the banner is positioned at the bottom of the window, from edge to edge.
+         */
+        "fixed": boolean;
+        /**
+          * The icon to display in the banner. By default, the icon depends on the banner type.  If `none`, no icon is displayed.
+         */
+        "icon": string;
+        /**
+          * The type of the banner.
+         */
+        "type": BannerType;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -362,9 +362,9 @@ export namespace Components {
         "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
     }
 }
-export interface PostAlertCustomEvent<T> extends CustomEvent<T> {
+export interface PostBannerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLPostAlertElement;
+    target: HTMLPostBannerElement;
 }
 export interface PostCardControlCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -403,28 +403,28 @@ declare global {
         prototype: HTMLPostAccordionItemElement;
         new (): HTMLPostAccordionItemElement;
     };
-    interface HTMLPostAlertElementEventMap {
-        "postDismissed": void;
-    }
-    interface HTMLPostAlertElement extends Components.PostAlert, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostAlertElementEventMap>(type: K, listener: (this: HTMLPostAlertElement, ev: PostAlertCustomEvent<HTMLPostAlertElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostAlertElementEventMap>(type: K, listener: (this: HTMLPostAlertElement, ev: PostAlertCustomEvent<HTMLPostAlertElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLPostAlertElement: {
-        prototype: HTMLPostAlertElement;
-        new (): HTMLPostAlertElement;
-    };
     interface HTMLPostAvatarElement extends Components.PostAvatar, HTMLStencilElement {
     }
     var HTMLPostAvatarElement: {
         prototype: HTMLPostAvatarElement;
         new (): HTMLPostAvatarElement;
+    };
+    interface HTMLPostBannerElementEventMap {
+        "postDismissed": void;
+    }
+    interface HTMLPostBannerElement extends Components.PostBanner, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostBannerElementEventMap>(type: K, listener: (this: HTMLPostBannerElement, ev: PostBannerCustomEvent<HTMLPostBannerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostBannerElementEventMap>(type: K, listener: (this: HTMLPostBannerElement, ev: PostBannerCustomEvent<HTMLPostBannerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostBannerElement: {
+        prototype: HTMLPostBannerElement;
+        new (): HTMLPostBannerElement;
     };
     interface HTMLPostCardControlElementEventMap {
         "postInput": { state: boolean; value: string };
@@ -587,8 +587,8 @@ declare global {
     interface HTMLElementTagNameMap {
         "post-accordion": HTMLPostAccordionElement;
         "post-accordion-item": HTMLPostAccordionItemElement;
-        "post-alert": HTMLPostAlertElement;
         "post-avatar": HTMLPostAvatarElement;
+        "post-banner": HTMLPostBannerElement;
         "post-card-control": HTMLPostCardControlElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
@@ -627,32 +627,6 @@ declare namespace LocalJSX {
          */
         "headingLevel"?: HeadingLevel;
     }
-    interface PostAlert {
-        /**
-          * The label to use for the close button of a dismissible alert.
-         */
-        "dismissLabel"?: string;
-        /**
-          * If `true`, a close button (×) is displayed and the alert can be dismissed by the user.
-         */
-        "dismissible"?: boolean;
-        /**
-          * If `true`, the alert is positioned at the bottom of the window, from edge to edge.
-         */
-        "fixed"?: boolean;
-        /**
-          * The icon to display in the alert. By default, the icon depends on the alert type.  If `none`, no icon is displayed.
-         */
-        "icon"?: string;
-        /**
-          * An event emitted when the alert element is dismissed, after the transition. It has no payload and only relevant for dismissible alerts.
-         */
-        "onPostDismissed"?: (event: PostAlertCustomEvent<void>) => void;
-        /**
-          * The type of the alert.
-         */
-        "type"?: AlertType;
-    }
     interface PostAvatar {
         /**
           * Defines the users email address associated with a gravatar profile picture.
@@ -670,6 +644,32 @@ declare namespace LocalJSX {
           * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
          */
         "userid"?: string;
+    }
+    interface PostBanner {
+        /**
+          * The label to use for the close button of a dismissible banner.
+         */
+        "dismissLabel"?: string;
+        /**
+          * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
+         */
+        "dismissible"?: boolean;
+        /**
+          * If `true`, the banner is positioned at the bottom of the window, from edge to edge.
+         */
+        "fixed"?: boolean;
+        /**
+          * The icon to display in the banner. By default, the icon depends on the banner type.  If `none`, no icon is displayed.
+         */
+        "icon"?: string;
+        /**
+          * An event emitted when the alert element is dismissed, after the transition. It has no payload and only relevant for dismissible alerts.
+         */
+        "onPostDismissed"?: (event: PostBannerCustomEvent<void>) => void;
+        /**
+          * The type of the banner.
+         */
+        "type"?: BannerType;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -904,8 +904,8 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "post-accordion": PostAccordion;
         "post-accordion-item": PostAccordionItem;
-        "post-alert": PostAlert;
         "post-avatar": PostAvatar;
+        "post-banner": PostBanner;
         "post-card-control": PostCardControl;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
@@ -928,8 +928,8 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "post-accordion": LocalJSX.PostAccordion & JSXBase.HTMLAttributes<HTMLPostAccordionElement>;
             "post-accordion-item": LocalJSX.PostAccordionItem & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
-            "post-alert": LocalJSX.PostAlert & JSXBase.HTMLAttributes<HTMLPostAlertElement>;
             "post-avatar": LocalJSX.PostAvatar & JSXBase.HTMLAttributes<HTMLPostAvatarElement>;
+            "post-banner": LocalJSX.PostBanner & JSXBase.HTMLAttributes<HTMLPostBannerElement>;
             /**
              * @class PostCardControl - representing a stencil component
              */

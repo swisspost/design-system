@@ -13,7 +13,7 @@ import {
 import { version } from '@root/package.json';
 import { fadeOut } from '@/animations';
 import { checkEmptyOrOneOf, checkEmptyOrPattern, checkNonEmpty, checkType } from '@/utils';
-import { ALERT_TYPES, AlertType } from './alert-types';
+import { BANNER_TYPES, BannerType } from './banner-types';
 
 /**
  * @slot heading - Slot for placing custom content within the alert's heading.
@@ -22,54 +22,54 @@ import { ALERT_TYPES, AlertType } from './alert-types';
  */
 
 @Component({
-  tag: 'post-alert',
-  styleUrl: 'post-alert.scss',
+  tag: 'post-banner',
+  styleUrl: 'post-banner.scss',
   shadow: true,
 })
-export class PostAlert {
-  @Element() host: HTMLPostAlertElement;
+export class PostBanner {
+  @Element() host: HTMLPostBannerElement;
 
-  @State() alertId = crypto.randomUUID();
+  @State() bannerId = crypto.randomUUID();
   @State() classes: string;
   @State() hasActions: boolean;
   @State() hasHeading: boolean;
   @State() onDismissButtonClick = () => this.dismiss();
 
   /**
-   * If `true`, a close button (×) is displayed and the alert can be dismissed by the user.
+   * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
    */
   @Prop() readonly dismissible: boolean = false;
 
   @Watch('dismissible')
   validateDismissible(isDismissible = this.dismissible) {
-    checkType(isDismissible, 'boolean', 'The post-alert "dismissible" prop should be a boolean.');
+    checkType(isDismissible, 'boolean', 'The post-banner "dismissible" prop should be a boolean.');
     setTimeout(() => this.validateDismissLabel());
   }
 
   /**
-   * The label to use for the close button of a dismissible alert.
+   * The label to use for the close button of a dismissible banner.
    */
   @Prop() readonly dismissLabel: string;
 
   @Watch('dismissLabel')
   validateDismissLabel(dismissLabel = this.dismissLabel) {
     if (this.dismissible) {
-      checkNonEmpty(dismissLabel, 'Dismissible post-alert\'s require a "dismiss-label" prop.');
+      checkNonEmpty(dismissLabel, 'Dismissible post-banner\'s require a "dismiss-label" prop.');
     }
   }
 
   /**
-   * If `true`, the alert is positioned at the bottom of the window, from edge to edge.
+   * If `true`, the banner is positioned at the bottom of the window, from edge to edge.
    */
   @Prop() readonly fixed: boolean = false;
 
   @Watch('fixed')
   validateFixed(isFixed = this.fixed) {
-    checkType(isFixed, 'boolean', 'The post-alert "fixed" prop should be a boolean.');
+    checkType(isFixed, 'boolean', 'The post-banner "fixed" prop should be a boolean.');
   }
 
   /**
-   * The icon to display in the alert. By default, the icon depends on the alert type.
+   * The icon to display in the banner. By default, the icon depends on the banner type.
    *
    * If `none`, no icon is displayed.
    */
@@ -80,21 +80,21 @@ export class PostAlert {
     checkEmptyOrPattern(
       icon,
       /\d{4}|none/,
-      'The post-alert "icon" prop should be a 4-digits string.',
+      'The post-banner "icon" prop should be a 4-digits string.',
     );
   }
 
   /**
-   * The type of the alert.
+   * The type of the banner.
    */
-  @Prop() readonly type: AlertType = 'primary';
+  @Prop() readonly type: BannerType = 'neutral';
 
   @Watch('type')
   validateType(type = this.type) {
     checkEmptyOrOneOf(
       type,
-      ALERT_TYPES,
-      `The post-alert requires a type form: ${ALERT_TYPES.join(', ')}`,
+      BANNER_TYPES,
+      `The post-banner requires a type form: ${BANNER_TYPES.join(', ')}`,
     );
   }
 
@@ -115,15 +115,15 @@ export class PostAlert {
     this.hasHeading = this.host.querySelectorAll('[slot=heading]').length > 0;
     this.hasActions = this.host.querySelectorAll('[slot=actions]').length > 0;
 
-    this.classes = `alert ${this.type ? 'alert-' + this.type : ''}`;
-    if (this.dismissible) this.classes += ' alert-dismissible';
-    if (this.hasActions) this.classes += ' alert-action';
-    if (this.fixed) this.classes += ' alert-fixed-bottom';
+    this.classes = `banner ${this.type ? 'banner-' + this.type : ''}`;
+    if (this.dismissible) this.classes += ' banner-dismissible';
+    if (this.hasActions) this.classes += ' banner-action';
+    if (this.fixed) this.classes += ' banner-fixed-bottom';
     if (this.icon === 'none') this.classes += ' no-icon';
   }
 
   /**
-   * Triggers alert dismissal programmatically (same as clicking on the close button (×)).
+   * Triggers banner dismissal programmatically (same as clicking on the close button (×)).
    */
   @Method()
   async dismiss() {
@@ -136,20 +136,20 @@ export class PostAlert {
   }
 
   render() {
-    const defaultAlertContent = [
+    const defaultBannerContent = [
       this.hasHeading && (
-        <h4 key={`${this.alertId}-heading`} class="alert-heading">
+        <h4 key={`${this.bannerId}-heading`} class="banner-heading">
           <slot name="heading" />
         </h4>
       ),
-      <slot key={`${this.alertId}-message`} />,
+      <slot key={`${this.bannerId}-message`} />,
     ];
 
-    const actionAlertContent = [
-      <div key={`${this.alertId}-content`} class="alert-content">
-        {defaultAlertContent}
+    const actionBannerContent = [
+      <div key={`${this.bannerId}-content`} class="banner-content">
+        {defaultBannerContent}
       </div>,
-      <div key={`${this.alertId}-buttons`} class="alert-buttons">
+      <div key={`${this.bannerId}-buttons`} class="banner-buttons">
         <slot name="actions" />
       </div>,
     ];
@@ -164,10 +164,10 @@ export class PostAlert {
           )}
 
           {this.icon && this.icon !== 'none' && (
-            <post-icon key={`${this.alertId}-icon`} name={this.icon} />
+            <post-icon key={`${this.bannerId}-icon`} name={this.icon} />
           )}
 
-          {this.hasActions ? actionAlertContent : defaultAlertContent}
+          {this.hasActions ? actionBannerContent : defaultBannerContent}
         </div>
       </Host>
     );

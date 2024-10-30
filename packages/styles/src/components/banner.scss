@@ -38,10 +38,12 @@ tokens.$default-map: components.$post-banner;
   }
 }
 
+.banner-dismissible,
 .alert-dismissible {
   @include notification-mx.notification-dismissible(alert);
 }
 
+.banner-buttons,
 .alert-buttons {
   display: flex;
   align-items: center;
@@ -50,14 +52,17 @@ tokens.$default-map: components.$post-banner;
   gap: tokens.get('banner-actions-gap');
 }
 
+.banner-action,
 .alert-action {
+  > .banner-content,
   > .alert-content {
     @include notification-mx.notification-body(alert);
   }
 
   //TODO: Alert dismissible? Check que ça fonctionne
   @include media-breakpoint-up(md) {
-    &.alert-dismissible > .btn-close {
+    &.alert-dismissible > .btn-close,
+    &.banner-dismissible > .btn-close {
       inset-block-start: calc(50% - #{0.5 * close.$close-size});
     }
   }
@@ -66,15 +71,18 @@ tokens.$default-map: components.$post-banner;
     flex-direction: column;
     align-items: stretch;
 
+    > .banner-content,
     > .alert-content {
       padding-inline-start: tokens.get('banner-gap') + tokens.get('banner-icon-size');
       padding-inline-end: tokens.get('banner-gap') + close.$close-size;
     }
 
+    &.no-icon > .banner-content,
     &.no-icon > .alert-content {
       padding-inline-start: 0;
     }
 
+    > .banner-buttons,
     > .alert-buttons {
       display: flex;
 
@@ -92,6 +100,8 @@ tokens.$default-map: components.$post-banner;
   }
 }
 
+//TODO: Delete that?
+.banner-fixed-bottom,
 .alert-fixed-bottom {
   position: fixed;
   inset-block-end: 0;
@@ -126,6 +136,7 @@ tokens.$default-map: components.$post-banner;
       padding-inline-start: calc(#{$fixed-alert-padding-x});
     }
 
+    &.banner-dismissible,
     &.alert-dismissible {
       padding-inline-end: calc(
         #{$fixed-alert-padding-x} + #{tokens.get('banner-gap')} + #{close.$close-size}
@@ -141,6 +152,7 @@ tokens.$default-map: components.$post-banner;
 @each $name, $color, $icon, $border-color, $icon-color,
   $scheme in notification.$notification-variants
 {
+  .banner-#{$name},
   .alert-#{$name} {
     @include notification-mx.notification-variant(
       $color,
