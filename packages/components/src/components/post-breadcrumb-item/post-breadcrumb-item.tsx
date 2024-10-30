@@ -32,17 +32,14 @@ export class PostBreadcrumbItem {
 
   // Helper to construct a valid URL string or return undefined
   private constructUrl(value: unknown): string | undefined {
+    const hasBaseURL = /^https?:\/\//.test(String(this.url));
     if (typeof value === 'string') {
-      const urlString = this.isAbsoluteUrl(value)
+      const urlString = hasBaseURL
         ? value
         : `${window.location.origin}${value}`;
       checkUrl(urlString, 'The "url" property of the post-breadcrumb-item is invalid');
       return urlString;
     } return undefined;
-  }
-
-  private isAbsoluteUrl(url: string): boolean {
-    return /^[a-z][a-z\d+\-.]*:\/\//i.test(url);
   }
 
   connectedCallback() {
