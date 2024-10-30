@@ -59,7 +59,6 @@ tokens.$default-map: components.$post-banner;
     @include notification-mx.notification-body(alert);
   }
 
-  //TODO: Alert dismissible? Check que ça fonctionne
   @include media-breakpoint-up(md) {
     &.alert-dismissible > .btn-close,
     &.banner-dismissible > .btn-close {

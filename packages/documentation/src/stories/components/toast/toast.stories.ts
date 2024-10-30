@@ -17,7 +17,7 @@ const meta: MetaComponent = {
   args: {
     title: 'Titulum',
     content: 'Contentus momentus vero siteos et accusam iretea et justo.',
-    variant: 'toast-notification',
+    variant: 'toast-neutral',
     noIcon: false,
     icon: 'null',
     dismissible: true,
@@ -57,20 +57,14 @@ const meta: MetaComponent = {
       control: {
         type: 'radio',
         labels: {
-          'toast-notification': 'Notification',
+          'toast-neutral': 'Neutral',
           'toast-info': 'Info',
           'toast-success': 'Success',
           'toast-danger': 'Danger',
           'toast-warning': 'Warning',
         },
       },
-      options: [
-        'toast-notification',
-        'toast-info',
-        'toast-success',
-        'toast-danger',
-        'toast-warning',
-      ],
+      options: ['toast-neutral', 'toast-info', 'toast-success', 'toast-danger', 'toast-warning'],
       table: {
         category: 'General',
       },
