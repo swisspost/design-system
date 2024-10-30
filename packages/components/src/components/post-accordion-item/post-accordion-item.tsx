@@ -4,6 +4,7 @@ import { HEADING_LEVELS, HeadingLevel } from '@/types';
 import { checkEmptyOrOneOf } from '@/utils';
 
 /**
+ * @slot logo - Slot for the placing a logo before the header.
  * @slot header - Slot for placing custom content within the accordion item's header.
  * @slot default - Slot for placing content within the accordion item's body.
  */
@@ -19,6 +20,8 @@ export class PostAccordionItem {
   @Element() host: HTMLPostAccordionItemElement;
 
   @State() id: string;
+
+  @State() slottedLogo: HTMLElement;
 
   /**
    * If `true`, the element is collapsed otherwise it is displayed.
@@ -40,12 +43,12 @@ export class PostAccordionItem {
     );
   }
 
-  componentDidLoad() {
-    this.validateHeadingLevel();
-  }
-
   componentWillLoad() {
     this.id = this.host.id || `a${crypto.randomUUID()}`;
+  }
+
+  componentDidLoad() {
+    this.validateHeadingLevel();
   }
 
   // capture to make sure the "collapsed" property is updated before the event is consumed
@@ -67,6 +70,14 @@ export class PostAccordionItem {
     return this.collapsible.toggle(force);
   }
 
+  private onSlotLogoChange() {
+    this.slottedLogo = this.host.querySelector('img[slot="logo"]');
+  }
+
+  componentWillRender() {
+    this.slottedLogo = this.host.querySelector('img[slot="logo"]');
+  }
+
   render() {
     const HeadingTag = `h${this.headingLevel ?? 2}`;
 
@@ -76,6 +87,11 @@ export class PostAccordionItem {
           <post-collapsible-trigger for={`${this.id}--collapse`}>
             <HeadingTag class="accordion-header" id={`${this.id}--header`}>
               <button type="button" class={`accordion-button${this.collapsed ? ' collapsed' : ''}`}>
+                {this.slottedLogo ? (
+                  <div class="logo-container">
+                    <slot name="logo" onSlotchange={this.onSlotLogoChange.bind(this)}></slot>
+                  </div>
+                ) : null}
                 <slot name="header" />
               </button>
             </HeadingTag>

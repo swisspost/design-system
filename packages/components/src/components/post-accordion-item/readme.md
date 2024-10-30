@@ -38,6 +38,7 @@ Type: `Promise<boolean>`
 | ----------- | ------------------------------------------------------------------- |
 | `"default"` | Slot for placing content within the accordion item's body.          |
 | `"header"`  | Slot for placing custom content within the accordion item's header. |
+| `"logo"`    | Slot for the placing a logo before the header.                      |
 
 
 ## Shadow Parts

@@ -76,6 +76,8 @@ export const Default: Story = {
   },
 };
 
+export const Logos: Story = {};
+
 export const MultipleOpenPanels: Story = {
   args: {
     multiple: true,

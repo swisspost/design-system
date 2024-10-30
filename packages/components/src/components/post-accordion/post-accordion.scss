@@ -1,3 +1,26 @@
+@use '@swisspost/design-system-styles/components/accordion';
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/functions/tokens';
+
+@use '@swisspost/design-system-styles/mixins/utilities' as utility-mx;
+
+tokens.$default-map: components.$post-accordion;
+
 :host {
   display: block;
+}
+
+// Separator styles (no top border for accordions with single item)
+::slotted(post-accordion-item) {
+  display: block;
+  border-bottom: tokens.get('accordion-border-bottom-width')
+    tokens.get('accordion-border-bottom-style') tokens.get('accordion-enabled-border');
+}
+
+::slotted(post-accordion-item:first-of-type:not(:only-of-type)) {
+  border-top: tokens.get('accordion-group-border-top-width')
+    tokens.get('accordion-border-top-style') tokens.get('accordion-enabled-border');
+}
+::slotted(post-accordion-item:hover) {
+  border-color: tokens.get('accordion-hover-border');
 }
