@@ -4,17 +4,12 @@
 $non-base-background-colors: ();
 $non-base-background-colors: map.merge($non-base-background-colors, post.$signal-colors);
 $non-base-background-colors: map.merge($non-base-background-colors, post.$signal-background-colors);
-$non-base-background-colors: map.merge($non-base-background-colors, post.$accent-colors);
 
 :export {
   @each $color, $value in post.$background-colors {
     @if (map.has-key($non-base-background-colors, $color) == false) {
       base_#{$color}: $value;
     }
-  }
-
-  @each $color, $value in post.$accent-colors {
-    accent_#{$color}: $value;
   }
 
   @each $color, $value in post.$signal-colors {
