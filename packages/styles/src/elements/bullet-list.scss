@@ -30,7 +30,7 @@ ul {
     > li {
       padding-block: tokens.get('list-bullet-item-text-padding-block');
 
-      & ~ li {
+      ~ li {
         margin-block-start: tokens.get('list-bullet-item-gap-block');
       }
 
