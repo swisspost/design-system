@@ -1,7 +1,7 @@
 import { Component, Element, Host, h } from '@stencil/core';
 
 /**
- * @slot default- Slot for placing list item content
+ * @slot default- Slot for placing the content of the list item.
  */
 
 @Component({
