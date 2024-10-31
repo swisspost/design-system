@@ -1,4 +1,3 @@
-@use '@swisspost/design-system-styles/mixins/accordion' as accordion-mx;
 @use '@swisspost/design-system-styles/mixins/button' as button-mx;
 @use '@swisspost/design-system-styles/mixins/focus' as focus-mx;
 @use '@swisspost/design-system-styles/mixins/icons' as icon-mx;
@@ -13,11 +12,19 @@
 
 $local-accordion: (
   post-accordion-icon-size: 24px,
+  post-accordion-border-radius: 3px,
 );
 
 $merged-accordion: map.merge(components.$post-accordion, $local-accordion);
 
 tokens.$default-map: $merged-accordion;
+
+// .accordion-item {
+//   @include utility-mx.focus-style($offset: 2px, $width: 2px, $color: red, $style: solid) {
+//     border-radius: tokens.get('post-accordion-border-radius');
+//     width: fit-content;
+//   }
+// }
 
 .accordion-header {
   color: tokens.get('accordion-enabled-fg');
@@ -26,11 +33,18 @@ tokens.$default-map: $merged-accordion;
 }
 
 .logo-container {
+  display: none;
   aspect-ratio: 1;
   height: tokens.get('accordion-header-logo-size');
 
+  &.has-image {
+    display: block;
+  }
+
   slot::slotted(img) {
     display: block;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
   }
 }

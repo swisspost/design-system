@@ -71,6 +71,7 @@ export class PostAccordionItem {
   }
 
   private onSlotLogoChange() {
+    console.log('SLOT CHANGED');
     this.slottedLogo = this.host.querySelector('img[slot="logo"]');
   }
 
@@ -87,11 +88,14 @@ export class PostAccordionItem {
           <post-collapsible-trigger for={`${this.id}--collapse`}>
             <HeadingTag class="accordion-header" id={`${this.id}--header`}>
               <button type="button" class={`accordion-button${this.collapsed ? ' collapsed' : ''}`}>
-                {this.slottedLogo ? (
-                  <div class="logo-container">
-                    <slot name="logo" onSlotchange={this.onSlotLogoChange.bind(this)}></slot>
-                  </div>
-                ) : null}
+                <div
+                  class={{
+                    'logo-container': true,
+                    'has-image': !!this.slottedLogo,
+                  }}
+                >
+                  <slot name="logo" onSlotchange={this.onSlotLogoChange.bind(this)}></slot>
+                </div>
                 <slot name="header" />
               </button>
             </HeadingTag>

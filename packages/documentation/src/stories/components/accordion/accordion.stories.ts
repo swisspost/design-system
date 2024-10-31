@@ -19,6 +19,7 @@ const meta: MetaComponent<HTMLPostAccordionElement & HTMLPostCollapsibleElementE
   args: {
     multiple: false,
     headingLevel: 4,
+    logoSrc: '',
   },
   argTypes: {
     postToggle: {
@@ -29,6 +30,14 @@ const meta: MetaComponent<HTMLPostAccordionElement & HTMLPostCollapsibleElementE
       table: {
         category: 'Events',
         type: { summary: 'CustomEvent<boolean>' },
+      },
+    },
+    logoSrc: {
+      control: 'text',
+      description:
+        'Define an image `src` to insert a custom image.<div className="alert alert-info alert-sm">Do you need an example? Try our logo <strong>/assets/images/logo-swisspost.svg</strong>.</div>',
+      table: {
+        category: 'Content',
       },
     },
   },
@@ -48,7 +57,8 @@ function getAccordionItemContent(position: number | string, headingLevel?: numbe
 function getDefaultAccordionItem(args: Partial<HTMLPostAccordionElement>, index: number) {
   const isCollapsed = !!args.multiple && index > 0;
   return html`
-    <post-accordion-item collapsed=${ifDefined(isCollapsed || undefined)}>
+    <post-accordion-item ?collapsed=${isCollapsed}
+      >${args.logoSrc ? html`<img slot="logo" src="${args.logoSrc}" alt="logo" />` : nothing}
       ${getAccordionItemContent(index + 1)}
     </post-accordion-item>
   `;
@@ -76,7 +86,11 @@ export const Default: Story = {
   },
 };
 
-export const Logos: Story = {};
+export const Logos: Story = {
+  args: {
+    logoSrc: '/assets/images/logo-swisspost.svg',
+  },
+};
 
 export const MultipleOpenPanels: Story = {
   args: {
