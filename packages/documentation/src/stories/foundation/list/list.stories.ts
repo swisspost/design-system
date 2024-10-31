@@ -4,7 +4,7 @@ import { MetaExtended } from '@root/types';
 
 const meta: MetaExtended = {
   id: 'e76192bb-b2eb-487a-b9c1-ef938bccdfc4',
-  title: 'Utilities/List',
+  title: 'Foundations/Typography/Lists',
   parameters: {
     badges: [],
   },
@@ -16,16 +16,15 @@ type Story = StoryObj;
 
 export const UnorderedList: Story = {
   render: () => html`
-    <ul>
+    <ul class="bullet">
       <li>This is an unordered list.</li>
       <li>It appears in its default style.</li>
       <li>Therefore it is rendered with a bullet point in front of each list item.</li>
       <li>
         Nested list:
-        <ul>
+        <ul class="bullet">
           <li>This is a nested list</li>
           <li>It is further indented, depending on the depth of nesting.</li>
-          <li>Nested lists have different bullet points than their parents.</li>
         </ul>
       </li>
       <li>This item belongs to the parent list.</li>
@@ -41,7 +40,7 @@ export const UnstyledList: Story = {
       <li>Structurally, it's still a list.</li>
       <li>
         Nested list:
-        <ul>
+        <ul class="bullet">
           <li>They are unaffected by the style of its parent.</li>
           <li>So they will still show a bullet.</li>
           <li>And have an appropriate left indent.</li>
