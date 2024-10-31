@@ -8,11 +8,31 @@
     />
     <title>Stencil Component Starter</title>
 
-    <link rel="stylesheet" href="/assets/css/index.css" />
+    <link id="tokens" rel="stylesheet" href="/assets/css/post-tokens-external.css" />
+    <link rel="stylesheet" href="/assets/css/elements.css" />
     <script type="module" src="/build/post-components.esm.js"></script>
     <script nomodule src="/build/post-components.js"></script>
   </head>
   <body>
-       <div class="p-48">Add your component here and start developing!</div>
+    <h1>Components package playground</h1>
+    <p class="mb-4">
+      Use this playground for quickly developing Stencil web-components. Run
+      <code style="background-color: lightgrey; padding: 0.125rem 0.25rem; border-radius: 0.25rem"
+        >pnpm components:start</code
+      >
+      to get going.
+    </p>
+    <label for="tokens-select">Select tokens package: </label>
+    <select
+      name="tokens"
+      id="tokens-select"
+      value="external"
+      class="mb-4"
+      onchange="if (['external', 'internal'].includes(this.value)) { document.getElementById('tokens').setAttribute('href', `/assets/css/post-tokens-${encodeURIComponent(this.value)}.css`); }"
+    >
+      <option value="external">Post external</option>
+      <option value="internal">Post internal</option>
+    </select>
+    <hr />
   </body>
 </html>

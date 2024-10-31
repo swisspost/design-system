@@ -1,5 +1,5 @@
-@use '../functions/tokens';
 @use '../tokens/elements';
+@use '../functions/tokens';
 @use '../mixins/utilities';
 
 tokens.$default-map: elements.$post-link;

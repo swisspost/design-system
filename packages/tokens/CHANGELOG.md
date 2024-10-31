@@ -1,5 +1,11 @@
 # @swisspost/design-system-tokens
 
+## 9.0.0-next.3
+
+### Minor Changes
+
+- Added a new App Store Badge component for promoting apps, supporting both Google Play and Apple App Store badges. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3731](https://github.com/swisspost/design-system/pull/3731))
+
 ## 9.0.0-next.2
 
 ## 9.0.0-next.1
