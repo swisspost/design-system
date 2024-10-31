@@ -15,8 +15,8 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    horizontal: null,
-    titleHidden: null,
+    horizontal: false,
+    titleHidden: false,
   },
   argTypes: {
     titleHidden: {
