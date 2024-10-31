@@ -30,6 +30,8 @@ const meta: MetaComponent = {
     icon: undefined,
     type: 'banner-neutral',
     dialog: false,
+    dismissible: false,
+    dismissLabel: 'Dismiss',
   },
   argTypes: {
     title: {
@@ -46,9 +48,34 @@ const meta: MetaComponent = {
       table: { disable: true },
     },
     dialog: {
-      name: 'As a dialog',
+      name: 'Is a dialog',
       description: 'If `true`, banner will be set as a dialog component',
       control: { type: 'boolean' },
+    },
+    dismissible: {
+      name: 'Dismissible',
+      description: 'If `true`, banner as a dialog will have a close button',
+      control: 'boolean',
+      if: { arg: 'dialog' },
+    },
+    dismissLabel: {
+      name: 'Dismiss label',
+      description: 'Dismiss label (visually hidden)',
+      if: {
+        arg: 'dismissible',
+      },
+      type: {
+        name: 'string',
+        required: true,
+      },
+    },
+    open: {
+      name: 'Is dialog opened',
+      description: 'Whether the dialog is opened by default',
+      control: 'boolean',
+      if: {
+        arg: 'dialog',
+      },
     },
     action: {
       name: 'Action Buttons',
@@ -175,14 +202,20 @@ function renderBanner(args: Args) {
     }
   `;
 
-  return html`
-    ${args.dialog
-      ? html`<dialog class="${classes}">
-          <form method="dialog"></form>
-        </dialog> `
-      : html`<div class="${classes}" role="alert"></div>`}
-    ${body} ${args.dialog ? html`</form></dialog>` : html`</div>`}
-  `;
+  if (args.dialog) {
+    return html`<dialog class="banner-container" open="${args.open || nothing}">
+      <form method="dialog" class="${classes}">
+        ${args.dismissible
+          ? html`<button class="btn-close">
+              <span class="visually-hidden">${args.dismissLabel}</span>
+            </button>`
+          : null}
+        ${body}
+      </form>
+    </dialog>`;
+  } else {
+    return html`<div class="${classes}" role="alert">${body}</div>`;
+  }
 }
 
 // STORIES
@@ -213,6 +246,26 @@ export const CustomIcon: Story = {
 export const NoIcon: Story = {
   args: {
     noIcon: true,
+  },
+};
+
+export const Dialog: Story = {
+  decorators: [
+    story =>
+      html`<div>
+        <button
+          id="show-dialog-button"
+          class="btn btn-secondary"
+          onclick="this.nextElementSibling.showModal()"
+        >
+          Show dialog</button
+        >${story()}
+      </div>`,
+  ],
+  args: {
+    dialog: true,
+    dismissible: true,
+    action: false,
   },
 };
 

@@ -26,6 +26,7 @@ export const Banner: Story = {
               type: bannerMeta?.argTypes?.type?.options,
               icon: ['no-icon', undefined, '1001'],
               action: [true, false],
+              dismissible: [true, false],
             })
               .map(args => {
                 if (args.icon === 'no-icon') {
@@ -36,7 +37,7 @@ export const Banner: Story = {
               .map(
                 args => html`
                   <div class="${getBannerClasses(args)}" role="alert">
-                    ${args.dismissible || args.fixed
+                    ${args.dismissible
                       ? html`
                           <button class="btn-close">
                             <span class="visually-hidden">Close</span>
@@ -117,7 +118,7 @@ export const PostBanner: Story = {
           bg => html`
             <div class="${bg + ' d-flex flex-column gap-16 flex-wrap p-16'}">
               ${bombArgs({
-                type: ['primary', 'success', 'danger', 'warning', 'info', 'gray'],
+                type: ['neutral', 'success', 'error', 'warning', 'info'],
                 icon: ['none', undefined, '1001'],
                 dismissible: [true, false],
                 innerHTML: [textContent + actionButton, textContent],

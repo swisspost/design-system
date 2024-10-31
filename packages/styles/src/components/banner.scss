@@ -24,18 +24,27 @@ tokens.$default-map: components.$post-banner;
   border-width: tokens.get('banner-border-width');
   @include notification-mx.notification-size(alert);
 
-  // Set the neutral banner as the default color
-  @include notification-mx.notification-variant(
-    nth($default-variant, 2),
-    nth($default-variant, 3),
-    nth($default-variant, 4),
-    nth($default-variant, 5),
-    nth($default-variant, 6)
-  );
+  /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
+  & {
+    // Set the neutral banner as the default color
+    @include notification-mx.notification-variant(
+      nth($default-variant, 2),
+      nth($default-variant, 3),
+      nth($default-variant, 4),
+      nth($default-variant, 5),
+      nth($default-variant, 6)
+    );
+  }
 
-  &:not(.alert-action) {
+  &:not(.banner-action):not(.alert-action) {
     @include notification-mx.notification-body(alert);
   }
+}
+
+// Dialog container
+.banner-container {
+  border: none;
+  background-color: transparent;
 }
 
 .banner-dismissible,
@@ -57,13 +66,6 @@ tokens.$default-map: components.$post-banner;
   > .banner-content,
   > .alert-content {
     @include notification-mx.notification-body(alert);
-  }
-
-  @include media-breakpoint-up(md) {
-    &.alert-dismissible > .btn-close,
-    &.banner-dismissible > .btn-close {
-      inset-block-start: calc(50% - #{0.5 * close.$close-size});
-    }
   }
 
   @include media-breakpoint-down(md) {
@@ -99,7 +101,6 @@ tokens.$default-map: components.$post-banner;
   }
 }
 
-//TODO: Delete that?
 .banner-fixed-bottom,
 .alert-fixed-bottom {
   position: fixed;
@@ -137,9 +138,10 @@ tokens.$default-map: components.$post-banner;
 
     &.banner-dismissible,
     &.alert-dismissible {
-      padding-inline-end: calc(
-        #{$fixed-alert-padding-x} + #{tokens.get('banner-gap')} + #{close.$close-size}
-      );
+      > .banner-content,
+      > .alert-content {
+        padding-inline-end: calc(#{tokens.get('banner-gap')} + #{close.$close-size});
+      }
 
       > .btn-close {
         inset-inline-end: calc(#{$fixed-alert-padding-x});

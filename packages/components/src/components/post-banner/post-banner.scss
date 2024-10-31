@@ -15,6 +15,7 @@
 }
 
 @for $i from 1 through 6 {
+  .banner-heading > ::slotted(h#{$i}),
   .alert-heading > ::slotted(h#{$i}) {
     font-size: inherit !important;
     font-weight: inherit !important;

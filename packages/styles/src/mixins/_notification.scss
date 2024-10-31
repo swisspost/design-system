@@ -19,7 +19,7 @@ tokens.$default-map: components.$post-banner;
   $padding-y: map.get(notification.$notification-padding-y-map, $size);
   $elevation: map.get(notification.$notification-elevation-map, $size);
   $gap: map.get(notification.$notification-gap-map, $size);
-  min-height: $icon-size;
+  min-height: calc(#{$icon-size} + (2 * #{$padding-y}));
 
   box-shadow: $elevation;
   border-radius: tokens.get('banner-border-radius');
@@ -135,6 +135,9 @@ tokens.$default-map: components.$post-banner;
   & {
     pointer-events: auto;
     position: relative;
+  }
+
+  &:not(.banner-action):not(.alert-action) {
     padding-inline-end: calc(#{$padding-x} + #{$gap} + #{close.$close-size});
   }
 

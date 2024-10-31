@@ -14,20 +14,22 @@
 tokens.$default-map: components.$post-banner;
 
 .toast {
+  $default-variant: nth(notification.$notification-variants, 1);
   @include notification-mx.notification-size(toast);
   @include notification-mx.notification-body(toast);
   @include notification-mx.notification-dismissible(toast, 'toast-close-button');
 
-  $default-variant: nth(notification.$notification-variants, 1);
-
-  // Set the neutral toast as the default color
-  @include notification-mx.notification-variant(
-    nth($default-variant, 2),
-    nth($default-variant, 3),
-    nth($default-variant, 4),
-    nth($default-variant, 5),
-    nth($default-variant, 6)
-  );
+  /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
+  & {
+    // Set the neutral toast as the default color
+    @include notification-mx.notification-variant(
+      nth($default-variant, 2),
+      nth($default-variant, 3),
+      nth($default-variant, 4),
+      nth($default-variant, 5),
+      nth($default-variant, 6)
+    );
+  }
 }
 
 .toast-close-button {

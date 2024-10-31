@@ -6,6 +6,7 @@ export const getBannerClasses = (args: Args): string =>
     args.type,
     args.fixed ? 'banner-fixed-bottom' : '',
     args.action ? 'banner-action' : '',
+    args.dismissible ? 'banner-dismissible' : '',
     args.noIcon ? 'no-icon' : '',
     args.show ? '' : 'd-none',
   ]
