@@ -5,6 +5,17 @@
   margin: 0;
   padding: 0;
   list-style: none;
+
+  &.bullet {
+    > li {
+      margin: 0;
+      padding: 0;
+
+      &::before {
+        display: none;
+      }
+    }
+  }
 }
 
 @mixin visuallyhidden() {
