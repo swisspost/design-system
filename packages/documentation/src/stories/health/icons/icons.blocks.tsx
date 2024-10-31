@@ -29,12 +29,7 @@ export const IconsBlock: React.FC = () => (
   <section>
     <h2>Successfull</h2>
     <div className="icons">
-      {report.icons.map(icon => (
-        <div key={icon.file.name} className="icon">
-          <img src={`./post-icons/${icon.file.name}`} alt="icon" />
-          <span>{icon.file.basename}</span>
-        </div>
-      ))}
+      {report.icons.map(icon => renderImage(icon.file.name, icon.file.basename))}
     </div>
   </section>
 );
@@ -47,12 +42,7 @@ export const WrongViewBoxBlock: React.FC = () => {
       <h2>Wrong ViewBox</h2>
       <p>The viewBox attribute of the incoming SVG file is not set to "0 0 32 32".</p>
       <div className="icons">
-        {report.wrongViewBox.map(icon => (
-          <div key={icon.file.name} className="icon">
-            <img src={`./post-icons/${icon.file.name}`} alt="icon" />
-            <span>{icon.file.basename}</span>
-          </div>
-        ))}
+        {report.wrongViewBox.map(icon => renderImage(icon.file.name, icon.file.basename))}
       </div>
     </section>
   );
@@ -66,12 +56,7 @@ export const NoKeywordsBlock: React.FC = () => {
       <h2>No Keywords</h2>
       <p>The incoming SVG file has no keywords specified.</p>
       <div className="icons">
-        {report.noKeywords.map(icon => (
-          <div key={icon.file.name} className="icon">
-            <img src={`./post-icons/${icon.file.name}`} alt="icon" />
-            <span>{icon.file.basename}</span>
-          </div>
-        ))}
+        {report.noKeywords.map(icon => renderImage(icon.file.name, icon.file.basename))}
       </div>
     </section>
   );
@@ -84,8 +69,8 @@ export const ErroredBlock: React.FC = () => {
     <section>
       <h2>Errored</h2>
       <ul>
-        {report.errored.map(icon => (
-          <li key={icon.file.name}>
+        {report.errored.map((icon, i) => (
+          <li key={icon.file.name + i}>
             <a href={icon.meta.downloadLink}>{icon.file.name}</a>
             <br />
             <pre>{icon.errorMessage}</pre>
@@ -103,10 +88,33 @@ export const NoSVGBlock: React.FC = () => {
     <section>
       <h2>SVG file not found.</h2>
       <ul>
-        {report.noSVG.map(icon => (
-          <li key={icon.file.basename}>{icon.file.basename}</li>
+        {report.noSVG.map((icon, i) => (
+          <li key={icon.file.basename + i}>{icon.file.basename}</li>
         ))}
       </ul>
     </section>
   );
 };
+
+function renderImage(name: string, baseName: string) {
+  return (
+    <div key={name} className="icon">
+      <img
+        loading="lazy"
+        src={`/post-icons/${name}`}
+        alt="icon"
+        width="24"
+        height="24"
+        onError={({ currentTarget }) => {
+          currentTarget.onerror = null;
+          setTimeout(() => {
+            const src = currentTarget.src;
+            currentTarget.src = '';
+            currentTarget.src = src;
+          }, Math.random() * 5000);
+        }}
+      />
+      <span>{baseName}</span>
+    </div>
+  );
+}
