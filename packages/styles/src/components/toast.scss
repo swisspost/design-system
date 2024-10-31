@@ -17,7 +17,6 @@ tokens.$default-map: components.$post-banner;
   $default-variant: nth(notification.$notification-variants, 1);
   @include notification-mx.notification-size(toast);
   @include notification-mx.notification-body(toast);
-  @include notification-mx.notification-dismissible(toast, 'toast-close-button');
 
   /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
   & {
@@ -30,6 +29,10 @@ tokens.$default-map: components.$post-banner;
       nth($default-variant, 6)
     );
   }
+}
+
+.toast-dismissible {
+  @include notification-mx.notification-dismissible(toast, 'toast-close-button');
 }
 
 .toast-close-button {

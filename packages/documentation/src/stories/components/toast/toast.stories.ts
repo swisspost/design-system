@@ -365,7 +365,12 @@ function render(args: Args, context: StoryContext) {
 
   const timeoutStore = timeoutStores[context.name as keyof ITimeoutStores];
 
-  const classes = ['toast', args.variant, args.noIcon && 'no-icon']
+  const classes = [
+    'toast',
+    args.variant,
+    args.noIcon && 'no-icon',
+    args.dismissible && 'toast-dismissible',
+  ]
     .filter(c => c && c !== 'null')
     .join(' ');
 
