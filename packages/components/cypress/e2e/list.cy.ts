@@ -18,7 +18,7 @@ describe('PostList Component', { baseUrl: null, includeShadowDom: false }, () =>
       .and('not.be.empty')
       .then($div => {
         const id = $div['id'];
-        cy.log(`First div ID: ${id}`); // Print the id in the Cypress console
+        cy.log(`First div ID: ${id}`);
       });
   });
 

@@ -12,7 +12,7 @@ export default {
 
 type Story = StoryObj;
 
-export const List: Story = {
+export const PostList: Story = {
   render: () => {
     return html`
       <div class="d-flex gap-16 flex-column">
