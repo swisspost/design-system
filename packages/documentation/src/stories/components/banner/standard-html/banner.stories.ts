@@ -29,6 +29,7 @@ const meta: MetaComponent = {
     noIcon: false,
     icon: undefined,
     type: 'banner-neutral',
+    dialog: false,
   },
   argTypes: {
     title: {
@@ -43,6 +44,11 @@ const meta: MetaComponent = {
       name: 'Show',
       control: { type: 'boolean' },
       table: { disable: true },
+    },
+    dialog: {
+      name: 'As a dialog',
+      description: 'If `true`, banner will be set as a dialog component',
+      control: { type: 'boolean' },
     },
     action: {
       name: 'Action Buttons',
@@ -143,32 +149,39 @@ function renderBanner(args: Args) {
     ${unsafeHTML(args.content)}
   `;
 
+  const body = html`
+    ${
+      /* Banner Icon */
+      args.icon ? html` <post-icon name=${args.icon}></post-icon> ` : nothing
+    }
+    ${
+      /* Banner Content */
+      args.action ? html` <div class="banner-content">${content}</div> ` : content
+    }
+    ${
+      /* Banner Action Buttons */
+      args.action
+        ? html`
+            <div class="banner-buttons">
+              <button class="btn btn-primary btn-animated">
+                <span>Akcepti</span>
+              </button>
+              <button class="btn btn-secondary btn-animated">
+                <span>Aborti</span>
+              </button>
+            </div>
+          `
+        : null
+    }
+  `;
+
   return html`
-    <div class="${classes}" role="alert">
-      ${
-        /* Banner Icon */
-        args.icon ? html` <post-icon name=${args.icon}></post-icon> ` : nothing
-      }
-      ${
-        /* Banner Content */
-        args.action ? html` <div class="banner-content">${content}</div> ` : content
-      }
-      ${
-        /* Banner Action Buttons */
-        args.action
-          ? html`
-              <div class="banner-buttons">
-                <button class="btn btn-primary btn-animated">
-                  <span>Akcepti</span>
-                </button>
-                <button class="btn btn-secondary btn-animated">
-                  <span>Aborti</span>
-                </button>
-              </div>
-            `
-          : null
-      }
-    </div>
+    ${args.dialog
+      ? html`<dialog class="${classes}">
+          <form method="dialog"></form>
+        </dialog> `
+      : html`<div class="${classes}" role="alert"></div>`}
+    ${body} ${args.dialog ? html`</form></dialog>` : html`</div>`}
   `;
 }
 
