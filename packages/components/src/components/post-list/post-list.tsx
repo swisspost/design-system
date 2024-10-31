@@ -2,8 +2,8 @@ import { Component, Element, Prop, Host, State, h } from '@stencil/core';
 import { version } from '@root/package.json';
 
 /**
- * @slot default - Slot for placing the list title
- * @slot post-list-item - Slot for placing post-list-item components
+ * @slot default - Slot for placing the list title.
+ * @slot post-list-item - Slot for placing post-list-item components.
  */
 
 @Component({
