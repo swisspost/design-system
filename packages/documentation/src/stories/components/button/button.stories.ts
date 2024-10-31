@@ -21,7 +21,6 @@ const meta: MetaComponent = {
     type: 'button',
     variant: 'btn-primary',
     size: 'null',
-    animated: 'btn-animated',
     icon: 'null',
     iconOnly: false,
     iconPosition: 'start',
@@ -124,26 +123,6 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
-    animated: {
-      name: 'Animated',
-      description: 'Sets an animation on hover.',
-      if: {
-        arg: 'icon',
-        eq: 'null',
-      },
-      control: {
-        type: 'inline-radio',
-        labels: {
-          'null': 'None',
-          'btn-animated': 'End',
-          'btn-animated-start': 'Start',
-        },
-      },
-      options: ['null', 'btn-animated', 'btn-animated-start'],
-      table: {
-        category: 'General',
-      },
-    },
     icon: {
       name: 'Icon',
       description:
@@ -226,7 +205,6 @@ type Story = StoryObj;
 const Template = {
   render: (args: Args) => {
     const tagName = unsafeStatic(args.tag);
-    const isAnimated = args.tag !== 'input' && args.animated !== 'none';
     const props = createProps(args);
 
     if (args.tag === 'input') {
@@ -234,13 +212,13 @@ const Template = {
     } else {
       const icon = html` <post-icon aria-hidden="true" name="${args.icon}"></post-icon> `;
       const iconOnlyContent = html` <span class="visually-hidden">${args.text}</span> `;
-      const animatedContent = html` <span>${args.text}</span> `;
+      const textContent = html` <span>${args.text}</span> `;
       const text = html` ${args.text} `;
 
       return html`
         <${tagName} ${spread(props)}>
           ${args.icon !== 'null' && args.iconPosition === 'start' ? icon : null}
-          ${(args.iconOnly && iconOnlyContent) || (isAnimated && animatedContent) || text}
+          ${(args.iconOnly && iconOnlyContent) || textContent || text}
           ${args.icon !== 'null' && args.iconPosition === 'end' ? icon : null}
         </${tagName}>
       `;
@@ -251,14 +229,7 @@ const Template = {
 function createProps(args: Args) {
   const additionalClasses = args.additionalClasses ?? [];
   return {
-    class: [
-      'btn',
-      args.variant,
-      args.size,
-      args.animated,
-      args.iconOnly && 'btn-icon',
-      ...additionalClasses,
-    ]
+    class: ['btn', args.variant, args.size, args.iconOnly && 'btn-icon', ...additionalClasses]
       .filter(c => c && c !== 'null')
       .join(' '),
     href: args.tag === 'a' ? '#' : null,

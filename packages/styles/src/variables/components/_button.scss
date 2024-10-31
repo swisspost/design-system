@@ -14,30 +14,12 @@
 tokens.$default-map: components.$post-button;
 
 // Buttons
-// sm
-$btn-animation-distance-sm: spacing.$size-mini !default;
-// Design System only
 $btn-font-size-sm: type.$font-size-12 !default;
-
-// md
-$btn-padding-x-md: tokens.get('button-medium-padding-inline');
-$btn-animation-distance-md: spacing.$size-mini !default;
-// Design System only
 $btn-font-size-md: type.$font-size-16 !default;
-
-// lg
-$btn-animation-distance-lg: spacing.$size-mini !default;
-// Design System only
 $btn-font-size-lg: type.$font-size-18 !default;
 
 // Available button sizes except the default, which is md
 $btn-non-default-sizes: sm, lg !default;
-
-$btn-animation-distance-map: (
-  'sm': $btn-animation-distance-sm,
-  'md': $btn-animation-distance-md,
-  'lg': $btn-animation-distance-lg,
-);
 
 $btn-padding-x-map: (
   'sm': tokens.get('button-small-padding-inline'),
