@@ -1,6 +1,6 @@
 describe('PostList Component', { baseUrl: null, includeShadowDom: false }, () => {
   beforeEach(() => {
-    // Visit the page where the component is rendered (adjust the URL accordingly)
+    // Visit the page where the component is rendered
     cy.visit('./cypress/fixtures/post-list.test.html');
   });
 
@@ -10,7 +10,6 @@ describe('PostList Component', { baseUrl: null, includeShadowDom: false }, () =>
   });
 
   it('should have an id for the first div in post-list', () => {
-    // cy.get('post-list').find('div').first().then(console.log);
     // Ensure the first div inside post-list has an id attribute
     cy.get('post-list')
       .find('div')
@@ -29,7 +28,7 @@ describe('PostList Component', { baseUrl: null, includeShadowDom: false }, () =>
       expect(err.message).to.include(
         'Please provide a title to the list component. Title is mandatory for accessibility purposes.',
       );
-      return false; // Prevent Cypress from failing the test on exception
+      return false;
     });
     cy.get('post-list').within(() => {
       cy.get('[slot="post-list-item"]').first().invoke('remove');
@@ -53,8 +52,8 @@ describe('PostList Component', { baseUrl: null, includeShadowDom: false }, () =>
     cy.get('post-list').within(() => {
       cy.get('post-list-item').each($el => {
         cy.wrap($el)
-          .should('have.attr', 'slot', 'post-list-item') // Check for correct slot
-          .and('have.attr', 'role', 'listitem'); // Check for correct role
+          .should('have.attr', 'slot', 'post-list-item')
+          .and('have.attr', 'role', 'listitem');
       });
     });
   });

@@ -19,22 +19,33 @@ The `<post-list>` is a container for `<post-list-item>` components.
 
 <Controls of={ListStories.Default} />
 
+### Variants
+
+<p className="lead">Horizontal List</p>
+<p>Set the `horizontal` property to `true`to make the list horizontal.</p>
+<Canvas sourceState="shown" of={ListStories.PostListHorizontal} />
+
+<p className="lead">Hidden Title</p>
+<p>The Title can be visually hidden but should always be present for Accessibility reasons.</p>
+<p>Set the `title-hidden` property to `true`to visually hide the heading.</p>
+
+<Canvas sourceState="shown" of={ListStories.PostListNoTitle} />
+
+<p className="lead">List Styling</p>
+
+<strong>--post-list-title-gap</strong>
 <p>
-  Define the gap of the list items using the --post-list-item-gap custom property. e.g.
+  Define the gap between the title and the list items using the `--post-list-title-gap` property.
+  e.g., `--post-list-title-gap: 2rem;`
+</p>
+
+<strong>--post-list-item-gap</strong>
+<p>
+  Define the gap of the list items using the `--post-list-item-gap` property. e.g.
   `--post-list-item-gap: 1rem 0.5rem;`
 </p>
 
-<p>
-  Define the gap between the title/heading and the list items using the --post-list-heading-gap
-  custom property. e.g. `--post-list-heading-gap: 2rem;`
-</p>
-
-### Variants
-
-title-hidden
-horizontal
---post-list-item-gap:
---post-list-heading-gap
+<Canvas sourceState="shown" of={ListStories.PostListStyling} />
 
 ## Installation
 

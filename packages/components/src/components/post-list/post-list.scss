@@ -2,7 +2,7 @@
 
 post-list {
   display: flex;
-  gap: var(--post-list-heading-gap);
+  gap: var(--post-list-title-gap);
   flex-direction: column;
   align-items: flex-start;
 
@@ -21,11 +21,11 @@ post-list {
     }
   }
 
-  > div[id^='list-'].visually-hidden {
+  > .list-title.visually-hidden {
     @include post.visually-hidden();
   }
 
-  > div[id^='list-']:not(.visually-hidden) {
-    gap: var(--post-list-heading-gap);
+  > .list-title:not(.visually-hidden) {
+    gap: var(--post-list-title-gap);
   }
 }

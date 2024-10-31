@@ -52,7 +52,7 @@ export class PostList {
   render() {
     return (
       <Host data-version={version}>
-        <div id={this.uuid} class={this.titleHidden ? 'visually-hidden' : ''}>
+        <div id={this.uuid} class={`list-title${this.titleHidden ? ' visually-hidden' : ''}`}>
           <slot onSlotchange={e => this.checkTitle(e.target as HTMLSlotElement)}></slot>
         </div>
         <div role="list" aria-labelledby={this.uuid}>

@@ -28,7 +28,7 @@ export const PostList: Story = {
               <post-list
                 style="
                 --post-list-item-gap: ${args.itemGap};
-                --post-list-heading-gap: ${args.headingGap};
+                --post-list-title-gap: ${args.headingGap};
               "
                 title-hidden="${args.titleHidden}"
                 horizontal="${args.horizontal}"

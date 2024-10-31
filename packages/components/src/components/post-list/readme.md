@@ -7,18 +7,18 @@
 
 ## Properties
 
-| Property      | Attribute      | Description                                                                          | Type      | Default |
-| ------------- | -------------- | ------------------------------------------------------------------------------------ | --------- | ------- |
-| `horizontal`  | `horizontal`   | The list can become horizontal by setting `horizontal="true"` or just `horizontal`   | `boolean` | `false` |
-| `titleHidden` | `title-hidden` | The list title can be hidden be setting `title-hidden="true"` or just `title-hidden` | `boolean` | `false` |
+| Property      | Attribute      | Description                                                                        | Type      | Default |
+| ------------- | -------------- | ---------------------------------------------------------------------------------- | --------- | ------- |
+| `horizontal`  | `horizontal`   | The list can become horizontal by setting `horizontal="true"` or just `horizontal` | `boolean` | `false` |
+| `titleHidden` | `title-hidden` | If `true`, the list title will be hidden. Otherwise, it will be displayed.`        | `boolean` | `false` |
 
 
 ## Slots
 
-| Slot               | Description                                |
-| ------------------ | ------------------------------------------ |
-| `"default"`        | Slot for placing the list title            |
-| `"post-list-item"` | Slot for placing post-list-item components |
+| Slot               | Description                                 |
+| ------------------ | ------------------------------------------- |
+| `"default"`        | Slot for placing the list title.            |
+| `"post-list-item"` | Slot for placing post-list-item components. |
 
 
 ----------------------------------------------

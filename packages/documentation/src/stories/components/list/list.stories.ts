@@ -18,8 +18,7 @@ const meta: MetaComponent = {
     horizontal: false,
     titleHidden: false,
   },
-  argTypes: {
-  },
+  argTypes: {},
   render: args =>
     html`<post-list
       title-hidden="${args.titleHidden ? args.titleHidden : nothing}"
@@ -37,3 +36,33 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {};
+
+export const PostListHorizontal: Story = {
+  render: () =>
+    html`<post-list horizontal="true">
+      <h3>Title</h3>
+      <post-list-item>List Item 1</post-list-item>
+      <post-list-item>List Item 2</post-list-item>
+      <post-list-item>List Item 3</post-list-item>
+    </post-list> `,
+};
+
+export const PostListNoTitle: Story = {
+  render: () =>
+    html`<post-list title-hidden="true">
+      <h3>Title</h3>
+      <post-list-item>List Item 1</post-list-item>
+      <post-list-item>List Item 2</post-list-item>
+      <post-list-item>List Item 3</post-list-item>
+    </post-list> `,
+};
+
+export const PostListStyling: Story = {
+  render: () =>
+    html`<post-list style="--post-list-title-gap: 2rem; --post-list-item-gap: 1rem 0.5rem;">
+      <h3>Title</h3>
+      <post-list-item>List Item 1</post-list-item>
+      <post-list-item>List Item 2</post-list-item>
+      <post-list-item>List Item 3</post-list-item>
+    </post-list> `,
+};

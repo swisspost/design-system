@@ -7,9 +7,9 @@
 
 ## Slots
 
-| Slot                                            | Description |
-| ----------------------------------------------- | ----------- |
-| `"default- Slot for placing list item content"` |             |
+| Slot                                                        | Description |
+| ----------------------------------------------------------- | ----------- |
+| `"default- Slot for placing the content of the list item."` |             |
 
 
 ----------------------------------------------
