@@ -20,7 +20,7 @@ export class PostList {
   @State() uuid: string;
 
   /**
-   * If `true`, the list title will be hidden. Otherwise, it will be displayed.`
+   * The list title can be hidden be setting `title-hidden="true"` or just `title-hidden`
    */
   @Prop() readonly titleHidden: boolean = false;
 
@@ -29,15 +29,26 @@ export class PostList {
    */
   @Prop() readonly horizontal: boolean = false;
 
+  /**
+   * Define the gap of the list items using the --post-list-item-gap custom property.
+   * e.g. --post-list-item-gap: 1rem 0.5rem;
+   */
+
+  /**
+   * Define the gap between the title/heading and the list items using the --post-list-heading-gap custom property.
+   * e.g. --post-list-heading-gap: 2rem;
+   */
+
   componentWillLoad() {
     /**
      * Get the id set on the host element or use a random id by default
      */
-    this.uuid = `list-${crypto.randomUUID()}`;
+    this.uuid = this.host.id || `list-${crypto.randomUUID()}`;
   }
 
   componentDidLoad() {
-    const titleSlot = this.host.querySelector(`#${this.uuid}`).firstElementChild as HTMLSlotElement;
+    const titleDiv = this.host.querySelector(`#${this.uuid}`).firstElementChild;
+    const titleSlot = titleDiv as HTMLSlotElement;
     this.checkTitle(titleSlot);
   }
 

@@ -1,6 +1,9 @@
 @use '@swisspost/design-system-styles/core' as post;
 
 post-list {
+  --post-list-item-gap: 1rem 0.5rem;
+  --post-list-heading-gap: 1rem;
+
   display: flex;
   gap: var(--post-list-title-gap);
   flex-direction: column;

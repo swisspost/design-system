@@ -223,7 +223,7 @@ export namespace Components {
          */
         "horizontal": boolean;
         /**
-          * If `true`, the list title will be hidden. Otherwise, it will be displayed.`
+          * The list title can be hidden be setting `title-hidden="true"` or just `title-hidden`
          */
         "titleHidden": boolean;
     }
@@ -827,7 +827,7 @@ declare namespace LocalJSX {
          */
         "horizontal"?: boolean;
         /**
-          * If `true`, the list title will be hidden. Otherwise, it will be displayed.`
+          * The list title can be hidden be setting `title-hidden="true"` or just `title-hidden`
          */
         "titleHidden"?: boolean;
     }
