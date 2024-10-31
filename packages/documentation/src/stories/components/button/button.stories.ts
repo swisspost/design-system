@@ -199,13 +199,12 @@ const Template = {
     } else {
       const icon = html` <post-icon aria-hidden="true" name="${args.icon}"></post-icon> `;
       const iconOnlyContent = html` <span class="visually-hidden">${args.text}</span> `;
-      const textContent = html` <span>${args.text}</span> `;
       const text = html` ${args.text} `;
 
       return html`
         <${tagName} ${spread(props)}>
           ${args.icon !== 'null' && args.iconPosition === 'start' ? icon : null}
-          ${(args.iconOnly && iconOnlyContent) || textContent || text}
+          ${(args.iconOnly && iconOnlyContent) || text}
           ${args.icon !== 'null' && args.iconPosition === 'end' ? icon : null}
         </${tagName}>
       `;
@@ -234,7 +233,9 @@ export const Inverted: Story = {
   ...Template,
   decorators: [
     (story: StoryFn, context: StoryContext) =>
-      html` <div class="p-16 bg-dark">${story(context.args, context)}</div> `,
+      html`
+        <div class="p-16 bg-dark" data-color-scheme="dark">${story(context.args, context)}</div>
+      `,
   ],
 };
 
