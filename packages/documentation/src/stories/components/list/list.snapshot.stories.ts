@@ -34,9 +34,9 @@ export const List: Story = {
                 horizontal="${args.horizontal}"
               >
                 <h3 class="heading">List Title</h3>
-                <post-list-item slot="post-list-item">Item 1</post-list-item>
-                <post-list-item slot="post-list-item">Item 2</post-list-item>
-                <post-list-item slot="post-list-item">Item 3</post-list-item>
+                <post-list-item>Item 1</post-list-item>
+                <post-list-item>Item 2</post-list-item>
+                <post-list-item>Item 3</post-list-item>
               </post-list>
             `;
           })}
