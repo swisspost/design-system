@@ -13,7 +13,7 @@ export default {
 type Story = StoryObj;
 
 export const List: Story = {
-  render: (_args: Args, context: StoryContext) => {
+  render: () => {
     return html`
       <div class="d-flex gap-16 flex-column">
         ${bombArgs({
