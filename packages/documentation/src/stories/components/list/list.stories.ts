@@ -19,12 +19,6 @@ const meta: MetaComponent = {
     titleHidden: false,
   },
   argTypes: {
-    titleHidden: {
-      options: [true, false],
-    },
-    horizontal: {
-      options: [true, false],
-    },
   },
   render: args =>
     html`<post-list
