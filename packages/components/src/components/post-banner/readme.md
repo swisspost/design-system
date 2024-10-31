@@ -11,7 +11,6 @@
 | -------------- | --------------- | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | ----------- |
 | `dismissLabel` | `dismiss-label` | The label to use for the close button of a dismissible banner.                                                        | `string`                                                    | `undefined` |
 | `dismissible`  | `dismissible`   | If `true`, a close button (×) is displayed and the banner can be dismissed by the user.                               | `boolean`                                                   | `false`     |
-| `fixed`        | `fixed`         | If `true`, the banner is positioned at the bottom of the window, from edge to edge.                                   | `boolean`                                                   | `false`     |
 | `icon`         | `icon`          | The icon to display in the banner. By default, the icon depends on the banner type.  If `none`, no icon is displayed. | `string`                                                    | `undefined` |
 | `type`         | `type`          | The type of the banner.                                                                                               | `"danger" \| "info" \| "neutral" \| "success" \| "warning"` | `'neutral'` |
 

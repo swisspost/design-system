@@ -101,55 +101,6 @@ tokens.$default-map: components.$post-banner;
   }
 }
 
-.banner-fixed-bottom,
-.alert-fixed-bottom {
-  position: fixed;
-  inset-block-end: 0;
-  inset-inline-start: 0;
-  inset-inline-end: 0;
-  margin-bottom: 0;
-  border-radius: 0;
-  z-index: commons.$zindex-fixed;
-
-  @include media-breakpoint-up(xxl) {
-    //TODO: Tokens?
-    $container-max-width: map.get(breakpoints.$grid-breakpoints, 'xxl') - 1;
-    $container-padding-x: map.get(grid.$grid-container-padding, 'xxl');
-    $alert-padding-x: tokens.get('banner-padding');
-    $alert-icon-size: tokens.get('banner-icon-size');
-    $fixed-alert-padding-x: '(100% - #{$container-max-width}) / 2 + #{$container-padding-x} + #{$alert-padding-x}';
-
-    padding-inline-end: calc(#{$fixed-alert-padding-x});
-    padding-inline-start: calc(
-      #{$fixed-alert-padding-x} + #{$alert-icon-size} + #{tokens.get('banner-gap')}
-    );
-
-    // for alerts with .pi-* icons (deprecated)
-    background-position-x: calc(#{$fixed-alert-padding-x} + (0.5 * #{$alert-icon-size}));
-
-    // for alerts with mask-image icons
-    &::before {
-      left: calc(#{$fixed-alert-padding-x});
-    }
-
-    &.no-icon {
-      padding-inline-start: calc(#{$fixed-alert-padding-x});
-    }
-
-    &.banner-dismissible,
-    &.alert-dismissible {
-      > .banner-content,
-      > .alert-content {
-        padding-inline-end: calc(#{tokens.get('banner-gap')} + #{close.$close-size});
-      }
-
-      > .btn-close {
-        inset-inline-end: calc(#{$fixed-alert-padding-x});
-      }
-    }
-  }
-}
-
 @each $name, $color, $icon, $border-color, $icon-color,
   $scheme in notification.$notification-variants
 {

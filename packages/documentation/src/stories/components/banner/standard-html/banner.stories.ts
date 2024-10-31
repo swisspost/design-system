@@ -1,5 +1,4 @@
-import { useArgs } from '@storybook/preview-api';
-import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { Args, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { getBannerClasses } from './getBannerClasses';
@@ -10,7 +9,6 @@ const meta: MetaComponent = {
   title: 'Components/Banner',
   tags: ['package:HTML'],
   render: renderBanner,
-  decorators: [externalControl],
   parameters: {
     badges: [],
     controls: {
@@ -25,7 +23,6 @@ const meta: MetaComponent = {
     content: '<p>Contentus momentus vero siteos et accusam iretea et justo.</p>',
     show: true,
     action: true,
-    fixed: false,
     noIcon: false,
     icon: undefined,
     type: 'banner-neutral',
@@ -83,11 +80,6 @@ const meta: MetaComponent = {
         'If `true`, the banner contains action buttons on its right side.<span className="mt-8 banner banner-info">Banner content must then be wrapped in a `.banner-content` container.</span>',
       control: { type: 'boolean' },
     },
-    fixed: {
-      name: 'Fixed',
-      description: 'If `true`, the banner anchored at the bottom of the page, from edge to edge.',
-      control: { type: 'boolean' },
-    },
     noIcon: {
       name: 'No Icon',
       description: 'If `true`, no icon is displayed on the left side of the banner.',
@@ -137,34 +129,6 @@ const meta: MetaComponent = {
 };
 
 export default meta;
-
-// DECORATORS
-function externalControl(story: StoryFn, { args, context }: StoryContext) {
-  const [_, updateArgs] = useArgs();
-
-  const toggleBanner = (
-    e: MouseEvent,
-    args: Args,
-    updateArgs: (newArgs: Partial<Args>) => void,
-  ) => {
-    e.preventDefault();
-    updateArgs({ show: !args.show });
-  };
-
-  if (!args.fixed && !args.show) updateArgs({ show: true });
-
-  const button = html`
-    <a
-      class="btn btn-secondary btn-animated"
-      href="#"
-      @click="${(e: MouseEvent) => toggleBanner(e, args, updateArgs)}"
-    >
-      <span>Toggle Fixed Banner</span>
-    </a>
-  `;
-
-  return html` ${args.fixed ? button : nothing} ${story(args, context)} `;
-}
 
 // RENDERER
 
@@ -272,12 +236,5 @@ export const Dialog: Story = {
 export const ActionButtons: Story = {
   args: {
     action: true,
-  },
-};
-
-export const Fixed: Story = {
-  args: {
-    fixed: true,
-    show: false,
   },
 };

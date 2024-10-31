@@ -21,7 +21,6 @@ const meta: MetaComponent<HTMLPostBannerElement> = {
     innerHTML: '<p>Contentus momentus vero siteos et accusam iretea et justo.</p>',
     dismissible: false,
     dismissLabel: 'Dismiss',
-    fixed: false,
   },
   argTypes: {
     dismissLabel: {
@@ -75,8 +74,7 @@ function externalControl(story: StoryFn, context: StoryContext) {
       await banner.dismiss();
     } else {
       bannerContainer.appendChild(banner);
-      if (!args.fixed) button.hidden = true;
-      else button.focus();
+      button.hidden = true;
     }
   };
 
@@ -84,16 +82,11 @@ function externalControl(story: StoryFn, context: StoryContext) {
     banner = canvasElement.querySelector('post-banner') as HTMLPostBannerElement;
     button = canvasElement.querySelector('.banner-button') as HTMLButtonElement;
 
-    if (args.fixed) {
+    button.hidden = true;
+    banner.addEventListener('postDismissed', () => {
       button.hidden = false;
-      if (context.storyName !== 'Default') banner.remove();
-    } else {
-      button.hidden = true;
-      banner.addEventListener('postDismissed', () => {
-        button.hidden = false;
-        button.focus();
-      });
-    }
+      button.focus();
+    });
   });
 
   return html`
@@ -102,7 +95,7 @@ function externalControl(story: StoryFn, context: StoryContext) {
       href="#"
       @click="${(e: Event) => toggleBanner(e)}"
     >
-      <span>${args.fixed ? 'Toggle Fixed Banner' : 'Reset Banner'}</span>
+      <span>Reset Banner</span>
     </a>
     <div class="banner-container">${story(args, context)}</div>
   `;
@@ -148,13 +141,6 @@ export const NoIcon: Story = {
 
 export const Dismissible: Story = {
   args: {
-    dismissible: true,
-  },
-};
-
-export const Fixed: Story = {
-  args: {
-    fixed: true,
     dismissible: true,
   },
 };

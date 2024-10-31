@@ -59,16 +59,6 @@ export class PostBanner {
   }
 
   /**
-   * If `true`, the banner is positioned at the bottom of the window, from edge to edge.
-   */
-  @Prop() readonly fixed: boolean = false;
-
-  @Watch('fixed')
-  validateFixed(isFixed = this.fixed) {
-    checkType(isFixed, 'boolean', 'The post-banner "fixed" prop should be a boolean.');
-  }
-
-  /**
    * The icon to display in the banner. By default, the icon depends on the banner type.
    *
    * If `none`, no icon is displayed.
@@ -106,7 +96,6 @@ export class PostBanner {
 
   componentDidLoad() {
     this.validateDismissible();
-    this.validateFixed();
     this.validateIcon();
     this.validateType();
   }
@@ -118,7 +107,6 @@ export class PostBanner {
     this.classes = `banner ${this.type ? 'banner-' + this.type : ''}`;
     if (this.dismissible) this.classes += ' banner-dismissible';
     if (this.hasActions) this.classes += ' banner-action';
-    if (this.fixed) this.classes += ' banner-fixed-bottom';
     if (this.icon === 'none') this.classes += ' no-icon';
   }
 

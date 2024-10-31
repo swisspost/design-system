@@ -81,10 +81,6 @@ export namespace Components {
          */
         "dismissible": boolean;
         /**
-          * If `true`, the banner is positioned at the bottom of the window, from edge to edge.
-         */
-        "fixed": boolean;
-        /**
           * The icon to display in the banner. By default, the icon depends on the banner type.  If `none`, no icon is displayed.
          */
         "icon": string;
@@ -654,10 +650,6 @@ declare namespace LocalJSX {
           * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
          */
         "dismissible"?: boolean;
-        /**
-          * If `true`, the banner is positioned at the bottom of the window, from edge to edge.
-         */
-        "fixed"?: boolean;
         /**
           * The icon to display in the banner. By default, the icon depends on the banner type.  If `none`, no icon is displayed.
          */
