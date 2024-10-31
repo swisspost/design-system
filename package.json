@@ -85,8 +85,8 @@
     "tokens:usage": "node ./utilities/token-checker.cjs"
   },
   "devDependencies": {
-    "@changesets/cli": "2.27.7",
-    "start-server-and-test": "2.0.5"
+    "@changesets/cli": "2.27.9",
+    "start-server-and-test": "2.0.8"
   },
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
@@ -94,7 +94,7 @@
   "engines": {
     "node": "20"
   },
-  "packageManager": "pnpm@9.6.0",
+  "packageManager": "pnpm@9.12.3",
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": {},
