@@ -20,6 +20,7 @@ tokens.$default-map: components.$post-banner;
   $elevation: map.get(notification.$notification-elevation-map, $size);
   $gap: map.get(notification.$notification-gap-map, $size);
   min-height: calc(#{$icon-size} + (2 * #{$padding-y}));
+  box-sizing: border-box;
 
   box-shadow: $elevation;
   border-radius: tokens.get('banner-border-radius');
