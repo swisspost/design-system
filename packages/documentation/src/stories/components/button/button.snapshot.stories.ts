@@ -16,10 +16,10 @@ export const Button: Story = {
   render: (_args: Args, context: StoryContext) => {
     return html`
       <div class="d-flex flex-wrap gap-4 align-items-start">
-        ${['bg-white', 'bg-dark'].map(
+        ${['white', 'dark'].map(
           bg => html`
             <div
-              class="${bg} d-flex flex-wrap align-items-start gap-16 p-16"
+              class="bg-${bg} d-flex flex-wrap align-items-start gap-16 p-16"
               data-color-scheme=${bg}
             >
               ${bombArgs({

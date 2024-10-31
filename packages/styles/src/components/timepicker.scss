@@ -67,8 +67,6 @@
 // Regular-sized timepicker
 .timepicker-rg {
   .btn {
-    @include button-mixins.old-button-size(rg);
-
     .ngb-tp-chevron::before {
       width: map.get(button.$old-btn-icon-size-map, 'rg');
       height: map.get(button.$old-btn-icon-size-map, 'rg');

@@ -35,9 +35,8 @@ tokens.$default-map: components.$post-button;
   }
 }
 
-@mixin button-variant-def($type, $color, $inverted: false) {
-  $inverted-suffix: if($inverted, '-inverted', '');
-  border-color: tokens.get('button-#{$color}#{$inverted-suffix}-#{$type}-stroke');
+@mixin button-variant-def($type, $color) {
+  border-color: tokens.get('button-#{$color}-#{$type}-stroke');
   background-color: tokens.get('button-#{$color}-#{$type}-bg');
   color: tokens.get('button-#{$color}-#{$type}-fg');
 }
@@ -63,22 +62,5 @@ tokens.$default-map: components.$post-button;
         color: color-var.$black;
       }
     }
-  }
-}
-
-// Old mixins
-@mixin old-button-size($size: md) {
-  min-height: map.get(button.$btn-height-map, $size);
-  font-size: map.get(button.$btn-font-size-map, $size);
-  gap: map.get(button.$btn-gap-x-map, $size);
-
-  &:where(:not(.btn-link, .btn-tertiary)) {
-    padding: 0 map.get(button.$btn-padding-x-map, $size);
-  }
-
-  > .pi,
-  > post-icon {
-    width: map.get(button.$btn-icon-size-map, $size);
-    height: map.get(button.$btn-icon-size-map, $size);
   }
 }

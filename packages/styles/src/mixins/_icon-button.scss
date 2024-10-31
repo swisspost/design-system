@@ -10,7 +10,7 @@ tokens.$default-map: components.$post-icon-button;
   $size-map: (
     'sm': 'small',
     'md': 'medium',
-    'lg': 'large'
+    'lg': 'large',
   );
   $actual-size: map.get($size-map, $size);
   min-width: tokens.get('icon-button-#{$actual-size}-outer');

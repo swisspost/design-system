@@ -54,10 +54,6 @@ tokens.$default-map: components.$post-button;
     $color: tokens.get('button-focus-stroke')
   );
 
-  @include color-mx.on-dark-background {
-    @include utilities.focus-style($color: tokens.get('button-focus-stroke-inverted'));
-  }
-
   // Styles  to improve accessibility in high contrast mode
   @include utilities.high-contrast-mode() {
     border-color: ButtonBorder;
@@ -71,10 +67,6 @@ tokens.$default-map: components.$post-button;
 
     &:disabled {
       border-color: GrayText !important;
-    }
-
-    .pi {
-      filter: invert(1) !important;
     }
   }
 }
@@ -96,32 +88,6 @@ tokens.$default-map: components.$post-button;
 
     @include utilities.not-disabled-hover() {
       @include button-mx.button-variant-def('hover', $color);
-    }
-
-    @include color-mx.on-dark-background {
-      @include button-mx.button-variant-def('enabled', $color, true);
-
-      &:disabled {
-        @include button-mx.button-variant-def('disabled', $color, true);
-      }
-
-      @include utilities.not-disabled-hover() {
-        @include button-mx.button-variant-def('hover', $color, true);
-      }
-    }
-  }
-}
-
-// Primary
-.btn-primary {
-  .pi {
-    filter: invert(1);
-    forced-color-adjust: none;
-  }
-
-  @include color-mx.on-dark-background {
-    .pi {
-      filter: invert(0);
     }
   }
 }

@@ -13,11 +13,6 @@
 
 tokens.$default-map: components.$post-button;
 
-// Buttons
-$btn-font-size-sm: type.$font-size-12 !default;
-$btn-font-size-md: type.$font-size-16 !default;
-$btn-font-size-lg: type.$font-size-18 !default;
-
 // Available button sizes except the default, which is md
 $btn-non-default-sizes: sm, lg !default;
 
@@ -31,12 +26,6 @@ $btn-height-map: (
   'sm': tokens.get('button-small-height'),
   'md': tokens.get('button-medium-height'),
   'lg': tokens.get('button-large-height'),
-);
-
-$btn-font-size-map: (
-  'sm': $btn-font-size-sm,
-  'md': $btn-font-size-md,
-  'lg': $btn-font-size-lg,
 );
 
 $input-btn-border-width: commons.$border-thick !default;
