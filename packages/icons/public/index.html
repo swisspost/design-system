@@ -17,94 +17,34 @@
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body style="padding: 1rem">
-    <!-- This is a very simple icons debug page that can also be accessed via CDN in order to quickly check on a specific package version or to test locally -->
-    <div class="container my-48" x-data="icons">
-      <section>
-        <h1 id="converted">Icons</h1>
-        <code class="my-32 d-block">
-          Version:
-          <span x-text="icons.version"></span>
-          <br />
-          Last updated:
-          <span x-text="new Date(icons.created)"></span>
-          <br />
-          Successful:
-          <span x-text="icons.stats.success"></span>
-          <br />
-          Errored:
-          <span x-text="icons.stats.errors"></span>
-          <br />
-          Not found:
-          <span x-text="icons.stats.notFound"></span>
-        </code>
+  <body>
+    <h1>Playground</h1>
 
-        <hr style="margin-block: 1rem" />
+    <div class="d-flex">
+      <section x-data="TEST_ICONS">
+        <h2>Source Icons</h2>
 
-        <div class="converted-icons icons">
-          <template x-for="icon in icons.icons">
-            <div class="icon">
-              <img x-bind:src="`./post-icons/${icon.file.name}`" alt="icon" />
-              <span x-text="icon.file.basename"></span>
+        <template x-for="icon in sourceIcons">
+          <div class="icon-variants">
+            <template x-for="size, i in sizes">
+              <div :class="`icon-${size}`" x-html="icon[i]"></div>
+            </template>
+          </div>
+        </template>
+      </section>
+
+      <section x-data="TEST_ICONS">
+        <h2>Sprite Icons</h2>
+
+        <template x-for="name in spriteIconNames">
+          <div class="size-keeper">
+            <div class="resize">
+              <div class="post-icon">
+                <svg x-html="getSpriteIcon(name)"></svg>
+              </div>
             </div>
-          </template>
-        </div>
-      </section>
-
-      <section x-show="icons.wrongViewBox.length > 0">
-        <h1 class="mt-56 mb-32">Wrong ViewBox</h1>
-        <p>The viewBox attribute of the incoming SVG file is not set to "0 0 32 32".</p>
-        <div class="converted-icons icons">
-          <template x-for="icon in icons.wrongViewBox">
-            <div class="icon">
-              <img
-                x-bind:src="`./post-icons/${icon.file.name}`"
-                alt="icon"
-                style="background: #ccc"
-              />
-              <span x-text="icon.file.basename"></span>
-            </div>
-          </template>
-        </div>
-      </section>
-
-      <section x-show="icons.noKeywords.length > 0">
-        <h1 class="mt-56 mb-32">No Keywords</h1>
-        <p>The incoming SVG file has no keywords specified.</p>
-        <div class="converted-icons icons">
-          <template x-for="icon in icons.noKeywords">
-            <div class="icon">
-              <img
-                x-bind:src="`./post-icons/${icon.file.name}`"
-                alt="icon"
-                style="background: #ccc"
-              />
-              <span x-text="icon.file.basename"></span>
-            </div>
-          </template>
-        </div>
-      </section>
-
-      <section x-show="icons.errored.length > 0">
-        <h1 class="mt-56 mb-32">Errored</h1>
-        <ul>
-          <template x-for="icon in icons.errored">
-            <li>
-              <a x-bind:href="icon.meta.downloadLink" x-text="icon.file.name"></a>
-              <br />
-              <pre x-text="icon.errorMessage"></pre>
-            </li>
-          </template>
-        </ul>
-      </section>
-
-      <section x-show="icons.notFound && icons.notFound.length > 0">
-        <h1 class="mt-56 mb-32">SVG file not found</h1>
-        <ul>
-          <template x-for="icon in icons.noSVG">
-            <li x-text="icon.file.basename"></li>
-          </template>
-        </ul>
+          </div>
+        </template>
       </section>
     </div>
 
