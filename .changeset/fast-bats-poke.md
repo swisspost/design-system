@@ -3,4 +3,4 @@
 '@swisspost/design-system-components': minor
 ---
 
-Created post-list component
+Created the `post-list` and `post-list-item` components.
