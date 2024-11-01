@@ -1,7 +1,8 @@
 @use 'sass:map';
 @use '../tokens/elements';
 @use '../functions/tokens';
-@use './../mixins/icons';
+@use '../functions/icons';
+@use './../mixins/icons' as icon-mixin;
 
 tokens.$default-map: (
   post-validation-error: #b20000,
@@ -52,7 +53,8 @@ Default feedback message classes
  Checkbox and Radio box specific classes
 */
 input[type='checkbox'],
-input[type='radio'] {
+input[type='radio'],
+input[type='range'] {
   ~ .invalid-feedback,
   ~ .valid-feedback {
     &::before {
@@ -66,11 +68,11 @@ input[type='radio'] {
   }
 
   ~ .invalid-feedback::before {
-    mask-image: url('../temp/error-icon.svg');
+    @include icon-mixin.icon('val-error');
   }
 
   ~ .valid-feedback::before {
-    mask-image: url('../temp/success-icon.svg');
+    @include icon-mixin.icon('val-success');
   }
 }
 
@@ -102,7 +104,7 @@ fieldset:has(.is-valid) {
     color: tokens.get('post-validation-success');
 
     &::before {
-      mask-image: url('../temp/success-icon.svg');
+      @include icon-mixin.icon('val-success');
     }
   }
 }
@@ -114,7 +116,7 @@ fieldset:has(.is-invalid) {
     color: tokens.get('post-validation-error');
 
     &::before {
-      mask-image: url('../temp/error-icon.svg');
+      @include icon-mixin.icon('val-error');
     }
   }
 }
