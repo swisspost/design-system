@@ -4,7 +4,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  @content;
 
   @include media.min(md) {
     flex-direction: row-reverse;
@@ -17,6 +16,7 @@
   &-primary-actions {
     display: flex;
     flex-direction: column;
+    @content;
 
     @include media.min(md) {
       flex-direction: row-reverse;
