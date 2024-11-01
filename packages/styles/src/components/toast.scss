@@ -1,5 +1,7 @@
 @forward './../variables/options';
 
+@use 'sass:list';
+
 @use './../themes/bootstrap/core' as *;
 
 @use './../mixins/notification' as notification-mx;
@@ -14,7 +16,7 @@
 tokens.$default-map: components.$post-banner;
 
 .toast {
-  $default-variant: nth(notification.$notification-variants, 1);
+  $default-variant: list.nth(notification.$notification-variants, 1);
   @include notification-mx.notification-size(toast);
   @include notification-mx.notification-body(toast);
 
@@ -22,11 +24,11 @@ tokens.$default-map: components.$post-banner;
   & {
     // Set the neutral toast as the default color
     @include notification-mx.notification-variant(
-      nth($default-variant, 2),
-      nth($default-variant, 3),
-      nth($default-variant, 4),
-      nth($default-variant, 5),
-      nth($default-variant, 6)
+      list.nth($default-variant, 2),
+      list.nth($default-variant, 3),
+      list.nth($default-variant, 4),
+      list.nth($default-variant, 5),
+      list.nth($default-variant, 6)
     );
   }
 }

@@ -1,6 +1,7 @@
 @forward './../variables/options';
 
 @use 'sass:map';
+@use 'sass:list';
 
 @use './../themes/bootstrap/core' as *;
 
@@ -19,7 +20,7 @@ tokens.$default-map: components.$post-banner;
 
 .banner,
 .alert {
-  $default-variant: nth(notification.$notification-variants, 1);
+  $default-variant: list.nth(notification.$notification-variants, 1);
   color: tokens.get('body-color', elements.$post-body);
 
   border-style: tokens.get('banner-border-style');
@@ -30,11 +31,11 @@ tokens.$default-map: components.$post-banner;
   & {
     // Set the neutral banner as the default color
     @include notification-mx.notification-variant(
-      nth($default-variant, 2),
-      nth($default-variant, 3),
-      nth($default-variant, 4),
-      nth($default-variant, 5),
-      nth($default-variant, 6)
+      list.nth($default-variant, 2),
+      list.nth($default-variant, 3),
+      list.nth($default-variant, 4),
+      list.nth($default-variant, 5),
+      list.nth($default-variant, 6)
     );
   }
 
@@ -45,7 +46,7 @@ tokens.$default-map: components.$post-banner;
 
 // Dialog container
 .banner-container {
-  border: none;
+  border: unset;
   background-color: transparent;
 }
 
