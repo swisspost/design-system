@@ -16,9 +16,9 @@ import { checkEmptyOrOneOf, checkEmptyOrPattern, checkNonEmpty, checkType } from
 import { BANNER_TYPES, BannerType } from './banner-types';
 
 /**
- * @slot heading - Slot for placing custom content within the alert's heading.
- * @slot actions - Slot for placing custom actions (buttons, links, etc.) within the alert.
- * @slot default - Slot for placing the main content/message of the alert.
+ * @slot heading - Slot for placing custom content within the banner's heading.
+ * @slot actions - Slot for placing custom actions (buttons, links, etc.) within the banner.
+ * @slot default - Slot for placing the main content/message of the banner.
  */
 
 @Component({
@@ -89,8 +89,8 @@ export class PostBanner {
   }
 
   /**
-   * An event emitted when the alert element is dismissed, after the transition.
-   * It has no payload and only relevant for dismissible alerts.
+   * An event emitted when the banner element is dismissed, after the transition.
+   * It has no payload and only relevant for dismissible banners.
    */
   @Event() postDismissed: EventEmitter<void>;
 

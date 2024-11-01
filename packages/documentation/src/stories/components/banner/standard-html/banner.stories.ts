@@ -77,7 +77,7 @@ const meta: MetaComponent = {
     action: {
       name: 'Action Buttons',
       description:
-        'If `true`, the banner contains action buttons on its right side.<span className="mt-8 banner banner-info">Banner content must then be wrapped in a `.banner-content` container.</span>',
+        'If `true`, the banner contains action buttons on its right side.<span className="mt-8 banner banner-info banner-sm"><span>Banner content must then be wrapped in a `.banner-content` container.</span></span>',
       control: { type: 'boolean' },
     },
     noIcon: {
@@ -91,10 +91,10 @@ const meta: MetaComponent = {
       name: 'Icon',
       description:
         'The icon to display in the banner. By default, the icon depends on the banner type.' +
-        '<span className="mt-8 banner banner-info">' +
-        'To use a custom icon, you must first ' +
+        '<span className="mt-8 banner banner-info banner-sm">' +
+        '<span>To use a custom icon, you must first ' +
         '<a href="/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs">set up the icons in your project</a>' +
-        '.</span>',
+        '.</span></span>',
       if: {
         arg: 'noIcon',
         truthy: false,

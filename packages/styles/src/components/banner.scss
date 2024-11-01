@@ -12,6 +12,7 @@
 @use './../variables/components/close';
 @use './../variables/components/notification';
 @use '../tokens/components';
+@use '../tokens/elements';
 @use '../functions/tokens';
 
 tokens.$default-map: components.$post-banner;
@@ -19,6 +20,7 @@ tokens.$default-map: components.$post-banner;
 .banner,
 .alert {
   $default-variant: nth(notification.$notification-variants, 1);
+  color: tokens.get('body-color', elements.$post-body);
 
   border-style: tokens.get('banner-border-style');
   border-width: tokens.get('banner-border-width');

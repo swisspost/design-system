@@ -1,0 +1,90 @@
+@use 'sass:math';
+@use 'sass:list';
+@use 'sass:map';
+@use '@swisspost/design-system-styles/core' as post;
+@use '../mixins';
+
+$post-docs-banner-padding-md: 1em 2em 1em 3.5em;
+$post-docs-banner-padding-sm: 0.25em 1em 0.25em 2.25em;
+
+$post-docs-banner-icon-size-md: 2em;
+$post-docs-banner-icon-size-sm: 1.4em;
+
+$post-docs-banner-line-height-md: 1.35;
+$post-docs-banner-line-height-sm: 1.25;
+
+@include mixins.style-docs-only-guard('.banner') {
+  font-size: 1rem;
+
+  &:not(.banner-action) {
+    > :only-child:not(code),
+    > :first-child:not(code) + :last-child:not(code) {
+      font-size: inherit;
+    }
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .banner-heading {
+    font-size: 1.0625rem;
+  }
+
+  &.banner-sm,
+  &.banner-md {
+    display: block;
+    min-height: 0;
+    font-family: inherit;
+
+    a {
+      font-size: inherit;
+      font-weight: inherit;
+      color: inherit;
+
+      &:hover {
+        color: black;
+      }
+    }
+  }
+
+  &.banner-sm {
+    padding: $post-docs-banner-padding-sm;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: $post-docs-banner-line-height-sm;
+
+    &::before {
+      top: list.nth($post-docs-banner-padding-sm, 1) +
+        (($post-docs-banner-line-height-sm - $post-docs-banner-icon-size-sm) * 0.5);
+      left: (list.nth($post-docs-banner-padding-sm, 4) - $post-docs-banner-icon-size-sm) * 0.5;
+      width: $post-docs-banner-icon-size-sm;
+      height: $post-docs-banner-icon-size-sm;
+    }
+
+    code {
+      font-size: 0.833333em;
+    }
+  }
+
+  &.banner-md {
+    padding: $post-docs-banner-padding-md;
+    font-size: 0.9rem;
+    line-height: $post-docs-banner-line-height-md;
+
+    &::before {
+      top: list.nth($post-docs-banner-padding-md, 1) +
+        (($post-docs-banner-line-height-md - $post-docs-banner-icon-size-md) * 0.5);
+      left: (list.nth($post-docs-banner-padding-md, 4) - $post-docs-banner-icon-size-md) * 0.5;
+      width: $post-docs-banner-icon-size-md;
+      height: $post-docs-banner-icon-size-md;
+    }
+  }
+}
+
+@include mixins.style-docs-only-guard('post-banner') {
+  &::part(banner) {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+}

@@ -1789,7 +1789,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                     </p>
 
                     ${this.angular
-                      ? html` <p class="alert alert-info">
+                      ? html` <p class="banner banner-info">
                           One might think: "When it is so easy to migrate, why don't you offer an
                           automatic migration?"<br />
                           The short answer: because it is no longer the same component!

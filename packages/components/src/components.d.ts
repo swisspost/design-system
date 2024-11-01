@@ -63,7 +63,7 @@ export namespace Components {
          */
         "lastname"?: string;
         /**
-          * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
+          * Defines the company internal userId.<div className="mb-1 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
          */
         "userid"?: string;
     }
@@ -110,7 +110,7 @@ export namespace Components {
          */
         "groupReset": () => Promise<void>;
         /**
-          * Defines the icon `name` inside the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
+          * Defines the icon `name` inside the card. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span>
          */
         "icon": string;
         /**
@@ -118,7 +118,7 @@ export namespace Components {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `name` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
          */
         "name": string;
         /**
@@ -134,7 +134,7 @@ export namespace Components {
          */
         "validity": null | 'true' | 'false';
         /**
-          * Defines the `value` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
          */
         "value": string;
     }
@@ -315,7 +315,7 @@ export namespace Components {
     }
     interface PostTag {
         /**
-          * Defines the icon `name` inside of the component. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs">icon library</a>.
+          * Defines the icon `name` inside of the component. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs">icon library</a>.
          */
         "icon": null | string;
         /**
@@ -637,7 +637,7 @@ declare namespace LocalJSX {
          */
         "lastname"?: string;
         /**
-          * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
+          * Defines the company internal userId.<div className="mb-1 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
          */
         "userid"?: string;
     }
@@ -655,7 +655,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * An event emitted when the alert element is dismissed, after the transition. It has no payload and only relevant for dismissible alerts.
+          * An event emitted when the banner element is dismissed, after the transition. It has no payload and only relevant for dismissible banners.
          */
         "onPostDismissed"?: (event: PostBannerCustomEvent<void>) => void;
         /**
@@ -680,7 +680,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Defines the icon `name` inside the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
+          * Defines the icon `name` inside the card. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span>
          */
         "icon"?: string;
         /**
@@ -688,11 +688,11 @@ declare namespace LocalJSX {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `name` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
          */
         "name"?: string;
         /**
-          * An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked. <span className="alert alert-sm alert-info">If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</span>
+          * An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked. <span className="banner banner-sm banner-info">If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</span>
          */
         "onPostChange"?: (event: PostCardControlCustomEvent<{ state: boolean; value: string }>) => void;
         /**
@@ -708,7 +708,7 @@ declare namespace LocalJSX {
          */
         "validity"?: null | 'true' | 'false';
         /**
-          * Defines the `value` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
          */
         "value"?: string;
     }
@@ -867,7 +867,7 @@ declare namespace LocalJSX {
     }
     interface PostTag {
         /**
-          * Defines the icon `name` inside of the component. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs">icon library</a>.
+          * Defines the icon `name` inside of the component. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs">icon library</a>.
          */
         "icon"?: null | string;
         /**

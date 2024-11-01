@@ -19,9 +19,12 @@ type Story = StoryObj;
 export const Banner: Story = {
   render: () => html`
     <div class="d-flex gap-16 flex-wrap">
-      ${['bg-white', 'bg-dark'].map(
+      ${['bg-dark', 'bg-white'].map(
         bg => html`
-          <div class="${bg + ' d-flex flex-column gap-16 flex-wrap p-16'}" data-color-scheme=${bg}>
+          <div
+            class="${bg + ' d-flex flex-column gap-16 flex-wrap p-16'}"
+            data-color-scheme="light"
+          >
             ${bombArgs({
               type: bannerMeta?.argTypes?.type?.options,
               icon: ['no-icon', undefined, '1001'],
