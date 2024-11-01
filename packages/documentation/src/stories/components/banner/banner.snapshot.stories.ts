@@ -19,7 +19,7 @@ type Story = StoryObj;
 export const Banner: Story = {
   render: () => html`
     <div class="d-flex gap-16 flex-wrap">
-      ${['bg-dark', 'bg-white'].map(
+      ${['bg-white', 'bg-dark'].map(
         bg => html`
           <div
             class="${bg + ' d-flex flex-column gap-16 flex-wrap p-16'}"

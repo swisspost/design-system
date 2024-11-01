@@ -2,7 +2,7 @@ import { Meta, Source } from '@storybook/blocks';
 import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 import NgbComponentDemoLink from '@/shared/nb-bootstrap/ngb-component-demo-link.mdx';
-import NgbComponentAlert from '@/shared/nb-bootstrap/ngb-component-alert.mdx';
+import NgbComponentBanner from '@/shared/nb-bootstrap/ngb-component-banner.mdx';
 import NgbComponentImport from '@/shared/nb-bootstrap/ngb-component-import.mdx';
 import * as modalStories from './modal.stories';
 import modalVaryingContent from './modal-varying-content.sample?raw';
@@ -22,7 +22,7 @@ import modalBlocking from './modal-blocking.sample?raw';
 
 <p className="lead">Display information that requires the user’s immediate attention.</p>
 
-<NgbComponentAlert component="modal" />
+<NgbComponentBanner component="modal" />
 
 <div className="banner banner-warning mb-4">
   This component is deprecated in favor of the{' '}
@@ -73,6 +73,7 @@ However, You can decide to focus any other element by adding an `ngbAutofocus` a
   </PostTabPanel>
 
 {' '}
+
 <PostTabHeader panel="focused-content">Focused Content</PostTabHeader>
 <PostTabPanel name="focused-content">
   <Source code={modalFocusedContent} language="typescript" />
