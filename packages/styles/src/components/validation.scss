@@ -55,7 +55,7 @@ input[type='checkbox'],
 input[type='radio'] {
   ~ .invalid-feedback,
   ~ .valid-feedback {
-    &:before {
+    &::before {
       height: tokens.get('post-radio-button-icon-height-inner');
       width: tokens.get('post-radio-button-icon-width-inner');
       display: inline-block;
@@ -64,10 +64,12 @@ input[type='radio'] {
       content: '';
     }
   }
-  ~ .invalid-feedback:before {
+
+  ~ .invalid-feedback::before {
     mask-image: url('../temp/error-icon.svg');
   }
-  ~ .valid-feedback:before {
+
+  ~ .valid-feedback::before {
     mask-image: url('../temp/success-icon.svg');
   }
 }
@@ -82,7 +84,7 @@ fieldset:has(.is-valid),
 fieldset:has(.is-invalid) {
   ~ .invalid-feedback,
   ~ .valid-feedback {
-    &:before {
+    &::before {
       height: tokens.get('post-radio-button-icon-height-inner');
       width: tokens.get('post-radio-button-icon-width-inner');
       display: inline-block;
@@ -98,7 +100,8 @@ fieldset:has(.is-valid) {
   ~ .valid-feedback {
     display: flex;
     color: tokens.get('post-validation-success');
-    &:before {
+
+    &::before {
       mask-image: url('../temp/success-icon.svg');
     }
   }
@@ -109,7 +112,8 @@ fieldset:has(.is-invalid) {
   ~ .invalid-feedback {
     display: flex;
     color: tokens.get('post-validation-error');
-    &:before {
+
+    &::before {
       mask-image: url('../temp/error-icon.svg');
     }
   }
