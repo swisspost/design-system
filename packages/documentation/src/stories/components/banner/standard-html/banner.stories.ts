@@ -34,10 +34,16 @@ const meta: MetaComponent = {
     title: {
       name: 'Title',
       control: { type: 'text' },
+      table: {
+        category: 'Content',
+      },
     },
     content: {
       name: 'Content',
       control: { type: 'text' },
+      table: {
+        category: 'Content',
+      },
     },
     show: {
       name: 'Show',
@@ -48,12 +54,18 @@ const meta: MetaComponent = {
       name: 'Is a dialog',
       description: 'If `true`, banner will be set as a dialog component',
       control: { type: 'boolean' },
+      table: {
+        category: 'Behaviour',
+      },
     },
     dismissible: {
       name: 'Dismissible',
       description: 'If `true`, banner as a dialog will have a close button',
       control: 'boolean',
       if: { arg: 'dialog' },
+      table: {
+        category: 'Behaviour',
+      },
     },
     dismissLabel: {
       name: 'Dismiss label',
@@ -65,6 +77,9 @@ const meta: MetaComponent = {
         name: 'string',
         required: true,
       },
+      table: {
+        category: 'Behaviour',
+      },
     },
     open: {
       name: 'Is dialog opened',
@@ -73,18 +88,27 @@ const meta: MetaComponent = {
       if: {
         arg: 'dialog',
       },
+      table: {
+        category: 'Behaviour',
+      },
     },
     action: {
       name: 'Action Buttons',
       description:
         'If `true`, the banner contains action buttons on its right side.<span className="mt-8 banner banner-info banner-sm"><span>Banner content must then be wrapped in a `.banner-content` container.</span></span>',
       control: { type: 'boolean' },
+      table: {
+        category: 'Content',
+      },
     },
     noIcon: {
       name: 'No Icon',
       description: 'If `true`, no icon is displayed on the left side of the banner.',
       control: {
         type: 'boolean',
+      },
+      table: {
+        category: 'Content',
       },
     },
     icon: {
@@ -110,6 +134,9 @@ const meta: MetaComponent = {
         },
       },
       options: ['1001', '2023', '2025', '2035', '2101'],
+      table: {
+        category: 'Content',
+      },
     },
     type: {
       name: 'Type',
@@ -124,6 +151,9 @@ const meta: MetaComponent = {
         'banner-error',
         'banner-warning',
       ],
+      table: {
+        category: 'Content',
+      },
     },
   },
 };
@@ -141,29 +171,20 @@ function renderBanner(args: Args) {
   `;
 
   const body = html`
-    ${
-      /* Banner Icon */
-      args.icon ? html` <post-icon name=${args.icon}></post-icon> ` : nothing
-    }
-    ${
-      /* Banner Content */
-      args.action ? html` <div class="banner-content">${content}</div> ` : content
-    }
-    ${
-      /* Banner Action Buttons */
-      args.action
-        ? html`
-            <div class="banner-buttons">
-              <button class="btn btn-primary btn-animated">
-                <span>Akcepti</span>
-              </button>
-              <button class="btn btn-secondary btn-animated">
-                <span>Aborti</span>
-              </button>
-            </div>
-          `
-        : null
-    }
+    ${args.icon ? html` <post-icon name=${args.icon}></post-icon> ` : nothing}
+    ${args.action ? html` <div class="banner-content">${content}</div> ` : content}
+    ${args.action
+      ? html`
+          <div class="banner-buttons">
+            <button class="btn btn-primary btn-animated">
+              <span>Akcepti</span>
+            </button>
+            <button class="btn btn-secondary btn-animated">
+              <span>Aborti</span>
+            </button>
+          </div>
+        `
+      : null}
   `;
 
   if (args.dialog) {

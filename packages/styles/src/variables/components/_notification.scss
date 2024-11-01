@@ -16,7 +16,7 @@ $notification-gap-map: () !default;
 $notification-gap-map: map.merge(
   $notification-gap-map,
   (
-    'alert': tokens.get('banner-gap'),
+    'banner': tokens.get('banner-gap'),
     'toast': tokens.get('toast-spacing-gap-outer', components.$post-toast),
   )
 );
@@ -25,7 +25,7 @@ $notification-padding-x-map: () !default;
 $notification-padding-x-map: map.merge(
   $notification-padding-x-map,
   (
-    'alert': tokens.get('banner-padding'),
+    'banner': tokens.get('banner-padding'),
     'toast': tokens.get('toast-spacing-padding-inline', components.$post-toast),
   )
 );
@@ -34,7 +34,7 @@ $notification-padding-y-map: () !default;
 $notification-padding-y-map: map.merge(
   $notification-padding-y-map,
   (
-    'alert': tokens.get('banner-padding'),
+    'banner': tokens.get('banner-padding'),
     'toast': tokens.get('toast-spacing-padding-block', components.$post-toast),
   )
 );
@@ -43,7 +43,7 @@ $notification-font-size-map: () !default;
 $notification-font-size-map: map.merge(
   $notification-font-size-map,
   (
-    'alert': type.$font-size-base,
+    'banner': type.$font-size-base,
     'toast': type.$font-size-tiny,
   )
 );
@@ -52,7 +52,7 @@ $notification-hr-margin-block-map: () !default;
 $notification-hr-margin-block-map: map.merge(
   $notification-hr-margin-block-map,
   (
-    'alert': spacing.$size-mini spacing.$size-small-regular,
+    'banner': spacing.$size-mini spacing.$size-small-regular,
     'toast': spacing.$size-micro spacing.$size-small-regular,
   )
 );
@@ -61,7 +61,7 @@ $notification-elevation-map: () !default;
 $notification-elevation-map: map.merge(
   $notification-elevation-map,
   (
-    'alert': tokens.get('banner-elevation'),
+    'banner': tokens.get('banner-elevation'),
     'toast': tokens.get('notification-toast-elevation', components.$post-notifications),
   )
 );
@@ -70,12 +70,12 @@ $notification-icon-size-map: () !default;
 $notification-icon-size-map: map.merge(
   $notification-icon-size-map,
   (
-    'alert': tokens.get('banner-icon-size'),
+    'banner': tokens.get('banner-icon-size'),
     'toast': tokens.get('toast-sizing-icon', components.$post-toast),
   )
 );
 
-//TODO: Note that primary, and gray have been deleted (.alert by default is now neutral) and that danger is back to error
+//TODO: Note that primary, and gray have been deleted (.banner by default is now neutral) and that danger is back to error
 $notification-variants: () !default;
 $notification-variants: list.join(
   $notification-variants,

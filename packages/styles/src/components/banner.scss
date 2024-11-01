@@ -24,7 +24,7 @@ tokens.$default-map: components.$post-banner;
 
   border-style: tokens.get('banner-border-style');
   border-width: tokens.get('banner-border-width');
-  @include notification-mx.notification-size(alert);
+  @include notification-mx.notification-size(banner);
 
   /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
   & {
@@ -39,7 +39,7 @@ tokens.$default-map: components.$post-banner;
   }
 
   &:not(.banner-action):not(.alert-action) {
-    @include notification-mx.notification-body(alert);
+    @include notification-mx.notification-body(banner);
   }
 }
 
@@ -51,7 +51,7 @@ tokens.$default-map: components.$post-banner;
 
 .banner-dismissible,
 .alert-dismissible {
-  @include notification-mx.notification-dismissible(alert);
+  @include notification-mx.notification-dismissible(banner);
 }
 
 .banner-buttons,
@@ -67,7 +67,7 @@ tokens.$default-map: components.$post-banner;
 .alert-action {
   > .banner-content,
   > .alert-content {
-    @include notification-mx.notification-body(alert);
+    @include notification-mx.notification-body(banner);
   }
 
   @include media-breakpoint-down(md) {
