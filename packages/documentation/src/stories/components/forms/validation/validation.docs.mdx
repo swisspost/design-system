@@ -1,0 +1,75 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as ValidationStories from './validation.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={ValidationStories} />
+
+<div className="docs-title">
+  # Validation
+
+  <nav>
+    <link-design of={JSON.stringify(ValidationStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  The Validation component is a reusable component designed to provide consistent validation
+  feedback across all components that require input validation.
+</div>
+
+Validation employs the `:invalid` and `:valid` pseudo-classes to provide styling for `<input>`, `<select>`, and `<textarea>` elements. To control when these styles are displayed, the `.was-validated` class must be applied to a parent element (e.g. `<form>`).
+
+Alternatively, `.is-invalid` and `.is-valid` classes may be used instead of the pseudo-classes for server-side validation, without the `.was-validated` parent class.
+
+These classes control the display of corresponding feedback messages that should be placed under the component: `<p className="valid-feedback">...</p>` or `<p className="invalid-feedback">...</p>`.
+
+## Examples
+
+### Card-Control
+
+<Canvas sourceState="shown" of={ValidationStories.CardControl} />
+<div className="hide-col-default">
+  <Controls of={ValidationStories.CardControl} />
+</div>
+
+### Checkbox
+
+<Canvas sourceState="shown" of={ValidationStories.Checkbox} />
+<div className="hide-col-default">
+  <Controls of={ValidationStories.Checkbox} />
+</div>
+
+### Input
+
+<Canvas sourceState="shown" of={ValidationStories.Input} />
+<div className="hide-col-default">
+  <Controls of={ValidationStories.Input} />
+</div>
+
+### Radio Button
+
+<Canvas sourceState="shown" of={ValidationStories.RadioButton} />
+<div className="hide-col-default">
+  <Controls of={ValidationStories.RadioButton} />
+</div>
+
+### Select
+
+<Canvas sourceState="shown" of={ValidationStories.Select} />
+<div className="hide-col-default">
+  <Controls of={ValidationStories.Select} />
+</div>
+
+### Switch
+
+<Canvas sourceState="shown" of={ValidationStories.Switch} />
+<div className="hide-col-default">
+  <Controls of={ValidationStories.Switch} />
+</div>
+
+### Textarea
+
+<Canvas sourceState="shown" of={ValidationStories.TextArea} />
+<div className="hide-col-default">
+  <Controls of={ValidationStories.TextArea} />
+</div>

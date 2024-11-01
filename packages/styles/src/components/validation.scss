@@ -28,6 +28,7 @@ Default feedback message classes
   padding: tokens.get('post-input-spacing-padding-block-text-assist')
     tokens.get('post-input-spacing-padding-inline-text-assist');
   font-size: tokens.get('post-device-font-size-9');
+  line-height: tokens.get('post-device-font-size-9');
 }
 
 /*
@@ -100,7 +101,6 @@ fieldset:has(.is-invalid) {
 .was-validated fieldset:has(:valid),
 fieldset:has(.is-valid) {
   ~ .valid-feedback {
-    display: flex;
     color: tokens.get('post-validation-success');
 
     &::before {
@@ -112,7 +112,6 @@ fieldset:has(.is-valid) {
 .was-validated fieldset:has(:invalid),
 fieldset:has(.is-invalid) {
   ~ .invalid-feedback {
-    display: flex;
     color: tokens.get('post-validation-error');
 
     &::before {
