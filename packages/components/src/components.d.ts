@@ -7,9 +7,13 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { AlertType } from "./components/post-alert/alert-types";
+import { SwitchVariant } from "./components/post-language-switch/switch-variants";
+import { SwitchMode } from "./components/post-language-switch/switch-modes";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { AlertType } from "./components/post-alert/alert-types";
+export { SwitchVariant } from "./components/post-language-switch/switch-variants";
+export { SwitchMode } from "./components/post-language-switch/switch-modes";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
     interface PostAccordion {
@@ -217,6 +221,24 @@ export namespace Components {
          */
         "url": string;
     }
+    interface PostLanguageSwitch {
+        /**
+          * A title for the list
+         */
+        "caption": string;
+        /**
+          * A descriptive text for the list
+         */
+        "description": string;
+        /**
+          * Mode determines if the language-switch navigates to a different page or just emits events
+         */
+        "mode": SwitchMode;
+        /**
+          * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
+         */
+        "variant": SwitchVariant;
+    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -257,6 +279,10 @@ export namespace Components {
           * Wheter or not to display a little pointer arrow
          */
         "arrow"?: boolean;
+        /**
+          * Gap between the edge of the page and the popover
+         */
+        "edgeGap"?: number;
         /**
           * Programmatically hide this tooltip
          */
@@ -496,6 +522,12 @@ declare global {
         prototype: HTMLPostLanguageOptionElement;
         new (): HTMLPostLanguageOptionElement;
     };
+    interface HTMLPostLanguageSwitchElement extends Components.PostLanguageSwitch, HTMLStencilElement {
+    }
+    var HTMLPostLanguageSwitchElement: {
+        prototype: HTMLPostLanguageSwitchElement;
+        new (): HTMLPostLanguageSwitchElement;
+    };
     interface HTMLPostLogoElement extends Components.PostLogo, HTMLStencilElement {
     }
     var HTMLPostLogoElement: {
@@ -594,6 +626,7 @@ declare global {
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
         "post-icon": HTMLPostIconElement;
         "post-language-option": HTMLPostLanguageOptionElement;
+        "post-language-switch": HTMLPostLanguageSwitchElement;
         "post-logo": HTMLPostLogoElement;
         "post-popover": HTMLPostPopoverElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
@@ -791,6 +824,24 @@ declare namespace LocalJSX {
          */
         "url"?: string;
     }
+    interface PostLanguageSwitch {
+        /**
+          * A title for the list
+         */
+        "caption"?: string;
+        /**
+          * A descriptive text for the list
+         */
+        "description"?: string;
+        /**
+          * Mode determines if the language-switch navigates to a different page or just emits events
+         */
+        "mode"?: SwitchMode;
+        /**
+          * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
+         */
+        "variant"?: SwitchVariant;
+    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -816,6 +867,10 @@ declare namespace LocalJSX {
           * Wheter or not to display a little pointer arrow
          */
         "arrow"?: boolean;
+        /**
+          * Gap between the edge of the page and the popover
+         */
+        "edgeGap"?: number;
         /**
           * Fires whenever the popover gets shown or hidden, passing the new state in event.details as a boolean
          */
@@ -911,6 +966,7 @@ declare namespace LocalJSX {
         "post-collapsible-trigger": PostCollapsibleTrigger;
         "post-icon": PostIcon;
         "post-language-option": PostLanguageOption;
+        "post-language-switch": PostLanguageSwitch;
         "post-logo": PostLogo;
         "post-popover": PostPopover;
         "post-popovercontainer": PostPopovercontainer;
@@ -941,6 +997,7 @@ declare module "@stencil/core" {
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
             "post-language-option": LocalJSX.PostLanguageOption & JSXBase.HTMLAttributes<HTMLPostLanguageOptionElement>;
+            "post-language-switch": LocalJSX.PostLanguageSwitch & JSXBase.HTMLAttributes<HTMLPostLanguageSwitchElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
