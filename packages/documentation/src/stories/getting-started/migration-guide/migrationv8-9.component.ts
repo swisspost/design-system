@@ -58,6 +58,21 @@ export class MigrationV89Component extends LitElement {
                     <li><code>$line-height-huge</code></li>
                   </ul>
                 </li>
+                <li class="mb-3">
+                  <p>
+                    Removed grid container helper classes
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>.vertical-gutters</code></li>
+                    <li><code>.row.border-gutters</code></li>
+                    <li><code>.container-reset</code></li>
+                    <li>
+                      <code>.container-reset-left</code> and <code>.container-reset-right</code>
+                    </li>
+                    <li><code>.container-fluid-#{$breakpoint}</code></li>
+                  </ul>
+                </li>
               </ul>
             </section>
           </li>

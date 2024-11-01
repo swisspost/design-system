@@ -40,7 +40,7 @@ jobs:
             const outputOrder = [
               'index.scss',
               'core.scss',
-              'mode.scss',
+              'scheme.scss',
               'device.scss',
               'channel.scss',
               'theme.scss',
