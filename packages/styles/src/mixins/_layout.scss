@@ -1,0 +1,26 @@
+@use './media';
+
+@mixin responsive-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  @content;
+
+  @include media.min(md) {
+    flex-direction: row-reverse;
+
+    > .btn {
+      margin-right: auto;
+    }
+  }
+
+  &-primary-actions {
+    display: flex;
+    flex-direction: column;
+
+    @include media.min(md) {
+      flex-direction: row-reverse;
+      margin-left: auto;
+    }
+  }
+}
