@@ -64,32 +64,34 @@
         <p class="valid-feedback">You’ve selected an option.</p>
         <p class="invalid-feedback">Please select an option.</p>
       </div>
-      <fieldset class="form-check" required>
-        <legend>Radio Group</legend>
-        <div>
-          <input type="radio" id="radio1" name="radioGroup" class="form-check-input" />
-          <label class="form-check-label" for="radio1">Option 1</label>
-        </div>
-        <div>
-          <input type="radio" id="radio2" name="radioGroup" class="form-check-input" required />
-          <label class="form-check-label" for="radio2">Option 2</label>
-        </div>
-        <p class="valid-feedback">You’ve selected an option.</p>
-        <p class="invalid-feedback">Please select an option.</p>
-      </fieldset>
-
       <div class="form-check">
         <input type="checkbox" id="789" class="form-check-input" required />
         <label class="form-check-label" for="789">Label</label>
         <p class="valid-feedback">Looks good!</p>
-        <p class="invalid-feedback">This should be checked.</p>
+        <p class="invalid-feedback">Please check me.</p>
       </div>
       <div>
-        <input type="radio" id="radio2" name="radioGroup" class="form-check-input" required />
-        <label class="form-check-label" for="radio2">Option 2</label>
+        <legend>Radio Group Simple</legend>
+        <input type="radio" id="radio6" name="radioGroup3" class="form-check-input" required />
+        <label class="form-check-label" for="radio6">Option 1</label>
+        <input type="radio" id="radio7" name="radioGroup3" class="form-check-input" required />
+        <label class="form-check-label" for="radio7">Option 2</label>
         <p class="valid-feedback">You’ve selected an option.</p>
         <p class="invalid-feedback">Please select an option.</p>
       </div>
+      <fieldset>
+        <legend>Radio Group Fieldset</legend>
+        <div class="form-check form-check-inline">
+          <input type="radio" id="radio11" name="radioGroup1" class="form-check-input" required />
+          <label class="form-check-label" for="radio11">Option 1</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input type="radio" id="radio22" name="radioGroup1" class="form-check-input" required />
+          <label class="form-check-label" for="radio22">Option 2</label>
+        </div>
+      </fieldset>
+      <p class="valid-feedback">You’ve selected an option.</p>
+      <p class="invalid-feedback">Please select an option.</p>
     </form>
   </body>
 </html>
