@@ -48,7 +48,7 @@
     background-color: color.$gray-60;
   }
 
-  @include utilities.focus-style() {
+  @include utilities.focus-style {
     border-radius: commons.$border-radius;
     color: var(--post-contrast-color-inverted); // Override <a> color
     background-color: color.$gray-60;
@@ -68,7 +68,7 @@
       border-color: transparent;
     }
 
-    @include utilities.focus-style() {
+    @include utilities.focus-style {
       background-color: color.$yellow;
       border-color: transparent;
     }
