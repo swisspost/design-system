@@ -37,7 +37,7 @@ export class PostBreadcrumbItem {
       const urlString = hasBaseURL
         ? value
         : `${window.location.origin}${value}`;
-        checkEmptyOrUrl(urlString, 'The "url" property of the post-breadcrumb-item is invalid');
+      checkEmptyOrUrl(urlString, 'The "url" property of the post-breadcrumb-item is invalid');
       return urlString;
     } return undefined;
   }
