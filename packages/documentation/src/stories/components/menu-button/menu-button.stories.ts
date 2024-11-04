@@ -37,9 +37,9 @@ const meta: MetaComponent = {
 
 function render(args: Args) {
   return html`
-    <post-menu-toggle for="${args.id}">
+    <post-menu-trigger for="${args.id}">
       <button class="btn btn-secondary">Menu button</button>
-    </post-menu-toggle>
+    </post-menu-trigger>
 
     <post-menu id="${args.id}" placement="${args.placement !== 'bottom' ? args.placement : nothing}">
       <post-menu-item><button>Example 2</button></post-menu-item>

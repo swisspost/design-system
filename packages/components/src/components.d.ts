@@ -206,7 +206,7 @@ export namespace Components {
     }
     interface PostMenuItem {
     }
-    interface PostMenuToggle {
+    interface PostMenuTrigger {
         /**
           * Links the toggle to a `post-menu` with this ID.
          */
@@ -476,11 +476,11 @@ declare global {
         prototype: HTMLPostMenuItemElement;
         new (): HTMLPostMenuItemElement;
     };
-    interface HTMLPostMenuToggleElement extends Components.PostMenuToggle, HTMLStencilElement {
+    interface HTMLPostMenuTriggerElement extends Components.PostMenuTrigger, HTMLStencilElement {
     }
-    var HTMLPostMenuToggleElement: {
-        prototype: HTMLPostMenuToggleElement;
-        new (): HTMLPostMenuToggleElement;
+    var HTMLPostMenuTriggerElement: {
+        prototype: HTMLPostMenuTriggerElement;
+        new (): HTMLPostMenuTriggerElement;
     };
     interface HTMLPostPopoverElement extends Components.PostPopover, HTMLStencilElement {
     }
@@ -575,7 +575,7 @@ declare global {
         "post-logo": HTMLPostLogoElement;
         "post-menu": HTMLPostMenuElement;
         "post-menu-item": HTMLPostMenuItemElement;
-        "post-menu-toggle": HTMLPostMenuToggleElement;
+        "post-menu-trigger": HTMLPostMenuTriggerElement;
         "post-popover": HTMLPostPopoverElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-rating": HTMLPostRatingElement;
@@ -746,7 +746,7 @@ declare namespace LocalJSX {
     }
     interface PostMenuItem {
     }
-    interface PostMenuToggle {
+    interface PostMenuTrigger {
         /**
           * Links the toggle to a `post-menu` with this ID.
          */
@@ -867,7 +867,7 @@ declare namespace LocalJSX {
         "post-logo": PostLogo;
         "post-menu": PostMenu;
         "post-menu-item": PostMenuItem;
-        "post-menu-toggle": PostMenuToggle;
+        "post-menu-trigger": PostMenuTrigger;
         "post-popover": PostPopover;
         "post-popovercontainer": PostPopovercontainer;
         "post-rating": PostRating;
@@ -898,7 +898,7 @@ declare module "@stencil/core" {
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
             "post-menu": LocalJSX.PostMenu & JSXBase.HTMLAttributes<HTMLPostMenuElement>;
             "post-menu-item": LocalJSX.PostMenuItem & JSXBase.HTMLAttributes<HTMLPostMenuItemElement>;
-            "post-menu-toggle": LocalJSX.PostMenuToggle & JSXBase.HTMLAttributes<HTMLPostMenuToggleElement>;
+            "post-menu-trigger": LocalJSX.PostMenuTrigger & JSXBase.HTMLAttributes<HTMLPostMenuTriggerElement>;
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
