@@ -45,7 +45,12 @@ export const CardControl: Story = {
   render(args: Args) {
     const isValidationSet = args.validation !== 'null';
     const isValid = args.validation === 'is-valid';
-    const ariaInvalid = isValidationSet ? (!isValid ? true : false) : nothing;
+    let ariaInvalid;
+    if (isValidationSet) {
+      ariaInvalid = !isValid;
+    } else {
+      ariaInvalid = nothing;
+    }
     const ariaDescribedBy = isValidationSet ? `${args.validation}-id` : nothing;
     const validFeedbackId =
       isValidationSet && args.validation !== 'is-invalid' ? `${args.validation}-id` : nothing;
@@ -74,7 +79,12 @@ export const Checkbox: Story = {
   render(args: Args) {
     const isValidationSet = args.validation !== 'null';
     const isValid = args.validation === 'is-valid';
-    const ariaInvalid = isValidationSet ? (!isValid ? true : false) : nothing;
+    let ariaInvalid;
+    if (isValidationSet) {
+      ariaInvalid = !isValid;
+    } else {
+      ariaInvalid = nothing;
+    }
     const ariaDescribedBy = isValidationSet ? `${args.validation}-id` : nothing;
     const validFeedbackId =
       isValidationSet && args.validation !== 'is-invalid' ? `${args.validation}-id` : nothing;
@@ -101,7 +111,12 @@ export const Input: Story = {
   render(args: Args) {
     const isValidationSet = args.validation !== 'null';
     const isValid = args.validation === 'is-valid';
-    const ariaInvalid = isValidationSet ? (!isValid ? true : false) : nothing;
+    let ariaInvalid;
+    if (isValidationSet) {
+      ariaInvalid = !isValid;
+    } else {
+      ariaInvalid = nothing;
+    }
     const ariaDescribedBy = isValidationSet ? `${args.validation}-id` : nothing;
     const validFeedbackId =
       isValidationSet && args.validation !== 'is-invalid' ? `${args.validation}-id` : nothing;
@@ -132,7 +147,12 @@ export const RadioButton: Story = {
   render(args: Args) {
     const isValidationSet = args.validation !== 'null';
     const isValid = args.validation === 'is-valid';
-    const ariaInvalid = isValidationSet ? (!isValid ? true : false) : nothing;
+    let ariaInvalid;
+    if (isValidationSet) {
+      ariaInvalid = !isValid;
+    } else {
+      ariaInvalid = nothing;
+    }
     const ariaDescribedBy = isValidationSet ? `${args.validation}-id` : nothing;
     const validFeedbackId =
       isValidationSet && args.validation !== 'is-invalid' ? `${args.validation}-id` : nothing;
@@ -159,7 +179,12 @@ export const Select: Story = {
   render(args: Args) {
     const isValidationSet = args.validation !== 'null';
     const isValid = args.validation === 'is-valid';
-    const ariaInvalid = isValidationSet ? (!isValid ? true : false) : nothing;
+    let ariaInvalid;
+    if (isValidationSet) {
+      ariaInvalid = !isValid;
+    } else {
+      ariaInvalid = nothing;
+    }
     const ariaDescribedBy = isValidationSet ? `${args.validation}-id` : nothing;
     const validFeedbackId =
       isValidationSet && args.validation !== 'is-invalid' ? `${args.validation}-id` : nothing;
@@ -194,7 +219,12 @@ export const Switch: Story = {
   render(args: Args) {
     const isValidationSet = args.validation !== 'null';
     const isValid = args.validation === 'is-valid';
-    const ariaInvalid = isValidationSet ? (!isValid ? true : false) : nothing;
+    let ariaInvalid;
+    if (isValidationSet) {
+      ariaInvalid = !isValid;
+    } else {
+      ariaInvalid = nothing;
+    }
     const ariaDescribedBy = isValidationSet ? `${args.validation}-id` : nothing;
     const validFeedbackId =
       isValidationSet && args.validation !== 'is-invalid' ? `${args.validation}-id` : nothing;
@@ -220,7 +250,12 @@ export const TextArea: Story = {
   render(args: Args) {
     const isValidationSet = args.validation !== 'null';
     const isValid = args.validation === 'is-valid';
-    const ariaInvalid = isValidationSet ? (!isValid ? true : false) : nothing;
+    let ariaInvalid;
+    if (isValidationSet) {
+      ariaInvalid = !isValid;
+    } else {
+      ariaInvalid = nothing;
+    }
     const ariaDescribedBy = isValidationSet ? `${args.validation}-id` : nothing;
     const validFeedbackId =
       isValidationSet && args.validation !== 'is-invalid' ? `${args.validation}-id` : nothing;
