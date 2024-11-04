@@ -1,6 +1,5 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as ValidationStories from './validation.stories';
-import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
 <Meta of={ValidationStories} />
 
@@ -19,7 +18,7 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
 Validation employs the `:invalid` and `:valid` pseudo-classes to provide styling for `<input>`, `<select>`, and `<textarea>` elements. To control when these styles are displayed, the `.was-validated` class must be applied to a parent element (e.g. `<form>`).
 
-Alternatively, `.is-invalid` and `.is-valid` classes may be used instead of the pseudo-classes for server-side validation, without the `.was-validated` parent class.
+Alternatively, `.is-invalid` and `.is-valid` classes may be used instead of the pseudo-classes, without the `.was-validated` parent class.
 
 These classes control the display of corresponding feedback messages that should be placed under the component: `<p className="valid-feedback">...</p>` or `<p className="invalid-feedback">...</p>`.
 

@@ -49,6 +49,11 @@ export const CardControl: Story = {
         name="checkbox-button-card-control_1"
         class="form-check-input ${args.validation !== 'null' ? args.validation : ''}"
         type="checkbox"
+        aria-invalid=${args.validation !== 'null'
+          ? args.validation == 'is-valid'
+            ? false
+            : true
+          : nothing}
         aria-describedby="${args.validation !== 'null' ? `${args.validation}-id` : nothing}"
       />
       <label class="form-check-label" for="CardControl_1">
@@ -81,6 +86,11 @@ export const Checkbox: Story = {
         type="checkbox"
         id="Checkbox_1"
         class="form-check-input ${args.validation !== 'null' ? args.validation : ''}"
+        aria-invalid=${args.validation !== 'null'
+          ? args.validation == 'is-valid'
+            ? false
+            : true
+          : nothing}
         aria-describedby="${args.validation !== 'null' ? `${args.validation}-id` : nothing}"
       />
       <label class="form-check-label" for="Checkbox_1">
@@ -113,6 +123,11 @@ export const Input: Story = {
       <input
         id="Input_1"
         class="form-control form-control-lg ${args.validation !== 'null' ? args.validation : ''}"
+        aria-invalid=${args.validation !== 'null'
+          ? args.validation == 'is-valid'
+            ? false
+            : true
+          : nothing}
         aria-describedby="${args.validation !== 'null' ? `${args.validation}-id` : nothing}"
         type="text"
         placeholder="Placeholder"
@@ -149,6 +164,11 @@ export const RadioButton: Story = {
         type="radio"
         id="Radio_1"
         class="form-check-input ${args.validation !== 'null' ? args.validation : ''}"
+        aria-invalid=${args.validation !== 'null'
+          ? args.validation == 'is-valid'
+            ? false
+            : true
+          : nothing}
         aria-describedby="${args.validation !== 'null' ? `${args.validation}-id` : nothing}"
       />
       <label class="form-check-label" for="Radio_1">
@@ -182,7 +202,12 @@ export const Select: Story = {
       </label>
       <select id="Select_1" class="form-select form-select-lg ${
         args.validation !== 'null' ? args.validation : ''
-      }">
+      }"
+      aria-invalid=${
+        args.validation !== 'null' ? (args.validation == 'is-valid' ? false : true) : nothing
+      }
+      aria-describedby="${args.validation !== 'null' ? `${args.validation}-id` : nothing}"
+      >
         <option>Select option...</option>
         <option value="value_1">Option 1</option>
         <option value="value_2">Option 2</option>
@@ -225,6 +250,11 @@ export const Switch: Story = {
         role="switch"
         id="Switch_1"
         class="form-check-input ${args.validation !== 'null' ? args.validation : ''}"
+        aria-invalid=${args.validation !== 'null'
+          ? args.validation == 'is-valid'
+            ? false
+            : true
+          : nothing}
         aria-describedby="${args.validation !== 'null' ? `${args.validation}-id` : nothing}"
       />
       <label class="form-check-label order-first" for="Switch_1">Notifications</label>
@@ -257,6 +287,9 @@ export const TextArea: Story = {
         rows=""
         id="TextArea_1"
         class="form-control form-control-lg ${args.validation !== 'null' ? args.validation : ''}"
+        aria-invalid=${
+          args.validation !== 'null' ? (args.validation == 'is-valid' ? false : true) : nothing
+        }
         aria-describedby="${args.validation !== 'null' ? `${args.validation}-id` : nothing}"
       ></textarea>
       <p class="form-text">
