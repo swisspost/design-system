@@ -1,4 +1,16 @@
+@use 'sass:map';
+@use 'sass:meta';
+@use '../functions/breakpoint';
+
+/**
+  Creates a min-width breakpoint with the given value
+  @param $device-size A pixel value or a key for the breakpoints map
+*/
 @mixin min($device-size) {
+  @if (meta.type-of($device-size) == 'string') {
+    $device-size: breakpoint.min-width($device-size);
+  }
+
   @if $device-size != 0 {
     @media screen and (min-width: $device-size) {
       @content;
@@ -8,13 +20,33 @@
   }
 }
 
+/**
+  Creates a max-width breakpoint with the given value
+  @param $device-size A pixel value or a key for the breakpoints map
+*/
 @mixin max($device-size) {
+  @if (meta.type-of($device-size) == 'string') {
+    $device-size: breakpoint.min-width($device-size);
+  }
+
   @media screen and (max-width: ($device-size - 0.01)) {
     @content;
   }
 }
 
+/**
+  Creates an in-between breakpoint with the given values
+  @param $min-size A pixel value or a key for the breakpoints map
+  @param $max-size A pixel value or a key for the breakpoints map
+*/
 @mixin between($min-size, $max-size) {
+  @if (meta.type-of($min-size) == 'string') {
+    $min-size: breakpoint.min-width($min-size);
+  }
+  @if (meta.type-of($max-size) == 'string') {
+    $max-size: breakpoint.min-width($max-size);
+  }
+
   @media screen and (min-width: $min-size) and (max-width: ($max-size - 0.01)) {
     @content;
   }

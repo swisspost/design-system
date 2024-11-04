@@ -1,6 +1,7 @@
-@use '../mixins/utilities' as utility-mx;
 @use '../tokens/components';
-@use '../functions/tokens' as tokens;
+@use '../functions/tokens';
+
+@use '../mixins/layout';
 
 tokens.$default-map: components.$post-form-footer;
 
@@ -12,7 +13,7 @@ tokens.$default-map: components.$post-form-footer;
   gap: tokens.get('form-footer-gap');
   @include utility-mx.responsive-actions();
 
-  &-primary-actions {
+  @include layout.responsive-actions {
     gap: tokens.get('form-footer-gap');
   }
 }
