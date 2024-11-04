@@ -77,7 +77,8 @@ export class PostCollapsible {
 
     await animation.finished;
 
-    animation.commitStyles();
+    const isHostRendered = this.host.offsetParent;
+    if (isHostRendered) animation.commitStyles();
 
     return open;
   }
