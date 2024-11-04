@@ -55,6 +55,7 @@ export class PostList {
       <Host data-version={version}>
         <div
           ref={el => (this.titleEl = el)}
+          id={this.uuid}
           class={`list-title${this.titleHidden ? ' visually-hidden' : ''}`}
         >
           <slot></slot>
