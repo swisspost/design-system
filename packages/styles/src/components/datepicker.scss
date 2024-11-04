@@ -24,7 +24,7 @@ ngb-datepicker-navigation {
   justify-content: space-between;
 
   button.ngb-dp-arrow-btn {
-    @include utilities.focus-style();
+    @include utilities.focus-style;
   }
 }
 
@@ -96,7 +96,7 @@ span.ngb-dp-navigation-chevron {
     flex-grow: 1;
   }
 
-  @include utilities.focus-style() {
+  @include utilities.focus-style {
     border-radius: commons.$border-radius;
   }
 
@@ -159,7 +159,7 @@ span.ngb-dp-navigation-chevron {
     transform: none;
   }
 
-  @include utilities.focus-style() {
+  @include utilities.focus-style {
     border-radius: commons.$border-radius;
   }
 }

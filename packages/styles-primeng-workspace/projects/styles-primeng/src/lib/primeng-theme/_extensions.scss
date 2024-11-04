@@ -154,7 +154,7 @@
 .p-inputtext:not(.p-inputwrapper > .p-inputtext),
 .p-checkbox,
 .p-radiobutton {
-  @include post.focus-style() {
+  @include post.focus-style {
     box-shadow: none;
     border-radius: post.$border-radius;
   }

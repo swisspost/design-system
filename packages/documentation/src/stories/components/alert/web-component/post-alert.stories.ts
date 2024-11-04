@@ -97,11 +97,7 @@ function externalControl(story: StoryFn, context: StoryContext) {
   });
 
   return html`
-    <a
-      class="btn btn-secondary btn-animated alert-button"
-      href="#"
-      @click="${(e: Event) => toggleAlert(e)}"
-    >
+    <a class="btn btn-secondary alert-button" href="#" @click="${(e: Event) => toggleAlert(e)}">
       <span>${args.fixed ? 'Toggle Fixed Alert' : 'Reset Alert'}</span>
     </a>
     <div class="alert-container">${story(args, context)}</div>
@@ -128,8 +124,8 @@ export const Contents: Story = {
       '</ul>' +
       '<hr/>' +
       '<p>Contentum momentum ipsum tipsum sit amet, consetetur sadipscing elitr.</p>' +
-      '<button slot="actions" class="btn btn-secondary btn-animated"><span>Aborti</span></button>' +
-      '<button slot="actions" class="btn btn-primary btn-animated"><span>Akcepti</span></button>',
+      '<button slot="actions" class="btn btn-secondary"><span>Aborti</span></button>' +
+      '<button slot="actions" class="btn btn-primary"><span>Akcepti</span></button>',
   },
 };
 
