@@ -207,6 +207,10 @@ export namespace Components {
     interface PostMenuItem {
     }
     interface PostMenuToggle {
+        /**
+          * Links the toggle to a `post-menu` with this ID.
+         */
+        "for": string;
     }
     interface PostPopover {
         /**
@@ -743,6 +747,10 @@ declare namespace LocalJSX {
     interface PostMenuItem {
     }
     interface PostMenuToggle {
+        /**
+          * Links the toggle to a `post-menu` with this ID.
+         */
+        "for"?: string;
     }
     interface PostPopover {
         /**
