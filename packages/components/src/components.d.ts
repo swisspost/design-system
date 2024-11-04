@@ -363,6 +363,10 @@ export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
 }
+export interface PostMenuCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostMenuElement;
+}
 export interface PostPopovercontainerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostPopovercontainerElement;
@@ -464,7 +468,18 @@ declare global {
         prototype: HTMLPostLogoElement;
         new (): HTMLPostLogoElement;
     };
+    interface HTMLPostMenuElementEventMap {
+        "toggleMenu": boolean;
+    }
     interface HTMLPostMenuElement extends Components.PostMenu, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostMenuElementEventMap>(type: K, listener: (this: HTMLPostMenuElement, ev: PostMenuCustomEvent<HTMLPostMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostMenuElementEventMap>(type: K, listener: (this: HTMLPostMenuElement, ev: PostMenuCustomEvent<HTMLPostMenuElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostMenuElement: {
         prototype: HTMLPostMenuElement;
@@ -739,6 +754,7 @@ declare namespace LocalJSX {
         "url"?: string | URL;
     }
     interface PostMenu {
+        "onToggleMenu"?: (event: PostMenuCustomEvent<boolean>) => void;
         /**
           * Defines the placement of the popover according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
          */

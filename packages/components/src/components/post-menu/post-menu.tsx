@@ -1,7 +1,6 @@
-import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Host, Method, Prop } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
-import { getAttributeObserver } from '@/utils/attribute-observer';
 
 /**
  * @slot default - Slot for placing content inside the menu.
@@ -32,12 +31,6 @@ const globalToggleHandler = (e: PointerEvent | KeyboardEvent) => {
   }
 };
 
-// Initialize a mutation observer for patching accessibility features
-const triggerObserver = getAttributeObserver(menuTargetAttribute, trigger => {
-  const force = trigger.hasAttribute(menuTargetAttribute);
-  trigger.setAttribute('aria-expanded', force ? 'false' : null);
-});
-
 @Component({
   tag: 'post-menu',
   styleUrl: 'post-menu.scss',
@@ -45,7 +38,6 @@ const triggerObserver = getAttributeObserver(menuTargetAttribute, trigger => {
 })
 export class PostMenu {
   private popoverRef: HTMLPostPopovercontainerElement;
-  private localBeforeToggleHandler;
   private triggerElement: HTMLElement;
 
   private readonly KEYCODES = {
@@ -66,9 +58,9 @@ export class PostMenu {
    */
   @Prop() readonly placement?: Placement = 'bottom';
 
-  constructor() {
-    this.localBeforeToggleHandler = this.beforeToggleHandler.bind(this);
-  }
+  constructor() {}
+
+  @Event() toggleMenu: EventEmitter<boolean>;
 
   connectedCallback() {
     if (menuInstances === 0) {
@@ -85,28 +77,9 @@ export class PostMenu {
           }
         });
       });
-
-      triggerObserver.observe(document.body, {
-        subtree: true,
-        childList: true,
-        attributeFilter: [menuTargetAttribute],
-      });
     }
 
     menuInstances++;
-
-    this.triggers.forEach(trigger => {
-      const triggerElement = trigger as HTMLElement;
-      triggerElement.setAttribute('aria-expanded', 'false');
-    });
-  }
-
-  componentDidLoad() {
-    if (this.popoverRef) {
-      this.popoverRef.addEventListener('beforetoggle', this.localBeforeToggleHandler);
-    } else {
-      console.error('componentDidLoad: popoverRef is null or undefined');
-    }
   }
 
   disconnectedCallback() {
@@ -116,16 +89,7 @@ export class PostMenu {
       window.removeEventListener('pointerup', globalToggleHandler);
       window.removeEventListener('keydown', globalToggleHandler);
       this.host.removeEventListener('keydown', this.handleKeyDown);
-      triggerObserver.disconnect();
     }
-
-    if (this.popoverRef) {
-      this.popoverRef.removeEventListener('beforetoggle', this.localBeforeToggleHandler);
-    }
-
-    this.triggers.forEach(trigger => {
-      trigger.removeAttribute('aria-expanded');
-    });
   }
 
   // Handles keydown events on the menu to support keyboard navigation
@@ -234,7 +198,7 @@ export class PostMenu {
   async show(target: HTMLElement) {
     if (this.popoverRef) {
       await this.popoverRef.show(target);
-      target.setAttribute('aria-expanded', 'true');
+      this.toggleMenu.emit(true);
     } else {
       console.error('show: popoverRef is null or undefined');
     }
@@ -251,13 +215,10 @@ export class PostMenu {
       if (this.triggerElement) {
         this.triggerElement.focus();
       }
+      this.toggleMenu.emit(false);
     } else {
       console.error('hide: popoverRef is null or undefined');
     }
-
-    this.triggers.forEach(trigger => {
-      trigger.setAttribute('aria-expanded', 'false');
-    });
   }
 
   /**
@@ -270,8 +231,7 @@ export class PostMenu {
     if (this.popoverRef) {
       const newState = await this.popoverRef.toggle(target, force);
       this.triggerElement = target;
-      this.triggers.forEach(trigger => trigger.setAttribute('aria-expanded', 'false'));
-      target.setAttribute('aria-expanded', String(newState));
+      this.toggleMenu.emit(newState);
       if (newState) {
         const focusableItems = this.getSlottedItems();
         if (focusableItems.length) {
@@ -290,11 +250,6 @@ export class PostMenu {
 
   private get triggers() {
     return document.querySelectorAll(`[${menuTargetAttribute}="${this.host.id}"]`);
-  }
-
-  // Handles before the toggle of the menu (reset aria-expanded attributes)
-  private beforeToggleHandler() {
-    this.triggers.forEach(trigger => trigger.setAttribute('aria-expanded', 'false'));
   }
 
   render() {

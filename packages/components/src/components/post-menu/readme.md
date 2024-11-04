@@ -12,6 +12,13 @@
 | `placement` | `placement` | Defines the placement of the popover according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'bottom'` |
 
 
+## Events
+
+| Event        | Description | Type                   |
+| ------------ | ----------- | ---------------------- |
+| `toggleMenu` |             | `CustomEvent<boolean>` |
+
+
 ## Methods
 
 ### `hide() => Promise<void>`

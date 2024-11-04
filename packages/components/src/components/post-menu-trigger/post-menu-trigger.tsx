@@ -1,4 +1,4 @@
-import { Component, Element, Prop, h, Host, State } from '@stencil/core';
+import { Component, Element, Prop, h, Host, State, Listen } from '@stencil/core';
 
 @Component({
   tag: 'post-menu-trigger',
@@ -19,11 +19,17 @@ export class PostMenuTrigger {
     const menu = document.getElementById(this.for) as HTMLPostMenuElement;
     if (menu) {
       await menu.toggle(this.host);
-      // Update the aria-expanded state based on the menu's new state
-      this.ariaExpanded = this.ariaExpanded === 'true' ? 'false' : 'true';
     } else {
       console.warn(`No post-menu found with ID: ${this.for}`);
     }
+  }
+
+  /**
+   * Listen for the custom `toggleMenu` event from `post-menu`.
+   */
+  @Listen('toggleMenu', { target: 'body' })
+  handleToggleMenu(event: CustomEvent<boolean>) {
+    this.ariaExpanded = event.detail ? 'true' : 'false';
   }
 
   render() {
