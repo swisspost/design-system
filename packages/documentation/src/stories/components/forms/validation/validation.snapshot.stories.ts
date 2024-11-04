@@ -43,7 +43,7 @@ export const Validation: Story = {
 
                   // Wrap each state variation in a div
                   return html`
-                    <div class="state-variation">
+                    <div class="state-variation snapshot">
                       ${(() => {
                         switch (component.name) {
                           case 'CardControl':
