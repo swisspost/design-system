@@ -1,5 +1,5 @@
 import { Args, StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
@@ -8,12 +8,6 @@ const meta: MetaComponent = {
   tags: ['package:WebComponents'],
   component: 'post-menu',
   parameters: {
-    badges: [],
-    docs: {
-      argTypes: {
-        sort: 'requiredFirst',
-      },
-    },
     design: {},
   },
   render,
@@ -30,23 +24,30 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
-  },
-  placement: {
-    name: 'Placement',
+    placement: {
+      name: 'Placement',
+      description: 'Specifies the position of the menu relative to the toggle button.',
+      control: { type: 'select', options: ['bottom', 'top', 'left', 'right'] },
+      table: {
+        category: 'General',
+      },
+    },
   },
 };
 
 function render(args: Args) {
   return html`
-    <post-menu-toggle>
-      <button class="btn btn-secondary" data-menu-target="${args.id}">Menu button</button>
+    <post-menu-toggle for="${args.id}">
+      <button class="btn btn-secondary">Menu button</button>
     </post-menu-toggle>
+
     <post-menu id="${args.id}" placement="${args.placement !== 'bottom' ? args.placement : nothing}">
       <post-menu-item><button>Example 2</button></post-menu-item>
-      <post-menu-item>
-        <a href="#" class="text-decoration-none">Example 1</a></post-menu-item>
-        <hr />
       <post-menu-item><div>Example 3</div></post-menu-item>
+      <hr />
+      <post-menu-item>
+        <a href="#">Example 1</a>
+      </post-menu-item>
     </post-menu>
   `;
 }
