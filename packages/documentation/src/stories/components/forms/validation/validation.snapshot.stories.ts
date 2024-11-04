@@ -1,4 +1,4 @@
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { StoryObj } from '@storybook/web-components';
 import meta from './validation.stories';
 import { html, nothing } from 'lit';
 
@@ -12,7 +12,7 @@ export default {
 type Story = StoryObj;
 
 export const Validation: Story = {
-  render(args: Args) {
+  render() {
     const components = [
       { name: 'CardControl', id: 'CardControl_1' },
       { name: 'Checkbox', id: 'Checkbox_1' },
