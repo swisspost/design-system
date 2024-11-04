@@ -1,4 +1,4 @@
-import { Component, h } from '@stencil/core';
+import { Component, h, Host } from '@stencil/core';
 
 @Component({
   tag: 'post-menu-toggle',
@@ -7,6 +7,10 @@ import { Component, h } from '@stencil/core';
 })
 export class PostMenuToggle {
   render() {
-    return <slot></slot>;
+    return (
+      <Host aria-haspopup="true">
+        <slot></slot>
+      </Host>
+    );
   }
 }
