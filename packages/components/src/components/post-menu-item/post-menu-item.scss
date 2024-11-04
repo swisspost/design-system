@@ -5,3 +5,7 @@
 ::slotted(*) {
     display: inline;
 }
+
+::slotted(a) {
+    text-decoration: none;
+}
