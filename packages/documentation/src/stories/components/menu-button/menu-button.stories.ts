@@ -26,14 +26,6 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
-    placement: {
-      name: 'Placement',
-      description: 'Specifies the position of the menu relative to the toggle button.',
-      control: { type: 'select', options: ['bottom', 'top', 'left', 'right'] },
-      table: {
-        category: 'General',
-      },
-    },
     padding: {
       name: 'Padding',
       description: 'Controls the padding inside the menu container using --post-menu-padding.',
