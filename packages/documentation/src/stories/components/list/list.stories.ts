@@ -17,12 +17,34 @@ const meta: MetaComponent = {
   args: {
     horizontal: false,
     titleHidden: false,
+    listItemGap: null,
+    listTitleGap: null,
   },
-  argTypes: {},
+  argTypes: {
+    listItemGap: {
+      name: '--post-list-item-gap',
+      description: 'Defines the gap between list items.',
+      control: { type: 'number', min: 0, max: 10, step: 1 },
+      table: {
+        category: 'Styling',
+      },
+    },
+    listTitleGap: {
+      name: '--post-list-title-gap',
+      description: 'Defines the gap between the title and the list items.',
+      control: { type: 'number', min: 0, max: 10, step: 1 },
+      table: {
+        category: 'Styling',
+      },
+    },
+  },
   render: args =>
     html`<post-list
       title-hidden="${args.titleHidden ? args.titleHidden : nothing}"
       horizontal="${args.horizontal ? args.horizontal : nothing}"
+      style="${args.listTitleGap !== null
+        ? `--post-list-title-gap: ${args.listTitleGap}rem;`
+        : ''}${args.listItemGap !== null ? ` --post-list-item-gap: ${args.listItemGap}rem` : ''}"
     >
       <h3>Title</h3>
       <post-list-item>List Item 1</post-list-item>

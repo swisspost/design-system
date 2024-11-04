@@ -29,6 +29,8 @@ export class PostList {
    */
   @Prop() readonly horizontal: boolean = false;
 
+  titleEl: HTMLElement;
+
   componentWillLoad() {
     /**
      * Get the id set on the host element or use a random id by default
@@ -37,12 +39,11 @@ export class PostList {
   }
 
   componentDidLoad() {
-    const titleSlot = this.host.querySelector(`#${this.uuid}`).firstElementChild as HTMLSlotElement;
-    this.checkTitle(titleSlot);
+    this.checkTitle();
   }
 
-  private checkTitle(titleContent: HTMLSlotElement) {
-    if (!titleContent.innerText) {
+  private checkTitle() {
+    if (!this.titleEl.innerText) {
       throw new Error(
         'Please provide a title to the list component. Title is mandatory for accessibility purposes.',
       );
@@ -52,8 +53,11 @@ export class PostList {
   render() {
     return (
       <Host data-version={version}>
-        <div id={this.uuid} class={`list-title${this.titleHidden ? ' visually-hidden' : ''}`}>
-          <slot onSlotchange={e => this.checkTitle(e.target as HTMLSlotElement)}></slot>
+        <div
+          ref={el => (this.titleEl = el)}
+          class={`list-title${this.titleHidden ? ' visually-hidden' : ''}`}
+        >
+          <slot></slot>
         </div>
         <div role="list" aria-labelledby={this.uuid}>
           <slot name="post-list-item"></slot>
