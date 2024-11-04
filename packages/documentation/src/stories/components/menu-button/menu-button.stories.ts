@@ -41,7 +41,7 @@ function render(args: Args) {
     <post-menu-toggle>
       <button class="btn btn-secondary" data-menu-target="${args.id}">Menu button</button>
     </post-menu-toggle>
-    <post-menu class="hydrated" id="${args.id}" placement="${args.placement}">
+    <post-menu id="${args.id}" placement="${args.placement !== 'bottom' ? args.placement : nothing}">
       <post-menu-item><button>Example 2</button></post-menu-item>
       <post-menu-item>
         <a href="#" class="text-decoration-none">Example 1</a></post-menu-item>
