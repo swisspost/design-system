@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkUrl } from '@/utils';
+import { checkEmptyOrUrl } from '@/utils';
 
 /**
  * @slot default - Slot for placing the text inside the breadcrumb item.
@@ -37,7 +37,7 @@ export class PostBreadcrumbItem {
       const urlString = hasBaseURL
         ? value
         : `${window.location.origin}${value}`;
-      checkUrl(urlString, 'The "url" property of the post-breadcrumb-item is invalid');
+        checkEmptyOrUrl(urlString, 'The "url" property of the post-breadcrumb-item is invalid');
       return urlString;
     } return undefined;
   }
@@ -51,7 +51,7 @@ export class PostBreadcrumbItem {
 
     return (
       <Host data-version={version}>
-        <BreadcrumbTag class="breadcrumb-item-text" {...(this.validUrl ? { href: this.validUrl } : {})}>
+        <BreadcrumbTag class="breadcrumb-item" {...(this.validUrl ? { href: this.validUrl } : {})}>
           <post-icon name="2111" class="breadcrumb-item-icon" />
           <slot></slot>
         </BreadcrumbTag>
