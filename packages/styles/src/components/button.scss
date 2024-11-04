@@ -48,11 +48,7 @@ tokens.$default-map: components.$post-button;
     border-style: tokens.get('button-border-style-disabled');
   }
 
-  @include utilities.focus-style(
-    $offset: tokens.get('button-focus-outline-offset'),
-    $width: tokens.get('button-focus-border-width'),
-    $color: tokens.get('button-focus-stroke')
-  );
+  @include utilities.focus-style;
 
   // Styles  to improve accessibility in high contrast mode
   @include utilities.high-contrast-mode() {
