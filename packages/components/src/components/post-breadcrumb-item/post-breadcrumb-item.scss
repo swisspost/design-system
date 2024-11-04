@@ -8,26 +8,26 @@ tokens.$default-map: components.$post-breadcrumb;
 
 :host {
   display: inline-block;
+  @include utilities.focus-style;
 }
 
-.breadcrumb-item-text {
+.breadcrumb-item {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   padding-block: tokens.get('breadcrumb-padding-block-text');
   gap: tokens.get('breadcrumb-gap-inline-inner');
   color: tokens.get('breadcrumb-enabled-fg');
-  text-decoration: none;
+  text-decoration: tokens.get('breadcrumb-link-enabled-text-decoration');
+
+  post-icon {
+    height: tokens.get('breadcrum-icon-size');
+    width: tokens.get('breadcrum-icon-size');
+  }
 
   &:hover {
     color: tokens.get('breadcrumb-hover-fg');
-    text-decoration: underline;
-  }
-
-  &:focus,
-  &:focus-visible {
-    border-radius: tokens.get('breadcrumb-focus-outline-radius');
-    outline: tokens.get('breadcrumb-focus-outline') solid tokens.get('breadcrumb-focus-outline-width');
-    offset: tokens.get('breadcrumb-focus-padding-outline');
+    text-decoration: tokens.get('breadcrumb-link-hover-text-decoration');
   }
 
   @include utilities.high-contrast-mode() {
