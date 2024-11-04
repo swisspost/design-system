@@ -24,4 +24,8 @@ post-list {
   > .list-title.visually-hidden {
     @include post.visually-hidden();
   }
+
+  > .list-title:not(.visually-hidden) {
+    gap: var(--post-list-title-gap);
+  }
 }
