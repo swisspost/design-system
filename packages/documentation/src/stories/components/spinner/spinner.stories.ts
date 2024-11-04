@@ -91,7 +91,7 @@ export const BlockSection: Story = {
 };
 
 export const Inline: Story = {
-  render: () => html`<button class="btn btn-secondary btn-animated">
+  render: () => html`<button class="btn btn-secondary">
       <div
         class="loader loader-16 d-inline-block me-4"
         role="status"
@@ -100,7 +100,7 @@ export const Inline: Story = {
       ></div>
       <span>Data is loading…</span>
     </button>
-    <button class="btn btn-secondary btn-animated ms-16" disabled="disabled">
+    <button class="btn btn-secondary ms-16" disabled="disabled">
       <div
         class="loader loader-16 d-inline-block me-4"
         role="status"
