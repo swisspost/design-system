@@ -1,5 +1,5 @@
-import { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import { html, nothing, TemplateResult } from 'lit';
+import { Args, StoryObj } from '@storybook/web-components';
+import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
@@ -43,92 +43,77 @@ export const Default: Story = {};
 
 export const CardControl: Story = {
   render(args: Args) {
+    const isValidationSet = args.validation !== 'null';
+    const isValid = args.validation === 'is-valid';
+    const ariaInvalid = isValidationSet ? (!isValid ? true : false) : nothing;
+    const ariaDescribedBy = isValidationSet ? `${args.validation}-id` : nothing;
+    const validFeedbackId =
+      isValidationSet && args.validation !== 'is-invalid' ? `${args.validation}-id` : nothing;
+    const invalidFeedbackId =
+      isValidationSet && args.validation !== 'is-valid' ? `${args.validation}-id` : nothing;
+
     return html`<div class="checkbox-button-card">
       <input
         id="CardControl_1"
         name="checkbox-button-card-control_1"
-        class="form-check-input ${args.validation !== 'null' ? args.validation : ''}"
+        class="form-check-input ${isValidationSet ? args.validation : ''}"
         type="checkbox"
-        aria-invalid=${args.validation !== 'null'
-          ? args.validation == 'is-valid'
-            ? false
-            : true
-          : nothing}
-        aria-describedby="${args.validation !== 'null' ? `${args.validation}-id` : nothing}"
+        aria-invalid=${ariaInvalid}
+        aria-describedby="${ariaDescribedBy}"
       />
       <label class="form-check-label" for="CardControl_1">
         <span>Label</span>
       </label>
-      <p
-        id="${args.validation !== 'null' && args.validation !== 'is-invalid'
-          ? `${args.validation}-id`
-          : nothing}"
-        class="valid-feedback"
-      >
-        Valid message.
-      </p>
-      <p
-        id="${args.validation !== 'null' && args.validation !== 'is-valid'
-          ? `${args.validation}-id`
-          : nothing}"
-        class="invalid-feedback"
-      >
-        Invalid message.
-      </p>
+      <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
+      <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
     </div>`;
   },
 };
 
 export const Checkbox: Story = {
   render(args: Args) {
+    const isValidationSet = args.validation !== 'null';
+    const isValid = args.validation === 'is-valid';
+    const ariaInvalid = isValidationSet ? (!isValid ? true : false) : nothing;
+    const ariaDescribedBy = isValidationSet ? `${args.validation}-id` : nothing;
+    const validFeedbackId =
+      isValidationSet && args.validation !== 'is-invalid' ? `${args.validation}-id` : nothing;
+    const invalidFeedbackId =
+      isValidationSet && args.validation !== 'is-valid' ? `${args.validation}-id` : nothing;
     return html`<div class="form-check">
       <input
         type="checkbox"
         id="Checkbox_1"
-        class="form-check-input ${args.validation !== 'null' ? args.validation : ''}"
-        aria-invalid=${args.validation !== 'null'
-          ? args.validation == 'is-valid'
-            ? false
-            : true
-          : nothing}
-        aria-describedby="${args.validation !== 'null' ? `${args.validation}-id` : nothing}"
+        class="form-check-input ${isValidationSet ? args.validation : ''}"
+        aria-invalid=${ariaInvalid}
+        aria-describedby="${ariaDescribedBy}"
       />
       <label class="form-check-label" for="Checkbox_1">
         <span>Label</span>
       </label>
-      <p
-        id="${args.validation !== 'null' && args.validation !== 'is-invalid'
-          ? `${args.validation}-id`
-          : nothing}"
-        class="valid-feedback"
-      >
-        Valid message.
-      </p>
-      <p
-        id="${args.validation !== 'null' && args.validation !== 'is-valid'
-          ? `${args.validation}-id`
-          : nothing}"
-        class="invalid-feedback"
-      >
-        Invalid message.
-      </p>
+      <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
+      <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
     </div>`;
   },
 };
 
 export const Input: Story = {
   render(args: Args) {
+    const isValidationSet = args.validation !== 'null';
+    const isValid = args.validation === 'is-valid';
+    const ariaInvalid = isValidationSet ? (!isValid ? true : false) : nothing;
+    const ariaDescribedBy = isValidationSet ? `${args.validation}-id` : nothing;
+    const validFeedbackId =
+      isValidationSet && args.validation !== 'is-invalid' ? `${args.validation}-id` : nothing;
+    const invalidFeedbackId =
+      isValidationSet && args.validation !== 'is-valid' ? `${args.validation}-id` : nothing;
     return html`
       <label class="form-label" for="Input_1">Label</label>
       <input
         id="Input_1"
-        class="form-control form-control-lg ${args.validation !== 'null' ? args.validation : ''}"
-        aria-invalid=${args.validation !== 'null'
-          ? args.validation == 'is-valid'
-            ? false
-            : true
-          : nothing}
-        aria-describedby="${args.validation !== 'null' ? `${args.validation}-id` : nothing}"
+        class="form-control form-control-lg ${isValidationSet ? args.validation : ''}"
+        aria-invalid=${ariaInvalid}
+        aria-describedby="${ariaDescribedBy}"
         type="text"
         placeholder="Placeholder"
       />
@@ -137,77 +122,58 @@ export const Input: Story = {
         Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
         illum dolore eu feugiat nulla facilisis.
       </p>
-      <p
-        id="${args.validation !== 'null' && args.validation !== 'is-invalid'
-          ? `${args.validation}-id`
-          : nothing}"
-        class="valid-feedback"
-      >
-        Valid message.
-      </p>
-      <p
-        id="${args.validation !== 'null' && args.validation !== 'is-valid'
-          ? `${args.validation}-id`
-          : nothing}"
-        class="invalid-feedback"
-      >
-        Invalid message.
-      </p>
+      <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
+      <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
     `;
   },
 };
 
 export const RadioButton: Story = {
   render(args: Args) {
+    const isValidationSet = args.validation !== 'null';
+    const isValid = args.validation === 'is-valid';
+    const ariaInvalid = isValidationSet ? (!isValid ? true : false) : nothing;
+    const ariaDescribedBy = isValidationSet ? `${args.validation}-id` : nothing;
+    const validFeedbackId =
+      isValidationSet && args.validation !== 'is-invalid' ? `${args.validation}-id` : nothing;
+    const invalidFeedbackId =
+      isValidationSet && args.validation !== 'is-valid' ? `${args.validation}-id` : nothing;
     return html`<div class="form-check">
       <input
         type="radio"
         id="Radio_1"
-        class="form-check-input ${args.validation !== 'null' ? args.validation : ''}"
-        aria-invalid=${args.validation !== 'null'
-          ? args.validation == 'is-valid'
-            ? false
-            : true
-          : nothing}
-        aria-describedby="${args.validation !== 'null' ? `${args.validation}-id` : nothing}"
+        class="form-check-input ${isValidationSet ? args.validation : ''}"
+        aria-invalid=${ariaInvalid}
+        aria-describedby="${ariaDescribedBy}"
       />
       <label class="form-check-label" for="Radio_1">
         <span>Label</span>
       </label>
-      <p
-        id="${args.validation !== 'null' && args.validation !== 'is-invalid'
-          ? `${args.validation}-id`
-          : nothing}"
-        class="valid-feedback"
-      >
-        Valid message.
-      </p>
-      <p
-        id="${args.validation !== 'null' && args.validation !== 'is-valid'
-          ? `${args.validation}-id`
-          : nothing}"
-        class="invalid-feedback"
-      >
-        Invalid message.
-      </p>
+      <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
+      <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
     </div>`;
   },
 };
 
 export const Select: Story = {
   render(args: Args) {
+    const isValidationSet = args.validation !== 'null';
+    const isValid = args.validation === 'is-valid';
+    const ariaInvalid = isValidationSet ? (!isValid ? true : false) : nothing;
+    const ariaDescribedBy = isValidationSet ? `${args.validation}-id` : nothing;
+    const validFeedbackId =
+      isValidationSet && args.validation !== 'is-invalid' ? `${args.validation}-id` : nothing;
+    const invalidFeedbackId =
+      isValidationSet && args.validation !== 'is-valid' ? `${args.validation}-id` : nothing;
     return html`
       <label class="form-label" for="Select_1">
         <span>Label</span>
       </label>
-      <select id="Select_1" class="form-select form-select-lg ${
-        args.validation !== 'null' ? args.validation : ''
-      }"
-      aria-invalid=${
-        args.validation !== 'null' ? (args.validation == 'is-valid' ? false : true) : nothing
-      }
-      aria-describedby="${args.validation !== 'null' ? `${args.validation}-id` : nothing}"
-      >
+     <select id="Select_1" class="form-select form-select-lg ${
+       isValidationSet ? args.validation : ''
+     }"
+        aria-invalid=${ariaInvalid}
+        aria-describedby="${ariaDescribedBy}">
         <option>Select option...</option>
         <option value="value_1">Option 1</option>
         <option value="value_2">Option 2</option>
@@ -218,104 +184,64 @@ export const Select: Story = {
         Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum
         dolore eu feugiat nulla facilisis.
       </p>
-      <p
-        id="${
-          args.validation !== 'null' && args.validation !== 'is-invalid'
-            ? `${args.validation}-id`
-            : nothing
-        }"
-        class="valid-feedback"
-      >
-        Valid message.
-      </p>
-      <p
-        id="${
-          args.validation !== 'null' && args.validation !== 'is-valid'
-            ? `${args.validation}-id`
-            : nothing
-        }"
-        class="invalid-feedback"
-      >
-        Invalid message.
-      </p>
+       <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
+      <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
     </div>`;
   },
 };
 
 export const Switch: Story = {
   render(args: Args) {
+    const isValidationSet = args.validation !== 'null';
+    const isValid = args.validation === 'is-valid';
+    const ariaInvalid = isValidationSet ? (!isValid ? true : false) : nothing;
+    const ariaDescribedBy = isValidationSet ? `${args.validation}-id` : nothing;
+    const validFeedbackId =
+      isValidationSet && args.validation !== 'is-invalid' ? `${args.validation}-id` : nothing;
+    const invalidFeedbackId =
+      isValidationSet && args.validation !== 'is-valid' ? `${args.validation}-id` : nothing;
     return html`<div class="form-check form-switch">
       <input
         type="checkbox"
         role="switch"
         id="Switch_1"
-        class="form-check-input ${args.validation !== 'null' ? args.validation : ''}"
-        aria-invalid=${args.validation !== 'null'
-          ? args.validation == 'is-valid'
-            ? false
-            : true
-          : nothing}
-        aria-describedby="${args.validation !== 'null' ? `${args.validation}-id` : nothing}"
+        class="form-check-input ${isValidationSet ? args.validation : ''}"
+        aria-invalid=${ariaInvalid}
+        aria-describedby="${ariaDescribedBy}"
       />
       <label class="form-check-label order-first" for="Switch_1">Notifications</label>
-      <p
-        id="${args.validation !== 'null' && args.validation !== 'is-invalid'
-          ? `${args.validation}-id`
-          : nothing}"
-        class="valid-feedback"
-      >
-        Valid message.
-      </p>
-      <p
-        id="${args.validation !== 'null' && args.validation !== 'is-valid'
-          ? `${args.validation}-id`
-          : nothing}"
-        class="invalid-feedback"
-      >
-        Invalid message.
-      </p>
+      <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
+      <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
     </div>`;
   },
 };
 
 export const TextArea: Story = {
   render(args: Args) {
+    const isValidationSet = args.validation !== 'null';
+    const isValid = args.validation === 'is-valid';
+    const ariaInvalid = isValidationSet ? (!isValid ? true : false) : nothing;
+    const ariaDescribedBy = isValidationSet ? `${args.validation}-id` : nothing;
+    const validFeedbackId =
+      isValidationSet && args.validation !== 'is-invalid' ? `${args.validation}-id` : nothing;
+    const invalidFeedbackId =
+      isValidationSet && args.validation !== 'is-valid' ? `${args.validation}-id` : nothing;
     return html`
     <label class="form-label" for="TextArea_1">Label</label>
       <textarea
         placeholder=""
         rows=""
         id="TextArea_1"
-        class="form-control form-control-lg ${args.validation !== 'null' ? args.validation : ''}"
-        aria-invalid=${
-          args.validation !== 'null' ? (args.validation == 'is-valid' ? false : true) : nothing
-        }
-        aria-describedby="${args.validation !== 'null' ? `${args.validation}-id` : nothing}"
+        class="form-control form-control-lg ${isValidationSet ? args.validation : ''}"
+        aria-invalid=${ariaInvalid}
+        aria-describedby="${ariaDescribedBy}"
       ></textarea>
       <p class="form-text">
         Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum
         dolore eu feugiat nulla facilisis.
       </p>
-      <p
-        id="${
-          args.validation !== 'null' && args.validation !== 'is-invalid'
-            ? `${args.validation}-id`
-            : nothing
-        }"
-        class="valid-feedback"
-      >
-        Valid message.
-      </p>
-      <p
-        id="${
-          args.validation !== 'null' && args.validation !== 'is-valid'
-            ? `${args.validation}-id`
-            : nothing
-        }"
-        class="invalid-feedback"
-      >
-        Invalid message.
-      </p>
+        <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
+      <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
     </div>`;
   },
 };
