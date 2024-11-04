@@ -1,10 +1,14 @@
+@use 'sass:map';
+@use 'sass:meta';
+
 @use '../functions/contrast';
-@use '../functions/tokens';
 @use '../placeholders/schemes';
+
+@use '../functions/tokens';
 @use '../tokens/elements';
 @use '../tokens/helpers';
+@use '../tokens/palettes';
 
-@use './functions' as *;
 @use './variables' as *;
 
 @mixin generate-palette-class($name, $theme) {
@@ -31,18 +35,25 @@
 }
 
 @mixin palette-styles($name, $theme, $scheme, $redefine-tokens: false) {
-  --post-palette-fg: #{tokens.get('helper-palette-#{$name}-fg', helpers.$post-palette)};
-  background-color: tokens.get('helper-palette-#{$name}-bg', helpers.$post-palette) !important;
+  $palette: map.get(meta.module-variables(palettes), '#{$theme}-#{$scheme}');
 
-  @if ($redefine-tokens == true) {
-    // redefining the body color is required so that the new color scheme is taken into account
-    color: tokens.get('body-color', elements.$post-body);
+  @if ($palette) {
+    // temporary: waiting for new tokens
+    $name: if($name == 'accent', 'emphasis', $name);
 
-    $bg-scheme: value('post-palette-#{$name}-bg-scheme', $theme, $scheme);
-    @if ($bg-scheme == 'light') {
-      @extend %color-scheme-light;
-    } @else {
-      @extend %color-scheme-dark;
+    --post-palette-fg: #{tokens.get('helper-color-#{$name}-fg', helpers.$post-color)};
+    background-color: tokens.get('helper-color-#{$name}-bg', helpers.$post-color) !important;
+
+    @if ($redefine-tokens == true) {
+      // redefining the body color is required so that the new color scheme is taken into account
+      color: tokens.get('body-color', elements.$post-body);
+
+      $bg-scheme: tokens.get('helper-color-#{$name}-bg-scheme', $palette);
+      @if ($bg-scheme == 'light') {
+        @extend %color-scheme-light;
+      } @else {
+        @extend %color-scheme-dark;
+      }
     }
   }
 }

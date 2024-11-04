@@ -1,16 +1,1 @@
 @forward './temp/helpers';
-
-$post-palette: (
-  post-helper-palette-default-bg: var(--post-theme-color-accent-default-bg),
-  post-helper-palette-default-fg: var(--post-theme-color-accent-default-fg),
-  post-helper-palette-default-bg-scheme: var(--post-theme-accent-bg-scheme-default),
-  post-helper-palette-alternate-bg: var(--post-theme-color-accent-alternate-bg),
-  post-helper-palette-alternate-fg: var(--post-theme-color-accent-alternate-fg),
-  post-helper-palette-alternate-bg-scheme: var(--post-theme-accent-bg-scheme-alternate),
-  post-helper-palette-brand-bg: var(--post-theme-color-accent-brand-bg),
-  post-helper-palette-brand-fg: var(--post-theme-color-accent-brand-fg),
-  post-helper-palette-brand-bg-scheme: var(--post-theme-accent-bg-scheme-brand),
-  post-helper-palette-accent-bg: var(--post-theme-color-accent-emphasis-bg),
-  post-helper-palette-accent-fg: var(--post-theme-color-accent-emphasis-fg),
-  post-helper-palette-accent-bg-scheme: var(--post-theme-accent-bg-scheme-emphasis),
-);

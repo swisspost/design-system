@@ -207,43 +207,102 @@ export async function createOutputFiles() {
    * @returns Config[]
    */
   function getConfigs() {
-    return Object.entries(tokenSets.output).map(([name, { type, layer, filePath, sets }]) => {
-      return {
-        log: {
-          verbosity: CLI_OPTIONS.verbosity,
-        },
-        meta: {
-          type,
-          layer,
-          filePath,
-          setNames: Object.keys(sets),
-        },
-        source: [`${SOURCE_PATH}/_temp/output/${filePath}`],
-        include: [`${SOURCE_PATH}/_temp/source/**/*.json`],
-        preprocessors: ['swisspost/box-shadow-keep-refs-workaround', 'tokens-studio'],
-        platforms: {
-          scss: {
-            transformGroup: 'tokens-studio',
-            transforms: ['name/kebab'],
-            buildPath: `${OUTPUT_PATH}/`,
-            expand: {
-              include: ['typography'],
-              typesMap: expandTypesMap,
-            },
-            files: [
-              {
-                destination: `_${name}.scss`.toLowerCase(),
-                format: 'swisspost/scss-format',
-                filter: 'swisspost/tokenset-filter',
-                options: {
-                  outputReferences: true,
-                },
-              },
-            ],
-          },
-        },
-      };
+    let configs = Object.entries(tokenSets.output).map(([name, tokenSet]) => {
+      return getConfig(name, tokenSet);
     });
+
+    // create specific configs for the palettes
+    const helpersSet = tokenSets.output['helpers']; // TODO: Move palettes to their own tokenset
+    if (helpersSet) {
+      configs = [...configs, ...getPaletteConfigs(helpersSet)];
+    }
+
+    return configs;
+  }
+
+  /**
+   * Will be removed once the CSS light-dark() function is better supported
+   * @function getPaletteConfigs()
+   * Creates the StyleDictionary Config object for the palette tokenset.
+   *
+   * @returns Config[]
+   */
+  function getPaletteConfigs(tokenSet) {
+    // temporary: waiting for new tokens
+    const themes = ['theme/post'];
+    const schemes = ['scheme/light'];
+
+    // const themes = Object.keys(tokenSets.source).filter(source => source.startsWith('theme/'));
+    // const schemes = Object.keys(tokenSets.source).filter(source => source.startsWith('scheme/'));
+
+    const otherSources = Object.keys(tokenSets.source).filter(
+      source => !source.startsWith('theme/') && !source.startsWith('scheme/'),
+    );
+
+    return themes.flatMap(theme => {
+      return schemes.map(scheme => {
+        const sources = Object.keys(tokenSets.source)
+          .filter(source => source === theme || source === scheme)
+          .concat(otherSources)
+          .map(source => `${SOURCE_PATH}/_temp/source/${source}.json`);
+
+        const themeName = theme.replace('theme/', '');
+        const schemeName = scheme.replace('scheme/', '');
+
+        return getConfig(`${themeName}-${schemeName}`, tokenSet, {
+          includedSource: sources,
+          buildPath: `${OUTPUT_PATH}/palettes/`,
+          outputReferences: false,
+        });
+      });
+    });
+  }
+
+  /**
+   * @function getConfig()
+   * Creates the StyleDictionary Config object for a given tokenset.
+   *
+   * @returns Config
+   */
+  function getConfig(name, tokenSet, options = {}) {
+    const { type, layer, filePath, sets } = tokenSet;
+    const { includedSource, buildPath, outputReferences } = options;
+
+    return {
+      log: {
+        verbosity: CLI_OPTIONS.verbosity,
+      },
+      meta: {
+        type,
+        layer,
+        filePath,
+        setNames: Object.keys(sets),
+      },
+      source: [`${SOURCE_PATH}/_temp/output/${filePath}`],
+      include: includedSource ?? [`${SOURCE_PATH}/_temp/source/**/*.json`],
+      preprocessors: ['swisspost/box-shadow-keep-refs-workaround', 'tokens-studio'],
+      platforms: {
+        scss: {
+          transformGroup: 'tokens-studio',
+          transforms: ['name/kebab'],
+          buildPath: buildPath ?? `${OUTPUT_PATH}/`,
+          expand: {
+            include: ['typography'],
+            typesMap: expandTypesMap,
+          },
+          files: [
+            {
+              destination: `_${name}.scss`.toLowerCase(),
+              format: 'swisspost/scss-format',
+              filter: 'swisspost/tokenset-filter',
+              options: {
+                outputReferences: outputReferences ?? true,
+              },
+            },
+          ],
+        },
+      },
+    };
   }
 
   /**
@@ -261,7 +320,7 @@ export async function createOutputFiles() {
 
   /**
    * @function createIndexFile()
-   * Creates the post-palettes.scss file (which uses/forwards the other output files) in the "OUTPUT_PATH" directory.
+   * Creates the index.scss file (which uses/forwards the other output files) in the "OUTPUT_PATH" directory.
    */
   async function createIndexFile() {
     const imports = Object.entries(tokenSets.output)
@@ -431,10 +490,6 @@ export function getTokenValue(options, token) {
       /{[0-9a-zA-Z-._]+}/g,
       match => `var(--${match.replace(/[{}]/g, '').replace(/\./g, '-')})`,
     );
-  }
-
-  if (typeof tokenValue === 'string' && tokenValue.includes(',')) {
-    tokenValue = `(${tokenValue})`;
   }
 
   return tokenValue;
