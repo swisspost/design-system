@@ -1,14 +1,1 @@
 @forward './temp/components';
-
-@use './../functions/tokens';
-
-$post-palette: (
-  post-palette-default-bg: var(--post-scheme-palette-default-bg),
-  post-palette-default-fg: var(--post-scheme-palette-default-fg),
-  post-palette-brand-bg: var(--post-theme-palette-brand-bg),
-  post-palette-brand-fg: var(--post-theme-palette-brand-fg),
-  post-palette-accent-bg: var(--post-theme-palette-accent-bg),
-  post-palette-accent-fg: var(--post-theme-palette-accent-fg),
-  post-palette-alternate-bg: var(--post-scheme-palette-alternate-bg),
-  post-palette-alternate-fg: var(--post-scheme-palette-alternate-fg),
-);

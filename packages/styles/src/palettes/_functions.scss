@@ -2,9 +2,9 @@
 @use 'sass:meta';
 
 @use '../functions/string';
-@use '../tokens/components';
-@use '../tokens/theme';
-@use '../tokens/scheme';
+@use '../tokens/helpers';
+@use '../tokens/temp/theme';
+@use '../tokens/temp/scheme';
 @use '../tokens/temp/core';
 
 /**
@@ -13,7 +13,7 @@
  */
 
 @function value($key, $theme: 'post', $scheme: 'light') {
-  $value: get-upper-value(components.$post-palette, $key);
+  $value: get-upper-value(helpers.$post-palette, $key);
 
   $theme-map: map.get(meta.module-variables(theme), 'post-#{$theme}');
   $value: get-upper-value($theme-map, $value);

@@ -2,6 +2,7 @@
 @use '../functions/tokens';
 @use '../placeholders/schemes';
 @use '../tokens/elements';
+@use '../tokens/helpers';
 
 @use './functions' as *;
 @use './variables' as *;
@@ -30,18 +31,15 @@
 }
 
 @mixin palette-styles($name, $theme, $scheme, $redefine-tokens: false) {
-  $bg: value('post-palette-#{$name}-bg', '#{$theme}-test', '#{$scheme}-test');
-  $fg: value('post-palette-#{$name}-fg', '#{$theme}-test', '#{$scheme}-test');
-
-  --post-palette-fg: #{$fg};
-  background-color: $bg !important;
+  --post-palette-fg: #{tokens.get('helper-palette-#{$name}-fg', helpers.$post-palette)};
+  background-color: tokens.get('helper-palette-#{$name}-bg', helpers.$post-palette) !important;
 
   @if ($redefine-tokens == true) {
     // redefining the body color is required so that the new color scheme is taken into account
     color: tokens.get('body-color', elements.$post-body);
 
-    $bg: value('post-palette-#{$name}-bg', '#{$theme}-test', '#{$scheme}-test');
-    @if (contrast.light-or-dark($bg) == 'light') {
+    $bg-scheme: value('post-palette-#{$name}-bg-scheme', $theme, $scheme);
+    @if ($bg-scheme == 'light') {
       @extend %color-scheme-light;
     } @else {
       @extend %color-scheme-dark;
