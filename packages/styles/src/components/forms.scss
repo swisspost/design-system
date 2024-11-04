@@ -50,14 +50,14 @@ select.form-control-rg:not([size]):not([multiple]) {
 }
 
 .form-control-wrapper {
-  @include utilities.focus-style() {
+  @include utilities.focus-style {
     border-radius: commons.$border-radius;
   }
 }
 
 :not(.form-control-wrapper) > {
   .form-control {
-    @include utilities.focus-style() {
+    @include utilities.focus-style {
       border-radius: commons.$border-radius;
     }
   }

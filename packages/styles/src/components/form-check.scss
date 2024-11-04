@@ -16,7 +16,7 @@
   row-gap: form-check.$form-check-row-gap;
   margin-bottom: form-check.$form-check-margin-bottom;
 
-  @include utility-mx.focus-style() {
+  @include utility-mx.focus-style {
     border-radius: commons.$border-radius;
   }
 
