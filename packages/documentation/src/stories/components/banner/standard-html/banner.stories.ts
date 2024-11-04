@@ -176,10 +176,10 @@ function renderBanner(args: Args) {
     ${args.action
       ? html`
           <div class="banner-buttons">
-            <button class="btn btn-primary btn-animated">
+            <button class="btn btn-primary">
               <span>Akcepti</span>
             </button>
-            <button class="btn btn-secondary btn-animated">
+            <button class="btn btn-secondary">
               <span>Aborti</span>
             </button>
           </div>

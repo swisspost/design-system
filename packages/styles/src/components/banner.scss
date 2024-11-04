@@ -27,17 +27,14 @@ tokens.$default-map: components.$post-banner;
   border-width: tokens.get('banner-border-width');
   @include notification-mx.notification-size(banner);
 
-  /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
-  & {
-    // Set the neutral banner as the default color
-    @include notification-mx.notification-variant(
-      list.nth($default-variant, 2),
-      list.nth($default-variant, 3),
-      list.nth($default-variant, 4),
-      list.nth($default-variant, 5),
-      list.nth($default-variant, 6)
-    );
-  }
+  // Set the neutral banner as the default color
+  @include notification-mx.notification-variant(
+    list.nth($default-variant, 2),
+    list.nth($default-variant, 3),
+    list.nth($default-variant, 4),
+    list.nth($default-variant, 5),
+    list.nth($default-variant, 6)
+  );
 
   &:not(.banner-action):not(.alert-action) {
     @include notification-mx.notification-body(banner);

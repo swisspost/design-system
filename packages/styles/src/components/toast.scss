@@ -20,17 +20,14 @@ tokens.$default-map: components.$post-banner;
   @include notification-mx.notification-size(toast);
   @include notification-mx.notification-body(toast);
 
-  /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
-  & {
-    // Set the neutral toast as the default color
-    @include notification-mx.notification-variant(
-      list.nth($default-variant, 2),
-      list.nth($default-variant, 3),
-      list.nth($default-variant, 4),
-      list.nth($default-variant, 5),
-      list.nth($default-variant, 6)
-    );
-  }
+  // Set the neutral toast as the default color
+  @include notification-mx.notification-variant(
+    list.nth($default-variant, 2),
+    list.nth($default-variant, 3),
+    list.nth($default-variant, 4),
+    list.nth($default-variant, 5),
+    list.nth($default-variant, 6)
+  );
 }
 
 .toast-dismissible {
