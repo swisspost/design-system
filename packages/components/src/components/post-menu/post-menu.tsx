@@ -289,8 +289,7 @@ export class PostMenu {
   }
 
   private get triggers() {
-    const triggers = document.querySelectorAll(`[${menuTargetAttribute}="${this.host.id}"]`);
-    return triggers;
+    return document.querySelectorAll(`[${menuTargetAttribute}="${this.host.id}"]`);
   }
 
   // Handles before the toggle of the menu (reset aria-expanded attributes)
