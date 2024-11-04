@@ -5,6 +5,6 @@
 }
 
 .popover-container {
-  padding: post.$size-mini;
-  background-color: (post.$white);
+  padding: var(--post-menu-padding);
+  background: var(--post-menu-bg);
 }

@@ -14,6 +14,8 @@ const meta: MetaComponent = {
   args: {
     id: 'menu-one',
     placement: 'bottom',
+    padding: '1rem',
+    backgroundColor: '#ffffff',
   },
   argTypes: {
     id: {
@@ -32,6 +34,22 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
+    padding: {
+      name: 'Padding',
+      description: 'Controls the padding inside the menu container using --post-menu-padding.',
+      control: { type: 'text' },
+      table: {
+        category: 'CSS Variables',
+      },
+    },
+    backgroundColor: {
+      name: 'Background Color',
+      description: 'Sets the background color of the menu container using --post-menu-bg.',
+      control: { type: 'color' },
+      table: {
+        category: 'CSS Variables',
+      },
+    },
   },
 };
 
@@ -41,7 +59,11 @@ function render(args: Args) {
       <button class="btn btn-secondary">Menu button</button>
     </post-menu-trigger>
 
-    <post-menu id="${args.id}" placement="${args.placement !== 'bottom' ? args.placement : nothing}">
+    <post-menu 
+      style="--post-menu-padding: ${args.padding}; --post-menu-bg: ${args.backgroundColor};" 
+      id="${args.id}" 
+      placement="${args.placement !== 'bottom' ? args.placement : nothing}"
+    >
       <post-menu-item><button>Example 2</button></post-menu-item>
       <post-menu-item><div>Example 3</div></post-menu-item>
       <hr />
@@ -53,4 +75,6 @@ function render(args: Args) {
 }
 
 export default meta;
+
+// Default story for interactive example in Storybook
 export const Default: StoryObj = {};
