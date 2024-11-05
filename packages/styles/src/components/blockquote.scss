@@ -1,6 +1,5 @@
 @use '../tokens/components';
 @use '../functions/tokens';
-@use './../placeholders/blockquote' as blockquote-ph;
 
 tokens.$default-map: components.$post-quote;
 
@@ -28,7 +27,6 @@ figure:has(.blockquote) {
   }
 }
 
-.blockquote-footer {
-  @extend %body;
+figcaption .blockquote-footer {
   margin-top: tokens.get('post-quote-gap-inline');
 }
