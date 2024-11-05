@@ -1,8 +1,29 @@
 import { Canvas, Meta, Source } from '@storybook/blocks';
 import * as SpacingPocStories from './spacing-poc.stories';
+import './spacing-poc.styles.scss';
 
 <Meta of={SpacingPocStories} />
 
-# Spacing POC
+<div className="docs-title">
+  # Spacing POC
+
+  <nav>
+    <link-design of={JSON.stringify(SpacingPocStories)}></link-design>
+  </nav>
+</div>
+
+Here is a small POC to show how the margins between different elements work together.
+
+## How it works
+
+Margins come from tokens and the rule in CSS is that when there are two margins between two elements, the space will be the biggest margin of the two.
+
+Example: If `<h1>` has a margin-bottom of 32px and the following `<p>` has a margin-top of 16px, the margin between the two elements will be 32px (the margin-bottom of the `<h1>` element).
+
+## Example
+
+The spaces where the background is light blue is the spacing set by the margin tokens that are set for the headings and paragraphs.
+
+The yellow background is simply to illustrate how it would look within a section element.
 
 <Canvas sourceState="shown" of={SpacingPocStories.Default} />

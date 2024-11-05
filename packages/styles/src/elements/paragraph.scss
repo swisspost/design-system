@@ -1,7 +1,6 @@
 @use 'sass:map';
 @use '../functions/tokens';
 @use '../tokens/elements';
-@use '../tokens/utilities';
 
 tokens.$default-map: elements.$post-paragraph;
 
@@ -14,25 +13,5 @@ p {
 
   &:last-child {
     margin-block-end: 0;
-  }
-}
-
-.poc-spacing {
-  background-color: rgba(lightsteelblue, 0.3);
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
-  ul {
-    background-color: white;
-  }
-
-  .section {
-    background-color: tokens.get('utility-surface-accent3', utilities.$post-color);
-    padding: 5rem;
   }
 }
