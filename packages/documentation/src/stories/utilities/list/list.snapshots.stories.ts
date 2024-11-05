@@ -18,19 +18,11 @@ export const OrderedList: Story = {
       <div class="d-flex flex-wrap gap-4 align-items-start">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div class="${bg} d-flex flex-wrap align-items-start gap-16 p-16">
+            <div class="${bg} d-flex">
               <ol>
                 ${bombArgs({
-                  text: [
-                    'Malakceptebla Insigno',
-                    'Contentus momentus vero siteos et accusam iretea et justo.',
-                  ],
+                  text: ['This is an ordered list', 'This is an ordered list'],
                   size: context.argTypes.size.options,
-                  type: context.argTypes.type.options,
-                  badge: [false, true],
-                  active: [false, true],
-                  disabled: [false, true],
-                  dismissed: [false],
                 })
                   .filter(args => !(args.type !== 'filter' && args.active === true))
                   .filter(args => !(args.type !== 'filter' && args.badge === true))
