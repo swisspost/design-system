@@ -1,0 +1,36 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as SearchInputStories from './search-input.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={SearchInputStories} />
+
+<div className="docs-title">
+  # Search input
+
+  <nav>
+    <link-design of={JSON.stringify(SearchInputStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  For quoting blocks of content from another source within your document. Wrap `
+  <blockquote
+    className="blockquote">` around any HTML as the quote.
+</div>
+
+<Canvas sourceState="shown" of={SearchInputStories.Default} />
+
+<div className="hide-col-default">
+  <Controls of={SearchInputStories.Default} />
+</div>
+
+<StylesPackageImport components={["blockquote"]} />
+
+## Concrete Examples of Application
+
+The following examples show the different characteristics of the component. These can differ in the type of visualization, the html structure, as well as when, how and why they are displayed.
+
+### Nested
+
+To add simple quote characters around any nested text within your blockquote, you can wrap it with a
+<code>&lt;q&gt;</code> tag.
