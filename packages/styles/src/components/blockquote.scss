@@ -9,8 +9,8 @@ tokens.$default-map: components.$post-quote;
   margin: tokens.get('post-quote-margin-block') tokens.get('post-quote-margin-inline');
   padding: 0 tokens.get('post-quote-padding-inline-end') 0
     tokens.get('post-quote-padding-inline-start');
-  border-inline-start: tokens.get('post-quote-border-width-left') tokens.get('post-quote-border-left-color');
-    tokens.get('post-quote-border-left-color');
+  border-inline-start: tokens.get('post-quote-border-width-left')
+    tokens.get('post-quote-border-left-color') tokens.get('post-quote-border-left-color');
 }
 
 figure:has(.blockquote) {
