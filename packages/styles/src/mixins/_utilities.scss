@@ -1,5 +1,11 @@
+@use './../themes/bootstrap/core' as *;
+
+@use '../functions/tokens';
+@use '../tokens/helpers';
+
 @use '../variables/spacing';
 @use '../variables/commons';
+@use '../variables/breakpoints';
 
 @mixin reset-list() {
   margin: 0;
@@ -94,23 +100,16 @@
   outline: none;
 }
 
-@mixin focus-style(
-  $additional-selector: '',
-  $offset: spacing.$size-line,
-  $width: spacing.$size-line,
-  $color: var(--post-focus-color),
-  $style: solid
-) {
+@mixin focus-style($additional-selector: '') {
   &#{$additional-selector} {
-    outline-style: none !important; // !important is needed to override bootstrap .form-control:focus
-    outline-offset: $offset !important;
-    outline-width: $width !important;
-    outline-color: $color !important;
+    outline-offset: tokens.get('focus-outline-offset', helpers.$post-focus) !important;
+    outline: tokens.get('focus-outline-color', helpers.$post-focus) none
+      tokens.get('focus-outline-width', helpers.$post-focus) !important;
   }
 
   // :has(:focus-visible) mimic a focus-visible-within pseudo-class
   &:is(:focus-visible, :has(:focus-visible), .pretend-focus)#{$additional-selector} {
-    outline-style: $style !important;
+    outline-style: tokens.get('focus-border-style', helpers.$post-focus) !important;
     // In case rules need to be slightly adjusted
     @content;
 
@@ -122,7 +121,7 @@
   // When a browser doesn't support :has, use focus-within as a fallback. This means that focus state is displayed on focus and not on focus-visible only (except some browsers like Safari).
   @supports not selector(:has(:focus-visible)) {
     &:is(:focus-visible, :focus-within, .pretend-focus)#{$additional-selector} {
-      outline-style: $style !important;
+      outline-style: tokens.get('focus-border-style', helpers.$post-focus) !important;
       // In case rules need to be slightly adjusted
       @content;
 
