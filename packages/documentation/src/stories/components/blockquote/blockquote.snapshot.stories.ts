@@ -16,9 +16,12 @@ export const Blockquote: Story = {
   render: (_args: Args, context: StoryContext) => {
     return html`
       <div class="d-flex flex-wrap align-items-start gap-16">
-        ${['bg-white', 'bg-dark'].map(
+        ${['white', 'dark'].map(
           bg => html`
-            <div class="${bg} d-flex flex-wrap align-items-start gap-16 p-16">
+            <div
+              data-color-scheme="${bg}"
+              class="bg-${bg} d-flex flex-wrap align-items-start gap-16 p-16"
+            >
               ${bombArgs({
                 text: [
                   'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero mollitia magnam quo quam saepe. Aliquam tempore non deleniti culpa reprehenderit.',
