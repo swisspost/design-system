@@ -4,4 +4,4 @@
 @use 'src/components/blockquote';
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables('blockquote'), 'font-base-path'));
+@include jest.true(map.has-key(meta.module-variables('quote'), 'font-base-path'));
