@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:list';
 
 @use './color' as color-mx;
 @use './icons' as icons-mx;
@@ -9,11 +10,13 @@
 @use './../variables/components/close';
 @use './../variables/components/notification';
 @use '../tokens/components';
+@use '../tokens/elements';
 @use '../functions/tokens';
 
 tokens.$default-map: components.$post-banner;
 
 @mixin notification-size($size) {
+  $default-var: list.nth(notification.$notification-variants, 1);
   $icon-size: map.get(notification.$notification-icon-size-map, $size);
   $padding-x: map.get(notification.$notification-padding-x-map, $size);
   $padding-y: map.get(notification.$notification-padding-y-map, $size);
@@ -31,6 +34,16 @@ tokens.$default-map: components.$post-banner;
   border-style: tokens.get('banner-border-style');
   border-width: tokens.get('banner-border-width');
   position: relative;
+  color: tokens.get('body-color', elements.$post-body);
+
+  // Set the neutral notification as the default color
+  @include notification-variant(
+    list.nth($default-var, 2),
+    list.nth($default-var, 3),
+    list.nth($default-var, 4),
+    list.nth($default-var, 5),
+    list.nth($default-var, 6)
+  );
 
   &.no-icon {
     padding-inline-start: $padding-x;

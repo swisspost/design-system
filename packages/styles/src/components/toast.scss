@@ -16,18 +16,8 @@
 tokens.$default-map: components.$post-banner;
 
 .toast {
-  $default-variant: list.nth(notification.$notification-variants, 1);
   @include notification-mx.notification-size(toast);
   @include notification-mx.notification-body(toast);
-
-  // Set the neutral toast as the default color
-  @include notification-mx.notification-variant(
-    list.nth($default-variant, 2),
-    list.nth($default-variant, 3),
-    list.nth($default-variant, 4),
-    list.nth($default-variant, 5),
-    list.nth($default-variant, 6)
-  );
 }
 
 .toast-dismissible {
@@ -63,7 +53,6 @@ tokens.$default-map: components.$post-banner;
   z-index: commons.$zindex-alert;
   display: flex;
   flex-direction: column;
-  pointer-events: none;
 
   .toast {
     width: 25rem;

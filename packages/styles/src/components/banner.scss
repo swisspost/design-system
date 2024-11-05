@@ -13,28 +13,13 @@
 @use './../variables/components/close';
 @use './../variables/components/notification';
 @use '../tokens/components';
-@use '../tokens/elements';
 @use '../functions/tokens';
 
 tokens.$default-map: components.$post-banner;
 
 .banner,
 .alert {
-  $default-variant: list.nth(notification.$notification-variants, 1);
-  color: tokens.get('body-color', elements.$post-body);
-
-  border-style: tokens.get('banner-border-style');
-  border-width: tokens.get('banner-border-width');
   @include notification-mx.notification-size(banner);
-
-  // Set the neutral banner as the default color
-  @include notification-mx.notification-variant(
-    list.nth($default-variant, 2),
-    list.nth($default-variant, 3),
-    list.nth($default-variant, 4),
-    list.nth($default-variant, 5),
-    list.nth($default-variant, 6)
-  );
 
   &:not(.banner-action):not(.alert-action) {
     @include notification-mx.notification-body(banner);
