@@ -11,7 +11,6 @@ tokens.$default-map: components.$post-form-footer;
   border-block-start-style: tokens.get('form-footer-border-block-start-style');
   padding-block-start: tokens.get('form-footer-padding-block-start');
   gap: tokens.get('form-footer-gap');
-  @include utility-mx.responsive-actions();
 
   @include layout.responsive-actions {
     gap: tokens.get('form-footer-gap');
