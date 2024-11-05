@@ -13,31 +13,39 @@ type Story = StoryObj;
 
 export const OrderedList: Story = {
   render: () => {
-    const listItems = Array.from({ length: 10 }, (_, i) => ({
-      text: `List item ${i + 1}`,
-      children: i === 0 ? Array.from({ length: 3 }, (_, j) => `Nested item ${j + 1}`) : null,
-    }));
-
     return html`
-      <div class="d-flex flex-wrap gap-4 align-items-start">
+      <div class="d-flex">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
             <div class="${bg} p-5">
               <ol>
-                ${listItems.map(
-                  item => html`
-                    <li>
-                      ${item.text}
-                      ${item.children
-                        ? html`
-                            <ol>
-                              ${item.children.map(child => html`<li>${child}</li>`)}
-                            </ol>
-                          `
-                        : ''}
-                    </li>
-                  `,
-                )}
+                <li>This is an ordered list.</li>
+                <li>It appears in its default style.</li>
+                <li>
+                  Therefore it should be rendered with sequential numbers at the beginning of each
+                  list item.
+                </li>
+                <li>
+                  Nested list:
+                  <ol>
+                    <li>This is a nested list</li>
+                    <li>It is further indented, depending on the depth of nesting.</li>
+                    <li>Nested lists numbers are independent form the numbers of their parents.</li>
+                  </ol>
+                  After nested list item
+                </li>
+                <li>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                  pariatur
+                </li>
+                <li>Ordered list item</li>
+                <li>Ordered list item</li>
+                <li>Ordered list item</li>
+                <li>Ordered list item</li>
+                <li>Ordered list item</li>
               </ol>
             </div>
           `,
