@@ -299,20 +299,6 @@ export namespace Components {
          */
         "stars": number;
     }
-    interface PostSegmentedButton {
-        /**
-          * Array of labels to display within the segmented button.
-         */
-        "labels": string;
-        /**
-          * The name attribute for the radio input group.
-         */
-        "name": string;
-        /**
-          * The currently selected index within the segmented button.
-         */
-        "selectedIndex": number;
-    }
     interface PostTabHeader {
         /**
           * The name of the panel controlled by the tab header.
@@ -403,10 +389,6 @@ export interface PostPopovercontainerCustomEvent<T> extends CustomEvent<T> {
 export interface PostRatingCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostRatingElement;
-}
-export interface PostSegmentedButtonCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLPostSegmentedButtonElement;
 }
 export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -565,23 +547,6 @@ declare global {
         prototype: HTMLPostRatingElement;
         new (): HTMLPostRatingElement;
     };
-    interface HTMLPostSegmentedButtonElementEventMap {
-        "selectionChanged": number;
-    }
-    interface HTMLPostSegmentedButtonElement extends Components.PostSegmentedButton, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostSegmentedButtonElementEventMap>(type: K, listener: (this: HTMLPostSegmentedButtonElement, ev: PostSegmentedButtonCustomEvent<HTMLPostSegmentedButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostSegmentedButtonElementEventMap>(type: K, listener: (this: HTMLPostSegmentedButtonElement, ev: PostSegmentedButtonCustomEvent<HTMLPostSegmentedButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLPostSegmentedButtonElement: {
-        prototype: HTMLPostSegmentedButtonElement;
-        new (): HTMLPostSegmentedButtonElement;
-    };
     interface HTMLPostTabHeaderElement extends Components.PostTabHeader, HTMLStencilElement {
     }
     var HTMLPostTabHeaderElement: {
@@ -637,7 +602,6 @@ declare global {
         "post-popover": HTMLPostPopoverElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-rating": HTMLPostRatingElement;
-        "post-segmented-button": HTMLPostSegmentedButtonElement;
         "post-tab-header": HTMLPostTabHeaderElement;
         "post-tab-panel": HTMLPostTabPanelElement;
         "post-tabs": HTMLPostTabsElement;
@@ -895,24 +859,6 @@ declare namespace LocalJSX {
          */
         "stars"?: number;
     }
-    interface PostSegmentedButton {
-        /**
-          * Array of labels to display within the segmented button.
-         */
-        "labels"?: string;
-        /**
-          * The name attribute for the radio input group.
-         */
-        "name"?: string;
-        /**
-          * Event emitted whenever the selected index changes. The event detail contains the new index.
-         */
-        "onSelectionChanged"?: (event: PostSegmentedButtonCustomEvent<number>) => void;
-        /**
-          * The currently selected index within the segmented button.
-         */
-        "selectedIndex"?: number;
-    }
     interface PostTabHeader {
         /**
           * The name of the panel controlled by the tab header.
@@ -977,7 +923,6 @@ declare namespace LocalJSX {
         "post-popover": PostPopover;
         "post-popovercontainer": PostPopovercontainer;
         "post-rating": PostRating;
-        "post-segmented-button": PostSegmentedButton;
         "post-tab-header": PostTabHeader;
         "post-tab-panel": PostTabPanel;
         "post-tabs": PostTabs;
@@ -1008,7 +953,6 @@ declare module "@stencil/core" {
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
-            "post-segmented-button": LocalJSX.PostSegmentedButton & JSXBase.HTMLAttributes<HTMLPostSegmentedButtonElement>;
             "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
