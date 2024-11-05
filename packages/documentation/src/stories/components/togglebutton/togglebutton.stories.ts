@@ -13,7 +13,7 @@ export interface PostTogglebuttonProps {
 }
 
 const meta: MetaComponent<PostTogglebuttonProps> = {
-  id: '12345-abcde',
+  id: '1a6f47c2-5e8a-45a0-b1c3-9f7e2b834c24',
   title: 'Components/Toggle Button',
   tags: ['package:WebComponents'],
   component: 'post-togglebutton',
@@ -26,6 +26,7 @@ const meta: MetaComponent<PostTogglebuttonProps> = {
     type: 'button',
     variant: 'btn-primary',
     size: 'null',
+    toggled: false,
   },
   argTypes: {
     toggled: {
@@ -70,7 +71,12 @@ const meta: MetaComponent<PostTogglebuttonProps> = {
     },
     size: {
       name: 'Size',
-      description: 'Sets the size of the component.',
+      description:
+        'Sets the size of the component.' +
+        '<span className="mt-8 alert alert-info alert-sm">' +
+        'For more options, please see the ' +
+        '<a href="/?path=/docs/eb78afcb-ce92-4990-94b6-6536d5ec6af4--docs">button component</a>' +
+        '.</span>',
       control: {
         type: 'select',
         labels: {
@@ -99,21 +105,9 @@ const meta: MetaComponent<PostTogglebuttonProps> = {
           'btn-primary': 'Primary',
           'btn-secondary': 'Secondary',
           'btn-tertiary': 'Tertiary',
-          // 'btn-success': 'Success',
-          // 'btn-danger': 'Danger',
-          // 'btn-warning': 'Warning',
-          // 'btn-info': 'Info',
         },
       },
-      options: [
-        'btn-primary',
-        'btn-secondary',
-        'btn-tertiary',
-        // 'btn-success',
-        // 'btn-danger',
-        // 'btn-warning',
-        // 'btn-info',
-      ],
+      options: ['btn-primary', 'btn-secondary', 'btn-tertiary'],
       table: {
         category: 'General',
       },
@@ -138,7 +132,7 @@ function createProps(args: Args) {
   return {
     class: ['btn', args.variant, args.size].filter(c => c && c !== 'null').join(' '),
     type: args.type,
-    toggled: args.toggled,
+    ...(args.toggled && { toggled: true }),
   };
 }
 
@@ -151,5 +145,16 @@ export const InitiallyToggled: StoryObj<PostTogglebuttonProps> = {
   args: {
     ...Default.args,
     toggled: true,
+  },
+};
+
+export const IconContent: StoryObj<PostTogglebuttonProps> = {
+  render: () => {
+    return html`
+      <post-togglebutton class="btn btn-icon btn-primary">
+        <span slot="untoggled"><post-icon name="2070"></post-icon></span>
+        <span slot="toggled"><post-icon name="2043"></post-icon></span>
+      </post-togglebutton>
+    `;
   },
 };

@@ -1,42 +1,43 @@
-import type { StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta from './togglebutton.stories';
 import { html } from 'lit';
+import { bombArgs } from '@/utils';
+import { Default } from '@/stories/components/button/button.stories';
 
 const { id, ...metaWithoutId } = meta;
 
 export default {
   ...metaWithoutId,
-  title: 'Snapshots/Toggle Button',
+  title: 'Snapshots',
 };
 
-type Story = StoryObj<HTMLPostTogglebuttonElement>;
+type Story = StoryObj;
 
-export const PostToggleButtonSnapshots: Story = {
-  render: (
-    _args: Partial<HTMLPostTogglebuttonElement>,
-    context: StoryContext<HTMLPostTogglebuttonElement>,
-  ) => {
-    return html`
-      <div class="row gx-5">
-        <div class="col">
-          <p>Untoggled and Toggled States</p>
-          <div class="row">
-            <div class="col">
-              <div class="my-mini">
-                <post-togglebutton toggled="false">
-                  <span slot="untoggled">Not Toggled</span>
-                  <span slot="toggled">Toggled</span>
-                </post-togglebutton>
-              </div>
-              <div class="my-mini">
-                <post-togglebutton toggled="true">
-                  <span slot="untoggled">Not Toggled</span>
-                  <span slot="toggled">Toggled</span>
-                </post-togglebutton>
-              </div>
-            </div>
-          </div>
+export const ToggleButton: Story = {
+  render: (_args: Args, context: StoryContext) => {
+    const renderContent = (bg: string) => {
+      const colorScheme = bg === 'bg-white' ? 'light' : 'dark';
+      return html`
+        <div
+          class="${bg} d-flex flex-wrap align-items-start gap-16 p-16"
+          data-color-scheme=${colorScheme}
+        >
+          ${bombArgs({
+            variant: context.argTypes.variant.options,
+            size: context.argTypes.size.options,
+            icon: ['null', '2069'],
+          })
+            .filter(args => args.icon !== 'null')
+            .map((args: Args) =>
+              Default.render?.({ ...context.args, ...args, animated: false }, context),
+            )}
         </div>
+      `;
+    };
+
+    return html`
+      <div class="d-flex flex-wrap gap-4 align-items-start">
+        ${['bg-white', 'bg-dark'].map(bg => renderContent(bg))}
       </div>
     `;
   },
