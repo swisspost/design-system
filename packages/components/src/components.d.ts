@@ -75,6 +75,24 @@ export namespace Components {
          */
         "type": AlertType;
     }
+    interface PostAvatar {
+        /**
+          * Defines the users email address associated with a gravatar profile picture.
+         */
+        "email"?: string;
+        /**
+          * Defines the users firstname.
+         */
+        "firstname": string;
+        /**
+          * Defines the users lastname.
+         */
+        "lastname"?: string;
+        /**
+          * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
+         */
+        "userid"?: string;
+    }
     /**
      * @class PostCardControl - representing a stencil component
      */
@@ -177,6 +195,28 @@ export namespace Components {
          */
         "scale"?: number | null;
     }
+    interface PostLanguageOption {
+        /**
+          * If set to `true`, the language option is considered the current language for the page.
+         */
+        "active": boolean;
+        /**
+          * The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
+         */
+        "code": string;
+        /**
+          * The full name of the language. For example, "Deutsch".
+         */
+        "name": string;
+        /**
+          * Selects the language option programmatically.
+         */
+        "select": () => Promise<void>;
+        /**
+          * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
+         */
+        "url": string;
+    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -217,6 +257,10 @@ export namespace Components {
           * Wheter or not to display a little pointer arrow
          */
         "arrow"?: boolean;
+        /**
+          * Gap between the edge of the page and the popover
+         */
+        "edgeGap"?: number;
         /**
           * Programmatically hide this tooltip
          */
@@ -340,6 +384,10 @@ export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
 }
+export interface PostLanguageOptionCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostLanguageOptionElement;
+}
 export interface PostPopovercontainerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostPopovercontainerElement;
@@ -381,6 +429,12 @@ declare global {
     var HTMLPostAlertElement: {
         prototype: HTMLPostAlertElement;
         new (): HTMLPostAlertElement;
+    };
+    interface HTMLPostAvatarElement extends Components.PostAvatar, HTMLStencilElement {
+    }
+    var HTMLPostAvatarElement: {
+        prototype: HTMLPostAvatarElement;
+        new (): HTMLPostAvatarElement;
     };
     interface HTMLPostCardControlElementEventMap {
         "postInput": { state: boolean; value: string };
@@ -434,6 +488,23 @@ declare global {
     var HTMLPostIconElement: {
         prototype: HTMLPostIconElement;
         new (): HTMLPostIconElement;
+    };
+    interface HTMLPostLanguageOptionElementEventMap {
+        "postChange": string;
+    }
+    interface HTMLPostLanguageOptionElement extends Components.PostLanguageOption, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostLanguageOptionElementEventMap>(type: K, listener: (this: HTMLPostLanguageOptionElement, ev: PostLanguageOptionCustomEvent<HTMLPostLanguageOptionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostLanguageOptionElementEventMap>(type: K, listener: (this: HTMLPostLanguageOptionElement, ev: PostLanguageOptionCustomEvent<HTMLPostLanguageOptionElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostLanguageOptionElement: {
+        prototype: HTMLPostLanguageOptionElement;
+        new (): HTMLPostLanguageOptionElement;
     };
     interface HTMLPostLogoElement extends Components.PostLogo, HTMLStencilElement {
     }
@@ -533,10 +604,12 @@ declare global {
         "post-accordion": HTMLPostAccordionElement;
         "post-accordion-item": HTMLPostAccordionItemElement;
         "post-alert": HTMLPostAlertElement;
+        "post-avatar": HTMLPostAvatarElement;
         "post-card-control": HTMLPostCardControlElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
         "post-icon": HTMLPostIconElement;
+        "post-language-option": HTMLPostLanguageOptionElement;
         "post-logo": HTMLPostLogoElement;
         "post-popover": HTMLPostPopoverElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
@@ -596,6 +669,24 @@ declare namespace LocalJSX {
           * The type of the alert.
          */
         "type"?: AlertType;
+    }
+    interface PostAvatar {
+        /**
+          * Defines the users email address associated with a gravatar profile picture.
+         */
+        "email"?: string;
+        /**
+          * Defines the users firstname.
+         */
+        "firstname": string;
+        /**
+          * Defines the users lastname.
+         */
+        "lastname"?: string;
+        /**
+          * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
+         */
+        "userid"?: string;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -695,6 +786,28 @@ declare namespace LocalJSX {
          */
         "scale"?: number | null;
     }
+    interface PostLanguageOption {
+        /**
+          * If set to `true`, the language option is considered the current language for the page.
+         */
+        "active"?: boolean;
+        /**
+          * The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
+         */
+        "code": string;
+        /**
+          * The full name of the language. For example, "Deutsch".
+         */
+        "name"?: string;
+        /**
+          * An event emitted when the language option is clicked. The payload is the ISO 639 code of the language.
+         */
+        "onPostChange"?: (event: PostLanguageOptionCustomEvent<string>) => void;
+        /**
+          * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
+         */
+        "url"?: string;
+    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -720,6 +833,10 @@ declare namespace LocalJSX {
           * Wheter or not to display a little pointer arrow
          */
         "arrow"?: boolean;
+        /**
+          * Gap between the edge of the page and the popover
+         */
+        "edgeGap"?: number;
         /**
           * Fires whenever the popover gets shown or hidden, passing the new state in event.details as a boolean
          */
@@ -815,10 +932,12 @@ declare namespace LocalJSX {
         "post-accordion": PostAccordion;
         "post-accordion-item": PostAccordionItem;
         "post-alert": PostAlert;
+        "post-avatar": PostAvatar;
         "post-card-control": PostCardControl;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
         "post-icon": PostIcon;
+        "post-language-option": PostLanguageOption;
         "post-logo": PostLogo;
         "post-popover": PostPopover;
         "post-popovercontainer": PostPopovercontainer;
@@ -838,6 +957,7 @@ declare module "@stencil/core" {
             "post-accordion": LocalJSX.PostAccordion & JSXBase.HTMLAttributes<HTMLPostAccordionElement>;
             "post-accordion-item": LocalJSX.PostAccordionItem & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
             "post-alert": LocalJSX.PostAlert & JSXBase.HTMLAttributes<HTMLPostAlertElement>;
+            "post-avatar": LocalJSX.PostAvatar & JSXBase.HTMLAttributes<HTMLPostAvatarElement>;
             /**
              * @class PostCardControl - representing a stencil component
              */
@@ -848,6 +968,7 @@ declare module "@stencil/core" {
              * @class PostIcon - representing a stencil component
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
+            "post-language-option": LocalJSX.PostLanguageOption & JSXBase.HTMLAttributes<HTMLPostLanguageOptionElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;

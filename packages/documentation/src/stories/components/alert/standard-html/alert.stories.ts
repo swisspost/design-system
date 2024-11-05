@@ -119,7 +119,7 @@ function externalControl(story: StoryFn, { args, context }: StoryContext) {
 
   const button = html`
     <a
-      class="btn btn-secondary btn-animated"
+      class="btn btn-secondary"
       href="#"
       @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}"
     >
@@ -155,10 +155,10 @@ function renderAlert(args: Args) {
         args.action
           ? html`
               <div class="alert-buttons">
-                <button class="btn btn-primary btn-animated">
+                <button class="btn btn-primary">
                   <span>Akcepti</span>
                 </button>
-                <button class="btn btn-secondary btn-animated">
+                <button class="btn btn-secondary">
                   <span>Aborti</span>
                 </button>
               </div>
