@@ -212,7 +212,7 @@ export async function createOutputFiles() {
     });
 
     // create specific configs for the palettes
-    const helpersSet = tokenSets.output['helpers']; // TODO: Move palettes to their own tokenset
+    const helpersSet = tokenSets.output['helpers'];
     if (helpersSet) {
       configs = [...configs, ...getPaletteConfigs(helpersSet)];
     }
@@ -239,21 +239,23 @@ export async function createOutputFiles() {
       source => !source.startsWith('theme/') && !source.startsWith('scheme/'),
     );
 
-    return themes.flatMap(theme => {
-      return schemes.map(scheme => {
-        const sources = Object.keys(tokenSets.source)
-          .filter(source => source === theme || source === scheme)
-          .concat(otherSources)
-          .map(source => `${SOURCE_PATH}/_temp/source/${source}.json`);
+    const themeSchemeCombinations = themes.flatMap(theme => {
+      return schemes.map(scheme => [theme, scheme]);
+    });
 
-        const themeName = theme.replace('theme/', '');
-        const schemeName = scheme.replace('scheme/', '');
+    return themeSchemeCombinations.map(([theme, scheme]) => {
+      const sources = Object.keys(tokenSets.source)
+        .filter(source => source === theme || source === scheme)
+        .concat(otherSources)
+        .map(source => `${SOURCE_PATH}/_temp/source/${source}.json`);
 
-        return getConfig(`${themeName}-${schemeName}`, tokenSet, {
-          includedSource: sources,
-          buildPath: `${OUTPUT_PATH}/palettes/`,
-          outputReferences: false,
-        });
+      const themeName = theme.replace('theme/', '');
+      const schemeName = scheme.replace('scheme/', '');
+
+      return getConfig(`${themeName}-${schemeName}`, tokenSet, {
+        includedSource: sources,
+        buildPath: `${OUTPUT_PATH}/palettes/`,
+        outputReferences: false,
       });
     });
   }
