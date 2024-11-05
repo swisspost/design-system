@@ -1,0 +1,34 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as CloseButtonStories from './close-button.stories';
+
+<Meta of={CloseButtonStories} />
+
+<div className="docs-title">
+  # Close button
+
+  <nav>
+    <link-design of={JSON.stringify(CloseButtonStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  The close button is a web component. It is a slightly adapted version of the icon button, intended
+  for a specific use case.
+</div>
+
+<Canvas sourceState="shown" of={CloseButtonStories.Default} />
+<div className="hide-col-default">
+  <Controls of={CloseButtonStories.Default} />
+</div>
+
+## Usage in other components
+
+The `<post-closebutton>` component has a slot attribute itself (`<post-closebutton slot="post-closebutton">`) so that it can be easily added to other components without having to specify a slot name on the component when used.
+
+Definition of a component needing close button web component:
+
+<Canvas sourceState="shown" of={CloseButtonStories.SlotComponent} />
+
+Integration of the web component, with the post-closebutton going directly into the `name="post-closebutton"` slot defined above.
+
+<Canvas sourceState="shown" of={CloseButtonStories.Slot} />
