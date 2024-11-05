@@ -5,15 +5,30 @@
 tokens.$default-map: components.$post-quote;
 
 .blockquote {
-  @extend %lead;
+  font-size: tokens.get('post-quote-font-size');
+  font-weight: tokens.get('post-quote-font-weight');
   margin: tokens.get('post-quote-margin-block') tokens.get('post-quote-margin-inline');
-  border-inline-start: tokens.get('post-quote-border-width-left') solid
-    tokens.get('post-quote-border-left-color');
   padding: 0 tokens.get('post-quote-padding-inline-end') 0
     tokens.get('post-quote-padding-inline-start');
+  border-inline-start: tokens.get('post-quote-border-width-left') solid
+    tokens.get('post-quote-border-left-color');
+}
 
-  .blockquote-footer {
-    margin-top: tokens.get('post-quote-gap-inline');
-    @extend %body;
+figure:has(.blockquote) {
+  margin: tokens.get('post-quote-margin-block') tokens.get('post-quote-margin-inline');
+  padding: 0 tokens.get('post-quote-padding-inline-end') 0
+    tokens.get('post-quote-padding-inline-start');
+  border-inline-start: tokens.get('post-quote-border-width-left') solid
+    tokens.get('post-quote-border-left-color');
+
+  .blockquote {
+    margin: 0;
+    padding: 0;
+    border: none;
   }
+}
+
+.blockquote-footer {
+  @extend %body;
+  margin-top: tokens.get('post-quote-gap-inline');
 }
