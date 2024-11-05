@@ -1,3 +1,5 @@
 @use './temp/palettes/post-light' as post-light;
 
-$post-light: post-light.$post-color;
+@forward './temp/palette';
+
+$post-light: post-light.$post-palette;

@@ -6,7 +6,6 @@
 
 @use '../functions/tokens';
 @use '../tokens/elements';
-@use '../tokens/helpers';
 @use '../tokens/palettes';
 
 @use './variables' as *;
@@ -38,11 +37,9 @@
   $palette: map.get(meta.module-variables(palettes), '#{$theme}-#{$scheme}');
 
   @if ($palette) {
-    // temporary: waiting for new tokens
-    $name: if($name == 'accent', 'emphasis', $name);
-
-    --post-palette-fg: #{tokens.get('helper-color-#{$name}-fg', helpers.$post-color)};
-    background-color: tokens.get('helper-color-#{$name}-bg', helpers.$post-color) !important;
+    --post-palette-fg: #{tokens.get('helper-color-#{$name}-fg', palettes.$post-palette)};
+    --post-palette-bg: #{tokens.get('helper-color-#{$name}-bg', palettes.$post-palette)};
+    background-color: var(--post-palette-bg) !important;
 
     @if ($redefine-tokens == true) {
       // redefining the body color is required so that the new color scheme is taken into account

@@ -212,9 +212,9 @@ export async function createOutputFiles() {
     });
 
     // create specific configs for the palettes
-    const helpersSet = tokenSets.output['helpers'];
-    if (helpersSet) {
-      configs = [...configs, ...getPaletteConfigs(helpersSet)];
+    const paletteSet = tokenSets.output['palette'];
+    if (paletteSet) {
+      configs = [...configs, ...getPaletteConfigs(paletteSet)];
     }
 
     return configs;
