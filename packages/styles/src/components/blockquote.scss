@@ -1,0 +1,19 @@
+@use '../tokens/components';
+@use '../functions/tokens';
+@use './../placeholders/blockquote' as blockquote-ph;
+
+tokens.$default-map: components.$post-quote;
+
+.blockquote {
+  @extend %lead;
+  margin: tokens.get('post-quote-margin-block') tokens.get('post-quote-margin-inline');
+  border-inline-start: tokens.get('post-quote-border-width-left') solid
+    tokens.get('post-quote-border-left-color');
+  padding: 0 tokens.get('post-quote-padding-inline-end') 0
+    tokens.get('post-quote-padding-inline-start');
+
+  .blockquote-footer {
+    margin-top: tokens.get('post-quote-gap-inline');
+    @extend %body;
+  }
+}
