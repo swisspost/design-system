@@ -4,6 +4,7 @@ import {
   Event,
   EventEmitter,
   Host,
+  h,
   Method,
   Prop,
   State,
