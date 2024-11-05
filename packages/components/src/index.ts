@@ -6,6 +6,7 @@ export { PostAccordionItem } from './components/post-accordion-item/post-accordi
 export { PostAlert } from './components/post-alert/post-alert';
 export { PostAvatar } from './components/post-avatar/post-avatar';
 export { PostCardControl } from './components/post-card-control/post-card-control';
+export { PostClosebutton } from './components/post-closebutton/post-closebutton';
 export { PostCollapsible } from './components/post-collapsible/post-collapsible';
 export { PostCollapsibleTrigger } from './components/post-collapsible-trigger/post-collapsible-trigger';
 export { PostIcon } from './components/post-icon/post-icon';

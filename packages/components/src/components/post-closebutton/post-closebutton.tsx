@@ -8,7 +8,7 @@ import { version } from '@root/package.json';
   tag: 'post-closebutton',
   shadow: false,
 })
-export class PostLogo {
+export class PostClosebutton {
   @Element() host: HTMLPostClosebuttonElement;
 
   /**
