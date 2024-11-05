@@ -3,6 +3,12 @@
 @use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css';
 @use './components';
+@use '@swisspost/design-system-styles/functions/tokens' as tokens;
+@use '@swisspost/design-system-styles/tokens/helpers' as helpers;
+
+tokens.$default-map: helpers.$post-palette;
+
+$monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 
 #storybook-root,
 #storybook-docs {
@@ -95,12 +101,12 @@
     top: -0.1em;
     margin: 0 0.1em;
     padding: 0.15em 0.4em 0.1em;
-    background-color: rgba(var(--post-contrast-color-inverted-rgb), 0.2);
-    border: 1px solid rgba(var(--post-contrast-color-rgb), 0.1);
+    background-color: tokens.get('helper-color-default-bg');
+    border: 1px solid tokens.get('helper-color-alternate-bg');
     border-radius: 0.2em;
-    font-family: var(--bs-font-monospace);
+    font-family: $monospace;
     font-size: 0.75em;
-    color: var(--post-contrast-color);
+    color: tokens.get('helper-color-default-fg');
     white-space: nowrap;
     line-height: 1;
 
