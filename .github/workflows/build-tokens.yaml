@@ -46,18 +46,28 @@ jobs:
               'theme.scss',
               'components.scss',
             ]
-            const outputFileNames = fs.readdirSync('packages/tokens/dist')
-            const outputFiles = outputFileNames
-              .map(fileName => ({
-                type: path.extname(fileName).replace(/^\./, ''),
-                name: fileName,
-                content: fs.readFileSync(`packages/tokens/dist/${fileName}`, 'utf8')
-              }))
-              .map(({ type, name, content }) => {
-                if (type === 'scss') content = content.replaceAll('\n\n', '\n&nbsp;\n').replaceAll('$', '&#36;').replaceAll('  ', '&nbsp;&nbsp;')
-                return { type, name, content }
-              })
-              .sort((a, b) => (outputOrder.includes(a.name) ? outputOrder.indexOf(a.name) : 1000) - (outputOrder.includes(b.name) ? outputOrder.indexOf(b.name) : 1000))
+            const outputFileAndDirNames = fs.readdirSync('packages/tokens/dist')
+            const outputDirNames = outputFileAndDirNames.filter(fileOrDir => fs.lstatSync(`packages/tokens/dist/${fileOrDir}`).isDirectory())
+            const outputFileNames = outputFileAndDirNames.filter(fileOrDir => fs.lstatSync(`packages/tokens/dist/${fileOrDir}`).isFile())
+            const getFiles = (fileNames, dirName) => {
+              const dirPath = dirName ? `${dirName}/` : ''
+              return fileNames
+                .map(fileName => ({
+                  type: path.extname(fileName).replace(/^\./, ''),
+                  name: `${dirPath}${fileName}`,
+                  content: fs.readFileSync(`packages/tokens/dist/${dirPath}${fileName}`, 'utf8')
+                }))
+                .map(({ type, name, content }) => {
+                  if (type === 'scss') content = content.replaceAll('\n\n', '\n&nbsp;\n').replaceAll('$', '&#36;').replaceAll('  ', '&nbsp;&nbsp;')
+                  return { type, name, content }
+                })
+                .sort((a, b) => (outputOrder.includes(a.name) ? outputOrder.indexOf(a.name) : 1000) - (outputOrder.includes(b.name) ? outputOrder.indexOf(b.name) : 1000))
+            }
+
+            const outputFiles = [
+              ...outputDirNames.flatMap(dirName => getFiles(fs.readdirSync(`packages/tokens/dist/${dirName}`), dirName)),
+              ...getFiles(outputFileNames),
+            ]
 
             return `# Token Build
             ## Input
