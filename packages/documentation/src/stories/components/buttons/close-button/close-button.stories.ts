@@ -5,7 +5,8 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'de313349-0c0b-4baf-adc6-cb8c2e36fc1a',
   title: 'Components/Buttons/Close button',
-  tags: ['package:HTML'],
+  component: 'post-closebutton',
+  tags: ['package:WebComponents'],
   parameters: {
     badges: [],
     design: {
