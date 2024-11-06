@@ -19,3 +19,4 @@ export const TOKENSET_LAYERS = {
   component: 'component',
 };
 export const TOKENSET_PREFIX = 'post';
+export const CUSTOM_FORMAT_INDENT = '  ';
