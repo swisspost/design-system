@@ -49,7 +49,7 @@ describe('togglebutton', () => {
 
   describe('initial state', () => {
     it('should respect initial toggled state', () => {
-      cy.get('post-togglebutton[toggled="true"]')
+      cy.get('post-togglebutton[toggled]')
         .first()
         .as('toggledButton')
         .shadow()
@@ -57,6 +57,17 @@ describe('togglebutton', () => {
         .should('exist');
 
       cy.get('@toggledButton').should('have.attr', 'aria-pressed', 'true');
+    });
+
+    it('should respect untoggled state', () => {
+      cy.get('post-togglebutton:not([toggled])')
+        .first()
+        .as('untoggledButton')
+        .shadow()
+        .find('slot[name="untoggled"]')
+        .should('exist');
+
+      cy.get('@untoggledButton').should('have.attr', 'aria-pressed', 'false');
     });
   });
 
