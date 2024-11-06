@@ -234,21 +234,14 @@ export namespace Components {
         "placement"?: Placement;
         /**
           * Programmatically display the menu
-          * @param target An element with [data-menu-target="id"] where the menu should be shown
          */
         "show": (target: HTMLElement) => Promise<void>;
-        /**
-          * Toggle menu display
-          * @param target An element with [data-menu-target="id"] where the menu should be anchored to
-          * @param force Pass true to always show or false to always hide
-         */
-        "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
     }
     interface PostMenuItem {
     }
     interface PostMenuTrigger {
         /**
-          * Links the toggle to a `post-menu` with this ID.
+          * Link the trigger to a menu with this ID.
          */
         "for": string;
     }
@@ -877,7 +870,7 @@ declare namespace LocalJSX {
     }
     interface PostMenuTrigger {
         /**
-          * Links the toggle to a `post-menu` with this ID.
+          * Link the trigger to a menu with this ID.
          */
         "for"?: string;
     }

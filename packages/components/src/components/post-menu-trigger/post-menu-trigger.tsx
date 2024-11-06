@@ -1,4 +1,5 @@
-import { Component, Element, Prop, h, Host, State, Listen } from '@stencil/core';
+import { Component, Element, Prop, h, Host, State } from '@stencil/core';
+import { version } from '@root/package.json';
 
 @Component({
   tag: 'post-menu-trigger',
@@ -6,38 +7,34 @@ import { Component, Element, Prop, h, Host, State, Listen } from '@stencil/core'
   shadow: true,
 })
 export class PostMenuTrigger {
-  @Element() host: HTMLPostMenuTriggerElement;
-
   /**
-   * Links the toggle to a `post-menu` with this ID.
+   * Link the trigger to a menu with this ID.
    */
   @Prop() for: string;
 
-  @State() ariaExpanded: string = 'false';
+  @Element() host: HTMLPostMenuTriggerElement;
 
-  private async toggleMenu() {
-    const menu = document.getElementById(this.for) as HTMLPostMenuElement;
-    if (menu) {
-      await menu.toggle(this.host);
+  @State() ariaExpanded: boolean = false;
+
+  private get menu(): HTMLPostMenuElement | null {
+    return document.getElementById(this.for) as HTMLPostMenuElement;
+  }
+
+  private handleToggle() {
+    if (this.menu) {
+      this.ariaExpanded = !this.ariaExpanded;
+      this.ariaExpanded ? this.menu.show(this.host) : this.menu.hide();
     } else {
       console.warn(`No post-menu found with ID: ${this.for}`);
     }
   }
 
-  /**
-   * Listen for the custom `toggleMenu` event from `post-menu`.
-   */
-  @Listen('toggleMenu', { target: 'body' })
-  handleToggleMenu(event: CustomEvent<boolean>) {
-    this.ariaExpanded = event.detail ? 'true' : 'false';
-  }
-
   render() {
     return (
       <Host
-        aria-haspopup="true"
-        aria-expanded={this.ariaExpanded}
-        onClick={() => this.toggleMenu()}
+        data-version={version} 
+        aria-expanded={this.ariaExpanded.toString()}
+        onClick={() => this.handleToggle()}
       >
         <slot></slot>
       </Host>

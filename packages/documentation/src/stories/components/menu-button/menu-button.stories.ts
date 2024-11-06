@@ -69,6 +69,5 @@ function render(args: Args) {
   `;
 }
 
-
 export default meta;
 export const Default: StoryObj = {};

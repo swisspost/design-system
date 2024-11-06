@@ -37,26 +37,9 @@ Programmatically display the menu
 
 #### Parameters
 
-| Name     | Type          | Description                                                            |
-| -------- | ------------- | ---------------------------------------------------------------------- |
-| `target` | `HTMLElement` | An element with [data-menu-target="id"] where the menu should be shown |
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
-### `toggle(target: HTMLElement, force?: boolean) => Promise<void>`
-
-Toggle menu display
-
-#### Parameters
-
-| Name     | Type          | Description                                                                  |
-| -------- | ------------- | ---------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | An element with [data-menu-target="id"] where the menu should be anchored to |
-| `force`  | `boolean`     | Pass true to always show or false to always hide                             |
+| Name     | Type          | Description |
+| -------- | ------------- | ----------- |
+| `target` | `HTMLElement` |             |
 
 #### Returns
 

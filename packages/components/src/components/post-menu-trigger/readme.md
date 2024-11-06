@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property | Attribute | Description                                     | Type     | Default     |
-| -------- | --------- | ----------------------------------------------- | -------- | ----------- |
-| `for`    | `for`     | Links the toggle to a `post-menu` with this ID. | `string` | `undefined` |
+| Property | Attribute | Description                              | Type     | Default     |
+| -------- | --------- | ---------------------------------------- | -------- | ----------- |
+| `for`    | `for`     | Link the trigger to a menu with this ID. | `string` | `undefined` |
 
 
 ----------------------------------------------
