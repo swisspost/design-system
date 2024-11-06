@@ -4,7 +4,8 @@
   display: block;
 }
 
-.popover-container {
+post-popovercontainer {
   padding: var(--post-menu-padding);
-  background: var(--post-menu-bg);
+  background-color: var(--post-menu-bg, #ffffff);
+  border-color: var(--post-menu-bg, #ffffff);
 }
