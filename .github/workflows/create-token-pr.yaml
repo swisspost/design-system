@@ -46,8 +46,17 @@ jobs:
             echo "exists=false" >> $GITHUB_OUTPUT
           fi
 
-      # If the branch exits, update the PR
-      - name: Update PR
+      # If the branch does not exit, create it
+      - name: Create PR Branch
+        if: steps.pr-branch.outputs.exists == 'false'
+        run: |
+          git checkout -b ${{ steps.pr-branch.outputs.name }} ${{ github.ref_name }}
+          git push --set-upstream origin ${{ steps.pr-branch.outputs.name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+
+      # If the branch exits, update it
+      - name: Update PR Branch
         if: steps.pr-branch.outputs.exists == 'true'
         run: |
           git checkout ${{ steps.pr-branch.outputs.name }}
@@ -56,12 +65,22 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
 
-      # If the branch does not exit, create the PR
-      - name: Create PR
-        if: steps.pr-branch.outputs.exists == 'false'
+      # Check if a PR already exist
+      - name: Get PR
+        id: pr
         run: |
-          git checkout -b ${{ steps.pr-branch.outputs.name }} ${{ github.ref_name }}
-          git push --set-upstream origin ${{ steps.pr-branch.outputs.name }}
+          if [[ -n $(gh pr list --head "${{ steps.pr-branch.outputs.name }}") ]]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+
+      # If the PR does not exit, create it
+      - name: Create PR
+        if: steps.pr.outputs.exists == 'false'
+        run: |
           gh pr create --title "chore(tokens): :art: update tokens" --body "Merge this PR to update the tokens in the main branch." --base main
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
