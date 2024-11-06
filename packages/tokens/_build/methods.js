@@ -238,14 +238,12 @@ export async function createOutputFiles() {
    * Creates the index.scss file (which uses/forwards the other output files) in the "OUTPUT_PATH" directory.
    */
   async function createIndexFile() {
+    const header = FILE_HEADER.map(h => `// ${h}`).join('\n');
     const imports = Object.entries(tokenSets.output)
       .map(([name, { layer }]) => `@${layer === 'core' ? 'use' : 'forward'} './${name}';`)
       .join('\n');
 
-    await promises.writeFile(
-      `${OUTPUT_PATH}/_index.scss`,
-      `${FILE_HEADER.map(h => `// ${h}`).join('\n')}\n\n${imports}\n`,
-    );
+    await promises.writeFile(`${OUTPUT_PATH}/_index.scss`, `${header}\n\n${imports}\n`);
   }
 
   /**
