@@ -18,17 +18,15 @@ export class PostTogglebutton {
    */
   @Prop({ reflect: true, mutable: true }) toggled: boolean = false;
 
-  @Listen('click')
-  handleClick() {
+  private handleClick = () => {
     this.toggled = !this.toggled;
-  }
+  };
 
-  @Listen('keydown', { passive: true })
-  handleKeydown(event: KeyboardEvent) {
+  private handleKeydown = (event: KeyboardEvent) => {
     if (event.key === 'Enter') {
       this.toggled = !this.toggled;
     }
-  }
+  };
 
   render() {
     return (
@@ -38,6 +36,8 @@ export class PostTogglebutton {
         data-version={version}
         role="button"
         aria-pressed={this.toggled.toString()}
+        onClick={this.handleClick}
+        onKeyDown={this.handleKeydown}
       >
         {this.toggled ? <slot name="toggled"></slot> : <slot name="untoggled"></slot>}
       </Host>
