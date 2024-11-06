@@ -163,6 +163,7 @@ export async function createTokenSetFiles() {
  * @callback configGetterMethod a function which will be called during build time with the following parameters:
  * @param {tokenSets} group-nested tokensets object
  * @param {options} object { sourcePath: string, buildPath: string }
+ * @returns {Config[]} StyleDictionary Config objects[]
  */
 export function registerConfigMethod(method) {
   if (method instanceof Function) {
