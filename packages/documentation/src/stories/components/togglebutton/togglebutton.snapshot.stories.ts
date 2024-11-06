@@ -11,34 +11,35 @@ export default {
   title: 'Snapshots',
 };
 
+const BG = ['bg-white', 'bg-dark'];
+const BTN = ['btn-primary', 'btn-secondary', 'btn-terciary'];
+const SIZES = ['', 'btn-sm', 'btn-lg'];
+
 type Story = StoryObj;
 
 export const ToggleButton: Story = {
-  render: (_args: Args, context: StoryContext) => {
-    const renderContent = (bg: string) => {
-      const colorScheme = bg === 'bg-white' ? 'light' : 'dark';
-      return html`
-        <div
-          class="${bg} d-flex flex-wrap align-items-start gap-16 p-16"
-          data-color-scheme=${colorScheme}
-        >
-          ${bombArgs({
-            variant: context.argTypes.variant.options,
-            size: context.argTypes.size.options,
-            icon: ['null', '2069'],
-          })
-            .filter(args => args.icon !== 'null')
-            .map((args: Args) =>
-              Default.render?.({ ...context.args, ...args, animated: false }, context),
-            )}
-        </div>
-      `;
-    };
+  render: () => {
+    const TOGGLED = [false, true];
 
     return html`
-      <div class="d-flex flex-wrap gap-4 align-items-start">
-        ${['bg-white', 'bg-dark'].map(bg => renderContent(bg))}
-      </div>
+      ${BG.map(
+        bg => html`
+          <div class="${bg} px-5">
+            ${BTN.map(btn =>
+              SIZES.map(size =>
+                TOGGLED.map(
+                  isToggled => html`
+                    <post-togglebutton class="btn ${btn} ${size} my-5" ?toggled=${isToggled}>
+                      <span slot="untoggled">Untoggled</span>
+                      <span slot="toggled">Toggled</span>
+                    </post-togglebutton>
+                  `,
+                ),
+              ),
+            )}
+          </div>
+        `,
+      )}
     `;
   },
 };
