@@ -6,9 +6,12 @@ export default function textoutput(
   currentIndent = '',
 ) {
   const indent = `${baseIndent}${currentIndent}`;
+  const stringifyKeys = Object.keys(obj).some(key => !key.match(/^[a-zA-Z0-9]+$/));
 
   return Object.entries(obj).reduce((acc, [key, value]) => {
     let val;
+
+    if (stringifyKeys) key = `'${key}'`;
 
     if (value instanceof Object) {
       val = `{${textoutput(value, baseIndent, indent)}\n${indent}}`;
@@ -20,6 +23,6 @@ export default function textoutput(
       }
     }
 
-    return `${acc}\n${indent}'${key}': ${val},`;
+    return `${acc}\n${indent}${key}: ${val},`;
   }, '');
 }

@@ -1,8 +1,9 @@
 import StyleDictionary from 'style-dictionary';
 import { fileHeader } from 'style-dictionary/utils';
 import { register } from '@tokens-studio/sd-transforms';
-import { FILE_HEADER } from './constants.js';
+import { FILE_HEADER, TOKENSET_PREFIX } from './constants.js';
 import { getSetName, getSet, getTokenValue } from './methods.js';
+import { deepmerge, textoutput } from './utils/index.js';
 
 register(StyleDictionary);
 
@@ -72,6 +73,30 @@ StyleDictionary.registerFormat({
         })
         .join('\n')
     );
+  },
+});
+
+StyleDictionary.registerFilter({
+  name: 'swisspost/tailwind-filter',
+  filter: token => {
+    return token.filePath.includes('/output/');
+  },
+});
+
+StyleDictionary.registerFormat({
+  name: 'swisspost/tailwind-format',
+  format: async ({ dictionary, options, file }) => {
+    const header = await fileHeader({ file, commentStyle: 'short' });
+    const tailwindTokensObject = dictionary.allTokens.reduce((allTokens, token) => {
+      const tokenObj = token.path
+        .slice(token.path.indexOf(TOKENSET_PREFIX) + 1)
+        .reverse()
+        .reduce((res, p) => ({ [p]: res }), getTokenValue(options, token));
+
+      return deepmerge(allTokens, tokenObj);
+    }, {});
+
+    return header + `export default {${textoutput(tailwindTokensObject)}\n};\n`;
   },
 });
 
