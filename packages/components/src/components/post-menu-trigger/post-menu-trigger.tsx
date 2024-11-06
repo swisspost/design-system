@@ -6,6 +6,7 @@ import { version } from '@root/package.json';
   styleUrl: 'post-menu-trigger.scss',
   shadow: true,
 })
+
 export class PostMenuTrigger {
   /**
    * Link the trigger to a menu with this ID.
