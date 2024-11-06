@@ -4,27 +4,27 @@
 @use './../../mixins/components/forms/input' as input-mx;
 @use './../../mixins/utilities' as utility-mx;
 @use './../../mixins/typo' as typo-mx;
-@use './../../tokens/components' as token-maps;
+@use './../../tokens/components';
 @use './../../variables/components/forms/input';
 
-$m: token-maps.$post-text-input;
+tokens.$default-map: components.$post-text-input;
 
 .form-control-v2 {
   @include typo-mx.use(label-default);
   @include input-mx.padding-inline-end;
 
   width: 100%;
-  padding-inline-start: tokens.get($m, input-spacing-padding-inline-text-start);
+  padding-inline-start: tokens.get-no-split('post-input-spacing-padding-inline-text-start');
   padding-block-start: calc.add(
-    tokens.get($m, input-spacing-padding-block-text2),
+    tokens.get-no-split('post-input-spacing-padding-block-text2'),
     typo.get-height(label-smaller)
   );
-  padding-block-end: tokens.get($m, input-spacing-padding-block-text2);
+  padding-block-end: tokens.get-no-split('post-input-spacing-padding-block-text2');
 
-  color: tokens.get($m, input-color-primary-enabled-fg);
-  border: input.$input-border-width solid tokens.get($m, input-color-primary-enabled-stroke);
-  border-radius: tokens.get($m, input-border-radius-surface);
-  background-color: tokens.get($m, input-color-primary-enabled-bg);
+  color: tokens.get-no-split('post-input-color-enabled-fg');
+  border: input.$input-border-width solid tokens.get-no-split('post-input-color-enabled-stroke');
+  border-radius: tokens.get-no-split('post-input-border-radius-surface');
+  background-color: tokens.get-no-split('post-input-color-enabled-bg');
 
   &:placeholder-shown:not(:focus) {
     &::placeholder {
@@ -33,23 +33,24 @@ $m: token-maps.$post-text-input;
   }
 
   &:hover {
-    border-color: tokens.get($m, input-color-primary-hover-stroke);
-    background-color: tokens.get($m, input-color-primary-hover-bg);
+    border-color: tokens.get-no-split('post-input-color-hover-stroke');
+    background-color: tokens.get-no-split('post-input-color-hover-bg');
   }
 
   &:disabled {
-    color: tokens.get($m, input-color-primary-disabled-fg);
+    color: tokens.get-no-split('post-input-color-disabled-fg');
     border-style: dashed;
-    border-color: tokens.get($m, input-color-primary-disabled-stroke);
-    background-color: tokens.get($m, input-color-primary-disabled-bg);
+    border-color: tokens.get-no-split('post-input-color-disabled-stroke');
+    background-color: tokens.get-no-split('post-input-color-disabled-bg');
   }
 
-  @include utility-mx.focus-style($outline-color: tokens.get($m, input-color-primary-focus-stroke));
+  @include utility-mx.focus-style;
 
   &.is-valid-v2,
   &.is-invalid-v2 {
-    background-size: tokens.get($m, input-sizing-icon);
-    background-position: center right tokens.get($m, input-spacing-padding-inline-text-end);
+    background-size: tokens.get-no-split('post-input-sizing-icon');
+    background-position: center right
+      tokens.get-no-split('post-input-spacing-padding-inline-text-end');
     background-repeat: no-repeat;
   }
 

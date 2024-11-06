@@ -52,3 +52,15 @@ $default-map: null !default;
 
   @return $key;
 }
+
+@function get-no-split($key, $map: $default-map) {
+  @if not meta.type-of($map) == 'map' {
+    @error 'No map provided or provided $map is not valid. Got #{meta.type-of($map)} instead.';
+  }
+
+  @if not map.has-key($map, $key) {
+    @error 'No such key "#{$key}" in given map! Available keys are: #{meta.inspect(map.keys($map))}.';
+  }
+
+  @return map.get($map, $key);
+}

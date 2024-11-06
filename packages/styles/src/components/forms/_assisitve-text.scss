@@ -1,18 +1,21 @@
 @use 'sass:map';
 @use './../../mixins/typo' as typo-mx;
-@use './../../tokens/components' as tokens;
+@use './../../functions/tokens';
+@use './../../tokens/components';
+
+tokens.$default-map: components.$post-text-input;
 
 .form-text-v2,
 .valid-feedback-v2,
 .invalid-feedback-v2 {
   @include typo-mx.use(label-small);
   margin: 0;
-  padding-block: map.get(tokens.$post-text-input, post-input-spacing-padding-block-text-assist);
-  padding-inline: map.get(tokens.$post-text-input, post-input-spacing-padding-inline-text-assist);
+  padding-block: tokens.get-no-split('post-input-spacing-padding-block-text-assist');
+  padding-inline: tokens.get-no-split('post-input-spacing-padding-inline-text-assist');
 }
 
 .valid-feedback-v2 {
-  color: map.get(tokens.$post-text-input, post-input-color-signal-success);
+  color: tokens.get-no-split('post-input-color-signal-success');
 
   &:not(.is-valid-v2 ~ &) {
     display: none;
@@ -20,7 +23,7 @@
 }
 
 .invalid-feedback-v2 {
-  color: map.get(tokens.$post-text-input, post-input-color-signal-error);
+  color: tokens.get-no-split('post-input-color-signal-error');
 
   &:not(.is-invalid-v2 ~ &) {
     display: none;

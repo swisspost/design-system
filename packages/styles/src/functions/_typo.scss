@@ -1,8 +1,8 @@
 @use 'sass:map';
-@use './../tokens/temp/figmaonly' as tokens;
 
 @function get-height($typo-name) {
-  $font-size: map.get(tokens.$post-figmaonly, utility-typo-#{$typo-name}-fontSize);
-  $line-height: map.get(tokens.$post-figmaonly, utility-typo-#{$typo-name}-lineHeight);
+  $font-size: 1rem;
+  $line-height: 1rem;
+  //TODO
   @return calc(#{$font-size} * #{$line-height});
 }
