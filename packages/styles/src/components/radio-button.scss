@@ -10,6 +10,9 @@
 tokens.$default-map: components.$post-radio-button;
 
 .form-check {
+  display: flex;
+  align-items: flex-start;
+
   &:has(.form-check-input[type='radio']) {
     margin-bottom: tokens.get('radio-button-gap-block-group');
 
