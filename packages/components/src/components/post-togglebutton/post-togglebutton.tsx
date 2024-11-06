@@ -3,8 +3,8 @@ import { version } from '@root/package.json';
 
 /**
  * @slot default - Slot to set button to untoggled
- * @slot toggled - Slot to set button to untoggled
- * @slot untoggled - Slot to set button to untoggled
+ * @slot toggled - Slot for content displayed when the button is in the "on" state.
+ * @slot untoggled - Slot for content displayed when the button is in the "off" state.
  */
 
 @Component({
@@ -14,7 +14,7 @@ import { version } from '@root/package.json';
 })
 export class PostTogglebutton {
   /**
-   * The component state
+   * If `true`, the button is in the "on" state, otherwise it is in the "off" state.
    */
   @Prop({ reflect: true, mutable: true }) toggled: boolean = false;
 

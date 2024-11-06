@@ -7,18 +7,18 @@
 
 ## Properties
 
-| Property  | Attribute | Description         | Type      | Default |
-| --------- | --------- | ------------------- | --------- | ------- |
-| `toggled` | `toggled` | The component state | `boolean` | `false` |
+| Property  | Attribute | Description                                                                     | Type      | Default |
+| --------- | --------- | ------------------------------------------------------------------------------- | --------- | ------- |
+| `toggled` | `toggled` | If `true`, the button is in the "on" state, otherwise it is in the "off" state. | `boolean` | `false` |
 
 
 ## Slots
 
-| Slot          | Description                     |
-| ------------- | ------------------------------- |
-| `"default"`   | Slot to set button to untoggled |
-| `"toggled"`   | Slot to set button to untoggled |
-| `"untoggled"` | Slot to set button to untoggled |
+| Slot          | Description                                                       |
+| ------------- | ----------------------------------------------------------------- |
+| `"default"`   | Slot to set button to untoggled                                   |
+| `"toggled"`   | Slot for content displayed when the button is in the "on" state.  |
+| `"untoggled"` | Slot for content displayed when the button is in the "off" state. |
 
 
 ----------------------------------------------

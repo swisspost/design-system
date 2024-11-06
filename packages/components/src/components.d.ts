@@ -337,7 +337,7 @@ export namespace Components {
     }
     interface PostTogglebutton {
         /**
-          * The component state
+          * If `true`, the button is in the "on" state, otherwise it is in the "off" state.
          */
         "toggled": boolean;
     }
@@ -910,7 +910,7 @@ declare namespace LocalJSX {
     }
     interface PostTogglebutton {
         /**
-          * The component state
+          * If `true`, the button is in the "on" state, otherwise it is in the "off" state.
          */
         "toggled"?: boolean;
     }

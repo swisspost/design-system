@@ -3,6 +3,7 @@ import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 import { spread } from '@open-wc/lit-helpers';
 import chipMeta from '@/stories/components/chip/chip.stories';
+import { meta } from '@typescript-eslint/eslint-plugin';
 
 export interface PostTogglebuttonProps {
   type?: 'button' | 'submit' | 'reset';
@@ -31,10 +32,6 @@ const meta: MetaComponent<PostTogglebuttonProps> = {
     toggled: false,
   },
   argTypes: {
-    toggled: {
-      control: 'boolean',
-      description: 'Defines whether the button is toggled or not.',
-    },
     contentWhenToggled: {
       name: 'Toggled text',
       description: "Text within the button when it's toggled.",
@@ -51,33 +48,13 @@ const meta: MetaComponent<PostTogglebuttonProps> = {
         category: 'Content',
       },
     },
-    type: {
-      name: 'Input type',
-      description: 'Defines the input type.',
-      if: {
-        arg: 'tag',
-        eq: 'input',
-      },
-      control: {
-        type: 'inline-radio',
-        labels: {
-          button: 'Button',
-          submit: 'Submit',
-          reset: 'Reset',
-        },
-      },
-      options: ['button', 'submit', 'reset'],
-      table: {
-        category: 'General',
-      },
-    },
     size: {
       name: 'Size',
       description:
         'Sets the size of the component.' +
         '<span className="mt-8 alert alert-info alert-sm">' +
         'For more options, please see the ' +
-        '<a href="/?path=/docs/eb78afcb-ce92-4990-94b6-6536d5ec6af4--docs">button component</a>' +
+        '<a href="/?path=/docs/eb78afcb-ce92-4990-94b6-6536d5ec6af4--docs">button documentation</a>' +
         '.</span>',
       control: {
         type: 'select',
@@ -94,25 +71,13 @@ const meta: MetaComponent<PostTogglebuttonProps> = {
       },
     },
     variant: {
-      name: 'Variant',
+      ...meta.argTypes.variant,
       description:
         'Defines a style variant.' +
         '<span className="mt-8 alert alert-info alert-sm">' +
         'For more options, please see the ' +
-        '<a href="/?path=/docs/eb78afcb-ce92-4990-94b6-6536d5ec6af4--docs">button component</a>' +
+        '<a href="/?path=/docs/eb78afcb-ce92-4990-94b6-6536d5ec6af4--docs">button documentation</a>' +
         '.</span>',
-      control: {
-        type: 'inline-radio',
-        labels: {
-          'btn-primary': 'Primary',
-          'btn-secondary': 'Secondary',
-          'btn-tertiary': 'Tertiary',
-        },
-      },
-      options: ['btn-primary', 'btn-secondary', 'btn-tertiary'],
-      table: {
-        category: 'General',
-      },
     },
   },
 };
