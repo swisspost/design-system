@@ -9,30 +9,14 @@
 
 tokens.$default-map: components.$post-radio-button;
 
+fieldset > .form-check:not(:last-of-type) {
+  margin-bottom:  tokens.get('radio-button-gap-block-group');
+}
+
 .form-check {
-  display: flex;
-  align-items: flex-start;
-
   &:has(.form-check-input[type='radio']) {
-    margin-bottom: tokens.get('radio-button-gap-block-group');
-
-    &:focus-within {
-      @include utility-mx.focus-style(
-        $offset: tokens.get('radio-button-focus-outline-offset'),
-        $width: tokens.get('radio-button-focus-border-width'),
-        $color: tokens.get('radio-button-focus-stroke'),
-        $style: tokens.get('radio-button-focus-border-style')
-      ) {
-        color: tokens.get('radio-button-selected-fg');
-        background-color: tokens.get('radio-button-selected-bg');
-        border-radius: tokens.get(
-          'radio-button-focus-border-radius',
-          components.$post-radio-button
-        );
-        border-color: tokens.get('radio-button-selected-stroke');
-        width: fit-content;
-      }
-    }
+    @include utility-mx.focus-style();
+    padding-block: tokens.get('radio-button-padding-block-single');
   }
 
   > input[type='radio'] {
@@ -43,22 +27,10 @@ tokens.$default-map: components.$post-radio-button;
     width: tokens.get('radio-button-icon-ring');
     border: tokens.get('radio-button-icon-border-width')
       tokens.get('radio-button-icon-border-style-default') tokens.get('radio-button-enabled-stroke');
-    padding-block: tokens.get(
-      'radio-button-icon-padding-block-inner',
-      components.$post-radio-button
-    );
-    padding-inline: tokens.get(
-      'radio-button-icon-padding-inline-inner',
-      components.$post-radio-button
-    );
-    margin-block: tokens.get(
-      'radio-button-icon-padding-block-container',
-      components.$post-radio-button
-    );
-    border-radius: tokens.get(
-      'radio-button-icon-border-radius-round',
-      components.$post-radio-button
-    );
+    padding-block: tokens.get('radio-button-icon-padding-block-inner', components.$post-radio-button);
+    padding-inline: tokens.get('radio-button-icon-padding-inline-inner', components.$post-radio-button);
+    margin-block: tokens.get('radio-button-icon-padding-block-container', components.$post-radio-button);
+    border-radius: tokens.get('radio-button-icon-border-radius-round', components.$post-radio-button);
 
     color: tokens.get('radio-button-enabled-fg');
     background-color: tokens.get('radio-button-enabled-bg');
@@ -69,10 +41,7 @@ tokens.$default-map: components.$post-radio-button;
       padding-block: tokens.get('radio-button-label-padding-block');
 
       :not(.form-switch, .radio-button-card) > & {
-        padding-inline-start: tokens.get(
-          'radio-button-gap-inline-text-start',
-          components.$post-radio-button
-        );
+        padding-inline-start: tokens.get('radio-button-gap-inline-text-start', components.$post-radio-button);
       }
     }
 
