@@ -1,179 +1,187 @@
 import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { TemplateResult } from 'lit';
 import { html } from 'lit/static-html.js';
-import './spacing.styles.scss';
+import { MetaExtended } from '@root/types';
 import { parse } from '@/utils/sass-export';
 import scss from './spacing.module.scss';
-import { MetaExtended } from '@root/types';
+import './spacing.styles.scss';
 
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 export const SCSS_VARIABLES: any = parse(scss);
 
-const sizingOptions = ['0', '1', '2', '3', '4', '5', 'auto', ...Object.keys(SCSS_VARIABLES.sizes)];
+const properties = ['margin', 'padding', 'gap'];
+const sizes = properties.reduce((options, property) => {
+  return {
+    ...options,
+    [property]: Object.keys(SCSS_VARIABLES.spacing)
+      .filter((key: string) => key.startsWith(`post-utility-${property}-`))
+      .map((key: string) => key.replace(`post-utility-${property}-`, '')),
+  };
+}, {} as { [property: string]: string[] });
 
-const positionOptions = {
-  null: 'All around',
-  x: 'Along the horizontal axis',
-  y: 'Along the vertical axis',
-  t: 'At the top',
-  b: 'At the bottom',
-  e: 'To the right',
-  s: 'To the left',
+const sides = {
+  null: 'All sides',
+  x: 'x - Along the horizontal axis',
+  y: 'y - Along the vertical axis',
+  t: 't - At the top',
+  b: 'b - At the bottom',
+  s: 's - At the start',
+  e: 'e - At the end',
 };
 
 const meta: MetaExtended = {
   id: 'facaacfd-18f1-49b4-80f1-a96680730fa0',
   title: 'Utilities/Spacing',
-  parameters: {
-    badges: [],
-  },
-  args: {
-    marginSize: 'regular',
-    marginPosition: 'null',
-    paddingSize: 'regular',
-    paddingPosition: 'null',
-  },
-  argTypes: {
-    marginSize: {
-      name: 'Margin size',
-      description: 'Sets the size of the Margin.',
-      control: {
-        type: 'select',
-      },
-      options: sizingOptions,
-      table: {
-        category: 'General',
-      },
-    },
-    marginPosition: {
-      name: 'Margin Position',
-      description: 'Sets the position of the Margin.',
-      control: {
-        type: 'select',
-        labels: positionOptions,
-      },
-      options: Object.keys(positionOptions),
-      table: {
-        category: 'General',
-      },
-    },
-    paddingSize: {
-      name: 'Padding size',
-      description: 'Sets the size of the Padding.',
-      control: {
-        type: 'select',
-      },
-      options: sizingOptions.filter(option => option !== 'auto'),
-      table: {
-        category: 'General',
-      },
-    },
-    paddingPosition: {
-      name: 'Padding Position',
-      description: 'Sets the position of the Padding.',
-      control: {
-        type: 'select',
-        labels: positionOptions,
-      },
-      options: Object.keys(positionOptions),
-      table: {
-        category: 'General',
-      },
-    },
-  },
 };
 
 export default meta;
 
 type Story = StoryObj;
 
-export const Default: Story = {
+function withLegend(template: TemplateResult, ...legendItems: string[]) {
+  legendItems.unshift('element');
+  return html`
+    <div class="d-flex align-items-start justify-content-between">
+      ${template}
+      <ul class="legend list-unstyled">
+        ${legendItems.map(
+          item => html`
+            <li class="d-flex align-items-center">
+              <div class="h-regular w-regular me-8 ${item}"></div>
+              <span>${item}</span>
+            </li>
+          `,
+        )}
+      </ul>
+    </div>
+  `;
+}
+
+export const MarginAndPadding: Story = {
+  argTypes: {
+    marginSides: {
+      name: 'Sides',
+      description: 'Sets the margin sides.',
+      control: {
+        type: 'select',
+        labels: sides,
+      },
+      options: Object.keys(sides),
+      table: {
+        category: 'Margin',
+      },
+    },
+    marginSize: {
+      name: 'Size',
+      description: 'Sets the margin size.',
+      control: {
+        type: 'select',
+      },
+      options: sizes.margin,
+      table: {
+        category: 'Margin',
+      },
+    },
+    paddingSides: {
+      name: 'Sides',
+      description: 'Sets the padding sides.',
+      control: {
+        type: 'select',
+        labels: sides,
+      },
+      options: Object.keys(sides),
+      table: {
+        category: 'Padding',
+      },
+    },
+    paddingSize: {
+      name: 'Size',
+      description: 'Sets the padding size.',
+      control: {
+        type: 'select',
+      },
+      options: sizes.padding,
+      table: {
+        category: 'Padding',
+      },
+    },
+  },
+  args: {
+    marginSides: 'null',
+    marginSize: '20',
+    paddingSides: 'null',
+    paddingSize: '12',
+  },
   render: (args: Args) => {
-    // this will be the only code visible in the code preview
+    const getPosition = (position: string) => (position === 'null' ? '' : position);
+    const marginClass = `m${getPosition(args.marginSides)}-${args.marginSize}`;
+    const paddingClass = `p${getPosition(args.paddingSides)}-${args.paddingSize}`;
+
+    // used only for the snapshots
+    const breakpointClasses = args.breakpointClasses ? ` ${args.breakpointClasses}` : '';
+
+    return html` <div class="${marginClass} ${paddingClass}${breakpointClasses}"></div> `;
+  },
+  decorators: [
+    (story: StoryFn, context: StoryContext) => {
+      const storyTemplate = html`
+        <div class="margin-padding-example">${story(context.args, context)}</div>
+      `;
+      return withLegend(storyTemplate, 'margin', 'padding');
+    },
+  ],
+};
+
+export const Gap: Story = {
+  argTypes: {
+    property: {
+      name: 'Property',
+      description: 'Sets the gap property.',
+      control: {
+        type: 'select',
+      },
+      options: ['gap', 'row-gap', 'column-gap'],
+      table: {
+        category: 'Gap',
+      },
+    },
+    size: {
+      name: 'Size',
+      description: 'Sets the gap size.',
+      control: {
+        type: 'select',
+      },
+      options: sizes.gap,
+      table: {
+        category: 'Gap',
+      },
+    },
+  },
+  args: {
+    property: 'gap',
+    size: '16',
+  },
+  render: (args: Args) => {
+    // used only for the snapshots
+    const breakpointClass = args.breakpointClass ? ` ${args.breakpointClass}` : '';
     return html`
       <div
-        class="w-bigger-giant h-bigger-giant m${args.marginPosition === 'null'
-          ? ''
-          : args.marginPosition}-${args.marginSize} p${args.paddingPosition === 'null'
-          ? ''
-          : args.paddingPosition}-${args.paddingSize}"
-      ></div>
+        class="${args.property}-${args.size}${breakpointClass}"
+        style="display: grid; grid-template-columns: 1fr 1fr 1fr"
+      >
+        <div>First child</div>
+        <div>Second child</div>
+        <div>Third child</div>
+        <div>Fourth child</div>
+        <div>Fifth child</div>
+        <div>Sixth child</div>
+      </div>
     `;
   },
   decorators: [
-    // everything in here will be visible in the example, but only the content coming from the `story` function will be shown in the code preview
-    (story: StoryFn, { args, context }: StoryContext) => html`
-      <div class="spacing-example d-flex gap-3">
-        <div class="d-none">${story(args, context)}</div>
-
-        <div class="d-flex flex-fill">
-          <div
-            class="margin ${['null', 'x', 's', 'e'].includes(args.marginPosition as string) &&
-            args.marginSize === 'auto'
-              ? 'w-100'
-              : ''}"
-          >
-            <div
-              class="w-bigger-giant h-bigger-giant padding m${args.marginPosition === 'null'
-                ? ''
-                : args.marginPosition}-${args.marginSize} p${args.paddingPosition === 'null'
-                ? ''
-                : args.paddingPosition}-${args.paddingSize}"
-            >
-              <div class="h-100 content"></div>
-            </div>
-          </div>
-        </div>
-
-        <ul class="legend list-unstyled">
-          <li class="d-flex align-items-center">
-            <div class="h-regular w-regular me-mini margin"></div>
-            <span>margin</span>
-          </li>
-          <li class="d-flex align-items-center">
-            <div class="h-regular w-regular me-mini padding"></div>
-            <span>padding</span>
-          </li>
-          <li class="d-flex align-items-center">
-            <div class="h-regular w-regular me-mini content"></div>
-            <span>content</span>
-          </li>
-        </ul>
-      </div>
-    `,
-  ],
-};
-
-export const ResponsiveExample: Story = {
-  render: () => {
-    return html` <div class="h-bigger-giant w-bigger-giant p-regular p-lg-big"></div> `;
-  },
-  decorators: [
-    // everything in here will be visible in the example, but only the content coming from the `story` function will be shown in the code preview
-    (story: StoryFn, { args, context }: StoryContext) => html`
-      <div class="spacing-example p-regular">
-        <div class="d-none">${story(args, context)}</div>
-        <div class="padding h-bigger-giant w-bigger-giant p-regular p-lg-big">
-          <div class="content h-100"></div>
-        </div>
-        <p><small>Resize the browser window to see changes.</small></p>
-      </div>
-    `,
-  ],
-};
-
-export const AutomaticResponsiveExample: Story = {
-  render: () => {
-    return html` <div class="h-bigger-giant w-bigger-giant p-large-r"></div> `;
-  },
-  decorators: [
-    (story: StoryFn, { args, context }: StoryContext) => html`
-      <div class="spacing-example p-regular">
-        <div class="d-none">${story(args, context)}</div>
-        <div class="padding h-bigger-giant w-bigger-giant p-large-r">
-          <div class="content h-100"></div>
-        </div>
-        <p><small>Resize the browser window to see changes.</small></p>
-      </div>
-    `,
+    (story: StoryFn, context: StoryContext) => {
+      const storyTemplate = html`<div class="gap-example">${story(context.args, context)}</div>`;
+      return withLegend(storyTemplate, 'gap');
+    },
   ],
 };

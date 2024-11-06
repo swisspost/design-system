@@ -30,24 +30,51 @@ describe('accordion', () => {
     });
 
     it('should propagate "postToggle" event from post-accordion-item on post-accordion', () => {
-      cy.document().then(document => {
-        const EventHandlerMock = cy.spy();
-        Cypress.$(document.querySelector('post-accordion')).on('postToggle', EventHandlerMock);
+      const EventHandlerMock = cy.spy();
 
-        cy.get('@collapsibles')
-          .last()
-          .click()
-          .then(() => {
-            expect(EventHandlerMock).to.be.calledTwice;
-          });
+      cy.get('@accordion').then($el => {
+        Cypress.$($el.get(0)).on('postToggle', EventHandlerMock);
       });
+
+      cy.get('@collapsibles')
+        .last()
+        .click()
+        .then(() => {
+          expect(EventHandlerMock).to.be.calledTwice;
+        });
     });
   });
 
   describe('nested', () => {
     beforeEach(() => {
       cy.getComponent('accordion', ACCORDION_ID, 'nested');
-      cy.get('@accordion').find('post-accordion post-accordion-item').as('nestedCollapsibles');
+      cy.get('@accordion').find('post-accordion-item').as('collapsibles');
+    });
+
+    it('should show the first nested element of the first element', () => {
+      cy.get('@collapsibles').eq(1).click();
+      cy.get('@collapsibles').eq(1).shadow().find('post-collapsible').should('be.visible');
+    });
+
+    it('should not show the first nested element as expanded after clicking the last nested element', () => {
+      cy.get('@collapsibles').eq(2).click();
+      cy.get('@collapsibles').eq(1).shadow().find('post-collapsible').should('be.hidden');
+      cy.get('@collapsibles').eq(2).shadow().find('post-collapsible').should('be.visible');
+    });
+
+    it('should show the first nested element wrapped in a div in the second parent accordion element', () => {
+      cy.get('@collapsibles').eq(4).click();
+      cy.get('@collapsibles').eq(5).click();
+      cy.get('@collapsibles').eq(4).shadow().find('post-collapsible').should('be.visible');
+      cy.get('@collapsibles').eq(5).shadow().find('post-collapsible').should('be.visible');
+    });
+
+    it('should not show the first nested element wrapped in a div as expanded after clicking the last nested element', () => {
+      cy.get('@collapsibles').eq(4).click();
+      cy.get('@collapsibles').eq(7).click();
+      cy.get('@collapsibles').eq(5).shadow().find('post-collapsible').should('be.hidden');
+      cy.get('@collapsibles').eq(4).shadow().find('post-collapsible').should('be.visible');
+      cy.get('@collapsibles').eq(7).shadow().find('post-collapsible').should('be.visible');
     });
 
     it('should not propagate "postToggle" event from nested post-accordion', () => {
@@ -55,8 +82,8 @@ describe('accordion', () => {
         const EventHandlerMock = cy.spy();
         Cypress.$(document.querySelector('post-accordion')).on('postToggle', EventHandlerMock);
 
-        cy.get('@nestedCollapsibles')
-          .last()
+        cy.get('@collapsibles')
+          .eq(3)
           .click()
           .then(() => {
             expect(EventHandlerMock).to.not.be.called;

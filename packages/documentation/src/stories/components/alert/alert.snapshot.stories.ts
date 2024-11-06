@@ -18,10 +18,10 @@ type Story = StoryObj;
 
 export const Alert: Story = {
   render: () => html`
-    <div class="d-flex gap-3 flex-wrap">
+    <div class="d-flex gap-16 flex-wrap">
       ${['bg-white', 'bg-dark'].map(
         bg => html`
-          <div class="${bg + ' d-flex flex-column gap-3 flex-wrap p-3'}">
+          <div class="${bg + ' d-flex flex-column gap-16 flex-wrap p-16'}">
             ${bombArgs({
               type: alertMeta?.argTypes?.type?.options,
               icon: ['no-icon', undefined, '1001'],
@@ -69,10 +69,10 @@ export const Alert: Story = {
                     ${args.action
                       ? html`
                           <div class="alert-buttons">
-                            <button class="btn btn-primary btn-animated">
+                            <button class="btn btn-primary">
                               <span>Akcepti</span>
                             </button>
-                            <button class="btn btn-secondary btn-animated">
+                            <button class="btn btn-secondary">
                               <span>Aborti</span>
                             </button>
                           </div>
@@ -99,18 +99,18 @@ export const PostAlert: Story = {
       '</p>';
 
     const actionButton =
-      '<button class="btn btn-primary btn-animated" slot="actions" >' +
+      '<button class="btn btn-primary" slot="actions" >' +
       '<span>Akcepti</span>' +
       '</button>' +
-      '<button class="btn btn-secondary btn-animated" slot="actions" >' +
+      '<button class="btn btn-secondary" slot="actions" >' +
       '<span>Aborti</span>' +
       '</button>';
 
     return html`
-      <div class="d-flex gap-3 flex-wrap">
+      <div class="d-flex gap-16 flex-wrap">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div class="${bg + ' d-flex flex-column gap-3 flex-wrap p-3'}">
+            <div class="${bg + ' d-flex flex-column gap-16 flex-wrap p-16'}">
               ${bombArgs({
                 type: ['primary', 'success', 'danger', 'warning', 'info', 'gray'],
                 icon: ['none', undefined, '1001'],

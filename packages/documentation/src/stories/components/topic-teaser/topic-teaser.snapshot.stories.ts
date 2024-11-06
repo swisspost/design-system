@@ -25,13 +25,13 @@ export const TopicTeaser: Story = {
                 subtitle: [short, long],
                 title: [short, long],
                 alignment: context.argTypes.alignment.options,
-                backgroundColor: ['bg-nightblue', 'bg-coral-bright'],
+                backgroundColor: ['bg-light', 'bg-yellow'],
                 linkCount: [1, 5, 10],
               })
                 .filter((args: Args) => args.title !== args.subtitle || args.linkCount == 5)
                 .map((args: Args) => {
                   return html`
-                    <div class="p-3">
+                    <div class="p-16">
                       ${Default.render?.({ ...context.args, ...Default.args, ...args }, context)}
                     </div>
                   `;

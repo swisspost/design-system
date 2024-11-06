@@ -1,5 +1,35 @@
 # @swisspost/design-system-components-react
 
+## 9.0.0-next.3
+
+### Patch Changes
+
+- Fixed an issue with property validation where some checks were run before the framework had the chance to add computed properties (for example Angular bindings like `[for]="$id"`). The checks are now delayed to work around this issue. (by [@gfellerph](https://github.com/gfellerph) with [#3775](https://github.com/swisspost/design-system/pull/3775))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.3
+
+## 9.0.0-next.2
+
+### Patch Changes
+
+- Initial release! (by [@gfellerph](https://github.com/gfellerph) with [#3718](https://github.com/swisspost/design-system/pull/3718))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.2
+
+## 9.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.1
+
+## 9.0.0-next.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.0
+
 ## 8.2.0
 
 ### Minor Changes

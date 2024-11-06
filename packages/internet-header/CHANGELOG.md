@@ -1,5 +1,42 @@
 # @swisspost/internet-header
 
+## 2.0.0-next.3
+
+### Major Changes
+
+- Switched stencil hydrated flag from class (`hydrated`) to attribute (`data-hydrated`). This flag indicates when a component finished rendering on the page. If your tests relied on the class being present, please rewrite the selector to use the new attribute selector. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3783](https://github.com/swisspost/design-system/pull/3783))
+
+### Minor Changes
+
+- Added and documented the possibility to create plain links in the main navigation by adding noFlyout: true to the config. The flyout property is now optional and can be omitted. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3596](https://github.com/swisspost/design-system/pull/3596))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.3
+
+## 1.14.6-next.2
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.2
+
+## 1.14.6-next.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.1
+
+## 1.14.6-next.0
+
+### Patch Changes
+
+- Applied High Contrast Mode mixin to breadcrumb SVGs for proper color inversion. (by [@schaertim](https://github.com/schaertim) with [#3480](https://github.com/swisspost/design-system/pull/3480))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.0
+
 ## 1.14.5
 
 ### Patch Changes

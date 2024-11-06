@@ -21,7 +21,6 @@ const meta: MetaComponent = {
     type: 'button',
     variant: 'btn-primary',
     size: 'null',
-    animated: 'btn-animated',
     icon: 'null',
     iconOnly: false,
     iconPosition: 'start',
@@ -36,6 +35,10 @@ const meta: MetaComponent = {
       },
       table: {
         category: 'Content',
+      },
+      if: {
+        arg: 'iconOnly',
+        truthy: false,
       },
     },
     tag: {
@@ -83,21 +86,10 @@ const meta: MetaComponent = {
           'btn-primary': 'Primary',
           'btn-secondary': 'Secondary',
           'btn-tertiary': 'Tertiary',
-          // 'btn-success': 'Success',
-          // 'btn-danger': 'Danger',
-          // 'btn-warning': 'Warning',
-          // 'btn-info': 'Info',
+          'btn-link': 'Link (no padding)',
         },
       },
-      options: [
-        'btn-primary',
-        'btn-secondary',
-        'btn-tertiary',
-        // 'btn-success',
-        // 'btn-danger',
-        // 'btn-warning',
-        // 'btn-info',
-      ],
+      options: ['btn-primary', 'btn-secondary', 'btn-tertiary', 'btn-link'],
       table: {
         category: 'General',
       },
@@ -109,32 +101,11 @@ const meta: MetaComponent = {
         type: 'select',
         labels: {
           'btn-sm': 'Small',
-          'btn-rg': 'Regular',
           'null': 'Medium',
           'btn-lg': 'Large',
         },
       },
-      options: ['btn-sm', 'btn-rg', 'null', 'btn-lg'],
-      table: {
-        category: 'General',
-      },
-    },
-    animated: {
-      name: 'Animated',
-      description: 'Sets an animation on hover.',
-      if: {
-        arg: 'icon',
-        eq: 'null',
-      },
-      control: {
-        type: 'inline-radio',
-        labels: {
-          'null': 'None',
-          'btn-animated': 'End',
-          'btn-animated-start': 'Start',
-        },
-      },
-      options: ['null', 'btn-animated', 'btn-animated-start'],
+      options: ['btn-sm', 'null', 'btn-lg'],
       table: {
         category: 'General',
       },
@@ -143,7 +114,7 @@ const meta: MetaComponent = {
       name: 'Icon',
       description:
         'Defines a custom icon.' +
-        '<span className="mt-mini alert alert-info alert-sm">' +
+        '<span className="mt-8 alert alert-info alert-sm">' +
         'To use a custom icon, you must first ' +
         '<a href="/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs">set up the icons in your project</a>' +
         '.</span>',
@@ -203,7 +174,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, makes the component appear inactive and disables its functionality.<div className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
+        'When set to `true`, makes the component appear inactive and disables its functionality.<div className="mt-8 alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
       control: {
         type: 'boolean',
       },
@@ -221,7 +192,6 @@ type Story = StoryObj;
 const Template = {
   render: (args: Args) => {
     const tagName = unsafeStatic(args.tag);
-    const isAnimated = args.tag !== 'input' && args.animated !== 'none';
     const props = createProps(args);
 
     if (args.tag === 'input') {
@@ -229,13 +199,12 @@ const Template = {
     } else {
       const icon = html` <post-icon aria-hidden="true" name="${args.icon}"></post-icon> `;
       const iconOnlyContent = html` <span class="visually-hidden">${args.text}</span> `;
-      const animatedContent = html` <span>${args.text}</span> `;
       const text = html` ${args.text} `;
 
       return html`
         <${tagName} ${spread(props)}>
           ${args.icon !== 'null' && args.iconPosition === 'start' ? icon : null}
-          ${(args.iconOnly && iconOnlyContent) || (isAnimated && animatedContent) || text}
+          ${(args.iconOnly && iconOnlyContent) || text}
           ${args.icon !== 'null' && args.iconPosition === 'end' ? icon : null}
         </${tagName}>
       `;
@@ -246,14 +215,7 @@ const Template = {
 function createProps(args: Args) {
   const additionalClasses = args.additionalClasses ?? [];
   return {
-    class: [
-      'btn',
-      args.variant,
-      args.size,
-      args.animated,
-      args.iconOnly && 'btn-icon',
-      ...additionalClasses,
-    ]
+    class: ['btn', args.variant, args.size, args.iconOnly && 'btn-icon', ...additionalClasses]
       .filter(c => c && c !== 'null')
       .join(' '),
     href: args.tag === 'a' ? '#' : null,
@@ -271,7 +233,9 @@ export const Inverted: Story = {
   ...Template,
   decorators: [
     (story: StoryFn, context: StoryContext) =>
-      html` <div class="p-3 bg-dark">${story(context.args, context)}</div> `,
+      html`
+        <div class="p-16 bg-dark" data-color-scheme="dark">${story(context.args, context)}</div>
+      `,
   ],
 };
 
@@ -297,33 +261,6 @@ const VariantsTemplate = {
     `,
 };
 
-export const AccentColors: Story = {
-  ...VariantsTemplate,
-  args: {
-    variants: [
-      'btn-nightblue',
-      'btn-nightblue-bright',
-      'btn-petrol',
-      'btn-petrol-bright',
-      'btn-coral',
-      'btn-coral-bright',
-      'btn-olive',
-      'btn-olive-bright',
-      'btn-purple',
-      'btn-purple-bright',
-      'btn-aubergine',
-      'btn-aubergine-bright',
-    ],
-  },
-};
-
-export const SignalColors: Story = {
-  ...VariantsTemplate,
-  args: {
-    variants: ['btn-success', 'btn-warning', 'btn-error', 'btn-info'],
-  },
-};
-
 export const FullWidth: Story = {
   ...VariantsTemplate,
   args: {
@@ -334,7 +271,7 @@ export const FullWidth: Story = {
 
 export const Align: Story = {
   render: () => html`
-    <div class="d-flex flex-row-reverse gap-mini justify-content-end">
+    <div class="d-flex flex-row-reverse gap-8 justify-content-end">
       <button class="btn btn-primary">Send</button>
       <button class="btn btn-secondary">Cancel</button>
     </div>

@@ -18,8 +18,8 @@ interface Product {
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  @HostBinding('class') containerClasses = 'd-block container my-big py-large';
-  @HostBinding('class.bg-nightblue') hasDarkBackground = false;
+  @HostBinding('class') containerClasses = 'd-block container my-32 py-24';
+  @HostBinding('class.bg-dark') hasDarkBackground = false;
 
   datatableStyleClass = '';
 

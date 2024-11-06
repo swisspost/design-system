@@ -1,5 +1,4 @@
 // importing the complete styles package scss
-@use '@swisspost/design-system-styles/post-external.scss';
 @use '@swisspost/design-system-styles/core.scss' as post;
 @use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css';
@@ -66,13 +65,6 @@
 
       &:hover > a {
         display: inline-block;
-      }
-    }
-
-    // General styles for content
-    a:not(.sb-story a) {
-      @include utilities.focus-style() {
-        border-radius: post.$border-radius;
       }
     }
 
@@ -178,6 +170,10 @@
   overflow-x: hidden;
 }
 
+.sbdocs-preview:not([data-color-scheme]) {
+  display: none;
+}
+
 .fake-content {
   position: relative;
   min-height: calc(1.6rem * 8);
@@ -198,10 +194,4 @@
     bottom: 0;
     right: 0;
   }
-}
-
-story-container {
-  display: block;
-  margin: -40px -30px -39px;
-  padding: 40px 30px;
 }

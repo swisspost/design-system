@@ -47,7 +47,7 @@ const meta: MetaComponent = {
     action: {
       name: 'Action Buttons',
       description:
-        'If `true`, the alert contains action buttons on its right side.<span className="mt-mini alert alert-info alert-sm">Alert content must then be wrapped in a `.alert-content` container.</span>',
+        'If `true`, the alert contains action buttons on its right side.<span className="mt-8 alert alert-info alert-sm">Alert content must then be wrapped in a `.alert-content` container.</span>',
       control: { type: 'boolean' },
     },
     fixed: {
@@ -66,7 +66,7 @@ const meta: MetaComponent = {
       name: 'Icon',
       description:
         'The icon to display in the alert. By default, the icon depends on the alert type.' +
-        '<span className="mt-mini alert alert-info alert-sm">' +
+        '<span className="mt-8 alert alert-info alert-sm">' +
         'To use a custom icon, you must first ' +
         '<a href="/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs">set up the icons in your project</a>' +
         '.</span>',
@@ -119,7 +119,7 @@ function externalControl(story: StoryFn, { args, context }: StoryContext) {
 
   const button = html`
     <a
-      class="btn btn-secondary btn-animated"
+      class="btn btn-secondary"
       href="#"
       @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}"
     >
@@ -155,10 +155,10 @@ function renderAlert(args: Args) {
         args.action
           ? html`
               <div class="alert-buttons">
-                <button class="btn btn-primary btn-animated">
+                <button class="btn btn-primary">
                   <span>Akcepti</span>
                 </button>
-                <button class="btn btn-secondary btn-animated">
+                <button class="btn btn-secondary">
                   <span>Aborti</span>
                 </button>
               </div>

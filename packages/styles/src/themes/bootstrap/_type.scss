@@ -1,6 +1,0 @@
-@use './core' as *;
-
-// Reboot is needed here because type.scss is extending the h1/2/... selectors
-@use './reboot' as *;
-
-@import 'bootstrap/scss/type';

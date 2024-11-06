@@ -2,7 +2,6 @@
 
 @use 'sass:map';
 
-@use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as *;
 @use './../themes/bootstrap/list-group' as bl;
 
@@ -122,9 +121,9 @@
   }
 
   &-minimal {
-    @include type-mixins.font-curve('bigger-regular');
     padding-right: 0;
     padding-left: 0;
+    @include type-mixins.font-curve('bigger-regular');
   }
 
   &-transparent {

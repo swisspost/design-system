@@ -1,9 +1,9 @@
 @forward './../variables/options';
 
-@use 'base';
-
 @use 'accordion';
 @use 'alert';
+@use 'appstore-badge';
+@use 'avatar';
 @use 'badge';
 @use 'breadcrumb';
 @use 'button';
@@ -15,15 +15,19 @@
 @use 'close';
 @use 'elevation';
 @use 'error-container';
+@use 'form-footer';
 @use 'form-range';
 @use 'form-select';
 @use 'form-textarea';
 @use 'datatable';
+@use 'dialog';
 @use 'form-check';
 @use 'forms';
 @use 'forms/index';
 @use 'grid';
+@use 'icon-button';
 @use 'icons';
+@use 'lead';
 @use 'list-group';
 @use 'modal';
 @use 'pagination';
@@ -36,13 +40,12 @@
 @use 'subnavigation';
 @use 'tables';
 @use 'tabs';
+@use 'text-highlight';
 @use 'timepicker';
 @use 'toast';
 @use 'tooltip';
 @use 'topic-teaser';
 @use 'transitions';
-@use 'type';
-@use 'utilities';
 @use 'tag';
 
 // Imports depending on source order to override bootstrap styles

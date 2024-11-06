@@ -1,5 +1,11 @@
+@use './../themes/bootstrap/core' as *;
+
+@use '../functions/tokens';
+@use '../tokens/helpers';
+
 @use '../variables/spacing';
 @use '../variables/commons';
+@use '../variables/breakpoints';
 
 @mixin reset-list() {
   margin: 0;
@@ -96,35 +102,32 @@
 
 @mixin focus-style($additional-selector: '', $outline-color: var(--post-focus-color)) {
   &#{$additional-selector} {
-    outline-style: none !important; // !important is needed to override bootstrap .form-control:focus
-    outline-offset: spacing.$size-line !important;
-    outline-width: spacing.$size-line !important;
-    outline-color: $outline-color !important;
+    outline-offset: tokens.get('focus-outline-offset', helpers.$post-focus) !important;
+    outline: tokens.get('focus-outline-color', helpers.$post-focus) none
+      tokens.get('focus-outline-width', helpers.$post-focus) !important;
   }
 
   // :has(:focus-visible) mimic a focus-visible-within pseudo-class
   &:is(:focus-visible, :has(:focus-visible), .pretend-focus)#{$additional-selector} {
-    outline-style: solid !important;
+    outline-style: tokens.get('focus-border-style', helpers.$post-focus) !important;
+    // In case rules need to be slightly adjusted
+    @content;
 
     @include high-contrast-mode() {
       outline-color: Highlight !important;
     }
-
-    // In case rules need to be slightly adjusted
-    @content;
   }
 
   // When a browser doesn't support :has, use focus-within as a fallback. This means that focus state is displayed on focus and not on focus-visible only (except some browsers like Safari).
   @supports not selector(:has(:focus-visible)) {
     &:is(:focus-visible, :focus-within, .pretend-focus)#{$additional-selector} {
-      outline-style: solid !important;
+      outline-style: tokens.get('focus-border-style', helpers.$post-focus) !important;
+      // In case rules need to be slightly adjusted
+      @content;
 
       @include high-contrast-mode() {
         outline-color: Highlight !important;
       }
-
-      // In case rules need to be slightly adjusted
-      @content;
     }
   }
 }

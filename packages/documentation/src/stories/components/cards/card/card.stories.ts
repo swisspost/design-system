@@ -213,7 +213,7 @@ function clickBlocker(story: StoryFn, context: StoryContext) {
 }
 
 function paddedContainer(story: StoryFn, context: StoryContext) {
-  return html` <div class="p-mini">${story(context.args, context)}</div> `;
+  return html` <div class="p-8">${story(context.args, context)}</div> `;
 }
 
 function gridContainer(story: StoryFn, context: StoryContext) {
@@ -235,7 +235,7 @@ function getCardLinks() {
 
 function getCardButton() {
   return html`
-    <button class="btn btn-primary btn-animated">
+    <button class="btn btn-primary">
       <span>Butonon teksto</span>
     </button>
   `;
@@ -247,7 +247,7 @@ function getCardBody({ customBody, content, action, showTitle, showSubtitle }: A
   return html`
     <div class="card-body">
       ${showTitle ? html` <h5 class="card-title">Titulum</h5> ` : nothing}
-      ${showSubtitle ? html` <h6 class="card-subtitle mb-2 text-muted">Sub Titulum</h6> ` : nothing}
+      ${showSubtitle ? html` <h6 class="card-subtitle mb-8 text-muted">Sub Titulum</h6> ` : nothing}
       <p class="card-text">${content}</p>
       ${choose(
         action,
@@ -416,7 +416,7 @@ export const BackgroundImage: Story = {
 
       <p class="card-text">Contentus momentus vero siteos et accusam iretea et justo.</p>
 
-      <button class="btn btn-primary btn-animated">
+      <button class="btn btn-primary">
         <span>Butonon teksto</span>
       </button>
     </div>

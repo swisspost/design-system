@@ -4,14 +4,13 @@
 @use './../mixins/button' as button-mx;
 @use './../mixins/focus' as focus-mx;
 @use './../mixins/icons' as icon-mx;
-@use './../mixins/type' as type-mx;
 @use './../mixins/utilities' as utility-mx;
 
 @use './../variables/components/accordion';
 
 .accordion-item {
-  @include accordion-mx.background-color;
   border-block: accordion.$accordion-border-width solid accordion.$accordion-border-color;
+  @include accordion-mx.background-color;
 
   & + & {
     border-block-start: 0;
@@ -28,8 +27,6 @@
 
 .accordion-button {
   @include button-mx.reset-button;
-  @include focus-mx.focus-ring;
-
   width: 100%;
   position: relative;
   padding-block: accordion.$accordion-button-padding;
@@ -38,6 +35,7 @@
     accordion.$accordion-gap;
   text-align: start;
   transition: accordion.$accordion-button-transition;
+  @include focus-mx.focus-ring;
 
   &:hover {
     color: accordion.$accordion-button-hover-color;

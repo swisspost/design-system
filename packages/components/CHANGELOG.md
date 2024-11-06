@@ -1,5 +1,55 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.3
+
+### Major Changes
+
+- Switched stencil hydrated flag from class (`hydrated`) to attribute (`data-hydrated`). This flag indicates when a component finished rendering on the page. If your tests relied on the class being present, please rewrite the selector to use the new attribute selector. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3783](https://github.com/swisspost/design-system/pull/3783))
+
+### Minor Changes
+
+- Added the post-language-option component, a header component made to enable users to select their preferred language. (by [@alizedebray](https://github.com/alizedebray) with [#3802](https://github.com/swisspost/design-system/pull/3802))
+
+- Added component `post-avatar` to show an avatar, based on different possible input data (gravatar by email, initials by first- and/or lastname, fallback). (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3352](https://github.com/swisspost/design-system/pull/3352))
+
+### Patch Changes
+
+- Made the ´<post-popovercontainer>´ visually hidden for tooltips to fix accessability issue. (by [@schaertim](https://github.com/schaertim) with [#3619](https://github.com/swisspost/design-system/pull/3619))
+
+- Fixed the `post-card-control` label read twice by screen readers. (by [@myrta2302](https://github.com/myrta2302) with [#3625](https://github.com/swisspost/design-system/pull/3625))
+
+- Fixed an issue with property validation where some checks were run before the framework had the chance to add computed properties (for example Angular bindings like `[for]="$id"`). The checks are now delayed to work around this issue. (by [@gfellerph](https://github.com/gfellerph) with [#3775](https://github.com/swisspost/design-system/pull/3775))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.3
+
+## 9.0.0-next.2
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.2
+
+## 9.0.0-next.1
+
+### Major Changes
+
+- Made the heading-level property required for the accordion and removed it from the accordion-item docs. (by [@schaertim](https://github.com/schaertim) with [#3383](https://github.com/swisspost/design-system/pull/3383))
+
+### Patch Changes
+
+- Fixed a bug in nested accordions where closing a child item unintentionally closed all parent accordion elements. (by [@schaertim](https://github.com/schaertim) with [#3427](https://github.com/swisspost/design-system/pull/3427))
+
+- Fixed an issue related to conflicting pointer and focus events hiding the tooltip unexpectedly in some situations. The tooltip now behaves as expected in this situation. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3592](https://github.com/swisspost/design-system/pull/3592))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.1
+
+## 9.0.0-next.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.0
+
 ## 8.2.0
 
 ### Minor Changes

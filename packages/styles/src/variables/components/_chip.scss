@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 @use './button';
 @use './../animation';
 @use './../color';
@@ -13,8 +15,8 @@ $chip-border-color: color.$gray-60;
 $chip-border-width: commons.$border-thick;
 $chip-border-radius: commons.$border-radius-pill;
 
-$chip-height: button.$btn-height-rg;
-$chip-max-width: sizing.px-to-rem(296px);
+$chip-height: map.get(button.$btn-height-map, 'md');
+$chip-max-width: 100%;
 $chip-padding-x: spacing.$size-regular;
 $chip-gap: spacing.$size-mini;
 
@@ -44,7 +46,14 @@ $chip-disabled-active-bg: color.$gray;
 $chip-text-transition: text-decoration animation.$transition-time-simple
   animation.$transition-easing-default;
 
+$chip-badge-border-width: commons.$border-width;
+$chip-badge-line-height: 1;
+
 $chip-close-button-icon: 2043;
+$chip-close-button-border-width: commons.$border-width;
 $chip-close-button-border-radius: commons.$border-radius-round;
+$chip-close-button-border: $chip-close-button-border-width solid $chip-border-color;
 $chip-close-button-height: spacing.$size-large;
 $chip-close-button-height-sm: spacing.$size-regular;
+
+$chip-dismissable-padding-start: spacing.$size-mini;

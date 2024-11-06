@@ -20,7 +20,7 @@ const meta: MetaComponent = {
     subtitle: 'Vero siteos et accusam iretea et justo',
     linkCount: 5,
     alignment: 'null',
-    backgroundColor: 'bg-nightblue',
+    backgroundColor: 'bg-yellow',
   },
   argTypes: {
     title: {
@@ -78,36 +78,9 @@ const meta: MetaComponent = {
         labels: {
           'bg-light': 'Light',
           'bg-dark': 'Dark',
-          'bg-nightblue': 'Nightblue',
-          'bg-nightblue-bright': 'Nightblue (bright)',
-          'bg-petrol': 'Petrol',
-          'bg-petrol-bright': 'Petrol (bright)',
-          'bg-coral': 'Coral',
-          'bg-coral-bright': 'Coral (bright)',
-          'bg-olive': 'Olive',
-          'bg-olive-bright': 'Olive (bright)',
-          'bg-purple': 'Purple',
-          'bg-purple-bright': 'Purple (bright)',
-          'bg-aubergine': 'Aubergine',
-          'bg-aubergine-bright': 'Aubergine (bright)',
         },
       },
-      options: [
-        'bg-light',
-        'bg-dark',
-        'bg-nightblue',
-        'bg-nightblue-bright',
-        'bg-petrol',
-        'bg-petrol-bright',
-        'bg-coral',
-        'bg-coral-bright',
-        'bg-olive',
-        'bg-olive-bright',
-        'bg-purple',
-        'bg-purple-bright',
-        'bg-aubergine',
-        'bg-aubergine-bright',
-      ],
+      options: ['bg-light', 'bg-yellow'],
       table: {
         category: 'General',
       },
@@ -165,11 +138,11 @@ export const Default: Story = {
 
     const content = html`
       <div class="topic-teaser-content">
-        <h2 class="topic-teaser-title font-curve-large mb-large">
+        <h2 class="topic-teaser-title font-curve-large mb-24">
           <span class="bold">${args.title}</span>
           <span class="light">${args.subtitle}</span>
         </h2>
-        <ul class="link-list mb-large">
+        <ul class="link-list mb-24">
           ${links}
         </ul>
       </div>

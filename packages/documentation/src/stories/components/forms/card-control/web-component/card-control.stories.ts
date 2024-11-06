@@ -4,7 +4,6 @@ import { MetaComponent } from '@root/types';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { parse } from '@/utils/sass-export';
-import './card-control.styles.scss';
 import scss from '../card-control.module.scss';
 import { coloredBackground } from '@/shared/decorators/dark-background';
 
@@ -107,7 +106,7 @@ export const Default: Story = {
 
     const content = html`${unsafeHTML(args['slots-default'])}`;
     const icon = html`<span slot="icon">${unsafeHTML(args['slots-icon'])}</span>`;
-    const invalidFeedback = html`<p class="invalid-feedback${args.groupValidation ? '' : ' mt-2'}">
+    const invalidFeedback = html`<p class="invalid-feedback${args.groupValidation ? '' : ' mt-8'}">
       Invalid feedback
     </p>`;
 
@@ -272,10 +271,10 @@ export const FormIntegration: Story = {
   decorators: [
     story => html`
       ${story()}
-      <div class="mt-3">
+      <div class="mt-16">
         <h4>FormData</h4>
         <p class="fs-small">Submit or reset the form to see how the FormData will look like.</p>
-        <pre id="AssociatedFormOutput" class="p-2 bg-dark rounded fs-tiny">{}</pre>
+        <pre id="AssociatedFormOutput" class="p-8 bg-dark rounded fs-tiny">{}</pre>
       </div>
     `,
   ],
@@ -295,7 +294,7 @@ export const FormIntegration: Story = {
         <legend>Legend</legend>
         ${Default.render?.(args, context)}
       </fieldset>
-      <fieldset class="mt-3" .disabled=${args.radioFieldset}>
+      <fieldset class="mt-16" .disabled=${args.radioFieldset}>
         <legend aria-describedby="radio-invalid-feedback">Legend</legend>
         ${[1, 2, 3].map(
           n =>
@@ -310,9 +309,9 @@ export const FormIntegration: Story = {
         )}
         ${args.radioValidity === 'false' ? invalidFeedback : nothing}
       </fieldset>
-      <div class="mt-3 d-flex gap-3 justify-content-end">
+      <div class="mt-16 d-flex gap-16 justify-content-end">
         <button type="reset" class="btn btn-link"><post-icon name="2042"></post-icon>Reset</button>
-        <button type="submit" class="btn btn-primary btn-animated"><span>Submit</span></button>
+        <button type="submit" class="btn btn-primary"><span>Submit</span></button>
       </div>
     </form>`;
   },

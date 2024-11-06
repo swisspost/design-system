@@ -3,7 +3,6 @@
 
 @forward './../variables/options';
 
-@use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as b;
 @use './../themes/bootstrap/forms/floating-labels' as bffl;
 @use './../themes/bootstrap/forms/form-control' as bffc;
@@ -101,13 +100,14 @@
     }
 
     &.form-control-sm {
-      &[type='date']::-webkit-calendar-picker-indicator {
-        margin-top: -(spacing.$size-small-regular);
-      }
       font-size: forms.$form-floating-label-font-size-placeholder-sm;
       height: forms.$form-floating-label-height-sm;
       min-height: forms.$form-floating-label-height-sm;
       padding-inline: forms.$form-floating-padding-x-sm;
+
+      &[type='date']::-webkit-calendar-picker-indicator {
+        margin-top: -(spacing.$size-small-regular);
+      }
 
       ~ label {
         font-size: forms.$form-floating-label-font-size-placeholder-sm;

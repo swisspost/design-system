@@ -1,41 +1,54 @@
+@use 'sass:meta';
 @use 'sass:map';
 @use 'sass:string';
+@use 'sass:list';
+
+$_namespace: 'post';
+$default-map: null !default;
 
 /**
- * @function get($key-name, $m: $map)
- * Gets token-key, normalizes and resolved it with the $map or the one specified in the second parameter.
+ * @function get($key, $map)
+ * Gets a token-key, normalizes and resolves it with the given map or $default-map.
  *
- * @param {string} $key-name - The token key to get (with or without the "post" prefix).
- * @param {map} $m - The map to get the token key from.
- *                   The $map variable can be specified through the "with" keyword in the import statement:
- *                   @use '../functions/tokens' with ($map: namespace.$my-default-map);
+ * @param {string} $key - The full token key (including prefix).
+ * @param {map} $map - The map to get the token key from (optional).
  *
- * @returns {any} $value of $map[$key]
+ * @returns {any} $value of $normalized-key in the specified map
  *
  * @example
- * @use '../tokens/components' as componentTokens;
- * @use '../functions/tokens' with ($map: componentTokens.$post-body);
+ * @use '../tokens/components' as components;
+ * @use '../functions/tokens' as tokens;
  *
- * body {
- *   font-family: tokens.get('body-font-family');
+ * // set the default map to use or always use the second function parameter to specify a different map.
+ * tokens.$default-map: components.$post-badge;
  *
- *   h1 {
- *     font-family: tokens.get('h1-font-family', elements.$post-heading);
- *   }
+ * selector {
+ *   background-color: tokens.get('post-badge-bg');
+ *   color: tokens.get('badge-fg');
+ *   border-width: tokens.get('app-store-focus-outline-width', components.$post-app-store-badge);  // use a different map than the default one
  * }
  */
+@function get($key, $map: $default-map) {
+  $normalized-key: normalize-key($key);
 
-$map: null !default;
-
-@function get($m: $map, $key-name) {
-  $key-prefix: '';
-  $is-prefixed: string.index($key-name, 'post-') == 1;
-
-  @if not $is-prefixed {
-    $key-prefix: 'post-';
+  @if not meta.type-of($map) == 'map' {
+    @error 'No map provided or provided $map is not valid. Got #{meta.type-of($map)} instead.';
   }
 
-  $normalized-key-name: '#{$key-prefix}#{$key-name}';
+  @if not map.has-key($map, $normalized-key) {
+    @error 'No such key "#{$normalized-key}" in given map! Available keys are: #{meta.inspect(map.keys($map))}.';
+  }
 
-  @return map.get($m, $normalized-key-name);
+  @return map.get($map, $normalized-key);
+}
+
+@function normalize-key($key) {
+  $key-parts: string.split($key, '-');
+  $key-contains-namespace: list.nth($key-parts, 1) == $_namespace;
+
+  @if not $key-contains-namespace {
+    $key: '#{$_namespace}-#{$key}';
+  }
+
+  @return $key;
 }

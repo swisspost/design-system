@@ -1,5 +1,122 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.4
+
+### Patch Changes
+
+- Updated roles (by [@gfellerph](https://github.com/gfellerph) with [#3829](https://github.com/swisspost/design-system/pull/3829))
+
+## 6.0.0-next.3
+
+### Minor Changes
+
+- Added the post-language-option component, a header component made to enable users to select their preferred language. (by [@alizedebray](https://github.com/alizedebray) with [#3802](https://github.com/swisspost/design-system/pull/3802))
+
+- Updated the Accessibility documentation, reorganized in mutliple folders and added Grouping Controls section (by [@myrta2302](https://github.com/myrta2302) with [#3638](https://github.com/swisspost/design-system/pull/3638))
+
+- Added component `post-avatar` to show an avatar, based on different possible input data (gravatar by email, initials by first- and/or lastname, fallback). (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3352](https://github.com/swisspost/design-system/pull/3352))
+
+- Updated the Link component styles to align with the new design, added a documentation page outlining the usage of the component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3590](https://github.com/swisspost/design-system/pull/3590))
+
+- Updated the utility classes for opacity. (by [@myrta2302](https://github.com/myrta2302) with [#3754](https://github.com/swisspost/design-system/pull/3754))
+
+- Removed deprecated grid container helper classes. (by [@veyaromain](https://github.com/veyaromain) with [#3527](https://github.com/swisspost/design-system/pull/3527))
+
+- Added a new App Store Badge component for promoting apps, supporting both Google Play and Apple App Store badges. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3731](https://github.com/swisspost/design-system/pull/3731))
+
+- Added paragraph element. (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3569](https://github.com/swisspost/design-system/pull/3569))
+
+### Patch Changes
+
+- Added and documented the possibility to create plain links in the main navigation by adding noFlyout: true to the config. The flyout property is now optional and can be omitted. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3596](https://github.com/swisspost/design-system/pull/3596))
+
+- Fixed the dropdown toggle in the example of the intranet header with a navigation bar. (by [@alizedebray](https://github.com/alizedebray) with [#3722](https://github.com/swisspost/design-system/pull/3722))
+
+- Updated the text of the Accessibility Forms Control Grouping section and corrected the last example (by [@myrta2302](https://github.com/myrta2302) with [#3638](https://github.com/swisspost/design-system/pull/3638))
+
+- Removed class `hydrated` in stories because from now on we're using the attribute `data-hydrated` to make components visible after hydration. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3783](https://github.com/swisspost/design-system/pull/3783))
+
+- Removed deprecated accent colors (nightblue, petrol, coral, olive, purple, aubergine and their light variations) and updated all relevant components, documentation, and utilities. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3693](https://github.com/swisspost/design-system/pull/3693))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.0.0-next.3
+  - @swisspost/design-system-components@9.0.0-next.3
+  - @swisspost/internet-header@2.0.0-next.3
+  - @swisspost/design-system-styles@9.0.0-next.3
+  - @swisspost/design-system-components-react@9.0.0-next.3
+
+## 6.0.0-next.2
+
+### Minor Changes
+
+- Updated and tokenized styles for the legend element. (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3614](https://github.com/swisspost/design-system/pull/3614))
+
+- Added styling support and documentation for the `<dialog>` element. The dialog will replace the current modal and notification overlay components coming from ng-bootstrap. (by [@gfellerph](https://github.com/gfellerph) with [#2772](https://github.com/swisspost/design-system/pull/2772))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.2
+  - @swisspost/design-system-components-react@9.0.0-next.2
+  - @swisspost/design-system-components@9.0.0-next.2
+  - @swisspost/internet-header@1.14.6-next.2
+  - @swisspost/design-system-icons@9.0.0-next.2
+
+## 6.0.0-next.1
+
+### Major Changes
+
+- Made the heading-level property required for the accordion and removed it from the accordion-item docs. (by [@schaertim](https://github.com/schaertim) with [#3383](https://github.com/swisspost/design-system/pull/3383))
+
+### Minor Changes
+
+- Added a toolbar for switching the theme, channel, and mode of all stories. (by [@alizedebray](https://github.com/alizedebray) with [#3528](https://github.com/swisspost/design-system/pull/3528))
+
+- Added documentation outlining the mission statement of the Design System. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3568](https://github.com/swisspost/design-system/pull/3568))
+
+- Added Text Highlighted component. (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3586](https://github.com/swisspost/design-system/pull/3586))
+
+- Updated the margin, padding, and gap utility classes to use the pixel values (1, 2, ... , 112) instead of size names (hair, line, ..., bigger-giant). (by [@alizedebray](https://github.com/alizedebray) with [#3557](https://github.com/swisspost/design-system/pull/3557))
+
+- Added documentation for design principles. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3565](https://github.com/swisspost/design-system/pull/3565))
+
+- Added lead text component for introductory paragraphs. (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3575](https://github.com/swisspost/design-system/pull/3575))
+
+### Patch Changes
+
+- Updated the style of headings (h1-h6). (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3534](https://github.com/swisspost/design-system/pull/3534))
+
+- Fixed typos in the Sass and HTML href paths. (by [@schaertim](https://github.com/schaertim) with [#3466](https://github.com/swisspost/design-system/pull/3466))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.1
+  - @swisspost/design-system-styles@9.0.0-next.1
+  - @swisspost/design-system-components-react@9.0.0-next.1
+  - @swisspost/internet-header@1.14.6-next.1
+  - @swisspost/design-system-icons@9.0.0-next.1
+
+## 6.0.0-next.0
+
+### Major Changes
+
+- Removed the Monospace font from the typography page of the documentation (will not be available once Bootstrap isn't included anymore). (by [@schaertim](https://github.com/schaertim) with [#3384](https://github.com/swisspost/design-system/pull/3384))
+
+### Minor Changes
+
+- Removed deprecated line-height variables. (by [@veyaromain](https://github.com/veyaromain) with [#3521](https://github.com/swisspost/design-system/pull/3521))
+
+### Patch Changes
+
+- Improved accessibility of headings with subheadings by removing the <br> element and added the utility class d-block. Consult https://design-system.post.ch/?path=/docs/7ecd87f1-de96-4e39-a057-ba1798eb6959--docs for updated markup. (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3491](https://github.com/swisspost/design-system/pull/3491))
+
+- Refactored the stepper component to handle `updateArgs` directly within the `getStepperItem` function, fixing the issue where stepper examples were not independent and resolving unreliable step changes that sometimes caused clicks to be unrecognized or froze the page. (by [@schaertim](https://github.com/schaertim) with [#3499](https://github.com/swisspost/design-system/pull/3499))
+
+- Removed disabling of the button in the "Good form example" of the accessibility documentation. Repeated requests should be handled internally as described in the accessibility documentation. (by [@schaertim](https://github.com/schaertim) with [#3403](https://github.com/swisspost/design-system/pull/3403))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.0
+  - @swisspost/internet-header@1.14.6-next.0
+  - @swisspost/design-system-components@9.0.0-next.0
+  - @swisspost/design-system-components-react@9.0.0-next.0
+  - @swisspost/design-system-icons@9.0.0-next.0
+
 ## 5.4.0
 
 ### Minor Changes

@@ -1,8 +1,13 @@
-import type { Args, Preview } from '@storybook/web-components';
+import type { Preview } from '@storybook/web-components';
 import { extractArgTypes, extractComponentDescription } from '@kurbar/storybook-addon-docs-stencil';
 import { format } from 'prettier';
 import DocsLayout from './blocks/layout/layout';
-import { openFullScreenDemo, prettierOptions, resetComponents } from './helpers';
+import {
+  fullScreenUrlDecorator,
+  openFullScreenDemo,
+  prettierOptions,
+  resetComponents,
+} from './helpers';
 import './helpers/register-web-components';
 import './addons/cypress-storybook/client';
 
@@ -10,15 +15,13 @@ import './styles/preview.scss';
 
 import { SyntaxHighlighter } from '@storybook/components';
 import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
-import { toolbarConfig, applyToolbarSelection } from './toolbar';
 
 SyntaxHighlighter.registerLanguage('scss', scss);
 
-export const SourceDarkMode = true;
+export const SourceDarkScheme = true;
 
 const preview: Preview = {
-  globalTypes: toolbarConfig,
-  decorators: [applyToolbarSelection],
+  decorators: [fullScreenUrlDecorator],
   parameters: {
     options: {
       storySort: {
@@ -28,7 +31,16 @@ const preview: Preview = {
 
           // Category - Getting Started
           'Getting Started',
-          ['Introduction', 'Angular', 'Compatibility', 'Packages', 'Changelogs', 'Migration Guide'],
+          [
+            'Introduction',
+            'Design Principles',
+            'Mission',
+            'Angular',
+            'Compatibility',
+            'Packages',
+            'Changelogs',
+            'Migration Guide',
+          ],
 
           // Category - Foundations
           'Foundations',
@@ -40,6 +52,7 @@ const preview: Preview = {
             ['Breakpoints', 'Containers', 'Grid', 'Columns', 'TODOS'],
             'Elevation',
             'Accessibility',
+            ['Regulation'],
           ],
 
           // Category - Components
@@ -73,7 +86,7 @@ const preview: Preview = {
       },
       source: {
         excludeDecorators: true,
-        dark: SourceDarkMode,
+        dark: SourceDarkScheme,
         transform: (snippet: string) => format(snippet, prettierOptions),
       },
       components: resetComponents,

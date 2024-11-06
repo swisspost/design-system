@@ -75,24 +75,23 @@ export const Async: Story = {
       };
 
       const removeActiveTab = () => {
-        const headers: NodeListOf<HTMLPostTabHeaderElement> =
+        const headers: NodeListOf<HTMLPostTabHeaderElement> | undefined =
           document.querySelectorAll('post-tab-header');
 
-        const activeHeader: HTMLPostTabHeaderElement | undefined = Array.from(headers).find(() =>
-          document.querySelectorAll('post-tab-header.active'),
+        const activeHeader: HTMLPostTabHeaderElement | undefined = Array.from(headers ?? []).find(
+          () => document.querySelectorAll('post-tab-header.active'),
         );
         activeHeader?.remove();
 
-        const activePanel: HTMLPostTabPanelElement | null = document.querySelector(
-          `post-tab-panel[name=${activeHeader?.panel}]`,
-        );
+        const activePanel: HTMLPostTabPanelElement | null =
+          document.querySelector(`post-tab-panel[name=${activeHeader?.panel}]`) ?? null;
         activePanel?.remove();
       };
 
       return html`
         ${story()}
         <hr />
-        <div class="d-flex gap-mini">
+        <div class="d-flex gap-8">
           <button class="btn btn-default" id="add-tab" type="button" @click="${addTab}">
             <post-icon name="2040"></post-icon>
             Add tab
