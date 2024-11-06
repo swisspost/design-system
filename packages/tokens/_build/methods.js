@@ -1,7 +1,6 @@
+import { promises } from 'fs';
 import StyleDictionary from './style-dictionary.js';
 import { usesReferences } from 'style-dictionary/utils';
-import { expandTypesMap } from '@tokens-studio/sd-transforms';
-import { promises } from 'fs';
 import {
   SOURCE_PATH,
   OUTPUT_PATH,
@@ -12,9 +11,11 @@ import {
   EXPLICIT_FIGMAONLY_SETNAMES,
   TOKENSET_PREFIX,
 } from './constants.js';
+import { deepmerge } from './utils/index.js';
 
 let CLI_OPTIONS;
 let tokenSets;
+let registeredConfigMethods = [];
 
 // Can be removed, as soon as box-shadow tokens can be outputted with references
 StyleDictionary.registerPreprocessor({
@@ -188,6 +189,22 @@ export async function createTokenSetFiles() {
 }
 
 /**
+ * @function registerConfigMethod(Function)
+ * Registers a config getter method, which is used to create the StyleDictionary Config objects.
+ *
+ * @callback configGetterMethod a function which will be called during build time with the following parameters:
+ * @param {tokenSets} group-nested tokensets object
+ * @param {options} object { sourcePath: string, buildPath: string }
+ */
+export function registerConfigMethod(method) {
+  if (method instanceof Function) {
+    registeredConfigMethods.push(method);
+  } else {
+    throw new Error(`At least one of the given config getter methods is not a function.!`);
+  }
+}
+
+/**
  * @function createOutputFiles()
  * Creates the output files based on the StyleDictionary Config.
  *
@@ -202,48 +219,36 @@ export async function createOutputFiles() {
 
   /**
    * @function getConfigs()
-   * Creates the StyleDictionary Config object for each tokenset.
+   * Creates all StyleDictionary Config objects, given through the registeredConfigMethods.
    *
    * @returns Config[]
    */
   function getConfigs() {
-    return Object.entries(tokenSets.output).map(([name, { type, layer, filePath, sets }]) => {
-      return {
-        log: {
-          verbosity: CLI_OPTIONS.verbosity,
-        },
-        meta: {
-          type,
-          layer,
-          filePath,
-          setNames: Object.keys(sets),
-        },
-        source: [`${SOURCE_PATH}/_temp/output/${filePath}`],
-        include: [`${SOURCE_PATH}/_temp/source/**/*.json`],
-        preprocessors: ['swisspost/box-shadow-keep-refs-workaround', 'tokens-studio'],
-        platforms: {
-          scss: {
-            transformGroup: 'tokens-studio',
-            transforms: ['name/kebab'],
-            buildPath: `${OUTPUT_PATH}/`,
-            expand: {
-              include: ['typography'],
-              typesMap: expandTypesMap,
-            },
-            files: [
-              {
-                destination: `_${name}.scss`.toLowerCase(),
-                format: 'swisspost/scss-format',
-                filter: 'swisspost/tokenset-filter',
-                options: {
-                  outputReferences: true,
-                },
+    return registeredConfigMethods
+      .map(method =>
+        method(tokenSets, { sourcePath: `${SOURCE_PATH}/`, buildPath: `${OUTPUT_PATH}/` }).map(
+          config => {
+            // add log level to config
+            config = deepmerge(config, {
+              log: {
+                verbosity: CLI_OPTIONS.verbosity,
               },
-            ],
+            });
+
+            // add file header to all platforms (can still be overridden on the file level)
+            Object.entries(config.platforms).forEach(([name, platform]) => {
+              config.platforms[name] = deepmerge(platform, {
+                options: {
+                  fileHeader: 'swisspost/file-header',
+                },
+              });
+            });
+
+            return config;
           },
-        },
-      };
-    });
+        ),
+      )
+      .flat();
   }
 
   /**
@@ -268,7 +273,10 @@ export async function createOutputFiles() {
       .map(([name, { layer }]) => `@${layer === 'core' ? 'use' : 'forward'} './${name}';`)
       .join('\n');
 
-    await promises.writeFile(`${OUTPUT_PATH}/_index.scss`, `${getFileHeader()}${imports}\n`);
+    await promises.writeFile(
+      `${OUTPUT_PATH}/_index.scss`,
+      `${FILE_HEADER.map(h => `// ${h}`).join('\n')}\n\n${imports}\n`,
+    );
   }
 
   /**
@@ -289,17 +297,6 @@ export async function removeTokenSetFiles() {
   console.log(`\x1b[90mCleanup...`);
   await promises.rm(`${SOURCE_PATH}/_temp/`, { recursive: true });
   console.log(`\x1b[33m✓ Complete!`);
-}
-
-/**
- * @function getFileHeader()
- * Returns the file header comment with the current date.
- * Which is used at the beginning of each output file.
- *
- * @returns string
- */
-export function getFileHeader() {
-  return FILE_HEADER.replace('{date}', new Date().toUTCString());
 }
 
 /**

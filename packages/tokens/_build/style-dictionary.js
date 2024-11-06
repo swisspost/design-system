@@ -1,8 +1,17 @@
 import StyleDictionary from 'style-dictionary';
+import { fileHeader } from 'style-dictionary/utils';
 import { register } from '@tokens-studio/sd-transforms';
-import { getFileHeader, getSetName, getSet, getTokenValue } from './methods.js';
+import { FILE_HEADER } from './constants.js';
+import { getSetName, getSet, getTokenValue } from './methods.js';
 
 register(StyleDictionary);
+
+StyleDictionary.registerFileHeader({
+  name: 'swisspost/file-header',
+  fileHeader: () => {
+    return FILE_HEADER;
+  },
+});
 
 /**
  * @function StyleDictionary.registerFilter()
@@ -38,11 +47,12 @@ StyleDictionary.registerFilter({
  */
 StyleDictionary.registerFormat({
   name: 'swisspost/scss-format',
-  format: ({ dictionary, options }) => {
+  format: async ({ dictionary, options, file }) => {
     const { meta } = options;
+    const header = await fileHeader({ file, commentStyle: 'short' });
 
     return (
-      getFileHeader() +
+      header +
       meta.setNames
         .map(setName => {
           const tokenSetName = getSetName(options, setName);
