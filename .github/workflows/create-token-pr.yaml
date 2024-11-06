@@ -69,8 +69,8 @@ jobs:
       - name: Get PR
         id: pr
         run: |
-          echo "$(gh pr list --head "${PR_BRANCH}")"
-          if [[ -n $(gh pr list --state open --head "${PR_BRANCH}") ]]; then
+          echo "$(gh pr list --head "${{ steps.pr-branch.outputs.name }}")"
+          if [[ -n $(gh pr list --head "${{ steps.pr-branch.outputs.name }}") ]]; then
             echo "exists=true" >> $GITHUB_OUTPUT
           else
             echo "exists=false" >> $GITHUB_OUTPUT
