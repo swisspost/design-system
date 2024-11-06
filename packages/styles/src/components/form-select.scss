@@ -10,14 +10,14 @@
 @use './../variables/components/form-select' as form-select;
 
 .form-select-wrapper {
-  @include utilities.focus-style() {
+  @include utilities.focus-style {
     border-radius: commons.$border-radius;
   }
 }
 
 :not(.form-select-wrapper) > {
   .form-select {
-    @include utilities.focus-style() {
+    @include utilities.focus-style {
       border-radius: commons.$border-radius;
     }
   }

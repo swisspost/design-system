@@ -1,5 +1,5 @@
-@use '../functions/tokens';
 @use '../tokens/elements';
+@use '../functions/tokens';
 @use '../mixins/utilities';
 
 tokens.$default-map: elements.$post-link;
@@ -13,12 +13,7 @@ a {
     color: tokens.get('link-hover-fg');
   }
 
-  @include utilities.focus-style(
-    $offset: tokens.get('link-focus-outline-offset'),
-    $width: tokens.get('link-focus-outline-width'),
-    $color: tokens.get('link-focus-outline-color'),
-    $style: tokens.get('link-focus-outline-style')
-  );
+  @include utilities.focus-style;
 
   @include utilities.high-contrast-mode() {
     &,
