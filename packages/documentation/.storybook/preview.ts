@@ -19,7 +19,7 @@ import { ArgTypes } from '@storybook/blocks';
 
 SyntaxHighlighter.registerLanguage('scss', scss);
 
-export const SourceDarkMode = true;
+export const SourceDarkScheme = true;
 
 const preview: Preview = {
   decorators: [fullScreenUrlDecorator],
@@ -53,6 +53,7 @@ const preview: Preview = {
             ['Breakpoints', 'Containers', 'Grid', 'Columns', 'TODOS'],
             'Elevation',
             'Accessibility',
+            ['Regulation'],
           ],
 
           // Category - Components
@@ -89,7 +90,7 @@ const preview: Preview = {
       },
       source: {
         excludeDecorators: true,
-        dark: SourceDarkMode,
+        dark: SourceDarkScheme,
         transform: (snippet: string) => format(snippet, prettierOptions),
       },
       components: resetComponents,
