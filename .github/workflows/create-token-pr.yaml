@@ -74,11 +74,13 @@ jobs:
           else
             echo "exists=false" >> $GITHUB_OUTPUT
           fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
 
       # If the PR does not exit, create it
       - name: Create PR
         if: steps.pr.outputs.exists == 'false'
         run: |
-          gh pr create --title "TEST3" --body "Merge this PR to update the tokens in the main branch." --base main
+          gh pr create --title "TEST4" --body "Merge this PR to update the tokens in the main branch." --base main
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
