@@ -14,20 +14,20 @@ const meta: MetaComponent = {
   args: {
     id: 'menu-one',
     placement: 'bottom',
-    padding: '1rem',
-    backgroundColor: '#ffffff',
+    padding: '',
+    backgroundColor: '',
   },
   argTypes: {
     id: {
-      name: 'Id',
+      name: 'id',
       description:
-        'The id is used to connect a trigger element with the menu. <div className="mt-8 alert alert-info alert-sm">`<button data-menu-target="...">` is the only valid trigger element for `post-menu`.</div>',
+        'The id is used to connect a trigger element with the popover.',
       table: {
         category: 'General',
       },
     },
     padding: {
-      name: 'Padding',
+      name: 'padding',
       description: 'Controls the padding inside the menu container using --post-menu-padding.',
       control: { type: 'text' },
       table: {
@@ -35,38 +35,40 @@ const meta: MetaComponent = {
       },
     },
     backgroundColor: {
-      name: 'Background Color',
-      description: 'Sets the background color of the menu container using --post-menu-bg.',
-      control: { type: 'color' },
+      name: 'background color',
+      description: 'Defines the color of the menu.',
       table: {
-        category: 'CSS Variables',
+        category: 'General',
       },
     },
   },
 };
 
 function render(args: Args) {
+  // Construct the style string conditionally based on padding and backgroundColor
+  const styles = [
+    args.padding ? `--post-menu-padding: ${args.padding};` : '',
+    args.backgroundColor ? `--post-menu-bg: ${args.backgroundColor};` : ''
+  ].filter(Boolean).join(' ').trim();
+
   return html`
     <post-menu-trigger for="${args.id}">
-      <button class="btn btn-secondary">Menu button</button>
+      <button class="btn btn-primary">Menu button</button>
     </post-menu-trigger>
-
     <post-menu 
-      style="--post-menu-padding: ${args.padding}; --post-menu-bg: ${args.backgroundColor};" 
+      style="${styles || nothing}" 
       id="${args.id}" 
       placement="${args.placement !== 'bottom' ? args.placement : nothing}"
     >
-      <post-menu-item><button>Example 2</button></post-menu-item>
-      <post-menu-item><div>Example 3</div></post-menu-item>
-      <hr />
+      <post-menu-item><button>Example 1</button></post-menu-item>
       <post-menu-item>
-        <a href="#">Example 1</a>
+        <a href="#">Example 2</a>
       </post-menu-item>
+      <post-menu-item><div>Example 3</div></post-menu-item>
     </post-menu>
   `;
 }
 
-export default meta;
 
-// Default story for interactive example in Storybook
+export default meta;
 export const Default: StoryObj = {};
