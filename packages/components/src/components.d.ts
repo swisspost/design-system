@@ -407,13 +407,13 @@ export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
 }
-export interface PostMenuCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLPostMenuElement;
-}
 export interface PostLanguageOptionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostLanguageOptionElement;
+}
+export interface PostMenuCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostMenuElement;
 }
 export interface PostPopovercontainerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
