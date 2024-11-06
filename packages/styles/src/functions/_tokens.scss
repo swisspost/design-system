@@ -1,7 +1,7 @@
 @use 'sass:meta';
 @use 'sass:map';
-@use 'sass:string';
 @use 'sass:list';
+@use './string';
 
 $_namespace: 'post';
 $default-map: null !default;
@@ -16,8 +16,8 @@ $default-map: null !default;
  * @returns {any} $value of $normalized-key in the specified map
  *
  * @example
- * @use '../tokens/components' as components;
- * @use '../functions/tokens' as tokens;
+ * @use '../tokens/components';
+ * @use '../functions/tokens';
  *
  * // set the default map to use or always use the second function parameter to specify a different map.
  * tokens.$default-map: components.$post-badge;
@@ -40,6 +40,45 @@ $default-map: null !default;
   }
 
   @return map.get($map, $normalized-key);
+}
+
+/**
+ * Returns a map of tokens matching a given key.
+ *
+ * Example:
+ * @use './tokens/utilities';
+ * @use './functions/tokens';
+ *
+ * @debug tokens.map('utility-font-size', utilities.$post-typo);
+ * // (none: var(--post-core-letter-spacing-none), default: var(--post-core-letter-spacing-default))
+ *
+ * tokens.$default-map: utilities.$post-typo;
+ * @debug tokens.map('utility-font-size');
+ * // (sm: var(--post-device-font-size-7), md: var(--post-device-font-size-6), lg: var(--post-device-font-size-5))
+ */
+@function map($key, $map: $default-map) {
+  $normalized-key: '#{normalize-key($key)}-';
+
+  @if not meta.type-of($map) == 'map' {
+    @error 'No map provided or provided $map is not valid. Got #{meta.type-of($map)} instead.';
+  }
+
+  $values: ();
+  @each $token, $value in $map {
+    @if (string.contains($token, $normalized-key)) {
+      $new-value: (
+        string.replace($token, $normalized-key, ''): $value,
+      );
+
+      $values: map.merge($values, $new-value);
+    }
+  }
+
+  @if (list.length($values) == 0) {
+    @error 'No token matching "#{$normalized-key}*" was found in the provided map.';
+  }
+
+  @return $values;
 }
 
 @function normalize-key($key) {

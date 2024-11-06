@@ -1,0 +1,27 @@
+@use 'sass:map';
+
+@use './../../functions/breakpoint';
+@use './../../functions/tokens';
+@use './../../mixins/media';
+@use './../../tokens/components';
+@use './../../tokens/utilities';
+@use './../../variables/breakpoints';
+
+tokens.$default-map: components.$post-grid;
+
+.container,
+.container-fluid {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: calc(0.5 * var(--post-grid-gutter-x));
+
+  @each $breakpoint, $gutter in tokens.map('grid-gutter') {
+    @include media.min($breakpoint) {
+      --post-grid-gutter-x: #{$gutter};
+    }
+  }
+}
+
+.container {
+  max-width: tokens.get('grid-contaier-max-width');
+}

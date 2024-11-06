@@ -1,3 +1,5 @@
+@forward'sass:string';
+
 @use 'sass:string';
 
 @function contains($string, $term) {

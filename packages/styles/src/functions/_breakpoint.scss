@@ -2,6 +2,13 @@
 @use '../variables/breakpoints';
 
 /**
+  Return the class infix corresponding to a given breakpoint
+*/
+@function infix($breakpoint) {
+  @return if(min-width($breakpoint) != 0, '-#{$breakpoint}', '');
+}
+
+/**
   Gets a breakpoint from the map based on the key
 */
 @function min-width($key) {
