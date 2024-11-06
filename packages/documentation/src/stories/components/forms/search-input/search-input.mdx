@@ -1,0 +1,37 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as SearchInputStories from './search-input.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={SearchInputStories} />
+
+<div className="docs-title">
+  # Search Input
+
+  <nav>
+    <link-design of={JSON.stringify(SearchInputStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  Search input is the trigger element of the `Search` component. It is a specific input field which lets users enter keyword(s) to get the information they are looking for.
+</div>
+
+Custom input elements need only the class `.form-control` to trigger the custom styles.
+
+<Canvas sourceState="shown" of={SearchInputStories.Default} />
+<div className="hide-col-default">
+  <Controls of={SearchInputStories.Default} />
+</div>
+
+<StylesPackageImport components={["search-input"]} required={{ 'floating-label': true, 'form-feedback': true }} />
+
+## Concrete Examples of Application
+
+The following examples show the different characteristics of the component. These can differ in the type of visualization, the HTML structure, as well as when, how and why they are displayed.
+
+### Floating Label
+
+Wrap a pair of `<input>` and `<label>` elements in a `.form-floating` container to enable floating labels.<br/>
+But note that the `<input>` element must come first, so we can ensure the correct styles.
+
+Ensure that `placeholder` attribute is set (even with an empty value) so the label can act as a placeholder when no value is set.
