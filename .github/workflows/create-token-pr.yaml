@@ -69,7 +69,7 @@ jobs:
       - name: Get PR
         id: pr
         run: |
-          if [[ -n $(gh pr view "${PR_BRANCH}") ]]; then
+          if [[ -n $(gh pr list --head ${PR_BRANCH}) ]]; then
             echo "exists=true" >> $GITHUB_OUTPUT
           else
             echo "exists=false" >> $GITHUB_OUTPUT
@@ -81,6 +81,6 @@ jobs:
       - name: Create PR
         if: steps.pr.outputs.exists == 'false'
         run: |
-          gh pr create --title "TEST7" --body "Merge this PR to update the tokens in the main branch." --base main
+          gh pr create --title "TEST8" --body "Merge this PR to update the tokens in the main branch." --base main
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
