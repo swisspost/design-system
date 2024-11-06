@@ -102,46 +102,6 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
-    size: {
-      name: 'Size',
-      description: "Sets the size of the component's appearance.",
-      if: {
-        arg: 'floatingLabel',
-        truthy: false,
-      },
-      control: {
-        type: 'select',
-        labels: {
-          'form-control-sm': 'Small',
-          'form-control-rg': 'Regular (deprecated)',
-          'null': 'Middle (deprecated)',
-          'form-control-lg': 'Large',
-        },
-      },
-      options: ['form-control-sm', 'form-control-rg', 'null', 'form-control-lg'],
-      table: {
-        category: 'General',
-      },
-    },
-    sizeFloatingLabel: {
-      name: 'Size',
-      description: "Sets the size of the component's appearance.",
-      if: {
-        arg: 'floatingLabel',
-        truthy: true,
-      },
-      control: {
-        type: 'select',
-        labels: {
-          'form-control-sm': 'Small',
-          'form-control-lg': 'Large',
-        },
-      },
-      options: ['form-control-sm', 'form-control-lg'],
-      table: {
-        category: 'General',
-      },
-    },
     hint: {
       name: 'Helper Text',
       description: 'Text to place in the help text area of the component.',
@@ -188,14 +148,7 @@ type Story = StoryObj;
 
 function render(args: Args, context: StoryContext) {
   const id = context.id ?? `ExampleTextarea_${context.name}`;
-  const classes = [
-    'form-control',
-    args.size,
-    args.floatingLabel ? args.sizeFloatingLabel : '',
-    args.validation,
-  ]
-    .filter(c => c && c !== 'null')
-    .join(' ');
+  const classes = ['form-control', args.validation].filter(c => c && c !== 'null').join(' ');
 
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
   const label: TemplateResult | null = !useAriaLabel
@@ -238,7 +191,7 @@ export const Default: Story = {};
 export const FloatingLabel: Story = {
   parameters: {
     controls: {
-      exclude: ['Hidden Label', 'Size', 'Helper Text', 'Disabled', 'Validation'],
+      exclude: ['Hidden Label', 'Helper Text', 'Disabled', 'Validation'],
     },
   },
   args: {
@@ -247,22 +200,10 @@ export const FloatingLabel: Story = {
   },
 };
 
-export const Size: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Label', 'Floating Label', 'Hidden Label', 'Helper Text', 'Disabled', 'Validation'],
-    },
-  },
-  args: {
-    size: 'form-control-sm',
-    hint: '',
-  },
-};
-
 export const Validation: Story = {
   parameters: {
     controls: {
-      exclude: ['Label', 'Floating Label', 'Hidden Label', 'Size', 'Helper Text', 'Disabled'],
+      exclude: ['Label', 'Floating Label', 'Hidden Label', 'Helper Text', 'Disabled'],
     },
   },
   args: {

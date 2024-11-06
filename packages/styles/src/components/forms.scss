@@ -7,6 +7,8 @@
 @use './../variables/color';
 
 @use './../functions/sizing';
+@use './../functions/tokens';
+@use './../tokens/components';
 
 @use './../mixins/utilities';
 @use './../mixins/forms' as form-mixins;
@@ -15,12 +17,10 @@
 @use './../themes/bootstrap/forms/form-control' as bffc;
 @use './../themes/bootstrap/forms/input-group' as bfig;
 
+tokens.$default-map: components.$post-text-input;
+
 .form-control-rg {
   @include form-mixins.form-rg;
-}
-
-.form-control-sm {
-  @include form-mixins.form-sm;
 }
 
 .form-control-lg {
@@ -65,6 +65,17 @@ select.form-control-rg:not([size]):not([multiple]) {
 
 .form-control {
   position: relative;
+  border-radius: tokens.get('input-border-radius-surface');
+  border-color: tokens.get('input-color-enabled-stroke');
+  background-color: tokens.get('input-color-enabled-bg');
+  color: tokens.get('input-color-enabled-fg');
+  padding-inline-start: tokens.get('input-spacing-padding-inline-text-start');
+  padding-inline-end: tokens.get('input-spacing-padding-inline-text-end');
+  padding-block-start: tokens.get('input-spacing-padding-block-text1');
+  padding-block-end: tokens.get('input-spacing-padding-block-text1');
+  line-height: 30px; //TODO: This should be a token
+  font-size: 20px; //TODO Switch to token
+  height: 64px; //TODO: Should be token
 
   &:focus {
     box-shadow: none; // Override bootstrap
@@ -92,7 +103,7 @@ select.form-control-rg:not([size]):not([multiple]) {
 
   @include utilities.disabled-style {
     ~ .form-text {
-      color: var(--post-gray-60);
+      color: tokens.get('input-color-disabled-fg');
     }
   }
 
@@ -177,38 +188,10 @@ select.form-control-rg:not([size]):not([multiple]) {
         }
       }
     }
-
-    &.form-control-sm {
-      &::after {
-        padding-inline: forms.$input-padding-y-sm;
-      }
-    }
-
-    &.form-control-rg {
-      min-height: calc(
-        (1rem * forms.$input-line-height-rg) + (forms.$input-padding-y-rg * 2) +
-          (forms.$input-border-width * 2)
-      );
-
-      &::after {
-        padding-inline: forms.$input-padding-y-rg;
-      }
-    }
-
-    &.form-control-lg {
-      &::after {
-        padding-inline: forms.$input-padding-y-lg;
-      }
-    }
   }
 }
 
 .form-label {
-  &:has(+ .form-control-sm, + .form-select-sm) {
-    font-size: forms.$form-label-font-size-sm;
-    margin-bottom: spacing.$size-micro;
-  }
-
   &:has(+ .form-control[disabled], + .form-select[disabled]) {
     color: var(--post-gray-60);
   }

@@ -103,10 +103,6 @@ post-card-control ~ .invalid-feedback {
         border-color: form-validation.$form-feedback-invalid-color;
       }
     }
-
-    &.form-control-sm ~ .invalid-feedback {
-      padding: form-validation.$form-feedback-padding-y-sm form-validation.$form-feedback-padding-x;
-    }
   }
 
   &.is-valid {
@@ -116,10 +112,6 @@ post-card-control ~ .invalid-feedback {
       &:focus {
         border-color: var(--post-success);
       }
-    }
-
-    &.form-control-sm ~ .valid-feedback {
-      padding: form-validation.$form-feedback-padding-y-sm form-validation.$form-feedback-padding-x;
     }
   }
 }
