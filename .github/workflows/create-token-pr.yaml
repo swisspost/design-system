@@ -79,6 +79,6 @@ jobs:
       - name: Create PR
         if: steps.pr.outputs.exists == 'false'
         run: |
-          gh pr create --title "TEST2" --body "Merge this PR to update the tokens in the main branch." --base main
+          gh pr create --title "TEST3" --body "Merge this PR to update the tokens in the main branch." --base main
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
