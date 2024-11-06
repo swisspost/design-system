@@ -53,7 +53,6 @@ export class PostMenu {
     }
   }
 
-  // Handles keydown events on the menu to support keyboard navigation
   private handleKeyDown = (e: KeyboardEvent) => {
     if (['ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'Space', 'Escape', 'Home', 'End'].includes(e.key)) {
       this.controlKeyDownHandler(e);
@@ -104,7 +103,6 @@ export class PostMenu {
     }
   }
 
-  // Checks if an element is focusable
   private isFocusable(element: HTMLElement): boolean {
     const focusableTags = ['A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT'];
     const tabIndex = element.getAttribute('tabindex');
@@ -121,7 +119,6 @@ export class PostMenu {
     return false;
   }  
 
-  // Returns all slotted, focusable items within the menu
   private getSlottedItems() {
     const slot = this.host.shadowRoot.querySelector('slot');
     const slottedElements = slot ? slot.assignedElements() : [];
