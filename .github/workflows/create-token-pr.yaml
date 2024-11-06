@@ -8,7 +8,7 @@ name: Create Token PR
 on:
   push:
     branches:
-      - tokens/v*
+      - tokens/*
 
 jobs:
   create_pr:
