@@ -27,10 +27,13 @@ export const ToggleButton: Story = {
               SIZES.map(size =>
                 TOGGLED.map(
                   isToggled => html`
-                    <post-togglebutton class="btn ${btn} ${size} my-5" ?toggled=${isToggled}>
-                      <span slot="untoggled">Untoggled</span>
-                      <span slot="toggled">Toggled</span>
-                    </post-togglebutton>
+                    ${meta.render({
+                      variant: btn,
+                      size: size || 'null',
+                      toggled: isToggled,
+                      contentWhenUntoggled: 'Untoggled',
+                      contentWhenToggled: 'Toggled',
+                    })}
                   `,
                 ),
               ),

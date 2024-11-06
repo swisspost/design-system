@@ -1,7 +1,8 @@
 import { type Args, StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 import { spread } from '@open-wc/lit-helpers';
+import chipMeta from '@/stories/components/chip/chip.stories';
 
 export interface PostTogglebuttonProps {
   type?: 'button' | 'submit' | 'reset';
@@ -16,6 +17,7 @@ const meta: MetaComponent<PostTogglebuttonProps> = {
   id: '1a6f47c2-5e8a-45a0-b1c3-9f7e2b834c24',
   title: 'Components/Toggle Button',
   tags: ['package:WebComponents'],
+  render: renderBadge,
   component: 'post-togglebutton',
   parameters: {
     design: {},
@@ -117,16 +119,14 @@ const meta: MetaComponent<PostTogglebuttonProps> = {
 
 export default meta;
 
-const Template: StoryObj<PostTogglebuttonProps> = {
-  render: (args: Args) => {
-    return html`
-      <post-togglebutton ${spread(createProps(args))}>
-        <span slot="untoggled">${args.contentWhenUntoggled}</span>
-        <span slot="toggled">${args.contentWhenToggled}</span>
-      </post-togglebutton>
-    `;
-  },
-};
+function renderBadge(args: Args) {
+  return html`
+    <post-togglebutton ${spread(createProps(args))}>
+      <span slot="untoggled">${args.contentWhenUntoggled}</span>
+      <span slot="toggled">${args.contentWhenToggled}</span>
+    </post-togglebutton>
+  `;
+}
 
 function createProps(args: Args) {
   return {
@@ -136,16 +136,10 @@ function createProps(args: Args) {
   };
 }
 
-export const Default: StoryObj<PostTogglebuttonProps> = {
-  ...Template,
-};
+export const Default: StoryObj<PostTogglebuttonProps> = {};
 
 export const InitiallyToggled: StoryObj<PostTogglebuttonProps> = {
-  ...Template,
-  args: {
-    ...Default.args,
-    toggled: true,
-  },
+  render: args => html` ${renderBadge({ ...args, toggled: true })} `,
 };
 
 export const IconContent: StoryObj<PostTogglebuttonProps> = {
