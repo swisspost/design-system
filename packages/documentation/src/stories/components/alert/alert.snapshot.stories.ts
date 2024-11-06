@@ -69,10 +69,10 @@ export const Alert: Story = {
                     ${args.action
                       ? html`
                           <div class="alert-buttons">
-                            <button class="btn btn-primary btn-animated">
+                            <button class="btn btn-primary">
                               <span>Akcepti</span>
                             </button>
-                            <button class="btn btn-secondary btn-animated">
+                            <button class="btn btn-secondary">
                               <span>Aborti</span>
                             </button>
                           </div>
@@ -99,10 +99,10 @@ export const PostAlert: Story = {
       '</p>';
 
     const actionButton =
-      '<button class="btn btn-primary btn-animated" slot="actions" >' +
+      '<button class="btn btn-primary" slot="actions" >' +
       '<span>Akcepti</span>' +
       '</button>' +
-      '<button class="btn btn-secondary btn-animated" slot="actions" >' +
+      '<button class="btn btn-secondary" slot="actions" >' +
       '<span>Aborti</span>' +
       '</button>';
 
