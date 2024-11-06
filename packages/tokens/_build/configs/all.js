@@ -10,7 +10,7 @@ registerConfigMethod((tokenSets, { sourcePath, buildPath }) => {
         filePath,
         setNames: Object.keys(sets),
       },
-      preprocessors: ['swisspost/box-shadow-keep-refs-workaround', 'tokens-studio'],
+      preprocessors: ['tokens-studio'],
       source: [`${sourcePath}_temp/output/${filePath}`],
       include: [`${sourcePath}_temp/source/**/*.json`],
       platforms: {

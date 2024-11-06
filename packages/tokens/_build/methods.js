@@ -17,38 +17,6 @@ let CLI_OPTIONS;
 let tokenSets;
 let registeredConfigMethods = [];
 
-// Can be removed, as soon as box-shadow tokens can be outputted with references
-StyleDictionary.registerPreprocessor({
-  name: 'swisspost/box-shadow-keep-refs-workaround',
-  preprocessor: dictionary => {
-    traverse(dictionary);
-
-    function traverse(context) {
-      Object.entries(context).forEach(([key, value]) => {
-        const usesDtcg = context[key].$type && context[key].$value;
-        const isToken = context[key][usesDtcg ? '$type' : 'type'] !== undefined;
-
-        if (isToken) {
-          const tokenType = context[key][usesDtcg ? '$type' : 'type'];
-          const tokenValue = context[key][usesDtcg ? '$value' : 'value'];
-
-          if (tokenType === 'shadow' && typeof tokenValue === 'string') {
-            context[key].$extensions[
-              'studio.tokens'
-            ].boxShadowKeepRefsWorkaroundValue = `${tokenValue.replace(/[{}]/g, match =>
-              match === '{' ? '[[' : ']]',
-            )}`;
-          }
-        } else if (typeof context[key] === 'object') {
-          traverse(value);
-        }
-      });
-    }
-
-    return dictionary;
-  },
-});
-
 export async function setup() {
   CLI_OPTIONS = createCliOptions();
 
