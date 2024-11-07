@@ -50,12 +50,7 @@ tokens.$default-map: components.$post-list;
     }
   }
 
-  @include utilities-mx.focus-style(
-    $offset: tokens.get('list-item-focus-outline-offset'),
-    $width: tokens.get('list-item-focus-outline-width'),
-    $color: tokens.get('list-item-focus-outline-color'),
-    $style: tokens.get('list-item-focus-outline-style')
-  );
+  @include utilities-mx.focus-style;
 }
 
 .list-group-link,
