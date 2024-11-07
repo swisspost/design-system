@@ -23,7 +23,8 @@ export async function setup() {
   const tokensFile = JSON.parse(await promises.readFile(`${SOURCE_PATH}/tokens.json`, 'utf-8'));
   tokenSets = createTokenSets(tokensFile);
 
-  await promises.rm(`${OUTPUT_PATH}/`, { recursive: true });
+  if (await promises.readdir(OUTPUT_PATH).catch(() => false))
+    await promises.rm(OUTPUT_PATH, { recursive: true });
 }
 
 /**
