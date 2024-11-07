@@ -217,6 +217,18 @@ export namespace Components {
          */
         "url": string;
     }
+    interface PostList {
+        /**
+          * The list can become horizontal by setting `horizontal="true"` or just `horizontal`
+         */
+        "horizontal": boolean;
+        /**
+          * If `true`, the list title will be hidden. Otherwise, it will be displayed.`
+         */
+        "titleHidden": boolean;
+    }
+    interface PostListItem {
+    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -257,6 +269,10 @@ export namespace Components {
           * Wheter or not to display a little pointer arrow
          */
         "arrow"?: boolean;
+        /**
+          * Gap between the edge of the page and the popover
+         */
+        "edgeGap"?: number;
         /**
           * Programmatically hide this tooltip
          */
@@ -496,6 +512,18 @@ declare global {
         prototype: HTMLPostLanguageOptionElement;
         new (): HTMLPostLanguageOptionElement;
     };
+    interface HTMLPostListElement extends Components.PostList, HTMLStencilElement {
+    }
+    var HTMLPostListElement: {
+        prototype: HTMLPostListElement;
+        new (): HTMLPostListElement;
+    };
+    interface HTMLPostListItemElement extends Components.PostListItem, HTMLStencilElement {
+    }
+    var HTMLPostListItemElement: {
+        prototype: HTMLPostListItemElement;
+        new (): HTMLPostListItemElement;
+    };
     interface HTMLPostLogoElement extends Components.PostLogo, HTMLStencilElement {
     }
     var HTMLPostLogoElement: {
@@ -594,6 +622,8 @@ declare global {
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
         "post-icon": HTMLPostIconElement;
         "post-language-option": HTMLPostLanguageOptionElement;
+        "post-list": HTMLPostListElement;
+        "post-list-item": HTMLPostListItemElement;
         "post-logo": HTMLPostLogoElement;
         "post-popover": HTMLPostPopoverElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
@@ -791,6 +821,18 @@ declare namespace LocalJSX {
          */
         "url"?: string;
     }
+    interface PostList {
+        /**
+          * The list can become horizontal by setting `horizontal="true"` or just `horizontal`
+         */
+        "horizontal"?: boolean;
+        /**
+          * If `true`, the list title will be hidden. Otherwise, it will be displayed.`
+         */
+        "titleHidden"?: boolean;
+    }
+    interface PostListItem {
+    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -816,6 +858,10 @@ declare namespace LocalJSX {
           * Wheter or not to display a little pointer arrow
          */
         "arrow"?: boolean;
+        /**
+          * Gap between the edge of the page and the popover
+         */
+        "edgeGap"?: number;
         /**
           * Fires whenever the popover gets shown or hidden, passing the new state in event.details as a boolean
          */
@@ -911,6 +957,8 @@ declare namespace LocalJSX {
         "post-collapsible-trigger": PostCollapsibleTrigger;
         "post-icon": PostIcon;
         "post-language-option": PostLanguageOption;
+        "post-list": PostList;
+        "post-list-item": PostListItem;
         "post-logo": PostLogo;
         "post-popover": PostPopover;
         "post-popovercontainer": PostPopovercontainer;
@@ -941,6 +989,8 @@ declare module "@stencil/core" {
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
             "post-language-option": LocalJSX.PostLanguageOption & JSXBase.HTMLAttributes<HTMLPostLanguageOptionElement>;
+            "post-list": LocalJSX.PostList & JSXBase.HTMLAttributes<HTMLPostListElement>;
+            "post-list-item": LocalJSX.PostListItem & JSXBase.HTMLAttributes<HTMLPostListItemElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;

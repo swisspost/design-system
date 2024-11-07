@@ -224,11 +224,11 @@ export const Multipart: Story = {
           </div>
 
           <div class="card-body bg-light">
-            <button class="btn btn-secondary btn-animated w-100 mb-12">
+            <button class="btn btn-secondary w-100 mb-12">
               <span>Order Sample Product</span>
             </button>
 
-            <button class="btn btn-primary btn-animated w-100">
+            <button class="btn btn-primary w-100">
               <span>Print Sample Product</span>
             </button>
           </div>
@@ -311,11 +311,11 @@ export const Multipart: Story = {
           </div>
 
           <div class="card-body bg-light">
-            <button class="btn btn-secondary btn-animated w-100 mb-12">
+            <button class="btn btn-secondary w-100 mb-12">
               <span>Order Sample Product</span>
             </button>
 
-            <button class="btn btn-primary btn-animated w-100">
+            <button class="btn btn-primary w-100">
               <span>Print Sample Product</span>
             </button>
           </div>
