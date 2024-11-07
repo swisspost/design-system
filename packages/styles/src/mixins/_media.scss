@@ -1,13 +1,8 @@
 @use 'sass:map';
 @use 'sass:meta';
-@use '../variables/breakpoints';
+@use '../functions/breakpoint';
 
-/**
-  Gets a breakpoint from the map based on the key
-*/
-@function get-device-size($size) {
-  @return map.get(breakpoints.$grid-breakpoints, $size);
-}
+$offset: 0.01;
 
 /**
   Creates a min-width breakpoint with the given value
@@ -15,7 +10,7 @@
 */
 @mixin min($device-size) {
   @if (meta.type-of($device-size) == 'string') {
-    $device-size: get-device-size($device-size);
+    $device-size: breakpoint.min-width($device-size);
   }
 
   @if $device-size != 0 {
@@ -33,10 +28,10 @@
 */
 @mixin max($device-size) {
   @if (meta.type-of($device-size) == 'string') {
-    $device-size: get-device-size($device-size);
+    $device-size: breakpoint.min-width($device-size);
   }
 
-  @media screen and (max-width: ($device-size - 0.01)) {
+  @media screen and (max-width: ($device-size - $offset)) {
     @content;
   }
 }
@@ -48,13 +43,13 @@
 */
 @mixin between($min-size, $max-size) {
   @if (meta.type-of($min-size) == 'string') {
-    $min-size: get-device-size($min-size);
+    $min-size: breakpoint.min-width($min-size);
   }
   @if (meta.type-of($max-size) == 'string') {
-    $max-size: get-device-size($max-size);
+    $max-size: breakpoint.min-width($max-size);
   }
 
-  @media screen and (min-width: $min-size) and (max-width: ($max-size - 0.01)) {
+  @media screen and (min-width: $min-size) and (max-width: ($max-size - $offset)) {
     @content;
   }
 }
