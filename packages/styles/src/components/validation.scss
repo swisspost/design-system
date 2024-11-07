@@ -91,6 +91,7 @@ fieldset:has(.is-invalid) {
   ~ .invalid-feedback,
   ~ .valid-feedback {
     margin-top: 1px;
+
     &::before {
       margin-top: -1px;
       height: tokens.get('post-validation-group-icon-size');
