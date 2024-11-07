@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:meta';
 @use '../variables/breakpoints';
 
 /**
@@ -13,7 +14,7 @@
   @param $device-size A pixel value or a key for the breakpoints map
 */
 @mixin min($device-size) {
-  @if (type-of($device-size) == 'string') {
+  @if (meta.type-of($device-size) == 'string') {
     $device-size: get-device-size($device-size);
   }
 
@@ -31,7 +32,7 @@
   @param $device-size A pixel value or a key for the breakpoints map
 */
 @mixin max($device-size) {
-  @if (type-of($device-size) == 'string') {
+  @if (meta.type-of($device-size) == 'string') {
     $device-size: get-device-size($device-size);
   }
 
@@ -46,10 +47,10 @@
   @param $max-size A pixel value or a key for the breakpoints map
 */
 @mixin between($min-size, $max-size) {
-  @if (type-of($min-size) == 'string') {
+  @if (meta.type-of($min-size) == 'string') {
     $min-size: get-device-size($min-size);
   }
-  @if (type-of($max-size) == 'string') {
+  @if (meta.type-of($max-size) == 'string') {
     $max-size: get-device-size($max-size);
   }
 
