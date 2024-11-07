@@ -1,4 +1,3 @@
-@use 'sass:map';
 @use 'form-check';
 @use '../variables/color';
 @use '../variables/commons';
@@ -18,13 +17,12 @@ $switch-handle-icon: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='htt
 .form-switch {
   display: flex;
   align-items: center;
-  
+
   @include utility-mx.focus-style() {
     &:has(> input:only-child) {
-          border-radius: tokens.get('switch-border-radius-round');
-        }
+      border-radius: tokens.get('switch-border-radius-round');
+    }
   }
-
 
   .form-check-input {
     position: relative;

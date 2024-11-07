@@ -28,7 +28,6 @@
     }
   }
 
-  > input,
   > label {
     transition: color #{animation.$transition-base-timing};
 
@@ -36,35 +35,41 @@
       transition: none;
     }
   }
+}
 
-  > input {
-    &:not([disabled]),
-    &:not([disabled]) ~ .form-check-label {
-      cursor: pointer;
-    }
+.form-check-input {
+  transition: color #{animation.$transition-base-timing};
 
-    @include utility-mx.focus-style-none();
-    display: inline-flex;
-    flex: 0 auto;
-    appearance: none;
-    background: transparent;
+  @include utility-mx.high-contrast-mode {
+    transition: none;
+  }
 
-    @include utility-mx.high-contrast-mode {
-      border-color: FieldText;
-    }
+  &:not([disabled]),
+  &:not([disabled]) ~ .form-check-label {
+    cursor: pointer;
+  }
 
-    &::after {
-      content: '';
-      display: block;
-    }
+  @include utility-mx.focus-style-none();
+  display: inline-flex;
+  flex: 0 auto;
+  appearance: none;
+  background: transparent;
 
-    // Shared disabled styles
-    &[disabled] {
-      &[type='checkbox'],
-      &[type='radio'] {
-        @include utility-mx.high-contrast-mode {
-          border-color: GrayText !important;
-        }
+  @include utility-mx.high-contrast-mode {
+    border-color: FieldText;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+  }
+
+  // Shared disabled styles
+  &[disabled] {
+    &[type='checkbox'],
+    &[type='radio'] {
+      @include utility-mx.high-contrast-mode {
+        border-color: GrayText !important;
       }
     }
   }

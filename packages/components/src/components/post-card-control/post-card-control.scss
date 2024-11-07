@@ -1,7 +1,9 @@
 @use 'sass:list';
 @use 'sass:math';
 @use '@swisspost/design-system-styles/core' as post;
-@use '@swisspost/design-system-styles/components/form-check';
+@use '@swisspost/design-system-styles/components/_form-check';
+@use '@swisspost/design-system-styles/components/checkbox';
+@use '@swisspost/design-system-styles/components/radio-button';
 
 /*
 * There are a whole bunch of !important statements in this file.
@@ -52,6 +54,12 @@
     color: var(--post-card-control-input-border-color) !important;
     cursor: inherit;
     transition: none;
+
+    &:hover:not([disabled]),
+    &:hover:not([disabled]) ~ label.form-check-label {
+      color: var(--post-contrast-color);
+      background-color: transparent;
+    }
 
     &:focus,
     &:focus-visible {

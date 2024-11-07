@@ -9,7 +9,6 @@
 * There are a whole bunch of !important statments in this file.
 * They are necessary and should not be removed, because we need to override the .form-check styles here.
 */
-
 fieldset {
   .radio-button-card,
   .checkbox-button-card {
@@ -49,6 +48,12 @@ fieldset {
     color: var(--post-card-control-input-border-color) !important;
     cursor: inherit;
     transition: none;
+
+    &:hover:not([disabled]),
+    &:hover:not([disabled]) ~ label.form-check-label {
+      color: var(--post-contrast-color);
+      background-color: transparent;
+    }
 
     &:focus,
     &:focus-visible {
