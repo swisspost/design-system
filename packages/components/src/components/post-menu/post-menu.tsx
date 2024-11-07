@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, h, Host, Method, Prop } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Host, Method, Prop, State } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
 
@@ -33,13 +33,16 @@ export class PostMenu {
    */
   @Prop() readonly placement?: Placement = 'bottom';
 
-  constructor() {}
+  /**
+   * Tracks the visibility state of the menu (true if visible, false if hidden).
+   */
+  @State() isVisible: boolean = false;
 
-   /**
+  /**
    * Emits when the menu is shown or hidden.
    * The emitted boolean value indicates the menu's visibility state.
    */
-   @Event() toggleMenu: EventEmitter<boolean>;
+  @Event() toggleMenu: EventEmitter<boolean>;
 
   connectedCallback() {
     if (menuInstances === 0) {
@@ -62,7 +65,7 @@ export class PostMenu {
       this.controlKeyDownHandler(e);
     }
   };
-    
+
   private controlKeyDownHandler(e: KeyboardEvent) {
     e.stopPropagation();
   
@@ -145,10 +148,11 @@ export class PostMenu {
    */
   @Method()
   async show(target: HTMLElement) {
-    if (this.popoverRef) {
+    if (!this.isVisible && this.popoverRef) {
       await this.popoverRef.show(target);
-      this.toggleMenu.emit(true);
-    } else {
+      this.isVisible = true;
+      this.toggleMenu.emit(this.isVisible);
+    } else if (!this.popoverRef) {
       console.error('show: popoverRef is null or undefined');
     }
   }
@@ -158,12 +162,22 @@ export class PostMenu {
    */
   @Method()
   async hide() {
-    if (this.popoverRef) {
+    if (this.isVisible && this.popoverRef) {
       await this.popoverRef.hide();
-      this.toggleMenu.emit(false);
-    } else {
+      this.isVisible = false;
+      this.toggleMenu.emit(this.isVisible);
+    } else if (!this.popoverRef) {
       console.error('hide: popoverRef is null or undefined');
     }
+  }
+
+  /**
+   * Programmatically toggle the menu visibility.
+   * If the menu is currently visible, it will be hidden; otherwise, it will be shown.
+   */
+  @Method()
+  async toggle(target: HTMLElement) {
+    this.isVisible ? await this.hide() : await this.show(target);
   }
 
   render() {

@@ -14,9 +14,9 @@
 
 ## Events
 
-| Event        | Description | Type                   |
-| ------------ | ----------- | ---------------------- |
-| `toggleMenu` |             | `CustomEvent<boolean>` |
+| Event        | Description                                                                                              | Type                   |
+| ------------ | -------------------------------------------------------------------------------------------------------- | ---------------------- |
+| `toggleMenu` | Emits when the menu is shown or hidden. The emitted boolean value indicates the menu's visibility state. | `CustomEvent<boolean>` |
 
 
 ## Methods
@@ -34,6 +34,23 @@ Type: `Promise<void>`
 ### `show(target: HTMLElement) => Promise<void>`
 
 Programmatically display the menu
+
+#### Parameters
+
+| Name     | Type          | Description |
+| -------- | ------------- | ----------- |
+| `target` | `HTMLElement` |             |
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `toggle(target: HTMLElement) => Promise<void>`
+
+Programmatically toggle the menu visibility.
+If the menu is currently visible, it will be hidden; otherwise, it will be shown.
 
 #### Parameters
 

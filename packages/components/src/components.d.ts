@@ -236,6 +236,10 @@ export namespace Components {
           * Programmatically display the menu
          */
         "show": (target: HTMLElement) => Promise<void>;
+        /**
+          * Programmatically toggle the menu visibility. If the menu is currently visible, it will be hidden; otherwise, it will be shown.
+         */
+        "toggle": (target: HTMLElement) => Promise<void>;
     }
     interface PostMenuItem {
     }
@@ -875,7 +879,7 @@ declare namespace LocalJSX {
         /**
           * Link the trigger to a menu with this ID.
          */
-        "for"?: string;
+        "for": string;
     }
     interface PostPopover {
         /**
