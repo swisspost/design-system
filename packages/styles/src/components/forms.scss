@@ -1,84 +1,41 @@
 @forward './../variables/options';
 
-@use './../variables/commons';
-@use './../variables/components/forms';
 @use './../variables/type';
-@use './../variables/spacing';
-@use './../variables/color';
 
-@use './../functions/sizing';
 @use './../functions/tokens';
 @use './../tokens/components';
 
 @use './../mixins/utilities';
-@use './../mixins/forms' as form-mixins;
-
-@use './../themes/bootstrap/forms/form-text' as bfft;
-@use './../themes/bootstrap/forms/form-control' as bffc;
-@use './../themes/bootstrap/forms/input-group' as bfig;
 
 tokens.$default-map: components.$post-text-input;
 
-.form-control-rg {
-  @include form-mixins.form-rg;
-}
-
-.form-control-lg {
-  @include form-mixins.form-lg;
-}
-
-textarea {
-  &.form-control-lg {
-    padding-top: spacing.$size-regular;
-    padding-bottom: spacing.$size-mini;
-    padding-right: spacing.$size-large;
-    min-height: (forms.$form-floating-label-font-size * forms.$input-line-height-lg) +
-      spacing.$size-regular + spacing.$size-mini + sizing.px-to-rem(forms.$input-border-width * 2);
-  }
-
-  &.form-control-sm {
-    padding-top: spacing.$size-mini;
-    padding-right: spacing.$size-large;
-    padding-bottom: 0;
-    min-height: (forms.$form-floating-label-font-size-placeholder-sm * forms.$input-line-height-sm) +
-      (spacing.$size-mini * 2) + sizing.px-to-rem(forms.$input-border-width * 2);
-  }
-}
-
-select.form-control-rg:not([size]):not([multiple]) {
-  height: forms.$input-height-rg;
-}
-
-.form-control-wrapper {
-  @include utilities.focus-style {
-    border-radius: commons.$border-radius;
-  }
-}
-
-:not(.form-control-wrapper) > {
-  .form-control {
-    @include utilities.focus-style {
-      border-radius: commons.$border-radius;
-    }
-  }
-}
-
 .form-control {
+  display: block;
+  width: 100%;
+  font-weight: tokens.get('input-font-weight');
+  font-family: type.$font-family-sans-serif;
+  appearance: none; // Fix appearance for date inputs in Safari
+  background-clip: padding-box;
+  border: tokens.get('input-sizing-border-width') tokens.get('input-sizing-border-style')
+    tokens.get('input-color-enabled-stroke');
   position: relative;
   border-radius: tokens.get('input-border-radius-surface');
-  border-color: tokens.get('input-color-enabled-stroke');
   background-color: tokens.get('input-color-enabled-bg');
   color: tokens.get('input-color-enabled-fg');
   padding-inline-start: tokens.get('input-spacing-padding-inline-text-start');
   padding-inline-end: tokens.get('input-spacing-padding-inline-text-end');
   padding-block-start: tokens.get('input-spacing-padding-block-text1');
   padding-block-end: tokens.get('input-spacing-padding-block-text1');
-  line-height: 30px; //TODO: This should be a token
-  font-size: 20px; //TODO Switch to token
-  height: 64px; //TODO: Should be token
+  line-height: tokens.get('input-sizing-line-height');
+  font-size: tokens.get('input-sizing-font-size');
+  height: tokens.get('input-sizing-height');
 
   &:focus {
-    box-shadow: none; // Override bootstrap
+    border-color: tokens.get('input-color-hover-stroke');
+    background-color: tokens.get('input-color-hover-bg');
+    color: tokens.get('input-color-hover-fg');
+
+    @include utilities.focus-style;
 
     @include utilities.high-contrast-mode {
       border-color: FieldText !important; // On blink browser valid and invalid border colors are converted to Highlight color
@@ -94,7 +51,10 @@ select.form-control-rg:not([size]):not([multiple]) {
     }
 
     &:hover {
-      border-color: color.$black;
+      border-color: tokens.get('input-color-hover-stroke');
+      background-color: tokens.get('input-color-hover-bg');
+      color: tokens.get('input-color-hover-fg');
+
       @include utilities.high-contrast-mode {
         border-color: Highlight;
       }
@@ -108,11 +68,12 @@ select.form-control-rg:not([size]):not([multiple]) {
   }
 
   &[readonly]:not(:disabled) {
-    border-color: forms.$input-color;
-    background-color: forms.$input-bg;
+    border-color: tokens.get('input-color-enabled-stroke');
+    background-color: tokens.get('input-color-enabled-bg');
   }
 
   &[type='file'] {
+    overflow: hidden;
     position: relative;
 
     &:disabled {
@@ -121,8 +82,20 @@ select.form-control-rg:not([size]):not([multiple]) {
         border-color: GrayText;
       }
     }
-
+    // File input buttons theming
     &::file-selector-button {
+      padding: tokens.get('input-spacing-padding-block-text1')
+        tokens.get('input-spacing-padding-inline-text-start');
+      margin: calc(#{tokens.get('input-spacing-padding-block-text1')} * -1)
+        calc(#{tokens.get('input-spacing-padding-inline-text-start')} * -1);
+      margin-inline-end: tokens.get('input-spacing-padding-inline-text-start');
+      color: tokens.get('input-color-enabled-fg');
+      pointer-events: none;
+      border-color: inherit;
+      border-style: solid;
+      border-width: 0;
+      border-inline-end-width: tokens.get('input-sizing-border-width');
+      border-radius: 0;
       display: block;
       position: absolute;
       top: 0;
@@ -156,7 +129,7 @@ select.form-control-rg:not([size]):not([multiple]) {
         bottom: 0;
         right: 0;
         z-index: 2;
-        padding-inline: forms.$input-padding-y;
+        padding-inline: tokens.get('input-spacing-padding-inline-text-start');
         background-color: inherit;
         border-left: inherit;
         text-align: center;
@@ -188,11 +161,59 @@ select.form-control-rg:not([size]):not([multiple]) {
         }
       }
     }
+
+    &:not(:disabled):not([readonly]) {
+      cursor: pointer;
+    }
+  }
+
+  &::-webkit-date-and-time-value {
+    min-width: 85px; // Seems to be a good minimum safe width
+    height: if(
+      unit(tokens.get('input-sizing-line-height')) == '',
+      tokens.get('input-sizing-line-height') * 1em,
+      tokens.get('input-sizing-line-height')
+    );
+    margin: 0;
+  }
+
+  &::-webkit-datetime-edit {
+    display: block;
+    padding: 0;
+  }
+
+  &::placeholder {
+    color: tokens.get('input-color-placeholder-fg');
+    opacity: 1;
+  }
+
+  &:disabled {
+    color: tokens.get('input-color-disabled-fg');
+    background-color: tokens.get('input-color-disabled-bg');
+    border-color: tokens.get('input-color-disabled-stroke');
+    opacity: 1;
+  }
+
+  &:hover:not(:disabled):not([readonly])::file-selector-button {
+    background-color: tokens.get('input-color-hover-bg');
+  }
+}
+
+textarea {
+  &.form-control {
+    min-height: tokens.get('input-sizing-height');
   }
 }
 
 .form-label {
   &:has(+ .form-control[disabled], + .form-select[disabled]) {
     color: var(--post-gray-60);
+  }
+}
+
+.form-floating {
+  > .form-control {
+    height: tokens.get('input-sizing-height'); //TODO: Needed?
+    min-height: tokens.get('input-sizing-height'); //TODO: Needed?
   }
 }
