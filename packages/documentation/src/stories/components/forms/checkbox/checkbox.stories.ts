@@ -90,21 +90,6 @@ const meta: MetaComponent = {
         category: 'States',
       },
     },
-    size: {
-      name: 'Size',
-      description: "Sets the size of the component's appearance.",
-      control: {
-        type: 'select',
-        labels: {
-          'form-check-sm': 'Small',
-          'null': 'Large',
-        },
-      },
-      options: ['form-check-sm', 'null'],
-      table: {
-        category: 'General',
-      },
-    },
     disabled: {
       name: 'Disabled',
       description:
@@ -165,7 +150,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 };
 
 function getLabel({ label }: Args, { id }: StoryContext) {
-  return html` <label for="${id}" class="form-check-label">${label}</label> `;
+  return html` <label for="${id}">${label}</label> `;
 }
 
 function getValidationFeedback({ validation }: Args) {
@@ -185,10 +170,7 @@ function renderCheckbox(args: Args, context: StoryContext) {
     'form-check-inline': args.inline,
   });
 
-  const checkboxClasses = mapClasses({
-    'form-check-input': true,
-    ['is-' + args.validation]: args.validation !== 'null',
-  });
+  const checkboxClass = args.validation !== 'null' ? `is-${args.validation}` : undefined;
 
   const handleChange = () => {
     updateArgs({ checked: CHECKED_STATE_TOGGLE_MAP[args.checked] });
@@ -203,7 +185,7 @@ function renderCheckbox(args: Args, context: StoryContext) {
     <div class="${containerClasses}">
       <input
         id="${context.id}"
-        class="${checkboxClasses}"
+        class="${ifDefined(checkboxClass)}"
         type="checkbox"
         aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
         aria-label="${ifDefined(args.hiddenLabel ? args.label : undefined)}"
@@ -236,17 +218,6 @@ export const Validation: Story = {
   },
   args: {
     validation: 'invalid',
-  },
-};
-
-export const Size: Story = {
-  args: {
-    size: 'form-check-sm',
-  },
-  parameters: {
-    controls: {
-      exclude: ['Hidden Legend', 'Inline Layout'],
-    },
   },
 };
 
