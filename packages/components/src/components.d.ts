@@ -258,6 +258,10 @@ export namespace Components {
          */
         "arrow"?: boolean;
         /**
+          * Gap between the edge of the page and the popover
+         */
+        "edgeGap"?: number;
+        /**
           * Programmatically hide this tooltip
          */
         "hide": () => Promise<void>;
@@ -816,6 +820,10 @@ declare namespace LocalJSX {
           * Wheter or not to display a little pointer arrow
          */
         "arrow"?: boolean;
+        /**
+          * Gap between the edge of the page and the popover
+         */
+        "edgeGap"?: number;
         /**
           * Fires whenever the popover gets shown or hidden, passing the new state in event.details as a boolean
          */

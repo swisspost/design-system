@@ -7,7 +7,7 @@ $tile-rg-size: var(--post-docs-tile-rg-size, calc($tile-size / 1.2));
 
 :host{
   a {
-    @include utilities.focus-style() {
+    @include utilities.focus-style {
       border-radius: post.$border-radius;
     }
   }

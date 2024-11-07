@@ -231,8 +231,8 @@ export default function Home() {
                 <h3 className="h5 mt-0">Details for this content</h3>
                 <p>Here are some more details for this content.</p>
                 <div className="d-flex flex-row-reverse gap-16">
-                  <button className="btn btn-primary btn-rg">OK</button>
-                  <button className="btn btn-secondary btn-rg">Nope</button>
+                  <button className="btn btn-primary">OK</button>
+                  <button className="btn btn-secondary">Nope</button>
                 </div>
               </PostPopover>
               <PostPopover closeButtonCaption="close">
