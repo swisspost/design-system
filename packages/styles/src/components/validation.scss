@@ -3,22 +3,53 @@
 @use '../functions/tokens';
 @use '../functions/icons';
 @use './../mixins/icons' as icon-mixin;
+@use '../tokens/components';
 
-tokens.$default-map: (
-  post-validation-error: #b20000,
-  post-validation-success: #107800,
-  post-device-font-size-9: 14px,
-  post-radio-button-icon-width-inner: 24px,
-  post-radio-button-icon-height-inner: 24px,
-  post-validation-list-gap-inline: 8px,
-  post-input-spacing-padding-block-text-assist: 6px,
-  post-input-spacing-padding-inline-text-assist: 2px
-);
+tokens.$default-map: components.$post-validation;
 
+// Components/Validation": {
+//   "post": {
+//     "validation": {
+//       "list": {
+//         "gap": {
+//           "inline": {
+//             "$type": "spacing",
+//             "$value": "{post.device.spacing.gap.inline.10}"
+//           }
+//         },
+//         "padding": {
+//           "block": {
+//             "text": {
+//               "$type": "spacing",
+//               "$value": "{post.device.spacing.padding.12}"
+//             }
+//           }
+//         }
+//       },
+//       "error": {
+//         "$type": "color",
+//         "$value": "{post.scheme.color.signal.error-solo}"
+//       },
+//       "success": {
+//         "$type": "color",
+//         "$value": "{post.scheme.color.signal.success-solo}"
+//       }
+//     }
+//   }
+
+// tokens.$default-map: (
+//   post-validation-error: #b20000,
+//   post-validation-success: #107800,
+//   post-device-font-size-9: 14px,
+//   post-radio-button-icon-width-inner: 24px,
+//   post-radio-button-icon-height-inner: 24px,
+//   post-validation-list-gap-inline: 8px,
+//   post-input-spacing-padding-block-text-assist: 6px,
+//   post-input-spacing-padding-inline-text-assist: 2px
+// );
 /*
 Default feedback message classes
  */
-
 .valid-feedback,
 .invalid-feedback {
   display: none;
