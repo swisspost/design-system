@@ -20,20 +20,20 @@ export const PostList: Story = {
           titleHidden: [false, true],
           horizontal: [false, true],
           itemGap: ['1rem', '2rem', '5rem'], // Variations for item gap
-          headingGap: ['1rem', '5rem', '10rem'], // Variations for heading gap
+          titleGap: ['1rem', '5rem', '10rem'], // Variations for title gap
         })
-          .filter((args: Args) => !(args.titleHidden && args.headingGap !== '1rem'))
+          .filter((args: Args) => !(args.titleHidden && args.titleGap !== '1rem'))
           .map((args: Args) => {
             return html`
               <post-list
                 style="
                 --post-list-item-gap: ${args.itemGap};
-                --post-list-title-gap: ${args.headingGap};
+                --post-list-title-gap: ${args.titleGap};
               "
                 title-hidden="${args.titleHidden}"
                 horizontal="${args.horizontal}"
               >
-                <h3 class="heading">List Title</h3>
+                <h3 class="title">List Title</h3>
                 <post-list-item>Item 1</post-list-item>
                 <post-list-item>Item 2</post-list-item>
                 <post-list-item>Item 3</post-list-item>

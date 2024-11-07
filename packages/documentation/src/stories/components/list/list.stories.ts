@@ -17,14 +17,14 @@ const meta: MetaComponent = {
   args: {
     horizontal: false,
     titleHidden: false,
-    listItemGap: null,
-    listTitleGap: null,
+    listItemGap: '',
+    listTitleGap: '',
   },
   argTypes: {
     listItemGap: {
       name: '--post-list-item-gap',
       description: 'Defines the gap between list items.',
-      control: { type: 'text' },
+      control: 'text',
       table: {
         category: 'Styling',
       },
@@ -32,7 +32,7 @@ const meta: MetaComponent = {
     listTitleGap: {
       name: '--post-list-title-gap',
       description: 'Defines the gap between the title and the list items.',
-      control: { type: 'text' },
+      control: 'text',
       table: {
         category: 'Styling',
       },
