@@ -18,6 +18,7 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
 
   &:has(input[type='checkbox']) {
     margin-bottom: tokens.get('checkbox-gap-block-group');
+    padding-block: tokens.get('checkbox-padding-block-single');
 
     &:focus-within {
       @include utility-mx.focus-style(
@@ -41,8 +42,8 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
     border: tokens.get('checkbox-icon-border-width') tokens.get('checkbox-border-style-default')
       tokens.get('checkbox-enabled-stroke');
     border-radius: tokens.get('checkbox-border-radius');
-    padding: tokens.get('checkbox-icon-padding-container');
-
+    padding: tokens.get('checkbox-icon-padding-inner');
+    margin: tokens.get('checkbox-icon-padding-container');
     color: tokens.get('checkbox-enabled-fg');
     background-color: tokens.get('checkbox-enabled-bg');
 
