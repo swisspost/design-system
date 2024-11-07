@@ -39,7 +39,7 @@
 
   > input {
     &:not([disabled]),
-    &:not([disabled]) ~ label {
+    &:not([disabled]) ~ .form-check-label {
       cursor: pointer;
     }
 
