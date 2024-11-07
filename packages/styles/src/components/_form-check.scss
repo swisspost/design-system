@@ -1,6 +1,5 @@
 @forward './../variables/options';
 
-@use 'sass:map';
 @use '../variables/color';
 @use '../variables/commons';
 @use '../variables/type';
@@ -10,22 +9,27 @@
 @use '../mixins/color' as color-mx;
 @use '../mixins/icons' as icons-mx;
 @use '../mixins/utilities' as utility-mx;
+@use '../tokens/helpers';
+@use '../functions/tokens';
 
 .form-check {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
+  width: fit-content;
+  border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
 
   &-inline {
     display: inline-flex;
+    vertical-align: top;
 
     &:not(:last-of-type) {
       margin-right: form-check.$form-check-inline-margin-right;
     }
   }
 
-  &-input,
-  &-label {
+  > input,
+  > label {
     transition: color #{animation.$transition-base-timing};
 
     @include utility-mx.high-contrast-mode {
@@ -33,7 +37,7 @@
     }
   }
 
-  &-input {
+  > input {
     &:not([disabled]),
     &:not([disabled]) ~ .form-check-label {
       cursor: pointer;

@@ -18,23 +18,13 @@ $switch-handle-icon: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='htt
 .form-switch {
   display: flex;
   align-items: center;
-
-  @include utility-mx.focus-style(
-    $offset: tokens.get('switch-focus-outline-offset'),
-    $width: tokens.get('switch-focus-border-width'),
-    $color: tokens.get('switch-focus-stroke'),
-    $style: tokens.get('switch-focus-border-style')
-  ) {
-    width: fit-content;
-
-    &:not(:has(> input:only-child)) {
-      border-radius: tokens.get('switch-focus-border-radius');
-    }
-
+  
+  @include utility-mx.focus-style() {
     &:has(> input:only-child) {
-      border-radius: tokens.get('switch-border-radius-round');
-    }
+          border-radius: tokens.get('switch-border-radius-round');
+        }
   }
+
 
   .form-check-input {
     position: relative;
