@@ -11,49 +11,19 @@ import {
   EXPLICIT_FIGMAONLY_SETNAMES,
   TOKENSET_PREFIX,
 } from './constants.js';
-import { deepmerge } from './utils/index.js';
+import { objectDeepmerge } from './utils/index.js';
 
 let CLI_OPTIONS;
 let tokenSets;
 let registeredConfigMethods = [];
-
-// Can be removed, as soon as box-shadow tokens can be outputted with references
-StyleDictionary.registerPreprocessor({
-  name: 'swisspost/box-shadow-keep-refs-workaround',
-  preprocessor: dictionary => {
-    traverse(dictionary);
-
-    function traverse(context) {
-      Object.entries(context).forEach(([key, value]) => {
-        const usesDtcg = context[key].$type && context[key].$value;
-        const isToken = context[key][usesDtcg ? '$type' : 'type'] !== undefined;
-
-        if (isToken) {
-          const tokenType = context[key][usesDtcg ? '$type' : 'type'];
-          const tokenValue = context[key][usesDtcg ? '$value' : 'value'];
-
-          if (tokenType === 'shadow' && typeof tokenValue === 'string') {
-            context[key].$extensions[
-              'studio.tokens'
-            ].boxShadowKeepRefsWorkaroundValue = `${tokenValue.replace(/[{}]/g, match =>
-              match === '{' ? '[[' : ']]',
-            )}`;
-          }
-        } else if (typeof context[key] === 'object') {
-          traverse(value);
-        }
-      });
-    }
-
-    return dictionary;
-  },
-});
 
 export async function setup() {
   CLI_OPTIONS = createCliOptions();
 
   const tokensFile = JSON.parse(await promises.readFile(`${SOURCE_PATH}/tokens.json`, 'utf-8'));
   tokenSets = createTokenSets(tokensFile);
+
+  await promises.rm(`${OUTPUT_PATH}/`, { recursive: true });
 }
 
 /**
@@ -99,7 +69,7 @@ function createTokenSets(tokensFile) {
   // only add non component layer sets to source files
   // component layer sets can not be resolved in the browser, and therefore are not usable as sources
   const source = Object.entries(normalized).reduce((sets, [name, set]) => {
-    const { baseDefinition } = getConfig(name);
+    const { baseDefinition } = getDefinition(name);
 
     if (baseDefinition.layer !== TOKENSET_LAYERS.component) {
       return { ...sets, [name]: set };
@@ -110,7 +80,7 @@ function createTokenSets(tokensFile) {
 
   // combine tokensets by group so they can be outputted in a single file
   const output = Object.entries(normalized).reduce((definition, [name, set]) => {
-    const { groupSlug, groupName, setName, baseDefinition } = getConfig(name);
+    const { groupSlug, groupName, setName, baseDefinition } = getDefinition(name);
     const existingGroup = definition[groupSlug];
 
     if (
@@ -134,7 +104,7 @@ function createTokenSets(tokensFile) {
     output,
   };
 
-  function getConfig(name) {
+  function getDefinition(name) {
     const [groupSlug, setSlug] = name.split('/');
     const groupName = setSlug ? groupSlug : null;
     const setName = setSlug ?? groupSlug;
@@ -190,7 +160,7 @@ export async function createTokenSetFiles() {
 
 /**
  * @function registerConfigMethod(Function)
- * Registers a config getter method, which is used to create the StyleDictionary Config objects.
+ * Registers a config getter method, which is used to create StyleDictionary Config objects.
  *
  * @callback configGetterMethod a function which will be called during build time with the following parameters:
  * @param {tokenSets} group-nested tokensets object
@@ -229,21 +199,33 @@ export async function createOutputFiles() {
       .map(method =>
         method(tokenSets, { sourcePath: `${SOURCE_PATH}/`, buildPath: `${OUTPUT_PATH}/` }).map(
           config => {
-            // add log level to config
-            config = deepmerge(config, {
+            config = objectDeepmerge(config, {
+              // set log level
               log: {
                 verbosity: CLI_OPTIONS.verbosity,
               },
+              // extend preprocessors
+              preprocessors: [
+                'swisspost/box-shadow-keep-refs-workaround',
+                'tokens-studio',
+                ...(config.proprocessors ?? []),
+              ],
             });
 
-            // add file header to all platforms (can still be overridden on the file level)
-            Object.entries(config.platforms).forEach(([name, platform]) => {
-              config.platforms[name] = deepmerge(platform, {
-                options: {
-                  fileHeader: 'swisspost/file-header',
-                },
-              });
-            });
+            config.platforms = Object.entries(config.platforms).reduce(
+              (platforms, [name, platform]) => ({
+                ...platforms,
+                [name]: objectDeepmerge(platform, {
+                  // set default file header (can still be overridden on the file level)
+                  options: {
+                    fileHeader: 'swisspost/file-header',
+                  },
+                  // set transformGroup (this will override any given transform group)
+                  transformGroup: 'tokens-studio',
+                }),
+              }),
+              {},
+            );
 
             return config;
           },
@@ -261,7 +243,6 @@ export async function createOutputFiles() {
    */
   async function build(config) {
     const sd = new StyleDictionary(config);
-    await sd.cleanAllPlatforms();
     await sd.buildAllPlatforms();
   }
 
