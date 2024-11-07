@@ -22,3 +22,5 @@ export { PostTabHeader } from './components/post-tab-header/post-tab-header';
 export { PostTabPanel } from './components/post-tab-panel/post-tab-panel';
 export { PostTooltip } from './components/post-tooltip/post-tooltip';
 export { PostTag } from './components/post-tag/post-tag';
+export { PostList } from './components/post-list/post-list';
+export { PostListItem } from './components/post-list-item/post-list-item';
