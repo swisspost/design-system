@@ -23,9 +23,9 @@ tokens.$default-map: components.$post-text-input;
 
   > .form-control,
   > .form-select {
-    height: tokens.get('post-input-sizing-height');
-    min-height: tokens.get('post-input-sizing-height');
-    line-height: tokens.get('post-input-sizing-line-height');
+    height: tokens.get('input-sizing-height');
+    min-height: tokens.get('input-sizing-height');
+    line-height: tokens.get('input-sizing-line-height');
   }
 
   > label {
@@ -34,24 +34,24 @@ tokens.$default-map: components.$post-text-input;
     text-align: start;
     pointer-events: none;
     display: block;
-    top: tokens.get('post-input-sizing-border-width');
-    left: tokens.get('post-input-sizing-border-width');
+    top: tokens.get('input-sizing-border-width');
+    left: tokens.get('input-sizing-border-width');
     margin: 0;
-    padding: tokens.get('post-input-spacing-padding-block-label-start')
-      tokens.get('post-input-spacing-padding-inline-label-end')
-      tokens.get('post-input-spacing-padding-block-label-end')
-      tokens.get('post-input-spacing-padding-inline-label-start');
+    padding: tokens.get('input-spacing-padding-block-label-start')
+      tokens.get('input-spacing-padding-inline-label-end')
+      tokens.get('input-spacing-padding-block-label-end')
+      tokens.get('input-spacing-padding-inline-label-start');
     border: 0;
-    color: tokens.get('post-input-color-enabled-fg');
-    font-size: tokens.get('post-input-sizing-label-enabled');
+    color: tokens.get('input-color-enabled-fg');
+    font-size: tokens.get('input-sizing-label-enabled');
     width: auto;
     height: auto;
-    max-width: calc(100% - (#{tokens.get('post-input-sizing-border-width') * 2}));
+    max-width: calc(100% - (#{tokens.get('input-sizing-border-width') * 2}));
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    transform-origin: tokens.get('post-input-spacing-padding-inline-label-start') 0;
-    transition: forms.$form-floating-transition-in;
+    transform-origin: tokens.get('input-spacing-padding-inline-label-start') 0;
+    transition: forms.$form-floating-transition;
   }
 
   > .form-control {
@@ -120,7 +120,7 @@ tokens.$default-map: components.$post-text-input;
           forms.$form-floating-label-upscale * 2} - #{tokens.get('input-sizing-border-width') * forms.$form-floating-label-upscale *
           2}
       );
-      transition: forms.$form-floating-transition-in;
+      transition: forms.$form-floating-transition;
     }
 
     &:disabled {
@@ -152,7 +152,8 @@ tokens.$default-map: components.$post-text-input;
         width: calc(
           (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
             forms.$form-floating-label-upscale * 2} - #{tokens.get('input-sizing-border-width') * forms.$form-floating-label-upscale *
-            2} - #{forms.$form-floating-padding-x * forms.$form-floating-label-upscale}
+            2} - #{tokens.get('input-spacing-padding-inline-label-start') *
+            forms.$form-floating-label-upscale}
         );
         height: auto;
         left: tokens.get('input-sizing-border-width') * 3;
@@ -160,7 +161,7 @@ tokens.$default-map: components.$post-text-input;
 
       &:not(:disabled) {
         ~ label {
-          background: forms.$input-bg;
+          background: tokens.get('input-color-enabled-fg');
         }
       }
 
@@ -169,7 +170,9 @@ tokens.$default-map: components.$post-text-input;
           padding-top: forms.$form-floating-padding-y;
           padding-bottom: forms.$form-floating-padding-y;
           width: calc(
-            100% - (#{tokens.get('input-sizing-border-width') * 2}) - #{forms.$form-floating-padding-x}
+            100% - (#{tokens.get('input-sizing-border-width') * 2}) - #{tokens.get(
+                'input-spacing-padding-inline-label-start'
+              )}
           );
         }
       }
@@ -185,7 +188,8 @@ tokens.$default-map: components.$post-text-input;
 
       &::after {
         position: absolute;
-        inset: forms.$form-floating-padding-y (forms.$form-floating-padding-x * 0.5);
+        inset: forms.$form-floating-padding-y
+          (tokens.get('input-spacing-padding-inline-label-start') * 0.5);
         z-index: -1;
         height: tokens.get('input-sizing-line-height');
         content: '';
@@ -238,10 +242,11 @@ tokens.$default-map: components.$post-text-input;
         width: calc(
           (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
             forms.$form-floating-label-upscale * 2} - #{tokens.get('input-sizing-border-width') * forms.$form-floating-label-upscale *
-            2} - #{forms.$form-floating-padding-x * forms.$form-floating-label-upscale}
+            2} - #{tokens.get('input-spacing-padding-inline-label-start') *
+            forms.$form-floating-label-upscale}
         );
         max-width: none;
-        background: forms.$input-bg;
+        background: tokens.get('input-color-enabled-fg');
       }
     }
 
@@ -249,7 +254,7 @@ tokens.$default-map: components.$post-text-input;
       ~ label {
         width: calc(
           100% - (#{tokens.get('input-sizing-border-width') * 2}) - #{form-validation.$form-feedback-icon-offset} -
-            #{forms.$form-bg-size}
+            #{tokens.get('input-sizing-height')}
         );
       }
 
