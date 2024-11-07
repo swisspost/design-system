@@ -9,6 +9,8 @@
 @use '../mixins/color' as color-mx;
 @use '../mixins/icons' as icons-mx;
 @use '../mixins/utilities' as utility-mx;
+@use '../tokens/helpers';
+@use '../functions/tokens';
 
 .form-check {
   display: flex;
