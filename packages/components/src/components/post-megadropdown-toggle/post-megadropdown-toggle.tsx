@@ -6,7 +6,7 @@ import { Component, Event, EventEmitter, Host, State, h } from '@stencil/core';
   styleUrl: './post-megadropdown-toggle.scss',
 })
 export class PostMegadropdownToggle {
-  @Event() postMegadropdownToggled: EventEmitter;
+  @Event() postToggle: EventEmitter;
 
   @State() toggled = false;
 
