@@ -9,7 +9,7 @@ export class PostMainnavigation {
   /**
    * Gets emitted when a user closes the main navigation on mobile
    */
-  @Event() postMainNavigationClosed: EventEmitter;
+  @Event() postToggle: EventEmitter;
 
   @Listen('postMegadropdownToggled')
   handleMegadropdownToggled(event) {
