@@ -13,7 +13,9 @@
 .form-check {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
+  width: fit-content;
+  border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
 
   &-inline {
     display: inline-flex;

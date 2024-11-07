@@ -17,23 +17,9 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
   align-items: flex-start;
 
   &:has(input[type='checkbox']) {
+    @include utility-mx.focus-style();
     margin-bottom: tokens.get('checkbox-gap-block-group');
     padding-block: tokens.get('checkbox-padding-block-single');
-
-    &:focus-within {
-      @include utility-mx.focus-style(
-        $offset: tokens.get('checkbox-focus-outline-offset'),
-        $width: tokens.get('checkbox-focus-border-width'),
-        $color: tokens.get('checkbox-focus-stroke'),
-        $style: tokens.get('checkbox-focus-border-style')
-      ) {
-        color: tokens.get('checkbox-selected-fg');
-        background-color: tokens.get('checkbox-selected-bg');
-        border-radius: tokens.get('checkbox-focus-border-radius');
-        border-color: tokens.get('checkbox-selected-stroke');
-        width: fit-content;
-      }
-    }
   }
 
   > input[type='checkbox'] {
