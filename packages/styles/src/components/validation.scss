@@ -1,3 +1,13 @@
+// post-validation-group-gap-inline
+// post-validation-group-padDIng-block-text
+// post-validation-group-icon-size
+// post-validation-group-padding
+// post-validation-error
+// post-validation-success
+// post-validation-input-padding-block
+// post-validation-input-padding-inline
+// post-validation-font-size#
+
 @use 'sass:map';
 @use '../tokens/elements';
 @use '../functions/tokens';
@@ -7,46 +17,6 @@
 
 tokens.$default-map: components.$post-validation;
 
-// Components/Validation": {
-//   "post": {
-//     "validation": {
-//       "list": {
-//         "gap": {
-//           "inline": {
-//             "$type": "spacing",
-//             "$value": "{post.device.spacing.gap.inline.10}"
-//           }
-//         },
-//         "padding": {
-//           "block": {
-//             "text": {
-//               "$type": "spacing",
-//               "$value": "{post.device.spacing.padding.12}"
-//             }
-//           }
-//         }
-//       },
-//       "error": {
-//         "$type": "color",
-//         "$value": "{post.scheme.color.signal.error-solo}"
-//       },
-//       "success": {
-//         "$type": "color",
-//         "$value": "{post.scheme.color.signal.success-solo}"
-//       }
-//     }
-//   }
-
-// tokens.$default-map: (
-//   post-validation-error: #b20000,
-//   post-validation-success: #107800,
-//   post-device-font-size-9: 14px,
-//   post-radio-button-icon-width-inner: 24px,
-//   post-radio-button-icon-height-inner: 24px,
-//   post-validation-list-gap-inline: 8px,
-//   post-input-spacing-padding-block-text-assist: 6px,
-//   post-input-spacing-padding-inline-text-assist: 2px
-// );
 /*
 Default feedback message classes
  */
@@ -56,10 +26,10 @@ Default feedback message classes
   align-items: center;
   width: 100%;
   margin: 0;
-  padding: tokens.get('post-input-spacing-padding-block-text-assist')
-    tokens.get('post-input-spacing-padding-inline-text-assist');
-  font-size: tokens.get('post-device-font-size-9');
-  line-height: tokens.get('post-device-font-size-9');
+  padding: tokens.get('post-validation-input-padding-block')
+    tokens.get('post-validation-input-padding-inline');
+  font-size: tokens.get('post-validation-font-size');
+  line-height: tokens.get('post-validation-font-size');
 }
 
 /*
@@ -74,7 +44,6 @@ Default feedback message classes
 /*
  Invalid input feedback
 */
-
 .was-validated :invalid ~ .invalid-feedback,
 .is-invalid ~ .invalid-feedback {
   color: tokens.get('post-validation-error');
@@ -89,11 +58,12 @@ input[type='radio'],
 input[type='range'] {
   ~ .invalid-feedback,
   ~ .valid-feedback {
+    padding: tokens.get('post-validation-group-padding-block-text');
     &::before {
-      height: tokens.get('post-radio-button-icon-height-inner');
-      width: tokens.get('post-radio-button-icon-width-inner');
+      height: tokens.get('post-validation-group-icon-size');
+      width: tokens.get('post-validation-group-icon-size');
       display: inline-block;
-      margin-inline-end: tokens.get('post-validation-list-gap-inline');
+      margin-inline-end: tokens.get('post-validation-group-gap-inline');
       background-color: currentColor;
       content: '';
     }
@@ -119,10 +89,10 @@ fieldset:has(.is-invalid) {
   ~ .invalid-feedback,
   ~ .valid-feedback {
     &::before {
-      height: tokens.get('post-radio-button-icon-height-inner');
-      width: tokens.get('post-radio-button-icon-width-inner');
+      height: tokens.get('post-validation-group-icon-size');
+      width: tokens.get('post-validation-group-icon-size');
       display: inline-block;
-      margin-inline-end: tokens.get('post-validation-list-gap-inline');
+      margin-inline-end: tokens.get('post-validation-group-gap-inline');
       background-color: currentColor;
       content: '';
     }
