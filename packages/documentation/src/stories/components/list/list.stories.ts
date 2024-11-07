@@ -24,7 +24,7 @@ const meta: MetaComponent = {
     listItemGap: {
       name: '--post-list-item-gap',
       description: 'Defines the gap between list items.',
-      control: { type: 'number', min: 0, max: 10, step: 1 },
+      control: { type: 'text' },
       table: {
         category: 'Styling',
       },
@@ -32,25 +32,28 @@ const meta: MetaComponent = {
     listTitleGap: {
       name: '--post-list-title-gap',
       description: 'Defines the gap between the title and the list items.',
-      control: { type: 'number', min: 0, max: 10, step: 1 },
+      control: { type: 'text' },
       table: {
         category: 'Styling',
       },
     },
   },
-  render: args =>
-    html`<post-list
+  render: args => {
+    let styles = '';
+    if (args.listTitleGap) styles += `--post-list-title-gap: ${args.listTitleGap};`;
+    if (args.listItemGap) styles += `--post-list-item-gap: ${args.listItemGap};`;
+
+    return html`<post-list
       title-hidden="${args.titleHidden ? args.titleHidden : nothing}"
       horizontal="${args.horizontal ? args.horizontal : nothing}"
-      style="${args.listTitleGap !== null
-        ? `--post-list-title-gap: ${args.listTitleGap}rem;`
-        : ''}${args.listItemGap !== null ? ` --post-list-item-gap: ${args.listItemGap}rem` : ''}"
+      style="${styles ? styles : nothing}"
     >
       <h3>Title</h3>
       <post-list-item>List Item 1</post-list-item>
       <post-list-item>List Item 2</post-list-item>
       <post-list-item>List Item 3</post-list-item>
-    </post-list> `,
+    </post-list> `;
+  },
 };
 
 export default meta;

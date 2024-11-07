@@ -17,7 +17,7 @@ export class PostList {
   /**
    * The unique title of the list that is also referenced in the labelledby
    */
-  @State() uuid: string;
+  @State() titleId: string;
 
   /**
    * If `true`, the list title will be hidden. Otherwise, it will be displayed.`
@@ -35,7 +35,7 @@ export class PostList {
     /**
      * Get the id set on the host element or use a random id by default
      */
-    this.uuid = `list-${crypto.randomUUID()}`;
+    this.titleId = `list-${crypto.randomUUID()}`;
   }
 
   componentDidLoad() {
@@ -55,12 +55,12 @@ export class PostList {
       <Host data-version={version}>
         <div
           ref={el => (this.titleEl = el)}
-          id={this.uuid}
+          id={this.titleId}
           class={`list-title${this.titleHidden ? ' visually-hidden' : ''}`}
         >
           <slot></slot>
         </div>
-        <div role="list" aria-labelledby={this.uuid}>
+        <div role="list" aria-labelledby={this.titleId}>
           <slot name="post-list-item"></slot>
         </div>
       </Host>
