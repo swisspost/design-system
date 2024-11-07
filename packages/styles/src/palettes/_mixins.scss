@@ -37,8 +37,8 @@
   $palette: map.get(meta.module-variables(palettes), '#{$theme}-#{$scheme}');
 
   @if ($palette) {
-    --post-palette-fg: #{tokens.get('helper-color-#{$name}-fg', palettes.$post-palette)};
-    --post-palette-bg: #{tokens.get('helper-color-#{$name}-bg', palettes.$post-palette)};
+    --post-palette-fg: #{tokens.get('palettes-color-#{$name}-fg', palettes.$post-palettes)};
+    --post-palette-bg: #{tokens.get('palettes-color-#{$name}-bg', palettes.$post-palettes)};
     background-color: var(--post-palette-bg) !important;
 
     @if ($redefine-tokens == true) {
