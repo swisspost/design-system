@@ -1,0 +1,131 @@
+@use 'form-check';
+@use '../variables/color';
+@use '../variables/animation';
+@use '../mixins/color' as color-mx;
+@use '../mixins/icons' as icons-mx;
+@use '../mixins/utilities' as utility-mx;
+@use '../tokens/components';
+@use '../functions/tokens';
+
+tokens.$default-map: components.$post-radio-button;
+
+fieldset > .form-check:not(:last-of-type) {
+  margin-bottom: tokens.get('radio-button-gap-block-group');
+}
+
+.form-check {
+  &:has(.form-check-input[type='radio']) {
+    @include utility-mx.focus-style();
+    padding-block: tokens.get('radio-button-padding-block-single');
+  }
+
+  > input[type='radio'] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: tokens.get('radio-button-icon-ring');
+    width: tokens.get('radio-button-icon-ring');
+    border: tokens.get('radio-button-icon-border-width')
+      tokens.get('radio-button-icon-border-style-default') tokens.get('radio-button-enabled-stroke');
+    padding-block: tokens.get(
+      'radio-button-icon-padding-block-inner',
+      components.$post-radio-button
+    );
+    padding-inline: tokens.get(
+      'radio-button-icon-padding-inline-inner',
+      components.$post-radio-button
+    );
+    margin-block: tokens.get(
+      'radio-button-icon-padding-block-container',
+      components.$post-radio-button
+    );
+    border-radius: tokens.get(
+      'radio-button-icon-border-radius-round',
+      components.$post-radio-button
+    );
+
+    color: tokens.get('radio-button-enabled-fg');
+    background-color: tokens.get('radio-button-enabled-bg');
+
+    + label {
+      flex: 1;
+
+      padding-block: tokens.get('radio-button-label-padding-block');
+
+      :not(.form-switch, .radio-button-card) > & {
+        padding-inline-start: tokens.get(
+          'radio-button-gap-inline-text-start',
+          components.$post-radio-button
+        );
+      }
+    }
+
+    &:hover:not([disabled]),
+    &:hover:not([disabled]) + label {
+      color: tokens.get('radio-button-hover-fg');
+      background-color: tokens.get('radio-button-hover-bg');
+      border-color: tokens.get('radio-button-hover-stroke');
+
+      &::after {
+        background-color: tokens.get('radio-button-hover-fg');
+      }
+
+      @include utility-mx.high-contrast-mode() {
+        border-color: Highlight;
+      }
+    }
+
+    &:checked::after {
+      background-color: tokens.get('radio-button-enabled-fg');
+      width: tokens.get('radio-button-icon-dot');
+      height: tokens.get('radio-button-icon-dot');
+      border-radius: inherit;
+
+      @include utility-mx.high-contrast-mode {
+        background-color: SelectedItem;
+        border-color: Canvas;
+      }
+    }
+
+    &[disabled] {
+      background-color: tokens.get('radio-button-disabled-bg');
+      border: tokens.get('radio-button-icon-border-width')
+        tokens.get('radio-button-icon-border-style-disabled')
+        tokens.get('radio-button-disabled-stroke');
+
+      @include color-mx.on-dark-background {
+        border: tokens.get('radio-button-icon-border-width')
+          tokens.get('radio-button-icon-border-style-disabled') color.$white-alpha-80;
+      }
+      @include utility-mx.high-contrast-mode {
+        border: tokens.get('radio-button-icon-border-width')
+          tokens.get('radio-button-icon-border-style-disabled') GrayText;
+      }
+
+      &:checked::after {
+        background-color: tokens.get('radio-button-disabled-fg');
+        @include utility-mx.high-contrast-mode {
+          background-color: GrayText;
+        }
+      }
+    }
+
+    &[disabled],
+    &[disabled] + label {
+      color: tokens.get('radio-button-disabled-fg');
+      background-color: tokens.get('radio-button-disabled-bg');
+
+      @include color-mx.on-dark-background() {
+        color: color.$white-alpha-80;
+      }
+    }
+
+    &.is-invalid {
+      border-color: tokens.get('radio-button-enabled-stroke');
+
+      + label {
+        color: tokens.get('radio-button-enabled-fg');
+      }
+    }
+  }
+}
