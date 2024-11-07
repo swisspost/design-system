@@ -35,7 +35,11 @@ export class PostMenu {
 
   constructor() {}
 
-  @Event() toggleMenu: EventEmitter<boolean>;
+   /**
+   * Emits when the menu is shown or hidden.
+   * The emitted boolean value indicates the menu's visibility state.
+   */
+   @Event() toggleMenu: EventEmitter<boolean>;
 
   connectedCallback() {
     if (menuInstances === 0) {

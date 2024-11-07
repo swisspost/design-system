@@ -860,6 +860,9 @@ declare namespace LocalJSX {
         "url"?: string | URL;
     }
     interface PostMenu {
+        /**
+          * Emits when the menu is shown or hidden. The emitted boolean value indicates the menu's visibility state.
+         */
         "onToggleMenu"?: (event: PostMenuCustomEvent<boolean>) => void;
         /**
           * Defines the placement of the popover according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
