@@ -6,6 +6,7 @@
 
 @use '../functions/tokens';
 @use '../tokens/components';
+@use '../tokens/helpers';
 
 tokens.$default-map: components.$post-list;
 
@@ -30,7 +31,7 @@ tokens.$default-map: components.$post-list;
   padding-block-end: tokens.get('list-item-padding-block-end');
   padding-inline-start: tokens.get('list-item-padding-inline-start');
   padding-inline-end: tokens.get('list-item-padding-inline-end');
-  border-radius: tokens.get('list-item-focus-outline-radius'); // Used for the focus only
+  border-radius: tokens.get('focus-border-radius', helpers.$post-focus); // Used for the focus only
   color: tokens.get('list-item-enabled-fg');
 
   &::after {
@@ -61,6 +62,8 @@ tokens.$default-map: components.$post-list;
 
   > post-icon {
     flex: 0 0 auto;
+    width: 24px; //TODO: Tokenize
+    height: 24px; //TODO: Tokenize
 
     &:last-child {
       margin-left: auto;
