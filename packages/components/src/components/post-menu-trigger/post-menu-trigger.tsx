@@ -1,5 +1,6 @@
 import { Component, Element, Prop, h, Host, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
+import { checkNonEmpty } from '@/utils';
 
 @Component({
   tag: 'post-menu-trigger',
@@ -11,21 +12,24 @@ export class PostMenuTrigger {
   /**
    * Link the trigger to a menu with this ID.
    */
-  @Prop() for: string;
+  @Prop() for!: string;
 
   @Element() host: HTMLPostMenuTriggerElement;
 
+  /**
+   * Indicates the expanded state of the menu for accessibility purposes.
+   */
   @State() ariaExpanded: boolean = false;
 
-    /**
-   * Watch for changes to the `for` property.
-   */
-    @Watch('for')
-    validateControlFor(forValue = this.for) {
-      if (!forValue) {
-        console.warn('The "for" property is required and cannot be empty or null.');
-      }
+  /**
+ * Watch for changes to the `for` property.
+ */
+  @Watch('for')
+  validateControlFor(forValue = this.for) {
+    if (this.for) {
+      checkNonEmpty(forValue, 'The "for" property is required and cannot be empty or null.');
     }
+  }
     
   private get menu(): HTMLPostMenuElement | null {
     const ref = document.getElementById(this.for);
