@@ -215,6 +215,36 @@ export const Select: Story = {
   },
 };
 
+export const Slider: Story = {
+  render(args: Args) {
+    const isValidationSet = args.validation !== 'null';
+    const isValid = args.validation === 'is-valid';
+    let ariaInvalid;
+    if (isValidationSet) {
+      ariaInvalid = !isValid;
+    } else {
+      ariaInvalid = nothing;
+    }
+    const ariaDescribedBy = isValidationSet ? `${args.validation}-id` : nothing;
+    const validFeedbackId =
+      isValidationSet && args.validation !== 'is-invalid' ? `${args.validation}-id` : nothing;
+    const invalidFeedbackId =
+      isValidationSet && args.validation !== 'is-valid' ? `${args.validation}-id` : nothing;
+    return html`
+      <label class="form-label" for="Range_1">Label</label>
+      <input
+        type="range"
+        id="Range_1"
+        class="form-range ${isValidationSet ? args.validation : ''}"
+        aria-invalid=${ariaInvalid}
+        aria-describedby="${ariaDescribedBy}"
+      />
+      <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
+      <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
+    `;
+  },
+};
+
 export const Switch: Story = {
   render(args: Args) {
     const isValidationSet = args.validation !== 'null';

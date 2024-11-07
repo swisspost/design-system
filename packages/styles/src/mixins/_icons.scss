@@ -9,7 +9,6 @@
 
 @mixin icon($name) {
   mask-image: url('#{icon-fn.get-svg-url($name)}');
-  mask-size: contain;
   background-color: currentColor;
   color: currentColor; // Required in this case with usage of forced-color-adjust: preserve-parent-color
   forced-color-adjust: preserve-parent-color;

@@ -29,7 +29,6 @@ Default feedback message classes
   padding: tokens.get('post-validation-input-padding-block')
     tokens.get('post-validation-input-padding-inline');
   font-size: tokens.get('post-validation-font-size');
-  line-height: tokens.get('post-validation-font-size');
 }
 
 /*
@@ -61,12 +60,14 @@ input[type='range'] {
     padding: tokens.get('post-validation-group-padding-block-text');
 
     &::before {
+      margin-top: -1px;
       height: tokens.get('post-validation-group-icon-size');
       width: tokens.get('post-validation-group-icon-size');
       display: inline-block;
       margin-inline-end: tokens.get('post-validation-group-gap-inline');
       background-color: currentColor;
       content: '';
+      border: 1px solid black;
     }
   }
 

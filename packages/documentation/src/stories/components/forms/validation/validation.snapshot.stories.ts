@@ -19,6 +19,7 @@ export const Validation: Story = {
       { name: 'Input', id: 'Input_1' },
       { name: 'RadioButton', id: 'Radio_1' },
       { name: 'Select', id: 'Select_1' },
+      { name: 'Slider', id: 'Slider_1' },
       { name: 'Switch', id: 'Switch_1' },
       { name: 'TextArea', id: 'TextArea_1' },
     ];
@@ -167,6 +168,28 @@ export const Validation: Story = {
                                         velit esse molestie consequat, vel illum dolore eu feugiat
                                         nulla facilisis.
                                       </p>
+                                      <p id="${validFeedbackId}" class="valid-feedback">
+                                        Valid message.
+                                      </p>
+                                      <p id="${invalidFeedbackId}" class="invalid-feedback">
+                                        Invalid message.
+                                      </p>
+                                    </div>
+                                  `;
+                                case 'Slider':
+                                  return html`
+                                    <div class="form-label">
+                                      <label class="form-label" for="${component.id}">
+                                        Label
+                                      </label>
+                                      <input
+                                        type="range"
+                                        id="${component.id}"
+                                        class="form-range ${isValidationSet ? state : ''}"
+                                        aria-invalid=${ariaInvalid}
+                                        aria-describedby="${ariaDescribedBy}"
+                                      />
+
                                       <p id="${validFeedbackId}" class="valid-feedback">
                                         Valid message.
                                       </p>
