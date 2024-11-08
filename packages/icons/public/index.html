@@ -48,6 +48,37 @@
       </section>
     </div>
 
+    <div class="d-flex">
+      <section x-data="TEST_ICONS">
+        <h2>Test Icons</h2>
+
+        <div class="d-flex"></div>
+
+        <template x-for="name in testIconNames">
+          <div>
+            <h3 x-text="name"></h3>
+            <div style="display: flex; justify-content: space-between; gap: 30px">
+              <div class="size-keeper">
+                <div class="resize">
+                  <div class="post-icon">
+                    <svg x-html="getTestIcon(name)"></svg>
+                  </div>
+                </div>
+              </div>
+
+              <div class="size-keeper">
+                <div class="resize">
+                  <div class="post-icon">
+                    <svg x-html="getTestIcon(`${name}-solid`)"></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </section>
+    </div>
+
     <script type="module" src="main.js"></script>
     <!--
       generated with https://www.srihash.org/
