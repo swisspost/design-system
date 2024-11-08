@@ -143,10 +143,6 @@ export namespace Components {
         "value": string;
     }
     interface PostClosebutton {
-        /**
-          * The a11y label to use for the close button.
-         */
-        "label"?: string;
     }
     interface PostCollapsible {
         /**
@@ -738,10 +734,6 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface PostClosebutton {
-        /**
-          * The a11y label to use for the close button.
-         */
-        "label"?: string;
     }
     interface PostCollapsible {
         /**

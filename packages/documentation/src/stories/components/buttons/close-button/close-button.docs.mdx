@@ -1,5 +1,7 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
 import * as CloseButtonStories from './close-button.stories';
+import CloseButtonComponentDefinition from './close-button-component-definition.sample.html?raw';
+import CloseButtonComponentUsage from './close-button-component-usage.sample.html?raw';
 
 <Meta of={CloseButtonStories} />
 
@@ -16,6 +18,8 @@ import * as CloseButtonStories from './close-button.stories';
   for a specific use case.
 </div>
 
+The value inside the `<post-closebutton>` element will be rendered inside the button as a visually hidden text so make sure to only insert inline content there.
+
 <Canvas sourceState="shown" of={CloseButtonStories.Default} />
 <div className="hide-col-default">
   <Controls of={CloseButtonStories.Default} />
@@ -27,8 +31,8 @@ When used in other components, the component `<post-closebutton>` will always tr
 
 Definition of a component using the `<post-closebutton>` web component:
 
-<Canvas sourceState="shown" of={CloseButtonStories.SlotComponent} />
+<Source code={CloseButtonComponentDefinition} language="html" />
 
 Integration of the above defined web component, with the `<post-closebutton>` going directly into its named slot `post-closebutton`.
 
-<Canvas sourceState="shown" of={CloseButtonStories.Slot} />
+<Source code={CloseButtonComponentUsage} language="html" />

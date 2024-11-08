@@ -5,18 +5,11 @@
 <!-- Auto Generated Below -->
 
 
-## Properties
-
-| Property | Attribute | Description                                 | Type     | Default          |
-| -------- | --------- | ------------------------------------------- | -------- | ---------------- |
-| `label`  | `label`   | The a11y label to use for the close button. | `string` | `'Close button'` |
-
-
 ## Slots
 
-| Slot        | Description                                                                     |
-| ----------- | ------------------------------------------------------------------------------- |
-| `"default"` | The post-closebutton is a slot in itself to be used easily in other components. |
+| Slot        | Description                                                 |
+| ----------- | ----------------------------------------------------------- |
+| `"default"` | Slot for placing visually hidden label in the close button. |
 
 
 ## Dependencies

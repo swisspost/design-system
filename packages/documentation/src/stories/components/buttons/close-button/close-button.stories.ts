@@ -37,23 +37,6 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: (args: Args) => {
-    return html`<post-closebutton label="${args.label}"></post-closebutton> `;
-  },
-};
-
-export const SlotComponent: Story = {
-  render: () => {
-    return html`<Host>
-      <slot name="post-closebutton"></slot>
-      My component's content
-    </Host> `;
-  },
-};
-
-export const Slot: Story = {
-  render: () => {
-    return html`<post-mycomponent>
-      <post-closebutton></post-closebutton>
-    </post-mycomponent> `;
+    return html`<post-closebutton>${args.label}</post-closebutton> `;
   },
 };
