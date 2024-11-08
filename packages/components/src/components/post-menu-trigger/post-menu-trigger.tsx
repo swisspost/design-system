@@ -41,9 +41,10 @@ export class PostMenuTrigger {
   }
 
   private handleToggle() {
-    if (this.menu) {
+  const menu = this.menu;
+    if (menu) {
       this.ariaExpanded = !this.ariaExpanded;
-      this.ariaExpanded ? this.menu.show(this.host) : this.menu.hide();
+      this.ariaExpanded ? menu.show(this.host) : menu.hide();
     } else {
       console.warn(`No post-menu found with ID: ${this.for}`);
     }
