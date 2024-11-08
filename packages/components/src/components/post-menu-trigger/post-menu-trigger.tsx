@@ -1,6 +1,6 @@
 import { Component, Element, Prop, h, Host, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkNonEmpty } from '@/utils';
+import { checkType } from '@/utils';
 
 @Component({
   tag: 'post-menu-trigger',

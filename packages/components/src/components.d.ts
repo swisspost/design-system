@@ -903,7 +903,7 @@ declare namespace LocalJSX {
     }
     interface PostMenu {
         /**
-          * Emits when the menu is shown or hidden. The emitted boolean value indicates the menu's visibility state.
+          * Emits when the menu is shown or hidden. The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
          */
         "onToggleMenu"?: (event: PostMenuCustomEvent<boolean>) => void;
         /**
