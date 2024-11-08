@@ -61,7 +61,7 @@ export class PostMenu {
   }
 
   private handleKeyDown = (e: KeyboardEvent) => {
-    if (['ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'Space', 'Escape', 'Home', 'End'].includes(e.key)) {
+    if (Object.values(this.KEYCODES).includes(e.key)) {
       this.controlKeyDownHandler(e);
     }
   };
