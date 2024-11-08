@@ -27,6 +27,7 @@ tokens.$default-map: components.$post-list;
 .list-group-switch {
   display: flex;
   position: relative;
+  align-items: flex-start;
   padding-block-start: tokens.get('list-item-padding-block-start');
   padding-block-end: tokens.get('list-item-padding-block-end');
   padding-inline-start: tokens.get('list-item-padding-inline-start');
@@ -56,14 +57,19 @@ tokens.$default-map: components.$post-list;
 
 .list-group-link,
 .list-group-document {
-  align-items: flex-start;
   text-decoration: none;
   gap: tokens.get('list-item-gap-inline');
 
   > post-icon {
     flex: 0 0 auto;
-    width: tokens.get('list-icon-size');
-    height: tokens.get('list-icon-size');
+    padding-block: tokens.get('list-icon-container-padding-block');
+    padding-inline: tokens.get('list-icon-container-padding-inline');
+    width: calc(
+      #{tokens.get('list-icon-size')} + (2 * #{tokens.get('list-icon-container-padding-inline')})
+    );
+    height: calc(
+      #{tokens.get('list-icon-size')} + (2 * #{tokens.get('list-icon-container-padding-block')})
+    );
 
     &:last-child {
       margin-left: auto;
@@ -74,6 +80,7 @@ tokens.$default-map: components.$post-list;
 .list-group-switch {
   justify-content: space-between;
   margin-bottom: 0;
+  flex-wrap: nowrap;
 
   &:hover .form-check-label {
     color: tokens.get('list-item-hover-fg');
@@ -83,9 +90,9 @@ tokens.$default-map: components.$post-list;
     color: tokens.get('list-item-enabled-fg');
   }
 
-  > div {
-    display: inline-flex;
-    padding-block: tokens.get('list-switch-padding-block');
+  .form-check-input {
+    flex-shrink: 0;
+    margin-block: tokens.get('list-switch-padding-block');
   }
 }
 
@@ -95,9 +102,6 @@ tokens.$default-map: components.$post-list;
 }
 
 .list-group-link post-icon {
-  padding-block: tokens.get('list-icon-container-padding-block');
-  padding-inline: tokens.get('list-icon-container-padding-inline');
-
   @include transition(
     transform animation.$transition-time-area-small animation.$transition-easing-default
   );
