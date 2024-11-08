@@ -2,7 +2,6 @@
 @use '../variables/color';
 @use '../functions/tokens';
 @use '../tokens/elements';
-@use '../tokens/palettes';
 
 tokens.$default-map: elements.$post-body;
 
