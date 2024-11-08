@@ -38,13 +38,10 @@ $post-text-input: (
   post-input-spacing-padding-block-label-end: 0px,
   post-input-spacing-padding-inline-label-start: 16px,
   post-input-spacing-padding-inline-label-end: 12px,
-  post-input-spacing-padding-block-label-focus-start: 6.5px,
-  post-input-spacing-padding-block-label-focus-end: 0px,
-  post-input-spacing-padding-inline-label-focus-start: 16px,
-  post-input-spacing-padding-inline-label-focus-end: 52px,
+  post-input-spacing-padding-block-label-selected-start: 6.5px,
+  post-input-spacing-padding-inline-label-selected-start: 16px,
+  post-input-spacing-padding-inline-label-selected-end: 52px,
   post-input-sizing-label-enabled: 20px,
-  post-input-sizing-label-focused: 14px,
+  post-input-sizing-label-selected: 14px,
   post-input-spacing-padding-block-input-start: 25.5px,
 );
-
-//TODO: Les noms avec les text1, text2, etc. sont pas dingue

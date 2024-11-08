@@ -32,9 +32,9 @@ tokens.$default-map: components.$post-text-input;
   height: tokens.get('input-sizing-height');
 
   &:focus {
-    border-color: tokens.get('input-color-hover-stroke');
-    background-color: tokens.get('input-color-hover-bg');
-    color: tokens.get('input-color-hover-fg');
+    border-color: tokens.get('input-color-selected-stroke');
+    background-color: tokens.get('input-color-selected-bg');
+    color: tokens.get('input-color-selected-fg');
 
     @include utilities.focus-style;
 
@@ -54,7 +54,6 @@ tokens.$default-map: components.$post-text-input;
     &:hover {
       border-color: tokens.get('input-color-hover-stroke');
       background-color: tokens.get('input-color-hover-bg');
-      color: tokens.get('input-color-hover-fg');
 
       @include utilities.high-contrast-mode {
         border-color: Highlight;
@@ -230,7 +229,7 @@ textarea {
 
 .form-label {
   &:has(+ .form-control[disabled], + .form-select[disabled]) {
-    color: var(--post-gray-60);
+    color: tokens.get('input-color-disabled-fg');
   }
 }
 
