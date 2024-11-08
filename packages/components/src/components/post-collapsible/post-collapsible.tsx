@@ -77,7 +77,8 @@ export class PostCollapsible {
 
     await animation.finished;
 
-    animation.commitStyles();
+    const isHostRendered = this.host.offsetParent;
+    if (isHostRendered) animation.commitStyles();
 
     return open;
   }
@@ -87,7 +88,7 @@ export class PostCollapsible {
    */
   private updateTriggers() {
     const triggers: NodeListOf<HTMLPostCollapsibleTriggerElement> = document.querySelectorAll(
-      `post-collapsible-trigger[for=${this.host.id}]`,
+      `post-collapsible-trigger[for="${this.host.id}"]`,
     );
 
     triggers.forEach(trigger => trigger.update());
