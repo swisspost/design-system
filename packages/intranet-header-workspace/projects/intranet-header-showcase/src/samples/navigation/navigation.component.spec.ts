@@ -1,3 +1,4 @@
+import 'jasmine';
 import { TestBed } from '@angular/core/testing';
 import { SamplesNavigationComponent } from './navigation.component';
 

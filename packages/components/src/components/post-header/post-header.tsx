@@ -14,12 +14,12 @@ export class PostHeader {
 
   private scrollParent = null;
   private throttledScroll = () => this.handleScrollEvent();
-  private debouncedResize = throttle(50, () => this.handleResize());
+  private throttledResize = throttle(50, () => this.handleResize());
 
   componentWillRender() {
     this.scrollParent = this.getScrollParent(this.host);
     this.scrollParent.addEventListener('scroll', this.throttledScroll, { passive: true });
-    window.addEventListener('resize', this.debouncedResize, { passive: true });
+    window.addEventListener('resize', this.throttledResize, { passive: true });
     this.handleResize();
     this.handleScrollEvent();
   }

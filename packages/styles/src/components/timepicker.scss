@@ -37,8 +37,8 @@
   .ngb-tp-chevron {
     &::before {
       @include icon-mixins.icon('2051');
-      width: map.get(button.$btn-icon-size-map, 'md');
-      height: map.get(button.$btn-icon-size-map, 'md');
+      width: map.get(button.$old-btn-icon-size-map, 'md');
+      height: map.get(button.$old-btn-icon-size-map, 'md');
       transform: none;
     }
 
@@ -49,8 +49,8 @@
 
   @each $size in sm, lg {
     .btn-#{$size} .ngb-tp-chevron::before {
-      width: map.get(button.$btn-icon-size-map, $size);
-      height: map.get(button.$btn-icon-size-map, $size);
+      width: map.get(button.$old-btn-icon-size-map, $size);
+      height: map.get(button.$old-btn-icon-size-map, $size);
     }
   }
 
@@ -67,11 +67,9 @@
 // Regular-sized timepicker
 .timepicker-rg {
   .btn {
-    @include button-mixins.button-size(rg);
-
     .ngb-tp-chevron::before {
-      width: map.get(button.$btn-icon-size-map, 'rg');
-      height: map.get(button.$btn-icon-size-map, 'rg');
+      width: map.get(button.$old-btn-icon-size-map, 'rg');
+      height: map.get(button.$old-btn-icon-size-map, 'rg');
     }
   }
 
