@@ -38,7 +38,7 @@ const meta: MetaComponent = {
       name: 'background color',
       description: 'Defines the color of the menu.',
       table: {
-        category: 'General',
+        category: 'CSS Variables'
       },
     },
   },
