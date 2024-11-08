@@ -16,11 +16,25 @@ type Story = StoryObj;
 export function renderSkiplinks() {
   return html`
     <div class="skiplinks">
-      <a href="#navigation">Navigation</a>
-      <a href="#main-content">Main</a>
+      <a href="#navigation" target="_self">Navigation</a>
+      <a href="#main-content" target="_self">Main</a>
     </div>
-    <div id="navigation" role="navigation">Navigation</div>
-    <div id="main-content" role="main">Main content</div>
+    <div id="navigation" role="navigation">
+      Navigation
+      <ul>
+        <li>
+          <a href="#">Link</a>
+        </li>
+      </ul>
+    </div>
+    <div id="main-content" role="main" tabindex="-1">
+      Main content
+      <ul>
+        <li>
+          <a href="#">Link</a>
+        </li>
+      </ul>
+    </div>
   `;
 }
 
