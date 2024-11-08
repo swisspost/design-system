@@ -40,10 +40,10 @@ export class SetupComponent extends LitElement {
                 @.../common-web-frontend 4.x.x or lower
               </option>
             </select>
-            <div class="form-text">
+            <p class="form-text">
               This information can be found in the <code>package.json</code> file in the root of
               your application.
-            </div>
+            </p>
           </div>
           <div class="col-12">
             <fieldset @change="${this._onEnvironmentChange}">

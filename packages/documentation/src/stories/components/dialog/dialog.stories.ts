@@ -188,10 +188,10 @@ const FormTemplate = {
                 required
               />
               <label class="form-label" for="example-dialog-text-field">Label</label>
-              <div class="form-text">
+              <p class="form-text">
                 Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie
                 consequat, vel illum dolore eu feugiat nulla facilisis.
-              </div>
+              </p>
             </div>
           </div>
 
