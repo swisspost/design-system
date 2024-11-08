@@ -170,7 +170,7 @@ tokens.$default-map: components.$post-text-input;
   &::-webkit-date-and-time-value {
     min-width: 85px; // Seems to be a good minimum safe width
     height: if(
-      unit(tokens.get('input-sizing-line-height')) == '',
+      math.unit(tokens.get('input-sizing-line-height')) == '',
       tokens.get('input-sizing-line-height') * 1em,
       tokens.get('input-sizing-line-height')
     );
