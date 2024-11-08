@@ -1,0 +1,48 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as ListGroup from './list-group.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={ListGroup} />
+
+<div className="docs-title">
+  # List Group
+
+  <nav>
+    <link-design of={JSON.stringify(ListGroup)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  Lists consist of related content grouped together and organized vertically.
+</div>
+
+<Canvas sourceState="shown" of={ListGroup.Default} />
+<div className="hide-col-default">
+  <Controls of={ListGroup.Default} />
+</div>
+
+<StylesPackageImport components={['list-group']} />
+
+## Types of lists
+
+### List Links
+
+The links list collects and displays a set of links. It is therefore a navigational element which leads the user to other locations.
+
+To have the animation on the arrow, don't forget to add the class `.list-group-item-action` on each `li` item as well as `.list-group-item-right-svg` on the icon to animate.
+
+<Canvas of={ListGroup.ListLinks} />
+
+### List Documents
+
+The documents list collects and displays a set of documents. It does not only help users find a specific item, but also provides the user with a button to download the respective document.
+
+Do not add the animation class to the list items as it would not make sense with the download icon.
+
+<Canvas of={ListGroup.ListDocuments} />
+
+### List Switch
+
+The switches list collects and displays a set of switches. It does not only help users find a specific item, but also provides the functionality to select and unselect list items.
+
+<Canvas of={ListGroup.ListSwitch} />
