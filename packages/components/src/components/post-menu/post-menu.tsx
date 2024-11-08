@@ -79,7 +79,6 @@ export class PostMenu {
   
     switch (e.code) {
       case this.KEYCODES.UP:
-      case this.KEYCODES.LEFT:
         if (currentIndex > 0) {
           currentIndex = currentIndex - 1;
         }
