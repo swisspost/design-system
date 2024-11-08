@@ -27,7 +27,7 @@ export class PostMenuTrigger {
   @Watch('for')
   validateControlFor(forValue = this.for) {
     if (this.for) {
-      checkNonEmpty(forValue, 'The "for" property is required and cannot be empty or null.');
+      checkType(forValue, 'string', 'The "for" property is required and should be a string.');
     }
   }
     
