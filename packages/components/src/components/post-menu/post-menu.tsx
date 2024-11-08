@@ -69,7 +69,7 @@ export class PostMenu {
   private controlKeyDownHandler(e: KeyboardEvent) {
     e.stopPropagation();
   
-    const focusableItems = this.getSlottedItems();
+    const focusableItems = this.getFocusableItems();
     if (!focusableItems.length) return;
   
     const currentFocusedElement = document.activeElement as HTMLElement;
