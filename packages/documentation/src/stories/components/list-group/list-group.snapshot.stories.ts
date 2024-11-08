@@ -1,6 +1,7 @@
-import type { StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components';
 import meta, { renderListGroup } from './list-group.stories';
 import { html } from 'lit';
+import { bombArgs } from '@/utils';
 
 const { id, ...metaWithoutId } = meta;
 
@@ -17,8 +18,15 @@ export const ListGroup: Story = {
       ${['white', 'dark'].map(
         bg => html`
           <div class=${'list-group-example bg-' + bg} data-color-scheme=${bg}>
-            ${renderListGroup({ listType: 'link' })} ${renderListGroup({ listType: 'document' })}
-            ${renderListGroup({ listType: 'switch' })}
+            ${bombArgs({
+              listType: ['link', 'document', 'switch'],
+              label: [
+                'Label',
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+              ],
+            }).map((args: Args) => {
+              return renderListGroup(args);
+            })}
           </div>
         `,
       )}

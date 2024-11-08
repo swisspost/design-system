@@ -56,7 +56,7 @@ tokens.$default-map: components.$post-list;
 
 .list-group-link,
 .list-group-document {
-  align-items: center;
+  align-items: flex-start;
   text-decoration: none;
   gap: tokens.get('list-item-gap-inline');
 

@@ -16,6 +16,7 @@ const meta: MetaComponent = {
   },
   args: {
     listType: 'link',
+    label: 'Label',
   },
   argTypes: {
     listType: {
@@ -24,6 +25,16 @@ const meta: MetaComponent = {
       options: ['link', 'document', 'switch'],
       control: {
         type: 'radio',
+      },
+      table: {
+        category: 'General',
+      },
+    },
+    label: {
+      name: 'Label',
+      description: 'Label of the link, document or switch',
+      control: {
+        type: 'text',
       },
       table: {
         category: 'General',
@@ -45,7 +56,7 @@ function gridDecorator(story: StoryFn, context: StoryContext) {
 export function renderListGroup(args: Args) {
   return html`
     <ul class="list-group">
-      ${getContent(args.listType, 3)}
+      ${getContent(args, 3)}
     </ul>
   `;
 
@@ -53,23 +64,23 @@ export function renderListGroup(args: Args) {
     return html`<post-icon name="${name}"></post-icon>`;
   }
 
-  function getContent(listType: string, itemsCount: number) {
+  function getContent(args: Args, itemsCount: number) {
     const linkIcon = getIcon('3020');
     const fileIcon = getIcon('3169');
     const downloadIcon = getIcon('2066');
 
-    const isDoc = listType === 'document';
+    const isDoc = args.listType === 'document';
     const items = Array.from(Array(itemsCount).keys());
 
-    switch (listType) {
+    switch (args.listType) {
       case 'link':
       case 'document':
         return html`
           ${items.map(
             () => html`
               <li>
-                <a href="#" download=${isDoc || null} class="list-group-${listType}">
-                  ${isDoc ? fileIcon : null}Text${isDoc ? downloadIcon : linkIcon}
+                <a href="#" download=${isDoc || null} class="list-group-${args.listType}">
+                  ${isDoc ? fileIcon : null}${args.label}${isDoc ? downloadIcon : linkIcon}
                 </a>
               </li>
             `,
@@ -80,7 +91,7 @@ export function renderListGroup(args: Args) {
           ${items.map(
             i => html`
               <li>
-                <div class="list-group-${listType} form-check form-switch">
+                <div class="list-group-${args.listType} form-check form-switch">
                   <!-- it's important to set custom ids here -->
                   <input
                     type="checkbox"
@@ -90,7 +101,7 @@ export function renderListGroup(args: Args) {
                     ?checked=${i === 0}
                   />
                   <label class="form-check-label order-first" for="list-switch-item-${i}"
-                    >Label</label
+                    >${args.label}</label
                   >
                 </div>
               </li>
