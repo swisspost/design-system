@@ -60,7 +60,7 @@ export class PostMenu {
   private controlKeyDownHandler(e: KeyboardEvent) {
     e.stopPropagation();
   
-    const focusableItems = this.getSlottedItems();
+    const focusableItems = this.getFocusableItems();
     if (!focusableItems.length) return;
   
     const currentFocusedElement = document.activeElement as HTMLElement;
@@ -70,7 +70,6 @@ export class PostMenu {
   
     switch (e.code) {
       case this.KEYCODES.UP:
-      case this.KEYCODES.LEFT:
         if (currentIndex > 0) {
           currentIndex = currentIndex - 1;
         }
