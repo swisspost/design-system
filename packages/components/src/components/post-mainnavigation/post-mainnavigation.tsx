@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Host, Listen, Method, h } from '@stencil/core';
+import { Component, Event, EventEmitter, Host, Listen, h } from '@stencil/core';
 
 @Component({
   tag: 'post-mainnavigation',
@@ -11,7 +11,7 @@ export class PostMainnavigation {
    */
   @Event() postToggle: EventEmitter;
 
-  @Listen('postMegadropdownToggled')
+  @Listen('postToggle')
   handleMegadropdownToggled(event) {
     // Find next element sibling
     let megalodon;
@@ -27,7 +27,7 @@ export class PostMainnavigation {
   }
 
   private handleBackButtonClick() {
-    this.postMainNavigationClosed.emit();
+    this.postToggle.emit();
   }
 
   render() {

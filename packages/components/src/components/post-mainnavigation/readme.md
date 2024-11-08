@@ -7,9 +7,9 @@
 
 ## Events
 
-| Event                      | Description                                                   | Type               |
-| -------------------------- | ------------------------------------------------------------- | ------------------ |
-| `postMainNavigationClosed` | Gets emitted when a user closes the main navigation on mobile | `CustomEvent<any>` |
+| Event        | Description                                                   | Type               |
+| ------------ | ------------------------------------------------------------- | ------------------ |
+| `postToggle` | Gets emitted when a user closes the main navigation on mobile | `CustomEvent<any>` |
 
 
 ----------------------------------------------
