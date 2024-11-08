@@ -40,7 +40,7 @@ export class PostMenu {
 
   /**
    * Emits when the menu is shown or hidden.
-   * The emitted boolean value indicates the menu's visibility state.
+   * The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
    */
   @Event() toggleMenu: EventEmitter<boolean>;
 
