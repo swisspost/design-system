@@ -21,9 +21,11 @@ export class PostMenuTrigger {
    */
   @State() ariaExpanded: boolean = false;
 
+  private slottedButton: HTMLButtonElement | null = null;
+
   /**
- * Watch for changes to the `for` property.
- */
+   * Watch for changes to the `for` property.
+   */
   @Watch('for')
   validateControlFor(forValue = this.for) {
     if (this.for) {
@@ -33,30 +35,31 @@ export class PostMenuTrigger {
     
   private get menu(): HTMLPostMenuElement | null {
     const ref = document.getElementById(this.for);
-    if(ref && ref.localName === 'post-menu') {
-      return ref as HTMLPostMenuElement;
-    }
-
-    return null;
+    return ref && ref.localName === 'post-menu' ? (ref as HTMLPostMenuElement) : null;
   }
 
   private handleToggle() {
-  const menu = this.menu;
-    if (menu) {
+    const menu = this.menu;
+    if (menu && this.slottedButton) {
       this.ariaExpanded = !this.ariaExpanded;
+      this.slottedButton.setAttribute('aria-expanded', this.ariaExpanded.toString());
       this.ariaExpanded ? menu.show(this.host) : menu.hide();
     } else {
       console.warn(`No post-menu found with ID: ${this.for}`);
     }
   }
 
+  componentDidLoad() {
+    this.slottedButton = this.host.querySelector('button');
+    if (this.slottedButton) {
+      this.slottedButton.setAttribute('aria-haspopup', 'menu');
+      this.slottedButton.addEventListener('click', () => this.handleToggle());
+    }
+  }
+
   render() {
     return (
-      <Host
-        data-version={version} 
-        aria-expanded={this.ariaExpanded.toString()}
-        onClick={() => this.handleToggle()}
-      >
+      <Host data-version={version}>
         <slot></slot>
       </Host>
     );

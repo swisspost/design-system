@@ -1,12 +1,11 @@
 import { Component, Element, Event, EventEmitter, h, Host, Method, Prop, State } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
+import { isFocusable } from '@/utils/is-focusable';
 
 /**
  * @slot default - Slot for placing content inside the menu.
  */
-
-let menuInstances = 0;
 
 @Component({
   tag: 'post-menu',
@@ -45,19 +44,11 @@ export class PostMenu {
   @Event() toggleMenu: EventEmitter<boolean>;
 
   connectedCallback() {
-    if (menuInstances === 0) {
       this.host.addEventListener('keydown', this.handleKeyDown);
-    }
-
-    menuInstances++;
   }
 
   disconnectedCallback() {
-    menuInstances--;
-
-    if (menuInstances === 0) {
       this.host.removeEventListener('keydown', this.handleKeyDown);
-    }
   }
 
   private handleKeyDown = (e: KeyboardEvent) => {
@@ -110,22 +101,6 @@ export class PostMenu {
     }
   }
 
-  private isFocusable(element: HTMLElement): boolean {
-    const focusableTags = ['A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT'];
-    const tabIndex = element.getAttribute('tabindex');
-  
-    if (focusableTags.includes(element.tagName)) return true;
-  
-    const role = element.getAttribute('role');
-    if (role === 'button' || role === 'link') return true;
-  
-    if (tabIndex !== null) {
-      const parsedTabIndex = parseInt(tabIndex, 10);
-      return parsedTabIndex >= 0;
-    }
-    return false;
-  }  
-
   private getSlottedItems() {
     const slot = this.host.shadowRoot.querySelector('slot');
     const slottedElements = slot ? slot.assignedElements() : [];
@@ -136,7 +111,7 @@ export class PostMenu {
         const slot = el.shadowRoot.querySelector('slot');
         const assignedElements = slot ? slot.assignedElements() : [];
 
-        return assignedElements.filter(this.isFocusable);
+        return assignedElements.filter(isFocusable);
       })
       .flat();
 

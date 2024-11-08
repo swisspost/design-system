@@ -14,9 +14,9 @@
 
 ## Events
 
-| Event        | Description                                                                                              | Type                   |
-| ------------ | -------------------------------------------------------------------------------------------------------- | ---------------------- |
-| `toggleMenu` | Emits when the menu is shown or hidden. The emitted boolean value indicates the menu's visibility state. | `CustomEvent<boolean>` |
+| Event        | Description                                                                                                                          | Type                   |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ---------------------- |
+| `toggleMenu` | Emits when the menu is shown or hidden. The event payload is a boolean: `true` when the menu was opened, `false` when it was closed. | `CustomEvent<boolean>` |
 
 
 ## Methods
@@ -63,6 +63,13 @@ If the menu is currently visible, it will be hidden; otherwise, it will be shown
 Type: `Promise<void>`
 
 
+
+
+## Slots
+
+| Slot        | Description                               |
+| ----------- | ----------------------------------------- |
+| `"default"` | Slot for placing content inside the menu. |
 
 
 ## Dependencies
