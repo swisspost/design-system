@@ -5,7 +5,7 @@ import { checkNonEmpty } from '@/utils';
 @Component({
   tag: 'post-menu-trigger',
   styleUrl: 'post-menu-trigger.scss',
-  shadow: true,
+  shadow: false,
 })
 
 export class PostMenuTrigger {
