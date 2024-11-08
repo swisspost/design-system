@@ -24,5 +24,4 @@ body {
   line-height: tokens.get('body-line-height');
   letter-spacing: tokens.get('body-letter-spacing');
   color: tokens.get('body-color');
-  background-color: tokens.get('palettes-color-default-bg', palettes.$post-palettes);
 }
