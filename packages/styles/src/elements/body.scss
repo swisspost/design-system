@@ -1,11 +1,21 @@
 @use 'sass:map';
+@use '../variables/color';
 @use '../functions/tokens';
 @use '../tokens/elements';
+@use '../tokens/palettes';
 
 tokens.$default-map: elements.$post-body;
 
 // Resets type
 @use '../components/fonts';
+
+html {
+  // This in combination with the default background color on the body creates a nice effect when overscrolling
+  // in Safari and Chrome on a Mac because the header and the footer are yellow, the yellow surface stretches
+  // beyond the body. If this is not yellow, overscrolling reveals a white background and the header
+  // suddenly seems in the middle of the page.
+  background-color: color.$yellow;
+}
 
 body {
   font-family: tokens.get('body-font-family');
@@ -14,4 +24,5 @@ body {
   line-height: tokens.get('body-line-height');
   letter-spacing: tokens.get('body-letter-spacing');
   color: tokens.get('body-color');
+  background-color: tokens.get('palettes-color-default-bg', palettes.$post-palettes);
 }
