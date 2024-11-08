@@ -5,7 +5,7 @@ node_modules
 .env
 
 # Ignore generated files
-icons
+public/icons
 icons-optimized
 icons.json
 no-svgs.json
