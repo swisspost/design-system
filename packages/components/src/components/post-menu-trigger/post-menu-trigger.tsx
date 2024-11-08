@@ -43,7 +43,9 @@ export class PostMenuTrigger {
     if (menu && this.slottedButton) {
       this.ariaExpanded = !this.ariaExpanded;
       this.slottedButton.setAttribute('aria-expanded', this.ariaExpanded.toString());
-      this.ariaExpanded ? menu.show(this.host) : menu.hide();
+      
+      // Toggle the menu visibility
+      menu.toggle(this.host);
     } else {
       console.warn(`No post-menu found with ID: ${this.for}`);
     }
@@ -53,9 +55,16 @@ export class PostMenuTrigger {
     this.slottedButton = this.host.querySelector('button');
     if (this.slottedButton) {
       this.slottedButton.setAttribute('aria-haspopup', 'menu');
-      this.slottedButton.addEventListener('click', () => this.handleToggle());
+      this.slottedButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('Button clicked');
+        this.handleToggle();
+      });
+    } else {
+      console.warn('No button found within post-menu-trigger');
     }
   }
+  
 
   render() {
     return (

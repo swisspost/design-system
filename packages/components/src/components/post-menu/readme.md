@@ -21,36 +21,9 @@
 
 ## Methods
 
-### `hide() => Promise<void>`
-
-Programmatically hide this menu
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
-### `show(target: HTMLElement) => Promise<void>`
-
-Programmatically display the menu
-
-#### Parameters
-
-| Name     | Type          | Description |
-| -------- | ------------- | ----------- |
-| `target` | `HTMLElement` |             |
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
 ### `toggle(target: HTMLElement) => Promise<void>`
 
-Programmatically toggle the menu visibility.
-If the menu is currently visible, it will be hidden; otherwise, it will be shown.
+Programmatically display or hide the menu based on current visibility.
 
 #### Parameters
 

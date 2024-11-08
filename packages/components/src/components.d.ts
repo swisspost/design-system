@@ -237,19 +237,11 @@ export namespace Components {
     }
     interface PostMenu {
         /**
-          * Programmatically hide this menu
-         */
-        "hide": () => Promise<void>;
-        /**
           * Defines the placement of the popover according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
          */
         "placement"?: Placement;
         /**
-          * Programmatically display the menu
-         */
-        "show": (target: HTMLElement) => Promise<void>;
-        /**
-          * Programmatically toggle the menu visibility. If the menu is currently visible, it will be hidden; otherwise, it will be shown.
+          * Programmatically display or hide the menu based on current visibility.
          */
         "toggle": (target: HTMLElement) => Promise<void>;
     }

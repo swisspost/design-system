@@ -17,12 +17,12 @@ export class PostMenu {
 
   private readonly KEYCODES = {
     SPACE: 'Space',
-    LEFT: 'ArrowLeft',
     UP: 'ArrowUp',
     RIGHT: 'ArrowRight',
     DOWN: 'ArrowDown',
     HOME: 'Home',
-    END: 'End'
+    END: 'End',
+    ESCAPE: 'Escape'
   };
 
   @Element() host: HTMLPostMenuElement;
@@ -44,47 +44,48 @@ export class PostMenu {
   @Event() toggleMenu: EventEmitter<boolean>;
 
   connectedCallback() {
-      this.host.addEventListener('keydown', this.handleKeyDown);
+    this.host.addEventListener('keydown', this.handleKeyDown);
   }
 
   disconnectedCallback() {
-      this.host.removeEventListener('keydown', this.handleKeyDown);
+    this.host.removeEventListener('keydown', this.handleKeyDown);
   }
 
   private handleKeyDown = (e: KeyboardEvent) => {
+    e.stopPropagation();
+
+    if (e.key === this.KEYCODES.ESCAPE) {
+      e.preventDefault();
+      this.toggle(this.host); // Use toggle to handle Escape key
+      return;
+    }
+
     if (Object.values(this.KEYCODES).includes(e.key)) {
+      e.preventDefault();
       this.controlKeyDownHandler(e);
     }
   };
 
   private controlKeyDownHandler(e: KeyboardEvent) {
-    e.stopPropagation();
-  
-    const focusableItems = this.getFocusableItems();
-    if (!focusableItems.length) return;
-  
+    const menuItems = this.getSlottedItems();
+    if (!menuItems.length) return;
+
     const currentFocusedElement = document.activeElement as HTMLElement;
-    let currentIndex = focusableItems.findIndex(el => el === currentFocusedElement);
-  
-    if (Object.values(this.KEYCODES).includes(e.code)) e.preventDefault();
-  
+    let currentIndex = menuItems.findIndex(el => el === currentFocusedElement);
+
     switch (e.code) {
       case this.KEYCODES.UP:
-        if (currentIndex > 0) {
-          currentIndex = currentIndex - 1;
-        }
+        currentIndex = (currentIndex - 1 + menuItems.length) % menuItems.length;
         break;
       case this.KEYCODES.DOWN:
       case this.KEYCODES.RIGHT:
-        if (currentIndex < focusableItems.length - 1) {
-          currentIndex = currentIndex + 1;
-        }
+        currentIndex = (currentIndex + 1) % menuItems.length;
         break;
       case this.KEYCODES.HOME:
         currentIndex = 0;
         break;
       case this.KEYCODES.END:
-        currentIndex = focusableItems.length - 1;
+        currentIndex = menuItems.length - 1;
         break;
       case this.KEYCODES.SPACE:
         if (['BUTTON', 'A', 'INPUT', 'SELECT', 'TEXTAREA'].includes(currentFocusedElement.tagName)) {
@@ -94,9 +95,9 @@ export class PostMenu {
       default:
         break;
     }
-  
-    if (focusableItems[currentIndex]) {
-      (focusableItems[currentIndex] as HTMLElement).focus();
+
+    if (menuItems[currentIndex]) {
+      (menuItems[currentIndex] as HTMLElement).focus();
     }
   }
 
@@ -104,54 +105,47 @@ export class PostMenu {
     const slot = this.host.shadowRoot.querySelector('slot');
     const slottedElements = slot ? slot.assignedElements() : [];
 
-    const focusableItems = slottedElements
+    const menuItems = slottedElements
       .filter(el => el.tagName === 'POST-MENU-ITEM')
       .map(el => {
         const slot = el.shadowRoot.querySelector('slot');
         const assignedElements = slot ? slot.assignedElements() : [];
-
         return assignedElements.filter(isFocusable);
       })
       .flat();
 
-    return focusableItems;
+    return menuItems;
   }
 
   /**
-   * Programmatically display the menu
+   * Programmatically display or hide the menu based on current visibility.
    */
   @Method()
-  async show(target: HTMLElement) {
-    if (!this.isVisible && this.popoverRef) {
+  async toggle(target: HTMLElement) {
+    this.isVisible = !this.isVisible;
+    this.isVisible ? await this.show(target) : await this.hide();
+  }
+
+  private async show(target: HTMLElement) {
+    if (this.popoverRef) {
       await this.popoverRef.show(target);
-      this.isVisible = true;
       this.toggleMenu.emit(this.isVisible);
-    } else if (!this.popoverRef) {
+      const menuItems = this.getSlottedItems();
+      if (menuItems.length > 0) {
+        (menuItems[0] as HTMLElement).focus();
+      }
+    } else {
       console.error('show: popoverRef is null or undefined');
     }
   }
 
-  /**
-   * Programmatically hide this menu
-   */
-  @Method()
-  async hide() {
-    if (this.isVisible && this.popoverRef) {
+  private async hide() {
+    if (this.popoverRef) {
       await this.popoverRef.hide();
-      this.isVisible = false;
       this.toggleMenu.emit(this.isVisible);
-    } else if (!this.popoverRef) {
+    } else {
       console.error('hide: popoverRef is null or undefined');
     }
-  }
-
-  /**
-   * Programmatically toggle the menu visibility.
-   * If the menu is currently visible, it will be hidden; otherwise, it will be shown.
-   */
-  @Method()
-  async toggle(target: HTMLElement) {
-    this.isVisible ? await this.hide() : await this.show(target);
   }
 
   render() {
