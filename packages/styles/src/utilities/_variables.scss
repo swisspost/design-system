@@ -88,6 +88,25 @@ $utilities: (
       100: 1,
     ),
   ),
+  'float': (
+    responsive: true,
+    property: float,
+    values: (
+      start: inline-start,
+      end: inline-end,
+      none: none,
+    ),
+  ),
+  'opacity': (
+    property: opacity,
+    values: (
+      0: 0,
+      25: 0.25,
+      50: 0.5,
+      75: 0.75,
+      100: 1,
+    ),
+  ),
   'rounded': (
     property: border-radius,
     class: rounded,

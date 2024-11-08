@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import meta, { Default, AccentColors, SignalColors } from './button.stories';
+import meta, { Default } from './button.stories';
 import { html } from 'lit';
 import { bombArgs } from '@/utils';
 
@@ -18,7 +18,10 @@ export const Button: Story = {
       <div class="d-flex flex-wrap gap-4 align-items-start">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div class="${bg} d-flex flex-wrap align-items-start gap-16 p-16">
+            <div
+              class="${bg} d-flex flex-wrap align-items-start gap-16 p-16"
+              data-color-scheme=${bg === 'bg-white' ? 'light' : 'dark'}
+            >
               ${bombArgs({
                 variant: context.argTypes.variant.options,
                 size: context.argTypes.size.options,
@@ -41,10 +44,6 @@ export const Button: Story = {
                 .map((args: Args) =>
                   Default.render?.({ ...context.args, ...args, animated: false }, context),
                 )}
-              <div class="mt-32 w-100"></div>
-              ${AccentColors.render?.({ ...context.args, ...AccentColors.args }, context)}
-              <div class="mt-32 w-100"></div>
-              ${SignalColors.render?.({ ...context.args, ...SignalColors.args }, context)}
             </div>
           `,
         )}
