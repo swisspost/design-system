@@ -62,8 +62,8 @@ tokens.$default-map: components.$post-list;
 
   > post-icon {
     flex: 0 0 auto;
-    width: 24px; //TODO: Tokenize
-    height: 24px; //TODO: Tokenize
+    width: tokens.get('list-icon-size');
+    height: tokens.get('list-icon-size');
 
     &:last-child {
       margin-left: auto;
