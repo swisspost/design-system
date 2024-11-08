@@ -93,29 +93,6 @@ post-card-control ~ .invalid-feedback {
   display: inline-flex;
 }
 
-.form-control,
-.form-select {
-  &.is-invalid {
-    &:not(:disabled) {
-      border-color: form-validation.$form-feedback-invalid-color;
-
-      &:focus {
-        border-color: form-validation.$form-feedback-invalid-color;
-      }
-    }
-  }
-
-  &.is-valid {
-    &:not(:disabled) {
-      border-color: var(--post-success);
-
-      &:focus {
-        border-color: var(--post-success);
-      }
-    }
-  }
-}
-
 .form-check-input {
   @include form-validation-mx.form-validation-state-selector(invalid) {
     border-color: form-validation.$form-feedback-invalid-color;
