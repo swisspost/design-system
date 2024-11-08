@@ -3,7 +3,7 @@ import { version } from '@root/package.json';
 
 @Component({
   tag: 'post-menu-item',
-  shadow: true,
+  shadow: false,
   styleUrl: 'post-menu-item.scss',
 })
 export class PostMenuItem {
