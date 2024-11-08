@@ -167,21 +167,6 @@ tokens.$default-map: components.$post-text-input;
     }
   }
 
-  &::-webkit-date-and-time-value {
-    min-width: 85px; // Seems to be a good minimum safe width
-    height: if(
-      math.unit(tokens.get('input-sizing-line-height')) == '',
-      tokens.get('input-sizing-line-height') * 1em,
-      tokens.get('input-sizing-line-height')
-    );
-    margin: 0;
-  }
-
-  &::-webkit-datetime-edit {
-    display: block;
-    padding: 0;
-  }
-
   &::placeholder {
     color: tokens.get('input-color-placeholder-fg');
     opacity: 1;
