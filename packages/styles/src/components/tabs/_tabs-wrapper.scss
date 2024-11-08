@@ -38,14 +38,15 @@
 }
 
 .tabs {
-  @include utilities-mx.reset-list;
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
+  @include utilities-mx.reset-list() {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
 
-  /* prevent scroll chaining on x scroll */
-  overscroll-behavior-x: contain;
-  white-space: nowrap;
+    /* prevent scroll chaining on x scroll */
+    overscroll-behavior-x: contain;
+    white-space: nowrap;
+  }
 
   // Scrolling fix to make the tabs scroll a little more so the right most tab is not
   // flush with the window border
