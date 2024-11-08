@@ -6,7 +6,6 @@
 @use './../color';
 @use './../type';
 @use './../spacing';
-@use './../animation';
 @use './../../functions/utilities';
 @use './../../functions/sizing';
 @use './../../functions/tokens';
@@ -17,6 +16,7 @@ tokens.$default-map: components.$post-text-input;
 // Forms
 
 // Used elsewhere than text input
+
 $form-bg-size: 32px !default;
 $form-bg-size-sm: 24px !default;
 
@@ -87,26 +87,15 @@ $form-range-thumb-disabled-border-color: $input-disabled-border-color !default;
 $form-range-height: $form-range-thumb-height + $form-range-thumb-focus-box-shadow-width * 2;
 $form-range-input-height-ie: 6rem !default;
 
-// TODO: Rework this
-$form-floating-height: $input-height-lg * $input-line-height-lg;
-$form-floating-padding-x: $input-padding-x-lg;
-$form-floating-padding-y: $input-padding-y-lg;
-$form-floating-line-height: type.$line-height-copy;
-$form-floating-label-height: $form-floating-height;
 $form-floating-label-font-size: type.$font-size-16;
 $form-floating-label-font-size-small: type.$font-size-12;
 $form-floating-label-scale: math.div(
   $form-floating-label-font-size-small,
   $form-floating-label-font-size
 );
-$form-floating-label-upscale: math.div(1, $form-floating-label-scale);
-$form-floating-label-padding-t: $form-floating-label-height * 0.5 - $form-floating-label-font-size *
-  type.$line-height-copy * 0.5;
-$form-floating-label-translate-x: $form-floating-padding-x * (1 - $form-floating-label-scale);
-$form-floating-label-transform: scale($form-floating-label-scale);
-$form-floating-transition:
-  animation.$transition-base,
-  width 0ms list.nth(animation.$transition-base, 2);
+
+$form-floating-height: $input-height-lg * $input-line-height-lg;
+$form-floating-padding-y: $input-padding-y-lg;
 
 $form-floating-textarea-padding-t: spacing.$size-mini + $form-floating-label-font-size *
-  $form-floating-line-height * $form-floating-label-scale; // The Space needed for the label on focus
+  type.$line-height-copy * $form-floating-label-scale; // The Space needed for the label on focus

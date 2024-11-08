@@ -51,7 +51,7 @@ tokens.$default-map: components.$post-text-input;
     overflow: hidden;
     text-overflow: ellipsis;
     transform-origin: tokens.get('input-spacing-padding-inline-label-start') 0;
-    transition: forms.$form-floating-transition;
+    transition: all 0.25s ease-in-out;
   }
 
   > .form-control {
@@ -65,20 +65,10 @@ tokens.$default-map: components.$post-text-input;
       padding-bottom: tokens.get('input-spacing-padding-block-text2');
 
       ~ label {
+        font-size: tokens.get('input-sizing-label-enabled');
         color: tokens.get('input-color-selected-fg');
         padding-top: tokens.get('input-spacing-padding-block-label-selected-start');
-        max-width: calc(
-          (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
-            forms.$form-floating-label-upscale * 2} - #{tokens.get('input-sizing-border-width') * forms.$form-floating-label-upscale *
-            2}
-        );
       }
-    }
-
-    // Duplicated because `:-webkit-autofill` invalidates other selectors when grouped
-    &:-webkit-autofill {
-      padding-top: tokens.get('input-spacing-padding-block-input-start');
-      padding-bottom: tokens.get('input-spacing-padding-block-text2');
     }
 
     @include forms-mx.placeholder {
@@ -115,12 +105,8 @@ tokens.$default-map: components.$post-text-input;
     ~ label {
       color: tokens.get('input-color-enabled-fg');
       padding-top: tokens.get('input-spacing-padding-block-label-selected-start');
-      max-width: calc(
-        (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
-          forms.$form-floating-label-upscale * 2} - #{tokens.get('input-sizing-border-width') * forms.$form-floating-label-upscale *
-          2}
-      );
-      transition: forms.$form-floating-transition;
+      max-width: calc(100% - (#{tokens.get('input-sizing-border-width') * 2}));
+      transition: all 0.25s ease-in-out;
     }
 
     &:disabled {
@@ -137,7 +123,6 @@ tokens.$default-map: components.$post-text-input;
       ~ label {
         padding-top: tokens.get('input-spacing-padding-block-label-selected-start');
         max-width: calc(100% - (#{tokens.get('input-sizing-border-width') * 2}));
-        transform: none;
       }
     }
 
@@ -147,21 +132,14 @@ tokens.$default-map: components.$post-text-input;
       height: auto;
 
       ~ label {
-        padding-top: forms.$input-padding-y-lg * forms.$form-floating-label-scale;
         padding-bottom: 0;
-        width: calc(
-          (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
-            forms.$form-floating-label-upscale * 2} - #{tokens.get('input-sizing-border-width') * forms.$form-floating-label-upscale *
-            2} - #{tokens.get('input-spacing-padding-inline-label-start') *
-            forms.$form-floating-label-upscale}
-        );
+        max-width: calc(100% - (#{tokens.get('input-sizing-border-width') * 2}));
         height: auto;
-        left: tokens.get('input-sizing-border-width') * 3;
       }
 
       &:not(:disabled) {
         ~ label {
-          background: tokens.get('input-color-enabled-fg');
+          background-color: tokens.get('input-color-enabled-bg');
         }
       }
 
@@ -183,17 +161,7 @@ tokens.$default-map: components.$post-text-input;
   > .form-control:not(:placeholder-shown),
   > .form-select {
     ~ label {
-      transform: forms.$form-floating-label-transform;
-
-      &::after {
-        position: absolute;
-        inset: forms.$form-floating-padding-y
-          (tokens.get('input-spacing-padding-inline-label-start') * 0.5);
-        z-index: -1;
-        height: tokens.get('input-sizing-line-height');
-        content: '';
-        background-color: tokens.get('input-color-selected-bg');
-      }
+      font-size: tokens.get('input-sizing-label-selected');
     }
 
     &:not(:hover) {
@@ -205,9 +173,12 @@ tokens.$default-map: components.$post-text-input;
 
   // Duplicated because `:-webkit-autofill` invalidates other selectors when grouped
   > .form-control:-webkit-autofill {
+    padding-top: tokens.get('input-spacing-padding-block-input-start');
+    padding-bottom: tokens.get('input-spacing-padding-block-text2');
+
     ~ label {
       color: tokens.get('input-color-selected-fg');
-      transform: forms.$form-floating-label-transform;
+      font-size: tokens.get('input-sizing-label-selected');
     }
   }
 
@@ -215,10 +186,6 @@ tokens.$default-map: components.$post-text-input;
   > .form-control:disabled ~ label {
     // Required for `.form-control`s because of specificity
     color: tokens.get('input-color-disabled-fg');
-
-    &::after {
-      background-color: tokens.get('input-color-disabled-bg');
-    }
   }
 
   > textarea.form-control {
@@ -244,14 +211,9 @@ tokens.$default-map: components.$post-text-input;
 
       ~ label {
         padding-top: spacing.$size-mini;
-        width: calc(
-          (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
-            forms.$form-floating-label-upscale * 2} - #{tokens.get('input-sizing-border-width') * forms.$form-floating-label-upscale *
-            2} - #{tokens.get('input-spacing-padding-inline-label-start') *
-            forms.$form-floating-label-upscale}
-        );
+        width: calc(100% - (#{tokens.get('input-sizing-border-width') * 2}));
         max-width: none;
-        background: tokens.get('input-color-selected-fg');
+        background-color: tokens.get('input-color-selected-bg');
       }
     }
 
@@ -266,12 +228,7 @@ tokens.$default-map: components.$post-text-input;
       &:focus,
       &:not(:placeholder-shown) {
         ~ label {
-          width: calc(
-            (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
-              forms.$form-floating-label-upscale * 2} - #{tokens.get('input-sizing-border-width') * forms.$form-floating-label-upscale *
-              2} - #{form-validation.$form-feedback-icon-offset * forms.$form-floating-label-upscale} -
-              #{form-validation.$form-feedback-icon-size * forms.$form-floating-label-upscale}
-          );
+          width: calc(100% - (#{tokens.get('input-sizing-border-width') * 2}));
         }
       }
     }
