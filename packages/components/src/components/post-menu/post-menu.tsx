@@ -3,10 +3,6 @@ import { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
 import { isFocusable } from '@/utils/is-focusable';
 
-/**
- * @slot default - Slot for placing content inside the menu.
- */
-
 @Component({
   tag: 'post-menu',
   styleUrl: 'post-menu.scss',
@@ -14,6 +10,7 @@ import { isFocusable } from '@/utils/is-focusable';
 })
 export class PostMenu {
   private popoverRef: HTMLPostPopovercontainerElement;
+  private lastFocusedElement: HTMLElement | null = null;
 
   private readonly KEYCODES = {
     SPACE: 'Space',
@@ -27,20 +24,10 @@ export class PostMenu {
 
   @Element() host: HTMLPostMenuElement;
 
-  /**
-   * Defines the placement of the popover according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
-   */
   @Prop() readonly placement?: Placement = 'bottom';
 
-  /**
-   * Tracks the visibility state of the menu (true if visible, false if hidden).
-   */
   @State() isVisible: boolean = false;
 
-  /**
-   * Emits when the menu is shown or hidden.
-   * The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
-   */
   @Event() toggleMenu: EventEmitter<boolean>;
 
   connectedCallback() {
@@ -56,7 +43,7 @@ export class PostMenu {
 
     if (e.key === this.KEYCODES.ESCAPE) {
       e.preventDefault();
-      this.toggle(this.host); // Use toggle to handle Escape key
+      this.toggle(this.host);
       return;
     }
 
@@ -118,15 +105,26 @@ export class PostMenu {
   }
 
   /**
-   * Programmatically display or hide the menu based on current visibility.
+   * Programmatically toggle the menu visibility.
+   * If the menu is currently visible, it will be hidden; otherwise, it will be shown.
    */
   @Method()
   async toggle(target: HTMLElement) {
+    if (!this.isVisible) {
+      this.lastFocusedElement = document.activeElement as HTMLElement; // Save focus reference
+    }
+
     this.isVisible = !this.isVisible;
     this.isVisible ? await this.show(target) : await this.hide();
   }
 
-  private async show(target: HTMLElement) {
+   /**
+   * Displays the popover menu, positioning it relative to the specified target element.
+   * 
+   * @param target - The HTML element relative to which the popover menu should be displayed.
+   */
+  @Method()
+  async show(target: HTMLElement) {
     if (this.popoverRef) {
       await this.popoverRef.show(target);
       this.toggleMenu.emit(this.isVisible);
@@ -139,10 +137,19 @@ export class PostMenu {
     }
   }
 
-  private async hide() {
+  /**
+   * Hides the popover menu and restores focus to the previously focused element.
+   * If the popover is successfully hidden, it triggers the `toggleMenu` event.
+   */
+  @Method()
+  async hide() {
     if (this.popoverRef) {
       await this.popoverRef.hide();
       this.toggleMenu.emit(this.isVisible);
+
+      if (this.lastFocusedElement) {
+        this.lastFocusedElement.focus();
+      }
     } else {
       console.error('hide: popoverRef is null or undefined');
     }

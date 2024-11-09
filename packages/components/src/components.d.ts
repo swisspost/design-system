@@ -237,11 +237,17 @@ export namespace Components {
     }
     interface PostMenu {
         /**
-          * Defines the placement of the popover according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
+          * Hides the popover menu and restores focus to the previously focused element. If the popover is successfully hidden, it triggers the `toggleMenu` event.
          */
+        "hide": () => Promise<void>;
         "placement"?: Placement;
         /**
-          * Programmatically display or hide the menu based on current visibility.
+          * Displays the popover menu, positioning it relative to the specified target element.
+          * @param target - The HTML element relative to which the popover menu should be displayed.
+         */
+        "show": (target: HTMLElement) => Promise<void>;
+        /**
+          * Programmatically toggle the menu visibility. If the menu is currently visible, it will be hidden; otherwise, it will be shown.
          */
         "toggle": (target: HTMLElement) => Promise<void>;
     }
@@ -894,13 +900,7 @@ declare namespace LocalJSX {
         "url"?: string | URL;
     }
     interface PostMenu {
-        /**
-          * Emits when the menu is shown or hidden. The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
-         */
         "onToggleMenu"?: (event: PostMenuCustomEvent<boolean>) => void;
-        /**
-          * Defines the placement of the popover according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
-         */
         "placement"?: Placement;
     }
     interface PostMenuItem {

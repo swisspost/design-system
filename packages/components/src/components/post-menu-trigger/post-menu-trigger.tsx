@@ -55,6 +55,8 @@ export class PostMenuTrigger {
     this.slottedButton = this.host.querySelector('button');
     if (this.slottedButton) {
       this.slottedButton.setAttribute('aria-haspopup', 'menu');
+      this.slottedButton.addEventListener('focusin', this.handleFocusIn.bind(this));
+      this.slottedButton.addEventListener('focusout', this.handleFocusOut.bind(this));
       this.slottedButton.addEventListener('click', (e) => {
         e.preventDefault();
         console.log('Button clicked');
@@ -65,10 +67,17 @@ export class PostMenuTrigger {
     }
   }
   
+  private handleFocusIn() {
+    this.slottedButton?.classList.add('no-pointer-events');
+  }
+  
+  private handleFocusOut() {
+    this.slottedButton?.classList.remove('no-pointer-events');
+  }
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={version} tab-index="-1">
         <slot></slot>
       </Host>
     );
