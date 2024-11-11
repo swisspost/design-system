@@ -32,9 +32,7 @@ export class PostMenuTrigger {
    */
   @Watch('for')
   validateControlFor(forValue = this.for) {
-    if (this.for) {
-      checkType(forValue, 'string', 'The "for" property is required and should be a string.');
-    }
+    checkType(forValue, 'string', 'The "for" property is required and should be a string.');
   }
 
   private get menu(): HTMLPostMenuElement | null {
