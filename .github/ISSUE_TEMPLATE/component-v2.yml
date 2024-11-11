@@ -28,14 +28,31 @@ body:
       options:
         - label: Tokens for this component are ready
   - type: textarea
-    id: tasks
+    id: tasksdesign
     attributes:
-      label: Tasks
+      label: Tasks design
+      description: Default tasks for the design team. Can be edited later according to needs.
+      value: |
+        ```[tasklist]
+        ### 🎨 Tasks design
+        - [ ] Design component according to WIKIT
+        - [ ] Update dependencies
+        - [ ] Add & test compo in layout examples
+        - [ ] Designer review
+        - [ ] Overview and usage (About, compo overview, compo props, usage, examples)
+        - [ ] Technical documentation (Anatomy, accessibility)
+        - [ ] Doc review (content correctness, understandability, gaps)
+        ```
+  - type: textarea
+    id: tasksdev
+    attributes:
+      label: Tasks development
       description: Default tasks for the dev team. Can be edited later according to needs.
       value: |
         ```[tasklist]
-        ### 💻 Tasks
+        ### 💻 Tasks development
         - [ ] Review Design (All states present? Possible to implement?)
+        - [ ] Tokenization
         - [ ] HTML/CSS implementation
         - [ ] Web component implementation
         - [ ] Documentation in Storybook
