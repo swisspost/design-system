@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-tokens",
-  "version": "7.4.4",
+  "version": "7.4.5",
   "private": true,
   "description": "Design Tokens for the Swiss Post.",
   "author": "Swiss Post <design-system@post.ch>",
