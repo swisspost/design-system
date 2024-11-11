@@ -39,8 +39,8 @@ body:
         - [ ] Update dependencies
         - [ ] Add & test compo in layout examples
         - [ ] Designer review
-        - [ ] Documentation: Overview and usage (About, compo overview, compo props, usage, examples)
-        - [ ] Documentation: Technical documentation (Anatomy, accessibility)
+        - [ ] Documentation: Overview and usage (about, compo overview, compo props, usage, examples)
+        - [ ] Documentation: Technical documentation (anatomy, accessibility)
         - [ ] Documentation: Review (content correctness, understandability, gaps)
         ```
   - type: textarea
