@@ -23,6 +23,7 @@
 
 $utilities: (
   'width': (
+    responsive: true,
     property: width,
     class: w,
     values: (
@@ -35,6 +36,7 @@ $utilities: (
     ),
   ),
   'height': (
+    responsive: true,
     property: height,
     class: h,
     values: (
@@ -47,6 +49,7 @@ $utilities: (
     ),
   ),
   'max-width': (
+    responsive: true,
     property: max-width,
     class: max-w,
     values: (
@@ -58,6 +61,7 @@ $utilities: (
     ),
   ),
   'max-height': (
+    responsive: true,
     property: max-height,
     class: max-h,
     values: (
@@ -69,6 +73,7 @@ $utilities: (
     ),
   ),
   'min-width': (
+    responsive: true,
     property: min-width,
     class: min-w,
     values: (
@@ -80,6 +85,7 @@ $utilities: (
     ),
   ),
   'min-height': (
+    responsive: true,
     property: min-height,
     class: min-h,
     values: (
@@ -91,6 +97,7 @@ $utilities: (
     ),
   ),
   'viewport-width': (
+    responsive: true,
     property: width,
     class: vw,
     values: (
@@ -102,6 +109,7 @@ $utilities: (
     ),
   ),
   'viewport-height': (
+    responsive: true,
     property: height,
     class: vh,
     values: (
@@ -113,6 +121,7 @@ $utilities: (
     ),
   ),
   'min-viewport-width': (
+    responsive: true,
     property: min-width,
     class: min-vw,
     values: (
@@ -124,6 +133,7 @@ $utilities: (
     ),
   ),
   'min-viewport-height': (
+    responsive: true,
     property: min-height,
     class: min-vh,
     values: (
@@ -135,6 +145,7 @@ $utilities: (
     ),
   ),
   'max-viewport-width': (
+    responsive: true,
     property: max-width,
     class: max-vw,
     values: (
@@ -146,6 +157,7 @@ $utilities: (
     ),
   ),
   'max-viewport-height': (
+    responsive: true,
     property: max-height,
     class: max-vh,
     values: (
