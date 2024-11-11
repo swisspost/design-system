@@ -1,24 +1,24 @@
 @use '../tokens/components';
 @use '../functions/tokens';
 
-tokens.$default-map: components.$post-quote;
+tokens.$default-map: components.$post-blockquote;
 
 .blockquote {
-  font-size: tokens.get('post-quote-font-size');
-  font-weight: tokens.get('post-quote-font-weight');
-  margin: tokens.get('post-quote-margin-block') tokens.get('post-quote-margin-inline');
-  padding: 0 tokens.get('post-quote-padding-inline-end') 0
-    tokens.get('post-quote-padding-inline-start');
-  border-inline-start: tokens.get('post-quote-border-width-left')
-    tokens.get('post-quote-border-left-style') tokens.get('post-quote-border-left-color');
+  font-size: tokens.get('post-blockquote-font-size');
+  font-weight: tokens.get('post-blockquote-font-weight');
+  margin: tokens.get('post-blockquote-margin-block') tokens.get('post-blockquote-margin-inline');
+  padding: 0 tokens.get('post-blockquote-padding-inline-end') 0
+    tokens.get('post-blockquote-padding-inline-start');
+  border-inline-start: tokens.get('post-blockquote-border-width-left')
+    tokens.get('post-blockquote-border-left-style') tokens.get('post-blockquote-border-left-color');
 }
 
 figure:has(.blockquote) {
-  margin: tokens.get('post-quote-margin-block') tokens.get('post-quote-margin-inline');
-  padding: 0 tokens.get('post-quote-padding-inline-end') 0
-    tokens.get('post-quote-padding-inline-start');
-  border-inline-start: tokens.get('post-quote-border-width-left')
-    tokens.get('post-quote-border-left-style') tokens.get('post-quote-border-left-color');
+  margin: tokens.get('post-blockquote-margin-block') tokens.get('post-blockquote-margin-inline');
+  padding: 0 tokens.get('post-blockquote-padding-inline-end') 0
+    tokens.get('post-blockquote-padding-inline-start');
+  border-inline-start: tokens.get('post-blockquote-border-width-left')
+    tokens.get('post-blockquote-border-left-style') tokens.get('post-blockquote-border-left-color');
 
   .blockquote {
     margin: 0;
@@ -30,7 +30,7 @@ figure:has(.blockquote) {
 }
 
 figcaption.blockquote-footer {
-  margin-top: tokens.get('post-quote-gap-inline');
+  margin-top: tokens.get('post-blockquote-gap-inline');
 
   cite {
     font-style: normal;
