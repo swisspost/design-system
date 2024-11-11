@@ -17,21 +17,18 @@ tokens.$default-map: components.$post-text-input;
   appearance: none; // Fix appearance for date inputs in Safari
   background-clip: padding-box;
   border: tokens.get('input-border-width') tokens.get('input-border-style-default')
-    tokens.get('input-color-enabled-stroke');
+    tokens.get('input-color-enabled-border');
   position: relative;
   border-radius: tokens.get('input-border-radius-surface');
   background-color: tokens.get('input-color-enabled-bg');
   color: tokens.get('input-color-enabled-fg');
   padding-inline-start: tokens.get('input-padding-inline-start');
   padding-inline-end: tokens.get('input-padding-inline-end');
-  padding-block-start: tokens.get('input-padding-block-text1');
-  padding-block-end: tokens.get('input-padding-block-text1');
-  line-height: tokens.get('input-sizing-line-height');
-  font-size: tokens.get('input-sizing-font-size');
+  padding-block: tokens.get('input-empty-padding-block');
   height: tokens.get('input-sizing-height');
 
   &:focus {
-    border-color: tokens.get('input-color-selected-stroke');
+    border-color: tokens.get('input-color-selected-border');
     background-color: tokens.get('input-color-selected-bg');
     color: tokens.get('input-color-selected-fg');
 
@@ -51,7 +48,7 @@ tokens.$default-map: components.$post-text-input;
     }
 
     &:hover {
-      border-color: tokens.get('input-color-hover-stroke');
+      border-color: tokens.get('input-color-hover-border');
       background-color: tokens.get('input-color-hover-bg');
 
       @include utilities.high-contrast-mode {
@@ -67,7 +64,7 @@ tokens.$default-map: components.$post-text-input;
   }
 
   &[readonly]:not(:disabled) {
-    border-color: tokens.get('input-color-enabled-stroke');
+    border-color: tokens.get('input-color-enabled-border');
     background-color: tokens.get('input-color-enabled-bg');
   }
 
@@ -83,8 +80,10 @@ tokens.$default-map: components.$post-text-input;
     }
     // File input buttons theming
     &::file-selector-button {
-      padding: tokens.get('input-padding-block-text1') tokens.get('input-padding-inline-start');
-      margin: calc(#{tokens.get('input-padding-block-text1')} * -1)
+      padding-block: tokens.get('input-empty-padding-block');
+      padding-inline-start: tokens.get('input-padding-inline-start');
+      padding-inline-end: tokens.get('input-padding-inline-end');
+      margin: calc(#{tokens.get('input-empty-padding-block')} * -1)
         calc(#{tokens.get('input-padding-inline-start')} * -1);
       margin-inline-end: tokens.get('input-padding-inline-start');
       color: tokens.get('input-color-enabled-fg');
@@ -173,7 +172,7 @@ tokens.$default-map: components.$post-text-input;
   &:disabled {
     color: tokens.get('input-color-disabled-fg');
     background-color: tokens.get('input-color-disabled-bg');
-    border-color: tokens.get('input-color-disabled-stroke');
+    border-color: tokens.get('input-color-disabled-border');
     opacity: 1;
   }
 
@@ -185,7 +184,7 @@ tokens.$default-map: components.$post-text-input;
   &.is-invalid {
     &:not(:disabled) {
       background-size: tokens.get('input-sizing-icon');
-      background-position: center right tokens.get('input-padding-inline-end');
+      background-position: center right tokens.get('input-validation-icon-position-inline-end');
       background-repeat: no-repeat;
       padding-inline-end: calc(
         #{tokens.get('input-padding-inline-end')} + #{tokens.get(
@@ -204,21 +203,15 @@ tokens.$default-map: components.$post-text-input;
   }
 }
 
-textarea {
-  &.form-control {
-    min-height: tokens.get('input-sizing-height');
-  }
+textarea.form-control {
+  min-height: tokens.get('input-sizing-height');
 }
 
-.form-label {
-  &:has(+ .form-control[disabled], + .form-select[disabled]) {
-    color: tokens.get('input-color-disabled-fg');
-  }
+.form-label:has(+ .form-control[disabled], + .form-select[disabled]) {
+  color: tokens.get('input-color-disabled-fg');
 }
 
-.form-floating {
-  > .form-control {
-    height: tokens.get('input-sizing-height');
-    min-height: tokens.get('input-sizing-height');
-  }
+.form-floating > .form-control {
+  height: tokens.get('input-sizing-height');
+  min-height: tokens.get('input-sizing-height');
 }

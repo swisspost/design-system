@@ -172,7 +172,7 @@
   &:disabled#{$additional-selector} {
     pointer-events: none;
     color: tokens.get('input-color-disabled-fg', components.$post-text-input);
-    border-color: tokens.get('input-color-disabled-stroke', components.$post-text-input);
+    border-color: tokens.get('input-color-disabled-border', components.$post-text-input);
     border-style: tokens.get('input-border-style-disabled', components.$post-text-input);
     background-clip: padding-box;
     // In case rules need to be slightly adjusted
