@@ -34,14 +34,14 @@ body:
       description: Default tasks for the design team. Can be edited later according to needs.
       value: |
         ```[tasklist]
-        ### 🎨 Tasks design
+        ### 🎨 Design
         - [ ] Design component according to WIKIT
         - [ ] Update dependencies
         - [ ] Add & test compo in layout examples
         - [ ] Designer review
-        - [ ] Overview and usage (About, compo overview, compo props, usage, examples)
-        - [ ] Technical documentation (Anatomy, accessibility)
-        - [ ] Doc review (content correctness, understandability, gaps)
+        - [ ] Documentation: Overview and usage (About, compo overview, compo props, usage, examples)
+        - [ ] Documentation: Technical documentation (Anatomy, accessibility)
+        - [ ] Documentation: Review (content correctness, understandability, gaps)
         ```
   - type: textarea
     id: tasksdev
