@@ -5,9 +5,9 @@ tokens.$default-map: components.$post-text-input;
 
 .form-hint {
   color: tokens.get('input-color-enabled-fg');
-  padding-inline: tokens.get('input-padding-inline-text-assist');
-  padding-block: tokens.get('input-padding-block-text-assist');
-  font-size: 14px; //TODO: Token
+  padding-inline: tokens.get('input-padding-inline-assist');
+  padding-block: tokens.get('input-padding-block-assist');
+  font-size: tokens.get('input-assist-font-size');
 }
 
 .form-control:disabled .form-hint {
