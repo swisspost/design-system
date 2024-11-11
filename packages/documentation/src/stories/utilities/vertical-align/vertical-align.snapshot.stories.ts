@@ -5,7 +5,6 @@ import './vertical-align.styles.scss';
 
 const { id, ...metaWithoutId } = meta;
 
-console.log(meta?.argTypes?.align?.options);
 export default {
   ...metaWithoutId,
   title: 'Snapshots',
