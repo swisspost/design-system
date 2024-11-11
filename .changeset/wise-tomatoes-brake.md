@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-styles': minor
+'@swisspost/design-system-styles': patch
 ---
 
-implement validation component
+Updated the styles  of the form validation messages to match the new Post design.
