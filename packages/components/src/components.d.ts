@@ -93,6 +93,18 @@ export namespace Components {
          */
         "userid"?: string;
     }
+    interface PostBreadcrumb {
+        /**
+          * The optional URL to which the breadcrumb item will link.
+         */
+        "url"?: string | URL;
+    }
+    interface PostBreadcrumbItem {
+        /**
+          * The optional URL to which the breadcrumb item will link.
+         */
+        "url"?: string | URL;
+    }
     /**
      * @class PostCardControl - representing a stencil component
      */
@@ -473,6 +485,18 @@ declare global {
         prototype: HTMLPostAvatarElement;
         new (): HTMLPostAvatarElement;
     };
+    interface HTMLPostBreadcrumbElement extends Components.PostBreadcrumb, HTMLStencilElement {
+    }
+    var HTMLPostBreadcrumbElement: {
+        prototype: HTMLPostBreadcrumbElement;
+        new (): HTMLPostBreadcrumbElement;
+    };
+    interface HTMLPostBreadcrumbItemElement extends Components.PostBreadcrumbItem, HTMLStencilElement {
+    }
+    var HTMLPostBreadcrumbItemElement: {
+        prototype: HTMLPostBreadcrumbItemElement;
+        new (): HTMLPostBreadcrumbItemElement;
+    };
     interface HTMLPostCardControlElementEventMap {
         "postInput": { state: boolean; value: string };
         "postChange": { state: boolean; value: string };
@@ -677,6 +701,8 @@ declare global {
         "post-accordion-item": HTMLPostAccordionItemElement;
         "post-alert": HTMLPostAlertElement;
         "post-avatar": HTMLPostAvatarElement;
+        "post-breadcrumb": HTMLPostBreadcrumbElement;
+        "post-breadcrumb-item": HTMLPostBreadcrumbItemElement;
         "post-card-control": HTMLPostCardControlElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
@@ -763,6 +789,18 @@ declare namespace LocalJSX {
           * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
          */
         "userid"?: string;
+    }
+    interface PostBreadcrumb {
+        /**
+          * The optional URL to which the breadcrumb item will link.
+         */
+        "url"?: string | URL;
+    }
+    interface PostBreadcrumbItem {
+        /**
+          * The optional URL to which the breadcrumb item will link.
+         */
+        "url"?: string | URL;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -1033,6 +1071,8 @@ declare namespace LocalJSX {
         "post-accordion-item": PostAccordionItem;
         "post-alert": PostAlert;
         "post-avatar": PostAvatar;
+        "post-breadcrumb": PostBreadcrumb;
+        "post-breadcrumb-item": PostBreadcrumbItem;
         "post-card-control": PostCardControl;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
@@ -1062,6 +1102,8 @@ declare module "@stencil/core" {
             "post-accordion-item": LocalJSX.PostAccordionItem & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
             "post-alert": LocalJSX.PostAlert & JSXBase.HTMLAttributes<HTMLPostAlertElement>;
             "post-avatar": LocalJSX.PostAvatar & JSXBase.HTMLAttributes<HTMLPostAvatarElement>;
+            "post-breadcrumb": LocalJSX.PostBreadcrumb & JSXBase.HTMLAttributes<HTMLPostBreadcrumbElement>;
+            "post-breadcrumb-item": LocalJSX.PostBreadcrumbItem & JSXBase.HTMLAttributes<HTMLPostBreadcrumbItemElement>;
             /**
              * @class PostCardControl - representing a stencil component
              */
