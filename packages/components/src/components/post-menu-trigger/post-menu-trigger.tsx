@@ -1,6 +1,7 @@
 import { Component, Element, Prop, h, Host, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkType } from '@/utils';
+import { isFocusable } from '@/utils/is-focusable';
 
 @Component({
   tag: 'post-menu-trigger',
@@ -63,12 +64,49 @@ export class PostMenuTrigger {
         e.preventDefault();
         this.handleToggle();
       });
-      // Add keydown listener for ArrowUp and ArrowDown keys
       this.slottedButton.addEventListener('keydown', this.handleKeyDown);
+
+      // Listen for the `closeMenuWithTab` event from `post-menu`
+      const menu = this.menu;
+      if (menu) {
+        menu.addEventListener('closeMenuWithTab', () => {
+          this.focusNextSibling();
+        });
+      }
     } else {
       console.warn('No button found within post-menu-trigger');
     }
   }
+
+  /**
+   * Focuses the next focusable sibling element after the `post-menu-trigger`.
+   */
+  private focusNextSibling() {
+    // Get all focusable elements on the page that are not within the `post-menu`
+    const allElements = Array.from(document.querySelectorAll('*'));
+    const focusableElements = allElements.filter(
+      el => isFocusable(el) && !this.menu?.contains(el)
+    );
+  
+    const currentElement = this.slottedButton;
+    if (!currentElement) {
+      console.warn('Slotted button not found within post-menu-trigger');
+      return;
+    }
+  
+    const currentIndex = focusableElements.indexOf(currentElement);
+  
+    const nextFocusableElement =
+      currentIndex !== -1 && currentIndex < focusableElements.length - 1
+        ? focusableElements[currentIndex + 1]
+        : null;
+  
+    if (nextFocusableElement) {
+      (nextFocusableElement as HTMLElement).focus();
+    } else {
+      console.warn('No next focusable element found.');
+    }
+  }  
 
   render() {
     return (

@@ -560,6 +560,7 @@ declare global {
     };
     interface HTMLPostMenuElementEventMap {
         "toggleMenu": boolean;
+        "closeMenuWithTab": void;
     }
     interface HTMLPostMenuElement extends Components.PostMenu, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostMenuElementEventMap>(type: K, listener: (this: HTMLPostMenuElement, ev: PostMenuCustomEvent<HTMLPostMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -900,6 +901,7 @@ declare namespace LocalJSX {
         "url"?: string | URL;
     }
     interface PostMenu {
+        "onCloseMenuWithTab"?: (event: PostMenuCustomEvent<void>) => void;
         "onToggleMenu"?: (event: PostMenuCustomEvent<boolean>) => void;
         "placement"?: Placement;
     }

@@ -30,6 +30,8 @@ export class PostMenu {
 
   @Event() toggleMenu: EventEmitter<boolean>;
 
+  @Event() closeMenuWithTab: EventEmitter<void>;
+
   connectedCallback() {
     this.host.addEventListener('keydown', this.handleKeyDown);
   }
@@ -165,6 +167,7 @@ export class PostMenu {
       await this.popoverRef.hide();
       this.isVisible = false;
       this.toggleMenu.emit(this.isVisible);
+      this.closeMenuWithTab.emit();
     } else {
       console.error('closeMenuWithoutFocusRestore: popoverRef is null or undefined');
     }

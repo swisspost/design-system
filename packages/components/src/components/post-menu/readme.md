@@ -14,9 +14,10 @@
 
 ## Events
 
-| Event        | Description | Type                   |
-| ------------ | ----------- | ---------------------- |
-| `toggleMenu` |             | `CustomEvent<boolean>` |
+| Event              | Description | Type                   |
+| ------------------ | ----------- | ---------------------- |
+| `closeMenuWithTab` |             | `CustomEvent<void>`    |
+| `toggleMenu`       |             | `CustomEvent<boolean>` |
 
 
 ## Methods
