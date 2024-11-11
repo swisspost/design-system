@@ -95,6 +95,12 @@ export namespace Components {
     }
     interface PostBackToTop {
     }
+    interface PostBreadcrumbItem {
+        /**
+          * The optional URL to which the breadcrumb item will link.
+         */
+        "url"?: string | URL;
+    }
     /**
      * @class PostCardControl - representing a stencil component
      */
@@ -450,6 +456,12 @@ declare global {
         prototype: HTMLPostBackToTopElement;
         new (): HTMLPostBackToTopElement;
     };
+    interface HTMLPostBreadcrumbItemElement extends Components.PostBreadcrumbItem, HTMLStencilElement {
+    }
+    var HTMLPostBreadcrumbItemElement: {
+        prototype: HTMLPostBreadcrumbItemElement;
+        new (): HTMLPostBreadcrumbItemElement;
+    };
     interface HTMLPostCardControlElementEventMap {
         "postInput": { state: boolean; value: string };
         "postChange": { state: boolean; value: string };
@@ -626,6 +638,7 @@ declare global {
         "post-alert": HTMLPostAlertElement;
         "post-avatar": HTMLPostAvatarElement;
         "post-back-to-top": HTMLPostBackToTopElement;
+        "post-breadcrumb-item": HTMLPostBreadcrumbItemElement;
         "post-card-control": HTMLPostCardControlElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
@@ -711,6 +724,12 @@ declare namespace LocalJSX {
         "userid"?: string;
     }
     interface PostBackToTop {
+    }
+    interface PostBreadcrumbItem {
+        /**
+          * The optional URL to which the breadcrumb item will link.
+         */
+        "url"?: string | URL;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -964,6 +983,7 @@ declare namespace LocalJSX {
         "post-alert": PostAlert;
         "post-avatar": PostAvatar;
         "post-back-to-top": PostBackToTop;
+        "post-breadcrumb-item": PostBreadcrumbItem;
         "post-card-control": PostCardControl;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
@@ -991,6 +1011,7 @@ declare module "@stencil/core" {
             "post-alert": LocalJSX.PostAlert & JSXBase.HTMLAttributes<HTMLPostAlertElement>;
             "post-avatar": LocalJSX.PostAvatar & JSXBase.HTMLAttributes<HTMLPostAvatarElement>;
             "post-back-to-top": LocalJSX.PostBackToTop & JSXBase.HTMLAttributes<HTMLPostBackToTopElement>;
+            "post-breadcrumb-item": LocalJSX.PostBreadcrumbItem & JSXBase.HTMLAttributes<HTMLPostBreadcrumbItemElement>;
             /**
              * @class PostCardControl - representing a stencil component
              */
