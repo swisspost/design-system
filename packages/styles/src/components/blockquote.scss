@@ -10,7 +10,7 @@ tokens.$default-map: components.$post-quote;
   padding: 0 tokens.get('post-quote-padding-inline-end') 0
     tokens.get('post-quote-padding-inline-start');
   border-inline-start: tokens.get('post-quote-border-width-left')
-    tokens.get('post-quote-border-left-color') tokens.get('post-quote-border-left-color');
+    tokens.get('post-quote-border-left-style') tokens.get('post-quote-border-left-color');
 }
 
 figure:has(.blockquote) {
@@ -29,6 +29,9 @@ figure:has(.blockquote) {
   }
 }
 
-figcaption .blockquote-footer {
+figcaption.blockquote-footer {
   margin-top: tokens.get('post-quote-gap-inline');
+  cite {
+    font-style: normal;
+  }
 }

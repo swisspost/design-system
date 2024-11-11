@@ -15,7 +15,7 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 <div className="lead">
   For quoting blocks of content from another source within your document. Wrap `
   <blockquote
-    className="blockquote">` around any HTML as the quote.
+    class="blockquote"> with a <q>` around any HTML as the quote.
 </div>
 
 <Canvas sourceState="shown" of={BlockquoteStories.Default} />
@@ -24,7 +24,7 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
   <Controls of={BlockquoteStories.Default} />
 </div>
 
-<StylesPackageImport components={["blockquote"]} />
+<StylesPackageImport components={['blockquote']} />
 
 ## Concrete Examples of Application
 
@@ -33,6 +33,7 @@ The following examples show the different characteristics of the component. Thes
 ### Nested
 
 To add simple quote characters around any nested text within your blockquote, you can wrap it with a
+
 <code>&lt;q&gt;</code> tag.
 
 <Canvas of={BlockquoteStories.Nested} />
