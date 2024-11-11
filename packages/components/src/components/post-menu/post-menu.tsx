@@ -109,13 +109,11 @@ export class PostMenu {
     e.stopPropagation();
 
     if (e.key === this.KEYCODES.ESCAPE) {
-      e.preventDefault();
       this.toggle(this.host);
       return;
     }
 
     if (Object.values(this.KEYCODES).includes(e.key)) {
-      e.preventDefault();
       this.controlKeyDownHandler(e);
     }
   };
@@ -138,9 +136,11 @@ export class PostMenu {
 
     switch (e.key) {
       case this.KEYCODES.UP:
+        e.preventDefault();
         currentIndex = (currentIndex - 1 + menuItems.length) % menuItems.length;
         break;
       case this.KEYCODES.DOWN:
+        e.preventDefault();
         currentIndex = (currentIndex + 1) % menuItems.length;
         break;
       case this.KEYCODES.HOME:

@@ -64,8 +64,7 @@ export class PostMenuTrigger {
     this.slottedButton = this.host.querySelector('button');
     if (this.slottedButton) {
       this.slottedButton.setAttribute('aria-haspopup', 'menu');
-      this.slottedButton.addEventListener('click', (e) => {
-        e.preventDefault();
+      this.slottedButton.addEventListener('click', () => {
         this.handleToggle();
       });
       this.slottedButton.addEventListener('keydown', this.handleKeyDown);
