@@ -60,12 +60,6 @@ tokens.$default-map: components.$post-text-input;
     }
   }
 
-  @include utilities.disabled-style {
-    ~ .form-text {
-      color: tokens.get('input-color-disabled-fg');
-    }
-  }
-
   &[readonly]:not(:disabled) {
     border-color: tokens.get('input-color-enabled-stroke');
     background-color: tokens.get('input-color-enabled-bg');

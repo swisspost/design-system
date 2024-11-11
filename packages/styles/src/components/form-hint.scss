@@ -1,0 +1,15 @@
+@use './../functions/tokens';
+@use './../tokens/components';
+
+tokens.$default-map: components.$post-text-input;
+
+.form-hint {
+  color: tokens.get('input-color-enabled-fg');
+  padding-inline: tokens.get('input-padding-inline-text-assist');
+  padding-block: tokens.get('input-padding-block-text-assist');
+  font-size: 14px; //TODO: Token
+}
+
+.form-control:disabled .form-hint {
+  color: tokens.get('input-color-disabled-fg');
+}

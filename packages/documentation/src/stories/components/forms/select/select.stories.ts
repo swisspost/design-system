@@ -242,7 +242,7 @@ const Template: Story = {
       args.validation === 'is-invalid'
         ? html` <p class="invalid-feedback">Eraro okazis!</p> `
         : null,
-      args.hint !== '' ? html` <div class="form-text">${args.hint}</div> ` : null,
+      args.hint !== '' ? html` <div class="form-hint">${args.hint}</div> ` : null,
     ];
     const control = html`
       <select
