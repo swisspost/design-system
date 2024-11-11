@@ -1,8 +1,7 @@
 {
   "name": "@swisspost/design-system-tokens",
   "version": "9.0.0-next.3",
-  "private": true,
-  "description": "Design Tokens for the Swiss Post.",
+  "description": "Design Tokens for the Swiss Post Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
   "repository": {
@@ -29,7 +28,7 @@
   ],
   "publishConfig": {
     "directory": "./dist",
-    "access": "restricted",
+    "access": "public",
     "linkDirectory": true
   },
   "devDependencies": {
