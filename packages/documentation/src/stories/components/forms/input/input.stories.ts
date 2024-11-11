@@ -17,17 +17,15 @@ const meta: MetaComponent = {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=21923-74274&mode=design&t=3lniLiZhl7q9Gqgn-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=21-168&node-type=canvas&t=BXfJ1qmQAdwMxjBE-0',
     },
   },
   args: {
     label: 'Label',
-    floatingLabel: false,
+    floatingLabel: true,
     hiddenLabel: false,
     placeholder: 'Placeholder',
     type: 'text',
-    size: 'form-control-lg',
-    sizeFloatingLabel: 'form-control-lg',
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
     disabled: false,
     validation: 'null',
@@ -209,5 +207,6 @@ export const Validation: Story = {
   args: {
     validation: 'is-invalid',
     hint: '',
+    floatingLabel: true,
   },
 };

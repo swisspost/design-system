@@ -6,12 +6,7 @@
 @use './../color';
 @use './../type';
 @use './../spacing';
-@use './../../functions/utilities';
 @use './../../functions/sizing';
-@use './../../functions/tokens';
-@use './../../tokens/components';
-
-tokens.$default-map: components.$post-text-input;
 
 // Forms
 
