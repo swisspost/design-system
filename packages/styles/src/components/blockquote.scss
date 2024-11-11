@@ -31,6 +31,7 @@ figure:has(.blockquote) {
 
 figcaption.blockquote-footer {
   margin-top: tokens.get('post-quote-gap-inline');
+
   cite {
     font-style: normal;
   }
