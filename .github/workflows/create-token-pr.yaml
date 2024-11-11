@@ -37,7 +37,7 @@ jobs:
       - name: Get PR Branch
         id: pr-branch
         run: |
-          PR_BRANCH="merge-tokens-${GITHUB_REF##*/}"
+          PR_BRANCH="update-tokens"
           echo "name=${PR_BRANCH}" >> $GITHUB_OUTPUT
 
           if [[ -n $(git ls-remote origin "${PR_BRANCH}") ]]; then
