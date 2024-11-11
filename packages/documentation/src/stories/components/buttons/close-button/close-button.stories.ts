@@ -1,6 +1,7 @@
 import type { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit/static-html.js';
 import { MetaComponent } from '@root/types';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 const meta: MetaComponent = {
   id: 'de313349-0c0b-4baf-adc6-cb8c2e36fc1a',
@@ -15,17 +16,13 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    label: 'Close button',
+    'slots-default': 'Close button',
   },
   argTypes: {
-    label: {
+    'slots-default': {
       name: 'Label',
-      description: 'Visually hidden label for the close button.',
       control: {
         type: 'text',
-      },
-      table: {
-        category: 'General',
       },
     },
   },
@@ -37,6 +34,6 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: (args: Args) => {
-    return html`<post-closebutton>${args.label}</post-closebutton> `;
+    return html`<post-closebutton>${unsafeHTML(args['slots-default'])}</post-closebutton> `;
   },
 };
