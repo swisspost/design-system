@@ -20,64 +20,24 @@
   <body>
     <h1>Playground</h1>
 
-    <div class="d-flex">
-      <section x-data="TEST_ICONS">
-        <h2>Source Icons</h2>
+    <section x-data="ICONS">
+      <h2>UI Icons</h2>
 
-        <template x-for="icon in sourceIcons">
-          <div class="icon-variants">
-            <template x-for="size, i in sizes">
-              <div :class="`icon-${size}`" x-html="icon[i]"></div>
-            </template>
-          </div>
-        </template>
-      </section>
-
-      <section x-data="TEST_ICONS">
-        <h2>Sprite Icons</h2>
-
-        <template x-for="name in spriteIconNames">
-          <div class="size-keeper">
-            <div class="resize">
-              <div class="post-icon">
-                <svg x-html="getSpriteIcon(name)"></svg>
-              </div>
-            </div>
-          </div>
-        </template>
-      </section>
-    </div>
-
-    <div class="d-flex">
-      <section x-data="TEST_ICONS">
-        <h2>Test Icons</h2>
-
-        <div class="d-flex"></div>
-
-        <template x-for="name in testIconNames">
-          <div>
-            <h3 x-text="name"></h3>
-            <div style="display: flex; justify-content: space-between; gap: 30px">
-              <div class="size-keeper">
-                <div class="resize">
-                  <div class="post-icon">
-                    <svg x-html="getTestIcon(name)"></svg>
-                  </div>
-                </div>
-              </div>
-
-              <div class="size-keeper">
-                <div class="resize">
-                  <div class="post-icon">
-                    <svg x-html="getTestIcon(`${name}-solid`)"></svg>
-                  </div>
+      <div class="d-flex">
+        <template x-for="name in uiIconNames">
+          <div class="icon-container">
+            <div class="size-keeper">
+              <div class="resize">
+                <div class="post-icon">
+                  <svg x-html="getIcon(name)"></svg>
                 </div>
               </div>
             </div>
+            <h3 x-text="`${name} (${getIconVersion(name)})`"></h3>
           </div>
         </template>
-      </section>
-    </div>
+      </div>
+    </section>
 
     <script type="module" src="main.js"></script>
     <!--

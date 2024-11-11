@@ -3,57 +3,28 @@ body {
 }
 
 .d-flex {
+  display: flex;
+  flex-wrap: wrap;
   gap: 30px;
 }
 
-.icon-variants {
-  display: flex;
-  align-items: start;
-  gap: 1rem;
+.icon-container {
+  padding: 1rem;
+  width: 7rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 
-  + .icon-variants {
-    margin-top: 1rem;
-  }
-
-  [class^='icon-'] {
-    box-sizing: content-box;
-    padding: 0.5rem;
-    outline: 1px solid gray;
-    line-height: 1;
-
-    &.current {
-      background-color: red;
-    }
-  }
-
-  .icon-16 {
-    width: 16px;
-  }
-
-  .icon-24 {
-    width: 24px;
-  }
-
-  .icon-32 {
-    width: 32px;
-  }
-
-  .icon-40 {
-    width: 40px;
-  }
-
-  .icon-48 {
-    width: 48px;
-  }
-
-  .icon-64 {
-    width: 64px;
+  h3 {
+    margin: 1rem 0 0;
+    font-size: 0.75rem;
+    text-align: center;
   }
 }
 
 .size-keeper {
   position: relative;
-  height: 6rem;
+  aspect-ratio: 1 / 1;
+  height: 5rem;
 
   .resize {
     position: absolute;
@@ -75,46 +46,48 @@ body {
   container-type: inline-size;
   width: 100%;
   height: 100%;
+  color: red;
 
   > svg {
     display: block;
     width: 100%;
     height: 100%;
+    fill: currentColor;
   }
 }
 
 @container post-icon (max-width: 23.98px) {
   svg {
-    --post-icon-size-16: block;
+    --pis-16: block;
   }
 }
 
 @container post-icon (min-width: 24px) and (max-width: 31.98px) {
   svg {
-    --post-icon-size-24: block;
+    --pis-24: block;
   }
 }
 
-@container (min-width: 32px) and (max-width: 39.98px) {
+@container post-icon (min-width: 32px) and (max-width: 39.98px) {
   svg {
-    --post-icon-size-32: block;
+    --pis-32: block;
   }
 }
 
-@container (min-width: 40px) and (max-width: 47.98px) {
+@container post-icon (min-width: 40px) and (max-width: 47.98px) {
   svg {
-    --post-icon-size-40: block;
+    --pis-40: block;
   }
 }
 
-@container (min-width: 48px) and (max-width: 63.98px) {
+@container post-icon (min-width: 48px) and (max-width: 63.98px) {
   svg {
-    --post-icon-size-48: block;
+    --pis-48: block;
   }
 }
 
-@container (min-width: 64px) {
+@container post-icon (min-width: 64px) {
   svg {
-    --post-icon-size-64: block;
+    --pis-64: block;
   }
 }
