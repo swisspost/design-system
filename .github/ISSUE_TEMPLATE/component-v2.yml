@@ -50,7 +50,7 @@ body:
       description: Default tasks for the dev team. Can be edited later according to needs.
       value: |
         ```[tasklist]
-        ### 💻 Tasks development
+        ### 💻 Development
         - [ ] Review Design (All states present? Possible to implement?)
         - [ ] Tokenization
         - [ ] HTML/CSS implementation
