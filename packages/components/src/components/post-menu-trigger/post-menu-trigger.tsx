@@ -59,6 +59,8 @@ export class PostMenuTrigger {
   };
 
   componentDidLoad() {
+    this.validateControlFor();
+    
     this.slottedButton = this.host.querySelector('button');
     if (this.slottedButton) {
       this.slottedButton.setAttribute('aria-haspopup', 'menu');
