@@ -7,7 +7,6 @@ import { checkType } from '@/utils';
   styleUrl: 'post-menu-trigger.scss',
   shadow: false,
 })
-
 export class PostMenuTrigger {
   /**
    * Link the trigger to a menu with this ID.
@@ -43,36 +42,32 @@ export class PostMenuTrigger {
     if (menu && this.slottedButton) {
       this.ariaExpanded = !this.ariaExpanded;
       this.slottedButton.setAttribute('aria-expanded', this.ariaExpanded.toString());
-      
-      // Toggle the menu visibility
       menu.toggle(this.host);
     } else {
       console.warn(`No post-menu found with ID: ${this.for}`);
     }
   }
 
+  private handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      this.handleToggle();
+    }
+  };
+
   componentDidLoad() {
     this.slottedButton = this.host.querySelector('button');
     if (this.slottedButton) {
       this.slottedButton.setAttribute('aria-haspopup', 'menu');
-      this.slottedButton.addEventListener('focusin', this.handleFocusIn.bind(this));
-      this.slottedButton.addEventListener('focusout', this.handleFocusOut.bind(this));
       this.slottedButton.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log('Button clicked');
         this.handleToggle();
       });
+      // Add keydown listener for ArrowUp and ArrowDown keys
+      this.slottedButton.addEventListener('keydown', this.handleKeyDown);
     } else {
       console.warn('No button found within post-menu-trigger');
     }
-  }
-  
-  private handleFocusIn() {
-    this.slottedButton?.classList.add('no-pointer-events');
-  }
-  
-  private handleFocusOut() {
-    this.slottedButton?.classList.remove('no-pointer-events');
   }
 
   render() {

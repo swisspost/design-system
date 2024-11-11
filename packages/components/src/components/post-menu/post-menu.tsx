@@ -15,8 +15,8 @@ export class PostMenu {
   private readonly KEYCODES = {
     SPACE: 'Space',
     UP: 'ArrowUp',
-    RIGHT: 'ArrowRight',
     DOWN: 'ArrowDown',
+    TAB: 'Tab',
     HOME: 'Home',
     END: 'End',
     ESCAPE: 'Escape'
@@ -64,8 +64,10 @@ export class PostMenu {
       case this.KEYCODES.UP:
         currentIndex = (currentIndex - 1 + menuItems.length) % menuItems.length;
         break;
+      case this.KEYCODES.TAB:
+        this.closeMenuWithoutFocusRestore();
+        break;
       case this.KEYCODES.DOWN:
-      case this.KEYCODES.RIGHT:
         currentIndex = (currentIndex + 1) % menuItems.length;
         break;
       case this.KEYCODES.HOME:
@@ -77,6 +79,7 @@ export class PostMenu {
       case this.KEYCODES.SPACE:
         if (['BUTTON', 'A', 'INPUT', 'SELECT', 'TEXTAREA'].includes(currentFocusedElement.tagName)) {
           currentFocusedElement.click();
+          this.closeMenuWithoutFocusRestore();
         }
         break;
       default:
@@ -111,14 +114,14 @@ export class PostMenu {
   @Method()
   async toggle(target: HTMLElement) {
     if (!this.isVisible) {
-      this.lastFocusedElement = document.activeElement as HTMLElement; // Save focus reference
+      this.lastFocusedElement = document.activeElement as HTMLElement;
     }
 
     this.isVisible = !this.isVisible;
     this.isVisible ? await this.show(target) : await this.hide();
   }
 
-   /**
+  /**
    * Displays the popover menu, positioning it relative to the specified target element.
    * 
    * @param target - The HTML element relative to which the popover menu should be displayed.
@@ -146,12 +149,24 @@ export class PostMenu {
     if (this.popoverRef) {
       await this.popoverRef.hide();
       this.toggleMenu.emit(this.isVisible);
-
       if (this.lastFocusedElement) {
         this.lastFocusedElement.focus();
       }
     } else {
       console.error('hide: popoverRef is null or undefined');
+    }
+  }
+
+  /**
+   * Closes the menu without restoring focus to the last focused element.
+   */
+  private async closeMenuWithoutFocusRestore() {
+    if (this.popoverRef) {
+      await this.popoverRef.hide();
+      this.isVisible = false;
+      this.toggleMenu.emit(this.isVisible);
+    } else {
+      console.error('closeMenuWithoutFocusRestore: popoverRef is null or undefined');
     }
   }
 
