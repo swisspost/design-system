@@ -19,7 +19,6 @@ export const Validation: Story = {
       { name: 'Input', id: 'Input_1' },
       { name: 'RadioButton', id: 'Radio_1' },
       { name: 'Select', id: 'Select_1' },
-      { name: 'Slider', id: 'Slider_1' },
       { name: 'Switch', id: 'Switch_1' },
       { name: 'TextArea', id: 'TextArea_1' },
     ];
@@ -144,8 +143,7 @@ export const Validation: Story = {
                                     </div>
                                   `;
                                 case 'Select':
-                                  return html`
-                                    <label class="form-label" for="${component.id}">
+                                  return html` <label class="form-label" for="${component.id}">
                                       <span>Label</span>
                                     </label>
                                     <div class="state-wrapper">
@@ -174,9 +172,7 @@ export const Validation: Story = {
                                       <p id="${invalidFeedbackId}" class="invalid-feedback">
                                         Invalid message.
                                       </p>
-                                    </div>
-                                  `;
-                                case 'Slider':
+                                    </div>`;
                                   return html`
                                     <div class="form-range">
                                       <label class="form-label" for="${component.id}">

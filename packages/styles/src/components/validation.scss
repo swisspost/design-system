@@ -1,4 +1,3 @@
-
 @use 'sass:map';
 @use '../tokens/elements';
 @use '../functions/tokens';
@@ -25,19 +24,25 @@ Default feedback message classes
 /*
  Valid input feedback
 */
-.was-validated :valid ~ .valid-feedback,
-.is-valid ~ .valid-feedback {
+.valid-feedback {
   color: tokens.get('post-validation-success');
-  display: flex;
+
+  .was-validated :valid ~ &,
+  .is-valid ~ & {
+    display: flex;
+  }
 }
 
 /*
  Invalid input feedback
 */
-.was-validated :invalid ~ .invalid-feedback,
-.is-invalid ~ .invalid-feedback {
+.invalid-feedback {
   color: tokens.get('post-validation-error');
-  display: flex;
+
+  .was-validated :invalid ~ &,
+  .is-invalid ~ & {
+    display: flex;
+  }
 }
 
 /*
@@ -75,44 +80,44 @@ input[type='range'] {
  Radio group with fieldset specific classes
 */
 
-.was-validated fieldset:has(:valid),
-.was-validated fieldset:has(:invalid),
-fieldset:has(.is-valid),
-fieldset:has(.is-invalid) {
-  ~ .invalid-feedback,
-  ~ .valid-feedback {
-    margin-top: 1px;
+// .was-validated fieldset:has(:valid),
+// .was-validated fieldset:has(:invalid),
+// fieldset:has(.is-valid),
+// fieldset:has(.is-invalid) {
+//   ~ .invalid-feedback,
+//   ~ .valid-feedback {
+//     margin-top: 1px;
 
-    &::before {
-      margin-top: -1px;
-      height: tokens.get('post-validation-group-icon-size');
-      width: tokens.get('post-validation-group-icon-size');
-      display: inline-block;
-      margin-inline-end: tokens.get('post-validation-group-gap-inline');
-      background-color: currentColor;
-      content: '';
-    }
-  }
-}
+//     &::before {
+//       margin-top: -1px;
+//       height: tokens.get('post-validation-group-icon-size');
+//       width: tokens.get('post-validation-group-icon-size');
+//       display: inline-block;
+//       margin-inline-end: tokens.get('post-validation-group-gap-inline');
+//       background-color: currentColor;
+//       content: '';
+//     }
+//   }
+// }
 
-.was-validated fieldset:has(:valid),
-fieldset:has(.is-valid) {
-  ~ .valid-feedback {
-    color: tokens.get('post-validation-success');
+// .was-validated fieldset:has(:valid),
+// fieldset:has(.is-valid) {
+//   ~ .valid-feedback {
+//     color: tokens.get('post-validation-success');
 
-    &::before {
-      @include icon-mixin.icon('val-success');
-    }
-  }
-}
+//     &::before {
+//       @include icon-mixin.icon('val-success');
+//     }
+//   }
+// }
 
-.was-validated fieldset:has(:invalid),
-fieldset:has(.is-invalid) {
-  ~ .invalid-feedback {
-    color: tokens.get('post-validation-error');
+// .was-validated fieldset:has(:invalid),
+// fieldset:has(.is-invalid) {
+//   ~ .invalid-feedback {
+//     color: tokens.get('post-validation-error');
 
-    &::before {
-      @include icon-mixin.icon('val-error');
-    }
-  }
-}
+//     &::before {
+//       @include icon-mixin.icon('val-error');
+//     }
+//   }
+// }

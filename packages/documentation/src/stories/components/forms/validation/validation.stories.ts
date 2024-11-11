@@ -122,7 +122,7 @@ export const Input: Story = {
       isValidationSet && args.validation !== 'is-invalid' ? `${args.validation}-id` : nothing;
     const invalidFeedbackId =
       isValidationSet && args.validation !== 'is-valid' ? `${args.validation}-id` : nothing;
-    return html`
+    return html`<div class="form-floating">
       <label class="form-label" for="Input_1">Label</label>
       <input
         id="Input_1"
@@ -130,7 +130,6 @@ export const Input: Story = {
         aria-invalid=${ariaInvalid}
         aria-describedby="${ariaDescribedBy}"
         type="text"
-        placeholder="Placeholder"
       />
 
       <p class="form-text">
@@ -139,7 +138,7 @@ export const Input: Story = {
       </p>
       <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
       <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
-    `;
+    </div>`;
   },
 };
 
@@ -159,19 +158,35 @@ export const RadioButton: Story = {
     const invalidFeedbackId =
       isValidationSet && args.validation !== 'is-valid' ? `${args.validation}-id` : nothing;
     return html`<div class="form-check">
-      <input
-        type="radio"
-        id="Radio_1"
-        class="form-check-input ${isValidationSet ? args.validation : ''}"
-        aria-invalid=${ariaInvalid}
-        aria-describedby="${ariaDescribedBy}"
-      />
-      <label class="form-check-label" for="Radio_1">
-        <span>Label</span>
-      </label>
-      <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
-      <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
-    </div>`;
+        <input
+          type="radio"
+          id="Radio_1"
+          name="radio"
+          class="form-check-input ${isValidationSet ? args.validation : ''}"
+          aria-invalid=${ariaInvalid}
+          aria-describedby="${ariaDescribedBy}"
+        />
+        <label class="form-check-label" for="Radio_1">
+          <span>Label</span>
+        </label>
+        <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
+        <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
+      </div>
+      <div class="form-check">
+        <input
+          type="radio"
+          id="Radio_2"
+          name="radio"
+          class="form-check-input ${isValidationSet ? args.validation : ''}"
+          aria-invalid=${ariaInvalid}
+          aria-describedby="${ariaDescribedBy}"
+        />
+        <label class="form-check-label" for="Radio_2">
+          <span>Label</span>
+        </label>
+        <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
+        <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
+      </div>`;
   },
 };
 
@@ -212,36 +227,6 @@ export const Select: Story = {
        <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
       <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
     </div>`;
-  },
-};
-
-export const Slider: Story = {
-  render(args: Args) {
-    const isValidationSet = args.validation !== 'null';
-    const isValid = args.validation === 'is-valid';
-    let ariaInvalid;
-    if (isValidationSet) {
-      ariaInvalid = !isValid;
-    } else {
-      ariaInvalid = nothing;
-    }
-    const ariaDescribedBy = isValidationSet ? `${args.validation}-id` : nothing;
-    const validFeedbackId =
-      isValidationSet && args.validation !== 'is-invalid' ? `${args.validation}-id` : nothing;
-    const invalidFeedbackId =
-      isValidationSet && args.validation !== 'is-valid' ? `${args.validation}-id` : nothing;
-    return html`
-      <label class="form-label" for="Range_1">Label</label>
-      <input
-        type="range"
-        id="Range_1"
-        class="form-range ${isValidationSet ? args.validation : ''}"
-        aria-invalid=${ariaInvalid}
-        aria-describedby="${ariaDescribedBy}"
-      />
-      <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
-      <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
-    `;
   },
 };
 
