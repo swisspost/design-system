@@ -3,7 +3,7 @@
 
 $margin-color: color.adjust(red, $lightness: 30%);
 $padding-color: color.complement($margin-color);
-$gap-color: color.adjust(post.$aubergine-bright, $lightness: 30%);
+$gap-color: color.adjust(gray, $lightness: 30%);
 $content-color: post.$white;
 $border: 1px solid post.$gray-40;
 
