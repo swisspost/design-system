@@ -15,6 +15,7 @@ import './styles/preview.scss';
 
 import { SyntaxHighlighter } from '@storybook/components';
 import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
+import { ArgTypes } from '@storybook/blocks';
 
 SyntaxHighlighter.registerLanguage('scss', scss);
 
@@ -83,6 +84,9 @@ const preview: Preview = {
             onClick: openFullScreenDemo,
           },
         ],
+      },
+      argTypes: {
+        sort: 'requiredFirst',
       },
       source: {
         excludeDecorators: true,
