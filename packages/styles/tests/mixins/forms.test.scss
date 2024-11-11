@@ -6,6 +6,5 @@ body {
   }
 
   @include forms.icon-placement();
-  @include forms.form-rg();
   @include forms.focus-outline();
 }

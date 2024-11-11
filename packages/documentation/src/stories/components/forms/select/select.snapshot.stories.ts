@@ -28,12 +28,10 @@ export const Select: Story = {
         hint: ['Hintus textus', context.args.hint],
       }),
       ...bombArgs({
-        size: context.argTypes.size.options,
         disabled: [false, true],
         validation: context.argTypes.validation.options,
       }),
       ...bombArgs({
-        size: context.argTypes.size.options,
         validation: context.argTypes.validation.options.filter(
           (option: string) => option !== 'is-invalid',
         ),
@@ -60,7 +58,6 @@ export const Select: Story = {
       }),
       ...bombArgs({
         multiple: [true],
-        size: context.argTypes.size.options,
         disabled: [false, true],
         validation: context.argTypes.validation.options,
       }),

@@ -26,8 +26,6 @@ const meta: MetaComponent = {
     floatingLabel: false,
     hiddenLabel: false,
     value: undefined,
-    size: 'form-select-lg',
-    sizeFloatingLabel: 'form-select-lg',
     options: 5,
     multiple: false,
     multipleSize: 4,
@@ -79,46 +77,6 @@ const meta: MetaComponent = {
       },
       table: {
         disable: true,
-      },
-    },
-    size: {
-      name: 'Size',
-      description: "Sets the size of the component's appearance.",
-      if: {
-        arg: 'floatingLabel',
-        truthy: false,
-      },
-      control: {
-        type: 'select',
-        labels: {
-          'form-select-sm': 'Small',
-          'form-select-rg': 'Regular (deprecated)',
-          'null': 'Medium (deprecated)',
-          'form-select-lg': 'Large',
-        },
-      },
-      options: ['form-select-sm', 'form-select-rg', 'null', 'form-select-lg'],
-      table: {
-        category: 'General',
-      },
-    },
-    sizeFloatingLabel: {
-      name: 'Size',
-      description: "Sets the size of the component's appearance.",
-      if: {
-        arg: 'floatingLabel',
-        truthy: true,
-      },
-      control: {
-        type: 'select',
-        labels: {
-          'form-select-sm': 'Small',
-          'form-select-lg': 'Large',
-        },
-      },
-      options: ['form-select-sm', 'form-select-lg'],
-      table: {
-        category: 'General',
       },
     },
     options: {
@@ -213,8 +171,6 @@ const Template: Story = {
     const [_, updateArgs] = useArgs();
     const classes = [
       'form-select',
-      args.size,
-      args.sizeFloatingLabel,
       args.validation,
       args.floatingLabelPlaceholder && !args.value ? 'form-select-empty' : null,
     ]
@@ -295,15 +251,7 @@ export const FloatingLabel: Story = {
   ...Template,
   parameters: {
     controls: {
-      exclude: [
-        'Hidden Label',
-        'Options',
-        'Multiple',
-        'Size',
-        'Helper Text',
-        'Disabled',
-        'Validation',
-      ],
+      exclude: ['Hidden Label', 'Options', 'Multiple', 'Helper Text', 'Disabled', 'Validation'],
     },
   },
   args: {
@@ -316,42 +264,12 @@ export const FloatingLabelPlaceholder: Story = {
   ...Template,
   parameters: {
     controls: {
-      exclude: [
-        'Hidden Label',
-        'Options',
-        'Multiple',
-        'Size',
-        'Helper Text',
-        'Disabled',
-        'Validation',
-      ],
+      exclude: ['Hidden Label', 'Options', 'Multiple', 'Helper Text', 'Disabled', 'Validation'],
     },
   },
   args: {
     floatingLabel: true,
     floatingLabelPlaceholder: true,
-    hint: '',
-  },
-};
-
-export const Size: Story = {
-  ...Template,
-  parameters: {
-    controls: {
-      exclude: [
-        'Label',
-        'Floating Label',
-        'Hidden Label',
-        'Options',
-        'Multiple',
-        'Helper Text',
-        'Disabled',
-        'Validation',
-      ],
-    },
-  },
-  args: {
-    size: 'form-select-sm',
     hint: '',
   },
 };
@@ -365,7 +283,6 @@ export const Validation: Story = {
         'Floating Label',
         'Hidden Label',
         'Options',
-        'Size',
         'Multiple',
         'Helper Text',
         'Disabled',

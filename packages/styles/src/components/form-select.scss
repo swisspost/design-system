@@ -80,18 +80,3 @@
     }
   }
 }
-
-.form-select-rg {
-  @include forms-mixins.form-rg;
-  background-size: forms.$form-bg-size; // Set arrow size. Duplicated rule in form-validation for is-valid/is-invalid icon.
-}
-
-.form-select-sm {
-  @include forms-mixins.form-sm;
-  background-size: forms.$form-bg-size-sm; // Set arrow size. Duplicated rule in form-validation for is-valid/is-invalid icon.
-}
-
-.form-select-lg {
-  @include forms-mixins.form-lg;
-  background-size: forms.$form-bg-size; // Set arrow size. Duplicated rule in form-validation for is-valid/is-invalid icon.
-}

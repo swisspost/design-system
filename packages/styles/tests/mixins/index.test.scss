@@ -8,7 +8,6 @@ body {
     color: red;
   }
   @include mixins.icon-placement();
-  @include mixins.form-rg();
   @include mixins.focus-outline();
 
   @include mixins.bezel-small();
