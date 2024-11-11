@@ -6,6 +6,9 @@ node_modules
 
 # Ignore generated files
 src/icons/v1
+public/post-icons/ui
+public/report.v2.json
+
 icons-optimized
 icons.json
 no-svgs.json
