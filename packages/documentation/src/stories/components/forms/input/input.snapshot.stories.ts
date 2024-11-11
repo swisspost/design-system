@@ -22,16 +22,15 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
       label: `Label - with Value`,
       value: 'Lorem Ipsum',
     },
-    {
-      label: `Label - Floating label`,
-      floatingLabel: true,
-    },
   ];
   return html`
     <div class="d-flex flex-wrap align-items-start gap-16">
       ${['bg-white', 'bg-dark'].map(
         bg => html`
-          <div class="${bg} d-flex gap-16 flex-column p-16">
+          <div
+            class="${bg} d-flex gap-16 flex-column p-16"
+            data-color-scheme=${bg === 'bg-white' ? 'light' : 'dark'}
+          >
             <h3>Standard</h3>
             ${getCombinations('size', [true], combinations)
               .filter(
