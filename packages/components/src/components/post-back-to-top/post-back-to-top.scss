@@ -1,0 +1,66 @@
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/components/button';
+@use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/mixins/icons' as icons;
+@use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/mixins/elevation' as elevation-mx;
+
+tokens.$default-map: (
+  post-back-to-top-button-size: 56px,
+  post-back-to-top-icon-size: 24px,
+  post-floating-button-position-right: 30px,
+  post-floating-button-position-bottom: 30px,
+  post-floating-button-border-radius: 100%,
+  post-floating-button-border-width: 2px,
+  post-floating-button-enabled-border: #050400,
+  post-floating-button-hover-border: #504f4b
+);
+
+:host {
+  @keyframes show-up {
+    to {
+      transform: translateY(-7rem);
+    }
+  }
+
+  button.back-to-top.is-visible {
+    position: fixed;
+    animation: show-up;
+    animation-delay: calc(var(--scroll) * -1s);
+    animation-timeline: scroll();
+
+    @include post.reset-button;
+
+    @include elevation-mx.elevation('elevation-3');
+
+    border-radius: 100%;
+    right: tokens.get('post-floating-button-position-right');
+    bottom: tokens.get('post-floating-button-position-bottom');
+    width: tokens.get('post-back-to-top-button-size');
+    height: tokens.get('post-back-to-top-button-size');
+
+    border: tokens.get('post-floating-button-border-width') solid
+      tokens.get('post-floating-button-enabled-border');
+    border-radius: tokens.get('post-floating-button-border-radius');
+
+    bottom: -4rem;
+    height: 4rem;
+    right: 3rem;
+    width: 4rem;
+    transform: translateY(0);
+
+    &:hover {
+      border-color: tokens.get('post-floating-button-hover-border');
+    }
+  }
+
+  post-icon {
+    height: tokens.get('post-back-to-top-icon-size');
+    width: tokens.get('post-back-to-top-icon-size');
+  }
+
+  .visually-hidden {
+    @include utilities.visuallyhidden();
+  }
+}

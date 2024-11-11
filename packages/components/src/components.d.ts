@@ -93,6 +93,8 @@ export namespace Components {
          */
         "userid"?: string;
     }
+    interface PostBackToTop {
+    }
     /**
      * @class PostCardControl - representing a stencil component
      */
@@ -442,6 +444,12 @@ declare global {
         prototype: HTMLPostAvatarElement;
         new (): HTMLPostAvatarElement;
     };
+    interface HTMLPostBackToTopElement extends Components.PostBackToTop, HTMLStencilElement {
+    }
+    var HTMLPostBackToTopElement: {
+        prototype: HTMLPostBackToTopElement;
+        new (): HTMLPostBackToTopElement;
+    };
     interface HTMLPostCardControlElementEventMap {
         "postInput": { state: boolean; value: string };
         "postChange": { state: boolean; value: string };
@@ -617,6 +625,7 @@ declare global {
         "post-accordion-item": HTMLPostAccordionItemElement;
         "post-alert": HTMLPostAlertElement;
         "post-avatar": HTMLPostAvatarElement;
+        "post-back-to-top": HTMLPostBackToTopElement;
         "post-card-control": HTMLPostCardControlElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
@@ -700,6 +709,8 @@ declare namespace LocalJSX {
           * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
          */
         "userid"?: string;
+    }
+    interface PostBackToTop {
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -952,6 +963,7 @@ declare namespace LocalJSX {
         "post-accordion-item": PostAccordionItem;
         "post-alert": PostAlert;
         "post-avatar": PostAvatar;
+        "post-back-to-top": PostBackToTop;
         "post-card-control": PostCardControl;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
@@ -978,6 +990,7 @@ declare module "@stencil/core" {
             "post-accordion-item": LocalJSX.PostAccordionItem & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
             "post-alert": LocalJSX.PostAlert & JSXBase.HTMLAttributes<HTMLPostAlertElement>;
             "post-avatar": LocalJSX.PostAvatar & JSXBase.HTMLAttributes<HTMLPostAvatarElement>;
+            "post-back-to-top": LocalJSX.PostBackToTop & JSXBase.HTMLAttributes<HTMLPostBackToTopElement>;
             /**
              * @class PostCardControl - representing a stencil component
              */
