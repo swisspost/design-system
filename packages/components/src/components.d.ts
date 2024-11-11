@@ -237,17 +237,20 @@ export namespace Components {
     }
     interface PostMenu {
         /**
-          * Hides the popover menu and restores focus to the previously focused element. If the popover is successfully hidden, it triggers the `toggleMenu` event.
+          * Hides the popover menu and restores focus to the previously focused element.
          */
         "hide": () => Promise<void>;
+        /**
+          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+         */
         "placement"?: Placement;
         /**
-          * Displays the popover menu, positioning it relative to the specified target element.
+          * Displays the popover menu, focusing the first menu item.
           * @param target - The HTML element relative to which the popover menu should be displayed.
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
-          * Programmatically toggle the menu visibility. If the menu is currently visible, it will be hidden; otherwise, it will be shown.
+          * Toggles the menu visibility based on its current state.
          */
         "toggle": (target: HTMLElement) => Promise<void>;
     }
@@ -255,7 +258,7 @@ export namespace Components {
     }
     interface PostMenuTrigger {
         /**
-          * Link the trigger to a menu with this ID.
+          * ID of the menu element that this trigger is linked to. Used to open and close the specified menu.
          */
         "for": string;
     }
@@ -560,7 +563,6 @@ declare global {
     };
     interface HTMLPostMenuElementEventMap {
         "toggleMenu": boolean;
-        "closeMenuWithTab": void;
     }
     interface HTMLPostMenuElement extends Components.PostMenu, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostMenuElementEventMap>(type: K, listener: (this: HTMLPostMenuElement, ev: PostMenuCustomEvent<HTMLPostMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -901,15 +903,20 @@ declare namespace LocalJSX {
         "url"?: string | URL;
     }
     interface PostMenu {
-        "onCloseMenuWithTab"?: (event: PostMenuCustomEvent<void>) => void;
+        /**
+          * Emits when the menu is shown or hidden. The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
+         */
         "onToggleMenu"?: (event: PostMenuCustomEvent<boolean>) => void;
+        /**
+          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+         */
         "placement"?: Placement;
     }
     interface PostMenuItem {
     }
     interface PostMenuTrigger {
         /**
-          * Link the trigger to a menu with this ID.
+          * ID of the menu element that this trigger is linked to. Used to open and close the specified menu.
          */
         "for": string;
     }

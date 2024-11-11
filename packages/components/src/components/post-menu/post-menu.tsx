@@ -13,7 +13,8 @@ export class PostMenu {
   private lastFocusedElement: HTMLElement | null = null;
 
   private readonly KEYCODES = {
-    SPACE: 'Space',
+    SPACE: ' ',
+    ENTER: 'Enter',
     UP: 'ArrowUp',
     DOWN: 'ArrowDown',
     TAB: 'Tab',
@@ -24,20 +25,84 @@ export class PostMenu {
 
   @Element() host: HTMLPostMenuElement;
 
+   /**
+   * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
+   * Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted
+   * towards the viewport if they would overlap edge boundaries.
+   */
   @Prop() readonly placement?: Placement = 'bottom';
 
+  /**
+   * Holds the current visibility state of the menu.
+   * This state is internally managed to track whether the menu is open (`true`) or closed (`false`),
+   * and updates automatically when the menu is toggled.
+   */
   @State() isVisible: boolean = false;
 
+  /**
+   * Emits when the menu is shown or hidden.
+   * The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
+   **/
   @Event() toggleMenu: EventEmitter<boolean>;
-
-  @Event() closeMenuWithTab: EventEmitter<void>;
 
   connectedCallback() {
     this.host.addEventListener('keydown', this.handleKeyDown);
+    this.host.addEventListener('click', this.handleClick);
   }
 
   disconnectedCallback() {
     this.host.removeEventListener('keydown', this.handleKeyDown);
+    this.host.removeEventListener('click', this.handleClick);
+  }
+
+  componentDidLoad() {
+    this.popoverRef.addEventListener('postToggle', (event: CustomEvent<boolean>) => {
+      this.isVisible = event.detail;
+      this.toggleMenu.emit(this.isVisible);
+    });
+  }
+
+  /**
+   * Toggles the menu visibility based on its current state.
+   */
+  @Method()
+  async toggle(target: HTMLElement) {
+    this.isVisible ? await this.hide() : await this.show(target);
+  }
+
+  /**
+   * Displays the popover menu, focusing the first menu item.
+   * 
+   * @param target - The HTML element relative to which the popover menu should be displayed.
+   */
+  @Method()
+  async show(target: HTMLElement) {
+    if (this.popoverRef) {
+      await this.popoverRef.show(target);
+      this.lastFocusedElement = document.activeElement as HTMLElement;
+
+      const menuItems = this.getSlottedItems();
+      if (menuItems.length > 0) {
+        (menuItems[0] as HTMLElement).focus();
+      }
+    } else {
+      console.error('show: popoverRef is null or undefined');
+    }
+  }
+
+  /**
+   * Hides the popover menu and restores focus to the previously focused element.
+   */
+  @Method()
+  async hide() {
+    if (this.popoverRef) {
+      await this.popoverRef.hide();
+      if (this.lastFocusedElement) {
+        this.lastFocusedElement.focus();
+      }
+    } else {
+      console.error('hide: popoverRef is null or undefined');
+    }
   }
 
   private handleKeyDown = (e: KeyboardEvent) => {
@@ -55,19 +120,25 @@ export class PostMenu {
     }
   };
 
+  private handleClick = (e: MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (['BUTTON', 'A', 'INPUT', 'SELECT', 'TEXTAREA'].includes(target.tagName)) {
+      this.toggle(this.host);
+    }
+  };
+
   private controlKeyDownHandler(e: KeyboardEvent) {
     const menuItems = this.getSlottedItems();
-    if (!menuItems.length) return;
+    if (!menuItems.length) {
+      return;
+    }
 
     const currentFocusedElement = document.activeElement as HTMLElement;
     let currentIndex = menuItems.findIndex(el => el === currentFocusedElement);
 
-    switch (e.code) {
+    switch (e.key) {
       case this.KEYCODES.UP:
         currentIndex = (currentIndex - 1 + menuItems.length) % menuItems.length;
-        break;
-      case this.KEYCODES.TAB:
-        this.closeMenuWithoutFocusRestore();
         break;
       case this.KEYCODES.DOWN:
         currentIndex = (currentIndex + 1) % menuItems.length;
@@ -79,10 +150,11 @@ export class PostMenu {
         currentIndex = menuItems.length - 1;
         break;
       case this.KEYCODES.SPACE:
-        if (['BUTTON', 'A', 'INPUT', 'SELECT', 'TEXTAREA'].includes(currentFocusedElement.tagName)) {
-          currentFocusedElement.click();
-          this.closeMenuWithoutFocusRestore();
-        }
+      case this.KEYCODES.ENTER:
+        this.toggle(this.host);
+        return;
+      case this.KEYCODES.TAB:
+        this.toggle(this.host);
         break;
       default:
         break;
@@ -107,70 +179,6 @@ export class PostMenu {
       .flat();
 
     return menuItems;
-  }
-
-  /**
-   * Programmatically toggle the menu visibility.
-   * If the menu is currently visible, it will be hidden; otherwise, it will be shown.
-   */
-  @Method()
-  async toggle(target: HTMLElement) {
-    if (!this.isVisible) {
-      this.lastFocusedElement = document.activeElement as HTMLElement;
-    }
-
-    this.isVisible = !this.isVisible;
-    this.isVisible ? await this.show(target) : await this.hide();
-  }
-
-  /**
-   * Displays the popover menu, positioning it relative to the specified target element.
-   * 
-   * @param target - The HTML element relative to which the popover menu should be displayed.
-   */
-  @Method()
-  async show(target: HTMLElement) {
-    if (this.popoverRef) {
-      await this.popoverRef.show(target);
-      this.toggleMenu.emit(this.isVisible);
-      const menuItems = this.getSlottedItems();
-      if (menuItems.length > 0) {
-        (menuItems[0] as HTMLElement).focus();
-      }
-    } else {
-      console.error('show: popoverRef is null or undefined');
-    }
-  }
-
-  /**
-   * Hides the popover menu and restores focus to the previously focused element.
-   * If the popover is successfully hidden, it triggers the `toggleMenu` event.
-   */
-  @Method()
-  async hide() {
-    if (this.popoverRef) {
-      await this.popoverRef.hide();
-      this.toggleMenu.emit(this.isVisible);
-      if (this.lastFocusedElement) {
-        this.lastFocusedElement.focus();
-      }
-    } else {
-      console.error('hide: popoverRef is null or undefined');
-    }
-  }
-
-  /**
-   * Closes the menu without restoring focus to the last focused element.
-   */
-  private async closeMenuWithoutFocusRestore() {
-    if (this.popoverRef) {
-      await this.popoverRef.hide();
-      this.isVisible = false;
-      this.toggleMenu.emit(this.isVisible);
-      this.closeMenuWithTab.emit();
-    } else {
-      console.error('closeMenuWithoutFocusRestore: popoverRef is null or undefined');
-    }
   }
 
   render() {

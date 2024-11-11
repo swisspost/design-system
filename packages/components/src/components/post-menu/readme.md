@@ -7,17 +7,16 @@
 
 ## Properties
 
-| Property    | Attribute   | Description | Type                                                                                                                                                                 | Default    |
-| ----------- | ----------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| `placement` | `placement` |             | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'bottom'` |
+| Property    | Attribute   | Description                                                                                                                                                                                                                                                                                                               | Type                                                                                                                                                                 | Default    |
+| ----------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| `placement` | `placement` | Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'bottom'` |
 
 
 ## Events
 
-| Event              | Description | Type                   |
-| ------------------ | ----------- | ---------------------- |
-| `closeMenuWithTab` |             | `CustomEvent<void>`    |
-| `toggleMenu`       |             | `CustomEvent<boolean>` |
+| Event        | Description                                                                                                                          | Type                   |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ---------------------- |
+| `toggleMenu` | Emits when the menu is shown or hidden. The event payload is a boolean: `true` when the menu was opened, `false` when it was closed. | `CustomEvent<boolean>` |
 
 
 ## Methods
@@ -25,7 +24,6 @@
 ### `hide() => Promise<void>`
 
 Hides the popover menu and restores focus to the previously focused element.
-If the popover is successfully hidden, it triggers the `toggleMenu` event.
 
 #### Returns
 
@@ -35,7 +33,7 @@ Type: `Promise<void>`
 
 ### `show(target: HTMLElement) => Promise<void>`
 
-Displays the popover menu, positioning it relative to the specified target element.
+Displays the popover menu, focusing the first menu item.
 
 #### Parameters
 
@@ -51,8 +49,7 @@ Type: `Promise<void>`
 
 ### `toggle(target: HTMLElement) => Promise<void>`
 
-Programmatically toggle the menu visibility.
-If the menu is currently visible, it will be hidden; otherwise, it will be shown.
+Toggles the menu visibility based on its current state.
 
 #### Parameters
 
