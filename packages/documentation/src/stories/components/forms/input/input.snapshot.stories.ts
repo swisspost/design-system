@@ -32,7 +32,7 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
             data-color-scheme=${bg === 'bg-white' ? 'light' : 'dark'}
           >
             <h3>Standard</h3>
-            ${getCombinations('size', [true], combinations)
+            ${getCombinations('floatingLabel', [false], combinations)
               .filter(
                 (args: Args) =>
                   !args.value ||

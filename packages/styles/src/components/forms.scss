@@ -13,20 +13,19 @@ tokens.$default-map: components.$post-text-input;
 .form-control {
   display: block;
   width: 100%;
-  font-weight: tokens.get('input-font-weight');
   font-family: type.$font-family-sans-serif;
   appearance: none; // Fix appearance for date inputs in Safari
   background-clip: padding-box;
-  border: tokens.get('input-sizing-border-width') tokens.get('input-sizing-border-style')
+  border: tokens.get('input-border-width') tokens.get('input-border-style-default')
     tokens.get('input-color-enabled-stroke');
   position: relative;
   border-radius: tokens.get('input-border-radius-surface');
   background-color: tokens.get('input-color-enabled-bg');
   color: tokens.get('input-color-enabled-fg');
-  padding-inline-start: tokens.get('input-spacing-padding-inline-text-start');
-  padding-inline-end: tokens.get('input-spacing-padding-inline-text-end');
-  padding-block-start: tokens.get('input-spacing-padding-block-text1');
-  padding-block-end: tokens.get('input-spacing-padding-block-text1');
+  padding-inline-start: tokens.get('input-padding-inline-start');
+  padding-inline-end: tokens.get('input-padding-inline-end');
+  padding-block-start: tokens.get('input-padding-block-text1');
+  padding-block-end: tokens.get('input-padding-block-text1');
   line-height: tokens.get('input-sizing-line-height');
   font-size: tokens.get('input-sizing-font-size');
   height: tokens.get('input-sizing-height');
@@ -84,17 +83,16 @@ tokens.$default-map: components.$post-text-input;
     }
     // File input buttons theming
     &::file-selector-button {
-      padding: tokens.get('input-spacing-padding-block-text1')
-        tokens.get('input-spacing-padding-inline-text-start');
-      margin: calc(#{tokens.get('input-spacing-padding-block-text1')} * -1)
-        calc(#{tokens.get('input-spacing-padding-inline-text-start')} * -1);
-      margin-inline-end: tokens.get('input-spacing-padding-inline-text-start');
+      padding: tokens.get('input-padding-block-text1') tokens.get('input-padding-inline-start');
+      margin: calc(#{tokens.get('input-padding-block-text1')} * -1)
+        calc(#{tokens.get('input-padding-inline-start')} * -1);
+      margin-inline-end: tokens.get('input-padding-inline-start');
       color: tokens.get('input-color-enabled-fg');
       pointer-events: none;
       border-color: inherit;
       border-style: solid;
       border-width: 0;
-      border-inline-end-width: tokens.get('input-sizing-border-width');
+      border-inline-end-width: tokens.get('input-border-width');
       border-radius: 0;
       display: block;
       position: absolute;
@@ -129,7 +127,7 @@ tokens.$default-map: components.$post-text-input;
         bottom: 0;
         right: 0;
         z-index: 2;
-        padding-inline: tokens.get('input-spacing-padding-inline-text-start');
+        padding-inline: tokens.get('input-padding-inline-start');
         background-color: inherit;
         border-left: inherit;
         text-align: center;
@@ -168,7 +166,7 @@ tokens.$default-map: components.$post-text-input;
   }
 
   &::placeholder {
-    color: tokens.get('input-color-placeholder-fg');
+    color: tokens.get('input-color-helptext-fg');
     opacity: 1;
   }
 
@@ -187,12 +185,12 @@ tokens.$default-map: components.$post-text-input;
   &.is-invalid {
     &:not(:disabled) {
       background-size: tokens.get('input-sizing-icon');
-      background-position: center right tokens.get('input-spacing-padding-inline-text-end');
+      background-position: center right tokens.get('input-padding-inline-end');
       background-repeat: no-repeat;
       padding-inline-end: calc(
-        (#{tokens.get('input-spacing-padding-inline-text-end')} * 2) + #{tokens.get(
-            'input-sizing-icon'
-          )}
+        #{tokens.get('input-padding-inline-end')} + #{tokens.get(
+            'input-validation-icon-position-inline-end'
+          )} + #{tokens.get('input-sizing-icon')}
       );
     }
   }

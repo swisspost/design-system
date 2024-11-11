@@ -34,23 +34,22 @@ tokens.$default-map: components.$post-text-input;
     text-align: start;
     pointer-events: none;
     display: block;
-    top: tokens.get('input-sizing-border-width');
-    left: tokens.get('input-sizing-border-width');
+    top: tokens.get('input-border-width');
+    left: tokens.get('input-border-width');
     margin: 0;
-    padding: tokens.get('input-spacing-padding-block-label-start')
-      tokens.get('input-spacing-padding-inline-label-end')
-      tokens.get('input-spacing-padding-block-label-end')
-      tokens.get('input-spacing-padding-inline-label-start');
+    padding-inline: tokens.get('input-label-empty-padding-inline-start')
+      tokens.get('input-label-empty-padding-inline-end');
+    padding-block-start: tokens.get('input-label-empty-padding-block-start');
     border: 0;
     color: tokens.get('input-color-enabled-fg');
     font-size: tokens.get('input-sizing-label-enabled');
     width: auto;
     height: auto;
-    max-width: calc(100% - (#{tokens.get('input-sizing-border-width') * 2}));
+    max-width: calc(100% - (#{tokens.get('input-border-width')} * 2));
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    transform-origin: tokens.get('input-spacing-padding-inline-label-start') 0;
+    transform-origin: tokens.get('input-label-empty-padding-inline-start') 0;
     transition: all 0.25s ease-in-out;
   }
 
@@ -61,13 +60,13 @@ tokens.$default-map: components.$post-text-input;
 
     &:focus,
     &:not(:placeholder-shown) {
-      padding-top: tokens.get('input-spacing-padding-block-input-start');
-      padding-bottom: tokens.get('input-spacing-padding-block-text2');
+      padding-top: tokens.get('input-filled-padding-block-start');
+      padding-bottom: tokens.get('input-padding-block-text2');
 
       ~ label {
         font-size: tokens.get('input-sizing-label-enabled');
         color: tokens.get('input-color-selected-fg');
-        padding-top: tokens.get('input-spacing-padding-block-label-selected-start');
+        padding-top: tokens.get('input-label-empty-padding-inline-start');
       }
     }
 
@@ -93,19 +92,19 @@ tokens.$default-map: components.$post-text-input;
     &[type='file'] {
       &:focus,
       &:not(:placeholder-shown) {
-        padding-top: tokens.get('input-spacing-padding-block-input-start') * 1.33;
+        padding-top: calc(#{tokens.get('input-filled-padding-block-start')} * 1.33);
       }
     }
   }
 
   > .form-select {
-    padding-top: tokens.get('input-spacing-padding-block-input-start');
-    padding-bottom: tokens.get('input-spacing-padding-block-text2');
+    padding-top: tokens.get('input-filled-padding-block-start');
+    padding-bottom: tokens.get('input-padding-block-text2');
 
     ~ label {
       color: tokens.get('input-color-enabled-fg');
-      padding-top: tokens.get('input-spacing-padding-block-label-selected-start');
-      max-width: calc(100% - (#{tokens.get('input-sizing-border-width') * 2}));
+      padding-top: tokens.get('input-label-empty-padding-inline-start');
+      max-width: calc(100% - (#{tokens.get('input-border-width')} * 2));
       transition: all 0.25s ease-in-out;
     }
 
@@ -117,12 +116,12 @@ tokens.$default-map: components.$post-text-input;
 
     &:empty,
     &.form-select-empty {
-      padding-top: tokens.get('input-spacing-padding-block-input-start');
-      padding-bottom: tokens.get('input-spacing-padding-block-text2');
+      padding-top: tokens.get('input-filled-padding-block-start');
+      padding-bottom: tokens.get('input-padding-block-text2');
 
       ~ label {
-        padding-top: tokens.get('input-spacing-padding-block-label-selected-start');
-        max-width: calc(100% - (#{tokens.get('input-sizing-border-width') * 2}));
+        padding-top: tokens.get('input-label-empty-padding-inline-start');
+        max-width: calc(100% - (#{tokens.get('input-border-width')} * 2));
       }
     }
 
@@ -133,7 +132,7 @@ tokens.$default-map: components.$post-text-input;
 
       ~ label {
         padding-bottom: 0;
-        max-width: calc(100% - (#{tokens.get('input-sizing-border-width') * 2}));
+        max-width: calc(100% - (#{tokens.get('input-border-width')} * 2));
         height: auto;
       }
 
@@ -148,8 +147,8 @@ tokens.$default-map: components.$post-text-input;
           padding-top: forms.$form-floating-padding-y;
           padding-bottom: forms.$form-floating-padding-y;
           width: calc(
-            100% - (#{tokens.get('input-sizing-border-width') * 2}) - #{tokens.get(
-                'input-spacing-padding-inline-label-start'
+            100% - (#{tokens.get('input-border-width')} * 2) - #{tokens.get(
+                'input-label-empty-padding-inline-start'
               )}
           );
         }
@@ -173,8 +172,8 @@ tokens.$default-map: components.$post-text-input;
 
   // Duplicated because `:-webkit-autofill` invalidates other selectors when grouped
   > .form-control:-webkit-autofill {
-    padding-top: tokens.get('input-spacing-padding-block-input-start');
-    padding-bottom: tokens.get('input-spacing-padding-block-text2');
+    padding-top: tokens.get('input-filled-padding-block-start');
+    padding-bottom: tokens.get('input-padding-block-text2');
 
     ~ label {
       color: tokens.get('input-color-selected-fg');
@@ -194,12 +193,12 @@ tokens.$default-map: components.$post-text-input;
     padding-right: spacing.$size-large;
     min-height: (forms.$form-floating-label-font-size * forms.$input-line-height-lg) +
       forms.$form-floating-textarea-padding-t + spacing.$size-mini +
-      sizing.px-to-rem(tokens.get('input-sizing-border-width') * 2);
+      sizing.px-to-rem(forms.$input-border-width * 2);
     height: auto;
 
     ~ label {
       padding-bottom: 0;
-      width: calc(100% - (#{tokens.get('input-sizing-border-width') * 2}));
+      width: calc(100% - (#{tokens.get('input-border-width')} * 2));
       max-width: none;
       height: unset;
       padding-top: spacing.$size-regular;
@@ -211,7 +210,7 @@ tokens.$default-map: components.$post-text-input;
 
       ~ label {
         padding-top: spacing.$size-mini;
-        width: calc(100% - (#{tokens.get('input-sizing-border-width') * 2}));
+        width: calc(100% - (#{tokens.get('input-border-width')} * 2));
         max-width: none;
         background-color: tokens.get('input-color-selected-bg');
       }
@@ -220,7 +219,7 @@ tokens.$default-map: components.$post-text-input;
     &:is(.is-valid, .is-invalid) {
       ~ label {
         width: calc(
-          100% - (#{tokens.get('input-sizing-border-width') * 2}) - #{form-validation.$form-feedback-icon-offset} -
+          100% - (#{tokens.get('input-border-width')} * 2) - #{form-validation.$form-feedback-icon-offset} -
             #{tokens.get('input-sizing-height')}
         );
       }
@@ -228,7 +227,7 @@ tokens.$default-map: components.$post-text-input;
       &:focus,
       &:not(:placeholder-shown) {
         ~ label {
-          width: calc(100% - (#{tokens.get('input-sizing-border-width') * 2}));
+          width: calc(100% - (#{tokens.get('input-border-width')} * 2));
         }
       }
     }
