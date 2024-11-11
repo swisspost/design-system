@@ -167,6 +167,10 @@ $utilities: (
       75: 75vh,
       100: 100vh,
     ),
+  'align': (
+    property: vertical-align,
+    class: align,
+    values: baseline top middle bottom text-bottom text-top,
   ),
   'float': (
     responsive: true,
@@ -271,7 +275,6 @@ $utilities: (
     class: ps,
     values: from-tokens('spacing', 'padding'),
   ),
-
   'gap': (
     responsive: true,
     property: gap,
