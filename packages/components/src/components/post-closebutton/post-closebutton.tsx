@@ -13,7 +13,7 @@ export class PostClosebutton {
 
   render() {
     return (
-      <Host data-version={version} slot="post-closebutton">
+      <Host data-version={version}>
         <button class="btn btn-icon-close">
           <post-icon aria-hidden="true" name="2043"></post-icon>
           <span class="visually-hidden">
