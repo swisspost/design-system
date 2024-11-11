@@ -6,6 +6,7 @@
 
 @use './mixins' as *;
 @use './variables' as *;
+@use './not-defined' as *;
 
 @use './temp/legacy';
 
