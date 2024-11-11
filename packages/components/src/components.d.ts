@@ -148,6 +148,8 @@ export namespace Components {
          */
         "value": string;
     }
+    interface PostClosebutton {
+    }
     interface PostCollapsible {
         /**
           * If `true`, the element is collapsed otherwise it is displayed.
@@ -475,6 +477,12 @@ declare global {
         prototype: HTMLPostCardControlElement;
         new (): HTMLPostCardControlElement;
     };
+    interface HTMLPostClosebuttonElement extends Components.PostClosebutton, HTMLStencilElement {
+    }
+    var HTMLPostClosebuttonElement: {
+        prototype: HTMLPostClosebuttonElement;
+        new (): HTMLPostClosebuttonElement;
+    };
     interface HTMLPostCollapsibleElementEventMap {
         "postToggle": boolean;
     }
@@ -631,6 +639,7 @@ declare global {
         "post-avatar": HTMLPostAvatarElement;
         "post-breadcrumb-item": HTMLPostBreadcrumbItemElement;
         "post-card-control": HTMLPostCardControlElement;
+        "post-closebutton": HTMLPostClosebuttonElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
         "post-icon": HTMLPostIconElement;
@@ -768,6 +777,8 @@ declare namespace LocalJSX {
           * Defines the `value` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
          */
         "value"?: string;
+    }
+    interface PostClosebutton {
     }
     interface PostCollapsible {
         /**
@@ -973,6 +984,7 @@ declare namespace LocalJSX {
         "post-avatar": PostAvatar;
         "post-breadcrumb-item": PostBreadcrumbItem;
         "post-card-control": PostCardControl;
+        "post-closebutton": PostClosebutton;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
         "post-icon": PostIcon;
@@ -1003,6 +1015,7 @@ declare module "@stencil/core" {
              * @class PostCardControl - representing a stencil component
              */
             "post-card-control": LocalJSX.PostCardControl & JSXBase.HTMLAttributes<HTMLPostCardControlElement>;
+            "post-closebutton": LocalJSX.PostClosebutton & JSXBase.HTMLAttributes<HTMLPostClosebuttonElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             "post-collapsible-trigger": LocalJSX.PostCollapsibleTrigger & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
             /**
