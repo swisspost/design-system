@@ -1,5 +1,13 @@
 # @swisspost/design-system-components
 
+## 8.5.0
+
+### Patch Changes
+
+- Fixed the `post-card-control` label read twice by screen readers. (by [@leagrdv](https://github.com/leagrdv) with [#3863](https://github.com/swisspost/design-system/pull/3863))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.5.0
+
 ## 8.4.0
 
 ### Patch Changes
