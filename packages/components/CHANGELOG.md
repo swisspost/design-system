@@ -1,5 +1,23 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.4
+
+### Major Changes
+
+- Removed the `.breadcrumb-item` class, which previously handled styling for breadcrumb items. Introduced a new `post-breadcrumb-item` that should be used in place of the `.breadcrumb-item` class. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3659](https://github.com/swisspost/design-system/pull/3659))
+
+### Minor Changes
+
+- Created the `post-list` and `post-list-item` components. (by [@myrta2302](https://github.com/myrta2302) with [#3812](https://github.com/swisspost/design-system/pull/3812))
+
+- Added close button web component. (by [@leagrdv](https://github.com/leagrdv) with [#3880](https://github.com/swisspost/design-system/pull/3880))
+
+### Patch Changes
+
+- Fixed an issue with the post-collapsible throwing an invalid selector error. (by [@alizedebray](https://github.com/alizedebray) with [#3726](https://github.com/swisspost/design-system/pull/3726))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.4
+
 ## 9.0.0-next.3
 
 ### Major Changes
