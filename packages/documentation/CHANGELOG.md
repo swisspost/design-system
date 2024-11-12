@@ -1,5 +1,35 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.5
+
+### Minor Changes
+
+- Updated list group to v2 and added new options: list links, list documents and list switches. (by [@leagrdv](https://github.com/leagrdv) with [#3740](https://github.com/swisspost/design-system/pull/3740))
+
+- Created the `post-list` and `post-list-item` components. (by [@myrta2302](https://github.com/myrta2302) with [#3812](https://github.com/swisspost/design-system/pull/3812))
+
+- Updated the Accessibility documentation section with Form Labels guidelines. (by [@myrta2302](https://github.com/myrta2302) with [#3835](https://github.com/swisspost/design-system/pull/3835))
+
+- Added Form Footer component. (by [@leagrdv](https://github.com/leagrdv) with [#3616](https://github.com/swisspost/design-system/pull/3616))
+
+- Updated vertical-align utility (by [@myrta2302](https://github.com/myrta2302) with [#3805](https://github.com/swisspost/design-system/pull/3805))
+
+- Added the skiplinks component to styles and documentation. (by [@leagrdv](https://github.com/leagrdv) with [#3875](https://github.com/swisspost/design-system/pull/3875))
+
+- Added close button web component. (by [@leagrdv](https://github.com/leagrdv) with [#3880](https://github.com/swisspost/design-system/pull/3880))
+
+- Internalized bootstraps floating utilities into the design system. (by [@myrta2302](https://github.com/myrta2302) with [#3752](https://github.com/swisspost/design-system/pull/3752))
+
+### Patch Changes
+
+- Updated basic `<ul>` element docs and moved them from `Utilities/Lists` to `Foundation/Typography/Lists`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3859](https://github.com/swisspost/design-system/pull/3859))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.0.0-next.4
+  - @swisspost/design-system-styles@9.0.0-next.4
+  - @swisspost/design-system-components@9.0.0-next.4
+  - @swisspost/internet-header@2.0.0-next.4
+  - @swisspost/design-system-components-react@9.0.0-next.4
+
 ## 6.0.0-next.4
 
 ### Patch Changes
