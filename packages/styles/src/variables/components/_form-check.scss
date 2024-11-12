@@ -107,7 +107,6 @@ $form-switch-disabled-border-color: color.$gray-40 !default;
 $form-switch-label-padding-top: ($form-switch-height - type.$line-height-copy) * 0.5 !default;
 
 // DEPRECATED
-
 $form-switch-padding-start: 0 !default;
 $form-switch-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-16 -16 32 32'><circle r='15' stroke='#{$form-switch-border-color}' stroke-width='2' fill='#{$form-switch-color}'/></svg>") !default;
 $form-switch-border-radius: $form-switch-width !default;
