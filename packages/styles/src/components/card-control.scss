@@ -137,11 +137,9 @@ fieldset {
     --post-card-control-input-bg: transparent;
 
     border-style: dashed;
-    text-decoration: line-through;
     cursor: default;
 
     input.form-check-input[type] {
-      border: 0 none;
       padding: forms.$input-border-width;
     }
   }

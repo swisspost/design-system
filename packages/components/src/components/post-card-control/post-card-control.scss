@@ -178,17 +178,11 @@
     --post-card-control-input-bg: transparent;
 
     border-style: dashed;
-    text-decoration: line-through;
     cursor: default;
 
     .card-control--input {
-      border: 0 none;
       padding: post.$form-check-input-border-width;
-      background-image: url('#{post.$form-check-input-disabled-background-url-light-lg}');
-
-      &[type='radio'] {
-        background-image: url('#{post.$form-check-input-radio-disabled-background-url-light}');
-      }
+      border-style: dashed;
     }
   }
 

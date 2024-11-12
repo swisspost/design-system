@@ -14,7 +14,9 @@ fieldset > .form-check:not(:last-of-type) {
 }
 
 .form-check:has(input[type='radio']) {
-  @include utility-mx.focus-style();
+  &:has(> input:not(:only-child)) {
+    @include utility-mx.focus-style();
+  }
   padding-block: tokens.get('radio-button-padding-block-single');
 }
 
@@ -26,17 +28,10 @@ fieldset > .form-check:not(:last-of-type) {
   width: tokens.get('radio-button-icon-ring');
   border: tokens.get('radio-button-icon-border-width')
     tokens.get('radio-button-icon-border-style-default') tokens.get('radio-button-enabled-stroke');
-  padding-block: tokens.get('radio-button-icon-padding-block-inner', components.$post-radio-button);
-  padding-inline: tokens.get(
-    'radio-button-icon-padding-inline-inner',
-    components.$post-radio-button
-  );
-  margin-block: tokens.get(
-    'radio-button-icon-padding-block-container',
-    components.$post-radio-button
-  );
-  border-radius: tokens.get('radio-button-icon-border-radius-round', components.$post-radio-button);
-
+  padding-block: tokens.get('radio-button-icon-padding-block-inner');
+  padding-inline: tokens.get('radio-button-icon-padding-inline-inner');
+  margin-block: tokens.get('radio-button-icon-padding-block-container');
+  border-radius: tokens.get('radio-button-icon-border-radius-round');
   color: tokens.get('radio-button-enabled-fg');
   background-color: tokens.get('radio-button-enabled-bg');
 
@@ -46,10 +41,7 @@ fieldset > .form-check:not(:last-of-type) {
     padding-block: tokens.get('radio-button-label-padding-block');
 
     :not(.form-switch, .radio-button-card) > & {
-      padding-inline-start: tokens.get(
-        'radio-button-gap-inline-text-start',
-        components.$post-radio-button
-      );
+      padding-inline-start: tokens.get('radio-button-gap-inline-text-start');
     }
   }
 
@@ -118,6 +110,12 @@ fieldset > .form-check:not(:last-of-type) {
 
     + label {
       color: tokens.get('radio-button-enabled-fg');
+    }
+  }
+
+  &:only-child {
+    @include utility-mx.focus-style() {
+      border-radius: tokens.get('radio-button-icon-border-radius-round');
     }
   }
 }

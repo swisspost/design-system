@@ -17,11 +17,17 @@ fieldset > .form-check:not(:last-of-type) {
 }
 
 .form-check:has(input[type='checkbox']):not(.form-switch) {
-  @include utility-mx.focus-style();
+  &:has(> input:not(:only-child)) {
+    @include utility-mx.focus-style();
+  }
   padding-block: tokens.get('checkbox-padding-block-single');
 }
 
 .form-check-input[type='checkbox']:not([role='switch']) {
+  &:only-child {
+    @include utility-mx.focus-style();
+  }
+
   height: tokens.get('checkbox-icon-size');
   width: tokens.get('checkbox-icon-size');
   border: tokens.get('checkbox-icon-border-width') tokens.get('checkbox-border-style-default')
@@ -37,7 +43,7 @@ fieldset > .form-check:not(:last-of-type) {
     padding-block: tokens.get('checkbox-label-padding-block');
 
     :not(.form-switch, .checkbox-button-card) > & {
-      padding-inline-start: tokens.get('checkbox-gap-inline-text-start', components.$post-checkbox);
+      padding-inline-start: tokens.get('checkbox-gap-inline-text-start');
     }
   }
 
