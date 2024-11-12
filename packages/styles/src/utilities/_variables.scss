@@ -22,6 +22,11 @@
 */
 
 $utilities: (
+  'align': (
+    property: vertical-align,
+    class: align,
+    values: baseline top middle bottom text-bottom text-top,
+  ),
   'float': (
     responsive: true,
     property: float,
@@ -83,7 +88,6 @@ $utilities: (
     class: ms,
     values: from-tokens('spacing', 'margin'),
   ),
-
   'padding': (
     responsive: true,
     property: padding,
@@ -126,7 +130,6 @@ $utilities: (
     class: ps,
     values: from-tokens('spacing', 'padding'),
   ),
-
   'gap': (
     responsive: true,
     property: gap,

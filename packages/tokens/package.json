@@ -1,8 +1,7 @@
 {
   "name": "@swisspost/design-system-tokens",
-  "version": "9.0.0-next.3",
-  "private": true,
-  "description": "Design Tokens for the Swiss Post.",
+  "version": "9.0.0-next.4",
+  "description": "Design Tokens for the Swiss Post Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
   "repository": {
@@ -15,7 +14,8 @@
   },
   "type": "module",
   "scripts": {
-    "build": "pnpm clean && node ./build.js",
+    "copy-files": "copyfiles -f package.json README.md CONTRIBUTING.md CHANGELOG.md LICENSE dist",
+    "build": "pnpm clean && node ./build.js && pnpm copy-files",
     "clean": "rimraf dist",
     "build:verbose": "node ./build.js --verbosity=verbose"
   },
@@ -29,11 +29,12 @@
   ],
   "publishConfig": {
     "directory": "./dist",
-    "access": "restricted",
+    "access": "public",
     "linkDirectory": true
   },
   "devDependencies": {
     "@tokens-studio/sd-transforms": "1.2.2",
+    "copyfiles": "2.4.1",
     "rimraf": "6.0.1",
     "style-dictionary": "4.0.1"
   }
