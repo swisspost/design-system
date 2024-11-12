@@ -150,7 +150,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 };
 
 function getLabel({ label }: Args, { id }: StoryContext) {
-  return html` <label for="${id}">${label}</label> `;
+  return html` <label for="${id}" class="form-check-label">${label}</label> `;
 }
 
 function getValidationFeedback({ validation }: Args) {
@@ -170,7 +170,10 @@ function renderCheckbox(args: Args, context: StoryContext) {
     'form-check-inline': args.inline,
   });
 
-  const checkboxClass = args.validation !== 'null' ? `is-${args.validation}` : undefined;
+  const checkboxClasses = mapClasses({
+    'form-check-input': true,
+    ['is-' + args.validation]: args.validation !== 'null',
+  });
 
   const handleChange = () => {
     updateArgs({ checked: CHECKED_STATE_TOGGLE_MAP[args.checked] });
@@ -185,7 +188,7 @@ function renderCheckbox(args: Args, context: StoryContext) {
     <div class="${containerClasses}">
       <input
         id="${context.id}"
-        class="${ifDefined(checkboxClass)}"
+        class="${checkboxClasses}"
         type="checkbox"
         aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
         aria-label="${ifDefined(args.hiddenLabel ? args.label : undefined)}"

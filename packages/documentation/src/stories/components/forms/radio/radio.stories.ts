@@ -110,13 +110,15 @@ function render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
   const id = context.id ?? `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
-  const classes = args.validation !== 'null' ? `is-${args.validation}` : undefined;
+
+  const classes = ['form-check-input', args.validation].filter(c => c && c !== 'null').join(' ');
 
   const groupClasses = ['form-check', args.size].filter(c => c && c !== 'null').join(' ');
 
   const useAriaLabel = args.hiddenLabel;
+
   const label: TemplateResult | null = !useAriaLabel
-    ? html` <label for="${id}">${args.label}</label> `
+    ? html` <label for="${id}" class="form-check-label">${args.label}</label> `
     : null;
 
   const contextual: (TemplateResult | null)[] = [
@@ -127,7 +129,7 @@ function render(args: Args, context: StoryContext) {
   const control = html`
     <input
       id="${id}"
-      class="${ifDefined(classes)}"
+      class="${classes}"
       type="radio"
       ?checked="${args.checked}"
       .checked="${args.checked}"
