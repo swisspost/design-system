@@ -16,7 +16,6 @@
 
 | Slot          | Description                                                       |
 | ------------- | ----------------------------------------------------------------- |
-| `"default"`   | Slot to set button to untoggled                                   |
 | `"toggled"`   | Slot for content displayed when the button is in the "on" state.  |
 | `"untoggled"` | Slot for content displayed when the button is in the "off" state. |
 

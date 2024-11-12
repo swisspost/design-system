@@ -2,6 +2,7 @@ import { type Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 import { spread } from '@open-wc/lit-helpers';
+import buttonMeta from '../buttons/button/button.stories';
 
 export interface PostTogglebuttonProps {
   type?: 'button' | 'submit' | 'reset';
@@ -12,7 +13,7 @@ export interface PostTogglebuttonProps {
   contentWhenUntoggled?: string;
 }
 
-const toggleButtonMeta: MetaComponent<PostTogglebuttonProps> = {
+const meta: MetaComponent<PostTogglebuttonProps> = {
   id: '1a6f47c2-5e8a-45a0-b1c3-9f7e2b834c24',
   title: 'Components/Toggle Button',
   tags: ['package:WebComponents'],
@@ -24,7 +25,6 @@ const toggleButtonMeta: MetaComponent<PostTogglebuttonProps> = {
   args: {
     contentWhenToggled: 'Toggled',
     contentWhenUntoggled: 'Untoggled',
-    type: 'button',
     variant: 'btn-primary',
     size: 'null',
     toggled: false,
@@ -47,29 +47,16 @@ const toggleButtonMeta: MetaComponent<PostTogglebuttonProps> = {
       },
     },
     size: {
-      name: 'Size',
+      ...buttonMeta.argTypes?.size,
       description:
         'Sets the size of the component.' +
         '<span className="mt-8 alert alert-info alert-sm">' +
         'For more options, please see the ' +
         '<a href="/?path=/docs/eb78afcb-ce92-4990-94b6-6536d5ec6af4--docs">button documentation</a>' +
         '.</span>',
-      control: {
-        type: 'select',
-        labels: {
-          'btn-sm': 'Small',
-          'btn-rg': 'Regular',
-          'null': 'Medium',
-          'btn-lg': 'Large',
-        },
-      },
-      options: ['btn-sm', 'btn-rg', 'null', 'btn-lg'],
-      table: {
-        category: 'General',
-      },
     },
     variant: {
-      ...toggleButtonMeta.argTypes?.variant,
+      ...buttonMeta.argTypes?.variant,
       description:
         'Defines a style variant.' +
         '<span className="mt-8 alert alert-info alert-sm">' +
@@ -80,7 +67,7 @@ const toggleButtonMeta: MetaComponent<PostTogglebuttonProps> = {
   },
 };
 
-export default toggleButtonMeta;
+export default meta;
 
 function renderBadge(args: Args) {
   return html`

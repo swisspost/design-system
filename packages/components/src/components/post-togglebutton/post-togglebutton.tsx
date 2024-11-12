@@ -2,7 +2,6 @@ import { Component, Host, h, Prop } from '@stencil/core';
 import { version } from '@root/package.json';
 
 /**
- * @slot default - Slot to set button to untoggled
  * @slot toggled - Slot for content displayed when the button is in the "on" state.
  * @slot untoggled - Slot for content displayed when the button is in the "off" state.
  */
@@ -39,7 +38,12 @@ export class PostTogglebutton {
         onClick={this.handleClick}
         onKeyDown={this.handleKeydown}
       >
-        {this.toggled ? <slot name="toggled"></slot> : <slot name="untoggled"></slot>}
+        <span hidden={this.toggled}>
+          <slot name="untoggled" />
+        </span>
+        <span hidden={!this.toggled}>
+          <slot name="toggled" />
+        </span>
       </Host>
     );
   }

@@ -1,8 +1,8 @@
 import type { StoryObj } from '@storybook/web-components';
-import toggleButtonMeta from './togglebutton.stories';
+import meta from './togglebutton.stories';
 import { html } from 'lit';
 
-const { id, ...metaWithoutId } = toggleButtonMeta;
+const { id, ...metaWithoutId } = meta;
 
 export default {
   ...metaWithoutId,
@@ -27,7 +27,7 @@ export const ToggleButton: Story = {
               SIZES.map(size =>
                 TOGGLED.map(
                   isToggled => html`
-                    ${toggleButtonMeta.render({
+                    ${meta.render({
                       variant: btn,
                       size: size || 'null',
                       toggled: isToggled,
