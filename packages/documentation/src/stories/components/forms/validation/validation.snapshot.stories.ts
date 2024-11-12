@@ -27,9 +27,11 @@ export const Validation: Story = {
 
     return html`
       <div>
-        ${['white', 'dark'].map(
-          bg =>
-            html` <div data-color-scheme="${bg}"" class="bg-${bg}">
+        ${[
+          { scheme: 'light', bg: 'white' },
+          { scheme: 'dark', bg: 'dark' },
+        ].map(
+          ({ scheme, bg }) => html` <div data-color-scheme="${scheme}" class="bg-${bg}">
               ${components.map(
                 component =>
                   html`

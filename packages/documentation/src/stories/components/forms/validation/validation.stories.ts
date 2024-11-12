@@ -123,15 +123,15 @@ export const Input: Story = {
     const invalidFeedbackId =
       isValidationSet && args.validation !== 'is-valid' ? `${args.validation}-id` : nothing;
     return html`<div class="form-floating">
-      <label class="form-label" for="Input_1">Label</label>
       <input
         id="Input_1"
         class="form-control form-control-lg ${isValidationSet ? args.validation : ''}"
         aria-invalid=${ariaInvalid}
         aria-describedby="${ariaDescribedBy}"
         type="text"
+        placeholder="Placeholder"
       />
-
+      <label class="form-label" for="Input_1">Label</label>
       <p class="form-text">
         Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
         illum dolore eu feugiat nulla facilisis.
@@ -205,26 +205,27 @@ export const Select: Story = {
       isValidationSet && args.validation !== 'is-invalid' ? `${args.validation}-id` : nothing;
     const invalidFeedbackId =
       isValidationSet && args.validation !== 'is-valid' ? `${args.validation}-id` : nothing;
-    return html`
-      <label class="form-label" for="Select_1">
-        <span>Label</span>
-      </label>
-     <select id="Select_1" class="form-select form-select-lg ${
-       isValidationSet ? args.validation : ''
-     }"
+    return html`<div class="form-floating">
+      <select
+        id="Select_1"
+        class="form-select form-select-lg ${isValidationSet ? args.validation : ''}"
         aria-invalid=${ariaInvalid}
-        aria-describedby="${ariaDescribedBy}">
+        aria-describedby="${ariaDescribedBy}"
+      >
         <option>Select option...</option>
         <option value="value_1">Option 1</option>
         <option value="value_2">Option 2</option>
         <option value="value_3">Option 3</option>
         <option value="value_4">Option 4</option>
       </select>
+      <label class="form-label" for="Select_1">
+        <span>Label</span>
+      </label>
       <p class="form-text">
-        Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum
-        dolore eu feugiat nulla facilisis.
+        Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
+        illum dolore eu feugiat nulla facilisis.
       </p>
-       <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
+      <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
       <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
     </div>`;
   },
@@ -276,8 +277,7 @@ export const TextArea: Story = {
       isValidationSet && args.validation !== 'is-invalid' ? `${args.validation}-id` : nothing;
     const invalidFeedbackId =
       isValidationSet && args.validation !== 'is-valid' ? `${args.validation}-id` : nothing;
-    return html`
-    <label class="form-label" for="TextArea_1">Label</label>
+    return html`<div class="form-floating">
       <textarea
         placeholder=""
         rows=""
@@ -285,12 +285,13 @@ export const TextArea: Story = {
         class="form-control form-control-lg ${isValidationSet ? args.validation : ''}"
         aria-invalid=${ariaInvalid}
         aria-describedby="${ariaDescribedBy}"
-      ></textarea>
+      ></textarea
+      ><label class="form-label" for="TextArea_1">Label</label>
       <p class="form-text">
-        Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum
-        dolore eu feugiat nulla facilisis.
+        Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
+        illum dolore eu feugiat nulla facilisis.
       </p>
-        <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
+      <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
       <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
     </div>`;
   },
