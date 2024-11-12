@@ -25,7 +25,7 @@ tokens.$default-map: (
   position: fixed;
   bottom: tokens.get('post-floating-button-position-bottom');
   right: tokens.get('post-floating-button-position-right');
-  animation: show 0.5s ease-in-out;
+  animation: show 1s ease-in-out;
   animation-iteration-count: 1;
   animation-play-state: paused;
   animation-fill-mode: both;
