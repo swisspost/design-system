@@ -95,9 +95,9 @@ export const main = async () => {
     console.log(
       `\x1b[32mDownload finished.\x1b[0m Saved \x1b[32m${report.stats.success}\x1b[0m icons, \x1b[31m${report.stats.errors}\x1b[0m icons errored and \x1b[31m${report.stats.notFound}\x1b[0m where not found.`,
     );
-
-    await createUIIcons();
   }
+
+  await createUIIcons();
 };
 
 // Run Forest, run
