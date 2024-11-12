@@ -12,7 +12,7 @@ export interface PostTogglebuttonProps {
   contentWhenUntoggled?: string;
 }
 
-const meta: MetaComponent<PostTogglebuttonProps> = {
+const toggleButtonMeta: MetaComponent<PostTogglebuttonProps> = {
   id: '1a6f47c2-5e8a-45a0-b1c3-9f7e2b834c24',
   title: 'Components/Toggle Button',
   tags: ['package:WebComponents'],
@@ -69,30 +69,18 @@ const meta: MetaComponent<PostTogglebuttonProps> = {
       },
     },
     variant: {
-      name: 'Variant',
+      ...toggleButtonMeta.argTypes?.variant,
       description:
         'Defines a style variant.' +
         '<span className="mt-8 alert alert-info alert-sm">' +
         'For more options, please see the ' +
         '<a href="/?path=/docs/eb78afcb-ce92-4990-94b6-6536d5ec6af4--docs">button documentation</a>' +
         '.</span>',
-      control: {
-        type: 'inline-radio',
-        labels: {
-          'btn-primary': 'Primary',
-          'btn-secondary': 'Secondary',
-          'btn-tertiary': 'Tertiary',
-        },
-      },
-      options: ['btn-primary', 'btn-secondary', 'btn-tertiary'],
-      table: {
-        category: 'General',
-      },
     },
   },
 };
 
-export default meta;
+export default toggleButtonMeta;
 
 function renderBadge(args: Args) {
   return html`
