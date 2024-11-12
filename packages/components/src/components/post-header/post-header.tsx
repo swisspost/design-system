@@ -1,4 +1,4 @@
-import { Component, h, Host, State, Element } from '@stencil/core';
+import { Component, h, Host, State, Element, Listen } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 
@@ -22,6 +22,11 @@ export class PostHeader {
     window.addEventListener('resize', this.throttledResize, { passive: true });
     this.handleResize();
     this.handleScrollEvent();
+  }
+
+  @Listen('postMainNavigationClosed')
+  handlePostMainNavigationClosed() {
+    this.mobileMenuExtended = false;
   }
 
   private handleScrollEvent() {
@@ -65,6 +70,7 @@ export class PostHeader {
     const width = window?.innerWidth;
     if (width >= 1024) {
       this.device = 'desktop';
+      this.mobileMenuExtended = false; // Close any open mobile menu
     } else if (width >= 600) {
       this.device = 'tablet';
     } else {

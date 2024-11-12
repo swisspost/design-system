@@ -71,8 +71,7 @@ slot[name='post-logo'] {
   }
 }
 
-::slotted(ul),
-::slotted(post-mainnavigation) {
+::slotted(ul) {
   margin-block: 0;
   list-style: none;
   display: flex;
