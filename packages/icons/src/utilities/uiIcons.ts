@@ -1,7 +1,8 @@
-import { promises } from 'fs';
+import { promises as fs } from 'fs';
 import path from 'path';
 import { HTMLElement, parse } from 'node-html-parser';
 import { optimize } from 'svgo';
+import { version } from '../../package.json';
 import svgoOptions from '../../svgo.config.v2';
 
 import {
@@ -17,52 +18,59 @@ import {
   ICON_V2_TEMPLATE,
 } from '../constants';
 
+const iconOutputPath = path.join(OUTPUT_PATH, 'post-icons/ui');
+const reportOutputPath = path.join(OUTPUT_PATH, 'report.v2.json');
+
 type File = {
   size: number | null;
   filePath: string;
 };
 
-type Report = {
+type ReportIcon = {
   id: string;
   sizes: (number | null)[];
 };
 
-export default async function createUIIcons() {
+export default async function main() {
   console.log('\nCreating UI icons...');
 
-  await cleanup();
-  const report = await writeFiles(await getFileGroups());
+  await setup();
+  const report = await createFiles(await getFileGroups());
+  await fs.writeFile(
+    reportOutputPath,
+    JSON.stringify(
+      {
+        icons: report.sort(sortIcons),
+        created: new Date(),
+        version,
+      },
+      null,
+      2,
+    ),
+  );
 
   console.log(
     `\x1b[32mUI icons created.\x1b[0m Saved \x1b[32m${report.length}\x1b[0m icons to use with the <post-icon> component.`,
   );
 }
 
-async function cleanup() {
-  if (await promises.readdir(`${OUTPUT_PATH}/post-icons/ui`).catch(() => false)) {
-    await promises.rm(`${OUTPUT_PATH}/post-icons/ui`, { recursive: true });
-  }
+async function setup() {
+  // remove generated files & folders
+  if (await fs.readFile(reportOutputPath).catch(() => false)) await fs.unlink(reportOutputPath);
+  if (await fs.readdir(iconOutputPath).catch(() => false))
+    await fs.rm(iconOutputPath, { recursive: true });
 
-  if (await promises.readdir(`${SOURCE_PATH}/v1`).catch(() => false)) {
-    await promises.rm(`${SOURCE_PATH}/v1`, { recursive: true });
-  }
+  // // ensure used folders exist
+  if (!(await fs.readdir(iconOutputPath).catch(() => false)))
+    await fs.mkdir(iconOutputPath, { recursive: true });
+}
 
-  const filePaths = await promises.readdir(`${OUTPUT_PATH}/post-icons`, { recursive: true });
-
-  await Promise.all(
-    filePaths
-      .filter(p => p.endsWith('.svg'))
-      .map(async filePath => {
-        const file = await promises.readFile(`${OUTPUT_PATH}/post-icons/${filePath}`, 'utf-8');
-
-        await promises.mkdir(`${SOURCE_PATH}/v1`, { recursive: true });
-        await promises.writeFile(`${SOURCE_PATH}/v1/${filePath}`, file);
-      }),
-  );
+function sortIcons(a: ReportIcon, b: ReportIcon): number {
+  return a.id < b.id ? -1 : 1;
 }
 
 async function getFileGroups(): Promise<Record<string, File[]>> {
-  const filePaths = await promises.readdir(SOURCE_PATH, { recursive: true });
+  const filePaths = await fs.readdir(SOURCE_PATH, { recursive: true });
 
   return filePaths
     .filter(p => p.endsWith('.svg'))
@@ -101,14 +109,14 @@ async function getFileGroups(): Promise<Record<string, File[]>> {
   }
 }
 
-async function writeFiles(groupedFilePaths: Record<string, File[]>) {
-  const report: Report[] = [];
+async function createFiles(groupedFilePaths: Record<string, File[]>): Promise<ReportIcon[]> {
+  const report: ReportIcon[] = [];
 
   await Promise.all(
     Object.entries(groupedFilePaths).map(async ([id, files]) => {
       const svgs = await Promise.all(
         files.map(async ({ size, filePath }) => {
-          const svg = await promises.readFile(`${SOURCE_PATH}/${filePath}`, 'utf-8');
+          const svg = await fs.readFile(path.join(SOURCE_PATH, filePath), 'utf-8');
 
           return {
             size,
@@ -124,8 +132,7 @@ async function writeFiles(groupedFilePaths: Record<string, File[]>) {
       const uses = svgs.map(({ size }) => getUse(symbolId, size));
       const file = createSvg(id, template, symbols, uses);
 
-      await promises.mkdir(`${OUTPUT_PATH}/post-icons/ui`, { recursive: true });
-      await promises.writeFile(`${OUTPUT_PATH}/post-icons/ui/${id}.svg`, file);
+      await fs.writeFile(path.join(iconOutputPath, `${id}.svg`), file);
 
       report.push({
         id,
@@ -134,11 +141,9 @@ async function writeFiles(groupedFilePaths: Record<string, File[]>) {
     }),
   );
 
-  await promises.writeFile(`${OUTPUT_PATH}/report.v2.json`, JSON.stringify(report.sort(), null, 2));
-
   return report;
 
-  function getSymbol(svg: string, symbolId: string, size: number | null) {
+  function getSymbol(svg: string, symbolId: string, size: number | null): string {
     svg = optimize(svg, svgoOptions).data;
 
     const svgElement = parse(svg).querySelector('svg') as HTMLElement;
@@ -154,7 +159,7 @@ async function writeFiles(groupedFilePaths: Record<string, File[]>) {
     return symbolElement.toString();
   }
 
-  function getUse(symbolId: string, size: number | null) {
+  function getUse(symbolId: string, size: number | null): string {
     const useElement = parse('<use/>').querySelector('use') as HTMLElement;
 
     if (size !== null)
@@ -164,11 +169,11 @@ async function writeFiles(groupedFilePaths: Record<string, File[]>) {
     return useElement.toString();
   }
 
-  function getSymbolId(symbolId: string, size: number | null) {
+  function getSymbolId(symbolId: string, size: number | null): string {
     return [symbolId, size].filter(p => p).join(ID_SYMBOL_SEPERATOR);
   }
 
-  function createSvg(id: string, template: string, symbols: string[], uses: string[]) {
+  function createSvg(id: string, template: string, symbols: string[], uses: string[]): string {
     const file = template
       .replace('{id}', `${ID_PREFIX}-${id}`)
       .replace('{symbols}', symbols.join(''))

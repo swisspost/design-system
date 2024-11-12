@@ -8,8 +8,11 @@ import { url } from './utilities/environment';
 import path from 'path';
 import packageJSON from '../package.json';
 
-const outputPath = './public/post-icons';
-const reportPath = './public';
+import { SOURCE_PATH, OUTPUT_PATH } from './constants';
+
+const iconDownloadPath = path.join(SOURCE_PATH, 'v1');
+const iconOutputPath = path.join(OUTPUT_PATH, 'post-icons');
+const reportOutputPath = path.join(OUTPUT_PATH, 'report.json');
 
 const jsonReport: IJSONReport = {
   icons: [],
@@ -25,6 +28,40 @@ const jsonReport: IJSONReport = {
   },
   version: packageJSON.version,
 };
+
+export const main = async () => {
+  setup();
+
+  // Start recursively downloading pages of icons
+  if (url !== undefined) {
+    console.log('Starting to download icons');
+
+    const report = await downloadAllIcons(url);
+
+    fs.readdirSync(iconDownloadPath).forEach(filePath => {
+      fs.copyFileSync(path.join(iconDownloadPath, filePath), path.join(iconOutputPath, filePath));
+    });
+    fs.writeFileSync(path.join(OUTPUT_PATH, 'report.json'), JSON.stringify(report, null, 2));
+
+    console.log(
+      `\x1b[32mDownload finished.\x1b[0m Saved \x1b[32m${report.stats.success}\x1b[0m icons, \x1b[31m${report.stats.errors}\x1b[0m icons errored and \x1b[31m${report.stats.notFound}\x1b[0m where not found.`,
+    );
+  }
+
+  await createUIIcons();
+};
+
+function setup() {
+  // remove generated files & folders
+  if (fs.existsSync(reportOutputPath)) fs.unlinkSync(reportOutputPath);
+  if (fs.existsSync(iconOutputPath)) fs.rmSync(iconOutputPath, { recursive: true });
+
+  // ensure used folders exist
+  if (!fs.existsSync(iconDownloadPath)) fs.mkdirSync(iconDownloadPath, { recursive: true });
+  if (!fs.existsSync(iconOutputPath)) fs.mkdirSync(iconOutputPath, { recursive: true });
+}
+
+const sortIcons = (a: IIcon, b: IIcon) => (a.file.name < b.file.name ? -1 : 1);
 
 const downloadAllIcons = async (currentUrl: string): Promise<IJSONReport> => {
   const body = await fetchPage(currentUrl);
@@ -46,7 +83,7 @@ const downloadAllIcons = async (currentUrl: string): Promise<IJSONReport> => {
   await Promise.all(
     formattedResponse.map(async icon => {
       try {
-        const svg = await downloadSVG(icon, outputPath);
+        const svg = await downloadSVG(icon, iconDownloadPath);
 
         if (svg === false) {
           jsonReport.noSVG.push(icon);
@@ -79,25 +116,6 @@ const downloadAllIcons = async (currentUrl: string): Promise<IJSONReport> => {
   }
 
   return jsonReport;
-};
-
-const sortIcons = (a: IIcon, b: IIcon) => (a.file.name < b.file.name ? -1 : 1);
-
-export const main = async () => {
-  // Setup environment
-  if (!fs.existsSync(outputPath)) fs.mkdirSync(outputPath, { recursive: true });
-
-  // Start recursively downloading pages of icons
-  if (url !== undefined) {
-    console.log('Starting to download icons');
-    const report = await downloadAllIcons(url);
-    fs.writeFileSync(path.join(reportPath, 'report.json'), JSON.stringify(report, null, 2));
-    console.log(
-      `\x1b[32mDownload finished.\x1b[0m Saved \x1b[32m${report.stats.success}\x1b[0m icons, \x1b[31m${report.stats.errors}\x1b[0m icons errored and \x1b[31m${report.stats.notFound}\x1b[0m where not found.`,
-    );
-  }
-
-  await createUIIcons();
 };
 
 // Run Forest, run
