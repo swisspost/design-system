@@ -48,11 +48,6 @@
 .chip-filter {
   display: inline-block;
 
-  @include utilities.focus-style() {
-    border-radius: chip.$chip-border-radius;
-    width: fit-content;
-  }
-
   &-label {
     @include chip-mx.chip-styles();
     cursor: pointer;
