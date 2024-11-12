@@ -1,9 +1,6 @@
-@forward './../variables/options';
-
-@use './../variables/type';
-
 @use './../functions/tokens';
 @use './../tokens/components';
+@use './../tokens/elements';
 
 @use './../mixins/icons';
 @use './../mixins/utilities';
@@ -13,7 +10,7 @@ tokens.$default-map: components.$post-text-input;
 .form-control {
   display: block;
   width: 100%;
-  font-family: type.$font-family-sans-serif;
+  font-family: tokens.get('body-font-family', elements.$post-body);
   appearance: none; // Fix appearance for date inputs in Safari
   background-clip: padding-box;
   border: tokens.get('input-border-width') tokens.get('input-border-style-default')
