@@ -23,7 +23,7 @@ const meta: MetaComponent = {
   },
   args: {
     label: 'Label',
-    floatingLabel: false,
+    floatingLabel: true,
     hiddenLabel: false,
     value: undefined,
     options: 5,

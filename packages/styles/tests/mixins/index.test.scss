@@ -7,7 +7,6 @@ body {
   @include mixins.placeholder() {
     color: red;
   }
-  @include mixins.icon-placement();
   @include mixins.focus-outline();
 
   @include mixins.bezel-small();

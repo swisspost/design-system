@@ -81,7 +81,7 @@ tokens.$default-map: components.$post-text-input;
       color: tokens.get('input-color-disabled-fg');
     }
 
-    &:hover ~ label {
+    &:not(:disabled):hover ~ label {
       color: tokens.get('input-color-hover-fg');
     }
 
@@ -93,6 +93,7 @@ tokens.$default-map: components.$post-text-input;
     }
   }
 
+  //TODO: Should be form-select tokens and moved to select
   > .form-select {
     padding-block-start: tokens.get('input-filled-padding-block-start');
     padding-block-end: tokens.get('input-filled-padding-block-end');
@@ -118,6 +119,7 @@ tokens.$default-map: components.$post-text-input;
       ~ label {
         padding-block-start: tokens.get('input-label-empty-padding-block-start');
         max-width: calc(100% - (#{tokens.get('input-border-width')} * 2));
+        font-size: unset;
       }
     }
 
@@ -159,7 +161,7 @@ tokens.$default-map: components.$post-text-input;
       font-size: tokens.get('input-label-filled-font-size');
     }
 
-    &:not(:hover) {
+    &:not(:hover):not(:disabled) {
       ~ label {
         color: tokens.get('input-color-selected-fg');
       }

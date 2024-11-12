@@ -1,76 +1,73 @@
-@forward './../variables/options';
-
-@use './../themes/bootstrap/core' as b;
-@use './../themes/bootstrap/forms/form-select' as bffs;
-@use './../mixins/forms' as forms-mixins;
 @use './../mixins/utilities';
+@use './../functions/tokens';
+@use './../tokens/components';
+@use './../mixins/forms';
 
-@use './../variables/commons';
-@use './../variables/components/forms';
-@use './../variables/components/form-select' as form-select;
-
-.form-select-wrapper {
-  @include utilities.focus-style {
-    border-radius: commons.$border-radius;
-  }
-}
-
-:not(.form-select-wrapper) > {
-  .form-select {
-    @include utilities.focus-style {
-      border-radius: commons.$border-radius;
-    }
-  }
-}
+tokens.$default-map: components.$post-select;
 
 .form-select {
-  --form-select-indicator: #{form-select.$form-select-indicator};
+  position: relative;
+  display: block;
+  min-height: 64px; //TODO: Should be a token
+  width: 100%;
+  padding-block: tokens.get('select-unfilled-padding-block-section');
+  padding-inline-start: tokens.get('select-padding-inline-section-start');
+  padding-inline-end: tokens.get('select-padding-inline-section-end');
+  appearance: none;
+  background-color: tokens.get('select-enabled-bg');
+  background-repeat: no-repeat;
+  background-size: 24px; //TODO: Should be a token
+  background-position: center right tokens.get('select-padding-inline-section-end');
+  border-width: tokens.get('select-border-width');
+  border-color: tokens.get('select-enabled-stroke');
+  border-radius: tokens.get('select-border-radius');
+  color: tokens.get('select-enabled-fg');
+  @include forms.select-bg-image('enabled');
 
-  &:focus {
-    box-shadow: none; // Override bootstrap
+  &:disabled {
+    color: tokens.get('select-disabled-fg');
+    background-color: tokens.get('select-disabled-bg');
+    border-color: tokens.get('select-disabled-stroke');
+    border-style: tokens.get(
+      'input-border-style-disabled',
+      components.$post-text-input
+    ); //TODO: Should be select token
 
-    @include utilities.high-contrast-mode {
-      border-color: FieldText !important;
+    &:not([multiple]) {
+      @include forms.select-bg-image('disabled');
     }
   }
 
   &:not(:disabled) {
-    &:hover,
     &:focus {
+      background-color: tokens.get('select-selected-bg');
+      color: tokens.get('select-selected-fg');
+      border-color: tokens.get('select-selected-stroke');
+      @include forms.select-bg-image('selected');
+
+      @include utilities.focus-style;
+
       @include utilities.high-contrast-mode {
         border-color: FieldText;
       }
     }
 
     &:hover {
+      background-color: tokens.get('select-hover-bg');
+      color: tokens.get('select-enabled-fg');
+      border-color: tokens.get('select-hover-stroke');
+
+      &:not([multiple]) {
+        @include forms.select-bg-image('hover');
+      }
+
       @include utilities.high-contrast-mode {
         border-color: Highlight;
       }
     }
   }
 
-  @include utilities.disabled-style {
-    ~ .form-text {
-      color: var(--post-gray-60);
-    }
-  }
-
-  &:not([multiple]) {
-    &:disabled {
-      background-image: b.escape-svg(form-select.$form-select-indicator-disabled),
-        var(--form-select-indicator), var(--bs-form-select-bg-icon, none);
-    }
-  }
-
   @include utilities.high-contrast-mode() {
-    --form-select-indicator: #{b.escape-svg(form-select.$form-select-indicator-hcm-dark)};
-    background-image: b.escape-svg(form-select.$form-select-indicator-hcm-dark);
-
-    @media (prefers-color-scheme: light) {
-      --form-select-indicator: #{b.escape-svg(form-select.$form-select-indicator-hcm-light)};
-      background-image: b.escape-svg(form-select.$form-select-indicator-hcm-light);
-    }
-
     background-color: Field;
     border-color: FieldText;
     color: FieldText;
@@ -78,5 +75,66 @@
     &:focus-visible {
       color: FieldText;
     }
+  }
+
+  &.is-valid,
+  &.is-invalid {
+    &:not(:disabled) {
+      background-position:
+        center right
+          tokens.get('input-validation-icon-position-inline-end', components.$post-text-input),
+        center right 50px; //TODO: Should be calculated and be a token
+    }
+  }
+
+  &.is-valid:not(:disabled) {
+    @include forms.select-bg-image('enabled', 'valid');
+
+    &:focus {
+      @include forms.select-bg-image('selected', 'valid');
+    }
+
+    &:hover {
+      &:not([multiple]) {
+        @include forms.select-bg-image('hover', 'valid');
+      }
+    }
+  }
+
+  &.is-invalid:not(:disabled) {
+    @include forms.select-bg-image('enabled', 'invalid');
+
+    &:focus {
+      @include forms.select-bg-image('selected', 'invalid');
+    }
+
+    &:hover {
+      &:not([multiple]) {
+        @include forms.select-bg-image('hover', 'invalid');
+      }
+    }
+  }
+
+  &[multiple],
+  &[size]:not([size='1']) {
+    background-image: none;
+
+    &.is-valid:not(:disabled) {
+      @include forms.select-bg-image($validation: 'valid');
+    }
+
+    &.is-invalid:not(:disabled) {
+      @include forms.select-bg-image($validation: 'invalid');
+    }
+  }
+}
+
+.form-floating {
+  > .form-select:not(:disabled):hover ~ label {
+    color: tokens.get('select-hover-fg');
+  }
+
+  > .form-select:disabled ~ label {
+    color: tokens.get('select-disabled-fg');
   }
 }
