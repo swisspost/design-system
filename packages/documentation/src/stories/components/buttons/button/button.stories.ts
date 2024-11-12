@@ -6,7 +6,7 @@ import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: 'eb78afcb-ce92-4990-94b6-6536d5ec6af4',
-  title: 'Components/Button',
+  title: 'Components/Buttons/Button',
   tags: ['package:HTML'],
   parameters: {
     badges: [],
