@@ -148,6 +148,8 @@ export namespace Components {
          */
         "value": string;
     }
+    interface PostClosebutton {
+    }
     interface PostCollapsible {
         /**
           * If `true`, the element is collapsed otherwise it is displayed.
@@ -167,6 +169,8 @@ export namespace Components {
           * Update the "aria-controls" and "aria-expanded" attributes on the trigger button
          */
         "update": () => Promise<void>;
+    }
+    interface PostHeader {
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -240,6 +244,57 @@ export namespace Components {
           * The URL to which the user is redirected upon clicking the logo.
          */
         "url": string | URL;
+    }
+    interface PostMainnavigation {
+    }
+    interface PostMegadropdown {
+        /**
+          * Hide megadropdown
+          * @returns boolean
+         */
+        "hide": () => Promise<void>;
+        /**
+          * Show megadropdown
+          * @param element HTMLElement
+          * @returns boolean
+         */
+        "show": (element: HTMLElement) => Promise<void>;
+        /**
+          * Toggle megadropdown
+          * @param element HTMLElement
+          * @param force boolean
+          * @returns boolean
+         */
+        "toggle": (element: HTMLElement, force?: boolean) => Promise<boolean>;
+    }
+    interface PostMegadropdownTrigger {
+    }
+    interface PostMenu {
+        /**
+          * Hides the popover menu and restores focus to the previously focused element.
+         */
+        "hide": () => Promise<void>;
+        /**
+          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+         */
+        "placement"?: Placement;
+        /**
+          * Displays the popover menu, focusing the first menu item.
+          * @param target - The HTML element relative to which the popover menu should be displayed.
+         */
+        "show": (target: HTMLElement) => Promise<void>;
+        /**
+          * Toggles the menu visibility based on its current state.
+         */
+        "toggle": (target: HTMLElement) => Promise<void>;
+    }
+    interface PostMenuItem {
+    }
+    interface PostMenuTrigger {
+        /**
+          * ID of the menu element that this trigger is linked to. Used to open and close the specified menu.
+         */
+        "for": string;
     }
     interface PostPopover {
         /**
@@ -400,6 +455,18 @@ export interface PostLanguageOptionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostLanguageOptionElement;
 }
+export interface PostMainnavigationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostMainnavigationElement;
+}
+export interface PostMegadropdownTriggerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostMegadropdownTriggerElement;
+}
+export interface PostMenuCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostMenuElement;
+}
 export interface PostPopovercontainerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostPopovercontainerElement;
@@ -475,6 +542,12 @@ declare global {
         prototype: HTMLPostCardControlElement;
         new (): HTMLPostCardControlElement;
     };
+    interface HTMLPostClosebuttonElement extends Components.PostClosebutton, HTMLStencilElement {
+    }
+    var HTMLPostClosebuttonElement: {
+        prototype: HTMLPostClosebuttonElement;
+        new (): HTMLPostClosebuttonElement;
+    };
     interface HTMLPostCollapsibleElementEventMap {
         "postToggle": boolean;
     }
@@ -497,6 +570,12 @@ declare global {
     var HTMLPostCollapsibleTriggerElement: {
         prototype: HTMLPostCollapsibleTriggerElement;
         new (): HTMLPostCollapsibleTriggerElement;
+    };
+    interface HTMLPostHeaderElement extends Components.PostHeader, HTMLStencilElement {
+    }
+    var HTMLPostHeaderElement: {
+        prototype: HTMLPostHeaderElement;
+        new (): HTMLPostHeaderElement;
     };
     /**
      * @class PostIcon - representing a stencil component
@@ -541,6 +620,75 @@ declare global {
     var HTMLPostLogoElement: {
         prototype: HTMLPostLogoElement;
         new (): HTMLPostLogoElement;
+    };
+    interface HTMLPostMainnavigationElementEventMap {
+        "postToggle": any;
+    }
+    interface HTMLPostMainnavigationElement extends Components.PostMainnavigation, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostMainnavigationElementEventMap>(type: K, listener: (this: HTMLPostMainnavigationElement, ev: PostMainnavigationCustomEvent<HTMLPostMainnavigationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostMainnavigationElementEventMap>(type: K, listener: (this: HTMLPostMainnavigationElement, ev: PostMainnavigationCustomEvent<HTMLPostMainnavigationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostMainnavigationElement: {
+        prototype: HTMLPostMainnavigationElement;
+        new (): HTMLPostMainnavigationElement;
+    };
+    interface HTMLPostMegadropdownElement extends Components.PostMegadropdown, HTMLStencilElement {
+    }
+    var HTMLPostMegadropdownElement: {
+        prototype: HTMLPostMegadropdownElement;
+        new (): HTMLPostMegadropdownElement;
+    };
+    interface HTMLPostMegadropdownTriggerElementEventMap {
+        "postToggle": any;
+    }
+    interface HTMLPostMegadropdownTriggerElement extends Components.PostMegadropdownTrigger, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostMegadropdownTriggerElementEventMap>(type: K, listener: (this: HTMLPostMegadropdownTriggerElement, ev: PostMegadropdownTriggerCustomEvent<HTMLPostMegadropdownTriggerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostMegadropdownTriggerElementEventMap>(type: K, listener: (this: HTMLPostMegadropdownTriggerElement, ev: PostMegadropdownTriggerCustomEvent<HTMLPostMegadropdownTriggerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostMegadropdownTriggerElement: {
+        prototype: HTMLPostMegadropdownTriggerElement;
+        new (): HTMLPostMegadropdownTriggerElement;
+    };
+    interface HTMLPostMenuElementEventMap {
+        "toggleMenu": boolean;
+    }
+    interface HTMLPostMenuElement extends Components.PostMenu, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostMenuElementEventMap>(type: K, listener: (this: HTMLPostMenuElement, ev: PostMenuCustomEvent<HTMLPostMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostMenuElementEventMap>(type: K, listener: (this: HTMLPostMenuElement, ev: PostMenuCustomEvent<HTMLPostMenuElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostMenuElement: {
+        prototype: HTMLPostMenuElement;
+        new (): HTMLPostMenuElement;
+    };
+    interface HTMLPostMenuItemElement extends Components.PostMenuItem, HTMLStencilElement {
+    }
+    var HTMLPostMenuItemElement: {
+        prototype: HTMLPostMenuItemElement;
+        new (): HTMLPostMenuItemElement;
+    };
+    interface HTMLPostMenuTriggerElement extends Components.PostMenuTrigger, HTMLStencilElement {
+    }
+    var HTMLPostMenuTriggerElement: {
+        prototype: HTMLPostMenuTriggerElement;
+        new (): HTMLPostMenuTriggerElement;
     };
     interface HTMLPostPopoverElement extends Components.PostPopover, HTMLStencilElement {
     }
@@ -631,13 +779,21 @@ declare global {
         "post-avatar": HTMLPostAvatarElement;
         "post-breadcrumb-item": HTMLPostBreadcrumbItemElement;
         "post-card-control": HTMLPostCardControlElement;
+        "post-closebutton": HTMLPostClosebuttonElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
+        "post-header": HTMLPostHeaderElement;
         "post-icon": HTMLPostIconElement;
         "post-language-option": HTMLPostLanguageOptionElement;
         "post-list": HTMLPostListElement;
         "post-list-item": HTMLPostListItemElement;
         "post-logo": HTMLPostLogoElement;
+        "post-mainnavigation": HTMLPostMainnavigationElement;
+        "post-megadropdown": HTMLPostMegadropdownElement;
+        "post-megadropdown-trigger": HTMLPostMegadropdownTriggerElement;
+        "post-menu": HTMLPostMenuElement;
+        "post-menu-item": HTMLPostMenuItemElement;
+        "post-menu-trigger": HTMLPostMenuTriggerElement;
         "post-popover": HTMLPostPopoverElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-rating": HTMLPostRatingElement;
@@ -769,6 +925,8 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    interface PostClosebutton {
+    }
     interface PostCollapsible {
         /**
           * If `true`, the element is collapsed otherwise it is displayed.
@@ -784,6 +942,8 @@ declare namespace LocalJSX {
           * Link the trigger to a post-collapsible with this id
          */
         "for"?: string;
+    }
+    interface PostHeader {
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -857,6 +1017,38 @@ declare namespace LocalJSX {
           * The URL to which the user is redirected upon clicking the logo.
          */
         "url"?: string | URL;
+    }
+    interface PostMainnavigation {
+        /**
+          * Gets emitted when a user closes the main navigation on mobile
+         */
+        "onPostToggle"?: (event: PostMainnavigationCustomEvent<any>) => void;
+    }
+    interface PostMegadropdown {
+    }
+    interface PostMegadropdownTrigger {
+        /**
+          * Emits after each toggle
+         */
+        "onPostToggle"?: (event: PostMegadropdownTriggerCustomEvent<any>) => void;
+    }
+    interface PostMenu {
+        /**
+          * Emits when the menu is shown or hidden. The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
+         */
+        "onToggleMenu"?: (event: PostMenuCustomEvent<boolean>) => void;
+        /**
+          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+         */
+        "placement"?: Placement;
+    }
+    interface PostMenuItem {
+    }
+    interface PostMenuTrigger {
+        /**
+          * ID of the menu element that this trigger is linked to. Used to open and close the specified menu.
+         */
+        "for": string;
     }
     interface PostPopover {
         /**
@@ -973,13 +1165,21 @@ declare namespace LocalJSX {
         "post-avatar": PostAvatar;
         "post-breadcrumb-item": PostBreadcrumbItem;
         "post-card-control": PostCardControl;
+        "post-closebutton": PostClosebutton;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
+        "post-header": PostHeader;
         "post-icon": PostIcon;
         "post-language-option": PostLanguageOption;
         "post-list": PostList;
         "post-list-item": PostListItem;
         "post-logo": PostLogo;
+        "post-mainnavigation": PostMainnavigation;
+        "post-megadropdown": PostMegadropdown;
+        "post-megadropdown-trigger": PostMegadropdownTrigger;
+        "post-menu": PostMenu;
+        "post-menu-item": PostMenuItem;
+        "post-menu-trigger": PostMenuTrigger;
         "post-popover": PostPopover;
         "post-popovercontainer": PostPopovercontainer;
         "post-rating": PostRating;
@@ -1003,8 +1203,10 @@ declare module "@stencil/core" {
              * @class PostCardControl - representing a stencil component
              */
             "post-card-control": LocalJSX.PostCardControl & JSXBase.HTMLAttributes<HTMLPostCardControlElement>;
+            "post-closebutton": LocalJSX.PostClosebutton & JSXBase.HTMLAttributes<HTMLPostClosebuttonElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             "post-collapsible-trigger": LocalJSX.PostCollapsibleTrigger & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
+            "post-header": LocalJSX.PostHeader & JSXBase.HTMLAttributes<HTMLPostHeaderElement>;
             /**
              * @class PostIcon - representing a stencil component
              */
@@ -1013,6 +1215,12 @@ declare module "@stencil/core" {
             "post-list": LocalJSX.PostList & JSXBase.HTMLAttributes<HTMLPostListElement>;
             "post-list-item": LocalJSX.PostListItem & JSXBase.HTMLAttributes<HTMLPostListItemElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
+            "post-mainnavigation": LocalJSX.PostMainnavigation & JSXBase.HTMLAttributes<HTMLPostMainnavigationElement>;
+            "post-megadropdown": LocalJSX.PostMegadropdown & JSXBase.HTMLAttributes<HTMLPostMegadropdownElement>;
+            "post-megadropdown-trigger": LocalJSX.PostMegadropdownTrigger & JSXBase.HTMLAttributes<HTMLPostMegadropdownTriggerElement>;
+            "post-menu": LocalJSX.PostMenu & JSXBase.HTMLAttributes<HTMLPostMenuElement>;
+            "post-menu-item": LocalJSX.PostMenuItem & JSXBase.HTMLAttributes<HTMLPostMenuItemElement>;
+            "post-menu-trigger": LocalJSX.PostMenuTrigger & JSXBase.HTMLAttributes<HTMLPostMenuTriggerElement>;
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
