@@ -2,6 +2,8 @@
 @use 'sass:meta';
 @use '../functions/breakpoint';
 
+$offset: 0.01;
+
 /**
   Creates a min-width breakpoint with the given value
   @param $device-size A pixel value or a key for the breakpoints map
@@ -29,7 +31,7 @@
     $device-size: breakpoint.min-width($device-size);
   }
 
-  @media screen and (max-width: ($device-size - 0.01)) {
+  @media screen and (max-width: ($device-size - $offset)) {
     @content;
   }
 }
@@ -47,7 +49,7 @@
     $max-size: breakpoint.min-width($max-size);
   }
 
-  @media screen and (min-width: $min-size) and (max-width: ($max-size - 0.01)) {
+  @media screen and (min-width: $min-size) and (max-width: ($max-size - $offset)) {
     @content;
   }
 }

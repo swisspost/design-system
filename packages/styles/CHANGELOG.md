@@ -1,5 +1,33 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.4
+
+### Major Changes
+
+- Removed regular button size. Buttons that were previously using `btn-rg` will now fall back to the default `btn-md` size. (by [@leagrdv](https://github.com/leagrdv) with [#3849](https://github.com/swisspost/design-system/pull/3849))
+
+- Updated list group to v2 and added new options: list links, list documents and list switches. (by [@leagrdv](https://github.com/leagrdv) with [#3740](https://github.com/swisspost/design-system/pull/3740))
+
+- Removed the `btn-animated` class. It no longer has any effect and can be removed from existing buttons. (by [@leagrdv](https://github.com/leagrdv) with [#3849](https://github.com/swisspost/design-system/pull/3849))
+
+- Removed the `.breadcrumb-item` class, which previously handled styling for breadcrumb items. Introduced a new `post-breadcrumb-item` that should be used in place of the `.breadcrumb-item` class. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3659](https://github.com/swisspost/design-system/pull/3659))
+
+### Minor Changes
+
+- Added Form Footer component. (by [@leagrdv](https://github.com/leagrdv) with [#3616](https://github.com/swisspost/design-system/pull/3616))
+
+- Created token-based styles for `<ul>` elements. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3859](https://github.com/swisspost/design-system/pull/3859))
+
+- Updated vertical-align utility (by [@myrta2302](https://github.com/myrta2302) with [#3805](https://github.com/swisspost/design-system/pull/3805))
+
+- Updated button component to v2. (by [@leagrdv](https://github.com/leagrdv) with [#3849](https://github.com/swisspost/design-system/pull/3849))
+
+- Added the skiplinks component to styles and documentation. (by [@leagrdv](https://github.com/leagrdv) with [#3875](https://github.com/swisspost/design-system/pull/3875))
+
+- Added close button web component. (by [@leagrdv](https://github.com/leagrdv) with [#3880](https://github.com/swisspost/design-system/pull/3880))
+
+- Internalized bootstraps floating utilities into the design system. (by [@myrta2302](https://github.com/myrta2302) with [#3752](https://github.com/swisspost/design-system/pull/3752))
+
 ## 9.0.0-next.3
 
 ### Major Changes
