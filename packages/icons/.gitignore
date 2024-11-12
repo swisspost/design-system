@@ -16,11 +16,11 @@ src/icons/**/*.svg
 !src/icons/v2/Accessibility_48.svg
 !src/icons/v2/Accessibility_64.svg
 
-# TODO: Add before merge
 # Ignore generated files
+# TODO: Add before merge
 # public/post-icons
-# public/report.json
-# public/report.v2.json
+public/report.json
+public/report.v2.json
 
 icons-optimized
 icons.json
