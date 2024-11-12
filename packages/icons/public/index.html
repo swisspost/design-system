@@ -20,24 +20,75 @@
   <body>
     <h1>Playground</h1>
 
-    <section x-data="ICONS">
-      <h2>UI Icons</h2>
+    <div x-data="ICONS">
+      <div class="filters">
+        <h2>Filters</h2>
+        <div class="btn-group">
+          <div class="form-check">
+            <input
+              id="filter-show-set-v1"
+              type="radio"
+              name="filter-show-set"
+              value="1"
+              x-model="filterShowSet"
+            />
+            <label for="filter-show-set-v1">v1</label>
+          </div>
+          <div class="form-check">
+            <input
+              id="filter-show-set-v2"
+              type="radio"
+              name="filter-show-set"
+              value="2"
+              x-model="filterShowSet"
+            />
+            <label for="filter-show-set-v2">v2</label>
+          </div>
+        </div>
+      </div>
 
-      <div class="d-flex">
-        <template x-for="name in uiIconNames">
-          <div class="icon-container">
-            <div class="size-keeper">
-              <div class="resize">
-                <div class="post-icon">
-                  <svg x-html="getIcon(name)"></svg>
+      <section>
+        <template x-if="filterShowSet === '1'">
+          <div class="v1">
+            <h2>V1 Icons</h2>
+
+            <div class="d-flex">
+              <template x-for="name in v1IconNames">
+                <div class="icon-container">
+                  <div class="size-keeper">
+                    <div class="post-icon">
+                      <svg x-html="getIcon(name)"></svg>
+                    </div>
+                  </div>
+                  <h3 x-text="name">name</h3>
                 </div>
-              </div>
+              </template>
             </div>
-            <h3 x-text="`${name} (${getIconVersion(name)})`"></h3>
           </div>
         </template>
-      </div>
-    </section>
+
+        <template x-if="filterShowSet === '2'">
+          <div class="v2">
+            <h2>UI Icons</h2>
+
+            <div class="d-flex">
+              <template x-for="name in uiIconNames">
+                <div class="icon-container">
+                  <div class="size-keeper">
+                    <div class="resize">
+                      <div class="post-icon">
+                        <svg x-html="getIcon(name)"></svg>
+                      </div>
+                    </div>
+                  </div>
+                  <h3 x-text="name">name</h3>
+                </div>
+              </template>
+            </div>
+          </div>
+        </template>
+      </section>
+    </div>
 
     <script type="module" src="main.js"></script>
     <!--
