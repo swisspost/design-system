@@ -33,6 +33,6 @@ figcaption.blockquote-footer {
   margin-top: tokens.get('post-blockquote-gap-inline');
 
   cite {
-    font-style: normal;
+    font-style: inherit;
   }
 }
