@@ -13,12 +13,6 @@
 
   @include post.media-breakpoint-up(sm) {
     .container {
-      padding-right: 30vw;
-    }
-  }
-
-  @include post.media-breakpoint-up(rg) {
-    .container {
       padding-right: 35vw;
     }
   }

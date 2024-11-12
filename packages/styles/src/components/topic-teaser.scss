@@ -101,7 +101,7 @@
     }
   }
 
-  @include media-breakpoint-up(rg) {
+  @include media-breakpoint-up(sm) {
     flex-direction: row;
   }
 }
@@ -109,7 +109,7 @@
 .topic-teaser-content > .link-list {
   width: 50%;
 
-  @include media-breakpoint-down(rg) {
+  @include media-breakpoint-down(sm) {
     width: 100%;
   }
 }
@@ -117,7 +117,7 @@
 .topic-teaser-title {
   width: 50%;
 
-  @include media-breakpoint-down(rg) {
+  @include media-breakpoint-down(sm) {
     width: auto;
   }
 }
