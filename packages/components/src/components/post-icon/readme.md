@@ -23,7 +23,9 @@ some content
 ### Used by
 
  - [post-alert](../post-alert)
+ - [post-breadcrumb-item](../post-breadcrumb-item)
  - [post-card-control](../post-card-control)
+ - [post-closebutton](../post-closebutton)
  - [post-rating](../post-rating)
  - [post-tag](../post-tag)
 
@@ -31,7 +33,9 @@ some content
 ```mermaid
 graph TD;
   post-alert --> post-icon
+  post-breadcrumb-item --> post-icon
   post-card-control --> post-icon
+  post-closebutton --> post-icon
   post-rating --> post-icon
   post-tag --> post-icon
   style post-icon fill:#f9f,stroke:#333,stroke-width:4px
