@@ -1,7 +1,7 @@
 @use 'sass:list';
 @use 'sass:math';
 @use '@swisspost/design-system-styles/core' as post;
-@use '@swisspost/design-system-styles/components/_form-check';
+@use '@swisspost/design-system-styles/components/form-check';
 @use '@swisspost/design-system-styles/components/checkbox';
 @use '@swisspost/design-system-styles/components/radio-button';
 
@@ -37,6 +37,7 @@
   flex-basis: 100%;
   display: grid;
   grid-template: 'input label icon' 'input content content' / min-content auto min-content;
+  align-items: center;
   gap: 0 post.$size-mini;
   margin: 0;
   padding: post.$size-regular;
@@ -77,7 +78,7 @@
   .card-control--label {
     grid-area: label;
     margin: post.$size-micro 0;
-    padding: 0;
+    padding: 0 !important;
     color: inherit !important;
     pointer-events: none;
     transition: none;

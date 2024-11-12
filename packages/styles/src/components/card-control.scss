@@ -28,6 +28,7 @@ fieldset {
 
   display: grid;
   grid-template: 'input label icon' 'input content content' / min-content auto min-content;
+  align-items: center;
   gap: 0 spacing.$size-mini;
   position: relative;
   padding: spacing.$size-regular;
