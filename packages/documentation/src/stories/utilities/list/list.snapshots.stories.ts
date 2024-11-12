@@ -11,7 +11,7 @@ export default {
 
 type Story = StoryObj;
 
-export const OrderedList: Story = {
+export const List: Story = {
   render: () => {
     return html`
       <div class="d-flex">
