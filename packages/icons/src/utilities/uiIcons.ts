@@ -1,4 +1,4 @@
-import { promises as fs } from 'fs';
+import fs from 'fs';
 import path from 'path';
 import { HTMLElement, parse } from 'node-html-parser';
 import { optimize } from 'svgo';
@@ -34,9 +34,11 @@ type ReportIcon = {
 export default async function main() {
   console.log('\nCreating UI icons...');
 
-  await setup();
-  const report = await createFiles(await getFileGroups());
-  await fs.writeFile(
+  setup();
+
+  const report = createFiles(getFileGroups());
+
+  fs.writeFileSync(
     reportOutputPath,
     JSON.stringify(
       {
@@ -54,27 +56,26 @@ export default async function main() {
   );
 }
 
-async function setup() {
+function setup() {
   // remove generated files & folders
-  if (await fs.readFile(reportOutputPath).catch(() => false)) await fs.unlink(reportOutputPath);
-  if (await fs.readdir(iconOutputPath).catch(() => false))
-    await fs.rm(iconOutputPath, { recursive: true });
+  if (fs.existsSync(iconOutputPath)) fs.rmSync(iconOutputPath, { recursive: true });
+  if (fs.existsSync(reportOutputPath)) fs.unlinkSync(reportOutputPath);
 
   // // ensure used folders exist
-  if (!(await fs.readdir(iconOutputPath).catch(() => false)))
-    await fs.mkdir(iconOutputPath, { recursive: true });
+  if (!fs.existsSync(iconOutputPath)) fs.mkdirSync(iconOutputPath, { recursive: true });
 }
 
 function sortIcons(a: ReportIcon, b: ReportIcon): number {
   return a.id < b.id ? -1 : 1;
 }
 
-async function getFileGroups(): Promise<Record<string, File[]>> {
-  const filePaths = await fs.readdir(SOURCE_PATH, { recursive: true });
+function getFileGroups(): Record<string, File[]> {
+  const filePaths = fs.readdirSync(SOURCE_PATH, { recursive: true });
 
   return filePaths
-    .filter(p => p.endsWith('.svg'))
+    .filter(p => p.toString().endsWith('.svg'))
     .reduce((groups, filePath) => {
+      filePath = filePath.toString();
       const nameParts = path
         .basename(filePath, '.svg')
         .split(/([^a-zA-Z0-9])/g)
@@ -109,37 +110,29 @@ async function getFileGroups(): Promise<Record<string, File[]>> {
   }
 }
 
-async function createFiles(groupedFilePaths: Record<string, File[]>): Promise<ReportIcon[]> {
+function createFiles(groupedFilePaths: Record<string, File[]>): ReportIcon[] {
   const report: ReportIcon[] = [];
 
-  await Promise.all(
-    Object.entries(groupedFilePaths).map(async ([id, files]) => {
-      const svgs = await Promise.all(
-        files.map(async ({ size, filePath }) => {
-          const svg = await fs.readFile(path.join(SOURCE_PATH, filePath), 'utf-8');
+  Object.entries(groupedFilePaths).map(async ([id, files]) => {
+    const svgs = files.map(({ size, filePath }) => ({
+      size,
+      svg: fs.readFileSync(path.join(SOURCE_PATH, filePath), 'utf-8'),
+    }));
 
-          return {
-            size,
-            svg,
-          };
-        }),
-      );
+    const symbolId = files.length === 1 ? [ID_PREFIX, id].join(ID_SEPERATOR) : ID_SYMBOL_PREFIX;
+    const template = files.length === 1 ? ICON_V1_TEMPLATE : ICON_V2_TEMPLATE;
 
-      const symbolId = files.length === 1 ? [ID_PREFIX, id].join(ID_SEPERATOR) : ID_SYMBOL_PREFIX;
-      const template = files.length === 1 ? ICON_V1_TEMPLATE : ICON_V2_TEMPLATE;
+    const symbols = svgs.map(({ size, svg }) => getSymbol(svg, symbolId, size));
+    const uses = svgs.map(({ size }) => getUse(symbolId, size));
+    const file = createSvg(id, template, symbols, uses);
 
-      const symbols = svgs.map(({ size, svg }) => getSymbol(svg, symbolId, size));
-      const uses = svgs.map(({ size }) => getUse(symbolId, size));
-      const file = createSvg(id, template, symbols, uses);
+    fs.writeFileSync(path.join(iconOutputPath, `${id}.svg`), file);
 
-      await fs.writeFile(path.join(iconOutputPath, `${id}.svg`), file);
-
-      report.push({
-        id,
-        sizes: svgs.map(({ size }) => size),
-      });
-    }),
-  );
+    report.push({
+      id,
+      sizes: svgs.map(({ size }) => size),
+    });
+  });
 
   return report;
 

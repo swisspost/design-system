@@ -53,8 +53,9 @@ export const main = async () => {
 
 function setup() {
   // remove generated files & folders
-  if (fs.existsSync(reportOutputPath)) fs.unlinkSync(reportOutputPath);
+  if (fs.existsSync(iconDownloadPath)) fs.rmSync(iconDownloadPath, { recursive: true });
   if (fs.existsSync(iconOutputPath)) fs.rmSync(iconOutputPath, { recursive: true });
+  if (fs.existsSync(reportOutputPath)) fs.unlinkSync(reportOutputPath);
 
   // ensure used folders exist
   if (!fs.existsSync(iconDownloadPath)) fs.mkdirSync(iconDownloadPath, { recursive: true });
