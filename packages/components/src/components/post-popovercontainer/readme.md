@@ -78,14 +78,14 @@ Type: `Promise<boolean>`
 
 ### Used by
 
- - [post-megadropdown](../post-megadropdown)
+ - [post-menu](../post-menu)
  - [post-popover](../post-popover)
  - [post-tooltip](../post-tooltip)
 
 ### Graph
 ```mermaid
 graph TD;
-  post-megadropdown --> post-popovercontainer
+  post-menu --> post-popovercontainer
   post-popover --> post-popovercontainer
   post-tooltip --> post-popovercontainer
   style post-popovercontainer fill:#f9f,stroke:#333,stroke-width:4px
