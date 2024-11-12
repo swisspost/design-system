@@ -1,37 +1,36 @@
 @use './../mixins/utilities';
+@use './../mixins/forms';
 @use './../functions/tokens';
 @use './../tokens/components';
-@use './../mixins/forms';
+@use './../tokens/elements';
 
 tokens.$default-map: components.$post-select;
 
 .form-select {
-  position: relative;
   display: block;
-  min-height: 64px; //TODO: Should be a token
   width: 100%;
-  padding-block: tokens.get('select-unfilled-padding-block-section');
-  padding-inline-start: tokens.get('select-padding-inline-section-start');
-  padding-inline-end: tokens.get('select-padding-inline-section-end');
+  font-family: tokens.get('body-font-family', elements.$post-body);
   appearance: none;
-  background-color: tokens.get('select-enabled-bg');
+  position: relative;
+  min-height: tokens.get('select-sizing-height');
+  padding-block: tokens.get('select-empty-padding-block');
+  padding-inline-start: tokens.get('select-padding-inline-start');
+  padding-inline-end: tokens.get('select-padding-inline-end');
+  background-color: tokens.get('select-color-enabled-bg');
   background-repeat: no-repeat;
-  background-size: 24px; //TODO: Should be a token
-  background-position: center right tokens.get('select-padding-inline-section-end');
+  background-size: tokens.get('select-sizing-icon');
+  background-position: center right tokens.get('select-padding-inline-end');
   border-width: tokens.get('select-border-width');
-  border-color: tokens.get('select-enabled-stroke');
-  border-radius: tokens.get('select-border-radius');
-  color: tokens.get('select-enabled-fg');
+  border-color: tokens.get('select-color-enabled-border');
+  border-radius: tokens.get('select-border-radius-surface');
+  color: tokens.get('select-color-enabled-fg');
   @include forms.select-bg-image('enabled');
 
   &:disabled {
-    color: tokens.get('select-disabled-fg');
-    background-color: tokens.get('select-disabled-bg');
-    border-color: tokens.get('select-disabled-stroke');
-    border-style: tokens.get(
-      'input-border-style-disabled',
-      components.$post-text-input
-    ); //TODO: Should be select token
+    color: tokens.get('select-color-disabled-fg');
+    background-color: tokens.get('select-color-disabled-bg');
+    border-color: tokens.get('select-color-disabled-border');
+    border-style: tokens.get('select-border-style-disabled');
 
     &:not([multiple]) {
       @include forms.select-bg-image('disabled');
@@ -40,9 +39,9 @@ tokens.$default-map: components.$post-select;
 
   &:not(:disabled) {
     &:focus {
-      background-color: tokens.get('select-selected-bg');
-      color: tokens.get('select-selected-fg');
-      border-color: tokens.get('select-selected-stroke');
+      background-color: tokens.get('select-color-selected-bg');
+      color: tokens.get('select-color-selected-fg');
+      border-color: tokens.get('select-color-selected-border');
       @include forms.select-bg-image('selected');
 
       @include utilities.focus-style;
@@ -53,9 +52,9 @@ tokens.$default-map: components.$post-select;
     }
 
     &:hover {
-      background-color: tokens.get('select-hover-bg');
-      color: tokens.get('select-enabled-fg');
-      border-color: tokens.get('select-hover-stroke');
+      background-color: tokens.get('select-color-hover-bg');
+      color: tokens.get('select-color-enabled-fg');
+      border-color: tokens.get('select-color-hover-border');
 
       &:not([multiple]) {
         @include forms.select-bg-image('hover');
@@ -81,9 +80,12 @@ tokens.$default-map: components.$post-select;
   &.is-invalid {
     &:not(:disabled) {
       background-position:
+        center right tokens.get('select-validation-icon-position-inline-end'),
         center right
-          tokens.get('input-validation-icon-position-inline-end', components.$post-text-input),
-        center right 50px; //TODO: Should be calculated and be a token
+          calc(
+            tokens.get('select-validation-icon-position-inline-end') +
+              tokens.get('select-sizing-icon') + tokens.get('select-gap-inline-2')
+          );
     }
   }
 
@@ -119,6 +121,12 @@ tokens.$default-map: components.$post-select;
   &[size]:not([size='1']) {
     background-image: none;
 
+    &.is-valid,
+    &.is-invalid {
+      background-position: center right
+        calc(#{tokens.get('select-validation-icon-position-inline-end')} * 2);
+    }
+
     &.is-valid:not(:disabled) {
       @include forms.select-bg-image($validation: 'valid');
     }
@@ -130,11 +138,76 @@ tokens.$default-map: components.$post-select;
 }
 
 .form-floating {
-  > .form-select:not(:disabled):hover ~ label {
-    color: tokens.get('select-hover-fg');
-  }
+  position: relative;
 
-  > .form-select:disabled ~ label {
-    color: tokens.get('select-disabled-fg');
+  > .form-select {
+    padding-block-start: tokens.get('select-filled-padding-block-start');
+    padding-block-end: tokens.get('select-filled-padding-block-end');
+
+    & ~ label {
+      position: absolute;
+      z-index: 2;
+      text-align: start;
+      pointer-events: none;
+      display: block;
+      left: tokens.get('select-border-width');
+      top: tokens.get('select-border-width');
+      font-size: tokens.get('select-label-filled-font-size');
+      padding-inline-start: tokens.get('select-label-empty-padding-inline-start');
+      padding-inline-end: tokens.get('select-label-empty-padding-inline-end');
+      padding-block-start: tokens.get('select-label-filled-padding-block-start');
+      color: tokens.get('select-color-enabled-fg');
+      max-width: calc(100% - (#{tokens.get('select-border-width')} * 2));
+      background-color: tokens.get('select-color-enabled-bg');
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: all 0.25s ease-in-out;
+    }
+
+    &:not(:disabled):hover ~ label {
+      color: tokens.get('select-color-hover-fg');
+    }
+
+    &:disabled ~ label {
+      color: tokens.get('select-color-disabled-fg');
+    }
+
+    &:empty,
+    &.form-select-empty {
+      ~ label {
+        padding-block-start: tokens.get('select-label-empty-padding-block-start');
+        font-size: unset;
+      }
+    }
+
+    &[multiple] {
+      padding-block-end: 0;
+      height: auto;
+
+      option {
+        color: tokens.get('select-color-enabled-fg');
+      }
+
+      ~ label {
+        // Add some distance on the right to leave space for the scrollbar
+        width: calc(100% - (#{tokens.get('select-padding-inline-end')} * 2));
+      }
+
+      &:disabled option {
+        color: tokens.get('select-color-disabled-fg');
+      }
+
+      &:empty {
+        ~ label {
+          padding-block: tokens.get('select-empty-padding-block');
+          width: calc(
+            100% - (#{tokens.get('select-border-width')} * 2) - #{tokens.get(
+                'select-label-empty-padding-inline-start'
+              )}
+          );
+        }
+      }
+    }
   }
 }

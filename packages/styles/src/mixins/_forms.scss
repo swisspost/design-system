@@ -41,7 +41,7 @@ $invalid-icon: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 
   }
 
   @if ($state) {
-    $state: url('#{icons.get-colored-svg-url('2052', tokens.get('select-#{$state}-fg',components.$post-select))}');
+    $state: url('#{icons.get-colored-svg-url('2052', tokens.get('select-color-#{$state}-fg',components.$post-select))}');
   }
   background-image: $state, $validation;
 }

@@ -207,7 +207,7 @@ textarea.form-control {
   min-height: tokens.get('input-sizing-height');
 }
 
-.form-label:has(+ .form-control[disabled], + .form-select[disabled]) {
+.form-label:has(+ .form-control[disabled]) {
   color: tokens.get('input-color-disabled-fg');
 }
 
