@@ -1,5 +1,6 @@
-import { Meta, Canvas } from '@storybook/blocks';
+import { Meta, Canvas, Source } from '@storybook/blocks';
 import * as ListStories from './list.stories';
+import SampleListReset from './list-reset.sample.scss?raw';
 
 <Meta of={ListStories} />
 
@@ -23,6 +24,16 @@ Remove the default list-style and left margin on list items (immediate children 
 This only applies to immediate child list items, meaning you will need to add the class for any nested lists as well.
 
 <Canvas of={ListStories.UnstyledList} sourceState="shown" />
+
+#### Sass mixin
+
+If you want to use the class above, you can still reset the list styles with the following mixin:
+
+<Source
+  language="scss"
+  dark
+  code={SampleListReset}
+></Source>
 
 ### Inline
 
