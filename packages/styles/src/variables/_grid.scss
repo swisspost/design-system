@@ -1,13 +1,12 @@
 @use 'sass:map';
+@use './breakpoints';
 
-/* Deprecated: "rg" breakpoint */
 // list of breakpoint giving the possibility to loop over them
-$grid-breakpoints-list: xs sm rg md lg xl xxl;
+$grid-breakpoints-list: map.keys(breakpoints.$grid-breakpoints);
 
 // Grid containers
 $container-max-widths: (
   xl: 1280px,
-  xxl: 1440px,
 ) !default;
 
 /* Deprecated: "rg" breakpoint */
@@ -18,7 +17,6 @@ $grid-container-padding: (
   md: 32px,
   lg: 32px,
   xl: 40px,
-  xxl: 120px,
 ) !default;
 
 /* Deprecated: "rg" breakpoint */
@@ -29,7 +27,6 @@ $grid-container-fluid-padding: (
   md: map.get($grid-container-padding, md),
   lg: map.get($grid-container-padding, lg),
   xl: map.get($grid-container-padding, lg),
-  xxl: map.get($grid-container-padding, lg),
 ) !default;
 
 // Grid columns
@@ -46,5 +43,4 @@ $grid-gutter-x: (
   md: 16px,
   lg: 16px,
   xl: 16px,
-  xxl: 16px,
 ) !default;

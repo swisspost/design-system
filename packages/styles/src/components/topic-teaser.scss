@@ -13,19 +13,6 @@
 @use './../mixins/icons' as icons-mx;
 
 .topic-teaser {
-  &[class*='bg-'] {
-    @include media-breakpoint-up(xxl) {
-      background-color: transparent !important;
-    }
-  }
-
-  .topic-teaser-container {
-    @include media-breakpoint-up(xxl) {
-      padding-left: map.get(grid.$grid-container-padding, xxl) * 0.5;
-      padding-right: map.get(grid.$grid-container-padding, xxl) * 0.5;
-    }
-  }
-
   &:not(.topic-teaser-reverse) {
     @each $breakpoint in topic-teaser.$grid-breakpoints-upper {
       @include media-breakpoint-only($breakpoint) {
@@ -36,13 +23,6 @@
     }
 
     .topic-teaser-container {
-      @include media-breakpoint-up(xxl) {
-        padding-right: 0;
-        // webkit subpixel-issue fix
-        margin-right: -1px;
-        clip-path: inset(0 1px (map.get(spacing.$size-curve-huge, 'xxl') * -1) 0);
-      }
-
       > .row {
         justify-content: flex-end;
       }
@@ -68,10 +48,6 @@
   }
 
   .topic-teaser-container {
-    @include media-breakpoint-up(xxl) {
-      padding-left: 0;
-    }
-
     > .row {
       @include media-breakpoint-down(lg) {
         flex-direction: column-reverse;

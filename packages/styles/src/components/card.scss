@@ -103,12 +103,8 @@
       padding: spacing.$size-large;
     }
 
-    @include media-breakpoint-between(md, xxl) {
+    @include media-breakpoint-up(md) {
       padding: spacing.$size-big;
-    }
-
-    @include media-breakpoint-up(xxl) {
-      padding: spacing.$size-bigger-big;
     }
   }
 
