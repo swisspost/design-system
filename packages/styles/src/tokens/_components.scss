@@ -1,10 +1,11 @@
+// Temporary changes
+@use 'sass:map';
+@use './temp/components';
 @forward './temp/components';
 
-$post-grid: (
-  post-grid-gutter-xs: var(--post-core-dimension-16),
-  post-grid-gutter-sm: var(--post-core-dimension-16),
-  post-grid-gutter-md: var(--post-core-dimension-16),
-  post-grid-gutter-lg: var(--post-core-dimension-24),
-  post-grid-gutter-xl: var(--post-core-dimension-24),
-  post-grid-contaier-max-width: 1200px,
+$post-container: map.merge(
+  components.$post-container,
+  (
+    post-grid-margin-xl: var(--post-core-dimension-40),
+  )
 );
