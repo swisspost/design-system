@@ -40,7 +40,7 @@ export default async function main() {
     reportOutputPath,
     JSON.stringify(
       {
-        icons: report.sort(sortIcons),
+        icons: report.toSorted(sortIcons),
         created: new Date(),
         version,
       },
