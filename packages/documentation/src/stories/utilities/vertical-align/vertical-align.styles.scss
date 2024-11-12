@@ -1,0 +1,61 @@
+.vertical-align-example {
+  :not(:has(table)) & {
+    border: 1px solid rgb(204, 204, 204);
+    line-height: 3;
+  }
+
+  table {
+    margin: 0;
+    height: 100px;
+    td:nth-of-type(5) {
+      color: red;
+    }
+  }
+
+  span {
+    padding-inline: 0.5rem;
+    &:nth-of-type(7) {
+      padding-inline-start: 2rem;
+      color: red;
+    }
+  }
+
+  .logo {
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+  }
+
+  .snapshot {
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+
+    & > div {
+      border: 1px solid rgb(204, 204, 204);
+      width: 320px;
+
+      span {
+        min-width: 150px;
+      }
+
+      span:nth-of-type(2) {
+        color: gray;
+      }
+    }
+  }
+
+  .box {
+    border: 1px solid rgb(204, 204, 204);
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+    text-align: center;
+  }
+}
+
+#storybook-root .vertical-align-example {
+  &:not(:has(table)) {
+    border: none;
+  }
+}
