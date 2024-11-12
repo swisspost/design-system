@@ -1,24 +1,5 @@
+@use '@swisspost/design-system-styles/components/skiplinks';
+
 :host {
   display: block;
-}
-
-.skiplinks {
-  a {
-    position: absolute;
-    top: 0.5rem;
-    left: 0.5rem;
-    clip: rect(0 0 0 0);
-    width: 1px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    padding: 0.25rem;
-    background: white;
-
-    &:focus-visible {
-      position: absolute;
-      clip: unset;
-      width: auto;
-    }
-  }
 }
