@@ -93,6 +93,12 @@ export namespace Components {
          */
         "userid"?: string;
     }
+    interface PostBreadcrumbItem {
+        /**
+          * The optional URL to which the breadcrumb item will link.
+         */
+        "url"?: string | URL;
+    }
     /**
      * @class PostCardControl - representing a stencil component
      */
@@ -141,6 +147,8 @@ export namespace Components {
           * Defines the `value` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
          */
         "value": string;
+    }
+    interface PostClosebutton {
     }
     interface PostCollapsible {
         /**
@@ -234,6 +242,33 @@ export namespace Components {
           * The URL to which the user is redirected upon clicking the logo.
          */
         "url": string | URL;
+    }
+    interface PostMenu {
+        /**
+          * Hides the popover menu and restores focus to the previously focused element.
+         */
+        "hide": () => Promise<void>;
+        /**
+          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+         */
+        "placement"?: Placement;
+        /**
+          * Displays the popover menu, focusing the first menu item.
+          * @param target - The HTML element relative to which the popover menu should be displayed.
+         */
+        "show": (target: HTMLElement) => Promise<void>;
+        /**
+          * Toggles the menu visibility based on its current state.
+         */
+        "toggle": (target: HTMLElement) => Promise<void>;
+    }
+    interface PostMenuItem {
+    }
+    interface PostMenuTrigger {
+        /**
+          * ID of the menu element that this trigger is linked to. Used to open and close the specified menu.
+         */
+        "for": string;
     }
     interface PostPopover {
         /**
@@ -394,6 +429,10 @@ export interface PostLanguageOptionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostLanguageOptionElement;
 }
+export interface PostMenuCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostMenuElement;
+}
 export interface PostPopovercontainerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostPopovercontainerElement;
@@ -442,6 +481,12 @@ declare global {
         prototype: HTMLPostAvatarElement;
         new (): HTMLPostAvatarElement;
     };
+    interface HTMLPostBreadcrumbItemElement extends Components.PostBreadcrumbItem, HTMLStencilElement {
+    }
+    var HTMLPostBreadcrumbItemElement: {
+        prototype: HTMLPostBreadcrumbItemElement;
+        new (): HTMLPostBreadcrumbItemElement;
+    };
     interface HTMLPostCardControlElementEventMap {
         "postInput": { state: boolean; value: string };
         "postChange": { state: boolean; value: string };
@@ -462,6 +507,12 @@ declare global {
     var HTMLPostCardControlElement: {
         prototype: HTMLPostCardControlElement;
         new (): HTMLPostCardControlElement;
+    };
+    interface HTMLPostClosebuttonElement extends Components.PostClosebutton, HTMLStencilElement {
+    }
+    var HTMLPostClosebuttonElement: {
+        prototype: HTMLPostClosebuttonElement;
+        new (): HTMLPostClosebuttonElement;
     };
     interface HTMLPostCollapsibleElementEventMap {
         "postToggle": boolean;
@@ -529,6 +580,35 @@ declare global {
     var HTMLPostLogoElement: {
         prototype: HTMLPostLogoElement;
         new (): HTMLPostLogoElement;
+    };
+    interface HTMLPostMenuElementEventMap {
+        "toggleMenu": boolean;
+    }
+    interface HTMLPostMenuElement extends Components.PostMenu, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostMenuElementEventMap>(type: K, listener: (this: HTMLPostMenuElement, ev: PostMenuCustomEvent<HTMLPostMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostMenuElementEventMap>(type: K, listener: (this: HTMLPostMenuElement, ev: PostMenuCustomEvent<HTMLPostMenuElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostMenuElement: {
+        prototype: HTMLPostMenuElement;
+        new (): HTMLPostMenuElement;
+    };
+    interface HTMLPostMenuItemElement extends Components.PostMenuItem, HTMLStencilElement {
+    }
+    var HTMLPostMenuItemElement: {
+        prototype: HTMLPostMenuItemElement;
+        new (): HTMLPostMenuItemElement;
+    };
+    interface HTMLPostMenuTriggerElement extends Components.PostMenuTrigger, HTMLStencilElement {
+    }
+    var HTMLPostMenuTriggerElement: {
+        prototype: HTMLPostMenuTriggerElement;
+        new (): HTMLPostMenuTriggerElement;
     };
     interface HTMLPostPopoverElement extends Components.PostPopover, HTMLStencilElement {
     }
@@ -617,7 +697,9 @@ declare global {
         "post-accordion-item": HTMLPostAccordionItemElement;
         "post-alert": HTMLPostAlertElement;
         "post-avatar": HTMLPostAvatarElement;
+        "post-breadcrumb-item": HTMLPostBreadcrumbItemElement;
         "post-card-control": HTMLPostCardControlElement;
+        "post-closebutton": HTMLPostClosebuttonElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
         "post-icon": HTMLPostIconElement;
@@ -625,6 +707,9 @@ declare global {
         "post-list": HTMLPostListElement;
         "post-list-item": HTMLPostListItemElement;
         "post-logo": HTMLPostLogoElement;
+        "post-menu": HTMLPostMenuElement;
+        "post-menu-item": HTMLPostMenuItemElement;
+        "post-menu-trigger": HTMLPostMenuTriggerElement;
         "post-popover": HTMLPostPopoverElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-rating": HTMLPostRatingElement;
@@ -701,6 +786,12 @@ declare namespace LocalJSX {
          */
         "userid"?: string;
     }
+    interface PostBreadcrumbItem {
+        /**
+          * The optional URL to which the breadcrumb item will link.
+         */
+        "url"?: string | URL;
+    }
     /**
      * @class PostCardControl - representing a stencil component
      */
@@ -749,6 +840,8 @@ declare namespace LocalJSX {
           * Defines the `value` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
          */
         "value"?: string;
+    }
+    interface PostClosebutton {
     }
     interface PostCollapsible {
         /**
@@ -838,6 +931,24 @@ declare namespace LocalJSX {
           * The URL to which the user is redirected upon clicking the logo.
          */
         "url"?: string | URL;
+    }
+    interface PostMenu {
+        /**
+          * Emits when the menu is shown or hidden. The event payload is a boolean: `true` when the menu was opened, `false` when it was closed.
+         */
+        "onToggleMenu"?: (event: PostMenuCustomEvent<boolean>) => void;
+        /**
+          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+         */
+        "placement"?: Placement;
+    }
+    interface PostMenuItem {
+    }
+    interface PostMenuTrigger {
+        /**
+          * ID of the menu element that this trigger is linked to. Used to open and close the specified menu.
+         */
+        "for": string;
     }
     interface PostPopover {
         /**
@@ -952,7 +1063,9 @@ declare namespace LocalJSX {
         "post-accordion-item": PostAccordionItem;
         "post-alert": PostAlert;
         "post-avatar": PostAvatar;
+        "post-breadcrumb-item": PostBreadcrumbItem;
         "post-card-control": PostCardControl;
+        "post-closebutton": PostClosebutton;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
         "post-icon": PostIcon;
@@ -960,6 +1073,9 @@ declare namespace LocalJSX {
         "post-list": PostList;
         "post-list-item": PostListItem;
         "post-logo": PostLogo;
+        "post-menu": PostMenu;
+        "post-menu-item": PostMenuItem;
+        "post-menu-trigger": PostMenuTrigger;
         "post-popover": PostPopover;
         "post-popovercontainer": PostPopovercontainer;
         "post-rating": PostRating;
@@ -978,10 +1094,12 @@ declare module "@stencil/core" {
             "post-accordion-item": LocalJSX.PostAccordionItem & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
             "post-alert": LocalJSX.PostAlert & JSXBase.HTMLAttributes<HTMLPostAlertElement>;
             "post-avatar": LocalJSX.PostAvatar & JSXBase.HTMLAttributes<HTMLPostAvatarElement>;
+            "post-breadcrumb-item": LocalJSX.PostBreadcrumbItem & JSXBase.HTMLAttributes<HTMLPostBreadcrumbItemElement>;
             /**
              * @class PostCardControl - representing a stencil component
              */
             "post-card-control": LocalJSX.PostCardControl & JSXBase.HTMLAttributes<HTMLPostCardControlElement>;
+            "post-closebutton": LocalJSX.PostClosebutton & JSXBase.HTMLAttributes<HTMLPostClosebuttonElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             "post-collapsible-trigger": LocalJSX.PostCollapsibleTrigger & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
             /**
@@ -992,6 +1110,9 @@ declare module "@stencil/core" {
             "post-list": LocalJSX.PostList & JSXBase.HTMLAttributes<HTMLPostListElement>;
             "post-list-item": LocalJSX.PostListItem & JSXBase.HTMLAttributes<HTMLPostListItemElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
+            "post-menu": LocalJSX.PostMenu & JSXBase.HTMLAttributes<HTMLPostMenuElement>;
+            "post-menu-item": LocalJSX.PostMenuItem & JSXBase.HTMLAttributes<HTMLPostMenuItemElement>;
+            "post-menu-trigger": LocalJSX.PostMenuTrigger & JSXBase.HTMLAttributes<HTMLPostMenuTriggerElement>;
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
