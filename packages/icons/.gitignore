@@ -5,8 +5,8 @@ node_modules
 .env
 
 # Ignore generated files
-src/icons/v1
-public/post-icons/ui
+public/post-icons
+public/report.json
 public/report.v2.json
 
 icons-optimized
