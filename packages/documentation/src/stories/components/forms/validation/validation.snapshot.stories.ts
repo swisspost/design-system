@@ -175,27 +175,6 @@ export const Validation: Story = {
                                         Invalid message.
                                       </p>
                                     </div>`;
-                                  return html`
-                                    <div class="form-range">
-                                      <label class="form-label" for="${component.id}">
-                                        Label
-                                      </label>
-                                      <input
-                                        type="range"
-                                        id="${component.id}"
-                                        class="form-range ${isValidationSet ? state : ''}"
-                                        aria-invalid=${ariaInvalid}
-                                        aria-describedby="${ariaDescribedBy}"
-                                      />
-
-                                      <p id="${validFeedbackId}" class="valid-feedback">
-                                        Valid message.
-                                      </p>
-                                      <p id="${invalidFeedbackId}" class="invalid-feedback">
-                                        Invalid message.
-                                      </p>
-                                    </div>
-                                  `;
                                 case 'Switch':
                                   return html`
                                     <div class="form-check form-switch">
