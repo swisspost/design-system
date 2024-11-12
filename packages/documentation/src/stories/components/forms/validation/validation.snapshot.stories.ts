@@ -98,8 +98,7 @@ export const Validation: Story = {
                                   `;
                                 case 'Input':
                                   return html`
-                                    <label class="form-label" for="${component.id}">Label</label>
-                                    <div class="state-wrapper">
+                                    <div class="form-floating">
                                       <input
                                         id="${component.id}"
                                         class="form-control form-control-lg ${isValidationSet
@@ -110,6 +109,7 @@ export const Validation: Story = {
                                         type="text"
                                         placeholder="Placeholder"
                                       />
+                                      <label class="form-label" for="${component.id}">Label</label>
                                       <p class="form-text">
                                         Hintus textus elare volare cantare hendrerit in vulputate
                                         velit esse molestie consequat, vel illum dolore eu feugiat
@@ -145,36 +145,36 @@ export const Validation: Story = {
                                     </div>
                                   `;
                                 case 'Select':
-                                  return html` <label class="form-label" for="${component.id}">
+                                  return html` <div class="form-floating">
+                                    <select
+                                      id="${component.id}"
+                                      class="form-select form-select-lg ${isValidationSet
+                                        ? state
+                                        : ''}"
+                                      aria-invalid=${ariaInvalid}
+                                      aria-describedby="${ariaDescribedBy}"
+                                    >
+                                      <option>Select option...</option>
+                                      <option value="value_1">Option 1</option>
+                                      <option value="value_2">Option 2</option>
+                                      <option value="value_3">Option 3</option>
+                                      <option value="value_4">Option 4</option>
+                                    </select>
+                                    <label class="form-label" for="${component.id}">
                                       <span>Label</span>
                                     </label>
-                                    <div class="state-wrapper">
-                                      <select
-                                        id="${component.id}"
-                                        class="form-select form-select-lg ${isValidationSet
-                                          ? state
-                                          : ''}"
-                                        aria-invalid=${ariaInvalid}
-                                        aria-describedby="${ariaDescribedBy}"
-                                      >
-                                        <option>Select option...</option>
-                                        <option value="value_1">Option 1</option>
-                                        <option value="value_2">Option 2</option>
-                                        <option value="value_3">Option 3</option>
-                                        <option value="value_4">Option 4</option>
-                                      </select>
-                                      <p class="form-text">
-                                        Hintus textus elare volare cantare hendrerit in vulputate
-                                        velit esse molestie consequat, vel illum dolore eu feugiat
-                                        nulla facilisis.
-                                      </p>
-                                      <p id="${validFeedbackId}" class="valid-feedback">
-                                        Valid message.
-                                      </p>
-                                      <p id="${invalidFeedbackId}" class="invalid-feedback">
-                                        Invalid message.
-                                      </p>
-                                    </div>`;
+                                    <p class="form-text">
+                                      Hintus textus elare volare cantare hendrerit in vulputate
+                                      velit esse molestie consequat, vel illum dolore eu feugiat
+                                      nulla facilisis.
+                                    </p>
+                                    <p id="${validFeedbackId}" class="valid-feedback">
+                                      Valid message.
+                                    </p>
+                                    <p id="${invalidFeedbackId}" class="invalid-feedback">
+                                      Invalid message.
+                                    </p>
+                                  </div>`;
                                 case 'Switch':
                                   return html`
                                     <div class="form-check form-switch">
@@ -202,8 +202,7 @@ export const Validation: Story = {
                                   `;
                                 case 'TextArea':
                                   return html`
-                                    <label class="form-label" for="${component.id}">Label</label>
-                                    <div class="state-wrapper">
+                                    <div class="state-wrapper form-floating">
                                       <textarea
                                         placeholder=""
                                         rows=""
@@ -214,6 +213,7 @@ export const Validation: Story = {
                                         aria-invalid=${ariaInvalid}
                                         aria-describedby="${ariaDescribedBy}"
                                       ></textarea>
+                                      <label class="form-label" for="${component.id}">Label</label>
                                       <p class="form-text">
                                         Hintus textus elare volare cantare hendrerit in vulputate
                                         velit esse molestie consequat, vel illum dolore eu feugiat
