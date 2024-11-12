@@ -31,7 +31,7 @@ type ReportIcon = {
   sizes: (number | null)[];
 };
 
-export default async function main() {
+export default function main() {
   console.log('\nCreating UI icons...');
 
   setup();
@@ -113,7 +113,7 @@ function getFileGroups(): Record<string, File[]> {
 function createFiles(groupedFilePaths: Record<string, File[]>): ReportIcon[] {
   const report: ReportIcon[] = [];
 
-  Object.entries(groupedFilePaths).map(async ([id, files]) => {
+  Object.entries(groupedFilePaths).forEach(([id, files]) => {
     const svgs = files.map(({ size, filePath }) => ({
       size,
       svg: fs.readFileSync(path.join(SOURCE_PATH, filePath), 'utf-8'),

@@ -48,7 +48,7 @@ export const main = async () => {
     );
   }
 
-  await createUIIcons();
+  createUIIcons();
 };
 
 function setup() {
