@@ -1,9 +1,7 @@
 import { type Args, StoryObj } from '@storybook/web-components';
-import { html, nothing } from 'lit';
+import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 import { spread } from '@open-wc/lit-helpers';
-import chipMeta from '@/stories/components/chip/chip.stories';
-import { meta } from '@typescript-eslint/eslint-plugin';
 
 export interface PostTogglebuttonProps {
   type?: 'button' | 'submit' | 'reset';
@@ -71,13 +69,25 @@ const meta: MetaComponent<PostTogglebuttonProps> = {
       },
     },
     variant: {
-      ...meta.argTypes.variant,
+      name: 'Variant',
       description:
         'Defines a style variant.' +
         '<span className="mt-8 alert alert-info alert-sm">' +
         'For more options, please see the ' +
         '<a href="/?path=/docs/eb78afcb-ce92-4990-94b6-6536d5ec6af4--docs">button documentation</a>' +
         '.</span>',
+      control: {
+        type: 'inline-radio',
+        labels: {
+          'btn-primary': 'Primary',
+          'btn-secondary': 'Secondary',
+          'btn-tertiary': 'Tertiary',
+        },
+      },
+      options: ['btn-primary', 'btn-secondary', 'btn-tertiary'],
+      table: {
+        category: 'General',
+      },
     },
   },
 };
