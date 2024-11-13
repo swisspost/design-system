@@ -19,12 +19,12 @@ $merged-accordion: map.merge(components.$post-accordion, $local-accordion);
 
 tokens.$default-map: $merged-accordion;
 
-// .accordion-item {
-//   @include utility-mx.focus-style($offset: 2px, $width: 2px, $color: red, $style: solid) {
-//     border-radius: tokens.get('post-accordion-border-radius');
-//     width: fit-content;
-//   }
-// }
+.accordion-item {
+  @include utility-mx.focus-style($offset: 2px, $width: 2px, $color: red, $style: solid) {
+    border-radius: tokens.get('post-accordion-border-radius');
+    width: fit-content;
+  }
+}
 
 .accordion-header {
   color: tokens.get('accordion-enabled-fg');
