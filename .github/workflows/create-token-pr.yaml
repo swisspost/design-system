@@ -25,15 +25,7 @@ jobs:
           git config user.name "Swiss Post Bot"
           git config user.email "103635272+swisspost-bot@users.noreply.github.com"
 
-      - name: Update Tokens Branch
-        run: |
-          git checkout ${{ github.ref_name }}
-          git merge origin/main -X ours --no-edit
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-
-      # Check if a PR branch corresponding to the token branch exists
+      # Check if a PR branch exists
       - name: Get PR Branch
         id: pr-branch
         run: |
@@ -46,40 +38,24 @@ jobs:
             echo "exists=false" >> $GITHUB_OUTPUT
           fi
 
-      # If the branch does not exit, create it
-      - name: Create PR Branch
-        if: steps.pr-branch.outputs.exists == 'false'
+      # If the branch exits, delete it
+      - name: Delete PR Branch
+        if: steps.pr-branch.outputs.exists == 'true'
+        run: |
+          git push origin --delete ${{ steps.pr-branch.outputs.name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+
+      # Create a new PR branch
+      - name: Create New PR Branch
         run: |
           git checkout -b ${{ steps.pr-branch.outputs.name }} ${{ github.ref_name }}
           git push --set-upstream origin ${{ steps.pr-branch.outputs.name }}
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
 
-      # If the branch exits, update it
-      - name: Update PR Branch
-        if: steps.pr-branch.outputs.exists == 'true'
-        run: |
-          git checkout ${{ steps.pr-branch.outputs.name }}
-          git merge ${{ github.ref_name }} -X theirs --no-edit
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-
-      # Check if a PR already exist
-      - name: Get PR
-        id: pr
-        run: |
-          if [[ -n $(gh pr list --head "${{ steps.pr-branch.outputs.name }}") ]]; then
-            echo "exists=true" >> $GITHUB_OUTPUT
-          else
-            echo "exists=false" >> $GITHUB_OUTPUT
-          fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-
-      # If the PR does not exit, create it
-      - name: Create PR
-        if: steps.pr.outputs.exists == 'false'
+      # Create a New PR from the PR branch
+      - name: Create New PR
         run: |
           gh pr create --title "chore(tokens): :art: update tokens" --body "Merge this PR to update the tokens in the main branch." --base main
         env:
