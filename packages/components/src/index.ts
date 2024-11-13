@@ -27,3 +27,7 @@ export { PostTag } from './components/post-tag/post-tag';
 export { PostTogglebutton } from './components/post-togglebutton/post-togglebutton';
 export { PostList } from './components/post-list/post-list';
 export { PostListItem } from './components/post-list-item/post-list-item';
+export { PostHeader } from './components/post-header/post-header';
+export { PostMainnavigation } from './components/post-mainnavigation/post-mainnavigation';
+export { PostMegadropdown } from './components/post-megadropdown/post-megadropdown';
+export { PostMegadropdownTrigger } from './components/post-megadropdown-trigger/post-megadropdown-trigger';
