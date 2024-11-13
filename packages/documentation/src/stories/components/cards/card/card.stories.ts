@@ -235,7 +235,7 @@ function getCardLinks() {
 
 function getCardButton() {
   return html`
-    <button class="btn btn-primary btn-animated">
+    <button class="btn btn-primary">
       <span>Butonon teksto</span>
     </button>
   `;
@@ -416,7 +416,7 @@ export const BackgroundImage: Story = {
 
       <p class="card-text">Contentus momentus vero siteos et accusam iretea et justo.</p>
 
-      <button class="btn btn-primary btn-animated">
+      <button class="btn btn-primary">
         <span>Butonon teksto</span>
       </button>
     </div>
