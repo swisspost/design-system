@@ -61,9 +61,9 @@
 
   @if (map.has-key(icons.$svg-icon-map, #{$icon-name})) {
     $svg-url: map.get(icons.$svg-icon-map, #{$icon-name});
-  } @else if(map.has-key(icons.$next-icons, #{$icon-name})) {
+  } @else if(map.has-key(icons.$notification-icons, #{$icon-name})) {
     $svg-url: icons.$svg-pre-path +
-      map.get(icons.$next-icons, #{$icon-name}) +
+      map.get(icons.$notification-icons, #{$icon-name}) +
       icons.$svg-post-path;
   } @else {
     @error "Icon '#{$icon-name}' does not exist.";
