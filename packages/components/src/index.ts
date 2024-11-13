@@ -13,6 +13,9 @@ export { PostCollapsibleTrigger } from './components/post-collapsible-trigger/po
 export { PostIcon } from './components/post-icon/post-icon';
 export { PostLanguageOption } from './components/post-language-option/post-language-option';
 export { PostLogo } from './components/post-logo/post-logo';
+export { PostMenu } from './components/post-menu/post-menu';
+export { PostMenuTrigger } from './components/post-menu-trigger/post-menu-trigger';
+export { PostMenuItem } from './components/post-menu-item/post-menu-item';
 export { PostPopover } from './components/post-popover/post-popover';
 export { PostPopovercontainer } from './components/post-popovercontainer/post-popovercontainer';
 export { PostRating } from './components/post-rating/post-rating';
@@ -23,3 +26,7 @@ export { PostTooltip } from './components/post-tooltip/post-tooltip';
 export { PostTag } from './components/post-tag/post-tag';
 export { PostList } from './components/post-list/post-list';
 export { PostListItem } from './components/post-list-item/post-list-item';
+export { PostHeader } from './components/post-header/post-header';
+export { PostMainnavigation } from './components/post-mainnavigation/post-mainnavigation';
+export { PostMegadropdown } from './components/post-megadropdown/post-megadropdown';
+export { PostMegadropdownTrigger } from './components/post-megadropdown-trigger/post-megadropdown-trigger';
