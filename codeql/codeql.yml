@@ -1,5 +1,0 @@
-paths:
-  - packages
-paths-ignore:
-  - '**/node_modules'
-  - '**/*.sample.ts'
