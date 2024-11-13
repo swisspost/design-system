@@ -1,0 +1,21 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+$margin-bg: #F4FFA2;
+$padding-bg: #B8E2F3;
+$content-bg: #A69CE1;
+$content-fg: #59718B;
+
+.containers-example {
+  background: $margin-bg;
+
+  .container,
+  .container-fluid {
+    background: linear-gradient($padding-bg, $padding-bg), linear-gradient($content-bg, $content-bg);
+    background-clip: content-box, border-box;
+    color: $content-fg;
+
+    &::before {
+      content: "Content goes here";
+    }
+  }
+}
