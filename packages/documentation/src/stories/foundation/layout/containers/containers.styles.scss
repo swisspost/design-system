@@ -8,6 +8,10 @@ $content-fg: #59718B;
 .container-examples {
   background: $margin-bg;
 
+  &:is(.sb-main-padded *) {
+    margin-inline: -1rem;
+  }
+
   .container,
   .container-fluid {
     background: linear-gradient($padding-bg, $padding-bg), linear-gradient($content-bg, $content-bg);
