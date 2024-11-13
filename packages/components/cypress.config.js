@@ -13,4 +13,9 @@ module.exports = defineConfig({
     runMode: 1,
   },
   video: false,
+  env: {
+    HTTP_PROXY: 'http://outappl.pnet.ch:3128',
+    HTTPS_PROXY: 'http://outappl.pnet.ch:3128',
+    NO_PROXY: '*.local,localhost,*.papo.aws.pnetcloud.ch,artifactory.tools.post.ch',
+  },
 });
