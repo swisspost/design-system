@@ -144,7 +144,7 @@ tokens.$default-map: components.$post-select;
     padding-block-start: tokens.get('select-filled-padding-block-start');
     padding-block-end: tokens.get('select-filled-padding-block-end');
 
-    & ~ label {
+    ~ label {
       position: absolute;
       z-index: 2;
       text-align: start;
