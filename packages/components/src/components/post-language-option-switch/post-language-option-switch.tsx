@@ -5,12 +5,12 @@ import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
 import { SWITCH_MODES, SwitchMode } from './switch-modes';
 
 @Component({
-  tag: 'post-language-switch',
-  styleUrl: 'post-language-switch.scss',
+  tag: 'post-language-option-switch',
+  styleUrl: 'post-language-option-switch.scss',
   shadow: true,
 })
-export class PostLanguageSwitch {
-  @Element() host: HTMLPostLanguageSwitchElement;
+export class PostLanguageOptionSwitch {
+  @Element() host: HTMLPostLanguageOptionSwitchElement;
 
   //variant: list (default)|dropdown determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
   /**
@@ -84,12 +84,12 @@ export class PostLanguageSwitch {
     return (
       <Host data-version={version}>
         {this.variant === 'list' ? (
-          <ul>
+          <post-list>
             <h3>
               {this.caption}, {this.description}
             </h3>
             <slot></slot>
-          </ul>
+          </post-list>
         ) : (
           <div>
             <div>

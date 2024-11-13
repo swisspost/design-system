@@ -12,6 +12,7 @@ export { PostCollapsible } from './components/post-collapsible/post-collapsible'
 export { PostCollapsibleTrigger } from './components/post-collapsible-trigger/post-collapsible-trigger';
 export { PostIcon } from './components/post-icon/post-icon';
 export { PostLanguageOption } from './components/post-language-option/post-language-option';
+export { PostLanguageOptionSwitch } from './components/post-language-option-switch/post-language-option-switch';
 export { PostLogo } from './components/post-logo/post-logo';
 export { PostMenu } from './components/post-menu/post-menu';
 export { PostMenuTrigger } from './components/post-menu-trigger/post-menu-trigger';

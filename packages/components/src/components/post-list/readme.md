@@ -21,6 +21,19 @@
 | `"post-list-item"` | Slot for placing post-list-item components. |
 
 
+## Dependencies
+
+### Used by
+
+ - [post-language-option-switch](../post-language-option-switch)
+
+### Graph
+```mermaid
+graph TD;
+  post-language-option-switch --> post-list
+  style post-list fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
