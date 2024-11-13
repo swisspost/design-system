@@ -138,17 +138,18 @@ export const mergeOsFlyoutOverrides = (
     // Add entries for os flyout columns without overriding existing config
     const mainNavFlyout = [
       ...osFlyoutCache.flyout.map((col, index) => {
-        const overrides = osFlyoutOverrides.flyout[index];
-        const title = overrides.title ?? col.title;
+        const overrides = osFlyoutOverrides.flyout?.[index]; // Check if overrides exist
+        const title = overrides?.title ?? col.title;
 
-        const linkList = overrides.linkList != null ? osFlyoutOverrides.flyout[index].linkList : [];
+        // Check if the linkList exists in the overrides and then use it
+        const linkList = overrides?.linkList != null ? overrides.linkList : [];
 
         return {
           title,
           linkList: [...col.linkList, ...linkList],
         };
       }),
-      ...osFlyoutOverrides.flyout.slice(osFlyoutCache.flyout.length),
+      ...(osFlyoutOverrides.flyout?.slice(osFlyoutCache.flyout.length) || []),
     ];
 
     return {

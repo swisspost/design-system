@@ -25,7 +25,7 @@ export class LinkDesignComponent extends LitElement {
     const titlePath = this.of?.default?.title;
 
     return designParameter?.type === 'figma' && designParameter?.url
-      ? html` <a class="figma-link btn btn-primary btn-rg btn-icon" href="${designParameter.url}">
+      ? html` <a class="figma-link btn btn-primary" href="${designParameter.url}">
           <img
             src="/assets/images/technologies/logo-figma.svg"
             alt=""

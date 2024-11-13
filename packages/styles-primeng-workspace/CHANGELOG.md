@@ -1,5 +1,20 @@
 # @swisspost/design-system-styles-primeng-workspace
 
+## 1.0.6-next.4
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.4
+
+## 1.0.6-next.3
+
+### Patch Changes
+
+- Removed deprecated accent colors (nightblue, petrol, coral, olive, purple, aubergine and their light variations) and updated all relevant components, documentation, and utilities. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3693](https://github.com/swisspost/design-system/pull/3693))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.3
+
 ## 1.0.6-next.2
 
 ### Patch Changes

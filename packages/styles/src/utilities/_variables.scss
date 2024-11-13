@@ -22,6 +22,30 @@
 */
 
 $utilities: (
+  'align': (
+    property: vertical-align,
+    class: align,
+    values: baseline top middle bottom text-bottom text-top,
+  ),
+  'float': (
+    responsive: true,
+    property: float,
+    values: (
+      start: inline-start,
+      end: inline-end,
+      none: none,
+    ),
+  ),
+  'opacity': (
+    property: opacity,
+    values: (
+      0: 0,
+      25: 0.25,
+      50: 0.5,
+      75: 0.75,
+      100: 1,
+    ),
+  ),
   'margin': (
     responsive: true,
     property: margin,
@@ -64,7 +88,6 @@ $utilities: (
     class: ms,
     values: from-tokens('spacing', 'margin'),
   ),
-
   'padding': (
     responsive: true,
     property: padding,
@@ -107,7 +130,6 @@ $utilities: (
     class: ps,
     values: from-tokens('spacing', 'padding'),
   ),
-
   'gap': (
     responsive: true,
     property: gap,

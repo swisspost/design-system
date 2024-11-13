@@ -2,6 +2,8 @@
 
 @use 'accordion';
 @use 'alert';
+@use 'appstore-badge';
+@use 'avatar';
 @use 'badge';
 @use 'breadcrumb';
 @use 'button';
@@ -13,6 +15,7 @@
 @use 'close';
 @use 'elevation';
 @use 'error-container';
+@use 'form-footer';
 @use 'form-range';
 @use 'form-select';
 @use 'form-textarea';
@@ -21,6 +24,8 @@
 @use 'form-check';
 @use 'forms';
 @use 'grid';
+@use 'icon-button';
+@use 'icon-close-button';
 @use 'icons';
 @use 'lead';
 @use 'list-group';
@@ -29,6 +34,7 @@
 @use 'popover';
 @use 'product-card';
 @use 'progress';
+@use 'skiplinks';
 @use 'sizing';
 @use 'spinner';
 @use 'stepper';
