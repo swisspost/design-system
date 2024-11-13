@@ -1,5 +1,6 @@
 # Adds custom headers for specific resources
 # This file is used by Netlify to handle headers
 
-/assets/versions.json
-  Access-Control-Allow-Origin: *
+Access-Control-Allow-Origin: *.post.ch
+X-Frame-Options: SAMEORIGIN
+X-Content-Type-Options = nosniff
