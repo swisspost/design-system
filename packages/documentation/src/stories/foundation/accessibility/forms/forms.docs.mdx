@@ -1,6 +1,10 @@
 import { Meta, Source, Canvas } from '@storybook/blocks';
 import * as FormsStories from './forms.stories';
 
+import visibleLabels from './forms-visible-labels.sample.html?raw';
+import invisibleLabels from './forms-invisible-labels.sample.html?raw';
+import referenceLabels from './forms-reference-labels.sample.html?raw';
+
 <Meta of={FormsStories} />
 
 # Forms
@@ -157,6 +161,28 @@ Disabled states of input fields or buttons pose many accessibility issues.
 ### Form good example
 
 <Canvas of={FormsStories.FormGoodExample} />
+
+## Labels
+
+Labels are crucial in ensuring accessibility in web forms, as they provide necessary information about form elements for all users, especially those using assistive technologies like screen readers.
+
+### Visible Labels
+
+Use the `<label>` element along with the `for` attribute to create a link between a `<label>` and an `<input>` field. The value of the `for` attribute must match the `id` of the corresponding `<input>` element, allowing screen readers to associate them correctly.
+
+<Source code={visibleLabels} language="html" />
+
+### Invisible Labels with `aria-label`
+
+Make a hidden `<label>` element available for assistive technologies using the `aria-label` for labeling form elements. The `aria-label` attribute can be used to assign an accessible label to any form element that might not have a visible label.
+
+<Source code={invisibleLabels} language="html" />
+
+### Referencing Labels with `aria-labelledby`
+
+The `aria-labelledby` attribute allows you to reference the `id` of another element that serves as the `<label>`. This is especially useful when the `<label>` is complex or spans multiple elements. Hidden elements can also be referenced using `aria-labelledby`, allowing screen readers to announce the associated label even though it is not displayed visually.
+
+<Source code={referenceLabels} language="html" />
 
 ## Controls Grouping
 
