@@ -5,7 +5,7 @@ $padding-bg: #B8E2F3;
 $content-bg: #A69CE1;
 $content-fg: #59718B;
 
-.containers-example {
+.container-examples {
   background: $margin-bg;
 
   .container,
@@ -16,6 +16,20 @@ $content-fg: #59718B;
 
     &::before {
       content: "Content goes here";
+    }
+  }
+}
+
+.container-snapshots {
+  .container {
+    &::before {
+      content: "Container";
+    }
+  }
+
+  .container-fluid {
+    &::before {
+      content: "Container fluid";
     }
   }
 }

@@ -14,7 +14,7 @@ const meta: MetaExtended = {
   `,
   decorators: [
     (story: StoryFn, context: StoryContext) => html`
-      <div class="containers-example">${story(context.args, context)}</div>
+      <div class="container-examples">${story(context.args, context)}</div>
     `,
   ],
 };
