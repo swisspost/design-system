@@ -10,6 +10,9 @@ import { SWITCH_MODES, SwitchMode } from './switch-modes';
   shadow: true,
 })
 export class PostLanguageOptionSwitch {
+  private menuRef: HTMLPostMenuElement;
+  private menuTriggerRef: HTMLPostMenuTriggerElement;
+
   @Element() host: HTMLPostLanguageOptionSwitchElement;
 
   //variant: list (default)|dropdown determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
@@ -88,11 +91,27 @@ export class PostLanguageOptionSwitch {
             <h3>
               {this.caption}, {this.description}
             </h3>
-            <slot></slot>
+            <slot name="post-list-item"></slot>
           </post-list>
         ) : (
           <div>
             <div>
+              <post-icon name="2111" class="breadcrumb-item-icon" />
+              <button class="btn btn-primary">{this.caption}</button>
+              <post-menu-trigger for="post-language-menu" ref={e => (this.menuTriggerRef = e)}>
+                <button class="btn btn-primary">{this.caption}</button>
+              </post-menu-trigger>
+              <post-menu id="post-language-menu" placement="bottom" ref={e => (this.menuRef = e)}>
+                <post-menu-item>
+                  <button>Example 1</button>
+                </post-menu-item>
+                <post-menu-item>
+                  <a href="#">Example 2</a>
+                  <post-menu-item>
+                    <div>Example 3</div>
+                  </post-menu-item>
+                </post-menu-item>
+              </post-menu>
               <button>
                 {this.caption}, {this.description}
               </button>

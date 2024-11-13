@@ -1,7 +1,6 @@
 import type { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
-import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 const meta: MetaComponent<HTMLPostLanguageOptionSwitchElement> = {
   id: 'decbb10c-2b39-4f47-b67d-337d8111a3ae',
@@ -16,11 +15,9 @@ const meta: MetaComponent<HTMLPostLanguageOptionSwitchElement> = {
     },
   },
   args: {
-    variant: 'dropdown',
+    variant: 'list',
     caption: 'Caption',
     description: 'Description',
-    innerHTML:
-      '<post-language-option active="true" code="de" name="Deutsch">DE</post-language-option><post-language-option active="false" code="en" name="English">EN</post-language-option>',
   },
   argTypes: {
     variant: {
@@ -47,15 +44,6 @@ const meta: MetaComponent<HTMLPostLanguageOptionSwitchElement> = {
         },
       },
     },
-    innerHTML: {
-      description: 'Defines the HTML markup contained in the alert.',
-      table: {
-        category: 'content',
-        type: {
-          summary: 'string',
-        },
-      },
-    },
   },
 };
 
@@ -67,8 +55,11 @@ function renderLanguageSwitch(args: Partial<HTMLPostLanguageOptionSwitchElement>
     caption=${args.caption}
     description=${args.description}
     variant=${args.variant}
-    >${unsafeHTML(args.innerHTML)}
-  </post-language-option-switch>`;
+  >
+    <post-language-option name="post-list-item" active="true" code="de" name="Deutsch"
+      >DE</post-language-option
+    ><post-language-option active="false" code="en" name="English">EN</post-language-option>
+  </post-language-option-switch> `;
 }
 
 // STORIES
