@@ -51,6 +51,11 @@
   display: inline-block;
   max-width: 100%;
 
+  @include utilities.focus-style() {
+    border-radius: chip.$chip-border-radius;
+    width: fit-content;
+  }
+
   &-label {
     cursor: pointer;
     @include chip-mx.chip-styles();
@@ -104,12 +109,6 @@
 
           @include utilities.high-contrast-mode() {
             text-decoration-color: initial;
-          }
-        }
-
-        @include utilities.focus-style('+ .chip-filter-label') {
-          > .chip-text {
-            text-decoration-color: transparent;
           }
         }
       }
