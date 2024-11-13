@@ -21,6 +21,7 @@ $gap: tokens.get('button-segmented-gap-inline');
     width: 100%;
     margin: 0;
     position: relative;
+    box-sizing: border-box;
     border-radius: tokens.get('button-segmented-horizontal-border-radius');
     border: tokens.get('button-segmented-border-width') solid tokens.get('button-segmented-enabled-border');
     transition: all 0.4s cubic-bezier(0.25, 1.5, 0.5, 1.0);
@@ -67,9 +68,10 @@ $gap: tokens.get('button-segmented-gap-inline');
     position: relative;
     padding-inline: tokens.get('post-button-segmented-padding-inline');
     height: tokens.get('button-segmented-elements-height');
-    z-index: 2;
+    z-index: 100;
     font-weight: 500;
     transition: inherit;
+    border: tokens.get('button-segmented-border-width') solid tokens.get('button-segmented-enabled-border');
 }
 
 .segmented-button input:checked + label {
@@ -146,6 +148,12 @@ $gap: tokens.get('button-segmented-gap-inline');
 }
 
 @container segmented-container (min-width: 501px) {
+    .segmented-button {
+        align-items: center;
+        height: tokens.get('button-segmented-elements-height');
+        justify-content: center;
+    }
+
     .segmented-button input:checked + label:last-of-type::after {
         opacity: 1;
         transform: scaleX(1);
@@ -162,6 +170,16 @@ $gap: tokens.get('button-segmented-gap-inline');
     .segmented-button label {
         border-radius: tokens.get('button-segmented-horizontal-border-radius');
         border: tokens.get('button-segmented-border-width') solid transparent;
+        margin-inline: calc($border-width * -2);
+        margin-block: calc($border-width * -2);
+    
+    &:first-of-type {
+        margin-left: calc($border-width * -2);
+    }
+    
+    &:last-of-type {
+        margin-right: calc($border-width * -2);
+    }
 
         &:hover {
             border-color: tokens.get('button-segmented-hover-border');
@@ -171,8 +189,7 @@ $gap: tokens.get('button-segmented-gap-inline');
             border-color: tokens.get('button-segmented-enabled-border'); 
         }
     }
-
+}
     .segmented-button input:checked + label {
         border: none;
     }
-}
