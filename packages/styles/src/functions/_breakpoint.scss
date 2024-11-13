@@ -1,0 +1,9 @@
+@use 'sass:map';
+@use '../variables/breakpoints';
+
+/**
+  Gets a breakpoint from the map based on the key
+*/
+@function min-width($key) {
+  @return map.get(breakpoints.$grid-breakpoints, $key);
+}
