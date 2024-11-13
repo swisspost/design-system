@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Components-angular" pattern="file[design-system]:packages/components-angular//*" />
+</component>

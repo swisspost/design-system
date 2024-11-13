@@ -1,0 +1,44 @@
+@use 'sass:map';
+@use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/mixins/utilities';
+
+tokens.$default-map: components.$post-breadcrumb;
+
+:host {
+  display: inline-block;
+  @include utilities.focus-style;
+}
+
+.breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: tokens.get('breadcrumb-padding-block-text');
+  gap: tokens.get('breadcrumb-gap-inline-inner');
+  color: tokens.get('breadcrumb-enabled-fg');
+  text-decoration: tokens.get('breadcrumb-link-enabled-text-decoration');
+
+  post-icon {
+    height: tokens.get('breadcrum-icon-size');
+    width: tokens.get('breadcrum-icon-size');
+  }
+
+  &:hover {
+    color: tokens.get('breadcrumb-hover-fg');
+    text-decoration: tokens.get('breadcrumb-link-hover-text-decoration');
+  }
+
+  @include utilities.high-contrast-mode() {
+    &,
+    &:focus,
+    &:hover {
+      color: LinkText !important;
+    }
+
+    &:visited {
+      color: VisitedText !important;
+    }
+  }
+}

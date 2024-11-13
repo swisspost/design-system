@@ -1,0 +1,111 @@
+@use 'sass:map';
+
+$post-icon-animations: (
+  'cylon': icon-animation-cylon 0.75s ease-in-out infinite alternate,
+  'cylon-vertical': icon-animation-cylon-vertical 0.75s ease-in-out infinite alternate,
+  'spin': icon-animation-spin 2s linear infinite normal,
+  'spin-reverse': icon-animation-spin 2s linear infinite reverse,
+  'fade': icon-animation-fade 0.75s ease-in-out infinite alternate,
+  'throb': icon-animation-throb 0.75s ease-in-out infinite alternate,
+);
+
+:host {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+}
+
+span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+  forced-color-adjust: preserve-parent-color;
+  background-color: currentColor;
+  -webkit-mask-position: center center;
+  mask-position: center center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
+}
+
+// flip
+
+:host([flip-h]:not([flip-h='false'])) {
+  scale: -1 1;
+}
+
+:host([flip-v]:not([flip-v='false'])) {
+  scale: 1 -1;
+}
+
+:host([flip-h][flip-v]:not([flip-h='false'], [flip-v='false'])) {
+  scale: -1;
+}
+
+// scale
+// done with inline styling
+
+// rotate
+// done with inline styling
+
+// animation
+
+:host([animation]) {
+  transform-origin: center;
+}
+
+@each $key, $value in $post-icon-animations {
+  :host([animation='#{$key}']) {
+    animation: $value;
+  }
+}
+
+@keyframes icon-animation-cylon {
+  from {
+    transform: translateX(-25%);
+  }
+  to {
+    transform: translateX(25%);
+  }
+}
+
+@keyframes icon-animation-cylon-vertical {
+  from {
+    transform: translateY(25%);
+  }
+  to {
+    transform: translateY(-25%);
+  }
+}
+
+@keyframes icon-animation-fade {
+  from {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes icon-animation-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes icon-animation-throb {
+  from {
+    opacity: 0.5;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

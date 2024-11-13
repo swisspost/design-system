@@ -1,0 +1,169 @@
+@use 'sass:math';
+@forward './../variables/options';
+@use './../variables/type';
+
+@use './../themes/bootstrap/core' as *;
+@use './../themes/bootstrap/progress' as bp;
+
+@use './../mixins/utilities';
+@use './../variables/commons';
+@use './../variables/components/spinners';
+
+.spinner-bg {
+  position: absolute;
+  z-index: commons.$zindex-spinner;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.loading-modal {
+  display: inline-flex;
+  position: absolute;
+  z-index: commons.$zindex-spinner;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.loader {
+  width: 1em;
+  height: 1em;
+  animation: spin spinners.$spinner-duration linear infinite;
+  position: relative;
+  font-size: spinners.$spinner-size;
+
+  // Sizes
+  @each $key, $font-size in spinners.$spinner-size-map {
+    &.loader-#{$key} {
+      font-size: $font-size;
+    }
+  }
+
+  // Deprecated sizes
+  &.loader-sm {
+    font-size: spinners.$spinner-size-sm;
+  }
+
+  &.loader-xs {
+    font-size: spinners.$spinner-size-xs;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: max(2px, 0.12em) solid spinners.$spinner-color-secondary; // Size is proportional, but 1px is too thin on browser compared to design
+    transform: rotate(130deg);
+    animation-timing-function: linear;
+    animation-direction: alternate;
+    animation-duration: math.div(spinners.$spinner-duration, 2);
+    animation-iteration-count: infinite;
+  }
+
+  // Background bar
+  &::before {
+    animation-name: progressLoaderInverted; // Mask part of the bar where the progress bar is active against antialiasing issue
+  }
+
+  // Progress bar
+  &::after {
+    border-color: spinners.$spinner-color-primary;
+    animation-name: progressLoader;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation-duration: math.div(
+      spinners.$spinner-duration,
+      spinners.$spinner-speed-reduced-motion
+    );
+
+    &::before,
+    &::after {
+      animation-duration: math.div(
+        spinners.$spinner-duration,
+        2 * spinners.$spinner-speed-reduced-motion
+      );
+    }
+  }
+
+  @include utilities.high-contrast-mode() {
+    &::before {
+      border-color: CanvasText;
+    }
+
+    &::after {
+      border-color: Highlight;
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  100% {
+    transform: rotate(720deg);
+  }
+}
+
+$progress-step-1-inner:
+  50% 50%,
+  0 0,
+  42% 0,
+  42% 0,
+  42% 0,
+  42% 0;
+$progress-step-2-inner:
+  50% 50%,
+  0 0,
+  100% 0,
+  100% 0,
+  100% 0,
+  100% 0;
+$progress-step-3-inner:
+  50% 50%,
+  0 0,
+  100% 0,
+  100% 100%,
+  100% 100%,
+  100% 100%;
+
+@keyframes progressLoader {
+  0% {
+    clip-path: polygon($progress-step-1-inner);
+  }
+
+  50% {
+    clip-path: polygon($progress-step-2-inner);
+  }
+
+  100% {
+    clip-path: polygon($progress-step-3-inner);
+  }
+}
+
+/* This animation works as kind of inverted mask based on the progressLoader animation */
+@keyframes progressLoaderInverted {
+  0% {
+    clip-path: polygon(0 0, 0 100%, 100% 100%, $progress-step-1-inner, 50% 50%, 100% 100%, 100% 0);
+  }
+
+  50% {
+    clip-path: polygon(0 0, 0 100%, 100% 100%, $progress-step-2-inner, 50% 50%, 100% 100%, 100% 0);
+  }
+
+  100% {
+    clip-path: polygon(0 0, 0 100%, 100% 100%, $progress-step-3-inner, 50% 50%, 100% 100%, 100% 0);
+  }
+}

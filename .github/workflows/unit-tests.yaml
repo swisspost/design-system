@@ -1,0 +1,29 @@
+###
+#
+# Runs all tests in packages changed since main
+#
+###
+
+name: Unit tests
+on:
+  pull_request:
+    paths:
+      - 'packages/**'
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Install dependencies and build packages
+        run: pnpm bootstrap
+
+      - name: Run unit tests
+        run: pnpm --filter "...[origin/main]" unit

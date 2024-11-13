@@ -1,0 +1,34 @@
+@use 'tests/jest';
+@use 'src/utilities/functions';
+
+$post-spacing: (
+  'post-utility-spacing-1': 12px,
+  'post-utility-spacing-2': 16px,
+);
+
+$post-sizing: (
+  'post-utility-height-1': 24px,
+  'post-utility-height-2': 48px,
+  'post-utility-width-1': 28px,
+  'post-utility-width-2': 44px,
+);
+
+functions.$token-maps: (post-spacing: $post-spacing, post-sizing: $post-sizing);
+
+// it should return all values from the token set
+@include jest.equal(
+  (
+    '1': 12px,
+    '2': 16px,
+  ),
+  functions.from-tokens('spacing')
+);
+
+// it should return values from the group in the token set
+@include jest.equal(
+  (
+    '1': 24px,
+    '2': 48px,
+  ),
+  functions.from-tokens('sizing', 'height')
+);

@@ -1,0 +1,22 @@
+@use '@swisspost/design-system-styles/components/accordion';
+@use '@swisspost/design-system-styles/mixins/accordion' as accordion-mx;
+
+:host {
+  display: block;
+}
+
+.accordion-button {
+  cursor: pointer;
+
+  > ::slotted(.text-truncate) {
+    display: block;
+  }
+}
+
+post-accordion-item::part(accordion-item) {
+  @include accordion-mx.background-color;
+}
+
+:host(:not(:first-of-type)) .accordion-item {
+  border-block-start: 0;
+}

@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [".storybook", "src", "types"],
+  "exclude": ["node_modules"]
+}

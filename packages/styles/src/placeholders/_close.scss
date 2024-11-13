@@ -1,0 +1,50 @@
+@use './../mixins/button' as button-mx;
+@use './../mixins/color' as color-mx;
+@use './../mixins/forms' as forms-mx;
+@use './../mixins/icons' as icons-mx;
+@use './../mixins/utilities' as utilities-mx;
+
+@use './../variables/animation';
+@use './../variables/color';
+@use './../variables/commons';
+@use './../variables/components/close';
+
+%btn-close {
+  @include button-mx.reset-button;
+  border-radius: close.$close-border-radius;
+  color: close.$close-color;
+  transition: close.$close-transition;
+  cursor: pointer;
+  @include utilities-mx.focus-style {
+    border-radius: commons.$border-radius;
+  }
+
+  &::before {
+    @include icons-mx.icon(2043);
+    content: '';
+    display: block;
+    height: close.$close-size;
+    width: close.$close-size;
+  }
+
+  @include color-mx.on-dark-background() {
+    color: var(--post-contrast-color);
+  }
+
+  @include utilities-mx.not-disabled-focus-hover() {
+    color: close.$close-hover-color;
+  }
+
+  &:disabled {
+    color: close.$close-disabled-color;
+  }
+
+  @include utilities-mx.high-contrast-mode() {
+    color: CanvasText;
+    forced-color-adjust: none;
+
+    @include utilities-mx.not-disabled-focus-hover() {
+      color: Highlight;
+    }
+  }
+}

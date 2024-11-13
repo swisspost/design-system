@@ -1,0 +1,5 @@
+@mixin form-validation-state-selector($state) {
+  #{if(&, "&", "")}.is-#{$state} {
+    @content;
+  }
+}

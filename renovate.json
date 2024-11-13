@@ -1,0 +1,78 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
+  "labels": ["📦 {{{parentDir}}}"],
+  "packageRules": [
+    {
+      "extends": [
+        "monorepo:angular",
+        "monorepo:angular-cli",
+        "monorepo:angular-eslint",
+        "monorepo:jasmine"
+      ],
+      "matchUpdateTypes": ["digest", "patch", "minor", "major"],
+      "groupName": "Angular"
+    },
+    {
+      "matchPackagePatterns": ["*"],
+      "excludePackageNames": [
+        "typescript",
+        "bootstrap",
+        "sass",
+        "@storybook/*",
+        "@angular/*",
+        "@stencil/*"
+      ],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-minor-patch"
+    },
+    {
+      "matchPackagePatterns": ["@storybook/*"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Storybook"
+    },
+    {
+      "matchPackagePatterns": ["@stencil/*"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Stencil"
+    },
+    {
+      "matchPackagePatterns": ["sass"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Sass"
+    },
+    {
+      "matchPackagePatterns": ["@angular/*"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Angular"
+    },
+    {
+      "matchFiles": ["packages/migrations/package.json"],
+      "matchPackagePatterns": ["^@angular"],
+      "allowedVersions": "<=15.0.4"
+    },
+    {
+      "matchFiles": ["packages/demo/package.json"],
+      "matchPackagePatterns": ["@types/node"],
+      "allowedVersions": "~18.17"
+    },
+    {
+      "matchFiles": ["packages/components/package.json"],
+      "matchPackagePatterns": ["@oddbird/popover-polyfill"],
+      "allowedVersions": "0.2.3"
+    },
+    {
+      "matchPackagePatterns": ["^stylelint"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "Stylelint major"
+    },
+    {
+      "matchPackagePatterns": ["^eslint"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "Eslint major"
+    }
+  ],
+  "timezone": "Europe/Zurich",
+  "schedule": ["before 4am on the first day of the month"]
+}

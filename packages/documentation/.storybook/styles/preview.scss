@@ -1,0 +1,202 @@
+// importing the complete styles package scss
+@use '@swisspost/design-system-styles/core.scss' as post;
+@use '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css';
+@use './components';
+@use '@swisspost/design-system-styles/functions/tokens' as tokens;
+@use '@swisspost/design-system-styles/tokens/utilities' as utilities;
+
+tokens.$default-map: utilities.$post-color;
+
+$monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+#storybook-root,
+#storybook-docs {
+  .sbdocs-content .container >,
+  .sbdocs-content .container > post-tabs > post-tab-panel >,
+  .sbdocs-content .container > migration-global-state {
+    // Target content headings only
+    h1 {
+      margin-block: 5rem 1rem;
+
+      &:first-of-type {
+        margin-block-start: 0;
+      }
+    }
+
+    h2 {
+      margin-block: 3rem 1rem;
+    }
+
+    h3 {
+      margin-block: 2.5rem 1rem;
+    }
+
+    h4 {
+      margin-block: 2rem 1rem;
+    }
+
+    h5 {
+      margin-block: 1.5rem 1rem;
+    }
+
+    h6 {
+      margin-block: 1rem;
+    }
+    .table,
+    .table-responsive {
+      margin-block: 1.5rem 1rem;
+    }
+  }
+
+  .sbdocs-content .container {
+    // Support for autolink-headings
+    :is(h1, h2, h3, h4, h5, h6) {
+      position: relative;
+
+      @media (hover: hover) {
+        > a {
+          display: none;
+        }
+      }
+
+      > a {
+        position: absolute;
+        top: 52%;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+        padding: 0.625rem;
+        line-height: 1;
+      }
+
+      &:hover > a {
+        display: inline-block;
+      }
+    }
+
+    // Style buttons related to the current page next to the tile
+    .docs-title,
+    .docs-title nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: post.$size-mini;
+    }
+    .docs-title {
+      margin-bottom: post.$size-mini;
+
+      :first-child {
+        margin-right: auto;
+      }
+    }
+  }
+
+  pre {
+    font-size: 100%;
+  }
+
+  code {
+    display: inline-block;
+    position: relative;
+    top: -0.1em;
+    margin: 0 0.1em;
+    padding: 0.15em 0.4em 0.1em;
+    background-color: tokens.get('utility-surface-accent1');
+    border: 1px solid tokens.get('utility-surface-accent2');
+    color: 1px solid tokens.get('utility-surface-accent4');
+    border-radius: 0.2em;
+    font-family: $monospace;
+    font-size: 0.75em;
+    white-space: nowrap;
+    line-height: 1;
+
+    &[languages] {
+      display: block;
+      margin-top: 0.25rem;
+      padding: 1rem;
+      background-color: var(--post-contrast-color);
+      color: var(--post-contrast-color-inverted);
+    }
+  }
+
+  .sbdocs-wrapper {
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    background-color: transparent;
+
+    .sbdocs-content {
+      max-width: none;
+    }
+  }
+
+  .docs-story {
+    [scale] {
+      transform: none;
+    }
+  }
+
+  .docblock-source {
+    margin: 0 0 1rem;
+  }
+
+  .hide-col-default .docblock-argstable {
+    th,
+    td {
+      &:nth-child(3) {
+        display: none;
+      }
+    }
+  }
+
+  .hide-col-control .docblock-argstable {
+    th,
+    td {
+      &:nth-child(4) {
+        display: none;
+      }
+    }
+  }
+
+  @include post.high-contrast-mode() {
+    .innerZoomElementWrapper {
+      > * {
+        border-color: Canvas !important;
+      }
+    }
+  }
+
+  // Used around a large <Source> block, it limits its height
+  .limit-source-height [data-radix-scroll-area-viewport] {
+    max-height: 15rem;
+  }
+}
+
+#storybook-docs {
+  overflow-x: hidden;
+}
+
+.sbdocs-preview:not([data-color-scheme]) {
+  display: none;
+}
+
+.fake-content {
+  position: relative;
+  min-height: calc(1.6rem * 8);
+  background: repeating-linear-gradient(
+    rgb(230, 230, 230),
+    rgb(230, 230, 230) 1rem,
+    transparent 1rem,
+    transparent 1.6rem
+  );
+
+  &::after {
+    content: '';
+    background: white;
+    width: 33%;
+    height: 1.7rem;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}

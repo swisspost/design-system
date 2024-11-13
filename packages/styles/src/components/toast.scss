@@ -1,0 +1,125 @@
+@forward './../variables/options';
+
+@use './../themes/bootstrap/core' as *;
+
+@use './../mixins/notification' as notification-mx;
+@use './../placeholders/close' as close-ph;
+
+@use './../variables/commons';
+@use './../variables/spacing';
+@use './../variables/components/notification';
+
+.toast {
+  @include notification-mx.notification-size(toast);
+  @include notification-mx.notification-body(toast);
+  @include notification-mx.notification-dismissible(toast, 'toast-close-button');
+}
+
+.toast-close-button {
+  @extend %btn-close;
+
+  // Hide ngx-toastr close-button and keep our. Only useful when toast is used programmatically with ngx-toastr.
+  > span {
+    display: none;
+  }
+}
+
+.toast-title {
+  @include notification-mx.notification-heading(toast);
+}
+
+@each $name, $color, $icon in notification.$notification-variants {
+  $selector: '.toast-#{$name}';
+
+  // the .toast-error class is needed because it is automatically added by the ngx-toastr library
+  @if $name == 'danger' {
+    $selector: '#{$selector}, .toast-error';
+  }
+
+  #{$selector} {
+    @include notification-mx.notification-variant($color, $icon);
+  }
+}
+
+// Positioning
+.toast-container {
+  position: fixed;
+  z-index: commons.$zindex-alert;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+
+  .toast {
+    width: 25rem;
+  }
+
+  @include media-breakpoint-down(md) {
+    .toast {
+      max-width: 25rem;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    right: spacing.$spacer;
+    left: spacing.$spacer;
+
+    .toast {
+      width: 100%;
+    }
+  }
+}
+
+.toast-top-center,
+.toast-top-full-width,
+.toast-top-left,
+.toast-top-right {
+  top: spacing.$spacer;
+}
+
+.toast-bottom-center,
+.toast-bottom-full-width,
+.toast-bottom-right,
+.toast-bottom-left {
+  bottom: spacing.$spacer;
+}
+
+.toast-top-left,
+.toast-bottom-left,
+.toast-top-full-width,
+.toast-bottom-full-width,
+.toast-center-left {
+  left: spacing.$spacer;
+}
+
+.toast-top-right,
+.toast-bottom-right,
+.toast-top-full-width,
+.toast-bottom-full-width,
+.toast-center-right {
+  right: spacing.$spacer;
+}
+
+.toast-top-center,
+.toast-bottom-center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.toast-center-left,
+.toast-center-right {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.toast-center-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.toast-top-full-width,
+.toast-bottom-full-width {
+  .toast {
+    width: 100% !important;
+  }
+}

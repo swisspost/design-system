@@ -1,0 +1,54 @@
+###
+#
+# https://docs.github.com/en/actions/creating-actions/about-custom-actions#using-release-management-for-actions
+#
+###
+
+name: Artifact Download
+description: Downloads an artifact to a specific folder.
+
+inputs:
+  name:
+    description: Name of the artifact
+    required: true
+    type: string
+  folder:
+    description: Path to the folder where to download to
+    required: true
+    type: string
+
+outputs:
+  id:
+    description: The build id from the artifact uploading workflow.
+    value: ${{ steps.build.outputs.id }}
+  action:
+    description: The build action from the artifact uploading workflow.
+    value: ${{ steps.build.outputs.action }}
+  folder:
+    description: Path to the folder where to download to
+    value: ${{ inputs.folder }}
+
+runs:
+  using: composite
+  steps:
+    - name: Download artifact
+      uses: dawidd6/action-download-artifact@v6
+      with:
+        name: ${{ inputs.name }}
+        run_id: ${{ github.event.workflow_run.id }}
+        workflow_conclusion: success
+
+    - name: Unzip artifacts
+      shell: bash
+      run: unzip artifacts.zip -d ${{ inputs.folder }}
+
+    - name: Clean up
+      shell: bash
+      run: rm -r artifacts.zip
+
+    - name: Create outputs
+      id: build
+      shell: bash
+      run: |
+        echo "id=$(cat ${{ inputs.folder }}/GHA-EVENT-ID)" >> $GITHUB_OUTPUT
+        echo "action=$(cat ${{ inputs.folder }}/GHA-EVENT-ACTION)" >> $GITHUB_OUTPUT

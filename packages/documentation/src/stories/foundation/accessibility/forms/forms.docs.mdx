@@ -1,0 +1,261 @@
+import { Meta, Source, Canvas } from '@storybook/blocks';
+import * as FormsStories from './forms.stories';
+
+import visibleLabels from './forms-visible-labels.sample.html?raw';
+import invisibleLabels from './forms-invisible-labels.sample.html?raw';
+import referenceLabels from './forms-reference-labels.sample.html?raw';
+
+<Meta of={FormsStories} />
+
+# Forms
+
+## Disabled state
+
+Disabled states of input fields or buttons pose many accessibility issues.
+
+<ul class="list-unstyled ms-regular">
+  <li class="d-flex gap-mini">
+    <div>❌</div>
+    <div>Disabled fields cannot be reached by pressing tab</div>
+  </li>
+  <li class="d-flex gap-mini">
+    <div>❌</div>
+    <div>It's often unclear why something is disabled</div>
+  </li>
+  <li class="d-flex gap-mini">
+    <div>❌</div>
+    <div>It's often unclear how to enable a disabled field or button</div>
+  </li>
+  <li class="d-flex gap-mini">
+    <div>❌</div>
+    <div>Disabled fields have low contrast</div>
+  </li>
+  <li class="d-flex gap-mini">
+    <div>❌</div>
+    <div>
+      The disabled state of a field is not always obvious (hard to discern from an enabled field)
+    </div>
+  </li>
+</ul>
+
+<div class="table-responsive">
+  <table class="table caption-top">
+    <caption>Common use cases and how to handle them.</caption>
+    <colgroup>
+      <col style={{ width: '50%' }} />
+      <col style={{ width: '50%' }} />
+    </colgroup>
+    <tbody>
+      <tr>
+        <td colSpan="2" class="fw-bold">
+          Disabled button on forms with required fields
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <ul class="list-unstyled">
+            <li class="d-flex gap-mini">
+              <div>❌</div>
+              <div>
+                Forms with required fields tend to have the send button disabled until all required
+                fields are correctly filled. The issue here is that with long forms or on small
+                devices it's sometimes hard to spot the one field that was missed.
+              </div>
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul class="list-unstyled">
+            <li class="d-flex gap-mini">
+              <div>✔️</div>
+              <div>
+                Let the user make mistakes and help them to correct them. Mark the required fields
+                with error messages, scroll to the first invalid field and help the user fill the
+                form correctly.
+              </div>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td colSpan="2" class="fw-bold">
+          Disabled button on form submit
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <ul class="list-unstyled">
+            <li class="d-flex gap-mini">
+              <div>❌</div>
+              <div>
+                The user submits a form. While the client waits for the server response and to
+                prevent double submission, the submit button gets disabled. The reason why this
+                button gets disabled might not be obvious.
+              </div>
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul class="list-unstyled">
+            <li class="d-flex gap-mini">
+              <div>✔️</div>
+              <div>
+                Provide a loading indicator or display a message that shows current progress when
+                uploading large files. Disable duplicate form submissions internally by either
+                aborting the current request and sending a new one or suppressing new submissions
+                during loading. Offer a remedy if the request timed out or an error occurred on the
+                server (reload the page, retry form submission, ...).
+              </div>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td colSpan="2" class="fw-bold">
+          Disabled select options
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <ul class="list-unstyled">
+            <li class="d-flex gap-mini">
+              <div>❌</div>
+              <div>
+                Some options in a radio button group or select field are disabled because they are
+                not available at this time or with the current configuration. This can be confusing
+                because it's often unclear why these options are not available or how to enable
+                them.
+              </div>
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul class="list-unstyled">
+            <li class="d-flex gap-mini">
+              <div>✔️</div>
+              <div>
+                There are multiple possible solutions, depending on the situation:
+                <ul>
+                  <li>
+                    Don't display options that cannot be selected and reduce clutter in your UI.
+                  </li>
+                  <li>
+                    If you need to inform the user that there are potentially more possible options,
+                    show instructions on how to enable these options.
+                  </li>
+                  <li>Display read-only data as text and not in disabled form fields.</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### Form bad example
+
+<Canvas of={FormsStories.FormBadExample} />
+
+### Form good example
+
+<Canvas of={FormsStories.FormGoodExample} />
+
+## Labels
+
+Labels are crucial in ensuring accessibility in web forms, as they provide necessary information about form elements for all users, especially those using assistive technologies like screen readers.
+
+### Visible Labels
+
+Use the `<label>` element along with the `for` attribute to create a link between a `<label>` and an `<input>` field. The value of the `for` attribute must match the `id` of the corresponding `<input>` element, allowing screen readers to associate them correctly.
+
+<Source code={visibleLabels} language="html" />
+
+### Invisible Labels with `aria-label`
+
+Make a hidden `<label>` element available for assistive technologies using the `aria-label` for labeling form elements. The `aria-label` attribute can be used to assign an accessible label to any form element that might not have a visible label.
+
+<Source code={invisibleLabels} language="html" />
+
+### Referencing Labels with `aria-labelledby`
+
+The `aria-labelledby` attribute allows you to reference the `id` of another element that serves as the `<label>`. This is especially useful when the `<label>` is complex or spans multiple elements. Hidden elements can also be referenced using `aria-labelledby`, allowing screen readers to announce the associated label even though it is not displayed visually.
+
+<Source code={referenceLabels} language="html" />
+
+## Controls Grouping
+
+When grouping `<form controls>`, the `<fieldset>`and `<legend>` elements play a critical role in providing context to screen readers. However, improper usage of these elements can lead to confusion for users with disabilities.
+
+<div class="table-responsive">
+  <table class="table caption-top">
+    <caption>Common mistakes and how to avoid them.</caption>
+    <colgroup>
+      <col style={{ width: '50%' }} />
+      <col style={{ width: '50%' }} />
+    </colgroup>
+    <tbody>
+      <tr>
+        <td colSpan="2" class="fw-bold">
+          The `<legend>` element is not a direct child of the `<fieldset>`
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <ul class="list-unstyled">
+            <li class="d-flex gap-mini">
+              <div>❌</div>
+              <div>A `<div>` or other element is incorrectly used as the first child of a `<fieldset>` with the `<legend>` nested inside this element.</div>
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul class="list-unstyled">
+            <li class="d-flex gap-mini">
+              <div>✔️</div>
+              <div>Always place the `<legend>` right after the `<fieldset>` to preserve the association.</div>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td colSpan="2" class="fw-bold">
+          A `<div>` is used for grouping instead of `<fieldset>`
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <ul class="list-unstyled">
+            <li class="d-flex gap-mini">
+              <div>❌</div>
+              <div>For visual reasons, a `<div>` is used for grouping controls instead of `<fieldset>`. No ARIA roles or attributes are set, failing to provide the necessary semantic meaning on assistive technologies.</div>
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul class="list-unstyled">
+            <li class="d-flex gap-mini">
+              <div>✔️</div>
+              <div>Assign the `role="group"` to the `<div>` element to provide it with the semantic meaning of a `<fieldset>`. Use `aria-labelledby` or `aria-describedby` to associate any descriptive text with the grouping container to ensure that screen readers can provide context to users.</div>
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### The wrong way
+
+<Canvas of={FormsStories.FieldsetDontExample} />
+
+### Recommended ways
+
+#### Standard
+
+<Canvas of={FormsStories.FieldsetDoExample} />
+
+#### Alternative using div
+
+<Canvas of={FormsStories.DivForGroupingExample} />

@@ -1,0 +1,12 @@
+{
+  "plugins": ["stylelint-scss"],
+  "extends": ["stylelint-config-sass-guidelines", "stylelint-prettier/recommended"],
+  "rules": {
+    "max-nesting-depth": 5,
+    "selector-max-compound-selectors": 5,
+    "selector-max-id": 1,
+    "selector-no-qualifying-type": [true, { "ignore": ["attribute", "class"] }],
+    "function-url-quotes": null,
+    "scss/dollar-variable-colon-space-after": "always-single-line"
+  }
+}

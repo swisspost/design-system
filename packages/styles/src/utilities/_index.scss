@@ -1,0 +1,23 @@
+@use 'sass:map';
+@use 'sass:meta';
+
+@use '../mixins/media';
+@use '../variables/breakpoints';
+
+@use './mixins' as *;
+@use './variables' as *;
+@use './not-defined' as *;
+
+@use './temp/legacy';
+
+@each $breakpoint, $device-size in breakpoints.$grid-breakpoints {
+  @include media.min($device-size) {
+    $infix: if($device-size == 0, '', '-#{$breakpoint}');
+
+    @each $key, $utility in $utilities {
+      @if meta.type-of($utility) == 'map' and (map.get($utility, responsive) or $infix == '') {
+        @include generate-utility($utility, $infix);
+      }
+    }
+  }
+}

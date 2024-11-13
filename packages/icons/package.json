@@ -1,0 +1,57 @@
+{
+  "name": "@swisspost/design-system-icons",
+  "version": "9.0.0-next.4",
+  "description": "A collection of Swiss Post icons intended for use with the Design System.",
+  "author": "Swiss Post <design-system@post.ch>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git"
+  },
+  "homepage": "https://design-system.post.ch",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "linkDirectory": true
+  },
+  "files": [
+    "public"
+  ],
+  "private": false,
+  "scripts": {
+    "dev": "http-server ./public -o -a localhost -p 9330",
+    "fetchSVGs": "ts-node src/index.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:updatesnapshots": "jest -u",
+    "lint": "eslint **/*.{js,ts}"
+  },
+  "devDependencies": {
+    "@tsconfig/node18": "18.2.4",
+    "@types/jest": "29.5.12",
+    "@types/mock-fs": "4.13.4",
+    "@types/node": "20.14.14",
+    "@types/node-fetch": "2.6.11",
+    "@typescript-eslint/eslint-plugin": "7.18.0",
+    "@typescript-eslint/parser": "7.18.0",
+    "dotenv": "16.4.5",
+    "eslint": "8.57.0",
+    "http-server": "14.1.1",
+    "https-proxy-agent": "7.0.5",
+    "jest": "29.7.0",
+    "mock-fs": "5.2.0",
+    "node-fetch": "2.7.0",
+    "svgo": "3.3.2",
+    "ts-jest": "29.2.4",
+    "ts-node": "10.9.2",
+    "typescript": "5.5.4"
+  },
+  "keywords": [
+    "icons",
+    "design-system",
+    "ui",
+    "frontend"
+  ]
+}

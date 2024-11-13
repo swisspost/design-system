@@ -1,0 +1,27 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+post-list {
+  display: flex;
+  gap: var(--post-list-title-gap);
+  flex-direction: column;
+  align-items: flex-start;
+
+  & > div[role='list'] {
+    flex-direction: column;
+    display: flex;
+    gap: var(--post-list-item-gap);
+  }
+
+  &[horizontal]:not([horizontal='false']) {
+    flex-direction: row;
+    align-items: baseline;
+    & > div[role='list'] {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  > .list-title.visually-hidden {
+    @include post.visually-hidden();
+  }
+}

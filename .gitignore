@@ -1,0 +1,31 @@
+# Dependencies & lock files
+node_modules/
+bower_components/
+
+# Lockfiles other than pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Log files
+.pnpm-debug.log
+lerna-debug.log
+
+# System Files
+.DS_Store
+styles/stylelint-report.txt
+
+# dotfiles
+.env
+.envrc
+.secrets
+
+# Cypress
+**/cypress/videos/
+**/cypress/screenshots/
+**/cypress.env.json
+
+# Stencil
+**/stencil-generated/
+
+# Local Netlify folder
+.netlify

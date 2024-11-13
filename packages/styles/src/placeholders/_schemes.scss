@@ -1,0 +1,10 @@
+@use '../tokens/temp/scheme';
+@use './../mixins/tokens';
+
+%color-scheme-light {
+  @include tokens.from(scheme.$post-light);
+}
+
+%color-scheme-dark {
+  @include tokens.from(scheme.$post-dark);
+}

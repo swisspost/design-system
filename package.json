@@ -1,0 +1,109 @@
+{
+  "name": "@swisspost/design-system",
+  "description": "The Swiss Post Design System pattern library for a consistent and accessible user experience across the web platform.",
+  "author": "Swiss Post <design-system@post.ch>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git"
+  },
+  "homepage": "https://design-system.post.ch",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
+  "scripts": {
+    "bootstrap": "pnpm install && pnpm -r build",
+    "start": "pnpm docs:start",
+    "start:clean": "pnpm bootstrap && pnpm start",
+    "test": "pnpm -r test",
+    "unit": "pnpm -r unit",
+    "e2e": "start-server-and-test docs:headless 9001 'pnpm -r --stream e2e'",
+    "e2e:ci": "start-server-and-test docs:headless 9001 'pnpm --filter \"...[origin/main]\" --stream e2e:ci'",
+    "snapshots": "start-server-and-test 'pnpm docs:headless' 9001 'pnpm --filter design-system-documentation snapshots'",
+    "docs": "pnpm docs:start",
+    "docs:only": "pnpm --filter design-system-documentation start",
+    "docs:start": "pnpm --filter design-system-tokens build && pnpm --filter design-system-documentation... --parallel --stream start",
+    "docs:build": "pnpm --filter design-system-documentation build",
+    "docs:headless": "pnpm --filter design-system-documentation start:headless",
+    "docs:test": "pnpm --filter design-system-documentation test",
+    "docs:e2e": "start-server-and-test docs:headless 9001 'pnpm --filter design-system-documentation e2e'",
+    "docs:e2e:watch": "start-server-and-test docs:headless 9001 'pnpm --filter design-system-documentation e2e:watch'",
+    "styles": "pnpm styles:start",
+    "styles:start": "pnpm --filter design-system-styles start",
+    "styles:play": "pnpm --filter design-system-styles play",
+    "styles:build": "pnpm --filter design-system-styles build",
+    "styles:lint": "pnpm --filter design-system-styles lint",
+    "styles:lint:fix": "pnpm --filter design-system-styles lint:fix",
+    "styles:test": "pnpm --filter design-system-styles unit",
+    "components": "pnpm components:start",
+    "components:start": "pnpm --filter design-system-components dev",
+    "components:build": "pnpm --filter design-system-components build",
+    "components:generate": "pnpm --filter design-system-components generate",
+    "components:lint": "pnpm --filter design-system-components lint",
+    "components:test": "pnpm --filter design-system-components test",
+    "components:unit": "pnpm --filter design-system-components unit",
+    "components:unit:watch": "pnpm --filter design-system-components unit:watch",
+    "components:e2e": "start-server-and-test docs:headless 9001 'pnpm --filter design-system-components e2e'",
+    "components:e2e:watch": "start-server-and-test docs:headless 9001 'pnpm --filter design-system-components e2e:watch'",
+    "components:snapshots": "start-server-and-test docs:headless 9001 'pnpm --filter design-system-components snapshots'",
+    "components-angular:start": "pnpm --filter design-system-components-angular-workspace start",
+    "components-angular:build": "pnpm --filter design-system-components-angular-workspace build",
+    "components-angular:e2e": "pnpm --filter design-system-components-angular-workspace e2e",
+    "components-angular:e2e:watch": "pnpm --filter design-system-components-angular-workspace e2e:watch",
+    "header": "pnpm header:start",
+    "header:start": "pnpm --filter internet-header dev",
+    "header:build": "pnpm --filter internet-header build",
+    "header:test": "pnpm --filter internet-header test",
+    "header:unit": "pnpm --filter internet-header unit",
+    "header:unit:watch": "pnpm --filter internet-header unit:watch",
+    "header:e2e": "start-server-and-test docs:headless 9001 'pnpm --filter internet-header e2e'",
+    "header:e2e:watch": "start-server-and-test docs:headless 9001 'pnpm --filter internet-header e2e:watch'",
+    "header:snapshots": "start-server-and-test docs:headless 9001 'pnpm --filter internet-header snapshots'",
+    "intranet-header": "pnpm intranet-header:start",
+    "intranet-header:start": "pnpm --filter design-system-intranet-header-workspace start",
+    "icons": "pnpm icons:start",
+    "icons:start": "pnpm --filter design-system-icons dev",
+    "icons:test": "pnpm --filter design-system-icons test",
+    "icons:unit": "pnpm --filter design-system-icons test",
+    "icons:unit:watch": "pnpm --filter design-system-icons test:watch",
+    "icons:lint": "pnpm --filter design-system-icons lint",
+    "migrations:build": "pnpm --filter design-system-migrations build",
+    "migrations:lint": "pnpm --filter design-system-migrations lint",
+    "nextjs": "pnpm nextjs:start",
+    "nextjs:start": "pnpm --filter design-system-nextjs-integration dev",
+    "nextjs:build": "pnpm --filter design-system-nextjs-integration build",
+    "nextjs:lint": "pnpm --filter design-system-nextjs-integration lint",
+    "changeset:publish": "pnpm changeset publish",
+    "changeset:version": "pnpm changeset version && pnpm install --lockfile-only",
+    "tokens:build": "pnpm --filter design-system-tokens build",
+    "tokens:build:verbose": "pnpm --filter design-system-tokens build:verbose",
+    "primeng": "pnpm primeng:start",
+    "primeng:start": "pnpm --filter design-system-styles-primeng-workspace start",
+    "primeng:build": "pnpm --filter design-system-styles-primeng-workspace build",
+    "primeng:lint": "pnpm --filter design-system-styles-primeng-workspace lint",
+    "primeng:lint:fix": "pnpm --filter design-system-styles-primeng-workspace lint:fix",
+    "tokens:usage": "node ./utilities/token-checker.cjs"
+  },
+  "devDependencies": {
+    "@changesets/cli": "2.27.7",
+    "start-server-and-test": "2.0.5"
+  },
+  "optionalDependencies": {
+    "@web-types/lit": "2.0.0-3"
+  },
+  "engines": {
+    "node": "20"
+  },
+  "packageManager": "pnpm@9.6.0",
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": {},
+      "allowedVersions": {
+        "@typescript-eslint/eslint-plugin": ">=7",
+        "@typescript-eslint/parser": ">=7",
+        "zone.js": ">=0.14"
+      }
+    },
+    "overrides": {}
+  }
+}

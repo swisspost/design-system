@@ -1,0 +1,28 @@
+@use '../functions/tokens';
+@use '../tokens/components';
+@use './../mixins/utilities';
+
+tokens.$default-map: components.$post-close;
+
+.btn-icon-close {
+  padding: 0;
+  border: unset;
+  min-height: unset;
+  min-width: unset;
+  width: tokens.get('close-size');
+  height: tokens.get('close-size');
+  border-radius: tokens.get('close-border-radius');
+  background-color: tokens.get('close-enabled-bg');
+  color: tokens.get('close-enabled-fg');
+
+  > post-icon {
+    width: tokens.get('close-icon-size');
+    height: tokens.get('close-icon-size');
+  }
+
+  @include utilities.not-disabled-hover() {
+    cursor: pointer;
+    background-color: tokens.get('close-hover-bg');
+    color: tokens.get('close-hover-fg');
+  }
+}

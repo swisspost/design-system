@@ -1,0 +1,6 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+.topic-teaser-full-width-storybook > div > div:first-child {
+  overflow: hidden;
+  @include post.responsive-size('huge', 'padding-bottom', 'calc($value + 2rem)');
+}

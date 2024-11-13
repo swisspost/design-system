@@ -1,0 +1,43 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+.addon-label {
+  color: post.$body-color !important;
+}
+
+.addon-dropdown {
+  min-width: 12rem;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: post.$size-line;
+  position: absolute;
+  top: -5px;
+  right: 0;
+  padding: post.$size-mini;
+  background-color: post.$white;
+  border: post.$border-width solid post.$border-color;
+  border-radius: post.$border-radius;
+  font-size: post.$font-size-sm;
+
+  .addon-dropdown__item {
+    display: block;
+    padding: post.$size-mini post.$size-small-regular;
+    border-radius: post.$border-radius-sm;
+    text-decoration: none;
+    color: post.$body-color !important;
+
+    &:hover {
+      background-color: post.$gray-10;
+    }
+
+    &.active {
+      background-color: post.$yellow;
+    }
+  }
+}
+
+.addon-button {
+  post-icon {
+    font-size: post.$font-size-20;
+    margin-inline-end: post.$size-line;
+  }
+}

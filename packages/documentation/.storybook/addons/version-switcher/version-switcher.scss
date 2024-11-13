@@ -1,0 +1,37 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+.version-switcher__loading {
+  display: flex;
+  align-items: center;
+  font-size: post.$font-size-14;
+}
+
+.version_switcher__sizing_placeholder {
+  visibility: hidden !important;
+}
+
+.version-switcher__dropdown {
+  .item__title {
+    display: block;
+  }
+
+  .item__deps {
+    display: flex;
+    gap: post.$size-small-regular;
+  }
+
+  .deps_dep {
+    display: flex;
+    gap: post.$size-line;
+    font-size: 85%;
+  }
+
+  .dep__icon {
+    display: block;
+    height: 1.1em;
+  }
+
+  .dep__version {
+    white-space: nowrap;
+  }
+}

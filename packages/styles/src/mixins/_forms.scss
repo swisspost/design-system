@@ -1,0 +1,60 @@
+@use './../variables/color';
+@use './../variables/type';
+@use './../variables/components/form-validation';
+@use './../variables/components/forms';
+@use './../variables/components/tooltips';
+@use './../mixins/utilities';
+
+// Placeholder in input fields
+
+@mixin placeholder() {
+  &::placeholder {
+    @content;
+  }
+
+  // For very old Edge
+  /* stylelint-disable */
+  &::input-placeholder {
+    @content;
+  }
+  /* stylelint-enable */
+}
+
+@mixin icon-placement {
+  padding-right: form-validation.$form-feedback-icon-offset +
+    form-validation.$form-feedback-icon-size;
+  background-repeat: no-repeat;
+  background-position: calc(100% - #{form-validation.$form-feedback-icon-offset}) center;
+}
+
+@mixin form-rg {
+  padding: forms.$input-padding-y-rg forms.$input-padding-x-rg;
+  font-size: type.$font-size-regular;
+  line-height: forms.$input-line-height-rg;
+}
+
+@mixin form-sm {
+  font-size: type.$font-size-14;
+  line-height: forms.$input-line-height-sm;
+  min-height: forms.$input-height-sm;
+  padding-block: forms.$input-padding-y-sm;
+  padding-inline: forms.$input-padding-x-sm;
+}
+
+@mixin form-lg {
+  font-size: type.$font-size-16 !important;
+  line-height: forms.$input-line-height-lg;
+  min-height: forms.$input-height-lg;
+}
+
+/* Deprecated use the one in utilities.scss */
+@mixin focus-outline {
+  outline: none;
+  outline-offset: forms.$input-focus-outline-thickness;
+
+  /* Compatibility with button-group */
+  &:is(:focus-visible, :focus-within, .pretend-focus) {
+    outline: forms.$input-focus-outline-thickness solid var(--post-contrast-color);
+    @content;
+  }
+}

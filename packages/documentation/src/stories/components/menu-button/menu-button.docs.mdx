@@ -1,0 +1,19 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as MenuButtonStories from './menu-button.stories';
+
+<Meta of={MenuButtonStories} />
+
+<div className="docs-title">
+  # Menu Button
+
+  <nav>
+    <link-design of={JSON.stringify(MenuButtonStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  A dropdown component for displaying a list of links or actions with flexible alignment.
+</div>
+
+<Canvas sourceState="shown" of={MenuButtonStories.Default} />
+<Controls of={MenuButtonStories.Default} />

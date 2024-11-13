@@ -1,0 +1,15 @@
+// Attention! Do not import components due to namespace merging which causes
+// naming conflicts between component variable files. @use each component
+// variable file independently and properly namespaced
+
+@forward 'animation';
+@forward 'breakpoints';
+@forward 'color';
+@forward 'commons';
+@forward 'elevation';
+@forward 'grid';
+@forward 'icons';
+@forward 'options';
+@forward 'spacing';
+@forward 'type';
+@forward 'components';

@@ -1,0 +1,15 @@
+@use '../functions/tokens';
+@use '../tokens/components';
+@use '../mixins/utilities';
+
+tokens.$default-map: components.$post-app-store-badge;
+
+.app-store-badge {
+  display: inline-flex;
+  border-radius: tokens.get('app-store-border-radius');
+
+  img {
+    display: block;
+    height: tokens.get('app-store-height');
+  }
+}

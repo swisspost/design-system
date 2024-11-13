@@ -1,0 +1,25 @@
+/* 
+  Initial visibility of the components is set to hidden to prevent 'flickering' effect due to stencil js/scss delay.
+*/
+
+:where(
+    post-list,
+    post-list-item,
+    post-accordion,
+    post-accordion-item,
+    post-alert,
+    post-card-control,
+    post-collapsible,
+    post-icon,
+    post-logo,
+    post-popover,
+    post-popovercontainer,
+    post-rating,
+    post-tab-header,
+    post-tab-panel,
+    post-tabs,
+    post-tag,
+    post-tooltip
+  ):not(:defined) {
+  visibility: hidden;
+}

@@ -1,0 +1,162 @@
+@forward './../variables/options';
+
+@use './../variables/components/chip';
+@use './../mixins/utilities';
+@use './../mixins/chip' as chip-mx;
+@use './../mixins/icons' as icons-mx;
+@use './../placeholders/badge' as badge-ph;
+
+.chip-dismissible {
+  position: relative;
+  padding-inline-start: chip.$chip-dismissable-padding-start;
+  gap: chip.$chip-gap;
+  @include utilities.focus-style-none();
+  @include chip-mx.chip-styles();
+
+  &::before,
+  &::after {
+    content: '';
+    display: inline-block;
+    flex: 0 0 auto;
+    height: chip.$chip-close-button-height;
+    width: chip.$chip-close-button-height;
+    transition: chip.$chip-transition;
+  }
+
+  &::before {
+    border-radius: chip.$chip-close-button-border-radius;
+  }
+
+  &:hover::before {
+    background-color: chip.$chip-hover-bg;
+    border: chip.$chip-close-button-border;
+  }
+
+  &::after {
+    @include icons-mx.icon(chip.$chip-close-button-icon);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  // set the focus ring on the close button only
+  @include utilities.focus-style('::before') {
+    background-color: chip.$chip-hover-bg;
+  }
+
+  @include utilities.disabled-style();
+}
+
+.chip-filter {
+  display: inline-block;
+  max-width: 100%;
+
+  @include utilities.focus-style() {
+    border-radius: chip.$chip-border-radius;
+    width: fit-content;
+  }
+
+  &-label {
+    cursor: pointer;
+    @include chip-mx.chip-styles();
+
+    > .badge {
+      box-sizing: border-box;
+      min-width: var(--post-badge-height);
+      padding-inline: calc(var(--post-badge-padding-x) * 0.75);
+      color: chip.$chip-hover-color;
+      background-color: chip.$chip-hover-bg;
+      border: chip.$chip-border-width solid chip.$chip-border-color;
+      transition: chip.$chip-transition;
+    }
+  }
+
+  &-input {
+    @include utilities.visuallyhidden;
+
+    &:checked {
+      + .chip-filter-label {
+        color: chip.$chip-active-color;
+        background-color: chip.$chip-active-bg;
+
+        > .badge {
+          background-color: chip.$chip-bg;
+        }
+
+        @include utilities.high-contrast-mode() {
+          border-color: Highlight;
+        }
+      }
+
+      &:disabled + .chip-filter-label {
+        background-color: chip.$chip-disabled-active-bg;
+
+        @include utilities.high-contrast-mode() {
+          > .chip-text {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      &:not(:disabled) {
+        + .chip-filter-label > .chip-text {
+          text-decoration: underline;
+          transition: text-decoration 150ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        + .chip-filter-label:hover > .chip-text {
+          text-decoration-color: transparent;
+
+          @include utilities.high-contrast-mode() {
+            text-decoration-color: initial;
+          }
+        }
+      }
+    }
+
+    &:not(:checked) + .chip-filter-label:hover {
+      color: chip.$chip-hover-color;
+      background-color: chip.$chip-hover-bg;
+
+      > .badge {
+        background-color: chip.$chip-bg;
+      }
+    }
+
+    @include utilities.disabled-style('+ .chip-filter-label') {
+      background-color: chip.$chip-disabled-bg;
+
+      @include utilities.high-contrast-mode() {
+        > .badge {
+          color: GrayText;
+          border-color: GrayText;
+        }
+      }
+    }
+  }
+}
+
+.chip-sm {
+  &.chip-dismissible {
+    @include chip-mx.chip-styles-sm();
+    padding-inline-start: chip.$chip-dismissable-padding-start;
+    gap: chip.$chip-gap-sm;
+
+    &::before,
+    &::after {
+      height: chip.$chip-close-button-height-sm;
+      width: chip.$chip-close-button-height-sm;
+    }
+  }
+
+  &.chip-filter > .chip-filter-label {
+    @include chip-mx.chip-styles-sm();
+
+    > .badge {
+      @extend %badge-sm;
+      line-height: chip.$chip-badge-line-height;
+      border-width: chip.$chip-badge-border-width;
+      padding-inline: calc(var(--post-badge-padding-x) * 1.2);
+    }
+  }
+}

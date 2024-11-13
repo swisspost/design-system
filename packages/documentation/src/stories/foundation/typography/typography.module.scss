@@ -1,0 +1,15 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+:export {
+  base_fontSize: 16px;
+
+  @each $name, $size in post.$font-size-map {
+    fontSizes_#{$name}: $size;
+  }
+
+  @each $curveName, $curve in post.$font-curves {
+    @each $key, $value in $curve {
+      fontCurves_#{$curveName}_#{$key}: $value;
+    }
+  }
+}

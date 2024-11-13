@@ -1,0 +1,8 @@
+@use '../variables/elevation';
+@use '../mixins/elevation' as elevation-mx;
+
+@each $key, $value in elevation.$elevation-map {
+  .#{$key} {
+    @include elevation-mx.elevation($key);
+  }
+}

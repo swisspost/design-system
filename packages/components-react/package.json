@@ -1,0 +1,62 @@
+{
+  "name": "@swisspost/design-system-components-react",
+  "version": "9.0.0-next.4",
+  "description": "Design System React Components for easy integration with the React ecosystem",
+  "author": "Swiss Post <design-system@post.ch>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git"
+  },
+  "homepage": "https://design-system.post.ch",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "linkDirectory": true
+  },
+  "scripts": {
+    "build": "pnpm run clean && pnpm run compile",
+    "clean": "rimraf dist",
+    "compile": "pnpm run tsc",
+    "tsc": "tsc -p .",
+    "lint": "eslint src/**/*.ts"
+  },
+  "dependencies": {
+    "@swisspost/design-system-components": "workspace:9.0.0-next.4"
+  },
+  "devDependencies": {
+    "@types/node": "20.14.14",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "@typescript-eslint/eslint-plugin": "7.18.0",
+    "@typescript-eslint/parser": "7.18.0",
+    "eslint": "8.57.0",
+    "eslint-config-love": "43.1.0",
+    "eslint-plugin-import": "2.29.1",
+    "eslint-plugin-n": "16.6.2",
+    "eslint-plugin-promise": "6.6.0",
+    "eslint-plugin-react": "7.35.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "rimraf": "6.0.1",
+    "typescript": "*"
+  },
+  "peerDependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "keywords": [
+    "components",
+    "react",
+    "design-system",
+    "ui",
+    "frontend"
+  ]
+}

@@ -1,0 +1,76 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as SpacingStories from './spacing.stories';
+
+export const firstBreakpoint = Object.values(SpacingStories.SCSS_VARIABLES.firstBreakpoint)[0];
+export const breakpoints = Object.values(SpacingStories.SCSS_VARIABLES.breakpoints).map((breakpoint, i, arr) => [breakpoint, i !== arr.length - 1]);
+
+<Meta of={SpacingStories} />
+
+# Spacing
+
+<div className="lead">
+Ensure consistent spacing across all pages.
+</div>
+
+## Margin and Padding
+
+<div className="alert alert-info">
+  <h4 className="alert-heading">Avoid applying spacing classes to grid elements (e.g. `.row`, `.col`, `.col-*`).</h4>
+  <p>The grid system uses negative margins and positive padding along the horizontal axis, and applying additional spacing classes can affect the layout unless done with careful consideration.</p>
+</div>
+
+The naming convention for spacing utilities follows this pattern:
+- For all breakpoints (<code>{firstBreakpoint}</code> and up): `{property}{sides}-{size}`
+- Starting from a specific breakpoint ({breakpoints.map(([b, isLast]) => (<span key={b}><code>{b}</code>{isLast ? ', ' : ''}</span>))}): `{property}{sides}-{breakpoint}-{size}`
+
+### Properties
+
+- `m`: for classes that set <strong>margin</strong>
+- `p`: for classes that set <strong>padding</strong>
+
+### Sides
+
+- blank: for classes that set a margin or padding on <strong>all sides</strong> (top, bottom, left, and right)
+- `x`: for classes that set a <strong>horizontal</strong> margin or padding (left and right)
+- `y`: for classes that set a <strong>vertical</strong> margin or padding (top and bottom)
+- `t`: for classes that set a margin or padding at the <strong>top</strong>
+- `b`: for classes that set a margin or padding at the <strong>bottom</strong>
+- `s`: for classes that set a margin or padding at the <strong>start</strong> (left in LTR)
+- `e`: for classes that set a margin or padding at the <strong>end</strong> (right in LTR)
+
+### Sizes
+
+See all available sizes in the example bellow.
+
+### Example
+
+<Canvas sourceState="shown" of={SpacingStories.MarginAndPadding} />
+<div className="hide-col-default">
+  <Controls of={SpacingStories.MarginAndPadding} />
+</div>
+
+## Gap
+
+When using `display: grid` or `display: flex`, you can use the gap utilities to manage spacing between child elements.
+These classes simplify the process of managing spacing without needing to individually add margin utilities to each child element.
+
+The format for gap classes is as follows:
+- For all breakpoints (<code>{firstBreakpoint}</code> and up): `{property}-{size}`
+- Starting from a specific breakpoint ({breakpoints.map(([b, isLast]) => (<span key={b}><code>{b}</code>{isLast ? ', ' : ''}</span>))}): `gap-{breakpoint}-{size}`
+
+### Properties
+
+- `row-gap`: for classes that set a gap between <strong>rows</strong>
+- `column-gap`: for classes that set a gap between <strong>columns</strong>
+- `gap`: for classes that set a gap between both <strong>columns and rows</strong>
+
+### Sizes
+
+See all available sizes in the example bellow.
+
+### Example
+
+<Canvas sourceState="shown" of={SpacingStories.Gap} />
+<div className="hide-col-default">
+  <Controls of={SpacingStories.Gap} />
+</div>

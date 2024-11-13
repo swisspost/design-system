@@ -1,0 +1,54 @@
+@use 'sass:meta';
+@use 'sass:map';
+@use 'sass:string';
+@use 'sass:list';
+
+$_namespace: 'post';
+$default-map: null !default;
+
+/**
+ * @function get($key, $map)
+ * Gets a token-key, normalizes and resolves it with the given map or $default-map.
+ *
+ * @param {string} $key - The full token key (including prefix).
+ * @param {map} $map - The map to get the token key from (optional).
+ *
+ * @returns {any} $value of $normalized-key in the specified map
+ *
+ * @example
+ * @use '../tokens/components' as components;
+ * @use '../functions/tokens' as tokens;
+ *
+ * // set the default map to use or always use the second function parameter to specify a different map.
+ * tokens.$default-map: components.$post-badge;
+ *
+ * selector {
+ *   background-color: tokens.get('post-badge-bg');
+ *   color: tokens.get('badge-fg');
+ *   border-width: tokens.get('app-store-focus-outline-width', components.$post-app-store-badge);  // use a different map than the default one
+ * }
+ */
+@function get($key, $map: $default-map) {
+  $normalized-key: normalize-key($key);
+
+  @if not meta.type-of($map) == 'map' {
+    @error 'No map provided or provided $map is not valid. Got #{meta.type-of($map)} instead.';
+  }
+
+  @if not map.has-key($map, $normalized-key) {
+    @error 'No such key "#{$normalized-key}" in given map! Available keys are: #{meta.inspect(map.keys($map))}.';
+  }
+
+  @return map.get($map, $normalized-key);
+}
+
+@function normalize-key($key) {
+  $key-parts: string.split($key, '-');
+  $key-contains-namespace: list.nth($key-parts, 1) == $_namespace;
+
+  @if not $key-contains-namespace {
+    $key: '#{$_namespace}-#{$key}';
+  }
+
+  @return $key;
+}

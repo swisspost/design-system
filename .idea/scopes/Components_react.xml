@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Components-react" pattern="file[design-system]:packages/components-react//*" />
+</component>

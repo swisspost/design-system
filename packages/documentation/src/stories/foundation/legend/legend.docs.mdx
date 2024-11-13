@@ -1,0 +1,17 @@
+import { Meta, Controls, Canvas } from '@storybook/blocks';
+import * as LegendStories from './legend.stories';
+
+<Meta of={LegendStories} />
+
+<div className="docs-title">
+  # Legend
+  <nav>
+    <link-design of={JSON.stringify(LegendStories)}></link-design>
+  </nav>
+</div>
+
+A legend is in general the title of a group of related (interactive) elements in a form. Not to be confused with caption.
+
+<Canvas of={LegendStories.Default} sourceState="shown" />
+
+<Controls of={LegendStories.Default} />

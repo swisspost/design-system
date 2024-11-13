@@ -1,0 +1,181 @@
+@use 'sass:map';
+@use 'sass:list';
+@use './../functions/contrast' as contrast-fn;
+
+/**
+ * Colors used by the post style guide
+ */
+
+// Grayscale
+$gray-10: hsl(0, 0%, 90%);
+$gray-20: hsl(0, 0%, 80%);
+$gray-40: hsl(0, 0%, 60%);
+$gray-60: hsl(0, 0%, 40%);
+$gray-80: hsl(0, 0%, 20%);
+
+// Black alpha
+$black-alpha-10: rgba(0, 0, 0, 0.1);
+$black-alpha-20: rgba(0, 0, 0, 0.2);
+$black-alpha-40: rgba(0, 0, 0, 0.4);
+$black-alpha-60: rgba(0, 0, 0, 0.6);
+$black-alpha-80: rgba(0, 0, 0, 0.8);
+
+// White alpha
+$white-alpha-10: rgba(255, 255, 255, 0.1);
+$white-alpha-20: rgba(255, 255, 255, 0.2);
+$white-alpha-40: rgba(255, 255, 255, 0.4);
+$white-alpha-60: rgba(255, 255, 255, 0.6);
+$white-alpha-80: rgba(255, 255, 255, 0.8);
+
+// Brand
+$yellow: #fc0; // The one and only
+$white: #fff;
+$light: #faf9f8;
+$gray: #f4f3f1;
+$dark: $gray-80;
+$black: #000;
+$primary: $gray-80;
+$secondary: $gray-60;
+
+// Focus
+$focus-light: #1976c8;
+$focus-dark: $white;
+
+// Signal Colors
+$success: #2c871d; /* When value is changed, please changed as well the copied value in ../functions/_contrast.scss, @function light-or-dark()*/
+$error: #a51728;
+$warning: #f49e00;
+$info: #cce4ee;
+
+$success-background: #c0debb;
+$error-background: #ffdade;
+$warning-background: #fce2b2;
+
+/**
+ * Maps. Allow maps to have custom colors from the project
+ * by always merging into a default empty map
+ */
+
+$post-grays: () !default;
+$post-grays: map.merge(
+  $post-grays,
+  (
+    'gray-10': $gray-10,
+    'gray-20': $gray-20,
+    'gray-40': $gray-40,
+    'gray-60': $gray-60,
+    'gray-80': $gray-80,
+  )
+);
+
+$post-black-alphas: () !default;
+$post-black-alphas: map.merge(
+  $post-black-alphas,
+  (
+    'alpha-10': $black-alpha-10,
+    'alpha-20': $black-alpha-20,
+    'alpha-40': $black-alpha-40,
+    'alpha-60': $black-alpha-60,
+    'alpha-80': $black-alpha-80,
+  )
+);
+
+$post-white-alphas: () !default;
+$post-white-alphas: map.merge(
+  $post-white-alphas,
+  (
+    'alpha-10': $white-alpha-10,
+    'alpha-20': $white-alpha-20,
+    'alpha-40': $white-alpha-40,
+    'alpha-60': $white-alpha-60,
+    'alpha-80': $white-alpha-80,
+  )
+);
+
+$signal-colors: () !default;
+$signal-colors: map.merge(
+  $signal-colors,
+  (
+    'success': $success,
+    'warning': $warning,
+    'error': $error,
+    'info': $info,
+  )
+);
+
+$signal-background-colors: () !default;
+$signal-background-colors: map.merge(
+  $signal-background-colors,
+  (
+    'success-background': $success-background,
+    'warning-background': $warning-background,
+    'error-background': $error-background,
+  )
+);
+
+// List of possible background colors with some synonyms for easier usage
+$background-colors: () !default;
+$background-colors: map.merge(
+  $background-colors,
+  (
+    'yellow': $yellow,
+    'white': $white,
+    'light': $light,
+    'gray': $gray,
+    'dark': $dark,
+    'black': $black,
+    'primary': $primary,
+    'secondary': $secondary,
+  )
+);
+
+$notification-colors: () !default;
+$notification-colors: list.join(
+  $notification-colors,
+  (
+    // When changed, check $notification-variants as well in packages/styles/src/variables/components/_notification.scss
+    'primary' $gray-80,
+    'success' $success,
+    'danger' $error,
+    'warning' $warning,
+    'info' $info,
+    'gray' $gray,
+    // deprecated
+    'notification' $gray-80,
+    'error' $error
+  )
+);
+
+// Merge with the other color maps
+$background-colors: map.merge($background-colors, $signal-colors);
+$background-colors: map.merge($background-colors, $signal-background-colors);
+
+// Compile a list of light and dark backgrounds, used in the :is selector mixin at mixins/color
+$_backgrounds: (
+  light: (),
+  dark: (),
+) !default;
+
+@each $color-name, $color in $background-colors {
+  $key: contrast-fn.light-or-dark($color);
+  $values: list.append(map.get($_backgrounds, $key), '.bg-#{$color-name}', $separator: comma);
+  $_backgrounds: map.set($_backgrounds, $key, $values);
+}
+
+@each $color-name, $color in $notification-colors {
+  $key: contrast-fn.light-or-dark($color);
+  $values: list.join(
+    map.get($_backgrounds, $key),
+    '.alert-#{$color-name}' 'post-alert[type=#{$color-name}]',
+    $separator: comma
+  );
+  $_backgrounds: map.set($_backgrounds, $key, $values);
+}
+
+$backgrounds: list.join(
+  map.get($_backgrounds, light),
+  map.get($_backgrounds, dark),
+  $separator: comma
+);
+$dark-backgrounds: map.get($_backgrounds, dark) !default;
+$light-backgrounds: map.get($_backgrounds, light) !default;

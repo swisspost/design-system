@@ -1,0 +1,119 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+.docs-header {
+  margin-top: -4rem;
+  background-image: url('/assets/images/header.png');
+  background-repeat: no-repeat;
+  background-position: center left 60vw;
+  background-size: auto 100%;
+
+  .container {
+    padding-right: 20vw;
+  }
+
+  @include post.media-breakpoint-up(sm) {
+    .container {
+      padding-right: 30vw;
+    }
+  }
+
+  @include post.media-breakpoint-up(rg) {
+    .container {
+      padding-right: 35vw;
+    }
+  }
+
+  @include post.media-breakpoint-up(xl) {
+    background-position: center right;
+  }
+
+  @include post.media-breakpoint-up(xxl) {
+    .container {
+      padding-right: 30%;
+    }
+  }
+}
+
+.docs-alert {
+  margin-top: -2rem;
+  margin-bottom: 3rem;
+}
+
+.docs-footer {
+  ul.list-profile {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .avatar {
+    display: inline-flex;
+    gap: calc(1rem - 6px * 2);
+    align-items: center;
+    text-decoration: none;
+
+    .avatar-image {
+      border-radius: 50%;
+
+      img {
+        display: block;
+        position: relative;
+        box-sizing: content-box;
+        z-index: 2;
+        width: 4rem;
+        border: 6px solid transparent;
+        border-radius: inherit;
+      }
+    }
+
+    .avatar-description {
+      position: relative;
+      padding: 10px;
+      border-radius: 4px;
+
+      span {
+        display: block;
+        position: relative;
+        z-index: 2;
+        font-size: 1rem;
+        line-height: 1.2;
+
+        &:first-child {
+          font-weight: bold;
+          font-size: 0.6875rem;
+        }
+      }
+
+      &::after {
+        display: block;
+        content: '';
+        position: absolute;
+        inset: 0;
+        left: calc(-1rem * 2);
+        z-index: 1;
+        border-radius: 4px;
+      }
+    }
+
+    &:hover {
+      .avatar-image {
+        box-shadow: 0.25px 1px 1px rgba(0, 0, 0, 0.1), 1px 2px 2.5px 1px rgba(0, 0, 0, 0.2);
+
+        img {
+          border-color: white;
+        }
+      }
+
+      .avatar-description {
+        &::after {
+          background-color: white;
+          box-shadow: 0.25px 1px 1px rgba(0, 0, 0, 0.1), 1px 2px 2.5px 1px rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+  }
+}

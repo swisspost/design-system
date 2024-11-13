@@ -1,0 +1,20 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as Skiplinks from './skiplinks.stories.ts';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={Skiplinks} />
+
+<div className="docs-title">
+# Skiplinks
+</div>
+
+<div className="lead">
+  People using keyboard, screen readers, switch controls and other assistive technologies use skip
+  links to reach main content or other important sections easier and faster.
+</div>
+
+For the skiplinks to work, don't forget to add corresponding ID to the element that needs to be skipped to.
+
+<Canvas sourceState="shown" of={Skiplinks.Default} />
+
+<StylesPackageImport components={['skiplinks']} />

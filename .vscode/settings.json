@@ -1,0 +1,13 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[mdx]": {
+    "editor.defaultFormatter": null,
+    "editor.formatOnSave": false
+  },
+  "files.eol": "\n",
+  "sonarlint.connectedMode.project": {
+    "connectionId": "swisspost",
+    "projectKey": "swisspost_common-web-frontend"
+  }
+}

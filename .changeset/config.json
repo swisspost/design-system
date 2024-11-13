@@ -1,0 +1,26 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@1.7.0/schema.json",
+  "changelog": [
+    "../packages/changelog-github/dist/index.js",
+    { "repo": "swisspost/design-system" }
+  ],
+  "commit": false,
+  "fixed": [
+    [
+      "@swisspost/design-system-styles",
+      "@swisspost/design-system-tokens",
+      "@swisspost/design-system-components",
+      "@swisspost/design-system-components-angular",
+      "@swisspost/design-system-components-react",
+      "@swisspost/design-system-intranet-header",
+      "@swisspost/design-system-icons",
+      "@swisspost/design-system-migrations",
+      "@swisspost/design-system-styles-primeng"
+    ]
+  ],
+  "linked": [],
+  "access": "restricted",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": []
+}

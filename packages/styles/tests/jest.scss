@@ -1,0 +1,88 @@
+@use "sass:meta";
+@use "sass:math";
+@use "sass:string";
+
+// $a should be equal to $b
+@mixin equal($a, $b) {
+  @if ($a != $b) {
+    @error string.unquote("Expected #{meta.inspect($a)} to equal #{meta.inspect($b)}");
+  }
+}
+
+// $a should not be equal to $b
+@mixin not-equal($a, $b) {
+  @if ($a == $b) {
+    @error string.unquote("Expected #{meta.inspect($a)} not to equal #{meta.inspect($b)}");
+  }
+}
+
+@mixin true($a) {
+  @if ($a != true) {
+    @error string.unquote("Expected #{meta.inspect($a)} to be true.");
+  }
+}
+
+@mixin false($a) {
+  @if ($a != false) {
+    @error string.unquote("Expected #{meta.inspect($a)} to be false.");
+  }
+}
+
+// Ascending
+// Used to evaluate Sass maps like our grid breakpoints.
+// Ported from twitter bootstrap functions
+@mixin is-ascending($map) {
+  $prev-key: null;
+  $prev-val: null;
+  $map-type: meta.type-of($map);
+
+  @if ($map-type != map and $map-type != list) {
+    @error string.unquote("Map #{meta.inspect($map)} has invalid map type of #{$map-type}");
+  }
+
+  @each $key, $val in $map {
+    @if ($map-type == "list") {
+      $val: $key;
+      $prev-val: $prev-key;
+    }
+
+    @if ($prev-val == null) {
+      // Do nothing
+    } @else if not math.compatible($prev-val, $val) {
+      @error string.unquote("Map must be in ascending order, but key '#{$key}' has value #{$val} whose unit makes it incomparable to #{$prev-val}, the value of the previous key '#{$prev-key}' !");
+    } @else if $prev-val > $val {
+      @error string.unquote("Map must be in ascending order, but key '#{$key}' has value #{$val} which isn't greater than #{$prev-val}, the value of the previous key '#{$prev-key}' !");
+    }
+
+    $prev-key: $key;
+    $prev-val: $val;
+  }
+}
+
+@mixin is-descending($map) {
+  $prev-key: null;
+  $prev-val: null;
+  $map-type: meta.type-of($map);
+
+  @if ($map-type != "map" and $map-type != "list") {
+    @error string.unquote("Map #{meta.inspect($map)} has invalid map type of #{$map-type}");
+  }
+
+  @each $key, $val in $map {
+    @if ($map-type == "list") {
+      $val: $key;
+      $prev-val: $prev-key;
+    }
+
+    @if ($prev-val == null) {
+      // Do nothing
+    } @else if (not math.compatible($prev-val, $val)) {
+      @error string.unquote("Map must be in descending order, but key '#{meta.indpect($key)}' has value #{meta.inspect($val)} whose unit makes it incomparable to #{meta.inspect($prev-val)}, the value of the previous key '#{meta.inspect($prev-key)}' !");
+    } @else if ($prev-val < $val) {
+      @error string.unquote("Map must be in ascending order, but key '#{$key}' has value #{$val} which isn't smaller than #{$prev-val}, the value of the previous key '#{$prev-key}' !");
+    }
+
+    $prev-key: $key;
+    $prev-val: $val;
+  }
+}

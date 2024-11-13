@@ -1,0 +1,8 @@
+@use './temp/channel' as channel;
+
+@use './core';
+@use './../mixins/tokens';
+
+:root {
+  @include tokens.from(channel.$post-idk);
+}

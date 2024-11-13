@@ -1,0 +1,36 @@
+@use './../functions/color' as color-fn;
+@use './../functions/contrast' as contrast-fn;
+@use './../placeholders/color' as color-ph;
+
+@use './../variables/color';
+
+// mixin to correctly set CSS variables for any colored background
+@mixin colored-background($color, $allow-alpha: true) {
+  --post-bg-rgb: #{color-fn.rgb-values($color)};
+
+  @if ($allow-alpha) {
+    @extend %color-background-rgba;
+  } @else {
+    @extend %color-background-rgb;
+  }
+
+  @if (contrast-fn.light-or-dark($color) == 'dark') {
+    @extend %color-background-dark-variables;
+  } @else {
+    @extend %color-background-light-variables;
+  }
+}
+
+// Selector for styles to be applied on dark backgrounds
+@mixin on-dark-background($contains: false) {
+  @if $contains == true {
+    &:where(#{color.$dark-backgrounds}),
+    :where(#{color.$dark-backgrounds}) & {
+      @content;
+    }
+  } @else {
+    :where(#{color.$dark-backgrounds}) & {
+      @content;
+    }
+  }
+}

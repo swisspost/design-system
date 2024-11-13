@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Styles playground</title>
+    <link id="tokens" rel="stylesheet" href="src/post-tokens-external.scss" />
+    <link rel="stylesheet" href="src/elements/_index.scss" />
+    <link rel="stylesheet" href="src/components/_index.scss" />
+  </head>
+  <body class="p-4">
+    <h1>Styles package playground</h1>
+    <p class="mb-4">
+      Use this playground for quickly developing HTML/CSS components. Run
+      <code style="background-color: lightgrey; padding: 0.125rem 0.25rem; border-radius: 0.25rem"
+        >pnpm styles:start</code
+      >
+      to get going.
+    </p>
+    <label for="tokens-select">Select tokens package: </label>
+    <select
+      name="tokens"
+      id="tokens-select"
+      value="external"
+      class="mb-4"
+      onchange="document.getElementById('tokens').setAttribute('href', `/src/post-tokens-${this.value}.scss`)"
+    >
+      <option value="external">Post external</option>
+      <option value="internal">Post internal</option>
+    </select>
+    <hr />
+
+    <!-- Place your component markup here -->
+    <button class="btn btn-primary">Primary button</button>
+  </body>
+</html>

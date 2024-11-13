@@ -1,0 +1,29 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import { formatAsMap } from '@/utils/sass-export';
+import * as VerticalAlignStories from './vertical-align.stories';
+
+<Meta of={VerticalAlignStories} />
+
+# Vertical Alignment
+
+<div className="lead">
+  Use the vertical alignment utilities to adjust the alignment of elements.
+</div>
+
+Note that vertical-align applies only to `inline`, `inline-block, `inline-table`, and `table-cell` elements.
+
+## Examples
+
+With inline elements:
+
+<Canvas sourceState="shown" of={VerticalAlignStories.Default} />
+<div className="hide-col-default">
+  <Controls of={VerticalAlignStories.Default} />
+</div>
+
+With table cells:
+
+<Canvas sourceState="shown" of={VerticalAlignStories.tableVersion} />
+<div className="hide-col-default">
+  <Controls of={VerticalAlignStories.tableVersion} />
+</div>

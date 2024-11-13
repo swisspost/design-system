@@ -1,0 +1,66 @@
+@use 'sass:map';
+@use 'sass:color';
+
+@use './../variables/components/button';
+@use './../variables/type';
+@use './../variables/color' as color-var;
+@use './../functions/contrast' as contrast-fn;
+@use 'utilities';
+@use './../mixins/color' as color-mx;
+@use '../functions/tokens';
+@use '../tokens/components';
+
+tokens.$default-map: components.$post-button;
+
+@mixin reset-button {
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  user-select: none;
+  appearance: button; // for input
+}
+
+@mixin button-size($size: md) {
+  min-height: map.get(button.$btn-height-map, $size);
+  gap: map.get(button.$btn-gap-x-map, $size);
+  padding: 0 map.get(button.$btn-padding-x-map, $size);
+
+  > .pi,
+  > post-icon {
+    width: map.get(button.$btn-icon-size-map, $size);
+    height: map.get(button.$btn-icon-size-map, $size);
+  }
+}
+
+@mixin button-variant-def($type, $color) {
+  border-color: tokens.get('button-#{$color}-#{$type}-stroke');
+  background-color: tokens.get('button-#{$color}-#{$type}-bg');
+  color: tokens.get('button-#{$color}-#{$type}-fg');
+}
+
+@mixin button-color-variant($name, $color) {
+  .btn-#{$name} {
+    border-color: transparent;
+    background-color: $color;
+
+    @if (contrast-fn.light-or-dark($color) == 'dark') {
+      color: color-var.$white;
+    } @else {
+      color: color-var.$black;
+    }
+
+    @include utilities.not-disabled-focus-hover() {
+      $darkened-color: color.adjust($color, $lightness: -10%);
+      background-color: $darkened-color;
+
+      @if (contrast-fn.light-or-dark($darkened-color) == 'dark') {
+        color: color-var.$white;
+      } @else {
+        color: color-var.$black;
+      }
+    }
+  }
+}

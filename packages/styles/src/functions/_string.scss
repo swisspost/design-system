@@ -1,0 +1,18 @@
+@use 'sass:string';
+
+@function contains($string, $term) {
+  $index: string.index($string, $term);
+  @return if($index == null, false, true);
+}
+
+@function replace($string, $term, $replacement) {
+  $index: string.index($string, $term);
+
+  @if $index {
+    $before: string.slice($string, 1, $index - 1);
+    $after: string.slice($string, $index + string.length($term));
+    @return $before + $replacement + replace($after, $term, $replacement);
+  }
+
+  @return $string;
+}

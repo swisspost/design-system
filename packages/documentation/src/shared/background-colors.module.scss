@@ -1,0 +1,7 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+:export {
+  @each $name, $value in post.$background-colors {
+    bg-#{$name}: $value;
+  }
+}

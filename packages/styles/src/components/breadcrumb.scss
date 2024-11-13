@@ -1,0 +1,20 @@
+@forward './../variables/options';
+
+@use 'sass:map';
+
+@use './../themes/bootstrap/core' as *;
+@use './../themes/bootstrap/breadcrumbs' as bb;
+
+@use './../variables/type';
+@use './../variables/spacing';
+@use './../variables/components/breadcrumbs';
+@use './../placeholders/text';
+
+.breadcrumb {
+  @extend %font-curve-small;
+  flex-wrap: nowrap;
+  height: map.get(spacing.$post-sizes, 'bigger-big');
+  overflow: hidden;
+  font-weight: type.$font-weight-normal;
+  white-space: nowrap;
+}

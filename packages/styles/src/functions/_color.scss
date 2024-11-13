@@ -1,0 +1,47 @@
+@use 'sass:color';
+@use 'sass:meta';
+@use 'sass:math';
+@use 'sass:string';
+
+// Source: http://thesassway.com/intermediate/mixins-for-semi-transparent-colors
+@function get-solid-color($color, $background: white) {
+  @if (meta.type-of($color) != color or meta.type-of($background) != color) {
+    @error "Please provide a color for this function. Supplied: '#{$color}' and '#{$background}'.";
+  }
+  $percent: color.alpha($color) * 100;
+  $opaque: color.adjust($color, $alpha: 1);
+
+  @return color.mix($opaque, $background, $percent);
+}
+
+@function rgb-values($color) {
+  @if (meta.type-of($color) != color) {
+    @error "Please provide a valid color for this function. Got '#{$color}'";
+  }
+  $red: color.red($color);
+  $green: color.green($color);
+  $blue: color.blue($color);
+
+  @return $red, $green, $blue;
+}
+
+@function get-hex-string($color) {
+  @if (meta.type-of($color) != color) {
+    @error "Please provide a color for this function. Supplied: '#{$color}'.";
+  }
+  $hex: string.slice(color.ie-hex-str($color), 4);
+
+  @return string.unquote('\##{string.to-lower-case($hex)}');
+}
+
+// Source: https://gist.github.com/certainlyakey/e9c0d8f5c87ff47e3d5b
+@function encode-uri-color($string) {
+  @if meta.type-of($string) == 'color' and string.index(#{$string}, '#') == 1 {
+    $hex: string.slice(color.ie-hex-str($string), 4);
+    $string: string.unquote('#{$hex}');
+
+    @return '%23' + $string;
+  }
+
+  @return $string;
+}

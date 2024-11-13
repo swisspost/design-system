@@ -1,0 +1,37 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as languageOptionStories from './language-option.stories';
+
+<Meta of={languageOptionStories} />
+
+<div className="docs-title">
+  # Language Option
+
+  <nav>
+    <link-design of={JSON.stringify(languageOptionStories)}></link-design>
+  </nav>
+</div>
+
+<p className="lead">Enable users to select their preferred language.</p>
+
+<Canvas sourceState="shown" of={languageOptionStories.Default} />
+
+<Controls of={languageOptionStories.Default} />
+
+## Installation
+
+The `<post-language-option>` element is part of the `@swisspost/design-system-components` package.
+For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
+
+## Examples
+
+### Button
+
+Use the `onClick` event to change the language of your page programmatically whenever the user clicks on the `post-language-option`.
+
+<Canvas sourceState="shown" of={languageOptionStories.Default} />
+
+### Link
+
+Provide a `url` property in the `post-language-option` component to redirect the user to another page.
+
+<Canvas sourceState="shown" of={languageOptionStories.Anchor} />

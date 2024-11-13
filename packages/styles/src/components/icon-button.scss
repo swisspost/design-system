@@ -1,0 +1,19 @@
+@use 'sass:map';
+@use 'sass:math';
+
+@use './../variables/components/button';
+@use './../mixins/icon-button' as icon-button-mx;
+@use '../functions/tokens';
+@use '../tokens/components';
+
+tokens.$default-map: components.$post-icon-button;
+
+.btn-icon {
+  @include icon-button-mx.icon-button();
+
+  @each $size in button.$btn-non-default-sizes {
+    &.btn-#{$size} {
+      @include icon-button-mx.icon-button($size);
+    }
+  }
+}

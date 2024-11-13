@@ -1,0 +1,65 @@
+import { Meta } from '@storybook/blocks';
+import * as MissionStories from './mission.stories';
+import { roles, stakeholders, teamMembers } from './mission.blocks';
+import './mission.styles.scss';
+
+<Meta of={MissionStories} />
+
+# Swiss Post Mission
+
+The Swiss Post Design System enables project teams to create seamless user experiences across all digital touchpoints by providing patterns, guidance and tools.
+
+## Who Uses the Design System?
+
+<ul className="roles-list no-style-list">
+  {roles.map((role, index) => (
+    <li key={index} className="role-item list-item">
+      <strong>{role.role}</strong>
+      <div className="role-description">{role.description}</div>
+    </li>
+  ))}
+</ul>
+
+### The Design System is well represented and supported by our stakeholders, including:
+
+<ul className="stakeholders-list no-style-list row row-cols-1 row-cols-md-3">
+  {stakeholders.map((stakeholder, index) => (
+    <li key={index} className="stakeholder-item list-item centered-item col">
+      {stakeholder.role}
+    </li>
+  ))}
+</ul>
+
+
+### Documentation
+
+Entry points to the Design System are public. All documentation is written in English and uses common terminology. The documentation platforms are in sync with implementations and cross-linked. Regular updates ensure that the documentation stays aligned with the latest changes and best practices.
+
+### Core Team
+
+<ul className="team-list no-style-list row">
+  {teamMembers.map((teamMember, index) => (
+    <li key={index} className="team-item list-item centered-item col-sm-12 col-md-4 col-lg-3 flex-lg-column">
+      <post-icon name={teamMember.icon} style={{ fontSize: '3rem' }} className="team-icon"></post-icon>
+      {teamMember.name}
+    </li>
+  ))}
+</ul>
+
+These contributors are responsible for major implementations and play a central role in shaping the system. To ensure meaningful input, they have allocated time and budget to actively participate in the project, both in Figma and Web development.
+
+### Quality & Compliance
+
+People are using the Design System because it has a low barrier of entry, excellent documentation, is easy to use, and improves the time to market for their product significantly. It fulfills the standards of the Web Content Accessibility Guidelines (WCAG), Level AA.
+
+<div role="alert" className="alert alert-info">
+  <p>Onboarding is mandatory for external agencies.</p>
+</div>
+
+<p className="quality-text">
+  The quality of the Design System is being measured by pre-defined KPIs and is constantly improved.
+</p>
+
+### Tooling
+
+Design System tooling fosters collaboration between diverse disciplines and encourages contribution. It is built to provide flexibility, allowing teams to choose the platform or framework that best suits their needs.

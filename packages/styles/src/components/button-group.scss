@@ -1,0 +1,45 @@
+@forward './../variables/options';
+
+@use './../themes/bootstrap/core' as *;
+@use './../themes/bootstrap/button-group' as bg;
+
+@use './../mixins/utilities';
+@use './../variables/color';
+@use './../variables/spacing';
+@use './../variables/components/button';
+@use './../variables/components/forms';
+
+.btn-group {
+  max-width: 100%;
+  flex-wrap: wrap;
+  row-gap: spacing.$size-micro;
+  padding-inline-start: button.$btn-border-width;
+
+  > .btn {
+    white-space: normal;
+    cursor: pointer;
+    flex: 0 1 auto;
+    margin-inline-start: -1 * button.$btn-border-width;
+  }
+
+  > .btn-secondary {
+    border-color: color.$gray-20;
+  }
+
+  > .btn-secondary.active,
+  > .btn-check:checked + .btn-secondary {
+    background-color: color.$yellow;
+    color: color.$black;
+
+    @include utilities.high-contrast-mode() {
+      background-color: Highlight;
+    }
+  }
+}
+
+.btn-check {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+  @include utilities.focus-style('+ .btn');
+}

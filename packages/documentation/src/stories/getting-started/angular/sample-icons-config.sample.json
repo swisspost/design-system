@@ -1,0 +1,19 @@
+{
+  "projects": {
+    "name-of-your-angular-app": {
+      "architect": {
+        "build": {
+          "options": {
+            "assets": [
+              {
+                "glob": "**/*.svg",
+                "input": "./node_modules/@swisspost/design-system-icons/public/post-icons",
+                "output": "assets/post-icons"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

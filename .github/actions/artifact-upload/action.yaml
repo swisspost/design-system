@@ -1,0 +1,37 @@
+###
+#
+# https://docs.github.com/en/actions/creating-actions/about-custom-actions#using-release-management-for-actions
+#
+###
+
+name: Artifact Upload
+description: Uploads an entire artifact folder to share data between jobs and store data once a workflow is complete.
+
+inputs:
+  name:
+    description: Name of the artifact
+    required: true
+    type: string
+  folder:
+    description: Path to the folder to upload
+    required: true
+    type: string
+
+runs:
+  using: composite
+  steps:
+    - name: Save Event Infos into the artifact folder
+      shell: bash
+      run: |
+        echo ${{ github.event.number }} > ${{ inputs.folder }}/GHA-EVENT-ID
+        echo ${{ github.event.action }} > ${{ inputs.folder }}/GHA-EVENT-ACTION
+
+    - name: Zip artifact folder
+      shell: bash
+      run: cd ${{ inputs.folder }} && zip artifacts.zip . -r
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.name }}
+        path: ${{ inputs.folder }}/artifacts.zip

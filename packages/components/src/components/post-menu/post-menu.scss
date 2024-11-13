@@ -1,0 +1,11 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+:host {
+  display: block;
+}
+
+post-popovercontainer {
+  padding: var(--post-menu-padding);
+  background-color: var(--post-menu-bg, #ffffff);
+  border-color: var(--post-menu-bg, #ffffff);
+}

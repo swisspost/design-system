@@ -1,0 +1,13 @@
+@use './../variables/type';
+@use './../mixins/type' as type-mx;
+@use './../variables/components/paragraph';
+
+@each $key, $value in type.$font-curves {
+  %font-curve-#{$key} {
+    @include type-mx.font-curve($key);
+  }
+}
+
+%text-bottom-spacer {
+  margin-bottom: paragraph.$text-bottom-space; // 0.8 times the size of the current font (20px) = 16px
+}

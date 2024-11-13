@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Swiss Post Icons</title>
+    <!--
+      call the url below to get the latest integrity:
+      https://unpkg.com/@swisspost/design-system-styles@latest/basics.css?meta
+    -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@swisspost/design-system-styles/basics.css"
+      crossorigin="anonymous"
+      integrity="sha384-kvb3BxerBSpr0TkWi9v3KYp6BebE7tfx09HM6Uiz2gob4OdnOY7pcHsn/AwsC4EK"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Playground</h1>
+
+    <div class="d-flex">
+      <section x-data="TEST_ICONS">
+        <h2>Source Icons</h2>
+
+        <template x-for="icon in sourceIcons">
+          <div class="icon-variants">
+            <template x-for="size, i in sizes">
+              <div :class="`icon-${size}`" x-html="icon[i]"></div>
+            </template>
+          </div>
+        </template>
+      </section>
+
+      <section x-data="TEST_ICONS">
+        <h2>Sprite Icons</h2>
+
+        <template x-for="name in spriteIconNames">
+          <div class="size-keeper">
+            <div class="resize">
+              <div class="post-icon">
+                <svg x-html="getSpriteIcon(name)"></svg>
+              </div>
+            </div>
+          </div>
+        </template>
+      </section>
+    </div>
+
+    <script type="module" src="main.js"></script>
+    <!--
+      generated with https://www.srihash.org/
+      call the url below to get the latest integrity:
+      https://unpkg.com/alpinejs@latest/dist/cdn.min.js?meta
+    -->
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.11.1/dist/cdn.min.js"
+      integrity="sha384-D0U8hqw9ySktLounY2q1PAWeijVsqewBtT2NhQp2pxSugkKfpRnovV2sSwJC+V5U"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
