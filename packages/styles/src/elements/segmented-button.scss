@@ -14,6 +14,10 @@ $gap: tokens.get('button-segmented-gap-inline');
     container-name: segmented-container;
 }
 
+fieldset {
+    all: unset;
+}
+
 .segmented-button {
     display: flex;
     gap: tokens.get('button-segmented-gap-inline');
@@ -36,6 +40,7 @@ $gap: tokens.get('button-segmented-gap-inline');
     right: 0;
     bottom: 0;
     left: 0;
+    box-sizing: border-box;
     z-index: -2;
     background-color: black;
     border-radius: tokens.get('button-segmented-horizontal-border-radius');
@@ -74,6 +79,7 @@ $gap: tokens.get('button-segmented-gap-inline');
     border: tokens.get('button-segmented-border-width') solid tokens.get('button-segmented-enabled-border');
 }
 
+
 .segmented-button input:checked + label {
     font-weight: 600;
     font-size: 0.875rem;
@@ -92,7 +98,6 @@ $gap: tokens.get('button-segmented-gap-inline');
         flex-direction: column;
         border-radius: tokens.get('button-segmented-vertical-border-radius'); 
         border: none;
-        overflow-y: hidden;
     }
 
     .segmented-button input:checked + label:last-of-type::after {
@@ -149,9 +154,9 @@ $gap: tokens.get('button-segmented-gap-inline');
 
 @container segmented-container (min-width: 501px) {
     .segmented-button {
+        justify-content: center;
         align-items: center;
         height: tokens.get('button-segmented-elements-height');
-        justify-content: center;
     }
 
     .segmented-button input:checked + label:last-of-type::after {
@@ -170,16 +175,20 @@ $gap: tokens.get('button-segmented-gap-inline');
     .segmented-button label {
         border-radius: tokens.get('button-segmented-horizontal-border-radius');
         border: tokens.get('button-segmented-border-width') solid transparent;
-        margin-inline: calc($border-width * -2);
-        margin-block: calc($border-width * -2);
-    
-    &:first-of-type {
-        margin-left: calc($border-width * -2);
-    }
-    
-    &:last-of-type {
-        margin-right: calc($border-width * -2);
-    }
+        margin-block: calc(-2 * $border-width);
+
+        &:first-of-type {
+            margin-left: calc(-1 * $border-width);
+        }
+
+        &:last-of-type {
+            margin-right: calc(-1 * $border-width);
+
+            &::after {
+                margin-right: 0;
+                border: tokens.get('button-segmented-border-width') solid tokens.get('button-segmented-segmented-border');
+            }
+        }
 
         &:hover {
             border-color: tokens.get('button-segmented-hover-border');
@@ -189,7 +198,8 @@ $gap: tokens.get('button-segmented-gap-inline');
             border-color: tokens.get('button-segmented-enabled-border'); 
         }
     }
-}
+
     .segmented-button input:checked + label {
         border: none;
     }
+}
