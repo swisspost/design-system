@@ -71,7 +71,7 @@ fieldset {
     cursor: pointer;
     flex: 1 1 0px;
     position: relative;
-    padding-inline: tokens.get('post-button-segmented-padding-inline');
+    padding-inline: tokens.get('button-segmented-padding-inline');
     height: tokens.get('button-segmented-elements-height');
     z-index: 100;
     font-weight: 500;
@@ -186,7 +186,7 @@ fieldset {
 
             &::after {
                 margin-right: 0;
-                border: tokens.get('button-segmented-border-width') solid tokens.get('button-segmented-segmented-border');
+                border: tokens.get('button-segmented-border-width') solid tokens.get('button-segmented-selected-border');
             }
         }
 
