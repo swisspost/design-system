@@ -10,7 +10,7 @@ tokens.$default-map: (
   post-floating-button-size-outer: 56px,
   post-floating-button-size-icon: 24px,
   post-floating-button-position-right: 40px,
-  post-floating-button-position-bottom: 60px,
+  post-floating-button-position-bottom: 40px,
   post-floating-button-border-radius-round: 100%,
   post-floating-button-border-width: 2px,
   post-floating-button-enabled-border: #050400,
@@ -25,25 +25,10 @@ tokens.$default-map: (
   position: fixed;
   bottom: tokens.get('post-floating-button-position-bottom');
   right: tokens.get('post-floating-button-position-right');
-  animation: show 0.5s ease-in-out;
-  animation-iteration-count: 1;
-  animation-play-state: paused;
-  animation-fill-mode: both;
-  animation-delay: calc(var(--scroll) * -0.01s);
-
-  @keyframes show {
-    from {
-      opacity: 0%;
-      transform: translateY(8rem);
-    }
-    to {
-      opacity: 100%;
-      transform: translateY(0rem);
-    }
-  }
 
   button.back-to-top {
     @include post.reset-button;
+    @include utilities.focus-style;
     @include elevation-mx.elevation('elevation-3');
     border-radius: tokens.get('post-floating-button-border-radius-round');
     width: tokens.get('post-floating-button-size-outer');
@@ -58,17 +43,10 @@ tokens.$default-map: (
       color: tokens.get('post-floating-button-hover-fg');
       background-color: tokens.get('post-floating-button-hover-bg');
     }
-
-    &:focus {
-      outline-offset: post.$input-focus-outline-thickness;
-      outline: post.$input-focus-outline-thickness solid
-        tokens.get('post-floating-button-enabled-border');
+    post-icon {
+      height: tokens.get('post-floating-button-size-icon');
+      width: tokens.get('post-floating-button-size-icon');
     }
-  }
-
-  post-icon {
-    height: tokens.get('post-floating-button-size-icon');
-    width: tokens.get('post-floating-button-size-icon');
   }
 
   .visually-hidden {

@@ -5,11 +5,11 @@
 <!-- Auto Generated Below -->
 
 
-## Slots
+## Properties
 
-| Slot        | Description |
-| ----------- | ----------- |
-| `"default"` | NOTHING YET |
+| Property    | Attribute   | Description | Type     | Default |
+| ----------- | ----------- | ----------- | -------- | ------- |
+| `threshold` | `threshold` |             | `number` | `80`    |
 
 
 ## Dependencies

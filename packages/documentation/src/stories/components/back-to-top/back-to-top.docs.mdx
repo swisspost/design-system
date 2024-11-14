@@ -1,0 +1,33 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import * as BackToTopStories from './back-to-top.stories.ts';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import BackToTop from './back-to-top.sample.html?raw';
+
+<Meta of={BackToTopStories} />
+
+<div className="docs-title">
+ # Back To Top
+
+  <nav>
+    <link-design of={JSON.stringify(BackToTopStories)}></link-design>
+  </nav>
+</div>
+
+<p className="lead">
+  Add this component to display a Back to Top button that appears when the user scrolls past a
+  specified threshold, allowing for smooth scrolling back to the top of the page.
+</p>
+
+<Source code={BackToTop} language="html" />
+
+## Installation
+
+The `<post-back-to-top>` element is part of the `@swisspost/design-system-components` package.
+For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
+
+## Examples
+
+<p>
+  See a full screen example of the Back To Top Button
+  <a href="?path=%2Fstory%2F1a1b4cab-d0a8-4b01-bd85-b70e18668cb5--default&amp;full=true">here</a>.
+</p>
