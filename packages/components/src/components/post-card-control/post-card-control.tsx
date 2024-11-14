@@ -362,7 +362,7 @@ export class PostCardControl {
           <input
             ref={el => (this.control = el)}
             id={this.controlId}
-            class="card-control--input form-check-input"
+            class="card-control--input"
             type={this.type}
             name={this.name}
             value={this.value}
@@ -381,7 +381,7 @@ export class PostCardControl {
           <label
             id={`${this.controlId}_label`}
             htmlFor={this.controlId}
-            class="card-control--label form-check-label"
+            class="card-control--label"
           >
             {this.label}
             {this.description ? (

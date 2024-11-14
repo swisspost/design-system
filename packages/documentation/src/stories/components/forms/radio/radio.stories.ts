@@ -2,6 +2,7 @@ import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { useArgs } from '@storybook/preview-api';
 import { html, nothing, TemplateResult } from 'lit';
 import { MetaComponent } from '@root/types';
+import { ifDefined } from 'lit/directives/if-defined.js';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -110,14 +111,14 @@ function render(args: Args, context: StoryContext) {
 
   const id = context.id ?? `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
 
-  const classes = ['form-check-input', args.validation].filter(c => c && c !== 'null').join(' ');
+  const radioClass = args.validation !== 'null' ? `is-${args.validation}` : undefined;
 
   const groupClasses = ['form-check', args.size].filter(c => c && c !== 'null').join(' ');
 
   const useAriaLabel = args.hiddenLabel;
 
   const label: TemplateResult | null = !useAriaLabel
-    ? html` <label for="${id}" class="form-check-label">${args.label}</label> `
+    ? html` <label for="${id}">${args.label}</label> `
     : null;
 
   const contextual: (TemplateResult | null)[] = [
@@ -128,7 +129,7 @@ function render(args: Args, context: StoryContext) {
   const control = html`
     <input
       id="${id}"
-      class="${classes}"
+      class="${ifDefined(radioClass)}"
       type="radio"
       ?checked="${args.checked}"
       .checked="${args.checked}"

@@ -4,6 +4,7 @@
 @use '@swisspost/design-system-styles/components/form-check';
 @use '@swisspost/design-system-styles/components/checkbox';
 @use '@swisspost/design-system-styles/components/radio-button';
+@use '@swisspost/design-system-styles/placeholders/form-check' as form-check-ph;
 
 /*
 * There are a whole bunch of !important statements in this file.
@@ -34,6 +35,14 @@
   --post-card-control-input-border-color: #{post.$gray-80};
   --post-card-control-input-bg: #{post.$white};
 
+  > input[type='checkbox'] {
+    @extend %checkbox;
+  }
+
+  > input[type='radio'] {
+    @extend %radio-button;
+  }
+
   flex-basis: 100%;
   display: grid;
   grid-template: 'input label icon' 'input content content' / min-content auto min-content;
@@ -55,6 +64,8 @@
     color: var(--post-card-control-input-border-color) !important;
     cursor: inherit;
     transition: none;
+
+    @extend %form-check-input;
 
     &:hover:not([disabled]),
     &:hover:not([disabled]) ~ label.form-check-label {

@@ -9,6 +9,7 @@
 @use '../mixins/color' as color-mx;
 @use '../mixins/icons' as icons-mx;
 @use '../mixins/utilities' as utility-mx;
+@use './../placeholders/form-check' as form-check-ph;
 @use '../tokens/helpers';
 @use '../functions/tokens';
 
@@ -35,42 +36,8 @@
       transition: none;
     }
   }
-}
 
-.form-check-input {
-  transition: color #{animation.$transition-base-timing};
-
-  @include utility-mx.high-contrast-mode {
-    transition: none;
-  }
-
-  &:not([disabled]),
-  &:not([disabled]) ~ .form-check-label {
-    cursor: pointer;
-  }
-
-  @include utility-mx.focus-style-none();
-  display: inline-flex;
-  flex: 0 auto;
-  appearance: none;
-  background: transparent;
-
-  @include utility-mx.high-contrast-mode {
-    border-color: FieldText;
-  }
-
-  &::after {
-    content: '';
-    display: block;
-  }
-
-  // Shared disabled styles
-  &[disabled] {
-    &[type='checkbox'],
-    &[type='radio'] {
-      @include utility-mx.high-contrast-mode {
-        border-color: GrayText !important;
-      }
-    }
+  > input {
+    @extend %form-check-input;
   }
 }
