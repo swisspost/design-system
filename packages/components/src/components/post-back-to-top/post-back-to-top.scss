@@ -30,6 +30,7 @@ tokens.$default-map: (
     @include post.reset-button;
     @include utilities.focus-style;
     @include elevation-mx.elevation('elevation-3');
+    cursor: pointer;
     border-radius: tokens.get('post-floating-button-border-radius-round');
     width: tokens.get('post-floating-button-size-outer');
     height: tokens.get('post-floating-button-size-outer');
