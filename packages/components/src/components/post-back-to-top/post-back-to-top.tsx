@@ -2,9 +2,6 @@ import { Component, Element, Host, State, h, Watch } from '@stencil/core';
 import { showUp, hideDown } from '@/animations/back-to-top';
 
 // Token for different translate values depending on the breakpoint
-const tokens = {
-  translateY: '8rem',
-};
 
 @Component({
   tag: 'post-back-to-top',
@@ -15,6 +12,7 @@ export class PostBackToTop {
   @Element() el: HTMLElement;
 
   @State() belowFold: boolean = false;
+  @State() translateY: string = '';
 
   getFoldHeight(): number {
     return window.innerHeight;
@@ -37,9 +35,9 @@ export class PostBackToTop {
   @Watch('belowFold')
   watchBelowFold(newValue: boolean) {
     if (newValue) {
-      showUp(this.el, tokens.translateY);
+      showUp(this.el, this.translateY);
     } else {
-      hideDown(this.el, tokens.translateY);
+      hideDown(this.el, this.translateY);
     }
   }
 
@@ -54,8 +52,14 @@ export class PostBackToTop {
   componentWillLoad() {
     this.belowFold = this.calcIfIsBelowFold();
     if (!this.belowFold) {
-      this.el.style.transform = `translateY(${tokens.translateY})`;
+      this.el.style.transform = `translateY(${this.translateY})`;
     }
+
+    const translateYValue = window
+      .getComputedStyle(this.el)
+      .getPropertyValue('--post-floating-button-translate-y');
+    console.log(translateYValue);
+    this.translateY = translateYValue;
   }
 
   componentDidLoad() {
@@ -63,7 +67,7 @@ export class PostBackToTop {
 
     // Initial load
     if (this.belowFold) {
-      showUp(this.el, tokens.translateY);
+      showUp(this.el, this.translateY);
     }
   }
 
