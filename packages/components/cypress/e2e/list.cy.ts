@@ -58,3 +58,10 @@ describe('PostList Component', { baseUrl: null, includeShadowDom: false }, () =>
     });
   });
 });
+
+describe('Accessibility', () => {
+  it('Has no detectable a11y violations on load for all variants', () => {
+    cy.getSnapshots('post-list');
+    cy.checkA11y('#root-inner');
+  });
+});
