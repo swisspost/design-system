@@ -1,6 +1,6 @@
 ---
-'@swisspost/design-system-documentation': minor
-'@swisspost/design-system-styles': minor
+'@swisspost/design-system-documentation': patch
+'@swisspost/design-system-styles': patch
 ---
 
-implement blockquote component
+Updated the blockquote styles to match the new Post design.
