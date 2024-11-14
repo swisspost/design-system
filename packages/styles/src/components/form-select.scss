@@ -1,3 +1,5 @@
+@forward './../variables/options';
+
 @use './../mixins/utilities';
 @use './../mixins/forms';
 @use './../functions/tokens';
