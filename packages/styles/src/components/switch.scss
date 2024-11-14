@@ -170,6 +170,10 @@ $switch-handle-icon: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='htt
 
     &.is-invalid {
       border-color: transparent;
+
+      + label {
+        color: tokens.get('switch-text-enabled-fg');
+      }
     }
   }
 

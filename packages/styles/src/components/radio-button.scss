@@ -56,19 +56,23 @@ fieldset > .form-check:not(:last-of-type) {
     }
 
     @include utility-mx.high-contrast-mode() {
-      border-color: Highlight;
+      border-color: SelectedItemText;
     }
   }
 
-  &:checked::after {
-    background-color: tokens.get('radio-button-enabled-fg');
-    width: tokens.get('radio-button-icon-dot');
-    height: tokens.get('radio-button-icon-dot');
-    border-radius: inherit;
-
+  &:checked {
     @include utility-mx.high-contrast-mode {
-      background-color: SelectedItem;
-      border-color: Canvas;
+      border-color: Highlight !important;
+    }
+
+    &::after {
+      background-color: tokens.get('radio-button-enabled-fg');
+      width: tokens.get('radio-button-icon-dot');
+      height: tokens.get('radio-button-icon-dot');
+      border-radius: inherit;
+      @include utility-mx.high-contrast-mode {
+        background-color: Highlight !important;
+      }
     }
   }
 
@@ -105,7 +109,7 @@ fieldset > .form-check:not(:last-of-type) {
     }
   }
 
-  &.is-invalid {
+  &:not(:disabled).is-invalid {
     border-color: tokens.get('radio-button-enabled-stroke');
 
     + label {
