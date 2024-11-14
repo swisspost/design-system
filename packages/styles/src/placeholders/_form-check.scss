@@ -1,0 +1,275 @@
+@use '../variables/animation';
+@use '../variables/color';
+
+@use '../mixins/utilities' as utility-mx;
+@use '../mixins/color' as color-mx;
+@use '../tokens/components';
+@use '../functions/tokens';
+
+$checkbox-icon-checked: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='M7.51712 12.1332L4.30712 8.69325C4.02712 8.39325 4.03712 7.91325 4.34712 7.63325C4.64712 7.35325 5.12712 7.36325 5.40712 7.67325L7.31712 9.72325L10.7171 4.57325C10.9471 4.22325 11.4071 4.13325 11.7571 4.36325C12.1071 4.59325 12.1971 5.05325 11.9671 5.40325L7.51712 12.1332Z'/></svg>");
+$checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='M11.21 8.5H4.75C4.34 8.5 4 8.16 4 7.75C4 7.34 4.34 7 4.75 7H11.21C11.62 7 11.96 7.34 11.96 7.75C11.96 8.16 11.62 8.5 11.21 8.5Z'/></svg>");
+
+%form-check-input {
+  transition: color #{animation.$transition-base-timing};
+
+  @include utility-mx.high-contrast-mode {
+    transition: none;
+  }
+
+  &:not([disabled]),
+  &:not([disabled]) ~ .form-check-label {
+    cursor: pointer;
+  }
+
+  @include utility-mx.focus-style-none();
+  display: inline-flex;
+  flex: 0 auto;
+  appearance: none;
+  background: transparent;
+
+  @include utility-mx.high-contrast-mode {
+    border-color: FieldText;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+  }
+
+  // Shared disabled styles
+  &[disabled] {
+    &[type='checkbox'],
+    &[type='radio'] {
+      @include utility-mx.high-contrast-mode {
+        border-color: GrayText !important;
+      }
+    }
+  }
+}
+
+%checkbox {
+  height: tokens.get('checkbox-icon-size', components.$post-checkbox);
+  width: tokens.get('checkbox-icon-size', components.$post-checkbox);
+  border: tokens.get('checkbox-icon-border-width', components.$post-checkbox)
+    tokens.get('checkbox-border-style-default', components.$post-checkbox)
+    tokens.get('checkbox-enabled-stroke', components.$post-checkbox);
+  border-radius: tokens.get('checkbox-border-radius', components.$post-checkbox);
+  padding: tokens.get('checkbox-icon-padding-inner', components.$post-checkbox);
+  margin: tokens.get('checkbox-icon-padding-container', components.$post-checkbox);
+  color: tokens.get('checkbox-enabled-fg', components.$post-checkbox);
+  background-color: tokens.get('checkbox-enabled-bg', components.$post-checkbox);
+
+  @include utility-mx.high-contrast-mode() {
+    border-color: SelectedItemText;
+  }
+
+  + label {
+    flex: 1;
+    padding-block: tokens.get('checkbox-label-padding-block', components.$post-checkbox);
+
+    :not(.form-switch, .checkbox-button-card) > & {
+      padding-inline-start: tokens.get('checkbox-gap-inline-text-start', components.$post-checkbox);
+    }
+  }
+
+  &::after {
+    flex: 1;
+  }
+
+  &:hover:not([disabled]),
+  &:hover:not([disabled]) + label {
+    color: tokens.get('checkbox-hover-fg', components.$post-checkbox);
+    background-color: tokens.get('checkbox-hover-bg', components.$post-checkbox);
+    border-color: tokens.get('checkbox-hover-stroke', components.$post-checkbox);
+
+    @include utility-mx.high-contrast-mode() {
+      border-color: SelectedItemText;
+    }
+
+    @include color-mx.on-dark-background() {
+      background-color: transparent;
+    }
+  }
+
+  &::after {
+    mask-size: tokens.get('checkbox-icon-size', components.$post-checkbox);
+    mask-repeat: no-repeat;
+    mask-position: center;
+    background-color: transparent;
+  }
+
+  &:checked::after {
+    mask-image: $checkbox-icon-checked;
+    background-color: currentColor;
+  }
+
+  &:indeterminate::after {
+    mask-image: $checkbox-icon-indeterminate;
+    background-color: currentColor;
+  }
+
+  &:checked,
+  &:indeterminate {
+    @include utility-mx.high-contrast-mode {
+      background-color: Highlight !important;
+      border-color: Highlight !important;
+    }
+  }
+
+  &[disabled] {
+    background-color: tokens.get('checkbox-disabled-bg', components.$post-checkbox);
+    border: tokens.get('checkbox-icon-border-width', components.$post-checkbox)
+      tokens.get('checkbox-border-style-disabled', components.$post-checkbox)
+      tokens.get('checkbox-disabled-stroke', components.$post-checkbox);
+
+    &:checked,
+    &:indeterminate {
+      @include utility-mx.high-contrast-mode {
+        background-color: Field !important;
+        color: GrayText !important;
+      }
+    }
+    @include color-mx.on-dark-background {
+      border: tokens.get('checkbox-icon-border-width', components.$post-checkbox)
+        tokens.get('checkbox-border-style-disabled', components.$post-checkbox)
+        color.$white-alpha-80;
+    }
+    @include utility-mx.high-contrast-mode {
+      border: tokens.get('checkbox-icon-border-width', components.$post-checkbox)
+        tokens.get('checkbox-border-style-disabled', components.$post-checkbox) GrayText;
+    }
+  }
+
+  &[disabled],
+  &[disabled] + label {
+    color: tokens.get('checkbox-disabled-fg', components.$post-checkbox);
+    background-color: tokens.get('checkbox-disabled-bg', components.$post-checkbox);
+
+    @include color-mx.on-dark-background() {
+      background-color: transparent;
+      color: color.$white-alpha-80;
+    }
+  }
+
+  &.is-invalid {
+    border-color: tokens.get('checkbox-enabled-stroke', components.$post-checkbox);
+
+    + label {
+      color: tokens.get('checkbox-enabled-fg', components.$post-checkbox);
+    }
+  }
+}
+
+%radio-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: tokens.get('radio-button-icon-ring', components.$post-radio-button);
+  width: tokens.get('radio-button-icon-ring', components.$post-radio-button);
+  border: tokens.get('radio-button-icon-border-width', components.$post-radio-button)
+    tokens.get('radio-button-icon-border-style-default', components.$post-radio-button)
+    tokens.get('radio-button-enabled-stroke', components.$post-radio-button);
+  padding-block: tokens.get('radio-button-icon-padding-block-inner', components.$post-radio-button);
+  padding-inline: tokens.get(
+    'radio-button-icon-padding-inline-inner',
+    components.$post-radio-button
+  );
+  margin-block: tokens.get(
+    'radio-button-icon-padding-block-container',
+    components.$post-radio-button
+  );
+  border-radius: tokens.get('radio-button-icon-border-radius-round', components.$post-radio-button);
+  color: tokens.get('radio-button-enabled-fg', components.$post-radio-button);
+  background-color: tokens.get('radio-button-enabled-bg', components.$post-radio-button);
+
+  + label {
+    flex: 1;
+    padding-block: tokens.get('radio-button-label-padding-block', components.$post-radio-button);
+
+    :not(.form-switch, .radio-button-card) > & {
+      padding-inline-start: tokens.get(
+        'radio-button-gap-inline-text-start',
+        components.$post-radio-button
+      );
+    }
+  }
+
+  &:hover:not([disabled]),
+  &:hover:not([disabled]) + label {
+    color: tokens.get('radio-button-hover-fg', components.$post-radio-button);
+    background-color: tokens.get('radio-button-hover-bg', components.$post-radio-button);
+    border-color: tokens.get('radio-button-hover-stroke', components.$post-radio-button);
+
+    &::after {
+      background-color: tokens.get('radio-button-hover-fg', components.$post-radio-button);
+    }
+
+    @include utility-mx.high-contrast-mode() {
+      border-color: SelectedItemText;
+    }
+
+    @include color-mx.on-dark-background() {
+      background-color: transparent;
+    }
+  }
+
+  &:checked {
+    @include utility-mx.high-contrast-mode {
+      border-color: Highlight !important;
+    }
+
+    &::after {
+      background-color: tokens.get('radio-button-enabled-fg', components.$post-radio-button);
+      width: tokens.get('radio-button-icon-dot', components.$post-radio-button);
+      height: tokens.get('radio-button-icon-dot', components.$post-radio-button);
+      border-radius: inherit;
+      @include utility-mx.high-contrast-mode {
+        background-color: Highlight !important;
+      }
+    }
+  }
+
+  &[disabled] {
+    background-color: tokens.get('radio-button-disabled-bg', components.$post-radio-button);
+    border: tokens.get('radio-button-icon-border-width', components.$post-radio-button)
+      tokens.get('radio-button-icon-border-style-disabled', components.$post-radio-button)
+      tokens.get('radio-button-disabled-stroke', components.$post-radio-button);
+
+    @include color-mx.on-dark-background {
+      border: tokens.get('radio-button-icon-border-width', components.$post-radio-button)
+        tokens.get('radio-button-icon-border-style-disabled', components.$post-radio-button)
+        color.$white-alpha-80;
+    }
+    @include utility-mx.high-contrast-mode {
+      border: tokens.get('radio-button-icon-border-width', components.$post-radio-button)
+        tokens.get('radio-button-icon-border-style-disabled', components.$post-radio-button)
+        GrayText;
+    }
+
+    &:checked::after {
+      background-color: tokens.get('radio-button-disabled-fg', components.$post-radio-button);
+      @include utility-mx.high-contrast-mode {
+        background-color: GrayText;
+      }
+    }
+  }
+
+  &[disabled],
+  &[disabled] + label {
+    color: tokens.get('radio-button-disabled-fg', components.$post-radio-button);
+    background-color: tokens.get('radio-button-disabled-bg', components.$post-radio-button);
+
+    @include color-mx.on-dark-background() {
+      background-color: transparent;
+      color: color.$white-alpha-80;
+    }
+  }
+
+  &:not(:disabled).is-invalid {
+    border-color: tokens.get('radio-button-enabled-stroke', components.$post-radio-button);
+
+    + label {
+      color: tokens.get('radio-button-enabled-fg', components.$post-radio-button);
+    }
+  }
+}
