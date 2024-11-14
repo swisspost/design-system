@@ -28,7 +28,6 @@ tokens.$default-map: components.$post-button;
   gap: map.get(button.$btn-gap-x-map, $size);
   padding: 0 map.get(button.$btn-padding-x-map, $size);
 
-  > .pi,
   > post-icon {
     width: map.get(button.$btn-icon-size-map, $size);
     height: map.get(button.$btn-icon-size-map, $size);
