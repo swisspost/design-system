@@ -26,24 +26,6 @@
   font-size: $font-size;
   font-weight: notification.$notification-font-weight;
 
-  &.no-icon {
-    min-height: 2 * $padding-y + close.$close-size;
-    padding-inline-start: $padding-x;
-  }
-
-  // for notifications with .pi-* icons (deprecated)
-  &[class^='pi-'],
-  &[class*=' pi-'] {
-    background-size: $icon-size;
-    background-position: $padding-x $padding-y;
-    background-repeat: no-repeat;
-
-    &.no-icon {
-      background-image: none;
-    }
-  }
-
-  // for notifications with mask-image icons and post-icon override
   &::before {
     content: '';
     display: block;
@@ -58,9 +40,10 @@
     top: $padding-y;
   }
 
-  &.no-icon,
-  &[class^='pi-'],
-  &[class*=' pi-'] {
+  &.no-icon {
+    min-height: 2 * $padding-y + close.$close-size;
+    padding-inline-start: $padding-x;
+
     &::before {
       content: unset;
     }
@@ -109,7 +92,7 @@
   @include color-mx.colored-background($color, $allow-alpha: false);
 
   // default icon (mask-image)
-  &:not(.no-icon, [class^='pi-'], [class*=' pi-'])::before {
+  &:not(.no-icon)::before {
     @include icons-mx.icon($icon);
   }
 
