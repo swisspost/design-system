@@ -19,9 +19,11 @@ fieldset > .form-check:not(:last-of-type) {
     @include utility-mx.focus-style();
   }
   padding-block: tokens.get('radio-button-padding-block-single', components.$post-radio-button);
+
   > input {
     @extend %radio-button;
   }
+
   &:only-child {
     @include utility-mx.focus-style() {
       border-radius: tokens.get(

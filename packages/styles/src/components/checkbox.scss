@@ -19,6 +19,7 @@ fieldset > .form-check:not(:last-of-type) {
     @include utility-mx.focus-style();
   }
   padding-block: tokens.get('checkbox-padding-block-single', components.$post-checkbox);
+
   > input {
     &:only-child {
       @include utility-mx.focus-style();

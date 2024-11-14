@@ -43,6 +43,7 @@ fieldset {
   > input[type='checkbox'] {
     @extend %checkbox;
   }
+
   > input[type='radio'] {
     @extend %radio-button;
   }
