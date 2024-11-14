@@ -1,0 +1,12 @@
+@use 'mixins' as *;
+@use 'variables' as *;
+
+@forward 'utilities';
+
+body {
+  @include default-palette-styles('cargo');
+}
+
+@each $palette in $palettes {
+  @include generate-palette-class($palette, 'cargo');
+}

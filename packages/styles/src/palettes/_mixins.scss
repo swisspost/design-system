@@ -1,0 +1,66 @@
+@use 'sass:map';
+@use 'sass:meta';
+
+@use '../functions/contrast';
+@use '../placeholders/schemes';
+
+@use '../functions/tokens';
+@use '../tokens/elements';
+@use '../tokens/palettes';
+
+@use './variables' as *;
+
+@mixin default-palette-styles($theme) {
+  background-color: var(--post-current-palette-bg) !important;
+
+  &:not([data-color-scheme='dark']) {
+    @include palette-tokens($default-palette, $theme, 'light');
+  }
+
+  &[data-color-scheme='dark'] {
+    @include palette-tokens($default-palette, $theme, 'dark');
+  }
+}
+
+@mixin generate-palette-class($name, $theme) {
+  .palette-#{$name} {
+    // redefining the body color is required so that the new color scheme is taken into account
+    color: tokens.get('body-color', elements.$post-body);
+    background-color: var(--post-current-palette-bg) !important;
+
+    // below selectors consider up to two nested `data-color-scheme` attributes on parent elements
+    // if `data-color-scheme` is set on the palette itself, it is always used
+
+    &[data-color-scheme='light'],
+    &:not([data-color-scheme='dark']):not([data-color-scheme='dark'] *),
+    &:where([data-color-scheme='light'] :not([data-color-scheme='dark'])) {
+      @include palette-tokens($name, $theme, 'light', $override-scheme: true);
+    }
+
+    &[data-color-scheme='dark'],
+    &:where([data-color-scheme='dark'] :not([data-color-scheme='dark'])) {
+      @include palette-tokens($name, $theme, 'dark', $override-scheme: true);
+    }
+  }
+}
+
+@mixin palette-tokens($name, $theme, $scheme, $override-scheme: false) {
+  $palette: map.get(meta.module-variables(palettes), '#{$theme}-#{$scheme}');
+
+  @if (not $palette) {
+    @error 'Palette #{$theme}-#{$scheme} not found.';
+  }
+
+  --post-current-palette-fg: #{tokens.get('palettes-color-#{$name}-fg', $palette)};
+  --post-current-palette-bg: #{tokens.get('palettes-color-#{$name}-bg', $palette)};
+
+  @if ($override-scheme == true) {
+    $bg-scheme: tokens.get('helper-color-#{$name}-bg-scheme', $palette);
+
+    @if ($bg-scheme == 'light') {
+      @extend %color-scheme-light;
+    } @else {
+      @extend %color-scheme-dark;
+    }
+  }
+}
