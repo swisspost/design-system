@@ -1,0 +1,47 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import * as PositionStories from './position.stories';
+
+<Meta of={PositionStories} />
+
+# Position
+
+<div className="lead">
+  Define the positioning method of an element, as well as its position relative to top, bottom,
+  start and end easily with utility classes.
+</div>
+<br />
+<div className="alert alert-info">Note that these utility classes are not responsive.</div>
+
+<Canvas sourceState="shown" of={PositionStories.Default} />
+<div className="hide-col-default">
+  <Controls of={PositionStories.Default} />
+</div>
+
+## Properties
+
+### Positioning method of elements
+
+Here are the different positioning methods available for elements.
+
+- `position-static` (default) positions the element according to the flow of the page.
+- `position-relative` positions the element according to the flow of the page, but you can offset it relatively to itself by settings values for `top`, `bottom`, `start` and `end`.
+- `position-absolute` removes the element from the flow of the page and positions it relatively to its closest positioned element.
+- `position-fixed` removes the element from the flow of the page and positions it relatively to the viewport.
+- `position-sticky` positions the element according to the flow of the page but "sticks" it in place in the case of a scrolling container.
+
+### Arrangement of elements
+
+Some utility classes are here to define the position from the edges of the container more easily.
+
+- `top-{0|50|100}` to set the position of the element from the top of the container by 0, 50% or 100%.
+- `bottom-{0|50|100}` to set the position of the element from the bottom of the container by 0, 50% or 100%.
+- `start-{0|50|100}` to set the position of the element from the start of the container (left in LTR) by 0, 50% or 100%.
+- `end-{0|50|100}` to set the position of the element from the end of the container (right in LTR) by 0, 50% or 100%.
+
+### Translate-middle
+
+The class `.translate-middle` is there to center an element horizontally and vertically on their x and y position.
+
+<Canvas sourceState="hidden" of={PositionStories.TranslateMiddle} />
+
+On the example above, the black dot is the center of the container. Both squares are positioned 50% from the top and 50% from the start. The blue square has the `translate-middle` class and the yellow one doesn't.

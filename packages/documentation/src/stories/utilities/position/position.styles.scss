@@ -1,0 +1,87 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+// Docs styling
+.translate-middle-container {
+  height: 20rem;
+  flex: 0 0 50%;
+
+  > * {
+    width: 2rem;
+    height: 2rem;
+    opacity: 0.8;
+    border-radius: post.$border-radius;
+  }
+
+  &::after {
+    content: '';
+    background-color: post.$dark;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.position-container {
+  height: 8rem;
+  margin: 2rem;
+
+  .pos-element {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 100%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background-color: post.$dark;
+  }
+
+  .bg-yellow {
+    width: 2rem;
+    height: 2rem;
+    border-radius: post.$border-radius;
+  }
+}
+
+// Snapshots styling
+
+.snapshot-outer-container {
+  position: relative;
+  max-height: 8rem;
+  overflow-y: scroll;
+}
+
+.snapshot-container {
+  height: 16rem;
+  margin: 2rem;
+
+  .bg-dark {
+    width: 2rem;
+    height: 2rem;
+    border-radius: post.$border-radius;
+  }
+
+  .bg-yellow {
+    padding: 1rem;
+    display: inline-block;
+    border-radius: post.$border-radius;
+  }
+}
+
+.snapshot-arrange-container {
+  height: 5rem;
+  border-radius: post.$border-radius;
+  position: relative;
+  background-color: post.$gray;
+  margin: 2rem;
+
+  > * {
+    width: 2rem;
+    height: 2rem;
+    opacity: 0.8;
+    position: absolute;
+    border-radius: post.$border-radius;
+  }
+}
