@@ -1,0 +1,25 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as SegmentedButtonStories from './segmented-button.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={SegmentedButtonStories} />
+
+<div className="docs-title">
+  # Segmented Button
+
+  <nav>
+    <link-design of={JSON.stringify(SegmentedButtonStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  Use the segmented button component for multi-option selection interfaces, enabling users to select
+  from a set of predefined choices. This component supports customizable labels and layouts.
+</div>
+
+<Canvas sourceState="shown" of={SegmentedButtonStories.Default} />
+<div className="hide-col-default">
+  <Controls of={SegmentedButtonStories.Default} />
+</div>
+
+<StylesPackageImport components={['segmented-button']} />
