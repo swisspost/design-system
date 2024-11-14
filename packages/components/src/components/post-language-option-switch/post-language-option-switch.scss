@@ -1,1 +1,9 @@
 @use '@swisspost/design-system-styles/core' as post;
+
+:host {
+  display: block;
+}
+
+post-language-option-switch {
+  background: var(--post-menu-bg, #ff0000);
+}
