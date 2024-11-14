@@ -106,10 +106,6 @@
       #{$fixed-alert-padding-x} + #{$alert-icon-size} + #{notification.$notification-gap}
     );
 
-    // for alerts with .pi-* icons (deprecated)
-    background-position-x: calc(#{$fixed-alert-padding-x} + #{0.5 * $alert-icon-size});
-
-    // for alerts with mask-image icons
     &::before {
       left: calc(#{$fixed-alert-padding-x});
     }
