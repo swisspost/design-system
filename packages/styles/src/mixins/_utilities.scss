@@ -12,8 +12,6 @@
   padding: 0;
   list-style: none;
 
-  @content;
-
   &.list-bullet {
     > li {
       margin: 0;

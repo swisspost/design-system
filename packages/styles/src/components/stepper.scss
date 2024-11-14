@@ -20,7 +20,10 @@
 }
 
 .stepper {
-  @include utilities.reset-list() {
+  @include utilities.reset-list;
+
+  /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
+  & {
     // start a counter for the step numbers
     counter-reset: step-index;
 
