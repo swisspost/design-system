@@ -4,7 +4,7 @@ import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '78509712-d45e-462c-bde3-405cfaff5421',
-  title: 'Components/Segmented Button',
+  title: 'Components/Buttons/Segmented button',
   tags: ['package:HTML'],
   render: renderSegmentedButton,
   parameters: {
@@ -16,7 +16,8 @@ const meta: MetaComponent = {
   },
   args: {
     name: 'five',
-    labels: ['The Good', 'The Bad', 'The Ugly', 'The Great', 'The Great'],
+    labels: ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5'],
+    selected: 0, // Default selection for ease of testing
   },
   argTypes: {
     name: {
@@ -27,9 +28,16 @@ const meta: MetaComponent = {
     },
     labels: {
       name: 'Labels',
-      description: 'Defines the labels for each option in the segmented button.',
+      description: 'Defines the labels for each option in the segmented button. Maximum of 10 options allowed.',
       control: { type: 'object' },
       table: { category: 'Content' },
+      validation: { maxLength: 10 },
+    },
+    selected: {
+      name: 'Selected',
+      description: 'Specifies the index of the default selected option.',
+      control: { type: 'number', min: 0, max: 9 },
+      table: { category: 'State' },
     },
   },
 };
@@ -40,12 +48,18 @@ type Story = StoryObj;
 
 function renderSegmentedButton(args: Args) {
   const labelsArray = args.labels || [];
+  const selectedIndex = args.selected || 0;
+
   return html`
     <div class="segmented-button-container">
       <fieldset class="segmented-button segmented-button-${labelsArray.length}">
-        ${labelsArray.map(
+        ${labelsArray.slice(0, 10).map(
           (label, index) => html`
-            <input id="${args.name}-${index + 1}" tabindex="-1" name="${args.name}" type="radio" />
+            <input id="${args.name}-${index + 1}" 
+              tabindex="-1" 
+              name="${args.name}" 
+              type="radio" 
+              ?checked="${index === selectedIndex}" />
             <label for="${args.name}-${index + 1}" tabindex="0">${label}</label>
           `
         )}
@@ -56,12 +70,7 @@ function renderSegmentedButton(args: Args) {
 
 export const Default: Story = {
   args: {
-    labels: ['The Good', 'The Bad', 'The Ugly', 'The Great', 'The Great'],
-  },
-};
-
-export const CustomLabels: Story = {
-  args: {
-    labels: ['Option A', 'Option B', 'Option C'],
+    labels: ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5'],
+    selected: 0,
   },
 };
