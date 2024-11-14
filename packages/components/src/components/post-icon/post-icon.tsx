@@ -2,7 +2,7 @@ import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
 import { checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '@/utils';
 import { version } from '@root/package.json';
 
-const CDN_URL = 'https://unpkg.com/@swisspost/design-system-icons/public/post-icons';
+const CDN_URL = 'https://unpkg.com/@swisspost/design-system-icons/public/post-icons/ui';
 const ANIMATION_NAMES = [
   'cylon',
   'cylon-vertical',
