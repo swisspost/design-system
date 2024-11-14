@@ -22,7 +22,7 @@ export class PostBackToTop {
 
   getScrollPositionPercentage(): number {
     // Window.innerHeight is the foldHeight
-    return (window.pageYOffset / this.getFoldHeight()) * 100;
+    return (window.scrollY / this.getFoldHeight()) * 100;
   }
 
   calcIfIsBelowFold(): boolean {
