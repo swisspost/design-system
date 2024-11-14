@@ -5,60 +5,51 @@
 
 tokens.$default-map: components.$post-segmented-button;
 
-$label-height: tokens.get('button-segmented-elements-height');
+$element-height: tokens.get('button-segmented-elements-height');
 $border-width: tokens.get('button-segmented-border-width');
-$gap: tokens.get('button-segmented-gap-inline');
+$gap-inline: tokens.get('button-segmented-gap-inline');
+$enabled-bg: tokens.get('button-segmented-enabled-bg');
+$enabled-border: tokens.get('button-segmented-enabled-border');
+$horizontal-border-radius: tokens.get('button-segmented-horizontal-border-radius');
+$elevation: tokens.get('button-segmented-elevation');
+$selected-bg: tokens.get('button-segmented-selected-bg');
+$selected-border: tokens.get('button-segmented-selected-border');
+$padding-inline: tokens.get('button-segmented-padding-inline');
+$hover-border: tokens.get('button-segmented-hover-border');
+$hover-fg: tokens.get('button-segmented-hover-fg');
+$enabled-fg: tokens.get('button-segmented-enabled-fg');
+$font-weight: tokens.get('button-segmented-font-weight');
+$selected-fg: tokens.get('button-segmented-selected-fg');
+$vertical-border-radius: tokens.get('button-segmented-vertical-border-radius');
 
 .segmented-button-container {
     container-type: inline-size;
     container-name: segmented-container;
-}
-
-fieldset {
-    all: unset;
+    display: block;
 }
 
 .segmented-button {
     display: flex;
-    gap: tokens.get('button-segmented-gap-inline');
+    align-items: center;
+    justify-content: center;
     background-color: transparent;
-    width: 100%;
-    margin: 0;
     position: relative;
     box-sizing: border-box;
-    border-radius: tokens.get('button-segmented-horizontal-border-radius');
+    transition: all 0.4s cubic-bezier(0.25, 1.4, 0.5, 0.9);;
     border: tokens.get('button-segmented-border-width') solid tokens.get('button-segmented-enabled-border');
-    transition: all 0.4s cubic-bezier(0.25, 1.5, 0.5, 1.0);
-    box-shadow: tokens.get('button-segmented-elevation');
-}
-
-.segmented-button label:last-of-type::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    box-sizing: border-box;
-    z-index: -2;
-    background-color: black;
-    border-radius: tokens.get('button-segmented-horizontal-border-radius');
-    opacity: 0;
-    transform: scaleX(0);
-    transition: transform 0.4s cubic-bezier(0.25, 1.5, 0.5, 1);
+    box-shadow: $elevation;
 }
 
 .segmented-button input {
-    position: absolute;
-    width: 0;
-    height: 0;
-    padding: 0;
-    margin: 0;
-    appearance: none;
-    border: none;
-    outline: none;
-    opacity: 1;
+    position: absolute !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0);
+    width: 0 !important;
+    height: 0 !important;
+    border: 0 !important;
+    white-space: nowrap !important;
 }
 
 .segmented-button label {
@@ -71,30 +62,42 @@ fieldset {
     cursor: pointer;
     flex: 1 1 0px;
     position: relative;
-    padding-inline: tokens.get('button-segmented-padding-inline');
-    height: tokens.get('button-segmented-elements-height');
-    z-index: 100;
-    font-weight: 500;
+    padding-inline: $padding-inline;
+    height: $element-height;
     transition: inherit;
-    border: tokens.get('button-segmented-border-width') solid tokens.get('button-segmented-enabled-border');
+    border: $border-width solid $enabled-border;
+    @include utilities.focus-style();
 }
 
+.segmented-button label:last-of-type::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    background-color: black;
+    border-radius: $horizontal-border-radius;
+    opacity: 0;
+    transform: scaleX(0);
+    box-sizing: border-box;
+    transition: transform 0.4s cubic-bezier(0.25, 1.5, 0.5, 1);
+}
 
 .segmented-button input:checked + label {
     font-weight: 600;
     font-size: 0.875rem;
     color: white;
-    z-index: 100;
-}
-
-.segmented-button input:checked + label:last-of-type {
-    color: white;
-    z-index: 104;
+    z-index: 10;
 }
 
 @container segmented-container (max-width: 501px) {
     .segmented-button {
         display: inline-flex;
+        width: 80%;
+        z-index: 1;
         flex-direction: column;
         border-radius: tokens.get('button-segmented-vertical-border-radius'); 
         border: none;
@@ -109,37 +112,53 @@ fieldset {
 
     .segmented-button label {
         flex: 0 0 auto;
-        margin-bottom: -2px;
+        margin-bottom: calc(-1 * $border-width);
         z-index: 1;
         border: tokens.get('button-segmented-border-width') solid tokens.get('button-segmented-enabled-border');
-    
-        &:last-of-type {
-            margin-bottom: 0;
-        }    
-    
+
         &:hover {
             z-index: 2;
-            border-color: tokens.get('button-segmented-hover-border'); // Hover color for the existing borders
+            border-color: tokens.get('button-segmented-hover-border');
         }
-
-        @include utilities.focus-style(
-            $offset: tokens.get('button-segmented-focus-outline-offset'),
-            $width: tokens.get('button-segmented-focus-outline-width'),
-            $color: tokens.get('button-segmented-focus-outline-color'),
-        );
     }    
 
     .segmented-button label:last-of-type::after {
-        height: calc($label-height - $border-width * 2);
-        border-radius: 0;
-    }    
-    
-    @for $i from 1 through 9 {
-        .segmented-button input:nth-last-of-type(#{$i + 1}):checked ~ label:last-of-type::after {
-            transform: translateY(calc(#{$i * -100%} - #{$i} * #{$border-width})) scaleY(1);
-            opacity: 1;
-        }
+        height: calc($element-height - $border-width);
+        border-radius: inherit;
+        opacity: 0;
+        transition: border-radius 0.3s ease, opacity 0.3s ease;
+        transition: transform 0.4s cubic-bezier(0.25, 1.5, 0.5, 1);
     }
+      
+    @mixin segmented-button-style($count) {
+        @for $i from 1 through $count {
+          .segmented-button-#{$count} input:nth-last-of-type(#{$i + 1}):checked ~ label:last-of-type::after {
+            transform: translateY(calc(#{$i * -100%})) scaleY(1);
+            opacity: 1;
+      
+            @if $i == ($count - 1) {
+              border-top-left-radius: calc($vertical-border-radius - $border-width);
+              border-top-right-radius: calc($vertical-border-radius - $border-width);
+              border-bottom-left-radius: 0;
+              border-bottom-right-radius: 0;
+            } @else {
+              border-radius: 0;
+            }
+          }
+        }
+      }
+      
+      .segmented-button-container {
+        @include segmented-button-style(2);
+        @include segmented-button-style(3);
+        @include segmented-button-style(4);
+        @include segmented-button-style(5);
+        @include segmented-button-style(6);
+        @include segmented-button-style(7);
+        @include segmented-button-style(8);
+        @include segmented-button-style(9);
+        @include segmented-button-style(10);
+      }      
 
     .segmented-button label:first-of-type {
         border-top-left-radius: tokens.get('button-segmented-vertical-border-radius');
@@ -154,28 +173,36 @@ fieldset {
 
 @container segmented-container (min-width: 501px) {
     .segmented-button {
-        justify-content: center;
-        align-items: center;
-        height: tokens.get('button-segmented-elements-height');
+        gap: tokens.get('button-segmented-gap-inline');
+        height: 100%;
+        height: $element-height;
+        border-radius: tokens.get('button-segmented-horizontal-border-radius');
     }
 
     .segmented-button input:checked + label:last-of-type::after {
         opacity: 1;
         transform: scaleX(1);
-        border: tokens.get('button-segmented-border-width') solid tokens.get('button-segmented-selected-border');
     }
 
     @for $i from 1 through 9 {
         .segmented-button input:nth-last-of-type(#{$i + 1}):checked ~ label:last-of-type::after {
-            transform: translateX(calc(#{$i * -100%} - #{$i} * #{$border-width} * 2 - #{$i} * #{$gap})) scaleX(1);
+            transform: translateX(calc(#{$i * -100%} - #{$i} * #{$border-width} * 1.55 - #{$i} * #{$gap-inline})) scaleX(1);
             opacity: 1;
         }
     }
-
     .segmented-button label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: $element-height;
+        box-sizing: border-box;
         border-radius: tokens.get('button-segmented-horizontal-border-radius');
         border: tokens.get('button-segmented-border-width') solid transparent;
-        margin-block: calc(-2 * $border-width);
+        z-index: 2;
+
+        &:hover {
+            border-color: tokens.get('button-segmented-hover-border');
+        }
 
         &:first-of-type {
             margin-left: calc(-1 * $border-width);
@@ -185,21 +212,8 @@ fieldset {
             margin-right: calc(-1 * $border-width);
 
             &::after {
-                margin-right: 0;
-                border: tokens.get('button-segmented-border-width') solid tokens.get('button-segmented-selected-border');
+                width: 100%;
             }
         }
-
-        &:hover {
-            border-color: tokens.get('button-segmented-hover-border');
-        }
-
-        &:focus {
-            border-color: tokens.get('button-segmented-enabled-border'); 
-        }
-    }
-
-    .segmented-button input:checked + label {
-        border: none;
     }
 }
