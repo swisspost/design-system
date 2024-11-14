@@ -94,7 +94,6 @@ export namespace Components {
         "userid"?: string;
     }
     interface PostBackToTop {
-        "threshold": number;
     }
     interface PostBreadcrumbItem {
         /**
@@ -797,7 +796,6 @@ declare namespace LocalJSX {
         "userid"?: string;
     }
     interface PostBackToTop {
-        "threshold"?: number;
     }
     interface PostBreadcrumbItem {
         /**

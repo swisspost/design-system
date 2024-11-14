@@ -30,7 +30,12 @@ export const BackToTopLight: Story = {
           <p class="fake-content my-32"></p>
           <p class="fake-content my-32"></p>
           <p class="fake-content my-32"></p>
-          <post-back-to-top threshold="80"></post-back-to-top>
+          <p class="fake-content my-32"></p>
+          <p class="fake-content my-32"></p>
+          <p class="fake-content my-32"></p>
+          <p class="fake-content my-32"></p>
+          <p class="fake-content my-32"></p>
+          <post-back-to-top />
         </div>
       </div>
     </div>`;
@@ -56,7 +61,15 @@ export const BackToTopDark: Story = {
           <p class="fake-content my-32"></p>
           <p class="fake-content my-32"></p>
           <p class="fake-content my-32"></p>
-          <post-back-to-top threshold="80"></post-back-to-top>
+          <p class="fake-content my-32"></p>
+          <p class="fake-content my-32"></p>
+          <p class="fake-content my-32"></p>
+          <p class="fake-content my-32"></p>
+          <p class="fake-content my-32"></p>
+          <p class="fake-content my-32"></p>
+          <p class="fake-content my-32"></p>
+          <p class="fake-content my-32"></p>
+          <post-back-to-top />
         </div>
       </div>
     </div>`;

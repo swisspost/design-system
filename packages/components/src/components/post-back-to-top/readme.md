@@ -5,13 +5,6 @@
 <!-- Auto Generated Below -->
 
 
-## Properties
-
-| Property    | Attribute   | Description | Type     | Default |
-| ----------- | ----------- | ----------- | -------- | ------- |
-| `threshold` | `threshold` |             | `number` | `80`    |
-
-
 ## Dependencies
 
 ### Depends on

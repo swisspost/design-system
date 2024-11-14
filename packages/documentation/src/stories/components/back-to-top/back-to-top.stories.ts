@@ -1,6 +1,6 @@
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { MetaComponent } from '@root/types';
-import { html, nothing } from 'lit';
+import { html } from 'lit';
 
 const meta: MetaComponent = {
   id: '1a1b4cab-d0a8-4b01-bd85-b70e18668cb5',
@@ -11,15 +11,6 @@ const meta: MetaComponent = {
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=18-11',
-    },
-  },
-  args: {
-    threshold: 2,
-  },
-  argTypes: {
-    threshold: {
-      control: 'number',
-      description: 'Define the fold threshold of the back to-top-button.',
     },
   },
 };
@@ -47,12 +38,18 @@ export const Default: Story = {
           <p class="fake-content my-32"></p>
           <p class="fake-content my-32"></p>
           <p class="fake-content my-32"></p>
+          <p class="fake-content my-32"></p>
+          <p class="fake-content my-32"></p>
+          <p class="fake-content my-32"></p>
+          <p class="fake-content my-32"></p>
+          <p class="fake-content my-32"></p>
+          <p class="fake-content my-32"></p>
+          <p class="fake-content my-32"></p>
+          <p class="fake-content my-32"></p>
         </div>
       </div>
       ${story(args, context)}
     `,
   ],
-  render: (args: Args) => html`<post-back-to-top
-    threshold="${args.threshold || nothing}"
-  ></post-back-to-top>`,
+  render: () => html`<post-back-to-top />`,
 };

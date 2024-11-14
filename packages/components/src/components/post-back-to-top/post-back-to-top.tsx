@@ -1,4 +1,4 @@
-import { Component, Element, Host, State, h, Prop, Watch } from '@stencil/core';
+import { Component, Element, Host, State, h, Watch } from '@stencil/core';
 import { showUp, hideDown } from '@/animations/back-to-top';
 
 // Token for different translate values depending on the breakpoint
@@ -14,16 +14,19 @@ const tokens = {
 export class PostBackToTop {
   @Element() el: HTMLElement;
 
-  @Prop() threshold: number = 80;
-
   @State() belowFold: boolean = false;
 
+  getFoldHeight(): number {
+    return window.innerHeight;
+  }
+
   getScrollPositionPercentage(): number {
-    return (window.pageYOffset / window.innerHeight) * 100;
+    // Window.innerHeight is the foldHeight
+    return (window.pageYOffset / this.getFoldHeight()) * 100;
   }
 
   calcIfIsBelowFold(): boolean {
-    return this.getScrollPositionPercentage() > this.threshold;
+    return this.getScrollPositionPercentage() > 100;
   }
 
   handleScroll = () => {
@@ -57,7 +60,8 @@ export class PostBackToTop {
 
   componentDidLoad() {
     window.addEventListener('scroll', this.handleScroll, false);
-    // Trigger the animation on initial load
+
+    // Initial load
     if (this.belowFold) {
       showUp(this.el, tokens.translateY);
     }
