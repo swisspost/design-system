@@ -18,7 +18,7 @@ import {
   ICON_V2_TEMPLATE,
 } from '../constants';
 
-const iconOutputPath = path.join(OUTPUT_PATH, 'post-icons/ui');
+const iconOutputPath = path.join(OUTPUT_PATH, 'post-icons');
 const reportOutputPath = path.join(OUTPUT_PATH, 'report.v2.json');
 
 type File = {

@@ -15,7 +15,6 @@ src/icons/**/*.svg
 !src/icons/v2/Accessibility_40.svg
 !src/icons/v2/Accessibility_48.svg
 !src/icons/v2/Accessibility_64.svg
-public/post-icons/ui
 
 # Ignore generated files
 # TODO: Add before merge

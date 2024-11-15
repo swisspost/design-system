@@ -37,10 +37,6 @@ export const main = async () => {
     console.log('Starting to download icons');
 
     const report = await downloadAllIcons(url);
-
-    fs.readdirSync(iconDownloadPath).forEach(filePath => {
-      fs.copyFileSync(path.join(iconDownloadPath, filePath), path.join(iconOutputPath, filePath));
-    });
     fs.writeFileSync(path.join(OUTPUT_PATH, 'report.json'), JSON.stringify(report, null, 2));
 
     console.log(

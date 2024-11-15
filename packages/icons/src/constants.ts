@@ -14,6 +14,8 @@ export const ICON_V1_TEMPLATE = `<svg xmlns="http://www.w3.org/2000/svg">
   <defs>
     {symbols}
   </defs>
+
+  {uses}
 </svg>`;
 
 export const ICON_V2_TEMPLATE = `<svg xmlns="http://www.w3.org/2000/svg">
