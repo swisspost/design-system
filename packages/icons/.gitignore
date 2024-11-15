@@ -4,21 +4,8 @@ node_modules
 # Stores password, don't check in
 .env
 
-# TODO: Remove before merge
-src/icons/**/*.svg
-!src/icons/v1
-!src/icons/v2
-!src/icons/v1/1000.svg
-!src/icons/v2/Accessibility_16.svg
-!src/icons/v2/Accessibility_24.svg
-!src/icons/v2/Accessibility_32.svg
-!src/icons/v2/Accessibility_40.svg
-!src/icons/v2/Accessibility_48.svg
-!src/icons/v2/Accessibility_64.svg
-
 # Ignore generated files
-# TODO: Add before merge
-# public/post-icons
+public/post-icons
 public/report.json
 public/report.v2.json
 
