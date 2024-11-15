@@ -19,12 +19,11 @@ tokens.$default-map: (
   post-floating-button-hover-border: #504f4b,
   post-floating-button-hover-fg: #504f4b,
   post-floating-button-hover-bg: white,
-  post-floating-button-translate-y: 36px
+  post-floating-button-translate-y: 8rem
 );
 
 :host {
-  --post-floating-button-translate-y: tokens.get('post-floating-button-translate-y');
-
+  --post-floating-button-translate-y: #{tokens.get('post-floating-button-translate-y')};
   position: fixed;
   bottom: tokens.get('post-floating-button-position-bottom');
   right: tokens.get('post-floating-button-position-right');

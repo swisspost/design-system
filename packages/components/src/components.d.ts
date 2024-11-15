@@ -94,6 +94,7 @@ export namespace Components {
         "userid"?: string;
     }
     interface PostBackToTop {
+        "bttptitle": string;
     }
     interface PostBreadcrumbItem {
         /**
@@ -880,6 +881,7 @@ declare namespace LocalJSX {
         "userid"?: string;
     }
     interface PostBackToTop {
+        "bttptitle"?: string;
     }
     interface PostBreadcrumbItem {
         /**

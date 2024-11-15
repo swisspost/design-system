@@ -5,6 +5,13 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property    | Attribute   | Description | Type     | Default     |
+| ----------- | ----------- | ----------- | -------- | ----------- |
+| `bttptitle` | `bttptitle` |             | `string` | `undefined` |
+
+
 ## Dependencies
 
 ### Depends on

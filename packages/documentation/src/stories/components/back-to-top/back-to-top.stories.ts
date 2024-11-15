@@ -13,43 +13,43 @@ const meta: MetaComponent = {
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=18-11',
     },
   },
+  render: () => html` <div
+    class="header-story-wrapper"
+    style="--header-z-index: 1;overflow: auto; "
+  >
+    <swisspost-internet-header
+      project="test"
+      environment="int01"
+      language="en"
+    ></swisspost-internet-header>
+    <div class="container">
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+    </div>
+    <post-back-to-top />
+  </div>`,
+  decorators: [
+    (story: StoryFn, { args, context }: StoryContext) => html` ${story(args, context)} `,
+  ],
 };
 
 export default meta;
 
 type Story = StoryObj;
 
-export const Default: Story = {
-  decorators: [
-    (story: StoryFn, { args, context }: StoryContext) => html`
-      <div class="header-story-wrapper" style="--header-z-index: 1;overflow: auto; ">
-        <swisspost-internet-header
-          project="test"
-          environment="int01"
-          language="en"
-        ></swisspost-internet-header>
-        <div class="container">
-          <p class="fake-content my-32"></p>
-          <p class="fake-content my-32"></p>
-          <p class="fake-content my-32"></p>
-          <p class="fake-content my-32"></p>
-          <p class="fake-content my-32"></p>
-          <p class="fake-content my-32"></p>
-          <p class="fake-content my-32"></p>
-          <p class="fake-content my-32"></p>
-          <p class="fake-content my-32"></p>
-          <p class="fake-content my-32"></p>
-          <p class="fake-content my-32"></p>
-          <p class="fake-content my-32"></p>
-          <p class="fake-content my-32"></p>
-          <p class="fake-content my-32"></p>
-          <p class="fake-content my-32"></p>
-          <p class="fake-content my-32"></p>
-          <p class="fake-content my-32"></p>
-        </div>
-      </div>
-      ${story(args, context)}
-    `,
-  ],
-  render: () => html`<post-back-to-top />`,
-};
+export const Default: Story = {};

@@ -1,5 +1,5 @@
-import { Component, Element, Host, State, h, Watch } from '@stencil/core';
-import { showUp, hideDown } from '@/animations/back-to-top';
+import { Component, Element, Host, State, h, Watch, Prop } from '@stencil/core';
+import { slideUp, slideDown } from '@/animations/slide';
 
 // Token for different translate values depending on the breakpoint
 
@@ -11,33 +11,27 @@ import { showUp, hideDown } from '@/animations/back-to-top';
 export class PostBackToTop {
   @Element() el: HTMLElement;
 
+  @Prop() bttptitle: string;
+
   @State() belowFold: boolean = false;
-  @State() translateY: string = '';
 
-  getFoldHeight(): number {
-    return window.innerHeight;
-  }
+  private translateY: string;
 
-  getScrollPositionPercentage(): number {
-    // Window.innerHeight is the foldHeight
-    return (window.scrollY / this.getFoldHeight()) * 100;
-  }
-
-  calcIfIsBelowFold(): boolean {
-    return this.getScrollPositionPercentage() > 100;
+  IsBelowFold(): boolean {
+    return window.scrollY > window.innerHeight;
   }
 
   handleScroll = () => {
-    this.belowFold = this.calcIfIsBelowFold();
+    this.belowFold = this.IsBelowFold();
   };
 
   // Watch for changes in belowFold
   @Watch('belowFold')
   watchBelowFold(newValue: boolean) {
     if (newValue) {
-      showUp(this.el, this.translateY);
+      slideUp(this.el, this.translateY);
     } else {
-      hideDown(this.el, this.translateY);
+      slideDown(this.el, this.translateY);
     }
   }
 
@@ -50,24 +44,23 @@ export class PostBackToTop {
 
   // Set the initial state
   componentWillLoad() {
-    this.belowFold = this.calcIfIsBelowFold();
-    if (!this.belowFold) {
-      this.el.style.transform = `translateY(${this.translateY})`;
-    }
-
-    const translateYValue = window
-      .getComputedStyle(this.el)
-      .getPropertyValue('--post-floating-button-translate-y');
-    console.log(translateYValue);
-    this.translateY = translateYValue;
+    this.belowFold = this.IsBelowFold();
   }
 
   componentDidLoad() {
     window.addEventListener('scroll', this.handleScroll, false);
 
+    this.translateY = window
+      .getComputedStyle(this.el)
+      .getPropertyValue('--post-floating-button-translate-y');
+
+    if (!this.belowFold) {
+      this.el.style.transform = `translateY(${this.translateY})`;
+    }
+
     // Initial load
     if (this.belowFold) {
-      showUp(this.el, this.translateY);
+      slideUp(this.el, this.translateY);
     }
   }
 
@@ -85,7 +78,7 @@ export class PostBackToTop {
           onClick={this.scrollToTop}
         >
           <post-icon aria-hidden={this.belowFold ? 'false' : 'true'} name="3026"></post-icon>
-          <span class="visually-hidden">Back To Top Button</span>
+          <span class="visually-hidden">{this.bttptitle}</span>
         </button>
       </Host>
     );
