@@ -4,16 +4,21 @@
   "description": "Scripts to migrate an Angular application from one Design System version to another.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
+  "private": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git"
   },
-  "files": [
-    "dist/"
-  ],
+  "homepage": "https://design-system.post.ch",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "copy-files": "copyfiles -f LICENSE README.md package.json CONTRIBUTING.md CHANGELOG.md src/migrations.json dist",
     "build": "tsc -p tsconfig.json && pnpm copy-files",
@@ -36,11 +41,11 @@
     "eslint": "8.57.0",
     "rimraf": "6.0.1"
   },
+  "keywords": [
+    "schematics"
+  ],
   "schematics": "./dist/migrations.json",
   "ng-update": {
     "migrations": "./dist/migrations.json"
-  },
-  "keywords": [
-    "schematics"
-  ]
+  }
 }

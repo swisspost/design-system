@@ -4,6 +4,7 @@
   "description": "Swiss Post Design System Documentation.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
+  "private": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git"
@@ -13,7 +14,6 @@
     "url": "https://github.com/swisspost/design-system/issues"
   },
   "main": "index.js",
-  "private": true,
   "scripts": {
     "prebuild:managerui": "sass --update --load-path=node_modules .storybook/styles/manager.scss public/manager/ui.css",
     "start": "pnpm clean && pnpm prebuild:managerui --style=expanded & storybook dev -p 9000 --quiet --docs",
@@ -79,5 +79,6 @@
     "sass": "1.78.0",
     "storybook": "8.2.7",
     "typescript": "5.5.4"
-  }
+  },
+  "keywords": []
 }

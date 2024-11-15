@@ -1,14 +1,26 @@
 {
   "name": "@swisspost/design-system-components-angular-workspace",
   "version": "1.1.10-next.4",
+  "description": "Wrapper arround @swisspost/design-system-components for angular",
+  "author": "Swiss Post <design-system@post.ch>",
+  "license": "Apache-2.0",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git"
+  },
+  "homepage": "https://design-system.post.ch",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
   "scripts": {
     "start": "ng serve --port 9210",
     "build": "ng build components",
+    "clean": "rimraf dist .angular",
     "lint": "ng lint",
     "e2e": "ng e2e --watch=false",
     "e2e:watch": "ng e2e"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "18.2.10",
     "@angular/common": "18.2.10",
@@ -43,6 +55,7 @@
     "karma-jasmine": "5.1.0",
     "karma-jasmine-html-reporter": "2.1.0",
     "ng-packagr": "18.1.0",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "rimraf": "6.0.1"
   }
 }

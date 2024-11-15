@@ -4,6 +4,7 @@
   "description": "The header for client facing applications.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git"
@@ -12,14 +13,6 @@
   "bugs": {
     "url": "https://github.com/swisspost/design-system/issues"
   },
-  "main": "loader/index.cjs.js",
-  "module": "loader/index.js",
-  "es2017": "loader/index.es2017.js",
-  "types": "loader/index.d.ts",
-  "collection": "dist/collection/collection-manifest.json",
-  "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/swisspost-internet-header/swisspost-internet-header.esm.js",
-  "private": true,
   "publishConfig": {
     "access": "restricted"
   },
@@ -27,6 +20,13 @@
     "dist/",
     "loader/"
   ],
+  "main": "loader/index.cjs.js",
+  "module": "loader/index.js",
+  "es2017": "loader/index.es2017.js",
+  "types": "loader/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "unpkg": "dist/swisspost-internet-header/swisspost-internet-header.esm.js",
   "scripts": {
     "dev": "stencil build --serve --port 9310 --watch --docs-readme --dev --config stencil.config.dev.ts",
     "start": "stencil build --watch --docs-readme",

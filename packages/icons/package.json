@@ -4,6 +4,7 @@
   "description": "A collection of Swiss Post icons intended for use with the Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
+  "private": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git"
@@ -19,7 +20,6 @@
   "files": [
     "public"
   ],
-  "private": false,
   "scripts": {
     "dev": "http-server ./public -o -a localhost -p 9330",
     "fetchSVGs": "ts-node src/index.ts",

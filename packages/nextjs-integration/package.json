@@ -1,12 +1,24 @@
 {
   "name": "@swisspost/design-system-nextjs-integration",
   "version": "0.1.14-next.4",
+  "description": "NextJS example integration of the Swiss Post Design System",
+  "author": "Swiss Post <design-system@post.ch>",
+  "license": "Apache-2.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git"
+  },
+  "homepage": "https://design-system.post.ch",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "clean": "rimraf .next",
+    "dev": "next dev",
+    "lint": "next lint",
+    "start": "next start"
   },
   "dependencies": {
     "@swisspost/design-system-components-react": "workspace:9.0.0-next.4",
@@ -24,8 +36,10 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "postcss": "^8",
+    "rimraf": "6.0.1",
     "sass": "1.78.0",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
-  }
+  },
+  "keywords": []
 }
