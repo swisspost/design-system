@@ -1,22 +1,21 @@
 import { Component, Element, Host, State, h, Watch, Prop } from '@stencil/core';
 import { slideUp, slideDown } from '@/animations/slide';
 
+// Token for different translate values depending on the breakpoint
+
 @Component({
   tag: 'post-back-to-top',
   styleUrl: 'post-back-to-top.scss',
   shadow: true,
 })
 export class PostBackToTop {
-  @Element() el: HTMLPostBackToTopElement;
+  @Element() el: HTMLElement;
+
+  @Prop() bttptitle: string;
 
   @State() belowFold: boolean = false;
 
-  /**
-   * Defines the back to top buttons hidden title.
-   */
-  @Prop() buttonTitle: string = '';
-
-  private translateY: string = '';
+  private translateY: string;
 
   IsBelowFold(): boolean {
     return window.scrollY > window.innerHeight;
@@ -79,7 +78,7 @@ export class PostBackToTop {
           onClick={this.scrollToTop}
         >
           <post-icon aria-hidden={this.belowFold ? 'false' : 'true'} name="3026"></post-icon>
-          <span class="visually-hidden">{this.buttonTitle}</span>
+          <span class="visually-hidden">{this.bttptitle}</span>
         </button>
       </Host>
     );

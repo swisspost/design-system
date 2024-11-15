@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property      | Attribute      | Description                                   | Type     | Default |
-| ------------- | -------------- | --------------------------------------------- | -------- | ------- |
-| `buttonTitle` | `button-title` | Defines the back to top buttons hidden title. | `string` | `''`    |
+| Property    | Attribute   | Description | Type     | Default     |
+| ----------- | ----------- | ----------- | -------- | ----------- |
+| `bttptitle` | `bttptitle` |             | `string` | `undefined` |
 
 
 ## Dependencies
