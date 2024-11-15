@@ -38,8 +38,16 @@ export const Switch: Story = {
 
     return html`
       <div>
-        ${['white', 'dark'].map(
-          bg => html` <div class=${'row bg-' + bg}>${templateVariants(bg)}</div> `,
+        ${[
+          { bg: 'bg-white', scheme: 'light' },
+          { bg: 'bg-dark', scheme: 'dark' },
+        ].map(
+          ({ bg, scheme }) =>
+            html`
+              <div data-color-scheme="${scheme}" class=${'row bg-' + bg}>
+                ${templateVariants(bg)}
+              </div>
+            `,
         )}
       </div>
     `;

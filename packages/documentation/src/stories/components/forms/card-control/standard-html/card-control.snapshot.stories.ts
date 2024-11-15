@@ -27,9 +27,12 @@ export const CardControl: StoryObj = {
   render: () => {
     return html`
       <div class="d-flex gap-16 flex-wrap">
-        ${['bg-white', 'bg-dark'].map(
-          bg => html`
-            <div class="${bg + ' row g-3'}">
+        ${[
+          { bg: 'bg-white', scheme: 'light' },
+          { bg: 'bg-dark', scheme: 'dark' },
+        ].map(
+          ({ bg, scheme }) => html`
+            <div data-color-scheme="${scheme}" class="${bg + ' row g-3'}">
               ${bombedArgs.map(args => html` <div class="col-sm-6">${Default.render(args)}</div> `)}
             </div>
           `,

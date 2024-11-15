@@ -23,9 +23,15 @@ export const Checkbox: Story = {
     });
     return html`
       <div class="d-flex flex-wrap gap-4 align-items-start">
-        ${['bg-white', 'bg-dark'].map(
-          bg => html`
-            <div class="${bg} d-flex flex-wrap align-items-start gap-16 p-16">
+        ${[
+          { bg: 'bg-white', scheme: 'light' },
+          { bg: 'bg-dark', scheme: 'dark' },
+        ].map(
+          ({ bg, scheme }) => html`
+            <div
+              data-color-scheme="${scheme}"
+              class="${bg} d-flex flex-wrap align-items-start gap-16 p-16"
+            >
               ${[
                 ...bombArgs({
                   checked: ['indeterminate'],

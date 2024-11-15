@@ -67,13 +67,13 @@ export const Validation: Story = {
                                       <label class="form-check-label" for="${component.id}">
                                         <span>Label</span>
                                       </label>
-                                      <p id="${validFeedbackId}" class="valid-feedback">
-                                        Valid message.
-                                      </p>
-                                      <p id="${invalidFeedbackId}" class="invalid-feedback">
-                                        Invalid message.
-                                      </p>
                                     </div>
+                                    <p id="${validFeedbackId}" class="valid-feedback">
+                                      Valid message.
+                                    </p>
+                                    <p id="${invalidFeedbackId}" class="invalid-feedback">
+                                      Invalid message.
+                                    </p>
                                   `;
                                 case 'Checkbox':
                                   return html`
