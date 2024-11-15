@@ -1,11 +1,1 @@
-// Temporary changes
-@use 'sass:map';
-@use './temp/components';
 @forward './temp/components';
-
-$post-container: map.merge(
-  components.$post-container,
-  (
-    post-grid-margin-xl: var(--post-core-dimension-40),
-  )
-);
