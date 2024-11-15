@@ -213,7 +213,7 @@ function render(args: Args, context: StoryContext) {
       html`
         <input
           id="${inputId}"
-          class="form-control mw-56"
+          class="form-control mw-giant"
           type="text"
           inputmode="decimal"
           value="${args.value}"
