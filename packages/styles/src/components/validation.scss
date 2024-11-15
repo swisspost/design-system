@@ -75,16 +75,17 @@ input[type='range'],
       display: inline-block;
       margin-inline-end: tokens.get('post-validation-group-gap-inline');
       background-color: currentColor;
+      color: currentColor;
       content: '';
     }
   }
 
   ~ .invalid-feedback::before {
-    @include icon-mixin.icon('val-error');
+    @include icon-mixin.icon('error');
   }
 
   ~ .valid-feedback::before {
-    @include icon-mixin.icon('val-success');
+    @include icon-mixin.icon('success');
   }
 }
 
