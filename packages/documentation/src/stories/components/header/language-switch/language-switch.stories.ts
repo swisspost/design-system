@@ -15,7 +15,7 @@ const meta: MetaComponent<HTMLPostLanguageOptionSwitchElement> = {
     },
   },
   args: {
-    variant: 'dropdown',
+    variant: 'list',
     caption: 'Caption',
     description: 'Description',
   },
@@ -52,23 +52,14 @@ export default meta;
 // RENDERERS
 function renderLanguageSwitch(args: Partial<HTMLPostLanguageOptionSwitchElement>) {
   return html`<post-language-option-switch
-      caption=${args.caption}
-      description=${args.description}
-      variant=${args.variant}
-    >
-      <post-language-option name="post-list-item" active="true" code="de" name="Deutsch"
-        >DE</post-language-option
-      ><post-language-option name="post-list-item" active="false" code="en"
-        >EN</post-language-option
-      >
-    </post-language-option-switch>
-
-    <post-menu-trigger for="post-3-menu">
-      <button class="btn btn-primary">${args.caption}</button>
-    </post-menu-trigger>
-    <post-menu id="post-3-menu">
-      <post-menu-item>test</post-menu-item>
-    </post-menu> `;
+    caption=${args.caption}
+    description=${args.description}
+    variant=${args.variant}
+  >
+    <post-language-option active="true" code="de" name="Deutsch">DE</post-language-option>
+    <post-language-option active="false" code="en" name="English">EN</post-language-option>
+    <post-language-option active="false" code="fr" name="French">FR</post-language-option>
+  </post-language-option-switch> `;
 }
 
 // STORIES

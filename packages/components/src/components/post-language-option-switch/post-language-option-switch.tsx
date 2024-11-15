@@ -7,7 +7,7 @@ import { SWITCH_MODES, SwitchMode } from './switch-modes';
 @Component({
   tag: 'post-language-option-switch',
   styleUrl: 'post-language-option-switch.scss',
-  shadow: true,
+  shadow: false,
 })
 export class PostLanguageOptionSwitch {
   @Element() host: HTMLPostLanguageOptionSwitchElement;
@@ -76,7 +76,10 @@ export class PostLanguageOptionSwitch {
 
   componentWillRender() {
     this.elements = this.host.querySelectorAll('post-language-option');
-    console.log('befoerles slottedElements', this.elements);
+    console.log('les slottedElements', this.elements[0]);
+    this.elements.forEach(element => {
+      element.remove();
+    });
   }
 
   componentDidLoad() {
@@ -85,42 +88,45 @@ export class PostLanguageOptionSwitch {
     this.validateMode();
     this.validateVariant();
   }
-  connectedCallback() {
-    console.log('called');
-    this.getSlottedItems();
-  }
-
-  private getSlottedItems() {
-    const slot = this.host.shadowRoot.querySelectorAll('slot');
-    //const slottedElements = slot ? slot.assignedElements() : [];
-
-    console.log('les slottedElements', slot, this.host.shadowRoot);
-  }
 
   render() {
     return (
       <Host data-version={version}>
         {this.variant === 'list' ? (
-          <post-list>
+          <post-list title-hidden="true">
             <h3>
               {this.caption}, {this.description}
             </h3>
-            <slot>
-              {this.elements.forEach(item => {
-                <post-list-item>{item}</post-list-item>;
-              })}
-            </slot>
+            {Array.from(this.elements).map(item => (
+              <post-list-item>
+                <post-language-option
+                  active={item.hasAttribute('active')}
+                  code={item.getAttribute('code')}
+                  name={item.getAttribute('name')}
+                >
+                  {item.textContent}
+                </post-language-option>
+              </post-list-item>
+            ))}
           </post-list>
         ) : (
           <div>
-            <div>
-              <post-menu-trigger for="post-language-menu">
-                <button class="btn btn-primary">{this.caption}</button>
-              </post-menu-trigger>
-              <post-menu id="post-language-menu">
-                <post-menu-item>test</post-menu-item>
-              </post-menu>
-            </div>
+            <post-menu-trigger for="post-language-menu">
+              <button class="btn btn-primary">{this.caption}</button>
+            </post-menu-trigger>
+            <post-menu id="post-language-menu">
+              {Array.from(this.elements).map(item => (
+                <post-men-item>
+                  <post-language-option
+                    active={item.hasAttribute('active')}
+                    code={item.getAttribute('code')}
+                    name={item.getAttribute('name')}
+                  >
+                    {item.textContent}
+                  </post-language-option>
+                </post-men-item>
+              ))}
+            </post-menu>
           </div>
         )}
       </Host>

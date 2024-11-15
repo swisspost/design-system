@@ -21,7 +21,7 @@ export class PostMenuTrigger {
   @State() ariaExpanded: boolean = false;
 
   /**
-   * Reference to the slotted button within the trigger, if present. 
+   * Reference to the slotted button within the trigger, if present.
    * Used to manage click and key events for menu control.
    */
   private slottedButton: HTMLButtonElement | null = null;
@@ -60,8 +60,20 @@ export class PostMenuTrigger {
 
   componentDidLoad() {
     this.validateControlFor();
-    
+
     this.slottedButton = this.host.querySelector('button');
+
+    // Check if the slottedButton is within a web component
+    if (!this.slottedButton) {
+      const webComponent = this.host.querySelector('.menu-trigger-webc');
+      if (webComponent.shadowRoot) {
+        const slottedButton = webComponent.shadowRoot.querySelector('button');
+        if (slottedButton) {
+          this.slottedButton = slottedButton;
+        }
+      }
+    }
+
     if (this.slottedButton) {
       this.slottedButton.setAttribute('aria-haspopup', 'menu');
       this.slottedButton.addEventListener('click', () => {
