@@ -32,6 +32,11 @@ Default feedback message classes
     display: flex;
   }
 }
+// Special for Card Control
+.was-validated:has(:valid) ~ .valid-feedback,
+:has(.is-valid) ~ .valid-feedback {
+  display: flex;
+}
 
 /*
  Invalid input feedback
@@ -45,12 +50,19 @@ Default feedback message classes
   }
 }
 
+// Special for Card Control
+.was-validated:has(:invalid) ~ .invalid-feedback,
+:has(.is-invalid) ~ .invalid-feedback {
+  display: flex;
+}
+
 /*
  Checkbox and Radio box specific classes
 */
 input[type='checkbox'],
 input[type='radio'],
-input[type='range'] {
+input[type='range'],
+:has(input[type='checkbox']) {
   ~ .invalid-feedback,
   ~ .valid-feedback {
     margin-top: 1px;
@@ -75,3 +87,5 @@ input[type='range'] {
     @include icon-mixin.icon('val-success');
   }
 }
+
+// Special for Card Control
