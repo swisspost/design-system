@@ -94,7 +94,10 @@ export namespace Components {
         "userid"?: string;
     }
     interface PostBackToTop {
-        "bttptitle": string;
+        /**
+          * Defines the back to top buttons hidden title.
+         */
+        "buttonTitle": string;
     }
     interface PostBreadcrumbItem {
         /**
@@ -881,7 +884,10 @@ declare namespace LocalJSX {
         "userid"?: string;
     }
     interface PostBackToTop {
-        "bttptitle"?: string;
+        /**
+          * Defines the back to top buttons hidden title.
+         */
+        "buttonTitle"?: string;
     }
     interface PostBreadcrumbItem {
         /**
