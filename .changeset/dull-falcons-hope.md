@@ -4,4 +4,4 @@
 '@swisspost/design-system-styles': minor
 ---
 
-implement back-to-top button
+Ιmplemented the back-to-top button component.

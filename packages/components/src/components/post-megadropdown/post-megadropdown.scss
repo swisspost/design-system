@@ -1,0 +1,71 @@
+@use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/variables/color';
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+post-popovercontainer {
+  background-color: #fafafa;
+  width: 100%;
+  border-bottom: 1px solid black;
+
+  @include media.max(lg) {
+    // Overrides floating-ui inline styles on mobile
+    position: absolute;
+    top: var(--header-height) !important;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.megadropdown {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 0 0 3px 3px;
+
+  @include media.max(lg) {
+    flex-direction: column;
+  }
+
+  post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  post-list-item {
+    border-bottom: 1px solid gray;
+
+    > a {
+      padding-block: 0.25rem;
+      display: block;
+      text-decoration: none;
+    }
+  }
+}
+
+.back-button {
+  display: none;
+
+  @include media.max(lg) {
+    display: block;
+  }
+}
+
+post-closebutton {
+  margin-left: auto;
+
+  @include media.max(lg) {
+    display: none;
+  }
+}
+
+h3 {
+  font-size: 20px;
+}
