@@ -146,15 +146,19 @@ $post-segmented-button-max-count: 8;
         border-radius: 0;
       }
 
+      input {
+        border-top-color: tokens.get('button-segmented-enabled-border');
+      }
+
       &:not(:first-of-type) {
         input {
-          top: calc(
-            (
-                tokens.get('button-segmented-border-width') +
-                  tokens.get('button-segmented-gap-inline')
-              ) * -1
-          );
-          border-top-color: tokens.get('button-segmented-enabled-border');
+          top: calc(tokens.get('button-segmented-border-width') * -1);
+        }
+      }
+
+      &:not(:last-of-type) {
+        input {
+          bottom: calc(tokens.get('button-segmented-gap-inline') * -1);
         }
       }
 
