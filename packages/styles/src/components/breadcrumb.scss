@@ -18,24 +18,3 @@
   font-weight: type.$font-weight-normal;
   white-space: nowrap;
 }
-
-.breadcrumb-item {
-  display: flex;
-  align-items: center;
-
-  .ppm-breadcrumb-divider {
-    fill: breadcrumbs.$breadcrumb-divider-color;
-  }
-
-  a {
-    display: flex;
-    align-content: center;
-    align-items: center;
-    color: breadcrumbs.$breadcrumb-link-color;
-    text-decoration: none;
-
-    &:hover {
-      color: breadcrumbs.$breadcrumb-hover-color;
-    }
-  }
-}

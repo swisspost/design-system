@@ -45,23 +45,6 @@ tokens.$default-map: components.$post-banner;
     list.nth($default-var, 6)
   );
 
-  &.no-icon {
-    padding-inline-start: $padding-x;
-  }
-
-  // for notifications with .pi-* icons (deprecated)
-  &[class^='pi-'],
-  &[class*=' pi-'] {
-    background-size: $icon-size;
-    background-position: $padding-x $padding-y;
-    background-repeat: no-repeat;
-
-    &.no-icon {
-      background-image: none;
-    }
-  }
-
-  // for notifications with mask-image icons and post-icon override
   &::before {
     content: '';
     display: block;
@@ -76,9 +59,10 @@ tokens.$default-map: components.$post-banner;
     top: $padding-y;
   }
 
-  &.no-icon,
-  &[class^='pi-'],
-  &[class*=' pi-'] {
+  &.no-icon {
+    min-height: calc(2 * #{$padding-y} + close.$close-size);
+    padding-inline-start: $padding-x;
+
     &::before {
       content: unset;
     }
@@ -124,7 +108,7 @@ tokens.$default-map: components.$post-banner;
   color-scheme: $scheme;
 
   // default icon (mask-image)
-  &:not(.no-icon, [class^='pi-'], [class*=' pi-'])::before {
+  &:not(.no-icon)::before {
     @include icons-mx.icon($icon);
     color: $icon-color;
   }
