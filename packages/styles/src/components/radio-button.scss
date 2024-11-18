@@ -34,6 +34,7 @@ input[type='radio'] {
     background-color: Field;
     border-color: FieldText;
     color: FieldText;
+    transition: none;
   }
 
   &:not([disabled]) {
@@ -89,7 +90,7 @@ input[type='radio'] {
     color: tokens.get('radio-button-disabled-fg');
 
     &:checked {
-      &:after {
+      &::after {
         background-color: tokens.get('radio-button-disabled-fg');
       }
     }

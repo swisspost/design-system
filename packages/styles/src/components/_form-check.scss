@@ -60,24 +60,20 @@
           cursor: pointer;
         }
 
-        &:hover {
-          ~ label {
-            color: tokens.get('checkbox-hover-fg', components.$post-checkbox);
+        &:hover ~ label {
+          color: tokens.get('checkbox-hover-fg', components.$post-checkbox);
 
-            @include utility-mx.high-contrast-mode() {
-              color: Highlight;
-            }
+          @include utility-mx.high-contrast-mode() {
+            color: Highlight;
           }
         }
       }
 
-      &[disabled] {
-        ~ label {
-          color: tokens.get('checkbox-disabled-fg', components.$post-checkbox);
+      &[disabled] ~ label {
+        color: tokens.get('checkbox-disabled-fg', components.$post-checkbox);
 
-          @include utility-mx.high-contrast-mode() {
-            color: GrayText;
-          }
+        @include utility-mx.high-contrast-mode() {
+          color: GrayText;
         }
       }
     }
@@ -107,24 +103,20 @@
           cursor: pointer;
         }
 
-        &:hover {
-          ~ label {
-            color: tokens.get('radio-button-hover-fg', components.$post-radio-button);
+        &:hover ~ label {
+          color: tokens.get('radio-button-hover-fg', components.$post-radio-button);
 
-            @include utility-mx.high-contrast-mode() {
-              color: Highlight;
-            }
+          @include utility-mx.high-contrast-mode() {
+            color: Highlight;
           }
         }
       }
 
-      &[disabled] {
-        ~ label {
-          color: tokens.get('radio-button-disabled-fg', components.$post-radio-button);
+      &[disabled] ~ label {
+        color: tokens.get('radio-button-disabled-fg', components.$post-radio-button);
 
-          @include utility-mx.high-contrast-mode() {
-            color: GrayText;
-          }
+        @include utility-mx.high-contrast-mode() {
+          color: GrayText;
         }
       }
     }
