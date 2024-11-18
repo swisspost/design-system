@@ -43,6 +43,4 @@ function getContent(title: string, property: string) {
       })}
     </div>
   `;
-
-  return html``;
 }
