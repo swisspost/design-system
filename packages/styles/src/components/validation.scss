@@ -81,12 +81,10 @@ input[type='range'],
   }
 
   ~ .invalid-feedback::before {
-    @include icon-mixin.icon('error');
+    @include icon-mixin.icon('warning');
   }
 
   ~ .valid-feedback::before {
     @include icon-mixin.icon('success');
   }
 }
-
-// Special for Card Control
