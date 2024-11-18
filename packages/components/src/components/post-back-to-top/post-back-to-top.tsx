@@ -1,28 +1,30 @@
 import { Component, Element, Host, State, h, Watch, Prop } from '@stencil/core';
 import { slideUp, slideDown } from '@/animations/slide';
 
-// Token for different translate values depending on the breakpoint
-
 @Component({
   tag: 'post-back-to-top',
   styleUrl: 'post-back-to-top.scss',
   shadow: true,
 })
 export class PostBackToTop {
-  @Element() el: HTMLElement;
+  @Element() el: HTMLPostBackToTopElement;
 
-  @Prop() bttptitle: string;
+  /**
+   * The title of the back-to-top button, intended solely for accessibility purposes.
+   * This title is always hidden from view.
+   **/
+  @Prop() buttonTitle: string = 'Back to top button';
 
   @State() belowFold: boolean = false;
 
   private translateY: string;
 
-  IsBelowFold(): boolean {
+  isBelowFold(): boolean {
     return window.scrollY > window.innerHeight;
   }
 
   handleScroll = () => {
-    this.belowFold = this.IsBelowFold();
+    this.belowFold = this.isBelowFold();
   };
 
   // Watch for changes in belowFold
@@ -44,7 +46,7 @@ export class PostBackToTop {
 
   // Set the initial state
   componentWillLoad() {
-    this.belowFold = this.IsBelowFold();
+    this.belowFold = this.isBelowFold();
   }
 
   componentDidLoad() {
@@ -72,13 +74,12 @@ export class PostBackToTop {
     return (
       <Host>
         <button
-          role="button"
           class="back-to-top"
           aria-hidden={this.belowFold ? 'false' : 'true'}
           onClick={this.scrollToTop}
         >
-          <post-icon aria-hidden={this.belowFold ? 'false' : 'true'} name="3026"></post-icon>
-          <span class="visually-hidden">{this.bttptitle}</span>
+          <post-icon aria-hidden="true" name="3026"></post-icon>
+          <span class="visually-hidden">{this.buttonTitle}</span>
         </button>
       </Host>
     );
