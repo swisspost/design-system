@@ -244,11 +244,9 @@ export class PostTooltip {
 
   /**
    * Pointer or focus left the tooltip, initiate the hiding process
-   * Re-enable pointer events when the tooltip is no longer in focus or hovered
    */
   private handleInterestLost() {
     globalHideTooltip(this);
-    this.host.style.pointerEvents = 'auto';
   }
 
   render() {
