@@ -23,7 +23,7 @@ export const PostLogo: Story = {
                 ${['white', 'dark'].map(
                   color => html`
                     <div class="col bg-${color}">
-                      ${[25, 50, 75].map(
+                      ${[25, 50, 75, 100].map(
                         (height, i) => html`
                           <div class="h-${height} ${i === 0 ? 'my' : 'mb'}-8">
                             ${meta.render?.({ ...context.args, url }, context)}

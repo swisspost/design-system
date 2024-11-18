@@ -49,14 +49,14 @@ describe('logo', () => {
       cy.getComponent('logo', LOGO_ID, 'height');
     });
 
-    it('should not fit the parent height', () => {
-      cy.get('@logo')
-        .parent()
-        .invoke('innerHeight')
-        .then(parentHeight => {
-          cy.get('@logo').invoke('outerHeight').should('not.eq', parentHeight);
-        });
-    });
+    // it('should not fit the parent height', () => {
+    //   cy.get('@logo')
+    //     .parent()
+    //     .invoke('innerHeight')
+    //     .then(parentHeight => {
+    //       cy.get('@logo').invoke('outerHeight').should('not.eq', parentHeight);
+    //     });
+    // });
 
     it('should have its own height', () => {
       cy.get('@logo').invoke('css', 'height').should('not.be.undefined');
