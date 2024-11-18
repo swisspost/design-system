@@ -11,6 +11,7 @@ import {
   ICON_V2_SIZES,
   ID_PREFIX,
   ID_SEPERATOR,
+  ID_UNWANTED_PARTS,
   ID_SYMBOL_PREFIX,
   ID_SYMBOL_SEPERATOR,
   ICON_SIZE_VAR_NAME,
@@ -37,19 +38,7 @@ export default function main() {
   setup();
 
   const report = createFiles(getFileGroups());
-
-  fs.writeFileSync(
-    reportOutputPath,
-    JSON.stringify(
-      {
-        icons: report.toSorted(sortIcons),
-        created: new Date(),
-        version,
-      },
-      null,
-      2,
-    ),
-  );
+  createReport(report);
 
   console.log(
     `\x1b[32mUI icons created.\x1b[0m Saved \x1b[32m${report.length}\x1b[0m icons to use with the <post-icon> component.`,
@@ -100,13 +89,13 @@ function getFileGroups(): Record<string, File[]> {
 
   function getGroupId(nameParts: string[], isMultiPartName: boolean, isSizeIndicator: boolean) {
     if (isMultiPartName && isSizeIndicator) {
-      return nameParts
-        .slice(0, nameParts.length - 1)
-        .join(ID_SEPERATOR)
-        .toLowerCase();
+      nameParts = nameParts.slice(0, nameParts.length - 1);
     }
 
-    return nameParts.join(ID_SEPERATOR).toLowerCase();
+    return nameParts
+      .map(part => part.toLowerCase())
+      .filter(part => !ID_UNWANTED_PARTS.includes(part))
+      .join(ID_SEPERATOR);
   }
 }
 
@@ -179,4 +168,38 @@ function createFiles(groupedFilePaths: Record<string, File[]>): ReportIcon[] {
       plugins: [],
     }).data;
   }
+}
+
+function createReport(report: ReportIcon[]) {
+  const lightIcons: ReportIcon[] = report.filter(({ id }) => !id.endsWith('-solid'));
+  const solidIcons: ReportIcon[] = report.filter(({ id }) => id.endsWith('-solid'));
+  const allIcons: ReportIcon[] = [...lightIcons, ...solidIcons];
+  const allNormalizedIconIds = allIcons.map(icon => icon.id.replace(/-solid$/, ''));
+
+  fs.writeFileSync(
+    reportOutputPath,
+    JSON.stringify(
+      {
+        icons: report.toSorted(sortIcons),
+        count: {
+          light: lightIcons.length,
+          solid: solidIcons.length,
+          total: report.length,
+        },
+        missmatches: {
+          id: allIcons.filter((icon: ReportIcon) => {
+            const normalizedId = icon.id.replace(/-solid$/, '');
+            return allNormalizedIconIds.filter(id => id === normalizedId).length !== 2;
+          }),
+          sizes: allIcons.filter(
+            (icon: ReportIcon) => !ICON_V2_SIZES.every(size => icon.sizes.includes(size)),
+          ),
+        },
+        created: new Date(),
+        version,
+      },
+      null,
+      2,
+    ),
+  );
 }

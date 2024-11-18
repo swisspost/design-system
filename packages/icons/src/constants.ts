@@ -5,6 +5,7 @@ export const ICON_V2_SIZES = [16, 24, 32, 40, 48, 64];
 
 export const ID_PREFIX = 'i';
 export const ID_SEPERATOR = '-';
+export const ID_UNWANTED_PARTS = ['shape'];
 export const ID_SYMBOL_PREFIX = 's';
 export const ID_SYMBOL_SEPERATOR = '';
 
