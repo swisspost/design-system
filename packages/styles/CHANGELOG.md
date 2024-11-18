@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 8.6.0
+
+### Patch Changes
+
+- Fixed issue where the focus ring was not appearing on inactive chips. (by [@schaertim](https://github.com/schaertim) with [#3970](https://github.com/swisspost/design-system/pull/3970))
+
 ## 8.5.0
 
 ## 8.4.0

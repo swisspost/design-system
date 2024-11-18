@@ -1,5 +1,12 @@
 # @swisspost/design-system-intranet-header
 
+## 8.6.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.6.0
+
 ## 8.5.0
 
 ### Patch Changes
