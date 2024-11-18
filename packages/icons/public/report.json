@@ -29167,6 +29167,31 @@
       "modifiedAt": "2024-11-05T10:11:18.000Z"
     },
     {
+      "uuid": "8ecf28e0-a188-11ef-9712-005056873709",
+      "id": 820956,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/820956/storage/ODIwOTU1LzAvbWFzdGVy",
+        "keywords": [
+          "zalando"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2633.svg",
+        "basename": "2633",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-11-13T06:28:55.000Z",
+      "modifiedAt": "2024-11-13T06:31:35.000Z"
+    },
+    {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
       "id": 352241,
       "type": "picture.pictogram.",
@@ -41837,11 +41862,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2024-11-10T01:37:42.898Z",
+  "created": "2024-11-17T01:43:33.040Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 962
+    "success": 963
   },
-  "version": "8.4.0"
+  "version": "8.5.0"
 }
