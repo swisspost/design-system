@@ -47,7 +47,10 @@ tokens.$default-map: components.$post-text-input;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    transition: all 0.25s ease-in-out;
+    transition:
+      padding-block-start 0.2s ease-in-out,
+      font-size 0.2s ease-in-out;
+    background-color: tokens.get('input-color-enabled-bg');
   }
 
   > .form-control {
@@ -57,8 +60,8 @@ tokens.$default-map: components.$post-text-input;
 
     &:focus,
     &:not(:placeholder-shown) {
-      padding-block-start: tokens.get('input-filled-padding-block-start');
-      padding-block-end: tokens.get('input-filled-padding-block-end');
+      padding-block-start: tokens.get('input-padding-block-start');
+      padding-block-end: tokens.get('input-padding-block-end');
 
       ~ label {
         color: tokens.get('input-color-selected-fg');
@@ -79,23 +82,25 @@ tokens.$default-map: components.$post-text-input;
 
     &:disabled ~ label {
       color: tokens.get('input-color-disabled-fg');
+      background-color: tokens.get('input-color-disabled-bg');
     }
 
     &:hover ~ label {
       color: tokens.get('input-color-hover-fg');
+      background-color: tokens.get('input-color-hover-bg');
     }
 
     &[type='file'] {
       &:focus,
       &:not(:placeholder-shown) {
-        padding-block-start: calc(#{tokens.get('input-filled-padding-block-start')} * 1.33);
+        padding-block-start: calc(#{tokens.get('input-padding-block-start')} * 1.33);
       }
     }
   }
 
   > .form-select {
-    padding-block-start: tokens.get('input-filled-padding-block-start');
-    padding-block-end: tokens.get('input-filled-padding-block-end');
+    padding-block-start: tokens.get('input-padding-block-start');
+    padding-block-end: tokens.get('input-padding-block-end');
 
     ~ label {
       color: tokens.get('input-color-enabled-fg');
@@ -112,8 +117,8 @@ tokens.$default-map: components.$post-text-input;
 
     &:empty,
     &.form-select-empty {
-      padding-block-start: tokens.get('input-filled-padding-block-start');
-      padding-block-end: tokens.get('input-filled-padding-block-end');
+      padding-block-start: tokens.get('input-padding-block-start');
+      padding-block-end: tokens.get('input-padding-block-end');
 
       ~ label {
         padding-block-start: tokens.get('input-label-empty-padding-block-start');
@@ -168,12 +173,13 @@ tokens.$default-map: components.$post-text-input;
 
   // Duplicated because `:-webkit-autofill` invalidates other selectors when grouped
   > .form-control:-webkit-autofill {
-    padding-block-start: tokens.get('input-filled-padding-block-start');
-    padding-block-end: tokens.get('input-filled-padding-block-end');
+    padding-block-start: tokens.get('input-padding-block-start');
+    padding-block-end: tokens.get('input-padding-block-end');
 
     ~ label {
       color: tokens.get('input-color-selected-fg');
       font-size: tokens.get('input-label-filled-font-size');
+      background-color: tokens.get('input-color-selected-bg');
     }
   }
 
@@ -181,6 +187,7 @@ tokens.$default-map: components.$post-text-input;
   > .form-control:disabled ~ label {
     // Required for `.form-control`s because of specificity
     color: tokens.get('input-color-disabled-fg');
+    background-color: tokens.get('input-color-disabled-bg');
   }
 
   > textarea.form-control {

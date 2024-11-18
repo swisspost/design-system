@@ -1,6 +1,6 @@
 ---
-'@swisspost/design-system-documentation': minor
-'@swisspost/design-system-styles': minor
+'@swisspost/design-system-documentation': patch
+'@swisspost/design-system-styles': patch
 ---
 
-Updated `.form-control` text input to v2.
+Updated `.form-control` text input to new Post design.
