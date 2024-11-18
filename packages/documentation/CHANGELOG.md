@@ -1,5 +1,20 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.6
+
+### Minor Changes
+
+- Added new Menu Button components (post-menu-button, post-menu-trigger, and post-menu-item) for creating accessible dropdown menus. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3795](https://github.com/swisspost/design-system/pull/3795))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.5
+  - @swisspost/design-system-components@9.0.0-next.5
+  - @swisspost/design-system-components-react@9.0.0-next.5
+  - @swisspost/internet-header@2.0.0-next.5
+  - @swisspost/design-system-icons@9.0.0-next.5
+
 ## 6.0.0-next.5
 
 ### Minor Changes
