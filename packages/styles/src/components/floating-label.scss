@@ -47,7 +47,8 @@ tokens.$default-map: components.$post-text-input;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    transition: all 0.25s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    background-color: tokens.get('input-color-enabled-bg');
   }
 
   > .form-control {
