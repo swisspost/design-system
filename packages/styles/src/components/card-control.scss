@@ -4,7 +4,6 @@
 @use '../variables/components/forms';
 @use '../variables/components/form-check';
 @use '../mixins/utilities';
-@use './../placeholders/form-check' as form-check-ph;
 
 /*
 * There are a whole bunch of !important statments in this file.
@@ -40,14 +39,6 @@ fieldset {
   color: var(--post-card-control-color);
   cursor: pointer;
 
-  > input[type='checkbox'] {
-    @extend %checkbox;
-  }
-
-  > input[type='radio'] {
-    @extend %radio-button;
-  }
-
   > input {
     grid-area: input;
     position: relative;
@@ -58,8 +49,6 @@ fieldset {
     color: var(--post-card-control-input-border-color) !important;
     cursor: inherit;
     transition: none;
-
-    @extend %form-check-input;
 
     &:hover:not([disabled]) ~ label {
       color: var(--post-contrast-color);

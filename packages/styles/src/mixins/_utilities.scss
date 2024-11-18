@@ -108,7 +108,7 @@
 }
 
 @mixin focus-style-none {
-  outline: none;
+  outline: none !important;
 }
 
 @mixin focus-style($additional-selector: '') {

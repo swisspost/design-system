@@ -221,11 +221,32 @@ export const Validation: Story = {
   },
 };
 
+export const Grouped: Story = {
+  render: (args: Args, context: StoryContext) => html`
+    <fieldset>
+      <legend class="${ifDefined(args.hiddenLegend ? 'visually-hidden' : undefined)}">
+        Legend
+      </legend>
+      ${['Unua Etikedo', 'Dua Etikedo', 'Tria Etikedo', 'Kvara  Etikedo'].map((label, index) =>
+        renderCheckbox(
+          { ...args, label, checked: false },
+          { ...context, id: `${context.id}-${index}` },
+        ),
+      )}
+    </fieldset>
+  `,
+  parameters: {
+    controls: {
+      include: ['Hidden Legend'],
+    },
+  },
+};
+
 export const Inline: Story = {
   render: (args: Args, context: StoryContext) => html`
     <fieldset>
       <legend class="${ifDefined(args.hiddenLegend ? 'visually-hidden' : undefined)}">
-        Legendo
+        Legend
       </legend>
       ${['Unua Etikedo', 'Dua Etikedo', 'Tria Etikedo', 'Kvara  Etikedo'].map((label, index) =>
         renderCheckbox(

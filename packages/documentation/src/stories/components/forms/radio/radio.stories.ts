@@ -111,7 +111,7 @@ function render(args: Args, context: StoryContext) {
 
   const id = context.id ?? `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
 
-  const radioClass = args.validation !== 'null' ? `is-${args.validation}` : undefined;
+  const radioClass = args.validation !== 'null' ? args.validation : undefined;
 
   const groupClasses = ['form-check', args.size].filter(c => c && c !== 'null').join(' ');
 
@@ -151,7 +151,7 @@ type Story = StoryObj;
 
 export const Default: Story = {};
 
-export function renderInline(args: Args, context: Partial<StoryContext>) {
+export function renderGroup(args: Args, context: Partial<StoryContext>) {
   const [_, updateArgs] = useArgs();
   const baseId = `${context.viewMode}_${context.name?.replace(/\s/g, '-')}_ExampleRadio`;
   const id1 = baseId + '1';
@@ -174,7 +174,7 @@ export function renderInline(args: Args, context: Partial<StoryContext>) {
   return html`
     <fieldset>
       <legend class="${args.hiddenLegend ? 'visually-hidden' : undefined}">Legend</legend>
-      <div class="form-check form-check-inline">
+      <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
         <input
           id="${id1}"
           name="Inline_ExampleRadio_Group"
@@ -185,7 +185,7 @@ export function renderInline(args: Args, context: Partial<StoryContext>) {
         />
         <label for="${id1}" class="form-check-label">${args.label}</label>
       </div>
-      <div class="form-check form-check-inline">
+      <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
         <input
           id="${id2}"
           name="Inline_ExampleRadio_Group"
@@ -196,7 +196,7 @@ export function renderInline(args: Args, context: Partial<StoryContext>) {
         />
         <label for="${id2}" class="form-check-label">${args.label}</label>
       </div>
-      <div class="form-check form-check-inline">
+      <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
         <input
           id="${id3}"
           name="Inline_ExampleRadio_Group"
@@ -207,7 +207,7 @@ export function renderInline(args: Args, context: Partial<StoryContext>) {
         />
         <label for="${id3}" class="form-check-label">${args.label}</label>
       </div>
-      <div class="form-check form-check-inline">
+      <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
         <input
           id="${id4}"
           name="Inline_ExampleRadio_Group"
@@ -222,8 +222,8 @@ export function renderInline(args: Args, context: Partial<StoryContext>) {
   `;
 }
 
-export const Inline: Story = {
-  render: renderInline,
+export const Grouped: Story = {
+  render: renderGroup,
   parameters: {
     controls: {
       exclude: ['Hidden Label', 'Checked', 'Disabled', 'Validation'],
@@ -231,6 +231,26 @@ export const Inline: Story = {
   },
   args: {
     checkedRadio: null,
+  },
+  argTypes: {
+    checkedRadio: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+};
+
+export const Inline: Story = {
+  render: renderGroup,
+  parameters: {
+    controls: {
+      exclude: ['Hidden Label', 'Checked', 'Disabled', 'Validation'],
+    },
+  },
+  args: {
+    checkedRadio: null,
+    inline: true,
   },
   argTypes: {
     checkedRadio: {
