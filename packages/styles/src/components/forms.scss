@@ -23,7 +23,7 @@ tokens.$default-map: components.$post-text-input;
   color: tokens.get('input-color-enabled-fg');
   padding-inline-start: tokens.get('input-padding-inline-start');
   padding-inline-end: tokens.get('input-padding-inline-end');
-  padding-block: tokens.get('input-empty-padding-block');
+  padding-block: tokens.get('input-standalone-padding-block');
   height: tokens.get('input-sizing-height');
 
   &:focus {
@@ -79,10 +79,10 @@ tokens.$default-map: components.$post-text-input;
     }
     // File input buttons theming
     &::file-selector-button {
-      padding-block: tokens.get('input-empty-padding-block');
+      padding-block: tokens.get('input-standalone-padding-block');
       padding-inline-start: tokens.get('input-padding-inline-start');
       padding-inline-end: tokens.get('input-padding-inline-end');
-      margin: calc(#{tokens.get('input-empty-padding-block')} * -1)
+      margin: calc(#{tokens.get('input-standalone-padding-block')} * -1)
         calc(#{tokens.get('input-padding-inline-start')} * -1);
       margin-inline-end: tokens.get('input-padding-inline-start');
       color: tokens.get('input-color-enabled-fg');
