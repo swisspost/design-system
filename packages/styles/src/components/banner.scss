@@ -42,6 +42,7 @@ tokens.$default-map: components.$post-banner;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  flex-direction: row-reverse;
   margin-block-start: tokens.get('banner-actions-margin-top');
   gap: tokens.get('banner-actions-gap');
 }
