@@ -195,6 +195,7 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
+      aria-describedby="${args.showValue === 'text' ? 'slider-form-hint' : ''}"
       @input="${(e: MouseEvent) => updateArgs({ value: (e.target as HTMLInputElement).value })}"
     />
   `;
@@ -202,7 +203,7 @@ function render(args: Args, context: StoryContext) {
   let valueElement: TemplateResult | TemplateResult[] | null = null;
 
   if (args.showValue === 'text') {
-    valueElement = html` <p class="form-hint" id="form-hint-example">${args.value}</p> `;
+    valueElement = html` <p class="form-hint" id="slider-form-hint">${args.value}</p> `;
   } else if (args.showValue === 'input') {
     const inputId = context.id
       ? `${context.id}_input`
@@ -219,6 +220,7 @@ function render(args: Args, context: StoryContext) {
           value="${args.value}"
           .value="${args.value}"
           ?disabled="${args.disabled}"
+          aria-describedby="${args.showValue === 'text' ? 'slider-form-hint' : ''}"
           @input="${(e: Event) => updateArgs({ value: (e.target as HTMLInputElement).value })}"
         />
       `,

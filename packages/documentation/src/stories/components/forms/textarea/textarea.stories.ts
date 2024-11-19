@@ -206,6 +206,7 @@ function renderTextarea(args: Args, context: StoryContext) {
       ?disabled=${args.disabled}
       aria-label=${useAriaLabel ? args.label : nothing}
       aria-invalid=${VALIDATION_STATE_MAP[args.validation] ?? nothing}
+      aria-describedby="${args.hint ? 'form-hint-example' : ''}"
       style=${args.resize ?? nothing}
     >
 ${args.textInside ?? nothing}</textarea

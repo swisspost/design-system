@@ -48,6 +48,7 @@ export class Search extends React.Component {
               id="IconSearchFilter_Freetext"
               type="text"
               className="form-control"
+              aria-describedby="search-icon-form-hint"
               placeholder=""
               value={this.state.freetext}
               onChange={this.searchFreetext.bind(this)}
@@ -60,7 +61,7 @@ export class Search extends React.Component {
                 <span className="visually-hidden">Reset Search</span>
               </button>
             ) : null}
-            <p className="form-hint" id="form-hint-example">
+            <p className="form-hint" id="search-icon-form-hint">
               {`Showing ${this.state.icons.length} of ${report.icons.length} icons.`}
             </p>
           </div>

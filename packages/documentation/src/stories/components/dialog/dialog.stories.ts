@@ -185,6 +185,7 @@ const FormTemplate = {
                 type="text"
                 placeholder="Placeholder"
                 name="example-text-field"
+                aria-describedby="example-form-hint"
                 required
               />
               <label class="form-label" for="example-dialog-text-field">Label</label>
