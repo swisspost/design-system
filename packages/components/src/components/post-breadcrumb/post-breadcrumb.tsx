@@ -1,16 +1,17 @@
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { checkUrl } from '@/utils';
+import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { debounce } from 'throttle-debounce';
 
 @Component({
-  tag: 'post-breadcrumb-new',
-  styleUrl: 'post-breadcrumb-new.scss',
+  tag: 'post-breadcrumb',
+  styleUrl: 'post-breadcrumb.scss',
   shadow: true,
 })
 export class PostBreadcrumb {
   /**
    * URL for the home breadcrumb link
    */
-  @Prop() homeUrl: string = '/';
+  @Prop() homeUrl: string | URL;
 
   /**
    * Text for the home breadcrumb link
@@ -45,6 +46,11 @@ export class PostBreadcrumb {
     window.requestAnimationFrame(() => {
       this.handleResize();
     });
+  }
+
+  @Watch('url')
+  validateUrl() {
+    checkUrl(this.homeUrl, 'The "url" property of the home-icon is invalid');
   }
 
   private collectBreadcrumbItems() {
@@ -86,13 +92,17 @@ export class PostBreadcrumb {
   }
 
   private renderBreadcrumbItems(isConcatenated: boolean) {
+    console.log(this.homeUrl)
     const middleItems = this.breadcrumbItems.slice(1, -1);
     const lastItem = this.breadcrumbItems[this.breadcrumbItems.length - 1];
 
     return (
       <ol class="no-list breadcrumbs-list">
-        <li>
-          <post-breadcrumb-item url={this.homeUrl}>{this.homeText}</post-breadcrumb-item>
+        <li class="home-icon">
+          <a href={this.homeUrl.toString()} class="breadcrumb-link">
+            <post-icon name="2035" />
+            <span class="visually-hidden">{this.homeText}</span>
+          </a>
         </li>
 
         {isConcatenated ? (
@@ -132,6 +142,16 @@ export class PostBreadcrumb {
             <post-breadcrumb-item url={lastItem.url}>{lastItem.text}</post-breadcrumb-item>
           </li>
         )}
+        <post-menu-trigger for="menu-one">
+          <button class="btn btn-primary">Menu button</button>
+        </post-menu-trigger>
+        <post-menu id="menu-one">
+          <post-menu-item><button>Example 1</button></post-menu-item>
+          <post-menu-item>
+            <a href="#">Example 2</a>
+            <post-menu-item><div>Example 3</div></post-menu-item>
+          </post-menu-item>
+        </post-menu>
       </ol>
     );
   }
