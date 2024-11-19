@@ -220,7 +220,7 @@
 }
 
 // smaller screens
-@include media-breakpoint-down(rg) {
+@include media-breakpoint-down(sm) {
   .stepper-item:first-child,
   .stepper-item:last-child {
     padding-inline: 0;
