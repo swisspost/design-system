@@ -52,11 +52,6 @@ jobs:
   e2e-tests:
     runs-on: ubuntu-latest
     needs: install
-    strategy:
-      # don't fail the entire matrix on failure
-      fail-fast: false
-      matrix:
-        package: ['design-system-components', 'design-system-documentation', 'internet-header']
 
     steps:
       - name: Checkout
@@ -72,6 +67,12 @@ jobs:
         with:
           name: build
 
+      - name: Prepare Cypress – Spawn Xvfb server
+        run: Xvfb :99 &
+
+      - name: Prepare Cypress – Share Xvfb server as environment variable
+        run: export DISPLAY=:99
+
       # workaround until cypress-io/github-action supports pnpm workspaces
       # https://github.com/cypress-io/github-action/issues/1144
       - name: Install dependencies
@@ -80,17 +81,12 @@ jobs:
           runTests: false
           install-command: pnpm i
 
-      - name: Prepare Cypress – Spawn Xvfb server
-        run: Xvfb :99 &
-
-      - name: Prepare Cypress – Share Xvfb server as environment variable
-        run: export DISPLAY=:99
-
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
           install: false
-          command: pnpm --filter ${{ matrix.package }} e2e:ci
+          wait-on: 'http://localhost:9001'
+          command: pnpm e2e:ci
           browser: chrome
 
       - name: Upload screenshots
@@ -98,5 +94,5 @@ jobs:
         if: failure()
         with:
           name: cypress-snapshots
-          path: packages/${{ matrix.package }}/cypress/screenshots
+          path: packages/**/cypress/screenshots
           retention-days: 14
