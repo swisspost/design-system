@@ -31,12 +31,8 @@ jobs:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: Cypress install
-        uses: cypress-io/github-action@v6
-        with:
-          install: false
-          runTests: false
-          build: pnpm bootstrap
+      - name: Install & build dependencies
+        run: pnpm bootstrap
 
       - name: Upload the build folders
         uses: actions/upload-artifact@v4
@@ -82,13 +78,19 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           runTests: false
+          install-command: pnpm i
+
+      - name: Prepare Cypress – Spawn Xvfb server
+        run: Xvfb :99 &
+
+      - name: Prepare Cypress – Share Xvfb server as environment variable
+        run: export DISPLAY=:99
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          install: false # workaround until cypress-io/github-action supports pnpm workspaces
-          start: pnpm docs:headless
-          working-directory: packages/${{ matrix.package }}
+          install: false
+          command: pnpm --filter ${{ matrix.package }} e2e:ci
           browser: chrome
 
       - name: Upload screenshots
