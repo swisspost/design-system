@@ -25,9 +25,16 @@ jobs:
         with:
           use_cache: false
 
+      - name: Set up Cypress binary cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('pnpm-lock.yaml') }}
+
       - name: Cypress install
         uses: cypress-io/github-action@v6
         with:
+          install: false
           runTests: false
           build: pnpm bootstrap
 
@@ -64,25 +71,24 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup-pnpm
 
-      # - name: Install & build dependencies
-      #   run: pnpm i
-
-      # - name: Cache cypress
-      #   uses: actions/cache@v4
-      #   with:
-      #     path: /home/runner/.cache/Cypress
-      #     key: ${{ runner.os }}-cypress-${{ hashFiles('./pnpm-lock.yaml') }}
-      #     restore-keys: ${{ runner.os }}-cypress-
-
       - name: Download the build folders
         uses: actions/download-artifact@v4
         with:
           name: build
 
+      # workaround until cypress-io/github-action supports pnpm workspaces
+      # https://github.com/cypress-io/github-action/issues/1144
+      - name: Install dependencies
+        uses: cypress-io/github-action@v6
+        with:
+          runTests: false
+
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
+          install: false # workaround until cypress-io/github-action supports pnpm workspaces
           start: pnpm docs:headless
+          working-directory: packages/${{ matrix.package }}
           browser: chrome
 
       - name: Upload screenshots

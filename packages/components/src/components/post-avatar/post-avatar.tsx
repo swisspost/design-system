@@ -40,7 +40,7 @@ export class PostAvatar {
   @Prop() readonly lastname?: string;
 
   /**
-   * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
+   * Defines the company internal userId.<div className="mb-1 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
    */
   @Prop() readonly userid?: string;
 
