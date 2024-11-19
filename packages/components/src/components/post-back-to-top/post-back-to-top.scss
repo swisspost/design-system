@@ -6,21 +6,7 @@
 @use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/mixins/elevation' as elevation-mx;
 
-tokens.$default-map: (
-  post-floating-button-size-outer: 56px,
-  post-floating-button-size-icon: 24px,
-  post-floating-button-position-right: 40px,
-  post-floating-button-position-bottom: 40px,
-  post-floating-button-border-radius-round: 100%,
-  post-floating-button-border-width: 2px,
-  post-floating-button-enabled-border: #050400,
-  post-floating-button-enabled-fg: #050400,
-  post-floating-button-enabled-bg: white,
-  post-floating-button-hover-border: #504f4b,
-  post-floating-button-hover-fg: #504f4b,
-  post-floating-button-hover-bg: white,
-  post-floating-button-translate-y: 8rem
-);
+tokens.$default-map: components.$post-floating-button;
 
 :host {
   --post-floating-button-translate-y: #{tokens.get('post-floating-button-translate-y')};
