@@ -20,26 +20,23 @@
 }
 
 .stepper {
+  // start a counter for the step numbers
+  counter-reset: step-index;
+
+  display: grid;
+  position: relative;
+  overflow: hidden;
+
+  // the first column is half a step wide to make sure the separators are the same size even on small screens
+  grid-template-columns: math.div(stepper.$stepper-indicator-size, 2);
+
+  // all other columns are 1 fraction of the available space ase we don't know the number of steps
+  grid-auto-columns: minmax(0, 1fr);
+
+  // we use a padding and negative margin on the last step for the same reason we need the first column
+  padding-inline-end: math.div(stepper.$stepper-indicator-size, 2);
+
   @include utilities.reset-list;
-
-  /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
-  & {
-    // start a counter for the step numbers
-    counter-reset: step-index;
-
-    display: grid;
-    position: relative;
-    overflow: hidden;
-
-    // the first column is half a step wide to make sure the separators are the same size even on small screens
-    grid-template-columns: math.div(stepper.$stepper-indicator-size, 2);
-
-    // all other columns are 1 fraction of the available space ase we don't know the number of steps
-    grid-auto-columns: minmax(0, 1fr);
-
-    // we use a padding and negative margin on the last step for the same reason we need the first column
-    padding-inline-end: math.div(stepper.$stepper-indicator-size, 2);
-  }
 }
 
 .stepper-item {
