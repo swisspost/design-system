@@ -21,7 +21,7 @@ tokens.$default-map: components.$post-select;
   background-color: tokens.get('select-color-enabled-bg');
   background-repeat: no-repeat;
   background-size: tokens.get('select-sizing-icon');
-  background-position: center right tokens.get('select-padding-inline-end');
+  background-position: center right tokens.get('select-icon-position-inline-end');
   border-width: tokens.get('select-border-width');
   border-color: tokens.get('select-color-enabled-border');
   border-radius: tokens.get('select-border-radius');
@@ -29,6 +29,7 @@ tokens.$default-map: components.$post-select;
   @include forms.select-bg-image('enabled');
 
   &:disabled {
+    opacity: 1;
     color: tokens.get('select-color-disabled-fg');
     background-color: tokens.get('select-color-disabled-bg');
     border-color: tokens.get('select-color-disabled-border');
@@ -82,12 +83,8 @@ tokens.$default-map: components.$post-select;
   &.is-invalid {
     &:not(:disabled) {
       background-position:
-        center right tokens.get('select-validation-icon-position-inline-end'),
-        center right
-          calc(
-            tokens.get('select-validation-icon-position-inline-end') +
-              tokens.get('select-sizing-icon') + tokens.get('select-gap-inline-icon')
-          );
+        center right tokens.get('select-icon-position-inline-end'),
+        center right tokens.get('select-validation-icon-position-inline-end');
     }
   }
 
@@ -125,8 +122,7 @@ tokens.$default-map: components.$post-select;
 
     &.is-valid,
     &.is-invalid {
-      background-position: center right
-        calc(#{tokens.get('select-validation-icon-position-inline-end')} * 2);
+      background-position: center right tokens.get('select-validation-icon-position-inline-end');
     }
 
     &.is-valid:not(:disabled) {
@@ -164,15 +160,19 @@ tokens.$default-map: components.$post-select;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      transition: all 0.25s ease-in-out;
+      transition:
+        font-size 0.25s ease-in-out,
+        padding-block-start 0.25s ease-in-out;
     }
 
     &:not(:disabled):hover ~ label {
       color: tokens.get('select-color-hover-fg');
+      background-color: tokens.get('select-color-hover-bg');
     }
 
     &:disabled ~ label {
       color: tokens.get('select-color-disabled-fg');
+      background-color: tokens.get('select-color-disabled-bg');
     }
 
     &:empty,
