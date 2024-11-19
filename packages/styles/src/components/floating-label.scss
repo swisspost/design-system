@@ -131,6 +131,39 @@ tokens.$default-map: components.$post-text-input;
     background-color: tokens.get('input-color-disabled-bg');
   }
 
+  > .form-control:focus,
+  > .form-control:not(:placeholder-shown),
+  > .form-select {
+    ~ label {
+      font-size: tokens.get('input-label-filled-font-size');
+    }
+
+    &:not(:hover) {
+      ~ label {
+        color: tokens.get('input-color-selected-fg');
+      }
+    }
+  }
+
+  // Duplicated because `:-webkit-autofill` invalidates other selectors when grouped
+  > .form-control:-webkit-autofill {
+    padding-block-start: tokens.get('input-padding-block-start');
+    padding-block-end: tokens.get('input-padding-block-end');
+
+    ~ label {
+      color: tokens.get('input-color-selected-fg');
+      font-size: tokens.get('input-label-filled-font-size');
+      background-color: tokens.get('input-color-selected-bg');
+    }
+  }
+
+  > :disabled ~ label,
+  > .form-control:disabled ~ label {
+    // Required for `.form-control`s because of specificity
+    color: tokens.get('input-color-disabled-fg');
+    background-color: tokens.get('input-color-disabled-bg');
+  }
+
   > textarea.form-control {
     padding-block-start: forms.$form-floating-textarea-padding-t !important;
     padding-block-end: spacing.$size-mini;
