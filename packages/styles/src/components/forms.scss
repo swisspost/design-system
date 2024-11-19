@@ -1,73 +1,37 @@
 @forward './../variables/options';
 
-@use './../variables/commons';
-@use './../variables/components/forms';
-@use './../variables/type';
-@use './../variables/spacing';
-@use './../variables/color';
+@use './../functions/tokens';
+@use './../tokens/components';
+@use './../tokens/elements';
 
-@use './../functions/sizing';
-
+@use './../mixins/icons';
 @use './../mixins/utilities';
-@use './../mixins/forms' as form-mixins;
 
-@use './../themes/bootstrap/forms/form-text' as bfft;
-@use './../themes/bootstrap/forms/form-control' as bffc;
-@use './../themes/bootstrap/forms/input-group' as bfig;
-
-.form-control-rg {
-  @include form-mixins.form-rg;
-}
-
-.form-control-sm {
-  @include form-mixins.form-sm;
-}
-
-.form-control-lg {
-  @include form-mixins.form-lg;
-}
-
-textarea {
-  &.form-control-lg {
-    padding-top: spacing.$size-regular;
-    padding-bottom: spacing.$size-mini;
-    padding-right: spacing.$size-large;
-    min-height: (forms.$form-floating-label-font-size * forms.$input-line-height-lg) +
-      spacing.$size-regular + spacing.$size-mini + sizing.px-to-rem(forms.$input-border-width * 2);
-  }
-
-  &.form-control-sm {
-    padding-top: spacing.$size-mini;
-    padding-right: spacing.$size-large;
-    padding-bottom: 0;
-    min-height: (forms.$form-floating-label-font-size-placeholder-sm * forms.$input-line-height-sm) +
-      (spacing.$size-mini * 2) + sizing.px-to-rem(forms.$input-border-width * 2);
-  }
-}
-
-select.form-control-rg:not([size]):not([multiple]) {
-  height: forms.$input-height-rg;
-}
-
-.form-control-wrapper {
-  @include utilities.focus-style {
-    border-radius: commons.$border-radius;
-  }
-}
-
-:not(.form-control-wrapper) > {
-  .form-control {
-    @include utilities.focus-style {
-      border-radius: commons.$border-radius;
-    }
-  }
-}
+tokens.$default-map: components.$post-text-input;
 
 .form-control {
+  display: block;
+  width: 100%;
+  font-family: tokens.get('body-font-family', elements.$post-body);
+  appearance: none; // Fix appearance for date inputs in Safari
+  background-clip: padding-box;
+  border: tokens.get('input-border-width') tokens.get('input-border-style-default')
+    tokens.get('input-color-enabled-border');
   position: relative;
+  border-radius: tokens.get('input-border-radius-surface');
+  background-color: tokens.get('input-color-enabled-bg');
+  color: tokens.get('input-color-enabled-fg');
+  padding-inline-start: tokens.get('input-padding-inline-start');
+  padding-inline-end: tokens.get('input-padding-inline-end');
+  padding-block: tokens.get('input-standalone-padding-block');
+  height: tokens.get('input-sizing-height');
 
   &:focus {
-    box-shadow: none; // Override bootstrap
+    border-color: tokens.get('input-color-selected-border');
+    background-color: tokens.get('input-color-selected-bg');
+    color: tokens.get('input-color-selected-fg');
+
+    @include utilities.focus-style;
 
     @include utilities.high-contrast-mode {
       border-color: FieldText !important; // On blink browser valid and invalid border colors are converted to Highlight color
@@ -83,7 +47,9 @@ select.form-control-rg:not([size]):not([multiple]) {
     }
 
     &:hover {
-      border-color: color.$black;
+      border-color: tokens.get('input-color-hover-border');
+      background-color: tokens.get('input-color-hover-bg');
+
       @include utilities.high-contrast-mode {
         border-color: Highlight;
       }
@@ -92,16 +58,17 @@ select.form-control-rg:not([size]):not([multiple]) {
 
   @include utilities.disabled-style {
     ~ .form-text {
-      color: var(--post-gray-60);
+      color: tokens.get('input-color-disabled-fg');
     }
   }
 
   &[readonly]:not(:disabled) {
-    border-color: forms.$input-color;
-    background-color: forms.$input-bg;
+    border-color: tokens.get('input-color-enabled-border');
+    background-color: tokens.get('input-color-enabled-bg');
   }
 
   &[type='file'] {
+    overflow: hidden;
     position: relative;
 
     &:disabled {
@@ -110,8 +77,21 @@ select.form-control-rg:not([size]):not([multiple]) {
         border-color: GrayText;
       }
     }
-
+    // File input buttons theming
     &::file-selector-button {
+      padding-block: tokens.get('input-standalone-padding-block');
+      padding-inline-start: tokens.get('input-padding-inline-start');
+      padding-inline-end: tokens.get('input-padding-inline-end');
+      margin: calc(#{tokens.get('input-standalone-padding-block')} * -1)
+        calc(#{tokens.get('input-padding-inline-start')} * -1);
+      margin-inline-end: tokens.get('input-padding-inline-start');
+      color: tokens.get('input-color-enabled-fg');
+      pointer-events: none;
+      border-color: inherit;
+      border-style: solid;
+      border-width: 0;
+      border-inline-end-width: tokens.get('input-border-width');
+      border-radius: 0;
       display: block;
       position: absolute;
       top: 0;
@@ -145,7 +125,7 @@ select.form-control-rg:not([size]):not([multiple]) {
         bottom: 0;
         right: 0;
         z-index: 2;
-        padding-inline: forms.$input-padding-y;
+        padding-inline: tokens.get('input-padding-inline-start');
         background-color: inherit;
         border-left: inherit;
         text-align: center;
@@ -178,38 +158,59 @@ select.form-control-rg:not([size]):not([multiple]) {
       }
     }
 
-    &.form-control-sm {
-      &::after {
-        padding-inline: forms.$input-padding-y-sm;
-      }
+    &:not(:disabled):not([readonly]) {
+      cursor: pointer;
     }
+  }
 
-    &.form-control-rg {
-      min-height: calc(
-        (1rem * forms.$input-line-height-rg) + (forms.$input-padding-y-rg * 2) +
-          (forms.$input-border-width * 2)
+  &::placeholder {
+    color: tokens.get('input-color-helptext-fg');
+    opacity: 1;
+  }
+
+  &:disabled {
+    color: tokens.get('input-color-disabled-fg');
+    background-color: tokens.get('input-color-disabled-bg');
+    border-color: tokens.get('input-color-disabled-border');
+    opacity: 1;
+  }
+
+  &:hover:not(:disabled):not([readonly])::file-selector-button {
+    background-color: tokens.get('input-color-hover-bg');
+  }
+
+  &.is-valid,
+  &.is-invalid {
+    &:not(:disabled) {
+      background-size: tokens.get('input-sizing-icon');
+      background-position: center right tokens.get('input-validation-icon-position-inline-end');
+      background-repeat: no-repeat;
+      padding-inline-end: calc(
+        #{tokens.get('input-padding-inline-end')} + #{tokens.get(
+            'input-validation-icon-position-inline-end'
+          )} + #{tokens.get('input-sizing-icon')}
       );
-
-      &::after {
-        padding-inline: forms.$input-padding-y-rg;
-      }
     }
+  }
 
-    &.form-control-lg {
-      &::after {
-        padding-inline: forms.$input-padding-y-lg;
-      }
-    }
+  &.is-valid:not(:disabled) {
+    background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_1266_5647)'%3E%3Cpath d='M16 0C7.16 0 0 7.16 0 16C0 24.84 7.16 32 16 32C24.84 32 32 24.84 32 16C32 7.16 24.84 0 16 0ZM25.05 9.01L14.4 25.15L7.04 17.27C6.66 16.87 6.68 16.23 7.09 15.86C7.49 15.48 8.13 15.5 8.5 15.91L14.13 21.94L23.38 7.92C23.68 7.46 24.3 7.33 24.77 7.64C25.23 7.94 25.36 8.56 25.05 9.03V9.01Z' fill='%23107800'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_1266_5647'%3E%3Crect width='32' height='32' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
+  }
+
+  &.is-invalid:not(:disabled) {
+    background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_1266_5583)'%3E%3Cpath d='M16 0C7.16 0 0 7.16 0 16C0 24.84 7.16 32 16 32C24.84 32 32 24.84 32 16C32 7.16 24.84 0 16 0ZM14.49 6.28H17.53V10.76L16.93 17.11H15.09L14.49 10.76V6.28ZM16.01 22.33C14.93 22.33 14.08 21.48 14.08 20.42C14.08 19.36 14.93 18.53 16.01 18.53C17.09 18.53 17.94 19.38 17.94 20.42C17.94 21.46 17.09 22.33 16.01 22.33Z' fill='%23B20000'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_1266_5583'%3E%3Crect width='32' height='32' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
   }
 }
 
-.form-label {
-  &:has(+ .form-control-sm, + .form-select-sm) {
-    font-size: forms.$form-label-font-size-sm;
-    margin-bottom: spacing.$size-micro;
-  }
+textarea.form-control {
+  min-height: tokens.get('input-sizing-height');
+}
 
-  &:has(+ .form-control[disabled], + .form-select[disabled]) {
-    color: var(--post-gray-60);
-  }
+.form-label:has(+ .form-control[disabled]) {
+  color: tokens.get('input-color-disabled-fg');
+}
+
+.form-floating > .form-control {
+  height: tokens.get('input-sizing-height');
+  min-height: tokens.get('input-sizing-height');
 }
