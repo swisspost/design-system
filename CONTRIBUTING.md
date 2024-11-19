@@ -55,7 +55,7 @@ Use these commands whenever you want to work on one of these packages. Ideally, 
 
 - Add the `id` property in the meta of each story file. The property should contain an UUID (feel free to use your favorite tool)
 - No react related attributes in code snippets (e.g. className, htmlFor, key, etc.)
-- No nested `<p>` tags (beware of .lead and .banner)
+- No nested `<p>` tags (except for .lead and .banner)
 - When adding a link, we do not use the LinkTo element, but the standard `<a>` element
 - `div.hide-col-default` wrapper for controls on CSS only component docs
 - Add the `sourceState="shown"` attribute to the first canvas if the code is not too long (less than 8 lines)
