@@ -152,7 +152,7 @@ $post-segmented-button-max-count: 8;
 
       &:not(:first-of-type) {
         input {
-          top: calc(tokens.get('button-segmented-border-width') * -1);
+          top: calc(tokens.get('button-segmented-border-width') * -0.5);
         }
       }
 
