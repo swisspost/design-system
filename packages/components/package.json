@@ -31,8 +31,8 @@
     "test": "pnpm run unit",
     "unit": "stencil test --spec",
     "unit:watch": "stencil test --spec --watchAll --silent",
-    "e2e": "cypress run",
-    "e2e:ci": "xvfb-run -a cypress run",
+    "e2e": "cypress run --browser chrome",
+    "e2e:ci": "cypress run",
     "e2e:watch": "cypress open",
     "generate": "stencil generate",
     "lint": "eslint src/**/*{.ts,.tsx}"

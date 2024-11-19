@@ -2,15 +2,16 @@ name: End to end tests
 on:
   pull_request:
     paths:
-      - 'packages/documentation/**'
-      - 'packages/styles/**'
       - 'packages/components/**'
-      - 'packages/internet-header/**'
+      - 'packages/documentation/**'
       - 'packages/icons/**'
+      - 'packages/internet-header/**'
+      - 'packages/styles/**'
+
   workflow_dispatch:
 
 jobs:
-  e2e:
+  install:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,32 +25,70 @@ jobs:
         with:
           use_cache: false
 
-      - name: Cache cypress
-        uses: actions/cache@v4
+      - name: Cypress install
+        uses: cypress-io/github-action@v6
         with:
-          path: /home/runner/.cache/Cypress
-          key: ${{ runner.os }}-cypress-${{ hashFiles('./pnpm-lock.yaml') }}
-          restore-keys: ${{ runner.os }}-cypress-
+          runTests: false
+          build: pnpm bootstrap
 
-      - name: Install & build dependencies
-        run: pnpm bootstrap
-
-      - name: Prepare Cypress – Spawn Xvfb server
-        run: Xvfb :99 &
-
-      - name: Prepare Cypress – Share Xvfb server as environment variable
-        run: export DISPLAY=:99
+      - name: Upload the build folders
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: |
+            packages/components/dist
+            packages/components/loader
+            packages/components/loaders
+            packages/documentation/storybook-static
+            packages/internet-header/dist
+            packages/internet-header/loader
 
       - name: Cypress info
         run: pnpm --filter design-system-documentation exec cypress info
 
-      - name: Run tests
-        run: pnpm e2e:ci
+  e2e-tests:
+    runs-on: ubuntu-latest
+    needs: install
+    strategy:
+      # don't fail the entire matrix on failure
+      fail-fast: false
+      matrix:
+        package: ['design-system-components', 'design-system-documentation', 'internet-header']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup
+        uses: ./.github/actions/setup-pnpm
+
+      # - name: Install & build dependencies
+      #   run: pnpm i
+
+      # - name: Cache cypress
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: /home/runner/.cache/Cypress
+      #     key: ${{ runner.os }}-cypress-${{ hashFiles('./pnpm-lock.yaml') }}
+      #     restore-keys: ${{ runner.os }}-cypress-
+
+      - name: Download the build folders
+        uses: actions/download-artifact@v4
+        with:
+          name: build
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          start: pnpm docs:headless
+          browser: chrome
 
       - name: Upload screenshots
-        uses: actions/upload-artifact@v4.3.4
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: cypress-snapshots
-          path: packages/**/cypress/screenshots
+          path: packages/${{ matrix.package }}/cypress/screenshots
           retention-days: 14
