@@ -202,7 +202,7 @@ function render(args: Args, context: StoryContext) {
   let valueElement: TemplateResult | TemplateResult[] | null = null;
 
   if (args.showValue === 'text') {
-    valueElement = html` <p class="form-hint">${args.value}</p> `;
+    valueElement = html` <p class="form-hint" id="form-hint-example">${args.value}</p> `;
   } else if (args.showValue === 'input') {
     const inputId = context.id
       ? `${context.id}_input`
