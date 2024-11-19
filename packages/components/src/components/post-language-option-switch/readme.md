@@ -22,6 +22,7 @@
 - [post-language-option](../post-language-option)
 - [post-menu-trigger](../post-menu-trigger)
 - [post-menu](../post-menu)
+- [post-menu-item](../post-menu-item)
 
 ### Graph
 ```mermaid
@@ -31,6 +32,7 @@ graph TD;
   post-language-option-switch --> post-language-option
   post-language-option-switch --> post-menu-trigger
   post-language-option-switch --> post-menu
+  post-language-option-switch --> post-menu-item
   post-menu --> post-popovercontainer
   style post-language-option-switch fill:#f9f,stroke:#333,stroke-width:4px
 ```

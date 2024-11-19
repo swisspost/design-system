@@ -56,9 +56,15 @@ function renderLanguageSwitch(args: Partial<HTMLPostLanguageOptionSwitchElement>
     description=${args.description}
     variant=${args.variant}
   >
-    <post-language-option active="true" code="de" name="Deutsch">DE</post-language-option>
-    <post-language-option active="false" code="en" name="English">EN</post-language-option>
-    <post-language-option active="false" code="fr" name="French">FR</post-language-option>
+    <post-language-option generated=${false} active="true" code="de" name="Deutsch"
+      >DE</post-language-option
+    >
+    <post-language-option generated=${false} active="false" code="en" name="English"
+      >EN</post-language-option
+    >
+    <post-language-option generated=${false} active="false" code="fr" name="French"
+      >FR</post-language-option
+    >
   </post-language-option-switch> `;
 }
 

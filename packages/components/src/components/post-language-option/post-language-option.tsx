@@ -24,6 +24,11 @@ export class PostLanguageOption {
   @Element() host: HTMLPostLanguageOptionElement;
 
   /**
+   *  Used on parent component (post-language-option-switch) to detect elements that are manually added
+   */
+  @Prop() generated: boolean;
+
+  /**
    *  The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
    */
   @Prop() code!: string;

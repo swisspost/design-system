@@ -75,11 +75,7 @@ export class PostLanguageOptionSwitch {
   private elements: NodeListOf<HTMLPostLanguageOptionElement>;
 
   componentWillRender() {
-    this.elements = this.host.querySelectorAll('post-language-option');
-    console.log('les slottedElements', this.elements[0]);
-    this.elements.forEach(element => {
-      element.remove();
-    });
+    this.elements = this.host.querySelectorAll('post-language-option[generated="false"]');
   }
 
   componentDidLoad() {
@@ -100,9 +96,11 @@ export class PostLanguageOptionSwitch {
             {Array.from(this.elements).map(item => (
               <post-list-item>
                 <post-language-option
-                  active={item.hasAttribute('active')}
+                  class="post-language-option-item"
+                  active={item.getAttribute('active') === 'true'}
                   code={item.getAttribute('code')}
                   name={item.getAttribute('name')}
+                  generated={true}
                 >
                   {item.textContent}
                 </post-language-option>
@@ -116,19 +114,24 @@ export class PostLanguageOptionSwitch {
             </post-menu-trigger>
             <post-menu id="post-language-menu">
               {Array.from(this.elements).map(item => (
-                <post-men-item>
+                <post-menu-item>
                   <post-language-option
-                    active={item.hasAttribute('active')}
+                    class="post-language-option-item"
+                    active={item.getAttribute('active') === 'true' ? true : false}
                     code={item.getAttribute('code')}
                     name={item.getAttribute('name')}
+                    generated={true}
                   >
                     {item.textContent}
                   </post-language-option>
-                </post-men-item>
+                </post-menu-item>
               ))}
             </post-menu>
           </div>
         )}
+        <div class="hide" aria-hidden="true">
+          <slot />
+        </div>
       </Host>
     );
   }
