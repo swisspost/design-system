@@ -93,37 +93,6 @@
   margin-bottom: 0;
   border-radius: 0;
   z-index: commons.$zindex-fixed;
-
-  @include media-breakpoint-up(xxl) {
-    $container-max-width: map.get(breakpoints.$grid-breakpoints, 'xxl') - 1;
-    $container-padding-x: map.get(grid.$grid-container-padding, 'xxl');
-    $alert-padding-x: map.get(notification.$notification-padding-x-map, alert);
-    $alert-icon-size: map.get(notification.$notification-icon-size-map, alert);
-    $fixed-alert-padding-x: '(100% - #{$container-max-width}) / 2 + #{$container-padding-x} + #{$alert-padding-x}';
-
-    padding-inline-end: calc(#{$fixed-alert-padding-x});
-    padding-inline-start: calc(
-      #{$fixed-alert-padding-x} + #{$alert-icon-size} + #{notification.$notification-gap}
-    );
-
-    &::before {
-      left: calc(#{$fixed-alert-padding-x});
-    }
-
-    &.no-icon {
-      padding-inline-start: calc(#{$fixed-alert-padding-x});
-    }
-
-    &.alert-dismissible {
-      padding-inline-end: calc(
-        #{$fixed-alert-padding-x} + #{notification.$notification-gap} + #{close.$close-size}
-      );
-
-      > .btn-close {
-        inset-inline-end: calc(#{$fixed-alert-padding-x});
-      }
-    }
-  }
 }
 
 @each $name, $color, $icon in notification.$notification-variants {
