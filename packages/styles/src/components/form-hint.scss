@@ -8,6 +8,7 @@ tokens.$default-map: components.$post-text-input;
   padding-inline: tokens.get('input-padding-inline-assist');
   padding-block: tokens.get('input-padding-block-assist');
   font-size: tokens.get('input-assist-font-size');
+  margin-block-start: 0;
 }
 
 .form-control:disabled .form-hint {
