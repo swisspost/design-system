@@ -158,7 +158,7 @@ tokens.$default-map: components.$post-text-input;
   }
 
   &::placeholder {
-    color: tokens.get('input-color-helptext-fg');
+    color: tokens.get('input-color-enabled-fg');
     opacity: 1;
   }
 
@@ -167,6 +167,11 @@ tokens.$default-map: components.$post-text-input;
     background-color: tokens.get('input-color-disabled-bg');
     border-color: tokens.get('input-color-disabled-border');
     opacity: 1;
+
+    &::placeholder {
+      color: tokens.get('input-color-disabled-fg');
+      opacity: 1;
+    }
   }
 
   &:hover:not(:disabled):not([readonly])::file-selector-button {
