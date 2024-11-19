@@ -219,7 +219,7 @@ function paddedContainer(story: StoryFn, context: StoryContext) {
 function gridContainer(story: StoryFn, context: StoryContext) {
   return html`
     <div class="row">
-      <div class="col-lg-4 col-rg-6 col-12">${story(context.args, context)}</div>
+      <div class="col-lg-4 col-sm-6 col-12">${story(context.args, context)}</div>
     </div>
   `;
 }

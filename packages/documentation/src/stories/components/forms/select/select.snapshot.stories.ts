@@ -73,7 +73,10 @@ export const Select: Story = {
       <div class="d-flex gap-16 flex-column">
         ${['bg-white', 'bg-dark'].map(bg => {
           return html`
-            <div class="${bg} d-flex gap-16 flex-column p-16">
+            <div
+              class="${bg} d-flex gap-16 flex-column p-16"
+              data-color-scheme=${bg === 'bg-white' ? 'light' : 'dark'}
+            >
               <h2>Default</h2>
               ${bombArgsGeneratedDefault.map((args: Args) => {
                 return html`
