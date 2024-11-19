@@ -10,6 +10,16 @@
 
 tokens.$default-map: components.$post-accordion;
 
+:host {
+  &::after {
+    display: block;
+    content: '';
+    margin-top: calc(tokens.get('accordion-border-bottom-width') * -1);
+    border-bottom: tokens.get('accordion-border-bottom-width')
+      tokens.get('accordion-border-bottom-style') tokens.get('accordion-enabled-border');
+  }
+}
+
 .accordion-header {
   color: tokens.get('accordion-enabled-fg');
   font-size: tokens.get('accordion-header-font-size');
@@ -35,9 +45,6 @@ tokens.$default-map: components.$post-accordion;
 
 .accordion-button {
   @include button-mx.reset-button;
-  @include utility-mx.focus-style() {
-    border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
-  }
   display: flex;
   align-items: center;
   width: 100%;
@@ -48,6 +55,19 @@ tokens.$default-map: components.$post-accordion;
   text-align: start;
   transition: accordion.$accordion-button-transition;
   cursor: pointer;
+
+  &::before {
+    display: block;
+    content: '';
+    position: absolute;
+    inset: 0;
+    bottom: auto;
+    border-top: var(--post-accordion-button-border-top);
+  }
+
+  @include utility-mx.focus-style() {
+    border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+  }
 
   &.collapsed {
     padding-block-start: tokens.get('accordion-header-padding-block-start-closed');
@@ -90,6 +110,9 @@ tokens.$default-map: components.$post-accordion;
     &:disabled {
       opacity: 1 !important;
     }
+  }
+  &::hover {
+    border-color: tokens.get('accordion-hover-border');
   }
 }
 

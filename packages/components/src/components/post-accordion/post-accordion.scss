@@ -9,14 +9,14 @@ tokens.$default-map: components.$post-accordion;
 
 ::slotted(post-accordion-item) {
   display: block;
-  border-bottom: tokens.get('accordion-border-bottom-width')
-    tokens.get('accordion-border-bottom-style') tokens.get('accordion-enabled-border');
 }
 
-::slotted(post-accordion-item:first-of-type:not(:only-of-type)) {
-  border-top: tokens.get('accordion-group-border-top-width')
-    tokens.get('accordion-border-top-style') tokens.get('accordion-enabled-border');
+::slotted(post-accordion-item:not(:only-of-type:first-of-type)) {
+  margin-top: calc(tokens.get('accordion-group-border-top-width') * -1);
 }
-::slotted(post-accordion-item:hover) {
-  border-color: tokens.get('accordion-hover-border');
+
+::slotted(post-accordion-item:not(:only-of-type):first-of-type) {
+  --post-accordion-button-border-top: #{tokens.get('accordion-group-border-top-width')} #{tokens.get(
+      'accordion-border-top-style'
+    )} #{tokens.get('accordion-enabled-border')};
 }
