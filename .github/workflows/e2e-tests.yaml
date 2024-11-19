@@ -67,12 +67,6 @@ jobs:
         with:
           name: build
 
-      - name: Prepare Cypress – Spawn Xvfb server
-        run: Xvfb :99 &
-
-      - name: Prepare Cypress – Share Xvfb server as environment variable
-        run: export DISPLAY=:99
-
       # workaround until cypress-io/github-action supports pnpm workspaces
       # https://github.com/cypress-io/github-action/issues/1144
       - name: Install dependencies
@@ -85,7 +79,6 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           install: false
-          wait-on: 'http://localhost:9001'
           command: pnpm e2e:ci
           browser: chrome
 
