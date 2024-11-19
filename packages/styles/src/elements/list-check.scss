@@ -1,0 +1,59 @@
+@use '../functions/tokens';
+@use '../tokens/elements';
+@use '../mixins/icons' as icon-mixin;
+@use '../functions/icons';
+
+tokens.$default-map: (
+  post-list-check-sizing-icon: 32px,
+  post-list-check-text-padding: 1px,
+  post-list-check-icon-gap-inline: 16px,
+  post-list-check-item-gap-block-text: 16px,
+  post-list-check-margin-block: 8px,
+  post-list-check-color-icon-fg: white,
+  post-list-check-color-text-fg: #050400,
+  post-list-check-padding-icon: 4px,
+  post-list-check-line-height: 30px
+);
+
+.list-check {
+  display: grid;
+  grid-template-columns: [marker] auto [item] 1fr;
+  list-style: none;
+  gap: tokens.get('list-check-item-gap-block-text') 0;
+  padding: 0;
+
+  > li {
+    display: grid;
+    grid-template-columns: subgrid;
+    column-gap: tokens.get('list-check-icon-gap-inline');
+    grid-column: span 2;
+    padding: tokens.get('list-check-text-padding') 0;
+
+    &::before {
+      margin-top: calc(
+        (
+            tokens.get('list-check-sizing-icon') - tokens.get(
+                'post-body-line-height',
+                elements.$post-body
+              )
+          ) / -2
+      );
+      margin-bottom: calc(
+        (
+            tokens.get('list-check-sizing-icon') - tokens.get(
+                'post-body-line-height',
+                elements.$post-body
+              )
+          ) / -2
+      );
+      background: tokens.get('list-check-color-icon-fg');
+      text-align: right;
+      grid-column: marker;
+      grid-row: span 30000;
+      width: tokens.get('list-check-sizing-icon');
+      height: tokens.get('list-check-sizing-icon');
+      content: '';
+      @include icon-mixin.icon('success');
+    }
+  }
+}
