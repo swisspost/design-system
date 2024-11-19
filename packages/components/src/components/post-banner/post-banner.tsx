@@ -126,9 +126,9 @@ export class PostBanner {
   render() {
     const defaultBannerContent = [
       this.hasHeading && (
-        <h4 key={`${this.bannerId}-heading`} class="banner-heading">
+        <div key={`${this.bannerId}-heading`} class="banner-heading">
           <slot name="heading" />
-        </h4>
+        </div>
       ),
       <slot key={`${this.bannerId}-message`} />,
     ];

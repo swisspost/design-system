@@ -41,10 +41,14 @@ tokens.$default-map: components.$post-banner;
 .alert-buttons {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   flex-direction: row-reverse;
   margin-block-start: tokens.get('banner-actions-margin-top');
   gap: tokens.get('banner-actions-gap');
+
+  @include media-breakpoint-down(md) {
+    flex-direction: column;
+  }
 }
 
 .banner-action,

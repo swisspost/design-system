@@ -99,22 +99,6 @@ export const Banner: Story = {
 
 export const PostBanner: Story = {
   render: () => {
-    const textContent =
-      '<h4 slot="heading">post-banner</h4>' +
-      '<p>' +
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis' +
-      'temporibus blanditiis expedita inventore atque. Numquam velit aut' +
-      'eveniet cumque non?' +
-      '</p>';
-
-    const actionButton =
-      '<button class="btn btn-primary" slot="actions" >' +
-      '<span>Akcepti</span>' +
-      '</button>' +
-      '<button class="btn btn-secondary" slot="actions" >' +
-      '<span>Aborti</span>' +
-      '</button>';
-
     return html`
       <div class="d-flex gap-16 flex-wrap">
         ${['bg-white', 'bg-dark'].map(
@@ -124,13 +108,28 @@ export const PostBanner: Story = {
                 type: ['neutral', 'success', 'error', 'warning', 'info'],
                 icon: ['none', undefined, '1001'],
                 dismissible: [true, false],
-                innerHTML: [textContent + actionButton, textContent],
+                hasButtons: [true, false],
               }).map(
                 args => html`
                   <post-banner
-                    ${spreadArgs(args)}
+                    type=${args.type}
+                    icon=${args.icon}
+                    dismissible=${args.dismissible}
                     dismiss-label="${args.dismissible ? 'Dismiss' : undefined}"
-                  ></post-banner>
+                  >
+                    <h4 slot="heading">Heading</h4>
+                    <p>
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis temporibus
+                      blanditiis expedita inventore atque. Numquam velit aut eveniet cumque non?
+                    </p>
+                    ${args.hasButtons
+                      ? html` <button class="btn btn-primary" slot="actions">
+                            <span>Akcepti</span></button
+                          ><button class="btn btn-secondary" slot="actions">
+                            <span>Aborti</span>
+                          </button>`
+                      : ''}
+                  </post-banner>
                 `,
               )}
             </div>
