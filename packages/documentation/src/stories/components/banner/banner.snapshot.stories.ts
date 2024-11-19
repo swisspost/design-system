@@ -1,6 +1,6 @@
 import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { bombArgs, spreadArgs } from '@/utils';
+import { bombArgs } from '@/utils';
 import bannerMeta from './standard-html/banner.stories';
 import { getBannerClasses } from './standard-html/getBannerClasses';
 
