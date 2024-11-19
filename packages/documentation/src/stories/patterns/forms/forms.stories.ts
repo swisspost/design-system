@@ -347,8 +347,8 @@ export const Hints: Story = {
       />
       <label class="form-label" for="firstname">Firstname</label>
       <p id="firstname-hint" class="form-hint">
-        <span>Also provide any middle names in this field</span>
-      </div>
+        Also provide any middle names in this field
+      </p>
     </div>
   `,
 };
