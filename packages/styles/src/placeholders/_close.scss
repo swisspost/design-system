@@ -15,6 +15,7 @@
   color: close.$close-color;
   transition: close.$close-transition;
   cursor: pointer;
+
   @include utilities-mx.focus-style {
     border-radius: commons.$border-radius;
   }
@@ -25,10 +26,6 @@
     display: block;
     height: close.$close-size;
     width: close.$close-size;
-  }
-
-  @include color-mx.on-dark-background() {
-    color: var(--post-contrast-color);
   }
 
   @include utilities-mx.not-disabled-focus-hover() {
