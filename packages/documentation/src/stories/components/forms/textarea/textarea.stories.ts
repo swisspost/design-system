@@ -194,7 +194,7 @@ function renderTextarea(args: Args, context: StoryContext) {
     args.validation === 'is-invalid'
       ? html`<div class="invalid-feedback">Eraro okazis!</div>`
       : null,
-    args.hint !== '' ? html`<div class="form-hint">${args.hint}</div>` : null,
+    args.hint !== '' ? html`<p class="form-hint" id="form-hint-example">${args.hint}</p>` : null,
   ];
   const control = html`
     <textarea
