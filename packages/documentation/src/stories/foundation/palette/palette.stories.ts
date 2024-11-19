@@ -47,6 +47,7 @@ function renderPalette(args: Args) {
         I use a specific color from the palette (it might be the same as the body color).
       </h2>
       <p>I use the main body color.</p>
+      <button class="btn btn-primary">Primary button</button>
     </div>
   `;
 }

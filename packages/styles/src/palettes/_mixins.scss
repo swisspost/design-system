@@ -24,20 +24,23 @@
 
 @mixin generate-palette-class($name, $theme) {
   .palette-#{$name} {
-    // redefining the body color is required so that the new color scheme is taken into account
+    // Redefining the body color is necessary to ensure that the new color scheme is applied correctly.
+    // Known limitation: body color may be incorrect with nested parent with different `data-color-scheme` values.
     color: tokens.get('body-color', elements.$post-body);
     background-color: var(--post-current-palette-bg) !important;
 
-    // below selectors consider up to two nested `data-color-scheme` attributes on parent elements
-    // if `data-color-scheme` is set on the palette itself, it is always used
-
+    // Light scheme explicitly set on the palette:
     &[data-color-scheme='light'],
-    &:not([data-color-scheme='dark']):not([data-color-scheme='dark'] *),
-    &:where([data-color-scheme='light'] :not([data-color-scheme='dark'])) {
+    // No scheme explicitly set on the palette, but parent has a light scheme:
+    &:where([data-color-scheme='light'] :not([data-color-scheme='dark'])),
+    // No scheme explicitly set on the palette, and no scheme on the parent either:
+    &:not([data-color-scheme='dark']):not([data-color-scheme='dark'] *) {
       @include palette-tokens($name, $theme, 'light', $override-scheme: true);
     }
 
+    // Dark scheme explicitly set on the palette:
     &[data-color-scheme='dark'],
+    // No scheme explicitly set on the palette, but parent has a dark scheme:
     &:where([data-color-scheme='dark'] :not([data-color-scheme='dark'])) {
       @include palette-tokens($name, $theme, 'dark', $override-scheme: true);
     }
