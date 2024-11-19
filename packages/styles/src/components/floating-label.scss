@@ -104,18 +104,6 @@ tokens.$default-map: components.$post-text-input;
     }
   }
 
-  // Duplicated because `:-webkit-autofill` invalidates other selectors when grouped
-  > .form-control:-webkit-autofill {
-    padding-block-start: tokens.get('input-padding-block-start');
-    padding-block-end: tokens.get('input-padding-block-end');
-
-    ~ label {
-      color: tokens.get('input-color-selected-fg');
-      font-size: tokens.get('input-label-filled-font-size');
-      background-color: tokens.get('input-color-selected-bg');
-    }
-  }
-
   > textarea:disabled ~ label,
   > .form-control:disabled ~ label {
     // Required for `.form-control`s because of specificity
