@@ -60,9 +60,9 @@ export class Search extends React.Component {
                 <span className="visually-hidden">Reset Search</span>
               </button>
             ) : null}
-            <div className="form-hint">
+            <p className="form-hint" id="form-hint-example">
               {`Showing ${this.state.icons.length} of ${report.icons.length} icons.`}
-            </div>
+            </p>
           </div>
         </div>
 
