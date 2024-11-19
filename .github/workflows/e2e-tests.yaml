@@ -79,6 +79,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           install: false
+          start: pnpm docs:ci
           command: pnpm e2e:ci
           browser: chrome
 
