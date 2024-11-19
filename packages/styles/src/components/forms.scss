@@ -166,6 +166,7 @@ tokens.$default-map: components.$post-text-input;
     color: tokens.get('input-color-disabled-fg');
     background-color: tokens.get('input-color-disabled-bg');
     border-color: tokens.get('input-color-disabled-border');
+    border-style: tokens.get('input-border-style-disabled');
     opacity: 1;
 
     &::placeholder {

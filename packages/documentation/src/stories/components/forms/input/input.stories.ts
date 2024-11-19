@@ -160,7 +160,7 @@ function render(args: Args, context: StoryContext) {
   const contextual: (TemplateResult | null)[] = [
     args.validation === 'is-valid' ? html` <p class="valid-feedback">Ggranda sukceso!</p> ` : null,
     args.validation === 'is-invalid' ? html` <p class="invalid-feedback">Eraro okazis!</p> ` : null,
-    args.hint !== '' ? html` <p class="form-hint" id="form-hint-example">${args.hint}</p> ` : null,
+    args.hint !== '' ? html` <p class="form-hint" id="form-hint-${id}">${args.hint}</p> ` : null,
   ];
 
   const control: TemplateResult = html`
@@ -172,7 +172,7 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
-      aria-describedby="${args.hint !== '' ? 'form-hint-example' : nothing}"
+      aria-describedby="${args.hint !== '' ? 'form-hint-' + id : nothing}"
       value="${args.value ? args.value : nothing}"
     />
   `;

@@ -243,7 +243,7 @@ const Template: Story = {
         ? html` <p class="invalid-feedback">Eraro okazis!</p> `
         : null,
       args.hint !== ''
-        ? html` <p class="form-hint" id="form-hint-example">${args.hint}</p> `
+        ? html` <p class="form-hint" id="form-hint-${context.id}">${args.hint}</p> `
         : null,
     ];
     const control = html`
@@ -255,7 +255,7 @@ const Template: Story = {
         ?disabled="${args.disabled}"
         aria-label="${useAriaLabel ? args.label : nothing}"
         aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
-        aria-describedby="${args.hint !== '' ? 'form-hint-example' : ''}"
+        aria-describedby="${args.hint !== '' ? 'form-hint-' + context.id : ''}"
         @change="${(e: Event) => {
           updateArgs({ value: (e.target as HTMLSelectElement).value });
         }}"

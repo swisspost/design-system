@@ -195,7 +195,7 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
-      aria-describedby="${args.showValue === 'text' ? 'slider-form-hint' : ''}"
+      aria-describedby="${args.showValue === 'text' ? 'form-hint-' + id : ''}"
       @input="${(e: MouseEvent) => updateArgs({ value: (e.target as HTMLInputElement).value })}"
     />
   `;
@@ -220,14 +220,13 @@ function render(args: Args, context: StoryContext) {
             value="${args.value}"
             .value="${args.value}"
             ?disabled="${args.disabled}"
-            aria-describedby="${args.showValue === 'text' ? 'slider-form-hint' : ''}"
             @input="${(e: Event) => updateArgs({ value: (e.target as HTMLInputElement).value })}"
           />
         </div>
       </div>
     `;
   } else if (args.showValue === 'text') {
-    valueElement = html`<p class="form-hint" id="slider-form-hint">${args.value}</p> `;
+    valueElement = html`<p class="form-hint" id="form-hint-${id}">${args.value}</p> `;
   }
 
   return html`${[label, control, valueElement, ...contextual].filter(el => el !== null)}`;
