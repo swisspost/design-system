@@ -2,6 +2,8 @@ import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 
+const MAX_LABELS = 8;
+
 const meta: MetaComponent = {
   id: '78509712-d45e-462c-bde3-405cfaff5421',
   title: 'Components/Buttons/Segmented button',
@@ -15,29 +17,14 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    name: 'five',
-    labels: ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5'],
-    selected: 0, // Default selection for ease of testing
+    labelCount: 5,
   },
   argTypes: {
-    name: {
-      name: 'Name',
-      description: 'Sets the name attribute for the segmented button component.',
-      control: { type: 'text' },
-      table: { category: 'General' },
-    },
-    labels: {
-      name: 'Labels',
-      description: 'Defines the labels for each option in the segmented button. Maximum of 10 options allowed.',
-      control: { type: 'object' },
+    labelCount: {
+      name: 'Label Count',
+      description: `Specifies the number of labels for the segmented button. Maximum of ${MAX_LABELS} options allowed.`,
+      control: { type: 'number', min: 1, max: MAX_LABELS },
       table: { category: 'Content' },
-      validation: { maxLength: 10 },
-    },
-    selected: {
-      name: 'Selected',
-      description: 'Specifies the index of the default selected option.',
-      control: { type: 'number', min: 0, max: 9 },
-      table: { category: 'State' },
     },
   },
 };
@@ -47,20 +34,21 @@ export default meta;
 type Story = StoryObj;
 
 function renderSegmentedButton(args: Args) {
-  const labelsArray = args.labels || [];
-  const selectedIndex = args.selected || 0;
+  const labelCount = Math.min(args.labelCount || 0, MAX_LABELS);
+  const labelsArray = Array.from({ length: labelCount }, (_, i) => `Label ${i + 1}`);
 
   return html`
     <div class="segmented-button-container">
-      <fieldset class="segmented-button segmented-button-${labelsArray.length}">
-        ${labelsArray.slice(0, 10).map(
+      <fieldset class="segmented-button">
+        ${labelsArray.map(
           (label, index) => html`
-            <input id="${args.name}-${index + 1}" 
-              tabindex="-1" 
-              name="${args.name}" 
-              type="radio" 
-              ?checked="${index === selectedIndex}" />
-            <label for="${args.name}-${index + 1}" tabindex="0">${label}</label>
+            <label class="segmented-button-label">
+              <input 
+                name={uuid}
+                type="radio" 
+              />
+              ${label}
+            </label>
           `
         )}
       </fieldset>
@@ -70,7 +58,6 @@ function renderSegmentedButton(args: Args) {
 
 export const Default: Story = {
   args: {
-    labels: ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5'],
-    selected: 0,
+    labelCount: 5,
   },
 };
