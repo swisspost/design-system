@@ -40,7 +40,6 @@
   }
 
   &:has(input[type='checkbox']):not(.form-switch) {
-    gap: tokens.get('checkbox-gap-inline-text-start', components.$post-checkbox);
     padding-block: tokens.get('checkbox-padding-block-single', components.$post-checkbox);
 
     fieldset > & {
@@ -52,6 +51,10 @@
     > input[type='checkbox'] {
       ~ label {
         padding-block: tokens.get('checkbox-label-padding-block', components.$post-checkbox);
+        padding-inline-start: tokens.get(
+          'checkbox-gap-inline-text-start',
+          components.$post-checkbox
+        );
         color: tokens.get('checkbox-enabled-fg', components.$post-checkbox);
       }
 
@@ -80,7 +83,6 @@
   }
 
   &:has(input[type='radio']) {
-    gap: tokens.get('radio-button-gap-inline-text-start', components.$post-radio-button);
     padding-block: tokens.get('radio-button-padding-block-single', components.$post-radio-button);
 
     fieldset > & {
@@ -93,6 +95,10 @@
       ~ label {
         padding-block: tokens.get(
           'radio-button-label-padding-block',
+          components.$post-radio-button
+        );
+        padding-inline-start: tokens.get(
+          'radio-button-gap-inline-text-start',
           components.$post-radio-button
         );
         color: tokens.get('radio-button-enabled-fg', components.$post-radio-button);
@@ -124,6 +130,7 @@
 
   > label {
     transition: color #{animation.$transition-base-timing};
+    flex: 1;
 
     @include utility-mx.high-contrast-mode {
       transition: none;

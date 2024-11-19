@@ -30,7 +30,6 @@ const meta: MetaComponent = {
     hiddenLabel: false,
     checked: false,
     disabled: false,
-    size: 'null',
     validation: 'null',
   },
   argTypes: {

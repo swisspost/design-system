@@ -24,7 +24,6 @@ const meta: MetaComponent = {
     hiddenLabel: false,
     checked: 'unchecked',
     disabled: false,
-    size: 'null',
     validation: 'null',
   },
   argTypes: {

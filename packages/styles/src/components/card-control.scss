@@ -50,6 +50,8 @@ fieldset {
     cursor: inherit;
     transition: none;
 
+    @include utilities.focus-style-none();
+
     &:hover:not([disabled]) ~ label {
       color: var(--post-contrast-color);
       background-color: transparent !important;

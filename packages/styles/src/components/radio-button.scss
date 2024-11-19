@@ -9,8 +9,13 @@
 
 tokens.$default-map: components.$post-radio-button;
 
+:where(input[type='radio']) {
+  @include utility-mx.focus-style();
+}
+
 input[type='radio'] {
   appearance: none;
+  flex: none;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -27,8 +32,11 @@ input[type='radio'] {
   border-radius: tokens.get('radio-button-icon-border-radius-round');
   color: tokens.get('radio-button-enabled-fg');
   vertical-align: top;
-  transition: all #{animation.$transition-base-timing};
-  @include utility-mx.focus-style();
+  transition:
+    background-color #{animation.$transition-base-timing},
+    border-color #{animation.$transition-base-timing},
+    color #{animation.$transition-base-timing},
+    box-shadow #{animation.$transition-base-timing};
 
   @include utility-mx.high-contrast-mode() {
     background-color: Field;
