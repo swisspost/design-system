@@ -346,7 +346,7 @@ export const Hints: Story = {
         placeholder=" "
       />
       <label class="form-label" for="firstname">Firstname</label>
-      <div id="firstname-hint" class="form-hint">
+      <p id="firstname-hint" class="form-hint">
         <span>Also provide any middle names in this field</span>
       </div>
     </div>
