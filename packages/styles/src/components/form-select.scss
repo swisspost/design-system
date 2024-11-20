@@ -15,7 +15,7 @@ tokens.$default-map: components.$post-select;
   appearance: none;
   position: relative;
   min-height: tokens.get('select-sizing-height');
-  padding-block: tokens.get('select-empty-padding-block');
+  padding-block: tokens.get('select-standalone-padding-block');
   padding-inline-start: tokens.get('select-padding-inline-start');
   padding-inline-end: tokens.get('select-padding-inline-end');
   background-color: tokens.get('select-color-enabled-bg');
@@ -140,8 +140,8 @@ tokens.$default-map: components.$post-select;
   position: relative;
 
   > .form-select {
-    padding-block-start: tokens.get('select-filled-padding-block-start');
-    padding-block-end: tokens.get('select-filled-padding-block-end');
+    padding-block-start: tokens.get('select-padding-block-start');
+    padding-block-end: tokens.get('select-padding-block-end');
 
     ~ label {
       position: absolute;
@@ -210,7 +210,7 @@ tokens.$default-map: components.$post-select;
 
       &:empty {
         ~ label {
-          padding-block: tokens.get('select-empty-padding-block');
+          padding-block: tokens.get('select-standalone-padding-block');
           width: calc(
             100% - (#{tokens.get('select-border-width')} * 2) - #{tokens.get(
                 'select-label-empty-padding-inline-start'
