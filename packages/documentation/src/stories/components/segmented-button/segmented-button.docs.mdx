@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Meta, Canvas, Controls } from '@storybook/blocks';
 import * as SegmentedButtonStories from './segmented-button.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
@@ -12,18 +12,23 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
   </nav>
 </div>
 
-<div className="lead">
-  The segmented button is a single-select component. 
-  It allows users to toggle between two or more content sections within the same area on the screen.
+The segmented button is a single-select component. 
+It allows users to toggle between two or more content sections within the same area on the screen.
+
+<div role="alert" class="alert alert-info">
+  <p>
+    If the labels are too long or the number of options is excessive for the available space,
+    consider using a select component. Keep in mind that long labels may cause layout issues,
+    such as text overflowing or word breaks.
+  </p>
 </div>
 
-<Canvas sourceState="shown" of={SegmentedButtonStories.Default} />
-<div className="hide-col-default">
-  <Controls of={SegmentedButtonStories.Default} />
-</div>
+<Canvas of={SegmentedButtonStories.TextExample} />
+<Controls of={SegmentedButtonStories.TextExample} />
 
-<div role="alert" className="alert alert-info">
-  <p>If the labels are too long or the number of options is excessive for the available space, consider using a select component. Keep in mind that long labels may cause layout issues, such as text overflowing or word breaks.</p>
-</div>
+## Segmented icon button
+
+<Canvas of={SegmentedButtonStories.IconExample} />
+<Controls of={SegmentedButtonStories.IconExample} />
 
 <StylesPackageImport components={['segmented-button']} />

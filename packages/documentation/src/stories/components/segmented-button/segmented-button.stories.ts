@@ -8,7 +8,6 @@ const meta: MetaComponent = {
   id: '78509712-d45e-462c-bde3-405cfaff5421',
   title: 'Components/Buttons/Segmented button',
   tags: ['package:HTML'],
-  render: renderSegmentedButton,
   parameters: {
     badges: [],
     design: {
@@ -17,7 +16,7 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    labelCount: 5,
+    labelCount: 4,
   },
   argTypes: {
     labelCount: {
@@ -33,31 +32,43 @@ export default meta;
 
 type Story = StoryObj;
 
-function renderSegmentedButton(args: Args) {
-  const labelCount = Math.min(args.labelCount || 0, MAX_LABELS);
-  const labelsArray = Array.from({ length: labelCount }, (_, i) => `Label ${i + 1}`);
+export const TextExample: Story = {
+  render: (args: Args) => {
+    const labelCount = Math.min(args.labelCount || 0, MAX_LABELS);
+    const labelsArray = Array.from({ length: labelCount }, (_, i) => `Label ${i + 1}`);
 
-  return html`
-    <div class="segmented-button-container">
-      <fieldset class="segmented-button">
-        ${labelsArray.map(
-          (label, index) => html`
+    return html`
+      <div class="segmented-button-container">
+        <fieldset class="segmented-button">
+          ${labelsArray.map(
+            (label) => html`
+              <label class="segmented-button-label">
+                <input name={uuid} type="radio" />
+                ${label}
+              </label>
+            `
+          )}
+        </fieldset>
+      </div>
+    `;
+  },
+};
+
+export const IconExample: Story = {
+  render: (args: Args) => {
+    const labelCount = Math.min(args.labelCount || 0, MAX_LABELS);
+
+    return html`
+      <div class="segmented-button-container">
+        <fieldset class="segmented-button">
+          ${Array.from({ length: labelCount }, (_, index) => html`
             <label class="segmented-button-label">
-              <input 
-                name={uuid}
-                type="radio" 
-              />
-              ${label}
+              <input name={uuid} type="radio" />
+                <post-icon name="3120" />
             </label>
-          `
-        )}
-      </fieldset>
-    </div>
-  `;
-}
-
-export const Default: Story = {
-  args: {
-    labelCount: 5,
+          `)}
+        </fieldset>
+      </div>
+    `;
   },
 };
