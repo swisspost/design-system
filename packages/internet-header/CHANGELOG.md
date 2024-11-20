@@ -1,5 +1,23 @@
 # @swisspost/internet-header
 
+## 1.15.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.6.0
+
+## 1.15.0
+
+### Minor Changes
+
+- Added and documented the possibility to create plain links in the main navigation by adding noFlyout: true to the config. The flyout property is now optional and can be omitted. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3901](https://github.com/swisspost/design-system/pull/3901))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.5.0
+
 ## 1.14.9
 
 ### Patch Changes

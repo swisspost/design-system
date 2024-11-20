@@ -11386,50 +11386,6 @@
       "modifiedAt": "2024-10-18T07:14:11.000Z"
     },
     {
-      "uuid": "88307300-5bef-11eb-9f99-005056873709",
-      "id": 539481,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539481/storage/NTM5NDg5LzAvbWFzdGVy",
-        "keywords": [
-          "LAD",
-          "Leistung am Domizil",
-          "Prestazione a domicilio",
-          "Service at home",
-          "Prestation à domicile",
-          "Wegweiser",
-          "Sign",
-          "Segno",
-          "Signer",
-          "Sinnbild",
-          "Symbol",
-          "Simbolo",
-          "Symbole",
-          "Strassenschild",
-          "Road Sign",
-          "Segnale stradale",
-          "Panneau De Signalisation"
-        ],
-        "year": [
-          "2021"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "2205.svg",
-        "basename": "2205",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2021-01-21T13:49:50.000Z",
-      "modifiedAt": "2024-10-24T05:04:06.000Z"
-    },
-    {
       "uuid": "4cc7c010-5bf0-11eb-9f99-005056873709",
       "id": 539487,
       "type": "picture.pictogram.",
@@ -11474,6 +11430,50 @@
       },
       "createdAt": "2021-01-21T13:55:20.000Z",
       "modifiedAt": "2024-10-18T07:14:11.000Z"
+    },
+    {
+      "uuid": "88307300-5bef-11eb-9f99-005056873709",
+      "id": 539481,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539481/storage/NTM5NDg5LzAvbWFzdGVy",
+        "keywords": [
+          "LAD",
+          "Leistung am Domizil",
+          "Prestazione a domicilio",
+          "Service at home",
+          "Prestation à domicile",
+          "Wegweiser",
+          "Sign",
+          "Segno",
+          "Signer",
+          "Sinnbild",
+          "Symbol",
+          "Simbolo",
+          "Symbole",
+          "Strassenschild",
+          "Road Sign",
+          "Segnale stradale",
+          "Panneau De Signalisation"
+        ],
+        "year": [
+          "2021"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2205.svg",
+        "basename": "2205",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2021-01-21T13:49:50.000Z",
+      "modifiedAt": "2024-10-24T05:04:06.000Z"
     },
     {
       "uuid": "044e0500-5bf1-11eb-9f99-005056873709",
@@ -29139,6 +29139,59 @@
       "modifiedAt": "2024-10-25T12:05:09.317Z"
     },
     {
+      "uuid": "ae649aa0-9b5c-11ef-9712-005056873709",
+      "id": 820602,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/820602/storage/ODIwNjAxLzAvbWFzdGVy",
+        "keywords": [
+          "shoot photo",
+          "scattare foto",
+          "Foto aufnehmen",
+          "photo prise"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2632.svg",
+        "basename": "2632",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-11-05T09:59:43.000Z",
+      "modifiedAt": "2024-11-05T10:11:18.000Z"
+    },
+    {
+      "uuid": "8ecf28e0-a188-11ef-9712-005056873709",
+      "id": 820956,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/820956/storage/ODIwOTU1LzAvbWFzdGVy",
+        "keywords": [
+          "zalando"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2633.svg",
+        "basename": "2633",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-11-13T06:28:55.000Z",
+      "modifiedAt": "2024-11-13T06:31:35.000Z"
+    },
+    {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
       "id": 352241,
       "type": "picture.pictogram.",
@@ -41636,37 +41689,6 @@
   "wrongViewBox": [],
   "noKeywords": [
     {
-      "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
-      "id": 352314,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352314/storage/NTM3MjI0LzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3073.svg",
-        "basename": "3073",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
-    },
-    {
       "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
       "id": 352299,
       "type": "picture.pictogram.",
@@ -41696,6 +41718,37 @@
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
       "modifiedAt": "2024-03-12T14:51:50.000Z"
+    },
+    {
+      "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
+      "id": 352314,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352314/storage/NTM3MjI0LzAvbWFzdGVy",
+        "businessfield": [
+          "kommunikation"
+        ],
+        "keywords": [
+          ""
+        ],
+        "year": [
+          "2017"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "3073.svg",
+        "basename": "3073",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2017-11-10T10:11:07.000Z",
+      "modifiedAt": "2024-03-12T14:51:51.000Z"
     },
     {
       "uuid": "6b09bf30-9901-11eb-935b-005056873709",
@@ -41809,11 +41862,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2024-10-27T01:40:29.123Z",
+  "created": "2024-11-17T01:43:33.040Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 961
+    "success": 963
   },
-  "version": "8.3.0"
+  "version": "8.5.0"
 }
