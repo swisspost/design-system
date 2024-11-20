@@ -113,7 +113,7 @@ $webkit-thumb-width: 32px;
     }
   }
 
-  + .form-text {
+  + .form-hint {
     margin-top: spacing.$size-regular;
     transform: translateY(#{-0.5 * forms.$form-range-height});
   }
