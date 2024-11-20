@@ -16,12 +16,19 @@ const meta: MetaComponent = {
     },
   },
   args: {
+    name: 'segmented-button-group',
     labelCount: 4,
   },
   argTypes: {
+    name: {
+      name: 'Name',
+      description: `Specifies the name of the radio button group. Ensure this is unique.`,
+      control: { type: 'text' },
+      table: { category: 'General' },
+    },
     labelCount: {
       name: 'Label Count',
-      description: `Specifies the number of labels for the segmented button.`,
+      description: `Defines the number of labels for the segmented button.`,
       control: { type: 'number', min: 1, max: MAX_LABELS },
       table: { category: 'Content' },
     },
@@ -44,7 +51,7 @@ export const TextExample: Story = {
           ${labelsArray.map(
             (label) => html`
               <label class="segmented-button-label">
-                <input name={uuid} type="radio" />
+                <input name="${args.name}" type="radio" />
                 ${label}
               </label>
             `
@@ -65,7 +72,7 @@ export const IconExample: Story = {
           <legend>Choose one of the options</legend>
           ${Array.from({ length: labelCount }, (_, index) => html`
           <label class="segmented-button-label">
-            <input name={uuid} type="radio" />
+            <input name="${args.name}" type="radio" />
               <post-icon name="3120" />
           </label>
           `)}
