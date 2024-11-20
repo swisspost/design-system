@@ -37,46 +37,6 @@ export default meta;
 type Story = StoryObj;
 export const Default: Story = {};
 
-export const CardControl: Story = {
-  args: {
-    validation1: 'is-valid',
-  },
-  argTypes: {
-    validation1: validationObject,
-  },
-  render(args: Args) {
-    const isValidationSet = args.validation1 !== 'null';
-    const isValid = args.validation1 === 'is-valid';
-    let ariaInvalid;
-    if (isValidationSet) {
-      ariaInvalid = !isValid;
-    } else {
-      ariaInvalid = nothing;
-    }
-    const ariaDescribedBy = isValidationSet ? `${args.validation1}-id` : nothing;
-    const validFeedbackId =
-      isValidationSet && args.validation1 !== 'is-invalid' ? `${args.validation1}-id` : nothing;
-    const invalidFeedbackId =
-      isValidationSet && args.validation1 !== 'is-valid' ? `${args.validation1}-id` : nothing;
-
-    return html`<div class="checkbox-button-card">
-        <input
-          id="CardControl_1"
-          name="checkbox-button-card-control_1"
-          class="form-check-input ${isValidationSet ? args.validation1 : ''}"
-          type="checkbox"
-          aria-invalid=${ariaInvalid}
-          aria-describedby="${ariaDescribedBy}"
-        />
-        <label class="form-check-label" for="CardControl_1">
-          <span>Label</span>
-        </label>
-      </div>
-      <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
-      <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>`;
-  },
-};
-
 export const Checkbox: Story = {
   args: {
     validation2: 'is-invalid',

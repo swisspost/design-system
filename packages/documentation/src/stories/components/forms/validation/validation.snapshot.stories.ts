@@ -14,7 +14,6 @@ type Story = StoryObj;
 export const Validation: Story = {
   render() {
     const components = [
-      { name: 'CardControl', id: 'CardControl_1' },
       { name: 'Checkbox', id: 'Checkbox_1' },
       { name: 'Input', id: 'Input_1' },
       { name: 'RadioButton', id: 'Radio_1' },
@@ -55,31 +54,6 @@ export const Validation: Story = {
                         <div class="state-variation snapshot">
                           ${(() => {
                             switch (component.name) {
-                              case 'CardControl':
-                                return html`
-                                  <div class="checkbox-button-card">
-                                    <input
-                                      id="${component.name}-${scheme}-${state}"
-                                      name="checkbox-button-card-control"
-                                      class="form-check-input ${state}"
-                                      type="checkbox"
-                                      aria-invalid=${ariaInvalid}
-                                      aria-describedby="${ariaDescribedBy}"
-                                    />
-                                    <label
-                                      class="form-check-label"
-                                      for="${component.name}-${scheme}-${state}"
-                                    >
-                                      <span>Label</span>
-                                    </label>
-                                  </div>
-                                  <p id="${validFeedbackId}" class="valid-feedback">
-                                    Valid message.
-                                  </p>
-                                  <p id="${invalidFeedbackId}" class="invalid-feedback">
-                                    Invalid message.
-                                  </p>
-                                `;
                               case 'Checkbox':
                                 return html`
                                   <div class="form-check">
