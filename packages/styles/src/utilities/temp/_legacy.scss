@@ -33,7 +33,7 @@
 }
 
 .h-visuallyhidden-down-rg {
-  @include media-breakpoint-down(rg) {
+  @include media-breakpoint-down(sm) {
     @include utilities.visuallyhidden;
   }
 }
