@@ -50,7 +50,9 @@ function getAccordionItemContent(position: number | string, headingLevel?: numbe
   const level = headingLevel ? html` <code>h${headingLevel}</code>` : nothing;
   return html`
     <span slot="header">Titulum ${position}${level}</span>
-    <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+    <div>
+      <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+    </div>
   `;
 }
 

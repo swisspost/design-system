@@ -53,12 +53,14 @@ Type: `Promise<boolean>`
 ### Depends on
 
 - [post-collapsible-trigger](../post-collapsible-trigger)
+- [post-icon](../post-icon)
 - [post-collapsible](../post-collapsible)
 
 ### Graph
 ```mermaid
 graph TD;
   post-accordion-item --> post-collapsible-trigger
+  post-accordion-item --> post-icon
   post-accordion-item --> post-collapsible
   style post-accordion-item fill:#f9f,stroke:#333,stroke-width:4px
 ```

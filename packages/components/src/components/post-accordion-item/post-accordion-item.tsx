@@ -97,6 +97,7 @@ export class PostAccordionItem {
                   <slot name="logo" onSlotchange={this.onSlotLogoChange.bind(this)}></slot>
                 </div>
                 <slot name="header" />
+                <post-icon name="2051"></post-icon>
               </button>
             </HeadingTag>
           </post-collapsible-trigger>
