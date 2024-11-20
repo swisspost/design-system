@@ -57,12 +57,6 @@ tokens.$default-map: components.$post-text-input;
     }
   }
 
-  @include utilities.disabled-style {
-    ~ .form-text {
-      color: tokens.get('input-color-disabled-fg');
-    }
-  }
-
   &[readonly]:not(:disabled) {
     border-color: tokens.get('input-color-enabled-border');
     background-color: tokens.get('input-color-enabled-bg');
@@ -165,7 +159,7 @@ tokens.$default-map: components.$post-text-input;
   }
 
   &::placeholder {
-    color: tokens.get('input-color-helptext-fg');
+    color: tokens.get('input-color-enabled-fg');
     opacity: 1;
   }
 
@@ -173,7 +167,13 @@ tokens.$default-map: components.$post-text-input;
     color: tokens.get('input-color-disabled-fg');
     background-color: tokens.get('input-color-disabled-bg');
     border-color: tokens.get('input-color-disabled-border');
+    border-style: tokens.get('input-border-style-disabled');
     opacity: 1;
+
+    &::placeholder {
+      color: tokens.get('input-color-disabled-fg');
+      opacity: 1;
+    }
   }
 
   &:hover:not(:disabled):not([readonly])::file-selector-button {

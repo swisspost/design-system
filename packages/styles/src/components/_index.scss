@@ -1,10 +1,10 @@
 @forward './../variables/options';
 
 @use 'accordion';
-@use 'alert';
 @use 'appstore-badge';
 @use 'avatar';
 @use 'badge';
+@use 'banner';
 @use 'breadcrumb';
 @use 'button';
 @use 'button-group';
@@ -22,6 +22,7 @@
 @use 'datatable';
 @use 'dialog';
 @use 'form-check';
+@use 'form-hint';
 @use 'forms';
 @use 'grid';
 @use 'icon-button';
