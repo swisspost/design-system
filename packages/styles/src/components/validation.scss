@@ -1,5 +1,4 @@
 @use 'sass:map';
-@use '../tokens/elements';
 @use '../functions/tokens';
 @use '../functions/icons';
 @use './../mixins/icons' as icon-mixin;
@@ -50,12 +49,6 @@ Default feedback message classes
   }
 }
 
-// Special for Card Control
-.was-validated:has(:invalid) ~ .invalid-feedback,
-:has(.is-invalid) ~ .invalid-feedback {
-  display: flex;
-}
-
 /*
  Checkbox and Radio box specific classes
 */
@@ -65,11 +58,11 @@ input[type='range'],
 :has(input[type='checkbox']) {
   ~ .invalid-feedback,
   ~ .valid-feedback {
-    margin-top: 1px;
     padding: tokens.get('post-validation-group-padding-block-text');
 
     &::before {
-      margin-top: -1px;
+      margin-top: calc(-1 * tokens.get('post-validation-group-padding-block-text'));
+      margin-bottom: calc(-1 * tokens.get('post-validation-group-padding-block-text'));
       height: tokens.get('post-validation-group-icon-size');
       width: tokens.get('post-validation-group-icon-size');
       display: inline-block;
