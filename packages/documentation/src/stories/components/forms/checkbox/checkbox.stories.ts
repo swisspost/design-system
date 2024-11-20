@@ -63,7 +63,7 @@ const meta: MetaComponent = {
       name: 'Hidden Label',
       description:
         'If `true`, the checkbox label is set via an `aria-label` attribute and is therefore not visible.' +
-        '<span className="mt-8 alert alert-info alert-sm">' +
+        '<span className="mt-8 banner banner-info banner-sm">' +
         'Shown or hidden, a label must always be defined.<br/>' +
         'More details in our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs">accessibility docs</a>.' +
         '</span>',
@@ -109,7 +109,7 @@ const meta: MetaComponent = {
       name: 'Disabled',
       description:
         'If `true`, makes the checkbox appear inactive and disables its functionality.' +
-        '<span className="mt-8 alert alert-info alert-sm">' +
+        '<span className="mt-8 banner banner-info banner-sm">' +
         'There are accessibility concerns with the disabled state.<br/>' +
         'More details in our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs">accessibility docs</a>.' +
         '</span>',

@@ -3,7 +3,7 @@ export { Components, JSX } from './components';
 // Export every single component so it gets included in the dist output
 export { PostAccordion } from './components/post-accordion/post-accordion';
 export { PostAccordionItem } from './components/post-accordion-item/post-accordion-item';
-export { PostAlert } from './components/post-alert/post-alert';
+export { PostBanner } from './components/post-banner/post-banner';
 export { PostBreadcrumbItem } from './components/post-breadcrumb-item/post-breadcrumb-item';
 export { PostAvatar } from './components/post-avatar/post-avatar';
 export { PostCardControl } from './components/post-card-control/post-card-control';
@@ -26,3 +26,7 @@ export { PostTooltip } from './components/post-tooltip/post-tooltip';
 export { PostTag } from './components/post-tag/post-tag';
 export { PostList } from './components/post-list/post-list';
 export { PostListItem } from './components/post-list-item/post-list-item';
+export { PostHeader } from './components/post-header/post-header';
+export { PostMainnavigation } from './components/post-mainnavigation/post-mainnavigation';
+export { PostMegadropdown } from './components/post-megadropdown/post-megadropdown';
+export { PostMegadropdownTrigger } from './components/post-megadropdown-trigger/post-megadropdown-trigger';
