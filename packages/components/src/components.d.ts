@@ -225,6 +225,8 @@ export namespace Components {
          */
         "url": string;
     }
+    interface PostLinkarea {
+    }
     interface PostList {
         /**
           * The list can become horizontal by setting `horizontal="true"` or just `horizontal`
@@ -563,6 +565,12 @@ declare global {
         prototype: HTMLPostLanguageOptionElement;
         new (): HTMLPostLanguageOptionElement;
     };
+    interface HTMLPostLinkareaElement extends Components.PostLinkarea, HTMLStencilElement {
+    }
+    var HTMLPostLinkareaElement: {
+        prototype: HTMLPostLinkareaElement;
+        new (): HTMLPostLinkareaElement;
+    };
     interface HTMLPostListElement extends Components.PostList, HTMLStencilElement {
     }
     var HTMLPostListElement: {
@@ -704,6 +712,7 @@ declare global {
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
         "post-icon": HTMLPostIconElement;
         "post-language-option": HTMLPostLanguageOptionElement;
+        "post-linkarea": HTMLPostLinkareaElement;
         "post-list": HTMLPostListElement;
         "post-list-item": HTMLPostListItemElement;
         "post-logo": HTMLPostLogoElement;
@@ -914,6 +923,8 @@ declare namespace LocalJSX {
          */
         "url"?: string;
     }
+    interface PostLinkarea {
+    }
     interface PostList {
         /**
           * The list can become horizontal by setting `horizontal="true"` or just `horizontal`
@@ -1070,6 +1081,7 @@ declare namespace LocalJSX {
         "post-collapsible-trigger": PostCollapsibleTrigger;
         "post-icon": PostIcon;
         "post-language-option": PostLanguageOption;
+        "post-linkarea": PostLinkarea;
         "post-list": PostList;
         "post-list-item": PostListItem;
         "post-logo": PostLogo;
@@ -1107,6 +1119,7 @@ declare module "@stencil/core" {
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
             "post-language-option": LocalJSX.PostLanguageOption & JSXBase.HTMLAttributes<HTMLPostLanguageOptionElement>;
+            "post-linkarea": LocalJSX.PostLinkarea & JSXBase.HTMLAttributes<HTMLPostLinkareaElement>;
             "post-list": LocalJSX.PostList & JSXBase.HTMLAttributes<HTMLPostListElement>;
             "post-list-item": LocalJSX.PostListItem & JSXBase.HTMLAttributes<HTMLPostListItemElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
