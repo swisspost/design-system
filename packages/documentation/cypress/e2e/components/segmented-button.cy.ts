@@ -1,0 +1,32 @@
+describe('Segmented Button', () => {
+  describe('Accessibility', () => {
+    beforeEach(() => {
+      cy.visit('/iframe.html?id=snapshots--segmented-button');
+      cy.get('.segmented-button', { timeout: 30000 }).should('be.visible');
+      cy.injectAxe();
+    });
+
+    it('Has no detectable a11y violations on load for all variants', () => {
+      cy.checkA11y('#root-inner');
+    });
+  });
+
+  describe('Responsiveness', () => {
+    beforeEach(() => {
+      cy.visit('/iframe.html?id=snapshots--segmented-button');
+      cy.get('.segmented-button', { timeout: 30000 }).should('be.visible');
+    });
+
+    it('Displays horizontal layout when viewport is wider than 600px', () => {
+      cy.viewport(800, 600);
+      cy.get('.segmented-button')
+        .should('have.css', 'flex-direction', 'row');
+    });
+
+    it('Displays vertical layout when viewport is narrower than 600px', () => {
+      cy.viewport(500, 600);
+      cy.get('.segmented-button')
+        .should('have.css', 'flex-direction', 'column');
+    });
+  });
+});
