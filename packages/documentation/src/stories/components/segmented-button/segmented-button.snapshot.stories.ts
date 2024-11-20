@@ -1,4 +1,4 @@
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import type { StoryObj } from '@storybook/web-components';
 import meta from './segmented-button.stories';
 import { html } from 'lit';
 
