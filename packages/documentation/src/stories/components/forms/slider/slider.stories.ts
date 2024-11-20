@@ -195,46 +195,41 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
+      aria-describedby="${args.showValue === 'text' ? 'form-hint-' + id : ''}"
       @input="${(e: MouseEvent) => updateArgs({ value: (e.target as HTMLInputElement).value })}"
     />
   `;
 
-  let valueElement: TemplateResult | TemplateResult[] | null = null;
+  let valueElement: TemplateResult | null = null;
 
-  if (args.showValue === 'text') {
-    valueElement = html` <p class="form-text">${args.value}</p> `;
-  } else if (args.showValue === 'input') {
+  if (args.showValue === 'input') {
     const inputId = context.id
       ? `${context.id}_input`
       : `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRangeInput`;
 
-    valueElement = [
-      html` <label class="form-label visually-hidden" for="${inputId}">Range controller</label> `,
-      html`
-        <input
-          id="${inputId}"
-          class="form-control mw-giant"
-          type="text"
-          inputmode="decimal"
-          value="${args.value}"
-          .value="${args.value}"
-          ?disabled="${args.disabled}"
-          @input="${(e: Event) => updateArgs({ value: (e.target as HTMLInputElement).value })}"
-        />
-      `,
-    ];
-  }
-
-  if (args.showValue === 'input') {
     return html`
       <div class="row align-items-end">
         <div class="col">${[label, control, ...contextual].filter(el => el !== null)}</div>
-        <div class="col-auto">${valueElement}</div>
+        <div class="col-auto">
+          <label class="form-label visually-hidden" for="${inputId}">Range controller</label>
+          <input
+            id="${inputId}"
+            class="form-control mw-giant"
+            type="text"
+            inputmode="decimal"
+            value="${args.value}"
+            .value="${args.value}"
+            ?disabled="${args.disabled}"
+            @input="${(e: Event) => updateArgs({ value: (e.target as HTMLInputElement).value })}"
+          />
+        </div>
       </div>
     `;
-  } else {
-    return html`${[label, control, valueElement, ...contextual].filter(el => el !== null)}`;
+  } else if (args.showValue === 'text') {
+    valueElement = html`<p class="form-hint" id="form-hint-${id}">${args.value}</p> `;
   }
+
+  return html`${[label, control, valueElement, ...contextual].filter(el => el !== null)}`;
 }
 
 export const Default: Story = {};

@@ -49,12 +49,6 @@
     }
   }
 
-  @include utilities.disabled-style {
-    ~ .form-text {
-      color: var(--post-gray-60);
-    }
-  }
-
   &:not([multiple]) {
     &:disabled {
       background-image: b.escape-svg(form-select.$form-select-indicator-disabled),
