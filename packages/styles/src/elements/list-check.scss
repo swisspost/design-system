@@ -12,8 +12,7 @@ tokens.$default-map: (
   post-list-check-color-icon-fg: white,
   post-list-check-color-text-fg: #050400,
   post-list-check-padding-icon: 4px,
-  post-list-check-line-height: 30px,
-  post-list-check-correction-margin: -1px
+  post-list-check-line-height: 30px
 );
 
 .list-check {
@@ -31,8 +30,8 @@ tokens.$default-map: (
     padding: tokens.get('list-check-text-padding') 0;
 
     &::before {
-      margin-top: tokens.get('list-check-correction-margin');
-      margin-bottom: tokens.get('list-check-correction-margin');
+      margin-top: calc(-1 * tokens.get('list-check-text-padding'));
+      margin-bottom: calc(-1 * tokens.get('list-check-text-padding'));
       background: tokens.get('list-check-color-icon-fg');
       text-align: right;
       grid-column: marker;
