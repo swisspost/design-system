@@ -12,7 +12,7 @@ export default {
 type Story = StoryObj;
 
 export const SegmentedButton: Story = {
-  render: (_args: Args, context: StoryContext) => {
+  render: () => {
     const labelCounts = [2, 4, 6, 8];
     const themes = ['bg-light', 'bg-dark'];
 
