@@ -59,7 +59,7 @@ const meta: MetaComponent = {
     hiddenLabel: {
       name: 'Hidden Label',
       description:
-        'Renders the component with or without a visible label.<span className="mt-8 alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#labels">label accessibility guide</a>.</span>',
+        'Renders the component with or without a visible label.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#labels">label accessibility guide</a>.</span>',
       if: {
         arg: 'floatingLabel',
         truthy: false,
@@ -173,7 +173,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-8 alert alert-info alert-sm">There are accessibility issues with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</span>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-8 banner banner-info banner-sm">There are accessibility issues with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -242,7 +242,9 @@ const Template: Story = {
       args.validation === 'is-invalid'
         ? html` <p class="invalid-feedback">Eraro okazis!</p> `
         : null,
-      args.hint !== '' ? html` <div class="form-text">${args.hint}</div> ` : null,
+      args.hint !== ''
+        ? html` <p class="form-hint" id="form-hint-${context.id}">${args.hint}</p> `
+        : null,
     ];
     const control = html`
       <select
@@ -253,6 +255,7 @@ const Template: Story = {
         ?disabled="${args.disabled}"
         aria-label="${useAriaLabel ? args.label : nothing}"
         aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
+        aria-describedby="${args.hint !== '' ? 'form-hint-' + context.id : ''}"
         @change="${(e: Event) => {
           updateArgs({ value: (e.target as HTMLSelectElement).value });
         }}"

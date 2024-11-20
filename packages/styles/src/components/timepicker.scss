@@ -30,7 +30,7 @@
     width: 6rem;
     padding: 1rem 1.375rem;
     @include form-mixins.placeholder {
-      color: forms.$input-placeholder-color;
+      color: color.$gray-60;
     }
   }
 
