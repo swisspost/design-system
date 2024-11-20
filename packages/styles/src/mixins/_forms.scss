@@ -1,8 +1,7 @@
+@use 'sass:map';
 @use './../variables/components/forms';
 @use './../mixins/utilities';
 @use './../functions/icons';
-@use './../functions/tokens';
-@use './../tokens/components';
 
 // Placeholder in input fields
 @mixin placeholder() {
@@ -30,7 +29,19 @@
   }
 }
 
-@mixin select-bg-image($state: null, $validation: null) {
+@mixin select-bg-image($state: null, $validation: null, $mode: 'light') {
+  // Hardcoded colors because CSS variables cannot be used as fill color of background-image
+  $arrow-color-map: (
+    'enabled-light': #050400,
+    'enabled-dark': #fff,
+    'hover-light': #504f4b,
+    'hover-dark': #fff,
+    'selected-light': #050400,
+    'selected-dark': #fff,
+    'disabled-light': #696864,
+    'disabled-dark': #fff,
+  );
+
   @if ($validation == 'valid') {
     $validation: forms.$valid-icon;
   } @else if ($validation == 'invalid') {
@@ -38,7 +49,7 @@
   }
 
   @if ($state) {
-    $state: url('#{icons.get-colored-svg-url('2052', tokens.get('select-color-#{$state}-fg',components.$post-select))}');
+    $state: url('#{icons.get-colored-svg-url('2052', map.get($arrow-color-map, '#{$state}-#{$mode}'))}');
   }
   background-image: $state, $validation;
 }

@@ -82,6 +82,7 @@ tokens.$default-map: components.$post-select;
   &.is-valid,
   &.is-invalid {
     &:not(:disabled) {
+      padding-inline-end: tokens.get('select-label-validated-padding-inline-end');
       background-position:
         center right tokens.get('select-icon-position-inline-end'),
         center right tokens.get('select-validation-icon-position-inline-end');
@@ -151,11 +152,18 @@ tokens.$default-map: components.$post-select;
       left: tokens.get('select-border-width');
       top: tokens.get('select-border-width');
       font-size: tokens.get('select-label-filled-font-size');
-      padding-inline-start: tokens.get('select-label-empty-padding-inline-start');
-      padding-inline-end: tokens.get('select-label-empty-padding-inline-end');
+      padding-inline-start: calc(
+        tokens.get('select-label-empty-padding-inline-start') - tokens.get('select-border-width')
+      );
+      padding-inline-end: 0;
       padding-block-start: tokens.get('select-label-filled-padding-block-start');
+      border-radius: tokens.get('select-border-radius');
       color: tokens.get('select-color-enabled-fg');
-      max-width: calc(100% - (#{tokens.get('select-border-width')} * 2));
+      max-width: calc(
+        100% - (#{tokens.get('select-border-width')} * 2) - tokens.get(
+            'select-label-empty-padding-inline-end'
+          )
+      );
       background-color: tokens.get('select-color-enabled-bg');
       white-space: nowrap;
       overflow: hidden;
@@ -209,6 +217,50 @@ tokens.$default-map: components.$post-select;
               )}
           );
         }
+      }
+    }
+  }
+}
+
+[data-color-scheme='dark'] {
+  .form-select:not([multiple]) {
+    @include forms.select-bg-image('enabled', null, 'dark');
+
+    &:disabled {
+      @include forms.select-bg-image('disabled', null, 'dark');
+    }
+
+    &:not(:disabled) {
+      &:focus {
+        @include forms.select-bg-image('selected', null, 'dark');
+      }
+
+      &:hover {
+        @include forms.select-bg-image('hover', null, 'dark');
+      }
+    }
+
+    &.is-valid:not(:disabled) {
+      @include forms.select-bg-image('enabled', 'valid', 'dark');
+
+      &:focus {
+        @include forms.select-bg-image('selected', 'valid', 'dark');
+      }
+
+      &:hover {
+        @include forms.select-bg-image('hover', 'valid', 'dark');
+      }
+    }
+
+    &.is-invalid:not(:disabled) {
+      @include forms.select-bg-image('enabled', 'invalid', 'dark');
+
+      &:focus {
+        @include forms.select-bg-image('selected', 'invalid', 'dark');
+      }
+
+      &:hover {
+        @include forms.select-bg-image('hover', 'invalid', 'dark');
       }
     }
   }
