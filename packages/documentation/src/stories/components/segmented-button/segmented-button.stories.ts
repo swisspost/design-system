@@ -70,7 +70,7 @@ export const IconExample: Story = {
       <div class="segmented-button-container">
         <fieldset class="segmented-button">
           <legend>Choose one of the options</legend>
-          ${Array.from({ length: labelCount }, (_, index) => html`
+          ${Array.from({ length: labelCount }, () => html`
           <label class="segmented-button-label">
             <input name="${args.name}" type="radio" />
               <post-icon name="3120" />
