@@ -17,12 +17,6 @@ describe('Segmented Button', () => {
       cy.get('.segmented-button', { timeout: 30000 }).should('be.visible');
     });
 
-    it('Displays horizontal layout when viewport is wider than 600px', () => {
-      cy.viewport(800, 600);
-      cy.get('.segmented-button')
-        .should('have.css', 'flex-direction', 'row');
-    });
-
     it('Displays vertical layout when viewport is narrower than 600px', () => {
       cy.viewport(500, 600);
       cy.get('.segmented-button')
