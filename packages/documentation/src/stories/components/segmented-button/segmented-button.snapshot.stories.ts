@@ -17,15 +17,15 @@ export const SegmentedButton: Story = {
     const themes = ['bg-light', 'bg-dark'];
 
     return html`
-      <div class="d-flex flex-wrap gap-4 align-items-start">
+      <div class="gap-4">
         ${themes.map(
           (theme) => html`
-            <div class="${theme} d-flex flex-wrap align-items-start gap-16 p-16">
+            <div class="${theme} d-flex flex-column w-75 gap-16 p-16">
               ${labelCounts.map((count) => {
                 const labels = Array.from({ length: count }, (_, i) => `Label ${i + 1}`);
 
                 return html`
-                  <div class="segmented-button-wrapper">
+                  <div class="segmented-button-container">
                     <fieldset class="segmented-button">
                       ${labels.map(
                         (label) => html`
