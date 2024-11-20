@@ -211,13 +211,21 @@ type Story = StoryObj;
 const Template: Story = {
   render: (args: Args, context: StoryContext) => {
     const [_, updateArgs] = useArgs();
-    const classes = [
-      'form-select',
-      args.size,
-      args.sizeFloatingLabel,
-      args.validation,
-      args.floatingLabelPlaceholder && !args.value ? 'form-select-empty' : null,
-    ]
+    const classes = (
+      args.floatingLabel
+        ? [
+            'form-select',
+            args.sizeFloatingLabel,
+            args.validation,
+            args.floatingLabelPlaceholder && !args.value ? 'form-select-empty' : null,
+          ]
+        : [
+            'form-select',
+            args.size,
+            args.validation,
+            args.floatingLabelPlaceholder && !args.value ? 'form-select-empty' : null,
+          ]
+    )
       .filter(c => c && c !== 'null')
       .join(' ');
     const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
