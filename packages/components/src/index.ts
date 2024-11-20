@@ -26,3 +26,4 @@ export { PostTooltip } from './components/post-tooltip/post-tooltip';
 export { PostTag } from './components/post-tag/post-tag';
 export { PostList } from './components/post-list/post-list';
 export { PostListItem } from './components/post-list-item/post-list-item';
+export { PostLinkarea } from './components/post-linkarea/post-linkarea';
