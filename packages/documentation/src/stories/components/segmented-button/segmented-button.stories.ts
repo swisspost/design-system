@@ -40,6 +40,7 @@ export const TextExample: Story = {
     return html`
       <div class="segmented-button-container">
         <fieldset class="segmented-button">
+          <legend>Choose one of the options</legend>
           ${labelsArray.map(
             (label) => html`
               <label class="segmented-button-label">
@@ -61,11 +62,12 @@ export const IconExample: Story = {
     return html`
       <div class="segmented-button-container">
         <fieldset class="segmented-button">
+          <legend>Choose one of the options</legend>
           ${Array.from({ length: labelCount }, (_, index) => html`
-            <label class="segmented-button-label">
-              <input name={uuid} type="radio" />
-                <post-icon name="3120" />
-            </label>
+          <label class="segmented-button-label">
+            <input name={uuid} type="radio" />
+              <post-icon name="3120" />
+          </label>
           `)}
         </fieldset>
       </div>
