@@ -12,11 +12,11 @@ tokens.$default-map: components.$post-checkbox;
 $checkbox-icon-checked: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='M7.51712 12.1332L4.30712 8.69325C4.02712 8.39325 4.03712 7.91325 4.34712 7.63325C4.64712 7.35325 5.12712 7.36325 5.40712 7.67325L7.31712 9.72325L10.7171 4.57325C10.9471 4.22325 11.4071 4.13325 11.7571 4.36325C12.1071 4.59325 12.1971 5.05325 11.9671 5.40325L7.51712 12.1332Z'/></svg>");
 $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='M11.21 8.5H4.75C4.34 8.5 4 8.16 4 7.75C4 7.34 4.34 7 4.75 7H11.21C11.62 7 11.96 7.34 11.96 7.75C11.96 8.16 11.62 8.5 11.21 8.5Z'/></svg>");
 
-:where(input[type='checkbox']) {
+:where(.form-check > input[type='checkbox']) {
   @include utility-mx.focus-style();
 }
 
-input[type='checkbox'] {
+.form-check > input[type='checkbox'] {
   appearance: none;
   flex: none;
   display: inline-flex;

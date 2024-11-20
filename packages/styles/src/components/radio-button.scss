@@ -9,11 +9,11 @@
 
 tokens.$default-map: components.$post-radio-button;
 
-:where(input[type='radio']) {
+:where(.form-check > input[type='radio']) {
   @include utility-mx.focus-style();
 }
 
-input[type='radio'] {
+.form-check > input[type='radio'] {
   appearance: none;
   flex: none;
   display: inline-flex;
