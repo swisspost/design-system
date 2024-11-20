@@ -22,7 +22,7 @@ const meta: MetaComponent = {
   argTypes: {
     labelCount: {
       name: 'Label Count',
-      description: `Specifies the number of labels for the segmented button. Maximum of ${MAX_LABELS} options allowed.`,
+      description: `Specifies the number of labels for the segmented button.`,
       control: { type: 'number', min: 1, max: MAX_LABELS },
       table: { category: 'Content' },
     },
