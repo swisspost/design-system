@@ -1,6 +1,7 @@
 @use '../functions/tokens';
 @use '../tokens/components';
 @use '../mixins/utilities';
+@use '../core' as post;
 
 tokens.$default-map: components.$post-segmented-button;
 
@@ -9,6 +10,10 @@ $post-segmented-button-max-count: 8;
 .segmented-button-container {
   container-name: segmented-container;
   container-type: inline-size;
+}
+
+legend {
+  @include post.visually-hidden();
 }
 
 .segmented-button {
