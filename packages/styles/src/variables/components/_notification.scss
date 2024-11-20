@@ -4,23 +4,29 @@
 @use './../commons';
 @use './../spacing';
 @use './../type';
+@use '../../tokens/components';
+@use '../../functions/tokens';
 
-$notification-margin-bottom: spacing.$spacer !default;
-$notification-box-shadow: 0 2px 4px 0 rgba(color.$black, 0.2) !default;
-$notification-border-radius: commons.$border-radius !default;
-$notification-gap: spacing.$size-small-large !default;
+tokens.$default-map: components.$post-banner;
 $notification-body-gap: spacing.$size-micro !default;
 $notification-font-weight: type.$font-weight-normal !default;
 $notification-link-font-weight: type.$font-weight-normal !default;
-$notification-heading-font-weight: type.$headings-font-weight !default;
-$notification-buttons-gap: spacing.$size-mini !default;
+
+$notification-gap-map: () !default;
+$notification-gap-map: map.merge(
+  $notification-gap-map,
+  (
+    'banner': tokens.get('banner-gap'),
+    'toast': tokens.get('toast-spacing-gap-outer', components.$post-toast),
+  )
+);
 
 $notification-padding-x-map: () !default;
 $notification-padding-x-map: map.merge(
   $notification-padding-x-map,
   (
-    'alert': spacing.$size-small-large,
-    'toast': spacing.$size-regular,
+    'banner': tokens.get('banner-padding'),
+    'toast': tokens.get('toast-spacing-padding-inline', components.$post-toast),
   )
 );
 
@@ -28,8 +34,8 @@ $notification-padding-y-map: () !default;
 $notification-padding-y-map: map.merge(
   $notification-padding-y-map,
   (
-    'alert': spacing.$size-regular,
-    'toast': spacing.$size-small-regular,
+    'banner': tokens.get('banner-padding'),
+    'toast': tokens.get('toast-spacing-padding-block', components.$post-toast),
   )
 );
 
@@ -37,17 +43,8 @@ $notification-font-size-map: () !default;
 $notification-font-size-map: map.merge(
   $notification-font-size-map,
   (
-    'alert': type.$font-size-base,
+    'banner': type.$font-size-base,
     'toast': type.$font-size-tiny,
-  )
-);
-
-$notification-heading-font-size-map: () !default;
-$notification-heading-font-size-map: map.merge(
-  $notification-heading-font-size-map,
-  (
-    'alert': type.$font-size-bigger-regular,
-    'toast': type.$font-size-small,
   )
 );
 
@@ -55,8 +52,17 @@ $notification-hr-margin-block-map: () !default;
 $notification-hr-margin-block-map: map.merge(
   $notification-hr-margin-block-map,
   (
-    'alert': spacing.$size-mini spacing.$size-small-regular,
+    'banner': spacing.$size-mini spacing.$size-small-regular,
     'toast': spacing.$size-micro spacing.$size-small-regular,
+  )
+);
+
+$notification-elevation-map: () !default;
+$notification-elevation-map: map.merge(
+  $notification-elevation-map,
+  (
+    'banner': tokens.get('banner-elevation'),
+    'toast': tokens.get('notification-toast-elevation', components.$post-notifications),
   )
 );
 
@@ -64,27 +70,28 @@ $notification-icon-size-map: () !default;
 $notification-icon-size-map: map.merge(
   $notification-icon-size-map,
   (
-    'alert': spacing.$size-small-huge,
-    'toast': spacing.$size-big,
+    'banner': tokens.get('banner-icon-size'),
+    'toast': tokens.get('toast-sizing-icon', components.$post-toast),
   )
 );
 
+//TODO: Note that primary, and gray have been deleted (.banner by default is now neutral) and that danger is back to error
 $notification-variants: () !default;
 $notification-variants: list.join(
   $notification-variants,
   (
-    // When changed, check $notification-variants as well in packages/styles/src/variables/_color.scss
-    'primary' color.$primary 3134,
-    'success' color.$success 2105,
-    'warning' color.$warning 2104,
-    'danger' color.$error 2104,
-    'info' color.$info 2106,
-    'gray' color.$gray 2201,
-    // deprecated
-    'notification' color.$gray-80 3134,
-    'error' color.$error 2104
+    'neutral' tokens.get('banner-neutral-bg') 2201 tokens.get('banner-neutral-border-color')
+      tokens.get('banner-neutral-icon-color') tokens.get('post-banner-neutral-bg-scheme'),
+    'success' tokens.get('banner-success-bg') 2105 tokens.get('banner-success-border-color')
+      tokens.get('banner-success-icon-color') tokens.get('post-banner-success-bg-scheme'),
+    'warning' tokens.get('banner-warning-bg') 2104 tokens.get('banner-warning-border-color')
+      tokens.get('banner-warning-icon-color') tokens.get('post-banner-warning-bg-scheme'),
+    'error' tokens.get('banner-error-bg') 2104 tokens.get('banner-error-border-color')
+      tokens.get('banner-error-icon-color') tokens.get('post-banner-error-bg-scheme'),
+    'info' tokens.get('banner-info-bg') 2106 tokens.get('banner-info-border-color')
+      tokens.get('banner-info-icon-color') tokens.get('post-banner-info-bg-scheme'),
+    // duplicate
+    'danger' tokens.get('banner-error-bg') 2104 tokens.get('banner-error-border-color')
+      tokens.get('banner-error-icon-color') tokens.get('post-banner-error-bg-scheme')
   )
 );
-
-// deprecated
-$notification-buttons-margin-start: $notification-buttons-gap !default;
