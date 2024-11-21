@@ -11,10 +11,24 @@
 <link rel="stylesheet" href="/styles/post-external.css" />
 
 <meta name="design-system-settings" data-post-icon-base="/post-icons" />
-<meta
-  http-equiv="Content-Security-Policy"
-  content="connect-src 'self' *.coveo.com *.post.ch *.gravatar.com *.app.github.dev"
-/>
+
+<meta http-equiv="Content-Security-Policy" content="
+connect-src 'self' *.coveo.com *.post.ch *.gravatar.com *.google.com; *.app.github.dev
+default-src 'self';
+script-src 'self' 'unsafe-inline' *.coveo.com *.post.ch *.gravatar.com *.googletagmanager.com;
+style-src 'self' 'unsafe-inline' *.coveo.com *.post.ch *.gravatar.com;
+img-src 'self' data: *.unpkg.com *.githubusercontent.com;
+font-src 'self' *.coveo.com *.post.ch *.gravatar.com;
+frame-src 'none';
+object-src 'none';
+base-uri 'self';
+form-action 'self';
+media-src 'self';
+manifest-src 'self';
+worker-src 'self';
+upgrade-insecure-requests;
+block-all-mixed-content;
+">
 
 <script>
   window.global = window;
