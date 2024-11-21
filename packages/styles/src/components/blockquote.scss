@@ -26,6 +26,10 @@ figure:has(.blockquote) {
     border-width: 0;
     border-style: none;
     border-color: transparent;
+
+    q {
+      quotes: auto;
+    }
   }
 }
 
