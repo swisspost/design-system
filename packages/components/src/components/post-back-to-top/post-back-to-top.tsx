@@ -1,5 +1,7 @@
 import { Component, Element, Host, State, h, Watch, Prop } from '@stencil/core';
 import { slideUp, slideDown } from '@/animations/slide';
+import { version } from '@root/package.json';
+import { checkType } from '@/utils';
 
 @Component({
   tag: 'post-back-to-top',
@@ -10,10 +12,10 @@ export class PostBackToTop {
   @Element() el: HTMLPostBackToTopElement;
 
   /**
-   * The title of the back-to-top button, intended solely for accessibility purposes.
-   * This title is always hidden from view.
+   * The label of the back-to-top button, intended solely for accessibility purposes.
+   * This label is always hidden from view.
    **/
-  @Prop() buttonTitle: string = 'Back to top button';
+  @Prop() label!: string;
 
   @State() belowFold: boolean = false;
 
@@ -40,8 +42,22 @@ export class PostBackToTop {
   scrollToTop() {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
     });
+  }
+
+  // Validate the label
+  @Watch('label')
+  validateLabel() {
+    checkType(
+      this.label,
+      'string',
+      'The label property of the Back to Top component is required for accessibility purposes. Please ensure it is set.',
+    );
+    if (this.label === '') {
+      throw new Error(
+        'The label property of the Back to Top component must not be empty. Please provide a proper text for the label',
+      );
+    }
   }
 
   // Set the initial state
@@ -64,6 +80,8 @@ export class PostBackToTop {
     if (this.belowFold) {
       slideUp(this.el, this.translateY);
     }
+
+    this.validateLabel();
   }
 
   disconnectedCallback() {
@@ -72,14 +90,14 @@ export class PostBackToTop {
 
   render() {
     return (
-      <Host>
+      <Host data-version={version}>
         <button
           class="back-to-top"
           aria-hidden={this.belowFold ? 'false' : 'true'}
           onClick={this.scrollToTop}
         >
           <post-icon aria-hidden="true" name="3026"></post-icon>
-          <span class="visually-hidden">{this.buttonTitle}</span>
+          <span class="visually-hidden">{this.label}</span>
         </button>
       </Host>
     );

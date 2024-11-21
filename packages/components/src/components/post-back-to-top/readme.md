@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property      | Attribute      | Description                                                                                                             | Type     | Default                |
-| ------------- | -------------- | ----------------------------------------------------------------------------------------------------------------------- | -------- | ---------------------- |
-| `buttonTitle` | `button-title` | The title of the back-to-top button, intended solely for accessibility purposes. This title is always hidden from view. | `string` | `'Back to top button'` |
+| Property             | Attribute | Description                                                                                                             | Type     | Default     |
+| -------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `label` _(required)_ | `label`   | The label of the back-to-top button, intended solely for accessibility purposes. This label is always hidden from view. | `string` | `undefined` |
 
 
 ## Dependencies
