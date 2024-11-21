@@ -82,6 +82,36 @@
     }
   }
 
+  &.form-switch {
+    > input[type='checkbox'] {
+      ~ label {
+        color: tokens.get('switch-text-enabled-fg', components.$post-switch);
+      }
+
+      &:not([disabled]) {
+        ~ label {
+          cursor: pointer;
+        }
+
+        &:hover ~ label {
+          color: tokens.get('switch-element-hover-bg', components.$post-switch);
+
+          @include utility-mx.high-contrast-mode() {
+            color: Highlight;
+          }
+        }
+      }
+
+      &[disabled] ~ label {
+        color: tokens.get('switch-element-disabled-bg', components.$post-switch);
+
+        @include utility-mx.high-contrast-mode() {
+          color: GrayText;
+        }
+      }
+    }
+  }
+
   &:has(input[type='radio']) {
     padding-block: tokens.get('radio-button-padding-block-single', components.$post-radio-button);
 
