@@ -26,11 +26,6 @@ type File = {
   filePath: string;
 };
 
-type ReportIcon = {
-  id: string;
-  sizes: (number | null)[];
-};
-
 const iconSourcePath = SOURCE_PATH;
 const iconOutputPath = path.join(OUTPUT_PATH, 'post-icons');
 const buildReportOutputPath = path.join(OUTPUT_PATH, 'report.json');
