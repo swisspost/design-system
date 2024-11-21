@@ -165,6 +165,10 @@ legend {
 
       &:not(:first-of-type) {
         input {
+          top: calc(tokens.get('button-segmented-border-width') * -1);
+        }
+
+        &:has(input:checked) input {
           top: calc(tokens.get('button-segmented-border-width') * -0.5);
         }
       }
