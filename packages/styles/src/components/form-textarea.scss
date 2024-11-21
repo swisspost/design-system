@@ -1,17 +1,263 @@
-@use './../variables/spacing';
+@use 'sass:color';
+@use 'sass:math';
+
+@forward './../variables/options';
+
+@use './../functions/tokens';
+@use './../tokens/components';
+@use './../tokens/elements';
+
+@use './../mixins/icons';
+@use './../mixins/utilities';
 @use './../variables/components/forms';
+
+@use './../variables/spacing';
 @use './../functions/sizing';
 
+@use './../mixins/forms' as forms-mx;
+@use './../mixins/utilities' as utilities-mx;
+
+@use './../variables/type';
+@use './../variables/components/form-validation';
+@use './../variables/animation';
+
+tokens.$default-map: components.$post-text-area;
+
+$enabled-bg: #050400;
+$disabled-bg: #696864;
+
 textarea.form-control {
-  &::-webkit-resizer {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 15 15' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='#{forms.$input-border-color}' d='M0 12H3V15H0V12Z'/%3E%3Cpath fill='#{forms.$input-border-color}' d='M6 12H9V15H6V12Z'/%3E%3Cpath fill='#{forms.$input-border-color}' d='M6 6H9V9H6V6Z'/%3E%3Cpath fill='#{forms.$input-border-color}' d='M12 6H15V9H12V6Z'/%3E%3Cpath fill='#{forms.$input-border-color}' d='M12 0H15V3H12V0Z'/%3E%3Cpath fill='#{forms.$input-border-color}' d='M12 12H15V15H12V12Z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-size: 75%;
-  }
+  display: block;
+  width: 100%;
+  font-family: tokens.get('body-font-family', elements.$post-body);
+  appearance: none; // Fix appearance for date inputs in Safari
+  background-clip: padding-box;
+  border: tokens.get('textarea-border-width') tokens.get('textarea-border-style-enabled')
+    tokens.get('textarea-enabled-border');
+  position: relative;
+  border-radius: tokens.get('textarea-border-radius');
+  background-color: tokens.get('textarea-enabled-bg');
+  color: tokens.get('textarea-enabled-fg');
+  padding-inline-start: tokens.get('textarea-padding-inline-start');
+  padding-inline-end: tokens.get('textarea-padding-inline-end');
+  padding-block: tokens.get('textarea-standalone-padding-block');
+  min-height: tokens.get('textarea-sizing-min-height');
+  @include forms-mx.textarea-resizer-svg($enabled-bg);
 
   &[disabled] {
-    &::-webkit-resizer {
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 15 15' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='#{forms.$input-disabled-border-color}' d='M0 12H3V15H0V12Z'/%3E%3Cpath fill='#{forms.$input-disabled-border-color}' d='M6 12H9V15H6V12Z'/%3E%3Cpath fill='#{forms.$input-disabled-border-color}' d='M6 6H9V9H6V6Z'/%3E%3Cpath fill='#{forms.$input-disabled-border-color}' d='M12 6H15V9H12V6Z'/%3E%3Cpath fill='#{forms.$input-disabled-border-color}' d='M12 0H15V3H12V0Z'/%3E%3Cpath fill='#{forms.$input-disabled-border-color}' d='M12 12H15V15H12V12Z'/%3E%3C/svg%3E");
+    @include forms-mx.textarea-resizer-svg($disabled-bg);
+  }
+
+  &:focus {
+    @include utilities.focus-style;
+
+    @include utilities.high-contrast-mode {
+      border-color: FieldText !important; // On blink browser valid and invalid border colors are converted to Highlight color
+    }
+  }
+
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      @include utilities.high-contrast-mode {
+        border-color: FieldText;
+      }
+    }
+
+    &:hover {
+      border-color: tokens.get('textarea-hover-border');
+      background-color: tokens.get('textarea-hover-bg');
+
+      @include utilities.high-contrast-mode {
+        border-color: Highlight;
+      }
+    }
+  }
+
+  // TODO: Faut faire le readonly pcq là ça va pas
+  &[readonly]:not(:disabled) {
+    border-color: tokens.get('textarea-enabled-border');
+    background-color: tokens.get('textarea-enabled-bg');
+  }
+
+  &::placeholder {
+    color: tokens.get('textarea-enabled-fg');
+    opacity: 1;
+  }
+
+  &:disabled {
+    color: tokens.get('textarea-disabled-fg');
+    background-color: tokens.get('textarea-disabled-bg');
+    border-color: tokens.get('textarea-disabled-border');
+    border-style: tokens.get('textarea-border-style-disabled');
+    opacity: 1;
+
+    &::placeholder {
+      color: tokens.get('textarea-disabled-fg');
+      opacity: 1;
+    }
+  }
+
+  &.is-valid,
+  &.is-invalid {
+    &:not(:disabled) {
+      background-size: tokens.get('textarea-sizing-icon');
+      background-position: center right tokens.get('textarea-validated-padding-inline-end');
+      background-repeat: no-repeat;
+      padding-inline-end: calc(
+        (#{tokens.get('textarea-validated-padding-inline-end')} * 2) + #{tokens.get(
+            'textarea-sizing-icon'
+          )}
+      );
+    }
+  }
+
+  &.is-valid:not(:disabled) {
+    background-image: forms.$valid-icon;
+  }
+
+  &.is-invalid:not(:disabled) {
+    background-image: forms.$invalid-icon;
+  }
+}
+
+.form-label:has(+ textarea.form-control[disabled]) {
+  color: tokens.get('textarea-disabled-fg');
+}
+/*
+.form-floating > textarea.form-control {
+  height: tokens.get('textarea-sizing-height');
+  min-height: tokens.get('textarea-sizing-height');
+}
+ */
+.form-floating {
+  position: relative;
+
+  > textarea ~ label {
+    position: absolute;
+    z-index: 2;
+    text-align: start;
+    pointer-events: none;
+    display: block;
+    top: tokens.get('textarea-border-width');
+    left: tokens.get('textarea-border-width');
+    margin: 0;
+    padding-inline-start: tokens.get('textarea-label-padding-inline-start');
+    padding-inline-end: tokens.get('textarea-label-padding-inline-end');
+    padding-block-start: tokens.get('textarea-label-padding-block-start');
+    border: 0;
+    color: tokens.get('textarea-enabled-fg');
+    width: auto;
+    height: auto;
+    max-width: calc(100% - (#{tokens.get('textarea-border-width')} * 2));
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition:
+      padding-block-start 0.2s ease-in-out,
+      font-size 0.2s ease-in-out;
+    background-color: tokens.get('textarea-enabled-bg');
+  }
+
+  > textarea.form-control {
+    /* height: tokens.get('textarea-sizing-height');
+    min-height: tokens.get('textarea-sizing-height'); */
+    //TODO?? Ca ca donne quoi
+    /*
+    &::placeholder {
+      color: transparent;
+    }
+ */
+
+    &:focus,
+    &:not(:placeholder-shown) {
+      padding-block-start: tokens.get('textarea-padding-block-start');
+      padding-block-end: tokens.get('textarea-padding-block-end');
+
+      ~ label {
+        //color: tokens.get('textarea-selected-fg');
+        font-size: tokens.get('textarea-label-filled-font-size');
+        padding-block-start: tokens.get('textarea-label-filled-padding-block-start');
+      }
+      /*
+      &:not(:hover):not(:disabled) {
+        ~ label {
+          color: tokens.get('textarea-enabled-fg');
+        }
+      } */
+    }
+    /*
+    @include forms-mx.placeholder {
+      opacity: 0;
+    }
+ */
+    // TODO: Should there be a placeholder?
+    &:focus {
+      @include forms-mx.placeholder {
+        color: tokens.get('textarea-hover-fg');
+        opacity: 1;
+      }
+    }
+
+    &:disabled ~ label {
+      color: tokens.get('textarea-disabled-fg');
+      background-color: tokens.get('textarea-disabled-bg');
+    }
+
+    &:not(:disabled):hover ~ label {
+      color: tokens.get('textarea-hover-fg');
+      background-color: tokens.get('textarea-hover-bg');
+    }
+  }
+
+  > textarea:disabled ~ label {
+    color: tokens.get('textarea-disabled-fg');
+    background-color: tokens.get('textarea-disabled-bg');
+  }
+
+  > textarea.form-control {
+    /*     ~ label {
+      padding-block-end: 0;
+      width: calc(100% - (#{tokens.get('textarea-border-width')} * 2));
+      max-width: none;
+      height: unset;
+      padding-block-start: spacing.$size-regular;
+    }
+ */
+    /*     &:focus,
+    &:not(:placeholder-shown) {
+      padding-block-end: spacing.$size-mini;
+
+      ~ label {
+        padding-block-start: spacing.$size-mini;
+        width: calc(100% - (#{tokens.get('textarea-border-width')} * 2));
+        max-width: none;
+        background-color: tokens.get('textarea-selected-bg');
+      }
+    }
+ */
+    &:is(.is-valid, .is-invalid) {
+      ~ label {
+        width: calc(
+          100% - (#{tokens.get('textarea-border-width')} * 2) - #{form-validation.$form-feedback-icon-offset} -
+            #{tokens.get('textarea-sizing-min-height')}
+        );
+      }
+
+      &:focus,
+      &:not(:placeholder-shown) {
+        ~ label {
+          width: calc(100% - (#{tokens.get('textarea-border-width')} * 2));
+        }
+      }
+    }
+  }
+
+  @include utilities-mx.high-contrast-mode() {
+    > textarea {
+      @include forms-mx.placeholder() {
+        opacity: 0;
+      }
     }
   }
 }

@@ -18,16 +18,14 @@ const meta: MetaComponent = {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=22194-89755&mode=design&t=3lniLiZhl7q9Gqgn-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=21-182',
     },
   },
   args: {
     label: 'Label',
-    floatingLabel: false,
+    floatingLabel: true,
     hiddenLabel: false,
     value: undefined,
-    size: 'form-control-lg',
-    sizeFloatingLabel: 'form-control-lg',
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
     disabled: false,
     validation: 'null',
@@ -76,46 +74,6 @@ const meta: MetaComponent = {
       },
       table: {
         disable: true,
-      },
-    },
-    size: {
-      name: 'Size',
-      description: "Sets the size of the component's appearance.",
-      if: {
-        arg: 'floatingLabel',
-        truthy: false,
-      },
-      control: {
-        type: 'select',
-        labels: {
-          'form-control-sm': 'Small',
-          'form-control-rg': 'Regular (deprecated)',
-          'null': 'Middle (deprecated)',
-          'form-control-lg': 'Large',
-        },
-      },
-      options: ['form-control-sm', 'form-control-rg', 'null', 'form-control-lg'],
-      table: {
-        category: 'General',
-      },
-    },
-    sizeFloatingLabel: {
-      name: 'Size',
-      description: "Sets the size of the component's appearance.",
-      if: {
-        arg: 'floatingLabel',
-        truthy: true,
-      },
-      control: {
-        type: 'select',
-        labels: {
-          'form-control-sm': 'Small',
-          'form-control-lg': 'Large',
-        },
-      },
-      options: ['form-control-sm', 'form-control-lg'],
-      table: {
-        category: 'General',
       },
     },
     rows: {
@@ -179,8 +137,6 @@ type Story = StoryObj;
 function renderTextarea(args: Args, context: StoryContext) {
   const classes = mapClasses({
     'form-control': true,
-    [args.size]: !args.floatingLabel,
-    [args.sizeFloatingLabel]: args.floatingLabel,
     [args.validation]: args.validation,
   });
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
@@ -203,7 +159,7 @@ function renderTextarea(args: Args, context: StoryContext) {
       id=${context.id}
       class=${classes}
       defaultValue=${args.value ?? nothing}
-      placeholder=${useAriaLabel ? args.label : ''}
+      placeholder=${useAriaLabel ? args.label : 'ABCD'}
       rows=${args.rows}
       ?disabled=${args.disabled}
       aria-label=${useAriaLabel ? args.label : nothing}
@@ -226,7 +182,7 @@ export const Default: Story = {};
 export const FloatingLabel: Story = {
   parameters: {
     controls: {
-      exclude: ['Hidden Label', 'Size', 'Rows', 'Helper Text', 'Disabled', 'Validation'],
+      exclude: ['Hidden Label', 'Rows', 'Helper Text', 'Disabled', 'Validation'],
     },
   },
   args: {
@@ -235,38 +191,10 @@ export const FloatingLabel: Story = {
   },
 };
 
-export const Size: Story = {
-  parameters: {
-    controls: {
-      exclude: [
-        'Label',
-        'Floating Label',
-        'Hidden Label',
-        'Rows',
-        'Helper Text',
-        'Disabled',
-        'Validation',
-      ],
-    },
-  },
-  args: {
-    size: 'form-control-sm',
-    hint: '',
-  },
-};
-
 export const Validation: Story = {
   parameters: {
     controls: {
-      exclude: [
-        'Label',
-        'Floating Label',
-        'Hidden Label',
-        'Size',
-        'Rows',
-        'Helper Text',
-        'Disabled',
-      ],
+      exclude: ['Label', 'Floating Label', 'Hidden Label', 'Rows', 'Helper Text', 'Disabled'],
     },
   },
   args: {

@@ -39,36 +39,6 @@ But note that the `<textarea>` element must come first, so we can ensure the cor
 
 <Canvas of={TextareaStories.FloatingLabel} />
 
-### Sizing
-
-<div className="banner banner-warning">
-  <h4 className="banner-heading">
-    We're deprecating the regular and medium sizes for text input, textarea and select.
-  </h4>
-  <p className="mt-0">
-    This will make it easier to select the appropriate size variant: small for internal
-    applications, large for external applications.
-    <br />`.form-control-rg` and `.form-control-md` are deprecated and will be removed in the next major
-    version.
-  </p>
-</div>
-
-The size can be changed by simply adding one of four classes:
-
-- Small: `.form-control-sm`
-- Regular: `.form-control-rg`
-- Medium: default or `.form-control-md`
-- Large: `.form-control-lg`
-
-<div className="banner banner-info">
-  Regular and medium size classes are not available on floating-label elements
-</div>
-
-<Canvas of={TextareaStories.Size} />
-<div className="hide-col-default">
-  <Controls of={TextareaStories.Size} />
-</div>
-
 ### Validation
 
 Simply add the classes `.is-valid` or `.is-invalid` to the `<textarea>` element to show it in the expected state.<br/>
