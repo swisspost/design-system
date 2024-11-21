@@ -2,7 +2,7 @@ import { Meta, Source } from '@storybook/blocks';
 import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 import NgbComponentDemoLink from '@/shared/nb-bootstrap/ngb-component-demo-link.mdx';
-import NgbComponentAlert from '@/shared/nb-bootstrap/ngb-component-alert.mdx';
+import NgbComponentBanner from '@/shared/nb-bootstrap/ngb-component-banner.mdx';
 import NgbComponentImport from '@/shared/nb-bootstrap/ngb-component-import.mdx';
 import NgbComponentInternationalization from '@/shared/nb-bootstrap/ngb-component-internationalization.mdx';
 import * as datepickerStories from './datepicker.stories';
@@ -25,40 +25,52 @@ import datepickerValidation from './datepicker-validation.sample.html?raw';
   </nav>
 </div>
 
-<p className="lead">Display dates on a calendar view, allowing selection of a date or date range.</p>
+<p className="lead">
+  Display dates on a calendar view, allowing selection of a date or date range.
+</p>
 
-<NgbComponentAlert component="datepicker" />
+<NgbComponentBanner component="datepicker" />
 
 <ul>
   <li>
-    <a href="#component-import" target="_self">Component Import</a>
+    <a href="#component-import" target="_self">
+      Component Import
+    </a>
   </li>
   <li>
-    <a href="#style-imports" target="_self">Style Imports</a>
+    <a href="#style-imports" target="_self">
+      Style Imports
+    </a>
   </li>
   <li>
-    <a href="#internationalization" target="_self">Internationalization</a>
+    <a href="#internationalization" target="_self">
+      Internationalization
+    </a>
   </li>
   <li>
-    <a href="#date-format" target="_self">Date Format</a>
+    <a href="#date-format" target="_self">
+      Date Format
+    </a>
   </li>
   <li>
-    <a href="#examples" target="_self">Examples</a>
+    <a href="#examples" target="_self">
+      Examples
+    </a>
   </li>
 </ul>
 
 <NgbComponentImport module="NgbDatepickerModule" />
 
-<StylesPackageImport components={["datepicker"]} />
+<StylesPackageImport components={['datepicker']} />
 
 <NgbComponentInternationalization />
 
 The datepicker requires additional translations for months and days of the week. These can be configured using the service below:
 
-<div className='limit-source-height'>
-  <Source code={datepickerI18nProvider} language="typescript"/>
+<div className="limit-source-height">
+  <Source code={datepickerI18nProvider} language="typescript" />
 </div>
-<Source code={datepickerI18nProviderImport} language="typescript"/>
+<Source code={datepickerI18nProviderImport} language="typescript" />
 
 ## Date Format
 
@@ -66,11 +78,10 @@ The datepicker uses the [NgbDateStruct](https://ng-bootstrap.github.io/#/compone
 To format dates in another type, you can define a formatter.
 The formatter below transforms the NgbDateStruct into the usual Swiss format string `DD.MM.YYYY`.
 
-<div className='limit-source-height'>
-  <Source code={datepickerFormatter} language="typescript"/>
+<div className="limit-source-height">
+  <Source code={datepickerFormatter} language="typescript" />
 </div>
-<Source code={datepickerFormatterImport} language="typescript"/>
-
+<Source code={datepickerFormatterImport} language="typescript" />
 
 ## Examples
 
@@ -80,14 +91,15 @@ The formatter below transforms the NgbDateStruct into the usual Swiss format str
     <Source code={datepickerFloatingLabel} language="html"/>
   </PostTabPanel>
 
-  <PostTabHeader panel="navigation-arrows">Navigation Arrows Only</PostTabHeader>
-  <PostTabPanel name="navigation-arrows">
-    <Source code={datepickerNavigationArrows} language="html"/>
-  </PostTabPanel>
+{' '}
+
+<PostTabHeader panel="navigation-arrows">Navigation Arrows Only</PostTabHeader>
+<PostTabPanel name="navigation-arrows">
+  <Source code={datepickerNavigationArrows} language="html" />
+</PostTabPanel>
 
   <PostTabHeader panel="validation">Invalid Feedback</PostTabHeader>
   <PostTabPanel name="validation">
     <Source code={datepickerValidation} language="html"/>
   </PostTabPanel>
 </PostTabs>
-

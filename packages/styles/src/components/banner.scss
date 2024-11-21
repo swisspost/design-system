@@ -1,0 +1,107 @@
+@forward './../variables/options';
+
+@use 'sass:map';
+@use 'sass:list';
+
+@use './../themes/bootstrap/core' as *;
+
+@use './../mixins/notification' as notification-mx;
+
+@use './../variables/breakpoints';
+@use './../variables/commons';
+@use './../variables/grid';
+@use './../variables/components/close';
+@use './../variables/components/notification';
+@use '../tokens/components';
+@use '../functions/tokens';
+
+tokens.$default-map: components.$post-banner;
+
+.banner,
+.alert {
+  @include notification-mx.notification-size(banner);
+
+  &:not(.banner-action):not(.alert-action) {
+    @include notification-mx.notification-body(banner);
+  }
+}
+
+// Dialog container
+.banner-container {
+  border: unset;
+  background-color: transparent;
+}
+
+.banner-dismissible,
+.alert-dismissible {
+  @include notification-mx.notification-dismissible(banner);
+}
+
+.banner-buttons,
+.alert-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row-reverse;
+  margin-block-start: tokens.get('banner-actions-margin-top');
+  gap: tokens.get('banner-actions-gap');
+
+  @include media-breakpoint-down(md) {
+    flex-direction: column;
+  }
+}
+
+.banner-action,
+.alert-action {
+  > .banner-content,
+  > .alert-content {
+    @include notification-mx.notification-body(banner);
+  }
+
+  @include media-breakpoint-down(md) {
+    flex-direction: column;
+    align-items: stretch;
+
+    > .banner-content,
+    > .alert-content {
+      padding-inline-start: tokens.get('banner-gap') + tokens.get('banner-icon-size');
+      padding-inline-end: tokens.get('banner-gap') + close.$close-size;
+    }
+
+    &.no-icon > .banner-content,
+    &.no-icon > .alert-content {
+      padding-inline-start: 0;
+    }
+
+    > .banner-buttons,
+    > .alert-buttons {
+      display: flex;
+
+      > .btn,
+      > ::slotted(.btn) {
+        flex: 1 0 0;
+        width: 100%;
+      }
+
+      > .btn:first-child,
+      > ::slotted(.btn:first-child) {
+        margin-inline-start: 0;
+      }
+    }
+  }
+}
+
+@each $name, $color, $icon, $border-color, $icon-color,
+  $scheme in notification.$notification-variants
+{
+  .banner-#{$name},
+  .alert-#{$name} {
+    @include notification-mx.notification-variant(
+      $color,
+      $icon,
+      $border-color,
+      $icon-color,
+      $scheme
+    );
+  }
+}
