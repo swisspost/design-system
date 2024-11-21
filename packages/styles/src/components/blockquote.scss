@@ -28,7 +28,11 @@ figure:has(.blockquote) {
     border-color: transparent;
 
     q {
-      quotes: auto;
+      quotes: '\00ab' '\00bb' '\2039' '\203A';
+
+      &:lang(en) {
+        quotes: '\0022' '\0022' '\0027' '\0027';
+      }
     }
   }
 }
