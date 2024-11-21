@@ -20,7 +20,6 @@ src/icons/**/*.svg
 # TODO: Add before merge
 # public/post-icons
 public/report.json
-public/report.v2.json
 
 icons-optimized
 icons.json

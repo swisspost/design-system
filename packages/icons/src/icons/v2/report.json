@@ -1,0 +1,45 @@
+{
+  "icons": [
+    {
+      "uuid": "c870685f-50e8-4b6b-a05e-329ff1aabbf8",
+      "id": 466114,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "",
+        "businessfield": [],
+        "keywords": [
+          "ui",
+          "accessibility.svg"
+        ],
+        "year": [
+          "2024"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "accessibility.svg",
+        "basename": "accessibility",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-11-21T15:06:09.268Z",
+      "modifiedAt": "2024-11-21T15:06:09.268Z"
+    }
+  ],
+  "wrongViewBox": [],
+  "noKeywords": [],
+  "noSVG": [],
+  "errored": [],
+  "created": "2024-11-21T15:06:09.269Z",
+  "stats": {
+    "errors": 0,
+    "notFound": 0,
+    "success": 1
+  },
+  "version": "9.0.0-next.5"
+}
