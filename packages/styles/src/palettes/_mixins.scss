@@ -42,7 +42,7 @@
       // Dark scheme explicitly set on the palette:
       &[data-color-scheme='dark'],
 
-        // No scheme explicitly set on the palette, but parent has a dark scheme:
+      // No scheme explicitly set on the palette, but parent has a dark scheme:
       &:where([data-color-scheme='dark'] :not([data-color-scheme='dark'])) {
         @include palette-tokens($palette, $theme, 'dark', $override-scheme: true);
       }
@@ -61,7 +61,7 @@
   --post-current-palette-bg: #{tokens.get('palettes-color-#{$name}-bg', $palette)};
 
   @if ($override-scheme == true) {
-    $bg-scheme: tokens.get('helper-color-#{$name}-bg-scheme', $palette);
+    $bg-scheme: tokens.get('palettes-color-#{$name}-bg-scheme', $palette);
 
     @if ($bg-scheme == 'light') {
       @extend %color-scheme-light;
