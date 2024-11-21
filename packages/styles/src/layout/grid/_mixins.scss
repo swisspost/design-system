@@ -1,0 +1,104 @@
+@use 'sass:map';
+@use 'sass:math';
+
+@use '../../functions/breakpoint';
+@use '../../functions/tokens';
+@use '../../mixins/media';
+@use '../../tokens/components';
+@use '../../variables/breakpoints';
+
+@use './variables' as *;
+
+@mixin make-row() {
+  display: flex;
+  flex-wrap: wrap;
+
+  margin-block-start: calc(-1 * var(--post-grid-gutter-y));
+  margin-inline: calc(-0.5 * var(--post-grid-gutter-x));
+
+  --post-grid-gutter-y: 0;
+  @each $breakpoint in map.keys(breakpoints.$grid-breakpoints) {
+    @include media.min($breakpoint) {
+      --post-grid-gutter-x: #{tokens.get('grid-gutter-#{$breakpoint}', components.$post-container)};
+    }
+  }
+}
+
+@mixin make-col-ready() {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-inline: calc(var(--post-grid-gutter-x) * 0.5);
+  margin-block-start: var(--post-grid-gutter-y);
+}
+
+@mixin make-col($size: false) {
+  @if $size {
+    flex: 0 0 auto;
+    width: math.percentage(math.div($size, $grid-columns));
+  } @else {
+    flex: 1 1 0;
+    max-width: 100%;
+  }
+}
+
+@mixin make-col-auto() {
+  flex: 0 0 auto;
+  width: auto;
+}
+
+@mixin make-col-offset($size) {
+  $num: math.div($size, $grid-columns);
+  margin-block-start: if($num == 0, 0, math.percentage($num));
+}
+
+@mixin row-cols($count) {
+  > * {
+    flex: 0 0 auto;
+    width: math.percentage(math.div(1, $count));
+  }
+}
+
+@mixin make-grid-columns() {
+  @each $breakpoint in map.keys(breakpoints.$grid-breakpoints) {
+    $infix: breakpoint.infix($breakpoint);
+
+    @include media.min($breakpoint) {
+      .col#{$infix} {
+        flex: 1 0 0%;
+      }
+
+      .row-cols#{$infix}-auto > * {
+        @include make-col-auto();
+      }
+
+      @if $grid-row-columns > 0 {
+        @for $i from 1 through $grid-row-columns {
+          .row-cols#{$infix}-#{$i} {
+            @include row-cols($i);
+          }
+        }
+      }
+
+      .col#{$infix}-auto {
+        @include make-col-auto();
+      }
+
+      @if $grid-columns > 0 {
+        @for $i from 1 through $grid-columns {
+          .col#{$infix}-#{$i} {
+            @include make-col($i);
+          }
+        }
+
+        @for $i from 0 through ($grid-columns - 1) {
+          @if not($infix == '' and $i == 0) {
+            .offset#{$infix}-#{$i} {
+              @include make-col-offset($i);
+            }
+          }
+        }
+      }
+    }
+  }
+}
