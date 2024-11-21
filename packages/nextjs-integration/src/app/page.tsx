@@ -162,7 +162,7 @@ export default function Home() {
 
       <section className="pt-huge-r mb-huge-r">
         <div className="row">
-          <div className="col-lg-4 col-rg-6 col-12 mb-16">
+          <div className="col-lg-4 col-sm-6 col-12 mb-16">
             <div className="card elevation-0">
               <Image width={400} height={200} className="card-img-top" src="/street.jpg" alt="" />
               <div className="card-body bg-gray">
@@ -176,7 +176,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="col-lg-4 col-rg-6 col-12 mb-16">
+          <div className="col-lg-4 col-sm-6 col-12 mb-16">
             <div className="card elevation-0">
               <Image width={400} height={200} className="card-img-top" src="/street.jpg" alt="" />
               <div className="card-body bg-gray">
@@ -190,7 +190,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="col-lg-4 col-rg-6 col-12 mb-16">
+          <div className="col-lg-4 col-sm-6 col-12 mb-16">
             <div className="card elevation-0">
               <Image width={400} height={200} className="card-img-top" src="/street.jpg" alt="" />
               <div className="card-body bg-gray">

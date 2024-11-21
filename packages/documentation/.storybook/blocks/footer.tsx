@@ -115,7 +115,7 @@ export default (params: { pathToStoryFile?: String }) => (
               ))}
             </ul>
             <div className="row mt-regular-r">
-              <div className="col-12 col-rg-auto mt-regular-r">
+              <div className="col-12 col-sm-auto mt-regular-r">
                 <a
                   className="btn-primary btn"
                   href="https://github.com/swisspost/design-system/issues"

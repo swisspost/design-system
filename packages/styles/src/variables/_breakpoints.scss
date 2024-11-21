@@ -1,11 +1,7 @@
-/* Deprecated: "rg" breakpoint */
-
 $grid-breakpoints: (
   xs: 0,
-  sm: 400px,
-  rg: 600px,
+  sm: 600px,
   md: 780px,
   lg: 1024px,
   xl: 1280px,
-  xxl: 1440px,
 ) !default;
