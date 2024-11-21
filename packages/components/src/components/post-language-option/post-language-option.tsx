@@ -11,7 +11,7 @@ import {
 } from '@stencil/core';
 import { checkEmptyOrType, checkType } from '@/utils';
 import { version } from '@root/package.json';
-import { SwitchVariant } from '@/components';
+import { SwitchVariant } from '../post-language-option-switch/switch-variants';
 
 /**
  * @slot default - Slot for placing the content inside the anchor or button.

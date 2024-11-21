@@ -7,13 +7,11 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
-import { unknown as SwitchVariant } from "./components.d";
-import { SwitchVariant as SwitchVariant1 } from "./components/post-language-option-switch/switch-variants";
+import { SwitchVariant } from "./components/post-language-option-switch/switch-variants";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
-export { unknown as SwitchVariant } from "./components.d";
-export { SwitchVariant as SwitchVariant1 } from "./components/post-language-option-switch/switch-variants";
+export { SwitchVariant } from "./components/post-language-option-switch/switch-variants";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
     interface PostAccordion {
@@ -247,7 +245,7 @@ export namespace Components {
         /**
           * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
          */
-        "variant": SwitchVariant1;
+        "variant": SwitchVariant;
     }
     interface PostList {
         /**
@@ -1045,7 +1043,7 @@ declare namespace LocalJSX {
         /**
           * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
          */
-        "variant"?: SwitchVariant1;
+        "variant"?: SwitchVariant;
     }
     interface PostList {
         /**
