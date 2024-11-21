@@ -7,6 +7,7 @@
 @use './../mixins/forms' as form-mixins;
 @use './../mixins/button' as button-mixins;
 
+@use './../variables/type';
 @use './../variables/color';
 @use './../variables/components/forms';
 @use './../variables/components/button';
@@ -30,7 +31,7 @@
     width: 6rem;
     padding: 1rem 1.375rem;
     @include form-mixins.placeholder {
-      color: forms.$input-placeholder-color;
+      color: color.$gray-60;
     }
   }
 
@@ -74,7 +75,9 @@
   }
 
   .form-control {
-    @include form-mixins.form-rg;
+    padding: forms.$input-padding-y-rg forms.$input-padding-x-rg;
+    font-size: type.$font-size-regular;
+    line-height: forms.$input-line-height-rg;
   }
 }
 

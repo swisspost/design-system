@@ -98,7 +98,7 @@ dialog > .dialog-grid {
 
   // Larger icon for bigger notification dialogs
   dialog:not([size='small']) & {
-    @include media-breakpoint-up(rg) {
+    @include media-breakpoint-up(sm) {
       width: spacing.$size-small-huge;
       height: spacing.$size-small-huge;
     }

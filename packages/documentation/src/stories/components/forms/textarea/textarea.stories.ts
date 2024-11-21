@@ -56,7 +56,7 @@ const meta: MetaComponent = {
     hiddenLabel: {
       name: 'Hidden Label',
       description:
-        'Renders the component with or without a visible label.<span className="mt-8 alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#labels">label accessibility guide</a>.</span>',
+        'Renders the component with or without a visible label.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#labels">label accessibility guide</a>.</span>',
       if: {
         arg: 'floatingLabel',
         truthy: false,
@@ -145,7 +145,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<div className="mt-8 alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<div className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
       control: {
         type: 'boolean',
       },
@@ -194,7 +194,9 @@ function renderTextarea(args: Args, context: StoryContext) {
     args.validation === 'is-invalid'
       ? html`<div class="invalid-feedback">Eraro okazis!</div>`
       : null,
-    args.hint !== '' ? html`<div class="form-text">${args.hint}</div>` : null,
+    args.hint !== ''
+      ? html`<p class="form-hint" id="form-hint-${context.id}">${args.hint}</p>`
+      : null,
   ];
   const control = html`
     <textarea
@@ -206,6 +208,7 @@ function renderTextarea(args: Args, context: StoryContext) {
       ?disabled=${args.disabled}
       aria-label=${useAriaLabel ? args.label : nothing}
       aria-invalid=${VALIDATION_STATE_MAP[args.validation] ?? nothing}
+      aria-describedby="${args.hint ? 'form-hint-' + context.id : ''}"
       style=${args.resize ?? nothing}
     >
 ${args.textInside ?? nothing}</textarea
