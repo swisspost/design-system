@@ -1,48 +1,51 @@
 @use 'sass:map';
 @use 'sass:meta';
 
-@use '../functions/contrast';
-@use '../placeholders/schemes';
-
 @use '../functions/tokens';
+@use '../placeholders/schemes';
 @use '../tokens/elements';
 @use '../tokens/palettes';
 
 @use './variables' as *;
 
-@mixin default-palette-styles($theme) {
-  background-color: var(--post-current-palette-bg) !important;
-
-  &:not([data-color-scheme='dark']) {
-    @include palette-tokens($default-palette, $theme, 'light');
-  }
-
-  &[data-color-scheme='dark'] {
-    @include palette-tokens($default-palette, $theme, 'dark');
-  }
-}
-
-@mixin generate-palette-class($name, $theme) {
-  .palette-#{$name} {
-    // Redefining the body color is necessary to ensure that the new color scheme is applied correctly.
-    // Known limitation: body color may be incorrect with nested parent with different `data-color-scheme` values.
-    color: tokens.get('body-color', elements.$post-body);
+@mixin palettes($theme) {
+  body {
     background-color: var(--post-current-palette-bg) !important;
 
-    // Light scheme explicitly set on the palette:
-    &[data-color-scheme='light'],
-    // No scheme explicitly set on the palette, but parent has a light scheme:
-    &:where([data-color-scheme='light'] :not([data-color-scheme='dark'])),
-    // No scheme explicitly set on the palette, and no scheme on the parent either:
-    &:not([data-color-scheme='dark']):not([data-color-scheme='dark'] *) {
-      @include palette-tokens($name, $theme, 'light', $override-scheme: true);
+    &:not([data-color-scheme='dark']) {
+      @include palette-tokens($default-palette, $theme, 'light');
     }
 
-    // Dark scheme explicitly set on the palette:
-    &[data-color-scheme='dark'],
-    // No scheme explicitly set on the palette, but parent has a dark scheme:
-    &:where([data-color-scheme='dark'] :not([data-color-scheme='dark'])) {
-      @include palette-tokens($name, $theme, 'dark', $override-scheme: true);
+    &[data-color-scheme='dark'] {
+      @include palette-tokens($default-palette, $theme, 'dark');
+    }
+  }
+
+  @each $palette in $palettes {
+    .palette-#{$palette} {
+      // Redefining the body color is necessary to ensure that the new color scheme is applied correctly.
+      // Known limitation: body color may be incorrect with nested parent with different `data-color-scheme` values.
+      color: tokens.get('body-color', elements.$post-body);
+      background-color: var(--post-current-palette-bg) !important;
+
+      // Light scheme explicitly set on the palette:
+      &[data-color-scheme='light'],
+
+      // No scheme explicitly set on the palette, but parent has a light scheme:
+      &:where([data-color-scheme='light'] :not([data-color-scheme='dark'])),
+
+      // No scheme explicitly set on the palette, and no scheme on the parent either:
+      &:not([data-color-scheme='dark']):not([data-color-scheme='dark'] *) {
+        @include palette-tokens($palette, $theme, 'light', $override-scheme: true);
+      }
+
+      // Dark scheme explicitly set on the palette:
+      &[data-color-scheme='dark'],
+
+        // No scheme explicitly set on the palette, but parent has a dark scheme:
+      &:where([data-color-scheme='dark'] :not([data-color-scheme='dark'])) {
+        @include palette-tokens($palette, $theme, 'dark', $override-scheme: true);
+      }
     }
   }
 }

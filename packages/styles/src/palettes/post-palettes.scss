@@ -1,12 +1,3 @@
 @use 'mixins' as *;
-@use 'variables' as *;
 
-@forward 'utilities';
-
-body {
-  @include default-palette-styles('post');
-}
-
-@each $palette in $palettes {
-  @include generate-palette-class($palette, 'post');
-}
+@include palettes('post');
