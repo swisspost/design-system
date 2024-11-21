@@ -8,6 +8,8 @@
 
 @use './variables' as *;
 
+@forward './utilities';
+
 @mixin palettes($theme) {
   body {
     background-color: var(--post-current-palette-bg) !important;
