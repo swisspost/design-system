@@ -7,14 +7,14 @@
 
 ## Properties
 
-| Property            | Attribute   | Description                                                                                                                                                          | Type            | Default     |
-| ------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- | ----------- |
-| `active`            | `active`    | If set to `true`, the language option is considered the current language for the page.                                                                               | `boolean`       | `undefined` |
-| `code` _(required)_ | `code`      | The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".               | `string`        | `undefined` |
-| `generated`         | `generated` | Used on parent component (post-language-option-switch) to detect elements that are manually added                                                                    | `boolean`       | `undefined` |
-| `name`              | `name`      | The full name of the language. For example, "Deutsch".                                                                                                               | `string`        | `undefined` |
-| `url`               | `url`       | The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.          | `string`        | `undefined` |
-| `variant`           | `variant`   | Variant that determines the rendering of the language option either as a list item (used on mobile in the header) or a dropdown item (used on desktop in the header) | `SwitchVariant` | `'list'`    |
+| Property            | Attribute   | Description                                                                                                                                                          | Type                   | Default     |
+| ------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | ----------- |
+| `active`            | `active`    | If set to `true`, the language option is considered the current language for the page.                                                                               | `boolean`              | `undefined` |
+| `code` _(required)_ | `code`      | The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".               | `string`               | `undefined` |
+| `generated`         | `generated` | Used on parent component (post-language-option-switch) to detect elements that are manually added                                                                    | `boolean`              | `undefined` |
+| `name`              | `name`      | The full name of the language. For example, "Deutsch".                                                                                                               | `string`               | `undefined` |
+| `url`               | `url`       | The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.          | `string`               | `undefined` |
+| `variant`           | `variant`   | Variant that determines the rendering of the language option either as a list item (used on mobile in the header) or a dropdown item (used on desktop in the header) | `"dropdown" \| "list"` | `'list'`    |
 
 
 ## Events

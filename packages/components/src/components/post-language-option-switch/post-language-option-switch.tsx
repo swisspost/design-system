@@ -26,6 +26,20 @@ export class PostLanguageOptionSwitch {
   }
 
   /**
+   * The name of the language switch, which will be used on the dropdown as an ID
+   */
+  @Prop() name: string;
+
+  @Watch('name')
+  validateName(value = this.name) {
+    checkType(
+      value,
+      'string',
+      'The "name" property of the post-language-option-switch component must be a string.',
+    );
+  }
+
+  /**
    * A descriptive text for the list of language options
    */
   @Prop() description: string;
@@ -65,7 +79,12 @@ export class PostLanguageOptionSwitch {
    */
   private elements: NodeListOf<HTMLPostLanguageOptionElement>;
 
+  private menuId: string;
+
   connectedCallback() {
+    // Transforms name into an ID for the post-menu
+    this.menuId = this.name.replace(/\W/g, '_');
+
     this.elements = this.host.querySelectorAll('post-language-option:not([generated="true"])');
     this.elements.forEach(el => {
       if (el.getAttribute('active') !== 'false') {
@@ -78,6 +97,7 @@ export class PostLanguageOptionSwitch {
     this.validateCaption();
     this.validateDescription();
     this.validateVariant();
+    this.validateName();
 
     // Detects a change in the active language
     this.host.addEventListener('postChange', (el: CustomEvent<string>) => {
@@ -100,7 +120,7 @@ export class PostLanguageOptionSwitch {
               {this.caption}, {this.description}
             </h3>
             {Array.from(this.elements).map(item => (
-              <post-list-item>
+              <post-list-item role="none">
                 <post-language-option
                   variant={this.variant}
                   active={this.activeLang === item.getAttribute('code')}
@@ -116,7 +136,7 @@ export class PostLanguageOptionSwitch {
           </post-list>
         ) : (
           <div>
-            <post-menu-trigger for="post-language-menu">
+            <post-menu-trigger for={this.menuId}>
               <button class="btn btn-tertiary btn-sm">
                 <span class="visually-hidden">
                   {this.caption}, {this.description}
@@ -125,7 +145,7 @@ export class PostLanguageOptionSwitch {
                 <post-icon aria-hidden="true" name="2052"></post-icon>
               </button>
             </post-menu-trigger>
-            <post-menu id="post-language-menu">
+            <post-menu id={this.menuId}>
               {Array.from(this.elements).map(item => (
                 <post-menu-item>
                   <post-language-option

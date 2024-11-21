@@ -11,13 +11,14 @@ const meta: MetaComponent<HTMLPostLanguageOptionSwitchElement> = {
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=558-7012',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?t=g8IqUrnroVx7EeLT-0',
     },
   },
   args: {
     variant: 'list',
     caption: 'Caption',
     description: 'Description',
+    name: 'language-switch-example',
   },
   argTypes: {
     variant: {
@@ -54,6 +55,7 @@ function renderLanguageSwitch(args: Partial<HTMLPostLanguageOptionSwitchElement>
     caption=${args.caption}
     description=${args.description}
     variant=${args.variant}
+    name=${args.name}
   >
     <post-language-option active="true" code="de" name="Deutsch">DE</post-language-option>
     <post-language-option active="false" code="en" name="English">EN</post-language-option>
@@ -66,6 +68,7 @@ function renderLanguageSwitchAsLinks(args: Partial<HTMLPostLanguageOptionSwitchE
     caption=${args.caption}
     description=${args.description}
     variant="dropdown"
+    name=${args.name}
   >
     <post-language-option url="/de" active="true" code="de" name="Deutsch">DE</post-language-option>
     <post-language-option url="/en" active="false" code="en" name="English"

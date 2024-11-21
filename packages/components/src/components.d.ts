@@ -243,6 +243,10 @@ export namespace Components {
          */
         "description": string;
         /**
+          * The name of the language switch, which will be used on the dropdown as an ID
+         */
+        "name": string;
+        /**
           * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
          */
         "variant": SwitchVariant;
@@ -1040,6 +1044,10 @@ declare namespace LocalJSX {
           * A descriptive text for the list of language options
          */
         "description"?: string;
+        /**
+          * The name of the language switch, which will be used on the dropdown as an ID
+         */
+        "name"?: string;
         /**
           * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
          */
