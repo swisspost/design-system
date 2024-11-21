@@ -4,7 +4,7 @@
 @use '../functions/icons';
 
 tokens.$default-map: (
-  post-list-check-sizing-icon: 32px,
+  post-list-check-sizing-icon: 24px,
   post-list-check-text-padding: 1px,
   post-list-check-icon-gap-inline: 16px,
   post-list-check-item-gap-block-text: 16px,
@@ -12,34 +12,61 @@ tokens.$default-map: (
   post-list-check-color-icon-fg: white,
   post-list-check-color-text-fg: #050400,
   post-list-check-padding-icon: 4px,
-  post-list-check-line-height: 30px
+  post-list-check-line-height: 30px,
+  post-list-check-color-icon-bg: #373632
 );
 
 .list-check {
-  display: grid;
-  grid-template-columns: [marker] auto [item] 1fr;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-block-start: tokens.get('list-check-margin-block');
+  padding-block-end: tokens.get('list-check-margin-block');
+  gap: tokens.get('list-check-item-gap-block-text');
   list-style: none;
-  gap: tokens.get('list-check-item-gap-block-text') 0;
-  padding: 0;
 
   > li {
-    display: grid;
-    grid-template-columns: subgrid;
-    column-gap: tokens.get('list-check-icon-gap-inline');
-    grid-column: span 2;
-    padding: tokens.get('list-check-text-padding') 0;
+    position: relative;
+    color: tokens.get('list-check-color-text-fg');
+    padding-block-start: tokens.get('list-check-text-padding');
+    padding-block-end: tokens.get('list-check-text-padding');
 
     &::before {
-      margin-top: calc(-1 * tokens.get('list-check-text-padding'));
-      margin-bottom: calc(-1 * tokens.get('list-check-text-padding'));
-      background: tokens.get('list-check-color-icon-fg');
-      text-align: right;
-      grid-column: marker;
-      grid-row: span 30000;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin-inline-start: calc(
+        -1 * (#{tokens.get('list-check-sizing-icon')} + #{tokens.get('list-check-icon-gap-inline')})
+      );
+      margin-block-start: calc(-1 * tokens.get('list-check-text-padding'));
+      margin-block-end: calc(-1 * tokens.get('list-check-text-padding'));
+      background: tokens.get('list-check-color-icon-bg');
+      width: calc(
+        #{tokens.get('list-check-sizing-icon')} + 2 * #{tokens.get('list-check-padding-icon')}
+      );
+      height: calc(
+        #{tokens.get('list-check-sizing-icon')} + 2 * #{tokens.get('list-check-padding-icon')}
+      );
+      content: '';
+      border-radius: 50%;
+    }
+
+    &::after {
+      display: block;
+      position: absolute;
+      margin-inline-start: calc(
+        -1 * (#{tokens.get('list-check-sizing-icon')} + #{tokens.get('list-check-icon-gap-inline')})
+      );
+      margin-block-start: calc(-1 * tokens.get('list-check-text-padding'));
+      margin-block-end: calc(-1 * tokens.get('list-check-text-padding'));
+      top: tokens.get('list-check-padding-icon');
+      left: tokens.get('list-check-padding-icon');
       width: tokens.get('list-check-sizing-icon');
       height: tokens.get('list-check-sizing-icon');
       content: '';
-      @include icon-mixin.icon('success');
+      @include icon-mixin.icon('3035');
+      color: tokens.get('list-check-color-icon-fg');
     }
   }
 }
