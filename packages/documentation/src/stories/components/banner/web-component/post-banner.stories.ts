@@ -3,25 +3,24 @@ import { html } from 'lit';
 import { spreadArgs } from '@/utils';
 import { MetaComponent } from '@root/types';
 
-const meta: MetaComponent<HTMLPostAlertElement> = {
+const meta: MetaComponent<HTMLPostBannerElement> = {
   id: '8fd36823-966e-46a8-8432-a4439f6e208f',
-  title: 'Components/Alert',
+  title: 'Components/Banner',
   tags: ['package:WebComponents', 'redirect:105e67d8-31e9-4d0b-87ff-685aba31fd4c'],
-  component: 'post-alert',
-  render: renderAlert,
+  component: 'post-banner',
+  render: renderBanner,
   decorators: [externalControl],
   parameters: {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=17001-2244&mode=design&t=3lniLiZhl7q9Gqgn-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=1447-8848&node-type=instance&t=NVtE44T0sX5wsag9-0',
     },
   },
   args: {
     innerHTML: '<p>Contentus momentus vero siteos et accusam iretea et justo.</p>',
     dismissible: false,
     dismissLabel: 'Dismiss',
-    fixed: false,
   },
   argTypes: {
     dismissLabel: {
@@ -47,7 +46,7 @@ const meta: MetaComponent<HTMLPostAlertElement> = {
       options: ['none', '1001', '2023', '2025', '2035', '2101'],
     },
     innerHTML: {
-      description: 'Defines the HTML markup contained in the alert.',
+      description: 'Defines the HTML markup contained in the banner.',
       table: {
         category: 'content',
         type: {
@@ -63,54 +62,49 @@ export default meta;
 // DECORATORS
 function externalControl(story: StoryFn, context: StoryContext) {
   const { args, canvasElement } = context;
-  let alert: HTMLPostAlertElement;
+  let banner: HTMLPostBannerElement;
   let button: HTMLButtonElement;
 
-  const toggleAlert = async (e: Event) => {
+  const toggleBanner = async (e: Event) => {
     e.preventDefault();
 
-    const alertContainer = canvasElement.querySelector('.alert-container') as HTMLElement;
+    const bannerContainer = canvasElement.querySelector('.banner-container') as HTMLElement;
 
-    if (alert.parentNode) {
-      await alert.dismiss();
+    if (banner.parentNode) {
+      await banner.dismiss();
     } else {
-      alertContainer.appendChild(alert);
-      if (!args.fixed) button.hidden = true;
-      else button.focus();
+      bannerContainer.appendChild(banner);
+      button.hidden = true;
     }
   };
 
   setTimeout(() => {
-    alert = canvasElement.querySelector('post-alert') as HTMLPostAlertElement;
-    button = canvasElement.querySelector('.alert-button') as HTMLButtonElement;
+    banner = canvasElement.querySelector('post-banner') as HTMLPostBannerElement;
+    button = canvasElement.querySelector('.banner-button') as HTMLButtonElement;
 
-    if (args.fixed) {
+    button.hidden = true;
+    banner.addEventListener('postDismissed', () => {
       button.hidden = false;
-      if (context.storyName !== 'Default') alert.remove();
-    } else {
-      button.hidden = true;
-      alert.addEventListener('postDismissed', () => {
-        button.hidden = false;
-        button.focus();
-      });
-    }
+      button.focus();
+    });
   });
 
   return html`
-    <a class="btn btn-secondary alert-button" href="#" @click="${(e: Event) => toggleAlert(e)}">
-      <span>${args.fixed ? 'Toggle Fixed Alert' : 'Reset Alert'}</span>
+    <a class="btn btn-secondary banner-button" href="#" @click="${(e: Event) => toggleBanner(e)}">
+      <span>Reset Banner</span>
     </a>
-    <div class="alert-container">${story(args, context)}</div>
+    <div class="banner-container">${story(args, context)}</div>
   `;
 }
 
 // RENDERER
-function renderAlert(args: Partial<HTMLPostAlertElement>) {
-  return html` <post-alert ${spreadArgs(args)}></post-alert> `;
+function renderBanner(args: Partial<HTMLPostBannerElement>) {
+  console.log(args);
+  return html` <post-banner ${spreadArgs(args)}></post-banner> `;
 }
 
 // STORIES
-type Story = StoryObj<HTMLPostAlertElement>;
+type Story = StoryObj<HTMLPostBannerElement>;
 
 export const Default: Story = {};
 
@@ -143,13 +137,6 @@ export const NoIcon: Story = {
 
 export const Dismissible: Story = {
   args: {
-    dismissible: true,
-  },
-};
-
-export const Fixed: Story = {
-  args: {
-    fixed: true,
     dismissible: true,
   },
 };
