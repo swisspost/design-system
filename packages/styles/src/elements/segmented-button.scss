@@ -8,7 +8,7 @@ tokens.$default-map: components.$post-segmented-button;
 $post-segmented-button-max-count: 8;
 
 .segmented-button-container {
-  container-name: segmented-container;
+  container-name: post-segmented-container;
   container-type: inline-size;
 }
 
@@ -118,7 +118,7 @@ legend {
   }
 }
 
-@container segmented-container (max-width: 600px) {
+@container post-segmented-container (max-width: 600px) {
   .segmented-button {
     flex-direction: column;
     border-radius: tokens.get('button-segmented-vertical-border-radius');
