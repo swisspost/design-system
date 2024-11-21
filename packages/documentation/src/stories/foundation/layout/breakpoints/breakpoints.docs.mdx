@@ -19,12 +19,18 @@ import SampleBetween from './breakpoints-between.sample.scss?raw';
 ## Available breakpoints
 
 The Swiss Post Design System includes
-<span>{Object.keys(SCSS_VARIABLES.breakpoint).length}</span>
-breakpoints, sometimes referred to as grid tiers, for building responsively. These breakpoints can be customized if you’re using our source Sass files.
 
-<div className="alert alert-md alert-warning">
-  <h2 className="alert-heading">The <code>regular</code> Breakpoint is deprecated</h2>
-  <p>Its CSS helper classes, as well as its SASS variables and mixins will be removed in the future.</p>
+<span>{Object.keys(SCSS_VARIABLES.breakpoint).length}</span>
+breakpoints, sometimes referred to as grid tiers, for building responsively. These breakpoints can be
+customized if you’re using our source Sass files.
+
+<div className="banner banner-md banner-warning">
+  <h2 className="banner-heading">
+    The <code>regular</code> Breakpoint is deprecated
+  </h2>
+  <p>
+    Its CSS helper classes, as well as its SASS variables and mixins will be removed in the future.
+  </p>
 </div>
 
 <BreakpointTable />
@@ -51,34 +57,22 @@ There are several mixins available to use in your own Sass to help with building
 
 We primarily use the following media query ranges—or breakpoints—in our source Sass files for our layout, grid system, and components.
 
-<Source
-  code={SampleMinWidth}
-  language="scss"
-/>
+<Source code={SampleMinWidth} language="scss" />
 
 #### Max-width
 
 We occasionally use media queries that go in the other direction.
 
-<Source
-  code={SampleMaxWidth}
-  language="scss"
-/>
+<Source code={SampleMaxWidth} language="scss" />
 
 #### Single breakpoint
 
 There are also media queries and mixins for targeting a single segment of screen sizes using the minimum and maximum breakpoint widths.
 
-<Source
-  code={SampleSingle}
-  language="scss"
-/>
+<Source code={SampleSingle} language="scss" />
 
 #### Between breakpoints
 
 Similarly, media queries may span multiple breakpoint widths.
 
-<Source
-  code={SampleBetween}
-  language="scss"
-/>
+<Source code={SampleBetween} language="scss" />

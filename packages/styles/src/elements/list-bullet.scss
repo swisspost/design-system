@@ -28,6 +28,8 @@ ul {
     list-style: none;
 
     > li {
+      margin: 0;
+      padding-inline: 0;
       padding-block: tokens.get('list-bullet-item-text-padding-block');
 
       ~ li {
