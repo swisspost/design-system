@@ -1,8 +1,7 @@
-import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
+import { Component, Element, Host, h, Prop, Watch, State } from '@stencil/core';
 import { checkEmptyOrOneOf, checkType } from '@/utils';
 import { version } from '@root/package.json';
 import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
-import { SWITCH_MODES, SwitchMode } from './switch-modes';
 
 @Component({
   tag: 'post-language-option-switch',
@@ -13,7 +12,7 @@ export class PostLanguageOptionSwitch {
   @Element() host: HTMLPostLanguageOptionSwitchElement;
 
   /**
-   * A title for the list
+   * A title for the list of language options
    */
   @Prop() caption: string;
 
@@ -27,7 +26,7 @@ export class PostLanguageOptionSwitch {
   }
 
   /**
-   * A descriptive text for the list
+   * A descriptive text for the list of language options
    */
   @Prop() description: string;
 
@@ -57,37 +56,44 @@ export class PostLanguageOptionSwitch {
   }
 
   /**
-   * Mode determines if the language-switch navigates to a different page or just emits events
+   * The active language of the language switch
    */
-  @Prop() mode: SwitchMode = 'link';
+  @State() activeLang: string;
 
-  @Watch('mode')
-  validateMode(value = this.mode) {
-    checkEmptyOrOneOf(
-      value,
-      SWITCH_MODES,
-      `The "mode" property of the post-language-option-switch component must be:  ${SWITCH_MODES.join(
-        ', ',
-      )}`,
-    );
-  }
-
+  /**
+   * List of post-language-option in the slot of the component
+   */
   private elements: NodeListOf<HTMLPostLanguageOptionElement>;
 
-  componentWillRender() {
-    this.elements = this.host.querySelectorAll('post-language-option[generated="false"]');
+  connectedCallback() {
+    this.elements = this.host.querySelectorAll('post-language-option:not([generated="true"])');
+    this.elements.forEach(el => {
+      if (el.getAttribute('active') !== 'false') {
+        this.activeLang = el.getAttribute('code');
+      }
+    });
   }
 
   componentDidLoad() {
     this.validateCaption();
     this.validateDescription();
-    this.validateMode();
     this.validateVariant();
+
+    // Detects a change in the active language
+    this.host.addEventListener('postChange', (el: CustomEvent<string>) => {
+      this.activeLang = el.detail;
+
+      // Hides the dropdown when an option has been clicked
+      if (this.variant === 'dropdown') {
+        const menu = this.host.querySelector('post-menu') as HTMLPostMenuElement;
+        menu.toggle(menu);
+      }
+    });
   }
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={version} slot="post-language-option-switch">
         {this.variant === 'list' ? (
           <post-list title-hidden="true">
             <h3>
@@ -96,9 +102,10 @@ export class PostLanguageOptionSwitch {
             {Array.from(this.elements).map(item => (
               <post-list-item>
                 <post-language-option
-                  class="post-language-option-item"
-                  active={item.getAttribute('active') === 'true'}
+                  variant={this.variant}
+                  active={this.activeLang === item.getAttribute('code')}
                   code={item.getAttribute('code')}
+                  url={item.getAttribute('url')}
                   name={item.getAttribute('name')}
                   generated={true}
                 >
@@ -110,15 +117,22 @@ export class PostLanguageOptionSwitch {
         ) : (
           <div>
             <post-menu-trigger for="post-language-menu">
-              <button class="btn btn-primary">{this.caption}</button>
+              <button class="btn btn-tertiary btn-sm">
+                <span class="visually-hidden">
+                  {this.caption}, {this.description}
+                </span>
+                {this.activeLang.toUpperCase()}
+                <post-icon aria-hidden="true" name="2052"></post-icon>
+              </button>
             </post-menu-trigger>
             <post-menu id="post-language-menu">
               {Array.from(this.elements).map(item => (
                 <post-menu-item>
                   <post-language-option
-                    class="post-language-option-item"
-                    active={item.getAttribute('active') === 'true' ? true : false}
+                    variant={this.variant}
+                    active={this.activeLang === item.getAttribute('code')}
                     code={item.getAttribute('code')}
+                    url={item.getAttribute('url')}
                     name={item.getAttribute('name')}
                     generated={true}
                   >

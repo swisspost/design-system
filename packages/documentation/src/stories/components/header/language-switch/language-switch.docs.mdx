@@ -11,7 +11,8 @@ import * as languageSwitchStories from './language-switch.stories';
   </nav>
 </div>
 
-<p className="lead">Enable users to select their preferred language.</p>
+<p className="lead">The language option switch is a web component which enables users to select their preferred
+  language.</p>
 
 <Canvas sourceState="shown" of={languageSwitchStories.Default} />
 
@@ -19,13 +20,11 @@ import * as languageSwitchStories from './language-switch.stories';
 
 ## Installation
 
-The `<post-language-option>` element is part of the `@swisspost/design-system-components` package.
+The `<post-language-option-swtich>` element is part of the `@swisspost/design-system-components` package.
 For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
 
-## Examples
+## Links
 
-### Button
+The language options can be used as links, which will navigate to a different page upon selection.
 
-Use the `onClick` event to change the language of your page programmatically whenever the user clicks on the `post-language-option`.
-
-<Canvas sourceState="shown" of={languageSwitchStories.Default} />
+<Canvas sourceState="shown" of={languageSwitchStories.Links} />

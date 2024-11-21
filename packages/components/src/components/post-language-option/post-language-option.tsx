@@ -11,6 +11,7 @@ import {
 } from '@stencil/core';
 import { checkEmptyOrType, checkType } from '@/utils';
 import { version } from '@root/package.json';
+import { SwitchVariant } from '@/components';
 
 /**
  * @slot default - Slot for placing the content inside the anchor or button.
@@ -27,6 +28,11 @@ export class PostLanguageOption {
    *  Used on parent component (post-language-option-switch) to detect elements that are manually added
    */
   @Prop() generated: boolean;
+
+  /**
+   * Variant that determines the rendering of the language option either as a list item (used on mobile in the header) or a dropdown item (used on desktop in the header)
+   */
+  @Prop() variant: SwitchVariant = 'list';
 
   /**
    *  The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
@@ -127,6 +133,7 @@ export class PostLanguageOption {
       <Host data-version={version} role="listitem">
         {this.url ? (
           <a
+            class={this.variant ? `post-language-option-${this.variant}` : ''}
             aria-current={this.active ? 'page' : undefined}
             aria-label={this.name}
             href={this.url}
@@ -138,6 +145,7 @@ export class PostLanguageOption {
           </a>
         ) : (
           <button
+            class={this.variant ? `post-language-option-${this.variant}` : ''}
             aria-current={this.active ? 'true' : undefined}
             aria-label={this.name}
             lang={lang}

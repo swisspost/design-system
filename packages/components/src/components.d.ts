@@ -7,13 +7,13 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
-import { SwitchVariant } from "./components/post-language-option-switch/switch-variants";
-import { SwitchMode } from "./components/post-language-option-switch/switch-modes";
+import { unknown as SwitchVariant } from "./components.d";
+import { SwitchVariant as SwitchVariant1 } from "./components/post-language-option-switch/switch-variants";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
-export { SwitchVariant } from "./components/post-language-option-switch/switch-variants";
-export { SwitchMode } from "./components/post-language-option-switch/switch-modes";
+export { unknown as SwitchVariant } from "./components.d";
+export { SwitchVariant as SwitchVariant1 } from "./components/post-language-option-switch/switch-variants";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
     interface PostAccordion {
@@ -230,24 +230,24 @@ export namespace Components {
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
         "url": string;
+        /**
+          * Variant that determines the rendering of the language option either as a list item (used on mobile in the header) or a dropdown item (used on desktop in the header)
+         */
+        "variant": SwitchVariant;
     }
     interface PostLanguageOptionSwitch {
         /**
-          * A title for the list
+          * A title for the list of language options
          */
         "caption": string;
         /**
-          * A descriptive text for the list
+          * A descriptive text for the list of language options
          */
         "description": string;
         /**
-          * Mode determines if the language-switch navigates to a different page or just emits events
-         */
-        "mode": SwitchMode;
-        /**
           * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
          */
-        "variant": SwitchVariant;
+        "variant": SwitchVariant1;
     }
     interface PostList {
         /**
@@ -1028,24 +1028,24 @@ declare namespace LocalJSX {
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
         "url"?: string;
+        /**
+          * Variant that determines the rendering of the language option either as a list item (used on mobile in the header) or a dropdown item (used on desktop in the header)
+         */
+        "variant"?: SwitchVariant;
     }
     interface PostLanguageOptionSwitch {
         /**
-          * A title for the list
+          * A title for the list of language options
          */
         "caption"?: string;
         /**
-          * A descriptive text for the list
+          * A descriptive text for the list of language options
          */
         "description"?: string;
         /**
-          * Mode determines if the language-switch navigates to a different page or just emits events
-         */
-        "mode"?: SwitchMode;
-        /**
           * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
          */
-        "variant"?: SwitchVariant;
+        "variant"?: SwitchVariant1;
     }
     interface PostList {
         /**

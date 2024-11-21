@@ -8,17 +8,6 @@ post-language-option-switch {
   post-list > div[role='list'] {
     flex-direction: row;
     gap: 8px;
-
-    post-language-option {
-      width: 40px;
-      height: 40px;
-      border-radius: 2px;
-
-      &[active] {
-        background-color: #050400;
-        color: #fff;
-      }
-    }
   }
 
   .hide {
