@@ -1,5 +1,19 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.5
+
+### Major Changes
+
+- Removed the deprecated `.pi-*` classes, which were previously used to display icons. The `post-icon` component should now be used instead. (by [@alizedebray](https://github.com/alizedebray) with [#3947](https://github.com/swisspost/design-system/pull/3947))
+
+### Minor Changes
+
+- Added custom styles for the ordered lists. (by [@veyaromain](https://github.com/veyaromain) with [#3755](https://github.com/swisspost/design-system/pull/3755))
+
+### Patch Changes
+
+- Fixed issue where the focus ring was not appearing on inactive chips. (by [@schaertim](https://github.com/schaertim) with [#3820](https://github.com/swisspost/design-system/pull/3820))
+
 ## 9.0.0-next.4
 
 ### Major Changes

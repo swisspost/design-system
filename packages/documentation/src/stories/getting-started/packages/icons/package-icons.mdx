@@ -16,13 +16,19 @@ The comprehensive collection of Swiss Post icons.
 
 <ul>
   <li>
-    <a href="#installation" target="_self">Installation</a>
+    <a href="#installation" target="_self">
+      Installation
+    </a>
   </li>
   <li>
-    <a href="#usage" target="_self">Usage</a>
+    <a href="#usage" target="_self">
+      Usage
+    </a>
   </li>
   <li>
-    <a href="#usage-with-cdn" target="_self">Usage with CDN</a>
+    <a href="#usage-with-cdn" target="_self">
+      Usage with CDN
+    </a>
   </li>
 </ul>
 
@@ -30,8 +36,9 @@ The comprehensive collection of Swiss Post icons.
 
 <Source code={`npm install @swisspost/design-system-icons`} language="bash" />
 
-<div className="alert alert-info alert-md">
-  To render an icon with a component, you need to install the [Components package](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs) as well.
+<div className="banner banner-info banner-md">
+  To render an icon with a component, you need to install the [Components
+  package](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs) as well.
 </div>
 
 ## Usage
@@ -89,7 +96,7 @@ There is one last thing we want to tell you about.
 
 All icons are also available from a CDN, which is the default if you don't configure a base path for your icons and don't serve them locally. When using the CDN, please note that you need to configure your CORS policy to enable resource loading from unpkg.com.
 
-<div className="alert alert-warning alert-md">
+<div className="banner banner-warning banner-md">
   Using the CDN is not recommended for production because of higher latency when loading from the
   CDN, use it for quickly testing something or for prototyping.
 </div>
@@ -98,4 +105,3 @@ All icons are also available from a CDN, which is the default if you don't confi
 
 If your project includes the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy">Content-Security-Policy</a> response header (usually in `index.html`),
 make sure that `default-src` is set to `'self'`. In case you are using the `<post-icon>` component you need to add [`https://unpkg.com/`](https://unpkg.com/) to the `connect-src` in index.html. This is becasue the icons are retrived from there.
-
