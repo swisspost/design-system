@@ -63,6 +63,9 @@ export const TextExample: Story = {
 };
 
 export const IconExample: Story = {
+ args: {
+   name: 'another-unic-segmented-button-name'
+ }, 
   render: (args: Args) => {
     const labelCount = Math.min(args.labelCount || 0, MAX_LABELS);
 
