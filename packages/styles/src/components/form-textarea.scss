@@ -74,7 +74,6 @@ textarea.form-control {
     }
   }
 
-  // TODO: Faut faire le readonly pcq là ça va pas
   &[readonly]:not(:disabled) {
     border-color: tokens.get('textarea-enabled-border');
     background-color: tokens.get('textarea-enabled-bg');
@@ -102,7 +101,8 @@ textarea.form-control {
   &.is-invalid {
     &:not(:disabled) {
       background-size: tokens.get('textarea-sizing-icon');
-      background-position: center right tokens.get('textarea-validated-padding-inline-end');
+      background-position: top tokens.get('textarea-padding-block-start') right
+        tokens.get('textarea-padding-inline-end');
       background-repeat: no-repeat;
       padding-inline-end: calc(
         (#{tokens.get('textarea-validated-padding-inline-end')} * 2) + #{tokens.get(
@@ -124,12 +124,7 @@ textarea.form-control {
 .form-label:has(+ textarea.form-control[disabled]) {
   color: tokens.get('textarea-disabled-fg');
 }
-/*
-.form-floating > textarea.form-control {
-  height: tokens.get('textarea-sizing-height');
-  min-height: tokens.get('textarea-sizing-height');
-}
- */
+
 .form-floating {
   position: relative;
 
@@ -149,7 +144,7 @@ textarea.form-control {
     color: tokens.get('textarea-enabled-fg');
     width: auto;
     height: auto;
-    max-width: calc(100% - (#{tokens.get('textarea-border-width')} * 2));
+    width: calc(100% - (#{tokens.get('textarea-border-width')} * 2));
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -160,38 +155,25 @@ textarea.form-control {
   }
 
   > textarea.form-control {
-    /* height: tokens.get('textarea-sizing-height');
-    min-height: tokens.get('textarea-sizing-height'); */
-    //TODO?? Ca ca donne quoi
-    /*
+    padding-block-start: tokens.get('textarea-padding-block-start');
+    padding-block-end: tokens.get('textarea-padding-block-end');
+
     &::placeholder {
       color: transparent;
     }
- */
 
     &:focus,
     &:not(:placeholder-shown) {
-      padding-block-start: tokens.get('textarea-padding-block-start');
-      padding-block-end: tokens.get('textarea-padding-block-end');
-
       ~ label {
-        //color: tokens.get('textarea-selected-fg');
         font-size: tokens.get('textarea-label-filled-font-size');
         padding-block-start: tokens.get('textarea-label-filled-padding-block-start');
       }
-      /*
-      &:not(:hover):not(:disabled) {
-        ~ label {
-          color: tokens.get('textarea-enabled-fg');
-        }
-      } */
     }
-    /*
+
     @include forms-mx.placeholder {
       opacity: 0;
     }
- */
-    // TODO: Should there be a placeholder?
+
     &:focus {
       @include forms-mx.placeholder {
         color: tokens.get('textarea-hover-fg');
@@ -208,49 +190,21 @@ textarea.form-control {
       color: tokens.get('textarea-hover-fg');
       background-color: tokens.get('textarea-hover-bg');
     }
+
+    &:is(.is-valid, .is-invalid) {
+      ~ label {
+        width: calc(
+          100% - (#{tokens.get('textarea-border-width')} * 2) - #{tokens.get(
+              'textarea-label-validated-padding-inline-end'
+            )}
+        );
+      }
+    }
   }
 
   > textarea:disabled ~ label {
     color: tokens.get('textarea-disabled-fg');
     background-color: tokens.get('textarea-disabled-bg');
-  }
-
-  > textarea.form-control {
-    /*     ~ label {
-      padding-block-end: 0;
-      width: calc(100% - (#{tokens.get('textarea-border-width')} * 2));
-      max-width: none;
-      height: unset;
-      padding-block-start: spacing.$size-regular;
-    }
- */
-    /*     &:focus,
-    &:not(:placeholder-shown) {
-      padding-block-end: spacing.$size-mini;
-
-      ~ label {
-        padding-block-start: spacing.$size-mini;
-        width: calc(100% - (#{tokens.get('textarea-border-width')} * 2));
-        max-width: none;
-        background-color: tokens.get('textarea-selected-bg');
-      }
-    }
- */
-    &:is(.is-valid, .is-invalid) {
-      ~ label {
-        width: calc(
-          100% - (#{tokens.get('textarea-border-width')} * 2) - #{form-validation.$form-feedback-icon-offset} -
-            #{tokens.get('textarea-sizing-min-height')}
-        );
-      }
-
-      &:focus,
-      &:not(:placeholder-shown) {
-        ~ label {
-          width: calc(100% - (#{tokens.get('textarea-border-width')} * 2));
-        }
-      }
-    }
   }
 
   @include utilities-mx.high-contrast-mode() {
