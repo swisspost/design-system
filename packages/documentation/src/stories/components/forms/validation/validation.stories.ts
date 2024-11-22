@@ -1,9 +1,9 @@
-import { Args, StoryObj } from '@storybook/web-components';
+import { Args, StoryObj, StoryContext } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const validationObject: object = {
-  name: 'Validation',
+  name: 'validation',
   description: 'Controls the validation state appearance of the component.',
   control: {
     type: 'radio',
@@ -19,19 +19,25 @@ const validationObject: object = {
   },
 };
 
-function getValidationProps(validation: string) {
-  const validationState = validation;
-  const isValidationSet = validation !== 'null';
+export function getValidationProps(component: string, args: Args) {
+  const key = `validation${component}`;
+  const validationState = args[key];
+  const isValidationSet = args[key] !== 'null';
   const isValid = validationState === 'is-valid';
+
+  const scheme = args.scheme ? `-${args.scheme}` : '';
+  const name = args.componentName ? `${args.componentName}` : '';
+  const id = `-id-${name}${scheme}`;
+
   return {
     validationState,
     isValidationSet,
     ariaInvalid: isValidationSet ? !isValid : nothing,
-    ariaDescribedBy: isValidationSet ? `${validationState}-id` : nothing,
+    ariaDescribedBy: isValidationSet ? `${validationState}${id}` : nothing,
     validFeedbackId:
-      isValidationSet && validationState !== 'is-invalid' ? `${validationState}-id` : nothing,
+      isValidationSet && validationState !== 'is-invalid' ? `${validationState}${id}` : nothing,
     invalidFeedbackId:
-      isValidationSet && validationState !== 'is-valid' ? `${validationState}-id` : nothing,
+      isValidationSet && validationState !== 'is-valid' ? `${validationState}${id}` : nothing,
   };
 }
 
@@ -71,8 +77,10 @@ export const Checkbox: Story = {
   argTypes: {
     validationCheckbox: validationObject,
   },
-  render: (args: Args) => {
-    const props = getValidationProps(args.validationCheckbox);
+  render: (args: Args, context: StoryContext) => {
+    const component = context.name.replace(/\s+/g, '');
+    const props = getValidationProps(component, args);
+
     const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
     return html`<div class="form-check">
       <input
@@ -95,8 +103,9 @@ export const Input: Story = {
   argTypes: {
     validationInput: validationObject,
   },
-  render: (args: Args) => {
-    const props = getValidationProps(args.validationInput);
+  render: (args: Args, context: StoryContext) => {
+    const component = context.name.replace(/\s+/g, '');
+    const props = getValidationProps(component, args);
     const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
     return html`<div class="form-floating">
       <input
@@ -124,8 +133,9 @@ export const RadioButton: Story = {
   argTypes: {
     validationRadioButton: validationObject,
   },
-  render: (args: Args) => {
-    const props = getValidationProps(args.validationRadioButton);
+  render: (args: Args, context: StoryContext) => {
+    const component = context.name.replace(/\s+/g, '');
+    const props = getValidationProps(component, args);
     const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
     return html` <legend>Legend</legend>
       <div class="form-check form-check-inline">
@@ -150,15 +160,16 @@ export const RadioButtonGroup: Story = {
   argTypes: {
     validationRadioButtonGroup: validationObject,
   },
-  render: (args: Args) => {
-    const props = getValidationProps(args.validationRadioButtonGroup);
+  render: (args: Args, context: StoryContext) => {
+    const component = context.name.replace(/\s+/g, '');
+    const props = getValidationProps(component, args);
     const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
     return html`<fieldset>
       <legend>Legend</legend>
       <div class="form-check form-check-inline">
         <input
           type="radio"
-          id="Radio_1"
+          id="Radio_10"
           name="radio_group"
           class="form-check-input ${props.isValidationSet ? props.validationState : ''}"
           aria-invalid=${props.ariaInvalid}
@@ -168,11 +179,11 @@ export const RadioButtonGroup: Story = {
         <label class="form-check-label" for="Radio_1">Option 1</label>
       </div>
       <div class="form-check form-check-inline">
-        <input type="radio" id="Radio_2" name="radio_group" class="form-check-input" />
+        <input type="radio" id="Radio_11" name="radio_group" class="form-check-input" />
         <label class="form-check-label" for="Radio_1">Option 2</label>
       </div>
       <div class="form-check form-check-inline">
-        <input type="radio" id="Radio_3" name="radio_group" class="form-check-input" />
+        <input type="radio" id="Radio_12" name="radio_group" class="form-check-input" />
         <label class="form-check-label" for="Radio_1">Option 3</label>
       </div>
       ${feedbackTemplate}
@@ -187,8 +198,9 @@ export const Select: Story = {
   argTypes: {
     validationSelect: validationObject,
   },
-  render: (args: Args) => {
-    const props = getValidationProps(args.validationSelect);
+  render: (args: Args, context: StoryContext) => {
+    const component = context.name.replace(/\s+/g, '');
+    const props = getValidationProps(component, args);
     const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
     return html`<div class="form-floating">
       <select
@@ -222,8 +234,9 @@ export const Switch: Story = {
   argTypes: {
     validationSwitch: validationObject,
   },
-  render: (args: Args) => {
-    const props = getValidationProps(args.validationSwitch);
+  render: (args: Args, context: StoryContext) => {
+    const component = context.name.replace(/\s+/g, '');
+    const props = getValidationProps(component, args);
     const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
     return html`<div class="form-check form-switch">
       <input
@@ -247,8 +260,9 @@ export const TextArea: Story = {
   argTypes: {
     validationTextArea: validationObject,
   },
-  render: (args: Args) => {
-    const props = getValidationProps(args.validationTextArea);
+  render: (args: Args, context: StoryContext) => {
+    const component = context.name.replace(/\s+/g, '');
+    const props = getValidationProps(component, args);
     const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
     return html`<div class="form-floating">
       <textarea
