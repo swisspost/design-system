@@ -15,6 +15,54 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
 </div>
 
 <PackageDocs changelog={changelog}>
+  ## Dependencies
+
+  <div className="table-responsive table-fit-content text-start">
+    <table aria-describedby="dependencies" className="table">
+      <thead>
+        <tr>
+          <th scope="col">Version</th>
+          <th scope="col">Bootstrap</th>
+          <th scope="col">Angular</th>
+          <th scope="col">Ng-Bootstrap</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th scope="col">5.x</th>
+          <td>5.0</td>
+          <td>14.x</td>
+          <td>13.x</td>
+        </tr>
+        <tr>
+          <th scope="col">6.2 - 6.3</th>
+          <td>5.2</td>
+          <td>15.x</td>
+          <td>14.x</td>
+        </tr>
+        <tr>
+          <th scope="col">6.4 - 6.6</th>
+          <td>5.3</td>
+          <td>16.x</td>
+          <td>15.x</td>
+        </tr>
+        <tr>
+          <th scope="col">7.x</th>
+          <td>5.3</td>
+          <td>16.x || 17.x</td>
+          <td>15.x || 16.x</td>
+        </tr>
+        <tr>
+          <th scope="col">8.x</th>
+          <td>5.3</td>
+          <td>18.x</td>
+          <td>17.x</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   ## Installation
 
   <Source code={`npm install @swisspost/design-system-styles`} language="bash" />

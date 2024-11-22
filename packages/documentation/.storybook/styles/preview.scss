@@ -48,6 +48,14 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     .table-responsive {
       margin-block: 1.5rem 1rem;
     }
+
+    .table-fit-content {
+      width: fit-content;
+
+      th, td {
+        padding-inline: 2rem;
+      }
+    }
   }
 
   .sbdocs-content .container {

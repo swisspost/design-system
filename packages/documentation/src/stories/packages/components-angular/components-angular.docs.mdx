@@ -16,6 +16,38 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
 </div>
 
 <PackageDocs changelog={changelog}>
+  ## Dependencies
+
+  <div className="table-responsive table-fit-content text-start">
+    <table aria-describedby="dependencies" className="table">
+      <thead>
+        <tr>
+          <th scope="col">Version</th>
+          <th scope="col">Angular</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th scope="row">1.x</th>
+          <td>16.x</td>
+        </tr>
+        <tr>
+          <th scope="row">2.x</th>
+          <td>16.x</td>
+        </tr>
+        <tr>
+          <th scope="row">7.x</th>
+          <td>16.x || 17.x</td>
+        </tr>
+        <tr>
+          <th scope="row">8.x</th>
+          <td>18.x</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   ## Installation
 
   <Source code={`npm install @swisspost/design-system-components-angular`} language="bash" />
