@@ -2,19 +2,6 @@ import { Args, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 
-const meta: MetaComponent = {
-  id: '1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472',
-  title: 'Components/Forms/Validation',
-  tags: ['package:HTML'],
-  parameters: {
-    badges: [],
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=577-14513&t=uKEtTo9BEaPpKSV5-1',
-    },
-  },
-};
-
 const validationObject: object = {
   name: 'Validation',
   description: 'Controls the validation state appearance of the component.',
@@ -26,82 +13,97 @@ const validationObject: object = {
       'is-invalid': 'Invalid',
     },
   },
-  options: ['null', 'is-valid', 'is-invalid'],
+  options: ['is-invalid', 'is-valid', 'null'],
   table: {
     category: 'States',
+  },
+};
+
+function getValidationProps(validation: string) {
+  const validationState = validation;
+  const isValidationSet = validation !== 'null';
+  const isValid = validationState === 'is-valid';
+  return {
+    validationState,
+    isValidationSet,
+    ariaInvalid: isValidationSet ? !isValid : nothing,
+    ariaDescribedBy: isValidationSet ? `${validationState}-id` : nothing,
+    validFeedbackId:
+      isValidationSet && validationState !== 'is-invalid' ? `${validationState}-id` : nothing,
+    invalidFeedbackId:
+      isValidationSet && validationState !== 'is-valid' ? `${validationState}-id` : nothing,
+  };
+}
+
+function renderFeedback(validFeedbackId: string | symbol, invalidFeedbackId: string | symbol) {
+  return html`
+    ${validFeedbackId
+      ? html`<p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>`
+      : nothing}
+    ${invalidFeedbackId
+      ? html`<p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>`
+      : nothing}
+  `;
+}
+
+const meta: MetaComponent = {
+  id: '1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472',
+  title: 'Components/Forms/Validation',
+  tags: ['package:HTML'],
+  parameters: {
+    badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=577-14513&t=uKEtTo9BEaPpKSV5-1',
+    },
+    args: validationObject,
   },
 };
 
 export default meta;
 
 type Story = StoryObj;
-export const Default: Story = {};
 
 export const Checkbox: Story = {
   args: {
-    validation2: 'is-invalid',
+    validationCheckbox: 'is-invalid',
   },
   argTypes: {
-    validation2: validationObject,
+    validationCheckbox: validationObject,
   },
-  render(args: Args) {
-    const isValidationSet = args.validation2 !== 'null';
-    const isValid = args.validation2 === 'is-valid';
-    let ariaInvalid;
-    if (isValidationSet) {
-      ariaInvalid = !isValid;
-    } else {
-      ariaInvalid = nothing;
-    }
-    const ariaDescribedBy = isValidationSet ? `${args.validation2}-id` : nothing;
-    const validFeedbackId =
-      isValidationSet && args.validation2 !== 'is-invalid' ? `${args.validation2}-id` : nothing;
-    const invalidFeedbackId =
-      isValidationSet && args.validation2 !== 'is-valid' ? `${args.validation2}-id` : nothing;
+  render: (args: Args) => {
+    const props = getValidationProps(args.validationCheckbox);
+    const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
     return html`<div class="form-check">
       <input
         type="checkbox"
         id="Checkbox_1"
-        class="form-check-input ${isValidationSet ? args.validation2 : ''}"
-        aria-invalid=${ariaInvalid}
-        aria-describedby="${ariaDescribedBy}"
+        class="form-check-input ${props.isValidationSet ? props.validationState : ''}"
+        aria-invalid=${props.ariaInvalid}
+        aria-describedby="${props.ariaDescribedBy}"
       />
-      <label class="form-check-label" for="Checkbox_1">
-        <span>Label</span>
-      </label>
-      <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
-      <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
+      <label class="form-check-label" for="Checkbox_1">Label</label>
+      ${feedbackTemplate}
     </div>`;
   },
 };
 
 export const Input: Story = {
   args: {
-    validation3: 'is-valid',
+    validationInput: 'is-invalid',
   },
   argTypes: {
-    validation3: validationObject,
+    validationInput: validationObject,
   },
-  render(args: Args) {
-    const isValidationSet = args.validation3 !== 'null';
-    const isValid = args.validation3 === 'is-valid';
-    let ariaInvalid;
-    if (isValidationSet) {
-      ariaInvalid = !isValid;
-    } else {
-      ariaInvalid = nothing;
-    }
-    const ariaDescribedBy = isValidationSet ? `${args.validation3}-id` : nothing;
-    const validFeedbackId =
-      isValidationSet && args.validation3 !== 'is-invalid' ? `${args.validation3}-id` : nothing;
-    const invalidFeedbackId =
-      isValidationSet && args.validation3 !== 'is-valid' ? `${args.validation3}-id` : nothing;
+  render: (args: Args) => {
+    const props = getValidationProps(args.validationInput);
+    const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
     return html`<div class="form-floating">
       <input
         id="Input_1"
-        class="form-control form-control-lg ${isValidationSet ? args.validation3 : ''}"
-        aria-invalid=${ariaInvalid}
-        aria-describedby="${ariaDescribedBy}"
+        class="form-control form-control-lg ${props.isValidationSet ? props.validationState : ''}"
+        aria-invalid=${props.ariaInvalid}
+        aria-describedby="${props.ariaDescribedBy}"
         type="text"
         placeholder="Placeholder"
       />
@@ -110,95 +112,90 @@ export const Input: Story = {
         Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
         illum dolore eu feugiat nulla facilisis.
       </p>
-      <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
-      <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
-    </div>`;
+      ${feedbackTemplate}
+    </div> `;
   },
 };
 
 export const RadioButton: Story = {
   args: {
-    validation4: 'is-invalid',
-    validation42: 'is-valid',
+    validationRadioButton: 'is-invalid',
   },
   argTypes: {
-    validation4: validationObject,
-    validation42: validationObject,
+    validationRadioButton: validationObject,
   },
-  render(args: Args) {
-    const isValidationSet = args.validation4 !== 'null';
-    const isValid = args.validation4 === 'is-valid';
-    let ariaInvalid;
-    if (isValidationSet) {
-      ariaInvalid = !isValid;
-    } else {
-      ariaInvalid = nothing;
-    }
-    const ariaDescribedBy = isValidationSet ? `${args.validation4}-id` : nothing;
-    const validFeedbackId =
-      isValidationSet && args.validation4 !== 'is-invalid' ? `${args.validation4}-id` : nothing;
-    const invalidFeedbackId =
-      isValidationSet && args.validation4 !== 'is-valid' ? `${args.validation4}-id` : nothing;
-    return html`<div class="form-check">
+  render: (args: Args) => {
+    const props = getValidationProps(args.validationRadioButton);
+    const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
+    return html` <legend>Legend</legend>
+      <div class="form-check form-check-inline">
         <input
           type="radio"
           id="Radio_1"
-          name="radio"
-          class="form-check-input ${isValidationSet ? args.validation4 : ''}"
-          aria-invalid=${ariaInvalid}
-          aria-describedby="${ariaDescribedBy}"
+          name="radio_group"
+          class="form-check-input ${props.isValidationSet ? props.validationState : ''}"
+          aria-invalid=${props.ariaInvalid}
+          aria-describedby="${props.ariaDescribedBy}"
         />
-        <label class="form-check-label" for="Radio_1">
-          <span>Label</span>
-        </label>
-        <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
-        <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
-      </div>
-      <div class="form-check">
+        <label class="form-check-label" for="Radio_1">Option 1</label>
+        ${feedbackTemplate}
+      </div>`;
+  },
+};
+
+export const RadioButtonGroup: Story = {
+  args: {
+    validationRadioButtonGroup: 'is-invalid',
+  },
+  argTypes: {
+    validationRadioButtonGroup: validationObject,
+  },
+  render: (args: Args) => {
+    const props = getValidationProps(args.validationRadioButtonGroup);
+    const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
+    return html`<fieldset>
+      <legend>Legend</legend>
+      <div class="form-check form-check-inline">
         <input
           type="radio"
-          id="Radio_2"
-          name="radio"
-          class="form-check-input ${isValidationSet ? args.validation42 : ''}"
-          aria-invalid=${ariaInvalid}
-          aria-describedby="${ariaDescribedBy}"
+          id="Radio_1"
+          name="radio_group"
+          class="form-check-input ${props.isValidationSet ? props.validationState : ''}"
+          aria-invalid=${props.ariaInvalid}
+          aria-describedby="${props.ariaDescribedBy}"
+          required
         />
-        <label class="form-check-label" for="Radio_2">
-          <span>Label</span>
-        </label>
-        <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
-        <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
-      </div>`;
+        <label class="form-check-label" for="Radio_1">Option 1</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input type="radio" id="Radio_2" name="radio_group" class="form-check-input" />
+        <label class="form-check-label" for="Radio_1">Option 2</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input type="radio" id="Radio_3" name="radio_group" class="form-check-input" />
+        <label class="form-check-label" for="Radio_1">Option 3</label>
+      </div>
+      ${feedbackTemplate}
+    </fieldset>`;
   },
 };
 
 export const Select: Story = {
   args: {
-    validation5: 'is-valid',
+    validationSelect: 'is-invalid',
   },
   argTypes: {
-    validation5: validationObject,
+    validationSelect: validationObject,
   },
-  render(args: Args) {
-    const isValidationSet = args.validation5 !== 'null';
-    const isValid = args.validation5 === 'is-valid';
-    let ariaInvalid;
-    if (isValidationSet) {
-      ariaInvalid = !isValid;
-    } else {
-      ariaInvalid = nothing;
-    }
-    const ariaDescribedBy = isValidationSet ? `${args.validation5}-id` : nothing;
-    const validFeedbackId =
-      isValidationSet && args.validation5 !== 'is-invalid' ? `${args.validation5}-id` : nothing;
-    const invalidFeedbackId =
-      isValidationSet && args.validation5 !== 'is-valid' ? `${args.validation5}-id` : nothing;
+  render: (args: Args) => {
+    const props = getValidationProps(args.validationSelect);
+    const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
     return html`<div class="form-floating">
       <select
         id="Select_1"
-        class="form-select form-select-lg ${isValidationSet ? args.validation5 : ''}"
-        aria-invalid=${ariaInvalid}
-        aria-describedby="${ariaDescribedBy}"
+        class="form-select form-select-lg ${props.isValidationSet ? props.validationState : ''}"
+        aria-invalid=${props.ariaInvalid}
+        aria-describedby="${props.ariaDescribedBy}"
       >
         <option>Select option...</option>
         <option value="value_1">Option 1</option>
@@ -213,86 +210,61 @@ export const Select: Story = {
         Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
         illum dolore eu feugiat nulla facilisis.
       </p>
-      <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
-      <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
+      ${feedbackTemplate}
     </div>`;
   },
 };
 
 export const Switch: Story = {
   args: {
-    validation6: 'is-invalid',
+    validationSwitch: 'is-invalid',
   },
   argTypes: {
-    validation6: validationObject,
+    validationSwitch: validationObject,
   },
-  render(args: Args) {
-    const isValidationSet = args.validation6 !== 'null';
-    const isValid = args.validation6 === 'is-valid';
-    let ariaInvalid;
-    if (isValidationSet) {
-      ariaInvalid = !isValid;
-    } else {
-      ariaInvalid = nothing;
-    }
-    const ariaDescribedBy = isValidationSet ? `${args.validation6}-id` : nothing;
-    const validFeedbackId =
-      isValidationSet && args.validation6 !== 'is-invalid' ? `${args.validation6}-id` : nothing;
-    const invalidFeedbackId =
-      isValidationSet && args.validation6 !== 'is-valid' ? `${args.validation6}-id` : nothing;
+  render: (args: Args) => {
+    const props = getValidationProps(args.validationSwitch);
+    const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
     return html`<div class="form-check form-switch">
       <input
         type="checkbox"
         role="switch"
         id="Switch_1"
-        class="form-check-input ${isValidationSet ? args.validation6 : ''}"
-        aria-invalid=${ariaInvalid}
-        aria-describedby="${ariaDescribedBy}"
+        class="form-check-input ${props.isValidationSet ? props.validationState : ''}"
+        aria-invalid=${props.ariaInvalid}
+        aria-describedby="${props.ariaDescribedBy}"
       />
       <label class="form-check-label order-first" for="Switch_1">Notifications</label>
-      <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
-      <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
+      ${feedbackTemplate}
     </div>`;
   },
 };
 
 export const TextArea: Story = {
   args: {
-    validation7: 'is-invalid',
+    validationTextArea: 'is-invalid',
   },
   argTypes: {
-    validation7: validationObject,
+    validationTextArea: validationObject,
   },
-  render(args: Args) {
-    const isValidationSet = args.validation7 !== 'null';
-    const isValid = args.validation7 === 'is-valid';
-    let ariaInvalid;
-    if (isValidationSet) {
-      ariaInvalid = !isValid;
-    } else {
-      ariaInvalid = nothing;
-    }
-    const ariaDescribedBy = isValidationSet ? `${args.validation7}-id` : nothing;
-    const validFeedbackId =
-      isValidationSet && args.validation7 !== 'is-invalid' ? `${args.validation7}-id` : nothing;
-    const invalidFeedbackId =
-      isValidationSet && args.validation7 !== 'is-valid' ? `${args.validation7}-id` : nothing;
+  render: (args: Args) => {
+    const props = getValidationProps(args.validationTextArea);
+    const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
     return html`<div class="form-floating">
       <textarea
         placeholder=""
         rows=""
         id="TextArea_1"
-        class="form-control form-control-lg ${isValidationSet ? args.validation7 : ''}"
-        aria-invalid=${ariaInvalid}
-        aria-describedby="${ariaDescribedBy}"
+        class="form-control form-control-lg ${props.isValidationSet ? props.validationState : ''}"
+        aria-invalid=${props.ariaInvalid}
+        aria-describedby="${props.ariaDescribedBy}"
       ></textarea
       ><label class="form-label" for="TextArea_1">Label</label>
       <p class="form-text">
         Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
         illum dolore eu feugiat nulla facilisis.
       </p>
-      <p id="${validFeedbackId}" class="valid-feedback">Valid message.</p>
-      <p id="${invalidFeedbackId}" class="invalid-feedback">Invalid message.</p>
+      ${feedbackTemplate}
     </div>`;
   },
 };

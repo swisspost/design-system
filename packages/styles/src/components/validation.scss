@@ -31,9 +31,16 @@ Default feedback message classes
     display: flex;
   }
 }
-// Special for Card Control
+
+// Special for fieldset
 .was-validated:has(:valid) ~ .valid-feedback,
 :has(.is-valid) ~ .valid-feedback {
+  display: flex;
+}
+
+// Special for fieldset
+.was-validated:has(:invalid) ~ .invalid-feedback,
+:has(.is-invalid) ~ .invalid-feedback {
   display: flex;
 }
 
@@ -55,14 +62,15 @@ Default feedback message classes
 input[type='checkbox'],
 input[type='radio'],
 input[type='range'],
-:has(input[type='checkbox']) {
+:has(input[type='checkbox']),
+:has(input[type='radio']) {
   ~ .invalid-feedback,
   ~ .valid-feedback {
     padding: tokens.get('post-validation-group-padding-block-text');
 
     &::before {
-      margin-top: calc(-1 * tokens.get('post-validation-group-padding-block-text'));
-      margin-bottom: calc(-1 * tokens.get('post-validation-group-padding-block-text'));
+      margin-top: calc(-1 * #{tokens.get('post-validation-group-padding-block-text')});
+      margin-bottom: calc(-1 * #{tokens.get('post-validation-group-padding-block-text')});
       height: tokens.get('post-validation-group-icon-size');
       width: tokens.get('post-validation-group-icon-size');
       display: inline-block;
