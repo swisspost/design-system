@@ -3,7 +3,7 @@ import { MetaExtended } from '@root/types';
 
 const meta: MetaExtended = {
   id: '8426deb2-3d6d-4fcc-90e6-1ca9737b2ed0',
-  title: 'Getting Started/Angular',
+  title: 'Guidelines/Angular',
   parameters: {
     badges: [],
   },
