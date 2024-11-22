@@ -10,7 +10,7 @@ addons.setConfig({
   panelPosition: 'right',
   theme: themes.light,
   sidebar: {
-    collapsedRoots: ['packages'],
+    collapsedRoots: ['packages', 'templates'],
   },
 
   // the toolbar is only visible in the fill screen view after clicking "View full screen" on a story

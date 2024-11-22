@@ -68,6 +68,9 @@ const preview: Preview = {
           // Category - Utilities
           'Utilities',
 
+          // Category - Templates
+          'Templates',
+
           // Category - Misc
           'Misc',
           ['Migration Guide', 'Changelog', 'Versions'],
