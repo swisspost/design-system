@@ -38,9 +38,8 @@ src/icons/**/*.svg
 !src/icons/v2/Accessibility_64.svg
 
 # Ignore generated files
-# TODO: Add before merge
-# public/post-icons
-# public/report.json
+public/post-icons
+public/report.json
 
 icons-optimized
 icons.json
