@@ -232,7 +232,7 @@ function createV2Report() {
             meta: {
               downloadLink: '',
               businessfield: [],
-              keywords: ['ui', name],
+              keywords: ['UI', name],
               year: ['2024'],
             },
             file: {

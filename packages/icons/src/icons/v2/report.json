@@ -1,15 +1,15 @@
 {
   "icons": [
     {
-      "uuid": "9a985593-fbf5-419e-b0ce-081172e842af",
-      "id": 571878,
+      "uuid": "47c9709c-1bc0-4f7c-bada-31c06f5898db",
+      "id": 711177,
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
         "downloadLink": "",
         "businessfield": [],
         "keywords": [
-          "ui",
+          "UI",
           "accessibility.svg"
         ],
         "year": [
@@ -27,15 +27,15 @@
           "height": 0
         }
       },
-      "createdAt": "2024-11-21T15:11:25.030Z",
-      "modifiedAt": "2024-11-21T15:11:25.030Z"
+      "createdAt": "2024-11-22T08:48:08.542Z",
+      "modifiedAt": "2024-11-22T08:48:08.542Z"
     }
   ],
   "wrongViewBox": [],
   "noKeywords": [],
   "noSVG": [],
   "errored": [],
-  "created": "2024-11-21T15:11:25.031Z",
+  "created": "2024-11-22T08:48:08.543Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
