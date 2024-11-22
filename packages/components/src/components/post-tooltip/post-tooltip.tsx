@@ -19,6 +19,7 @@ let tooltipInstances = 0;
 let hideTooltipTimeout: number = null;
 const tooltipTargetAttribute = 'data-tooltip-target';
 const tooltipTargetAttributeSelector = `[${tooltipTargetAttribute}]`;
+let globalCurrentTarget: HTMLElement;
 
 /**
  * Global event listener to show tooltips. This is globalized so that triggers that are rendered
@@ -34,6 +35,7 @@ const globalInterestHandler = (e: PointerEvent | FocusEvent) => {
   const targetElement = (e.target as HTMLElement).closest(
     tooltipTargetAttributeSelector,
   ) as HTMLElement;
+  globalCurrentTarget = targetElement;
   if (!targetElement || !('getAttribute' in targetElement)) return;
   const tooltipTarget = targetElement.getAttribute(tooltipTargetAttribute);
   if (!tooltipTarget || tooltipTarget === '') return;
@@ -200,6 +202,9 @@ export class PostTooltip {
   @Method()
   async show(target: HTMLElement, triggeredByFocus = false) {
     if (this.delayed) await timeout(OPEN_DELAY);
+
+    // If focus or pointer event is not on the button anymore, don't show the tooltip
+    if (globalCurrentTarget !== target) return;
 
     // Determine if the tooltip was opened by a focus event
     this.wasOpenedByFocus = triggeredByFocus;
