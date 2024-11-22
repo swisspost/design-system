@@ -290,12 +290,6 @@ input.form-control {
     }
   }
 
-  > input.form-control:disabled ~ label {
-    // Required for `.form-control`s because of specificity
-    color: tokens.get('input-color-disabled-fg');
-    background-color: tokens.get('input-color-disabled-bg');
-  }
-
   // Duplicated because `:-webkit-autofill` invalidates other selectors when grouped
   > input.form-control:-webkit-autofill {
     padding-block-start: tokens.get('input-padding-block-start');
