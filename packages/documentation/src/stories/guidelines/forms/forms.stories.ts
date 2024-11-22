@@ -5,7 +5,7 @@ import * as FormFooterMeta from '../../components/forms/form-footer/form-footer.
 
 const meta: MetaExtended = {
   id: 'd83829b2-7de2-48d2-be64-07a80c9caef3',
-  title: 'Patterns/Forms',
+  title: 'Guidelines/Forms',
   parameters: {
     badges: [],
   },
@@ -346,9 +346,7 @@ export const Hints: Story = {
         placeholder=" "
       />
       <label class="form-label" for="firstname">Firstname</label>
-      <p id="firstname-hint" class="form-hint">
-        Also provide any middle names in this field
-      </p>
+      <p id="firstname-hint" class="form-hint">Also provide any middle names in this field</p>
     </div>
   `,
 };

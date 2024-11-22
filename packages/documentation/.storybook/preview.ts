@@ -61,15 +61,14 @@ const preview: Preview = {
           // Category - Components
           'Components',
 
-          // Category - Patterns
-          'Patterns',
-          ['Metadata', 'Forms'],
-
           // Category - Utilities
           'Utilities',
 
           // Category - Templates
           'Templates',
+
+          // Category - Guidelines
+          'Guidelines',
 
           // Category - Misc
           'Misc',
