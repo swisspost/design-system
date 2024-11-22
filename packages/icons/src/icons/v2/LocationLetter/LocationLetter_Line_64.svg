@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="a" data-name="3219" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect x="0" y="0" width="64" height="64" fill="none"/>
+  <rect x="1.38" y="29.09" width="44.54" height="33.75" fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75"/>
+  <path d="M1.38,29.09l17.76,19.05c2.49,2.67,6.52,2.67,9.01,0l17.76-19.05" fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75"/>
+  <line x1="17.31" y1="45.96" x2="1.47" y2="61.8" fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75"/>
+  <line x1="29.98" y1="45.96" x2="45.81" y2="61.8" fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75"/>
+  <path d="M62.6,16.73c0,10.95-15.32,26.26-15.32,26.26,0,0-15.32-15.31-15.32-26.26,0-8.46,6.86-15.32,15.32-15.32s15.32,6.86,15.32,15.32Z" fill="#fff" stroke="#1e1e1c" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2.75"/>
+  <circle cx="47.29" cy="16.82" r="4.83" fill="none" stroke="#1e1e1c" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2.75"/>
+</svg>
