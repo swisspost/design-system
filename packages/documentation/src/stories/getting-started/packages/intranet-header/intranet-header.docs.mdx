@@ -1,12 +1,18 @@
 import { Meta, Source } from '@storybook/blocks';
 import * as IntranetHeaderStories from './intranet-header.stories';
 import SampleUse from './intranet-header-use.sample?raw';
+import changelog from '@/../../intranet-header-workspace/projects/intranet-header/CHANGELOG.md?raw';
+import PackageDocs from '../../../../shared/packages-docs-layout.mdx';
 
 <Meta of={IntranetHeaderStories} />
 
 # @swisspost/design-system-intranet-header
 
 [![npm version](https://badge.fury.io/js/@swisspost%2Fdesign-system-intranet-header.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-intranet-header)
+
+<div className='lead'>
+  The Header Angular component for internal usage.
+</div>
 
 <div className="banner banner-info banner-md">
   <h2 className="banner-heading">Angular only component</h2>
@@ -16,49 +22,49 @@ import SampleUse from './intranet-header-use.sample?raw';
   </p>
 </div>
 
-The Header Angular component for internal usage.
+<PackageDocs changelog={changelog}>
+  ## Installation
 
-## Installation
+  <Source code={`npm install @swisspost/design-system-intranet-header`} language="bash" />
 
-<Source code={`npm install @swisspost/design-system-intranet-header`} language="bash" />
+  ## Usage
 
-## Usage
+  1. In `app.module.ts`, import `SwissPostIntranetHeaderModule` and add it to the `imports` array property.
 
-1. In `app.module.ts`, import `SwissPostIntranetHeaderModule` and add it to the `imports` array property.
+  <Source code={SampleUse} language="typescript" />
 
-<Source code={SampleUse} language="typescript" />
+  2. In `app.component.html`, create a `section` container and assign it the CSS classes that best suit your desired layout:
 
-2. In `app.component.html`, create a `section` container and assign it the CSS classes that best suit your desired layout:
+  <div className="table-responsive">
+    <table className="table">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Condition</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>`layout-container`</td>
+          <td>Always</td>
+        </tr>
+        <tr>
+          <td>`header-big`</td>
+          <td>To use the header with a navigation bar</td>
+        </tr>
+        <tr>
+          <td>`header-small`</td>
+          <td>To use the header without a navigation bar</td>
+        </tr>
+        <tr>
+          <td>`with-searchbar`</td>
+          <td>To use the header with a search bar</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<div className="table-responsive">
-  <table className="table">
-    <thead>
-      <tr>
-        <th>Class</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>`layout-container`</td>
-        <td>Always</td>
-      </tr>
-      <tr>
-        <td>`header-big`</td>
-        <td>To use the header with a navigation bar</td>
-      </tr>
-      <tr>
-        <td>`header-small`</td>
-        <td>To use the header without a navigation bar</td>
-      </tr>
-      <tr>
-        <td>`with-searchbar`</td>
-        <td>To use the header with a search bar</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  3. In the layout container, add the `post-intranet-header` component and configure it as needed using the properties described below.
 
-3. In the layout container, add the `post-intranet-header` component and configure it as needed using the properties described below.
-
-4. Add any other content in the container below the header, wrapped in an element with class `header-margin`.
+  4. Add any other content in the container below the header, wrapped in an element with class `header-margin`.
+</PackageDocs>
