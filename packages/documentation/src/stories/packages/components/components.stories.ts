@@ -3,7 +3,7 @@ import { MetaExtended } from '@root/types';
 
 const meta: MetaExtended = {
   id: 'edfb619b-fda1-4570-bf25-20830303d483',
-  title: 'Getting Started/Packages/Components',
+  title: 'Packages/Components',
   parameters: {
     badges: [],
   },

@@ -38,10 +38,12 @@ const preview: Preview = {
             'Mission',
             'Angular',
             'Compatibility',
-            'Packages',
             'Changelogs',
             'Migration Guide',
           ],
+
+          // Category - Packages
+          'Packages',
 
           // Category - Foundations
           'Foundations',

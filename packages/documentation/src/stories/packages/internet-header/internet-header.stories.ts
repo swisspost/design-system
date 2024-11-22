@@ -2,8 +2,8 @@ import { StoryObj } from '@storybook/web-components';
 import { MetaExtended } from '@root/types';
 
 const meta: MetaExtended = {
-  id: '7068be42-1a20-4a34-9e79-7fb7f9f2940f',
-  title: 'Getting Started/Packages/Intranet-header',
+  id: 'cfa21cbc-5f8d-4a42-8165-7f6ed20bf133',
+  title: 'Packages/Internet Header',
   parameters: {
     badges: [],
   },
