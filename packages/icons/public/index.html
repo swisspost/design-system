@@ -18,9 +18,14 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Playground</h1>
+    <div x-data="dataRetriever()" x-init="getData()">
+      <div class="d-flex">
+        <h1>Playground</h1>
+        <template x-if="isLoading">
+          <div>Loading...</div>
+        </template>
+      </div>
 
-    <div x-data="ICONS">
       <div class="filters">
         <h2>Filters</h2>
         <div class="btn-group">
@@ -72,7 +77,7 @@
             <h2>UI Icons</h2>
 
             <div class="d-flex">
-              <template x-for="name in uiIconNames">
+              <template x-for="name in v2IconNames">
                 <div class="icon-container">
                   <div class="size-keeper">
                     <div class="resize">
@@ -90,7 +95,6 @@
       </section>
     </div>
 
-    <script type="module" src="main.js"></script>
     <!--
       generated with https://www.srihash.org/
       call the url below to get the latest integrity:
@@ -102,5 +106,6 @@
       integrity="sha384-D0U8hqw9ySktLounY2q1PAWeijVsqewBtT2NhQp2pxSugkKfpRnovV2sSwJC+V5U"
       crossorigin="anonymous"
     ></script>
+    <script src="main.js"></script>
   </body>
 </html>

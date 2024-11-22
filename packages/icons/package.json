@@ -21,7 +21,7 @@
   ],
   "private": false,
   "scripts": {
-    "dev": "http-server ./public -o -a localhost -p 9330",
+    "dev": "pnpm build && http-server ./public -o -a localhost -p 9330",
     "start": "nodemon",
     "build": "ts-node src/build.ts",
     "fetchSVGs": "ts-node src/index.ts",
