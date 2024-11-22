@@ -40,7 +40,7 @@ src/icons/**/*.svg
 # Ignore generated files
 # TODO: Add before merge
 # public/post-icons
-public/report.json
+# public/report.json
 
 icons-optimized
 icons.json
