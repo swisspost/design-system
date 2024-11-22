@@ -4,39 +4,6 @@ node_modules
 # Stores password, don't check in
 .env
 
-# TODO: Remove before merge
-src/icons/**/*.svg
-!src/icons/v1
-!src/icons/v2
-!src/icons/v1/1000.svg
-!src/icons/v1/2021.svg
-!src/icons/v1/2039.svg
-!src/icons/v1/2043.svg
-!src/icons/v1/2050.svg
-!src/icons/v1/2051.svg
-!src/icons/v1/2052.svg
-!src/icons/v1/2063.svg
-!src/icons/v1/2070.svg
-!src/icons/v1/2104.svg
-!src/icons/v1/2105.svg
-!src/icons/v1/2106.svg
-!src/icons/v1/2110.svg
-!src/icons/v1/2112.svg
-!src/icons/v1/2113.svg
-!src/icons/v1/2127.svg
-!src/icons/v1/2201.svg
-!src/icons/v1/2396.svg
-!src/icons/v1/2413.svg
-!src/icons/v1/3020.svg
-!src/icons/v1/3035.svg
-!src/icons/v1/3039.svg
-!src/icons/v2/Accessibility_16.svg
-!src/icons/v2/Accessibility_24.svg
-!src/icons/v2/Accessibility_32.svg
-!src/icons/v2/Accessibility_40.svg
-!src/icons/v2/Accessibility_48.svg
-!src/icons/v2/Accessibility_64.svg
-
 # Ignore generated files
 public/post-icons
 public/report.json
