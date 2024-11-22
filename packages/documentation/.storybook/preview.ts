@@ -72,7 +72,7 @@ const preview: Preview = {
 
           // Category - Misc
           'Misc',
-          ['Migration Guide', 'Changelog', 'Versions'],
+          ['Mission', 'Design Principles', 'Migration'],
 
           // Category - Snapshots (hidden)
           'Snapshots',
