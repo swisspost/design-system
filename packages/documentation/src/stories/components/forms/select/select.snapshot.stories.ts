@@ -68,10 +68,7 @@ export const Select: Story = {
 
     return html`
       <div class="d-flex gap-16 flex-column">
-        ${[
-          { bg: 'bg-white', scheme: 'light' },
-          { bg: 'bg-dark', scheme: 'dark' },
-        ].map(({ bg, scheme }) => {
+        ${['bg-white', 'bg-dark'].map(bg => {
           return html`
             <div
               class="${bg} d-flex gap-16 flex-column p-16"
