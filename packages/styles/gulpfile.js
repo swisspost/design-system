@@ -49,7 +49,7 @@ gulp.task('autoprefixer', function () {
  */
 gulp.task('map-icons', done => {
   const iconVariables = globSync(
-    'node_modules/@swisspost/design-system-icons/src/icons/v1/*.svg',
+    'node_modules/@swisspost/design-system-icons/src/icons/post/*.svg',
   ).reduce((entries, iconPath) => {
     const iconName = path.basename(iconPath, '.svg');
 
