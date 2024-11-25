@@ -5,7 +5,8 @@ import { HTMLElement, parse } from 'node-html-parser';
 import { optimize } from 'svgo';
 import { version } from '../../package.json';
 import svgoOptions from '../../svgo.config.ui';
-import { IJSONReport } from '../models/icon.model';
+import type { IJSONReport } from '../models/icon.model';
+import { Businessfield, Type, TypeFilter, VariantMIME } from '../models/censhare-result-page.model';
 
 import {
   SOURCE_PATH,
@@ -29,18 +30,18 @@ type File = {
 const iconSourcePath = SOURCE_PATH;
 const iconOutputPath = path.join(OUTPUT_PATH, 'post-icons');
 const buildReportOutputPath = path.join(OUTPUT_PATH, 'report.json');
-const jsonReport: IJSONReport = {
+const baseReport: IJSONReport = {
   icons: [],
   wrongViewBox: [],
   noKeywords: [],
   noSVG: [],
   errored: [],
-  created: new Date(),
   stats: {
     errors: 0,
     notFound: 0,
     success: 0,
   },
+  created: new Date(),
   version: version,
 };
 
@@ -175,11 +176,13 @@ function createReport(): IJSONReport {
   // TODO: remove as soon as UI-Icons get fetched from censhare
   createV2Report();
 
-  const filePaths = fs.readdirSync(iconSourcePath, { recursive: true });
+  const filePaths = fs
+    .readdirSync(iconSourcePath, { recursive: true })
+    .map(p => p.toString())
+    .filter((p: string) => path.basename(p) === 'report.json');
 
-  const reports = filePaths
-    .filter((p: string | Buffer) => path.basename(p as string) === 'report.json')
-    .reduce((report, filePath) => {
+  const aggregatedReport = filePaths.reduce(
+    (report: IJSONReport, filePath: string): IJSONReport => {
       const file = JSON.parse(
         fs.readFileSync(path.join(iconSourcePath, filePath as string), 'utf-8'),
       );
@@ -188,75 +191,81 @@ function createReport(): IJSONReport {
         icons: [...report.icons, ...(file.icons ?? [])],
         wrongViewBox: [...report.wrongViewBox, ...(file.wrongViewBox ?? [])],
         noKeywords: [...report.noKeywords, ...(file.noKeywords ?? [])],
+        noSVG: [...report.noSVG, ...(file.noSVG ?? [])],
         errored: [...report.errored, ...(file.errored ?? [])],
         stats: {
           errors: report.stats.errors + file.stats.errors,
           notFound: report.stats.notFound + file.stats.notFound,
           success: report.stats.success + file.stats.success,
         },
+        created: report.created,
+        version: report.version,
       };
-    }, jsonReport);
+    },
+    baseReport,
+  );
 
-  reports.created = new Date();
-  reports.version = version;
+  aggregatedReport.created = new Date();
+  aggregatedReport.version = version;
 
-  fs.writeFileSync(buildReportOutputPath, JSON.stringify(reports, null, 2));
+  fs.writeFileSync(buildReportOutputPath, JSON.stringify(aggregatedReport, null, 2));
 
-  return reports;
+  return aggregatedReport;
 }
 
 // TODO: remove as soon as UI-Icons are fetched from censhare
 function createV2Report() {
-  const filePaths = fs.readdirSync(iconOutputPath, { recursive: true });
-
-  const report = filePaths
+  const filePaths = fs
+    .readdirSync(iconOutputPath, { recursive: true })
+    .map((p: string | Buffer) => p.toString())
     .filter((p: string | Buffer) => {
       const basename = path.basename(p as string);
       return basename.endsWith('.svg') && !/^(\d){4}\.svg$/.test(basename);
-    })
-    .reduce((report, filePath) => {
-      const name = path.basename(filePath as string);
-      const ext = path.extname(name);
-      const basename = name.replace(ext, '');
-      const now = new Date();
+    });
 
-      return {
-        ...report,
-        icons: [
-          ...report.icons,
-          {
-            uuid: crypto.randomUUID(),
-            id: crypto.randomInt(100000, 999999),
-            type: 'picture.pictogram.',
-            typeFilter: 'pictograms',
-            meta: {
-              downloadLink: '',
-              businessfield: [],
-              keywords: ['UI', name],
-              year: ['2024'],
-            },
-            file: {
-              mime: 'image/svg+xml',
-              name,
-              basename,
-              ext,
-              size: {
-                width: 0,
-                dpi: 72,
-                height: 0,
-              },
-            },
-            createdAt: now,
-            modifiedAt: now,
+  const report = filePaths.reduce((report: IJSONReport, filePath: string): IJSONReport => {
+    const name = path.basename(filePath as string);
+    const ext = path.extname(name);
+    const basename = name.replace(ext, '');
+    const now = new Date();
+
+    return {
+      ...report,
+      icons: [
+        ...report.icons,
+        {
+          uuid: crypto.randomUUID(),
+          id: crypto.randomInt(100000, 999999),
+          type: Type.PicturePictogram,
+          typeFilter: TypeFilter.Pictograms,
+          meta: {
+            downloadLink: '',
+            businessfield: Businessfield.Kommunikation,
+            keywords: ['UI', name],
+            year: '2024',
           },
-        ],
-        stats: {
-          errors: report.stats.errors,
-          notFound: report.stats.notFound,
-          success: report.stats.success + 1,
+          file: {
+            mime: VariantMIME.ImageSVGXML,
+            name,
+            basename,
+            ext,
+            size: {
+              width: 0,
+              dpi: 72,
+              height: 0,
+            },
+          },
+          createdAt: now,
+          modifiedAt: now,
         },
-      };
-    }, jsonReport);
+      ],
+      stats: {
+        errors: report.stats.errors,
+        notFound: report.stats.notFound,
+        success: report.stats.success + 1,
+      },
+    };
+  }, baseReport);
 
   report.created = new Date();
   report.version = version;
