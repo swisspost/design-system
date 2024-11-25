@@ -28,7 +28,7 @@ const preview: Preview = {
       storySort: {
         method: 'alphabetical',
         order: [
-          'Home',
+          'Introduction',
 
           // Category - Getting Started
           'Getting Started',

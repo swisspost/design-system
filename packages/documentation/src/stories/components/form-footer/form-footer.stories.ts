@@ -15,7 +15,7 @@ export const FooterArgs = {
 
 const meta: MetaComponent = {
   id: 'f2eddf67-2c3c-40c4-bfec-df49bd028001',
-  title: 'Components/Forms/Form Footer',
+  title: 'Components/Form Footer',
   tags: ['package:HTML'],
   render: render,
   parameters: {
