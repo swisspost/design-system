@@ -23,6 +23,9 @@
 @use 'datatable';
 @use 'dialog';
 @use 'form-check';
+@use 'radio-button';
+@use 'checkbox';
+@use 'switch';
 @use 'form-hint';
 @use 'forms';
 @use 'grid';
@@ -46,7 +49,6 @@
 @use 'timepicker';
 @use 'toast';
 @use 'tooltip';
-@use 'topic-teaser';
 @use 'transitions';
 @use 'tag';
 

@@ -49,14 +49,18 @@ The indeterminate state can only be set via JavaScript and is styled using the `
   language="javascript"
 />
 
-### Sizing
+### Grouped
 
-The size can be changed by simply adding a class:
+To show a checkbox group, just wrap your checkboxes in a `fieldset`.
 
-- Small: `.form-check-sm`
-- Large: default
+<div className="alert alert-info alert-md">
+  Don't forget to add also a `<legend>` element.
+  You can visually hide the legend using the `.visually-hidden` class if necessary.
 
-<Canvas of={checkboxStories.Size} />
+  Read more about that topic in our [accessibility docs](/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs).
+</div>
+
+<Canvas of={checkboxStories.Grouped} />
 
 ### Inline
 
