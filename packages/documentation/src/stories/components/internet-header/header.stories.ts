@@ -1,4 +1,4 @@
-import { Args, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryObj, WebComponentsRenderer } from '@storybook/web-components';
 import { html } from 'lit';
 import { spreadArgs } from '@/utils';
 import customConfig from './config/custom-config';
@@ -8,7 +8,7 @@ import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: 'ebb11274-091b-4cb7-9a3f-3e0451c9a865',
-  title: 'Components/Internet Header/Header',
+  title: 'Components/Internet Header',
   tags: ['package:InternetHeader'],
   component: 'swisspost-internet-header',
   parameters: {
@@ -186,6 +186,28 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {};
+
+export const CssVariables = {
+  render: (args: Args, context: StoryContext<WebComponentsRenderer>) => {
+    return html`
+      <style>
+        #my-div {
+          z-index: 1000;
+          top: 0;
+          transition: var(--post-header-slide-in-transition);
+        }
+
+        swisspost-internet-header.scrolling-up + #my-div {
+          top: var(--post-header-height);
+        }
+      </style>
+      ${meta.render && meta.render(args, context)}
+      <p id="my-div" class="position-sticky bg-dark p-16">
+        I am sticky! I am always positioned right below the header when you scroll up and down.
+      </p>
+    `;
+  },
+};
 
 export const LanguageSwitchOverrides: Story = {
   args: {
