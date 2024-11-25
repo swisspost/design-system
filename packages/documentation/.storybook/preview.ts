@@ -38,7 +38,7 @@ const preview: Preview = {
 
           // Category - Visual Identity
           'Visual Identity',
-          ['Colors', 'Icons', 'Typography', ['Overview']],
+          ['Icons', 'Palettes', 'Typography', ['Overview']],
 
           // Category - Layout
           'Layout',
@@ -62,9 +62,6 @@ const preview: Preview = {
           // Category - Misc
           'Misc',
           ['Mission', 'Design Principles', 'Migration'],
-
-          // Category - Snapshots (hidden)
-          'Snapshots',
         ],
       },
     },

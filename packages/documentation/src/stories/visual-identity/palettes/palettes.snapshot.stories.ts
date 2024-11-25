@@ -1,6 +1,6 @@
 import type { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import meta from './palette.stories';
+import meta from './palettes.stories';
 
 const { id, ...metaWithoutId } = meta;
 

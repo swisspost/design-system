@@ -3,7 +3,7 @@ import { html, nothing } from 'lit';
 
 const meta: Meta = {
   id: '43481535-5b39-40b5-a273-478b07dc3b31',
-  title: 'Foundations/Palettes',
+  title: 'Visual Identity/Palettes',
   tags: ['package:HTML'],
   render: renderPalette,
   parameters: {
