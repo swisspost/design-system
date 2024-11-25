@@ -12,7 +12,7 @@ $post-segmented-button-max-count: 8;
   container-type: inline-size;
 }
 
-legend {
+.segmented-button > legend {
   @include post.visually-hidden();
 }
 
