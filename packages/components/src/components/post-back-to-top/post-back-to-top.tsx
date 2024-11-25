@@ -73,7 +73,7 @@ export class PostBackToTop {
       .getPropertyValue('--post-floating-button-translate-y');
 
     if (!this.belowFold) {
-      this.el.style.transform = `translateY(${this.translateY})`;
+      this.el.style.transform = `translateY(-${this.translateY})`;
     }
 
     // Initial load

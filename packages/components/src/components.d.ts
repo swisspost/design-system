@@ -95,9 +95,9 @@ export namespace Components {
     }
     interface PostBackToTop {
         /**
-          * The title of the back-to-top button, intended solely for accessibility purposes. This title is always hidden from view.
+          * The label of the back-to-top button, intended solely for accessibility purposes. This label is always hidden from view.
          */
-        "buttonTitle": string;
+        "label": string;
     }
     interface PostBreadcrumbItem {
         /**
@@ -885,9 +885,9 @@ declare namespace LocalJSX {
     }
     interface PostBackToTop {
         /**
-          * The title of the back-to-top button, intended solely for accessibility purposes. This title is always hidden from view.
+          * The label of the back-to-top button, intended solely for accessibility purposes. This label is always hidden from view.
          */
-        "buttonTitle"?: string;
+        "label": string;
     }
     interface PostBreadcrumbItem {
         /**
