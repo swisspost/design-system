@@ -4,7 +4,6 @@ some content
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property            | Attribute   | Description                                                                                                               | Type                                                                           | Default     |
@@ -17,24 +16,26 @@ some content
 | `rotate`            | `rotate`    | The number of degree for the css rotate transformation.                                                                   | `number`                                                                       | `null`      |
 | `scale`             | `scale`     | The number for the css scale transformation.                                                                              | `number`                                                                       | `null`      |
 
-
 ## Dependencies
 
 ### Used by
 
- - [post-alert](../post-alert)
- - [post-back-to-top](../post-back-to-top)
- - [post-breadcrumb-item](../post-breadcrumb-item)
- - [post-card-control](../post-card-control)
- - [post-closebutton](../post-closebutton)
- - [post-rating](../post-rating)
- - [post-tag](../post-tag)
+- [post-alert](../post-alert)
+- [post-back-to-top](../post-back-to-top)
+- [post-banner](../post-banner)
+- [post-breadcrumb-item](../post-breadcrumb-item)
+- [post-card-control](../post-card-control)
+- [post-closebutton](../post-closebutton)
+- [post-rating](../post-rating)
+- [post-tag](../post-tag)
 
 ### Graph
+
 ```mermaid
 graph TD;
   post-alert --> post-icon
   post-back-to-top --> post-icon
+  post-banner --> post-icon
   post-breadcrumb-item --> post-icon
   post-card-control --> post-icon
   post-closebutton --> post-icon
@@ -43,6 +44,6 @@ graph TD;
   style post-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

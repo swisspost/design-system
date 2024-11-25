@@ -18,10 +18,12 @@ import PostComponentDemoLink from '@/shared/post-component-demo-link.mdx';
   </nav>
 </div>
 
-<div className="alert alert-info alert-md">
-  <h2 className="alert-heading">Angular only component</h2>
-  <p>The intranet header is an <a href="//Angular.io">Angular</a> component, as such it only works
-    within Angular projects.</p>
+<div className="banner banner-info banner-md">
+  <h2 className="banner-heading">Angular only component</h2>
+  <p>
+    The intranet header is an <a href="//Angular.io">Angular</a> component, as such it only works
+    within Angular projects.
+  </p>
 </div>
 
 The Header Angular component for internal usage.
@@ -36,15 +38,17 @@ For installation and usage see the <a href="/?path=/docs/7068be42-1a20-4a34-9e79
     <Source code={SampleNavigationBar} language="html" />
   </PostTabPanel>
 
-  <PostTabHeader panel="headerWithCustomUserMenu">Header with a custom user menu</PostTabHeader>
-  <PostTabPanel name="headerWithCustomUserMenu">
-    <Source code={SampleSideUserMenuDropdown} language="html" />
-  </PostTabPanel>
+{' '}
+<PostTabHeader panel="headerWithCustomUserMenu">Header with a custom user menu</PostTabHeader>
+<PostTabPanel name="headerWithCustomUserMenu">
+  <Source code={SampleSideUserMenuDropdown} language="html" />
+</PostTabPanel>
 
-  <PostTabHeader panel="headerSideNavigation">Header with a side navigation</PostTabHeader>
-  <PostTabPanel name="headerSideNavigation">
-    <Source code={SampleSideNavigation} language="html" />
-  </PostTabPanel>
+{' '}
+<PostTabHeader panel="headerSideNavigation">Header with a side navigation</PostTabHeader>
+<PostTabPanel name="headerSideNavigation">
+  <Source code={SampleSideNavigation} language="html" />
+</PostTabPanel>
 
   <PostTabHeader panel="headerPostweb">"Postweb" intranet header</PostTabHeader>
   <PostTabPanel name="headerPostweb">
