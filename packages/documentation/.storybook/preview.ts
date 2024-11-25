@@ -44,6 +44,9 @@ const preview: Preview = {
           'Layout',
           ['Breakpoints', 'Containers', 'Grid', 'Columns'],
 
+          // Category - Raw Components (INTERNAL ONLY)
+          'Raw Components',
+
           // Category - Components
           'Components',
 

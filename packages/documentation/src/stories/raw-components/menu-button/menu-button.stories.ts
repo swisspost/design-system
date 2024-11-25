@@ -4,7 +4,7 @@ import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '8ca2bd70-56e6-4da9-b1fd-4e55388dca88',
-  title: 'Components/Menu Button',
+  title: 'Raw Components/Menu Button',
   tags: ['package:WebComponents'],
   component: 'post-menu',
   parameters: {
@@ -20,8 +20,7 @@ const meta: MetaComponent = {
   argTypes: {
     id: {
       name: 'id',
-      description:
-        'The id is used to connect a trigger element with the popover.',
+      description: 'The id is used to connect a trigger element with the popover.',
       table: {
         category: 'General',
       },
@@ -38,7 +37,7 @@ const meta: MetaComponent = {
       name: 'background color',
       description: 'Defines the color of the menu.',
       table: {
-        category: 'CSS Variables'
+        category: 'CSS Variables',
       },
     },
   },
@@ -48,16 +47,19 @@ function render(args: Args) {
   // Construct the style string conditionally based on padding and backgroundColor
   const styles = [
     args.padding ? `--post-menu-padding: ${args.padding};` : '',
-    args.backgroundColor ? `--post-menu-bg: ${args.backgroundColor};` : ''
-  ].filter(Boolean).join(' ').trim();
+    args.backgroundColor ? `--post-menu-bg: ${args.backgroundColor};` : '',
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
 
   return html`
     <post-menu-trigger for="${args.id}">
       <button class="btn btn-primary">Menu button</button>
     </post-menu-trigger>
-    <post-menu 
-      style="${styles || nothing}" 
-      id="${args.id}" 
+    <post-menu
+      style="${styles || nothing}"
+      id="${args.id}"
       placement="${args.placement !== 'bottom' ? args.placement : nothing}"
     >
       <post-menu-item><button>Example 1</button></post-menu-item>

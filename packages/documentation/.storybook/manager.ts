@@ -15,6 +15,7 @@ addons.setConfig({
       'packages',
       'visual-identity',
       'layout',
+      'raw-components',
       'components',
       'utilities',
       'templates',

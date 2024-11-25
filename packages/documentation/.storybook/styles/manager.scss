@@ -96,7 +96,8 @@
   }
 
   #misc,
-  [data-item-id^='health'] {
+  [data-item-id^='health'],
+  :is(#raw-components, [data-parent-id="raw-components"]):where([data-env="production"] *) {
     display: none;
   }
 
