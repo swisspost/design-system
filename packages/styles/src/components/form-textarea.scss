@@ -142,7 +142,6 @@ textarea.form-control {
     padding-block-start: tokens.get('textarea-label-padding-block-start');
     border: 0;
     color: tokens.get('textarea-enabled-fg');
-    width: auto;
     height: auto;
     width: calc(100% - (#{tokens.get('textarea-border-width')} * 2));
     white-space: nowrap;
