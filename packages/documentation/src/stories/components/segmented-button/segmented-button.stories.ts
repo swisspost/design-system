@@ -16,7 +16,6 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    name: 'default-segmented-button-name',
     labelCount: 4,
   },
   argTypes: {
