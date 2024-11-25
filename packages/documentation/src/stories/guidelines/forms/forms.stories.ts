@@ -1,7 +1,7 @@
 import { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { MetaExtended } from '@root/types';
-import * as FormFooterMeta from '../../components/forms/form-footer/form-footer.stories';
+import * as FormFooterMeta from '../../components/form-footer/form-footer.stories';
 
 const meta: MetaExtended = {
   id: 'd83829b2-7de2-48d2-be64-07a80c9caef3',

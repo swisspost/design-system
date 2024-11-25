@@ -1,6 +1,6 @@
 import { forEach } from '@/utils/react';
 import { parse } from '@/utils/sass-export';
-import { SpecTable } from '@/stories/visual-identity/layout/shared.blocks';
+import { SpecTable } from '../shared.blocks';
 import scss from './breakpoints.module.scss';
 
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
