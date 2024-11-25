@@ -199,3 +199,16 @@ export const FloatingLabel: Story = {
     hint: '',
   },
 };
+
+export const Validation: Story = {
+  parameters: {
+    controls: {
+      exclude: ['Label', 'Floating Label', 'Hidden Label', 'Helper Text', 'Disabled'],
+    },
+  },
+  args: {
+    validation: 'is-invalid',
+    hint: '',
+    floatingLabel: true,
+  },
+};
