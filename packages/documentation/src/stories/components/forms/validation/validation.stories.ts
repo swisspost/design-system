@@ -117,11 +117,11 @@ export const Input: Story = {
         placeholder="Placeholder"
       />
       <label class="form-label" for="Input_1">Label</label>
+      ${feedbackTemplate}
       <p class="form-hint">
         Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
         illum dolore eu feugiat nulla facilisis.
       </p>
-      ${feedbackTemplate}
     </div> `;
   },
 };
@@ -218,11 +218,12 @@ export const Select: Story = {
       <label class="form-label" for="Select_1">
         <span>Label</span>
       </label>
+
+      ${feedbackTemplate}
       <p class="form-hint">
         Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
         illum dolore eu feugiat nulla facilisis.
       </p>
-      ${feedbackTemplate}
     </div>`;
   },
 };
@@ -274,11 +275,11 @@ export const TextArea: Story = {
         aria-describedby="${props.ariaDescribedBy}"
       ></textarea
       ><label class="form-label" for="TextArea_1">Label</label>
+      ${feedbackTemplate}
       <p class="form-hint">
         Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
         illum dolore eu feugiat nulla facilisis.
       </p>
-      ${feedbackTemplate}
     </div>`;
   },
 };
