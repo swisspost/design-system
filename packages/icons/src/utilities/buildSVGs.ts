@@ -179,13 +179,11 @@ function createReport(): IJSONReport {
   const filePaths = fs
     .readdirSync(iconSourcePath, { recursive: true })
     .map(p => p.toString())
-    .filter((p: string) => path.basename(p) === 'report.json');
+    .filter(p => path.basename(p) === 'report.json');
 
   const aggregatedReport = filePaths.reduce(
     (report: IJSONReport, filePath: string): IJSONReport => {
-      const file = JSON.parse(
-        fs.readFileSync(path.join(iconSourcePath, filePath as string), 'utf-8'),
-      );
+      const file = JSON.parse(fs.readFileSync(path.join(iconSourcePath, filePath), 'utf-8'));
 
       return {
         icons: [...report.icons, ...(file.icons ?? [])],
@@ -217,14 +215,14 @@ function createReport(): IJSONReport {
 function createV2Report() {
   const filePaths = fs
     .readdirSync(iconOutputPath, { recursive: true })
-    .map((p: string | Buffer) => p.toString())
-    .filter((p: string | Buffer) => {
-      const basename = path.basename(p as string);
+    .map(p => p.toString())
+    .filter(p => {
+      const basename = path.basename(p);
       return basename.endsWith('.svg') && !/^(\d){4}\.svg$/.test(basename);
     });
 
   const report = filePaths.reduce((report: IJSONReport, filePath: string): IJSONReport => {
-    const name = path.basename(filePath as string);
+    const name = path.basename(filePath);
     const ext = path.extname(name);
     const basename = name.replace(ext, '');
     const now = new Date();
