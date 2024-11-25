@@ -30,6 +30,7 @@ export function getValidationProps(component: string, args: Args) {
   const id = `-id-${name}${scheme}`;
 
   return {
+    scheme,
     validationState,
     isValidationSet,
     ariaInvalid: isValidationSet ? !isValid : nothing,
@@ -85,12 +86,14 @@ export const Checkbox: Story = {
     return html`<div class="form-check">
       <input
         type="checkbox"
-        id="Checkbox_1"
+        id="Checkbox_1${props.validationState}${props.scheme}"
         class="form-check-input ${props.isValidationSet ? props.validationState : ''}"
         aria-invalid=${props.ariaInvalid}
         aria-describedby="${props.ariaDescribedBy}"
       />
-      <label class="form-check-label" for="Checkbox_1">Label</label>
+      <label class="form-check-label" for="Checkbox_1${props.validationState}${props.scheme}"
+        >Label</label
+      >
       ${feedbackTemplate}
     </div>`;
   },
@@ -109,14 +112,14 @@ export const Input: Story = {
     const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
     return html`<div class="form-floating">
       <input
-        id="Input_1"
+        id="Input_1${props.validationState}${props.scheme}"
         class="form-control form-control-lg ${props.isValidationSet ? props.validationState : ''}"
         aria-invalid=${props.ariaInvalid}
         aria-describedby="${props.ariaDescribedBy}"
         type="text"
         placeholder="Placeholder"
       />
-      <label class="form-label" for="Input_1">Label</label>
+      <label class="form-label" for="Input_1${props.validationState}${props.scheme}">Label</label>
       ${feedbackTemplate}
       <p class="form-hint">
         Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
@@ -141,13 +144,15 @@ export const RadioButton: Story = {
       <div class="form-check form-check-inline">
         <input
           type="radio"
-          id="Radio_1"
+          id="Radio_1${props.validationState}${props.scheme}"
           name="radio_group"
           class="form-check-input ${props.isValidationSet ? props.validationState : ''}"
           aria-invalid=${props.ariaInvalid}
           aria-describedby="${props.ariaDescribedBy}"
         />
-        <label class="form-check-label" for="Radio_1">Option 1</label>
+        <label class="form-check-label" for="Radio_1${props.validationState}${props.scheme}"
+          >Option 1</label
+        >
         ${feedbackTemplate}
       </div>`;
   },
@@ -169,22 +174,38 @@ export const RadioButtonGroup: Story = {
       <div class="form-check form-check-inline">
         <input
           type="radio"
-          id="Radio_10"
+          id="Radio_10${props.validationState}${props.scheme}"
           name="radio_group"
           class="form-check-input ${props.isValidationSet ? props.validationState : ''}"
           aria-invalid=${props.ariaInvalid}
           aria-describedby="${props.ariaDescribedBy}"
           required
         />
-        <label class="form-check-label" for="Radio_10">Option 1</label>
+        <label class="form-check-label" for="Radio_10${props.validationState}${props.scheme}"
+          >Option 1</label
+        >
       </div>
       <div class="form-check form-check-inline">
-        <input type="radio" id="Radio_11" name="radio_group" class="form-check-input" />
-        <label class="form-check-label" for="Radio_11">Option 2</label>
+        <input
+          type="radio"
+          id="Radio_11${props.validationState}${props.scheme}"
+          name="radio_group"
+          class="form-check-input"
+        />
+        <label class="form-check-label" for="Radio_11${props.validationState}${props.scheme}"
+          >Option 2</label
+        >
       </div>
       <div class="form-check form-check-inline">
-        <input type="radio" id="Radio_12" name="radio_group" class="form-check-input" />
-        <label class="form-check-label" for="Radio_12">Option 3</label>
+        <input
+          type="radio"
+          id="Radio_12${props.validationState}${props.scheme}"
+          name="radio_group"
+          class="form-check-input"
+        />
+        <label class="form-check-label" for="Radio_12${props.validationState}${props.scheme}"
+          >Option 3</label
+        >
       </div>
       ${feedbackTemplate}
     </fieldset>`;
@@ -204,7 +225,7 @@ export const Select: Story = {
     const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
     return html`<div class="form-floating">
       <select
-        id="Select_1"
+        id="Select_1${props.validationState}${props.scheme}"
         class="form-select form-select-lg ${props.isValidationSet ? props.validationState : ''}"
         aria-invalid=${props.ariaInvalid}
         aria-describedby="${props.ariaDescribedBy}"
@@ -215,7 +236,7 @@ export const Select: Story = {
         <option value="value_3">Option 3</option>
         <option value="value_4">Option 4</option>
       </select>
-      <label class="form-label" for="Select_1">
+      <label class="form-label" for="Select_1${props.validationState}${props.scheme}">
         <span>Label</span>
       </label>
 
@@ -243,12 +264,16 @@ export const Switch: Story = {
       <input
         type="checkbox"
         role="switch"
-        id="Switch_1"
+        id="Switch_1${props.validationState}${props.scheme}"
         class="form-check-input ${props.isValidationSet ? props.validationState : ''}"
         aria-invalid=${props.ariaInvalid}
         aria-describedby="${props.ariaDescribedBy}"
       />
-      <label class="form-check-label order-first" for="Switch_1">Notifications</label>
+      <label
+        class="form-check-label order-first"
+        for="Switch_1${props.validationState}${props.scheme}"
+        >Notifications</label
+      >
       ${feedbackTemplate}
     </div>`;
   },
@@ -269,12 +294,14 @@ export const TextArea: Story = {
       <textarea
         placeholder=""
         rows=""
-        id="TextArea_1"
+        id="TextArea_1${props.validationState}${props.scheme}"
         class="form-control form-control-lg ${props.isValidationSet ? props.validationState : ''}"
         aria-invalid=${props.ariaInvalid}
         aria-describedby="${props.ariaDescribedBy}"
       ></textarea
-      ><label class="form-label" for="TextArea_1">Label</label>
+      ><label class="form-label" for="TextArea_1${props.validationState}${props.scheme}"
+        >Label</label
+      >
       ${feedbackTemplate}
       <p class="form-hint">
         Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
