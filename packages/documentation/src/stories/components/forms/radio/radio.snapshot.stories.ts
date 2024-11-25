@@ -18,7 +18,10 @@ export const Radio: Story = {
       <div class="d-flex flex-wrap gap-4 align-items-start">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div class="${bg} d-flex gap-16 flex-column p-16">
+            <div
+              class="${bg} d-flex gap-16 flex-column p-16"
+              data-color-scheme=${bg === 'bg-white' ? 'light' : 'dark'}
+            >
               ${[
                 ...bombArgs({
                   label: [
