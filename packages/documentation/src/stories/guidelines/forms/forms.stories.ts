@@ -5,7 +5,7 @@ import * as FormFooterMeta from '../../components/forms/form-footer/form-footer.
 
 const meta: MetaExtended = {
   id: 'd83829b2-7de2-48d2-be64-07a80c9caef3',
-  title: 'Guidelines/Forms',
+  title: 'Guidelines/Form Creation',
   parameters: {
     badges: [],
   },

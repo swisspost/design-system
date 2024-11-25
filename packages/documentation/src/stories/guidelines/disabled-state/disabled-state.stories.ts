@@ -4,7 +4,7 @@ import { html } from 'lit';
 
 const meta: MetaExtended = {
   id: 'cb34361c-7d3f-4c21-bb9c-874c73e82578',
-  title: 'Foundations/Accessibility/Forms',
+  title: 'Guidelines/Disabled Elements',
   parameters: {
     badges: [],
   },
@@ -14,9 +14,7 @@ export default meta;
 
 type Story = StoryObj;
 
-export const Default: Story = {};
-
-export const FormGoodExample: Story = {
+export const GoodExample: Story = {
   render: () => html`
     <form id="myForm" onsubmit="validateForm(event)" novalidate>
       <div class="row mb-16">
@@ -168,7 +166,7 @@ export const FormGoodExample: Story = {
   `,
 };
 
-export const FormBadExample: Story = {
+export const BadExample: Story = {
   render: () => html` <form id="myBadForm" onsubmit="submitBadForm(event)" novalidate>
       <div class="row mb-16">
         <div class="col">
@@ -298,32 +296,4 @@ export const FormBadExample: Story = {
 
       addInputChangeListener();
     </script>`,
-};
-
-export const FieldsetDontExample: Story = {
-  render: () => html`<fieldset>
-    <div>
-      <legend>Gender</legend>
-      <input type="radio" name="gender" value="male" /> Male
-      <input type="radio" name="gender" value="female" /> Female
-    </div>
-  </fieldset>`,
-};
-
-export const FieldsetDoExample: Story = {
-  render: () => html`<span id="group-description">Please select your gender:</span>
-    <fieldset>
-      <legend>Gender</legend>
-      <input type="radio" name="gender" value="male" /> Male
-      <input type="radio" name="gender" value="female" /> Female
-    </fieldset>`,
-};
-
-export const DivForGroupingExample: Story = {
-  render: () => html`<span id="group-description">Please select your gender:</span>
-    <div role="group" aria-labelledby="group-label " aria-describedby="group-description">
-      <span id="group-label" style="margin-right:5px">Gender </span>
-      <input type="radio" name="gender" value="male" /> Male
-      <input type="radio" name="gender" value="female" /> Female
-    </div>`,
 };

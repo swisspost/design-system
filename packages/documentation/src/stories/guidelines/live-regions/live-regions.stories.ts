@@ -2,8 +2,8 @@ import { StoryObj } from '@storybook/web-components';
 import { MetaExtended } from '@root/types';
 
 const meta: MetaExtended = {
-  id: '759a427c-7884-474e-b6b7-de32d3acf5df',
-  title: 'Foundations/Accessibility/Regulation',
+  id: '548d973c-679c-4a02-96cd-70f82aec5f65',
+  title: 'Guidelines/Live Regions',
   parameters: {
     badges: [],
   },
