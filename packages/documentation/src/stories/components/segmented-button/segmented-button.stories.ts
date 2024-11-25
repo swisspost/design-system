@@ -42,9 +42,9 @@ export const TextExample: Story = {
         <fieldset class="segmented-button">
           <legend>Choose one of the options</legend>
           ${labelsArray.map(
-            (label) => html`
+            (label, index) => html`
               <label class="segmented-button-label">
-                <input name="${args.name}" type="radio" />
+                <input name="${args.name}" type="radio" checked={index === 0} />
                 ${label}
               </label>
             `
