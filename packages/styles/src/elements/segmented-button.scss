@@ -73,19 +73,10 @@ $post-segmented-button-max-count: 8;
       input {
         border-color: tokens.get('button-segmented-hover-border');
       }
-
-      post-icon {
-        color: inherit;
-      }
     }
 
     &:has(input:checked) {
       color: tokens.get('button-segmented-selected-fg');
-      cursor: default;
-
-      post-icon {
-        color: inherit;
-      }
 
       ~ :last-of-type,
       &:last-of-type {

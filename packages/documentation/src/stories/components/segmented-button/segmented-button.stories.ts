@@ -16,16 +16,10 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    name: 'a-unic-segmented-button-name',
+    name: 'default-segmented-button-name',
     labelCount: 4,
   },
   argTypes: {
-    name: {
-      name: 'Name',
-      description: `Specifies the name of the radio button group. Ensure this is unique.`,
-      control: { type: 'text' },
-      table: { category: 'General' },
-    },
     labelCount: {
       name: 'Number of segments',
       description: `Defines the number of segments for the segmented button. The maximum number of supported segments is 8. If you need more options, please refer to the select component.`,
@@ -63,9 +57,9 @@ export const TextExample: Story = {
 };
 
 export const IconExample: Story = {
- args: {
-   name: 'another-unic-segmented-button-name'
- }, 
+  args: {
+    name: 'another-segmented-button-name',
+  },
   render: (args: Args) => {
     const labelCount = Math.min(args.labelCount || 0, MAX_LABELS);
 
@@ -74,10 +68,10 @@ export const IconExample: Story = {
         <fieldset class="segmented-button">
           <legend>Choose one of the options</legend>
           ${Array.from({ length: labelCount }, () => html`
-          <label class="segmented-button-label">
-            <input name="${args.name}" type="radio" />
+            <label class="segmented-button-label">
+              <input name="${args.name}" type="radio" />
               <post-icon name="3120" />
-          </label>
+            </label>
           `)}
         </fieldset>
       </div>
