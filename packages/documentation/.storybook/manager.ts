@@ -14,6 +14,7 @@ addons.setConfig({
       'getting-started',
       'packages',
       'foundations',
+      'layout',
       'components',
       'utilities',
       'templates',

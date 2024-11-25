@@ -32,31 +32,17 @@ const preview: Preview = {
 
           // Category - Getting Started
           'Getting Started',
-          [
-            'Introduction',
-            'Design Principles',
-            'Mission',
-            'Angular',
-            'Compatibility',
-            'Changelogs',
-            'Migration Guide',
-          ],
 
           // Category - Packages
           'Packages',
 
           // Category - Foundations
           'Foundations',
-          [
-            'Typography',
-            'Color',
-            'Search for Icons',
-            'Layout',
-            ['Breakpoints', 'Containers', 'Grid', 'Columns', 'TODOS'],
-            'Elevation',
-            'Accessibility',
-            ['Regulation'],
-          ],
+          ['Typography', 'Color', 'Search for Icons', 'Elevation', 'Accessibility', ['Regulation']],
+
+          // Category - Layout
+          'Layout',
+          ['Breakpoints', 'Containers', 'Grid', 'Columns'],
 
           // Category - Components
           'Components',
