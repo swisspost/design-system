@@ -36,9 +36,9 @@ const preview: Preview = {
           // Category - Packages
           'Packages',
 
-          // Category - Foundations
-          'Foundations',
-          ['Typography', 'Color', 'Search for Icons', 'Elevation', 'Accessibility', ['Regulation']],
+          // Category - Visual Identity
+          'Visual Identity',
+          ['Colors', 'Icons', 'Typography', ['Overview']],
 
           // Category - Layout
           'Layout',

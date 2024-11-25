@@ -2,8 +2,11 @@ import { StoryObj } from '@storybook/web-components';
 import { MetaExtended } from '@root/types';
 
 const meta: MetaExtended = {
-  id: '5704bdc4-c5b5-45e6-b123-c54d01fce2f1',
-  title: 'Foundations/Search for Icons',
+  id: 'e869afc1-3c50-4c20-a495-3d846f7a759e',
+  title: 'Visual Identity/Colors',
+  parameters: {
+    badges: [],
+  },
 };
 
 export default meta;

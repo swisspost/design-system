@@ -2,11 +2,8 @@ import { StoryObj } from '@storybook/web-components';
 import { MetaExtended } from '@root/types';
 
 const meta: MetaExtended = {
-  id: 'e869afc1-3c50-4c20-a495-3d846f7a759e',
-  title: 'Foundations/Color',
-  parameters: {
-    badges: [],
-  },
+  id: '5704bdc4-c5b5-45e6-b123-c54d01fce2f1',
+  title: 'Visual Identity/Icons',
 };
 
 export default meta;

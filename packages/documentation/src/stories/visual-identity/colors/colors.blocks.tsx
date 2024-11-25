@@ -1,5 +1,5 @@
 import { parse } from '@/utils/sass-export';
-import scss from './color.module.scss';
+import scss from './colors.module.scss';
 
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 export const SCSS_VARIABLES: any = parse(scss);

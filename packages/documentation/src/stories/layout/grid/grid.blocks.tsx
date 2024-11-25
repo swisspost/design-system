@@ -1,6 +1,6 @@
 import { parse } from '@/utils/sass-export';
 import { forEach } from '@/utils/react';
-import { SpecTable } from '@/stories/foundation/layout/shared.blocks';
+import { SpecTable } from '@/stories/visual-identity/layout/shared.blocks';
 import scss from './grid.module.scss';
 
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
