@@ -10,13 +10,13 @@ import packageJSON from '../package.json';
 
 import { SOURCE_PATH, OUTPUT_PATH } from './constants';
 
-// v2 icons will be loaded from a different icon set (url) from censhare
+// UI-Icons will be loaded from a different icon set (url) from censhare
 const downloadUrls: (string | undefined)[] = [url];
-// v2 icons will need to be saved under {SOURCE_PATH}/v2
-const iconDownloadDirectories: string[] = [path.join(SOURCE_PATH, 'v1')];
-// v2 icons will end up in the same output folder
-// icon names of v1 icons are number-based (e.g. 1000.svg, etc.)
-// while v2 icon names are letter-based (e.g. accessibility.svg, etc.)
+// UI-Icons will need to be saved under {SOURCE_PATH}/ui
+const iconDownloadDirectories: string[] = [path.join(SOURCE_PATH, 'post')];
+// UI-Icons will end up in the same output folder
+// icon names of Post-Icons are number-based (e.g. 1000.svg, etc.)
+// while UI-Icon names are letter-based (e.g. accessibility.svg, etc.)
 const iconBuildDirectory: string = path.join(OUTPUT_PATH, 'post-icons');
 
 const jsonReport: IJSONReport = {

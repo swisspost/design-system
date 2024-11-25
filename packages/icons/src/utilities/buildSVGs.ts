@@ -4,8 +4,8 @@ import crypto from 'crypto';
 import { HTMLElement, parse } from 'node-html-parser';
 import { optimize } from 'svgo';
 import { version } from '../../package.json';
-import svgoOptions from '../../svgo.config.v2';
-import { IJSONReport } from './models/icon.model';
+import svgoOptions from '../../svgo.config.ui';
+import { IJSONReport } from '../models/icon.model';
 
 import {
   SOURCE_PATH,
@@ -35,7 +35,7 @@ const jsonReport: IJSONReport = {
   noKeywords: [],
   noSVG: [],
   errored: [],
-  created: null,
+  created: new Date(),
   stats: {
     errors: 0,
     notFound: 0,
@@ -172,7 +172,7 @@ function createFiles(groupedFilePaths: Record<string, File[]>) {
 }
 
 function createReport(): IJSONReport {
-  // TODO: remove as soon as v2 icons are fetched from censhare
+  // TODO: remove as soon as UI-Icons get fetched from censhare
   createV2Report();
 
   const filePaths = fs.readdirSync(iconSourcePath, { recursive: true });
@@ -205,7 +205,7 @@ function createReport(): IJSONReport {
   return reports;
 }
 
-// TODO: remove as soon as v2 icons are fetched from censhare
+// TODO: remove as soon as UI-Icons are fetched from censhare
 function createV2Report() {
   const filePaths = fs.readdirSync(iconOutputPath, { recursive: true });
 
@@ -261,7 +261,7 @@ function createV2Report() {
   report.created = new Date();
   report.version = version;
 
-  fs.writeFileSync(path.join(iconSourcePath, 'v2', 'report.json'), JSON.stringify(report, null, 2));
+  fs.writeFileSync(path.join(iconSourcePath, 'ui', 'report.json'), JSON.stringify(report, null, 2));
 
   return report;
 }

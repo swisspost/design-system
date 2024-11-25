@@ -1,8 +1,8 @@
 {
   "icons": [
     {
-      "uuid": "47c9709c-1bc0-4f7c-bada-31c06f5898db",
-      "id": 711177,
+      "uuid": "7924cf0a-720f-42f2-8134-85d665bd28ff",
+      "id": 108604,
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
@@ -27,15 +27,15 @@
           "height": 0
         }
       },
-      "createdAt": "2024-11-22T08:48:08.542Z",
-      "modifiedAt": "2024-11-22T08:48:08.542Z"
+      "createdAt": "2024-11-25T11:41:58.352Z",
+      "modifiedAt": "2024-11-25T11:41:58.352Z"
     }
   ],
   "wrongViewBox": [],
   "noKeywords": [],
   "noSVG": [],
   "errored": [],
-  "created": "2024-11-22T08:48:08.543Z",
+  "created": "2024-11-25T11:41:58.353Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
