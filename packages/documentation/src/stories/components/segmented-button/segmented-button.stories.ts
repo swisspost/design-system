@@ -27,7 +27,7 @@ const meta: MetaComponent = {
       table: { category: 'General' },
     },
     labelCount: {
-      name: 'Label Count',
+      name: 'Number of segments',
       description: `Defines the number of labels for the segmented button.`,
       control: { type: 'number', min: 1, max: MAX_LABELS },
       table: { category: 'Content' },
