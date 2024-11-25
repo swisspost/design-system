@@ -23,10 +23,7 @@ Custom `<select>` menus need only the class `.form-select` to trigger the custom
   <Controls of={SelectStories.Default} />
 </div>
 
-<StylesPackageImport
-  components={['forms', 'form-select']}
-  required={{ 'floating-label': true, 'form-feedback': true }}
-/>
+<StylesPackageImport components={['form-select']} required={{ 'form-feedback': true }} />
 
 ## Concrete Examples of Application
 
@@ -45,31 +42,3 @@ If you use an empty option in your select and you want that your label acts as p
 you can dynamically add the class `.form-select-empty` to the `<select>` when there are no value defined or no option selected.
 
 <Canvas of={SelectStories.FloatingLabelPlaceholder} />
-
-### Sizing
-
-<div className="alert alert-warning">
-  <h4 className="alert-heading">
-    We're deprecating the regular and medium sizes for text input, textarea and select.
-  </h4>
-  <p className="mt-0">
-    This will make it easier to select the appropriate size variant: small for internal
-    applications, large for external applications.
-    <br />
-    `.form-select-rg` and `.form-select-md` are deprecated and will be removed in the next major
-    version.
-  </p>
-</div>
-
-The size can be adjusted, by simply adding one of the following four classes:
-
-- Small: `.form-select-sm`
-- Regular: `.form-select-rg`
-- Medium: default or `.form-select-md`
-- Large: `.form-select-lg`
-
-<div className="alert alert-info alert-md">
-  Regular and medium size classes are not available on floating-label elements
-</div>
-
-<Canvas of={SelectStories.Size} />

@@ -1,4 +1,7 @@
-@use './post-tokens-external';
+@use './tokens/schemes';
+@use './tokens/device';
+@use './tokens/external';
+@use './tokens/post-theme';
 @use './utilities';
 @use './elements';
 @use './components';

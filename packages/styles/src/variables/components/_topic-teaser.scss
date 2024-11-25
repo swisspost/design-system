@@ -1,7 +1,7 @@
 @use 'sass:list';
 
-$grid-breakpoints-lower: (xs, sm, rg, md);
-$grid-breakpoints-upper: (lg, xl, xxl);
+$grid-breakpoints-lower: (xs, sm, md);
+$grid-breakpoints-upper: (lg, xl);
 
 $content-cols: (
   xs: 12,
@@ -10,13 +10,13 @@ $content-cols: (
 );
 
 $content-gap: (
-  rg: 32px,
+  sm: 32px,
   xl: 40px,
 );
 
 $image-cols: (
   xs: 10,
-  rg: 8,
+  sm: 8,
   lg: 4,
   xl: 5,
 );
@@ -24,9 +24,7 @@ $image-cols: (
 $image-aspectratio: (
   xs: list.slash(1, 0.7),
   sm: list.slash(1, 0.7),
-  rg: list.slash(1, 0.7),
   md: list.slash(1, 0.7),
   lg: list.slash(0.66, 1),
   xl: list.slash(0.9, 1),
-  xxl: list.slash(0.9, 1),
 );
