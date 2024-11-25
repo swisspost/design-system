@@ -47,9 +47,27 @@ export const Textarea: Story = {
               ${getCombinations('size', context.argTypes.size.options, combinations).map(
                 (args: Args) => {
                   context.id = `${bg}-${crypto.randomUUID()}`;
-                  return html` <div>${meta.render?.({ ...context.args, ...args }, context)}</div> `;
+                  return html`
+                    <div>
+                      ${args.title !== undefined && args.title
+                        ? html`
+                            <h4>
+                              ${Object.entries(context.argTypes.size.control.labels)
+                                .filter(([key]) => key === args.size)
+                                .map(s => s[1])}
+                            </h4>
+                          `
+                        : ''}
+                      <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
+                    </div>
+                  `;
                 },
               )}
+              <h3>Floating Label</h3>
+              ${getCombinations('floatingLabel', [true], combinations).map((args: Args) => {
+                context.id = `${bg}-${crypto.randomUUID()}`;
+                return html` <div>${meta.render?.({ ...context.args, ...args }, context)}</div> `;
+              })}
             </div>
           `,
         )}

@@ -176,15 +176,15 @@ export const RadioButtonGroup: Story = {
           aria-describedby="${props.ariaDescribedBy}"
           required
         />
-        <label class="form-check-label" for="Radio_1">Option 1</label>
+        <label class="form-check-label" for="Radio_10">Option 1</label>
       </div>
       <div class="form-check form-check-inline">
         <input type="radio" id="Radio_11" name="radio_group" class="form-check-input" />
-        <label class="form-check-label" for="Radio_1">Option 2</label>
+        <label class="form-check-label" for="Radio_11">Option 2</label>
       </div>
       <div class="form-check form-check-inline">
         <input type="radio" id="Radio_12" name="radio_group" class="form-check-input" />
-        <label class="form-check-label" for="Radio_1">Option 3</label>
+        <label class="form-check-label" for="Radio_12">Option 3</label>
       </div>
       ${feedbackTemplate}
     </fieldset>`;
