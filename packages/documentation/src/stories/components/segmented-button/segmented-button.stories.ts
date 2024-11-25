@@ -28,7 +28,7 @@ const meta: MetaComponent = {
     },
     labelCount: {
       name: 'Number of segments',
-      description: `Defines the number of labels for the segmented button.`,
+      description: `Defines the number of segments for the segmented button. The maximum number of supported segments is 8. If you need more options, please refer to the select component.`,
       control: { type: 'number', min: 1, max: MAX_LABELS },
       table: { category: 'Content' },
     },
