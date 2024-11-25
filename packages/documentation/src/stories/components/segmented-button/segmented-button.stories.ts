@@ -1,5 +1,5 @@
 import { Args, StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const MAX_LABELS = 8;
@@ -36,6 +36,7 @@ export const TextExample: Story = {
   render: (args: Args) => {
     const labelCount = Math.min(args.labelCount || 0, MAX_LABELS);
     const labelsArray = Array.from({ length: labelCount }, (_, i) => `Label ${i + 1}`);
+    const name = `segmented-button-${Math.random().toString(36).slice(-6)}`;
 
     return html`
       <div class="segmented-button-container">
@@ -44,10 +45,10 @@ export const TextExample: Story = {
           ${labelsArray.map(
             (label, index) => html`
               <label class="segmented-button-label">
-                <input name="${args.name}" type="radio" checked={index === 0} />
+                <input name="${name}" type="radio" checked="${index === 0 ? '' : nothing}" />
                 ${label}
               </label>
-            `
+            `,
           )}
         </fieldset>
       </div>
@@ -56,22 +57,23 @@ export const TextExample: Story = {
 };
 
 export const IconExample: Story = {
-  args: {
-    name: 'another-segmented-button-name',
-  },
   render: (args: Args) => {
     const labelCount = Math.min(args.labelCount || 0, MAX_LABELS);
+    const name = `segmented-button-${Math.random().toString(36).slice(-6)}`;
 
     return html`
       <div class="segmented-button-container">
         <fieldset class="segmented-button">
           <legend>Choose one of the options</legend>
-          ${Array.from({ length: labelCount }, (_undefined, index) => html`
-            <label class="segmented-button-label">
-              <input name="${args.name}" type="radio" checked={ index === 0 } />
-              <post-icon name={`${1000 + index}`} />
-            </label>
-          `)}
+          ${Array.from(
+            { length: labelCount },
+            (_undefined, index) => html`
+              <label class="segmented-button-label">
+                <input type="radio" name="${name}" checked="${index === 0 ? '' : nothing}" />
+                <post-icon name="${1000 + index}" />
+              </label>
+            `,
+          )}
         </fieldset>
       </div>
     `;
