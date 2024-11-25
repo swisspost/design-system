@@ -13,7 +13,7 @@ type useStateFn = typeof useState;
 
 const meta: MetaComponent = {
   id: '047501dd-a185-4835-be91-09130fa3dad9',
-  title: 'Components/Card-Control',
+  title: 'Components/Card Control',
   tags: ['package:HTML'],
   parameters: {
     badges: [],

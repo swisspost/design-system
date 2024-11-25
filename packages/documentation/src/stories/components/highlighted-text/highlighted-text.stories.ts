@@ -1,12 +1,10 @@
 import type { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { MetaComponent } from '@root/types';
+import { MetaExtended } from '@root/types';
 
-const meta: MetaComponent = {
+const meta: MetaExtended = {
   id: '88318ccf-be8d-4bdf-b8dc-06b0b78e5e3d',
-  title: 'Components/Text Highlighted',
-  tags: ['package:WebComponents'],
-  component: 'post-text-highlighted',
+  title: 'Components/Highlighted Text',
   parameters: {
     badges: [],
     design: {

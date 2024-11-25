@@ -11,7 +11,7 @@ const SCSS_VARIABLES: { [key: string]: string | object } = parse(scss);
 
 const meta: MetaComponent = {
   id: '886fabcf-148b-4054-a2ec-4869668294fb',
-  title: 'Components/Card-Control',
+  title: 'Components/Card Control',
   component: 'post-card-control',
   tags: ['package:WebComponents'],
   parameters: {
