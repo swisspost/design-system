@@ -1,8 +1,8 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import meta, { Default, Groupped, Multipart } from './product-card.stories';
+import meta, { Default, Groupped, Multipart } from './card-product.stories';
 import { html } from 'lit';
 import { bombArgs } from '@/utils';
-import ProductCardSyncHeights from './product-card.sample.js?raw';
+import ProductCardSyncHeights from './card-product.sample.js?raw';
 
 const { id, ...metaWithoutId } = meta;
 

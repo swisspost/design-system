@@ -6,7 +6,7 @@ import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: 'eb78afcb-ce92-4990-94b6-6536d5ec6af4',
-  title: 'Components/Buttons/Button',
+  title: 'Components/Button',
   tags: ['package:HTML'],
   parameters: {
     badges: [],
@@ -116,7 +116,7 @@ const meta: MetaComponent = {
         'Defines a custom icon.' +
         '<span className="mt-8 banner banner-info banner-sm">' +
         '<span>To use a custom icon, you must first ' +
-        '<a href="/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs">set up the icons in your project</a>' +
+        '<a href="/packages/documentation/public?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs">set up the icons in your project</a>' +
         '.</span></span>',
       if: {
         arg: 'tag',
@@ -174,7 +174,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, makes the component appear inactive and disables its functionality.<div className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
+        'When set to `true`, makes the component appear inactive and disables its functionality.<div className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/packages/documentation/public?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
       control: {
         type: 'boolean',
       },

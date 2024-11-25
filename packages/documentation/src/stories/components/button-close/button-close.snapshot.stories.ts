@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import meta, { Default } from './close-button.stories';
+import meta, { Default } from './button-close.stories';
 import { html } from 'lit';
 
 const { id, ...metaWithoutId } = meta;

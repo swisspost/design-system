@@ -5,7 +5,7 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 const meta: MetaComponent = {
   id: 'de313349-0c0b-4baf-adc6-cb8c2e36fc1a',
-  title: 'Components/Buttons/Close button',
+  title: 'Components/Button Close',
   component: 'post-closebutton',
   tags: ['package:WebComponents'],
   parameters: {

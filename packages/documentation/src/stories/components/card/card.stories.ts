@@ -6,7 +6,7 @@ import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '605c788d-3f75-4e6c-8498-be3d546843c2',
-  title: 'Components/Cards/Card',
+  title: 'Components/Card',
   tags: ['package:HTML'],
   decorators: [clickBlocker, paddedContainer],
   parameters: {
