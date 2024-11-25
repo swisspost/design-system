@@ -118,8 +118,8 @@ export const Color: Story = {
 
 const sizeVariants = [
   { style: 'font-size: 1rem' },
-  { class: 'h3' },
-  { class: 'h1' },
+  { class: 'h3 my-0' },
+  { class: 'h1 my-0' },
   { class: 'fs-huge' },
   { style: 'font-size: 4rem' },
   { style: 'font-size: 6rem' },
