@@ -29,7 +29,7 @@ export class PostList {
    */
   @Prop() readonly horizontal: boolean = false;
 
-  titleEl: HTMLElement;
+  private titleEl: HTMLElement;
 
   componentWillLoad() {
     /**

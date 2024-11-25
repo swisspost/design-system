@@ -24,7 +24,6 @@ const meta: MetaComponent = {
     hiddenLabel: false,
     checked: 'unchecked',
     disabled: false,
-    size: 'null',
     validation: 'null',
   },
   argTypes: {
@@ -90,21 +89,6 @@ const meta: MetaComponent = {
         category: 'States',
       },
     },
-    size: {
-      name: 'Size',
-      description: "Sets the size of the component's appearance.",
-      control: {
-        type: 'select',
-        labels: {
-          'form-check-sm': 'Small',
-          'null': 'Large',
-        },
-      },
-      options: ['form-check-sm', 'null'],
-      table: {
-        category: 'General',
-      },
-    },
     disabled: {
       name: 'Disabled',
       description:
@@ -164,7 +148,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 };
 
 function getLabel({ label }: Args, { id }: StoryContext) {
-  return html` <label for="${id}" class="form-check-label">${label}</label> `;
+  return html` <label for="${id}">${label}</label> `;
 }
 
 function getValidationFeedback({ validation }: Args) {
@@ -184,10 +168,7 @@ function renderCheckbox(args: Args, context: StoryContext) {
     'form-check-inline': args.inline,
   });
 
-  const checkboxClasses = mapClasses({
-    'form-check-input': true,
-    ['is-' + args.validation]: args.validation !== 'null',
-  });
+  const validationClass = args.validation !== 'null' ? `is-${args.validation}` : undefined;
 
   const handleChange = () => {
     updateArgs({ checked: CHECKED_STATE_TOGGLE_MAP[args.checked] });
@@ -202,7 +183,7 @@ function renderCheckbox(args: Args, context: StoryContext) {
     <div class="${containerClasses}">
       <input
         id="${context.id}"
-        class="${checkboxClasses}"
+        class="${ifDefined(validationClass)}"
         type="checkbox"
         aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
         aria-label="${ifDefined(args.hiddenLabel ? args.label : undefined)}"
@@ -238,13 +219,23 @@ export const Validation: Story = {
   },
 };
 
-export const Size: Story = {
-  args: {
-    size: 'form-check-sm',
-  },
+export const Grouped: Story = {
+  render: (args: Args, context: StoryContext) => html`
+    <fieldset>
+      <legend class="${ifDefined(args.hiddenLegend ? 'visually-hidden' : undefined)}">
+        Legend
+      </legend>
+      ${['Unua Etikedo', 'Dua Etikedo', 'Tria Etikedo', 'Kvara  Etikedo'].map((label, index) =>
+        renderCheckbox(
+          { ...args, label, checked: false },
+          { ...context, id: `${context.id}-${index}` },
+        ),
+      )}
+    </fieldset>
+  `,
   parameters: {
     controls: {
-      exclude: ['Hidden Legend', 'Inline Layout'],
+      include: ['Hidden Legend'],
     },
   },
 };
@@ -253,7 +244,7 @@ export const Inline: Story = {
   render: (args: Args, context: StoryContext) => html`
     <fieldset>
       <legend class="${ifDefined(args.hiddenLegend ? 'visually-hidden' : undefined)}">
-        Legendo
+        Legend
       </legend>
       ${['Unua Etikedo', 'Dua Etikedo', 'Tria Etikedo', 'Kvara  Etikedo'].map((label, index) =>
         renderCheckbox(

@@ -31,14 +31,18 @@ Our radios use custom icons to indicate checked states.
 
 The following examples show the different characteristics of the component. These can differ in the type of visualization, the HTML structure, as well as when, how and why they are displayed.
 
-### Sizing
+### Grouped
 
-The size can be changed by simply adding a class:
+To show radio button group, just wrap your radios in a `fieldset`.
 
-- Small: `.form-check-sm`
-- Large: default
+<div className="alert alert-info alert-md">
+  Don't forget to add also a `<legend>` element.
+  You can visually hide the legend using the `.visually-hidden` class if necessary.
 
-<Canvas of={RadioStories.Size} />
+  Read more about that topic in our [accessibility docs](/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs).
+</div>
+
+<Canvas of={RadioStories.Grouped} />
 
 ### Inline
 

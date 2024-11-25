@@ -16,12 +16,12 @@ export const Radio: Story = {
   render: (_args: Args, context: StoryContext) => {
     return html`
       <div class="d-flex flex-wrap gap-4 align-items-start">
-        ${[
-          { bg: 'bg-white', scheme: 'light' },
-          { bg: 'bg-dark', scheme: 'dark' },
-        ].map(
-          ({ bg, scheme }) => html`
-            <div data-color-scheme="${scheme}" class="${bg} d-flex gap-16 flex-column p-16">
+        ${['bg-white', 'bg-dark'].map(
+          bg => html`
+            <div
+              class="${bg} d-flex gap-16 flex-column p-16"
+              data-color-scheme=${bg === 'bg-white' ? 'light' : 'dark'}
+            >
               ${[
                 ...bombArgs({
                   label: [

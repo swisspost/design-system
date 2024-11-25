@@ -2,6 +2,7 @@ import type { Args, StoryContext, StoryFn } from '@storybook/web-components';
 import { useArgs, useState } from '@storybook/preview-api';
 import { nothing } from 'lit';
 import { html } from 'lit/static-html.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { mapClasses } from '@/utils';
 import { MetaComponent } from '@root/types';
 import { parse } from '@/utils/sass-export';
@@ -153,10 +154,7 @@ export const Default = {
       'checkbox-button-card': args.type === 'checkbox',
       'radio-button-card': args.type === 'radio',
     });
-    const inputClasses = mapClasses({
-      'form-check-input': true,
-      'is-invalid': args.validation === 'is-invalid',
-    });
+    const validationClass = args.validation !== 'null' ? `is-${args.validation}` : undefined;
 
     // Child components
     const controlId = `CardControl_${id}`;
@@ -169,14 +167,14 @@ export const Default = {
         <input
           id="${controlId}"
           name="${args.type}-button-card-${args.inputName ?? `control_${id}`}"
-          class="${inputClasses}"
+          class="${ifDefined(validationClass)}"
           type="${args.type}"
           ?disabled="${args.disabled}"
           .checked="${args.checked}"
           checked="${args.checked || nothing}"
           @input="${(e: InputEvent) => inputHandler(e, updateArgs)}"
         />
-        <label class="form-check-label" for="${controlId}">
+        <label for="${controlId}">
           <span>${args.label}</span>
           ${args.description ? description : nothing}
         </label>
