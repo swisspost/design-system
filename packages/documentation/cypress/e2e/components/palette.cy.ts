@@ -1,8 +1,8 @@
-describe('Topic teaser', () => {
+describe('Palette', () => {
   describe('Accessibility', () => {
     beforeEach(() => {
-      cy.visit('/iframe.html?id=snapshots--topic-teaser');
-      cy.get('.topic-teaser-image', { timeout: 30000 }).should('be.visible');
+      cy.visit('/iframe.html?id=snapshots--palette');
+      cy.get('.palette-default', { timeout: 30000 }).should('be.visible');
       cy.injectAxe();
     });
 
