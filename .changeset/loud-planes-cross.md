@@ -3,4 +3,4 @@
 '@swisspost/design-system-components': minor
 ---
 
-Added the `post-linkarea` component.`
+Added the `post-linkarea` component.

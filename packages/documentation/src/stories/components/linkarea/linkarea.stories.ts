@@ -1,7 +1,6 @@
 import type { Args, StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
-import { spread } from '@open-wc/lit-helpers';
 
 export interface PostLinkarea {
   dataLink?: boolean;
@@ -26,7 +25,8 @@ const meta: MetaComponent<PostLinkarea> = {
   argTypes: {
     dataLink: {
       name: 'Custom selector',
-      description: 'Allows you to use a different link instead of the default first one.',
+      description:
+        'If `false`, clicking the card redirects to the first link. If `true`, a `data-link` attribute is added to the second link, which is used instead, overriding the default behavior.',
       control: {
         type: 'boolean',
       },
@@ -35,8 +35,8 @@ const meta: MetaComponent<PostLinkarea> = {
       },
     },
     anchorDefaultLink: {
-      name: 'Default link',
-      description: 'This is the link that will be used if no specific link is set.',
+      name: 'First link URL',
+      description: 'This is the URL used for the first link in the card.',
       control: {
         type: 'text',
       },
@@ -45,9 +45,8 @@ const meta: MetaComponent<PostLinkarea> = {
       },
     },
     anchorSepcifiedLink: {
-      name: 'Specified link',
-      description:
-        'This is the link that will be used if you manually assign one using the `data-link` option.',
+      name: 'Second link URL',
+      description: 'This is the URL used for the second link in the card.',
       control: {
         type: 'text',
       },
@@ -61,8 +60,6 @@ const meta: MetaComponent<PostLinkarea> = {
 export default meta;
 
 function renderLinkarea(args: Args) {
-  const props = createSecondAnchorProps(args);
-
   return html`
     <post-linkarea>
       <div class="card">
@@ -72,22 +69,22 @@ function renderLinkarea(args: Args) {
           <p class="card-text">Contentus momentus vero siteos et accusam iretea et justo.</p>
 
           <a class="card-link" href="${args.anchorDefaultLink}">Ligilo teksto</a>
-          <a class="card-link" href="${args.anchorSepcifiedLink}" ${spread(props)}>Pli da ligo</a>
+          <a
+            class="card-link"
+            href="${args.anchorSepcifiedLink}"
+            data-link=${args.dataLink ? '' : nothing}
+            >Pli da ligo</a
+          >
         </div>
       </div>
     </post-linkarea>
   `;
 }
 
-function createSecondAnchorProps(args: Args) {
-  if (args.dataLink) {
-    return { 'data-link': '' };
-  }
-  return {};
-}
+export const Default: StoryObj<PostLinkarea> = {};
 
-export const Default: StoryObj<HTMLPostLinkareaElement> = {};
-
-export const InitiallySpecified: StoryObj<HTMLPostLinkareaElement> = {
-  render: args => html` ${renderLinkarea({ ...args, dataLink: true })} `,
+export const InitiallySpecified: StoryObj<PostLinkarea> = {
+  args: {
+    dataLink: true,
+  },
 };

@@ -4,7 +4,6 @@ import { version } from '@root/package.json';
 @Component({
   tag: 'post-linkarea',
   styleUrl: 'post-linkarea.scss',
-  shadow: true,
 })
 export class PostLinkarea {
   @Element() hostElement: HTMLPostLinkareaElement;
