@@ -18,16 +18,14 @@ const meta: MetaComponent = {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=22183-21629&mode=design&t=3lniLiZhl7q9Gqgn-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=21-183',
     },
   },
   args: {
     label: 'Label',
-    floatingLabel: false,
+    floatingLabel: true,
     hiddenLabel: false,
     value: undefined,
-    size: 'form-select-lg',
-    sizeFloatingLabel: 'form-select-lg',
     options: 5,
     multiple: false,
     multipleSize: 4,
@@ -59,7 +57,7 @@ const meta: MetaComponent = {
     hiddenLabel: {
       name: 'Hidden Label',
       description:
-        'Renders the component with or without a visible label.<span className="mt-8 alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#labels">label accessibility guide</a>.</span>',
+        'Renders the component with or without a visible label.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#labels">label accessibility guide</a>.</span>',
       if: {
         arg: 'floatingLabel',
         truthy: false,
@@ -79,46 +77,6 @@ const meta: MetaComponent = {
       },
       table: {
         disable: true,
-      },
-    },
-    size: {
-      name: 'Size',
-      description: "Sets the size of the component's appearance.",
-      if: {
-        arg: 'floatingLabel',
-        truthy: false,
-      },
-      control: {
-        type: 'select',
-        labels: {
-          'form-select-sm': 'Small',
-          'form-select-rg': 'Regular (deprecated)',
-          'null': 'Medium (deprecated)',
-          'form-select-lg': 'Large',
-        },
-      },
-      options: ['form-select-sm', 'form-select-rg', 'null', 'form-select-lg'],
-      table: {
-        category: 'General',
-      },
-    },
-    sizeFloatingLabel: {
-      name: 'Size',
-      description: "Sets the size of the component's appearance.",
-      if: {
-        arg: 'floatingLabel',
-        truthy: true,
-      },
-      control: {
-        type: 'select',
-        labels: {
-          'form-select-sm': 'Small',
-          'form-select-lg': 'Large',
-        },
-      },
-      options: ['form-select-sm', 'form-select-lg'],
-      table: {
-        category: 'General',
       },
     },
     options: {
@@ -173,7 +131,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-8 alert alert-info alert-sm">There are accessibility issues with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</span>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-8 banner banner-info banner-sm">There are accessibility issues with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -213,8 +171,6 @@ const Template: Story = {
     const [_, updateArgs] = useArgs();
     const classes = [
       'form-select',
-      args.size,
-      args.sizeFloatingLabel,
       args.validation,
       args.floatingLabelPlaceholder && !args.value ? 'form-select-empty' : null,
     ]
@@ -242,7 +198,9 @@ const Template: Story = {
       args.validation === 'is-invalid'
         ? html` <p class="invalid-feedback">Eraro okazis!</p> `
         : null,
-      args.hint !== '' ? html` <div class="form-text">${args.hint}</div> ` : null,
+      args.hint !== ''
+        ? html` <p class="form-hint" id="form-hint-${context.id}">${args.hint}</p> `
+        : null,
     ];
     const control = html`
       <select
@@ -253,6 +211,7 @@ const Template: Story = {
         ?disabled="${args.disabled}"
         aria-label="${useAriaLabel ? args.label : nothing}"
         aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
+        aria-describedby="${args.hint !== '' ? 'form-hint-' + context.id : ''}"
         @change="${(e: Event) => {
           updateArgs({ value: (e.target as HTMLSelectElement).value });
         }}"
@@ -295,15 +254,7 @@ export const FloatingLabel: Story = {
   ...Template,
   parameters: {
     controls: {
-      exclude: [
-        'Hidden Label',
-        'Options',
-        'Multiple',
-        'Size',
-        'Helper Text',
-        'Disabled',
-        'Validation',
-      ],
+      exclude: ['Hidden Label', 'Options', 'Multiple', 'Helper Text', 'Disabled', 'Validation'],
     },
   },
   args: {
@@ -316,42 +267,12 @@ export const FloatingLabelPlaceholder: Story = {
   ...Template,
   parameters: {
     controls: {
-      exclude: [
-        'Hidden Label',
-        'Options',
-        'Multiple',
-        'Size',
-        'Helper Text',
-        'Disabled',
-        'Validation',
-      ],
+      exclude: ['Hidden Label', 'Options', 'Multiple', 'Helper Text', 'Disabled', 'Validation'],
     },
   },
   args: {
     floatingLabel: true,
     floatingLabelPlaceholder: true,
-    hint: '',
-  },
-};
-
-export const Size: Story = {
-  ...Template,
-  parameters: {
-    controls: {
-      exclude: [
-        'Label',
-        'Floating Label',
-        'Hidden Label',
-        'Options',
-        'Multiple',
-        'Helper Text',
-        'Disabled',
-        'Validation',
-      ],
-    },
-  },
-  args: {
-    size: 'form-select-sm',
     hint: '',
   },
 };
@@ -365,7 +286,6 @@ export const Validation: Story = {
         'Floating Label',
         'Hidden Label',
         'Options',
-        'Size',
         'Multiple',
         'Helper Text',
         'Disabled',
