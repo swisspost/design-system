@@ -1,5 +1,45 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.6
+
+### Major Changes
+
+- Renamed the alert component to banner and updated the styles of banner and toast components. The class `.alert` is still supported for now but is deprecated and will be removed in v10. Changed web component `<post-alert>` to `<post-banner>`. Additionally, the classes `.{toast|alert}-primary`, `.{toast|alert}-gray` and `.toast-notification` have been deprecated. (by [@leagrdv](https://github.com/leagrdv) with [#3862](https://github.com/swisspost/design-system/pull/3862))
+
+- Removed size variants for form select. The sizing classes `.form-select-sm`, `.form-select-rg`, `.form-select-md` and `.form-select-lg` no longer have any effect and can be removed safely. (by [@leagrdv](https://github.com/leagrdv) with [#3978](https://github.com/swisspost/design-system/pull/3978))
+
+- Removed the `alert-fixed-bottom` variant of the alert. (by [@leagrdv](https://github.com/leagrdv) with [#3862](https://github.com/swisspost/design-system/pull/3862))
+
+- Removed sizes option for text inputs. (by [@leagrdv](https://github.com/leagrdv) with [#3946](https://github.com/swisspost/design-system/pull/3946))
+
+- Removed deprecated `topic-teaser`. (by [@leagrdv](https://github.com/leagrdv) with [#4056](https://github.com/swisspost/design-system/pull/4056))
+
+- Changed the class name of assistive text below form fields from `.form-text` to `.form-hint` and improved accessibility by connecting the hint to the form through `aria-describedby`. (by [@leagrdv](https://github.com/leagrdv) with [#3961](https://github.com/swisspost/design-system/pull/3961))
+
+### Minor Changes
+
+- Added a new `segmented-button` component, which allows users to toggle between two or more content sections within the same area on the screen. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3879](https://github.com/swisspost/design-system/pull/3879))
+
+- Internalized bootstrap overflow utilities into the design system. (by [@leagrdv](https://github.com/leagrdv) with [#4006](https://github.com/swisspost/design-system/pull/4006))
+
+- Updated radio-button styles with Design Tokens. (by [@schaertim](https://github.com/schaertim) with [#3965](https://github.com/swisspost/design-system/pull/3965))
+
+- Addes Cargo theme styles. (by [@alizedebray](https://github.com/alizedebray) with [#3993](https://github.com/swisspost/design-system/pull/3993))
+
+- Updated `.form-select` select to v2. (by [@leagrdv](https://github.com/leagrdv) with [#3978](https://github.com/swisspost/design-system/pull/3978))
+
+- Updated checkbox styles with Design Tokens. (by [@schaertim](https://github.com/schaertim) with [#3965](https://github.com/swisspost/design-system/pull/3965))
+
+- Updated switch styles with Design Tokens. (by [@schaertim](https://github.com/schaertim) with [#3965](https://github.com/swisspost/design-system/pull/3965))
+
+- Added color palettes to easily apply colors to a page section using predefined color sets. (by [@alizedebray](https://github.com/alizedebray) with [#3850](https://github.com/swisspost/design-system/pull/3850))
+
+### Patch Changes
+
+- Updated `.form-control` text input to new Post design. (by [@leagrdv](https://github.com/leagrdv) with [#3946](https://github.com/swisspost/design-system/pull/3946))
+
+- Updated the blockquote styles to match the new Post design. (by [@myrta2302](https://github.com/myrta2302) with [#3882](https://github.com/swisspost/design-system/pull/3882))
+
 ## 9.0.0-next.5
 
 ### Major Changes
