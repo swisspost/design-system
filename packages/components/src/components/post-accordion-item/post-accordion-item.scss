@@ -34,8 +34,13 @@ tokens.$default-map: components.$post-accordion;
   align-items: center;
   text-align: start;
   gap: tokens.get('accordion-header-content-gap-inline');
-  padding: tokens.get('accordion-header-padding-block-open')
-    tokens.get('accordion-header-padding-inline');
+  padding: calc(
+      tokens.get('accordion-header-padding-block-open') +
+        tokens.get('accordion-group-border-top-width')
+    )
+    calc(
+      tokens.get('accordion-header-padding-inline') + tokens.get('accordion-border-bottom-width')
+    );
   transition: accordion.$accordion-button-transition;
   cursor: pointer;
 
@@ -64,8 +69,14 @@ tokens.$default-map: components.$post-accordion;
   }
 
   &.collapsed {
-    padding-block-start: tokens.get('accordion-header-padding-block-start-closed');
-    padding-block-end: tokens.get('accordion-header-padding-block-end-closed');
+    padding-block-start: calc(
+      tokens.get('accordion-header-padding-block-start-closed') +
+        tokens.get('accordion-group-border-top-width')
+    );
+    padding-block-end: calc(
+      tokens.get('accordion-header-padding-block-end-closed') +
+        tokens.get('accordion-border-bottom-width')
+    );
 
     post-icon {
       transform: accordion.$accordion-icon-transform;
@@ -100,7 +111,9 @@ tokens.$default-map: components.$post-accordion;
 
 .accordion-body {
   padding-block-start: tokens.get('accordion-content-padding-block-start');
-  padding-block-end: tokens.get('accordion-content-padding-block-end');
+  padding-block-end: calc(
+    tokens.get('accordion-content-padding-block-end') + tokens.get('accordion-border-bottom-width')
+  );
   padding-inline: tokens.get('accordion-content-padding-inline');
 }
 
