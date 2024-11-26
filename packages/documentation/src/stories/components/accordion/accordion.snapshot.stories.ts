@@ -18,9 +18,12 @@ export const Accordion: Story = {
   ) => {
     return html`
       <div>
-        ${['bg-white', 'bg-light', 'bg-dark'].map(
+        ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div class="${bg} d-flex flex-column gap-16 p-16 mt-16">
+            <div
+              class="${bg} d-flex flex-column gap-16 p-16 mt-16"
+              data-color-scheme=${bg === 'bg-white' ? 'light' : 'dark'}
+            >
               ${meta.render?.({ ...context.args }, context)}
             </div>
           `,
