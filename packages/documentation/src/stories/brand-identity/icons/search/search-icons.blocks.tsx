@@ -1,4 +1,4 @@
-import report from '@swisspost/design-system-icons/public/report.json';
+import report from '../../../../../../icons/public/report.json';
 import React from 'react';
 import './search-icons.styles.scss';
 

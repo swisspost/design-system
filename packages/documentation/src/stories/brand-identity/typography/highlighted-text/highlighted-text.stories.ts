@@ -4,7 +4,7 @@ import { MetaExtended } from '@root/types';
 
 const meta: MetaExtended = {
   id: '88318ccf-be8d-4bdf-b8dc-06b0b78e5e3d',
-  title: 'Components/Highlighted Text',
+  title: 'Brand Identity/Typography/Highlighted Text',
   parameters: {
     badges: [],
     design: {

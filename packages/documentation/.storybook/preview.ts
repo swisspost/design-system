@@ -36,9 +36,9 @@ const preview: Preview = {
           // Category - Packages
           'Packages',
 
-          // Category - Visual Identity
-          'Visual Identity',
-          ['Icons', 'Palettes', 'Typography', ['Overview']],
+          // Category - Brand Identity
+          'Brand Identity',
+          ['Logo', 'Icons', 'Palettes', 'Typography', ['Overview']],
 
           // Category - Layout
           'Layout',

@@ -13,7 +13,7 @@ addons.setConfig({
     collapsedRoots: [
       'getting-started',
       'packages',
-      'visual-identity',
+      'brand-identity',
       'layout',
       'raw-components',
       'components',
