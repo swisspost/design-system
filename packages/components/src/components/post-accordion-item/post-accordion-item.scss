@@ -20,6 +20,10 @@ tokens.$default-map: components.$post-accordion;
   }
 }
 
+:host(:hover)::after {
+  border-color: tokens.get('accordion-hover-border');
+}
+
 .accordion-header {
   color: tokens.get('accordion-enabled-fg');
   font-size: tokens.get('accordion-header-font-size');
@@ -103,10 +107,6 @@ tokens.$default-map: components.$post-accordion;
     &:disabled {
       opacity: 1 !important;
     }
-  }
-
-  &:hover {
-    border-color: tokens.get('accordion-hover-border');
   }
 }
 
