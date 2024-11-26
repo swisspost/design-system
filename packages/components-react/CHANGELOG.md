@@ -1,23 +1,5 @@
 # @swisspost/design-system-components-react
 
-## 9.0.0-next.6
-
-### Patch Changes
-
-- Updated dependencies:
-  - @swisspost/design-system-components@9.0.0-next.6
-
-## 9.0.0-next.5
-
-### Minor Changes
-
-- Added a provisional post-header component with some basic functionality in place. This component is not finished in this state. (by [@gfellerph](https://github.com/gfellerph) with [#3837](https://github.com/swisspost/design-system/pull/3837))
-
-### Patch Changes
-
-- Updated dependencies:
-  - @swisspost/design-system-components@9.0.0-next.5
-
 ## 9.0.0-next.4
 
 ### Patch Changes

@@ -1,9 +1,12 @@
-@use 'sass:map';
+@use './../variables/color';
+@use './../variables/type';
+@use './../variables/components/form-validation';
 @use './../variables/components/forms';
+@use './../variables/components/tooltips';
 @use './../mixins/utilities';
-@use './../functions/icons';
 
 // Placeholder in input fields
+
 @mixin placeholder() {
   &::placeholder {
     @content;
@@ -17,6 +20,33 @@
   /* stylelint-enable */
 }
 
+@mixin icon-placement {
+  padding-right: form-validation.$form-feedback-icon-offset +
+    form-validation.$form-feedback-icon-size;
+  background-repeat: no-repeat;
+  background-position: calc(100% - #{form-validation.$form-feedback-icon-offset}) center;
+}
+
+@mixin form-rg {
+  padding: forms.$input-padding-y-rg forms.$input-padding-x-rg;
+  font-size: type.$font-size-regular;
+  line-height: forms.$input-line-height-rg;
+}
+
+@mixin form-sm {
+  font-size: type.$font-size-14;
+  line-height: forms.$input-line-height-sm;
+  min-height: forms.$input-height-sm;
+  padding-block: forms.$input-padding-y-sm;
+  padding-inline: forms.$input-padding-x-sm;
+}
+
+@mixin form-lg {
+  font-size: type.$font-size-16 !important;
+  line-height: forms.$input-line-height-lg;
+  min-height: forms.$input-height-lg;
+}
+
 /* Deprecated use the one in utilities.scss */
 @mixin focus-outline {
   outline: none;
@@ -27,29 +57,4 @@
     outline: forms.$input-focus-outline-thickness solid var(--post-contrast-color);
     @content;
   }
-}
-
-@mixin select-bg-image($state: null, $validation: null, $mode: 'light') {
-  // Hardcoded colors because CSS variables cannot be used as fill color of background-image
-  $arrow-color-map: (
-    'enabled-light': #050400,
-    'enabled-dark': #fff,
-    'hover-light': #504f4b,
-    'hover-dark': #fff,
-    'selected-light': #050400,
-    'selected-dark': #fff,
-    'disabled-light': #696864,
-    'disabled-dark': #fff,
-  );
-
-  @if ($validation == 'valid') {
-    $validation: forms.$valid-icon;
-  } @else if ($validation == 'invalid') {
-    $validation: forms.$invalid-icon;
-  }
-
-  @if ($state) {
-    $state: url('#{icons.get-colored-svg-url('2052', map.get($arrow-color-map, '#{$state}-#{$mode}'))}');
-  }
-  background-image: $state, $validation;
 }

@@ -26,7 +26,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+      options: ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
       table: {
         category: 'Add float',
       },

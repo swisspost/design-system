@@ -2,8 +2,6 @@
 @use 'sass:math';
 @use '@swisspost/design-system-styles/core' as post;
 @use '@swisspost/design-system-styles/components/form-check';
-@use '@swisspost/design-system-styles/components/checkbox';
-@use '@swisspost/design-system-styles/components/radio-button';
 
 /*
 * There are a whole bunch of !important statements in this file.
@@ -11,6 +9,7 @@
 */
 
 :host {
+
   // remove as soon as all browser support :host-context()
   // https://caniuse.com/?search=%3Ahost-context()
   --post-card-control-bg-context: #{post.$backgrounds};
@@ -37,7 +36,6 @@
   flex-basis: 100%;
   display: grid;
   grid-template: 'input label icon' 'input content content' / min-content auto min-content;
-  align-items: center;
   gap: 0 post.$size-mini;
   margin: 0;
   padding: post.$size-regular;
@@ -56,14 +54,6 @@
     cursor: inherit;
     transition: none;
 
-    @include post.focus-style-none();
-
-    &:hover:not([disabled]),
-    &:hover:not([disabled]) ~ label.form-check-label {
-      color: var(--post-contrast-color);
-      background-color: transparent;
-    }
-
     &:focus,
     &:focus-visible {
       box-shadow: none;
@@ -80,7 +70,7 @@
   .card-control--label {
     grid-area: label;
     margin: post.$size-micro 0;
-    padding: 0 !important;
+    padding: 0;
     color: inherit !important;
     pointer-events: none;
     transition: none;
@@ -180,11 +170,17 @@
     --post-card-control-input-bg: transparent;
 
     border-style: dashed;
+    text-decoration: line-through;
     cursor: default;
 
     .card-control--input {
+      border: 0 none;
       padding: post.$form-check-input-border-width;
-      border-style: dashed;
+      background-image: url('#{post.$form-check-input-disabled-background-url-light-lg}');
+
+      &[type='radio'] {
+        background-image: url('#{post.$form-check-input-radio-disabled-background-url-light}');
+      }
     }
   }
 

@@ -11,13 +11,13 @@ const meta: MetaComponent = {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=85-321',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=16825-29996&mode=design&t=rXQXLIbDtUBHn9jE-4',
     },
   },
   args: {
     title: 'Titulum',
     content: 'Contentus momentus vero siteos et accusam iretea et justo.',
-    variant: 'toast-neutral',
+    variant: 'toast-notification',
     noIcon: false,
     icon: 'null',
     dismissible: true,
@@ -57,14 +57,20 @@ const meta: MetaComponent = {
       control: {
         type: 'radio',
         labels: {
-          'toast-neutral': 'Neutral',
+          'toast-notification': 'Notification',
           'toast-info': 'Info',
           'toast-success': 'Success',
           'toast-danger': 'Danger',
           'toast-warning': 'Warning',
         },
       },
-      options: ['toast-neutral', 'toast-info', 'toast-success', 'toast-danger', 'toast-warning'],
+      options: [
+        'toast-notification',
+        'toast-info',
+        'toast-success',
+        'toast-danger',
+        'toast-warning',
+      ],
       table: {
         category: 'General',
       },
@@ -83,10 +89,10 @@ const meta: MetaComponent = {
       name: 'Icon',
       description:
         'Defines a custom icon.' +
-        '<span className="mt-8 banner banner-info banner-sm">' +
-        '<span>To use a custom icon, you must first ' +
+        '<span className="mt-8 alert alert-info alert-sm">' +
+        'To use a custom icon, you must first ' +
         '<a href="/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs">set up the icons in your project</a>' +
-        '.</span></span>',
+        '.</span>',
       if: {
         arg: 'noIcon',
         truthy: false,
@@ -365,12 +371,7 @@ function render(args: Args, context: StoryContext) {
 
   const timeoutStore = timeoutStores[context.name as keyof ITimeoutStores];
 
-  const classes = [
-    'toast',
-    args.variant,
-    args.noIcon && 'no-icon',
-    args.dismissible && 'toast-dismissible',
-  ]
+  const classes = ['toast', args.variant, args.noIcon && 'no-icon']
     .filter(c => c && c !== 'null')
     .join(' ');
 

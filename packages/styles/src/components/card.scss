@@ -59,6 +59,7 @@
   .link-icon {
     text-decoration: none;
 
+    .pi,
     post-icon {
       width: 1.5rem;
       height: 1.5rem;
@@ -102,8 +103,12 @@
       padding: spacing.$size-large;
     }
 
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-between(md, xxl) {
       padding: spacing.$size-big;
+    }
+
+    @include media-breakpoint-up(xxl) {
+      padding: spacing.$size-bigger-big;
     }
   }
 

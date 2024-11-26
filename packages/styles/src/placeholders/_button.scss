@@ -10,5 +10,9 @@
   // Invert icon on dark backgrounds
   @include color-mx.on-dark-background() {
     color: var(--post-contrast-color);
+
+    .pi {
+      filter: invert(1);
+    }
   }
 }

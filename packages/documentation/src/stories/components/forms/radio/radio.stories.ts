@@ -2,7 +2,6 @@ import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { useArgs } from '@storybook/preview-api';
 import { html, nothing, TemplateResult } from 'lit';
 import { MetaComponent } from '@root/types';
-import { ifDefined } from 'lit/directives/if-defined.js';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -30,6 +29,7 @@ const meta: MetaComponent = {
     hiddenLabel: false,
     checked: false,
     disabled: false,
+    size: 'null',
     validation: 'null',
   },
   argTypes: {
@@ -56,7 +56,7 @@ const meta: MetaComponent = {
     hiddenLabel: {
       name: 'Hidden Label',
       description:
-        'Renders the component with or without a visible label.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#labels">label accessibility guide</a>.</span>',
+        'Renders the component with or without a visible label.<span className="mt-8 alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#labels">label accessibility guide</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -74,10 +74,25 @@ const meta: MetaComponent = {
         category: 'States',
       },
     },
+    size: {
+      name: 'Size',
+      description: "Sets the size of the component's appearance.",
+      control: {
+        type: 'select',
+        labels: {
+          'form-check-sm': 'Small',
+          'null': 'Large',
+        },
+      },
+      options: ['form-check-sm', 'null'],
+      table: {
+        category: 'General',
+      },
+    },
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</span>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-8 alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -109,15 +124,12 @@ function render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
   const id = context.id ?? `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
-
-  const radioClass = args.validation !== 'null' ? args.validation : undefined;
-
+  const classes = ['form-check-input', args.validation].filter(c => c && c !== 'null').join(' ');
   const groupClasses = ['form-check', args.size].filter(c => c && c !== 'null').join(' ');
 
   const useAriaLabel = args.hiddenLabel;
-
   const label: TemplateResult | null = !useAriaLabel
-    ? html` <label for="${id}">${args.label}</label> `
+    ? html` <label for="${id}" class="form-check-label">${args.label}</label> `
     : null;
 
   const contextual: (TemplateResult | null)[] = [
@@ -128,7 +140,7 @@ function render(args: Args, context: StoryContext) {
   const control = html`
     <input
       id="${id}"
-      class="${ifDefined(radioClass)}"
+      class="${classes}"
       type="radio"
       ?checked="${args.checked}"
       .checked="${args.checked}"
@@ -150,7 +162,7 @@ type Story = StoryObj;
 
 export const Default: Story = {};
 
-export function renderGroup(args: Args, context: Partial<StoryContext>) {
+export function renderInline(args: Args, context: Partial<StoryContext>) {
   const [_, updateArgs] = useArgs();
   const baseId = `${context.viewMode}_${context.name?.replace(/\s/g, '-')}_ExampleRadio`;
   const id1 = baseId + '1';
@@ -173,7 +185,7 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
   return html`
     <fieldset>
       <legend class="${args.hiddenLegend ? 'visually-hidden' : undefined}">Legend</legend>
-      <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
+      <div class="form-check form-check-inline">
         <input
           id="${id1}"
           name="Inline_ExampleRadio_Group"
@@ -184,7 +196,7 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
         />
         <label for="${id1}" class="form-check-label">${args.label}</label>
       </div>
-      <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
+      <div class="form-check form-check-inline">
         <input
           id="${id2}"
           name="Inline_ExampleRadio_Group"
@@ -195,7 +207,7 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
         />
         <label for="${id2}" class="form-check-label">${args.label}</label>
       </div>
-      <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
+      <div class="form-check form-check-inline">
         <input
           id="${id3}"
           name="Inline_ExampleRadio_Group"
@@ -206,7 +218,7 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
         />
         <label for="${id3}" class="form-check-label">${args.label}</label>
       </div>
-      <div class="form-check ${args.inline ? 'form-check-inline' : ''}">
+      <div class="form-check form-check-inline">
         <input
           id="${id4}"
           name="Inline_ExampleRadio_Group"
@@ -221,27 +233,16 @@ export function renderGroup(args: Args, context: Partial<StoryContext>) {
   `;
 }
 
-export const Grouped: Story = {
-  render: renderGroup,
-  parameters: {
-    controls: {
-      exclude: ['Hidden Label', 'Checked', 'Disabled', 'Validation'],
-    },
-  },
+export const Size: Story = {
+  render,
   args: {
+    size: 'form-check-sm',
     checkedRadio: null,
-  },
-  argTypes: {
-    checkedRadio: {
-      table: {
-        disable: true,
-      },
-    },
   },
 };
 
 export const Inline: Story = {
-  render: renderGroup,
+  render: renderInline,
   parameters: {
     controls: {
       exclude: ['Hidden Label', 'Checked', 'Disabled', 'Validation'],
@@ -249,7 +250,6 @@ export const Inline: Story = {
   },
   args: {
     checkedRadio: null,
-    inline: true,
   },
   argTypes: {
     checkedRadio: {

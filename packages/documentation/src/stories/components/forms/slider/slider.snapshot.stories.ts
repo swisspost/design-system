@@ -20,7 +20,6 @@ export const Slider: Story = {
           bg => html`
             <div
               class="${bg} d-flex  flex-wrap align-items-start flex-column gap-16 p-16"
-              data-color-scheme=${bg === 'bg-white' ? 'light' : 'dark'}
             >
               ${[
                 ...bombArgs({

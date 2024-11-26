@@ -63,7 +63,7 @@
     flex-direction: column;
   }
 
-  @include media-breakpoint-down(sm) {
+  @include media-breakpoint-down(rg) {
     &.header-big {
       .header-margin {
         margin-top: intranet-header.$header-size;

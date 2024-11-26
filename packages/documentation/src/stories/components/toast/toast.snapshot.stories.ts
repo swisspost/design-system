@@ -22,10 +22,7 @@ export const Toast: Story = {
       <div class="d-flex flex-wrap gap-4 align-items-start">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div
-              class="${bg} d-flex flex-wrap align-items-start gap-16 p-16"
-              data-color-scheme="light"
-            >
+            <div class="${bg} d-flex flex-wrap align-items-start gap-16 p-16">
               ${bombArgs({
                 title: ['Title', shortText],
                 content: [shortText, longText],

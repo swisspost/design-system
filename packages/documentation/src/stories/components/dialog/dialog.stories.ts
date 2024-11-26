@@ -185,14 +185,13 @@ const FormTemplate = {
                 type="text"
                 placeholder="Placeholder"
                 name="example-text-field"
-                aria-describedby="example-form-hint"
                 required
               />
               <label class="form-label" for="example-dialog-text-field">Label</label>
-              <p class="form-hint" id="example-form-hint">
+              <div class="form-text">
                 Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie
                 consequat, vel illum dolore eu feugiat nulla facilisis.
-              </p>
+              </div>
             </div>
           </div>
 

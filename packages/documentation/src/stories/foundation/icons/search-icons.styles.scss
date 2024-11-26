@@ -43,7 +43,7 @@
     }
   }
 
-  @include post.media-breakpoint-down(sm) {
+  @include post.media-breakpoint-down(rg) {
     .icon-search--results {
       grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     }
@@ -99,7 +99,7 @@
     }
   }
 
-  @include post.media-breakpoint-down(sm) {
+  @include post.media-breakpoint-down(rg) {
     .icon--tile {
       height: 60px;
 

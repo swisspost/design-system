@@ -198,41 +198,41 @@ export async function createOutputFiles() {
   function getConfigs() {
     return registeredConfigMethods
       .map(method =>
-        method(tokenSets, { sourcePath: `${SOURCE_PATH}/`, buildPath: `${OUTPUT_PATH}/` }),
-      )
-      .filter(configs => Array.isArray(configs))
-      .flat()
-      .map(config => {
-        config = objectDeepmerge(config, {
-          // set log level
-          log: {
-            verbosity: CLI_OPTIONS.verbosity,
-          },
-          // extend preprocessors
-          preprocessors: [
-            'swisspost/box-shadow-keep-refs-workaround',
-            'tokens-studio',
-            ...(config.proprocessors ?? []),
-          ],
-        });
-
-        config.platforms = Object.entries(config.platforms).reduce(
-          (platforms, [name, platform]) => ({
-            ...platforms,
-            [name]: objectDeepmerge(platform, {
-              // set default file header (can still be overridden on the file level)
-              options: {
-                fileHeader: 'swisspost/file-header',
+        method(tokenSets, { sourcePath: `${SOURCE_PATH}/`, buildPath: `${OUTPUT_PATH}/` }).map(
+          config => {
+            config = objectDeepmerge(config, {
+              // set log level
+              log: {
+                verbosity: CLI_OPTIONS.verbosity,
               },
-              // set transformGroup (this will override any given transform group)
-              transformGroup: 'tokens-studio',
-            }),
-          }),
-          {},
-        );
+              // extend preprocessors
+              preprocessors: [
+                'swisspost/box-shadow-keep-refs-workaround',
+                'tokens-studio',
+                ...(config.proprocessors ?? []),
+              ],
+            });
 
-        return config;
-      });
+            config.platforms = Object.entries(config.platforms).reduce(
+              (platforms, [name, platform]) => ({
+                ...platforms,
+                [name]: objectDeepmerge(platform, {
+                  // set default file header (can still be overridden on the file level)
+                  options: {
+                    fileHeader: 'swisspost/file-header',
+                  },
+                  // set transformGroup (this will override any given transform group)
+                  transformGroup: 'tokens-studio',
+                }),
+              }),
+              {},
+            );
+
+            return config;
+          },
+        ),
+      )
+      .flat();
   }
 
   /**

@@ -9,6 +9,7 @@
 * There are a whole bunch of !important statments in this file.
 * They are necessary and should not be removed, because we need to override the .form-check styles here.
 */
+
 fieldset {
   .radio-button-card,
   .checkbox-button-card {
@@ -28,7 +29,6 @@ fieldset {
 
   display: grid;
   grid-template: 'input label icon' 'input content content' / min-content auto min-content;
-  align-items: center;
   gap: 0 spacing.$size-mini;
   position: relative;
   padding: spacing.$size-regular;
@@ -39,7 +39,7 @@ fieldset {
   color: var(--post-card-control-color);
   cursor: pointer;
 
-  > input {
+  input.form-check-input[type] {
     grid-area: input;
     position: relative;
     z-index: 2;
@@ -50,24 +50,17 @@ fieldset {
     cursor: inherit;
     transition: none;
 
-    @include utilities.focus-style-none();
-
-    &:hover:not([disabled]) ~ label {
-      color: var(--post-contrast-color);
-      background-color: transparent !important;
-    }
-
     &:focus,
     &:focus-visible {
       box-shadow: none;
     }
 
-    ~ label {
+    ~ label.form-check-label {
       color: inherit !important;
     }
   }
 
-  label {
+  label.form-check-label {
     grid-area: label;
     margin: spacing.$size-micro 0;
     padding: 0;
@@ -138,10 +131,12 @@ fieldset {
     --post-card-control-input-bg: transparent;
 
     border-style: dashed;
+    text-decoration: line-through;
     cursor: default;
 
     input.form-check-input[type] {
-      padding: forms.$input-border-width;
+      border: 0 none;
+      padding: form-check.$form-check-input-border-width;
     }
   }
 

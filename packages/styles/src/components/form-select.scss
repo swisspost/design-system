@@ -1,75 +1,76 @@
 @forward './../variables/options';
 
+@use './../themes/bootstrap/core' as b;
+@use './../themes/bootstrap/forms/form-select' as bffs;
+@use './../mixins/forms' as forms-mixins;
 @use './../mixins/utilities';
-@use './../mixins/forms';
-@use './../functions/tokens';
-@use './../tokens/components';
-@use './../tokens/elements';
 
-tokens.$default-map: components.$post-select;
+@use './../variables/commons';
+@use './../variables/components/forms';
+@use './../variables/components/form-select' as form-select;
+
+.form-select-wrapper {
+  @include utilities.focus-style {
+    border-radius: commons.$border-radius;
+  }
+}
+
+:not(.form-select-wrapper) > {
+  .form-select {
+    @include utilities.focus-style {
+      border-radius: commons.$border-radius;
+    }
+  }
+}
 
 .form-select {
-  display: block;
-  width: 100%;
-  font-family: tokens.get('body-font-family', elements.$post-body);
-  appearance: none;
-  position: relative;
-  min-height: tokens.get('select-sizing-height');
-  padding-block: tokens.get('select-standalone-padding-block');
-  padding-inline-start: tokens.get('select-padding-inline-start');
-  padding-inline-end: tokens.get('select-padding-inline-end');
-  background-color: tokens.get('select-color-enabled-bg');
-  background-repeat: no-repeat;
-  background-size: tokens.get('select-sizing-icon');
-  background-position: center right tokens.get('select-icon-position-inline-end');
-  border-width: tokens.get('select-border-width');
-  border-color: tokens.get('select-color-enabled-border');
-  border-radius: tokens.get('select-border-radius');
-  color: tokens.get('select-color-enabled-fg');
-  @include forms.select-bg-image('enabled');
+  --form-select-indicator: #{form-select.$form-select-indicator};
 
-  &:disabled {
-    opacity: 1;
-    color: tokens.get('select-color-disabled-fg');
-    background-color: tokens.get('select-color-disabled-bg');
-    border-color: tokens.get('select-color-disabled-border');
-    border-style: tokens.get('select-border-style-disabled');
+  &:focus {
+    box-shadow: none; // Override bootstrap
 
-    &:not([multiple]) {
-      @include forms.select-bg-image('disabled');
+    @include utilities.high-contrast-mode {
+      border-color: FieldText !important;
     }
   }
 
   &:not(:disabled) {
+    &:hover,
     &:focus {
-      background-color: tokens.get('select-color-selected-bg');
-      color: tokens.get('select-color-selected-fg');
-      border-color: tokens.get('select-color-selected-border');
-      @include forms.select-bg-image('selected');
-
-      @include utilities.focus-style;
-
       @include utilities.high-contrast-mode {
         border-color: FieldText;
       }
     }
 
     &:hover {
-      background-color: tokens.get('select-color-hover-bg');
-      color: tokens.get('select-color-enabled-fg');
-      border-color: tokens.get('select-color-hover-border');
-
-      &:not([multiple]) {
-        @include forms.select-bg-image('hover');
-      }
-
       @include utilities.high-contrast-mode {
         border-color: Highlight;
       }
     }
   }
 
+  @include utilities.disabled-style {
+    ~ .form-text {
+      color: var(--post-gray-60);
+    }
+  }
+
+  &:not([multiple]) {
+    &:disabled {
+      background-image: b.escape-svg(form-select.$form-select-indicator-disabled),
+        var(--form-select-indicator), var(--bs-form-select-bg-icon, none);
+    }
+  }
+
   @include utilities.high-contrast-mode() {
+    --form-select-indicator: #{b.escape-svg(form-select.$form-select-indicator-hcm-dark)};
+    background-image: b.escape-svg(form-select.$form-select-indicator-hcm-dark);
+
+    @media (prefers-color-scheme: light) {
+      --form-select-indicator: #{b.escape-svg(form-select.$form-select-indicator-hcm-light)};
+      background-image: b.escape-svg(form-select.$form-select-indicator-hcm-light);
+    }
+
     background-color: Field;
     border-color: FieldText;
     color: FieldText;
@@ -78,190 +79,19 @@ tokens.$default-map: components.$post-select;
       color: FieldText;
     }
   }
-
-  &.is-valid,
-  &.is-invalid {
-    &:not(:disabled) {
-      padding-inline-end: tokens.get('select-label-validated-padding-inline-end');
-      background-position:
-        center right tokens.get('select-icon-position-inline-end'),
-        center right tokens.get('select-validation-icon-position-inline-end');
-    }
-  }
-
-  &.is-valid:not(:disabled) {
-    @include forms.select-bg-image('enabled', 'valid');
-
-    &:focus {
-      @include forms.select-bg-image('selected', 'valid');
-    }
-
-    &:hover {
-      &:not([multiple]) {
-        @include forms.select-bg-image('hover', 'valid');
-      }
-    }
-  }
-
-  &.is-invalid:not(:disabled) {
-    @include forms.select-bg-image('enabled', 'invalid');
-
-    &:focus {
-      @include forms.select-bg-image('selected', 'invalid');
-    }
-
-    &:hover {
-      &:not([multiple]) {
-        @include forms.select-bg-image('hover', 'invalid');
-      }
-    }
-  }
-
-  &[multiple],
-  &[size]:not([size='1']) {
-    background-image: none;
-
-    &.is-valid,
-    &.is-invalid {
-      background-position: center right tokens.get('select-validation-icon-position-inline-end');
-    }
-
-    &.is-valid:not(:disabled) {
-      @include forms.select-bg-image($validation: 'valid');
-    }
-
-    &.is-invalid:not(:disabled) {
-      @include forms.select-bg-image($validation: 'invalid');
-    }
-  }
 }
 
-.form-floating {
-  position: relative;
-
-  > .form-select {
-    padding-block-start: tokens.get('select-padding-block-start');
-    padding-block-end: tokens.get('select-padding-block-end');
-
-    ~ label {
-      position: absolute;
-      z-index: 2;
-      text-align: start;
-      pointer-events: none;
-      display: block;
-      left: tokens.get('select-border-width');
-      top: tokens.get('select-border-width');
-      font-size: tokens.get('select-label-filled-font-size');
-      padding-inline-start: calc(
-        tokens.get('select-label-empty-padding-inline-start') - tokens.get('select-border-width')
-      );
-      padding-inline-end: 0;
-      padding-block-start: tokens.get('select-label-filled-padding-block-start');
-      border-radius: tokens.get('select-border-radius');
-      color: tokens.get('select-color-enabled-fg');
-      max-width: calc(
-        100% - (#{tokens.get('select-border-width')} * 2) - tokens.get(
-            'select-label-empty-padding-inline-end'
-          )
-      );
-      background-color: tokens.get('select-color-enabled-bg');
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      transition:
-        font-size 0.25s ease-in-out,
-        padding-block-start 0.25s ease-in-out;
-    }
-
-    &:not(:disabled):hover ~ label {
-      color: tokens.get('select-color-hover-fg');
-      background-color: tokens.get('select-color-hover-bg');
-    }
-
-    &:disabled ~ label {
-      color: tokens.get('select-color-disabled-fg');
-      background-color: tokens.get('select-color-disabled-bg');
-    }
-
-    &:empty,
-    &.form-select-empty {
-      ~ label {
-        padding-block-start: tokens.get('select-label-empty-padding-block-start');
-        font-size: unset;
-      }
-    }
-
-    &[multiple] {
-      padding-block-end: 0;
-      height: auto;
-
-      option {
-        color: tokens.get('select-color-enabled-fg');
-      }
-
-      ~ label {
-        // Add some distance on the right to leave space for the scrollbar
-        width: calc(100% - (#{tokens.get('select-padding-inline-end')} * 2));
-      }
-
-      &:disabled option {
-        color: tokens.get('select-color-disabled-fg');
-      }
-
-      &:empty {
-        ~ label {
-          padding-block: tokens.get('select-standalone-padding-block');
-          width: calc(
-            100% - (#{tokens.get('select-border-width')} * 2) - #{tokens.get(
-                'select-label-empty-padding-inline-start'
-              )}
-          );
-        }
-      }
-    }
-  }
+.form-select-rg {
+  @include forms-mixins.form-rg;
+  background-size: forms.$form-bg-size; // Set arrow size. Duplicated rule in form-validation for is-valid/is-invalid icon.
 }
 
-[data-color-scheme='dark'] {
-  .form-select:not([multiple]) {
-    @include forms.select-bg-image('enabled', null, 'dark');
+.form-select-sm {
+  @include forms-mixins.form-sm;
+  background-size: forms.$form-bg-size-sm; // Set arrow size. Duplicated rule in form-validation for is-valid/is-invalid icon.
+}
 
-    &:disabled {
-      @include forms.select-bg-image('disabled', null, 'dark');
-    }
-
-    &:not(:disabled) {
-      &:focus {
-        @include forms.select-bg-image('selected', null, 'dark');
-      }
-
-      &:hover {
-        @include forms.select-bg-image('hover', null, 'dark');
-      }
-    }
-
-    &.is-valid:not(:disabled) {
-      @include forms.select-bg-image('enabled', 'valid', 'dark');
-
-      &:focus {
-        @include forms.select-bg-image('selected', 'valid', 'dark');
-      }
-
-      &:hover {
-        @include forms.select-bg-image('hover', 'valid', 'dark');
-      }
-    }
-
-    &.is-invalid:not(:disabled) {
-      @include forms.select-bg-image('enabled', 'invalid', 'dark');
-
-      &:focus {
-        @include forms.select-bg-image('selected', 'invalid', 'dark');
-      }
-
-      &:hover {
-        @include forms.select-bg-image('hover', 'invalid', 'dark');
-      }
-    }
-  }
+.form-select-lg {
+  @include forms-mixins.form-lg;
+  background-size: forms.$form-bg-size; // Set arrow size. Duplicated rule in form-validation for is-valid/is-invalid icon.
 }

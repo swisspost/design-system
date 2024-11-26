@@ -1,5 +1,4 @@
 @use 'sass:map';
-@use 'sass:list';
 
 @use './color' as color-mx;
 @use './icons' as icons-mx;
@@ -9,42 +8,42 @@
 @use './../variables/spacing';
 @use './../variables/components/close';
 @use './../variables/components/notification';
-@use '../tokens/components';
-@use '../tokens/elements';
-@use '../functions/tokens';
-
-tokens.$default-map: components.$post-banner;
 
 @mixin notification-size($size) {
-  $default-var: list.nth(notification.$notification-variants, 1);
   $icon-size: map.get(notification.$notification-icon-size-map, $size);
+  $font-size: map.get(notification.$notification-font-size-map, $size);
   $padding-x: map.get(notification.$notification-padding-x-map, $size);
   $padding-y: map.get(notification.$notification-padding-y-map, $size);
-  $elevation: map.get(notification.$notification-elevation-map, $size);
-  $gap: map.get(notification.$notification-gap-map, $size);
-  min-height: calc(#{$icon-size} + (2 * #{$padding-y}));
-  box-sizing: border-box;
 
-  box-shadow: $elevation;
-  border-radius: tokens.get('banner-border-radius');
-
-  padding: $padding-y $padding-x;
-  padding-inline-start: calc(#{$padding-x} + #{$icon-size} + #{$gap});
-  font-weight: notification.$notification-font-weight;
-  border-style: tokens.get('banner-border-style');
-  border-width: tokens.get('banner-border-width');
   position: relative;
-  color: tokens.get('body-color', elements.$post-body);
+  box-sizing: border-box;
+  min-height: 2 * $padding-y + $icon-size;
+  box-shadow: notification.$notification-box-shadow;
+  border-radius: notification.$notification-border-radius;
+  padding: $padding-y $padding-x;
+  padding-inline-start: $padding-x + $icon-size + notification.$notification-gap;
+  margin-block-end: notification.$notification-margin-bottom;
+  font-size: $font-size;
+  font-weight: notification.$notification-font-weight;
 
-  // Set the neutral notification as the default color
-  @include notification-variant(
-    list.nth($default-var, 2),
-    list.nth($default-var, 3),
-    list.nth($default-var, 4),
-    list.nth($default-var, 5),
-    list.nth($default-var, 6)
-  );
+  &.no-icon {
+    min-height: 2 * $padding-y + close.$close-size;
+    padding-inline-start: $padding-x;
+  }
 
+  // for notifications with .pi-* icons (deprecated)
+  &[class^='pi-'],
+  &[class*=' pi-'] {
+    background-size: $icon-size;
+    background-position: $padding-x $padding-y;
+    background-repeat: no-repeat;
+
+    &.no-icon {
+      background-image: none;
+    }
+  }
+
+  // for notifications with mask-image icons and post-icon override
   &::before {
     content: '';
     display: block;
@@ -59,10 +58,9 @@ tokens.$default-map: components.$post-banner;
     top: $padding-y;
   }
 
-  &.no-icon {
-    min-height: calc(2 * #{$padding-y} + close.$close-size);
-    padding-inline-start: $padding-x;
-
+  &.no-icon,
+  &[class^='pi-'],
+  &[class*=' pi-'] {
     &::before {
       content: unset;
     }
@@ -97,20 +95,22 @@ tokens.$default-map: components.$post-banner;
     margin-block: $hr-margin-block !important;
   }
 
+  > :only-child,
+  > post-icon:first-child + :last-child {
+    @include notification-heading($size);
+  }
+
   > * {
     margin: 0;
   }
 }
 
-@mixin notification-variant($color, $icon, $border-color, $icon-color, $scheme) {
-  background-color: $color;
-  border-color: $border-color;
-  color-scheme: $scheme;
+@mixin notification-variant($color, $icon) {
+  @include color-mx.colored-background($color, $allow-alpha: false);
 
   // default icon (mask-image)
-  &:not(.no-icon)::before {
+  &:not(.no-icon, [class^='pi-'], [class*=' pi-'])::before {
     @include icons-mx.icon($icon);
-    color: $icon-color;
   }
 
   // Prevent flashing when using post-icon
@@ -121,22 +121,17 @@ tokens.$default-map: components.$post-banner;
   // icon override (post-icon), needed when :has is not supported
   > post-icon {
     background-color: $color;
-    color: $icon-color;
   }
 }
 
 @mixin notification-dismissible($size, $close: 'btn-close') {
   $padding-x: map.get(notification.$notification-padding-x-map, $size);
-  $gap: map.get(notification.$notification-gap-map, $size);
 
   /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
   & {
     pointer-events: auto;
     position: relative;
-  }
-
-  &:not(.banner-action):not(.alert-action) {
-    padding-inline-end: calc(#{$padding-x} + #{$gap} + #{close.$close-size});
+    padding-inline-end: $padding-x + notification.$notification-gap + close.$close-size;
   }
 
   > .#{$close} {
@@ -144,4 +139,13 @@ tokens.$default-map: components.$post-banner;
     inset-block-start: spacing.$spacer;
     inset-inline-end: $padding-x;
   }
+
+  > .#{$close}:first-child + :last-child {
+    @include notification-heading($size);
+  }
+}
+
+@mixin notification-heading($size) {
+  font-size: map.get(notification.$notification-heading-font-size-map, $size);
+  font-weight: notification.$notification-heading-font-weight;
 }

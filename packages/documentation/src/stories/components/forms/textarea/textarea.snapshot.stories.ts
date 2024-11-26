@@ -39,10 +39,7 @@ export const Textarea: Story = {
       <div class="d-flex flex-wrap align-items-start gap-16">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div
-              class="${bg} d-flex gap-16 flex-column p-16"
-              data-color-scheme=${bg === 'bg-white' ? 'light' : 'dark'}
-            >
+            <div class="${bg} d-flex gap-16 flex-column p-16">
               <h3>Sizes</h3>
               ${getCombinations('size', context.argTypes.size.options, combinations).map(
                 (args: Args) => {

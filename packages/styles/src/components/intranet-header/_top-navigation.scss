@@ -72,7 +72,7 @@
   }
 }
 
-@include media-breakpoint-down(sm) {
+@include media-breakpoint-down(rg) {
   .top-navigation #navbarsDefault {
     border-top: commons.$border-width solid rgba(var(--post-contrast-color-rgb), 0.2);
   }

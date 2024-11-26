@@ -9,7 +9,10 @@ import * as FormPatternsStories from './forms.stories';
 
 All things need to be contained inside a container. The container limits the size of the content and centers it on the page.
 
-<Source code={`<div class="container">...</div>`} language="html" />
+<Source
+  code={`<div class="container">...</div>`}
+  language="html"
+/>
 
 ## Basic input
 
@@ -21,7 +24,6 @@ next to the field.
 <Canvas of={FormPatternsStories.BasicInput} sourceState="shown" />
 
 ## Vertical spacing
-
 To add space between input, you can use [margin utilities](/?path=/docs/facaacfd-18f1-49b4-80f1-a96680730fa0--docs).
 
 <Canvas of={FormPatternsStories.VerticalSpacing} sourceState="shown" />
@@ -72,13 +74,13 @@ Validation messages are placed directly after the `<input>`
 (or after the `<label>` in the case of floating label). Showing and hiding of these messages is typically controlled by
 adding and removing validation classes on the input:
 
-- The message needs the class `.invalid-feedback/.valid-feedback`
-- The form needs the class `.was-validated`. With this class you can manage when to display errors. Usually, errors should not be
-  shown on untouched fields.
+* The message needs the class `.invalid-feedback/.valid-feedback`
+* The form needs the class `.was-validated`. With this class you can manage when to display errors. Usually, errors should not be
+shown on untouched fields.
 
-Or
+ Or
 
-The input field needs the class `.is-invalid/.is-valid`
+ The input field needs the class `.is-invalid/.is-valid`
 
 <Canvas of={FormPatternsStories.Validation} sourceState="shown" />
 
@@ -88,7 +90,7 @@ Hints can help users better understand the type of information they need to prov
 validation messages, must be placed after the `<input>` (or `<label>`
 in the case of floating label) and after validation messages if there are some.
 
-Hints use the class `.form-hint`.
+Hints use the class `.form-text`.
 
 To enable screen-readers to detect and read your hints, link the `<input>`
 with the aria-describedby attribute to the hint via id.

@@ -1,0 +1,134 @@
+@use 'sass:math';
+@use 'sass:list';
+@use 'sass:map';
+@use '@swisspost/design-system-styles/core' as post;
+@use '../mixins';
+
+$post-docs-alert-border-width: post.$size-line;
+$post-docs-alert-border-style: solid;
+$post-docs-alert-border-radius: post.$size-mini;
+$post-docs-alert-box-shadow: none;
+
+$post-docs-alert-padding-md: 1em 2em 1em 3.5em;
+$post-docs-alert-padding-sm: 0.25em 1em 0.25em 2.25em;
+
+$post-docs-alert-icon-size-md: 2em;
+$post-docs-alert-icon-size-sm: 1.4em;
+
+$post-docs-alert-line-height-md: 1.35;
+$post-docs-alert-line-height-sm: 1.25;
+
+$post-docs-alert-variants: (
+  info: (
+    background-color: '250, 249, 248',
+    border-color: #1ea0d6,
+    color: #0776a4,
+  ),
+  warning: (
+    background-color: '250, 249, 248',
+    border-color: #db8b12,
+    color: #b16a00,
+  ),
+  danger: (
+    background-color: '250, 249, 248',
+    border-color: #d12e35,
+    color: #a1050b,
+  ),
+);
+
+@include mixins.style-docs-only-guard('.alert') {
+  border-width: $post-docs-alert-border-width;
+  border-style: $post-docs-alert-border-style;
+  border-radius: $post-docs-alert-border-radius;
+  box-shadow: $post-docs-alert-box-shadow;
+  font-size: 1rem;
+
+  &:not(.alert-action) {
+    > :only-child:not(code),
+    > :first-child:not(code) + :last-child:not(code) {
+      font-size: inherit;
+    }
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &.alert-sm,
+  &.alert-md {
+    display: block;
+    min-height: 0;
+    font-family: inherit;
+
+    a {
+      font-size: inherit;
+      font-weight: inherit;
+      color: inherit;
+
+      &:hover {
+        color: black;
+      }
+    }
+  }
+
+  &.alert-sm {
+    padding: $post-docs-alert-padding-sm;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: $post-docs-alert-line-height-sm;
+
+    &::before {
+      top: list.nth($post-docs-alert-padding-sm, 1) +
+        (($post-docs-alert-line-height-sm - $post-docs-alert-icon-size-sm) * 0.5);
+      left: (list.nth($post-docs-alert-padding-sm, 4) - $post-docs-alert-icon-size-sm) * 0.5;
+      width: $post-docs-alert-icon-size-sm;
+      height: $post-docs-alert-icon-size-sm;
+    }
+
+    code {
+      font-size: 0.833333em;
+    }
+  }
+
+  &.alert-md {
+    padding: $post-docs-alert-padding-md;
+    font-size: 0.9rem;
+    line-height: $post-docs-alert-line-height-md;
+
+    &::before {
+      top: list.nth($post-docs-alert-padding-md, 1) +
+        (($post-docs-alert-line-height-md - $post-docs-alert-icon-size-md) * 0.5);
+      left: (list.nth($post-docs-alert-padding-md, 4) - $post-docs-alert-icon-size-md) * 0.5;
+      width: $post-docs-alert-icon-size-md;
+      height: $post-docs-alert-icon-size-md;
+    }
+  }
+
+  @each $name, $colorMap in $post-docs-alert-variants {
+    &.alert-#{$name} {
+      --post-bg-rgb: #{map.get($colorMap, 'background-color')};
+      --post-contrast-color: #{map.get($colorMap, 'color')};
+
+      border-color: map.get($colorMap, 'border-color');
+    }
+  }
+}
+
+@include mixins.style-docs-only-guard('post-alert') {
+  &::part(alert) {
+    border-width: $post-docs-alert-border-width;
+    border-style: $post-docs-alert-border-style;
+    border-radius: $post-docs-alert-border-radius;
+    box-shadow: $post-docs-alert-box-shadow;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  @each $name, $colorMap in $post-docs-alert-variants {
+    &::part(alert-#{$name}) {
+      --post-bg-rgb: #{map.get($colorMap, 'background-color')};
+      --post-contrast-color: #{map.get($colorMap, 'color')};
+      border-color: map.get($colorMap, 'border-color');
+    }
+  }
+}

@@ -8,7 +8,7 @@
 
 header.navbar {
   .search-textbox {
-    @include media-breakpoint-down(sm) {
+    @include media-breakpoint-down(rg) {
       border-top: commons.$border-width solid rgba(var(--post-contrast-color-rgb), 0.2);
     }
     @include media-breakpoint-up(md) {

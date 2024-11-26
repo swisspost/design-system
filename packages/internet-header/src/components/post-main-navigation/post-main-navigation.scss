@@ -43,6 +43,10 @@
     font-size: functions.px-to-rem(18px);
   }
 
+  @include mixins.min(xxl) {
+    font-size: functions.px-to-rem(20px);
+  }
+
   @include mixins.max(lg) {
     position: absolute;
     top: var(--calculated-header-height);

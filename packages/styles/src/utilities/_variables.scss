@@ -254,17 +254,5 @@ $utilities: (
     values: inline inline-block block grid inline-grid table table-row table-cell flex inline-flex
       none,
   ),
-  'overflow': (
-    property: overflow,
-    values: auto hidden visible scroll,
-  ),
-  'overflow-x': (
-    property: overflow-x,
-    values: auto hidden visible scroll,
-  ),
-  'overflow-y': (
-    property: overflow-y,
-    values: auto hidden visible scroll,
-  ),
   // IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`.
 );

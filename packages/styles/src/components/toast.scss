@@ -1,7 +1,5 @@
 @forward './../variables/options';
 
-@use 'sass:list';
-
 @use './../themes/bootstrap/core' as *;
 
 @use './../mixins/notification' as notification-mx;
@@ -10,17 +8,10 @@
 @use './../variables/commons';
 @use './../variables/spacing';
 @use './../variables/components/notification';
-@use './../tokens/components';
-@use './../functions/tokens';
-
-tokens.$default-map: components.$post-banner;
 
 .toast {
   @include notification-mx.notification-size(toast);
   @include notification-mx.notification-body(toast);
-}
-
-.toast-dismissible {
   @include notification-mx.notification-dismissible(toast, 'toast-close-button');
 }
 
@@ -33,17 +24,20 @@ tokens.$default-map: components.$post-banner;
   }
 }
 
-@each $name, $color, $icon, $border-color, $icon-color,
-  $scheme in notification.$notification-variants
-{
-  .toast-#{$name} {
-    @include notification-mx.notification-variant(
-      $color,
-      $icon,
-      $border-color,
-      $icon-color,
-      $scheme
-    );
+.toast-title {
+  @include notification-mx.notification-heading(toast);
+}
+
+@each $name, $color, $icon in notification.$notification-variants {
+  $selector: '.toast-#{$name}';
+
+  // the .toast-error class is needed because it is automatically added by the ngx-toastr library
+  @if $name == 'danger' {
+    $selector: '#{$selector}, .toast-error';
+  }
+
+  #{$selector} {
+    @include notification-mx.notification-variant($color, $icon);
   }
 }
 
@@ -53,6 +47,7 @@ tokens.$default-map: components.$post-banner;
   z-index: commons.$zindex-alert;
   display: flex;
   flex-direction: column;
+  pointer-events: none;
 
   .toast {
     width: 25rem;

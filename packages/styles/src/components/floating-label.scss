@@ -3,6 +3,9 @@
 
 @forward './../variables/options';
 
+@use './../themes/bootstrap/core' as b;
+@use './../themes/bootstrap/forms/floating-labels' as bffl;
+@use './../themes/bootstrap/forms/form-control' as bffc;
 @use './../mixins/forms' as forms-mx;
 @use './../mixins/utilities' as utilities-mx;
 
@@ -13,67 +16,33 @@
 @use './../variables/components/forms';
 @use './../variables/components/form-validation';
 @use './../variables/animation';
-@use './../functions/tokens';
-@use './../tokens/components';
+@use './../variables/color' as c;
 
-tokens.$default-map: components.$post-text-input;
-
-// TODO: Since each input/select/textarea will have their own tokens, make sure to separate this file between the 3 corresponding files form-select, forms (should be renamed text-input) and form-textarea
 .form-floating {
-  position: relative;
-
-  > .form-control ~ label,
-  > textarea ~ label {
-    position: absolute;
-    z-index: 2;
-    text-align: start;
-    pointer-events: none;
+  > label {
     display: block;
-    top: tokens.get('input-border-width');
-    left: tokens.get('input-border-width');
+    top: forms.$input-border-width;
+    left: forms.$input-border-width;
     margin: 0;
-    padding-inline-start: tokens.get('input-label-empty-padding-inline-start');
-    padding-inline-end: tokens.get('input-label-empty-padding-inline-end');
-    padding-block-start: tokens.get('input-label-empty-padding-block-start');
+    padding-inline: forms.$form-floating-padding-x;
+    padding-top: forms.$form-floating-label-padding-t;
+    padding-bottom: 0;
     border: 0;
-    color: tokens.get('input-color-enabled-fg');
+    color: forms.$form-floating-label-color;
+    font-size: forms.$form-floating-label-font-size;
     width: auto;
     height: auto;
-    max-width: calc(100% - (#{tokens.get('input-border-width')} * 2));
+    max-width: calc(100% - (#{forms.$input-border-width * 2}));
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    transition:
-      padding-block-start 0.2s ease-in-out,
-      font-size 0.2s ease-in-out;
-    background-color: tokens.get('input-color-enabled-bg');
+    transform-origin: forms.$form-floating-padding-x 0;
+    transition: forms.$form-floating-transition-out;
   }
 
   > .form-control {
-    height: tokens.get('input-sizing-height');
-    min-height: tokens.get('input-sizing-height');
-
-    &::placeholder {
-      color: transparent;
-    }
-
-    &:focus,
-    &:not(:placeholder-shown) {
-      padding-block-start: tokens.get('input-padding-block-start');
-      padding-block-end: tokens.get('input-padding-block-end');
-
-      ~ label {
-        color: tokens.get('input-color-selected-fg');
-        font-size: tokens.get('input-label-filled-font-size');
-        padding-block-start: tokens.get('input-label-filled-padding-block-start');
-      }
-
-      &:not(:hover):not(:disabled) {
-        ~ label {
-          color: tokens.get('input-color-selected-fg');
-        }
-      }
-    }
+    // disable stylelint here, because the classes are coming from bs5
+    @extend .form-control-lg; /* stylelint-disable-line */
 
     @include forms-mx.placeholder {
       opacity: 0;
@@ -81,96 +50,294 @@ tokens.$default-map: components.$post-text-input;
 
     &:focus {
       @include forms-mx.placeholder {
-        color: tokens.get('input-color-helptext-fg');
+        color: rgba(var(--post-contrast-color-rgb), 0.6);
         opacity: 1;
+        transition: opacity animation.$transition-base-timing;
       }
     }
 
-    &:disabled ~ label {
-      color: tokens.get('input-color-disabled-fg');
-      background-color: tokens.get('input-color-disabled-bg');
+    &:focus,
+    &:not(:placeholder-shown) {
+      padding-top: forms.$form-floating-input-padding-t;
+      padding-bottom: forms.$form-floating-input-padding-b;
+
+      ~ label {
+        color: forms.$form-floating-label-color;
+        padding-top: 0.7rem;
+        max-width: calc(
+          (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
+            forms.$form-floating-label-upscale * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale *
+            2}
+        );
+        transition: forms.$form-floating-transition-in;
+      }
     }
 
-    &:not(:disabled):hover ~ label {
-      color: tokens.get('input-color-hover-fg');
-      background-color: tokens.get('input-color-hover-bg');
+    &:disabled {
+      ~ label {
+        color: var(--post-gray-60);
+      }
+    }
+
+    &:hover {
+      ~ label {
+        color: c.$black;
+      }
     }
 
     &[type='file'] {
       &:focus,
       &:not(:placeholder-shown) {
-        padding-block-start: calc(#{tokens.get('input-padding-block-start')} * 1.33);
+        padding-top: forms.$form-floating-input-padding-t * 1.33;
+      }
+    }
+
+    &[type='week'],
+    &[type='month'],
+    &[type='date'],
+    &[type='time'] {
+      background-position: right b.$input-height-inner-quarter bottom 0.5rem;
+    }
+
+    &.form-control-sm {
+      font-size: forms.$form-floating-label-font-size-placeholder-sm;
+      height: forms.$form-floating-label-height-sm;
+      min-height: forms.$form-floating-label-height-sm;
+      padding-inline: forms.$form-floating-padding-x-sm;
+
+      &[type='date']::-webkit-calendar-picker-indicator {
+        margin-top: -(spacing.$size-small-regular);
+      }
+
+      ~ label {
+        font-size: forms.$form-floating-label-font-size-placeholder-sm;
+        padding-top: forms.$form-floating-label-padding-t-sm;
+        padding-inline: forms.$form-floating-padding-x-sm;
+      }
+
+      &:focus,
+      &:not(:placeholder-shown) {
+        padding-top: forms.$form-floating-padding-y-sm * 2;
+
+        ~ label {
+          padding-top: forms.$form-floating-padding-y-sm;
+          font-size: forms.$form-floating-label-font-size-sm;
+        }
       }
     }
   }
 
-  > textarea:disabled ~ label,
-  > .form-control:disabled ~ label {
-    // Required for `.form-control`s because of specificity
-    color: tokens.get('input-color-disabled-fg');
-    background-color: tokens.get('input-color-disabled-bg');
-  }
+  > .form-select {
+    // disable stylelint here, because the classes are coming from bs5
+    @extend .form-control-lg; /* stylelint-disable-line */
 
-  // Duplicated because `:-webkit-autofill` invalidates other selectors when grouped
-  > .form-control:-webkit-autofill {
-    padding-block-start: tokens.get('input-padding-block-start');
-    padding-block-end: tokens.get('input-padding-block-end');
+    padding-top: forms.$form-floating-input-padding-t;
+    padding-bottom: forms.$form-floating-input-padding-b;
 
     ~ label {
-      color: tokens.get('input-color-selected-fg');
-      font-size: tokens.get('input-label-filled-font-size');
-      background-color: tokens.get('input-color-selected-bg');
+      color: forms.$form-floating-label-color;
+      padding-top: 0.7rem;
+      max-width: calc(
+        (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
+          forms.$form-floating-label-upscale * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale *
+          2}
+      );
+      transition: forms.$form-floating-transition-in;
+    }
+
+    &:disabled {
+      ~ label {
+        color: var(--post-gray-60);
+      }
+    }
+
+    // TODO: replace with :has
+    &:empty,
+    &.form-select-empty {
+      padding-top: forms.$form-floating-input-padding-t;
+      padding-bottom: forms.$form-floating-input-padding-b;
+
+      ~ label {
+        padding-top: forms.$form-floating-label-padding-t;
+        max-width: calc(100% - (#{forms.$input-border-width * 2}));
+        transform: none;
+      }
+    }
+
+    &.form-select-sm {
+      padding-inline: forms.$form-floating-padding-x-sm;
+      padding-top: forms.$form-floating-padding-y-sm * 2;
+      font-size: forms.$form-floating-label-font-size-placeholder-sm;
+      height: forms.$form-floating-label-height-sm;
+      min-height: forms.$form-floating-label-height-sm;
+
+      ~ label {
+        padding-top: forms.$form-floating-padding-y-sm;
+        font-size: forms.$form-floating-label-font-size-sm;
+        padding-inline: forms.$form-floating-padding-x-sm;
+      }
+
+      // TODO: replace with :has
+      &:empty,
+      &.form-select-empty {
+        ~ label {
+          padding-top: forms.$form-floating-label-padding-t-sm;
+          font-size: forms.$form-floating-label-font-size-placeholder-sm;
+        }
+      }
+    }
+
+    &[multiple] {
+      padding-top: spacing.$size-big;
+      padding-bottom: 0;
+      height: auto;
+
+      ~ label {
+        padding-top: forms.$input-padding-y-lg * forms.$form-floating-label-scale;
+        padding-bottom: 0;
+        width: calc(
+          (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
+            forms.$form-floating-label-upscale * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale *
+            2} - #{forms.$form-floating-padding-x * forms.$form-floating-label-upscale}
+        );
+        height: auto;
+        left: forms.$input-border-width * 3;
+      }
+
+      &.form-select-sm {
+        padding-top: forms.$form-floating-input-padding-t;
+
+        ~ label {
+          left: forms.$input-border-width * 2;
+        }
+      }
+
+      &:not(:disabled) {
+        ~ label {
+          background: forms.$input-bg;
+        }
+      }
+
+      &:empty {
+        ~ label {
+          padding-top: forms.$form-floating-padding-y;
+          padding-bottom: forms.$form-floating-padding-y;
+          width: calc(
+            100% - (#{forms.$input-border-width * 2}) - #{forms.$form-floating-padding-x}
+          );
+        }
+      }
     }
   }
 
-  > :disabled ~ label,
-  > .form-control:disabled ~ label {
-    // Required for `.form-control`s because of specificity
-    color: tokens.get('input-color-disabled-fg');
-    background-color: tokens.get('input-color-disabled-bg');
-  }
-
   > textarea.form-control {
-    padding-block-start: forms.$form-floating-textarea-padding-t !important;
-    padding-block-end: spacing.$size-mini;
-    padding-inline-end: spacing.$size-large;
+    padding-top: forms.$form-floating-textarea-padding-t !important;
+    padding-bottom: spacing.$size-mini;
+    padding-right: spacing.$size-large;
     min-height: (forms.$form-floating-label-font-size * forms.$input-line-height-lg) +
       forms.$form-floating-textarea-padding-t + spacing.$size-mini +
       sizing.px-to-rem(forms.$input-border-width * 2);
     height: auto;
 
     ~ label {
-      padding-block-end: 0;
-      width: calc(100% - (#{tokens.get('input-border-width')} * 2));
+      padding-bottom: 0;
+      width: calc(100% - (#{forms.$input-border-width * 2}));
       max-width: none;
       height: unset;
-      padding-block-start: spacing.$size-regular;
+      padding-top: spacing.$size-regular;
     }
 
     &:focus,
     &:not(:placeholder-shown) {
-      padding-block-end: spacing.$size-mini;
+      padding-bottom: spacing.$size-mini;
 
       ~ label {
-        padding-block-start: spacing.$size-mini;
-        width: calc(100% - (#{tokens.get('input-border-width')} * 2));
+        padding-top: spacing.$size-mini;
+        width: calc(
+          (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
+            forms.$form-floating-label-upscale * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale *
+            2} - #{forms.$form-floating-padding-x * forms.$form-floating-label-upscale}
+        );
         max-width: none;
-        background-color: tokens.get('input-color-selected-bg');
+        background: forms.$input-bg;
+      }
+    }
+
+    &.form-control-sm {
+      padding-top: forms.$form-floating-textarea-padding-t-sm !important;
+      padding-right: spacing.$size-large;
+      font-size: forms.$form-floating-label-font-size-placeholder-sm;
+      min-height: (
+          forms.$form-floating-label-font-size-placeholder-sm * forms.$input-line-height-sm
+        ) + forms.$form-floating-textarea-padding-t-sm + spacing.$size-mini +
+        sizing.px-to-rem(forms.$input-border-width * 2);
+      height: auto;
+
+      ~ label {
+        font-size: forms.$form-floating-label-font-size-placeholder-sm;
+        padding-left: spacing.$size-regular;
+        padding-top: spacing.$size-regular;
+        padding-right: spacing.$size-large;
+      }
+
+      &:focus,
+      &:not(:placeholder-shown) {
+        padding-bottom: spacing.$size-mini;
+
+        ~ label {
+          transform: scale(forms.$form-floating-label-scale-sm);
+          padding-top: spacing.$size-mini;
+          width: calc(
+            (100% * #{forms.$form-floating-label-upscale-sm}) - #{forms.$form-floating-label-translate-x-sm *
+              forms.$form-floating-label-upscale-sm * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale-sm *
+              2} - #{forms.$form-floating-padding-x-sm * forms.$form-floating-label-upscale-sm}
+          );
+          max-width: none;
+          background: forms.$input-bg;
+        }
       }
     }
 
     &:is(.is-valid, .is-invalid) {
       ~ label {
         width: calc(
-          100% - (#{tokens.get('input-border-width')} * 2) - #{form-validation.$form-feedback-icon-offset} -
-            #{tokens.get('input-sizing-height')}
+          100% - (#{forms.$input-border-width * 2}) - #{form-validation.$form-feedback-icon-offset} -
+            #{forms.$form-bg-size}
         );
       }
 
       &:focus,
       &:not(:placeholder-shown) {
         ~ label {
-          width: calc(100% - (#{tokens.get('input-border-width')} * 2));
+          width: calc(
+            (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
+              forms.$form-floating-label-upscale * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale *
+              2} - #{form-validation.$form-feedback-icon-offset * forms.$form-floating-label-upscale} -
+              #{form-validation.$form-feedback-icon-size * forms.$form-floating-label-upscale}
+          );
+        }
+      }
+
+      &.form-control-sm {
+        ~ label {
+          width: calc(
+            100% - (#{forms.$input-border-width * 2}) - #{form-validation.$form-feedback-icon-offset} -
+              #{forms.$form-bg-size-sm}
+          );
+        }
+
+        &:focus,
+        &:not(:placeholder-shown) {
+          padding-right: spacing.$size-bigger-big;
+
+          ~ label {
+            width: calc(
+              (100% * #{forms.$form-floating-label-upscale-sm}) - #{forms.$form-floating-label-translate-x *
+                forms.$form-floating-label-upscale-sm * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale-sm *
+                2} - #{form-validation.$form-feedback-icon-offset *
+                forms.$form-floating-label-upscale-sm} - #{forms.$form-bg-size-sm * forms.$form-floating-label-upscale-sm}
+            );
+          }
         }
       }
     }

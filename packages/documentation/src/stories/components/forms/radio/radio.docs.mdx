@@ -25,34 +25,31 @@ Our radios use custom icons to indicate checked states.
   <Controls of={RadioStories.Default} />
 </div>
 
-<StylesPackageImport components={['form-check']} required={{ 'form-feedback': true }} />
+<StylesPackageImport components={["form-check"]} required={{ 'form-feedback': true }} />
 
 ## Concrete Examples of Application
 
 The following examples show the different characteristics of the component. These can differ in the type of visualization, the HTML structure, as well as when, how and why they are displayed.
 
-### Grouped
+### Sizing
 
-To show radio button group, just wrap your radios in a `fieldset`.
+The size can be changed by simply adding a class:
 
-<div className="alert alert-info alert-md">
-  Don't forget to add also a `<legend>` element.
-  You can visually hide the legend using the `.visually-hidden` class if necessary.
+- Small: `.form-check-sm`
+- Large: default
 
-  Read more about that topic in our [accessibility docs](/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs).
-</div>
-
-<Canvas of={RadioStories.Grouped} />
+<Canvas of={RadioStories.Size} />
 
 ### Inline
 
 To render a radio inline, simply add the class `.form-check-inline` to the `.form-check` wrapper element.
 
-<div className="banner banner-info banner-md">
+<div className="alert alert-info alert-md">
   Remember to wrap your radio groups in a <code>&lt;fieldset&gt;</code> including a{' '}
   <code>&lt;legend&gt;</code> tag. This provides a label for your radio group.
   <br />
-  For more information, read our{' '} <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#grouping">grouping accessibility guide</a>.
+  For more information, read our{' '}
+  <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#grouping">grouping accessibility guide</a>.
 </div>
 
 To visually hide the `<legend>` element, use the `.visually-hidden` class.

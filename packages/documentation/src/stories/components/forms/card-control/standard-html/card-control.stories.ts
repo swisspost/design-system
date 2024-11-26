@@ -2,7 +2,6 @@ import type { Args, StoryContext, StoryFn } from '@storybook/web-components';
 import { useArgs, useState } from '@storybook/preview-api';
 import { nothing } from 'lit';
 import { html } from 'lit/static-html.js';
-import { ifDefined } from 'lit/directives/if-defined.js';
 import { mapClasses } from '@/utils';
 import { MetaComponent } from '@root/types';
 import { parse } from '@/utils/sass-export';
@@ -85,7 +84,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</span>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-8 alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -153,7 +152,10 @@ export const Default = {
       'checkbox-button-card': args.type === 'checkbox',
       'radio-button-card': args.type === 'radio',
     });
-    const validationClass = args.validation !== 'null' ? `is-${args.validation}` : undefined;
+    const inputClasses = mapClasses({
+      'form-check-input': true,
+      'is-invalid': args.validation === 'is-invalid',
+    });
 
     // Child components
     const controlId = `CardControl_${id}`;
@@ -166,14 +168,14 @@ export const Default = {
         <input
           id="${controlId}"
           name="${args.type}-button-card-${args.inputName ?? `control_${id}`}"
-          class="${ifDefined(validationClass)}"
+          class="${inputClasses}"
           type="${args.type}"
           ?disabled="${args.disabled}"
           .checked="${args.checked}"
           checked="${args.checked || nothing}"
           @input="${(e: InputEvent) => inputHandler(e, updateArgs)}"
         />
-        <label for="${controlId}">
+        <label class="form-check-label" for="${controlId}">
           <span>${args.label}</span>
           ${args.description ? description : nothing}
         </label>

@@ -1,6 +1,6 @@
 import { Meta, Source } from '@storybook/blocks';
 import NgbComponentDemoLink from '@/shared/nb-bootstrap/ngb-component-demo-link.mdx';
-import NgbComponentBanner from '@/shared/nb-bootstrap/ngb-component-banner.mdx';
+import NgbComponentAlert from '@/shared/nb-bootstrap/ngb-component-alert.mdx';
 import NgbComponentImport from '@/shared/nb-bootstrap/ngb-component-import.mdx';
 import * as progressbarStories from './progressbar.stories.ts';
 import progressbarDefault from './progressbar-default.sample.html?raw';
@@ -16,27 +16,19 @@ import progressbarDefault from './progressbar-default.sample.html?raw';
   </nav>
 </div>
 
-<p className="lead">
-  A component to display an indicator showing the completion progress of as task.
-</p>
+<p className="lead">A component to display an indicator showing the completion progress of as task.</p>
 
-<NgbComponentBanner component="progressbar" />
+<NgbComponentAlert component="progressbar" />
 
 <ul>
   <li>
-    <a href="#component-import" target="_self">
-      Component Import
-    </a>
+    <a href="#component-import" target="_self">Component Import</a>
   </li>
   <li>
-    <a href="#internationalization" target="_self">
-      Internationalization
-    </a>
+    <a href="#internationalization" target="_self">Internationalization</a>
   </li>
   <li>
-    <a href="#examples" target="_self">
-      Examples
-    </a>
+    <a href="#examples" target="_self">Examples</a>
   </li>
 </ul>
 
@@ -48,4 +40,4 @@ The progress bar requires an `ariaLabel` attribute which provides context to the
 
 ## Examples
 
-<Source code={progressbarDefault} language="html" />
+<Source code={progressbarDefault} language="html"/>

@@ -43,7 +43,7 @@ export class PostList {
   }
 
   private checkTitle() {
-    if (!this.titleEl.textContent.trim()) {
+    if (!this.titleEl.innerText) {
       throw new Error(
         'Please provide a title to the list component. Title is mandatory for accessibility purposes.',
       );

@@ -2,7 +2,7 @@ import { Meta, Source } from '@storybook/blocks';
 import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 import NgbComponentDemoLink from '@/shared/nb-bootstrap/ngb-component-demo-link.mdx';
-import NgbComponentBanner from '@/shared/nb-bootstrap/ngb-component-banner.mdx';
+import NgbComponentAlert from '@/shared/nb-bootstrap/ngb-component-alert.mdx';
 import NgbComponentImport from '@/shared/nb-bootstrap/ngb-component-import.mdx';
 import * as modalStories from './modal.stories';
 import modalVaryingContent from './modal-varying-content.sample?raw';
@@ -22,42 +22,32 @@ import modalBlocking from './modal-blocking.sample?raw';
 
 <p className="lead">Display information that requires the user’s immediate attention.</p>
 
-<NgbComponentBanner component="modal" />
+<NgbComponentAlert component="modal" />
 
-<div className="banner banner-warning mb-4">
-  This component is deprecated in favor of the{' '}
-  <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs">dialog component</a>.
+<div className="alert alert-warning mb-4">
+  This component is deprecated in favor of the <a href="/?path=/docs/562eac2b-6dc1-4007-ba8e-4e981cef0cbc--docs">dialog component</a>.
 </div>
 
 <ul>
   <li>
-    <a href="#component-import" target="_self">
-      Component Import
-    </a>
+    <a href="#component-import" target="_self">Component Import</a>
   </li>
   <li>
-    <a href="#style-imports" target="_self">
-      Style Imports
-    </a>
+    <a href="#style-imports" target="_self">Style Imports</a>
   </li>
   <li>
-    <a href="#focus-management" target="_self">
-      Focus Management
-    </a>
+    <a href="#focus-management" target="_self">Focus Management</a>
   </li>
   <li>
-    <a href="#examples" target="_self">
-      Examples
-    </a>
+    <a href="#examples" target="_self">Examples</a>
   </li>
 </ul>
 
 <NgbComponentImport module="NgbModalModule" />
 
-<StylesPackageImport components={['modal']} />
+<StylesPackageImport components={["modal"]} />
 
 ## Focus Management
-
 Since the modal appears above the page, generally blocking interaction with the content below,
 it is important that the focus is move to an element within it.
 
@@ -72,13 +62,14 @@ However, You can decide to focus any other element by adding an `ngbAutofocus` a
     <Source code={modalVaryingContent} language="typescript"/>
   </PostTabPanel>
 
-<PostTabHeader panel="focused-content">Focused Content</PostTabHeader>
-<PostTabPanel name="focused-content">
-  <Source code={modalFocusedContent} language="typescript" />
-</PostTabPanel>
+  <PostTabHeader panel="focused-content">Focused Content</PostTabHeader>
+  <PostTabPanel name="focused-content">
+    <Source code={modalFocusedContent} language="typescript"/>
+  </PostTabPanel>
 
   <PostTabHeader panel="blocking">Mandatory Confirmation</PostTabHeader>
   <PostTabPanel name="blocking">
     <Source code={modalBlocking} language="typescript"/>
   </PostTabPanel>
 </PostTabs>
+

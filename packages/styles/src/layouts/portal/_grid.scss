@@ -4,6 +4,7 @@
 
 @use './../../variables/grid';
 @use './../../variables/commons';
+@use './variables' as portal-variables;
 
 .container-fluid {
   max-width: map.get(grid.$container-max-widths, xs);
@@ -27,5 +28,24 @@
     padding-right: commons.$border-width;
     padding-bottom: commons.$border-width;
     padding-left: 0;
+  }
+}
+
+// Overwrites gutter on rg-sized screens and bigger
+@include media-breakpoint-up(rg) {
+  .col,
+  [class*='col-'] {
+    padding-right: portal-variables.$grid-gutter-width-rg * 0.5;
+    padding-left: portal-variables.$grid-gutter-width-rg * 0.5;
+  }
+
+  .row {
+    margin-right: -(portal-variables.$grid-gutter-width-rg * 0.5);
+    margin-left: -(portal-variables.$grid-gutter-width-rg * 0.5);
+
+    &.no-gutters {
+      margin-right: 0;
+      margin-left: 0;
+    }
   }
 }

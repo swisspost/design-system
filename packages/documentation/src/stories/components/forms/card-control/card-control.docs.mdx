@@ -1,6 +1,6 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
 import {
-  PostBanner,
+  PostAlert,
   PostTabs,
   PostTabHeader,
   PostTabPanel,
@@ -25,13 +25,10 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 
 <p className="lead">For a more specialized visualization of checkbox and radio elements.</p>
 
-<PostBanner type="info">
+<PostAlert type="info">
   <p slot="heading">There are various methods to integrate this component into your project.</p>
-  <p>
-    We advise opting for the "Standard HTML" approach for when you need full access to the input
-    field and using the "Web Component" method in every other case.
-  </p>
-</PostBanner>
+  <p>We advise opting for the "Standard HTML" approach for when you need full access to the input field and using the "Web Component" method in every other case.</p>
+</PostAlert>
 
 <PostTabs>
   <PostTabHeader panel="standardhtml">Standard HTML</PostTabHeader>
@@ -60,9 +57,12 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 
     ### Firefox fallback
 
-    <div className="banner banner-info">
-      <div className="banner-content">
-      Firefox currently does not support{' '} <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has">the new <abbr title="Cascading Style Sheets">CSS</abbr> :has pseudo-selector</a>. As a fallback, the following states have to be mirrored on the top level element in the form of
+    <div className="alert alert-info">
+      Firefox currently does not support{' '}
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has">
+        the new <abbr title="Cascading Style Sheets">CSS</abbr> :has pseudo-selector
+      </a>
+      . As a fallback, the following states have to be mirrored on the top level element in the form of
       classes (see below for a snippet):
       <ul>
         <li>
@@ -77,7 +77,6 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
       </ul>
       Check <a href="https://caniuse.com/css-has">caniuse :has()</a> to check if you still need the
       fallback.
-      </div>
     </div>
 
     This snippet adds a global event listener to mirror the `focused` and `checked` states to the parent of the input. This fallback has to be applied as long as Firefox does not support the `:has` selector.
@@ -85,7 +84,6 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
     <Source code={firefoxFallbackSnippet} dark={true} language="typescript" />
 
     <StylesPackageImport components={['choice-control-card']} />
-
   </PostTabPanel>
 
   <PostTabHeader panel="webcomponent">Webcomponent</PostTabHeader>
@@ -96,11 +94,7 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
     ## Installation
 
 The `<post-card-control>` element is part of the `@swisspost/design-system-components` package. For more information, read the
-
-<a href="/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs">
-  getting started with components guide
-</a>
-.
+<a href="/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs">getting started with components guide</a>.
 
     ## Examples
 
@@ -117,7 +111,7 @@ The `<post-card-control>` element is part of the `@swisspost/design-system-compo
     You can use our built-in icons by just adding the `icon` property with the name of the desired icon.<br/>
     If this is not enough, you can also use the named `icon` slot and add your very own custom icon.
 
-    <div className="banner banner-md banner-info">Make sure you remove all the `width` and `height` attributes from the `img` or `svg` tag. Otherwise we can not ensure, our styles will work properly.</div>
+    <div className="alert alert-md alert-info">Make sure you remove all the `width` and `height` attributes from the `img` or `svg` tag. Otherwise we can not ensure, our styles will work properly.</div>
 
     <Canvas of={CardControlStories.CustomIcon} />
 
@@ -125,8 +119,8 @@ The `<post-card-control>` element is part of the `@swisspost/design-system-compo
 
     If you need to add other content to the component, you can use the default slot to do so.
 
-    <div className="banner banner-md banner-warning">
-      <h4 className="banner-heading">Even if it is generally possible, we do not recommend using interactive elements in this slot because the background of the card control is clickable.</h4>
+    <div className="alert alert-md alert-warning">
+      <p className="alert-heading">Even if it is generally possible, we do not recommend using interactive elements in this slot because the background of the card control is clickable.</p>
       <p>This can lead to confusion when the hit box of nested interactive controls is not clearly separated from the background, is invalid HTML and click events bubbling up to the card control will unexpectedly toggle it if they're not captured. More info: <a href="https://accessibilityinsights.io/info-examples/web/nested-interactive/">https://accessibilityinsights.io/info-examples/web/nested-interactive/</a></p>
     </div>
 
@@ -136,7 +130,7 @@ The `<post-card-control>` element is part of the `@swisspost/design-system-compo
 
     You can use the component directly in your forms, the control value will be available in the `FormData` of the surrounding `<form>` element, just as you are used to from native input elements.
 
-    <p className="banner banner-info">Update the control and submit or reset the form to see how its FormData value changes.</p>
+    <p className="alert alert-info">Update the control and submit or reset the form to see how its FormData value changes.</p>
     <Canvas of={CardControlStories.FormIntegration} />
     <div className="hide-col-default">
       <Controls of={CardControlStories.FormIntegration} />
@@ -167,6 +161,5 @@ The `<post-card-control>` element is part of the `@swisspost/design-system-compo
       code={SampleCardControlMethods}
       language="typescript"
     />
-
   </PostTabPanel>
 </PostTabs>

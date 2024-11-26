@@ -1,8 +1,0 @@
-@use './temp/theme' as themes;
-
-@use './core';
-@use './../mixins/tokens';
-
-:root {
-  @include tokens.from(themes.$post-cargo);
-}

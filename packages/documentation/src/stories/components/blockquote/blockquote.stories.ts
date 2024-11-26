@@ -17,7 +17,7 @@ const meta: MetaComponent = {
   args: {
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.',
     language: 'en',
-    caption: true,
+    caption: false,
     captionAuthor: 'Author',
     captionSource: 'Source',
   },
@@ -34,7 +34,7 @@ const meta: MetaComponent = {
     },
     language: {
       name: 'Language',
-      description: "The document's language.",
+      description: 'The documents language.',
       control: {
         type: 'radio',
         labels: {

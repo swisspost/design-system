@@ -35,7 +35,7 @@ const meta: MetaComponent = {
     id: {
       name: 'Id',
       description:
-        'The id is used to connect a trigger element with the popover. <div className="mt-8 banner banner-info banner-sm">`<button data-popover-target="...">` is the only valid trigger element for `post-popover`.</div>',
+        'The id is used to connect a trigger element with the popover. <div className="mt-8 alert alert-info alert-sm">`<button data-popover-target="...">` is the only valid trigger element for `post-popover`.</div>',
       table: {
         category: 'General',
       },

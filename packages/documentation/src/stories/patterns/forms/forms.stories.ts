@@ -346,9 +346,10 @@ export const Hints: Story = {
         placeholder=" "
       />
       <label class="form-label" for="firstname">Firstname</label>
-      <p id="firstname-hint" class="form-hint">
-        Also provide any middle names in this field
-      </p>
+      <div id="firstname-hint" class="form-text">
+        <i class="pi pi-info" aria-hidden="true"></i>
+        <span>Also provide any middle names in this field</span>
+      </div>
     </div>
   `,
 };

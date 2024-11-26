@@ -1,4 +1,5 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { PostAlert } from '@swisspost/design-system-components-react';
 import * as badgeStories from './badge.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
@@ -12,7 +13,9 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
   </nav>
 </div>
 
-<div className="lead">Highlight a numerical characteristic or mark an item with a status.</div>
+<div className="lead">
+  Highlight a numerical characteristic or mark an item with a status.
+</div>
 
 <Canvas sourceState="shown" of={badgeStories.Default} />
 <div className="hide-col-default">

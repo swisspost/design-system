@@ -66,5 +66,5 @@ export const renderBadge = (store: StoreType) => {
 type Story = StoryObj<{ store: StoreType }>;
 
 export const Default: Story = {
-  render: args => renderBadge(args.store),
+  render: (args) => renderBadge(args.store),
 };

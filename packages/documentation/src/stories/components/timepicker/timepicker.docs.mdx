@@ -2,7 +2,7 @@ import { Meta, Source } from '@storybook/blocks';
 import * as timepickerStories from './timepicker.stories.ts';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 import NgbComponentDemoLink from '@/shared/nb-bootstrap/ngb-component-demo-link.mdx';
-import NgbComponentBanner from '@/shared/nb-bootstrap/ngb-component-banner.mdx';
+import NgbComponentAlert from '@/shared/nb-bootstrap/ngb-component-alert.mdx';
 import NgbComponentImport from '@/shared/nb-bootstrap/ngb-component-import.mdx';
 import NgbComponentInternationalization from '@/shared/nb-bootstrap/ngb-component-internationalization.mdx';
 import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
@@ -22,34 +22,26 @@ import SampleValidation from './timepicker-validation.sample.html?raw';
 
 <p className="lead">A component that allows the user to choose a time.</p>
 
-<NgbComponentBanner component="timepicker" />
+<NgbComponentAlert component="timepicker" />
 
 <ul>
   <li>
-    <a href="#component-import" target="_self">
-      Component Import
-    </a>
+    <a href="#component-import" target="_self">Component Import</a>
   </li>
   <li>
-    <a href="#style-imports" target="_self">
-      Style Imports
-    </a>
+    <a href="#style-imports" target="_self">Style Imports</a>
   </li>
   <li>
-    <a href="#internationalization" target="_self">
-      Internationalization
-    </a>
+    <a href="#internationalization" target="_self">Internationalization</a>
   </li>
   <li>
-    <a href="#examples" target="_self">
-      Examples
-    </a>
+    <a href="#examples" target="_self">Examples</a>
   </li>
 </ul>
 
 <NgbComponentImport module="NgbTimepickerModule" />
 
-<StylesPackageImport components={['timepicker']} />
+<StylesPackageImport components={["timepicker"]} />
 
 <NgbComponentInternationalization />
 
@@ -67,7 +59,6 @@ import SampleValidation from './timepicker-validation.sample.html?raw';
 
     To use one of these predefined sizes, simply set the `[size]` entry as defined in the [component api](https://ng-bootstrap.github.io/#/components/timepicker/api).
     <Source code={SampleSizes} language="html" />
-
   </PostTabPanel>
 
   <PostTabHeader panel="sampleValidation">Validation</PostTabHeader>

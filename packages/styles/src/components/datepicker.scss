@@ -146,6 +146,13 @@ span.ngb-dp-navigation-chevron {
   width: forms.$input-height-inner;
   background: transparent;
 
+  // DEPRECATED
+  .pi-calendar {
+    @include icons-mx.icon(3203);
+  }
+
+  .pi-calendar,
+  .pi-3203,
   post-icon {
     width: datepicker.$ngb-dp-icon-size;
     height: datepicker.$ngb-dp-icon-size;
@@ -167,6 +174,8 @@ span.ngb-dp-navigation-chevron {
   height: calc(#{forms.$form-floating-height} - #{forms.$input-border-width * 2});
   width: forms.$input-height-inner-lg;
 
+  .pi-3203,
+  .pi-calendar,
   post-icon {
     width: datepicker.$ngb-dp-icon-size-lg;
     height: datepicker.$ngb-dp-icon-size-lg;

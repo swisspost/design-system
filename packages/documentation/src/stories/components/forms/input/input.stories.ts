@@ -17,15 +17,17 @@ const meta: MetaComponent = {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=21-168&node-type=canvas&t=BXfJ1qmQAdwMxjBE-0',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=21923-74274&mode=design&t=3lniLiZhl7q9Gqgn-4',
     },
   },
   args: {
     label: 'Label',
-    floatingLabel: true,
+    floatingLabel: false,
     hiddenLabel: false,
     placeholder: 'Placeholder',
     type: 'text',
+    size: 'form-control-lg',
+    sizeFloatingLabel: 'form-control-lg',
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
     disabled: false,
     validation: 'null',
@@ -54,7 +56,7 @@ const meta: MetaComponent = {
     hiddenLabel: {
       name: 'Hidden Label',
       description:
-        'Renders the component with or without a visible label.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#labels">label accessibility guide</a>.</span>',
+        'Renders the component with or without a visible label.<span className="mt-8 alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#labels">label accessibility guide</a>.</span>',
       if: {
         arg: 'floatingLabel',
         truthy: false,
@@ -100,6 +102,46 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
+    size: {
+      name: 'Size',
+      description: "Sets the size of the component's appearance.",
+      if: {
+        arg: 'floatingLabel',
+        truthy: false,
+      },
+      control: {
+        type: 'select',
+        labels: {
+          'form-control-sm': 'Small',
+          'form-control-rg': 'Regular (deprecated)',
+          'null': 'Middle (deprecated)',
+          'form-control-lg': 'Large',
+        },
+      },
+      options: ['form-control-sm', 'form-control-rg', 'null', 'form-control-lg'],
+      table: {
+        category: 'General',
+      },
+    },
+    sizeFloatingLabel: {
+      name: 'Size',
+      description: "Sets the size of the component's appearance.",
+      if: {
+        arg: 'floatingLabel',
+        truthy: true,
+      },
+      control: {
+        type: 'select',
+        labels: {
+          'form-control-sm': 'Small',
+          'form-control-lg': 'Large',
+        },
+      },
+      options: ['form-control-sm', 'form-control-lg'],
+      table: {
+        category: 'General',
+      },
+    },
     hint: {
       name: 'Helper Text',
       description: 'Text to place in the help text area of the component.',
@@ -113,7 +155,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<div className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<div className="mt-8 alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
       control: {
         type: 'boolean',
       },
@@ -146,7 +188,14 @@ type Story = StoryObj;
 
 function render(args: Args, context: StoryContext) {
   const id = context.id ?? `ExampleTextarea_${context.name}`;
-  const classes = ['form-control', args.validation].filter(c => c && c !== 'null').join(' ');
+  const classes = [
+    'form-control',
+    args.size,
+    args.floatingLabel ? args.sizeFloatingLabel : '',
+    args.validation,
+  ]
+    .filter(c => c && c !== 'null')
+    .join(' ');
 
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
   const label: TemplateResult | null = !useAriaLabel
@@ -160,7 +209,7 @@ function render(args: Args, context: StoryContext) {
   const contextual: (TemplateResult | null)[] = [
     args.validation === 'is-valid' ? html` <p class="valid-feedback">Ggranda sukceso!</p> ` : null,
     args.validation === 'is-invalid' ? html` <p class="invalid-feedback">Eraro okazis!</p> ` : null,
-    args.hint !== '' ? html` <p class="form-hint" id="form-hint-${id}">${args.hint}</p> ` : null,
+    args.hint !== '' ? html` <div class="form-text">${args.hint}</div> ` : null,
   ];
 
   const control: TemplateResult = html`
@@ -172,7 +221,6 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
-      aria-describedby="${args.hint !== '' ? 'form-hint-' + id : nothing}"
       value="${args.value ? args.value : nothing}"
     />
   `;
@@ -190,7 +238,7 @@ export const Default: Story = {};
 export const FloatingLabel: Story = {
   parameters: {
     controls: {
-      exclude: ['Hidden Label', 'Helper Text', 'Disabled', 'Validation'],
+      exclude: ['Hidden Label', 'Size', 'Helper Text', 'Disabled', 'Validation'],
     },
   },
   args: {
@@ -199,15 +247,26 @@ export const FloatingLabel: Story = {
   },
 };
 
+export const Size: Story = {
+  parameters: {
+    controls: {
+      exclude: ['Label', 'Floating Label', 'Hidden Label', 'Helper Text', 'Disabled', 'Validation'],
+    },
+  },
+  args: {
+    size: 'form-control-sm',
+    hint: '',
+  },
+};
+
 export const Validation: Story = {
   parameters: {
     controls: {
-      exclude: ['Label', 'Floating Label', 'Hidden Label', 'Helper Text', 'Disabled'],
+      exclude: ['Label', 'Floating Label', 'Hidden Label', 'Size', 'Helper Text', 'Disabled'],
     },
   },
   args: {
     validation: 'is-invalid',
     hint: '',
-    floatingLabel: true,
   },
 };

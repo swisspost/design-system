@@ -5,8 +5,8 @@
 
 $close-size: spacing.$size-large !default;
 $close-border-radius: button.$btn-border-radius !default;
-$close-color: color.$black !default;
-$close-hover-color: color.$black !default;
+$close-color: var(--post-gray-80) !default;
+$close-hover-color: var(--post-contrast-color) !default;
 $close-disabled-color: var(--post-gray-40) !default;
 $close-transition: button.$btn-transition !default;
 

@@ -17,6 +17,7 @@ tokens.$default-map: components.$post-icon-button;
   width: tokens.get('icon-button-#{$actual-size}-outer');
   height: tokens.get('icon-button-#{$actual-size}-outer');
 
+  > .pi,
   > post-icon {
     min-width: tokens.get('icon-button-#{$actual-size}-icon');
     height: tokens.get('icon-button-#{$actual-size}-icon');

@@ -11,9 +11,7 @@ import * as AvatarPictureStories from './avatar.stories';
   </nav>
 </div>
 
-<p className="lead">
-  Display a user's profile picture or their initials if the picture is unavailable.
-</p>
+<p className="lead">Display a user's profile picture or their initials if the picture is unavailable.</p>
 
 <Canvas of={AvatarPictureStories.Default} sourceState="shown" />
 <Controls of={AvatarPictureStories.Default} />
@@ -38,7 +36,7 @@ Use this approach to use the component as a menu toggler, ...
 
 The component provides some css-variables, which allow you to switch the background and the foreground color if needed.
 
-<post-banner type="warning">Please ensure at all times, that the background and foreground colors have sufficient contrast!</post-banner>
+<post-alert type="warning">Please ensure at all times, that the background and foreground colors have sufficient contrast!</post-alert>
 
 ```scss
 post-avatar {
@@ -55,23 +53,13 @@ Please notice, that if you combine several methods to show a picture, the compon
 The properties are used in the order as follows:
 
 1. If you use an `<img>` tag in the default slot (for example to show a self hosted image), this will override the other properties.<br/><br/>
-   <div className="mb-regular banner banner-info banner-md">
-     We do not check if the image can be loaded, so make sure the image is available!
-   </div>
+  <div className="mb-regular alert alert-info alert-md">We do not check if the image can be loaded, so make sure the image is available!</div>
 2. If you use the `userid` property (to show a company internal user picture) and a picture is available, this will override the `email` property, as well as `firstname` and `lastname`.<br/><br/>
-   <div className="mb-regular banner banner-info banner-md">
-     This will only work on `post.ch` urls and only in internal projects.
-   </div>
+  <div className="mb-regular alert alert-info alert-md">This will only work on `post.ch` urls and only in internal projects.</div>
 3. If you use the `email` property (to show a users picture provided through gravatar.com) and a picture is available, this will override the `firstname` and `lastname` properties.<br/><br/>
-   <div className="mb-regular banner banner-info banner-md">
-     Don't know Gravatar or haven't set up a profile yet, let's change this:
-     [Signup](https://gravatar.com) now!
-   </div>
+  <div className="mb-regular alert alert-info alert-md">Don't know Gravatar or haven't set up a profile yet, let's change this: [Signup](https://gravatar.com) now!</div>
 4. As an overall fallback the `firstname` and `lastname` properties are used to show at least some initials. And as an addition, `firstname` and `lastname` (if defined) are also used on all the other methods to set the `alt` tag of the image (if not already defined).<br/><br/>
-   <div className="mb-regular banner banner-info banner-md">
-     Because of big differences in the naming convenions around the world, we only set the
-     `firstname` as required property.
-   </div>
+  <div className="mb-regular alert alert-info alert-md">Because of big differences in the naming convenions around the world, we only set the `firstname` as required property.</div>
 
 ## Check the Content Security Policy
 

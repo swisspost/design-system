@@ -1,7 +1,7 @@
 import { Meta, Source } from '@storybook/blocks';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 import NgbComponentDemoLink from '@/shared/nb-bootstrap/ngb-component-demo-link.mdx';
-import NgbComponentBanner from '@/shared/nb-bootstrap/ngb-component-banner.mdx';
+import NgbComponentAlert from '@/shared/nb-bootstrap/ngb-component-alert.mdx';
 import NgbComponentImport from '@/shared/nb-bootstrap/ngb-component-import.mdx';
 import NgbComponentInternationalization from '@/shared/nb-bootstrap/ngb-component-internationalization.mdx';
 import * as paginationStories from './pagination.stories';
@@ -20,37 +20,29 @@ import paginationDefault from './pagination-default.sample.html?raw';
 
 <p className="lead">A component to display a navigation with page numbers.</p>
 
-<NgbComponentBanner component="pagination" />
+<NgbComponentAlert component="pagination" />
 
 <ul>
   <li>
-    <a href="#component-import" target="_self">
-      Component Import
-    </a>
+    <a href="#component-import" target="_self">Component Import</a>
   </li>
   <li>
-    <a href="#style-imports" target="_self">
-      Style Imports
-    </a>
+    <a href="#style-imports" target="_self">Style Imports</a>
   </li>
   <li>
-    <a href="#internationalization" target="_self">
-      Internationalization
-    </a>
+    <a href="#internationalization" target="_self">Internationalization</a>
   </li>
   <li>
-    <a href="#examples" target="_self">
-      Examples
-    </a>
+    <a href="#examples" target="_self">Examples</a>
   </li>
 </ul>
 
 <NgbComponentImport module="NgbPaginationModule" />
 
-<StylesPackageImport components={['pagination']} />
+<StylesPackageImport components={["pagination"]} />
 
 <NgbComponentInternationalization />
 
 ## Examples
 
-<Source code={paginationDefault} language="html" />
+<Source code={paginationDefault} language="html"/>
