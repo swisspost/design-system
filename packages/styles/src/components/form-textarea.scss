@@ -80,7 +80,7 @@ textarea.form-control {
   }
 
   &::placeholder {
-    color: tokens.get('textarea-enabled-fg');
+    color: tokens.get('textarea-disabled-fg');
     opacity: 1;
   }
 
@@ -175,7 +175,7 @@ textarea.form-control {
 
     &:focus {
       @include forms-mx.placeholder {
-        color: tokens.get('textarea-hover-fg');
+        color: tokens.get('textarea-disabled-fg');
         opacity: 1;
       }
     }

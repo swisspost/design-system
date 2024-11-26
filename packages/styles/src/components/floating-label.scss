@@ -115,12 +115,6 @@ tokens.$default-map: components.$post-text-input;
     }
   }
 
-  > input.form-control:disabled ~ label {
-    // Required for `.form-control`s because of specificity
-    color: tokens.get('input-color-disabled-fg');
-    background-color: tokens.get('input-color-disabled-bg');
-  }
-
   @include utilities-mx.high-contrast-mode() {
     > input {
       @include forms-mx.placeholder() {
