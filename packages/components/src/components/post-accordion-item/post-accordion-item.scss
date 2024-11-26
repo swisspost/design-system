@@ -24,6 +24,7 @@ tokens.$default-map: components.$post-accordion;
   color: tokens.get('accordion-enabled-fg');
   font-size: tokens.get('accordion-header-font-size');
   margin: 0;
+  line-height: 120%;
 }
 
 .accordion-button {
@@ -70,11 +71,11 @@ tokens.$default-map: components.$post-accordion;
 
   &.collapsed {
     padding-block-start: calc(
-      tokens.get('accordion-header-padding-block-start-closed') +
+      tokens.get('accordion-header-padding-block-closed') +
         tokens.get('accordion-group-border-top-width')
     );
     padding-block-end: calc(
-      tokens.get('accordion-header-padding-block-end-closed') +
+      tokens.get('accordion-header-padding-block-closed') +
         tokens.get('accordion-border-bottom-width')
     );
 
