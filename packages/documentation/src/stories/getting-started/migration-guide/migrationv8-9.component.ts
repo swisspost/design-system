@@ -73,6 +73,20 @@ export class MigrationV89Component extends LitElement {
                     <li><code>.container-fluid-#{$breakpoint}</code></li>
                   </ul>
                 </li>
+                <li class="mb-3">
+                  <p>
+                    Removed tooltip validation classes
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>.valid-tooltip</code></li>
+                    <li><code>.invalid-tooltip</code></li>
+                  </ul>
+                  <p class="info">
+                    Instead use the classes <code>.valid-feedback</code> and
+                    <code>.invalid-feedback</code>.
+                  </p>
+                </li>
               </ul>
             </section>
           </li>

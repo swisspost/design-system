@@ -15,14 +15,16 @@ migration-global-state {
     padding: 0.25rem 0 2rem 0;
     list-style: none;
     counter-reset: bubble-tea;
+    display: block;
 
     > li {
+      display: list-item;
       counter-increment: bubble-tea;
       position: relative;
       margin-left: 2rem;
       padding-bottom: 2rem;
       padding-left: 3rem;
-      border-left: 4px solid var(--post-light);
+      border-left: 4px solid post.$light;
       min-height: 5rem;
 
       @include post.media-breakpoint-down(sm) {
@@ -48,7 +50,7 @@ migration-global-state {
         left: calc(-2rem - 2px);
         width: 4rem;
         height: 4rem;
-        background: var(--post-light);
+        background: post.$light;
         text-align: center;
         font-weight: bold;
         font-size: 1.2em;
@@ -84,7 +86,7 @@ migration-global-state {
     }
   }
 
-  .todo-list-status{
+  .todo-list-status {
     font-size: post.$font-size-14;
   }
 }
