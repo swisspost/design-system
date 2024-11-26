@@ -93,37 +93,6 @@ post-card-control ~ .invalid-feedback {
   display: inline-flex;
 }
 
-.form-control,
-.form-select {
-  &.is-invalid {
-    &:not(:disabled) {
-      border-color: form-validation.$form-feedback-invalid-color;
-
-      &:focus {
-        border-color: form-validation.$form-feedback-invalid-color;
-      }
-    }
-
-    &.form-control-sm ~ .invalid-feedback {
-      padding: form-validation.$form-feedback-padding-y-sm form-validation.$form-feedback-padding-x;
-    }
-  }
-
-  &.is-valid {
-    &:not(:disabled) {
-      border-color: var(--post-success);
-
-      &:focus {
-        border-color: var(--post-success);
-      }
-    }
-
-    &.form-control-sm ~ .valid-feedback {
-      padding: form-validation.$form-feedback-padding-y-sm form-validation.$form-feedback-padding-x;
-    }
-  }
-}
-
 .form-check-input {
   @include form-validation-mx.form-validation-state-selector(invalid) {
     border-color: form-validation.$form-feedback-invalid-color;

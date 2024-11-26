@@ -14,40 +14,44 @@ import * as CardButtonStories from './card-button.stories';
 
 <p className="lead">A Card that can be used as a clickable link to other content</p>
 
-<div className="alert alert-warning">
- The Card button is deprecated and will be removed in a future version.
+<div className="banner banner-warning">
+  The Card button is deprecated and will be removed in a future version.
 </div>
 
 <ul>
   <li>
-    <a href="#component-import" target="_self">Component Import</a>
+    <a href="#component-import" target="_self">
+      Component Import
+    </a>
   </li>
   <li>
-    <a href="#style-imports" target="_self">Style Imports</a>
+    <a href="#style-imports" target="_self">
+      Style Imports
+    </a>
   </li>
   <li>
-    <a href="#examples" target="_self">Examples</a>
+    <a href="#examples" target="_self">
+      Examples
+    </a>
   </li>
 </ul>
 
 ## Component Import
 
-  The `<post-icon>` component can be used to display all the icons. However you could also use an alternative Method [described in the icons documentation](/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs)
+The `<post-icon>` component can be used to display all the icons. However you could also use an alternative Method [described in the icons documentation](/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs)
 
-  The `<post-icon/>` component is part of the `@swisspost/design-system-components` package.
-  For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
+The `<post-icon/>` component is part of the `@swisspost/design-system-components` package.
+For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
 
-<StylesPackageImport components={["card", "product-card"]} />
-
+<StylesPackageImport components={['card', 'product-card']} />
 
 ## Examples
 
-<Canvas sourceState="shown" of={CardButtonStories.Default}/>
+<Canvas sourceState="shown" of={CardButtonStories.Default} />
 <div>
-  <Controls of={CardButtonStories.Default}/>
+  <Controls of={CardButtonStories.Default} />
 </div>
 
 ### Multiple ButtonCards
 
-<Canvas of={CardButtonStories.Multiple}/>
-
+<Canvas of={CardButtonStories.Multiple} />

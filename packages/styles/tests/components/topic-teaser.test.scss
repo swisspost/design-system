@@ -1,7 +1,0 @@
-@use 'sass:map';
-@use 'sass:meta';
-@use 'tests/jest';
-@use 'src/components/topic-teaser';
-
-// Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables('topic-teaser'), 'font-base-path'));

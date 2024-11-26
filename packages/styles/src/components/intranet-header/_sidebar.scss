@@ -62,12 +62,6 @@
       &:focus {
         background-color: color.$light;
       }
-
-      i.pi {
-        height: spacing.$spacer;
-        line-height: spacing.$spacer;
-        vertical-align: text-top;
-      }
     }
 
     &:not(.closed) > div > ul > li:first-child {

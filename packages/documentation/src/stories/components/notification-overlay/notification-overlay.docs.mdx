@@ -18,32 +18,43 @@ import basicExampleAngular from './notification-overlay.sample.ts?raw';
   </nav>
 </div>
 
-<p className="lead">Present the user with important information or a decision before continuing the workflow.</p>
+<p className="lead">
+  Present the user with important information or a decision before continuing the workflow.
+</p>
 
-<div className="alert alert-warning mb-4">
+<div className="banner banner-warning mb-4">
   This component is deprecated and will be removed in a future major version.
 </div>
 
 <ul>
   <li>
-    <a href="#component-import" target="_self">Component Import</a>
+    <a href="#component-import" target="_self">
+      Component Import
+    </a>
   </li>
   <li>
-    <a href="#style-imports" target="_self">Style Imports</a>
+    <a href="#style-imports" target="_self">
+      Style Imports
+    </a>
   </li>
   <li>
-    <a href="#focus-management" target="_self">Focus Management</a>
+    <a href="#focus-management" target="_self">
+      Focus Management
+    </a>
   </li>
   <li>
-    <a href="#examples" target="_self">Examples</a>
+    <a href="#examples" target="_self">
+      Examples
+    </a>
   </li>
 </ul>
 
 <NgbComponentImport module="NgbModalModule" />
 
-<StylesPackageImport components={["modal"]} />
+<StylesPackageImport components={['modal']} />
 
 ## Focus Management
+
 Since the notification overlay appears above the page, generally blocking interaction with the content below,
 it is important that the focus is move to an element within it.
 
@@ -65,4 +76,3 @@ However, You can decide to focus any other element by adding an `ngbAutofocus` a
     <Source code={basicExampleAngular} language="ts"/>
   </PostTabPanel>
 </PostTabs>
-
