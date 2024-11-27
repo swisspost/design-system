@@ -1,5 +1,6 @@
 ---
 '@swisspost/design-system-styles': minor
+'@swisspost/design-system-documentation': minor
 ---
 
-Used `post-assist` token for global style of form hints.
+Created a hint documentation page and used `post-assist` token for global style of form hints.
