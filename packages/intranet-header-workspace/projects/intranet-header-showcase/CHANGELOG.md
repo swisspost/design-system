@@ -1,53 +1,46 @@
 # @swisspost/design-system-intranet-header-showcase
 
-## 1.0.10-next.6
+## 1.0.15
 
 ### Patch Changes
 
 - Updated dependencies:
-  - @swisspost/design-system-intranet-header@9.0.0-next.6
+  - @swisspost/design-system-intranet-header@8.6.0
 
-## 1.0.10-next.5
-
-### Patch Changes
-
-- Updated dependencies:
-  - @swisspost/design-system-intranet-header@9.0.0-next.5
-
-## 1.0.10-next.4
+## 1.0.14
 
 ### Patch Changes
 
 - Updated dependencies:
-  - @swisspost/design-system-intranet-header@9.0.0-next.4
+  - @swisspost/design-system-intranet-header@8.5.0
 
-## 1.0.10-next.3
-
-### Patch Changes
-
-- Updated dependencies:
-  - @swisspost/design-system-intranet-header@9.0.0-next.3
-
-## 1.0.10-next.2
+## 1.0.13
 
 ### Patch Changes
 
 - Updated dependencies:
-  - @swisspost/design-system-intranet-header@9.0.0-next.2
+  - @swisspost/design-system-intranet-header@8.4.0
 
-## 1.0.10-next.1
-
-### Patch Changes
-
-- Updated dependencies:
-  - @swisspost/design-system-intranet-header@9.0.0-next.1
-
-## 1.0.10-next.0
+## 1.0.12
 
 ### Patch Changes
 
 - Updated dependencies:
-  - @swisspost/design-system-intranet-header@9.0.0-next.0
+  - @swisspost/design-system-intranet-header@8.3.0
+
+## 1.0.11
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-intranet-header@8.2.2
+
+## 1.0.10
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-intranet-header@8.2.1
 
 ## 1.0.9
 
