@@ -108,58 +108,6 @@ export default function Home() {
         </a>
       </section>
 
-      <section className="mt-huge-r">
-        <div className="topic-teaser mb-huge-r bg-yellow">
-          <div className="container">
-            <div className="topic-teaser-container bg-yellow">
-              <div className="row pt-huge-r">
-                <div className="topic-teaser-content">
-                  <h2 className="topic-teaser-title font-curve-large mb-24">
-                    <span className="bold">Post für Sie</span>
-                    <span className="light">Einfach versenden, schnell ankommen</span>
-                  </h2>
-                  <ul className="link-list mb-24">
-                    <li className="link-list-item">
-                      <a href="#">
-                        <span>Briefe versenden</span>
-                      </a>
-                    </li>
-
-                    <li className="link-list-item">
-                      <a href="#">
-                        <span>Pakete versenden</span>
-                      </a>
-                    </li>
-
-                    <li className="link-list-item">
-                      <a href="#">
-                        <span>Express und Kurier</span>
-                      </a>
-                    </li>
-
-                    <li className="link-list-item">
-                      <a href="#">
-                        <span>Einschreiben aufgeben</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="topic-teaser-image-container">
-                  <Image
-                    width={1000}
-                    height={1000}
-                    className="topic-teaser-image w-100 h-100"
-                    src="/street.jpg"
-                    alt=""
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="pt-huge-r mb-huge-r">
         <div className="row">
           <div className="col-lg-4 col-sm-6 col-12 mb-16">
