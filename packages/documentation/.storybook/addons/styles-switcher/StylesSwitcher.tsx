@@ -48,6 +48,7 @@ function StylesSwitcher() {
 
   const [preview, setPreview] = useState<Document>();
   const [stories, setStories] = useState<NodeListOf<Element>>();
+  const [stylesCodeBlocks, setStylesCodeBlocks] = useState<NodeListOf<Element>>();
 
   /**
    * Retrieves the preview document after the first rendering
@@ -71,6 +72,9 @@ function StylesSwitcher() {
     observer = new MutationObserver(
       debounce(() => {
         setStories(preview.querySelectorAll('.sbdocs-preview, .sb-main-padded'));
+        setStylesCodeBlocks(
+          preview.querySelectorAll('.docblock-source-all-design .docblock-source'),
+        );
       }, 200),
     );
 
@@ -93,6 +97,26 @@ function StylesSwitcher() {
       `<link rel="stylesheet" href="${getStylesheetUrl(currentTheme, currentChannel)}" />`,
     );
   }, [preview, currentTheme, currentChannel]);
+
+  /**
+   * Sets the design system styles import SCSS file to the correct theme and channel file
+   */
+  useEffect(() => {
+    if (!stylesCodeBlocks) return;
+
+    const t = currentTheme.toLowerCase();
+    const c = currentChannel.toLowerCase();
+    const stylesPlaceholder = "'{dynamic-theme-and-channel-placeholder}'";
+    const stylesImport = `'@swisspost/design-system-styles/${t}-${c}.scss'`;
+
+    stylesCodeBlocks.forEach(stylesCodeBlock => {
+      let source = stylesCodeBlock.querySelector('.token.string')?.innerHTML;
+      if (source && (source === stylesPlaceholder || source !== stylesImport)) {
+        source = stylesImport;
+        (stylesCodeBlock.querySelector('.token.string') as Element).innerHTML = source;
+      }
+    });
+  }, [stylesCodeBlocks, currentTheme, currentChannel]);
 
   /**
    * Sets the expected 'data-color-scheme' attribute on all story containers when the scheme changes
@@ -176,7 +200,7 @@ function StylesSwitcher() {
         }
       >
         <IconButton className="addon-label" size="medium">
-          Chanel: {currentChannel}
+          Channel: {currentChannel}
         </IconButton>
       </WithTooltip>
 
