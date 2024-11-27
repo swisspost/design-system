@@ -1,47 +1,53 @@
 # @swisspost/design-system-intranet-header
 
-## 8.6.0
+## 9.0.0-next.6
 
 ### Patch Changes
 
 - Updated dependencies:
-  - @swisspost/design-system-styles@8.6.0
+  - @swisspost/design-system-styles@9.0.0-next.6
 
-## 8.5.0
-
-### Patch Changes
-
-- Updated dependencies:
-  - @swisspost/design-system-styles@8.5.0
-
-## 8.4.0
+## 9.0.0-next.5
 
 ### Patch Changes
 
 - Updated dependencies:
-  - @swisspost/design-system-styles@8.4.0
+  - @swisspost/design-system-styles@9.0.0-next.5
 
-## 8.3.0
-
-### Patch Changes
-
-- Improve accessibility of intranet header by adding an alternative text to the user profile image. (by [@leagrdv](https://github.com/leagrdv) with [#3711](https://github.com/swisspost/design-system/pull/3711))
-- Updated dependencies:
-  - @swisspost/design-system-styles@8.3.0
-
-## 8.2.2
+## 9.0.0-next.4
 
 ### Patch Changes
 
 - Updated dependencies:
-  - @swisspost/design-system-styles@8.2.2
+  - @swisspost/design-system-styles@9.0.0-next.4
 
-## 8.2.1
+## 9.0.0-next.3
 
 ### Patch Changes
 
 - Updated dependencies:
-  - @swisspost/design-system-styles@8.2.1
+  - @swisspost/design-system-styles@9.0.0-next.3
+
+## 9.0.0-next.2
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.2
+
+## 9.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.1
+
+## 9.0.0-next.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.0
 
 ## 8.2.0
 
