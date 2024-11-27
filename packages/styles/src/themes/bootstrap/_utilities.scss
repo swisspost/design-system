@@ -45,4 +45,8 @@ $utilities: map.remove($utilities, 'float');
 
 $utilities: map.remove($utilities, 'opacity');
 
+$utilities: map.remove($utilities, 'overflow');
+$utilities: map.remove($utilities, 'overflow-x');
+$utilities: map.remove($utilities, 'overflow-y');
+
 @import 'bootstrap/scss/utilities/api';
