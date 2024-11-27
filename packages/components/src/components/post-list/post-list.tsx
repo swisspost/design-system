@@ -29,7 +29,7 @@ export class PostList {
    */
   @Prop() readonly horizontal: boolean = false;
 
-  titleEl: HTMLElement;
+  private titleEl: HTMLElement;
 
   componentWillLoad() {
     /**
@@ -43,7 +43,7 @@ export class PostList {
   }
 
   private checkTitle() {
-    if (!this.titleEl.innerText) {
+    if (!this.titleEl.textContent.trim()) {
       throw new Error(
         'Please provide a title to the list component. Title is mandatory for accessibility purposes.',
       );
