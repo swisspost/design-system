@@ -15,10 +15,8 @@ migration-global-state {
     padding: 0.25rem 0 2rem 0;
     list-style: none;
     counter-reset: bubble-tea;
-    display: block;
 
     > li {
-      display: list-item;
       counter-increment: bubble-tea;
       position: relative;
       margin-left: 2rem;
