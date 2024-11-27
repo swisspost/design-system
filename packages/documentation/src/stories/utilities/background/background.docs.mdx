@@ -25,7 +25,7 @@ Background utilities also set the text color by defining the following CSS varia
 
 To set a background on an element, simply add a `.bg-{colorname}` class to it.
 
-<Canvas of={BackgroundStories.ColoredBackground} sourceState='shown' />
+<Canvas of={BackgroundStories.ColoredBackground} sourceState="shown" />
 
 ### Available Backgrounds
 
@@ -53,33 +53,26 @@ To set a background on an element, simply add a `.bg-{colorname}` class to it.
   })}
 </section>
 
-#### Accent
-
-<section className="background-container__section">
-  {forEach(SCSS_VARIABLES.accent, function ({ key, value }) {
-    return <BackgroundContainer key={key} name={key} color={value} />;
-  })}
-</section>
-
 ## Nested
 
 It is possible to nest backgrounds.
 
-<div className="alert alert-info alert-md">
+<div className="banner banner-info banner-md">
   Text color and inverted text color CSS variables are set for each background to always ensure the
   best possible contrast.
 </div>
 
-<Canvas of={BackgroundStories.NestedBackgrounds} sourceState='shown' />
+<Canvas of={BackgroundStories.NestedBackgrounds} sourceState="shown" />
 
 ## Opacity
 
 Change the background opacity simply by setting the CSS variable `--post-bg-opacity`.
 
-<div className="alert alert-info alert-md">
-  Low background opacity is not recommended as it can lead to poor contrast.
-  It is then your responsibility to ensure that the contrast ratio between foreground and background is at least 4.5:1.
-  More information on that topic is available on our [accessibility docs](/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs).
+<div className="banner banner-info banner-md">
+  Low background opacity is not recommended as it can lead to poor contrast. It is then your
+  responsibility to ensure that the contrast ratio between foreground and background is at least
+  4.5:1. More information on that topic is available on our [accessibility
+  docs](/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs).
 </div>
 
-<Canvas of={BackgroundStories.TranslucentBackgrounds} sourceState='shown' />
+<Canvas of={BackgroundStories.TranslucentBackgrounds} sourceState="shown" />

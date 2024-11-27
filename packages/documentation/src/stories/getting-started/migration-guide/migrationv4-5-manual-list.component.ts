@@ -118,7 +118,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- General Files -->
           <section>
             <h6>Paths &amp; Files</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -130,7 +130,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="general.naming_cwfpackagename">
                     <span class="tag tag-sm tag-danger">breaking</span> Renamed <em>packages</em>.
-                    <ul class="mt-2">
+                    <ul class="mt-8">
                       <li>
                         <code>@******/common-web-frontend</code> became
                         <code>@swisspost/design-system-styles</code>
@@ -160,8 +160,8 @@ export class MigrationV45ManualListComponent extends LitElement {
                     Renamed entry files. Renamed entry files.
                     <br />
 
-                    <ul class="mt-2">
-                      <li class="mb-2">
+                    <ul class="mt-8">
+                      <li class="mb-8">
                         <strong>Default (index)</strong>
                         for default Post styles:
                         <br />
@@ -169,7 +169,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                         to
                         <code> @use "@swisspost/design-system-styles"; </code>
                       </li>
-                      <li class="mb-2">
+                      <li class="mb-8">
                         <strong>Intranet</strong>
                         for default Post styles + intranet header styles:
                         <br />
@@ -177,7 +177,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                         to
                         <code> @use "@swisspost/design-system-styles/intranet.scss"; </code>
                       </li>
-                      <li class="mb-2">
+                      <li class="mb-8">
                         <strong>Basics</strong>
                         for resets, typography, utilities and grid only (use this for small pages
                         with lots of custom styles):
@@ -186,7 +186,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                         to
                         <code> @use "@swisspost/design-system-styles/basics.scss"; </code>
                       </li>
-                      <li class="mb-2">
+                      <li class="mb-8">
                         <strong>Core</strong>
                         for functions, mixins, variables and placeholders:
                         <br />
@@ -273,7 +273,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- General Variables -->
           <section>
             <h6>Variables</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -334,7 +334,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   <label class="form-check-label" for="general.variables_floatinglabel">
                     <span class="tag tag-sm tag-danger">breaking</span> Removed
                     <em>floating-label</em> variables.<br />
-                    <ul class="mt-2">
+                    <ul class="mt-8">
                       <li><code>$form-floating-label-padding-t</code></li>
                       <li><code>$form-floating-label-padding-b</code></li>
                       <li><code>$form-floating-textarea-line-height</code></li>
@@ -356,7 +356,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   <label class="form-check-label" for="general.variables_colorsremoved">
                     <span class="tag tag-sm tag-danger">breaking</span> Removed
                     <em>color</em> variables.<br />
-                    <ul class="mt-2">
+                    <ul class="mt-8">
                       <li>
                         <code>$white-alpha-10</code>, <code>$white-alpha-20</code>,
                         <code>$white-alpha-40</code>, <code>$white-alpha-60</code>,
@@ -395,7 +395,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   <label class="form-check-label" for="general.variables_colorsrenamed">
                     <span class="tag tag-sm tag-danger">breaking</span> Renamed
                     <em>color</em> variables.
-                    <ul class="mt-2">
+                    <ul class="mt-8">
                       <li><code>$gray-pampas</code> became <code>$gray-background-light</code></li>
                       <li><code>$gray-cararra</code> became <code>$gray-background</code></li>
                       <li><code>$colors</code> became <code>$background-colors</code></li>
@@ -423,7 +423,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="general.variables_lineheigts">
                     Dropped usage of <em>line-height</em> variables.<br />
-                    <ul class="mt-2">
+                    <ul class="mt-8">
                       <li><code>$line-height-sm</code></li>
                       <li><code>$line-height-lg</code></li>
                     </ul>
@@ -459,7 +459,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   <label class="form-check-label" for="general.variables_headingfontsizes">
                     Dropped usage of <em>font-size</em> variables.<br />
                     Headings now have responsive font-sizes.<br />
-                    <ul class="mt-2">
+                    <ul class="mt-8">
                       <li><code>$h1-font-size</code></li>
                       <li><code>$h2-font-size</code></li>
                       <li><code>$h3-font-size</code></li>
@@ -477,7 +477,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- General Mixins -->
           <section>
             <h6>Mixins</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -490,7 +490,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   <label class="form-check-label" for="general.mixins_fontsizelineheight">
                     <span class="tag tag-sm tag-danger">breaking</span> Removed
                     <em>font-size</em> and <em>line-height</em> mixins:<br />
-                    <ul class="mt-2">
+                    <ul class="mt-8">
                       <li><code>font-size-calc()</code></li>
                       <li><code>font-size-and-lineheight()</code></li>
                       <li><code>font-line-height()</code></li>
@@ -504,7 +504,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- General Classes -->
           <section>
             <h6>Classes</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -540,7 +540,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                     >${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Removed
                     <em>secondary</em> classes.<br />
-                    <ul class="mt-2">
+                    <ul class="mt-8">
                       <li><code>.bg-secondary</code></li>
                       <li><code>.border-secondary</code></li>
                       <li><code>.text-secondary</code></li>
@@ -562,7 +562,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                     <span class="tag tag-sm tag-danger">breaking</span>
                     Updated spacing and alignment helper classes, for better support of
                     <em>rtl-mode</em>.
-                    <ul class="mt-2">
+                    <ul class="mt-8">
                       <li><code>.ml-[size]</code> became <code>.ms-[size]</code></li>
                       <li>
                         <code>.ml-[breakpoint]-[size]</code> became
@@ -629,7 +629,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                     <span class="tag tag-sm tag-danger">breaking</span> Updated
                     <em>sr-only</em>
                     classes.
-                    <ul class="mt-2">
+                    <ul class="mt-8">
                       <li><code>.sr-only</code> became <code>.visually-hidden</code></li>
                       <li>
                         <code>.sr-only-focusable</code> became
@@ -654,7 +654,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- Bootstrap Alert / Notifications -->
           <section>
             <h6>Alert / Notification</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -703,7 +703,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- Bootstrap Badge -->
           <section>
             <h6>Badge</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -717,7 +717,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Renamed
                     <em>badge</em> classes.<br />
-                    <ul class="mt-2">
+                    <ul class="mt-8">
                       <li>
                         <code>.badge-pill</code> became
                         <code>.rounded-pill</code>
@@ -758,7 +758,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- Bootstrap Background -->
           <section>
             <h6>Background</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -790,7 +790,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- Bootstrap Blockquote -->
           <section>
             <h6>Blockquote</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -840,7 +840,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- Bootstrap Button -->
           <section>
             <h6>Button</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -874,7 +874,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   <label class="form-check-label" for="bootstrap.buttons_borderradius">
                     <span class="tag tag-sm tag-danger">breaking</span> Removed
                     <em>button</em> variables.<br />
-                    <ul class="mt-2">
+                    <ul class="mt-8">
                       <li><code>$btn-border-radius-rg</code></li>
                       <li><code>$btn-border-radius-map</code></li>
                     </ul>
@@ -892,7 +892,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
                   <label class="form-check-label" for="bootstrap.buttons_borderradius2">
                     Dropped the usage of <em>button</em> variables.
-                    <ul class="mt-2">
+                    <ul class="mt-8">
                       <li><code>$btn-border-radius-sm</code></li>
                       <li><code>$btn-border-radius-lg</code></li>
                     </ul>
@@ -946,7 +946,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- Bootstrap Button Close -->
           <section>
             <h6>Button Close</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -1014,7 +1014,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- Bootstrap Cards -->
           <section>
             <h6>Card</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -1045,7 +1045,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- Bootstrap Forms -->
           <section>
             <h6>Forms</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -1074,7 +1074,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   <label class="form-check-label" for="bootstrap.forms_formgroup">
                     ${this._templateAutoIconAngular()} Dropped usage of
                     <code>.form-group</code> class.<br />
-                    Use <em>utility-class</em>&nbsp;<code>.mb-regular</code> instead.<br />
+                    Use <em>utility-class</em>&nbsp;<code>.mb-16</code> instead.<br />
                   </label>
                 </div>
               </li>
@@ -1107,7 +1107,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- Bootstrap Form-Controls -->
           <section>
             <h6>From Control</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -1157,7 +1157,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- Bootstrap Form-Select -->
           <section>
             <h6>From Select</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -1191,7 +1191,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                     <em>multi-select</em> and
                     <em>custom-select</em>
                     classes.
-                    <ul class="mt-2">
+                    <ul class="mt-8">
                       <li>
                         <code>.form-control</code> became
                         <code>.form-select</code>
@@ -1259,7 +1259,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- Bootstrap Form-Textarea -->
           <section>
             <h6>From Textarea</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -1291,7 +1291,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- Bootstrap Form-File -->
           <section>
             <h6>Form File</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -1320,7 +1320,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- Bootstrap Form-Checkbox -->
           <section>
             <h6>From Checkbox</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -1335,7 +1335,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                     <span class="tag tag-sm tag-danger">breaking</span> Renamed
                     <em>control</em>
                     classes.
-                    <ul class="mt-2">
+                    <ul class="mt-8">
                       <li>
                         <code>.custom-control.custom-checkbox</code> became
                         <code>.form-check</code>
@@ -1407,7 +1407,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- Bootstrap Form-Radio -->
           <section>
             <h6>From Radio</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -1422,7 +1422,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                     <span class="tag tag-sm tag-danger">breaking</span> Renamed
                     <em>control</em>
                     classes.
-                    <ul class="mt-2">
+                    <ul class="mt-8">
                       <li>
                         <code>.custom-control.custom-radio</code> became
                         <code>.form-check</code>
@@ -1506,7 +1506,7 @@ export class MigrationV45ManualListComponent extends LitElement {
               </span>
             </p>
 
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -1520,7 +1520,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Refactored
                     <em>switch</em> classes.<br />
-                    <ul class="mt-2">
+                    <ul class="mt-8">
                       <li>
                         <code>.switch</code> became
                         <code>.form-check.form-switch</code>
@@ -1546,7 +1546,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Refactored
                     <em>switch-label</em>.<br />
-                    <ul class="mt-2">
+                    <ul class="mt-8">
                       <li>
                         <code>div.switch label</code> (before <code>label.switch-toggler</code>)
                         became
@@ -1621,7 +1621,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- ngBootstrap Buttons -->
           <div>
             <h6>Buttons</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -1676,7 +1676,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- ngBootstrap DatePicker -->
           <div>
             <h6>DatePicker</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -1689,7 +1689,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                   <label class="form-check-label" for="ngbootstrap.datepickers_variables">
                     <span class="tag tag-sm tag-danger">breaking</span> Removed
                     <em>padding</em> variables.
-                    <ul class="mt-2">
+                    <ul class="mt-8">
                       <li><code>$ngb-dp-icon-padding</code></li>
                       <li><code>$ngb-dp-icon-padding-sm</code></li>
                       <li><code>$ngb-dp-icon-padding-rg</code></li>
@@ -1711,7 +1711,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- ngBootstrap Modal -->
           <div>
             <h6>Modal</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -1767,7 +1767,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- jQuery Accordion -->
           <div>
             <h6 class="h6 bold">Accordion</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -1789,7 +1789,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                     </p>
 
                     ${this.angular
-                      ? html` <p class="alert alert-info">
+                      ? html` <p class="banner banner-info">
                           One might think: "When it is so easy to migrate, why don't you offer an
                           automatic migration?"<br />
                           The short answer: because it is no longer the same component!
@@ -1811,7 +1811,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- Post Accordion -->
           <div>
             <h6>Accordion</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -1851,7 +1851,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- Post Custom-Select -->
           <div>
             <h6>Custom-Select</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -1919,7 +1919,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- Post Subnavigation -->
           <div>
             <h6>Subnavigation</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -1949,7 +1949,7 @@ export class MigrationV45ManualListComponent extends LitElement {
           <!-- Post Topic Teaser -->
           <div>
             <h6>Topic Teaser</h6>
-            <ul class="list-unstyled my-3">
+            <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">
                   <input
@@ -1964,7 +1964,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                     <span class="tag tag-sm tag-danger">breaking</span> Required
                     <em>image</em>
                     attributes.
-                    <ul class="mt-2">
+                    <ul class="mt-8">
                       <li><code>width="100%"</code></li>
                       <li><code>height="100%"</code></li>
                     </ul>

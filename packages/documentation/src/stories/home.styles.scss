@@ -37,7 +37,7 @@
   justify-content: center;
   gap: post.$size-big;
 
-  @include post.media-breakpoint-down(rg) {
+  @include post.media-breakpoint-down(sm) {
     gap: post.$size-regular;
   }
 }
@@ -48,7 +48,7 @@
   .feature--icon {
     margin-bottom: post.$size-regular;
     font-size: post.$size-huge;
-    color: post.$aubergine-dark;
+    color: #523178;
   }
 
   .feature--content {

@@ -15,10 +15,11 @@ import './styles/preview.scss';
 
 import { SyntaxHighlighter } from '@storybook/components';
 import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
+import { ArgTypes } from '@storybook/blocks';
 
 SyntaxHighlighter.registerLanguage('scss', scss);
 
-export const SourceDarkMode = true;
+export const SourceDarkScheme = true;
 
 const preview: Preview = {
   decorators: [fullScreenUrlDecorator],
@@ -52,6 +53,7 @@ const preview: Preview = {
             ['Breakpoints', 'Containers', 'Grid', 'Columns', 'TODOS'],
             'Elevation',
             'Accessibility',
+            ['Regulation'],
           ],
 
           // Category - Components
@@ -83,9 +85,12 @@ const preview: Preview = {
           },
         ],
       },
+      argTypes: {
+        sort: 'requiredFirst',
+      },
       source: {
         excludeDecorators: true,
-        dark: SourceDarkMode,
+        dark: SourceDarkScheme,
         transform: (snippet: string) => format(snippet, prettierOptions),
       },
       components: resetComponents,

@@ -28,12 +28,10 @@ export const Select: Story = {
         hint: ['Hintus textus', context.args.hint],
       }),
       ...bombArgs({
-        size: context.argTypes.size.options,
         disabled: [false, true],
         validation: context.argTypes.validation.options,
       }),
       ...bombArgs({
-        size: context.argTypes.size.options,
         validation: context.argTypes.validation.options.filter(
           (option: string) => option !== 'is-invalid',
         ),
@@ -60,7 +58,6 @@ export const Select: Story = {
       }),
       ...bombArgs({
         multiple: [true],
-        size: context.argTypes.size.options,
         disabled: [false, true],
         validation: context.argTypes.validation.options,
       }),
@@ -70,23 +67,40 @@ export const Select: Story = {
       .map(args => ({ ...args, id: `a-${crypto.randomUUID()}` }));
 
     return html`
-      <div class="d-flex gap-3 flex-column">
+      <div class="d-flex gap-16 flex-column">
         ${['bg-white', 'bg-dark'].map(bg => {
           return html`
-            <div class="${bg} d-flex gap-3 flex-column p-3">
-              <h2>Default</h2>
-              ${bombArgsGeneratedDefault.map((args: Args) => {
-                return html`
-                  <div>
-                    ${Default.render?.(
-                      { ...context.args, ...Default.args, ...args },
-                      { ...context, id: args.id },
-                    )}
-                  </div>
-                `;
-              })}
+            <div
+              class="${bg} d-flex gap-16 flex-column p-16"
+              data-color-scheme=${bg === 'bg-white' ? 'light' : 'dark'}
+            >
               <h2>Floating Label</h2>
               ${bombArgsGeneratedDefault.map(
+                (args: Args) =>
+                  html`
+                    <div>
+                      ${FloatingLabel.render?.(
+                        { ...context.args, ...FloatingLabel.args, ...args },
+                        { ...context, id: args.id },
+                      )}
+                    </div>
+                  `,
+              )}
+              <h2>Default</h2>
+              ${bombArgsGeneratedDefault
+                .map((args: Args) => ({ ...args, floatingLabel: false }))
+                .map((args: Args) => {
+                  return html`
+                    <div>
+                      ${Default.render?.(
+                        { ...context.args, ...Default.args, ...args },
+                        { ...context, id: args.id },
+                      )}
+                    </div>
+                  `;
+                })}
+              <h2>Multiple - Floating Label</h2>
+              ${bombArgsGeneratedMultiple.map(
                 (args: Args) =>
                   html`
                     <div>
@@ -104,18 +118,6 @@ export const Select: Story = {
                     <div>
                       ${Default.render?.(
                         { ...context.args, ...Default.args, ...args },
-                        { ...context, id: args.id },
-                      )}
-                    </div>
-                  `,
-              )}
-              <h2>Multiple - Floating Label</h2>
-              ${bombArgsGeneratedMultiple.map(
-                (args: Args) =>
-                  html`
-                    <div>
-                      ${FloatingLabel.render?.(
-                        { ...context.args, ...FloatingLabel.args, ...args },
                         { ...context, id: args.id },
                       )}
                     </div>

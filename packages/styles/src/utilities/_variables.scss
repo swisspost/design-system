@@ -1,0 +1,270 @@
+@use '../tokens/utilities' as tokens;
+
+@use './functions' as *;
+
+/*
+  Utilities are generated with our utility API using bellow $utilities map.
+
+  The utility map contains a keyed list of utility groups which accept the following options:
+
+  | Option            | Type     | Default value | Description                                                                                                                                                                                                                              |
+  |-------------------|----------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  | property          | Required | –             | Name of the property, this can be a string or an array of strings (e.g., horizontal paddings or margins).                                                                                                                                |
+  | values            | Required | –             | List of values, or a map if you don’t want the class name to be the same as the value. If null is used as map key, class is not prepended to the class name.                                                                             |
+  | class             | Optional | null          | Name of the generated class. If not provided and property is an array of strings, class will default to the first element of the property array. If not provided and property is a string, the values keys are used for the class names. |
+  | css-var           | Optional | false         | Boolean to generate CSS variables instead of CSS rules.                                                                                                                                                                                  |
+  | css-variable-name | Optional | null          | Custom un-prefixed name for the CSS variable inside the ruleset.                                                                                                                                                                         |
+  | local-vars        | Optional | null          | Map of local CSS variables to generate in addition to the CSS rules.                                                                                                                                                                     |
+  | state             | Optional | null          | List of pseudo-class variants (e.g., :hover or :focus) to generate.                                                                                                                                                                      |
+  | responsive        | Optional | false         | Boolean indicating if responsive classes should be generated.                                                                                                                                                                            |
+
+  Our API is based on bootstrap utility API, more information is available here: https://getbootstrap.com/docs/5.3/utilities/api/
+*/
+
+$utilities: (
+  'align': (
+    property: vertical-align,
+    class: align,
+    values: baseline top middle bottom text-bottom text-top,
+  ),
+  'float': (
+    responsive: true,
+    property: float,
+    values: (
+      start: inline-start,
+      end: inline-end,
+      none: none,
+    ),
+  ),
+  'opacity': (
+    property: opacity,
+    values: (
+      0: 0,
+      25: 0.25,
+      50: 0.5,
+      75: 0.75,
+      100: 1,
+    ),
+  ),
+  'margin': (
+    responsive: true,
+    property: margin,
+    class: m,
+    values: from-tokens('spacing', 'margin'),
+  ),
+  'margin-x': (
+    responsive: true,
+    property: margin-right margin-left,
+    class: mx,
+    values: from-tokens('spacing', 'margin'),
+  ),
+  'margin-y': (
+    responsive: true,
+    property: margin-top margin-bottom,
+    class: my,
+    values: from-tokens('spacing', 'margin'),
+  ),
+  'margin-top': (
+    responsive: true,
+    property: margin-top,
+    class: mt,
+    values: from-tokens('spacing', 'margin'),
+  ),
+  'margin-end': (
+    responsive: true,
+    property: margin-right,
+    class: me,
+    values: from-tokens('spacing', 'margin'),
+  ),
+  'margin-bottom': (
+    responsive: true,
+    property: margin-bottom,
+    class: mb,
+    values: from-tokens('spacing', 'margin'),
+  ),
+  'margin-start': (
+    responsive: true,
+    property: margin-left,
+    class: ms,
+    values: from-tokens('spacing', 'margin'),
+  ),
+  'padding': (
+    responsive: true,
+    property: padding,
+    class: p,
+    values: from-tokens('spacing', 'padding'),
+  ),
+  'padding-x': (
+    responsive: true,
+    property: padding-right padding-left,
+    class: px,
+    values: from-tokens('spacing', 'padding'),
+  ),
+  'padding-y': (
+    responsive: true,
+    property: padding-top padding-bottom,
+    class: py,
+    values: from-tokens('spacing', 'padding'),
+  ),
+  'padding-top': (
+    responsive: true,
+    property: padding-top,
+    class: pt,
+    values: from-tokens('spacing', 'padding'),
+  ),
+  'padding-end': (
+    responsive: true,
+    property: padding-right,
+    class: pe,
+    values: from-tokens('spacing', 'padding'),
+  ),
+  'padding-bottom': (
+    responsive: true,
+    property: padding-bottom,
+    class: pb,
+    values: from-tokens('spacing', 'padding'),
+  ),
+  'padding-start': (
+    responsive: true,
+    property: padding-left,
+    class: ps,
+    values: from-tokens('spacing', 'padding'),
+  ),
+  'gap': (
+    responsive: true,
+    property: gap,
+    class: gap,
+    values: from-tokens('spacing', 'gap'),
+  ),
+  'row-gap': (
+    responsive: true,
+    property: row-gap,
+    class: row-gap,
+    values: from-tokens('spacing', 'gap'),
+  ),
+  'column-gap': (
+    responsive: true,
+    property: column-gap,
+    class: column-gap,
+    values: from-tokens('spacing', 'gap'),
+  ),
+  'flex': (
+    responsive: true,
+    property: flex,
+    values: (
+      fill: 1 1 auto,
+    ),
+  ),
+  'flex-direction': (
+    responsive: true,
+    property: flex-direction,
+    class: flex,
+    values: row column row-reverse column-reverse,
+  ),
+  'flex-grow': (
+    responsive: true,
+    property: flex-grow,
+    class: flex,
+    values: (
+      grow-0: 0,
+      grow-1: 1,
+    ),
+  ),
+  'flex-shrink': (
+    responsive: true,
+    property: flex-shrink,
+    class: flex,
+    values: (
+      shrink-0: 0,
+      shrink-1: 1,
+    ),
+  ),
+  'flex-wrap': (
+    responsive: true,
+    property: flex-wrap,
+    class: flex,
+    values: wrap nowrap wrap-reverse,
+  ),
+  'justify-content': (
+    responsive: true,
+    property: justify-content,
+    values: (
+      start: flex-start,
+      end: flex-end,
+      center: center,
+      between: space-between,
+      around: space-around,
+      evenly: space-evenly,
+    ),
+  ),
+  'align-items': (
+    responsive: true,
+    property: align-items,
+    values: (
+      start: flex-start,
+      end: flex-end,
+      center: center,
+      baseline: baseline,
+      stretch: stretch,
+    ),
+  ),
+  'align-content': (
+    responsive: true,
+    property: align-content,
+    values: (
+      start: flex-start,
+      end: flex-end,
+      center: center,
+      between: space-between,
+      around: space-around,
+      stretch: stretch,
+    ),
+  ),
+  'align-self': (
+    responsive: true,
+    property: align-self,
+    values: (
+      auto: auto,
+      start: flex-start,
+      end: flex-end,
+      center: center,
+      baseline: baseline,
+      stretch: stretch,
+    ),
+  ),
+  'order': (
+    responsive: true,
+    property: order,
+    values: (
+      first: -1,
+      0: 0,
+      1: 1,
+      2: 2,
+      3: 3,
+      4: 4,
+      5: 5,
+      last: 6,
+    ),
+  ),
+  'display': (
+    responsive: true,
+    print: true,
+    property: display,
+    class: d,
+    values: inline inline-block block grid inline-grid table table-row table-cell flex inline-flex
+      none,
+  ),
+  'overflow': (
+    property: overflow,
+    values: auto hidden visible scroll,
+  ),
+  'overflow-x': (
+    property: overflow-x,
+    values: auto hidden visible scroll,
+  ),
+  'overflow-y': (
+    property: overflow-y,
+    values: auto hidden visible scroll,
+  ),
+  // IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`.
+);

@@ -195,7 +195,7 @@ export const TableWithButtons: Story = {
             <span class="visually-hidden">Edit</span>
             <post-icon aria-hidden="true" name="2012"></post-icon>
           </button>
-          <button class="btn btn-primary btn-icon btn-md ms-2">
+          <button class="btn btn-primary btn-icon btn-md ms-8">
             <span class="visually-hidden">Edit</span>
             <post-icon aria-hidden="true" name="3193"></post-icon>
           </button>
@@ -210,7 +210,7 @@ export const TableWithButtons: Story = {
             <span class="visually-hidden">Edit</span>
             <post-icon aria-hidden="true" name="2012"></post-icon>
           </button>
-          <button class="btn btn-primary btn-icon btn-md ms-2">
+          <button class="btn btn-primary btn-icon btn-md ms-8">
             <span class="visually-hidden">Edit</span>
             <post-icon aria-hidden="true" name="3193"></post-icon>
           </button>
@@ -225,7 +225,7 @@ export const TableWithButtons: Story = {
             <span class="visually-hidden">Edit</span>
             <post-icon aria-hidden="true" name="2012"></post-icon>
           </button>
-          <button class="btn btn-primary btn-icon btn-md ms-2">
+          <button class="btn btn-primary btn-icon btn-md ms-8">
             <span class="visually-hidden">Edit</span>
             <post-icon aria-hidden="true" name="3193"></post-icon>
           </button>

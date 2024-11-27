@@ -23,7 +23,7 @@ export class PostLogo {
     checkEmptyOrUrl(this.url, 'The "url" property of the post-logo is invalid');
   }
 
-  connectedCallback() {
+  componentDidLoad() {
     this.validateUrl();
     this.checkDescription();
   }
@@ -41,7 +41,7 @@ export class PostLogo {
     const LogoTag = logoLink ? 'a' : 'span';
 
     return (
-      <Host data-version={version}>
+      <Host data-version={version} slot="post-logo">
         <LogoTag class="logo" {...(logoLink ? { href: logoLink } : {})}>
           <span class="description">
             <slot onSlotchange={() => this.checkDescription()}></slot>

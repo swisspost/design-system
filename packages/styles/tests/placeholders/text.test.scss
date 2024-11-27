@@ -1,8 +1,6 @@
 @use 'src/placeholders/text';
 
 .list-adjustment {
-  @extend %list-adjustment;
-  @extend %module-container;
   @extend %font-curve-tiny;
   @extend %font-curve-small;
   @extend %font-curve-regular;
@@ -11,9 +9,4 @@
   @extend %font-curve-large;
   @extend %font-curve-big;
   @extend %text-bottom-spacer;
-  @extend %default-module-spacer;
-}
-
-.text-container {
-  @extend %text-container;
 }

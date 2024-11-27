@@ -1,0 +1,71 @@
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/core' as post;
+
+tokens.$default-map: components.$post-avatar;
+
+:host {
+  --post-avatar-bg: #{tokens.get('avatar-enabled-bg')};
+  --post-avatar-fg: #{tokens.get('avatar-enabled-fg')};
+
+  display: inline-flex;
+  position: relative;
+  width: tokens.get('avatar-size');
+  height: tokens.get('avatar-size');
+  background-color: tokens.get('avatar-border-color');
+  border: tokens.get('avatar-border-width') solid tokens.get('avatar-border-color');
+  border-radius: tokens.get('avatar-border-radius');
+  font-size: tokens.get('avatar-font-size');
+  vertical-align: top;
+  line-height: 1;
+
+  &::after {
+    display: block;
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+slot,
+img,
+::slotted(img) {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+img,
+::slotted(img) {
+  border-radius: tokens.get('avatar-border-radius');
+}
+
+::slotted(:not(img)) {
+  display: none !important;
+}
+
+.initials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background-color: var(--post-avatar-bg);
+  border-radius: tokens.get('avatar-border-radius');
+  color: var(--post-avatar-fg);
+  text-transform: uppercase;
+
+  span {
+    @include post.visually-hidden();
+  }
+}

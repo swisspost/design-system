@@ -1,5 +1,288 @@
-import icons from './report.json' with { type: 'json' };
+const SIZES = [16, 24, 32, 40, 48, 64];
 
 document.addEventListener('alpine:init', () => {
-  Alpine.data('icons', () => ({ icons }));
+  Alpine.data('TEST_ICONS', () => ({
+    sizes: SIZES,
+    sourceIcons: [
+      [
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+          <line fill="none" stroke="#1e1e1c" stroke-width="1.5px" stroke-miterlimit="10" x1="11.8" y1="5.02" x2="0" y2="5.02"/>
+          <line fill="none" stroke="#1e1e1c" stroke-width="1.5px" stroke-miterlimit="10" x1="10.6" y1="9.29" x2="0" y2="9.29"/>
+          <line fill="none" stroke="#1e1e1c" stroke-width="1.5px" stroke-miterlimit="10" x1="12.82" y1=".75" x2="0" y2=".75"/>
+          <path fill="#fff" stroke="#fff" stroke-width="3px" d="M11.68,6.59c0,2.06-1.67,3.74-3.74,3.74-2.06,0-3.74-1.67-3.74-3.74s1.67-3.74,3.74-3.74,3.74,1.67,3.74,3.74Z"/>
+          <line fill="#fff" stroke="#fff" stroke-width="3px" stroke-linecap="round" x1="10.59" y1="9.23" x2="14.14" y2="12.78"/>
+          <path fill="none" stroke="#1e1e1c" stroke-width="1.5px" stroke-miterlimit="10" d="M11.68,6.59c0,2.06-1.67,3.74-3.74,3.74-2.06,0-3.74-1.67-3.74-3.74s1.67-3.74,3.74-3.74,3.74,1.67,3.74,3.74Z"/>
+          <line stroke-linecap="round" fill="none" stroke="#1e1e1c" stroke-width="1.5px" stroke-miterlimit="10" x1="10.59" y1="9.23" x2="14.14" y2="12.78"/>
+        </svg>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <line stroke-miterlimit="10" fill="none" stroke="#1e1e1c" stroke-width="1.75px" x1="16.99" y1="7.27" x2="0" y2="7.27"/>
+          <line stroke-miterlimit="10" fill="none" stroke="#1e1e1c" stroke-width="1.75px" x1="16.99" y1="13.66" x2="0" y2="13.66"/>
+          <line stroke-miterlimit="10" fill="none" stroke="#1e1e1c" stroke-width="1.75px" x1="19.18" y1=".88" x2="0" y2=".88"/>
+          <path fill="#fff" stroke="#fff" stroke-width="3.5px" stroke-miterlimit="10" d="M17.8,10.28c0,3.09-2.5,5.59-5.59,5.59-3.09,0-5.59-2.5-5.59-5.59,0-3.09,2.5-5.59,5.59-5.59,3.09,0,5.59,2.5,5.59,5.59Z"/>
+          <circle stroke-miterlimit="10" fill="none" stroke="#1e1e1c" stroke-width="1.75px" cx="12.22" cy="10.27" r="5.65"/>
+          <path stroke-linecap="round" stroke-miterlimit="10" fill="none" stroke="#1e1e1c" stroke-width="1.75px" d="M17.05,13.42l4.2,4.2c.46.46.46,1.21,0,1.67h0c-.46.46-1.21.46-1.67,0l-4.2-4.2"/>
+        </svg>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+          <line fill="none" stroke="#1e1e1c" stroke-width="2px" stroke-miterlimit="10" x1="22.71" y1="9.54" x2="0" y2="9.54"/>
+          <line fill="none" stroke="#1e1e1c" stroke-width="2px" stroke-miterlimit="10" x1="22.71" y1="18.09" x2="0" y2="18.09"/>
+          <line fill="none" stroke="#1e1e1c" stroke-width="2px" stroke-miterlimit="10" x1="25.63" y1="1" x2="0" y2="1"/>
+          <path fill="#fff" stroke="#fff" stroke-width="4px" stroke-miterlimit="10" d="M23.94,13.57c0,4.13-3.34,7.47-7.47,7.47-4.13,0-7.47-3.34-7.47-7.47,0-4.13,3.34-7.47,7.47-7.47,4.13,0,7.47,3.34,7.47,7.47Z"/>
+          <ellipse fill="none" stroke="#1e1e1c" stroke-width="2px" stroke-miterlimit="10" cx="16.27" cy="13.44" rx="7.48" ry="7.48"/>
+          <path fill="none" stroke="#1e1e1c" stroke-width="2px" stroke-miterlimit="10" stroke-linecap="round" d="M22.67,17.62l5.67,5.67c.61.61.61,1.6,0,2.22h0c-.61.61-1.6.61-2.21,0l-5.67-5.67"/>
+        </svg>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+          <line fill="none" stroke="#1e1e1c" stroke-width="2.25px" stroke-miterlimit="10" x1="28.39" y1="11.8" x2="0" y2="11.8"/>
+          <line fill="none" stroke="#1e1e1c" stroke-width="2.25px" stroke-miterlimit="10" x1="28.39" y1="22.48" x2="0" y2="22.48"/>
+          <line fill="none" stroke="#1e1e1c" stroke-width="2.25px" stroke-miterlimit="10" x1="32.04" y1="1.12" x2="0" y2="1.13"/>
+          <path fill="#fff" stroke="#fff" stroke-width="5px" stroke-miterlimit="10" d="M29.93,17.12c0,5.22-4.23,9.45-9.45,9.45-5.22,0-9.45-4.23-9.45-9.45,0-5.22,4.23-9.45,9.45-9.45,5.22,0,9.45,4.23,9.45,9.45Z"/>
+          <ellipse fill="none" stroke="#1e1e1c" stroke-width="2.25px" stroke-miterlimit="10" cx="20.52" cy="17.15" rx="9.43" ry="9.44"/>
+          <path  fill="none" stroke="#1e1e1c" stroke-width="2.25px" stroke-miterlimit="10" stroke-linecap="round" d="M28.59,22.41l7.15,7.15c.77.77.77,2.02,0,2.79h0c-.77.77-2.02.77-2.79,0l-7.15-7.15"/>
+        </svg>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+          <line fill="none" stroke="#1e1e1c" stroke-width="2.5px" stroke-miterlimit="10" x1="34.06" y1="14.06" x2="0" y2="14.06"/>
+          <line fill="none" stroke="#1e1e1c" stroke-width="2.5px" stroke-miterlimit="10" x1="34.06" y1="26.88" x2="0" y2="26.88"/>
+          <line fill="none" stroke="#1e1e1c" stroke-width="2.5px" stroke-miterlimit="10" x1="38.44" y1="1.25" x2="0" y2="1.25"/>
+          <path fill="#fff" stroke="#fff" stroke-width="5px" stroke-miterlimit="10" d="M36.14,20.29c0,6.22-5.04,11.25-11.25,11.25-6.22,0-11.25-5.04-11.25-11.25,0-6.22,5.04-11.25,11.25-11.25,6.22,0,11.25,5.04,11.25,11.25Z"/>
+          <ellipse fill="none" stroke="#1e1e1c" stroke-width="2.5px" stroke-miterlimit="10" cx="24.8" cy="20.32" rx="11.25" ry="11.26"/>
+          <path fill="none" stroke="#1e1e1c" stroke-width="2.5px" stroke-miterlimit="10" stroke-linecap="round" d="M34.43,26.6l8.53,8.54c.92.92.92,2.41,0,3.34h0c-.92.92-2.41.92-3.33,0l-8.53-8.54"/>
+        </svg>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+          <line fill="none" stroke="#1e1e1c" stroke-width="2.75px" stroke-miterlimit="10" x1="45.41" y1="18.46" x2="0" y2="18.46"/>
+          <line fill="none" stroke="#1e1e1c" stroke-width="2.75px" stroke-miterlimit="10" x1="45.41" y1="35.54" x2="0" y2="35.54"/>
+          <line fill="none" stroke="#1e1e1c" stroke-width="2.75px" stroke-miterlimit="10" x1="51.25" y1="1.38" x2="0" y2="1.38"/>
+          <path fill="#fff" stroke="#fff" stroke-width="5.5px" stroke-miterlimit="10" d="M48.18,26.67c0,8.33-6.76,15.09-15.09,15.09-8.33,0-15.09-6.76-15.09-15.09,0-8.33,6.76-15.09,15.09-15.09,8.33,0,15.09,6.76,15.09,15.09Z"/>
+          <ellipse fill="none" stroke="#1e1e1c" stroke-width="2.75px" stroke-miterlimit="10" cx="33.2" cy="26.44" rx="14.77" ry="14.78"/>
+          <path fill="none" stroke="#1e1e1c" stroke-width="2.75px" stroke-miterlimit="10" stroke-linecap="round" d="M46.15,34.89l11.45,11.46c1.24,1.24,1.24,3.24,0,4.48h0c-1.24,1.24-3.24,1.24-4.48,0l-11.45-11.46"/>
+        </svg>`,
+      ],
+      [
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.5px" x1="2.22" y1="10.25" x2="13.73" y2="10.25"/>
+          <path fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.5px" d="M3.9,6.51H.75v7.75c0,.55.45,1,1,1h12.47c.55,0,1-.45,1-1v-7.75h-3.23"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.5px" x1="11.23" y1="13" x2="12.73" y2="13"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.5px" x1="5.98" y1="4" x2="9.98" y2="4"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.5px" x1="5.98" y1="7.01" x2="7.98" y2="7.01"/>
+          <path fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.5px" d="M4.9.75h6.08c.55,0,1,.45,1,1v8.5H3.9V1.75c0-.55.45-1,1-1Z"/>
+        </svg>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" x1="3.14" y1="14.47" x2="20.81" y2="14.47"/>
+          <path fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" d="M5.71,8.72H.88v12.9c0,.85.69,1.54,1.54,1.54h19.15c.85,0,1.54-.69,1.54-1.54v-12.9h-4.97"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" x1="19" y1="20.57" x2="20.75" y2="20.57"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" x1="15.5" y1="20.57" x2="17.25" y2="20.57"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" x1="8.91" y1="5.86" x2="15.06" y2="5.86"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" x1="8.91" y1="9.49" x2="11.99" y2="9.49"/>
+          <path fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" d="M6.71.88h10.42c.55,0,1,.45,1,1v12.59H5.71V1.88c0-.55.45-1,1-1Z"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" x1=".88" y1="18.11" x2="23.1" y2="18.11"/>
+        </svg>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="4.05" y1="20.7" x2="27.92" y2="20.7"/>
+          <path fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" d="M7.53,12.94H1v16.07c0,1.15.93,2.07,2.07,2.07h25.86c1.15,0,2.07-.93,2.07-2.07V12.94h-6.71"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="25.92" y1="28.19" x2="27.92" y2="28.19"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="21.92" y1="28.19" x2="23.92" y2="28.19"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="11.85" y1="6.21" x2="20.15" y2="6.21"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="11.85" y1="10.16" x2="20.15" y2="10.16"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="11.85" y1="14.09" x2="16" y2="14.09"/>
+          <path fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" d="M8.53,1h14.76c.55,0,1,.45,1,1v18.7H7.53V2c0-.55.45-1,1-1Z"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="1" y1="25.11" x2="31" y2="25.11"/>
+        </svg>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.25px" x1="4.97" y1="25.86" x2="35.02" y2="25.86"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.25px" x1="1.12" y1="30.87" x2="38.91" y2="30.87"/>
+          <path fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.25px" d="M9.35,16.09H1.12v20.59c0,1.24,1.01,2.25,2.25,2.25h33.28c1.24,0,2.25-1.01,2.25-2.25v-20.59h-8.45"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.25px" x1="32.64" y1="35.17" x2="34.89" y2="35.17"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.25px" x1="14.79" y1="7.61" x2="25.24" y2="7.61"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.25px" x1="14.79" y1="12.59" x2="25.24" y2="12.59"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.25px" x1="14.79" y1="17.53" x2="20.02" y2="17.53"/>
+          <path fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.25px" d="M11.35,1.12h17.11c1.1,0,2,.9,2,2v22.73H9.35V3.12c0-1.1.9-2,2-2Z"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.25px" x1="28.13" y1="35.17" x2="30.38" y2="35.17"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.25px" x1="23.63" y1="35.18" x2="25.88" y2="35.18"/>
+        </svg>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" x1="5.89" y1="31.09" x2="42.15" y2="31.09"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" x1="1.25" y1="37.13" x2="46.84" y2="37.13"/>
+          <path fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" d="M11.17,19.3H1.25v25.06c0,1.38,1.12,2.5,2.5,2.5h40.59c1.38,0,2.5-1.12,2.5-2.5v-25.06h-10.19"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" x1="39.38" y1="42.32" x2="41.88" y2="42.32"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" x1="29.38" y1="42.32" x2="31.88" y2="42.32"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" x1="34.38" y1="42.32" x2="36.88" y2="42.32"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" x1="17.74" y1="9.07" x2="30.34" y2="9.07"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" x1="17.74" y1="15.08" x2="30.34" y2="15.08"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" x1="17.74" y1="21.04" x2="24.04" y2="21.04"/>
+          <path fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" d="M13.67,1.25h20.47c1.38,0,2.5,1.12,2.5,2.5v27.34H11.17V3.75c0-1.38,1.12-2.5,2.5-2.5Z"/>
+        </svg>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="7.62" y1="41.46" x2="56.31" y2="41.46"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="1.39" y1="49.58" x2="62.6" y2="49.58"/>
+          <path fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" d="M14.71,25.63H1.38v33.65c0,1.85,1.5,3.36,3.36,3.36h54.53c1.86,0,3.36-1.5,3.36-3.36V25.63h-13.69"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="52.89" y1="56.54" x2="55.64" y2="56.54"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="47.39" y1="56.54" x2="50.14" y2="56.54"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="41.89" y1="56.54" x2="44.64" y2="56.54"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="23.54" y1="11.9" x2="40.46" y2="11.9"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="23.54" y1="19.97" x2="40.46" y2="19.97"/>
+          <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="23.54" y1="27.98" x2="32" y2="27.98"/>
+          <path fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" d="M17.38,1.38h29.2c1.38,0,2.5,1.12,2.5,2.5v37.59H14.88V3.87c0-1.38,1.12-2.5,2.5-2.5Z"/>
+        </svg>`,
+      ],
+      [
+        `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16">
+          <clipPath id="clippath-16">
+            <rect fill="none" width="16" height="16"/>
+          </clipPath>
+          <g clip-path="url(#clippath-16)">
+            <path fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.5px" d="M24.99,4.95l-2.03-2.03-7.21,7.21c-.71.71-1.87.71-2.59,0L6.74,3.71c-.71-.71-.71-1.87,0-2.59l7.21-7.21-2.03-2.03L4.72-.91c-.71.71-1.87.71-2.59,0L-.51-3.54-3.54-.51-.91,2.13c.71.71.71,1.87,0,2.59l-7.21,7.21,2.03,2.03L1.12,6.74c.71-.71,1.87-.71,2.59,0l6.42,6.42c.71.71.71,1.87,0,2.59l-7.21,7.21,2.03,2.03,7.21-7.21c.71-.71,1.87-.71,2.59,0l1.76,1.76,3.04-3.04-1.76-1.76c-.71-.71-.71-1.87,0-2.59l7.21-7.21Z"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.5px" x1="1.03" y1="1.03" x2="-.58" y2="-.58"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.5px" x1="3.59" y1="3.59" x2="1.98" y2="1.98"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.5px" x1="5.93" y1="5.93" x2="4.32" y2="4.32"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.5px" x1="9.65" y1="9.65" x2="8.04" y2="8.04"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.5px" x1="13.44" y1="13.44" x2="11.83" y2="11.83"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.5px" x1="10.97" y1="10.97" x2="9.36" y2="9.36"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.5px" x1="16.11" y1="16.11" x2="14.5" y2="14.5"/>
+            <rect fill="#fff" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.5px" x="5.86" y="-6.18" width="5.15" height="28.35" transform="translate(8.13 -3.62) rotate(45)"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.5px" x1="15.14" y1="1.36" x2="17.17" y2="-.67"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.5px" x1="12.11" y1="4.38" x2="14.14" y2="2.36"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.5px" x1="9.08" y1="7.41" x2="11.11" y2="5.38"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.5px" x1="6.06" y1="10.44" x2="8.08" y2="8.41"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.5px" x1="3.03" y1="13.47" x2="5.06" y2="11.44"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.5px" x1="0" y1="16.49" x2="2.03" y2="14.47"/>
+          </g>
+        </svg>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24">
+          <clipPath id="clippath-24">
+            <rect fill="none" width="24.01" height="24.01"/>
+          </clipPath>
+          <g clip-path="url(#clippath-24)">
+            <path fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" d="M31.57,13.35l-3.04-3.04-4.89,4.89c-1.07,1.07-2.81,1.07-3.88,0L10.12,5.56c-1.07-1.07-1.07-2.81,0-3.88l4.89-4.89-3.04-3.04L7.08-1.36c-1.07,1.07-2.81,1.07-3.88,0L-.76-5.31-5.31-.76-1.36,3.2c1.07,1.07,1.07,2.81,0,3.88l-3.97,3.97,3.04,3.04,3.97-3.97c1.07-1.07,2.81-1.07,3.88,0l9.64,9.64c1.07,1.07,1.07,2.81,0,3.88l-3.97,3.97,3.04,3.04,3.97-3.97c1.07-1.07,2.81-1.07,3.88,0l2.64,2.64,4.56-4.56-2.64-2.64c-1.07-1.07-1.07-2.81,0-3.88l4.89-4.89Z"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" x1="1.54" y1="1.54" x2="-.87" y2="-.87"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" x1="5.39" y1="5.39" x2="2.97" y2="2.97"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" x1="8.9" y1="8.9" x2="6.48" y2="6.48"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" x1="14.48" y1="14.48" x2="12.06" y2="12.06"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" x1="20.16" y1="20.16" x2="17.75" y2="17.75"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" x1="16.46" y1="16.46" x2="14.04" y2="14.04"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" x1="24.17" y1="24.17" x2="21.76" y2="21.76"/>
+            <rect fill="#fff" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" x="8.8" y="-9.27" width="7.73" height="42.54" transform="translate(12.2 -5.44) rotate(45)"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" x1="22.72" y1="2.03" x2="25.76" y2="-1.01"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" x1="18.17" y1="6.58" x2="21.22" y2="3.54"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" x1="13.63" y1="11.12" x2="16.67" y2="8.08"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" x1="9.09" y1="15.66" x2="12.13" y2="12.62"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" x1="4.55" y1="20.2" x2="7.59" y2="17.16"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="1.75px" x1="0" y1="24.75" x2="3.05" y2="21.7"/>
+          </g>
+        </svg>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+          <clipPath id="clippath-32">
+            <rect fill="none" width="31.98" height="31.98"/>
+          </clipPath>
+          <g clip-path="url(#clippath-32)">
+            <path fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" d="M42.05,17.78l-4.05-4.05-6.52,6.52c-1.43,1.43-3.74,1.43-5.17,0L13.48,7.41c-1.43-1.43-1.43-3.74,0-5.17l6.52-6.52-4.05-4.05L9.43-1.81c-1.43,1.43-3.74,1.43-5.17,0L-1.01-7.08-7.08-1.01-1.81,4.26c1.43,1.43,1.43,3.74,0,5.17l-5.29,5.29,4.05,4.05,5.29-5.29c1.43-1.43,3.74-1.43,5.17,0l12.84,12.84c1.43,1.43,1.43,3.74,0,5.17l-5.29,5.29,4.05,4.05,5.29-5.29c1.43-1.43,3.74-1.43,5.17,0l3.52,3.52,6.07-6.07-3.52-3.52c-1.43-1.43-1.43-3.74,0-5.17l6.52-6.52Z"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="2.06" y1="2.06" x2="-1.16" y2="-1.16"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="7.17" y1="7.17" x2="3.95" y2="3.95"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="11.85" y1="11.85" x2="8.63" y2="8.63"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="19.28" y1="19.28" x2="16.06" y2="16.06"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="26.86" y1="26.86" x2="23.64" y2="23.64"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="21.92" y1="21.92" x2="18.7" y2="18.7"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="32.2" y1="32.2" x2="28.98" y2="28.98"/>
+            <rect fill="#fff" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x="11.72" y="-12.34" width="10.29" height="56.66" transform="translate(16.24 -7.24) rotate(45)"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="30.26" y1="2.71" x2="34.31" y2="-1.34"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="24.21" y1="8.76" x2="28.26" y2="4.71"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="18.16" y1="14.81" x2="22.21" y2="10.76"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="12.11" y1="20.86" x2="16.16" y2="16.81"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="6.06" y1="26.91" x2="10.11" y2="22.86"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="0" y1="32.96" x2="4.06" y2="28.91"/>
+          </g>
+        </svg>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40">
+          <clipPath id="clippath-40">
+            <rect fill="none" width="39.94" height="39.94"/>
+          </clipPath>
+          <g clip-path="url(#clippath-40)">
+            <path fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" d="M52.52,22.21l-5.06-5.06-8.14,8.14c-1.78,1.78-4.67,1.78-6.45,0L16.83,9.25c-1.78-1.78-1.78-4.67,0-6.45l8.14-8.14-5.06-5.06L11.77-2.26c-1.78,1.78-4.67,1.78-6.45,0L-1.26-8.84-8.84-1.26-2.26,5.32c1.78,1.78,1.78,4.67,0,6.45l-6.6,6.6,5.06,5.06,6.6-6.6c1.78-1.78,4.67-1.78,6.45,0l16.04,16.04c1.78,1.78,1.78,4.67,0,6.45l-6.6,6.6,5.06,5.06,6.6-6.6c1.78-1.78,4.67-1.78,6.45,0l4.4,4.4,7.58-7.58-4.4-4.4c-1.78-1.78-1.78-4.67,0-6.45l8.14-8.14Z"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="2.57" y1="2.57" x2="-1.45" y2="-1.45"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="8.96" y1="8.96" x2="4.94" y2="4.94"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="14.8" y1="14.8" x2="10.78" y2="10.78"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="24.08" y1="24.08" x2="20.06" y2="20.06"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="33.54" y1="33.54" x2="29.52" y2="29.52"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="27.38" y1="27.38" x2="23.36" y2="23.36"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="40.21" y1="40.21" x2="36.19" y2="36.19"/>
+            <rect fill="#fff" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x="14.64" y="-15.41" width="12.85" height="70.77" transform="translate(20.29 -9.04) rotate(45)"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="37.79" y1="3.39" x2="42.85" y2="-1.68"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="30.23" y1="10.94" x2="35.29" y2="5.88"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="22.68" y1="18.5" x2="27.74" y2="13.44"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="15.12" y1="26.05" x2="20.18" y2="20.99"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="7.56" y1="33.61" x2="12.62" y2="28.55"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2px" x1="0" y1="41.17" x2="5.07" y2="36.11"/>
+          </g>
+        </svg>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 48 48">
+          <clipPath id="clippath-48">
+            <rect fill="none" width="48" height="48"/>
+          </clipPath>
+          <g clip-path="url(#clippath-48)">
+            <path fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" d="M59.61,30.22l-6.08-6.08-6.26,6.26c-2.14,2.14-5.61,2.14-7.76,0L20.23,11.12c-2.14-2.14-2.14-5.61,0-7.76l6.26-6.26-6.08-6.08-6.26,6.26c-2.14,2.14-5.61,2.14-7.76,0L-1.52-10.63-10.63-1.52-2.72,6.39c2.14,2.14,2.14,5.61,0,7.76l-7.94,7.94,6.08,6.08,7.94-7.94c2.14-2.14,5.61-2.14,7.76,0l19.28,19.28c2.14,2.14,2.14,5.61,0,7.76l-3.9,3.9,6.08,6.08,3.9-3.9c2.14-2.14,5.61-2.14,7.76,0l3.76,3.76,9.11-9.11-3.76-3.76c-2.14-2.14-2.14-5.61,0-7.76l6.26-6.26Z"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" x1="3.09" y1="3.09" x2="-1.75" y2="-1.75"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" x1="10.77" y1="10.77" x2="5.94" y2="5.94"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" x1="17.79" y1="17.79" x2="12.95" y2="12.95"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" x1="28.94" y1="28.94" x2="24.11" y2="24.11"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" x1="40.32" y1="40.32" x2="35.49" y2="35.49"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" x1="32.91" y1="32.91" x2="28.08" y2="28.08"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" x1="48.34" y1="48.34" x2="43.5" y2="43.5"/>
+            <rect fill="#fff" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" x="16.5" y="-12.23" width="15.45" height="74.65" transform="translate(24.84 -9.78) rotate(45)"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" x1="45.42" y1="4.07" x2="49.2" y2=".29"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" x1="36.34" y1="13.15" x2="42.42" y2="7.07"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" x1="27.26" y1="22.23" x2="33.34" y2="16.15"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" x1="18.17" y1="31.32" x2="24.26" y2="25.23"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" x1="9.09" y1="40.4" x2="15.17" y2="34.32"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.5px" x1="0" y1="49.48" x2="6.09" y2="43.4"/>
+          </g>
+        </svg>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64">
+          <clipPath id="clippath-64">
+            <rect fill="none" width="64" height="64"/>
+          </clipPath>
+          <g clip-path="url(#clippath-64)">
+            <path fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" d="M79.08,40.06l-8.07-8.07-8.31,8.31c-2.84,2.84-7.45,2.84-10.29,0L26.85,14.74c-2.84-2.84-2.84-7.45,0-10.29l8.31-8.31-8.07-8.07L18.78-3.62c-2.84,2.84-7.45,2.84-10.29,0L-2-14.11-14.09-2.03-3.59,8.46c2.84,2.84,2.84,7.45,0,10.29l-10.53,10.53,8.07,8.07,10.53-10.53c2.84-2.84,7.45-2.84,10.29,0l25.57,25.57c2.84,2.84,2.84,7.45,0,10.29l-5.18,5.18,8.07,8.07,5.18-5.18c2.84-2.84,7.45-2.84,10.29,0l4.99,4.99,12.09-12.09-4.99-4.99c-2.84-2.84-2.84-7.45,0-10.29l8.31-8.31Z"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="4.1" y1="4.08" x2="-2.31" y2="-2.33"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="14.29" y1="14.27" x2="7.88" y2="7.86"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="23.6" y1="23.58" x2="17.19" y2="17.17"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="38.4" y1="38.38" x2="31.99" y2="31.97"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="53.49" y1="53.47" x2="47.08" y2="47.06"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="43.67" y1="43.64" x2="37.26" y2="37.23"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="64.13" y1="64.1" x2="57.72" y2="57.69"/>
+            <rect fill="#fff" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x="21.9" y="-16.25" width="20.49" height="99.02" transform="translate(32.94 -12.99) rotate(45)"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="60.26" y1="5.38" x2="65.27" y2=".37"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="48.21" y1="17.43" x2="56.28" y2="9.36"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="36.16" y1="29.48" x2="44.23" y2="21.41"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="24.12" y1="41.52" x2="32.18" y2="33.46"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1="12.07" y1="53.57" x2="20.14" y2="45.5"/>
+            <line fill="none" stroke="#1e1e1c" stroke-miterlimit="10" stroke-width="2.75px" x1=".02" y1="65.62" x2="8.09" y2="57.55"/>
+          </g>
+        </svg>`,
+      ],
+    ],
+    spriteIconNames: ['test', 'print', 'street'],
+    getSpriteIcon(name) {
+      return this.sizes.map(
+        size =>
+          `<use href="/assets/sprite.svg?v=${new Date().getTime()}#post-icon-${name}-${size}" style="display: var(--post-icon-size-${size}, none)"/>`,
+      );
+    },
+  }));
+
+  Alpine.nextTick(setupCurrentSpriteIcon);
 });
+
+function setupCurrentSpriteIcon() {
+  Array.from(document.querySelectorAll('.resize .post-icon')).forEach((icon, iIndex) => {
+    const iconVariants = Array.from(document.querySelectorAll('.icon-variants'))[iIndex];
+
+    const resizeObserver = new ResizeObserver(entries => {
+      const currentSize = [...SIZES].reverse().find(size => entries[0].contentRect.width >= size);
+      const currentIndex = SIZES.findIndex(size => size === currentSize);
+
+      Array.from(iconVariants.querySelectorAll('[class^="icon-"]')).forEach((variant, vIndex) => {
+        if (vIndex === currentIndex) variant.classList.add('current');
+        else variant.classList.remove('current');
+      });
+    });
+
+    resizeObserver.observe(icon);
+  });
+}

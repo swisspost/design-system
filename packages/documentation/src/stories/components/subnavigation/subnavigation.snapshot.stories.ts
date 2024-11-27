@@ -15,7 +15,7 @@ type Story = StoryObj;
 export const Subnavigation: Story = {
   render: (_args: Args, context: StoryContext) => {
     return html`
-      <div class=" d-flex gap-3 flex-column">
+      <div class=" d-flex gap-16 flex-column">
         ${bombArgs({
           backgroundColor: ['default', 'bg-light', 'bg-dark'],
           badges: [false, true],

@@ -32,7 +32,7 @@
 .carousel-inner {
   padding-bottom: calc(10% - 0.5rem);
 
-  @include media-breakpoint-down(rg) {
+  @include media-breakpoint-down(sm) {
     padding-bottom: 1.5rem;
   }
 
@@ -52,7 +52,6 @@
   width: 40%;
   padding: 2rem;
   padding-bottom: 5rem;
-  background-color: rgba(color.$nightblue-dark, 0.85);
   color: color.$white;
   text-align: left;
 
@@ -70,14 +69,9 @@
     width: 55%;
   }
 
-  @include media-breakpoint-down(rg) {
+  @include media-breakpoint-down(sm) {
     position: relative;
     bottom: 0;
-    width: 75%;
-    margin-top: -7rem;
-  }
-
-  @include media-breakpoint-down(sm) {
     width: calc(100% - 2rem);
     margin-top: -3rem;
     margin-left: 1rem;
@@ -130,10 +124,6 @@
 
   @include media-breakpoint-down(lg) {
     bottom: 2rem;
-  }
-
-  @include media-breakpoint-down(rg) {
-    bottom: 1.5rem;
   }
 
   @include media-breakpoint-down(sm) {

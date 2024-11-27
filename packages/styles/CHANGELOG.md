@@ -1,5 +1,147 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.6
+
+### Major Changes
+
+- Renamed the alert component to banner and updated the styles of banner and toast components. The class `.alert` is still supported for now but is deprecated and will be removed in v10. Changed web component `<post-alert>` to `<post-banner>`. Additionally, the classes `.{toast|alert}-primary`, `.{toast|alert}-gray` and `.toast-notification` have been deprecated. (by [@leagrdv](https://github.com/leagrdv) with [#3862](https://github.com/swisspost/design-system/pull/3862))
+
+- Removed size variants for form select. The sizing classes `.form-select-sm`, `.form-select-rg`, `.form-select-md` and `.form-select-lg` no longer have any effect and can be removed safely. (by [@leagrdv](https://github.com/leagrdv) with [#3978](https://github.com/swisspost/design-system/pull/3978))
+
+- Removed the `alert-fixed-bottom` variant of the alert. (by [@leagrdv](https://github.com/leagrdv) with [#3862](https://github.com/swisspost/design-system/pull/3862))
+
+- Removed sizes option for text inputs. (by [@leagrdv](https://github.com/leagrdv) with [#3946](https://github.com/swisspost/design-system/pull/3946))
+
+- Removed deprecated `topic-teaser`. (by [@leagrdv](https://github.com/leagrdv) with [#4056](https://github.com/swisspost/design-system/pull/4056))
+
+- Changed the class name of assistive text below form fields from `.form-text` to `.form-hint` and improved accessibility by connecting the hint to the form through `aria-describedby`. (by [@leagrdv](https://github.com/leagrdv) with [#3961](https://github.com/swisspost/design-system/pull/3961))
+
+### Minor Changes
+
+- Added a new `segmented-button` component, which allows users to toggle between two or more content sections within the same area on the screen. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3879](https://github.com/swisspost/design-system/pull/3879))
+
+- Internalized bootstrap overflow utilities into the design system. (by [@leagrdv](https://github.com/leagrdv) with [#4006](https://github.com/swisspost/design-system/pull/4006))
+
+- Updated radio-button styles with Design Tokens. (by [@schaertim](https://github.com/schaertim) with [#3965](https://github.com/swisspost/design-system/pull/3965))
+
+- Addes Cargo theme styles. (by [@alizedebray](https://github.com/alizedebray) with [#3993](https://github.com/swisspost/design-system/pull/3993))
+
+- Updated `.form-select` select to v2. (by [@leagrdv](https://github.com/leagrdv) with [#3978](https://github.com/swisspost/design-system/pull/3978))
+
+- Updated checkbox styles with Design Tokens. (by [@schaertim](https://github.com/schaertim) with [#3965](https://github.com/swisspost/design-system/pull/3965))
+
+- Updated switch styles with Design Tokens. (by [@schaertim](https://github.com/schaertim) with [#3965](https://github.com/swisspost/design-system/pull/3965))
+
+- Added color palettes to easily apply colors to a page section using predefined color sets. (by [@alizedebray](https://github.com/alizedebray) with [#3850](https://github.com/swisspost/design-system/pull/3850))
+
+### Patch Changes
+
+- Updated `.form-control` text input to new Post design. (by [@leagrdv](https://github.com/leagrdv) with [#3946](https://github.com/swisspost/design-system/pull/3946))
+
+- Updated the blockquote styles to match the new Post design. (by [@myrta2302](https://github.com/myrta2302) with [#3882](https://github.com/swisspost/design-system/pull/3882))
+
+## 9.0.0-next.5
+
+### Major Changes
+
+- Removed the deprecated `.pi-*` classes, which were previously used to display icons. The `post-icon` component should now be used instead. (by [@alizedebray](https://github.com/alizedebray) with [#3947](https://github.com/swisspost/design-system/pull/3947))
+
+### Minor Changes
+
+- Added custom styles for the ordered lists. (by [@veyaromain](https://github.com/veyaromain) with [#3755](https://github.com/swisspost/design-system/pull/3755))
+
+### Patch Changes
+
+- Fixed issue where the focus ring was not appearing on inactive chips. (by [@schaertim](https://github.com/schaertim) with [#3820](https://github.com/swisspost/design-system/pull/3820))
+
+## 9.0.0-next.4
+
+### Major Changes
+
+- Removed regular button size. Buttons that were previously using `btn-rg` will now fall back to the default `btn-md` size. (by [@leagrdv](https://github.com/leagrdv) with [#3849](https://github.com/swisspost/design-system/pull/3849))
+
+- Updated list group to v2 and added new options: list links, list documents and list switches. (by [@leagrdv](https://github.com/leagrdv) with [#3740](https://github.com/swisspost/design-system/pull/3740))
+
+- Removed the `btn-animated` class. It no longer has any effect and can be removed from existing buttons. (by [@leagrdv](https://github.com/leagrdv) with [#3849](https://github.com/swisspost/design-system/pull/3849))
+
+- Removed the `.breadcrumb-item` class, which previously handled styling for breadcrumb items. Introduced a new `post-breadcrumb-item` that should be used in place of the `.breadcrumb-item` class. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3659](https://github.com/swisspost/design-system/pull/3659))
+
+### Minor Changes
+
+- Added Form Footer component. (by [@leagrdv](https://github.com/leagrdv) with [#3616](https://github.com/swisspost/design-system/pull/3616))
+
+- Created token-based styles for `<ul>` elements. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3859](https://github.com/swisspost/design-system/pull/3859))
+
+- Updated vertical-align utility (by [@myrta2302](https://github.com/myrta2302) with [#3805](https://github.com/swisspost/design-system/pull/3805))
+
+- Updated button component to v2. (by [@leagrdv](https://github.com/leagrdv) with [#3849](https://github.com/swisspost/design-system/pull/3849))
+
+- Added the skiplinks component to styles and documentation. (by [@leagrdv](https://github.com/leagrdv) with [#3875](https://github.com/swisspost/design-system/pull/3875))
+
+- Added close button web component. (by [@leagrdv](https://github.com/leagrdv) with [#3880](https://github.com/swisspost/design-system/pull/3880))
+
+- Internalized bootstraps floating utilities into the design system. (by [@myrta2302](https://github.com/myrta2302) with [#3752](https://github.com/swisspost/design-system/pull/3752))
+
+## 9.0.0-next.3
+
+### Major Changes
+
+- Removed deprecated accent colors (nightblue, petrol, coral, olive, purple, aubergine and their light variations) and updated all relevant components, documentation, and utilities. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3693](https://github.com/swisspost/design-system/pull/3693))
+
+- Removed deprecated grid container helper classes. (by [@veyaromain](https://github.com/veyaromain) with [#3527](https://github.com/swisspost/design-system/pull/3527))
+
+### Minor Changes
+
+- Updated the Link component styles to align with the new design, added a documentation page outlining the usage of the component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3590](https://github.com/swisspost/design-system/pull/3590))
+
+- Updated the utility classes for opacity. (by [@myrta2302](https://github.com/myrta2302) with [#3754](https://github.com/swisspost/design-system/pull/3754))
+
+- Added a new App Store Badge component for promoting apps, supporting both Google Play and Apple App Store badges. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3731](https://github.com/swisspost/design-system/pull/3731))
+
+- Added paragraph style. (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3569](https://github.com/swisspost/design-system/pull/3569))
+
+### Patch Changes
+
+- Updated margin styles according to the contribution guidelines. Content elements like headings and paragraphs no longer have a margin top if they're the first child and no margin bottom if they're the last child in a container. (by [@gfellerph](https://github.com/gfellerph) with [#3667](https://github.com/swisspost/design-system/pull/3667))
+
+## 9.0.0-next.2
+
+### Minor Changes
+
+- Updated and tokenized styles for the legend element. (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3614](https://github.com/swisspost/design-system/pull/3614))
+
+- Added styling support and documentation for the `<dialog>` element. The dialog will replace the current modal and notification overlay components coming from ng-bootstrap. (by [@gfellerph](https://github.com/gfellerph) with [#2772](https://github.com/swisspost/design-system/pull/2772))
+
+### Patch Changes
+
+- Wrapped new token only entry files in a CSS layer called 'design-system'. The two files affected are 'post-tokens-external.scss' and 'post-tokens-internal.scss' as well as their compiled CSS counterparts. (by [@gfellerph](https://github.com/gfellerph) with [#3720](https://github.com/swisspost/design-system/pull/3720))
+
+- Deprecated the ng-bootstrap components Modal and Notification overlay in favor of the new Dialog component. The styles for these ng-bootstrap components will be removed in a future major version. (by [@gfellerph](https://github.com/gfellerph) with [#2772](https://github.com/swisspost/design-system/pull/2772))
+
+- Fixed an issue with element styles that were not compiled to the output as CSS. (by [@gfellerph](https://github.com/gfellerph) with [#3709](https://github.com/swisspost/design-system/pull/3709))
+
+## 9.0.0-next.1
+
+### Major Changes
+
+- Removed the following placeholders: `%list-adjustment`, `%module-container`, `%default-module-spacer`, `%text-container`. (by [@leagrdv](https://github.com/leagrdv) with [#3623](https://github.com/swisspost/design-system/pull/3623))
+
+- Updated the margin, padding, and gap utility classes to use the pixel values (1, 2, ... , 112) instead of size names (hair, line, ..., bigger-giant). (by [@alizedebray](https://github.com/alizedebray) with [#3557](https://github.com/swisspost/design-system/pull/3557))
+
+### Minor Changes
+
+- Added Text Highlighted component. (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3586](https://github.com/swisspost/design-system/pull/3586))
+
+- Added lead text component for introductory paragraphs. (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3575](https://github.com/swisspost/design-system/pull/3575))
+
+### Patch Changes
+
+- styles: Added reset styles (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3545](https://github.com/swisspost/design-system/pull/3545))
+
+- Removed global styles (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3554](https://github.com/swisspost/design-system/pull/3554))
+
+- Updated the style of headings (h1-h6). (by [@bashirkarimi](https://github.com/bashirkarimi) with [#3534](https://github.com/swisspost/design-system/pull/3534))
+
 ## 9.0.0-next.0
 
 ### Major Changes
@@ -542,7 +684,7 @@
 
 - Deprecated the base64 icons defined as CSS backgrounds. This technology is outdated and contributes a large amount to the CSS bloat. The current approach for using icons is the `post-icon` web-component. (by [@gfellerph](https://github.com/gfellerph) with [#1226](https://github.com/swisspost/design-system/pull/1226))
 
-- Deprecated the post-specific sizing variables (e.g. `$size-hair`, `$size-huge`, etc.) and classes (`.m-hair`, `.mt-sm-micro`, etc.) for all of the following properties: `margin`, `padding`, `line-height`, `height`, `max-height`, `width`, `max-width` and `gap`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1267](https://github.com/swisspost/design-system/pull/1267))
+- Deprecated the post-specific sizing variables (e.g. `$size-hair`, `$size-huge`, etc.) and classes (`.m-1`, `.mt-sm-4`, etc.) for all of the following properties: `margin`, `padding`, `line-height`, `height`, `max-height`, `width`, `max-width` and `gap`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1267](https://github.com/swisspost/design-system/pull/1267))
 
 ## 5.4.1
 

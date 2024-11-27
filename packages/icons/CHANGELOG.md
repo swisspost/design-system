@@ -1,5 +1,27 @@
 # @swisspost/design-system-icons
 
+## 9.0.0-next.6
+
+## 9.0.0-next.5
+
+## 9.0.0-next.4
+
+### Minor Changes
+
+- Added icon number 2632. (by [@gfellerph](https://github.com/gfellerph) with [#3952](https://github.com/swisspost/design-system/pull/3952))
+
+## 9.0.0-next.3
+
+### Minor Changes
+
+- Added icons number 2613, 2614, 2615, 2616, 2617, 2618, 2619 and 2620. (by [@gfellerph](https://github.com/gfellerph) with [#3781](https://github.com/swisspost/design-system/pull/3781))
+
+- Added icons number 2621, 2622, 2623, 2624, 2625, 2626, 2627, 2628, 2629, 2630 and 2631. (by [@gfellerph](https://github.com/gfellerph) with [#3832](https://github.com/swisspost/design-system/pull/3832))
+
+## 9.0.0-next.2
+
+## 9.0.0-next.1
+
 ## 9.0.0-next.0
 
 ## 8.2.0

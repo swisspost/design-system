@@ -22,18 +22,17 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
       label: `Label - with Value`,
       value: 'Lorem Ipsum',
     },
-    {
-      label: `Label - Floating label`,
-      floatingLabel: true,
-    },
   ];
   return html`
-    <div class="d-flex flex-wrap align-items-start gap-regular">
+    <div class="d-flex flex-wrap align-items-start gap-16">
       ${['bg-white', 'bg-dark'].map(
         bg => html`
-          <div class="${bg} d-flex gap-3 flex-column p-3">
-            <h3>Sizes</h3>
-            ${getCombinations('size', context.argTypes.size.options, combinations)
+          <div
+            class="${bg} d-flex gap-16 flex-column p-16"
+            data-color-scheme=${bg === 'bg-white' ? 'light' : 'dark'}
+          >
+            <h3>Standard</h3>
+            ${getCombinations('floatingLabel', [false], combinations)
               .filter(
                 (args: Args) =>
                   !args.value ||
@@ -44,15 +43,6 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
                 context.id = `a-${crypto.randomUUID()}`;
                 return html`
                   <div>
-                    ${args.title !== undefined && args.title
-                      ? html`
-                          <h4>
-                            ${Object.entries(context.argTypes.size.control.labels)
-                              .filter(([key]) => key === args.size)
-                              .map(s => s[1])}
-                          </h4>
-                        `
-                      : ''}
                     <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
                   </div>
                 `;

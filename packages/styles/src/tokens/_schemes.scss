@@ -1,0 +1,11 @@
+@use './core';
+@use '../placeholders/schemes';
+
+:root,
+[data-color-scheme='light'] {
+  @extend %color-scheme-light;
+}
+
+[data-color-scheme='dark'] {
+  @extend %color-scheme-dark;
+}

@@ -1,162 +1,108 @@
 @forward './../variables/options';
-
-@use 'sass:map';
-
 @use './../themes/bootstrap/core' as *;
-@use './../themes/bootstrap/list-group' as bl;
 
-@use './../variables/color';
-@use './../variables/spacing';
-@use './../variables/type';
-@use './../variables/commons';
 @use './../variables/animation';
-@use './../variables/components/list-group';
-@use './../mixins/type' as type-mixins;
+@use './../mixins/utilities' as utilities-mx;
+
+@use '../functions/tokens';
+@use '../tokens/components';
+@use '../tokens/helpers';
+
+tokens.$default-map: components.$post-list;
 
 // Base class
 .list-group {
-  background-color: transparent;
+  background-color: tokens.get('list-bg');
+  list-style: none;
+  padding: 0;
 
-  &-box {
-    padding-top: map.get(spacing.$post-sizes, 'mini');
-    padding-bottom: map.get(spacing.$post-sizes, 'mini');
-    box-shadow: commons.$box-shadow;
+  > li {
+    border: unset;
+    padding: 0;
   }
 }
 
-.list-group-item-action {
-  @include transition(
-    color animation.$transition-time-simple animation.$transition-easing-default,
-    background-color animation.$transition-time-simple animation.$transition-easing-default
-  );
-
-  &:hover,
-  &:focus {
-    .list-group-item-right-svg {
-      transform: translateX(animation.$transition-distance-xsmall);
-    }
-  }
-
-  .list-group-item-right-svg {
-    @include transition(
-      transform animation.$transition-time-area-small animation.$transition-easing-default
-    );
-  }
-
-  &-minimal,
-  &-transparent {
-    &:hover,
-    &:focus {
-      background-color: transparent;
-    }
-  }
-
-  &-inverted {
-    background-color: transparent;
-
-    &:hover,
-    &:focus {
-      background-color: list-group.$list-group-hover-bg-inverted;
-    }
-  }
-}
-
-.list-group-item {
+.list-group-link,
+.list-group-document,
+.list-group-switch {
   display: flex;
-  align-content: center;
-  align-items: center;
-  justify-content: space-between;
-  padding-right: map.get(spacing.$post-sizes, 'small-regular');
-  padding-left: map.get(spacing.$post-sizes, 'small-regular');
-  background-color: transparent;
-  font-weight: normal;
+  position: relative;
+  align-items: flex-start;
+  padding-block-start: tokens.get('list-item-padding-block-start');
+  padding-block-end: tokens.get('list-item-padding-block-end');
+  padding-inline-start: tokens.get('list-item-padding-inline-start');
+  padding-inline-end: tokens.get('list-item-padding-inline-end');
+  border-radius: tokens.get('focus-border-radius', helpers.$post-focus); // Used for the focus only
+  color: tokens.get('list-item-enabled-fg');
+
+  &::after {
+    display: block;
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    border-block-end: tokens.get('list-item-border-width') tokens.get('list-item-border-style')
+      tokens.get('list-item-enabled-border');
+  }
+
+  &:hover {
+    color: tokens.get('list-item-hover-fg');
+
+    &::after {
+      border-block-end-color: tokens.get('list-item-hover-border');
+    }
+  }
+
+  @include utilities-mx.focus-style;
+}
+
+.list-group-link,
+.list-group-document {
   text-decoration: none;
-  border-collapse: collapse;
-  border-right: 0;
-  border-left: 0;
+  gap: tokens.get('list-item-gap-inline');
 
-  @include media-breakpoint-up(rg) {
-    padding-left: map.get(spacing.$post-sizes, 'large');
-
-    &-minimal {
-      padding-left: 0;
-    }
-
-    &-transparent {
-      padding-right: map.get(spacing.$post-sizes, 'mini');
-      padding-left: map.get(spacing.$post-sizes, 'regular');
-    }
-  }
-
-  @include media-breakpoint-up(lg) {
-    &-big {
-      padding: map.get(spacing.$post-sizes, 'small-large') map.get(spacing.$post-sizes, 'mini')
-        map.get(spacing.$post-sizes, 'small-large') map.get(spacing.$post-sizes, 'regular');
-    }
-  }
-
-  &-svg {
+  > post-icon {
     flex: 0 0 auto;
-  }
+    padding-block: tokens.get('list-icon-container-padding-block');
+    padding-inline: tokens.get('list-icon-container-padding-inline');
+    width: calc(
+      #{tokens.get('list-icon-size')} + (2 * #{tokens.get('list-icon-container-padding-inline')})
+    );
+    height: calc(
+      #{tokens.get('list-icon-size')} + (2 * #{tokens.get('list-icon-container-padding-block')})
+    );
 
-  &-left-icon {
-    justify-content: flex-start;
-    padding-left: map.get(spacing.$post-sizes, 'mini');
-
-    @include media-breakpoint-up(rg) {
-      padding-left: map.get(spacing.$post-sizes, 'small-regular');
+    &:last-child {
+      margin-left: auto;
     }
-
-    .list-group-item-svg {
-      margin-right: map.get(spacing.$post-sizes, 'mini');
-
-      @include media-breakpoint-up(rg) {
-        margin-right: map.get(spacing.$post-sizes, 'small-regular');
-      }
-    }
-  }
-
-  &-no-border {
-    border: 0;
-  }
-
-  &-minimal {
-    @include type-mixins.font-curve('bigger-regular');
-    padding-right: 0;
-    padding-left: 0;
-  }
-
-  &-transparent {
-    background-color: transparent;
-
-    @include media-breakpoint-up(rg) {
-      padding-left: map.get(spacing.$post-sizes, 'regular');
-    }
-
-    &:hover {
-      background-color: transparent;
-    }
-  }
-
-  &-white {
-    background-color: transparent;
-    color: color.$white;
-
-    &:hover {
-      background-color: transparent;
-      color: rgba(var(--post-contrast-color-inverted-rgb), 0.8);
-    }
-  }
-
-  .list-group &:last-child {
-    border-bottom: 0;
   }
 }
 
-.list-group-white {
-  .list-group-item {
-    border: 0;
-    border-top: list-group.$list-group-border-width solid
-      rgba(var(--post-contrast-color-inverted-rgb), 0.2);
+.list-group-switch {
+  justify-content: space-between;
+  margin-bottom: 0;
+  flex-wrap: nowrap;
+
+  &:hover .form-check-label {
+    color: tokens.get('list-item-hover-fg');
   }
+
+  .form-check-label {
+    color: tokens.get('list-item-enabled-fg');
+  }
+
+  .form-check-input {
+    flex-shrink: 0;
+    margin-block: tokens.get('list-switch-padding-block');
+  }
+}
+
+.list-group-link:hover post-icon,
+.list-group-link:focus post-icon {
+  transform: translateX(animation.$transition-distance-xsmall);
+}
+
+.list-group-link post-icon {
+  @include transition(
+    transform animation.$transition-time-area-small animation.$transition-easing-default
+  );
 }

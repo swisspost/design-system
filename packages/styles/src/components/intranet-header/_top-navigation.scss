@@ -83,7 +83,18 @@
   }
 }
 
-@include media-breakpoint-down(rg) {
+.top-navigation.condense {
+  position: absolute;
+  top: 64px;
+  border-bottom: commons.$border-width solid rgba(var(--post-contrast-color-rgb), 0.2);
+  width: 100%;
+
+  .nav-item > .nav-link {
+    border-top: 0;
+  }
+}
+
+@include media-breakpoint-down(sm) {
   .top-navigation #navbarsDefault {
     border-top: commons.$border-width solid rgba(var(--post-contrast-color-rgb), 0.2);
   }

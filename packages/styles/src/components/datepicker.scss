@@ -24,7 +24,7 @@ ngb-datepicker-navigation {
   justify-content: space-between;
 
   button.ngb-dp-arrow-btn {
-    @include utilities.focus-style();
+    @include utilities.focus-style;
   }
 }
 
@@ -96,7 +96,7 @@ span.ngb-dp-navigation-chevron {
     flex-grow: 1;
   }
 
-  @include utilities.focus-style() {
+  @include utilities.focus-style {
     border-radius: commons.$border-radius;
   }
 
@@ -146,20 +146,13 @@ span.ngb-dp-navigation-chevron {
   width: forms.$input-height-inner;
   background: transparent;
 
-  // DEPRECATED
-  .pi-calendar {
-    @include icons-mx.icon(3203);
-  }
-
-  .pi-calendar,
-  .pi-3203,
   post-icon {
     width: datepicker.$ngb-dp-icon-size;
     height: datepicker.$ngb-dp-icon-size;
     transform: none;
   }
 
-  @include utilities.focus-style() {
+  @include utilities.focus-style {
     border-radius: commons.$border-radius;
   }
 }
@@ -174,8 +167,6 @@ span.ngb-dp-navigation-chevron {
   height: calc(#{forms.$form-floating-height} - #{forms.$input-border-width * 2});
   width: forms.$input-height-inner-lg;
 
-  .pi-3203,
-  .pi-calendar,
   post-icon {
     width: datepicker.$ngb-dp-icon-size-lg;
     height: datepicker.$ngb-dp-icon-size-lg;

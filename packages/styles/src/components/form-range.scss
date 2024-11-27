@@ -14,14 +14,14 @@ $webkit-progress-height-adjustment: 2px;
 $webkit-thumb-width: 32px;
 
 .form-range-wrapper {
-  @include utilities.focus-style() {
+  @include utilities.focus-style {
     border-radius: commons.$border-radius;
   }
 }
 
 :not(.form-range-wrapper) > {
   .form-range {
-    @include utilities.focus-style() {
+    @include utilities.focus-style {
       border-radius: commons.$border-radius;
     }
   }
@@ -113,7 +113,7 @@ $webkit-thumb-width: 32px;
     }
   }
 
-  + .form-text {
+  + .form-hint {
     margin-top: spacing.$size-regular;
     transform: translateY(#{-0.5 * forms.$form-range-height});
   }

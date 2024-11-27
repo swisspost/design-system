@@ -1,0 +1,35 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import * as FloatStories from './float.stories';
+
+<Meta of={FloatStories} />
+
+# Float
+
+<div className="lead">
+  Use `float-start`, `float-end`, or `float-none` to easily float elements.
+</div>
+
+## Properties
+
+- `float-start`: Floats the element to the left (in LTR).
+- `float-end`: Floats the element to the right (in LTR).
+- `float-none`: Removes floating from the element.
+
+### Relative to breakpoints
+
+<div className="banner banner-info">
+  The `float-{breakpoint}-{position}` classes provide control over floating elements at specific
+  breakpoints, enabling you to float elements or remove floating based on the screen size.
+</div>
+
+> - `float-sm-{start|end|none}`
+> - `float-md-{start|end|none}`
+> - `float-lg-{start|end|none}`
+> - `float-xl-{start|end|none}`
+
+#### Example
+
+<Canvas sourceState="shown" of={FloatStories.Float} />
+<div className="hide-col-default">
+  <Controls of={FloatStories.Float} />
+</div>

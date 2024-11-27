@@ -1,5 +1,53 @@
 # @swisspost/design-system-components-react
 
+## 9.0.0-next.6
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.6
+
+## 9.0.0-next.5
+
+### Minor Changes
+
+- Added a provisional post-header component with some basic functionality in place. This component is not finished in this state. (by [@gfellerph](https://github.com/gfellerph) with [#3837](https://github.com/swisspost/design-system/pull/3837))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.5
+
+## 9.0.0-next.4
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.4
+
+## 9.0.0-next.3
+
+### Patch Changes
+
+- Fixed an issue with property validation where some checks were run before the framework had the chance to add computed properties (for example Angular bindings like `[for]="$id"`). The checks are now delayed to work around this issue. (by [@gfellerph](https://github.com/gfellerph) with [#3775](https://github.com/swisspost/design-system/pull/3775))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.3
+
+## 9.0.0-next.2
+
+### Patch Changes
+
+- Initial release! (by [@gfellerph](https://github.com/gfellerph) with [#3718](https://github.com/swisspost/design-system/pull/3718))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.2
+
+## 9.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.1
+
 ## 9.0.0-next.0
 
 ### Patch Changes

@@ -1,0 +1,25 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+:host {
+  display: inline-block;
+  width: fit-content;
+}
+
+button {
+  @include post.reset-button;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:is(a, button) {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: var(--post-language-option-padding);
+}

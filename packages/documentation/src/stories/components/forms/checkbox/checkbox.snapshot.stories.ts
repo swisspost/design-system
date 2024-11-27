@@ -22,10 +22,13 @@ export const Checkbox: Story = {
       });
     });
     return html`
-      <div class="d-flex flex-wrap gap-1 align-items-start">
+      <div class="d-flex flex-wrap gap-4 align-items-start">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div class="${bg} d-flex flex-wrap align-items-start gap-regular p-regular">
+            <div
+              class="${bg} d-flex flex-wrap align-items-start gap-16 p-16"
+              data-color-scheme=${bg === 'bg-white' ? 'light' : 'dark'}
+            >
               ${[
                 ...bombArgs({
                   checked: ['indeterminate'],
@@ -57,7 +60,7 @@ export const Checkbox: Story = {
                   </span>
                 `;
               })}
-              <div class="mt-big w-100"></div>
+              <div class="mt-32 w-100"></div>
               ${Inline.render?.({ ...context.args, ...Inline.args }, context)}
             </div>
           `,

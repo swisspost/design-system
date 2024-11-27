@@ -9,7 +9,6 @@
         </div>
         <div
           class="title px-4"
-          id="title"
           [ngClass]="{ 'flex-shrink-1': !condenseHeader, 'flex-shrink-0': condenseHeader }"
         >
           <h1 class="m-0 font-weight-bold">{{ siteTitle }}</h1>
@@ -40,7 +39,7 @@
           class="settings ms-auto flex-shrink-0 d-flex align-self-stretch"
         >
           <div class="align-self-stretch d-flex" display="dynamic" container="body">
-            <div class="align-self-center p-3">
+            <div class="align-self-center p-16">
               <div #headerExtraContent>
                 <ng-container
                   [ngTemplateOutlet]="optionHeaderContent"
@@ -64,7 +63,7 @@
             placement="bottom-right"
           >
             <button
-              class="btn btn-tertiary px-3 rounded-0 flex-shrink-0 no-toggle-arrow"
+              class="btn btn-tertiary px-16 rounded-0 flex-shrink-0 no-toggle-arrow"
               id="profileMenu"
               ngbDropdownToggle
             >
@@ -108,7 +107,7 @@
           *ngIf="hasNavbar === true || condenseHeader"
           (click)="toggleMenu()"
           id="nav-toggler"
-          class="btn btn-lg btn-tertiary px-3 border-left rounded-0 flex-shrink-0 align-self-stretch d-md-none"
+          class="btn btn-lg btn-tertiary px-16 border-left rounded-0 flex-shrink-0 align-self-stretch d-md-none"
         >
           <em class="pi pi-2070"></em>
         </button>
