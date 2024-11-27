@@ -12,8 +12,8 @@ import SampleScssMixins from './grid-scss-mixins.sample.scss?raw';
 
 <div className="lead">
   Use our powerful mobile-first flexbox grid to build layouts of all shapes and sizes thanks to a
-  twelve column system, {SCSS_VARIABLES['breakpoint-count']} default responsive tiers,
-  Sass variables and mixins, and dozens of predefined classes.
+  twelve column system, {SCSS_VARIABLES['breakpoint-count']} default responsive tiers, Sass
+  variables and mixins, and dozens of predefined classes.
 </div>
 
 ## Example
@@ -24,9 +24,12 @@ Our grid system uses a series of containers, rows, and columns to layout and ali
 
 The above example creates three equal-width columns across all devices and viewports using our predefined grid classes. Those columns are centered in the page with the parent `.container`.
 
-<div className="alert alert-warning">
-  <h4 className="alert-heading">Don't put a single column in a grid</h4>
-  <p>If you only use one column across all breakpoints, there is no need to wrap your content in a grid.</p>
+<div className="banner banner-warning">
+  <h4 className="banner-heading">Don't put a single column in a grid</h4>
+  <p>
+    If you only use one column across all breakpoints, there is no need to wrap your content in a
+    grid.
+  </p>
 </div>
 
 <Canvas of={GridStories.SingleColumnOnly} />

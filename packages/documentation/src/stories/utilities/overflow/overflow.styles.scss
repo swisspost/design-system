@@ -1,0 +1,42 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+// Story
+.overflow-container {
+  overflow: visible;
+  height: 16rem;
+
+  > * {
+    width: 10rem;
+    height: 10rem;
+
+    .content {
+      width: 24rem;
+
+      @include post.media-breakpoint-down(md) {
+        width: 16rem;
+      }
+    }
+  }
+}
+
+// Snapshots
+.snapshot-container {
+  width: 30rem;
+  height: 10rem;
+  background-color: post.$yellow;
+  @include post.media-breakpoint-down(lg) {
+    width: 15rem;
+  }
+
+  > * {
+    width: 35rem;
+
+    @include post.media-breakpoint-down(lg) {
+      width: 23rem;
+    }
+
+    @include post.media-breakpoint-down(md) {
+      width: 17rem;
+    }
+  }
+}
