@@ -4,6 +4,7 @@
 @use '@swisspost/design-system-styles/mixins/utilities' as utility-mx;
 
 @use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/tokens/helpers';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/variables/components/accordion';
@@ -28,7 +29,7 @@ tokens.$default-map: components.$post-accordion;
   color: tokens.get('accordion-enabled-fg');
   font-size: tokens.get('accordion-header-font-size');
   margin: 0;
-  line-height: 120%;
+  line-height: tokens.get('heading-line-height', elements.$post-heading);
 }
 
 .accordion-button {
