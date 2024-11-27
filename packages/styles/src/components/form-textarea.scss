@@ -101,14 +101,10 @@ textarea.form-control {
   &.is-invalid {
     &:not(:disabled) {
       background-size: tokens.get('textarea-sizing-icon');
-      background-position: top tokens.get('textarea-padding-block-start') right
-        tokens.get('textarea-padding-inline-end');
+      background-position: top tokens.get('textarea-position-block-start-validation') right
+        tokens.get('textarea-position-inline-end-validation');
       background-repeat: no-repeat;
-      padding-inline-end: calc(
-        (#{tokens.get('textarea-validated-padding-inline-end')} * 2) + #{tokens.get(
-            'textarea-sizing-icon'
-          )}
-      );
+      padding-inline-end: tokens.get('textarea-validated-padding-inline-end');
     }
   }
 
