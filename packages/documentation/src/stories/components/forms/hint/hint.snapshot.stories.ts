@@ -14,7 +14,7 @@ type Story = StoryObj;
 export const Hint: Story = {
   render: (_args: Args, context: StoryContext) => {
     return html`
-      <div>
+      <div class="hint">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
             <div

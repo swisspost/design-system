@@ -2,7 +2,7 @@ describe('Hint', () => {
   describe('Accessibility', () => {
     beforeEach(() => {
       cy.visit('/iframe.html?id=snapshots--hint');
-      cy.get('hint', { timeout: 30000 }).should('be.visible');
+      cy.get('.hint', { timeout: 30000 }).should('be.visible');
       cy.injectAxe();
     });
 
