@@ -1,0 +1,81 @@
+import { Meta, Source } from '@storybook/blocks';
+import * as PackageStories from './components-angular.stories';
+import AngularAppModuleSample from './angular-app-module.sample.ts?raw';
+import AngularAppComponentSample from './angular-app-component.sample.html?raw';
+import changelog from '@/../../components-angular/projects/components/CHANGELOG.md?raw';
+import PackageDocs from '@/shared/packages-docs-layout.mdx';
+
+<Meta of={PackageStories} />
+
+# @swisspost/design-system-components-angular
+
+[![npm version](https://badge.fury.io/js/@swisspost%2Fdesign-system-components-angular.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-components-angular)
+
+<div className='lead'>
+  The Design System Angular Components, ready for use in your Angular project.
+</div>
+
+<PackageDocs changelog={changelog}>
+  ## Dependencies
+
+  <div className="table-responsive table-fit-content text-start">
+    <table aria-describedby="dependencies" className="table">
+      <thead>
+        <tr>
+          <th scope="col">Version</th>
+          <th scope="col">Angular</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th scope="row">1.x</th>
+          <td>16.x</td>
+        </tr>
+        <tr>
+          <th scope="row">2.x</th>
+          <td>16.x</td>
+        </tr>
+        <tr>
+          <th scope="row">7.x</th>
+          <td>16.x || 17.x</td>
+        </tr>
+        <tr>
+          <th scope="row">8.x</th>
+          <td>18.x</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  ## Installation
+
+  <Source code={`npm install @swisspost/design-system-components-angular`} language="bash" />
+
+  ## Usage
+
+  Importing the components to your project.
+
+  <Source code={AngularAppModuleSample} language="typescript" />
+
+  Usage within your template.
+
+  <Source code={AngularAppComponentSample} language="html" />
+
+  ## Content Security Policy (CSP)
+
+  Angular components use inline scripts and styles.
+  To enable their execution while enforcing a strict Content Security Policy (CSP), you can use a CSP `nonce`.
+
+  A nonce is a randomly generated word or phrase intended for one-time use, which must update with each HTTP response.
+  Inline scripts or styles with a `nonce` attribute matching the current nonce value set in the CSP will execute properly, while others will be blocked.
+  Learn more in the <a href="https://content-security-policy.com/nonce/">CSP nonce documentation</a>.
+
+  There are two ways to configure Angular to automatically set `nonce` attributes:
+
+  1. Set an `ngCspNonce` attribute on the root application element.
+  2. Provide the nonce using the `CSP_NONCE` injection token.
+
+  This configuration will also apply automatically to components in the Components for Angular package.
+  For more details, refer to the <a href="https://github.com/angular/angular/blob/main/adev/src/content/guide/security.md#content-security-policy">Angular security guide</a>.
+</PackageDocs>
