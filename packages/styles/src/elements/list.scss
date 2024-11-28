@@ -1,17 +1,15 @@
 @use '../functions/tokens';
 @use '../tokens/elements';
+@use '../mixins/list';
 
 tokens.$default-map: elements.$post-listnumber;
 
 ol {
-}
-
-ol.list-new {
-  color: blue;
   padding: tokens.get('list-number-item-gap-block');
   margin-left: 33px;
 
   > li {
+    display: list-item;
     padding-bottom: tokens.get('list-number-margin-block');
     padding-left: 3px;
 
@@ -19,29 +17,12 @@ ol.list-new {
       padding-bottom: 0;
     }
   }
-}
 
-ol.list-numbered {
-  color: red;
-  display: grid;
-  grid-template-columns: [marker] auto [item] 1fr;
-  list-style: none;
-  counter-reset: ol;
-  padding: tokens.get('list-number-item-gap-block');
-  gap: tokens.get('list-number-margin-block');
+  &.list-revert {
+    @include list.list-revert();
+  }
 
-  > li {
-    display: grid;
-    grid-template-columns: subgrid;
-    counter-increment: ol;
-    column-gap: tokens.get('list-number-item-icon-gap-inline');
-    grid-column: span 2;
-
-    &::before {
-      text-align: right;
-      content: counter(ol) '.';
-      grid-column: marker;
-      grid-row: span 30000;
-    }
+  &.list-unstyled {
+    @include list.list-unstyled();
   }
 }
