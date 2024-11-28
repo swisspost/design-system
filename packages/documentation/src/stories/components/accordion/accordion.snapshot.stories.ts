@@ -18,7 +18,7 @@ export const Accordion: Story = {
     context: StoryContext<HTMLPostAccordionElement & HTMLPostCollapsibleElementEventMap>,
   ) => {
     return schemes(
-      scheme => html`
+      () => html`
         <div class="d-flex flex-column gap-16">${meta.render?.({ ...context.args }, context)}</div>
       `,
     );
