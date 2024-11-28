@@ -1,7 +1,6 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta from './search-input.stories';
 import { html } from 'lit';
-import { getCombinations } from '@/utils/inputComponentsGetCombinations';
 
 const { id, ...metaWithoutId } = meta;
 
@@ -12,15 +11,9 @@ export default {
 };
 
 function renderSearchInputSnapshot(_args: Args, context: StoryContext) {
-  const combinations = [
-    {
-      label: `Label - Default`,
-      placeholder: 'Search...',
-    },
-    {
-      label: `Label - No Placeholder`,
-      placeholder: null,
-    },
+  const argsOptions = [
+    { label: 'Default', placeholder: 'Search...' },
+    { label: 'No Placeholder', placeholder: null },
   ];
 
   return html`
@@ -31,30 +24,14 @@ function renderSearchInputSnapshot(_args: Args, context: StoryContext) {
             class="${bg} d-flex gap-16 flex-column p-16"
             data-color-scheme=${bg === 'bg-white' ? 'light' : 'dark'}
           >
-
-            <h4>Default</h4>
-            ${getCombinations('floatingLabel', [false], combinations)
-              .filter(combination => combination.label === 'Label - Default')
-              .map((args: Args) => {
-                context.id = `default-${crypto.randomUUID()}`;
-                return html`
-                  <div>
-                    <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
-                  </div>
-                `;
-              })}
-
-            <h4>Without Placeholder</h4>
-            ${getCombinations('floatingLabel', [false], combinations)
-              .filter(combination => combination.label === 'Label - No Placeholder')
-              .map((args: Args) => {
-                context.id = `no-placeholder-${crypto.randomUUID()}`;
-                return html`
-                  <div>
-                    <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
-                  </div>
-                `;
-              })}
+            ${argsOptions.map(
+              args => html`
+                <div>
+                  <h4>${args.label}</h4>
+                  <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
+                </div>
+              `,
+            )}
           </div>
         `,
       )}
