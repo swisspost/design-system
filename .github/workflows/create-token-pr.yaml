@@ -60,7 +60,8 @@ jobs:
       - name: Update PR Branch with main
         run: |
           git rebase origin/main -X ours
-          git reset --soft $(git merge-base main HEAD)
+          git reset --soft main
+          git add ...
           git commit -m "single commit with all changes"
           git push --force
         env:
