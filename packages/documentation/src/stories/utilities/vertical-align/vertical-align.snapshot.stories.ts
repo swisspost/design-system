@@ -1,5 +1,6 @@
 import type { StoryObj, StoryFn, StoryContext } from '@storybook/web-components';
 import { html } from 'lit';
+import { COLOR_SCHEMES, schemes } from '@/shared/snapshots/schemes';
 import meta from './vertical-align.stories';
 import './vertical-align.styles.scss';
 
@@ -26,8 +27,9 @@ export const VerticalAlign: Story = {
   },
   decorators: [
     (story: StoryFn, context: StoryContext) => {
-      const storyTemplate = html`<div class="snapshot">${story(context.args, context)}</div>`;
-      return storyTemplate;
+      return schemes(() => html`<div class="snapshot">${story(context.args, context)}</div>`, {
+        filter: scheme => scheme === COLOR_SCHEMES.light,
+      });
     },
   ],
 };
