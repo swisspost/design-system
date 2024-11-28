@@ -12,7 +12,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 
 const meta: MetaComponent = {
   id: '151242aa-a074-4a55-a81c-db597c83cdad',
-  title: 'Components/Radio Button',
+  title: 'Components/Forms - Radio Button',
   tags: ['package:HTML'],
   parameters: {
     controls: {

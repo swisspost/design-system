@@ -7,7 +7,7 @@ import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: 'e6ecc86f-d148-413b-b796-614a89da54be',
-  title: 'Components/Checkbox',
+  title: 'Components/Forms - Checkbox',
   tags: ['package:HTML'],
   render: renderCheckbox,
   parameters: {

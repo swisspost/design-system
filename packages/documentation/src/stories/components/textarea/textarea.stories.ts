@@ -11,7 +11,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 
 const meta: MetaComponent = {
   id: '152b7268-cce0-43d7-b931-41a57370f9a0',
-  title: 'Components/Textarea',
+  title: 'Components/Forms - Textarea',
   tags: ['package:HTML'],
   render: renderTextarea,
   parameters: {

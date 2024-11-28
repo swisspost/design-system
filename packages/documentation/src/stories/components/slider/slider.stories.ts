@@ -11,7 +11,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 
 const meta: MetaComponent = {
   id: '4c5a4537-d663-4d2b-9c49-17af95443696',
-  title: 'Components/Slider',
+  title: 'Components/Forms - Slider',
   tags: ['package:HTML'],
   render: render,
   parameters: {
