@@ -74,3 +74,5 @@ jobs:
         if: steps.pr.outputs.exists == 'false'
         run: |
           gh pr create --title "chore(tokens): :art: update tokens" --body "Merge this PR to update the tokens in the main branch." --base main
+        env:
+          GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
