@@ -2,6 +2,7 @@ import { Component, Element, Event, EventEmitter, h, Host, Method, Prop, State }
 import { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
 import { isFocusable } from '@/utils/is-focusable';
+import { getRoot } from '@/utils'; // Import getRoot function
 
 @Component({
   tag: 'post-menu',
@@ -20,7 +21,7 @@ export class PostMenu {
     TAB: 'Tab',
     HOME: 'Home',
     END: 'End',
-    ESCAPE: 'Escape'
+    ESCAPE: 'Escape',
   };
 
   @Element() host: HTMLPostMenuElement;
@@ -45,7 +46,10 @@ export class PostMenu {
    **/
   @Event() toggleMenu: EventEmitter<boolean>;
 
+  private root?: Document | ShadowRoot;
+
   connectedCallback() {
+    this.root = getRoot(this.host);
     this.host.addEventListener('keydown', this.handleKeyDown);
     this.host.addEventListener('click', this.handleClick);
   }
@@ -79,7 +83,7 @@ export class PostMenu {
   async show(target: HTMLElement) {
     if (this.popoverRef) {
       await this.popoverRef.show(target);
-      this.lastFocusedElement = document.activeElement as HTMLElement;
+      this.lastFocusedElement = this.root.activeElement as HTMLElement; // Use root's activeElement
 
       const menuItems = this.getSlottedItems();
       if (menuItems.length > 0) {
@@ -131,7 +135,7 @@ export class PostMenu {
       return;
     }
 
-    const currentFocusedElement = document.activeElement as HTMLElement;
+    const currentFocusedElement = this.root.activeElement as HTMLElement; // Use root's activeElement
     let currentIndex = menuItems.findIndex(el => el === currentFocusedElement);
 
     switch (e.key) {
