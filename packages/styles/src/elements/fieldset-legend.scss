@@ -1,18 +1,10 @@
 @use '../functions/tokens';
 @use '../tokens/elements';
-@use 'sass:map';
 
-$local-legend: (
-  'post-legend-padding-block-end': 16px,
-  'post-legend-large-padding-block-start': 24px,
-);
-
-$merged-map: map-merge(elements.$post-legend, $local-legend);
-
-tokens.$default-map: $merged-map;
+tokens.$default-map: elements.$post-legend;
 
 legend {
-  margin-bottom: tokens.get('legend-padding-block-end');
+  margin-bottom: tokens.get('legend-margin-block-end');
   font-weight: tokens.get('legend-font-weight');
   line-height: tokens.get('legend-line-height');
   width: 100%;
@@ -22,7 +14,7 @@ legend {
     padding-block-start: tokens.get('legend-large-padding-block-start');
     padding-block-end: tokens.get('legend-large-padding-block-end');
     margin-block-end: tokens.get('legend-large-margin-block-end');
-    border-bottom: tokens.get('legend-large-border-bottom');
-    border-color: tokens.get('legend-large-border-color');
+    border-bottom: tokens.get('legend-large-border-width') tokens.get('legend-large-border-color')
+      tokens.get('legend-large-border-style');
   }
 }
