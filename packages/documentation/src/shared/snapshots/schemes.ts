@@ -1,15 +1,24 @@
-import { StoryContext } from '@storybook/web-components';
 import { html, TemplateResult } from 'lit';
 
-const COLOR_SCHEMES = ['light', 'dark'];
+interface IOptions {
+  filter?: (scheme: string) => boolean;
+  additionalSchemes?: string[];
+}
 
-export function schemes(
-  renderFn: () => TemplateResult<1>,
-  filter: (scheme: string) => boolean = () => true,
-) {
-  return html`${COLOR_SCHEMES.filter(filter).map(
-    scheme => html` <div data-color-scheme="${scheme}" class="p-16 palette-default">
-      ${renderFn()}
-    </div>`,
-  )}`;
+export const COLOR_SCHEMES = {
+  light: 'light',
+  dark: 'dark',
+};
+
+export function schemes(renderFn: (scheme: string) => TemplateResult, options: IOptions = {}) {
+  const filter = options.filter || (() => true);
+  const additionalSchemes = options.additionalSchemes ?? [];
+
+  return html`${[...additionalSchemes, ...Object.values(COLOR_SCHEMES)]
+    .filter(filter)
+    .map(
+      scheme => html` <div data-color-scheme="${scheme}" class="p-16 palette-default">
+        ${renderFn(scheme)}
+      </div>`,
+    )}`;
 }
