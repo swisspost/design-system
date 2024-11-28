@@ -1,5 +1,5 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import { html, nothing, TemplateResult } from 'lit';
+import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
@@ -15,35 +15,13 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    label: 'Label',
-    floatingLabel: false,
-    placeholder: 'Placeholder',
-    type: 'text',
+    placeholder: 'Search...',
+    hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
   },
   argTypes: {
-    label: {
-      name: 'Label',
-      description: 'Describes the content/topic of the component.',
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'General',
-      },
-    },
-    floatingLabel: {
-      name: 'Floating Label',
-      description: 'Defines how the components label is rendered.',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'General',
-      },
-    },
     placeholder: {
       name: 'Placeholder',
-      description: 'Defines the text displayed in the input when it is empty.',
+      description: 'Defines the text displayed when the search input is empty.',
       control: {
         type: 'text',
       },
@@ -51,17 +29,12 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
-    type: {
-      name: 'Type',
-      description: 'The components `type` attribute.',
+    hint: {
+      name: 'Helper text',
+      description: 'Text to place in the help text area of the component..',
       control: {
-        type: 'select',
-        labels: {},
+        type: 'text',
       },
-      options: [
-        'text',
-        'number',
-      ],
       table: {
         category: 'General',
       },
@@ -74,36 +47,35 @@ export default meta;
 type Story = StoryObj;
 
 function render(args: Args, context: StoryContext) {
-  const id = context.id ?? `ExampleTextarea_${context.name}`;
-  const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
-  const label: TemplateResult | null = !useAriaLabel
-    ? html` <label for="${id}" class="search-floating-label">${args.label}</label> `
-    : null;
+  const id = context.id ?? `SearchInput_${context.name}`;
+  const hintId = `hint-${id}`;
 
-  if (args.floatingLabel && !args.placeholder) {
-    args.placeholder = ' '; // a placeholder must always be defined for the floating label to work properly
-  }
-
-  const control: TemplateResult = html`
-    <input
-      id="${id}"
-      class="search-input"
-      type="${args.type}"
-      placeholder="${args.placeholder || nothing}"
-      aria-label="${useAriaLabel ? args.label : nothing}"
-      value="${args.value ? args.value : nothing}"
-    />
+  return html`
+    <div class="search-input form-floating">
+      <input
+        id="${id}"
+        class="form-control"
+        type="text"
+        placeholder="${args.placeholder}"
+        aria-describedby="${args.hint ? hintId : nothing}"
+      />
+      <label class="form-label" for="${id}">Label</label>
+      <button class="clear-button" aria-label="Clear search">
+        <post-icon name="2043"></post-icon>
+      </button>
+      <button class="search-button" aria-label="Start search">
+        <post-icon name="2069"></post-icon>
+      </button>
+      </div>
+      <p class="form-hint" id="${hintId}">${args.hint}</p>
   `;
-    return html`
-      <form class="search">${[control, label].filter(el => el !== null)}
-        <button type="reset" class="close-btn">
-          <post-icon name="2043"></post-icon>
-        </button>
-        <button class="search-btn">
-          <post-icon name="2069"></post-icon>
-        </button>
-      </form>
-    `;
 }
 
 export const Default: Story = {};
+
+export const WithPlaceholder: Story = {
+  args: {
+    placeholder: 'Type to search...',
+    hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
+  },
+};
