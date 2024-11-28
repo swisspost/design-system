@@ -9,24 +9,37 @@ $post-search-input: (
   post-input-search-label-filled-padding-inline-end: var(--post-core-dimension-82),
   post-input-search-icon-border-radius: var(--post-device-border-radius-focus),
 );
+
 .search-input {
   position: relative;
 
   > .form-control {
-    padding-right: tokens.get('input-search-empty-padding-inline-end', components.$post-search-input);
+    padding-right: tokens.get(
+      'input-search-empty-padding-inline-end',
+      components.$post-search-input
+    );
   }
 
   > .form-control:not(:placeholder-shown) {
-    padding-right: tokens.get('input-search-filled-padding-inline-end', components.$post-search-input);
+    padding-right: tokens.get(
+      'input-search-filled-padding-inline-end',
+      components.$post-search-input
+    );
   }
 
   > .form-control ~ .form-label {
     z-index: 0;
-    padding-right: tokens.get('input-search-label-empty-padding-inline-end', components.$post-search-input);
+    padding-right: tokens.get(
+      'input-search-label-empty-padding-inline-end',
+      components.$post-search-input
+    );
   }
 
   > .form-control:not(:placeholder-shown) ~ .form-label {
-    padding-right: tokens.get('input-search-label-filled-padding-inline-end', components.$post-search-input);
+    padding-right: tokens.get(
+      'input-search-label-filled-padding-inline-end',
+      components.$post-search-input
+    );
   }
 
   > .delete-button,
@@ -43,7 +56,9 @@ $post-search-input: (
     align-items: center;
     justify-content: center;
     border-radius: tokens.get('input-search-icon-border-radius', components.$post-search-input);
-    transition: opacity 0.2s ease, visibility 0.2s ease;
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease;
 
     > post-icon {
       width: tokens.get('input-sizing-icon', components.$post-text-input);
@@ -58,7 +73,7 @@ $post-search-input: (
   .delete-button {
     right: calc(
       tokens.get('input-sizing-icon', components.$post-text-input) +
-      tokens.get('input-search-filled-gap-icon', components.$post-search-input) * 2
+        tokens.get('input-search-filled-gap-icon', components.$post-search-input) * 2
     );
     visibility: hidden;
     opacity: 0;
