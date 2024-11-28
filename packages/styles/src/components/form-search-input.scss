@@ -63,6 +63,7 @@ tokens.$default-map: components.$post-search-input;
     );
     visibility: hidden;
     opacity: 0;
+
     &:focus {
       @include utilities.focus-style;
     }
