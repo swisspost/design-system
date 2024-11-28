@@ -4,7 +4,7 @@ import { html } from 'lit';
 
 const meta: MetaComponent = {
   id: '43525c38-d00c-4632-8cc5-0fb8a0f2a741',
-  title: 'Components/Forms/Hint',
+  title: 'Components/Form Hint',
   tags: ['package:HTML'],
   render: renderHint,
   parameters: {

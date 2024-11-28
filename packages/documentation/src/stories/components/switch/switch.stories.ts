@@ -7,7 +7,7 @@ import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '7fb639f8-86f6-4937-999c-4ee15f81643b',
-  title: 'Components/Forms - Switch',
+  title: 'Components/Form Switch',
   tags: ['package:HTML'],
   render: renderSwitch,
   parameters: {

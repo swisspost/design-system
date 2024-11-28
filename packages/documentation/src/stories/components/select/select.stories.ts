@@ -12,7 +12,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 
 const meta: MetaComponent = {
   id: 'bc251cd0-5173-463b-8729-586bb1bf1e1a',
-  title: 'Components/Forms - Select',
+  title: 'Components/Form Select',
   tags: ['package:HTML'],
   parameters: {
     badges: [],
