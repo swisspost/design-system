@@ -77,11 +77,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
 
-      # If the PR exit, update it
-      - name: Update PR
-        if: steps.pr.outputs.exists == 'true'
+      # If the PR exit, edit it
+      - name: Create PR
+        if: steps.pr.outputs.exists == 'false'
         run: |
-          gh pr update-branch ${{ steps.pr-branch.outputs.name }}
+          gh pr edit ${{ steps.pr-branch.outputs.name }} --body "new body"
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
 
