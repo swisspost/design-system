@@ -36,8 +36,8 @@ const preview: Preview = {
           // Category - Packages
           'Packages',
 
-          // Category - Brand Identity
-          'Brand Identity',
+          // Category - Foundations
+          'Foundations',
           ['Logo', 'Icons', 'Palettes', 'Typography', ['Overview']],
 
           // Category - Layout
