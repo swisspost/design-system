@@ -1,47 +1,31 @@
-import { Meta, Source } from '@storybook/blocks';
-import { formatAsMap } from '@/utils/sass-export';
-import { ContainersTable, SCSS_VARIABLES } from './containers.blocks';
+import { Canvas, Meta, Source } from '@storybook/blocks';
 import * as ContainerStories from './containers.stories';
 
 <Meta of={ContainerStories} />
 
 # Containers
 
-<p className="lead">Containers are a fundamental building block of our Design-System that contain, pad, and align your content within a given device or viewport. They are required, when using our grid-system. While containers can be nested, most layouts do not require a nested container.</p>
+<div className="lead">
+  Containers are essential layout elements ensuring content is aligned and properly padded across all devices and viewports.
+</div>
 
-We can distinguish between two different container types:
+<div className="alert alert-info my-24">
+  Containers are required when using the <a href="/?path=/docs/7240f2ef-216a-490e-9bd8-c0cef19f7b31--docs">grid system</a>.
+</div>
 
-- <code>.container</code>, which defines a <code>max-width</code> on some breakpoints.
-- <code>.container-fluid</code>, which is <code>width: 100%</code> at all breakpoints.
+There are two types of containers. The only difference between them is how they behave on wider screens.
+To see the difference, click the **"View full screen"** button in the examples below.
 
-<ContainersTable />
+## Container
 
-## Default container
+The `.container` adapts its width based on the viewport size, but it will not exceed 1200px.
+This ensures content stays centered and does not stretch too wide on large screens.
 
-Our default `.container` class is a responsive, fixed-width container.
+<Canvas sourceState="shown" of={ContainerStories.Container} />
 
-<Source code={`<div class="container">
-  <!-- Content here -->
-</div>`} language="scss"/>
+## Fluid Container
 
-## Fluid containers
+The `.container-fluid` spans the entire width of the viewport, regardless of its size.
+Use this for layouts where the content should stretch edge-to-edge, even on large screens.
 
-Use `.container-fluid` for a full width container, spanning the entire width of the viewport on every breakpoint.
-
-<Source code={`<div class="container-fluid">
-  <!-- Content here -->
-</div>`} language="scss"/>
-
-## CSS
-
-When using our source Sass files, you have the option of using Sass variables for customization (not recommended).
-
-### Sass variables
-
-<Source
-  language="scss"
-  dark
-  code={Object.entries(SCSS_VARIABLES.variables)
-    .map(([key, value]) => `$${key}: ${formatAsMap(value)};`)
-    .join('\n')}
-></Source>
+<Canvas sourceState="shown" of={ContainerStories.ContainerFluid} />
