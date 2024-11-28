@@ -61,7 +61,7 @@ jobs:
         run: |
           git rebase origin/main -X ours
           git reset --soft origin/main
-          git add ...
+          git add .
           git commit -m "single commit with all changes"
           git push --force
         env:
