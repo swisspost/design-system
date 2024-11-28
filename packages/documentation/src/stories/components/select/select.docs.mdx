@@ -1,0 +1,51 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as SelectStories from './select.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={SelectStories} />
+
+<div className="docs-title">
+  # Select
+
+  <nav>
+    <link-design of={JSON.stringify(SelectStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  Customize the native `<select>` with CSS that changes the element’s initial appearance.
+</div>
+
+Custom `<select>` menus need only the class `.form-select` to trigger the custom styles. Custom styles are limited to the `<select>`’s initial appearance and cannot modify the `<option>` elements due to browser limitations.
+
+<Canvas sourceState="shown" of={SelectStories.Default} />
+<div className="hide-col-default">
+  <Controls of={SelectStories.Default} />
+</div>
+
+<StylesPackageImport components={['form-select']} required={{ 'form-feedback': true }} />
+
+## Concrete Examples of Application
+
+The following examples show the different characteristics of the component. These can differ in the type of visualization, the HTML structure, as well as when, how and why they are displayed.
+
+### Floating Label
+
+Wrap a pair of `<select>` and `<label>` elements in a `.form-floating` container to enable floating labels.<br/>
+But note that the `<select>` must come first, so we can ensure the correct styles.
+
+<Canvas of={SelectStories.FloatingLabel} />
+
+#### With label as a placeholder
+
+If you use an empty option in your select and you want that your label acts as placeholder,
+you can dynamically add the class `.form-select-empty` to the `<select>` when there are no value defined or no option selected.
+
+<Canvas of={SelectStories.FloatingLabelPlaceholder} />
+
+### Validation
+
+Simply add the classes `is-valid` or `is-invalid` to the `<select>` element to show it in the expected state.<br/>
+When the component has been validated, don't forget to add a `<p className="valid-feedback">...</p>` or `<p className="invalid-feedback">...</p>` element after the `select` element to explain what went wrong. This enables the user to correct the mistake.
+
+<Canvas of={SelectStories.Validation} />

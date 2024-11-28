@@ -18,16 +18,12 @@
 
 tokens.$default-map: components.$post-text-input;
 
+// TODO: Since each input/select/textarea will have their own tokens, make sure to separate this file between the 3 corresponding files form-select, forms (should be renamed text-input) and form-textarea
 .form-floating {
   position: relative;
 
-  > .form-control,
-  > .form-select {
-    height: tokens.get('input-sizing-height');
-    min-height: tokens.get('input-sizing-height');
-  }
-
-  > label {
+  > .form-control ~ label,
+  > textarea ~ label {
     position: absolute;
     z-index: 2;
     text-align: start;
@@ -54,6 +50,9 @@ tokens.$default-map: components.$post-text-input;
   }
 
   > .form-control {
+    height: tokens.get('input-sizing-height');
+    min-height: tokens.get('input-sizing-height');
+
     &::placeholder {
       color: transparent;
     }
@@ -65,7 +64,14 @@ tokens.$default-map: components.$post-text-input;
 
       ~ label {
         color: tokens.get('input-color-selected-fg');
+        font-size: tokens.get('input-label-filled-font-size');
         padding-block-start: tokens.get('input-label-filled-padding-block-start');
+      }
+
+      &:not(:hover):not(:disabled) {
+        ~ label {
+          color: tokens.get('input-color-selected-fg');
+        }
       }
     }
 
@@ -85,7 +91,7 @@ tokens.$default-map: components.$post-text-input;
       background-color: tokens.get('input-color-disabled-bg');
     }
 
-    &:hover ~ label {
+    &:not(:disabled):hover ~ label {
       color: tokens.get('input-color-hover-fg');
       background-color: tokens.get('input-color-hover-bg');
     }
@@ -98,77 +104,11 @@ tokens.$default-map: components.$post-text-input;
     }
   }
 
-  > .form-select {
-    padding-block-start: tokens.get('input-padding-block-start');
-    padding-block-end: tokens.get('input-padding-block-end');
-
-    ~ label {
-      color: tokens.get('input-color-enabled-fg');
-      padding-block-start: tokens.get('input-label-filled-padding-block-start');
-      max-width: calc(100% - (#{tokens.get('input-border-width')} * 2));
-      transition: all 0.25s ease-in-out;
-    }
-
-    &:disabled {
-      ~ label {
-        color: tokens.get('input-color-disabled-fg');
-      }
-    }
-
-    &:empty,
-    &.form-select-empty {
-      padding-block-start: tokens.get('input-padding-block-start');
-      padding-block-end: tokens.get('input-padding-block-end');
-
-      ~ label {
-        padding-block-start: tokens.get('input-label-empty-padding-block-start');
-        max-width: calc(100% - (#{tokens.get('input-border-width')} * 2));
-      }
-    }
-
-    &[multiple] {
-      padding-block-start: spacing.$size-big;
-      padding-block-end: 0;
-      height: auto;
-
-      ~ label {
-        padding-block-end: 0;
-        max-width: calc(100% - (#{tokens.get('input-border-width')} * 2));
-        height: auto;
-      }
-
-      &:not(:disabled) {
-        ~ label {
-          background-color: tokens.get('input-color-enabled-bg');
-        }
-      }
-
-      &:empty {
-        ~ label {
-          padding-block-start: forms.$form-floating-padding-y;
-          padding-block-end: forms.$form-floating-padding-y;
-          width: calc(
-            100% - (#{tokens.get('input-border-width')} * 2) - #{tokens.get(
-                'input-label-empty-padding-inline-start'
-              )}
-          );
-        }
-      }
-    }
-  }
-
-  > .form-control:focus,
-  > .form-control:not(:placeholder-shown),
-  > .form-select {
-    ~ label {
-      font-size: tokens.get('input-label-filled-font-size');
-    }
-
-    &:not(:hover) {
-      ~ label {
-        color: tokens.get('input-color-selected-fg');
-      }
-    }
+  > textarea:disabled ~ label,
+  > .form-control:disabled ~ label {
+    // Required for `.form-control`s because of specificity
+    color: tokens.get('input-color-disabled-fg');
+    background-color: tokens.get('input-color-disabled-bg');
   }
 
   // Duplicated because `:-webkit-autofill` invalidates other selectors when grouped
