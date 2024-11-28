@@ -8,10 +8,10 @@
 @use '../variables/commons';
 @use '../variables/breakpoints';
 
+@use './list' as list-mx;
+
 @mixin reset-list() {
-  margin-block: 0;
-  padding-inline-start: 0;
-  list-style: none;
+  @include list-mx.list-unstyled();
 }
 
 @mixin visuallyhidden() {
