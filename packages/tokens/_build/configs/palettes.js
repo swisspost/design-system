@@ -1,24 +1,20 @@
 import { expandTypesMap } from '@tokens-studio/sd-transforms';
 import { registerConfigMethod } from '../methods.js';
 
-const PALETTES_TOKENSET_NAMES = 'palettes';
+const PALETTE_TOKENSET_NAME = 'palettes';
 
 /**
  * Registers a config getter method to generate output files for all code relevant tokens in the tokens.json.
  */
 registerConfigMethod((tokenSets, { sourcePath, buildPath }) => {
-  const paletteSet = tokenSets.output[PALETTES_TOKENSET_NAMES];
+  const paletteSet = tokenSets.output[PALETTE_TOKENSET_NAME];
 
   if (!paletteSet) return;
 
   const { type, layer, filePath, sets } = paletteSet;
 
-  // temporary: waiting for new tokens
-  const themes = ['theme/post'];
-  const schemes = ['scheme/light'];
-
-  // const themes = Object.keys(tokenSets.source).filter(source => source.startsWith('theme/'));
-  // const schemes = Object.keys(tokenSets.source).filter(source => source.startsWith('scheme/'));
+  const themes = Object.keys(tokenSets.source).filter(source => source.startsWith('theme/'));
+  const schemes = Object.keys(tokenSets.source).filter(source => source.startsWith('scheme/'));
 
   const otherSources = Object.keys(tokenSets.source).filter(
     source => !source.startsWith('theme/') && !source.startsWith('scheme/'),

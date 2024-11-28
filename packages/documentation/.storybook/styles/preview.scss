@@ -1,8 +1,13 @@
 // importing the complete styles package scss
 @use '@swisspost/design-system-styles/core.scss' as post;
-@use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css';
 @use './components';
+@use '@swisspost/design-system-styles/functions/tokens' as tokens;
+@use '@swisspost/design-system-styles/tokens/utilities' as utilities;
+
+tokens.$default-map: utilities.$post-color;
+
+$monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 
 #storybook-root,
 #storybook-docs {
@@ -97,12 +102,12 @@
     top: -0.1em;
     margin: 0 0.1em;
     padding: 0.15em 0.4em 0.1em;
-    background-color: rgba(var(--post-contrast-color-inverted-rgb), 0.2);
-    border: 1px solid rgba(var(--post-contrast-color-rgb), 0.1);
+    background-color: tokens.get('utility-surface-accent1');
+    border: 1px solid tokens.get('utility-surface-accent2');
+    color: 1px solid tokens.get('utility-surface-accent4');
     border-radius: 0.2em;
-    font-family: var(--bs-font-monospace);
+    font-family: $monospace;
     font-size: 0.75em;
-    color: var(--post-contrast-color);
     white-space: nowrap;
     line-height: 1;
 

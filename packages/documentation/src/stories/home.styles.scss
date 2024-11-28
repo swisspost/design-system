@@ -37,7 +37,7 @@
   justify-content: center;
   gap: post.$size-big;
 
-  @include post.media-breakpoint-down(rg) {
+  @include post.media-breakpoint-down(sm) {
     gap: post.$size-regular;
   }
 }

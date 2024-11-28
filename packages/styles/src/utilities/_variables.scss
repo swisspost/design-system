@@ -22,6 +22,11 @@
 */
 
 $utilities: (
+  'align': (
+    property: vertical-align,
+    class: align,
+    values: baseline top middle bottom text-bottom text-top,
+  ),
   'float': (
     responsive: true,
     property: float,
@@ -83,7 +88,6 @@ $utilities: (
     class: ms,
     values: from-tokens('spacing', 'margin'),
   ),
-
   'padding': (
     responsive: true,
     property: padding,
@@ -126,7 +130,6 @@ $utilities: (
     class: ps,
     values: from-tokens('spacing', 'padding'),
   ),
-
   'gap': (
     responsive: true,
     property: gap,
@@ -251,10 +254,17 @@ $utilities: (
     values: inline inline-block block grid inline-grid table table-row table-cell flex inline-flex
       none,
   ),
-  'accent-text': (
-    css-var: true,
-    css-variable-name: accent-fg,
-    values: null,
+  'overflow': (
+    property: overflow,
+    values: auto hidden visible scroll,
+  ),
+  'overflow-x': (
+    property: overflow-x,
+    values: auto hidden visible scroll,
+  ),
+  'overflow-y': (
+    property: overflow-y,
+    values: auto hidden visible scroll,
   ),
   // IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`.
 );

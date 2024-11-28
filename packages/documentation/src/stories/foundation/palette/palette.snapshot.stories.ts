@@ -14,9 +14,20 @@ type Story = StoryObj;
 export const Palette: Story = {
   render: () => {
     return html`${['light', 'dark'].map(
-      scheme => html`
-        <div class="palette-default p-24" data-color-scheme=${scheme}>
-          ${meta.argTypes.palette.options.map(palette => meta.render({ palette }))}
+      mainScheme => html`
+        <div class="palette-default p-24 d-flex flex-column gap-48" data-color-scheme=${mainScheme}>
+          ${['', 'light', 'dark'].map(
+            paletteScheme => html`
+              <div>
+                <p class="px-24">Palette scheme: ${paletteScheme || 'none'}</p>
+                <div class="d-flex">
+                  ${meta.argTypes.palette.options.map(palette =>
+                    meta.render({ palette, colorScheme: paletteScheme }),
+                  )}
+                </div>
+              </div>
+            `,
+          )}
         </div>
       `,
     )}`;

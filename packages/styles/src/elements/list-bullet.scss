@@ -1,0 +1,60 @@
+@use '../functions/tokens';
+@use '../tokens/elements';
+
+tokens.$default-map: elements.$post-listbullet;
+
+/* The chars used in suffix are spaces with different widths
+For more information, visit: https://www.fileformat.info/info/unicode/char/search.htm?q=space
+*/
+@counter-style post-bullet {
+  system: extends disc;
+  suffix: '\2007\2009\200a\200a';
+}
+
+ul {
+  list-style: post-bullet;
+  margin-block: tokens.get('list-bullet-margin-block');
+  padding-inline-start: calc(
+    #{tokens.get('list-bullet-item-icon-size')} + #{tokens.get('list-bullet-item-icon-gap-inline')}
+  );
+
+  > li {
+    &::marker {
+      line-height: 1;
+    }
+  }
+
+  &.list-bullet {
+    list-style: none;
+
+    > li {
+      margin: 0;
+      padding-inline: 0;
+      padding-block: tokens.get('list-bullet-item-text-padding-block');
+
+      ~ li {
+        margin-block-start: tokens.get('list-bullet-item-gap-block');
+      }
+
+      &::before {
+        display: block;
+        content: '';
+        box-sizing: content-box;
+        position: absolute;
+        margin-block-start: calc(
+          (#{tokens.get('body-line-height', elements.$post-body)} * 0.5em) -
+            (#{tokens.get('list-bullet-item-icon-bullet-size')} * 0.5)
+        );
+        margin-inline-start: calc(
+          (#{tokens.get('list-bullet-item-icon-size')} * -0.5) +
+            (#{tokens.get('list-bullet-item-icon-bullet-size')} * -0.5) +
+            (#{tokens.get('post-list-bullet-item-icon-gap-inline')} * -1)
+        );
+        width: tokens.get('list-bullet-item-icon-bullet-size');
+        height: tokens.get('list-bullet-item-icon-bullet-size');
+        background-color: currentColor;
+        border-radius: 50%;
+      }
+    }
+  }
+}

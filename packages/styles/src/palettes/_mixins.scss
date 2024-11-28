@@ -1,56 +1,74 @@
 @use 'sass:map';
 @use 'sass:meta';
 
-@use '../functions/contrast';
-@use '../placeholders/schemes';
-
 @use '../functions/tokens';
+@use '../placeholders/schemes';
 @use '../tokens/elements';
 @use '../tokens/palettes';
 
 @use './variables' as *;
 
-@mixin generate-palette-class($name, $theme) {
-  .palette-#{$name} {
-    &,
-    &:is([data-color-scheme='light'], [data-color-scheme='light'] *) {
-      @include palette-styles($name, $theme, 'light', $redefine-tokens: true);
+@forward './utilities';
+
+@mixin palettes($theme) {
+  body {
+    background-color: var(--post-current-palette-bg) !important;
+
+    &:not([data-color-scheme='dark']) {
+      @include palette-tokens($default-palette, $theme, 'light');
     }
 
-    &:is([data-color-scheme='dark'], [data-color-scheme='dark'] *) {
-      @include palette-styles($name, $theme, 'dark', $redefine-tokens: true);
+    &[data-color-scheme='dark'] {
+      @include palette-tokens($default-palette, $theme, 'dark');
+    }
+  }
+
+  @each $palette in $palettes {
+    .palette-#{$palette} {
+      // Redefining the body color is necessary to ensure that the new color scheme is applied correctly.
+      // Known limitation: body color may be incorrect with nested parent with different `data-color-scheme` values.
+      color: tokens.get('body-color', elements.$post-body);
+      background-color: var(--post-current-palette-bg) !important;
+
+      // Light scheme explicitly set on the palette:
+      &[data-color-scheme='light'],
+
+      // No scheme explicitly set on the palette, but parent has a light scheme:
+      &:where([data-color-scheme='light'] :not([data-color-scheme='dark'])),
+
+      // No scheme explicitly set on the palette, and no scheme on the parent either:
+      &:not([data-color-scheme='dark']):not([data-color-scheme='dark'] *) {
+        @include palette-tokens($palette, $theme, 'light', $override-scheme: true);
+      }
+
+      // Dark scheme explicitly set on the palette:
+      &[data-color-scheme='dark'],
+
+      // No scheme explicitly set on the palette, but parent has a dark scheme:
+      &:where([data-color-scheme='dark'] :not([data-color-scheme='dark'])) {
+        @include palette-tokens($palette, $theme, 'dark', $override-scheme: true);
+      }
     }
   }
 }
 
-@mixin default-palette-styles($theme) {
-  &:not([data-color-scheme='dark']) {
-    @include palette-styles($default-palette, $theme, 'light');
-  }
-
-  &[data-color-scheme='dark'] {
-    @include palette-styles($default-palette, $theme, 'dark');
-  }
-}
-
-@mixin palette-styles($name, $theme, $scheme, $redefine-tokens: false) {
+@mixin palette-tokens($name, $theme, $scheme, $override-scheme: false) {
   $palette: map.get(meta.module-variables(palettes), '#{$theme}-#{$scheme}');
 
-  @if ($palette) {
-    --post-palette-fg: #{tokens.get('palettes-color-#{$name}-fg', palettes.$post-palettes)};
-    --post-palette-bg: #{tokens.get('palettes-color-#{$name}-bg', palettes.$post-palettes)};
-    background-color: var(--post-palette-bg) !important;
+  @if (not $palette) {
+    @error 'Palette #{$theme}-#{$scheme} not found.';
+  }
 
-    @if ($redefine-tokens == true) {
-      // redefining the body color is required so that the new color scheme is taken into account
-      color: tokens.get('body-color', elements.$post-body);
+  --post-current-palette-fg: #{tokens.get('palettes-color-#{$name}-fg', $palette)};
+  --post-current-palette-bg: #{tokens.get('palettes-color-#{$name}-bg', $palette)};
 
-      $bg-scheme: tokens.get('helper-color-#{$name}-bg-scheme', $palette);
-      @if ($bg-scheme == 'light') {
-        @extend %color-scheme-light;
-      } @else {
-        @extend %color-scheme-dark;
-      }
+  @if ($override-scheme == true) {
+    $bg-scheme: tokens.get('palettes-color-#{$name}-bg-scheme', $palette);
+
+    @if ($bg-scheme == 'light') {
+      @extend %color-scheme-light;
+    } @else {
+      @extend %color-scheme-dark;
     }
   }
 }

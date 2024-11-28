@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-migrations",
-  "version": "9.0.0-next.3",
+  "version": "9.0.0-next.6",
   "description": "Scripts to migrate an Angular application from one Design System version to another.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
