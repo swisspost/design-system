@@ -45,6 +45,7 @@
 @mixin list-inline() {
   @include list-unstyled();
 
+  /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
   & {
     display: flex;
     flex-wrap: wrap;
