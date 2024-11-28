@@ -4,7 +4,7 @@ import { MetaExtended } from '@root/types';
 
 const meta: MetaExtended = {
   id: '7240f2ef-216a-490e-9bd8-c0cef19f7b31',
-  title: 'Layout/Grid',
+  title: 'Foundations/Layout/Grid',
   parameters: {
     badges: [],
   },
