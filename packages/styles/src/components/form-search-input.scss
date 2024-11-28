@@ -49,7 +49,7 @@ tokens.$default-map: components.$post-search-input;
   }
 
   .search-button {
-    right: tokens.get('input-search-filled-gap-icon');
+    right: tokens.get('input-validation-icon-position-inline-end', components.$post-text-input);
 
     &:focus {
       @include utilities.focus-style;
