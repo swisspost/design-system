@@ -14,8 +14,6 @@ name: Build Documentation
 on:
   pull_request:
     types: [opened, synchronize, edited, reopened]
-    paths:
-      - 'packages/**'
 
 jobs:
   build:
