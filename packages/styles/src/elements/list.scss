@@ -5,8 +5,9 @@
 tokens.$default-map: elements.$post-listnumber;
 
 ol {
-  padding: tokens.get('list-number-item-gap-block');
-  margin-left: 33px;
+  padding-block: tokens.get('list-number-item-gap-block');
+  padding-inline-end: tokens.get('list-number-item-gap-block');
+  padding-inline-start: 45px;
 
   > li {
     display: list-item;
