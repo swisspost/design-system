@@ -81,7 +81,7 @@ jobs:
       - name: Update PR
         if: steps.pr.outputs.exists == 'true'
         run: |
-          gh pr update-branch {{ steps.pr-branch.outputs.name }}
+          gh pr update-branch ${{ steps.pr-branch.outputs.name }}
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
 
