@@ -7,7 +7,7 @@ interface IOptions {
 
 export const COLOR_SCHEMES = {
   light: 'light',
-  dark: 'dark',
+  // dark: 'dark',
 };
 
 export function schemes(renderFn: (scheme: string) => TemplateResult, options: IOptions = {}) {
