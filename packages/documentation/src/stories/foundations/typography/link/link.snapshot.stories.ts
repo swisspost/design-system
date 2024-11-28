@@ -1,6 +1,7 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta, { Default } from './link.stories';
 import { html } from 'lit';
+import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
 
 const { id, ...metaWithoutId } = meta;
@@ -14,27 +15,20 @@ type Story = StoryObj;
 
 export const Link: Story = {
   render: (_args: Args, context: StoryContext) => {
-    return html`
-      <div>
-        ${['bg-white', 'bg-dark'].map(
-          bg => html`
-            <div
-              class="${bg} d-flex flex-column gap-regular p-regular mt-regular"
-              data-color-scheme="${bg === 'bg-white' ? 'light' : 'dark'}"
-            >
-              ${bombArgs({
-                text: ['Link Text', 'Lorem ipsum dolor sit amet consectetur'],
-                href: ['https://example.com', 'https://imgur.com/FKmX7dt'],
-              }).map((args: Args) =>
-                Default.render?.(
-                  { ...context.args, ...args, text: `${args.text}`, href: `${args.href}` },
-                  context,
-                ),
-              )}
-            </div>
-          `,
-        )}
-      </div>
-    `;
+    return schemes(
+      () => html`
+        <div class="d-flex flex-column gap-regular">
+          ${bombArgs({
+            text: ['Link Text', 'Lorem ipsum dolor sit amet consectetur'],
+            href: ['https://example.com', 'https://imgur.com/FKmX7dt'],
+          }).map((args: Args) =>
+            Default.render?.(
+              { ...context.args, ...args, text: `${args.text}`, href: `${args.href}` },
+              context,
+            ),
+          )}
+        </div>
+      `,
+    );
   },
 };
