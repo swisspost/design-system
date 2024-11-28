@@ -53,7 +53,6 @@ jobs:
         run: |
           git checkout ${{ steps.pr-branch.outputs.name }}
           git merge ${{ github.ref_name }} -X theirs --no-edit
-          git push
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
 
@@ -61,6 +60,7 @@ jobs:
       - name: Update PR Branch with main
         run: |
           git merge origin/main -X ours --no-edit
+          git commit --allow-empty -m "Test"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
