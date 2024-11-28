@@ -1,36 +1,27 @@
 @use './../functions/tokens';
 @use './../tokens/components';
+@use './../mixins/utilities';
+
+tokens.$default-map: components.$post-search-input;
 
 .search-input {
   position: relative;
 
   > .form-control {
-    padding-right: tokens.get(
-      'input-search-empty-padding-inline-end',
-      components.$post-search-input
-    );
+    padding-right: tokens.get('input-search-empty-padding-inline-end');
   }
 
   > .form-control:not(:placeholder-shown) {
-    padding-right: tokens.get(
-      'input-search-filled-padding-inline-end',
-      components.$post-search-input
-    );
+    padding-right: tokens.get('input-search-filled-padding-inline-end');
   }
 
   > .form-control ~ .form-label {
     z-index: 0;
-    padding-right: tokens.get(
-      'input-search-label-empty-padding-inline-end',
-      components.$post-search-input
-    );
+    padding-right: tokens.get('input-search-label-empty-padding-inline-end');
   }
 
   > .form-control:not(:placeholder-shown) ~ .form-label {
-    padding-right: tokens.get(
-      'input-search-label-filled-padding-inline-end',
-      components.$post-search-input
-    );
+    padding-right: tokens.get('input-search-label-filled-padding-inline-end');
   }
 
   > .delete-button,
@@ -46,7 +37,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: tokens.get('input-search-icon-border-radius', components.$post-search-input);
+    border-radius: tokens.get('input-search-icon-border-radius');
     transition:
       opacity 0.2s ease,
       visibility 0.2s ease;
@@ -58,16 +49,23 @@
   }
 
   .search-button {
-    right: tokens.get('input-search-filled-gap-icon', components.$post-search-input);
+    right: tokens.get('input-search-filled-gap-icon');
+
+    &:focus {
+      @include utilities.focus-style;
+    }
   }
 
   .delete-button {
     right: calc(
       tokens.get('input-sizing-icon', components.$post-text-input) +
-        tokens.get('input-search-filled-gap-icon', components.$post-search-input) * 2
+        tokens.get('input-search-filled-gap-icon') * 2
     );
     visibility: hidden;
     opacity: 0;
+    &:focus {
+      @include utilities.focus-style;
+    }
   }
 
   .form-control:not(:placeholder-shown) ~ .delete-button {
