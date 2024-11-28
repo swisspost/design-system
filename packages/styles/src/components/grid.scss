@@ -4,52 +4,15 @@
 
 @use './../themes/bootstrap/core' as *;
 @use './../themes/bootstrap/grid' as bg;
-@use './../themes/bootstrap/containers' as bc;
 
 @use './../variables/commons';
 @use './../variables/spacing';
 @use './../variables/grid';
 
-$container-padding-x-cache: 0;
-$container-fluid-padding-x-cache: 0;
 $gutter-x-cache: 0;
 
-.container {
-  padding-inline: var(--post-container-padding-x);
-}
-
-.container-fluid {
-  padding-inline: var(--post-container-fluid-padding-x);
-}
-
 @each $breakpoint in grid.$grid-breakpoints-list {
-  $container-padding-x: map.get(grid.$grid-container-padding, $breakpoint);
-  $container-fluid-padding-x: map.get(grid.$grid-container-fluid-padding, $breakpoint);
   $gutter-x: map.get(grid.$grid-gutter-x, $breakpoint);
-
-  @if ($container-padding-x-cache != $container-padding-x) {
-    .container {
-      @if $breakpoint == 'xs' {
-        --post-container-padding-x: #{$container-padding-x};
-      } @else {
-        @include media-breakpoint-up($breakpoint) {
-          --post-container-padding-x: #{$container-padding-x};
-        }
-      }
-    }
-  }
-
-  @if ($container-fluid-padding-x-cache != $container-fluid-padding-x) {
-    .container-fluid {
-      @if $breakpoint == 'xs' {
-        --post-container-fluid-padding-x: #{$container-fluid-padding-x};
-      } @else {
-        @include media-breakpoint-up($breakpoint) {
-          --post-container-fluid-padding-x: #{$container-fluid-padding-x};
-        }
-      }
-    }
-  }
 
   @if ($gutter-x-cache != $gutter-x) {
     .row {
@@ -62,9 +25,6 @@ $gutter-x-cache: 0;
       }
     }
   }
-
-  $container-padding-x-cache: $container-padding-x;
-  $container-fluid-padding-x-cache: $container-fluid-padding-x;
   $gutter-x-cache: $gutter-x;
 }
 
