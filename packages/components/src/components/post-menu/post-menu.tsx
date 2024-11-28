@@ -2,7 +2,7 @@ import { Component, Element, Event, EventEmitter, h, Host, Method, Prop, State }
 import { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
 import { isFocusable } from '@/utils/is-focusable';
-import { getRoot } from '@/utils'; // Import getRoot function
+import { getRoot } from '@/utils';
 
 @Component({
   tag: 'post-menu',
