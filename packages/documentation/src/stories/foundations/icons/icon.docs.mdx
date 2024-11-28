@@ -1,0 +1,110 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as IconStories from './icon.stories';
+import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
+import { Search } from './search/search-icons.blocks';
+
+<Meta of={IconStories} />
+
+<div className="docs-title">
+  # Icons
+
+  <nav>
+    <link-design of={JSON.stringify(IconStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  The official Swiss Post Icon Library for the web with over 800 high-quality scalable vector
+  graphics.
+</div>
+
+<PostTabs>
+  <PostTabHeader panel="usage">Usage</PostTabHeader>
+  <PostTabPanel name="usage">
+    Our <code>&lt;post-icon&gt;</code> component renders SVGs, so it scales quickly and easily and can
+    be styled with CSS.
+
+    <Canvas sourceState="shown" of={IconStories.Default} />
+    <Controls of={IconStories.Default} />
+
+    ## Installation
+
+    ### Icon Component
+
+    The `<post-icon>` element is part of the `@swisspost/design-system-components` package.
+    For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
+
+    ### Icon SVGs
+
+    The SVG files for icons should be hosted within your project.
+    For guidelines on how to set this up, please refer to the [icon package documentation](/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs#usage).
+
+    ## Examples
+
+    ### Color
+
+    By default, icons inherit the current text color of their parent element.<br/>
+    You can therefore colorize an icon using our [text color utilities](/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs)
+    or by setting the CSS directly through a style attribute or self-defined classes.
+
+    <Canvas of={IconStories.Color} sourceState="shown" />
+
+    ### Size
+
+    Icons have a default `width` of `1em`, which means they will scale with the size of the current `font-size`.
+    Therefore, you can manage the size of an icon using our [font-size utilities](/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs)
+    or by setting the CSS directly through a style attribute or self-defined classes.
+
+    <Canvas of={IconStories.Size} sourceState="shown" />
+
+    ### Style
+
+    With the use of our [border](#TODO),[background](/?path=/docs/60852fac-a861-4415-8276-bd38d68653bb--docs)
+    and [padding](#TODO) utilities, you can create various styling effects.
+
+    <Canvas of={IconStories.Style} sourceState="shown" />
+
+    ### Transformations
+
+    #### Flipping
+
+    Flip the icon horizontally and/or vertically with the `flip-h` and `flip-v` props.
+
+    <Canvas of={IconStories.Flip} sourceState="shown" />
+
+    #### Scaling
+
+    Scale the icon by any positive factor via the `scale` prop. Note this changes the icon's visual size but not its physical font size. To illustrate this we have added a background color to the icons.
+
+    <Canvas of={IconStories.Scale} sourceState="shown" />
+
+    #### Rotating
+
+    Rotate the icon by a number of degrees with the `rotate` prop. Positive values will rotate the icon clockwise, while negative values will rotate the icon counterclockwise.
+
+    <Canvas of={IconStories.Rotate} sourceState="shown" />
+
+    #### Animating
+
+    The `post-icon` includes the following built-in animations for icons:
+
+    - `cylon` slides the icon left and right
+    - `cylon-vertical` slides the icon up and down
+    - `spin` smoothly spins the icon clockwise
+    - `spin-reverse` smoothly spins the icon counter-clockwise
+    - `fade` fades the icon in and out
+    - `throb` scales the icon in and out
+
+    To use them, set the `animation` prop to one of the animation names above.
+
+    <Canvas of={IconStories.Animate} sourceState="shown" />
+  </PostTabPanel>
+
+  <PostTabHeader panel="search">Find your Icon</PostTabHeader>
+  <PostTabPanel name="search">
+    The icons are designed to work with the Swiss Post Design System components. They are SVGs, so they scale and can be styled with CSS.<br/>
+    Use the grid below to browse all available icons.
+
+    <Search />
+  </PostTabPanel>
+</PostTabs>
