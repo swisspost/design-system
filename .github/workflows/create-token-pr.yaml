@@ -52,14 +52,14 @@ jobs:
         if: steps.pr-branch.outputs.exists == 'true'
         run: |
           git checkout ${{ steps.pr-branch.outputs.name }}
-          git rebase ${{ github.ref_name }} -X theirs --no-edit
+          git rebase ${{ github.ref_name }} -X theirs
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
 
       # Always update the PR branch with the main branch
       - name: Update PR Branch with main
         run: |
-          git rebase origin/main -X ours --no-edit
+          git rebase origin/main -X ours
           git push --force
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
