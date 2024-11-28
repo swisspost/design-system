@@ -1,15 +1,6 @@
 @use './../functions/tokens';
 @use './../tokens/components';
 
-$post-search-input: (
-  post-input-search-empty-padding-inline-end: var(--post-core-dimension-48),
-  post-input-search-filled-padding-inline-end: var(--post-core-dimension-80),
-  post-input-search-filled-gap-icon: var(--post-core-dimension-8),
-  post-input-search-label-empty-padding-inline-end: var(--post-core-dimension-50),
-  post-input-search-label-filled-padding-inline-end: var(--post-core-dimension-82),
-  post-input-search-icon-border-radius: var(--post-device-border-radius-focus),
-);
-
 .search-input {
   position: relative;
 
