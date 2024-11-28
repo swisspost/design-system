@@ -29,7 +29,7 @@ $post-search-input: (
     padding-right: tokens.get('input-search-label-filled-padding-inline-end', components.$post-search-input);
   }
 
-  > .clear-button,
+  > .delete-button,
   > .search-button {
     z-index: 1;
     padding: 0;
@@ -55,7 +55,7 @@ $post-search-input: (
     right: tokens.get('input-search-filled-gap-icon', components.$post-search-input);
   }
 
-  .clear-button {
+  .delete-button {
     right: calc(
       tokens.get('input-sizing-icon', components.$post-text-input) +
       tokens.get('input-search-filled-gap-icon', components.$post-search-input) * 2

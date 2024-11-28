@@ -60,7 +60,7 @@ function render(args: Args, context: StoryContext) {
         aria-describedby="${args.hint ? hintId : nothing}"
       />
       <label class="form-label" for="${id}">Label</label>
-      <button class="clear-button" aria-label="Clear search">
+      <button class="delete-button" aria-label="Clear search">
         <post-icon name="2043"></post-icon>
       </button>
       <button class="search-button" aria-label="Start search">
