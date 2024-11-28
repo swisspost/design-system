@@ -1,69 +1,71 @@
-@use '../tokens/components';
-@use '../functions/tokens';
+@use './../functions/tokens';
+@use './../tokens/components';
 
-//tokens.$default-map: components.$post-input-search;
-
-.search {
+$post-search-input: (
+  post-input-search-empty-padding-inline-end: var(--post-core-dimension-48),
+  post-input-search-filled-padding-inline-end: var(--post-core-dimension-80),
+  post-input-search-filled-gap-icon: var(--post-core-dimension-8),
+  post-input-search-label-empty-padding-inline-end: var(--post-core-dimension-50),
+  post-input-search-label-filled-padding-inline-end: var(--post-core-dimension-82),
+  post-input-search-icon-border-radius: var(--post-device-border-radius-focus),
+);
+.search-input {
   position: relative;
-  
-  input {
-    display: block;
-    width: 100%;
-    padding: 1.25rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    appearance: none;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 2px solid hsl(0, 0%, 20%);
-    border-radius: 0;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
-    &::placeholder {
-      color: transparent;
-      transition: color 250ms ease;
-    }
-
-    &:focus::placeholder,
-    &:not(:placeholder-shown)::placeholder {
-      color: hsl(0, 0%, 50%);
-    }
-
-    &:focus,
-    &:not(:placeholder-shown) {
-      & + .search-floating-label {
-        transform: scale(0.75) translate(-0.5rem, -1.5rem);
-        color: hsl(0, 0%, 40%);
-      }
-    }
+  > .form-control {
+    padding-right: tokens.get('input-search-empty-padding-inline-end', components.$post-search-input);
   }
 
-  &-floating-label {
-    position: absolute;
-    top: 1rem;
-    left: 1.5rem;
-    z-index: 3;
-    padding: 0.25rem;
-    font-size: 1rem;
-    color: hsl(0, 0%, 50%);
-    pointer-events: none;
-    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    transform-origin: left top;
+  > .form-control:not(:placeholder-shown) {
+    padding-right: tokens.get('input-search-filled-padding-inline-end', components.$post-search-input);
   }
 
-  & button {
+  > .form-control ~ .form-label {
+    z-index: 0;
+    padding-right: tokens.get('input-search-label-empty-padding-inline-end', components.$post-search-input);
+  }
+
+  > .form-control:not(:placeholder-shown) ~ .form-label {
+    padding-right: tokens.get('input-search-label-filled-padding-inline-end', components.$post-search-input);
+  }
+
+  > .clear-button,
+  > .search-button {
+    z-index: 1;
+    padding: 0;
     position: absolute;
-    top: 0px;
-    right: 0px;
-    height: 100%;
-    padding-right: 1rem;
-    padding-left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    cursor: pointer;
-    background: none;
-    border: 0px;
-    box-shadow: none;
+    justify-content: center;
+    border-radius: tokens.get('input-search-icon-border-radius', components.$post-search-input);
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+
+    > post-icon {
+      width: tokens.get('input-sizing-icon', components.$post-text-input);
+      height: tokens.get('input-sizing-icon', components.$post-text-input);
+    }
+  }
+
+  .search-button {
+    right: tokens.get('input-search-filled-gap-icon', components.$post-search-input);
+  }
+
+  .clear-button {
+    right: calc(
+      tokens.get('input-sizing-icon', components.$post-text-input) +
+      tokens.get('input-search-filled-gap-icon', components.$post-search-input) * 2
+    );
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .form-control:not(:placeholder-shown) ~ .delete-button {
+    visibility: visible;
+    opacity: 1;
   }
 }
