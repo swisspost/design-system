@@ -1,0 +1,59 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as HeaderStories from './header.stories';
+import './header.scss';
+
+<Meta of={HeaderStories} />
+
+<div className="docs-title">
+  # Internet Header
+
+  <nav>
+    <link-design of={JSON.stringify(HeaderStories)}></link-design>
+  </nav>
+</div>
+
+<p className="lead">For external, client facing applications.</p>
+
+<Canvas sourceState="shown" of={HeaderStories.Default} />
+
+<Controls of={HeaderStories.Default} />
+
+## Examples
+
+### Custom Config
+
+Use the `custom-config` property when you need to add your own navigation entries.
+
+The Internet Header supports both flyout (dropdown) and no flyout (simple link) configurations for navigation items.
+To create a link without a flyout, simply set the <code>noFlyout</code> property to <code>true</code> in your custom configuration.
+
+You can also override the default Online Service Flyout using the <code>osFlyoutOverrides</code> property, which allows you to add custom columns and links.
+
+<Canvas sourceState="shown" of={HeaderStories.CustomConfig} />
+
+### Custom Content
+
+You can add your own content to the main navigation, this content is displayed next to the search button.
+
+<Canvas sourceState="shown" of={HeaderStories.CustomContent} />
+
+### Language Switch Overrides
+
+Customizing where the links in the language switch point to using the `language-switch-overrides` property.
+
+<Canvas sourceState="shown" of={HeaderStories.LanguageSwitchOverrides} />
+
+### OS Flyout Overrides
+
+Customising the online service flyout using the `os-flyout-overrides` property.
+
+<Canvas sourceState="shown" of={HeaderStories.OSFlyoutOverrides} />
+
+### CSS Variables
+
+To access the CSS variables for the header, you need to install an optional stylesheet into your project.
+Learn more in the <a href="/?path=/docs/cfa21cbc-5f8d-4a42-8165-7f6ed20bf133--docs#css-variables">header CSS variables stylesheet documentation</a>.
+
+This allows you to implement styling relative to the header.
+
+<Canvas sourceState="shown" of={HeaderStories.CssVariables} />
