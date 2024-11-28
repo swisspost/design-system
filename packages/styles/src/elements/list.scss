@@ -4,6 +4,25 @@
 tokens.$default-map: elements.$post-listnumber;
 
 ol {
+}
+
+ol.list-new {
+  color: blue;
+  padding: tokens.get('list-number-item-gap-block');
+  margin-left: 33px;
+
+  > li {
+    padding-bottom: tokens.get('list-number-margin-block');
+    padding-left: 3px;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+}
+
+ol.list-numbered {
+  color: red;
   display: grid;
   grid-template-columns: [marker] auto [item] 1fr;
   list-style: none;
