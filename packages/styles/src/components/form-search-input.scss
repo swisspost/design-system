@@ -49,8 +49,7 @@ tokens.$default-map: components.$post-search-input;
   }
 
   .search-button {
-    right: 16px;
-    // TO-DO when the token is merged
+    //right: tokens.get('input-search-position-inline-end-icon');
 
     &:focus {
       @include utilities.focus-style;
