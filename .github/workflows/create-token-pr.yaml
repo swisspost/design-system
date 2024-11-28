@@ -53,6 +53,7 @@ jobs:
         run: |
           git checkout ${{ steps.pr-branch.outputs.name }}
           git merge ${{ github.ref_name }} -X theirs --no-edit
+          git push
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
 
