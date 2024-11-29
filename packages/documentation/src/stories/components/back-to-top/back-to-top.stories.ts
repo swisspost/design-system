@@ -4,7 +4,7 @@ import { html } from 'lit';
 
 const meta: MetaComponent = {
   id: '1a1b4cab-d0a8-4b01-bd85-b70e18668cb5',
-  title: 'Components/Back To Top Button',
+  title: 'Components/Button Back-to-Top',
   component: 'post-back-to-top',
   tags: ['package:WebComponents'],
   parameters: {
