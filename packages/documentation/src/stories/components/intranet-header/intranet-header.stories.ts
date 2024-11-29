@@ -30,8 +30,12 @@ const meta: MetaComponent = {
     currentUserId: {
       name: 'currentUserId',
       description:
-        "The ID of the currently logged-in user, used to display the user's profile picture." +
-        '<p class="alert alert-info alert-sm">By default, a fallback image is displayed.</p>',
+        "The email address of the currently logged on user, used to display the user's profile picture." +
+        '<p class="alert alert-info alert-sm">By default, a fallback image is displayed.</p>' +
+        '<div class="mt-3 alert alert-warning alert-sm">' +
+        '<div class="alert-heading">The required input value has recently changed</div>' +
+        '<p>Due to the technical conversion of the intranet backend from Sitecore to Sharepoint, the value required for the property to display a user image has changed. Previously the user ID was required, now this property expects the user-specific e-mail address.</p>' +
+        '</div>',
       control: 'text',
       table: {
         defaultValue: {
