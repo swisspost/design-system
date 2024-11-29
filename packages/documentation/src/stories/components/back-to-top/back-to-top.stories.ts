@@ -41,7 +41,7 @@ const meta: MetaComponent = {
       <p class="fake-content my-32"></p>
       <p class="fake-content my-32"></p>
     </div>
-    <post-back-to-top />
+    <post-back-to-top label="Back to top" />
   </div>`,
   decorators: [
     (story: StoryFn, { args, context }: StoryContext) => html` ${story(args, context)} `,
