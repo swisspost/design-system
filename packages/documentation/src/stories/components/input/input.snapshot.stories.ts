@@ -1,6 +1,7 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta from './input.stories';
 import { html } from 'lit';
+import { schemes } from '@/shared/snapshots/schemes';
 import { COMBINATIONS, getCombinations } from '@/utils/inputComponentsGetCombinations';
 
 const { id, ...metaWithoutId } = meta;
@@ -23,47 +24,38 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
       value: 'Lorem Ipsum',
     },
   ];
-  return html`
-    <div class="d-flex flex-wrap align-items-start gap-16">
-      ${['bg-white', 'bg-dark'].map(
-        bg => html`
-          <div
-            class="${bg} d-flex gap-16 flex-column p-16"
-            data-color-scheme=${bg === 'bg-white' ? 'light' : 'dark'}
-          >
-            <h3>Standard</h3>
-            ${getCombinations('floatingLabel', [false], combinations)
-              .filter(
-                (args: Args) =>
-                  !args.value ||
-                  (args.value &&
-                    (context.args.type === 'text' || context.args.type === 'password')),
-              )
-              .map((args: Args) => {
-                context.id = `a-${crypto.randomUUID()}`;
-                return html`
-                  <div>
-                    <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
-                  </div>
-                `;
-              })}
-            <h3>Floating Label</h3>
-            ${getCombinations('floatingLabel', [true], combinations)
-              .filter(
-                (args: Args) =>
-                  !args.value ||
-                  (args.value &&
-                    (context.args.type === 'text' || context.args.type === 'password')),
-              )
-              .map((args: Args) => {
-                context.id = `${bg}-${crypto.randomUUID()}`;
-                return html` <div>${meta.render?.({ ...context.args, ...args }, context)}</div> `;
-              })}
-          </div>
-        `,
-      )}
-    </div>
-  `;
+  return schemes(
+    scheme => html`
+      <div class="d-flex gap-16 flex-column">
+        <h3>Standard</h3>
+        ${getCombinations('floatingLabel', [false], combinations)
+          .filter(
+            (args: Args) =>
+              !args.value ||
+              (args.value && (context.args.type === 'text' || context.args.type === 'password')),
+          )
+          .map((args: Args) => {
+            context.id = `${scheme}-${crypto.randomUUID()}`;
+            return html`
+              <div>
+                <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
+              </div>
+            `;
+          })}
+        <h3>Floating Label</h3>
+        ${getCombinations('floatingLabel', [true], combinations)
+          .filter(
+            (args: Args) =>
+              !args.value ||
+              (args.value && (context.args.type === 'text' || context.args.type === 'password')),
+          )
+          .map((args: Args) => {
+            context.id = `${scheme}-${crypto.randomUUID()}`;
+            return html` <div>${meta.render?.({ ...context.args, ...args }, context)}</div> `;
+          })}
+      </div>
+    `,
+  );
 }
 
 type Story = StoryObj;

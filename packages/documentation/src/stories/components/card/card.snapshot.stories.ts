@@ -1,6 +1,7 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta, { Default, CustomContent, CardGroup } from './card.stories';
 import { html } from 'lit';
+import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
 
 const { id, ...metaWithoutId } = meta;
@@ -81,14 +82,8 @@ export const Card: Story = {
       );
 
     // Render all variants on white and dark background
-    return html`
-      <div>
-        ${['white', 'dark'].map(
-          bg => html`
-            <div class=${'row bg-' + bg}>${defaultTemplateVariants} ${customTemplateVariants}</div>
-          `,
-        )}
-      </div>
-    `;
+    return schemes(
+      () => html` <div class="row">${defaultTemplateVariants} ${customTemplateVariants}</div> `,
+    );
   },
 };
