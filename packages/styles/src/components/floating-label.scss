@@ -162,8 +162,9 @@ tokens.$default-map: components.$post-text-input;
     &:is(.is-valid, .is-invalid) {
       ~ label {
         width: calc(
-          100% - (#{tokens.get('input-border-width')} * 2) - #{form-validation.$form-feedback-icon-offset} -
-            #{tokens.get('input-sizing-height')}
+          100% - (#{tokens.get('input-border-width')} * 2) - #{spacing.$size-mini} - #{tokens.get(
+              'input-sizing-height'
+            )}
         );
       }
 
