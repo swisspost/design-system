@@ -55,7 +55,7 @@ function renderFeedback(validFeedbackId: string | symbol, invalidFeedbackId: str
 
 const meta: MetaComponent = {
   id: '1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472',
-  title: 'Components/Forms/Validation',
+  title: 'Components/Form Validation',
   tags: ['package:HTML'],
   parameters: {
     badges: [],
@@ -120,11 +120,11 @@ export const Input: Story = {
         placeholder="Placeholder"
       />
       <label class="form-label" for="Input_1${props.validationState}${props.scheme}">Label</label>
-      ${feedbackTemplate}
       <p class="form-hint">
         Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
         illum dolore eu feugiat nulla facilisis.
       </p>
+      ${feedbackTemplate}
     </div> `;
   },
 };
@@ -239,12 +239,11 @@ export const Select: Story = {
       <label class="form-label" for="Select_1${props.validationState}${props.scheme}">
         <span>Label</span>
       </label>
-
-      ${feedbackTemplate}
       <p class="form-hint">
         Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
         illum dolore eu feugiat nulla facilisis.
       </p>
+      ${feedbackTemplate}
     </div>`;
   },
 };
@@ -302,11 +301,11 @@ export const TextArea: Story = {
       ><label class="form-label" for="TextArea_1${props.validationState}${props.scheme}"
         >Label</label
       >
-      ${feedbackTemplate}
       <p class="form-hint">
         Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
         illum dolore eu feugiat nulla facilisis.
       </p>
+      ${feedbackTemplate}
     </div>`;
   },
 };
