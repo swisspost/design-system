@@ -1,0 +1,186 @@
+@use '../functions/tokens';
+@use '../tokens/components';
+@use '../mixins/utilities';
+@use '../core' as post;
+
+tokens.$default-map: components.$post-segmented-button;
+
+$post-segmented-button-max-count: 8;
+
+.segmented-button-container {
+  container-name: post-segmented-container;
+  container-type: inline-size;
+}
+
+.segmented-button > legend {
+  @include post.visually-hidden();
+}
+
+.segmented-button {
+  display: flex;
+  gap: tokens.get('button-segmented-gap-inline');
+  align-items: stretch;
+  outline: tokens.get('button-segmented-border-width') solid
+    tokens.get('button-segmented-enabled-border');
+  outline-offset: calc(tokens.get('button-segmented-border-width') * -1);
+  background-color: tokens.get('button-segmented-enabled-bg');
+  border-radius: tokens.get('button-segmented-horizontal-border-radius');
+  box-shadow: tokens.get('button-segmented-elevation');
+
+  label {
+    flex: 0 1 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    padding-inline: tokens.get('button-segmented-padding-inline');
+    height: tokens.get('button-segmented-elements-height');
+    border-radius: inherit;
+    cursor: pointer;
+    font-weight: tokens.get('button-segmented-font-weight');
+    color: tokens.get('button-segmented-enabled-fg');
+    text-align: center;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+
+    input {
+      appearance: none !important;
+      user-select: none;
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      margin: 0;
+      padding: 0;
+      border: tokens.get('button-segmented-border-width') solid transparent;
+      border-radius: inherit;
+      @include utilities.focus-style();
+    }
+
+    &:last-of-type {
+      z-index: 1;
+    }
+
+    &:not(:last-of-type) {
+      &:hover {
+        z-index: 3;
+      }
+    }
+
+    &:hover {
+      color: tokens.get('button-segmented-hover-fg');
+
+      input {
+        border-color: tokens.get('button-segmented-hover-border');
+      }
+    }
+
+    &:has(input:checked) {
+      color: tokens.get('button-segmented-selected-fg');
+
+      ~ :last-of-type,
+      &:last-of-type {
+        &::after {
+          display: block;
+          content: '';
+          position: absolute;
+          inset: 0;
+          z-index: -1;
+          background-color: tokens.get('button-segmented-selected-bg');
+          border: tokens.get('button-segmented-border-width') solid
+            tokens.get('button-segmented-selected-border');
+          border-radius: inherit;
+          transition: transform 0.4s cubic-bezier(0.25, 1.4, 0.5, 0.9);
+        }
+      }
+
+      &:hover {
+        input {
+          border-color: tokens.get('button-segmented-selected-border');
+        }
+      }
+    }
+
+    @for $i from 1 through $post-segmented-button-max-count {
+      &:nth-last-of-type(#{$i + 1}):has(input:checked) ~ label:last-of-type::after {
+        transform: translateX(calc($i * -100% - $i * tokens.get('button-segmented-gap-inline')));
+      }
+    }
+  }
+}
+
+@container post-segmented-container (max-width: 600px) {
+  .segmented-button {
+    flex-direction: column;
+    border-radius: tokens.get('button-segmented-vertical-border-radius');
+
+    label {
+      flex: 1 0 auto;
+      border-radius: 0;
+
+      &:first-of-type {
+        border-top-left-radius: inherit;
+        border-top-right-radius: inherit;
+
+        &:has(input:checked) ~ :last-of-type::after {
+          border-top-left-radius: tokens.get('button-segmented-vertical-border-radius');
+          border-top-right-radius: tokens.get('button-segmented-vertical-border-radius');
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+
+      &:last-of-type {
+        border-bottom-left-radius: inherit;
+        border-bottom-right-radius: inherit;
+
+        &::after {
+          border-radius: 0;
+        }
+
+        &:has(input:checked)::after {
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+          border-bottom-left-radius: tokens.get('button-segmented-vertical-border-radius');
+          border-bottom-right-radius: tokens.get('button-segmented-vertical-border-radius');
+        }
+      }
+
+      &:not(:first-of-type, :last-of-type):has(input:checked) ~ :last-of-type::after {
+        border-radius: 0;
+      }
+
+      input {
+        border-top-color: tokens.get('button-segmented-enabled-border');
+      }
+
+      &:not(:first-of-type) {
+        input {
+          top: calc(tokens.get('button-segmented-border-width') * -1);
+        }
+
+        &:has(input:checked) input {
+          top: calc(tokens.get('button-segmented-border-width') * -0.5);
+        }
+      }
+
+      &:not(:last-of-type) {
+        input {
+          bottom: calc(tokens.get('button-segmented-gap-inline') * -1);
+        }
+      }
+
+      &:hover {
+        input {
+          border-color: tokens.get('button-segmented-hover-border');
+        }
+      }
+
+      @for $i from 1 through $post-segmented-button-max-count {
+        &:nth-last-of-type(#{$i + 1}):has(input:checked) ~ label:last-of-type::after {
+          transform: translateY(calc($i * -100% - $i * tokens.get('button-segmented-gap-inline')));
+        }
+      }
+    }
+  }
+}

@@ -27,7 +27,7 @@ gulp.task('copy', () => {
  * See https://github.com/pnpm/pnpm/issues/8338 for more information and reproduction
  */
 gulp.task('temporarily-copy-token-files', () => {
-  return gulp.src(['../tokens/dist/*.scss']).pipe(gulp.dest('./src/tokens/temp'));
+  return gulp.src(['../tokens/dist/**/*.scss']).pipe(gulp.dest('./src/tokens/temp'));
 });
 
 /**
