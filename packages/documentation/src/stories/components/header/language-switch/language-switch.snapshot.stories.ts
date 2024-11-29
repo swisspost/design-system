@@ -25,7 +25,7 @@ export const LanguageOptionSwitch: Story = {
             <div class="d-flex flex-wrap align-items-center gap-16">
               ${meta.render?.({ ...context.args }, context)}
               ${meta.render?.(
-                { ...context.args, variant: 'dropdown', name: `language-switch-example-abc` },
+                { ...context.args, variant: 'dropdown', name: `language-switch-example` },
                 context,
               )}
             </div>
