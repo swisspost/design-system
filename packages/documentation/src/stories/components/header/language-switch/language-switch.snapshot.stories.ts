@@ -1,6 +1,7 @@
 import type { StoryContext, StoryObj } from '@storybook/web-components';
 import meta from './language-switch.stories';
 import { html } from 'lit';
+import { schemes } from '@/shared/snapshots/schemes';
 
 const { id, ...metaWithoutId } = meta;
 
@@ -19,15 +20,12 @@ export const LanguageOptionSwitch: Story = {
   ) => {
     return html`
       <div class="language-option-switch">
-        ${['bg-white', 'bg-dark'].map(
-          bg => html`
-            <div
-              class="${bg} d-flex flex-column gap-16 p-16 mt-16"
-              data-color-scheme=${bg === 'bg-white' ? 'light' : 'dark'}
-            >
+        ${schemes(
+          () => html`
+            <div class="d-flex flex-wrap align-items-center gap-16">
               ${meta.render?.({ ...context.args }, context)}
               ${meta.render?.(
-                { ...context.args, variant: 'dropdown', name: `language-switch-example-${bg}` },
+                { ...context.args, variant: 'dropdown', name: `language-switch-example-abc` },
                 context,
               )}
             </div>
