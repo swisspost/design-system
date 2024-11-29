@@ -7,3 +7,10 @@
 @function min-width($key) {
   @return map.get(breakpoints.$grid-breakpoints, $key);
 }
+
+/**
+  Gets a breakpoint infix
+*/
+@function infix($key) {
+  @return if(min-width($key) == 0, '', '-#{$key}');
+}

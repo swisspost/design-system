@@ -1,0 +1,20 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import * as HighlightedTextStories from './highlighted-text.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={HighlightedTextStories} />
+
+<div className="docs-title">
+  # Highlighted Text
+  <nav>
+    <link-design of={JSON.stringify(HighlightedTextStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  The Highlighted Text can be used when a certain paragraph needs a higher attention than the other
+  paragraphs.
+</div>
+
+<Canvas of={HighlightedTextStories.Default} sourceState="shown" />
+<StylesPackageImport components={['text-highlighted']} />
