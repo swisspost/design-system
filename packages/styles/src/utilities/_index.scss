@@ -8,6 +8,7 @@
 @use './variables' as *;
 @use './not-defined' as *;
 
+@use '../components/sizing';
 @use './temp/legacy';
 
 @each $breakpoint, $device-size in breakpoints.$grid-breakpoints {
