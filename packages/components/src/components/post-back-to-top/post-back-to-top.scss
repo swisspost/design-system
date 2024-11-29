@@ -10,7 +10,7 @@ tokens.$default-map: components.$post-floating-button;
 :host {
   --post-floating-button-translate-y: #{tokens.get('post-floating-button-translate-y')};
   position: fixed;
-  top: tokens.get('post-floating-button-position-bottom');
+  top: tokens.get('post-floating-button-position-top');
   right: tokens.get('post-floating-button-position-right');
 
   button.back-to-top {

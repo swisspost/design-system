@@ -11,16 +11,9 @@ export default {
 
 type Story = StoryObj;
 
-export const BackToTopLight: Story = {
+export const PostBackToTop: Story = {
   decorators: [
     (story: StoryFn, { args, context }: StoryContext) =>
       html`<div data-color-scheme="light" class="bg-white">${story(args, context)}</div>`,
-  ],
-};
-
-export const BackToTopDark: Story = {
-  decorators: [
-    (story: StoryFn, { args, context }: StoryContext) =>
-      html`<div data-color-scheme="dark" class="bg-dark">${story(args, context)}</div>`,
   ],
 };

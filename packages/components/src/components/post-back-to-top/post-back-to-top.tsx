@@ -93,6 +93,7 @@ export class PostBackToTop {
         <button
           class="back-to-top"
           aria-hidden={this.belowFold ? 'false' : 'true'}
+          tabindex={this.belowFold ? '0' : '-1'}
           onClick={this.scrollToTop}
         >
           <post-icon aria-hidden="true" name="3026"></post-icon>
