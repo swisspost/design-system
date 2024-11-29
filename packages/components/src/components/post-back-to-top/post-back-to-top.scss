@@ -1,7 +1,6 @@
 @use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/functions/tokens';
-@use '@swisspost/design-system-styles/components/button';
-@use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/mixins/button' as button-mx;
 @use '@swisspost/design-system-styles/mixins/icons' as icons;
 @use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/mixins/elevation' as elevation-mx;
@@ -15,7 +14,7 @@ tokens.$default-map: components.$post-floating-button;
   right: tokens.get('post-floating-button-position-right');
 
   button.back-to-top {
-    @include post.reset-button;
+    @include button-mx.reset-button;
     @include utilities.focus-style;
     @include elevation-mx.elevation('elevation-3');
     cursor: pointer;

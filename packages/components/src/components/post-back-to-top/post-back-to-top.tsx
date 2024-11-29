@@ -1,7 +1,7 @@
 import { Component, Element, Host, State, h, Watch, Prop } from '@stencil/core';
 import { slideUp, slideDown } from '@/animations/slide';
 import { version } from '@root/package.json';
-import { checkType } from '@/utils';
+import { checkType, checkNonEmpty } from '@/utils';
 
 @Component({
   tag: 'post-back-to-top',
@@ -53,11 +53,10 @@ export class PostBackToTop {
       'string',
       'The label property of the Back to Top component is required for accessibility purposes. Please ensure it is set.',
     );
-    if (this.label === '') {
-      throw new Error(
-        'The label property of the Back to Top component must not be empty. Please provide a proper text for the label',
-      );
-    }
+    checkNonEmpty(
+      this.label,
+      'The label property of the Back to Top component must not be empty. Please provide a proper text for the label',
+    );
   }
 
   // Set the initial state
