@@ -1,6 +1,5 @@
 import type { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { COLOR_SCHEMES, schemes } from '@/shared/snapshots/schemes';
 import meta from './flex.stories';
 import './flex.styles.scss';
 import {
@@ -153,26 +152,23 @@ function getFlex(type: string) {
 
 export const Flex: Story = {
   render: () => {
-    return schemes(
-      () => html` <div class="flex-example">
-        ${[
-          'Direction',
-          'Align Items',
-          'Justify Content',
-          'Align Self',
-          'Grow / Shrink',
-          'Align Content',
-          'Wrap',
-          'Order',
-          'Fill',
-        ].map(
-          val => html`
-            <h1>${val}</h1>
-            <div class="flex-example-child gap-8 d-flex flex-column">${getFlex(val)}</div>
-          `,
-        )}
-      </div>`,
-      { filter: scheme => scheme === COLOR_SCHEMES.light },
-    );
+    return html` <div class="flex-example">
+      ${[
+        'Direction',
+        'Align Items',
+        'Justify Content',
+        'Align Self',
+        'Grow / Shrink',
+        'Align Content',
+        'Wrap',
+        'Order',
+        'Fill',
+      ].map(
+        val => html`
+          <h1>${val}</h1>
+          <div class="flex-example-child gap-8 d-flex flex-column">${getFlex(val)}</div>
+        `,
+      )}
+    </div>`;
   },
 };

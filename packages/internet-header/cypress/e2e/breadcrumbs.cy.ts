@@ -1,7 +1,7 @@
 import { IPortalConfig } from '../../src/models/general.model';
 import rawTestConfiguration from '../fixtures/internet-header/test-configuration.json';
 import { prepare } from '../support/prepare-story';
-import { BREADCRUMBS } from './shared/variables';
+import { BREADCRUMBS, BREADCRUMBS_CUSTOM_ITEMS } from './shared/variables';
 
 const testConfiguration: IPortalConfig = rawTestConfiguration as any;
 
@@ -40,7 +40,7 @@ describe('breadcrumb', () => {
     });
 
     it(`should add custom elements`, () => {
-      prepare(BREADCRUMBS, 'CustomItems');
+      prepare(BREADCRUMBS_CUSTOM_ITEMS, 'Default');
 
       cy.changeArg('custom-items', [
         { text: 'Test1', url: '/x/y/z' },

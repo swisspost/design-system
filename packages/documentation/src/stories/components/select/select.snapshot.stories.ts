@@ -1,7 +1,6 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta, { Default, FloatingLabel } from './select.stories';
 import { html } from 'lit';
-import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
 
 const { id, ...metaWithoutId } = meta;
@@ -67,60 +66,67 @@ export const Select: Story = {
       .filter((args: Args) => !(args.disabled && args.validation !== 'null'))
       .map(args => ({ ...args, id: `a-${crypto.randomUUID()}` }));
 
-    return schemes(
-      () => html`
-        <div class="d-flex gap-16 flex-column">
-          <h2>Floating Label</h2>
-          ${bombArgsGeneratedDefault.map(
-            (args: Args) =>
-              html`
-                <div>
-                  ${FloatingLabel.render?.(
-                    { ...context.args, ...FloatingLabel.args, ...args },
-                    { ...context, id: args.id },
-                  )}
-                </div>
-              `,
-          )}
-          <h2>Default</h2>
-          ${bombArgsGeneratedDefault
-            .map((args: Args) => ({ ...args, floatingLabel: false }))
-            .map((args: Args) => {
-              return html`
-                <div>
-                  ${Default.render?.(
-                    { ...context.args, ...Default.args, ...args },
-                    { ...context, id: args.id },
-                  )}
-                </div>
-              `;
-            })}
-          <h2>Multiple - Floating Label</h2>
-          ${bombArgsGeneratedMultiple.map(
-            (args: Args) =>
-              html`
-                <div>
-                  ${FloatingLabel.render?.(
-                    { ...context.args, ...FloatingLabel.args, ...args },
-                    { ...context, id: args.id },
-                  )}
-                </div>
-              `,
-          )}
-          <h2>Multiple - Default</h2>
-          ${bombArgsGeneratedMultiple.map(
-            (args: Args) =>
-              html`
-                <div>
-                  ${Default.render?.(
-                    { ...context.args, ...Default.args, ...args },
-                    { ...context, id: args.id },
-                  )}
-                </div>
-              `,
-          )}
-        </div>
-      `,
-    );
+    return html`
+      <div class="d-flex gap-16 flex-column">
+        ${['bg-white', 'bg-dark'].map(bg => {
+          return html`
+            <div
+              class="${bg} d-flex gap-16 flex-column p-16"
+              data-color-scheme=${bg === 'bg-white' ? 'light' : 'dark'}
+            >
+              <h2>Floating Label</h2>
+              ${bombArgsGeneratedDefault.map(
+                (args: Args) =>
+                  html`
+                    <div>
+                      ${FloatingLabel.render?.(
+                        { ...context.args, ...FloatingLabel.args, ...args },
+                        { ...context, id: args.id },
+                      )}
+                    </div>
+                  `,
+              )}
+              <h2>Default</h2>
+              ${bombArgsGeneratedDefault
+                .map((args: Args) => ({ ...args, floatingLabel: false }))
+                .map((args: Args) => {
+                  return html`
+                    <div>
+                      ${Default.render?.(
+                        { ...context.args, ...Default.args, ...args },
+                        { ...context, id: args.id },
+                      )}
+                    </div>
+                  `;
+                })}
+              <h2>Multiple - Floating Label</h2>
+              ${bombArgsGeneratedMultiple.map(
+                (args: Args) =>
+                  html`
+                    <div>
+                      ${FloatingLabel.render?.(
+                        { ...context.args, ...FloatingLabel.args, ...args },
+                        { ...context, id: args.id },
+                      )}
+                    </div>
+                  `,
+              )}
+              <h2>Multiple - Default</h2>
+              ${bombArgsGeneratedMultiple.map(
+                (args: Args) =>
+                  html`
+                    <div>
+                      ${Default.render?.(
+                        { ...context.args, ...Default.args, ...args },
+                        { ...context, id: args.id },
+                      )}
+                    </div>
+                  `,
+              )}
+            </div>
+          `;
+        })}
+      </div>
+    `;
   },
 };

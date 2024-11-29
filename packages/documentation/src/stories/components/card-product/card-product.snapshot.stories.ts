@@ -1,7 +1,6 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta, { Default, Groupped, Multipart } from './card-product.stories';
 import { html } from 'lit';
-import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
 import ProductCardSyncHeights from './card-product.sample.js?raw';
 
@@ -44,16 +43,20 @@ export const ProductCard: Story = {
       );
 
     // Render all variants on white and dark background
-    return schemes(
-      () => html`
-        <div>
-          <div class="row gap-16 row-cols-md-2 row-cols-xl-3">${defaultTemplateVariants}</div>
-          ${customTemplateVariants}
-          <script>
-            ${ProductCardSyncHeights};
-          </script>
-        </div>
-      `,
-    );
+    return html`
+      <div>
+        ${['white', 'dark'].map(
+          bg => html`
+            <div class=${'p-16 bg-' + bg}>
+              <div class="row row-cols-md-2 row-cols-xl-3">${defaultTemplateVariants}</div>
+              ${customTemplateVariants}
+            </div>
+          `,
+        )}
+        <script>
+          ${ProductCardSyncHeights};
+        </script>
+      </div>
+    `;
   },
 };

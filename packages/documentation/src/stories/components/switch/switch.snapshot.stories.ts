@@ -1,7 +1,6 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta from './switch.stories';
 import { html } from 'lit';
-import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
 
 const { id, ...metaWithoutId } = meta;
@@ -17,7 +16,7 @@ export const Switch: Story = {
   render: (_args: Args, context: StoryContext) => {
     const longerText =
       'Longa etikedo kiu plej versajne ne taugas sur unu linio kaj tial devas esti envolvita. Kaj nur por esti sur la sekura flanko, ni simple aldonu unu plian tre sencelan frazon ci tie. Vi neniam scias...';
-    const templateVariants = (scheme: string) =>
+    const templateVariants = (bg: string) =>
       bombArgs({
         labelPosition: ['before', 'after'],
         label: ['Notifications', longerText],
@@ -27,7 +26,7 @@ export const Switch: Story = {
         validation: ['null', 'is-valid', 'is-invalid'],
       })
         .filter((args: Args) => !(args.labelPosition == 'before' && args.label === longerText))
-        .map(args => ({ ...args, id: `${scheme}-${crypto.randomUUID()}` }))
+        .map(args => ({ ...args, id: `${bg}-${crypto.randomUUID()}` }))
         .map(
           (args: Args) =>
             html`
@@ -37,6 +36,12 @@ export const Switch: Story = {
             `,
         );
 
-    return schemes(scheme => html` <div class="row">${templateVariants(scheme)}</div>`);
+    return html`
+      <div>
+        ${['white', 'dark'].map(
+          bg => html` <div class=${'row bg-' + bg}>${templateVariants(bg)}</div> `,
+        )}
+      </div>
+    `;
   },
 };

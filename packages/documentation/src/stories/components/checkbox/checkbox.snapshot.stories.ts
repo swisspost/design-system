@@ -1,7 +1,6 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta, { Inline } from './checkbox.stories';
 import { html } from 'lit';
-import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
 
 const { id, ...metaWithoutId } = meta;
@@ -22,44 +21,51 @@ export const Checkbox: Story = {
         input.indeterminate = true;
       });
     });
-    return schemes(
-      scheme => html`
-        <div class="d-flex flex-wrap gap-16">
-          ${[
-            ...bombArgs({
-              checked: ['indeterminate'],
-            }),
-            ...bombArgs({
-              label: ['Label', longText],
-              validation: context.argTypes.validation.options,
-              checked: ['unchecked', 'checked'],
-              size: ['null', 'form-check-sm'],
-              hiddenLabel: [false, true],
-              disabled: [false, true],
-            })
-              .filter(
-                (args: Args) =>
-                  (args.validation === 'null' || !args.disabled) &&
-                  (!args.hiddenLabel || !args.disabled) &&
-                  (args.validation === 'null' || args.hiddenLabel),
-              )
-              .filter(
-                (args: Args) =>
-                  (args.validation === 'null' && !args.disabled && !args.hiddenLabel) ||
-                  args.label !== longText,
-              ),
-          ].map((args: Args) => {
-            context.id = `${scheme}-${crypto.randomUUID()}`;
-            return html`
-              <span class="${args.checked === 'indeterminate' ? 'indeterminate' : ''}">
-                ${meta.render?.({ ...context.args, ...args }, context)}
-              </span>
-            `;
-          })}
-          <div class="mt-32 w-100"></div>
-          ${Inline.render?.({ ...context.args, ...Inline.args }, context)}
-        </div>
-      `,
-    );
+    return html`
+      <div class="d-flex flex-wrap gap-4 align-items-start">
+        ${['bg-white', 'bg-dark'].map(
+          bg => html`
+            <div
+              class="${bg} d-flex flex-wrap align-items-start gap-16 p-16"
+              data-color-scheme=${bg === 'bg-white' ? 'light' : 'dark'}
+            >
+              ${[
+                ...bombArgs({
+                  checked: ['indeterminate'],
+                }),
+                ...bombArgs({
+                  label: ['Label', longText],
+                  validation: context.argTypes.validation.options,
+                  checked: ['unchecked', 'checked'],
+                  size: ['null', 'form-check-sm'],
+                  hiddenLabel: [false, true],
+                  disabled: [false, true],
+                })
+                  .filter(
+                    (args: Args) =>
+                      (args.validation === 'null' || !args.disabled) &&
+                      (!args.hiddenLabel || !args.disabled) &&
+                      (args.validation === 'null' || args.hiddenLabel),
+                  )
+                  .filter(
+                    (args: Args) =>
+                      (args.validation === 'null' && !args.disabled && !args.hiddenLabel) ||
+                      args.label !== longText,
+                  ),
+              ].map((args: Args) => {
+                context.id = `a-${crypto.randomUUID()}`;
+                return html`
+                  <span class="${args.checked === 'indeterminate' ? 'indeterminate' : ''}">
+                    ${meta.render?.({ ...context.args, ...args }, context)}
+                  </span>
+                `;
+              })}
+              <div class="mt-32 w-100"></div>
+              ${Inline.render?.({ ...context.args, ...Inline.args }, context)}
+            </div>
+          `,
+        )}
+      </div>
+    `;
   },
 };

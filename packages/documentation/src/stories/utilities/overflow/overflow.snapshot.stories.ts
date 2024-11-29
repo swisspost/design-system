@@ -1,6 +1,5 @@
 import type { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { COLOR_SCHEMES, schemes } from '@/shared/snapshots/schemes';
 import meta from './overflow.stories';
 import './overflow.styles.scss';
 
@@ -15,16 +14,13 @@ type Story = StoryObj;
 
 export const Overflow: Story = {
   render: () => {
-    return schemes(
-      () => html`
-        <div class="overflow-example">
-          <h1>Overflow</h1>
-          ${getContent('Overflow', 'overflow')} ${getContent('Overflow X', 'overflow-x')}
-          ${getContent('Overflow Y', 'overflow-y')}
-        </div>
-      `,
-      { filter: scheme => scheme === COLOR_SCHEMES.light },
-    );
+    return html`
+      <div class="overflow-example">
+        <h1>Overflow</h1>
+        ${getContent('Overflow', 'overflow')} ${getContent('Overflow X', 'overflow-x')}
+        ${getContent('Overflow Y', 'overflow-y')}
+      </div>
+    `;
   },
 };
 

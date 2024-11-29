@@ -1,7 +1,6 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta from './textarea.stories';
 import { html } from 'lit';
-import { schemes } from '@/shared/snapshots/schemes';
 import { COMBINATIONS, getCombinations } from '@/utils/inputComponentsGetCombinations';
 
 const { id, ...metaWithoutId } = meta;
@@ -36,36 +35,43 @@ export const Textarea: Story = {
       },
     ];
 
-    return schemes(
-      scheme => html`
-        <div class="d-flex gap-16 flex-column">
-          <h3>Sizes</h3>
-          ${getCombinations('size', context.argTypes.size.options, combinations).map(
-            (args: Args) => {
-              context.id = `${scheme}-${crypto.randomUUID()}`;
-              return html`
-                <div>
-                  ${args.title !== undefined && args.title
-                    ? html`
-                        <h4>
-                          ${Object.entries(context.argTypes.size.control.labels)
-                            .filter(([key]) => key === args.size)
-                            .map(s => s[1])}
-                        </h4>
-                      `
-                    : ''}
-                  <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
-                </div>
-              `;
-            },
-          )}
-          <h3>Floating Label</h3>
-          ${getCombinations('floatingLabel', [true], combinations).map((args: Args) => {
-            context.id = `${scheme}-${crypto.randomUUID()}`;
-            return html` <div>${meta.render?.({ ...context.args, ...args }, context)}</div> `;
-          })}
-        </div>
-      `,
-    );
+    return html`
+      <div class="d-flex flex-wrap align-items-start gap-16">
+        ${['bg-white', 'bg-dark'].map(
+          bg => html`
+            <div
+              class="${bg} d-flex gap-16 flex-column p-16"
+              data-color-scheme=${bg === 'bg-white' ? 'light' : 'dark'}
+            >
+              <h3>Sizes</h3>
+              ${getCombinations('size', context.argTypes.size.options, combinations).map(
+                (args: Args) => {
+                  context.id = `${bg}-${crypto.randomUUID()}`;
+                  return html`
+                    <div>
+                      ${args.title !== undefined && args.title
+                        ? html`
+                            <h4>
+                              ${Object.entries(context.argTypes.size.control.labels)
+                                .filter(([key]) => key === args.size)
+                                .map(s => s[1])}
+                            </h4>
+                          `
+                        : ''}
+                      <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
+                    </div>
+                  `;
+                },
+              )}
+              <h3>Floating Label</h3>
+              ${getCombinations('floatingLabel', [true], combinations).map((args: Args) => {
+                context.id = `${bg}-${crypto.randomUUID()}`;
+                return html` <div>${meta.render?.({ ...context.args, ...args }, context)}</div> `;
+              })}
+            </div>
+          `,
+        )}
+      </div>
+    `;
   },
 };
