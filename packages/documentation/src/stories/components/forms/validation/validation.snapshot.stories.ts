@@ -9,6 +9,7 @@ import meta, {
   TextArea,
 } from './validation.stories';
 import { html, nothing } from 'lit';
+import { schemes } from '@/shared/snapshots/schemes';
 
 const { id, ...metaWithoutId } = meta;
 
@@ -23,32 +24,27 @@ const components = [Checkbox, Input, RadioButton, RadioButtonGroup, Select, Swit
 
 export const Validation: Story = {
   render: (_args: Args, context: StoryContext) => {
-    return html`
-      ${['light', 'dark'].map(scheme => {
-        return html`
-          <div
-            data-color-scheme="${scheme}"
-            class="bg-${scheme === 'light' ? 'white' : 'dark'} snapshot"
-          >
-            ${components.map(Component => {
-              return html`
-                <div>
-                  ${['is-valid', 'is-invalid'].map(validation => {
-                    const render = Component.render || (() => nothing);
-                    const args = {
-                      ...context.args,
-                      validationValidation: validation,
-                      scheme: scheme,
-                      componentName: Object.keys(Component.args!)[0],
-                    };
-                    return html`${render(args, context)}`;
-                  })}
-                </div>
-              `;
-            })}
-          </div>
-        `;
-      })}
-    `;
+    return schemes(
+      scheme => html`
+        <div class="snapshot">
+          ${components.map(Component => {
+            return html`
+              <div>
+                ${['is-valid', 'is-invalid'].map(validation => {
+                  const render = Component.render || (() => nothing);
+                  const args = {
+                    ...context.args,
+                    validationValidation: validation,
+                    scheme: scheme,
+                    componentName: Object.keys(Component.args!)[0],
+                  };
+                  return html`${render(args, context)}`;
+                })}
+              </div>
+            `;
+          })}
+        </div>
+      `,
+    );
   },
 };
