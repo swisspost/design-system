@@ -291,5 +291,17 @@ $utilities: (
       y: translateY(-50%),
     ),
   ),
+  'overflow': (
+    property: overflow,
+    values: auto hidden visible scroll,
+  ),
+  'overflow-x': (
+    property: overflow-x,
+    values: auto hidden visible scroll,
+  ),
+  'overflow-y': (
+    property: overflow-y,
+    values: auto hidden visible scroll,
+  ),
   // IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`.
 );

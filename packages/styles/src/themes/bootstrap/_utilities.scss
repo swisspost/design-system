@@ -52,4 +52,8 @@ $utilities: map.remove($utilities, 'start');
 $utilities: map.remove($utilities, 'end');
 $utilities: map.remove($utilities, 'translate-middle');
 
+$utilities: map.remove($utilities, 'overflow');
+$utilities: map.remove($utilities, 'overflow-x');
+$utilities: map.remove($utilities, 'overflow-y');
+
 @import 'bootstrap/scss/utilities/api';
