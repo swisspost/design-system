@@ -1,30 +1,14 @@
-@use 'sass:color';
-@use 'sass:math';
-
 @forward './../variables/options';
+
+@use './../mixins/utilities';
+@use './../variables/components/forms';
+@use './../mixins/forms' as forms-mx;
 
 @use './../functions/tokens';
 @use './../tokens/components';
 @use './../tokens/elements';
 
-@use './../mixins/icons';
-@use './../mixins/utilities';
-@use './../variables/components/forms';
-
-@use './../variables/spacing';
-@use './../functions/sizing';
-
-@use './../mixins/forms' as forms-mx;
-@use './../mixins/utilities' as utilities-mx;
-
-@use './../variables/type';
-@use './../variables/components/form-validation';
-@use './../variables/animation';
-
 tokens.$default-map: components.$post-text-area;
-
-$enabled-bg: #050400;
-$disabled-bg: #696864;
 
 textarea.form-control {
   display: block;
@@ -42,10 +26,11 @@ textarea.form-control {
   padding-inline-end: tokens.get('textarea-padding-inline-end');
   padding-block: tokens.get('textarea-standalone-padding-block');
   min-height: tokens.get('textarea-sizing-min-height');
-  @include forms-mx.textarea-resizer-svg($enabled-bg);
+  resize: vertical;
+  @include forms-mx.textarea-resizer-svg(#050400);
 
   &[disabled] {
-    @include forms-mx.textarea-resizer-svg($disabled-bg);
+    @include forms-mx.textarea-resizer-svg(#696864);
   }
 
   &:focus {
@@ -80,7 +65,7 @@ textarea.form-control {
   }
 
   &::placeholder {
-    color: tokens.get('textarea-enabled-fg');
+    color: tokens.get('textarea-placeholder-fg');
     opacity: 1;
   }
 
@@ -90,25 +75,16 @@ textarea.form-control {
     border-color: tokens.get('textarea-disabled-border');
     border-style: tokens.get('textarea-border-style-disabled');
     opacity: 1;
-
-    &::placeholder {
-      color: tokens.get('textarea-disabled-fg');
-      opacity: 1;
-    }
   }
 
   &.is-valid,
   &.is-invalid {
     &:not(:disabled) {
       background-size: tokens.get('textarea-sizing-icon');
-      background-position: top tokens.get('textarea-padding-block-start') right
-        tokens.get('textarea-padding-inline-end');
+      background-position: top tokens.get('textarea-position-block-start-validation') right
+        tokens.get('textarea-position-inline-end-validation');
       background-repeat: no-repeat;
-      padding-inline-end: calc(
-        (#{tokens.get('textarea-validated-padding-inline-end')} * 2) + #{tokens.get(
-            'textarea-sizing-icon'
-          )}
-      );
+      padding-inline-end: tokens.get('textarea-validated-padding-inline-end');
     }
   }
 
@@ -138,13 +114,16 @@ textarea.form-control {
     left: tokens.get('textarea-border-width');
     margin: 0;
     padding-inline-start: tokens.get('textarea-label-padding-inline-start');
-    padding-inline-end: tokens.get('textarea-label-padding-inline-end');
+    padding-inline-end: 0;
     padding-block-start: tokens.get('textarea-label-padding-block-start');
+    width: calc(
+      100% - (#{tokens.get('textarea-border-width')} * 2) - #{tokens.get(
+          'textarea-label-padding-inline-end'
+        )}
+    );
     border: 0;
     color: tokens.get('textarea-enabled-fg');
-    width: auto;
     height: auto;
-    width: calc(100% - (#{tokens.get('textarea-border-width')} * 2));
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -176,7 +155,7 @@ textarea.form-control {
 
     &:focus {
       @include forms-mx.placeholder {
-        color: tokens.get('textarea-hover-fg');
+        color: tokens.get('textarea-placeholder-fg');
         opacity: 1;
       }
     }
@@ -205,13 +184,5 @@ textarea.form-control {
   > textarea:disabled ~ label {
     color: tokens.get('textarea-disabled-fg');
     background-color: tokens.get('textarea-disabled-bg');
-  }
-
-  @include utilities-mx.high-contrast-mode() {
-    > textarea {
-      @include forms-mx.placeholder() {
-        opacity: 0;
-      }
-    }
   }
 }
