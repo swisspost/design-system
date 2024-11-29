@@ -5,12 +5,17 @@ import { BackgroundContainer } from './background.blocks';
 import * as BackgroundStories from './background.stories';
 import scss from './background.module.scss';
 import './background.styles.scss';
+import { PostAlert } from '@swisspost/design-system-components-react';
 
 export const SCSS_VARIABLES = parse(scss);
 
 <Meta of={BackgroundStories} />
 
 # Background
+
+<PostAlert type="warning">
+  The background utilities are deprecated and will be removed in a future version.
+</PostAlert>
 
 <div className="lead">
   Use the background utility classes to set the background of an element to any predefined color.
@@ -25,7 +30,7 @@ Background utilities also set the text color by defining the following CSS varia
 
 To set a background on an element, simply add a `.bg-{colorname}` class to it.
 
-<Canvas of={BackgroundStories.ColoredBackground} sourceState='shown' />
+<Canvas of={BackgroundStories.ColoredBackground} sourceState="shown" />
 
 ### Available Backgrounds
 
@@ -70,16 +75,17 @@ It is possible to nest backgrounds.
   best possible contrast.
 </div>
 
-<Canvas of={BackgroundStories.NestedBackgrounds} sourceState='shown' />
+<Canvas of={BackgroundStories.NestedBackgrounds} sourceState="shown" />
 
 ## Opacity
 
 Change the background opacity simply by setting the CSS variable `--post-bg-opacity`.
 
 <div className="alert alert-info alert-md">
-  Low background opacity is not recommended as it can lead to poor contrast.
-  It is then your responsibility to ensure that the contrast ratio between foreground and background is at least 4.5:1.
-  More information on that topic is available on our [accessibility docs](/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs).
+  Low background opacity is not recommended as it can lead to poor contrast. It is then your
+  responsibility to ensure that the contrast ratio between foreground and background is at least
+  4.5:1. More information on that topic is available on our [accessibility
+  docs](/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs).
 </div>
 
-<Canvas of={BackgroundStories.TranslucentBackgrounds} sourceState='shown' />
+<Canvas of={BackgroundStories.TranslucentBackgrounds} sourceState="shown" />
