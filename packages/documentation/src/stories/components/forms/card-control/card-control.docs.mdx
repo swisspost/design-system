@@ -33,6 +33,10 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 <PostTabs>
   <PostTabHeader panel="standardhtml">Standard HTML</PostTabHeader>
   <PostTabPanel name="standardhtml">
+    <PostAlert type="warning">
+      The card-control standard HTML is deprecated and will be removed in a future version.
+    </PostAlert>
+
     <Canvas sourceState="shown" of={CardControlStandardHTMLStories.Default} />
     <div className="hide-col-default">
       <Controls of={CardControlStandardHTMLStories.Default} />
