@@ -3,7 +3,7 @@ import { html } from 'lit';
 
 const meta: Meta = {
   id: 'a536a61d-cac2-4f39-adbf-092bdd445ce5',
-  title: 'Patterns/Error page',
+  title: 'Templates/Error page',
   parameters: {
     layout: 'fullscreen',
   },
