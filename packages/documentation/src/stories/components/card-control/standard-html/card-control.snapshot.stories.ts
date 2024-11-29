@@ -1,5 +1,6 @@
 import { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
 import meta, { Default } from './card-control.stories';
 
@@ -25,19 +26,12 @@ const bombedArgs = bombArgs({
 
 export const CardControl: StoryObj = {
   render: () => {
-    return html`
-      <div class="d-flex gap-16 flex-wrap">
-        ${[
-          { bg: 'bg-white', scheme: 'light' },
-          { bg: 'bg-dark', scheme: 'dark' },
-        ].map(
-          ({ bg, scheme }) => html`
-            <div data-color-scheme="${scheme}" class="${bg + ' row g-3'}">
-              ${bombedArgs.map(args => html` <div class="col-sm-6">${Default.render(args)}</div> `)}
-            </div>
-          `,
-        )}
-      </div>
-    `;
+    return schemes(
+      () => html`
+        <div class="row g-3">
+          ${bombedArgs.map(args => html` <div class="col-sm-6">${Default.render(args)}</div> `)}
+        </div>
+      `,
+    );
   },
 };
