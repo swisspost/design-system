@@ -10,9 +10,9 @@ legend {
 
   &.large {
     font-size: tokens.get('legend-large-font-size');
-    margin-block-start: tokens.get('legend-large-margin-block-start');
+    //margin-block-start: tokens.get('legend-large-margin-block-start');
     margin-block-end: tokens.get('legend-large-margin-block-end');
     padding-block-end: tokens.get('legend-large-padding-block-end');
-    border-bottom: tokens.get('legend-large-border-bottom');
+    //border-bottom: tokens.get('legend-large-border-bottom');
   }
 }
