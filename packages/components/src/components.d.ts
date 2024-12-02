@@ -90,13 +90,7 @@ export namespace Components {
         "type": BannerType;
     }
     interface PostBreadcrumb {
-        /**
-          * Text for the home breadcrumb link
-         */
         "homeText": string;
-        /**
-          * URL for the home breadcrumb link
-         */
         "homeUrl": string;
     }
     interface PostBreadcrumbItem {
@@ -880,13 +874,7 @@ declare namespace LocalJSX {
         "type"?: BannerType;
     }
     interface PostBreadcrumb {
-        /**
-          * Text for the home breadcrumb link
-         */
         "homeText"?: string;
-        /**
-          * URL for the home breadcrumb link
-         */
         "homeUrl"?: string;
     }
     interface PostBreadcrumbItem {

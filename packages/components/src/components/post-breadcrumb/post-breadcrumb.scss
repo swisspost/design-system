@@ -28,22 +28,32 @@
   cursor: pointer;
 }
 
+/* Add this to post-breadcrumb.scss */
 .dropdown-menu {
+  display: block;
   position: absolute;
-  top: 100%;
-  left: 0;
-  background: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  list-style: none;
-  margin: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 100;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 5px;
+  text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
   padding: 0;
-  display: none; /* Hide initially */
-}
-
-.dropdown-menu li {
-  padding: 0.5rem 1rem;
-}
-
-.breadcrumb-overflow:hover .dropdown-menu {
-  display: block; /* Show dropdown on hover */
+  display: inline-flex;
+  align-items: center;
 }

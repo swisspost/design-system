@@ -5,33 +5,24 @@ import { Component, Element, h, Host, Prop, State } from '@stencil/core';
   styleUrl: 'post-breadcrumb.scss',
   shadow: true,
 })
-
 export class PostBreadcrumb {
-  /**
-   * URL for the home breadcrumb link
-   */
   @Prop() homeUrl: string;
-
-  /**
-   * Text for the home breadcrumb link
-   */
   @Prop() homeText: string = 'Home';
 
   @Element() host: HTMLElement;
 
-  // Store the breadcrumb items passed as <post-breadcrumb-item> elements
   @State() breadcrumbItems: { url: string, text: string }[] = [];
-
   @State() isConcatenated: boolean = false;
   @State() lastWindowWidth: number = 0;
+  @State() isDropdownVisible: boolean = false;  // New state for dropdown visibility
 
-  // Reference for breadcrumb list container
   private breadcrumbNavRef?: HTMLElement;
+  private lastItem: { url: string, text: string };
 
   componentDidLoad() {
     this.updateBreadcrumbItems();
     window.addEventListener('resize', this.handleResize);
-    this.checkConcatenation()
+    this.checkConcatenation();
   }
 
   disconnectedCallback() {
@@ -44,6 +35,7 @@ export class PostBreadcrumb {
       url: item.getAttribute('url') || '',
     }));
     this.breadcrumbItems = items;
+    this.lastItem = this.breadcrumbItems[this.breadcrumbItems.length - 1];
   }
 
   private handleResize = () => {
@@ -65,7 +57,14 @@ export class PostBreadcrumb {
     }
   }
 
+  private toggleDropdown = () => {
+    this.isDropdownVisible = !this.isDropdownVisible;
+  };
+
   render() {
+    // Separate visible breadcrumb items and menu items (excluding last item)
+    const visibleItems = this.breadcrumbItems.slice(0, -1);
+
     return (
       <Host>
         <nav aria-label="Breadcrumb" class="breadcrumbs-nav" ref={(el) => (this.breadcrumbNavRef = el)}>
@@ -83,16 +82,38 @@ export class PostBreadcrumb {
             {/* Check if items should be concatenated */}
             {this.isConcatenated ? (
               <li>
-                <button class="dropdown-btn">...</button>
+                <button class="dropdown-btn" onClick={this.toggleDropdown}>
+                  ...
+                </button>
+
+                {/* Dropdown Menu */}
+                {this.isDropdownVisible && (
+                  <div class="dropdown-menu">
+                    {visibleItems.map((item, index) => (
+                      <a key={index} href={item.url} class="breadcrumb-link">
+                        {item.text}
+                      </a>
+                    ))}
+                  </div>
+                )}
               </li>
             ) : (
-              this.breadcrumbItems.map((item, index) => (
+              visibleItems.map((item, index) => (
                 <li key={index}>
                   <a href={item.url} class="breadcrumb-link">
                     {item.text}
                   </a>
                 </li>
               ))
+            )}
+
+            {/* Always show the last breadcrumb item */}
+            {this.lastItem && (
+              <li>
+                <a href={this.lastItem.url} class="breadcrumb-link">
+                  {this.lastItem.text}
+                </a>
+              </li>
             )}
           </ol>
         </nav>

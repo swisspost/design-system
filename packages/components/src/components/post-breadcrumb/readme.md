@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property   | Attribute   | Description                       | Type     | Default     |
-| ---------- | ----------- | --------------------------------- | -------- | ----------- |
-| `homeText` | `home-text` | Text for the home breadcrumb link | `string` | `'Home'`    |
-| `homeUrl`  | `home-url`  | URL for the home breadcrumb link  | `string` | `undefined` |
+| Property   | Attribute   | Description | Type     | Default     |
+| ---------- | ----------- | ----------- | -------- | ----------- |
+| `homeText` | `home-text` |             | `string` | `'Home'`    |
+| `homeUrl`  | `home-url`  |             | `string` | `undefined` |
 
 
 ----------------------------------------------
