@@ -1,20 +1,9 @@
 @use '../functions/tokens';
-@use '../tokens/elements';
 @use '../mixins/icons' as icon-mixin;
 @use '../functions/icons';
+@use '../tokens/components';
 
-tokens.$default-map: (
-  post-list-check-sizing-icon: 24px,
-  post-list-check-text-padding: 1px,
-  post-list-check-icon-gap-inline: 16px,
-  post-list-check-item-gap-block-text: 16px,
-  post-list-check-margin-block: 8px,
-  post-list-check-color-icon-fg: white,
-  post-list-check-color-text-fg: #050400,
-  post-list-check-padding-icon: 4px,
-  post-list-check-line-height: 30px,
-  post-list-check-color-icon-bg: #373632
-);
+tokens.$default-map: components.$post-listcheck;
 
 .list-check {
   display: flex;
