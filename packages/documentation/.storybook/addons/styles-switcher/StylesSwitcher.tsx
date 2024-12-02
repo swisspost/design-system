@@ -72,9 +72,7 @@ function StylesSwitcher() {
     observer = new MutationObserver(
       debounce(() => {
         setStories(preview.querySelectorAll('.sbdocs-preview, .sb-main-padded'));
-        setStylesCodeBlocks(
-          preview.querySelectorAll('.docblock-source-all-design .docblock-source'),
-        );
+        setStylesCodeBlocks(preview.querySelectorAll('.docblock-source'));
       }, 200),
     );
 
@@ -106,14 +104,37 @@ function StylesSwitcher() {
 
     const t = currentTheme.toLowerCase();
     const c = currentChannel.toLowerCase();
-    const stylesPlaceholder = "'{dynamic-theme-and-channel-placeholder}'";
-    const stylesImport = `'@swisspost/design-system-styles/${t}-${c}.scss'`;
+    const domain = "'@swisspost/design-system-styles/";
 
     stylesCodeBlocks.forEach(stylesCodeBlock => {
-      let source = stylesCodeBlock.querySelector('.token.string')?.innerHTML;
-      if (source && (source === stylesPlaceholder || source !== stylesImport)) {
-        source = stylesImport;
-        (stylesCodeBlock.querySelector('.token.string') as Element).innerHTML = source;
+      let sourceArray = stylesCodeBlock.querySelectorAll('.token.string');
+      if (sourceArray.length) {
+        sourceArray.forEach((s, i) => {
+          let source = s.innerHTML;
+          // Remove the domain from the source to make sure we don't override it
+          source = source.replace(domain, '');
+
+          // Check if one of the themes or channels are in the scss path
+          let theme = THEMES.find(t => source.indexOf(t.toLowerCase()) > -1);
+          let channel = CHANNELS.find(c => source.indexOf(c.toLowerCase()) > -1);
+
+          const updateTheme = theme && theme.toLowerCase() !== t;
+          const updateChannel = channel && channel.toLowerCase() !== c;
+
+          // Only change the source if theme or channel needs to be changed
+          if (source && (updateTheme || updateChannel)) {
+            if (updateTheme) {
+              source = source.replace((theme as string).toLowerCase(), t);
+            }
+
+            if (updateChannel) {
+              source = source.replace((channel as string).toLowerCase(), c);
+            }
+
+            const newSource = domain + source;
+            sourceArray[i].innerHTML = newSource;
+          }
+        });
       }
     });
   }, [stylesCodeBlocks, currentTheme, currentChannel]);
