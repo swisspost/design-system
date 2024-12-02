@@ -24,6 +24,7 @@ tokens.$default-map: components.$post-listcheck;
     color: tokens.get('list-check-color-text-fg');
     padding-block-start: tokens.get('list-check-text-padding');
     padding-block-end: tokens.get('list-check-text-padding');
+
     &::before {
       display: block;
       position: absolute;
