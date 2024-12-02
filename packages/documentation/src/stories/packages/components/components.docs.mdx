@@ -1,0 +1,75 @@
+import { Meta, Source } from '@storybook/blocks';
+import * as PackageStories from './components.stories';
+import { PostTabs, PostTabHeader, PostTabPanel } from '@swisspost/design-system-components-react';
+import SampleCdnBareComponent from './components-cdn-bare-component-all.sample.html?raw';
+import SampleCdnLazyLoadedAll from './components-cdn-lazy-loaded-all.sample.html?raw';
+import SampleCdnLazyLoadedSpecific from './components-cdn-lazy-loaded-specific.sample.html?raw';
+import SampleJsAll from './components-js-all.sample?raw';
+import SampleJsSpecific from './components-js-specific.sample?raw';
+import changelog from '@/../../components/CHANGELOG.md?raw';
+import PackageDocs from '@/shared/packages-docs-layout.mdx';
+
+<Meta of={PackageStories} />
+
+# @swisspost/design-system-components
+
+[![npm version](https://badge.fury.io/js/@swisspost%2Fdesign-system-components.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-components)
+
+<div className='lead'>
+  A set of standard Web Components for easy integration with every framework or no framework at all.<br/>
+  Depending on your project setup, there are different ways available to integrate our components.
+</div>
+
+<PackageDocs changelog={changelog}>
+  ## Installation
+
+  {/* https://stenciljs.com/docs/custom-elements#consuming-custom-elements */}
+
+  <Source code={`npm install @swisspost/design-system-components`} language="bash" />
+
+  ## Usage
+
+  Import all or only specific components into your entry file (e.g. `main.js`, `app.js`, ...).
+
+  <Source
+    code={SampleJsAll}
+    language="javascript"
+  />
+
+  <Source
+    code={SampleJsSpecific}
+    language="javascript"
+  />
+
+  Use the imported components in your html:
+
+  <Source
+    code={`<post-icon name="1000"></post-icon>`}
+    language="html"
+  />
+
+  ## Include from a CDN
+
+  If you are not using any bundler or don't want to install from npm, you can load our components from your favorite [CDN](https://en.wikipedia.org/wiki/Content_delivery_network).
+  Make sure to replace `{version}` with the version you want to use or remove `@{version}` to use the latest version.
+
+  Available CDNs:
+
+  - [jsDelivr](https://www.jsdelivr.com/): replace `{cdnURL}` with [https://cdn.jsdelivr.net/npm/@swisspost/design-system-components](https://cdn.jsdelivr.net/npm/@swisspost/design-system-components).
+  - [unpkg](https://unpkg.com/): replace `{cdnURL}` with [https://unpkg.com/@swisspost/design-system-components](https://unpkg.com/@swisspost/design-system-components).
+
+  <PostTabs>
+    <PostTabHeader panel="lazy-loaded">Lazy-Loaded</PostTabHeader>
+    <PostTabPanel name="lazy-loaded">
+      Load all components at once
+      <Source code={SampleCdnLazyLoadedAll} language="html" />
+      Load specific components only
+      <Source code={SampleCdnLazyLoadedSpecific} language="html" />
+    </PostTabPanel>
+
+    <PostTabHeader panel="bare-component">Bare component</PostTabHeader>
+    <PostTabPanel name="bare-component">
+      <Source code={SampleCdnBareComponent} language="html" />
+    </PostTabPanel>
+  </PostTabs>
+</PackageDocs>

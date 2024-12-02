@@ -1,11 +1,12 @@
 import { DEPENDENCIES, getVersion } from '@/utils/version';
-import metaStyles from '@/stories/getting-started/packages/styles/styles.stories';
-import metaComponents from '@/stories/getting-started/packages/components/components.stories';
-import metaComponentsAngular from '@/stories/getting-started/packages/components-angular/components-angular.stories';
-import metaInternetHeader from '@/stories/getting-started/packages/internet-header/internet-header.stories';
-import metaIntranetHeader from '@/stories/getting-started/packages/intranet-header/intranet-header.stories';
-import metaIcons from '@/stories/getting-started/packages/icons/package-icons.stories';
-import metaTokens from '@/stories/getting-started/packages/tokens/tokens.stories';
+
+import metaStyles from '@/stories/packages/styles/styles.stories';
+import metaComponents from '@/stories/packages/components/components.stories';
+import metaComponentsAngular from '@/stories/packages/components-angular/components-angular.stories';
+import metaInternetHeader from '@/stories/packages/internet-header/internet-header.stories';
+import metaIntranetHeader from '@/stories/packages/intranet-header/intranet-header.stories';
+import metaIcons from '@/stories/packages/icons/package-icons.stories';
+import metaTokens from '@/stories/packages/tokens/tokens.stories';
 import { PackageType } from '@/../types';
 
 interface IPackage {
