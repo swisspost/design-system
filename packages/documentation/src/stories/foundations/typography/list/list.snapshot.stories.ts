@@ -119,8 +119,9 @@ export const Lists: Story = {
         <li>${modifierBlock} list-item 2 with more text to show how list-inline items wrap to a new line if necessary</li>
         <li>${modifierBlock} list-item 3</li>
         <li>
-          ${modifierBlock} list-item 4
+          ${modifierBlock} list-item 4 - text before nested
           ${subListBlock}
+          ${modifierBlock} list item 4 - text after nested
         </li>
         <li>${modifierBlock} list-item 5</li>`;
 
