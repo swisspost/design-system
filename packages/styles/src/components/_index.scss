@@ -11,7 +11,6 @@
 @use 'button-group';
 @use 'card';
 @use 'card-control';
-@use 'carousel';
 @use 'chip';
 @use 'close';
 @use 'elevation';
@@ -50,9 +49,9 @@
 @use 'tooltip';
 @use 'transitions';
 @use 'tag';
+@use 'validation';
 
 // Imports depending on source order to override bootstrap styles
 @use 'datepicker';
 @use 'dropdown';
 @use 'floating-label';
-@use 'form-validation';
