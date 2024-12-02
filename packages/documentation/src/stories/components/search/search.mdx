@@ -1,0 +1,28 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as SearchInputStories from './search.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={SearchInputStories} />
+
+<div className="docs-title">
+  # Search Input
+
+  <nav>
+    <link-design of={JSON.stringify(SearchInputStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  Search input is the trigger element of the `Search` component. It is a specific input field which lets users enter keyword(s) to get the information they are looking for.
+</div>
+
+<Canvas sourceState="shown" of={SearchInputStories.Default} />
+
+<div className="hide-col-default">
+  <Controls of={SearchInputStories.Default} />
+</div>
+
+<StylesPackageImport
+  components={['forms']}
+  required={{ 'floating-label': true, 'form-feedback': true }}
+/>
