@@ -2,6 +2,7 @@
 
 @use './functions' as *;
 
+@use './variables/_sizing.scss' as sizing;
 /*
   Utilities are generated with our utility API using bellow $utilities map.
 
@@ -20,81 +21,42 @@
 
   Our API is based on bootstrap utility API, more information is available here: https://getbootstrap.com/docs/5.3/utilities/api/
 */
-
 $utilities: (
   'width': (
     responsive: true,
     property: width,
     class: w,
-    values: (
-      0: 0,
-      25: 25%,
-      50: 50%,
-      75: 75%,
-      100: 100%,
-      auto: auto,
-    ),
+    values: sizing.$post-sizing,
   ),
   'height': (
     responsive: true,
     property: height,
     class: h,
-    values: (
-      0: 0,
-      25: 25%,
-      50: 50%,
-      75: 75%,
-      100: 100%,
-      auto: auto,
-    ),
+    values: sizing.$post-sizing,
   ),
   'max-width': (
     responsive: true,
     property: max-width,
     class: max-w,
-    values: (
-      0: 0,
-      25: 25%,
-      50: 50%,
-      75: 75%,
-      100: 100%,
-    ),
+    values: sizing.$post-sizing,
   ),
   'max-height': (
     responsive: true,
     property: max-height,
     class: max-h,
-    values: (
-      0: 0,
-      25: 25%,
-      50: 50%,
-      75: 75%,
-      100: 100%,
-    ),
+    values: sizing.$post-sizing,
   ),
   'min-width': (
     responsive: true,
     property: min-width,
     class: min-w,
-    values: (
-      0: 0,
-      25: 25%,
-      50: 50%,
-      75: 75%,
-      100: 100%,
-    ),
+    values: sizing.$post-sizing,
   ),
   'min-height': (
     responsive: true,
     property: min-height,
     class: min-h,
-    values: (
-      0: 0,
-      25: 25%,
-      50: 50%,
-      75: 75%,
-      100: 100%,
-    ),
+    values: sizing.$post-sizing,
   ),
   'viewport-width': (
     responsive: true,

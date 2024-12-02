@@ -1,8 +1,13 @@
 import type { Args, StoryObj, StoryFn, StoryContext } from '@storybook/web-components';
 import { html } from 'lit';
-import './sizing.styles.scss';
+import sizing from './sizing.module.scss';
+import { parse } from '@/utils/sass-export';
 import { MetaExtended } from '@root/types';
-export const SizeOptionsPercent = ['auto', '0', '25', '50', '75', '100'];
+import './sizing.styles.scss';
+
+const sizes: any = parse(sizing);
+const percentageSizes = Object.keys(sizes.pcsizes);
+const pixelSizes = Object.keys(sizes.pxsizes);
 
 const meta: MetaExtended = {
   render: renderSizing,
@@ -26,7 +31,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: SizeOptionsPercent,
+      options: percentageSizes,
       table: {
         category: 'Height',
       },
@@ -37,7 +42,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: SizeOptionsPercent,
+      options: percentageSizes,
       table: {
         category: 'Width',
       },
@@ -48,7 +53,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['none', ...SizeOptionsPercent.filter(value => value !== 'auto')],
+      options: ['none', ...percentageSizes.filter(value => value !== 'auto')],
       table: {
         category: 'Height',
       },
@@ -59,7 +64,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['none', ...SizeOptionsPercent.filter(value => value !== 'auto')],
+      options: ['none', ...percentageSizes.filter(value => value !== 'auto')],
       table: {
         category: 'Width',
       },
@@ -70,7 +75,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['none', ...SizeOptionsPercent.filter(value => value !== 'auto')],
+      options: ['none', ...percentageSizes.filter(value => value !== 'auto')],
       table: {
         category: 'Height',
       },
@@ -81,7 +86,7 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['none', ...SizeOptionsPercent.filter(value => value !== 'auto')],
+      options: ['none', ...percentageSizes.filter(value => value !== 'auto')],
       table: {
         category: 'Width',
       },
@@ -125,5 +130,80 @@ export const SizesPercent: Story = {
   args: {
     width: '25',
     height: '100',
+  },
+};
+
+export const PxSizes: Story = {
+  args: {
+    width: 'size-56',
+    height: 'size-80',
+  },
+  argTypes: {
+    height: {
+      name: 'height',
+      description: 'Set the height of the rectangle',
+      control: {
+        type: 'select',
+      },
+      options: pixelSizes,
+      table: {
+        category: 'Height',
+      },
+    },
+    width: {
+      name: 'width',
+      description: 'Set the width of the rectangle',
+      control: {
+        type: 'select',
+      },
+      options: pixelSizes,
+      table: {
+        category: 'Width',
+      },
+    },
+    maxHeight: {
+      name: 'max-height',
+      description: 'Set the maximum height of the rectangle',
+      control: {
+        type: 'select',
+      },
+      options: ['none', ...pixelSizes],
+      table: {
+        category: 'Height',
+      },
+    },
+    maxWidth: {
+      name: 'max-width',
+      description: 'Set the maximum width of the rectangle',
+      control: {
+        type: 'select',
+      },
+      options: ['none', ...pixelSizes],
+      table: {
+        category: 'Width',
+      },
+    },
+    minHeight: {
+      name: 'min-height',
+      description: 'Set the minimum height of the rectangle',
+      control: {
+        type: 'select',
+      },
+      options: ['none', ...pixelSizes],
+      table: {
+        category: 'Height',
+      },
+    },
+    minWidth: {
+      name: 'min-width',
+      description: 'Set the minimum width of the rectangle',
+      control: {
+        type: 'select',
+      },
+      options: ['none', ...pixelSizes],
+      table: {
+        category: 'Width',
+      },
+    },
   },
 };

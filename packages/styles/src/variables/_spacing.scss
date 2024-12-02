@@ -55,20 +55,6 @@ $post-sizes: map.merge(
   $post-sizes
 );
 
-// This variable affects the `.h-*` and `.w-*` classes.
-$sizes: () !default;
-$sizes: map.merge(
-  (
-    0: 0,
-    25: 25%,
-    50: 50%,
-    75: 75%,
-    100: 100%,
-    auto: auto,
-  ),
-  $sizes
-);
-
 // Abstand Gross, Section
 $size-curve-giant: (
   'xs': $size-huge,
