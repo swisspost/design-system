@@ -173,7 +173,6 @@
 
     &[disabled],
     &[disabled] ~ .form-check-label {
-      text-decoration: line-through;
       color: color.$black-alpha-60;
 
       @include color-mx.on-dark-background() {
