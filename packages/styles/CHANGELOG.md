@@ -1,5 +1,13 @@
 # @swisspost/design-system-styles
 
+## 8.6.1
+
+### Patch Changes
+
+- Removed strikethrough style on disabled elements. (by [@leagrdv](https://github.com/leagrdv) with [#4095](https://github.com/swisspost/design-system/pull/4095))
+
+- Fixed display of stepper to break words when text is too long to fit in one line. (by [@leagrdv](https://github.com/leagrdv) with [#4055](https://github.com/swisspost/design-system/pull/4055))
+
 ## 8.6.0
 
 ### Patch Changes

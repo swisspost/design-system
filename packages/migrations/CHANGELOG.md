@@ -1,5 +1,7 @@
 # @swisspost/design-system-migrations
 
+## 8.6.1
+
 ## 8.6.0
 
 ## 8.5.0
