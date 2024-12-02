@@ -1,6 +1,6 @@
 ---
-'@swisspost/design-system-components': minor
-'@swisspost/design-system-styles': minor
+'@swisspost/design-system-components': patch
+'@swisspost/design-system-styles': patch
 ---
 
 Removed strikethrough style on disabled elements.
