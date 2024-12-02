@@ -25,7 +25,7 @@ Our radios use custom icons to indicate checked states.
   <Controls of={RadioStories.Default} />
 </div>
 
-<StylesPackageImport components={['form-check']} required={{ 'form-feedback': true }} />
+<StylesPackageImport components={['form-check']} required={{ validation: true }} />
 
 ## Concrete Examples of Application
 
@@ -39,7 +39,8 @@ To show radio button group, just wrap your radios in a `fieldset`.
   Don't forget to add also a `<legend>` element.
   You can visually hide the legend using the `.visually-hidden` class if necessary.
 
-  Read more about that topic in our [accessibility docs](/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs).
+Read more about that topic in our [accessibility docs](/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs).
+
 </div>
 
 <Canvas of={RadioStories.Grouped} />
@@ -52,16 +53,13 @@ To render a radio inline, simply add the class `.form-check-inline` to the `.for
   Remember to wrap your radio groups in a <code>&lt;fieldset&gt;</code> including a{' '}
   <code>&lt;legend&gt;</code> tag. This provides a label for your radio group.
   <br />
-  For more information, read our{' '} <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#grouping">grouping accessibility guide</a>.
+  For more information, read our{' '}
+  <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#grouping">
+    grouping accessibility guide
+  </a>
+  .
 </div>
 
 To visually hide the `<legend>` element, use the `.visually-hidden` class.
 
 <Canvas of={RadioStories.Inline} />
-
-### Validation
-
-Simply add the classes `.is-valid` or `.is-invalid` to the `radio` element to show it in the expected state.<br/>
-When the component has been validated, don't forget to add a `<p className="valid-feedback">...</p>` or `<p className="invalid-feedback">...</p>` element after the `radio` element to explain what went wrong. This enables the user to correct the mistake.
-
-<Canvas of={RadioStories.Validation} />

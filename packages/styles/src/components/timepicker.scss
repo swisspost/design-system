@@ -93,15 +93,13 @@ ngb-timepicker {
       }
     }
 
-    ~ .invalid-feedback,
-    ~ .invalid-tooltip {
+    ~ .invalid-feedback {
       display: block;
     }
   }
 
   &.ng-valid {
-    ~ .valid-feedback,
-    ~ .valid-tooltip {
+    ~ .valid-feedback {
       display: block;
     }
   }
