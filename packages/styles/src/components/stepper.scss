@@ -96,6 +96,7 @@
   color: stepper.$stepper-link-color;
   width: fit-content;
   line-height: stepper.$stepper-link-line-height;
+  word-break: break-word;
 
   // not adding ellipsis if the like doesn't have a title for accessibility reasons
   &:not([title]) {
