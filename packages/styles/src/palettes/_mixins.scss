@@ -13,7 +13,6 @@
 @mixin palettes($theme) {
   body {
     background-color: var(--post-current-palette-bg) !important;
-    color: var(--post-current-palette-fg) !important;
 
     &:not([data-color-scheme='dark']) {
       @include palette-tokens($default-palette, $theme, 'light');
