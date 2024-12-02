@@ -156,7 +156,7 @@ describe('Card-Control', () => {
         .invoke('attr', 'icon', '1000')
         .find('.card-control--icon slot[name="icon"] post-icon')
         .should('exist')
-        .find('[style*="/1000.svg"]')
+        .find('use[href*="/1000.svg"]')
         .should('exist');
       cy.get('@card-control')
         .invoke('removeAttr', 'icon')

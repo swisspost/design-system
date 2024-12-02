@@ -3,7 +3,7 @@ import { html } from 'lit';
 
 const meta: Meta = {
   id: 'a536a61d-cac2-4f39-adbf-092bdd445ce5',
-  title: 'Patterns/Error page',
+  title: 'Templates/Error page',
   parameters: {
     layout: 'fullscreen',
   },
@@ -15,7 +15,7 @@ function render() {
     <div class="bg-light error-container">
       <div class="container">
         <div class="row">
-          <div class="col-rg-8 py-56">
+          <div class="col-sm-8 py-56">
             <h2>
               This page could not be found.
               <br />
@@ -40,7 +40,7 @@ function render() {
               </a>
             </div>
           </div>
-          <div class="col-6 offset-3 offset-rg-0 col-rg-4 align-self-end">
+          <div class="col-6 offset-3 offset-sm-0 col-sm-4 align-self-end">
             <img class="error-container--image" src="/images/content/404.png" alt="" />
           </div>
         </div>
