@@ -9,7 +9,7 @@ export default {
   title: 'Snapshots',
 };
 
-const BG = ['bg-white', 'bg-dark'];
+const SCHEME = ['light', 'dark'];
 const BTN = ['btn-primary', 'btn-secondary', 'btn-terciary'];
 const SIZES = ['', 'btn-sm', 'btn-lg'];
 
@@ -20,9 +20,9 @@ export const ToggleButton: Story = {
     const TOGGLED = [false, true];
 
     return html`
-      ${BG.map(
-        bg => html`
-          <div class="${bg} px-5">
+      ${SCHEME.map(
+        scheme => html`
+          <div data-color-scheme="${scheme}" class="palette-default px-5">
             ${BTN.map(btn =>
               SIZES.map(size =>
                 TOGGLED.map(

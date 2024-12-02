@@ -2,7 +2,7 @@ import { type Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 import { spread } from '@open-wc/lit-helpers';
-import buttonMeta from '../buttons/button/button.stories';
+import buttonMeta from '../button/button.stories';
 
 export interface PostTogglebuttonProps {
   type?: 'button' | 'submit' | 'reset';
