@@ -23,6 +23,7 @@
   }
 
   .nav-item > .nav-link {
+    padding-block: 1rem !important;
     border-top: 4px solid transparent; // Border-Width according to PostWeb CSS
     border-bottom: 4px solid transparent; // Border-Width according to PostWeb CSS
     background-color: transparent;
@@ -69,6 +70,36 @@
     a {
       text-decoration: none;
     }
+  }
+
+  // condensed styles
+  .intranet-header & {
+    flex: 0 1 100%;
+    border-top: 0 none;
+
+    .navbar-collapse {
+      width: 100%;
+
+      .navbar-nav {
+        flex-wrap: nowrap;
+      }
+    }
+
+    .nav-item {
+      > .nav-link {
+        padding-block: calc(1rem - 3px) !important;
+      }
+    }
+
+    .nav-overflow {
+      white-space: nowrap;
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  #more {
+    display: none;
   }
 }
 

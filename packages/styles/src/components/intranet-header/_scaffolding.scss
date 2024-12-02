@@ -35,12 +35,6 @@
   }
 }
 
-@include media-breakpoint-up(md) {
-  .navbar-expand-md .navbar-nav {
-    flex-wrap: wrap;
-  }
-}
-
 .intranet-header .title {
   overflow: hidden;
 

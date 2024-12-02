@@ -2,37 +2,44 @@
   <div class="nav-down">
     <div class="intranet-header">
       <div class="d-flex align-items-center flex-nowrap">
-        <div class="bg-logo d-sm-block">
+        <div id="logo" class="bg-logo d-sm-block">
           <a [href]="this.logoUrl" class="navbar-brand header-logo">
             <span class="visually-hidden">{{ getPostLogoText() }}</span>
           </a>
         </div>
-        <div class="title flex-shrink-1 px-4">
+        <div
+          class="title px-4"
+          [ngClass]="{ 'flex-shrink-1': !condenseHeader, 'flex-shrink-0': condenseHeader }"
+        >
           <h1 class="m-0 font-weight-bold">{{ siteTitle }}</h1>
         </div>
-        <div *ngIf="showIntranetSearch" class="col search-textbox d-none d-md-block">
-          <form [action]="searchUrl">
-            <div class="input-group mx-auto">
-              <input
-                type="text"
-                name="k"
-                class="form-control"
-                placeholder="{{ getPlaceholderSearchIntranet() }}"
-              />
-              <div class="input-group-append d-flex align-items-center">
-                <button class="btn pr-4" type="submit">
-                  <span><em class="pi pi-2069"></em></span>
-                </button>
-              </div>
-            </div>
-          </form>
+
+        <nav
+          *ngIf="hasNavbar && condenseHeader && !isMobile"
+          aria-label="navigation"
+          class="justify-content-start top-navigation condense m-0 d-md-flex"
+          [ngClass]="{ 'd-none': !openedMenu }"
+        >
+          <ng-container *ngTemplateOutlet="navbar"></ng-container>
+          <div *ngIf="showIntranetSearch" class="col search-textbox d-md-none">
+            <ng-template [ngTemplateOutlet]="intranetSearch"></ng-template>
+          </div>
+        </nav>
+        <div
+          *ngIf="showIntranetSearch"
+          id="intranetSearch"
+          class="col search-textbox d-none d-md-block"
+          [ngClass]="{ 'col-3': condenseHeader }"
+        >
+          <ng-template [ngTemplateOutlet]="intranetSearch"></ng-template>
         </div>
         <div
+          id="optionHeaderContent"
           *ngIf="optionHeaderContent"
           class="settings ms-auto flex-shrink-0 d-flex align-self-stretch"
         >
           <div class="align-self-stretch d-flex" display="dynamic" container="body">
-            <div class="align-self-center p-3">
+            <div class="align-self-center p-16">
               <div #headerExtraContent>
                 <ng-container
                   [ngTemplateOutlet]="optionHeaderContent"
@@ -56,11 +63,11 @@
             placement="bottom-right"
           >
             <button
-              class="btn btn-tertiary px-3 rounded-0 flex-shrink-0 no-toggle-arrow"
+              class="btn btn-tertiary px-16 rounded-0 flex-shrink-0 no-toggle-arrow"
               id="profileMenu"
               ngbDropdownToggle
             >
-              <img [src]="avatarUrl" class="profile-image align-self-center" [alt]="getAvatarUserText()" />
+              <img [src]="avatarUrl" class="profile-image align-self-center" alt="" />
             </button>
             <div class="dropdown-menu" id="languageParent" ngbDropdownMenu>
               <div class="language-menu">
@@ -97,42 +104,58 @@
           </div>
         </div>
         <button
-          *ngIf="hasNavbar === true"
+          *ngIf="hasNavbar"
           (click)="toggleMenu()"
           id="nav-toggler"
-          class="btn btn-lg btn-tertiary px-3 border-left rounded-0 flex-shrink-0 align-self-stretch d-md-none"
+          class="btn btn-lg btn-tertiary px-16 border-left rounded-0 flex-shrink-0 align-self-stretch d-md-none"
         >
           <em class="pi pi-2070"></em>
         </button>
       </div>
     </div>
     <nav
-      *ngIf="hasNavbar === true"
+      *ngIf="hasNavbar && (!condenseHeader || isMobile)"
       class="row justify-content-center top-navigation m-0 d-md-flex"
+      aria-label="navigation"
       [ngClass]="{ 'd-none': !openedMenu }"
     >
-      <div class="navbar-collapse" id="navbarsDefault">
-        <ul id="nav" class="navbar-nav mx-auto justify-content-center">
-          <ng-content></ng-content>
-        </ul>
-      </div>
+      <ng-container *ngTemplateOutlet="navbar"></ng-container>
     </nav>
-    <div *ngIf="showIntranetSearch" class="search-textbox d-md-none">
-      <form [action]="this.searchUrl">
-        <div class="input-group mx-auto">
-          <input
-            type="text"
-            name="k"
-            class="form-control"
-            placeholder="{{ getPlaceholderSearchIntranet() }}"
-          />
-          <div class="input-group-append d-flex align-items-center">
-            <button class="btn pr-4" type="submit">
-              <span><em class="pi pi-2069"></em></span>
-            </button>
-          </div>
-        </div>
-      </form>
+    <div
+      *ngIf="(showIntranetSearch && condenseHeader && !openedMenu) || !condenseHeader"
+      class="search-textbox d-md-none"
+    >
+      <ng-template [ngTemplateOutlet]="intranetSearch"></ng-template>
     </div>
   </div>
 </header>
+
+<ng-template #navbar>
+  <div class="navbar-collapse" id="navbarsDefault">
+    <ul
+      id="nav"
+      class="navbar-nav justify-content-center"
+      [ngClass]="{ 'mx-auto': !condenseHeader }"
+    >
+      <ng-content></ng-content>
+    </ul>
+  </div>
+</ng-template>
+
+<ng-template #intranetSearch>
+  <form [action]="searchUrl">
+    <div class="input-group mx-auto">
+      <input
+        type="text"
+        name="k"
+        class="form-control"
+        placeholder="{{ getPlaceholderSearchIntranet() }}"
+      />
+      <div class="input-group-append d-flex align-items-center">
+        <button class="btn pr-4" type="submit">
+          <span><em class="pi pi-2069"></em></span>
+        </button>
+      </div>
+    </div>
+  </form>
+</ng-template>
