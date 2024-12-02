@@ -97,7 +97,7 @@ export namespace Components {
         /**
           * URL for the home breadcrumb link
          */
-        "homeUrl": string | URL;
+        "homeUrl": string;
     }
     interface PostBreadcrumbItem {
         /**
@@ -867,9 +867,9 @@ declare namespace LocalJSX {
          */
         "dismissible"?: boolean;
         /**
-          * The type of the alert.
+          * The icon to display in the banner. By default, the icon depends on the banner type.  If `none`, no icon is displayed.
          */
-        "dismissible"?: boolean;
+        "icon"?: string;
         /**
           * An event emitted when the banner element is dismissed, after the transition. It has no payload and only relevant for dismissible banners.
          */
@@ -887,7 +887,7 @@ declare namespace LocalJSX {
         /**
           * URL for the home breadcrumb link
          */
-        "homeUrl"?: string | URL;
+        "homeUrl"?: string;
     }
     interface PostBreadcrumbItem {
         /**
