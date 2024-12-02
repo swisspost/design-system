@@ -55,7 +55,7 @@ function render(args: Args, context: StoryContext) {
       <input
         id="${id}"
         class="form-control"
-        type="text"
+        type="search"
         placeholder="${args.placeholder}"
         aria-describedby="${args.hint ? hintId : nothing}"
       />
