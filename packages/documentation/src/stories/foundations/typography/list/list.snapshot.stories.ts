@@ -96,18 +96,25 @@ export const Lists: Story = {
       `,
     );
 
-    function renderList({ el, classList }: { el: string; classList?: string }): TemplateResult {
+    function renderList({
+      el,
+      classList = '',
+    }: {
+      el: string;
+      classList?: string;
+    }): TemplateResult {
+      const classAttr = classList ? ` class="${classList}"` : '';
       const modifiers = classList?.split(' ').map(c => c.replace(/^list-/, ''));
       const modifierStr = modifiers ? modifiers.join(' ') : '';
 
       const modifierBlock = modifierStr ? `<strong>${modifierStr}</strong> ` : '';
       const subListBlock = !modifiers?.some(n => n === 'inline')
-        ? `<${el} class=${classList}>
+        ? `<${el}${classAttr}>
           <li>${modifierBlock} sub-list-item 1</li>
           <li>${modifierBlock} sub-list-item 2</li>
         </${el}>`
         : '';
-      const listBlock = `<${el} class=${classList}>
+      const listBlock = `<${el}${classAttr}>
         <li>${modifierBlock} list-item 1</li>
         <li>${modifierBlock} list-item 2 with more text to show how list-inline items wrap to a new line if necessary</li>
         <li>${modifierBlock} list-item 3</li>
