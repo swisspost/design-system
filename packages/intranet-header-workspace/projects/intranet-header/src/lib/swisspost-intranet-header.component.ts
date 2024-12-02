@@ -45,6 +45,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   @ViewChild('optionDropdown', { read: ElementRef })
   optionDropdownElement!: ElementRef<HTMLElement>;
 
+  isMobile: boolean | null = null;
   appLangs!: string[];
   avatarUrl = this.createSafeAvatarUrl();
   openedMenu = false;
@@ -77,7 +78,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   };
 
   private windowResize$ = new Subject();
-  private moreElement!: HTMLElement;
+  private moreElement!: HTMLElement | null;
   private navElement!: HTMLElement;
   private navItems!: Array<HTMLElement>;
   private logoElement!: HTMLElement;
@@ -106,7 +107,8 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
     // use rxjs instead of HostListener to enable usage of debounce operator (see https://stackoverflow.com/a/44055389)
     // => drastically improves performance of component!
     this.windowResize$.subscribe(() => {
-      this.navigationResize();
+      this.computeIsMobile();
+      setTimeout(this.navigationResize.bind(this));
     });
 
     this.zone.runOutsideAngular(() => {
@@ -140,37 +142,13 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   }
 
   ngAfterViewInit(): void {
+    this.computeIsMobile();
+
     // this check is needed, because it would add another element when a link from within "#overflow" is clicked
     if (this.dom.nativeElement.querySelector('#more') == null) {
-      const extensionElement = `<li tabindex="0" class="nav-item${
-        this.openedMenuOverflow ? '' : ' hidden'
-      }" id="more">
-                                    <span class="nav-link col-auto py-16 px-24"></span>
-                                </li>`;
-      this.logoElement = this.dom.nativeElement.querySelector('#logo');
-      this.titleElement = this.dom.nativeElement.querySelector('#title');
-      this.optionHeaderContentElement =
-        this.dom.nativeElement.querySelector('#optionHeaderContent');
-      this.profileMenuElement = this.dom.nativeElement.querySelector('#profileMenu');
-      this.intranetSearchElement = this.dom.nativeElement.querySelector('#intranetSearch');
-      this.navElement = this.dom.nativeElement.querySelector('#nav');
-      if (this.navElement == null) {
-        return;
-      }
-      this.navItems = Array.from(this.navElement.querySelectorAll('.nav-item'));
-      this.navElement.insertAdjacentHTML('beforeend', extensionElement);
-      this.moreElement = this.dom.nativeElement.querySelector('#more');
-      const toggleElement = this.moreElement.getElementsByTagName('span')[0];
-      toggleElement.addEventListener('click', () => this.toggleMenuOverflow());
-      this.moreElement.addEventListener('keydown', (e: KeyboardEvent) =>
-        this.handleOverflowKeyEvent(e),
-      );
-      this.updateMoreElementText();
       this.navigationResize();
 
-      if (!MutationObserver) {
-        return;
-      }
+      if (!MutationObserver) return;
 
       this.navChanges = new MutationObserver(m => this.navMutationCallback(m));
       this.navChanges.observe(this.navElement, {
@@ -249,11 +227,10 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
     }
 
     this.openedMenuOverflow = doOpenMenu;
+
     if (this.openedMenuOverflow) {
-      this.moreElement.classList.remove('hidden');
       this.overflowItems.forEach((el: HTMLElement) => (el.style.display = ''));
     } else {
-      this.moreElement.classList.add('hidden');
       this.overflowItems.forEach((el: HTMLElement) => (el.style.display = 'none'));
     }
   }
@@ -268,12 +245,47 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
     }
   }
 
+  public computeIsMobile() {
+    this.isMobile = this.dom.nativeElement.querySelector('#nav-toggler')?.offsetParent !== null;
+  }
+
+  public setUpRefs() {
+    this.logoElement = this.dom.nativeElement.querySelector('#logo');
+    this.titleElement = this.dom.nativeElement.querySelector('#title');
+    this.optionHeaderContentElement = this.dom.nativeElement.querySelector('#optionHeaderContent');
+    this.profileMenuElement = this.dom.nativeElement.querySelector('#profileMenu');
+    this.intranetSearchElement = this.dom.nativeElement.querySelector('#intranetSearch');
+    this.navElement = this.dom.nativeElement.querySelector('#nav');
+
+    if (this.navElement == null) return;
+
+    this.navItems = Array.from(this.navElement.querySelectorAll('.nav-item:not(#more)'));
+
+    this.moreElement = this.navElement.querySelector('#more');
+
+    if (!this.moreElement) {
+      this.navElement.insertAdjacentHTML(
+        'beforeend',
+        `<li tabindex="0" class="nav-item" id="more">
+        <span class="nav-link col-auto py-16 px-24"></span>
+        </li>`,
+      );
+      this.moreElement = this.navElement.querySelector('#more');
+
+      if (this.moreElement) {
+        this.moreElement.addEventListener('click', () => this.toggleMenuOverflow());
+        this.moreElement.addEventListener('keydown', this.handleOverflowKeyEvent);
+        this.updateMoreElementText();
+      }
+    }
+  }
+
   public navigationResize() {
+    this.setUpRefs();
+
     const navItems: Array<HTMLElement> = [];
 
-    if (this.moreElement == null) {
-      return;
-    }
+    if (this.moreElement == null) return;
 
     // Hide overflow items
     this.toggleMenuOverflow(false);
@@ -284,40 +296,37 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
       el.style.transform = '';
       el.style.width = '';
       el.style.display = '';
+
       navItems[index] = el;
     });
 
-    // Get the total width of the nav items
-    const listMargin = 40;
-    const navItemWidth = navItems.reduce((acc, el) => acc + el.scrollWidth, listMargin);
+    if (this.isMobile) return;
 
     // Get available width for the navigation bar
     const availableNavWidth = this.getAvailableNavWidth();
 
+    // Get the total width of the nav items
+    const listMargin = 40;
+    const navItemWidth = navItems.reduce((acc, el) => acc + el.scrollWidth, 0);
+    const showMoreElement = navItemWidth > availableNavWidth;
+
     // Display the more element if necessary, hide it otherwise
-    this.moreElement.style.display = navItemWidth > availableNavWidth ? '' : 'none';
+    this.moreElement.style.display = showMoreElement ? '' : 'none';
 
     // If the navbar is too wide, turn the nav items into overflow items one by one
-    if (navItemWidth > availableNavWidth) {
-      let navWidth = navItemWidth + this.moreElement.scrollWidth;
+    if (showMoreElement) {
+      let navWidth = navItemWidth + this.moreElement.scrollWidth + listMargin;
       let lastNavItem: HTMLElement;
-      let greaterWidth = 0;
+      let maxWidth = 0;
 
       while (navWidth > availableNavWidth) {
         lastNavItem = navItems[navItems.length - 1];
+        if (lastNavItem === undefined) break;
 
-        if (lastNavItem === undefined) {
-          break;
-        }
-
+        navWidth -= lastNavItem.scrollWidth;
         lastNavItem.classList.add('nav-overflow');
-        const lastNavItemWidth = lastNavItem.getBoundingClientRect().width;
+        maxWidth = Math.max(maxWidth, Math.ceil(lastNavItem.scrollWidth));
 
-        if (lastNavItemWidth > greaterWidth) {
-          greaterWidth = Math.ceil(lastNavItemWidth);
-        }
-
-        navWidth -= lastNavItemWidth;
         navItems.pop();
       }
 
@@ -327,7 +336,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
       // Adjust the overflow items
       this.overflowItems.forEach((el: HTMLElement, index) => {
         el.style.transform = `translateY(${index * 100}%)`;
-        el.style.width = `${greaterWidth}px`;
+        el.style.width = `${maxWidth}px`;
         el.style.display = 'none';
       });
     }
@@ -350,16 +359,11 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
       return document.documentElement.scrollWidth;
     }
 
-    const elements = [
-      this.logoElement,
-      this.titleElement,
-      this.optionHeaderContentElement,
-      this.profileMenuElement,
-      this.intranetSearchElement,
-    ];
-    const totalWidth = elements.reduce((sum, element) => sum + (element?.scrollWidth || 0), 0);
+    this.navElement.setAttribute('style', 'display: none !important');
+    const availableNavWidth = this.navElement.closest('nav.top-navigation')?.scrollWidth ?? 0;
+    this.navElement.removeAttribute('style');
 
-    return document.documentElement.scrollWidth - totalWidth;
+    return availableNavWidth;
   }
 
   private createSafeAvatarUrl(): SafeUrl {
@@ -372,15 +376,9 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
     const languageField = this.dom.nativeElement.querySelector('#more > span');
 
     // when no navigation bar is displayed theres no 'more' element
-    if (!languageField) {
-      return;
-    }
+    if (!languageField) return;
 
-    languageField.innerText = this.getTextForMoreElement();
-  }
-
-  private getTextForMoreElement() {
-    return this.localization['moreLabel'][this.lang.toLowerCase()];
+    languageField.innerText = this.localization['moreLabel'][this.lang.toLowerCase()];
   }
 
   // Close dropdown on link clicks https://github.com/swisspost/design-system/issues/1300

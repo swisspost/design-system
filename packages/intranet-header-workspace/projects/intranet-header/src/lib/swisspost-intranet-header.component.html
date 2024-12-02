@@ -15,7 +15,7 @@
         </div>
 
         <nav
-          *ngIf="condenseHeader && hasNavbar"
+          *ngIf="hasNavbar && condenseHeader && !isMobile"
           aria-label="navigation"
           class="justify-content-start top-navigation condense m-0 d-md-flex"
           [ngClass]="{ 'd-none': !openedMenu }"
@@ -104,7 +104,7 @@
           </div>
         </div>
         <button
-          *ngIf="hasNavbar === true || condenseHeader"
+          *ngIf="hasNavbar"
           (click)="toggleMenu()"
           id="nav-toggler"
           class="btn btn-lg btn-tertiary px-16 border-left rounded-0 flex-shrink-0 align-self-stretch d-md-none"
@@ -114,7 +114,7 @@
       </div>
     </div>
     <nav
-      *ngIf="hasNavbar === true && !condenseHeader"
+      *ngIf="hasNavbar && (!condenseHeader || isMobile)"
       class="row justify-content-center top-navigation m-0 d-md-flex"
       aria-label="navigation"
       [ngClass]="{ 'd-none': !openedMenu }"
