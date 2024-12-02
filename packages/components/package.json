@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components",
-  "version": "9.0.0-next.5",
+  "version": "9.0.0-next.6",
   "description": "A collection of web components built with Stencil JS for the Swiss Post Design System.",
   "license": "Apache-2.0",
   "main": "dist/index.cjs.js",
@@ -26,7 +26,7 @@
   "scripts": {
     "dev": "stencil build --dev --port 9200 --serve --watch --docs --docs-readme",
     "start": "stencil build --dev --watch --docs --docs-readme",
-    "build": "stencil build --docs-readme",
+    "build": "rimraf dist && stencil build --docs-readme",
     "clean": "rimraf www dist loader loaders",
     "test": "pnpm run unit",
     "unit": "stencil test --spec",
@@ -40,7 +40,7 @@
   "dependencies": {
     "@floating-ui/dom": "1.6.8",
     "@oddbird/popover-polyfill": "0.3.7",
-    "@swisspost/design-system-styles": "workspace:9.0.0-next.5",
+    "@swisspost/design-system-styles": "workspace:9.0.0-next.6",
     "ally.js": "1.4.1",
     "long-press-event": "2.5.0"
   },

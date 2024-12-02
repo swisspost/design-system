@@ -4,7 +4,7 @@ import { version } from '@root/package.json';
 import isFocusable from 'ally.js/is/focusable';
 import 'long-press-event';
 import { getAttributeObserver } from '@/utils/attribute-observer';
-import { checkEmptyOrType, timeout } from '@/utils';
+import { checkEmptyOrType } from '@/utils';
 
 const OPEN_DELAY = 650; // matches HTML title delay
 
@@ -19,6 +19,8 @@ let tooltipInstances = 0;
 let hideTooltipTimeout: number = null;
 const tooltipTargetAttribute = 'data-tooltip-target';
 const tooltipTargetAttributeSelector = `[${tooltipTargetAttribute}]`;
+let globalCurrentTarget: HTMLElement;
+let tooltipTimeout = null;
 
 /**
  * Global event listener to show tooltips. This is globalized so that triggers that are rendered
@@ -34,7 +36,11 @@ const globalInterestHandler = (e: PointerEvent | FocusEvent) => {
   const targetElement = (e.target as HTMLElement).closest(
     tooltipTargetAttributeSelector,
   ) as HTMLElement;
-  if (!targetElement || !('getAttribute' in targetElement)) return;
+  globalCurrentTarget = targetElement;
+  if (!targetElement || !('getAttribute' in targetElement)) {
+    clearTimeout(tooltipTimeout);
+    return;
+  }
   const tooltipTarget = targetElement.getAttribute(tooltipTargetAttribute);
   if (!tooltipTarget || tooltipTarget === '') return;
   const tooltip = document.getElementById(tooltipTarget) as HTMLPostTooltipElement;
@@ -199,19 +205,30 @@ export class PostTooltip {
    */
   @Method()
   async show(target: HTMLElement, triggeredByFocus = false) {
-    if (this.delayed) await timeout(OPEN_DELAY);
+    const showTooltip = () => {
+      // If focus or pointer event is not on the button anymore, don't show the tooltip
+      if (globalCurrentTarget !== target) return;
 
-    // Determine if the tooltip was opened by a focus event
-    this.wasOpenedByFocus = triggeredByFocus;
+      // Determine if the tooltip was opened by a focus event
+      this.wasOpenedByFocus = triggeredByFocus;
 
-    // Disable pointer events if triggered by focus, otherwise enable them
-    if (this.wasOpenedByFocus) {
-      this.host.style.pointerEvents = 'none';
+      // Disable pointer events if triggered by focus, otherwise enable them
+      if (this.wasOpenedByFocus) {
+        this.host.style.pointerEvents = 'none';
+      } else {
+        this.host.style.pointerEvents = 'auto';
+      }
+
+      this.popoverRef.show(target);
+    };
+
+    if (this.delayed) {
+      tooltipTimeout = setTimeout(() => {
+        showTooltip();
+      }, OPEN_DELAY);
     } else {
-      this.host.style.pointerEvents = 'auto';
+      showTooltip();
     }
-
-    this.popoverRef.show(target);
   }
 
   /**
