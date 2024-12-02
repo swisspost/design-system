@@ -5,7 +5,7 @@
 $tile-size: var(--post-docs-tile-size, 120px);
 $tile-rg-size: var(--post-docs-tile-rg-size, calc($tile-size / 1.2));
 
-:host{
+:host {
   a {
     @include utilities.focus-style {
       border-radius: post.$border-radius;
@@ -80,10 +80,9 @@ $tile-rg-size: var(--post-docs-tile-rg-size, calc($tile-size / 1.2));
       }
     }
 
-    @include post.media-breakpoint-down(rg) {
+    @include post.media-breakpoint-down(md) {
       width: $tile-rg-size;
       height: $tile-rg-size;
-
       .tile--title {
         height: calc(#{post.$size-mini * 1.5} + 2.2em);
 
@@ -102,5 +101,3 @@ $tile-rg-size: var(--post-docs-tile-rg-size, calc($tile-size / 1.2));
     }
   }
 }
-
-
