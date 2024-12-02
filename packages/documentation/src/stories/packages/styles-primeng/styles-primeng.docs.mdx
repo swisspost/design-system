@@ -1,0 +1,28 @@
+import { Meta, Source } from '@storybook/blocks';
+import * as PackageStories from './styles-primeng.stories';
+import PrimeNgThemeImportSample from './primeng-theme-import.sample.scss?raw';
+import changelog from '@/../../styles-primeng-workspace/CHANGELOG.md?raw';
+import PackageDocs from '@/shared/packages-docs-layout.mdx';
+
+<Meta of={PackageStories} />
+
+# @swisspost/design-system-styles-primeng
+
+[![npm version](https://badge.fury.io/js/@swisspost%2Fdesign-system-styles-primeng.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-styles-primeng)
+
+<div className='lead'>
+  The Design System Styles for PrimeNg, style your PrimeNg datatables.
+</div>
+
+<PackageDocs changelog={changelog}>
+  ## Installation
+
+  <Source code={`npm install @swisspost/design-system-styles-primeng`} language="bash" />
+
+  ## Usage
+
+  The PrimeNg theme and core styles are the necessary, as well as the Swiss Post styles.
+  All three should be imported in the main style file of your Angular project, usually `src/styles.scss`.
+
+  <Source code={PrimeNgThemeImportSample} language="scss" />
+</PackageDocs>
