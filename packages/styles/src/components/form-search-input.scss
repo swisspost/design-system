@@ -46,7 +46,7 @@ tokens.$default-map: components.$post-search-input;
     transition:
       opacity 0.2s ease,
       visibility 0.2s ease,
-      fill 0.2s ease; // Smooth color transition
+      fill 0.2s ease;
 
     > post-icon {
       width: tokens.get('input-sizing-icon', components.$post-text-input);
@@ -55,9 +55,7 @@ tokens.$default-map: components.$post-search-input;
   }
 
   .search-button {
-    //right: tokens.get('input-search-position-inline-end-icon');
-    right: 16px;
-    // TO-DO: uncomment the token when it is on main and remove hardcoded 16px
+    right: tokens.get('search-position-inline-end-icon');
 
     &:focus {
       @include utilities.focus-style;
@@ -67,9 +65,8 @@ tokens.$default-map: components.$post-search-input;
   .delete-button {
     right: calc(
       tokens.get('input-sizing-icon', components.$post-text-input) +
-        tokens.get('input-search-filled-gap-icon') + 16px
+        tokens.get('input-search-filled-gap-icon') + tokens.get('search-position-inline-end-icon')
     );
-    // TO-DO: substitute hardcoded 16px with tokens.get('input-search-position-inline-end-icon');
     visibility: hidden;
     opacity: 0;
 
