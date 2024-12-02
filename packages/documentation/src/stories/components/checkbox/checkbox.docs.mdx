@@ -24,7 +24,7 @@ Our checkboxes use custom icons to indicate checked or indeterminate states.
   <Controls of={checkboxStories.Default} />
 </div>
 
-<StylesPackageImport components={['form-check']} required={{ 'form-feedback': true }} />
+<StylesPackageImport components={['form-check']} required={{ validation: true }} />
 
 ## Examples
 
@@ -53,11 +53,12 @@ The indeterminate state can only be set via JavaScript and is styled using the `
 
 To show a checkbox group, just wrap your checkboxes in a `fieldset`.
 
-<div className="alert alert-info alert-md">
+<div className="banner banner-info banner-md">
   Don't forget to add also a `<legend>` element.
   You can visually hide the legend using the `.visually-hidden` class if necessary.
 
-  Read more about that topic in our [accessibility docs](/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs).
+Read more about that topic in our [accessibility docs](/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs).
+
 </div>
 
 <Canvas of={checkboxStories.Grouped} />
@@ -75,13 +76,3 @@ Read more about that topic in our [accessibility docs](/?path=/docs/46da78e8-e83
 </div>
 
 <Canvas of={checkboxStories.Inline} />
-
-### Validation
-
-To provide feedback to your users about the validation state of a checkbox,
-simply add a `.is-valid` or a `.is-invalid` classes to it.
-
-These classes control the display of corresponding feedback messages that should be placed under the input:
-`<p className="valid-feedback">...</p>` or `<p className="invalid-feedback">...</p>`.
-
-<Canvas of={checkboxStories.Validation} />
