@@ -4,43 +4,8 @@ node_modules
 # Stores password, don't check in
 .env
 
-# TODO: Remove before merge
-src/icons/**/*.svg
-!src/icons/post
-!src/icons/ui
-!src/icons/post/1000.svg
-!src/icons/post/2021.svg
-!src/icons/post/2022.svg
-!src/icons/post/2039.svg
-!src/icons/post/2043.svg
-!src/icons/post/2050.svg
-!src/icons/post/2051.svg
-!src/icons/post/2052.svg
-!src/icons/post/2063.svg
-!src/icons/post/2070.svg
-!src/icons/post/2104.svg
-!src/icons/post/2105.svg
-!src/icons/post/2106.svg
-!src/icons/post/2110.svg
-!src/icons/post/2112.svg
-!src/icons/post/2113.svg
-!src/icons/post/2127.svg
-!src/icons/post/2201.svg
-!src/icons/post/2396.svg
-!src/icons/post/2413.svg
-!src/icons/post/3020.svg
-!src/icons/post/3035.svg
-!src/icons/post/3039.svg
-!src/icons/ui/Accessibility_16.svg
-!src/icons/ui/Accessibility_24.svg
-!src/icons/ui/Accessibility_32.svg
-!src/icons/ui/Accessibility_40.svg
-!src/icons/ui/Accessibility_48.svg
-!src/icons/ui/Accessibility_64.svg
-
 # Ignore generated files
-# TODO: Add before merge
-# public/post-icons
+public/post-icons
 public/report.json
 
 icons-optimized
