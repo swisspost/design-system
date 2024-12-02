@@ -290,7 +290,6 @@ input.form-control {
     }
   }
 
-  // Duplicated because `:-webkit-autofill` invalidates other selectors when grouped
   > input.form-control:-webkit-autofill {
     padding-block-start: tokens.get('input-padding-block-start');
     padding-block-end: tokens.get('input-padding-block-end');
