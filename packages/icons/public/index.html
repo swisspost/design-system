@@ -18,37 +18,83 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Playground</h1>
+    <div x-data="dataRetriever()" x-init="getData()">
+      <div class="d-flex">
+        <h1>Playground</h1>
+        <template x-if="isLoading">
+          <div>Loading...</div>
+        </template>
+      </div>
 
-    <div class="d-flex">
-      <section x-data="TEST_ICONS">
-        <h2>Source Icons</h2>
+      <div class="filters">
+        <h2>Filters</h2>
+        <div class="btn-group">
+          <div class="form-check">
+            <input
+              id="filter-show-set-v1"
+              type="radio"
+              name="filter-show-set"
+              value="1"
+              x-model="filterShowSet"
+            />
+            <label for="filter-show-set-v1">v1</label>
+          </div>
+          <div class="form-check">
+            <input
+              id="filter-show-set-v2"
+              type="radio"
+              name="filter-show-set"
+              value="2"
+              x-model="filterShowSet"
+            />
+            <label for="filter-show-set-v2">v2</label>
+          </div>
+        </div>
+      </div>
 
-        <template x-for="icon in sourceIcons">
-          <div class="icon-variants">
-            <template x-for="size, i in sizes">
-              <div :class="`icon-${size}`" x-html="icon[i]"></div>
-            </template>
+      <section>
+        <template x-if="filterShowSet === '1'">
+          <div class="v1">
+            <h2>V1 Icons</h2>
+
+            <div class="d-flex">
+              <template x-for="name in v1IconNames">
+                <div class="icon-container">
+                  <div class="size-keeper">
+                    <div class="post-icon">
+                      <svg x-html="getIcon(name)"></svg>
+                    </div>
+                  </div>
+                  <h3 x-text="name">name</h3>
+                </div>
+              </template>
+            </div>
           </div>
         </template>
-      </section>
 
-      <section x-data="TEST_ICONS">
-        <h2>Sprite Icons</h2>
+        <template x-if="filterShowSet === '2'">
+          <div class="v2">
+            <h2>UI Icons</h2>
 
-        <template x-for="name in spriteIconNames">
-          <div class="size-keeper">
-            <div class="resize">
-              <div class="post-icon">
-                <svg x-html="getSpriteIcon(name)"></svg>
-              </div>
+            <div class="d-flex">
+              <template x-for="name in v2IconNames">
+                <div class="icon-container">
+                  <div class="size-keeper">
+                    <div class="resize">
+                      <div class="post-icon">
+                        <svg x-html="getIcon(name)"></svg>
+                      </div>
+                    </div>
+                  </div>
+                  <h3 x-text="name">name</h3>
+                </div>
+              </template>
             </div>
           </div>
         </template>
       </section>
     </div>
 
-    <script type="module" src="main.js"></script>
     <!--
       generated with https://www.srihash.org/
       call the url below to get the latest integrity:
@@ -60,5 +106,6 @@
       integrity="sha384-D0U8hqw9ySktLounY2q1PAWeijVsqewBtT2NhQp2pxSugkKfpRnovV2sSwJC+V5U"
       crossorigin="anonymous"
     ></script>
+    <script src="main.js"></script>
   </body>
 </html>
