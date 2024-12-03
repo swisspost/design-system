@@ -1,8 +1,14 @@
 @use '@swisspost/design-system-styles/components/accordion';
 @use '@swisspost/design-system-styles/mixins/accordion' as accordion-mx;
 
+@use '@swisspost/design-system-styles/mixins/color' as color-mx;
+@use '@swisspost/design-system-styles/functions/contrast';
+@use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/placeholders/color' as color-ph;
+
 :host {
   display: block;
+  color: red;
 }
 
 .accordion-button {
@@ -13,8 +19,14 @@
   }
 }
 
-post-accordion-item::part(accordion-item) {
-  @include accordion-mx.background-color;
+.accordion-item {
+  @include accordion-mx.background-color-host-context;
+}
+
+@supports not selector(:host-context(A)) {
+  .post-accordion-item::part(accordion-item) {
+    @include accordion-mx.background-color;
+  }
 }
 
 :host(:not(:first-of-type)) .accordion-item {
