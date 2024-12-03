@@ -1,5 +1,0 @@
-@use '@swisspost/design-system-styles/core' as post;
-
-ul.my-list {
-  @include post.list-unstyled();
-}
