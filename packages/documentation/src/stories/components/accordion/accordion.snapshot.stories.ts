@@ -17,19 +17,10 @@ export const Accordion: Story = {
     _args: HTMLPostAccordionElement,
     context: StoryContext<HTMLPostAccordionElement & HTMLPostCollapsibleElementEventMap>,
   ) => {
-    return html`
-      <div>
-        ${['bg-white', 'bg-dark'].map(
-          bg => html`
-            <div
-              class="${bg} d-flex flex-column gap-16 p-16 mt-16"
-              data-color-scheme=${bg === 'bg-white' ? 'light' : 'dark'}
-            >
-              ${meta.render?.({ ...context.args }, context)}
-            </div>
-          `,
-        )}
-      </div>
-    `;
+    return schemes(
+      () => html`
+        <div class="d-flex flex-column gap-16">${meta.render?.({ ...context.args }, context)}</div>
+      `,
+    );
   },
 };
