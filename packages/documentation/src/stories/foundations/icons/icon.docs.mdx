@@ -1,7 +1,9 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
 import * as IconStories from './icon.stories';
 import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
+import SampleMixin from './mixin.sample.scss?raw';
 import { Search } from './search/search-icons.blocks';
+import './icon.styles.scss';
 
 <Meta of={IconStories} />
 
@@ -14,19 +16,12 @@ import { Search } from './search/search-icons.blocks';
 </div>
 
 <div className="lead">
-  The official Swiss Post Icon Library for the web with over 800 high-quality scalable vector
-  graphics.
+  The official Swiss Post Icon Library with 900+ high-quality svg icons and the official Swiss Post UI Icons Library, exclusivley designed and provided for the web with 160+ icons and size-dependent level-of-detail.
 </div>
 
-<PostTabs>
-  <PostTabHeader panel="usage">Usage</PostTabHeader>
-  <PostTabPanel name="usage">
-    Our <code>&lt;post-icon&gt;</code> component renders SVGs, so it scales quickly and easily and can
-    be styled with CSS.
-
-    <Canvas sourceState="shown" of={IconStories.Default} />
-    <Controls of={IconStories.Default} />
-
+<PostTabs activePanel="search">
+  <PostTabHeader panel="installation">Installation</PostTabHeader>
+  <PostTabPanel name="installation">
     ## Installation
 
     ### Icon Component
@@ -38,8 +33,64 @@ import { Search } from './search/search-icons.blocks';
 
     The SVG files for icons should be hosted within your project.
     For guidelines on how to set this up, please refer to the [icon package documentation](/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs#usage).
+  </PostTabPanel>
 
-    ## Examples
+  <PostTabHeader panel="scss">Usage in CSS</PostTabHeader>
+  <PostTabPanel name="scss">
+    ## Usage in CSS
+
+    To define one of our icons in your own CSS, you need the `@swisspost/design-system-styles` package and use our `post-icon` mixin. The icons can have a different level-of-detail, dependant on how big they are rendered on the page.
+
+    Note: The used classes in the example below are only there for demonstration purposes.
+    
+    <Canvas of={IconStories.ScssMixin} sourceState="shown"/>
+
+    ### Mixin
+
+    <Source
+      language="scss"
+      dark
+      code={SampleMixin}
+    ></Source>
+
+    <table className="table">
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Description</td>
+          <td>Default</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>`$name`</td>
+          <td>The name of the icon which should be used.<br/>Find the name of your desired icon in one of the tabs above.</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>`$base`</td>
+          <td>The base URL, where to load the icon from. Keep this undefined to get the icons loaded from unpkg.com (NOT recommended) or specifiy a path to your self-hosted icons.</td>
+          <td>`https://unpkg.com/`</td>
+        </tr>
+        <tr>
+          <td>`$color`</td>
+          <td>The color in which the icon should be implemented.<br/>You can change that also by just overriding the `color` property on the icon selector.</td>
+          <td>`currentColor`</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </PostTabPanel>
+
+  <PostTabHeader panel="component">Usage as Web-Component</PostTabHeader>
+  <PostTabPanel name="component">
+    ## Usage as Web-Component
+
+    Our <code>&lt;post-icon&gt;</code> component renders SVGs, so it scales quickly and easily and can
+    be styled with CSS.
+
+    <Canvas sourceState="shown" of={IconStories.Default} />
+    <Controls of={IconStories.Default} />
 
     ### Color
 
@@ -102,9 +153,6 @@ import { Search } from './search/search-icons.blocks';
 
   <PostTabHeader panel="search">Find your Icon</PostTabHeader>
   <PostTabPanel name="search">
-    The icons are designed to work with the Swiss Post Design System components. They are SVGs, so they scale and can be styled with CSS.<br/>
-    Use the grid below to browse all available icons.
-
     <Search />
   </PostTabPanel>
 </PostTabs>
