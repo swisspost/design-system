@@ -46,6 +46,9 @@ importers:
       '@oddbird/popover-polyfill':
         specifier: 0.3.7
         version: 0.3.7
+      '@swisspost/design-system-icons':
+        specifier: workspace:9.0.0-next.6
+        version: link:../icons
       '@swisspost/design-system-styles':
         specifier: workspace:9.0.0-next.6
         version: link:../styles/dist
