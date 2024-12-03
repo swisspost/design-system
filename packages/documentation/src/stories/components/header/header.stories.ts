@@ -1,5 +1,4 @@
 import type { Args, StoryObj } from '@storybook/web-components';
-import { html } from 'lit/static-html.js';
 import { MetaComponent } from '@root/types';
 import HeaderMarkup from './components/header.markup';
 
@@ -24,7 +23,7 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: (_args: Args) => {
+  render: () => {
     return HeaderMarkup;
   },
 };
