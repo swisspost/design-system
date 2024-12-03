@@ -22,7 +22,7 @@ export const SearchInput: Story = {
     ];
 
     return schemes(
-      scheme => html`
+      () => html`
         <div class="d-flex flex-wrap align-items-start gap-16 p-16">
           ${argsOptions.map(
             args => html`
