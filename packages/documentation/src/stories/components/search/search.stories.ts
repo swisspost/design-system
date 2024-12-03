@@ -84,7 +84,11 @@ function render(args: Args, context: StoryContext) {
       <label class="form-label" for="${id}">Label</label>
       ${args.showDeleteButton
         ? html`
-            <button class="delete-button" aria-label="Clear search">
+            <button
+              class="delete-button"
+              aria-label="Clear search"
+              onclick="this.closest('.search-input').querySelector('input').value = ''"
+            >
               <post-icon name="2043"></post-icon>
             </button>
           `
