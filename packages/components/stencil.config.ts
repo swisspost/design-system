@@ -35,6 +35,14 @@ export const config: Config = {
           src: '../node_modules/@swisspost/design-system-styles/*.css',
           dest: 'assets/css',
         },
+        {
+          src: '../node_modules/@swisspost/design-system-styles/palettes/*.css',
+          dest: 'assets/css',
+        },
+        {
+          src: '../node_modules/@swisspost/design-system-icons/src/icons/post/*.svg',
+          dest: 'assets/icons',
+        },
       ],
       serviceWorker: null, // disable service workers,
     },
