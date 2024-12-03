@@ -135,8 +135,8 @@ export const SizesPercent: Story = {
 
 export const PxSizes: Story = {
   args: {
-    width: 'size-56',
-    height: 'size-80',
+    width: '100',
+    height: '80',
   },
   argTypes: {
     height: {

@@ -2,7 +2,7 @@
 
 @use './functions' as *;
 
-@use './variables/_sizing.scss' as *;
+@use '../variables/_sizing' as *;
 /*
   Utilities are generated with our utility API using bellow $utilities map.
 
@@ -22,77 +22,77 @@
   Our API is based on bootstrap utility API, more information is available here: https://getbootstrap.com/docs/5.3/utilities/api/
 */
 $utilities: (
-  'width': (
+  'width%': (
     responsive: true,
     property: width,
     class: w,
-    values: sizing.$post-percentage-sizes,
+    values: $post-percentage-sizes,
   ),
   'width': (
     responsive: false,
     property: width,
     class: w,
-    values: sizing.$post-px-sizes,
+    values: $post-px-sizes,
   ),
-  'height': (
+  'height%': (
     responsive: true,
     property: height,
     class: h,
-    values: sizing.$post-percentage-sizes,
+    values: $post-percentage-sizes,
   ),
   'height': (
-    responsive: true,
+    responsive: false,
     property: height,
     class: h,
-    values: sizing.$post-px-sizes,
+    values: $post-px-sizes,
   ),
-  'max-width': (
+  'max-width%': (
     responsive: true,
     property: max-width,
     class: max-w,
-    values: sizing.$post-percentage-sizes,
+    values: $post-percentage-sizes,
   ),
   'max-width': (
-    responsive: true,
+    responsive: false,
     property: max-width,
     class: max-w,
-    values: sizing.$post-px-sizes,
+    values: $post-px-sizes,
   ),
-  'max-height': (
+  'max-height%': (
     responsive: true,
     property: max-height,
     class: max-h,
-    values: sizing.$post-percentage-sizes,
+    values: $post-percentage-sizes,
   ),
   'max-height': (
-    responsive: true,
+    responsive: false,
     property: max-height,
     class: max-h,
-    values: sizing.$post-px-sizes,
+    values: $post-px-sizes,
   ),
-  'min-width': (
+  'min-width%': (
     responsive: true,
     property: min-width,
     class: min-w,
-    values: sizing.$post-percentage-sizes,
+    values: $post-percentage-sizes,
   ),
   'min-width': (
-    responsive: true,
+    responsive: false,
     property: min-width,
     class: min-w,
-    values: sizing.$post-px-sizes,
+    values: $post-px-sizes,
   ),
-  'min-height': (
+  'min-height%': (
     responsive: true,
     property: min-height,
     class: min-h,
-    values: sizing.$post-percentage-sizes,
+    values: $post-percentage-sizes,
   ),
   'min-height': (
-    responsive: true,
+    responsive: false,
     property: min-height,
     class: min-h,
-    values: sizing.$post-px-sizes,
+    values: $post-px-sizes,
   ),
   'viewport-width': (
     responsive: true,

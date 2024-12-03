@@ -7,7 +7,7 @@
   @each $key, $value in tokens.$post-percentage-sizes {
     pcsizes_#{$key}: #{$value};
   }
-  @each $key, $value in tokens.$post-sizing {
+  @each $key, $value in tokens.$post-px-sizes {
     pxsizes_#{$key}: #{$value};
   }
   @each $breakpoint in post.$grid-breakpoints-list {
