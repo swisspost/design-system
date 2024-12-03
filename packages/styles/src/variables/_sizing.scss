@@ -87,8 +87,8 @@ $post-px-sizes: map.merge(
 );
 
 // This variable affects the `.h-*` and `.w-*` classes.
-$sizes: () !default;
-$sizes: map.merge(
+$post-percentage-sizes: () !default;
+$post-percentage-sizes: map.merge(
   (
     'quarter': 25%,
     'third': 33%,
@@ -98,5 +98,5 @@ $sizes: map.merge(
     'full': 100%,
     auto: auto,
   ),
-  $sizes
+  $post-percentage-sizes
 );

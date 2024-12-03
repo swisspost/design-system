@@ -9,6 +9,19 @@ const sizes: any = parse(sizing);
 const percentageSizes = Object.keys(sizes.pcsizes);
 const pixelSizes = Object.keys(sizes.pxsizes);
 
+function camelToKebabCase(str: string) {
+  return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
+export const pcArgs = [
+  { name: 'height', category: 'Height', options: percentageSizes },
+  { name: 'width', category: 'Width', options: percentageSizes },
+  { name: 'maxHeight', category: 'Height', options: percentageSizes },
+  { name: 'maxWidth', category: 'Width', options: percentageSizes },
+  { name: 'minHeight', category: 'Height', options: percentageSizes },
+  { name: 'minWidth', category: 'Width', options: percentageSizes },
+];
+
 const meta: MetaExtended = {
   render: renderSizing,
   id: 'e728de1f-0d71-4317-8bb8-cbef0bf8d5db',
@@ -23,74 +36,6 @@ const meta: MetaExtended = {
     maxWidth: 'none',
     minHeight: 'none',
     minWidth: 'none',
-  },
-  argTypes: {
-    height: {
-      name: 'height',
-      description: 'Set the height of the rectangle',
-      control: {
-        type: 'select',
-      },
-      options: percentageSizes,
-      table: {
-        category: 'Height',
-      },
-    },
-    width: {
-      name: 'width',
-      description: 'Set the width of the rectangle',
-      control: {
-        type: 'select',
-      },
-      options: percentageSizes,
-      table: {
-        category: 'Width',
-      },
-    },
-    maxHeight: {
-      name: 'max-height',
-      description: 'Set the maximum height of the rectangle',
-      control: {
-        type: 'select',
-      },
-      options: ['none', ...percentageSizes.filter(value => value !== 'auto')],
-      table: {
-        category: 'Height',
-      },
-    },
-    maxWidth: {
-      name: 'max-width',
-      description: 'Set the maximum width of the rectangle',
-      control: {
-        type: 'select',
-      },
-      options: ['none', ...percentageSizes.filter(value => value !== 'auto')],
-      table: {
-        category: 'Width',
-      },
-    },
-    minHeight: {
-      name: 'min-height',
-      description: 'Set the minimum height of the rectangle',
-      control: {
-        type: 'select',
-      },
-      options: ['none', ...percentageSizes.filter(value => value !== 'auto')],
-      table: {
-        category: 'Height',
-      },
-    },
-    minWidth: {
-      name: 'min-width',
-      description: 'Set the minimum width of the rectangle',
-      control: {
-        type: 'select',
-      },
-      options: ['none', ...percentageSizes.filter(value => value !== 'auto')],
-      table: {
-        category: 'Width',
-      },
-    },
   },
   decorators: [
     (story: StoryFn, context: StoryContext) => {
@@ -131,79 +76,44 @@ export const SizesPercent: Story = {
     width: 'quarter',
     height: 'full',
   },
+  argTypes: Object.fromEntries(
+    pcArgs.map(arg => [
+      arg.name,
+      {
+        name: camelToKebabCase(arg.name),
+        description: `Set the ${camelToKebabCase(arg.name).toLowerCase()} of the rectangle`,
+        control: { type: 'select' },
+        options: arg.options,
+        table: { category: arg.category },
+      },
+    ]),
+  ),
 };
+
+const pxArgs = [
+  { name: 'height', category: 'Height', options: pixelSizes },
+  { name: 'width', category: 'Width', options: pixelSizes },
+  { name: 'maxHeight', category: 'Height', options: pixelSizes },
+  { name: 'maxWidth', category: 'Width', options: pixelSizes },
+  { name: 'minHeight', category: 'Height', options: pixelSizes },
+  { name: 'minWidth', category: 'Width', options: pixelSizes },
+];
 
 export const PxSizes: Story = {
   args: {
     width: '100',
     height: '80',
   },
-  argTypes: {
-    height: {
-      name: 'height',
-      description: 'Set the height of the rectangle',
-      control: {
-        type: 'select',
+  argTypes: Object.fromEntries(
+    pxArgs.map(arg => [
+      arg.name,
+      {
+        name: camelToKebabCase(arg.name),
+        description: `Set the ${camelToKebabCase(arg.name).toLowerCase()} of the rectangle`,
+        control: { type: 'select' },
+        options: arg.options,
+        table: { category: arg.category },
       },
-      options: pixelSizes,
-      table: {
-        category: 'Height',
-      },
-    },
-    width: {
-      name: 'width',
-      description: 'Set the width of the rectangle',
-      control: {
-        type: 'select',
-      },
-      options: pixelSizes,
-      table: {
-        category: 'Width',
-      },
-    },
-    maxHeight: {
-      name: 'max-height',
-      description: 'Set the maximum height of the rectangle',
-      control: {
-        type: 'select',
-      },
-      options: ['none', ...pixelSizes],
-      table: {
-        category: 'Height',
-      },
-    },
-    maxWidth: {
-      name: 'max-width',
-      description: 'Set the maximum width of the rectangle',
-      control: {
-        type: 'select',
-      },
-      options: ['none', ...pixelSizes],
-      table: {
-        category: 'Width',
-      },
-    },
-    minHeight: {
-      name: 'min-height',
-      description: 'Set the minimum height of the rectangle',
-      control: {
-        type: 'select',
-      },
-      options: ['none', ...pixelSizes],
-      table: {
-        category: 'Height',
-      },
-    },
-    minWidth: {
-      name: 'min-width',
-      description: 'Set the minimum width of the rectangle',
-      control: {
-        type: 'select',
-      },
-      options: ['none', ...pixelSizes],
-      table: {
-        category: 'Width',
-      },
-    },
-  },
+    ]),
+  ),
 };
