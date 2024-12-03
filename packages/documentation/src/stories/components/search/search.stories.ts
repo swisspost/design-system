@@ -101,14 +101,14 @@ function render(args: Args, context: StoryContext) {
               aria-label="Clear search"
               onclick="this.closest('.search-input').querySelector('input').value = ''"
             >
-              <post-icon name="2043"></post-icon>
+              <post-icon name="closex"></post-icon>
             </button>
           `
         : nothing}
       ${args.showSearchButton
         ? html`
             <button class="search-button" aria-label="Start search">
-              <post-icon name="2069"></post-icon>
+              <post-icon name="search"></post-icon>
             </button>
           `
         : nothing}
