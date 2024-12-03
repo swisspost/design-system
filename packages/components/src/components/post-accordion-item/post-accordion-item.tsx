@@ -71,7 +71,6 @@ export class PostAccordionItem {
   }
 
   private onSlotLogoChange() {
-    console.log('SLOT CHANGED');
     this.slottedLogo = this.host.querySelector('img[slot="logo"]');
   }
 
