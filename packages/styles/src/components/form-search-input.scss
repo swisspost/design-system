@@ -91,8 +91,7 @@ tokens.$default-map: components.$post-search-input;
   .delete-button {
     right: calc(
       tokens.get('input-sizing-icon', components.$post-text-input) +
-        tokens.get('input-search-filled-gap-icon') +
-        tokens.get('search-position-inline-end-icon')
+        tokens.get('input-search-filled-gap-icon') + tokens.get('search-position-inline-end-icon')
     );
     visibility: hidden;
     opacity: 0;
