@@ -128,8 +128,8 @@ function renderSizing(args: Args) {
 
 export const SizesPercent: Story = {
   args: {
-    width: '25',
-    height: '100',
+    width: 'quarter',
+    height: 'full',
   },
 };
 
