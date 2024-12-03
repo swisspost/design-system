@@ -1,40 +1,37 @@
-.breadcrumbs {
-  display: flex;
-  flex-wrap: nowrap; /* Prevent wrapping */
-  overflow: hidden; /* Hide overflow content */
-}
+@use 'sass:map';
+@use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/core' as post;
+
+tokens.$default-map: components.$post-breadcrumb;
 
 .breadcrumbs-list {
   display: flex;
-  flex-wrap: nowrap; /* Prevent wrapping */
+  flex-wrap: nowrap;
+  position: relative;
   margin: 0;
   padding: 0;
   list-style: none;
-}
 
-.breadcrumb-item {
-  white-space: nowrap; /* Prevent text from wrapping */
-  flex-shrink: 0; /* Prevent items from shrinking */
-}
+  & post-breadcrumb-item:last-of-type {
+  color: tokens.get('breadcrumb-selected-fg');
+  font-weight: tokens.get('breadcrumb-selected-font-weight');
 
-.breadcrumb-overflow {
-  position: relative;
-  white-space: nowrap;
-}
-
-.overflow-menu {
-  background: none;
-  border: none;
-  cursor: pointer;
+    & post-icon {
+      color: tokens.get('breadcrumb-selected-fg');
+    }
+  }
 }
 
 /* Add this to post-breadcrumb.scss */
 .dropdown-menu {
-  display: block;
   position: absolute;
+  display: block;
   background-color: white;
   border: 1px solid #ccc;
-  padding: 10px;
+  top: 100%;
   z-index: 100;
 }
 
@@ -56,4 +53,19 @@
   padding: 0;
   display: inline-flex;
   align-items: center;
+}
+
+.breadcrumb-link {
+  post-icon {
+    color: tokens.get('breadcrumb-enabled-fg');
+
+    &:hover {
+      color: tokens.get('breadcrumb-hover-fg');
+    }
+    @include utilities.focus-style;
+  }
+}
+
+.visually-hidden {
+  @include post.visually-hidden();
 }

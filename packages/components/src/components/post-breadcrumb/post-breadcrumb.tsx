@@ -49,7 +49,7 @@ export class PostBreadcrumb {
     if (this.breadcrumbNavRef) {
       const visibleWidth = this.breadcrumbNavRef.clientWidth;
       const totalWidth = this.breadcrumbItems.reduce((accum, item) => {
-        const itemWidth = item.text.length * 10; // Approximate width of each breadcrumb item
+        const itemWidth = item.text.length * 12; // Approximate width of each breadcrumb item
         return accum + itemWidth;
       }, 0);
 
@@ -62,7 +62,6 @@ export class PostBreadcrumb {
   };
 
   render() {
-    // Separate visible breadcrumb items and menu items (excluding last item)
     const visibleItems = this.breadcrumbItems.slice(0, -1);
 
     return (
@@ -70,18 +69,16 @@ export class PostBreadcrumb {
         <nav aria-label="Breadcrumb" class="breadcrumbs-nav" ref={(el) => (this.breadcrumbNavRef = el)}>
           <ol class="no-list breadcrumbs-list">
             {/* Home Breadcrumb */}
-            <li class="home-icon">
+            <li>
               <a href={this.homeUrl} class="breadcrumb-link">
                 <span class="visually-hidden">{this.homeText}</span>
-                <svg class="home-icon-svg" viewBox="0 0 24 24">
-                  <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-                </svg>
+                <post-icon name="2035"/>
               </a>
             </li>
 
             {/* Check if items should be concatenated */}
             {this.isConcatenated ? (
-              <li>
+              <post-breadcrumb-item class="button">
                 <button class="dropdown-btn" onClick={this.toggleDropdown}>
                   ...
                 </button>
@@ -90,30 +87,28 @@ export class PostBreadcrumb {
                 {this.isDropdownVisible && (
                   <div class="dropdown-menu">
                     {visibleItems.map((item, index) => (
-                      <a key={index} href={item.url} class="breadcrumb-link">
-                        {item.text}
-                      </a>
+                      <post-breadcrumb-item url={item.url} key={index}>
+                        <a href={item.url} class="breadcrumb-link">
+                          {item.text}
+                        </a>
+                      </post-breadcrumb-item>
                     ))}
                   </div>
                 )}
-              </li>
+              </post-breadcrumb-item>
             ) : (
               visibleItems.map((item, index) => (
-                <li key={index}>
-                  <a href={item.url} class="breadcrumb-link">
+                <post-breadcrumb-item url={item.url} key={index}>
                     {item.text}
-                  </a>
-                </li>
+                </post-breadcrumb-item>
               ))
             )}
 
             {/* Always show the last breadcrumb item */}
             {this.lastItem && (
-              <li>
-                <a href={this.lastItem.url} class="breadcrumb-link">
+              <post-breadcrumb-item url={this.lastItem.url}>
                   {this.lastItem.text}
-                </a>
-              </li>
+              </post-breadcrumb-item>
             )}
           </ol>
         </nav>
