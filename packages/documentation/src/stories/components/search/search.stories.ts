@@ -17,6 +17,8 @@ const meta: MetaComponent = {
   args: {
     placeholder: 'Search...',
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
+    showDeleteButton: true, // Default to showing delete button
+    showSearchButton: true, // Default to showing search button
   },
   argTypes: {
     placeholder: {
@@ -31,12 +33,32 @@ const meta: MetaComponent = {
     },
     hint: {
       name: 'Helper text',
-      description: 'Text to place in the help text area of the component..',
+      description: 'Text to place in the help text area of the component.',
       control: {
         type: 'text',
       },
       table: {
         category: 'General',
+      },
+    },
+    showDeleteButton: {
+      name: 'Show Delete Button',
+      description: 'Toggles the visibility of the delete button.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Controls',
+      },
+    },
+    showSearchButton: {
+      name: 'Show Search Button',
+      description: 'Toggles the visibility of the search button.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Controls',
       },
     },
   },
@@ -60,14 +82,22 @@ function render(args: Args, context: StoryContext) {
         aria-describedby="${args.hint ? hintId : nothing}"
       />
       <label class="form-label" for="${id}">Label</label>
-      <button class="delete-button" aria-label="Clear search">
-        <post-icon name="2043"></post-icon>
-      </button>
-      <button class="search-button" aria-label="Start search">
-        <post-icon name="2069"></post-icon>
-      </button>
-      </div>
-      <p class="form-hint" id="${hintId}">${args.hint}</p>
+      ${args.showDeleteButton
+        ? html`
+            <button class="delete-button" aria-label="Clear search">
+              <post-icon name="2043"></post-icon>
+            </button>
+          `
+        : nothing}
+      ${args.showSearchButton
+        ? html`
+            <button class="search-button" aria-label="Start search">
+              <post-icon name="2069"></post-icon>
+            </button>
+          `
+        : nothing}
+    </div>
+    <p class="form-hint" id="${hintId}">${args.hint}</p>
   `;
 }
 
@@ -77,5 +107,12 @@ export const WithPlaceholder: Story = {
   args: {
     placeholder: 'Type to search...',
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
+  },
+};
+
+export const NoButtons: Story = {
+  args: {
+    showDeleteButton: false,
+    showSearchButton: false,
   },
 };
