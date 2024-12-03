@@ -87,14 +87,14 @@ export class PostAccordionItem {
           <post-collapsible-trigger for={`${this.id}--collapse`}>
             <HeadingTag class="accordion-header" id={`${this.id}--header`}>
               <button type="button" class={`accordion-button${this.collapsed ? ' collapsed' : ''}`}>
-                <div
+                <span
                   class={{
                     'logo-container': true,
                     'has-image': !!this.slottedLogo,
                   }}
                 >
                   <slot name="logo" onSlotchange={this.onSlotLogoChange.bind(this)}></slot>
-                </div>
+                </span>
                 <slot name="header" />
                 <post-icon name="2051"></post-icon>
               </button>
