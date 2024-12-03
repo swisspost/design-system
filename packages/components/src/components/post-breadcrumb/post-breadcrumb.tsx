@@ -1,4 +1,5 @@
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { version } from '@root/package.json';
 
 @Component({
   tag: 'post-breadcrumb',
@@ -24,12 +25,13 @@ export class PostBreadcrumb {
         clearInterval(interval);
         this.checkConcatenation();
       }
-    }, 50); // Check every 50ms
+    }, 50);
   }
+
   componentDidLoad() {
     this.updateBreadcrumbItems();
     window.addEventListener('resize', this.handleResize);
-    this.waitForBreadcrumbRef(); // Fallback to ensure ref readiness
+    this.waitForBreadcrumbRef();
   }  
 
   disconnectedCallback() {
@@ -82,7 +84,7 @@ export class PostBreadcrumb {
     const visibleItems = this.breadcrumbItems.slice(0, -1);
 
     return (
-      <Host>
+      <Host data-version={version}>
         <nav aria-label="Breadcrumb" class="breadcrumbs-nav" ref={(el) => (this.breadcrumbNavRef = el)}>
           <ol class="no-list breadcrumbs-list">
             {/* Home Breadcrumb */}
@@ -96,15 +98,16 @@ export class PostBreadcrumb {
             {/* Check if items should be concatenated */}
             {this.isConcatenated ? (
               <h>
+                <post-icon name="2111" class="breadcrumb-item-icon" />
                 <post-menu-trigger for="breadcrumb-menu">
                   <button class="btn btn-primary">...</button>
                 </post-menu-trigger>
                 <post-menu id="breadcrumb-menu">
                   {visibleItems.map((item, index) => (
                     <post-menu-item key={index}>
-                      <a href={item.url} class="breadcrumb-link">
-                        {item.text}
-                      </a>
+                      <post-breadcrumb-item url={item.url} key={index}>
+                    {item.text}
+                  </post-breadcrumb-item>
                     </post-menu-item>
                   ))}
                 </post-menu>
