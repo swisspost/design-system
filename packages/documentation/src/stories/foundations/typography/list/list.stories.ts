@@ -54,9 +54,9 @@ export const UnstyledList: Story = {
 export const InlineList: Story = {
   render: () => html`
     <ul class="list-inline">
-      <li class="list-inline-item">This is an inline list item.</li>
-      <li class="list-inline-item">And another one.</li>
-      <li class="list-inline-item">And one more.</li>
+      <li>This is an inline list item.</li>
+      <li>And another one.</li>
+      <li>And one more.</li>
     </ul>
   `,
 };
