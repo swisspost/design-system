@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-styles': minor
+'@swisspost/design-system-styles': patch
 ---
 
-Updated ´post-accordion´ styles with Design Tokens.
+Updated the ´post-accordion´ styles to match the new Post design.
