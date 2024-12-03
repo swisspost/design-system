@@ -7,6 +7,11 @@
 
 tokens.$default-map: components.$post-breadcrumb;
 
+:host {
+  display: inline-flex;
+  align-items: center;
+}
+
 .breadcrumbs-list {
   display: flex;
   flex-wrap: nowrap;
@@ -14,6 +19,16 @@ tokens.$default-map: components.$post-breadcrumb;
   margin: 0;
   padding: 0;
   list-style: none;
+  align-items: center;
+  height: 100%;
+
+  & li {
+    height: 100%;
+    & a {
+      display: block;
+      height: 100%;
+    }
+  }
 
   & post-breadcrumb-item:last-of-type {
   color: tokens.get('breadcrumb-selected-fg');
@@ -23,16 +38,33 @@ tokens.$default-map: components.$post-breadcrumb;
       color: tokens.get('breadcrumb-selected-fg');
     }
   }
-}
 
+  .home-icon {
+    display: inline-block;
+    height: tokens.get('breadcrum-icon-size');
+    width: tokens.get('breadcrum-icon-size');
+    color: tokens.get('breadcrumb-enabled-fg');
+
+    &:hover {
+      color: tokens.get('breadcrumb-hover-fg');
+    }
+    @include utilities.focus-style;
+  }
+}
 /* Add this to post-breadcrumb.scss */
-.dropdown-menu {
-  position: absolute;
-  display: block;
+dropdown-menu {
   background-color: white;
   border: 1px solid #ccc;
-  top: 100%;
-  z-index: 100;
+}
+
+.breadcrumbs-nav {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-item-icon {
+  height: tokens.get('breadcrum-icon-size');
+  width: tokens.get('breadcrum-icon-size');
 }
 
 .dropdown-menu a {
@@ -45,25 +77,15 @@ tokens.$default-map: components.$post-breadcrumb;
   background-color: #f0f0f0;
 }
 
-.dropdown-btn {
+post-menu-trigger button {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 16px;
+  height: 100%;
   padding: 0;
+  line-height: 150%;
   display: inline-flex;
   align-items: center;
-}
-
-.breadcrumb-link {
-  post-icon {
-    color: tokens.get('breadcrumb-enabled-fg');
-
-    &:hover {
-      color: tokens.get('breadcrumb-hover-fg');
-    }
-    @include utilities.focus-style;
-  }
 }
 
 .visually-hidden {
