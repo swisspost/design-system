@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const gulp = require('gulp');
-const sass = require('sass');
+const sass = require('sass-embedded');
 const newer = require('gulp-newer');
 const gulpSass = require('gulp-sass')(sass);
 const sourcemaps = require('gulp-sourcemaps');
@@ -27,7 +27,7 @@ gulp.task('copy', () => {
  * See https://github.com/pnpm/pnpm/issues/8338 for more information and reproduction
  */
 gulp.task('temporarily-copy-token-files', () => {
-  return gulp.src(['../tokens/dist/*.scss']).pipe(gulp.dest('./src/tokens/temp'));
+  return gulp.src(['../tokens/dist/**/*.scss']).pipe(gulp.dest('./src/tokens/temp'));
 });
 
 /**
@@ -49,7 +49,7 @@ gulp.task('autoprefixer', function () {
  */
 gulp.task('map-icons', done => {
   const iconVariables = globSync(
-    'node_modules/@swisspost/design-system-icons/public/post-icons/*.svg',
+    'node_modules/@swisspost/design-system-icons/src/icons/post/*.svg',
   ).reduce((entries, iconPath) => {
     const iconName = path.basename(iconPath, '.svg');
 

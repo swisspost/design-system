@@ -1,0 +1,134 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import {
+  PostBanner,
+  PostTabHeader,
+  PostTabPanel,
+  PostTabs,
+} from '@swisspost/design-system-components-react';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import * as BannerStories from './standard-html/banner.stories';
+import * as PostBannerStories from './web-component/post-banner.stories';
+import BannerDismissSample from './web-component/banner-dismiss.sample?raw';
+
+<Meta of={BannerStories} />
+
+<div className="docs-title">
+  # Banner
+
+  <nav>
+    <link-design of={JSON.stringify(BannerStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  A banner shows general notifications for a product or system, not a specific task and should
+  therefore not require the user to take immediate action. Banners can persist across multiple
+  sessions.
+</div>
+
+Banners are intended to attract the user's attention without interrupting their ongoing task.
+
+<PostBanner type="info">
+  <p slot="heading">There are various methods to integrate this component into your project.</p>
+  <p>
+    We advise opting for the "Standard HTML" approach for banners that remain static on the page and
+    using the "Web Component" method for dismissible banners.
+  </p>
+</PostBanner>
+
+<PostTabs>
+    <PostTabHeader panel="standardHTML">Standard HTML</PostTabHeader>
+    <PostTabPanel name="standardHTML">
+      <Canvas sourceState="shown" of={BannerStories.Default} />
+
+      <div className="hide-col-default">
+        <Controls of={BannerStories.Default} />
+      </div>
+
+      <StylesPackageImport components={["banner"]} />
+
+      ## Examples
+
+      ### Dialog
+
+      Banners can be used as a dialog that opens on top of the current page.
+
+      <Canvas of={BannerStories.Dialog} />
+
+      ### Contents
+
+      Banners can contain various HTML elements like headings, paragraphs, lists and dividers.
+
+      <Canvas of={BannerStories.AdditionalContent} />
+
+      ### Custom Icon
+
+      Banners come with a preassigned icon based on their type.
+      You have the option to customize this icon by using a `post-icon` element inside the banner.
+      For more information, read the [getting started with icons guide](/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs).
+
+      <Canvas of={BannerStories.CustomIcon} />
+
+      If you prefer not to display any icon, you can add the `.no-icon` class to the banner.
+
+      <Canvas of={BannerStories.NoIcon} />
+
+      ### Action Buttons
+
+      To include action buttons within a banner, apply the `.banner-action` class to the banner element,
+      enclose the banner's content within a `.banner-content` container, and place the action buttons within a `.banner-buttons` wrapper.
+
+      <Canvas of={BannerStories.ActionButtons} />
+    </PostTabPanel>
+
+    <PostTabHeader panel="webComponent">Web Component</PostTabHeader>
+    <PostTabPanel name="webComponent">
+      <Canvas sourceState="shown" of={PostBannerStories.Default} />
+
+      <Controls of={PostBannerStories.Default} />
+
+      ## Installation
+
+      The `<post-banner>` element is part of the `@swisspost/design-system-components` package.
+      For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
+
+      ## Examples
+
+      ### Contents
+
+      Banners can contain various HTML elements like paragraphs, lists, icons and dividers.
+
+      By default all children of the `<post-banner>` are placed in the body.
+      Use the `heading` slot to place a child in the heading, and the `actions` slot for action buttons.
+      Learn more about <a rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_templates_and_slots#adding_flexibility_with_slots">slots in the mdn web docs</a>.
+
+      <Canvas of={PostBannerStories.Contents} />
+
+      ### Custom Icon
+
+      Banners come with a preassigned icon based on their type.
+      You have the option to customize this icon by assigning the desired icon's name to the `icon` property of the banner.
+      Find the icon you need with the [icon search page](/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs).
+
+      <Canvas of={PostBannerStories.CustomIcon} />
+
+      If you prefer not to display any icon, you can set the `icon` property to `none`.
+
+      <Canvas of={PostBannerStories.NoIcon} />
+
+      ### Dismissal
+
+      The `dismissible` property can be set to enable users to dismiss the banner.
+      When present, it specifies that the banner should contain a dismiss button,
+      and you must provide a label for this button using the `dismiss-label` property.
+      Although the label remains hidden from view, it is essential for ensuring accessibility for users of assistive technologies.
+
+      <Canvas of={PostBannerStories.Dismissible} />
+
+      Alternatively, you can use any button, including action buttons within the banner, as a trigger for dismissing the banner using the `.dismiss()` method.
+      This method operates asynchronously and returns a promise that resolves once the fade-out animation has finished.
+
+      <Source code={BannerDismissSample} language="typescript"/>
+    </PostTabPanel>
+
+</PostTabs>

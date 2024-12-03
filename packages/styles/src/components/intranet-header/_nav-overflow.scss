@@ -7,7 +7,7 @@
 
 .top-navigation {
   .nav-item#more {
-    @include media-breakpoint-down(rg) {
+    @include media-breakpoint-down(sm) {
       > span {
         display: none !important;
       }
@@ -52,7 +52,7 @@
       }
     }
 
-    @include media-breakpoint-down(rg) {
+    @include media-breakpoint-down(sm) {
       display: list-item !important;
       width: auto !important;
       transform: none !important;

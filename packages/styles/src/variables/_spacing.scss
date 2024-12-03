@@ -77,7 +77,6 @@ $size-curve-giant: (
   'md': $size-giant,
   'lg': $size-giant,
   'xl': $size-giant,
-  'xxl': $size-giant,
 ) !default;
 
 // Abstand standard
@@ -88,7 +87,6 @@ $size-curve-huge: (
   'md': $size-bigger-big,
   'lg': $size-bigger-big,
   'xl': $size-huge,
-  'xxl': $size-huge,
 ) !default;
 
 // Abstand Section halb
@@ -99,7 +97,6 @@ $size-curve-bigger-big: (
   'md': $size-small-huge,
   'lg': $size-small-huge,
   'xl': $size-small-huge,
-  'xxl': $size-small-huge,
 ) !default;
 
 // Abstand Breadcrumb, Stepper
@@ -110,7 +107,6 @@ $size-curve-big: (
   'md': $size-big,
   'lg': $size-big,
   'xl': $size-bigger-big,
-  'xxl': $size-bigger-big,
 ) !default;
 
 // H2
@@ -121,7 +117,6 @@ $size-curve-large: (
   'md': $size-small-large,
   'lg': $size-small-large,
   'xl': $size-big,
-  'xxl': $size-big,
 ) !default;
 
 // Button
@@ -132,7 +127,6 @@ $size-curve-regular: (
   'md': $size-large,
   'lg': $size-large,
   'xl': $size-large,
-  'xxl': $size-large,
 ) !default;
 
 // Teaser
@@ -143,7 +137,6 @@ $size-curve-small: (
   'md': $size-regular,
   'lg': $size-regular,
   'xl': $size-regular,
-  'xxl': $size-regular,
 ) !default;
 
 // Eingabefelder, p, h3, h4
@@ -154,7 +147,6 @@ $size-curve-tiny: (
   'md': $size-regular,
   'lg': $size-regular,
   'xl': $size-regular,
-  'xxl': $size-regular,
 ) !default;
 
 // List of all adaptive size curves

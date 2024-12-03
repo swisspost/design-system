@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { IconButton, WithTooltip } from '@storybook/components';
 
-const THEMES = ['Post'] as const;
+const THEMES = ['Post', 'Cargo'] as const;
 const CHANNELS = ['External', 'Internal'] as const;
 const SCHEMES = ['Light', 'Dark'] as const;
 
@@ -14,18 +14,6 @@ const getStylesheetUrl = (theme: string, channel: string) => {
 const possibleStylesheets = THEMES.flatMap(theme => {
   return CHANNELS.map(channel => getStylesheetUrl(theme, channel));
 });
-
-/*
- * Backgrounds
- */
-const backgroundClasses: { [key in (typeof SCHEMES)[number]]: string } = {
-  Light: 'bg-white',
-  Dark: 'bg-dark',
-};
-const getBackgroundClass = (scheme: string) => {
-  return scheme in backgroundClasses ? backgroundClasses[scheme] : '';
-};
-const possibleBackgrounds = SCHEMES.map(scheme => getBackgroundClass(scheme));
 
 /*
  * Local storage access
@@ -113,9 +101,8 @@ function StylesSwitcher() {
     if (!stories) return;
 
     stories.forEach(story => {
-      story.classList.remove(...possibleBackgrounds);
-      story.classList.add(getBackgroundClass(currentScheme));
       story.setAttribute('data-color-scheme', currentScheme.toLowerCase());
+      if (!story.classList.contains('palette-default')) story.classList.add('palette-default');
     });
   }, [stories, currentScheme]);
 
