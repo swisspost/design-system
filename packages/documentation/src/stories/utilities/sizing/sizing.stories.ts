@@ -5,22 +5,13 @@ import { parse } from '@/utils/sass-export';
 import { MetaExtended } from '@root/types';
 import './sizing.styles.scss';
 
-const sizes: any = parse(sizing);
+const sizes: Record<string, string> = parse(sizing);
 const percentageSizes = Object.keys(sizes.pcsizes);
 const pixelSizes = Object.keys(sizes.pxsizes);
 
 function camelToKebabCase(str: string) {
   return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 }
-
-export const pcArgs = [
-  { name: 'height', category: 'Height', options: percentageSizes },
-  { name: 'width', category: 'Width', options: percentageSizes },
-  { name: 'maxHeight', category: 'Height', options: percentageSizes },
-  { name: 'maxWidth', category: 'Width', options: percentageSizes },
-  { name: 'minHeight', category: 'Height', options: percentageSizes },
-  { name: 'minWidth', category: 'Width', options: percentageSizes },
-];
 
 const meta: MetaExtended = {
   render: renderSizing,
@@ -70,6 +61,15 @@ function renderSizing(args: Args) {
 
   return html`<div class="${classNames}"></div>`;
 }
+
+const pcArgs = [
+  { name: 'height', category: 'Height', options: percentageSizes },
+  { name: 'width', category: 'Width', options: percentageSizes },
+  { name: 'maxHeight', category: 'Height', options: percentageSizes },
+  { name: 'maxWidth', category: 'Width', options: percentageSizes },
+  { name: 'minHeight', category: 'Height', options: percentageSizes },
+  { name: 'minWidth', category: 'Width', options: percentageSizes },
+];
 
 export const SizesPercent: Story = {
   args: {

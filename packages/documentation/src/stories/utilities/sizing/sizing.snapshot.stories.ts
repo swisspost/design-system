@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/web-components';
+import type { StoryObj, StoryFn, StoryContext } from '@storybook/web-components';
 import { html } from 'lit';
 import './sizing.styles.scss';
 import meta from './sizing.stories';
@@ -13,7 +13,14 @@ export default {
 type Story = StoryObj;
 
 export const PercentageSizing: Story = {
-  decorators: [(StoryFn: any) => html`<div class="sizing-example snapshot">${StoryFn()}</div>`],
+  decorators: [
+    (story: StoryFn, context: StoryContext) => {
+      const storyTemplate = html`<div class="sizing-example snapshot">
+        ${story(context.args, context)}
+      </div>`;
+      return storyTemplate;
+    },
+  ],
   args: {
     width: 'full',
     height: 'full',
