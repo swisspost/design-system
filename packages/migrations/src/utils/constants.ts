@@ -2,7 +2,6 @@ export const breakpoints = [ 'xs', 'sm', 'rg', 'md', 'lg', 'xl', 'xxl' ];
 
 const bootstrapSizes = [ '0', '1', '2', '3', '4', '5', 'auto' ];
 
-
 const postSizes = [
   'hair',
   'line',
