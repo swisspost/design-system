@@ -1,8 +1,26 @@
 import type { Args, StoryObj, StoryFn, StoryContext } from '@storybook/web-components';
 import { html } from 'lit';
-import './sizing.styles.scss';
+import sizing from './sizing.module.scss';
+import { parse } from '@/utils/sass-export';
 import { MetaExtended } from '@root/types';
-export const SizeOptionsPercent = ['auto', '0', '25', '50', '75', '100'];
+import './sizing.styles.scss';
+
+const sizes: any = parse(sizing);
+const percentageSizes = Object.keys(sizes.pcsizes);
+const pixelSizes = Object.keys(sizes.pxsizes);
+
+function camelToKebabCase(str: string) {
+  return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
+export const pcArgs = [
+  { name: 'height', category: 'Height', options: percentageSizes },
+  { name: 'width', category: 'Width', options: percentageSizes },
+  { name: 'maxHeight', category: 'Height', options: percentageSizes },
+  { name: 'maxWidth', category: 'Width', options: percentageSizes },
+  { name: 'minHeight', category: 'Height', options: percentageSizes },
+  { name: 'minWidth', category: 'Width', options: percentageSizes },
+];
 
 const meta: MetaExtended = {
   render: renderSizing,
@@ -18,74 +36,6 @@ const meta: MetaExtended = {
     maxWidth: 'none',
     minHeight: 'none',
     minWidth: 'none',
-  },
-  argTypes: {
-    height: {
-      name: 'height',
-      description: 'Set the height of the rectangle',
-      control: {
-        type: 'select',
-      },
-      options: SizeOptionsPercent,
-      table: {
-        category: 'Height',
-      },
-    },
-    width: {
-      name: 'width',
-      description: 'Set the width of the rectangle',
-      control: {
-        type: 'select',
-      },
-      options: SizeOptionsPercent,
-      table: {
-        category: 'Width',
-      },
-    },
-    maxHeight: {
-      name: 'max-height',
-      description: 'Set the maximum height of the rectangle',
-      control: {
-        type: 'select',
-      },
-      options: ['none', ...SizeOptionsPercent.filter(value => value !== 'auto')],
-      table: {
-        category: 'Height',
-      },
-    },
-    maxWidth: {
-      name: 'max-width',
-      description: 'Set the maximum width of the rectangle',
-      control: {
-        type: 'select',
-      },
-      options: ['none', ...SizeOptionsPercent.filter(value => value !== 'auto')],
-      table: {
-        category: 'Width',
-      },
-    },
-    minHeight: {
-      name: 'min-height',
-      description: 'Set the minimum height of the rectangle',
-      control: {
-        type: 'select',
-      },
-      options: ['none', ...SizeOptionsPercent.filter(value => value !== 'auto')],
-      table: {
-        category: 'Height',
-      },
-    },
-    minWidth: {
-      name: 'min-width',
-      description: 'Set the minimum width of the rectangle',
-      control: {
-        type: 'select',
-      },
-      options: ['none', ...SizeOptionsPercent.filter(value => value !== 'auto')],
-      table: {
-        category: 'Width',
-      },
-    },
   },
   decorators: [
     (story: StoryFn, context: StoryContext) => {
@@ -123,7 +73,47 @@ function renderSizing(args: Args) {
 
 export const SizesPercent: Story = {
   args: {
-    width: '25',
-    height: '100',
+    width: 'quarter',
+    height: 'full',
   },
+  argTypes: Object.fromEntries(
+    pcArgs.map(arg => [
+      arg.name,
+      {
+        name: camelToKebabCase(arg.name),
+        description: `Set the ${camelToKebabCase(arg.name).toLowerCase()} of the rectangle`,
+        control: { type: 'select' },
+        options: arg.options,
+        table: { category: arg.category },
+      },
+    ]),
+  ),
+};
+
+const pxArgs = [
+  { name: 'height', category: 'Height', options: pixelSizes },
+  { name: 'width', category: 'Width', options: pixelSizes },
+  { name: 'maxHeight', category: 'Height', options: pixelSizes },
+  { name: 'maxWidth', category: 'Width', options: pixelSizes },
+  { name: 'minHeight', category: 'Height', options: pixelSizes },
+  { name: 'minWidth', category: 'Width', options: pixelSizes },
+];
+
+export const PxSizes: Story = {
+  args: {
+    width: '100',
+    height: '80',
+  },
+  argTypes: Object.fromEntries(
+    pxArgs.map(arg => [
+      arg.name,
+      {
+        name: camelToKebabCase(arg.name),
+        description: `Set the ${camelToKebabCase(arg.name).toLowerCase()} of the rectangle`,
+        control: { type: 'select' },
+        options: arg.options,
+        table: { category: arg.category },
+      },
+    ]),
+  ),
 };

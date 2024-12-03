@@ -14,7 +14,7 @@
 
   .content {
     background-color: post.$white;
-    border: 1px solid post.$gray-40;
+    border: 1px solid post.$gray-40 !important;
   }
 
   .info {

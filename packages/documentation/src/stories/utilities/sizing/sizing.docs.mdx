@@ -17,7 +17,7 @@ import * as SizingStories from './sizing.stories';
 
 ### Parent Based
 
-The design system offers sizing classes with the suffixes bellow. They allow you to set a height / width as a percentage of the parent element.
+The design system offers classes for percentage bases sizing with the suffixes bellow. They allow you to set a height / width as a percentage of the parent element.
 
 > - `*-auto`
 > - `*-quarter`
@@ -32,6 +32,19 @@ The design system offers sizing classes with the suffixes bellow. They allow you
 <Canvas sourceState="shown" of={SizingStories.SizesPercent} />
 <div className="hide-col-default">
   <Controls of={SizingStories.SizesPercent} />
+</div>
+
+### Pixel Based
+
+Additional pixel-based sizing classes allow precise height `h-{size}` and width `w-{size}` definitions in pixels (e.g., `w-12` for 12px width and `h-26` for 26px height).
+
+See all available sizes in the example bellow.
+
+### Example
+
+<Canvas sourceState="shown" of={SizingStories.PxSizes} />
+<div className="hide-col-default">
+  <Controls of={SizingStories.PxSizes} />
 </div>
 
 ### Relative to breakpoints
