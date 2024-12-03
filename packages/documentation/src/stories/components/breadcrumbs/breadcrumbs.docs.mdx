@@ -1,0 +1,33 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as BreadcrumbsStories from './breadcrumbs.stories';
+
+<Meta of={BreadcrumbsStories} />
+
+<div className="docs-title">
+  # Breadcrumbs
+
+  <nav>
+    <link-design of={JSON.stringify(BreadcrumbsStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">Indicate the current page’s location within the navigational hierarchy.</div>
+
+<div className="banner banner-info mt-24 mb-36">
+  <p className="banner-heading">Currently, the breadcrumbs may only be used in addition to the internet-header.</p>
+  <p>For more information, read the <a href="/?path=/docs/cfa21cbc-5f8d-4a42-8165-7f6ed20bf133--docs">documentation about the internet header package</a>.</p>
+</div>
+
+The breadcrumbs element usually needs to be placed in a container, so it only spans the width of the content.
+
+<Canvas sourceState="shown" of={BreadcrumbsStories.Default} />
+
+<Controls of={BreadcrumbsStories.Default} />
+
+## Examples
+
+### Breadcrumbs with custom items
+
+Use the `custom-items` property when you need to add your own breadcrumb items.
+
+<Canvas sourceState='shown' of={BreadcrumbsStories.CustomItems} />
