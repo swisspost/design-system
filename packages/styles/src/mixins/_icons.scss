@@ -14,6 +14,20 @@
   forced-color-adjust: preserve-parent-color;
 }
 
+@mixin post-icon(
+  $base: 'https://unpkg.com/@swisspost/design-system-icons/public/post-icons',
+  $name: '',
+  $color: currentColor
+) {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  background-color: currentColor;
+  color: $color;
+  mask-image: url('#{$base}/#{$name}.svg');
+}
+
 @mixin remove-icon() {
   mask-image: none;
 }
