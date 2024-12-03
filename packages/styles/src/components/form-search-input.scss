@@ -33,20 +33,20 @@ tokens.$default-map: components.$post-search-input;
 
     &:not(:placeholder-shown) {
       padding-right: tokens.get('input-search-filled-padding-inline-end');
+
+      ~ .form-label {
+        padding-right: tokens.get('input-search-label-filled-padding-inline-end');
+      }
+
+      ~ .delete-button {
+        visibility: visible;
+        opacity: 1;
+      }
     }
 
-    & ~ .form-label {
+    ~ .form-label {
       z-index: 0;
       padding-right: tokens.get('input-search-label-empty-padding-inline-end');
-    }
-
-    &:not(:placeholder-shown) ~ .form-label {
-      padding-right: tokens.get('input-search-label-filled-padding-inline-end');
-    }
-
-    &:not(:placeholder-shown) ~ .delete-button {
-      visibility: visible;
-      opacity: 1;
     }
   }
 
@@ -91,7 +91,8 @@ tokens.$default-map: components.$post-search-input;
   .delete-button {
     right: calc(
       tokens.get('input-sizing-icon', components.$post-text-input) +
-        tokens.get('input-search-filled-gap-icon') + tokens.get('search-position-inline-end-icon')
+        tokens.get('input-search-filled-gap-icon') +
+        tokens.get('search-position-inline-end-icon')
     );
     visibility: hidden;
     opacity: 0;
