@@ -94,8 +94,20 @@
       color: var(--post-contrast-color);
     }
   }
-  [data-item-id^='health'] {
+
+  #misc,
+  [data-item-id^='health'],
+  :is(#raw-components, [data-parent-id="raw-components"]):where([data-env="production"] *) {
     display: none;
+  }
+
+  #introduction--docs,
+  [data-parent-id="misc"] a {
+    padding-inline-start: 0.5rem;
+  }
+
+  [data-parent-id="misc"]:where(:not([data-parent-id="misc"] + *)) {
+    margin-block-start: 1rem;
   }
 }
 

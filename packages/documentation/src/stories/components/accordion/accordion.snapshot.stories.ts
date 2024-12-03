@@ -1,6 +1,7 @@
 import type { StoryContext, StoryObj } from '@storybook/web-components';
 import meta from './accordion.stories';
 import { html } from 'lit';
+import { schemes } from '@/shared/snapshots/schemes';
 
 const { id, ...metaWithoutId } = meta;
 
