@@ -83,7 +83,7 @@ tokens.$default-map: components.$post-search-input;
   .search-button {
     right: tokens.get('search-position-inline-end-icon');
 
-    &:focus {
+    &:focus-visible {
       @include utilities.focus-style;
     }
   }
@@ -96,7 +96,7 @@ tokens.$default-map: components.$post-search-input;
     visibility: hidden;
     opacity: 0;
 
-    &:focus {
+    &:focus-visible {
       @include utilities.focus-style;
     }
   }
