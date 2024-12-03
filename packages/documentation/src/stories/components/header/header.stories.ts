@@ -1,4 +1,4 @@
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { StoryObj } from '@storybook/web-components';
 import { MetaComponent } from '@root/types';
 import HeaderMarkup from './components/header.markup';
 
