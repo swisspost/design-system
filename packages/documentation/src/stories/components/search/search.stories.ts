@@ -17,8 +17,9 @@ const meta: MetaComponent = {
   args: {
     placeholder: 'Search...',
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
-    showDeleteButton: true, // Default to showing delete button
-    showSearchButton: true, // Default to showing search button
+    showDeleteButton: true,
+    showSearchButton: true,
+    value: '', // Default empty value
   },
   argTypes: {
     placeholder: {
@@ -61,6 +62,16 @@ const meta: MetaComponent = {
         category: 'Controls',
       },
     },
+    value: {
+      name: 'Value',
+      description: 'Initial value of the input field.',
+      control: {
+        type: 'text',
+      },
+      table: {
+        category: 'General',
+      },
+    },
   },
 };
 
@@ -79,6 +90,7 @@ function render(args: Args, context: StoryContext) {
         class="form-control"
         type="search"
         placeholder="${args.placeholder}"
+        value="${args.value}"
         aria-describedby="${args.hint ? hintId : nothing}"
       />
       <label class="form-label" for="${id}">Label</label>
@@ -106,17 +118,3 @@ function render(args: Args, context: StoryContext) {
 }
 
 export const Default: Story = {};
-
-export const WithPlaceholder: Story = {
-  args: {
-    placeholder: 'Type to search...',
-    hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
-  },
-};
-
-export const NoButtons: Story = {
-  args: {
-    showDeleteButton: false,
-    showSearchButton: false,
-  },
-};
