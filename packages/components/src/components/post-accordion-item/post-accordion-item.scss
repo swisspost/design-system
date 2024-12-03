@@ -11,14 +11,17 @@
 
 tokens.$default-map: components.$post-accordion;
 
-post-collapsible {
-  margin-top: calc(tokens.get('accordion-border-bottom-width') * -1);
-  border-bottom: tokens.get('accordion-border-bottom-width')
-    tokens.get('accordion-border-bottom-style') tokens.get('accordion-enabled-border');
-}
-
-post-collapsible-trigger:hover + post-collapsible {
-  border-color: tokens.get('accordion-hover-border');
+:host {
+  &::after {
+    display: block;
+    content: '';
+    margin-top: calc(tokens.get('accordion-border-bottom-width') * -1);
+    border-bottom: tokens.get('accordion-border-bottom-width')
+      tokens.get('accordion-border-bottom-style') tokens.get('accordion-enabled-border');
+  }
+  &:has(.accordion-button:hover)::after {
+    border-color: tokens.get('accordion-hover-border');
+  }
 }
 
 .accordion-header {
