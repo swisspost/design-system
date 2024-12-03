@@ -40,7 +40,7 @@ export const config: Config = {
           dest: 'assets/css',
         },
         {
-          src: '../node_modules/@swisspost/design-system-icons/src/icons/post/*.svg',
+          src: '../node_modules/@swisspost/design-system-icons/public/post-icons/*.svg',
           dest: 'assets/icons',
         },
       ],
