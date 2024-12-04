@@ -56,6 +56,16 @@ Default feedback message classes
   }
 }
 
+input[type='text'],
+select,
+textarea {
+  ~ .invalid-feedback,
+  ~ .valid-feedback {
+    padding-block: 0;
+    margin-block: tokens.get('post-hint-spacing-block', components.$post-assist) !important;
+  }
+}
+
 /*
  Checkbox and Radio box specific classes
 */
@@ -83,20 +93,19 @@ input[type='radio'],
     }
   }
 
-  input[type='radio'] {
+  input[type='radio'],
+  :has(input[type='radio']) {
     ~ .invalid-feedback,
     ~ .valid-feedback {
-      margin-block-start: tokens.get(
-        'radio-button-padding-block-group',
-        components.$post-radio-button
-      );
+      margin-block: tokens.get('radio-button-padding-block-group', components.$post-radio-button);
     }
   }
 
-  input[type='checkbox'] {
+  input[type='checkbox'],
+  :has(input[type='checkbox']) {
     ~ .invalid-feedback,
     ~ .valid-feedback {
-      margin-block-start: tokens.get('checkbox-padding-block-group', components.$post-checkbox);
+      margin-block: tokens.get('checkbox-padding-block-group', components.$post-checkbox);
     }
   }
 
