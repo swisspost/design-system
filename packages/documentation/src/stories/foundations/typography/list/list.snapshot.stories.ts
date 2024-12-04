@@ -20,79 +20,63 @@ export const Lists: Story = {
         <h1>Lists</h1>
 
         <h2>Bullet</h2>
-        <div class="row">
-          <div class="col-6">
-            <code>&lt;ul&gt;</code>
-            ${renderList({ el: 'ul' })} ${renderList({ el: 'ul', classList: 'list-revert' })}
-            ${renderList({ el: 'ul', classList: 'list-unstyled' })}
-          </div>
 
-          <div class="col-6">
-            <code>&lt;ul class="list-inline"&gt;</code>
-            ${renderList({
-              el: 'ul',
-              classList: 'list-inline',
-            })}
-            ${renderList({
-              el: 'ul',
-              classList: 'list-inline list-revert',
-            })}
-            ${renderList({
-              el: 'ul',
-              classList: 'list-inline list-unstyled',
-            })}
-          </div>
+        <code class="mt-48">&lt;ul&gt;</code>
+        ${renderList({ el: 'ul' })} ${renderList({ el: 'ul', classList: 'list-revert' })}
+        ${renderList({ el: 'ul', classList: 'list-unstyled' })}
 
-          <div class="w-100 mt-32"></div>
+        <code class="mt-48">&lt;ul class="list-inline"&gt;</code>
+        ${renderList({
+          el: 'ul',
+          classList: 'list-inline',
+        })}
+        ${renderList({
+          el: 'ul',
+          classList: 'list-inline list-revert',
+        })}
+        ${renderList({
+          el: 'ul',
+          classList: 'list-inline list-unstyled',
+        })}
 
-          <div class="col-6">
-            <code>&lt;ul class="list-bullet"&gt;</code>
-            ${renderList({ el: 'ul', classList: 'list-bullet' })}
-            ${renderList({ el: 'ul', classList: 'list-bullet list-revert' })}
-            ${renderList({ el: 'ul', classList: 'list-bullet list-unstyled' })}
-          </div>
+        <code class="mt-48">&lt;ul class="list-bullet"&gt;</code>
+        ${renderList({ el: 'ul', classList: 'list-bullet' })}
+        ${renderList({ el: 'ul', classList: 'list-bullet list-revert' })}
+        ${renderList({ el: 'ul', classList: 'list-bullet list-unstyled' })}
 
-          <div class="col-6">
-            <code>&lt;ul class="list-bullet list-inline"&gt;</code>
-            ${renderList({
-              el: 'ul',
-              classList: 'list-bullet list-inline',
-            })}
-            ${renderList({
-              el: 'ul',
-              classList: 'list-bullet list-inline list-revert',
-            })}
-            ${renderList({
-              el: 'ul',
-              classList: 'list-bullet list-inline list-unstyled',
-            })}
-          </div>
-        </div>
+        <code class="mt-48">&lt;ul class="list-bullet list-inline"&gt;</code>
+        ${renderList({
+          el: 'ul',
+          classList: 'list-bullet list-inline',
+        })}
+        ${renderList({
+          el: 'ul',
+          classList: 'list-bullet list-inline list-revert',
+        })}
+        ${renderList({
+          el: 'ul',
+          classList: 'list-bullet list-inline list-unstyled',
+        })}
 
         <h2>Number</h2>
-        <div class="row">
-          <div class="col-6">
-            <code>&lt;ol&gt;</code>
-            ${renderList({ el: 'ol' })} ${renderList({ el: 'ol', classList: 'list-revert' })}
-            ${renderList({ el: 'ol', classList: 'list-unstyled' })}
-          </div>
 
-          <div class="col-6">
-            <code>&lt;ul class="list-inline"&gt;</code>
-            ${renderList({
-              el: 'ol',
-              classList: 'list-inline',
-            })}
-            ${renderList({
-              el: 'ol',
-              classList: 'list-inline list-revert',
-            })}
-            ${renderList({
-              el: 'ol',
-              classList: 'list-inline list-unstyled',
-            })}
-          </div>
-        </div>
+        <code class="mt-48">&lt;ol&gt;</code>
+        ${renderList({ el: 'ol' })} ${renderList({ el: 'ol', classList: 'list-revert' })}
+        ${renderList({ el: 'ol', classList: 'list-unstyled' })}
+
+        <code class="mt-48">&lt;ul class="list-inline"&gt;</code>
+        ${renderList({
+          el: 'ol',
+          classList: 'list-inline',
+        })}
+        ${renderList({
+          el: 'ol',
+          classList: 'list-inline list-revert',
+        })}
+        ${renderList({
+          el: 'ol',
+          classList: 'list-inline list-unstyled',
+        })}
       `,
     );
 
@@ -119,11 +103,13 @@ export const Lists: Story = {
         <li>${modifierBlock} list-item 2 with more text to show how list-inline items wrap to a new line if necessary</li>
         <li>${modifierBlock} list-item 3</li>
         <li>
-          ${modifierBlock} list-item 4 - text before nested
+          ${modifierBlock} list-item 4${subListBlock && ' - text before nested'}
           ${subListBlock}
-          ${modifierBlock} list item 4 - text after nested
+          ${subListBlock && modifierBlock + ' list item 4 - text after nested'}
         </li>
-        <li>${modifierBlock} list-item 5</li>`;
+        <li>${modifierBlock} list-item 5</li>
+        <li>${modifierBlock} list-item 6</li>
+        <li>${modifierBlock} list-item 7</li>`;
 
       return html`<hr />
         ${unsafeHTML(listBlock)}`;
