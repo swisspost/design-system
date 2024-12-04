@@ -1,4 +1,14 @@
-import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  State,
+  forceUpdate,
+} from '@stencil/core';
 
 @Component({
   tag: 'post-megadropdown',
@@ -66,11 +76,9 @@ export class PostMegadropdown {
     }
   }
 
-  private handleBackButtonClick(e) {
-    e.stopPropagation();
-    setTimeout(() => {
-      this.animationClass = 'slide-out';
-    }, 0);
+  private handleBackButtonClick() {
+    this.animationClass = 'slide-out';
+    forceUpdate(this);
     setTimeout(() => {
       this.hide();
     }, 350);
@@ -83,10 +91,14 @@ export class PostMegadropdown {
   render() {
     return (
       <Host>
-        {this.animationClass}
-        <post-popovercontainer placement="bottom" edge-gap="0" ref={el => (this.popoverRef = el)}>
+        <post-popovercontainer
+          class={this.animationClass}
+          placement="bottom"
+          edge-gap="0"
+          ref={el => (this.popoverRef = el)}
+        >
           <div class="megadropdown">
-            <div onClick={e => this.handleBackButtonClick(e)} class="back-button">
+            <div onClick={() => this.handleBackButtonClick()} class="back-button">
               <slot name="back-button"></slot>
             </div>
             <div onClick={() => this.handleCloseButtonClick()} class="close-button">

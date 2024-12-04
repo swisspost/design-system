@@ -1,6 +1,24 @@
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/variables/color';
 
+@keyframes slide-in {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
 *,
 ::before,
 ::after {
@@ -13,13 +31,24 @@ post-popovercontainer {
   border-radius: 0;
 
   @include media.max(lg) {
-    // Overrides floating-ui inline styles on mobile
     position: absolute;
     top: var(--header-height) !important;
     bottom: 0;
     left: 0;
     width: 100%;
     height: auto;
+
+    &.slide-in {
+      animation: slide-in;
+      animation-duration: 350ms;
+      animation-fill-mode: forwards;
+    }
+
+    &.slide-out {
+      animation: slide-out;
+      animation-duration: 350ms;
+      animation-fill-mode: forwards;
+    }
   }
 }
 
