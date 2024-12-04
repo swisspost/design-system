@@ -68,8 +68,8 @@ input[type='radio'],
     padding: tokens.get('post-validation-group-padding-block-text');
 
     &::before {
-      margin-top: calc(-1 * #{tokens.get('post-validation-group-padding-block-text')});
-      margin-bottom: calc(-1 * #{tokens.get('post-validation-group-padding-block-text')});
+      margin-block-start: calc(-1 * #{tokens.get('post-validation-group-padding-block-text')});
+      margin-block-end: calc(-1 * #{tokens.get('post-validation-group-padding-block-text')});
       height: tokens.get('post-validation-group-icon-size');
       width: tokens.get('post-validation-group-icon-size');
       display: inline-block;
@@ -77,6 +77,9 @@ input[type='radio'],
       background-color: currentColor;
       color: currentColor;
       content: '';
+      flex-shrink: 0;
+      display: flex;
+      align-self: flex-start;
     }
   }
 

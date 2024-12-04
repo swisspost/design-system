@@ -6,9 +6,8 @@ tokens.$default-map: components.$post-assist;
 .form-hint {
   color: tokens.get('assist-enabled-fg');
   padding-inline: tokens.get('assist-padding-inline');
-  padding-block: tokens.get('assist-padding-block');
+  margin-block: tokens.get('post-hint-spacing-block') !important;
   font-size: tokens.get('assist-font-size');
-  margin-block-start: 0;
 }
 
 .form-control:disabled .form-hint {
