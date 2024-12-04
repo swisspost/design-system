@@ -7,15 +7,20 @@ tokens.$default-map: elements.$post-listnumber;
 ol {
   margin-block: tokens.get('list-number-item-gap-block');
   padding-inline-end: tokens.get('list-number-item-gap-block');
-  padding-inline-start: 45px;
+  padding-inline-start: calc(
+    tokens.get('list-number-item-icon-size') + tokens.get('list-number-item-icon-gap-inline')
+  );
 
-  > li {
-    padding-bottom: tokens.get('list-number-margin-block');
-    padding-left: 3px;
+  ::marker {
+    font-weight: tokens.get('list-number-item-icon-font-weight');
+  }
 
-    &:last-child {
-      padding-bottom: 0;
-    }
+  &.list-number {
+    @include list.list-number();
+  }
+
+  &.list-inline {
+    @include list.list-inline();
   }
 
   &.list-revert {
