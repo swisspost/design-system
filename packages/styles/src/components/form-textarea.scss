@@ -13,7 +13,6 @@ tokens.$default-map: components.$post-text-area;
 textarea.form-control {
   display: block;
   width: 100%;
-  font-family: tokens.get('body-font-family', elements.$post-body);
   appearance: none; // Fix appearance for date inputs in Safari
   background-clip: padding-box;
   border: tokens.get('textarea-border-width') tokens.get('textarea-border-style-enabled')

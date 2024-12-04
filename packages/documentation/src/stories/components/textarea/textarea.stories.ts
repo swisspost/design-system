@@ -181,11 +181,6 @@ ${args.textInside ?? nothing}</textarea
 export const Default: Story = {};
 
 export const FloatingLabel: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Hidden Label', 'Rows', 'Helper Text', 'Disabled', 'Validation'],
-    },
-  },
   args: {
     floatingLabel: true,
     hint: '',
