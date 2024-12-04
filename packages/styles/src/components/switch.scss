@@ -17,12 +17,6 @@ $switch-handle-icon: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='htt
 .form-switch {
   display: flex;
 
-  @include utility-mx.focus-style() {
-    &:has(> input:only-child) {
-      border-radius: tokens.get('switch-border-radius-round');
-    }
-  }
-
   .form-check-input {
     appearance: none;
     cursor: pointer;
