@@ -6,7 +6,7 @@ import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
 @Component({
   tag: 'post-language-option-switch',
   styleUrl: 'post-language-option-switch.scss',
-  shadow: false,
+  shadow: true,
 })
 export class PostLanguageOptionSwitch {
   @Element() host: HTMLPostLanguageOptionSwitchElement;
@@ -111,62 +111,38 @@ export class PostLanguageOptionSwitch {
     });
   }
 
-  render() {
+  private renderList() {
     return (
-      <Host data-version={version} slot="post-language-option-switch">
-        {this.variant === 'list' ? (
-          <post-list title-hidden="true">
-            <h3>
-              {this.caption}, {this.description}
-            </h3>
-            {Array.from(this.elements).map(item => (
-              <post-list-item role="none">
-                <post-language-option
-                  variant={this.variant}
-                  active={this.activeLang === item.getAttribute('code')}
-                  code={item.getAttribute('code')}
-                  url={item.getAttribute('url')}
-                  name={item.getAttribute('name')}
-                  generated={true}
-                >
-                  {item.textContent}
-                </post-language-option>
-              </post-list-item>
-            ))}
-          </post-list>
-        ) : (
-          <div>
-            <post-menu-trigger for={this.menuId}>
-              <button class="btn btn-tertiary btn-sm">
-                <span class="visually-hidden">
-                  {this.caption}, {this.description}
-                </span>
-                {this.activeLang.toUpperCase()}
-                <post-icon aria-hidden="true" name="2052"></post-icon>
-              </button>
-            </post-menu-trigger>
-            <post-menu id={this.menuId}>
-              {Array.from(this.elements).map(item => (
-                <post-menu-item>
-                  <post-language-option
-                    variant={this.variant}
-                    active={this.activeLang === item.getAttribute('code')}
-                    code={item.getAttribute('code')}
-                    url={item.getAttribute('url')}
-                    name={item.getAttribute('name')}
-                    generated={true}
-                  >
-                    {item.textContent}
-                  </post-language-option>
-                </post-menu-item>
-              ))}
-            </post-menu>
-          </div>
-        )}
-        <div class="hide" aria-hidden="true">
-          <slot />
-        </div>
+      <Host
+        data-version={version}
+        aria-label={`${this.caption}, ${this.description}`}
+        aria-role="list"
+      >
+        <slot></slot>
       </Host>
     );
+  }
+
+  private renderDropdown() {
+    return (
+      <Host data-version={version}>
+        <post-menu-trigger for={this.menuId}>
+          <button
+            class="btn btn-tertiary btn-sm"
+            aria-label={`${this.caption}, ${this.description}`}
+          >
+            {this.activeLang.toUpperCase()}
+            <post-icon aria-hidden="true" name="2052"></post-icon>
+          </button>
+        </post-menu-trigger>
+        <post-menu id={this.menuId}>
+          <slot></slot>
+        </post-menu>
+      </Host>
+    );
+  }
+
+  render() {
+    return this.variant === 'list' ? this.renderList() : this.renderDropdown();
   }
 }
