@@ -4,6 +4,7 @@
 @use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/tokens/helpers';
 
 tokens.$default-map: components.$post-breadcrumb;
 
@@ -12,6 +13,13 @@ tokens.$default-map: components.$post-breadcrumb;
   align-items: center;
 }
 
+/* Breadcrumb Navigation */
+.breadcrumbs-nav {
+  display: flex;
+  align-items: center;
+}
+
+/* Breadcrumbs List */
 .breadcrumbs-list {
   display: flex;
   flex-wrap: nowrap;
@@ -22,19 +30,21 @@ tokens.$default-map: components.$post-breadcrumb;
   align-items: center;
   height: 100%;
 
-  & li {
+  li {
     height: 100%;
-    & a {
+
+    a {
       display: block;
       height: 100%;
     }
   }
 
-  & post-breadcrumb-item:last-of-type {
-  color: tokens.get('breadcrumb-selected-fg');
-  font-weight: tokens.get('breadcrumb-selected-font-weight');
+  /* Selected Breadcrumb Item */
+  post-breadcrumb-item:last-of-type {
+    color: tokens.get('breadcrumb-selected-fg');
+    font-weight: tokens.get('breadcrumb-selected-font-weight');
 
-    & post-icon {
+    post-icon {
       color: tokens.get('breadcrumb-selected-fg');
     }
   }
@@ -48,35 +58,12 @@ tokens.$default-map: components.$post-breadcrumb;
     &:hover {
       color: tokens.get('breadcrumb-hover-fg');
     }
+
     @include utilities.focus-style;
   }
 }
-/* Add this to post-breadcrumb.scss */
-dropdown-menu {
-  background-color: white;
-  border: 1px solid #ccc;
-}
 
-.breadcrumbs-nav {
-  display: flex;
-  align-items: center;
-}
-
-.breadcrumb-item-icon {
-  height: tokens.get('breadcrum-icon-size');
-  width: tokens.get('breadcrum-icon-size');
-}
-
-.dropdown-menu a {
-  display: block;
-  padding: 5px;
-  text-decoration: none;
-}
-
-.dropdown-menu a:hover {
-  background-color: #f0f0f0;
-}
-
+/* Menu Trigger Button */
 post-menu-trigger button {
   background: none;
   border: none;
@@ -88,11 +75,14 @@ post-menu-trigger button {
   align-items: center;
 }
 
-.visually-hidden {
-  @include post.visually-hidden();
+/* Breadcrumb Item Icon */
+.breadcrumb-item-icon {
+  height: tokens.get('breadcrum-icon-size');
+  width: tokens.get('breadcrum-icon-size');
 }
 
-.breadcrumb-item {
+/* Menu Items */
+post-menu > .breadcrumb-item {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -107,7 +97,7 @@ post-menu-trigger button {
     width: tokens.get('breadcrum-icon-size');
   }
 
-  & a {
+  a {
     text-decoration: none;
     color: inherit;
 
@@ -133,4 +123,9 @@ post-menu-trigger button {
       color: VisitedText !important;
     }
   }
+}
+
+/* Visually Hidden Utility */
+.visually-hidden {
+  @include post.visually-hidden();
 }
