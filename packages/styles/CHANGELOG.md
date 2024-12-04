@@ -1,5 +1,43 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.7
+
+### Major Changes
+
+- Removed deprecated `valid-tooltip` and `invalid-tooltip` classes. (by [@leagrdv](https://github.com/leagrdv) with [#4076](https://github.com/swisspost/design-system/pull/4076))
+
+- Removed the `rg` and `xxl` grid breakpoints, reducing the grid to 5 breakpoints instead of the previous 7. This change affects all CSS classes tied to specific breakpoints (e.g., `col-rg-2`, `m-xxl-4`).  
+  **Previous Breakpoints**:
+
+  - `xs: 0px`
+  - `sm: 400px`
+  - `rg: 600px`
+  - `md: 780px`
+  - `lg: 1024px`
+  - `xl: 1280px`
+  - `xxl: 1440px`
+
+  **New Breakpoints**:
+
+  - `xs: 0px`
+  - `sm: 600px`
+  - `md: 780px`
+  - `lg: 1024px`
+  - `xl: 1280px`
+
+  To maintain compatibility with the updated grid system, you need to update your code by replacing any `*-rg-*` classes with `*-sm-*`, and any `*-xxl-*` classes with `*-xl-*`. For example:
+
+  - `col-rg-2` → `col-sm-2`
+  - `m-xxl-4` → `m-xl-4` (by [@alizedebray](https://github.com/alizedebray) with [#3982](https://github.com/swisspost/design-system/pull/3982))
+
+- Removed deprecated `carousel` component. (by [@leagrdv](https://github.com/leagrdv) with [#4075](https://github.com/swisspost/design-system/pull/4075))
+
+### Patch Changes
+
+- Updated the grid padding and gutters. (by [@alizedebray](https://github.com/alizedebray) with [#4045](https://github.com/swisspost/design-system/pull/4045))
+
+- Updated the styles of the form validation messages to match the new Post design. (by [@myrta2302](https://github.com/myrta2302) with [#3824](https://github.com/swisspost/design-system/pull/3824))
+
 ## 9.0.0-next.6
 
 ### Major Changes
