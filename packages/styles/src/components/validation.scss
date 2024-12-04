@@ -61,7 +61,6 @@ Default feedback message classes
 */
 input[type='checkbox'],
 input[type='radio'],
-input[type='range'],
 :has(input[type='checkbox']),
 :has(input[type='radio']) {
   ~ .invalid-feedback,
@@ -78,6 +77,23 @@ input[type='range'],
       background-color: currentColor;
       color: currentColor;
       content: '';
+    }
+  }
+
+  input[type='radio'] {
+    ~ .invalid-feedback,
+    ~ .valid-feedback {
+      margin-block-start: tokens.get(
+        'radio-button-padding-block-group',
+        components.$post-radio-button
+      );
+    }
+  }
+
+  input[type='checkbox'] {
+    ~ .invalid-feedback,
+    ~ .valid-feedback {
+      margin-block-start: tokens.get('checkbox-padding-block-group', components.$post-checkbox);
     }
   }
 
