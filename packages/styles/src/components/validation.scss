@@ -82,7 +82,6 @@ input[type='radio'],
       margin-block-end: calc(-1 * #{tokens.get('post-validation-group-padding-block-text')});
       height: tokens.get('post-validation-group-icon-size');
       width: tokens.get('post-validation-group-icon-size');
-      display: inline-block;
       margin-inline-end: tokens.get('post-validation-group-gap-inline');
       background-color: currentColor;
       color: currentColor;
