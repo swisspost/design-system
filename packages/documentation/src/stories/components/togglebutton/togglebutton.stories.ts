@@ -50,7 +50,7 @@ const meta: MetaComponent<PostTogglebuttonProps> = {
       ...buttonMeta.argTypes?.size,
       description:
         'Sets the size of the component.' +
-        '<span className="mt-8 alert alert-info alert-sm">' +
+        '<span className="mt-8 banner banner-info banner-sm">' +
         'For more options, please see the ' +
         '<a href="/?path=/docs/eb78afcb-ce92-4990-94b6-6536d5ec6af4--docs">button documentation</a>' +
         '.</span>',
@@ -59,7 +59,7 @@ const meta: MetaComponent<PostTogglebuttonProps> = {
       ...buttonMeta.argTypes?.variant,
       description:
         'Defines a style variant.' +
-        '<span className="mt-8 alert alert-info alert-sm">' +
+        '<span className="mt-8 banner banner-info banner-sm">' +
         'For more options, please see the ' +
         '<a href="/?path=/docs/eb78afcb-ce92-4990-94b6-6536d5ec6af4--docs">button documentation</a>' +
         '.</span>',
