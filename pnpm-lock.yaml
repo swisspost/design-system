@@ -312,7 +312,7 @@ importers:
         specifier: workspace:9.0.0-next.7
         version: link:../styles/dist
       '@swisspost/design-system-tokens':
-        specifier: workspace:9.0.0-next.6
+        specifier: workspace:9.0.0-next.7
         version: link:../tokens/dist
       '@swisspost/internet-header':
         specifier: workspace:2.0.0-next.7
