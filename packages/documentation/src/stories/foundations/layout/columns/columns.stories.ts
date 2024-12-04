@@ -141,9 +141,14 @@ export const VerticalExample: Story = {
       include: ['Align Items', 'Align Item 1'],
     },
   },
+  decorators: [
+    (story: StoryFn, context: StoryContext) => html`
+      <div class="high-row">${story(context.args, context)}</div>
+    `,
+  ],
   render: (args: Args) => html`
     <div class="container">
-      <div class="row-height row ${args.alignItems}">
+      <div class="row ${args.alignItems}">
         <div class="col${args.alignSelf === 'no self alignment' ? '' : ` ${args.alignSelf}`}">
           Item 1
         </div>
