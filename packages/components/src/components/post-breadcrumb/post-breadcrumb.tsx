@@ -104,10 +104,11 @@ export class PostBreadcrumb {
                 </post-menu-trigger>
                 <post-menu id="breadcrumb-menu">
                   {visibleItems.map((item, index) => (
-                    <post-menu-item key={index}>
-                      <post-breadcrumb-item url={item.url} key={index}>
-                    {item.text}
-                  </post-breadcrumb-item>
+                    <post-menu-item key={index} class="breadcrumb-item">
+                      <post-icon name="2111" class="breadcrumb-item-icon" />
+                      <a href={item.url}>
+                        {item.text}
+                      </a>
                     </post-menu-item>
                   ))}
                 </post-menu>
