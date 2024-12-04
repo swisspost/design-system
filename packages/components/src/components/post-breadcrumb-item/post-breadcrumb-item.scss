@@ -8,11 +8,11 @@ tokens.$default-map: components.$post-breadcrumb;
 
 :host {
   display: inline-block;
-  @include utilities.focus-style;
 }
 
 .breadcrumb-item {
-  display: inline-flex;
+  @include utilities.focus-style();
+  display: flex;
   align-items: center;
   justify-content: center;
   padding-block: tokens.get('breadcrumb-padding-block-text');
