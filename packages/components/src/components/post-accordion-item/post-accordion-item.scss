@@ -29,6 +29,7 @@ tokens.$default-map: components.$post-accordion;
   font-size: tokens.get('accordion-header-font-size');
   margin: 0;
   line-height: tokens.get('heading-line-height', elements.$post-heading);
+  font-weight: tokens.get('heading-font-weight', elements.$post-heading);
 }
 
 .accordion-button {
