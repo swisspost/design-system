@@ -56,25 +56,29 @@ const pxSamples = [
 ];
 function generateClassNames(sample: Record<string, string>, isViewport = false) {
   const prefix = isViewport ? 'v' : '';
-  return [
-    'content',
-    `${prefix}h-${sample.h}`,
-    `${prefix}w-${sample.w}`,
-    sample[`max${prefix}H`] && sample[`max${prefix}H`] !== 'none'
-      ? `max-vh-${sample[`max${prefix}H`]}`
-      : '',
-    sample[`max${prefix}W`] && sample[`max${prefix}W`] !== 'none'
-      ? `max-vw-${sample[`max${prefix}W`]}`
-      : '',
-    sample[`min${prefix}H`] && sample[`min${prefix}H`] !== 'none'
-      ? `min-vh-${sample[`min${prefix}H`]}`
-      : '',
-    sample[`min${prefix}W`] && sample[`min${prefix}W`] !== 'none'
-      ? `min-vw-${sample[`min${prefix}W`]}`
-      : '',
-  ]
-    .filter(Boolean)
-    .join(' ');
+
+  const classNames = ['content'];
+
+  classNames.push(`${prefix}h-${sample.h}`);
+  classNames.push(`${prefix}w-${sample.w}`);
+
+  if (sample[`max${prefix}H`] && sample[`max${prefix}H`] !== 'none') {
+    classNames.push(`max-vh-${sample[`max${prefix}H`]}`);
+  }
+
+  if (sample[`max${prefix}W`] && sample[`max${prefix}W`] !== 'none') {
+    classNames.push(`max-vw-${sample[`max${prefix}W`]}`);
+  }
+
+  if (sample[`min${prefix}H`] && sample[`min${prefix}H`] !== 'none') {
+    classNames.push(`min-vh-${sample[`min${prefix}H`]}`);
+  }
+
+  if (sample[`min${prefix}W`] && sample[`min${prefix}W`] !== 'none') {
+    classNames.push(`min-vw-${sample[`min${prefix}W`]}`);
+  }
+
+  return classNames.filter(Boolean).join(' ');
 }
 
 export const PercentageSizing: StoryObj = {
