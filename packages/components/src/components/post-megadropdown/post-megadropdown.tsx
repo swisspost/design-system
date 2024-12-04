@@ -1,56 +1,101 @@
-import { Component, Host, Method, h } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
 
 @Component({
   tag: 'post-megadropdown',
+  styleUrl: 'post-megadropdown.scss',
   shadow: false,
-  styleUrl: './post-megadropdown.scss',
 })
 export class PostMegadropdown {
   private popoverRef: HTMLPostPopovercontainerElement;
+  private animationClass: string | null = null;
+
+  @Element() host: HTMLPostMegadropdownElement;
 
   /**
-   * Show megadropdown
-   * @param element HTMLElement
-   * @returns boolean
+   * Holds the current visibility state of the dropdown.
+   * This state is internally managed to track whether the dropdown is open (`true`) or closed (`false`),
+   * and updates automatically when the dropdown is toggled.
    */
-  @Method()
-  async show(element: HTMLElement) {
-    return this.popoverRef.show(element);
+  @State() isVisible: boolean = false;
+
+  /**
+   * Emits when the dropdown is shown or hidden.
+   * The event payload is a boolean: `true` when the dropdown was opened, `false` when it was closed.
+   **/
+  @Event() toggleMegadropdown: EventEmitter<boolean>;
+
+  componentDidLoad() {
+    this.popoverRef.addEventListener('postToggle', (event: CustomEvent<boolean>) => {
+      this.isVisible = event.detail;
+      this.toggleMegadropdown.emit(this.isVisible);
+    });
   }
 
   /**
-   * Hide megadropdown
-   * @returns boolean
+   * Toggles the dropdown visibility based on its current state.
+   */
+  @Method()
+  async toggle(target: HTMLElement) {
+    this.isVisible ? await this.hide() : await this.show(target);
+  }
+
+  /**
+   * Displays the popover dropdown
+   *
+   * @param target - The HTML element relative to which the popover dropdown should be displayed.
+   */
+  @Method()
+  async show(target: HTMLElement) {
+    if (this.popoverRef) {
+      await this.popoverRef.show(target);
+      this.animationClass = 'slide-in';
+    } else {
+      console.error('show: popoverRef is null or undefined');
+    }
+  }
+
+  /**
+   * Hides the popover dropdown
    */
   @Method()
   async hide() {
-    return this.popoverRef.hide();
+    if (this.popoverRef) {
+      await this.popoverRef.hide();
+    } else {
+      console.error('hide: popoverRef is null or undefined');
+    }
   }
 
-  /**
-   * Toggle megadropdown
-   * @param element HTMLElement
-   * @param force boolean
-   * @returns boolean
-   */
-  @Method()
-  async toggle(element: HTMLElement, force?: boolean) {
-    return this.popoverRef.toggle(element, force ?? undefined);
+  private handleBackButtonClick(e) {
+    e.stopPropagation();
+    setTimeout(() => {
+      this.animationClass = 'slide-out';
+    }, 0);
+    setTimeout(() => {
+      this.hide();
+    }, 350);
   }
 
-  private handleBackButtonClick() {
-    this.hide();
+  private handleCloseButtonClick() {
+    this.popoverRef.hide();
   }
 
   render() {
     return (
-      <Host slot="post-mainnavigation">
+      <Host>
+        {this.animationClass}
         <post-popovercontainer placement="bottom" edge-gap="0" ref={el => (this.popoverRef = el)}>
           <div class="megadropdown">
-            <div onClick={() => this.handleBackButtonClick()} class="back-button">
+            <div onClick={e => this.handleBackButtonClick(e)} class="back-button">
               <slot name="back-button"></slot>
             </div>
-            <slot></slot>
+            <div onClick={() => this.handleCloseButtonClick()} class="close-button">
+              <slot name="close-button"></slot>
+            </div>
+            <slot name="megadropdown-title"></slot>
+            <div class="megadropdown-content">
+              <slot></slot>
+            </div>
           </div>
         </post-popovercontainer>
       </Host>
