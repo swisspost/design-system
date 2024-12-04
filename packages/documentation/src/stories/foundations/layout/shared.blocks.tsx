@@ -8,7 +8,7 @@ export const SCSS_VARIABLES: any = parse(scss);
 export const SpecTable = (props: { children: string | JSX.Element | JSX.Element[] }) => (
   <div className="table-responsive my-32">
     <table className="table">
-      <thead>
+      <thead className="text-start">
         <tr>
           <th></th>
           {forEach(SCSS_VARIABLES.breakpoint, ({ key, value }) => (

@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-icons",
-  "version": "9.0.0-next.6",
+  "version": "9.0.0-next.7",
   "description": "A collection of Swiss Post icons intended for use with the Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -25,6 +25,7 @@
     "start": "nodemon",
     "build": "ts-node src/build.ts",
     "fetchSVGs": "ts-node src/index.ts",
+    "createUIReport": "ts-node src/build.ts createUIReport",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:updatesnapshots": "jest -u",

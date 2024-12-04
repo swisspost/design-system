@@ -46,7 +46,7 @@ const baseReport: IJSONReport = {
 };
 
 export default function build() {
-  console.log('\nCreating UI icons...');
+  console.log('\nCreating output icons...');
 
   setup();
 
@@ -54,7 +54,7 @@ export default function build() {
   const report = createReport();
 
   console.log(
-    `\x1b[32mUI icons created.\x1b[0m Saved \x1b[32m${report.stats.success}\x1b[0m icons, \x1b[31m${report.stats.errors}\x1b[0m icons errored and \x1b[31m${report.stats.notFound}\x1b[0m where not found.`,
+    `\x1b[32mOutput icons created.\x1b[0m Saved \x1b[32m${report.stats.success}\x1b[0m icons, \x1b[31m${report.stats.errors}\x1b[0m icons errored and \x1b[31m${report.stats.notFound}\x1b[0m where not found.`,
   );
 }
 
@@ -174,7 +174,9 @@ function createFiles(groupedFilePaths: Record<string, File[]>) {
 
 function createReport(): IJSONReport {
   // TODO: remove as soon as UI-Icons get fetched from censhare
-  createV2Report();
+  if (process.argv[2] === 'createUIReport') {
+    createV2Report();
+  }
 
   const filePaths = fs
     .readdirSync(iconSourcePath, { recursive: true })
