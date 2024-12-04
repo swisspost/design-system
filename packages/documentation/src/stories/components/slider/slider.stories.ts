@@ -215,7 +215,7 @@ function render(args: Args, context: StoryContext) {
           <label class="form-label visually-hidden" for="${inputId}">Range controller</label>
           <input
             id="${inputId}"
-            class="form-control mw-giant"
+            class="form-control min-w-80"
             type="text"
             inputmode="decimal"
             value="${args.value}"
