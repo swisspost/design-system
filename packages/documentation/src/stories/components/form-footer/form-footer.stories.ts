@@ -134,7 +134,7 @@ export function render(args: Args) {
         ? html` <div class="form-footer-primary-actions">${primaryButton} ${secondaryButton}</div> `
         : null}
       ${args.showTertiaryButton
-        ? html`<button class="btn btn-tertiary btn-link">
+        ? html`<button class="btn btn-link">
             <post-icon aria-hidden="true" name="${args.tertiaryButtonIcon}"></post-icon
             >${args.tertiaryButtonText}
           </button>`
