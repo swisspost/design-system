@@ -142,7 +142,7 @@ const meta: MetaComponent = {
     validation: {
       name: 'Validation',
       description:
-        'Defines the validation state of the select box and controls the display of the corresponding return message. <span className="mt-8 alert alert-info alert-sm">Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs#select">validation guidelines here</a>.</span> ',
+        'Defines the validation state of the select box and controls the display of the corresponding return message. <span className="mt-8 banner banner-info banner-sm">Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs#select">validation guidelines here</a>.</span> ',
       control: {
         type: 'radio',
         labels: {
