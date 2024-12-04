@@ -104,38 +104,35 @@ function StylesSwitcher() {
 
     const t = currentTheme.toLowerCase();
     const c = currentChannel.toLowerCase();
-    const domain = "'@swisspost/design-system-styles/";
+    const packageName = "'@swisspost/design-system-styles/";
 
     stylesCodeBlocks.forEach(stylesCodeBlock => {
-      let sourceArray = stylesCodeBlock.querySelectorAll('.token.string');
-      if (sourceArray.length) {
-        sourceArray.forEach((s, i) => {
-          let source = s.innerHTML;
-          // Remove the domain from the source to make sure we don't override it
-          source = source.replace(domain, '');
+      const sourceArray = Array.from(stylesCodeBlock.querySelectorAll('.token.string'));
+      sourceArray.forEach((s, i) => {
+        let source = s.innerHTML;
+        // Remove the packageName from the source to make sure we don't override it
+        source = source.replace(packageName, '');
 
-          // Check if one of the themes or channels are in the scss path
-          let theme = THEMES.find(t => source.indexOf(t.toLowerCase()) > -1);
-          let channel = CHANNELS.find(c => source.indexOf(c.toLowerCase()) > -1);
+        // Check if one of the themes or channels are in the scss path
+        let theme = THEMES.find(tItem => source.indexOf(tItem.toLowerCase()) > -1);
+        let channel = CHANNELS.find(cItem => source.indexOf(cItem.toLowerCase()) > -1);
 
-          const updateTheme = theme && theme.toLowerCase() !== t;
-          const updateChannel = channel && channel.toLowerCase() !== c;
+        const updateTheme = theme && theme.toLowerCase() !== t;
+        const updateChannel = channel && channel.toLowerCase() !== c;
 
-          // Only change the source if theme or channel needs to be changed
-          if (source && (updateTheme || updateChannel)) {
-            if (updateTheme) {
-              source = source.replace((theme as string).toLowerCase(), t);
-            }
-
-            if (updateChannel) {
-              source = source.replace((channel as string).toLowerCase(), c);
-            }
-
-            const newSource = domain + source;
-            sourceArray[i].innerHTML = newSource;
+        // Only change the source if theme or channel needs to be changed
+        if (source && (updateTheme || updateChannel)) {
+          if (updateTheme) {
+            source = source.replace((theme as string).toLowerCase(), t);
           }
-        });
-      }
+
+          if (updateChannel) {
+            source = source.replace((channel as string).toLowerCase(), c);
+          }
+
+          sourceArray[i].innerHTML = packageName + source;
+        }
+      });
     });
   }, [stylesCodeBlocks, currentTheme, currentChannel]);
 
