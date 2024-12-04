@@ -6,6 +6,8 @@ const CODE_TEMPLATE_SMALL =
   require('!!raw-loader!./components/intranet-header-demo-small-sidebar/intranet-header-demo-small-sidebar.component.html').default;
 const CODE_TEMPLATE_BIG =
   require('!!raw-loader!./components/intranet-header-demo-big-sidebar/intranet-header-demo-big-sidebar.component.html').default;
+const CODE_TEMPLATE_COND =
+  require('!!raw-loader!./components/intranet-header-demo-condensed/intranet-header-demo-condensed.component.html').default;
 
 @Component({
   selector: 'app-intranet-layout',
@@ -30,4 +32,5 @@ export class IntranetLayoutComponent {
   codeTemplateSmall = CODE_TEMPLATE_SMALL;
   codeTemplateBig = CODE_TEMPLATE_BIG;
   codeTemplateReg = CODE_TEMPLATE_REG;
+  codeTemplateCond = CODE_TEMPLATE_COND;
 }
