@@ -91,3 +91,46 @@ post-menu-trigger button {
 .visually-hidden {
   @include post.visually-hidden();
 }
+
+.breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: tokens.get('breadcrumb-padding-block-text');
+  gap: tokens.get('breadcrumb-gap-inline-inner');
+  color: tokens.get('breadcrumb-enabled-fg');
+  text-decoration: tokens.get('breadcrumb-link-enabled-text-decoration');
+  @include utilities.focus-style;
+
+  post-icon {
+    height: tokens.get('breadcrum-icon-size');
+    width: tokens.get('breadcrum-icon-size');
+  }
+
+  & a {
+    text-decoration: none;
+    color: inherit;
+
+    &:focus,
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  &:hover {
+    color: tokens.get('breadcrumb-hover-fg');
+    text-decoration: tokens.get('breadcrumb-link-hover-text-decoration');
+  }
+
+  @include utilities.high-contrast-mode() {
+    &,
+    &:focus,
+    &:hover {
+      color: LinkText !important;
+    }
+
+    &:visited {
+      color: VisitedText !important;
+    }
+  }
+}
