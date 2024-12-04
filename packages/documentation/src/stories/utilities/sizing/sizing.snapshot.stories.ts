@@ -59,23 +59,28 @@ function generateClassNames(sample: Record<string, string>, isViewport = false) 
 
   const classNames = ['content'];
 
-  classNames.push(`${prefix}h-${sample.h}`);
-  classNames.push(`${prefix}w-${sample.w}`);
+  // Add height and width classes
+  classNames.push(prefix + 'h-' + sample.h);
+  classNames.push(prefix + 'w-' + sample.w);
 
-  if (sample[`max${prefix}H`] && sample[`max${prefix}H`] !== 'none') {
-    classNames.push(`max-vh-${sample[`max${prefix}H`]}`);
+  // Handle max-height class
+  if (sample['max' + prefix + 'H'] && sample['max' + prefix + 'H'] !== 'none') {
+    classNames.push('max-vh-' + sample['max' + prefix + 'H']);
   }
 
-  if (sample[`max${prefix}W`] && sample[`max${prefix}W`] !== 'none') {
-    classNames.push(`max-vw-${sample[`max${prefix}W`]}`);
+  // Handle max-width class
+  if (sample['max' + prefix + 'W'] && sample['max' + prefix + 'W'] !== 'none') {
+    classNames.push('max-vw-' + sample['max' + prefix + 'W']);
   }
 
-  if (sample[`min${prefix}H`] && sample[`min${prefix}H`] !== 'none') {
-    classNames.push(`min-vh-${sample[`min${prefix}H`]}`);
+  // Handle min-height class
+  if (sample['min' + prefix + 'H'] && sample['min' + prefix + 'H'] !== 'none') {
+    classNames.push('min-vh-' + sample['min' + prefix + 'H']);
   }
 
-  if (sample[`min${prefix}W`] && sample[`min${prefix}W`] !== 'none') {
-    classNames.push(`min-vw-${sample[`min${prefix}W`]}`);
+  // Handle min-width class
+  if (sample['min' + prefix + 'W'] && sample['min' + prefix + 'W'] !== 'none') {
+    classNames.push('min-vw-' + sample['min' + prefix + 'W']);
   }
 
   return classNames.filter(Boolean).join(' ');
