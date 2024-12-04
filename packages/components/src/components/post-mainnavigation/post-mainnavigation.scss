@@ -1,60 +1,93 @@
+@use '@swisspost/design-system-styles/mixins/button';
+@use '@swisspost/design-system-styles/mixins/icons';
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/mixins/utilities';
-
-*,
-::before,
-::after {
-  box-sizing: border-box;
-}
-
-slot[name='back-button'],
-[slot='back-button'] {
-  @include media.min(lg) {
-    display: none;
-  }
-}
-
-h2 {
-  @include media.min(lg) {
-    @include utilities.visuallyhidden();
-  }
-}
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/elements';
+@use '@swisspost/design-system-styles/variables/animation';
 
 post-mainnavigation {
-  height: 100%;
-}
-
-:host {
-  height: 100%;
-  display: block;
-}
-
-.main-navigation {
-  margin-block: 0;
-  list-style: none;
-  display: flex;
-  padding-left: 0;
-  gap: 1rem;
-
-  @include media.max(lg) {
-    flex-direction: column;
+  .back-button {
+    order: -1;
   }
 
-  > post-list {
-    display: flex;
-    align-items: stretch;
-    gap: 1rem;
-    height: 100%;
+ // reset links and buttons
+  post-list-item {
+    a {
+      text-decoration: none;
+      border-radius: 0;
+    }
 
-    @include media.max(lg) {
-      flex-direction: column;
+    button {
+      @include button.reset-button;
+      text-align: start;
+    }
+
+    a,
+    button {
+      &:hover {
+        color: tokens.get('post-link-hover-fg', elements.$post-link);
+      }
     }
   }
 
-  a,
-  post-megadropdown-toggle {
-    height: 100%;
-    display: flex;
-    align-items: center;
+  // desktop styles
+  @include media.min(lg) {
+    post-list > [role="list"] {
+      flex-direction: row;
+    }
+
+    post-list-item {
+      a,
+      button {
+        padding-inline: var(--post-core-dimension-12);
+        height: var(--post-core-dimension-56);
+        border-block: var(--post-core-dimension-4) solid transparent;
+        display: flex;
+        align-items: center;
+        gap: var(--post-core-dimension-4);
+        font-size: var(--post-core-font-size-16);
+      }
+
+      // styles specific to for the mega-dropdown buttons
+      button {
+        padding-inline-end: var(--post-core-dimension-12);
+        transition: border-block-end-color animation.$transition-base-timing;
+
+        &::after {
+          content: '';
+          @include icons.icon(2113);
+          height: var(--post-core-dimension-24);
+          width: var(--post-core-dimension-24);
+          transition: transform animation.$transition-base-timing;
+        }
+
+        &.selected {
+          border-block-end-color: currentColor;
+          font-weight: var(--post-core-font-weight-700);
+
+          &::after {
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+  }
+
+  // tablet/mobile styles
+  @include media.max(lg) {
+    display: contents;
+
+    post-list-item {
+      a,
+      button {
+        display: block;
+        width: 100%;
+        padding-block: var(--post-core-dimension-12);
+        padding-inline-end: var(--post-core-dimension-12);
+        border-bottom: var(--post-core-dimension-1) solid currentColor;
+        font-weight: var(--post-core-font-weight-700);
+      }
+    }
   }
 }
