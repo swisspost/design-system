@@ -111,7 +111,9 @@ textarea.form-control {
     top: tokens.get('textarea-border-width');
     left: tokens.get('textarea-border-width');
     margin: 0;
-    padding-inline-start: tokens.get('textarea-label-padding-inline-start');
+    padding-inline-start: calc(
+      tokens.get('textarea-label-padding-inline-start') - tokens.get('textarea-border-width')
+    );
     padding-inline-end: 0;
     padding-block-start: tokens.get('textarea-label-padding-block-start');
     width: calc(
