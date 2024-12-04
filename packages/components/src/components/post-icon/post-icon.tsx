@@ -1,4 +1,4 @@
-import { Component, Element, Host, h, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
 import { checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '@/utils';
 import { version } from '@root/package.json';
 
@@ -25,12 +25,7 @@ type Animation = (typeof ANIMATION_NAMES)[number];
   shadow: true,
 })
 export class PostIcon {
-  private path: string;
-
   @Element() host: HTMLPostIconElement;
-
-  @State() svgStyles: string;
-  @State() svgOutput: string;
 
   /**
    * The name of the animation.
@@ -110,6 +105,31 @@ export class PostIcon {
     checkEmptyOrType(newValue, 'number', 'The post-icon "scale" prop should be a number.');
   }
 
+  private getPath() {
+    // Construct icon path from different possible sources
+    const metaBase =
+      document.head
+        .querySelector('meta[name="design-system-settings"][data-post-icon-base]')
+        ?.getAttribute('data-post-icon-base') ?? null;
+
+    const baseHref = document.getElementsByTagName('base')[0]?.href;
+    const fileBase = `${this.base ?? metaBase ?? baseHref ?? CDN_URL}/`.replace(/\/\/$/, '/');
+    const fileName = `${this.name}.svg#i-${this.name}`;
+    const filePath = `${fileBase}${fileName}`;
+
+    return new URL(filePath, window.location.origin).toString();
+  }
+
+  private getStyles() {
+    return Object.entries({
+      transform:
+        (this.scale && !isNaN(Number(this.scale)) ? 'scale(' + this.scale + ')' : '') +
+        (this.rotate && !isNaN(Number(this.rotate)) ? ' rotate(' + this.rotate + 'deg)' : ''),
+    })
+      .filter(([_key, value]) => value !== null)
+      .reduce((styles, [key, value]) => Object.assign(styles, { [key]: value }), {});
+  }
+
   componentDidLoad() {
     this.validateBase();
     this.validateName();
@@ -120,38 +140,12 @@ export class PostIcon {
     this.validateAnimation();
   }
 
-  componentWillRender() {
-    this.setPath();
-  }
-
-  private setPath() {
-    // Construct icon path from different possible sources
-    const metaBase =
-      document.head
-        .querySelector('meta[name="design-system-settings"][data-post-icon-base]')
-        ?.getAttribute('data-post-icon-base') ?? null;
-
-    const fileBase = `${this.base ?? metaBase ?? CDN_URL}/`.replace(/\/\/$/, '/');
-    const fileName = `${this.name}.svg`;
-    const filePath = `${fileBase}${fileName}`;
-
-    this.path = new URL(filePath, window.location.origin).toString();
-  }
-
   render() {
-    // create inline styles for some properties
-    const svgStyles = Object.entries({
-      '-webkit-mask-image': `url('${this.path}')`,
-      'mask-image': `url('${this.path}')`,
-      'transform':
-        (this.scale && !isNaN(Number(this.scale)) ? 'scale(' + this.scale + ')' : '') +
-        (this.rotate && !isNaN(Number(this.rotate)) ? ' rotate(' + this.rotate + 'deg)' : ''),
-    })
-      .filter(([_key, value]) => value !== null)
-      .reduce((styles, [key, value]) => Object.assign(styles, { [key]: value }), {});
     return (
       <Host data-version={version}>
-        <span style={svgStyles}></span>
+        <svg style={this.getStyles()}>
+          <use href={this.getPath()} />
+        </svg>
       </Host>
     );
   }
