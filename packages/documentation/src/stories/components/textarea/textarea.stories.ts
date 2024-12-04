@@ -160,7 +160,7 @@ function renderTextarea(args: Args, context: StoryContext) {
       id=${context.id}
       class=${classes}
       defaultValue=${args.value ?? nothing}
-      placeholder=${useAriaLabel ? args.label : 'My placeholder'}
+      placeholder="My placeholder"
       rows=${args.rows}
       ?disabled=${args.disabled}
       aria-label=${useAriaLabel ? args.label : nothing}
