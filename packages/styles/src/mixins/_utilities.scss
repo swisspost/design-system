@@ -11,7 +11,9 @@
 @use './list' as list-mx;
 
 @mixin reset-list() {
-  @include list-mx.list-unstyled();
+  margin-block: 0;
+  padding-inline-start: 0;
+  list-style: none;
 }
 
 @mixin visuallyhidden() {
