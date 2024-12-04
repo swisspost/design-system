@@ -26,6 +26,7 @@ textarea.form-control {
   padding-block: tokens.get('textarea-standalone-padding-block');
   min-height: tokens.get('textarea-sizing-min-height');
   resize: vertical;
+  @include utilities.focus-style;
   @include forms-mx.textarea-resizer-svg(#050400);
 
   &[disabled] {
@@ -33,8 +34,6 @@ textarea.form-control {
   }
 
   &:focus {
-    @include utilities.focus-style;
-
     @include utilities.high-contrast-mode {
       border-color: FieldText !important; // On blink browser valid and invalid border colors are converted to Highlight color
     }
