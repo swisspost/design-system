@@ -62,7 +62,7 @@ function renderSizing(args: Args) {
   return html`<div class="${classNames}"></div>`;
 }
 
-const pcArgs = [
+const pcArgTypes = [
   { name: 'height', category: 'Height', options: percentageSizes },
   { name: 'width', category: 'Width', options: percentageSizes },
   { name: 'maxHeight', category: 'Height', options: percentageSizes },
@@ -71,26 +71,26 @@ const pcArgs = [
   { name: 'minWidth', category: 'Width', options: percentageSizes },
 ];
 
-export const SizesPercent: Story = {
+export const PercentSizes: Story = {
   args: {
     width: 'quarter',
     height: 'full',
   },
   argTypes: Object.fromEntries(
-    pcArgs.map(arg => [
-      arg.name,
+    pcArgTypes.map(argType => [
+      argType.name,
       {
-        name: camelToKebabCase(arg.name),
-        description: `Set the ${camelToKebabCase(arg.name).toLowerCase()} of the rectangle`,
+        name: camelToKebabCase(argType.name),
+        description: `Set the ${camelToKebabCase(argType.name).toLowerCase()} of the rectangle`,
         control: { type: 'select' },
-        options: arg.options,
-        table: { category: arg.category },
+        options: argType.options,
+        table: { category: argType.category },
       },
     ]),
   ),
 };
 
-const pxArgs = [
+const pxArgTypes = [
   { name: 'height', category: 'Height', options: pixelSizes },
   { name: 'width', category: 'Width', options: pixelSizes },
   { name: 'maxHeight', category: 'Height', options: pixelSizes },
@@ -105,14 +105,14 @@ export const PxSizes: Story = {
     height: '80',
   },
   argTypes: Object.fromEntries(
-    pxArgs.map(arg => [
-      arg.name,
+    pxArgTypes.map(argType => [
+      argType.name,
       {
-        name: camelToKebabCase(arg.name),
-        description: `Set the ${camelToKebabCase(arg.name).toLowerCase()} of the rectangle`,
+        name: camelToKebabCase(argType.name),
+        description: `Set the ${camelToKebabCase(argType.name).toLowerCase()} of the rectangle`,
         control: { type: 'select' },
-        options: arg.options,
-        table: { category: arg.category },
+        options: argType.options,
+        table: { category: argType.category },
       },
     ]),
   ),
