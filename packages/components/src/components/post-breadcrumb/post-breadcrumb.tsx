@@ -18,6 +18,7 @@ export class PostBreadcrumb {
 
   private breadcrumbNavRef?: HTMLElement;
   private lastItem: { url: string, text: string };
+  private mutationObserver: MutationObserver;
 
   private waitForBreadcrumbRef() {
     const interval = setInterval(() => {
@@ -32,11 +33,27 @@ export class PostBreadcrumb {
     this.updateBreadcrumbItems();
     window.addEventListener('resize', this.handleResize);
     this.waitForBreadcrumbRef();
-  }  
+
+    // Observe changes in the shadow DOM
+    this.observePostMenu();
+  }
 
   disconnectedCallback() {
     window.removeEventListener('resize', this.handleResize);
+    if (this.mutationObserver) {
+      this.mutationObserver.disconnect();
+    }
   }
+
+  private handleBreadcrumbItemClick() {
+    const postMenuTriggerWrapper = this.host.shadowRoot.querySelector('.menu-trigger-wrapper');
+    console.log(postMenuTriggerWrapper)
+    const menuTrigger = postMenuTriggerWrapper.querySelector('button');
+    console.log(menuTrigger)
+    if (menuTrigger) {
+      menuTrigger.click();
+    }
+  }  
 
   private updateBreadcrumbItems() {
     const items = Array.from(this.host.querySelectorAll('post-breadcrumb-item')).map((item) => ({
@@ -76,8 +93,24 @@ export class PostBreadcrumb {
       const homeItemWidth = homeElement ? homeElement.getBoundingClientRect().width : 0;
 
       this.isConcatenated = totalWidth + homeItemWidth > visibleWidth;
-      console.log(visibleWidth, totalWidth)
     }
+  }
+
+  private observePostMenu() {
+    this.mutationObserver = new MutationObserver(() => {
+      const postMenu = this.host.shadowRoot?.querySelector('post-menu');
+      if (postMenu?.shadowRoot) {
+        const popoverContainer = postMenu.shadowRoot.querySelector('.popover-container') as HTMLElement;
+            popoverContainer.style.display = 'flex';
+            popoverContainer.style.flexDirection = 'column';
+          }
+        }
+      );
+
+    this.mutationObserver.observe(this.host.shadowRoot, {
+      childList: true,
+      subtree: true,
+    });
   }
 
   render() {
@@ -97,22 +130,33 @@ export class PostBreadcrumb {
 
             {/* Check if items should be concatenated */}
             {this.isConcatenated ? (
-              <h>
-                <post-icon name="2111" class="breadcrumb-item-icon" />
-                <post-menu-trigger for="breadcrumb-menu">
-                  <button class="btn btn-primary">...</button>
-                </post-menu-trigger>
-                <post-menu id="breadcrumb-menu">
-                  {visibleItems.map((item, index) => (
-                    <post-menu-item key={index} class="breadcrumb-item">
-                      <post-icon name="2111" class="breadcrumb-item-icon" />
-                      <a href={item.url}>
-                        {item.text}
-                      </a>
-                    </post-menu-item>
-                  ))}
-                </post-menu>
-              </h>
+             <post-breadcrumb-item
+             tabIndex={0}
+             class="menu-trigger-wrapper"
+             onClick={() => this.handleBreadcrumbItemClick()}
+             onKeyDown={(e) => {
+               if (e.key === 'Enter' || e.key === ' ') {
+                 e.preventDefault();
+                 this.handleBreadcrumbItemClick();
+               }
+             }}
+           >
+              <post-menu-trigger for="breadcrumb-menu">
+                <button class="btn test" tabIndex={-1}>...</button>
+              </post-menu-trigger>
+              <post-menu id="breadcrumb-menu">
+                {visibleItems.map((item, index) => (
+                  <post-menu-item key={index} class="breadcrumb-item">
+                    <post-icon name="2111" class="breadcrumb-item-icon" />
+                    {item.url ? (
+                      <a href={item.url}>{item.text}</a>
+                    ) : (
+                      <span>{item.text}</span>
+                    )}
+                  </post-menu-item>
+                ))}
+              </post-menu>
+            </post-breadcrumb-item>
             ) : (
               visibleItems.map((item, index) => (
                 <post-breadcrumb-item url={item.url} key={index}>
