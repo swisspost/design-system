@@ -5,11 +5,6 @@
     background-color: post.$gray-40;
   }
 
-  .info {
-    padding: 15px;
-    font-size: 0.8em;
-  }
-
   .grid-item {
     width: 20vw;
     height: 20vw;
@@ -20,6 +15,7 @@
     }
   }
 }
+
 .sizing-example .grid {
   display: grid;
   grid-template-columns: 100vw;
