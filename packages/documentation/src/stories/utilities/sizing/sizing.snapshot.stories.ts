@@ -59,26 +59,21 @@ function generateClassNames(sample: Record<string, string>, isViewport = false) 
 
   const classNames = ['content'];
 
-  // Add height and width classes
   classNames.push(prefix + 'h-' + sample.h);
   classNames.push(prefix + 'w-' + sample.w);
 
-  // Handle max-height class
   if (sample['max' + prefix + 'H'] && sample['max' + prefix + 'H'] !== 'none') {
     classNames.push('max-vh-' + sample['max' + prefix + 'H']);
   }
 
-  // Handle max-width class
   if (sample['max' + prefix + 'W'] && sample['max' + prefix + 'W'] !== 'none') {
     classNames.push('max-vw-' + sample['max' + prefix + 'W']);
   }
 
-  // Handle min-height class
   if (sample['min' + prefix + 'H'] && sample['min' + prefix + 'H'] !== 'none') {
     classNames.push('min-vh-' + sample['min' + prefix + 'H']);
   }
 
-  // Handle min-width class
   if (sample['min' + prefix + 'W'] && sample['min' + prefix + 'W'] !== 'none') {
     classNames.push('min-vw-' + sample['min' + prefix + 'W']);
   }
@@ -90,13 +85,13 @@ export const PercentageSizing: StoryObj = {
   render() {
     return schemes(
       () => {
-        const samplesTemplates = samples.map(sample => {
-          return html`<div class="sizing-example snapshot">
-            <div class="${generateClassNames(sample)}"></div>
-          </div>`;
-        });
-
-        return html`${samplesTemplates}`;
+        return html`
+          ${samples.map(sample => {
+            return html`<div class="sizing-example snapshot">
+              <div class="${generateClassNames(sample)}"></div>
+            </div>`;
+          })};
+        `;
       },
       { filter: scheme => scheme === COLOR_SCHEMES.light },
     );
@@ -130,13 +125,13 @@ export const PixelSizing: StoryObj = {
   render() {
     return schemes(
       () => {
-        const samplesTemplates = pxSamples.map(sample => {
-          return html`<div class="sizing-px-example snapshot">
-            <div class="${generateClassNames(sample)}"></div>
-          </div>`;
-        });
-
-        return html`${samplesTemplates}`;
+        return html`
+          ${pxSamples.map(sample => {
+            return html`<div class="sizing-px-example snapshot">
+              <div class="${generateClassNames(sample)}"></div>
+            </div>`;
+          })}
+        `;
       },
       { filter: scheme => scheme === COLOR_SCHEMES.light },
     );
