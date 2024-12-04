@@ -78,6 +78,13 @@ export const OrderedList: Story = {
         </ol>
       </li>
       <li>This item belongs to the parent list.</li>
+      <li>This item belongs to the parent list.</li>
+      <li>This item belongs to the parent list.</li>
+      <li>This item belongs to the parent list.</li>
+      <li>This item belongs to the parent list.</li>
+      <li>This item belongs to the parent list.</li>
+      <li>This item belongs to the parent list.</li>
+      <li>This item belongs to the parent list.</li>
     </ol>
   `,
 };
