@@ -1,0 +1,103 @@
+@use '@swisspost/design-system-styles/core.scss' as post;
+
+migration-global-state {
+  .change-badge {
+    display: inline-block;
+    padding: 0.05rem 0.3rem;
+    border-radius: 3px;
+    font-family: post.$font-family-monospace;
+    font-size: 12px;
+    vertical-align: text-bottom;
+  }
+
+  .bubble-tea {
+    margin-top: 2rem;
+    padding: 0.25rem 0 2rem 0;
+    list-style: none;
+    counter-reset: bubble-tea;
+
+    > li {
+      counter-increment: bubble-tea;
+      position: relative;
+      margin-left: 2rem;
+      padding-bottom: 2rem;
+      padding-left: 3rem;
+      border-left: 4px solid post.$light;
+      min-height: 5rem;
+
+      @include post.media-breakpoint-down(sm) {
+        margin-left: 1rem;
+        padding-bottom: 1rem;
+        padding-left: 2rem;
+        min-height: 3rem;
+      }
+
+      &:last-child {
+        min-height: 0;
+        padding-bottom: 0;
+      }
+
+      &:before {
+        content: counter(bubble-tea);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        border-radius: 50%;
+        top: -1rem;
+        left: calc(-2rem - 2px);
+        width: 4rem;
+        height: 4rem;
+        background: post.$light;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.2em;
+
+        @include post.media-breakpoint-down(sm) {
+          width: 3rem;
+          height: 3rem;
+          font-size: 1em;
+          left: calc(-1.5rem - 2px);
+          top: -0.8rem;
+        }
+      }
+    }
+
+    .form-check-input:checked ~ .form-check-label {
+      opacity: 0.6;
+    }
+  }
+
+  em {
+    color: #9e2a2f;
+  }
+
+  .info {
+    display: block;
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+    font-size: post.$font-size-12;
+    color: post.$gray-60;
+
+    + .info {
+      margin-top: -1rem;
+    }
+  }
+
+  .todo-list-status {
+    font-size: post.$font-size-14;
+  }
+}
+
+migration-setup {
+  .migration-options {
+    margin: 1rem 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--post-gray-10);
+    border-bottom: 1px solid var(--post-gray-10);
+
+    > .row {
+      --bs-gutter-y: 1.5rem;
+    }
+  }
+}
