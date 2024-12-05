@@ -1,0 +1,16 @@
+@use './../mixins/color' as color-mx;
+@use './../functions/contrast';
+@use './../variables/color';
+
+@mixin background-color() {
+  // make light gray the default accordion color
+  @include color-mx.colored-background(color.$gray);
+
+  // make the accordion white on any background other than white
+  @each $name, $color in color.$background-colors {
+    .bg-#{$name} & {
+      $accordion-bg: if($color == color.$white, color.$gray, color.$white);
+      @include color-mx.colored-background($accordion-bg);
+    }
+  }
+}

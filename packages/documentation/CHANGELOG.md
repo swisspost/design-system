@@ -1,52 +1,5 @@
 # @swisspost/design-system-documentation
 
-## 6.0.0-next.8
-
-### Major Changes
-
-- Removed deprecated `carousel` component. (by [@leagrdv](https://github.com/leagrdv) with [#4075](https://github.com/swisspost/design-system/pull/4075))
-
-### Minor Changes
-
-- Added the `post-togglebutton` component. (by [@veyaromain](https://github.com/veyaromain) with [#3889](https://github.com/swisspost/design-system/pull/3889))
-
-- Updated the documentation navigation. (by [@alizedebray](https://github.com/alizedebray) with [#4072](https://github.com/swisspost/design-system/pull/4072))
-
-- Created a documentation page for the form hints. (by [@leagrdv](https://github.com/leagrdv) with [#4086](https://github.com/swisspost/design-system/pull/4086))
-
-### Patch Changes
-
-- Removed the `rg` and `xxl` grid breakpoints, reducing the grid to 5 breakpoints instead of the previous 7. This change affects all CSS classes tied to specific breakpoints (e.g., `col-rg-2`, `m-xxl-4`).  
-  **Previous Breakpoints**:
-
-  - `xs: 0px`
-  - `sm: 400px`
-  - `rg: 600px`
-  - `md: 780px`
-  - `lg: 1024px`
-  - `xl: 1280px`
-  - `xxl: 1440px`
-
-  **New Breakpoints**:
-
-  - `xs: 0px`
-  - `sm: 600px`
-  - `md: 780px`
-  - `lg: 1024px`
-  - `xl: 1280px`
-
-  To maintain compatibility with the updated grid system, you need to update your code by replacing any `*-rg-*` classes with `*-sm-*`, and any `*-xxl-*` classes with `*-xl-*`. For example:
-
-  - `col-rg-2` → `col-sm-2`
-  - `m-xxl-4` → `m-xl-4` (by [@alizedebray](https://github.com/alizedebray) with [#3982](https://github.com/swisspost/design-system/pull/3982))
-
-- Updated dependencies:
-  - @swisspost/design-system-components@9.0.0-next.7
-  - @swisspost/design-system-styles@9.0.0-next.7
-  - @swisspost/design-system-icons@9.0.0-next.7
-  - @swisspost/design-system-components-react@9.0.0-next.7
-  - @swisspost/internet-header@2.0.0-next.7
-
 ## 6.0.0-next.7
 
 ### Major Changes
