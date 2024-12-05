@@ -4,7 +4,7 @@
 @use './../tokens/components';
 @use './../tokens/elements';
 
-@use './../mixins/icons';
+@use './../mixins/forms' as forms-mx;
 @use './../mixins/utilities';
 @use './../variables/components/forms';
 
@@ -77,9 +77,7 @@ input.form-control {
       padding-block: tokens.get('input-standalone-padding-block');
       padding-inline-start: tokens.get('input-padding-inline-start');
       padding-inline-end: tokens.get('input-padding-inline-end');
-      margin: calc(#{tokens.get('input-standalone-padding-block')} * -1)
-        calc(#{tokens.get('input-padding-inline-start')} * -1);
-      margin-inline-end: tokens.get('input-padding-inline-start');
+      margin-block: calc(#{tokens.get('input-standalone-padding-block')} * -1);
       color: tokens.get('input-color-enabled-fg');
       pointer-events: none;
       border-color: inherit;
@@ -207,7 +205,105 @@ input.form-control {
   color: tokens.get('input-color-disabled-fg');
 }
 
-.form-floating > input.form-control {
-  height: tokens.get('input-sizing-height');
-  min-height: tokens.get('input-sizing-height');
+.form-floating {
+  position: relative;
+
+  > input.form-control ~ label {
+    position: absolute;
+    z-index: 2;
+    text-align: start;
+    pointer-events: none;
+    display: block;
+    top: tokens.get('input-border-width');
+    left: tokens.get('input-border-width');
+    margin: 0;
+    padding-inline-start: tokens.get('input-label-empty-padding-inline-start');
+    padding-inline-end: tokens.get('input-label-empty-padding-inline-end');
+    padding-block-start: tokens.get('input-label-empty-padding-block-start');
+    border: 0;
+    color: tokens.get('input-color-enabled-fg');
+    width: auto;
+    height: auto;
+    max-width: calc(100% - (#{tokens.get('input-border-width')} * 2));
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition:
+      padding-block-start 0.2s ease-in-out,
+      font-size 0.2s ease-in-out;
+    background-color: tokens.get('input-color-enabled-bg');
+  }
+
+  > input.form-control {
+    min-height: tokens.get('input-sizing-height');
+
+    &::placeholder {
+      color: transparent;
+    }
+
+    &:focus,
+    &:not(:placeholder-shown) {
+      padding-block-start: tokens.get('input-padding-block-start');
+      padding-block-end: tokens.get('input-padding-block-end');
+
+      ~ label {
+        color: tokens.get('input-color-selected-fg');
+        font-size: tokens.get('input-label-filled-font-size');
+        padding-block-start: tokens.get('input-label-filled-padding-block-start');
+      }
+
+      &:not(:hover):not(:disabled) {
+        ~ label {
+          color: tokens.get('input-color-selected-fg');
+        }
+      }
+    }
+
+    @include forms-mx.placeholder {
+      opacity: 0;
+    }
+
+    &:focus {
+      @include forms-mx.placeholder {
+        color: tokens.get('input-color-helptext-fg');
+        opacity: 1;
+      }
+    }
+
+    &:disabled ~ label {
+      color: tokens.get('input-color-disabled-fg');
+      background-color: tokens.get('input-color-disabled-bg');
+    }
+
+    &:not(:disabled):hover ~ label {
+      color: tokens.get('input-color-hover-fg');
+      background-color: tokens.get('input-color-hover-bg');
+    }
+
+    &[type='file'] {
+      &:focus,
+      &:not(:placeholder-shown) {
+        padding-block-start: calc(#{tokens.get('input-padding-block-start')} * 1.33);
+      }
+    }
+  }
+
+  > input.form-control:-webkit-autofill {
+    padding-block-start: tokens.get('input-padding-block-start');
+    padding-block-end: tokens.get('input-padding-block-end');
+
+    ~ label {
+      color: tokens.get('input-color-selected-fg');
+      font-size: tokens.get('input-label-filled-font-size');
+      background-color: tokens.get('input-color-selected-bg');
+    }
+  }
+
+  @include utilities.high-contrast-mode() {
+    > input {
+      @include forms-mx.placeholder() {
+        opacity: 0;
+      }
+    }
+  }
 }
