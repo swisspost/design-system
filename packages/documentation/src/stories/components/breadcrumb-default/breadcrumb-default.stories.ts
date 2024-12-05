@@ -49,7 +49,7 @@ export const Default: Story = {
 
 export const Concatenated: Story = {
   render: (args: Args) => html`
-    <div style="width: 200px;">
+    <div style="width: 300px;">
       <post-breadcrumb home-url=${args.homeUrl} home-text=${args.homeText}>
         <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
         <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
@@ -81,5 +81,7 @@ export const BreadcrumbItem: Story = {
       control: { type: 'text' },
       table: { category: 'Props' },
     },
+    homeUrl: { table: { disable: true } },
+    homeText: { table: { disable: true } },
   },
 };
