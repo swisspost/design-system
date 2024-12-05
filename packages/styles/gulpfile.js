@@ -118,8 +118,8 @@ gulp.task('sass', () => {
     .src('./src/**/*.scss')
     .pipe(
       gulpSass({
-        outputStyle: 'compressed',
-        includePaths: options.includePaths,
+        style: 'compressed',
+        loadPaths: options.loadPaths,
         quietDeps: true,
       }),
     )
@@ -136,7 +136,7 @@ gulp.task('sass:dev', () => {
     .pipe(sourcemaps.init())
     .pipe(
       gulpSass({
-        includePaths: options.includePaths,
+        loadPaths: options.loadPaths,
         quietDeps: true,
       }),
     )
@@ -153,7 +153,7 @@ gulp.task(
   gulp.series('temporarily-copy-token-files', () => {
     return gulp.src('./tests/**/*.scss').pipe(
       gulpSass.sync({
-        includePaths: options.includePaths,
+        loadPaths: options.loadPaths,
         quietDeps: true,
       }),
     );
