@@ -13,11 +13,7 @@
     background-color: lighten(#0076a8, 61.5%);
   }
 
-  .row-height {
+  .high-row .row {
     min-height: 10rem;
-  }
-
-  .standalone-columns > *:not(p){
-    padding-block: 0.75rem;
   }
 }
