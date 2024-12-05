@@ -17,81 +17,71 @@ tokens.$default-map: components.$post-breadcrumb;
 .breadcrumbs-nav {
   display: flex;
   align-items: center;
-}
 
-/* Breadcrumbs List */
-.breadcrumbs-list {
-  display: flex;
-  flex-wrap: nowrap;
-  position: relative;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  align-items: center;
-  height: 100%;
-  gap: tokens.get('breadcrumb-gap-inline-outer');
-
-  li {
+  .breadcrumbs-list {
+    display: flex;
+    flex-wrap: nowrap;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    align-items: center;
     height: 100%;
+    gap: tokens.get('breadcrumb-gap-inline-outer');
 
-    a {
-      display: block;
+    li {
       height: 100%;
-      display: flex;
-      align-items: center;
 
-      &:focus {
-        border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
-        @include utilities.focus-style;
+      a {
+        display: block;
+        height: 100%;
+        display: flex;
+        align-items: center;
+
+        &:focus {
+          border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+          @include utilities.focus-style;
+        }
+      }
+    }
+
+    .home-icon {
+      display: inline-block;
+      height: tokens.get('breadcrum-icon-size');
+      width: tokens.get('breadcrum-icon-size');
+      color: tokens.get('breadcrumb-enabled-fg');
+
+      &:hover {
+        color: tokens.get('breadcrumb-hover-fg');
       }
     }
   }
+}
 
-  .home-icon {
-    display: inline-block;
-    height: tokens.get('breadcrum-icon-size');
-    width: tokens.get('breadcrum-icon-size');
-    color: tokens.get('breadcrumb-enabled-fg');
+/* Menu Trigger Styles */
+.menu-trigger-wrapper {
+  &:focus,
+  &:focus-visible {
+    border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+    outline-offset: tokens.get('focus-outline-offset', helpers.$post-focus);
+    outline: tokens.get('focus-outline-color', helpers.$post-focus)
+      tokens.get('focus-border-style', helpers.$post-focus)
+      tokens.get('focus-outline-width', helpers.$post-focus);
+  }
 
-    &:hover {
-      color: tokens.get('breadcrumb-hover-fg');
-    }
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    height: 100%;
+    padding: 0;
+    line-height: 150%;
+    display: inline-flex;
+    align-items: center;
   }
 }
 
-.menu-trigger-wrapper:focus,
-.menu-trigger-wrapper:focus-visible {
-  border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
-  outline-offset: tokens.get('focus-outline-offset', helpers.$post-focus);
-  outline: tokens.get('focus-outline-color', helpers.$post-focus) 
-  tokens.get('focus-border-style', helpers.$post-focus) 
-  tokens.get('focus-outline-width', helpers.$post-focus);
-}
-
-
-/* Menu Trigger Button */
-post-menu-trigger button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  height: 100%;
-  padding: 0;
-  line-height: 150%;
-  display: inline-flex;
-  align-items: center;
-}
-
-/* Breadcrumb Item Icon */
-.breadcrumb-item-icon {
-  height: tokens.get('breadcrum-icon-size');
-  width: tokens.get('breadcrum-icon-size');
-}
-
-#breadcrumb-menu {
-  gap: tokens.get('breadcrumb-gap-inline-outer');
-}
-
-/* Menu Items */
+/* Breadcrumb Item */
 .breadcrumb-item {
   display: flex;
   height: 100%;
@@ -107,9 +97,9 @@ post-menu-trigger button {
     @include utilities.focus-style;
   }
 
-  post-icon {
-    height: tokens.get('breadcrum-icon-size');
-    width: tokens.get('breadcrum-icon-size');
+  &:hover {
+    color: tokens.get('breadcrumb-hover-fg');
+    text-decoration: tokens.get('breadcrumb-link-hover-text-decoration');
   }
 
   a {
@@ -122,9 +112,9 @@ post-menu-trigger button {
     }
   }
 
-  &:hover {
-    color: tokens.get('breadcrumb-hover-fg');
-    text-decoration: tokens.get('breadcrumb-link-hover-text-decoration');
+  post-icon {
+    height: tokens.get('breadcrum-icon-size');
+    width: tokens.get('breadcrum-icon-size');
   }
 
   @include utilities.high-contrast-mode() {
@@ -140,27 +130,12 @@ post-menu-trigger button {
   }
 }
 
-/* Visually Hidden Utility */
-.visually-hidden {
-  @include post.visually-hidden();
-}
-
-post-menu::part(popover-container) {
-  display: flex;
-  flex-direction: column;
-  gap: var(--post-device-spacing-gap-inline-4); /* Use `gap` for spacing */
-
-  /* Fallback for bottom margin */
-  ::slotted(post-menu-item:not(:last-child)) {
-    margin-bottom: var(--post-device-spacing-gap-inline-4);
-  }
-}
-
+/* Last Breadcrumb Item (Non-Interactive) */
 post-breadcrumb-item:last-of-type {
   pointer-events: none;
   color: tokens.get('breadcrumb-selected-fg');
   font-weight: tokens.get('breadcrumb-selected-font-weight');
-  
+
   &:hover {
     color: tokens.get('breadcrumb-selected-fg');
     text-decoration: none;
@@ -169,4 +144,28 @@ post-breadcrumb-item:last-of-type {
   post-icon {
     color: tokens.get('breadcrumb-selected-fg');
   }
+}
+
+/* Menu Styles */
+post-menu::part(popover-container) {
+  display: flex;
+  flex-direction: column;
+  padding: 0.3rem;
+  gap: var(--post-device-spacing-gap-inline-4);
+
+  /* Fallback for bottom margin */
+  ::slotted(post-menu-item:not(:last-child)) {
+    margin-bottom: var(--post-device-spacing-gap-inline-4);
+  }
+}
+
+/* Breadcrumb Item Icon */
+.breadcrumb-item-icon {
+  height: tokens.get('breadcrum-icon-size');
+  width: tokens.get('breadcrum-icon-size');
+}
+
+/* Visually Hidden Utility */
+.visually-hidden {
+  @include post.visually-hidden();
 }
