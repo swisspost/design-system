@@ -6,7 +6,7 @@ import SampleListReset from './list-reset.sample.scss?raw';
 
 # Lists
 
-<p className="lead">Use lists to group a collection  of related items.</p>
+<p className="lead">Use lists to group a collection of related items.</p>
 
 There are three types of HTML lists: unordered lists, ordered lists, and description lists.
 Utility classes allow you to style each of these lists in different ways.
@@ -29,18 +29,14 @@ This only applies to immediate child list items, meaning you will need to add th
 
 If you want to use the class above, you can still reset the list styles with the following mixin:
 
-<Source
-  language="scss"
-  dark
-  code={SampleListReset}
-></Source>
+<Source language="scss" dark code={SampleListReset}></Source>
 
 ### Inline
 
 Remove a list’s bullets and apply some light margin with a combination of two classes,
 `.list-inline` and `.list-inline-item`.
 
-<Canvas of={ListStories.InlineList} sourceState="shown"/>
+<Canvas of={ListStories.InlineList} sourceState="shown" />
 
 ## Ordered List
 
@@ -64,3 +60,9 @@ Align terms and descriptions horizontally by using our grid system’s predefine
 For longer terms, you can optionally add a `.text-truncate` class to truncate the text with an ellipsis.
 
 <Canvas of={ListStories.DescriptionListUsingGrid} sourceState="shown" />
+
+## Check List
+
+A non-interactive checklist is a list with a check icon prefix, not only for better visual identification of the list items but also to indicate a 'completed' status for each item.
+
+<Canvas of={ListStories.CheckList} sourceState="shown" />

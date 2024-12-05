@@ -122,3 +122,13 @@ export const DescriptionListUsingGrid: Story = {
     </dl>
   `,
 };
+
+export const CheckList: Story = {
+  render: () => html`
+    <ul class="list-check">
+      <li>This is a check list item.</li>
+      <li>And another one.</li>
+      <li>And one more.</li>
+    </ul>
+  `,
+};
