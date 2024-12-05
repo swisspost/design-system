@@ -33,9 +33,6 @@ export class PostBreadcrumb {
     this.updateBreadcrumbItems();
     window.addEventListener('resize', this.handleResize);
     this.waitForBreadcrumbRef();
-
-    // Observe changes in the shadow DOM
-    this.observePostMenu();
   }
 
   disconnectedCallback() {
@@ -47,9 +44,7 @@ export class PostBreadcrumb {
 
   private handleBreadcrumbItemClick() {
     const postMenuTriggerWrapper = this.host.shadowRoot.querySelector('.menu-trigger-wrapper');
-    console.log(postMenuTriggerWrapper)
     const menuTrigger = postMenuTriggerWrapper.querySelector('button');
-    console.log(menuTrigger)
     if (menuTrigger) {
       menuTrigger.click();
     }
@@ -75,10 +70,10 @@ export class PostBreadcrumb {
     let parent = this.host.parentNode;
 
     while (parent && !(parent instanceof HTMLElement)) {
-      parent = parent.parentNode; // Traverse up until an HTMLElement is found
+      parent = parent.parentNode;
     }
 
-    return parent instanceof HTMLElement ? parent.clientWidth : window.innerWidth; // Fallback to viewport width
+    return parent instanceof HTMLElement ? parent.clientWidth : window.innerWidth;
   }
 
   private checkConcatenation() {
@@ -94,23 +89,6 @@ export class PostBreadcrumb {
 
       this.isConcatenated = totalWidth + homeItemWidth > visibleWidth;
     }
-  }
-
-  private observePostMenu() {
-    this.mutationObserver = new MutationObserver(() => {
-      const postMenu = this.host.shadowRoot?.querySelector('post-menu');
-      if (postMenu?.shadowRoot) {
-        const popoverContainer = postMenu.shadowRoot.querySelector('.popover-container') as HTMLElement;
-            popoverContainer.style.display = 'flex';
-            popoverContainer.style.flexDirection = 'column';
-          }
-        }
-      );
-
-    this.mutationObserver.observe(this.host.shadowRoot, {
-      childList: true,
-      subtree: true,
-    });
   }
 
   render() {
@@ -131,8 +109,8 @@ export class PostBreadcrumb {
             {/* Check if items should be concatenated */}
             {this.isConcatenated ? (
              <post-breadcrumb-item
-             tabIndex={0}
              class="menu-trigger-wrapper"
+             tabindex={0}
              onClick={() => this.handleBreadcrumbItemClick()}
              onKeyDown={(e) => {
                if (e.key === 'Enter' || e.key === ' ') {
@@ -146,7 +124,16 @@ export class PostBreadcrumb {
               </post-menu-trigger>
               <post-menu id="breadcrumb-menu">
                 {visibleItems.map((item, index) => (
-                  <post-menu-item key={index} class="breadcrumb-item">
+                  <post-menu-item key={index} class="breadcrumb-item"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      const linkElement = (e.currentTarget as HTMLElement).querySelector('a');
+                      if (linkElement) {
+                        e.preventDefault();
+                        (linkElement as HTMLElement).click();
+                      }
+                    }
+                  }}>
                     <post-icon name="2111" class="breadcrumb-item-icon" />
                     {item.url ? (
                       <a href={item.url}>{item.text}</a>
