@@ -45,12 +45,23 @@ export class PostBreadcrumbItem {
     this.validateUrl();
   }
 
+  private handleKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      const linkElement = this.host.shadowRoot?.querySelector('a');
+      if (linkElement) {
+        event.preventDefault();
+        (linkElement as HTMLElement).click();
+      }
+    }
+  }
+
   render() {
     const BreadcrumbTag = this.validUrl ? 'a' : 'span';
 
     return (
       <Host data-version={version}>
-        <BreadcrumbTag class="breadcrumb-item" {...(this.validUrl ? { href: this.validUrl } : {})}>
+        <BreadcrumbTag class="breadcrumb-item" {...(this.validUrl ? { href: this.validUrl } : {})}
+          onKeyDown={(event) => this.handleKeyDown(event)}>
           <post-icon name="2111" class="breadcrumb-item-icon" />
           <slot></slot>
         </BreadcrumbTag>
