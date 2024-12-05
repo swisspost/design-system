@@ -10,7 +10,7 @@
 
 tokens.$default-map: components.$post-text-input;
 
-.form-control {
+input.form-control {
   display: block;
   width: 100%;
   font-family: tokens.get('body-font-family', elements.$post-body);
@@ -203,15 +203,11 @@ tokens.$default-map: components.$post-text-input;
   }
 }
 
-textarea.form-control {
-  min-height: tokens.get('input-sizing-height');
-}
-
-.form-label:has(+ .form-control[disabled]) {
+.form-label:has(+ input.form-control[disabled]) {
   color: tokens.get('input-color-disabled-fg');
 }
 
-.form-floating > .form-control {
+.form-floating > input.form-control {
   height: tokens.get('input-sizing-height');
   min-height: tokens.get('input-sizing-height');
 }
