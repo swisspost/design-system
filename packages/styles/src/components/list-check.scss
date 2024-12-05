@@ -19,6 +19,7 @@ ul.list-check {
       )} + 2 * #{tokens.get('list-check-icon-container-inline')}
   );
   gap: tokens.get('list-check-item-gap-block-text');
+
   > li {
     position: relative;
     color: tokens.get('list-check-color-text-fg');
