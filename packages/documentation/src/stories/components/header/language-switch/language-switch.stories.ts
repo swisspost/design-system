@@ -11,7 +11,7 @@ const meta: MetaComponent<HTMLPostLanguageSwitchElement> = {
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?t=g8IqUrnroVx7EeLT-0',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=7817-52867&t=cw8xiYtq7RyVU0gH-4',
     },
   },
   args: {
@@ -57,9 +57,15 @@ function renderLanguageSwitch(args: Partial<HTMLPostLanguageSwitchElement>) {
     variant=${args.variant}
     name=${args.name}
   >
-    <post-language-option active="true" code="de" name="Deutsch">DE</post-language-option>
-    <post-language-option active="false" code="en" name="English">EN</post-language-option>
-    <post-language-option active="false" code="fr" name="French">FR</post-language-option>
+    <post-language-option variant=${args.variant} active="true" code="de" name="Deutsch"
+      >DE</post-language-option
+    >
+    <post-language-option variant=${args.variant} active="false" code="en" name="English"
+      >EN</post-language-option
+    >
+    <post-language-option variant=${args.variant} active="false" code="fr" name="French"
+      >FR</post-language-option
+    >
   </post-language-switch> `;
 }
 
@@ -70,11 +76,15 @@ function renderLanguageSwitchAsLinks(args: Partial<HTMLPostLanguageSwitchElement
     variant="dropdown"
     name=${args.name}
   >
-    <post-language-option url="/de" active="true" code="de" name="Deutsch">DE</post-language-option>
-    <post-language-option url="/en" active="false" code="en" name="English"
+    <post-language-option variant=${args.variant} url="/de" active="true" code="de" name="Deutsch"
+      >DE</post-language-option
+    >
+    <post-language-option variant=${args.variant} url="/en" active="false" code="en" name="English"
       >EN</post-language-option
     >
-    <post-language-option url="/fr" active="false" code="fr" name="French">FR</post-language-option>
+    <post-language-option variant=${args.variant} url="/fr" active="false" code="fr" name="French"
+      >FR</post-language-option
+    >
   </post-language-switch> `;
 }
 

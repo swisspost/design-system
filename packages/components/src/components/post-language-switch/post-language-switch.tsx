@@ -128,7 +128,7 @@ export class PostLanguageSwitch {
       <Host data-version={version}>
         <post-menu-trigger for={this.menuId}>
           <button
-            class="btn btn-tertiary btn-sm"
+            class="post-language-switch-trigger"
             aria-label={`${this.caption}, ${this.description}`}
           >
             {this.activeLang.toUpperCase()}
@@ -136,7 +136,9 @@ export class PostLanguageSwitch {
           </button>
         </post-menu-trigger>
         <post-menu id={this.menuId}>
-          <slot></slot>
+          <div class="post-language-switch-dropdown-container">
+            <slot></slot>
+          </div>
         </post-menu>
       </Host>
     );

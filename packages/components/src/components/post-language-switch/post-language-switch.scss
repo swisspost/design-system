@@ -1,20 +1,45 @@
-@use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/mixins/button' as button-mx;
+@use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
+
+tokens.$default-map: components.$post-button;
 
 :host {
   display: block;
 }
 
 post-language-switch {
-  post-list > div[role='list'] {
-    flex-direction: row;
-    gap: 8px;
+}
+
+.post-language-switch-dropdown-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-language-switch-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-width: tokens.get('button-border-width');
+  border-radius: tokens.get('button-border-radius-round');
+  background-color: transparent;
+  font-family: inherit;
+  font-weight: tokens.get('button-label-font-weight');
+  @include button-mx.button-size(sm);
+
+  &:disabled {
+    border-style: tokens.get('button-border-style-disabled');
   }
 
-  .hide {
-    display: none;
+  @include utilities-mx.focus-style;
+  @include button-mx.button-variant-def('enabled', 'tertiary');
+
+  &:disabled {
+    @include button-mx.button-variant-def('disabled', 'tertiary');
   }
 
-  post-language-option {
-    width: 100%;
+  @include utilities-mx.not-disabled-hover() {
+    @include button-mx.button-variant-def('hover', 'tertiary');
   }
 }
