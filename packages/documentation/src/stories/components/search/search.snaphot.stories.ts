@@ -16,23 +16,21 @@ export const SearchInput: Story = {
   render: (_args: Args, context: StoryContext) => {
     const argsOptions = [
       { label: 'Default', placeholder: 'Search...' },
-      { label: 'No Placeholder', placeholder: null },
+      { label: 'No Placeholder', placeholder: '' },
       { label: 'With Content', placeholder: 'Search...', value: 'Some content' },
     ];
 
     return schemes(
       () => html`
-        <div class="d-flex flex-wrap align-items-start gap-16 p-16">
+        <div class="d-flex flex-column align-items-start gap-24 p-16">
           ${argsOptions.map(
             args => html`
               <div class="search-input-container">
-                <h4>${args.label}</h4>
+                <h4 class="mb-8">${args.label}</h4>
                 ${meta.render?.(
                   {
                     ...context.args,
                     ...args,
-                    placeholder: args.placeholder || '',
-                    value: args.value || '',
                   },
                   context,
                 )}
