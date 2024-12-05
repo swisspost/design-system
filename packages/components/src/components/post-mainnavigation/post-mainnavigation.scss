@@ -7,11 +7,7 @@
 @use '@swisspost/design-system-styles/variables/animation';
 
 post-mainnavigation {
-  .back-button {
-    order: -1;
-  }
-
- // reset links and buttons
+  // reset links and buttons
   post-list-item {
     a {
       text-decoration: none;
@@ -76,8 +72,6 @@ post-mainnavigation {
 
   // tablet/mobile styles
   @include media.max(lg) {
-    display: contents;
-
     post-list-item {
       a,
       button {

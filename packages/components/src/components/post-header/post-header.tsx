@@ -114,12 +114,11 @@ export class PostHeader {
           </div>
         </div>
 
-        <div class={navigationClasses.join(' ')}>
-          <div class="main-navigation">
-            <slot name="post-mainnavigation"></slot>
-          </div>
+        <div aria-hidden={`${!this.mobileMenuExtended}`} class={navigationClasses.join(' ')}>
+          <slot name="post-mainnavigation"></slot>
+
           {(this.device === 'mobile' || this.device === 'tablet') && (
-            <div class="bottom-navigation">
+            <div class="navigation-footer">
               <slot name="meta-navigation"></slot>
               <slot name="post-language-switch"></slot>
             </div>

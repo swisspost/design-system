@@ -132,27 +132,28 @@ slot[name='post-logo'] {
     }
   }
 
-  :is(.main-navigation, .bottom-navigation) {
+  ::slotted(post-mainnavigation),
+  .navigation-footer {
     display: flex;
     flex-direction: column;
     padding-block: var(--post-core-dimension-16) var(--post-core-dimension-24);
     padding-inline: var(--post-core-dimension-32);
-    visibility: hidden;
-    transition-property: visibility;
-    transition-delay: 0s;
+    opacity: 0;
+    transition-property: opacity;
+    transition-delay: animation.$transition-time-area-medium;
 
     .navigation.extended & {
-      visibility: visible;
-      transition-delay: animation.$transition-time-area-medium;
+      opacity: 1;
+      transition-delay: 0s;
     }
   }
 
-  .main-navigation {
+  ::slotted(post-mainnavigation) {
     background-color: var(--post-core-color-sandgrey-002);
     gap: var(--post-core-dimension-32);
   }
 
-  .bottom-navigation {
+  .navigation-footer {
     background-color: var(--post-core-color-sandgrey-006);
     gap: var(--post-core-dimension-24);
   }
