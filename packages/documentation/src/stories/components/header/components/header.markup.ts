@@ -4,13 +4,6 @@ export default html`<post-header>
   <!-- Logo -->
   <post-logo>Homepage</post-logo>
 
-  <!-- Audience Navigation -->
-  <ul class="list-inline" slot="audience-navigation">
-    <li><a href="">Privatkunden</a></li>
-    <li><a href="">Geschäftskunden</a></li>
-    <li><a href="">Behörden</a></li>
-  </ul>
-
   <!-- Meta navigation -->
   <ul class="list-inline" slot="meta-navigation">
     <li><a href="">Über uns</a></li>
