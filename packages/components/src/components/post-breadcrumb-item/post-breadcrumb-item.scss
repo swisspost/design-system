@@ -24,6 +24,8 @@ tokens.$default-map: components.$post-breadcrumb;
   post-icon {
     height: tokens.get('breadcrum-icon-size');
     width: tokens.get('breadcrum-icon-size');
+    padding-block: tokens.get('breadcrumb-padding-block-icon-link');
+    padding-inline: tokens.get('breadcrumb-padding-inline-icon-link');
   }
 
   &:hover {
