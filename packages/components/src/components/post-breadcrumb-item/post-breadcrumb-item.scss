@@ -2,6 +2,7 @@
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/tokens/helpers';
 @use '@swisspost/design-system-styles/mixins/utilities';
 
 tokens.$default-map: components.$post-breadcrumb;
@@ -28,6 +29,10 @@ tokens.$default-map: components.$post-breadcrumb;
   &:hover {
     color: tokens.get('breadcrumb-hover-fg');
     text-decoration: tokens.get('breadcrumb-link-hover-text-decoration');
+  }
+
+  &:focus-visible {
+    border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
   }
 
   @include utilities.high-contrast-mode() {
