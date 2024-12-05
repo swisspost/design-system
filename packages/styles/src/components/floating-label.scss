@@ -21,8 +21,7 @@ tokens.$default-map: components.$post-text-input;
 .form-floating {
   position: relative;
 
-  > .form-control ~ label,
-  > textarea ~ label {
+  > input.form-control ~ label {
     position: absolute;
     z-index: 2;
     text-align: start;
@@ -48,7 +47,7 @@ tokens.$default-map: components.$post-text-input;
     background-color: tokens.get('input-color-enabled-bg');
   }
 
-  > .form-control {
+  > input.form-control {
     height: tokens.get('input-sizing-height');
     min-height: tokens.get('input-sizing-height');
 
@@ -103,15 +102,8 @@ tokens.$default-map: components.$post-text-input;
     }
   }
 
-  > textarea:disabled ~ label,
-  > .form-control:disabled ~ label {
-    // Required for `.form-control`s because of specificity
-    color: tokens.get('input-color-disabled-fg');
-    background-color: tokens.get('input-color-disabled-bg');
-  }
-
   // Duplicated because `:-webkit-autofill` invalidates other selectors when grouped
-  > .form-control:-webkit-autofill {
+  > input.form-control:-webkit-autofill {
     padding-block-start: tokens.get('input-padding-block-start');
     padding-block-end: tokens.get('input-padding-block-end');
 
@@ -122,63 +114,8 @@ tokens.$default-map: components.$post-text-input;
     }
   }
 
-  > :disabled ~ label,
-  > .form-control:disabled ~ label {
-    // Required for `.form-control`s because of specificity
-    color: tokens.get('input-color-disabled-fg');
-    background-color: tokens.get('input-color-disabled-bg');
-  }
-
-  > textarea.form-control {
-    padding-block-start: forms.$form-floating-textarea-padding-t !important;
-    padding-block-end: spacing.$size-mini;
-    padding-inline-end: spacing.$size-large;
-    min-height: (forms.$form-floating-label-font-size * forms.$input-line-height-lg) +
-      forms.$form-floating-textarea-padding-t + spacing.$size-mini +
-      sizing.px-to-rem(forms.$input-border-width * 2);
-    height: auto;
-
-    ~ label {
-      padding-block-end: 0;
-      width: calc(100% - (#{tokens.get('input-border-width')} * 2));
-      max-width: none;
-      height: unset;
-      padding-block-start: spacing.$size-regular;
-    }
-
-    &:focus,
-    &:not(:placeholder-shown) {
-      padding-block-end: spacing.$size-mini;
-
-      ~ label {
-        padding-block-start: spacing.$size-mini;
-        width: calc(100% - (#{tokens.get('input-border-width')} * 2));
-        max-width: none;
-        background-color: tokens.get('input-color-selected-bg');
-      }
-    }
-
-    &:is(.is-valid, .is-invalid) {
-      ~ label {
-        width: calc(
-          100% - (#{tokens.get('input-border-width')} * 2) - #{spacing.$size-mini} - #{tokens.get(
-              'input-sizing-height'
-            )}
-        );
-      }
-
-      &:focus,
-      &:not(:placeholder-shown) {
-        ~ label {
-          width: calc(100% - (#{tokens.get('input-border-width')} * 2));
-        }
-      }
-    }
-  }
-
   @include utilities-mx.high-contrast-mode() {
-    > input,
-    > textarea {
+    > input {
       @include forms-mx.placeholder() {
         opacity: 0;
       }
