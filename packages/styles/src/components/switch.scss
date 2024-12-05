@@ -174,7 +174,7 @@ $switch-handle-icon: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='htt
     }
   }
 
-  &:hover > .form-check-input:not([disabled]) {
+  &:has(input:not([disabled]):hover) input {
     background-color: tokens.get('switch-element-hover-bg');
     border-color: tokens.get('switch-element-hover-stroke');
 
