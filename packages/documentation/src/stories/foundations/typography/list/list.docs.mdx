@@ -1,6 +1,8 @@
 import { Meta, Canvas, Source } from '@storybook/blocks';
 import * as ListStories from './list.stories';
-import SampleListReset from './list-reset.sample.scss?raw';
+import SampleListBullet from './list-bullet.sample.scss?raw';
+import SampleListInline from './list-inline.sample.scss?raw';
+import SampleListUnstyled from './list-unstyled.sample.scss?raw';
 
 <Meta of={ListStories} />
 
@@ -18,49 +20,62 @@ It is created using a `<ul>` tag and each list item is preceded by a bullet (sma
 
 <Canvas of={ListStories.UnorderedList} sourceState="shown" />
 
-### Unstyled
-
-Remove the default list-style and left margin on list items (immediate children only).
-This only applies to immediate child list items, meaning you will need to add the class for any nested lists as well.
-
-<Canvas of={ListStories.UnstyledList} sourceState="shown" />
-
 #### Sass mixin
-
-If you want to use the class above, you can still reset the list styles with the following mixin:
 
 <Source
   language="scss"
   dark
-  code={SampleListReset}
+  code={SampleListBullet}
 ></Source>
 
 ### Inline
 
-Remove a list’s bullets and apply some light margin with a combination of two classes,
-`.list-inline` and `.list-inline-item`.
+Remove a list’s bullets.
 
 <Canvas of={ListStories.InlineList} sourceState="shown"/>
 
-## Ordered List
+#### Sass mixin
+
+<Source
+  language="scss"
+  dark
+  code={SampleListInline}
+></Source>
+
+### Unstyled List
+
+<p className="banner banner-info banner">Can be used with both, unordered and ordered lists.</p>
+Remove all the styles on a list and make it appear as if it is made out of `<div>` elements.
+
+<Canvas of={ListStories.UnstyledList} sourceState="shown"/>
+
+#### Sass mixin
+
+<Source
+  language="scss"
+  dark
+  code={SampleListUnstyled}
+></Source>
+
+## Ordered
 
 An ordered list groups related items in a specific order.
 It is created using a `<ol>` tag and list items are preceded by ascending numbers by default.
 
 <strong>All of the above utility classes also apply to ordered lists.</strong>
 
-<Canvas of={ListStories.OrderedList} sourceState="shown" />
+<Canvas of={ListStories.OrderedList} sourceState="shown"/>
 
 ## Description List
 
 A description list is a list of terms, with a description of each term.
 It is created using a `<dl>` tag, terms are defined using `<dt>` tags, and descriptions are defined using `<dd>` tags.
 
-<Canvas of={ListStories.DescriptionList} sourceState="shown" />
+<Canvas of={ListStories.DescriptionList} sourceState="shown"/>
 
 ### Alignment
 
 Align terms and descriptions horizontally by using our grid system’s predefined classes.
 For longer terms, you can optionally add a `.text-truncate` class to truncate the text with an ellipsis.
 
-<Canvas of={ListStories.DescriptionListUsingGrid} sourceState="shown" />
+<Canvas of={ListStories.DescriptionListUsingGrid} sourceState="shown"/>

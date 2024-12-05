@@ -22,7 +22,7 @@ function getComponentDefinitions(dir: string, files: string[] = []) {
   return files;
 }
 
-describe('Index.js', () => {
+describe('packages/components/src/index.ts', () => {
   componentDefinitions.forEach(def => {
     const component = componentExports.find(exp => exp === def);
 

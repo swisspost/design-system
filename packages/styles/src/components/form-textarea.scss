@@ -13,7 +13,6 @@ tokens.$default-map: components.$post-text-area;
 textarea.form-control {
   display: block;
   width: 100%;
-  font-family: tokens.get('body-font-family', elements.$post-body);
   appearance: none; // Fix appearance for date inputs in Safari
   background-clip: padding-box;
   border: tokens.get('textarea-border-width') tokens.get('textarea-border-style-enabled')
@@ -27,6 +26,7 @@ textarea.form-control {
   padding-block: tokens.get('textarea-standalone-padding-block');
   min-height: tokens.get('textarea-sizing-min-height');
   resize: vertical;
+  @include utilities.focus-style;
   @include forms-mx.textarea-resizer-svg(#050400);
 
   &[disabled] {
@@ -34,8 +34,6 @@ textarea.form-control {
   }
 
   &:focus {
-    @include utilities.focus-style;
-
     @include utilities.high-contrast-mode {
       border-color: FieldText !important; // On blink browser valid and invalid border colors are converted to Highlight color
     }
@@ -113,7 +111,9 @@ textarea.form-control {
     top: tokens.get('textarea-border-width');
     left: tokens.get('textarea-border-width');
     margin: 0;
-    padding-inline-start: tokens.get('textarea-label-padding-inline-start');
+    padding-inline-start: calc(
+      tokens.get('textarea-label-padding-inline-start') - tokens.get('textarea-border-width')
+    );
     padding-inline-end: 0;
     padding-block-start: tokens.get('textarea-label-padding-block-start');
     width: calc(

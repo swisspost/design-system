@@ -23,4 +23,5 @@ body {
   line-height: tokens.get('body-line-height');
   letter-spacing: tokens.get('body-letter-spacing');
   color: tokens.get('body-color');
+  min-height: 100vh;
 }
