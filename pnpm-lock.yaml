@@ -917,8 +917,8 @@ importers:
         specifier: 10.0.0
         version: 10.0.0(jiti@1.21.6)(postcss@8.4.40)
       gulp-sass:
-        specifier: 5.1.0
-        version: 5.1.0
+        specifier: 6.0.0
+        version: 6.0.0
       jest:
         specifier: 29.7.0
         version: 29.7.0(@types/node@20.14.14)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.4))
@@ -6556,8 +6556,8 @@ packages:
     peerDependencies:
       postcss: ^8.0.0
 
-  gulp-sass@5.1.0:
-    resolution: {integrity: sha512-7VT0uaF+VZCmkNBglfe1b34bxn/AfcssquLKVDYnCDJ3xNBaW7cUuI3p3BQmoKcoKFrs9jdzUxyb+u+NGfL4OQ==}
+  gulp-sass@6.0.0:
+    resolution: {integrity: sha512-FGb4Uab4jnH2GnSfBGd6uW3+imvNodAGfsjGcUhEtpNYPVx+TK2tp5uh7MO0sSR7aIf1Sm544werc+zV7ejHHw==}
     engines: {node: '>=12'}
 
   gulp-sourcemaps@3.0.0:
@@ -18360,7 +18360,7 @@ snapshots:
       - jiti
       - tsx
 
-  gulp-sass@5.1.0:
+  gulp-sass@6.0.0:
     dependencies:
       lodash.clonedeep: 4.5.0
       picocolors: 1.1.0
