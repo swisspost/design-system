@@ -1,6 +1,5 @@
 @use '../functions/tokens';
 @use '../tokens/elements';
-@use '../mixins/list' as list-mx;
 
 tokens.$default-map: elements.$post-listbullet;
 
@@ -26,18 +25,36 @@ ul {
   }
 
   &.list-bullet {
-    @include list-mx.list-bullet();
-  }
+    list-style: none;
 
-  &.list-inline {
-    @include list-mx.list-inline();
-  }
+    > li {
+      margin: 0;
+      padding-inline: 0;
+      padding-block: tokens.get('list-bullet-item-text-padding-block');
 
-  &.list-revert {
-    @include list-mx.list-revert();
-  }
+      ~ li {
+        margin-block-start: tokens.get('list-bullet-item-gap-block');
+      }
 
-  &.list-unstyled {
-    @include list-mx.list-unstyled();
+      &::before {
+        display: block;
+        content: '';
+        box-sizing: content-box;
+        position: absolute;
+        margin-block-start: calc(
+          (#{tokens.get('body-line-height', elements.$post-body)} * 0.5em) -
+            (#{tokens.get('list-bullet-item-icon-bullet-size')} * 0.5)
+        );
+        margin-inline-start: calc(
+          (#{tokens.get('list-bullet-item-icon-size')} * -0.5) +
+            (#{tokens.get('list-bullet-item-icon-bullet-size')} * -0.5) +
+            (#{tokens.get('post-list-bullet-item-icon-gap-inline')} * -1)
+        );
+        width: tokens.get('list-bullet-item-icon-bullet-size');
+        height: tokens.get('list-bullet-item-icon-bullet-size');
+        background-color: currentColor;
+        border-radius: 50%;
+      }
+    }
   }
 }

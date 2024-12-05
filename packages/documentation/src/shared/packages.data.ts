@@ -1,12 +1,10 @@
 import { DEPENDENCIES, getVersion } from '@/utils/version';
-
 import metaStyles from '@/stories/packages/styles/styles.stories';
 import metaComponents from '@/stories/packages/components/components.stories';
 import metaComponentsAngular from '@/stories/packages/components-angular/components-angular.stories';
 import metaInternetHeader from '@/stories/packages/internet-header/internet-header.stories';
 import metaIntranetHeader from '@/stories/packages/intranet-header/intranet-header.stories';
 import metaIcons from '@/stories/packages/icons/package-icons.stories';
-import metaTokens from '@/stories/packages/tokens/tokens.stories';
 import { PackageType } from '@/../types';
 
 interface IPackage {
@@ -146,26 +144,6 @@ export const packages: IPackage[] = [
       alt: '',
     },
     version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-icons'])}`,
-  },
-  {
-    name: 'Tokens',
-    docsStoryId: metaTokens.id,
-    type: PackageType.Assets,
-    link: {
-      github: {
-        href: 'https://github.com/swisspost/design-system/tree/main/packages/tokens',
-        ariaLabel: 'Source of Tokens package',
-      },
-      docs: {
-        href: generateDocsRelativeLink(metaTokens.id),
-        ariaLabel: 'Getting started with Tokens package',
-      },
-    },
-    img: {
-      src: '/assets/images/packages/tokens.svg',
-      alt: '',
-    },
-    version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-tokens'])}`,
   },
 ];
 
