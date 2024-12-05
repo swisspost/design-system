@@ -77,9 +77,7 @@ input.form-control {
       padding-block: tokens.get('input-standalone-padding-block');
       padding-inline-start: tokens.get('input-padding-inline-start');
       padding-inline-end: tokens.get('input-padding-inline-end');
-      margin: calc(#{tokens.get('input-standalone-padding-block')} * -1)
-        calc(#{tokens.get('input-padding-inline-start')} * -1);
-      margin-inline-end: tokens.get('input-padding-inline-start');
+      margin-block: calc(#{tokens.get('input-standalone-padding-block')} * -1);
       color: tokens.get('input-color-enabled-fg');
       pointer-events: none;
       border-color: inherit;
