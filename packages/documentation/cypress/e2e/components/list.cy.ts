@@ -1,7 +1,7 @@
 describe('List', () => {
   describe('Accessibility', () => {
     beforeEach(() => {
-      cy.visit('/iframe.html?id=snapshots--lists');
+      cy.visit('/iframe.html?id=snapshots--list');
       cy.get('ol', { timeout: 30000 }).should('be.visible');
       cy.injectAxe();
     });

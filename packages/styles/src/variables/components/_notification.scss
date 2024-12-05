@@ -62,7 +62,7 @@ $notification-elevation-map: map.merge(
   $notification-elevation-map,
   (
     'banner': tokens.get('banner-elevation'),
-    'toast': tokens.get('toast-elevation', components.$post-toast),
+    'toast': tokens.get('notification-toast-elevation', components.$post-notifications),
   )
 );
 

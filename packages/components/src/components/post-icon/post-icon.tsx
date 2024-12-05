@@ -112,8 +112,7 @@ export class PostIcon {
         .querySelector('meta[name="design-system-settings"][data-post-icon-base]')
         ?.getAttribute('data-post-icon-base') ?? null;
 
-    const baseHref = document.getElementsByTagName('base')[0]?.href;
-    const fileBase = `${this.base ?? metaBase ?? baseHref ?? CDN_URL}/`.replace(/\/\/$/, '/');
+    const fileBase = `${this.base ?? metaBase ?? CDN_URL}/`.replace(/\/\/$/, '/');
     const fileName = `${this.name}.svg#i-${this.name}`;
     const filePath = `${fileBase}${fileName}`;
 
