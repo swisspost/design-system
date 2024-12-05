@@ -11,15 +11,15 @@ export default {
   decorators: [],
 };
 
-type Story = StoryObj<HTMLPostLanguageOptionSwitchElement>;
+type Story = StoryObj<HTMLPostLanguageSwitchElement>;
 
-export const LanguageOptionSwitch: Story = {
+export const LanguageSwitch: Story = {
   render: (
-    _args: HTMLPostLanguageOptionSwitchElement,
-    context: StoryContext<HTMLPostLanguageOptionSwitchElement>,
+    _args: HTMLPostLanguageSwitchElement,
+    context: StoryContext<HTMLPostLanguageSwitchElement>,
   ) => {
     return html`
-      <div class="language-option-switch">
+      <div class="language-switch">
         ${schemes(
           () => html`
             <div class="d-flex flex-wrap align-items-center gap-16">

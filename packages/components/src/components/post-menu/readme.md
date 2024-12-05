@@ -68,7 +68,7 @@ Type: `Promise<void>`
 
 ### Used by
 
- - [post-language-option-switch](../post-language-option-switch)
+ - [post-language-switch](../post-language-switch)
 
 ### Depends on
 
@@ -78,7 +78,7 @@ Type: `Promise<void>`
 ```mermaid
 graph TD;
   post-menu --> post-popovercontainer
-  post-language-option-switch --> post-menu
+  post-language-switch --> post-menu
   style post-menu fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

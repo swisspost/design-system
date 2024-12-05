@@ -7,11 +7,11 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
-import { SwitchVariant } from "./components/post-language-option-switch/switch-variants";
+import { SwitchVariant } from "./components/post-language-switch/switch-variants";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
-export { SwitchVariant } from "./components/post-language-option-switch/switch-variants";
+export { SwitchVariant } from "./components/post-language-switch/switch-variants";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
     interface PostAccordion {
@@ -213,7 +213,7 @@ export namespace Components {
          */
         "code": string;
         /**
-          * Used on parent component (post-language-option-switch) to detect elements that are manually added
+          * Used on parent component (post-language-switch) to detect elements that are manually added
          */
         "generated": boolean;
         /**
@@ -233,7 +233,7 @@ export namespace Components {
          */
         "variant": SwitchVariant;
     }
-    interface PostLanguageOptionSwitch {
+    interface PostLanguageSwitch {
         /**
           * A title for the list of language options
          */
@@ -633,11 +633,11 @@ declare global {
         prototype: HTMLPostLanguageOptionElement;
         new (): HTMLPostLanguageOptionElement;
     };
-    interface HTMLPostLanguageOptionSwitchElement extends Components.PostLanguageOptionSwitch, HTMLStencilElement {
+    interface HTMLPostLanguageSwitchElement extends Components.PostLanguageSwitch, HTMLStencilElement {
     }
-    var HTMLPostLanguageOptionSwitchElement: {
-        prototype: HTMLPostLanguageOptionSwitchElement;
-        new (): HTMLPostLanguageOptionSwitchElement;
+    var HTMLPostLanguageSwitchElement: {
+        prototype: HTMLPostLanguageSwitchElement;
+        new (): HTMLPostLanguageSwitchElement;
     };
     interface HTMLPostListElement extends Components.PostList, HTMLStencilElement {
     }
@@ -827,7 +827,7 @@ declare global {
         "post-header": HTMLPostHeaderElement;
         "post-icon": HTMLPostIconElement;
         "post-language-option": HTMLPostLanguageOptionElement;
-        "post-language-option-switch": HTMLPostLanguageOptionSwitchElement;
+        "post-language-switch": HTMLPostLanguageSwitchElement;
         "post-list": HTMLPostListElement;
         "post-list-item": HTMLPostListItemElement;
         "post-logo": HTMLPostLogoElement;
@@ -1028,7 +1028,7 @@ declare namespace LocalJSX {
          */
         "code": string;
         /**
-          * Used on parent component (post-language-option-switch) to detect elements that are manually added
+          * Used on parent component (post-language-switch) to detect elements that are manually added
          */
         "generated"?: boolean;
         /**
@@ -1048,7 +1048,7 @@ declare namespace LocalJSX {
          */
         "variant"?: SwitchVariant;
     }
-    interface PostLanguageOptionSwitch {
+    interface PostLanguageSwitch {
         /**
           * A title for the list of language options
          */
@@ -1243,7 +1243,7 @@ declare namespace LocalJSX {
         "post-header": PostHeader;
         "post-icon": PostIcon;
         "post-language-option": PostLanguageOption;
-        "post-language-option-switch": PostLanguageOptionSwitch;
+        "post-language-switch": PostLanguageSwitch;
         "post-list": PostList;
         "post-list-item": PostListItem;
         "post-logo": PostLogo;
@@ -1286,7 +1286,7 @@ declare module "@stencil/core" {
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
             "post-language-option": LocalJSX.PostLanguageOption & JSXBase.HTMLAttributes<HTMLPostLanguageOptionElement>;
-            "post-language-option-switch": LocalJSX.PostLanguageOptionSwitch & JSXBase.HTMLAttributes<HTMLPostLanguageOptionSwitchElement>;
+            "post-language-switch": LocalJSX.PostLanguageSwitch & JSXBase.HTMLAttributes<HTMLPostLanguageSwitchElement>;
             "post-list": LocalJSX.PostList & JSXBase.HTMLAttributes<HTMLPostListElement>;
             "post-list-item": LocalJSX.PostListItem & JSXBase.HTMLAttributes<HTMLPostListItemElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;

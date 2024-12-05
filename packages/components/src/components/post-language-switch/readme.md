@@ -1,4 +1,4 @@
-# post-language-option-switch
+# post-language-switch
 
 <!-- Auto Generated Below -->
 
@@ -24,11 +24,11 @@
 ### Graph
 ```mermaid
 graph TD;
-  post-language-option-switch --> post-menu-trigger
-  post-language-option-switch --> post-icon
-  post-language-option-switch --> post-menu
+  post-language-switch --> post-menu-trigger
+  post-language-switch --> post-icon
+  post-language-switch --> post-menu
   post-menu --> post-popovercontainer
-  style post-language-option-switch fill:#f9f,stroke:#333,stroke-width:4px
+  style post-language-switch fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

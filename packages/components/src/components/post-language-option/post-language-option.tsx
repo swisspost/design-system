@@ -11,7 +11,7 @@ import {
 } from '@stencil/core';
 import { checkEmptyOrType, checkType } from '@/utils';
 import { version } from '@root/package.json';
-import { SwitchVariant } from '../post-language-option-switch/switch-variants';
+import { SwitchVariant } from '../post-language-switch/switch-variants';
 
 /**
  * @slot default - Slot for placing the content inside the anchor or button.
@@ -25,7 +25,7 @@ export class PostLanguageOption {
   @Element() host: HTMLPostLanguageOptionElement;
 
   /**
-   *  Used on parent component (post-language-option-switch) to detect elements that are manually added
+   *  Used on parent component (post-language-switch) to detect elements that are manually added
    */
   @Prop() generated: boolean;
 

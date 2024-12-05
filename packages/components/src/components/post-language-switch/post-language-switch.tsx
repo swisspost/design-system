@@ -4,12 +4,12 @@ import { version } from '@root/package.json';
 import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
 
 @Component({
-  tag: 'post-language-option-switch',
-  styleUrl: 'post-language-option-switch.scss',
+  tag: 'post-language-switch',
+  styleUrl: 'post-language-switch.scss',
   shadow: true,
 })
-export class PostLanguageOptionSwitch {
-  @Element() host: HTMLPostLanguageOptionSwitchElement;
+export class PostLanguageSwitch {
+  @Element() host: HTMLPostLanguageSwitchElement;
 
   /**
    * A title for the list of language options
@@ -21,7 +21,7 @@ export class PostLanguageOptionSwitch {
     checkType(
       value,
       'string',
-      'The "caption" property of the post-language-option-switch component must be a string.',
+      'The "caption" property of the post-language-switch component must be a string.',
     );
   }
 
@@ -35,7 +35,7 @@ export class PostLanguageOptionSwitch {
     checkType(
       value,
       'string',
-      'The "name" property of the post-language-option-switch component must be a string.',
+      'The "name" property of the post-language-switch component must be a string.',
     );
   }
 
@@ -49,7 +49,7 @@ export class PostLanguageOptionSwitch {
     checkType(
       value,
       'string',
-      'The "description" property of the post-language-option-switch component must be a string.',
+      'The "description" property of the post-language-switch component must be a string.',
     );
   }
 
@@ -63,7 +63,7 @@ export class PostLanguageOptionSwitch {
     checkEmptyOrOneOf(
       value,
       SWITCH_VARIANTS,
-      `The "variant" property of the post-language-option-switch component must be:  ${SWITCH_VARIANTS.join(
+      `The "variant" property of the post-language-switch component must be:  ${SWITCH_VARIANTS.join(
         ', ',
       )}`,
     );

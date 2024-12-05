@@ -21,7 +21,7 @@ export default html`<post-header>
   <post-toggle-button slot="post-togglebutton"> = Menu </post-toggle-button>
 
   <!-- Language switch -->
-  <post-language-switch slot="post-language-switch">
+  <post-language-switch-2 slot="post-language-switch-2">
     <post-language-option>
       <a href="#">DE</a>
     </post-language-option>
@@ -34,7 +34,7 @@ export default html`<post-header>
     <post-language-option>
       <a href="#">EN</a>
     </post-language-option>
-  </post-language-switch>
+  </post-language-switch-2>
 
   <!-- Application title (optional) -->
   <h1 slot="title">Application title</h1>
