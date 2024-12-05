@@ -1,5 +1,7 @@
 # @swisspost/design-system-styles
 
+## 7.4.7
+
 ## 7.4.6
 
 ### Patch Changes
