@@ -153,7 +153,7 @@ gulp.task(
   gulp.series('temporarily-copy-token-files', () => {
     return gulp.src('./tests/**/*.scss').pipe(
       gulpSass.sync({
-        loadPaths: options.loadPaths,
+        loadPaths: [...options.loadPaths, './'],
         quietDeps: true,
       }),
     );
