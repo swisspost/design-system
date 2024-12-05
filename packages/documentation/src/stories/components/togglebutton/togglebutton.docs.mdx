@@ -1,0 +1,31 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as toggleButtonStories from './togglebutton.stories';
+
+<Meta of={toggleButtonStories} />
+
+# Toggle Button
+
+<p className="lead">A toggle button component to switch between two states and display different content based on the current state.</p>
+
+<Canvas sourceState="shown" of={toggleButtonStories.Default} />
+<div className="hide-col-default">
+  <Controls of={toggleButtonStories.Default} />
+</div>
+
+## Installation
+
+The `<post-togglebutton>` element is part of the `@swisspost/design-system-components` package. For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
+
+## Examples
+
+### Initial Toggled State
+
+You can set the button to be toggled initially by using the `toggled` attribute. When set, the component will start in the toggled state and display the corresponding content.
+
+<Canvas of={toggleButtonStories.InitiallyToggled} />
+
+### Icon content
+
+You can also add an icon to the content (for a toggle menu, for example).
+
+<Canvas of={toggleButtonStories.IconContent} />
