@@ -9,7 +9,7 @@
 tokens.$default-map: components.$post-breadcrumb;
 
 :host {
-  display: inline-flex;
+  display: flex;
   align-items: center;
 }
 
@@ -29,6 +29,7 @@ tokens.$default-map: components.$post-breadcrumb;
   list-style: none;
   align-items: center;
   height: 100%;
+  gap: tokens.get('breadcrumb-gap-inline-outer');
 
   li {
     height: 100%;
@@ -36,16 +37,13 @@ tokens.$default-map: components.$post-breadcrumb;
     a {
       display: block;
       height: 100%;
-    }
-  }
+      display: flex;
+      align-items: center;
 
-  /* Selected Breadcrumb Item */
-  post-breadcrumb-item:last-of-type {
-    color: tokens.get('breadcrumb-selected-fg');
-    font-weight: tokens.get('breadcrumb-selected-font-weight');
-
-    post-icon {
-      color: tokens.get('breadcrumb-selected-fg');
+      &:focus {
+        border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+        @include utilities.focus-style;
+      }
     }
   }
 
@@ -58,10 +56,18 @@ tokens.$default-map: components.$post-breadcrumb;
     &:hover {
       color: tokens.get('breadcrumb-hover-fg');
     }
-
-    @include utilities.focus-style;
   }
 }
+
+.menu-trigger-wrapper:focus,
+.menu-trigger-wrapper:focus-visible {
+  border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+  outline-offset: tokens.get('focus-outline-offset', helpers.$post-focus);
+  outline: tokens.get('focus-outline-color', helpers.$post-focus) 
+  tokens.get('focus-border-style', helpers.$post-focus) 
+  tokens.get('focus-outline-width', helpers.$post-focus);
+}
+
 
 /* Menu Trigger Button */
 post-menu-trigger button {
@@ -81,16 +87,25 @@ post-menu-trigger button {
   width: tokens.get('breadcrum-icon-size');
 }
 
+#breadcrumb-menu {
+  gap: tokens.get('breadcrumb-gap-inline-outer');
+}
+
 /* Menu Items */
-post-menu > .breadcrumb-item {
-  display: inline-flex;
+.breadcrumb-item {
+  display: flex;
+  height: 100%;
   align-items: center;
   justify-content: center;
   padding-block: tokens.get('breadcrumb-padding-block-text');
   gap: tokens.get('breadcrumb-gap-inline-inner');
   color: tokens.get('breadcrumb-enabled-fg');
   text-decoration: tokens.get('breadcrumb-link-enabled-text-decoration');
-  @include utilities.focus-style;
+
+  &:focus-within {
+    border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+    @include utilities.focus-style;
+  }
 
   post-icon {
     height: tokens.get('breadcrum-icon-size');
@@ -128,4 +143,30 @@ post-menu > .breadcrumb-item {
 /* Visually Hidden Utility */
 .visually-hidden {
   @include post.visually-hidden();
+}
+
+post-menu::part(popover-container) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--post-device-spacing-gap-inline-4); /* Use `gap` for spacing */
+
+  /* Fallback for bottom margin */
+  ::slotted(post-menu-item:not(:last-child)) {
+    margin-bottom: var(--post-device-spacing-gap-inline-4);
+  }
+}
+
+post-breadcrumb-item:last-of-type {
+  pointer-events: none;
+  color: tokens.get('breadcrumb-selected-fg');
+  font-weight: tokens.get('breadcrumb-selected-font-weight');
+  
+  &:hover {
+    color: tokens.get('breadcrumb-selected-fg');
+    text-decoration: none;
+  }
+
+  post-icon {
+    color: tokens.get('breadcrumb-selected-fg');
+  }
 }
