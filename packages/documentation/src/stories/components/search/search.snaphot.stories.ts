@@ -15,10 +15,9 @@ type Story = StoryObj;
 export const SearchInput: Story = {
   render: (_args: Args, context: StoryContext) => {
     const argsOptions = [
-      { label: 'Default', placeholder: 'Search...', hint: meta.args?.hint },
-      { label: 'No Placeholder', placeholder: null, hint: meta.args?.hint },
-      { label: 'With Content', placeholder: 'Search...', value: 'Some content', hint: meta.args?.hint },
-      { label: 'Without Helper Text', placeholder: 'Search...' },
+      { label: 'Default', placeholder: 'Search...' },
+      { label: 'No Placeholder', placeholder: null },
+      { label: 'With Content', placeholder: 'Search...', value: 'Some content' },
     ];
 
     return schemes(
@@ -28,17 +27,16 @@ export const SearchInput: Story = {
             args => html`
               <div class="search-input-container">
                 <h4>${args.label}</h4>
-                  ${meta.render?.(
-                    {
-                      ...context.args,
-                      ...args,
-                      placeholder: args.placeholder || '',
-                      value: args.value || '',
-                      hint: args.hint || '',
-                    },
-                    context,
-                  )}
-                </div>
+                ${meta.render?.(
+                  {
+                    ...context.args,
+                    ...args,
+                    placeholder: args.placeholder || '',
+                    value: args.value || '',
+                  },
+                  context,
+                )}
+              </div>
             `,
           )}
         </div>

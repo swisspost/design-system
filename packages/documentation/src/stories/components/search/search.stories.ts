@@ -16,7 +16,6 @@ const meta: MetaComponent = {
   },
   args: {
     placeholder: 'Search...',
-    hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
     showDeleteButton: true,
     showSearchButton: true,
     value: '', // Default empty value
@@ -25,16 +24,6 @@ const meta: MetaComponent = {
     placeholder: {
       name: 'Placeholder',
       description: 'Defines the text displayed when the search input is empty.',
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'General',
-      },
-    },
-    hint: {
-      name: 'Helper text',
-      description: 'Text to place in the help text area of the component.',
       control: {
         type: 'text',
       },
@@ -81,7 +70,6 @@ type Story = StoryObj;
 
 function render(args: Args, context: StoryContext) {
   const id = context.id ?? `SearchInput_${context.name}`;
-  const hintId = `hint-${id}`;
 
   return html`
     <div class="search-input form-floating">
@@ -91,7 +79,6 @@ function render(args: Args, context: StoryContext) {
         type="search"
         placeholder="${args.placeholder}"
         value="${args.value}"
-        aria-describedby="${args.hint ? hintId : nothing}"
       />
       <label class="form-label" for="${id}">Label</label>
       ${args.showDeleteButton
@@ -113,7 +100,6 @@ function render(args: Args, context: StoryContext) {
           `
         : nothing}
     </div>
-    <p class="form-hint" id="${hintId}">${args.hint}</p>
   `;
 }
 
