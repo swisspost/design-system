@@ -12,22 +12,13 @@ export class PostBreadcrumb {
 
   @Element() host: HTMLElement;
 
-  @State() breadcrumbItems: { url: string, text: string }[] = [];
+  @State() breadcrumbItems: { url: string; text: string }[] = [];
   @State() isConcatenated: boolean;
   @State() lastWindowWidth: number;
 
   private breadcrumbNavRef?: HTMLElement;
-  private lastItem: { url: string, text: string };
+  private lastItem: { url: string; text: string };
   private mutationObserver: MutationObserver;
-
-  private waitForBreadcrumbRef() {
-    const interval = setInterval(() => {
-      if (this.breadcrumbNavRef && this.breadcrumbNavRef.clientWidth > 0) {
-        clearInterval(interval);
-        this.checkConcatenation();
-      }
-    }, 50);
-  }
 
   componentDidLoad() {
     this.updateBreadcrumbItems();
@@ -42,53 +33,62 @@ export class PostBreadcrumb {
     }
   }
 
-  private handleBreadcrumbItemClick() {
-    const postMenuTriggerWrapper = this.host.shadowRoot.querySelector('.menu-trigger-wrapper');
-    const menuTrigger = postMenuTriggerWrapper.querySelector('button');
-    if (menuTrigger) {
-      menuTrigger.click();
-    }
-  }  
+  // Waits for breadcrumb navigation reference to be available
+  private waitForBreadcrumbRef() {
+    const interval = setInterval(() => {
+      if (this.breadcrumbNavRef?.clientWidth > 0) {
+        clearInterval(interval);
+        this.checkConcatenation();
+      }
+    }, 50);
+  }
 
+  // Updates breadcrumb items and sets the last item
   private updateBreadcrumbItems() {
-    const items = Array.from(this.host.querySelectorAll('post-breadcrumb-item')).map((item) => ({
+    this.breadcrumbItems = Array.from(
+      this.host.querySelectorAll('post-breadcrumb-item')
+    ).map((item) => ({
       text: item.textContent || '',
       url: item.getAttribute('url') || '',
     }));
-    this.breadcrumbItems = items;
     this.lastItem = this.breadcrumbItems[this.breadcrumbItems.length - 1];
   }
 
+  // Handles resizing to check concatenation
   private handleResize = () => {
     if (window.innerWidth === this.lastWindowWidth) return;
-
     this.lastWindowWidth = window.innerWidth;
     this.checkConcatenation();
   };
 
+  // Determines parent width for concatenation logic
   private getParentWidth(): number {
     let parent = this.host.parentNode;
-
     while (parent && !(parent instanceof HTMLElement)) {
       parent = parent.parentNode;
     }
-
     return parent instanceof HTMLElement ? parent.clientWidth : window.innerWidth;
   }
 
+  // Checks if breadcrumb items should be concatenated
   private checkConcatenation() {
-    if (this.breadcrumbNavRef.clientWidth !== 0) {
+    if (this.breadcrumbNavRef?.clientWidth) {
       const visibleWidth = this.getParentWidth();
-      const totalWidth = this.breadcrumbItems.reduce((accum, item) => {
-        const itemWidth = item.text.length * 12;
-        return accum + itemWidth;
-      }, 0);
+      const totalWidth = this.breadcrumbItems.reduce((accum, item) => accum + item.text.length * 12, 0);
 
       const homeElement = this.host.shadowRoot?.querySelector('.home-icon');
-      const homeItemWidth = homeElement ? homeElement.getBoundingClientRect().width : 0;
+      const homeItemWidth = homeElement?.getBoundingClientRect().width || 0;
 
       this.isConcatenated = totalWidth + homeItemWidth > visibleWidth;
     }
+  }
+
+  // Handles breadcrumb item click to open the menu
+  private handleBreadcrumbItemClick() {
+    const menuTrigger = this.host.shadowRoot
+      ?.querySelector('.menu-trigger-wrapper')
+      ?.querySelector('button');
+    menuTrigger?.click();
   }
 
   render() {
@@ -106,44 +106,44 @@ export class PostBreadcrumb {
               </a>
             </li>
 
-            {/* Check if items should be concatenated */}
+            {/* Conditionally render concatenated menu or individual breadcrumb items */}
             {this.isConcatenated ? (
-             <post-breadcrumb-item
-             class="menu-trigger-wrapper"
-             tabindex={0}
-             onClick={() => this.handleBreadcrumbItemClick()}
-             onKeyDown={(e) => {
-               if (e.key === 'Enter' || e.key === ' ') {
-                 e.preventDefault();
-                 this.handleBreadcrumbItemClick();
-               }
-             }}
-           >
-              <post-menu-trigger for="breadcrumb-menu">
-                <button class="btn test" tabIndex={-1}>...</button>
-              </post-menu-trigger>
-              <post-menu id="breadcrumb-menu">
-                {visibleItems.map((item, index) => (
-                  <post-menu-item key={index} class="breadcrumb-item"
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      const linkElement = (e.currentTarget as HTMLElement).querySelector('a');
-                      if (linkElement) {
-                        e.preventDefault();
-                        (linkElement as HTMLElement).click();
-                      }
-                    }
-                  }}>
-                    <post-icon name="2111" class="breadcrumb-item-icon" />
-                    {item.url ? (
-                      <a href={item.url}>{item.text}</a>
-                    ) : (
-                      <span>{item.text}</span>
-                    )}
-                  </post-menu-item>
-                ))}
-              </post-menu>
-            </post-breadcrumb-item>
+              <post-breadcrumb-item
+                class="menu-trigger-wrapper"
+                tabindex={0}
+                onClick={this.handleBreadcrumbItemClick}
+                aria-label="More breadcrumbs"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.handleBreadcrumbItemClick();
+                  }
+                }}
+              >
+                <post-menu-trigger for="breadcrumb-menu">
+                  <button class="btn test" tabIndex={-1}>
+                    ...
+                  </button>
+                </post-menu-trigger>
+                <post-menu id="breadcrumb-menu">
+                  {visibleItems.map((item, index) => (
+                    <post-menu-item
+                      key={index}
+                      class="breadcrumb-item"
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          const linkElement = (e.currentTarget as HTMLElement).querySelector('a');
+                          linkElement?.click();
+                          e.preventDefault();
+                        }
+                      }}
+                    >
+                      <post-icon name="2111" class="breadcrumb-item-icon" />
+                      {item.url ? <a href={item.url}>{item.text}</a> : <span>{item.text}</span>}
+                    </post-menu-item>
+                  ))}
+                </post-menu>
+              </post-breadcrumb-item>
             ) : (
               visibleItems.map((item, index) => (
                 <post-breadcrumb-item url={item.url} key={index}>
@@ -152,9 +152,13 @@ export class PostBreadcrumb {
               ))
             )}
 
-            {/* Always show the last breadcrumb item */}
+            {/* Last Breadcrumb Item */}
             {this.lastItem && (
-              <post-breadcrumb-item url={this.lastItem.url}>
+              <post-breadcrumb-item 
+              url={this.lastItem.url}
+              aria-current="page"
+              tabindex={-1}
+              >
                 {this.lastItem.text}
               </post-breadcrumb-item>
             )}
