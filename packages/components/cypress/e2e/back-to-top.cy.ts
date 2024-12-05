@@ -10,18 +10,18 @@ describe('Back-to-top', () => {
       cy.get('post-back-to-top').should('exist');
     });
 
-    // it('should throw an error if the label is missing', () => {
-    //   cy.on('uncaught:exception', err => {
-    //     expect(err.message).to.include(
-    //       'The label property of the Back to Top component is required for accessibility purposes. Please ensure it is set.',
-    //     );
-    //     return false;
-    //   });
-    //   cy.document().then(doc => {
-    //     const element = doc.createElement('post-back-to-top');
-    //     doc.body.appendChild(element);
-    //   });
-    // });
+    it('should throw an error if the label is missing', () => {
+      cy.on('uncaught:exception', err => {
+        expect(err.message).to.include(
+          'The label property of the Back to Top component is required for accessibility purposes. Please ensure it is set.',
+        );
+        return false;
+      });
+      cy.document().then(doc => {
+        const element = doc.createElement('post-back-to-top');
+        doc.body.appendChild(element);
+      });
+    });
 
     it('should hide the label visually', () => {
       cy.get('post-back-to-top').shadow().find('.visually-hidden');
