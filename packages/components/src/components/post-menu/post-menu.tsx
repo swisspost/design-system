@@ -189,7 +189,7 @@ export class PostMenu {
     return (
       <Host data-version={version}>
         <post-popovercontainer placement={this.placement} ref={e => (this.popoverRef = e)}>
-          <div class="popover-container">
+          <div class="popover-container" part="popover-container">
             <slot></slot>
           </div>
         </post-popovercontainer>
