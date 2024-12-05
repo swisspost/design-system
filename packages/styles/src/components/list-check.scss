@@ -2,10 +2,12 @@
 @use '../mixins/icons' as icon-mixin;
 @use '../tokens/components';
 @use '../mixins/media';
+@use '../mixins/utilities';
 
 tokens.$default-map: components.$post-listcheck;
 
-.list-check {
+ul.list-check {
+  @include utilities.reset-list;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -17,7 +19,6 @@ tokens.$default-map: components.$post-listcheck;
       )} + 2 * #{tokens.get('list-check-icon-container-inline')}
   );
   gap: tokens.get('list-check-item-gap-block-text');
-
   > li {
     position: relative;
     color: tokens.get('list-check-color-text-fg');
