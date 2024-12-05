@@ -1,6 +1,5 @@
 @forward './../variables/options';
 
-@use 'accordion';
 @use 'appstore-badge';
 @use 'avatar';
 @use 'badge';
@@ -11,7 +10,6 @@
 @use 'button-group';
 @use 'card';
 @use 'card-control';
-@use 'carousel';
 @use 'chip';
 @use 'close';
 @use 'elevation';
@@ -27,7 +25,7 @@
 @use 'checkbox';
 @use 'switch';
 @use 'form-hint';
-@use 'forms';
+@use 'form-input';
 @use 'icon-button';
 @use 'icon-close-button';
 @use 'lead';
@@ -37,8 +35,9 @@
 @use 'popover';
 @use 'product-card';
 @use 'progress';
-@use 'skiplinks';
+@use 'segmented-button';
 @use 'sizing';
+@use 'skiplinks';
 @use 'spinner';
 @use 'stepper';
 @use 'subnavigation';
@@ -50,9 +49,8 @@
 @use 'tooltip';
 @use 'transitions';
 @use 'tag';
+@use 'validation';
 
 // Imports depending on source order to override bootstrap styles
 @use 'datepicker';
 @use 'dropdown';
-@use 'floating-label';
-@use 'form-validation';
