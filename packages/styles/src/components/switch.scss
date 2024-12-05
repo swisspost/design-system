@@ -17,12 +17,6 @@ $switch-handle-icon: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='htt
 .form-switch {
   display: flex;
 
-  @include utility-mx.focus-style() {
-    &:has(> input:only-child) {
-      border-radius: tokens.get('switch-border-radius-round');
-    }
-  }
-
   .form-check-input {
     appearance: none;
     cursor: pointer;
@@ -31,6 +25,7 @@ $switch-handle-icon: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='htt
     align-items: center;
     height: tokens.get('switch-element-height');
     width: tokens.get('switch-element-width');
+    margin-block: tokens.get('switch-icon-padding-container');
     border: tokens.get('switch-border-width') tokens.get('switch-border-style-default')
       tokens.get('switch-element-enabled-stroke');
     border-radius: tokens.get('switch-border-radius-round');
@@ -179,7 +174,7 @@ $switch-handle-icon: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='htt
     }
   }
 
-  &:hover > .form-check-input:not([disabled]) {
+  &:has(input:not([disabled]):hover) input {
     background-color: tokens.get('switch-element-hover-bg');
     border-color: tokens.get('switch-element-hover-stroke');
 
@@ -189,7 +184,7 @@ $switch-handle-icon: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='htt
     }
 
     &:checked::before {
-      background-color: tokens.get('switch-element-hover-bg');
+      background-color: tokens.get('switch-icon-hover');
     }
 
     @include utility-mx.high-contrast-mode {
