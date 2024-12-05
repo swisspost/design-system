@@ -40,7 +40,7 @@ export class PostAccordionItem {
     );
   }
 
-  connectedCallback() {
+  componentDidLoad() {
     this.validateHeadingLevel();
   }
 
@@ -51,7 +51,10 @@ export class PostAccordionItem {
   // capture to make sure the "collapsed" property is updated before the event is consumed
   @Listen('postToggle', { capture: true })
   onCollapseToggle(event: CustomEvent<boolean>): void {
-    if ((event.target as HTMLElement).localName === 'post-accordion-item') {
+    if (
+      event.target === this.host &&
+      (event.target as HTMLElement).localName === 'post-accordion-item'
+    ) {
       this.collapsed = !event.detail;
     }
   }
