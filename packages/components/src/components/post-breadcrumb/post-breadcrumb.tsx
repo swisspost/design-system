@@ -18,19 +18,18 @@ export class PostBreadcrumb {
 
   private breadcrumbNavRef?: HTMLElement;
   private lastItem: { url: string; text: string };
-  private mutationObserver: MutationObserver;
+
+  componentWillLoad() {
+    this.updateBreadcrumbItems();
+  }
 
   componentDidLoad() {
-    this.updateBreadcrumbItems();
     window.addEventListener('resize', this.handleResize);
     this.waitForBreadcrumbRef();
   }
 
   disconnectedCallback() {
     window.removeEventListener('resize', this.handleResize);
-    if (this.mutationObserver) {
-      this.mutationObserver.disconnect();
-    }
   }
 
   // Waits for breadcrumb navigation reference to be available
