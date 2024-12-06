@@ -159,7 +159,7 @@ function createFiles(groupedFilePaths: Record<string, File[]>) {
 
   function createSvg(id: string, template: string, symbols: string[], uses: string[]): string {
     const file = template
-      .replace('{id}', `${ID_PREFIX}-${id}`)
+      .replaceAll('{id}', `${ID_PREFIX}-${id}`)
       .replace('{symbols}', symbols.join(''))
       .replace('{uses}', uses.join(''));
 
