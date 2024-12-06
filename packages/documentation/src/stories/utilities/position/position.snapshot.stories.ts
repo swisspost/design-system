@@ -36,7 +36,7 @@ export const Position: Story = {
                 </div>
               `;
             })}
-            <h3>Position arrangement</h3>
+            <h3>Position arrangement with position absolute</h3>
             ${bombArgs({
               x: ['start-0', 'start-50', 'start-100', 'end-0', 'end-50', 'end-100'],
               y: ['top-0', 'top-50', 'top-100', 'bottom-0', 'bottom-50', 'bottom-100'],
