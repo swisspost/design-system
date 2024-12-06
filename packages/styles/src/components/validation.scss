@@ -12,10 +12,9 @@ Default feedback message classes
 .valid-feedback,
 .invalid-feedback {
   display: none;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   margin: 0;
-
   font-size: tokens.get('post-validation-font-size');
 }
 
@@ -85,7 +84,9 @@ input[type='radio'],
       flex-shrink: 0;
       display: flex;
       align-self: flex-start;
-      align-self: center;
+      height: 21px; //inherit line-height
+      mask-position: center;
+      mask-repeat: no-repeat;
     }
   }
 
@@ -93,8 +94,8 @@ input[type='radio'],
   :has(input[type='radio']) {
     ~ .invalid-feedback,
     ~ .valid-feedback {
-      margin-block-start: tokens.get('post-checkbox-gap-block-group', components.$post-checkbox);
-      padding-block-end: tokens.get(
+      margin-block-start: tokens.get('checkbox-gap-block-group', components.$post-checkbox);
+      margin-block-end: tokens.get(
         'radio-button-padding-block-group',
         components.$post-radio-button
       );
@@ -106,7 +107,7 @@ input[type='radio'],
     ~ .invalid-feedback,
     ~ .valid-feedback {
       margin-block-start: tokens.get('checkbox-gap-block-group', components.$post-checkbox);
-      padding-block-end: tokens.get('checkbox-padding-block-group', components.$post-checkbox);
+      margin-block-end: tokens.get('checkbox-padding-block-group', components.$post-checkbox);
     }
   }
 
