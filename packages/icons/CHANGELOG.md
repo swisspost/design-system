@@ -1,5 +1,15 @@
 # @swisspost/design-system-icons
 
+## 9.0.0-next.8
+
+### Minor Changes
+
+- Added icon number 2633. (by [@leagrdv](https://github.com/leagrdv) with [#4166](https://github.com/swisspost/design-system/pull/4166))
+
+### Patch Changes
+
+- Removed `fill` and `stroke` attributes on the icons output files. (by [@leagrdv](https://github.com/leagrdv) with [#4166](https://github.com/swisspost/design-system/pull/4166))
+
 ## 9.0.0-next.7
 
 ### Minor Changes
