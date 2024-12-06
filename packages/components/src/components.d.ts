@@ -229,9 +229,9 @@ export namespace Components {
          */
         "url": string;
         /**
-          * Variant that determines the rendering of the language option either as a list item (used on mobile in the header) or a dropdown item (used on desktop in the header)
+          * The variant of the post-language-switch parent (dynamically set by the parent)
          */
-        "variant": SwitchVariant;
+        "variant"?: SwitchVariant | null;
     }
     interface PostLanguageSwitch {
         /**
@@ -1044,9 +1044,9 @@ declare namespace LocalJSX {
          */
         "url"?: string;
         /**
-          * Variant that determines the rendering of the language option either as a list item (used on mobile in the header) or a dropdown item (used on desktop in the header)
+          * The variant of the post-language-switch parent (dynamically set by the parent)
          */
-        "variant"?: SwitchVariant;
+        "variant"?: SwitchVariant | null;
     }
     interface PostLanguageSwitch {
         /**

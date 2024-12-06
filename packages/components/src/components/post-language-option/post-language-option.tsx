@@ -30,11 +30,6 @@ export class PostLanguageOption {
   @Prop() generated: boolean;
 
   /**
-   * Variant that determines the rendering of the language option either as a list item (used on mobile in the header) or a dropdown item (used on desktop in the header)
-   */
-  @Prop() variant: SwitchVariant = 'list';
-
-  /**
    *  The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
    */
   @Prop() code!: string;
@@ -61,6 +56,11 @@ export class PostLanguageOption {
       'The "active" property of the post-language-option component must be a boolean value.',
     );
   }
+
+  /**
+   * The variant of the post-language-switch parent (dynamically set by the parent)
+   */
+  @Prop() variant?: SwitchVariant | null;
 
   /**
    * The full name of the language. For example, "Deutsch".

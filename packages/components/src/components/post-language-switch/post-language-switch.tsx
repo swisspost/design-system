@@ -74,23 +74,29 @@ export class PostLanguageSwitch {
    */
   @State() activeLang: string;
 
-  /**
-   * List of post-language-option in the slot of the component
-   */
-  private elements: NodeListOf<HTMLPostLanguageOptionElement>;
-
   private menuId: string;
 
   connectedCallback() {
     // Transforms name into an ID for the post-menu
     this.menuId = this.name.replace(/\W/g, '_');
 
-    this.elements = this.host.querySelectorAll('post-language-option:not([generated="true"])');
-    this.elements.forEach(el => {
-      if (el.getAttribute('active') !== 'false') {
-        this.activeLang = el.getAttribute('code');
-      }
+    this.updateChildrenVariant();
+
+    // Get the active language based on children's active state
+    this.activeLang = Array.from(this.host.querySelectorAll('post-language-option'))
+      .find(el => el.getAttribute('active') == 'true')
+      .getAttribute('code');
+  }
+
+  // Update post-language-option variant to have the correct style
+  private updateChildrenVariant() {
+    this.host.querySelectorAll('post-language-option').forEach(el => {
+      el.setAttribute('variant', this.variant);
     });
+  }
+
+  componentShouldUpdate() {
+    this.updateChildrenVariant();
   }
 
   componentDidLoad() {
@@ -103,9 +109,18 @@ export class PostLanguageSwitch {
     this.host.addEventListener('postChange', (el: CustomEvent<string>) => {
       this.activeLang = el.detail;
 
+      // Update the active state in the children post-language-option components
+      this.host.querySelectorAll('post-language-option').forEach(lang => {
+        if (lang.code && lang.code === this.activeLang) {
+          lang.setAttribute('active', 'true');
+        } else {
+          lang.setAttribute('active', 'false');
+        }
+      });
+
       // Hides the dropdown when an option has been clicked
       if (this.variant === 'dropdown') {
-        const menu = this.host.querySelector('post-menu') as HTMLPostMenuElement;
+        const menu = this.host.shadowRoot.querySelector('post-menu') as HTMLPostMenuElement;
         menu.toggle(menu);
       }
     });
