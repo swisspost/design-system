@@ -138,11 +138,9 @@ export const Lists: Story = {
 
 export const CheckList: Story = {
   render: () => {
-    return html`
-      <div class="d-flex">
-        ${['bg-white', 'bg-dark'].map(
-          bg => html`
-            <div class="${bg} p-5" data-color-scheme=${bg === 'bg-white' ? 'light' : 'dark'}>
+    return schemes(
+      () => html`
+        <div class="d-flex">
               <ul class="list-check">
                 <li>
                  A check list item
@@ -174,8 +172,6 @@ export const CheckList: Story = {
               </ul>
             </div>
           `,
-        )}
-      </div>
-    `;
+    );
   },
 };
