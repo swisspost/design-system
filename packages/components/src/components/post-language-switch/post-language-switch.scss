@@ -9,9 +9,6 @@ tokens.$default-map: components.$post-button;
   display: block;
 }
 
-post-language-switch {
-}
-
 .post-language-switch-dropdown-container {
   display: flex;
   flex-direction: column;
@@ -31,14 +28,11 @@ post-language-switch {
 
   &:disabled {
     border-style: tokens.get('button-border-style-disabled');
+    @include button-mx.button-variant-def('disabled', 'tertiary');
   }
 
   @include utilities-mx.focus-style;
   @include button-mx.button-variant-def('enabled', 'tertiary');
-
-  &:disabled {
-    @include button-mx.button-variant-def('disabled', 'tertiary');
-  }
 
   @include utilities-mx.not-disabled-hover() {
     @include button-mx.button-variant-def('hover', 'tertiary');
