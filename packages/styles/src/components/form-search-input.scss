@@ -15,7 +15,7 @@ tokens.$default-map: components.$post-search-input;
     height: 0;
   }
 
-  /* clears the ‘X’ from Chrome */
+  /* clears the ‘X’ from webkit browsers */
   input[type='search']::-webkit-search-decoration,
   input[type='search']::-webkit-search-cancel-button,
   input[type='search']::-webkit-search-results-button,
