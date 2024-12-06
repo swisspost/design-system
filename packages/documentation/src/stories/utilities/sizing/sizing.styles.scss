@@ -2,7 +2,35 @@
 
 .sizing-example {
   .content {
-    background-color: post.$white;
-    border: 1px solid post.$gray-40;
+    background-color: post.$gray-40;
   }
+
+  .grid-item {
+    width: 20vw;
+    height: 20vw;
+    border: 1px solid post.$gray-40;
+
+    div {
+      background-color: post.$gray-40;
+    }
+  }
+}
+
+.sizing-example .grid {
+  display: grid;
+  grid-template-columns: 100vw;
+  grid-template-rows: 100vh;
+  gap: 30px;
+  .grid-item {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+.sizing-example.snapshot,
+.sizing-px-example.snapshot {
+  display: flex;
+  width: 20vw;
+  height: 20vw;
+  border: 1px solid post.$gray-40 !important;
 }

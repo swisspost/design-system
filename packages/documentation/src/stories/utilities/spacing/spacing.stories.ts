@@ -47,7 +47,7 @@ function withLegend(template: TemplateResult, ...legendItems: string[]) {
         ${legendItems.map(
           item => html`
             <li class="d-flex align-items-center">
-              <div class="h-regular w-regular me-8 ${item}"></div>
+              <div class="h-16 w-16 me-8 ${item}"></div>
               <span>${item}</span>
             </li>
           `,

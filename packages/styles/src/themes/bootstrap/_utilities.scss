@@ -26,6 +26,17 @@ $utilities: map.remove($utilities, 'gap');
 $utilities: map.remove($utilities, 'row-gap');
 $utilities: map.remove($utilities, 'column-gap');
 
+$utilities: map.remove($utilities, 'width');
+$utilities: map.remove($utilities, 'height');
+$utilities: map.remove($utilities, 'max-width');
+$utilities: map.remove($utilities, 'max-height');
+$utilities: map.remove($utilities, 'min-width');
+$utilities: map.remove($utilities, 'min-height');
+$utilities: map.remove($utilities, 'viewport-width');
+$utilities: map.remove($utilities, 'viewport-height');
+$utilities: map.remove($utilities, 'min-viewport-width');
+$utilities: map.remove($utilities, 'min-viewport-height');
+
 $utilities: map.remove($utilities, 'flex');
 $utilities: map.remove($utilities, 'flex-direction');
 $utilities: map.remove($utilities, 'align-items');
@@ -34,7 +45,9 @@ $utilities: map.remove($utilities, 'align-self');
 $utilities: map.remove($utilities, 'flex-grow');
 $utilities: map.remove($utilities, 'flex-shrink');
 $utilities: map.remove($utilities, 'flex-wrap');
+
 $utilities: map.remove($utilities, 'order');
+
 $utilities: map.remove($utilities, 'justify-content');
 
 $utilities: map.remove($utilities, 'display');

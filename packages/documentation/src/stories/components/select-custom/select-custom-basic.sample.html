@@ -12,7 +12,7 @@
     <span [class.visually-hidden]="selectedOption">Default custom-select</span>
     <span *ngIf="selectedOption" aria-hidden="true">{{ selectedOption.label }}</span>
   </button>
-  <div aria-labelledby="customSelectButton" class="w-100 mw-100" ngbDropdownMenu role="listbox">
+  <div aria-labelledby="customSelectButton" class="w-100 max-w-100" ngbDropdownMenu role="listbox">
     <button
       (click)="toggle.focus()"
       (focus)="selectedOption = option"
