@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 8.6.2
+
+### Patch Changes
+
+- Fixed visibility issue with checkbox icon. (by [@schaertim](https://github.com/schaertim) with [#4149](https://github.com/swisspost/design-system/pull/4149))
+
 ## 8.6.1
 
 ### Patch Changes
