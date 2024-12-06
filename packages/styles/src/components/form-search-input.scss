@@ -73,7 +73,7 @@ tokens.$default-map: components.$post-search-input;
       visibility 0.2s ease,
       fill 0.2s ease;
 
-    > post-icon {
+    post-icon {
       width: tokens.get('input-sizing-icon', components.$post-text-input);
       height: tokens.get('input-sizing-icon', components.$post-text-input);
     }
