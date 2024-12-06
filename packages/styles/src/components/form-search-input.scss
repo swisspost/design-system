@@ -45,9 +45,13 @@ tokens.$default-map: components.$post-search-input;
     }
   }
 
-  &:hover > .delete-button > post-icon,
-  &:hover > .search-button > post-icon {
-    color: tokens.get('input-color-hover-fg', components.$post-text-input);
+  &:hover {
+    .delete-button,
+    .search-button {
+      post-icon {
+        color: tokens.get('input-color-hover-fg', components.$post-text-input);
+      }
+    }
   }
 
   > .delete-button,
