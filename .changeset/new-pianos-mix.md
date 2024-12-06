@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': minor
 ---
 
-Implemented simple check list component.
+Added list mixins `list-bullet`, `list-revert` and `list-unstyled`.
