@@ -23,7 +23,7 @@ tokens.$default-map: components.$post-search-input;
     display: none;
   }
 
-  > .form-control {
+  .form-control {
     padding-right: tokens.get('input-search-empty-padding-inline-end');
 
     &:not(:placeholder-shown) {
