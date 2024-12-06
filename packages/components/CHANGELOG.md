@@ -1,5 +1,13 @@
 # @swisspost/design-system-components
 
+## 8.6.2
+
+### Patch Changes
+
+- Made `post-icon` component use base tag href to define location of icons folder. (by [@leagrdv](https://github.com/leagrdv) with [#4128](https://github.com/swisspost/design-system/pull/4128))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.6.2
+
 ## 8.6.1
 
 ### Patch Changes
