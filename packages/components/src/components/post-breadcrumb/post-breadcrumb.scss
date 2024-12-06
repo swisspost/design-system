@@ -37,7 +37,6 @@ tokens.$default-map: components.$post-breadcrumb;
       padding: 0;
 
       a {
-        display: block;
         height: 100%;
         display: flex;
         align-items: center;
@@ -159,6 +158,7 @@ post-breadcrumb-item:last-of-type {
 post-menu::part(popover-container) {
   display: flex;
   flex-direction: column;
+  align-items: start;
   padding: 0.3rem;
   gap: var(--post-device-spacing-gap-inline-4);
 
