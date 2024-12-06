@@ -64,7 +64,7 @@ export const Lists: Story = {
         ${renderList({ el: 'ol' })} ${renderList({ el: 'ol', classList: 'list-revert' })}
         ${renderList({ el: 'ol', classList: 'list-unstyled' })}
 
-        <code class="mt-48">&lt;ul class="list-inline"&gt;</code>
+        <code class="mt-48">&lt;ol class="list-inline"&gt;</code>
         ${renderList({
           el: 'ol',
           classList: 'list-inline',
@@ -76,6 +76,25 @@ export const Lists: Story = {
         ${renderList({
           el: 'ol',
           classList: 'list-inline list-unstyled',
+        })}
+
+        <code class="mt-48">&lt;ol class="list-number"&gt;</code>
+        ${renderList({ el: 'ol', classList: 'list-number' })}
+        ${renderList({ el: 'ol', classList: 'list-number list-revert' })}
+        ${renderList({ el: 'ol', classList: 'list-number list-unstyled' })}
+
+        <code class="mt-48">&lt;ol class="list-number list-inline"&gt;</code>
+        ${renderList({
+          el: 'ol',
+          classList: 'list-number list-inline',
+        })}
+        ${renderList({
+          el: 'ol',
+          classList: 'list-number list-inline list-revert',
+        })}
+        ${renderList({
+          el: 'ol',
+          classList: 'list-number list-inline list-unstyled',
         })}
       `,
     );
