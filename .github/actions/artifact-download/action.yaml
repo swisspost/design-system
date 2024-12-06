@@ -32,7 +32,7 @@ runs:
   using: composite
   steps:
     - name: Download artifact
-      uses: dawidd6/action-download-artifact@v6
+      uses: dawidd6/action-download-artifact@v7
       with:
         name: ${{ inputs.name }}
         run_id: ${{ github.event.workflow_run.id }}
