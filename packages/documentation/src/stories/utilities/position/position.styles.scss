@@ -1,17 +1,13 @@
 @use '@swisspost/design-system-styles/core' as post;
 
-// Docs styling
-.translate-middle-container {
-  height: 20rem;
-  flex: 0 0 50%;
+@mixin square {
+  width: 2rem;
+  height: 2rem;
+  opacity: 0.8;
+  border-radius: post.$border-radius;
+}
 
-  > * {
-    width: 2rem;
-    height: 2rem;
-    opacity: 0.8;
-    border-radius: post.$border-radius;
-  }
-
+@mixin centered-dot {
   &::after {
     content: '';
     background-color: post.$dark;
@@ -22,6 +18,17 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+  }
+}
+
+// Docs styling
+.translate-middle-container {
+  height: 20rem;
+  flex: 0 0 50%;
+  @include centered-dot();
+
+  > * {
+    @include square;
   }
 }
 
@@ -86,7 +93,6 @@
 }
 
 // Snapshots styling
-
 .snapshot-outer-container {
   position: relative;
   max-height: 8rem;
@@ -110,7 +116,8 @@
   }
 }
 
-.snapshot-arrange-container {
+.snapshot-arrange-container,
+.snapshot-translate-middle-container {
   height: 5rem;
   border-radius: post.$border-radius;
   position: relative;
@@ -118,10 +125,11 @@
   margin: 2rem;
 
   > * {
-    width: 2rem;
-    height: 2rem;
-    opacity: 0.8;
+    @include square;
     position: absolute;
-    border-radius: post.$border-radius;
   }
+}
+
+.snapshot-translate-middle-container {
+  @include centered-dot();
 }

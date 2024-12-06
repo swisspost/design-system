@@ -37,7 +37,6 @@ export const Position: Story = {
               `;
             })}
             <h3>Position arrangement with position absolute</h3>
-            <p><b>Yellow square: translate-middle / Blue square: no translate-middle</b></p>
             ${bombArgs({
               x: ['start-0', 'start-50', 'start-100', 'end-0', 'end-50', 'end-100'],
               y: ['top-0', 'top-50', 'top-100', 'bottom-0', 'bottom-50', 'bottom-100'],
@@ -46,14 +45,32 @@ export const Position: Story = {
               const xArgValue = (args.x as string).split('-')[1];
               const yArgName = (args.y as string).split('-')[0];
               const yArgValue = (args.y as string).split('-')[1];
-              const translateMiddle = xArgName === 'start' && yArgName === 'top';
               return html`
                 <p class="mt-12">${xArgName}: ${xArgValue}% / ${yArgName}: ${yArgValue}%</p>
                 <div class="snapshot-arrange-container">
-                  ${translateMiddle
-                    ? html`<div class="bg-yellow ${args.x} ${args.y} translate-middle"></div>`
-                    : ''}
                   <div class="bg-info ${args.x} ${args.y}"></div>
+                </div>
+              `;
+            })}
+            <h3>Translate middle with position absolute</h3>
+            <p><b>Start: 50% / Top: 50%</b></p>
+            ${bombArgs({
+              translateMiddle: ['', 'both', 'x', 'y'],
+            }).map(args => {
+              let translateMiddleValue = '';
+              if (args.translateMiddle === 'both') {
+                translateMiddleValue = ' translate-middle';
+              } else if (args.translateMiddle === 'x') {
+                translateMiddleValue = ' translate-middle-x';
+              } else if (args.translateMiddle === 'y') {
+                translateMiddleValue = ' translate-middle-y';
+              }
+              return html`
+                <p class="mt-12">
+                  Translate middle: ${args.translateMiddle ? args.translateMiddle : 'none'}
+                </p>
+                <div class="snapshot-translate-middle-container">
+                  <div class="bg-yellow start-50 top-50 ${translateMiddleValue}"></div>
                 </div>
               `;
             })}

@@ -11,7 +11,7 @@ const meta: MetaExtended = {
     position: 'absolute',
     start: '50',
     top: '0',
-    translateMiddle: true,
+    translateMiddle: 'both',
   },
   argTypes: {
     position: {
@@ -88,22 +88,31 @@ const meta: MetaExtended = {
     translateMiddle: {
       name: 'Translate middle',
       description: 'Set to true to center align an element based on its x and y position.',
+      control: {
+        type: 'select',
+      },
+      options: ['', 'both', 'x', 'y'],
       table: {
         category: 'General',
-      },
-      control: {
-        type: 'boolean',
       },
     },
   },
   render: (args: Args) => {
+    let translateMiddleValue = '';
+    if (args.translateMiddle === 'both') {
+      translateMiddleValue = ' translate-middle';
+    } else if (args.translateMiddle === 'x') {
+      translateMiddleValue = ' translate-middle-x';
+    } else if (args.translateMiddle === 'y') {
+      translateMiddleValue = ' translate-middle-y';
+    }
     return html`
       <div
         class="bg-yellow position-${args.position} ${args.top ? 'top-' + args.top : ''}${args.bottom
           ? 'bottom-' + args.bottom
           : ''} ${args.start ? 'start-' + args.start : ''}${args.end
           ? 'end-' + args.end
-          : ''} ${args.translateMiddle ? 'translate-middle' : ''}"
+          : ''}${translateMiddleValue}"
       ></div>
     `;
   },
