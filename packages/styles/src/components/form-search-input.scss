@@ -54,8 +54,8 @@ tokens.$default-map: components.$post-search-input;
     }
   }
 
-  > .delete-button,
-  > .search-button {
+  .delete-button,
+  .search-button {
     z-index: 1;
     padding: 0;
     position: absolute;
