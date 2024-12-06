@@ -135,3 +135,47 @@ export const Lists: Story = {
     }
   },
 };
+
+export const CheckList: Story = {
+  render: () => {
+    return html`
+      <div class="d-flex">
+        ${['bg-white', 'bg-dark'].map(
+          bg => html`
+            <div class="${bg} p-5" data-color-scheme=${bg === 'bg-white' ? 'light' : 'dark'}>
+              <ul class="list-check">
+                <li>
+                 A check list item
+                </li>
+                <li>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                  commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                  velit esse cillum dolore eu fugiat nulla pariatur
+                </li>
+                <li>And one more</li>
+                <li>
+                  Nested check list:
+                  <ul class="list-check">
+                        <li>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                          velit esse cillum dolore eu fugiat nulla pariatur
+                        </li>
+                      </ul>
+                    </li>
+                    <li>And another one</li>
+                    <li>And one more</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          `,
+        )}
+      </div>
+    `;
+  },
+};
