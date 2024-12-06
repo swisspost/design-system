@@ -84,11 +84,16 @@ export class PostBreadcrumb {
 
   // Handles breadcrumb item click to open the menu
   private handleBreadcrumbItemClick() {
-    const menuTrigger = this.host.shadowRoot
-      ?.querySelector('.menu-trigger-wrapper')
-      ?.querySelector('button');
-    menuTrigger?.click();
-  }
+    if (this.host.shadowRoot) {
+      const menuTrigger = this.host.shadowRoot
+        ?.querySelector('.menu-trigger-wrapper')
+        ?.querySelector('button');
+      
+      if (menuTrigger) {
+        menuTrigger.click();
+      }
+    }
+  }  
 
   render() {
     const visibleItems = this.breadcrumbItems.slice(0, -1);
@@ -125,9 +130,9 @@ export class PostBreadcrumb {
                   </button>
                 </post-menu-trigger>
                 <post-menu id="breadcrumb-menu">
-                  {visibleItems.map((item, index) => (
+                  {visibleItems.map((item) => (
                     <post-menu-item
-                      key={index}
+                      key={item.url || item.text} // Use a unique identifier
                       class="breadcrumb-item"
                       onKeyDown={(e) => {
                         if (e.key === 'Enter' || e.key === ' ') {
@@ -144,8 +149,8 @@ export class PostBreadcrumb {
                 </post-menu>
               </post-breadcrumb-item>
             ) : (
-              visibleItems.map((item, index) => (
-                <post-breadcrumb-item url={item.url} key={index}>
+              visibleItems.map((item) => (
+                <post-breadcrumb-item url={item.url} key={item.url || item.text}>
                   {item.text}
                 </post-breadcrumb-item>
               ))
@@ -153,7 +158,7 @@ export class PostBreadcrumb {
   
             {/* Last Breadcrumb Item */}
             {this.lastItem && (
-              <post-breadcrumb-item 
+              <post-breadcrumb-item
                 url={this.lastItem.url}
                 aria-current="page"
                 tabindex={-1}
