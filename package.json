@@ -12,7 +12,7 @@
     "url": "https://github.com/swisspost/design-system/issues"
   },
   "scripts": {
-    "bootstrap": "pnpm install && pnpm -r build",
+    "bootstrap": "pnpm install && pnpm -r --filter \"!*-integration\" build",
     "start": "pnpm docs:start",
     "start:clean": "pnpm bootstrap && pnpm start",
     "test": "pnpm -r test",

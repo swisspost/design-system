@@ -16,6 +16,7 @@
 @use 'error-container';
 @use 'form-footer';
 @use 'form-range';
+@use 'form-search-input';
 @use 'form-select';
 @use 'form-textarea';
 @use 'datatable';
@@ -25,7 +26,7 @@
 @use 'checkbox';
 @use 'switch';
 @use 'form-hint';
-@use 'forms';
+@use 'form-input';
 @use 'icon-button';
 @use 'icon-close-button';
 @use 'lead';
@@ -54,4 +55,3 @@
 // Imports depending on source order to override bootstrap styles
 @use 'datepicker';
 @use 'dropdown';
-@use 'floating-label';
