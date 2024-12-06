@@ -58,7 +58,7 @@ describe('main-navigation', () => {
       cy.get('@custom-content')
         .next()
         .should('have.prop', 'tagName')
-        .should('eq', 'POST-LANGUAGE-SWITCH');
+        .should('eq', 'POST-LANGUAGE-SWITCH-2');
     });
 
     it('should show a border on the left of the custom content', () => {

@@ -484,11 +484,11 @@ export class PostInternetHeader {
               ref={el => (this.metaNav = el)}
             >
               <If condition={renderLanguageSwitch}>
-                <post-language-switch
+                <post-language-switch-2
                   id="post-language-switch-desktop"
                   mode="dropdown"
                   onDropdownToggled={e => this.handleDropdownToggled(e)}
-                ></post-language-switch>
+                ></post-language-switch-2>
               </If>
             </post-meta-navigation>
           </If>
@@ -512,10 +512,10 @@ export class PostInternetHeader {
               <If condition={renderMetaNavigation}>
                 <post-meta-navigation orientation="vertical">
                   <If condition={renderLanguageSwitch}>
-                    <post-language-switch
+                    <post-language-switch-2
                       id="post-language-switch-mobile"
                       mode="list"
-                    ></post-language-switch>
+                    ></post-language-switch-2>
                   </If>
                 </post-meta-navigation>
               </If>
@@ -533,11 +533,11 @@ export class PostInternetHeader {
                 </post-klp-login-widget>
               </If>
               <If condition={!renderMetaNavigation && renderLanguageSwitch}>
-                <post-language-switch
+                <post-language-switch-2
                   id="post-language-switch-no-meta"
                   onDropdownToggled={e => this.handleDropdownToggled(e)}
                   mode="dropdown"
-                ></post-language-switch>
+                ></post-language-switch-2>
               </If>
             </div>
           </div>

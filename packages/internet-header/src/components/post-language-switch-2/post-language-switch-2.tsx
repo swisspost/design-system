@@ -19,18 +19,18 @@ import { PostLanguageSwitchList } from './components/post-language-switch-list';
 import { IAvailableLanguage } from '../../models/language.model';
 
 @Component({
-  tag: 'post-language-switch',
-  styleUrl: 'post-language-switch.scss',
+  tag: 'post-language-switch-2',
+  styleUrl: 'post-language-switch-2.scss',
   shadow: true,
 })
-export class PostLanguageSwitch implements HasDropdown {
+export class PostLanguageSwitch2 implements HasDropdown {
   /**
    * Visualization of the language switch.
    * Possible values: 'dropdown' | 'list'
    */
   @Prop() mode: 'dropdown' | 'list';
   @State() langSwitchOpen = false;
-  @Element() host: HTMLPostLanguageSwitchElement;
+  @Element() host: HTMLPostLanguageSwitch2Element;
   /**
    * Fires when the dropdown has been toggled.
    */
