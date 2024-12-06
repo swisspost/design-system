@@ -1,6 +1,6 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import meta, { Default } from './breadcrumb-default.stories';
+import meta, { Default } from './breadcrumb.stories';
 import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
 
@@ -49,7 +49,6 @@ export const BreadcrumbSnapshots: Story = {
       `;
     });
 
-    // Render all snapshots with white and dark background
     return schemes(() => html`
       <div class="d-flex flex-wrap gap-16">${snapshots}</div>
     `);
