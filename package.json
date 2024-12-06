@@ -12,7 +12,7 @@
     "url": "https://github.com/swisspost/design-system/issues"
   },
   "scripts": {
-    "bootstrap": "pnpm install && pnpm -r build",
+    "bootstrap": "pnpm install && pnpm -r --filter \"!*-integration\" build",
     "start": "pnpm docs:start",
     "start:clean": "pnpm bootstrap && pnpm start",
     "test": "pnpm -r test",
@@ -61,8 +61,10 @@
     "header:snapshots": "start-server-and-test docs:headless 9001 'pnpm --filter internet-header snapshots'",
     "intranet-header": "pnpm intranet-header:start",
     "intranet-header:start": "pnpm --filter design-system-intranet-header-workspace start",
-    "icons": "pnpm icons:start",
-    "icons:start": "pnpm --filter design-system-icons dev",
+    "icons": "pnpm icons:dev",
+    "icons:dev": "pnpm --filter design-system-icons dev",
+    "icons:start": "pnpm --filter design-system-icons start",
+    "icons:build": "pnpm --filter design-system-icons build",
     "icons:test": "pnpm --filter design-system-icons test",
     "icons:unit": "pnpm --filter design-system-icons test",
     "icons:unit:watch": "pnpm --filter design-system-icons test:watch",
