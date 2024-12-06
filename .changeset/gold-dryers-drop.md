@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': minor
 ---
 
-Implemented simple check list component.
+Created the `search-input` component.
