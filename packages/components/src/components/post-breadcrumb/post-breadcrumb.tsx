@@ -10,7 +10,7 @@ export class PostBreadcrumb {
   @Prop() homeUrl: string;
   @Prop() homeText: string = 'Home';
 
-  @Element() host: HTMLElement;
+  @Element() host: HTMLPostBreadcrumbElement;
 
   @State() breadcrumbItems: { url: string; text: string }[] = [];
   @State() isConcatenated: boolean;
@@ -92,7 +92,7 @@ export class PostBreadcrumb {
 
   render() {
     const visibleItems = this.breadcrumbItems.slice(0, -1);
-
+  
     return (
       <Host data-version={version}>
         <nav aria-label="Breadcrumb" class="breadcrumbs-nav" ref={(el) => (this.breadcrumbNavRef = el)}>
@@ -104,7 +104,7 @@ export class PostBreadcrumb {
                 <post-icon name="2035" class="home-icon" />
               </a>
             </li>
-
+  
             {/* Conditionally render concatenated menu or individual breadcrumb items */}
             {this.isConcatenated ? (
               <post-breadcrumb-item
@@ -150,13 +150,13 @@ export class PostBreadcrumb {
                 </post-breadcrumb-item>
               ))
             )}
-
+  
             {/* Last Breadcrumb Item */}
             {this.lastItem && (
               <post-breadcrumb-item 
-              url={this.lastItem.url}
-              aria-current="page"
-              tabindex={-1}
+                url={this.lastItem.url}
+                aria-current="page"
+                tabindex={-1}
               >
                 {this.lastItem.text}
               </post-breadcrumb-item>
@@ -167,3 +167,4 @@ export class PostBreadcrumb {
     );
   }
 }
+  
