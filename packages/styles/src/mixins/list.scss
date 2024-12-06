@@ -42,6 +42,25 @@
   }
 }
 
+@mixin list-number() {
+  margin-block: tokens.get('list-number-item-gap-block', elements.$post-listnumber);
+  padding-inline-end: tokens.get('list-number-item-gap-block', elements.$post-listnumber);
+  padding-inline-start: calc(
+    tokens.get('list-number-item-icon-size', elements.$post-listnumber) +
+      tokens.get('list-number-item-icon-gap-inline', elements.$post-listnumber)
+  );
+
+  > li {
+    margin-block-end: tokens.get('list-number-margin-block', elements.$post-listnumber);
+    padding-inline-start: tokens.get('list-number-item-icon-gap-inline', elements.$post-listnumber);
+    padding-block: tokens.get('list-number-item-text-padding-block', elements.$post-listnumber);
+
+    &:last-child {
+      margin-block-end: 0;
+    }
+  }
+}
+
 @mixin list-inline() {
   @include list-unstyled() {
     display: flex;

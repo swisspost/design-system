@@ -63,7 +63,7 @@ export const UnstyledList: Story = {
 
 export const OrderedList: Story = {
   render: () => html`
-    <ol>
+    <ol class="list-number">
       <li>This is an ordered list.</li>
       <li>It appears in its default style.</li>
       <li>

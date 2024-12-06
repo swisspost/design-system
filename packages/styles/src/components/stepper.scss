@@ -20,6 +20,7 @@
 }
 
 .stepper {
+  @include utilities.reset-list;
   // start a counter for the step numbers
   counter-reset: step-index;
 
@@ -35,13 +36,12 @@
 
   // we use a padding and negative margin on the last step for the same reason we need the first column
   padding-inline-end: math.div(stepper.$stepper-indicator-size, 2);
-
-  @include utilities.reset-list;
 }
 
 .stepper-item {
   grid-row: 1;
   position: relative;
+  padding-inline-start: 0;
 
   &:not(:first-child) {
     padding-inline-start: math.div(stepper.$stepper-link-spacing, 2);
