@@ -306,7 +306,7 @@
     }
   }
 
-  :host-context(:is(#{post.$dark-backgrounds})) & {
+  :host-context(:is(#{post.$dark-backgrounds})) *:not(:is(#{post.$light-backgrounds})) & {
     --post-card-control-border-color: #{post.$white};
     --post-card-control-bg: transparent;
     --post-card-control-color: #{post.$white};
