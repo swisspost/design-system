@@ -1,0 +1,25 @@
+import { Canvas, Controls, Meta, } from '@storybook/blocks';
+import * as linkareaStories from './linkarea.stories';
+
+<Meta of={linkareaStories} />
+
+# Link Area
+
+<p className="lead">A web component that delegates clicks on it's area.</p>
+
+<Canvas sourceState="shown" of={linkareaStories.Default} />
+<div className="hide-col-default">
+  <Controls of={linkareaStories.Default} />
+</div>
+
+## Installation
+
+The `<post-linkarea>` element is part of the `@swisspost/design-system-components` package. For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
+
+## Examples
+
+### Initial Specified Anchor
+
+You can add the `data-link` property to an anchor (`<a>`) element to specify which link will be delegated.
+
+<Canvas sourceState="shown" of={linkareaStories.InitiallySpecified} />

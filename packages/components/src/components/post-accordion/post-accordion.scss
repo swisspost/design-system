@@ -4,7 +4,7 @@
 tokens.$default-map: components.$post-accordion;
 
 :host {
-  display: block;
+  display: contents;
 }
 
 ::slotted(post-accordion-item) {
