@@ -116,7 +116,7 @@ export class PostBreadcrumb {
             <li>
               <a href={this.homeUrl} class="breadcrumb-link">
                 <span class="visually-hidden">{this.homeText}</span>
-                <post-icon name="2035" class="home-icon" />
+                <post-icon name="home" class="home-icon" />
               </a>
             </li>
   
@@ -188,7 +188,7 @@ export class PostBreadcrumb {
               class="hidden-breadcrumb-item"
             >
               <span class="visually-hidden">{this.homeText}</span>
-              <post-icon name="2035" class="home-icon" />
+              <post-icon name="home" class="home-icon" />
             </post-breadcrumb-item>
 
             {/* Hidden Breadcrumb Items */}
