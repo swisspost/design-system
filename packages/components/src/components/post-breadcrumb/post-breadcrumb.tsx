@@ -8,10 +8,17 @@ import { checkUrl } from '@/utils';
   shadow: true,
 })
 export class PostBreadcrumb {
-  @Prop() homeUrl: string;
-  @Prop() homeText: string = 'Home';
-
   @Element() host: HTMLPostBreadcrumbElement;
+
+  /**
+   * The URL for the home breadcrumb item.
+   */
+  @Prop() homeUrl: string;
+
+  /**
+   * The text label for the home breadcrumb item.
+   */
+  @Prop() homeText: string = 'Home';
 
   @State() breadcrumbItems: { url: string; text: string }[] = [];
   @State() isConcatenated: boolean;
@@ -20,7 +27,7 @@ export class PostBreadcrumb {
   private breadcrumbNavRef?: HTMLElement;
   private lastItem: { url: string; text: string };
 
-  @Watch('url')
+  @Watch('homeUrl')
   validateUrl() {
     checkUrl(this.homeUrl, 'The "url" property of the home-icon is invalid');
   }
