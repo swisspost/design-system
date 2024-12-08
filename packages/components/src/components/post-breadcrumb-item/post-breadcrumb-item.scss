@@ -8,18 +8,11 @@
 tokens.$default-map: components.$post-breadcrumb;
 
 :host {
-  display: inline-block;
-}
-
-.breadcrumb-item {
-  @include utilities.focus-style();
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   padding-block: tokens.get('breadcrumb-padding-block-text');
   gap: tokens.get('breadcrumb-gap-inline-inner');
-  color: tokens.get('breadcrumb-enabled-fg');
-  text-decoration: tokens.get('breadcrumb-link-enabled-text-decoration');
 
   post-icon {
     height: tokens.get('breadcrum-icon-size');
@@ -27,6 +20,14 @@ tokens.$default-map: components.$post-breadcrumb;
     padding-block: tokens.get('breadcrumb-padding-block-icon-link');
     padding-inline: tokens.get('breadcrumb-padding-inline-icon-link');
   }
+}
+
+.breadcrumb-item {
+  @include utilities.focus-style();
+  white-space: nowrap;
+  color: tokens.get('breadcrumb-enabled-fg');
+  text-decoration: tokens.get('breadcrumb-link-enabled-text-decoration');
+
 
   &:hover {
     color: tokens.get('breadcrumb-hover-fg');
