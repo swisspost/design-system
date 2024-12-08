@@ -1,5 +1,6 @@
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
+import { checkUrl } from '@/utils';
 
 @Component({
   tag: 'post-breadcrumb',
@@ -18,6 +19,11 @@ export class PostBreadcrumb {
 
   private breadcrumbNavRef?: HTMLElement;
   private lastItem: { url: string; text: string };
+
+  @Watch('url')
+  validateUrl() {
+    checkUrl(this.homeUrl, 'The "url" property of the home-icon is invalid');
+  }
 
   componentWillLoad() {
     this.updateBreadcrumbItems();
