@@ -90,11 +90,6 @@ export class PostBreadcrumb {
       return accum + rect.width;
     }, 0);
   
-    console.log({
-      totalWidth,
-      visibleWidth,
-    });
-  
     this.isConcatenated = totalWidth > visibleWidth;
   }  
 
@@ -187,17 +182,10 @@ export class PostBreadcrumb {
   
           {/* Hidden items for width calculation */}
           <div class="hidden-items">
-            {/* Hidden Home Icon */}
-            <post-breadcrumb-item
-              url={this.homeUrl}
-              key="hidden-home"
-              class="hidden-breadcrumb-item"
-            >
+            <a href={this.homeUrl} class="hidden-breadcrumb-item">
               <span class="visually-hidden">{this.homeText}</span>
               <post-icon name="home" class="home-icon" />
-            </post-breadcrumb-item>
-
-            {/* Hidden Breadcrumb Items */}
+            </a>
             {this.breadcrumbItems.map((item) => (
               <post-breadcrumb-item
                 url={item.url}
