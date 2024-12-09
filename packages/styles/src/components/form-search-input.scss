@@ -1,0 +1,94 @@
+@use './../functions/tokens';
+@use './../tokens/components';
+@use './../mixins/utilities';
+
+tokens.$default-map: components.$post-search-input;
+
+.search-input {
+  position: relative;
+
+  /* clears the ‘X’ from webkit browsers */
+  input[type='search']::-webkit-search-decoration,
+  input[type='search']::-webkit-search-cancel-button,
+  input[type='search']::-webkit-search-results-button,
+  input[type='search']::-webkit-search-results-decoration {
+    display: none;
+  }
+
+  .form-control {
+    padding-right: tokens.get('input-search-empty-padding-inline-end');
+
+    &:not(:placeholder-shown) {
+      padding-right: tokens.get('input-search-filled-padding-inline-end');
+
+      ~ .form-label {
+        padding-right: tokens.get('input-search-label-filled-padding-inline-end');
+      }
+
+      ~ .delete-button {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+
+    ~ .form-label {
+      z-index: 0;
+      padding-right: tokens.get('input-search-label-empty-padding-inline-end');
+    }
+  }
+
+  &:hover {
+    .delete-button,
+    .search-button {
+      post-icon {
+        color: tokens.get('input-color-hover-fg', components.$post-text-input);
+      }
+    }
+  }
+
+  .delete-button,
+  .search-button {
+    z-index: 1;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: tokens.get('input-search-icon-border-radius');
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease,
+      fill 0.2s ease;
+
+    post-icon {
+      width: tokens.get('input-sizing-icon', components.$post-text-input);
+      height: tokens.get('input-sizing-icon', components.$post-text-input);
+    }
+  }
+
+  .search-button {
+    right: tokens.get('search-position-inline-end-icon');
+
+    &:focus-visible {
+      @include utilities.focus-style;
+    }
+  }
+
+  .delete-button {
+    right: calc(
+      tokens.get('input-sizing-icon', components.$post-text-input) +
+        tokens.get('input-search-filled-gap-icon') + tokens.get('search-position-inline-end-icon')
+    );
+    visibility: hidden;
+    opacity: 0;
+
+    &:focus-visible {
+      @include utilities.focus-style;
+    }
+  }
+}

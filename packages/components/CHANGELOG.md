@@ -1,5 +1,21 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.7
+
+### Minor Changes
+
+- Added the `post-togglebutton` component. (by [@veyaromain](https://github.com/veyaromain) with [#3889](https://github.com/swisspost/design-system/pull/3889))
+
+- Refactored `post-icon` component to use the `<use>` tag to load and show icons under the hood. This enables responsive icons, enables better caching and improves render performance slightly. There is no further action required. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3969](https://github.com/swisspost/design-system/pull/3969))
+
+### Patch Changes
+
+- Fixed bug that showed delayed tooltip even after blur event. (by [@leagrdv](https://github.com/leagrdv) with [#4053](https://github.com/swisspost/design-system/pull/4053))
+
+- Made `post-icon` component use base tag href to define location of icons folder. (by [@leagrdv](https://github.com/leagrdv) with [#4069](https://github.com/swisspost/design-system/pull/4069))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.7
+
 ## 9.0.0-next.6
 
 ### Major Changes

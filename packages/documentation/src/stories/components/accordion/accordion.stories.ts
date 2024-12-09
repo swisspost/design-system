@@ -19,6 +19,7 @@ const meta: MetaComponent<HTMLPostAccordionElement & HTMLPostCollapsibleElementE
   args: {
     multiple: false,
     headingLevel: 4,
+    logoSrc: '',
   },
   argTypes: {
     postToggle: {
@@ -31,6 +32,14 @@ const meta: MetaComponent<HTMLPostAccordionElement & HTMLPostCollapsibleElementE
         type: { summary: 'CustomEvent<boolean>' },
       },
     },
+    logoSrc: {
+      control: 'text',
+      description:
+        'Define an image `src` to insert a custom image.<div className="mt-8 banner banner-info banner-sm">Do you need an example? Try our logo <strong>/assets/images/logo-swisspost.svg</strong>.</div>',
+      table: {
+        category: 'Content',
+      },
+    },
   },
 };
 
@@ -41,14 +50,17 @@ function getAccordionItemContent(position: number | string, headingLevel?: numbe
   const level = headingLevel ? html` <code>h${headingLevel}</code>` : nothing;
   return html`
     <span slot="header">Titulum ${position}${level}</span>
-    <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+    <div>
+      <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+    </div>
   `;
 }
 
 function getDefaultAccordionItem(args: Partial<HTMLPostAccordionElement>, index: number) {
   const isCollapsed = !!args.multiple && index > 0;
   return html`
-    <post-accordion-item collapsed=${ifDefined(isCollapsed || undefined)}>
+    <post-accordion-item ?collapsed=${isCollapsed}
+      >${args.logoSrc ? html`<img slot="logo" src="${args.logoSrc}" alt="logo" />` : nothing}
       ${getAccordionItemContent(index + 1)}
     </post-accordion-item>
   `;
@@ -73,6 +85,12 @@ type Story = StoryObj<HTMLPostAccordionElement>;
 export const Default: Story = {
   args: {
     headingLevel: '3' as HeadingLevel, // needs to be a string for the control to properly initialize
+  },
+};
+
+export const Logos: Story = {
+  args: {
+    logoSrc: '/assets/images/logo-swisspost.svg',
   },
 };
 
