@@ -43,10 +43,6 @@ post-footer {
     &:not(.btn-icon, .app-store-badge) {
       display: block;
       text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
     }
 
     &.btn-icon {
