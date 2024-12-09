@@ -1,6 +1,5 @@
 @forward './../variables/options';
 
-@use 'accordion';
 @use 'appstore-badge';
 @use 'avatar';
 @use 'badge';
@@ -17,6 +16,7 @@
 @use 'error-container';
 @use 'form-footer';
 @use 'form-range';
+@use 'form-search-input';
 @use 'form-select';
 @use 'form-textarea';
 @use 'datatable';
@@ -30,15 +30,16 @@
 @use 'icon-button';
 @use 'icon-close-button';
 @use 'lead';
-@use 'list-check';
 @use 'list-group';
+@use 'list-check';
 @use 'modal';
 @use 'pagination';
 @use 'popover';
 @use 'product-card';
 @use 'progress';
-@use 'skiplinks';
+@use 'segmented-button';
 @use 'sizing';
+@use 'skiplinks';
 @use 'spinner';
 @use 'stepper';
 @use 'subnavigation';

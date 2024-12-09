@@ -1,0 +1,21 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as HeaderStories from './header.stories';
+
+<Meta of={HeaderStories} />
+
+<div className="docs-title">
+  # Header
+
+  <nav>
+    <link-design of={JSON.stringify(HeaderStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  The header of the Post.
+</div>
+
+<Canvas sourceState="shown" of={HeaderStories.Default} />
+<div className="hide-col-default">
+  <Controls of={HeaderStories.Default} />
+</div>
