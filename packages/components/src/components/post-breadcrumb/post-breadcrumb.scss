@@ -18,7 +18,6 @@ tokens.$default-map: components.$post-breadcrumb;
 
     .hidden-items {
       gap: tokens.get('breadcrumb-gap-inline-outer');
-      padding-left: tokens.get('breadcrumb-gap-inline-outer');
       position: absolute;
       height: 0;
       overflow: hidden;
@@ -57,11 +56,10 @@ tokens.$default-map: components.$post-breadcrumb;
 
       post-icon {
         display: inline-block;
+        box-sizing: border-box;
         height: tokens.get('breadcrum-icon-size');
         width: tokens.get('breadcrum-icon-size');
         color: tokens.get('breadcrumb-enabled-fg');
-        padding-inline: tokens.get('breadcrumb-padding-inline-icon-home');
-        padding-block: tokens.get('breadcrumb-padding-block-icon-home');
 
         &:hover {
           color: tokens.get('breadcrumb-hover-fg');
@@ -150,6 +148,7 @@ tokens.$default-map: components.$post-breadcrumb;
     }
 
     post-icon {
+      box-sizing: border-box;
       height: tokens.get('breadcrum-icon-size');
       width: tokens.get('breadcrum-icon-size');
       padding-block: tokens.get('breadcrumb-padding-block-icon-link');

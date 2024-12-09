@@ -3,6 +3,7 @@
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/tokens/helpers';
+@use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/mixins/utilities';
 
 tokens.$default-map: components.$post-breadcrumb;
@@ -15,6 +16,7 @@ tokens.$default-map: components.$post-breadcrumb;
   gap: tokens.get('breadcrumb-gap-inline-inner');
 
   post-icon {
+    box-sizing: border-box;
     height: tokens.get('breadcrum-icon-size');
     width: tokens.get('breadcrum-icon-size');
     padding-block: tokens.get('breadcrumb-padding-block-icon-link');
@@ -25,9 +27,10 @@ tokens.$default-map: components.$post-breadcrumb;
 .breadcrumb-item {
   @include utilities.focus-style();
   white-space: nowrap;
+  line-height: 150%;
+  font-size: tokens.get('body-font-size', elements.$post-body);
   color: tokens.get('breadcrumb-enabled-fg');
   text-decoration: tokens.get('breadcrumb-link-enabled-text-decoration');
-
 
   &:hover {
     color: tokens.get('breadcrumb-hover-fg');
