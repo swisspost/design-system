@@ -54,13 +54,6 @@ export class PostMegadropdownTrigger {
     }
   }
 
-  private handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-      e.preventDefault();
-      this.handleToggle();
-    }
-  };
-
   componentDidLoad() {
     this.root = getRoot(this.host);
     this.validateControlFor();
@@ -71,7 +64,6 @@ export class PostMegadropdownTrigger {
       this.slottedButton.addEventListener('click', () => {
         this.handleToggle();
       });
-      this.slottedButton.addEventListener('keydown', this.handleKeyDown);
     } else {
       console.warn('No button found within post-megadropdown-trigger');
     }
