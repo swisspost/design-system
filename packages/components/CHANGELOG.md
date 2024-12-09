@@ -1,5 +1,13 @@
 # @swisspost/design-system-components
 
+## 7.4.7
+
+### Patch Changes
+
+- Fixed an issue with property validation where some checks were run before the framework had the chance to add computed properties (for example Angular bindings like `[for]="$id"`). The checks are now delayed to work around this issue. (by [@schaertim](https://github.com/schaertim) with [#4151](https://github.com/swisspost/design-system/pull/4151))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.4.7
+
 ## 7.4.6
 
 ### Patch Changes
