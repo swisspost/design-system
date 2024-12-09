@@ -27,7 +27,6 @@ some content
  - [post-breadcrumb-item](../post-breadcrumb-item)
  - [post-card-control](../post-card-control)
  - [post-closebutton](../post-closebutton)
- - [post-mainnavigation](../post-mainnavigation)
  - [post-rating](../post-rating)
  - [post-tag](../post-tag)
 
@@ -39,7 +38,6 @@ graph TD;
   post-breadcrumb-item --> post-icon
   post-card-control --> post-icon
   post-closebutton --> post-icon
-  post-mainnavigation --> post-icon
   post-rating --> post-icon
   post-tag --> post-icon
   style post-icon fill:#f9f,stroke:#333,stroke-width:4px

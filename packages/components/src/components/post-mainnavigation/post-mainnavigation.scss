@@ -2,12 +2,9 @@
 @use '@swisspost/design-system-styles/mixins/icons';
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/mixins/utilities';
-@use '@swisspost/design-system-styles/functions/icons' as icon-fn;
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/variables/animation';
-
-$nav-height: var(--post-core-dimension-56);
 
 post-mainnavigation {
   // reset links and buttons
@@ -32,57 +29,15 @@ post-mainnavigation {
 
   // desktop styles
   @include media.min(lg) {
-
-    nav {
-      position: relative;
-      max-width: 100vw;
-      max-height: $nav-height;
-      overflow: hidden;
-      user-select: none;
-
-      &.scroll-snap-align-start post-list-item {
-        scroll-snap-align: start;
-      }
-
-      &.scroll-snap-align-end post-list-item {
-        scroll-snap-align: end;
-      }
-    }
-
-    .scroll-left-button,
-    .scroll-right-button {
-      position: absolute;
-      inset-block: 0;
-      @include button.reset-button;
-      background: var(--post-core-color-brand-white);
-      padding-inline: var(--post-core-dimension-4);
-    }
-
-    .scroll-left-button {
-      inset-inline-start: 0;
-      padding-inline-end: var(--post-core-dimension-12);
-      background: linear-gradient(90deg, var(--post-core-color-brand-white) 70%, transparent);
-    }
-
-    .scroll-right-button {
-      inset-inline-end: 0;
-      padding-inline-start: var(--post-core-dimension-12);
-      background: linear-gradient(-90deg, var(--post-core-color-brand-white) 70%, transparent);
-    }
-
     post-list > [role="list"] {
       flex-direction: row;
-      max-width: 100vw;
-      overflow: auto hidden;
-      scroll-snap-type: x proximity;
-      scroll-behavior: smooth;
     }
 
     post-list-item {
       a,
       button {
         padding-inline: var(--post-core-dimension-12);
-        height: $nav-height;
+        height: var(--post-core-dimension-56);
         border-block: var(--post-core-dimension-4) solid transparent;
         display: flex;
         align-items: center;

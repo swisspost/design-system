@@ -40,7 +40,7 @@ export default html`<post-header>
 
   <!-- Main navigation -->
   <post-mainnavigation caption="Hauptnavigation">
-    <button type="button" slot="back-button" class="btn btn-sm btn-link">
+    <button slot="back-button" class="btn btn-sm btn-link">
       <post-icon aria-hidden="true" name="3024"></post-icon> Back
     </button>
     <post-list title-hidden="">
@@ -53,7 +53,7 @@ export default html`<post-header>
       <post-list-item>
         <post-megadropdown-trigger> Briefe </post-megadropdown-trigger>
         <post-megadropdown>
-          <button type="button" slot="back-button"><- Zurück</button>
+          <button slot="back-button"><- Zurück</button>
           <h2><a href="">Briefe title</a></h2>
           <post-list>
             <h3>Briefe senden</h3>
@@ -75,7 +75,7 @@ export default html`<post-header>
       <post-list-item>
         <post-megadropdown-trigger> Pakete </post-megadropdown-trigger>
         <post-megadropdown>
-          <button type="button" slot="back-button"><- Zurück</button>
+          <button slot="back-button"><- Zurück</button>
           <h2><a href="">Pakete title</a></h2>
           <post-list>
             <h3>Pakete senden</h3>
