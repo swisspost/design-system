@@ -1,0 +1,15 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+post-listbox {
+  display: flex;
+  flex-direction: column;
+  // gap: var(--post-listbox-gap);
+  > div.listbox-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    max-width: auto;
+    background-color: #fff;
+  }
+}

@@ -3,8 +3,6 @@
 */
 
 :where(
-    post-list,
-    post-list-item,
     post-accordion,
     post-accordion-item,
     post-alert,
@@ -12,6 +10,10 @@
     post-card-control,
     post-collapsible,
     post-icon,
+    post-list,
+    post-list-item,
+    post-listbox,
+    post-listbox-item,
     post-logo,
     post-popover,
     post-popovercontainer,
