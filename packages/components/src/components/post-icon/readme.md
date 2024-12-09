@@ -22,8 +22,8 @@ some content
 
 ### Used by
 
- - [post-back-to-top](../post-back-to-top)
  - [post-accordion-item](../post-accordion-item)
+ - [post-back-to-top](../post-back-to-top)
  - [post-banner](../post-banner)
  - [post-breadcrumb](../post-breadcrumb)
  - [post-breadcrumb-item](../post-breadcrumb-item)
@@ -35,8 +35,8 @@ some content
 ### Graph
 ```mermaid
 graph TD;
-  post-back-to-top --> post-icon
   post-accordion-item --> post-icon
+  post-back-to-top --> post-icon
   post-banner --> post-icon
   post-breadcrumb --> post-icon
   post-breadcrumb-item --> post-icon
