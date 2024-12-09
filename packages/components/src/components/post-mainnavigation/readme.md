@@ -5,12 +5,26 @@
 <!-- Auto Generated Below -->
 
 
-## Events
+## Slots
 
-| Event        | Description                                                   | Type               |
-| ------------ | ------------------------------------------------------------- | ------------------ |
-| `postToggle` | Gets emitted when a user closes the main navigation on mobile | `CustomEvent<any>` |
+| Slot            | Description                                        |
+| --------------- | -------------------------------------------------- |
+| `"back-button"` | Slot for the back button (only visible on mobile). |
+| `"default"`     | Slot for the navigation bar.                       |
 
+
+## Dependencies
+
+### Depends on
+
+- [post-icon](../post-icon)
+
+### Graph
+```mermaid
+graph TD;
+  post-mainnavigation --> post-icon
+  style post-mainnavigation fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 
