@@ -74,17 +74,15 @@ input[type='radio'],
   ~ .invalid-feedback,
   ~ .valid-feedback {
     padding-inline-start: 4px;
+
     &::before {
       height: 16px; //tokens.get('post-validation-group-icon-size');
       width: 16px; //tokens.get('post-validation-group-icon-size');
+      margin-block-start: 2px; //padding-icon-block-start
+      margin-block-end: 3px;
       margin-inline-end: tokens.get('post-validation-group-gap-inline');
-      background-color: currentColor;
-      color: currentColor;
       content: '';
       flex-shrink: 0;
-      display: flex;
-      align-self: flex-start;
-      height: 21px; //inherit line-height
       mask-position: center;
       mask-repeat: no-repeat;
     }
