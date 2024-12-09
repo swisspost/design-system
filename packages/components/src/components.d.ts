@@ -166,6 +166,12 @@ export namespace Components {
          */
         "update": () => Promise<void>;
     }
+    interface PostFooter {
+        /**
+          * The label to add to the footer (visually hidden).
+         */
+        "label": string;
+    }
     interface PostHeader {
     }
     /**
@@ -573,6 +579,12 @@ declare global {
         prototype: HTMLPostCollapsibleTriggerElement;
         new (): HTMLPostCollapsibleTriggerElement;
     };
+    interface HTMLPostFooterElement extends Components.PostFooter, HTMLStencilElement {
+    }
+    var HTMLPostFooterElement: {
+        prototype: HTMLPostFooterElement;
+        new (): HTMLPostFooterElement;
+    };
     interface HTMLPostHeaderElement extends Components.PostHeader, HTMLStencilElement {
     }
     var HTMLPostHeaderElement: {
@@ -790,6 +802,7 @@ declare global {
         "post-closebutton": HTMLPostClosebuttonElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
+        "post-footer": HTMLPostFooterElement;
         "post-header": HTMLPostHeaderElement;
         "post-icon": HTMLPostIconElement;
         "post-language-option": HTMLPostLanguageOptionElement;
@@ -947,6 +960,12 @@ declare namespace LocalJSX {
           * Link the trigger to a post-collapsible with this id
          */
         "for"?: string;
+    }
+    interface PostFooter {
+        /**
+          * The label to add to the footer (visually hidden).
+         */
+        "label": string;
     }
     interface PostHeader {
     }
@@ -1179,6 +1198,7 @@ declare namespace LocalJSX {
         "post-closebutton": PostClosebutton;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
+        "post-footer": PostFooter;
         "post-header": PostHeader;
         "post-icon": PostIcon;
         "post-language-option": PostLanguageOption;
@@ -1218,6 +1238,7 @@ declare module "@stencil/core" {
             "post-closebutton": LocalJSX.PostClosebutton & JSXBase.HTMLAttributes<HTMLPostClosebuttonElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             "post-collapsible-trigger": LocalJSX.PostCollapsibleTrigger & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
+            "post-footer": LocalJSX.PostFooter & JSXBase.HTMLAttributes<HTMLPostFooterElement>;
             "post-header": LocalJSX.PostHeader & JSXBase.HTMLAttributes<HTMLPostHeaderElement>;
             /**
              * @class PostIcon - representing a stencil component
