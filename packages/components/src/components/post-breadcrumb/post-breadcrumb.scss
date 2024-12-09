@@ -36,6 +36,19 @@ tokens.$default-map: components.$post-breadcrumb;
     align-items: center;
     height: 100%;
     gap: tokens.get('breadcrumb-gap-inline-outer');
+        
+    post-icon {
+      display: inline-block;
+      box-sizing: border-box;
+      color: tokens.get('breadcrumb-enabled-fg');
+      height: tokens.get('breadcrum-icon-size');
+      width: tokens.get('breadcrum-icon-size');
+    }
+
+    .breadcrumb-item-icon {
+      padding-block: tokens.get('breadcrumb-padding-block-icon-link');
+      padding-inline: tokens.get('breadcrumb-padding-inline-icon-link');
+    }
 
     li {
       a {
@@ -46,14 +59,8 @@ tokens.$default-map: components.$post-breadcrumb;
         &:focus {
           border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
         }
-      }
       
-      post-icon {
-        display: inline-block;
-        box-sizing: border-box;
-        height: tokens.get('breadcrum-icon-size');
-        width: tokens.get('breadcrum-icon-size');
-        color: tokens.get('breadcrumb-enabled-fg');
+      .home-icon {
         padding-block: tokens.get('breadcrumb-padding-block-icon-home');
         padding-inline: tokens.get('breadcrumb-padding-inline-icon-home');
 
@@ -68,20 +75,13 @@ tokens.$default-map: components.$post-breadcrumb;
             color: CanvasText !important;
           }
         }
+        }
       }
     }
     .menu-trigger-wrapper {
       display: flex;
       align-items: center;
       gap: tokens.get('breadcrumb-gap-inline-inner');
-    
-      post-icon {
-        box-sizing: border-box;
-        height: tokens.get('breadcrum-icon-size');
-        width: tokens.get('breadcrum-icon-size');
-        padding-block: tokens.get('breadcrumb-padding-block-icon-link');
-        padding-inline: tokens.get('breadcrumb-padding-inline-icon-link');
-      }
     
       .actual-menu {
         display: flex;
@@ -156,14 +156,6 @@ tokens.$default-map: components.$post-breadcrumb;
             }
           }
         
-          post-icon {
-            height: tokens.get('breadcrum-icon-size');
-            width: tokens.get('breadcrum-icon-size');
-            box-sizing: border-box;
-            padding-block: tokens.get('breadcrumb-padding-block-icon-link');
-            padding-inline: tokens.get('breadcrumb-padding-inline-icon-link');
-          }
-        
           span {
             &:hover {
               color: tokens.get('breadcrumb-hover-fg');
@@ -173,14 +165,6 @@ tokens.$default-map: components.$post-breadcrumb;
             &:focus-visible {
               border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
             }
-          }
-        
-          post-icon {
-            box-sizing: border-box;
-            height: tokens.get('breadcrum-icon-size');
-            width: tokens.get('breadcrum-icon-size');
-            padding-block: tokens.get('breadcrumb-padding-block-icon-link');
-            padding-inline: tokens.get('breadcrumb-padding-inline-icon-link');
           }
         
           @include utilities.high-contrast-mode() {
