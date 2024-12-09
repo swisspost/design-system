@@ -17,40 +17,41 @@
   </head>
   <body style="min-height: 200vh">
     <post-header>
+      <!-- Logo -->
       <post-logo>Homepage</post-logo>
-      <ul slot="audience-navigation">
-        <li><a href="">Privatkunden</a></li>
-        <li><a href="">Geschäftskunden</a></li>
-        <li><a href="">Behörden</a></li>
-      </ul>
-      <ul slot="meta-navigation">
+
+      <!-- Meta navigation -->
+      <ul class="list-inline" slot="meta-navigation">
         <li><a href="">Über uns</a></li>
         <li><a href="">Jobs</a></li>
       </ul>
 
-      <button slot="post-togglebutton">= Menu</button>
+      <!-- Menu button for mobile -->
+      <post-toggle-button slot="post-togglebutton"> = Menu </post-toggle-button>
 
-      <ul slot="post-language-switch-2">
-        <li>
-          <a href="#">DE</a>
-        </li>
-        <li>
-          <a href="#">FR</a>
-        </li>
-        <li>
-          <a href="#">IT</a>
-        </li>
-        <li>
-          <a href="#">EN</a>
-        </li>
-      </ul>
+      <!-- Language switch -->
+      <post-language-switch
+        caption="Caption"
+        description="Description"
+        name="language-switch-example"
+        slot="post-language-switch"
+      >
+        <post-language-option active="true" code="de" name="Deutsch">DE</post-language-option>
+        <post-language-option active="false" code="fr" name="French">FR</post-language-option>
+        <post-language-option active="false" code="it" name="Italiano">IT</post-language-option>
+        <post-language-option active="false" code="en" name="English">EN</post-language-option>
+      </post-language-switch>
 
+      <!-- Application title (optional) -->
       <h1 slot="title">Application title</h1>
-      <ul>
+
+      <!-- Custom content (optional) -->
+      <ul class="list-inline">
         <li><a href="#">Search</a></li>
         <li><a href="#">Login</a></li>
       </ul>
 
+      <!-- Main navigation -->
       <post-mainnavigation caption="Hauptnavigation">
         <button slot="back-button"><- Back</button>
         <post-list>
