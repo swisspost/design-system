@@ -12,7 +12,6 @@ tokens.$default-map: components.$post-breadcrumb;
   display: flex;
   align-items: center;
   justify-content: start;
-  padding-block: tokens.get('breadcrumb-padding-block-text');
   gap: tokens.get('breadcrumb-gap-inline-inner');
 
   post-icon {
@@ -25,12 +24,13 @@ tokens.$default-map: components.$post-breadcrumb;
 }
 
 .breadcrumb-item {
-  @include utilities.focus-style();
   white-space: nowrap;
   line-height: 150%;
+  padding-block: tokens.get('breadcrumb-padding-block-text');
   font-size: tokens.get('body-font-size', elements.$post-body);
   color: tokens.get('breadcrumb-enabled-fg');
   text-decoration: tokens.get('breadcrumb-link-enabled-text-decoration');
+  @include utilities.focus-style();
 
   &:hover {
     color: tokens.get('breadcrumb-hover-fg');

@@ -47,12 +47,13 @@ tokens.$default-map: components.$post-breadcrumb;
           height: 100%;
           display: flex;
           align-items: center;
+          @include utilities.focus-style;
 
           &:focus {
             border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
-            @include utilities.focus-style;
           }
         }
+        
         post-icon {
           display: inline-block;
           box-sizing: border-box;
@@ -75,7 +76,6 @@ tokens.$default-map: components.$post-breadcrumb;
     align-items: center;
     justify-content: center;
     gap: tokens.get('breadcrumb-gap-inline-inner');
-    height: 100%;
 
     post-icon {
       box-sizing: border-box;
@@ -87,17 +87,17 @@ tokens.$default-map: components.$post-breadcrumb;
 
     .actual-menu {
       display: flex;
-      height: 100%;
+      align-items: center;
 
       post-menu-trigger {
         display: flex;
-        height: tokens.get('breadcrum-icon-size');
+        align-items: center;
         padding-block: tokens.get('breadcrumb-padding-block-text');
         @include utilities.focus-style;
 
-        &:focus {
-          border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
-        }
+          &:focus {
+            border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+          }
 
         button {
           background: none;
@@ -129,6 +129,7 @@ tokens.$default-map: components.$post-breadcrumb;
       text-decoration: none;
       color: inherit;
       line-height: 150%;
+      padding-block: tokens.get('breadcrumb-padding-block-text');
       font-size: tokens.get('body-font-size', elements.$post-body);
       @include utilities.focus-style;
 
