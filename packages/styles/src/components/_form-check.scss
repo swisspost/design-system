@@ -94,7 +94,7 @@
         }
 
         &:hover ~ label {
-          color: tokens.get('switch-element-hover-bg', components.$post-switch);
+          color: tokens.get('switch-text-enabled-fg', components.$post-switch);
 
           @include utility-mx.high-contrast-mode() {
             color: Highlight;
@@ -103,8 +103,7 @@
       }
 
       &[disabled] ~ label {
-        color: tokens.get('switch-element-disabled-bg', components.$post-switch);
-
+        color: tokens.get('switch-text-disabled-fg', components.$post-switch);
         @include utility-mx.high-contrast-mode() {
           color: GrayText;
         }

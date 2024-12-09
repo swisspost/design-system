@@ -95,7 +95,6 @@ export class PostHeader {
             <div class="logo">
               <slot name="post-logo"></slot>
             </div>
-            {this.device === 'desktop' && <slot name="audience-navigation"></slot>}
           </div>
           <div class="global-sub">
             {this.device === 'desktop' && <slot name="meta-navigation"></slot>}
@@ -116,9 +115,6 @@ export class PostHeader {
         </div>
 
         <div class={mainNavClasses.join(' ')}>
-          {(this.device === 'mobile' || this.device === 'tablet') && (
-            <slot name="audience-navigation"></slot>
-          )}
           <slot name="post-mainnavigation"></slot>
           {(this.device === 'mobile' || this.device === 'tablet') && (
             <slot name="meta-navigation"></slot>

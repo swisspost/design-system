@@ -4,16 +4,14 @@ import { getComponentStyleImports } from './styles-package-import-individual.sam
 ## Style Imports
 
 <p>
-  <small>
-    *Make sure the `@swisspost/design-system-styles` package is already present in your project or
-    follow the [installation
-    guidelines](http://localhost:9000/?path=/docs/e53e2de8-0bbf-4f70-babc-074c5466f700--docs).*
-  </small>
+  <small>*Make sure the `@swisspost/design-system-styles` package is already present in your project or follow the [installation guidelines](http://localhost:9000/?path=/docs/e53e2de8-0bbf-4f70-babc-074c5466f700--docs).*</small>
 </p>
 
 To import all Design System styles:
 
-<Source code={`@use '@swisspost/design-system-styles/index.scss';`} language="scss" />
+<div className="docblock-source-all-design">
+  <Source code={`@use '@swisspost/design-system-styles/post-internal.scss';`} language="scss" />
+</div>
 
 To import only the styles required for this component:
 
