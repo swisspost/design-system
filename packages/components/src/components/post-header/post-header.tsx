@@ -99,7 +99,7 @@ export class PostHeader {
           <div class="global-sub">
             {this.device === 'desktop' && <slot name="meta-navigation"></slot>}
             <slot name="global-controls"></slot>
-            {this.device === 'desktop' && <slot name="post-language-switch"></slot>}
+            {this.device === 'desktop' && <slot name="post-language-switch-2"></slot>}
             <div onClick={() => this.handleMobileMenuToggle()} class="mobile-toggle">
               <slot name="post-togglebutton"></slot>
             </div>
@@ -120,7 +120,7 @@ export class PostHeader {
             <slot name="meta-navigation"></slot>
           )}
           {(this.device === 'mobile' || this.device === 'tablet') && (
-            <slot name="post-language-switch"></slot>
+            <slot name="post-language-switch-2"></slot>
           )}
         </div>
       </Host>

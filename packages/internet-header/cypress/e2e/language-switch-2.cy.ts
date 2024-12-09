@@ -4,7 +4,7 @@ import { NavLangEntity } from '../../src/models/header.model';
 import { prepare } from '../support/prepare-story';
 import { HEADER } from './shared/variables';
 
-describe('language-switch', () => {
+describe('language-switch-2', () => {
   const languageSwitcherDesktop = '#post-language-switch-desktop';
   const languageSwitchDropdown = 'nav.language-switch-dropdown';
 
@@ -18,30 +18,30 @@ describe('language-switch', () => {
     describe('meta: true', () => {
       it(`renders language switch in meta menu for desktop`, () => {
         cy.changeArg('meta', true);
-        cy.get('post-meta-navigation post-language-switch').should('exist');
+        cy.get('post-meta-navigation post-language-switch-2').should('exist');
       });
 
       it(`renders language switch in meta menu for mobile`, () => {
         cy.viewport('iphone-6+');
         cy.changeArg('meta', true);
-        cy.get('post-meta-navigation post-language-switch').should('exist');
+        cy.get('post-meta-navigation post-language-switch-2').should('exist');
       });
     });
 
     describe('meta: false', () => {
       it(`renders language switch in main menu for desktop`, () => {
         cy.changeArg('meta', false);
-        cy.get('.main-navigation-container .main-navigation-controls post-language-switch').should(
-          'exist',
-        );
+        cy.get(
+          '.main-navigation-container .main-navigation-controls post-language-switch-2',
+        ).should('exist');
       });
 
       it(`renders language switch in main menu for mobile`, () => {
         cy.viewport('iphone-6+');
         cy.changeArg('meta', false);
-        cy.get('.main-navigation-container .main-navigation-controls post-language-switch').should(
-          'exist',
-        );
+        cy.get(
+          '.main-navigation-container .main-navigation-controls post-language-switch-2',
+        ).should('exist');
       });
     });
   });
