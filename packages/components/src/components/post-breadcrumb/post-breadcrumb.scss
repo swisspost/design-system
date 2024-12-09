@@ -2,6 +2,7 @@
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/core' as post;
 @use '@swisspost/design-system-styles/tokens/helpers';
@@ -52,17 +53,18 @@ tokens.$default-map: components.$post-breadcrumb;
             @include utilities.focus-style;
           }
         }
-      }
-
-      post-icon {
-        display: inline-block;
-        box-sizing: border-box;
-        height: tokens.get('breadcrum-icon-size');
-        width: tokens.get('breadcrum-icon-size');
-        color: tokens.get('breadcrumb-enabled-fg');
-
-        &:hover {
-          color: tokens.get('breadcrumb-hover-fg');
+        post-icon {
+          display: inline-block;
+          box-sizing: border-box;
+          height: tokens.get('breadcrum-icon-size');
+          width: tokens.get('breadcrum-icon-size');
+          color: tokens.get('breadcrumb-enabled-fg');
+          padding-block: tokens.get('breadcrumb-padding-block-icon-home');
+          padding-inline: tokens.get('breadcrumb-padding-inline-icon-home');
+  
+          &:hover {
+            color: tokens.get('breadcrumb-hover-fg');
+          }
         }
       }
     }
@@ -76,6 +78,7 @@ tokens.$default-map: components.$post-breadcrumb;
     height: 100%;
 
     post-icon {
+      box-sizing: border-box;
       height: tokens.get('breadcrum-icon-size');
       width: tokens.get('breadcrum-icon-size');
       padding-block: tokens.get('breadcrumb-padding-block-icon-link');
@@ -99,11 +102,17 @@ tokens.$default-map: components.$post-breadcrumb;
         button {
           background: none;
           border: none;
+          line-height: 150%;
+          font-size: tokens.get('body-font-size', elements.$post-body);
           cursor: pointer;
           padding: 0;
           display: flex;
           align-items: center;
           color: tokens.get('breadcrumb-enabled-fg');
+
+          &:hover {
+            color: tokens.get('breadcrumb-hover-fg');
+          }
         }
       }
     }
@@ -119,6 +128,8 @@ tokens.$default-map: components.$post-breadcrumb;
     a {
       text-decoration: none;
       color: inherit;
+      line-height: 150%;
+      font-size: tokens.get('body-font-size', elements.$post-body);
       @include utilities.focus-style;
 
       &:hover {
@@ -131,9 +142,12 @@ tokens.$default-map: components.$post-breadcrumb;
       }
     }
 
-    &-icon {
+    post-icon {
       height: tokens.get('breadcrum-icon-size');
       width: tokens.get('breadcrum-icon-size');
+      box-sizing: border-box;
+      padding-block: tokens.get('breadcrumb-padding-block-icon-link');
+      padding-inline: tokens.get('breadcrumb-padding-inline-icon-link');
     }
 
     span {
@@ -177,10 +191,6 @@ tokens.$default-map: components.$post-breadcrumb;
     &:hover {
       color: tokens.get('breadcrumb-selected-fg');
       text-decoration: none;
-    }
-
-    post-icon {
-      color: tokens.get('breadcrumb-selected-fg');
     }
   }
 
