@@ -63,7 +63,7 @@ export const UnstyledList: Story = {
 
 export const OrderedList: Story = {
   render: () => html`
-    <ol>
+    <ol class="list-number">
       <li>This is an ordered list.</li>
       <li>It appears in its default style.</li>
       <li>
@@ -120,5 +120,15 @@ export const DescriptionListUsingGrid: Story = {
         </dl>
       </dd>
     </dl>
+  `,
+};
+
+export const CheckList: Story = {
+  render: () => html`
+    <ul class="list-check">
+      <li>This is a check list item.</li>
+      <li>And another one.</li>
+      <li>And one more.</li>
+    </ul>
   `,
 };

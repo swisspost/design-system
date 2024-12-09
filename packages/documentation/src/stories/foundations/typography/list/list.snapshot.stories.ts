@@ -64,7 +64,7 @@ export const Lists: Story = {
         ${renderList({ el: 'ol' })} ${renderList({ el: 'ol', classList: 'list-revert' })}
         ${renderList({ el: 'ol', classList: 'list-unstyled' })}
 
-        <code class="mt-48">&lt;ul class="list-inline"&gt;</code>
+        <code class="mt-48">&lt;ol class="list-inline"&gt;</code>
         ${renderList({
           el: 'ol',
           classList: 'list-inline',
@@ -76,6 +76,25 @@ export const Lists: Story = {
         ${renderList({
           el: 'ol',
           classList: 'list-inline list-unstyled',
+        })}
+
+        <code class="mt-48">&lt;ol class="list-number"&gt;</code>
+        ${renderList({ el: 'ol', classList: 'list-number' })}
+        ${renderList({ el: 'ol', classList: 'list-number list-revert' })}
+        ${renderList({ el: 'ol', classList: 'list-number list-unstyled' })}
+
+        <code class="mt-48">&lt;ol class="list-number list-inline"&gt;</code>
+        ${renderList({
+          el: 'ol',
+          classList: 'list-number list-inline',
+        })}
+        ${renderList({
+          el: 'ol',
+          classList: 'list-number list-inline list-revert',
+        })}
+        ${renderList({
+          el: 'ol',
+          classList: 'list-number list-inline list-unstyled',
         })}
       `,
     );
@@ -114,5 +133,45 @@ export const Lists: Story = {
       return html`<hr />
         ${unsafeHTML(listBlock)}`;
     }
+  },
+};
+
+export const CheckList: Story = {
+  render: () => {
+    return schemes(
+      () => html`
+        <div class="d-flex">
+              <ul class="list-check">
+                <li>
+                 A check list item
+                </li>
+                <li>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                  commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                  velit esse cillum dolore eu fugiat nulla pariatur
+                </li>
+                <li>And one more</li>
+                <li>
+                  Nested check list:
+                  <ul class="list-check">
+                        <li>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                          velit esse cillum dolore eu fugiat nulla pariatur
+                        </li>
+                      </ul>
+                    </li>
+                    <li>And another one</li>
+                    <li>And one more</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          `,
+    );
   },
 };

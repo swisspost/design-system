@@ -67,6 +67,12 @@ export namespace Components {
          */
         "userid"?: string;
     }
+    interface PostBackToTop {
+        /**
+          * The label of the back-to-top button, intended solely for accessibility purposes. This label is always hidden from view.
+         */
+        "label": string;
+    }
     interface PostBanner {
         /**
           * Triggers banner dismissal programmatically (same as clicking on the close button (×)).
@@ -506,6 +512,12 @@ declare global {
         prototype: HTMLPostAvatarElement;
         new (): HTMLPostAvatarElement;
     };
+    interface HTMLPostBackToTopElement extends Components.PostBackToTop, HTMLStencilElement {
+    }
+    var HTMLPostBackToTopElement: {
+        prototype: HTMLPostBackToTopElement;
+        new (): HTMLPostBackToTopElement;
+    };
     interface HTMLPostBannerElementEventMap {
         "postDismissed": void;
     }
@@ -796,6 +808,7 @@ declare global {
         "post-accordion": HTMLPostAccordionElement;
         "post-accordion-item": HTMLPostAccordionItemElement;
         "post-avatar": HTMLPostAvatarElement;
+        "post-back-to-top": HTMLPostBackToTopElement;
         "post-banner": HTMLPostBannerElement;
         "post-breadcrumb-item": HTMLPostBreadcrumbItemElement;
         "post-card-control": HTMLPostCardControlElement;
@@ -865,6 +878,12 @@ declare namespace LocalJSX {
           * Defines the company internal userId.<div className="mb-1 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
          */
         "userid"?: string;
+    }
+    interface PostBackToTop {
+        /**
+          * The label of the back-to-top button, intended solely for accessibility purposes. This label is always hidden from view.
+         */
+        "label": string;
     }
     interface PostBanner {
         /**
@@ -1192,6 +1211,7 @@ declare namespace LocalJSX {
         "post-accordion": PostAccordion;
         "post-accordion-item": PostAccordionItem;
         "post-avatar": PostAvatar;
+        "post-back-to-top": PostBackToTop;
         "post-banner": PostBanner;
         "post-breadcrumb-item": PostBreadcrumbItem;
         "post-card-control": PostCardControl;
@@ -1229,6 +1249,7 @@ declare module "@stencil/core" {
             "post-accordion": LocalJSX.PostAccordion & JSXBase.HTMLAttributes<HTMLPostAccordionElement>;
             "post-accordion-item": LocalJSX.PostAccordionItem & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
             "post-avatar": LocalJSX.PostAvatar & JSXBase.HTMLAttributes<HTMLPostAvatarElement>;
+            "post-back-to-top": LocalJSX.PostBackToTop & JSXBase.HTMLAttributes<HTMLPostBackToTopElement>;
             "post-banner": LocalJSX.PostBanner & JSXBase.HTMLAttributes<HTMLPostBannerElement>;
             "post-breadcrumb-item": LocalJSX.PostBreadcrumbItem & JSXBase.HTMLAttributes<HTMLPostBreadcrumbItemElement>;
             /**

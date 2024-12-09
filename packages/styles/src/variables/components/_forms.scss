@@ -10,14 +10,13 @@
 
 // Forms
 
-// Used elsewhere than text input
+// Used elsewhere than text input, textarea or select
 
 $input-padding-y: button.$input-btn-padding-y !default;
 $input-padding-x: button.$input-btn-padding-x !default;
 $input-line-height: type.$line-height-copy !default;
 
 $input-padding-y-sm: button.$input-btn-padding-y-sm !default;
-$input-padding-x-sm: button.$input-btn-padding-x-sm !default;
 $input-line-height-sm: type.$line-height-copy !default;
 
 $input-padding-y-rg: button.$input-btn-padding-y-rg !default;
@@ -25,18 +24,12 @@ $input-padding-x-rg: button.$input-btn-padding-x-rg !default;
 $input-line-height-rg: type.$line-height-copy !default;
 
 $input-padding-y-lg: button.$input-btn-padding-y-lg !default;
-$input-padding-x-lg: button.$input-btn-padding-x-lg !default;
 $input-line-height-lg: type.$line-height-copy !default;
 
-$input-disabled-bg: rgba(var(--post-contrast-color-inverted-rgb), 0.4) !default;
-$input-disabled-color: var(--post-gray-60); // Design System only
 $input-disabled-border-color: var(--post-gray-40); // Design System only
-$input-disabled-border-style: spacing.$size-line dashed;
 
 $input-border-color: color.$gray-80 !default;
 $input-border-width: button.$input-btn-border-width !default;
-
-$input-border-radius: 0 !default;
 
 $input-focus-width: button.$input-btn-focus-width !default;
 $input-focus-box-shadow: none !default;
@@ -79,18 +72,7 @@ $form-range-thumb-disabled-border-color: $input-disabled-border-color !default;
 $form-range-height: $form-range-thumb-height + $form-range-thumb-focus-box-shadow-width * 2;
 $form-range-input-height-ie: 6rem !default;
 
-$form-floating-label-font-size: type.$font-size-16;
-$form-floating-label-font-size-small: type.$font-size-12;
-$form-floating-label-scale: math.div(
-  $form-floating-label-font-size-small,
-  $form-floating-label-font-size
-);
-
 $form-floating-height: $input-height-lg * $input-line-height-lg;
-$form-floating-padding-y: $input-padding-y-lg;
-
-$form-floating-textarea-padding-t: spacing.$size-mini + $form-floating-label-font-size *
-  type.$line-height-copy * $form-floating-label-scale; // The Space needed for the label on focus
 
 $valid-icon: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_1266_5647)'%3E%3Cpath d='M16 0C7.16 0 0 7.16 0 16C0 24.84 7.16 32 16 32C24.84 32 32 24.84 32 16C32 7.16 24.84 0 16 0ZM25.05 9.01L14.4 25.15L7.04 17.27C6.66 16.87 6.68 16.23 7.09 15.86C7.49 15.48 8.13 15.5 8.5 15.91L14.13 21.94L23.38 7.92C23.68 7.46 24.3 7.33 24.77 7.64C25.23 7.94 25.36 8.56 25.05 9.03V9.01Z' fill='%23107800'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_1266_5647'%3E%3Crect width='32' height='32' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
 $invalid-icon: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_1266_5583)'%3E%3Cpath d='M16 0C7.16 0 0 7.16 0 16C0 24.84 7.16 32 16 32C24.84 32 32 24.84 32 16C32 7.16 24.84 0 16 0ZM14.49 6.28H17.53V10.76L16.93 17.11H15.09L14.49 10.76V6.28ZM16.01 22.33C14.93 22.33 14.08 21.48 14.08 20.42C14.08 19.36 14.93 18.53 16.01 18.53C17.09 18.53 17.94 19.38 17.94 20.42C17.94 21.46 17.09 22.33 16.01 22.33Z' fill='%23B20000'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_1266_5583'%3E%3Crect width='32' height='32' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
