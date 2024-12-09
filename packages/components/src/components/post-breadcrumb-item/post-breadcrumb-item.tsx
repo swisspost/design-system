@@ -18,7 +18,16 @@ export class PostBreadcrumbItem {
    */
   @Prop() url?: string | URL;
 
-  private validUrl?: string;
+  private validUrl?: string = '';
+
+  @Watch('url')
+  validateUrl() {
+    try {
+      this.validUrl = this.constructUrl(this.url);
+    } catch (error) {
+      this.validUrl = undefined;
+    }
+  }
 
   // Helper to construct a valid URL string or return undefined
   private constructUrl(value: unknown): string | undefined {
