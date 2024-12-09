@@ -1,3 +1,4 @@
+export * from './breakpoints';
 export * from './component-on-ready';
 export * from './property-checkers';
 export * from './debounce';
