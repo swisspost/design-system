@@ -32,6 +32,16 @@ export const UnorderedList: Story = {
   `,
 };
 
+export const InlineList: Story = {
+  render: () => html`
+    <ul class="list-inline">
+      <li>This is an inline list item.</li>
+      <li>And another one.</li>
+      <li>And one more.</li>
+    </ul>
+  `,
+};
+
 export const UnstyledList: Story = {
   render: () => html`
     <ul class="list-unstyled">
@@ -51,19 +61,9 @@ export const UnstyledList: Story = {
   `,
 };
 
-export const InlineList: Story = {
-  render: () => html`
-    <ul class="list-inline">
-      <li class="list-inline-item">This is an inline list item.</li>
-      <li class="list-inline-item">And another one.</li>
-      <li class="list-inline-item">And one more.</li>
-    </ul>
-  `,
-};
-
 export const OrderedList: Story = {
   render: () => html`
-    <ol>
+    <ol class="list-number">
       <li>This is an ordered list.</li>
       <li>It appears in its default style.</li>
       <li>
