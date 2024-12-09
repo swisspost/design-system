@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkUrl } from '@/utils';
+import { checkUrl, debounce } from '@/utils';
 
 @Component({
   tag: 'post-breadcrumb',
@@ -46,14 +46,13 @@ export class PostBreadcrumb {
   }
 
   // Waits for breadcrumb navigation reference to be available
-  private waitForBreadcrumbRef() {
-    const interval = setInterval(() => {
-      if (this.breadcrumbNavRef?.clientWidth > 0) {
-        clearInterval(interval);
-        this.checkConcatenation();
-      }
-    }, 50);
-  }
+  private waitForBreadcrumbRef = debounce(() => {
+    if (this.breadcrumbNavRef?.clientWidth > 0) {
+      this.checkConcatenation();
+    } else {
+      this.waitForBreadcrumbRef();
+    }
+  }, 50);
 
   // Updates breadcrumb items and sets the last item
   private updateBreadcrumbItems() {
@@ -205,4 +204,4 @@ export class PostBreadcrumb {
       </Host>
     );
   }
-}  
+}
