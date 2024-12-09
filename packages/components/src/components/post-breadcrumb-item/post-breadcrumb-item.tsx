@@ -20,15 +20,6 @@ export class PostBreadcrumbItem {
 
   private validUrl?: string;
 
-  @Watch('url')
-  validateUrl() {
-    try {
-      this.validUrl = this.constructUrl(this.url);
-    } catch (error) {
-      this.validUrl = undefined;
-    }
-  }
-
   // Helper to construct a valid URL string or return undefined
   private constructUrl(value: unknown): string | undefined {
     const hasBaseURL = /^https?:\/\//.test(String(this.url));
