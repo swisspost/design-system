@@ -26,11 +26,16 @@
 }
 
 post-popovercontainer {
+  --global-header-height: 72px;
+  --main-header-height: 56px;
+  --header-height: calc(var(--global-header-height) + var(--main-header-height));
+
   background-color: #fafafa;
   width: 100%;
   border-radius: 0;
 
   @include media.max(lg) {
+    --global-header-height: 64px;
     position: absolute;
     top: var(--header-height) !important;
     bottom: 0;
