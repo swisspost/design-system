@@ -11,191 +11,193 @@ tokens.$default-map: components.$post-breadcrumb;
 :host {
   display: flex;
   align-items: center;
-}
 
-/* Breadcrumb Navigation */
-.breadcrumbs-nav {
-  display: flex;
-  align-items: center;
-
-  .hidden-items {
-    gap: tokens.get('breadcrumb-gap-inline-outer');
-    padding-left: tokens.get('breadcrumb-gap-inline-outer');
-    position: absolute;
-    height: 0;
-    overflow: hidden;
-    white-space: nowrap;
-  }  
-
-  .breadcrumbs-list {
+  .breadcrumbs-nav {
     display: flex;
-    flex-wrap: nowrap;
-    position: relative;
-    margin: 0;
-    padding: 0;
-    list-style: none;
     align-items: center;
-    height: 100%;
-    gap: tokens.get('breadcrumb-gap-inline-outer');
 
-    li {
-      height: 100%;
+    .hidden-items {
+      gap: tokens.get('breadcrumb-gap-inline-outer');
+      padding-left: tokens.get('breadcrumb-gap-inline-outer');
+      position: absolute;
+      height: 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .breadcrumbs-list {
       display: flex;
-      align-items: center;
-      justify-content: center;
+      flex-wrap: nowrap;
+      position: relative;
+      margin: 0;
       padding: 0;
+      list-style: none;
+      align-items: center;
+      height: 100%;
+      gap: tokens.get('breadcrumb-gap-inline-outer');
 
-      a {
+      li {
         height: 100%;
         display: flex;
         align-items: center;
+        justify-content: center;
+        padding: 0;
 
-        &:focus {
-          border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
-          @include utilities.focus-style;
+        a {
+          height: 100%;
+          display: flex;
+          align-items: center;
+
+          &:focus {
+            border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+            @include utilities.focus-style;
+          }
+        }
+      }
+
+      post-icon {
+        display: inline-block;
+        height: tokens.get('breadcrum-icon-size');
+        width: tokens.get('breadcrum-icon-size');
+        color: tokens.get('breadcrumb-enabled-fg');
+        padding-inline: tokens.get('breadcrumb-padding-inline-icon-home');
+        padding-block: tokens.get('breadcrumb-padding-block-icon-home');
+
+        &:hover {
+          color: tokens.get('breadcrumb-hover-fg');
         }
       }
     }
+  }
 
-    .home-icon {
-      display: inline-block;
+  .menu-trigger-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: tokens.get('breadcrumb-gap-inline-inner');
+    height: 100%;
+
+    post-icon {
       height: tokens.get('breadcrum-icon-size');
       width: tokens.get('breadcrum-icon-size');
-      color: tokens.get('breadcrumb-enabled-fg');
-      padding-inline: tokens.get('breadcrumb-padding-inline-icon-home');
-      padding-block: tokens.get('breadcrumb-padding-block-icon-home');
+      padding-block: tokens.get('breadcrumb-padding-block-icon-link');
+      padding-inline: tokens.get('breadcrumb-padding-inline-icon-link');
+    }
+
+    .actual-menu {
+      display: flex;
+      height: 100%;
+
+      post-menu-trigger {
+        display: flex;
+        height: tokens.get('breadcrum-icon-size');
+        padding-block: tokens.get('breadcrumb-padding-block-text');
+        @include utilities.focus-style;
+
+        &:focus {
+          border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+        }
+
+        button {
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          display: flex;
+          align-items: center;
+          color: tokens.get('breadcrumb-enabled-fg');
+        }
+      }
+    }
+  }
+
+  .breadcrumb-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: tokens.get('breadcrumb-padding-block-text');
+    gap: tokens.get('breadcrumb-gap-inline-inner');
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      @include utilities.focus-style;
 
       &:hover {
         color: tokens.get('breadcrumb-hover-fg');
+        text-decoration: tokens.get('breadcrumb-link-hover-text-decoration');
+      }
+
+      &:focus-visible {
+        border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
       }
     }
-  }
-}
 
-.menu-trigger-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: tokens.get('breadcrumb-gap-inline-inner');
-  height: 100%;
-
-  post-icon {
-    height: tokens.get('breadcrum-icon-size');
-    width: tokens.get('breadcrum-icon-size');
-    padding-block: tokens.get('breadcrumb-padding-block-icon-link');
-    padding-inline: tokens.get('breadcrumb-padding-inline-icon-link');
-  }
-
-  .actual-menu {
-    display: flex;
-    height: 100%;
-
-    post-menu-trigger {
-      display: flex;
+    &-icon {
       height: tokens.get('breadcrum-icon-size');
-      padding-block: tokens.get('breadcrumb-padding-block-text');
-      @include utilities.focus-style;
-        &:focus {
-          border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
-        }
-  
-      button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 0;
-        display: flex;
-        align-items: center;
-        color: tokens.get('breadcrumb-enabled-fg');
+      width: tokens.get('breadcrum-icon-size');
+    }
+
+    span {
+      &:hover {
+        color: tokens.get('breadcrumb-hover-fg');
+        text-decoration: tokens.get('breadcrumb-link-hover-text-decoration');
+      }
+
+      &:focus-visible {
+        border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
       }
     }
-    }
-}
 
-/* Breadcrumb Item */
-.breadcrumb-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-block: tokens.get('breadcrumb-padding-block-text');
-  gap: tokens.get('breadcrumb-gap-inline-inner');
-  
-  a {
-    text-decoration: none;
-    color: inherit;
-    @include utilities.focus-style;
-  }
-
-  a,
-  span {
-    &:hover {
-      color: tokens.get('breadcrumb-hover-fg');
-      text-decoration: tokens.get('breadcrumb-link-hover-text-decoration');
-    }
-
-    &:focus-visible {
-      border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+    post-icon {
+      height: tokens.get('breadcrum-icon-size');
+      width: tokens.get('breadcrum-icon-size');
+      padding-block: tokens.get('breadcrumb-padding-block-icon-link');
+      padding-inline: tokens.get('breadcrumb-padding-inline-icon-link');
     }
 
     @include utilities.high-contrast-mode() {
-      &,
+      a,
       &:focus,
       &:hover {
         color: LinkText !important;
       }
-  
+
       &:visited {
         color: VisitedText !important;
       }
     }
   }
-  
-  post-icon {
-    height: tokens.get('breadcrum-icon-size');
-    width: tokens.get('breadcrum-icon-size');
-    padding-block: tokens.get('breadcrumb-padding-block-icon-link');
-    padding-inline: tokens.get('breadcrumb-padding-inline-icon-link');
-  }
-}
 
-/* Last Breadcrumb Item (Non-Interactive) */
-post-breadcrumb-item:last-of-type {
-  pointer-events: none;
-  color: tokens.get('breadcrumb-selected-fg');
-  font-weight: tokens.get('breadcrumb-selected-font-weight');
-  text-decoration: tokens.get('breadcrumb-link-selected-text-decoration');
-
-  &:hover {
+  post-breadcrumb-item:last-of-type {
+    pointer-events: none;
     color: tokens.get('breadcrumb-selected-fg');
-    text-decoration: none;
+    font-weight: tokens.get('breadcrumb-selected-font-weight');
+    text-decoration: tokens.get('breadcrumb-link-selected-text-decoration');
+
+    &:hover {
+      color: tokens.get('breadcrumb-selected-fg');
+      text-decoration: none;
+    }
+
+    post-icon {
+      color: tokens.get('breadcrumb-selected-fg');
+    }
   }
 
-  post-icon {
-    color: tokens.get('breadcrumb-selected-fg');
+  post-menu::part(popover-container) {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 0.3rem;
+    gap: tokens.get('breadcrumb-gap-inline-outer');
+
+    ::slotted(post-menu-item:not(:last-child)) {
+      margin-bottom: tokens.get('breadcrumb-gap-inline-outer');
+    }
   }
-}
 
-/* Menu Styles */
-post-menu::part(popover-container) {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  padding: 0.3rem;
-  gap: tokens.get('breadcrumb-gap-inline-outer');
-
-  /* Fallback for bottom margin */
-  ::slotted(post-menu-item:not(:last-child)) {
-    margin-bottom: tokens.get('breadcrumb-gap-inline-outer');
+  .visually-hidden {
+    @include post.visually-hidden();
   }
-}
-
-/* Breadcrumb Item Icon */
-.breadcrumb-item-icon {
-  height: tokens.get('breadcrum-icon-size');
-  width: tokens.get('breadcrum-icon-size');
-}
-
-/* Visually Hidden Utility */
-.visually-hidden {
-  @include post.visually-hidden();
 }

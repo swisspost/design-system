@@ -120,7 +120,6 @@ export class PostBreadcrumb {
       <Host data-version={version}>
         <nav aria-label="Breadcrumb" class="breadcrumbs-nav" ref={(el) => (this.breadcrumbNavRef = el)}>
           <ol class="no-list breadcrumbs-list">
-            {/* Home Breadcrumb */}
             <li>
               <a href={this.homeUrl} class="breadcrumb-link">
                 <span class="visually-hidden">{this.homeText}</span>
@@ -175,7 +174,6 @@ export class PostBreadcrumb {
               ))
             )}
   
-            {/* Last Breadcrumb Item */}
             {this.lastItem && (
               <post-breadcrumb-item
                 url={this.lastItem.url}
