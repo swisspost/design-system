@@ -254,3 +254,25 @@ export const Animate: Story = {
       generateDecorators(story, context, 'd-flex flex-wrap text-center'),
   ],
 };
+
+export const ScssMixin: Story = {
+  render: () => {
+    return html`
+      <div class="my-accessibility-icon my-icon-1"></div>
+      <div class="my-accessibility-icon my-icon-2"></div>
+      <div class="my-accessibility-icon my-icon-3"></div>
+      <div class="my-accessibility-icon my-icon-4"></div>
+      <div class="my-accessibility-icon my-icon-5"></div>
+      <div class="my-accessibility-icon my-icon-6"></div>
+      <hr />
+      <div class="my-handvictory-icon" style="color: currentColor"></div>
+      <div class="my-handvictory-icon" style="width: 32px; height: 32px;"></div>
+      <div class="my-handvictory-icon" style="width: 64px; height: 64px; color: #f60;"></div>
+      <div class="my-handvictory-icon" style="width: 48px; height: 48px;"></div>
+      <div
+        class="my-handvictory-icon"
+        style="width: 32px; height: 32px; color: hsl(230, 90%, 40%); transform: rotate(15deg)"
+      ></div>
+    `;
+  },
+};

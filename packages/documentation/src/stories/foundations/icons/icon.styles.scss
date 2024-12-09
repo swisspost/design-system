@@ -1,0 +1,39 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+.my-accessibility-icon {
+  @include post.post-icon($name: 'accessibility', $base: '/post-icons');
+}
+
+.my-handvictory-icon {
+  @include post.post-icon($name: 'handvictory', $base: '/post-icons', $color: #666666);
+}
+
+.my-icon-1 {
+  width: 16px;
+  height: 16px;
+}
+
+.my-icon-2 {
+  width: 24px;
+  height: 24px;
+}
+
+.my-icon-3 {
+  width: 32px;
+  height: 32px;
+}
+
+.my-icon-4 {
+  width: 40px;
+  height: 40px;
+}
+
+.my-icon-5 {
+  width: 48px;
+  height: 48px;
+}
+
+.my-icon-6 {
+  width: 64px;
+  height: 64px;
+}
