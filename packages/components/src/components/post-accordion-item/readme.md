@@ -46,9 +46,15 @@ Type: `Promise<boolean>`
 | Part               | Description |
 | ------------------ | ----------- |
 | `"accordion-item"` |             |
+| `"body"`           |             |
+| `"button"`         |             |
 
 
 ## Dependencies
+
+### Used by
+
+ - [post-footer](../post-footer)
 
 ### Depends on
 
@@ -62,6 +68,7 @@ graph TD;
   post-accordion-item --> post-collapsible-trigger
   post-accordion-item --> post-icon
   post-accordion-item --> post-collapsible
+  post-footer --> post-accordion-item
   style post-accordion-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

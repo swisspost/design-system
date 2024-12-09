@@ -86,7 +86,11 @@ export class PostAccordionItem {
         <div part="accordion-item" class="accordion-item">
           <post-collapsible-trigger for={`${this.id}--collapse`}>
             <HeadingTag class="accordion-header" id={`${this.id}--header`}>
-              <button type="button" class={`accordion-button${this.collapsed ? ' collapsed' : ''}`}>
+              <button
+                type="button"
+                class={`accordion-button${this.collapsed ? ' collapsed' : ''}`}
+                part="button"
+              >
                 <span
                   class={{
                     'logo-container': true,
@@ -106,7 +110,7 @@ export class PostAccordionItem {
             collapsed={this.collapsed}
             ref={el => (this.collapsible = el)}
           >
-            <div class="accordion-body">
+            <div class="accordion-body" part="body">
               <slot />
             </div>
           </post-collapsible>
