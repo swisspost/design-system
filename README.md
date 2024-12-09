@@ -2,7 +2,7 @@
 
 ![The Swiss Post Design System pattern library for a unified and accessible user experience across the web platform](https://github.com/swisspost/design-system/assets/1659006/e58acc52-3e6a-47b3-84b5-0726250ec225)
 
-## Documentation
+## Documentation of the Project
 
 [Documentation](https://design-system.post.ch) - Technical implementation guidelines
 
