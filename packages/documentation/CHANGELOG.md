@@ -1,5 +1,46 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.9
+
+### Major Changes
+
+- Removed size variants for textarea form control. The sizing classes `.form-control-sm`, `.form-control-rg` and `.form-control-lg` for textarea no longer have any effect and can be removed safely. (by [@leagrdv](https://github.com/leagrdv) with [#4062](https://github.com/swisspost/design-system/pull/4062))
+
+### Minor Changes
+
+- Internalized bootstrap position utilities into the design system. (by [@leagrdv](https://github.com/leagrdv) with [#3988](https://github.com/swisspost/design-system/pull/3988))
+
+- Implemented simple check list component. (by [@myrta2302](https://github.com/myrta2302) with [#4171](https://github.com/swisspost/design-system/pull/4171))
+
+- Ιmplemented the back-to-top button component. (by [@myrta2302](https://github.com/myrta2302) with [#3991](https://github.com/swisspost/design-system/pull/3991))
+
+- Created the `search-input` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4099](https://github.com/swisspost/design-system/pull/4099))
+
+- Updated documentation to display the currently selected theme and channel SCSS file. (by [@leagrdv](https://github.com/leagrdv) with [#4166](https://github.com/swisspost/design-system/pull/4166))
+
+- Added a ´post-accordion´ example showing logo usage. (by [@leagrdv](https://github.com/leagrdv) with [#4166](https://github.com/swisspost/design-system/pull/4166))
+
+- Added list mixins `list-bullet`, `list-revert` and `list-unstyled`. (by [@leagrdv](https://github.com/leagrdv) with [#4166](https://github.com/swisspost/design-system/pull/4166))
+
+- Updated `.form-control` textarea to new Post design. (by [@leagrdv](https://github.com/leagrdv) with [#4062](https://github.com/swisspost/design-system/pull/4062))
+
+- Added tokens package icon to the home page (by [@leagrdv](https://github.com/leagrdv) with [#4166](https://github.com/swisspost/design-system/pull/4166))
+
+### Patch Changes
+
+- Reverted `ol` lists to use standard display (not grid). (by [@leagrdv](https://github.com/leagrdv) with [#4110](https://github.com/swisspost/design-system/pull/4110))
+
+- Added ´btn-link´ class to remove inline padding. (by [@leagrdv](https://github.com/leagrdv) with [#4166](https://github.com/swisspost/design-system/pull/4166))
+
+- Added classes to fix banner sizing in controls. (by [@leagrdv](https://github.com/leagrdv) with [#4166](https://github.com/swisspost/design-system/pull/4166))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.0.0-next.8
+  - @swisspost/design-system-styles@9.0.0-next.8
+  - @swisspost/design-system-components@9.0.0-next.8
+  - @swisspost/internet-header@2.0.0-next.8
+  - @swisspost/design-system-components-react@9.0.0-next.8
+  - @swisspost/design-system-tokens@9.0.0-next.8
+
 ## 6.0.0-next.8
 
 ### Major Changes
