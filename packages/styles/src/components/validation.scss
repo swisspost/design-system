@@ -59,8 +59,8 @@ select,
 textarea {
   ~ .invalid-feedback,
   ~ .valid-feedback {
-    margin-block: tokens.get('post-assist-padding-block', components.$post-assist) !important;
-    padding-inline: tokens.get('post-validation-input-padding-inline');
+    margin-block: tokens.get('assist-padding-block', components.$post-assist) !important;
+    padding-inline: tokens.get('validation-input-padding-inline');
   }
 }
 
@@ -73,6 +73,8 @@ input[type='radio'],
 :has(input[type='radio']) {
   ~ .invalid-feedback,
   ~ .valid-feedback {
+    padding-inline-start: tokens.get('validation-group-padding-inline-start');
+
     &::before {
       height: tokens.get('validation-group-icon-size');
       width: tokens.get('validation-group-icon-size');
@@ -81,6 +83,7 @@ input[type='radio'],
       margin-inline-end: tokens.get('validation-group-gap-inline');
       content: '';
       flex-shrink: 0;
+      mask-size: contain;
       mask-position: center;
       mask-repeat: no-repeat;
     }
