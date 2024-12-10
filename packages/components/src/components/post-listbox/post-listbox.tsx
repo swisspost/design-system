@@ -41,18 +41,23 @@ export class PostListbox {
   @Prop() readonly titleHidden: boolean = false;
 
   /**
+   * If `true`, the listbox is multiselect.
+   */
+
+  @Prop() readonly multiselect: boolean = false;
+  /**
    * The listbox title element
    */
   private titleEl: HTMLElement;
 
   private handleKeyDown = (e: KeyboardEvent) => {
-    console.log(e);
     const listboxItems = Array.from(
       this.host.querySelectorAll<HTMLElement>('[slot="post-listbox-item"]'),
     );
     if (!listboxItems.length) return;
 
     const currentFocusedElement = document.activeElement as HTMLElement;
+
     let currentIndex = listboxItems.findIndex(el => el === currentFocusedElement);
 
     switch (e.key) {
@@ -77,7 +82,7 @@ export class PostListbox {
       case this.KEYCODES.ENTER:
         this.activeItemId = listboxItems[currentIndex]?.id ?? null;
 
-        console.log(listboxItems[currentIndex].id);
+        // console.log(listboxItems[currentIndex]);
 
         return;
       default:
@@ -118,7 +123,7 @@ export class PostListbox {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={version} tabindex="0">
         <div
           ref={el => (this.titleEl = el)}
           id={this.titleId}
@@ -130,7 +135,6 @@ export class PostListbox {
           role="listbox"
           aria-labelledby={this.titleId}
           aria-orientation="vertical"
-          tabindex="0"
           aria-activedescendant={this.activeItemId}
         >
           <slot name="post-listbox-item"></slot>

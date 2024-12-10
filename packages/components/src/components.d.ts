@@ -241,6 +241,22 @@ export namespace Components {
     }
     interface PostListItem {
     }
+    interface PostListbox {
+        /**
+          * If `true`, the listbox is multiselect.
+         */
+        "multiselect": boolean;
+        /**
+          * If `true`, the listbox title will be hidden. Otherwise, it will be displayed.
+         */
+        "titleHidden": boolean;
+    }
+    interface PostListboxItem {
+        /**
+          * Indicates if the item is currently active. This will be set dynamically by the parent `listbox`.
+         */
+        "active": boolean;
+    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -629,6 +645,18 @@ declare global {
         prototype: HTMLPostListItemElement;
         new (): HTMLPostListItemElement;
     };
+    interface HTMLPostListboxElement extends Components.PostListbox, HTMLStencilElement {
+    }
+    var HTMLPostListboxElement: {
+        prototype: HTMLPostListboxElement;
+        new (): HTMLPostListboxElement;
+    };
+    interface HTMLPostListboxItemElement extends Components.PostListboxItem, HTMLStencilElement {
+    }
+    var HTMLPostListboxItemElement: {
+        prototype: HTMLPostListboxItemElement;
+        new (): HTMLPostListboxItemElement;
+    };
     interface HTMLPostLogoElement extends Components.PostLogo, HTMLStencilElement {
     }
     var HTMLPostLogoElement: {
@@ -808,6 +836,8 @@ declare global {
         "post-language-option": HTMLPostLanguageOptionElement;
         "post-list": HTMLPostListElement;
         "post-list-item": HTMLPostListItemElement;
+        "post-listbox": HTMLPostListboxElement;
+        "post-listbox-item": HTMLPostListboxItemElement;
         "post-logo": HTMLPostLogoElement;
         "post-mainnavigation": HTMLPostMainnavigationElement;
         "post-megadropdown": HTMLPostMegadropdownElement;
@@ -1036,6 +1066,22 @@ declare namespace LocalJSX {
     }
     interface PostListItem {
     }
+    interface PostListbox {
+        /**
+          * If `true`, the listbox is multiselect.
+         */
+        "multiselect"?: boolean;
+        /**
+          * If `true`, the listbox title will be hidden. Otherwise, it will be displayed.
+         */
+        "titleHidden"?: boolean;
+    }
+    interface PostListboxItem {
+        /**
+          * Indicates if the item is currently active. This will be set dynamically by the parent `listbox`.
+         */
+        "active"?: boolean;
+    }
     interface PostLogo {
         /**
           * The URL to which the user is redirected upon clicking the logo.
@@ -1204,6 +1250,8 @@ declare namespace LocalJSX {
         "post-language-option": PostLanguageOption;
         "post-list": PostList;
         "post-list-item": PostListItem;
+        "post-listbox": PostListbox;
+        "post-listbox-item": PostListboxItem;
         "post-logo": PostLogo;
         "post-mainnavigation": PostMainnavigation;
         "post-megadropdown": PostMegadropdown;
@@ -1247,6 +1295,8 @@ declare module "@stencil/core" {
             "post-language-option": LocalJSX.PostLanguageOption & JSXBase.HTMLAttributes<HTMLPostLanguageOptionElement>;
             "post-list": LocalJSX.PostList & JSXBase.HTMLAttributes<HTMLPostListElement>;
             "post-list-item": LocalJSX.PostListItem & JSXBase.HTMLAttributes<HTMLPostListItemElement>;
+            "post-listbox": LocalJSX.PostListbox & JSXBase.HTMLAttributes<HTMLPostListboxElement>;
+            "post-listbox-item": LocalJSX.PostListboxItem & JSXBase.HTMLAttributes<HTMLPostListboxItemElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
             "post-mainnavigation": LocalJSX.PostMainnavigation & JSXBase.HTMLAttributes<HTMLPostMainnavigationElement>;
             "post-megadropdown": LocalJSX.PostMegadropdown & JSXBase.HTMLAttributes<HTMLPostMegadropdownElement>;

@@ -9,6 +9,7 @@
 
 | Property      | Attribute      | Description                                                                   | Type      | Default |
 | ------------- | -------------- | ----------------------------------------------------------------------------- | --------- | ------- |
+| `multiselect` | `multiselect`  | If `true`, the listbox is multiselect.                                        | `boolean` | `false` |
 | `titleHidden` | `title-hidden` | If `true`, the listbox title will be hidden. Otherwise, it will be displayed. | `boolean` | `false` |
 
 

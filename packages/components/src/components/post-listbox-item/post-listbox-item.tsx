@@ -1,4 +1,4 @@
-import { Component, Element, Host, h } from '@stencil/core';
+import { Component, Prop, Element, Host, h } from '@stencil/core';
 /*
  * @slot default- Slot for placing the content of the list item.
  */
@@ -11,13 +11,28 @@ import { Component, Element, Host, h } from '@stencil/core';
 export class PostListboxItem {
   @Element() host: HTMLPostListboxItemElement;
 
+  /**
+   * Indicates if the item is currently active.
+   * This will be set dynamically by the parent `listbox`.
+   */
+  @Prop() active: boolean = false;
+
+  componentDidRender() {
+    if (this.active) {
+      this.host.focus();
+    }
+  }
   connectedCallback() {
     this.host.setAttribute('slot', 'post-listbox-item');
   }
 
   render() {
     return (
-      <Host role="option" aria-selected="false" tabindex="0">
+      <Host
+        role="option"
+        tabindex={this.active ? '0' : '-1'}
+        aria-selected={this.active ? 'true' : 'false'}
+      >
         <slot></slot>
       </Host>
     );
