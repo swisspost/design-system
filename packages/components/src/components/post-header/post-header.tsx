@@ -102,9 +102,9 @@ export class PostHeader {
   }
 
   render() {
-    const mainNavClasses = ['main-navigation'];
+    const navigationClasses = ['navigation'];
     if (this.mobileMenuExtended) {
-      mainNavClasses.push('extended');
+      navigationClasses.push('extended');
     }
 
     return (
@@ -133,13 +133,14 @@ export class PostHeader {
           </div>
         </div>
 
-        <div class={mainNavClasses.join(' ')}>
+        <div aria-hidden={`${!this.mobileMenuExtended}`} class={navigationClasses.join(' ')}>
           <slot name="post-mainnavigation"></slot>
+
           {(this.device === 'mobile' || this.device === 'tablet') && (
-            <slot name="meta-navigation"></slot>
-          )}
-          {(this.device === 'mobile' || this.device === 'tablet') && (
-            <slot name="post-language-switch"></slot>
+            <div class="navigation-footer">
+              <slot name="meta-navigation"></slot>
+              <slot name="post-language-switch"></slot>
+            </div>
           )}
         </div>
       </Host>
