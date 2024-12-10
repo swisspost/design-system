@@ -67,6 +67,12 @@ export namespace Components {
          */
         "userid"?: string;
     }
+    interface PostBackToTop {
+        /**
+          * The label of the back-to-top button, intended solely for accessibility purposes. This label is always hidden from view.
+         */
+        "label": string;
+    }
     interface PostBanner {
         /**
           * Triggers banner dismissal programmatically (same as clicking on the close button (×)).
@@ -404,6 +410,12 @@ export namespace Components {
          */
         "variant": 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
+    interface PostTogglebutton {
+        /**
+          * If `true`, the button is in the "on" state, otherwise it is in the "off" state.
+         */
+        "toggled": boolean;
+    }
     interface PostTooltip {
         /**
           * Wheter or not to display a little pointer arrow
@@ -493,6 +505,12 @@ declare global {
     var HTMLPostAvatarElement: {
         prototype: HTMLPostAvatarElement;
         new (): HTMLPostAvatarElement;
+    };
+    interface HTMLPostBackToTopElement extends Components.PostBackToTop, HTMLStencilElement {
+    }
+    var HTMLPostBackToTopElement: {
+        prototype: HTMLPostBackToTopElement;
+        new (): HTMLPostBackToTopElement;
     };
     interface HTMLPostBannerElementEventMap {
         "postDismissed": void;
@@ -762,6 +780,12 @@ declare global {
         prototype: HTMLPostTagElement;
         new (): HTMLPostTagElement;
     };
+    interface HTMLPostTogglebuttonElement extends Components.PostTogglebutton, HTMLStencilElement {
+    }
+    var HTMLPostTogglebuttonElement: {
+        prototype: HTMLPostTogglebuttonElement;
+        new (): HTMLPostTogglebuttonElement;
+    };
     interface HTMLPostTooltipElement extends Components.PostTooltip, HTMLStencilElement {
     }
     var HTMLPostTooltipElement: {
@@ -772,6 +796,7 @@ declare global {
         "post-accordion": HTMLPostAccordionElement;
         "post-accordion-item": HTMLPostAccordionItemElement;
         "post-avatar": HTMLPostAvatarElement;
+        "post-back-to-top": HTMLPostBackToTopElement;
         "post-banner": HTMLPostBannerElement;
         "post-breadcrumb-item": HTMLPostBreadcrumbItemElement;
         "post-card-control": HTMLPostCardControlElement;
@@ -797,6 +822,7 @@ declare global {
         "post-tab-panel": HTMLPostTabPanelElement;
         "post-tabs": HTMLPostTabsElement;
         "post-tag": HTMLPostTagElement;
+        "post-togglebutton": HTMLPostTogglebuttonElement;
         "post-tooltip": HTMLPostTooltipElement;
     }
 }
@@ -839,6 +865,12 @@ declare namespace LocalJSX {
           * Defines the company internal userId.<div className="mb-1 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
          */
         "userid"?: string;
+    }
+    interface PostBackToTop {
+        /**
+          * The label of the back-to-top button, intended solely for accessibility purposes. This label is always hidden from view.
+         */
+        "label": string;
     }
     interface PostBanner {
         /**
@@ -1136,6 +1168,12 @@ declare namespace LocalJSX {
          */
         "variant"?: 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
+    interface PostTogglebutton {
+        /**
+          * If `true`, the button is in the "on" state, otherwise it is in the "off" state.
+         */
+        "toggled"?: boolean;
+    }
     interface PostTooltip {
         /**
           * Wheter or not to display a little pointer arrow
@@ -1154,6 +1192,7 @@ declare namespace LocalJSX {
         "post-accordion": PostAccordion;
         "post-accordion-item": PostAccordionItem;
         "post-avatar": PostAvatar;
+        "post-back-to-top": PostBackToTop;
         "post-banner": PostBanner;
         "post-breadcrumb-item": PostBreadcrumbItem;
         "post-card-control": PostCardControl;
@@ -1179,6 +1218,7 @@ declare namespace LocalJSX {
         "post-tab-panel": PostTabPanel;
         "post-tabs": PostTabs;
         "post-tag": PostTag;
+        "post-togglebutton": PostTogglebutton;
         "post-tooltip": PostTooltip;
     }
 }
@@ -1189,6 +1229,7 @@ declare module "@stencil/core" {
             "post-accordion": LocalJSX.PostAccordion & JSXBase.HTMLAttributes<HTMLPostAccordionElement>;
             "post-accordion-item": LocalJSX.PostAccordionItem & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
             "post-avatar": LocalJSX.PostAvatar & JSXBase.HTMLAttributes<HTMLPostAvatarElement>;
+            "post-back-to-top": LocalJSX.PostBackToTop & JSXBase.HTMLAttributes<HTMLPostBackToTopElement>;
             "post-banner": LocalJSX.PostBanner & JSXBase.HTMLAttributes<HTMLPostBannerElement>;
             "post-breadcrumb-item": LocalJSX.PostBreadcrumbItem & JSXBase.HTMLAttributes<HTMLPostBreadcrumbItemElement>;
             /**
@@ -1220,6 +1261,7 @@ declare module "@stencil/core" {
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
             "post-tag": LocalJSX.PostTag & JSXBase.HTMLAttributes<HTMLPostTagElement>;
+            "post-togglebutton": LocalJSX.PostTogglebutton & JSXBase.HTMLAttributes<HTMLPostTogglebuttonElement>;
             "post-tooltip": LocalJSX.PostTooltip & JSXBase.HTMLAttributes<HTMLPostTooltipElement>;
         }
     }
