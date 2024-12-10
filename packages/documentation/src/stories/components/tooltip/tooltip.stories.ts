@@ -21,7 +21,7 @@ const meta: MetaComponent = {
   args: {
     id: 'tooltip-one',
     innerHTML: 'Hi there 👋',
-    backgroundColor: 'primary',
+    palette: 'primary',
     placement: 'top',
     delayed: false,
   },
@@ -42,17 +42,13 @@ const meta: MetaComponent = {
         },
       },
     },
-    backgroundColor: {
-      name: 'Background color',
-      description: 'Define a background color, either `bg-primary` or `bg-yellow`.',
+    palette: {
+      name: 'Palette',
+      description: 'Define the color scheme of the tooltip.',
       control: {
-        type: 'radio',
-        labels: {
-          yellow: 'Yellow',
-          primary: 'Primary',
-        },
+        type: 'select',
       },
-      options: ['primary', 'yellow'],
+      options: ['palette-default', 'palette-accent', 'palette-alternate', 'palette-brand'],
       table: {
         category: 'General',
         type: {
@@ -76,17 +72,18 @@ function render(args: Args) {
   const [currentArgs, updateArgs] = useArgs();
   // Just for fun
   const innerHTML =
-    args.backgroundColor === 'yellow'
-      ? args.innerHTML.replace('👋', '🤘🏾')
-      : args.innerHTML.replace('🤘🏾', '👋');
+    args.palette === 'palette-accent'
+      ? args.innerHTML.replace('🤘🏾', '👋')
+      : args.innerHTML.replace('👋', '🤘🏾');
 
   if (currentArgs.innerHTML !== innerHTML) updateArgs({ innerHTML });
 
+  //TODO: Lea
   return html`
     <button class="btn btn-secondary btn-large" data-tooltip-target="${args.id}">Button</button>
     <post-tooltip
       id="${args.id}"
-      class="bg-${args.backgroundColor}"
+      class="${args.palette}"
       placement="${ifDefined(args.placement)}"
       arrow="${ifDefined(args.arrow)}"
       delayed="${ifDefined(args.delayed)}"
@@ -108,7 +105,7 @@ export const NonFocusable: StoryObj = {
       <cite data-tooltip-target="${args.id}">This is a cite element with a tooltip on it.</cite>
       <post-tooltip
         id="${args.id}"
-        background-color=" ${ifDefined(args.backgroundColor)}"
+        class="${args.palette}"
         placement="${ifDefined(args.placement)}"
       >
         This is not the link you are looking for
@@ -131,7 +128,7 @@ export const Multiple: StoryObj = {
       </button>
       <post-tooltip
         id="${args.id}"
-        class="bg-${args.background}"
+        class="${args.palette}"
         placement="${ifDefined(args.placement)}"
       >
         I'm the same, no matter what

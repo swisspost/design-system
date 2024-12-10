@@ -17,7 +17,7 @@ export default function Home() {
 
       <section>
         <h2 className="h4 mt-huge-r">Sendung Verfolgen</h2>
-        <form className="bg-yellow mt-16 py-16 px-32 d-flex gap-24">
+        <form className="palette-brand mt-16 py-16 px-32 d-flex gap-24">
           <PostIcon name="1010" className="fs-small-huge"></PostIcon>
           <div className="form-floating" style={{ minWidth: '50%' }}>
             <input
@@ -113,7 +113,7 @@ export default function Home() {
           <div className="col-lg-4 col-sm-6 col-12 mb-16">
             <div className="card elevation-0">
               <Image width={400} height={200} className="card-img-top" src="/street.jpg" alt="" />
-              <div className="card-body bg-gray">
+              <div className="card-body palette-alternate">
                 <h3 className="card-title">Hier steckt mehr drin</h3>
                 <p className="card-text">Black-Week-Topangebote nicht verpassen</p>
                 <a href="#" className="btn btn-tertiary">
@@ -127,7 +127,7 @@ export default function Home() {
           <div className="col-lg-4 col-sm-6 col-12 mb-16">
             <div className="card elevation-0">
               <Image width={400} height={200} className="card-img-top" src="/street.jpg" alt="" />
-              <div className="card-body bg-gray">
+              <div className="card-body palette-alternate">
                 <h3 className="card-title">Einfach easy frankieren</h3>
                 <p className="card-text">DigitalStamp: Mit der Post-App frankieren</p>
                 <a href="#" className="btn btn-tertiary">
@@ -141,7 +141,7 @@ export default function Home() {
           <div className="col-lg-4 col-sm-6 col-12 mb-16">
             <div className="card elevation-0">
               <Image width={400} height={200} className="card-img-top" src="/street.jpg" alt="" />
-              <div className="card-body bg-gray">
+              <div className="card-body palette-alternate">
                 <h3 className="card-title">Neue Briefmarken</h3>
                 <p className="card-text">Entdecken Sie jetzt Ihre liebsten Motive</p>
                 <a href="#" className="btn btn-tertiary">

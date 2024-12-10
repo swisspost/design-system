@@ -1,5 +1,6 @@
 @use '@swisspost/design-system-styles/core' as post;
 
+//TODO: Lea
 :export {
   @each $name, $value in post.$background-colors {
     bg-#{$name}: $value;
