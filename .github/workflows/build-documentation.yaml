@@ -21,14 +21,15 @@ jobs:
   build:
     name: Build Documentation
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Create preview message
         uses: ./.github/actions/preview/message/create
-        with:
-          access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
 
       - name: Setup
         uses: ./.github/actions/setup-pnpm
