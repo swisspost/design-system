@@ -37,43 +37,43 @@ export class PostFooter {
                 <post-accorddion heading-level="3" multiple>
                   <post-accordion-item collapsed>
                     <span slot="header">
-                      <slot name="cell-1-title"></slot>
+                      <slot name="grid-1-title"></slot>
                     </span>
-                    <slot name="cell-1"></slot>
+                    <slot name="grid-1"></slot>
                   </post-accordion-item>
                   <post-accordion-item collapsed>
                     <span slot="header">
-                      <slot name="cell-2-title"></slot>
+                      <slot name="grid-2-title"></slot>
                     </span>
-                    <slot name="cell-2"></slot>
+                    <slot name="grid-2"></slot>
                   </post-accordion-item>
                   <post-accordion-item collapsed>
                     <span slot="header">
-                      <slot name="cell-3-title"></slot>
+                      <slot name="grid-3-title"></slot>
                     </span>
-                    <slot name="cell-3"></slot>
+                    <slot name="grid-3"></slot>
                   </post-accordion-item>
                   <post-accordion-item collapsed>
                     <span slot="header">
-                      <slot name="cell-4-title"></slot>
+                      <slot name="grid-4-title"></slot>
                     </span>
-                    <slot name="cell-4"></slot>
+                    <slot name="grid-4"></slot>
                   </post-accordion-item>
                 </post-accorddion>
               </div>
             ) : (
               <div class="footer-grid">
                 <div>
-                  <slot name="cell-1"></slot>
+                  <slot name="grid-1"></slot>
                 </div>
                 <div>
-                  <slot name="cell-2"></slot>
+                  <slot name="grid-2"></slot>
                 </div>
                 <div>
-                  <slot name="cell-3"></slot>
+                  <slot name="grid-3"></slot>
                 </div>
                 <div>
-                  <slot name="cell-4"></slot>
+                  <slot name="grid-4"></slot>
                 </div>
               </div>
             )}

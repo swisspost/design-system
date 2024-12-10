@@ -69,7 +69,7 @@ post-footer {
   }
 
   post-list {
-    &[slot|='cell'] {
+    &[slot|='grid'] {
       :is(h3, .h3) {
         display: var(--post-footer-grid-list-title-display);
         margin-block-end: var(--post-footer-grid-list-title-gap);

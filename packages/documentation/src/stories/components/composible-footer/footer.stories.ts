@@ -33,8 +33,8 @@ function render(args: Args) {
   return html`<post-footer label=${args.label}>
     ${GRID_CELLS.map(
       cell => html`
-        <span slot="cell-${cell}-title">Title ${cell}</span>
-        <post-list slot="cell-${cell}">
+        <span slot="grid-${cell}-title">Title ${cell}</span>
+        <post-list slot="grid-${cell}">
           <h3>Title ${cell}</h3>
           ${Array.from(Array(LINKS_PER_CELL[cell - 1]).keys()).map(
             item => html`
