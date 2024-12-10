@@ -4,7 +4,7 @@ description: Add a preview url to the existing preview comment, if not already p
 inputs:
   access-token:
     description: The access token to use for commenting.
-    required: false
+    required: true
   issue-number:
     description: The issue number from the caller workflow.
     required: true
