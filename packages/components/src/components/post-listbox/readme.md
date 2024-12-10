@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property      | Attribute      | Description                                                                 | Type      | Default |
-| ------------- | -------------- | --------------------------------------------------------------------------- | --------- | ------- |
-| `titleHidden` | `title-hidden` | If `true`, the list title will be hidden. Otherwise, it will be displayed.` | `boolean` | `false` |
+| Property      | Attribute      | Description                                                                   | Type      | Default |
+| ------------- | -------------- | ----------------------------------------------------------------------------- | --------- | ------- |
+| `titleHidden` | `title-hidden` | If `true`, the listbox title will be hidden. Otherwise, it will be displayed. | `boolean` | `false` |
 
 
 ## Slots
