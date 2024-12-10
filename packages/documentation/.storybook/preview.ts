@@ -7,6 +7,7 @@ import {
   openFullScreenDemo,
   prettierOptions,
   resetComponents,
+  openInCodePen,
 } from './helpers';
 import './helpers/register-web-components';
 import './addons/cypress-storybook/client';
@@ -76,6 +77,10 @@ const preview: Preview = {
           {
             title: 'View full screen',
             onClick: openFullScreenDemo,
+          },
+          {
+            title: 'Open in CodePen',
+            onClick: openInCodePen,
           },
         ],
       },
