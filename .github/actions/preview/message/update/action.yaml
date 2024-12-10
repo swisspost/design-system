@@ -4,7 +4,7 @@ description: Add a preview url to the existing preview comment, if not already p
 inputs:
   access-token:
     description: The access token to use for commenting.
-    required: true
+    required: false
   issue-number:
     description: The issue number from the caller workflow.
     required: true
@@ -20,7 +20,8 @@ runs:
         ISSUE_NUMBER: ${{ inputs.issue-number }}
         PREVIEW_URL: ${{ inputs.preview-url }}
       with:
-        github-token: ${{ inputs.access-token }}
+        github-token: ${{ inputs.access-token || secrets.GITHUB_TOKEN }}
+
         script: |
           const { ISSUE_NUMBER, PREVIEW_URL } = process.env
 
