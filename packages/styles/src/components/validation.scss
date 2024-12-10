@@ -66,11 +66,7 @@ input[type='range'],
 :has(input[type='radio']) {
   ~ .invalid-feedback,
   ~ .valid-feedback {
-    padding: tokens.get('post-validation-group-padding-block-text');
-
     &::before {
-      margin-top: calc(-1 * #{tokens.get('post-validation-group-padding-block-text')});
-      margin-bottom: calc(-1 * #{tokens.get('post-validation-group-padding-block-text')});
       height: tokens.get('post-validation-group-icon-size');
       width: tokens.get('post-validation-group-icon-size');
       display: inline-block;
