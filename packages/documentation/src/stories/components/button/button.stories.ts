@@ -86,10 +86,11 @@ const meta: MetaComponent = {
           'btn-primary': 'Primary',
           'btn-secondary': 'Secondary',
           'btn-tertiary': 'Tertiary',
-          'btn-link': 'Link (no padding)',
+          'btn-tertiary px-0': 'Tertiary (no padding)',
+          'btn-link': 'Link',
         },
       },
-      options: ['btn-primary', 'btn-secondary', 'btn-tertiary', 'btn-link'],
+      options: ['btn-primary', 'btn-secondary', 'btn-tertiary', 'btn-tertiary px-0', 'btn-link'],
       table: {
         category: 'General',
       },
