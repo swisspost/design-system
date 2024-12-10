@@ -1,5 +1,14 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.9
+
+### Patch Changes
+
+- Fixed an issue with the post-list component where the `horizontal` property could not be set programmatically. Also, reduced the specificity of the component's styles to make customization easier. (by [@alizedebray](https://github.com/alizedebray) with [#4137](https://github.com/swisspost/design-system/pull/4137))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.9
+  - @swisspost/design-system-icons@9.0.0-next.9
+
 ## 9.0.0-next.8
 
 ### Minor Changes
