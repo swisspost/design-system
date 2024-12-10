@@ -27,9 +27,6 @@ jobs:
 
       - name: Create preview message
         uses: ./.github/actions/preview/message/create
-        with:
-          access-token: ${{ github.token }}
-
 
       - name: Setup
         uses: ./.github/actions/setup-pnpm
