@@ -18,7 +18,7 @@ export class PostListItem {
 
   render() {
     return (
-      <Host role="listitem">
+      <Host role="listitem" slot="post-list-item">
         <slot></slot>
       </Host>
     );

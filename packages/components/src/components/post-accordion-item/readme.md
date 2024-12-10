@@ -43,12 +43,18 @@ Type: `Promise<boolean>`
 
 ## Shadow Parts
 
-| Part               | Description |
-| ------------------ | ----------- |
-| `"accordion-item"` |             |
+| Part               | Description                                                                                     |
+| ------------------ | ----------------------------------------------------------------------------------------------- |
+| `"accordion-item"` |                                                                                                 |
+| `"body"`           | The pseudo-element, used to override styles on the components internal `body` element.          |
+| `"button"`         | The pseudo-element, used to override styles on the components internal header `button` element. |
 
 
 ## Dependencies
+
+### Used by
+
+ - [post-footer](../post-footer)
 
 ### Depends on
 
@@ -62,6 +68,7 @@ graph TD;
   post-accordion-item --> post-collapsible-trigger
   post-accordion-item --> post-icon
   post-accordion-item --> post-collapsible
+  post-footer --> post-accordion-item
   style post-accordion-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

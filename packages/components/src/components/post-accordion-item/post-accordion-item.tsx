@@ -4,6 +4,8 @@ import { HEADING_LEVELS, HeadingLevel } from '@/types';
 import { checkEmptyOrOneOf } from '@/utils';
 
 /**
+ * @part button - The pseudo-element, used to override styles on the components internal header `button` element.
+ * @part body - The pseudo-element, used to override styles on the components internal `body` element.
  * @slot logo - Slot for the placing a logo before the header.
  * @slot header - Slot for placing custom content within the accordion item's header.
  * @slot default - Slot for placing content within the accordion item's body.
@@ -79,14 +81,19 @@ export class PostAccordionItem {
   }
 
   render() {
-    const HeadingTag = `h${this.headingLevel ?? 2}`;
+    const headingLevel = this.host.closest('post-accorddion')?.getAttribute('heading-level');
+    const HeadingTag = `h${headingLevel ?? this.headingLevel ?? 2}`;
 
     return (
       <Host id={this.id} data-version={version}>
         <div part="accordion-item" class="accordion-item">
           <post-collapsible-trigger for={`${this.id}--collapse`}>
             <HeadingTag class="accordion-header" id={`${this.id}--header`}>
-              <button type="button" class={`accordion-button${this.collapsed ? ' collapsed' : ''}`}>
+              <button
+                type="button"
+                class={`accordion-button${this.collapsed ? ' collapsed' : ''}`}
+                part="button"
+              >
                 <span
                   class={{
                     'logo-container': true,
@@ -106,7 +113,7 @@ export class PostAccordionItem {
             collapsed={this.collapsed}
             ref={el => (this.collapsible = el)}
           >
-            <div class="accordion-body">
+            <div class="accordion-body" part="body">
               <slot />
             </div>
           </post-collapsible>
