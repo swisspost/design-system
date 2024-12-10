@@ -1,6 +1,9 @@
 import { Component, h, Host, State, Element, Listen } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
+import { SwitchVariant } from '@/components';
+
+type DEVICE_SIZE = 'mobile' | 'tablet' | 'desktop' | null;
 
 @Component({
   tag: 'post-header',
@@ -9,7 +12,7 @@ import { version } from '@root/package.json';
 })
 export class PostHeader {
   @Element() host: HTMLPostHeaderElement;
-  @State() device: 'mobile' | 'tablet' | 'desktop' = null;
+  @State() device: DEVICE_SIZE = null;
   @State() mobileMenuExtended: boolean = false;
 
   private scrollParent = null;
@@ -67,15 +70,31 @@ export class PostHeader {
   }
 
   private handleResize() {
+    const previousDevice = this.device;
+    let newDevice: DEVICE_SIZE;
     const width = window?.innerWidth;
+
     if (width >= 1024) {
-      this.device = 'desktop';
+      newDevice = 'desktop';
       this.mobileMenuExtended = false; // Close any open mobile menu
     } else if (width >= 600) {
-      this.device = 'tablet';
+      newDevice = 'tablet';
     } else {
-      this.device = 'mobile';
+      newDevice = 'mobile';
     }
+
+    // Apply only on change for doing work only when necessary
+    if (newDevice !== previousDevice) {
+      this.device = newDevice;
+      window.requestAnimationFrame(() => {
+        this.switchLanguageSwitchMode();
+      });
+    }
+  }
+
+  private switchLanguageSwitchMode() {
+    const variant: SwitchVariant = this.device === 'desktop' ? 'dropdown' : 'list';
+    this.host.querySelector('post-language-switch')?.setAttribute('variant', variant);
   }
 
   private handleMobileMenuToggle() {
@@ -99,7 +118,7 @@ export class PostHeader {
           <div class="global-sub">
             {this.device === 'desktop' && <slot name="meta-navigation"></slot>}
             <slot name="global-controls"></slot>
-            {this.device === 'desktop' && <slot name="post-language-switch-2"></slot>}
+            {this.device === 'desktop' && <slot name="post-language-switch"></slot>}
             <div onClick={() => this.handleMobileMenuToggle()} class="mobile-toggle">
               <slot name="post-togglebutton"></slot>
             </div>
@@ -120,7 +139,7 @@ export class PostHeader {
             <slot name="meta-navigation"></slot>
           )}
           {(this.device === 'mobile' || this.device === 'tablet') && (
-            <slot name="post-language-switch-2"></slot>
+            <slot name="post-language-switch"></slot>
           )}
         </div>
       </Host>
