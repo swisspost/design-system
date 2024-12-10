@@ -18,7 +18,7 @@ export class PostBreadcrumbItem {
    */
   @Prop() url?: string | URL;
 
-  private validUrl?: string = 'Hey';
+  private validUrl?: string = 'Hello';
 
   @Watch('url')
   validateUrl() {
