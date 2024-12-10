@@ -20,7 +20,8 @@ runs:
         ISSUE_NUMBER: ${{ inputs.issue-number }}
         PREVIEW_URL: ${{ inputs.preview-url }}
       with:
-        github-token: ${{ inputs.access-token }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+
         script: |
           const { ISSUE_NUMBER, PREVIEW_URL } = process.env
 
