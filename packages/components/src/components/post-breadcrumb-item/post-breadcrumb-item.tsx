@@ -26,7 +26,6 @@ export class PostBreadcrumbItem {
       this.validUrl = this.constructUrl(this.url);
     } catch (error) {
       this.validUrl = undefined;
-      console.log(this.validUrl)
     }
   }
 
