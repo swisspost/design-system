@@ -14,19 +14,17 @@ export default html`<post-header>
   <post-toggle-button slot="post-togglebutton"> = Menu </post-toggle-button>
 
   <!-- Language switch -->
-  <post-language-switch slot="post-language-switch">
-    <post-language-option>
-      <a href="#">DE</a>
-    </post-language-option>
-    <post-language-option>
-      <a href="#">FR</a>
-    </post-language-option>
-    <post-language-option>
-      <a href="#">IT</a>
-    </post-language-option>
-    <post-language-option>
-      <a href="#">EN</a>
-    </post-language-option>
+  <post-language-switch
+    caption="Caption"
+    description="Description"
+    variant="list"
+    name="language-switch-example"
+    slot="post-language-switch"
+  >
+    <post-language-option active="true" code="de" name="Deutsch">DE</post-language-option>
+    <post-language-option active="false" code="fr" name="French">FR</post-language-option>
+    <post-language-option active="false" code="it" name="Italiano">IT</post-language-option>
+    <post-language-option active="false" code="en" name="English">EN</post-language-option>
   </post-language-switch>
 
   <!-- Application title (optional) -->
