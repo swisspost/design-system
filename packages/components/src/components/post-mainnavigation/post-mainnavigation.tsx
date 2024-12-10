@@ -160,7 +160,7 @@ export class PostMainnavigation {
             class={`scroll-left-button${this.canScrollLeft ? '' : ' d-none'}`}
             onMouseDown={() => this.scrollBy(-SCROLL_OFFSET)} // Scroll left
           >
-            <post-icon aria-hidden="true" name="2110"></post-icon>
+            <post-icon aria-hidden="true" name="chevronleft"></post-icon>
           </button>
           <slot></slot>
           <button
@@ -170,7 +170,7 @@ export class PostMainnavigation {
             class={`scroll-right-button${this.canScrollRight ? '' : ' d-none'}`}
             onMouseDown={() => this.scrollBy(SCROLL_OFFSET)} // Scroll right
           >
-            <post-icon aria-hidden="true" name="2111"></post-icon>
+            <post-icon aria-hidden="true" name="chevronright"></post-icon>
           </button>
         </nav>
       </Host>
