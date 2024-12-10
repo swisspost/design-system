@@ -11,21 +11,13 @@ import { checkEmptyOrUrl } from '@/utils';
   shadow: true,
 })
 export class PostBreadcrumbItem {
-  @Element() host: HTMLPostBreadcrumbItemElement;
-
-
-
-
-
-console.log(dknkjsbvwvjbeq
-            ewfkölne
-
-  
+  @Element() host: HTMLPostBreadcrumbItemElement;  
   
   /**
    * The optional URL to which the breadcrumb item will link.
    */
   @Prop() url?: string | URL;
+  console.log('Hello');
 
   private validUrl?: string = 'Hello Tim';
 
