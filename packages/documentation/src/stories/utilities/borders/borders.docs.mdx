@@ -1,0 +1,88 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as BordersStories from './borders.stories';
+
+<Meta of={BordersStories} />
+
+# Borders
+
+<div className="lead">
+  Use border utilities to quickly style the border and border-radius of an element. Great for
+  images, buttons, or any other element.
+</div>
+
+## Border
+
+<div className="alert alert-info">
+  Use border utilities to add or remove an element’s borders. Choose from all borders or one at a
+  time.
+</div>
+
+### Properties
+
+- `border`: Applies a border on all sides.
+- `border-top`: Applies a top border.
+- `border-end`: Applies a right border (in LTR).
+- `border-bottom`: Applies a bottom border.
+- `border-start`: Applies a left border (in LTR).
+- `border-color`: Sets the border color.
+- `border-width`: Sets the border width.
+- `border-opacity`: Sets the border opacity.
+
+### Examples
+
+#### Add borders to custom elements
+
+<Canvas sourceState="shown" of={BordersStories.Borders} />
+<div className="hide-col-default">
+  <Controls of={BordersStories.Borders} />
+</div>
+
+#### Remove specific borders
+
+Border subtraction works on the `border` property by allowing you to use the `border-{side}-0`
+class to set specific side(s)' border width(s) to zero.
+
+<Canvas sourceState="shown" of={BordersStories.RemoveBorders} />
+<div className="hide-col-default">
+  <Controls of={BordersStories.RemoveBorders} />
+</div>
+
+#### Border Opacity
+
+<Canvas sourceState="shown" of={BordersStories.BorderOpacity} />
+<div className="hide-col-default">
+  <Controls of={BordersStories.BorderOpacity} />
+</div>
+
+<div class="alert alert-info mb-40">
+  For the opacity to take effect, you must first apply a `border-{color}` class, as the opacity
+  modifies the color of the border. Without a defined border color, the opacity setting will not
+  have any visible impact.
+</div>
+
+## Radius
+
+Add `rounded` to an element to easily round its corners.
+Use the scaling classes to adjust the size of rounded corners. Available sizes range from 0 (no rounding) to 5 (maximum rounding).
+
+### Properties
+
+- `rounded`: Applies a border-radius on all corners.
+- `rounded-top`: Applies a border-radius to the top corners.
+- `rounded-end`: Applies a border-radius to the right corners (in LTR).
+- `rounded-bottom`: Applies a border-radius to the bottom corners.
+- `rounded-start`: Applies a border-radius to the left corners (in LTR).
+
+### Examples
+
+<Canvas sourceState="shown" of={BordersStories.BorderRounded} />
+<div className="hide-col-default">
+  <Controls of={BordersStories.BorderRounded} />
+</div>
+
+<div class="alert alert-info mb-40">
+  The `rounded-\*` classes allow you to define the degree of rounding, such as rounded-1 for a
+  subtle curve or rounded-5 for a more pronounced effect. Additionally, you can target specific
+  sides, using classes like rounded-top-3 or rounded-bottom-5, to apply varying levels of rounding
+  to individual corners, offering more precise styling control.
+</div>
