@@ -1,9 +1,9 @@
 name: Create preview message
-description: Add a preview comment to the PR, if not already present
+description: Add a preview comment to the pr, if not already present
 
 inputs:
   access-token:
-    description: The access token to use for commenting. Defaults to GitHub token if not provided.
+    description: The access token to use for commenting.
     required: false
 
 runs:
