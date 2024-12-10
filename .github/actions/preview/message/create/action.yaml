@@ -1,9 +1,9 @@
 name: Create preview message
-description: Add a preview comment to the pr, if not already present
+description: Add a preview comment to the PR, if not already present
 
 inputs:
   access-token:
-    description: The access token to use for commenting.
+    description: The access token to use for commenting. Defaults to GitHub token if not provided.
     required: false
 
 runs:
@@ -11,8 +11,7 @@ runs:
   steps:
     - uses: actions/github-script@v7
       with:
-        github-token: ${{ inputs.access-token || secrets.GITHUB_TOKEN }}
-
+        github-token: ${{ inputs.access-token }}
         script: |
           const commentTitle = '**Related Previews**'
           const commentInitialBody = 'Preview URLs will be added here, once they are ready... ![loader](https://github.com/swisspost/design-system/assets/9716662/49a75898-7093-4ffb-9460-071ff194459d)'

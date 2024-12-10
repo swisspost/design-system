@@ -1,15 +1,15 @@
 name: Update preview message
-description: Add a preview url to the existing preview comment, if not already present
+description: Add a preview URL to the existing preview comment, if not already present.
 
 inputs:
   access-token:
-    description: The access token to use for commenting.
+    description: The access token to use for commenting. Defaults to GitHub token if not provided.
     required: false
   issue-number:
     description: The issue number from the caller workflow.
     required: true
   preview-url:
-    description: The preview url to add in the comment.
+    description: The preview URL to add in the comment.
     required: true
 
 runs:
@@ -20,8 +20,7 @@ runs:
         ISSUE_NUMBER: ${{ inputs.issue-number }}
         PREVIEW_URL: ${{ inputs.preview-url }}
       with:
-        github-token: ${{ inputs.access-token || secrets.GITHUB_TOKEN }}
-
+        github-token: ${{ inputs.access-token }}
         script: |
           const { ISSUE_NUMBER, PREVIEW_URL } = process.env
 
