@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components-react",
-  "version": "9.0.0-next.8",
+  "version": "9.0.0-next.9",
   "description": "Design System React Components for easy integration with the React ecosystem",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -29,7 +29,7 @@
     "lint": "eslint src/**/*.ts"
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:9.0.0-next.8"
+    "@swisspost/design-system-components": "workspace:9.0.0-next.9"
   },
   "devDependencies": {
     "@types/node": "20.14.14",
