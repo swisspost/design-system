@@ -9,11 +9,11 @@
 name: SonarCloud Code Analysis
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    types: [opened, synchronize, reopened]
+  on:
+  workflow_run:
+    workflows: ["Build Documentation", "End to end tests"]
+    types:
+      - completed
 
 jobs:
   sonarcloud:
