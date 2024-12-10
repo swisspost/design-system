@@ -40,7 +40,7 @@ export default html`<post-header>
 
   <!-- Main navigation -->
   <post-mainnavigation caption="Hauptnavigation">
-    <button slot="back-button" class="btn btn-sm btn-link">
+    <button slot="back-button" class="btn btn-sm btn-tertiary p-0">
       <post-icon aria-hidden="true" name="3024"></post-icon> Back
     </button>
     <post-list title-hidden="">
