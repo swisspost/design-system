@@ -4,6 +4,8 @@ import { HEADING_LEVELS, HeadingLevel } from '@/types';
 import { checkEmptyOrOneOf } from '@/utils';
 
 /**
+ * @part button - The pseudo-element, used to override styles on the components internal header `button` element.
+ * @part body - The pseudo-element, used to override styles on the components internal `body` element.
  * @slot logo - Slot for the placing a logo before the header.
  * @slot header - Slot for placing custom content within the accordion item's header.
  * @slot default - Slot for placing content within the accordion item's body.

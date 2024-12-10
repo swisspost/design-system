@@ -43,11 +43,11 @@ Type: `Promise<boolean>`
 
 ## Shadow Parts
 
-| Part               | Description |
-| ------------------ | ----------- |
-| `"accordion-item"` |             |
-| `"body"`           |             |
-| `"button"`         |             |
+| Part               | Description                                                                                     |
+| ------------------ | ----------------------------------------------------------------------------------------------- |
+| `"accordion-item"` |                                                                                                 |
+| `"body"`           | The pseudo-element, used to override styles on the components internal `body` element.          |
+| `"button"`         | The pseudo-element, used to override styles on the components internal header `button` element. |
 
 
 ## Dependencies
