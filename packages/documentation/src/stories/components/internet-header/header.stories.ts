@@ -202,7 +202,7 @@ export const CssVariables = {
         }
       </style>
       ${meta.render && meta.render(args, context)}
-      <p id="my-div" class="position-sticky bg-dark p-16">
+      <p id="my-div" class="position-sticky palette-accent p-16">
         I am sticky! I am always positioned right below the header when you scroll up and down.
       </p>
     `;

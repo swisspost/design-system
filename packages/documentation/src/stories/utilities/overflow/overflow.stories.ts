@@ -47,7 +47,7 @@ const meta: MetaExtended = {
   render: (args: Args) => {
     return html`
       <div
-        class="bg-yellow ${args.overflow ? 'overflow-' + args.overflow : ''}${args.overflowX
+        class="my-container ${args.overflow ? 'overflow-' + args.overflow : ''}${args.overflowX
           ? ' overflow-x-' + args.overflowX
           : ''}${args.overflowY ? ' overflow-y-' + args.overflowY : ''}"
       >

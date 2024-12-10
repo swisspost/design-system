@@ -3,11 +3,6 @@ import { useArgs } from '@storybook/preview-api';
 import { MetaComponent } from '@root/types';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { parse } from '@/utils/sass-export';
-import scss from '../card-control.module.scss';
-import { coloredBackground } from '@/shared/decorators/dark-background';
-
-const SCSS_VARIABLES: { [key: string]: string | object } = parse(scss);
 
 const meta: MetaComponent = {
   id: '886fabcf-148b-4054-a2ec-4869668294fb',
@@ -132,32 +127,6 @@ export const Default: Story = {
   },
 };
 
-export const DarkBackground: Story = {
-  parameters: {
-    docs: {
-      controls: {
-        include: ['Background-Color', 'type', 'checked', 'disabled', 'validity'],
-      },
-    },
-  },
-  decorators: [(story, context) => coloredBackground(story, context, context.args.background)],
-  args: {
-    background: 'dark',
-    icon: '1001',
-  },
-  argTypes: {
-    background: {
-      name: 'Background-Color',
-      description: 'The background color of a surrounding wrapper element.',
-      control: {
-        type: 'select',
-      },
-      options: [...Object.keys(SCSS_VARIABLES.dark)],
-    },
-  },
-  render: Default.render,
-};
-
 export const CustomContent: Story = {
   args: {
     'slots-default': '<ul class="mb-0"><li>List item</li><li>List item</li><li>List item</li></ul>',
@@ -274,7 +243,7 @@ export const FormIntegration: Story = {
       <div class="mt-16">
         <h4>FormData</h4>
         <p class="fs-small">Submit or reset the form to see how the FormData will look like.</p>
-        <pre id="AssociatedFormOutput" class="p-8 bg-dark rounded fs-tiny">{}</pre>
+        <pre id="AssociatedFormOutput" class="p-8 palette-accent rounded fs-tiny">{}</pre>
       </div>
     `,
   ],

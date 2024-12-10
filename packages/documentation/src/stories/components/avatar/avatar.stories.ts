@@ -1,8 +1,7 @@
-import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { MetaComponent } from '@root/types';
 import { html, nothing } from 'lit';
 import { components } from '@swisspost/design-system-components/dist/docs.json';
-import { coloredBackground } from '@/shared/decorators/dark-background';
 
 const AVATAR_ARGTYPES = components.find(c => c.tag === 'post-avatar');
 const USERID_ARGTYPE = AVATAR_ARGTYPES?.props.find(p => p.name === 'userid');
@@ -61,9 +60,6 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  decorators: [
-    (story: StoryFn, context: StoryContext) => coloredBackground(story, context, 'light'),
-  ],
   render: (args: Args) => html`<post-avatar
     firstname="${args.firstname || nothing}"
     lastname="${args.lastname || nothing}"

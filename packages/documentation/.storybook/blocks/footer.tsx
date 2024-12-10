@@ -92,7 +92,7 @@ export default (params: { pathToStoryFile?: String }) => (
       )}
     </div>
     <footer className="docs-footer mt-56">
-      <div className="bg-light">
+      <div>
         <div className="container">
           <div className="pt-big-r pb-big-r">
             <h2 className="mt-0">Design System Team Members</h2>

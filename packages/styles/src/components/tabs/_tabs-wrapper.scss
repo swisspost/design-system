@@ -61,12 +61,3 @@
 .tab-content {
   padding-top: spacing.$spacer;
 }
-
-// Careful, this generates a lot of code
-@each $key, $color in color.$background-colors {
-  .bg-#{$key} {
-    .tabs-wrapper {
-      background-color: $color;
-    }
-  }
-}

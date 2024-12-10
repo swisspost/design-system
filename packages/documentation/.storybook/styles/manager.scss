@@ -97,16 +97,16 @@
 
   #misc,
   [data-item-id^='health'],
-  :is(#raw-components, [data-parent-id="raw-components"]):where([data-env="production"] *) {
+  :is(#raw-components, [data-parent-id='raw-components']):where([data-env='production'] *) {
     display: none;
   }
 
   #introduction--docs,
-  [data-parent-id="misc"] a {
+  [data-parent-id='misc'] a {
     padding-inline-start: 0.5rem;
   }
 
-  [data-parent-id="misc"]:where(:not([data-parent-id="misc"] + *)) {
+  [data-parent-id='misc']:where(:not([data-parent-id='misc'] + *)) {
     margin-block-start: 1rem;
   }
 }
@@ -144,36 +144,5 @@
 .docblock-argstable {
   tr[title] button + span {
     letter-spacing: 0.1em;
-  }
-}
-
-.bg-dark {
-  #storybook-explorer-tree {
-    .sidebar-item {
-      &:hover,
-      &:focus-visible {
-        background-color: var(--post-gray-80);
-      }
-
-      &[data-selected='true'] {
-        background-color: rgba(var(--post-yellow-rgb), 0.7);
-        color: var(--post-contrast-color);
-      }
-    }
-  }
-
-  #downshift-1-menu {
-    .search-result-item {
-      .search-result-item--label {
-        span {
-          color: var(--post-gray-40);
-        }
-      }
-
-      &:hover,
-      &:focus-visible {
-        background-color: var(--post-gray-80);
-      }
-    }
   }
 }

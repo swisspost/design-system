@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default () => (
-  <header className="docs-header bg-yellow">
+  <header className="docs-header">
     <div className="container py-48">
       <h1>
         Swiss Post

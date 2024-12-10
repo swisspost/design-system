@@ -105,7 +105,7 @@ span.ngb-dp-navigation-chevron {
     height: 40px !important;
     line-height: 40px;
 
-    &.active:not(.bg-primary) {
+    &.active {
       outline: none;
     }
   }
@@ -127,10 +127,6 @@ span.ngb-dp-navigation-chevron {
 .ngb-dp-day > .btn-light:not(:disabled):not(.disabled):active,
 .ngb-dp-day > .btn-light:not(:disabled):not(.disabled).active {
   background-color: transparent;
-}
-
-.ngb-dp-day > .btn-light.bg-primary.text-white {
-  background-color: color.$yellow !important;
 }
 
 .ngb-dp-open {

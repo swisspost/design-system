@@ -1,5 +1,25 @@
 @use '@swisspost/design-system-styles/core' as post;
 
+.flex-story-container,
+.flex-doc-container__demo {
+  > * > * {
+    border-radius: post.$border-radius;
+    box-shadow: post.$elevation-1;
+  }
+}
+
+.flex-snap-container,
+.flex-story-container .d-flex,
+.flex-doc-container__demo .d-flex {
+  > *:nth-child(odd) {
+    background-color: post.$yellow;
+  }
+
+  > *:nth-child(even) {
+    background-color: post.$gray;
+  }
+}
+
 .flex-doc-container {
   > * {
     align-self: stretch;
@@ -29,11 +49,6 @@
 
   .flex-doc-container__demo {
     padding: post.$size-mini;
-
-    > * > * {
-      border-radius: post.$border-radius;
-      box-shadow: post.$elevation-1;
-    }
 
     @include post.media-breakpoint-up(lg) {
       border: post.$border-width solid post.$border-color;

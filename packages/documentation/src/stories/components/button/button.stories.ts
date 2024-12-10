@@ -234,7 +234,9 @@ export const Inverted: Story = {
   decorators: [
     (story: StoryFn, context: StoryContext) =>
       html`
-        <div class="p-16 bg-dark" data-color-scheme="dark">${story(context.args, context)}</div>
+        <div class="p-16 palette-alternate" data-color-scheme="dark">
+          ${story(context.args, context)}
+        </div>
       `,
   ],
 };
