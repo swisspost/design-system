@@ -73,14 +73,12 @@ input[type='radio'],
 :has(input[type='radio']) {
   ~ .invalid-feedback,
   ~ .valid-feedback {
-    padding-inline-start: 4px;
-
     &::before {
-      height: tokens.get('post-validation-group-icon-size');
-      width: tokens.get('post-validation-group-icon-size');
-      margin-block-start: tokens.get('padding-icon-block-start');
-      margin-block-end: tokens.get('padding-icon-block-end');
-      margin-inline-end: tokens.get('post-validation-group-gap-inline');
+      height: tokens.get('validation-group-icon-size');
+      width: tokens.get('validation-group-icon-size');
+      margin-block-start: tokens.get('validation-group-icon-block-start');
+      margin-block-end: tokens.get('validation-group-icon-block-end');
+      margin-inline-end: tokens.get('validation-group-gap-inline');
       content: '';
       flex-shrink: 0;
       mask-position: center;
@@ -92,7 +90,7 @@ input[type='radio'],
   :has(input[type='radio']) {
     ~ .invalid-feedback,
     ~ .valid-feedback {
-      margin-block-start: tokens.get('radio-button-gap-block-group', components.$post-checkbox);
+      margin-block-start: tokens.get('radio-button-gap-block-group', components.$post-radio-button);
       margin-block-end: tokens.get(
         'radio-button-padding-block-group',
         components.$post-radio-button
