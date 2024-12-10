@@ -4,9 +4,6 @@
 
 post-footer {
   // mobile
-  --post-footer-btn-icon-size: 32px;
-  --post-footer-btn-icon-post-icon-size: 14px;
-
   --post-footer-grid-list-title-display: none;
   --post-footer-grid-list-title-gap: 0;
   --post-footer-grid-list-item-gap: 8px;
@@ -28,9 +25,6 @@ post-footer {
 
   // desktop lg
   @include media.min(lg) {
-    --post-footer-btn-icon-size: 40px;
-    --post-footer-btn-icon-post-icon-size: 16px;
-
     --post-footer-meta-list-item-gap: 24px;
   }
 
@@ -43,28 +37,6 @@ post-footer {
     &:not(.btn-icon, .app-store-badge) {
       display: block;
       text-decoration: none;
-    }
-
-    &.btn-icon {
-      display: flex;
-      aspect-ratio: 1 / 1;
-      padding: 0;
-      width: var(--post-footer-btn-icon-size);
-      height: auto;
-      min-width: 0;
-      min-height: 0;
-
-      post-icon {
-        display: block;
-        width: var(--post-footer-btn-icon-post-icon-size);
-        height: var(--post-footer-btn-icon-post-icon-size);
-        min-width: inherit;
-        font-size: var(--post-footer-btn-icon-post-icon-size);
-      }
-    }
-
-    &.app-store-badge {
-      display: block;
     }
   }
 
