@@ -2,6 +2,15 @@ import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { version } from '@root/package.json';
 import { addNameListener, removeNameListener } from '../../utils/breakpoints';
 
+/**
+ * @slot grid-{1|2|3|4}-title - Slot for the accordion headers (mobile).
+ * @slot grid-{1|2|3|4} - Slot for the accordion bodies (mobile) and the grid cells (tablet, desktop).
+ * @slot socialmedia - Slot for the social media links.
+ * @slot app - Slot for the app links.
+ * @slot businesssectors - Slot for the business sectors links.
+ * @slot meta - Slot for the meta links.
+ * @slot copyright - Slot for the copyright text.
+ */
 @Component({
   tag: 'post-footer',
   shadow: true,
