@@ -1,6 +1,5 @@
-import { Component, Element, Host, Listen, h, State } from '@stencil/core';
+import { Component, Element, Host, Listen, h, State, Watch } from '@stencil/core';
 
-const SCROLL_OFFSET = 50; // Amount to scroll on each scroll button press
 const SCROLL_REPEAT_INTERVAL = 100; // Interval for repeated scrolling when holding down scroll button
 const NAVBAR_DISABLE_DURATION = 400; // Duration to temporarily disable navbar interactions during scrolling
 
@@ -10,26 +9,31 @@ const NAVBAR_DISABLE_DURATION = 400; // Duration to temporarily disable navbar i
  */
 @Component({
   tag: 'post-mainnavigation',
-  shadow: false,
   styleUrl: './post-mainnavigation.scss',
+  shadow: false,
 })
 export class PostMainnavigation {
   private header: HTMLPostHeaderElement | null;
   private navbar: HTMLElement | null;
-  private currentScrollPosition = 0;
   private scrollRepeatTimer: ReturnType<typeof setInterval>;
   private navbarDisableTimer: ReturnType<typeof setInterval>;
   private observer = new MutationObserver(() =>
     setTimeout(() => {
-      this.updateScroll(); // Recalculate scroll position after DOM changes
+      this.checkScrollability(); // Recalculate scroll position after DOM changes
     }, 100),
   );
 
   @Element() host: HTMLPostMainnavigationElement;
 
-  @State() scrollSnapAlign: 'end' | 'start' = 'end';
   @State() canScrollLeft = false;
-  @State() canScrollRight = false;
+  @State() canScrollRight = true;
+  @State() translateAmount = 0;
+
+  @Watch('translateAmount')
+  translateNav(value: number) {
+    this.navbar.style.transform = `translateX(-${value}px)`;
+    this.checkScrollability();
+  }
 
   /**
    * Retrieves a reference to the closest 'post-header' element when the main navigation is added to the DOM.
@@ -52,11 +56,13 @@ export class PostMainnavigation {
    */
   componentDidLoad() {
     this.navbar = this.host.querySelector('& > nav > post-list > [role="list"]');
-    if (this.navbar) {
-      setTimeout(() => this.updateScroll()); // Initial scroll state check
-      this.observer.observe(this.navbar, { childList: true });
-      this.navbar.addEventListener('scroll', () => this.updateScroll());
+    if (!this.navbar) {
+      throw new Error('The main navigation is missing navigation items');
     }
+
+    setTimeout(() => this.checkScrollability()); // Initial scroll state check
+    this.observer.observe(this.navbar, { childList: true });
+    window.addEventListener('resize', () => this.checkScrollability());
   }
 
   /**
@@ -76,34 +82,47 @@ export class PostMainnavigation {
     }
   }
 
-  /**
-   * Updates the scroll position and determines if the scroll direction has changed.
-   */
-  private updateScroll() {
-    this.checkScrollability(); // Check if scroll is possible in either direction
-    if (!this.canScroll) return; // Exit if scrolling is not possible
+  private scrollLeft() {
+    for (const item of Array.from(this.navigationItems).reverse()) {
+      if (item.offsetLeft >= this.translateAmount) continue;
 
-    const newScrollSnap = this.currentScrollPosition > this.navbar.scrollLeft ? 'start' : 'end';
-    if (this.scrollSnapAlign !== newScrollSnap) this.scrollSnapAlign = newScrollSnap;
+      this.translateAmount = item.offsetLeft;
+      break;
+    }
+  }
 
-    this.currentScrollPosition = this.navbar.scrollLeft; // Update scroll position
+  private scrollRight() {
+    for (const item of this.navigationItems) {
+      const offsetRight = item.offsetLeft + item.offsetWidth;
+
+      if (offsetRight <= this.navbar.clientWidth + this.translateAmount) continue;
+
+      this.translateAmount = offsetRight - this.navbar.clientWidth;
+      break;
+    }
   }
 
   /**
-   * Scrolls the navbar by a given offset (left or right) and sets up repeat scrolling at intervals.
+   * Scrolls the navbar (left or right) and sets up repeat scrolling at intervals.
    *
-   * @param {number} offset - The amount to scroll (positive for right, negative for left)
+   * @param scrollFn
    */
-  private scrollBy(offset: number) {
+  private handleScroll = (scrollFn: () => void) => () => {
     if (!this.canScroll) return; // Exit if scrolling is not possible
 
     this.preventNavbarInteractions(); // Temporarily disable interaction with navbar while scrolling
-    this.navbar.scrollTo(this.navbar.scrollLeft + offset, 0); // Perform the scroll action
+
+    scrollFn(); // Perform the scroll action
 
     // Repeat the scrolling action at regular intervals
     this.scrollRepeatTimer = setInterval(() => {
-      this.navbar.scrollTo(this.navbar.scrollLeft + offset, 0);
+      scrollFn();
     }, SCROLL_REPEAT_INTERVAL);
+  };
+
+  private get navigationItems(): HTMLElement[] {
+    const listItems = this.navbar.querySelectorAll('post-list-item');
+    return Array.from(listItems) as HTMLElement[];
   }
 
   /**
@@ -127,15 +146,15 @@ export class PostMainnavigation {
    * Updates the state of `isScrollLeftEnabled` and `isScrollRightEnabled`.
    */
   private checkScrollability() {
-    const { scrollLeft, scrollWidth, clientWidth } = this.navbar;
+    const { scrollWidth, clientWidth } = this.navbar;
 
     if (scrollWidth === clientWidth) {
       // If content is fully visible, disable scrolling in both directions
       this.canScrollLeft = this.canScrollRight = false;
     } else {
       // If not, enable scrolling at the start or end
-      this.canScrollLeft = scrollLeft !== 0;
-      this.canScrollRight = scrollLeft !== scrollWidth - clientWidth;
+      this.canScrollLeft = this.translateAmount !== 0;
+      this.canScrollRight = clientWidth + this.translateAmount !== scrollWidth;
     }
   }
 
@@ -152,23 +171,23 @@ export class PostMainnavigation {
         <div onClick={() => this.handleBackButtonClick()} class="back-button">
           <slot name="back-button"></slot>
         </div>
-        <nav class={`scroll-snap-align-${this.scrollSnapAlign}`}>
-          <button
-            type="button"
-            aria-hidden="true"
-            tabindex="-1"
-            class={`scroll-left-button${this.canScrollLeft ? '' : ' d-none'}`}
-            onMouseDown={() => this.scrollBy(-SCROLL_OFFSET)} // Scroll left
-          >
-            <post-icon aria-hidden="true" name="chevronleft"></post-icon>
-          </button>
+        <nav>
           <slot></slot>
           <button
             type="button"
             aria-hidden="true"
             tabindex="-1"
+            class={`scroll-left-button${this.canScrollLeft ? '' : ' d-none'}`}
+            onMouseDown={this.handleScroll(() => this.scrollLeft())}
+          >
+            <post-icon aria-hidden="true" name="chevronleft"></post-icon>
+          </button>
+          <button
+            type="button"
+            aria-hidden="true"
+            tabindex="-1"
             class={`scroll-right-button${this.canScrollRight ? '' : ' d-none'}`}
-            onMouseDown={() => this.scrollBy(SCROLL_OFFSET)} // Scroll right
+            onMouseDown={this.handleScroll(() => this.scrollRight())}
           >
             <post-icon aria-hidden="true" name="chevronright"></post-icon>
           </button>
