@@ -28,7 +28,7 @@ jobs:
       - name: Create preview message
         uses: ./.github/actions/preview/message/create
         with:
-          access-token: ${{ secrets.GITHUB_TOKEN }}
+          access-token: ${{ github.token }}
 
 
       - name: Setup

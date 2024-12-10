@@ -11,7 +11,7 @@ runs:
   steps:
     - uses: actions/github-script@v7
       with:
-        access-token: ${{ secrets.GITHUB_TOKEN }}
+        access-token: ${{ github.token }}
 
         script: |
           const commentTitle = '**Related Previews**'
