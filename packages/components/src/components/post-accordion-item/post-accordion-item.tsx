@@ -81,7 +81,8 @@ export class PostAccordionItem {
   }
 
   render() {
-    const HeadingTag = `h${this.headingLevel ?? 2}`;
+    const headingLevel = this.host.closest('post-accorddion')?.getAttribute('heading-level');
+    const HeadingTag = `h${headingLevel ?? this.headingLevel ?? 2}`;
 
     return (
       <Host id={this.id} data-version={version}>
