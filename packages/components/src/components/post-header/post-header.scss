@@ -1,4 +1,5 @@
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/variables/animation';
 
 *,
 ::before,
@@ -22,6 +23,13 @@
 
 .space-between {
   justify-content: space-between;
+}
+
+// ensures the global-header and title-header are above the main-navigation
+.global-header,
+.title-header {
+  position: relative;
+  z-index: 1;
 }
 
 .global-header {
@@ -79,18 +87,12 @@ slot[name='post-logo'] {
   gap: 1rem;
 }
 
-.title-header,
-.main-navigation {
+.title-header {
   display: flex;
   align-items: center;
   padding-inline: 12px;
   background: white;
-}
-
-.title-header {
   height: var(--main-header-height);
-  display: flex;
-  align-items: center;
 
   @include media.max(lg) {
     border-bottom: 1px solid black;
@@ -105,32 +107,54 @@ slot[name='post-logo'] {
   font-size: 28px !important;
 }
 
-.main-navigation {
-  position: sticky;
-  top: 24px;
-  height: var(--main-header-height);
-
-  @include media.min(lg) {
-    border-bottom: 1px solid black;
-  }
-
-  @include media.max(lg) {
-    display: none;
-    position: absolute;
-    top: var(--header-height);
-    bottom: 0;
-    width: 100%;
-    background-color: white;
-    height: auto;
-
-    &.extended {
-      display: block;
-    }
-  }
-}
-
 .mobile-toggle {
   @include media.min(lg) {
     display: none;
+  }
+}
+
+.navigation {
+  background: var(--post-core-color-brand-white);
+  box-shadow: var(--post-core-elevation-3);
+}
+
+// only for tablet and mobile
+@include media.max(lg) {
+  .navigation {
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: calc(100vh - var(--header-height));
+    transition: transform animation.$transition-time-area-medium animation.$transition-easing-accelerate;
+
+    &.extended {
+      transform: translateY(100%);
+      transition-timing-function: animation.$transition-easing-decelerate;
+    }
+  }
+
+  ::slotted(post-mainnavigation),
+  .navigation-footer {
+    display: flex;
+    flex-direction: column;
+    padding-block: var(--post-core-dimension-16) var(--post-core-dimension-24);
+    padding-inline: var(--post-core-dimension-32);
+    opacity: 0;
+    transition-property: opacity;
+    transition-delay: animation.$transition-time-area-medium;
+
+    .navigation.extended & {
+      opacity: 1;
+      transition-delay: 0s;
+    }
+  }
+
+  ::slotted(post-mainnavigation) {
+    background-color: var(--post-core-color-sandgrey-002);
+    gap: var(--post-core-dimension-32);
+  }
+
+  .navigation-footer {
+    background-color: var(--post-core-color-sandgrey-006);
+    gap: var(--post-core-dimension-24);
   }
 }

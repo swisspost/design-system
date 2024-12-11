@@ -36,7 +36,7 @@ export class PostMainnavigation {
         <div onClick={() => this.handleBackButtonClick()} class="back-button">
           <slot name="back-button"></slot>
         </div>
-        <nav class="main-navigation">
+        <nav>
           <slot></slot>
         </nav>
       </Host>
