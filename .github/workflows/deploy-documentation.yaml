@@ -30,6 +30,7 @@ jobs:
         uses: ./.github/actions/preview/message/create
         with:
           access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+          issue-number: ${{ github.event.workflow_run.pull_requests[0].number }}
 
       - name: Get netlify config
         id: netlify-config
