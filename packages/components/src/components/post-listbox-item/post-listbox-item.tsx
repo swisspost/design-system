@@ -15,24 +15,15 @@ export class PostListboxItem {
    * Indicates if the item is currently active.
    * This will be set dynamically by the parent `listbox`.
    */
-  @Prop() active: boolean = false;
+  @Prop() selected: boolean = false;
 
-  componentDidRender() {
-    if (this.active) {
-      this.host.focus();
-    }
-  }
   connectedCallback() {
     this.host.setAttribute('slot', 'post-listbox-item');
   }
 
   render() {
     return (
-      <Host
-        role="option"
-        tabindex={this.active ? '0' : '-1'}
-        aria-selected={this.active ? 'true' : 'false'}
-      >
+      <Host role="option">
         <slot></slot>
       </Host>
     );

@@ -10,9 +10,9 @@ post-listbox {
     flex-direction: column;
     gap: var(--post-listbox-item-gap);
 
-    div[role='option'].active {
-      background-color: var(--active-bg-color, #e0e0e0);
-      color: var(--active-color, #000);
+    div[role='option']:active {
+      background-color: green;
+      color: white;
     }
   }
 }

@@ -243,19 +243,23 @@ export namespace Components {
     }
     interface PostListbox {
         /**
-          * If `true`, the listbox is multiselect.
-         */
-        "multiselect": boolean;
-        /**
           * If `true`, the listbox title will be hidden. Otherwise, it will be displayed.
          */
-        "titleHidden": boolean;
+        "labelHidden": boolean;
+        /**
+          * The description of the listbox role
+         */
+        "listboxDescription"?: string;
+        /**
+          * If `true`, the listbox is multiselectable.
+         */
+        "multiselect": boolean;
     }
     interface PostListboxItem {
         /**
           * Indicates if the item is currently active. This will be set dynamically by the parent `listbox`.
          */
-        "active": boolean;
+        "selected": boolean;
     }
     interface PostLogo {
         /**
@@ -1068,19 +1072,23 @@ declare namespace LocalJSX {
     }
     interface PostListbox {
         /**
-          * If `true`, the listbox is multiselect.
-         */
-        "multiselect"?: boolean;
-        /**
           * If `true`, the listbox title will be hidden. Otherwise, it will be displayed.
          */
-        "titleHidden"?: boolean;
+        "labelHidden"?: boolean;
+        /**
+          * The description of the listbox role
+         */
+        "listboxDescription"?: string;
+        /**
+          * If `true`, the listbox is multiselectable.
+         */
+        "multiselect"?: boolean;
     }
     interface PostListboxItem {
         /**
           * Indicates if the item is currently active. This will be set dynamically by the parent `listbox`.
          */
-        "active"?: boolean;
+        "selected"?: boolean;
     }
     interface PostLogo {
         /**

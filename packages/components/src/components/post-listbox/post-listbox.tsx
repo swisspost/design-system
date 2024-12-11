@@ -2,7 +2,7 @@ import { Component, Element, Prop, Host, State, h } from '@stencil/core';
 import { version } from '@root/package.json';
 
 /**
- * @slot default - Slot for placing the title
+ * @slot default - Slot for placing the label
  * @slot post-listbox-item - Slot for placing the listbox items
  */
 
@@ -12,90 +12,54 @@ import { version } from '@root/package.json';
   shadow: false,
 })
 export class PostListbox {
-  private readonly KEYCODES = {
-    SPACE: ' ',
-    ENTER: 'Enter',
-    UP: 'ArrowUp',
-    DOWN: 'ArrowDown',
-    HOME: 'Home',
-    END: 'End',
-  };
+  // private readonly KEYCODES = {
+  //   SPACE: ' ',
+  //   ENTER: 'Enter',
+  //   UP: 'ArrowUp',
+  //   DOWN: 'ArrowDown',
+  //   HOME: 'Home',
+  //   END: 'End',
+  // };
 
   @Element() host: HTMLPostListboxElement;
 
   /**
-   * The unique title of the list that is also referenced in the labelledby
+   * The unique label of the list that is also referenced in the labelledby
    */
-  @State() titleId: string;
-
-  @State() activeItemId: string | null = null;
+  @State() labelId: string;
 
   /**
-   * The id of the last focused listbox item
+   * The listbox title element
    */
-  // private lastFocusedElement: HTMLElement | null = null;
+  private labelEl: HTMLElement;
 
   /**
    * If `true`, the listbox title will be hidden. Otherwise, it will be displayed.
    */
-  @Prop() readonly titleHidden: boolean = false;
+  @Prop() readonly labelHidden: boolean = false;
 
   /**
-   * If `true`, the listbox is multiselect.
+   * The description of the listbox role
+   */
+
+  @Prop() readonly listboxDescription?: string;
+
+  /**
+   * If `true`, the listbox is multiselectable.
    */
 
   @Prop() readonly multiselect: boolean = false;
-  /**
-   * The listbox title element
-   */
-  private titleEl: HTMLElement;
 
   private handleKeyDown = (e: KeyboardEvent) => {
+    console.log(e);
     const listboxItems = Array.from(
       this.host.querySelectorAll<HTMLElement>('[slot="post-listbox-item"]'),
     );
     if (!listboxItems.length) return;
-
-    const currentFocusedElement = document.activeElement as HTMLElement;
-
-    let currentIndex = listboxItems.findIndex(el => el === currentFocusedElement);
-
-    switch (e.key) {
-      case this.KEYCODES.UP:
-        e.preventDefault();
-        currentIndex = (currentIndex - 1 + listboxItems.length) % listboxItems.length;
-
-        break;
-      case this.KEYCODES.DOWN:
-        e.preventDefault();
-        currentIndex = (currentIndex + 1) % listboxItems.length;
-        break;
-      case this.KEYCODES.HOME:
-        e.preventDefault();
-        currentIndex = 0;
-        break;
-      case this.KEYCODES.END:
-        e.preventDefault();
-        currentIndex = listboxItems.length - 1;
-        break;
-      case this.KEYCODES.SPACE:
-      case this.KEYCODES.ENTER:
-        this.activeItemId = listboxItems[currentIndex]?.id ?? null;
-
-        // console.log(listboxItems[currentIndex]);
-
-        return;
-      default:
-        return;
-    }
-
-    if (listboxItems[currentIndex]) {
-      listboxItems[currentIndex].focus();
-    }
   };
 
-  private checkTitle() {
-    if (!this.titleEl.textContent?.trim()) {
+  private checkLabel() {
+    if (!this.labelEl.textContent?.trim()) {
       throw new Error(
         'Please provide a title to the listbox component. Title is mandatory for accessibility purposes.',
       );
@@ -106,12 +70,14 @@ export class PostListbox {
     /**
      * Get the id set on the host element or use a random id by default
      */
-    this.titleId = `list-${crypto.randomUUID()}`;
+    this.labelId = `list-${crypto.randomUUID()}`;
   }
 
   componentDidLoad() {
-    this.checkTitle();
+    this.checkLabel();
   }
+
+  componentDidRender() {}
 
   connectedCallback() {
     this.host.addEventListener('keydown', this.handleKeyDown);
@@ -123,19 +89,23 @@ export class PostListbox {
 
   render() {
     return (
-      <Host data-version={version} tabindex="0">
+      <Host data-version={version}>
         <div
-          ref={el => (this.titleEl = el)}
-          id={this.titleId}
-          class={`listbox-title${this.titleHidden ? ' visually-hidden' : ''}`}
+          role="label"
+          ref={el => (this.labelEl = el)}
+          id={this.labelId}
+          class={`listbox-label${this.labelHidden ? ' visually-hidden' : ''}`}
         >
           <slot></slot>
         </div>
         <div
           role="listbox"
-          aria-labelledby={this.titleId}
+          tabindex="0"
+          aria-labelledby={this.labelId}
           aria-orientation="vertical"
-          aria-activedescendant={this.activeItemId}
+          aria-multiselectable={this.multiselect}
+          aria-roledescription={this.listboxDescription}
+          aria-activedescendant="id-ref"
         >
           <slot name="post-listbox-item"></slot>
         </div>

@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property | Attribute | Description                                                                                      | Type      | Default |
-| -------- | --------- | ------------------------------------------------------------------------------------------------ | --------- | ------- |
-| `active` | `active`  | Indicates if the item is currently active. This will be set dynamically by the parent `listbox`. | `boolean` | `false` |
+| Property   | Attribute  | Description                                                                                      | Type      | Default |
+| ---------- | ---------- | ------------------------------------------------------------------------------------------------ | --------- | ------- |
+| `selected` | `selected` | Indicates if the item is currently active. This will be set dynamically by the parent `listbox`. | `boolean` | `false` |
 
 
 ----------------------------------------------
