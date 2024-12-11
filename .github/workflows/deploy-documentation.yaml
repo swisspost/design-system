@@ -1,8 +1,6 @@
 name: Deploy Documentation Preview
 on:
-  workflow_run:
-    workflows: ['Build Documentation']
-    types: [completed]
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -60,7 +58,7 @@ jobs:
             } else {
               console.log('Preview comment already exists.');
             }
-            
+
       - name: Create preview message
         uses: ./.github/actions/preview/message/create
         with:
