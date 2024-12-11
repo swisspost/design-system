@@ -23,6 +23,7 @@ some content
 ### Used by
 
  - [post-accordion-item](../post-accordion-item)
+ - [post-back-to-top](../post-back-to-top)
  - [post-banner](../post-banner)
  - [post-breadcrumb-item](../post-breadcrumb-item)
  - [post-card-control](../post-card-control)
@@ -35,6 +36,7 @@ some content
 ```mermaid
 graph TD;
   post-accordion-item --> post-icon
+  post-back-to-top --> post-icon
   post-banner --> post-icon
   post-breadcrumb-item --> post-icon
   post-card-control --> post-icon

@@ -21,8 +21,8 @@ tokens.$default-map: components.$post-breadcrumb;
   text-decoration: tokens.get('breadcrumb-link-enabled-text-decoration');
 
   post-icon {
-    height: tokens.get('breadcrum-icon-size');
-    width: tokens.get('breadcrum-icon-size');
+    height: tokens.get('breadcrumb-icon-size');
+    width: tokens.get('breadcrumb-icon-size');
   }
 
   &:hover {

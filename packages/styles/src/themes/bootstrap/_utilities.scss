@@ -45,6 +45,13 @@ $utilities: map.remove($utilities, 'float');
 
 $utilities: map.remove($utilities, 'opacity');
 
+$utilities: map.remove($utilities, 'position');
+$utilities: map.remove($utilities, 'top');
+$utilities: map.remove($utilities, 'bottom');
+$utilities: map.remove($utilities, 'start');
+$utilities: map.remove($utilities, 'end');
+$utilities: map.remove($utilities, 'translate-middle');
+
 $utilities: map.remove($utilities, 'overflow');
 $utilities: map.remove($utilities, 'overflow-x');
 $utilities: map.remove($utilities, 'overflow-y');
