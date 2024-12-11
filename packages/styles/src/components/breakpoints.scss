@@ -4,14 +4,14 @@
 @use '../variables/breakpoints';
 
 :root {
-  $breakpoint-list: ();
+  $breakpointList: ();
 
   @each $key, $value in breakpoints.$grid-breakpoints {
     $unitlessValue: math.div($value, $value * 0 + 1);
-    $breakpoint-list: list.append($breakpoint-list, $unitlessValue, comma);
+    $breakpointList: list.append($breakpointList, $unitlessValue, comma);
   }
 
-  --post-breakpoint-keys: #{$breakpoint-list};
-  --post-breakpoint-names: #{map.keys(breakpoints.$grid-breakpoints)};
-  --post-viewport-names: #{map.values(breakpoints.$grid-viewports)};
+  --post-breakpoint-widths: #{$breakpointList};
+  --post-breakpoint-keys: #{map.keys(breakpoints.$grid-breakpoints)};
+  --post-breakpoint-names: #{map.values(breakpoints.$grid-breakpoints-key-name-map)};
 }

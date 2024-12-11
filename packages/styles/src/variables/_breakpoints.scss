@@ -6,7 +6,7 @@ $grid-breakpoints: (
   xl: 1280px,
 ) !default;
 
-$grid-viewports: (
+$grid-breakpoints-key-name-map: (
   xs: 'mobile',
   sm: 'tablet',
   md: 'tablet',
