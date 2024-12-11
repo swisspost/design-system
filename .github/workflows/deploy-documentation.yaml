@@ -13,11 +13,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Create preview message
-        uses: ./.github/actions/preview/message/create
-        with:
-          access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-
       - name: Setup pnpm & node
         uses: ./.github/actions/setup-pnpm
 
@@ -30,6 +25,11 @@ jobs:
         with:
           name: design-system-documentation
           folder: build-output
+
+      - name: Create preview message
+        uses: ./.github/actions/preview/message/create
+        with:
+          access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
 
       - name: Get netlify config
         id: netlify-config
