@@ -13,46 +13,63 @@ runs:
   using: composite
   steps:
     - uses: actions/github-script@v7
-      env:
-        ISSUE_NUMBER: ${{ inputs.issue-number }}
-      with:
-        github-token: ${{ inputs.access-token }}
-        script: |
-          const { ISSUE_NUMBER } = process.env
-          const commentTitle = '**Related Previews**'
-          const commentInitialBody = 'Preview URLs will be added here, once they are ready... ![loader](https://github.com/swisspost/design-system/assets/9716662/49a75898-7093-4ffb-9460-071ff194459d)'
+  env:
+    ISSUE_NUMBER: ${{ inputs.issue-number }}
+  with:
+    github-token: ${{ inputs.access-token }}
+    script: |
+      const { ISSUE_NUMBER } = process.env
+      const commentTitle = '**Related Previews**'
+      const commentInitialBody = 'Preview URLs will be added here, once they are ready... ![loader](https://github.com/swisspost/design-system/assets/9716662/49a75898-7093-4ffb-9460-071ff194459d)'
 
-          let comments
-          let previewComment
+      console.log(`Fetching comments for PR #${ISSUE_NUMBER}...`)
+      
+      let comments
+      let previewComment
 
-          await getPreviewComment()
+      await getPreviewComment()
 
-          if (!previewComment) {
-            await github.rest.issues.createComment({
-              repo: context.repo.repo,
-              owner: context.repo.owner,
-              issue_number: Number(ISSUE_NUMBER),
-              body: `${commentTitle}\n${commentInitialBody}`
-            })
+      if (!previewComment) {
+        console.log(`No preview comment found. Creating a new one.`)
+        await github.rest.issues.createComment({
+          repo: context.repo.repo,
+          owner: context.repo.owner,
+          issue_number: Number(ISSUE_NUMBER),
+          body: `${commentTitle}\n${commentInitialBody}`
+        })
 
-            await getPreviewComment()
+        console.log(`Comment created. Fetching it again for reactions...`)
+        await getPreviewComment()
 
-            github.rest.reactions.createForIssueComment({
-              repo: context.repo.repo,
-              owner: context.repo.owner,
-              comment_id: previewComment.id,
-              content: 'eyes'
-            })
-          } else {
-            console.info('Skipped action, because preview comment already existed.')
-          }
+        if (previewComment) {
+          console.log(`Adding "eyes" reaction to the comment.`)
+          await github.rest.reactions.createForIssueComment({
+            repo: context.repo.repo,
+            owner: context.repo.owner,
+            comment_id: previewComment.id,
+            content: 'eyes'
+          })
+        } else {
+          console.error(`Failed to fetch the newly created preview comment.`)
+        }
+      } else {
+        console.info('Skipped action, because preview comment already existed.')
+      }
 
-          async function getPreviewComment () {
-            comments = (await github.rest.issues.listComments({
-              repo: context.repo.repo,
-              owner: context.repo.owner,
-              issue_number: Number(ISSUE_NUMBER)
-            })).data || []
+      async function getPreviewComment () {
+        console.log(`Retrieving comments for PR #${ISSUE_NUMBER}.`)
+        comments = (await github.rest.issues.listComments({
+          repo: context.repo.repo,
+          owner: context.repo.owner,
+          issue_number: Number(ISSUE_NUMBER)
+        })).data || []
 
-            previewComment = comments.find(c => c.user.login === 'swisspost-bot' && c.body.includes(commentTitle))
-          }
+        console.log(`Total comments retrieved: ${comments.length}`)
+        previewComment = comments.find(c => c.user.login === 'swisspost-bot' && c.body.includes(commentTitle))
+
+        if (previewComment) {
+          console.log(`Preview comment found with ID: ${previewComment.id}`)
+        } else {
+          console.log(`No preview comment matching the criteria.`)
+        }
+      }
