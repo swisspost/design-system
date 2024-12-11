@@ -2,6 +2,7 @@ import { Component, Element, Host, h, Prop, Watch, State } from '@stencil/core';
 import { checkEmptyOrOneOf, checkType } from '@/utils';
 import { version } from '@root/package.json';
 import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
+import { nanoid } from 'nanoid';
 
 @Component({
   tag: 'post-language-switch',
@@ -22,20 +23,6 @@ export class PostLanguageSwitch {
       value,
       'string',
       'The "caption" property of the post-language-switch component must be a string.',
-    );
-  }
-
-  /**
-   * The name of the language switch, which will be used on the dropdown as an ID
-   */
-  @Prop() name: string;
-
-  @Watch('name')
-  validateName(value = this.name) {
-    checkType(
-      value,
-      'string',
-      'The "name" property of the post-language-switch component must be a string.',
     );
   }
 
@@ -74,12 +61,7 @@ export class PostLanguageSwitch {
    */
   @State() activeLang: string;
 
-  private menuId: string;
-
   connectedCallback() {
-    // Transforms name into an ID for the post-menu
-    this.menuId = this.name.replace(/\W/g, '_');
-
     this.updateChildrenVariant();
 
     // Get the active language based on children's active state
@@ -103,7 +85,6 @@ export class PostLanguageSwitch {
     this.validateCaption();
     this.validateDescription();
     this.validateVariant();
-    this.validateName();
 
     // Detects a change in the active language
     this.host.addEventListener('postChange', (el: CustomEvent<string>) => {
@@ -125,6 +106,8 @@ export class PostLanguageSwitch {
       }
     });
   }
+
+  private menuId = `p${nanoid(11)}`;
 
   private renderList() {
     return (
