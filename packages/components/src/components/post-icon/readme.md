@@ -25,7 +25,6 @@ some content
  - [post-accordion-item](../post-accordion-item)
  - [post-back-to-top](../post-back-to-top)
  - [post-banner](../post-banner)
- - [post-breadcrumb-item](../post-breadcrumb-item)
  - [post-card-control](../post-card-control)
  - [post-closebutton](../post-closebutton)
  - [post-rating](../post-rating)
@@ -37,7 +36,6 @@ graph TD;
   post-accordion-item --> post-icon
   post-back-to-top --> post-icon
   post-banner --> post-icon
-  post-breadcrumb-item --> post-icon
   post-card-control --> post-icon
   post-closebutton --> post-icon
   post-rating --> post-icon
