@@ -5,3 +5,11 @@ $grid-breakpoints: (
   lg: 1024px,
   xl: 1280px,
 ) !default;
+
+$grid-viewports: (
+  xs: 'mobile',
+  sm: 'tablet',
+  md: 'tablet',
+  lg: 'desktop',
+  xl: 'desktop',
+);

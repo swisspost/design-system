@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { version } from '@root/package.json';
-import { addNameListener, removeNameListener } from '../../utils/breakpoints';
+import { breakpoint } from '../../utils/breakpoints';
 
 /**
  * @slot grid-{1|2|3|4}-title - Slot for the accordion headers (mobile).
@@ -24,14 +24,14 @@ export class PostFooter {
    */
   @Prop() readonly label!: string;
 
-  @State() isMobile: boolean;
+  @State() isMobile: boolean = breakpoint.get('name') === 'mobile';
 
   connectedCallback() {
-    addNameListener(this.updateBreakpoint.bind(this));
+    window.addEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
   }
 
-  private updateBreakpoint(breakpoint: string) {
-    this.isMobile = breakpoint === 'mobile';
+  private breakpointChange(e: CustomEvent) {
+    this.isMobile = e.detail === 'mobile';
   }
 
   render() {
@@ -115,6 +115,6 @@ export class PostFooter {
   }
 
   disconnectedCallback() {
-    removeNameListener(this.updateBreakpoint.bind(this));
+    window.removeEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
   }
 }

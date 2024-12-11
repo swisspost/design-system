@@ -1,85 +1,63 @@
-type Callback = (value: string) => void;
-type getType = 'breakpoint' | 'name';
+// do not import this file in the ./index.ts file
 
-const BREAKPOINT_MAP = {
-  xs: 'mobile',
-  sm: 'tablet',
-  md: 'tablet',
-  lg: 'desktop',
-  xl: 'desktop',
-} as const;
-const BREAKPOINT_MAP_KEYS = Object.keys(BREAKPOINT_MAP);
-const ELEMENT_ID = 'PostBreakpoints';
+type MapItem = {
+  minWidth: number;
+  key: string;
+  name: string;
+};
+type ListenerType = 'key' | 'name';
 
-const keyCallbacks = [];
-const nameCallbacks = [];
+export class Breakpoint {
+  private breakpointMap: MapItem[];
+  private current_key: string;
+  private current_name: string;
 
-let breakpoint = null;
-let nextBreakpoint = null;
-let name = null;
-let nextName = null;
+  constructor() {
+    if (!this.breakpointMap) {
+      const styles = getComputedStyle(document.documentElement);
+      const keys = styles.getPropertyValue('--post-breakpoint-names').split(', ');
+      const names = styles.getPropertyValue('--post-viewport-names').split(', ');
 
-(function setup() {
-  let wrapper: HTMLDivElement = document.querySelector(`#${ELEMENT_ID}`);
+      this.breakpointMap = styles
+        .getPropertyValue('--post-breakpoint-keys')
+        .split(' ')
+        .map((key, i) => {
+          return {
+            minWidth: Number(key),
+            key: keys[i],
+            name: names[i],
+          };
+        })
+        .reverse();
 
-  if (!wrapper) {
-    const children = Object.entries(BREAKPOINT_MAP).map(([bp, n], i) => {
-      const nextBreakpointKey = BREAKPOINT_MAP_KEYS[i + 1];
-      const prev = i > 0 ? 'd-none' : '';
-      const next = nextBreakpointKey ? `d-${nextBreakpointKey}-none` : '';
-      const classes = [prev, `d-${bp}-block`, next].filter(c => c).join(' ');
-
-      return `<div class="${classes}" data-breakpoint="${bp}" data-name="${n}"></div>`;
-    });
-
-    wrapper = document.createElement('div');
-    wrapper.id = ELEMENT_ID;
-    wrapper.innerHTML = children.join('');
-    document.body.appendChild(wrapper);
-
-    window.addEventListener('resize', () => update());
-  }
-})();
-
-function get(type: getType) {
-  const testElement = Array.from(document.querySelectorAll(`#${ELEMENT_ID} > div`)).find(
-    (el: HTMLDivElement) => el.offsetParent !== null,
-  );
-
-  return testElement?.getAttribute(`data-${type}`);
-}
-
-function update(runCallbacks = true) {
-  nextBreakpoint = get('breakpoint');
-  nextName = get('name');
-
-  if (nextBreakpoint !== breakpoint) {
-    breakpoint = nextBreakpoint;
-    runCallbacks && keyCallbacks.forEach(cb => cb(breakpoint));
+      window.addEventListener('resize', () => this.updateHandler(), { passive: true });
+    }
   }
 
-  if (nextName !== name) {
-    name = nextName;
-    runCallbacks && nameCallbacks.forEach(cb => cb(name));
+  private updateHandler(emitEvents = true) {
+    const calculated = this.breakpointMap.find(({ minWidth }) => innerWidth >= minWidth);
+
+    if (this.current_key !== calculated.key) {
+      this.current_key = calculated.key;
+      if (emitEvents) this.dispatchEvent('key');
+    }
+
+    if (this.current_name !== calculated.name) {
+      this.current_name = calculated.name;
+      if (emitEvents) this.dispatchEvent('name');
+    }
+  }
+
+  private dispatchEvent(type: ListenerType) {
+    window.dispatchEvent(
+      new CustomEvent(`postBreakpoint:${type}`, { detail: this[`current_${type}`] }),
+    );
+  }
+
+  public get(type: ListenerType) {
+    this.updateHandler(false);
+    return this[`current_${type}`];
   }
 }
 
-export function addKeyListener(callback: Callback) {
-  keyCallbacks.push(callback);
-  update(false);
-  callback(breakpoint);
-}
-
-export function addNameListener(callback: Callback) {
-  nameCallbacks.push(callback);
-  update(false);
-  callback(name);
-}
-
-export function removeKeyListener(callback: Callback) {
-  keyCallbacks.splice(keyCallbacks.indexOf(callback), 1);
-}
-
-export function removeNameListener(callback: Callback) {
-  nameCallbacks.splice(nameCallbacks.indexOf(callback), 1);
-}
+export const breakpoint = new Breakpoint();
