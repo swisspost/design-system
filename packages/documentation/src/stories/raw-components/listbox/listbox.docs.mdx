@@ -1,0 +1,53 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as ListboxStories from './listbox.stories';
+
+<Meta of={ListboxStories} />
+
+<div className="docs-label">
+  # Listbox
+
+  <nav>
+    <link-design of={JSON.stringify(ListboxStories)}></link-design>
+  </nav>
+</div>
+
+The listbox component is used to display a scrollable list of selectable options. It supports single or multiple selection modes and is ideal for dropdowns, multi-select menus, or similar interfaces. Accessible and customizable, it ensures seamless navigation and selection with keyboard and assistive technologies.
+
+The `<post-listbox>` is a container for `<post-listbox-item>` components.
+
+<Canvas sourceState="shown" of={ListboxStories.Default} />
+
+<Controls of={ListboxStories.Default} />
+
+## Installation
+
+The `<post-listbox>` element is part of the `@swisspost/design-system-components` package.
+For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
+
+## Examples
+
+<div className="lead">Hidden Label</div>
+The label can be visually hidden but should always be present for accessibility reasons. Set the `label-hidden`property
+to `true`to visually hide the label.
+
+<Canvas sourceState="shown" of={ListboxStories.PostListboxNoLabel} />
+
+<div className="lead">Highlighted Search Term</div>
+Passing the `searchTerm` prop from a parent component (e.g., search) enables highlighting of matching
+text within the listbox items.
+
+<Canvas sourceState="shown" of={ListboxStories.PostListboxHighlightedSearch} />
+
+<div className="lead">Listbox Styling</div>
+
+<strong>--post-listbox-label-gap</strong>
+
+Define the gap between the label and the list items using the `--post-list-label-gap` property (
+e.g., `--post-listbox-label-gap: 2rem;`).
+
+<strong>--post-listbox-item-gap</strong>
+
+Define the gap of the list items using the `--post-list-item-gap` property (e.g.
+`--post-listbox-item-gap: 1rem 0.5rem;`).
+
+<Canvas sourceState="shown" of={ListboxStories.PostListboxStyling} />

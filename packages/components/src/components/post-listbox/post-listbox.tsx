@@ -260,7 +260,6 @@ export class PostListbox {
           role="listbox"
           tabindex="0"
           aria-labelledby={this.labelId}
-          aria-orientation="vertical"
           aria-multiselectable={this.multiselect}
           aria-roledescription={this.listboxDescription}
           aria-activedescendant={this.activeDescendantId || undefined}
