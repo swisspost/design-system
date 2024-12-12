@@ -26,6 +26,12 @@ jobs:
           name: design-system-documentation
           folder: build-output
 
+      - name: Create preview message
+        uses: ./.github/actions/preview/message/create
+        with:
+          access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+          issue-number: ${{ steps.build.outputs.id }}
+
       - name: Get netlify config
         id: netlify-config
         uses: actions/github-script@v7

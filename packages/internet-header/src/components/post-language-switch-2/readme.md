@@ -1,6 +1,4 @@
-# post-language-switch
-
-
+# post-language-switch-2
 
 <!-- Auto Generated Below -->
 
@@ -48,8 +46,8 @@ Boolean indicating new state
 ### Graph
 ```mermaid
 graph TD;
-  swisspost-internet-header --> post-language-switch
-  style post-language-switch fill:#f9f,stroke:#333,stroke-width:4px
+  swisspost-internet-header --> post-language-switch-2
+  style post-language-switch-2 fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------
