@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as megadropdownStories from './megadropdown.stories';
+import './megadropdown.styles.scss';
+
+<Meta of={megadropdownStories} />
+
+<div className="docs-title">
+  # Mega dropdown
+
+  <nav>
+    <link-design of={JSON.stringify(megadropdownStories)}></link-design>
+  </nav>
+</div>
+
+<p className="lead">Enable users to select their preferred language.</p>
+
+<Canvas sourceState="shown" of={megadropdownStories.Default} />
+
+<Controls of={megadropdownStories.Default} />
+
+## Installation
+
+The `<post-language-option>` element is part of the `@swisspost/design-system-components` package.
+For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
