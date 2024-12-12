@@ -68,7 +68,7 @@ const meta: MetaComponent = {
     },
     background: {
       name: 'Background',
-      description: 'You can use the Background classes to color the cards',
+      description: 'You can use the background classes to color the cards',
       control: {
         type: 'select',
       },

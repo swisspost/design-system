@@ -25,7 +25,7 @@ const meta: MetaComponent = {
     id: 'popover-one',
     innerHtml:
       'A longer message that needs more time to read. <a href="#">Links</a> are also possible.',
-    palette: 'palette-default',
+    palette: 'palette-accent',
     closeButtonCaption: 'Close',
     placement: 'top',
     arrow: true,
@@ -52,7 +52,7 @@ const meta: MetaComponent = {
       control: {
         type: 'select',
       },
-      options: ['palette-default', 'palette-accent', 'palette-alternate', 'palette-brand'],
+      options: ['palette-accent', 'palette-brand'],
       table: {
         category: 'General',
         type: {

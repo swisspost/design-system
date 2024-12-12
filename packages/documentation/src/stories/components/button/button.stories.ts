@@ -229,18 +229,6 @@ export const Default: Story = {
   ...Template,
 };
 
-export const Inverted: Story = {
-  ...Template,
-  decorators: [
-    (story: StoryFn, context: StoryContext) =>
-      html`
-        <div class="p-16 palette-alternate" data-color-scheme="dark">
-          ${story(context.args, context)}
-        </div>
-      `,
-  ],
-};
-
 const VariantsTemplate = {
   parameters: {
     controls: {

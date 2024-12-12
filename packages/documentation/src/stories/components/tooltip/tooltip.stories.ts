@@ -21,7 +21,7 @@ const meta: MetaComponent = {
   args: {
     id: 'tooltip-one',
     innerHTML: 'Hi there 👋',
-    palette: 'primary',
+    palette: 'palette-accent',
     placement: 'top',
     delayed: false,
   },
@@ -48,7 +48,7 @@ const meta: MetaComponent = {
       control: {
         type: 'select',
       },
-      options: ['palette-default', 'palette-accent', 'palette-alternate', 'palette-brand'],
+      options: ['palette-accent', 'palette-brand'],
       table: {
         category: 'General',
         type: {

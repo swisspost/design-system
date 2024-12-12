@@ -166,7 +166,7 @@ export default function Home() {
           <PostTabHeader panel="two" data-tooltip-target="tooltip-two">
             Delivered
           </PostTabHeader>
-          <PostTooltip className="bg-yellow" id="tooltip-two">
+          <PostTooltip className="palette-brand" id="tooltip-two">
             👻
           </PostTooltip>
           <PostTabPanel name="two">
@@ -175,7 +175,7 @@ export default function Home() {
               <button className="btn btn-secondary" data-popover-target="popover-one">
                 See details
               </button>
-              <PostPopover id="popover-one" className="bg-primary" closeButtonCaption="close">
+              <PostPopover id="popover-one" className="palette-accent" closeButtonCaption="close">
                 <h3 className="h5 mt-0">Details for this content</h3>
                 <p>Here are some more details for this content.</p>
                 <div className="d-flex flex-row-reverse gap-16">
