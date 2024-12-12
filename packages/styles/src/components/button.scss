@@ -19,7 +19,7 @@
 @use './../placeholders/button' as button-ph;
 @use '../functions/tokens';
 @use '../tokens/components';
-@use '../tokens/helpers';
+@use '../tokens/elements';
 
 tokens.$default-map: components.$post-button;
 
@@ -109,10 +109,14 @@ tokens.$default-map: components.$post-button;
 }
 
 .btn-link {
-  text-decoration: underline;
+  text-decoration: tokens.get('link-decoration', elements.$post-link);
+  border-radius: tokens.get('link-border-radius', elements.$post-link);
   min-height: 0;
   font-size: inherit;
   font-weight: inherit;
   padding: 0;
-  border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+
+  &:hover {
+    color: tokens.get('link-hover-fg', elements.$post-link);
+  }
 }
