@@ -1,4 +1,4 @@
-import { Component, h, Host, State, Element, Listen } from '@stencil/core';
+import { Component, h, Host, State, Element, Method } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
@@ -27,9 +27,14 @@ export class PostHeader {
     this.handleScrollEvent();
   }
 
-  @Listen('postMainNavigationClosed')
-  handlePostMainNavigationClosed() {
-    this.mobileMenuExtended = false;
+  /**
+   * Toggles the mobile navigation.
+   */
+  @Method()
+  async toggleMobileMenu() {
+    if (this.device !== 'desktop') {
+      this.mobileMenuExtended = !this.mobileMenuExtended;
+    }
   }
 
   private handleScrollEvent() {
@@ -97,10 +102,6 @@ export class PostHeader {
     this.host.querySelector('post-language-switch')?.setAttribute('variant', variant);
   }
 
-  private handleMobileMenuToggle() {
-    this.mobileMenuExtended = !this.mobileMenuExtended;
-  }
-
   render() {
     const navigationClasses = ['navigation'];
     if (this.mobileMenuExtended) {
@@ -119,7 +120,7 @@ export class PostHeader {
             {this.device === 'desktop' && <slot name="meta-navigation"></slot>}
             <slot name="global-controls"></slot>
             {this.device === 'desktop' && <slot name="post-language-switch"></slot>}
-            <div onClick={() => this.handleMobileMenuToggle()} class="mobile-toggle">
+            <div onClick={() => this.toggleMobileMenu()} class="mobile-toggle">
               <slot name="post-togglebutton"></slot>
             </div>
           </div>

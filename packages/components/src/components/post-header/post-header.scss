@@ -25,19 +25,13 @@
   justify-content: space-between;
 }
 
-// ensures the global-header and title-header are above the main-navigation
-.global-header,
-.title-header {
-  position: relative;
-  z-index: 1;
-}
-
 .global-header {
   background-color: #ffcc00;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: sticky;
+  z-index: 2;
   padding-inline-start: 4px;
   padding-inline-end: 12px;
 
@@ -88,6 +82,8 @@ slot[name='post-logo'] {
 }
 
 .title-header {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   padding-inline: 12px;
