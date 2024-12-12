@@ -23,7 +23,7 @@ export class PostListboxItem {
 
   render() {
     return (
-      <Host role="option">
+      <Host role="option" tabindex="-1">
         <slot></slot>
       </Host>
     );

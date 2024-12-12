@@ -243,15 +243,15 @@ export namespace Components {
     }
     interface PostListbox {
         /**
-          * If `true`, the listbox title will be hidden. Otherwise, it will be displayed.
+          * If `true`, the listbox title will be hidden. Otherwise, it will be displayed
          */
         "labelHidden": boolean;
         /**
-          * The description of the listbox role
+          * The description of the listbox
          */
         "listboxDescription"?: string;
         /**
-          * If `true`, the listbox is multiselectable.
+          * If `true`, the listbox is multiselectable
          */
         "multiselect": boolean;
     }
@@ -1072,15 +1072,15 @@ declare namespace LocalJSX {
     }
     interface PostListbox {
         /**
-          * If `true`, the listbox title will be hidden. Otherwise, it will be displayed.
+          * If `true`, the listbox title will be hidden. Otherwise, it will be displayed
          */
         "labelHidden"?: boolean;
         /**
-          * The description of the listbox role
+          * The description of the listbox
          */
         "listboxDescription"?: string;
         /**
-          * If `true`, the listbox is multiselectable.
+          * If `true`, the listbox is multiselectable
          */
         "multiselect"?: boolean;
     }
