@@ -23,3 +23,42 @@ a {
   width: 100%;
   padding: var(--post-language-option-padding);
 }
+
+.post-language-option-list {
+  @include post.focus-style;
+  border-radius: 2px;
+  width: 40px;
+  height: 40px;
+
+  &[aria-current='true'],
+  &[aria-current='page'] {
+    background-color: #050400;
+    color: #fff;
+  }
+}
+
+.post-language-option-dropdown {
+  padding-block: 13px;
+  padding-inline: 24px;
+  box-sizing: border-box;
+  position: relative;
+
+  &[aria-current='true'],
+  &[aria-current='page'] {
+    &::after {
+      content: '';
+      left: -2px;
+      height: 3px;
+      background-color: #504f4b;
+      width: calc(100% + 4px);
+      display: block;
+      position: absolute;
+      bottom: 3px;
+    }
+
+    &:focus::after {
+      width: calc(100% - 5px);
+      left: 2px;
+    }
+  }
+}

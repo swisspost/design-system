@@ -4,13 +4,6 @@ export default html`<post-header>
   <!-- Logo -->
   <post-logo>Homepage</post-logo>
 
-  <!-- Audience Navigation -->
-  <ul class="list-inline" slot="audience-navigation">
-    <li><a href="">Privatkunden</a></li>
-    <li><a href="">Geschäftskunden</a></li>
-    <li><a href="">Behörden</a></li>
-  </ul>
-
   <!-- Meta navigation -->
   <ul class="list-inline" slot="meta-navigation">
     <li><a href="">Über uns</a></li>
@@ -21,19 +14,17 @@ export default html`<post-header>
   <post-toggle-button slot="post-togglebutton"> = Menu </post-toggle-button>
 
   <!-- Language switch -->
-  <post-language-switch slot="post-language-switch">
-    <post-language-option>
-      <a href="#">DE</a>
-    </post-language-option>
-    <post-language-option>
-      <a href="#">FR</a>
-    </post-language-option>
-    <post-language-option>
-      <a href="#">IT</a>
-    </post-language-option>
-    <post-language-option>
-      <a href="#">EN</a>
-    </post-language-option>
+  <post-language-switch
+    caption="Caption"
+    description="Description"
+    variant="list"
+    name="language-switch-example"
+    slot="post-language-switch"
+  >
+    <post-language-option active="true" code="de" name="Deutsch">DE</post-language-option>
+    <post-language-option active="false" code="fr" name="French">FR</post-language-option>
+    <post-language-option active="false" code="it" name="Italiano">IT</post-language-option>
+    <post-language-option active="false" code="en" name="English">EN</post-language-option>
   </post-language-switch>
 
   <!-- Application title (optional) -->
@@ -47,11 +38,14 @@ export default html`<post-header>
 
   <!-- Main navigation -->
   <post-mainnavigation caption="Hauptnavigation">
-    <button slot="back-button"><- Back</button>
-    <post-list>
-      <h2><a href="/privatkunden">Privatkunden</a></h2>
+    <button slot="back-button" class="btn btn-sm btn-tertiary p-0">
+      <post-icon aria-hidden="true" name="3024"></post-icon> Back
+    </button>
+    <post-list title-hidden="">
+      <h2>Main Navigation</h2>
       <!-- Link only level 1 -->
       <post-list-item><a href="/briefe">Briefe</a></post-list-item>
+      <post-list-item><a href="/pakete">Pakete</a></post-list-item>
 
       <!-- Level 1 with megadropdown -->
       <post-list-item>
