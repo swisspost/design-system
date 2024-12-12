@@ -254,6 +254,10 @@ export namespace Components {
           * If `true`, the listbox is multiselectable
          */
         "multiselect": boolean;
+        /**
+          * An array of the chars typed (in a parent select component) used for type ahead search
+         */
+        "typedStr"?: string;
     }
     interface PostListboxItem {
         /**
@@ -1083,6 +1087,10 @@ declare namespace LocalJSX {
           * If `true`, the listbox is multiselectable
          */
         "multiselect"?: boolean;
+        /**
+          * An array of the chars typed (in a parent select component) used for type ahead search
+         */
+        "typedStr"?: string;
     }
     interface PostListboxItem {
         /**

@@ -50,6 +50,11 @@ export class PostListbox {
    */
   @Prop() readonly multiselect: boolean = false;
 
+  /**
+   * An array of the chars typed (in a parent select component) used for type ahead search
+   */
+  @Prop() readonly typedStr?: string;
+
   private checkLabel() {
     if (!this.labelEl.textContent?.trim()) {
       throw new Error(
@@ -58,13 +63,13 @@ export class PostListbox {
     }
   }
 
+  // Initialize any pre-selected items
   private initializeSelectedItems = () => {
-    // Check for preselected post-listbox-items
     const preselectedItems = this.host.querySelectorAll('[slot="post-listbox-item"][selected]');
-    // Add preselected items to selectedItems array
     this.selectedItems = Array.from(preselectedItems).map(item => item.id);
   };
 
+  // Set focus to the activeDescendant
   private setActiveDescendant(item: HTMLElement) {
     this.activeDescendantId = item.id;
     item.scrollIntoView({ block: 'nearest' });
@@ -92,7 +97,7 @@ export class PostListbox {
       return listboxItems.indexOf(a) - listboxItems.indexOf(b);
     });
 
-    // If there's an active descendant focus that, otherwise, focus the first item
+    // If there's an active descendant focus on that, otherwise, focus the first item
     if (activeDescendant) {
       if (!this.multiselect) {
         this.setActiveDescendant(activeDescendant as HTMLElement);
@@ -129,7 +134,6 @@ export class PostListbox {
       case ' ':
         // If multiselect, handle item select with Space
         if (this.multiselect) {
-          this.setActiveDescendant(listboxItems[currentIndex]);
           this.handleItemSelect(listboxItems[currentIndex].id);
           e.preventDefault();
         }
