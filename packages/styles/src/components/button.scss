@@ -109,7 +109,6 @@ tokens.$default-map: components.$post-button;
 }
 
 .btn-link {
-  display: inline;
   text-decoration: tokens.get('link-decoration', elements.$post-link);
   border: 0 none;
   border-radius: tokens.get('link-border-radius', elements.$post-link);
