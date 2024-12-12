@@ -49,10 +49,16 @@ export default html`<post-header>
 
       <!-- Level 1 with megadropdown -->
       <post-list-item>
-        <post-megadropdown-trigger> Briefe </post-megadropdown-trigger>
-        <post-megadropdown>
-          <button slot="back-button"><- Zurück</button>
-          <h2><a href="">Briefe title</a></h2>
+        <post-megadropdown-trigger for="briefe">
+          <button class="btn btn-link">Briefe</button>
+        </post-megadropdown-trigger>
+        <post-megadropdown id="briefe">
+          <button slot="back-button" class="btn btn-link">
+            <post-icon name="arrowright"></post-icon>
+            Zurück
+          </button>
+          <post-closebutton slot="close-button">Schliessen</post-closebutton>
+          <h2 slot="megadropdown-title"><a href="">Briefe title</a></h2>
           <post-list>
             <h3>Briefe senden</h3>
             <post-list-item><a href="/sch">Briefe Schweiz</a></post-list-item>
@@ -67,14 +73,19 @@ export default html`<post-header>
             <post-list-item><a href="">Waren Ausland</a></post-list-item>
             <post-list-item><a href="">Express und Kurier</a></post-list-item>
           </post-list>
-          <post-closebutton>Schliessen</post-closebutton>
         </post-megadropdown>
       </post-list-item>
       <post-list-item>
-        <post-megadropdown-trigger> Pakete </post-megadropdown-trigger>
-        <post-megadropdown>
-          <button slot="back-button"><- Zurück</button>
-          <h2><a href="">Pakete title</a></h2>
+        <post-megadropdown-trigger for="pakete">
+          <button class="btn btn-link">Pakete</button>
+        </post-megadropdown-trigger>
+        <post-megadropdown id="pakete">
+          <button slot="back-button" class="btn btn-link">
+            <post-icon name="arrowright"></post-icon>
+            Zurück
+          </button>
+          <post-closebutton slot="close-button">Schliessen</post-closebutton>
+          <h2 slot="megadropdown-title"><a href="">Pakete title</a></h2>
           <post-list>
             <h3>Pakete senden</h3>
             <post-list-item><a href="/sch">Pakete Schweiz</a></post-list-item>
@@ -89,7 +100,6 @@ export default html`<post-header>
             <post-list-item><a href="">Waren Ausland</a></post-list-item>
             <post-list-item><a href="">Express und Kurier</a></post-list-item>
           </post-list>
-          <post-closebutton>Schliessen</post-closebutton>
         </post-megadropdown>
       </post-list-item>
     </post-list>
