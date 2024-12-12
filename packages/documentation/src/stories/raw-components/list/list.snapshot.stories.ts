@@ -8,37 +8,37 @@ const { id, ...metaWithoutId } = meta;
 
 export default {
   ...metaWithoutId,
-  label: 'Snapshots',
+  title: 'Snapshots',
 };
 
 type Story = StoryObj;
 
-export const PostListbox: Story = {
+export const PostList: Story = {
   render: () => {
     return html`
       <div class="d-flex gap-16 flex-column">
         ${bombArgs({
-          labelHidden: [false, true],
-          multiselect: [false, true],
+          titleHidden: [false, true],
+          horizontal: [false, true],
           itemGap: ['1rem', '2rem', '5rem'], // Variations for item gap
-          labelGap: ['1rem', '5rem', '10rem'], // Variations for label gap
+          titleGap: ['1rem', '5rem', '10rem'], // Variations for title gap
         })
-          .filter((args: Args) => !(args.labelHidden && args.labelGap !== '1rem'))
+          .filter((args: Args) => !(args.titleHidden && args.titleGap !== '1rem'))
           .map((args: Args) => {
             return html`
-              <post-listbox
+              <post-list
                 style="
-                --post-listbox-item-gap: ${args.itemGap};
-                --post-listbox-label-gap: ${args.labelGap};
+                --post-list-item-gap: ${args.itemGap};
+                --post-list-title-gap: ${args.titleGap};
               "
-                label-hidden="${args.labelHidden}"
-                multiselect="${args.multiselect}"
+                title-hidden="${args.titleHidden}"
+                horizontal="${args.horizontal}"
               >
-                <h3 class="label">List label</h3>
-                <post-listbox-item>Item 1</post-listbox-item>
-                <post-listbox-item>Item 2</post-listbox-item>
-                <post-listbox-item>Item 3</post-listbox-item>
-              </post-listbox>
+                <h3 class="title">List Title</h3>
+                <post-list-item>Item 1</post-list-item>
+                <post-list-item>Item 2</post-list-item>
+                <post-list-item>Item 3</post-list-item>
+              </post-list>
             `;
           })}
       </div>
@@ -46,7 +46,7 @@ export const PostListbox: Story = {
   },
   decorators: [
     (story: StoryFn, context: StoryContext) => {
-      return schemes(() => html`${story(context.args, context)} `);
+      return schemes(() => html` <div class="list-example">${story(context.args, context)}</div> `);
     },
   ],
 };
