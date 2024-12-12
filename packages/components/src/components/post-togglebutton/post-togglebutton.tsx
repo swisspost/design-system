@@ -1,9 +1,9 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
+import { checkType } from '@/utils';
 
 /**
- * @slot toggled - Slot for content displayed when the button is in the "on" state.
- * @slot untoggled - Slot for content displayed when the button is in the "off" state.
+ * @slot default - Slot for the content of the button.
  */
 
 @Component({
@@ -15,7 +15,20 @@ export class PostTogglebutton {
   /**
    * If `true`, the button is in the "on" state, otherwise it is in the "off" state.
    */
-  @Prop({ reflect: true, mutable: true }) toggled: boolean = false;
+  @Prop({ mutable: true }) toggled: boolean = false;
+
+  @Watch('toggled')
+  validateToggled(value = this.toggled) {
+    checkType(
+      value,
+      'boolean',
+      'The "toggled" property of the post-togglebutton must be a boolean.',
+    );
+  }
+
+  componentWillLoad() {
+    this.validateToggled();
+  }
 
   private handleClick = () => {
     this.toggled = !this.toggled;
@@ -38,12 +51,7 @@ export class PostTogglebutton {
         onClick={this.handleClick}
         onKeyDown={this.handleKeydown}
       >
-        <span hidden={this.toggled}>
-          <slot name="untoggled" />
-        </span>
-        <span hidden={!this.toggled}>
-          <slot name="toggled" />
-        </span>
+        <slot />
       </Host>
     );
   }
