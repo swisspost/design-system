@@ -5,14 +5,20 @@ inputs:
   access-token:
     description: The access token to use for commenting.
     required: true
+  issue-number:
+    description: The issue number from the caller workflow.
+    required: true
 
 runs:
   using: composite
   steps:
     - uses: actions/github-script@v7
+      env:
+        ISSUE_NUMBER: ${{ inputs.issue-number }}
       with:
         github-token: ${{ inputs.access-token }}
         script: |
+          const { ISSUE_NUMBER } = process.env
           const commentTitle = '**Related Previews**'
           const commentInitialBody = 'Preview URLs will be added here, once they are ready... ![loader](https://github.com/swisspost/design-system/assets/9716662/49a75898-7093-4ffb-9460-071ff194459d)'
 
@@ -25,7 +31,7 @@ runs:
             await github.rest.issues.createComment({
               repo: context.repo.repo,
               owner: context.repo.owner,
-              issue_number: context.issue.number,
+              issue_number: ISSUE_NUMBER,
               body: `${commentTitle}\n${commentInitialBody}`
             })
 
@@ -45,7 +51,7 @@ runs:
             comments = (await github.rest.issues.listComments({
               repo: context.repo.repo,
               owner: context.repo.owner,
-              issue_number: context.issue.number
+              issue_number: ISSUE_NUMBER
             })).data || []
 
             previewComment = comments.find(c => c.user.login === 'swisspost-bot' && c.body.includes(commentTitle))
