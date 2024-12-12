@@ -1,5 +1,20 @@
+@use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/helpers';
+
 :host {
   cursor: pointer;
+  outline-offset: tokens.get('focus-outline-offset', helpers.$post-focus) !important;
+  outline: tokens.get('focus-outline-color', helpers.$post-focus) none
+  tokens.get('focus-outline-width', helpers.$post-focus) !important;
+}
+
+:host(:focus-visible) {
+  outline-style: tokens.get('focus-border-style', helpers.$post-focus) !important;
+
+  @include utilities.high-contrast-mode() {
+    outline-color: Highlight !important;
+  }
 }
 
 :host([aria-pressed="true"]) {
