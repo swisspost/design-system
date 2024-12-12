@@ -7,9 +7,11 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
+import { SwitchVariant } from "./components/post-language-switch/switch-variants";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
+export { SwitchVariant } from "./components/post-language-switch/switch-variants";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
     interface PostAccordion {
@@ -221,6 +223,10 @@ export namespace Components {
          */
         "code": string;
         /**
+          * Used on parent component (post-language-switch) to detect elements that are manually added
+         */
+        "generated": boolean;
+        /**
           * The full name of the language. For example, "Deutsch".
          */
         "name": string;
@@ -232,6 +238,28 @@ export namespace Components {
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
         "url": string;
+        /**
+          * The variant of the post-language-switch parent (dynamically set by the parent)
+         */
+        "variant"?: SwitchVariant | null;
+    }
+    interface PostLanguageSwitch {
+        /**
+          * A title for the list of language options
+         */
+        "caption": string;
+        /**
+          * A descriptive text for the list of language options
+         */
+        "description": string;
+        /**
+          * The name of the language switch, which will be used on the dropdown as an ID
+         */
+        "name": string;
+        /**
+          * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
+         */
+        "variant": SwitchVariant;
     }
     interface PostList {
         /**
@@ -621,6 +649,12 @@ declare global {
         prototype: HTMLPostLanguageOptionElement;
         new (): HTMLPostLanguageOptionElement;
     };
+    interface HTMLPostLanguageSwitchElement extends Components.PostLanguageSwitch, HTMLStencilElement {
+    }
+    var HTMLPostLanguageSwitchElement: {
+        prototype: HTMLPostLanguageSwitchElement;
+        new (): HTMLPostLanguageSwitchElement;
+    };
     interface HTMLPostListElement extends Components.PostList, HTMLStencilElement {
     }
     var HTMLPostListElement: {
@@ -810,6 +844,7 @@ declare global {
         "post-header": HTMLPostHeaderElement;
         "post-icon": HTMLPostIconElement;
         "post-language-option": HTMLPostLanguageOptionElement;
+        "post-language-switch": HTMLPostLanguageSwitchElement;
         "post-list": HTMLPostListElement;
         "post-list-item": HTMLPostListItemElement;
         "post-logo": HTMLPostLogoElement;
@@ -1016,6 +1051,10 @@ declare namespace LocalJSX {
          */
         "code": string;
         /**
+          * Used on parent component (post-language-switch) to detect elements that are manually added
+         */
+        "generated"?: boolean;
+        /**
           * The full name of the language. For example, "Deutsch".
          */
         "name"?: string;
@@ -1027,6 +1066,28 @@ declare namespace LocalJSX {
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
         "url"?: string;
+        /**
+          * The variant of the post-language-switch parent (dynamically set by the parent)
+         */
+        "variant"?: SwitchVariant | null;
+    }
+    interface PostLanguageSwitch {
+        /**
+          * A title for the list of language options
+         */
+        "caption"?: string;
+        /**
+          * A descriptive text for the list of language options
+         */
+        "description"?: string;
+        /**
+          * The name of the language switch, which will be used on the dropdown as an ID
+         */
+        "name"?: string;
+        /**
+          * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
+         */
+        "variant"?: SwitchVariant;
     }
     interface PostList {
         /**
@@ -1206,6 +1267,7 @@ declare namespace LocalJSX {
         "post-header": PostHeader;
         "post-icon": PostIcon;
         "post-language-option": PostLanguageOption;
+        "post-language-switch": PostLanguageSwitch;
         "post-list": PostList;
         "post-list-item": PostListItem;
         "post-logo": PostLogo;
@@ -1249,6 +1311,7 @@ declare module "@stencil/core" {
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
             "post-language-option": LocalJSX.PostLanguageOption & JSXBase.HTMLAttributes<HTMLPostLanguageOptionElement>;
+            "post-language-switch": LocalJSX.PostLanguageSwitch & JSXBase.HTMLAttributes<HTMLPostLanguageSwitchElement>;
             "post-list": LocalJSX.PostList & JSXBase.HTMLAttributes<HTMLPostListElement>;
             "post-list-item": LocalJSX.PostListItem & JSXBase.HTMLAttributes<HTMLPostListItemElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
