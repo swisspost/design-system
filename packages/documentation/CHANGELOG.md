@@ -1,5 +1,36 @@
 # @swisspost/design-system-documentation
 
+## 5.5.5
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.6.2
+  - @swisspost/design-system-components@8.6.2
+  - @swisspost/internet-header@1.15.3
+  - @swisspost/design-system-components-react@8.6.2
+  - @swisspost/design-system-icons@8.6.2
+
+## 5.5.4
+
+### Patch Changes
+
+- Updated the avatar url, used to load a users profile picture form the intranet backend.  
+  ! The required input value has recently changed !
+  Due to the technical conversion of the intranet backend from Sitecore to Sharepoint, the value required for the property to display a user image has changed. Previously the user ID was required, now this property expects the user-specific e-mail address. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4117](https://github.com/swisspost/design-system/pull/4117))
+
+- Marked the background utilities (`.bg-*` classes) as deprecated (will be removed in a future version). (by [@leagrdv](https://github.com/leagrdv) with [#4100](https://github.com/swisspost/design-system/pull/4100))
+
+- Marked the `card-control` standard HTML as deprecated (will be removed in a future version). (by [@leagrdv](https://github.com/leagrdv) with [#4057](https://github.com/swisspost/design-system/pull/4057))
+
+- Changed hint text wrapper from `div` to `p` to improve accessibility across components. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3902](https://github.com/swisspost/design-system/pull/3902))
+- Updated dependencies:
+  - @swisspost/design-system-components@8.6.1
+  - @swisspost/design-system-styles@8.6.1
+  - @swisspost/design-system-components-react@8.6.1
+  - @swisspost/internet-header@1.15.2
+  - @swisspost/design-system-icons@8.6.1
+
 ## 5.5.3
 
 ### Patch Changes

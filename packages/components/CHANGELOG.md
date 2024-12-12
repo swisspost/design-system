@@ -1,5 +1,25 @@
 # @swisspost/design-system-components
 
+## 8.6.2
+
+### Patch Changes
+
+- Made `post-icon` component use base tag href to define location of icons folder. (by [@leagrdv](https://github.com/leagrdv) with [#4128](https://github.com/swisspost/design-system/pull/4128))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.6.2
+
+## 8.6.1
+
+### Patch Changes
+
+- Fixed bug in console upon exiting tooltip. (by [@leagrdv](https://github.com/leagrdv) with [#4014](https://github.com/swisspost/design-system/pull/4014))
+
+- Fixed bug that showed delayed tooltip even after blur event. (by [@leagrdv](https://github.com/leagrdv) with [#4103](https://github.com/swisspost/design-system/pull/4103))
+
+- Removed strikethrough style on disabled elements. (by [@leagrdv](https://github.com/leagrdv) with [#4095](https://github.com/swisspost/design-system/pull/4095))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.6.1
+
 ## 8.6.0
 
 ### Patch Changes
