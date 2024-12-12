@@ -20,14 +20,20 @@ export class PostListbox {
   @State() labelId: string;
 
   /**
+   * The listbox title element
+   */
+  private labelEl: HTMLElement;
+
+  /**
    * The ID of the currently active listbox item
    */
   @State() activeDescendantId: string | null = null;
 
   /**
-   * The listbox title element
+   * The selected listbox item id in case of single-select list or an array of ids in case of multiselect
    */
-  private labelEl: HTMLElement;
+
+  @State() selectedItems: string[] = [];
 
   /**
    * If `true`, the listbox title will be hidden. Otherwise, it will be displayed
@@ -44,19 +50,57 @@ export class PostListbox {
    */
   @Prop() readonly multiselect: boolean = false;
 
-  @State() selectedItems: string[] = [];
+  private checkLabel() {
+    if (!this.labelEl.textContent?.trim()) {
+      throw new Error(
+        'Please provide a label to the listbox component. Label is mandatory for accessibility purposes.',
+      );
+    }
+  }
+
+  private initializeSelectedItems = () => {
+    // Check for preselected post-listbox-items
+    const preselectedItems = this.host.querySelectorAll('[slot="post-listbox-item"][selected]');
+    // Add preselected items to selectedItems array
+    this.selectedItems = Array.from(preselectedItems).map(item => item.id);
+  };
+
+  private setActiveDescendant(item: HTMLElement) {
+    this.activeDescendantId = item.id;
+    item.scrollIntoView({ block: 'nearest' });
+    item.focus();
+  }
 
   private handleFocus = () => {
     const activeDescendant = this.activeDescendantId
       ? this.host.querySelector(`#${this.activeDescendantId}`)
       : null;
-    const firstItem = this.host.querySelector('[role="option"]');
 
-    // If there's an active descendant, focus it; otherwise, focus the first item
+    const listboxItems = Array.from(
+      this.host.querySelectorAll<HTMLElement>('[slot="post-listbox-item"]'),
+    );
+
+    // Sort selected items by their order in the list
+    const sortedSelectedItems = this.selectedItems
+      .map(itemId => {
+        return listboxItems.find(item => item.id === itemId);
+      })
+      .filter(Boolean) as HTMLElement[];
+
+    // Sort the found elements by their position in the list
+    sortedSelectedItems.sort((a, b) => {
+      return listboxItems.indexOf(a) - listboxItems.indexOf(b);
+    });
+
+    // If there's an active descendant focus that, otherwise, focus the first item
     if (activeDescendant) {
-      this.setActiveDescendant(activeDescendant as HTMLElement);
-    } else if (firstItem) {
-      this.setActiveDescendant(firstItem as HTMLElement);
+      if (!this.multiselect) {
+        this.setActiveDescendant(activeDescendant as HTMLElement);
+      } else {
+        this.setActiveDescendant(sortedSelectedItems[0] as HTMLElement);
+      }
+    } else if (listboxItems) {
+      this.setActiveDescendant(listboxItems[0] as HTMLElement);
     }
   };
 
@@ -64,7 +108,6 @@ export class PostListbox {
     const listboxItems = Array.from(
       this.host.querySelectorAll<HTMLElement>('[slot="post-listbox-item"]'),
     );
-
     if (!listboxItems.length) return;
 
     const currentIndex = listboxItems.findIndex(item => item.id === this.activeDescendantId);
@@ -83,47 +126,71 @@ export class PostListbox {
       case 'End':
         nextIndex = listboxItems.length - 1;
         break;
+      case ' ':
+        // If multiselect, handle item select with Space
+        if (this.multiselect) {
+          this.setActiveDescendant(listboxItems[currentIndex]);
+          this.handleItemSelect(listboxItems[currentIndex].id);
+          e.preventDefault();
+        }
+        return;
       default:
         return;
     }
-
     e.preventDefault();
     this.setActiveDescendant(listboxItems[nextIndex]);
-  };
-
-  private setActiveDescendant(item: HTMLElement) {
-    this.activeDescendantId = item.id;
-    item.scrollIntoView({ block: 'nearest' });
-    item.focus();
-  }
-
-  private checkLabel() {
-    if (!this.labelEl.textContent?.trim()) {
-      throw new Error(
-        'Please provide a label to the listbox component. Label is mandatory for accessibility purposes.',
-      );
+    if (!this.multiselect) {
+      {
+        // If simple select, allow default selection behavior
+        this.handleItemSelect(listboxItems[nextIndex].id);
+      }
     }
-  }
+  };
 
   private handleItemClick = (e: MouseEvent) => {
     // Find the closest post-listbox-item
     const clickedItem = (e.target as HTMLElement).closest('[role="option"]') as HTMLElement;
     if (clickedItem) {
       this.setActiveDescendant(clickedItem);
-      console.log(clickedItem.id);
       this.handleItemSelect(clickedItem.id);
     }
   };
 
   private handleItemSelect = (item: string) => {
+    const option = this.host.querySelector(`#${item}`); // Assuming item is the id of the option
     if (this.multiselect) {
-      // If multiselect is enabled, add item
-      this.selectedItems = [...this.selectedItems, item];
+      // Multi-select logic: Toggle selection of item
+      if (this.selectedItems.includes(item)) {
+        // Remove the item if it is already selected
+        this.selectedItems = this.selectedItems.filter(selected => selected !== item);
+        if (option) {
+          option.removeAttribute('selected');
+        }
+      } else {
+        // Add the item to the selected list
+        this.selectedItems = [...this.selectedItems, item];
+        if (option) {
+          option.setAttribute('selected', 'selected');
+        }
+      }
     } else {
-      // If multiselect not enabled, replace the item
-      this.selectedItems = [item];
+      // Single-select logic
+      if (this.selectedItems[0] !== item) {
+        this.selectedItems = [item]; // Clear previous selection and select the new one
+        // Remove 'selected' attribute from all options
+        const allOptions = this.host.querySelectorAll('[role="option"]');
+        allOptions.forEach(opt => {
+          if (opt.hasAttribute('selected')) {
+            opt.removeAttribute('selected'); // Remove selected from all options
+          }
+        });
+
+        // Add 'selected' to the clicked option
+        if (option) {
+          option.setAttribute('selected', 'selected');
+        }
+      }
     }
-    console.log(this.selectedItems);
   };
 
   componentWillLoad() {
@@ -144,6 +211,7 @@ export class PostListbox {
     if (!this.activeDescendantId && listboxItems.length > 0) {
       this.setActiveDescendant(listboxItems[0]);
     }
+    this.initializeSelectedItems();
   }
 
   componentDidLoad() {
@@ -164,7 +232,6 @@ export class PostListbox {
     return (
       <Host data-version={version}>
         <div
-          role="label"
           ref={el => (this.labelEl = el)}
           id={this.labelId}
           class={`listbox-label${this.labelHidden ? ' visually-hidden' : ''}`}

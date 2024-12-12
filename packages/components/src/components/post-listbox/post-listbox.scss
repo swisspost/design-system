@@ -4,6 +4,8 @@ post-listbox {
   display: flex;
   flex-direction: column;
   gap: var(--post-listbox-heading-gap);
+  width: auto;
+  overflow-y: auto;
 
   > div[role='listbox'] {
     display: flex;
@@ -11,7 +13,11 @@ post-listbox {
     gap: var(--post-listbox-item-gap);
 
     post-listbox-item[role='option']:focus {
-      background-color: lightgrey;
+      border: 2px solid #1f1f1f; /* Blue outline color */
+      outline-offset: 0px; /* Space between the element and outline */
+    }
+    post-listbox-item[selected] {
+      background-color: #00ff51;
     }
   }
 }
