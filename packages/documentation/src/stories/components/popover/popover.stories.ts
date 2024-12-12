@@ -83,8 +83,6 @@ const meta: MetaComponent = {
   },
 };
 
-//TODO: Lea
-
 function render(args: Args) {
   return html`
     <div class="d-flex justify-content-center">

@@ -78,7 +78,6 @@ function render(args: Args) {
 
   if (currentArgs.innerHTML !== innerHTML) updateArgs({ innerHTML });
 
-  //TODO: Lea
   return html`
     <button class="btn btn-secondary btn-large" data-tooltip-target="${args.id}">Button</button>
     <post-tooltip
