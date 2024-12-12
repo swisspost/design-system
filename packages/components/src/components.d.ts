@@ -255,9 +255,9 @@ export namespace Components {
          */
         "multiselect": boolean;
         /**
-          * An array of the chars typed (in a parent select component) used for type ahead search
+          * A string to be highlighted to indicate a search term
          */
-        "typedStr"?: string;
+        "searchTerm"?: string;
     }
     interface PostListboxItem {
         /**
@@ -1088,9 +1088,9 @@ declare namespace LocalJSX {
          */
         "multiselect"?: boolean;
         /**
-          * An array of the chars typed (in a parent select component) used for type ahead search
+          * A string to be highlighted to indicate a search term
          */
-        "typedStr"?: string;
+        "searchTerm"?: string;
     }
     interface PostListboxItem {
         /**

@@ -51,9 +51,9 @@ export class PostListbox {
   @Prop() readonly multiselect: boolean = false;
 
   /**
-   * An array of the chars typed (in a parent select component) used for type ahead search
+   * A string to be highlighted to indicate a search term
    */
-  @Prop() readonly typedStr?: string;
+  @Prop() readonly searchTerm?: string;
 
   private checkLabel() {
     if (!this.labelEl.textContent?.trim()) {
@@ -197,6 +197,17 @@ export class PostListbox {
     }
   };
 
+  private highlightSearch() {
+    const listboxItems = Array.from(
+      this.host.querySelectorAll<HTMLElement>('[slot="post-listbox-item"]'),
+    );
+    listboxItems.forEach(item => {
+      const text = item.textContent;
+      const regex = new RegExp(`(${this.searchTerm})`, 'gi');
+      item.innerHTML = text.replace(regex, '<mark>$1</mark>');
+    });
+  }
+
   componentWillLoad() {
     // Generate a random id for the listbox
     this.labelId = `listbox-${crypto.randomUUID()}`;
@@ -216,6 +227,9 @@ export class PostListbox {
       this.setActiveDescendant(listboxItems[0]);
     }
     this.initializeSelectedItems();
+    if (this.searchTerm) {
+      this.highlightSearch();
+    }
   }
 
   componentDidLoad() {

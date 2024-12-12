@@ -12,5 +12,10 @@ post-listbox {
     display: flex;
     flex-direction: column;
     gap: var(--post-listbox-item-gap);
+    post-listbox-item {
+      mark {
+        background-color: var(--post-listbox-highlight-color, yellow);
+      }
+    }
   }
 }
