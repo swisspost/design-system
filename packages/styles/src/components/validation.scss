@@ -12,11 +12,9 @@ Default feedback message classes
 .valid-feedback,
 .invalid-feedback {
   display: none;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   margin: 0;
-  padding: tokens.get('post-validation-input-padding-block')
-    tokens.get('post-validation-input-padding-inline');
   font-size: tokens.get('post-validation-font-size');
 }
 
@@ -56,24 +54,59 @@ Default feedback message classes
   }
 }
 
+input[type='text'],
+select,
+textarea {
+  ~ .invalid-feedback,
+  ~ .valid-feedback {
+    margin-block: tokens.get('assist-padding-block', components.$post-assist) !important;
+    padding-inline: tokens.get('validation-input-padding-inline');
+  }
+}
+
 /*
  Checkbox and Radio box specific classes
 */
 input[type='checkbox'],
 input[type='radio'],
-input[type='range'],
 :has(input[type='checkbox']),
 :has(input[type='radio']) {
   ~ .invalid-feedback,
   ~ .valid-feedback {
+    padding-inline-start: tokens.get('validation-group-padding-inline-start');
+
     &::before {
-      height: tokens.get('post-validation-group-icon-size');
-      width: tokens.get('post-validation-group-icon-size');
-      display: inline-block;
-      margin-inline-end: tokens.get('post-validation-group-gap-inline');
-      background-color: currentColor;
-      color: currentColor;
+      height: tokens.get('validation-group-icon-size');
+      width: tokens.get('validation-group-icon-size');
+      margin-block-start: tokens.get('validation-group-icon-block-start');
+      margin-block-end: tokens.get('validation-group-icon-block-end');
+      margin-inline-end: tokens.get('validation-group-gap-inline');
       content: '';
+      flex-shrink: 0;
+      mask-size: contain;
+      mask-position: center;
+      mask-repeat: no-repeat;
+    }
+  }
+
+  input[type='radio'],
+  :has(input[type='radio']) {
+    ~ .invalid-feedback,
+    ~ .valid-feedback {
+      margin-block-start: tokens.get('radio-button-gap-block-group', components.$post-radio-button);
+      margin-block-end: tokens.get(
+        'radio-button-padding-block-group',
+        components.$post-radio-button
+      );
+    }
+  }
+
+  input[type='checkbox'],
+  :has(input[type='checkbox']) {
+    ~ .invalid-feedback,
+    ~ .valid-feedback {
+      margin-block-start: tokens.get('checkbox-gap-block-group', components.$post-checkbox);
+      margin-block-end: tokens.get('checkbox-padding-block-group', components.$post-checkbox);
     }
   }
 
