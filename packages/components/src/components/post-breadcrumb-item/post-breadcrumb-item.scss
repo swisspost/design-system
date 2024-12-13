@@ -3,7 +3,6 @@
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/tokens/helpers';
-@use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/mixins/utilities';
 
 tokens.$default-map: components.$post-breadcrumb;
