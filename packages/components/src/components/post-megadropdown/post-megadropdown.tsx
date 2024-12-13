@@ -30,6 +30,12 @@ export class PostMegadropdown {
       this.isVisible = event.detail;
       this.postToggleMegadropdown.emit(this.isVisible);
     });
+
+    this.popoverRef.addEventListener('animationend', () => {
+      if (this.animationClass === 'slide-out') {
+        this.hide();
+      }
+    });
   }
 
   /**
@@ -68,9 +74,6 @@ export class PostMegadropdown {
 
   private handleBackButtonClick() {
     this.animationClass = 'slide-out';
-    setTimeout(() => {
-      this.hide();
-    }, 350);
   }
 
   private handleCloseButtonClick() {
