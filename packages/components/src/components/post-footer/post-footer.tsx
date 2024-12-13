@@ -34,6 +34,58 @@ export class PostFooter {
     this.isMobile = e.detail === 'mobile';
   }
 
+  private renderAccordion() {
+    return (
+      <div class="footer-grid">
+        <post-accorddion heading-level="3" multiple>
+          <post-accordion-item collapsed>
+            <span slot="header">
+              <slot name="grid-1-title"></slot>
+            </span>
+            <slot name="grid-1"></slot>
+          </post-accordion-item>
+          <post-accordion-item collapsed>
+            <span slot="header">
+              <slot name="grid-2-title"></slot>
+            </span>
+            <slot name="grid-2"></slot>
+          </post-accordion-item>
+          <post-accordion-item collapsed>
+            <span slot="header">
+              <slot name="grid-3-title"></slot>
+            </span>
+            <slot name="grid-3"></slot>
+          </post-accordion-item>
+          <post-accordion-item collapsed>
+            <span slot="header">
+              <slot name="grid-4-title"></slot>
+            </span>
+            <slot name="grid-4"></slot>
+          </post-accordion-item>
+        </post-accorddion>
+      </div>
+    );
+  }
+
+  private renderGrid() {
+    return (
+      <div class="footer-grid">
+        <div>
+          <slot name="grid-1"></slot>
+        </div>
+        <div>
+          <slot name="grid-2"></slot>
+        </div>
+        <div>
+          <slot name="grid-3"></slot>
+        </div>
+        <div>
+          <slot name="grid-4"></slot>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     return (
       <Host data-version={version}>
@@ -41,51 +93,7 @@ export class PostFooter {
           <h2 class="visually-hidden">{this.label}</h2>
 
           <div class="footer-container">
-            {this.isMobile ? (
-              <div class="footer-grid">
-                <post-accorddion heading-level="3" multiple>
-                  <post-accordion-item collapsed>
-                    <span slot="header">
-                      <slot name="grid-1-title"></slot>
-                    </span>
-                    <slot name="grid-1"></slot>
-                  </post-accordion-item>
-                  <post-accordion-item collapsed>
-                    <span slot="header">
-                      <slot name="grid-2-title"></slot>
-                    </span>
-                    <slot name="grid-2"></slot>
-                  </post-accordion-item>
-                  <post-accordion-item collapsed>
-                    <span slot="header">
-                      <slot name="grid-3-title"></slot>
-                    </span>
-                    <slot name="grid-3"></slot>
-                  </post-accordion-item>
-                  <post-accordion-item collapsed>
-                    <span slot="header">
-                      <slot name="grid-4-title"></slot>
-                    </span>
-                    <slot name="grid-4"></slot>
-                  </post-accordion-item>
-                </post-accorddion>
-              </div>
-            ) : (
-              <div class="footer-grid">
-                <div>
-                  <slot name="grid-1"></slot>
-                </div>
-                <div>
-                  <slot name="grid-2"></slot>
-                </div>
-                <div>
-                  <slot name="grid-3"></slot>
-                </div>
-                <div>
-                  <slot name="grid-4"></slot>
-                </div>
-              </div>
-            )}
+            {this.isMobile ? this.renderAccordion() : this.renderGrid()}
 
             <div class="footer-column">
               <div class="footer-socialmedia">
