@@ -34,7 +34,7 @@ jobs:
           folder: build-output
 
       - name: Deploy demo app to netlify
-        uses: ./.github/actions/deploy-to-netlify
+        uses: swisspost/design-system/.github/actions/deploy-to-netlify@release/v8
         id: deploy
         with:
           id: ${{ steps.build.outputs.id }}
