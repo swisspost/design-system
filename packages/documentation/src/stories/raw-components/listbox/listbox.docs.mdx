@@ -11,7 +11,7 @@ import * as ListboxStories from './listbox.stories';
   </nav>
 </div>
 
-The listbox component is used to display a scrollable list of selectable options. It supports single or multiple selection modes and is ideal for dropdowns, multi-select menus, or similar interfaces. Accessible and customizable, it ensures seamless navigation and selection with keyboard and assistive technologies.
+The listbox component displays a scrollable list of selectable options. It supports both single and multiple selection modes, making it suitable for dropdowns and multi-select menus.
 
 The `<post-listbox>` is a container for `<post-listbox-item>` components.
 
@@ -26,23 +26,37 @@ For more information, read the [getting started with components guide](/?path=/d
 
 ## Examples
 
-<div className="lead">Single Select</div>
+### Single Select
 
-<div className="lead">Multiselect</div>
+The listbox component defaults to single selection unless the `multiselect` option is enabled. It follows
+the 'Selection Follows Focus' principle, where the focused element is also the selected one. Keyboard
+users can enter the component with the `tab` key and focus/select options using the `up arrow` and `down
+arrow` keys.
 
-<div className="lead">Hidden Label</div>
+<Canvas sourceState="shown" of={ListboxStories.PostListboxSingleSelect} />
+
+### Multiselect
+
+The multiselect version allows users to select multiple options. Keyboard users can enter the component using the `tab` key, navigate options
+with the arrow keys, and toggle selection(s) with the `space` key.
+
+<Canvas sourceState="shown" of={ListboxStories.PostListboxMultiselect} />
+
+### Hidden Label
+
 The label can be visually hidden but should always be present for accessibility reasons. Set the `label-hidden`property
 to `true`to visually hide the label.
 
 <Canvas sourceState="shown" of={ListboxStories.PostListboxNoLabel} />
 
-<div className="lead">Highlighted Search Term</div>
-Passing the `searchTerm` prop from a parent component (e.g., search) enables highlighting of matching
+### Highlighted Search Term
+
+Passing the `searchTerm` property from a parent component (e.g., search) enables highlighting of matching
 text within the listbox items.
 
 <Canvas sourceState="shown" of={ListboxStories.PostListboxHighlightedSearch} />
 
-<div className="lead">Listbox Styling</div>
+### Styling
 
 <strong>--post-listbox-label-gap</strong>
 
@@ -56,6 +70,6 @@ Define the gap of the list items using the `--post-list-item-gap` property (e.g.
 
 <strong>--post-listbox-highlight-color</strong>
 
-Sets the default text highlight color (e.g. `--post-listbox-highlight-color: #ebebeb;`).
+Specifies the color used to highlight the searched term (e.g. `--post-listbox-highlight-color: #ebebeb;`).
 
 <Canvas sourceState="shown" of={ListboxStories.PostListboxStyling} />

@@ -40,6 +40,14 @@ const meta: MetaComponent = {
         category: 'Styling',
       },
     },
+    listboxHighlightColor: {
+      name: '--post-listbox-highlight-color',
+      description: 'Defines the color of the highlighted text.',
+      control: 'text',
+      table: {
+        category: 'Styling',
+      },
+    },
   },
   render: args => {
     let styles = '';
@@ -77,6 +85,28 @@ type Story = StoryObj;
 
 export const Default: Story = {};
 
+export const PostListboxSingleSelect: Story = {
+  render: () =>
+    html`<post-listbox>
+      <h4>Label</h4>
+      <post-listbox-item>Listbox Item 1</post-listbox-item>
+      <post-listbox-item>Listbox Item 2</post-listbox-item>
+      <post-listbox-item>Listbox Item 3</post-listbox-item>
+      <post-listbox-item>Listbox Item 4</post-listbox-item>
+    </post-listbox> `,
+};
+
+export const PostListboxMultiselect: Story = {
+  render: () =>
+    html`<post-listbox multiselect>
+      <h4>Label</h4>
+      <post-listbox-item>Listbox Item 1</post-listbox-item>
+      <post-listbox-item>Listbox Item 2</post-listbox-item>
+      <post-listbox-item>Listbox Item 3</post-listbox-item>
+      <post-listbox-item>Listbox Item 4</post-listbox-item>
+    </post-listbox> `,
+};
+
 export const PostListboxNoLabel: Story = {
   render: () =>
     html`<post-listbox label-hidden="true">
@@ -86,11 +116,6 @@ export const PostListboxNoLabel: Story = {
       <post-listbox-item>Listbox Item 3</post-listbox-item>
       <post-listbox-item>Listbox Item 4</post-listbox-item>
       <post-listbox-item>Listbox Item 5</post-listbox-item>
-      <post-listbox-item>Listbox Item 6</post-listbox-item>
-      <post-listbox-item>Listbox Item 7</post-listbox-item>
-      <post-listbox-item>Listbox Item 8</post-listbox-item>
-      <post-listbox-item>Listbox Item 9</post-listbox-item>
-      <post-listbox-item>Listbox Item 10</post-listbox-item>
     </post-listbox> `,
 };
 export const PostListboxHighlightedSearch: Story = {
