@@ -1,5 +1,3 @@
-// do not import this file in the ./index.ts file
-
 type MapItem = {
   minWidth: number;
   key: string;
