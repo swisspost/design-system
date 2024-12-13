@@ -29,8 +29,8 @@ const meta: MetaExtended = {
     (story: StoryFn, context: StoryContext) => {
       const storyTemplate = html`
         <div class="sizing-example">
-          <div class="d-flex p-16 gap-16" style="height: 150px">
-            <div class="flex-fill">${story(context.args, context)}</div>
+          <div class="h-112">
+            ${story(context.args, context)}
           </div>
         </div>
       `;
