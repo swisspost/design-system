@@ -1,6 +1,9 @@
-import { Component, h, Host, State, Element, Listen } from '@stencil/core';
+import { Component, h, Host, State, Element, Method } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
+import { SwitchVariant } from '@/components';
+
+type DEVICE_SIZE = 'mobile' | 'tablet' | 'desktop' | null;
 
 @Component({
   tag: 'post-header',
@@ -9,7 +12,7 @@ import { version } from '@root/package.json';
 })
 export class PostHeader {
   @Element() host: HTMLPostHeaderElement;
-  @State() device: 'mobile' | 'tablet' | 'desktop' = null;
+  @State() device: DEVICE_SIZE = null;
   @State() mobileMenuExtended: boolean = false;
 
   private scrollParent = null;
@@ -24,9 +27,14 @@ export class PostHeader {
     this.handleScrollEvent();
   }
 
-  @Listen('postMainNavigationClosed')
-  handlePostMainNavigationClosed() {
-    this.mobileMenuExtended = false;
+  /**
+   * Toggles the mobile navigation.
+   */
+  @Method()
+  async toggleMobileMenu() {
+    if (this.device !== 'desktop') {
+      this.mobileMenuExtended = !this.mobileMenuExtended;
+    }
   }
 
   private handleScrollEvent() {
@@ -67,25 +75,37 @@ export class PostHeader {
   }
 
   private handleResize() {
+    const previousDevice = this.device;
+    let newDevice: DEVICE_SIZE;
     const width = window?.innerWidth;
+
     if (width >= 1024) {
-      this.device = 'desktop';
+      newDevice = 'desktop';
       this.mobileMenuExtended = false; // Close any open mobile menu
     } else if (width >= 600) {
-      this.device = 'tablet';
+      newDevice = 'tablet';
     } else {
-      this.device = 'mobile';
+      newDevice = 'mobile';
+    }
+
+    // Apply only on change for doing work only when necessary
+    if (newDevice !== previousDevice) {
+      this.device = newDevice;
+      window.requestAnimationFrame(() => {
+        this.switchLanguageSwitchMode();
+      });
     }
   }
 
-  private handleMobileMenuToggle() {
-    this.mobileMenuExtended = !this.mobileMenuExtended;
+  private switchLanguageSwitchMode() {
+    const variant: SwitchVariant = this.device === 'desktop' ? 'dropdown' : 'list';
+    this.host.querySelector('post-language-switch')?.setAttribute('variant', variant);
   }
 
   render() {
-    const mainNavClasses = ['main-navigation'];
+    const navigationClasses = ['navigation'];
     if (this.mobileMenuExtended) {
-      mainNavClasses.push('extended');
+      navigationClasses.push('extended');
     }
 
     return (
@@ -95,13 +115,12 @@ export class PostHeader {
             <div class="logo">
               <slot name="post-logo"></slot>
             </div>
-            {this.device === 'desktop' && <slot name="audience-navigation"></slot>}
           </div>
           <div class="global-sub">
             {this.device === 'desktop' && <slot name="meta-navigation"></slot>}
             <slot name="global-controls"></slot>
             {this.device === 'desktop' && <slot name="post-language-switch"></slot>}
-            <div onClick={() => this.handleMobileMenuToggle()} class="mobile-toggle">
+            <div onClick={() => this.toggleMobileMenu()} class="mobile-toggle">
               <slot name="post-togglebutton"></slot>
             </div>
           </div>
@@ -115,16 +134,14 @@ export class PostHeader {
           </div>
         </div>
 
-        <div class={mainNavClasses.join(' ')}>
-          {(this.device === 'mobile' || this.device === 'tablet') && (
-            <slot name="audience-navigation"></slot>
-          )}
+        <div aria-hidden={`${!this.mobileMenuExtended}`} class={navigationClasses.join(' ')}>
           <slot name="post-mainnavigation"></slot>
+
           {(this.device === 'mobile' || this.device === 'tablet') && (
-            <slot name="meta-navigation"></slot>
-          )}
-          {(this.device === 'mobile' || this.device === 'tablet') && (
-            <slot name="post-language-switch"></slot>
+            <div class="navigation-footer">
+              <slot name="meta-navigation"></slot>
+              <slot name="post-language-switch"></slot>
+            </div>
           )}
         </div>
       </Host>

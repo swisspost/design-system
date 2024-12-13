@@ -15,7 +15,7 @@ const SIZES = ['', 'btn-sm', 'btn-lg'];
 
 type Story = StoryObj;
 
-export const ToggleButton: Story = {
+export const Togglebutton: Story = {
   render: () => {
     const TOGGLED = [false, true];
 

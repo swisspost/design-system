@@ -7,9 +7,11 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
+import { SwitchVariant } from "./components/post-language-switch/switch-variants";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
+export { SwitchVariant } from "./components/post-language-switch/switch-variants";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
     interface PostAccordion {
@@ -66,6 +68,12 @@ export namespace Components {
           * Defines the company internal userId.<div className="mb-1 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
          */
         "userid"?: string;
+    }
+    interface PostBackToTop {
+        /**
+          * The label of the back-to-top button, intended solely for accessibility purposes. This label is always hidden from view.
+         */
+        "label": string;
     }
     interface PostBanner {
         /**
@@ -167,6 +175,10 @@ export namespace Components {
         "update": () => Promise<void>;
     }
     interface PostHeader {
+        /**
+          * Toggles the mobile navigation.
+         */
+        "toggleMobileMenu": () => Promise<void>;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -211,6 +223,10 @@ export namespace Components {
          */
         "code": string;
         /**
+          * Used on parent component (post-language-switch) to detect elements that are manually added
+         */
+        "generated": boolean;
+        /**
           * The full name of the language. For example, "Deutsch".
          */
         "name": string;
@@ -222,6 +238,28 @@ export namespace Components {
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
         "url": string;
+        /**
+          * The variant of the post-language-switch parent (dynamically set by the parent)
+         */
+        "variant"?: SwitchVariant | null;
+    }
+    interface PostLanguageSwitch {
+        /**
+          * A title for the list of language options
+         */
+        "caption": string;
+        /**
+          * A descriptive text for the list of language options
+         */
+        "description": string;
+        /**
+          * The name of the language switch, which will be used on the dropdown as an ID
+         */
+        "name": string;
+        /**
+          * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
+         */
+        "variant": SwitchVariant;
     }
     interface PostList {
         /**
@@ -500,6 +538,12 @@ declare global {
         prototype: HTMLPostAvatarElement;
         new (): HTMLPostAvatarElement;
     };
+    interface HTMLPostBackToTopElement extends Components.PostBackToTop, HTMLStencilElement {
+    }
+    var HTMLPostBackToTopElement: {
+        prototype: HTMLPostBackToTopElement;
+        new (): HTMLPostBackToTopElement;
+    };
     interface HTMLPostBannerElementEventMap {
         "postDismissed": void;
     }
@@ -604,6 +648,12 @@ declare global {
     var HTMLPostLanguageOptionElement: {
         prototype: HTMLPostLanguageOptionElement;
         new (): HTMLPostLanguageOptionElement;
+    };
+    interface HTMLPostLanguageSwitchElement extends Components.PostLanguageSwitch, HTMLStencilElement {
+    }
+    var HTMLPostLanguageSwitchElement: {
+        prototype: HTMLPostLanguageSwitchElement;
+        new (): HTMLPostLanguageSwitchElement;
     };
     interface HTMLPostListElement extends Components.PostList, HTMLStencilElement {
     }
@@ -784,6 +834,7 @@ declare global {
         "post-accordion": HTMLPostAccordionElement;
         "post-accordion-item": HTMLPostAccordionItemElement;
         "post-avatar": HTMLPostAvatarElement;
+        "post-back-to-top": HTMLPostBackToTopElement;
         "post-banner": HTMLPostBannerElement;
         "post-breadcrumb-item": HTMLPostBreadcrumbItemElement;
         "post-card-control": HTMLPostCardControlElement;
@@ -793,6 +844,7 @@ declare global {
         "post-header": HTMLPostHeaderElement;
         "post-icon": HTMLPostIconElement;
         "post-language-option": HTMLPostLanguageOptionElement;
+        "post-language-switch": HTMLPostLanguageSwitchElement;
         "post-list": HTMLPostListElement;
         "post-list-item": HTMLPostListItemElement;
         "post-logo": HTMLPostLogoElement;
@@ -852,6 +904,12 @@ declare namespace LocalJSX {
           * Defines the company internal userId.<div className="mb-1 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
          */
         "userid"?: string;
+    }
+    interface PostBackToTop {
+        /**
+          * The label of the back-to-top button, intended solely for accessibility purposes. This label is always hidden from view.
+         */
+        "label": string;
     }
     interface PostBanner {
         /**
@@ -993,6 +1051,10 @@ declare namespace LocalJSX {
          */
         "code": string;
         /**
+          * Used on parent component (post-language-switch) to detect elements that are manually added
+         */
+        "generated"?: boolean;
+        /**
           * The full name of the language. For example, "Deutsch".
          */
         "name"?: string;
@@ -1004,6 +1066,28 @@ declare namespace LocalJSX {
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
         "url"?: string;
+        /**
+          * The variant of the post-language-switch parent (dynamically set by the parent)
+         */
+        "variant"?: SwitchVariant | null;
+    }
+    interface PostLanguageSwitch {
+        /**
+          * A title for the list of language options
+         */
+        "caption"?: string;
+        /**
+          * A descriptive text for the list of language options
+         */
+        "description"?: string;
+        /**
+          * The name of the language switch, which will be used on the dropdown as an ID
+         */
+        "name"?: string;
+        /**
+          * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
+         */
+        "variant"?: SwitchVariant;
     }
     interface PostList {
         /**
@@ -1173,6 +1257,7 @@ declare namespace LocalJSX {
         "post-accordion": PostAccordion;
         "post-accordion-item": PostAccordionItem;
         "post-avatar": PostAvatar;
+        "post-back-to-top": PostBackToTop;
         "post-banner": PostBanner;
         "post-breadcrumb-item": PostBreadcrumbItem;
         "post-card-control": PostCardControl;
@@ -1182,6 +1267,7 @@ declare namespace LocalJSX {
         "post-header": PostHeader;
         "post-icon": PostIcon;
         "post-language-option": PostLanguageOption;
+        "post-language-switch": PostLanguageSwitch;
         "post-list": PostList;
         "post-list-item": PostListItem;
         "post-logo": PostLogo;
@@ -1209,6 +1295,7 @@ declare module "@stencil/core" {
             "post-accordion": LocalJSX.PostAccordion & JSXBase.HTMLAttributes<HTMLPostAccordionElement>;
             "post-accordion-item": LocalJSX.PostAccordionItem & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
             "post-avatar": LocalJSX.PostAvatar & JSXBase.HTMLAttributes<HTMLPostAvatarElement>;
+            "post-back-to-top": LocalJSX.PostBackToTop & JSXBase.HTMLAttributes<HTMLPostBackToTopElement>;
             "post-banner": LocalJSX.PostBanner & JSXBase.HTMLAttributes<HTMLPostBannerElement>;
             "post-breadcrumb-item": LocalJSX.PostBreadcrumbItem & JSXBase.HTMLAttributes<HTMLPostBreadcrumbItemElement>;
             /**
@@ -1224,6 +1311,7 @@ declare module "@stencil/core" {
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
             "post-language-option": LocalJSX.PostLanguageOption & JSXBase.HTMLAttributes<HTMLPostLanguageOptionElement>;
+            "post-language-switch": LocalJSX.PostLanguageSwitch & JSXBase.HTMLAttributes<HTMLPostLanguageSwitchElement>;
             "post-list": LocalJSX.PostList & JSXBase.HTMLAttributes<HTMLPostListElement>;
             "post-list-item": LocalJSX.PostListItem & JSXBase.HTMLAttributes<HTMLPostListItemElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;

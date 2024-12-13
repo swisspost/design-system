@@ -1,3 +1,15 @@
 :host {
   cursor: pointer;
 }
+
+:host([aria-pressed="true"]) {
+  ::slotted([data-showwhen="untoggled"]) {
+    display: none;
+  }
+}
+
+:host([aria-pressed="false"]) {
+  ::slotted([data-showwhen="toggled"]) {
+    display: none;
+  }
+}

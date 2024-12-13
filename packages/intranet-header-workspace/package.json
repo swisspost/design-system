@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-intranet-header-workspace",
-  "version": "3.0.22-next.6",
+  "version": "3.0.22-next.8",
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
@@ -23,7 +23,7 @@
     "@angular/router": "18.2.13",
     "@ng-bootstrap/ng-bootstrap": "17.0.0",
     "@popperjs/core": "2.11.8",
-    "@swisspost/design-system-styles": "workspace:9.0.0-next.6",
+    "@swisspost/design-system-styles": "workspace:9.0.0-next.8",
     "rxjs": "7.8.1",
     "tslib": "2.6.3",
     "watch": "1.0.2",
@@ -49,7 +49,7 @@
     "karma-jasmine": "5.1.0",
     "karma-jasmine-html-reporter": "2.1.0",
     "ng-packagr": "18.1.0",
-    "npm-run-all2": "5.0.0",
+    "npm-run-all2": "7.0.1",
     "rimraf": "6.0.1",
     "typescript": "5.5.4",
     "wait-on": "8.0.1"

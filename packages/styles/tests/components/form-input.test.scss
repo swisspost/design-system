@@ -1,0 +1,7 @@
+@use 'sass:map';
+@use 'sass:meta';
+@use 'tests/jest';
+@use 'src/components/form-input';
+
+// Check if component forwards options
+@include jest.true(map.has-key(meta.module-variables('form-input'), 'font-base-path'));
