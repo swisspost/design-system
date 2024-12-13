@@ -27,7 +27,6 @@ some content
  - [post-banner](../post-banner)
  - [post-breadcrumb](../post-breadcrumb)
  - [post-breadcrumb-item](../post-breadcrumb-item)
- - [post-breadcrumb-item](../post-breadcrumb-item)
  - [post-card-control](../post-card-control)
  - [post-closebutton](../post-closebutton)
  - [post-language-switch](../post-language-switch)
@@ -41,7 +40,6 @@ graph TD;
   post-back-to-top --> post-icon
   post-banner --> post-icon
   post-breadcrumb --> post-icon
-  post-breadcrumb-item --> post-icon
   post-breadcrumb-item --> post-icon
   post-card-control --> post-icon
   post-closebutton --> post-icon
