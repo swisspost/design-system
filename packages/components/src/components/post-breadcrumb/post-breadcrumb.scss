@@ -18,184 +18,186 @@ tokens.$default-map: components.$post-breadcrumb;
   display: flex;
   align-items: center;
 
-  .hidden-items {
-    gap: tokens.get('breadcrumb-gap-inline-outer');
-    position: absolute;
-    height: 0;
-    overflow: hidden;
-    white-space: nowrap;
-  }
+}
 
-  .breadcrumbs-list {
+.hidden-items {
+  gap: tokens.get('breadcrumb-gap-inline-outer');
+  position: absolute;
+  height: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.breadcrumbs-list {
+  display: flex;
+  flex-wrap: nowrap;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  align-items: center;
+  height: 100%;
+  gap: tokens.get('breadcrumb-gap-inline-outer');
+}
+
+post-icon {
+  display: inline-block;
+  box-sizing: border-box;
+  color: tokens.get('breadcrumb-enabled-fg');
+  height: tokens.get('breadcrumb-icon-size');
+  width: tokens.get('breadcrumb-icon-size');
+}
+
+.breadcrumb-item-icon {
+  padding-block: tokens.get('breadcrumb-padding-block-icon-link');
+  padding-inline: tokens.get('breadcrumb-padding-inline-icon-link');
+}
+
+li {
+  a {
     display: flex;
-    flex-wrap: nowrap;
-    position: relative;
-    margin: 0;
-    padding: 0;
-    list-style: none;
     align-items: center;
-    height: 100%;
-    gap: tokens.get('breadcrumb-gap-inline-outer');
-        
-    post-icon {
-      display: inline-block;
-      box-sizing: border-box;
-      color: tokens.get('breadcrumb-enabled-fg');
-      height: tokens.get('breadcrumb-icon-size');
-      width: tokens.get('breadcrumb-icon-size');
+    @include utilities.focus-style;
+
+    &:focus {
+      border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+    }
+  
+  .home-icon {
+    padding-block: tokens.get('breadcrumb-padding-block-icon-home');
+    padding-inline: tokens.get('breadcrumb-padding-inline-icon-home');
+
+    &:hover {
+      color: tokens.get('breadcrumb-hover-fg');
     }
 
-    .breadcrumb-item-icon {
-      padding-block: tokens.get('breadcrumb-padding-block-icon-link');
-      padding-inline: tokens.get('breadcrumb-padding-inline-icon-link');
-    }
-
-    li {
-      a {
-        display: flex;
-        align-items: center;
-        @include utilities.focus-style;
-
-        &:focus {
-          border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
-        }
-      
-      .home-icon {
-        padding-block: tokens.get('breadcrumb-padding-block-icon-home');
-        padding-inline: tokens.get('breadcrumb-padding-inline-icon-home');
-
-        &:hover {
-          color: tokens.get('breadcrumb-hover-fg');
-        }
-
-        @include utilities.high-contrast-mode() {
-          a,
-          &:focus,
-          &:hover {
-            color: CanvasText !important;
-          }
-        }
-        }
-      }
-    }
-    .menu-trigger-wrapper {
-      display: flex;
-      align-items: center;
-      gap: tokens.get('breadcrumb-gap-inline-inner');
-    
-      .actual-menu {
-        display: flex;
-        align-items: center;
-    
-        post-menu-trigger {
-          display: flex;
-          align-items: center;
-          padding-block: tokens.get('breadcrumb-padding-block-text');
-          @include utilities.focus-style;
-    
-            &:focus {
-              border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
-            }
-    
-          button {
-            background: none;
-            border: none;
-            line-height: 150%;
-            font-size: tokens.get('body-font-size', elements.$post-body);
-            cursor: pointer;
-            padding: 0;
-            color: tokens.get('breadcrumb-enabled-fg');
-    
-            &:hover {
-              color: tokens.get('breadcrumb-hover-fg');
-            }
-    
-            @include utilities.high-contrast-mode() {
-              a,
-              &:focus,
-              &:hover {
-                color: LinkText !important;
-              }
-            }
-          }
-        }
-
-        post-menu::part(popover-container) {
-          display: flex;
-          flex-direction: column;
-          align-items: start;
-          padding: 0.6rem;
-          gap: tokens.get('breadcrumb-gap-inline-outer');
-        
-          ::slotted(post-menu-item:not(:last-child)) {
-            margin-bottom: tokens.get('breadcrumb-gap-inline-outer');
-          }
-        }
-
-        .breadcrumb-item {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: tokens.get('breadcrumb-gap-inline-inner');
-        
-          a {
-            text-decoration: none;
-            color: inherit;
-            line-height: 150%;
-            padding-block: tokens.get('breadcrumb-padding-block-text');
-            font-size: tokens.get('body-font-size', elements.$post-body);
-            @include utilities.focus-style;
-        
-            &:hover {
-              color: tokens.get('breadcrumb-hover-fg');
-              text-decoration: tokens.get('breadcrumb-link-hover-text-decoration');
-            }
-        
-            &:focus-visible {
-              border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
-            }
-          }
-        
-          span {
-            &:hover {
-              color: tokens.get('breadcrumb-hover-fg');
-              text-decoration: tokens.get('breadcrumb-link-hover-text-decoration');
-            }
-        
-            &:focus-visible {
-              border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
-            }
-          }
-        
-          @include utilities.high-contrast-mode() {
-            a,
-            &:focus,
-            &:hover {
-              color: LinkText !important;
-            }
-        
-            &:visited {
-              color: VisitedText !important;
-            }
-          }
-        }
-      }
-    }
-
-    post-breadcrumb-item:last-of-type {
-      pointer-events: none;
-      color: tokens.get('breadcrumb-selected-fg');
-      font-weight: tokens.get('breadcrumb-selected-font-weight');
-      text-decoration: tokens.get('breadcrumb-link-selected-text-decoration');
-    
+    @include utilities.high-contrast-mode() {
+      a,
+      &:focus,
       &:hover {
-        color: tokens.get('breadcrumb-selected-fg');
-        text-decoration: none;
+        color: CanvasText !important;
       }
     }
-
-    .visually-hidden {
-      @include post.visually-hidden();
     }
   }
+}
+
+.menu-trigger-wrapper {
+  display: flex;
+  align-items: center;
+  gap: tokens.get('breadcrumb-gap-inline-inner');
+}
+
+.actual-menu {
+  display: flex;
+  align-items: center;
+}
+
+post-menu-trigger {
+  display: flex;
+  align-items: center;
+  padding-block: tokens.get('breadcrumb-padding-block-text');
+  @include utilities.focus-style;
+
+    &:focus {
+      border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+    }
+
+  button {
+    background: none;
+    border: none;
+    line-height: 150%;
+    font-size: tokens.get('body-font-size', elements.$post-body);
+    cursor: pointer;
+    padding: 0;
+    color: tokens.get('breadcrumb-enabled-fg');
+
+    &:hover {
+      color: tokens.get('breadcrumb-hover-fg');
+    }
+
+    @include utilities.high-contrast-mode() {
+      a,
+      &:focus,
+      &:hover {
+        color: LinkText !important;
+      }
+    }
+  }
+}
+
+post-menu::part(popover-container) {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 0.6rem;
+  gap: tokens.get('breadcrumb-gap-inline-outer');
+
+  ::slotted(post-menu-item:not(:last-child)) {
+    margin-bottom: tokens.get('breadcrumb-gap-inline-outer');
+  }
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: tokens.get('breadcrumb-gap-inline-inner');
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    line-height: 150%;
+    padding-block: tokens.get('breadcrumb-padding-block-text');
+    font-size: tokens.get('body-font-size', elements.$post-body);
+    @include utilities.focus-style;
+
+    &:hover {
+      color: tokens.get('breadcrumb-hover-fg');
+      text-decoration: tokens.get('breadcrumb-link-hover-text-decoration');
+    }
+
+    &:focus-visible {
+      border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+    }
+  }
+
+  span {
+    &:hover {
+      color: tokens.get('breadcrumb-hover-fg');
+      text-decoration: tokens.get('breadcrumb-link-hover-text-decoration');
+    }
+
+    &:focus-visible {
+      border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+    }
+  }
+
+  @include utilities.high-contrast-mode() {
+    a,
+    &:focus,
+    &:hover {
+      color: LinkText !important;
+    }
+
+    &:visited {
+      color: VisitedText !important;
+    }
+  }
+}
+
+post-breadcrumb-item:last-of-type {
+  pointer-events: none;
+  color: tokens.get('breadcrumb-selected-fg');
+  font-weight: tokens.get('breadcrumb-selected-font-weight');
+  text-decoration: tokens.get('breadcrumb-link-selected-text-decoration');
+
+  &:hover {
+    color: tokens.get('breadcrumb-selected-fg');
+    text-decoration: none;
+  }
+}
+
+.visually-hidden {
+  @include post.visually-hidden();
 }
