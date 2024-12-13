@@ -41,8 +41,8 @@ tokens.$default-map: components.$post-breadcrumb;
       display: inline-block;
       box-sizing: border-box;
       color: tokens.get('breadcrumb-enabled-fg');
-      height: tokens.get('breadcrum-icon-size');
-      width: tokens.get('breadcrum-icon-size');
+      height: tokens.get('breadcrumb-icon-size');
+      width: tokens.get('breadcrumb-icon-size');
     }
 
     .breadcrumb-item-icon {
