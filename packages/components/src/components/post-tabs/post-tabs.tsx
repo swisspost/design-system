@@ -22,9 +22,7 @@ export class PostTabs {
   private isLoaded = false;
 
   private get tabs(): HTMLPostTabHeaderElement[] {
-    return Array.from(this.host.querySelectorAll<HTMLPostTabHeaderElement>('post-tab-header')).filter(tab =>
-      tab.closest('post-tabs') === this.host
-    );
+    return this.host.querySelectorAll('& > post-tab-header');
   }  
 
   @Element() host: HTMLPostTabsElement;
