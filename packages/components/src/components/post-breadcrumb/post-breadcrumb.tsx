@@ -158,7 +158,6 @@ export class PostBreadcrumb {
                           }
                         }}
                       >
-                        <post-icon name="2111" class="breadcrumb-item-icon" />
                         {item.url ? <a href={item.url}>{item.text}</a> : <span>{item.text}</span>}
                       </post-menu-item>
                     ))}

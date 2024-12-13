@@ -124,7 +124,7 @@ tokens.$default-map: components.$post-breadcrumb;
           display: flex;
           flex-direction: column;
           align-items: start;
-          padding: 0.3rem;
+          padding: 0.6rem;
           gap: tokens.get('breadcrumb-gap-inline-outer');
         
           ::slotted(post-menu-item:not(:last-child)) {
