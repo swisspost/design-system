@@ -60,7 +60,7 @@ $utilities: (
     values: $post-combined-sizes,
   ),
   'min-height': (
-    responsive: false,
+    responsive: true,
     property: min-height,
     class: min-h,
     values: $post-combined-sizes,
