@@ -1,11 +1,10 @@
 @use '@swisspost/design-system-styles/mixins/button';
 @use '@swisspost/design-system-styles/mixins/icons';
 @use '@swisspost/design-system-styles/mixins/media';
-@use '@swisspost/design-system-styles/mixins/utilities';
-@use '@swisspost/design-system-styles/functions/icons' as icon-fn;
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/variables/animation';
+@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 
 $nav-height: var(--post-core-dimension-56);
 
@@ -111,26 +110,7 @@ post-mainnavigation {
     post-list-item {
       a,
       button {
-        width: 100%;
-        height: var(--post-core-dimension-48);
-        padding-inline-end: var(--post-core-dimension-6);
-        gap: var(--post-core-dimension-16);
-        border-block: var(--post-core-dimension-1) solid transparent;
-        border-block-end-color: currentColor;
-        font-weight: var(--post-core-font-weight-700);
-
-        &:hover,
-        &.selected {
-          border-block-width: var(--post-core-dimension-3);
-        }
-
-        &:hover::after {
-          content: '';
-          display: block;
-          @include icons.icon(3020);
-          width: var(--post-core-dimension-24);
-          height: var(--post-core-dimension-24);
-        }
+        @include header-mx.mobile-header-interactive;
       }
     }
   }
