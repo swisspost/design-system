@@ -181,6 +181,10 @@ export namespace Components {
         "label": string;
     }
     interface PostHeader {
+        /**
+          * Toggles the mobile navigation.
+         */
+        "toggleMobileMenu": () => Promise<void>;
     }
     /**
      * @class PostIcon - representing a stencil component

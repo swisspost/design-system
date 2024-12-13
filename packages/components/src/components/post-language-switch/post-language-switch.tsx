@@ -130,7 +130,7 @@ export class PostLanguageSwitch {
             aria-label={`${this.caption}, ${this.description}`}
           >
             {this.activeLang.toUpperCase()}
-            <post-icon aria-hidden="true" name="2052"></post-icon>
+            <post-icon aria-hidden="true" name="chevrondown"></post-icon>
           </button>
         </post-menu-trigger>
         <post-menu id={this.menuId}>

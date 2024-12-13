@@ -21,11 +21,11 @@ export class PostBackToTop {
 
   private translateY: string;
 
-  isBelowFold(): boolean {
+  private isBelowFold(): boolean {
     return window.scrollY > window.innerHeight;
   }
 
-  handleScroll = () => {
+  private handleScroll = () => {
     this.belowFold = this.isBelowFold();
   };
 
@@ -39,7 +39,7 @@ export class PostBackToTop {
     }
   }
 
-  scrollToTop() {
+  private scrollToTop() {
     window.scrollTo({
       top: 0,
     });
@@ -72,7 +72,7 @@ export class PostBackToTop {
       .getPropertyValue('--post-floating-button-translate-y');
 
     if (!this.belowFold) {
-      this.el.style.transform = `translateY(-${this.translateY})`;
+      this.el.style.transform = `translateY(${this.translateY})`;
     }
 
     // Initial load
