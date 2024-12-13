@@ -1901,7 +1901,7 @@ export class MigrationV45ManualListComponent extends LitElement {
                     ${this._templateAutoIconAngular()}
                     <span class="tag tag-sm tag-danger">breaking</span> Removed
                     <code>.custom-select-menu</code> class.<br />
-                    Use <em>utility-classes</em>&nbsp;<code>.w-100.max-w-100</code>
+                    Use <em>utility-classes</em>&nbsp;<code>.w-100.mw-100</code>
                     instead.
                   </label>
                 </div>
