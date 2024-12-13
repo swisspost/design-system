@@ -11,18 +11,20 @@ $nav-height: var(--post-core-dimension-56);
 post-mainnavigation {
   // reset links and buttons
   post-list-item {
-    a {
+    > a {
       text-decoration: none;
       border-radius: 0;
     }
 
-    button {
+    > button,
+    post-megadropdown-trigger button {
       @include button.reset-button;
       text-align: start;
     }
 
-    a,
-    button {
+    > a,
+    > button,
+    post-megadropdown-trigger button {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -50,7 +52,7 @@ post-mainnavigation {
     post-list {
       margin-inline: var(--post-core-dimension-4);
 
-      > [role="list"] {
+      > [role='list'] {
         flex-direction: row;
         max-width: 100vw;
         transition: transform animation.$transition-base-timing;
@@ -58,8 +60,9 @@ post-mainnavigation {
     }
 
     post-list-item {
-      a,
-      button {
+      > a,
+      > button,
+      post-megadropdown-trigger button {
         padding-inline: var(--post-core-dimension-12);
         height: $nav-height;
         gap: var(--post-core-dimension-4);
@@ -78,7 +81,8 @@ post-mainnavigation {
       }
 
       // styles specific to for the mega-dropdown buttons
-      button {
+      > button,
+      post-megadropdown-trigger button {
         padding-inline-end: var(--post-core-dimension-12);
         transition: border-block-end-color animation.$transition-base-timing;
 
@@ -96,20 +100,21 @@ post-mainnavigation {
       }
     }
 
-    [slot="back-button"] {
+    [slot='back-button'] {
       display: none;
     }
   }
 
   // tablet/mobile styles
   @include media.max(lg) {
-    post-list > [role="list"] {
+    post-list > [role='list'] {
       transform: none !important;
     }
 
     post-list-item {
-      a,
-      button {
+      > a,
+      > button,
+      post-megadropdown-trigger button {
         @include header-mx.mobile-header-interactive;
       }
     }

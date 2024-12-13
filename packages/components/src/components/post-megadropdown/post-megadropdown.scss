@@ -89,11 +89,21 @@ post-popovercontainer {
       text-decoration: none;
       font-weight: inherit;
       border-bottom: 0;
+      border-top: 0;
     }
 
     @include media.max(lg) {
       display: block;
       font-size: 20px;
+    }
+  }
+
+  // Unset styles added by parent main navigation
+  a:hover {
+    border-block-width: 0;
+
+    &::after {
+      content: unset;
     }
   }
 
@@ -153,15 +163,7 @@ post-popovercontainer {
       width: 100%;
       border-bottom: 0;
       height: auto;
-
-      // Unset styles added by parent main navigation
-      &:hover {
-        border-block-width: 0;
-
-        &::after {
-          content: unset;
-        }
-      }
+      border-top: 0;
 
       @include media.max(lg) {
         padding: 12px 12px 11px 0;
