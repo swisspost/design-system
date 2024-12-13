@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Watch } from '@stencil/core';
+import { Component, Host, h, Prop, Watch, Element } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkType } from '@/utils';
 
@@ -12,6 +12,8 @@ import { checkType } from '@/utils';
   shadow: true,
 })
 export class PostTogglebutton {
+  @Element() host: HTMLPostTogglebuttonElement;
+
   /**
    * If `true`, the button is in the "on" state, otherwise it is in the "off" state.
    */
@@ -28,6 +30,10 @@ export class PostTogglebutton {
 
   componentWillLoad() {
     this.validateToggled();
+
+    // add event listener to not override listener that might be set on the host
+    this.host.addEventListener('click', () => this.handleClick());
+    this.host.addEventListener('keydown', (e: KeyboardEvent) => this.handleKeydown(e));
   }
 
   private handleClick = () => {
@@ -35,8 +41,10 @@ export class PostTogglebutton {
   };
 
   private handleKeydown = (event: KeyboardEvent) => {
-    if (event.key === 'Enter') {
-      this.toggled = !this.toggled;
+    // perform a click when enter or spaced are pressed to mimic the button behavior
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault(); // prevents the page from scrolling when space is pressed
+      this.host.click();
     }
   };
 
@@ -44,12 +52,10 @@ export class PostTogglebutton {
     return (
       <Host
         slot="post-togglebutton"
-        tabindex="0"
         data-version={version}
         role="button"
+        tabindex="0"
         aria-pressed={this.toggled.toString()}
-        onClick={this.handleClick}
-        onKeyDown={this.handleKeydown}
       >
         <slot />
       </Host>
