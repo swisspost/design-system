@@ -14,6 +14,7 @@ type DEVICE_SIZE = 'mobile' | 'tablet' | 'desktop' | null;
 export class PostHeader {
   private scrollParent = null;
   private mobileMenu: HTMLElement;
+  private mobileMenuAnimation: Animation;
   private throttledScroll = () => this.handleScrollEvent();
   private throttledResize = throttle(50, () => this.handleResize());
 
@@ -42,13 +43,14 @@ export class PostHeader {
   async toggleMobileMenu() {
     if (this.device === 'desktop') return;
 
-    if (this.mobileMenuExtended) {
-      await slideUp(this.mobileMenu).finished;
-    } else {
-      slideDown(this.mobileMenu);
-    }
+    this.mobileMenuAnimation = this.mobileMenuExtended
+      ? slideUp(this.mobileMenu)
+      : slideDown(this.mobileMenu);
 
+    // Toggle menu visibility before it slides down and after it slides back up
+    if (this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
     this.mobileMenuExtended = !this.mobileMenuExtended;
+    if (!this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
   }
 
   private handleScrollEvent() {
@@ -95,11 +97,21 @@ export class PostHeader {
 
     if (width >= 1024) {
       newDevice = 'desktop';
-      this.mobileMenuExtended = false; // Close any open mobile menu
     } else if (width >= 600) {
       newDevice = 'tablet';
     } else {
       newDevice = 'mobile';
+    }
+
+    // Close any open mobile menu
+    if (newDevice === 'desktop' && this.mobileMenuExtended) {
+      this.toggleMobileMenu();
+      this.mobileMenuAnimation.finish(); // no animation
+
+      console.log(this.mobileMenuAnimation);
+
+      const menuToggler = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
+      if (menuToggler) menuToggler.toggled = false;
     }
 
     // Apply only on change for doing work only when necessary
