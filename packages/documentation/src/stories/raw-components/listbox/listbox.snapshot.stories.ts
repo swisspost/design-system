@@ -20,16 +20,20 @@ export const PostListbox: Story = {
         ${bombArgs({
           labelHidden: [false, true],
           multiselect: [false, true],
+          searchGTerm: ['tem', '3'], // Variations for search term
           itemGap: ['1rem', '2rem', '5rem'], // Variations for item gap
           labelGap: ['1rem', '5rem', '10rem'], // Variations for label gap
+          highlightColor: ['lime', 'yellow'], // Variations for highlight color
         })
           .filter((args: Args) => !(args.labelHidden && args.labelGap !== '1rem'))
           .map((args: Args) => {
             return html`
               <post-listbox
+                search-term=${args.searchGTerm}
                 style="
                 --post-listbox-item-gap: ${args.itemGap};
                 --post-listbox-label-gap: ${args.labelGap};
+                --post-listbox-highlight-color: ${args.highlightColor};
               "
                 label-hidden="${args.labelHidden}"
                 multiselect="${args.multiselect}"
