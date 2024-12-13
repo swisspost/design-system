@@ -43,7 +43,7 @@ export class PostMegadropdown {
    */
   @Method()
   async toggle(target: HTMLElement) {
-    this.isVisible ? await this.hide() : await this.show(target);
+    this.isVisible ? this.hide() : await this.show(target);
   }
 
   /**
