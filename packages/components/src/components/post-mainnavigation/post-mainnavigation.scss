@@ -5,11 +5,12 @@
 @use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/variables/animation';
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
+@use '@swisspost/design-system-styles/mixins/utilities';
 
 $nav-height: var(--post-core-dimension-56);
 
 post-mainnavigation {
-  // reset links and buttons
+  // reset links and buttons;
   post-list-item {
     > a {
       text-decoration: none;
@@ -30,11 +31,17 @@ post-mainnavigation {
 
       &:hover {
         color: tokens.get('post-link-hover-fg', elements.$post-link);
+        @include utilities.high-contrast-mode() {
+          color: LinkText;
+        }
       }
 
       &:focus-visible {
         border-radius: var(--post-core-dimension-4);
         z-index: 1;
+      }
+      @include utilities.high-contrast-mode() {
+        color: LinkText;
       }
     }
   }
@@ -68,7 +75,9 @@ post-mainnavigation {
         font-size: var(--post-core-font-size-16);
         border-block: 0 solid transparent;
         border-block-end-color: currentColor;
-
+        @include utilities.high-contrast-mode() {
+          border-block-end-color: LinkText;
+        }
         &:hover {
           border-block-width: var(--post-core-dimension-2);
         }
