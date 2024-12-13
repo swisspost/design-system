@@ -1,6 +1,6 @@
 import { Component, Element, Prop, h, Host, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkType, getRoot } from '@/utils';
+import { checkType } from '@/utils';
 
 @Component({
   tag: 'post-megadropdown-trigger',
@@ -25,7 +25,6 @@ export class PostMegadropdownTrigger {
    * Used to manage click and key events for mega dropdown control.
    */
   private slottedButton: HTMLButtonElement | null = null;
-  private root?: Document | ShadowRoot;
 
   /**
    * Watch for changes to the `for` property to validate its type and ensure it is a string.
@@ -37,25 +36,23 @@ export class PostMegadropdownTrigger {
   }
 
   private get megadropdown(): HTMLPostMegadropdownElement | null {
-    const ref = this.root.getElementById(this.for);
+    const ref = document.getElementById(this.for);
     return ref && ref.localName === 'post-megadropdown'
       ? (ref as HTMLPostMegadropdownElement)
       : null;
   }
 
   private handleToggle() {
-    const megadropdown = this.megadropdown;
-    if (megadropdown && this.slottedButton) {
+    if (this.megadropdown && this.slottedButton) {
       this.ariaExpanded = !this.ariaExpanded;
       this.slottedButton.setAttribute('aria-expanded', this.ariaExpanded.toString());
-      megadropdown.toggle(this.host);
+      this.megadropdown.toggle(this.host);
     } else {
       console.warn(`No post-megadropdown found with ID: ${this.for}`);
     }
   }
 
   componentDidLoad() {
-    this.root = getRoot(this.host);
     this.validateControlFor();
 
     this.slottedButton = this.host.querySelector('button');
@@ -72,7 +69,9 @@ export class PostMegadropdownTrigger {
   render() {
     return (
       <Host data-version={version} tab-index="-1">
-        <slot></slot>
+        <button>
+          <slot></slot>
+        </button>
       </Host>
     );
   }

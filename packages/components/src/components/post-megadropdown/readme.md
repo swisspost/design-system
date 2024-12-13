@@ -7,22 +7,12 @@
 
 ## Events
 
-| Event                | Description                                                                                                                                  | Type                   |
-| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
-| `toggleMegadropdown` | Emits when the dropdown is shown or hidden. The event payload is a boolean: `true` when the dropdown was opened, `false` when it was closed. | `CustomEvent<boolean>` |
+| Event                    | Description                                                                                                                                  | Type                   |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| `postToggleMegadropdown` | Emits when the dropdown is shown or hidden. The event payload is a boolean: `true` when the dropdown was opened, `false` when it was closed. | `CustomEvent<boolean>` |
 
 
 ## Methods
-
-### `hide() => Promise<void>`
-
-Hides the popover dropdown
-
-#### Returns
-
-Type: `Promise<void>`
-
-
 
 ### `show(target: HTMLElement) => Promise<void>`
 
