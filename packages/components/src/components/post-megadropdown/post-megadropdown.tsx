@@ -1,14 +1,4 @@
-import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Method,
-  State,
-  forceUpdate,
-} from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
 
 @Component({
   tag: 'post-megadropdown',
@@ -17,7 +7,6 @@ import {
 })
 export class PostMegadropdown {
   private popoverRef: HTMLPostPopovercontainerElement;
-  private animationClass: string | null = null;
 
   @Element() host: HTMLPostMegadropdownElement;
 
@@ -28,16 +17,18 @@ export class PostMegadropdown {
    */
   @State() isVisible: boolean = false;
 
+  @State() animationClass: string | null = null;
+
   /**
    * Emits when the dropdown is shown or hidden.
    * The event payload is a boolean: `true` when the dropdown was opened, `false` when it was closed.
    **/
-  @Event() toggleMegadropdown: EventEmitter<boolean>;
+  @Event() postToggleMegadropdown: EventEmitter<boolean>;
 
   componentDidLoad() {
     this.popoverRef.addEventListener('postToggle', (event: CustomEvent<boolean>) => {
       this.isVisible = event.detail;
-      this.toggleMegadropdown.emit(this.isVisible);
+      this.postToggleMegadropdown.emit(this.isVisible);
     });
   }
 
@@ -67,10 +58,9 @@ export class PostMegadropdown {
   /**
    * Hides the popover dropdown
    */
-  @Method()
-  async hide() {
+  private hide() {
     if (this.popoverRef) {
-      await this.popoverRef.hide();
+      this.popoverRef.hide();
     } else {
       console.error('hide: popoverRef is null or undefined');
     }
@@ -78,7 +68,6 @@ export class PostMegadropdown {
 
   private handleBackButtonClick() {
     this.animationClass = 'slide-out';
-    forceUpdate(this);
     setTimeout(() => {
       this.hide();
     }, 350);

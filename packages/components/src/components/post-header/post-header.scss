@@ -93,10 +93,6 @@ slot[name='post-logo'] {
   padding-inline: 12px;
   background: white;
   height: var(--main-header-height);
-
-  @include media.max(lg) {
-    border-bottom: 1px solid black;
-  }
 }
 :host(:not(:has([slot='title']))) .title-header {
   display: none;
@@ -124,7 +120,8 @@ slot[name='post-logo'] {
     position: absolute;
     inset-inline: 0;
     inset-block-end: calc(100vh - var(--header-height));
-    transition: transform animation.$transition-time-area-medium animation.$transition-easing-accelerate;
+    transition: transform animation.$transition-time-area-medium
+      animation.$transition-easing-accelerate;
 
     &.extended {
       transform: translateY(100%);

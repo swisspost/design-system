@@ -26,18 +26,21 @@
 }
 
 post-popovercontainer {
-  --global-header-height: 72px;
-  --main-header-height: 56px;
-  --header-height: calc(var(--global-header-height) + var(--main-header-height));
+  --post-global-header-height: 72px;
+  --post-main-header-height: 56px;
+  --post-header-height: calc(var(--post-global-header-height) + var(--post-main-header-height));
 
   background-color: #fafafa;
+  border: none;
+  border-top: 1px solid #e1e0dc;
   width: 100%;
   border-radius: 0;
+  box-shadow: 0 8px 6px rgba(0, 0, 0, 16%);
 
   @include media.max(lg) {
-    --global-header-height: 64px;
+    --post-global-header-height: 64px;
     position: absolute;
-    top: var(--header-height) !important;
+    top: var(--post-header-height) !important;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -80,9 +83,12 @@ post-popovercontainer {
     display: none;
     margin-top: 0;
     margin-bottom: 8px;
+    font-weight: 900;
 
     a {
       text-decoration: none;
+      font-weight: inherit;
+      border-bottom: 0;
     }
 
     @include media.max(lg) {
@@ -94,7 +100,7 @@ post-popovercontainer {
   post-list {
     display: grid;
     grid-row: span 2;
-    grid-template-rows: subgrid !important;
+    grid-template-rows: subgrid;
     row-gap: 0px;
 
     > [role='list'] {
@@ -116,12 +122,14 @@ post-popovercontainer {
         border-bottom: 1px solid #050400;
         padding: 15px 12px 14px 0;
         display: block;
+        font-weight: 900;
 
         a {
           text-decoration: none;
           width: 100%;
           font-size: inherit;
           display: inline-block;
+          font-weight: inherit;
           height: unset;
           padding: 0;
           border: 0;
@@ -143,6 +151,8 @@ post-popovercontainer {
       display: block;
       text-decoration: none;
       width: 100%;
+      border-bottom: 0;
+      height: auto;
 
       @include media.max(lg) {
         padding: 12px 12px 11px 0;
@@ -153,6 +163,10 @@ post-popovercontainer {
   .back-button {
     display: none;
     margin-bottom: 2rem;
+
+    .btn {
+      width: auto;
+    }
 
     post-icon {
       transform: rotate(180deg);

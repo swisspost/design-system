@@ -271,10 +271,6 @@ export namespace Components {
     }
     interface PostMegadropdown {
         /**
-          * Hides the popover dropdown
-         */
-        "hide": () => Promise<void>;
-        /**
           * Displays the popover dropdown
           * @param target - The HTML element relative to which the popover dropdown should be displayed.
          */
@@ -678,7 +674,7 @@ declare global {
         new (): HTMLPostMainnavigationElement;
     };
     interface HTMLPostMegadropdownElementEventMap {
-        "toggleMegadropdown": boolean;
+        "postToggleMegadropdown": boolean;
     }
     interface HTMLPostMegadropdownElement extends Components.PostMegadropdown, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostMegadropdownElementEventMap>(type: K, listener: (this: HTMLPostMegadropdownElement, ev: PostMegadropdownCustomEvent<HTMLPostMegadropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1096,7 +1092,7 @@ declare namespace LocalJSX {
         /**
           * Emits when the dropdown is shown or hidden. The event payload is a boolean: `true` when the dropdown was opened, `false` when it was closed.
          */
-        "onToggleMegadropdown"?: (event: PostMegadropdownCustomEvent<boolean>) => void;
+        "onPostToggleMegadropdown"?: (event: PostMegadropdownCustomEvent<boolean>) => void;
     }
     interface PostMegadropdownTrigger {
         /**
