@@ -6,12 +6,16 @@ export default html`<post-header>
 
   <!-- Meta navigation -->
   <ul class="list-inline" slot="meta-navigation">
-    <li><a href="">Über uns</a></li>
     <li><a href="">Jobs</a></li>
+    <li><a href="">Über uns</a></li>
   </ul>
 
   <!-- Menu button for mobile -->
-  <post-toggle-button slot="post-togglebutton"> = Menu </post-toggle-button>
+  <post-togglebutton>
+    <span class="visually-hidden-sm">Menu</span>
+    <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
+    <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
+  </post-togglebutton>
 
   <!-- Language switch -->
   <post-language-switch
@@ -32,13 +36,23 @@ export default html`<post-header>
 
   <!-- Custom content (optional) -->
   <ul class="list-inline">
-    <li><a href="#">Search</a></li>
-    <li><a href="#">Login</a></li>
+    <li>
+      <a href="#">
+        <span class="visually-hidden-sm">Search</span>
+        <post-icon aria-hidden="true" name="search"></post-icon>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <span class="visually-hidden-sm">Login</span>
+        <post-icon aria-hidden="true" name="login"></post-icon>
+      </a>
+    </li>
   </ul>
 
   <!-- Main navigation -->
   <post-mainnavigation caption="Hauptnavigation">
-    <button slot="back-button" class="btn btn-sm btn-tertiary p-0">
+    <button type="button" slot="back-button" class="btn btn-sm btn-tertiary p-0">
       <post-icon aria-hidden="true" name="3024"></post-icon> Back
     </button>
     <post-list title-hidden="">
@@ -49,9 +63,7 @@ export default html`<post-header>
 
       <!-- Level 1 with megadropdown -->
       <post-list-item>
-        <post-megadropdown-trigger for="briefe">
-          <button class="btn btn-link">Briefe</button>
-        </post-megadropdown-trigger>
+        <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
         <post-megadropdown id="briefe">
           <button slot="back-button" class="btn btn-link">
             <post-icon name="arrowright"></post-icon>
@@ -76,9 +88,7 @@ export default html`<post-header>
         </post-megadropdown>
       </post-list-item>
       <post-list-item>
-        <post-megadropdown-trigger for="pakete">
-          <button class="btn btn-link">Pakete</button>
-        </post-megadropdown-trigger>
+        <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
         <post-megadropdown id="pakete">
           <button slot="back-button" class="btn btn-link">
             <post-icon name="arrowright"></post-icon>

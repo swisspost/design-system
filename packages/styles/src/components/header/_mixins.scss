@@ -1,0 +1,34 @@
+@use '../../mixins/icons';
+
+@mixin subsidiary-header-interactive() {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--post-core-dimension-6);
+  border-radius: var(--post-core-dimension-24);
+  font-size: var(--post-core-font-size-16);
+  padding: var(--post-core-dimension-3) var(--post-core-dimension-10);
+}
+
+@mixin mobile-header-interactive() {
+  width: 100%;
+  height: var(--post-core-dimension-48);
+  padding-inline-end: var(--post-core-dimension-6);
+  gap: var(--post-core-dimension-16);
+  border-block: var(--post-core-dimension-1) solid transparent;
+  border-block-end-color: currentColor;
+  font-weight: var(--post-core-font-weight-700);
+
+  &:hover,
+  &.selected {
+    border-block-width: var(--post-core-dimension-3);
+  }
+
+  &:hover::after {
+    content: '';
+    display: block;
+    @include icons.icon(3020);
+    width: var(--post-core-dimension-24);
+    height: var(--post-core-dimension-24);
+  }
+}

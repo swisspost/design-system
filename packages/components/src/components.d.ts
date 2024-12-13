@@ -175,6 +175,10 @@ export namespace Components {
         "update": () => Promise<void>;
     }
     interface PostHeader {
+        /**
+          * Toggles the mobile navigation.
+         */
+        "toggleMobileMenu": () => Promise<void>;
     }
     /**
      * @class PostIcon - representing a stencil component
