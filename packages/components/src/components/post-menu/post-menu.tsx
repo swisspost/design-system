@@ -1,4 +1,14 @@
-import { Component, Element, Event, EventEmitter, h, Host, Method, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+} from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
 import { isFocusable } from '@/utils/is-focusable';
@@ -20,7 +30,7 @@ export class PostMenu {
     TAB: 'Tab',
     HOME: 'Home',
     END: 'End',
-    ESCAPE: 'Escape'
+    ESCAPE: 'Escape',
   };
 
   @Element() host: HTMLPostMenuElement;
@@ -31,6 +41,11 @@ export class PostMenu {
    * towards the viewport if they would overlap edge boundaries.
    */
   @Prop() readonly placement?: Placement = 'bottom';
+
+  /**
+   * Whether or not the post-menu is used within a post-language-switch component as the children structure is not the same.
+   */
+  @Prop() isLanguageSwitch: boolean = false;
 
   /**
    * Holds the current visibility state of the menu.
@@ -72,7 +87,7 @@ export class PostMenu {
 
   /**
    * Displays the popover menu, focusing the first menu item.
-   * 
+   *
    * @param target - The HTML element relative to which the popover menu should be displayed.
    */
   @Method()
@@ -127,11 +142,15 @@ export class PostMenu {
 
   private controlKeyDownHandler(e: KeyboardEvent) {
     const menuItems = this.getSlottedItems();
+
     if (!menuItems.length) {
       return;
     }
 
-    const currentFocusedElement = document.activeElement as HTMLElement;
+    const currentFocusedElement = this.isLanguageSwitch
+      ? (document.activeElement.shadowRoot.querySelector('button') as HTMLElement)
+      : (document.activeElement as HTMLElement);
+
     let currentIndex = menuItems.findIndex(el => el === currentFocusedElement);
 
     switch (e.key) {
@@ -165,18 +184,25 @@ export class PostMenu {
     }
   }
 
-  private getSlottedItems() {
+  private getSlottedItems(): Element[] {
     const slot = this.host.shadowRoot.querySelector('slot');
     const slottedElements = slot ? slot.assignedElements() : [];
+    let menuItems;
 
-    const menuItems = slottedElements
-      .filter(el => el.tagName === 'POST-MENU-ITEM')
-      .map(el => {
-        const slot = el.shadowRoot.querySelector('slot');
-        const assignedElements = slot ? slot.assignedElements() : [];
-        return assignedElements.filter(isFocusable);
-      })
-      .flat();
+    if (this.isLanguageSwitch) {
+      menuItems = Array.from(document.querySelectorAll('post-language-option[variant="dropdown"]'))
+        .map(el => el.shadowRoot.querySelector('button'))
+        .flat();
+    } else {
+      menuItems = slottedElements
+        .filter(el => el.tagName === 'POST-MENU-ITEM')
+        .map(el => {
+          const slot = el.shadowRoot.querySelector('slot');
+          const assignedElements = slot ? slot.assignedElements() : [];
+          return assignedElements.filter(isFocusable);
+        })
+        .flat();
+    }
 
     return menuItems;
   }
