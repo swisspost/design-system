@@ -22,8 +22,8 @@ export class PostTabs {
   private isLoaded = false;
 
   private get tabs(): HTMLPostTabHeaderElement[] {
-    return this.host.querySelectorAll('& > post-tab-header');
-  }  
+    return Array.from(this.host.querySelectorAll(':scope > post-tab-header'));
+  }   
 
   @Element() host: HTMLPostTabsElement;
 
