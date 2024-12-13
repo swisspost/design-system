@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': minor
 ---
 
-Added composible footer component.
+Added composable footer component.
