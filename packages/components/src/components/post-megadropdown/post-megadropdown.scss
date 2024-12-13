@@ -132,56 +132,55 @@ post-popovercontainer {
           border: 0;
         }
 
-          @include media.max(lg) {
-            font-size: 16px;
-            padding: 12px 12px 11px 0;
-          }
+        @include media.max(lg) {
+          font-size: 16px;
+          padding: 12px 12px 11px 0;
         }
       }
     }
   }
+}
 
-  post-list-item {
-    border-bottom: 1px solid #050400;
+post-list-item {
+  border-bottom: 1px solid #050400;
 
-    > a {
-      padding: 13px 12px 12px 0;
-      display: block;
-      text-decoration: none;
-      width: 100%;
-      border-bottom: 0;
-      height: auto;
+  > a {
+    padding: 13px 12px 12px 0;
+    display: block;
+    text-decoration: none;
+    width: 100%;
+    border-bottom: 0;
+    height: auto;
 
-      @include media.max(lg) {
-        padding: 12px 12px 11px 0;
-      }
+    @include media.max(lg) {
+      padding: 12px 12px 11px 0;
     }
   }
+}
 
-  .back-button {
+.back-button {
+  display: none;
+  margin-bottom: 2rem;
+
+  .btn {
+    width: auto;
+  }
+
+  post-icon {
+    transform: rotate(180deg);
+  }
+
+  @include media.max(lg) {
+    display: block;
+  }
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  @include media.max(lg) {
     display: none;
-    margin-bottom: 2rem;
-
-    .btn {
-      width: auto;
-    }
-
-    post-icon {
-      transform: rotate(180deg);
-    }
-
-    @include media.max(lg) {
-      display: block;
-    }
-  }
-
-  .close-button {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-
-    @include media.max(lg) {
-      display: none;
-    }
   }
 }
