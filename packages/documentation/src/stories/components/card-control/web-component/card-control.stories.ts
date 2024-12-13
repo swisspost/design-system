@@ -310,7 +310,9 @@ export const FormIntegration: Story = {
         ${args.radioValidity === 'false' ? invalidFeedback : nothing}
       </fieldset>
       <div class="mt-16 d-flex gap-16 justify-content-end">
-        <button type="reset" class="btn btn-link"><post-icon name="2042"></post-icon>Reset</button>
+        <button type="reset" class="btn btn-tertiary px-0">
+          <post-icon name="2042"></post-icon>Reset
+        </button>
         <button type="submit" class="btn btn-primary"><span>Submit</span></button>
       </div>
     </form>`;

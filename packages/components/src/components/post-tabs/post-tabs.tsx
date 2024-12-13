@@ -21,9 +21,11 @@ export class PostTabs {
   private hiding: Animation;
   private isLoaded = false;
 
-  private get tabs(): NodeListOf<HTMLPostTabHeaderElement> {
-    return this.host.querySelectorAll('post-tab-header');
-  }
+  private get tabs(): HTMLPostTabHeaderElement[] {
+    return Array.from(this.host.querySelectorAll<HTMLPostTabHeaderElement>('post-tab-header')).filter(tab =>
+      tab.closest('post-tabs') === this.host
+    );
+  }  
 
   @Element() host: HTMLPostTabsElement;
 
@@ -45,7 +47,7 @@ export class PostTabs {
     this.moveMisplacedTabs();
     this.enableTabs();
 
-    const initiallyActivePanel = this.activePanel || this.tabs.item(0).panel;
+    const initiallyActivePanel = this.activePanel || this.tabs[0]?.panel;
     void this.show(initiallyActivePanel);
 
     this.isLoaded = true;
@@ -128,7 +130,7 @@ export class PostTabs {
 
     // if the currently active tab was removed from the DOM then select the first one
     if (this.activeTab && !this.activeTab.isConnected) {
-      void this.show(this.tabs.item(0).panel);
+      void this.show(this.tabs[0]?.panel);
     }
   }
 

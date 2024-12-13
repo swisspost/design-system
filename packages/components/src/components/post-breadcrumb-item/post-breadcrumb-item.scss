@@ -16,8 +16,8 @@ tokens.$default-map: components.$post-breadcrumb;
 
   post-icon {
     box-sizing: border-box;
-    height: tokens.get('breadcrum-icon-size');
-    width: tokens.get('breadcrum-icon-size');
+    height: tokens.get('breadcrumb-icon-size');
+    width: tokens.get('breadcrumb-icon-size');
     padding-block: tokens.get('breadcrumb-padding-block-icon-link');
     padding-inline: tokens.get('breadcrumb-padding-inline-icon-link');
   }
