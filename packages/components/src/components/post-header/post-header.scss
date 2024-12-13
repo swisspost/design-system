@@ -17,7 +17,10 @@
     display: block;
     position: sticky;
     inset-inline: 0;
-    inset-block-start: calc(-1 * (var(--global-header-height) + var(--main-header-height) - var(--global-header-minimal-height)));
+    inset-block-start: calc(
+      -1 * (var(--global-header-height) + var(--main-header-height) -
+            var(--global-header-minimal-height))
+    );
     box-shadow: var(--post-core-elevation-3);
   }
 
@@ -98,7 +101,8 @@ slot[name='post-logo'] {
   background: var(--post-core-color-brand-white);
 
   @include media.min(lg) {
-    padding: var(--post-core-dimension-18) var(--post-core-dimension-16) var(--post-core-dimension-4) var(--post-core-dimension-12);
+    padding: var(--post-core-dimension-18) var(--post-core-dimension-16)
+      var(--post-core-dimension-4) var(--post-core-dimension-12);
   }
 
   @include media.max(lg) {

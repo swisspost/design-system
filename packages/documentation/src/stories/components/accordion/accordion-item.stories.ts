@@ -12,15 +12,33 @@ const meta: Meta = {
     },
   },
   argTypes: {
-    collapsed: {
+    'collapsed': {
       control: false, // disable the control since it is not usable on the story
     },
-    headingLevel: {
+    'headingLevel': {
       name: 'heading-level',
       control: false, // disable the control since it is not usable on the story
       table: {
-        disable:true,
-      }
+        disable: true,
+      },
+    },
+    'css-shadow-parts-button': {
+      name: 'button',
+      table: {
+        type: {
+          summary: 'css selector',
+          detail: '::part(button) { ... }',
+        },
+      },
+    },
+    'css-shadow-parts-body': {
+      name: 'body',
+      table: {
+        type: {
+          summary: 'css selector',
+          detail: '::part(body) { ... }',
+        },
+      },
     },
   },
 };

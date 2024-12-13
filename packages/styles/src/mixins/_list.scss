@@ -1,7 +1,7 @@
 @use '../functions/tokens';
 @use '../tokens/elements';
 
-@mixin list-bullet() {
+@mixin list-bullet($child-selector: 'li') {
   list-style: none;
   margin-block: tokens.get('list-bullet-margin-block', elements.$post-listbullet);
   padding-inline-start: calc(
@@ -11,12 +11,12 @@
       )}
   );
 
-  > li {
+  > #{$child-selector} {
     margin: 0;
     padding-inline: 0;
     padding-block: tokens.get('list-bullet-item-text-padding-block', elements.$post-listbullet);
 
-    ~ li {
+    ~ #{$child-selector} {
       margin-block-start: tokens.get('list-bullet-item-gap-block', elements.$post-listbullet);
     }
 
@@ -42,7 +42,7 @@
   }
 }
 
-@mixin list-number() {
+@mixin list-number($child-selector: 'li') {
   margin-block: tokens.get('list-number-item-gap-block', elements.$post-listnumber);
   padding-inline-end: tokens.get('list-number-item-gap-block', elements.$post-listnumber);
   padding-inline-start: calc(
@@ -50,7 +50,7 @@
       tokens.get('list-number-item-icon-gap-inline', elements.$post-listnumber)
   );
 
-  > li {
+  > #{$child-selector} {
     margin-block-end: tokens.get('list-number-margin-block', elements.$post-listnumber);
     padding-inline-start: tokens.get('list-number-item-icon-gap-inline', elements.$post-listnumber);
     padding-block: tokens.get('list-number-item-text-padding-block', elements.$post-listnumber);
@@ -61,8 +61,8 @@
   }
 }
 
-@mixin list-inline() {
-  @include list-unstyled() {
+@mixin list-inline($child-selector: 'li') {
+  @include list-unstyled($child-selector) {
     display: flex;
     flex-wrap: wrap;
     row-gap: tokens.get('list-bullet-item-gap-block', elements.$post-listbullet);
@@ -73,14 +73,14 @@
   }
 }
 
-@mixin list-revert() {
+@mixin list-revert($child-selector: 'li') {
   all: revert;
   @content;
 
-  > li {
+  > #{$child-selector} {
     all: revert;
 
-    ~ li {
+    ~ #{$child-selector} {
       all: revert;
     }
 
@@ -90,17 +90,17 @@
   }
 }
 
-@mixin list-unstyled() {
+@mixin list-unstyled($child-selector: 'li') {
   all: unset;
   display: block;
   list-style: none;
   @content;
 
-  > li {
+  > #{$child-selector} {
     all: unset;
     display: list-item;
 
-    ~ li {
+    ~ #{$child-selector} {
       all: unset;
       display: list-item;
     }

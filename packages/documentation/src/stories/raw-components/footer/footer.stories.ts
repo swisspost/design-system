@@ -6,7 +6,7 @@ import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '27fc009d-3eec-43a9-b3a2-55531e721817',
-  title: 'Components/Footer',
+  title: 'Raw Components/Footer',
   component: 'swisspost-internet-footer',
   tags: ['package:InternetHeader'],
   render: renderInternetFooter,

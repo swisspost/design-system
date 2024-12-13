@@ -7,9 +7,12 @@ tokens.$default-map: components.$post-app-store-badge;
 .app-store-badge {
   display: inline-flex;
   border-radius: tokens.get('app-store-border-radius');
+  height: tokens.get('app-store-height');
+  vertical-align: text-bottom;
 
   img {
     display: block;
-    height: tokens.get('app-store-height');
+    width: auto;
+    height: 100%;
   }
 }
