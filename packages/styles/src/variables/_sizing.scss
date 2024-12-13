@@ -66,4 +66,4 @@ $post-percentage-sizes: map.merge(
   $post-percentage-sizes
 );
 
-$post-sizes: map.merge($post-px-sizes, $post-percentage-sizes);
+$post-combined-sizes: map.merge($post-px-sizes, $post-percentage-sizes);
