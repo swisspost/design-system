@@ -281,25 +281,20 @@ export namespace Components {
     }
     interface PostMegadropdown {
         /**
-          * Hide megadropdown
-          * @returns boolean
+          * Displays the popover dropdown
+          * @param target - The HTML element relative to which the popover dropdown should be displayed.
          */
-        "hide": () => Promise<void>;
+        "show": (target: HTMLElement) => Promise<void>;
         /**
-          * Show megadropdown
-          * @param element HTMLElement
-          * @returns boolean
+          * Toggles the dropdown visibility based on its current state.
          */
-        "show": (element: HTMLElement) => Promise<void>;
-        /**
-          * Toggle megadropdown
-          * @param element HTMLElement
-          * @param force boolean
-          * @returns boolean
-         */
-        "toggle": (element: HTMLElement, force?: boolean) => Promise<boolean>;
+        "toggle": (target: HTMLElement) => Promise<void>;
     }
     interface PostMegadropdownTrigger {
+        /**
+          * ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown.
+         */
+        "for": string;
     }
     interface PostMenu {
         /**
@@ -497,9 +492,9 @@ export interface PostMainnavigationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostMainnavigationElement;
 }
-export interface PostMegadropdownTriggerCustomEvent<T> extends CustomEvent<T> {
+export interface PostMegadropdownCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLPostMegadropdownTriggerElement;
+    target: HTMLPostMegadropdownElement;
 }
 export interface PostMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -694,24 +689,24 @@ declare global {
         prototype: HTMLPostMainnavigationElement;
         new (): HTMLPostMainnavigationElement;
     };
+    interface HTMLPostMegadropdownElementEventMap {
+        "postToggleMegadropdown": boolean;
+    }
     interface HTMLPostMegadropdownElement extends Components.PostMegadropdown, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostMegadropdownElementEventMap>(type: K, listener: (this: HTMLPostMegadropdownElement, ev: PostMegadropdownCustomEvent<HTMLPostMegadropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostMegadropdownElementEventMap>(type: K, listener: (this: HTMLPostMegadropdownElement, ev: PostMegadropdownCustomEvent<HTMLPostMegadropdownElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostMegadropdownElement: {
         prototype: HTMLPostMegadropdownElement;
         new (): HTMLPostMegadropdownElement;
     };
-    interface HTMLPostMegadropdownTriggerElementEventMap {
-        "postToggle": any;
-    }
     interface HTMLPostMegadropdownTriggerElement extends Components.PostMegadropdownTrigger, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostMegadropdownTriggerElementEventMap>(type: K, listener: (this: HTMLPostMegadropdownTriggerElement, ev: PostMegadropdownTriggerCustomEvent<HTMLPostMegadropdownTriggerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostMegadropdownTriggerElementEventMap>(type: K, listener: (this: HTMLPostMegadropdownTriggerElement, ev: PostMegadropdownTriggerCustomEvent<HTMLPostMegadropdownTriggerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostMegadropdownTriggerElement: {
         prototype: HTMLPostMegadropdownTriggerElement;
@@ -1117,12 +1112,16 @@ declare namespace LocalJSX {
         "onPostToggle"?: (event: PostMainnavigationCustomEvent<any>) => void;
     }
     interface PostMegadropdown {
+        /**
+          * Emits when the dropdown is shown or hidden. The event payload is a boolean: `true` when the dropdown was opened, `false` when it was closed.
+         */
+        "onPostToggleMegadropdown"?: (event: PostMegadropdownCustomEvent<boolean>) => void;
     }
     interface PostMegadropdownTrigger {
         /**
-          * Emits after each toggle
+          * ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown.
          */
-        "onPostToggle"?: (event: PostMegadropdownTriggerCustomEvent<any>) => void;
+        "for": string;
     }
     interface PostMenu {
         /**
