@@ -8,7 +8,7 @@ const { id, ...metaWithoutId } = meta;
 
 export default {
   ...metaWithoutId,
-  label: 'Snapshots',
+  title: 'Snapshots',
 };
 
 type Story = StoryObj;
@@ -47,7 +47,7 @@ export const PostListbox: Story = {
   decorators: [
     (story: StoryFn, context: StoryContext) => {
       return schemes(
-        () => html` <div class="listbox-example">${story(context.args, context)}</div> `,
+        () => html` <div class="listbox-snapshot">${story(context.args, context)}</div> `,
       );
     },
   ],

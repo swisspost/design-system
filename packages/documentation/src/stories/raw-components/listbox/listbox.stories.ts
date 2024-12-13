@@ -1,6 +1,7 @@
 import { StoryObj, StoryFn, StoryContext } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
+import './listbox.styles.scss';
 
 const meta: MetaComponent = {
   id: 'a6a1c3fd-518e-415e-b2ad-ea4e6c563338',
@@ -46,7 +47,6 @@ const meta: MetaComponent = {
     if (args.listboxItemGap) styles += `--post-listbox-item-gap: ${args.listboxItemGap};`;
 
     return html`<post-listbox
-      search-term="${args.searchTerm}"
       label-hidden="${args.labelHidden ? args.labelHidden : nothing}"
       multiselect="${args.multiselect ? args.multiselect : nothing}"
       listbox-description="${args.listboxDescription}"
@@ -95,7 +95,7 @@ export const PostListboxNoLabel: Story = {
 };
 export const PostListboxHighlightedSearch: Story = {
   render: () =>
-    html`<post-listbox label-hidden="true" search-term="item">
+    html`<post-listbox search-term="item">
       <h4>Label</h4>
       <post-listbox-item>Listbox Item 1</post-listbox-item>
       <post-listbox-item>Listbox Item 2</post-listbox-item>
