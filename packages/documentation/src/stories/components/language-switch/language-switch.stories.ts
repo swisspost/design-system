@@ -4,7 +4,7 @@ import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent<HTMLPostLanguageSwitchElement> = {
   id: 'decbb10c-2b39-4f47-b67d-337d8111a3ae',
-  title: 'Modules/Header/Language Switch',
+  title: 'Components/Language Switch',
   tags: ['package:WebComponents'],
   component: 'post-language-switch',
   render: renderLanguageSwitch,
