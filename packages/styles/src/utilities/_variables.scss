@@ -22,78 +22,41 @@
   Our API is based on bootstrap utility API, more information is available here: https://getbootstrap.com/docs/5.3/utilities/api/
 */
 $utilities: (
-  'width%': (
-    responsive: true,
-    property: width,
-    class: w,
-    values: $post-percentage-sizes,
-  ),
   'width': (
-    responsive: false,
+    responsive: true,
     property: width,
     class: w,
-    values: $post-px-sizes,
-  ),
-
-  'height%': (
-    responsive: true,
-    property: height,
-    class: h,
-    values: $post-percentage-sizes,
+    values: $post-sizes,
   ),
   'height': (
-    responsive: false,
+    responsive: true,
     property: height,
     class: h,
-    values: $post-px-sizes,
-  ),
-  'max-width%': (
-    responsive: true,
-    property: max-width,
-    class: max-w,
-    values: $post-percentage-sizes,
+    values: $post-sizes,
   ),
   'max-width': (
-    responsive: false,
+    responsive: true,
     property: max-width,
     class: max-w,
-    values: $post-px-sizes,
-  ),
-  'max-height%': (
-    responsive: true,
-    property: max-height,
-    class: max-h,
-    values: $post-percentage-sizes,
+    values: $post-sizes,
   ),
   'max-height': (
-    responsive: false,
+    responsive: true,
     property: max-height,
     class: max-h,
-    values: $post-px-sizes,
-  ),
-  'min-width%': (
-    responsive: true,
-    property: min-width,
-    class: min-w,
-    values: $post-percentage-sizes,
+    values: $post-sizes,
   ),
   'min-width': (
-    responsive: false,
+    responsive: true,
     property: min-width,
     class: min-w,
-    values: $post-px-sizes,
-  ),
-  'min-height%': (
-    responsive: true,
-    property: min-height,
-    class: min-h,
-    values: $post-percentage-sizes,
+    values: $post-sizes,
   ),
   'min-height': (
     responsive: false,
     property: min-height,
     class: min-h,
-    values: $post-px-sizes,
+    values: $post-sizes,
   ),
   'viewport-width': (
     responsive: true,

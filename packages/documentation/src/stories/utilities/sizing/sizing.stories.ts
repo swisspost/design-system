@@ -4,14 +4,11 @@ import sizing from './sizing.module.scss';
 import { parse } from '@/utils/sass-export';
 import { MetaExtended } from '@root/types';
 import './sizing.styles.scss';
+import { camelToKebabCase } from '@/utils/naming';
 
 const sizes: Record<string, string> = parse(sizing);
 const percentageSizes = Object.keys(sizes.pcsizes);
 const pixelSizes = Object.keys(sizes.pxsizes);
-
-function camelToKebabCase(str: string) {
-  return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
-}
 
 const meta: MetaExtended = {
   render: renderSizing,
