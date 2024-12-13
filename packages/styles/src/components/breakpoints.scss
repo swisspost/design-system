@@ -1,0 +1,17 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+@use '../variables/breakpoints';
+
+:root {
+  $breakpoint-list: ();
+
+  @each $key, $value in breakpoints.$grid-breakpoints {
+    $unitless-value: math.div($value, $value * 0 + 1);
+    $breakpoint-list: list.append($breakpoint-list, $unitless-value, comma);
+  }
+
+  --post-breakpoint-widths: #{$breakpoint-list};
+  --post-breakpoint-keys: #{map.keys(breakpoints.$grid-breakpoints)};
+  --post-breakpoint-names: #{map.values(breakpoints.$grid-breakpoints-key-name-map)};
+}
