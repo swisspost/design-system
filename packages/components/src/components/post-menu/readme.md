@@ -76,9 +76,6 @@ Type: `Promise<void>`
 ### Used by
 
  - [post-breadcrumb](../post-breadcrumb)
-
-### Used by
-
  - [post-language-switch](../post-language-switch)
 
 ### Depends on
