@@ -2,6 +2,7 @@
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/mixins/button' as button-mx;
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
+@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 
 tokens.$default-map: components.$post-button;
 
@@ -16,25 +17,16 @@ tokens.$default-map: components.$post-button;
 
 .post-language-switch-trigger {
   cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-width: tokens.get('button-border-width');
-  border-radius: tokens.get('button-border-radius-round');
-  background-color: transparent;
-  font-family: inherit;
-  font-weight: tokens.get('button-label-font-weight');
-  @include button-mx.button-size(sm);
-
-  &:disabled {
-    border-style: tokens.get('button-border-style-disabled');
-    @include button-mx.button-variant-def('disabled', 'tertiary');
-  }
+  @include button-mx.reset-button;
+  @include header-mx.subsidiary-header-interactive;
 
   @include utilities-mx.focus-style;
-  @include button-mx.button-variant-def('enabled', 'tertiary');
-
   @include utilities-mx.not-disabled-hover() {
     @include button-mx.button-variant-def('hover', 'tertiary');
+  }
+
+  post-icon {
+    height: var(--post-core-dimension-16);
+    width: var(--post-core-dimension-16);
   }
 }

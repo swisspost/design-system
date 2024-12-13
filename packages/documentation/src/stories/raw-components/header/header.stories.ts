@@ -4,7 +4,7 @@ import HeaderMarkup from './components/header.markup';
 
 const meta: MetaComponent = {
   id: 'header',
-  title: 'Components/Header',
+  title: 'Raw Components/Header',
   tags: ['package:HTML'],
   parameters: {
     layout: 'fullscreen',

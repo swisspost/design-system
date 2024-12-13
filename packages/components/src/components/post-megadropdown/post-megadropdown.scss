@@ -89,6 +89,7 @@ post-popovercontainer {
       text-decoration: none;
       font-weight: inherit;
       border-bottom: 0;
+      border-top: 0;
     }
 
     @include media.max(lg) {
@@ -97,11 +98,25 @@ post-popovercontainer {
     }
   }
 
+  // Unset styles added by parent main navigation
+  a:hover {
+    border-block-width: 0;
+
+    &::after {
+      content: unset;
+    }
+  }
+
   post-list {
     display: grid;
     grid-row: span 2;
     grid-template-rows: subgrid;
     row-gap: 0px;
+
+    > [role='list'] {
+      flex-direction: unset;
+      display: unset;
+    }
 
     > * {
       width: 100%;
@@ -120,9 +135,7 @@ post-popovercontainer {
         font-weight: 900;
 
         a {
-          padding: 15px 12px 14px 0;
           text-decoration: none;
-          display: block;
           width: 100%;
           font-size: inherit;
           display: inline-block;
@@ -139,48 +152,49 @@ post-popovercontainer {
       }
     }
   }
-}
 
-post-list-item {
-  border-bottom: 1px solid #050400;
+  post-list-item {
+    border-bottom: 1px solid #050400;
 
-  > a {
-    padding: 13px 12px 12px 0;
-    display: block;
-    text-decoration: none;
-    width: 100%;
-    border-bottom: 0;
-    height: auto;
+    > a {
+      padding: 13px 12px 12px 0;
+      display: block;
+      text-decoration: none;
+      width: 100%;
+      border-bottom: 0;
+      height: auto;
+      border-top: 0;
 
-    @include media.max(lg) {
-      padding: 12px 12px 11px 0;
+      @include media.max(lg) {
+        padding: 12px 12px 11px 0;
+      }
     }
   }
-}
 
-.back-button {
-  display: none;
-  margin-bottom: 2rem;
-
-  .btn {
-    width: auto;
-  }
-
-  post-icon {
-    transform: rotate(180deg);
-  }
-
-  @include media.max(lg) {
-    display: block;
-  }
-}
-
-.close-button {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-
-  @include media.max(lg) {
+  .back-button {
     display: none;
+    margin-bottom: 2rem;
+
+    .btn {
+      width: auto;
+    }
+
+    post-icon {
+      transform: rotate(180deg);
+    }
+
+    @include media.max(lg) {
+      display: block;
+    }
+  }
+
+  .close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+    @include media.max(lg) {
+      display: none;
+    }
   }
 }
