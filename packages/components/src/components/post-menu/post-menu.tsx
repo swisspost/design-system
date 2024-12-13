@@ -12,6 +12,7 @@ import {
 import { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
 import { isFocusable } from '@/utils/is-focusable';
+import { getRoot } from '@/utils';
 
 @Component({
   tag: 'post-menu',
@@ -60,7 +61,10 @@ export class PostMenu {
    **/
   @Event() toggleMenu: EventEmitter<boolean>;
 
+  private root?: Document | ShadowRoot;
+
   connectedCallback() {
+    this.root = getRoot(this.host);
     this.host.addEventListener('keydown', this.handleKeyDown);
     this.host.addEventListener('click', this.handleClick);
   }
@@ -94,7 +98,7 @@ export class PostMenu {
   async show(target: HTMLElement) {
     if (this.popoverRef) {
       await this.popoverRef.show(target);
-      this.lastFocusedElement = document.activeElement as HTMLElement;
+      this.lastFocusedElement = this.root.activeElement as HTMLElement; // Use root's activeElement
 
       const menuItems = this.getSlottedItems();
       if (menuItems.length > 0) {
@@ -149,7 +153,7 @@ export class PostMenu {
 
     const currentFocusedElement = this.isLanguageSwitch
       ? (document.activeElement.shadowRoot.querySelector('button') as HTMLElement)
-      : (document.activeElement as HTMLElement);
+      : (this.root.activeElement as HTMLElement); // Use root's active element
 
     let currentIndex = menuItems.findIndex(el => el === currentFocusedElement);
 
@@ -211,7 +215,7 @@ export class PostMenu {
     return (
       <Host data-version={version}>
         <post-popovercontainer placement={this.placement} ref={e => (this.popoverRef = e)}>
-          <div class="popover-container">
+          <div class="popover-container" part="popover-container">
             <slot></slot>
           </div>
         </post-popovercontainer>

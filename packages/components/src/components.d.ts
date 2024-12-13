@@ -97,6 +97,16 @@ export namespace Components {
          */
         "type": BannerType;
     }
+    interface PostBreadcrumb {
+        /**
+          * The text label for the home breadcrumb item.
+         */
+        "homeText": string;
+        /**
+          * The URL for the home breadcrumb item.
+         */
+        "homeUrl": string;
+    }
     interface PostBreadcrumbItem {
         /**
           * The optional URL to which the breadcrumb item will link.
@@ -558,6 +568,12 @@ declare global {
         prototype: HTMLPostBannerElement;
         new (): HTMLPostBannerElement;
     };
+    interface HTMLPostBreadcrumbElement extends Components.PostBreadcrumb, HTMLStencilElement {
+    }
+    var HTMLPostBreadcrumbElement: {
+        prototype: HTMLPostBreadcrumbElement;
+        new (): HTMLPostBreadcrumbElement;
+    };
     interface HTMLPostBreadcrumbItemElement extends Components.PostBreadcrumbItem, HTMLStencilElement {
     }
     var HTMLPostBreadcrumbItemElement: {
@@ -839,6 +855,7 @@ declare global {
         "post-avatar": HTMLPostAvatarElement;
         "post-back-to-top": HTMLPostBackToTopElement;
         "post-banner": HTMLPostBannerElement;
+        "post-breadcrumb": HTMLPostBreadcrumbElement;
         "post-breadcrumb-item": HTMLPostBreadcrumbItemElement;
         "post-card-control": HTMLPostCardControlElement;
         "post-closebutton": HTMLPostClosebuttonElement;
@@ -936,6 +953,16 @@ declare namespace LocalJSX {
           * The type of the banner.
          */
         "type"?: BannerType;
+    }
+    interface PostBreadcrumb {
+        /**
+          * The text label for the home breadcrumb item.
+         */
+        "homeText"?: string;
+        /**
+          * The URL for the home breadcrumb item.
+         */
+        "homeUrl"?: string;
     }
     interface PostBreadcrumbItem {
         /**
@@ -1269,6 +1296,7 @@ declare namespace LocalJSX {
         "post-avatar": PostAvatar;
         "post-back-to-top": PostBackToTop;
         "post-banner": PostBanner;
+        "post-breadcrumb": PostBreadcrumb;
         "post-breadcrumb-item": PostBreadcrumbItem;
         "post-card-control": PostCardControl;
         "post-closebutton": PostClosebutton;
@@ -1308,6 +1336,7 @@ declare module "@stencil/core" {
             "post-avatar": LocalJSX.PostAvatar & JSXBase.HTMLAttributes<HTMLPostAvatarElement>;
             "post-back-to-top": LocalJSX.PostBackToTop & JSXBase.HTMLAttributes<HTMLPostBackToTopElement>;
             "post-banner": LocalJSX.PostBanner & JSXBase.HTMLAttributes<HTMLPostBannerElement>;
+            "post-breadcrumb": LocalJSX.PostBreadcrumb & JSXBase.HTMLAttributes<HTMLPostBreadcrumbElement>;
             "post-breadcrumb-item": LocalJSX.PostBreadcrumbItem & JSXBase.HTMLAttributes<HTMLPostBreadcrumbItemElement>;
             /**
              * @class PostCardControl - representing a stencil component

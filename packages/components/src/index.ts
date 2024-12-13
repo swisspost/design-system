@@ -6,6 +6,7 @@ export { PostAccordionItem } from './components/post-accordion-item/post-accordi
 export { PostAvatar } from './components/post-avatar/post-avatar';
 export { PostBackToTop } from './components/post-back-to-top/post-back-to-top';
 export { PostBanner } from './components/post-banner/post-banner';
+export { PostBreadcrumb } from './components/post-breadcrumb/post-breadcrumb';
 export { PostBreadcrumbItem } from './components/post-breadcrumb-item/post-breadcrumb-item';
 export { PostCardControl } from './components/post-card-control/post-card-control';
 export { PostClosebutton } from './components/post-closebutton/post-closebutton';

@@ -65,10 +65,18 @@ Type: `Promise<void>`
 
 
 
+## Shadow Parts
+
+| Part                  | Description |
+| --------------------- | ----------- |
+| `"popover-container"` |             |
+
+
 ## Dependencies
 
 ### Used by
 
+ - [post-breadcrumb](../post-breadcrumb)
  - [post-language-switch](../post-language-switch)
 
 ### Depends on
@@ -79,6 +87,7 @@ Type: `Promise<void>`
 ```mermaid
 graph TD;
   post-menu --> post-popovercontainer
+  post-breadcrumb --> post-menu
   post-language-switch --> post-menu
   style post-menu fill:#f9f,stroke:#333,stroke-width:4px
 ```
