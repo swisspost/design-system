@@ -1,7 +1,8 @@
-import { Component, h, Host, State, Element, Method } from '@stencil/core';
+import { Component, h, Host, State, Element, Method, Watch } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
+import { slideDown, slideUp } from '@/animations/slide';
 
 type DEVICE_SIZE = 'mobile' | 'tablet' | 'desktop' | null;
 
@@ -11,11 +12,9 @@ type DEVICE_SIZE = 'mobile' | 'tablet' | 'desktop' | null;
   styleUrl: './post-header.scss',
 })
 export class PostHeader {
-  @Element() host: HTMLPostHeaderElement;
-  @State() device: DEVICE_SIZE = null;
-  @State() mobileMenuExtended: boolean = false;
-
   private scrollParent = null;
+  private mobileMenu: HTMLElement;
+  private mobileMenuAnimation: Animation;
   private throttledScroll = () => this.handleScrollEvent();
   private throttledResize = throttle(50, () => this.handleResize());
 
@@ -27,14 +26,31 @@ export class PostHeader {
     this.handleScrollEvent();
   }
 
+  @Element() host: HTMLPostHeaderElement;
+
+  @State() device: DEVICE_SIZE = null;
+  @State() mobileMenuExtended: boolean = false;
+
+  @Watch('mobileMenuExtended')
+  frozeBody(isMobileMenuExtended: boolean) {
+    document.body.style.overflow = isMobileMenuExtended ? 'hidden' : '';
+  }
+
   /**
    * Toggles the mobile navigation.
    */
   @Method()
   async toggleMobileMenu() {
-    if (this.device !== 'desktop') {
-      this.mobileMenuExtended = !this.mobileMenuExtended;
-    }
+    if (this.device === 'desktop') return;
+
+    this.mobileMenuAnimation = this.mobileMenuExtended
+      ? slideUp(this.mobileMenu)
+      : slideDown(this.mobileMenu);
+
+    // Toggle menu visibility before it slides down and after it slides back up
+    if (this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
+    this.mobileMenuExtended = !this.mobileMenuExtended;
+    if (!this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
   }
 
   private handleScrollEvent() {
@@ -81,11 +97,20 @@ export class PostHeader {
 
     if (width >= 1024) {
       newDevice = 'desktop';
-      this.mobileMenuExtended = false; // Close any open mobile menu
     } else if (width >= 600) {
       newDevice = 'tablet';
     } else {
       newDevice = 'mobile';
+    }
+
+    // Close any open mobile menu
+    if (newDevice === 'desktop' && this.mobileMenuExtended) {
+      this.toggleMobileMenu();
+      this.mobileMenuAnimation.finish(); // no animation
+
+
+      const menuToggler = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
+      if (menuToggler) menuToggler.toggled = false;
     }
 
     // Apply only on change for doing work only when necessary
@@ -125,7 +150,6 @@ export class PostHeader {
             </div>
           </div>
         </div>
-
         <div class="title-header d-flex space-between align-center">
           <slot name="title"></slot>
           <div class="global-sub">
@@ -133,8 +157,7 @@ export class PostHeader {
             <slot></slot>
           </div>
         </div>
-
-        <div aria-hidden={`${!this.mobileMenuExtended}`} class={navigationClasses.join(' ')}>
+        <div ref={el => (this.mobileMenu = el)} class={navigationClasses.join(' ')}>
           <slot name="post-mainnavigation"></slot>
 
           {(this.device === 'mobile' || this.device === 'tablet') && (
