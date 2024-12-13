@@ -27,7 +27,6 @@ tokens.$default-map: components.$post-breadcrumb;
   white-space: nowrap;
   line-height: 150%;
   padding-block: tokens.get('breadcrumb-padding-block-text');
-  font-size: tokens.get('body-font-size', elements.$post-body);
   color: tokens.get('breadcrumb-enabled-fg');
   text-decoration: tokens.get('breadcrumb-link-enabled-text-decoration');
   @include utilities.focus-style();
