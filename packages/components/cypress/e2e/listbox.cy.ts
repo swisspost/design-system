@@ -1,16 +1,16 @@
-describe('PostListbox Component', { baseUrl: null, includeShadowDom: false }, () => {
+describe('PostListbox', { baseUrl: null, includeShadowDom: false }, () => {
   beforeEach(() => {
     // Visit the page where the component is rendered
     cy.visit('./cypress/fixtures/post-listbox.test.html');
   });
 
   it('should render the post-listbox component', () => {
-    // Check if the post-list component is rendered
+    // Check if the post-listbox component is rendered
     cy.get('post-listbox').should('exist');
   });
 
   it('should have an id for the first div in post-listbox', () => {
-    // Ensure the first div inside post-list has an id attribute
+    // Ensure the first div inside post-listbox has an id attribute
     cy.get('post-listbox')
       .find('div')
       .first()

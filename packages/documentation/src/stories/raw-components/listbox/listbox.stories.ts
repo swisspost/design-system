@@ -112,12 +112,14 @@ export const PostListboxHighlightedSearch: Story = {
 
 export const PostListboxStyling: Story = {
   render: () =>
-    html`<post-listbox style="--post-listbox-label-gap: 2rem; --post-listbox-item-gap: 1rem 0.5rem;">
+    html`<post-listbox
+      style="--post-listbox-label-gap: 2rem; --post-listbox-item-gap: 1rem 0.5rem;"
+    >
       <h3>Label</h3>
       <post-listbox-item>Listbox Item 1</post-listbox-item>
       <post-listbox-item>Listbox Item 2</post-listbox-item>
       <post-listbox-item>Listbox Item 3</post-listbox-item>
       <post-listbox-item>Listbox Item 4</post-listbox-item>
       <post-listbox-item>Listbox Item 5</post-listbox-item>
-    </post-list> `,
+    </post-listbox> `,
 };
