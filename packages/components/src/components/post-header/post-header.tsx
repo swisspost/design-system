@@ -108,7 +108,6 @@ export class PostHeader {
       this.toggleMobileMenu();
       this.mobileMenuAnimation.finish(); // no animation
 
-      console.log(this.mobileMenuAnimation);
 
       const menuToggler = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
       if (menuToggler) menuToggler.toggled = false;
