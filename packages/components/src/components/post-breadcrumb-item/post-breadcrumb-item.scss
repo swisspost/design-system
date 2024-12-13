@@ -2,32 +2,41 @@
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/tokens/helpers';
 @use '@swisspost/design-system-styles/mixins/utilities';
 
 tokens.$default-map: components.$post-breadcrumb;
 
 :host {
-  display: inline-block;
-  @include utilities.focus-style;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: tokens.get('breadcrumb-gap-inline-inner');
+
+  post-icon {
+    box-sizing: border-box;
+    height: tokens.get('breadcrumb-icon-size');
+    width: tokens.get('breadcrumb-icon-size');
+    padding-block: tokens.get('breadcrumb-padding-block-icon-link');
+    padding-inline: tokens.get('breadcrumb-padding-inline-icon-link');
+  }
 }
 
 .breadcrumb-item {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  white-space: nowrap;
+  line-height: 150%;
   padding-block: tokens.get('breadcrumb-padding-block-text');
-  gap: tokens.get('breadcrumb-gap-inline-inner');
   color: tokens.get('breadcrumb-enabled-fg');
   text-decoration: tokens.get('breadcrumb-link-enabled-text-decoration');
-
-  post-icon {
-    height: tokens.get('breadcrumb-icon-size');
-    width: tokens.get('breadcrumb-icon-size');
-  }
+  @include utilities.focus-style();
 
   &:hover {
     color: tokens.get('breadcrumb-hover-fg');
     text-decoration: tokens.get('breadcrumb-link-hover-text-decoration');
+  }
+
+  &:focus-visible {
+    border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
   }
 
   @include utilities.high-contrast-mode() {
