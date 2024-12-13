@@ -6,9 +6,9 @@
 @use '@swisspost/design-system-styles/variables/animation';
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 
-$nav-height: var(--post-core-dimension-56);
-
 post-mainnavigation {
+  flex: 0 0 auto;
+
   // reset links and buttons
   post-list-item {
     > a {
@@ -22,8 +22,8 @@ post-mainnavigation {
     }
 
     > a,
-    > button,
     post-megadropdown-trigger button {
+      flex: 0 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -41,11 +41,44 @@ post-mainnavigation {
 
   // desktop styles
   @include media.min(lg) {
+    display: block;
+
     nav {
       position: relative;
       max-width: 100vw;
-      max-height: $nav-height;
+      max-height: var(--main-navigation-height);
       user-select: none;
+      transition: transform animation.$transition-base-timing;
+    }
+
+    .left-scroll-button,
+    .right-scroll-button {
+      position: absolute;
+      inset-block: 0;
+      overflow: hidden;
+
+       button {
+        @include button.reset-button;
+        background: var(--post-core-color-brand-white);
+        padding: var(--post-core-dimension-16);
+        box-shadow: var(--post-core-elevation-5);
+        line-height: var(--post-core-line-height-100);
+        height: 100%;
+
+        post-icon {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .left-scroll-button {
+      inset-inline-start: 0;
+      padding-inline-end: 20px;
+    }
+
+    .right-scroll-button {
+      inset-inline-end: 0;
+      padding-inline-start: 20px;
     }
 
     post-list {
@@ -63,7 +96,7 @@ post-mainnavigation {
       > button,
       post-megadropdown-trigger button {
         padding-inline: var(--post-core-dimension-12);
-        height: $nav-height;
+        height: var(--main-navigation-height);
         gap: var(--post-core-dimension-4);
         font-size: var(--post-core-font-size-16);
         border-block: 0 solid transparent;
@@ -106,8 +139,13 @@ post-mainnavigation {
 
   // tablet/mobile styles
   @include media.max(lg) {
-    post-list > [role='list'] {
+    nav {
       transform: none !important;
+    }
+
+    .left-scroll-button,
+    .right-scroll-button {
+      display: none;
     }
 
     post-list-item {
