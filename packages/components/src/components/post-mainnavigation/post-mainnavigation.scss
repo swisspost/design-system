@@ -16,7 +16,6 @@ post-mainnavigation {
       border-radius: 0;
     }
 
-    > button,
     post-megadropdown-trigger button {
       @include button.reset-button;
       text-align: start;
