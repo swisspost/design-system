@@ -154,6 +154,15 @@ post-popovercontainer {
       border-bottom: 0;
       height: auto;
 
+      // Unset styles added by parent main navigation
+      &:hover {
+        border-block-width: 0;
+
+        &::after {
+          content: unset;
+        }
+      }
+
       @include media.max(lg) {
         padding: 12px 12px 11px 0;
       }
