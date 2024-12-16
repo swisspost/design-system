@@ -102,7 +102,7 @@ export class PostListbox {
       if (!this.multiselect) {
         this.setActiveDescendant(activeDescendant as HTMLElement);
       } else {
-        this.setActiveDescendant(sortedSelectedItems[0] as HTMLElement);
+        this.setActiveDescendant(sortedSelectedItems[0]);
       }
     } else if (listboxItems) {
       this.setActiveDescendant(listboxItems[0]);
@@ -116,7 +116,7 @@ export class PostListbox {
     if (!listboxItems.length) return;
 
     const currentIndex = listboxItems.findIndex(item => item.id === this.activeDescendantId);
-    let nextIndex = currentIndex;
+    let nextIndex: number;
 
     switch (e.key) {
       case 'ArrowUp':
@@ -162,39 +162,51 @@ export class PostListbox {
 
   private handleItemSelect = (item: string) => {
     const option = this.host.querySelector(`#${item}`);
-    if (this.multiselect) {
-      // Multi-select logic: Toggle selection of item
-      if (this.selectedItems.includes(item)) {
-        // Remove the item if it is already selected
-        this.selectedItems = this.selectedItems.filter(selected => selected !== item);
-        if (option) {
-          option.removeAttribute('selected');
-        }
-      } else {
-        // Add the item to the selected list
-        this.selectedItems = [...this.selectedItems, item];
-        if (option) {
-          option.setAttribute('selected', 'selected');
-        }
-      }
-    } else {
-      // Single-select logic
-      if (this.selectedItems[0] !== item) {
-        this.selectedItems = [item]; // Clear previous selection and select the new one
-        // Remove 'selected' attribute from all options
-        const allOptions = this.host.querySelectorAll('[role="option"]');
-        allOptions.forEach(opt => {
-          if (opt.hasAttribute('selected')) {
-            opt.removeAttribute('selected');
-          }
-        });
 
-        // Add 'selected' to the clicked option
-        if (option) {
-          option.setAttribute('selected', 'selected');
-        }
-      }
+    if (this.multiselect) {
+      this.handleMultiSelect(item, option);
+    } else {
+      this.handleSingleSelect(item, option);
     }
+  };
+
+  private handleMultiSelect = (item: string, option: Element | null) => {
+    if (this.selectedItems.includes(item)) {
+      this.deselectItem(item, option);
+    } else {
+      this.selectItem(item, option);
+    }
+  };
+
+  private handleSingleSelect = (item: string, option: Element | null) => {
+    if (this.selectedItems[0] !== item) {
+      this.clearSelections();
+      this.selectItem(item, option);
+    }
+  };
+
+  private selectItem = (item: string, option: Element | null) => {
+    this.selectedItems = [...this.selectedItems, item];
+    if (option) {
+      option.setAttribute('selected', 'selected');
+    }
+  };
+
+  private deselectItem = (item: string, option: Element | null) => {
+    this.selectedItems = this.selectedItems.filter(selected => selected !== item);
+    if (option) {
+      option.removeAttribute('selected');
+    }
+  };
+
+  private clearSelections = () => {
+    this.selectedItems = [];
+    const allOptions = this.host.querySelectorAll('[role="option"]');
+    allOptions.forEach(opt => {
+      if (opt.hasAttribute('selected')) {
+        opt.removeAttribute('selected');
+      }
+    });
   };
 
   private highlightSearch() {
