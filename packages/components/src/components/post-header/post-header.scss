@@ -21,7 +21,6 @@
     inset-inline: 0;
     inset-block-start: calc(-1 * (var(--global-header-height) + var(--local-header-height) - var(--main-navigation-height) - var(--global-header-reduced-height)));
     padding-block-end: var(--post-core-dimension-10);
-    background-color: var(--post-current-palette-bg, transparent);
     overflow: hidden;
   }
 
