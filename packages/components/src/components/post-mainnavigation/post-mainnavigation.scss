@@ -75,7 +75,8 @@ post-mainnavigation {
           border-block-width: var(--post-core-dimension-2);
         }
 
-        &.selected {
+        &.selected,
+        &[aria-expanded='true'] {
           border-block-width: var(--post-core-dimension-4);
           font-weight: var(--post-core-font-weight-700);
         }
@@ -95,7 +96,8 @@ post-mainnavigation {
           transition: transform animation.$transition-base-timing;
         }
 
-        &.selected::after {
+        &.selected::after,
+        &[aria-expanded='true']::after {
           transform: rotate(180deg);
         }
       }
