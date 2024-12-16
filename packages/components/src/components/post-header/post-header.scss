@@ -15,13 +15,6 @@
   @include media.min(lg) {
     --global-header-reduced-height: 24px;
     --main-navigation-height: 56px;
-
-    display: block;
-    position: sticky;
-    inset-inline: 0;
-    inset-block-start: calc(-1 * (var(--global-header-height) + var(--local-header-height) - var(--main-navigation-height) - var(--global-header-reduced-height)));
-    padding-block-end: var(--post-core-dimension-10);
-    overflow: hidden;
   }
 
   @include media.max(lg) {
@@ -67,7 +60,7 @@
 
   @include media.min(lg) {
     padding-inline-end: var(--post-core-dimension-12);
-    top: calc((var(--global-header-height) - var(--global-header-reduced-height)) * -1);
+    inset-block-start: calc((var(--global-header-height) - var(--global-header-reduced-height)) * -1);
   }
 }
 
@@ -116,7 +109,10 @@ slot[name='post-logo'] {
   background: var(--post-core-color-brand-white);
 
   @include media.min(lg) {
-    padding: var(--post-core-dimension-18) var(--post-core-dimension-16) var(--post-core-dimension-4) var(--post-core-dimension-12);
+    position: sticky;
+    inset-block-start: calc(-1 * (var(--local-header-height) - var(--main-navigation-height)) + var(--global-header-reduced-height));
+    padding-block-start: var(--post-core-dimension-18);
+    box-shadow: var(--post-core-elevation-3);
   }
 
   @include media.max(lg) {
