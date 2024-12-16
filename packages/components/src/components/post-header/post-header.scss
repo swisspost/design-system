@@ -172,6 +172,7 @@ slot[name='post-logo'] {
   ::slotted(post-mainnavigation) {
     background-color: var(--post-core-color-sandgrey-002);
     gap: var(--post-core-dimension-32);
+    border-top: 1px solid var(--post-core-color-sandgrey-012);
   }
 
   .navigation-footer {
