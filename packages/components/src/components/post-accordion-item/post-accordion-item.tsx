@@ -112,6 +112,7 @@ export class PostAccordionItem {
             id={`${this.id}--collapse`}
             collapsed={this.collapsed}
             ref={el => (this.collapsible = el)}
+            tabIndex={this.collapsed ? -1 : undefined}
           >
             <div class="accordion-body" part="body">
               <slot />
