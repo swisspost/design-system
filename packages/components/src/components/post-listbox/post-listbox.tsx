@@ -161,7 +161,7 @@ export class PostListbox {
   };
 
   private handleItemSelect = (item: string) => {
-    const option = this.host.querySelector(`#${item}`); // Assuming item is the id of the option
+    const option = this.host.querySelector(`#${item}`);
     if (this.multiselect) {
       // Multi-select logic: Toggle selection of item
       if (this.selectedItems.includes(item)) {
@@ -185,7 +185,7 @@ export class PostListbox {
         const allOptions = this.host.querySelectorAll('[role="option"]');
         allOptions.forEach(opt => {
           if (opt.hasAttribute('selected')) {
-            opt.removeAttribute('selected'); // Remove selected from all options
+            opt.removeAttribute('selected');
           }
         });
 
@@ -209,7 +209,7 @@ export class PostListbox {
   }
 
   componentWillLoad() {
-    // Generate a random id for the listbox
+    // Generate random id for the listbox
     this.labelId = `listbox-${crypto.randomUUID()}`;
 
     // Ensure each listbox item has a unique id

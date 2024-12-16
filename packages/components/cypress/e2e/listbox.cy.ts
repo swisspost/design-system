@@ -51,6 +51,66 @@ describe('PostListbox', { baseUrl: null, includeShadowDom: false }, () => {
       });
     });
   });
+
+  it('should have correct ARIA attributes on the listbox', () => {
+    cy.get('post-listbox [role="listbox"]')
+      .should('have.attr', 'aria-labelledby')
+      .and('not.be.empty');
+    cy.get('post-listbox [role="listbox"]').should('have.attr', 'aria-activedescendant');
+  });
+
+  it('should allow navigation with keyboard for single-select', () => {
+    cy.get('post-listbox [role="listbox"]').focus().type('{downarrow}');
+    cy.get('post-listbox [role="listbox"]')
+      .invoke('attr', 'aria-activedescendant')
+      .then(id => {
+        cy.get(`#${id}`).should('exist').and('have.focus');
+      });
+  });
+
+  it('should allow selection with Space key for multi-select', () => {
+    cy.get('post-listbox').invoke('attr', 'multiselect', true);
+    cy.get('post-listbox [role="listbox"]').focus().type(' ');
+    cy.get('post-listbox-item[selected]').should('exist');
+  });
+
+  it('should highlight search term in listbox items', () => {
+    cy.get('post-listbox').invoke('attr', 'search-term', 'abc');
+    cy.get('post-listbox-item mark').each($el => {
+      cy.wrap($el)
+        .invoke('text')
+        .should(text => {
+          expect(text.toLowerCase()).to.contain('abc'.toLowerCase());
+        });
+    });
+  });
+
+  it('should set active and selected item on click', () => {
+    cy.get('post-listbox [slot="post-listbox-item"]').first().click();
+    cy.get('post-listbox [role="listbox"]')
+      .invoke('attr', 'aria-activedescendant')
+      .should('not.be.empty');
+    cy.get('post-listbox-item[selected]').should('exist');
+  });
+
+  it('should initialize pre-selected items correctly', () => {
+    cy.get('post-listbox-item[selected]').each($el => {
+      cy.wrap($el).should('have.attr', 'selected', 'selected');
+    });
+  });
+
+  it('should retain state after losing focus', () => {
+    cy.get('post-listbox [role="listbox"]').focus().type('{downarrow}').type('{downarrow}');
+    cy.get('post-listbox [role="listbox"]')
+      .invoke('attr', 'aria-activedescendant')
+      .then(lastFocusedId => {
+        cy.get(`#${lastFocusedId}`).blur();
+        cy.get('post-listbox [role="listbox"]').focus();
+        cy.get('post-listbox [role="listbox"]')
+          .invoke('attr', 'aria-activedescendant')
+          .should('equal', lastFocusedId);
+      });
+  });
 });
 
 describe('Accessibility', () => {
