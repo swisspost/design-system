@@ -3,7 +3,7 @@ import * as toggleButtonStories from './togglebutton.stories';
 
 <Meta of={toggleButtonStories} />
 
-# Toggle Button
+# Button Toggle
 
 <p className="lead">A toggle button component to switch between two states and display different content based on the current state.</p>
 
@@ -24,8 +24,14 @@ You can set the button to be toggled initially by using the `toggled` attribute.
 
 <Canvas of={toggleButtonStories.InitiallyToggled} />
 
-### Icon content
+### Content Visibility
 
-You can also add an icon to the content (for a toggle menu, for example).
+The toggle button can contain any text or inline element.
 
-<Canvas of={toggleButtonStories.IconContent} />
+You can control the visibility of an element based on the state of the toggle button using the `data-showwhen` attribute.
+
+- If the element has a `data-showwhen="toggled"` attribute, it will be visible when the button is toggled on.
+- If the element has a `data-showwhen="untoggled"` attribute, it will be visible when the button is toggled off.
+- If the element **does not** have a `data-showwhen` attribute, it will always be visible, regardless of the button's state.
+
+<Canvas of={toggleButtonStories.ContentVisibility} />

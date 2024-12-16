@@ -17,42 +17,57 @@
   </head>
   <body style="min-height: 200vh">
     <post-header>
+      <!-- Logo -->
       <post-logo>Homepage</post-logo>
-      <ul slot="audience-navigation">
-        <li><a href="">Privatkunden</a></li>
-        <li><a href="">Geschäftskunden</a></li>
-        <li><a href="">Behörden</a></li>
-      </ul>
-      <ul slot="meta-navigation">
-        <li><a href="">Über uns</a></li>
+
+      <!-- Meta navigation -->
+      <ul class="list-inline" slot="meta-navigation">
         <li><a href="">Jobs</a></li>
+        <li><a href="">Über uns</a></li>
       </ul>
 
-      <button slot="post-togglebutton">= Menu</button>
+      <!-- Menu button for mobile -->
+      <post-togglebutton>
+        <span class="visually-hidden-sm">Menu</span>
+        <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
+        <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
+      </post-togglebutton>
 
-      <ul slot="post-language-switch">
-        <li>
-          <a href="#">DE</a>
-        </li>
-        <li>
-          <a href="#">FR</a>
-        </li>
-        <li>
-          <a href="#">IT</a>
-        </li>
-        <li>
-          <a href="#">EN</a>
-        </li>
-      </ul>
+      <!-- Language switch -->
+      <post-language-switch
+        caption="Caption"
+        description="Description"
+        name="language-switch-example"
+        slot="post-language-switch"
+      >
+        <post-language-option active="true" code="de" name="Deutsch">DE</post-language-option>
+        <post-language-option active="false" code="fr" name="French">FR</post-language-option>
+        <post-language-option active="false" code="it" name="Italiano">IT</post-language-option>
+        <post-language-option active="false" code="en" name="English">EN</post-language-option>
+      </post-language-switch>
 
+      <!-- Application title (optional) -->
       <h1 slot="title">Application title</h1>
-      <ul>
-        <li><a href="#">Search</a></li>
-        <li><a href="#">Login</a></li>
+
+      <!-- Custom content (optional) -->
+      <ul class="list-inline">
+        <li>
+          <a href="#">
+            <span class="visually-hidden-sm">Search</span>
+            <post-icon aria-hidden="true" name="search"></post-icon>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="visually-hidden-sm">Login</span>
+            <post-icon aria-hidden="true" name="login"></post-icon>
+          </a>
+        </li>
       </ul>
 
+      <!-- Main navigation -->
       <post-mainnavigation caption="Hauptnavigation">
-        <button slot="back-button" class="btn btn-sm btn-tertiary p-0">
+        <button type="button" slot="back-button" class="btn btn-sm btn-tertiary p-0">
           <post-icon aria-hidden="true" name="3024"></post-icon> Back
         </button>
 
@@ -65,10 +80,14 @@
 
           <!-- Level 1 with megadropdown -->
           <post-list-item>
-            <post-megadropdown-trigger> Briefe </post-megadropdown-trigger>
-            <post-megadropdown>
-              <button slot="back-button"><- Zurück</button>
-              <h2><a href="">Briefe title</a></h2>
+            <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
+            <post-megadropdown id="briefe">
+              <button slot="back-button" class="btn btn-tertiary px-0">
+                <post-icon name="arrowright"></post-icon>
+                Zurück
+              </button>
+              <post-closebutton slot="close-button">Schliessen</post-closebutton>
+              <h2 slot="megadropdown-title"><a href="">Briefe title</a></h2>
               <post-list>
                 <h3>Briefe senden</h3>
                 <post-list-item><a href="/sch">Briefe Schweiz</a></post-list-item>
@@ -83,14 +102,17 @@
                 <post-list-item><a href="">Waren Ausland</a></post-list-item>
                 <post-list-item><a href="">Express und Kurier</a></post-list-item>
               </post-list>
-              <post-closebutton>Schliessen</post-closebutton>
             </post-megadropdown>
           </post-list-item>
           <post-list-item>
-            <post-megadropdown-trigger> Pakete </post-megadropdown-trigger>
-            <post-megadropdown>
-              <button slot="back-button"><- Zurück</button>
-              <h2><a href="">Pakete title</a></h2>
+            <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
+            <post-megadropdown id="pakete">
+              <button slot="back-button" class="btn btn-tertiary px-0">
+                <post-icon name="arrowright"></post-icon>
+                Zurück
+              </button>
+              <post-closebutton slot="close-button">Schliessen</post-closebutton>
+              <h2 slot="megadropdown-title"><a href="">Pakete title</a></h2>
               <post-list>
                 <h3>Pakete senden</h3>
                 <post-list-item><a href="/sch">Pakete Schweiz</a></post-list-item>
@@ -105,7 +127,6 @@
                 <post-list-item><a href="">Waren Ausland</a></post-list-item>
                 <post-list-item><a href="">Express und Kurier</a></post-list-item>
               </post-list>
-              <post-closebutton>Schliessen</post-closebutton>
             </post-megadropdown>
           </post-list-item>
         </post-list>

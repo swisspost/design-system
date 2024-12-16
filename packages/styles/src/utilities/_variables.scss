@@ -2,6 +2,7 @@
 
 @use './functions' as *;
 
+@use '../variables/sizing' as *;
 /*
   Utilities are generated with our utility API using bellow $utilities map.
 
@@ -28,6 +29,126 @@ $position-values: (
 );
 
 $utilities: (
+  'width': (
+    responsive: true,
+    property: width,
+    class: w,
+    values: $post-combined-sizes,
+  ),
+  'height': (
+    responsive: true,
+    property: height,
+    class: h,
+    values: $post-combined-sizes,
+  ),
+  'max-width': (
+    responsive: true,
+    property: max-width,
+    class: max-w,
+    values: $post-combined-sizes,
+  ),
+  'max-height': (
+    responsive: true,
+    property: max-height,
+    class: max-h,
+    values: $post-combined-sizes,
+  ),
+  'min-width': (
+    responsive: true,
+    property: min-width,
+    class: min-w,
+    values: $post-combined-sizes,
+  ),
+  'min-height': (
+    responsive: true,
+    property: min-height,
+    class: min-h,
+    values: $post-combined-sizes,
+  ),
+  'viewport-width': (
+    responsive: true,
+    property: width,
+    class: vw,
+    values: (
+      0: 0,
+      25: 25vw,
+      33: 25vw,
+      50: 50vw,
+      66: 66vw,
+      75: 75vw,
+      100: 100vw,
+    ),
+  ),
+  'viewport-height': (
+    responsive: true,
+    property: height,
+    class: vh,
+    values: (
+      0: 0,
+      25: 25vh,
+      33: 33vh,
+      50: 50vh,
+      66: 66vh,
+      75: 75vh,
+      100: 100vh,
+    ),
+  ),
+  'min-viewport-width': (
+    responsive: true,
+    property: min-width,
+    class: min-vw,
+    values: (
+      0: 0,
+      25: 25vw,
+      33: 25vw,
+      50: 50vw,
+      66: 66vw,
+      75: 75vw,
+      100: 100vw,
+    ),
+  ),
+  'min-viewport-height': (
+    responsive: true,
+    property: min-height,
+    class: min-vh,
+    values: (
+      0: 0,
+      25: 25vh,
+      33: 33vh,
+      50: 50vh,
+      66: 66vh,
+      75: 75vh,
+      100: 100vh,
+    ),
+  ),
+  'max-viewport-width': (
+    responsive: true,
+    property: max-width,
+    class: max-vw,
+    values: (
+      0: 0,
+      25: 25vw,
+      33: 25vw,
+      50: 50vw,
+      66: 66vw,
+      75: 75vw,
+      100: 100vw,
+    ),
+  ),
+  'max-viewport-height': (
+    responsive: true,
+    property: max-height,
+    class: max-vh,
+    values: (
+      0: 0,
+      25: 25vh,
+      33: 33vh,
+      50: 50vh,
+      66: 66vh,
+      75: 75vh,
+      100: 100vh,
+    ),
+  ),
   'align': (
     property: vertical-align,
     class: align,
