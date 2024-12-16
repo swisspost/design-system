@@ -139,7 +139,6 @@ slot[name='post-logo'] {
 
   @include media.min(sm) {
     margin-inline-start: var(--post-core-dimension-12) !important;
-    margin-inline-start: var(--post-core-dimension-12) !important;
   }
 
   @include media.max(sm) {
