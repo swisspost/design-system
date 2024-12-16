@@ -16,6 +16,7 @@ $spinner-duration: 3.125s !default;
 $spinner-speed-reduced-motion: math.div(1, 8) !default;
 
 $spinner-size-map: (
+  12: type.$font-size-12,
   16: type.$font-size-16,
   24: type.$font-size-24,
   32: type.$font-size-32,
