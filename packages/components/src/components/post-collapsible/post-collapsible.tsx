@@ -14,6 +14,7 @@ import { collapse, expand } from '@/animations/collapse';
 import { checkEmptyOrType, isMotionReduced } from '@/utils';
 
 /**
+ * @part collapsible-container - The pseudo-element, used to override styles on the collapsible element.
  * @slot default - Slot for placing content within the collapsible element.
  */
 
@@ -96,7 +97,7 @@ export class PostCollapsible {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={version} part="collapsible-container">
         <slot />
       </Host>
     );
