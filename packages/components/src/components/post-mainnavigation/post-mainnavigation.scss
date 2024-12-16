@@ -6,6 +6,10 @@
 @use '@swisspost/design-system-styles/variables/animation';
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 
+body {
+  overflow-x: hidden;
+}
+
 post-mainnavigation {
   flex: 0 0 auto;
 
