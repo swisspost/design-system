@@ -5,7 +5,6 @@ import { Component, Prop, Element, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'post-listbox-item',
-  styleUrl: 'post-listbox-item.scss',
   shadow: true,
 })
 export class PostListboxItem {

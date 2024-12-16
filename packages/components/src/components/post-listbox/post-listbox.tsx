@@ -105,7 +105,7 @@ export class PostListbox {
         this.setActiveDescendant(sortedSelectedItems[0] as HTMLElement);
       }
     } else if (listboxItems) {
-      this.setActiveDescendant(listboxItems[0] as HTMLElement);
+      this.setActiveDescendant(listboxItems[0]);
     }
   };
 
