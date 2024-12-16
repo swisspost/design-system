@@ -4,7 +4,10 @@
 @use 'mixins' as *;
 
 post-header {
-  ul[slot="meta-navigation"] {
+  @include utilities.high-contrast-mode() {
+    border-bottom: 2px solid LinkText !important;
+  }
+  ul[slot='meta-navigation'] {
     gap: var(--post-core-dimension-4);
 
     @include media.max(lg) {

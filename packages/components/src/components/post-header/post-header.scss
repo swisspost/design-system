@@ -1,5 +1,6 @@
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/variables/animation';
+@use '@swisspost/design-system-styles/mixins/utilities';
 
 *,
 ::before,
@@ -12,6 +13,9 @@
   --global-header-minimal-height: 24px;
   --main-header-height: 56px;
   --header-height: calc(var(--global-header-height) + var(--main-header-height));
+  @include utilities.high-contrast-mode() {
+    display: block;
+  }
 
   @include media.min(lg) {
     display: block;
