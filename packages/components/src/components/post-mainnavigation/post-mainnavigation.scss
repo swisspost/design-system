@@ -1,5 +1,6 @@
 @use '@swisspost/design-system-styles/mixins/button';
 @use '@swisspost/design-system-styles/mixins/icons';
+@use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/elements';
@@ -36,6 +37,10 @@ post-mainnavigation {
         border-radius: var(--post-core-dimension-4);
         z-index: 1;
       }
+    }
+
+    post-megadropdown-trigger button {
+      @include utilities.focus-style;
     }
   }
 
