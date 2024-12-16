@@ -96,7 +96,7 @@ export class PostCollapsible {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={version} tabIndex={this.collapsed ? -1 : undefined}>
         <slot />
       </Host>
     );
