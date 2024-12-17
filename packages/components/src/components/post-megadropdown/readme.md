@@ -5,50 +5,46 @@
 <!-- Auto Generated Below -->
 
 
+## Events
+
+| Event                    | Description                                                                                                                                  | Type                   |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| `postToggleMegadropdown` | Emits when the dropdown is shown or hidden. The event payload is a boolean: `true` when the dropdown was opened, `false` when it was closed. | `CustomEvent<boolean>` |
+
+
 ## Methods
 
-### `hide() => Promise<void>`
+### `show(target: HTMLElement) => Promise<void>`
 
-Hide megadropdown
+Displays the popover dropdown
+
+#### Parameters
+
+| Name     | Type          | Description                                                                    |
+| -------- | ------------- | ------------------------------------------------------------------------------ |
+| `target` | `HTMLElement` | - The HTML element relative to which the popover dropdown should be displayed. |
 
 #### Returns
 
 Type: `Promise<void>`
 
-boolean
 
-### `show(element: HTMLElement) => Promise<void>`
 
-Show megadropdown
+### `toggle(target: HTMLElement) => Promise<void>`
+
+Toggles the dropdown visibility based on its current state.
 
 #### Parameters
 
-| Name      | Type          | Description |
-| --------- | ------------- | ----------- |
-| `element` | `HTMLElement` | HTMLElement |
+| Name     | Type          | Description |
+| -------- | ------------- | ----------- |
+| `target` | `HTMLElement` |             |
 
 #### Returns
 
 Type: `Promise<void>`
 
-boolean
 
-### `toggle(element: HTMLElement, force?: boolean) => Promise<boolean>`
-
-Toggle megadropdown
-
-#### Parameters
-
-| Name      | Type          | Description |
-| --------- | ------------- | ----------- |
-| `element` | `HTMLElement` | HTMLElement |
-| `force`   | `boolean`     | boolean     |
-
-#### Returns
-
-Type: `Promise<boolean>`
-
-boolean
 
 
 ## Dependencies
