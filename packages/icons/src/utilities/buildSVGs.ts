@@ -17,7 +17,6 @@ import {
   ID_UNWANTED_PARTS,
   ID_SYMBOL_PREFIX,
   ID_SYMBOL_SEPERATOR,
-  ICON_SIZE_VAR_NAME,
   ICON_V1_TEMPLATE,
   ICON_V2_TEMPLATE,
 } from '../constants';
@@ -147,7 +146,7 @@ function createFiles(groupedFilePaths: Record<string, File[]>) {
     const useElement = parse('<use/>').querySelector('use') as HTMLElement;
 
     if (size !== null)
-      useElement.setAttribute('style', `display: var(--${ICON_SIZE_VAR_NAME}-${size}, none)`);
+      useElement.setAttribute('style', `display: var(--${ID_SYMBOL_PREFIX}${size}, none)`);
     useElement.setAttribute('href', `#${getSymbolId(symbolId, size)}`);
 
     return useElement.toString();
