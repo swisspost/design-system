@@ -27,6 +27,12 @@
   color: $color;
   -webkit-mask-image: url('#{$base}/#{$name}.svg');
   mask-image: url('#{$base}/#{$name}.svg');
+  -webkit-mask-position: center center;
+  mask-position: center center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
 }
 
 @mixin remove-icon() {
