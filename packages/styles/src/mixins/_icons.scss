@@ -16,8 +16,8 @@
 
 @mixin post-icon(
   $base: 'https://unpkg.com/@swisspost/design-system-icons/public/post-icons',
-  $name: '',
-  $color: currentColor
+  $name,
+  $color: inherit
 ) {
   display: inline-block;
   width: 1em;
@@ -25,6 +25,7 @@
   vertical-align: -0.15em;
   background-color: currentColor;
   color: $color;
+  -webkit-mask-image: url('#{$base}/#{$name}.svg');
   mask-image: url('#{$base}/#{$name}.svg');
 }
 
