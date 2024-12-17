@@ -13,17 +13,10 @@ export const ICON_V1_TEMPLATE = `<svg xmlns="http://www.w3.org/2000/svg">
   <defs>
     {symbols}
   </defs>
-
   {uses}
 </svg>`;
 
 const ICON_V2_TEMPLATE_STYLES = `<style>
-  svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
   ${ICON_V2_SIZES.map((size, i) => {
     const isFirst = size === ICON_V2_SIZES[0];
     const isLast = size === ICON_V2_SIZES[ICON_V2_SIZES.length - 1];
@@ -40,19 +33,18 @@ const ICON_V2_TEMPLATE_STYLES = `<style>
   </style>`;
 
 export const ICON_V2_TEMPLATE = `<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="{id}">
+      {symbols}
+      {uses}
+    </symbol>
+  </defs>
+  
   ${ICON_V2_TEMPLATE_STYLES.split('\n')
     .map(line => line.trim())
     .map(line => (line.startsWith('@') ? line : line.replace(/(\s|\t|\n)/g, '')))
     .join('')}
-  }
-  <defs>
-    <symbol id="{id}">
-      {symbols}
-
-      {uses}
-    </symbol>
-  </defs>
-
+      
   <g>
     <use href="#{id}"/>
   </g>
