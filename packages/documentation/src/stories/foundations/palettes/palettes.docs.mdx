@@ -1,5 +1,6 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as paletteStories from './palettes.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
 <Meta of={paletteStories} />
 
@@ -25,3 +26,5 @@ You can apply this text color to any element by using the `.palette-text` class.
 <div className="hide-col-default">
   <Controls of={paletteStories.Default} />
 </div>
+
+<StylesPackageImport components={['post-palettes']} />
