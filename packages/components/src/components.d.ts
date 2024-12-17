@@ -219,10 +219,6 @@ export namespace Components {
          */
         "code": string;
         /**
-          * Used on parent component (post-language-switch) to detect elements that are manually added
-         */
-        "generated": boolean;
-        /**
           * The full name of the language. For example, "Deutsch".
          */
         "name": string;
@@ -248,10 +244,6 @@ export namespace Components {
           * A descriptive text for the list of language options
          */
         "description": string;
-        /**
-          * The name of the language switch, which will be used on the dropdown as an ID
-         */
-        "name": string;
         /**
           * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
          */
@@ -1047,10 +1039,6 @@ declare namespace LocalJSX {
          */
         "code": string;
         /**
-          * Used on parent component (post-language-switch) to detect elements that are manually added
-         */
-        "generated"?: boolean;
-        /**
           * The full name of the language. For example, "Deutsch".
          */
         "name"?: string;
@@ -1076,10 +1064,6 @@ declare namespace LocalJSX {
           * A descriptive text for the list of language options
          */
         "description"?: string;
-        /**
-          * The name of the language switch, which will be used on the dropdown as an ID
-         */
-        "name"?: string;
         /**
           * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
          */
