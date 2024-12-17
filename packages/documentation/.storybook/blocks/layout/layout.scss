@@ -6,6 +6,7 @@
   background-repeat: no-repeat;
   background-position: center left 60vw;
   background-size: auto 100%;
+  background-color: post.$yellow;
 
   .container {
     padding-right: 20vw;
@@ -28,6 +29,10 @@
 }
 
 .docs-footer {
+  > div:first-child {
+    background-color: post.$light;
+  }
+
   ul.list-profile {
     display: grid;
     grid-template-rows: auto;
