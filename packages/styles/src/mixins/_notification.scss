@@ -113,7 +113,7 @@ tokens.$default-map: components.$post-banner;
     color: $icon-color;
 
     @include utilities-mx.high-contrast-mode {
-      color: FieldText;
+      color: CanvasText;
     }
   }
 
