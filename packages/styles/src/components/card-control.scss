@@ -173,7 +173,7 @@ fieldset {
       &:where(:has(input:checked), .checked) {
         --post-card-control-border-color: FieldText;
         --post-card-control-bg: SelectedItem;
-        --post-card-control-color: SelectedItemText;
+        --post-card-control-color: FieldText;
         --post-card-control-input-border-color: FieldText;
 
         input.form-check-input[type] {
