@@ -31,7 +31,7 @@
   }
 }
 
-// Used on form-input and form-textarea to set the correct colored validation icon
+// Used on form elements to set the correct colored validation icon
 @mixin validation-icons() {
   &.is-valid:not(:disabled) {
     background-image: forms.$valid-icon;

@@ -2,6 +2,7 @@
 
 @use './../mixins/utilities';
 @use './../functions/forms' as forms-fx;
+@use './../mixins/forms' as forms-mx;
 @use './../functions/tokens';
 @use './../tokens/components';
 @use './../tokens/elements';
@@ -103,12 +104,16 @@ tokens.$default-map: components.$post-select;
       }
     }
 
-    @include utilities.high-contrast-mode-dark() {
-      background-image: forms-fx.select-arrow-icon('enabled'), forms-fx.valid-icon('#e0e0e0') !important;
-    }
+    &,
+    &:hover:not([multiple]),
+    &:focus {
+      @include utilities.high-contrast-mode-dark() {
+        background-image: forms-fx.select-arrow-icon('enabled'), forms-fx.valid-icon('#e0e0e0');
+      }
 
-    @include utilities.high-contrast-mode-light() {
-      background-image: forms-fx.select-arrow-icon('enabled'), forms-fx.valid-icon('#333333') !important;
+      @include utilities.high-contrast-mode-light() {
+        background-image: forms-fx.select-arrow-icon('enabled'), forms-fx.valid-icon('#333333');
+      }
     }
   }
 
@@ -125,12 +130,16 @@ tokens.$default-map: components.$post-select;
       }
     }
 
-    @include utilities.high-contrast-mode-dark() {
-      background-image: forms-fx.select-arrow-icon('enabled'), forms-fx.invalid-icon('#e0e0e0') !important;
-    }
+    &,
+    &:hover:not([multiple]),
+    &:focus {
+      @include utilities.high-contrast-mode-dark() {
+        background-image: forms-fx.select-arrow-icon('enabled'), forms-fx.invalid-icon('#e0e0e0');
+      }
 
-    @include utilities.high-contrast-mode-light() {
-      background-image: forms-fx.select-arrow-icon('enabled'), forms-fx.invalid-icon('#333333') !important;
+      @include utilities.high-contrast-mode-light() {
+        background-image: forms-fx.select-arrow-icon('enabled'), forms-fx.invalid-icon('#333333');
+      }
     }
   }
 
@@ -143,13 +152,7 @@ tokens.$default-map: components.$post-select;
       background-position: center right tokens.get('select-validation-icon-position-inline-end');
     }
 
-    &.is-valid:not(:disabled) {
-      background-image: forms.$valid-icon;
-    }
-
-    &.is-invalid:not(:disabled) {
-      background-image: forms.$invalid-icon;
-    }
+    @include forms-mx.validation-icons();
   }
 }
 
