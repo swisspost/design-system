@@ -91,6 +91,10 @@ $post-segmented-button-max-count: 8;
             tokens.get('button-segmented-selected-border');
           border-radius: inherit;
           transition: transform 0.4s cubic-bezier(0.25, 1.4, 0.5, 0.9);
+
+          @include utilities.high-contrast-mode() {
+            background-color: SelectedItem;
+          }
         }
       }
 
