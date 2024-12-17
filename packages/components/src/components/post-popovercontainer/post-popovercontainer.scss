@@ -22,9 +22,10 @@
 :where(post-popovercontainer) {
   @include elevation-mx.elevation('elevation-3');
 
+  background: var(--post-current-palette-bg);
+  color: var(--post-current-palette-fg);
   position: fixed;
   z-index: commons.$zindex-popover;
-
   width: max-content;
   margin: 0;
   padding: 0;
@@ -34,8 +35,6 @@
   }
 
   box-sizing: border-box;
-  color: var(--post-contrast-color);
-  background-color: rgb(var(--post-bg-rgb));
   border: 2px solid transparent; // Keeping the default border for HCM
   border-radius: commons.$border-radius;
 
