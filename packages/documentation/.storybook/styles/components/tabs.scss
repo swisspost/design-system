@@ -1,5 +1,9 @@
 @use '@swisspost/design-system-styles/core' as post;
 @use '../mixins';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 @include mixins.style-docs-only-guard('post-tabs') {
   &::part(tabs) {
@@ -30,7 +34,7 @@
   }
 
   &:where(.sb-tabs-lg, :has(post-tab-panel > .sbdocs)) {
-    margin-top: post.$size-big;
+    margin-top: tokens.get('utility-gap-32');
 
     &::part(tabs) {
       &::before {
@@ -57,9 +61,9 @@
         display: block;
         content: '';
         position: absolute;
-        top: calc(100% + #{post.$size-regular});
+        top: calc(100% + #{tokens.get('utility-gap-16')});
         left: 0;
-        right: post.$size-mini * -1;
+        right: calc(#{tokens.get('utility-gap-8')} * -1);
         border-top: post.$border-width dashed post.$border-color;
       }
     }

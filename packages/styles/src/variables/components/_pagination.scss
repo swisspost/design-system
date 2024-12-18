@@ -3,15 +3,12 @@
 @use './../type';
 @use './../commons';
 @use './button';
+@use '../../tokens/utilities';
+@use '../../functions/tokens';
+
+tokens.$default-map: utilities.$post-spacing;
 
 // Pagination
-
-$pagination-padding-y: spacing.$size-mini !default;
-$pagination-padding-x: 0 !default;
-$pagination-padding-y-sm: spacing.$size-micro !default;
-$pagination-padding-x-sm: 0 !default;
-$pagination-padding-y-lg: spacing.$size-small-regular !default;
-$pagination-padding-x-lg: 0 !default;
 $pagination-line-height: 1.25 !default;
 
 $pagination-color: color.$gray-60 !default;
@@ -35,8 +32,8 @@ $pagination-disabled-bg: color.$light !default;
 $pagination-disabled-border-color: color.$gray-10 !default;
 
 $pagination-height-border: $pagination-border-width * 2 !default;
-$pagination-height-inner: (type.$font-size-base * $pagination-line-height) +
-  ($pagination-padding-y * 2) !default;
-$pagination-height: calc(#{$pagination-height-inner} + #{$pagination-height-border}) !default;
+$pagination-height: calc(
+  ((type.$font-size-base * $pagination-line-height) + (#{tokens.get('utility-gap-8')} * 2)) + #{$pagination-height-border}
+) !default;
 
 $pagination-width: $pagination-height !default;

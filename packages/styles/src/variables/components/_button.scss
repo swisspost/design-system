@@ -10,8 +10,11 @@
 
 @use '../../functions/tokens';
 @use '../../tokens/components';
+@use '../../tokens/utilities';
 
 tokens.$default-map: components.$post-button;
+
+// TODO: Fix issue with dependencies and multiple calc
 
 // Available button sizes except the default, which is md
 $btn-non-default-sizes: sm, lg !default;
@@ -60,29 +63,29 @@ $btn-icon-size-map: (
 // Old variables / Used elsewhere than on the v2 button component
 $input-btn-border-width-rem: sizing.px-to-rem($input-btn-border-width);
 
-$input-btn-padding-y: spacing.$size-regular - $input-btn-border-width-rem !default;
-$input-btn-padding-x: spacing.$size-small-large - $input-btn-border-width-rem !default;
+$input-btn-padding-y: sizing.px-to-rem(16) - $input-btn-border-width-rem !default;
+$input-btn-padding-x: sizing.px-to-rem(20) - $input-btn-border-width-rem !default;
 $input-btn-line-height: type.$line-height-copy !default;
 
-$input-btn-padding-y-sm: spacing.$size-micro !default;
-$input-btn-padding-x-sm: spacing.$size-regular !default;
+$input-btn-padding-y-sm: 4px !default;
+$input-btn-padding-x-sm: 16px !default;
 
-$input-btn-padding-y-rg: spacing.$size-small-regular - $input-btn-border-width-rem !default;
-$input-btn-padding-x-rg: spacing.$size-regular - $input-btn-border-width-rem !default;
+$input-btn-padding-y-rg: sizing.px-to-rem(12) - $input-btn-border-width-rem !default;
+$input-btn-padding-x-rg: sizing.px-to-rem(16) - $input-btn-border-width-rem !default;
 
-$input-btn-padding-y-lg: spacing.$size-small-regular !default;
-$input-btn-padding-x-lg: spacing.$size-regular !default;
+$input-btn-padding-y-lg: 12px !default; // px value to avoid build errors
+$input-btn-padding-x-lg: 16px !default; // px value to avoid bootstrap build errors
 
 $input-btn-focus-width: 0.125rem !default; // 2px
 $input-btn-focus-color: rgba(color.$gray-80, 0.25) !default;
 $input-btn-focus-box-shadow: 0 0 0 $input-btn-focus-width $input-btn-focus-color !default;
 
 $btn-height-sm: 2rem;
-$btn-icon-size-sm: spacing.$size-regular !default;
+$btn-icon-size-sm: tokens.get('utility-gap-16', utilities.$post-spacing) !default;
 $btn-font-size-rg: type.$font-size-14 !default;
 $btn-icon-size-rg: 1.125rem !default;
 $btn-height-md: 3rem;
-$btn-icon-size-md: spacing.$size-small-large !default;
+$btn-icon-size-md: tokens.get('utility-gap-20', utilities.$post-spacing) !default;
 $btn-icon-size-lg: 1.375rem !default;
 $old-btn-icon-size-map: (
   'sm': $btn-icon-size-sm,

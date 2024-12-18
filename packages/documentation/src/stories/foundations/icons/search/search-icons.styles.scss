@@ -1,15 +1,19 @@
-@use '../../../../../node_modules/@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 .icon-search {
   .icon-search--filters {
-    margin: post.$size-huge auto;
+    margin: tokens.get('utility-gap-56') auto;
     max-width: 500px;
 
     .freetext {
       position: relative;
 
       .form-control {
-        padding-right: post.$input-height-lg;
+        padding-right: calc(post.$input-height-lg);
       }
 
       .form-control-reset {
@@ -22,7 +26,7 @@
 
         post-icon {
           padding: post.$input-padding-y-lg;
-          width: post.$input-height-lg;
+          width: calc(post.$input-height-lg);
         }
       }
     }
@@ -30,13 +34,13 @@
 
   .icon-search--results {
     display: grid;
-    gap: post.$size-regular;
+    gap: tokens.get('utility-gap-16');
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    margin-top: post.$size-big;
+    margin-top: tokens.get('utility-gap-32');
 
     .results--empty {
       display: flex;
-      gap: post.$size-mini;
+      gap: tokens.get('utility-gap-8');
       align-items: center;
       margin-left: auto;
       margin-right: auto;
@@ -61,7 +65,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: post.$size-micro post.$size-regular;
+    padding: tokens.get('utility-gap-4') tokens.get('utility-gap-16');
     width: 100%;
     height: 80px;
     background-color: var(--post-contrast-color-inverted);
@@ -80,7 +84,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: post.$size-micro post.$size-regular;
+    padding: tokens.get('utility-gap-4') tokens.get('utility-gap-16');
     background-color: var(--post-gray-10);
     border-top: post.$border-width solid var(--post-gray-20);
     border-bottom-left-radius: post.$border-radius;

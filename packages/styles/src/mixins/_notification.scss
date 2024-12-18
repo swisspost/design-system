@@ -60,7 +60,7 @@ tokens.$default-map: components.$post-banner;
   }
 
   &.no-icon {
-    min-height: calc(2 * #{$padding-y} + close.$close-size);
+    min-height: calc(2 * #{$padding-y} + #{close.$close-size});
     padding-inline-start: $padding-x;
 
     &::before {

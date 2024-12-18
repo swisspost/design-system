@@ -7,7 +7,12 @@
 @use './../variables/icons';
 @use './../variables/spacing';
 @use './../mixins/icons' as icons-mx;
-@use './../mixins/utilities';
+@use './../mixins/utilities' as utilities-mx;
+
+@use '../functions/tokens';
+@use '../tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 %toggler-icon {
   content: '';
@@ -40,12 +45,12 @@
     margin: 0.25rem 0;
   }
 
-  @include utilities.high-contrast-mode() {
+  @include utilities-mx.high-contrast-mode() {
     .dropdown-item {
       &:hover,
       &:focus-visible {
-        outline: spacing.$size-line solid Highlight;
-        outline-offset: -(spacing.$size-line);
+        outline: tokens.get('utility-gap-2') solid Highlight;
+        outline-offset: -(tokens.get('utility-gap-2'));
       }
     }
   }

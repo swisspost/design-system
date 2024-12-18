@@ -1,19 +1,22 @@
 @use './../color' as color;
 @use './../spacing' as spacing;
 @use './../type' as type;
-@use '../../functions/sizing' as sizing;
+@use '../../functions/tokens';
+@use '../../tokens/utilities';
 
-$tag-gap: spacing.$size-micro;
+tokens.$default-map: utilities.$post-spacing;
+
+$tag-gap: tokens.get('utility-gap-4');
 $tag-padding-y: 0;
-$tag-padding-x: spacing.$size-mini;
+$tag-padding-x: tokens.get('utility-gap-8');
 $tag-max-width: 100%;
-$tag-border-width: spacing.$size-hair;
-$tag-border-radius: spacing.$size-micro;
+$tag-border-width: tokens.get('utility-gap-1');
+$tag-border-radius: tokens.get('utility-gap-4');
 $tag-font-size: type.$font-size-16;
-$tag-line-height: spacing.$size-big - (sizing.px-to-rem($tag-border-width) * 2);
+$tag-line-height: calc(tokens.get('utility-gap-32') - (#{$tag-border-width} * 2));
 $tag-icon-size: $tag-font-size * 1.25;
 
-$tag-sm-line-height: spacing.$size-large;
+$tag-sm-line-height: tokens.get('utility-gap-24');
 $tag-sm-icon-size: $tag-font-size;
 
 $tag-default-background: color.$gray-10;
