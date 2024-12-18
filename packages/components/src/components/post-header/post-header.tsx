@@ -127,12 +127,27 @@ export class PostHeader {
     this.host.querySelector('post-language-switch')?.setAttribute('variant', variant);
   }
 
-  render() {
+  private renderNavigation() {
     const navigationClasses = ['navigation'];
     if (this.mobileMenuExtended) {
       navigationClasses.push('extended');
     }
 
+    return (
+      <div ref={el => (this.mobileMenu = el)} class={navigationClasses.join(' ')}>
+        <slot name="post-mainnavigation"></slot>
+
+        {(this.device === 'mobile' || this.device === 'tablet') && (
+          <div class="navigation-footer">
+            <slot name="meta-navigation"></slot>
+            <slot name="post-language-switch"></slot>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  render() {
     return (
       <Host version={version}>
         <div class="global-header">
@@ -150,23 +165,15 @@ export class PostHeader {
             </div>
           </div>
         </div>
-        <div class="title-header d-flex space-between align-center">
+        <div class="local-header">
           <slot name="title"></slot>
-          <div class="global-sub">
+          <div class="local-sub">
             <slot name="local-controls"></slot>
             <slot></slot>
           </div>
+          {this.device === 'desktop' && this.renderNavigation()}
         </div>
-        <div ref={el => (this.mobileMenu = el)} class={navigationClasses.join(' ')}>
-          <slot name="post-mainnavigation"></slot>
-
-          {(this.device === 'mobile' || this.device === 'tablet') && (
-            <div class="navigation-footer">
-              <slot name="meta-navigation"></slot>
-              <slot name="post-language-switch"></slot>
-            </div>
-          )}
-        </div>
+        {this.device !== 'desktop' && this.renderNavigation()}
       </Host>
     );
   }

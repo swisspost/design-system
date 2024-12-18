@@ -5,12 +5,18 @@
 <!-- Auto Generated Below -->
 
 
-## Events
+## Dependencies
 
-| Event        | Description                                                   | Type               |
-| ------------ | ------------------------------------------------------------- | ------------------ |
-| `postToggle` | Gets emitted when a user closes the main navigation on mobile | `CustomEvent<any>` |
+### Depends on
 
+- [post-icon](../post-icon)
+
+### Graph
+```mermaid
+graph TD;
+  post-mainnavigation --> post-icon
+  style post-mainnavigation fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 
