@@ -47,13 +47,6 @@ Type: `Promise<boolean>`
 | `"default"` | Slot for placing content within the collapsible element. |
 
 
-## Shadow Parts
-
-| Part                      | Description                                                             |
-| ------------------------- | ----------------------------------------------------------------------- |
-| `"collapsible-container"` | The pseudo-element, used to override styles on the collapsible element. |
-
-
 ## Dependencies
 
 ### Used by

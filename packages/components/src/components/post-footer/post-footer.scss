@@ -105,10 +105,6 @@ footer {
   ::part(body) {
     padding-inline: 0;
   }
-  ::part(collapsible-container) {
-    margin-inline: -1rem;
-    padding-inline: 1rem;
-  }
 }
 
 .footer-column {
