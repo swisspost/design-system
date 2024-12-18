@@ -39,7 +39,6 @@ post-footer {
       display: block;
       text-decoration: none;
 
-      
       &:hover {
         @include utilities.high-contrast-mode() {
           text-decoration: underline;
@@ -109,11 +108,4 @@ post-footer {
       column-gap: var(--post-footer-meta-list-item-gap);
     }
   }
-//  a.btn-icon {
-//   &:hover {
-//     @include utilities.high-contrast-mode() {
-//       color: Highlight;
-//     }
-//   }
-// }
 }
