@@ -2,7 +2,6 @@ import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { useArgs } from '@storybook/preview-api';
 import { MetaComponent } from '@root/types';
-import backgroundColors from '@/shared/background-colors.module.scss';
 
 const meta: MetaComponent = {
   id: '6f8f76ec-a2b5-4eb0-87f7-4021e1a5b8d0',
@@ -62,13 +61,13 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
-    background: {
-      name: 'Backround',
-      description: 'You can use the Background classes to color the cards',
+    palette: {
+      name: 'Palette',
+      description: 'You can use the color scheme of the cards',
       control: {
         type: 'select',
       },
-      options: Object.keys(backgroundColors),
+      options: ['palette-default', 'palette-accent', 'palette-alternate', 'palette-brand'],
       table: {
         category: 'General',
       },
@@ -79,7 +78,7 @@ export default meta;
 function cardButtonRender(args: Args, count = 42) {
   const [_, updateArgs] = useArgs();
   return html`
-    <div class="card card-button ${args.background}" id="${`card-button${count}`}">
+    <div class="card card-button ${args.palette}" id="${`card-button${count}`}">
       <button
         class="post-card-favourit"
         @click="${() => (count === 42 ? updateArgs({ favourite: !args.favourite }) : '')}"
@@ -129,18 +128,15 @@ const multipleArgs = [
     {
       focus: 'Schwerpunkt',
       title: 'Post zurückbehalten',
-      background: 'bg-nightblue',
     },
     {
       focus: 'Schwerpunkt',
       title: 'Briefmarken',
       favourite: true,
-      background: 'bg-nightblue',
     },
     {
       focus: 'Schwerpunkt',
       tittle: 'Meine Sendungen',
-      background: 'bg-nightblue',
     },
   ],
   [
@@ -148,11 +144,9 @@ const multipleArgs = [
       focus: 'Schwerpunkt',
       title: 'Pick@home',
       favourite: 'true',
-      background: 'bg-nightblue',
     },
     {
       title: 'E-Finance: Demoversion',
-      background: 'bg-nightblue',
     },
     {
       title: 'Adressänderung mit Nachsendung',
