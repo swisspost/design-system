@@ -11,7 +11,7 @@ import {
 } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
-import { isFocusable } from '@/utils/is-focusable';
+import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { getRoot } from '@/utils';
 
 @Component({
@@ -42,11 +42,6 @@ export class PostMenu {
    * towards the viewport if they would overlap edge boundaries.
    */
   @Prop() readonly placement?: Placement = 'bottom';
-
-  /**
-   * Whether or not the post-menu is used within a post-language-switch component as the children structure is not the same.
-   */
-  @Prop() isLanguageSwitch: boolean = false;
 
   /**
    * Holds the current visibility state of the menu.
@@ -151,11 +146,10 @@ export class PostMenu {
       return;
     }
 
-    const currentFocusedElement = this.isLanguageSwitch
-      ? (document.activeElement.shadowRoot.querySelector('button') as HTMLElement)
-      : (this.root.activeElement as HTMLElement); // Use root's active element
-
-    let currentIndex = menuItems.findIndex(el => el === currentFocusedElement);
+    let currentIndex = menuItems.findIndex(el => {
+      // Check if the item is currently focused within its rendered scope (document or shadow root)
+      return el === getRoot(el).activeElement;
+    });
 
     switch (e.key) {
       case this.KEYCODES.UP:
@@ -191,24 +185,16 @@ export class PostMenu {
   private getSlottedItems(): Element[] {
     const slot = this.host.shadowRoot.querySelector('slot');
     const slottedElements = slot ? slot.assignedElements() : [];
-    let menuItems;
 
-    if (this.isLanguageSwitch) {
-      menuItems = Array.from(document.querySelectorAll('post-language-option[variant="dropdown"]'))
-        .map(el => el.shadowRoot.querySelector('button'))
-        .flat();
-    } else {
-      menuItems = slottedElements
-        .filter(el => el.tagName === 'POST-MENU-ITEM')
-        .map(el => {
-          const slot = el.shadowRoot.querySelector('slot');
-          const assignedElements = slot ? slot.assignedElements() : [];
-          return assignedElements.filter(isFocusable);
-        })
-        .flat();
-    }
-
-    return menuItems;
+    return (
+      slottedElements
+        // If the element is a slot, get the assigned elements
+        .flatMap(el => (el instanceof HTMLSlotElement ? el.assignedElements() : el))
+        // Filter out elements that have a 'menuitem' role
+        .filter(el => el.getAttribute('role') === 'menuitem')
+        // For each menu item, get any focusable children (e.g., buttons, links)
+        .flatMap(el => Array.from(getFocusableChildren(el)))
+    );
   }
 
   render() {

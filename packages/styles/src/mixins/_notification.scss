@@ -111,6 +111,10 @@ tokens.$default-map: components.$post-banner;
   &:not(.no-icon)::before {
     @include icons-mx.icon($icon);
     color: $icon-color;
+
+    @include utilities-mx.high-contrast-mode {
+      color: CanvasText;
+    }
   }
 
   // Prevent flashing when using post-icon
