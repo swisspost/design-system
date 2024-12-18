@@ -66,20 +66,22 @@ export class PostCollapsible {
   @Method()
   async toggle(open = !this.isOpen): Promise<boolean> {
     if (open === this.isOpen) return open;
-
     this.isOpen = open;
     this.collapsed = !open;
     if (this.isLoaded) this.postToggle.emit(open);
-
+  
     const animation = open ? expand(this.host) : collapse(this.host);
-
+    
     if (!this.isLoaded || isMotionReduced()) animation.finish();
-
+    
     await animation.finished;
 
     const isHostRendered = this.host.offsetParent;
     if (isHostRendered) animation.commitStyles();
-
+    if (open) {
+      this.host.style.overflow = 'visible';
+    }
+  
     return open;
   }
 
@@ -100,5 +102,5 @@ export class PostCollapsible {
         <slot />
       </Host>
     );
-  }
+  }  
 }
