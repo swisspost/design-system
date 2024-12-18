@@ -58,13 +58,20 @@ const meta: MetaComponent = {
       options: [null, 'cylon', 'cylon-vertical', 'spin', 'spin-reverse', 'fade', 'throb'],
     },
   },
-  render: args => html` <post-icon ${spreadArgs(normalizeArgs(args))}></post-icon> `,
+  render: args => html`<post-icon ${spreadArgs(normalizeArgs(args))}></post-icon>`,
 };
+
+export default meta;
+type Story = StoryObj<Components.PostIcon>;
 
 function normalizeArgs(args: Args) {
   // remove attribute with falsy values
   return Object.fromEntries(Object.entries(args).filter(([_, v]) => v));
 }
+
+const generateDecorators = (story: StoryFn, context: StoryContext, className?: string) => {
+  return html`<div class="${ifDefined(className)}">${story(context.args, context)}</div>`;
+};
 
 const renderVariants = (
   args: Args,
@@ -73,163 +80,17 @@ const renderVariants = (
   return html`
     ${customAttrs.map(
       variantArgs =>
-        html` <post-icon ${spread(normalizeArgs(args))} ${spread(variantArgs)}></post-icon> `,
+        html`<post-icon ${spread(normalizeArgs(args))} ${spread(variantArgs)}></post-icon>`,
     )}
   `;
 };
-
-const generateDecorators = (story: StoryFn, context: StoryContext, className?: string) => {
-  return html`
-    <div class="${ifDefined(className)}" style="font-size: 32px">
-      ${story(context.args, context)}
-    </div>
-  `;
-};
-
-export default meta;
-
-type Story = StoryObj<Components.PostIcon>;
-
-export const Default: Story = {
-  decorators: [(story: StoryFn, context: StoryContext) => generateDecorators(story, context)],
-};
-
-const colorVariants = [
-  { class: 'text-primary' },
-  { class: 'text-info' },
-  { class: 'text-success' },
-  { style: 'color: blue' },
-  { style: 'color:#800080' },
-  { style: 'color: rgb(230, 0, 0)' },
-];
-
-export const Color: Story = {
-  parameters: {
-    controls: {
-      exclude: ['base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
-    },
-  },
-  render: args => renderVariants(args, colorVariants),
-  decorators: [
-    (story: StoryFn, context: StoryContext) =>
-      generateDecorators(story, context, 'd-flex flex-wrap gap-8'),
-  ],
-};
-
-const sizeVariants = [
-  { style: 'font-size: 1rem' },
-  { class: 'h3 my-0' },
-  { class: 'h1 my-0' },
-  { class: 'fs-huge' },
-  { style: 'font-size: 4rem' },
-  { style: 'font-size: 6rem' },
-];
-
-export const Size: Story = {
-  parameters: {
-    controls: {
-      exclude: ['base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
-    },
-  },
-  render: args => renderVariants(args, sizeVariants),
-  decorators: [
-    (story: StoryFn, context: StoryContext) =>
-      generateDecorators(story, context, 'd-flex flex-column'),
-  ],
-};
-
-const styleVariants = [
-  { class: 'border rounded p-16', style: 'font-size: 4rem' },
-  { class: 'border border-success rounded p-16 text-success', style: 'font-size: 4rem' },
-  { class: 'rounded-circle p-16', style: 'font-size: 4rem; background-color: #cce4ee' },
-];
-
-export const Style: Story = {
-  parameters: {
-    controls: {
-      exclude: ['base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
-    },
-  },
-  render: args => renderVariants(args, styleVariants),
-  decorators: [
-    (story: StoryFn, context: StoryContext) =>
-      generateDecorators(story, context, 'd-flex flex-wrap gap-8'),
-  ],
-};
-
-const flipVariants = [
-  {},
-  { 'flip-h': true },
-  { 'flip-v': true },
-  { 'flip-h': true, 'flip-v': true },
-];
-
-export const Flip: Story = {
-  parameters: {
-    controls: {
-      exclude: ['base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
-    },
-  },
-  render: args => renderVariants(args, flipVariants),
-  decorators: [
-    (story: StoryFn, context: StoryContext) =>
-      generateDecorators(story, context, 'd-flex flex-wrap gap-8'),
-  ],
-};
-
-const scaleVariants = [{ scale: 0.5 }, {}, { scale: 1.5 }];
-
-export const Scale: Story = {
-  parameters: {
-    controls: {
-      exclude: ['base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
-    },
-  },
-  render: args => renderVariants(args, scaleVariants),
-  decorators: [
-    (story: StoryFn, context: StoryContext) =>
-      generateDecorators(story, context, 'd-flex flex-wrap gap-24 scale-container'),
-  ],
-};
-
-const rotateVariants = [
-  { rotate: -365 },
-  { rotate: -249 },
-  { rotate: -35.5 },
-  { rotate: 0 },
-  { rotate: 98 },
-  { rotate: 365 },
-  { rotate: 753 },
-];
-
-export const Rotate: Story = {
-  parameters: {
-    controls: {
-      exclude: ['base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
-    },
-  },
-  render: args => renderVariants(args, rotateVariants),
-  decorators: [
-    (story: StoryFn, context: StoryContext) =>
-      generateDecorators(story, context, 'd-flex flex-wrap gap-8'),
-  ],
-};
-
-const animateVariants = [
-  { name: '2253', animation: 'cylon' },
-  { name: '2252', animation: 'cylon-vertical' },
-  { name: '2041', animation: 'spin' },
-  { name: '2042', animation: 'spin-reverse' },
-  { name: '2151', animation: 'fade' },
-  { name: '2063', animation: 'throb' },
-];
 
 const renderAnimateVariants = (args: Args, customAttrs: { name: string; animation: string }[]) => {
   return html`
     ${customAttrs.map(
       variantArgs =>
         html`
-          <div class="w-50 py-16">
+          <div class="w-half py-16">
             <p class="text-muted fs-tiny">Animation: ${variantArgs.animation}</p>
             <post-icon ${spread(normalizeArgs(args))} ${spread(variantArgs)}></post-icon>
           </div>
@@ -238,37 +99,162 @@ const renderAnimateVariants = (args: Args, customAttrs: { name: string; animatio
   `;
 };
 
+export const Default: Story = {
+  decorators: [
+    (story: StoryFn, context: StoryContext) => generateDecorators(story, context, 'fs-32'),
+  ],
+};
+
+export const UI: Story = {
+  args: {
+    name: 'accessibility',
+  },
+  decorators: [
+    (story: StoryFn, context: StoryContext) => generateDecorators(story, context, 'resizer'),
+  ],
+};
+
+export const Color: Story = {
+  parameters: {
+    controls: {
+      exclude: ['base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
+    },
+  },
+  render: args =>
+    renderVariants(args, [
+      { style: 'color: blue' },
+      { style: 'color:#800080' },
+      { style: 'color: rgb(230, 0, 0)' },
+    ]),
+  decorators: [
+    (story: StoryFn, context: StoryContext) =>
+      generateDecorators(story, context, 'd-flex flex-wrap gap-8 fs-32'),
+  ],
+};
+
+export const Size: Story = {
+  parameters: {
+    controls: {
+      exclude: ['base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
+    },
+  },
+  render: args =>
+    renderVariants(args, [
+      { style: 'font-size: 1rem' },
+      { style: 'font-size: 3rem' },
+      { style: 'font-size: 6rem' },
+    ]),
+  decorators: [
+    (story: StoryFn, context: StoryContext) =>
+      generateDecorators(story, context, 'd-flex flex-column'),
+  ],
+};
+
+export const Flip: Story = {
+  parameters: {
+    controls: {
+      exclude: ['base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
+    },
+  },
+  render: args =>
+    renderVariants(args, [
+      {},
+      { 'flip-h': true },
+      { 'flip-v': true },
+      { 'flip-h': true, 'flip-v': true },
+    ]),
+  decorators: [
+    (story: StoryFn, context: StoryContext) =>
+      generateDecorators(story, context, 'd-flex flex-wrap gap-8 fs-32'),
+  ],
+};
+
+export const Scale: Story = {
+  parameters: {
+    controls: {
+      exclude: ['base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
+    },
+  },
+  render: args => renderVariants(args, [{ scale: 0.5 }, {}, { scale: 1.5 }]),
+  decorators: [
+    (story: StoryFn, context: StoryContext) =>
+      generateDecorators(story, context, 'd-flex flex-wrap gap-24 fs-32 scale-container'),
+  ],
+};
+
+export const Rotate: Story = {
+  parameters: {
+    controls: {
+      exclude: ['base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
+    },
+  },
+  render: args =>
+    renderVariants(args, [
+      { rotate: -365 },
+      { rotate: -249 },
+      { rotate: -35.5 },
+      { rotate: 0 },
+      { rotate: 98 },
+      { rotate: 365 },
+      { rotate: 753 },
+    ]),
+  decorators: [
+    (story: StoryFn, context: StoryContext) =>
+      generateDecorators(story, context, 'd-flex flex-wrap gap-8 fs-32'),
+  ],
+};
+
 export const Animate: Story = {
   parameters: {
     controls: {
       exclude: ['name', 'base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
     },
   },
-  render: args => renderAnimateVariants(args, animateVariants),
+  render: args =>
+    renderAnimateVariants(args, [
+      { name: '2253', animation: 'cylon' },
+      { name: '2252', animation: 'cylon-vertical' },
+      { name: '2041', animation: 'spin' },
+      { name: '2042', animation: 'spin-reverse' },
+      { name: '2151', animation: 'fade' },
+      { name: '2063', animation: 'throb' },
+    ]),
   decorators: [
     (story: StoryFn, context: StoryContext) =>
-      generateDecorators(story, context, 'd-flex flex-wrap text-center'),
+      generateDecorators(story, context, 'd-flex flex-wrap text-center fs-32'),
   ],
 };
 
-export const ScssMixin: Story = {
+export const CSS_Default: Story = {
   render: () => {
-    return html`
-      <div class="my-accessibility-icon my-icon-1"></div>
-      <div class="my-accessibility-icon my-icon-2"></div>
-      <div class="my-accessibility-icon my-icon-3"></div>
-      <div class="my-accessibility-icon my-icon-4"></div>
-      <div class="my-accessibility-icon my-icon-5"></div>
-      <div class="my-accessibility-icon my-icon-6"></div>
-      <hr />
-      <div class="my-handvictory-icon" style="color: currentColor"></div>
-      <div class="my-handvictory-icon" style="width: 32px; height: 32px;"></div>
-      <div class="my-handvictory-icon" style="width: 64px; height: 64px; color: #f60;"></div>
-      <div class="my-handvictory-icon" style="width: 48px; height: 48px;"></div>
-      <div
-        class="my-handvictory-icon"
-        style="width: 32px; height: 32px; color: hsl(230, 90%, 40%); transform: rotate(15deg)"
-      ></div>
-    `;
+    return html`<div class="my-1022-icon"></div>`;
   },
+  decorators: [
+    (story: StoryFn, context: StoryContext) => generateDecorators(story, context, 'fs-32'),
+  ],
+};
+
+export const CSS_UI: Story = {
+  render: () => {
+    return html`<div class="my-accessibility-icon"></div>`;
+  },
+  decorators: [
+    (story: StoryFn, context: StoryContext) => generateDecorators(story, context, 'resizer'),
+  ],
+};
+
+export const CSS_Color: Story = {
+  render: () => {
+    return html`<div class="my-1022-icon" style="color: blue"></div>`;
+  },
+  decorators: [
+    (story: StoryFn, context: StoryContext) => generateDecorators(story, context, 'fs-32'),
+  ],
+};
+
+export const CSS_Size: Story = {
+  render: () => {
+    return html`<div class="my-1022-icon" style="font-size: 3rem"></div>`;
+  },
+  decorators: [(story: StoryFn, context: StoryContext) => generateDecorators(story, context)],
 };

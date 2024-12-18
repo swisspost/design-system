@@ -1,7 +1,38 @@
 @use '@swisspost/design-system-styles/core' as post;
 
+$resizer-padding: 1rem;
+$resizer-border-width: 1px;
+$resizer-border-color: #999;
+$resizer-min-width: 16px;
+$resizer-max-width: 64px;
+
+.resizer {
+  display: inline-flex;
+  resize: horizontal;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  padding: $resizer-padding;
+  border: $resizer-border-width solid $resizer-border-color;
+  min-width: calc(#{$resizer-padding} * 2 + #{$resizer-border-width} * 2 + #{$resizer-min-width});
+  max-width: calc(#{$resizer-padding} * 2 + #{$resizer-border-width} * 2 + #{$resizer-max-width});
+
+  > * {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+.fs-32 {
+  font-size: 32px;
+}
+
 .scale-container post-icon {
   background-color: post.$info;
+}
+
+.my-1022-icon {
+  @include post.post-icon($name: '1022', $base: '/post-icons');
 }
 
 .my-accessibility-icon {
@@ -10,34 +41,4 @@
 
 .my-handvictory-icon {
   @include post.post-icon($name: 'handvictory', $base: '/post-icons', $color: #666666);
-}
-
-.my-icon-1 {
-  width: 16px;
-  height: 16px;
-}
-
-.my-icon-2 {
-  width: 24px;
-  height: 24px;
-}
-
-.my-icon-3 {
-  width: 32px;
-  height: 32px;
-}
-
-.my-icon-4 {
-  width: 40px;
-  height: 40px;
-}
-
-.my-icon-5 {
-  width: 48px;
-  height: 48px;
-}
-
-.my-icon-6 {
-  width: 64px;
-  height: 64px;
 }

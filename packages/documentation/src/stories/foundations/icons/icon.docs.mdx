@@ -35,53 +35,6 @@ import './icon.styles.scss';
     For guidelines on how to set this up, please refer to the [icon package documentation](/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs#usage).
   </PostTabPanel>
 
-  <PostTabHeader panel="scss">Usage in CSS</PostTabHeader>
-  <PostTabPanel name="scss">
-    ## Usage in CSS
-
-    To define an icon in your own CSS, you need the `@swisspost/design-system-styles` package and use our `post-icon` mixin. The icons are responsive and can have a different level-of-detail, depending on how big they are rendered on the page.
-
-    Note: The used classes in the example below are only there for demonstration purposes.
-    
-    <Canvas of={IconStories.ScssMixin} sourceState="shown"/>
-
-    ### Mixin
-
-    <Source
-      language="scss"
-      dark
-      code={SampleMixin}
-    ></Source>
-
-    <table className="table">
-      <thead>
-        <tr>
-          <td>Name</td>
-          <td>Description</td>
-          <td>Default</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>`$name`</td>
-          <td>The name of the icon which should be used.<br/>Find the name of your desired icon in one of the tabs above.</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>`$base`</td>
-          <td>The base URL, where to load the icon from. Keep this undefined to get the icons loaded from unpkg.com (NOT recommended) or specifiy a path to your self-hosted icons.</td>
-          <td>`https://unpkg.com/`</td>
-        </tr>
-        <tr>
-          <td>`$color`</td>
-          <td>The color in which the icon should be implemented.<br/>You can change that also by just overriding the `color` property on the icon selector.</td>
-          <td>`currentColor`</td>
-        </tr>
-      </tbody>
-    </table>
-
-  </PostTabPanel>
-
   <PostTabHeader panel="component">Usage as Web-Component</PostTabHeader>
   <PostTabPanel name="component">
     ## Usage as Web-Component
@@ -89,32 +42,33 @@ import './icon.styles.scss';
     Our <code>&lt;post-icon&gt;</code> component renders SVGs, so it scales quickly and easily and can
     be styled with CSS.
 
+
     <Canvas sourceState="shown" of={IconStories.Default} />
     <Controls of={IconStories.Default} />
+
+    ### UI Icons
+
+    UI icons are responsive and can have a different level-of-detail, depending on how big they are rendered on the page.
+    Use the resize handle in the example to see how the icon changes while you change its size.
+
+    <Canvas sourceState="shown" of={IconStories.UI} />
 
     ### Color
 
     By default, icons inherit the current text color of their parent element.<br/>
-    You can therefore colorize an icon using our [text color utilities](/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs)
-    or by setting the CSS directly through a style attribute or self-defined classes.
+    You can therefore colorize an icon by simply changing the `color` css property of the element itself.
 
     <Canvas of={IconStories.Color} sourceState="shown" />
 
     ### Size
 
-    Icons have a default `width` of `1em`, which means they will scale with the size of the current `font-size`.
-    Therefore, you can manage the size of an icon using our [font-size utilities](/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs)
-    or by setting the CSS directly through a style attribute or self-defined classes.
+    Icons have a default `width` of `1em`, which means they will scale with the size of the current `font-size` css property.
 
     <Canvas of={IconStories.Size} sourceState="shown" />
 
-    ### Style
-
-    With the use of our [border](#TODO) and [padding](#TODO) utilities, you can create various styling effects.
-
-    <Canvas of={IconStories.Style} sourceState="shown" />
-
     ### Transformations
+
+    The following examples are available by default only in the `<post-icon>` web-component. To do something similar with the CSS mixin, you would need to use the `transform` property or add your own css animations.
 
     #### Flipping
 
@@ -151,9 +105,49 @@ import './icon.styles.scss';
 
   </PostTabPanel>
 
+  <PostTabHeader panel="scss">Usage as CSS-Background</PostTabHeader>
+  <PostTabPanel name="scss">
+    ## Usage in CSS
+
+    To define an icon in your own CSS, you need the `@swisspost/design-system-styles` package and use our `post-icon` mixin. The icons are responsive and can have a different level-of-detail, depending on how big they are rendered on the page.
+
+    <p className="banner banner-info">The used classes in the examples below are only there for demonstration purposes.</p>
+    
+    ### Post Icons
+
+    <Canvas of={IconStories.CSS_Default} sourceState="shown"/>
+
+    ### UI Icons
+
+    UI icons are responsive and can have a different level-of-detail, depending on how big they are rendered on the page. Use the resize handle in the example to see how the icon changes while you change its size.
+
+    <Canvas of={IconStories.CSS_UI} sourceState="shown"/>
+
+    ### Colors
+
+    By default, icons inherit the current text color of their parent element.
+    You can therefore colorize an icon by simply changing the `color` css property of the element itself.
+
+    <Canvas of={IconStories.CSS_Color} sourceState="shown"/>
+
+    ### Size
+
+    Icons have a default `width` of `1em`, which means they will scale with the size of the current `font-size` css property.
+
+    <Canvas of={IconStories.CSS_Size} sourceState="shown"/>
+
+    ### Mixin usage
+
+    <Source
+      language="scss"
+      dark
+      code={SampleMixin}
+    ></Source>
+
+  </PostTabPanel>
+
   <PostTabHeader panel="search">Find your Icon</PostTabHeader>
   <PostTabPanel name="search">
     <Search />
-
   </PostTabPanel>
 </PostTabs>
