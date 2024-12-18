@@ -17,7 +17,7 @@ button {
 
   post-avatar {
     @include utilities.high-contrast-mode() {
-      border-color: CanvasText !important;
+      border-color: CanvasText;
     }
   }
 
