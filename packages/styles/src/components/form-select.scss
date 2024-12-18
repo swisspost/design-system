@@ -52,6 +52,10 @@ tokens.$default-map: components.$post-select;
       @include utilities.high-contrast-mode {
         border-color: FieldText;
       }
+
+      @include utilities.high-contrast-mode-dark() {
+        @include forms.select-bg-image('selected-hcm', $mode: dark);
+      }
     }
 
     &:hover {
@@ -77,6 +81,15 @@ tokens.$default-map: components.$post-select;
     &:focus-visible {
       color: FieldText;
     }
+  }
+
+
+  @include utilities.high-contrast-mode-light() {
+    @include forms.select-bg-image('enabled-hcm', $mode: light);
+  }
+
+  @include utilities.high-contrast-mode-dark() {
+    @include forms.select-bg-image('enabled-hcm', $mode: dark);
   }
 
   &.is-valid,
