@@ -1,5 +1,27 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.9
+
+### Minor Changes
+
+- Added composable footer component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4190](https://github.com/swisspost/design-system/pull/4190))
+
+- Removed outdated portal-specific styles, including subnavigation-related rules. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4186](https://github.com/swisspost/design-system/pull/4186))
+
+- Added the possibility to define a `$child-selector` parameter with our list mixins, so they can be used also with custom elements. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4190](https://github.com/swisspost/design-system/pull/4190))
+
+- Updated the utility classes for sizing. (by [@myrta2302](https://github.com/myrta2302) with [#4012](https://github.com/swisspost/design-system/pull/4012))
+
+- Updated `.btn-link` to look like a regular link and old `.btn-link` is now `.btn-tertiary .px-0`. (by [@leagrdv](https://github.com/leagrdv) with [#4200](https://github.com/swisspost/design-system/pull/4200))
+
+- Implemented new pixel based sizes. (by [@myrta2302](https://github.com/myrta2302) with [#4012](https://github.com/swisspost/design-system/pull/4012))
+
+### Patch Changes
+
+- Fixed the `btn-icon` styles, so icons within can no longer be rendered too small, because of the inline-padding on the button. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4190](https://github.com/swisspost/design-system/pull/4190))
+
+- Fixed the appstore-badge styles to get rid of the inline gap below. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4190](https://github.com/swisspost/design-system/pull/4190))
+
 ## 9.0.0-next.8
 
 ### Major Changes

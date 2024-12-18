@@ -1,5 +1,9 @@
 @use '@swisspost/design-system-styles/core' as post;
 
+.scale-container post-icon {
+  background-color: post.$info;
+}
+
 .my-accessibility-icon {
   @include post.post-icon($name: 'accessibility', $base: '/post-icons');
 }

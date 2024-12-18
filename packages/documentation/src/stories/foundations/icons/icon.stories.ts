@@ -141,7 +141,7 @@ export const Size: Story = {
 const styleVariants = [
   { class: 'border rounded p-16', style: 'font-size: 4rem' },
   { class: 'border border-success rounded p-16 text-success', style: 'font-size: 4rem' },
-  { class: 'rounded-circle bg-info p-16', style: 'font-size: 4rem' },
+  { class: 'rounded-circle p-16', style: 'font-size: 4rem; background-color: #cce4ee' },
 ];
 
 export const Style: Story = {
@@ -177,11 +177,7 @@ export const Flip: Story = {
   ],
 };
 
-const scaleVariants = [
-  { class: 'bg-info', scale: 0.5 },
-  { class: 'bg-info' },
-  { class: 'bg-info', scale: 1.5 },
-];
+const scaleVariants = [{ scale: 0.5 }, {}, { scale: 1.5 }];
 
 export const Scale: Story = {
   parameters: {
@@ -192,7 +188,7 @@ export const Scale: Story = {
   render: args => renderVariants(args, scaleVariants),
   decorators: [
     (story: StoryFn, context: StoryContext) =>
-      generateDecorators(story, context, 'd-flex flex-wrap gap-24'),
+      generateDecorators(story, context, 'd-flex flex-wrap gap-24 scale-container'),
   ],
 };
 

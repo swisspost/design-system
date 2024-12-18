@@ -23,7 +23,7 @@ export const PostLogo: Story = {
                 <p>${url ? 'Links' : 'Images'}</p>
                 <div class="row">
                   <div class="col">
-                    ${['big', 'huge', 'giant'].map(
+                    ${['32', '56', '80'].map(
                       (height, i) => html`
                         <div class="h-${height} ${i === 0 ? 'my' : 'mb'}-16">
                           ${meta.render?.({ ...context.args, url }, context)}
