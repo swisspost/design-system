@@ -75,7 +75,7 @@
     "nextjs:start": "pnpm --filter design-system-nextjs-integration dev",
     "nextjs:build": "pnpm --filter design-system-nextjs-integration build",
     "nextjs:lint": "pnpm --filter design-system-nextjs-integration lint",
-    "changeset:publish": "pnpm changeset publish",
+    "changeset:publish": "pnpm changeset publish --tag v7",
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only",
     "tokens:build": "pnpm --filter design-system-tokens build",
     "primeng": "pnpm primeng:start",
