@@ -25,12 +25,16 @@
   vertical-align: -0.15em;
   background-color: currentColor;
   color: $color;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-image: url('#{$base}/#{$name}.svg');
   mask-image: url('#{$base}/#{$name}.svg');
+  /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-position: center center;
   mask-position: center center;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-size: 100%;
   mask-size: 100%;
 }
