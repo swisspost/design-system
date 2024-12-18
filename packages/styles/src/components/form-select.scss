@@ -83,7 +83,6 @@ tokens.$default-map: components.$post-select;
     }
   }
 
-
   @include utilities.high-contrast-mode-light() {
     @include forms.select-bg-image('enabled-hcm', $mode: light);
   }
