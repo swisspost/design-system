@@ -108,11 +108,11 @@ const meta: MetaExtended = {
     }
     return html`
       <div
-        class="bg-yellow position-${args.position} ${args.top ? 'top-' + args.top : ''}${args.bottom
-          ? 'bottom-' + args.bottom
-          : ''} ${args.start ? 'start-' + args.start : ''}${args.end
-          ? 'end-' + args.end
-          : ''}${translateMiddleValue}"
+        class="my-element position-${args.position} ${args.top
+          ? 'top-' + args.top
+          : ''}${args.bottom ? 'bottom-' + args.bottom : ''} ${args.start
+          ? 'start-' + args.start
+          : ''}${args.end ? 'end-' + args.end : ''}${translateMiddleValue}"
       ></div>
     `;
   },
@@ -146,11 +146,10 @@ export const Default: Story = {
 
 export const TranslateMiddle: Story = {
   decorators: [
-    story =>
-      html` <div class="translate-middle-container position-relative bg-gray">${story()}</div> `,
+    story => html` <div class="translate-middle-container position-relative">${story()}</div> `,
   ],
   render: () => {
-    return html`<div class="position-absolute start-50 top-50 bg-yellow"></div>
-      <div class="position-absolute start-50 top-50 translate-middle bg-info"></div>`;
+    return html`<div class="position-absolute start-50 top-50"></div>
+      <div class="position-absolute start-50 top-50 translate-middle"></div>`;
   },
 };
