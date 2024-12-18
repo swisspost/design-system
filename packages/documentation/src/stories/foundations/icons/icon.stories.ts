@@ -229,7 +229,7 @@ const renderAnimateVariants = (args: Args, customAttrs: { name: string; animatio
     ${customAttrs.map(
       variantArgs =>
         html`
-          <div class="w-50 py-16">
+          <div class="w-half py-16">
             <p class="text-muted fs-tiny">Animation: ${variantArgs.animation}</p>
             <post-icon ${spread(normalizeArgs(args))} ${spread(variantArgs)}></post-icon>
           </div>
