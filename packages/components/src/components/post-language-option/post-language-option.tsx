@@ -19,7 +19,6 @@ import { SwitchVariant } from '../post-language-switch/switch-variants';
 @Component({
   tag: 'post-language-option',
   styleUrl: 'post-language-option.scss',
-  shadow: true,
 })
 export class PostLanguageOption {
   @Element() host: HTMLPostLanguageOptionElement;
@@ -125,10 +124,9 @@ export class PostLanguageOption {
     const lang = this.code.toLowerCase();
 
     return (
-      <Host data-version={version} role="listitem">
+      <Host data-version={version} role={this.variant ? `${this.variant}item` : null}>
         {this.url ? (
           <a
-            class={this.variant ? `post-language-option-${this.variant}` : ''}
             aria-current={this.active ? 'page' : undefined}
             aria-label={this.name}
             href={this.url}
@@ -140,7 +138,6 @@ export class PostLanguageOption {
           </a>
         ) : (
           <button
-            class={this.variant ? `post-language-option-${this.variant}` : ''}
             aria-current={this.active ? 'true' : undefined}
             aria-label={this.name}
             lang={lang}
