@@ -1,6 +1,7 @@
 @use '../../variables/color';
 @use '../../mixins/media';
 @use '../../mixins/list';
+@use '../../mixins/utilities';
 
 post-footer {
   // mobile
@@ -37,6 +38,25 @@ post-footer {
     &:not(.btn-icon, .app-store-badge) {
       display: block;
       text-decoration: none;
+
+      
+      &:hover {
+        @include utilities.high-contrast-mode() {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    &.btn-icon {
+      @include utilities.high-contrast-mode() {
+        color: CanvasText !important;
+      }
+
+      &:hover {
+        @include utilities.high-contrast-mode() {
+          color: LinkText !important;
+        }
+      }
     }
   }
 
@@ -89,4 +109,11 @@ post-footer {
       column-gap: var(--post-footer-meta-list-item-gap);
     }
   }
+//  a.btn-icon {
+//   &:hover {
+//     @include utilities.high-contrast-mode() {
+//       color: Highlight;
+//     }
+//   }
+// }
 }
