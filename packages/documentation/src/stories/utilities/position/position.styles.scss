@@ -25,10 +25,16 @@
 .translate-middle-container {
   height: 20rem;
   flex: 0 0 50%;
+  background-color: post.$gray;
   @include centered-dot();
 
   > * {
     @include square;
+    background-color: post.$yellow;
+
+    &.translate-middle {
+      background-color: post.$info;
+    }
   }
 }
 
@@ -53,7 +59,8 @@
       background-color: post.$dark;
     }
 
-    .bg-yellow {
+    .my-element {
+      background: post.$yellow;
       width: 2rem;
       height: 2rem;
       border-radius: post.$border-radius;
@@ -102,17 +109,22 @@
 .snapshot-container {
   height: 16rem;
   margin: 2rem;
+  background-color: post.$gray;
 
-  .bg-dark {
-    width: 2rem;
-    height: 2rem;
+  > * {
     border-radius: post.$border-radius;
-  }
 
-  .bg-yellow {
-    padding: 1rem;
-    display: inline-block;
-    border-radius: post.$border-radius;
+    &:not(.my-element) {
+      width: 2rem;
+      height: 2rem;
+      background-color: post.$dark;
+    }
+
+    &.my-element {
+      background-color: post.$yellow;
+      padding: 1rem;
+      display: inline-block;
+    }
   }
 }
 
@@ -130,6 +142,14 @@
   }
 }
 
+.snapshot-arrange-container > * {
+  background-color: post.$info;
+}
+
 .snapshot-translate-middle-container {
   @include centered-dot();
+
+  > * {
+    background-color: post.$yellow;
+  }
 }
