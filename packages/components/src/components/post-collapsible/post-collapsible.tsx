@@ -103,5 +103,5 @@ export class PostCollapsible {
         <slot />
       </Host>
     );
-  }  
+  }
 }
