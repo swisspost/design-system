@@ -1,5 +1,11 @@
 # @swisspost/design-system-changelog-github
 
+## 1.0.3
+
+### Patch Changes
+
+- Test (by [@oliverschuerch](https://github.com/oliverschuerch) with [`c56c93d`](https://github.com/swisspost/design-system/commit/c56c93d159575b125e063840d90e08a6e1168348))
+
 ## 1.0.2
 
 ### Patch Changes
