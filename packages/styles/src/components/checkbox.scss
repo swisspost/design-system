@@ -43,6 +43,7 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
       background-color: Field;
       border-color: FieldText;
       color: FieldText;
+      transition: none;
     }
 
     &:not([disabled]) {
@@ -61,6 +62,12 @@ $checkbox-icon-indeterminate: url("data:image/svg+xml,<svg width='16' height='16
 
     &:checked,
     &:indeterminate {
+      @include utility-mx.high-contrast-mode() {
+        background-color: SelectedItem;
+        ~ label {
+          color: SelectedItemText;
+        }
+      }
       &::after {
         background-color: currentColor;
 

@@ -58,6 +58,12 @@ tokens.$default-map: components.$post-radio-button;
   }
 
   &:checked {
+    @include utility-mx.high-contrast-mode() {
+      background-color: SelectedItem;
+      ~ label {
+        color: SelectedItemText !important;
+      }
+    }
     &::after {
       background-color: tokens.get('radio-button-enabled-fg');
 
