@@ -47,6 +47,10 @@ export class PostHeader {
       ? slideUp(this.mobileMenu)
       : slideDown(this.mobileMenu);
 
+    // Update the state of the toggle button
+    const menuButton = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
+    menuButton.toggled = !this.mobileMenuExtended;
+
     // Toggle menu visibility before it slides down and after it slides back up
     if (this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
     this.mobileMenuExtended = !this.mobileMenuExtended;
@@ -107,10 +111,6 @@ export class PostHeader {
     if (newDevice === 'desktop' && this.mobileMenuExtended) {
       this.toggleMobileMenu();
       this.mobileMenuAnimation.finish(); // no animation
-
-
-      const menuToggler = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
-      if (menuToggler) menuToggler.toggled = false;
     }
 
     // Apply only on change for doing work only when necessary

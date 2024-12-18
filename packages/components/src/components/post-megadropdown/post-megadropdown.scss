@@ -77,6 +77,10 @@ post-popovercontainer {
     @include media.max(lg) {
       grid-template-columns: repeat(auto-fit, minmax(min(35vw, 100%), 1fr));
     }
+
+    @include media.max(sm) {
+      grid-template-columns: 1fr;
+    }
   }
 
   h2 {

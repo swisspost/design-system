@@ -2,7 +2,6 @@ import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components
 import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 import backgroundColors from '@/shared/background-colors.module.scss';
-import { coloredBackground } from '@/shared/decorators/dark-background';
 import chipMeta from '@/stories/components/chip/chip.stories';
 
 const meta: MetaComponent = {
@@ -10,7 +9,6 @@ const meta: MetaComponent = {
   title: 'Components/Badge',
   tags: ['package:HTML'],
   render: renderBadge,
-  decorators: [adaptiveBackground],
   parameters: {
     badges: [],
     design: {
@@ -69,8 +67,8 @@ const meta: MetaComponent = {
       },
     },
     background: {
-      name: 'Backround',
-      description: 'You can use the Background classes to color the cards',
+      name: 'Background',
+      description: 'You can use the background classes to color the cards',
       control: {
         type: 'select',
       },
@@ -83,13 +81,6 @@ const meta: MetaComponent = {
 };
 
 export default meta;
-
-// DECORATORS
-function adaptiveBackground(story: StoryFn, context: StoryContext) {
-  const { args } = context;
-  const isLight = ['bg-white', 'bg-light', 'bg-gray'].includes(args.background as string);
-  return isLight ? coloredBackground(story, context, 'dark') : story(args, context);
-}
 
 // RENDERER
 function renderBadge(args: Args) {
