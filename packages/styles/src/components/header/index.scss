@@ -4,9 +4,6 @@
 @use 'mixins' as *;
 
 post-header {
-  @include utilities.high-contrast-mode() {
-    border-bottom: 2px solid LinkText !important;
-  }
   ul[slot='meta-navigation'] {
     gap: var(--post-core-dimension-4);
 
@@ -53,11 +50,47 @@ post-header {
     }
   }
 
+  post-togglebutton,
+  post-menu-trigger {
+    @include utilities.high-contrast-mode() {
+      background-color: ButtonFace !important;
+      color: ButtonText !important;
+      border: 2px solid ButtonBorder;
+      &:hover {
+        border-color: Highlight !important;
+      }
+    }
+  }
+
   a.selected,
   post-togglebutton[aria-pressed='true'] {
     &:not(post-mainnavigation *) {
       color: var(--post-core-color-brand-white);
       background: var(--post-core-color-sandgrey-100);
+    }
+  }
+  @include utilities.high-contrast-mode() {
+    > ul.list-inline {
+      li a {
+        color: LinkText !important;
+        text-decoration: underline !important;
+        text-decoration-thickness: 1px !important;
+        &:hover {
+          text-decoration-thickness: 2px !important;
+        }
+      }
+    }
+    button {
+      background-color: ButtonFace !important;
+      color: ButtonText !important;
+      border: 2px solid ButtonBorder;
+      &:hover {
+        border-color: Highlight !important;
+      }
+    }
+
+    .megadropdown {
+      border-block-end: 2px solid ButtonBorder;
     }
   }
 }

@@ -3,9 +3,6 @@
 @use '@swisspost/design-system-styles/tokens/helpers';
 
 :host {
-  @include utilities.high-contrast-mode() {
-    color: LinkText !important;
-  }
   cursor: pointer;
   outline-offset: tokens.get('focus-outline-offset', helpers.$post-focus) !important;
   outline: tokens.get('focus-outline-color', helpers.$post-focus) none

@@ -96,8 +96,12 @@ tokens.$default-map: components.$post-button;
 .btn-tertiary {
   // Styles  to improve accessibility in high contrast mode
   @include utilities.high-contrast-mode() {
-    color: linktext;
-    text-decoration: underline !important;
+    color: ButtonText;
+    background-color: ButtonFace;
+    border: 2px solid ButtonBorder;
+    &:hover {
+      border-color: Highlight !important;
+    }
   }
 }
 

@@ -13,9 +13,6 @@
   --global-header-minimal-height: 24px;
   --main-header-height: 56px;
   --header-height: calc(var(--global-header-height) + var(--main-header-height));
-  @include utilities.high-contrast-mode() {
-    display: block;
-  }
 
   @include media.min(lg) {
     display: block;
@@ -31,6 +28,11 @@
   @include media.max(lg) {
     --global-header-height: 64px;
     --main-header-height: 48px;
+  }
+  .navigation {
+    @include utilities.high-contrast-mode() {
+      border-block-end: 3px solid ButtonBorder;
+    }
   }
 }
 
@@ -114,6 +116,9 @@ slot[name='post-logo'] {
     z-index: 1;
     inset-block-start: var(--global-header-height);
     padding-inline: var(--post-core-dimension-8) var(--post-core-dimension-16);
+  }
+  @include media.max(lg) {
+    border-block-end: 1px solid ButtonBorder;
   }
 }
 

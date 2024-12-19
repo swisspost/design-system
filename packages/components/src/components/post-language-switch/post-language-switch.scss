@@ -23,16 +23,19 @@ tokens.$default-map: components.$post-button;
   @include utilities-mx.focus-style;
   @include utilities-mx.not-disabled-hover() {
     @include button-mx.button-variant-def('hover', 'tertiary');
-    @include utilities-mx.high-contrast-mode() {
-      color: LinkText;
-    }
   }
 
   post-icon {
     height: var(--post-core-dimension-16);
     width: var(--post-core-dimension-16);
   }
+
   @include utilities-mx.high-contrast-mode() {
-    color: LinkText;
+    background-color: ButtonFace !important;
+    color: ButtonText !important;
+    border: 2px solid ButtonBorder;
+    &:hover {
+      border-color: Highlight !important;
+    }
   }
 }
