@@ -1,15 +1,19 @@
 @use '@swisspost/design-system-styles/core' as post;
 @use '@swisspost/design-system-styles/elements/body';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 #storybook-docs {
   .sbdocs-preview {
     border-color: post.$border-color;
-    border-radius: post.$size-mini;
+    border-radius: tokens.get('utility-gap-8');
     box-shadow: none;
   }
 
   .docblock-argstable {
-    border-radius: post.$size-mini;
+    border-radius: tokens.get('utility-gap-8');
 
     tbody {
       position: relative;
@@ -22,7 +26,7 @@
         position: absolute;
         inset: 0;
         border: post.$border-width solid post.$border-color;
-        border-radius: post.$size-mini;
+        border-radius: tokens.get('utility-gap-8');
         z-index: -1;
       }
 
@@ -46,33 +50,33 @@
             background-clip: padding-box !important;
 
             &:first-child {
-              border-inline-start: post.$size-line solid transparent;
+              border-inline-start: tokens.get('utility-gap-2') solid transparent;
             }
 
             &:last-child {
-              border-inline-end: post.$size-line solid transparent;
+              border-inline-end: tokens.get('utility-gap-2') solid transparent;
             }
           }
 
           &:first-child > td {
-            border-block-start: post.$size-hair solid transparent;
+            border-block-start: tokens.get('utility-gap-1') solid transparent;
 
             &:first-child {
-              border-start-start-radius: post.$size-mini;
+              border-start-start-radius: tokens.get('utility-gap-8');
             }
 
             &:last-child {
-              border-start-end-radius: post.$size-mini;
+              border-start-end-radius: tokens.get('utility-gap-8');
             }
           }
 
           &:last-child > td {
             &:first-child {
-              border-end-start-radius: post.$size-mini;
+              border-end-start-radius: tokens.get('utility-gap-8');
             }
 
             &:last-child {
-              border-end-end-radius: post.$size-mini;
+              border-end-end-radius: tokens.get('utility-gap-8');
             }
           }
         }
@@ -81,7 +85,7 @@
   }
 
   .docblock-source {
-    border-radius: post.$size-mini;
+    border-radius: tokens.get('utility-gap-8');
     box-shadow: none;
   }
 }

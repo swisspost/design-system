@@ -2,7 +2,8 @@
 @use './../../variables/spacing';
 @use './../../variables/commons';
 
-@use './../../mixins/icons' as icon-mixin;
+@use './../../functions/tokens';
+@use './../../tokens/utilities';
 
 #languageParent {
   min-width: 18rem;
@@ -14,7 +15,7 @@
 
     .dropdown-item {
       flex: auto 1 1;
-      padding: spacing.$size-small-regular 0;
+      padding: tokens.get('utility-gap-12', utilities.$post-spacing) 0;
       border: commons.$border-width solid color.$gray-20;
       border-top: 0;
       border-left: 0;

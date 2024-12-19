@@ -10,10 +10,13 @@
 @use './../variables/components/breadcrumbs';
 @use './../placeholders/text';
 
+@use '../functions/tokens';
+@use '../tokens/utilities';
+
 .breadcrumb {
   @extend %font-curve-small;
   flex-wrap: nowrap;
-  height: map.get(spacing.$post-sizes, 'bigger-big');
+  height: tokens.get('utility-gap-40', utilities.$post-spacing);
   overflow: hidden;
   font-weight: type.$font-weight-normal;
   white-space: nowrap;

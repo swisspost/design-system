@@ -7,11 +7,16 @@
 @use './../variables/components/datatable';
 @use './../variables/components/forms';
 
-@use './../mixins/button' as button-mixins;
+@use './../mixins/button' as button-mx;
 @use './../mixins/icons' as icons-mx;
-@use './../mixins/utilities';
+@use './../mixins/utilities' as utilities-mx;
 
 @use './../placeholders/text';
+
+@use '../functions/tokens';
+@use '../tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 .datatable-header-cell {
   padding: datatable.$datatable-cell-padding;
@@ -65,9 +70,9 @@
 
 .ngx-datatable .sort-btn {
   flex: 0 0 auto;
-  width: spacing.$size-regular;
-  height: spacing.$size-regular;
-  margin-left: spacing.$size-mini;
+  width: tokens.get('utility-gap-16');
+  height: tokens.get('utility-gap-16');
+  margin-left: tokens.get('utility-gap-8');
 
   &.datatable-icon-sort-unset {
     @include icons-mx.icon(2127);
@@ -96,7 +101,7 @@
   .datatable-button {
     display: flex;
     align-items: center;
-    @include button-mixins.reset-button;
+    @include button-mx.reset-button;
     width: datatable.$datatable-button-width;
     height: datatable.$datatable-button-height;
     margin: datatable.$datatable-button-margin;
@@ -120,7 +125,7 @@
   .datatable-row-count-label {
     @extend %font-curve-small;
     flex: 0 0 auto;
-    margin: 0 spacing.$size-mini 0 0;
+    margin: 0 tokens.get('utility-gap-8') 0 0;
   }
 
   .datatable-row-count-input {
@@ -131,7 +136,7 @@
     padding-bottom: 0;
 
     + .datatable-pagination {
-      padding-left: spacing.$size-mini;
+      padding-left: tokens.get('utility-gap-8');
       border-left: datatable.$datatable-footer-separator;
     }
   }
@@ -195,7 +200,7 @@
   }
 }
 
-@include utilities.high-contrast-mode() {
+@include utilities-mx.high-contrast-mode() {
   .ngx-datatable {
     .datatable-header-cell,
     .datatable-body-cell,
@@ -209,8 +214,8 @@
     .datatable-button {
       &:hover,
       &:focus-visible {
-        outline: spacing.$size-line solid Highlight;
-        outline-offset: -(spacing.$size-line);
+        outline: tokens.get('utility-gap-2') solid Highlight;
+        outline-offset: calc(tokens.get('utility-gap-2') * -1);
       }
     }
 
@@ -218,12 +223,12 @@
     &:not(.datatable-spaced-cells) {
       .datatable-row-wrapper {
         .datatable-body-cell {
-          border-top: spacing.$size-line solid CanvasText;
+          border-top: tokens.get('utility-gap-2') solid CanvasText;
         }
 
         &:last-child {
           .datatable-body-cell {
-            border-bottom: spacing.$size-line solid CanvasText;
+            border-bottom: tokens.get('utility-gap-2') solid CanvasText;
           }
         }
       }
@@ -233,17 +238,17 @@
     &.datatable-spaced-cells {
       .datatable-row-wrapper {
         .datatable-body-cell {
-          border-top: spacing.$size-line solid CanvasText;
-          border-left: spacing.$size-line solid CanvasText;
+          border-top: tokens.get('utility-gap-2') solid CanvasText;
+          border-left: tokens.get('utility-gap-2') solid CanvasText;
 
           &:last-child {
-            border-right: spacing.$size-line solid CanvasText;
+            border-right: tokens.get('utility-gap-2') solid CanvasText;
           }
         }
 
         &:last-child {
           .datatable-body-cell {
-            border-bottom: spacing.$size-line solid CanvasText;
+            border-bottom: tokens.get('utility-gap-2') solid CanvasText;
           }
         }
       }
