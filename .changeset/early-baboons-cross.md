@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Added type button to prevent `post-close-button` from submitting forms.
+Added a `type="button"` attribute to the `post-close-button` to prevent it from submitting forms.
