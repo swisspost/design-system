@@ -1,0 +1,7 @@
+@use '@swisspost/design-system-styles/mixins/utilities';
+
+post-closebutton button post-icon {
+  @include utilities.high-contrast-mode() {
+    color: LinkText !important;
+  }
+}
