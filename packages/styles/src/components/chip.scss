@@ -118,6 +118,10 @@
       color: chip.$chip-hover-color;
       background-color: chip.$chip-hover-bg;
 
+      @include utilities.high-contrast-mode() {
+        border-color: highlight;
+      }
+
       > .badge {
         background-color: chip.$chip-bg;
       }
