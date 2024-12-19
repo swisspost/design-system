@@ -2,7 +2,7 @@ import { html } from 'lit-html';
 
 export default html`<post-header>
   <!-- Logo -->
-  <post-logo url="/">Homepage</post-logo>
+  <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
   <!-- Meta navigation -->
   <ul class="list-inline" slot="meta-navigation">
