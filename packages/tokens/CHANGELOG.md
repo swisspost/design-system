@@ -1,5 +1,7 @@
 # @swisspost/design-system-tokens
 
+## 8.7.0
+
 ## 8.6.2
 
 ## 8.6.1

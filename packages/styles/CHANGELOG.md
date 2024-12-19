@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 8.7.0
+
+### Patch Changes
+
+- Added missing spinner size class. (by [@myrta2302](https://github.com/myrta2302) with [#4310](https://github.com/swisspost/design-system/pull/4310))
+
 ## 8.6.2
 
 ### Patch Changes
