@@ -8,8 +8,7 @@ name: Deploy Demo App Preview to Netlify
 on:
   workflow_run:
     workflows: ['Build Demo App']
-    types:
-      - completed
+    types: [completed]
 
 jobs:
   deploy:

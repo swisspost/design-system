@@ -184,6 +184,19 @@ const meta: MetaComponent = {
         },
       },
     },
+    condenseHeader: {
+      name: 'condenseHeader',
+      description: 'Display the navigation on one line',
+      control: 'boolean',
+      table: {
+        defaultValue: {
+          summary: 'false',
+        },
+        type: {
+          summary: 'boolean',
+        },
+      },
+    },
   },
 };
 
