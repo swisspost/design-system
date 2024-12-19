@@ -1,63 +1,84 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as SpacingStories from './spacing.stories';
 
+export const firstBreakpoint = Object.values(SpacingStories.SCSS_VARIABLES.firstBreakpoint)[0];
+export const breakpoints = Object.values(SpacingStories.SCSS_VARIABLES.breakpoints).map(
+  (breakpoint, i, arr) => [breakpoint, i !== arr.length - 1],
+);
+
 <Meta of={SpacingStories} />
 
 # Spacing
 
-<div className="lead">
-Our spacing utility brings uniform and consistent spacing to your elements,
+<div className="lead">Ensure consistent spacing across all pages.</div>
 
-By adhering to standardized spacing guidelines, we maintain visual alignment and
-improve the overall user interface.
+## Margin and Padding
 
+<div className="banner banner-info">
+  <h4 className="banner-heading">
+    Avoid applying spacing classes to grid elements (e.g. `.row`, `.col`, `.col-*`).
+  </h4>
+  <p>
+    The grid system uses negative margins and positive padding along the horizontal axis, and
+    applying additional spacing classes can affect the layout unless done with careful
+    consideration.
+  </p>
 </div>
 
-<div className="alert alert-warning mb-bigger-big">
-  <h2 className="alert-heading">Sizing variables are deprecated</h2>
-  <p>The current set of the post-specific spacing utility is deprecated in favour of a new naming system that is consistent with the Design. For further information, please read the <a href="https://github.com/swisspost/design-system/discussions/588">discussion on sizing variables on GitHub</a> and have a look at the <a href="https://www.figma.com/file/ojCcgC5Zd12eUSzq6V5m24/Foundations?node-id=3%3A2&t=l8qimsXlxeMLOzs6-0">implementation in Figma</a>.</p>
-  <p>There is a new solution with updated naming system up coming for spacing sizes.</p>
-</div>
+The naming convention for spacing utilities follows this pattern:
 
-## Padding & Margin
+- For all breakpoints (<code>{firstBreakpoint}</code> and up): `{property}{sides}-{size}`
+- Starting from a specific breakpoint ({breakpoints.map(([b, isLast]) => (<span key={b}><code>{b}</code>{isLast ? ', ' : ''}</span>))}): `{property}{sides}-{breakpoint}-{size}`
 
-You can apply the desired spacings for `margin` and/or `padding` all around an element using the classes `m-*` and `p-*`, or you can specify a position (e.g. `pt-*` , `pb-*` , `pe-*` , `ps-*` respectively for a padding at top, bottom, end/right and start/left). You can also set a spacing along the horizontal axis (i.e. right and left) using `mx-*` / `px-*` or along the vertical axis (i.e. top and bottom) using `my-*` / `py-*` .
+### Properties
 
-Our base spacing classes with suffixes going from 0 to 5 (`*-0`, `*-1`, ..., `*-5`).
+- `m`: for classes that set <strong>margin</strong>
+- `p`: for classes that set <strong>padding</strong>
 
-Our custom sizes can be used in the same way: by adding the name of the desired size to a prefix. See our [sizing docs](/?path=/docs/e728de1f-0d71-4317-8bb8-cbef0bf8d5db--docs) to find out which size names are available.
+### Sides
 
-<div className="alert alert-warning">
-  <h4 className="alert-heading">Do not use spacing classes on grid elements (i.e. `.row`, `.col`, `.col-*`).</h4>
-  <p>Our grid is built with negative margins and positive paddings on the x-axis. Therefore, use this spacing classes only if you know exactly what you are doing!</p>
-</div>
+- blank: for classes that set a margin or padding on <strong>all sides</strong> (top, bottom, left, and right)
+- `x`: for classes that set a <strong>horizontal</strong> margin or padding (left and right)
+- `y`: for classes that set a <strong>vertical</strong> margin or padding (top and bottom)
+- `t`: for classes that set a margin or padding at the <strong>top</strong>
+- `b`: for classes that set a margin or padding at the <strong>bottom</strong>
+- `s`: for classes that set a margin or padding at the <strong>start</strong> (left in LTR)
+- `e`: for classes that set a margin or padding at the <strong>end</strong> (right in LTR)
 
-<Canvas sourceState="shown" of={SpacingStories.Default} />
+### Sizes
+
+See all available sizes in the example bellow.
+
+### Example
+
+<Canvas sourceState="shown" of={SpacingStories.MarginAndPadding} />
 <div className="hide-col-default">
-  <Controls of={SpacingStories.Default} />
+  <Controls of={SpacingStories.MarginAndPadding} />
 </div>
 
-## Responsive behavior
+## Gap
 
-By default, the above classes apply to all breakpoints.
+When using `display: grid` or `display: flex`, you can use the gap utilities to manage spacing between child elements.
+These classes simplify the process of managing spacing without needing to individually add margin utilities to each child element.
 
-##### Manually specifying breakpoints
+The format for gap classes is as follows:
 
-If you need to change the size or spacing of an element based on the breakpoint, you should
-mention it in the class name using one of the following infixes: {Object.values(SpacingStories.SCSS_VARIABLES.breakpoints).map((s, index, array) => (<span key={s}><code>{`-${s}-`}</code>{index !== array.length - 1 && ', '}</span>))}.
-When a breakpoint is specified, the size applies to that breakpoint and to all those that are
-larger.
+- For all breakpoints (<code>{firstBreakpoint}</code> and up): `{property}-{size}`
+- Starting from a specific breakpoint ({breakpoints.map(([b, isLast]) => (<span key={b}><code>{b}</code>{isLast ? ', ' : ''}</span>))}): `gap-{breakpoint}-{size}`
 
-The square below has a big padding from the large breakpoint (i.e. `.p-lg-big`) and a regular
-padding below (i.e. `.p-regular`).
+### Properties
 
-<Canvas of={SpacingStories.ResponsiveExample} />
+- `row-gap`: for classes that set a gap between <strong>rows</strong>
+- `column-gap`: for classes that set a gap between <strong>columns</strong>
+- `gap`: for classes that set a gap between both <strong>columns and rows</strong>
 
-##### Using automatic responsive behavior
+### Sizes
 
-Another way to define a responsive size is to use the `-r` suffix. It allows to obtain a size which updates automatically and consistently depending on the breakpoint, without having to specify anything manually.
+See all available sizes in the example bellow.
 
-The square below has a "large" responsive padding, which means the padding size
-automatically changes based on the breakpoint but remains visually consistent.
+### Example
 
-<Canvas of={SpacingStories.AutomaticResponsiveExample} />
+<Canvas sourceState="shown" of={SpacingStories.Gap} />
+<div className="hide-col-default">
+  <Controls of={SpacingStories.Gap} />
+</div>

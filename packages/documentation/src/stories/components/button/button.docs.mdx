@@ -22,36 +22,11 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
   <Controls of={ButtonStories.Default} />
 </div>
 
-<StylesPackageImport components={["button"]} required={{ icons: true }} />
+<StylesPackageImport components={['button']} required={{ icons: true }} />
 
 ## Concrete Examples of Application
 
 The following examples show the different characteristics of the component. These can differ in the type of visualization, the html structure, as well as when, how and why they are displayed.
-
-### Inverted
-
-Inverted buttons don't need special classes anymore, just use any of the [background classes](/?path=/docs/60852fac-a861-4415-8276-bd38d68653bb--docs) to set the background and you're done for the day.
-
-<Canvas of={ButtonStories.Inverted} />
-
-### Accent colors
-
-<div className="alert alert-md alert-warning">
-  <h2 className="alert-heading">The accent colors are deprecated</h2>
-  <p>The CSS classes to apply to the buttons will be removed in the future.</p>
-</div>
-
-There are a number of accent colors that you can apply to buttons instead of the usual colors.
-
-<Canvas of={ButtonStories.AccentColors} />
-
-### Signal colors
-
-Besides the usual and the accent button variations, there are also signal button colors.
-
-<p className="alert alert-md alert-warning">These are only allowed for intranet applications!</p>
-
-<Canvas of={ButtonStories.SignalColors} />
 
 ### Full-width
 
@@ -59,10 +34,11 @@ In some situation, it is desirable to display a button using the full available 
 for example when the button is displayed on mobile and stacked vertically with others.
 
 To achieve that, you can use classes in the format:
-- `.w-{size}` for the xs breakpoint,
-- `.w-{breakpoint}-{size}` for breakpoints from sm to xxl.
 
-For example, a button with classes `w-100 w-lg-auto` will use all available space only when the viewport size is smaller than `lg`.
+- `.w-{size}` for the xs breakpoint,
+- `.w-{breakpoint}-{size}` for breakpoints from sm to xl.
+
+For example, a button with classes `w-full w-lg-auto` will use all available space only when the viewport size is smaller than `lg`.
 
 To learn more about breakpoints, see the <a href="/?path=/docs/20af6e2b-32b1-42ef-a187-b026aea7fe13--docs">Breakpoints documentation</a>.
 

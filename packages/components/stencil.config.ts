@@ -10,6 +10,10 @@ export const config: Config = {
   buildDist: true,
   sourceMap: false,
   validatePrimaryPackageOutputTarget: true,
+  hydratedFlag: {
+    name: 'data-hydrated',
+    selector: 'attribute',
+  },
   outputTargets: [
     {
       type: 'dist',
@@ -30,6 +34,14 @@ export const config: Config = {
         {
           src: '../node_modules/@swisspost/design-system-styles/*.css',
           dest: 'assets/css',
+        },
+        {
+          src: '../node_modules/@swisspost/design-system-styles/palettes/*.css',
+          dest: 'assets/css',
+        },
+        {
+          src: '../node_modules/@swisspost/design-system-icons/public/post-icons/*.svg',
+          dest: 'assets/icons',
         },
       ],
       serviceWorker: null, // disable service workers,

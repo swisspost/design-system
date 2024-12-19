@@ -4,11 +4,6 @@
 @use '@swisspost/design-system-styles/functions/color' as color-fn;
 @use '@swisspost/design-system-styles/variables/spacing';
 
-:host {
-  --post-contrast-color: #{color.$white};
-  --post-bg-rgb: #{color-fn.rgb-values(color.$gray-80)};
-}
-
 post-popovercontainer {
   padding: spacing.$size-micro spacing.$size-mini;
   max-width: 2 * spacing.$size-bigger-giant - spacing.$size-mini;

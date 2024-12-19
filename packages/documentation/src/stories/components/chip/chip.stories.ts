@@ -64,7 +64,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'If `true`, the chip is disabled.<div className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
+        'If `true`, the chip is disabled.<div className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
       control: {
         type: 'boolean',
       },
@@ -74,7 +74,8 @@ const meta: MetaComponent = {
     },
     active: {
       name: 'Active',
-      description: 'If `true`, the chip is active.',
+      description:
+        'If `true`, the chip is active.<div className="mt-8 banner banner-info banner-sm">Disabling active chips can result in confusing or unexpected behavior and should be avoided.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
       if: {
         arg: 'type',
         eq: 'filter',
@@ -205,7 +206,7 @@ export const FilterCheckboxChip: Story = {
     return html`
       <fieldset>
         <legend>Migrandaj Itineroj</legend>
-        <div class="d-flex flex-wrap gap-mini">
+        <div class="d-flex flex-wrap gap-8">
           ${checkboxChips.map(({ text, active }, index) =>
             renderChip({ ...args, text, active }, context, index),
           )}
@@ -213,7 +214,7 @@ export const FilterCheckboxChip: Story = {
       </fieldset>
     `;
   },
-  decorators: [story => html`<div class="d-flex gap-huge">${story()}</div>`],
+  decorators: [story => html`<div class="d-flex gap-56">${story()}</div>`],
   args: {
     type: 'filter',
   },
@@ -231,7 +232,7 @@ export const FilterRadioChip: Story = {
     return html`
       <fieldset>
         <legend class="">Serĉrezultoj</legend>
-        <div class="d-flex flex-wrap gap-mini">
+        <div class="d-flex flex-wrap gap-8">
           ${radioChips.map(({ text, number, active }, index) =>
             renderChip({ ...args, text, number, active }, context, index),
           )}
@@ -239,7 +240,7 @@ export const FilterRadioChip: Story = {
       </fieldset>
     `;
   },
-  decorators: [story => html`<div class="d-flex gap-huge">${story()}</div>`],
+  decorators: [story => html`<div class="d-flex gap-56">${story()}</div>`],
   args: {
     type: 'filter',
     radio: true,
@@ -250,7 +251,7 @@ export const FilterRadioChip: Story = {
 
 export const Dismissible: Story = {
   render: ({ dismissed, ...args }, context) => html`
-    <div class="d-flex flex-wrap gap-mini">
+    <div class="d-flex flex-wrap gap-8">
       ${renderChip({ ...args, text: 'Unua uzanta enigo' }, context)}
       ${renderChip({ ...args, text: 'Dua uzanta enigo' }, context)}
       ${renderChip({ ...args, text: 'Tria uzanta enigo' }, context)}

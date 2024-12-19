@@ -1,0 +1,233 @@
+@use '../mixins/elevation';
+@use '../mixins/utilities';
+@use '../variables/spacing';
+@use '../variables/color';
+@use '../variables/animation';
+
+@use './../themes/bootstrap/core' as *;
+
+dialog {
+  @include elevation.elevation('elevation-5');
+
+  padding: 0;
+  min-width: min(389px, 90vw);
+  max-width: 590px;
+  max-height: 90vh;
+  overflow: auto;
+  margin: revert;
+  overscroll-behavior: contain;
+  border: 2px solid var(--post-contrast-color); // Ensures good contrast when bg is dark against dark backdrop
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(0);
+  }
+
+  @include utilities.high-contrast-mode {
+    // Show the border in HCM
+    border-width: 2px;
+
+    // Mark the backdrop as inactive in HCM
+    &::backdrop {
+      background-image: linear-gradient(
+        135deg,
+        CanvasText 4.55%,
+        transparent 4.55%,
+        transparent 50%,
+        CanvasText 50%,
+        CanvasText 54.55%,
+        transparent 54.55%,
+        transparent 100%
+      );
+      background-size: 22px 22px;
+      backdrop-filter: none;
+      background-color: transparent;
+      forced-color-adjust: none;
+    }
+  }
+
+  // Sizes
+  // [small, medium (default), large]
+  &[data-size='small'] {
+    min-width: 296px;
+    max-width: 388px;
+  }
+
+  &[data-size='large'] {
+    min-width: min(600px, 90vw);
+    max-width: 792px;
+  }
+
+  // Positioning
+  // [top, center (default), bottom]
+  &[data-position='top'] {
+    top: 2rem;
+    bottom: auto;
+  }
+
+  &[data-position='bottom'] {
+    top: auto;
+    bottom: 2rem;
+  }
+}
+
+dialog > .dialog-grid {
+  margin: spacing.$size-regular spacing.$size-regular 0 spacing.$size-regular;
+  display: grid;
+  column-gap: spacing.$size-regular;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    'icon header close-button'
+    'icon body close-button'
+    'controls controls controls';
+
+  // Propagate bg color to the controls
+  background-color: inherit;
+}
+
+:where(.dialog-icon, .dialog-header, .dialog-body, .dialog-controls, .dialog-close):empty {
+  display: none;
+}
+
+.dialog-grid > post-icon {
+  grid-area: icon;
+  display: block;
+
+  width: spacing.$size-big;
+  height: spacing.$size-big;
+
+  // Larger icon for bigger notification dialogs
+  dialog:not([size='small']) & {
+    @include media-breakpoint-up(sm) {
+      width: spacing.$size-small-huge;
+      height: spacing.$size-small-huge;
+    }
+  }
+}
+
+.dialog-header {
+  grid-area: header;
+  margin-top: 0;
+}
+
+.dialog-body {
+  grid-area: body;
+  margin-bottom: 0;
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.dialog-controls {
+  grid-area: controls;
+  position: sticky;
+  bottom: 0;
+  padding-block: spacing.$size-regular;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  gap: spacing.$size-regular;
+  background-color: inherit;
+
+  button {
+    @include media-breakpoint-down(sm) {
+      width: 100%;
+    }
+  }
+}
+
+.dialog-grid > .btn-close {
+  position: sticky;
+  top: 0;
+  grid-area: close-button;
+  width: spacing.$size-large;
+  height: spacing.$size-large;
+  min-height: 0;
+}
+
+// Animations
+// [slide-in, pop-in, none]
+// Progressively enhanced with currently experimental @starting-style which allows to animate stuff appearing in the top layer
+// https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style
+dialog:not([data-animation='none']) {
+  --_dialog-transition-duration: var(--dialog-transition-duration, 0.5s);
+
+  transform: scale(0.8);
+  opacity: 0;
+  transition-property: transform, opacity, overlay, display;
+  transition-behavior: allow-discrete;
+  transition-duration: var(--_dialog-transition-duration);
+  transition-timing-function: linear(
+    0,
+    0.007,
+    0.029 2.2%,
+    0.118 4.7%,
+    0.625 14.4%,
+    0.826 19%,
+    0.902,
+    0.962,
+    1.008 26.1%,
+    1.041 28.7%,
+    1.064 32.1%,
+    1.07 36%,
+    1.061 40.5%,
+    1.015 53.4%,
+    0.999 61.6%,
+    0.995 71.2%,
+    1
+  );
+
+  &::backdrop {
+    opacity: 0;
+    transition:
+      backdrop-filter var(--_dialog-transition-duration),
+      opacity var(--_dialog-transition-duration),
+      overlay var(--_dialog-transition-duration) allow-discrete,
+      display var(--_dialog-transition-duration) allow-discrete;
+  }
+
+  &[open] {
+    transform: scale(1);
+    opacity: 1;
+
+    @starting-style {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    &::backdrop {
+      opacity: 1;
+      backdrop-filter: blur(10px);
+
+      @starting-style {
+        opacity: 0;
+        backdrop-filter: blur(0);
+      }
+
+      @media (forced-colors: active) {
+        backdrop-filter: none;
+      }
+    }
+  }
+
+  &[data-animation='slide-in'] {
+    transform: translateY(calc(var(--_dialog-slide-in-offset)));
+
+    &[data-position='top'] {
+      --_dialog-slide-in-offset: -3rem;
+    }
+
+    &[data-position='bottom'] {
+      --_dialog-slide-in-offset: 3rem;
+    }
+
+    &[open] {
+      transform: translateY(0);
+
+      @starting-style {
+        transform: translateY(calc(var(--_dialog-slide-in-offset)));
+      }
+    }
+  }
+}

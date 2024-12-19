@@ -14,6 +14,7 @@
   top: 0;
   bottom: 0;
   left: 0;
+  background-color: color.$light;
 
   flex: 1 0 auto;
   flex-direction: column;
@@ -27,7 +28,7 @@
       background: none;
       border: 0;
 
-      @include utilities.focus-style() {
+      @include utilities.focus-style {
         border-radius: commons.$border-radius;
       }
     }
@@ -62,12 +63,6 @@
       &:focus {
         background-color: color.$light;
       }
-
-      i.pi {
-        height: spacing.$spacer;
-        line-height: spacing.$spacer;
-        vertical-align: text-top;
-      }
     }
 
     &:not(.closed) > div > ul > li:first-child {
@@ -98,6 +93,7 @@
     padding: spacing.$spacer 0;
     overflow-x: hidden;
     overflow-y: auto; // Scrollable contents if viewport is shorter than content.
+    background-color: color.$light;
 
     @include media-breakpoint-down(md) {
       bottom: auto;

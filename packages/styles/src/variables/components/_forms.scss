@@ -6,25 +6,17 @@
 @use './../color';
 @use './../type';
 @use './../spacing';
-@use './../animation';
-@use './../../functions/utilities';
 @use './../../functions/sizing';
 
 // Forms
 
-$form-bg-size: 32px !default;
-$form-bg-size-sm: 24px !default;
-
-$form-label-margin-bottom: spacing.$size-mini !default;
-$form-label-color: var(--post-contrast-color) !default;
-$form-label-font-size-sm: type.$font-size-14;
+// Used elsewhere than text input, textarea or select
 
 $input-padding-y: button.$input-btn-padding-y !default;
 $input-padding-x: button.$input-btn-padding-x !default;
 $input-line-height: type.$line-height-copy !default;
 
 $input-padding-y-sm: button.$input-btn-padding-y-sm !default;
-$input-padding-x-sm: button.$input-btn-padding-x-sm !default;
 $input-line-height-sm: type.$line-height-copy !default;
 
 $input-padding-y-rg: button.$input-btn-padding-y-rg !default;
@@ -32,34 +24,16 @@ $input-padding-x-rg: button.$input-btn-padding-x-rg !default;
 $input-line-height-rg: type.$line-height-copy !default;
 
 $input-padding-y-lg: button.$input-btn-padding-y-lg !default;
-$input-padding-x-lg: button.$input-btn-padding-x-lg !default;
 $input-line-height-lg: type.$line-height-copy !default;
 
-$input-bg: color.$white !default;
-$input-disabled-bg: rgba(var(--post-contrast-color-inverted-rgb), 0.4) !default;
-$input-disabled-color: var(--post-gray-60); // Design System only
 $input-disabled-border-color: var(--post-gray-40); // Design System only
-$input-disabled-border-style: spacing.$size-line dashed;
 
-$input-color: color.$black !default;
 $input-border-color: color.$gray-80 !default;
 $input-border-width: button.$input-btn-border-width !default;
-$input-box-shadow: none !default;
 
-$input-border-radius: 0 !default;
-$input-border-radius-lg: 0 !default;
-$input-border-radius-rg: 0 !default;
-$input-border-radius-sm: 0 !default;
-
-$input-focus-bg: inherit !default;
-$input-focus-border-color: inherit !default;
-$input-focus-color: inherit !default;
 $input-focus-width: button.$input-btn-focus-width !default;
 $input-focus-box-shadow: none !default;
 $input-focus-outline-thickness: spacing.$size-line;
-
-$input-placeholder-color: color.$gray-60 !default;
-$input-plaintext-color: var(--post-contrast-color) !default;
 
 $input-height-border: $input-border-width * 2 !default;
 
@@ -71,12 +45,6 @@ $input-height-content-sm: type.$font-size-14 * 1 !default;
 $input-height-inner-sm: $input-height-content-sm + ($input-padding-y-sm * 2) + sizing.px-to-rem(2) !default; // + 2px approximation from Figma mockup
 $input-height-sm: $input-height-inner-sm + sizing.px-to-rem($input-height-border) !default;
 
-$form-floating-input-height-content-sm: type.$font-size-14 * 1 !default;
-$form-floating-input-height-inner-sm: $form-floating-input-height-content-sm +
-  (spacing.$size-regular * 2) - sizing.px-to-rem(2) !default; // - 2px approximation from Figma mockup
-$form-floating-input-height-sm: $form-floating-input-height-inner-sm +
-  sizing.px-to-rem($input-height-border) !default;
-
 $input-height-content-rg: type.$font-size-regular * $input-line-height-rg !default;
 $input-height-inner-rg: $input-height-content-rg + ($input-padding-y-rg * 2) !default;
 $input-height-rg: calc(#{$input-height-inner-rg} + #{$input-height-border}) !default;
@@ -84,20 +52,6 @@ $input-height-rg: calc(#{$input-height-inner-rg} + #{$input-height-border}) !def
 $input-height-content-lg: (type.$font-size-16 * $input-line-height-lg) - sizing.px-to-rem(2) !default; // - 2px and remove approximation in Figma
 $input-height-inner-lg: $input-height-content-lg + ($input-padding-y-lg * 2) !default;
 $input-height-lg: $input-height-inner-lg + sizing.px-to-rem($input-height-border) !default;
-
-$input-transition:
-  border-color 0.15s ease-in-out,
-  box-shadow 0.15s ease-in-out !default;
-
-$form-text-color: var(--post-contrast-color);
-$form-text-font-size: type.$font-size-tiny;
-$form-text-margin-top: spacing.$size-micro !default;
-
-$form-group-margin-bottom: 1rem !default;
-
-$input-group-addon-color: $input-color !default;
-$input-group-addon-bg: rgba(var(--post-contrast-color-inverted-rgb), 0.6) !default;
-$input-group-addon-border-color: $input-border-color !default;
 
 $form-range-track-height: 0.2rem !default;
 $form-range-track-bg: color.$gray-20 !default;
@@ -118,54 +72,7 @@ $form-range-thumb-disabled-border-color: $input-disabled-border-color !default;
 $form-range-height: $form-range-thumb-height + $form-range-thumb-focus-box-shadow-width * 2;
 $form-range-input-height-ie: 6rem !default;
 
-$form-file-button-hover-bg: $input-bg;
-
 $form-floating-height: $input-height-lg * $input-line-height-lg;
-$form-floating-padding-x: $input-padding-x-lg;
-$form-floating-padding-y: $input-padding-y-lg;
-$form-floating-line-height: type.$line-height-copy;
-$form-floating-input-padding-t: spacing.$size-large;
-$form-floating-input-padding-b: 0;
-$form-floating-label-opacity: 1;
-$form-floating-label-height: $form-floating-height;
-$form-floating-label-color: color.$gray-80;
-$form-floating-label-font-size: type.$font-size-16;
-$form-floating-label-font-size-small: type.$font-size-12;
-$form-floating-label-scale: math.div(
-  $form-floating-label-font-size-small,
-  $form-floating-label-font-size
-);
-$form-floating-label-upscale: math.div(1, $form-floating-label-scale);
-$form-floating-label-padding-t: $form-floating-label-height * 0.5 - $form-floating-label-font-size *
-  type.$line-height-copy * 0.5;
-$form-floating-label-translate-x: $form-floating-padding-x * (1 - $form-floating-label-scale);
-$form-floating-label-transform: scale($form-floating-label-scale);
-$form-floating-transition: animation.$transition-base;
-$form-floating-transition-in:
-  $form-floating-transition,
-  width 0ms list.nth(animation.$transition-base, 2);
-$form-floating-transition-out:
-  $form-floating-transition,
-  width 0ms linear;
-$form-floating-select-bg-size: 32px 32px;
 
-$form-floating-label-font-size-sm: type.$font-size-12;
-$form-floating-label-font-size-placeholder-sm: type.$font-size-14;
-$form-floating-label-scale-sm: math.div(
-  $form-floating-label-font-size-sm,
-  $form-floating-label-font-size-placeholder-sm
-);
-$form-floating-label-upscale-sm: math.div(1, $form-floating-label-scale-sm);
-$form-floating-padding-x-sm: spacing.$size-regular;
-$form-floating-padding-y-sm: $input-padding-y-sm;
-$form-floating-label-translate-x-sm: $form-floating-padding-x-sm *
-  (1 - $form-floating-label-scale-sm);
-$form-floating-label-height-sm: $form-floating-input-height-sm;
-$form-floating-label-padding-t-sm: $form-floating-label-height-sm * 0.5 -
-  $form-floating-label-font-size-sm;
-
-$form-floating-textarea-padding-t: spacing.$size-mini + $form-floating-label-font-size *
-  $form-floating-line-height * $form-floating-label-scale; // The Space needed for the label on focus
-$form-floating-textarea-padding-t-sm: spacing.$size-mini +
-  $form-floating-label-font-size-placeholder-sm * $input-line-height-sm *
-  $form-floating-label-scale-sm;
+$valid-icon: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_1266_5647)'%3E%3Cpath d='M16 0C7.16 0 0 7.16 0 16C0 24.84 7.16 32 16 32C24.84 32 32 24.84 32 16C32 7.16 24.84 0 16 0ZM25.05 9.01L14.4 25.15L7.04 17.27C6.66 16.87 6.68 16.23 7.09 15.86C7.49 15.48 8.13 15.5 8.5 15.91L14.13 21.94L23.38 7.92C23.68 7.46 24.3 7.33 24.77 7.64C25.23 7.94 25.36 8.56 25.05 9.03V9.01Z' fill='%23107800'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_1266_5647'%3E%3Crect width='32' height='32' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
+$invalid-icon: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_1266_5583)'%3E%3Cpath d='M16 0C7.16 0 0 7.16 0 16C0 24.84 7.16 32 16 32C24.84 32 32 24.84 32 16C32 7.16 24.84 0 16 0ZM14.49 6.28H17.53V10.76L16.93 17.11H15.09L14.49 10.76V6.28ZM16.01 22.33C14.93 22.33 14.08 21.48 14.08 20.42C14.08 19.36 14.93 18.53 16.01 18.53C17.09 18.53 17.94 19.38 17.94 20.42C17.94 21.46 17.09 22.33 16.01 22.33Z' fill='%23B20000'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_1266_5583'%3E%3Crect width='32' height='32' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");

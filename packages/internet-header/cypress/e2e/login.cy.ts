@@ -36,7 +36,7 @@ describe('login', () => {
         cy.changeArg('language', 'de');
 
         // Assert the header is hydrated
-        cy.get('swisspost-internet-header').should('have.class', 'hydrated');
+        cy.get('swisspost-internet-header').should('have.attr', 'data-hydrated');
 
         // With the modified configuration the login widget should be removed from the DOM
         cy.get('post-klp-login-widget').should('not.exist');
@@ -53,7 +53,7 @@ describe('login', () => {
         prepare(HEADER, 'Default', { config });
         cy.changeArg('language', 'de');
         console.warn(config.de?.header.loginWidgetOptions);
-        cy.get('swisspost-internet-header').should('have.class', 'hydrated');
+        cy.get('swisspost-internet-header').should('have.attr', 'data-hydrated');
         cy.get('a.login-button').should('exist').and('be.visible');
         cy.get('.klp-widget-anonymous').should('not.exist');
       });
@@ -66,7 +66,7 @@ describe('login', () => {
         config.de!.header.isLoginWidgetHidden = false;
         prepare(HEADER, 'Default', { config });
         cy.changeArg('language', 'de');
-        cy.get('swisspost-internet-header').should('have.class', 'hydrated');
+        cy.get('swisspost-internet-header').should('have.attr', 'data-hydrated');
         cy.get('.klp-widget-anonymous').should('exist');
       });
     });

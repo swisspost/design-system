@@ -1,0 +1,27 @@
+@use 'sass:map';
+@use 'sass:color';
+
+@use '../functions/tokens';
+@use '../tokens/components';
+
+tokens.$default-map: components.$post-icon-button;
+
+@mixin icon-button($size: md) {
+  $size-map: (
+    'sm': 'small',
+    'md': 'medium',
+    'lg': 'large',
+  );
+  $actual-size: map.get($size-map, $size);
+  padding: 0;
+  width: tokens.get('icon-button-#{$actual-size}-outer');
+  height: tokens.get('icon-button-#{$actual-size}-outer');
+  min-height: 0;
+  vertical-align: text-bottom;
+
+  > post-icon {
+    display: block;
+    width: tokens.get('icon-button-#{$actual-size}-icon');
+    height: tokens.get('icon-button-#{$actual-size}-icon');
+  }
+}

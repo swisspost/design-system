@@ -6,6 +6,11 @@
 @use './../variables/color' as color-var;
 @use './../functions/contrast' as contrast-fn;
 @use 'utilities';
+@use './../mixins/color' as color-mx;
+@use '../functions/tokens';
+@use '../tokens/components';
+
+tokens.$default-map: components.$post-button;
 
 @mixin reset-button {
   padding: 0;
@@ -20,28 +25,19 @@
 
 @mixin button-size($size: md) {
   min-height: map.get(button.$btn-height-map, $size);
-  font-size: map.get(button.$btn-font-size-map, $size);
   gap: map.get(button.$btn-gap-x-map, $size);
+  padding: 0 map.get(button.$btn-padding-x-map, $size);
 
-  &:where(:not(.btn-link, .btn-tertiary)) {
-    padding: 0 map.get(button.$btn-padding-x-map, $size);
-  }
-
-  > .pi,
   > post-icon {
     width: map.get(button.$btn-icon-size-map, $size);
     height: map.get(button.$btn-icon-size-map, $size);
   }
 }
 
-@mixin icon-button($size: md) {
-  // Padding for icon buttons is (button-height - font-size) / 2
-  $icon-size: map.get(button.$btn-icon-size-map, $size);
-  $button-height: map.get(button.$btn-height-map, $size);
-  $padding-y: ($button-height - $icon-size) * 0.5 - button.$input-btn-focus-width;
-  min-width: $button-height;
-  padding-right: $padding-y;
-  padding-left: $padding-y;
+@mixin button-variant-def($type, $color) {
+  border-color: tokens.get('button-#{$color}-#{$type}-stroke');
+  background-color: tokens.get('button-#{$color}-#{$type}-bg');
+  color: tokens.get('button-#{$color}-#{$type}-fg');
 }
 
 @mixin button-color-variant($name, $color) {

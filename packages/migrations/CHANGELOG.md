@@ -1,5 +1,25 @@
 # @swisspost/design-system-migrations
 
+## 9.0.0-next.9
+
+## 9.0.0-next.8
+
+## 9.0.0-next.7
+
+## 9.0.0-next.6
+
+## 9.0.0-next.5
+
+## 9.0.0-next.4
+
+## 9.0.0-next.3
+
+## 9.0.0-next.2
+
+## 9.0.0-next.1
+
+## 9.0.0-next.0
+
 ## 8.2.0
 
 ## 8.1.0

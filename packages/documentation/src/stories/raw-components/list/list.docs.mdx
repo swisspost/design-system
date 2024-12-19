@@ -1,0 +1,51 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as ListStories from './list.stories';
+
+<Meta of={ListStories} />
+
+<div className="docs-title">
+  # List
+
+  <nav>
+    <link-design of={JSON.stringify(ListStories)}></link-design>
+  </nav>
+</div>
+
+The `<post-list>` is a container for `<post-list-item>` components.
+
+<Canvas sourceState="shown" of={ListStories.Default} />
+
+<Controls of={ListStories.Default} />
+
+## Installation
+
+The `<post-list>` element is part of the `@swisspost/design-system-components` package.
+For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
+
+## Examples
+
+<p className="lead">Horizontal List</p>
+<p>Set the `horizontal` property to `true`to make the list horizontal.</p>
+<Canvas sourceState="shown" of={ListStories.PostListHorizontal} />
+
+<p className="lead">Hidden Title</p>
+<p>The title can be visually hidden but should always be present for accessibility reasons.</p>
+<p>Set the `title-hidden` property to `true`to visually hide the title.</p>
+
+<Canvas sourceState="shown" of={ListStories.PostListNoTitle} />
+
+<p className="lead">List Styling</p>
+
+<strong>--post-list-title-gap</strong>
+<p>
+  Define the gap between the title and the list items using the `--post-list-title-gap` property (
+  e.g., `--post-list-title-gap: 2rem;`).
+</p>
+
+<strong>--post-list-item-gap</strong>
+<p>
+  Define the gap of the list items using the `--post-list-item-gap` property (e.g.
+  `--post-list-item-gap: 1rem 0.5rem;`).
+</p>
+
+<Canvas sourceState="shown" of={ListStories.PostListStyling} />

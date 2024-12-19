@@ -1,14 +1,14 @@
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj, StoryFn, StoryContext } from '@storybook/web-components';
 import { html } from 'lit';
-import './sizing.styles.scss';
-import scss from './sizing.module.scss';
+import sizing from './sizing.module.scss';
+import { parse } from '@/utils/sass-export';
 import { MetaExtended } from '@root/types';
+import './sizing.styles.scss';
+import { camelToKebabCase } from '@/utils/naming';
 
-export const SCSS_VARIABLES = scss;
-
-const sizingOptions = ['auto', ...Object.keys(SCSS_VARIABLES)];
-
-const sizeOptionsPercent = ['auto', '25', '50', '75', '100'];
+const sizes: Record<string, string> = parse(sizing);
+const percentageSizes = Object.keys(sizes.pcsizes);
+const pixelSizes = Object.keys(sizes.pxsizes);
 
 const meta: MetaExtended = {
   render: renderSizing,
@@ -18,45 +18,25 @@ const meta: MetaExtended = {
     badges: [],
   },
   args: {
-    height: 'bigger-giant',
-    width: 'bigger-giant',
-    maxHeight: 'null',
-    maxWidth: 'null',
+    height: 'none',
+    width: 'none',
+    maxHeight: 'none',
+    maxWidth: 'none',
+    minHeight: 'none',
+    minWidth: 'none',
   },
-  argTypes: {
-    height: {
-      name: 'height',
-      description: 'Set the height of the rectangle',
-      control: {
-        type: 'select',
-      },
-      options: sizingOptions,
+  decorators: [
+    (story: StoryFn, context: StoryContext) => {
+      const storyTemplate = html`
+        <div class="sizing-example">
+          <div class="h-112">
+            ${story(context.args, context)}
+          </div>
+        </div>
+      `;
+      return storyTemplate;
     },
-    width: {
-      name: 'width',
-      description: 'Set the width of the rectangle',
-      control: {
-        type: 'select',
-      },
-      options: sizingOptions,
-    },
-    maxHeight: {
-      name: 'max-height',
-      description: 'Set the maximum height of the rectangle',
-      control: {
-        type: 'select',
-      },
-      options: ['none', ...sizingOptions],
-    },
-    maxWidth: {
-      name: 'max-width',
-      description: 'Set the maximum width of the rectangle',
-      control: {
-        type: 'select',
-      },
-      options: ['none', ...sizingOptions],
-    },
-  },
+  ],
 };
 
 export default meta;
@@ -64,33 +44,73 @@ export default meta;
 type Story = StoryObj;
 
 function renderSizing(args: Args) {
-  const maximumHeight = args.maxHeight && args.maxHeight !== 'null' ? `mh-${args.maxHeight}` : '';
-  const maximumWidth = args.maxWidth && args.maxWidth !== 'null' ? `mw-${args.maxWidth}` : '';
-  const classes = `content h-${args.height} w-${args.width} ${maximumHeight} ${maximumWidth}`;
+  const classNames = [
+    `content`,
+    `h-${args.height}`,
+    `w-${args.width}`,
+    args.maxHeight && args.maxHeight !== 'none' ? `max-h-${args.maxHeight}` : '',
+    args.maxWidth && args.maxWidth !== 'none' ? `max-w-${args.maxWidth}` : '',
+    args.minHeight && args.minHeight !== 'none' ? `min-h-${args.minHeight}` : '',
+    args.minWidth && args.minWidth !== 'none' ? `min-w-${args.minWidth}` : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
-  return html`
-    <div class="sizing-example">
-      <div class="d-flex p-regular gap-regular" style="height: 150px">
-        <div class="flex-fill">
-          <div class="${classes}"></div>
-        </div>
-      </div>
-    </div>
-  `;
+  return html`<div class="${classNames}"></div>`;
 }
 
-export const Sizes: Story = {};
-export const SizesPercent: Story = {
+const pcArgTypes = [
+  { name: 'height', category: 'Height', options: percentageSizes },
+  { name: 'width', category: 'Width', options: percentageSizes },
+  { name: 'maxHeight', category: 'Height', options: percentageSizes },
+  { name: 'maxWidth', category: 'Width', options: percentageSizes },
+  { name: 'minHeight', category: 'Height', options: percentageSizes },
+  { name: 'minWidth', category: 'Width', options: percentageSizes },
+];
+
+export const PercentSizes: Story = {
   args: {
-    width: '25',
-    height: '100',
+    width: 'quarter',
+    height: 'full',
   },
-  argTypes: {
-    height: {
-      options: sizeOptionsPercent,
-    },
-    width: {
-      options: sizeOptionsPercent,
-    },
+  argTypes: Object.fromEntries(
+    pcArgTypes.map(argType => [
+      argType.name,
+      {
+        name: camelToKebabCase(argType.name),
+        description: `Set the ${camelToKebabCase(argType.name).toLowerCase()} of the rectangle`,
+        control: { type: 'select' },
+        options: argType.options,
+        table: { category: argType.category },
+      },
+    ]),
+  ),
+};
+
+const pxArgTypes = [
+  { name: 'height', category: 'Height', options: pixelSizes },
+  { name: 'width', category: 'Width', options: pixelSizes },
+  { name: 'maxHeight', category: 'Height', options: pixelSizes },
+  { name: 'maxWidth', category: 'Width', options: pixelSizes },
+  { name: 'minHeight', category: 'Height', options: pixelSizes },
+  { name: 'minWidth', category: 'Width', options: pixelSizes },
+];
+
+export const PxSizes: Story = {
+  args: {
+    width: '100',
+    height: '80',
   },
+  argTypes: Object.fromEntries(
+    pxArgTypes.map(argType => [
+      argType.name,
+      {
+        name: camelToKebabCase(argType.name),
+        description: `Set the ${camelToKebabCase(argType.name).toLowerCase()} of the rectangle`,
+        control: { type: 'select' },
+        options: argType.options,
+        table: { category: argType.category },
+      },
+    ]),
+  ),
 };

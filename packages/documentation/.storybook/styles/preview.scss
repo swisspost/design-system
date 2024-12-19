@@ -1,12 +1,18 @@
 // importing the complete styles package scss
-@use '@swisspost/design-system-styles/post-external.scss';
 @use '@swisspost/design-system-styles/core.scss' as post;
-@use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css';
 @use './components';
+@use '@swisspost/design-system-styles/functions/tokens' as tokens;
+@use '@swisspost/design-system-styles/tokens/utilities' as utilities;
+
+tokens.$default-map: utilities.$post-color;
+
+$monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 
 #storybook-root,
 #storybook-docs {
+  background-color: white;
+
   .sbdocs-content .container >,
   .sbdocs-content .container > post-tabs > post-tab-panel >,
   .sbdocs-content .container > migration-global-state {
@@ -42,6 +48,15 @@
     .table-responsive {
       margin-block: 1.5rem 1rem;
     }
+
+    .table-fit-content {
+      width: fit-content;
+
+      th,
+      td {
+        padding-inline: 2rem;
+      }
+    }
   }
 
   .sbdocs-content .container {
@@ -68,28 +83,21 @@
         display: inline-block;
       }
     }
+  }
 
-    // General styles for content
-    a:not(.sb-story a) {
-      @include utilities.focus-style() {
-        border-radius: post.$border-radius;
-      }
-    }
+  // Style buttons related to the current page next to the tile
+  .docs-title,
+  .docs-title nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: post.$size-mini;
+  }
+  .docs-title {
+    margin-bottom: post.$size-mini;
 
-    // Style buttons related to the current page next to the tile
-    .docs-title,
-    .docs-title nav {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: post.$size-mini;
-    }
-    .docs-title {
-      margin-bottom: post.$size-mini;
-
-      :first-child {
-        margin-right: auto;
-      }
+    :first-child {
+      margin-right: auto;
     }
   }
 
@@ -103,12 +111,11 @@
     top: -0.1em;
     margin: 0 0.1em;
     padding: 0.15em 0.4em 0.1em;
-    background-color: rgba(var(--post-contrast-color-inverted-rgb), 0.2);
-    border: 1px solid rgba(var(--post-contrast-color-rgb), 0.1);
+    background-color: rgba(#fff, 0.75);
+    border: 1px solid rgba(#000, 0.3);
     border-radius: 0.2em;
-    font-family: var(--bs-font-monospace);
+    font-family: $monospace;
     font-size: 0.75em;
-    color: var(--post-contrast-color);
     white-space: nowrap;
     line-height: 1;
 
@@ -118,6 +125,13 @@
       padding: 1rem;
       background-color: var(--post-contrast-color);
       color: var(--post-contrast-color-inverted);
+    }
+  }
+
+  [data-color-scheme='dark'] {
+    code {
+      background-color: rgba(#000, 0.75);
+      border-color: rgba(#fff, 0.3);
     }
   }
 
@@ -176,6 +190,10 @@
 
 #storybook-docs {
   overflow-x: hidden;
+}
+
+.sbdocs-preview:not([data-color-scheme]) {
+  display: none;
 }
 
 .fake-content {

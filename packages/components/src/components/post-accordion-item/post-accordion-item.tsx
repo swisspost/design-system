@@ -4,6 +4,9 @@ import { HEADING_LEVELS, HeadingLevel } from '@/types';
 import { checkEmptyOrOneOf } from '@/utils';
 
 /**
+ * @part button - The pseudo-element, used to override styles on the components internal header `button` element.
+ * @part body - The pseudo-element, used to override styles on the components internal `body` element.
+ * @slot logo - Slot for the placing a logo before the header.
  * @slot header - Slot for placing custom content within the accordion item's header.
  * @slot default - Slot for placing content within the accordion item's body.
  */
@@ -20,6 +23,8 @@ export class PostAccordionItem {
 
   @State() id: string;
 
+  @State() slottedLogo: HTMLElement;
+
   /**
    * If `true`, the element is collapsed otherwise it is displayed.
    */
@@ -29,7 +34,7 @@ export class PostAccordionItem {
    * Defines the hierarchical level of the accordion item header within the headings structure.
    * @deprecated set the `heading-level` property on the parent `post-accordion` instead.
    */
-  @Prop() readonly headingLevel?: HeadingLevel = 2;
+  @Prop() readonly headingLevel?: HeadingLevel;
 
   @Watch('headingLevel')
   validateHeadingLevel(newValue = this.headingLevel) {
@@ -40,18 +45,21 @@ export class PostAccordionItem {
     );
   }
 
-  connectedCallback() {
-    this.validateHeadingLevel();
-  }
-
   componentWillLoad() {
     this.id = this.host.id || `a${crypto.randomUUID()}`;
+  }
+
+  componentDidLoad() {
+    this.validateHeadingLevel();
   }
 
   // capture to make sure the "collapsed" property is updated before the event is consumed
   @Listen('postToggle', { capture: true })
   onCollapseToggle(event: CustomEvent<boolean>): void {
-    if ((event.target as HTMLElement).localName === 'post-accordion-item') {
+    if (
+      event.target === this.host &&
+      (event.target as HTMLElement).localName === 'post-accordion-item'
+    ) {
       this.collapsed = !event.detail;
     }
   }
@@ -64,16 +72,38 @@ export class PostAccordionItem {
     return this.collapsible.toggle(force);
   }
 
+  private onSlotLogoChange() {
+    this.slottedLogo = this.host.querySelector('img[slot="logo"]');
+  }
+
+  componentWillRender() {
+    this.slottedLogo = this.host.querySelector('img[slot="logo"]');
+  }
+
   render() {
-    const HeadingTag = `h${this.headingLevel ?? 2}`;
+    const headingLevel = this.host.closest('post-accorddion')?.getAttribute('heading-level');
+    const HeadingTag = `h${headingLevel ?? this.headingLevel ?? 2}`;
 
     return (
       <Host id={this.id} data-version={version}>
         <div part="accordion-item" class="accordion-item">
           <post-collapsible-trigger for={`${this.id}--collapse`}>
             <HeadingTag class="accordion-header" id={`${this.id}--header`}>
-              <button type="button" class={`accordion-button${this.collapsed ? ' collapsed' : ''}`}>
+              <button
+                type="button"
+                class={`accordion-button${this.collapsed ? ' collapsed' : ''}`}
+                part="button"
+              >
+                <span
+                  class={{
+                    'logo-container': true,
+                    'has-image': !!this.slottedLogo,
+                  }}
+                >
+                  <slot name="logo" onSlotchange={this.onSlotLogoChange.bind(this)}></slot>
+                </span>
                 <slot name="header" />
+                <post-icon name="2051"></post-icon>
               </button>
             </HeadingTag>
           </post-collapsible-trigger>
@@ -83,7 +113,7 @@ export class PostAccordionItem {
             collapsed={this.collapsed}
             ref={el => (this.collapsible = el)}
           >
-            <div class="accordion-body">
+            <div class="accordion-body" part="body">
               <slot />
             </div>
           </post-collapsible>

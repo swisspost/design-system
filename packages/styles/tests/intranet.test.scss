@@ -4,22 +4,8 @@
 @use './jest';
 
 .test {
-  background-image: url(post.get-colored-svg-url('2063', map.get(post.$accent-colors, 'coral')));
   background-image: url(post.get-colored-svg-url('2063', #ff0080));
   background-image: url(post.get-colored-svg-url('2063', post.$white));
 
-  @include post.pi(2063, map.get(post.$accent-colors, 'coral'));
-  @include post.pi(2063, #ff0080);
-  @include post.pi(2063, post.$white);
-  @include post.pi(2063, midnightblue);
   @include jest.equal(post.strip-unit(12px), 12);
-
-  @each $name, $path in post.$svg-icon-map {
-    @include post.pi($name);
-
-    @each $color, $value in post.$signal-colors {
-      @include post.pi($name, $color);
-      @include post.pi($name, $value);
-    }
-  }
 }

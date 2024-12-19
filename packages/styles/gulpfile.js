@@ -1,9 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 const gulp = require('gulp');
-const sass = require('sass');
+const sass = require('sass-embedded');
 const newer = require('gulp-newer');
 const gulpSass = require('gulp-sass')(sass);
+const sourcemaps = require('gulp-sourcemaps');
 const gulpPostCss = require('gulp-postcss');
 const postcssScss = require('postcss-scss');
 const autoprefixer = require('autoprefixer');
@@ -26,7 +27,7 @@ gulp.task('copy', () => {
  * See https://github.com/pnpm/pnpm/issues/8338 for more information and reproduction
  */
 gulp.task('temporarily-copy-token-files', () => {
-  return gulp.src(['../tokens/dist/*.scss']).pipe(gulp.dest('./src/tokens/temp'));
+  return gulp.src(['../tokens/dist/**/*.scss']).pipe(gulp.dest('./src/tokens/temp'));
 });
 
 /**
@@ -48,7 +49,7 @@ gulp.task('autoprefixer', function () {
  */
 gulp.task('map-icons', done => {
   const iconVariables = globSync(
-    'node_modules/@swisspost/design-system-icons/public/post-icons/*.svg',
+    'node_modules/@swisspost/design-system-icons/src/icons/post/*.svg',
   ).reduce((entries, iconPath) => {
     const iconName = path.basename(iconPath, '.svg');
 
@@ -114,38 +115,16 @@ gulp.task('transform-package-json', done => {
  */
 gulp.task('sass', () => {
   return gulp
-    .src('./src/*.scss')
+    .src('./src/**/*.scss')
     .pipe(
       gulpSass({
-        outputStyle: 'compressed',
-        includePaths: options.includePaths,
+        style: 'compressed',
+        loadPaths: options.loadPaths,
         quietDeps: true,
-        silenceDeprecations: ['mixed-decls'],
       }),
     )
     .pipe(gulpPostCss([autoprefixer()]))
     .pipe(gulp.dest(options.outputDir));
-});
-
-/**
- * Compile components to Css
- *  - Compile
- *  - Autoprefix
- *  - Also puts compiled Css into tsc-out
- */
-gulp.task('build-components', () => {
-  return gulp
-    .src('./src/components/*.scss')
-    .pipe(
-      gulpSass({
-        outputStyle: 'compressed',
-        includePaths: options.includePaths,
-        quietDeps: true,
-        silenceDeprecations: ['mixed-decls'],
-      }),
-    )
-    .pipe(gulpPostCss([autoprefixer()]))
-    .pipe(gulp.dest(`${options.outputDir}/components`));
 });
 
 /**
@@ -154,28 +133,32 @@ gulp.task('build-components', () => {
 gulp.task('sass:dev', () => {
   return gulp
     .src('./src/*.scss')
+    .pipe(sourcemaps.init())
     .pipe(
       gulpSass({
-        includePaths: options.includePaths,
+        loadPaths: options.loadPaths,
         quietDeps: true,
-        silenceDeprecations: ['mixed-decls'],
       }),
     )
     .pipe(gulpPostCss([autoprefixer()]))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest(options.outputDir));
 });
 
 /**
  * Compile scss tests
  */
-gulp.task('sass:tests', () => {
-  return gulp.src('./tests/**/*.scss').pipe(
-    gulpSass.sync({
-      includePaths: options.includePaths,
-      quietDeps: true,
-    }),
-  );
-});
+gulp.task(
+  'sass:tests',
+  gulp.series('temporarily-copy-token-files', () => {
+    return gulp.src('./tests/**/*.scss').pipe(
+      gulpSass.sync({
+        loadPaths: [...options.loadPaths, './'],
+        quietDeps: true,
+      }),
+    );
+  }),
+);
 
 /**
  * Watch task for scss development
@@ -195,6 +178,5 @@ exports.default = gulp.task(
   gulp.parallel(
     gulp.series('map-icons', 'copy', 'autoprefixer', 'transform-package-json'),
     gulp.series('temporarily-copy-token-files', 'sass'),
-    gulp.series('build-components'),
   ),
 );

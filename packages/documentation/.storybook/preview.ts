@@ -2,7 +2,12 @@ import type { Preview } from '@storybook/web-components';
 import { extractArgTypes, extractComponentDescription } from '@kurbar/storybook-addon-docs-stencil';
 import { format } from 'prettier';
 import DocsLayout from './blocks/layout/layout';
-import { openFullScreenDemo, prettierOptions, resetComponents } from './helpers';
+import {
+  fullScreenUrlDecorator,
+  openFullScreenDemo,
+  prettierOptions,
+  resetComponents,
+} from './helpers';
 import './helpers/register-web-components';
 import './addons/cypress-storybook/client';
 
@@ -10,51 +15,61 @@ import './styles/preview.scss';
 
 import { SyntaxHighlighter } from '@storybook/components';
 import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
+import { ArgTypes } from '@storybook/blocks';
 
 SyntaxHighlighter.registerLanguage('scss', scss);
 
-export const SourceDarkMode = true;
+export const SourceDarkScheme = true;
 
 const preview: Preview = {
+  decorators: [fullScreenUrlDecorator],
   parameters: {
     options: {
       storySort: {
         method: 'alphabetical',
         order: [
-          'Home',
+          'Introduction',
 
           // Category - Getting Started
           'Getting Started',
-          ['Introduction', 'Angular', 'Compatibility', 'Packages', 'Changelogs', 'Migration Guide'],
+
+          // Category - Packages
+          'Packages',
 
           // Category - Foundations
           'Foundations',
           [
+            'Logo',
+            'Icons',
+            'Palettes',
             'Typography',
-            'Color',
-            'Search for Icons',
+            ['Overview'],
             'Layout',
-            ['Breakpoints', 'Containers', 'Grid', 'Columns', 'TODOS'],
-            'Elevation',
-            'Accessibility',
+            ['Breakpoints', 'Containers', 'Grid', 'Columns'],
           ],
+
+          // Category - Raw Components (INTERNAL ONLY)
+          'Raw Components',
 
           // Category - Components
           'Components',
 
-          // Category - Patterns
-          'Patterns',
-          ['Metadata', 'Forms'],
+          // Category - Modules
+          'Modules',
+          ['Header', 'Footer'],
 
           // Category - Utilities
           'Utilities',
 
+          // Category - Templates
+          'Templates',
+
+          // Category - Guidelines
+          'Guidelines',
+
           // Category - Misc
           'Misc',
-          ['Migration Guide', 'Changelog', 'Versions'],
-
-          // Category - Snapshots (hidden)
-          'Snapshots',
+          ['Mission', 'Design Principles', 'Migration'],
         ],
       },
     },
@@ -68,9 +83,12 @@ const preview: Preview = {
           },
         ],
       },
+      argTypes: {
+        sort: 'requiredFirst',
+      },
       source: {
         excludeDecorators: true,
-        dark: SourceDarkMode,
+        dark: SourceDarkScheme,
         transform: (snippet: string) => format(snippet, prettierOptions),
       },
       components: resetComponents,

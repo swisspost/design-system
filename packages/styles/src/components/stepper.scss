@@ -20,10 +20,10 @@
 }
 
 .stepper {
+  @include utilities.reset-list;
   // start a counter for the step numbers
   counter-reset: step-index;
 
-  @include utilities.reset-list;
   display: grid;
   position: relative;
   overflow: hidden;
@@ -41,6 +41,7 @@
 .stepper-item {
   grid-row: 1;
   position: relative;
+  padding-inline-start: 0;
 
   &:not(:first-child) {
     padding-inline-start: math.div(stepper.$stepper-link-spacing, 2);
@@ -220,7 +221,7 @@
 }
 
 // smaller screens
-@include media-breakpoint-down(rg) {
+@include media-breakpoint-down(sm) {
   .stepper-item:first-child,
   .stepper-item:last-child {
     padding-inline: 0;

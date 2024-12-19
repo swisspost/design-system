@@ -60,6 +60,11 @@ export class PostPopovercontainer {
   @Prop() readonly placement?: Placement = 'top';
 
   /**
+   * Gap between the edge of the page and the popover
+   */
+  @Prop() readonly edgeGap?: number = 8;
+
+  /**
    * Wheter or not to display a little pointer arrow
    */
   @Prop() readonly arrow?: boolean = false;
@@ -144,11 +149,12 @@ export class PostPopovercontainer {
   }
 
   private async calculatePosition() {
+    const gap = this.edgeGap;
     const middleware = [
       flip(),
       inline(),
       shift({
-        padding: 8,
+        padding: gap,
 
         // Prevents shifting away from the anchor too far, while shifting as far as possible
         // https://floating-ui.com/docs/shift#limiter
@@ -159,15 +165,15 @@ export class PostPopovercontainer {
       size({
         apply({ availableWidth, elements }) {
           Object.assign(elements.floating.style, {
-            maxWidth: `${availableWidth - 16}px`,
+            maxWidth: `${availableWidth - gap * 2}px`,
           });
         },
       }),
-      offset(this.arrow ? 12 : 8), // 4px outside of element to account for focus outline + ~arrow size
+      offset(this.arrow ? gap + 4 : gap), // 4px outside of element to account for focus outline + ~arrow size
     ];
 
     if (this.arrow) {
-      middleware.push(arrow({ element: this.arrowRef, padding: 8 }));
+      middleware.push(arrow({ element: this.arrowRef, padding: gap }));
     }
 
     const {

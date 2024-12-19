@@ -1,7 +1,6 @@
+import { promises } from 'fs';
 import StyleDictionary from './style-dictionary.js';
 import { usesReferences } from 'style-dictionary/utils';
-import { expandTypesMap } from '@tokens-studio/sd-transforms';
-import { promises } from 'fs';
 import {
   SOURCE_PATH,
   OUTPUT_PATH,
@@ -12,47 +11,20 @@ import {
   EXPLICIT_FIGMAONLY_SETNAMES,
   TOKENSET_PREFIX,
 } from './constants.js';
+import { objectDeepmerge } from './utils/index.js';
 
 let CLI_OPTIONS;
 let tokenSets;
-
-// Can be removed, as soon as box-shadow tokens can be outputted with references
-StyleDictionary.registerPreprocessor({
-  name: 'swisspost/box-shadow-keep-refs-workaround',
-  preprocessor: dictionary => {
-    traverse(dictionary);
-
-    function traverse(context) {
-      Object.entries(context).forEach(([key, value]) => {
-        const usesDtcg = context[key].$type && context[key].$value;
-        const isToken = context[key][usesDtcg ? '$type' : 'type'] !== undefined;
-
-        if (isToken) {
-          const tokenType = context[key][usesDtcg ? '$type' : 'type'];
-          const tokenValue = context[key][usesDtcg ? '$value' : 'value'];
-
-          if (tokenType === 'shadow' && typeof tokenValue === 'string') {
-            context[key].$extensions[
-              'studio.tokens'
-            ].boxShadowKeepRefsWorkaroundValue = `${tokenValue.replace(/[{}]/g, match =>
-              match === '{' ? '[[' : ']]',
-            )}`;
-          }
-        } else if (typeof context[key] === 'object') {
-          traverse(value);
-        }
-      });
-    }
-
-    return dictionary;
-  },
-});
+let registeredConfigMethods = [];
 
 export async function setup() {
   CLI_OPTIONS = createCliOptions();
 
   const tokensFile = JSON.parse(await promises.readFile(`${SOURCE_PATH}/tokens.json`, 'utf-8'));
   tokenSets = createTokenSets(tokensFile);
+
+  if (await promises.readdir(OUTPUT_PATH).catch(() => false))
+    await promises.rm(OUTPUT_PATH, { recursive: true });
 }
 
 /**
@@ -98,7 +70,7 @@ function createTokenSets(tokensFile) {
   // only add non component layer sets to source files
   // component layer sets can not be resolved in the browser, and therefore are not usable as sources
   const source = Object.entries(normalized).reduce((sets, [name, set]) => {
-    const { baseDefinition } = getConfig(name);
+    const { baseDefinition } = getDefinition(name);
 
     if (baseDefinition.layer !== TOKENSET_LAYERS.component) {
       return { ...sets, [name]: set };
@@ -109,7 +81,7 @@ function createTokenSets(tokensFile) {
 
   // combine tokensets by group so they can be outputted in a single file
   const output = Object.entries(normalized).reduce((definition, [name, set]) => {
-    const { groupSlug, groupName, setName, baseDefinition } = getConfig(name);
+    const { groupSlug, groupName, setName, baseDefinition } = getDefinition(name);
     const existingGroup = definition[groupSlug];
 
     if (
@@ -133,7 +105,7 @@ function createTokenSets(tokensFile) {
     output,
   };
 
-  function getConfig(name) {
+  function getDefinition(name) {
     const [groupSlug, setSlug] = name.split('/');
     const groupName = setSlug ? groupSlug : null;
     const setName = setSlug ?? groupSlug;
@@ -188,6 +160,23 @@ export async function createTokenSetFiles() {
 }
 
 /**
+ * @function registerConfigMethod(Function)
+ * Registers a config getter method, which is used to create StyleDictionary Config objects.
+ *
+ * @callback configGetterMethod a function which will be called during build time with the following parameters:
+ * @param {tokenSets} group-nested tokensets object
+ * @param {options} object { sourcePath: string, buildPath: string }
+ * @returns {Config[]} StyleDictionary Config objects[]
+ */
+export function registerConfigMethod(method) {
+  if (method instanceof Function) {
+    registeredConfigMethods.push(method);
+  } else {
+    throw new Error(`At least one of the given config getter methods is not a function.!`);
+  }
+}
+
+/**
  * @function createOutputFiles()
  * Creates the output files based on the StyleDictionary Config.
  *
@@ -202,48 +191,48 @@ export async function createOutputFiles() {
 
   /**
    * @function getConfigs()
-   * Creates the StyleDictionary Config object for each tokenset.
+   * Creates all StyleDictionary Config objects, given through the registeredConfigMethods.
    *
    * @returns Config[]
    */
   function getConfigs() {
-    return Object.entries(tokenSets.output).map(([name, { type, layer, filePath, sets }]) => {
-      return {
-        log: {
-          verbosity: CLI_OPTIONS.verbosity,
-        },
-        meta: {
-          type,
-          layer,
-          filePath,
-          setNames: Object.keys(sets),
-        },
-        source: [`${SOURCE_PATH}/_temp/output/${filePath}`],
-        include: [`${SOURCE_PATH}/_temp/source/**/*.json`],
-        preprocessors: ['swisspost/box-shadow-keep-refs-workaround', 'tokens-studio'],
-        platforms: {
-          scss: {
-            transformGroup: 'tokens-studio',
-            transforms: ['name/kebab'],
-            buildPath: `${OUTPUT_PATH}/`,
-            expand: {
-              include: ['typography'],
-              typesMap: expandTypesMap,
-            },
-            files: [
-              {
-                destination: `${name}.scss`.toLowerCase(),
-                format: 'swisspost/scss-format',
-                filter: 'swisspost/tokenset-filter',
-                options: {
-                  outputReferences: true,
-                },
-              },
-            ],
+    return registeredConfigMethods
+      .map(method =>
+        method(tokenSets, { sourcePath: `${SOURCE_PATH}/`, buildPath: `${OUTPUT_PATH}/` }),
+      )
+      .filter(configs => Array.isArray(configs))
+      .flat()
+      .map(config => {
+        config = objectDeepmerge(config, {
+          // set log level
+          log: {
+            verbosity: CLI_OPTIONS.verbosity,
           },
-        },
-      };
-    });
+          // extend preprocessors
+          preprocessors: [
+            'swisspost/box-shadow-keep-refs-workaround',
+            'tokens-studio',
+            ...(config.proprocessors ?? []),
+          ],
+        });
+
+        config.platforms = Object.entries(config.platforms).reduce(
+          (platforms, [name, platform]) => ({
+            ...platforms,
+            [name]: objectDeepmerge(platform, {
+              // set default file header (can still be overridden on the file level)
+              options: {
+                fileHeader: 'swisspost/file-header',
+              },
+              // set transformGroup (this will override any given transform group)
+              transformGroup: 'tokens-studio',
+            }),
+          }),
+          {},
+        );
+
+        return config;
+      });
   }
 
   /**
@@ -255,7 +244,6 @@ export async function createOutputFiles() {
    */
   async function build(config) {
     const sd = new StyleDictionary(config);
-    await sd.cleanAllPlatforms();
     await sd.buildAllPlatforms();
   }
 
@@ -264,11 +252,12 @@ export async function createOutputFiles() {
    * Creates the index.scss file (which uses/forwards the other output files) in the "OUTPUT_PATH" directory.
    */
   async function createIndexFile() {
+    const header = FILE_HEADER.map(h => `// ${h}`).join('\n');
     const imports = Object.entries(tokenSets.output)
       .map(([name, { layer }]) => `@${layer === 'core' ? 'use' : 'forward'} './${name}';`)
       .join('\n');
 
-    await promises.writeFile(`${OUTPUT_PATH}/index.scss`, `${getFileHeader()}${imports}\n`);
+    await promises.writeFile(`${OUTPUT_PATH}/_index.scss`, `${header}\n\n${imports}\n`);
   }
 
   /**
@@ -289,17 +278,6 @@ export async function removeTokenSetFiles() {
   console.log(`\x1b[90mCleanup...`);
   await promises.rm(`${SOURCE_PATH}/_temp/`, { recursive: true });
   console.log(`\x1b[33m✓ Complete!`);
-}
-
-/**
- * @function getFileHeader()
- * Returns the file header comment with the current date.
- * Which is used at the beginning of each output file.
- *
- * @returns string
- */
-export function getFileHeader() {
-  return FILE_HEADER.replace('{date}', new Date().toUTCString());
 }
 
 /**
@@ -338,8 +316,8 @@ export function getSet(options, dictionary, currentSetName) {
 
   if (meta.layer === 'semantic') {
     const baseSetName = meta.setNames[0];
-    const overrideSetNameIndex = meta.setNames.findIndex(setName => setName === currentSetName) + 1;
-    const overrideSetNames = meta.setNames.slice(1, overrideSetNameIndex);
+    const overrideSetNameIndex = meta.setNames.findIndex(setName => setName === currentSetName);
+    const overrideSetNames = meta.setNames.slice(1, overrideSetNameIndex + 1);
 
     tokenSet = dictionary.allTokens
       .filter(token => token.path[0] === baseSetName)
@@ -350,13 +328,9 @@ export function getSet(options, dictionary, currentSetName) {
         .filter(token => token.path[0] === overrideSetName)
         .map(normalizeToken);
 
-      tokenSet.map(token => {
-        const overrideToken = overrideTokenSet.find(
-          overrideToken => overrideToken.name === token.name,
-        );
-
-        if (overrideToken) token = overrideToken;
-      });
+      tokenSet = tokenSet.map(
+        token => overrideTokenSet.find(overrideToken => overrideToken.name === token.name) ?? token,
+      );
     });
   } else {
     tokenSet = dictionary.allTokens

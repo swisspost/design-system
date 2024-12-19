@@ -54,7 +54,7 @@ export default meta;
 type Story = StoryObj;
 
 function generateDecorators(story: StoryFn, context: StoryContext) {
-  return html` <div class="m-5 overflow-hidden">${story(context.args, context)}</div> `;
+  return html` <div class="m-48 overflow-hidden">${story(context.args, context)}</div> `;
 }
 
 function render(args: Args) {
@@ -91,18 +91,18 @@ export const BlockSection: Story = {
 };
 
 export const Inline: Story = {
-  render: () => html`<button class="btn btn-secondary btn-animated">
+  render: () => html`<button class="btn btn-secondary">
       <div
-        class="loader loader-16 d-inline-block me-1"
+        class="loader loader-16 d-inline-block me-4"
         role="status"
         aria-live="polite"
         aria-hidden="true"
       ></div>
       <span>Data is loading…</span>
     </button>
-    <button class="btn btn-secondary btn-animated ms-3" disabled="disabled">
+    <button class="btn btn-secondary ms-16" disabled="disabled">
       <div
-        class="loader loader-16 d-inline-block me-1"
+        class="loader loader-16 d-inline-block me-4"
         role="status"
         aria-live="polite"
         aria-hidden="true"

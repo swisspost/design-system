@@ -1,0 +1,43 @@
+@use '../functions/tokens';
+@use '../tokens/elements';
+@use '../mixins/list' as list-mx;
+
+tokens.$default-map: elements.$post-listbullet;
+
+/* The chars used in suffix are spaces with different widths
+For more information, visit: https://www.fileformat.info/info/unicode/char/search.htm?q=space
+*/
+@counter-style post-bullet {
+  system: extends disc;
+  suffix: '\2007\2009\200a\200a';
+}
+
+ul {
+  list-style: post-bullet;
+  margin-block: tokens.get('list-bullet-margin-block');
+  padding-inline-start: calc(
+    #{tokens.get('list-bullet-item-icon-size')} + #{tokens.get('list-bullet-item-icon-gap-inline')}
+  );
+
+  > li {
+    &::marker {
+      line-height: 1;
+    }
+  }
+
+  &.list-bullet {
+    @include list-mx.list-bullet();
+  }
+
+  &.list-inline {
+    @include list-mx.list-inline();
+  }
+
+  &.list-revert {
+    @include list-mx.list-revert();
+  }
+
+  &.list-unstyled {
+    @include list-mx.list-unstyled();
+  }
+}

@@ -1,6 +1,5 @@
 @forward './../variables/options';
 
-@use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as *;
 @use './../themes/bootstrap/card' as bootstrap-card;
 @use './../variables/color';
@@ -25,6 +24,7 @@
   // Outline with card-group margin trick prevents double/jumping (on hover) borders
   outline: 1px solid card.$card-border-color;
   box-shadow: commons.$box-shadow-lg;
+  color: card.$card-color;
 
   &.product-card,
   &.card-button {
@@ -59,7 +59,6 @@
   .link-icon {
     text-decoration: none;
 
-    .pi,
     post-icon {
       width: 1.5rem;
       height: 1.5rem;
@@ -103,12 +102,8 @@
       padding: spacing.$size-large;
     }
 
-    @include media-breakpoint-between(md, xxl) {
+    @include media-breakpoint-up(md) {
       padding: spacing.$size-big;
-    }
-
-    @include media-breakpoint-up(xxl) {
-      padding: spacing.$size-bigger-big;
     }
   }
 

@@ -1,6 +1,5 @@
 @forward './../variables/options';
 
-@use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as *;
 
 @use './../mixins/utilities';
@@ -50,11 +49,6 @@ $module-name: 'subnavigation';
 
   &-link {
     @extend %font-curve-small;
-
-    @include transition(
-      color animation.$transition-time-default animation.$transition-easing-default
-    );
-
     display: flex;
     position: relative;
     align-items: center;
@@ -66,6 +60,10 @@ $module-name: 'subnavigation';
     color: subnavigation.$subnavigation-link-color;
     text-decoration: none;
     white-space: nowrap;
+
+    @include transition(
+      color animation.$transition-time-default animation.$transition-easing-default
+    );
 
     @include media-breakpoint-up(lg) {
       padding: subnavigation.$subnavigation-link-padding-lg;
@@ -96,15 +94,16 @@ $module-name: 'subnavigation';
         #{subnavigation.$subnavigation-link-underscore-color-hover},
         #{subnavigation.$subnavigation-link-underscore-height}
       );
+      z-index: utility-functions.z-index(subnavigation, underscore-link);
+      right: animation.$transition-distance-medium;
+      left: animation.$transition-distance-medium;
+      opacity: 0;
+
       @include transition(
         opacity animation.$transition-time-default animation.$transition-easing-default,
         left animation.$transition-time-default animation.$transition-easing-decelerate,
         right animation.$transition-time-default animation.$transition-easing-decelerate
       );
-      z-index: utility-functions.z-index(subnavigation, underscore-link);
-      right: animation.$transition-distance-medium;
-      left: animation.$transition-distance-medium;
-      opacity: 0;
 
       @include media-breakpoint-up(lg) {
         right: animation.$transition-distance-medium-md;

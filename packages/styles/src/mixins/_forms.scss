@@ -1,12 +1,10 @@
-@use './../variables/color';
-@use './../variables/type';
-@use './../variables/components/form-validation';
+@use 'sass:map';
 @use './../variables/components/forms';
-@use './../variables/components/tooltips';
 @use './../mixins/utilities';
+@use './../functions/icons';
+@use './../functions/utilities' as utilities-fx;
 
 // Placeholder in input fields
-
 @mixin placeholder() {
   &::placeholder {
     @content;
@@ -20,33 +18,6 @@
   /* stylelint-enable */
 }
 
-@mixin icon-placement {
-  padding-right: form-validation.$form-feedback-icon-offset +
-    form-validation.$form-feedback-icon-size;
-  background-repeat: no-repeat;
-  background-position: calc(100% - #{form-validation.$form-feedback-icon-offset}) center;
-}
-
-@mixin form-rg {
-  padding: forms.$input-padding-y-rg forms.$input-padding-x-rg;
-  font-size: type.$font-size-regular;
-  line-height: forms.$input-line-height-rg;
-}
-
-@mixin form-sm {
-  font-size: type.$font-size-14;
-  line-height: forms.$input-line-height-sm;
-  min-height: forms.$input-height-sm;
-  padding-block: forms.$input-padding-y-sm;
-  padding-inline: forms.$input-padding-x-sm;
-}
-
-@mixin form-lg {
-  font-size: type.$font-size-16 !important;
-  line-height: forms.$input-line-height-lg;
-  min-height: forms.$input-height-lg;
-}
-
 /* Deprecated use the one in utilities.scss */
 @mixin focus-outline {
   outline: none;
@@ -56,5 +27,39 @@
   &:is(:focus-visible, :focus-within, .pretend-focus) {
     outline: forms.$input-focus-outline-thickness solid var(--post-contrast-color);
     @content;
+  }
+}
+
+@mixin select-bg-image($state: null, $validation: null, $mode: 'light') {
+  // Hardcoded colors because CSS variables cannot be used as fill color of background-image
+  $arrow-color-map: (
+    'enabled-light': #050400,
+    'enabled-dark': #fff,
+    'hover-light': #504f4b,
+    'hover-dark': #fff,
+    'selected-light': #050400,
+    'selected-dark': #fff,
+    'disabled-light': #696864,
+    'disabled-dark': #fff,
+  );
+
+  @if ($validation == 'valid') {
+    $validation: forms.$valid-icon;
+  } @else if ($validation == 'invalid') {
+    $validation: forms.$invalid-icon;
+  }
+
+  @if ($state) {
+    $state: url('#{icons.get-colored-svg-url('2052', map.get($arrow-color-map, '#{$state}-#{$mode}'))}');
+  }
+  background-image: $state, $validation;
+}
+
+@mixin textarea-resizer-svg($color) {
+  &::-webkit-resizer {
+    $clean-color: utilities-fx.replace('#{$color}', '#', '%23');
+    background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none"%3E%3Cg clip-path="url(%23clip0_7846_3191)"%3E%3Cpath d="M6.5 18H9.5V21H6.5V18Z" fill="#{$clean-color}"/%3E%3Cpath d="M12.5 18H15.5V21H12.5V18Z" fill="#{$clean-color}"/%3E%3Cpath d="M12.5 12H15.5V15H12.5V12Z" fill="#{$clean-color}"/%3E%3Cpath d="M18.5 12H21.5V15H18.5V12Z" fill="#{$clean-color}"/%3E%3Cpath d="M18.5 6H21.5V9H18.5V6Z" fill="#{$clean-color}"/%3E%3Cpath d="M18.5 18H21.5V21H18.5V18Z" fill="#{$clean-color}"/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id="clip0_7846_3191"%3E%3Crect width="24" height="24" fill="white" transform="translate(0.5)"/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E');
+    background-repeat: no-repeat;
+    background-size: 100%;
   }
 }

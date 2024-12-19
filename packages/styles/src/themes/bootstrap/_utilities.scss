@@ -6,4 +6,67 @@
 // manipulate $utilities before you import utilities/api
 $utilities: map.remove($utilities, 'background-color');
 
+$utilities: map.remove($utilities, 'margin');
+$utilities: map.remove($utilities, 'margin-x');
+$utilities: map.remove($utilities, 'margin-y');
+$utilities: map.remove($utilities, 'margin-top');
+$utilities: map.remove($utilities, 'margin-end');
+$utilities: map.remove($utilities, 'margin-bottom');
+$utilities: map.remove($utilities, 'margin-start');
+
+$utilities: map.remove($utilities, 'padding');
+$utilities: map.remove($utilities, 'padding-x');
+$utilities: map.remove($utilities, 'padding-y');
+$utilities: map.remove($utilities, 'padding-top');
+$utilities: map.remove($utilities, 'padding-end');
+$utilities: map.remove($utilities, 'padding-bottom');
+$utilities: map.remove($utilities, 'padding-start');
+
+$utilities: map.remove($utilities, 'gap');
+$utilities: map.remove($utilities, 'row-gap');
+$utilities: map.remove($utilities, 'column-gap');
+
+$utilities: map.remove($utilities, 'width');
+$utilities: map.remove($utilities, 'height');
+$utilities: map.remove($utilities, 'max-width');
+$utilities: map.remove($utilities, 'max-height');
+$utilities: map.remove($utilities, 'min-width');
+$utilities: map.remove($utilities, 'min-height');
+$utilities: map.remove($utilities, 'viewport-width');
+$utilities: map.remove($utilities, 'viewport-height');
+$utilities: map.remove($utilities, 'min-viewport-width');
+$utilities: map.remove($utilities, 'min-viewport-height');
+
+$utilities: map.remove($utilities, 'flex');
+$utilities: map.remove($utilities, 'flex-direction');
+$utilities: map.remove($utilities, 'align-items');
+$utilities: map.remove($utilities, 'align-content');
+$utilities: map.remove($utilities, 'align-self');
+$utilities: map.remove($utilities, 'flex-grow');
+$utilities: map.remove($utilities, 'flex-shrink');
+$utilities: map.remove($utilities, 'flex-wrap');
+
+$utilities: map.remove($utilities, 'order');
+
+$utilities: map.remove($utilities, 'justify-content');
+
+$utilities: map.remove($utilities, 'display');
+
+$utilities: map.remove($utilities, 'vertical-align');
+
+$utilities: map.remove($utilities, 'float');
+
+$utilities: map.remove($utilities, 'opacity');
+
+$utilities: map.remove($utilities, 'position');
+$utilities: map.remove($utilities, 'top');
+$utilities: map.remove($utilities, 'bottom');
+$utilities: map.remove($utilities, 'start');
+$utilities: map.remove($utilities, 'end');
+$utilities: map.remove($utilities, 'translate-middle');
+
+$utilities: map.remove($utilities, 'overflow');
+$utilities: map.remove($utilities, 'overflow-x');
+$utilities: map.remove($utilities, 'overflow-y');
+
 @import 'bootstrap/scss/utilities/api';

@@ -17,7 +17,7 @@ export default function Home() {
 
       <section>
         <h2 className="h4 mt-huge-r">Sendung Verfolgen</h2>
-        <form className="bg-yellow mt-3 py-3 px-big d-flex gap-4">
+        <form className="palette-brand mt-16 py-16 px-32 d-flex gap-24">
           <PostIcon name="1010" className="fs-small-huge"></PostIcon>
           <div className="form-floating" style={{ minWidth: '50%' }}>
             <input
@@ -41,28 +41,28 @@ export default function Home() {
       <section className="mt-huge-r">
         <div className="row">
           <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-100 product-card">
-              <div className="card-body p-3 product-navigation justify-content-start d-flex flex-column align-items-center">
+            <a href="#" className="card h-full product-card">
+              <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
                 <PostIcon name="2146" className="fs-bigger-big"></PostIcon>
-                <p className="mt-2 text-center text-muted fs-regular fw-normal">Umzug melden</p>
+                <p className="mt-8 text-center text-muted fs-regular fw-normal">Umzug melden</p>
               </div>
             </a>
           </div>
 
           <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-100 product-card">
-              <div className="card-body p-3 product-navigation justify-content-start d-flex flex-column align-items-center">
+            <a href="#" className="card h-full product-card">
+              <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
                 <PostIcon name="2026" className="fs-bigger-big"></PostIcon>
-                <p className="mt-2 text-center text-muted fs-regular fw-normal">Shop</p>
+                <p className="mt-8 text-center text-muted fs-regular fw-normal">Shop</p>
               </div>
             </a>
           </div>
 
           <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-100 product-card">
-              <div className="card-body p-3 product-navigation justify-content-start d-flex flex-column align-items-center">
+            <a href="#" className="card h-full product-card">
+              <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
                 <PostIcon name="3140" className="fs-bigger-big"></PostIcon>
-                <p className="mt-2 text-center text-muted fs-regular fw-normal">
+                <p className="mt-8 text-center text-muted fs-regular fw-normal">
                   Preise für Briefe und Pakete
                 </p>
               </div>
@@ -70,10 +70,10 @@ export default function Home() {
           </div>
 
           <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-100 product-card">
-              <div className="card-body p-3 product-navigation justify-content-start d-flex flex-column align-items-center">
+            <a href="#" className="card h-full product-card">
+              <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
                 <PostIcon name="2456" className="fs-bigger-big"></PostIcon>
-                <p className="mt-2 text-center text-muted fs-regular fw-normal">
+                <p className="mt-8 text-center text-muted fs-regular fw-normal">
                   Paketetiketten erstellen
                 </p>
               </div>
@@ -81,10 +81,10 @@ export default function Home() {
           </div>
 
           <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-100 product-card">
-              <div className="card-body p-3 product-navigation justify-content-start d-flex flex-column align-items-center">
+            <a href="#" className="card h-full product-card">
+              <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
                 <PostIcon name="1012" className="fs-bigger-big"></PostIcon>
-                <p className="mt-2 text-center text-muted fs-regular fw-normal">
+                <p className="mt-8 text-center text-muted fs-regular fw-normal">
                   Pakete abholen lassen
                 </p>
               </div>
@@ -92,80 +92,28 @@ export default function Home() {
           </div>
 
           <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-100 product-card">
-              <div className="card-body p-3 product-navigation justify-content-start d-flex flex-column align-items-center">
+            <a href="#" className="card h-full product-card">
+              <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
                 <PostIcon name="1024" className="fs-bigger-big"></PostIcon>
-                <p className="mt-2 text-center text-muted fs-regular fw-normal">
+                <p className="mt-8 text-center text-muted fs-regular fw-normal">
                   Personalisierte Briefmarken
                 </p>
               </div>
             </a>
           </div>
         </div>
-        <a href="" className="text-muted btn btn-tertiary btn-md mt-3">
+        <a href="" className="text-muted btn btn-tertiary btn-md mt-16">
           <PostIcon name="3020"></PostIcon>
           Alle Onlinedienste
         </a>
       </section>
 
-      <section className="mt-huge-r">
-        <div className="topic-teaser mb-huge-r bg-yellow">
-          <div className="container">
-            <div className="topic-teaser-container bg-yellow">
-              <div className="row pt-huge-r">
-                <div className="topic-teaser-content">
-                  <h2 className="topic-teaser-title font-curve-large mb-large">
-                    <span className="bold">Post für Sie</span>
-                    <span className="light">Einfach versenden, schnell ankommen</span>
-                  </h2>
-                  <ul className="link-list mb-large">
-                    <li className="link-list-item">
-                      <a href="#">
-                        <span>Briefe versenden</span>
-                      </a>
-                    </li>
-
-                    <li className="link-list-item">
-                      <a href="#">
-                        <span>Pakete versenden</span>
-                      </a>
-                    </li>
-
-                    <li className="link-list-item">
-                      <a href="#">
-                        <span>Express und Kurier</span>
-                      </a>
-                    </li>
-
-                    <li className="link-list-item">
-                      <a href="#">
-                        <span>Einschreiben aufgeben</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="topic-teaser-image-container">
-                  <Image
-                    width={1000}
-                    height={1000}
-                    className="topic-teaser-image w-100 h-100"
-                    src="/street.jpg"
-                    alt=""
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="pt-huge-r mb-huge-r">
         <div className="row">
-          <div className="col-lg-4 col-rg-6 col-12 mb-3">
+          <div className="col-lg-4 col-sm-6 col-12 mb-16">
             <div className="card elevation-0">
               <Image width={400} height={200} className="card-img-top" src="/street.jpg" alt="" />
-              <div className="card-body bg-gray">
+              <div className="card-body palette-alternate">
                 <h3 className="card-title">Hier steckt mehr drin</h3>
                 <p className="card-text">Black-Week-Topangebote nicht verpassen</p>
                 <a href="#" className="btn btn-tertiary">
@@ -176,10 +124,10 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="col-lg-4 col-rg-6 col-12 mb-3">
+          <div className="col-lg-4 col-sm-6 col-12 mb-16">
             <div className="card elevation-0">
               <Image width={400} height={200} className="card-img-top" src="/street.jpg" alt="" />
-              <div className="card-body bg-gray">
+              <div className="card-body palette-alternate">
                 <h3 className="card-title">Einfach easy frankieren</h3>
                 <p className="card-text">DigitalStamp: Mit der Post-App frankieren</p>
                 <a href="#" className="btn btn-tertiary">
@@ -190,10 +138,10 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="col-lg-4 col-rg-6 col-12 mb-3">
+          <div className="col-lg-4 col-sm-6 col-12 mb-16">
             <div className="card elevation-0">
               <Image width={400} height={200} className="card-img-top" src="/street.jpg" alt="" />
-              <div className="card-body bg-gray">
+              <div className="card-body palette-alternate">
                 <h3 className="card-title">Neue Briefmarken</h3>
                 <p className="card-text">Entdecken Sie jetzt Ihre liebsten Motive</p>
                 <a href="#" className="btn btn-tertiary">
@@ -218,7 +166,7 @@ export default function Home() {
           <PostTabHeader panel="two" data-tooltip-target="tooltip-two">
             Delivered
           </PostTabHeader>
-          <PostTooltip className="bg-yellow" id="tooltip-two">
+          <PostTooltip className="palette-brand" id="tooltip-two">
             👻
           </PostTooltip>
           <PostTabPanel name="two">
@@ -227,12 +175,12 @@ export default function Home() {
               <button className="btn btn-secondary" data-popover-target="popover-one">
                 See details
               </button>
-              <PostPopover id="popover-one" className="bg-primary" closeButtonCaption="close">
+              <PostPopover id="popover-one" className="palette-accent" closeButtonCaption="close">
                 <h3 className="h5 mt-0">Details for this content</h3>
                 <p>Here are some more details for this content.</p>
-                <div className="d-flex flex-row-reverse gap-3">
-                  <button className="btn btn-primary btn-rg">OK</button>
-                  <button className="btn btn-secondary btn-rg">Nope</button>
+                <div className="d-flex flex-row-reverse gap-16">
+                  <button className="btn btn-primary">OK</button>
+                  <button className="btn btn-secondary">Nope</button>
                 </div>
               </PostPopover>
               <PostPopover closeButtonCaption="close">
@@ -242,7 +190,7 @@ export default function Home() {
           </PostTabPanel>
         </PostTabs>
         <h3>Frequently asked questions</h3>
-        <PostAccordion className="mt-big-r" multiple>
+        <PostAccordion headingLevel={4} className="mt-big-r" multiple>
           <PostAccordionItem>
             <span slot="header">Is this for real?</span>
             <p>No, this is just a fantasy.</p>

@@ -19,8 +19,8 @@ let cardControlIds = 0;
 /**
  * @class PostCardControl - representing a stencil component
  *
- * @slot default - Content to place into the `default` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Block-level_contentt">block content</a>.<p className="alert alert-sm alert-warning">Even if it is generally possible, we do not recommend using interactive elements in this slot because the background of the card control is clickable.<br/>This can lead to confusion when the hit box of nested interactive controls is not clearly separated from the background, is invalid HTML and click events bubbling up to the card control will unexpectedly toggle it if they're not captured.<br/>More info: <a href="https://accessibilityinsights.io/info-examples/web/nested-interactive/">https://accessibilityinsights.io/info-examples/web/nested-interactive/</a></p>
- * @slot icon - To insert a custom icon into the named `icon` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content">inline content</a>.<p className="alert alert-sm alert-info">It is only meant for <code>img</code> or <code>svg</code> elements and overrides the `icon` property.</p>
+ * @slot default - Content to place into the `default` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Block-level_contentt">block content</a>.<p className="banner banner-sm banner-warning">Even if it is generally possible, we do not recommend using interactive elements in this slot because the background of the card control is clickable.<br/>This can lead to confusion when the hit box of nested interactive controls is not clearly separated from the background, is invalid HTML and click events bubbling up to the card control will unexpectedly toggle it if they're not captured.<br/>More info: <a href="https://accessibilityinsights.io/info-examples/web/nested-interactive/">https://accessibilityinsights.io/info-examples/web/nested-interactive/</a></p>
+ * @slot icon - To insert a custom icon into the named `icon` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content">inline content</a>.<p className="banner banner-sm banner-info">It is only meant for <code>img</code> or <code>svg</code> elements and overrides the `icon` property.</p>
  */
 @Component({
   tag: 'post-card-control',
@@ -79,13 +79,13 @@ export class PostCardControl {
 
   /**
    * Defines the `name` attribute of the control.
-   * <span className="alert alert-sm alert-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span>
-   * <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
+   * <span className="banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span>
+   * <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
    */
   @Prop() readonly name: string = null;
 
   /**
-   * Defines the `value` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
+   * Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
    */
   @Prop() readonly value: string = null;
 
@@ -107,7 +107,7 @@ export class PostCardControl {
 
   /**
    * Defines the icon `name` inside the card.
-   * <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
+   * <span className="banner banner-sm banner-info">If not set the icon will not show up.</span>
    */
   @Prop() readonly icon: string = null;
 
@@ -120,7 +120,7 @@ export class PostCardControl {
   /**
    * An event emitted whenever the components checked state is toggled.
    * The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked.
-   * <span className="alert alert-sm alert-info">If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</span>
+   * <span className="banner banner-sm banner-info">If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</span>
    */
   @Event() postChange: EventEmitter<{ state: boolean; value: string }>;
 
@@ -362,12 +362,12 @@ export class PostCardControl {
           <input
             ref={el => (this.control = el)}
             id={this.controlId}
-            class="card-control--input form-check-input"
+            class="card-control--input"
             type={this.type}
             name={this.name}
             value={this.value}
             checked={this.checked}
-            aria-describedby={`${this.controlId}_label ${this.controlId}_content`}
+            aria-describedby={`${this.controlId}_content`}
             aria-disabled={this.disabled}
             aria-invalid={this.validity === 'false'}
             onClick={this.controlClickHandler}
@@ -381,7 +381,7 @@ export class PostCardControl {
           <label
             id={`${this.controlId}_label`}
             htmlFor={this.controlId}
-            class="card-control--label form-check-label"
+            class="card-control--label"
           >
             {this.label}
             {this.description ? (

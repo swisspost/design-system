@@ -1,0 +1,87 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+.flex-story-container,
+.flex-doc-container__demo {
+  > * > * {
+    border-radius: post.$border-radius;
+    box-shadow: post.$elevation-1;
+  }
+}
+
+.flex-snap-container,
+.flex-story-container .d-flex,
+.flex-doc-container__demo .d-flex {
+  > *:nth-child(odd) {
+    background-color: post.$yellow;
+  }
+
+  > *:nth-child(even) {
+    background-color: post.$gray;
+  }
+}
+
+.flex-doc-container {
+  > * {
+    align-self: stretch;
+    padding: post.$size-mini (post.$size-regular * 0.5);
+    border-top: post.$border-width solid post.$border-color;
+    flex: 0 0 50%;
+
+    &:first-child {
+      padding-inline-start: 0;
+      flex: 0 0 20%;
+    }
+
+    &:last-child {
+      padding-inline-end: 0;
+      flex: 0 0 30%;
+    }
+  }
+
+  .grow-shrink-container > * {
+    flex-basis: auto;
+  }
+
+  .flex-doc-container__description h3 {
+    margin-block-end: 0.5rem;
+    margin-block-start: 0.5rem;
+  }
+
+  .flex-doc-container__demo {
+    padding: post.$size-mini;
+
+    @include post.media-breakpoint-up(lg) {
+      border: post.$border-width solid post.$border-color;
+    }
+  }
+
+  &:not(:last-child) .flex-doc-container__demo {
+    border-bottom: 0;
+  }
+
+  .flex-doc-container__props dl {
+    display: flex;
+  }
+
+  @include post.media-breakpoint-down(md) {
+    .flex-doc-container__description {
+      border-top: none;
+    }
+
+    .flex-doc-container__props dl {
+      justify-content: center;
+    }
+  }
+}
+
+.align-content-container {
+  height: 14rem;
+
+  > * {
+    flex: 0 0 25%;
+  }
+}
+
+.flex-example-child > * {
+  border: post.$border-width solid post.$border-color;
+}

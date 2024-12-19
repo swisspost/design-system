@@ -5,9 +5,9 @@
 $tile-size: var(--post-docs-tile-size, 120px);
 $tile-rg-size: var(--post-docs-tile-rg-size, calc($tile-size / 1.2));
 
-:host{
+:host {
   a {
-    @include utilities.focus-style() {
+    @include utilities.focus-style {
       border-radius: post.$border-radius;
     }
   }
@@ -19,7 +19,7 @@ $tile-rg-size: var(--post-docs-tile-rg-size, calc($tile-size / 1.2));
     height: $tile-size;
     background-color: post.$white;
     border-radius: post.$size-regular;
-    box-shadow: 0 2px 5px 0 rgba(post.$aubergine-dark, 0.3);
+    box-shadow: 0 2px 5px 0 rgba(82, 49, 120, 0.3);
     text-decoration: none;
     text-align: center;
 
@@ -80,10 +80,9 @@ $tile-rg-size: var(--post-docs-tile-rg-size, calc($tile-size / 1.2));
       }
     }
 
-    @include post.media-breakpoint-down(rg) {
+    @include post.media-breakpoint-down(md) {
       width: $tile-rg-size;
       height: $tile-rg-size;
-
       .tile--title {
         height: calc(#{post.$size-mini * 1.5} + 2.2em);
 
@@ -102,5 +101,3 @@ $tile-rg-size: var(--post-docs-tile-rg-size, calc($tile-size / 1.2));
     }
   }
 }
-
-

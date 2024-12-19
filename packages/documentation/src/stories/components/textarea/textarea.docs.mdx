@@ -1,0 +1,37 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as TextareaStories from './textarea.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={TextareaStories} />
+
+<div className="docs-title">
+  # Textarea
+
+  <nav>
+    <link-design of={JSON.stringify(TextareaStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  Customize the native `<textarea>` with CSS that changes the element’s initial appearance.
+</div>
+
+Custom textarea elements need only the class `.form-control` to trigger the custom styles.
+
+<Canvas sourceState="shown" of={TextareaStories.Default} />
+<div className="hide-col-default">
+  <Controls of={TextareaStories.Default} />
+</div>
+
+<StylesPackageImport components={['form-textarea']} required={{ validation: true }} />
+
+## Concrete Examples of Application
+
+The following examples show the different characteristics of the component. These can differ in the type of visualization, the HTML structure, as well as when, how and why they are displayed.
+
+### Floating Label
+
+Wrap a pair of `<textarea>` and `<label>` elements in a `.form-floating` container to enable floating labels.<br/>
+But note that the `<textarea>` element must come first, so we can ensure the correct styles.
+
+<Canvas of={TextareaStories.FloatingLabel} />

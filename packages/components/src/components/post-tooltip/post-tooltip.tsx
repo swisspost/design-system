@@ -4,7 +4,7 @@ import { version } from '@root/package.json';
 import isFocusable from 'ally.js/is/focusable';
 import 'long-press-event';
 import { getAttributeObserver } from '@/utils/attribute-observer';
-import { checkEmptyOrType, timeout } from '@/utils';
+import { checkEmptyOrType } from '@/utils';
 
 const OPEN_DELAY = 650; // matches HTML title delay
 
@@ -19,10 +19,16 @@ let tooltipInstances = 0;
 let hideTooltipTimeout: number = null;
 const tooltipTargetAttribute = 'data-tooltip-target';
 const tooltipTargetAttributeSelector = `[${tooltipTargetAttribute}]`;
+let globalCurrentTarget: HTMLElement;
+let tooltipTimeout = null;
 
 /**
  * Global event listener to show tooltips. This is globalized so that triggers that are rendered
  * async will still work without the need to set listeners on the element itself
+ *
+ * This handler manages both pointer and focus events to properly trigger tooltips.
+ * If the event is a focus event (e.g., keyboard navigation), pointer events are ignored to avoid
+ * interference with tooltip behavior.
  * @param e Event
  * @returns
  */
@@ -30,11 +36,19 @@ const globalInterestHandler = (e: PointerEvent | FocusEvent) => {
   const targetElement = (e.target as HTMLElement).closest(
     tooltipTargetAttributeSelector,
   ) as HTMLElement;
-  if (!targetElement || !('getAttribute' in targetElement)) return;
+  globalCurrentTarget = targetElement;
+  if (!targetElement || !('getAttribute' in targetElement)) {
+    clearTimeout(tooltipTimeout);
+    return;
+  }
   const tooltipTarget = targetElement.getAttribute(tooltipTargetAttribute);
   if (!tooltipTarget || tooltipTarget === '') return;
   const tooltip = document.getElementById(tooltipTarget) as HTMLPostTooltipElement;
-  void tooltip?.show(targetElement);
+
+  // Determine if the tooltip was triggered by a focus event
+  const triggeredByFocus = e.type === 'focusin';
+  void tooltip?.show(targetElement, triggeredByFocus);
+
   if (hideTooltipTimeout) {
     window.clearTimeout(hideTooltipTimeout);
     hideTooltipTimeout = null;
@@ -98,6 +112,7 @@ const triggerObserver = getAttributeObserver(tooltipTargetAttribute, patchAccess
 })
 export class PostTooltip {
   private popoverRef: HTMLPostPopovercontainerElement;
+  private wasOpenedByFocus: boolean = false;
 
   @Element() host: HTMLPostTooltipElement;
 
@@ -186,11 +201,34 @@ export class PostTooltip {
   /**
    * Programmatically display the tooltip
    * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+   * @param triggeredByFocus A boolean indicating if the tooltip was triggered by a focus event.
    */
   @Method()
-  async show(target: HTMLElement) {
-    if (this.delayed) await timeout(OPEN_DELAY);
-    this.popoverRef.show(target);
+  async show(target: HTMLElement, triggeredByFocus = false) {
+    const showTooltip = () => {
+      // If focus or pointer event is not on the button anymore, don't show the tooltip
+      if (globalCurrentTarget !== target) return;
+
+      // Determine if the tooltip was opened by a focus event
+      this.wasOpenedByFocus = triggeredByFocus;
+
+      // Disable pointer events if triggered by focus, otherwise enable them
+      if (this.wasOpenedByFocus) {
+        this.host.style.pointerEvents = 'none';
+      } else {
+        this.host.style.pointerEvents = 'auto';
+      }
+
+      this.popoverRef.show(target);
+    };
+
+    if (this.delayed) {
+      tooltipTimeout = setTimeout(() => {
+        showTooltip();
+      }, OPEN_DELAY);
+    } else {
+      showTooltip();
+    }
   }
 
   /**
@@ -223,9 +261,11 @@ export class PostTooltip {
 
   /**
    * Pointer or focus left the tooltip, initiate the hiding process
+   * Re-enable pointer events when the tooltip is no longer in focus or hovered
    */
   private handleInterestLost() {
     globalHideTooltip(this);
+    this.host.style.pointerEvents = 'auto';
   }
 
   render() {

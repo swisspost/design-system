@@ -1,6 +1,7 @@
 @forward './variables/options';
 
-@use './lic/bootstrap-license';
-
+@use 'layout';
+@use 'utilities';
+@use 'elements';
 @use 'components';
 @use 'components/intranet-header';

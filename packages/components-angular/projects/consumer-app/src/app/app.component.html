@@ -1,6 +1,6 @@
-<header class="bg-dark">
-  <nav class="container py-2">
-    <ul class="d-flex flex-wrap row-gap-1 column-gap-3 m-0 list-unstyled">
+<header class="palette-alternate">
+  <nav class="container py-8">
+    <ul class="d-flex flex-wrap row-gap-4 column-gap-16 m-0 list-unstyled">
       <li *ngFor="let route of navigationRoutes">
         <a [routerLink]="route.path">{{ route.title }}</a>
       </li>
@@ -8,7 +8,7 @@
   </nav>
 </header>
 
-<main class="container my-3">
+<main class="container my-16">
   <h1>Hurray, it works!</h1>
   <router-outlet></router-outlet>
 </main>

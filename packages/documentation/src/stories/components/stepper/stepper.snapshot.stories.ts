@@ -1,6 +1,7 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta from './stepper.stories';
 import { html } from 'lit';
+import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
 
 const { id, ...metaWithoutId } = meta;
@@ -20,19 +21,15 @@ export const Stepper: Story = {
       'Nam pretium nec neque sed vulputate. Sed non augue libero. Vivamus consequat mauris id ligula cursus, sit amet faucibus ipsum.',
       'Sed vulputate lacinia eros, sit amet mattis sem luctus sit amet. Vestibulum pharetra tortor a laoreet malesuada.',
     ];
-    return html`
-      <div class="d-flex flex-column gap-1">
-        ${['bg-white', 'bg-dark'].map(
-          bg => html`
-            <div class="${bg} d-flex flex-column gap-regular p-regular">
-              ${bombArgs({
-                currentStepNumber: meta.argTypes?.currentStepNumber?.options,
-              }).map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
-              ${meta.render?.({ ...context.args, ...{ steps: longSteps } }, context)}
-            </div>
-          `,
-        )}
-      </div>
-    `;
+    return schemes(
+      () => html`
+        <div class="d-flex flex-column gap-16 p-16">
+          ${bombArgs({
+            currentStepNumber: meta.argTypes?.currentStepNumber?.options,
+          }).map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
+          ${meta.render?.({ ...context.args, ...{ steps: longSteps } }, context)}
+        </div>
+      `,
+    );
   },
 };

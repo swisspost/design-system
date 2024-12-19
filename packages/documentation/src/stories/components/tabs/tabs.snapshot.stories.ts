@@ -1,6 +1,7 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta from './tabs.stories';
 import { html } from 'lit';
+import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
 
 const { id, ...metaWithoutId } = meta;
@@ -14,18 +15,14 @@ type Story = StoryObj<HTMLPostTabsElement>;
 
 export const Tabs: Story = {
   render: (_args: HTMLPostTabsElement, context: StoryContext<HTMLPostTabsElement>) => {
-    return html`
-      <div>
-        ${['bg-white', 'bg-dark'].map(
-          bg => html`
-            <div class="${bg} d-flex flex-column gap-regular p-regular mt-regular">
-              ${bombArgs({
-                activePanel: [undefined, 'tria'],
-              }).map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
-            </div>
-          `,
-        )}
-      </div>
-    `;
+    return schemes(
+      () => html`
+        <div class="d-flex flex-column gap-16">
+          ${bombArgs({
+            activePanel: [undefined, 'tria'],
+          }).map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
+        </div>
+      `,
+    );
   },
 };

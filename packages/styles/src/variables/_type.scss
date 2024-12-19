@@ -53,19 +53,6 @@ $line-height-sm: 1;
 $line-height-copy: 1.5;
 $line-height-heading: 1.2;
 
-// Deprecated
-$line-height-tiny: $line-height-copy;
-$line-height-small: $line-height-copy;
-$line-height-regular: $line-height-copy;
-$line-height-bigger-regular: $line-height-copy;
-$line-height-medium: $line-height-copy;
-$line-height-large: $line-height-heading;
-$line-height-small-big: $line-height-heading;
-$line-height-big: $line-height-heading;
-$line-height-bigger-big: $line-height-heading;
-$line-height-small-huge: $line-height-heading;
-$line-height-huge: $line-height-heading;
-
 $font-weight-light: 300 !default; // Design System -> Frutiger Neue Light
 $font-weight-normal: 400 !default; // Design System -> Frutiger Neue Roman
 $font-weight-bold: 700 !default; // Design System -> Frutiger Neue Bold
@@ -99,20 +86,6 @@ $font-size-map: (
   56: $font-size-56,
 );
 
-$line-heights: (
-  'tiny': $line-height-tiny,
-  'small': $line-height-small,
-  'regular': $line-height-regular,
-  'bigger-regular': $line-height-bigger-regular,
-  'medium': $line-height-medium,
-  'large': $line-height-large,
-  'small-big': $line-height-small-big,
-  'big': $line-height-big,
-  'bigger-big': $line-height-bigger-big,
-  'small-huge': $line-height-small-huge,
-  'huge': $line-height-huge,
-);
-
 // Deprecated
 $font-curve-tiny: (
   'xs': $font-size-tiny,
@@ -121,7 +94,6 @@ $font-curve-tiny: (
   'md': $font-size-small,
   'lg': $font-size-regular,
   'xl': $font-size-regular,
-  'xxl': $font-size-bigger-regular,
 );
 $font-curve-small: (
   'xs': $font-size-small,
@@ -130,7 +102,6 @@ $font-curve-small: (
   'md': $font-size-regular,
   'lg': $font-size-bigger-regular,
   'xl': $font-size-bigger-regular,
-  'xxl': $font-size-bigger-regular,
 );
 $font-curve-regular: (
   'xs': $font-size-bigger-regular,
@@ -139,7 +110,6 @@ $font-curve-regular: (
   'md': $font-size-bigger-regular,
   'lg': $font-size-medium,
   'xl': $font-size-medium,
-  'xxl': $font-size-medium,
 );
 $font-curve-bigger-regular: (
   'xs': $font-size-bigger-regular,
@@ -148,7 +118,6 @@ $font-curve-bigger-regular: (
   'md': $font-size-medium,
   'lg': $font-size-large,
   'xl': $font-size-large,
-  'xxl': $font-size-large,
 );
 $font-curve-medium: (
   'xs': $font-size-medium,
@@ -157,7 +126,6 @@ $font-curve-medium: (
   'md': $font-size-medium,
   'lg': $font-size-large,
   'xl': $font-size-large,
-  'xxl': $font-size-small-big,
 );
 $font-curve-large: (
   'xs': $font-size-large,
@@ -166,7 +134,6 @@ $font-curve-large: (
   'md': $font-size-small-big,
   'lg': $font-size-big,
   'xl': $font-size-big,
-  'xxl': $font-size-bigger-big,
 );
 $font-curve-big: (
   'xs': $font-size-small-big,
@@ -175,7 +142,6 @@ $font-curve-big: (
   'md': $font-size-big,
   'lg': $font-size-bigger-big,
   'xl': $font-size-bigger-big,
-  'xxl': $font-size-small-huge,
 );
 
 // Deprecated
@@ -208,9 +174,6 @@ $display3-weight: 300 !default;
 $display4-weight: 300 !default;
 $display-line-height: $headings-line-height !default;
 
-$lead-font-size: 1em !default;
-$lead-font-weight: 700 !default;
-
 $small-font-size: 80% !default;
 
 $text-muted: color.$gray-60;
@@ -219,13 +182,9 @@ $blockquote-font-weight: $font-weight-bold !default;
 $blockquote-border-left: commons.$border-thick solid color.$black !default;
 $blockquote-border-left-width-md: spacing.$size-micro !default;
 $blockquote-padding-left: spacing.$size-small-regular !default;
-$blockquote-padding-left-xxl: spacing.$size-big !default;
 $blockquote-margin-top: spacing.$size-large !default;
 $blockquote-margin-y: spacing.$size-regular !default;
-$blockquote-footer-font-size: math.div(
-  $lead-font-size * sizing.strip-unit($small-font-size),
-  100
-) !default;
+$blockquote-footer-font-size: math.div(1em * sizing.strip-unit($small-font-size), 100) !default;
 $blockquote-cite-font-weight: $font-weight-normal !default;
 
 $hr-border-color: rgba(color.$black, 0.1) !default; // Design System

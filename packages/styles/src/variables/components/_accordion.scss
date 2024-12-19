@@ -8,56 +8,6 @@
 
 @use './button';
 
-$accordion-padding: spacing.$spacer !default;
-$accordion-gap: spacing.$size-mini !default;
-$accordion-border-width: commons.$border-thick !default;
-$accordion-border-color: color.$gray-60 !default;
-
-$accordion-header-color: color.$gray-80 !default;
-$accordion-header-font-size: type.$font-size-16 !default;
-$accordion-header-font-weight: type.$font-weight-bold !default;
-$accordion-header-line-height: type.$line-height-copy !default;
-
 $accordion-button-transition: button.$btn-transition !default;
-$accordion-button-padding: $accordion-padding !default;
-$accordion-button-gap: $accordion-gap !default;
-$accordion-button-disabled-opacity: button.$btn-disabled-opacity !default;
-$accordion-button-focus-box-shadow: button.$btn-focus-box-shadow !default;
-$accordion-button-hover-color: color.$black !default;
-$accordion-button-hover-bg: color.$gray-10 !default;
-
-$accordion-icon-name: 2112 !default;
-$accordion-icon-size: spacing.$size-large !default;
 $accordion-icon-transition: transform animation.$transition-base-timing !default;
 $accordion-icon-transform: rotate(-180deg) !default;
-
-$accordion-body-padding: $accordion-gap $accordion-padding $accordion-padding !default;
-$accordion-body-font-weight: type.$font-weight-normal !default;
-
-// Deprecated
-$accordion-padding-x: spacing.$size-regular !default;
-$accordion-border-radius: 0 !default;
-$accordion-font-curve: 'regular';
-$accordion-body-padding-top: spacing.$size-small-regular !default;
-$accordion-body-padding-bottom: spacing.$size-bigger-big !default;
-$accordion-body-heading-margin-top: spacing.$size-bigger-big;
-$accordion-body-heading-font-weight: type.$font-weight-bold;
-$accordion-button-padding-y: spacing.$size-regular !default;
-$accordion-button-color: color.$black !default;
-$accordion-button-active-bg: transparent !default;
-$accordion-button-active-color: color.$black !default;
-$accordion-button-hover-color: color.$black !default;
-$accordion-button-font-weight: type.$font-weight-bold !default;
-$accordion-button-line-height: type.$line-height-copy !default;
-$accordion-icon-width: spacing.$size-large !default;
-$_accordion-button-icon: icons.get-colored-svg-url(2113, $accordion-button-color);
-$_accordion-button-active-icon: icons.get-colored-svg-url(2113, $accordion-button-active-color);
-$_accordion-hcm-icon: icons.get-colored-svg-url(2113, color.$white);
-$accordion-button-icon: url('#{$_accordion-button-icon}');
-$accordion-button-active-icon: url('#{$_accordion-button-active-icon}');
-$accordion-hcm-icon: url('#{$_accordion-hcm-icon}');
-$accordion-header-font-curve: 'regular' !default;
-$accordion-heading-margin: spacing.$size-bigger-big 0 0 !default;
-$accordion-heading-font-curve: $accordion-header-font-curve !default;
-$accordion-heading-font-weight: $accordion-header-font-weight !default;
-$accordion-button-cursor: pointer !default;

@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-intranet-header",
-  "version": "8.2.0",
+  "version": "9.0.0-next.9",
   "description": "Intranet header for internal Swiss Post applications as an Angular component.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -8,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git"
   },
-  "homepage": "https://swisspost-web-frontend.netlify.app",
+  "homepage": "https://design-system.post.ch",
   "bugs": {
     "url": "https://github.com/swisspost/design-system/issues"
   },
@@ -18,11 +18,11 @@
     "linkDirectory": true
   },
   "dependencies": {
-    "@swisspost/design-system-styles": "workspace:8.2.0",
+    "@swisspost/design-system-styles": "workspace:9.0.0-next.9",
     "tslib": "2.6.3"
   },
   "devDependencies": {
-    "@swisspost/design-system-intranet-header-workspace": "workspace:3.0.21"
+    "@swisspost/design-system-intranet-header-workspace": "workspace:3.0.22-next.9"
   },
   "peerDependencies": {
     "@angular/common": "^16.0.0 || ^17.0.0 || ^18.0.0",
