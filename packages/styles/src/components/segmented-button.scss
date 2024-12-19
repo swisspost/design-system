@@ -110,6 +110,10 @@ $post-segmented-button-max-count: 8;
         transform: translateX(calc($i * -100% - $i * tokens.get('button-segmented-gap-inline')));
       }
     }
+
+    &:last-child():has(input:checked) ~ label:hover {
+      z-index: 3;
+    }
   }
 }
 
@@ -177,6 +181,10 @@ $post-segmented-button-max-count: 8;
       &:hover {
         input {
           border-color: tokens.get('button-segmented-hover-border');
+
+          @include utilities.high-contrast-mode() {
+            border-color: Highlight;
+          }
         }
       }
 
