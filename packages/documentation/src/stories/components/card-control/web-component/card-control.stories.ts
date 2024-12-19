@@ -347,7 +347,7 @@ export const LinedUp: Story = {
           <div class="col-${12 / args.colCount}">
             ${Default.render?.(
               {
-                class: args.fullHeight ? 'h-100' : null,
+                class: args.fullHeight ? 'h-full' : null,
                 label: `Checkbox${i}`,
                 description: i === 6 ? '20.- per year' : null,
                 type: args.type,
