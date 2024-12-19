@@ -41,7 +41,7 @@ export default function Home() {
       <section className="mt-huge-r">
         <div className="row">
           <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-100 product-card">
+            <a href="#" className="card h-full product-card">
               <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
                 <PostIcon name="2146" className="fs-bigger-big"></PostIcon>
                 <p className="mt-8 text-center text-muted fs-regular fw-normal">Umzug melden</p>
@@ -50,7 +50,7 @@ export default function Home() {
           </div>
 
           <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-100 product-card">
+            <a href="#" className="card h-full product-card">
               <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
                 <PostIcon name="2026" className="fs-bigger-big"></PostIcon>
                 <p className="mt-8 text-center text-muted fs-regular fw-normal">Shop</p>
@@ -59,7 +59,7 @@ export default function Home() {
           </div>
 
           <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-100 product-card">
+            <a href="#" className="card h-full product-card">
               <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
                 <PostIcon name="3140" className="fs-bigger-big"></PostIcon>
                 <p className="mt-8 text-center text-muted fs-regular fw-normal">
@@ -70,7 +70,7 @@ export default function Home() {
           </div>
 
           <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-100 product-card">
+            <a href="#" className="card h-full product-card">
               <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
                 <PostIcon name="2456" className="fs-bigger-big"></PostIcon>
                 <p className="mt-8 text-center text-muted fs-regular fw-normal">
@@ -81,7 +81,7 @@ export default function Home() {
           </div>
 
           <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-100 product-card">
+            <a href="#" className="card h-full product-card">
               <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
                 <PostIcon name="1012" className="fs-bigger-big"></PostIcon>
                 <p className="mt-8 text-center text-muted fs-regular fw-normal">
@@ -92,7 +92,7 @@ export default function Home() {
           </div>
 
           <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-100 product-card">
+            <a href="#" className="card h-full product-card">
               <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
                 <PostIcon name="1024" className="fs-bigger-big"></PostIcon>
                 <p className="mt-8 text-center text-muted fs-regular fw-normal">

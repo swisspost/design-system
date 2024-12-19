@@ -134,7 +134,7 @@ export const Groupped: Story = {
     </div>
   `,
   args: {
-    cardClasses: ' h-100',
+    cardClasses: ' h-full',
   },
 };
 
@@ -224,11 +224,11 @@ export const Multipart: Story = {
           </div>
 
           <div class="card-body palette-alternate">
-            <button class="btn btn-secondary w-100 mb-12">
+            <button class="btn btn-secondary w-full mb-12">
               <span>Order Sample Product</span>
             </button>
 
-            <button class="btn btn-primary w-100">
+            <button class="btn btn-primary w-full">
               <span>Print Sample Product</span>
             </button>
           </div>
@@ -311,11 +311,11 @@ export const Multipart: Story = {
           </div>
 
           <div class="card-body palette-alternate">
-            <button class="btn btn-secondary w-100 mb-12">
+            <button class="btn btn-secondary w-full mb-12">
               <span>Order Sample Product</span>
             </button>
 
-            <button class="btn btn-primary w-100">
+            <button class="btn btn-primary w-full">
               <span>Print Sample Product</span>
             </button>
           </div>

@@ -15,5 +15,5 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: () => html` <div class="w-50 rounded p-16 elevation-5">I'm elevated!</div> `,
+  render: () => html` <div class="w-half rounded p-16 elevation-5">I'm elevated!</div> `,
 };
