@@ -77,7 +77,7 @@ export class PostLanguageSwitch {
     });
   }
 
-  componentShouldUpdate() {
+  componentWillUpdate() {
     this.updateChildrenVariant();
   }
 
@@ -100,7 +100,7 @@ export class PostLanguageSwitch {
       });
 
       // Hides the dropdown when an option has been clicked
-      if (this.variant === 'dropdown') {
+      if (this.variant === 'menu') {
         const menu = this.host.shadowRoot.querySelector('post-menu') as HTMLPostMenuElement;
         menu.toggle(menu);
       }
@@ -133,10 +133,8 @@ export class PostLanguageSwitch {
             <post-icon aria-hidden="true" name="chevrondown"></post-icon>
           </button>
         </post-menu-trigger>
-        <post-menu isLanguageSwitch={true} id={this.menuId}>
-          <div class="post-language-switch-dropdown-container">
-            <slot></slot>
-          </div>
+        <post-menu id={this.menuId} class="post-language-switch-dropdown-container">
+          <slot></slot>
         </post-menu>
       </Host>
     );
