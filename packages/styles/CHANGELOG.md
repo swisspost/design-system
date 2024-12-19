@@ -1,5 +1,27 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.10
+
+### Major Changes
+
+- Removed `.bg-` classes to define background color of elements. (by [@leagrdv](https://github.com/leagrdv) with [#4201](https://github.com/swisspost/design-system/pull/4201))
+
+### Patch Changes
+
+- Fixed alignment of ´form-switch´ label. (by [@schaertim](https://github.com/schaertim) with [#4314](https://github.com/swisspost/design-system/pull/4314))
+
+- Added hover styles in high contrast mode for the css components `Button`, `Chip`, `Form Search` and `Button Close`. (by [@schaertim](https://github.com/schaertim) with [#4331](https://github.com/swisspost/design-system/pull/4331))
+
+- Added styles for text links and icon-buttons for Composible Footer in HCM. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4333](https://github.com/swisspost/design-system/pull/4333))
+
+- Fixed colors of validation icon in HCM on form elements. (by [@leagrdv](https://github.com/leagrdv) with [#4319](https://github.com/swisspost/design-system/pull/4319))
+
+- Fixed card control checkboxes' text color in HCM. (by [@leagrdv](https://github.com/leagrdv) with [#4321](https://github.com/swisspost/design-system/pull/4321))
+
+- Fixed icon color of banner in high contrast mode. (by [@leagrdv](https://github.com/leagrdv) with [#4304](https://github.com/swisspost/design-system/pull/4304))
+
+- Refactored icon declarations to comply with Angular 18's new build system requirements. (by [@schaertim](https://github.com/schaertim) with [#3518](https://github.com/swisspost/design-system/pull/3518))
+
 ## 9.0.0-next.9
 
 ### Minor Changes
