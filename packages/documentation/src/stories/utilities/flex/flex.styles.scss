@@ -27,7 +27,7 @@ tokens.$default-map: utilities.$post-spacing;
 .flex-doc-container {
   > * {
     align-self: stretch;
-    padding: tokens.get('utility-gap-8') calc(#{tokens.get('utility-gap-16')} * 0.5);
+    padding: tokens.get('utility-gap-8') calc(tokens.get('utility-gap-16') * 0.5);
     border-top: post.$border-width solid post.$border-color;
     flex: 0 0 50%;
 

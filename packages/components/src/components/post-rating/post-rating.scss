@@ -10,7 +10,7 @@
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
-  margin: 0 (-(tokens.get('utility-gap-4', utilities.$post-spacing)));
+  margin: 0 calc(tokens.get('utility-gap-4', utilities.$post-spacing) * -1);
   border-radius: post.$border-radius;
 
   .star {

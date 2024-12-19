@@ -13,7 +13,7 @@ tokens.$default-map: utilities.$post-spacing;
       position: relative;
 
       .form-control {
-        padding-right: calc(post.$input-height-lg);
+        padding-right: post.$input-height-lg;
       }
 
       .form-control-reset {
@@ -26,7 +26,7 @@ tokens.$default-map: utilities.$post-spacing;
 
         post-icon {
           padding: post.$input-padding-y-lg;
-          width: calc(post.$input-height-lg);
+          width: post.$input-height-lg;
         }
       }
     }

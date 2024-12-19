@@ -50,7 +50,7 @@ tokens.$default-map: utilities.$post-spacing;
       &:hover,
       &:focus-visible {
         outline: tokens.get('utility-gap-2') solid Highlight;
-        outline-offset: -(tokens.get('utility-gap-2'));
+        outline-offset: calc(tokens.get('utility-gap-2') * -1);
       }
     }
   }

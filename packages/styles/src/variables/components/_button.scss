@@ -14,8 +14,6 @@
 
 tokens.$default-map: components.$post-button;
 
-// TODO: Fix issue with dependencies and multiple calc
-
 // Available button sizes except the default, which is md
 $btn-non-default-sizes: sm, lg !default;
 
@@ -63,18 +61,18 @@ $btn-icon-size-map: (
 // Old variables / Used elsewhere than on the v2 button component
 $input-btn-border-width-rem: sizing.px-to-rem($input-btn-border-width);
 
-$input-btn-padding-y: sizing.px-to-rem(16) - $input-btn-border-width-rem !default;
-$input-btn-padding-x: sizing.px-to-rem(20) - $input-btn-border-width-rem !default;
+$input-btn-padding-y: sizing.px-to-rem(16) - $input-btn-border-width-rem !default; // px value to avoid build errors
+$input-btn-padding-x: sizing.px-to-rem(20) - $input-btn-border-width-rem !default; // px value to avoid build errors
 $input-btn-line-height: type.$line-height-copy !default;
 
-$input-btn-padding-y-sm: 4px !default;
-$input-btn-padding-x-sm: 16px !default;
+$input-btn-padding-y-sm: 4px !default; // px value to avoid build errors
+$input-btn-padding-x-sm: 16px !default; // px value to avoid build errors
 
-$input-btn-padding-y-rg: sizing.px-to-rem(12) - $input-btn-border-width-rem !default;
-$input-btn-padding-x-rg: sizing.px-to-rem(16) - $input-btn-border-width-rem !default;
+$input-btn-padding-y-rg: sizing.px-to-rem(12) - $input-btn-border-width-rem !default; // px value to avoid build errors
+$input-btn-padding-x-rg: sizing.px-to-rem(16) - $input-btn-border-width-rem !default; // px value to avoid build errors
 
 $input-btn-padding-y-lg: 12px !default; // px value to avoid build errors
-$input-btn-padding-x-lg: 16px !default; // px value to avoid bootstrap build errors
+$input-btn-padding-x-lg: 16px !default; // px value to avoid build errors
 
 $input-btn-focus-width: 0.125rem !default; // 2px
 $input-btn-focus-color: rgba(color.$gray-80, 0.25) !default;

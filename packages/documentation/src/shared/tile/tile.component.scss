@@ -37,7 +37,7 @@ $tile-rg-size: var(--post-docs-tile-rg-size, calc($tile-size / 1.2));
       align-items: center;
       flex: 0 0 auto;
       padding: 0 tokens.get('utility-gap-4');
-      height: calc((#{tokens.get('utility-gap-8')} * 2) + 2.2em);
+      height: calc((tokens.get('utility-gap-8') * 2) + 2.2em);
       background-color: post.$yellow;
       border-top-left-radius: inherit;
       border-top-right-radius: inherit;
@@ -89,7 +89,7 @@ $tile-rg-size: var(--post-docs-tile-rg-size, calc($tile-size / 1.2));
       height: $tile-rg-size;
 
       .tile--title {
-        height: calc((#{tokens.get('utility-gap-8')} * 1.5) + 2.2em);
+        height: calc((tokens.get('utility-gap-8') * 1.5) + 2.2em);
 
         ~ .tile--icon {
           ::slotted(img) {

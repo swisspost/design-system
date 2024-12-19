@@ -101,7 +101,7 @@ tokens.$default-map: utilities.$post-spacing;
     &:focus-within,
     &:focus-visible {
       outline: tokens.get('utility-gap-2') solid Highlight;
-      outline-offset: -(tokens.get('utility-gap-4'));
+      outline-offset: calc(tokens.get('utility-gap-4') * -1);
     }
 
     &.active {

@@ -13,7 +13,7 @@ $tag-max-width: 100%;
 $tag-border-width: tokens.get('utility-gap-1');
 $tag-border-radius: tokens.get('utility-gap-4');
 $tag-font-size: type.$font-size-16;
-$tag-line-height: calc(tokens.get('utility-gap-32') - (#{$tag-border-width} * 2));
+$tag-line-height: calc(tokens.get('utility-gap-32') - ($tag-border-width * 2));
 $tag-icon-size: $tag-font-size * 1.25;
 
 $tag-sm-line-height: tokens.get('utility-gap-24');

@@ -44,7 +44,7 @@ post-ngb-modal-content {
 @include media-breakpoint-up(sm) {
   post-ngb-modal-content {
     // prevents the modal from exceeding the height of the screen
-    max-height: calc(100vh - (2 * #{modal.$modal-dialog-margin-y-sm-up}));
+    max-height: calc(100vh - (2 * modal.$modal-dialog-margin-y-sm-up));
   }
 
   // Right and left margins are set to "auto" from the sm breakpoint
@@ -58,7 +58,7 @@ post-ngb-modal-content {
 @include media-breakpoint-down(sm) {
   post-ngb-modal-content {
     // make the modal cover the full height available on small screens
-    height: calc(100vh - (2 * #{modal.$modal-dialog-margin}));
+    height: calc(100vh - (2 * modal.$modal-dialog-margin));
   }
 
   .modal-body,
