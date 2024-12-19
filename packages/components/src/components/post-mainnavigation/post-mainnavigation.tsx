@@ -23,7 +23,9 @@ export class PostMainnavigation {
     await Promise.all(
       mutations
         .flatMap((mutation: MutationRecord) => Array.from(mutation.addedNodes))
-        .map((item: HTMLPostListItemElement) => item.componentOnReady()),
+        .map((item: HTMLPostListItemElement) =>
+          item.componentOnReady ? item.componentOnReady() : Promise.resolve(item),
+        ),
     );
 
     // Recalculate scrollability after DOM changes
@@ -63,7 +65,7 @@ export class PostMainnavigation {
 
   componentDidLoad() {
     setTimeout(() => this.checkScrollability()); // Initial check to determine if scrolling is needed
-    this.mutationObserver.observe(this.navigationList, { childList: true }); // Recheck scrollability when navigation list changes
+    this.mutationObserver.observe(this.navigationList, { subtree: true, childList: true }); // Recheck scrollability when navigation list changes
     window.addEventListener(
       'resize', // Recheck scrollability on window resize
       throttle(100, () => this.checkScrollability()),

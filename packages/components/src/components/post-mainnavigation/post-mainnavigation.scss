@@ -27,7 +27,8 @@ post-mainnavigation {
 
     > a,
     post-megadropdown-trigger button {
-      flex: 0 0 auto;
+      flex: 0 0 fit-content;
+      white-space: nowrap;
       display: flex;
       align-items: center;
       justify-content: space-between;
