@@ -86,13 +86,7 @@ textarea.form-control {
     }
   }
 
-  &.is-valid:not(:disabled) {
-    background-image: forms.$valid-icon;
-  }
-
-  &.is-invalid:not(:disabled) {
-    background-image: forms.$invalid-icon;
-  }
+  @include forms-mx.validation-icons;
 }
 
 .form-label:has(+ textarea.form-control[disabled]) {

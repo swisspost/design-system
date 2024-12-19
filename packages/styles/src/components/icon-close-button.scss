@@ -15,6 +15,14 @@ tokens.$default-map: components.$post-close;
   background-color: tokens.get('close-enabled-bg');
   color: tokens.get('close-enabled-fg');
 
+  &:hover {
+    > post-icon {
+      @include utilities.high-contrast-mode() {
+        color: Highlight;
+      }
+    }
+  }
+
   > post-icon {
     min-width: tokens.get('close-icon-size');
     width: tokens.get('close-icon-size');
