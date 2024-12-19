@@ -1,83 +1,85 @@
 @use '@swisspost/design-system-styles/core' as post;
 
-:host {
+post-language-option {
   display: inline-block;
-}
 
-:host([variant='dropdown']) {
-  width: 100%;
-}
-
-button {
-  @include post.reset-button;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-:is(a, button) {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  padding: var(--post-language-option-padding);
-}
-
-.post-language-option-list {
-  @include post.focus-style;
-  border-radius: 2px;
-  width: 40px;
-  height: 40px;
-
-  &:hover {
-    color: #504f4b;
+  button {
+    @include post.reset-button;
   }
 
-  &[aria-current='true'],
-  &[aria-current='page'] {
-    background-color: #050400;
-    color: #fff;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  :is(a, button) {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: var(--post-language-option-padding);
+  }
+}
+
+post-language-option:where([variant='list']) {
+  :is(a, button) {
+    @include post.focus-style;
+    border-radius: 2px;
+    width: 40px;
+    height: 40px;
 
     &:hover {
-      background-color: #504f4b;
+      color: #504f4b;
+    }
+
+    &[aria-current='true'],
+    &[aria-current='page'] {
+      background-color: #050400;
+      color: #fff;
+
+      &:hover {
+        background-color: #504f4b;
+      }
     }
   }
 }
 
-.post-language-option-dropdown {
-  padding-block: 13px;
-  padding-inline: 24px;
-  box-sizing: border-box;
-  position: relative;
+post-language-option:where([variant='menu']) {
+  width: 100%;
 
-  &[aria-current='true'],
-  &[aria-current='page'] {
-    &::after {
-      content: '';
-      left: -2px;
-      height: 3px;
-      background-color: #050400;
-      width: calc(100% + 4px);
-      display: block;
-      position: absolute;
-      bottom: 3px;
+  :is(a, button) {
+    padding-block: 13px;
+    padding-inline: 24px;
+    box-sizing: border-box;
+    position: relative;
+
+    &[aria-current='true'],
+    &[aria-current='page'] {
+      &::after {
+        content: '';
+        left: -2px;
+        height: 3px;
+        background-color: #050400;
+        width: calc(100% + 4px);
+        display: block;
+        position: absolute;
+        bottom: 3px;
+      }
+
+      &:focus::after {
+        width: calc(100% - 5px);
+        left: 2px;
+      }
+
+      &:hover::after {
+        background-color: #504f4b;
+      }
     }
 
-    &:focus::after {
-      width: calc(100% - 5px);
-      left: 2px;
+    &:hover {
+      color: #504f4b;
     }
-
-    &:hover::after {
-      background-color: #504f4b;
-    }
-  }
-
-  &:hover {
-    color: #504f4b;
   }
 }

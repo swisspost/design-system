@@ -1,4 +1,4 @@
-export function getRoot(element: HTMLElement): Document | ShadowRoot {
+export function getRoot(element: Element): Document | ShadowRoot {
   const root = element.getRootNode();
 
   if (root instanceof Document || root instanceof ShadowRoot) {

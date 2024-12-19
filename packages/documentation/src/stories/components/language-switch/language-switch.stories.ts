@@ -65,7 +65,7 @@ function renderLanguageSwitchAsLinks(args: Partial<HTMLPostLanguageSwitchElement
   return html`<post-language-switch
     caption=${args.caption}
     description=${args.description}
-    variant="dropdown"
+    variant="menu"
   >
     <post-language-option url="/de" active="true" code="de" name="Deutsch">DE</post-language-option>
     <post-language-option url="/en" active="false" code="en" name="English"
