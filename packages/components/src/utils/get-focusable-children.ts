@@ -21,6 +21,7 @@ const focusDisablingSelector = `:where(${[
   '[popover]:not(:popover-open) *',
   'details:not([open]) > *:not(details > summary:first-of-type)',
   'details:not([open]) > *:not(details > summary:first-of-type) *',
+  '[tabindex^="-"]',
 ].join(',')})`;
 
 export const getFocusableChildren = (element: Element): NodeListOf<HTMLElement> => {
