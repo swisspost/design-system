@@ -133,7 +133,7 @@ export class PostLanguageSwitch {
             <post-icon aria-hidden="true" name="chevrondown"></post-icon>
           </button>
         </post-menu-trigger>
-        <post-menu id={this.menuId}>
+        <post-menu isLanguageSwitch={true} id={this.menuId}>
           <div class="post-language-switch-dropdown-container">
             <slot></slot>
           </div>

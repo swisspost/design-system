@@ -2,7 +2,10 @@
 
 :host {
   display: inline-block;
-  width: fit-content;
+}
+
+:host([variant='dropdown']) {
+  width: 100%;
 }
 
 button {
@@ -30,10 +33,18 @@ a {
   width: 40px;
   height: 40px;
 
+  &:hover {
+    color: #504f4b;
+  }
+
   &[aria-current='true'],
   &[aria-current='page'] {
     background-color: #050400;
     color: #fff;
+
+    &:hover {
+      background-color: #504f4b;
+    }
   }
 }
 
@@ -49,7 +60,7 @@ a {
       content: '';
       left: -2px;
       height: 3px;
-      background-color: #504f4b;
+      background-color: #050400;
       width: calc(100% + 4px);
       display: block;
       position: absolute;
@@ -60,5 +71,13 @@ a {
       width: calc(100% - 5px);
       left: 2px;
     }
+
+    &:hover::after {
+      background-color: #504f4b;
+    }
+  }
+
+  &:hover {
+    color: #504f4b;
   }
 }
