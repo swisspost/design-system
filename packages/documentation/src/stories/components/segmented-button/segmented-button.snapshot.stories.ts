@@ -18,7 +18,7 @@ export const SegmentedButton: Story = {
 
     return schemes(
       scheme => html`
-        <div class=" d-flex flex-column w-75 gap-16 p-16">
+        <div class=" d-flex flex-column w-three-quarters gap-16 p-16">
           ${labelCounts.map(count => {
             const labels = Array.from({ length: count }, (_, i) => `Label ${i + 1}`);
 

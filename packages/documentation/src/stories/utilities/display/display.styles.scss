@@ -9,3 +9,9 @@
     background-color: color.adjust(post.$border-color, $lightness: 15%);
   }
 }
+
+.display-story {
+  > div {
+    background-color: post.$yellow;
+  }
+}

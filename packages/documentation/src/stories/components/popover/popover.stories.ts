@@ -25,7 +25,7 @@ const meta: MetaComponent = {
     id: 'popover-one',
     innerHtml:
       'A longer message that needs more time to read. <a href="#">Links</a> are also possible.',
-    backgroundColor: 'primary',
+    palette: 'palette-accent',
     closeButtonCaption: 'Close',
     placement: 'top',
     arrow: true,
@@ -46,17 +46,13 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
-    backgroundColor: {
-      name: 'Background color',
-      description: 'Define a background color, either `bg-primary` or `bg-yellow`.',
+    palette: {
+      name: 'Palette',
+      description: 'Define the popover color scheme.',
       control: {
-        type: 'radio',
-        labels: {
-          yellow: 'Yellow',
-          primary: 'Primary',
-        },
+        type: 'select',
       },
-      options: ['primary', 'yellow'],
+      options: ['palette-accent', 'palette-brand'],
       table: {
         category: 'General',
         type: {
@@ -95,7 +91,7 @@ function render(args: Args) {
       </button>
     </div>
     <post-popover
-      class="bg-${args.backgroundColor}"
+      class="${args.palette}"
       id="${args.id}"
       placement="${args.placement}"
       ?arrow="${args.arrow}"

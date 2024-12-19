@@ -12,7 +12,7 @@ const meta: Meta = {
 
 function render() {
   return html`
-    <div class="bg-light error-container">
+    <div class="palette-alternate error-container">
       <div class="container">
         <div class="row">
           <div class="col-sm-8 py-56">
