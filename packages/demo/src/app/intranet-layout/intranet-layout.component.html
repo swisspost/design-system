@@ -152,13 +152,23 @@
             <code>''</code>
           </td>
           <td>
-            The user ID of the currently logged on user.
+            The email address of the currently logged on user.
             <br />
             Used to show the users profile image.
             <br />
             The default value of
             <code>'user'</code>
             is used to show the fallback-image.
+
+            <div class="mt-3 alert alert-warning">
+              <div class="alert-heading">The required input value has recently changed</div>
+              <p>
+                Due to the technical conversion of the intranet backend from Sitecore to Sharepoint,
+                the value required for the property to display a user image has changed. Previously
+                the user ID was required, now this property expects the user-specific e-mail
+                address.
+              </p>
+            </div>
           </td>
         </tr>
         <tr>
@@ -379,6 +389,27 @@
   <code
     class="block"
     [highlight]="codeTemplateBig"
+    [languages]="['html', 'scss', 'css', 'typescript', 'javascript']"
+  ></code>
+</div>
+
+<h4 class="bold mt-5">With condensed top navigation</h4>
+<div class="header-showcase-container p-huge-r">
+  <div class="header-showcase-page">
+    <iframe
+      title="Intranet-header example without top navigation and with sidenav"
+      src="/#/samples/intranet-layout-condensed"
+      class="w-100"
+      style="min-height: 500px"
+    ></iframe>
+  </div>
+</div>
+
+<div class="container">
+  <span class="spacer"></span>
+  <code
+    class="block"
+    [highlight]="codeTemplateCond"
     [languages]="['html', 'scss', 'css', 'typescript', 'javascript']"
   ></code>
 </div>

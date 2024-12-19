@@ -54,6 +54,7 @@ import { LayoutContainerComponent } from './layout-container/layout-container.co
 import { IntranetHeaderDemoRegularComponent } from './intranet-layout/components/intranet-header-demo-regular/intranet-header-demo-regular.component';
 import { IntranetHeaderDemoBigSidebarComponent } from './intranet-layout/components/intranet-header-demo-big-sidebar/intranet-header-demo-big-sidebar.component';
 import { IntranetHeaderDemoSmallSidebarComponent } from './intranet-layout/components/intranet-header-demo-small-sidebar/intranet-header-demo-small-sidebar.component';
+import { IntranetHeaderDemoCondensedComponent } from './intranet-layout/components/intranet-header-demo-condensed/intranet-header-demo-condensed.component';
 /* tslint:enable:max-line-length */
 
 const routes: Routes = [
@@ -165,6 +166,10 @@ const routes: Routes = [
       {
         path: 'intranet-layout-sidebar-small-sidebar',
         component: IntranetHeaderDemoSmallSidebarComponent,
+      },
+      {
+        path: 'intranet-layout-condensed',
+        component: IntranetHeaderDemoCondensedComponent,
       },
     ],
   },

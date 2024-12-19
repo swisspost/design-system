@@ -11,6 +11,10 @@
     cursor: pointer;
   }
 
+  .dropdown-toggle {
+    padding-inline: 1rem !important;
+  }
+
   img.profile-image {
     width: intranet-header.$profile-image-size;
     height: intranet-header.$profile-image-size;

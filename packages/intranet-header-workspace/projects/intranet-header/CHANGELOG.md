@@ -1,5 +1,22 @@
 # @swisspost/design-system-intranet-header
 
+## 8.6.2
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.6.2
+
+## 8.6.1
+
+### Patch Changes
+
+- Updated the avatar url, used to load a users profile picture form the intranet backend.  
+  ! The required input value has recently changed !
+  Due to the technical conversion of the intranet backend from Sitecore to Sharepoint, the value required for the property to display a user image has changed. Previously the user ID was required, now this property expects the user-specific e-mail address. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4117](https://github.com/swisspost/design-system/pull/4117))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.6.1
+
 ## 8.6.0
 
 ### Patch Changes

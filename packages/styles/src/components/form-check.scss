@@ -76,7 +76,7 @@
 
     &[type='checkbox'] {
       &:checked::after {
-        @include icons-mx.icon(3035);
+        @include icons-mx.icon(2105);
       }
 
       &:indeterminate::after {
@@ -173,7 +173,6 @@
 
     &[disabled],
     &[disabled] ~ .form-check-label {
-      text-decoration: line-through;
       color: color.$black-alpha-60;
 
       @include color-mx.on-dark-background() {
