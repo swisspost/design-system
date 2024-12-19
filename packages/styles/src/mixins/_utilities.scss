@@ -82,6 +82,20 @@
   }
 }
 
+@mixin high-contrast-mode-dark() {
+  @media (forced-colors: active) and (prefers-color-scheme: dark),
+    (-ms-high-contrast: white-on-black) {
+    @content;
+  }
+}
+
+@mixin high-contrast-mode-light() {
+  @media (forced-colors: active) and (prefers-color-scheme: light),
+    (-ms-high-contrast: black-on-white) {
+    @content;
+  }
+}
+
 @mixin not-disabled-focus-hover {
   &:focus,
   &:not(:disabled):hover,
