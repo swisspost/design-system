@@ -3,6 +3,7 @@
 @use './../mixins/color' as color-mx;
 @use './../placeholders/badge' as badge-ph;
 @use './../variables/components/badge';
+@use './../variables/color';
 
 .badge {
   --post-badge-height: #{badge.$badge-height};
@@ -28,5 +29,12 @@
 
   &.badge-sm {
     @extend %badge-sm;
+  }
+
+  // Add background options to the badge element only
+  @each $name, $color in color.$background-colors {
+    &.bg-#{$name} {
+      @include color-mx.colored-background($color);
+    }
   }
 }
