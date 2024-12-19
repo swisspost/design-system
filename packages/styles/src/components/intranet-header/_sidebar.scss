@@ -1,10 +1,14 @@
-@use './../../mixins/utilities';
+@use './../../mixins/utilities' as utilities-mx;
 @use './../../variables/color';
 @use './../../variables/commons';
 @use './../../variables/spacing';
 @use './../../variables/components/intranet-header';
 
 @use './../../themes/bootstrap/core' as *;
+@use './../../functions/tokens';
+@use './../../tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 // Sidebar
 #sidebar {
@@ -28,7 +32,7 @@
       background: none;
       border: 0;
 
-      @include utilities.focus-style {
+      @include utilities-mx.focus-style {
         border-radius: commons.$border-radius;
       }
     }
@@ -50,13 +54,13 @@
 
       margin: spacing.$spacer * -1;
       margin-bottom: 0;
-      padding: spacing.$size-mini;
-      padding-left: spacing.$size-regular;
+      padding: tokens.get('utility-gap-8');
+      padding-left: tokens.get('utility-gap-16');
       border-bottom: commons.$border-width solid rgba(var(--post-contrast-color-rgb), 0.2);
       background-color: color.$white;
 
       button {
-        padding: spacing.$size-mini;
+        padding: tokens.get('utility-gap-8');
       }
 
       &:hover,

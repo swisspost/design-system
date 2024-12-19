@@ -4,6 +4,11 @@
 @use './../type';
 @use './../../functions/sizing';
 
+@use './../../functions/tokens';
+@use './../../tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
+
 // Spinners
 
 $spinner-color-primary: color.$yellow !default;
@@ -27,7 +32,7 @@ $spinner-size-map: (
 
 // DEPRECATED
 $spinner-size-sm: type.$font-size-40 !default;
-$spinner-border-width-sm: spacing.$size-micro !default;
+$spinner-border-width-sm: tokens.get('utility-gap-4') !default;
 
 $spinner-size-xs: type.$font-size-16 !default;
-$spinner-border-width-xs: spacing.$size-line !default;
+$spinner-border-width-xs: tokens.get('utility-gap-2') !default;

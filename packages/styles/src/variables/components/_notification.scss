@@ -5,10 +5,12 @@
 @use './../spacing';
 @use './../type';
 @use '../../tokens/components';
+@use '../../tokens/utilities';
 @use '../../functions/tokens';
 
 tokens.$default-map: components.$post-banner;
-$notification-body-gap: spacing.$size-micro !default;
+
+$notification-body-gap: tokens.get('utility-gap-4', utilities.$post-spacing) !default;
 $notification-font-weight: type.$font-weight-normal !default;
 $notification-link-font-weight: type.$font-weight-normal !default;
 
@@ -52,8 +54,10 @@ $notification-hr-margin-block-map: () !default;
 $notification-hr-margin-block-map: map.merge(
   $notification-hr-margin-block-map,
   (
-    'banner': spacing.$size-mini spacing.$size-small-regular,
-    'toast': spacing.$size-micro spacing.$size-small-regular,
+    'banner': tokens.get('utility-gap-8', utilities.$post-spacing)
+      tokens.get('utility-gap-12', utilities.$post-spacing),
+    'toast': tokens.get('utility-gap-4', utilities.$post-spacing)
+      tokens.get('utility-gap-12', utilities.$post-spacing),
   )
 );
 

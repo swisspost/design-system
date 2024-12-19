@@ -7,37 +7,41 @@
 @use './../type';
 @use './button';
 @use './../../functions/icons';
+@use '../../functions/tokens';
+@use '../../tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 $datatable-header-font-weight: type.$font-weight-bold;
 $datatable-header-unsorted-color: color.$gray-60;
 
 $datatable-cell-bg: color.$light;
-$datatable-cell-padding-x: spacing.$size-regular;
-$datatable-cell-padding-y: spacing.$size-mini;
+$datatable-cell-padding-x: tokens.get('utility-gap-16');
+$datatable-cell-padding-y: tokens.get('utility-gap-8');
 $datatable-cell-padding: $datatable-cell-padding-y $datatable-cell-padding-x;
-$datatable-cell-margin: spacing.$size-line;
+$datatable-cell-margin: tokens.get('utility-gap-2');
 
 $datatable-inverted-cell-bg: color.$white;
 
-$datatable-flush-border-width: spacing.$size-line;
+$datatable-flush-border-width: tokens.get('utility-gap-2');
 $datatable-flush-border-color: color.$gray-10;
 $datatable-flush-border: $datatable-flush-border-width solid $datatable-flush-border-color;
 
-$datatable-footer-padding-x: spacing.$size-regular;
+$datatable-footer-padding-x: tokens.get('utility-gap-16');
 $datatable-footer-padding-y: button.$input-btn-focus-width;
 $datatable-footer-padding: $datatable-footer-padding-y $datatable-footer-padding-x;
 
-$datatable-footer-separator-width: spacing.$size-line;
+$datatable-footer-separator-width: tokens.get('utility-gap-2');
 $datatable-footer-separator-color: color.$gray-10;
 $datatable-footer-separator: $datatable-flush-border-width solid $datatable-flush-border-color;
 
-$datatable-row-count-input-width: spacing.$size-bigger-giant;
+$datatable-row-count-input-width: tokens.get('utility-gap-112');
 
 $datatable-button-margin: button.$btn-focus-width;
 $datatable-button-width: calc(100% - 2 * #{$datatable-button-margin});
 $datatable-button-height: $datatable-button-width;
 $datatable-button-focus-shadow: button.$btn-focus-box-shadow;
 
-$datatable-progressbar-height: spacing.$size-micro;
+$datatable-progressbar-height: tokens.get('utility-gap-4');
 $datatable-progressbar-backgroundcolor: color.$gray-10;
 $datatable-progressbar-activecolor: color.$yellow;

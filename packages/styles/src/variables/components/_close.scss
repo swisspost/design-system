@@ -2,8 +2,12 @@
 @use './../color';
 @use './../spacing';
 @use './../../functions/icons';
+@use './../../functions/tokens';
+@use './../../tokens/utilities';
 
-$close-size: spacing.$size-large !default;
+tokens.$default-map: utilities.$post-spacing;
+
+$close-size: tokens.get('utility-gap-24') !default;
 $close-border-radius: button.$btn-border-radius !default;
 $close-color: color.$black !default;
 $close-hover-color: color.$black !default;
@@ -11,9 +15,9 @@ $close-disabled-color: var(--post-gray-40) !default;
 $close-transition: button.$btn-transition !default;
 
 // DEPRECATED
-$btn-close-width: spacing.$size-large !default;
+$btn-close-width: tokens.get('utility-gap-24') !default;
 $btn-close-height: $btn-close-width !default;
-$btn-close-padding-x: spacing.$size-regular !default;
+$btn-close-padding-x: tokens.get('utility-gap-16') !default;
 $btn-close-color: color.$black !default;
 $_btn-close-bg: icons.get-colored-svg-url(2043, $btn-close-color);
 $_btn-close-hcm-bg: icons.get-colored-svg-url(2043, color.$white);

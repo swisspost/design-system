@@ -1,4 +1,8 @@
 @use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/functions/tokens' as tokens;
+@use '@swisspost/design-system-styles/tokens/utilities' as utilities;
+
+tokens.$default-map: utilities.$post-spacing;
 
 .version-switcher__loading {
   display: flex;
@@ -17,12 +21,12 @@
 
   .item__deps {
     display: flex;
-    gap: post.$size-small-regular;
+    gap: tokens.get('utility-gap-12');
   }
 
   .deps_dep {
     display: flex;
-    gap: post.$size-line;
+    gap: tokens.get('utility-gap-2');
     font-size: 85%;
   }
 

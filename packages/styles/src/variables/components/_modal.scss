@@ -7,21 +7,26 @@
 
 @use './button';
 
+@use '../../tokens/utilities';
+@use '../../functions/tokens';
+
+tokens.$default-map: utilities.$post-spacing;
+
 // Modals
 
 // Padding applied to the modal footer
-$modal-inner-padding: spacing.$size-regular !default;
+$modal-inner-padding: tokens.get('utility-gap-16') !default;
 
 // Padding applied to the modal body
-$modal-body-padding-y: spacing.$size-mini !default;
-$modal-body-padding-x: spacing.$size-big !default;
+$modal-body-padding-y: tokens.get('utility-gap-8') !default;
+$modal-body-padding-x: tokens.get('utility-gap-32') !default;
 $modal-body-padding: $modal-body-padding-y $modal-body-padding-x !default;
 
 // Margin between elements in footer, must be lower than or equal to 2 * $modal-inner-padding
 $modal-footer-margin-between: 0.5rem !default;
 
-$modal-dialog-margin: spacing.$size-small-regular !default;
-$modal-dialog-margin-y-sm-up: spacing.$size-big !default;
+$modal-dialog-margin: tokens.get('utility-gap-12') !default;
+$modal-dialog-margin-y-sm-up: tokens.get('utility-gap-32') !default;
 
 $modal-title-line-height: type.$line-height-copy !default;
 
@@ -43,7 +48,7 @@ $modal-header-border-color: commons.$border-color !default;
 $modal-footer-border-color: $modal-header-border-color !default;
 $modal-header-border-width: $modal-content-border-width !default;
 $modal-footer-border-width: $modal-header-border-width !default;
-$modal-header-padding-y: spacing.$size-large !default;
+$modal-header-padding-y: tokens.get('utility-gap-24') !default;
 $modal-header-padding-x: $modal-body-padding-x !default;
 $modal-header-padding: $modal-header-padding-y $modal-header-padding-x !default; // Keep this for backwards compatibility
 
@@ -52,10 +57,10 @@ $modal-dialog-width-lg: 800px !default;
 $modal-dialog-width-md: 500px !default;
 $modal-dialog-width-sm: 300px !default;
 
-$modal-xl: sizing.px-to-rem($modal-dialog-width-xl) - 2 * $modal-dialog-margin !default;
-$modal-lg: sizing.px-to-rem($modal-dialog-width-lg) - 2 * $modal-dialog-margin !default;
-$modal-md: sizing.px-to-rem($modal-dialog-width-md) - 2 * $modal-dialog-margin !default;
-$modal-sm: sizing.px-to-rem($modal-dialog-width-sm) - 2 * $modal-dialog-margin !default;
+$modal-xl: calc(sizing.px-to-rem($modal-dialog-width-xl) - 2 * #{$modal-dialog-margin}) !default;
+$modal-lg: calc(sizing.px-to-rem($modal-dialog-width-lg) - 2 * #{$modal-dialog-margin}) !default;
+$modal-md: calc(sizing.px-to-rem($modal-dialog-width-md) - 2 * #{$modal-dialog-margin}) !default;
+$modal-sm: calc(sizing.px-to-rem($modal-dialog-width-sm) - 2 * #{$modal-dialog-margin}) !default;
 
 $modal-fade-transform: translate(0, -50px) !default;
 $modal-show-transform: none !default;
@@ -63,6 +68,6 @@ $modal-transition: transform 0.3s ease-out !default;
 $modal-scale-transform: scale(1.02) !default;
 
 // Padding applied to the close button
-$modal-btn-close-margin-y: spacing.$size-mini !default;
-$modal-btn-close-margin-x: spacing.$size-regular !default;
+$modal-btn-close-margin-y: tokens.get('utility-gap-8') !default;
+$modal-btn-close-margin-x: tokens.get('utility-gap-16') !default;
 $modal-btn-close-margin: $modal-btn-close-margin-y $modal-btn-close-margin-x !default;
