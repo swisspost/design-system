@@ -2,7 +2,7 @@ import { html } from 'lit-html';
 
 export default html`<post-header>
   <!-- Logo -->
-  <post-logo>Homepage</post-logo>
+  <post-logo slot="post-logo" url="/">Homepage</post-logo>
 
   <!-- Meta navigation -->
   <ul class="list-inline" slot="meta-navigation">
@@ -11,7 +11,7 @@ export default html`<post-header>
   </ul>
 
   <!-- Menu button for mobile -->
-  <post-togglebutton>
+  <post-togglebutton slot="post-togglebutton">
     <span class="visually-hidden-sm">Menu</span>
     <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
     <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
