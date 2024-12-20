@@ -99,6 +99,7 @@ tokens.$default-map: components.$post-button;
     color: ButtonText;
     background-color: ButtonFace;
     border: 2px solid ButtonBorder;
+
     &:hover {
       border-color: Highlight !important;
     }

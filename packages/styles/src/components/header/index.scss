@@ -56,6 +56,7 @@ post-header {
       background-color: ButtonFace !important;
       color: ButtonText !important;
       border: 2px solid ButtonBorder;
+
       &:hover {
         border-color: Highlight !important;
       }
@@ -75,15 +76,18 @@ post-header {
         color: LinkText !important;
         text-decoration: underline !important;
         text-decoration-thickness: 1px !important;
+
         &:hover {
           text-decoration-thickness: 2px !important;
         }
       }
     }
+
     button {
       background-color: ButtonFace !important;
       color: ButtonText !important;
       border: 2px solid ButtonBorder;
+
       &:hover {
         border-color: Highlight !important;
       }
