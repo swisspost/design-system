@@ -1,5 +1,34 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.11
+
+### Major Changes
+
+- Renamed the "dropdown" variant to "menu" for the `post-language-switch` and `post-language-option` components. (by [@leagrdv](https://github.com/leagrdv) with [#4260](https://github.com/swisspost/design-system/pull/4260))
+
+- Removed `.bg-` classes to define background color of elements. (by [@leagrdv](https://github.com/leagrdv) with [#4201](https://github.com/swisspost/design-system/pull/4201))
+
+### Patch Changes
+
+- Updated header documentation by specifying `post-logo` slot explicitly. (by [@schaertim](https://github.com/schaertim) with [#4345](https://github.com/swisspost/design-system/pull/4345))
+
+- Added scss file import documentation to palette. (by [@leagrdv](https://github.com/leagrdv) with [#4127](https://github.com/swisspost/design-system/pull/4127))
+
+- Removed all usage of deprecated utility sizing classes. (by [@leagrdv](https://github.com/leagrdv) with [#4343](https://github.com/swisspost/design-system/pull/4343))
+
+- Aligned `width` and `height` percentage classes, after utility update. (by [@leagrdv](https://github.com/leagrdv) with [#4328](https://github.com/swisspost/design-system/pull/4328))
+
+- Added hint to not use active, disabled chips. (by [@schaertim](https://github.com/schaertim) with [#4315](https://github.com/swisspost/design-system/pull/4315))
+
+- Updated header documentation by specifying `post-togglebutton` slot explicitly. (by [@schaertim](https://github.com/schaertim) with [#4346](https://github.com/swisspost/design-system/pull/4346))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.10
+  - @swisspost/design-system-styles@9.0.0-next.10
+  - @swisspost/design-system-components-react@9.0.0-next.10
+  - @swisspost/internet-header@2.0.0-next.10
+  - @swisspost/design-system-tokens@9.0.0-next.10
+  - @swisspost/design-system-icons@9.0.0-next.10
+
 ## 6.0.0-next.10
 
 ### Minor Changes
