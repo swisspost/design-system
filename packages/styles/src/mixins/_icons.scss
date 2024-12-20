@@ -14,6 +14,31 @@
   forced-color-adjust: preserve-parent-color;
 }
 
+@mixin post-icon(
+  $base: 'https://unpkg.com/@swisspost/design-system-icons/public/post-icons',
+  $name,
+  $color: inherit
+) {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  background-color: currentColor;
+  color: $color;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask-image: url('#{$base}/#{$name}.svg');
+  mask-image: url('#{$base}/#{$name}.svg');
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask-position: center center;
+  mask-position: center center;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
+}
+
 @mixin remove-icon() {
   mask-image: none;
 }
