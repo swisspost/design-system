@@ -94,7 +94,7 @@ function getText(args: Args) {
 function renderProductCard(args: Args) {
   return html`
     <a href="#" class="card product-card${args.cardClasses}">
-      <div class="card-body product-navigation bg-white">
+      <div class="card-body product-navigation">
         ${getTitle(args)} ${getText(args)}
         <span class="link-icon">
           <post-icon name="3020" aria-hidden="true"></post-icon>
@@ -134,7 +134,7 @@ export const Groupped: Story = {
     </div>
   `,
   args: {
-    cardClasses: ' h-100',
+    cardClasses: ' h-full',
   },
 };
 
@@ -143,7 +143,7 @@ export const Multipart: Story = {
     <div class="row row-cols-md-2 border-gutters">
       <div class="col-12">
         <div class="card product-card">
-          <div class="card-body bg-white" data-sync-height-with="product-header">
+          <div class="card-body" data-sync-height-with="product-header">
             <div class="product-navigation">
               <div>
                 <h3>Preiswert</h3>
@@ -161,7 +161,7 @@ export const Multipart: Story = {
             </div>
           </div>
 
-          <div class="card-body bg-light" data-sync-height-with="product-body-1">
+          <div class="card-body palette-alternate" data-sync-height-with="product-body-1">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16">
@@ -173,7 +173,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body bg-white" data-sync-height-with="product-body-2">
+          <div class="card-body" data-sync-height-with="product-body-2">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16 align-items-stretch">
@@ -208,7 +208,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body bg-light" data-sync-height-with="product-body-3">
+          <div class="card-body palette-alternate" data-sync-height-with="product-body-3">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16">
@@ -223,12 +223,12 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body bg-light">
-            <button class="btn btn-secondary w-100 mb-12">
+          <div class="card-body palette-alternate">
+            <button class="btn btn-secondary w-full mb-12">
               <span>Order Sample Product</span>
             </button>
 
-            <button class="btn btn-primary w-100">
+            <button class="btn btn-primary w-full">
               <span>Print Sample Product</span>
             </button>
           </div>
@@ -237,7 +237,7 @@ export const Multipart: Story = {
 
       <div class="col-12">
         <div class="card product-card">
-          <div class="card-body bg-white" data-sync-height-with="product-header">
+          <div class="card-body" data-sync-height-with="product-header">
             <div class="product-navigation">
               <div>
                 <h3>Schneller</h3>
@@ -257,7 +257,7 @@ export const Multipart: Story = {
             </div>
           </div>
 
-          <div class="card-body bg-light" data-sync-height-with="product-body-1">
+          <div class="card-body palette-alternate" data-sync-height-with="product-body-1">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16">
@@ -272,7 +272,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body bg-white" data-sync-height-with="product-body-2">
+          <div class="card-body" data-sync-height-with="product-body-2">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16 align-items-stretch">
@@ -295,7 +295,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body bg-light" data-sync-height-with="product-body-3">
+          <div class="card-body palette-alternate" data-sync-height-with="product-body-3">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-16">
@@ -310,12 +310,12 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body bg-light">
-            <button class="btn btn-secondary w-100 mb-12">
+          <div class="card-body palette-alternate">
+            <button class="btn btn-secondary w-full mb-12">
               <span>Order Sample Product</span>
             </button>
 
-            <button class="btn btn-primary w-100">
+            <button class="btn btn-primary w-full">
               <span>Print Sample Product</span>
             </button>
           </div>

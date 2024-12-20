@@ -57,17 +57,19 @@ tokens.$default-map: components.$post-button;
 
   // Styles  to improve accessibility in high contrast mode
   @include utilities.high-contrast-mode() {
-    border-color: ButtonBorder;
-    background-color: ButtonFace;
+    &[class] {
+      border-color: ButtonBorder;
+      background-color: ButtonFace;
 
-    &:not(:disabled, .disabled) {
-      &:hover {
-        border-color: highlight;
+      &:not(:disabled, .disabled) {
+        &:hover {
+          border-color: highlight;
+        }
       }
-    }
 
-    &:disabled {
-      border-color: GrayText !important;
+      &:disabled {
+        border-color: GrayText !important;
+      }
     }
   }
 }

@@ -26,12 +26,14 @@ export const Position: Story = {
               return html`
                 <p>Position ${position}</p>
                 <div class="snapshot-outer-container">
-                  <div class="snapshot-container bg-gray m-0 position-relative">
-                    <div class="bg-dark"></div>
-                    <div class="bg-yellow position-${position} top-0 start-50">I'm ${position}</div>
-                    <div class="bg-dark"></div>
-                    <div class="bg-dark"></div>
-                    <div class="bg-dark"></div>
+                  <div class="snapshot-container m-0 position-relative">
+                    <div></div>
+                    <div class="my-element position-${position} top-0 start-50">
+                      I'm ${position}
+                    </div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                   </div>
                 </div>
               `;
@@ -48,7 +50,7 @@ export const Position: Story = {
               return html`
                 <p class="mt-12">${xArgName}: ${xArgValue}% / ${yArgName}: ${yArgValue}%</p>
                 <div class="snapshot-arrange-container">
-                  <div class="bg-info ${args.x} ${args.y}"></div>
+                  <div class="${args.x} ${args.y}"></div>
                 </div>
               `;
             })}
@@ -70,7 +72,7 @@ export const Position: Story = {
                   Translate middle: ${args.translateMiddle ? args.translateMiddle : 'none'}
                 </p>
                 <div class="snapshot-translate-middle-container">
-                  <div class="bg-yellow start-50 top-50 ${translateMiddleValue}"></div>
+                  <div class="start-50 top-50 ${translateMiddleValue}"></div>
                 </div>
               `;
             })}

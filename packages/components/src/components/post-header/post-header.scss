@@ -116,6 +116,10 @@ slot[name='post-logo'] {
     z-index: 1;
     inset-block-start: var(--global-header-height);
     padding-inline: var(--post-core-dimension-8) var(--post-core-dimension-16);
+
+    &.title-header-mobile-extended {
+      border-bottom: 1px solid var(--post-core-color-sandgrey-012);
+    }
   }
   @include media.max(lg) {
     border-block-end: 1px solid ButtonBorder;
