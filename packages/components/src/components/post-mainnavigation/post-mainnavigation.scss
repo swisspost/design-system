@@ -10,17 +10,25 @@
 $nav-height: var(--post-core-dimension-56);
 
 post-mainnavigation {
-  // reset links and buttons
+  // reset links and buttons;
   post-list-item {
-    > a {
+    a {
       text-decoration: none;
       border-radius: 0;
     }
 
-    post-megadropdown-trigger button {
-      @include button.reset-button;
-      text-align: start;
-      @include utilities.focus-style;
+    post-megadropdown-trigger {
+      @include utilities.high-contrast-mode() {
+        color: ButtonText !important;
+        background-color: ButtonFace !important;
+        border: 2px solid ButtonBorder;
+      }
+
+      button {
+        @include button.reset-button;
+        text-align: start;
+        @include utilities.focus-style;
+      }
     }
 
     > a,
@@ -70,7 +78,10 @@ post-mainnavigation {
         font-size: var(--post-core-font-size-16);
         border-block: 0 solid transparent;
         border-block-end-color: currentColor;
-
+        @include utilities.high-contrast-mode() {
+          color: ButtonText;
+          background-color: ButtonFace;
+        }
         &:hover {
           border-block-width: var(--post-core-dimension-2);
         }

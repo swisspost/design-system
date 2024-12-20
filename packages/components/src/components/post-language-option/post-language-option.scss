@@ -1,4 +1,5 @@
 @use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/mixins/utilities';
 
 :host {
   display: inline-block;
@@ -7,6 +8,13 @@
 
 button {
   @include post.reset-button;
+  @include utilities.high-contrast-mode() {
+    background-color: ButtonFace !important;
+    color: ButtonText !important;
+    &:hover {
+      background-color: Highlight !important;
+    }
+  }
 }
 
 a {
@@ -34,6 +42,9 @@ a {
   &[aria-current='page'] {
     background-color: #050400;
     color: #fff;
+    @include utilities.high-contrast-mode() {
+      background-color: SelectedItem !important;
+    }
   }
 }
 
@@ -45,6 +56,10 @@ a {
 
   &[aria-current='true'],
   &[aria-current='page'] {
+    @include utilities.high-contrast-mode() {
+      background-color: SelectedItem !important;
+    }
+
     &::after {
       content: '';
       left: -2px;

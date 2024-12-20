@@ -1,5 +1,6 @@
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/variables/animation';
+@use '@swisspost/design-system-styles/mixins/utilities';
 
 *,
 ::before,
@@ -27,6 +28,11 @@
   @include media.max(lg) {
     --global-header-height: 64px;
     --main-header-height: 48px;
+  }
+  .navigation {
+    @include utilities.high-contrast-mode() {
+      border-block-end: 3px solid ButtonBorder;
+    }
   }
 }
 
@@ -114,6 +120,9 @@ slot[name='post-logo'] {
     &.title-header-mobile-extended {
       border-bottom: 1px solid var(--post-core-color-sandgrey-012);
     }
+  }
+  @include media.max(lg) {
+    border-block-end: 1px solid ButtonBorder;
   }
 }
 
