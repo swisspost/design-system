@@ -6,7 +6,6 @@
 @use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/variables/animation';
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
-@use '@swisspost/design-system-styles/mixins/utilities';
 
 $nav-height: var(--post-core-dimension-56);
 
@@ -27,9 +26,10 @@ post-mainnavigation {
 
       button {
         @include button.reset-button;
-      text-align: start;
-      @include utilities.focus-style;
+        text-align: start;
+        @include utilities.focus-style;
       }
+    }
 
     > a,
     > button,
