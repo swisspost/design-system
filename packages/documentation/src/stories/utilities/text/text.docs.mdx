@@ -6,6 +6,7 @@ import SampleFontSize from './text-font-size.sample.scss?raw';
 import SampleFontWeight from './text-font-weight.sample.scss?raw';
 import SampleLineHeight from './text-line-height.sample.scss?raw';
 import SampleColor from './text-color.sample.scss?raw';
+import './text.styles.scss';
 
 <Meta of={TextStories} />
 
@@ -79,10 +80,6 @@ import SampleColor from './text-color.sample.scss?raw';
 
 #### Possible Values
 
-##### Fixed-size (deprecated)
-
-<TextUtilityAPI values={SCSS_VARIABLES.fixedLineHeights} cssPrefix="lh" scssPrefix="line-height" />
-
 ##### Relative
 
 For good accessibility, the line height is set to <code>1.5</code> for body text and <code>1.2</code> for headings.
@@ -96,11 +93,6 @@ There are no Sass variables for these row heights.
 Define how text-blocks are displayed.
 
 ### Color
-
-<div className="banner banner-warning my-24">
-  The `.text-auto` class is deprecated since text color is now set by the{' '}
-  [backgrounds](/?path=/docs/60852fac-a861-4415-8276-bd38d68653bb--docs) themselves.
-</div>
 
 Colorize text with `.text-*` utility classes.
 To colorize links, use the `.link-*` classes instead as they also provide styling for the `:hover` and `:focus` states.

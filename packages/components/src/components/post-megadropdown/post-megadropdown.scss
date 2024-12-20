@@ -46,6 +46,7 @@ post-popovercontainer {
     left: 0;
     width: 100%;
     height: auto;
+    border-top: unset;
 
     &.slide-in {
       animation: slide-in;
@@ -86,6 +87,10 @@ post-popovercontainer {
 
     @include media.max(lg) {
       grid-template-columns: repeat(auto-fit, minmax(min(35vw, 100%), 1fr));
+    }
+
+    @include media.max(sm) {
+      grid-template-columns: 1fr;
     }
   }
 

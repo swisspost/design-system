@@ -51,7 +51,6 @@ export class PostTogglebutton {
   render() {
     return (
       <Host
-        slot="post-togglebutton"
         data-version={version}
         role="button"
         tabindex="0"
