@@ -8,6 +8,9 @@
 @use './../spacing';
 @use './../../functions/sizing';
 
+@use './../../functions/tokens';
+@use './../../tokens/utilities';
+
 // Forms
 
 // Used elsewhere than text input, textarea or select
@@ -16,14 +19,14 @@ $input-padding-y: button.$input-btn-padding-y !default;
 $input-padding-x: button.$input-btn-padding-x !default;
 $input-line-height: type.$line-height-copy !default;
 
-$input-padding-y-sm: button.$input-btn-padding-y-sm !default;
+$input-padding-y-sm: sizing.px-to-rem(button.$input-btn-padding-y-sm) !default;
 $input-line-height-sm: type.$line-height-copy !default;
 
 $input-padding-y-rg: button.$input-btn-padding-y-rg !default;
 $input-padding-x-rg: button.$input-btn-padding-x-rg !default;
 $input-line-height-rg: type.$line-height-copy !default;
 
-$input-padding-y-lg: button.$input-btn-padding-y-lg !default;
+$input-padding-y-lg: sizing.px-to-rem(button.$input-btn-padding-y-lg) !default;
 $input-line-height-lg: type.$line-height-copy !default;
 
 $input-disabled-border-color: var(--post-gray-40); // Design System only
@@ -33,7 +36,7 @@ $input-border-width: button.$input-btn-border-width !default;
 
 $input-focus-width: button.$input-btn-focus-width !default;
 $input-focus-box-shadow: none !default;
-$input-focus-outline-thickness: spacing.$size-line;
+$input-focus-outline-thickness: tokens.get('utility-gap-2', utilities.$post-spacing);
 
 $input-height-border: $input-border-width * 2 !default;
 
