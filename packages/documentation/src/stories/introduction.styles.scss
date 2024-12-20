@@ -1,6 +1,9 @@
 @use 'sass:map';
 @use '@swisspost/design-system-styles/core.scss' as post;
-@use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 #storybook-docs {
   overflow-x: hidden;
@@ -36,19 +39,19 @@
   padding: 0;
   list-style-type: none;
   justify-content: center;
-  gap: post.$size-big;
+  gap: tokens.get('utility-gap-32');
 
   @include post.media-breakpoint-down(sm) {
-    gap: post.$size-regular;
+    gap: tokens.get('utility-gap-16');
   }
 }
 
 .feature {
-  padding: post.$size-regular;
+  padding: tokens.get('utility-gap-16');
 
   .feature--icon {
-    margin-bottom: post.$size-regular;
-    font-size: post.$size-huge;
+    margin-bottom: tokens.get('utility-gap-16');
+    font-size: tokens.get('utility-gap-56');
     color: #523178;
   }
 
