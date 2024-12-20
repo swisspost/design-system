@@ -1,112 +1,86 @@
 @use '../../../../../node_modules/@swisspost/design-system-styles/core' as post;
 
-.icon-search {
-  .icon-search--filters {
-    margin: post.$size-huge auto;
-    max-width: 500px;
+.search-form {
+  margin-block-start: 2rem;
 
-    .freetext {
-      position: relative;
+  .sets {
+    margin-inline: auto;
+    max-width: 80%;
 
-      .form-control {
-        padding-right: post.$input-height-lg;
-      }
-
-      .form-control-reset {
-        position: absolute;
-        top: 0;
-        right: 0;
-        padding: 0;
-        background: none;
-        border: 0 none;
-
-        post-icon {
-          padding: post.$input-padding-y-lg;
-          width: post.$input-height-lg;
-        }
-      }
+    @include post.max('md') {
+      max-width: 300px;
     }
   }
 
-  .icon-search--results {
-    display: grid;
-    gap: post.$size-regular;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    margin-top: post.$size-big;
-
-    .results--empty {
-      display: flex;
-      gap: post.$size-mini;
-      align-items: center;
-      margin-left: auto;
-      margin-right: auto;
-    }
-  }
-
-  @include post.media-breakpoint-down(sm) {
-    .icon-search--results {
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    }
+  .search-text {
+    margin-block-start: 1.5rem;
+    margin-inline: auto;
+    max-width: 400px;
   }
 }
 
-.icon {
-  display: flex;
-  flex-direction: column;
-  border: post.$border-width solid var(--post-gray-20);
-  border-radius: post.$border-radius;
+.search-results {
+  margin-block-start: 3rem;
 
-  .icon--tile {
-    flex: 0 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: post.$size-micro post.$size-regular;
-    width: 100%;
-    height: 80px;
-    background-color: var(--post-contrast-color-inverted);
-    border-top-left-radius: post.$border-radius;
-    border-top-right-radius: post.$border-radius;
-
-    post-icon {
-      width: 40px;
-      height: 40px;
-      transition: transform 100ms linear;
-    }
-  }
-
-  .icon--info {
-    flex: 1 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: post.$size-micro post.$size-regular;
-    background-color: var(--post-gray-10);
-    border-top: post.$border-width solid var(--post-gray-20);
-    border-bottom-left-radius: post.$border-radius;
-    border-bottom-right-radius: post.$border-radius;
-    font-size: post.$font-size-tiny;
+  .no-results {
     text-align: center;
 
-    .info--name {
-      font-weight: post.$font-weight-bold;
-    }
-
-    .info--keywords {
-      font-size: post.$font-size-tiny;
-      color: var(--post-gray-60);
-      hyphens: auto;
+    post-icon {
+      font-size: 3rem;
     }
   }
 
-  @include post.media-breakpoint-down(sm) {
-    .icon--tile {
-      height: 60px;
+  .result-list {
+    @include post.list-unstyled();
+    display: grid;
+    grid-template-columns: repeat(2, 120px);
+    justify-content: center;
+    gap: 1rem;
 
-      post-icon {
-        width: 32px;
-        height: 32px;
+    @include post.min('sm') {
+      grid-template-columns: repeat(4, 120px);
+    }
+
+    @include post.min('md') {
+      grid-template-columns: repeat(4, 140px);
+    }
+
+    @include post.min('lg') {
+      grid-template-columns: repeat(6, 140px);
+    }
+
+    @include post.min('xl') {
+      grid-template-columns: repeat(8, 140px);
+    }
+
+    .icon {
+      padding: 1rem 0.5rem 0.5rem;
+      border: 1px solid #aaa;
+      border-radius: 4px;
+
+      .gfx {
+        display: flex;
+        justify-content: center;
+        height: 2rem;
+        font-size: 2rem;
       }
+
+      .name {
+        margin-block-start: 1rem;
+        font-size: 0.8rem;
+        font-weight: bold;
+        text-align: center;
+      }
+    }
+  }
+
+  .paging {
+    display: flex;
+    justify-content: center;
+    margin-block-start: 3rem;
+
+    ul {
+      @include post.list-inline();
     }
   }
 }
