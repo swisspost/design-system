@@ -20,6 +20,8 @@
   font-weight: var(--post-core-font-weight-700);
   position: relative;
 
+  @content;
+
   &::before {
     content: '';
     background-color: currentColor;

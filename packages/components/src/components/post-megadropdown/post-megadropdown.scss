@@ -30,6 +30,7 @@ post-popovercontainer {
   --post-global-header-height: 72px;
   --post-main-header-height: 56px;
   --post-header-height: calc(var(--post-global-header-height) + var(--post-main-header-height));
+
   background-color: #fafafa;
   border: none;
   border-top: 1px solid #e1e0dc;
@@ -143,9 +144,11 @@ post-popovercontainer {
           display: flex;
           justify-content: space-between;
           min-height: 53px;
-          @include header-mx.mobile-header-interactive;
-          height: unset;
-          font-weight: 900;
+
+          @include header-mx.mobile-header-interactive() {
+            height: unset;
+            font-weight: 900;
+          }
         }
 
         @include media.max(lg) {
