@@ -70,7 +70,7 @@ export default html`<post-header>
             Zurück
           </button>
           <post-closebutton slot="close-button">Schliessen</post-closebutton>
-          <h2 slot="megadropdown-title"><a href="">Briefe title</a></h2>
+          <h2 slot="megadropdown-title">Briefe title</h2>
           <post-list>
             <h3>Briefe senden</h3>
             <post-list-item><a href="/sch">Briefe Schweiz</a></post-list-item>
@@ -95,7 +95,7 @@ export default html`<post-header>
             Zurück
           </button>
           <post-closebutton slot="close-button">Schliessen</post-closebutton>
-          <h2 slot="megadropdown-title"><a href="">Pakete title</a></h2>
+          <h2 slot="megadropdown-title">Pakete title</h2>
           <post-list>
             <h3>Pakete senden</h3>
             <post-list-item><a href="/sch">Pakete Schweiz</a></post-list-item>

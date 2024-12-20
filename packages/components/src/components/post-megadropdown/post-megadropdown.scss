@@ -1,5 +1,6 @@
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 
 @keyframes slide-in {
   0% {
@@ -29,7 +30,6 @@ post-popovercontainer {
   --post-global-header-height: 72px;
   --post-main-header-height: 56px;
   --post-header-height: calc(var(--post-global-header-height) + var(--post-main-header-height));
-
   background-color: #fafafa;
   border: none;
   border-top: 1px solid #e1e0dc;
@@ -39,6 +39,7 @@ post-popovercontainer {
 
   @include media.max(lg) {
     --post-global-header-height: 64px;
+    --post-main-header-height: 48px;
     position: absolute;
     top: var(--post-header-height) !important;
     bottom: 0;
@@ -103,15 +104,6 @@ post-popovercontainer {
     }
   }
 
-  // Unset styles added by parent main navigation
-  a:hover {
-    border-block-width: 0;
-
-    &::after {
-      content: unset;
-    }
-  }
-
   post-list {
     display: grid;
     grid-row: span 2;
@@ -134,44 +126,51 @@ post-popovercontainer {
 
       h3 {
         font-size: 20px;
-        border-bottom: 1px solid #050400;
-        padding: 15px 12px 14px 0;
         display: block;
         font-weight: 900;
 
+        &:not(:has(a)) {
+          padding: 15px 12px 14px 0;
+          border-bottom: 1px solid #050400;
+        }
+
         a {
+          padding-block: 15px 14px;
+          padding-inline-start: 8px;
+          border-radius: 0;
           text-decoration: none;
-          width: 100%;
           font-size: inherit;
-          display: inline-block;
-          font-weight: inherit;
+          display: flex;
+          justify-content: space-between;
+          min-height: 53px;
+          @include header-mx.mobile-header-interactive;
           height: unset;
-          padding: 0;
-          border: 0;
+          font-weight: 900;
         }
 
         @include media.max(lg) {
           font-size: 16px;
-          padding: 12px 12px 11px 0;
+
+          &:not(:has(a)) {
+            padding: 15px 12px 14px 8px;
+            border-bottom: 1px solid #050400;
+          }
         }
       }
     }
   }
 
   post-list-item {
-    border-bottom: 1px solid #050400;
-
     > a {
-      padding: 13px 12px 12px 0;
-      display: block;
+      padding-block: 13px 12px;
+      padding-inline-start: 8px;
+      display: flex;
       text-decoration: none;
       width: 100%;
-      border-bottom: 0;
       height: auto;
-      border-top: 0;
 
       @include media.max(lg) {
-        padding: 12px 12px 11px 0;
+        padding-block: 12px 12px;
       }
     }
   }

@@ -103,6 +103,13 @@ post-mainnavigation {
       }
     }
 
+    post-megadropdown {
+      button,
+      a {
+        @include header-mx.mobile-header-interactive;
+      }
+    }
+
     [slot='back-button'] {
       display: none;
     }
