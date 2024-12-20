@@ -133,6 +133,11 @@ export class PostLanguageOption {
             hrefLang={lang}
             lang={lang}
             onClick={() => this.emitChange()}
+            onKeyDown={e => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                this.emitChange();
+              }
+            }}
           >
             <slot />
           </a>
@@ -142,6 +147,11 @@ export class PostLanguageOption {
             aria-label={this.name}
             lang={lang}
             onClick={() => this.emitChange()}
+            onKeyDown={e => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                this.emitChange();
+              }
+            }}
           >
             <slot />
           </button>
