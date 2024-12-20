@@ -123,6 +123,12 @@ export class PostLanguageOption {
   render() {
     const lang = this.code.toLowerCase();
 
+    const emitOnKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        this.emitChange();
+      }
+    };
+
     return (
       <Host data-version={version} role={this.variant ? `${this.variant}item` : null}>
         {this.url ? (
@@ -133,11 +139,7 @@ export class PostLanguageOption {
             hrefLang={lang}
             lang={lang}
             onClick={() => this.emitChange()}
-            onKeyDown={e => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                this.emitChange();
-              }
-            }}
+            onKeyDown={emitOnKeyDown}
           >
             <slot />
           </a>
@@ -147,11 +149,7 @@ export class PostLanguageOption {
             aria-label={this.name}
             lang={lang}
             onClick={() => this.emitChange()}
-            onKeyDown={e => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                this.emitChange();
-              }
-            }}
+            onKeyDown={emitOnKeyDown}
           >
             <slot />
           </button>
