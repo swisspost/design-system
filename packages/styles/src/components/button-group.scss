@@ -3,16 +3,19 @@
 @use './../themes/bootstrap/core' as *;
 @use './../themes/bootstrap/button-group' as bg;
 
-@use './../mixins/utilities';
+@use './../mixins/utilities' as utilities-mx;
 @use './../variables/color';
 @use './../variables/spacing';
 @use './../variables/components/button';
 @use './../variables/components/forms';
 
+@use '../functions/tokens';
+@use '../tokens/utilities';
+
 .btn-group {
   max-width: 100%;
   flex-wrap: wrap;
-  row-gap: spacing.$size-micro;
+  row-gap: tokens.get('utility-gap-4', utilities.$post-spacing);
   padding-inline-start: button.$btn-border-width;
 
   > .btn {
@@ -31,7 +34,7 @@
     background-color: color.$yellow;
     color: color.$black;
 
-    @include utilities.high-contrast-mode() {
+    @include utilities-mx.high-contrast-mode() {
       background-color: Highlight;
     }
   }
@@ -41,5 +44,5 @@
   position: absolute;
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
-  @include utilities.focus-style('+ .btn');
+  @include utilities-mx.focus-style('+ .btn');
 }
