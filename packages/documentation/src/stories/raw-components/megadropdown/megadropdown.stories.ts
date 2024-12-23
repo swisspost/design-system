@@ -23,25 +23,29 @@ const meta: MetaComponent<HTMLPostMegadropdownElement> = {
 export default meta;
 
 function decorator(story: StoryFn, context: StoryContext) {
-  return html` <div class="megadropdown-container">${story(context.args, context)}</div> `;
+  return html`
+    <post-mainnavigation>
+      <post-list title-hidden="">
+        <post-list-item> ${story(context.args, context)} </post-list-item>
+      </post-list>
+    </post-mainnavigation>
+  `;
 }
 
 // RENDERERS
 function render() {
   return html`
-    <post-megadropdown-trigger for="ddd">
-      <button class="btn btn-link">Briefe</button>
-    </post-megadropdown-trigger>
-    <post-megadropdown id="ddd">
-      <button slot="back-button" class="btn btn-link">
+    <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
+    <post-megadropdown id="pakete">
+      <button slot="back-button" class="btn btn-tertiary px-0">
         <post-icon name="arrowright"></post-icon>
         Zurück
       </button>
       <post-closebutton slot="close-button">Schliessen</post-closebutton>
-      <h2 slot="megadropdown-title"><a href="">Briefe title</a></h2>
+      <h2 slot="megadropdown-title"><a href="">Pakete title</a></h2>
       <post-list>
-        <h3>Briefe senden</h3>
-        <post-list-item><a href="/sch">Briefe Schweiz</a></post-list-item>
+        <h3>Pakete senden</h3>
+        <post-list-item><a href="/sch">Pakete Schweiz</a></post-list-item>
         <post-list-item><a href="/kl">Kleinwaren Ausland</a></post-list-item>
         <post-list-item><a href="">Waren Ausland</a></post-list-item>
         <post-list-item><a href="">Express und Kurier</a></post-list-item>
