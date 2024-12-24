@@ -3,6 +3,7 @@ import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import meta from './text.stories';
 import './text.styles.scss';
+import { SCSS_VARIABLES } from './text.blocks';
 
 const { id, ...metaWithoutId } = meta;
 
@@ -20,24 +21,25 @@ function getTextUtility(type: string) {
       return html` ${['sans-serif'].map(val => html` <p class="font-${val}">Font ${val}</p> `)} `;
     case 'Sizes':
       return html`
-        ${['1', '2', '3', '4', '5', '6'].map(
-          val => html` <p class="fs-${val}">Font size ${val}</p> `,
-        )}
+        ${[1, 2, 3, 4, 5, 6].map(val => html` <p class="fs-${val}">Font size ${val}</p> `)}
       `;
     case 'Style':
       return html`
-        ${['italic', 'normal'].map(val => html` <p class="fst-${val}">Font style ${val}</p> `)}
+        ${SCSS_VARIABLES.fontStyles.map(
+          (val: string) => html` <p class="fst-${val}">Font style ${val}</p> `,
+        )}
       `;
     case 'Weight':
       return html`
-        ${['lighter', 'light', 'normal', 'medium', 'semibold', 'bold', 'bolder'].map(
-          val => html` <p class="fw-${val}">Font weight ${val}</p> `,
+        ${SCSS_VARIABLES.fontStyles.map(
+          (val: string) => html` <p class="fw-${val}">Font weight ${val}</p> `,
         )}
       `;
     case 'Line height':
       return html`
-        ${['1', 'sm', 'base', 'lg'].map(
-          val => html` <p class="text-example-bordered lh-${val}">Line height ${val}</p> `,
+        ${SCSS_VARIABLES.relativeLineHeights.map(
+          (val: string) =>
+            html` <p class="text-example-bordered lh-${val}">Line height ${val}</p> `,
         )}
       `;
     case 'Text align':
