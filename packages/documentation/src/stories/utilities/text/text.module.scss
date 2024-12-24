@@ -2,10 +2,9 @@
 @use '@swisspost/design-system-styles/core' as post;
 
 :export {
-  fontFamilies: [('sans-serif', 'monospace')];
+  fontFamilies: [('sans-serif')];
   fontSizes: [map.keys(post.$font-sizes)];
-  fontWeights: [('light', 'normal', 'bold')];
+  fontWeights: [('normal', 'bold')];
   fontStyles: [('normal', 'italic')];
   relativeLineHeights: [('1', 'base', 'sm', 'lg')];
-  colors: [map.keys(post.$theme-colors)];
 }

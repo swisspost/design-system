@@ -26,10 +26,6 @@ import './text.styles.scss';
 
 <Source code={SampleFontFamily} language="scss" />
 
-#### Possible Values
-
-<TextUtilityAPI values={SCSS_VARIABLES.fontFamilies} cssPrefix="font" scssPrefix="font-family" />
-
 ### Font Size
 
 <Canvas of={TextStories.FontSize} sourceState="shown" />
@@ -45,7 +41,7 @@ import './text.styles.scss';
 ### Font Weight
 
 <div className="banner banner-warning my-24">
-  The `.bold`, `.regular`, and `.light` classes are deprecated in favor of the `.fw-*` classes.
+  The `.bold` and `.regular` classes are deprecated in favor of the `.fw-*` classes.
 </div>
 
 <Canvas of={TextStories.FontWeight} sourceState="shown" />
@@ -80,8 +76,6 @@ import './text.styles.scss';
 
 #### Possible Values
 
-##### Relative
-
 For good accessibility, the line height is set to <code>1.5</code> for body text and <code>1.2</code> for headings.
 To make the line height equal to the font size, you can use the `.lh-1` class.
 There are no Sass variables for these row heights.
@@ -91,21 +85,6 @@ There are no Sass variables for these row heights.
 ## Text
 
 Define how text-blocks are displayed.
-
-### Color
-
-Colorize text with `.text-*` utility classes.
-To colorize links, use the `.link-*` classes instead as they also provide styling for the `:hover` and `:focus` states.
-
-<Canvas of={TextStories.TextColor} sourceState="shown" />
-
-#### Set the Color in SCSS
-
-<Source code={SampleColor} language="scss" />
-
-#### Possible Values
-
-<TextUtilityAPI values={SCSS_VARIABLES.colors} cssPrefix="text" />
 
 ### Reset Color
 
