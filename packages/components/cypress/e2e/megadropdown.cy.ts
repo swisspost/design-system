@@ -30,11 +30,13 @@ describe('megadropdown', () => {
 
       it('should show back button', () => {
         cy.get('@megadropdown-trigger').click();
+        cy.wait(500);
         cy.get('@back-btn').should(`be.visible`);
       });
 
       it('should not show close button', () => {
         cy.get('@megadropdown-trigger').click();
+        cy.wait(500);
         cy.get('@close-btn').should(`be.hidden`);
       });
 
@@ -74,11 +76,13 @@ describe('megadropdown', () => {
 
       it('should show close button', () => {
         cy.get('@megadropdown-trigger').click();
+        cy.wait(500);
         cy.get('@close-btn').should(`be.visible`);
       });
 
       it('should not show back button', () => {
         cy.get('@megadropdown-trigger').click();
+        cy.wait(500);
         cy.get('@back-btn').should(`be.hidden`);
       });
 
