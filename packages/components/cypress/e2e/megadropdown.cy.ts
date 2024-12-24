@@ -7,7 +7,7 @@ describe('megadropdown', () => {
         cy.viewport('iphone-6+');
         cy.getComponents(
           MEGADROPDOWN_ID,
-          'default',
+          'tests',
           'post-megadropdown',
           'post-megadropdown-trigger',
         );
@@ -24,6 +24,7 @@ describe('megadropdown', () => {
       it('should open on trigger click', () => {
         cy.get('@megadropdown-trigger').should('exist');
         cy.get('@megadropdown-trigger').click();
+        cy.wait(500);
         cy.get('@megadropdown').should(`be.visible`);
       });
 
@@ -50,7 +51,7 @@ describe('megadropdown', () => {
         cy.viewport(1920, 1080);
         cy.getComponents(
           MEGADROPDOWN_ID,
-          'default',
+          'tests',
           'post-megadropdown',
           'post-megadropdown-trigger',
         );
@@ -67,6 +68,7 @@ describe('megadropdown', () => {
       it('should open on trigger click', () => {
         cy.get('@megadropdown-trigger').should('exist');
         cy.get('@megadropdown-trigger').click();
+        cy.wait(500);
         cy.get('@megadropdown').should(`be.visible`);
       });
 

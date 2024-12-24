@@ -1,5 +1,5 @@
 import type { StoryContext, StoryObj } from '@storybook/web-components';
-import meta from './megadropdown.stories';
+import meta, { megadropdownDecorator } from './megadropdown.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 
@@ -8,7 +8,7 @@ const { id, ...metaWithoutId } = meta;
 export default {
   ...metaWithoutId,
   title: 'Snapshots',
-  decorators: [],
+  decorators: [megadropdownDecorator],
 };
 
 type Story = StoryObj<HTMLPostMegadropdownElement>;

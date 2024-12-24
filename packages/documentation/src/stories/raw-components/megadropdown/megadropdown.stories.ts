@@ -9,7 +9,6 @@ const meta: MetaComponent<HTMLPostMegadropdownElement> = {
   tags: ['package:WebComponents'],
   component: 'post-megadropdown',
   render: render,
-  decorators: [decorator],
   parameters: {
     design: {
       type: 'figma',
@@ -22,7 +21,7 @@ const meta: MetaComponent<HTMLPostMegadropdownElement> = {
 
 export default meta;
 
-function decorator(story: StoryFn, context: StoryContext) {
+export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
   return html`
     <post-mainnavigation>
       <post-list title-hidden="">
@@ -32,7 +31,6 @@ function decorator(story: StoryFn, context: StoryContext) {
   `;
 }
 
-// RENDERERS
 function render() {
   return html`
     <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
@@ -64,4 +62,9 @@ function render() {
 // STORIES
 type Story = StoryObj<HTMLPostLanguageOptionElement>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  decorators: [megadropdownDecorator],
+};
+
+// No decorators on the test page
+export const Tests: Story = {};
