@@ -3,6 +3,7 @@
 @use './functions' as *;
 
 @use '../variables/sizing' as *;
+@use '../variables/commons';
 /*
   Utilities are generated with our utility API using bellow $utilities map.
 
@@ -423,6 +424,16 @@ $utilities: (
   'overflow-y': (
     property: overflow-y,
     values: auto hidden visible scroll,
+  ),
+  'shadow': (
+    property: box-shadow,
+    class: shadow,
+    values: (
+      null: commons.$box-shadow,
+      sm: commons.$box-shadow-sm,
+      lg: commons.$box-shadow-lg,
+      none: none,
+    ),
   ),
   // IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`.
 );
