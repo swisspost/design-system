@@ -82,7 +82,7 @@ export class PostMegadropdown {
 
   private handleFocusout(event: FocusEvent) {
     const relatedTarget = event.relatedTarget as HTMLElement;
-    const megadropdown= this.popoverRef.querySelector('.megadropdown');
+    const megadropdown = this.popoverRef.querySelector('.megadropdown');
     if (!megadropdown.contains(relatedTarget)) {
       this.hide();
     }
