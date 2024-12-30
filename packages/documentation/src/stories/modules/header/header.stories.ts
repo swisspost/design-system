@@ -1,8 +1,6 @@
 import type { StoryObj } from '@storybook/web-components';
 import { MetaComponent } from '@root/types';
 import HeaderMarkup from './components/header.markup';
-import { html } from 'lit';
-import { fakeContent } from '@/utils';
 
 const meta: MetaComponent = {
   id: 'header',
@@ -18,7 +16,6 @@ const meta: MetaComponent = {
   },
   args: {},
   argTypes: {},
-  decorators: [story => html` ${story()} ${fakeContent()} `],
 };
 
 export default meta;

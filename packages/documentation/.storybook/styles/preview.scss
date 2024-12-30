@@ -197,7 +197,6 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 }
 
 .fake-content {
-  margin-block: var(--post-core-dimension-32) !important;
   position: relative;
   min-height: calc(1.6rem * 8);
   background: repeating-linear-gradient(

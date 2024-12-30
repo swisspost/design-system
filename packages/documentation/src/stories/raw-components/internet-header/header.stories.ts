@@ -1,6 +1,6 @@
 import { Args, StoryContext, StoryObj, WebComponentsRenderer } from '@storybook/web-components';
 import { html } from 'lit';
-import { fakeContent, spreadArgs } from '@/utils';
+import { spreadArgs } from '@/utils';
 import customConfig from './config/custom-config';
 import osFlyoutOverrides from './config/os-flyout-overrides';
 import languageSwitchOverrides from './config/language-switch-overrides';
@@ -164,7 +164,14 @@ const meta: MetaComponent = {
           class="header-story-wrapper"
           style="--header-z-index: 1;overflow: auto;max-height: 100svh;"
         >
-          ${story()} ${fakeContent()}
+          ${story()}
+          <div class="container">
+            <p class="fake-content my-32"></p>
+            <p class="fake-content my-32"></p>
+            <p class="fake-content my-32"></p>
+            <p class="fake-content my-32"></p>
+            <p class="fake-content my-32"></p>
+          </div>
         </div>
       `,
   ],

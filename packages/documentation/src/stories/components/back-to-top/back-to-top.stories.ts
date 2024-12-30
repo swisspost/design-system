@@ -1,7 +1,6 @@
 import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { MetaComponent } from '@root/types';
 import { html } from 'lit';
-import { fakeContent } from '@/utils';
 
 const meta: MetaComponent = {
   id: '1a1b4cab-d0a8-4b01-bd85-b70e18668cb5',
@@ -23,7 +22,25 @@ const meta: MetaComponent = {
       environment="int01"
       language="en"
     ></swisspost-internet-header>
-    ${fakeContent(17)}
+    <div class="container">
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+      <p class="fake-content my-32"></p>
+    </div>
     <post-back-to-top />
   </div>`,
   decorators: [
