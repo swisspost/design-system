@@ -1,11 +1,8 @@
 import { Canvas, Meta, Source } from '@storybook/blocks';
-import { SCSS_VARIABLES, TextUtilityAPI } from './text.blocks';
 import * as TextStories from './text.stories';
 import SampleFontFamily from './text-font-family.sample.scss?raw';
-import SampleFontSize from './text-font-size.sample.scss?raw';
 import SampleFontWeight from './text-font-weight.sample.scss?raw';
 import SampleLineHeight from './text-line-height.sample.scss?raw';
-import SampleColor from './text-color.sample.scss?raw';
 import './text.styles.scss';
 
 <Meta of={TextStories} />
@@ -20,29 +17,17 @@ import './text.styles.scss';
 
 ### Font Family
 
+Use the class `.font-sans-serif` to set the text as the post sans-serif font-family.
+
 <Canvas of={TextStories.FontFamily} sourceState="shown" />
 
 #### Set Font Family in SCSS
 
 <Source code={SampleFontFamily} language="scss" />
 
-### Font Size
-
-<Canvas of={TextStories.FontSize} sourceState="shown" />
-
-#### Set Font Size in SCSS
-
-<Source code={SampleFontSize} language="scss" />
-
-#### Possible Values
-
-<TextUtilityAPI values={SCSS_VARIABLES.fontSizes} cssPrefix="fs" scssPrefix="font-size" />
-
 ### Font Weight
 
-<div className="banner banner-warning my-24">
-  The `.bold` and `.regular` classes are deprecated in favor of the `.fw-*` classes.
-</div>
+The font weight classes available are `.fw-normal` and `.fw-bold`.
 
 <Canvas of={TextStories.FontWeight} sourceState="shown" />
 
@@ -50,21 +35,11 @@ import './text.styles.scss';
 
 <Source code={SampleFontWeight} language="scss" />
 
-#### Possible Values
-
-<TextUtilityAPI values={SCSS_VARIABLES.fontWeights} cssPrefix="fw" scssPrefix="font-weight" />
-
 ### Font Style
 
+The font style classes available are `.fst-normal` and `.fst-italic`.
+
 <Canvas of={TextStories.FontStyle} sourceState="shown" />
-
-<p className="mb-32">
-  <em>There are no Sass variables for font styles at this time.</em>
-</p>
-
-#### Possible Values
-
-<TextUtilityAPI values={SCSS_VARIABLES.fontStyles} cssPrefix="fst" />
 
 ### Line Heights
 
@@ -77,10 +52,13 @@ import './text.styles.scss';
 #### Possible Values
 
 For good accessibility, the line height is set to <code>1.5</code> for body text and <code>1.2</code> for headings.
-To make the line height equal to the font size, you can use the `.lh-1` class.
-There are no Sass variables for these row heights.
 
-<TextUtilityAPI values={SCSS_VARIABLES.relativeLineHeights} cssPrefix="lh" />
+Available classes are:
+
+- `.lh-1`: line-height equal to the font-size
+- `.lh-base`: default line-height
+- `.lh-sm`: small line-height of 1.25
+- `.lh-lg`: large line-height of 2
 
 ## Text
 

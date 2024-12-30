@@ -27,29 +27,11 @@ $position-values: (
   50: 50%,
   100: 100%,
 );
-$font-size-base: 1rem !default;
-$h1-font-size: $font-size-base * 2.5 !default;
-$h2-font-size: $font-size-base * 2 !default;
-$h3-font-size: $font-size-base * 1.75 !default;
-$h4-font-size: $font-size-base * 1.5 !default;
-$h5-font-size: $font-size-base * 1.25 !default;
-$h6-font-size: $font-size-base !default;
 
 $font-family-sans-serif: var(--post-device-font-family-default);
 
-$default-font-sizes: (
-  1: $h1-font-size,
-  2: $h2-font-size,
-  3: $h3-font-size,
-  4: $h4-font-size,
-  5: $h5-font-size,
-  6: $h6-font-size,
-) !default;
-
 $font-weight-normal: 400 !default;
-$font-weight-semibold: 600 !default;
 $font-weight-bold: 700 !default;
-$font-weight-bolder: bolder !default;
 
 $line-height-base: 1.5 !default;
 $line-height-sm: 1.25 !default;
@@ -458,12 +440,6 @@ $utilities: (
       'sans-serif': $font-family-sans-serif,
     ),
   ),
-  'font-size': (
-    rfs: true,
-    property: font-size,
-    class: fs,
-    values: $default-font-sizes,
-  ),
   'font-style': (
     property: font-style,
     class: fst,
@@ -474,9 +450,7 @@ $utilities: (
     class: fw,
     values: (
       normal: $font-weight-normal,
-      semibold: $font-weight-semibold,
       bold: $font-weight-bold,
-      bolder: $font-weight-bolder,
     ),
   ),
   'line-height': (

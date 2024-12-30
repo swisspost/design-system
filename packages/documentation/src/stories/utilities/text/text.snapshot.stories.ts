@@ -3,7 +3,6 @@ import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import meta from './text.stories';
 import './text.styles.scss';
-import { SCSS_VARIABLES } from './text.blocks';
 
 const { id, ...metaWithoutId } = meta;
 
@@ -18,28 +17,23 @@ type Story = StoryObj;
 function getTextUtility(type: string) {
   switch (type) {
     case 'Family':
-      return html` ${['sans-serif'].map(val => html` <p class="font-${val}">Font ${val}</p> `)} `;
-    case 'Sizes':
-      return html`
-        ${[1, 2, 3, 4, 5, 6].map(val => html` <p class="fs-${val}">Font size ${val}</p> `)}
-      `;
+      return html`<p class="font-sans-serif">Font sans-serif</p>`;
     case 'Style':
       return html`
-        ${SCSS_VARIABLES.fontStyles.map(
-          (val: string) => html` <p class="fst-${val}">Font style ${val}</p> `,
+        ${['normal', 'italic'].map(
+          (val: string) => html`<p class="fst-${val}">Font style ${val}</p>`,
         )}
       `;
     case 'Weight':
       return html`
-        ${SCSS_VARIABLES.fontStyles.map(
-          (val: string) => html` <p class="fw-${val}">Font weight ${val}</p> `,
+        ${['normal', 'bold'].map(
+          (val: string) => html`<p class="fw-${val}">Font weight ${val}</p>`,
         )}
       `;
     case 'Line height':
       return html`
-        ${SCSS_VARIABLES.relativeLineHeights.map(
-          (val: string) =>
-            html` <p class="text-example-bordered lh-${val}">Line height ${val}</p> `,
+        ${['1', 'base', 'sm', 'lg'].map(
+          (val: string) => html`<p class="text-example-bordered lh-${val}">Line height ${val}</p>`,
         )}
       `;
     case 'Text align':
@@ -55,13 +49,13 @@ function getTextUtility(type: string) {
     case 'Text decoration':
       return html`
         ${['none', 'underline', 'line-through'].map(
-          val => html` <p class="text-decoration-${val}">Text decoration ${val}</p> `,
+          val => html`<p class="text-decoration-${val}">Text decoration ${val}</p>`,
         )}
       `;
     case 'Text transform':
       return html`
         ${['lowercase', 'uppercase', 'capitalize'].map(
-          val => html` <p class="text-${val}">Text transform ${val}</p> `,
+          val => html`<p class="text-${val}">Text transform ${val}</p>`,
         )}
       `;
     case 'White space':
@@ -91,9 +85,9 @@ export const Text: Story = {
   render: () => {
     return schemes(
       () => html` <div class="text-example">
+        <h1>Text utilities</h1>
         ${[
           'Family',
-          'Sizes',
           'Style',
           'Weight',
           'Line height',
@@ -104,7 +98,7 @@ export const Text: Story = {
           'Word wrap break',
         ].map(
           val => html`
-            <h1>${val}</h1>
+            <h2>${val}</h2>
             <div class="text-example-child gap-8 d-flex flex-column">${getTextUtility(val)}</div>
           `,
         )}

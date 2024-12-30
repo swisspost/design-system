@@ -18,10 +18,6 @@ export const FontFamily: Story = {
   render: () => html` <p class="font-sans-serif">This is sans serif text.</p> `,
 };
 
-export const FontSize: Story = {
-  render: () => html` <p class="fs-tiny">This is tiny text.</p> `,
-};
-
 export const FontWeight: Story = {
   render: () => html` <p class="fw-bold">This is bold text.</p> `,
 };
@@ -37,7 +33,7 @@ export const LineHeight: Story = {
 export const TextColorReset: Story = {
   decorators: [story => html` <div @click=${(e: Event) => e.preventDefault()}>${story()}</div> `],
   render: () => html`
-    <p class="text-danger">
+    <p class="my-colored-text">
       This is colored text with a
       <a href="#" class="text-reset">link</a>
       of the same color.
@@ -88,6 +84,6 @@ export const TextDecoration: Story = {
   render: () => html`
     <p class="text-decoration-underline">This text has a line underneath it.</p>
     <p class="text-decoration-line-through">This text has a line going through it.</p>
-    <a href="#" class="text-decoration-none">This link has its text decoration removed</a>
+    <a href="#" class="text-decoration-none">This link has its text decoration removed.</a>
   `,
 };
