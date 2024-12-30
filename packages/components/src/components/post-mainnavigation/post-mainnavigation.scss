@@ -41,6 +41,12 @@ post-mainnavigation {
     }
   }
 
+  .back-button {
+    post-icon {
+      transform: rotate(180deg);
+    }
+  }
+
   // desktop styles
   @include media.min(lg) {
     nav {
@@ -104,7 +110,7 @@ post-mainnavigation {
     }
 
     post-megadropdown {
-      button,
+      button:not(.btn-icon-close),
       a {
         @include header-mx.mobile-header-interactive;
       }

@@ -172,6 +172,10 @@ post-popovercontainer {
       width: 100%;
       height: auto;
 
+      &:hover {
+        border-block-width: 0;
+      }
+
       @include media.max(lg) {
         padding-block: 12px 12px;
       }
@@ -184,10 +188,6 @@ post-popovercontainer {
 
     .btn {
       width: auto;
-    }
-
-    post-icon {
-      transform: rotate(180deg);
     }
 
     @include media.max(lg) {
