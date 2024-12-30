@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': patch
 ---
 
-Fixed color of highlighted searched text in HCM in documentation.
+Fixed the color of the highlighted search text in the documentation in High Contrast Mode.
