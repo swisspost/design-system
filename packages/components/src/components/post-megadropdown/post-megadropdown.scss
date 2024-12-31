@@ -41,13 +41,15 @@ post-popovercontainer {
   @include media.max(lg) {
     --post-global-header-height: 64px;
     --post-main-header-height: 48px;
-    position: absolute;
+    position: fixed;
     top: var(--post-header-height) !important;
     bottom: 0;
     left: 0;
     width: 100%;
     height: auto;
+    max-height: calc(100vh - var(--header-height));
     border-top: unset;
+    overflow: auto;
 
     &.slide-in {
       animation: slide-in;
