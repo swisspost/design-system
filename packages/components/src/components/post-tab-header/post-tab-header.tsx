@@ -28,7 +28,7 @@ export class PostTabHeader {
   }
 
   componentWillLoad() {
-    this.tabId = `tab-${this.host.id || `p${nanoid(6)}`}`;
+    this.tabId = `tab-${this.host.id || nanoid(6)}`;
   }
 
   render() {

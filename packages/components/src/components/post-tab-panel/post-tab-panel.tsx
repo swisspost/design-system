@@ -23,7 +23,7 @@ export class PostTabPanel {
 
   componentWillLoad() {
     // get the id set on the host element or use a random id by default
-    this.panelId = `panel-${this.host.id || `p${nanoid(6)}`}`;
+    this.panelId = `panel-${this.host.id || nanoid(6)}`;
   }
 
   render() {
