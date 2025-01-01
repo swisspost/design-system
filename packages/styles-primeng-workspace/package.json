@@ -45,6 +45,6 @@
     "stylelint-config-sass-guidelines": "11.1.0",
     "stylelint-prettier": "5.0.2",
     "stylelint-scss": "6.4.1",
-    "typescript": "5.5.4"
+    "typescript": "5.7.2"
   }
 }
