@@ -92,6 +92,7 @@ slot[name='post-logo'] {
   display: flex;
   padding-left: 0;
   gap: 1rem;
+  flex-shrink: 0 !important;
 }
 
 .title-header {
@@ -112,14 +113,11 @@ slot[name='post-logo'] {
     inset-block-start: var(--global-header-height);
     padding-inline: var(--post-core-dimension-8) var(--post-core-dimension-16);
     padding-block: var(--post-core-dimension-9);
+    flex-wrap: wrap;
 
     &.title-header-mobile-extended {
       border-bottom: 1px solid var(--post-core-color-sandgrey-012);
     }
-  }
-
-  @include media.max(md) {
-    flex-wrap: wrap;
   }
 }
 
@@ -129,6 +127,7 @@ slot[name='post-logo'] {
 
 ::slotted(h1) {
   margin: 0 !important;
+  flex-shrink: 10;
 
   @include media.min(lg) {
     font-size: var(--post-core-font-size-28) !important;
@@ -136,10 +135,7 @@ slot[name='post-logo'] {
 
   @include media.max(lg) {
     font-size: var(--post-core-font-size-20) !important;
-  }
-
-  @include media.max(md) {
-    flex-shrink: 0;
+    max-width: calc(100vw - var(--post-core-dimension-8) - var(--post-core-dimension-16));
   }
 }
 
