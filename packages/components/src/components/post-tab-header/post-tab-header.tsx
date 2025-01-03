@@ -1,6 +1,7 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkNonEmpty } from '@/utils';
+import { nanoid } from 'nanoid';
 
 /**
  * @slot default - Slot for the content of the tab header.
@@ -27,7 +28,7 @@ export class PostTabHeader {
   }
 
   componentWillLoad() {
-    this.tabId = `tab-${this.host.id || crypto.randomUUID()}`;
+    this.tabId = `tab-${this.host.id || nanoid(6)}`;
   }
 
   render() {

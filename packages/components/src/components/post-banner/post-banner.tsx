@@ -14,6 +14,7 @@ import { version } from '@root/package.json';
 import { fadeOut } from '@/animations';
 import { checkEmptyOrOneOf, checkEmptyOrPattern, checkNonEmpty, checkType } from '@/utils';
 import { BANNER_TYPES, BannerType } from './banner-types';
+import { nanoid } from 'nanoid';
 
 /**
  * @slot heading - Slot for placing custom content within the banner's heading.
@@ -29,7 +30,7 @@ import { BANNER_TYPES, BannerType } from './banner-types';
 export class PostBanner {
   @Element() host: HTMLPostBannerElement;
 
-  @State() bannerId = crypto.randomUUID();
+  @State() bannerId = `p${nanoid(6)}`;
   @State() classes: string;
   @State() hasActions: boolean;
   @State() hasHeading: boolean;

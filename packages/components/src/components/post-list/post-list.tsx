@@ -1,5 +1,6 @@
 import { Component, Element, Prop, Host, State, h } from '@stencil/core';
 import { version } from '@root/package.json';
+import { nanoid } from 'nanoid';
 
 /**
  * @slot default - Slot for placing the list title.
@@ -35,7 +36,7 @@ export class PostList {
     /**
      * Get the id set on the host element or use a random id by default
      */
-    this.titleId = `title-${this.host.id || crypto.randomUUID()}`;
+    this.titleId = `title-${this.host.id || nanoid(6)}`;
   }
 
   componentDidLoad() {
