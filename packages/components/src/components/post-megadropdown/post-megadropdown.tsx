@@ -61,7 +61,7 @@ export class PostMegadropdown {
       const megadropdownItems = this.getPostListItems();
       if (megadropdownItems.length > 0) {
         // Focus the first item initially
-        (megadropdownItems[0] as HTMLElement).focus();
+        megadropdownItems[0].focus();
       }
     } else {
       console.error('show: popoverRef is null or undefined');
