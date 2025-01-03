@@ -18,7 +18,9 @@ const meta: MetaComponent = {
   },
   args: {},
   argTypes: {},
-  decorators: [story => html` ${story()} ${fakeContent()} `],
+  decorators: [
+    story => html` <div class="header-story-wrapper">${story()} ${fakeContent()}</div> `,
+  ],
 };
 
 export default meta;

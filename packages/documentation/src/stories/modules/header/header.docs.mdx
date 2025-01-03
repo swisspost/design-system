@@ -1,5 +1,6 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as HeaderStories from './header.stories';
+import './header.scss';
 
 <Meta of={HeaderStories} />
 
@@ -11,9 +12,7 @@ import * as HeaderStories from './header.stories';
   </nav>
 </div>
 
-<div className="lead">
-  The header of the Post.
-</div>
+<div className="lead">The header of the Post.</div>
 
 <Canvas sourceState="shown" of={HeaderStories.Default} />
 <div className="hide-col-default">
