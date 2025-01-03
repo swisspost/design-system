@@ -96,6 +96,7 @@ slot[name='post-logo'] {
 .title-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: var(--post-core-dimension-4);
   height: var(--main-header-height);
   background: var(--post-core-color-brand-white);

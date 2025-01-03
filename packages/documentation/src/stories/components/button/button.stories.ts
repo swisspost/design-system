@@ -238,7 +238,7 @@ const VariantsTemplate = {
   },
   decorators: [
     (story: StoryFn, context: StoryContext) =>
-      html` <div class="d-flex gap-small-r flex-wrap">${story(context.args, context)}</div> `,
+      html` <div class="d-flex gap-12 flex-wrap">${story(context.args, context)}</div> `,
   ],
   render: (args: Args) =>
     html`
