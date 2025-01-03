@@ -56,7 +56,7 @@ tokens.$default-map: components.$post-select;
       }
 
       @include utilities.high-contrast-mode-dark() {
-        @include forms.select-bg-image('selected-hcm', $mode: dark);
+        background-image: forms-fx.select-arrow-icon('selected-hcm', $mode: dark);
       }
     }
 
@@ -67,6 +67,10 @@ tokens.$default-map: components.$post-select;
 
       &:not([multiple]) {
         background-image: forms-fx.select-arrow-icon('hover');
+
+        @include utilities.high-contrast-mode {
+          background-image: forms-fx.select-arrow-icon('hover-hcm', $mode: dark) !important;
+        }
       }
 
       @include utilities.high-contrast-mode {
@@ -86,11 +90,11 @@ tokens.$default-map: components.$post-select;
   }
 
   @include utilities.high-contrast-mode-light() {
-    @include forms.select-bg-image('enabled-hcm', $mode: light);
+    background-image: forms-fx.select-arrow-icon('enabled-hcm', $mode: light);
   }
 
   @include utilities.high-contrast-mode-dark() {
-    @include forms.select-bg-image('enabled-hcm', $mode: dark);
+    background-image: forms-fx.select-arrow-icon('enabled-hcm', $mode: dark);
   }
 
   &.is-valid,
