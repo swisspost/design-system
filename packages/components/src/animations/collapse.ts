@@ -18,5 +18,11 @@ export const expand = (el: HTMLElement): Animation => {
   const expandedKeyframe: Keyframe = { height: `${el.scrollHeight}px`, offset: 1 };
   const finalKeyframe: Keyframe = { height: 'auto' };
 
-  return el.animate([collapsedKeyframe, expandedKeyframe, finalKeyframe], animationOptions);
+  const animation = el.animate([collapsedKeyframe, expandedKeyframe, finalKeyframe], animationOptions);
+
+  animation.addEventListener('finish', () => {
+    el.style.overflow = 'visible';
+  });
+
+  return animation;
 };
