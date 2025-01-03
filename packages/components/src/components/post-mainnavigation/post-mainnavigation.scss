@@ -45,6 +45,10 @@ post-mainnavigation {
     post-icon {
       transform: rotate(180deg);
     }
+
+    @include media.max(lg) {
+      font-size: 1rem;
+    }
   }
 
   // desktop styles

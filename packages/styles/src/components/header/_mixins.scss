@@ -40,9 +40,9 @@
     content: '';
     display: block;
     margin-right: calc((var(--post-core-dimension-24) + var(--post-core-dimension-16)) * -1);
-    @include icons.icon(3020);
-    width: var(--post-core-dimension-24);
-    min-width: var(--post-core-dimension-24);
-    height: var(--post-core-dimension-24);
+    @include icons.icon('arrowright');
+    width: var(--post-core-dimension-20);
+    min-width: var(--post-core-dimension-20);
+    height: var(--post-core-dimension-20);
   }
 }

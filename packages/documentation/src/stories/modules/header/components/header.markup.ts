@@ -65,7 +65,7 @@ export default html`<post-header>
       <post-list-item>
         <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
         <post-megadropdown id="briefe">
-          <button slot="back-button" class="btn btn-tertiary px-0">
+          <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
             <post-icon name="arrowright"></post-icon>
             Back
           </button>
@@ -90,7 +90,7 @@ export default html`<post-header>
       <post-list-item>
         <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
         <post-megadropdown id="pakete">
-          <button slot="back-button" class="btn btn-tertiary px-0">
+          <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
             <post-icon name="arrowright"></post-icon>
             Back
           </button>
