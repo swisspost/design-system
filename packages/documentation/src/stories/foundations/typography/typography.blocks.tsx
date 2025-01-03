@@ -50,7 +50,7 @@ export function FontSizesAndLineheights() {
       <table className="table">
         <thead>
           <tr>
-            <th className="w-25">Name</th>
+            <th className="w-quarter">Name</th>
             <th>Class</th>
             <th>Scss variable</th>
             <th>Font Size</th>
@@ -125,7 +125,7 @@ export function Headings() {
       <table className="table">
         <thead>
           <tr>
-            <th className="w-25">Tag</th>
+            <th className="w-quarter">Tag</th>
             <th>Visual</th>
           </tr>
         </thead>
@@ -190,7 +190,7 @@ export function Paragraphs() {
       <table className="table">
         <thead>
           <tr>
-            <th className="w-25">Tag</th>
+            <th className="w-quarter">Tag</th>
             <th>Visual</th>
           </tr>
         </thead>
@@ -234,7 +234,7 @@ export function Links() {
       <table className="table">
         <thead>
           <tr>
-            <th className="w-25">Tag</th>
+            <th className="w-quarter">Tag</th>
             <th>Visual</th>
           </tr>
         </thead>
@@ -284,7 +284,7 @@ export function Inlines() {
       <table className="table">
         <thead>
           <tr>
-            <th className="w-25">Tag</th>
+            <th className="w-quarter">Tag</th>
             <th>Visual</th>
           </tr>
         </thead>
@@ -402,7 +402,7 @@ export function Lists() {
       <table className="table">
         <thead>
           <tr>
-            <th className="w-25">Tag</th>
+            <th className="w-quarter">Tag</th>
             <th>Visual</th>
           </tr>
         </thead>

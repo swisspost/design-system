@@ -24,9 +24,9 @@ export const Dialog: Story = {
             transition: none !important;
           }
         </style>
-        <div class="d-flex flex-wrap align-items-start gap-regular">
+        <div class="d-flex flex-wrap align-items-start gap-16">
           ${bombArgs({
-            backgroundColor: ['bg-white', 'bg-primary'],
+            palette: ['palette-default', 'palette-accent', 'palette-alternate', 'palette-brand'],
             size: context.argTypes.size.options,
             icon: ['none', '1034'],
             closeButton: [true, false],

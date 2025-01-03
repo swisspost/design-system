@@ -4,7 +4,7 @@ describe('language-option', () => {
   describe('button', () => {
     beforeEach(() => {
       cy.getComponent('language-option', LANGUAGE_OPTION_ID);
-      cy.get('@language-option').shadow().find('button').as('button');
+      cy.get('@language-option').find('button').as('button');
     });
 
     it('should render', () => {
@@ -12,7 +12,7 @@ describe('language-option', () => {
     });
 
     it('should not render an anchor', () => {
-      cy.get('@language-option').shadow().find('a').should('not.exist');
+      cy.get('@language-option').find('a').should('not.exist');
     });
 
     it('should render a button with correct properties', () => {
@@ -35,7 +35,7 @@ describe('language-option', () => {
   describe('anchor', () => {
     beforeEach(() => {
       cy.getComponent('language-option', LANGUAGE_OPTION_ID, 'anchor');
-      cy.get('@language-option').shadow().find('a').as('anchor');
+      cy.get('@language-option').find('a').as('anchor');
     });
 
     it('should render', () => {
@@ -43,7 +43,7 @@ describe('language-option', () => {
     });
 
     it('should not render a button', () => {
-      cy.get('@language-option').shadow().find('button').should('not.exist');
+      cy.get('@language-option').find('button').should('not.exist');
     });
 
     it('should render an anchor', () => {

@@ -6,13 +6,17 @@
 @use './../../functions/icons';
 @use './../../functions/sizing';
 @use './../../functions/forms' as forms-fn;
+@use '../../tokens/utilities';
+@use '../../functions/tokens';
 
-$form-check-row-gap: spacing.$size-small-regular !default;
-$form-check-column-gap: spacing.$size-mini !default;
-$form-check-margin-bottom: spacing.$size-regular !default;
-$form-check-inline-margin-right: spacing.$size-large !default;
+tokens.$default-map: utilities.$post-spacing;
+
+$form-check-row-gap: tokens.get('utility-gap-12') !default;
+$form-check-column-gap: tokens.get('utility-gap-8') !default;
+$form-check-margin-bottom: tokens.get('utility-gap-16') !default;
+$form-check-inline-margin-right: tokens.get('utility-gap-24') !default;
 $form-check-input-size: 1.375rem !default;
-$form-check-input-size-sm: spacing.$size-regular !default;
+$form-check-input-size-sm: tokens.get('utility-gap-16') !default;
 $form-check-input-border-width: forms.$input-border-width !default;
 $form-check-input-focus-box-shadow: forms.$input-focus-box-shadow !default;
 $form-check-input-disabled-svg-border-width: $form-check-input-border-width * 2;

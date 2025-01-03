@@ -96,6 +96,7 @@ slot[name='post-logo'] {
 .title-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: var(--post-core-dimension-4);
   height: var(--main-header-height);
   background: var(--post-core-color-brand-white);
@@ -110,6 +111,10 @@ slot[name='post-logo'] {
     z-index: 1;
     inset-block-start: var(--global-header-height);
     padding-inline: var(--post-core-dimension-8) var(--post-core-dimension-16);
+
+    &.title-header-mobile-extended {
+      border-bottom: 1px solid var(--post-core-color-sandgrey-012);
+    }
   }
 }
 

@@ -42,6 +42,9 @@ tokens.$default-map: components.$post-search-input;
     .search-button {
       post-icon {
         color: tokens.get('input-color-hover-fg', components.$post-text-input);
+        @include utilities.high-contrast-mode() {
+          color: Highlight;
+        }
       }
     }
   }
