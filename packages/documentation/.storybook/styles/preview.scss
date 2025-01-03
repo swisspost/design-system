@@ -61,7 +61,8 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
   .sbdocs-content .container {
     // Support for autolink-headings
-    :is(h1, h2, h3, h4, h5, h6) {
+    .docs-title :is(h1, h2, h3, h4, h5, h6),
+    > :is(h1, h2, h3, h4, h5, h6) {
       position: relative;
 
       @media (hover: hover) {
