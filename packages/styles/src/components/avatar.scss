@@ -25,6 +25,7 @@ button {
     post-avatar {
       --post-avatar-bg: #{tokens.get('avatar-hover-bg')};
       --post-avatar-fg: #{tokens.get('avatar-hover-fg')};
+      border-color: tokens.get('avatar-hover-bg');
 
       @include utilities.high-contrast-mode() {
         border-color: Highlight !important;
