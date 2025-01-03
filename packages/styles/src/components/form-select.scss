@@ -69,7 +69,7 @@ tokens.$default-map: components.$post-select;
         background-image: forms-fx.select-arrow-icon('hover');
 
         @include utilities.high-contrast-mode {
-          background-image: forms-fx.select-arrow-icon('hover-hcm', $mode: dark) !important;
+          background-image: forms-fx.select-arrow-icon('hover-hcm', $mode: dark);
         }
       }
 
