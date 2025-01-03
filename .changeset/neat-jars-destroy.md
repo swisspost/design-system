@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Updated invalid and valid icons in form fields for consistency.
+Uniformized valid and invalid icons throughout form elements for consistency.

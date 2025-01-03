@@ -50,19 +50,3 @@
 
   @return $state;
 }
-
-@function encode-color($color) {
-  @return utilities.replace($color, '#', '%23');
-}
-
-@function valid-icon($color) {
-  $encoded-color: encode-color($color);
-  $icon: utilities.replace(forms.$valid-icon, '%23107800', $encoded-color);
-  @return $icon;
-}
-
-@function invalid-icon($color) {
-  $encoded-color: encode-color($color);
-  $icon: utilities.replace(forms.$invalid-icon, '%23B20000', $encoded-color);
-  @return $icon;
-}

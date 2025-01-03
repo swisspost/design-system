@@ -2,7 +2,6 @@
 @use './../variables/components/forms';
 @use './../mixins/utilities';
 @use './../functions/icons';
-@use './../functions/forms' as forms-fx;
 @use './../functions/utilities' as utilities-fx;
 
 // Placeholder in input fields
@@ -34,26 +33,26 @@
 // Used on form elements to set the correct colored validation icon
 @mixin validation-icons() {
   &.is-valid:not(:disabled) {
-    background-image: forms.$valid-icon;
+    background-image: url('#{icons.get-colored-svg-url('success', #107800)}');
 
     @include utilities.high-contrast-mode-dark() {
-      background-image: forms-fx.valid-icon('#e0e0e0');
+      background-image: url('#{icons.get-colored-svg-url('success', #e0e0e0)}');
     }
 
     @include utilities.high-contrast-mode-light() {
-      background-image: forms-fx.valid-icon('#333333');
+      background-image: url('#{icons.get-colored-svg-url('success', #333333)}');
     }
   }
 
   &.is-invalid:not(:disabled) {
-    background-image: forms.$invalid-icon;
+    background-image: url('#{icons.get-colored-svg-url('warning', #b20000)}');
 
     @include utilities.high-contrast-mode-dark() {
-      background-image: forms-fx.invalid-icon('#e0e0e0');
+      background-image: url('#{icons.get-colored-svg-url('warning', #e0e0e0)}');
     }
 
     @include utilities.high-contrast-mode-light() {
-      background-image: forms-fx.invalid-icon('#333333');
+      background-image: url('#{icons.get-colored-svg-url('warning', #333333)}');
     }
   }
 }
