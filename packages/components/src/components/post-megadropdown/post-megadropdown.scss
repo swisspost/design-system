@@ -133,7 +133,7 @@ post-popovercontainer {
         font-weight: 900;
 
         &:not(:has(a)) {
-          padding: 15px 12px 14px 0;
+          padding: 15px 12px 14px 8px;
           border-bottom: 1px solid #050400;
         }
 
@@ -144,6 +144,7 @@ post-popovercontainer {
           text-decoration: none;
           font-size: inherit;
           display: flex;
+          align-items: center;
           justify-content: space-between;
           min-height: 53px;
 
@@ -154,7 +155,7 @@ post-popovercontainer {
         }
 
         @include media.max(lg) {
-          font-size: 16px;
+          font-size: 1rem;
 
           &:not(:has(a)) {
             padding: 15px 12px 14px 8px;
@@ -179,8 +180,12 @@ post-popovercontainer {
         border-block-width: 0;
       }
 
+      @include media.min(lg) {
+        font-size: 1.25rem;
+      }
+
       @include media.max(lg) {
-        padding-block: 12px 12px;
+        padding-block: 12px 11px;
       }
     }
   }
