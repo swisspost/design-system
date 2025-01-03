@@ -24,7 +24,7 @@ export class MigrationV67Component extends LitElement {
         <a
           aria-hidden="true"
           tabindex="-1"
-          href="/?path=/docs/c23b1d0b-76b3-4e38-aa76-b10c29bb873f--docs#migration-from-v6-to-v7"
+          href="#migration-from-v6-to-v7"
         >
           <post-icon name="2037"></post-icon>
         </a>
