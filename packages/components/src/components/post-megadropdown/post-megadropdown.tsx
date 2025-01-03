@@ -56,6 +56,7 @@ export class PostMegadropdown {
     if (this.popoverRef) {
       await this.popoverRef.show(target);
       this.animationClass = 'slide-in';
+      this.getPostListItems()
     } else {
       console.error('show: popoverRef is null or undefined');
     }
@@ -86,6 +87,11 @@ export class PostMegadropdown {
     if (!megadropdown.contains(relatedTarget)) {
       this.hide();
     }
+  }
+
+  private getPostListItems(): NodeListOf<HTMLElement> {
+    console.log(this.host.querySelectorAll('post-list-item'));
+    return this.host.querySelectorAll('post-list-item');
   }
 
   render() {
