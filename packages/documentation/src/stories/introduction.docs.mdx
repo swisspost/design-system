@@ -1,0 +1,116 @@
+import { Meta } from '@storybook/blocks';
+import * as IntroductionStories from './introduction.stories';
+import { Feature } from './introduction.blocks';
+import { packages } from '@/shared/packages.data';
+import './introduction.styles.scss';
+import '@/shared/tile/tile.component';
+import { technologies } from './introduction.data';
+
+<Meta of={IntroductionStories} />
+
+<div className="mt-56 text-center">
+  <h2 className="h3">Packages &amp; Resources</h2>
+  <ul className="mt-32 tile-wrapper" role="list">
+    {packages.map(p => (
+      <li key={p.name}>
+        <ti-le title={p.name} href={p.link.github.href} ariaLabel={p.link.github.ariaLabel}>
+          <img src={p.img.src} alt={p.img.alt} />
+          <span>{p.version}</span>
+        </ti-le>
+      </li>
+    ))}
+  </ul>
+  <div className="mt-16 mb-16 d-flex gap-8 flex-wrap justify-content-center">
+    <div className="mt-32 mb-16 w-full">
+      <a
+        className="btn btn-primary btn-lg"
+        href="/?path=/docs/dfc70c3b-4726-406b-8a41-af5738c89d05--docs"
+      >
+        Get started
+      </a>
+    </div>
+    <a
+      href="https://www.experience-hub.ch/document/2803"
+      rel="noopener"
+      className="btn btn-secondary"
+    >
+      <span>
+        Experience Hub<sup>1</sup>
+      </span>
+    </a>
+    <a
+      href="https://www.figma.com/files/1052961410179009444/project/45002065/Web"
+      rel="noopener"
+      className="btn btn-secondary"
+    >
+      <span>
+        Figma<sup>2</sup>
+      </span>
+    </a>
+    <a
+      href="https://fonts.post.ch/frutigerneueforpost/#/"
+      rel="noopener"
+      className="btn btn-secondary"
+    >
+      <span>Frutiger Neue For Post</span>
+    </a>
+    <a
+      href="https://github.com/swisspost/design-system"
+      rel="noopener"
+      className="btn btn-secondary"
+    >
+      <span>GitHub</span>
+    </a>
+  </div>
+  <p className="mb-0 fs-tiny lh-tiny"><sup>1</sup> Login required. Get access with your post account, or use the registration form on the login page.<br /><sup>2</sup> Login required. Get access with your post account, or click <a href="mailto:ux@post.ch?subject=I need access to Figma&body=Hello%2C%20I%20need%20access%20to%20Figma%20%0A%E2%80%A2%20%20Project%20name%3A%20%0A%E2%80%A2%20Project%20Owner%20at%20the%20Post%20Office%20%28email%29%3A%20%0A%E2%80%A2%20Project%20Start%20Date%3A%20%0A%E2%80%A2%20Email%20address%20to%20be%20authorized%3A%20">here</a>.</p>
+</div>
+
+<div className="mt-56 py-56 light-section text-center">
+  <h2 className="h3 mb-32">Features</h2>
+
+  <div className="row g-0">
+    <div className="col-md-4">
+      <Feature icon="3194" title="Consistent">
+        <p>Consistent styles for all elements and components</p>
+      </Feature>
+    </div>
+    <div className="col-md-4">
+      <Feature icon="2077" title="Responsive">
+        <p>Mobile first responsive layout</p>
+      </Feature>
+    </div>
+    <div className="col-md-4">
+      <Feature icon="2097" title="Modular">
+        <p>Import only the features that you need</p>
+      </Feature>
+    </div>
+    <div className="col-md-4">
+      <Feature icon="2136" title="Accessible">
+        <p>Following the <a href="https://www.w3.org/TR/WCAG21/" rel="noopener">WCAG 2.1</a> guidelines</p>
+      </Feature>
+    </div>
+    <div className="col-md-4">
+      <Feature icon="2483" title="Modern">
+        <p>Using modern web standards like framework agnostic web components</p>
+      </Feature>
+    </div>
+    <div className="col-md-4">
+      <Feature icon="2444" title="Open Source">
+        <p>Published on <a href="https://github.com/swisspost/design-system" rel="noopener">GitHub</a> under the <a href="https://github.com/swisspost/design-system/blob/main/LICENSE" rel="noopener">Apache 2.0 license</a></p>
+      </Feature>
+    </div>
+  </div>
+</div>
+
+<div className="mt-56 text-center">
+  <h2 className="h3 mb-32">Technologies</h2>
+
+  <div className="tile-wrapper">
+    {technologies.map(t => (
+      <ti-le href={t.href} key={t.name}>
+        <img src={t.img.src} alt={t.img.alt}/>
+        <span>{t.name}</span>
+      </ti-le>
+    ))}
+  </div>
+</div>

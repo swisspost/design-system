@@ -1,0 +1,60 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as CardStories from './card.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={CardStories} />
+
+<div className="docs-title">
+  # Card
+
+  <nav>
+    <link-design of={JSON.stringify(CardStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  Cards provide a flexible and extensible content container with multiple variants and options.
+</div>
+
+Built with flexbox, they offer easy alignment and mix well with other components.
+
+They have no fixed width to start, so they’ll naturally fill the full width of its parent element.
+This is easily customizable using the grid for example,
+for more details read our [grid docs](/?path=/docs/7240f2ef-216a-490e-9bd8-c0cef19f7b31--docs).
+
+<Canvas sourceState="shown" of={CardStories.Default} />
+<div className="hide-col-default">
+  <Controls of={CardStories.Default} />
+</div>
+
+<StylesPackageImport components={['card']} />
+
+## Examples
+
+### Custom Content
+
+Cards support a wide variety of content, including images, text, links, and more.
+This applies to the body of the card as well as its header and footer.
+
+<Canvas of={CardStories.CustomContent} />
+
+### List Group
+
+Create lists of content in a card by simply using a flush list group in place of the card body.
+
+<Canvas of={CardStories.ListGroup} />
+
+### Card Group
+
+Use card groups to render cards as a single, attached element with equal width and height columns.
+
+<Canvas of={CardStories.CardGroup} />
+
+### Bad example
+
+<div className="banner banner-danger mb-16">
+  Never use text with a background image because you can't ensure it is readable by everyone for all
+  languages and browser sizes.
+</div>
+
+<Canvas of={CardStories.BackgroundImage} />

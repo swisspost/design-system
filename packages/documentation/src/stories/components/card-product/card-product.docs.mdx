@@ -1,0 +1,64 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import {
+  PostBanner,
+  PostTabHeader,
+  PostTabPanel,
+  PostTabs,
+} from '@swisspost/design-system-components-react';
+import * as ProductCardStories from './card-product.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import ProductCardSyncHeights from './card-product.sample.js?raw';
+import ProductCardAngularSyncHeights from './card-product.sample.ts?raw';
+
+<Meta of={ProductCardStories} />
+
+<div className="docs-title">
+  # Card for Products
+
+  <nav>
+    <link-design of={JSON.stringify(ProductCardStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  Highlight essential product details and provide an entry point to access in-depth information.
+</div>
+
+<Canvas sourceState="shown" of={ProductCardStories.Default} />
+<div className="hide-col-default">
+  <Controls of={ProductCardStories.Default} />
+</div>
+
+<StylesPackageImport components={['card', 'product-card']} />
+
+## Examples
+
+### Product Card Group
+
+For organizing multiple product cards in a group, utilize the [grid system](/?path=/docs/7240f2ef-216a-490e-9bd8-c0cef19f7b31--docs).
+Ensure consistent height by applying the `.h-full` class to all product cards.
+
+<Canvas of={ProductCardStories.Groupped} />
+
+### Multi-part Product Cards
+
+For presenting a collection of products with comparable features, use cards with multiple sections, as illustrated in the example below.
+
+<PostBanner type="info">
+  Note that this layout necessitates JavaScript implementation to ensure consistent section heights
+  across all cards.
+</PostBanner>
+
+<Canvas of={ProductCardStories.Multipart} />
+
+<PostTabs>
+  <PostTabHeader panel="javascript">Vanilla JavaScript</PostTabHeader>
+  <PostTabPanel name="javascript">
+    <Source code={ProductCardSyncHeights} language="js"/>
+  </PostTabPanel>
+
+  <PostTabHeader panel="angular">Angular Implementation</PostTabHeader>
+  <PostTabPanel name="angular">
+    <Source code={ProductCardAngularSyncHeights} language="typescript"/>
+  </PostTabPanel>
+</PostTabs>

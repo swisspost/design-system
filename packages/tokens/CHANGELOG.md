@@ -1,5 +1,17 @@
 # @swisspost/design-system-tokens
 
+## 9.0.0-next.9
+
+## 9.0.0-next.8
+
+## 9.0.0-next.7
+
+## 9.0.0-next.6
+
+### Minor Changes
+
+- Export new SASS maps for Post and Cargo palettes, directly linking to the raw color values for both light and dark color schemes. (by [@alizedebray](https://github.com/alizedebray) with [#3992](https://github.com/swisspost/design-system/pull/3992))
+
 ## 9.0.0-next.5
 
 ## 9.0.0-next.4

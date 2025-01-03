@@ -1,0 +1,168 @@
+@forward './../variables/options';
+
+@use '../variables/color';
+@use '../variables/commons';
+@use '../variables/type';
+@use '../variables/spacing';
+@use '../variables/animation';
+@use '../variables/components/form-check';
+@use '../mixins/color' as color-mx;
+@use '../mixins/icons' as icons-mx;
+@use '../mixins/utilities' as utility-mx;
+@use '../tokens/components';
+@use '../tokens/helpers';
+@use '../functions/tokens';
+
+.form-check {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  width: fit-content;
+  border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+
+  &-inline {
+    display: inline-flex;
+    vertical-align: top;
+
+    fieldset > & {
+      &:not(:last-of-type) {
+        margin-right: form-check.$form-check-inline-margin-right;
+      }
+    }
+  }
+
+  &:has(> input:not(:only-child)) {
+    @include utility-mx.focus-style();
+
+    > input {
+      @include utility-mx.focus-style-none();
+    }
+  }
+
+  &:has(input[type='checkbox']):not(.form-switch) {
+    padding-block: tokens.get('checkbox-padding-block-single', components.$post-checkbox);
+
+    fieldset > & {
+      &:not(:last-of-type) {
+        margin-bottom: tokens.get('checkbox-gap-block-group', components.$post-checkbox);
+      }
+    }
+
+    > input[type='checkbox'] {
+      ~ label {
+        padding-block: tokens.get('checkbox-label-padding-block', components.$post-checkbox);
+        padding-inline-start: tokens.get(
+          'checkbox-gap-inline-text-start',
+          components.$post-checkbox
+        );
+        color: tokens.get('checkbox-enabled-fg', components.$post-checkbox);
+      }
+
+      &:not([disabled]) {
+        ~ label {
+          cursor: pointer;
+        }
+
+        &:hover ~ label {
+          color: tokens.get('checkbox-hover-fg', components.$post-checkbox);
+
+          @include utility-mx.high-contrast-mode() {
+            color: Highlight;
+          }
+        }
+      }
+
+      &[disabled] ~ label {
+        color: tokens.get('checkbox-disabled-fg', components.$post-checkbox);
+
+        @include utility-mx.high-contrast-mode() {
+          color: GrayText;
+        }
+      }
+    }
+  }
+
+  &.form-switch {
+    > input[type='checkbox'] {
+      ~ label {
+        color: tokens.get('switch-text-enabled-fg', components.$post-switch);
+      }
+
+      &:not([disabled]) {
+        ~ label {
+          cursor: pointer;
+        }
+
+        &:hover ~ label {
+          color: tokens.get('switch-text-enabled-fg', components.$post-switch);
+
+          @include utility-mx.high-contrast-mode() {
+            color: Highlight;
+          }
+        }
+      }
+
+      &[disabled] ~ label {
+        color: tokens.get('switch-text-disabled-fg', components.$post-switch);
+        @include utility-mx.high-contrast-mode() {
+          color: GrayText;
+        }
+      }
+    }
+  }
+
+  &:has(input[type='radio']) {
+    padding-block: tokens.get('radio-button-padding-block-single', components.$post-radio-button);
+
+    fieldset > & {
+      &:not(:last-of-type) {
+        margin-bottom: tokens.get('radio-button-gap-block-group', components.$post-radio-button);
+      }
+    }
+
+    > input[type='radio'] {
+      ~ label {
+        padding-block: tokens.get(
+          'radio-button-label-padding-block',
+          components.$post-radio-button
+        );
+        padding-inline-start: tokens.get(
+          'radio-button-gap-inline-text-start',
+          components.$post-radio-button
+        );
+        color: tokens.get('radio-button-enabled-fg', components.$post-radio-button);
+      }
+
+      &:not([disabled]) {
+        ~ label {
+          cursor: pointer;
+        }
+
+        &:hover ~ label {
+          color: tokens.get('radio-button-hover-fg', components.$post-radio-button);
+
+          @include utility-mx.high-contrast-mode() {
+            color: Highlight;
+          }
+        }
+      }
+
+      &[disabled] ~ label {
+        color: tokens.get('radio-button-disabled-fg', components.$post-radio-button);
+
+        @include utility-mx.high-contrast-mode() {
+          color: GrayText;
+        }
+      }
+    }
+  }
+
+  > label {
+    transition: color #{animation.$transition-base-timing};
+    flex: 1;
+
+    @include utility-mx.high-contrast-mode {
+      transition: none;
+    }
+  }
+}

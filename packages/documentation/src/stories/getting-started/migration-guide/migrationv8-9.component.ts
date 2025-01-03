@@ -85,3 +85,4 @@ export class MigrationV89Component extends LitElement {
     return html` ${this.angular ? _templateAutoIcon() : nothing} `;
   }
 }
+

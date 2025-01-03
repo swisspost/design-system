@@ -1,4 +1,5 @@
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/variables/animation';
 
 *,
 ::before,
@@ -8,11 +9,24 @@
 
 :host {
   --global-header-height: 72px;
+  --global-header-minimal-height: 24px;
   --main-header-height: 56px;
   --header-height: calc(var(--global-header-height) + var(--main-header-height));
 
+  @include media.min(lg) {
+    display: block;
+    position: sticky;
+    inset-inline: 0;
+    inset-block-start: calc(
+      -1 * (var(--global-header-height) + var(--main-header-height) -
+            var(--global-header-minimal-height))
+    );
+    box-shadow: var(--post-core-elevation-3);
+  }
+
   @include media.max(lg) {
     --global-header-height: 64px;
+    --main-header-height: 48px;
   }
 }
 
@@ -30,17 +44,17 @@
   justify-content: space-between;
   align-items: center;
   position: sticky;
-  padding-inline-start: 4px;
-  padding-inline-end: 12px;
-
+  padding-inline: var(--post-core-dimension-4);
   height: var(--global-header-height);
+  z-index: 1;
 
   @include media.max(lg) {
-    top: 0;
+    inset-block-start: 0;
   }
 
   @include media.min(lg) {
-    top: calc((var(--global-header-height) - 24px) * -1);
+    padding-inline-end: var(--post-core-dimension-12);
+    top: calc((var(--global-header-height) - var(--global-header-minimal-height)) * -1);
   }
 }
 
@@ -51,7 +65,7 @@ slot[name='post-logo'] {
 .global-sub {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: var(--post-core-dimension-24);
   height: var(--global-header-height);
 }
 
@@ -63,7 +77,7 @@ slot[name='post-logo'] {
   flex: 1 0 auto;
   height: var(--global-header-height);
   width: var(--global-header-height);
-  min-height: 24px;
+  min-height: var(--global-header-minimal-height);
   align-self: flex-end;
 
   @include media.min(lg) {
@@ -79,58 +93,94 @@ slot[name='post-logo'] {
   gap: 1rem;
 }
 
-.title-header,
-.main-navigation {
-  display: flex;
-  align-items: center;
-  padding-inline: 12px;
-  background: white;
-}
-
 .title-header {
-  height: var(--main-header-height);
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: var(--post-core-dimension-4);
+  height: var(--main-header-height);
+  background: var(--post-core-color-brand-white);
+
+  @include media.min(lg) {
+    padding: var(--post-core-dimension-18) var(--post-core-dimension-16)
+      var(--post-core-dimension-4) var(--post-core-dimension-12);
+  }
 
   @include media.max(lg) {
-    border-bottom: 1px solid black;
+    position: sticky;
+    z-index: 1;
+    inset-block-start: var(--global-header-height);
+    padding-inline: var(--post-core-dimension-8) var(--post-core-dimension-16);
+
+    &.title-header-mobile-extended {
+      border-bottom: 1px solid var(--post-core-color-sandgrey-012);
+    }
   }
 }
+
 :host(:not(:has([slot='title']))) .title-header {
   display: none;
 }
 
 ::slotted(h1) {
   margin: 0 !important;
-  font-size: 28px !important;
-}
-
-.main-navigation {
-  position: sticky;
-  top: 24px;
-  height: var(--main-header-height);
 
   @include media.min(lg) {
-    border-bottom: 1px solid black;
+    font-size: var(--post-core-font-size-28) !important;
   }
 
   @include media.max(lg) {
-    display: none;
-    position: absolute;
-    top: var(--header-height);
-    bottom: 0;
-    width: 100%;
-    background-color: white;
-    height: auto;
-
-    &.extended {
-      display: block;
-    }
+    font-size: var(--post-core-font-size-20) !important;
   }
 }
 
 .mobile-toggle {
   @include media.min(lg) {
     display: none;
+  }
+}
+
+.navigation {
+  background: var(--post-core-color-brand-white);
+
+  @include media.min(lg) {
+    position: sticky;
+    z-index: 1;
+    inset-block-start: var(--global-header-minimal-height);
+  }
+}
+
+// only for tablet and mobile
+@include media.max(lg) {
+  .navigation {
+    position: fixed;
+    inset-inline: 0;
+    inset-block-end: calc(100vh - var(--header-height));
+    box-shadow: var(--post-core-elevation-3);
+    min-height: var(--post-core-dimension-10); // needed for the box-shadow to always show
+    max-height: calc(100vh - var(--header-height));
+    overflow: auto;
+  }
+
+  ::slotted(post-mainnavigation),
+  .navigation-footer {
+    display: none;
+    flex-direction: column;
+    padding-block: var(--post-core-dimension-16) var(--post-core-dimension-24);
+    padding-inline: var(--post-core-dimension-32);
+
+    .navigation.extended & {
+      display: flex;
+    }
+  }
+
+  ::slotted(post-mainnavigation) {
+    background-color: var(--post-core-color-sandgrey-002);
+    gap: var(--post-core-dimension-32);
+  }
+
+  .navigation-footer {
+    background-color: var(--post-core-color-sandgrey-006);
+    gap: var(--post-core-dimension-24);
   }
 }

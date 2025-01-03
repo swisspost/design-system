@@ -7,6 +7,7 @@
 @use './../mixins/forms' as form-mixins;
 @use './../mixins/button' as button-mixins;
 
+@use './../variables/type';
 @use './../variables/color';
 @use './../variables/components/forms';
 @use './../variables/components/button';
@@ -74,7 +75,9 @@
   }
 
   .form-control {
-    @include form-mixins.form-rg;
+    padding: forms.$input-padding-y-rg forms.$input-padding-x-rg;
+    font-size: type.$font-size-regular;
+    line-height: forms.$input-line-height-rg;
   }
 }
 
@@ -90,15 +93,13 @@ ngb-timepicker {
       }
     }
 
-    ~ .invalid-feedback,
-    ~ .invalid-tooltip {
+    ~ .invalid-feedback {
       display: block;
     }
   }
 
   &.ng-valid {
-    ~ .valid-feedback,
-    ~ .valid-tooltip {
+    ~ .valid-feedback {
       display: block;
     }
   }

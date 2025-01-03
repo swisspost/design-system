@@ -3,18 +3,21 @@
 @use '../variables/spacing';
 @use '../variables/components/forms';
 @use '../variables/components/form-check';
-@use '../mixins/utilities';
+@use '../mixins/utilities' as utilities-mx;
+@use '../functions/tokens';
+@use '../tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 /*
 * There are a whole bunch of !important statments in this file.
 * They are necessary and should not be removed, because we need to override the .form-check styles here.
 */
-
 fieldset {
   .radio-button-card,
   .checkbox-button-card {
     &:not(:last-child) {
-      margin-bottom: spacing.$size-regular;
+      margin-bottom: tokens.get('utility-gap-16');
     }
   }
 }
@@ -29,40 +32,48 @@ fieldset {
 
   display: grid;
   grid-template: 'input label icon' 'input content content' / min-content auto min-content;
-  gap: 0 spacing.$size-mini;
+  align-items: center;
+  gap: 0 tokens.get('utility-gap-8');
   position: relative;
-  padding: spacing.$size-regular;
+  padding: tokens.get('utility-gap-16');
   width: 100%;
   background-color: var(--post-card-control-bg);
-  border: spacing.$size-line solid var(--post-card-control-border-color);
+  border: tokens.get('utility-gap-2') solid var(--post-card-control-border-color);
   border-radius: commons.$border-radius;
   color: var(--post-card-control-color);
   cursor: pointer;
 
-  input.form-check-input[type] {
+  > input {
     grid-area: input;
     position: relative;
     z-index: 2;
-    margin: spacing.$size-micro 0;
+    margin: tokens.get('utility-gap-4') 0;
     background-color: var(--post-card-control-input-bg) !important;
     border-color: var(--post-card-control-input-border-color) !important;
     color: var(--post-card-control-input-border-color) !important;
     cursor: inherit;
     transition: none;
 
+    @include utilities-mx.focus-style-none();
+
+    &:hover:not([disabled]) ~ label {
+      color: var(--post-contrast-color);
+      background-color: transparent !important;
+    }
+
     &:focus,
     &:focus-visible {
       box-shadow: none;
     }
 
-    ~ label.form-check-label {
+    ~ label {
       color: inherit !important;
     }
   }
 
-  label.form-check-label {
+  label {
     grid-area: label;
-    margin: spacing.$size-micro 0;
+    margin: tokens.get('utility-gap-4') 0;
     padding: 0;
     border-radius: inherit;
     transition: none;
@@ -71,7 +82,7 @@ fieldset {
       display: block;
       content: '';
       position: absolute;
-      inset: spacing.$size-line * -1;
+      inset: calc(tokens.get('utility-gap-2') * -1);
       border-radius: inherit;
     }
 
@@ -93,8 +104,8 @@ fieldset {
 
   post-icon {
     grid-area: icon;
-    width: spacing.$size-big;
-    height: spacing.$size-big;
+    width: tokens.get('utility-gap-32');
+    height: tokens.get('utility-gap-32');
     pointer-events: none;
   }
 
@@ -131,27 +142,25 @@ fieldset {
     --post-card-control-input-bg: transparent;
 
     border-style: dashed;
-    text-decoration: line-through;
     cursor: default;
 
     input.form-check-input[type] {
-      border: 0 none;
-      padding: form-check.$form-check-input-border-width;
+      padding: forms.$input-border-width;
     }
   }
 
-  @include utilities.high-contrast-mode() {
+  @include utilities-mx.high-contrast-mode() {
     --post-card-control-border-color: FieldText;
     --post-card-control-bg: Field;
     --post-card-control-color: FieldText;
     --post-card-control-input-border-color: FieldText;
     --post-card-control-input-bg: Field;
 
-    outline: spacing.$size-line solid Field;
-    outline-offset: spacing.$size-line * -2;
+    outline: tokens.get('utility-gap-2') solid Field;
+    outline-offset: calc(tokens.get('utility-gap-2') * -2);
 
     input.form-check-input[type] {
-      outline: spacing.$size-line solid Field;
+      outline: tokens.get('utility-gap-2') solid Field;
       background-color: Field !important;
 
       &::after {
@@ -168,7 +177,7 @@ fieldset {
       &:where(:has(input:checked), .checked) {
         --post-card-control-border-color: FieldText;
         --post-card-control-bg: SelectedItem;
-        --post-card-control-color: SelectedItemText;
+        --post-card-control-color: FieldText;
         --post-card-control-input-border-color: FieldText;
 
         input.form-check-input[type] {
@@ -204,7 +213,7 @@ fieldset {
           display: block;
           content: '';
           position: absolute;
-          inset: spacing.$size-line;
+          inset: tokens.get('utility-gap-2');
           background-color: SelectedItem;
           z-index: 1;
         }
@@ -281,7 +290,7 @@ fieldset {
         --post-card-control-input-bg: transparent;
       }
 
-      @include utilities.high-contrast-mode() {
+      @include utilities-mx.high-contrast-mode() {
         --post-card-control-border-color: FieldText;
         --post-card-control-bg: Field;
         --post-card-control-color: FieldText;

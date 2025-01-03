@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { IconButton, WithTooltip } from '@storybook/components';
 
-const THEMES = ['Post'] as const;
+const THEMES = ['Post', 'Cargo'] as const;
 const CHANNELS = ['External', 'Internal'] as const;
 const SCHEMES = ['Light', 'Dark'] as const;
 
@@ -14,18 +14,6 @@ const getStylesheetUrl = (theme: string, channel: string) => {
 const possibleStylesheets = THEMES.flatMap(theme => {
   return CHANNELS.map(channel => getStylesheetUrl(theme, channel));
 });
-
-/*
- * Backgrounds
- */
-const backgroundClasses: { [key in (typeof SCHEMES)[number]]: string } = {
-  Light: 'bg-white',
-  Dark: 'bg-dark',
-};
-const getBackgroundClass = (scheme: string) => {
-  return scheme in backgroundClasses ? backgroundClasses[scheme] : '';
-};
-const possibleBackgrounds = SCHEMES.map(scheme => getBackgroundClass(scheme));
 
 /*
  * Local storage access
@@ -60,6 +48,7 @@ function StylesSwitcher() {
 
   const [preview, setPreview] = useState<Document>();
   const [stories, setStories] = useState<NodeListOf<Element>>();
+  const [stylesCodeBlocks, setStylesCodeBlocks] = useState<NodeListOf<Element>>();
 
   /**
    * Retrieves the preview document after the first rendering
@@ -83,6 +72,7 @@ function StylesSwitcher() {
     observer = new MutationObserver(
       debounce(() => {
         setStories(preview.querySelectorAll('.sbdocs-preview, .sb-main-padded'));
+        setStylesCodeBlocks(preview.querySelectorAll('.docblock-source'));
       }, 200),
     );
 
@@ -107,15 +97,54 @@ function StylesSwitcher() {
   }, [preview, currentTheme, currentChannel]);
 
   /**
+   * Sets the design system styles import SCSS file to the correct theme and channel file
+   */
+  useEffect(() => {
+    if (!stylesCodeBlocks) return;
+
+    const t = currentTheme.toLowerCase();
+    const c = currentChannel.toLowerCase();
+    const packageName = "'@swisspost/design-system-styles/";
+
+    stylesCodeBlocks.forEach(stylesCodeBlock => {
+      const sourceArray = Array.from(stylesCodeBlock.querySelectorAll('.token.string'));
+      sourceArray.forEach((s, i) => {
+        let source = s.innerHTML;
+        // Remove the packageName from the source to make sure we don't override it
+        source = source.replace(packageName, '');
+
+        // Check if one of the themes or channels are in the scss path
+        let theme = THEMES.find(tItem => source.indexOf(tItem.toLowerCase()) > -1);
+        let channel = CHANNELS.find(cItem => source.indexOf(cItem.toLowerCase()) > -1);
+
+        const updateTheme = theme && theme.toLowerCase() !== t;
+        const updateChannel = channel && channel.toLowerCase() !== c;
+
+        // Only change the source if theme or channel needs to be changed
+        if (source && (updateTheme || updateChannel)) {
+          if (updateTheme) {
+            source = source.replace((theme as string).toLowerCase(), t);
+          }
+
+          if (updateChannel) {
+            source = source.replace((channel as string).toLowerCase(), c);
+          }
+
+          sourceArray[i].innerHTML = packageName + source;
+        }
+      });
+    });
+  }, [stylesCodeBlocks, currentTheme, currentChannel]);
+
+  /**
    * Sets the expected 'data-color-scheme' attribute on all story containers when the scheme changes
    */
   useEffect(() => {
     if (!stories) return;
 
     stories.forEach(story => {
-      story.classList.remove(...possibleBackgrounds);
-      story.classList.add(getBackgroundClass(currentScheme));
       story.setAttribute('data-color-scheme', currentScheme.toLowerCase());
+      if (!story.classList.contains('palette-default')) story.classList.add('palette-default');
     });
   }, [stories, currentScheme]);
 
@@ -189,7 +218,7 @@ function StylesSwitcher() {
         }
       >
         <IconButton className="addon-label" size="medium">
-          Chanel: {currentChannel}
+          Channel: {currentChannel}
         </IconButton>
       </WithTooltip>
 

@@ -27,15 +27,15 @@ export class PostList {
   /**
    * The list can become horizontal by setting `horizontal="true"` or just `horizontal`
    */
-  @Prop() readonly horizontal: boolean = false;
+  @Prop({ reflect: true }) readonly horizontal: boolean = false;
 
-  titleEl: HTMLElement;
+  private titleEl: HTMLElement;
 
   componentWillLoad() {
     /**
      * Get the id set on the host element or use a random id by default
      */
-    this.titleId = `list-${crypto.randomUUID()}`;
+    this.titleId = `title-${this.host.id || crypto.randomUUID()}`;
   }
 
   componentDidLoad() {
@@ -43,7 +43,7 @@ export class PostList {
   }
 
   private checkTitle() {
-    if (!this.titleEl.innerText) {
+    if (!this.titleEl.textContent.trim()) {
       throw new Error(
         'Please provide a title to the list component. Title is mandatory for accessibility purposes.',
       );
