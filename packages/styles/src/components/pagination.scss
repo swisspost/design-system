@@ -5,8 +5,11 @@
 @use './../variables/spacing';
 @use './../variables/commons';
 @use './../variables/icons';
-@use './../mixins/icons' as icon-mixin;
-@use './../mixins/utilities';
+@use './../mixins/icons' as icon-mx;
+@use './../mixins/utilities' as utilities-mx;
+
+@use '../functions/tokens';
+@use '../tokens/utilities';
 
 .pagination {
   .page-item {
@@ -24,12 +27,12 @@
       text-align: center;
       text-decoration: none;
 
-      @include utilities.high-contrast-mode() {
+      @include utilities-mx.high-contrast-mode() {
         &:focus,
         &:focus-within,
         &:focus-visible {
           border-radius: commons.$border-radius;
-          outline: spacing.$size-line solid highlight;
+          outline: tokens.get('utility-gap-2', utilities.$post-spacing) solid highlight;
         }
       }
 
@@ -48,14 +51,14 @@
       &[aria-label='Previous'],
       &[aria-label='Next'] {
         > span {
-          @include icon-mixin.icon(2110);
+          @include icon-mx.icon(2110);
         }
       }
 
       &[aria-label='First'],
       &[aria-label='Last'] {
         > span {
-          @include icon-mixin.icon(2396);
+          @include icon-mx.icon(2396);
         }
       }
 
@@ -79,7 +82,7 @@
       color: pagination.$pagination-active-color;
     }
 
-    @include utilities.high-contrast-mode() {
+    @include utilities-mx.high-contrast-mode() {
       &.active > .page-link {
         background-color: Highlight;
       }

@@ -22,12 +22,12 @@ const meta: MetaComponent = {
       description: 'Select between Google Play and Apple Store badge',
       control: {
         type: 'radio',
+        labels: {
+          'google-play': 'Google Play',
+          'apple-store': 'Apple Store',
+        },
       },
       options: ['google-play', 'apple-store'],
-      labels: {
-        'google-play': 'Google Play',
-        'apple-store': 'Apple Store',
-      },
       table: {
         category: 'General',
       },

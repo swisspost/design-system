@@ -18,12 +18,6 @@ export const LanguageOption: Story = {
     _args: HTMLPostLanguageOptionElement,
     context: StoryContext<HTMLPostLanguageOptionElement>,
   ) => {
-    return schemes(
-      () => html`
-        <div class="d-flex flex-column gap-16" role="list">
-          ${meta.render?.({ ...context.args }, context)}
-        </div>
-      `,
-    );
+    return schemes(() => html` ${meta.render?.({ ...context.args }, context)} `);
   },
 };

@@ -3,16 +3,26 @@
 @use '@swisspost/design-system-styles/mixins/button' as button-mx;
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
+@use '@swisspost/design-system-styles/mixins/media';
 
 tokens.$default-map: components.$post-button;
 
 :host {
   display: block;
+
+  @include media.max(lg) {
+    display: flex !important;
+    gap: 0.5rem;
+  }
 }
 
 .post-language-switch-dropdown-container {
   display: flex;
   flex-direction: column;
+
+  > * {
+    width: 100%;
+  }
 }
 
 .post-language-switch-trigger {
