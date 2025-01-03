@@ -13,6 +13,8 @@
   --main-header-height: 56px;
   --header-height: calc(var(--global-header-height) + var(--main-header-height));
 
+  z-index: 1020;
+
   @include media.min(lg) {
     display: block;
     position: sticky;
@@ -27,6 +29,7 @@
   @include media.max(lg) {
     --global-header-height: 64px;
     --main-header-height: 48px;
+    position: relative;
   }
 }
 
