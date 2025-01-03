@@ -1,3 +1,4 @@
+import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
 
 @Component({
@@ -56,6 +57,12 @@ export class PostMegadropdown {
     if (this.popoverRef) {
       await this.popoverRef.show(target);
       this.animationClass = 'slide-in';
+
+      const megadropdownItems = this.getPostListItems();
+      if (megadropdownItems.length > 0) {
+        // Focus the first item initially
+        megadropdownItems[0].focus();
+      }
     } else {
       console.error('show: popoverRef is null or undefined');
     }
@@ -88,6 +95,14 @@ export class PostMegadropdown {
     }
   }
 
+  private getPostListItems(): HTMLElement[] {
+    const postListItems = Array.from(this.host.querySelectorAll('post-list-item'));
+    const focusableChildren = postListItems.flatMap(el => Array.from(getFocusableChildren(el)));
+
+    return focusableChildren;
+  }
+
+
   render() {
     return (
       <Host>
@@ -98,15 +113,15 @@ export class PostMegadropdown {
           ref={el => (this.popoverRef = el)}
         >
           <div class="megadropdown" onFocusout={e => this.handleFocusout(e)}>
+            <slot name="megadropdown-title"></slot>
+            <div class="megadropdown-content">
+              <slot></slot>
+            </div>
             <div onClick={() => this.handleBackButtonClick()} class="back-button">
               <slot name="back-button"></slot>
             </div>
             <div onClick={() => this.handleCloseButtonClick()} class="close-button">
               <slot name="close-button"></slot>
-            </div>
-            <slot name="megadropdown-title"></slot>
-            <div class="megadropdown-content">
-              <slot></slot>
             </div>
           </div>
         </post-popovercontainer>
