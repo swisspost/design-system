@@ -69,4 +69,6 @@ $utilities: map.remove($utilities, 'overflow');
 $utilities: map.remove($utilities, 'overflow-x');
 $utilities: map.remove($utilities, 'overflow-y');
 
+$utilities: map.remove($utilities, 'shadow');
+
 @import 'bootstrap/scss/utilities/api';

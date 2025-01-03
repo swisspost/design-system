@@ -1,0 +1,15 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import * as ShadowStories from './shadow.stories';
+
+<Meta of={ShadowStories} />
+
+# Shadow
+
+<div className="lead">The shadow property controls an element's box shadow.</div>
+
+Available values are the following: `.shadow`, `.shadow-sm`, `.shadow-lg` and `.shadow-none`.
+
+<Canvas sourceState="shown" of={ShadowStories.Default} />
+<div className="hide-col-default">
+  <Controls of={ShadowStories.Default} />
+</div>
