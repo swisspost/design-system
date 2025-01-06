@@ -1,0 +1,54 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as GutterStories from './gutters.stories';
+
+export const firstBreakpoint = Object.values(GutterStories.SCSS_VARIABLES.firstBreakpoint)[0];
+export const breakpoints = Object.values(GutterStories.SCSS_VARIABLES.breakpoints).map(
+  (breakpoint, i, arr) => [breakpoint, i !== arr.length - 1],
+);
+
+<Meta of={GutterStories} />
+
+# Gutters
+
+Gutters are the spaces between column content in grid elements (e.g., `.row`, `.col`, `.col-*`). They are implemented by applying an inline-padding to each column, along with matching negative margins to offset the padding at the row's edges.
+
+## Horizontal gutters
+
+`.gx-{size}` classes can be used to set the horizontal gutters within the columns (`.col`) of a `.row`.
+
+### Example
+
+<Canvas sourceState="shown" of={GutterStories.HorizontalGutters} />
+<div className="hide-col-default">
+  <Controls of={GutterStories.HorizontalGutters} />
+</div>
+
+## Vertical gutters
+
+`.gy-{size}` classes can be used to set the vertical gutter width when a `.row` wraps to new lines.
+
+### Example
+
+<Canvas sourceState="shown" of={GutterStories.VerticalGutters} />
+<div className="hide-col-default">
+  <Controls of={GutterStories.VerticalGutters} />
+</div>
+
+## Horizontal and vertical gutters
+
+`.g-{size}` classes can be used to set both the horizontal and vertical gutter widths.
+
+### Example
+
+<Canvas sourceState="shown" of={GutterStories.GeneralGutters} />
+<div className="hide-col-default">
+  <Controls of={GutterStories.GeneralGutters} />
+</div>
+
+## Relative to breakpoints
+
+Breakpoint-specific classes allow precise control of horizontal, vertical, and general gutters at various screen sizes.
+
+- `.gx-{breakpoint}-{size}` (e.g. gx-lg-2s4)
+- `.gy-{breakpoint}-{size}` (e.g. gy-sm-32)
+- `.g-{breakpoint}-{size}` (e.g. g-md-12)

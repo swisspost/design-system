@@ -1,0 +1,32 @@
+@use 'sass:color';
+@use '@swisspost/design-system-styles/core' as post;
+
+$gutter-color: color.adjust(#7566a0, $lightness: 30%);
+$content-color: post.$white;
+$border: 1px solid post.$gray-40;
+
+.gutters-example,
+.gutters-snapshot-example {
+  .row:has(> .col-6) {
+    background-color: $gutter-color;
+
+    .col-6 {
+      background-color: $gutter-color;
+      border: $border;
+
+      > div {
+        background-color: $content-color;
+      }
+    }
+  }
+  .row:has(> .col) {
+    .col {
+      background-color: $gutter-color;
+      border: $border;
+
+      > div {
+        background-color: $content-color;
+      }
+    }
+  }
+}
