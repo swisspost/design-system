@@ -54,7 +54,7 @@ export const HorizontalGutters: Story = {
     // used only for the snapshots
     const breakpointClass = args.breakpointClass ? `-${args.breakpointClass}` : '';
     return html`
-      <div class="container px-4 text-center">
+      <div class="container">
         <div class="row gx${breakpointClass}-${args.gutterX}">
             <div class="col">
               <div>Text</div>
@@ -93,7 +93,7 @@ export const VerticalGutters: Story = {
     // used only for the snapshots
     const breakpointClass = args.breakpointClass ? `-${args.breakpointClass}` : '';
     return html`
-      <div class="container text-center">
+      <div class="container">
         <div class="row gy${breakpointClass}-${args.gutterY}">
             <div class="col-6">
               <div>Text</div>
@@ -138,7 +138,7 @@ export const GeneralGutters: Story = {
     // used only for the snapshots
     const breakpointClass = args.breakpointClass ? `-${args.breakpointClass}` : '';
     return html`
-      <div class="container text-center">
+      <div class="container">
         <div class="row g${breakpointClass}-${args.gutter}">
             <div class="col-6">
             <div>Text</div>
