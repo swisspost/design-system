@@ -30,32 +30,6 @@ const meta: MetaExtended = {
       return storyTemplate;
     },
   ],
-  argTypes: {
-    gutterX: {
-      name: 'Horizontal gutter (gx)',
-      description: 'Sets the horizontal gutter size.',
-      control: {
-        type: 'select',
-      },
-      options: sizes.gap,
-    },
-    gutterY: {
-      name: 'Vertical gutter (gy)',
-      description: 'Sets the vertical gutter size.',
-      control: {
-        type: 'select',
-      },
-      options: sizes.gap,
-    },
-    gutter: {
-      name: 'General gutter (g)',
-      description: 'Sets the general gutter size.',
-      control: {
-        type: 'select',
-      },
-      options: sizes.gap,
-    },
-  },
 };
 
 export default meta;
