@@ -16,8 +16,8 @@ const meta: MetaComponent<HTMLPostLanguageSwitchElement> = {
   },
   args: {
     variant: 'list',
-    caption: 'Language Switcher',
-    description: 'Use this switcher to change the language of the application.',
+    caption: 'Language Switch',
+    description: 'Use this switch to change the language of the application.',
   },
   argTypes: {
     variant: {

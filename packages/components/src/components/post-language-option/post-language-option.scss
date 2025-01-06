@@ -60,26 +60,7 @@ post-language-option:where([variant='menu']) {
 
     &[aria-current='true'],
     &[aria-current='page'] {
-      @include post.media-breakpoint-down(lg) {
-        &::after {
-          content: '';
-          left: 0;
-          height: 3px;
-          background-color: #050400;
-          width: 100%;
-          display: block;
-          position: absolute;
-          bottom: 3px;
-        }
-
-        &:hover::after {
-          background-color: #504f4b;
-        }
-      }
-
-      @include post.media-breakpoint-up((lg)) {
-        display: none;
-      }
+      display: none;
     }
   }
 }

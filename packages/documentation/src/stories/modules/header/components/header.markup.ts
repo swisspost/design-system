@@ -19,8 +19,8 @@ export default html`<post-header>
 
   <!-- Language switch -->
   <post-language-switch
-    caption="Caption"
-    description="Description"
+    caption="Language Switch"
+    description="Use this switch to change the language of the application."
     variant="list"
     name="language-switch-example"
     slot="post-language-switch"
