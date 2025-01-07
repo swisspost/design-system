@@ -56,18 +56,10 @@ export const HorizontalGutters: Story = {
     return html`
       <div class="container">
         <div class="row gx${breakpointClass}-${args.gutterX}">
-            <div class="col">
-             col
-            </div>
-            <div class="col">
-             col
-            </div>
-            <div class="col">
-             col
-            </div>
-           <div class="col">
-           col
-            </div>
+          <div class="col">col</div>
+          <div class="col">col</div>
+          <div class="col">col</div>
+          <div class="col">col</div>
           </div>
         </div>
       </div>
@@ -95,24 +87,10 @@ export const VerticalGutters: Story = {
     return html`
       <div class="container">
         <div class="row gy${breakpointClass}-${args.gutterY}">
-            <div class="col-6">
-         col
-            </div>
-            <div class="col-6">
-            col
-            </div>
-            <div class="col-6">
-            col
-            </div>
-           <div class="col-6">
-         col
-            </div>
-             <div class="col-6">
-          col
-            </div>
-            <div class="col-6">
-                  col
-            </div>
+          <div class="col-6">col</div>
+          <div class="col-6">col</div>
+          <div class="col-6">col</div>
+          <div class="col-6">col</div>
           </div>
         </div>
       </div>
@@ -140,18 +118,10 @@ export const GeneralGutters: Story = {
     return html`
       <div class="container">
         <div class="row g${breakpointClass}-${args.gutter}">
-            <div class="col-6">
-            <div>Text</div>
-          </div>
-          <div class="col-6">
-            <div>Text</div>
-          </div>
-          <div class="col-6">
-            <div>Text</div>
-          </div>
-          <div class="col-6">
-            <div>Text</div>
-          </div>
+          <div class="col-6">col</div>
+          <div class="col-6">col</div>
+          <div class="col-6">col</div>
+          <div class="col-6">col</div>
           </div>
         </div>
       </div>
