@@ -60,6 +60,10 @@ tokens.$default-map: components.$post-radio-button;
   &:checked {
     @include utility-mx.high-contrast-mode() {
       background-color: SelectedItem;
+
+      &::after {
+        background-color: SelectedItemText !important;
+      }
     }
 
     &::after {
@@ -88,7 +92,7 @@ tokens.$default-map: components.$post-radio-button;
 
       &:checked {
         &::after {
-          background-color: Highlight;
+          background-color: Highlight !important;
         }
       }
     }
