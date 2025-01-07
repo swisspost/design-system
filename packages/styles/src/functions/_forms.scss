@@ -50,3 +50,11 @@
 
   @return $state;
 }
+
+@function success-icon($color: #107800) {
+  @return url('#{icons.get-colored-svg-url('success', $color)}');
+}
+
+@function warning-icon($color: #b20000) {
+  @return url('#{icons.get-colored-svg-url('warning', $color)}');
+}

@@ -92,18 +92,15 @@ tokens.$default-map: components.$post-select;
   }
 
   &.is-valid:not(:disabled) {
-    background-image: forms-fx.select-arrow-icon('enabled'),
-      url('#{icons.get-colored-svg-url('success', #107800)}');
+    background-image: forms-fx.select-arrow-icon('enabled'), forms-fx.success-icon();
 
     &:focus {
-      background-image: forms-fx.select-arrow-icon('selected'),
-        url('#{icons.get-colored-svg-url('success', #107800)}');
+      background-image: forms-fx.select-arrow-icon('selected'), forms-fx.success-icon();
     }
 
     &:hover {
       &:not([multiple]) {
-        background-image: forms-fx.select-arrow-icon('hover'),
-          url('#{icons.get-colored-svg-url('success', #107800)}');
+        background-image: forms-fx.select-arrow-icon('hover'), forms-fx.success-icon();
       }
     }
 
@@ -111,30 +108,25 @@ tokens.$default-map: components.$post-select;
     &:hover:not([multiple]),
     &:focus {
       @include utilities.high-contrast-mode-dark() {
-        background-image: forms-fx.select-arrow-icon('enabled'),
-          url('#{icons.get-colored-svg-url('success', #e0e0e0)}');
+        background-image: forms-fx.select-arrow-icon('enabled'), forms-fx.success-icon(#e0e0e0);
       }
 
       @include utilities.high-contrast-mode-light() {
-        background-image: forms-fx.select-arrow-icon('enabled'),
-          url('#{icons.get-colored-svg-url('success', #333333)}');
+        background-image: forms-fx.select-arrow-icon('enabled'), forms-fx.success-icon(#333333);
       }
     }
   }
 
   &.is-invalid:not(:disabled) {
-    background-image: forms-fx.select-arrow-icon('enabled'),
-      url('#{icons.get-colored-svg-url('warning', #b20000)}');
+    background-image: forms-fx.select-arrow-icon('enabled'), forms-fx.warning-icon();
 
     &:focus {
-      background-image: forms-fx.select-arrow-icon('selected'),
-        url('#{icons.get-colored-svg-url('warning', #b20000)}');
+      background-image: forms-fx.select-arrow-icon('selected'), forms-fx.warning-icon();
     }
 
     &:hover {
       &:not([multiple]) {
-        background-image: forms-fx.select-arrow-icon('hover'),
-          url('#{icons.get-colored-svg-url('warning', #b20000)}');
+        background-image: forms-fx.select-arrow-icon('hover'), forms-fx.warning-icon();
       }
     }
 
@@ -142,13 +134,11 @@ tokens.$default-map: components.$post-select;
     &:hover:not([multiple]),
     &:focus {
       @include utilities.high-contrast-mode-dark() {
-        background-image: forms-fx.select-arrow-icon('enabled'),
-          url('#{icons.get-colored-svg-url('warning', #e0e0e0)}');
+        background-image: forms-fx.select-arrow-icon('enabled'), forms-fx.warning-icon(#e0e0e0);
       }
 
       @include utilities.high-contrast-mode-light() {
-        background-image: forms-fx.select-arrow-icon('enabled'),
-          url('#{icons.get-colored-svg-url('warning', #333333)}');
+        background-image: forms-fx.select-arrow-icon('enabled'), forms-fx.warning-icon(#333333);
       }
     }
   }
@@ -271,32 +261,26 @@ tokens.$default-map: components.$post-select;
     }
 
     &.is-valid:not(:disabled) {
-      background-image: forms-fx.select-arrow-icon('enabled', 'dark'),
-        url('#{icons.get-colored-svg-url('success', #107800)}');
+      background-image: forms-fx.select-arrow-icon('enabled', 'dark'), forms-fx.success-icon();
 
       &:focus {
-        background-image: forms-fx.select-arrow-icon('selected', 'dark'),
-          url('#{icons.get-colored-svg-url('success', #107800)}');
+        background-image: forms-fx.select-arrow-icon('selected', 'dark'), forms-fx.success-icon();
       }
 
       &:hover {
-        background-image: forms-fx.select-arrow-icon('hover', 'dark'),
-          url('#{icons.get-colored-svg-url('success', #107800)}');
+        background-image: forms-fx.select-arrow-icon('hover', 'dark'), forms-fx.success-icon();
       }
     }
 
     &.is-invalid:not(:disabled) {
-      background-image: forms-fx.select-arrow-icon('enabled', 'dark'),
-        url('#{icons.get-colored-svg-url('warning', #b20000)}');
+      background-image: forms-fx.select-arrow-icon('enabled', 'dark'), forms-fx.warning-icon();
 
       &:focus {
-        background-image: forms-fx.select-arrow-icon('selected', 'dark'),
-          url('#{icons.get-colored-svg-url('warning', #b20000)}');
+        background-image: forms-fx.select-arrow-icon('selected', 'dark'), forms-fx.warning-icon();
       }
 
       &:hover {
-        background-image: forms-fx.select-arrow-icon('hover', 'dark'),
-          url('#{icons.get-colored-svg-url('warning', #b20000)}');
+        background-image: forms-fx.select-arrow-icon('hover', 'dark'), forms-fx.warning-icon();
       }
     }
   }
