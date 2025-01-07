@@ -34,16 +34,11 @@ post-language-option:where([variant='list']) {
     &:hover {
       color: #504f4b;
     }
+  }
 
-    &[aria-current='true'],
-    &[aria-current='page'] {
-      background-color: #050400;
-      color: #fff;
-
-      &:hover {
-        background-color: #504f4b;
-      }
-    }
+  &:has([aria-current='true']),
+  &:has([aria-current='page']) {
+    display: none;
   }
 }
 
@@ -57,10 +52,9 @@ post-language-option:where([variant='menu']) {
     position: relative;
     left: -1px;
     width: calc(100% + 2px);
-
-    &[aria-current='true'],
-    &[aria-current='page'] {
-      display: none;
-    }
+  }
+  &:has([aria-current='true']),
+  &:has([aria-current='page']) {
+    display: none;
   }
 }
