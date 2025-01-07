@@ -26,7 +26,7 @@ export const Gutters: StoryObj = {
           }).map(
             (args: Args) =>
               html`
-                <div class="container my-${2 * args.sizes} mx-0">
+                <div class="container my-24 mx-0">
                   <div class="row ${args.gutterType}-${args.sizes}">
                     <div class="col-6">${args.gutterType}-${args.sizes}</div>
                     <div class="col-6">${args.gutterType}-${args.sizes}</div>
