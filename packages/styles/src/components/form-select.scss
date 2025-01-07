@@ -111,7 +111,7 @@ tokens.$default-map: components.$post-select;
       }
 
       @include utilities.high-contrast-mode-light() {
-        background-image: forms-fx.select-arrow-icon('enabled'), forms-fx.success-icon(#333333);
+        background-image: forms-fx.select-arrow-icon('enabled'), forms-fx.success-icon(#333);
       }
     }
   }
@@ -137,7 +137,7 @@ tokens.$default-map: components.$post-select;
       }
 
       @include utilities.high-contrast-mode-light() {
-        background-image: forms-fx.select-arrow-icon('enabled'), forms-fx.warning-icon(#333333);
+        background-image: forms-fx.select-arrow-icon('enabled'), forms-fx.warning-icon(#333);
       }
     }
   }
