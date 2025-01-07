@@ -21,7 +21,7 @@ const sizes = properties.reduce((options, property) => {
 
 const meta: MetaExtended = {
   id: '64b63483-79fa-4e9f-9441-f7d6b2eabae2',
-  title: 'Utilities/Gutters',
+  title: 'Foundations/Layout/Gutters',
   decorators: [
     (story: StoryFn, context: StoryContext) => {
       const storyTemplate = html`<div class="gutters-example">
@@ -57,16 +57,16 @@ export const HorizontalGutters: Story = {
       <div class="container">
         <div class="row gx${breakpointClass}-${args.gutterX}">
             <div class="col">
-              <div>Text</div>
+             col
             </div>
             <div class="col">
-              <div>Text</div>
+             col
             </div>
             <div class="col">
-              <div>Text</div>
+             col
             </div>
            <div class="col">
-              <div>Text</div>
+           col
             </div>
           </div>
         </div>
@@ -96,22 +96,22 @@ export const VerticalGutters: Story = {
       <div class="container">
         <div class="row gy${breakpointClass}-${args.gutterY}">
             <div class="col-6">
-              <div>Text</div>
+         col
             </div>
             <div class="col-6">
-              <div>Text</div>
+            col
             </div>
             <div class="col-6">
-              <div>Text</div>
+            col
             </div>
            <div class="col-6">
-              <div>Text</div>
+         col
             </div>
              <div class="col-6">
-              <div>Text</div>
+          col
             </div>
             <div class="col-6">
-                  <div>Text</div>
+                  col
             </div>
           </div>
         </div>

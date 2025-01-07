@@ -1,34 +1,15 @@
-@use 'sass:color';
-@use '@swisspost/design-system-styles/core' as post;
-
-$gutter-color: color.adjust(#7566a0, $lightness: 30%);
-$content-color: post.$white;
-$border: 1px solid post.$gray-40;
-
 .gutters-example,
 .gutters-snapshot-example {
-  .row:has(> .col-6) {
-    background-color: $gutter-color;
-
+  text-align: center;
+  .row {
+    .col,
     .col-6 {
-      background-color: $gutter-color;
-      border: $border;
-
-      > div {
-        background-color: $content-color;
-        text-align: center;
-      }
+      background: linear-gradient(#b8e2f3, #b8e2f3), linear-gradient(#a69ce1, #a69ce1);
+      background-clip: content-box, border-box;
+      color: #59718b;
     }
   }
-  .row:has(> .col) {
-    .col {
-      background-color: $gutter-color;
-      border: $border;
-
-      > div {
-        background-color: $content-color;
-        text-align: center;
-      }
-    }
+  .row:has(.col-6) {
+    background: linear-gradient(#a69ce1, #a69ce1);
   }
 }
