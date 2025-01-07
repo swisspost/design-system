@@ -124,15 +124,16 @@ export class PostLanguageSwitch {
     return (
       <Host data-version={version}>
         <post-menu-trigger for={this.menuId}>
-          <button
-            class="post-language-switch-trigger"
-            aria-label={`${this.caption}, ${this.description}`}
-          >
+          <button class="post-language-switch-trigger" aria-label={this.description}>
             {this.activeLang.toUpperCase()}
             <post-icon aria-hidden="true" name="chevrondown"></post-icon>
           </button>
         </post-menu-trigger>
-        <post-menu id={this.menuId} class="post-language-switch-dropdown-container">
+        <post-menu
+          id={this.menuId}
+          class="post-language-switch-dropdown-container"
+          aria-label={this.caption}
+        >
           <slot></slot>
         </post-menu>
       </Host>

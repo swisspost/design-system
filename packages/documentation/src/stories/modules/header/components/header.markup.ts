@@ -19,16 +19,16 @@ export default html`<post-header>
 
   <!-- Language switch -->
   <post-language-switch
-    caption="Language Switch"
-    description="Use this switch to change the language of the application."
+    caption="Change the language"
+    description="The currently selected language is English."
     variant="list"
     name="language-switch-example"
     slot="post-language-switch"
   >
-    <post-language-option active="true" code="de" name="Deutsch">DE</post-language-option>
+    <post-language-option active="false" code="de" name="Deutsch">DE</post-language-option>
     <post-language-option active="false" code="fr" name="French">FR</post-language-option>
     <post-language-option active="false" code="it" name="Italiano">IT</post-language-option>
-    <post-language-option active="false" code="en" name="English">EN</post-language-option>
+    <post-language-option active="true" code="en" name="English">EN</post-language-option>
   </post-language-switch>
 
   <!-- Application title (optional) -->
