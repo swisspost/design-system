@@ -123,7 +123,7 @@ export class PostHeader {
   }
 
   private switchLanguageSwitchMode() {
-    const variant: SwitchVariant = this.device === 'desktop' ? 'dropdown' : 'list';
+    const variant: SwitchVariant = this.device === 'desktop' ? 'menu' : 'list';
     this.host.querySelector('post-language-switch')?.setAttribute('variant', variant);
   }
 
@@ -151,10 +151,7 @@ export class PostHeader {
           </div>
         </div>
         <div
-          class={
-            'title-header d-flex space-between align-center ' +
-            (this.mobileMenuExtended ? 'title-header-mobile-extended' : '')
-          }
+          class={'title-header ' + (this.mobileMenuExtended ? 'title-header-mobile-extended' : '')}
         >
           <slot name="title"></slot>
           <div class="global-sub">

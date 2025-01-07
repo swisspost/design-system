@@ -3,13 +3,16 @@
 @use './../type';
 @use './../components/button';
 @use './../components/nav';
-@use './../../functions/utilities';
+@use './../../functions/utilities' as utilities-fx;
+
+@use '../../tokens/utilities';
+@use '../../functions/tokens';
 
 // Bootstrap variables
 $navbar-padding-y: (spacing.$spacer * 0.5) !default;
 $navbar-padding-x: spacing.$spacer !default;
 
-$navbar-nav-link-padding-x: spacing.$size-small-huge !default;
+$navbar-nav-link-padding-x: tokens.get('utility-gap-48', utilities.$post-spacing) !default;
 
 $navbar-brand-font-size: type.$font-size-bigger-regular !default;
 $navbar-brand-height: $navbar-brand-font-size * type.$line-height-copy !default;
@@ -25,7 +28,7 @@ $navbar-dark-hover-color: rgba(color.$white, 0.75) !default;
 $navbar-dark-active-color: color.$white !default;
 $navbar-dark-disabled-color: rgba(color.$white, 0.25) !default;
 
-$navbar-dark-toggler-icon-bg: utilities.replace(
+$navbar-dark-toggler-icon-bg: utilities-fx.replace(
   url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-dark-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"),
   '#',
   '%23'
@@ -36,7 +39,7 @@ $navbar-light-color: rgba(color.$black, 0.5) !default;
 $navbar-light-hover-color: rgba(color.$black, 0.7) !default;
 $navbar-light-active-color: rgba(color.$black, 0.9) !default;
 $navbar-light-disabled-color: rgba(color.$black, 0.3) !default;
-$navbar-light-toggler-icon-bg: utilities.replace(
+$navbar-light-toggler-icon-bg: utilities-fx.replace(
   url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-light-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"),
   '#',
   '%23'

@@ -6,6 +6,11 @@
 @use './../../variables/spacing';
 @use './../../variables/components/nav';
 
+@use './../../functions/tokens';
+@use './../../tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
+
 .tab-title[role='tab'] {
   display: inline-block;
   cursor: pointer;
@@ -69,7 +74,7 @@
       top: 0;
       right: -1px;
       left: -1px;
-      height: spacing.$size-micro;
+      height: tokens.get('utility-gap-4');
       background-color: nav.$nav-tabs-link-active-border-color;
     }
   }
@@ -95,8 +100,8 @@
     &:focus,
     &:focus-within,
     &:focus-visible {
-      outline: spacing.$size-line solid Highlight;
-      outline-offset: -(spacing.$size-micro);
+      outline: tokens.get('utility-gap-2') solid Highlight;
+      outline-offset: calc(tokens.get('utility-gap-4') * -1);
     }
 
     &.active {
