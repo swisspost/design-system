@@ -27,7 +27,7 @@
       </ul>
 
       <!-- Menu button for mobile -->
-      <post-togglebutton>
+      <post-togglebutton slot="post-togglebutton">
         <span class="visually-hidden-sm">Menu</span>
         <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
         <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
@@ -67,7 +67,7 @@
 
       <!-- Main navigation -->
       <post-mainnavigation caption="Hauptnavigation">
-        <button type="button" slot="back-button" class="btn btn-sm btn-tertiary p-0">
+        <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
           <post-icon aria-hidden="true" name="3024"></post-icon> Back
         </button>
 
@@ -82,7 +82,7 @@
           <post-list-item>
             <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
             <post-megadropdown id="briefe">
-              <button slot="back-button" class="btn btn-tertiary px-0">
+              <button slot="back-button" class="btn btn-tertiary">
                 <post-icon name="arrowright"></post-icon>
                 Zurück
               </button>
@@ -107,7 +107,7 @@
           <post-list-item>
             <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
             <post-megadropdown id="pakete">
-              <button slot="back-button" class="btn btn-tertiary px-0">
+              <button slot="back-button" class="btn btn-tertiary">
                 <post-icon name="arrowright"></post-icon>
                 Zurück
               </button>

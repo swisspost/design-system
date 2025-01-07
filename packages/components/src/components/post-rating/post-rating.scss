@@ -1,4 +1,6 @@
 @use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/tokens/utilities';
+@use '@swisspost/design-system-styles/functions/tokens';
 
 :host {
   display: inline-block;
@@ -8,7 +10,7 @@
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
-  margin: 0 (-(post.$size-micro));
+  margin: 0 calc(tokens.get('utility-gap-4', utilities.$post-spacing) * -1);
   border-radius: post.$border-radius;
 
   .star {

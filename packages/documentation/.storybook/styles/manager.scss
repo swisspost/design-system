@@ -111,6 +111,17 @@
   }
 }
 
+#storybook-explorer-menu {
+  .search-result-item--label {
+    mark {
+      @include utilities.high-contrast-mode() {
+        background-color: Mark;
+        color: MarkText;
+      }
+    }
+  }
+}
+
 #downshift-1-menu {
   .search-result-item {
     svg {
