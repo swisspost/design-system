@@ -18,7 +18,7 @@ export const AvatarPicture: Story = {
     return schemes(
       () => html`
         <div class="mt-16">
-          <div class="d-flex flex-column gap-regular">
+          <div class="d-flex flex-column gap-16">
               ${bombArgs({
                 lastname: [null, 'Source'],
                 firstname: ['Open'],

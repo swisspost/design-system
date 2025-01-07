@@ -16,7 +16,7 @@ const meta: Meta = {
     size: 'medium',
     position: 'center',
     icon: 'none',
-    backgroundColor: 'bg-white',
+    palette: 'palette-default',
     animation: 'pop-in',
     closeButton: true,
     open: false,
@@ -75,13 +75,13 @@ const meta: Meta = {
       options: ['none', '1034', '2105', '2104', '2106'],
       table: { category: 'Content' },
     },
-    backgroundColor: {
-      name: 'Background color',
-      description: 'The background color of the dialog field',
+    palette: {
+      name: 'Palette',
+      description: 'The color scheme of the dialog',
       control: {
         type: 'select',
       },
-      options: ['bg-white', 'bg-light', 'bg-primary'],
+      options: ['palette-default', 'palette-accent', 'palette-alternate', 'palette-brand'],
       table: { category: 'Variant' },
     },
     closeButton: {
@@ -140,14 +140,13 @@ const Template = {
     const postDialogCloseButton = args.closeButton ? getCloseButton() : nothing;
 
     // Don't declare default values or show empty containers
-    if (args.backgroundColor === 'bg-white') args.backgroundColor = nothing;
     if (args.animation === 'pop-in') args.animation = nothing;
     if (args.position === 'center') args.position = nothing;
     if (args.size === 'medium') args.size = nothing;
 
     return html`
       <dialog
-        class="${args.backgroundColor}"
+        class="${args.palette}"
         data-size="${args.size}"
         data-position="${args.position}"
         data-animation="${args.animation}"
@@ -211,7 +210,7 @@ const CustomContentTemplate = {
   render: () => {
     return html`
       <dialog>
-        <form method="dialog" onsubmit="console.log(event)" class="p-regular-r">
+        <form method="dialog" onsubmit="console.log(event)" class="p-16">
           <h2>Custom content</h2>
           <p>This is some other content, just placed inside the dialog.</p>
           <button class="btn btn-primary">Ok</button>

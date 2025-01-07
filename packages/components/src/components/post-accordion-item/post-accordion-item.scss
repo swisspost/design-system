@@ -21,6 +21,9 @@ tokens.$default-map: components.$post-accordion;
   }
   &:has(.accordion-button:hover)::after {
     border-color: tokens.get('accordion-hover-border');
+    @include utility-mx.high-contrast-mode() {
+      border-color: Highlight;
+    }
   }
 }
 
@@ -47,7 +50,6 @@ tokens.$default-map: components.$post-accordion;
     calc(
       tokens.get('accordion-header-padding-inline') + tokens.get('accordion-border-bottom-width')
     );
-  transition: accordion.$accordion-button-transition;
   cursor: pointer;
 
   &::before {
@@ -100,13 +102,7 @@ tokens.$default-map: components.$post-accordion;
   @include utility-mx.high-contrast-mode() {
     &:hover,
     &:focus-visible {
-      &:not(:disabled) {
-        outline: tokens.get('accordion-border-bottom-width') solid Highlight;
-      }
-    }
-
-    &:disabled {
-      opacity: 1 !important;
+      color: Highlight;
     }
   }
 }

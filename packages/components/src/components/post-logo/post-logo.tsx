@@ -41,7 +41,7 @@ export class PostLogo {
     const LogoTag = logoLink ? 'a' : 'span';
 
     return (
-      <Host data-version={version} slot="post-logo">
+      <Host data-version={version}>
         <LogoTag class="logo" {...(logoLink ? { href: logoLink } : {})}>
           <span class="description">
             <slot onSlotchange={() => this.checkDescription()}></slot>
