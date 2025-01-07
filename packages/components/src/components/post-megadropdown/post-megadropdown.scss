@@ -35,11 +35,6 @@ post-popovercontainer {
   box-shadow: 0 8px 6px rgba(0, 0, 0, 16%);
 
   @include media.max(lg) {
-<<<<<<< HEAD
-    --post-global-header-height: 64px;
-    --post-main-header-height: 48px;
-=======
->>>>>>> main
     position: absolute;
     top: var(--header-height) !important;
     bottom: 0;
