@@ -1,0 +1,25 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as megadropdownStories from './megadropdown.stories';
+
+<Meta of={megadropdownStories} />
+
+<div className="docs-title">
+  # Mega dropdown
+
+  <nav>
+    <link-design of={JSON.stringify(megadropdownStories)}></link-design>
+  </nav>
+</div>
+
+<p className="lead">
+  The megadropdown is used within the `post-header` main navigation to display submenus.
+</p>
+
+<Canvas sourceState="shown" of={megadropdownStories.Default} />
+
+<Controls of={megadropdownStories.Default} />
+
+## Installation
+
+The `<post-megadropdown>` element is part of the `@swisspost/design-system-components` package.
+For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
