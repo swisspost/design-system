@@ -1,10 +1,20 @@
-import { Component, h, Host, State, Element, Method, Watch } from '@stencil/core';
+import {
+  Component,
+  h,
+  Host,
+  State,
+  Element,
+  Method,
+  Watch,
+  Event,
+  EventEmitter,
+} from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
 import { slideDown, slideUp } from '@/animations/slide';
 
-type DEVICE_SIZE = 'mobile' | 'tablet' | 'desktop' | null;
+export type DEVICE_SIZE = 'mobile' | 'tablet' | 'desktop' | null;
 
 @Component({
   tag: 'post-header',
@@ -35,6 +45,11 @@ export class PostHeader {
   frozeBody(isMobileMenuExtended: boolean) {
     document.body.style.overflow = isMobileMenuExtended ? 'hidden' : '';
   }
+
+  /**
+   * An event emitted when the device has changed
+   */
+  @Event() postUpdateDevice: EventEmitter<DEVICE_SIZE>;
 
   /**
    * Toggles the mobile navigation.
@@ -106,6 +121,8 @@ export class PostHeader {
     } else {
       newDevice = 'mobile';
     }
+
+    this.postUpdateDevice.emit(newDevice);
 
     // Close any open mobile menu
     if (newDevice === 'desktop' && this.mobileMenuExtended) {

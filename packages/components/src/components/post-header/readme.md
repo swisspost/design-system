@@ -5,6 +5,13 @@
 <!-- Auto Generated Below -->
 
 
+## Events
+
+| Event              | Description                                  | Type                                             |
+| ------------------ | -------------------------------------------- | ------------------------------------------------ |
+| `postUpdateDevice` | An event emitted when the device has changed | `CustomEvent<"desktop" \| "mobile" \| "tablet">` |
+
+
 ## Methods
 
 ### `toggleMobileMenu() => Promise<void>`

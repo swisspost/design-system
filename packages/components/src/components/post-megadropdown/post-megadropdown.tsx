@@ -1,3 +1,4 @@
+import { DEVICE_SIZE } from '@/components';
 import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
 
 @Component({
@@ -7,6 +8,9 @@ import { Component, Element, Event, EventEmitter, h, Host, Method, State } from 
 })
 export class PostMegadropdown {
   private popoverRef: HTMLPostPopovercontainerElement;
+  private header: HTMLPostHeaderElement | null;
+
+  @State() device: DEVICE_SIZE;
 
   @Element() host: HTMLPostMegadropdownElement;
 
@@ -72,6 +76,16 @@ export class PostMegadropdown {
     }
   }
 
+  connectedCallback() {
+    this.header = this.host.closest('post-header');
+    if (this.header) {
+      this.header.addEventListener(
+        'postUpdateDevice',
+        (event: CustomEvent<DEVICE_SIZE>) => (this.device = event.detail),
+      );
+    }
+  }
+
   private handleBackButtonClick() {
     this.animationClass = 'slide-out';
   }
@@ -82,7 +96,7 @@ export class PostMegadropdown {
 
   private handleFocusout(event: FocusEvent) {
     const relatedTarget = event.relatedTarget as HTMLElement;
-    const megadropdown= this.popoverRef.querySelector('.megadropdown');
+    const megadropdown = this.popoverRef.querySelector('.megadropdown');
     if (!megadropdown.contains(relatedTarget)) {
       this.hide();
     }
@@ -93,6 +107,7 @@ export class PostMegadropdown {
       <Host>
         <post-popovercontainer
           class={this.animationClass}
+          manualClose={this.device !== 'desktop'}
           placement="bottom"
           edge-gap="0"
           ref={el => (this.popoverRef = el)}
