@@ -30,6 +30,24 @@ $position-values: (
 );
 
 $utilities: (
+  'grid-gutter': (
+    responsive: true,
+    property: --post-grid-gutter-x --post-grid-gutter-y,
+    class: g,
+    values: from-tokens('spacing', 'gap'),
+  ),
+  'grid-gutter-x': (
+    responsive: true,
+    property: --post-grid-gutter-x,
+    class: gx,
+    values: from-tokens('spacing', 'gap'),
+  ),
+  'grid-gutter-y': (
+    responsive: true,
+    property: --post-grid-gutter-y,
+    class: gy,
+    values: from-tokens('spacing', 'gap'),
+  ),
   'width': (
     responsive: true,
     property: width,

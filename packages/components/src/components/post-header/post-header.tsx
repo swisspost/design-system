@@ -113,6 +113,9 @@ export class PostHeader {
       this.mobileMenuAnimation.finish(); // no animation
     }
 
+    const mhh = this.host.shadowRoot.querySelector('.title-header').clientHeight;
+    this.host.style.setProperty('--main-header-height', `${mhh}px`);
+
     // Apply only on change for doing work only when necessary
     if (newDevice !== previousDevice) {
       this.device = newDevice;
