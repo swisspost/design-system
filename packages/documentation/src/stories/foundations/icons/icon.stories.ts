@@ -95,11 +95,9 @@ export const Default: Story = {
 };
 
 const colorVariants = [
-  { class: 'text-primary' },
-  { class: 'text-info' },
-  { class: 'text-success' },
+  { style: 'color: green' },
   { style: 'color: blue' },
-  { style: 'color:#800080' },
+  { style: 'color: #800080' },
   { style: 'color: rgb(230, 0, 0)' },
 ];
 
@@ -140,7 +138,7 @@ export const Size: Story = {
 
 const styleVariants = [
   { class: 'border rounded p-16', style: 'font-size: 4rem' },
-  { class: 'border border-success rounded p-16 text-success', style: 'font-size: 4rem' },
+  { class: 'border border-success rounded p-16', style: 'font-size: 4rem; color: green' },
   { class: 'rounded-circle p-16', style: 'font-size: 4rem; background-color: #cce4ee' },
 ];
 

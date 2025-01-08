@@ -34,25 +34,6 @@ export const LineHeight: Story = {
   render: () => html` <p class="lh-1">This text has a line height equal to the font size.</p> `,
 };
 
-export const TextColor: Story = {
-  decorators: [story => html` <div @click=${(e: Event) => e.preventDefault()}>${story()}</div> `],
-  render: () => html`
-    <p class="text-success">This is colored text.</p>
-    <a href="#" class="link-warning">This is a colored link, it lightens on hover.</a>
-  `,
-};
-
-export const TextColorReset: Story = {
-  decorators: [story => html` <div @click=${(e: Event) => e.preventDefault()}>${story()}</div> `],
-  render: () => html`
-    <p class="text-danger">
-      This is colored text with a
-      <a href="#" class="text-reset">link</a>
-      of the same color.
-    </p>
-  `,
-};
-
 export const TextAlign: Story = {
   render: () => html`
     <p class="text-start">Start aligned text</p>
