@@ -29,7 +29,7 @@ export const markActiveRoute = (
     compareUrl = new URL(window.location.href);
   } else {
     try {
-      compareUrl = new URL(activeRouteProp, document.location.origin);
+      compareUrl = ensureUrlWithOrigin(activeRouteProp);
     } catch (error) {
       console.warn(
         `Active Route: ${activeRouteProp} is not a valid URL. Navigation highlighting has been disabled.`,
@@ -50,6 +50,20 @@ export const markActiveRoute = (
   if (winnerPair.sub) winnerPair.sub.isActiveOverride = true;
 
   return config;
+};
+
+/**
+ * Ensure URL has an origin by adding current origin if needed
+ * @param url URL or path string
+ * @returns URL with origin
+ */
+const ensureUrlWithOrigin = (url: string): URL => {
+  try {
+    return new URL(url);
+  } catch {
+    // If URL construction fails, it's likely relative, so prepend origin
+    return new URL(url, document.location.origin);
+  }
 };
 
 /**
@@ -183,7 +197,7 @@ export const compareRoutes = (
   matchMode?: 'auto' | 'exact',
 ): number => {
   // One url is not defined or they don't share the same orign
-  if (baseUrl === null || compareUrl === null || baseUrl.origin !== compareUrl.origin) {
+  if (baseUrl === null || compareUrl === null) {
     return 0;
   }
 
