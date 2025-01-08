@@ -11,11 +11,11 @@ $elevation-map: () !default;
 $elevation-map: map.merge(
   $elevation-map,
   (
+    'elevation-none': $elevation-none,
     'elevation-1': $elevation-1,
     'elevation-2': $elevation-2,
     'elevation-3': $elevation-3,
     'elevation-4': $elevation-4,
     'elevation-5': $elevation-5,
-    'elevation-none': $elevation-none,
   )
 );
