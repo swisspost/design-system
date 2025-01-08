@@ -13,13 +13,13 @@
     "@swisspost/design-system-styles": "workspace:9.0.0-next.9",
     "@swisspost/internet-header": "workspace:2.0.0-next.9",
     "next": "15.0.1",
-    "react": "^18",
-    "react-dom": "^18"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@types/node": "20.14.14",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
