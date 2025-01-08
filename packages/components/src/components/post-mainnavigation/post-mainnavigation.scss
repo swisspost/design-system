@@ -7,10 +7,6 @@
 @use '@swisspost/design-system-styles/variables/animation';
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 
-body {
-  overflow-x: hidden;
-}
-
 post-mainnavigation {
   flex: 0 0 auto;
 
@@ -80,12 +76,12 @@ post-mainnavigation {
 
     .left-scroll-button {
       inset-inline-start: 0;
-      padding-inline-end: 20px;
+      padding-inline-end: 2rem;
     }
 
     .right-scroll-button {
       inset-inline-end: 0;
-      padding-inline-start: 20px;
+      padding-inline-start: 2rem;
     }
 
     post-list {
