@@ -14,3 +14,12 @@
 @function infix($key) {
   @return if(min-width($key) == 0, '', '-#{$key}');
 }
+
+/**
+* Gets the next breakpoint key
+*/
+@function next($key) {
+  $breakpoint-names: map-keys(breakpoints.$grid-breakpoints);
+  $n: index($breakpoint-names, $key);
+  @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+}
