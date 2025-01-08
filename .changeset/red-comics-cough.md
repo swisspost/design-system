@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Internalized bootstrap shadow utility into the design system.
+Internalized Bootstrap shadow utility into the Design System.
