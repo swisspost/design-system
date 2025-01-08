@@ -26,16 +26,24 @@ export class PostMegadropdown {
   @Event() postToggleMegadropdown: EventEmitter<boolean>;
 
   componentDidLoad() {
+    this.popoverRef.setAttribute('popover', 'manual');
+
     this.popoverRef.addEventListener('postToggle', (event: CustomEvent<boolean>) => {
       this.isVisible = event.detail;
       this.postToggleMegadropdown.emit(this.isVisible);
+      this.manageOutsideClickListener();
     });
 
     this.popoverRef.addEventListener('animationend', () => {
       if (this.animationClass === 'slide-out') {
         this.hide();
+        this.animationClass = null;
       }
     });
+  }
+
+  disconnectedCallback() {
+    this.removeOutsideClickListener();
   }
 
   /**
@@ -56,17 +64,19 @@ export class PostMegadropdown {
     if (this.popoverRef) {
       await this.popoverRef.show(target);
       this.animationClass = 'slide-in';
+      this.addOutsideClickListener();
     } else {
       console.error('show: popoverRef is null or undefined');
     }
   }
 
   /**
-   * Hides the popover dropdown
+   * Hides the popover dropdown.
    */
   private hide() {
     if (this.popoverRef) {
       this.popoverRef.hide();
+      this.removeOutsideClickListener();
     } else {
       console.error('hide: popoverRef is null or undefined');
     }
@@ -78,6 +88,28 @@ export class PostMegadropdown {
 
   private handleCloseButtonClick() {
     this.animationClass = 'slide-out';
+  }
+
+  private handleClickOutside = (event: MouseEvent) => {
+    if (!this.host.contains(event.target as Node)) {
+      this.animationClass = "slide-out";
+    }
+  };
+
+  private addOutsideClickListener() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  private removeOutsideClickListener() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
+  private manageOutsideClickListener() {
+    if (this.isVisible) {
+      this.addOutsideClickListener();
+    } else {
+      this.removeOutsideClickListener();
+    }
   }
 
   private handleFocusout(event: FocusEvent) {
