@@ -19,6 +19,24 @@
   }
 }
 
+@keyframes slide-down {
+  from {
+    transform: translateY(-40%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
 *,
 ::before,
 ::after {
@@ -36,6 +54,14 @@ post-popovercontainer {
   width: 100%;
   border-radius: 0;
   box-shadow: 0 8px 6px rgba(0, 0, 0, 16%);
+
+  &.slide-in {
+    animation: slide-down 350ms forwards;
+  }
+
+  &.slide-out {
+    animation: slide-up 350ms forwards;
+  }
 
   @include media.max(lg) {
     --post-global-header-height: 64px;
