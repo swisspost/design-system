@@ -77,7 +77,7 @@ export class PostMegadropdown {
   }
 
   private handleCloseButtonClick() {
-    this.popoverRef.hide();
+    this.animationClass = 'slide-out';
   }
 
   private handleFocusout(event: FocusEvent) {
