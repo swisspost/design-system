@@ -1,6 +1,6 @@
 ---
-'@swisspost/design-system-documentation': patch
-'@swisspost/design-system-styles': patch
+'@swisspost/design-system-documentation': major
+'@swisspost/design-system-styles': major
 ---
 
-Internalized Bootstrap shadow utility into the Design System.
+Removed Bootstrap shadow utility classes from the Design System, as the elevation classes are replacing it.

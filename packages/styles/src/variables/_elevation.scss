@@ -2,6 +2,7 @@
 
 // Values are kept in PX for easier copy-ability from figma and better overview
 // rems would provide little value added
+$elevation-none: none;
 $elevation-1:
   0.25px 1px 1px rgba(0, 0, 0, 0.1),
   1px 2px 2.5px 1px rgba(0, 0, 0, 0.1);
@@ -22,6 +23,7 @@ $elevation-map: () !default;
 $elevation-map: map.merge(
   $elevation-map,
   (
+    'elevation-none': $elevation-none,
     'elevation-1': $elevation-1,
     'elevation-2': $elevation-2,
     'elevation-3': $elevation-3,
