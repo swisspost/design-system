@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Internalized bootstrap text utilities into the design system.
+Internalized Bootstrap text utilities into the Design System.
