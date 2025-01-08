@@ -57,7 +57,7 @@ export const markActiveRoute = (
  * @param url URL or path string
  * @returns URL with origin
  */
-const ensureUrlWithOrigin = (url: string): URL => {
+export const ensureUrlWithOrigin = (url: string): URL => {
   try {
     return new URL(url);
   } catch {
@@ -198,6 +198,11 @@ export const compareRoutes = (
 ): number => {
   // One url is not defined or they don't share the same orign
   if (baseUrl === null || compareUrl === null) {
+    return 0;
+  }
+
+  const normalizeOrigin = (origin: string) => origin.replace('www.', '');
+  if (normalizeOrigin(baseUrl.origin) !== normalizeOrigin(compareUrl.origin)) {
     return 0;
   }
 
