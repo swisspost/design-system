@@ -55,16 +55,22 @@ export class PostMegadropdown {
   @Method()
   async show(target: HTMLElement) {
     if (this.popoverRef) {
-      await this.popoverRef.show(target);
-      this.animationClass = 'slide-in';
-
-      const megadropdownItems = this.getPostListItems();
-      if (megadropdownItems.length > 0) {
-        // Focus the first item initially
-        megadropdownItems[0].focus();
-      }
-    } else {
       console.error('show: popoverRef is null or undefined');
+      return;
+    }
+
+    await this.popoverRef.show(target);
+    this.animationClass = 'slide-in';
+
+    const megadropdownItems = this.getFocusableElementsInMegadropdown();
+
+    if (megadropdownItems.length > 0) {
+      const targetItem =
+        window.getComputedStyle(megadropdownItems[0]).display === 'none'
+          ? megadropdownItems[1]
+          : megadropdownItems[0];
+
+      targetItem?.focus();
     }
   }
 
@@ -95,13 +101,19 @@ export class PostMegadropdown {
     }
   }
 
-  private getPostListItems(): HTMLElement[] {
-    const postListItems = Array.from(this.host.querySelectorAll('post-list-item'));
-    const focusableChildren = postListItems.flatMap(el => Array.from(getFocusableChildren(el)));
-
-    return focusableChildren;
-  }
-
+  private getFocusableElementsInMegadropdown(): HTMLElement[] {
+    const megadropdownContainer = this.host.querySelector('.megadropdown');
+  
+    const allChildren = Array.from(megadropdownContainer.querySelectorAll('*'));
+    return allChildren
+      .flatMap(el => Array.from(getFocusableChildren(el)))
+      .filter(child => 
+        !child.classList.contains('back-button') && 
+        !child.classList.contains('close-button')
+      );
+    }
+  
+  
 
   render() {
     return (
