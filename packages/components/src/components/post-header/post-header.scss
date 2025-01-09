@@ -12,6 +12,8 @@
   --global-header-minimal-height: 24px;
   --main-header-height: 56px;
   --header-height: calc(var(--global-header-height) + var(--main-header-height));
+  z-index: var(--header-z-index, 2000);
+  overflow: hidden;
 
   @include media.min(lg) {
     display: block;
@@ -46,7 +48,7 @@
   position: sticky;
   padding-inline: var(--post-core-dimension-4);
   height: var(--global-header-height);
-  z-index: 1;
+  z-index: var(--header-z-index) + 3;
 
   @include media.max(lg) {
     inset-block-start: 0;
@@ -94,6 +96,7 @@ slot[name='post-logo'] {
 }
 
 .title-header {
+  z-index: var(--header-z-index) + 2;
   display: flex;
   align-items: center;
   gap: var(--post-core-dimension-4);
@@ -107,7 +110,6 @@ slot[name='post-logo'] {
 
   @include media.max(lg) {
     position: sticky;
-    z-index: 1;
     inset-block-start: var(--global-header-height);
     padding-inline: var(--post-core-dimension-8) var(--post-core-dimension-16);
 
@@ -141,10 +143,9 @@ slot[name='post-logo'] {
 
 .navigation {
   background: var(--post-core-color-brand-white);
-
+  z-index: var(--header-z-index) + 1;
   @include media.min(lg) {
     position: sticky;
-    z-index: 1;
     inset-block-start: var(--global-header-minimal-height);
   }
 }
