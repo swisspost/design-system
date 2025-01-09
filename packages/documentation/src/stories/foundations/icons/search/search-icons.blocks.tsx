@@ -56,7 +56,7 @@ export class Search extends React.Component {
           value: 'post',
         },
         {
-          text: 'UI Icons (light)',
+          text: 'UI Icons (line)',
           value: 'uiLight',
         },
         {
