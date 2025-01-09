@@ -1,8 +1,12 @@
-@use '../tokens/utilities' as tokens;
-
 @use './functions' as *;
 
 @use '../variables/sizing' as *;
+
+@use '../functions/tokens' as tokens;
+@use '../tokens/utilities';
+
+tokens.$default-map: utilities.$post-typo;
+
 /*
   Utilities are generated with our utility API using bellow $utilities map.
 
@@ -30,11 +34,11 @@ $position-values: (
 
 $font-family-sans-serif: var(--post-device-font-family-default);
 
-$font-weight-normal: 400 !default;
-$font-weight-bold: 700 !default;
+$font-weight-normal: tokens.get('utility-font-weight-regular') !default;
+$font-weight-bold: tokens.get('utility-font-weight-bold') !default;
 
-$line-height-base: 1.5 !default;
-$line-height-sm: 1.25 !default;
+$line-height-base: tokens.get('utility-line-height-lg') !default;
+$line-height-sm: tokens.get('utility-line-height-sm') !default;
 $line-height-lg: 2 !default;
 
 $utilities: (
