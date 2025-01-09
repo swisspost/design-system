@@ -1,5 +1,5 @@
 import type { StoryContext, StoryObj } from '@storybook/web-components';
-import meta from './language-option.stories';
+import meta, { megadropdownDecorator } from './megadropdown.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 
@@ -8,15 +8,15 @@ const { id, ...metaWithoutId } = meta;
 export default {
   ...metaWithoutId,
   title: 'Snapshots',
-  decorators: [],
+  decorators: [megadropdownDecorator],
 };
 
-type Story = StoryObj<HTMLPostLanguageOptionElement>;
+type Story = StoryObj<HTMLPostMegadropdownElement>;
 
-export const LanguageOption: Story = {
+export const Megadropdown: Story = {
   render: (
-    _args: HTMLPostLanguageOptionElement,
-    context: StoryContext<HTMLPostLanguageOptionElement>,
+    _args: HTMLPostMegadropdownElement,
+    context: StoryContext<HTMLPostMegadropdownElement>,
   ) => {
     return schemes(() => html` ${meta.render?.({ ...context.args }, context)} `);
   },
