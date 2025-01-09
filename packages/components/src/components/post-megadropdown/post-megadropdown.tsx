@@ -54,7 +54,7 @@ export class PostMegadropdown {
    */
   @Method()
   async show(target: HTMLElement) {
-    if (this.popoverRef) {
+    if (!this.popoverRef) {
       console.error('show: popoverRef is null or undefined');
       return;
     }
@@ -66,7 +66,7 @@ export class PostMegadropdown {
 
     if (megadropdownItems.length > 0) {
       const targetItem =
-        window.getComputedStyle(megadropdownItems[0]).display === 'none'
+        window.getComputedStyle(megadropdownItems[0]).display === 'none' && megadropdownItems[1]
           ? megadropdownItems[1]
           : megadropdownItems[0];
 
