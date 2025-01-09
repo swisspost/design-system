@@ -1,0 +1,11 @@
+custom-element::part(header) {
+  font-weight: bold;
+}
+
+custom-element::part(footer):hover {
+  color: gray;
+}
+
+custom-element::part(footer)::after {
+  content: 'Added after pseudo-element';
+}
