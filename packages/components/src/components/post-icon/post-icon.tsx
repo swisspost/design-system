@@ -136,7 +136,7 @@ export class PostIcon {
     let calculatedBase: string | null;
 
     // If this.base or metaBase are relative, prefix them with the baseHref if it exists
-    const absolutePathReg = new RegExp('^(?:[a-z+]+:)?//', 'i');
+    const absolutePathReg = /^(?:[a-z+]+:)?\/\//i;
     if (baseHref) {
       if (this.base && !absolutePathReg.test(this.base)) {
         calculatedBase = baseHref + this.base;
