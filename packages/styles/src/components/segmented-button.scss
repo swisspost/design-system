@@ -101,6 +101,10 @@ $post-segmented-button-max-count: 8;
       &:hover {
         input {
           border-color: tokens.get('button-segmented-selected-border');
+
+          @include utilities.high-contrast-mode() {
+            border-color: Highlight;
+          }
         }
       }
     }
