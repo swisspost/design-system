@@ -112,8 +112,6 @@ export class PostMegadropdown {
         !child.classList.contains('close-button')
       );
     }
-  
-  
 
   render() {
     return (
