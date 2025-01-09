@@ -41,6 +41,16 @@ post-mainnavigation {
     }
   }
 
+  .back-button {
+    post-icon {
+      transform: rotate(180deg);
+    }
+
+    @include media.max(lg) {
+      font-size: 1rem;
+    }
+  }
+
   // desktop styles
   @include media.min(lg) {
     nav {
@@ -100,6 +110,13 @@ post-mainnavigation {
         &[aria-expanded='true']::after {
           transform: rotate(180deg);
         }
+      }
+    }
+
+    post-megadropdown {
+      button:not(.btn-icon-close),
+      a {
+        @include header-mx.mobile-header-interactive;
       }
     }
 
