@@ -111,7 +111,7 @@ export class PostMegadropdown {
         !child.classList.contains('back-button') && 
         !child.classList.contains('close-button')
       );
-    }
+  }
 
   render() {
     return (
