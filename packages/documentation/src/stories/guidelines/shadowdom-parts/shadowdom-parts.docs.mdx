@@ -2,22 +2,22 @@ import { Meta, Source } from '@storybook/blocks';
 import * as ShadowdomPartsStories from './shadowdom-parts.stories';
 import parts from './parts.sample.html?raw';
 import partsSass from './partsSass.sample.scss?raw';
-import exportparts from './exportparts.sample.html?raw';
-import exportpartsSass from './exportpartsSass.sample.scss?raw';
+import pseudoParts from './pseudoParts.sample.html?raw';
+import pseudoPartsSass from './pseudoPartsSass.sample.scss?raw';
 
 <Meta of={ShadowdomPartsStories} />
 
-# Styling Shadowdom Parts
-
-## Parts
+# Styling Shadow DOM Parts
 
 <div className="lead">
-  The `part` attribute allows a shadow tree element to be exposed to its parent DOM.
+  Any web component element within the Shadow DOM that has a `part` attribute can be styled by its
+  direct parent DOM using the `::part` pseudo-element.
 </div>
 
-To style an HTML shadow element, first set the `part` attribute on the element and assign it a name. Then, use the `::part` selector in your CSS to apply styles, referencing the name you specified in the `part` attribute. This allows you to style specific parts of a shadow DOM element from outside the shadow tree.
+To style a shadow element with a `part` attribute:
 
-It is possible to append pseudo-classes such as `:hover`, `::before`, `::after` etc. to the `::part` selector. However, structural pseudo-classes that rely on tree information cannot be appended.
+- Identify the reference name assigned to the element's `part` attribute (e.g. `<element part="reference name">)`.
+- Use the `::part` selector followed by the reference name (e.g. `::part(reference-name)`) to target and apply CSS styles.
 
 ### Example
 
@@ -25,22 +25,24 @@ It is possible to append pseudo-classes such as `:hover`, `::before`, `::after` 
 
 <Source code={partsSass} language="scss" />
 
-## Exportparts
+## Pseudo-classes & pseudo-elements
 
-<div className="banner banner-info">
-  <h4 className="banner-heading"> A `part` is visible only to its direct parent</h4>
-  <p>
-    Parts are not accessible from any ancestors other than their direct parent. However, it is
-    possible to make a `part` globally available by defining it within the `exportparts` attribute
-    of the component.
-  </p>
-</div>
-
-The `exportparts` attribute allows specific parts of a shadow DOM element to be globally accessible,
-meaning they can be styled from any ancestor outside the shadowtree.
+The `::part` selector supports the addition of pseudo-classes such as `:hover` and pseudo-elements like `::before` and `::after`. This enables precise styling for states and structural modifications of shadow DOM elements.
 
 ### Example
 
-<Source code={exportparts} language="html" />
+<Source code={pseudoParts} language="html" />
 
-<Source code={exportpartsSass} language="scss" />
+<Source code={pseudoPartsSass} language="scss" />
+
+## Limitations
+
+### Structural pseudo-classes
+
+Structural pseudo-classes, such as `:nth-child` and `:first-child`, which depend on tree structure
+and sibling relationships, cannot be applied to elements targeted by the `::part` selector. This restriction ensures that internal structure remains encapsulated and isn't exposed beyond the intended scope.
+
+### Nested `::part` selectors
+
+Each `part` must be directly exposed since styling cannot cascade through nested `::part` selectors.
+The `::part selector` only targets the element associated with the specified part attribute. As a result, using nesting part selectors like `::part(header)::part(footer)` is not supported.
