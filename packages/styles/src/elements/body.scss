@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use '../variables/color';
+@use '../variables/type';
 @use '../functions/tokens';
 @use '../tokens/elements';
 
@@ -17,7 +18,7 @@ html {
 }
 
 body {
-  font-family: tokens.get('body-font-family');
+  font-family: type.$font-family-sans-serif;
   font-size: tokens.get('body-font-size');
   font-weight: tokens.get('body-font-weight');
   line-height: tokens.get('body-line-height');
