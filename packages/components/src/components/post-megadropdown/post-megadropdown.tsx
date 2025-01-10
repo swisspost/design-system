@@ -6,8 +6,6 @@ import { Component, Element, Event, EventEmitter, h, Host, Method, State } from 
   shadow: false,
 })
 export class PostMegadropdown {
-  private popoverRef: HTMLPostPopovercontainerElement;
-
   @Element() host: HTMLPostMegadropdownElement;
 
   /**
@@ -25,23 +23,6 @@ export class PostMegadropdown {
    **/
   @Event() postToggleMegadropdown: EventEmitter<boolean>;
 
-  componentDidLoad() {
-    this.popoverRef.setAttribute('popover', 'manual');
-
-    this.popoverRef.addEventListener('postToggle', (event: CustomEvent<boolean>) => {
-      this.isVisible = event.detail;
-      this.postToggleMegadropdown.emit(this.isVisible);
-      this.manageOutsideClickListener();
-    });
-
-    this.popoverRef.addEventListener('animationend', () => {
-      if (this.animationClass === 'slide-out') {
-        this.hide();
-        this.animationClass = null;
-      }
-    });
-  }
-
   disconnectedCallback() {
     this.removeOutsideClickListener();
   }
@@ -50,49 +31,38 @@ export class PostMegadropdown {
    * Toggles the dropdown visibility based on its current state.
    */
   @Method()
-  async toggle(target: HTMLElement) {
-    this.isVisible ? this.hide() : await this.show(target);
+  async toggle() {
+    this.isVisible ? this.hide() : await this.show();
+  }
+
+  @Method()
+  async show() {
+    this.isVisible = true;
+    this.animationClass = 'slide-in';
+    this.postToggleMegadropdown.emit(this.isVisible);
+    this.addOutsideClickListener();
   }
 
   /**
-   * Displays the popover dropdown
-   *
-   * @param target - The HTML element relative to which the popover dropdown should be displayed.
+   * Hides the dropdown.
    */
   @Method()
-  async show(target: HTMLElement) {
-    if (this.popoverRef) {
-      await this.popoverRef.show(target);
-      this.animationClass = 'slide-in';
-      this.addOutsideClickListener();
-    } else {
-      console.error('show: popoverRef is null or undefined');
-    }
+  async hide() {
+    this.animationClass = 'slide-out';
   }
 
-  /**
-   * Hides the popover dropdown.
-   */
-  private hide() {
-    if (this.popoverRef) {
-      this.popoverRef.hide();
+  private handleAnimationEnd() {
+    if (this.animationClass === 'slide-out') {
+      this.isVisible = false;
+      this.animationClass = null;
+      this.postToggleMegadropdown.emit(this.isVisible);
       this.removeOutsideClickListener();
-    } else {
-      console.error('hide: popoverRef is null or undefined');
     }
-  }
-
-  private handleBackButtonClick() {
-    this.animationClass = 'slide-out';
-  }
-
-  private handleCloseButtonClick() {
-    this.animationClass = 'slide-out';
   }
 
   private handleClickOutside = (event: MouseEvent) => {
     if (!this.host.contains(event.target as Node)) {
-      this.animationClass = "slide-out";
+      this.hide();
     }
   };
 
@@ -104,18 +74,9 @@ export class PostMegadropdown {
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
-  private manageOutsideClickListener() {
-    if (this.isVisible) {
-      this.addOutsideClickListener();
-    } else {
-      this.removeOutsideClickListener();
-    }
-  }
-
   private handleFocusout(event: FocusEvent) {
     const relatedTarget = event.relatedTarget as HTMLElement;
-    const megadropdown = this.popoverRef.querySelector('.megadropdown');
-    if (!megadropdown.contains(relatedTarget)) {
+    if (!this.host.contains(relatedTarget)) {
       this.hide();
     }
   }
@@ -123,17 +84,14 @@ export class PostMegadropdown {
   render() {
     return (
       <Host>
-        <post-popovercontainer
-          class={this.animationClass}
-          placement="bottom"
-          edge-gap="0"
-          ref={el => (this.popoverRef = el)}
-        >
+        <div class={`megadropdown-container ${this.isVisible ? 'visible' : 'hidden'} ${this.animationClass || ''}`}
+          onAnimationEnd={() => this.handleAnimationEnd()}
+            onFocusout={e => this.handleFocusout(e)}>
           <div class="megadropdown" onFocusout={e => this.handleFocusout(e)}>
-            <div onClick={() => this.handleBackButtonClick()} class="back-button">
+            <div onClick={() => this.hide()} class="back-button">
               <slot name="back-button"></slot>
             </div>
-            <div onClick={() => this.handleCloseButtonClick()} class="close-button">
+            <div onClick={() => this.hide()} class="close-button">
               <slot name="close-button"></slot>
             </div>
             <slot name="megadropdown-title"></slot>
@@ -141,7 +99,7 @@ export class PostMegadropdown {
               <slot></slot>
             </div>
           </div>
-        </post-popovercontainer>
+          </div>
       </Host>
     );
   }
