@@ -13,7 +13,7 @@ tokens.$default-map: components.$post-select;
 .form-select {
   display: block;
   width: 100%;
-  font-family: tokens.get('body-font-family', elements.$post-body);
+  font-family: inherit;
   appearance: none;
   position: relative;
   min-height: tokens.get('select-sizing-height');
