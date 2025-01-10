@@ -94,7 +94,7 @@
     "@web-types/lit": "2.0.0-3"
   },
   "engines": {
-    "node": "20"
+    "node": "22"
   },
   "packageManager": "pnpm@9.6.0",
   "pnpm": {
