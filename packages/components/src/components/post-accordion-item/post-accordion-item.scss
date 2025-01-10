@@ -1,22 +1,145 @@
-@use '@swisspost/design-system-styles/components/accordion';
-@use '@swisspost/design-system-styles/mixins/accordion' as accordion-mx;
+@use '@swisspost/design-system-styles/mixins/button' as button-mx;
+@use '@swisspost/design-system-styles/mixins/focus' as focus-mx;
+@use '@swisspost/design-system-styles/mixins/icons' as icon-mx;
+@use '@swisspost/design-system-styles/mixins/utilities' as utility-mx;
+
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/tokens/elements';
+@use '@swisspost/design-system-styles/tokens/helpers';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/variables/components/accordion';
+
+tokens.$default-map: components.$post-accordion;
 
 :host {
-  display: block;
+  &::after {
+    display: block;
+    content: '';
+    margin-top: calc(tokens.get('accordion-border-bottom-width') * -1);
+    border-bottom: tokens.get('accordion-border-bottom-width')
+      tokens.get('accordion-border-bottom-style') tokens.get('accordion-enabled-border');
+  }
+  &:has(.accordion-button:hover)::after {
+    border-color: tokens.get('accordion-hover-border');
+    @include utility-mx.high-contrast-mode() {
+      border-color: Highlight;
+    }
+  }
+}
+
+.accordion-header {
+  color: tokens.get('accordion-enabled-fg');
+  font-size: tokens.get('accordion-header-font-size');
+  margin: 0;
+  line-height: tokens.get('heading-line-height', elements.$post-heading);
+  font-weight: tokens.get('heading-font-weight', elements.$post-heading);
 }
 
 .accordion-button {
+  @include button-mx.reset-button;
+  display: flex;
+  position: relative;
+  width: 100%;
+  align-items: center;
+  text-align: start;
+  gap: tokens.get('accordion-header-content-gap-inline');
+  padding: calc(
+      tokens.get('accordion-header-padding-block-open') +
+        tokens.get('accordion-group-border-top-width')
+    )
+    calc(
+      tokens.get('accordion-header-padding-inline') + tokens.get('accordion-border-bottom-width')
+    );
   cursor: pointer;
+
+  &::before {
+    display: block;
+    position: absolute;
+    content: '';
+    inset: 0;
+    bottom: auto;
+    border-top: var(--post-accordion-button-border-top);
+  }
+
+  @include utility-mx.focus-style() {
+    border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+  }
+
+  slot::slotted(span[slot='header']) {
+    flex-grow: 1;
+  }
+
+  post-icon {
+    flex: none;
+    width: tokens.get('accordion-icon-size');
+    aspect-ratio: 1;
+    transition: accordion.$accordion-icon-transition;
+  }
+
+  &.collapsed {
+    padding-block-start: calc(
+      tokens.get('accordion-header-padding-block-closed') +
+        tokens.get('accordion-group-border-top-width')
+    );
+    padding-block-end: calc(
+      tokens.get('accordion-header-padding-block-closed') +
+        tokens.get('accordion-border-bottom-width')
+    );
+
+    post-icon {
+      transform: accordion.$accordion-icon-transform;
+    }
+  }
+
+  &:hover {
+    color: tokens.get('accordion-hover-fg');
+  }
 
   > ::slotted(.text-truncate) {
     display: block;
   }
+
+  @include utility-mx.high-contrast-mode() {
+    &:hover,
+    &:focus-visible {
+      color: Highlight;
+    }
+  }
 }
 
-post-accordion-item::part(accordion-item) {
-  @include accordion-mx.background-color;
+.accordion-body {
+  padding-block-start: tokens.get('accordion-content-padding-block-start');
+  padding-block-end: calc(
+    tokens.get('accordion-content-padding-block-end') + tokens.get('accordion-border-bottom-width')
+  );
+  padding-inline: tokens.get('accordion-content-padding-inline');
 }
 
-:host(:not(:first-of-type)) .accordion-item {
-  border-block-start: 0;
+.logo-container {
+  display: none;
+
+  width: tokens.get('accordion-header-logo-size');
+  aspect-ratio: 1;
+
+  &.has-image {
+    display: block;
+  }
+
+  slot::slotted(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.accordion-button,
+.accordion-body {
+  > ::slotted(:first-child) {
+    margin-block-start: 0 !important;
+  }
+
+  > ::slotted(:last-child) {
+    margin-block-end: 0 !important;
+  }
 }

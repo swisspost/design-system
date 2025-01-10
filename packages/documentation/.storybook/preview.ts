@@ -38,17 +38,25 @@ const preview: Preview = {
 
           // Category - Foundations
           'Foundations',
-          ['Logo', 'Icons', 'Palettes', 'Typography', ['Overview']],
-
-          // Category - Layout
-          'Layout',
-          ['Breakpoints', 'Containers', 'Grid', 'Columns'],
+          [
+            'Logo',
+            'Icons',
+            'Palettes',
+            'Typography',
+            ['Overview'],
+            'Layout',
+            ['Breakpoints', 'Containers', 'Grid', 'Columns'],
+          ],
 
           // Category - Raw Components (INTERNAL ONLY)
           'Raw Components',
 
           // Category - Components
           'Components',
+
+          // Category - Modules
+          'Modules',
+          ['Header', 'Footer'],
 
           // Category - Utilities
           'Utilities',

@@ -2,12 +2,17 @@
 
 @use './../themes/bootstrap/core' as *;
 
-@use './../mixins/utilities';
-@use './../functions/utilities' as utility-functions;
+@use './../mixins/utilities' as utilities-mx;
+@use './../functions/utilities' as utilities-fx;
 @use './../variables/components/subnavigation';
 @use './../variables/animation';
 @use './../variables/spacing';
 @use './../placeholders/text';
+
+@use '../functions/tokens';
+@use '../tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 $module-name: 'subnavigation';
 
@@ -16,11 +21,11 @@ $module-name: 'subnavigation';
   background-color: subnavigation.$subnavigation-background-color;
 
   &::after {
-    @include utilities.full-width-underscore(
+    @include utilities-mx.full-width-underscore(
       subnavigation.$subnavigation-border-bottom-color,
       subnavigation.$subnavigation-border-bottom-width
     );
-    z-index: utility-functions.z-index(subnavigation, underscore-root);
+    z-index: utilities-fx.z-index(subnavigation, underscore-root);
   }
 
   &-alternate {
@@ -69,11 +74,11 @@ $module-name: 'subnavigation';
       padding: subnavigation.$subnavigation-link-padding-lg;
     }
 
-    @include utilities.high-contrast-mode() {
+    @include utilities-mx.high-contrast-mode() {
       &:hover,
       &:focus-visible {
-        outline: spacing.$size-line solid Highlight;
-        outline-offset: -(spacing.$size-micro);
+        outline: tokens.get('utility-gap-2') solid Highlight;
+        outline-offset: calc(tokens.get('utility-gap-4') * -1);
       }
     }
 
@@ -90,11 +95,11 @@ $module-name: 'subnavigation';
     }
 
     &:not(.active)::after {
-      @include utilities.full-width-underscore(
+      @include utilities-mx.full-width-underscore(
         #{subnavigation.$subnavigation-link-underscore-color-hover},
         #{subnavigation.$subnavigation-link-underscore-height}
       );
-      z-index: utility-functions.z-index(subnavigation, underscore-link);
+      z-index: utilities-fx.z-index(subnavigation, underscore-link);
       right: animation.$transition-distance-medium;
       left: animation.$transition-distance-medium;
       opacity: 0;
@@ -116,16 +121,16 @@ $module-name: 'subnavigation';
       font-weight: $font-weight-bold;
 
       &::after {
-        @include utilities.full-width-underscore(
+        @include utilities-mx.full-width-underscore(
           #{subnavigation.$subnavigation-link-underscore-color-active},
           #{subnavigation.$subnavigation-link-underscore-height}
         );
-        z-index: utility-functions.z-index(subnavigation, underscore-link);
+        z-index: utilities-fx.z-index(subnavigation, underscore-link);
       }
     }
   }
 
-  @include utilities.high-contrast-mode() {
+  @include utilities-mx.high-contrast-mode() {
     &::after {
       background-color: CanvasText;
     }

@@ -1,5 +1,6 @@
 import { Component, Element, Prop, Host, State, h } from '@stencil/core';
 import { version } from '@root/package.json';
+import { nanoid } from 'nanoid';
 
 /**
  * @slot default - Slot for placing the list title.
@@ -27,7 +28,7 @@ export class PostList {
   /**
    * The list can become horizontal by setting `horizontal="true"` or just `horizontal`
    */
-  @Prop() readonly horizontal: boolean = false;
+  @Prop({ reflect: true }) readonly horizontal: boolean = false;
 
   private titleEl: HTMLElement;
 
@@ -35,7 +36,7 @@ export class PostList {
     /**
      * Get the id set on the host element or use a random id by default
      */
-    this.titleId = `list-${crypto.randomUUID()}`;
+    this.titleId = `title-${this.host.id || nanoid(6)}`;
   }
 
   componentDidLoad() {

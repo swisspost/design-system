@@ -60,7 +60,7 @@ tokens.$default-map: components.$post-banner;
   }
 
   &.no-icon {
-    min-height: calc(2 * #{$padding-y} + close.$close-size);
+    min-height: calc(2 * $padding-y + close.$close-size);
     padding-inline-start: $padding-x;
 
     &::before {
@@ -111,6 +111,10 @@ tokens.$default-map: components.$post-banner;
   &:not(.no-icon)::before {
     @include icons-mx.icon($icon);
     color: $icon-color;
+
+    @include utilities-mx.high-contrast-mode {
+      color: CanvasText;
+    }
   }
 
   // Prevent flashing when using post-icon

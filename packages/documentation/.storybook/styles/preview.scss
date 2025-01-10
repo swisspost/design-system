@@ -2,8 +2,8 @@
 @use '@swisspost/design-system-styles/core.scss' as post;
 @use '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css';
 @use './components';
-@use '@swisspost/design-system-styles/functions/tokens' as tokens;
-@use '@swisspost/design-system-styles/tokens/utilities' as utilities;
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/utilities';
 
 tokens.$default-map: utilities.$post-color;
 
@@ -52,7 +52,8 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     .table-fit-content {
       width: fit-content;
 
-      th, td {
+      th,
+      td {
         padding-inline: 2rem;
       }
     }
@@ -60,7 +61,8 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
   .sbdocs-content .container {
     // Support for autolink-headings
-    :is(h1, h2, h3, h4, h5, h6) {
+    .docs-title :is(h1, h2, h3, h4, h5, h6),
+    > :is(h1, h2, h3, h4, h5, h6) {
       position: relative;
 
       @media (hover: hover) {
@@ -90,10 +92,10 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: post.$size-mini;
+    gap: tokens.get('utility-gap-8', utilities.$post-spacing);
   }
   .docs-title {
-    margin-bottom: post.$size-mini;
+    margin-bottom: tokens.get('utility-gap-8', utilities.$post-spacing);
 
     :first-child {
       margin-right: auto;
@@ -110,9 +112,8 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     top: -0.1em;
     margin: 0 0.1em;
     padding: 0.15em 0.4em 0.1em;
-    background-color: tokens.get('utility-surface-accent1');
-    border: 1px solid tokens.get('utility-surface-accent2');
-    color: 1px solid tokens.get('utility-surface-accent4');
+    background-color: rgba(#fff, 0.75);
+    border: 1px solid rgba(#000, 0.3);
     border-radius: 0.2em;
     font-family: $monospace;
     font-size: 0.75em;
@@ -125,6 +126,13 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
       padding: 1rem;
       background-color: var(--post-contrast-color);
       color: var(--post-contrast-color-inverted);
+    }
+  }
+
+  [data-color-scheme='dark'] {
+    code {
+      background-color: rgba(#000, 0.75);
+      border-color: rgba(#fff, 0.3);
     }
   }
 

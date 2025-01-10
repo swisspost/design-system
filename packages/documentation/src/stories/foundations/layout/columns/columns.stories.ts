@@ -141,9 +141,14 @@ export const VerticalExample: Story = {
       include: ['Align Items', 'Align Item 1'],
     },
   },
+  decorators: [
+    (story: StoryFn, context: StoryContext) => html`
+      <div class="high-row">${story(context.args, context)}</div>
+    `,
+  ],
   render: (args: Args) => html`
     <div class="container">
-      <div class="row-height row ${args.alignItems}">
+      <div class="row ${args.alignItems}">
         <div class="col${args.alignSelf === 'no self alignment' ? '' : ` ${args.alignSelf}`}">
           Item 1
         </div>
@@ -239,7 +244,7 @@ export const ColumnBreakExample: Story = {
       ${args.renderBreakingElement
         ? html`
             <!-- Force next columns to break to new line -->
-            <div class="w-100"></div>
+            <div class="w-full"></div>
           `
         : nothing}
       <div class="col-3">.col-3</div>

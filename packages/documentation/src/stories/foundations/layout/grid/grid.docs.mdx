@@ -1,10 +1,11 @@
 import { Canvas, Meta, Source } from '@storybook/blocks';
-import { formatAsMap } from '@/utils/sass-export';
-import { GridTable, SCSS_VARIABLES } from './grid.blocks';
+import { parse } from '@/utils/sass-export';
+import scss from './grid.module.scss';
 import * as GridStories from './grid.stories';
 import './grid.styles.scss';
 import SampleContainer from './grid-container.sample.html?raw';
-import SampleScssMixins from './grid-scss-mixins.sample.scss?raw';
+
+export const SCSS_VARIABLES = parse(scss);
 
 <Meta of={GridStories} />
 
@@ -46,13 +47,6 @@ Breaking it down, here’s how the grid system comes together:
 - **Columns are incredibly flexible.** There are 12 template columns available per row, allowing you to create different combinations of elements that span any number of columns. Column classes indicate the number of template columns to span (e.g., `.col-4` spans four). Widths are set in percentages so you always have the same relative sizing.
 - **Gutters are also responsive and customizable.** Gutter classes are available across all breakpoints, with all the same sizes as our `margin` and `padding` spacing. Change horizontal gutters with `.gx-*` classes, vertical gutters with `.gy-*`, or all gutters with `.g-*` classes. `.g-0` is also available to remove gutters.
 - **Sass variables, maps, and mixins power the grid.** If you don’t want to use the predefined grid classes, you can use the grid’s source Sass to create your own with more semantic markup. We also include some CSS custom properties to consume these Sass variables for even greater flexibility for you.
-
-## Grid options
-
-Our grid system can adapt across all <span>{SCSS_VARIABLES['breakpoint-count']}</span> breakpoints.
-Each of these breakpoints have their own specifications, a unique class prefix, and some modifiers.
-
-<GridTable />
 
 ## Auto-layout columns
 
@@ -112,6 +106,11 @@ To control the space between your columns, add either `.g-*` (horizontal and ver
 
 <Canvas of={GridStories.Gutters} />
 
+<div className="banner banner-info my-24">
+  You can find additional information and examples of grid gutters{' '}
+  <a href="/?path=/docs/64b63483-79fa-4e9f-9441-f7d6b2eabae2--docs">here</a>.
+</div>
+
 ## Nesting
 
 To nest your content with the default grid, add a new `.row` and set of `.col-*` columns within an existing `.col-*` column. Nested rows should include a set of columns that add up to 12 or fewer.
@@ -119,25 +118,3 @@ To nest your content with the default grid, add a new `.row` and set of `.col-*`
 Note: the style in this example is applied to the column to visually better understand nesting. However, it's recommended to apply the style on a child element of the column.
 
 <Canvas of={GridStories.Nested} />
-
-## CSS
-
-When using our source Sass files, you have the option of using Sass variables and mixins to create custom, semantic, and responsive page layouts. Our predefined grid classes use these same variables and mixins to provide a whole suite of ready-to-use classes for fast responsive layouts.
-
-### Sass variables
-
-Variables and maps determine the number of columns, the gutter width, and the media query point at which to begin floating columns. We use these to generate the predefined grid classes documented above, as well as for the custom mixins listed below.
-
-<Source
-  language="scss"
-  dark
-  code={Object.entries(SCSS_VARIABLES.variables)
-    .map(([key, value]) => `$${key}: ${formatAsMap(value)};`)
-    .join('\n')}
-></Source>
-
-### Sass mixins
-
-Mixins are used in conjunction with the grid variables to generate semantic CSS for individual grid columns.
-
-<Source language="scss" dark code={SampleScssMixins}></Source>
