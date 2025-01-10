@@ -20,7 +20,6 @@ post-language-option {
     justify-content: center;
     height: 100%;
     width: 100%;
-    padding: var(--post-language-option-padding);
     border-radius: 2px;
     @include utilities-mx.focus-style;
   }
@@ -30,6 +29,7 @@ post-language-option:where([variant='list']) {
   :is(a, button) {
     width: 40px;
     height: 40px;
+    border-radius: 2px;
 
     &:hover {
       color: #504f4b;
