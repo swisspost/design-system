@@ -15,6 +15,7 @@ export class PostMegadropdown {
    */
   @State() isVisible: boolean = false;
 
+  /** Holds the current animation class. */
   @State() animationClass: string | null = null;
 
   /**
@@ -35,6 +36,9 @@ export class PostMegadropdown {
     this.isVisible ? this.hide() : await this.show();
   }
 
+  /**
+  * Displays the dropdown.
+  */
   @Method()
   async show() {
     this.isVisible = true;
