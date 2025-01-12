@@ -1,5 +1,6 @@
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/variables/commons';
 
 @keyframes slide-in {
   0% {
@@ -21,7 +22,7 @@
 
 @keyframes slide-down {
   from {
-    transform: translateY(-40%);
+    transform: translateY(-100%);
   }
   to {
     transform: translateY(0%);
@@ -29,13 +30,14 @@
 }
 
 @keyframes slide-up {
-  from {
+  0% {
     transform: translateY(0%);
   }
-  to {
+  100% {
     transform: translateY(-100%);
   }
 }
+
 
 *,
 ::before,
@@ -43,34 +45,45 @@
   box-sizing: border-box;
 }
 
-post-popovercontainer {
+.megadropdown-container {
+  box-shadow: 0 8px 6px rgba(0, 0, 0, 16%);
   --post-global-header-height: 72px;
   --post-main-header-height: 56px;
+  position: absolute;
   --post-header-height: calc(var(--post-global-header-height) + var(--post-main-header-height));
 
   background-color: #fafafa;
   border: none;
+  z-index: -1;
   border-top: 1px solid #e1e0dc;
   width: 100%;
+  top: 100%;
+  left: 0;
   border-radius: 0;
-  box-shadow: 0 8px 6px rgba(0, 0, 0, 16%);
+
+  &.hidden {
+    display: none;
+  }
+
+  &.visible {
+    display: block;
+  }
 
   &.slide-in {
-    animation: slide-down 350ms forwards;
+    animation: slide-down 3000ms forwards;
   }
 
   &.slide-out {
-    animation: slide-up 350ms forwards;
+    animation: slide-up 3000ms forwards;
   }
 
   @include media.max(lg) {
+    z-index: commons.$zindex-popover;
     --post-global-header-height: 64px;
-    position: absolute;
-    top: var(--post-header-height) !important;
-    bottom: 0;
+    top: 0 !important;
     left: 0;
     width: 100%;
-    height: auto;
+    height: calc(100vh - var(--post-header-height));
     border-top: unset;
 
     &.slide-in {

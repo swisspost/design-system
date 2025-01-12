@@ -5,11 +5,15 @@
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/variables/animation';
+@use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 
 $nav-height: var(--post-core-dimension-56);
 
 post-mainnavigation {
+  position: sticky;
+  z-index: commons.$zindex-mainnavigation;
+  background: var(--post-core-color-brand-white);
   // reset links and buttons
   post-list-item {
     > a {
@@ -44,13 +48,13 @@ post-mainnavigation {
   // desktop styles
   @include media.min(lg) {
     nav {
-      position: relative;
       max-width: 100vw;
       max-height: $nav-height;
       user-select: none;
     }
 
     post-list {
+      background: var(--post-core-color-brand-white);
       margin-inline: var(--post-core-dimension-4);
 
       > [role='list'] {

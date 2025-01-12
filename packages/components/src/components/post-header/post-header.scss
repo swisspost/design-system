@@ -8,6 +8,7 @@
 }
 
 :host {
+  z-index: 1500;
   --global-header-height: 72px;
   --global-header-minimal-height: 24px;
   --main-header-height: 56px;
@@ -46,7 +47,7 @@
   position: sticky;
   padding-inline: var(--post-core-dimension-4);
   height: var(--global-header-height);
-  z-index: 1;
+  z-index: 1050;
 
   @include media.max(lg) {
     inset-block-start: 0;
@@ -95,6 +96,8 @@ slot[name='post-logo'] {
 
 .title-header {
   display: flex;
+  position: sticky;
+  z-index: 1050;
   align-items: center;
   justify-content: space-between;
   gap: var(--post-core-dimension-4);
@@ -107,8 +110,6 @@ slot[name='post-logo'] {
   }
 
   @include media.max(lg) {
-    position: sticky;
-    z-index: 1;
     inset-block-start: var(--global-header-height);
     padding-inline: var(--post-core-dimension-8) var(--post-core-dimension-16);
 
@@ -142,10 +143,10 @@ slot[name='post-logo'] {
 
 .navigation {
   background: var(--post-core-color-brand-white);
+  z-index: 1049;
 
   @include media.min(lg) {
     position: sticky;
-    z-index: 1;
     inset-block-start: var(--global-header-minimal-height);
   }
 }
@@ -159,7 +160,6 @@ slot[name='post-logo'] {
     box-shadow: var(--post-core-elevation-3);
     min-height: var(--post-core-dimension-10); // needed for the box-shadow to always show
     max-height: calc(100vh - var(--header-height));
-    overflow: auto;
   }
 
   ::slotted(post-mainnavigation),
