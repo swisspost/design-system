@@ -70,11 +70,11 @@
   }
 
   &.slide-in {
-    animation: slide-down 3000ms forwards;
+    animation: slide-down 350ms forwards;
   }
 
   &.slide-out {
-    animation: slide-up 3000ms forwards;
+    animation: slide-up 350ms forwards;
   }
 
   @include media.max(lg) {
@@ -87,15 +87,11 @@
     border-top: unset;
 
     &.slide-in {
-      animation: slide-in;
-      animation-duration: 350ms;
-      animation-fill-mode: forwards;
+      animation: slide-in 350ms forwards;
     }
 
     &.slide-out {
-      animation: slide-out;
-      animation-duration: 350ms;
-      animation-fill-mode: forwards;
+      animation: slide-out 350ms forwards;
     }
   }
 }

@@ -1,4 +1,5 @@
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/variables/animation';
 
 *,
@@ -8,7 +9,7 @@
 }
 
 :host {
-  z-index: 1500;
+  z-index: commons.$zindex-header;
   --global-header-height: 72px;
   --global-header-minimal-height: 24px;
   --main-header-height: 56px;
@@ -47,7 +48,7 @@
   position: sticky;
   padding-inline: var(--post-core-dimension-4);
   height: var(--global-header-height);
-  z-index: 1050;
+  z-index: commons.$zindex-modal;
 
   @include media.max(lg) {
     inset-block-start: 0;
@@ -97,7 +98,7 @@ slot[name='post-logo'] {
 .title-header {
   display: flex;
   position: sticky;
-  z-index: 1050;
+  z-index: commons.$zindex-modal;
   align-items: center;
   justify-content: space-between;
   gap: var(--post-core-dimension-4);
@@ -143,10 +144,10 @@ slot[name='post-logo'] {
 
 .navigation {
   background: var(--post-core-color-brand-white);
-  z-index: 1049;
+  position: sticky;
+  z-index: commons.$zindex-main-navigation;
 
   @include media.min(lg) {
-    position: sticky;
     inset-block-start: var(--global-header-minimal-height);
   }
 }

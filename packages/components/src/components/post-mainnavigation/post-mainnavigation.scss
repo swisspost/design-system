@@ -11,8 +11,6 @@
 $nav-height: var(--post-core-dimension-56);
 
 post-mainnavigation {
-  position: sticky;
-  z-index: commons.$zindex-mainnavigation;
   background: var(--post-core-color-brand-white);
   // reset links and buttons
   post-list-item {
