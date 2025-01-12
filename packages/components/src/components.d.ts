@@ -291,14 +291,17 @@ export namespace Components {
     }
     interface PostMegadropdown {
         /**
-          * Displays the popover dropdown
-          * @param target - The HTML element relative to which the popover dropdown should be displayed.
+          * Hides the dropdown.
          */
-        "show": (target: HTMLElement) => Promise<void>;
+        "hide": () => Promise<void>;
+        /**
+          * Displays the dropdown.
+         */
+        "show": () => Promise<void>;
         /**
           * Toggles the dropdown visibility based on its current state.
          */
-        "toggle": (target: HTMLElement) => Promise<void>;
+        "toggle": () => Promise<void>;
     }
     interface PostMegadropdownTrigger {
         /**
