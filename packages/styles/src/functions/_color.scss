@@ -10,8 +10,13 @@
   }
   $percent: color.alpha($color) * 100;
   $opaque: color.adjust($color, $alpha: 1);
+  $mixed: color.mix($opaque, $background, $percent);
 
-  @return color.mix($opaque, $background, $percent);
+  @return rgb(
+    math.round(color.red($mixed)),
+    math.round(color.green($mixed)),
+    math.round(color.blue($mixed))
+  );
 }
 
 @function rgb-values($color) {
