@@ -45,7 +45,8 @@
     'enabled-hcm-light': #050400,
     'enabled-hcm-dark': #fff,
     'selected-hcm-dark': #fff,
-    'hover-hcm-dark': 'SelectedItem',
+    'hover-hcm-dark': #fff,
+    'hover-hcm-light': #050400,
   );
 
   @if ($state) {
