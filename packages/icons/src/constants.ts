@@ -24,6 +24,7 @@ const ICON_V2_TEMPLATE_STYLES = `<style>
     const min = !isFirst && `(min-width: ${size}px)`;
     const max = !isLast && `(max-width: ${nextSize - 1}px)`;
 
+    // Concisely filter out null, undefined or false values, https://michaeluloth.com/javascript-filter-boolean/
     return `@media ${[min, max].filter(Boolean).join(' and ')} {
       g {
         --${ID_SYMBOL_PREFIX}${size}: block;
