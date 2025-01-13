@@ -3,6 +3,7 @@
 @use './functions' as *;
 
 @use '../variables/sizing' as *;
+@use '../variables/commons';
 /*
   Utilities are generated with our utility API using bellow $utilities map.
 
