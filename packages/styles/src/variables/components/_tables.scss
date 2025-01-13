@@ -4,11 +4,16 @@
 @use './../spacing';
 @use './../type';
 
+@use '../../tokens/utilities';
+@use '../../functions/tokens';
+
+tokens.$default-map: utilities.$post-spacing;
+
 // Bootstrap variables
-$table-cell-padding-y: spacing.$size-small-regular !default;
-$table-cell-padding-x: spacing.$size-mini !default;
-$table-cell-padding-y-sm: spacing.$size-mini !default;
-$table-cell-padding-x-sm: spacing.$size-micro !default;
+$table-cell-padding-y: tokens.get('utility-gap-12') !default;
+$table-cell-padding-x: tokens.get('utility-gap-4') !default;
+$table-cell-padding-y-sm: tokens.get('utility-gap-8') !default;
+$table-cell-padding-x-sm: tokens.get('utility-gap-4') !default;
 $table-cell-vertical-align: top !default;
 $table-color: var(--post-contrast-color) !default;
 $table-bg: transparent !default;

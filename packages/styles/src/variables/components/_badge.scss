@@ -5,6 +5,10 @@
 
 @use './button';
 @use './../../functions/sizing';
+@use './../../functions/tokens';
+@use './../../tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 $badge-border-radius: 50rem;
 $badge-line-height: type.$line-height-copy;
@@ -12,12 +16,12 @@ $badge-color: color.$white;
 $badge-bg: color.$error;
 $badge-border: color.$white solid commons.$border-thick;
 
-$badge-height: spacing.$size-large;
-$badge-height-sm: spacing.$size-regular;
-$badge-height-empty: spacing.$size-mini;
+$badge-height: tokens.get('utility-gap-24');
+$badge-height-sm: tokens.get('utility-gap-16');
+$badge-height-empty: tokens.get('utility-gap-8');
 
-$badge-padding-x: spacing.$size-mini;
-$badge-padding-x-sm: spacing.$size-micro;
+$badge-padding-x: tokens.get('utility-gap-8');
+$badge-padding-x-sm: tokens.get('utility-gap-4');
 $badge-padding-x-empty: 0%; // needs a unit for the calculated min-width
 
 $badge-font-size: type.$font-size-12;

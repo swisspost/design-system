@@ -18,8 +18,8 @@ export const Rating: Story = {
     return schemes(
       () => html`
         <div class="d-flex gap-16 mb-16">
-          <div class="w-50 d-flex gap-4">readonly: false</div>
-          <div class="w-50 d-flex gap-4">readonly: true</div>
+          <div class="w-half d-flex gap-4">readonly: false</div>
+          <div class="w-half d-flex gap-4">readonly: true</div>
         </div>
         ${bombArgs({
           stars: [3, 5, 10],
@@ -30,10 +30,10 @@ export const Rating: Story = {
             (args: Args) =>
               html`
                 <div class="d-flex gap-16">
-                  <div class="w-50">
+                  <div class="w-half">
                     ${meta.render?.({ ...context.args, ...args, readonly: false }, context)}
                   </div>
-                  <div class="w-50">
+                  <div class="w-half">
                     ${meta.render?.({ ...context.args, ...args, readonly: true }, context)}
                   </div>
                 </div>

@@ -16,7 +16,7 @@ export default function Home() {
       <h1 className="visually-hidden">This is the homepage</h1>
 
       <section>
-        <h2 className="h4 mt-huge-r">Sendung Verfolgen</h2>
+        <h2 className="h4 mt-40">Sendung Verfolgen</h2>
         <form className="palette-brand mt-16 py-16 px-32 d-flex gap-24">
           <PostIcon name="1010" className="fs-small-huge"></PostIcon>
           <div className="form-floating" style={{ minWidth: '50%' }}>
@@ -38,10 +38,10 @@ export default function Home() {
         </form>
       </section>
 
-      <section className="mt-huge-r">
+      <section className="mt-40">
         <div className="row">
           <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-100 product-card">
+            <a href="#" className="card h-full product-card">
               <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
                 <PostIcon name="2146" className="fs-bigger-big"></PostIcon>
                 <p className="mt-8 text-center text-muted fs-regular fw-normal">Umzug melden</p>
@@ -50,7 +50,7 @@ export default function Home() {
           </div>
 
           <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-100 product-card">
+            <a href="#" className="card h-full product-card">
               <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
                 <PostIcon name="2026" className="fs-bigger-big"></PostIcon>
                 <p className="mt-8 text-center text-muted fs-regular fw-normal">Shop</p>
@@ -59,7 +59,7 @@ export default function Home() {
           </div>
 
           <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-100 product-card">
+            <a href="#" className="card h-full product-card">
               <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
                 <PostIcon name="3140" className="fs-bigger-big"></PostIcon>
                 <p className="mt-8 text-center text-muted fs-regular fw-normal">
@@ -70,7 +70,7 @@ export default function Home() {
           </div>
 
           <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-100 product-card">
+            <a href="#" className="card h-full product-card">
               <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
                 <PostIcon name="2456" className="fs-bigger-big"></PostIcon>
                 <p className="mt-8 text-center text-muted fs-regular fw-normal">
@@ -81,7 +81,7 @@ export default function Home() {
           </div>
 
           <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-100 product-card">
+            <a href="#" className="card h-full product-card">
               <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
                 <PostIcon name="1012" className="fs-bigger-big"></PostIcon>
                 <p className="mt-8 text-center text-muted fs-regular fw-normal">
@@ -92,7 +92,7 @@ export default function Home() {
           </div>
 
           <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-100 product-card">
+            <a href="#" className="card h-full product-card">
               <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
                 <PostIcon name="1024" className="fs-bigger-big"></PostIcon>
                 <p className="mt-8 text-center text-muted fs-regular fw-normal">
@@ -108,7 +108,7 @@ export default function Home() {
         </a>
       </section>
 
-      <section className="pt-huge-r mb-huge-r">
+      <section className="pt-40 mb-40">
         <div className="row">
           <div className="col-lg-4 col-sm-6 col-12 mb-16">
             <div className="card elevation-0">
@@ -154,7 +154,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-huge-r">
+      <section className="mt-40">
         <h2>Testing a couple web components</h2>
         <PostTabs>
           <PostTabHeader panel="one" data-tooltip-target="tooltip-one">
@@ -190,7 +190,7 @@ export default function Home() {
           </PostTabPanel>
         </PostTabs>
         <h3>Frequently asked questions</h3>
-        <PostAccordion headingLevel={4} className="mt-big-r" multiple>
+        <PostAccordion headingLevel={4} className="mt-32" multiple>
           <PostAccordionItem>
             <span slot="header">Is this for real?</span>
             <p>No, this is just a fantasy.</p>

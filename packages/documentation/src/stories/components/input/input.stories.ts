@@ -81,7 +81,6 @@ const meta: MetaComponent = {
       description: 'The components `type` attribute.',
       control: {
         type: 'select',
-        labels: {},
       },
       options: [
         'text',

@@ -17,7 +17,7 @@ export const Link: Story = {
   render: (_args: Args, context: StoryContext) => {
     return schemes(
       () => html`
-        <div class="d-flex flex-column gap-regular">
+        <div class="d-flex flex-column gap-16">
           ${bombArgs({
             text: ['Link Text', 'Lorem ipsum dolor sit amet consectetur'],
             href: ['https://example.com', 'https://imgur.com/FKmX7dt'],
