@@ -33,9 +33,9 @@
     "linkDirectory": true
   },
   "devDependencies": {
-    "@tokens-studio/sd-transforms": "1.2.2",
+    "@tokens-studio/sd-transforms": "1.2.9",
     "copyfiles": "2.4.1",
     "rimraf": "6.0.1",
-    "style-dictionary": "4.0.1"
+    "style-dictionary": "4.3.0"
   }
 }

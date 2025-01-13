@@ -87,8 +87,8 @@
     "tokens:usage": "node ./utilities/token-checker.cjs"
   },
   "devDependencies": {
-    "@changesets/cli": "2.27.7",
-    "start-server-and-test": "2.0.5"
+    "@changesets/cli": "2.27.11",
+    "start-server-and-test": "2.0.9"
   },
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
