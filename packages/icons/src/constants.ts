@@ -18,14 +18,12 @@ export const ICON_V1_TEMPLATE = `<svg xmlns="http://www.w3.org/2000/svg">
 
 const ICON_V2_TEMPLATE_STYLES = `<style>
   ${ICON_V2_SIZES.map((size, i) => {
-    const isFirst = size === ICON_V2_SIZES[0];
-    const isLast = size === ICON_V2_SIZES[ICON_V2_SIZES.length - 1];
-    const nextSize = ICON_V2_SIZES[i + 1];
-    const min = !isFirst && `(min-width: ${size}px)`;
-    const max = !isLast && `(max-width: ${nextSize - 1}px)`;
+    const query = [];
 
-    // Concisely filter out null, undefined or false values, https://michaeluloth.com/javascript-filter-boolean/
-    return `@media ${[min, max].filter(Boolean).join(' and ')} {
+    if (i > 0) query.push(`(min-width: ${ICON_V2_SIZES[i]}px)`);
+    if (i < ICON_V2_SIZES.length - 1) query.push(`(max-width: ${ICON_V2_SIZES[i + 1] - 0.01}px)`);
+
+    return `@media ${query.join(' and ')} {
       g {
         --${ID_SYMBOL_PREFIX}${size}: block;
       }
