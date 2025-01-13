@@ -8,6 +8,9 @@ import { Component, Element, Event, EventEmitter, h, Host, Method, State } from 
 export class PostMegadropdown {
   @Element() host: HTMLPostMegadropdownElement;
 
+  /** Tracks the currently active dropdown instance. */
+  private static activeDropdown: PostMegadropdown | null = null;
+
   /**
    * Holds the current visibility state of the dropdown.
    * This state is internally managed to track whether the dropdown is open (`true`) or closed (`false`),
@@ -26,6 +29,9 @@ export class PostMegadropdown {
 
   disconnectedCallback() {
     this.removeOutsideClickListener();
+    if (PostMegadropdown.activeDropdown === this) {
+      PostMegadropdown.activeDropdown = null;
+    }
   }
 
   /**
@@ -33,26 +39,46 @@ export class PostMegadropdown {
    */
   @Method()
   async toggle() {
-    this.isVisible ? this.hide() : await this.show();
+    if (this.isVisible) {
+      this.hide();
+    } else {
+      await this.show();
+    }
   }
 
   /**
-  * Displays the dropdown.
-  */
+   * Displays the dropdown.
+   */
   @Method()
   async show() {
+    if (PostMegadropdown.activeDropdown && PostMegadropdown.activeDropdown !== this) {
+      // Close the previously active dropdown without animation
+      PostMegadropdown.activeDropdown.forceClose();
+    }
+
     this.isVisible = true;
     this.animationClass = 'slide-in';
+    PostMegadropdown.activeDropdown = this;
     this.postToggleMegadropdown.emit(this.isVisible);
     this.addOutsideClickListener();
   }
 
   /**
-   * Hides the dropdown.
+   * Hides the dropdown with an animation.
    */
   @Method()
   async hide() {
     this.animationClass = 'slide-out';
+  }
+
+  /**
+   * Forces the dropdown to close without animation.
+   */
+  private forceClose() {
+    this.isVisible = false;
+    this.animationClass = null; // Clear animation
+    this.postToggleMegadropdown.emit(this.isVisible); // Emit visibility change
+    this.removeOutsideClickListener();
   }
 
   private handleAnimationEnd() {
@@ -65,10 +91,25 @@ export class PostMegadropdown {
   }
 
   private handleClickOutside = (event: MouseEvent) => {
-    if (!this.host.contains(event.target as Node)) {
-      this.hide();
+    const target = event.target as Node;
+  
+    if (this.host.contains(target)) {
+      return;
     }
-  };
+  
+    if (target instanceof HTMLElement) {
+      const trigger = target.closest('post-megadropdown-trigger');
+      if (trigger) {
+        const targetDropdownId = trigger.getAttribute('for');
+        if (targetDropdownId !== this.host.id) {
+          return;
+        }
+      }
+    }
+  
+    this.hide();
+  };  
+  
 
   private addOutsideClickListener() {
     document.addEventListener('mousedown', this.handleClickOutside);
@@ -78,20 +119,16 @@ export class PostMegadropdown {
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
-  private handleFocusout(event: FocusEvent) {
-    const relatedTarget = event.relatedTarget as HTMLElement;
-    if (!this.host.contains(relatedTarget)) {
-      this.hide();
-    }
-  }
-
   render() {
+    const containerStyle = this.isVisible ? {} : { display: 'none' };
     return (
       <Host>
-        <div class={`megadropdown-container ${this.isVisible ? 'visible' : 'hidden'} ${this.animationClass || ''}`}
+        <div
+          class={`megadropdown-container ${this.animationClass || ''}`}
+          style={containerStyle}
           onAnimationEnd={() => this.handleAnimationEnd()}
-            onFocusout={e => this.handleFocusout(e)}>
-          <div class="megadropdown" onFocusout={e => this.handleFocusout(e)}>
+        >
+          <div class="megadropdown">
             <div onClick={() => this.hide()} class="back-button">
               <slot name="back-button"></slot>
             </div>
@@ -103,7 +140,7 @@ export class PostMegadropdown {
               <slot></slot>
             </div>
           </div>
-          </div>
+        </div>
       </Host>
     );
   }

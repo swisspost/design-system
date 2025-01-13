@@ -291,7 +291,7 @@ export namespace Components {
     }
     interface PostMegadropdown {
         /**
-          * Hides the dropdown.
+          * Hides the dropdown with an animation.
          */
         "hide": () => Promise<void>;
         /**

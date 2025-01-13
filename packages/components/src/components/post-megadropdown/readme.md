@@ -16,7 +16,7 @@
 
 ### `hide() => Promise<void>`
 
-Hides the dropdown.
+Hides the dropdown with an animation.
 
 #### Returns
 
