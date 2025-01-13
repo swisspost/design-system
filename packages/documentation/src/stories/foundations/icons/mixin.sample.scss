@@ -1,0 +1,11 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+.my-icon {
+  @include post.post-icon(
+    $name: 'accessibility',
+    // optional
+    $base: '/optional/path/to/your/self-hosted/svgs',
+    // optional
+    $color: '#fc0'
+  );
+}
