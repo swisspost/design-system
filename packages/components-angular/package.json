@@ -21,8 +21,8 @@
     "@swisspost/design-system-components": "workspace:9.0.0-next.10",
     "@swisspost/design-system-styles": "workspace:9.0.0-next.10",
     "rxjs": "7.8.1",
-    "tslib": "2.6.3",
-    "zone.js": "0.14.8"
+    "tslib": "2.8.1",
+    "zone.js": "0.15.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "18.2.12",
@@ -36,7 +36,7 @@
     "@typescript-eslint/eslint-plugin": "7.18.0",
     "@typescript-eslint/parser": "7.18.0",
     "cypress": "13.13.2",
-    "eslint": "8.57.0",
+    "eslint": "8.57.1",
     "karma": "6.4.4",
     "karma-chrome-launcher": "3.2.0",
     "karma-coverage": "2.2.1",
