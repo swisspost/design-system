@@ -65,12 +65,17 @@ export class PostMegadropdown {
     const megadropdownItems = this.getFocusableElementsInMegadropdown();
 
     if (megadropdownItems.length > 0) {
-      const targetItem =
-        window.getComputedStyle(megadropdownItems[0]).display === 'none' && megadropdownItems[1]
-          ? megadropdownItems[1]
-          : megadropdownItems[0];
+      const visibleItem = megadropdownItems.find(
+        (item) => window.getComputedStyle(item).display !== 'none'
+      );
 
-      targetItem?.focus();
+      if (visibleItem) {
+        visibleItem.focus();
+      } else {
+        console.warn('No visible focusable items found in the megadropdown.');
+      }
+    } else {
+      console.warn('No focusable items found in the megadropdown.');
     }
   }
 
