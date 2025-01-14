@@ -1,3 +1,6 @@
+import process from 'node:process';
+import console from 'node:console';
+
 import { promises } from 'fs';
 import StyleDictionary from './style-dictionary.js';
 import { usesReferences } from 'style-dictionary/utils';
