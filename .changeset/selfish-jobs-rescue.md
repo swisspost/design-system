@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': minor
 ---
 
-Removed documentaion and occurences of text-\* utility classes.
+Removed occurences of `.text-*` and `.link-*` color utility classes and its documentation.
