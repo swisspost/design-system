@@ -147,6 +147,7 @@ export class MigrationV89Component extends LitElement {
                     <li>Vertical rule: <code>.vr</code></li>
                     <li>Stretched link: <code>.stretched-link</code></li>
                     <li>Stacks: <code>.vstack</code> and <code>.hstack</code></li>
+                    <li>Ratios: <code>.ratio</code> and <code>.ratio-*x*</code></li>
                   </ul>
                 </li>
               </ul>
