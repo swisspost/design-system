@@ -16,6 +16,8 @@ export { PostFooter } from './components/post-footer/post-footer';
 export { PostHeader } from './components/post-header/post-header';
 export { PostIcon } from './components/post-icon/post-icon';
 export { PostLanguageOption } from './components/post-language-option/post-language-option';
+export { PostListbox } from './components/post-listbox/post-listbox';
+export { PostListboxItem } from './components/post-listbox-item/post-listbox-item';
 export { PostLanguageSwitch } from './components/post-language-switch/post-language-switch';
 export { PostList } from './components/post-list/post-list';
 export { PostListItem } from './components/post-list-item/post-list-item';
