@@ -159,36 +159,7 @@ export class PostPopovercontainer {
   }
 
   private async calculatePosition() {
-    const gap = this.edgeGap;
-    const middleware = [
-      flip(),
-      inline(),
-      shift({
-        padding: gap,
-        limiter: limitShift({
-          offset: 32,
-        }),
-      }),
-      size({
-        apply({ availableWidth, elements }) {
-          Object.assign(elements.floating.style, {
-            maxWidth: `${availableWidth - gap * 2}px`,
-          });
-        },
-      }),
-      offset(this.arrow ? gap + 4 : gap),
-    ];
-
-    if (this.arrow) {
-      middleware.push(arrow({ element: this.arrowRef, padding: gap }));
-    }
-
-    const { x, y, middlewareData, placement } = await computePosition(this.eventTarget, this.host, {
-      placement: this.placement || 'top',
-      strategy: 'fixed',
-      middleware,
-    });
-
+    const { x, y, middlewareData, placement } = await this.computeMainPosition();
     const currentPlacement = placement.split('-')[0];
 
     // Position popover
@@ -214,80 +185,121 @@ export class PostPopovercontainer {
       }
     }
 
-    // Calculate safe space boundaries
+    // Handle safe space if enabled
     if (this.safeSpace && this.eventTarget) {
-      const targetRect = this.eventTarget.getBoundingClientRect();
-      const popoverRect = this.host.getBoundingClientRect();
+      await this.updateSafeSpaceBoundaries(currentPlacement);
+    }
+  }
 
-      // Helper function to get positioning data based on placement
-      const getPositioningData = (placement: string, popoverRect: DOMRect, targetRect: DOMRect) => {
-        if (placement === 'top' || placement === 'bottom') {
-          return {
-            popover: {
-              y: placement === 'top' ? popoverRect.bottom : popoverRect.top,
-              xStart: popoverRect.left,
-              xEnd: popoverRect.right,
-            },
-            trigger: {
-              y: placement === 'top' ? targetRect.top : targetRect.bottom,
-              xStart: targetRect.left,
-              xEnd: targetRect.right,
-            },
-          };
-        } else {
-          // left or right
-          return {
-            popover: {
-              x: placement === 'left' ? popoverRect.right : popoverRect.left,
-              yStart: popoverRect.top,
-              yEnd: popoverRect.bottom,
-            },
-            trigger: {
-              x: placement === 'left' ? targetRect.left : targetRect.right,
-              yStart: targetRect.top,
-              yEnd: targetRect.bottom,
-            },
-          };
-        }
-      };
+  private async computeMainPosition() {
+    const gap = this.edgeGap;
+    const middleware = [
+      flip(),
+      inline(),
+      shift({
+        padding: gap,
+        limiter: limitShift({
+          offset: 32,
+        }),
+      }),
+      size({
+        apply({ availableWidth, elements }) {
+          Object.assign(elements.floating.style, {
+            maxWidth: `${availableWidth - gap * 2}px`,
+          });
+        },
+      }),
+      offset(this.arrow ? gap + 4 : gap),
+    ];
 
-      // In calculatePosition:
-      const posData = getPositioningData(currentPlacement, popoverRect, targetRect);
-      const isVertical = currentPlacement === 'top' || currentPlacement === 'bottom';
+    if (this.arrow) {
+      middleware.push(arrow({ element: this.arrowRef, padding: gap }));
+    }
 
-      // Clear previous values
-      this.host.style.removeProperty('--safe-space-popover-x');
-      this.host.style.removeProperty('--safe-space-popover-y');
-      this.host.style.removeProperty('--safe-space-popover-x-start');
-      this.host.style.removeProperty('--safe-space-popover-x-end');
-      this.host.style.removeProperty('--safe-space-popover-y-start');
-      this.host.style.removeProperty('--safe-space-popover-y-end');
-      this.host.style.removeProperty('--safe-space-trigger-x');
-      this.host.style.removeProperty('--safe-space-trigger-y');
-      this.host.style.removeProperty('--safe-space-trigger-x-start');
-      this.host.style.removeProperty('--safe-space-trigger-x-end');
-      this.host.style.removeProperty('--safe-space-trigger-y-start');
-      this.host.style.removeProperty('--safe-space-trigger-y-end');
+    return computePosition(this.eventTarget, this.host, {
+      placement: this.placement || 'top',
+      strategy: 'fixed',
+      middleware,
+    });
+  }
 
-      if (isVertical) {
-        // For top/bottom placement
-        this.host.style.setProperty('--safe-space-popover-y', `${posData.popover.y}px`);
-        this.host.style.setProperty('--safe-space-popover-x-start', `${posData.popover.xStart}px`);
-        this.host.style.setProperty('--safe-space-popover-x-end', `${posData.popover.xEnd}px`);
+  private async updateSafeSpaceBoundaries(currentPlacement: string) {
+    const targetRect = this.eventTarget.getBoundingClientRect();
+    const popoverRect = this.host.getBoundingClientRect();
+    const isVertical = currentPlacement === 'top' || currentPlacement === 'bottom';
 
-        this.host.style.setProperty('--safe-space-trigger-y', `${posData.trigger.y}px`);
-        this.host.style.setProperty('--safe-space-trigger-x-start', `${posData.trigger.xStart}px`);
-        this.host.style.setProperty('--safe-space-trigger-x-end', `${posData.trigger.xEnd}px`);
+    // Helper function to get positioning data based on placement
+    const getPositioningData = (placement: string, popoverRect: DOMRect, targetRect: DOMRect) => {
+      if (placement === 'top' || placement === 'bottom') {
+        return {
+          popover: {
+            y: placement === 'top' ? popoverRect.bottom : popoverRect.top,
+            xStart: popoverRect.left,
+            xEnd: popoverRect.right,
+          },
+          trigger: {
+            y: placement === 'top' ? targetRect.top : targetRect.bottom,
+            xStart: targetRect.left,
+            xEnd: targetRect.right,
+          },
+        };
       } else {
-        // For left/right placement
-        this.host.style.setProperty('--safe-space-popover-x', `${posData.popover.x}px`);
-        this.host.style.setProperty('--safe-space-popover-y-start', `${posData.popover.yStart}px`);
-        this.host.style.setProperty('--safe-space-popover-y-end', `${posData.popover.yEnd}px`);
-
-        this.host.style.setProperty('--safe-space-trigger-x', `${posData.trigger.x}px`);
-        this.host.style.setProperty('--safe-space-trigger-y-start', `${posData.trigger.yStart}px`);
-        this.host.style.setProperty('--safe-space-trigger-y-end', `${posData.trigger.yEnd}px`);
+        // left or right
+        return {
+          popover: {
+            x: placement === 'left' ? popoverRect.right : popoverRect.left,
+            yStart: popoverRect.top,
+            yEnd: popoverRect.bottom,
+          },
+          trigger: {
+            x: placement === 'left' ? targetRect.left : targetRect.right,
+            yStart: targetRect.top,
+            yEnd: targetRect.bottom,
+          },
+        };
       }
+    };
+
+    const posData = getPositioningData(currentPlacement, popoverRect, targetRect);
+
+    // Clear previous values
+    const propertiesToClear = [
+      '--safe-space-popover-x',
+      '--safe-space-popover-y',
+      '--safe-space-popover-x-start',
+      '--safe-space-popover-x-end',
+      '--safe-space-popover-y-start',
+      '--safe-space-popover-y-end',
+      '--safe-space-trigger-x',
+      '--safe-space-trigger-y',
+      '--safe-space-trigger-x-start',
+      '--safe-space-trigger-x-end',
+      '--safe-space-trigger-y-start',
+      '--safe-space-trigger-y-end',
+    ];
+
+    propertiesToClear.forEach(prop => {
+      this.host.style.removeProperty(prop);
+    });
+
+    if (isVertical) {
+      // For top/bottom placement
+      this.host.style.setProperty('--safe-space-popover-y', `${posData.popover.y}px`);
+      this.host.style.setProperty('--safe-space-popover-x-start', `${posData.popover.xStart}px`);
+      this.host.style.setProperty('--safe-space-popover-x-end', `${posData.popover.xEnd}px`);
+
+      this.host.style.setProperty('--safe-space-trigger-y', `${posData.trigger.y}px`);
+      this.host.style.setProperty('--safe-space-trigger-x-start', `${posData.trigger.xStart}px`);
+      this.host.style.setProperty('--safe-space-trigger-x-end', `${posData.trigger.xEnd}px`);
+    } else {
+      // For left/right placement
+      this.host.style.setProperty('--safe-space-popover-x', `${posData.popover.x}px`);
+      this.host.style.setProperty('--safe-space-popover-y-start', `${posData.popover.yStart}px`);
+      this.host.style.setProperty('--safe-space-popover-y-end', `${posData.popover.yEnd}px`);
+
+      this.host.style.setProperty('--safe-space-trigger-x', `${posData.trigger.x}px`);
+      this.host.style.setProperty('--safe-space-trigger-y-start', `${posData.trigger.yStart}px`);
+      this.host.style.setProperty('--safe-space-trigger-y-end', `${posData.trigger.yEnd}px`);
     }
   }
 
