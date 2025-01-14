@@ -1,3 +1,4 @@
+import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
 
 @Component({
@@ -53,11 +54,28 @@ export class PostMegadropdown {
    */
   @Method()
   async show(target: HTMLElement) {
-    if (this.popoverRef) {
-      await this.popoverRef.show(target);
-      this.animationClass = 'slide-in';
-    } else {
+    if (!this.popoverRef) {
       console.error('show: popoverRef is null or undefined');
+      return;
+    }
+
+    await this.popoverRef.show(target);
+    this.animationClass = 'slide-in';
+
+    const megadropdownItems = this.getFocusableElementsInMegadropdown();
+
+    if (megadropdownItems.length > 0) {
+      const visibleItem = megadropdownItems.find(
+        (item) => window.getComputedStyle(item).display !== 'none'
+      );
+
+      if (visibleItem) {
+        visibleItem.focus();
+      } else {
+        console.warn('No visible focusable items found in the megadropdown.');
+      }
+    } else {
+      console.warn('No focusable items found in the megadropdown.');
     }
   }
 
@@ -88,6 +106,18 @@ export class PostMegadropdown {
     }
   }
 
+  private getFocusableElementsInMegadropdown(): HTMLElement[] {
+    const megadropdownContainer = this.host.querySelector('.megadropdown');
+  
+    const allChildren = Array.from(megadropdownContainer.querySelectorAll('*'));
+    return allChildren
+      .flatMap(el => Array.from(getFocusableChildren(el)))
+      .filter(child => 
+        !child.classList.contains('back-button') && 
+        !child.classList.contains('close-button')
+      );
+  }
+
   render() {
     return (
       <Host>
@@ -98,15 +128,15 @@ export class PostMegadropdown {
           ref={el => (this.popoverRef = el)}
         >
           <div class="megadropdown" onFocusout={e => this.handleFocusout(e)}>
+            <slot name="megadropdown-title"></slot>
+            <div class="megadropdown-content">
+              <slot></slot>
+            </div>
             <div onClick={() => this.handleBackButtonClick()} class="back-button">
               <slot name="back-button"></slot>
             </div>
             <div onClick={() => this.handleCloseButtonClick()} class="close-button">
               <slot name="close-button"></slot>
-            </div>
-            <slot name="megadropdown-title"></slot>
-            <div class="megadropdown-content">
-              <slot></slot>
             </div>
           </div>
         </post-popovercontainer>
