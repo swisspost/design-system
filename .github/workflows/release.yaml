@@ -356,7 +356,7 @@ jobs:
             const hasTag = /^.* --tag v[\d]+$/.test(changesetPublishScript)
 
             if (changesetPublishScript && !hasTag) {
-              rootPkg.scripts['changeset:publish'] = `${changesetPublishScript} --tag v${release.old.major}`
+              rootPkg.scripts['changeset:publish'] = `${changesetPublishScript} --tag version-${release.old.major}`
               fs.writeFileSync('./package.json', JSON.stringify(rootPkg, null, 2) + '\n')
             }
 
