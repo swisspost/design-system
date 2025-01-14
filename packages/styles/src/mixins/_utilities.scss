@@ -70,14 +70,36 @@
   pointer-events: none;
 }
 
-@mixin generate-utility-class($classname, $size, $property, $value) {
-  .#{$classname}-#{$size}-r {
-    #{$property}: $value !important;
+@mixin high-contrast-mode() {
+  @media (forced-colors: active), (-ms-high-contrast: active), (-ms-high-contrast: white-on-black) {
+    @content;
   }
 }
 
-@mixin high-contrast-mode() {
-  @media (forced-colors: active), (-ms-high-contrast: active), (-ms-high-contrast: white-on-black) {
+@mixin high-contrast-mode-dark() {
+  @media (forced-colors: active) and (prefers-color-scheme: dark),
+    (-ms-high-contrast: white-on-black) {
+    @content;
+  }
+}
+
+@mixin high-contrast-mode-light() {
+  @media (forced-colors: active) and (prefers-color-scheme: light),
+    (-ms-high-contrast: black-on-white) {
+    @content;
+  }
+}
+
+@mixin high-contrast-mode-dark() {
+  @media (forced-colors: active) and (prefers-color-scheme: dark),
+    (-ms-high-contrast: white-on-black) {
+    @content;
+  }
+}
+
+@mixin high-contrast-mode-light() {
+  @media (forced-colors: active) and (prefers-color-scheme: light),
+    (-ms-high-contrast: black-on-white) {
     @content;
   }
 }

@@ -80,6 +80,14 @@ export class PostMegadropdown {
     this.popoverRef.hide();
   }
 
+  private handleFocusout(event: FocusEvent) {
+    const relatedTarget = event.relatedTarget as HTMLElement;
+    const megadropdown = this.popoverRef.querySelector('.megadropdown');
+    if (!megadropdown.contains(relatedTarget)) {
+      this.hide();
+    }
+  }
+
   render() {
     return (
       <Host>
@@ -89,7 +97,7 @@ export class PostMegadropdown {
           edge-gap="0"
           ref={el => (this.popoverRef = el)}
         >
-          <div class="megadropdown">
+          <div class="megadropdown" onFocusout={e => this.handleFocusout(e)}>
             <div onClick={() => this.handleBackButtonClick()} class="back-button">
               <slot name="back-button"></slot>
             </div>

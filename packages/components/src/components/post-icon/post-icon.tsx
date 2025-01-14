@@ -114,15 +114,19 @@ export class PostIcon {
 
     const baseHref = document.getElementsByTagName('base')[0]?.href;
     const fileBase = `${this.base ?? metaBase ?? baseHref ?? CDN_URL}/`.replace(/\/\/$/, '/');
-    const fileName = `${this.name}.svg#i-${this.name}`;
+    const fileName = `${this.name}.svg`;
     const filePath = `${fileBase}${fileName}`;
 
     return new URL(filePath, window.location.origin).toString();
   }
 
   private getStyles() {
+    const path = this.getPath();
+
     return Object.entries({
-      transform:
+      '-webkit-mask-image': `url(${path})`,
+      'mask-image': `url('${path}')`,
+      'transform':
         (this.scale && !isNaN(Number(this.scale)) ? 'scale(' + this.scale + ')' : '') +
         (this.rotate && !isNaN(Number(this.rotate)) ? ' rotate(' + this.rotate + 'deg)' : ''),
     })
@@ -143,9 +147,7 @@ export class PostIcon {
   render() {
     return (
       <Host data-version={version}>
-        <svg style={this.getStyles()}>
-          <use href={this.getPath()} />
-        </svg>
+        <span style={this.getStyles()}></span>
       </Host>
     );
   }

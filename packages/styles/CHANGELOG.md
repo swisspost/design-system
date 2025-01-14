@@ -1,5 +1,65 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.10
+
+### Major Changes
+
+- Removed `.bg-` classes to define background color of elements. (by [@leagrdv](https://github.com/leagrdv) with [#4201](https://github.com/swisspost/design-system/pull/4201))
+
+- Removed deprecated utility sizing and line-height classes as well as `responsive-size`, `generate-utility-class` and all `bezel-*` mixins. (by [@leagrdv](https://github.com/leagrdv) with [#4343](https://github.com/swisspost/design-system/pull/4343))
+
+### Minor Changes
+
+- Implemented gutter utility classes. (by [@myrta2302](https://github.com/myrta2302) with [#4378](https://github.com/swisspost/design-system/pull/4378))
+
+- Updated the output structure of our UI-Icons. Added a `post-icon` mixin, to use any of our icons from within SCSS. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4136](https://github.com/swisspost/design-system/pull/4136))
+
+### Patch Changes
+
+- Fixed alignment of ´form-switch´ label. (by [@schaertim](https://github.com/schaertim) with [#4314](https://github.com/swisspost/design-system/pull/4314))
+
+- Added hover styles in high contrast mode for the css components `Button`, `Chip`, `Form Search` and `Button Close`. (by [@schaertim](https://github.com/schaertim) with [#4331](https://github.com/swisspost/design-system/pull/4331))
+
+- Removed all usage of deprecated utility sizing classes. (by [@leagrdv](https://github.com/leagrdv) with [#4343](https://github.com/swisspost/design-system/pull/4343))
+
+- Added styles for text links and icon-buttons for Composible Footer in HCM. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4333](https://github.com/swisspost/design-system/pull/4333))
+
+- Fixed colors of validation icon in HCM on form elements. (by [@leagrdv](https://github.com/leagrdv) with [#4319](https://github.com/swisspost/design-system/pull/4319))
+
+- Uniformized valid and invalid icons throughout form elements for consistency. (by [@leagrdv](https://github.com/leagrdv) with [#4368](https://github.com/swisspost/design-system/pull/4368))
+
+- Fixed card control checkboxes' text color in HCM. (by [@leagrdv](https://github.com/leagrdv) with [#4321](https://github.com/swisspost/design-system/pull/4321))
+
+- Fixed icon color of banner in high contrast mode. (by [@leagrdv](https://github.com/leagrdv) with [#4304](https://github.com/swisspost/design-system/pull/4304))
+
+- Fixed display of stepper to break words when text is too long to fit in one line. (by [@leagrdv](https://github.com/leagrdv) with [#4401](https://github.com/swisspost/design-system/pull/4401))
+
+- Refactored icon declarations to comply with Angular 18's new build system requirements. (by [@schaertim](https://github.com/schaertim) with [#3518](https://github.com/swisspost/design-system/pull/3518))
+
+- Added breakpoint mixin "only" and updated documentation to reflect new breakpoint mixin naming. (by [@leagrdv](https://github.com/leagrdv) with [#4397](https://github.com/swisspost/design-system/pull/4397))
+
+## 9.0.0-next.9
+
+### Minor Changes
+
+- Added composable footer component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4190](https://github.com/swisspost/design-system/pull/4190))
+
+- Removed outdated portal-specific styles, including subnavigation-related rules. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4186](https://github.com/swisspost/design-system/pull/4186))
+
+- Added the possibility to define a `$child-selector` parameter with our list mixins, so they can be used also with custom elements. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4190](https://github.com/swisspost/design-system/pull/4190))
+
+- Updated the utility classes for sizing. (by [@myrta2302](https://github.com/myrta2302) with [#4012](https://github.com/swisspost/design-system/pull/4012))
+
+- Updated `.btn-link` to look like a regular link and old `.btn-link` is now `.btn-tertiary .px-0`. (by [@leagrdv](https://github.com/leagrdv) with [#4200](https://github.com/swisspost/design-system/pull/4200))
+
+- Implemented new pixel based sizes. (by [@myrta2302](https://github.com/myrta2302) with [#4012](https://github.com/swisspost/design-system/pull/4012))
+
+### Patch Changes
+
+- Fixed the `btn-icon` styles, so icons within can no longer be rendered too small, because of the inline-padding on the button. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4190](https://github.com/swisspost/design-system/pull/4190))
+
+- Fixed the appstore-badge styles to get rid of the inline gap below. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4190](https://github.com/swisspost/design-system/pull/4190))
+
 ## 9.0.0-next.8
 
 ### Major Changes

@@ -6,6 +6,11 @@
 @use './../../variables/spacing';
 @use './../../variables/components/nav';
 
+@use './../../functions/tokens';
+@use './../../tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
+
 .tab-title[role='tab'] {
   display: inline-block;
   cursor: pointer;
@@ -69,7 +74,7 @@
       top: 0;
       right: -1px;
       left: -1px;
-      height: spacing.$size-micro;
+      height: tokens.get('utility-gap-4');
       background-color: nav.$nav-tabs-link-active-border-color;
     }
   }
@@ -95,8 +100,8 @@
     &:focus,
     &:focus-within,
     &:focus-visible {
-      outline: spacing.$size-line solid Highlight;
-      outline-offset: -(spacing.$size-micro);
+      outline: tokens.get('utility-gap-2') solid Highlight;
+      outline-offset: calc(tokens.get('utility-gap-4') * -1);
     }
 
     &.active {
@@ -106,48 +111,6 @@
 
       &::before {
         background-color: Highlight;
-      }
-    }
-  }
-}
-
-// Careful, this generates a lot of code
-@each $key, $color in color.$background-colors {
-  .bg-#{$key} {
-    .tab-title {
-      background-color: $color;
-
-      &.active {
-        background-color: $color;
-      }
-    }
-
-    .nav-item {
-      background-color: $color;
-    }
-  }
-}
-
-[class*='bg-'] .tab-title.active {
-  &:focus {
-    &::after {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-  }
-
-  // write supports for selectors this way: https://stackoverflow.com/a/62666132
-  // need to include * otherwise it throws build error
-  @supports #{'\selector(*:focus-visible)'} {
-    &:focus {
-      &::after {
-        background-color: unset;
-      }
-    }
-
-    // same styles as focus, can't use placeholder here because focus-visible can't be described outside of the support condition
-    &:focus-visible {
-      &::after {
-        background-color: rgba(255, 255, 255, 0.2);
       }
     }
   }

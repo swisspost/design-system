@@ -6,6 +6,16 @@ import { slideDown, slideUp } from '@/animations/slide';
 
 type DEVICE_SIZE = 'mobile' | 'tablet' | 'desktop' | null;
 
+/**
+ * @slot post-logo - Should be used together with the `<post-logo>` component.
+ * @slot meta-navigation - Holds an `<ul>` with meta navigation links.
+ * @slot post-togglebutton - Holds the mobile menu toggler.
+ * @slot post-language-switch - Should be used with the `<post-language-switch>` component.
+ * @slot title - Holds the application title.
+ * @slot default - Custom controls or content, right aligned in the local header.
+ * @slot post-mainnavigation - Has a default slot because it's only meant to be used in the `<post-header>`.
+ */
+
 @Component({
   tag: 'post-header',
   shadow: true,
@@ -46,6 +56,10 @@ export class PostHeader {
     this.mobileMenuAnimation = this.mobileMenuExtended
       ? slideUp(this.mobileMenu)
       : slideDown(this.mobileMenu);
+
+    // Update the state of the toggle button
+    const menuButton = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
+    menuButton.toggled = !this.mobileMenuExtended;
 
     // Toggle menu visibility before it slides down and after it slides back up
     if (this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
@@ -107,11 +121,10 @@ export class PostHeader {
     if (newDevice === 'desktop' && this.mobileMenuExtended) {
       this.toggleMobileMenu();
       this.mobileMenuAnimation.finish(); // no animation
-
-
-      const menuToggler = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
-      if (menuToggler) menuToggler.toggled = false;
     }
+
+    const mhh = this.host.shadowRoot.querySelector('.title-header')?.clientHeight;
+    this.host.style.setProperty('--main-header-height', `${mhh}px`);
 
     // Apply only on change for doing work only when necessary
     if (newDevice !== previousDevice) {
@@ -123,7 +136,7 @@ export class PostHeader {
   }
 
   private switchLanguageSwitchMode() {
-    const variant: SwitchVariant = this.device === 'desktop' ? 'dropdown' : 'list';
+    const variant: SwitchVariant = this.device === 'desktop' ? 'menu' : 'list';
     this.host.querySelector('post-language-switch')?.setAttribute('variant', variant);
   }
 
@@ -150,7 +163,9 @@ export class PostHeader {
             </div>
           </div>
         </div>
-        <div class="title-header d-flex space-between align-center">
+        <div
+          class={'title-header ' + (this.mobileMenuExtended ? 'title-header-mobile-extended' : '')}
+        >
           <slot name="title"></slot>
           <div class="global-sub">
             <slot name="local-controls"></slot>

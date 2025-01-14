@@ -11,6 +11,7 @@
   --global-header-height: 72px;
   --global-header-minimal-height: 24px;
   --main-header-height: 56px;
+  --main-header-min-height: 56px;
   --header-height: calc(var(--global-header-height) + var(--main-header-height));
 
   @include media.min(lg) {
@@ -27,6 +28,7 @@
   @include media.max(lg) {
     --global-header-height: 64px;
     --main-header-height: 48px;
+    --main-header-min-height: 48px;
   }
 }
 
@@ -66,7 +68,6 @@ slot[name='post-logo'] {
   display: flex;
   align-items: center;
   gap: var(--post-core-dimension-24);
-  height: var(--global-header-height);
 }
 
 .align-end {
@@ -91,13 +92,15 @@ slot[name='post-logo'] {
   display: flex;
   padding-left: 0;
   gap: 1rem;
+  flex-shrink: 0 !important;
 }
 
 .title-header {
   display: flex;
   align-items: center;
-  gap: var(--post-core-dimension-4);
-  height: var(--main-header-height);
+  gap: var(--post-core-dimension-8);
+  min-height: var(--main-header-min-height);
+  justify-content: space-between;
   background: var(--post-core-color-brand-white);
 
   @include media.min(lg) {
@@ -110,6 +113,12 @@ slot[name='post-logo'] {
     z-index: 1;
     inset-block-start: var(--global-header-height);
     padding-inline: var(--post-core-dimension-8) var(--post-core-dimension-16);
+    padding-block: var(--post-core-dimension-9);
+    flex-wrap: wrap;
+
+    &.title-header-mobile-extended {
+      border-bottom: 1px solid var(--post-core-color-sandgrey-012);
+    }
   }
 }
 
@@ -119,6 +128,7 @@ slot[name='post-logo'] {
 
 ::slotted(h1) {
   margin: 0 !important;
+  flex-shrink: 10;
 
   @include media.min(lg) {
     font-size: var(--post-core-font-size-28) !important;
@@ -126,6 +136,7 @@ slot[name='post-logo'] {
 
   @include media.max(lg) {
     font-size: var(--post-core-font-size-20) !important;
+    max-width: calc(100vw - var(--post-core-dimension-8) - var(--post-core-dimension-16));
   }
 }
 

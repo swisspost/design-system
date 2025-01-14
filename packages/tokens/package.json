@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-tokens",
-  "version": "9.0.0-next.8",
+  "version": "9.0.0-next.10",
   "description": "Design Tokens for the Swiss Post Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -33,9 +33,9 @@
     "linkDirectory": true
   },
   "devDependencies": {
-    "@tokens-studio/sd-transforms": "1.2.2",
+    "@tokens-studio/sd-transforms": "1.2.9",
     "copyfiles": "2.4.1",
     "rimraf": "6.0.1",
-    "style-dictionary": "4.0.1"
+    "style-dictionary": "4.3.0"
   }
 }
