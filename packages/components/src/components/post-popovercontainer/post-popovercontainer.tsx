@@ -17,13 +17,6 @@ import '@oddbird/popover-polyfill';
 
 import { version } from '@root/package.json';
 
-const SIDE_MAP = {
-  top: 'bottom',
-  right: 'left',
-  bottom: 'top',
-  left: 'right',
-};
-
 interface PopoverElement {
   showPopover: () => void;
   hidePopover: () => void;
@@ -69,13 +62,30 @@ export class PostPopovercontainer {
    */
   @Prop() readonly arrow?: boolean = false;
 
+  /**
+   * Enables a safespace through which the cursor can be moved without the popover being disabled
+   */
+  @Prop() readonly safeSpace?: 'triangle' | 'trapezoid';
+
+  // New method for safe space
+  private mouseTrackingHandler = (event: MouseEvent) => {
+    if (!this.safeSpace || !this.host.matches(':where(:popover-open, .popover-open)')) return;
+
+    this.host.style.setProperty('--safe-space-cursor-x', `${event.clientX}px`);
+    this.host.style.setProperty('--safe-space-cursor-y', `${event.clientY}px`);
+  };
+
   componentDidLoad() {
     this.host.setAttribute('popover', '');
     this.host.addEventListener('beforetoggle', this.handleToggle.bind(this));
+    window.addEventListener('mousemove', this.mouseTrackingHandler);
   }
 
   disconnectedCallback() {
-    if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
+    if (typeof this.clearAutoUpdate === 'function') {
+      this.clearAutoUpdate();
+    }
+    window.removeEventListener('mousemove', this.mouseTrackingHandler);
   }
 
   /**
@@ -155,9 +165,6 @@ export class PostPopovercontainer {
       inline(),
       shift({
         padding: gap,
-
-        // Prevents shifting away from the anchor too far, while shifting as far as possible
-        // https://floating-ui.com/docs/shift#limiter
         limiter: limitShift({
           offset: 32,
         }),
@@ -169,51 +176,124 @@ export class PostPopovercontainer {
           });
         },
       }),
-      offset(this.arrow ? gap + 4 : gap), // 4px outside of element to account for focus outline + ~arrow size
+      offset(this.arrow ? gap + 4 : gap),
     ];
 
     if (this.arrow) {
       middleware.push(arrow({ element: this.arrowRef, padding: gap }));
     }
 
-    const {
-      x,
-      y,
-      middlewareData,
-      placement: currentPlacement,
-    } = await computePosition(this.eventTarget, this.host, {
+    const { x, y, middlewareData, placement } = await computePosition(this.eventTarget, this.host, {
       placement: this.placement || 'top',
       strategy: 'fixed',
       middleware,
     });
 
-    // Tooltip
+    const currentPlacement = placement.split('-')[0];
+
+    // Position popover
     this.host.style.left = `${x}px`;
     this.host.style.top = `${y}px`;
 
-    // Arrow
-    if (this.arrow) {
-      // Tutorial: https://codesandbox.io/s/mystifying-kare-ee3hmh?file=/src/index.js
-      const side = currentPlacement.split('-')[0];
+    // Position arrow if enabled
+    if (this.arrow && middlewareData.arrow) {
       const { x: arrowX, y: arrowY } = middlewareData.arrow;
-      const staticSide = SIDE_MAP[side];
-      const offsetBorderLineJoin = 2;
+      const staticSide = {
+        top: 'bottom',
+        right: 'left',
+        bottom: 'top',
+        left: 'right',
+      }[currentPlacement];
 
-      Object.assign(this.arrowRef.style, {
-        top: arrowY ? `${arrowY}px` : '',
-        left: arrowX ? `${arrowX}px` : '',
-        [staticSide]: `${-this.arrowRef.offsetWidth / 2 - offsetBorderLineJoin}px`,
-      });
+      if (staticSide) {
+        Object.assign(this.arrowRef.style, {
+          left: arrowX ? `${arrowX}px` : '',
+          top: arrowY ? `${arrowY}px` : '',
+          [staticSide]: '-4px',
+        });
+      }
+    }
 
-      // Add position as a class to be able to style arrow for HCM
-      this.arrowRef.classList.remove(...Object.values(SIDE_MAP));
-      this.arrowRef.classList.add(staticSide);
+    // Calculate safe space boundaries
+    if (this.safeSpace && this.eventTarget) {
+      const targetRect = this.eventTarget.getBoundingClientRect();
+      const popoverRect = this.host.getBoundingClientRect();
+
+      // Helper function to get positioning data based on placement
+      const getPositioningData = (placement: string, popoverRect: DOMRect, targetRect: DOMRect) => {
+        if (placement === 'top' || placement === 'bottom') {
+          return {
+            popover: {
+              y: placement === 'top' ? popoverRect.bottom : popoverRect.top,
+              xStart: popoverRect.left,
+              xEnd: popoverRect.right,
+            },
+            trigger: {
+              y: placement === 'top' ? targetRect.top : targetRect.bottom,
+              xStart: targetRect.left,
+              xEnd: targetRect.right,
+            },
+          };
+        } else {
+          // left or right
+          return {
+            popover: {
+              x: placement === 'left' ? popoverRect.right : popoverRect.left,
+              yStart: popoverRect.top,
+              yEnd: popoverRect.bottom,
+            },
+            trigger: {
+              x: placement === 'left' ? targetRect.left : targetRect.right,
+              yStart: targetRect.top,
+              yEnd: targetRect.bottom,
+            },
+          };
+        }
+      };
+
+      // In calculatePosition:
+      const posData = getPositioningData(currentPlacement, popoverRect, targetRect);
+      const isVertical = currentPlacement === 'top' || currentPlacement === 'bottom';
+
+      // Clear previous values
+      this.host.style.removeProperty('--safe-space-popover-x');
+      this.host.style.removeProperty('--safe-space-popover-y');
+      this.host.style.removeProperty('--safe-space-popover-x-start');
+      this.host.style.removeProperty('--safe-space-popover-x-end');
+      this.host.style.removeProperty('--safe-space-popover-y-start');
+      this.host.style.removeProperty('--safe-space-popover-y-end');
+      this.host.style.removeProperty('--safe-space-trigger-x');
+      this.host.style.removeProperty('--safe-space-trigger-y');
+      this.host.style.removeProperty('--safe-space-trigger-x-start');
+      this.host.style.removeProperty('--safe-space-trigger-x-end');
+      this.host.style.removeProperty('--safe-space-trigger-y-start');
+      this.host.style.removeProperty('--safe-space-trigger-y-end');
+
+      if (isVertical) {
+        // For top/bottom placement
+        this.host.style.setProperty('--safe-space-popover-y', `${posData.popover.y}px`);
+        this.host.style.setProperty('--safe-space-popover-x-start', `${posData.popover.xStart}px`);
+        this.host.style.setProperty('--safe-space-popover-x-end', `${posData.popover.xEnd}px`);
+
+        this.host.style.setProperty('--safe-space-trigger-y', `${posData.trigger.y}px`);
+        this.host.style.setProperty('--safe-space-trigger-x-start', `${posData.trigger.xStart}px`);
+        this.host.style.setProperty('--safe-space-trigger-x-end', `${posData.trigger.xEnd}px`);
+      } else {
+        // For left/right placement
+        this.host.style.setProperty('--safe-space-popover-x', `${posData.popover.x}px`);
+        this.host.style.setProperty('--safe-space-popover-y-start', `${posData.popover.yStart}px`);
+        this.host.style.setProperty('--safe-space-popover-y-end', `${posData.popover.yEnd}px`);
+
+        this.host.style.setProperty('--safe-space-trigger-x', `${posData.trigger.x}px`);
+        this.host.style.setProperty('--safe-space-trigger-y-start', `${posData.trigger.yStart}px`);
+        this.host.style.setProperty('--safe-space-trigger-y-end', `${posData.trigger.yEnd}px`);
+      }
     }
   }
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={version} data-safe-space={this.safeSpace}>
         {this.arrow && (
           <span
             class="arrow"

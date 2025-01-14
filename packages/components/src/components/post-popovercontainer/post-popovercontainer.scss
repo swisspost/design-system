@@ -41,6 +41,39 @@
   // Keeps the little arrow visible
   overflow: visible;
 
+  // Safe space overlay styles
+  &[data-safe-space]::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: calc(#{commons.$zindex-popover} - 1);
+    pointer-events: auto;
+    background: transparent;
+  }
+
+  &[data-safe-space='triangle']::after {
+    clip-path: polygon(
+      var(--safe-space-cursor-x, 0) var(--safe-space-cursor-y, 0),
+      var(--safe-space-popover-x-start, var(--safe-space-popover-x, 0))
+        var(--safe-space-popover-y, var(--safe-space-popover-y-start, 0)),
+      var(--safe-space-popover-x-end, var(--safe-space-popover-x, 0))
+        var(--safe-space-popover-y, var(--safe-space-popover-y-end, 0))
+    );
+  }
+
+  &[data-safe-space='trapezoid']::after {
+    clip-path: polygon(
+      var(--safe-space-trigger-x-start, var(--safe-space-trigger-x, 0))
+        var(--safe-space-trigger-y, var(--safe-space-trigger-y-start, 0)),
+      var(--safe-space-trigger-x-end, var(--safe-space-trigger-x, 0))
+        var(--safe-space-trigger-y, var(--safe-space-trigger-y-end, 0)),
+      var(--safe-space-popover-x-end, var(--safe-space-popover-x, 0))
+        var(--safe-space-popover-y, var(--safe-space-popover-y-end, 0)),
+      var(--safe-space-popover-x-start, var(--safe-space-popover-x, 0))
+        var(--safe-space-popover-y, var(--safe-space-popover-y-start, 0))
+    );
+  }
+
   .arrow {
     $arrow-size: 0.5825rem;
     position: absolute;
