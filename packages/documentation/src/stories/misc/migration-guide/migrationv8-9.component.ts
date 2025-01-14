@@ -146,6 +146,7 @@ export class MigrationV89Component extends LitElement {
                     </li>
                     <li>Vertical rule: <code>.vr</code></li>
                     <li>Stretched link: <code>.stretched-link</code></li>
+                    <li>Stacks: <code>.vstack</code> and <code>.hstack</code></li>
                   </ul>
                 </li>
               </ul>
