@@ -134,6 +134,18 @@ export class MigrationV89Component extends LitElement {
                     <li><code>mw-*</code> is now <code>max-w-*</code></li>
                   </ul>
                 </li>
+                <li class="mb-16">
+                  <p>
+                    The following bootstrap helper classes have been removed:
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li>
+                      Figures: <code>.figure</code>, <code>.figure-img</code> and
+                      <code>.figure-caption</code>
+                    </li>
+                  </ul>
+                </li>
               </ul>
             </section>
           </li>
