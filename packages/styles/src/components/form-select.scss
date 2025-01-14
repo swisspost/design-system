@@ -240,7 +240,7 @@ tokens.$default-map: components.$post-select;
       }
 
       ~ label {
-        // Add some distance on the right to leave space for the scrollbar
+        // Add some distance on the right to have space for the scrollbar
         width: calc(100% - (#{tokens.get('select-padding-inline-end')} * 2));
       }
 
