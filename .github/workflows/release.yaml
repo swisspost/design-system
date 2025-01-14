@@ -344,6 +344,22 @@ jobs:
           token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           ref: ${{ fromJSON(needs.collect-release-data.outputs.release-data).tagName }}
 
+      - name: Add distribution tag for old major version
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+            const release = ${{ needs.collect-release-data.outputs.release-data }}
+
+            const rootPkg = JSON.parse(fs.readFileSync('./package.json', 'utf8'))
+            const changesetPublishScript = rootPkg.scripts?.['changeset:publish']
+            const hasTag = /^.* --tag v[\d]+$/.test(changesetPublishScript)
+
+            if (changesetPublishScript && !hasTag) {
+              rootPkg.scripts['changeset:publish'] = `${changesetPublishScript} --tag version-${release.old.major}`
+              fs.writeFileSync('./package.json', JSON.stringify(rootPkg, null, 2) + '\n')
+            }
+
       - name: Remove Documentation versions.json
         run: rm -f ./packages/documentation/public/assets/versions.json
 
