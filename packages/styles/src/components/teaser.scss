@@ -6,22 +6,22 @@
 tokens.$default-map: components.$post-teaser;
 
 .teaser-section {
-  padding-block: tokens.get('teaser-section-padding-block');
+  padding-block: tokens.get('teaser-section-padding-block', components.$post-teaser2);
   display: flex;
   flex-direction: column;
-  gap: tokens.get('teaser-section-gap');
+  gap: tokens.get('teaser-section-gap', components.$post-teaser2);
 
   .teaser-section-header {
     display: flex;
-    gap: tokens.get('teaser-section-top-gap');
+    gap: tokens.get('teaser-section-top-gap', components.$post-teaser2);
     justify-content: space-between;
     align-items: flex-end;
 
     > div {
-      gap: tokens.get('teaser-section-text-gap');
+      gap: tokens.get('teaser-section-text-gap', components.$post-teaser2);
 
       p {
-        font-size: tokens.get('teaser-section-description-font-size');
+        font-size: tokens.get('teaser-section-description-font-size', components.$post-teaser2);
       }
     }
 
@@ -34,7 +34,7 @@ tokens.$default-map: components.$post-teaser;
 
 .teaser-cards {
   display: grid;
-  gap: tokens.get('teaser-section-cards-gap');
+  gap: tokens.get('teaser-section-cards-gap', components.$post-teaser2);
   grid-template-columns: 1fr 1fr 1fr 1fr;
 
   @include media.max(md) {
@@ -50,19 +50,19 @@ tokens.$default-map: components.$post-teaser;
   box-shadow: tokens.get('teaser-card-elevation');
   border-radius: tokens.get('teaser-card-border-radius');
   position: relative;
-  background-color: tokens.get('teaser-card-background-enabled');
-  color: tokens.get('teaser-card-content-color-enabled');
+  background-color: tokens.get('teaser-card-enabled-bg');
+  color: tokens.get('teaser-card-content-enabled-fg');
   display: flex;
   flex-direction: column;
 
   &:hover {
-    background-color: tokens.get('teaser-card-background-hovered');
-    color: tokens.get('teaser-card-content-color-hovered');
+    background-color: tokens.get('teaser-card-hover-bg', components.$post-teaser2);
+    color: tokens.get('teaser-card-content-hover-fg');
   }
 
   &:focus {
-    background-color: tokens.get('teaser-card-background-selected');
-    color: tokens.get('teaser-card-content-color-selected');
+    background-color: tokens.get('teaser-card-background-selected', components.$post-teaser2);
+    color: tokens.get('teaser-card-content-color-selected', components.$post-teaser2);
   }
 
   a.btn {
@@ -97,6 +97,10 @@ tokens.$default-map: components.$post-teaser;
     margin: 0;
   }
 
+  h3 {
+    font-size: tokens.get('teaser-card-sm-heading-font-size');
+  }
+
   > div {
     display: flex;
     flex-direction: column;
@@ -116,11 +120,20 @@ tokens.$default-map: components.$post-teaser;
   &.teaser-card-lg {
     img {
       height: tokens.get('teaser-card-lg-image-height');
+      min-height: tokens.get('teaser-card-lg-image-height');
+    }
+
+    h3 {
+      font-size: tokens.get('teaser-card-lg-heading-font-size');
     }
 
     > div {
       padding: tokens.get('teaser-card-lg-section-content-padding');
       gap: tokens.get('teaser-card-lg-section-content-gap');
+
+      > div {
+        gap: tokens.get('teaser-card-lg-content-gap');
+      }
     }
   }
 }
