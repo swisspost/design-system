@@ -145,6 +145,7 @@ export class MigrationV89Component extends LitElement {
                       <code>.figure-caption</code>
                     </li>
                     <li>Vertical rule: <code>.vr</code></li>
+                    <li>Visually hidden: <code>.visually-hidden-focusable</code></li>
                   </ul>
                 </li>
               </ul>
