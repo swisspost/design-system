@@ -52,24 +52,29 @@
     z-index: -1;
 
     // Create transparent border to be styled by and for the high contrast mode
+    
     &.top {
       border-left: 2px solid transparent;
       border-top: 2px solid transparent;
+      box-shadow: -2px -2px 1px rgba(191, 186, 186);
     }
 
     &.right {
       border-right: 2px solid transparent;
       border-top: 2px solid transparent;
+      box-shadow: 5px -2px 2px rgba(191, 186, 186);
     }
 
     &.left {
       border-left: 2px solid transparent;
       border-bottom: 2px solid transparent;
+      box-shadow: -3px 2px 2px rgba(191, 186, 186);
     }
 
     &.bottom {
       border-right: 2px solid transparent;
       border-bottom: 2px solid transparent;
+      box-shadow: 2px 2px 1px rgba(191, 186, 186);
     }
   }
 }
