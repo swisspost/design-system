@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.11
+
+### Patch Changes
+
+- Fixed visibility of the arrow-icon in Form Select for high contrast mode. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4325](https://github.com/swisspost/design-system/pull/4325))
+
 ## 9.0.0-next.10
 
 ### Major Changes

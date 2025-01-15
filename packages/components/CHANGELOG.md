@@ -1,5 +1,14 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.11
+
+### Patch Changes
+
+- Fixed a typo in the `post-accordion-item` component. (by [@schaertim](https://github.com/schaertim) with [#4391](https://github.com/swisspost/design-system/pull/4391))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.11
+  - @swisspost/design-system-icons@9.0.0-next.11
+
 ## 9.0.0-next.10
 
 ### Major Changes
