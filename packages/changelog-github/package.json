@@ -17,7 +17,8 @@
   },
   "main": "./dist/index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "eslint"
   },
   "dependencies": {
     "@changesets/get-github-info": "0.6.0",
@@ -26,6 +27,9 @@
   },
   "devDependencies": {
     "@changesets/parse": "*",
-    "typescript": "5.5.4"
+    "@eslint/js": "9.18.0",
+    "eslint": "9.18.0",
+    "typescript": "5.5.4",
+    "typescript-eslint": "8.20.0"
   }
 }
