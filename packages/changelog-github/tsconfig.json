@@ -14,6 +14,6 @@
     "target": "es2022",
     "skipLibCheck": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["dist/**/*"]
+  "include": ["src", "types"],
+  "exclude": ["dist", "**/tests"]
 }
