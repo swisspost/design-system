@@ -13,7 +13,7 @@
 
 ngb-datepicker {
   // Conversion for compatibility
-  --bs-light: var(--post-light);
+  --bs-light: #faf9f8;
 }
 
 ngb-datepicker.dropdown-menu {
@@ -75,7 +75,7 @@ span.ngb-dp-navigation-chevron {
 }
 
 .ngb-dp-weekday {
-  color: rgba(var(--post-contrast-color-rgb), 0.6) !important;
+  color: rgba(0, 0, 0, 0.6) !important;
   font-size: 1rem;
   font-style: normal !important;
   line-height: type.$line-height-copy !important;
