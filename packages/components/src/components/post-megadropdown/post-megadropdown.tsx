@@ -6,9 +6,10 @@ import { Component, Element, Event, EventEmitter, h, Host, Method, State } from 
   shadow: false,
 })
 export class PostMegadropdown {
-  private popoverRef: HTMLPostPopovercontainerElement;
-
   @Element() host: HTMLPostMegadropdownElement;
+
+  /** Tracks the currently active dropdown instance. */
+  private static activeDropdown: PostMegadropdown | null = null;
 
   /**
    * Holds the current visibility state of the dropdown.
@@ -17,6 +18,7 @@ export class PostMegadropdown {
    */
   @State() isVisible: boolean = false;
 
+  /** Holds the current animation class. */
   @State() animationClass: string | null = null;
 
   /**
@@ -25,83 +27,112 @@ export class PostMegadropdown {
    **/
   @Event() postToggleMegadropdown: EventEmitter<boolean>;
 
-  componentDidLoad() {
-    this.popoverRef.addEventListener('postToggle', (event: CustomEvent<boolean>) => {
-      this.isVisible = event.detail;
-      this.postToggleMegadropdown.emit(this.isVisible);
-    });
-
-    this.popoverRef.addEventListener('animationend', () => {
-      if (this.animationClass === 'slide-out') {
-        this.hide();
-      }
-    });
+  disconnectedCallback() {
+    this.removeOutsideClickListener();
+    if (PostMegadropdown.activeDropdown === this) {
+      PostMegadropdown.activeDropdown = null;
+    }
   }
 
   /**
    * Toggles the dropdown visibility based on its current state.
    */
   @Method()
-  async toggle(target: HTMLElement) {
-    this.isVisible ? this.hide() : await this.show(target);
+  async toggle() {
+    if (this.isVisible) {
+      this.hide();
+    } else {
+      await this.show();
+    }
   }
 
   /**
-   * Displays the popover dropdown
-   *
-   * @param target - The HTML element relative to which the popover dropdown should be displayed.
+   * Displays the dropdown.
    */
   @Method()
-  async show(target: HTMLElement) {
-    if (this.popoverRef) {
-      await this.popoverRef.show(target);
-      this.animationClass = 'slide-in';
-    } else {
-      console.error('show: popoverRef is null or undefined');
+  async show() {
+    if (PostMegadropdown.activeDropdown && PostMegadropdown.activeDropdown !== this) {
+      // Close the previously active dropdown without animation
+      PostMegadropdown.activeDropdown.forceClose();
     }
+
+    this.isVisible = true;
+    this.animationClass = 'slide-in';
+    PostMegadropdown.activeDropdown = this;
+    this.postToggleMegadropdown.emit(this.isVisible);
+    this.addOutsideClickListener();
   }
 
   /**
-   * Hides the popover dropdown
+   * Hides the dropdown with an animation.
    */
-  private hide() {
-    if (this.popoverRef) {
-      this.popoverRef.hide();
-    } else {
-      console.error('hide: popoverRef is null or undefined');
-    }
-  }
-
-  private handleBackButtonClick() {
+  @Method()
+  async hide() {
     this.animationClass = 'slide-out';
   }
 
-  private handleCloseButtonClick() {
-    this.popoverRef.hide();
+  /**
+   * Forces the dropdown to close without animation.
+   */
+  private forceClose() {
+    this.isVisible = false;
+    this.animationClass = null; // Clear animation
+    this.postToggleMegadropdown.emit(this.isVisible); // Emit visibility change
+    this.removeOutsideClickListener();
   }
 
-  private handleFocusout(event: FocusEvent) {
-    const relatedTarget = event.relatedTarget as HTMLElement;
-    const megadropdown = this.popoverRef.querySelector('.megadropdown');
-    if (!megadropdown.contains(relatedTarget)) {
-      this.hide();
+  private handleAnimationEnd() {
+    if (this.animationClass === 'slide-out') {
+      this.isVisible = false;
+      this.animationClass = null;
+      this.postToggleMegadropdown.emit(this.isVisible);
+      this.removeOutsideClickListener();
     }
   }
 
+  private handleClickOutside = (event: MouseEvent) => {
+    const target = event.target as Node;
+  
+    if (this.host.contains(target)) {
+      return;
+    }
+  
+    if (target instanceof HTMLElement) {
+      const trigger = target.closest('post-megadropdown-trigger');
+      if (trigger) {
+        const targetDropdownId = trigger.getAttribute('for');
+        if (targetDropdownId !== this.host.id) {
+          return;
+        }
+      }
+    }
+  
+    this.hide();
+  };  
+  
+
+  private addOutsideClickListener() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  private removeOutsideClickListener() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
   render() {
+    const containerStyle = this.isVisible ? {} : { display: 'none' };
     return (
       <Host>
-        <post-popovercontainer
-          class={this.animationClass}
-          placement="bottom"
-          edge-gap="0"
-          ref={el => (this.popoverRef = el)}
+        <div
+          class={`megadropdown-container ${this.animationClass || ''}`}
+          style={containerStyle}
+          onAnimationEnd={() => this.handleAnimationEnd()}
         >
-          <div class="megadropdown" onFocusout={e => this.handleFocusout(e)}>
-            <div onClick={() => this.handleBackButtonClick()} class="back-button">
+          <div class="megadropdown">
+            <div onClick={() => this.hide()} class="back-button">
               <slot name="back-button"></slot>
             </div>
-            <div onClick={() => this.handleCloseButtonClick()} class="close-button">
+            <div onClick={() => this.hide()} class="close-button">
               <slot name="close-button"></slot>
             </div>
             <slot name="megadropdown-title"></slot>
@@ -109,7 +140,7 @@ export class PostMegadropdown {
               <slot></slot>
             </div>
           </div>
-        </post-popovercontainer>
+        </div>
       </Host>
     );
   }
