@@ -25,8 +25,8 @@ $stepper-indicator-transition:
   color animation.$transition-base-timing,
   background-color animation.$transition-base-timing;
 
-$stepper-indicator-hover-color: var(--post-contrast-color-inverted);
-$stepper-indicator-hover-bg: var(--post-contrast-color);
+$stepper-indicator-hover-color: #fff;
+$stepper-indicator-hover-bg: #000;
 
 $stepper-indicator-future-bg: color.$gray-60;
 $stepper-indicator-future-color: color.$white;
@@ -36,7 +36,7 @@ $stepper-indicator-check-icon-size: $stepper-indicator-check-size;
 $stepper-link-line-height: type.$line-height-sm;
 $stepper-link-gap: tokens.get('utility-gap-8');
 $stepper-link-spacing: tokens.get('utility-gap-16');
-$stepper-link-color: var(--post-gray-60);
+$stepper-link-color: #666;
 
-$stepper-link-current-color: var(--post-gray-80);
+$stepper-link-current-color: #333;
 $stepper-link-current-font-weight: type.$font-weight-bold;

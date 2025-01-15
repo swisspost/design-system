@@ -10,7 +10,9 @@
   padding-top: spacing.$spacer;
   border: 0;
   background-color: rgba(
-    var(--post-contrast-color-rgb),
+    0,
+    0,
+    0,
     0.02
   ); // 0.02 gets as close as possible to color.$light on white background
 

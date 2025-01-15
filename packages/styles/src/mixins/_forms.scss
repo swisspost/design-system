@@ -26,7 +26,7 @@
 
   /* Compatibility with button-group */
   &:is(:focus-visible, :focus-within, .pretend-focus) {
-    outline: forms.$input-focus-outline-thickness solid var(--post-contrast-color);
+    outline: forms.$input-focus-outline-thickness solid #000;
     @content;
   }
 }
