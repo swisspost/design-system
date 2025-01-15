@@ -11,7 +11,7 @@ const meta: MetaComponent<HTMLPostLanguageSwitchElement> = {
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=7817-52867&t=cw8xiYtq7RyVU0gH-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=7286-40138&t=NlJxMtn6FqcqrXok-4',
     },
   },
   args: {
