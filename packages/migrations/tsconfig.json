@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": "tsconfig",
-    "lib": ["es2018", "dom"],
+    "lib": ["es2022", "dom"],
     "declaration": true,
     "module": "commonjs",
     "moduleResolution": "node",
@@ -17,7 +17,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strictNullChecks": true,
-    "target": "es6",
+    "target": "es2022",
     "types": ["node"]
   },
   "include": ["src/**/*"],
