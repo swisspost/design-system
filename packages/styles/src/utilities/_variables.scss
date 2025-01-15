@@ -442,5 +442,14 @@ $utilities: (
     property: overflow-y,
     values: auto hidden visible scroll,
   ),
-  // IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`.
+  'font-weight': (
+    property: font-weight,
+    values: (
+      black: 900,
+      bold: 700,
+      normal: 400,
+    ),
+    class: fw,
+  )
+  // IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`.,,,
 );
