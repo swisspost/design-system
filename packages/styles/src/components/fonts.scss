@@ -4,34 +4,19 @@ $font-base-path: 'https://fonts.post.ch/swiss-post-sans/v1';
   font-family: 'Swiss Post Sans';
   font-weight: 900;
   font-display: swap;
-  src:
-    url('#{$font-base-path}/SwissPostSans-Black.woff2') format('woff2'),
-    url('#{$font-base-path}/SwissPostSans-Black.woff') format('woff');
+  src: url('#{$font-base-path}/SwissPostSans-Black.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Swiss Post Sans';
   font-weight: 700;
   font-display: swap;
-  src:
-    url('#{$font-base-path}/SwissPostSans-Bold.woff2') format('woff2'),
-    url('#{$font-base-path}/SwissPostSans-Bold.woff') format('woff');
+  src: url('#{$font-base-path}/SwissPostSans-Bold.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Swiss Post Sans';
   font-weight: 400;
   font-display: swap;
-  src:
-    url('#{$font-base-path}/SwissPostSans-Regular.woff2') format('woff2'),
-    url('#{$font-base-path}/SwissPostSans-Regular.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Swiss Post Sans';
-  font-weight: 300;
-  font-display: swap;
-  src:
-    url('#{$font-base-path}/SwissPostSans-Light.woff2') format('woff2'),
-    url('#{$font-base-path}/SwissPostSans-Light.woff') format('woff');
+  src: url('#{$font-base-path}/SwissPostSans-Regular.woff2') format('woff2');
 }
