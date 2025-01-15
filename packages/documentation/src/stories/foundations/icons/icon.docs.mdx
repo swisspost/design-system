@@ -2,7 +2,7 @@ import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
 import * as IconStories from './icon.stories';
 import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
 import SampleMixin from './mixin.sample.scss?raw';
-import { Search } from './search/search-icons.blocks';
+import { POST_ICONS_COUNT, UI_ICONS_COUNT, Search } from './search/search-icons.blocks';
 import './icon.styles.scss';
 
 <Meta of={IconStories} />
@@ -16,7 +16,7 @@ import './icon.styles.scss';
 </div>
 
 <div className="lead">
-  The official Swiss Post Icon Library with 900+ high-quality svg icons and the brand new UI Icon Set, exclusively designed and provided for the web with 160+ icons and responsive level-of-detail.
+  The official Swiss Post Icon Library with {Math.floor(POST_ICONS_COUNT / 10) * 10}+ high-quality svg icons and the brand new UI Icon Set, exclusively designed and provided for the web with {Math.floor(UI_ICONS_COUNT / 10) * 10}+ icons and responsive level-of-detail.
 </div>
 
 <PostTabs activePanel="search">
