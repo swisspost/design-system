@@ -41,6 +41,24 @@
   // Keeps the little arrow visible
   overflow: visible;
 
+  &:not(:has(.arrow)) {
+    @include elevation-mx.elevation('elevation-3');
+  }
+
+  &:has(.arrow) {
+    filter:
+      drop-shadow(1px 2px 3px hsla(216, 9%, 11%, 0.15))
+      drop-shadow(2px 4px 6px hsla(225, 17%, 9%, 0.15))
+      drop-shadow(4px 8px 12px hsla(225, 7%, 11%, 0.15));
+  }
+
+  &.bottom:has(.arrow) {
+    filter:
+      drop-shadow(0px -2px 3px hsla(216, 9%, 11%, 0.15))
+      drop-shadow(0px -4px 6px hsla(225, 17%, 9%, 0.15))
+      drop-shadow(0px -8px 12px hsla(225, 7%, 11%, 0.15));
+  }
+
   .arrow {
     $arrow-size: 0.5825rem;
     position: absolute;
@@ -52,29 +70,24 @@
     z-index: -1;
 
     // Create transparent border to be styled by and for the high contrast mode
-    
     &.top {
       border-left: 2px solid transparent;
       border-top: 2px solid transparent;
-      box-shadow: -1px -1px 0.08px rgba(209, 207, 207, 0.12);
     }
 
     &.right {
       border-right: 2px solid transparent;
       border-top: 2px solid transparent;
-      box-shadow: 1px -1px 0.08px rgba(209, 207, 207, 0.12);
     }
 
     &.left {
       border-left: 2px solid transparent;
       border-bottom: 2px solid transparent;
-      box-shadow: -1px 1px 0.08px rgba(209, 207, 207, 0.12);
     }
 
     &.bottom {
       border-right: 2px solid transparent;
       border-bottom: 2px solid transparent;
-      box-shadow: 1px 1px 0.08px rgba(209, 207, 207, 0.12);
     }
   }
 }
