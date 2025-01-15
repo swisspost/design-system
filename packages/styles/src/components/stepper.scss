@@ -88,7 +88,6 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  counter-increment: step-index;
   position: relative;
   z-index: 2;
   overflow: hidden;
@@ -125,6 +124,7 @@
   content: counter(step-index);
   display: flex;
   align-items: center;
+  counter-increment: step-index;
   justify-content: center;
   z-index: 1;
   height: stepper.$stepper-indicator-size;
