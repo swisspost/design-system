@@ -3,3 +3,11 @@
 .my-container {
   background-color: post.$info;
 }
+
+.text-example-bordered {
+  border: 1px solid post.$gray-40;
+}
+
+.my-colored-text {
+  color: post.$error;
+}
