@@ -23,6 +23,7 @@ body {
   font-weight: tokens.get('body-font-weight');
   line-height: tokens.get('body-line-height');
   letter-spacing: tokens.get('body-letter-spacing');
+  font-variant-numeric: proportional-nums;
   color: tokens.get('body-color');
   min-height: 100vh;
 }
