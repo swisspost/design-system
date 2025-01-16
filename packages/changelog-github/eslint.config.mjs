@@ -1,13 +1,20 @@
+// this config was created using https://eslint.org/blog/2024/04/eslint-config-inspector/
+
 import js from '@eslint/js';
 import ts from 'typescript-eslint';
 
-export default ts.config(
+export default [
   {
+    name: 'post/defaults',
     ignores: ['dist/*'],
   },
-  js.configs.recommended,
-  ts.configs.recommended,
   {
+    name: 'eslint/recommended',
+    ...js.configs.recommended,
+  },
+  {
+    name: 'post/ts/defaults',
+    files: ['**/".{ts,tsx,mts,cts}'],
     languageOptions: {
       parserOptions: {
         project: './tsconfig.eslint.json',
@@ -16,6 +23,7 @@ export default ts.config(
   },
   {
     files: ['**/*.{js,mjs,cjs}'],
-    extends: [ts.configs.disableTypeChecked],
+    ...ts.configs.disableTypeChecked,
   },
-);
+  ...ts.configs.recommended,
+];

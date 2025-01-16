@@ -1,9 +1,11 @@
+// this config was created using https://eslint.org/blog/2024/04/eslint-config-inspector/
+
 import js from '@eslint/js';
 import globals from 'globals';
 
 export default [
   {
-    name: 'post/tokens/defaults',
+    name: 'post/defaults',
     ignores: ['dist/*'],
     languageOptions: {
       globals: {
@@ -17,7 +19,7 @@ export default [
     ...js.configs.recommended,
   },
   {
-    name: 'post/tokens/customs',
+    name: 'post/recommended/overrides',
     rules: {
       'no-unused-vars': [
         'error',
