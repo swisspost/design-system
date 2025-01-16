@@ -5,8 +5,11 @@ import globals from 'globals';
 
 export default [
   {
-    name: 'post/defaults',
+    name: 'post/global/ignores',
     ignores: ['dist/*'],
+  },
+  {
+    name: 'post/defaults',
     languageOptions: {
       globals: {
         ...globals.browser,
