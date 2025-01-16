@@ -1,13 +1,23 @@
+// this config was created using https://eslint.org/blog/2024/04/eslint-config-inspector/
+
 import js from '@eslint/js';
 import ts from 'typescript-eslint';
-
-import stencilPlugin from '@stencil-community/eslint-plugin';
 import globals from 'globals';
-import reactPlugin from 'eslint-plugin-react';
-import typescriptEslintParser from '@typescript-eslint/parser';
+import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
 
-export default ts.config(
+import reactPlugin from 'eslint-plugin-react';
+import stencilCommunityPlugin from '@stencil-community/eslint-plugin';
+// import tsParser from '@typescript-eslint/parser';
+
+const compatStencilCommunityBaseRules = fixupConfigRules(stencilCommunityPlugin.configs.base)[0]
+  .overrides[0].rules;
+const compatStencilCommunityRecommendedRules = fixupConfigRules(
+  stencilCommunityPlugin.configs.recommended,
+)[0].rules;
+
+export default [
   {
+    name: 'post/global/ignores',
     ignores: [
       'dist/*',
       'loader/*',
@@ -16,31 +26,65 @@ export default ts.config(
       'cypress.config.js',
       'cypress/*',
       'stencil.config.ts',
-      '**/tests/*',
+      '**/*.spec.*',
     ],
   },
-  // improve this config as soon as https://github.com/stencil-community/stencil-eslint/issues/119 has been released
   {
-    files: ['src/**/*.{ts, tsx}'],
+    name: 'post/defaults',
     languageOptions: {
-      parser: typescriptEslintParser,
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+    },
+  },
+  {
+    name: 'eslint/recommended',
+    ...js.configs.recommended,
+  },
+  {
+    name: 'post/ts/defaults',
+    files: ['**/*.{ts,tsx,mts,cts}'],
+    languageOptions: {
       parserOptions: {
         project: './tsconfig.eslint.json',
       },
-      sourceType: 'module',
-      globals: globals.browser,
-    },
-    extends: [js.configs.recommended, ts.configs.recommendedTypeChecked],
-    plugins: {
-      '@stencil-community': stencilPlugin,
-      'react': reactPlugin,
     },
     rules: {
-      ...stencilPlugin.configs.strict.rules,
-      '@typescript-eslint/semi': 'off',
-      '@typescript-eslint/brace-style': 'off',
-      '@typescript-eslint/func-call-spacing': 'off',
-
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          caughtErrors: 'none',
+          destructuredArrayIgnorePattern: '^_',
+          ignoreRestSiblings: true,
+        },
+      ],
+    },
+  },
+  {
+    files: ['**/*.{js,mjs,cjs}'],
+    ...ts.configs.disableTypeChecked,
+  },
+  ...ts.configs.recommended,
+  {
+    name: 'stencil/community/recommended',
+    files: ['**/*.{ts,mts,cts,tsx}'],
+    languageOptions: {
+      parserOptions: {
+        ecmaVersion: 2018,
+        sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+    plugins: {
+      'react': fixupPluginRules(reactPlugin),
+      '@stencil-community': fixupPluginRules(stencilCommunityPlugin),
+    },
+    rules: {
+      ...compatStencilCommunityBaseRules,
+      ...compatStencilCommunityRecommendedRules,
       'indent': [
         'error',
         2,
@@ -50,17 +94,7 @@ export default ts.config(
       ],
       'quotes': ['error', 'single'],
       'semi': ['error', 'always'],
-      'func-style': ['error', 'declaration'],
-      'comma-dangle': 'off',
       'react/jsx-no-bind': 'off',
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          caughtErrors: 'none',
-          destructuredArrayIgnorePattern: '^_',
-          ignoreRestSiblings: true,
-        },
-      ],
       '@stencil-community/strict-boolean-conditions': 'off',
       '@stencil-community/required-prefix': ['error', ['post-']],
       '@stencil-community/class-pattern': [
@@ -71,9 +105,4 @@ export default ts.config(
       ],
     },
   },
-  // do not type-check *.js and *.spec.* files
-  {
-    ...ts.configs.disableTypeChecked,
-    files: ['**/*.{js,mjs,cjs}', '**/*.spec.*'],
-  },
-);
+];

@@ -47,6 +47,7 @@
     "nanoid": "5.0.9"
   },
   "devDependencies": {
+    "@eslint/compat": "1.2.5",
     "@eslint/js": "9.18.0",
     "@percy/cli": "1.30.6",
     "@percy/cypress": "3.1.2",
