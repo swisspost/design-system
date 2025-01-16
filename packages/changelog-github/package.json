@@ -29,6 +29,7 @@
     "@changesets/parse": "*",
     "@eslint/js": "9.18.0",
     "eslint": "9.18.0",
+    "globals": "15.14.0",
     "typescript": "5.5.4",
     "typescript-eslint": "8.20.0"
   }

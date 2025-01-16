@@ -2,11 +2,21 @@
 
 import js from '@eslint/js';
 import ts from 'typescript-eslint';
+import globals from 'globals';
 
 export default [
   {
-    name: 'post/defaults',
+    name: 'post/global/ignores',
     ignores: ['dist/*'],
+  },
+  {
+    name: 'post/defaults',
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+    },
   },
   {
     name: 'eslint/recommended',
@@ -14,7 +24,7 @@ export default [
   },
   {
     name: 'post/ts/defaults',
-    files: ['**/".{ts,tsx,mts,cts}'],
+    files: ['**/*.{ts,tsx,mts,cts}'],
     languageOptions: {
       parserOptions: {
         project: './tsconfig.eslint.json',
