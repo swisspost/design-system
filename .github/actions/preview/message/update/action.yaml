@@ -11,6 +11,9 @@ inputs:
   preview-url:
     description: The preview url to add in the comment.
     required: true
+  issue-name:
+    description: The PR title to check if it involves an 'icons update'.
+    required: true
 
 runs:
   using: composite
@@ -19,10 +22,11 @@ runs:
       env:
         ISSUE_NUMBER: ${{ inputs.issue-number }}
         PREVIEW_URL: ${{ inputs.preview-url }}
+        ISSUE_NAME: ${{ inputs.issue-name }}
       with:
         github-token: ${{ inputs.access-token }}
         script: |
-          const { ISSUE_NUMBER, PREVIEW_URL } = process.env
+          const { ISSUE_NUMBER, PREVIEW_URL, ISSUE_NAME } = process.env
 
           const commentTitle = '**Related Previews**'
           const commentInitialBody = 'Preview URLs will be added here, once they are ready... ![loader](https://github.com/swisspost/design-system/assets/9716662/49a75898-7093-4ffb-9460-071ff194459d)'
@@ -35,14 +39,21 @@ runs:
           const previewComment = comments.find(c => c.user.login === 'swisspost-bot' && c.body.includes(commentTitle))
 
           if (previewComment && !previewComment.body.includes(PREVIEW_URL)) {
-            github.rest.issues.updateComment({
+            let updatedBody = previewComment.body
+              .replace(commentInitialBody, '')
+              .concat(`- ${PREVIEW_URL}\n`);
+
+            // If Update Icons PR - then include Icons Health page link 
+            if (ISSUE_NAME === 'chore(icons): :point_up: update icons') {
+              updatedBody = updatedBody.concat(`- ${PREVIEW_URL}?path=/docs/health-icons--doc\n`);
+            }
+
+            await github.rest.issues.updateComment({
               repo: context.repo.repo,
               owner: context.repo.owner,
               comment_id: previewComment.id,
-              body: previewComment.body
-                .replace(commentInitialBody, '')
-                .concat(`- ${PREVIEW_URL}\n`)
-            })
+              body: updatedBody
+            });
 
             const reactions = (await github.rest.reactions.listForIssueComment({
               repo: context.repo.repo,
