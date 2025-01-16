@@ -19,6 +19,6 @@
     "resolveJsonModule": true,
     "skipLibCheck": true
   },
-  "include": ["src", "types"],
+  "include": [".config/*", "src", "types"],
   "exclude": ["node_modules", "**/tests"]
 }
