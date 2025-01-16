@@ -145,6 +145,8 @@ export class MigrationV89Component extends LitElement {
                       <code>.figure-caption</code>
                     </li>
                     <li>Vertical rule: <code>.vr</code></li>
+                    <li>Colored background: <code>.text-bg-*</code></li>
+                    <li>Colored links: <code>.link-*</code></li>
                   </ul>
                 </li>
               </ul>
