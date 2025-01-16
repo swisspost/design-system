@@ -1,6 +1,3 @@
-import console from 'node:console';
-import { performance } from 'node:perf_hooks';
-
 import {
   setup,
   createTokenSetFiles,
