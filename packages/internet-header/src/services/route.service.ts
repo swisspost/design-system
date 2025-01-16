@@ -4,7 +4,7 @@ import { NavMainEntity, MainNavScoreList } from '../models/header.model';
 /**
  * Activate the current route based on the config and the match mode
  * @param config Main Navigation Config
- * @param activeRouteProp Match mode
+ * @param activeRouteProp Match mode or custom URL to compare against
  * @returns Modified Main Navigation Config
  */
 export const markActiveRoute = (
@@ -16,8 +16,9 @@ export const markActiveRoute = (
     return config;
   }
 
-  // Set compare URL and check if activeRouteProp is valid
-  let compareUrl: URL;
+  // Set reference URL to compare nav items against
+  let referenceUrl: URL;
+  let isRelativeReference = false;
   config = resetOverrideConfig(config);
 
   if (activeRouteProp === 'auto' || activeRouteProp === 'exact') {
@@ -26,10 +27,11 @@ export const markActiveRoute = (
       return resetActiveStateToPortalConfig(config);
     }
 
-    compareUrl = new URL(window.location.href);
+    referenceUrl = new URL(window.location.href);
   } else {
     try {
-      compareUrl = ensureUrlWithOrigin(activeRouteProp);
+      isRelativeReference = activeRouteProp.startsWith('/') || activeRouteProp.startsWith('./');
+      referenceUrl = new URL(activeRouteProp, window.location.href);
     } catch (error) {
       console.warn(
         `Active Route: ${activeRouteProp} is not a valid URL. Navigation highlighting has been disabled.`,
@@ -38,7 +40,7 @@ export const markActiveRoute = (
     }
   }
 
-  const scoreList = compileScoreList(config, compareUrl, activeRouteProp);
+  const scoreList = compileScoreList(config, referenceUrl, activeRouteProp, isRelativeReference);
 
   if (scoreList.length === 0) {
     // No match found or already active links defined
@@ -50,20 +52,6 @@ export const markActiveRoute = (
   if (winnerPair.sub) winnerPair.sub.isActiveOverride = true;
 
   return config;
-};
-
-/**
- * Ensure URL has an origin by adding current origin if needed
- * @param url URL or path string
- * @returns URL with origin
- */
-export const ensureUrlWithOrigin = (url: string): URL => {
-  try {
-    return new URL(url);
-  } catch {
-    // If URL construction fails, it's likely relative, so prepend origin
-    return new URL(url, document.location.origin);
-  }
 };
 
 /**
@@ -100,16 +88,17 @@ const resetOverrideConfig = (config: NavMainEntity[]): NavMainEntity[] => {
 };
 
 /**
- * Compile a list of scores based on the map mode, sorted in descending order
+ * Compile a list of scores based on how well nav items match the reference URL
  * @param config Main Nav Config
- * @param compareUrl Current Browser URL or a custom URL
+ * @param referenceUrl URL to compare nav items against (window.location or custom)
  * @param activeRouteProp Match mode
  * @returns A list of scored URLs if any matched
  */
 export const compileScoreList = (
   config: NavMainEntity[],
-  compareUrl: URL,
+  referenceUrl: URL,
   activeRouteProp: ActiveRouteProp,
+  isRelativeReference: boolean,
 ): MainNavScoreList => {
   // Flag to check if the Portal set any active links or if there are any exact matches
   let hadAnyActiveLink = false;
@@ -119,9 +108,11 @@ export const compileScoreList = (
     .filter(mainNav => !hadAnyActiveLink && mainNav)
     .forEach(mainNav => {
       try {
+        const navItemUrl = new URL(mainNav.url);
         const score = compareRoutes(
-          compareUrl,
-          new URL(mainNav.url),
+          referenceUrl,
+          navItemUrl,
+          isRelativeReference,
           activeRouteProp as 'auto' | 'exact',
         );
 
@@ -145,8 +136,13 @@ export const compileScoreList = (
           }
 
           try {
-            const url = new URL(linklist.url);
-            const score = compareRoutes(compareUrl, url, activeRouteProp as 'auto' | 'exact');
+            const flyoutNavUrl = new URL(linklist.url);
+            const score = compareRoutes(
+              referenceUrl,
+              flyoutNavUrl,
+              isRelativeReference,
+              activeRouteProp as 'auto' | 'exact',
+            );
 
             hadAnyActiveLink = updateScoreList(
               scoreList,
@@ -185,54 +181,52 @@ function updateScoreList(
 }
 
 /**
- * Compare two URLs for similarity based on a match mode
- * @param baseUrl Browser URL
- * @param compareUrl Navigatgion URL
+ * Compare a nav item URL against the reference URL for similarity
+ * @param referenceUrl URL we're comparing against (from window.location or custom)
+ * @param navItemUrl URL from the navigation item
  * @param matchMode exact or auto matching
- * @returns Score
+ * @returns Score indicating how well the URLs match
  */
 export const compareRoutes = (
-  baseUrl: URL,
-  compareUrl: URL,
+  referenceUrl: URL,
+  navItemUrl: URL,
+  isRelativeReference: boolean,
   matchMode?: 'auto' | 'exact',
 ): number => {
-  // One url is not defined or they don't share the same orign
-  if (baseUrl === null || compareUrl === null) {
+  if (referenceUrl === null || navItemUrl === null) {
     return 0;
   }
 
-  const normalizeOrigin = (origin: string) => origin.replace('www.', '');
-  if (normalizeOrigin(baseUrl.origin) !== normalizeOrigin(compareUrl.origin)) {
+  // Only compare origins if reference URL is not relative
+  if (!isRelativeReference && referenceUrl.origin !== navItemUrl.origin) {
     return 0;
   }
 
-  const baseUrlPath = baseUrl.pathname.toLocaleLowerCase();
-  const compareUrlPath = compareUrl.pathname.toLocaleLowerCase();
+  const referenceUrlPath = referenceUrl.pathname.toLocaleLowerCase();
+  const navItemUrlPath = navItemUrl.pathname.toLocaleLowerCase();
 
-  // Exact match, origin and pathname are the same
-  if (baseUrlPath === compareUrlPath) {
+  // Exact match, pathname is the same
+  if (referenceUrlPath === navItemUrlPath) {
     return Infinity;
   }
 
-  // The basepath is longer than the comparison, a match is impossible
-  if (baseUrl.pathname.length < compareUrl.pathname.length) {
+  // The reference path is shorter than nav item path, a match is impossible
+  if (referenceUrl.pathname.length < navItemUrl.pathname.length) {
     return 0;
   }
 
   if (matchMode === 'auto') {
-    const baseSegments = [
-      baseUrl.origin.toLocaleLowerCase(),
-      ...baseUrlPath.split('/').filter(x => x !== null && x !== ''),
+    const referenceSegments = [
+      referenceUrl.origin.toLocaleLowerCase(),
+      ...referenceUrlPath.split('/').filter(x => x !== null && x !== ''),
     ];
-    const compareSegments = [
-      compareUrl.origin.toLocaleLowerCase(),
-      ...compareUrlPath.split('/').filter(x => x !== null && x !== ''),
+    const navItemSegments = [
+      navItemUrl.origin.toLocaleLowerCase(),
+      ...navItemUrlPath.split('/').filter(x => x !== null && x !== ''),
     ];
+    const score = getSimilarityScore(referenceSegments, navItemSegments);
 
-    const score = getSimilarityScore(baseSegments, compareSegments);
-
-    // If only some segments match, but not the whole smaller array, it's not a match
-    return Math.min(baseSegments.length, compareSegments.length) === score ? score : 0;
+    return Math.min(referenceSegments.length, navItemSegments.length) === score ? score : 0;
   }
 
   return 0;
@@ -240,8 +234,8 @@ export const compareRoutes = (
 
 /**
  * Check how many items in an array match
- * @param a Base array
- * @param b Compare array
+ * @param a Reference array
+ * @param b Nav item array to compare
  * @returns Score
  */
 export const getSimilarityScore = (a: string[], b: string[]): number => {
