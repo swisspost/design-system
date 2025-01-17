@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as TeaserStories from './teaser.stories';
+
+<Meta of={TeaserStories} />
+
+# Teaser Card
+
+<p className="lead">
+  A teaser card is a clickable preview that leads to detailed content, providing a convenient entry
+  point for users to access more information. It contains maximum one interactive element (button)
+  which links to the same location as the card.{' '}
+</p>
+
+<Canvas sourceState="shown" of={TeaserStories.Default} />
+<div className="hide-col-default">
+  <Controls of={TeaserStories.Default} />
+</div>
+
+## Teaser section
+
+The teaser card component will take the full width of its container and should be implemented within a grid system. Here is an example of what a teaser section would look like.
+
+<Canvas sourceState="shown" of={TeaserStories.Section} />
