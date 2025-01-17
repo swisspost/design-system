@@ -20,6 +20,6 @@
     "jsx": "react-jsx",
     "experimentalDecorators": true
   },
-  "include": [".storybook/**/*", "src/**/*", "types", "../internet-header/src/components.d.ts"],
-  "exclude": ["node_modules/**/*", "src/**/*.sample.*"]
+  "include": [".storybook/*", "src", "types", "../internet-header/src/components.d.ts"],
+  "exclude": ["node_modules", "src/**/*.sample.*"]
 }
