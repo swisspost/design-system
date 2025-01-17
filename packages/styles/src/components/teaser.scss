@@ -13,6 +13,9 @@ tokens.$default-map: components.$post-teaser;
   color: tokens.get('teaser-card-content-enabled-fg');
   display: flex;
   flex-direction: column;
+  transition:
+    background-color 150ms,
+    color 150ms;
 
   &:hover {
     background-color: tokens.get('teaser-card-hover-bg');
