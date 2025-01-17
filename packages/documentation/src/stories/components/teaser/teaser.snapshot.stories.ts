@@ -33,7 +33,6 @@ export const Teaser: Story = {
                   )}
                 </div>
               </div>
-              <div class="container py-56 d-flex flex-column gap-32"></div>
             `;
           })}
         </div>
