@@ -1,3 +1,5 @@
+// this config was created using https://eslint.org/blog/2024/04/eslint-config-inspector/
+
 import js from '@eslint/js';
 import ts from 'typescript-eslint';
 import globals from 'globals';
