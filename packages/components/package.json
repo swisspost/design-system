@@ -35,7 +35,8 @@
     "e2e:ci": "xvfb-run -a cypress run --browser chrome",
     "e2e:watch": "cypress open",
     "generate": "stencil generate",
-    "lint": "eslint"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
   },
   "dependencies": {
     "@floating-ui/dom": "1.6.13",

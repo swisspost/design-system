@@ -51,17 +51,17 @@ export default [
       ],
     },
   },
+  ...ts.configs.recommended,
   {
     files: ['**/*.{js,mjs,cjs}'],
     ...ts.configs.disableTypeChecked,
   },
-  ...ts.configs.recommended,
   {
     name: 'stencil/community/recommended',
     files: ['**/*.{ts,mts,cts,tsx}'],
     languageOptions: {
       parserOptions: {
-        ecmaVersion: 2018,
+        ecmaVersion: 2022,
         sourceType: 'module',
         ecmaFeatures: {
           jsx: true,
@@ -75,6 +75,12 @@ export default [
     rules: {
       ...compatStencilCommunityBaseRules,
       ...compatStencilCommunityRecommendedRules,
+    },
+  },
+  {
+    name: 'post/stencil/recommended/overrides',
+    files: ['**/*.{ts,mts,cts,tsx}'],
+    rules: {
       'indent': [
         'error',
         2,
