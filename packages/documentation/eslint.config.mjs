@@ -62,6 +62,11 @@ export default [
     name: 'mdx/react/recommended',
     files: ['**/*.{md,mdx}'],
     ...reactPlugin.configs.flat.recommended,
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
   },
   {
     name: 'post/mdx/react/recommended/overrides',
