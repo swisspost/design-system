@@ -84,4 +84,11 @@ export default ts.config(
       ...compatStencilCommunityRecommendedRules,
     },
   },
+  {
+    name: 'post/stencil/recommended/overrides',
+    files: ['**/*.{ts,mts,cts,tsx}'],
+    rules: {
+      'react/jsx-no-bind': 'off',
+    },
+  },
 );

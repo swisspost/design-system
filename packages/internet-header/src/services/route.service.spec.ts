@@ -25,9 +25,9 @@ describe('route.service.ts', () => {
         getSimilarityScore(['a', 'c'], ['b', 'c']),
         getSimilarityScore([], ['a']),
         getSimilarityScore(['a'], []),
-        // @ts-expect-error
+        // @ts-expect-error first arguments should be of type "string"
         getSimilarityScore(null, ['a']),
-        // @ts-expect-error
+        // @ts-expect-error first arguments should be of type "string"
         getSimilarityScore(undefined, ['a']),
         getSimilarityScore([], []),
         getSimilarityScore(
@@ -43,7 +43,7 @@ describe('route.service.ts', () => {
         ),
       ).toBe(0);
 
-      for (let score of scores) {
+      for (const score of scores) {
         expect(score).toBe(0);
       }
     });
@@ -84,11 +84,11 @@ describe('route.service.ts', () => {
     });
 
     it('Does not fail on invalid arguments', () => {
-      // @ts-expect-error
+      // @ts-expect-error first arguments should be of type url
       expect(compareRoutes(null, nope, 'auto')).toBe(0);
-      // @ts-expect-error
+      // @ts-expect-error first and second arguments should be of type url
       expect(compareRoutes(null, undefined, 'auto')).toBe(0);
-      // @ts-expect-error
+      // @ts-expect-error third argument should be of type 'auto' or 'exact'
       expect(compareRoutes(post, nope, null)).toBe(0);
     });
   });

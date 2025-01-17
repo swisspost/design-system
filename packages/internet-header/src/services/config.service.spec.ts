@@ -161,7 +161,7 @@ describe('config.service.ts', () => {
     });
 
     it('should work with upper case env', () => {
-      /* @ts-expect-error */
+      // @ts-expect-error second argument should be of type 'dev01' | 'dev02' | 'devs1' | 'test' | 'int01' | 'int02' | 'prod'
       expect(generateConfigUrl('whatever', 'INT01')).toEqual(
         'https://int.post.ch/api/headerjs/Json?serviceid=whatever&environment=int01',
       );
