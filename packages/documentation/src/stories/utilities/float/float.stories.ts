@@ -3,7 +3,7 @@ import { html } from 'lit/static-html.js';
 import { MetaExtended } from '@root/types';
 import { nothing } from 'lit';
 
-/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+ 
 
 const meta: MetaExtended = {
   id: 'ccf092c1-f0ab-49a1-a612-87e5be23adde',
