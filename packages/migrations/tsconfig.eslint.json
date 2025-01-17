@@ -1,5 +1,7 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["src"],
-  "exclude": ["node_modules"]
+  "compilerOptions": {
+    // ensure that nobody can accidentally use this config for a build
+    "noEmit": true
+  }
 }
