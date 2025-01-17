@@ -19,8 +19,8 @@
     "jsx": "react",
     "target": "es2022"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["**/__tests__/**"],
+  "include": ["src"],
+  "exclude": ["node_modules"],
   "compileOnSave": false,
   "buildOnSave": false
 }
