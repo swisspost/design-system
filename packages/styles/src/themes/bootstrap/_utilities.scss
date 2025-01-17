@@ -1,6 +1,12 @@
 @use 'sass:map';
 @use './core' as *;
-@import 'bootstrap/scss/helpers';
+
+@import 'bootstrap/scss/helpers/color-bg';
+@import 'bootstrap/scss/helpers/colored-links';
+@import 'bootstrap/scss/helpers/focus-ring';
+@import 'bootstrap/scss/helpers/position';
+@import 'bootstrap/scss/helpers/text-truncation';
+
 @import 'bootstrap/scss/utilities';
 
 // manipulate $utilities before you import utilities/api

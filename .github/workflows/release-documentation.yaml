@@ -75,7 +75,7 @@ jobs:
           NETLIFY_SITE_ID: ${{ fromJSON(steps.netlify-config.outputs.result).siteId }}
         run: |
           echo "site-url=https://${{ fromJSON(steps.netlify-config.outputs.result).siteUrl }}" >> $GITHUB_OUTPUT
-          netlify deploy --filter @swisspost/design-system-documentation --build false --dir packages/documentation/storybook-static --prod
+          netlify deploy --filter @swisspost/design-system-documentation --dir packages/documentation/storybook-static --prod
 
       - name: Create Summary
         id: summary
