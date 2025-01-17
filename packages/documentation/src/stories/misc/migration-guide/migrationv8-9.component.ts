@@ -148,6 +148,7 @@ export class MigrationV89Component extends LitElement {
                     <li>Stretched link: <code>.stretched-link</code></li>
                     <li>Stacks: <code>.vstack</code> and <code>.hstack</code></li>
                     <li>Ratios: <code>.ratio</code> and <code>.ratio-*x*</code></li>
+                    <li>Icon link: <code>.icon-link</code> and <code>.icon-link-hover</code></li>
                   </ul>
                 </li>
               </ul>
