@@ -30,10 +30,20 @@ export default [
         project: './tsconfig.eslint.json',
       },
     },
+    rules: {
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          caughtErrors: 'none',
+          destructuredArrayIgnorePattern: '^_',
+          ignoreRestSiblings: true,
+        },
+      ],
+    },
   },
+  ...ts.configs.recommended,
   {
     files: ['**/*.{js,mjs,cjs}'],
     ...ts.configs.disableTypeChecked,
   },
-  ...ts.configs.recommended,
 ];
