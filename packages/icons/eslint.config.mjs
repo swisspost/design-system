@@ -7,7 +7,7 @@ import globals from 'globals';
 export default [
   {
     name: 'post/global/ignores',
-    ignores: ['dist/*', 'public/*'],
+    ignores: ['public/*'],
   },
   {
     name: 'post/defaults',
