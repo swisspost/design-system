@@ -26,7 +26,7 @@ export class PostInternetFooter {
      * show the live support button.
      */
     if (!this.liveSupportEnabled) {
-      const intervalId: number | undefined = undefined;
+      let intervalId: number | undefined = undefined;
       let runs = 0;
 
       const checker = () => {
