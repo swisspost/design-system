@@ -53,11 +53,16 @@ export class PostPopovercontainer {
   @Event() postToggle: EventEmitter<boolean>;
 
   /**
-   * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
-   * Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted
+   * Defines the placement of the popover-container according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
+   * Popover-containers are automatically flipped to the opposite side if there is not enough available space and are shifted
    * towards the viewport if they would overlap edge boundaries.
    */
   @Prop() readonly placement?: Placement = 'top';
+
+   /**
+   * Animation style
+   */
+   @Prop() readonly animation?: 'pop-in';
 
   /**
    * Gap between the edge of the page and the popover
@@ -79,8 +84,8 @@ export class PostPopovercontainer {
   }
 
   /**
-   * Programmatically display the tooltip
-   * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+   * Programmatically display the popover-container
+   * @param target An element with [data-tooltip-target="id"] where the popover-container should be shown
    */
   @Method()
   async show(target: HTMLElement) {
@@ -92,53 +97,47 @@ export class PostPopovercontainer {
   }
 
   /**
-   * Programmatically hide this tooltip
+   * Programmatically hide this popover-container
    */
   @Method()
   async hide() {
-    if (!this.toggleTimeoutId) {
-      this.eventTarget = null;
-      this.host.hidePopover();
-    }
+    this.eventTarget = null;
+    this.host.hidePopover();
   }
 
   /**
-   * Toggle tooltip display
-   * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+   * Toggle popover-container display
+   * @param target An element where the popover-container should be shown
    * @param force Pass true to always show or false to always hide
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
-    // Prevent instant double toggle
-    if (!this.toggleTimeoutId) {
-      this.eventTarget = target;
-      this.calculatePosition();
-      this.host.togglePopover(force);
-      this.toggleTimeoutId = null;
-    }
+    this.eventTarget = target;
+    this.calculatePosition();
+    this.host.togglePopover(force);
     return this.host.matches(':where(:popover-open, .popover-open');
   }
 
   /**
-   * Start or stop auto updates based on tooltip events.
-   * Tooltips can be closed or opened with other methods than class members,
+   * Start or stop auto updates based on popover-container events.
+   * popover-containers can be closed or opened with other methods than class members,
    * therefore listening to the toggle event is safer for cleaning up.
    * @param e ToggleEvent
    */
   private handleToggle(e: ToggleEvent) {
-    this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
     const isOpen = e.newState === 'open';
     if (isOpen) {
       this.startAutoupdates();
+      this.postToggle.emit(isOpen);
     } else {
       if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
+      this.postToggle.emit(isOpen);
     }
-    this.postToggle.emit(isOpen);
   }
 
   /**
    * Start listening for DOM updates, scroll events etc. that have
-   * an influence on tooltip positioning
+   * an influence on popover-container positioning
    */
   private startAutoupdates() {
     this.clearAutoUpdate = autoUpdate(
@@ -187,7 +186,7 @@ export class PostPopovercontainer {
       middleware,
     });
 
-    // Tooltip
+    // Popover-container
     this.host.style.left = `${x}px`;
     this.host.style.top = `${y}px`;
 
@@ -213,7 +212,7 @@ export class PostPopovercontainer {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={version} data-animation={this.animation}>
         {this.arrow && (
           <span
             class="arrow"
