@@ -92,7 +92,7 @@ export default ts.config(
   },
   {
     name: 'post/ts/intranet-header-showcase/defaults',
-    files: ['**/samples/**/*.{ts,mts,cts}'],
+    files: ['projects/intranet-header-showcase/**/*.{ts,mts,cts}'],
     languageOptions: {
       parserOptions: {
         project: [
