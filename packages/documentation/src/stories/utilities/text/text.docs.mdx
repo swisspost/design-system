@@ -1,7 +1,6 @@
 import { Canvas, Meta, Source } from '@storybook/blocks';
 import * as TextStories from './text.stories';
 import SampleFontFamily from './text-font-family.sample.scss?raw';
-import SampleFontWeight from './text-font-weight.sample.scss?raw';
 import SampleLineHeight from './text-line-height.sample.scss?raw';
 import './text.styles.scss';
 
@@ -27,13 +26,9 @@ Use the class `.font-sans-serif` to set the text as the post sans-serif font-fam
 
 ### Font Weight
 
-The font weight classes available are `.fw-normal` and `.fw-bold`.
+The font weight classes available are `.fw-normal`, `.fw-bold` and `.fw-black`.
 
 <Canvas of={TextStories.FontWeight} sourceState="shown" />
-
-#### Set Font Weight in SCSS
-
-<Source code={SampleFontWeight} language="scss" />
 
 ### Font Style
 

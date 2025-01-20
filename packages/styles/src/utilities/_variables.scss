@@ -33,9 +33,9 @@ $position-values: (
 );
 
 $font-family-sans-serif: var(--post-device-font-family-default);
-
 $font-weight-normal: tokens.get('utility-font-weight-regular') !default;
 $font-weight-bold: tokens.get('utility-font-weight-bold') !default;
+$font-weight-black: tokens.get('utility-font-weight-black') !default;
 
 $line-height-base: tokens.get('utility-line-height-lg') !default;
 $line-height-sm: tokens.get('utility-line-height-sm') !default;

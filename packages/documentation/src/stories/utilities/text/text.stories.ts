@@ -19,7 +19,12 @@ export const FontFamily: Story = {
 };
 
 export const FontWeight: Story = {
-  render: () => html` <p class="fw-bold">This is bold text.</p> `,
+  render: () =>
+    html`
+      <p class="fw-normal">This is normal text.</p>
+      <p class="fw-bold">This is bold text.</p>
+      <p class="fw-black">This is black text.</p>
+    `,
 };
 
 export const FontStyle: Story = {
