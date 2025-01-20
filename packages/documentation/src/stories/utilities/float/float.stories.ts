@@ -60,3 +60,18 @@ export default meta;
 type Story = StoryObj;
 
 export const Float: Story = {};
+
+export const Clearfix: Story = {
+  render: () => {
+    return html`
+      <div class="clearfix" style="background-color: var(--post-core-color-sandgrey-012);">
+        <button type="button" class="btn btn-primary float-start">Button 1</button>
+        <button type="button" class="btn btn-primary float-end">Button 2</button>
+      </div>
+      <div style="background-color: var(--post-core-color-sandgrey-012);">
+        <button type="button" class="btn btn-primary float-start">Button 1</button>
+        <button type="button" class="btn btn-primary float-end">Button 2</button>
+      </div>
+    `;
+  },
+};
