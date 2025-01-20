@@ -1,14 +1,6 @@
 @font-face {
   font-display: swap;
   font-family: 'Swiss Post Sans';
-  font-weight: 900;
-  src: url('https://fonts.post.ch/swiss-post-sans/v1/SwissPostSans-Black.woff2') format('woff2'),
-    url('https://fonts.post.ch/swiss-post-sans/v1/SwissPostSans-Black.woff') format('woff');
-}
-
-@font-face {
-  font-display: swap;
-  font-family: 'Swiss Post Sans';
   font-weight: 700;
   src: url('https://fonts.post.ch/swiss-post-sans/v1/SwissPostSans-Bold.woff2') format('woff2'),
     url('https://fonts.post.ch/swiss-post-sans/v1/SwissPostSans-Bold.woff') format('woff');
