@@ -3,5 +3,6 @@
   "compilerOptions": {
     // ensure that nobody can accidentally use this config for a build
     "noEmit": true
-  }
+  },
+  "include": [".storybook/*", "cypress", "src", "types", "../internet-header/src/components.d.ts"]
 }

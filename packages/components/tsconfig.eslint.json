@@ -1,8 +1,8 @@
 {
   "extends": "./tsconfig.json",
-  "include": [".config/*", "src", "types", "cypress"],
   "compilerOptions": {
     // ensure that nobody can accidentally use this config for a build
     "noEmit": true
-  }
+  },
+  "include": [".config/*", "cypress", "src", "types"]
 }
