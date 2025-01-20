@@ -1068,9 +1068,21 @@ importers:
       '@angular/compiler-cli':
         specifier: 18.2.13
         version: 18.2.13(@angular/compiler@18.2.13(@angular/core@18.2.13(rxjs@7.8.1)(zone.js@0.15.0)))(typescript@5.5.4)
+      '@eslint/js':
+        specifier: 9.18.0
+        version: 9.18.0
       '@types/jasmine':
         specifier: 5.1.4
         version: 5.1.4
+      angular-eslint:
+        specifier: 18.4.3
+        version: 18.4.3(chokidar@3.6.0)(eslint@9.18.0(jiti@2.4.2))(typescript-eslint@8.16.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.5.4))(typescript@5.5.4)
+      eslint:
+        specifier: ^9.15.0
+        version: 9.18.0(jiti@2.4.2)
+      globals:
+        specifier: 15.14.0
+        version: 15.14.0
       jasmine-core:
         specifier: 5.5.0
         version: 5.5.0
@@ -1110,6 +1122,9 @@ importers:
       typescript:
         specifier: 5.5.4
         version: 5.5.4
+      typescript-eslint:
+        specifier: 8.16.0
+        version: 8.16.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.5.4)
 
   packages/styles-primeng-workspace/projects/styles-primeng:
     dependencies:
