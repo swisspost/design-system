@@ -5,10 +5,10 @@ import ts from 'typescript-eslint';
 import ng from 'angular-eslint';
 import globals from 'globals';
 
-export default [
+export default ts.config(
   {
     name: 'post/global/ignores',
-    ignores: ['dist/*', '**projects/**/stencil-generated/*'],
+    ignores: ['dist/*', '**/stencil-generated/*'],
   },
   {
     name: 'post/defaults',
@@ -29,8 +29,10 @@ export default [
     languageOptions: {
       parserOptions: {
         project: './tsconfig.eslint.json',
+        createDefaultProgram: true,
       },
     },
+    processor: ng.processInlineTemplates,
     rules: {
       '@typescript-eslint/no-unused-vars': [
         'error',
@@ -40,27 +42,11 @@ export default [
           ignoreRestSiblings: true,
         },
       ],
-    },
-  },
-  ...ts.configs.recommended,
-  {
-    files: ['**/*.{js,mjs,cjs}'],
-    ...ts.configs.disableTypeChecked,
-  },
-  ...ng.configs.tsRecommended.map(config => ({
-    ...config,
-    files: ['**/*.{ts,mts,cts}'],
-    processor: ng.processInlineTemplates,
-  })),
-  {
-    name: 'post/ng/ts-recommended/overrides',
-    files: ['**/*.{ts,mts,cts}'],
-    rules: {
       '@angular-eslint/directive-selector': [
         'error',
         {
           type: 'attribute',
-          prefix: 'app',
+          prefix: 'post',
           style: 'camelCase',
         },
       ],
@@ -68,14 +54,35 @@ export default [
         'error',
         {
           type: 'element',
-          prefix: 'app',
+          prefix: 'post',
           style: 'kebab-case',
         },
       ],
     },
   },
+  {
+    name: 'post/ts/components/defaults',
+    files: ['projects/components/**/*.{ts,mts,cts}'],
+    languageOptions: {
+      parserOptions: [
+        './projects/components/tsconfig.lib.json',
+        './projects/components/tsconfig.spec.json',
+      ],
+    },
+  },
+  {
+    files: ['**/*.{ts,mts,cts}'],
+    extends: [
+      ...ts.configs.recommended,
+      {
+        files: ['**/*.{js,mjs,cjs}'],
+        ...ts.configs.disableTypeChecked,
+      },
+      ...ng.configs.tsRecommended,
+    ],
+  },
   ...ng.configs.templateRecommended.map(config => ({
     ...config,
     files: ['**/*.{html,htm}'],
   })),
-];
+);
