@@ -32,7 +32,11 @@
     "@angular-devkit/build-angular": "18.2.12",
     "@angular/cli": "18.2.12",
     "@angular/compiler-cli": "18.2.13",
+    "@eslint/js": "9.18.0",
     "@types/jasmine": "5.1.4",
+    "angular-eslint": "18.4.3",
+    "eslint": "^9.15.0",
+    "globals": "15.14.0",
     "jasmine-core": "5.5.0",
     "karma": "6.4.4",
     "karma-chrome-launcher": "3.2.0",
@@ -45,6 +49,7 @@
     "stylelint-config-sass-guidelines": "11.1.0",
     "stylelint-prettier": "5.0.2",
     "stylelint-scss": "6.10.0",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "typescript-eslint": "8.16.0"
   }
 }
