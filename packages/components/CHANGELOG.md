@@ -1,5 +1,53 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.11
+
+### Patch Changes
+
+- Fixed a typo in the `post-accordion-item` component. (by [@schaertim](https://github.com/schaertim) with [#4391](https://github.com/swisspost/design-system/pull/4391))
+
+- Added focus styles for the `post-logo` component, which contains a link, to improve accessibility. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4462](https://github.com/swisspost/design-system/pull/4462))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.11
+  - @swisspost/design-system-icons@9.0.0-next.11
+
+## 9.0.0-next.10
+
+### Major Changes
+
+- Renamed the "dropdown" variant to "menu" for the `post-language-switch` and `post-language-option` components. (by [@leagrdv](https://github.com/leagrdv) with [#4260](https://github.com/swisspost/design-system/pull/4260))
+
+- Removed `.bg-` classes to define background color of elements. (by [@leagrdv](https://github.com/leagrdv) with [#4201](https://github.com/swisspost/design-system/pull/4201))
+
+### Patch Changes
+
+- Removed the dependency on utility classes in `post-header` component. The header can now be used without importing CSS utility classes. (by [@leagrdv](https://github.com/leagrdv) with [#4358](https://github.com/swisspost/design-system/pull/4358))
+
+- Updated the documentation of the Post header. (by [@leagrdv](https://github.com/leagrdv) with [#4408](https://github.com/swisspost/design-system/pull/4408))
+
+- Added a `type="button"` attribute to the `post-close-button` to prevent it from submitting forms. (by [@schaertim](https://github.com/schaertim) with [#4332](https://github.com/swisspost/design-system/pull/4332))
+
+- Removed auto slotting from `post-togglebutton` component to enable more flexible usage. (by [@schaertim](https://github.com/schaertim) with [#4346](https://github.com/swisspost/design-system/pull/4346))
+
+- Removed all usage of deprecated utility sizing classes. (by [@leagrdv](https://github.com/leagrdv) with [#4343](https://github.com/swisspost/design-system/pull/4343))
+
+- Reduced the length of random IDs generated in the components; they are now generated using the [nanoid library](https://github.com/ai/nanoid) instead of the [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API). (by [@leagrdv](https://github.com/leagrdv) with [#4369](https://github.com/swisspost/design-system/pull/4369))
+
+- Updated style and keyboard navigation of `post-language-switch`. (by [@leagrdv](https://github.com/leagrdv) with [#4260](https://github.com/swisspost/design-system/pull/4260))
+
+- Removed auto slotting from `post-logo` component to enable more flexible usage. (by [@schaertim](https://github.com/schaertim) with [#4345](https://github.com/swisspost/design-system/pull/4345))
+
+- Modified header megadropdown to close when focus is moved outside. (by [@myrta2302](https://github.com/myrta2302) with [#4324](https://github.com/swisspost/design-system/pull/4324))
+
+- Updated header overflow in tablet and mobile for long application titles. (by [@leagrdv](https://github.com/leagrdv) with [#4364](https://github.com/swisspost/design-system/pull/4364))
+
+- Added hover color to `post-accordion` in high contrast mode. (by [@schaertim](https://github.com/schaertim) with [#4316](https://github.com/swisspost/design-system/pull/4316))
+
+- Removed focus from collapsible when in collapsed state. (by [@myrta2302](https://github.com/myrta2302) with [#4309](https://github.com/swisspost/design-system/pull/4309))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.10
+  - @swisspost/design-system-icons@9.0.0-next.10
+
 ## 9.0.0-next.9
 
 ### Major Changes

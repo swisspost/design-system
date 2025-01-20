@@ -82,7 +82,7 @@ export class PostAccordionItem {
   }
 
   render() {
-    const headingLevel = this.host.closest('post-accorddion')?.getAttribute('heading-level');
+    const headingLevel = this.host.closest('post-accordion')?.getAttribute('heading-level');
     const HeadingTag = `h${headingLevel ?? this.headingLevel ?? 2}`;
 
     return (

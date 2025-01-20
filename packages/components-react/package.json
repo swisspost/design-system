@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components-react",
-  "version": "9.0.0-next.9",
+  "version": "9.0.0-next.11",
   "description": "Design System React Components for easy integration with the React ecosystem",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -29,24 +29,24 @@
     "lint": "eslint src/**/*.ts"
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:9.0.0-next.9"
+    "@swisspost/design-system-components": "workspace:9.0.0-next.11"
   },
   "devDependencies": {
-    "@types/node": "20.14.14",
+    "@types/node": "22.10.5",
     "@types/react": "18.3.3",
-    "@types/react-dom": "18.3.0",
+    "@types/react-dom": "18.3.5",
     "@typescript-eslint/eslint-plugin": "7.18.0",
     "@typescript-eslint/parser": "7.18.0",
-    "eslint": "8.57.0",
+    "eslint": "8.57.1",
     "eslint-config-love": "43.1.0",
-    "eslint-plugin-import": "2.29.1",
+    "eslint-plugin-import": "2.31.0",
     "eslint-plugin-n": "16.6.2",
     "eslint-plugin-promise": "6.6.0",
-    "eslint-plugin-react": "7.35.0",
+    "eslint-plugin-react": "7.37.3",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "rimraf": "6.0.1",
-    "typescript": "*"
+    "typescript": "5.5.4"
   },
   "peerDependencies": {
     "react": "18.3.1",
