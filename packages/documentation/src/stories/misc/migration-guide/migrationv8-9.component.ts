@@ -24,7 +24,7 @@ export class MigrationV89Component extends LitElement {
         <a
           aria-hidden="true"
           tabindex="-1"
-          href="http://localhost:9000/?path=/docs/c23b1d0b-76b3-4e38-aa76-b10c29bb873f--docs#migration-from-v8-to-v9"
+          href="/?path=/docs/c23b1d0b-76b3-4e38-aa76-b10c29bb873f--docs#migration-from-v8-to-v9"
         >
           <post-icon name="2037"></post-icon>
         </a>
@@ -147,6 +147,11 @@ export class MigrationV89Component extends LitElement {
                     <li>Vertical rule: <code>.vr</code></li>
                     <li>Colored background: <code>.text-bg-*</code></li>
                     <li>Colored links: <code>.link-*</code></li>
+                    <li>Visually hidden: <code>.visually-hidden-focusable</code></li>
+                    <li>Stretched link: <code>.stretched-link</code></li>
+                    <li>Stacks: <code>.vstack</code> and <code>.hstack</code></li>
+                    <li>Ratios: <code>.ratio</code> and <code>.ratio-*x*</code></li>
+                    <li>Icon link: <code>.icon-link</code> and <code>.icon-link-hover</code></li>
                   </ul>
                 </li>
               </ul>
