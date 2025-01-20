@@ -44,3 +44,41 @@
     }
   }
 }
+
+@mixin top-layer-pop-in($duration: 0.35s, $open-selector: '[open]') {
+  transform: scale(0.8);
+  opacity: 0;
+  transition-property: transform, opacity, overlay, display;
+  transition-behavior: allow-discrete;
+  transition-duration: var(--post-transition-duration, 0.35s);
+
+  transition-timing-function: linear(
+    0,
+    0.007,
+    0.029 2.2%,
+    0.118 4.7%,
+    0.625 14.4%,
+    0.826 19%,
+    0.902,
+    0.962,
+    1.008 26.1%,
+    1.041 28.7%,
+    1.064 32.1%,
+    1.07 36%,
+    1.061 40.5%,
+    1.015 53.4%,
+    0.999 61.6%,
+    0.995 71.2%,
+    1
+  );
+
+  &#{$open-selector} {
+    transform: scale(1);
+    opacity: 1;
+
+    @starting-style {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+  }
+}
