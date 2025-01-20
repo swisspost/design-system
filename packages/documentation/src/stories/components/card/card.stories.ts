@@ -311,6 +311,30 @@ const singleCardStory: Story = {
 };
 
 export const Default: Story = {
+  decorators: [gridContainer],
+  render: () =>
+    html`
+      <div class="card p-16">
+        <p>Non-interactive card</p>
+      </div>
+      <div class="card p-16">
+        <p><a href="#">Interactive card</a></p>
+      </div>
+    `,
+};
+
+export const NestedCard: Story = {
+  decorators: [gridContainer],
+  render: () =>
+    html`
+      <div class="card p-16">
+        <p>Card parent</p>
+        <div class="card p-16"><p>Card nested within a card</p></div>
+      </div>
+    `,
+};
+
+export const BasicContent: Story = {
   ...singleCardStory,
   parameters: {
     controls: {

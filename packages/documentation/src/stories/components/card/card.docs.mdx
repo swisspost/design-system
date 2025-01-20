@@ -19,17 +19,30 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 Built with flexbox, they offer easy alignment and mix well with other components.
 
 They have no fixed width to start, so they’ll naturally fill the full width of its parent element.
-This is easily customizable using the grid for example,
-for more details read our [grid docs](/?path=/docs/7240f2ef-216a-490e-9bd8-c0cef19f7b31--docs).
+This is easily customizable using the grid for example. For more details on that, read our [grid docs](/?path=/docs/7240f2ef-216a-490e-9bd8-c0cef19f7b31--docs).
+
+## Foundations
+
+Card elements can contain many things, they can be interactive or not. Cards containing a link or a button are considered interactive and will have a shadow instead of simple border. To force a card to be interactive, the class `.interactive-card` may also be used.
 
 <Canvas sourceState="shown" of={CardStories.Default} />
-<div className="hide-col-default">
-  <Controls of={CardStories.Default} />
-</div>
+
+### Nested cards
+
+A card that is nested within another card will have a smaller border-radius than its parent.
+
+<Canvas sourceState="false" of={CardStories.NestedCard} />
 
 <StylesPackageImport components={['card']} />
 
 ## Examples
+
+### Basic Content
+
+<Canvas sourceState="shown" of={CardStories.BasicContent} />
+<div className="hide-col-default">
+  <Controls of={CardStories.BasicContent} />
+</div>
 
 ### Custom Content
 
