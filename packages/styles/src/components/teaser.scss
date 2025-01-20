@@ -49,7 +49,7 @@ tokens.$default-map: components.$post-teaser;
     border-top-right-radius: tokens.get('card-border-radius', components.$post-cards);
   }
 
-  h3,
+  h1, h2, h3, h4, h5, h6,
   p {
     margin: 0;
     word-break: break-word;
