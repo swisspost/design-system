@@ -37,25 +37,21 @@ tokens.$default-map: utilities.$post-spacing;
   .result-list {
     @include post.list-unstyled();
     display: grid;
-    grid-template-columns: repeat(2, 160px);
+    grid-template-columns: repeat(2, 1fr);
     justify-content: center;
     gap: tokens.get('utility-gap-16');
     margin-block: tokens.get('utility-gap-24');
 
     @include post.min('sm') {
-      grid-template-columns: repeat(3, 160px);
+      grid-template-columns: repeat(3, 1fr);
     }
 
     @include post.min('md') {
-      grid-template-columns: repeat(4, 150px);
+      grid-template-columns: repeat(4, 1fr);
     }
 
     @include post.min('lg') {
-      grid-template-columns: repeat(6, 145px);
-    }
-
-    @include post.min('xl') {
-      grid-template-columns: repeat(8, 140px);
+      grid-template-columns: repeat(6, 1fr);
     }
 
     .icon {
@@ -75,6 +71,7 @@ tokens.$default-map: utilities.$post-spacing;
         font-size: 0.8rem;
         font-weight: bold;
         text-align: center;
+        hyphens: auto;
       }
     }
   }
