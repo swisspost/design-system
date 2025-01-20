@@ -169,7 +169,7 @@ export const browsers: IBrowser[] = [
     name: 'Chrome & Android',
     version: 'Last 2 versions',
     img: {
-      src: '/assets/images/browsers/chrome.png',
+      src: '/assets/images/browsers/chrome.svg',
       alt: 'Chrome Logo',
     },
   },
@@ -177,7 +177,7 @@ export const browsers: IBrowser[] = [
     name: 'Firefox',
     version: 'Last 2 versions',
     img: {
-      src: '/assets/images/browsers/firefox.png',
+      src: '/assets/images/browsers/firefox.svg',
       alt: 'Firefox Logo',
     },
   },
@@ -185,7 +185,7 @@ export const browsers: IBrowser[] = [
     name: 'Edge',
     version: 'Last 2 versions',
     img: {
-      src: '/assets/images/browsers/edge.png',
+      src: '/assets/images/browsers/edge.svg',
       alt: 'Edge Logo',
     },
   },
@@ -193,7 +193,7 @@ export const browsers: IBrowser[] = [
     name: 'Safari & iOS Safari',
     version: 'Last 2 versions',
     img: {
-      src: '/assets/images/browsers/safari.png',
+      src: '/assets/images/browsers/safari.svg',
       alt: 'Safari Logo',
     },
   },
@@ -201,7 +201,7 @@ export const browsers: IBrowser[] = [
     name: 'Samsung Internet',
     version: 'Last 2 versions',
     img: {
-      src: '/assets/images/browsers/samsung.png',
+      src: '/assets/images/browsers/samsung.svg',
       alt: 'Samsung Internet Logo',
     },
   },
