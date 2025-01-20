@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals';
 import { equalizeArrays } from './search.service';
 
 describe('search.service.ts', () => {

@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals';
 import { ICustomConfig, ILocalizedCustomConfig, IPortalConfig } from '../models/general.model';
 import { NavMainEntity } from '../models/header.model';
 import * as testConfigRaw from '../assets/config/test-configuration.json';
