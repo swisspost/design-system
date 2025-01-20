@@ -6,8 +6,6 @@ tokens.$default-map: components.$post-teaser;
 
 .teaser-card {
   height: 100%;
-  box-shadow: tokens.get('card-interactive-elevation', components.$post-cards);
-  border-radius: tokens.get('card-border-radius', components.$post-cards);
   position: relative;
   background-color: tokens.get('teaser-card-enabled-bg');
   color: tokens.get('teaser-card-content-enabled-fg');
