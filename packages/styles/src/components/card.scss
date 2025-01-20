@@ -55,24 +55,6 @@ tokens.$default-map: components.$post-cards;
     border-bottom-right-radius: tokens.get('card-border-radius');
   }
 
-  .card {
-    border-radius: tokens.get('card-nested-border-radius');
-
-    .card-header:first-child,
-    .list-group:first-child,
-    .card-img-top {
-      border-top-left-radius: tokens.get('card-nested-border-radius');
-      border-top-right-radius: tokens.get('card-nested-border-radius');
-    }
-
-    .card-footer:last-child,
-    .list-group:last-child,
-    .card-img-bottom {
-      border-bottom-left-radius: tokens.get('card-nested-border-radius');
-      border-bottom-right-radius: tokens.get('card-nested-border-radius');
-    }
-  }
-
   &.product-card,
   &.card-button {
     box-shadow: none;

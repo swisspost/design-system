@@ -323,17 +323,6 @@ export const Default: Story = {
     `,
 };
 
-export const NestedCard: Story = {
-  decorators: [gridContainer],
-  render: () =>
-    html`
-      <div class="card p-16">
-        <p>Card parent</p>
-        <div class="card p-16"><p>Card nested within a card</p></div>
-      </div>
-    `,
-};
-
 export const BasicContent: Story = {
   ...singleCardStory,
   parameters: {
