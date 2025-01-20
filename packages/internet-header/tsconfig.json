@@ -16,6 +16,6 @@
     "strictNullChecks": true,
     "skipLibCheck": true
   },
-  "include": ["cypress", "src", "stencil.config.ts", "stencil.config.dev.ts"],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }

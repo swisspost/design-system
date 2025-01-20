@@ -19,6 +19,6 @@
     "resolveJsonModule": true,
     "skipLibCheck": true
   },
-  "include": [".config/*", "cypress", "src", "types", "stencil.config.ts"],
+  "include": [".config/*", "src", "types"],
   "exclude": ["node_modules"]
 }
