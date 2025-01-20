@@ -83,7 +83,7 @@ tokens.$default-map: components.$post-teaser;
       min-height: tokens.get('teaser-card-lg-image-height');
     }
 
-    h3 {
+    h1, h2, h3, h4, h5, h6 {
       font-size: tokens.get('teaser-card-lg-heading-font-size');
     }
 
