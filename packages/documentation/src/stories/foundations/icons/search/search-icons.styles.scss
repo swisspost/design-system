@@ -37,21 +37,21 @@ tokens.$default-map: utilities.$post-spacing;
   .result-list {
     @include post.list-unstyled();
     display: grid;
-    grid-template-columns: repeat(2, 120px);
+    grid-template-columns: repeat(2, 160px);
     justify-content: center;
     gap: tokens.get('utility-gap-16');
     margin-block: tokens.get('utility-gap-24');
 
     @include post.min('sm') {
-      grid-template-columns: repeat(4, 120px);
+      grid-template-columns: repeat(3, 160px);
     }
 
     @include post.min('md') {
-      grid-template-columns: repeat(4, 140px);
+      grid-template-columns: repeat(4, 150px);
     }
 
     @include post.min('lg') {
-      grid-template-columns: repeat(6, 140px);
+      grid-template-columns: repeat(6, 145px);
     }
 
     @include post.min('xl') {
