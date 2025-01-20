@@ -11,7 +11,7 @@
 // Font, line-height, and color for body text, headings, and more.
 
 $font-family-sans-serif:
-  'Frutiger Neue For Post',
+  'Swiss Post Sans',
   -apple-system,
   BlinkMacSystemFont,
   'Segoe UI',
@@ -66,9 +66,9 @@ $line-height-bigger-big: $line-height-heading;
 $line-height-small-huge: $line-height-heading;
 $line-height-huge: $line-height-heading;
 
-$font-weight-light: 300 !default; // Design System -> Frutiger Neue Light
-$font-weight-normal: 400 !default; // Design System -> Frutiger Neue Roman
-$font-weight-bold: 700 !default; // Design System -> Frutiger Neue Bold
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-bold: 700 !default;
 
 // Deprecated
 $font-sizes: (
