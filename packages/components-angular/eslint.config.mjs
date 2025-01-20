@@ -71,6 +71,20 @@ export default ts.config(
     },
   },
   {
+    name: 'post/ts/consumer-app/defaults',
+    files: ['projects/consumer-app/**/*.{ts,mts,cts}'],
+    languageOptions: {
+      parserOptions: [
+        './projects/consumer-app/tsconfig.app.json',
+        './projects/consumer-app/tsconfig.spec.json',
+      ],
+    },
+    rules: {
+      '@angular-eslint/directive-selector': 'off',
+      '@angular-eslint/component-selector': 'off',
+    },
+  },
+  {
     files: ['**/*.{ts,mts,cts}'],
     extends: [
       ...ts.configs.recommended,
