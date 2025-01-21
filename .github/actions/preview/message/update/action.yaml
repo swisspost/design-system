@@ -31,6 +31,7 @@ runs:
           const commentTitle = '**Related Previews**'
           const commentInitialBody = 'Preview URLs will be added here, once they are ready... ![loader](https://github.com/swisspost/design-system/assets/9716662/49a75898-7093-4ffb-9460-071ff194459d)'
 
+
           const comments = (await github.rest.issues.listComments({
             repo: context.repo.repo,
             owner: context.repo.owner,
@@ -43,8 +44,14 @@ runs:
               .replace(commentInitialBody, '')
               .concat(`- ${PREVIEW_URL}\n`);
 
+           const title = (await github.rest.issues.{Number(ISSUE_NUMBER)}({
+            repo: context.repo.repo,
+            owner: context.repo.owner,
+            issue_number: Number(ISSUE_NUMBER)
+          })).data || []
+
             // If Update Icons PR - then include Icons Health page link 
-            if (ISSUE_NAME.includes('chore(icons): :point_up: update icons')) {
+            if (title.includes('chore(icons): :point_up: update icons')) {
               updatedBody = updatedBody.concat(`- ${PREVIEW_URL}?path=/docs/health-icons--doc\n`);
             }
 
