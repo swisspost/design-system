@@ -22,11 +22,10 @@ runs:
       with:
         github-token: ${{ inputs.access-token }}
         script: |
-          const { ISSUE_NUMBER, PREVIEW_URL} = process.env
+          const { ISSUE_NUMBER, PREVIEW_URL } = process.env
 
           const commentTitle = '**Related Previews**'
-          const commentInitialBody = 'Preview URLs will be added here, once they are ready... ![loader](https://github.com/swisspost/design-system/assets/9716662/49a75898-7093-4ffb-9460-071ff194459d)'
-
+          const commentInitialBody = 'Preview URLs will be added here, once they are ready... !loader'
 
           const comments = (await github.rest.issues.listComments({
             repo: context.repo.repo,
@@ -42,24 +41,23 @@ runs:
               .concat(`- ${PREVIEW_URL}\n`);
 
             try {
-              const title = (await github.rest.issues.${Number(ISSUE_NUMBER)}({
+              const issue = await github.rest.issues.get({
                 repo: context.repo.repo,
                 owner: context.repo.owner,
-                issue_number: Number(ISSUE_NUMBER),
-                })).data.title;
+                issue_number: Number(issueNumber),
+              });
 
-                console.warn((`this is the issue title:${title}`);
+              const issueTitle = issue.data.title;
+              console.warn(`Issue Title: ${issueTitle}`);
+
             } catch (error) {
-              console.error(`Failed to get issue title:  ${title, error.message}`);
+              console.error(`Failed to get issue title: ${error.message}`);
             }
 
             // If Update Icons PR - then include Icons Health page link 
-            if (title.includes('chore(icons): :point_up: update icons')) {
+            if (issueTitle.includes('chore(icons): :point_up: update icons')) {
               updatedBody = updatedBody.concat(`- ${PREVIEW_URL}?path=/docs/health-icons--doc\n`);
             }
-
-            console.warn((`this is the issue title:${title}`);
-            console.warn(`${title.includes('chore(icons): :point_up: update icons`}))
 
             await github.rest.issues.updateComment({
               repo: context.repo.repo,
@@ -68,11 +66,12 @@ runs:
               body: updatedBody
             });
 
-            const reactions = (await github.rest.reactions.listForIssueComment({
+            const reactions = (await github.rest.reactions.({
               repo: context.repo.repo,
               owner: context.repo.owner,
               comment_id: previewComment.id,
             })).data || []
+
             const createReaction = reactions.find(r => r.user.login === 'swisspost-bot' && r.content === 'eyes')
             const updateReaction = reactions.find(r => r.user.login === 'swisspost-bot' && r.content === 'rocket')
 
