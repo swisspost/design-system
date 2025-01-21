@@ -37,6 +37,7 @@ post-mainnavigation {
 
       &:focus-visible {
         border-radius: var(--post-core-dimension-4);
+        position: sticky;
         z-index: 1;
       }
     }

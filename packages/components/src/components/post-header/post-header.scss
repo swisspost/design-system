@@ -1,3 +1,4 @@
+
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/variables/animation';
@@ -50,9 +51,9 @@
   position: sticky;
   padding-inline: var(--post-core-dimension-4);
   height: var(--global-header-height);
-  z-index: commons.$zindex-modal;
 
   @include media.max(lg) {
+    z-index: commons.$zindex-modal;
     inset-block-start: 0;
   }
 
@@ -100,7 +101,6 @@ slot[name='post-logo'] {
 .title-header {
   display: flex;
   position: sticky;
-  z-index: commons.$zindex-modal;
   align-items: center;
   gap: var(--post-core-dimension-8);
   min-height: var(--main-header-min-height);
@@ -113,6 +113,7 @@ slot[name='post-logo'] {
   }
 
   @include media.max(lg) {
+    z-index: commons.$zindex-modal;
     inset-block-start: var(--global-header-height);
     padding-inline: var(--post-core-dimension-8) var(--post-core-dimension-16);
     padding-block: var(--post-core-dimension-9);
@@ -149,9 +150,6 @@ slot[name='post-logo'] {
 }
 
 .navigation {
-  position: sticky;
-  z-index: commons.$zindex-main-navigation;
-
   @include media.min(lg) {
     inset-block-start: var(--global-header-minimal-height);
   }
@@ -161,6 +159,7 @@ slot[name='post-logo'] {
 @include media.max(lg) {
   .navigation {
     position: fixed;
+    z-index: commons.$zindex-fixed;
     inset-inline: 0;
     background: var(--post-core-color-brand-white);
     inset-block-end: calc(100vh - var(--header-height));
@@ -182,6 +181,7 @@ slot[name='post-logo'] {
   }
 
   ::slotted(post-mainnavigation) {
+    overflow: visible;
     background-color: var(--post-core-color-sandgrey-002);
     gap: var(--post-core-dimension-32);
   }
