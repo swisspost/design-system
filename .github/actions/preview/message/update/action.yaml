@@ -11,9 +11,6 @@ inputs:
   preview-url:
     description: The preview url to add in the comment.
     required: true
-  issue-name:
-    description: The PR title to check if it involves an 'icons update'.
-    required: true
 
 runs:
   using: composite
@@ -26,7 +23,7 @@ runs:
       with:
         github-token: ${{ inputs.access-token }}
         script: |
-          const { ISSUE_NUMBER, PREVIEW_URL, ISSUE_NAME } = process.env
+          const { ISSUE_NUMBER, PREVIEW_URL = process.env
 
           const commentTitle = '**Related Previews**'
           const commentInitialBody = 'Preview URLs will be added here, once they are ready... ![loader](https://github.com/swisspost/design-system/assets/9716662/49a75898-7093-4ffb-9460-071ff194459d)'
@@ -44,18 +41,21 @@ runs:
               .replace(commentInitialBody, '')
               .concat(`- ${PREVIEW_URL}\n`);
 
-           const title = (await github.rest.issues.{Number(ISSUE_NUMBER)}({
-            repo: context.repo.repo,
-            owner: context.repo.owner,
-            issue_number: Number(ISSUE_NUMBER)
-          })).data || []
+            try {
+              const title = (await github.rest.issues.${Number(ISSUE_NUMBER)}({
+                repo: context.repo.repo,
+                owner: context.repo.owner,
+                issue_number: Number(ISSUE_NUMBER),
+                })).data.title;
+
+                  console.log(`::set-output name=issue_title::${title}`);
+            } catch (error) {
+              console.error(`Failed to get issue title: ${error.message}`);
+            }
 
             // If Update Icons PR - then include Icons Health page link 
             if (title.includes('chore(icons): :point_up: update icons')) {
               updatedBody = updatedBody.concat(`- ${PREVIEW_URL}?path=/docs/health-icons--doc\n`);
-            }
-            else{
-              updatedBody = updatedBody.concat(`- ${title}\n`);
             }
 
             await github.rest.issues.updateComment({
