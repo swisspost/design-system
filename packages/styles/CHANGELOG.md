@@ -1,5 +1,75 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.11
+
+### Major Changes
+
+- Removed the Bootstrap `.stretched-link` helper class. (by [@leagrdv](https://github.com/leagrdv) with [#4428](https://github.com/swisspost/design-system/pull/4428))
+
+- Removed the Bootstrap icon link helper classes. (by [@leagrdv](https://github.com/leagrdv) with [#4435](https://github.com/swisspost/design-system/pull/4435))
+
+- Removed the Bootstrap figures helper classes and css variables. (by [@leagrdv](https://github.com/leagrdv) with [#4426](https://github.com/swisspost/design-system/pull/4426))
+
+- Removed the Bootstrap `.vr` helper class. (by [@leagrdv](https://github.com/leagrdv) with [#4427](https://github.com/swisspost/design-system/pull/4427))
+
+- Removed the Bootstrap ratio helper classes. (by [@leagrdv](https://github.com/leagrdv) with [#4434](https://github.com/swisspost/design-system/pull/4434))
+
+- Removed the Bootstrap `.visually-hidden-focusable` helper class. (by [@leagrdv](https://github.com/leagrdv) with [#4438](https://github.com/swisspost/design-system/pull/4438))
+
+- Removed the Bootstrap stacks helper classes. (by [@leagrdv](https://github.com/leagrdv) with [#4429](https://github.com/swisspost/design-system/pull/4429))
+
+### Minor Changes
+
+- Added Teaser Card component. (by [@leagrdv](https://github.com/leagrdv) with [#4460](https://github.com/swisspost/design-system/pull/4460))
+
+- Added Swiss Post Sans as the new default font (by [@gfellerph](https://github.com/gfellerph) with [#4467](https://github.com/swisspost/design-system/pull/4467))
+
+### Patch Changes
+
+- Fixed visibility of the arrow-icon in Form Select for high contrast mode. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4325](https://github.com/swisspost/design-system/pull/4325))
+
+- Moved the Bootstrap `.clearfix` helper class to the design system and documented it. (by [@leagrdv](https://github.com/leagrdv) with [#4443](https://github.com/swisspost/design-system/pull/4443))
+
+- Moved the Bootstrap `.visually-hidden` helper class to design system styles and documented it. (by [@leagrdv](https://github.com/leagrdv) with [#4438](https://github.com/swisspost/design-system/pull/4438))
+
+## 9.0.0-next.10
+
+### Major Changes
+
+- Removed `.bg-` classes to define background color of elements. (by [@leagrdv](https://github.com/leagrdv) with [#4201](https://github.com/swisspost/design-system/pull/4201))
+
+- Removed deprecated utility sizing and line-height classes as well as `responsive-size`, `generate-utility-class` and all `bezel-*` mixins. (by [@leagrdv](https://github.com/leagrdv) with [#4343](https://github.com/swisspost/design-system/pull/4343))
+
+### Minor Changes
+
+- Implemented gutter utility classes. (by [@myrta2302](https://github.com/myrta2302) with [#4378](https://github.com/swisspost/design-system/pull/4378))
+
+- Updated the output structure of our UI-Icons. Added a `post-icon` mixin, to use any of our icons from within SCSS. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4136](https://github.com/swisspost/design-system/pull/4136))
+
+### Patch Changes
+
+- Fixed alignment of ´form-switch´ label. (by [@schaertim](https://github.com/schaertim) with [#4314](https://github.com/swisspost/design-system/pull/4314))
+
+- Added hover styles in high contrast mode for the css components `Button`, `Chip`, `Form Search` and `Button Close`. (by [@schaertim](https://github.com/schaertim) with [#4331](https://github.com/swisspost/design-system/pull/4331))
+
+- Removed all usage of deprecated utility sizing classes. (by [@leagrdv](https://github.com/leagrdv) with [#4343](https://github.com/swisspost/design-system/pull/4343))
+
+- Added styles for text links and icon-buttons for Composible Footer in HCM. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4333](https://github.com/swisspost/design-system/pull/4333))
+
+- Fixed colors of validation icon in HCM on form elements. (by [@leagrdv](https://github.com/leagrdv) with [#4319](https://github.com/swisspost/design-system/pull/4319))
+
+- Uniformized valid and invalid icons throughout form elements for consistency. (by [@leagrdv](https://github.com/leagrdv) with [#4368](https://github.com/swisspost/design-system/pull/4368))
+
+- Fixed card control checkboxes' text color in HCM. (by [@leagrdv](https://github.com/leagrdv) with [#4321](https://github.com/swisspost/design-system/pull/4321))
+
+- Fixed icon color of banner in high contrast mode. (by [@leagrdv](https://github.com/leagrdv) with [#4304](https://github.com/swisspost/design-system/pull/4304))
+
+- Fixed display of stepper to break words when text is too long to fit in one line. (by [@leagrdv](https://github.com/leagrdv) with [#4401](https://github.com/swisspost/design-system/pull/4401))
+
+- Refactored icon declarations to comply with Angular 18's new build system requirements. (by [@schaertim](https://github.com/schaertim) with [#3518](https://github.com/swisspost/design-system/pull/3518))
+
+- Added breakpoint mixin "only" and updated documentation to reflect new breakpoint mixin naming. (by [@leagrdv](https://github.com/leagrdv) with [#4397](https://github.com/swisspost/design-system/pull/4397))
+
 ## 9.0.0-next.9
 
 ### Minor Changes
