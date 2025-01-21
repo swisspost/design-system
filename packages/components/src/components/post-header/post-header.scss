@@ -53,7 +53,7 @@
   height: var(--global-header-height);
 
   @include media.max(lg) {
-    z-index: commons.$zindex-modal;
+    z-index: commons.$zindex-fixed;
     inset-block-start: 0;
   }
 
@@ -90,7 +90,7 @@ slot[name='post-logo'] {
 }
 
 ::slotted(ul) {
-  margin-block: 0;
+  margin-block: 0 !important;
   list-style: none;
   display: flex;
   padding-left: 0;
@@ -113,7 +113,7 @@ slot[name='post-logo'] {
   }
 
   @include media.max(lg) {
-    z-index: commons.$zindex-modal;
+    z-index: commons.$zindex-fixed;
     inset-block-start: var(--global-header-height);
     padding-inline: var(--post-core-dimension-8) var(--post-core-dimension-16);
     padding-block: var(--post-core-dimension-9);
@@ -159,7 +159,7 @@ slot[name='post-logo'] {
 @include media.max(lg) {
   .navigation {
     position: fixed;
-    z-index: commons.$zindex-fixed;
+    z-index: commons.$zindex-sticky;
     inset-inline: 0;
     background: var(--post-core-color-brand-white);
     inset-block-end: calc(100vh - var(--header-height));
@@ -179,7 +179,7 @@ slot[name='post-logo'] {
       display: flex;
     }
   }
-
+  
   ::slotted(post-mainnavigation) {
     overflow: visible;
     background-color: var(--post-core-color-sandgrey-002);
