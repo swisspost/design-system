@@ -34,31 +34,32 @@ runs:
           })).data || []
 
           const previewComment = comments.find(c => c.user.login === 'swisspost-bot' && c.body.includes(commentTitle))
+          const iconsUpdateTitle = 'chore(icons): :point_up: update icons'
 
           if (previewComment && !previewComment.body.includes(PREVIEW_URL)) {
-            let updatedBody = previewComment.body
-              .replace(commentInitialBody, '')
-              .concat(`- ${PREVIEW_URL}\n`);
+            let updates = [];
 
-            const issueTitle = await github.rest.issues.get({
+            const issue = await github.rest.issues.get({
               repo: context.repo.repo,
               owner: context.repo.owner,
               issue_number: Number(ISSUE_NUMBER),
-            }).data.title;
+            });
 
-            // If issue is an update icons PR, include an icons health page link 
-            if (issueTitle.includes('chore(icons): :point_up: update icons')) {
-              updatedBody = updatedBody.concat(`- ${PREVIEW_URL}?path=/docs/health-icons--docs\n`)
+            if (issue?.data?.title.includes(iconsUpdateTitle)) {
+              updates.push(`- ${PREVIEW_URL}?path=/docs/health-icons--docs\n`)
             }
 
             await github.rest.issues.updateComment({
               repo: context.repo.repo,
               owner: context.repo.owner,
               comment_id: previewComment.id,
-              body: updatedBody
+              body: previewComment.body
+                .replace(commentInitialBody, '')
+                .concat(`- ${PREVIEW_URL}\n`)
+                .concat(updates.join(''))
             });
 
-            const reactions = (await github.rest.reactions.({
+            const reactions = (await github.rest.reactions.listForIssueComment({
               repo: context.repo.repo,
               owner: context.repo.owner,
               comment_id: previewComment.id,
@@ -85,5 +86,5 @@ runs:
               })
             }
           } else {
-            console.warn('Skipped action, because preview comment could not be found!', previewComment)
+            console.warn('Skipped action, because preview comment could not be found!')
           }

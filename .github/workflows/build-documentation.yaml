@@ -31,19 +31,6 @@ jobs:
       - name: Install documentation & dependencies
         run: pnpm --filter design-system-documentation... install
 
-      - name: Create preview message
-        uses: ./.github/actions/preview/message/create
-        with:
-          access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-          issue-number: ${{ github.event.number }}
-
-      - name: Update preview message
-        uses: ./.github/actions/preview/message/update
-        with:
-          access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-          issue-number: ${{ github.event.number }}
-          preview-url: https://preview-4453--swisspost-design-system-next.netlify.app
-
       - name: Build documentation & dependencies
         run: pnpm --filter design-system-documentation... build
 
