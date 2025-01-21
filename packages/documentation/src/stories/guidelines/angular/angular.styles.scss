@@ -1,13 +1,17 @@
 @use '../../../../node_modules/@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 .tile-wrapper {
   display: flex;
   flex-wrap: wrap;
   padding-left: 0;
   list-style-type: none;
-  gap: post.$size-big;
+  gap: tokens.get('utility-gap-32');
 
   @include post.media-breakpoint-down(sm) {
-    gap: post.$size-regular;
+    gap: tokens.get('utility-gap-16');
   }
 }

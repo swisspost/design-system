@@ -1,5 +1,13 @@
 # @swisspost/design-system-icons
 
+## 9.0.0-next.11
+
+## 9.0.0-next.10
+
+### Minor Changes
+
+- Updated the output structure of our UI-Icons. Added a `post-icon` mixin, to use any of our icons from within SCSS. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4136](https://github.com/swisspost/design-system/pull/4136))
+
 ## 9.0.0-next.9
 
 ## 9.0.0-next.8

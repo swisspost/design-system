@@ -24,7 +24,7 @@ export class MigrationV89Component extends LitElement {
         <a
           aria-hidden="true"
           tabindex="-1"
-          href="http://localhost:9000/?path=/docs/c23b1d0b-76b3-4e38-aa76-b10c29bb873f--docs#migration-from-v8-to-v9"
+          href="/?path=/docs/c23b1d0b-76b3-4e38-aa76-b10c29bb873f--docs#migration-from-v8-to-v9"
         >
           <post-icon name="2037"></post-icon>
         </a>
@@ -86,6 +86,71 @@ export class MigrationV89Component extends LitElement {
                     Instead use the classes <code>.valid-feedback</code> and
                     <code>.invalid-feedback</code>.
                   </p>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    Changed the percentage sizing utility classes (<code>w-*</code>,
+                    <code>h-*</code>, <code>mh-*</code>, <code>mw-*</code>) naming.
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>*-25</code> is now <code>*-quarter</code></li>
+                    <li><code>*-50</code> is now <code>*-half</code></li>
+                    <li><code>*-75</code> is now <code>*-three-quarters</code></li>
+                    <li><code>*-100</code> is now <code>*-full</code></li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    Changed the pixel sizing utility classes (<code>w-*</code>, <code>h-*</code>,
+                    <code>mh-*</code>, <code>mw-*</code>) to pixel-based names.
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>*-hair</code> is now <code>*-1</code></li>
+                    <li><code>*-line</code> is now <code>*-2</code></li>
+                    <li><code>*-micro</code> is now <code>*-4</code></li>
+                    <li><code>*-mini</code> is now <code>*-8</code></li>
+                    <li><code>*-small-regular</code> is now <code>*-12</code></li>
+                    <li><code>*-regular</code> is now <code>*-16</code></li>
+                    <li><code>*-small-large</code> is now <code>*-20</code></li>
+                    <li><code>*-large</code> is now <code>*-24</code></li>
+                    <li><code>*-big</code> is now <code>*-32</code></li>
+                    <li><code>*-bigger-big</code> is now <code>*-40</code></li>
+                    <li><code>*-small-huge</code> is now <code>*-48</code></li>
+                    <li><code>*-huge</code> is now <code>*-56</code></li>
+                    <li><code>*-small-giant</code> is now <code>*-72</code></li>
+                    <li><code>*-giant</code> is now <code>*-80</code></li>
+                    <li><code>*-bigger-giant</code> is now <code>*-112</code></li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    Changed the sizing utility classes max-height and max-width naming.
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>mh-*</code> is now <code>max-h-*</code></li>
+                    <li><code>mw-*</code> is now <code>max-w-*</code></li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    The following bootstrap helper classes have been removed:
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li>
+                      Figures: <code>.figure</code>, <code>.figure-img</code> and
+                      <code>.figure-caption</code>
+                    </li>
+                    <li>Vertical rule: <code>.vr</code></li>
+                    <li>Visually hidden: <code>.visually-hidden-focusable</code></li>
+                    <li>Stretched link: <code>.stretched-link</code></li>
+                    <li>Stacks: <code>.vstack</code> and <code>.hstack</code></li>
+                    <li>Ratios: <code>.ratio</code> and <code>.ratio-*x*</code></li>
+                    <li>Icon link: <code>.icon-link</code> and <code>.icon-link-hover</code></li>
+                  </ul>
                 </li>
               </ul>
             </section>
