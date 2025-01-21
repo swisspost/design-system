@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 8.8.0
+
+### Patch Changes
+
+- Fixed an issue where the Stepper started with step 0 on small screen sizes. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4444](https://github.com/swisspost/design-system/pull/4444))
+
 ## 8.7.1
 
 ### Patch Changes
