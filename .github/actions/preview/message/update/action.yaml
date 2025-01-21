@@ -19,11 +19,10 @@ runs:
       env:
         ISSUE_NUMBER: ${{ inputs.issue-number }}
         PREVIEW_URL: ${{ inputs.preview-url }}
-        ISSUE_NAME: ${{ inputs.issue-name }}
       with:
         github-token: ${{ inputs.access-token }}
         script: |
-          const { ISSUE_NUMBER, PREVIEW_URL = process.env
+          const { ISSUE_NUMBER, PREVIEW_URL} = process.env
 
           const commentTitle = '**Related Previews**'
           const commentInitialBody = 'Preview URLs will be added here, once they are ready... ![loader](https://github.com/swisspost/design-system/assets/9716662/49a75898-7093-4ffb-9460-071ff194459d)'
