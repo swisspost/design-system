@@ -1,5 +1,14 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.12
+
+### Patch Changes
+
+- Positioned the `post-collapsible` host relative so every not static positioned element within uses it as its base render context and therefore gets clipped as it should. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4478](https://github.com/swisspost/design-system/pull/4478))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.12
+  - @swisspost/design-system-icons@9.0.0-next.12
+
 ## 9.0.0-next.11
 
 ### Patch Changes
