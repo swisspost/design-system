@@ -124,15 +124,15 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
       display: block;
       margin-top: 0.25rem;
       padding: 1rem;
-      background-color: #000;
-      color: #fff;
+      background-color: post.$black;
+      color: post.$white;
     }
   }
 
   [data-color-scheme='dark'] {
     code {
-      background-color: rgba(post.$black, 0.75);
-      border-color: rgba(post.$white, 0.3);
+      background-color: rgba(#000, 0.75);
+      border-color: rgba(#fff, 0.3);
     }
   }
 
