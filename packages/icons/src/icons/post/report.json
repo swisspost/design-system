@@ -41865,37 +41865,6 @@
   "wrongViewBox": [],
   "noKeywords": [
     {
-      "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
-      "id": 352299,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352299/storage/NTM3MTkxLzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3058.svg",
-        "basename": "3058",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-11-29T13:53:42.000Z"
-    },
-    {
       "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
       "id": 352314,
       "type": "picture.pictogram.",
@@ -41925,6 +41894,37 @@
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
       "modifiedAt": "2024-11-29T13:53:43.000Z"
+    },
+    {
+      "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
+      "id": 352299,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352299/storage/NTM3MTkxLzAvbWFzdGVy",
+        "businessfield": [
+          "kommunikation"
+        ],
+        "keywords": [
+          ""
+        ],
+        "year": [
+          "2017"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "3058.svg",
+        "basename": "3058",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2017-11-10T10:11:07.000Z",
+      "modifiedAt": "2024-11-29T13:53:42.000Z"
     },
     {
       "uuid": "6b09bf30-9901-11eb-935b-005056873709",
@@ -42038,11 +42038,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2025-01-21T13:52:38.042Z",
+  "created": "2025-01-21T14:21:05.870Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
     "success": 973
   },
-  "version": "9.0.0-next.11"
+  "version": "9.0.0-next.12"
 }
