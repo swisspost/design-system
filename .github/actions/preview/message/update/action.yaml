@@ -54,6 +54,9 @@ runs:
             if (title.includes('chore(icons): :point_up: update icons')) {
               updatedBody = updatedBody.concat(`- ${PREVIEW_URL}?path=/docs/health-icons--doc\n`);
             }
+            else{
+              updatedBody = updatedBody.concat(`- ${title}\n`);
+            }
 
             await github.rest.issues.updateComment({
               repo: context.repo.repo,
