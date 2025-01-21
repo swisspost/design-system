@@ -64,7 +64,7 @@ tokens.$default-map: utilities.$post-spacing;
 
     &:hover:not([disabled]),
     &:hover:not([disabled]) ~ label.form-check-label {
-      color: #000;
+      color: var(--post-core-color-brand-black);
       background-color: transparent;
     }
 
