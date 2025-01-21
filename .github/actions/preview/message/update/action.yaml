@@ -40,23 +40,15 @@ runs:
               .replace(commentInitialBody, '')
               .concat(`- ${PREVIEW_URL}\n`);
 
-            try {
-              const issue = await github.rest.issues.get({
-                repo: context.repo.repo,
-                owner: context.repo.owner,
-                issue_number: Number(issueNumber),
-              });
+            const issueTitle = await github.rest.issues.get({
+              repo: context.repo.repo,
+              owner: context.repo.owner,
+              issue_number: Number(ISSUE_NUMBER),
+            }).data.title;
 
-              const issueTitle = issue.data.title;
-              console.warn(`Issue Title: ${issueTitle}`);
-
-            } catch (error) {
-              console.error(`Failed to get issue title: ${error.message}`);
-            }
-
-            // If Update Icons PR - then include Icons Health page link 
+            // If issue is an update icons PR, include an icons health page link 
             if (issueTitle.includes('chore(icons): :point_up: update icons')) {
-              updatedBody = updatedBody.concat(`- ${PREVIEW_URL}?path=/docs/health-icons--docs\n`);
+              updatedBody = updatedBody.concat(`- ${PREVIEW_URL}?path=/docs/health-icons--docs\n`)
             }
 
             await github.rest.issues.updateComment({
