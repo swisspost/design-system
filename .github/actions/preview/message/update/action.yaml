@@ -33,6 +33,7 @@ runs:
             owner: context.repo.owner,
             issue_number: Number(ISSUE_NUMBER)
           })).data || []
+
           const previewComment = comments.find(c => c.user.login === 'swisspost-bot' && c.body.includes(commentTitle))
 
           if (previewComment && !previewComment.body.includes(PREVIEW_URL)) {
@@ -47,7 +48,7 @@ runs:
                 issue_number: Number(ISSUE_NUMBER),
                 })).data.title;
 
-                  console.log(`::set-output name=issue_title::${title}`);
+                console.warn((`this is the issue title:${title}`);
             } catch (error) {
               console.error(`Failed to get issue title: ${error.message}`);
             }
@@ -56,6 +57,8 @@ runs:
             if (title.includes('chore(icons): :point_up: update icons')) {
               updatedBody = updatedBody.concat(`- ${PREVIEW_URL}?path=/docs/health-icons--doc\n`);
             }
+            console.warn((`this is the issue title:${title}`);
+            console.warn(`${title.includes('chore(icons): :point_up: update icons`}))
 
             await github.rest.issues.updateComment({
               repo: context.repo.repo,
