@@ -7,10 +7,13 @@ const meta: MetaComponent<HTMLPostLogoElement> = {
   title: 'Foundations/Logo',
   tags: ['package:WebComponents'],
   component: 'post-logo',
-  render: renderLogo(),
   parameters: {
-    design: {},
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=7402-44020&t=NlJxMtn6FqcqrXok-4',
+    },
   },
+  render: renderLogo(),
   argTypes: {
     url: {
       control: {
