@@ -25,7 +25,7 @@ runs:
           const { ISSUE_NUMBER, PREVIEW_URL } = process.env
 
           const commentTitle = '**Related Previews**'
-          const commentInitialBody = 'Preview URLs will be added here, once they are ready... !loader'
+          const commentInitialBody = 'Preview URLs will be added here, once they are ready... ![loader](https://github.com/swisspost/design-system/assets/9716662/49a75898-7093-4ffb-9460-071ff194459d)'
 
           const comments = (await github.rest.issues.listComments({
             repo: context.repo.repo,
