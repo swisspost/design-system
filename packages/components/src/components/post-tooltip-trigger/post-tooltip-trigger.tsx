@@ -1,11 +1,10 @@
-import { Component, Element, Prop, setAssetPath, Watch } from '@stencil/core';
+import { Component, Element, Prop, Watch } from '@stencil/core';
 import isFocusable from 'ally.js/is/focusable';
 import { checkType } from '@/utils';
 import { version } from '@root/package.json';
 
 @Component({
   tag: 'post-tooltip-trigger',
-  styleUrl: 'post-tooltip-trigger.scss',
 })
 export class PostTooltipTrigger {
   @Element() host: HTMLPostTooltipTriggerElement;
