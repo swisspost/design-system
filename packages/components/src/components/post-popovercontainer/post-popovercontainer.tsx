@@ -33,7 +33,7 @@ interface PopoverElement {
 export type PostPopoverElement = HTMLElement & PopoverElement;
 
 /**
- * @slot - Default slot for placing content inside the popovercontainer.
+ * @slot - Default slot for placing content inside the popover-container.
  */
 
 @Component({
@@ -48,7 +48,7 @@ export class PostPopovercontainer {
   private toggleTimeoutId: number;
 
   /**
-   * Fires whenever the popover gets shown or hidden, passing the new state in event.details as a boolean
+   * Fires whenever the popover-container gets shown or hidden, passing the new state in event.details as a boolean
    */
   @Event() postToggle: EventEmitter<boolean>;
 
@@ -59,18 +59,18 @@ export class PostPopovercontainer {
    */
   @Prop() readonly placement?: Placement = 'top';
 
-   /**
-   * Animation style
-   */
-   @Prop() readonly animation?: 'pop-in';
-
   /**
-   * Gap between the edge of the page and the popover
+   * Gap between the edge of the page and the popover-container
    */
   @Prop() readonly edgeGap?: number = 8;
 
   /**
-   * Wheter or not to display a little pointer arrow
+   * Animation style
+   */
+  @Prop() readonly animation?: 'pop-in';
+
+  /**
+   * Whether or not to display a little pointer arrow
    */
   @Prop() readonly arrow?: boolean = false;
 
@@ -85,7 +85,7 @@ export class PostPopovercontainer {
 
   /**
    * Programmatically display the popover-container
-   * @param target An element with [data-tooltip-target="id"] where the popover-container should be shown
+   * @param target An element with [data-popover-target="id"] where the popover-container should be shown
    */
   @Method()
   async show(target: HTMLElement) {
@@ -97,42 +97,48 @@ export class PostPopovercontainer {
   }
 
   /**
-   * Programmatically hide this popover-container
+   * Programmatically hide the popover-container
    */
   @Method()
   async hide() {
-    this.eventTarget = null;
-    this.host.hidePopover();
+    if (!this.toggleTimeoutId) {
+      this.eventTarget = null;
+      this.host.hidePopover();
+    }
   }
 
   /**
    * Toggle popover-container display
-   * @param target An element where the popover-container should be shown
+   * @param target An element with [data-popover-target="id"] where the popover-container should be shown
    * @param force Pass true to always show or false to always hide
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
-    this.eventTarget = target;
-    this.calculatePosition();
-    this.host.togglePopover(force);
+    // Prevent instant double toggle
+    if (!this.toggleTimeoutId) {
+      this.eventTarget = target;
+      this.calculatePosition();
+      this.host.togglePopover(force);
+      this.toggleTimeoutId = null;
+    }
     return this.host.matches(':where(:popover-open, .popover-open');
   }
 
   /**
    * Start or stop auto updates based on popover-container events.
-   * popover-containers can be closed or opened with other methods than class members,
+   * Popover-containers can be closed or opened with other methods than class members,
    * therefore listening to the toggle event is safer for cleaning up.
    * @param e ToggleEvent
    */
   private handleToggle(e: ToggleEvent) {
+    this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
     const isOpen = e.newState === 'open';
     if (isOpen) {
       this.startAutoupdates();
-      this.postToggle.emit(isOpen);
     } else {
       if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
-      this.postToggle.emit(isOpen);
     }
+    this.postToggle.emit(isOpen);
   }
 
   /**
