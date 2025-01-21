@@ -23,6 +23,13 @@ post-language-option {
     border-radius: 2px;
     @include utilities-mx.focus-style;
   }
+
+  &:has([aria-current='true']),
+  &:has([aria-current='page']) {
+    :where([variant='menu']) & {
+      display: none;
+    }
+  }
 }
 
 post-language-option:where([variant='list']) {
@@ -52,14 +59,5 @@ post-language-option:where([variant='menu']) {
     position: relative;
     left: -1px;
     width: calc(100% + 2px);
-  }
-}
-
-post-language-option {
-  &:has([aria-current='true']),
-  &:has([aria-current='page']) {
-    :where([variant='menu']) & {
-      display: none;
-    }
   }
 }
