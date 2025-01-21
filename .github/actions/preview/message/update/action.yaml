@@ -56,7 +56,7 @@ runs:
 
             // If Update Icons PR - then include Icons Health page link 
             if (issueTitle.includes('chore(icons): :point_up: update icons')) {
-              updatedBody = updatedBody.concat(`- ${PREVIEW_URL}?path=/docs/health-icons--doc\n`);
+              updatedBody = updatedBody.concat(`- ${PREVIEW_URL}?path=/docs/health-icons--docs\n`);
             }
 
             await github.rest.issues.updateComment({
