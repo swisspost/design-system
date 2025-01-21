@@ -74,11 +74,10 @@ export class PostLanguageSwitch {
   private updateChildrenVariant() {
     this.host.querySelectorAll('post-language-option').forEach(el => {
       const isActive = el.getAttribute('active') === 'false';
-      if (this.variant === 'menu' && isActive) {
+      if (this.variant === 'list' || (this.variant === 'menu' && isActive)) {
         el.setAttribute('variant', this.variant);
       } else {
         el.removeAttribute('variant');
-        if (this.variant !== 'menu') el.setAttribute('variant', this.variant);
       }
     });
   }
