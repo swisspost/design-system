@@ -62,18 +62,24 @@ export class PostLanguageSwitch {
   @State() activeLang: string;
 
   connectedCallback() {
-    this.updateChildrenVariant();
-
     // Get the active language based on children's active state
     this.activeLang = Array.from(this.host.querySelectorAll('post-language-option'))
       .find(el => el.getAttribute('active') == 'true')
       .getAttribute('code');
+
+    this.updateChildrenVariant();
   }
 
   // Update post-language-option variant to have the correct style
   private updateChildrenVariant() {
     this.host.querySelectorAll('post-language-option').forEach(el => {
-      el.setAttribute('variant', this.variant);
+      const isActive = el.getAttribute('active') === 'false';
+      if (this.variant === 'menu' && isActive) {
+        el.setAttribute('variant', this.variant);
+      } else {
+        el.removeAttribute('variant');
+        if (this.variant !== 'menu') el.setAttribute('variant', this.variant);
+      }
     });
   }
 
@@ -101,6 +107,7 @@ export class PostLanguageSwitch {
 
       // Hides the dropdown when an option has been clicked
       if (this.variant === 'menu') {
+        this.updateChildrenVariant();
         const menu = this.host.shadowRoot.querySelector('post-menu') as HTMLPostMenuElement;
         menu.toggle(menu);
       }

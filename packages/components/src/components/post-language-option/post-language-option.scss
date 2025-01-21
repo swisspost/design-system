@@ -53,8 +53,13 @@ post-language-option:where([variant='menu']) {
     left: -1px;
     width: calc(100% + 2px);
   }
+}
+
+post-language-option {
   &:has([aria-current='true']),
   &:has([aria-current='page']) {
-    display: none;
+    :where([variant='menu']) & {
+      display: none;
+    }
   }
 }
