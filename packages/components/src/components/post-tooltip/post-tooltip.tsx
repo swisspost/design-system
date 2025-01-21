@@ -92,7 +92,7 @@ export class PostTooltip {
   }
 
   render() {
-    const popoverClass = `${this.arrow ? ' has-arrow' : ''}`;
+    const popoverClass = `${this.arrow ? 'has-arrow' : ''}`;
     return (
       <Host data-version={version} role="tooltip">
         <post-popovercontainer
