@@ -57,7 +57,7 @@ fieldset {
     @include utilities-mx.focus-style-none();
 
     &:hover:not([disabled]) ~ label {
-      color: #000;
+      color: var(--post-core-color-brand-black);
       background-color: transparent !important;
     }
 

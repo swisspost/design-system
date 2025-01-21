@@ -4,11 +4,11 @@
 
 %btn-transparent-background {
   @include utilities.not-disabled-focus-hover() {
-    color: #000;
+    color: var(--post-core-color-brand-black);
   }
 
   // Invert icon on dark backgrounds
   @include color-mx.on-dark-background() {
-    color: #000;
+    color: var(--post-core-color-brand-black);
   }
 }

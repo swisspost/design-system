@@ -21,7 +21,7 @@ dialog {
   overflow: auto;
   margin: revert;
   overscroll-behavior: contain;
-  border: 2px solid #000; // Ensures good contrast when bg is dark against dark backdrop
+  border: 2px solid var(--post-core-color-brand-black); // Ensures good contrast when bg is dark against dark backdrop
 
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.8);

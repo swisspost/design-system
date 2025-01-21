@@ -9,12 +9,8 @@
   position: relative;
   padding-top: spacing.$spacer;
   border: 0;
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.02
-  ); // 0.02 gets as close as possible to color.$light on white background
+  // 0.02 gets as close as possible to color.$light on white background
+  background-color: rgba(0, 0, 0, 0.02);
 
   // Create a line that lies below the active but above the passive elements
   // This way hover works smoothly with the background color

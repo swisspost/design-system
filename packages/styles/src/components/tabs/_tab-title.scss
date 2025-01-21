@@ -22,19 +22,19 @@ tokens.$default-map: utilities.$post-spacing;
   border-left: 1px solid transparent;
   outline-color: currentColor;
   opacity: 0.7;
-  color: #000;
+  color: var(--post-core-color-brand-black);
   text-decoration: none;
   background-color: transparent;
 
   &:focus {
     background-color: unset;
-    color: #000;
+    color: var(--post-core-color-brand-black);
   }
 
   &:hover {
     opacity: 1;
     background-color: rgba(0, 0, 0, 0.6);
-    color: #fff;
+    color: var(--post-core-color-brand-white);
   }
 
   // same styles as focus, can't use placeholder here because focus-visible can't be described outside of the support condition
@@ -42,7 +42,7 @@ tokens.$default-map: utilities.$post-spacing;
     outline: transparent;
     opacity: 1;
     background-color: rgba(0, 0, 0, 0.6);
-    color: #fff;
+    color: var(--post-core-color-brand-white);
     box-shadow: none;
 
     &::after {
@@ -62,8 +62,8 @@ tokens.$default-map: utilities.$post-spacing;
     border-right-color: nav.$nav-tabs-border-color;
     border-left-color: nav.$nav-tabs-border-color;
     opacity: 1;
-    background-color: #fff;
-    color: #000;
+    background-color: var(--post-core-color-brand-white);
+    color: var(--post-core-color-brand-black);
     font-weight: 700;
 
     // Create a line that does not suffer from border corner mitering
