@@ -74,6 +74,7 @@ export class PostLanguageSwitch {
   private updateChildrenVariant() {
     this.host.querySelectorAll('post-language-option').forEach(el => {
       const isActive = el.getAttribute('active') === 'false';
+      // When the variant='menu' then the role 'menuitem' should' not be set on the (hidden) active language option fro accessibility reasons. Setting the role='menuitem' on an element with style 'display:none' blocks the keyboard navigation flow.
       if (this.variant === 'list' || (this.variant === 'menu' && isActive)) {
         el.setAttribute('variant', this.variant);
       } else {
