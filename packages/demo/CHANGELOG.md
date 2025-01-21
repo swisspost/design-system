@@ -1,5 +1,24 @@
 # @swisspost/design-system-demo
 
+## 8.0.12
+
+### Patch Changes
+
+- Implemented the new "Swiss Post Sans" font (by [@gfellerph](https://github.com/gfellerph) with [#4468](https://github.com/swisspost/design-system/pull/4468))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.7.1
+  - @swisspost/design-system-intranet-header@8.7.1
+  - @swisspost/design-system-migrations@8.7.1
+
+## 8.0.11
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.7.0
+  - @swisspost/design-system-intranet-header@8.7.0
+  - @swisspost/design-system-migrations@8.7.0
+
 ## 8.0.10
 
 ### Patch Changes

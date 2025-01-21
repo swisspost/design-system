@@ -1,5 +1,20 @@
 # @swisspost/design-system-components
 
+## 8.7.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.7.1
+
+## 8.7.0
+
+### Patch Changes
+
+- Fix tab isolation in nested `post-tabs` components by scoping tab queries and interactions to the current instance. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4214](https://github.com/swisspost/design-system/pull/4214))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.7.0
+
 ## 8.6.2
 
 ### Patch Changes

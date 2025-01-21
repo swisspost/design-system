@@ -1,5 +1,19 @@
 # @swisspost/design-system-styles
 
+## 8.7.1
+
+### Patch Changes
+
+- Implemented the new "Swiss Post Sans" font (by [@gfellerph](https://github.com/gfellerph) with [#4468](https://github.com/swisspost/design-system/pull/4468))
+
+## 8.7.0
+
+### Patch Changes
+
+- Deprecated the topic teaser component. (by [@leagrdv](https://github.com/leagrdv) with [#4352](https://github.com/swisspost/design-system/pull/4352))
+
+- Added missing spinner size class. (by [@myrta2302](https://github.com/myrta2302) with [#4310](https://github.com/swisspost/design-system/pull/4310))
+
 ## 8.6.2
 
 ### Patch Changes
