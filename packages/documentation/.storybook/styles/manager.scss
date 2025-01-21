@@ -1,3 +1,4 @@
+@use '@swisspost/design-system-styles/core' as post;
 @use '@swisspost/design-system-styles/mixins/utilities';
 @use './components';
 @use '../addons/addons';
@@ -57,7 +58,7 @@
 
     &:hover,
     &:focus-visible {
-      background-color: #e6e6e6;
+      background-color: post.$gray-10;
     }
   }
 
@@ -77,7 +78,7 @@
     }
 
     &[data-nodetype='group'] svg {
-      color: #666;
+      color: post.$gray-60;
     }
     &[data-nodetype='component'] svg {
       color: #0076a8;
@@ -90,8 +91,8 @@
     }
 
     &[data-selected='true'] {
-      background-color: rgba(#fc0, 0.4);
-      color: #000;
+      background-color: rgba(post.$yellow, 0.4);
+      color: post.$black;
     }
   }
 
@@ -137,7 +138,7 @@
 
     .search-result-item--label {
       span {
-        color: #666;
+        color: post.$gray-60;
       }
 
       mark {
@@ -147,7 +148,7 @@
 
     &:hover,
     &:focus-visible {
-      background-color: #e6e6e6;
+      background-color: post.$gray-10;
     }
   }
 }

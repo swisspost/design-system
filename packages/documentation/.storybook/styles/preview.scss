@@ -131,8 +131,8 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
   [data-color-scheme='dark'] {
     code {
-      background-color: rgba(#000, 0.75);
-      border-color: rgba(#fff, 0.3);
+      background-color: rgba(post.$black, 0.75);
+      border-color: rgba(post.$white, 0.3);
     }
   }
 
