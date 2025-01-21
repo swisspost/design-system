@@ -87,7 +87,8 @@ function render(args: Args) {
     >
     <post-tooltip
       id="${args.id}"
-      class="hydrated bg-${args.backgroundColor}"
+      arrow="${ifDefined(args.arrow)}"
+      class="${args.palette}"
       placement="${ifDefined(args.placement)}"
       animation="${ifDefined(args.animation)}"
     >
