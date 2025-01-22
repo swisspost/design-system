@@ -47,7 +47,11 @@ post-mainnavigation {
     }
 
     @include media.max(lg) {
-      font-size: 1rem;
+      font-size: var(--post-core-font-size-16);
+    }
+
+    @include media.max(sm) {
+      font-size: var(--post-core-font-size-14);
     }
   }
 
@@ -89,6 +93,10 @@ post-mainnavigation {
         &[aria-expanded='true'] {
           border-block-width: var(--post-core-dimension-4);
           font-weight: var(--post-core-font-weight-700);
+        }
+
+        @include media.max(sm) {
+          font-size: var(--post-core-font-size-14);
         }
       }
 
@@ -138,5 +146,9 @@ post-mainnavigation {
         @include header-mx.mobile-header-interactive;
       }
     }
+  }
+
+  .back-button .btn {
+    padding-inline: 0;
   }
 }

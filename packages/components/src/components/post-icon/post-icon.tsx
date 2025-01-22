@@ -113,16 +113,34 @@ export class PostIcon {
         ?.getAttribute('data-post-icon-base') ?? null;
 
     const baseHref = document.getElementsByTagName('base')[0]?.href;
-    const fileBase = `${this.base ?? metaBase ?? baseHref ?? CDN_URL}/`.replace(/\/\/$/, '/');
-    const fileName = `${this.name}.svg#i-${this.name}`;
+    let calculatedBase: string | null;
+
+    // If this.base or metaBase are relative, prefix them with the baseHref if it exists
+    const absolutePathReg = /^(?:[a-z+]+:)?\/\//i;
+    if (baseHref) {
+      if (this.base && !absolutePathReg.test(this.base)) {
+        calculatedBase = baseHref + this.base;
+      } else if (metaBase && !absolutePathReg.test(metaBase)) {
+        calculatedBase = baseHref + metaBase;
+      }
+    } else {
+      calculatedBase = this.base ?? metaBase;
+    }
+
+    const fileBase = `${calculatedBase ?? baseHref ?? CDN_URL}/`.replace(/\/\/$/, '/');
+    const fileName = `${this.name}.svg`;
     const filePath = `${fileBase}${fileName}`;
 
     return new URL(filePath, window.location.origin).toString();
   }
 
   private getStyles() {
+    const path = this.getPath();
+
     return Object.entries({
-      transform:
+      '-webkit-mask-image': `url(${path})`,
+      'mask-image': `url('${path}')`,
+      'transform':
         (this.scale && !isNaN(Number(this.scale)) ? 'scale(' + this.scale + ')' : '') +
         (this.rotate && !isNaN(Number(this.rotate)) ? ' rotate(' + this.rotate + 'deg)' : ''),
     })
@@ -143,9 +161,7 @@ export class PostIcon {
   render() {
     return (
       <Host data-version={version}>
-        <svg style={this.getStyles()}>
-          <use href={this.getPath()} />
-        </svg>
+        <span style={this.getStyles()}></span>
       </Host>
     );
   }

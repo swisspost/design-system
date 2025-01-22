@@ -27,10 +27,6 @@
 }
 
 post-popovercontainer {
-  --post-global-header-height: 72px;
-  --post-main-header-height: 56px;
-  --post-header-height: calc(var(--post-global-header-height) + var(--post-main-header-height));
-
   background-color: #fafafa;
   border: none;
   border-top: 1px solid #e1e0dc;
@@ -39,10 +35,8 @@ post-popovercontainer {
   box-shadow: 0 8px 6px rgba(0, 0, 0, 16%);
 
   @include media.max(lg) {
-    --post-global-header-height: 64px;
-    --post-main-header-height: 48px;
     position: fixed;
-    top: var(--post-header-height) !important;
+    top: var(--header-height) !important;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -70,6 +64,10 @@ post-popovercontainer {
 
   @include media.max(lg) {
     padding: 16px 32px 24px;
+  }
+
+  @include media.max(sm) {
+    padding-inline: 16px;
   }
 
   .megadropdown-content {
@@ -103,7 +101,11 @@ post-popovercontainer {
 
     @include media.max(lg) {
       display: block;
-      font-size: 20px;
+      font-size: 1.25rem;
+    }
+
+    @include media.max(sm) {
+      font-size: 1.125rem;
     }
   }
 
@@ -162,6 +164,10 @@ post-popovercontainer {
             border-bottom: 1px solid #050400;
           }
         }
+
+        @include media.max(sm) {
+          font-size: 0.875rem;
+        }
       }
     }
   }
@@ -186,6 +192,10 @@ post-popovercontainer {
 
       @include media.max(lg) {
         padding-block: 12px 11px;
+      }
+
+      @include media.max(sm) {
+        font-size: 0.875rem;
       }
     }
   }
