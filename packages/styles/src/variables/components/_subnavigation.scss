@@ -22,7 +22,7 @@ $subnavigation-height-lg: sizing.px-to-rem(64);
 $subnavigation-height-xl: sizing.px-to-rem(72);
 
 $subnavigation-link-color: color.$black-alpha-60;
-$subnavigation-link-color-hover: var(--post-core-color-brand-black);
+$subnavigation-link-color-hover: color.$black;
 
 $subnavigation-link-underscore-height: tokens.get('utility-gap-4');
 $subnavigation-link-underscore-color-active: color.$yellow;
