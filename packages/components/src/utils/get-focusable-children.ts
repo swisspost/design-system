@@ -22,6 +22,7 @@ const focusDisablingSelector = `:where(${[
   'details:not([open]) > *:not(details > summary:first-of-type)',
   'details:not([open]) > *:not(details > summary:first-of-type) *',
   '[tabindex^="-"]',
+  '[role=menuitem]:has([aria-current="true"]) *',
 ].join(',')})`;
 
 export const getFocusableChildren = (element: Element): NodeListOf<HTMLElement> => {
