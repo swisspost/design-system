@@ -24,11 +24,6 @@ export default [
   {
     name: 'post/ts/defaults',
     files: ['**/*.{ts,tsx,mts,cts}'],
-    languageOptions: {
-      parserOptions: {
-        project: './tsconfig.eslint.json',
-      },
-    },
     rules: {
       '@typescript-eslint/no-unused-vars': [
         'error',

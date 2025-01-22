@@ -1,5 +1,5 @@
 {
-  "name": "@swisspost/design-system-eslint-plugin",
+  "name": "@swisspost/design-system-eslint",
   "version": "1.0.0",
   "description": "A set of custom ESLint rules to help keep projects using the Swiss Post Design System up-to-date.",
   "author": "Swiss Post <design-system@post.ch>",

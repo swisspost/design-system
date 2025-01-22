@@ -457,7 +457,7 @@ importers:
         specifier: 6.0.7
         version: 6.0.7(@types/node@22.10.5)(jiti@1.21.6)(less@4.2.0)(sass-embedded@1.78.0)(sass@1.78.0)(terser@5.31.6)(yaml@2.7.0)
 
-  packages/eslint-plugin:
+  packages/eslint:
     dependencies:
       '@typescript-eslint/utils':
         specifier: 8.19.1
