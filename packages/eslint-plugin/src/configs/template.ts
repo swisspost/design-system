@@ -6,18 +6,18 @@ const templateRules: FlatConfig.Rules = {};
 
 Object.entries(rules).forEach(([ruleName, rule]) => {
   if (rule.meta.docs?.category === 'template') {
-    templateRules[`@swisspost-eslint/template/${ruleName}`] = 'error';
+    templateRules[`post/template/${ruleName}`] = 'error';
   }
 });
 
 export default (plugin: FlatConfig.Plugin): FlatConfig.Config => ({
-  name: 'swisspost-eslint/template',
+  name: 'post/template',
   files: ['**/*.html'],
   languageOptions: {
     parser: templateParser,
   },
   plugins: {
-    '@swisspost-eslint/template': plugin,
+    'post/template': plugin,
   },
   rules: templateRules,
 });

@@ -10,7 +10,7 @@ const plugin: FlatConfig.Plugin = {
 };
 
 plugin.meta = {
-  name: `@swisspost-eslint/eslint-plugin`,
+  name: `post/eslint-plugin`,
 };
 
 plugin.configs = {

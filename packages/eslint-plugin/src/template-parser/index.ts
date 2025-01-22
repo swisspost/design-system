@@ -3,7 +3,7 @@ import { parseForESLint } from './parser';
 
 export = {
   meta: {
-    name: '@swisspost-eslint/template-parser',
+    name: 'post/eslint-template-parser',
   },
   parseForESLint,
 } satisfies FlatConfig.Parser;
