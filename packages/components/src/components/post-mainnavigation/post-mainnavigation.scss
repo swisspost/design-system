@@ -37,8 +37,6 @@ post-mainnavigation {
 
       &:focus-visible {
         border-radius: var(--post-core-dimension-4);
-        position: sticky;
-        z-index: 1;
       }
     }
   }
@@ -66,6 +64,8 @@ post-mainnavigation {
       > a,
       > button,
       post-megadropdown-trigger button {
+        position: sticky;
+        z-index: 4;
         padding-inline: var(--post-core-dimension-12);
         height: $nav-height;
         gap: var(--post-core-dimension-4);

@@ -58,6 +58,7 @@
   }
 
   @include media.min(lg) {
+    z-index: 4;
     padding-inline-end: var(--post-core-dimension-12);
     top: calc((var(--global-header-height) - var(--global-header-minimal-height)) * -1);
   }
@@ -108,12 +109,13 @@ slot[name='post-logo'] {
   background: var(--post-core-color-brand-white);
 
   @include media.min(lg) {
+    z-index: 3;
     padding: var(--post-core-dimension-18) var(--post-core-dimension-16)
       var(--post-core-dimension-4) var(--post-core-dimension-12);
   }
 
   @include media.max(lg) {
-    z-index: commons.$zindex-fixed;
+    z-index: commons.$zindex-sticky;
     inset-block-start: var(--global-header-height);
     padding-inline: var(--post-core-dimension-8) var(--post-core-dimension-16);
     padding-block: var(--post-core-dimension-9);
@@ -152,6 +154,15 @@ slot[name='post-logo'] {
 .navigation {
   @include media.min(lg) {
     inset-block-start: var(--global-header-minimal-height);
+
+    &::before {
+      display: block;
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: var(--post-core-color-brand-white);
+    }
   }
 }
 
@@ -181,7 +192,6 @@ slot[name='post-logo'] {
   }
   
   ::slotted(post-mainnavigation) {
-    overflow: visible;
     background-color: var(--post-core-color-sandgrey-002);
     gap: var(--post-core-dimension-32);
   }
