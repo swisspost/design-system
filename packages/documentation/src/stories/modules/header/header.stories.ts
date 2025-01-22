@@ -138,7 +138,7 @@ export const Default: Story = {
             <post-megadropdown id="briefe">
               <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
                 <post-icon name="arrowright"></post-icon>
-                Zurück
+                Back
               </button>
               <post-closebutton slot="close-button">Schliessen</post-closebutton>
               <h2 slot="megadropdown-title">Briefe title</h2>
