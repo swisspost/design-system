@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
+    "target": "es2022",
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "declaration": true,
@@ -14,5 +14,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
-  }
+  },
+  "include": ["src", "test"],
+  "exclude": ["node_modules", "dist"]
 }
