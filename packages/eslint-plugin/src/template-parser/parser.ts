@@ -70,7 +70,6 @@ function getStartSourceCodeLocationFromChildren(node: ParentNode) {
       nodeSourceCodeLocation.startOffset < startSourceCodeLocation.startOffset
     ) {
       startSourceCodeLocation = nodeSourceCodeLocation;
-      return;
     }
   });
   return startSourceCodeLocation;
@@ -94,7 +93,6 @@ function getEndSourceCodeLocationFromChildren(node: ParentNode) {
       nodeSourceCodeLocation.endOffset > endSourceCodeLocation.endOffset
     ) {
       endSourceCodeLocation = nodeSourceCodeLocation;
-      return;
     }
   });
   return endSourceCodeLocation;
@@ -189,10 +187,7 @@ export function parseForESLint(code: string): {
     tokens: [],
   };
 
-  // @ts-expect-error The types for ScopeManager seem to be wrong, it requires a configuration object or it will throw at runtime
   const scopeManager = new ScopeManager({});
-
-  // @ts-expect-error Create a global scope for the ScopeManager, the types for Scope also seem to be wrong
   new Scope(scopeManager, 'module', null, ast, false);
 
   return {
