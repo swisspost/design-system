@@ -36,7 +36,7 @@ $stepper-indicator-check-icon-size: $stepper-indicator-check-size;
 $stepper-link-line-height: type.$line-height-sm;
 $stepper-link-gap: tokens.get('utility-gap-8');
 $stepper-link-spacing: tokens.get('utility-gap-16');
-$stepper-link-color: #666;
+$stepper-link-color: color.$gray-60;
 
 $stepper-link-current-color: color.$gray-80;
 $stepper-link-current-font-weight: type.$font-weight-bold;
