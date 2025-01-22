@@ -29,7 +29,6 @@ export class PostTooltipTrigger {
 
   private get tooltip(): HTMLPostTooltipElement | null {
     const ref = document.getElementById(this.for);    
-    console.log(ref)
     return ref && ref.localName === 'post-tooltip' ? (ref as HTMLPostTooltipElement) : null;
   }
 

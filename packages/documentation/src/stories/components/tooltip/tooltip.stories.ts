@@ -57,10 +57,10 @@ const meta: MetaComponent = {
       },
     },
     placement: {
-      name: 'Placement',
+      name: 'placement',
     },
     arrow: {
-      name: 'Arrow',
+      name: 'arrow',
       control: {
         type: 'boolean',
       },
