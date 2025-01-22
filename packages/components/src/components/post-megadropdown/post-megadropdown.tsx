@@ -5,6 +5,7 @@ import { Component, Element, Event, EventEmitter, h, Host, Method, State } from 
   styleUrl: 'post-megadropdown.scss',
   shadow: false,
 })
+
 export class PostMegadropdown {
   @Element() host: HTMLPostMegadropdownElement;
 
@@ -76,8 +77,8 @@ export class PostMegadropdown {
    */
   private forceClose() {
     this.isVisible = false;
-    this.animationClass = null; // Clear animation
-    this.postToggleMegadropdown.emit(this.isVisible); // Emit visibility change
+    this.animationClass = null;
+    this.postToggleMegadropdown.emit(this.isVisible);
     this.removeOutsideClickListener();
   }
 

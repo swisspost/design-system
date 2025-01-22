@@ -61,11 +61,11 @@
   border-radius: 0;
 
   &.slide-in {
-    animation: slide-down 3500ms forwards;
+    animation: slide-down 350ms forwards;
   }
 
   &.slide-out {
-    animation: slide-up 3500ms forwards;
+    animation: slide-up 350ms forwards;
   }
 
   @include media.max(lg) {
