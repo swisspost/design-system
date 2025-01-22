@@ -29,7 +29,7 @@ $input-line-height-rg: type.$line-height-copy !default;
 $input-padding-y-lg: sizing.px-to-rem(button.$input-btn-padding-y-lg) !default;
 $input-line-height-lg: type.$line-height-copy !default;
 
-$input-disabled-border-color: #999; // Design System only
+$input-disabled-border-color: color.$gray-40; // Design System only
 
 $input-border-color: color.$gray-80 !default;
 $input-border-width: button.$input-btn-border-width !default;

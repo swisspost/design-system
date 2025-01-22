@@ -25,8 +25,8 @@ $stepper-indicator-transition:
   color animation.$transition-base-timing,
   background-color animation.$transition-base-timing;
 
-$stepper-indicator-hover-color: var(--post-core-color-white-black);
-$stepper-indicator-hover-bg: var(--post-core-color-brand-black);
+$stepper-indicator-hover-color: color.$white;
+$stepper-indicator-hover-bg: color.$black;
 
 $stepper-indicator-future-bg: color.$gray-60;
 $stepper-indicator-future-color: color.$white;

@@ -63,7 +63,7 @@
   }
 
   &.tag-white {
-    border-color: var(--post-core-color-brand-black);
+    border-color: color.$black;
   }
 
   // Can be removed completely as soon as Firefox ESR v128 is released and rolled out

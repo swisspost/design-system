@@ -11,7 +11,7 @@ $close-size: tokens.get('utility-gap-24') !default;
 $close-border-radius: button.$btn-border-radius !default;
 $close-color: color.$black !default;
 $close-hover-color: color.$black !default;
-$close-disabled-color: #999 !default;
+$close-disabled-color: color.$gray-40 !default;
 $close-transition: button.$btn-transition !default;
 
 // DEPRECATED

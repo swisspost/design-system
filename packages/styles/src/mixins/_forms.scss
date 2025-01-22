@@ -4,6 +4,7 @@
 @use './../functions/icons';
 @use './../functions/forms' as forms-fx;
 @use './../functions/utilities' as utilities-fx;
+@use './../variables/color';
 
 // Placeholder in input fields
 @mixin placeholder() {
@@ -26,7 +27,7 @@
 
   /* Compatibility with button-group */
   &:is(:focus-visible, :focus-within, .pretend-focus) {
-    outline: forms.$input-focus-outline-thickness solid var(--post-core-color-brand-black);
+    outline: forms.$input-focus-outline-thickness solid color.$black;
     @content;
   }
 }

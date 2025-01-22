@@ -5,4 +5,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Replaced previously deleted CSS variables with color values.
+Replaced previously deleted CSS variables with SASS variables.

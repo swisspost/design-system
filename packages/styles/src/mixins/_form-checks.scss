@@ -6,7 +6,7 @@
   border-color: $color;
 
   ~ .form-check-label {
-    color: var(--post-core-color-brand-black);
+    color: color.$black;
   }
 }
 
