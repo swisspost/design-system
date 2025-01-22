@@ -1,5 +1,6 @@
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 
 @keyframes slide-in {
   0% {
@@ -65,6 +66,10 @@ post-popovercontainer {
     padding: 16px 32px 24px;
   }
 
+  @include media.max(sm) {
+    padding-inline: 16px;
+  }
+
   .megadropdown-content {
     gap: 1.5rem;
     display: grid;
@@ -97,20 +102,11 @@ post-popovercontainer {
 
     @include media.max(lg) {
       display: block;
-      font-size: 20px;
-
-      a {
-        display: inline;
-      }
+      font-size: 1.25rem;
     }
-  }
 
-  // Unset styles added by parent main navigation
-  a:hover {
-    border-block-width: 0;
-
-    &::after {
-      content: unset;
+    @include media.max(sm) {
+      font-size: 1.125rem;
     }
   }
 
@@ -136,44 +132,71 @@ post-popovercontainer {
 
       h3 {
         font-size: 20px;
-        border-bottom: 1px solid #050400;
-        padding: 15px 12px 14px 0;
         display: block;
         font-weight: 900;
 
+        &:not(:has(a)) {
+          padding: 15px 12px 14px 8px;
+          border-bottom: 1px solid #050400;
+        }
+
         a {
+          padding-block: 15px 14px;
+          padding-inline-start: 8px;
+          border-radius: 0;
           text-decoration: none;
-          width: 100%;
           font-size: inherit;
-          display: inline-block;
-          font-weight: inherit;
-          height: unset;
-          padding: 0;
-          border: 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          min-height: 53px;
+
+          @include header-mx.mobile-header-interactive() {
+            height: unset;
+            font-weight: 900;
+          }
         }
 
         @include media.max(lg) {
-          font-size: 16px;
-          padding: 12px 12px 11px 0;
+          font-size: 1rem;
+
+          &:not(:has(a)) {
+            padding: 15px 12px 14px 8px;
+            border-bottom: 1px solid #050400;
+          }
+        }
+
+        @include media.max(sm) {
+          font-size: 0.875rem;
         }
       }
     }
   }
 
   post-list-item {
-    border-bottom: 1px solid #050400;
-
     > a {
-      padding: 13px 12px 12px 0;
-      display: block;
+      padding-block: 13px 12px;
+      padding-inline-start: 8px;
+      display: flex;
       text-decoration: none;
       width: 100%;
-      border-bottom: 0;
       height: auto;
-      border-top: 0;
+      min-height: 48px;
+
+      &:hover {
+        border-block-width: 0;
+      }
+
+      @include media.min(lg) {
+        font-size: 1.25rem;
+      }
 
       @include media.max(lg) {
-        padding: 12px 12px 11px 0;
+        padding-block: 12px 11px;
+      }
+
+      @include media.max(sm) {
+        font-size: 0.875rem;
       }
     }
   }
@@ -184,10 +207,6 @@ post-popovercontainer {
 
     .btn {
       width: auto;
-    }
-
-    post-icon {
-      transform: rotate(180deg);
     }
 
     @include media.max(lg) {

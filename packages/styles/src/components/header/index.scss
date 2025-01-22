@@ -21,6 +21,13 @@ post-header {
         }
       }
     }
+
+    @include media.max(sm) {
+      a,
+      button {
+        font-size: var(--post-core-font-size-14);
+      }
+    }
   }
 
   a,
