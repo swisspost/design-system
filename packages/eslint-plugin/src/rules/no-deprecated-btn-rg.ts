@@ -23,7 +23,7 @@ export default createRule({
   create(context) {
     return {
       tag(node: TemplateNode) {
-        if (node.name === 'button') {
+        if (['button', 'input', 'a'].includes(node.name)) {
           const $node = node.toCheerio();
           if ($node.hasClass('btn-rg')) {
             context.report({
