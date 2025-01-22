@@ -14,6 +14,7 @@ const compatStencilCommunityRecommendedRules = fixupConfigRules(
   stencilCommunityPlugin.configs.recommended,
 )[0].rules;
 
+/** @type {import('eslint').Linter.Config[]} */
 export default [
   {
     name: 'post/global/ignores',

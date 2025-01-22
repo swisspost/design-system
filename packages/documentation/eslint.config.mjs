@@ -7,6 +7,7 @@ import mdx from 'eslint-plugin-mdx';
 import globals from 'globals';
 import reactPlugin from 'eslint-plugin-react';
 
+/** @type {import('eslint').Linter.Config[]} */
 export default [
   {
     name: 'post/global/ignores',

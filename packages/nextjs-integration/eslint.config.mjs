@@ -8,6 +8,7 @@ import nextPlugin from '@next/eslint-plugin-next';
 import reactPlugin from 'eslint-plugin-react';
 import hooksPlugin from 'eslint-plugin-react-hooks';
 
+/** @type {import('eslint').Linter.Config[]} */
 export default [
   {
     name: 'post/global/ignores',

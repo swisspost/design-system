@@ -5,6 +5,7 @@ import ts from 'typescript-eslint';
 import ng from 'angular-eslint';
 import globals from 'globals';
 
+/** @type {import('eslint').Linter.Config[]} */
 export default ts.config(
   {
     name: 'post/global/ignores',
