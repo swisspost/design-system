@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-documentation",
-  "version": "6.0.0-next.12",
+  "version": "6.0.0-next.13",
   "description": "Swiss Post Design System Documentation.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -29,12 +29,12 @@
     "lint:fix": "eslint --fix"
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:9.0.0-next.11",
-    "@swisspost/design-system-components-react": "workspace:9.0.0-next.11",
-    "@swisspost/design-system-icons": "workspace:9.0.0-next.11",
-    "@swisspost/design-system-styles": "workspace:9.0.0-next.11",
-    "@swisspost/design-system-tokens": "workspace:9.0.0-next.11",
-    "@swisspost/internet-header": "workspace:2.0.0-next.11",
+    "@swisspost/design-system-components": "workspace:9.0.0-next.12",
+    "@swisspost/design-system-components-react": "workspace:9.0.0-next.12",
+    "@swisspost/design-system-icons": "workspace:9.0.0-next.12",
+    "@swisspost/design-system-styles": "workspace:9.0.0-next.12",
+    "@swisspost/design-system-tokens": "workspace:9.0.0-next.12",
+    "@swisspost/internet-header": "workspace:2.0.0-next.12",
     "bootstrap": "5.3.3"
   },
   "devDependencies": {
@@ -56,8 +56,8 @@
     "@storybook/types": "8.4.7",
     "@storybook/web-components": "8.4.7",
     "@storybook/web-components-vite": "8.4.7",
-    "@swisspost/design-system-components-angular": "workspace:9.0.0-next.11",
-    "@swisspost/design-system-intranet-header": "workspace:9.0.0-next.11",
+    "@swisspost/design-system-components-angular": "workspace:9.0.0-next.12",
+    "@swisspost/design-system-intranet-header": "workspace:9.0.0-next.12",
     "@types/css-modules": "1.0.5",
     "@types/mdx": "2.0.13",
     "@types/react": "18.3.3",

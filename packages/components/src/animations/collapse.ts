@@ -16,7 +16,7 @@ export function collapse(el: HTMLElement): Animation {
 
 export function expand(el: HTMLElement): Animation {
   const expandedKeyframe: Keyframe = { height: `${el.scrollHeight}px`, offset: 1 };
-  const finalKeyframe: Keyframe = { height: 'auto' };
+  const finalKeyframe: Keyframe = { height: 'auto', overflow: 'visible' };
 
   return el.animate([collapsedKeyframe, expandedKeyframe, finalKeyframe], animationOptions);
 }
