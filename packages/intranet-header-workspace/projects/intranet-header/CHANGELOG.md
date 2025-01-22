@@ -1,5 +1,12 @@
 # @swisspost/design-system-intranet-header
 
+## 7.4.10
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.4.10
+
 ## 7.4.9
 
 ### Patch Changes
