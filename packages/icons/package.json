@@ -26,9 +26,9 @@
     "build": "ts-node src/build.ts",
     "fetchSVGs": "ts-node src/index.ts",
     "createUIReport": "ts-node src/build.ts createUIReport",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:updatesnapshots": "jest -u",
+    "unit": "jest",
+    "unit:watch": "jest --watch",
+    "unit:updatesnapshots": "jest -u",
     "lint": "eslint"
   },
   "devDependencies": {
