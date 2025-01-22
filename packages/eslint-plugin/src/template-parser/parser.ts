@@ -187,7 +187,10 @@ export function parseForESLint(code: string): {
     tokens: [],
   };
 
+  // @ts-expect-error The types for ScopeManager seem to be wrong, it requires a configuration object or it will throw at runtime: https://github.com/eslint/js/blob/main/packages/eslint-scope/lib/scope-manager.js#L45
   const scopeManager = new ScopeManager({});
+
+  // @ts-expect-error Create a global scope for the ScopeManager, the types for Scope also seem to be wrong: https://github.com/eslint/js/blob/main/packages/eslint-scope/lib/scope.js#L141
   new Scope(scopeManager, 'module', null, ast, false);
 
   return {
