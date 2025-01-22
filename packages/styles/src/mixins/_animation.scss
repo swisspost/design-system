@@ -45,6 +45,9 @@
   }
 }
 
+// Animations
+// Progressively enhanced with currently experimental @starting-style which allows to animate stuff appearing in the top layer
+// https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style
 @mixin top-layer-pop-in($duration: 0.35s, $open-selector: '[open]') {
   transform: scale(0.8);
   opacity: 0;
