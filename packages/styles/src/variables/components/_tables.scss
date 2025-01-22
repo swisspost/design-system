@@ -15,7 +15,7 @@ $table-cell-padding-x: tokens.get('utility-gap-4') !default;
 $table-cell-padding-y-sm: tokens.get('utility-gap-8') !default;
 $table-cell-padding-x-sm: tokens.get('utility-gap-4') !default;
 $table-cell-vertical-align: top !default;
-$table-color: var(--post-core-color-brand-black) !default;
+$table-color: color.$black !default;
 $table-bg: transparent !default;
 $table-accent-bg: transparent !default;
 $table-th-font-weight: type.$font-weight-bold !default;
