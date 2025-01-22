@@ -2059,6 +2059,76 @@
       "modifiedAt": "2024-10-18T13:03:34.000Z"
     },
     {
+      "uuid": "873cd1f0-c5fc-11e7-a943-005056a94f4a",
+      "id": 352126,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352126/storage/MzU0NzQ2LzAvbWFzdGVy",
+        "businessfield": [
+          "kommunikation"
+        ],
+        "keywords": [
+          "Videostamp",
+          "Briefmarke",
+          "Postage Stamp",
+          "Timbro postale",
+          "Timbre-poste"
+        ],
+        "year": [
+          "2017"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "1041.svg",
+        "basename": "1041",
+        "ext": ".svg",
+        "size": {
+          "width": 32,
+          "dpi": 72,
+          "height": 32
+        }
+      },
+      "createdAt": "2017-11-10T09:50:05.000Z",
+      "modifiedAt": "2025-01-17T08:07:49.000Z"
+    },
+    {
+      "uuid": "873cd1f0-c5fc-11e7-a943-005056a94f4a",
+      "id": 352126,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352126/storage/MzU0NzQ2LzAvbWFzdGVy",
+        "businessfield": [
+          "kommunikation"
+        ],
+        "keywords": [
+          "Videostamp",
+          "Briefmarke",
+          "Postage Stamp",
+          "Timbro postale",
+          "Timbre-poste"
+        ],
+        "year": [
+          "2017"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "1041.svg",
+        "basename": "1041",
+        "ext": ".svg",
+        "size": {
+          "width": 32,
+          "dpi": 72,
+          "height": 32
+        }
+      },
+      "createdAt": "2017-11-10T09:50:05.000Z",
+      "modifiedAt": "2025-01-17T08:07:49.000Z"
+    },
+    {
       "uuid": "874165d0-c5fc-11e7-a943-005056a94f4a",
       "id": 352127,
       "type": "picture.pictogram.",
@@ -2342,41 +2412,6 @@
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
       "modifiedAt": "2024-10-18T13:03:35.000Z"
-    },
-    {
-      "uuid": "873cd1f0-c5fc-11e7-a943-005056a94f4a",
-      "id": 352126,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352126/storage/MzU5NzQ4LzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          "Videostamp",
-          "Briefmarke",
-          "Postage Stamp",
-          "Timbro postale",
-          "Timbre-poste"
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "1047.svg",
-        "basename": "1047",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-10-18T13:03:34.000Z"
     },
     {
       "uuid": "24090480-17cf-11e8-b180-005056a94f4a",
@@ -11386,6 +11421,94 @@
       "modifiedAt": "2024-10-18T07:14:11.000Z"
     },
     {
+      "uuid": "88307300-5bef-11eb-9f99-005056873709",
+      "id": 539481,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539481/storage/NTM5NDgzLzAvbWFzdGVy",
+        "keywords": [
+          "LAD",
+          "Leistung am Domizil",
+          "Prestazione a domicilio",
+          "Service at home",
+          "Prestation à domicile",
+          "Wegweiser",
+          "Sign",
+          "Segno",
+          "Signer",
+          "Sinnbild",
+          "Symbol",
+          "Simbolo",
+          "Symbole",
+          "Strassenschild",
+          "Road Sign",
+          "Segnale stradale",
+          "Panneau De Signalisation"
+        ],
+        "year": [
+          "2021"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2204.svg",
+        "basename": "2204",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2021-01-21T13:49:50.000Z",
+      "modifiedAt": "2025-01-17T08:06:53.000Z"
+    },
+    {
+      "uuid": "88307300-5bef-11eb-9f99-005056873709",
+      "id": 539481,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539481/storage/NTM5NDgzLzAvbWFzdGVy",
+        "keywords": [
+          "LAD",
+          "Leistung am Domizil",
+          "Prestazione a domicilio",
+          "Service at home",
+          "Prestation à domicile",
+          "Wegweiser",
+          "Sign",
+          "Segno",
+          "Signer",
+          "Sinnbild",
+          "Symbol",
+          "Simbolo",
+          "Symbole",
+          "Strassenschild",
+          "Road Sign",
+          "Segnale stradale",
+          "Panneau De Signalisation"
+        ],
+        "year": [
+          "2021"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2204.svg",
+        "basename": "2204",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2021-01-21T13:49:50.000Z",
+      "modifiedAt": "2025-01-17T08:06:53.000Z"
+    },
+    {
       "uuid": "4cc7c010-5bf0-11eb-9f99-005056873709",
       "id": 539487,
       "type": "picture.pictogram.",
@@ -11429,51 +11552,7 @@
         }
       },
       "createdAt": "2021-01-21T13:55:20.000Z",
-      "modifiedAt": "2024-10-18T07:14:11.000Z"
-    },
-    {
-      "uuid": "88307300-5bef-11eb-9f99-005056873709",
-      "id": 539481,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539481/storage/NTM5NDg5LzAvbWFzdGVy",
-        "keywords": [
-          "LAD",
-          "Leistung am Domizil",
-          "Prestazione a domicilio",
-          "Service at home",
-          "Prestation à domicile",
-          "Wegweiser",
-          "Sign",
-          "Segno",
-          "Signer",
-          "Sinnbild",
-          "Symbol",
-          "Simbolo",
-          "Symbole",
-          "Strassenschild",
-          "Road Sign",
-          "Segnale stradale",
-          "Panneau De Signalisation"
-        ],
-        "year": [
-          "2021"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "2205.svg",
-        "basename": "2205",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2021-01-21T13:49:50.000Z",
-      "modifiedAt": "2024-10-24T05:04:06.000Z"
+      "modifiedAt": "2025-01-17T08:05:53.000Z"
     },
     {
       "uuid": "044e0500-5bf1-11eb-9f99-005056873709",
@@ -29192,6 +29271,62 @@
       "modifiedAt": "2024-11-13T06:31:35.000Z"
     },
     {
+      "uuid": "b46287d5-d308-11ef-a15d-005056873709",
+      "id": 1209043,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1209043/storage/MDAxMjA5MDQyLzAvbWFzdGVy",
+        "keywords": [
+          "verlinken",
+          "to link",
+          "per collegare",
+          "lier"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2642.svg",
+        "basename": "2642",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-01-15T06:19:41.000Z",
+      "modifiedAt": "2025-01-15T06:22:54.000Z"
+    },
+    {
+      "uuid": "b46287d5-d308-11ef-a15d-005056873709",
+      "id": 1209043,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1209043/storage/MDAxMjA5MDQyLzAvbWFzdGVy",
+        "keywords": [
+          "verlinken",
+          "to link",
+          "per collegare",
+          "lier"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2642.svg",
+        "basename": "2642",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-01-15T06:19:41.000Z",
+      "modifiedAt": "2025-01-15T06:22:54.000Z"
+    },
+    {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
       "id": 352241,
       "type": "picture.pictogram.",
@@ -41683,7 +41818,33 @@
         }
       },
       "createdAt": "2020-12-03T14:50:16.000Z",
-      "modifiedAt": "2024-04-30T21:44:17.000Z"
+      "modifiedAt": "2024-11-29T13:55:46.000Z"
+    },
+    {
+      "uuid": "885606d0-d40c-11ef-a15d-005056873709",
+      "id": 1242757,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1242757/storage/MDAxMjQyNzU2LzAvbWFzdGVy",
+        "keywords": [
+          "Social Media",
+          "Réseaux sociaux"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "8020.svg",
+        "basename": "8020",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-01-16T13:19:36.000Z",
+      "modifiedAt": "2025-01-16T13:21:23.000Z"
     }
   ],
   "wrongViewBox": [],
@@ -41862,11 +42023,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2024-11-17T01:43:33.040Z",
+  "created": "2025-01-17T14:09:38.959Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 963
+    "success": 973
   },
-  "version": "8.5.0"
+  "version": "8.7.0"
 }
