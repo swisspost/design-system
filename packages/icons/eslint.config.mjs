@@ -2,6 +2,7 @@
 
 import js from '@eslint/js';
 import ts from 'typescript-eslint';
+import jest from 'eslint-plugin-jest';
 import globals from 'globals';
 
 /** @type {import('eslint').Linter.Config[]} */
@@ -55,5 +56,21 @@ export default [
   {
     files: ['**/*.{js,mjs,cjs}'],
     ...ts.configs.disableTypeChecked,
+  },
+  {
+    name: 'jest/base',
+    languageOptions: {
+      globals: jest.environments.globals.globals,
+    },
+    plugins: {
+      jest: jest,
+    },
+  },
+  {
+    name: 'jest/recommended',
+    files: ['**/*.spec.{js,mjs,cjs,ts,mts,cts}'],
+    rules: {
+      ...jest.configs['flat/recommended'].rules,
+    },
   },
 ];
