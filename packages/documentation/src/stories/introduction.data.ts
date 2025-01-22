@@ -154,3 +154,55 @@ export const technologies: ITechnology[] = [
   else if (aName > bName) return 1;
   else return 0;
 });
+
+interface IBrowser {
+  name: string;
+  version: string;
+  img: {
+    src: string;
+    alt: string;
+  };
+}
+
+export const browsers: IBrowser[] = [
+  {
+    name: 'Chrome & Android',
+    version: 'Last 2 versions',
+    img: {
+      src: '/assets/images/browsers/chrome.svg',
+      alt: 'Chrome Logo',
+    },
+  },
+  {
+    name: 'Firefox',
+    version: 'Last 2 versions',
+    img: {
+      src: '/assets/images/browsers/firefox.svg',
+      alt: 'Firefox Logo',
+    },
+  },
+  {
+    name: 'Edge',
+    version: 'Last 2 versions',
+    img: {
+      src: '/assets/images/browsers/edge.svg',
+      alt: 'Edge Logo',
+    },
+  },
+  {
+    name: 'Safari & iOS Safari',
+    version: 'Last 2 versions',
+    img: {
+      src: '/assets/images/browsers/safari.svg',
+      alt: 'Safari Logo',
+    },
+  },
+  {
+    name: 'Samsung Internet',
+    version: 'Last 2 versions',
+    img: {
+      src: '/assets/images/browsers/samsung.svg',
+      alt: 'Samsung Internet Logo',
+    },
+  },
+];
