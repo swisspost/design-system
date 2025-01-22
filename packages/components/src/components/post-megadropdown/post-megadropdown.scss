@@ -64,6 +64,10 @@ post-popovercontainer {
     padding: 16px 32px 24px;
   }
 
+  @include media.max(sm) {
+    padding-inline: 16px;
+  }
+
   .megadropdown-content {
     gap: 1.5rem;
     display: grid;
@@ -95,7 +99,11 @@ post-popovercontainer {
 
     @include media.max(lg) {
       display: block;
-      font-size: 20px;
+      font-size: 1.25rem;
+    }
+
+    @include media.max(sm) {
+      font-size: 1.125rem;
     }
   }
 
@@ -154,6 +162,10 @@ post-popovercontainer {
             border-bottom: 1px solid #050400;
           }
         }
+
+        @include media.max(sm) {
+          font-size: 0.875rem;
+        }
       }
     }
   }
@@ -178,6 +190,10 @@ post-popovercontainer {
 
       @include media.max(lg) {
         padding-block: 12px 11px;
+      }
+
+      @include media.max(sm) {
+        font-size: 0.875rem;
       }
     }
   }
