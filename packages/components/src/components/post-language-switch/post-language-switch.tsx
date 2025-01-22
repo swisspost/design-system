@@ -62,24 +62,17 @@ export class PostLanguageSwitch {
   @State() activeLang: string;
 
   connectedCallback() {
+    this.updateChildrenVariant();
     // Get the active language based on children's active state
     this.activeLang = Array.from(this.host.querySelectorAll('post-language-option'))
       .find(el => el.getAttribute('active') == 'true')
       .getAttribute('code');
-
-    this.updateChildrenVariant();
   }
 
   // Update post-language-option variant to have the correct style
   private updateChildrenVariant() {
     this.host.querySelectorAll('post-language-option').forEach(el => {
-      const isActive = el.getAttribute('active') === 'false';
-      // When the variant='menu' then the role 'menuitem' should' not be set on the (hidden) active language option for accessibility reasons. Setting the role='menuitem' on an element with style 'display:none' blocks the keyboard navigation flow.
-      if (this.variant === 'list' || (this.variant === 'menu' && isActive)) {
-        el.setAttribute('variant', this.variant);
-      } else {
-        el.removeAttribute('variant');
-      }
+      el.setAttribute('variant', this.variant);
     });
   }
 
@@ -107,7 +100,6 @@ export class PostLanguageSwitch {
 
       // Hides the dropdown when an option has been clicked
       if (this.variant === 'menu') {
-        this.updateChildrenVariant();
         const menu = this.host.shadowRoot.querySelector('post-menu') as HTMLPostMenuElement;
         menu.toggle(menu);
       }
