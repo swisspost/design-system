@@ -58,7 +58,7 @@
   }
 
   @include media.min(lg) {
-    z-index: 4;
+    z-index: 5;
     padding-inline-end: var(--post-core-dimension-12);
     top: calc((var(--global-header-height) - var(--global-header-minimal-height)) * -1);
   }
