@@ -1,4 +1,3 @@
-import { expect } from '@jest/globals';
 import { uniqueId } from './utils';
 
 describe('utils', () => {

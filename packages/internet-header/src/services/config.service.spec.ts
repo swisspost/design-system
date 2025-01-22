@@ -1,4 +1,3 @@
-import { expect } from '@jest/globals';
 import { ICustomConfig, ILocalizedCustomConfig, IPortalConfig } from '../models/general.model';
 import { NavMainEntity } from '../models/header.model';
 import * as testConfigRaw from '../assets/config/test-configuration.json';
@@ -184,7 +183,7 @@ describe('config.service.ts', () => {
       } as NavMainEntity);
 
       const osFlyout = newConfig.find(nav => nav.id === 'flyout_os');
-      if (!osFlyout) fail('osFlyout is undefined');
+      if (!osFlyout) throw new Error('osFlyout is undefined');
       expect(osFlyout.title).toBe('Test');
     });
 

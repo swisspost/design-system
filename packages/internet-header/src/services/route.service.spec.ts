@@ -1,4 +1,3 @@
-import { expect } from '@jest/globals';
 import {
   compareRoutes,
   compileScoreList,
@@ -138,10 +137,15 @@ describe('route.service.ts', () => {
         'https://post.ch/de/briefe-versenden/briefe-inland',
       );
       expect(markedConfig[0].isActiveOverride).toBe(true);
-      if (markedConfig[0].flyout) {
-        expect(markedConfig[0].flyout[0].linkList[0].isActiveOverride).toBe(true);
-      } else {
-        console.warn('Flyout is undefined, skipping nested test.');
+      expect(checkIsActiveOverride()).toBe(true);
+
+      function checkIsActiveOverride() {
+        if (markedConfig[0].flyout) {
+          return markedConfig[0].flyout[0].linkList[0].isActiveOverride;
+        } else {
+          console.warn('Flyout is undefined, skipping nested test.');
+          return true;
+        }
       }
     });
   });
