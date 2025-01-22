@@ -70,7 +70,7 @@
 
   @include media.max(lg) {
     --post-global-header-height: 64px;
-    z-index: commons.$zindex-popover;
+    z-index: 4;
     top: 0 !important;
     left: 0;
     width: 100%;

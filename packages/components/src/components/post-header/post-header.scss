@@ -53,7 +53,7 @@
   height: var(--global-header-height);
 
   @include media.max(lg) {
-    z-index: commons.$zindex-fixed;
+    z-index: 3;
     inset-block-start: 0;
   }
 
@@ -115,7 +115,7 @@ slot[name='post-logo'] {
   }
 
   @include media.max(lg) {
-    z-index: commons.$zindex-sticky;
+    z-index: 2;
     inset-block-start: var(--global-header-height);
     padding-inline: var(--post-core-dimension-8) var(--post-core-dimension-16);
     padding-block: var(--post-core-dimension-9);
@@ -170,7 +170,7 @@ slot[name='post-logo'] {
 @include media.max(lg) {
   .navigation {
     position: fixed;
-    z-index: commons.$zindex-sticky;
+    z-index: 1;
     inset-inline: 0;
     background: var(--post-core-color-brand-white);
     inset-block-end: calc(100vh - var(--header-height));

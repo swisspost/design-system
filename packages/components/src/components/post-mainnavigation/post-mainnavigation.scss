@@ -65,13 +65,20 @@ post-mainnavigation {
       > button,
       post-megadropdown-trigger button {
         position: sticky;
-        z-index: 4;
         padding-inline: var(--post-core-dimension-12);
         height: $nav-height;
         gap: var(--post-core-dimension-4);
         font-size: var(--post-core-font-size-16);
         border-block: 0 solid transparent;
         border-block-end-color: currentColor;
+
+        @include media.max(lg) {
+          z-index: 3;
+        }
+
+        @include media.min(lg) {
+          z-index: 4;
+        }
 
         &:hover {
           border-block-width: var(--post-core-dimension-2);
