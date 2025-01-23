@@ -5,7 +5,9 @@ import { version } from '@root/package.json';
 
 @Component({
   tag: 'post-tooltip-trigger',
+  styleUrl: 'post-tooltip-trigger.scss',
 })
+
 export class PostTooltipTrigger {
   @Element() host: HTMLPostTooltipTriggerElement;
 
