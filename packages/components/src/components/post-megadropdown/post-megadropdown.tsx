@@ -1,4 +1,4 @@
-import { DEVICE_SIZE } from '@/components';
+import { DEVICE_SIZE } from '../post-header/device-size';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
 

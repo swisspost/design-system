@@ -7,9 +7,9 @@
 
 ## Events
 
-| Event              | Description                                  | Type                                             |
-| ------------------ | -------------------------------------------- | ------------------------------------------------ |
-| `postUpdateDevice` | An event emitted when the device has changed | `CustomEvent<"desktop" \| "mobile" \| "tablet">` |
+| Event              | Description                                  | Type               |
+| ------------------ | -------------------------------------------- | ------------------ |
+| `postUpdateDevice` | An event emitted when the device has changed | `CustomEvent<any>` |
 
 
 ## Methods
