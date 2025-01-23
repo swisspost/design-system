@@ -1,0 +1,13 @@
+# Outputs
+dist/
+
+# Misc
+node_modules/
+out-tsc/
+debug.log
+npm-debug.log
+*.code-workspace
+
+# Mac OSX Finder files.
+**/.DS_Store
+.DS_Store
