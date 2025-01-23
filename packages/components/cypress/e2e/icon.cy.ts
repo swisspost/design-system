@@ -5,7 +5,6 @@ describe('Icon', () => {
     beforeEach(() => {
       cy.getComponent('icon', POSTICON_ID);
 
-      // cy.get('head').as('head');
       cy.get('head meta[name="design-system-settings"]').as('meta');
       cy.get('@icon').find('span[style]').as('inner');
 
