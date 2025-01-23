@@ -50,6 +50,7 @@ jobs:
       - name: Get Token Changes
         id: tokens
         run: |
+          git checkout ${{ steps.pr-branch.outputs.name }}
           git checkout ${{ github.ref_name }} -- packages/tokens/tokensstudio-generated
           git add .
           if [[ -n $(git commit --dry-run --short) ]]; then

@@ -39,12 +39,16 @@ export class Breakpoint {
 
     if (this.current.key !== calculated.key) {
       this.current.key = calculated.key;
-      if (emitEvents) this.dispatchEvent('key');
+      if (emitEvents) {
+        this.dispatchEvent('key');
+      }
     }
 
     if (this.current.name !== calculated.name) {
       this.current.name = calculated.name;
-      if (emitEvents) this.dispatchEvent('name');
+      if (emitEvents) {
+        this.dispatchEvent('name');
+      }
     }
   }
 

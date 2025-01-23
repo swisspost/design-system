@@ -83,7 +83,7 @@ const config: StorybookConfig = {
     STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_FALLBACK: 'dev',
     STORYBOOK_BASE_URL: 'https://design-system.post.ch',
   }),
-  async viteFinal(config, options) {
+  async viteFinal(config) {
     return mergeConfig(config, {
       css: {
         devSourcemap: true,

@@ -1,5 +1,5 @@
 import type { StoryObj } from '@storybook/web-components';
-import meta, { renderBadge } from './app-store-badge.stories';
+import meta, { RenderBadge } from './app-store-badge.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 
@@ -17,7 +17,7 @@ export const AppStoreBadge: Story = {
     return schemes(
       scheme => html`
         ${scheme === 'light'
-          ? renderBadge('apple-store')
+          ? RenderBadge('apple-store')
           : html`
               <a class="app-store-badge" href="#">
                 <img
@@ -27,7 +27,7 @@ export const AppStoreBadge: Story = {
                 <span class="visually-hidden">Download the App on the Apple Store</span>
               </a>
             `}
-        ${renderBadge('google-play')}
+        ${RenderBadge('google-play')}
       `,
     );
   },
