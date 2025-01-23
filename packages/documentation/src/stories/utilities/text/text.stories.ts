@@ -21,17 +21,17 @@ export const FontFamily: Story = {
 export const FontWeight: Story = {
   render: () =>
     html`
-      <p class="fw-normal">This is normal text.</p>
-      <p class="fw-bold">This is bold text.</p>
-      <p class="fw-black">This is black text.</p>
+      <p class="fw-normal">This is a normal text.</p>
+      <p class="fw-bold">This is a bold text.</p>
+      <p class="fw-black">This is a black text.</p>
     `,
 };
 
 export const FontStyle: Story = {
   render: () =>
     html`
-      <p class="fst-normal">This is normal text.</p>
-      <p class="fst-italic">This is italic text.</p>
+      <p class="fst-normal">This is a normal text.</p>
+      <p class="fst-italic">This is an italic text.</p>
     `,
 };
 
@@ -48,7 +48,7 @@ export const TextColorReset: Story = {
   decorators: [story => html` <div @click=${(e: Event) => e.preventDefault()}>${story()}</div> `],
   render: () => html`
     <p class="my-colored-text">
-      This is colored text with a
+      This is a colored text with a
       <a href="#" class="text-reset">link</a>
       of the same color.
     </p>

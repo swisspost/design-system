@@ -1,6 +1,7 @@
 @use './functions' as *;
 
 @use '../variables/sizing' as *;
+@use '../variables/type';
 
 @use '../functions/tokens' as tokens;
 @use '../tokens/utilities';
@@ -32,14 +33,6 @@ $position-values: (
   50: 50%,
   100: 100%,
 );
-
-$font-family-sans-serif: tokens.get('body-font-family', elements.$post-body);
-$font-weight-normal: tokens.get('utility-font-weight-regular') !default;
-$font-weight-bold: tokens.get('utility-font-weight-bold') !default;
-$font-weight-black: tokens.get('utility-font-weight-black') !default;
-
-$line-height-sm: tokens.get('utility-line-height-sm') !default;
-$line-height-lg: tokens.get('utility-line-height-lg') !default;
 
 $utilities: (
   'grid-gutter': (
@@ -459,7 +452,7 @@ $utilities: (
     property: font-family,
     class: font,
     values: (
-      'sans-serif': $font-family-sans-serif,
+      'sans-serif': type.$font-family-sans-serif,
     ),
   ),
   'font-style': (
@@ -471,18 +464,18 @@ $utilities: (
     property: font-weight,
     class: fw,
     values: (
-      black: 900,
-      bold: 700,
-      normal: 400,
+      black: type.$font-weight-black,
+      bold: type.$font-weight-bold,
+      normal: type.$font-weight-normal,
     ),
   ),
   'line-height': (
     property: line-height,
     class: lh,
     values: (
-      1: 1,
-      sm: $line-height-sm,
-      lg: $line-height-lg,
+      1: type.$line-height-1,
+      sm: type.$line-height-sm,
+      lg: type.$line-height-lg,
     ),
   ),
   'text-align': (
@@ -520,7 +513,6 @@ $utilities: (
     ),
     rtl: false,
   ),
-  // IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`.
 );
 
 /* IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`. */

@@ -26,13 +26,13 @@ function getTextUtility(type: string) {
       `;
     case 'Weight':
       return html`
-        ${['normal', 'bold'].map(
+        ${['normal', 'bold', 'black'].map(
           (val: string) => html`<p class="fw-${val}">Font weight ${val}</p>`,
         )}
       `;
     case 'Line height':
       return html`
-        ${['1', 'base', 'sm', 'lg'].map(
+        ${['1', 'sm', 'lg'].map(
           (val: string) => html`<p class="text-example-bordered lh-${val}">Line height ${val}</p>`,
         )}
       `;
