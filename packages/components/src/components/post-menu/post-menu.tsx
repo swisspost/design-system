@@ -81,7 +81,11 @@ export class PostMenu {
    */
   @Method()
   async toggle(target: HTMLElement) {
-    this.isVisible ? await this.hide() : await this.show(target);
+    if (this.isVisible) {
+      await this.hide();
+    } else {
+      await this.show(target);
+    }
   }
 
   /**

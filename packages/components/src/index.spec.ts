@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-const file = fs.readFileSync('./src/index.ts').toString();
-const componentExports = Array.from(file.matchAll(/\/(post-[a-z-]+)';$/gm)).map(m => m[1]);
+const entry = fs.readFileSync('./src/index.ts').toString();
+const componentExports = Array.from(entry.matchAll(/\/(post-[a-z-]+)';$/gm)).map(m => m[1]);
 const componentDefinitions = getComponentDefinitions('./src/components');
 
 function getComponentDefinitions(dir: string, files: string[] = []) {

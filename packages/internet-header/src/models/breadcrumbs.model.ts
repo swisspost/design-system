@@ -9,8 +9,8 @@ export interface IBreadcrumbConfig {
   svgIconArrowRightSmall: IIconConfig;
   svgIconHome: IIconConfig;
   truncateButtonText: string;
-  classes: any[];
-  additionalAttributes: any[];
+  classes: string[];
+  additionalAttributes: unknown[];
 }
 
 export interface IBreadcrumbButton {
@@ -18,7 +18,7 @@ export interface IBreadcrumbButton {
   text: string;
   overlay: IBreadcrumbOverlay;
   classes: string[];
-  additionalAttributes: any[];
+  additionalAttributes: unknown[];
 }
 
 export interface IBreadcrumbOverlay {
@@ -27,7 +27,7 @@ export interface IBreadcrumbOverlay {
   closeText: string;
   closeIcon: IIconConfig;
   classes: string[];
-  additionalAttributes: any[];
+  additionalAttributes: unknown[];
 }
 
 export interface AdditionalAttribute {
