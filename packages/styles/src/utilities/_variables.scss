@@ -1,13 +1,9 @@
+@use '../functions/tokens' as tokens;
+
 @use './functions' as *;
 
 @use '../variables/sizing' as *;
 @use '../variables/type';
-
-@use '../functions/tokens' as tokens;
-@use '../tokens/utilities';
-@use '../tokens/elements';
-
-tokens.$default-map: utilities.$post-typo;
 
 /*
   Utilities are generated with our utility API using bellow $utilities map.
