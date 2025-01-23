@@ -23,13 +23,14 @@
   "scripts": {
     "dev": "pnpm build && http-server ./public -o -a localhost -p 9330",
     "start": "nodemon",
-    "build": "ts-node src/build.ts",
+    "build": "pnpm clean && ts-node src/build.ts",
     "fetchSVGs": "ts-node src/index.ts",
     "createUIReport": "ts-node src/build.ts createUIReport",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:updatesnapshots": "jest -u",
-    "lint": "eslint **/*.{js,ts}"
+    "lint": "eslint **/*.{js,ts}",
+    "clean": "rimraf public/post-icons public/report.json"
   },
   "devDependencies": {
     "@tsconfig/node18": "18.2.4",

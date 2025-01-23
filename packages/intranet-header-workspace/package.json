@@ -8,7 +8,7 @@
     "start": "npm-run-all --parallel --print-label start:**",
     "start:lib": "rimraf dist/intranet-header && ng build intranet-header --watch",
     "start:app": "wait-on dist/intranet-header && ng serve --port 9320",
-    "build": "ng build intranet-header",
+    "build": "pnpm clean && ng build intranet-header",
     "lint": "ng lint"
   },
   "dependencies": {

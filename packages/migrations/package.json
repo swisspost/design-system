@@ -16,7 +16,7 @@
   },
   "scripts": {
     "copy-files": "copyfiles -f LICENSE README.md package.json CONTRIBUTING.md CHANGELOG.md src/migrations.json dist",
-    "build": "tsc -p tsconfig.json && pnpm copy-files",
+    "build": "pnpm clean && tsc -p tsconfig.json && pnpm copy-files",
     "clean": "rimraf dist",
     "lint": "eslint **/*.ts"
   },

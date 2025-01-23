@@ -6,7 +6,8 @@
     "build": "ng build components",
     "lint": "ng lint",
     "e2e": "ng e2e --watch=false",
-    "e2e:watch": "ng e2e"
+    "e2e:watch": "ng e2e",
+    "clean": "rm -rf dist"
   },
   "private": true,
   "dependencies": {
@@ -43,6 +44,7 @@
     "karma-jasmine": "5.1.0",
     "karma-jasmine-html-reporter": "2.1.0",
     "ng-packagr": "18.1.0",
+    "rimraf": "6.0.1",
     "typescript": "5.5.4"
   }
 }

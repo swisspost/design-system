@@ -30,7 +30,7 @@
   "scripts": {
     "dev": "stencil build --serve --port 9310 --watch --docs-readme --dev --config stencil.config.dev.ts",
     "start": "stencil build --watch --docs-readme",
-    "build": "stencil build --docs-readme",
+    "build": "pnpm clean && stencil build --docs-readme",
     "clean": "rimraf www dist loader",
     "test": "pnpm run unit",
     "unit": "jest",
