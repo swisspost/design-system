@@ -1,7 +1,6 @@
 import { Canvas, Meta, Source } from '@storybook/blocks';
 import * as TextStories from './text.stories';
 import SampleFontFamily from './text-font-family.sample.scss?raw';
-import SampleLineHeight from './text-line-height.sample.scss?raw';
 import './text.styles.scss';
 
 <Meta of={TextStories} />
@@ -16,7 +15,7 @@ import './text.styles.scss';
 
 ### Font Family
 
-Use the class `.font-sans-serif` to set the text as the post sans-serif font-family.
+Use the class `.font-sans-serif` to set the text as the default font-family.
 
 <Canvas of={TextStories.FontFamily} sourceState="shown" />
 
@@ -38,22 +37,11 @@ The font style classes available are `.fst-normal` and `.fst-italic`.
 
 ### Line Heights
 
+The line height classes available are `.lh-1`, `.lh-sm` and `.lh-lg`.
+
+For good accessibility, the line height is set to <code>1.5</code> for body text and <code>1.2</code> for headings by default.
+
 <Canvas of={TextStories.LineHeight} sourceState="shown" />
-
-#### Set Line Height in SCSS
-
-<Source code={SampleLineHeight} language="scss" />
-
-#### Possible Values
-
-For good accessibility, the line height is set to <code>1.5</code> for body text and <code>1.2</code> for headings.
-
-Available classes are:
-
-- `.lh-1`: line-height equal to the font-size
-- `.lh-base`: default line-height
-- `.lh-sm`: small line-height of 1.25
-- `.lh-lg`: large line-height of 2
 
 ## Text
 

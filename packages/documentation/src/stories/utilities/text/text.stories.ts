@@ -28,11 +28,20 @@ export const FontWeight: Story = {
 };
 
 export const FontStyle: Story = {
-  render: () => html` <p class="fst-italic">This is italic text.</p> `,
+  render: () =>
+    html`
+      <p class="fst-normal">This is normal text.</p>
+      <p class="fst-italic">This is italic text.</p>
+    `,
 };
 
 export const LineHeight: Story = {
-  render: () => html` <p class="lh-1">This text has a line height equal to the font size.</p> `,
+  render: () =>
+    html`
+      <p class="my-text lh-1">This text has a line height equal to the font size.</p>
+      <p class="my-text lh-sm">This text has a small line height.</p>
+      <p class="my-text lh-lg">This text has a large line height.</p>
+    `,
 };
 
 export const TextColorReset: Story = {
@@ -79,9 +88,9 @@ export const WordBreak: Story = {
 
 export const TextTransform: Story = {
   render: () => html`
-    <p class="text-lowercase">Lowercased text.</p>
-    <p class="text-uppercase">Uppercased text.</p>
-    <p class="text-capitalize">CapiTaliZed text.</p>
+    <p class="text-lowercase">This is a Lowercased text.</p>
+    <p class="text-uppercase">This is an Uppercased text.</p>
+    <p class="text-capitalize">This is a CapiTaliZed text.</p>
   `,
 };
 

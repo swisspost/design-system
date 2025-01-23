@@ -1,6 +1,7 @@
 @use '@swisspost/design-system-styles/core' as post;
 
-.my-container {
+.my-container,
+.my-text {
   background-color: post.$info;
 }
 

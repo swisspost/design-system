@@ -4,6 +4,7 @@
 
 @use '../functions/tokens' as tokens;
 @use '../tokens/utilities';
+@use '../tokens/elements';
 
 tokens.$default-map: utilities.$post-typo;
 
@@ -32,14 +33,13 @@ $position-values: (
   100: 100%,
 );
 
-$font-family-sans-serif: var(--post-device-font-family-default);
+$font-family-sans-serif: tokens.get('body-font-family', elements.$post-body);
 $font-weight-normal: tokens.get('utility-font-weight-regular') !default;
 $font-weight-bold: tokens.get('utility-font-weight-bold') !default;
 $font-weight-black: tokens.get('utility-font-weight-black') !default;
 
-$line-height-base: tokens.get('utility-line-height-lg') !default;
 $line-height-sm: tokens.get('utility-line-height-sm') !default;
-$line-height-lg: 2 !default;
+$line-height-lg: tokens.get('utility-line-height-lg') !default;
 
 $utilities: (
   'grid-gutter': (
@@ -482,7 +482,6 @@ $utilities: (
     values: (
       1: 1,
       sm: $line-height-sm,
-      base: $line-height-base,
       lg: $line-height-lg,
     ),
   ),
