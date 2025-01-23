@@ -38,8 +38,8 @@
     "e2e": "cypress run --browser chrome",
     "e2e:ci": "xvfb-run -a cypress run --browser chrome",
     "e2e:watch": "cypress open",
-    "lint": "eslint src/**/*{.ts,.tsx}",
-    "lint:fix": "eslint src/**/*{.ts,.tsx} --fix",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "generate": "stencil generate"
   },
   "dependencies": {
@@ -52,6 +52,8 @@
   },
   "devDependencies": {
     "@babel/core": "7.26.0",
+    "@eslint/compat": "1.2.5",
+    "@eslint/js": "9.18.0",
     "@percy/cli": "1.30.6",
     "@percy/cypress": "3.1.2",
     "@stencil-community/eslint-plugin": "0.8.0",
@@ -64,14 +66,17 @@
     "@types/jquery": "3.5.32",
     "@types/node": "22.10.5",
     "@types/throttle-debounce": "5.0.2",
+    "@typescript-eslint/parser": "7.18.0",
     "babel-loader": "9.2.1",
     "bootstrap": "5.3.3",
     "cypress": "13.13.2",
     "cypress-each": "1.14.0",
     "cypress-storybook": "1.0.0",
-    "eslint": "8.57.1",
-    "eslint-plugin-react": "7.37.3",
+    "eslint": "9.18.0",
+    "eslint-plugin-jest": "28.11.0",
+    "eslint-plugin-react": "7.37.4",
     "focus-trap": "7.6.2",
+    "globals": "15.14.0",
     "globby": "14.0.2",
     "jest": "29.7.0",
     "jest-environment-jsdom": "29.7.0",
@@ -82,7 +87,8 @@
     "sass": "1.78.0",
     "start-server-and-test": "2.0.9",
     "ts-jest": "29.2.5",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "typescript-eslint": "8.20.0"
   },
   "keywords": [
     "components",
