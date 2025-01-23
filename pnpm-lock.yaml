@@ -73,16 +73,16 @@ importers:
         version: 0.8.0(@typescript-eslint/eslint-plugin@7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4))(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.5.4))(eslint-plugin-react@7.37.3(eslint@8.57.1))(eslint@8.57.1)(typescript@5.5.4)
       '@stencil/angular-output-target':
         specifier: 0.8.4
-        version: 0.8.4(@stencil/core@4.19.2)
+        version: 0.8.4(@stencil/core@4.25.0)
       '@stencil/core':
-        specifier: 4.19.2
-        version: 4.19.2
+        specifier: 4.25.0
+        version: 4.25.0
       '@stencil/react-output-target':
         specifier: 0.5.3
-        version: 0.5.3(@stencil/core@4.19.2)
+        version: 0.5.3(@stencil/core@4.25.0)
       '@stencil/sass':
         specifier: 3.0.12
-        version: 3.0.12(@stencil/core@4.19.2)
+        version: 3.0.12(@stencil/core@4.25.0)
       '@types/jest':
         specifier: 29.5.14
         version: 29.5.14
@@ -554,14 +554,14 @@ importers:
         specifier: 0.8.0
         version: 0.8.0(@typescript-eslint/eslint-plugin@7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4))(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.5.4))(eslint-plugin-react@7.37.3(eslint@8.57.1))(eslint@8.57.1)(typescript@5.5.4)
       '@stencil/core':
-        specifier: 4.19.2
-        version: 4.19.2
+        specifier: 4.25.0
+        version: 4.25.0
       '@stencil/sass':
         specifier: 3.0.12
-        version: 3.0.12(@stencil/core@4.19.2)
+        version: 3.0.12(@stencil/core@4.25.0)
       '@stencil/store':
         specifier: 2.0.16
-        version: 2.0.16(@stencil/core@4.19.2)
+        version: 2.0.16(@stencil/core@4.25.0)
       '@types/body-scroll-lock':
         specifier: 3.1.2
         version: 3.1.2
@@ -3692,8 +3692,8 @@ packages:
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3 || >= 4.0.0-beta.0 || >= 4.0.0'
 
-  '@stencil/core@4.19.2':
-    resolution: {integrity: sha512-ZdnbHmHEl8E5vN0GWDtONe5w6j3CrSqqxZM4hNLBPkV/aouWKug7D5/Mi6RazfYO5U4fmHQYLwMz60rHcx0G4g==}
+  '@stencil/core@4.25.0':
+    resolution: {integrity: sha512-mLyaGCCGaHh6M4n1Hs3CXytD8MLQEt/eBBEoeJvAKE82S3CaqT5n5STXNHnv+qRz3btaSzqEfn2DBTurHYgKeQ==}
     engines: {node: '>=16.0.0', npm: '>=7.10.0'}
     hasBin: true
 
@@ -14757,23 +14757,23 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@stencil/angular-output-target@0.8.4(@stencil/core@4.19.2)':
+  '@stencil/angular-output-target@0.8.4(@stencil/core@4.25.0)':
     dependencies:
-      '@stencil/core': 4.19.2
+      '@stencil/core': 4.25.0
 
-  '@stencil/core@4.19.2': {}
+  '@stencil/core@4.25.0': {}
 
-  '@stencil/react-output-target@0.5.3(@stencil/core@4.19.2)':
+  '@stencil/react-output-target@0.5.3(@stencil/core@4.25.0)':
     dependencies:
-      '@stencil/core': 4.19.2
+      '@stencil/core': 4.25.0
 
-  '@stencil/sass@3.0.12(@stencil/core@4.19.2)':
+  '@stencil/sass@3.0.12(@stencil/core@4.25.0)':
     dependencies:
-      '@stencil/core': 4.19.2
+      '@stencil/core': 4.25.0
 
-  '@stencil/store@2.0.16(@stencil/core@4.19.2)':
+  '@stencil/store@2.0.16(@stencil/core@4.25.0)':
     dependencies:
-      '@stencil/core': 4.19.2
+      '@stencil/core': 4.25.0
 
   '@storybook/addon-actions@8.4.7(storybook@8.4.7(prettier@2.8.8))':
     dependencies:
