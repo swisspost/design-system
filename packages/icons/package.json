@@ -49,6 +49,7 @@
     "node-fetch": "2.7.0",
     "node-html-parser": "6.1.13",
     "nodemon": "3.1.7",
+    "rimraf": "6.0.1",
     "svgo": "3.3.2",
     "ts-jest": "29.2.5",
     "ts-node": "10.9.2",

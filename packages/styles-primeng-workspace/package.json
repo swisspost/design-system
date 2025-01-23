@@ -41,6 +41,7 @@
     "karma-jasmine-html-reporter": "2.1.0",
     "ng-packagr": "18.1.0",
     "npm-run-all2": "7.0.2",
+    "rimraf": "6.0.1",
     "stylelint": "16.12.0",
     "stylelint-config-sass-guidelines": "11.1.0",
     "stylelint-prettier": "5.0.2",
