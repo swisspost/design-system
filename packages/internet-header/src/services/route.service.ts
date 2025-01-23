@@ -1,5 +1,5 @@
 import { ActiveRouteProp } from '../models/general.model';
-import { NavMainEntity, MainNavScoreList } from '../models/header.model';
+import { NavMainEntity, MainNavScoreList, MainNavScoreListItem } from '../models/header.model';
 
 /**
  * Activate the current route based on the config and the match mode
@@ -156,7 +156,7 @@ export const compileScoreList = (
 function updateScoreList(
   scoreList: MainNavScoreList,
   score: number,
-  scoreListItem: any,
+  scoreListItem: MainNavScoreListItem,
   hadAnyActiveLink: boolean,
 ) {
   let hadActiveLink = hadAnyActiveLink;

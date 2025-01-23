@@ -33,7 +33,9 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   @Input() additionalInfo: string = '';
   @Input() hasNavbar = true;
   @Input() showIntranetSearch = false;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @Input() optionDropdownContent!: TemplateRef<any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @Input() optionHeaderContent!: TemplateRef<any>;
   @Input() logoUrl: string = '';
   @Input() searchUrl: string = '';
