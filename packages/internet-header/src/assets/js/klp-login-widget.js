@@ -650,49 +650,6 @@ const vertx = window.vertx || {};
       isUserActive = true;
     }
 
-    function restoreState() {
-      const state = loadPersistedState();
-      if (state) {
-        address = state.address;
-        retrySubscribeOnFail = true;
-        sessionData = state.sessionData;
-        renderWidget();
-        if (isCurrentLocationPostCh()) {
-          renderNotificationsWidget(loadDocumentFromCache(documentUnreadNotifications));
-        }
-      }
-    }
-
-    function loadPersistedState() {
-      if (isHTML5StorageSupported()) {
-        const persistedState = sessionStorage.getItem(persistedStateKey);
-        if (persistedState) {
-          try {
-            const state = JSON.parse(persistedState);
-            if (state.ttl > new Date().getTime() && isPersistedStateValid(state.sessionData)) {
-              log('Valid persisted state loaded: ' + persistedState);
-              return state;
-            } else {
-              log('Persisted state expired or invalid');
-              removePersistedState();
-              setControlCookie('all', 'sub');
-            }
-          } catch (err) {
-            log("Persisted state was invalid due to error '" + err + "'");
-            removePersistedState();
-            setControlCookie('all', 'sub');
-          }
-        } else {
-          log('No persisted state found');
-          removePersistedState();
-          setControlCookie('all', 'sub');
-        }
-      } else {
-        log('State not loaded because HTML storage not supported');
-      }
-      return null;
-    }
-
     function persistState(ttl) {
       if (isHTML5StorageSupported()) {
         sessionStorage.setItem(
@@ -719,32 +676,6 @@ const vertx = window.vertx || {};
       } else {
         log('Persisted state not removed because HTML storage not supported');
       }
-    }
-
-    function isPersistedStateValid(persistedData) {
-      const hashPersistedData = hash(persistedData).toString();
-      const hashCookie = getControlCookieVal('hash');
-      if (hashPersistedData === hashCookie) {
-        return true;
-      }
-      if (hashCookie === undefined && !isCurrentLocationPostCh()) {
-        log(
-          'Cache validated because on a different host=[' +
-            window.location.hostname +
-            '] than control cookie domain=[' +
-            controlCookieDomain +
-            ']',
-        );
-        return true;
-      }
-      log(
-        'PersistedData are invalid [hashPersistedData=' +
-          hashPersistedData +
-          ',control cookie=' +
-          hashCookie +
-          ']',
-      );
-      return false;
     }
 
     function isCurrentLocationPostCh() {
@@ -842,19 +773,6 @@ const vertx = window.vertx || {};
           '; Secure';
         log('Control cookie removed');
       }
-    }
-
-    function loadDocumentFromCache(documentType) {
-      const persistedKey = persistedDocumentPrefix + documentType;
-      if (isHTML5StorageSupported()) {
-        const persistedDocument = sessionStorage.getItem(persistedKey);
-        if (persistedDocument) {
-          const document = $.parseJSON(persistedDocument);
-          log('Document ' + documentType + ' has been read from cache with value ' + document);
-          return document;
-        }
-      }
-      return null;
     }
 
     function saveDocumentOnCache(document, documentType) {
@@ -1516,7 +1434,6 @@ const vertx = window.vertx || {};
     }
 
     function init() {
-      restoreState();
       subscribe();
       if (conf.keepAliveOnInit && isUserAuthenticated()) {
         keepAliveSessionsOnInit();
