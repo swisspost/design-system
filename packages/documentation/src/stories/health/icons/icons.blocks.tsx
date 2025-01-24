@@ -1,9 +1,19 @@
-// icons.blocks.tsx
 import React from 'react';
 import reportData from '../../../../node_modules/@swisspost/design-system-icons/public/report.json';
 import { IconReport } from './icons-report';
+import exHubData from '../../../../node_modules/@swisspost/design-system-icons/public/expHubReport.json';
+
+interface ExHubIcon {
+  title: string;
+  // Add other properties as needed
+}
+
+interface ExHubData {
+  data: ExHubIcon[];
+}
 
 const report = reportData as IconReport;
+const exHub = exHubData as unknown as ExHubData;
 
 export const StatusBlock: React.FC = () => (
   <div className="status">
@@ -27,7 +37,7 @@ export const StatusBlock: React.FC = () => (
 
 export const IconsBlock: React.FC = () => (
   <section>
-    <h2>Successfull</h2>
+    <h2>Successful</h2>
     <div className="icons">
       {report.icons.map(icon => renderImage(icon.file.name, icon.file.basename))}
     </div>
@@ -118,3 +128,32 @@ function renderImage(name: string, baseName: string) {
     </div>
   );
 }
+
+export const DuplicateBlock: React.FC = () => {
+  return (
+    <section>
+      <h2>Duplicate Icons</h2>
+      <p>
+        There are {duplicateIcons.length} duplicate icons: [{duplicateIcons.join(', ')}]
+      </p>
+    </section>
+  );
+};
+
+const checkIconCodes = () => {
+  // Get DS Published Icons
+  const reportIconCodes = reportData.icons.map(icon => icon.file.basename);
+
+  // Extract only titles with numbers (post-icons)
+  const exHubIconCodes = exHub.data.map(icon => icon.title).filter(title => /^\d+$/.test(title));
+
+  // Crosscheck Icons
+  const missingIcons = exHubIconCodes.filter(title => !reportIconCodes.includes(title));
+  const duplicateIcons = reportIconCodes.filter(
+    (title, index, self) => self.indexOf(title) !== index,
+  );
+
+  return { missingIcons, duplicateIcons };
+};
+
+const { missingIcons, duplicateIcons } = checkIconCodes();
