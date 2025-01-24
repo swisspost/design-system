@@ -1,7 +1,8 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
 import * as IconStories from './icon.stories';
 import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
-import { Search } from './search/search-icons.blocks';
+import SampleMixin from './mixin.sample.scss?raw';
+import { POST_ICONS_COUNT, UI_ICONS_COUNT, Search } from './search/search-icons.blocks';
 import './icon.styles.scss';
 
 <Meta of={IconStories} />
@@ -15,19 +16,12 @@ import './icon.styles.scss';
 </div>
 
 <div className="lead">
-  The official Swiss Post Icon Library for the web with over 800 high-quality scalable vector
-  graphics.
+  The official Swiss Post Icon Library with {Math.floor(POST_ICONS_COUNT / 10) * 10}+ high-quality svg icons and the brand new UI Icon Set, exclusively designed and provided for the web with {Math.floor(UI_ICONS_COUNT / 10) * 10}+ icons and responsive level-of-detail.
 </div>
 
-<PostTabs>
-  <PostTabHeader panel="usage">Usage</PostTabHeader>
-  <PostTabPanel name="usage">
-    Our <code>&lt;post-icon&gt;</code> component renders SVGs, so it scales quickly and easily and can
-    be styled with CSS.
-
-    <Canvas sourceState="shown" of={IconStories.Default} />
-    <Controls of={IconStories.Default} />
-
+<PostTabs activePanel="search">
+  <PostTabHeader panel="installation">Installation</PostTabHeader>
+  <PostTabPanel name="installation">
     ## Installation
 
     ### Icon Component
@@ -39,32 +33,42 @@ import './icon.styles.scss';
 
     The SVG files for icons should be hosted within your project.
     For guidelines on how to set this up, please refer to the [icon package documentation](/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs#usage).
+  </PostTabPanel>
 
-    ## Examples
+  <PostTabHeader panel="component">Usage as Web-Component</PostTabHeader>
+  <PostTabPanel name="component">
+    ## Usage as Web-Component
+
+    Our <code>&lt;post-icon&gt;</code> component renders SVGs, so it scales quickly and easily and can
+    be styled with CSS.
+
+
+    <Canvas sourceState="shown" of={IconStories.Default} />
+    <Controls of={IconStories.Default} />
+
+    ### UI Icons
+
+    UI icons are responsive and can have a different level-of-detail, depending on how big they are rendered on the page.
+    Use the resize handle in the example to see how the icon changes while you change its size.
+
+    <Canvas sourceState="shown" of={IconStories.UI} />
 
     ### Color
 
     By default, icons inherit the current text color of their parent element.<br/>
-    You can therefore colorize an icon using our [text color utilities](/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs)
-    or by setting the CSS directly through a style attribute or self-defined classes.
+    You can therefore colorize an icon by simply changing the `color` css property of the element itself.
 
     <Canvas of={IconStories.Color} sourceState="shown" />
 
     ### Size
 
-    Icons have a default `width` of `1em`, which means they will scale with the size of the current `font-size`.
-    Therefore, you can manage the size of an icon using our [font-size utilities](/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs)
-    or by setting the CSS directly through a style attribute or self-defined classes.
+    Icons have a default `width` of `1em`, which means they will scale with the size of the current `font-size` css property.
 
     <Canvas of={IconStories.Size} sourceState="shown" />
 
-    ### Style
-
-    With the use of our [border](#TODO) and [padding](#TODO) utilities, you can create various styling effects.
-
-    <Canvas of={IconStories.Style} sourceState="shown" />
-
     ### Transformations
+
+    The following examples are available by default only in the `<post-icon>` web-component. To do something similar with the CSS mixin, you would need to use the `transform` property or add your own css animations.
 
     #### Flipping
 
@@ -101,12 +105,49 @@ import './icon.styles.scss';
 
   </PostTabPanel>
 
+  <PostTabHeader panel="scss">Usage as CSS-Background</PostTabHeader>
+  <PostTabPanel name="scss">
+    ## Usage in CSS
+
+    To define an icon in your own CSS, you need the `@swisspost/design-system-styles` package and use our `post-icon` mixin. The icons are responsive and can have a different level-of-detail, depending on how big they are rendered on the page.
+
+    <p className="banner banner-info">The used classes in the examples below are only there for demonstration purposes.</p>
+    
+    ### Post Icons
+
+    <Canvas of={IconStories.CSS_Default} sourceState="shown"/>
+
+    ### UI Icons
+
+    UI icons are responsive and can have a different level-of-detail, depending on how big they are rendered on the page. Use the resize handle in the example to see how the icon changes while you change its size.
+
+    <Canvas of={IconStories.CSS_UI} sourceState="shown"/>
+
+    ### Colors
+
+    By default, icons inherit the current text color of their parent element.
+    You can therefore colorize an icon by simply changing the `color` css property of the element itself.
+
+    <Canvas of={IconStories.CSS_Color} sourceState="shown"/>
+
+    ### Size
+
+    Icons have a default `width` of `1em`, which means they will scale with the size of the current `font-size` css property.
+
+    <Canvas of={IconStories.CSS_Size} sourceState="shown"/>
+
+    ### Mixin usage
+
+    <Source
+      language="scss"
+      dark
+      code={SampleMixin}
+    ></Source>
+
+  </PostTabPanel>
+
   <PostTabHeader panel="search">Find your Icon</PostTabHeader>
   <PostTabPanel name="search">
-    The icons are designed to work with the Swiss Post Design System components. They are SVGs, so they scale and can be styled with CSS.<br/>
-    Use the grid below to browse all available icons.
-
     <Search />
-
   </PostTabPanel>
 </PostTabs>

@@ -122,8 +122,8 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
       display: block;
       margin-top: 0.25rem;
       padding: 1rem;
-      background-color: var(--post-contrast-color);
-      color: var(--post-contrast-color-inverted);
+      background-color: post.$black;
+      color: post.$white;
     }
   }
 

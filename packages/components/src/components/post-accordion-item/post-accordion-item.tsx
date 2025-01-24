@@ -2,6 +2,7 @@ import { Component, Element, h, Host, Listen, Method, Prop, State, Watch } from 
 import { version } from '@root/package.json';
 import { HEADING_LEVELS, HeadingLevel } from '@/types';
 import { checkEmptyOrOneOf } from '@/utils';
+import { nanoid } from 'nanoid';
 
 /**
  * @part button - The pseudo-element, used to override styles on the components internal header `button` element.
@@ -46,7 +47,7 @@ export class PostAccordionItem {
   }
 
   componentWillLoad() {
-    this.id = this.host.id || `a${crypto.randomUUID()}`;
+    this.id = this.host.id || `p${nanoid(6)}`;
   }
 
   componentDidLoad() {
@@ -81,7 +82,7 @@ export class PostAccordionItem {
   }
 
   render() {
-    const headingLevel = this.host.closest('post-accorddion')?.getAttribute('heading-level');
+    const headingLevel = this.host.closest('post-accordion')?.getAttribute('heading-level');
     const HeadingTag = `h${headingLevel ?? this.headingLevel ?? 2}`;
 
     return (
