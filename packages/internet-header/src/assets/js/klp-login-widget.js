@@ -697,13 +697,12 @@ const vertx = window.vertx || {};
       if (isHTML5StorageSupported()) {
         sessionStorage.setItem(
           persistedStateKey,
-          '{"ttl": ' +
-            (new Date().getTime() + ttl) +
-            ',"sessionData": ' +
-            JSON.stringify(sessionData) +
-            ', "address":"' +
-            address +
-            '"}',
+          JSON.stringify({
+            ttl: new Date().getTime() + ttl,
+            sessionData:
+              "If you're looking for this info, contact the Swiss Post Design System Team!",
+            address: "If you're looking for this info, contact the Swiss Post Design System Team!",
+          }),
         );
         log('State persisted');
         setControlCookie('hash', encodeURIComponent(hash(sessionData)));
