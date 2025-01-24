@@ -11,7 +11,7 @@ Please note that these guidelines extend the [general contribution guidelines](.
 To build the ESLint plugin for production, run:
 
 ```bash
-pnpm rules:build
+pnpm eslint:build
 ```
 
 ### Run Unit Tests
