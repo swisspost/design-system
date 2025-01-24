@@ -57,7 +57,7 @@ tokens.$default-map: utilities.$post-spacing;
 .icon {
   display: flex;
   flex-direction: column;
-  border: post.$border-width solid var(--post-gray-20);
+  border: post.$border-width solid post.$gray-20;
   border-radius: post.$border-radius;
 
   .icon--tile {
@@ -68,7 +68,7 @@ tokens.$default-map: utilities.$post-spacing;
     padding: tokens.get('utility-gap-4') tokens.get('utility-gap-16');
     width: 100%;
     height: 80px;
-    background-color: var(--post-contrast-color-inverted);
+    background-color: post.$white;
     border-top-left-radius: post.$border-radius;
     border-top-right-radius: post.$border-radius;
 
@@ -85,8 +85,8 @@ tokens.$default-map: utilities.$post-spacing;
     flex-direction: column;
     justify-content: center;
     padding: tokens.get('utility-gap-4') tokens.get('utility-gap-16');
-    background-color: var(--post-gray-10);
-    border-top: post.$border-width solid var(--post-gray-20);
+    background-color: post.$gray-10;
+    border-top: post.$border-width solid post.$gray-20;
     border-bottom-left-radius: post.$border-radius;
     border-bottom-right-radius: post.$border-radius;
     font-size: post.$font-size-tiny;
@@ -98,7 +98,7 @@ tokens.$default-map: utilities.$post-spacing;
 
     .info--keywords {
       font-size: post.$font-size-tiny;
-      color: var(--post-gray-60);
+      color: post.$gray-60;
       hyphens: auto;
     }
   }
