@@ -4,6 +4,10 @@ import { throttle } from 'throttle-debounce';
 const SCROLL_REPEAT_INTERVAL = 100; // Interval for repeated scrolling when holding down scroll button
 const NAVBAR_DISABLE_DURATION = 400; // Duration to temporarily disable navbar interactions during scrolling
 
+const NAVIGATION_LIST_SELECTOR = 'post-list:not(post-megadropdown *) > [role="list"]';
+const NAVIGATION_ITEM_SELECTOR =
+  ':is(post-list-item > a, post-list-item > post-megadropdown-trigger > button):not(post-megadropdown *)';
+
 @Component({
   tag: 'post-mainnavigation',
   shadow: false,
@@ -83,14 +87,13 @@ export class PostMainnavigation {
    * Moves focus on the navbar and adjusts scrolling to bring focused element into view.
    */
   private adjustTranslation(e: FocusEvent) {
-    if (!this.canScroll) return;
+    const focusedElement = e.target as HTMLElement;
+    if (!this.canScroll || !focusedElement.matches(NAVIGATION_ITEM_SELECTOR)) return;
 
     // We need to move the element into the view before it is focused to avoid browser default behavior
     e.preventDefault();
 
     this.withoutTransition(() => {
-      const focusedElement = e.target as HTMLElement;
-
       // Try scrolling in both directions, only the necessary translation will actually occur
       this.translateRightTo(focusedElement);
       this.translateLeftTo(focusedElement);
@@ -207,14 +210,14 @@ export class PostMainnavigation {
    * Returns the navigation list container element
    */
   private get navigationList(): HTMLElement {
-    return this.navbar.querySelector('post-list:not(post-megadropdown *) > [role="list"]');
+    return this.navbar.querySelector(NAVIGATION_LIST_SELECTOR);
   }
 
   /**
    * Returns the navigation items
    */
   private get navigationItems(): NodeListOf<HTMLElement> {
-    return this.navbar.querySelectorAll('post-list-item:not(post-megadropdown *) > :is(a, button)');
+    return this.navbar.querySelectorAll(NAVIGATION_ITEM_SELECTOR);
   }
 
   /**
