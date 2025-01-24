@@ -41,6 +41,20 @@ post-mainnavigation {
     }
   }
 
+  .back-button {
+    post-icon {
+      transform: rotate(180deg);
+    }
+
+    @include media.max(lg) {
+      font-size: var(--post-core-font-size-16);
+    }
+
+    @include media.max(sm) {
+      font-size: var(--post-core-font-size-14);
+    }
+  }
+
   // desktop styles
   @include media.min(lg) {
     nav {
@@ -89,6 +103,10 @@ post-mainnavigation {
           border-block-width: var(--post-core-dimension-4);
           font-weight: var(--post-core-font-weight-700);
         }
+
+        @include media.max(sm) {
+          font-size: var(--post-core-font-size-14);
+        }
       }
 
       // styles specific to for the mega-dropdown buttons
@@ -109,6 +127,13 @@ post-mainnavigation {
         &[aria-expanded='true']::after {
           transform: rotate(180deg);
         }
+      }
+    }
+
+    post-megadropdown {
+      button:not(.btn-icon-close),
+      a {
+        @include header-mx.mobile-header-interactive;
       }
     }
 

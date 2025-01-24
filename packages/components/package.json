@@ -35,7 +35,8 @@
     "e2e:ci": "xvfb-run -a cypress run --browser chrome",
     "e2e:watch": "cypress open",
     "generate": "stencil generate",
-    "lint": "eslint src/**/*{.ts,.tsx}"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
   },
   "dependencies": {
     "@floating-ui/dom": "1.6.13",
@@ -47,29 +48,32 @@
     "nanoid": "5.0.9"
   },
   "devDependencies": {
+    "@eslint/compat": "1.2.5",
+    "@eslint/js": "9.18.0",
     "@percy/cli": "1.30.6",
     "@percy/cypress": "3.1.2",
-    "@stencil-community/eslint-plugin": "0.8.0",
+    "@stencil-community/eslint-plugin": "0.9.0",
     "@stencil/angular-output-target": "0.8.4",
     "@stencil/core": "4.19.2",
     "@stencil/react-output-target": "0.5.3",
     "@stencil/sass": "3.0.12",
     "@types/jest": "29.5.14",
     "@types/node": "22.10.5",
-    "@typescript-eslint/eslint-plugin": "7.18.0",
     "@typescript-eslint/parser": "7.18.0",
     "bootstrap": "5.3.3",
     "cypress": "13.13.2",
     "cypress-axe": "1.5.0",
     "cypress-storybook": "1.0.0",
-    "eslint": "8.57.1",
-    "eslint-plugin-react": "7.37.3",
+    "eslint": "9.18.0",
+    "eslint-plugin-react": "7.37.4",
+    "globals": "15.14.0",
     "rimraf": "6.0.1",
     "rollup-plugin-postcss": "4.0.2",
     "sass": "1.78.0",
     "throttle-debounce": "5.0.2",
     "ts-jest": "29.2.5",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "typescript-eslint": "8.20.0"
   },
   "keywords": [
     "components",

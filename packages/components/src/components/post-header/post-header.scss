@@ -201,3 +201,11 @@ slot[name='post-logo'] {
     gap: var(--post-core-dimension-24);
   }
 }
+
+// only for mobile
+@include media.max(sm) {
+  ::slotted(post-mainnavigation),
+  .navigation-footer {
+    padding-inline: var(--post-core-dimension-16);
+  }
+}
