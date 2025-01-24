@@ -26,13 +26,14 @@
   @include utilities.reset-list;
   display: grid;
   position: relative;
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: auto;
 
   // the first column is half a step wide to make sure the separators are the same size even on small screens
   grid-template-columns: math.div(stepper.$stepper-indicator-size, 2);
 
   // all other columns are 1 fraction of the available space ase we don't know the number of steps
-  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-columns: minmax(stepper.$stepper-indicator-size, 1fr);
 
   // we use a padding and negative margin on the last step for the same reason we need the first column
   padding-inline-end: math.div(stepper.$stepper-indicator-size, 2);
@@ -263,12 +264,14 @@
       -webkit-line-clamp: initial;
       line-height: 0;
       text-indent: 100%;
+      height: stepper.$stepper-indicator-size;
     }
   }
 
   .stepper-link {
     white-space: nowrap;
     width: 100%;
+    overflow: hidden;
   }
 
   // step indicator
