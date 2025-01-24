@@ -21,7 +21,7 @@ const ICON_V2_TEMPLATE_STYLES = `<style>
     const query = [];
 
     if (i > 0) query.push(`(min-width: ${ICON_V2_SIZES[i]}px)`);
-    if (i < ICON_V2_SIZES.length - 1) query.push(`(max-width: ${ICON_V2_SIZES[i + 1] - 0.01}px)`);
+    if (i < ICON_V2_SIZES.length - 1) query.push(`(max-width: ${ICON_V2_SIZES[i + 1] - 0.02}px)`);
 
     return `@media ${query.join(' and ')} {
       g {
