@@ -113,7 +113,21 @@ export class PostIcon {
         ?.getAttribute('data-post-icon-base') ?? null;
 
     const baseHref = document.getElementsByTagName('base')[0]?.href;
-    const fileBase = `${this.base ?? metaBase ?? baseHref ?? CDN_URL}/`.replace(/\/\/$/, '/');
+    let calculatedBase: string | null;
+
+    // If this.base or metaBase are relative, prefix them with the baseHref if it exists
+    const absolutePathReg = /^(?:[a-z+]+:)?\/\//i;
+    if (baseHref) {
+      if (this.base && !absolutePathReg.test(this.base)) {
+        calculatedBase = baseHref + this.base;
+      } else if (metaBase && !absolutePathReg.test(metaBase)) {
+        calculatedBase = baseHref + metaBase;
+      }
+    } else {
+      calculatedBase = this.base ?? metaBase;
+    }
+
+    const fileBase = `${calculatedBase ?? baseHref ?? CDN_URL}/`.replace(/\/\/$/, '/');
     const fileName = `${this.name}.svg`;
     const filePath = `${fileBase}${fileName}`;
 

@@ -4,7 +4,7 @@ import { Feature } from './introduction.blocks';
 import { packages } from '@/shared/packages.data';
 import './introduction.styles.scss';
 import '@/shared/tile/tile.component';
-import { technologies } from './introduction.data';
+import { technologies, browsers } from './introduction.data';
 
 <Meta of={IntroductionStories} />
 
@@ -103,6 +103,19 @@ import { technologies } from './introduction.data';
       <ti-le href={t.href} key={t.name}>
         <img src={t.img.src} alt={t.img.alt}/>
         <span>{t.name}</span>
+      </ti-le>
+    ))}
+  </div>
+</div>
+
+<div className="mt-56 py-56 text-center">
+  <h2 className="h3 mb-32">Supported browsers</h2>
+
+  <div className="tile-wrapper">
+    {browsers.map(t => (
+      <ti-le title={t.name} key={t.name}>
+        <img src={t.img.src} alt={t.img.alt} />
+        <span>{t.version}</span>
       </ti-le>
     ))}
   </div>
