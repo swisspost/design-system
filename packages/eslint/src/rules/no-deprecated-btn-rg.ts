@@ -17,6 +17,7 @@ export default createRule({
         'The "btn-rg" class is deprecated. Please remove it or replace it with "btn-sm".',
     },
     type: 'suggestion',
+    fixable: 'code',
     schema: [],
   },
   defaultOptions: [],
@@ -29,6 +30,10 @@ export default createRule({
             context.report({
               messageId: 'deprecatedBtnRg',
               loc: node.loc,
+              fix(fixer) {
+                const fixedNode = $node.removeClass('btn-rg').addClass('btn-sm');
+                return fixer.replaceTextRange(node.range, fixedNode.toString());
+              },
             });
           }
         }
