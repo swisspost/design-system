@@ -38,8 +38,8 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
 
     it('should patch aria after button has been inserted', () => {
       cy.document().then(doc => {
-        const btn = doc.createElement('span');
-        btn.setAttribute('data-tooltip-target', 'tooltip-one');
+        const btn = doc.createElement('post-tooltip-trigger');
+        btn.setAttribute('for', 'tooltip-one');
         btn.innerHTML = 'added after the fact';
         btn.id = 'added-later';
         doc.body.appendChild(btn);
