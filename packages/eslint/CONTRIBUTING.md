@@ -65,7 +65,7 @@ _More details about the structure can be found in the [ESLint documentation](htt
 
 The **meta** object also contains additional details about the rule, including its category.
 The category determines which ESLint configuration the rule belongs to.
-Currently, there is only the `template` category, which is used for HTML-related rules and is included in the `plugin:@design-system/template` configuration.
+Currently, there is only the `template` category, which is used for HTML-related rules and is included in the `post/template` configuration.
 However, more categories may be added in the future.
 
 ### Writing Template Rules
