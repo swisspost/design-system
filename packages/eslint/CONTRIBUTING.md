@@ -19,7 +19,7 @@ pnpm eslint:build
 To run the unit tests for the ESLint plugin, use the following command:
 
 ```bash
-pnpm rules:test
+pnpm eslint:test
 ```
 
 ## Writing Custom Rules
