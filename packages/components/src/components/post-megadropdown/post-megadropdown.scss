@@ -59,6 +59,8 @@ post-popovercontainer {
 
 .megadropdown {
   padding: 31px 40px 40px;
+  display: flex;
+  flex-direction: column;
 
   @include media.max(lg) {
     padding: 16px 32px 24px;
@@ -92,6 +94,7 @@ post-popovercontainer {
 
     a {
       text-decoration: none;
+      display: none;
       font-weight: inherit;
       border-bottom: 0;
       border-top: 0;
@@ -207,6 +210,7 @@ post-popovercontainer {
     }
 
     @include media.max(lg) {
+      order: -1;
       display: block;
     }
   }
