@@ -37,7 +37,6 @@ tokens.$default-map: components.$post-button;
   border-radius: tokens.get('button-border-radius-round');
   background-color: transparent;
   box-shadow: none;
-  color: var(--post-gray-80);
   font-family: inherit;
   font-weight: tokens.get('button-label-font-weight');
   text-decoration: none;

@@ -832,7 +832,7 @@ declare global {
         new (): HTMLPostTabPanelElement;
     };
     interface HTMLPostTabsElementEventMap {
-        "postChange": HTMLPostTabPanelElement['name'];
+        "postChange": string;
     }
     interface HTMLPostTabsElement extends Components.PostTabs, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostTabsElementEventMap>(type: K, listener: (this: HTMLPostTabsElement, ev: PostTabsCustomEvent<HTMLPostTabsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1275,7 +1275,7 @@ declare namespace LocalJSX {
         /**
           * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly shown panel.
          */
-        "onPostChange"?: (event: PostTabsCustomEvent<HTMLPostTabPanelElement['name']>) => void;
+        "onPostChange"?: (event: PostTabsCustomEvent<string>) => void;
     }
     interface PostTag {
         /**
