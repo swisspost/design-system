@@ -124,7 +124,7 @@ export class PostHeader {
   }
 
   private keyboardHandler(e: KeyboardEvent) {
-    if (e.key === 'Tab') {
+    if (e.key === 'Tab' && this.mobileMenuExtended) {
       if (e.shiftKey && document.activeElement === this.firstFocusableEl) {
         // If back tab (Tab + Shift) and first element is focused, focus goes to the last element of the megadropdown
         e.preventDefault();
