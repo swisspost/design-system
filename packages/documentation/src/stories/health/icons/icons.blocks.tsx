@@ -1,19 +1,19 @@
 import React from 'react';
 import reportData from '../../../../node_modules/@swisspost/design-system-icons/public/report.json';
 import { IconReport } from './icons-report';
-import exHubData from '../../../../node_modules/@swisspost/design-system-icons/public/expHubReport.json';
-
-interface ExHubIcon {
-  title: string;
-  // Add other properties as needed
-}
-
-interface ExHubData {
-  data: ExHubIcon[];
-}
 
 const report = reportData as IconReport;
-const exHub = exHubData as unknown as ExHubData;
+
+const checkIconCodes = () => {
+  const reportIconCodes = reportData.icons.map(icon => icon.file.basename);
+  const duplicateIcons = reportIconCodes.filter(
+    (title, index, self) => self.indexOf(title) !== index,
+  );
+  const duplicatesCount = duplicateIcons.length;
+  return { duplicateIcons, duplicatesCount };
+};
+
+const { duplicateIcons, duplicatesCount } = checkIconCodes();
 
 export const StatusBlock: React.FC = () => (
   <div className="status">
@@ -30,6 +30,8 @@ export const StatusBlock: React.FC = () => (
     <strong>Wrong ViewBox:</strong> {report.wrongViewBox.length}
     <br />
     <strong>Missing SVG:</strong> {report.noSVG.length}
+    <br />
+    <strong>Duplicates:</strong> {duplicatesCount}
     <br />
     <strong>Last updated:</strong> {new Date(report.created).toString()}
   </div>
@@ -129,31 +131,14 @@ function renderImage(name: string, baseName: string) {
   );
 }
 
-export const DuplicateBlock: React.FC = () => {
+export const DuplicatesBlock: React.FC = () => {
   return (
     <section>
       <h2>Duplicate Icons</h2>
       <p>
-        There are {duplicateIcons.length} duplicate icons: [{duplicateIcons.join(', ')}]
+        There are {duplicatesCount} duplicate icons within the SVG icon set.
+        <div className="icons">{duplicateIcons.map(icon => renderImage(`${icon}.svg`, icon))}</div>
       </p>
     </section>
   );
 };
-
-const checkIconCodes = () => {
-  // Get DS Published Icons
-  const reportIconCodes = reportData.icons.map(icon => icon.file.basename);
-
-  // Extract only titles with numbers (post-icons)
-  const exHubIconCodes = exHub.data.map(icon => icon.title).filter(title => /^\d+$/.test(title));
-
-  // Crosscheck Icons
-  const missingIcons = exHubIconCodes.filter(title => !reportIconCodes.includes(title));
-  const duplicateIcons = reportIconCodes.filter(
-    (title, index, self) => self.indexOf(title) !== index,
-  );
-
-  return { missingIcons, duplicateIcons };
-};
-
-const { missingIcons, duplicateIcons } = checkIconCodes();
