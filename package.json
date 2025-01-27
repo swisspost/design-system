@@ -79,6 +79,7 @@
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only",
     "tokens:build": "pnpm --filter design-system-tokens build",
     "tokens:build:verbose": "pnpm --filter design-system-tokens build:verbose",
+    "tokens:lint": "pnpm --filter design-system-tokens lint",
     "primeng": "pnpm primeng:start",
     "primeng:start": "pnpm --filter design-system-styles-primeng-workspace start",
     "primeng:build": "pnpm --filter design-system-styles-primeng-workspace build",

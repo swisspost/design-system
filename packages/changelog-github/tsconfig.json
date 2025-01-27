@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["es2019"],
+    "lib": ["es2022"],
     "declaration": true,
     "module": "commonjs",
     "moduleResolution": "node",
@@ -11,9 +11,9 @@
     "rootDir": "src",
     "outDir": "dist",
     "strictNullChecks": true,
-    "target": "es6",
+    "target": "es2022",
     "skipLibCheck": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["dist/*/files/**/*"]
+  "include": ["src", "types"],
+  "exclude": ["node_modules", "dist"]
 }
