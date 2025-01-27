@@ -106,12 +106,12 @@ export class PostMegadropdown {
   }
 
   render() {
-    const containerClass =
-      this.animationClass === 'slide-in'
-        ? 'slide-in'
-        : this.animationClass === 'slide-out'
-          ? 'slide-out'
-          : '';
+    let containerClass = '';
+    if (this.animationClass === 'slide-in') {
+      containerClass = 'slide-in';
+    } else if (this.animationClass === 'slide-out') {
+      containerClass = 'slide-out';
+    }
 
     return (
       <Host>
