@@ -154,6 +154,30 @@ export class MigrationV89Component extends LitElement {
                     <li>Icon link: <code>.icon-link</code> and <code>.icon-link-hover</code></li>
                   </ul>
                 </li>
+                <li class="mb-16">
+                  <p>
+                    The following classes have been removed as the new Swiss Post font does not
+                    provide a light font weight (300):
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>.fw-light</code></li>
+                    <li><code>.light</code></li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    Removed the following display SCSS variables:
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>$display1-weight</code></li>
+                    <li><code>$display2-weight</code></li>
+                    <li><code>$display3-weight</code></li>
+                    <li><code>$display4-weight</code></li>
+                    <li><code>$display-line-height</code></li>
+                  </ul>
+                </li>
               </ul>
             </section>
           </li>

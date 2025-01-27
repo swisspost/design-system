@@ -90,7 +90,7 @@ export const Default: Story = {
     const content = args.showSubtitle
       ? html`
           <span class="d-block">${args.title}</span>
-          <span class="fw-light">${args.subtitle}</span>
+          <span class="fw-normal">${args.subtitle}</span>
         `
       : args.title;
 
