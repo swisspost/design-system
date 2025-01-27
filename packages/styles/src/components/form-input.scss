@@ -13,7 +13,7 @@ tokens.$default-map: components.$post-text-input;
 input.form-control {
   display: block;
   width: 100%;
-  font-family: tokens.get('body-font-family', elements.$post-body);
+  font-family: inherit;
   appearance: none; // Fix appearance for date inputs in Safari
   background-clip: padding-box;
   border: tokens.get('input-border-width') tokens.get('input-border-style-default')

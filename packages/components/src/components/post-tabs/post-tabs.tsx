@@ -41,7 +41,7 @@ export class PostTabs {
    * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished.
    * The payload is the name of the newly shown panel.
    */
-  @Event() postChange: EventEmitter<HTMLPostTabPanelElement['name']>;
+  @Event() postChange: EventEmitter<string>;
 
   componentDidLoad() {
     this.moveMisplacedTabs();

@@ -4,7 +4,7 @@ import { formatResponse } from './mapResponse';
 
 describe('mapResponse', () => {
   it('Should map the result object to a meaningful data structure', () => {
-    const mapped = formatResponse(testResult as CenshareResultPage);
+    const mapped = formatResponse(testResult as unknown as CenshareResultPage);
     expect(mapped).toMatchSnapshot();
   });
 });

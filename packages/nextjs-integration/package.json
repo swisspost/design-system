@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-nextjs-integration",
-  "version": "0.1.14-next.10",
+  "version": "0.1.14-next.13",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,23 +9,28 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@swisspost/design-system-components-react": "workspace:9.0.0-next.10",
-    "@swisspost/design-system-styles": "workspace:9.0.0-next.10",
-    "@swisspost/internet-header": "workspace:2.0.0-next.10",
+    "@swisspost/design-system-components-react": "workspace:9.0.0-next.13",
+    "@swisspost/design-system-styles": "workspace:9.0.0-next.13",
+    "@swisspost/internet-header": "workspace:2.0.0-next.13",
     "next": "15.1.4",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
   "devDependencies": {
+    "@eslint/js": "9.18.0",
+    "@next/eslint-plugin-next": "15.1.5",
     "@types/node": "22.10.5",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.5",
     "autoprefixer": "10.4.20",
-    "eslint": "8.57.1",
-    "eslint-config-next": "14.2.23",
+    "eslint": "9.18.0",
+    "eslint-plugin-react": "7.37.4",
+    "eslint-plugin-react-hooks": "5.1.0",
+    "globals": "15.14.0",
     "postcss": "8.4.49",
     "sass": "1.78.0",
     "tailwindcss": "3.4.17",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "typescript-eslint": "8.20.0"
   }
 }
