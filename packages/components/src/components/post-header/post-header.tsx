@@ -14,7 +14,8 @@ import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
 import { slideDown, slideUp } from '@/animations/slide';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
-import { DEVICE_SIZE } from './device-size';
+
+export type DEVICE_SIZE = 'mobile' | 'tablet' | 'desktop' | null;
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.

@@ -1,6 +1,6 @@
-import { DEVICE_SIZE } from '../post-header/device-size';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
+import { DEVICE_SIZE } from '../post-header/post-header';
 
 @Component({
   tag: 'post-megadropdown',
@@ -95,7 +95,7 @@ export class PostMegadropdown {
     if (this.header) {
       this.header.addEventListener(
         'postUpdateDevice',
-        (event: CustomEvent<DEVICE_SIZE>) => (this.device = event.detail),
+        (event: CustomEvent<DeviceSize>) => (this.device = event.detail),
       );
     }
   }

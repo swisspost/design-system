@@ -7,9 +7,9 @@
 
 ## Events
 
-| Event              | Description                                  | Type               |
-| ------------------ | -------------------------------------------- | ------------------ |
-| `postUpdateDevice` | An event emitted when the device has changed | `CustomEvent<any>` |
+| Event              | Description                                  | Type                  |
+| ------------------ | -------------------------------------------- | --------------------- |
+| `postUpdateDevice` | An event emitted when the device has changed | `CustomEvent<string>` |
 
 
 ## Methods
