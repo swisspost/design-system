@@ -44,7 +44,7 @@ export class PostMegadropdownTrigger {
 
   private handleToggle() {
     if (this.megadropdown) {
-      this.megadropdown.toggle(this.host);
+      this.megadropdown.toggle();
     } else {
       console.warn(`No post-megadropdown found with ID: ${this.for}`);
     }
