@@ -58,8 +58,6 @@ export const config: Config = {
     reactOutputTarget({
       outDir: '../components-react/src/components/stencil-generated',
       stencilPackageName: '@swisspost/design-system-components',
-      // proxiesFile: '../components-react/src/components/stencil-generated/index.ts',
-      // includeDefineCustomElements: true,
     }),
     angularOutputTarget({
       componentCorePackage: '@swisspost/design-system-components',
