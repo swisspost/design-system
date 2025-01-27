@@ -3,7 +3,7 @@
 @use '@swisspost/design-system-styles/mixins/button' as button-mx;
 @use '@swisspost/design-system-styles/mixins/icons' as icons;
 @use '@swisspost/design-system-styles/mixins/utilities';
-@use '@swisspost/design-system-styles/mixins/elevation' as elevation-mx;
+@use '@swisspost/design-system-styles/variables/elevation';
 
 tokens.$default-map: components.$post-floating-button;
 
@@ -16,7 +16,7 @@ tokens.$default-map: components.$post-floating-button;
   .back-to-top {
     @include button-mx.reset-button;
     @include utilities.focus-style;
-    @include elevation-mx.elevation('elevation-3');
+    box-shadow: elevation.$elevation-3;
     cursor: pointer;
     border-radius: tokens.get('post-floating-button-border-radius-round');
     width: tokens.get('post-floating-button-size-outer');

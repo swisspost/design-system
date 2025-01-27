@@ -4,6 +4,8 @@
 
 @use '../variables/sizing' as *;
 @use '../variables/commons';
+@use '../variables/elevation';
+
 /*
   Utilities are generated with our utility API using bellow $utilities map.
 
@@ -451,6 +453,17 @@ $utilities: (
       normal: 400,
     ),
     class: fw,
+  ),
+  'elevation': (
+    property: box-shadow,
+    values: (
+      1: elevation.$elevation-1,
+      2: elevation.$elevation-2,
+      3: elevation.$elevation-3,
+      4: elevation.$elevation-4,
+      5: elevation.$elevation-5,
+    ),
+    class: elevation,
   ),
 );
 

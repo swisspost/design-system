@@ -1,11 +1,15 @@
 @use 'sass:map';
+@use './../tokens/utilities';
+@use './../functions/tokens';
+
+tokens.$default-map: utilities.$post-elevation;
 
 $elevation-none: none;
-$elevation-1: var(--post-core-elevation-1);
-$elevation-2: var(--post-core-elevation-2);
-$elevation-3: var(--post-core-elevation-3);
-$elevation-4: var(--post-core-elevation-4);
-$elevation-5: var(--post-core-elevation-5);
+$elevation-1: tokens.get('utility-elevation-100');
+$elevation-2: tokens.get('utility-elevation-200');
+$elevation-3: tokens.get('utility-elevation-300');
+$elevation-4: tokens.get('utility-elevation-400');
+$elevation-5: tokens.get('utility-elevation-500');
 
 $elevation-map: () !default;
 $elevation-map: map.merge(
