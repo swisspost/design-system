@@ -7,7 +7,6 @@ import buildSVGs from './utilities/buildSVGs';
 import { url } from './utilities/environment';
 import path from 'path';
 import packageJSON from '../package.json';
-import { downloadExpHubIcons } from './utilities/fetchExpHubIcons';
 
 import { SOURCE_PATH, OUTPUT_PATH } from './constants';
 
@@ -38,9 +37,6 @@ const jsonReport: IJSONReport = {
 export const fetchAndBuildSVGs = async () => {
   setup();
 
-  //Get Icons form Experience Hub
-  await downloadExpHubIcons();
-  return;
   let i = 0;
 
   await fetchSVGs();
