@@ -110,7 +110,7 @@ export const NoSVGBlock: React.FC = () => {
 
 function renderImage(name: string, baseName: string) {
   return (
-    <div key={name} className="icon">
+    <div key={name} className="icon" title={`${baseName}`}>
       <img
         loading="lazy"
         src={`/post-icons/${name}`}
