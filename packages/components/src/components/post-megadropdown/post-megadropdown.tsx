@@ -1,4 +1,13 @@
-import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  State,
+} from '@stencil/core';
 
 @Component({
   tag: 'post-megadropdown',
@@ -101,9 +110,9 @@ export class PostMegadropdown {
       this.animationClass === 'slide-in'
         ? 'slide-in'
         : this.animationClass === 'slide-out'
-        ? 'slide-out'
-        : '';
-  
+          ? 'slide-out'
+          : '';
+
     return (
       <Host>
         <post-popovercontainer
