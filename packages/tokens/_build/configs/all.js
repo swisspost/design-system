@@ -19,7 +19,7 @@ registerConfigMethod((tokenSets, { sourcePath, buildPath }) => {
       include: [`${sourcePath}_temp/source/**/*.json`],
       platforms: {
         scss: {
-          transforms: ['name/kebab'],
+          transforms: ['name/kebab', 'swisspost/scss-no-unitless-zero-values'],
           buildPath,
           expand: {
             include: ['typography'],
