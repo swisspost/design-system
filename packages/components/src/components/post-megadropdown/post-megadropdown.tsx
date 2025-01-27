@@ -58,8 +58,10 @@ export class PostMegadropdown {
   @Method()
   async show(target: HTMLElement) {
     if (this.popoverRef) {
-      await this.popoverRef.show(target);
       this.animationClass = 'slide-in';
+      await this.popoverRef.show(target);
+      this.isVisible = true;
+      this.postToggleMegadropdown.emit(true);
     } else {
       console.error('show: popoverRef is null or undefined');
     }
@@ -71,13 +73,15 @@ export class PostMegadropdown {
   private hide() {
     if (this.popoverRef) {
       this.popoverRef.hide();
+      this.isVisible = false;
+      this.postToggleMegadropdown.emit(false);
     } else {
       console.error('hide: popoverRef is null or undefined');
     }
   }
 
   private handleBackButtonClick() {
-    this.popoverRef.hide();
+    this.animationClass = 'slide-out';
   }
 
   private handleCloseButtonClick() {
@@ -124,4 +128,4 @@ export class PostMegadropdown {
       </Host>
     );
   }
-}  
+}
