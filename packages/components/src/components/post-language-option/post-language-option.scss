@@ -24,11 +24,8 @@ post-language-option {
     @include utilities-mx.focus-style;
   }
 
-  &:has([aria-current='true']),
-  &:has([aria-current='page']) {
-    :where([variant='menu']) & {
-      display: none;
-    }
+  &:has([aria-current]):not([aria-current='false']) {
+    display: none;
   }
 }
 
