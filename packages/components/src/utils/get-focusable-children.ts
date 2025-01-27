@@ -22,9 +22,17 @@ const focusDisablingSelector = `:where(${[
   'details:not([open]) > *:not(details > summary:first-of-type)',
   'details:not([open]) > *:not(details > summary:first-of-type) *',
   '[tabindex^="-"]',
-  '[role=menuitem]:has([aria-current="true"]) *',
 ].join(',')})`;
 
 export const getFocusableChildren = (element: Element): NodeListOf<HTMLElement> => {
-  return element.querySelectorAll(`& > ${focusableSelector}:not(${focusDisablingSelector})`);
+  const children = element.querySelectorAll(
+    `& > ${focusableSelector}:not(${focusDisablingSelector})`,
+  );
+  const fragment = document.createDocumentFragment();
+  children.forEach(child => {
+    if (window.getComputedStyle(child).display == 'none') {
+      fragment.appendChild(child);
+    }
+  });
+  return fragment.childNodes as NodeListOf<HTMLElement>;
 };
