@@ -195,7 +195,7 @@ export class PostMenu {
         // For each menu item, get any focusable children (e.g., buttons, links)
         .flatMap(el => Array.from(getFocusableChildren(el)))
         // Filter elements whose parent is hidden
-        .filter(el => window.getComputedStyle(el.parentElement!).display !== 'none')
+        .filter(el => window.getComputedStyle(el.parentElement).display !== 'none')
     );
   }
 
