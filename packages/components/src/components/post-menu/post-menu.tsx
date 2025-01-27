@@ -192,8 +192,10 @@ export class PostMenu {
         .flatMap(el => (el instanceof HTMLSlotElement ? el.assignedElements() : el))
         // Filter out elements that have a 'menuitem' role
         .filter(el => el.getAttribute('role') === 'menuitem')
+
         // For each menu item, get any focusable children (e.g., buttons, links)
         .flatMap(el => Array.from(getFocusableChildren(el)))
+        .filter(el => window.getComputedStyle(el.parentElement!).display !== 'none')
     );
   }
 
