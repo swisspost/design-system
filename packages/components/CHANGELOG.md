@@ -1,5 +1,15 @@
 # @swisspost/design-system-components
 
+## 8.8.1
+
+### Patch Changes
+
+- Added shadow to an optional tooltip arrow for `post-popover` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4506](https://github.com/swisspost/design-system/pull/4506))
+
+- Made `post-icon` component use base tag href to define location of icons folder. (by [@leagrdv](https://github.com/leagrdv) with [#4492](https://github.com/swisspost/design-system/pull/4492))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.8.1
+
 ## 8.8.0
 
 ### Patch Changes
