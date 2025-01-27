@@ -102,6 +102,7 @@ slot[name='post-logo'] {
   min-height: var(--main-header-min-height);
   justify-content: space-between;
   background: var(--post-core-color-brand-white);
+  transition: box-shadow 0.2s ease-in-out; 
 
   @include media.min(lg) {
     padding: var(--post-core-dimension-18) var(--post-core-dimension-16)
@@ -118,6 +119,10 @@ slot[name='post-logo'] {
 
     &.title-header-mobile-extended {
       border-bottom: 1px solid var(--post-core-color-sandgrey-012);
+    }
+
+    &.title-header-shadow {
+      box-shadow: var(--post-core-elevation-3);
     }
   }
 }
@@ -162,9 +167,6 @@ slot[name='post-logo'] {
     position: fixed;
     inset-inline: 0;
     inset-block-end: calc(100vh - var(--header-height));
-    box-shadow: var(--post-core-elevation-3);
-    min-height: var(--post-core-dimension-10); // needed for the box-shadow to always show
-    max-height: calc(100vh - var(--header-height));
     overflow: auto;
   }
 

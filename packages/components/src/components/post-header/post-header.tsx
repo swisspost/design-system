@@ -164,7 +164,10 @@ export class PostHeader {
           </div>
         </div>
         <div
-          class={'title-header ' + (this.mobileMenuExtended ? 'title-header-mobile-extended' : '')}
+          class={
+            'title-header ' +
+            (this.mobileMenuExtended ? 'title-header-mobile-extended' : 'title-header-shadow')
+          }
         >
           <slot name="title"></slot>
           <div class="global-sub">
