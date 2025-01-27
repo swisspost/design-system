@@ -77,7 +77,7 @@ export class PostMegadropdown {
   }
 
   private handleBackButtonClick() {
-    this.animationClass = 'slide-out';
+    this.popoverRef.hide();
   }
 
   private handleCloseButtonClick() {
@@ -93,15 +93,22 @@ export class PostMegadropdown {
   }
 
   render() {
+    const containerClass =
+      this.animationClass === 'slide-in'
+        ? 'slide-in'
+        : this.animationClass === 'slide-out'
+        ? 'slide-out'
+        : '';
+  
     return (
       <Host>
         <post-popovercontainer
-          class={this.animationClass}
+          class={containerClass}
           placement="bottom"
           edge-gap="0"
-          ref={el => (this.popoverRef = el)}
+          ref={(el) => (this.popoverRef = el)}
         >
-          <div class="megadropdown" onFocusout={e => this.handleFocusout(e)}>
+          <div class="megadropdown" onFocusout={(e) => this.handleFocusout(e)}>
             <div onClick={() => this.handleBackButtonClick()} class="back-button">
               <slot name="back-button"></slot>
             </div>
@@ -117,4 +124,4 @@ export class PostMegadropdown {
       </Host>
     );
   }
-}
+}  
