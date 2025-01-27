@@ -95,7 +95,7 @@ export class PostMegadropdown {
     if (this.header) {
       this.header.addEventListener(
         'postUpdateDevice',
-        (event: CustomEvent<DeviceSize>) => (this.device = event.detail),
+        (event: CustomEvent<DEVICE_SIZE>) => (this.device = event.detail),
       );
     }
   }
