@@ -24,7 +24,7 @@ StyleDictionary.registerFileHeader({
  *
  * swisspost/scss-no-unitless-zero-values:
  * Used to keep pixel unit for zero values.
- * This is necessary so such values still can be used within a css `calc()` function:
+ * This is necessary, so these values can also be used within a css `calc()` function:
  * > Note: Because <number-token>s are always interpreted as <number>s or <integer>s, "unitless 0" <length>s aren’t supported in calc(). That is, width: calc(0 + 5px); is invalid, even though both width: 0; and width: 5px; are valid.
  * > Source: https://drafts.csswg.org/css-values-3/#calc-type-checking
  */
