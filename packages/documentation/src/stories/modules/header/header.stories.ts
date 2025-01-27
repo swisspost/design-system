@@ -83,16 +83,16 @@ export const Default: Story = {
 
       <!-- Language switch -->
       <post-language-switch
-        caption="Caption"
-        description="Description"
+        caption="Change the language"
+        description="The currently selected language is English."
         variant="list"
         name="language-switch-example"
         slot="post-language-switch"
       >
-        <post-language-option active="true" code="de" name="Deutsch">DE</post-language-option>
+        <post-language-option active="false" code="de" name="Deutsch">DE</post-language-option>
         <post-language-option active="false" code="fr" name="French">FR</post-language-option>
         <post-language-option active="false" code="it" name="Italiano">IT</post-language-option>
-        <post-language-option active="false" code="en" name="English">EN</post-language-option>
+        <post-language-option active="true" code="en" name="English">EN</post-language-option>
       </post-language-switch>
 
       ${args.title
