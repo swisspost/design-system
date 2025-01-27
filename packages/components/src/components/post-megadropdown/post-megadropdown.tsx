@@ -1,4 +1,6 @@
+import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
+import { DEVICE_SIZE } from '../post-header/post-header';
 
 @Component({
   tag: 'post-megadropdown',
@@ -7,6 +9,12 @@ import { Component, Element, Event, EventEmitter, h, Host, Method, State } from 
 })
 export class PostMegadropdown {
   private popoverRef: HTMLPostPopovercontainerElement;
+  private header: HTMLPostHeaderElement | null;
+
+  private firstFocusableEl: HTMLElement | null;
+  private lastFocusableEl: HTMLElement | null;
+
+  @State() device: DEVICE_SIZE;
 
   @Element() host: HTMLPostMegadropdownElement;
 
@@ -38,6 +46,10 @@ export class PostMegadropdown {
     });
   }
 
+  componentWillRender() {
+    this.getFocusableElements();
+  }
+
   /**
    * Toggles the dropdown visibility based on its current state.
    */
@@ -60,6 +72,7 @@ export class PostMegadropdown {
     if (this.popoverRef) {
       await this.popoverRef.show(target);
       this.animationClass = 'slide-in';
+      this.host.addEventListener('keydown', e => this.keyboardHandler(e));
     } else {
       console.error('show: popoverRef is null or undefined');
     }
@@ -70,9 +83,20 @@ export class PostMegadropdown {
    */
   private hide() {
     if (this.popoverRef) {
+      this.host.removeEventListener('keydown', e => this.keyboardHandler(e));
       this.popoverRef.hide();
     } else {
       console.error('hide: popoverRef is null or undefined');
+    }
+  }
+
+  connectedCallback() {
+    this.header = this.host.closest('post-header');
+    if (this.header) {
+      this.header.addEventListener(
+        'postUpdateDevice',
+        (event: CustomEvent<DEVICE_SIZE>) => (this.device = event.detail),
+      );
     }
   }
 
@@ -92,11 +116,35 @@ export class PostMegadropdown {
     }
   }
 
+  private getFocusableElements() {
+    const focusableEls = Array.from(this.host.querySelectorAll('post-list-item, h3, .back-button'));
+    const focusableChildren = focusableEls.flatMap(el => Array.from(getFocusableChildren(el)));
+
+    this.firstFocusableEl = focusableChildren[0];
+    this.lastFocusableEl = focusableChildren[focusableChildren.length - 1];
+  }
+
+  // Loop through the focusable children
+  private keyboardHandler(e: KeyboardEvent) {
+    if (e.key === 'Tab' && this.device !== 'desktop') {
+      if (e.shiftKey && document.activeElement === this.firstFocusableEl) {
+        // If back tab (TAB + Shift) and first element is focused, focus goes to the last element of the megadropdown
+        e.preventDefault();
+        this.lastFocusableEl.focus();
+      } else if (!e.shiftKey && document.activeElement === this.lastFocusableEl) {
+        // If TAB and last element is focused, focus goes back to the first element of the megadropdown
+        e.preventDefault();
+        this.firstFocusableEl.focus();
+      }
+    }
+  }
+
   render() {
     return (
       <Host>
         <post-popovercontainer
           class={this.animationClass}
+          manualClose={this.device !== 'desktop'}
           placement="bottom"
           edge-gap="0"
           ref={el => (this.popoverRef = el)}

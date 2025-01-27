@@ -35,13 +35,15 @@ post-popovercontainer {
   box-shadow: 0 8px 6px rgba(0, 0, 0, 16%);
 
   @include media.max(lg) {
-    position: absolute;
+    position: fixed;
     top: var(--header-height) !important;
     bottom: 0;
     left: 0;
     width: 100%;
     height: auto;
+    max-height: calc(100vh - var(--header-height));
     border-top: unset;
+    overflow: auto;
 
     &.slide-in {
       animation: slide-in;
