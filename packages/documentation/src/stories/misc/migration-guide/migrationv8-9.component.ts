@@ -156,6 +156,18 @@ export class MigrationV89Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    The following Bootstrap utility classes have been removed:
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li>
+                      Shadows: <code>.shadow-none</code>, <code>.shadow-sm</code>,
+                      <code>.shadow</code> and <code>.shadow-lg</code>
+                    </li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
                     The following elevation utility classes have been renamed:
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
