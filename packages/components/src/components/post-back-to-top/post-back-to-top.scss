@@ -16,7 +16,7 @@ tokens.$default-map: components.$post-floating-button;
   .back-to-top {
     @include button-mx.reset-button;
     @include utilities.focus-style;
-    box-shadow: elevation.$elevation-3;
+    box-shadow: elevation.$elevation-300;
     cursor: pointer;
     border-radius: tokens.get('post-floating-button-border-radius-round');
     width: tokens.get('post-floating-button-size-outer');

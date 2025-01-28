@@ -154,6 +154,19 @@ export class MigrationV89Component extends LitElement {
                     <li>Icon link: <code>.icon-link</code> and <code>.icon-link-hover</code></li>
                   </ul>
                 </li>
+                <li class="mb-16">
+                  <p>
+                    The following elevation utility classes have been renamed:
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>.elevation-1</code> is now <code>.elevation-100</code></li>
+                    <li><code>.elevation-2</code> is now <code>.elevation-200</code></li>
+                    <li><code>.elevation-3</code> is now <code>.elevation-300</code></li>
+                    <li><code>.elevation-4</code> is now <code>.elevation-400</code></li>
+                    <li><code>.elevation-5</code> is now <code>.elevation-500</code></li>
+                  </ul>
+                </li>
               </ul>
             </section>
           </li>

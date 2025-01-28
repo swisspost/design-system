@@ -20,7 +20,7 @@
 }
 
 :where(post-popovercontainer) {
-  box-shadow: elevation.$elevation-3;
+  box-shadow: elevation.$elevation-300;
   background: var(--post-current-palette-bg);
   color: var(--post-current-palette-fg);
   position: fixed;
@@ -41,7 +41,7 @@
   overflow: visible;
 
   &:not(:has(.arrow)) {
-    box-shadow: elevation.$elevation-3;
+    box-shadow: elevation.$elevation-300;
   }
 
   &:has(.arrow) {

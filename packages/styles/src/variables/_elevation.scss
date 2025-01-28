@@ -5,21 +5,21 @@
 tokens.$default-map: utilities.$post-elevation;
 
 $elevation-none: none;
-$elevation-1: tokens.get('utility-elevation-1');
-$elevation-2: tokens.get('utility-elevation-2');
-$elevation-3: tokens.get('utility-elevation-3');
-$elevation-4: tokens.get('utility-elevation-4');
-$elevation-5: tokens.get('utility-elevation-5');
+$elevation-100: tokens.get('utility-elevation-100');
+$elevation-200: tokens.get('utility-elevation-200');
+$elevation-300: tokens.get('utility-elevation-300');
+$elevation-400: tokens.get('utility-elevation-400');
+$elevation-500: tokens.get('utility-elevation-500');
 
 $elevation-map: () !default;
 $elevation-map: map.merge(
   $elevation-map,
   (
     'elevation-none': $elevation-none,
-    'elevation-1': $elevation-1,
-    'elevation-2': $elevation-2,
-    'elevation-3': $elevation-3,
-    'elevation-4': $elevation-4,
-    'elevation-5': $elevation-5,
+    'elevation-100': $elevation-100,
+    'elevation-200': $elevation-200,
+    'elevation-300': $elevation-300,
+    'elevation-400': $elevation-400,
+    'elevation-500': $elevation-500,
   )
 );
