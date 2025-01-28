@@ -4,7 +4,7 @@ import { IconReport } from './icons-report';
 
 const report = reportData as IconReport;
 
-const checkIconCodes = () => {
+const checkIconCodesDuplicates = () => {
   const reportIconCodes = reportData.icons.map(icon => icon.file.basename);
   const duplicateIcons = reportIconCodes.filter(
     (title, index, self) => self.indexOf(title) !== index,
@@ -13,7 +13,7 @@ const checkIconCodes = () => {
   return { duplicateIcons, duplicatesCount };
 };
 
-const { duplicateIcons, duplicatesCount } = checkIconCodes();
+const { duplicateIcons, duplicatesCount } = checkIconCodesDuplicates();
 
 export const StatusBlock: React.FC = () => (
   <div className="status">
@@ -135,10 +135,8 @@ export const DuplicatesBlock: React.FC = () => {
   return (
     <section>
       <h2>Duplicate Icons</h2>
-      <p>
-        There are {duplicatesCount} duplicate icons within the SVG icon set.
-        <div className="icons">{duplicateIcons.map(icon => renderImage(`${icon}.svg`, icon))}</div>
-      </p>
+      <p>There are {duplicatesCount} duplicate icons within the SVG icon set.</p>
+      <div className="icons">{duplicateIcons.map(icon => renderImage(`${icon}.svg`, icon))}</div>
     </section>
   );
 };
