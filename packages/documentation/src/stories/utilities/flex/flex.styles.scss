@@ -8,7 +8,7 @@ tokens.$default-map: utilities.$post-spacing;
 .flex-doc-container__demo {
   > * > * {
     border-radius: post.$border-radius;
-    box-shadow: post.$elevation-1;
+    box-shadow: post.$elevation-100;
   }
 }
 

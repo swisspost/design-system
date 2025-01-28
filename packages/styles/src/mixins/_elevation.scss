@@ -1,6 +1,0 @@
-@use 'sass:map';
-@use '../variables/elevation';
-
-@mixin elevation($level) {
-  box-shadow: map.get(elevation.$elevation-map, $level);
-}

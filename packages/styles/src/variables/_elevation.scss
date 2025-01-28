@@ -1,31 +1,25 @@
 @use 'sass:map';
+@use './../tokens/utilities';
+@use './../functions/tokens';
 
-// Values are kept in PX for easier copy-ability from figma and better overview
-// rems would provide little value added
-$elevation-1:
-  0.25px 1px 1px rgba(0, 0, 0, 0.1),
-  1px 2px 2.5px 1px rgba(0, 0, 0, 0.1);
-$elevation-2:
-  0.25px 1.5px 2px rgba(0, 0, 0, 0.1),
-  2px 2px 5px 2px rgba(0, 0, 0, 0.11);
-$elevation-3:
-  0.5px 3px 4px rgba(0, 0, 0, 0.1),
-  2px 4px 10px 4px rgba(0, 0, 0, 0.12);
-$elevation-4:
-  0.75px 4.5px 6px rgba(0, 0, 0, 0.1),
-  2px 6px 15px 6px rgba(0, 0, 0, 0.13);
-$elevation-5:
-  1px 6px 8px rgba(0, 0, 0, 0.1),
-  2px 8px 20px 8px rgba(0, 0, 0, 0.14);
+tokens.$default-map: utilities.$post-elevation;
+
+$elevation-none: none;
+$elevation-100: tokens.get('utility-elevation-100');
+$elevation-200: tokens.get('utility-elevation-200');
+$elevation-300: tokens.get('utility-elevation-300');
+$elevation-400: tokens.get('utility-elevation-400');
+$elevation-500: tokens.get('utility-elevation-500');
 
 $elevation-map: () !default;
 $elevation-map: map.merge(
   $elevation-map,
   (
-    'elevation-1': $elevation-1,
-    'elevation-2': $elevation-2,
-    'elevation-3': $elevation-3,
-    'elevation-4': $elevation-4,
-    'elevation-5': $elevation-5,
+    'elevation-none': $elevation-none,
+    'elevation-100': $elevation-100,
+    'elevation-200': $elevation-200,
+    'elevation-300': $elevation-300,
+    'elevation-400': $elevation-400,
+    'elevation-500': $elevation-500,
   )
 );
