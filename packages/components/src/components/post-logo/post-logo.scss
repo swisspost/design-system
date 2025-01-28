@@ -1,5 +1,7 @@
 @use '@swisspost/design-system-styles/variables/color';
 @use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/tokens/helpers';
+@use '@swisspost/design-system-styles/functions/tokens';
 
 :host,
 .logo {
@@ -13,4 +15,14 @@
 
 .description {
   @include utilities.visuallyhidden;
+}
+
+.logo-link {
+  @include utilities.focus-style;
+}
+
+.logo-link :focus,
+:focus-visible
+{
+  border-radius: 2px;
 }

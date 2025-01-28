@@ -24,6 +24,6 @@ const focusDisablingSelector = `:where(${[
   '[tabindex^="-"]',
 ].join(',')})`;
 
-export const getFocusableChildren = (element: Element): NodeListOf<HTMLElement> => {
+export function getFocusableChildren(element: Element): NodeListOf<HTMLElement> {
   return element.querySelectorAll(`& > ${focusableSelector}:not(${focusDisablingSelector})`);
-};
+}

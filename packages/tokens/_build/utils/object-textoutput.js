@@ -18,7 +18,7 @@ export default function textoutput(
     } else {
       try {
         val = JSON.parse(value);
-      } catch (_) {
+      } catch {
         val = `'${value}'`;
       }
     }
