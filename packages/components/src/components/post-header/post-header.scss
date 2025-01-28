@@ -121,7 +121,7 @@ slot[name='post-logo'] {
       border-bottom: 1px solid var(--post-core-color-sandgrey-012);
     }
 
-    &.title-header-shadow {
+    &:not(.title-header-mobile-extended) {
       box-shadow: var(--post-core-elevation-3);
     }
   }
