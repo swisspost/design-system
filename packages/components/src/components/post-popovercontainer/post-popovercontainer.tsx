@@ -65,9 +65,13 @@ export class PostPopovercontainer {
   /**
    * Enables a safespace through which the cursor can be moved without the popover being disabled
    */
-  @Prop() readonly safeSpace?: 'triangle' | 'trapezoid';
+  @Prop({ reflect: true }) readonly safeSpace?: 'triangle' | 'trapezoid';
 
-  // New method for safe space
+  /**
+   * Updates cursor position for safe space feature when popover is open.
+   * Sets CSS custom properties for dynamic styling of safe area.
+   * @param event MouseEvent with cursor position
+   */
   private mouseTrackingHandler = (event: MouseEvent) => {
     if (!this.safeSpace || !this.host.matches(':where(:popover-open, .popover-open)')) return;
 
@@ -78,14 +82,12 @@ export class PostPopovercontainer {
   componentDidLoad() {
     this.host.setAttribute('popover', '');
     this.host.addEventListener('beforetoggle', this.handleToggle.bind(this));
-    window.addEventListener('mousemove', this.mouseTrackingHandler);
   }
 
   disconnectedCallback() {
     if (typeof this.clearAutoUpdate === 'function') {
       this.clearAutoUpdate();
     }
-    window.removeEventListener('mousemove', this.mouseTrackingHandler);
   }
 
   /**
@@ -139,8 +141,10 @@ export class PostPopovercontainer {
     this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
     const isOpen = e.newState === 'open';
     if (isOpen) {
+      window.addEventListener('mousemove', this.mouseTrackingHandler);
       this.startAutoupdates();
     } else {
+      window.removeEventListener('mousemove', this.mouseTrackingHandler);
       if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
     }
     this.postToggle.emit(isOpen);
@@ -305,7 +309,7 @@ export class PostPopovercontainer {
 
   render() {
     return (
-      <Host data-version={version} data-safe-space={this.safeSpace}>
+      <Host data-version={version}>
         {this.arrow && (
           <span
             class="arrow"
