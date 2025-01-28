@@ -16,7 +16,7 @@ export const TextUtilityAPI = (props: {
         <>
           <dt className="col-3">Class:</dt>
           <dd className="col-9">
-            <span className="fs-tiny text-danger">{`.${props.cssPrefix}-{value}`}</span>
+            <span className="fs-tiny">{`.${props.cssPrefix}-{value}`}</span>
           </dd>
         </>
       )}
@@ -24,7 +24,7 @@ export const TextUtilityAPI = (props: {
         <>
           <dt className="col-3">Variable:</dt>
           <dd className="col-9">
-            <span className="fs-tiny text-danger">{`$${props.scssPrefix}-{value}`}</span>
+            <span className="fs-tiny">{`$${props.scssPrefix}-{value}`}</span>
           </dd>
         </>
       )}

@@ -104,7 +104,7 @@ const meta: MetaComponent = {
     multipleSize: {
       name: 'Multiple Size',
       description:
-        'When set to a number larger than 0, will set the number of display option rows.<div className="text-danger">Note: not all browser will respect this setting.</div>',
+        'When set to a number larger than 0, will set the number of display option rows.<div>Note: not all browser will respect this setting.</div>',
       if: {
         arg: 'multiple',
       },
