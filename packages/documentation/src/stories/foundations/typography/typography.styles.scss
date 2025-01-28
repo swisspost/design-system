@@ -21,7 +21,7 @@ tokens.$default-map: utilities.$post-spacing;
 
   .sb-fontface__typo {
     font-size: post.$font-size-huge;
-    color: var(--post-gray-60);
+    color: post.$gray-60;
     line-height: 1;
   }
 
@@ -38,10 +38,10 @@ tokens.$default-map: utilities.$post-spacing;
     .settings__weight,
     .settings__style {
       font-size: post.$font-size-tiny;
-      color: var(--post-gray-80);
+      color: post.$gray-80;
 
       > span {
-        color: var(--post-gray-60);
+        color: post.$gray-60;
       }
     }
   }

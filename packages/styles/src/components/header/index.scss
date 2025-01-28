@@ -4,7 +4,7 @@
 @use 'mixins' as *;
 
 post-header {
-  ul[slot="meta-navigation"] {
+  ul[slot='meta-navigation'] {
     gap: var(--post-core-dimension-4);
 
     @include media.max(lg) {
@@ -19,6 +19,13 @@ post-header {
         @include utilities.focus-style-custom {
           border-radius: var(--post-core-dimension-4);
         }
+      }
+    }
+
+    @include media.max(sm) {
+      a,
+      button {
+        font-size: var(--post-core-font-size-14);
       }
     }
   }
