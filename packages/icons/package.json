@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-icons",
-  "version": "9.0.0-next.12",
+  "version": "9.0.0-next.13",
   "description": "A collection of Swiss Post icons intended for use with the Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -23,13 +23,14 @@
   "scripts": {
     "dev": "pnpm build && http-server ./public -o -a localhost -p 9330",
     "start": "nodemon",
-    "build": "ts-node src/build.ts",
+    "build": "pnpm clean && ts-node src/build.ts",
     "fetchSVGs": "ts-node src/index.ts",
     "createUIReport": "ts-node src/build.ts createUIReport",
     "unit": "jest",
     "unit:watch": "jest --watch",
     "unit:updatesnapshots": "jest -u",
-    "lint": "eslint"
+    "lint": "eslint",
+    "clean": "rimraf public/post-icons public/report.json"
   },
   "devDependencies": {
     "@eslint/js": "9.18.0",
@@ -51,6 +52,7 @@
     "node-fetch": "2.7.0",
     "node-html-parser": "7.0.1",
     "nodemon": "3.1.7",
+    "rimraf": "6.0.1",
     "svgo": "3.3.2",
     "ts-jest": "29.2.5",
     "ts-node": "10.9.2",
