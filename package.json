@@ -77,6 +77,8 @@
     "nextjs:lint": "pnpm --filter design-system-nextjs-integration lint",
     "primeng": "pnpm primeng:start",
     "primeng:start": "pnpm --filter design-system-styles-primeng-workspace start",
+    "primeng:start:lib": "pnpm --filter design-system-styles-primeng-workspace start:lib",
+    "primeng:start:app": "pnpm --filter design-system-styles-primeng-workspace start:app",
     "primeng:build": "pnpm --filter design-system-styles-primeng-workspace build",
     "primeng:lint": "pnpm --filter design-system-styles-primeng-workspace lint",
     "primeng:lint:fix": "pnpm --filter design-system-styles-primeng-workspace lint:fix",
