@@ -21,6 +21,7 @@
     "lint": "pnpm -r lint",
     "lint:fix": "pnpm -r lint:fix",
     "snapshots": "start-server-and-test 'pnpm docs:headless' 9001 'pnpm --filter design-system-documentation snapshots'",
+    "help": "pnpm run",
     "docs:start": "pnpm --filter design-system-tokens build && pnpm --filter design-system-documentation... --parallel --stream start",
     "docs:headless": "pnpm --filter design-system-documentation start:headless",
     "docs:build": "pnpm --filter design-system-documentation build",
