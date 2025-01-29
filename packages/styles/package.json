@@ -18,14 +18,14 @@
     "linkDirectory": true
   },
   "scripts": {
-    "start": "gulp watch",
     "play": "vite --open",
+    "start": "gulp watch",
     "build": "pnpm clean && gulp build",
-    "unit": "gulp sass:tests",
     "clean": "rimraf out-tsc dist src/tokens/temp",
-    "format": "prettier src/**/*.scss --write",
+    "unit": "gulp sass:tests",
     "lint": "stylelint src/**/*.scss !src/tokens/temp/**",
-    "lint:fix": "stylelint src/**/*.scss !src/tokens/temp/** --fix"
+    "lint:fix": "stylelint src/**/*.scss !src/tokens/temp/** --fix",
+    "format": "prettier src/**/*.scss --write"
   },
   "peerDependencies": {
     "@angular/core": "^18.0.0",
