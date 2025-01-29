@@ -1,5 +1,14 @@
 import { getFocusableChildren } from '@/utils/get-focusable-children';
-import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  State,
+} from '@stencil/core';
 import { DEVICE_SIZE } from '../post-header/post-header';
 
 @Component({
@@ -70,9 +79,11 @@ export class PostMegadropdown {
   @Method()
   async show(target: HTMLElement) {
     if (this.popoverRef) {
-      await this.popoverRef.show(target);
-      this.animationClass = 'slide-in';
       this.host.addEventListener('keydown', e => this.keyboardHandler(e));
+      this.animationClass = 'slide-in';
+      await this.popoverRef.show(target);
+      this.isVisible = true;
+      this.postToggleMegadropdown.emit(true);
     } else {
       console.error('show: popoverRef is null or undefined');
     }
@@ -85,6 +96,8 @@ export class PostMegadropdown {
     if (this.popoverRef) {
       this.host.removeEventListener('keydown', e => this.keyboardHandler(e));
       this.popoverRef.hide();
+      this.isVisible = false;
+      this.postToggleMegadropdown.emit(false);
     } else {
       console.error('hide: popoverRef is null or undefined');
     }
@@ -140,16 +153,23 @@ export class PostMegadropdown {
   }
 
   render() {
+    let containerClass = '';
+    if (this.animationClass === 'slide-in') {
+      containerClass = 'slide-in';
+    } else if (this.animationClass === 'slide-out') {
+      containerClass = 'slide-out';
+    }
+
     return (
       <Host>
         <post-popovercontainer
-          class={this.animationClass}
+          class={containerClass}
           manualClose={this.device !== 'desktop'}
           placement="bottom"
           edge-gap="0"
-          ref={el => (this.popoverRef = el)}
+          ref={(el) => (this.popoverRef = el)}
         >
-          <div class="megadropdown" onFocusout={e => this.handleFocusout(e)}>
+          <div class="megadropdown" onFocusout={(e) => this.handleFocusout(e)}>
             <div onClick={() => this.handleBackButtonClick()} class="back-button">
               <slot name="back-button"></slot>
             </div>
