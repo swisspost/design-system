@@ -1,4 +1,4 @@
-export { Components, JSX } from './components';
+export { Components, JSX, PostHeaderCustomEvent } from './components';
 
 // Export every single component so it gets included in the dist output
 export { PostAccordion } from './components/post-accordion/post-accordion';
