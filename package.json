@@ -71,6 +71,7 @@
     "icons:lint": "pnpm --filter design-system-icons lint",
     "migrations:build": "pnpm --filter design-system-migrations build",
     "migrations:lint": "pnpm --filter design-system-migrations lint",
+    "migrations:lint:fix": "pnpm --filter design-system-migrations lint:fix",
     "nextjs": "pnpm nextjs:start",
     "nextjs:start": "pnpm --filter design-system-nextjs-integration start",
     "nextjs:build": "pnpm --filter design-system-nextjs-integration build",
