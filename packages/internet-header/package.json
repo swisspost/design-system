@@ -28,16 +28,15 @@
     "loader/"
   ],
   "scripts": {
-    "dev": "stencil build --serve --port 9310 --watch --docs-readme --dev --config stencil.config.dev.ts",
+    "play": "stencil build --serve --port 9310 --watch --docs-readme --dev --config stencil.config.dev.ts",
     "start": "stencil build --watch --docs-readme",
     "build": "pnpm clean && stencil build --docs-readme",
     "clean": "rimraf www dist loader",
-    "test": "pnpm run unit",
     "unit": "jest",
     "unit:watch": "jest --watch",
     "e2e": "cypress run --browser chrome",
-    "e2e:ci": "xvfb-run -a cypress run --browser chrome",
     "e2e:watch": "cypress open",
+    "e2e:ci": "xvfb-run -a cypress run --browser chrome",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "generate": "stencil generate"
