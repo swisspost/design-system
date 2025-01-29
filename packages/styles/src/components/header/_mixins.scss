@@ -1,0 +1,48 @@
+@use '../../mixins/icons';
+
+@mixin subsidiary-header-interactive() {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--post-core-dimension-6);
+  border-radius: var(--post-core-dimension-24);
+  font-size: var(--post-core-font-size-16);
+  padding: var(--post-core-dimension-3) var(--post-core-dimension-10);
+}
+
+@mixin mobile-header-interactive() {
+  width: 100%;
+  height: var(--post-core-dimension-48);
+  padding-inline-end: calc(
+    var(--post-core-dimension-6) + var(--post-core-dimension-24) + var(--post-core-dimension-16)
+  );
+  gap: var(--post-core-dimension-16);
+  font-weight: var(--post-core-font-weight-400);
+  position: relative;
+
+  @content;
+
+  &::before {
+    content: '';
+    background-color: currentColor;
+    bottom: 0;
+    width: 100%;
+    height: var(--post-core-dimension-1);
+    position: absolute;
+    left: 0;
+  }
+
+  &:hover::before {
+    height: var(--post-core-dimension-3);
+  }
+
+  &:hover::after {
+    content: '';
+    display: block;
+    margin-right: calc((var(--post-core-dimension-24) + var(--post-core-dimension-16)) * -1);
+    @include icons.icon('arrowright');
+    width: var(--post-core-dimension-20);
+    min-width: var(--post-core-dimension-20);
+    height: var(--post-core-dimension-20);
+  }
+}

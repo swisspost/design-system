@@ -14,10 +14,9 @@
 
 ## Slots
 
-| Slot          | Description                                                       |
-| ------------- | ----------------------------------------------------------------- |
-| `"toggled"`   | Slot for content displayed when the button is in the "on" state.  |
-| `"untoggled"` | Slot for content displayed when the button is in the "off" state. |
+| Slot        | Description                         |
+| ----------- | ----------------------------------- |
+| `"default"` | Slot for the content of the button. |
 
 
 ----------------------------------------------

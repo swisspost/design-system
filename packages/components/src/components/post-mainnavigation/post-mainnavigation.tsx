@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Host, Listen, h } from '@stencil/core';
+import { Component, Event, EventEmitter, Host, h, Element } from '@stencil/core';
 
 @Component({
   tag: 'post-mainnavigation',
@@ -6,28 +6,31 @@ import { Component, Event, EventEmitter, Host, Listen, h } from '@stencil/core';
   styleUrl: './post-mainnavigation.scss',
 })
 export class PostMainnavigation {
+  private header: HTMLPostHeaderElement | null;
+
+  @Element() host: HTMLPostMainnavigationElement;
+
   /**
    * Gets emitted when a user closes the main navigation on mobile
    */
   @Event() postToggle: EventEmitter;
 
-  @Listen('postToggle')
-  handleMegadropdownToggled(event) {
-    // Find next element sibling
-    let megalodon;
-    let target = event.target;
-    while (target !== null) {
-      if (target.tagName === 'POST-MEGADROPDOWN') {
-        megalodon = target;
-        break;
-      }
-      target = target.nextElementSibling;
-    }
-    if (megalodon) megalodon.toggle(event.target);
+  /**
+   * Retrieves a reference to the closest 'post-header' element when the main navigation is added to the DOM.
+   */
+  connectedCallback() {
+    this.header = this.host.closest('post-header');
+  }
+
+  /**
+   * Cleans up references and disconnects the MutationObserver when the main navigation is removed from the DOM.
+   */
+  disconnectedCallback() {
+    this.header = null;
   }
 
   private handleBackButtonClick() {
-    this.postToggle.emit();
+    if (this.header) this.header.toggleMobileMenu();
   }
 
   render() {
@@ -36,7 +39,7 @@ export class PostMainnavigation {
         <div onClick={() => this.handleBackButtonClick()} class="back-button">
           <slot name="back-button"></slot>
         </div>
-        <nav class="main-navigation">
+        <nav>
           <slot></slot>
         </nav>
       </Host>

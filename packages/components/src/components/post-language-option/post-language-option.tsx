@@ -11,6 +11,7 @@ import {
 } from '@stencil/core';
 import { checkEmptyOrType, checkType } from '@/utils';
 import { version } from '@root/package.json';
+import { SwitchVariant } from '../post-language-switch/switch-variants';
 
 /**
  * @slot default - Slot for placing the content inside the anchor or button.
@@ -18,7 +19,6 @@ import { version } from '@root/package.json';
 @Component({
   tag: 'post-language-option',
   styleUrl: 'post-language-option.scss',
-  shadow: true,
 })
 export class PostLanguageOption {
   @Element() host: HTMLPostLanguageOptionElement;
@@ -50,6 +50,11 @@ export class PostLanguageOption {
       'The "active" property of the post-language-option component must be a boolean value.',
     );
   }
+
+  /**
+   * The variant of the post-language-switch parent (dynamically set by the parent)
+   */
+  @Prop() variant?: SwitchVariant | null;
 
   /**
    * The full name of the language. For example, "Deutsch".
@@ -118,8 +123,14 @@ export class PostLanguageOption {
   render() {
     const lang = this.code.toLowerCase();
 
+    const emitOnKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        this.emitChange();
+      }
+    };
+
     return (
-      <Host data-version={version} role="listitem">
+      <Host data-version={version} role={this.variant ? `${this.variant}item` : null}>
         {this.url ? (
           <a
             aria-current={this.active ? 'page' : undefined}
@@ -128,6 +139,7 @@ export class PostLanguageOption {
             hrefLang={lang}
             lang={lang}
             onClick={() => this.emitChange()}
+            onKeyDown={emitOnKeyDown}
           >
             <slot />
           </a>
@@ -137,6 +149,7 @@ export class PostLanguageOption {
             aria-label={this.name}
             lang={lang}
             onClick={() => this.emitChange()}
+            onKeyDown={emitOnKeyDown}
           >
             <slot />
           </button>

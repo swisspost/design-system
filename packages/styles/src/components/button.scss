@@ -19,6 +19,7 @@
 @use './../placeholders/button' as button-ph;
 @use '../functions/tokens';
 @use '../tokens/components';
+@use '../tokens/elements';
 
 tokens.$default-map: components.$post-button;
 
@@ -36,11 +37,14 @@ tokens.$default-map: components.$post-button;
   border-radius: tokens.get('button-border-radius-round');
   background-color: transparent;
   box-shadow: none;
-  color: var(--post-gray-80);
   font-family: inherit;
   font-weight: tokens.get('button-label-font-weight');
-  text-decoration: none !important; // For <a> tags, !important for hover
+  text-decoration: none;
   white-space: nowrap; // Long content should never break in buttons
+
+  &:hover {
+    text-decoration: none;
+  }
 
   @include button-mx.button-size();
 
@@ -52,17 +56,19 @@ tokens.$default-map: components.$post-button;
 
   // Styles  to improve accessibility in high contrast mode
   @include utilities.high-contrast-mode() {
-    border-color: ButtonBorder;
-    background-color: ButtonFace;
+    &[class] {
+      border-color: ButtonBorder;
+      background-color: ButtonFace;
 
-    &:not(:disabled, .disabled) {
-      &:hover {
-        border-color: highlight;
+      &:not(:disabled, .disabled) {
+        &:hover {
+          border-color: highlight;
+        }
       }
-    }
 
-    &:disabled {
-      border-color: GrayText !important;
+      &:disabled {
+        border-color: GrayText !important;
+      }
     }
   }
 }
@@ -88,8 +94,6 @@ tokens.$default-map: components.$post-button;
   }
 }
 
-// Tertiary
-.btn-link,
 .btn-tertiary {
   // Styles  to improve accessibility in high contrast mode
   @include utilities.high-contrast-mode() {
@@ -105,8 +109,16 @@ tokens.$default-map: components.$post-button;
   }
 }
 
-// Tertiary with no padding (overrides the padding defined by the sizing classes above)
 .btn-link {
-  padding-inline-start: 0;
-  padding-inline-end: 0;
+  text-decoration: tokens.get('link-decoration', elements.$post-link);
+  border: 0 none;
+  border-radius: tokens.get('link-border-radius', elements.$post-link);
+  min-height: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  padding: 0;
+
+  &:hover {
+    color: tokens.get('link-hover-fg', elements.$post-link);
+  }
 }

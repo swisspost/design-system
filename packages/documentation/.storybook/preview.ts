@@ -16,7 +16,6 @@ import './styles/preview.scss';
 
 import { SyntaxHighlighter } from '@storybook/components';
 import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
-import { ArgTypes } from '@storybook/blocks';
 
 SyntaxHighlighter.registerLanguage('scss', scss);
 
@@ -54,6 +53,10 @@ const preview: Preview = {
 
           // Category - Components
           'Components',
+
+          // Category - Modules
+          'Modules',
+          ['Header', 'Footer'],
 
           // Category - Utilities
           'Utilities',

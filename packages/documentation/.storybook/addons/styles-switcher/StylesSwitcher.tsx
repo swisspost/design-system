@@ -114,8 +114,8 @@ function StylesSwitcher() {
         source = source.replace(packageName, '');
 
         // Check if one of the themes or channels are in the scss path
-        let theme = THEMES.find(tItem => source.indexOf(tItem.toLowerCase()) > -1);
-        let channel = CHANNELS.find(cItem => source.indexOf(cItem.toLowerCase()) > -1);
+        const theme = THEMES.find(tItem => source.indexOf(tItem.toLowerCase()) > -1);
+        const channel = CHANNELS.find(cItem => source.indexOf(cItem.toLowerCase()) > -1);
 
         const updateTheme = theme && theme.toLowerCase() !== t;
         const updateChannel = channel && channel.toLowerCase() !== c;

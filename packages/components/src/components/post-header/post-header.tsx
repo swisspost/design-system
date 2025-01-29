@@ -1,6 +1,20 @@
-import { Component, h, Host, State, Element, Listen } from '@stencil/core';
+import { Component, h, Host, State, Element, Method, Watch } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
+import { SwitchVariant } from '@/components';
+import { slideDown, slideUp } from '@/animations/slide';
+
+type DEVICE_SIZE = 'mobile' | 'tablet' | 'desktop' | null;
+
+/**
+ * @slot post-logo - Should be used together with the `<post-logo>` component.
+ * @slot meta-navigation - Holds an `<ul>` with meta navigation links.
+ * @slot post-togglebutton - Holds the mobile menu toggler.
+ * @slot post-language-switch - Should be used with the `<post-language-switch>` component.
+ * @slot title - Holds the application title.
+ * @slot default - Custom controls or content, right aligned in the local header.
+ * @slot post-mainnavigation - Has a default slot because it's only meant to be used in the `<post-header>`.
+ */
 
 @Component({
   tag: 'post-header',
@@ -8,11 +22,9 @@ import { version } from '@root/package.json';
   styleUrl: './post-header.scss',
 })
 export class PostHeader {
-  @Element() host: HTMLPostHeaderElement;
-  @State() device: 'mobile' | 'tablet' | 'desktop' = null;
-  @State() mobileMenuExtended: boolean = false;
-
   private scrollParent = null;
+  private mobileMenu: HTMLElement;
+  private mobileMenuAnimation: Animation;
   private throttledScroll = () => this.handleScrollEvent();
   private throttledResize = throttle(50, () => this.handleResize());
 
@@ -24,9 +36,35 @@ export class PostHeader {
     this.handleScrollEvent();
   }
 
-  @Listen('postMainNavigationClosed')
-  handlePostMainNavigationClosed() {
-    this.mobileMenuExtended = false;
+  @Element() host: HTMLPostHeaderElement;
+
+  @State() device: DEVICE_SIZE = null;
+  @State() mobileMenuExtended: boolean = false;
+
+  @Watch('mobileMenuExtended')
+  frozeBody(isMobileMenuExtended: boolean) {
+    document.body.style.overflow = isMobileMenuExtended ? 'hidden' : '';
+  }
+
+  /**
+   * Toggles the mobile navigation.
+   */
+  @Method()
+  async toggleMobileMenu() {
+    if (this.device === 'desktop') return;
+
+    this.mobileMenuAnimation = this.mobileMenuExtended
+      ? slideUp(this.mobileMenu)
+      : slideDown(this.mobileMenu);
+
+    // Update the state of the toggle button
+    const menuButton = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
+    menuButton.toggled = !this.mobileMenuExtended;
+
+    // Toggle menu visibility before it slides down and after it slides back up
+    if (this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
+    this.mobileMenuExtended = !this.mobileMenuExtended;
+    if (!this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
   }
 
   private handleScrollEvent() {
@@ -67,25 +105,45 @@ export class PostHeader {
   }
 
   private handleResize() {
+    const previousDevice = this.device;
+    let newDevice: DEVICE_SIZE;
     const width = window?.innerWidth;
+
     if (width >= 1024) {
-      this.device = 'desktop';
-      this.mobileMenuExtended = false; // Close any open mobile menu
+      newDevice = 'desktop';
     } else if (width >= 600) {
-      this.device = 'tablet';
+      newDevice = 'tablet';
     } else {
-      this.device = 'mobile';
+      newDevice = 'mobile';
+    }
+
+    // Close any open mobile menu
+    if (newDevice === 'desktop' && this.mobileMenuExtended) {
+      this.toggleMobileMenu();
+      this.mobileMenuAnimation.finish(); // no animation
+    }
+
+    const mhh = this.host.shadowRoot.querySelector('.title-header')?.clientHeight;
+    this.host.style.setProperty('--main-header-height', `${mhh}px`);
+
+    // Apply only on change for doing work only when necessary
+    if (newDevice !== previousDevice) {
+      this.device = newDevice;
+      window.requestAnimationFrame(() => {
+        this.switchLanguageSwitchMode();
+      });
     }
   }
 
-  private handleMobileMenuToggle() {
-    this.mobileMenuExtended = !this.mobileMenuExtended;
+  private switchLanguageSwitchMode() {
+    const variant: SwitchVariant = this.device === 'desktop' ? 'menu' : 'list';
+    this.host.querySelector('post-language-switch')?.setAttribute('variant', variant);
   }
 
   render() {
-    const mainNavClasses = ['main-navigation'];
+    const navigationClasses = ['navigation'];
     if (this.mobileMenuExtended) {
-      mainNavClasses.push('extended');
+      navigationClasses.push('extended');
     }
 
     return (
@@ -100,27 +158,28 @@ export class PostHeader {
             {this.device === 'desktop' && <slot name="meta-navigation"></slot>}
             <slot name="global-controls"></slot>
             {this.device === 'desktop' && <slot name="post-language-switch"></slot>}
-            <div onClick={() => this.handleMobileMenuToggle()} class="mobile-toggle">
+            <div onClick={() => this.toggleMobileMenu()} class="mobile-toggle">
               <slot name="post-togglebutton"></slot>
             </div>
           </div>
         </div>
-
-        <div class="title-header d-flex space-between align-center">
+        <div
+          class={'title-header ' + (this.mobileMenuExtended ? 'title-header-mobile-extended' : '')}
+        >
           <slot name="title"></slot>
           <div class="global-sub">
             <slot name="local-controls"></slot>
             <slot></slot>
           </div>
         </div>
-
-        <div class={mainNavClasses.join(' ')}>
+        <div ref={el => (this.mobileMenu = el)} class={navigationClasses.join(' ')}>
           <slot name="post-mainnavigation"></slot>
+
           {(this.device === 'mobile' || this.device === 'tablet') && (
-            <slot name="meta-navigation"></slot>
-          )}
-          {(this.device === 'mobile' || this.device === 'tablet') && (
-            <slot name="post-language-switch"></slot>
+            <div class="navigation-footer">
+              <slot name="meta-navigation"></slot>
+              <slot name="post-language-switch"></slot>
+            </div>
           )}
         </div>
       </Host>

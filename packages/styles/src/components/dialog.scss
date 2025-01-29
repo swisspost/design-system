@@ -1,10 +1,15 @@
 @use '../mixins/elevation';
-@use '../mixins/utilities';
+@use '../mixins/utilities' as utilities-mx;
 @use '../variables/spacing';
 @use '../variables/color';
 @use '../variables/animation';
 
 @use './../themes/bootstrap/core' as *;
+
+@use '../functions/tokens';
+@use '../tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 dialog {
   @include elevation.elevation('elevation-5');
@@ -16,14 +21,14 @@ dialog {
   overflow: auto;
   margin: revert;
   overscroll-behavior: contain;
-  border: 2px solid var(--post-contrast-color); // Ensures good contrast when bg is dark against dark backdrop
+  border: 2px solid color.$black; // Ensures good contrast when bg is dark against dark backdrop
 
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(0);
   }
 
-  @include utilities.high-contrast-mode {
+  @include utilities-mx.high-contrast-mode {
     // Show the border in HCM
     border-width: 2px;
 
@@ -72,9 +77,9 @@ dialog {
 }
 
 dialog > .dialog-grid {
-  margin: spacing.$size-regular spacing.$size-regular 0 spacing.$size-regular;
+  margin: tokens.get('utility-gap-16') tokens.get('utility-gap-16') 0 tokens.get('utility-gap-16');
   display: grid;
-  column-gap: spacing.$size-regular;
+  column-gap: tokens.get('utility-gap-16');
   grid-template-columns: auto 1fr auto;
   grid-template-areas:
     'icon header close-button'
@@ -93,14 +98,14 @@ dialog > .dialog-grid {
   grid-area: icon;
   display: block;
 
-  width: spacing.$size-big;
-  height: spacing.$size-big;
+  width: tokens.get('utility-gap-32');
+  height: tokens.get('utility-gap-32');
 
   // Larger icon for bigger notification dialogs
   dialog:not([size='small']) & {
     @include media-breakpoint-up(sm) {
-      width: spacing.$size-small-huge;
-      height: spacing.$size-small-huge;
+      width: tokens.get('utility-gap-48');
+      height: tokens.get('utility-gap-48');
     }
   }
 }
@@ -123,11 +128,11 @@ dialog > .dialog-grid {
   grid-area: controls;
   position: sticky;
   bottom: 0;
-  padding-block: spacing.$size-regular;
+  padding-block: tokens.get('utility-gap-16');
   display: flex;
   flex-wrap: wrap;
   flex-direction: row-reverse;
-  gap: spacing.$size-regular;
+  gap: tokens.get('utility-gap-16');
   background-color: inherit;
 
   button {
@@ -141,8 +146,8 @@ dialog > .dialog-grid {
   position: sticky;
   top: 0;
   grid-area: close-button;
-  width: spacing.$size-large;
-  height: spacing.$size-large;
+  width: tokens.get('utility-gap-24');
+  height: tokens.get('utility-gap-24');
   min-height: 0;
 }
 

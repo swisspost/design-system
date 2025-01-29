@@ -1,0 +1,44 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+$resizer-padding: 1rem;
+$resizer-border-width: 1px;
+$resizer-border-color: #999;
+$resizer-min-width: 16px;
+$resizer-max-width: 64px;
+
+.resizer {
+  display: inline-flex;
+  resize: horizontal;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  padding: $resizer-padding;
+  border: $resizer-border-width solid $resizer-border-color;
+  min-width: calc(#{$resizer-padding} * 2 + #{$resizer-border-width} * 2 + #{$resizer-min-width});
+  max-width: calc(#{$resizer-padding} * 2 + #{$resizer-border-width} * 2 + #{$resizer-max-width});
+
+  > * {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+.fs-32 {
+  font-size: 32px;
+}
+
+.scale-container post-icon {
+  background-color: post.$info;
+}
+
+.my-1022-icon {
+  @include post.post-icon($name: '1022', $base: '/post-icons');
+}
+
+.my-accessibility-icon {
+  @include post.post-icon($name: 'accessibility', $base: '/post-icons');
+}
+
+.my-handvictory-icon {
+  @include post.post-icon($name: 'handvictory', $base: '/post-icons', $color: #666666);
+}

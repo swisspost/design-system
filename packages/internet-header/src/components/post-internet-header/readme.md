@@ -37,7 +37,7 @@
 
 ## Methods
 
-### `getCurrentLanguage() => Promise<'de' | 'fr' | 'it' | 'en' | string>`
+### `getCurrentLanguage() => Promise<"de" | "fr" | "it" | "en" | string>`
 
 Get the currently set language as a two letter string ("de", "fr" "it" or "en")
 
@@ -54,7 +54,7 @@ string
 
 - [post-skiplinks](../post-skiplinks)
 - [post-meta-navigation](../post-meta-navigation)
-- [post-language-switch](../post-language-switch)
+- [post-language-switch-2](../post-language-switch-2)
 - [post-header-logo](../post-logo)
 - [post-main-navigation](../post-main-navigation)
 - [post-search](../post-search)
@@ -65,7 +65,7 @@ string
 graph TD;
   swisspost-internet-header --> post-skiplinks
   swisspost-internet-header --> post-meta-navigation
-  swisspost-internet-header --> post-language-switch
+  swisspost-internet-header --> post-language-switch-2
   swisspost-internet-header --> post-header-logo
   swisspost-internet-header --> post-main-navigation
   swisspost-internet-header --> post-search

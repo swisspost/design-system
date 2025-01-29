@@ -6,9 +6,9 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
-    "lib": ["dom", "es2015"],
-    "module": "es2015",
-    "moduleResolution": "node",
+    "lib": ["dom", "es2022"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
@@ -17,15 +17,10 @@
     "removeComments": false,
     "sourceMap": true,
     "jsx": "react",
-    "target": "es2015"
+    "target": "es2022"
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
-  "exclude": [
-    "**/__tests__/**"
-  ],
+  "include": ["src"],
+  "exclude": ["node_modules"],
   "compileOnSave": false,
   "buildOnSave": false
 }

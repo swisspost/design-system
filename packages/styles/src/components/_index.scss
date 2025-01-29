@@ -1,5 +1,7 @@
 @forward './../variables/options';
 
+@use 'breakpoints';
+@use 'globals';
 @use 'appstore-badge';
 @use 'avatar';
 @use 'badge';
@@ -27,6 +29,7 @@
 @use 'switch';
 @use 'form-hint';
 @use 'form-input';
+@use 'header';
 @use 'icon-button';
 @use 'icon-close-button';
 @use 'lead';
@@ -45,6 +48,7 @@
 @use 'subnavigation';
 @use 'tables';
 @use 'tabs';
+@use 'teaser';
 @use 'text-highlight';
 @use 'timepicker';
 @use 'toast';

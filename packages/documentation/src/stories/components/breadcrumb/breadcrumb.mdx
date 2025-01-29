@@ -1,0 +1,29 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import * as BreadcrumbStories from './breadcrumb.stories';
+
+<Meta of={BreadcrumbStories} />
+
+# Post Breadcrumb
+
+<div className="lead">
+    The breadcrumb is a secondary navigation pattern that helps users understand the hierarchy among levels and navigate back through them.
+</div>
+
+The `<post-breadcrumb>` is a container for `<post-breadcrumb-item>` components, used to display a navigational trail, showing the user's location within the app and enabling quick access to parent pages.
+
+## `<post-breadcrumb>`
+
+<Canvas of={BreadcrumbStories.Default} sourceState="shown" />
+<Controls of={BreadcrumbStories.Default} />
+
+## Concatenated Breadcrumb
+
+When space is constrained, the breadcrumb concatenates middle items into a dropdown menu.
+
+<Canvas of={BreadcrumbStories.Concatenated} sourceState="shown" />
+<Controls of={BreadcrumbStories.Concatenated} />
+
+## `<post-breadcrumb-item>`
+
+<Canvas of={BreadcrumbStories.BreadcrumbItem} sourceState="shown" />
+<Controls of={BreadcrumbStories.BreadcrumbItem} />

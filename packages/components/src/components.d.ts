@@ -7,9 +7,11 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
+import { SwitchVariant } from "./components/post-language-switch/switch-variants";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
+export { SwitchVariant } from "./components/post-language-switch/switch-variants";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
     interface PostAccordion {
@@ -95,6 +97,16 @@ export namespace Components {
          */
         "type": BannerType;
     }
+    interface PostBreadcrumb {
+        /**
+          * The text label for the home breadcrumb item.
+         */
+        "homeText": string;
+        /**
+          * The URL for the home breadcrumb item.
+         */
+        "homeUrl": string;
+    }
     interface PostBreadcrumbItem {
         /**
           * The optional URL to which the breadcrumb item will link.
@@ -172,7 +184,17 @@ export namespace Components {
          */
         "update": () => Promise<void>;
     }
+    interface PostFooter {
+        /**
+          * The label to add to the footer (visually hidden).
+         */
+        "label": string;
+    }
     interface PostHeader {
+        /**
+          * Toggles the mobile navigation.
+         */
+        "toggleMobileMenu": () => Promise<void>;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -228,6 +250,24 @@ export namespace Components {
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
         "url": string;
+        /**
+          * The variant of the post-language-switch parent (dynamically set by the parent)
+         */
+        "variant"?: SwitchVariant | null;
+    }
+    interface PostLanguageSwitch {
+        /**
+          * A title for the list of language options
+         */
+        "caption": string;
+        /**
+          * A descriptive text for the list of language options
+         */
+        "description": string;
+        /**
+          * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
+         */
+        "variant": SwitchVariant;
     }
     interface PostList {
         /**
@@ -251,25 +291,20 @@ export namespace Components {
     }
     interface PostMegadropdown {
         /**
-          * Hide megadropdown
-          * @returns boolean
+          * Displays the popover dropdown
+          * @param target - The HTML element relative to which the popover dropdown should be displayed.
          */
-        "hide": () => Promise<void>;
+        "show": (target: HTMLElement) => Promise<void>;
         /**
-          * Show megadropdown
-          * @param element HTMLElement
-          * @returns boolean
+          * Toggles the dropdown visibility based on its current state.
          */
-        "show": (element: HTMLElement) => Promise<void>;
-        /**
-          * Toggle megadropdown
-          * @param element HTMLElement
-          * @param force boolean
-          * @returns boolean
-         */
-        "toggle": (element: HTMLElement, force?: boolean) => Promise<boolean>;
+        "toggle": (target: HTMLElement) => Promise<void>;
     }
     interface PostMegadropdownTrigger {
+        /**
+          * ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown.
+         */
+        "for": string;
     }
     interface PostMenu {
         /**
@@ -467,9 +502,9 @@ export interface PostMainnavigationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostMainnavigationElement;
 }
-export interface PostMegadropdownTriggerCustomEvent<T> extends CustomEvent<T> {
+export interface PostMegadropdownCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLPostMegadropdownTriggerElement;
+    target: HTMLPostMegadropdownElement;
 }
 export interface PostMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -529,6 +564,12 @@ declare global {
         prototype: HTMLPostBannerElement;
         new (): HTMLPostBannerElement;
     };
+    interface HTMLPostBreadcrumbElement extends Components.PostBreadcrumb, HTMLStencilElement {
+    }
+    var HTMLPostBreadcrumbElement: {
+        prototype: HTMLPostBreadcrumbElement;
+        new (): HTMLPostBreadcrumbElement;
+    };
     interface HTMLPostBreadcrumbItemElement extends Components.PostBreadcrumbItem, HTMLStencilElement {
     }
     var HTMLPostBreadcrumbItemElement: {
@@ -585,6 +626,12 @@ declare global {
         prototype: HTMLPostCollapsibleTriggerElement;
         new (): HTMLPostCollapsibleTriggerElement;
     };
+    interface HTMLPostFooterElement extends Components.PostFooter, HTMLStencilElement {
+    }
+    var HTMLPostFooterElement: {
+        prototype: HTMLPostFooterElement;
+        new (): HTMLPostFooterElement;
+    };
     interface HTMLPostHeaderElement extends Components.PostHeader, HTMLStencilElement {
     }
     var HTMLPostHeaderElement: {
@@ -616,6 +663,12 @@ declare global {
     var HTMLPostLanguageOptionElement: {
         prototype: HTMLPostLanguageOptionElement;
         new (): HTMLPostLanguageOptionElement;
+    };
+    interface HTMLPostLanguageSwitchElement extends Components.PostLanguageSwitch, HTMLStencilElement {
+    }
+    var HTMLPostLanguageSwitchElement: {
+        prototype: HTMLPostLanguageSwitchElement;
+        new (): HTMLPostLanguageSwitchElement;
     };
     interface HTMLPostListElement extends Components.PostList, HTMLStencilElement {
     }
@@ -652,24 +705,24 @@ declare global {
         prototype: HTMLPostMainnavigationElement;
         new (): HTMLPostMainnavigationElement;
     };
+    interface HTMLPostMegadropdownElementEventMap {
+        "postToggleMegadropdown": boolean;
+    }
     interface HTMLPostMegadropdownElement extends Components.PostMegadropdown, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostMegadropdownElementEventMap>(type: K, listener: (this: HTMLPostMegadropdownElement, ev: PostMegadropdownCustomEvent<HTMLPostMegadropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostMegadropdownElementEventMap>(type: K, listener: (this: HTMLPostMegadropdownElement, ev: PostMegadropdownCustomEvent<HTMLPostMegadropdownElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostMegadropdownElement: {
         prototype: HTMLPostMegadropdownElement;
         new (): HTMLPostMegadropdownElement;
     };
-    interface HTMLPostMegadropdownTriggerElementEventMap {
-        "postToggle": any;
-    }
     interface HTMLPostMegadropdownTriggerElement extends Components.PostMegadropdownTrigger, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostMegadropdownTriggerElementEventMap>(type: K, listener: (this: HTMLPostMegadropdownTriggerElement, ev: PostMegadropdownTriggerCustomEvent<HTMLPostMegadropdownTriggerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostMegadropdownTriggerElementEventMap>(type: K, listener: (this: HTMLPostMegadropdownTriggerElement, ev: PostMegadropdownTriggerCustomEvent<HTMLPostMegadropdownTriggerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostMegadropdownTriggerElement: {
         prototype: HTMLPostMegadropdownTriggerElement;
@@ -758,7 +811,7 @@ declare global {
         new (): HTMLPostTabPanelElement;
     };
     interface HTMLPostTabsElementEventMap {
-        "postChange": HTMLPostTabPanelElement['name'];
+        "postChange": string;
     }
     interface HTMLPostTabsElement extends Components.PostTabs, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostTabsElementEventMap>(type: K, listener: (this: HTMLPostTabsElement, ev: PostTabsCustomEvent<HTMLPostTabsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -798,14 +851,17 @@ declare global {
         "post-avatar": HTMLPostAvatarElement;
         "post-back-to-top": HTMLPostBackToTopElement;
         "post-banner": HTMLPostBannerElement;
+        "post-breadcrumb": HTMLPostBreadcrumbElement;
         "post-breadcrumb-item": HTMLPostBreadcrumbItemElement;
         "post-card-control": HTMLPostCardControlElement;
         "post-closebutton": HTMLPostClosebuttonElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
+        "post-footer": HTMLPostFooterElement;
         "post-header": HTMLPostHeaderElement;
         "post-icon": HTMLPostIconElement;
         "post-language-option": HTMLPostLanguageOptionElement;
+        "post-language-switch": HTMLPostLanguageSwitchElement;
         "post-list": HTMLPostListElement;
         "post-list-item": HTMLPostListItemElement;
         "post-logo": HTMLPostLogoElement;
@@ -894,6 +950,16 @@ declare namespace LocalJSX {
          */
         "type"?: BannerType;
     }
+    interface PostBreadcrumb {
+        /**
+          * The text label for the home breadcrumb item.
+         */
+        "homeText"?: string;
+        /**
+          * The URL for the home breadcrumb item.
+         */
+        "homeUrl"?: string;
+    }
     interface PostBreadcrumbItem {
         /**
           * The optional URL to which the breadcrumb item will link.
@@ -967,6 +1033,12 @@ declare namespace LocalJSX {
          */
         "for"?: string;
     }
+    interface PostFooter {
+        /**
+          * The label to add to the footer (visually hidden).
+         */
+        "label": string;
+    }
     interface PostHeader {
     }
     /**
@@ -1023,6 +1095,24 @@ declare namespace LocalJSX {
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
         "url"?: string;
+        /**
+          * The variant of the post-language-switch parent (dynamically set by the parent)
+         */
+        "variant"?: SwitchVariant | null;
+    }
+    interface PostLanguageSwitch {
+        /**
+          * A title for the list of language options
+         */
+        "caption"?: string;
+        /**
+          * A descriptive text for the list of language options
+         */
+        "description"?: string;
+        /**
+          * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
+         */
+        "variant"?: SwitchVariant;
     }
     interface PostList {
         /**
@@ -1049,12 +1139,16 @@ declare namespace LocalJSX {
         "onPostToggle"?: (event: PostMainnavigationCustomEvent<any>) => void;
     }
     interface PostMegadropdown {
+        /**
+          * Emits when the dropdown is shown or hidden. The event payload is a boolean: `true` when the dropdown was opened, `false` when it was closed.
+         */
+        "onPostToggleMegadropdown"?: (event: PostMegadropdownCustomEvent<boolean>) => void;
     }
     interface PostMegadropdownTrigger {
         /**
-          * Emits after each toggle
+          * ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown.
          */
-        "onPostToggle"?: (event: PostMegadropdownTriggerCustomEvent<any>) => void;
+        "for": string;
     }
     interface PostMenu {
         /**
@@ -1152,7 +1246,7 @@ declare namespace LocalJSX {
         /**
           * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly shown panel.
          */
-        "onPostChange"?: (event: PostTabsCustomEvent<HTMLPostTabPanelElement['name']>) => void;
+        "onPostChange"?: (event: PostTabsCustomEvent<string>) => void;
     }
     interface PostTag {
         /**
@@ -1194,14 +1288,17 @@ declare namespace LocalJSX {
         "post-avatar": PostAvatar;
         "post-back-to-top": PostBackToTop;
         "post-banner": PostBanner;
+        "post-breadcrumb": PostBreadcrumb;
         "post-breadcrumb-item": PostBreadcrumbItem;
         "post-card-control": PostCardControl;
         "post-closebutton": PostClosebutton;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
+        "post-footer": PostFooter;
         "post-header": PostHeader;
         "post-icon": PostIcon;
         "post-language-option": PostLanguageOption;
+        "post-language-switch": PostLanguageSwitch;
         "post-list": PostList;
         "post-list-item": PostListItem;
         "post-logo": PostLogo;
@@ -1231,6 +1328,7 @@ declare module "@stencil/core" {
             "post-avatar": LocalJSX.PostAvatar & JSXBase.HTMLAttributes<HTMLPostAvatarElement>;
             "post-back-to-top": LocalJSX.PostBackToTop & JSXBase.HTMLAttributes<HTMLPostBackToTopElement>;
             "post-banner": LocalJSX.PostBanner & JSXBase.HTMLAttributes<HTMLPostBannerElement>;
+            "post-breadcrumb": LocalJSX.PostBreadcrumb & JSXBase.HTMLAttributes<HTMLPostBreadcrumbElement>;
             "post-breadcrumb-item": LocalJSX.PostBreadcrumbItem & JSXBase.HTMLAttributes<HTMLPostBreadcrumbItemElement>;
             /**
              * @class PostCardControl - representing a stencil component
@@ -1239,12 +1337,14 @@ declare module "@stencil/core" {
             "post-closebutton": LocalJSX.PostClosebutton & JSXBase.HTMLAttributes<HTMLPostClosebuttonElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             "post-collapsible-trigger": LocalJSX.PostCollapsibleTrigger & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
+            "post-footer": LocalJSX.PostFooter & JSXBase.HTMLAttributes<HTMLPostFooterElement>;
             "post-header": LocalJSX.PostHeader & JSXBase.HTMLAttributes<HTMLPostHeaderElement>;
             /**
              * @class PostIcon - representing a stencil component
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
             "post-language-option": LocalJSX.PostLanguageOption & JSXBase.HTMLAttributes<HTMLPostLanguageOptionElement>;
+            "post-language-switch": LocalJSX.PostLanguageSwitch & JSXBase.HTMLAttributes<HTMLPostLanguageSwitchElement>;
             "post-list": LocalJSX.PostList & JSXBase.HTMLAttributes<HTMLPostListElement>;
             "post-list-item": LocalJSX.PostListItem & JSXBase.HTMLAttributes<HTMLPostListItemElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
