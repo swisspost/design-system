@@ -1,8 +1,7 @@
-import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { MetaComponent } from '@root/types';
 import { html, nothing } from 'lit';
 import { components } from '@swisspost/design-system-components/dist/docs.json';
-import { coloredBackground } from '@/shared/decorators/dark-background';
 
 const AVATAR_ARGTYPES = components.find(c => c.tag === 'post-avatar');
 const USERID_ARGTYPE = AVATAR_ARGTYPES?.props.find(p => p.name === 'userid');
@@ -30,12 +29,12 @@ const meta: MetaComponent = {
     'userid': {
       description: `${
         USERID_ARGTYPE?.docs ?? ''
-      }<div className="alert alert-info alert-sm">Do you need an example userid? Try it out with the username of your own post account.</div>`,
+      }<div className="banner banner-info banner-sm">Do you need an example userid? Try it out with the username of your own post account.</div>`,
     },
     'email': {
       description: `${
         EMAIL_ARGTYPE?.docs ?? ''
-      } <div className="alert alert-info alert-sm">Do you need an example email address? Try it out with <strong>oss@post.ch</strong>.</div>`,
+      } <div className="banner banner-info banner-sm">Do you need an example email address? Try it out with <strong>oss@post.ch</strong>.</div>`,
     },
     'slots-default': {
       name: 'default',
@@ -48,7 +47,7 @@ const meta: MetaComponent = {
     'imageSrc': {
       control: 'text',
       description:
-        'Define an image `src` to insert a custom image.<div className="alert alert-info alert-sm">Do you need an example? Try our logo <strong>/assets/images/logo-swisspost.svg</strong>.</div>',
+        'Define an image `src` to insert a custom image.<div className="banner banner-info banner-sm">Do you need an example? Try our logo <strong>/assets/images/logo-swisspost.svg</strong>.</div>',
       table: {
         category: 'Content',
       },
@@ -61,9 +60,6 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  decorators: [
-    (story: StoryFn, context: StoryContext) => coloredBackground(story, context, 'light'),
-  ],
   render: (args: Args) => html`<post-avatar
     firstname="${args.firstname || nothing}"
     lastname="${args.lastname || nothing}"

@@ -1,5 +1,9 @@
 @use '@swisspost/design-system-styles/core' as post;
 @use '../mixins';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 @include mixins.style-docs-only-guard('post-tabs') {
   &::part(tabs) {
@@ -10,52 +14,58 @@
     position: relative;
   }
 
-  &:has(post-tab-panel > .sbdocs)::part(tabs) {
-    &::before {
-      display: block;
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 100vw;
-      height: 1px;
-      background-color: post.$border-color;
-      transform: translateX(-50%);
-    }
-  }
-
-  &:not(:has(post-tab-panel > .sbdocs))::part(content) {
-    &::after {
-      display: block;
-      content: '';
-      position: absolute;
-      top: calc(100% + #{post.$size-regular});
-      left: 0;
-      right: post.$size-mini * -1;
-      border-top: post.$border-width dashed post.$border-color;
-    }
-  }
-}
-
-@include mixins.style-docs-only-guard('post-tab-header.tab-title[role="tab"]') {
-  border-top-left-radius: post.$border-radius;
-  border-top-right-radius: post.$border-radius;
-
-  &.active {
+  > post-tab-header {
     border-top-left-radius: post.$border-radius;
     border-top-right-radius: post.$border-radius;
 
-    &::before {
-      background-color: post.$black;
-      border-radius: inherit;
+    &.active {
+      border-top-left-radius: post.$border-radius;
+      border-top-right-radius: post.$border-radius;
+
+      &::before {
+        background-color: post.$black;
+        border-radius: inherit;
+      }
+    }
+
+    ~ post-tab-header {
+      margin-left: 1px;
     }
   }
 
-  ~ post-tab-header {
-    margin-left: 1px;
-  }
-}
+  &:where(.sb-tabs-lg, :has(post-tab-panel > .sbdocs)) {
+    margin-top: tokens.get('utility-gap-32');
 
-@include mixins.style-docs-only-guard('post-tab-header:not(post-tabs:has(post-tab-panel > .sbdocs) post-tab-header).tab-title[role="tab"]') {
-  font-size: post.$font-size-sm;
+    &::part(tabs) {
+      &::before {
+        display: block;
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 100vw;
+        height: 1px;
+        background-color: post.$border-color;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+  &:not(.sb-tabs-lg, :has(post-tab-panel > .sbdocs)) {
+    > post-tab-header {
+      font-size: post.$font-size-sm;
+    }
+
+    &::part(content) {
+      &::after {
+        display: block;
+        content: '';
+        position: absolute;
+        top: calc(100% + tokens.get('utility-gap-16'));
+        left: 0;
+        right: calc(tokens.get('utility-gap-8') * -1);
+        border-top: post.$border-width dashed post.$border-color;
+      }
+    }
+  }
 }

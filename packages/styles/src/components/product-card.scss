@@ -9,7 +9,12 @@
 @use './../variables/breakpoints';
 @use './../variables/components/card';
 @use './../functions/sizing';
-@use './../mixins/size' as size-mixin;
+@use './../mixins/media';
+
+@use './../functions/tokens';
+@use './../tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 .product-navigation {
   display: flex;
@@ -48,7 +53,6 @@
     color: inherit;
     text-decoration: none;
 
-    > .pi,
     > post-icon {
       flex-shrink: 0;
       width: 3rem;
@@ -58,7 +62,11 @@
   }
 
   .card-body {
-    @include size-mixin.responsive-size(regular);
+    padding: tokens.get('utility-gap-16');
+
+    @include media.min(md) {
+      padding: tokens.get('utility-gap-24');
+    }
   }
 
   .post-card-favourit {

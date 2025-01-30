@@ -17,6 +17,9 @@ const meta: MetaExtended = {
         type: 'select',
       },
       options: [0, 25, 50, 75, 100],
+      table: {
+        category: 'General',
+      },
     },
   },
   render: (args: Args) => {

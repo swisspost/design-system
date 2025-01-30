@@ -63,12 +63,12 @@ export const TextAlign: Story = {
 
 export const TextWrapping: Story = {
   render: () => html`
-    <div class="w-50 bg-info">
+    <div class="my-container w-half">
       <p class="text-nowrap">
         This text should NOT wrap, saepe excepturi quas nihil repudiandae eius assumenda voluptatem.
       </p>
     </div>
-    <div class="w-50 bg-info text-nowrap">
+    <div class="my-container w-half text-nowrap">
       <p class="text-wrap">
         This text should wrap, saepe excepturi quas nihil repudiandae eius assumenda voluptatem.
       </p>
@@ -78,7 +78,7 @@ export const TextWrapping: Story = {
 
 export const WordBreak: Story = {
   render: () => html`
-    <div class="w-50 bg-info">
+    <div class="my-container w-half">
       <p class="text-break">wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww</p>
     </div>
   `,

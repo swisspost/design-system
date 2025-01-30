@@ -1,0 +1,63 @@
+@use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
+
+.sb-fontface-wrapper {
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto;
+
+  @include post.media-breakpoint-up(md) {
+    grid-template-columns: max-content min-content max-content;
+    gap: tokens.get('utility-gap-16');
+    margin-bottom: tokens.get('utility-gap-16');
+  }
+}
+
+.sb-fontface {
+  display: contents;
+
+  .sb-fontface__typo {
+    font-size: post.$font-size-huge;
+    color: post.$gray-60;
+    line-height: 1;
+  }
+
+  .sb-fontface__settings {
+    margin-top: tokens.get('utility-gap-8');
+    margin-bottom: tokens.get('utility-gap-16');
+    padding-top: tokens.get('utility-gap-8');
+    border-top: post.$border-width dashed post.$border-color;
+
+    .settings__face {
+      font-weight: post.$font-weight-bold;
+    }
+
+    .settings__weight,
+    .settings__style {
+      font-size: post.$font-size-tiny;
+      color: post.$gray-80;
+
+      > span {
+        color: post.$gray-60;
+      }
+    }
+  }
+
+  @include post.media-breakpoint-up(md) {
+    .sb-fontface__typo {
+      font-size: post.$font-size-huge * 1.25;
+    }
+
+    .sb-fontface__settings {
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-top: 0;
+      padding-left: tokens.get('utility-gap-16');
+      border-top: 0 none;
+      border-left: post.$border-width dashed post.$border-color;
+    }
+  }
+}

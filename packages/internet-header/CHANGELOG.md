@@ -1,5 +1,68 @@
 # @swisspost/internet-header
 
+## 2.0.0-next.13
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.13
+
+## 2.0.0-next.12
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.12
+
+## 2.0.0-next.11
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.11
+
+## 2.0.0-next.10
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.10
+
+## 2.0.0-next.9
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.9
+
+## 2.0.0-next.8
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.8
+
+## 2.0.0-next.7
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.7
+
+## 2.0.0-next.6
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.6
+
+## 2.0.0-next.5
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.5
+
 ## 2.0.0-next.4
 
 ### Patch Changes

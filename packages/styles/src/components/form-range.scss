@@ -7,21 +7,23 @@
 @use './../variables/color';
 @use './../variables/spacing';
 @use './../variables/components/forms';
-@use './../mixins/utilities';
+@use './../mixins/utilities' as utilities-mx;
+@use '../functions/tokens';
+@use '../tokens/utilities';
 
 $track-height: 4px;
 $webkit-progress-height-adjustment: 2px;
 $webkit-thumb-width: 32px;
 
 .form-range-wrapper {
-  @include utilities.focus-style {
+  @include utilities-mx.focus-style {
     border-radius: commons.$border-radius;
   }
 }
 
 :not(.form-range-wrapper) > {
   .form-range {
-    @include utilities.focus-style {
+    @include utilities-mx.focus-style {
       border-radius: commons.$border-radius;
     }
   }
@@ -90,7 +92,7 @@ $webkit-thumb-width: 32px;
       box-shadow: none; // Remove default style
     }
 
-    @include utilities.focus-style-custom('::-moz-range-thumb') {
+    @include utilities-mx.focus-style-custom('::-moz-range-thumb') {
       outline: none;
     }
   }
@@ -113,13 +115,13 @@ $webkit-thumb-width: 32px;
     }
   }
 
-  + .form-text {
-    margin-top: spacing.$size-regular;
+  + .form-hint {
+    margin-top: tokens.get('utility-gap-16', utilities.$post-spacing);
     transform: translateY(#{-0.5 * forms.$form-range-height});
   }
 }
 
-@include utilities.high-contrast-mode() {
+@include utilities-mx.high-contrast-mode() {
   .form-range {
     // linear-gradient is forced to the value of "none" in forced-color mode
     // so, the "forced-color-adjust" property is necessary for "linear-gradient" to continue to work

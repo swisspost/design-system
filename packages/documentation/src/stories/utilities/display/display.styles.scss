@@ -4,8 +4,14 @@
 .display-container {
   border: post.$border-width solid post.$border-color;
 
-  > * {
+  > div {
     border: post.$border-width solid post.$border-color;
     background-color: color.adjust(post.$border-color, $lightness: 15%);
+  }
+}
+
+.display-story {
+  > div {
+    background-color: post.$yellow;
   }
 }

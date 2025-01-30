@@ -12,7 +12,7 @@
     "url": "https://github.com/swisspost/design-system/issues"
   },
   "scripts": {
-    "bootstrap": "pnpm install && pnpm -r build",
+    "bootstrap": "pnpm install && pnpm -r --filter \"!*-integration\" build",
     "start": "pnpm docs:start",
     "start:clean": "pnpm bootstrap && pnpm start",
     "test": "pnpm -r test",
@@ -61,8 +61,10 @@
     "header:snapshots": "start-server-and-test docs:headless 9001 'pnpm --filter internet-header snapshots'",
     "intranet-header": "pnpm intranet-header:start",
     "intranet-header:start": "pnpm --filter design-system-intranet-header-workspace start",
-    "icons": "pnpm icons:start",
-    "icons:start": "pnpm --filter design-system-icons dev",
+    "icons": "pnpm icons:dev",
+    "icons:dev": "pnpm --filter design-system-icons dev",
+    "icons:start": "pnpm --filter design-system-icons start",
+    "icons:build": "pnpm --filter design-system-icons build",
     "icons:test": "pnpm --filter design-system-icons test",
     "icons:unit": "pnpm --filter design-system-icons test",
     "icons:unit:watch": "pnpm --filter design-system-icons test:watch",
@@ -77,6 +79,7 @@
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only",
     "tokens:build": "pnpm --filter design-system-tokens build",
     "tokens:build:verbose": "pnpm --filter design-system-tokens build:verbose",
+    "tokens:lint": "pnpm --filter design-system-tokens lint",
     "primeng": "pnpm primeng:start",
     "primeng:start": "pnpm --filter design-system-styles-primeng-workspace start",
     "primeng:build": "pnpm --filter design-system-styles-primeng-workspace build",
@@ -85,16 +88,16 @@
     "tokens:usage": "node ./utilities/token-checker.cjs"
   },
   "devDependencies": {
-    "@changesets/cli": "2.27.7",
-    "start-server-and-test": "2.0.5"
+    "@changesets/cli": "2.27.11",
+    "start-server-and-test": "2.0.9"
   },
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
   },
   "engines": {
-    "node": "20"
+    "node": "22"
   },
-  "packageManager": "pnpm@9.6.0",
+  "packageManager": "pnpm@9.15.3+sha512.1f79bc245a66eb0b07c5d4d83131240774642caaa86ef7d0434ab47c0d16f66b04e21e0c086eb61e62c77efc4d7f7ec071afad3796af64892fae66509173893a",
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": {},

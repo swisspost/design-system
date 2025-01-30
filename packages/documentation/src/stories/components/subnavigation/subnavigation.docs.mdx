@@ -1,4 +1,4 @@
-import { Meta, Source, Canvas, Controls } from '@storybook/blocks';
+import { Meta, Canvas, Controls } from '@storybook/blocks';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 import * as subnavigationStories from './subnavigation.stories.ts';
 
@@ -6,15 +6,21 @@ import * as subnavigationStories from './subnavigation.stories.ts';
 
 # Subnavigation
 
-<p className="lead">Supplement the header navigation with a secondary entry-point,
-providing access to additional features in your application.</p>
+<p className="lead">
+  Supplement the header navigation with a secondary entry-point, providing access to additional
+  features in your application.
+</p>
 
 <ul>
   <li>
-    <a href="#style-imports" target="_self">Style Imports</a>
+    <a href="#style-imports" target="_self">
+      Style Imports
+    </a>
   </li>
   <li>
-    <a href="#examples" target="_self">Examples</a>
+    <a href="#examples" target="_self">
+      Examples
+    </a>
   </li>
 </ul>
 
@@ -23,15 +29,15 @@ providing access to additional features in your application.</p>
   <Controls of={subnavigationStories.Default} />
 </div>
 
-<StylesPackageImport components={["subnavigation"]} />
+<StylesPackageImport components={['subnavigation']} />
 
 ## Examples
 
-### Colored Background
+### Alternative colors
 
-To set the background of the component, simply use one of our [background utility](/?path=/docs/60852fac-a861-4415-8276-bd38d68653bb--docs) classes.
+To change the color scheme of the component, simply use one of our [palette](?path=/docs/43481535-5b39-40b5-a273-478b07dc3b31--docs) classes.
 
-<Canvas of={subnavigationStories.ColoredBackground} />
+<Canvas of={subnavigationStories.AlternativeColors} />
 
 ### Badges
 

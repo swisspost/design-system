@@ -1,0 +1,157 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import * as DisabledStateStories from './disabled-state.stories';
+
+<Meta of={DisabledStateStories} />
+
+# Disabled Elements
+
+Disabled states of input fields or buttons pose many accessibility issues.
+
+<ul className="list-unstyled ms-16">
+  <li className="d-flex gap-8">
+    <div>❌</div>
+    <div>Disabled fields cannot be reached by pressing tab</div>
+  </li>
+  <li className="d-flex gap-8">
+    <div>❌</div>
+    <div>It's often unclear why something is disabled</div>
+  </li>
+  <li className="d-flex gap-8">
+    <div>❌</div>
+    <div>It's often unclear how to enable a disabled field or button</div>
+  </li>
+  <li className="d-flex gap-8">
+    <div>❌</div>
+    <div>Disabled fields have low contrast</div>
+  </li>
+  <li className="d-flex gap-8">
+    <div>❌</div>
+    <div>
+      The disabled state of a field is not always obvious (hard to discern from an enabled field)
+    </div>
+  </li>
+</ul>
+
+<div className="table-responsive">
+  <table className="table caption-top">
+    <caption>Common use cases and how to handle them.</caption>
+    <colgroup>
+      <col style={{ width: '50%' }} />
+      <col style={{ width: '50%' }} />
+    </colgroup>
+    <tbody>
+      <tr>
+        <td colSpan="2" className="fw-bold">
+          Disabled button on forms with required fields
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <ul className="list-unstyled">
+            <li className="d-flex gap-8">
+              <div>❌</div>
+              <div>
+                Forms with required fields tend to have the send button disabled until all required
+                fields are correctly filled. The issue here is that with long forms or on small
+                devices it's sometimes hard to spot the one field that was missed.
+              </div>
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul className="list-unstyled">
+            <li className="d-flex gap-8">
+              <div>✔️</div>
+              <div>
+                Let the user make mistakes and help them to correct them. Mark the required fields
+                with error messages, scroll to the first invalid field and help the user fill the
+                form correctly.
+              </div>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td colSpan="2" className="fw-bold">
+          Disabled button on form submit
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <ul className="list-unstyled">
+            <li className="d-flex gap-8">
+              <div>❌</div>
+              <div>
+                The user submits a form. While the client waits for the server response and to
+                prevent double submission, the submit button gets disabled. The reason why this
+                button gets disabled might not be obvious.
+              </div>
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul className="list-unstyled">
+            <li className="d-flex gap-8">
+              <div>✔️</div>
+              <div>
+                Provide a loading indicator or display a message that shows current progress when
+                uploading large files. Disable duplicate form submissions internally by either
+                aborting the current request and sending a new one or suppressing new submissions
+                during loading. Offer a remedy if the request timed out or an error occurred on the
+                server (reload the page, retry form submission, ...).
+              </div>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td colSpan="2" className="fw-bold">
+          Disabled select options
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <ul className="list-unstyled">
+            <li className="d-flex gap-8">
+              <div>❌</div>
+              <div>
+                Some options in a radio button group or select field are disabled because they are
+                not available at this time or with the current configuration. This can be confusing
+                because it's often unclear why these options are not available or how to enable
+                them.
+              </div>
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul className="list-unstyled">
+            <li className="d-flex gap-8">
+              <div>✔️</div>
+              <div>
+                There are multiple possible solutions, depending on the situation:
+                <ul>
+                  <li>
+                    Don't display options that cannot be selected and reduce clutter in your UI.
+                  </li>
+                  <li>
+                    If you need to inform the user that there are potentially more possible options,
+                    show instructions on how to enable these options.
+                  </li>
+                  <li>Display read-only data as text and not in disabled form fields.</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## Good example
+
+<Canvas of={DisabledStateStories.GoodExample} />
+
+## Bad example
+
+<Canvas of={DisabledStateStories.BadExample} />

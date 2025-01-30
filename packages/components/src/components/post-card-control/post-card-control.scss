@@ -2,6 +2,12 @@
 @use 'sass:math';
 @use '@swisspost/design-system-styles/core' as post;
 @use '@swisspost/design-system-styles/components/form-check';
+@use '@swisspost/design-system-styles/components/checkbox';
+@use '@swisspost/design-system-styles/components/radio-button';
+@use '@swisspost/design-system-styles/tokens/utilities';
+@use '@swisspost/design-system-styles/functions/tokens';
+
+tokens.$default-map: utilities.$post-spacing;
 
 /*
 * There are a whole bunch of !important statements in this file.
@@ -9,7 +15,6 @@
 */
 
 :host {
-
   // remove as soon as all browser support :host-context()
   // https://caniuse.com/?search=%3Ahost-context()
   --post-card-control-bg-context: #{post.$backgrounds};
@@ -21,7 +26,7 @@
 :host-context(fieldset) {
   &:host(:not(:last-child)) {
     .card-control {
-      margin-bottom: post.$size-regular;
+      margin-bottom: tokens.get('utility-gap-16');
     }
   }
 }
@@ -36,23 +41,32 @@
   flex-basis: 100%;
   display: grid;
   grid-template: 'input label icon' 'input content content' / min-content auto min-content;
-  gap: 0 post.$size-mini;
+  align-items: center;
+  gap: 0 tokens.get('utility-gap-8');
   margin: 0;
-  padding: post.$size-regular;
+  padding: tokens.get('utility-gap-12');
   background-color: var(--post-card-control-bg);
-  border: post.$size-line solid var(--post-card-control-border-color);
+  border: tokens.get('utility-gap-2') solid var(--post-card-control-border-color);
   border-radius: post.$border-radius;
   color: var(--post-card-control-color) !important;
   cursor: pointer;
 
   .card-control--input {
     grid-area: input;
-    margin: post.$size-micro 0;
+    margin: tokens.get('utility-gap-4') 0;
     background-color: var(--post-card-control-input-bg) !important;
     border-color: var(--post-card-control-input-border-color) !important;
     color: var(--post-card-control-input-border-color) !important;
     cursor: inherit;
     transition: none;
+
+    @include post.focus-style-none();
+
+    &:hover:not([disabled]),
+    &:hover:not([disabled]) ~ label.form-check-label {
+      color: post.$black;
+      background-color: transparent;
+    }
 
     &:focus,
     &:focus-visible {
@@ -69,8 +83,8 @@
 
   .card-control--label {
     grid-area: label;
-    margin: post.$size-micro 0;
-    padding: 0;
+    margin: tokens.get('utility-gap-4') 0;
+    padding: 0 !important;
     color: inherit !important;
     pointer-events: none;
     transition: none;
@@ -91,8 +105,8 @@
 
   .card-control--icon {
     grid-area: icon;
-    width: post.$size-big;
-    height: post.$size-big;
+    width: tokens.get('utility-gap-32');
+    height: tokens.get('utility-gap-32');
     pointer-events: none;
 
     > slot {
@@ -170,17 +184,11 @@
     --post-card-control-input-bg: transparent;
 
     border-style: dashed;
-    text-decoration: line-through;
     cursor: default;
 
     .card-control--input {
-      border: 0 none;
       padding: post.$form-check-input-border-width;
-      background-image: url('#{post.$form-check-input-disabled-background-url-light-lg}');
-
-      &[type='radio'] {
-        background-image: url('#{post.$form-check-input-radio-disabled-background-url-light}');
-      }
+      border-style: dashed;
     }
   }
 
@@ -191,11 +199,11 @@
     --post-card-control-input-border-color: FieldText;
     --post-card-control-input-bg: Field;
 
-    outline: post.$size-line solid Field;
-    outline-offset: post.$size-line * -2;
+    outline: tokens.get('utility-gap-2') solid Field;
+    outline-offset: calc(tokens.get('utility-gap-2') * -2);
 
     .card-control--input {
-      outline: post.$size-line solid Field;
+      outline: tokens.get('utility-gap-2') solid Field;
 
       // selector needed to override the .form-check styles
       &[type] {
@@ -260,7 +268,7 @@
           display: block;
           content: '';
           position: absolute;
-          inset: post.$size-line;
+          inset: tokens.get('utility-gap-2');
           background-color: SelectedItem;
           z-index: 1;
         }
@@ -292,8 +300,8 @@
           display: block;
           content: '';
           position: absolute;
-          inset: post.$size-line;
-          border-radius: post.$size-line * 0.5;
+          inset: tokens.get('utility-gap-2');
+          border-radius: calc(tokens.get('utility-gap-2') * 0.5);
           background-color: SelectedItem;
         }
 
@@ -302,7 +310,7 @@
         }
 
         .card-control--input {
-          outline: post.$size-line solid Field;
+          outline: tokens.get('utility-gap-2') solid Field;
         }
       }
     }
@@ -428,7 +436,7 @@
 
 :host([data-context*='fieldset']:not(:last-child)) {
   .card-control {
-    margin-bottom: post.$size-regular;
+    margin-bottom: tokens.get('utility-gap-16');
   }
 }
 

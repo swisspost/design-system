@@ -3,6 +3,10 @@
 @use './../commons';
 @use './../spacing';
 @use './../../functions/sizing';
+@use '../../tokens/utilities';
+@use '../../functions/tokens';
+
+tokens.$default-map: utilities.$post-spacing;
 
 // Subnavigation
 
@@ -17,16 +21,14 @@ $subnavigation-height-xs: sizing.px-to-rem(56);
 $subnavigation-height-lg: sizing.px-to-rem(64);
 $subnavigation-height-xl: sizing.px-to-rem(72);
 
-$subnavigation-link-color: rgba(var(--post-contrast-color-rgb), 0.6);
-$subnavigation-link-color-hover: var(--post-contrast-color);
+$subnavigation-link-color: color.$black-alpha-60;
+$subnavigation-link-color-hover: color.$black;
 
-$subnavigation-link-underscore-height: map.get(spacing.$post-sizes, 'micro');
+$subnavigation-link-underscore-height: tokens.get('utility-gap-4');
 $subnavigation-link-underscore-color-active: color.$yellow;
-$subnavigation-link-underscore-color-hover: rgba(var(--post-contrast-color-rgb), 0.4);
+$subnavigation-link-underscore-color-hover: color.$black-alpha-40;
 
-$subnavigation-link-padding-xs: map.get(spacing.$post-sizes, 'regular')
-  map.get(spacing.$post-sizes, 'small-regular');
-$subnavigation-link-padding-lg: map.get(spacing.$post-sizes, 'small-large')
-  map.get(spacing.$post-sizes, 'regular');
+$subnavigation-link-padding-xs: tokens.get('utility-gap-16') tokens.get('utility-gap-12');
+$subnavigation-link-padding-lg: tokens.get('utility-gap-20') tokens.get('utility-gap-16');
 
-$subnavigation-result-margin-left: map.get(spacing.$post-sizes, 'mini');
+$subnavigation-result-margin-left: tokens.get('utility-gap-8');

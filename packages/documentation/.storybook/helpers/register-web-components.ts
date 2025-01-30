@@ -1,4 +1,3 @@
-// @ts-ignore
 import { defineCustomElements as defineHeader } from '@swisspost/internet-header/loader/index.es2017.js';
 import { defineCustomElements as defineComponents } from '@swisspost/design-system-components/loader';
 import { setStencilDocJson } from '@kurbar/storybook-addon-docs-stencil';
@@ -11,16 +10,18 @@ defineHeader();
 defineComponents();
 
 if (postComponentsDocJson && internetHeaderDocJson) {
-  let { components, ...docJsonMetaData } = postComponentsDocJson as unknown as StencilJsonDocs;
+  const { components, ...docJsonMetaData } = postComponentsDocJson as unknown as StencilJsonDocs;
 
   // add the internet header components to the post component list
-  components = components.concat((internetHeaderDocJson as StencilJsonDocs).components);
+  const allComponents = components.concat(
+    (internetHeaderDocJson as unknown as StencilJsonDocs).components,
+  );
 
   // parse the component properties to show a deprecation message necessary
-  components.forEach(component => {
+  allComponents.forEach(component => {
     component.props.forEach(prop => {
       if (prop.deprecation) {
-        const deprecationAlert = `<span className="mb-4 alert alert-warning alert-sm">**Deprecated:** ${prop.deprecation}</span>`;
+        const deprecationAlert = `<span className="mb-4 banner banner-warning banner-sm">**Deprecated:** ${prop.deprecation}</span>`;
         prop.docs = `${prop.deprecation ? deprecationAlert : ''}${prop.docs}`;
       }
     });
@@ -28,7 +29,7 @@ if (postComponentsDocJson && internetHeaderDocJson) {
 
   const stencilJsonDocs: StencilJsonDocs = {
     ...docJsonMetaData,
-    components: components,
+    components: allComponents,
   };
 
   setStencilDocJson(stencilJsonDocs);

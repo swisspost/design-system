@@ -33,7 +33,7 @@
 }
 
 .h-visuallyhidden-down-rg {
-  @include media-breakpoint-down(rg) {
+  @include media-breakpoint-down(sm) {
     @include utilities.visuallyhidden;
   }
 }
@@ -57,11 +57,4 @@ span.spacer {
 
 .no-toggle-arrow::after {
   display: none !important;
-}
-
-// Background Utility
-@each $name, $color in color.$background-colors {
-  .bg-#{$name} {
-    @include color-mx.colored-background($color);
-  }
 }

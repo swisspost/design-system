@@ -1,5 +1,174 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.13
+
+### Patch Changes
+
+- Replaced previously deleted CSS variables with SASS variables. (by [@leagrdv](https://github.com/leagrdv) with [#4446](https://github.com/swisspost/design-system/pull/4446))
+
+- Added shadow to an optional tooltip arrow for `post-popover` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4441](https://github.com/swisspost/design-system/pull/4441))
+
+- Fixed `post-icon` calculated base href. (by [@leagrdv](https://github.com/leagrdv) with [#4491](https://github.com/swisspost/design-system/pull/4491))
+
+- Fixed display of `post-megadropdown` in header. (by [@leagrdv](https://github.com/leagrdv) with [#4350](https://github.com/swisspost/design-system/pull/4350))
+
+- Fixed the way the icon url gets generated in the `post-icon` component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4351](https://github.com/swisspost/design-system/pull/4351))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.0.0-next.13
+  - @swisspost/design-system-styles@9.0.0-next.13
+
+## 9.0.0-next.12
+
+### Patch Changes
+
+- Positioned the `post-collapsible` host relative so every not static positioned element within uses it as its base render context and therefore gets clipped as it should. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4478](https://github.com/swisspost/design-system/pull/4478))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.12
+  - @swisspost/design-system-icons@9.0.0-next.12
+
+## 9.0.0-next.11
+
+### Patch Changes
+
+- Fixed a typo in the `post-accordion-item` component. (by [@schaertim](https://github.com/schaertim) with [#4391](https://github.com/swisspost/design-system/pull/4391))
+
+- Added focus styles for the `post-logo` component, which contains a link, to improve accessibility. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4462](https://github.com/swisspost/design-system/pull/4462))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.11
+  - @swisspost/design-system-icons@9.0.0-next.11
+
+## 9.0.0-next.10
+
+### Major Changes
+
+- Renamed the "dropdown" variant to "menu" for the `post-language-switch` and `post-language-option` components. (by [@leagrdv](https://github.com/leagrdv) with [#4260](https://github.com/swisspost/design-system/pull/4260))
+
+- Removed `.bg-` classes to define background color of elements. (by [@leagrdv](https://github.com/leagrdv) with [#4201](https://github.com/swisspost/design-system/pull/4201))
+
+### Patch Changes
+
+- Removed the dependency on utility classes in `post-header` component. The header can now be used without importing CSS utility classes. (by [@leagrdv](https://github.com/leagrdv) with [#4358](https://github.com/swisspost/design-system/pull/4358))
+
+- Updated the documentation of the Post header. (by [@leagrdv](https://github.com/leagrdv) with [#4408](https://github.com/swisspost/design-system/pull/4408))
+
+- Added a `type="button"` attribute to the `post-close-button` to prevent it from submitting forms. (by [@schaertim](https://github.com/schaertim) with [#4332](https://github.com/swisspost/design-system/pull/4332))
+
+- Removed auto slotting from `post-togglebutton` component to enable more flexible usage. (by [@schaertim](https://github.com/schaertim) with [#4346](https://github.com/swisspost/design-system/pull/4346))
+
+- Removed all usage of deprecated utility sizing classes. (by [@leagrdv](https://github.com/leagrdv) with [#4343](https://github.com/swisspost/design-system/pull/4343))
+
+- Reduced the length of random IDs generated in the components; they are now generated using the [nanoid library](https://github.com/ai/nanoid) instead of the [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API). (by [@leagrdv](https://github.com/leagrdv) with [#4369](https://github.com/swisspost/design-system/pull/4369))
+
+- Updated style and keyboard navigation of `post-language-switch`. (by [@leagrdv](https://github.com/leagrdv) with [#4260](https://github.com/swisspost/design-system/pull/4260))
+
+- Removed auto slotting from `post-logo` component to enable more flexible usage. (by [@schaertim](https://github.com/schaertim) with [#4345](https://github.com/swisspost/design-system/pull/4345))
+
+- Modified header megadropdown to close when focus is moved outside. (by [@myrta2302](https://github.com/myrta2302) with [#4324](https://github.com/swisspost/design-system/pull/4324))
+
+- Updated header overflow in tablet and mobile for long application titles. (by [@leagrdv](https://github.com/leagrdv) with [#4364](https://github.com/swisspost/design-system/pull/4364))
+
+- Added hover color to `post-accordion` in high contrast mode. (by [@schaertim](https://github.com/schaertim) with [#4316](https://github.com/swisspost/design-system/pull/4316))
+
+- Removed focus from collapsible when in collapsed state. (by [@myrta2302](https://github.com/myrta2302) with [#4309](https://github.com/swisspost/design-system/pull/4309))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.10
+  - @swisspost/design-system-icons@9.0.0-next.10
+
+## 9.0.0-next.9
+
+### Major Changes
+
+- Updated the `post-togglebutton` component to offer greater flexibility. You can now control the visibility of elements within the `post-togglebutton` using the `data-showwhen="toggled"` and `data-showwhen="untoggled"` attributes. Any content without a `data-showwhen` attribute will always be visible, regardless of the toggle state. (by [@alizedebray](https://github.com/alizedebray) with [#4223](https://github.com/swisspost/design-system/pull/4223))
+
+### Minor Changes
+
+- Added composable footer component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4190](https://github.com/swisspost/design-system/pull/4190))
+
+- Added the `post-megadropdown` component. (by [@leagrdv](https://github.com/leagrdv) with [#4177](https://github.com/swisspost/design-system/pull/4177))
+
+- Added the parts `button` and `body` in the `post-accordion-item` component, so one can override styles from the outside. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4190](https://github.com/swisspost/design-system/pull/4190))
+
+- Added the `post-breadcrumb` component to provide a standalone breadcrumb navigation solution. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4065](https://github.com/swisspost/design-system/pull/4065))
+
+- Added the css parts `button` and `body` in the `post-accorddion-item` component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4190](https://github.com/swisspost/design-system/pull/4190))
+
+- Added the `post-language-switch` component that enables users to change the language of a page. (by [@leagrdv](https://github.com/leagrdv) with [#4044](https://github.com/swisspost/design-system/pull/4044))
+
+### Patch Changes
+
+- Switched mega dropdown content to one column on mobile. (by [@leagrdv](https://github.com/leagrdv) with [#4300](https://github.com/swisspost/design-system/pull/4300))
+
+- Fixed opening state of megadropdown trigger and expanded detection. (by [@leagrdv](https://github.com/leagrdv) with [#4299](https://github.com/swisspost/design-system/pull/4299))
+
+- Fix tab isolation in nested `post-tabs` components by scoping tab queries and interactions to the current instance. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4211](https://github.com/swisspost/design-system/pull/4211))
+
+- Added a fixed slot `post-list-item` on the `post-list-item` host element, so it is no longer necessary to add it manually. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4190](https://github.com/swisspost/design-system/pull/4190))
+
+- Fixed the used `headingLevel` in the `post-accorddion-item` component. The component now uses the value from its closest `post-accorddion` parent component, if this is specified and falls back to `h2` if not specified. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4190](https://github.com/swisspost/design-system/pull/4190))
+
+- Updated the `post-togglebutton` to function like a real button, including support for keyboard navigation and proper focus styles. (by [@alizedebray](https://github.com/alizedebray) with [#4242](https://github.com/swisspost/design-system/pull/4242))
+
+- Fixed an issue with the post-list component where the `horizontal` property could not be set programmatically. Also, reduced the specificity of the component's styles to make customization easier. (by [@alizedebray](https://github.com/alizedebray) with [#4137](https://github.com/swisspost/design-system/pull/4137))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.9
+  - @swisspost/design-system-icons@9.0.0-next.9
+
+## 9.0.0-next.8
+
+### Minor Changes
+
+- Ιmplemented the back-to-top button component. (by [@myrta2302](https://github.com/myrta2302) with [#3991](https://github.com/swisspost/design-system/pull/3991))
+
+- Added the capability to use a slotted img as a logo inside ´accordion-items´. (by [@leagrdv](https://github.com/leagrdv) with [#4166](https://github.com/swisspost/design-system/pull/4166))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.0.0-next.8
+  - @swisspost/design-system-styles@9.0.0-next.8
+
+## 9.0.0-next.7
+
+### Minor Changes
+
+- Added the `post-togglebutton` component. (by [@veyaromain](https://github.com/veyaromain) with [#3889](https://github.com/swisspost/design-system/pull/3889))
+
+- Refactored `post-icon` component to use the `<use>` tag to load and show icons under the hood. This enables responsive icons, enables better caching and improves render performance slightly. There is no further action required. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3969](https://github.com/swisspost/design-system/pull/3969))
+
+### Patch Changes
+
+- Fixed bug that showed delayed tooltip even after blur event. (by [@leagrdv](https://github.com/leagrdv) with [#4053](https://github.com/swisspost/design-system/pull/4053))
+
+- Made `post-icon` component use base tag href to define location of icons folder. (by [@leagrdv](https://github.com/leagrdv) with [#4069](https://github.com/swisspost/design-system/pull/4069))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.7
+
+## 9.0.0-next.6
+
+### Major Changes
+
+- Renamed the alert component to banner and updated the styles of banner and toast components. The class `.alert` is still supported for now but is deprecated and will be removed in v10. Changed web component `<post-alert>` to `<post-banner>`. Additionally, the classes `.{toast|alert}-primary`, `.{toast|alert}-gray` and `.toast-notification` have been deprecated. (by [@leagrdv](https://github.com/leagrdv) with [#3862](https://github.com/swisspost/design-system/pull/3862))
+
+- Removed the `alert-fixed-bottom` variant of the alert. (by [@leagrdv](https://github.com/leagrdv) with [#3862](https://github.com/swisspost/design-system/pull/3862))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.6
+
+## 9.0.0-next.5
+
+### Minor Changes
+
+- Added a provisional post-header component with some basic functionality in place. This component is not finished in this state. (by [@gfellerph](https://github.com/gfellerph) with [#3837](https://github.com/swisspost/design-system/pull/3837))
+
+- Added new Menu Button components (post-menu-button, post-menu-trigger, and post-menu-item) for creating accessible dropdown menus. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3795](https://github.com/swisspost/design-system/pull/3795))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.5
+
 ## 9.0.0-next.4
 
 ### Major Changes

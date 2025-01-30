@@ -7,9 +7,14 @@
 @use './../variables/commons';
 @use './../variables/components/card';
 @use './../functions/sizing';
-@use './../mixins/icons' as icons-mixins;
+@use './../mixins/icons' as icons-mx;
 @use './../variables/icons';
 @use './../variables/animation';
+
+@use './../functions/tokens';
+@use './../tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 .card-group {
   margin-top: commons.$border-width;
@@ -59,7 +64,6 @@
   .link-icon {
     text-decoration: none;
 
-    .pi,
     post-icon {
       width: 1.5rem;
       height: 1.5rem;
@@ -96,19 +100,15 @@
   .product-card &,
   .card-button & {
     @include media-breakpoint-down(sm) {
-      padding: spacing.$size-regular;
+      padding: tokens.get('utility-gap-16');
     }
 
     @include media-breakpoint-between(sm, md) {
-      padding: spacing.$size-large;
+      padding: tokens.get('utility-gap-24');
     }
 
-    @include media-breakpoint-between(md, xxl) {
-      padding: spacing.$size-big;
-    }
-
-    @include media-breakpoint-up(xxl) {
-      padding: spacing.$size-bigger-big;
+    @include media-breakpoint-up(md) {
+      padding: tokens.get('utility-gap-32');
     }
   }
 
@@ -177,14 +177,14 @@
   a {
     display: inline-flex;
     align-items: center;
-    padding-inline: spacing.$size-mini;
-    gap: spacing.$size-mini;
+    padding-inline: tokens.get('utility-gap-8');
+    gap: tokens.get('utility-gap-8');
     color: color.$gray-60;
     text-decoration: none;
     -ms-flex-align: center;
 
     &::before {
-      @include icons-mixins.icon(3020);
+      @include icons-mx.icon(3020);
       content: '';
       display: inline-block;
       width: icons.$icon-size-default;

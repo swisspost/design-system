@@ -13,7 +13,7 @@
 
 ngb-datepicker {
   // Conversion for compatibility
-  --bs-light: var(--post-light);
+  --bs-light: color.$light;
 }
 
 ngb-datepicker.dropdown-menu {
@@ -75,7 +75,7 @@ span.ngb-dp-navigation-chevron {
 }
 
 .ngb-dp-weekday {
-  color: rgba(var(--post-contrast-color-rgb), 0.6) !important;
+  color: color.$black-alpha-60 !important;
   font-size: 1rem;
   font-style: normal !important;
   line-height: type.$line-height-copy !important;
@@ -105,7 +105,7 @@ span.ngb-dp-navigation-chevron {
     height: 40px !important;
     line-height: 40px;
 
-    &.active:not(.bg-primary) {
+    &.active {
       outline: none;
     }
   }
@@ -129,10 +129,6 @@ span.ngb-dp-navigation-chevron {
   background-color: transparent;
 }
 
-.ngb-dp-day > .btn-light.bg-primary.text-white {
-  background-color: color.$yellow !important;
-}
-
 .ngb-dp-open {
   display: flex;
   align-items: center;
@@ -146,13 +142,6 @@ span.ngb-dp-navigation-chevron {
   width: forms.$input-height-inner;
   background: transparent;
 
-  // DEPRECATED
-  .pi-calendar {
-    @include icons-mx.icon(3203);
-  }
-
-  .pi-calendar,
-  .pi-3203,
   post-icon {
     width: datepicker.$ngb-dp-icon-size;
     height: datepicker.$ngb-dp-icon-size;
@@ -174,8 +163,6 @@ span.ngb-dp-navigation-chevron {
   height: calc(#{forms.$form-floating-height} - #{forms.$input-border-width * 2});
   width: forms.$input-height-inner-lg;
 
-  .pi-3203,
-  .pi-calendar,
   post-icon {
     width: datepicker.$ngb-dp-icon-size-lg;
     height: datepicker.$ngb-dp-icon-size-lg;

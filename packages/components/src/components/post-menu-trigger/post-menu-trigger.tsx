@@ -1,6 +1,6 @@
 import { Component, Element, Prop, h, Host, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkType } from '@/utils';
+import { checkType, getRoot } from '@/utils';
 
 @Component({
   tag: 'post-menu-trigger',
@@ -21,10 +21,11 @@ export class PostMenuTrigger {
   @State() ariaExpanded: boolean = false;
 
   /**
-   * Reference to the slotted button within the trigger, if present. 
+   * Reference to the slotted button within the trigger, if present.
    * Used to manage click and key events for menu control.
    */
   private slottedButton: HTMLButtonElement | null = null;
+  private root?: Document | ShadowRoot;
 
   /**
    * Watch for changes to the `for` property to validate its type and ensure it is a string.
@@ -36,7 +37,7 @@ export class PostMenuTrigger {
   }
 
   private get menu(): HTMLPostMenuElement | null {
-    const ref = document.getElementById(this.for);
+    const ref = this.root.getElementById(this.for);
     return ref && ref.localName === 'post-menu' ? (ref as HTMLPostMenuElement) : null;
   }
 
@@ -59,9 +60,22 @@ export class PostMenuTrigger {
   };
 
   componentDidLoad() {
+    this.root = getRoot(this.host);
     this.validateControlFor();
-    
+
     this.slottedButton = this.host.querySelector('button');
+
+    // Check if the slottedButton is within a web component
+    if (!this.slottedButton) {
+      const webComponent = this.host.querySelector('.menu-trigger-webc');
+      if (webComponent.shadowRoot) {
+        const slottedButton = webComponent.shadowRoot.querySelector('button');
+        if (slottedButton) {
+          this.slottedButton = slottedButton;
+        }
+      }
+    }
+
     if (this.slottedButton) {
       this.slottedButton.setAttribute('aria-haspopup', 'menu');
       this.slottedButton.addEventListener('click', () => {

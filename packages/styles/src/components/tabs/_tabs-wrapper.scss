@@ -10,7 +10,7 @@
   padding-top: spacing.$spacer;
   border: 0;
   background-color: rgba(
-    var(--post-contrast-color-rgb),
+    color.$black,
     0.02
   ); // 0.02 gets as close as possible to color.$light on white background
 
@@ -38,7 +38,6 @@
 }
 
 .tabs {
-  @include utilities-mx.reset-list;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
@@ -46,6 +45,8 @@
   /* prevent scroll chaining on x scroll */
   overscroll-behavior-x: contain;
   white-space: nowrap;
+
+  @include utilities-mx.reset-list;
 
   // Scrolling fix to make the tabs scroll a little more so the right most tab is not
   // flush with the window border
@@ -59,13 +60,4 @@
 
 .tab-content {
   padding-top: spacing.$spacer;
-}
-
-// Careful, this generates a lot of code
-@each $key, $color in color.$background-colors {
-  .bg-#{$key} {
-    .tabs-wrapper {
-      background-color: $color;
-    }
-  }
 }

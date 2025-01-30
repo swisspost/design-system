@@ -26,6 +26,12 @@ jobs:
           name: design-system-documentation
           folder: build-output
 
+      - name: Create preview message
+        uses: ./.github/actions/preview/message/create
+        with:
+          access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+          issue-number: ${{ steps.build.outputs.id }}
+
       - name: Get netlify config
         id: netlify-config
         uses: actions/github-script@v7
@@ -46,7 +52,7 @@ jobs:
         run: |
           url_alias=`echo "preview-${{ steps.build.outputs.id }}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
           echo "site-url=https://$url_alias--${{ fromJSON(steps.netlify-config.outputs.result).siteUrl }}" >> $GITHUB_OUTPUT
-          netlify deploy --filter @swisspost/design-system-documentation --build false --dir ${{ steps.build.outputs.folder }} --alias $url_alias
+          netlify deploy --filter @swisspost/design-system-documentation --dir ${{ steps.build.outputs.folder }} --alias $url_alias
 
       - name: Update preview message
         uses: ./.github/actions/preview/message/update

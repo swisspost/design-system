@@ -1,0 +1,78 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import * as checkboxStories from './checkbox.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={checkboxStories} />
+
+<div className="docs-title">
+  # Checkbox
+
+  <nav>
+    <link-design of={JSON.stringify(checkboxStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  Create consistent cross-browser and cross-device checkboxes with our completely custom checks
+  component.
+</div>
+
+Our checkboxes use custom icons to indicate checked or indeterminate states.
+
+<Canvas sourceState="shown" of={checkboxStories.Default} />
+<div className="hide-col-default">
+  <Controls of={checkboxStories.Default} />
+</div>
+
+<StylesPackageImport components={['form-check']} required={{ validation: true }} />
+
+## Examples
+
+### Indeterminate
+
+A checkbox can only be **checked** or **unchecked**.
+However, visually, there is a third state: the checkbox can be displayed as **indeterminate**.
+
+Beware,
+the indeterminate state is only visual, behind the scenes the checkbox is always either checked or unchecked.
+In other words, the indeterminate state hides the actual state of the checkbox.
+
+A possible use case for this state could be a list of checkboxes with a master checkbox that toggles all others,
+such as in a folder/subfolder tree where only some subfolders are selected.
+For an example,
+visit [Accessible Web Designs indeterminate checkbox](http://www.barrierefreies-webdesign.de/knowhow/checkbox/indeterminate.html).
+
+The indeterminate state can only be set via JavaScript and is styled using the `:indeterminate` pseudo-class.
+
+<Source
+  code={`document.querySelector('input[type="checkbox"]').indeterminate = true;`}
+  language="javascript"
+/>
+
+### Grouped
+
+To show a checkbox group, just wrap your checkboxes in a `fieldset`.
+
+<div className="banner banner-info banner-md">
+  Don't forget to add also a `<legend>` element.
+  You can visually hide the legend using the `.visually-hidden` class if necessary.
+
+Read more about that topic in our [accessibility docs](/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs).
+
+</div>
+
+<Canvas of={checkboxStories.Grouped} />
+
+### Inline
+
+To show the checkboxes inline, just add the `.form-check-inline` class to each of the checkboxes.
+
+<div className="banner banner-info banner-md">
+  Don't forget to wrap your checkbox group in a <code>&lt;fieldset&gt;</code> that includes a <code>&lt;legend&gt;</code> element.
+  You can then visually hide the legend using the `.visually-hidden` class.
+
+Read more about that topic in our [accessibility docs](/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs).
+
+</div>
+
+<Canvas of={checkboxStories.Inline} />

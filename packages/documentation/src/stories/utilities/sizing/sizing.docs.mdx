@@ -1,5 +1,4 @@
-import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
-import { formatAsMap } from '@/utils/sass-export';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as SizingStories from './sizing.stories';
 
 <Meta of={SizingStories} />
@@ -13,60 +12,49 @@ import * as SizingStories from './sizing.stories';
 
 ## Height & Width
 
-Height and width can be set using `h-*` and `w-*` prefixes, max-height and max-width can be set using prefixes `mh-*` and `mw-*` .
+Height and width can be set using our utility classes `h-{size}` and `w-{size}`, max-height and max-width can be set with `max-h-{size}` and `max-w-{size}` and min-height and min-width can be set with `min-h-{size}` and `min-w-{size}`.
 
 ### Parent Based
 
-Bootstrap offers sizing classes with the suffixes bellow. They allow you to set a height / width as a percentage of the parent element (see [Bootstrap Sizing](https://getbootstrap.com/docs/5.3/utilities/sizing/) for reference).
+The design system offers classes for percentage based sizing with the suffixes bellow. They allow you to set a height / width as a percentage of the parent element.
 
-> - `*-25`
-> - `*-50`
-> - `*-75`
-> - `*-100`
+- `*-auto`
+- `*-quarter`
+- `*-third`
+- `*-half`
+- `*-two-thirds`
+- `*-three-quarters`
+- `*-full`
 
-#### Example
+### Example
 
-<Canvas sourceState="shown" of={SizingStories.SizesPercent} />
+<Canvas sourceState="shown" of={SizingStories.PercentSizes} />
 <div className="hide-col-default">
-  <Controls of={SizingStories.SizesPercent} />
+  <Controls of={SizingStories.PercentSizes} />
+</div>
+
+### Pixel Based
+
+Additional pixel-based sizing classes allow precise height `h-{size}` and width `w-{size}` definitions in pixels (e.g., `w-12` for 12px width and `h-26` for 26px height).
+
+See all available sizes in the example bellow.
+
+### Example
+
+<Canvas sourceState="shown" of={SizingStories.PxSizes} />
+<div className="hide-col-default">
+  <Controls of={SizingStories.PxSizes} />
 </div>
 
 ### Relative to breakpoints
 
-For width, we offer additionally `.w-{breakpoint}-{size}` classes (e.g. `w-md-100`) so that you can size only for some specific breakpoints.
+For width and height, the design system provides additionally `.w-{breakpoint}-{size}` classes (e.g. `w-md-full`, `h-md-56`) so that you can set different sizes for specific breakpoints.
 
 See <a href="/?path=/docs/eb78afcb-ce92-4990-94b6-6536d5ec6af4--docs#full-width">Full-width button</a> for a practical example.
 
-### Post-Sizes
+### Viewport Based
 
-Post sizes can be used as suffixes in the same way. To find out which size name to use, see the "Size name in classes" column in the reference table above or use the "Example Post-Sizes" below.
-
-#### Sass variables
-
-{/* prettier-ignore */}
-<div className="alert alert-warning mb-40">
-  <h2 className="alert-heading">Sizing variables are deprecated</h2>
-  <p>The current set of the post-specific sizing variables is deprecated in favour of a new naming system that is consistent with the Design. For further information, please read the <a href="https://github.com/swisspost/design-system/discussions/588">discussion on sizing variables on GitHub</a> and have a look at the <a href="https://www.figma.com/file/ojCcgC5Zd12eUSzq6V5m24/Foundations?node-id=3%3A2&t=l8qimsXlxeMLOzs6-0">implementation in Figma</a>.</p>
-  <p>There is a new solution with updated naming system up coming for spacing sizes.</p>
-</div>
-
-<Source
-  language="scss"
-  dark
-  code={Object.entries(SizingStories.SCSS_VARIABLES)
-    .filter(([key, value]) => key !== 'parameters')
-    .map(([key, value]) => `$${key}: ${formatAsMap(value)};`)
-    .join('\n')}
-></Source>
-
-<Canvas of={SizingStories.Sizes} />
-<div className="hide-col-default">
-  <Controls of={SizingStories.Sizes} />
-</div>
-
-## Viewport Based
-
-There is the possibility to set the width and height relative to the viewport.
+There is the possibility to set the width and height as a percentage relative to the viewport. Available percentages: `25`, `33`, `50`, `66`, `75`, `100`.
 
 > - `min-vh-100`
 > - `min-vw-100`

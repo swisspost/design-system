@@ -14,35 +14,31 @@
   forced-color-adjust: preserve-parent-color;
 }
 
+@mixin post-icon(
+  $base: 'https://unpkg.com/@swisspost/design-system-icons/public/post-icons',
+  $name,
+  $color: inherit
+) {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  background-color: currentColor;
+  color: $color;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask-image: url('#{$base}/#{$name}.svg');
+  mask-image: url('#{$base}/#{$name}.svg');
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask-position: center center;
+  mask-position: center center;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
+}
+
 @mixin remove-icon() {
   mask-image: none;
-}
-
-// DEPRECATED
-@mixin pi($name, $color: color.$black) {
-  $type: meta.type-of($color);
-  $final-color: $color;
-
-  @if ($type != color) {
-    $final-color: map.get(color.$background-colors, $color);
-
-    @if (not $final-color) {
-      @error "Error in Mixin 'pi(name, color?)'. Color '#{$color}' is not available. Please choose one of the following: #{map.keys(color.$background-colors)}.";
-    }
-  }
-  border-color: $final-color;
-  background-image: url('#{icon-fn.get-colored-svg-url($name, $final-color)}');
-
-  // set icon to white on hcm
-  @include utilities.high-contrast-mode() {
-    @if ($final-color == color.$black) {
-      filter: invert(100%);
-    } @else {
-      background-image: url('#{icon-fn.get-colored-svg-url($name, color.$white)}');
-    }
-  }
-}
-
-@mixin pi-pre($name) {
-  background-image: url('#{icon-fn.get-pre-colored-svg-url($name)}');
 }

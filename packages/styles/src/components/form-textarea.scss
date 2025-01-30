@@ -1,17 +1,182 @@
-@use './../variables/spacing';
+@forward './../variables/options';
+
+@use './../mixins/utilities';
 @use './../variables/components/forms';
-@use './../functions/sizing';
+@use './../mixins/forms' as forms-mx;
+
+@use './../functions/tokens';
+@use './../tokens/components';
+@use './../tokens/elements';
+
+tokens.$default-map: components.$post-text-area;
 
 textarea.form-control {
-  &::-webkit-resizer {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 15 15' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='#{forms.$input-border-color}' d='M0 12H3V15H0V12Z'/%3E%3Cpath fill='#{forms.$input-border-color}' d='M6 12H9V15H6V12Z'/%3E%3Cpath fill='#{forms.$input-border-color}' d='M6 6H9V9H6V6Z'/%3E%3Cpath fill='#{forms.$input-border-color}' d='M12 6H15V9H12V6Z'/%3E%3Cpath fill='#{forms.$input-border-color}' d='M12 0H15V3H12V0Z'/%3E%3Cpath fill='#{forms.$input-border-color}' d='M12 12H15V15H12V12Z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-size: 75%;
-  }
+  display: block;
+  width: 100%;
+  appearance: none; // Fix appearance for date inputs in Safari
+  background-clip: padding-box;
+  border: tokens.get('textarea-border-width') tokens.get('textarea-border-style-enabled')
+    tokens.get('textarea-enabled-border');
+  position: relative;
+  border-radius: tokens.get('textarea-border-radius');
+  background-color: tokens.get('textarea-enabled-bg');
+  color: tokens.get('textarea-enabled-fg');
+  padding-inline-start: tokens.get('textarea-padding-inline-start');
+  padding-inline-end: tokens.get('textarea-padding-inline-end');
+  padding-block: tokens.get('textarea-standalone-padding-block');
+  min-height: tokens.get('textarea-sizing-min-height');
+  resize: vertical;
+  @include utilities.focus-style;
+  @include forms-mx.textarea-resizer-svg(#050400);
 
   &[disabled] {
-    &::-webkit-resizer {
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 15 15' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='#{forms.$input-disabled-border-color}' d='M0 12H3V15H0V12Z'/%3E%3Cpath fill='#{forms.$input-disabled-border-color}' d='M6 12H9V15H6V12Z'/%3E%3Cpath fill='#{forms.$input-disabled-border-color}' d='M6 6H9V9H6V6Z'/%3E%3Cpath fill='#{forms.$input-disabled-border-color}' d='M12 6H15V9H12V6Z'/%3E%3Cpath fill='#{forms.$input-disabled-border-color}' d='M12 0H15V3H12V0Z'/%3E%3Cpath fill='#{forms.$input-disabled-border-color}' d='M12 12H15V15H12V12Z'/%3E%3C/svg%3E");
+    @include forms-mx.textarea-resizer-svg(#696864);
+  }
+
+  &:focus {
+    @include utilities.high-contrast-mode {
+      border-color: FieldText !important; // On blink browser valid and invalid border colors are converted to Highlight color
     }
+  }
+
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      @include utilities.high-contrast-mode {
+        border-color: FieldText;
+      }
+    }
+
+    &:hover {
+      border-color: tokens.get('textarea-hover-border');
+      background-color: tokens.get('textarea-hover-bg');
+
+      @include utilities.high-contrast-mode {
+        border-color: Highlight;
+      }
+    }
+  }
+
+  &[readonly]:not(:disabled) {
+    border-color: tokens.get('textarea-enabled-border');
+    background-color: tokens.get('textarea-enabled-bg');
+  }
+
+  &::placeholder {
+    color: tokens.get('textarea-placeholder-fg');
+    opacity: 1;
+  }
+
+  &:disabled {
+    color: tokens.get('textarea-disabled-fg');
+    background-color: tokens.get('textarea-disabled-bg');
+    border-color: tokens.get('textarea-disabled-border');
+    border-style: tokens.get('textarea-border-style-disabled');
+    opacity: 1;
+  }
+
+  &.is-valid,
+  &.is-invalid {
+    &:not(:disabled) {
+      background-size: tokens.get('textarea-sizing-icon');
+      background-position: top tokens.get('textarea-position-block-start-validation') right
+        tokens.get('textarea-position-inline-end-validation');
+      background-repeat: no-repeat;
+      padding-inline-end: tokens.get('textarea-validated-padding-inline-end');
+    }
+  }
+
+  @include forms-mx.validation-icons;
+}
+
+.form-label:has(+ textarea.form-control[disabled]) {
+  color: tokens.get('textarea-disabled-fg');
+}
+
+.form-floating {
+  position: relative;
+
+  > textarea ~ label {
+    position: absolute;
+    z-index: 2;
+    text-align: start;
+    pointer-events: none;
+    display: block;
+    top: tokens.get('textarea-border-width');
+    left: tokens.get('textarea-border-width');
+    margin: 0;
+    padding-inline-start: calc(
+      tokens.get('textarea-label-padding-inline-start') - tokens.get('textarea-border-width')
+    );
+    padding-inline-end: 0;
+    padding-block-start: tokens.get('textarea-label-padding-block-start');
+    width: calc(
+      100% - (#{tokens.get('textarea-border-width')} * 2) - #{tokens.get(
+          'textarea-label-padding-inline-end'
+        )}
+    );
+    border: 0;
+    color: tokens.get('textarea-enabled-fg');
+    height: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition:
+      padding-block-start 0.2s ease-in-out,
+      font-size 0.2s ease-in-out;
+    background-color: tokens.get('textarea-enabled-bg');
+  }
+
+  > textarea.form-control {
+    padding-block-start: tokens.get('textarea-padding-block-start');
+    padding-block-end: tokens.get('textarea-padding-block-end');
+
+    &::placeholder {
+      color: transparent;
+    }
+
+    &:focus,
+    &:not(:placeholder-shown) {
+      ~ label {
+        font-size: tokens.get('textarea-label-filled-font-size');
+        padding-block-start: tokens.get('textarea-label-filled-padding-block-start');
+      }
+    }
+
+    @include forms-mx.placeholder {
+      opacity: 0;
+    }
+
+    &:focus {
+      @include forms-mx.placeholder {
+        color: tokens.get('textarea-placeholder-fg');
+        opacity: 1;
+      }
+    }
+
+    &:disabled ~ label {
+      color: tokens.get('textarea-disabled-fg');
+      background-color: tokens.get('textarea-disabled-bg');
+    }
+
+    &:not(:disabled):hover ~ label {
+      color: tokens.get('textarea-hover-fg');
+      background-color: tokens.get('textarea-hover-bg');
+    }
+
+    &:is(.is-valid, .is-invalid) {
+      ~ label {
+        width: calc(
+          100% - (#{tokens.get('textarea-border-width')} * 2) - #{tokens.get(
+              'textarea-label-validated-padding-inline-end'
+            )}
+        );
+      }
+    }
+  }
+
+  > textarea:disabled ~ label {
+    color: tokens.get('textarea-disabled-fg');
+    background-color: tokens.get('textarea-disabled-bg');
   }
 }
