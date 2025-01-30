@@ -1,12 +1,20 @@
+import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
+import { DEVICE_SIZE } from '../post-header/post-header';
 
 @Component({
   tag: 'post-megadropdown',
   styleUrl: 'post-megadropdown.scss',
   shadow: false,
 })
-
 export class PostMegadropdown {
+  private header: HTMLPostHeaderElement | null;
+
+  private firstFocusableEl: HTMLElement | null;
+  private lastFocusableEl: HTMLElement | null;
+
+  @State() device: DEVICE_SIZE;
+
   @Element() host: HTMLPostMegadropdownElement;
 
   /** Tracks the currently active dropdown instance. */
@@ -35,6 +43,10 @@ export class PostMegadropdown {
     }
   }
 
+  componentWillRender() {
+    this.getFocusableElements();
+  }
+
   /**
    * Toggles the dropdown visibility based on its current state.
    */
@@ -58,6 +70,7 @@ export class PostMegadropdown {
     }
 
     this.isVisible = true;
+    this.host.addEventListener('keydown', e => this.keyboardHandler(e));
     this.animationClass = 'slide-in';
     PostMegadropdown.activeDropdown = this;
     this.postToggleMegadropdown.emit(this.isVisible);
@@ -70,6 +83,17 @@ export class PostMegadropdown {
   @Method()
   async hide() {
     this.animationClass = 'slide-out';
+    this.host.removeEventListener('keydown', e => this.keyboardHandler(e));
+  }
+
+  connectedCallback() {
+    this.header = this.host.closest('post-header');
+    if (this.header) {
+      this.header.addEventListener(
+        'postUpdateDevice',
+        (event: CustomEvent<DEVICE_SIZE>) => (this.device = event.detail),
+      );
+    }
   }
 
   /**
@@ -93,11 +117,11 @@ export class PostMegadropdown {
 
   private handleClickOutside = (event: MouseEvent) => {
     const target = event.target as Node;
-  
+
     if (this.host.contains(target)) {
       return;
     }
-  
+
     if (target instanceof HTMLElement) {
       const trigger = target.closest('post-megadropdown-trigger');
       if (trigger) {
@@ -107,10 +131,9 @@ export class PostMegadropdown {
         }
       }
     }
-  
+
     this.hide();
-  };  
-  
+  };
 
   private addOutsideClickListener() {
     document.addEventListener('mousedown', this.handleClickOutside);
@@ -120,8 +143,32 @@ export class PostMegadropdown {
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
+  private getFocusableElements() {
+    const focusableEls = Array.from(this.host.querySelectorAll('post-list-item, h3, .back-button'));
+    const focusableChildren = focusableEls.flatMap(el => Array.from(getFocusableChildren(el)));
+
+    this.firstFocusableEl = focusableChildren[0];
+    this.lastFocusableEl = focusableChildren[focusableChildren.length - 1];
+  }
+
+  // Loop through the focusable children
+  private keyboardHandler(e: KeyboardEvent) {
+    if (e.key === 'Tab' && this.device !== 'desktop') {
+      if (e.shiftKey && document.activeElement === this.firstFocusableEl) {
+        // If back tab (TAB + Shift) and first element is focused, focus goes to the last element of the megadropdown
+        e.preventDefault();
+        this.lastFocusableEl.focus();
+      } else if (!e.shiftKey && document.activeElement === this.lastFocusableEl) {
+        // If TAB and last element is focused, focus goes back to the first element of the megadropdown
+        e.preventDefault();
+        this.firstFocusableEl.focus();
+      }
+    }
+  }
+
   render() {
     const containerStyle = this.isVisible ? {} : { display: 'none' };
+
     return (
       <Host>
         <div

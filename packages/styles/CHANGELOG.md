@@ -1,5 +1,29 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.13
+
+### Major Changes
+
+- Removed the Bootstrap `.text-bg-*` and `.link-*` helper classes. (by [@leagrdv](https://github.com/leagrdv) with [#4448](https://github.com/swisspost/design-system/pull/4448))
+
+### Minor Changes
+
+- Add `interpolate-size: allow-keyword` for all supporting browsers, enabling transitions from and to `height: auto` (https://developer.mozilla.org/en-US/docs/Web/CSS/interpolate-size) (by [@gfellerph](https://github.com/gfellerph) with [#4524](https://github.com/swisspost/design-system/pull/4524))
+
+### Patch Changes
+
+- Added media mixins to mixin/index.scss to include them in the core file. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4351](https://github.com/swisspost/design-system/pull/4351))
+
+- Replaced previously deleted CSS variables with SASS variables. (by [@leagrdv](https://github.com/leagrdv) with [#4446](https://github.com/swisspost/design-system/pull/4446))
+
+- Refactored hover styling for links in `<post-footer>` to ensure they are underlined, aligning with the design specifications in Figma. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4510](https://github.com/swisspost/design-system/pull/4510))
+
+- Got rid of the page wide yellow background as it can cause yellow flashing between page loads (by [@gfellerph](https://github.com/gfellerph) with [#4523](https://github.com/swisspost/design-system/pull/4523))
+
+- Fixed display of `post-megadropdown` in header. (by [@leagrdv](https://github.com/leagrdv) with [#4350](https://github.com/swisspost/design-system/pull/4350))
+
+- Corrected high contrast mode styles for `checkbox` and `radio-button`. (by [@schaertim](https://github.com/schaertim) with [#4334](https://github.com/swisspost/design-system/pull/4334))
+
 ## 9.0.0-next.12
 
 ### Patch Changes
