@@ -91,16 +91,16 @@ importers:
         version: 0.9.0(@typescript-eslint/eslint-plugin@8.20.0(@typescript-eslint/parser@7.18.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.5.4))(eslint@9.18.0(jiti@2.4.2))(typescript@5.5.4))(@typescript-eslint/parser@7.18.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.5.4))(eslint-plugin-react@7.37.4(eslint@9.18.0(jiti@2.4.2)))(eslint@9.18.0(jiti@2.4.2))(typescript@5.5.4)
       '@stencil/angular-output-target':
         specifier: 0.10.2
-        version: 0.10.2(@stencil/core@4.25.0)
+        version: 0.10.2(@stencil/core@4.25.1)
       '@stencil/core':
-        specifier: 4.25.0
-        version: 4.25.0
+        specifier: 4.25.1
+        version: 4.25.1
       '@stencil/react-output-target':
         specifier: 0.8.2
-        version: 0.8.2(@stencil/core@4.25.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 0.8.2(@stencil/core@4.25.1)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@stencil/sass':
         specifier: 3.0.12
-        version: 3.0.12(@stencil/core@4.25.0)
+        version: 3.0.12(@stencil/core@4.25.1)
       '@types/jest':
         specifier: 29.5.14
         version: 29.5.14
@@ -277,7 +277,7 @@ importers:
         version: 9.18.0
       '@stencil/react-output-target':
         specifier: 0.8.2
-        version: 0.8.2(@stencil/core@4.25.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 0.8.2(@stencil/core@4.25.1)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/node':
         specifier: 22.10.5
         version: 22.10.5
@@ -596,14 +596,14 @@ importers:
         specifier: 0.9.0
         version: 0.9.0(@typescript-eslint/eslint-plugin@8.20.0(@typescript-eslint/parser@7.18.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.5.4))(eslint@9.18.0(jiti@2.4.2))(typescript@5.5.4))(@typescript-eslint/parser@7.18.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.5.4))(eslint-plugin-react@7.37.4(eslint@9.18.0(jiti@2.4.2)))(eslint@9.18.0(jiti@2.4.2))(typescript@5.5.4)
       '@stencil/core':
-        specifier: 4.25.0
-        version: 4.25.0
+        specifier: 4.25.1
+        version: 4.25.1
       '@stencil/sass':
         specifier: 3.0.12
-        version: 3.0.12(@stencil/core@4.25.0)
+        version: 3.0.12(@stencil/core@4.25.1)
       '@stencil/store':
         specifier: 2.0.16
-        version: 2.0.16(@stencil/core@4.25.0)
+        version: 2.0.16(@stencil/core@4.25.1)
       '@types/body-scroll-lock':
         specifier: 3.1.2
         version: 3.1.2
@@ -3821,8 +3821,8 @@ packages:
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3 || >= 4.0.0-beta.0 || >= 4.0.0'
 
-  '@stencil/core@4.25.0':
-    resolution: {integrity: sha512-mLyaGCCGaHh6M4n1Hs3CXytD8MLQEt/eBBEoeJvAKE82S3CaqT5n5STXNHnv+qRz3btaSzqEfn2DBTurHYgKeQ==}
+  '@stencil/core@4.25.1':
+    resolution: {integrity: sha512-SJhAAN6nHj7l2n2F7H6NoOUFhXC5tYXSvOpAaNFi5As6c2jOvaDOvAH+om4OKmw8U2kHI9yihEqpZrtY1J20dQ==}
     engines: {node: '>=16.0.0', npm: '>=7.10.0'}
     hasBin: true
 
@@ -14710,16 +14710,16 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@stencil/angular-output-target@0.10.2(@stencil/core@4.25.0)':
+  '@stencil/angular-output-target@0.10.2(@stencil/core@4.25.1)':
     dependencies:
-      '@stencil/core': 4.25.0
+      '@stencil/core': 4.25.1
 
-  '@stencil/core@4.25.0': {}
+  '@stencil/core@4.25.1': {}
 
-  '@stencil/react-output-target@0.8.2(@stencil/core@4.25.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@stencil/react-output-target@0.8.2(@stencil/core@4.25.1)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@lit/react': 1.0.7(@types/react@18.3.3)
-      '@stencil/core': 4.25.0
+      '@stencil/core': 4.25.1
       html-react-parser: 5.2.2(@types/react@18.3.3)(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -14728,13 +14728,13 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@stencil/sass@3.0.12(@stencil/core@4.25.0)':
+  '@stencil/sass@3.0.12(@stencil/core@4.25.1)':
     dependencies:
-      '@stencil/core': 4.25.0
+      '@stencil/core': 4.25.1
 
-  '@stencil/store@2.0.16(@stencil/core@4.25.0)':
+  '@stencil/store@2.0.16(@stencil/core@4.25.1)':
     dependencies:
-      '@stencil/core': 4.25.0
+      '@stencil/core': 4.25.1
 
   '@storybook/addon-actions@8.4.7(storybook@8.4.7(prettier@2.8.8))':
     dependencies:

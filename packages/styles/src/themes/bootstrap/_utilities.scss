@@ -1,7 +1,6 @@
 @use 'sass:map';
 @use './core' as *;
 
-@import 'bootstrap/scss/helpers/focus-ring';
 @import 'bootstrap/scss/helpers/position';
 @import 'bootstrap/scss/helpers/text-truncation';
 
@@ -73,6 +72,7 @@ $utilities: map.remove($utilities, 'overflow');
 $utilities: map.remove($utilities, 'overflow-x');
 $utilities: map.remove($utilities, 'overflow-y');
 
+$utilities: map.remove($utilities, 'shadow');
 $utilities: map.remove($utilities, 'font-weight');
 
 @import 'bootstrap/scss/utilities/api';

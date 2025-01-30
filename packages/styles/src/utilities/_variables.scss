@@ -3,6 +3,7 @@
 @use './functions' as *;
 
 @use '../variables/sizing' as *;
+
 /*
   Utilities are generated with our utility API using bellow $utilities map.
 
@@ -450,6 +451,11 @@ $utilities: (
       normal: 400,
     ),
     class: fw,
+  ),
+  'elevation': (
+    property: box-shadow,
+    values: from-tokens('elevation', 'elevation'),
+    class: elevation,
   ),
 );
 
