@@ -12,7 +12,7 @@ tokens.$default-map: components.$post-select;
 .form-select {
   display: block;
   width: 100%;
-  font-family: tokens.get('body-font-family', elements.$post-body);
+  font-family: inherit;
   appearance: none;
   position: relative;
   min-height: tokens.get('select-sizing-height');
@@ -53,6 +53,10 @@ tokens.$default-map: components.$post-select;
       @include utilities.high-contrast-mode {
         border-color: FieldText;
       }
+
+      @include utilities.high-contrast-mode-dark() {
+        background-image: forms-fx.select-arrow-icon('selected-hcm', $mode: dark);
+      }
     }
 
     &:hover {
@@ -62,6 +66,14 @@ tokens.$default-map: components.$post-select;
 
       &:not([multiple]) {
         background-image: forms-fx.select-arrow-icon('hover');
+
+        @include utilities.high-contrast-mode-light() {
+          background-image: forms-fx.select-arrow-icon('hover-hcm', $mode: light);
+        }
+
+        @include utilities.high-contrast-mode-dark() {
+          background-image: forms-fx.select-arrow-icon('hover-hcm', $mode: dark);
+        }
       }
 
       @include utilities.high-contrast-mode {
@@ -78,6 +90,14 @@ tokens.$default-map: components.$post-select;
     &:focus-visible {
       color: FieldText;
     }
+  }
+
+  @include utilities.high-contrast-mode-light() {
+    background-image: forms-fx.select-arrow-icon('enabled-hcm', $mode: light);
+  }
+
+  @include utilities.high-contrast-mode-dark() {
+    background-image: forms-fx.select-arrow-icon('enabled-hcm', $mode: dark);
   }
 
   &.is-valid,

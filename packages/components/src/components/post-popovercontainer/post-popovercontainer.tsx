@@ -53,6 +53,11 @@ export class PostPopovercontainer {
   @Event() postToggle: EventEmitter<boolean>;
 
   /**
+   * Whether or not the popover should close when user clicks outside of it
+   */
+  @Prop() manualClose: boolean = false;
+
+  /**
    * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
    * Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted
    * towards the viewport if they would overlap edge boundaries.
@@ -70,7 +75,6 @@ export class PostPopovercontainer {
   @Prop() readonly arrow?: boolean = false;
 
   componentDidLoad() {
-    this.host.setAttribute('popover', '');
     this.host.addEventListener('beforetoggle', this.handleToggle.bind(this));
   }
 
@@ -235,7 +239,7 @@ export class PostPopovercontainer {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={version} popover={this.manualClose ? 'manual' : 'auto'}>
         {this.arrow && (
           <span
             class="arrow"

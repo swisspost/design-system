@@ -1,3 +1,11 @@
+// Enable transitions to height: auto and the like
+// https://utilitybend.com/blog/added-to-my-css-reset-interpolate-size-the-quality-of-life-feature-we-all-wanted-at-some-point
+:root {
+  @supports (interpolate-size: allow-keywords) {
+    interpolate-size: allow-keywords;
+  }
+}
+
 /* === Source: Josh Comeau, https://www.joshwcomeau.com/css/custom-css-reset/ (adapted) === */
 
 /*
@@ -29,6 +37,7 @@ canvas,
 svg {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 
 /*
