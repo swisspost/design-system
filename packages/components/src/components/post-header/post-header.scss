@@ -144,6 +144,8 @@ slot[name='post-logo'] {
 
 ::slotted(.list-inline) {
   margin: -8px 0 !important;
+  z-index: 3 !important;
+  position: relative !important;
 }
 
 ::slotted(h1) {
