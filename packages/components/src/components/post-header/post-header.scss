@@ -202,6 +202,16 @@ slot[name='post-logo'] {
     }
   }
 
+  .navigation.extended {
+    height: calc(100vh - var(--header-height));
+    display: flex;
+    flex-direction: column;
+
+    ::slotted(post-mainnavigation) {
+      flex-grow: 1;
+    }
+  }
+
   ::slotted(post-mainnavigation) {
     background-color: var(--post-core-color-sandgrey-002);
     gap: var(--post-core-dimension-32);

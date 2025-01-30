@@ -1,10 +1,21 @@
-import { Component, h, Host, State, Element, Method, Watch } from '@stencil/core';
+import {
+  Component,
+  h,
+  Host,
+  State,
+  Element,
+  Method,
+  Watch,
+  Event,
+  EventEmitter,
+} from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
 import { slideDown, slideUp } from '@/animations/slide';
+import { getFocusableChildren } from '@/utils/get-focusable-children';
 
-type DEVICE_SIZE = 'mobile' | 'tablet' | 'desktop' | null;
+export type DEVICE_SIZE = 'mobile' | 'tablet' | 'desktop' | null;
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
@@ -22,6 +33,8 @@ type DEVICE_SIZE = 'mobile' | 'tablet' | 'desktop' | null;
   styleUrl: './post-header.scss',
 })
 export class PostHeader {
+  private firstFocusableEl: HTMLElement | null;
+  private lastFocusableEl: HTMLElement | null;
   private scrollParent = null;
   private mobileMenu: HTMLElement;
   private mobileMenuAnimation: Animation;
@@ -34,6 +47,7 @@ export class PostHeader {
     window.addEventListener('resize', this.throttledResize, { passive: true });
     this.handleResize();
     this.handleScrollEvent();
+    this.getFocusableElements();
   }
 
   @Element() host: HTMLPostHeaderElement;
@@ -44,7 +58,22 @@ export class PostHeader {
   @Watch('mobileMenuExtended')
   frozeBody(isMobileMenuExtended: boolean) {
     document.body.style.overflow = isMobileMenuExtended ? 'hidden' : '';
+
+    if (isMobileMenuExtended) {
+      this.host.addEventListener('keydown', e => {
+        this.keyboardHandler(e);
+      });
+    } else {
+      this.host.removeEventListener('keydown', e => {
+        this.keyboardHandler(e);
+      });
+    }
   }
+
+  /**
+   * An event emitted when the device has changed
+   */
+  @Event() postUpdateDevice: EventEmitter<DEVICE_SIZE>;
 
   /**
    * Toggles the mobile navigation.
@@ -65,6 +94,47 @@ export class PostHeader {
     if (this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
     this.mobileMenuExtended = !this.mobileMenuExtended;
     if (!this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
+  }
+
+  // Get all the focusable elements in the post-header mobile menu
+  private getFocusableElements() {
+    // Get elements in the correct order (different as the DOM order)
+    const focusableEls = [
+      ...Array.from(this.host.querySelectorAll('.list-inline:not([slot="meta-navigation"]) > li')),
+      ...Array.from(
+        this.host.querySelectorAll(
+          'nav > post-list > div > post-list-item, post-mainnavigation > .back-button, post-megadropdown-trigger',
+        ),
+      ),
+      ...Array.from(
+        this.host.querySelectorAll(
+          '.list-inline[slot="meta-navigation"] > li, post-language-option',
+        ),
+      ),
+    ];
+
+    // Add the main toggle menu button to the list of focusable children
+    const focusableChildren = [
+      this.host.querySelector('post-togglebutton'),
+      ...focusableEls.flatMap(el => Array.from(getFocusableChildren(el))),
+    ];
+
+    this.firstFocusableEl = focusableChildren[0];
+    this.lastFocusableEl = focusableChildren[focusableChildren.length - 1];
+  }
+
+  private keyboardHandler(e: KeyboardEvent) {
+    if (e.key === 'Tab' && this.mobileMenuExtended) {
+      if (e.shiftKey && document.activeElement === this.firstFocusableEl) {
+        // If back tab (Tab + Shift) and first element is focused, focus goes to the last element of the megadropdown
+        e.preventDefault();
+        this.lastFocusableEl.focus();
+      } else if (!e.shiftKey && document.activeElement === this.lastFocusableEl) {
+        // If Tab and last element is focused, focus goes back to the first element of the megadropdown
+        e.preventDefault();
+        this.firstFocusableEl.focus();
+      }
+    }
   }
 
   private handleScrollEvent() {
@@ -129,6 +199,8 @@ export class PostHeader {
     // Apply only on change for doing work only when necessary
     if (newDevice !== previousDevice) {
       this.device = newDevice;
+
+      this.postUpdateDevice.emit(this.device);
       window.requestAnimationFrame(() => {
         this.switchLanguageSwitchMode();
       });

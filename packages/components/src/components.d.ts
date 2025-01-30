@@ -7,10 +7,12 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
+import { DEVICE_SIZE } from "./components/post-header/post-header";
 import { SwitchVariant } from "./components/post-language-switch/switch-variants";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
+export { DEVICE_SIZE } from "./components/post-header/post-header";
 export { SwitchVariant } from "./components/post-language-switch/switch-variants";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
@@ -376,6 +378,10 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
+          * Whether or not the popover should close when user clicks outside of it
+         */
+        "manualClose": boolean;
+        /**
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
@@ -493,6 +499,10 @@ export interface PostCardControlCustomEvent<T> extends CustomEvent<T> {
 export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
+}
+export interface PostHeaderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostHeaderElement;
 }
 export interface PostLanguageOptionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -628,7 +638,18 @@ declare global {
         prototype: HTMLPostFooterElement;
         new (): HTMLPostFooterElement;
     };
+    interface HTMLPostHeaderElementEventMap {
+        "postUpdateDevice": DEVICE_SIZE;
+    }
     interface HTMLPostHeaderElement extends Components.PostHeader, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostHeaderElementEventMap>(type: K, listener: (this: HTMLPostHeaderElement, ev: PostHeaderCustomEvent<HTMLPostHeaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostHeaderElementEventMap>(type: K, listener: (this: HTMLPostHeaderElement, ev: PostHeaderCustomEvent<HTMLPostHeaderElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostHeaderElement: {
         prototype: HTMLPostHeaderElement;
@@ -1025,6 +1046,10 @@ declare namespace LocalJSX {
         "label": string;
     }
     interface PostHeader {
+        /**
+          * An event emitted when the device has changed
+         */
+        "onPostUpdateDevice"?: (event: PostHeaderCustomEvent<DEVICE_SIZE>) => void;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -1172,6 +1197,10 @@ declare namespace LocalJSX {
           * Gap between the edge of the page and the popover
          */
         "edgeGap"?: number;
+        /**
+          * Whether or not the popover should close when user clicks outside of it
+         */
+        "manualClose"?: boolean;
         /**
           * Fires whenever the popover gets shown or hidden, passing the new state in event.details as a boolean
          */
