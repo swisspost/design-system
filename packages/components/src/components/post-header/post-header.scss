@@ -207,9 +207,6 @@ slot[name='post-logo'] {
     inset-inline: 0;
     background: var(--post-core-color-brand-white);
     inset-block-end: calc(100vh - var(--header-height));
-    box-shadow: var(--post-core-elevation-3);
-    min-height: var(--post-core-dimension-10); // needed for the box-shadow to always show
-    max-height: calc(100vh - var(--header-height));
   }
 
   ::slotted(post-mainnavigation),
