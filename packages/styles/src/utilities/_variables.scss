@@ -509,6 +509,11 @@ $utilities: (
     ),
     rtl: false,
   ),
+  'elevation': (
+    property: box-shadow,
+    values: from-tokens('elevation', 'elevation'),
+    class: elevation,
+  ),
 );
 
 /* IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`. */
