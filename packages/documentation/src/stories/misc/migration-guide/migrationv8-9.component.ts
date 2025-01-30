@@ -163,6 +163,16 @@ export class MigrationV89Component extends LitElement {
                   <ul>
                     <li><code>.fw-light</code></li>
                     <li><code>.light</code></li>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    The following Bootstrap utility classes have been removed:
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                    <li>
+                      Shadows: <code>.shadow-none</code>, <code>.shadow-sm</code>,
+                      <code>.shadow</code> and <code>.shadow-lg</code>
+                    </li>
                   </ul>
                 </li>
                 <li class="mb-16">
@@ -176,6 +186,19 @@ export class MigrationV89Component extends LitElement {
                     <li><code>$display3-weight</code></li>
                     <li><code>$display4-weight</code></li>
                     <li><code>$display-line-height</code></li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    The following elevation utility classes have been renamed:
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>.elevation-1</code> is now <code>.elevation-100</code></li>
+                    <li><code>.elevation-2</code> is now <code>.elevation-200</code></li>
+                    <li><code>.elevation-3</code> is now <code>.elevation-300</code></li>
+                    <li><code>.elevation-4</code> is now <code>.elevation-400</code></li>
+                    <li><code>.elevation-5</code> is now <code>.elevation-500</code></li>
                   </ul>
                 </li>
               </ul>
