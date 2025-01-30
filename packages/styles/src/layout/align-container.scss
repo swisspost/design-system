@@ -6,30 +6,28 @@
 
 tokens.$default-map: components.$post-container;
 
-.row:has(.align-container-start) {
+.container {
   @each $breakpoint in map.keys(breakpoints.$grid-breakpoints) {
     @include media.min($breakpoint) {
       $gutter: tokens.get('grid-gutter-#{$breakpoint}');
       $padding: tokens.get('grid-padding-#{$breakpoint}');
       --post-grid-gutter-x: #{$gutter};
-      margin-inline: calc(-1 * max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
-      .align-container-start {
-        padding-inline-start: 0;
-      }
-    }
-  }
-}
 
-.row:has(.align-container-end) {
-  @each $breakpoint in map.keys(breakpoints.$grid-breakpoints) {
-    @include media.min($breakpoint) {
-      $gutter: tokens.get('grid-gutter-#{$breakpoint}');
-      $padding: tokens.get('grid-padding-#{$breakpoint}');
-      --post-grid-gutter-x: #{$gutter};
-      margin-inline: calc(-1 * max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
-      .align-container-end {
-        padding-inline-end: 0;
-        margin-inline-end: calc(-0.5 * max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
+      .row:has([class*='col'].align-container-start) {
+        margin-inline: calc(-1 * max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
+
+        .align-container-start {
+          padding-inline-start: 0;
+        }
+      }
+
+      .row:has([class*='col'].align-container-end) {
+        margin-inline: calc(-1 * max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
+
+        .align-container-end {
+          padding-inline-end: 0;
+          margin-inline-end: calc(-0.5 * max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
+        }
       }
     }
   }
