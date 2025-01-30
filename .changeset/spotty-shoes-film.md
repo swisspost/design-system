@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': major
 ---
 
-Renamed elevation utility classes and scss variables to allow for more variants in the future.
+Renamed elevation utility classes and SCSS variables to allow for more variants in the future.
