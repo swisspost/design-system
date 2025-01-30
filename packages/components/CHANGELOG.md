@@ -1,5 +1,31 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.13
+
+### Patch Changes
+
+- Replaced previously deleted CSS variables with SASS variables. (by [@leagrdv](https://github.com/leagrdv) with [#4446](https://github.com/swisspost/design-system/pull/4446))
+
+- Added shadow to an optional tooltip arrow for `post-popover` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4441](https://github.com/swisspost/design-system/pull/4441))
+
+- Fixed `post-icon` calculated base href. (by [@leagrdv](https://github.com/leagrdv) with [#4491](https://github.com/swisspost/design-system/pull/4491))
+
+- Fixed display of `post-megadropdown` in header. (by [@leagrdv](https://github.com/leagrdv) with [#4350](https://github.com/swisspost/design-system/pull/4350))
+
+- Fixed the way the icon url gets generated in the `post-icon` component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4351](https://github.com/swisspost/design-system/pull/4351))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.0.0-next.13
+  - @swisspost/design-system-styles@9.0.0-next.13
+
+## 9.0.0-next.12
+
+### Patch Changes
+
+- Positioned the `post-collapsible` host relative so every not static positioned element within uses it as its base render context and therefore gets clipped as it should. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4478](https://github.com/swisspost/design-system/pull/4478))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.12
+  - @swisspost/design-system-icons@9.0.0-next.12
+
 ## 9.0.0-next.11
 
 ### Patch Changes

@@ -1,5 +1,36 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.14
+
+### Minor Changes
+
+- Updated icon search, by implementing a paging and separating icon sets from each other. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4351](https://github.com/swisspost/design-system/pull/4351))
+
+- Added documentation for responsive design. (by [@leagrdv](https://github.com/leagrdv) with [#4452](https://github.com/swisspost/design-system/pull/4452))
+
+### Patch Changes
+
+- Replaced previously deleted CSS variables with SASS variables. (by [@leagrdv](https://github.com/leagrdv) with [#4446](https://github.com/swisspost/design-system/pull/4446))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.0.0-next.13
+  - @swisspost/design-system-styles@9.0.0-next.13
+  - @swisspost/design-system-components@9.0.0-next.13
+  - @swisspost/internet-header@2.0.0-next.13
+  - @swisspost/design-system-components-react@9.0.0-next.13
+  - @swisspost/design-system-tokens@9.0.0-next.13
+
+## 6.0.0-next.13
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.12
+  - @swisspost/design-system-styles@9.0.0-next.12
+  - @swisspost/design-system-components-react@9.0.0-next.12
+  - @swisspost/internet-header@2.0.0-next.12
+  - @swisspost/design-system-tokens@9.0.0-next.12
+  - @swisspost/design-system-icons@9.0.0-next.12
+
 ## 6.0.0-next.12
 
 ### Minor Changes

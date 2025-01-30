@@ -124,7 +124,7 @@ export const Default: Story = {
       <!-- Main navigation -->
       <post-mainnavigation caption="Hauptnavigation">
         <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
-          <post-icon aria-hidden="true" name="3024"></post-icon> Back
+          <post-icon aria-hidden="true" name="arrowright"></post-icon> Back
         </button>
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
@@ -136,12 +136,12 @@ export const Default: Story = {
           <post-list-item>
             <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
             <post-megadropdown id="briefe">
-              <button slot="back-button" class="btn btn-tertiary">
+              <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
                 <post-icon name="arrowright"></post-icon>
-                Zurück
+                Back
               </button>
               <post-closebutton slot="close-button">Schliessen</post-closebutton>
-              <h2 slot="megadropdown-title"><a href="">Briefe title</a></h2>
+              <h2 slot="megadropdown-title">Briefe title</h2>
               <post-list>
                 <h3>Briefe senden</h3>
                 <post-list-item><a href="/sch">Briefe Schweiz</a></post-list-item>
@@ -161,12 +161,12 @@ export const Default: Story = {
           <post-list-item>
             <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
             <post-megadropdown id="pakete">
-              <button slot="back-button" class="btn btn-tertiary">
+              <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
                 <post-icon name="arrowright"></post-icon>
-                Zurück
+                Back
               </button>
               <post-closebutton slot="close-button">Schliessen</post-closebutton>
-              <h2 slot="megadropdown-title"><a href="">Pakete title</a></h2>
+              <h2 slot="megadropdown-title">Pakete title</h2>
               <post-list>
                 <h3>Pakete senden</h3>
                 <post-list-item><a href="/sch">Pakete Schweiz</a></post-list-item>

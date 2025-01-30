@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-documentation",
-  "version": "6.0.0-next.12",
+  "version": "6.0.0-next.14",
   "description": "Swiss Post Design System Documentation.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -25,18 +25,20 @@
     "e2e:watch": "cypress open",
     "doctor": "storybook doctor",
     "snapshots": "percy exec -- cypress run --config-file ./cypress.snapshot.config.js --record --key 0995e768-43ec-42bd-a127-ff944a2ad8c9",
-    "lint": "eslint **/*.{ts,tsx,mdx}"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:9.0.0-next.11",
-    "@swisspost/design-system-components-react": "workspace:9.0.0-next.11",
-    "@swisspost/design-system-icons": "workspace:9.0.0-next.11",
-    "@swisspost/design-system-styles": "workspace:9.0.0-next.11",
-    "@swisspost/design-system-tokens": "workspace:9.0.0-next.11",
-    "@swisspost/internet-header": "workspace:2.0.0-next.11",
+    "@swisspost/design-system-components": "workspace:9.0.0-next.13",
+    "@swisspost/design-system-components-react": "workspace:9.0.0-next.13",
+    "@swisspost/design-system-icons": "workspace:9.0.0-next.13",
+    "@swisspost/design-system-styles": "workspace:9.0.0-next.13",
+    "@swisspost/design-system-tokens": "workspace:9.0.0-next.13",
+    "@swisspost/internet-header": "workspace:2.0.0-next.13",
     "bootstrap": "5.3.3"
   },
   "devDependencies": {
+    "@eslint/js": "9.18.0",
     "@kurbar/storybook-addon-docs-stencil": "8.0.0",
     "@lit/task": "1.0.1",
     "@open-wc/lit-helpers": "0.7.0",
@@ -54,8 +56,8 @@
     "@storybook/types": "8.4.7",
     "@storybook/web-components": "8.4.7",
     "@storybook/web-components-vite": "8.4.7",
-    "@swisspost/design-system-components-angular": "workspace:9.0.0-next.11",
-    "@swisspost/design-system-intranet-header": "workspace:9.0.0-next.11",
+    "@swisspost/design-system-components-angular": "workspace:9.0.0-next.13",
+    "@swisspost/design-system-intranet-header": "workspace:9.0.0-next.13",
     "@types/css-modules": "1.0.5",
     "@types/mdx": "2.0.13",
     "@types/react": "18.3.3",
@@ -64,10 +66,11 @@
     "@typescript-eslint/parser": "7.18.0",
     "cypress": "13.13.2",
     "cypress-axe": "1.5.0",
-    "eslint": "8.57.1",
-    "eslint-config-prettier": "9.1.0",
+    "eslint": "9.18.0",
+    "eslint-plugin-markdown": "5.1.0",
     "eslint-plugin-mdx": "3.1.5",
     "eslint-plugin-storybook": "0.11.2",
+    "globals": "15.14.0",
     "lit": "3.2.1",
     "lit-html": "3.2.1",
     "prettier": "2.8.8",
@@ -80,6 +83,7 @@
     "sass-embedded": "1.78.0",
     "storybook": "8.4.7",
     "typescript": "5.5.4",
-    "vite": "6.0.7"
+    "typescript-eslint": "8.20.0",
+    "vite": "6.0.9"
   }
 }
