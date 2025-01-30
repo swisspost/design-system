@@ -208,7 +208,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
   &::after {
     content: '';
-    background: white;
+    background: var(--post-current-palette-bg);
     width: 33%;
     height: 1.7rem;
     display: block;
