@@ -1,6 +1,6 @@
 import StyleDictionary from 'style-dictionary';
 import { register } from '@tokens-studio/sd-transforms';
-import { FILE_HEADER } from './constants.js';
+import { FILE_HEADER, NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES } from './constants.js';
 
 register(StyleDictionary);
 
@@ -34,7 +34,15 @@ StyleDictionary.registerTransform({
   type: 'value',
   filter: token => {
     const usesDtcg = token.$type && token.$value;
-    return token[usesDtcg ? '$value' : 'value'] === '0';
+    const transformType = NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES.includes(
+      usesDtcg ? token.$type : token.type,
+    );
+
+    if (transformType) {
+      return token[usesDtcg ? '$value' : 'value'] === '0';
+    } else {
+      return false;
+    }
   },
   transform: token => {
     const usesDtcg = token.$type && token.$value;
