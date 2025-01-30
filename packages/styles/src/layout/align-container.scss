@@ -26,7 +26,6 @@ tokens.$default-map: components.$post-container;
 
         .align-container-end {
           padding-inline-end: 0;
-          margin-inline-end: calc(-0.5 * max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
         }
       }
     }
