@@ -72,6 +72,10 @@ $post-segmented-button-max-count: 8;
 
       input {
         border-color: tokens.get('button-segmented-hover-border');
+
+        @include utilities.high-contrast-mode() {
+          border-color: Highlight;
+        }
       }
     }
 
