@@ -39,11 +39,6 @@ post-language-option:where([variant='list']) {
       color: #504f4b;
     }
   }
-
-  &:has([aria-current='true']),
-  &:has([aria-current='page']) {
-    display: none;
-  }
 }
 
 post-language-option:where([variant='menu']) {
