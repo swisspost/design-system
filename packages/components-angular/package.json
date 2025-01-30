@@ -1,12 +1,13 @@
 {
   "name": "@swisspost/design-system-components-angular-workspace",
-  "version": "1.1.10-next.12",
+  "version": "1.1.10-next.13",
   "scripts": {
     "start": "ng serve --port 9210",
-    "build": "ng build components",
+    "build": "pnpm clean && ng build components",
     "lint": "ng lint",
     "e2e": "ng e2e --watch=false",
-    "e2e:watch": "ng e2e"
+    "e2e:watch": "ng e2e",
+    "clean": "rimraf dist"
   },
   "private": true,
   "dependencies": {
@@ -18,8 +19,8 @@
     "@angular/platform-browser": "18.2.13",
     "@angular/platform-browser-dynamic": "18.2.13",
     "@angular/router": "18.2.13",
-    "@swisspost/design-system-components": "workspace:9.0.0-next.12",
-    "@swisspost/design-system-styles": "workspace:9.0.0-next.12",
+    "@swisspost/design-system-components": "workspace:9.0.0-next.13",
+    "@swisspost/design-system-styles": "workspace:9.0.0-next.13",
     "rxjs": "7.8.1",
     "tslib": "2.8.1",
     "zone.js": "0.15.0"
@@ -40,6 +41,7 @@
     "karma-jasmine": "5.1.0",
     "karma-jasmine-html-reporter": "2.1.0",
     "ng-packagr": "18.1.0",
+    "rimraf": "6.0.1",
     "typescript": "5.5.4",
     "typescript-eslint": "8.16.0"
   }

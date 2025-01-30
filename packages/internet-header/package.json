@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/internet-header",
-  "version": "2.0.0-next.12",
+  "version": "2.0.0-next.13",
   "description": "The header for client facing applications.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -30,7 +30,7 @@
   "scripts": {
     "dev": "stencil build --serve --port 9310 --watch --docs-readme --dev --config stencil.config.dev.ts",
     "start": "stencil build --watch --docs-readme",
-    "build": "stencil build --docs-readme",
+    "build": "pnpm clean && stencil build --docs-readme",
     "clean": "rimraf www dist loader",
     "test": "pnpm run unit",
     "unit": "jest",
@@ -43,7 +43,7 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@swisspost/design-system-styles": "workspace:9.0.0-next.12",
+    "@swisspost/design-system-styles": "workspace:9.0.0-next.13",
     "body-scroll-lock": "4.0.0-beta.0",
     "iframe-resizer": "4.4.5",
     "jquery": "3.7.1",
@@ -57,7 +57,7 @@
     "@percy/cli": "1.30.6",
     "@percy/cypress": "3.1.2",
     "@stencil-community/eslint-plugin": "0.9.0",
-    "@stencil/core": "4.19.2",
+    "@stencil/core": "4.25.1",
     "@stencil/sass": "3.0.12",
     "@stencil/store": "2.0.16",
     "@types/body-scroll-lock": "3.1.2",
