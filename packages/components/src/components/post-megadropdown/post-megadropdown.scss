@@ -1,5 +1,6 @@
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 
 @keyframes slide-in {
@@ -20,47 +21,79 @@
   }
 }
 
+@keyframes slide-down {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
 *,
 ::before,
 ::after {
   box-sizing: border-box;
 }
 
-post-popovercontainer {
+.megadropdown-container {
+  --post-main-header-height: 56px;
+  --post-global-header-height: 72px;
+  --post-header-height: calc(var(--post-global-header-height) + var(--post-main-header-height));
+  box-shadow: 0 8px 6px rgba(0, 0, 0, 16%);
+  position: absolute;
+
   background-color: #fafafa;
   border: none;
+  z-index: 1;
   border-top: 1px solid #e1e0dc;
   width: 100%;
+  top: 100%;
+  left: 0;
   border-radius: 0;
-  box-shadow: 0 8px 6px rgba(0, 0, 0, 16%);
+
+  &.slide-in {
+    animation: slide-down 350ms forwards;
+  }
+
+  &.slide-out {
+    animation: slide-up 350ms forwards;
+  }
 
   @include media.max(lg) {
-    position: fixed;
-    top: var(--header-height) !important;
-    bottom: 0;
+    --post-global-header-height: 64px;
+    z-index: 4;
+    top: 0 !important;
     left: 0;
     width: 100%;
-    height: auto;
+    position: fixed;
+    height: calc(100vh - var(--post-header-height));
     max-height: calc(100vh - var(--header-height));
     border-top: unset;
     overflow: auto;
 
     &.slide-in {
-      animation: slide-in;
-      animation-duration: 350ms;
-      animation-fill-mode: forwards;
+      animation: slide-in 350ms forwards;
     }
 
     &.slide-out {
-      animation: slide-out;
-      animation-duration: 350ms;
-      animation-fill-mode: forwards;
+      animation: slide-out 350ms forwards;
     }
   }
 }
 
 .megadropdown {
   padding: 31px 40px 40px;
+  background-color: #fafafa;
 
   @include media.max(lg) {
     padding: 16px 32px 24px;
@@ -179,6 +212,7 @@ post-popovercontainer {
       display: flex;
       text-decoration: none;
       width: 100%;
+      min-width: 100%;
       height: auto;
       min-height: 48px;
 

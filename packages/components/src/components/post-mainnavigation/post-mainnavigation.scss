@@ -5,6 +5,7 @@
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/variables/animation';
+@use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 
 post-mainnavigation {
@@ -37,7 +38,6 @@ post-mainnavigation {
 
       &:focus-visible {
         border-radius: var(--post-core-dimension-4);
-        z-index: 1;
       }
     }
   }
@@ -61,8 +61,8 @@ post-mainnavigation {
     display: block;
 
     nav {
-      position: relative;
       max-width: 100vw;
+      background: var(--post-core-color-brand-white);
       max-height: var(--main-navigation-height);
       user-select: none;
       transition: transform animation.$transition-base-timing;
@@ -74,7 +74,7 @@ post-mainnavigation {
       inset-block: 0;
       overflow: hidden;
 
-       button {
+      button {
         @include button.reset-button;
         background: var(--post-core-color-brand-white);
         padding: var(--post-core-dimension-16);
@@ -112,12 +112,21 @@ post-mainnavigation {
       > a,
       > button,
       post-megadropdown-trigger button {
+        position: sticky;
         padding-inline: var(--post-core-dimension-12);
         height: var(--main-navigation-height);
         gap: var(--post-core-dimension-4);
         font-size: var(--post-core-font-size-16);
         border-block: 0 solid transparent;
         border-block-end-color: currentColor;
+
+        @include media.max(lg) {
+          z-index: 3;
+        }
+
+        @include media.min(lg) {
+          z-index: 4;
+        }
 
         &:hover {
           border-block-width: var(--post-core-dimension-2);
