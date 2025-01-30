@@ -92,7 +92,7 @@ describe('main-navigation', () => {
         })
         .each($el => {
           cy.wrap($el).should(() => {
-            const { scrollWidth, clientWidth } = $el.get(0);
+            const { scrollWidth, clientWidth } = $el.get(0) as HTMLSwisspostInternetHeaderElement;
             expect(clientWidth).not.to.equal(0);
             expect(scrollWidth).not.to.be.greaterThan(clientWidth);
           });

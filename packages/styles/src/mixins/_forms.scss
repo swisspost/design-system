@@ -4,6 +4,7 @@
 @use './../functions/icons';
 @use './../functions/forms' as forms-fx;
 @use './../functions/utilities' as utilities-fx;
+@use './../variables/color';
 
 // Placeholder in input fields
 @mixin placeholder() {
@@ -26,7 +27,7 @@
 
   /* Compatibility with button-group */
   &:is(:focus-visible, :focus-within, .pretend-focus) {
-    outline: forms.$input-focus-outline-thickness solid var(--post-contrast-color);
+    outline: forms.$input-focus-outline-thickness solid color.$black;
     @content;
   }
 }
@@ -34,26 +35,26 @@
 // Used on form elements to set the correct colored validation icon
 @mixin validation-icons() {
   &.is-valid:not(:disabled) {
-    background-image: forms.$valid-icon;
+    background-image: forms-fx.success-icon();
 
     @include utilities.high-contrast-mode-dark() {
-      background-image: forms-fx.valid-icon('#e0e0e0');
+      background-image: forms-fx.success-icon(#e0e0e0);
     }
 
     @include utilities.high-contrast-mode-light() {
-      background-image: forms-fx.valid-icon('#333333');
+      background-image: forms-fx.success-icon(#333);
     }
   }
 
   &.is-invalid:not(:disabled) {
-    background-image: forms.$invalid-icon;
+    background-image: forms-fx.warning-icon();
 
     @include utilities.high-contrast-mode-dark() {
-      background-image: forms-fx.invalid-icon('#e0e0e0');
+      background-image: forms-fx.warning-icon(#e0e0e0);
     }
 
     @include utilities.high-contrast-mode-light() {
-      background-image: forms-fx.invalid-icon('#333333');
+      background-image: forms-fx.warning-icon(#333);
     }
   }
 }

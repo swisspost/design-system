@@ -65,13 +65,15 @@ const config: StorybookConfig = {
       from: '../node_modules/@swisspost/design-system-styles',
       to: '/styles',
     },
-    '../public',
-    '../node_modules/@swisspost/design-system-icons/public',
+    {
+      from: '../node_modules/@swisspost/design-system-icons/public/post-icons',
+      to: '/post-icons',
+    },
   ],
   docs: {
     autodocs: 'tag',
   },
-  env: config => ({
+  env: (config: StorybookConfig) => ({
     ...config,
     STORYBOOK_GTM_KEY: 'GTM-WKSKHGJ',
     STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_LANGUAGE: 'en',
@@ -83,7 +85,7 @@ const config: StorybookConfig = {
     STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_FALLBACK: 'dev',
     STORYBOOK_BASE_URL: 'https://design-system.post.ch',
   }),
-  async viteFinal(config, options) {
+  async viteFinal(config: StorybookConfig) {
     return mergeConfig(config, {
       css: {
         devSourcemap: true,

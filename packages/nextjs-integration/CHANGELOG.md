@@ -1,5 +1,44 @@
 # @swisspost/design-system-nextjs-integration
 
+## 0.1.14-next.13
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.13
+  - @swisspost/internet-header@2.0.0-next.13
+  - @swisspost/design-system-components-react@9.0.0-next.13
+
+## 0.1.14-next.12
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.12
+  - @swisspost/design-system-components-react@9.0.0-next.12
+  - @swisspost/internet-header@2.0.0-next.12
+
+## 0.1.14-next.11
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.11
+  - @swisspost/internet-header@2.0.0-next.11
+  - @swisspost/design-system-components-react@9.0.0-next.11
+
+## 0.1.14-next.10
+
+### Patch Changes
+
+- Removed remaining sizing classes usage. (by [@leagrdv](https://github.com/leagrdv) with [#4357](https://github.com/swisspost/design-system/pull/4357))
+
+- Aligned `width` and `height` percentage classes, after utility update. (by [@leagrdv](https://github.com/leagrdv) with [#4328](https://github.com/swisspost/design-system/pull/4328))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.10
+  - @swisspost/design-system-components-react@9.0.0-next.10
+  - @swisspost/internet-header@2.0.0-next.10
+
 ## 0.1.14-next.9
 
 ### Patch Changes

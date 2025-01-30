@@ -1,5 +1,27 @@
 # @swisspost/design-system-icons
 
+## 9.0.0-next.13
+
+### Minor Changes
+
+- Added icons number 1041, 2204, 2642 and 8020. (by [@myrta2302](https://github.com/myrta2302) with [#4480](https://github.com/swisspost/design-system/pull/4480))
+
+- Added icons number 2634, 2635, 2635, 2637, 2638, 2639, 2640 and 2641. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4481](https://github.com/swisspost/design-system/pull/4481))
+
+### Patch Changes
+
+- Fixed UI-Icon source file names. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4351](https://github.com/swisspost/design-system/pull/4351))
+
+## 9.0.0-next.12
+
+## 9.0.0-next.11
+
+## 9.0.0-next.10
+
+### Minor Changes
+
+- Updated the output structure of our UI-Icons. Added a `post-icon` mixin, to use any of our icons from within SCSS. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4136](https://github.com/swisspost/design-system/pull/4136))
+
 ## 9.0.0-next.9
 
 ## 9.0.0-next.8
