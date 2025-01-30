@@ -12,6 +12,7 @@
 
 @mixin mobile-header-interactive() {
   width: 100%;
+  min-width: 100%;
   height: var(--post-core-dimension-48);
   padding-inline-end: calc(
     var(--post-core-dimension-6) + var(--post-core-dimension-24) + var(--post-core-dimension-16)
