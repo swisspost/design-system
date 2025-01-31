@@ -179,7 +179,7 @@ export const fetchConfig = async (
     environment = 'int01';
   }
 
-  let url = generateConfigUrl(projectId, environment);
+  const url = generateConfigUrl(projectId, environment);
 
   // Get the config if cache is invalid
   try {
@@ -244,7 +244,7 @@ export const getLocalizedCustomConfig = (
       `Internet Header: Custom config is invalid. Make sure your custom config contains valid JSON syntax and matches the definition. `,
     );
   }
-  let localizedCustomConfig: ILocalizedCustomConfig | undefined = customConfig[language];
+  const localizedCustomConfig: ILocalizedCustomConfig | undefined = customConfig[language];
   if (localizedCustomConfig?.header?.navMain)
     setMainNavigationIds(localizedCustomConfig.header.navMain);
   return localizedCustomConfig;

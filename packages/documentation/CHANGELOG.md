@@ -1,5 +1,135 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.14
+
+### Minor Changes
+
+- Updated icon search, by implementing a paging and separating icon sets from each other. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4351](https://github.com/swisspost/design-system/pull/4351))
+
+- Added documentation for responsive design. (by [@leagrdv](https://github.com/leagrdv) with [#4452](https://github.com/swisspost/design-system/pull/4452))
+
+### Patch Changes
+
+- Replaced previously deleted CSS variables with SASS variables. (by [@leagrdv](https://github.com/leagrdv) with [#4446](https://github.com/swisspost/design-system/pull/4446))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.0.0-next.13
+  - @swisspost/design-system-styles@9.0.0-next.13
+  - @swisspost/design-system-components@9.0.0-next.13
+  - @swisspost/internet-header@2.0.0-next.13
+  - @swisspost/design-system-components-react@9.0.0-next.13
+  - @swisspost/design-system-tokens@9.0.0-next.13
+
+## 6.0.0-next.13
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.12
+  - @swisspost/design-system-styles@9.0.0-next.12
+  - @swisspost/design-system-components-react@9.0.0-next.12
+  - @swisspost/internet-header@2.0.0-next.12
+  - @swisspost/design-system-tokens@9.0.0-next.12
+  - @swisspost/design-system-icons@9.0.0-next.12
+
+## 6.0.0-next.12
+
+### Minor Changes
+
+- Updated figma links in the documentation. (by [@myrta2302](https://github.com/myrta2302) with [#4419](https://github.com/swisspost/design-system/pull/4419))
+
+- Added Teaser Card component. (by [@leagrdv](https://github.com/leagrdv) with [#4460](https://github.com/swisspost/design-system/pull/4460))
+
+- Added Swiss Post Sans as the new default font (by [@gfellerph](https://github.com/gfellerph) with [#4467](https://github.com/swisspost/design-system/pull/4467))
+
+### Patch Changes
+
+- Moved the Bootstrap `.clearfix` helper class to the design system and documented it. (by [@leagrdv](https://github.com/leagrdv) with [#4443](https://github.com/swisspost/design-system/pull/4443))
+
+- Moved the Bootstrap `.visually-hidden` helper class to design system styles and documented it. (by [@leagrdv](https://github.com/leagrdv) with [#4438](https://github.com/swisspost/design-system/pull/4438))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.11
+  - @swisspost/design-system-components@9.0.0-next.11
+  - @swisspost/internet-header@2.0.0-next.11
+  - @swisspost/design-system-components-react@9.0.0-next.11
+  - @swisspost/design-system-tokens@9.0.0-next.11
+  - @swisspost/design-system-icons@9.0.0-next.11
+
+## 6.0.0-next.11
+
+### Major Changes
+
+- Renamed the "dropdown" variant to "menu" for the `post-language-switch` and `post-language-option` components. (by [@leagrdv](https://github.com/leagrdv) with [#4260](https://github.com/swisspost/design-system/pull/4260))
+
+- Removed `.bg-` classes to define background color of elements. (by [@leagrdv](https://github.com/leagrdv) with [#4201](https://github.com/swisspost/design-system/pull/4201))
+
+### Minor Changes
+
+- Implemented gutter utility classes. (by [@myrta2302](https://github.com/myrta2302) with [#4378](https://github.com/swisspost/design-system/pull/4378))
+
+- Updated the output structure of our UI-Icons. Added a `post-icon` mixin, to use any of our icons from within SCSS. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4136](https://github.com/swisspost/design-system/pull/4136))
+
+- Added guidelines page on styling shadowdom parts. (by [@myrta2302](https://github.com/myrta2302) with [#4403](https://github.com/swisspost/design-system/pull/4403))
+
+### Patch Changes
+
+- Updated header documentation by specifying `post-logo` slot explicitly. (by [@schaertim](https://github.com/schaertim) with [#4345](https://github.com/swisspost/design-system/pull/4345))
+
+- Removed remaining sizing classes usage. (by [@leagrdv](https://github.com/leagrdv) with [#4357](https://github.com/swisspost/design-system/pull/4357))
+
+- Updated the documentation of the Post header. (by [@leagrdv](https://github.com/leagrdv) with [#4408](https://github.com/swisspost/design-system/pull/4408))
+
+- Added scss file import documentation to palette. (by [@leagrdv](https://github.com/leagrdv) with [#4127](https://github.com/swisspost/design-system/pull/4127))
+
+- Removed all usage of deprecated utility sizing classes. (by [@leagrdv](https://github.com/leagrdv) with [#4343](https://github.com/swisspost/design-system/pull/4343))
+
+- Aligned `width` and `height` percentage classes, after utility update. (by [@leagrdv](https://github.com/leagrdv) with [#4328](https://github.com/swisspost/design-system/pull/4328))
+
+- Added hint to not use active, disabled chips. (by [@schaertim](https://github.com/schaertim) with [#4315](https://github.com/swisspost/design-system/pull/4315))
+
+- Updated header documentation by specifying `post-togglebutton` slot explicitly. (by [@schaertim](https://github.com/schaertim) with [#4346](https://github.com/swisspost/design-system/pull/4346))
+
+- Fixed some display issues on storybook documentation. (by [@leagrdv](https://github.com/leagrdv) with [#4359](https://github.com/swisspost/design-system/pull/4359))
+
+- Fixed the color of the highlighted search text in the documentation in High Contrast Mode. (by [@leagrdv](https://github.com/leagrdv) with [#4365](https://github.com/swisspost/design-system/pull/4365))
+
+- Removed padding on back to top documentation example. (by [@leagrdv](https://github.com/leagrdv) with [#4366](https://github.com/swisspost/design-system/pull/4366))
+
+- Added breakpoint mixin "only" and updated documentation to reflect new breakpoint mixin naming. (by [@leagrdv](https://github.com/leagrdv) with [#4397](https://github.com/swisspost/design-system/pull/4397))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.10
+  - @swisspost/design-system-styles@9.0.0-next.10
+  - @swisspost/design-system-icons@9.0.0-next.10
+  - @swisspost/design-system-components-react@9.0.0-next.10
+  - @swisspost/internet-header@2.0.0-next.10
+  - @swisspost/design-system-tokens@9.0.0-next.10
+
+## 6.0.0-next.10
+
+### Minor Changes
+
+- Added the `post-breadcrumb` component to provide a standalone breadcrumb navigation solution. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4065](https://github.com/swisspost/design-system/pull/4065))
+
+- Updated the utility classes for sizing. (by [@myrta2302](https://github.com/myrta2302) with [#4012](https://github.com/swisspost/design-system/pull/4012))
+
+- Added the css parts `button` and `body` in the `post-accorddion-item` component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4190](https://github.com/swisspost/design-system/pull/4190))
+
+- Updated `.btn-link` to look like a regular link and old `.btn-link` is now `.btn-tertiary .px-0`. (by [@leagrdv](https://github.com/leagrdv) with [#4200](https://github.com/swisspost/design-system/pull/4200))
+
+- Implemented new pixel based sizes. (by [@myrta2302](https://github.com/myrta2302) with [#4012](https://github.com/swisspost/design-system/pull/4012))
+
+- Added the `post-language-switch` component that enables users to change the language of a page. (by [@leagrdv](https://github.com/leagrdv) with [#4044](https://github.com/swisspost/design-system/pull/4044))
+
+### Patch Changes
+
+- Updated the `post-togglebutton` component to offer greater flexibility. You can now control the visibility of elements within the `post-togglebutton` using the `data-showwhen="toggled"` and `data-showwhen="untoggled"` attributes. Any content without a `data-showwhen` attribute will always be visible, regardless of the toggle state. (by [@alizedebray](https://github.com/alizedebray) with [#4223](https://github.com/swisspost/design-system/pull/4223))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.9
+  - @swisspost/design-system-styles@9.0.0-next.9
+  - @swisspost/design-system-components-react@9.0.0-next.9
+  - @swisspost/internet-header@2.0.0-next.9
+  - @swisspost/design-system-tokens@9.0.0-next.9
+  - @swisspost/design-system-icons@9.0.0-next.9
+
 ## 6.0.0-next.9
 
 ### Major Changes

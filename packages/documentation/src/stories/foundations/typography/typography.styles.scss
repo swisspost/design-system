@@ -1,4 +1,8 @@
 @use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 .sb-fontface-wrapper {
   display: grid;
@@ -7,8 +11,8 @@
 
   @include post.media-breakpoint-up(md) {
     grid-template-columns: max-content min-content max-content;
-    gap: post.$size-regular;
-    margin-bottom: post.$size-regular;
+    gap: tokens.get('utility-gap-16');
+    margin-bottom: tokens.get('utility-gap-16');
   }
 }
 
@@ -17,14 +21,14 @@
 
   .sb-fontface__typo {
     font-size: post.$font-size-huge;
-    color: var(--post-gray-60);
+    color: post.$gray-60;
     line-height: 1;
   }
 
   .sb-fontface__settings {
-    margin-top: post.$size-mini;
-    margin-bottom: post.$size-regular;
-    padding-top: post.$size-mini;
+    margin-top: tokens.get('utility-gap-8');
+    margin-bottom: tokens.get('utility-gap-16');
+    padding-top: tokens.get('utility-gap-8');
     border-top: post.$border-width dashed post.$border-color;
 
     .settings__face {
@@ -34,10 +38,10 @@
     .settings__weight,
     .settings__style {
       font-size: post.$font-size-tiny;
-      color: var(--post-gray-80);
+      color: post.$gray-80;
 
       > span {
-        color: var(--post-gray-60);
+        color: post.$gray-60;
       }
     }
   }
@@ -51,7 +55,7 @@
       margin-top: 0;
       margin-bottom: 0;
       padding-top: 0;
-      padding-left: post.$size-regular;
+      padding-left: tokens.get('utility-gap-16');
       border-top: 0 none;
       border-left: post.$border-width dashed post.$border-color;
     }

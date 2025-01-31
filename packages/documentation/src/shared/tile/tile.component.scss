@@ -1,13 +1,17 @@
 @use 'sass:map';
 @use '@swisspost/design-system-styles/core.scss' as post;
-@use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 $tile-size: var(--post-docs-tile-size, 120px);
 $tile-rg-size: var(--post-docs-tile-rg-size, calc($tile-size / 1.2));
 
 :host {
   a {
-    @include utilities.focus-style {
+    @include utilities-mx.focus-style {
       border-radius: post.$border-radius;
     }
   }
@@ -18,12 +22,12 @@ $tile-rg-size: var(--post-docs-tile-rg-size, calc($tile-size / 1.2));
     width: $tile-size;
     height: $tile-size;
     background-color: post.$white;
-    border-radius: post.$size-regular;
+    border-radius: tokens.get('utility-gap-16');
     box-shadow: 0 2px 5px 0 rgba(82, 49, 120, 0.3);
     text-decoration: none;
     text-align: center;
 
-    @include utilities.high-contrast-mode() {
+    @include utilities-mx.high-contrast-mode() {
       border: 2px solid transparent;
     }
 
@@ -32,8 +36,8 @@ $tile-rg-size: var(--post-docs-tile-rg-size, calc($tile-size / 1.2));
       justify-content: center;
       align-items: center;
       flex: 0 0 auto;
-      padding: 0 post.$size-micro;
-      height: calc(#{post.$size-mini * 2} + 2.2em);
+      padding: 0 tokens.get('utility-gap-4');
+      height: calc((tokens.get('utility-gap-8') * 2) + 2.2em);
       background-color: post.$yellow;
       border-top-left-radius: inherit;
       border-top-right-radius: inherit;
@@ -57,7 +61,7 @@ $tile-rg-size: var(--post-docs-tile-rg-size, calc($tile-size / 1.2));
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: post.$size-micro;
+      gap: tokens.get('utility-gap-4');
       border-bottom-left-radius: inherit;
       border-bottom-right-radius: inherit;
 
@@ -83,8 +87,9 @@ $tile-rg-size: var(--post-docs-tile-rg-size, calc($tile-size / 1.2));
     @include post.media-breakpoint-down(md) {
       width: $tile-rg-size;
       height: $tile-rg-size;
+
       .tile--title {
-        height: calc(#{post.$size-mini * 1.5} + 2.2em);
+        height: calc((tokens.get('utility-gap-8') * 1.5) + 2.2em);
 
         ~ .tile--icon {
           ::slotted(img) {

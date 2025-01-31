@@ -1,4 +1,5 @@
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/variables/animation';
 
 *,
@@ -8,25 +9,35 @@
 }
 
 :host {
+  z-index: commons.$zindex-header;
   --global-header-height: 72px;
   --global-header-minimal-height: 24px;
-  --main-header-height: 56px;
-  --header-height: calc(var(--global-header-height) + var(--main-header-height));
+  --local-header-height: 112px;
+  --local-header-min-height: 56px;
+  --header-height: calc(var(--global-header-height) + var(--local-header-height));
 
   @include media.min(lg) {
-    display: block;
-    position: sticky;
-    inset-inline: 0;
-    inset-block-start: calc(
-      -1 * (var(--global-header-height) + var(--main-header-height) -
-            var(--global-header-minimal-height))
-    );
-    box-shadow: var(--post-core-elevation-3);
+    --global-header-reduced-height: 24px;
+    --main-navigation-height: 56px;
   }
 
   @include media.max(lg) {
     --global-header-height: 64px;
-    --main-header-height: 48px;
+    --local-header-height: 48px;
+    --local-header-min-height: 48px;
+    --main-navigation-height: 0px;
+  }
+}
+
+:host(:not(:has([slot='title']))) {
+  --local-header-height: var(--main-navigation-height);
+
+  .local-header {
+    padding-block-start: 0;
+  }
+
+  .local-sub {
+    display: none;
   }
 }
 
@@ -46,15 +57,18 @@
   position: sticky;
   padding-inline: var(--post-core-dimension-4);
   height: var(--global-header-height);
-  z-index: 1;
 
   @include media.max(lg) {
+    z-index: 3;
     inset-block-start: 0;
   }
 
   @include media.min(lg) {
+    z-index: 5;
     padding-inline-end: var(--post-core-dimension-12);
-    top: calc((var(--global-header-height) - var(--global-header-minimal-height)) * -1);
+    inset-block-start: calc(
+      (var(--global-header-height) - var(--global-header-reduced-height)) * -1
+    );
   }
 }
 
@@ -66,7 +80,6 @@ slot[name='post-logo'] {
   display: flex;
   align-items: center;
   gap: var(--post-core-dimension-24);
-  height: var(--global-header-height);
 }
 
 .align-end {
@@ -77,7 +90,7 @@ slot[name='post-logo'] {
   flex: 1 0 auto;
   height: var(--global-header-height);
   width: var(--global-header-height);
-  min-height: var(--global-header-minimal-height);
+  min-height: var(--global-header-reduced-height);
   align-self: flex-end;
 
   @include media.min(lg) {
@@ -86,39 +99,67 @@ slot[name='post-logo'] {
 }
 
 ::slotted(ul) {
-  margin-block: 0;
+  margin-block: 0 !important;
   list-style: none;
   display: flex;
   padding-left: 0;
   gap: 1rem;
+  flex-shrink: 0 !important;
 }
 
-.title-header {
+.local-header {
   display: flex;
+  position: sticky;
+  flex-wrap: wrap;
   align-items: center;
-  gap: var(--post-core-dimension-4);
-  height: var(--main-header-height);
+  justify-content: space-between;
+  gap: var(--post-core-dimension-8);
+  min-height: var(--local-header-min-height);
   background: var(--post-core-color-brand-white);
 
   @include media.min(lg) {
-    padding: var(--post-core-dimension-18) var(--post-core-dimension-16)
-      var(--post-core-dimension-4) var(--post-core-dimension-12);
+    z-index: 3;
+    inset-block-start: calc(
+      -1 * (var(--local-header-height) - var(--main-navigation-height)) + var(--global-header-reduced-height)
+    );
+    padding-block-start: var(--post-core-dimension-18);
+    box-shadow: var(--post-core-elevation-3);
   }
 
   @include media.max(lg) {
-    position: sticky;
-    z-index: 1;
+    z-index: 2;
     inset-block-start: var(--global-header-height);
-    padding-inline: var(--post-core-dimension-8) var(--post-core-dimension-16);
+    padding-block: var(--post-core-dimension-9);
+    flex-wrap: wrap;
+
+    &.local-header-mobile-extended {
+      border-bottom: 1px solid var(--post-core-color-sandgrey-012);
+    }
   }
 }
 
-:host(:not(:has([slot='title']))) .title-header {
-  display: none;
+.local-sub {
+  margin-inline-end: var(--post-core-dimension-16);
+}
+
+::slotted(.list-inline) {
+  margin: -8px 0 !important;
+  z-index: 3 !important;
+  position: relative !important;
 }
 
 ::slotted(h1) {
   margin: 0 !important;
+  flex-shrink: 10;
+  z-index: 3;
+
+  @include media.min(sm) {
+    margin-inline-start: var(--post-core-dimension-12) !important;
+  }
+
+  @include media.max(sm) {
+    margin-inline-start: var(--post-core-dimension-8) !important;
+  }
 
   @include media.min(lg) {
     font-size: var(--post-core-font-size-28) !important;
@@ -126,6 +167,7 @@ slot[name='post-logo'] {
 
   @include media.max(lg) {
     font-size: var(--post-core-font-size-20) !important;
+    max-width: calc(100vw - var(--post-core-dimension-8) - var(--post-core-dimension-16));
   }
 }
 
@@ -136,12 +178,19 @@ slot[name='post-logo'] {
 }
 
 .navigation {
-  background: var(--post-core-color-brand-white);
+  width: 100%;
 
   @include media.min(lg) {
-    position: sticky;
-    z-index: 1;
     inset-block-start: var(--global-header-minimal-height);
+
+    &::before {
+      display: block;
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: var(--post-core-color-brand-white);
+    }
   }
 }
 
@@ -149,12 +198,13 @@ slot[name='post-logo'] {
 @include media.max(lg) {
   .navigation {
     position: fixed;
+    z-index: 1;
     inset-inline: 0;
+    background: var(--post-core-color-brand-white);
     inset-block-end: calc(100vh - var(--header-height));
     box-shadow: var(--post-core-elevation-3);
     min-height: var(--post-core-dimension-10); // needed for the box-shadow to always show
     max-height: calc(100vh - var(--header-height));
-    overflow: auto;
   }
 
   ::slotted(post-mainnavigation),
@@ -169,6 +219,16 @@ slot[name='post-logo'] {
     }
   }
 
+  .navigation.extended {
+    height: calc(100vh - var(--header-height));
+    display: flex;
+    flex-direction: column;
+
+    ::slotted(post-mainnavigation) {
+      flex-grow: 1 !important;
+    }
+  }
+
   ::slotted(post-mainnavigation) {
     background-color: var(--post-core-color-sandgrey-002);
     gap: var(--post-core-dimension-32);
@@ -177,5 +237,13 @@ slot[name='post-logo'] {
   .navigation-footer {
     background-color: var(--post-core-color-sandgrey-006);
     gap: var(--post-core-dimension-24);
+  }
+}
+
+// only for mobile
+@include media.max(sm) {
+  ::slotted(post-mainnavigation),
+  .navigation-footer {
+    padding-inline: var(--post-core-dimension-16);
   }
 }

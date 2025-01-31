@@ -10,7 +10,7 @@
   padding-top: spacing.$spacer;
   border: 0;
   background-color: rgba(
-    var(--post-contrast-color-rgb),
+    color.$black,
     0.02
   ); // 0.02 gets as close as possible to color.$light on white background
 
@@ -60,13 +60,4 @@
 
 .tab-content {
   padding-top: spacing.$spacer;
-}
-
-// Careful, this generates a lot of code
-@each $key, $color in color.$background-colors {
-  .bg-#{$key} {
-    .tabs-wrapper {
-      background-color: $color;
-    }
-  }
 }

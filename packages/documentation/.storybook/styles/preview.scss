@@ -2,8 +2,8 @@
 @use '@swisspost/design-system-styles/core.scss' as post;
 @use '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css';
 @use './components';
-@use '@swisspost/design-system-styles/functions/tokens' as tokens;
-@use '@swisspost/design-system-styles/tokens/utilities' as utilities;
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/utilities';
 
 tokens.$default-map: utilities.$post-color;
 
@@ -11,8 +11,6 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
 #storybook-root,
 #storybook-docs {
-  background-color: white;
-
   .sbdocs-content .container >,
   .sbdocs-content .container > post-tabs > post-tab-panel >,
   .sbdocs-content .container > migration-global-state {
@@ -61,7 +59,8 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
   .sbdocs-content .container {
     // Support for autolink-headings
-    :is(h1, h2, h3, h4, h5, h6) {
+    .docs-title :is(h1, h2, h3, h4, h5, h6),
+    > :is(h1, h2, h3, h4, h5, h6) {
       position: relative;
 
       @media (hover: hover) {
@@ -91,10 +90,10 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: post.$size-mini;
+    gap: tokens.get('utility-gap-8', utilities.$post-spacing);
   }
   .docs-title {
-    margin-bottom: post.$size-mini;
+    margin-bottom: tokens.get('utility-gap-8', utilities.$post-spacing);
 
     :first-child {
       margin-right: auto;
@@ -123,8 +122,8 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
       display: block;
       margin-top: 0.25rem;
       padding: 1rem;
-      background-color: var(--post-contrast-color);
-      color: var(--post-contrast-color-inverted);
+      background-color: post.$black;
+      color: post.$white;
     }
   }
 

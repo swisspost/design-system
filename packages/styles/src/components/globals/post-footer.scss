@@ -1,6 +1,7 @@
 @use '../../variables/color';
 @use '../../mixins/media';
 @use '../../mixins/list';
+@use '../../mixins/utilities';
 
 post-footer {
   // mobile
@@ -37,6 +38,26 @@ post-footer {
     &:not(.btn-icon, .app-store-badge) {
       display: block;
       text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+
+        @include utilities.high-contrast-mode() {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    &.btn-icon {
+      @include utilities.high-contrast-mode() {
+        color: CanvasText !important;
+      }
+
+      &:hover {
+        @include utilities.high-contrast-mode() {
+          color: LinkText !important;
+        }
+      }
     }
   }
 

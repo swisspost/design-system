@@ -1,5 +1,7 @@
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/variables/commons';
+@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 
 @keyframes slide-in {
   0% {
@@ -19,52 +21,86 @@
   }
 }
 
+@keyframes slide-down {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
 *,
 ::before,
 ::after {
   box-sizing: border-box;
 }
 
-post-popovercontainer {
-  --post-global-header-height: 72px;
+.megadropdown-container {
   --post-main-header-height: 56px;
+  --post-global-header-height: 72px;
   --post-header-height: calc(var(--post-global-header-height) + var(--post-main-header-height));
+  box-shadow: 0 8px 6px rgba(0, 0, 0, 16%);
+  position: absolute;
 
   background-color: #fafafa;
   border: none;
+  z-index: 1;
   border-top: 1px solid #e1e0dc;
   width: 100%;
+  top: 100%;
+  left: 0;
   border-radius: 0;
-  box-shadow: 0 8px 6px rgba(0, 0, 0, 16%);
+
+  &.slide-in {
+    animation: slide-down 350ms forwards;
+  }
+
+  &.slide-out {
+    animation: slide-up 350ms forwards;
+  }
 
   @include media.max(lg) {
     --post-global-header-height: 64px;
-    position: absolute;
-    top: var(--post-header-height) !important;
-    bottom: 0;
+    z-index: 4;
+    top: 0 !important;
     left: 0;
     width: 100%;
-    height: auto;
+    position: fixed;
+    height: calc(100vh - var(--post-header-height));
+    max-height: calc(100vh - var(--header-height));
+    border-top: unset;
+    overflow: auto;
 
     &.slide-in {
-      animation: slide-in;
-      animation-duration: 350ms;
-      animation-fill-mode: forwards;
+      animation: slide-in 350ms forwards;
     }
 
     &.slide-out {
-      animation: slide-out;
-      animation-duration: 350ms;
-      animation-fill-mode: forwards;
+      animation: slide-out 350ms forwards;
     }
   }
 }
 
 .megadropdown {
   padding: 31px 40px 40px;
+  background-color: #fafafa;
 
   @include media.max(lg) {
     padding: 16px 32px 24px;
+  }
+
+  @include media.max(sm) {
+    padding-inline: 16px;
   }
 
   .megadropdown-content {
@@ -76,6 +112,10 @@ post-popovercontainer {
 
     @include media.max(lg) {
       grid-template-columns: repeat(auto-fit, minmax(min(35vw, 100%), 1fr));
+    }
+
+    @include media.max(sm) {
+      grid-template-columns: 1fr;
     }
   }
 
@@ -94,16 +134,11 @@ post-popovercontainer {
 
     @include media.max(lg) {
       display: block;
-      font-size: 20px;
+      font-size: 1.25rem;
     }
-  }
 
-  // Unset styles added by parent main navigation
-  a:hover {
-    border-block-width: 0;
-
-    &::after {
-      content: unset;
+    @include media.max(sm) {
+      font-size: 1.125rem;
     }
   }
 
@@ -129,44 +164,72 @@ post-popovercontainer {
 
       h3 {
         font-size: 20px;
-        border-bottom: 1px solid #050400;
-        padding: 15px 12px 14px 0;
         display: block;
         font-weight: 900;
 
+        &:not(:has(a)) {
+          padding: 15px 12px 14px 8px;
+          border-bottom: 1px solid #050400;
+        }
+
         a {
+          padding-block: 15px 14px;
+          padding-inline-start: 8px;
+          border-radius: 0;
           text-decoration: none;
-          width: 100%;
           font-size: inherit;
-          display: inline-block;
-          font-weight: inherit;
-          height: unset;
-          padding: 0;
-          border: 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          min-height: 53px;
+
+          @include header-mx.mobile-header-interactive() {
+            height: unset;
+            font-weight: 900;
+          }
         }
 
         @include media.max(lg) {
-          font-size: 16px;
-          padding: 12px 12px 11px 0;
+          font-size: 1rem;
+
+          &:not(:has(a)) {
+            padding: 15px 12px 14px 8px;
+            border-bottom: 1px solid #050400;
+          }
+        }
+
+        @include media.max(sm) {
+          font-size: 0.875rem;
         }
       }
     }
   }
 
   post-list-item {
-    border-bottom: 1px solid #050400;
-
     > a {
-      padding: 13px 12px 12px 0;
-      display: block;
+      padding-block: 13px 12px;
+      padding-inline-start: 8px;
+      display: flex;
       text-decoration: none;
       width: 100%;
-      border-bottom: 0;
+      min-width: 100%;
       height: auto;
-      border-top: 0;
+      min-height: 48px;
+
+      &:hover {
+        border-block-width: 0;
+      }
+
+      @include media.min(lg) {
+        font-size: 1.25rem;
+      }
 
       @include media.max(lg) {
-        padding: 12px 12px 11px 0;
+        padding-block: 12px 11px;
+      }
+
+      @include media.max(sm) {
+        font-size: 0.875rem;
       }
     }
   }
@@ -177,10 +240,6 @@ post-popovercontainer {
 
     .btn {
       width: auto;
-    }
-
-    post-icon {
-      transform: rotate(180deg);
     }
 
     @include media.max(lg) {

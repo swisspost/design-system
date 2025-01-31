@@ -3,6 +3,7 @@
 @use './functions' as *;
 
 @use '../variables/sizing' as *;
+
 /*
   Utilities are generated with our utility API using bellow $utilities map.
 
@@ -29,6 +30,24 @@ $position-values: (
 );
 
 $utilities: (
+  'grid-gutter': (
+    responsive: true,
+    property: --post-grid-gutter-x --post-grid-gutter-y,
+    class: g,
+    values: from-tokens('spacing', 'gap'),
+  ),
+  'grid-gutter-x': (
+    responsive: true,
+    property: --post-grid-gutter-x,
+    class: gx,
+    values: from-tokens('spacing', 'gap'),
+  ),
+  'grid-gutter-y': (
+    responsive: true,
+    property: --post-grid-gutter-y,
+    class: gy,
+    values: from-tokens('spacing', 'gap'),
+  ),
   'width': (
     responsive: true,
     property: width,
@@ -424,5 +443,20 @@ $utilities: (
     property: overflow-y,
     values: auto hidden visible scroll,
   ),
-  // IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`.
+  'font-weight': (
+    property: font-weight,
+    values: (
+      black: 900,
+      bold: 700,
+      normal: 400,
+    ),
+    class: fw,
+  ),
+  'elevation': (
+    property: box-shadow,
+    values: from-tokens('elevation', 'elevation'),
+    class: elevation,
+  ),
 );
+
+/* IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`. */

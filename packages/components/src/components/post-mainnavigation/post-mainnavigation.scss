@@ -1,14 +1,16 @@
 @use '@swisspost/design-system-styles/mixins/button';
 @use '@swisspost/design-system-styles/mixins/icons';
+@use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/variables/animation';
+@use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 
-$nav-height: var(--post-core-dimension-56);
-
 post-mainnavigation {
+  flex: 0 0 auto;
+
   // reset links and buttons
   post-list-item {
     > a {
@@ -19,11 +21,13 @@ post-mainnavigation {
     post-megadropdown-trigger button {
       @include button.reset-button;
       text-align: start;
+      @include utilities.focus-style;
     }
 
     > a,
-    > button,
     post-megadropdown-trigger button {
+      flex: 0 0 fit-content;
+      white-space: nowrap;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -34,18 +38,64 @@ post-mainnavigation {
 
       &:focus-visible {
         border-radius: var(--post-core-dimension-4);
-        z-index: 1;
       }
+    }
+  }
+
+  .back-button {
+    post-icon {
+      transform: rotate(180deg);
+    }
+
+    @include media.max(lg) {
+      font-size: var(--post-core-font-size-16);
+    }
+
+    @include media.max(sm) {
+      font-size: var(--post-core-font-size-14);
     }
   }
 
   // desktop styles
   @include media.min(lg) {
+    display: block;
+
     nav {
-      position: relative;
       max-width: 100vw;
-      max-height: $nav-height;
+      background: var(--post-core-color-brand-white);
+      max-height: var(--main-navigation-height);
       user-select: none;
+      transition: transform animation.$transition-base-timing;
+    }
+
+    .left-scroll-button,
+    .right-scroll-button {
+      position: absolute;
+      inset-block: 0;
+      overflow: hidden;
+
+      button {
+        @include button.reset-button;
+        background: var(--post-core-color-brand-white);
+        padding: var(--post-core-dimension-16);
+        box-shadow: var(--post-core-elevation-5);
+        line-height: var(--post-core-line-height-100);
+        height: 100%;
+
+        post-icon {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .left-scroll-button {
+      inset-inline-start: 0;
+      padding-inline-end: 2rem;
+    }
+
+    .right-scroll-button {
+      inset-inline-end: 0;
+      padding-inline-start: 2rem;
     }
 
     post-list {
@@ -62,20 +112,34 @@ post-mainnavigation {
       > a,
       > button,
       post-megadropdown-trigger button {
+        position: sticky;
         padding-inline: var(--post-core-dimension-12);
-        height: $nav-height;
+        height: var(--main-navigation-height);
         gap: var(--post-core-dimension-4);
         font-size: var(--post-core-font-size-16);
         border-block: 0 solid transparent;
         border-block-end-color: currentColor;
 
+        @include media.max(lg) {
+          z-index: 3;
+        }
+
+        @include media.min(lg) {
+          z-index: 4;
+        }
+
         &:hover {
           border-block-width: var(--post-core-dimension-2);
         }
 
-        &.selected {
+        &.selected,
+        &[aria-expanded='true'] {
           border-block-width: var(--post-core-dimension-4);
           font-weight: var(--post-core-font-weight-700);
+        }
+
+        @include media.max(sm) {
+          font-size: var(--post-core-font-size-14);
         }
       }
 
@@ -93,9 +157,17 @@ post-mainnavigation {
           transition: transform animation.$transition-base-timing;
         }
 
-        &.selected::after {
+        &.selected::after,
+        &[aria-expanded='true']::after {
           transform: rotate(180deg);
         }
+      }
+    }
+
+    post-megadropdown {
+      button:not(.btn-icon-close),
+      a {
+        @include header-mx.mobile-header-interactive;
       }
     }
 
@@ -106,8 +178,13 @@ post-mainnavigation {
 
   // tablet/mobile styles
   @include media.max(lg) {
-    post-list > [role='list'] {
+    nav {
       transform: none !important;
+    }
+
+    .left-scroll-button,
+    .right-scroll-button {
+      display: none;
     }
 
     post-list-item {
@@ -117,5 +194,9 @@ post-mainnavigation {
         @include header-mx.mobile-header-interactive;
       }
     }
+  }
+
+  .back-button .btn {
+    padding-inline: 0;
   }
 }
