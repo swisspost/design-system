@@ -22,17 +22,18 @@ const focusDisablingSelector = `:where(${[
   'details:not([open]) > *:not(details > summary:first-of-type)',
   'details:not([open]) > *:not(details > summary:first-of-type) *',
   '[tabindex^="-"]',
+  '[hidden]:not([hidden="false"])',
 ].join(',')})`;
 
-export function getFocusableChildren(element: Element): NodeListOf<HTMLElement> {
+export function getFocusableChildren(element: Element): HTMLElement[] {
   const focusableChildren = element.querySelectorAll(
     `${focusableSelector}:not(${focusDisablingSelector})`,
   );
 
   const visibleFocusableChildren = Array.from(focusableChildren).filter(child => {
     const style = window.getComputedStyle(child.parentElement);
-    return style.display !== 'none';
+    return style.display !== 'none' && style.visibility !== 'hidden';
   });
 
-  return visibleFocusableChildren as unknown as NodeListOf<HTMLElement>;
+  return visibleFocusableChildren as HTMLElement[];
 }
