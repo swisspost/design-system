@@ -25,5 +25,14 @@ const focusDisablingSelector = `:where(${[
 ].join(',')})`;
 
 export function getFocusableChildren(element: Element): NodeListOf<HTMLElement> {
-  return element.querySelectorAll(`& > ${focusableSelector}:not(${focusDisablingSelector})`);
+  const focusableChildren = element.querySelectorAll(
+    `${focusableSelector}:not(${focusDisablingSelector})`,
+  ) as NodeListOf<HTMLElement>;
+
+  const visibleFocusableChildren = Array.from(focusableChildren).filter(child => {
+    const style = window.getComputedStyle(child.parentElement);
+    return style.display !== 'none';
+  });
+
+  return visibleFocusableChildren as unknown as NodeListOf<HTMLElement>;
 }
