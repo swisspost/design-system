@@ -2,8 +2,8 @@
 @use '@swisspost/design-system-styles/core.scss' as post;
 @use '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css';
 @use './components';
-@use '@swisspost/design-system-styles/functions/tokens' as tokens;
-@use '@swisspost/design-system-styles/tokens/utilities' as utilities;
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/utilities';
 
 tokens.$default-map: utilities.$post-color;
 
@@ -11,8 +11,6 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
 #storybook-root,
 #storybook-docs {
-  background-color: white;
-
   .sbdocs-content .container >,
   .sbdocs-content .container > post-tabs > post-tab-panel >,
   .sbdocs-content .container > migration-global-state {
@@ -48,11 +46,21 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     .table-responsive {
       margin-block: 1.5rem 1rem;
     }
+
+    .table-fit-content {
+      width: fit-content;
+
+      th,
+      td {
+        padding-inline: 2rem;
+      }
+    }
   }
 
   .sbdocs-content .container {
     // Support for autolink-headings
-    :is(h1, h2, h3, h4, h5, h6) {
+    .docs-title :is(h1, h2, h3, h4, h5, h6),
+    > :is(h1, h2, h3, h4, h5, h6) {
       position: relative;
 
       @media (hover: hover) {
@@ -74,21 +82,21 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
         display: inline-block;
       }
     }
+  }
 
-    // Style buttons related to the current page next to the tile
-    .docs-title,
-    .docs-title nav {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: post.$size-mini;
-    }
-    .docs-title {
-      margin-bottom: post.$size-mini;
+  // Style buttons related to the current page next to the tile
+  .docs-title,
+  .docs-title nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: tokens.get('utility-gap-8', utilities.$post-spacing);
+  }
+  .docs-title {
+    margin-bottom: tokens.get('utility-gap-8', utilities.$post-spacing);
 
-      :first-child {
-        margin-right: auto;
-      }
+    :first-child {
+      margin-right: auto;
     }
   }
 
@@ -102,9 +110,8 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     top: -0.1em;
     margin: 0 0.1em;
     padding: 0.15em 0.4em 0.1em;
-    background-color: tokens.get('utility-surface-accent1');
-    border: 1px solid tokens.get('utility-surface-accent2');
-    color: 1px solid tokens.get('utility-surface-accent4');
+    background-color: rgba(#fff, 0.75);
+    border: 1px solid rgba(#000, 0.3);
     border-radius: 0.2em;
     font-family: $monospace;
     font-size: 0.75em;
@@ -115,8 +122,15 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
       display: block;
       margin-top: 0.25rem;
       padding: 1rem;
-      background-color: var(--post-contrast-color);
-      color: var(--post-contrast-color-inverted);
+      background-color: post.$black;
+      color: post.$white;
+    }
+  }
+
+  [data-color-scheme='dark'] {
+    code {
+      background-color: rgba(#000, 0.75);
+      border-color: rgba(#fff, 0.3);
     }
   }
 

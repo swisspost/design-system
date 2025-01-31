@@ -48,6 +48,7 @@ function StylesSwitcher() {
 
   const [preview, setPreview] = useState<Document>();
   const [stories, setStories] = useState<NodeListOf<Element>>();
+  const [stylesCodeBlocks, setStylesCodeBlocks] = useState<NodeListOf<Element>>();
 
   /**
    * Retrieves the preview document after the first rendering
@@ -71,6 +72,7 @@ function StylesSwitcher() {
     observer = new MutationObserver(
       debounce(() => {
         setStories(preview.querySelectorAll('.sbdocs-preview, .sb-main-padded'));
+        setStylesCodeBlocks(preview.querySelectorAll('.docblock-source'));
       }, 200),
     );
 
@@ -93,6 +95,46 @@ function StylesSwitcher() {
       `<link rel="stylesheet" href="${getStylesheetUrl(currentTheme, currentChannel)}" />`,
     );
   }, [preview, currentTheme, currentChannel]);
+
+  /**
+   * Sets the design system styles import SCSS file to the correct theme and channel file
+   */
+  useEffect(() => {
+    if (!stylesCodeBlocks) return;
+
+    const t = currentTheme.toLowerCase();
+    const c = currentChannel.toLowerCase();
+    const packageName = "'@swisspost/design-system-styles/";
+
+    stylesCodeBlocks.forEach(stylesCodeBlock => {
+      const sourceArray = Array.from(stylesCodeBlock.querySelectorAll('.token.string'));
+      sourceArray.forEach((s, i) => {
+        let source = s.innerHTML;
+        // Remove the packageName from the source to make sure we don't override it
+        source = source.replace(packageName, '');
+
+        // Check if one of the themes or channels are in the scss path
+        const theme = THEMES.find(tItem => source.indexOf(tItem.toLowerCase()) > -1);
+        const channel = CHANNELS.find(cItem => source.indexOf(cItem.toLowerCase()) > -1);
+
+        const updateTheme = theme && theme.toLowerCase() !== t;
+        const updateChannel = channel && channel.toLowerCase() !== c;
+
+        // Only change the source if theme or channel needs to be changed
+        if (source && (updateTheme || updateChannel)) {
+          if (updateTheme) {
+            source = source.replace((theme as string).toLowerCase(), t);
+          }
+
+          if (updateChannel) {
+            source = source.replace((channel as string).toLowerCase(), c);
+          }
+
+          sourceArray[i].innerHTML = packageName + source;
+        }
+      });
+    });
+  }, [stylesCodeBlocks, currentTheme, currentChannel]);
 
   /**
    * Sets the expected 'data-color-scheme' attribute on all story containers when the scheme changes
@@ -176,7 +218,7 @@ function StylesSwitcher() {
         }
       >
         <IconButton className="addon-label" size="medium">
-          Chanel: {currentChannel}
+          Channel: {currentChannel}
         </IconButton>
       </WithTooltip>
 

@@ -1,0 +1,45 @@
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/mixins/button' as button-mx;
+@use '@swisspost/design-system-styles/mixins/icons' as icons;
+@use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/variables/elevation';
+
+tokens.$default-map: components.$post-floating-button;
+
+:host {
+  --post-floating-button-translate-y: calc(-1 * #{tokens.get('post-floating-button-translate-y')});
+  position: fixed;
+  top: tokens.get('post-floating-button-position-top');
+  right: tokens.get('post-floating-button-position-right');
+
+  .back-to-top {
+    @include button-mx.reset-button;
+    @include utilities.focus-style;
+    box-shadow: elevation.$elevation-300;
+    cursor: pointer;
+    border-radius: tokens.get('post-floating-button-border-radius-round');
+    width: tokens.get('post-floating-button-size-outer');
+    height: tokens.get('post-floating-button-size-outer');
+    border: tokens.get('post-floating-button-border-width') solid
+      tokens.get('post-floating-button-enabled-border');
+    color: tokens.get('post-floating-button-enabled-fg');
+    background-color: tokens.get('post-floating-button-enabled-bg');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      border-color: tokens.get('post-floating-button-hover-border');
+      color: tokens.get('post-floating-button-hover-fg');
+      background-color: tokens.get('post-floating-button-hover-bg');
+    }
+    post-icon {
+      height: tokens.get('post-floating-button-size-icon');
+      width: tokens.get('post-floating-button-size-icon');
+    }
+  }
+
+  .visually-hidden {
+    @include utilities.visuallyhidden();
+  }
+}

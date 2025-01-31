@@ -7,34 +7,43 @@
 
 $icon-size-default: 1.5rem !default;
 
-$svg-pre-path: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='none' viewBox='0 0 32 32'%3E%3Cpath d='";
+$svg-pre-path: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='";
 $svg-post-path: "'%3E%3C/path%3E%3C/svg%3E";
 
-$notification-icons: () !default;
+$other-icons: () !default;
 
 $error-icon-name: 'error';
 $error-icon-svg-path: 'M16 0C7.18 0 0 7.18 0 16C0 24.82 7.18 32 16 32C24.82 32 32 24.82 32 16C32 7.18 24.82 0 16 0ZM21.88 20.46C22.27 20.85 22.27 21.48 21.88 21.87C21.68 22.07 21.43 22.16 21.17 22.16C20.91 22.16 20.66 22.06 20.46 21.87L16 17.41L11.54 21.87C11.34 22.07 11.09 22.16 10.83 22.16C10.57 22.16 10.32 22.06 10.12 21.87C9.73 21.48 9.73 20.85 10.12 20.46L14.58 16L10.12 11.54C9.73 11.15 9.73 10.52 10.12 10.13C10.51 9.74 11.14 9.74 11.53 10.13L15.99 14.59L20.45 10.13C20.84 9.74 21.47 9.74 21.86 10.13C22.25 10.52 22.25 11.15 21.86 11.54L17.4 16L21.86 20.46H21.88Z';
-$notification-icons: map.merge(
+$other-icons: map.merge(
   (
     $error-icon-name: $error-icon-svg-path,
   ),
-  $notification-icons
+  $other-icons
 );
 
 $success-icon-name: 'success';
 $success-icon-svg-path: 'M16 0C7.18 0 0 7.18 0 16C0 24.82 7.18 32 16 32C24.82 32 32 24.82 32 16C32 7.18 24.82 0 16 0ZM23.52 10.18L15.26 23.19L8.21 17.27C7.79 16.92 7.73 16.28 8.09 15.86C8.44 15.44 9.07 15.38 9.5 15.74L14.8 20.19L21.84 9.1C22.14 8.63 22.76 8.49 23.22 8.79C23.69 9.09 23.82 9.7 23.53 10.17L23.52 10.18Z';
-$notification-icons: map.merge(
+$other-icons: map.merge(
   (
     $success-icon-name: $success-icon-svg-path,
   ),
-  $notification-icons
+  $other-icons
 );
 
 $warning-icon-name: 'warning';
 $warning-icon-svg-path: 'M16 0C7.18 0 0 7.18 0 16C0 24.82 7.18 32 16 32C24.82 32 32 24.82 32 16C32 7.18 24.82 0 16 0ZM14.11 6.96H18.25V11.47L17.47 17.49H14.87L14.11 11.47V6.96ZM16.18 23.63C14.73 23.63 13.79 22.62 13.79 21.4C13.79 20.18 14.73 19.19 16.18 19.19C17.63 19.19 18.57 20.23 18.57 21.4C18.57 22.57 17.63 23.63 16.18 23.63Z';
-$notification-icons: map.merge(
+$other-icons: map.merge(
   (
     $warning-icon-name: $warning-icon-svg-path,
   ),
-  $notification-icons
+  $other-icons
+);
+
+$arrowright-icon-name: 'arrowright';
+$arrowright-icon-svg-path: 'm31.95 16-9.11 9.11c-.2.2-.45.29-.71.29s-.51-.1-.71-.29a.996.996 0 0 1 0-1.41l6.69-6.69H-.05v-2h28.17l-6.69-6.69a.996.996 0 1 1 1.41-1.41l9.11 9.11Z';
+$other-icons: map.merge(
+  (
+    $arrowright-icon-name: $arrowright-icon-svg-path,
+  ),
+  $other-icons
 );

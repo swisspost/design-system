@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as OverflowStories from './overflow.stories';
 
 <Meta of={OverflowStories} />
@@ -7,7 +7,7 @@ import * as OverflowStories from './overflow.stories';
 
 <div className="lead">Define how a content overflows its container.</div>
 <br />
-<div className="alert alert-info">Note that these utility classes are not responsive.</div>
+<div className="banner banner-info">Note that these utility classes are not responsive.</div>
 
 <Canvas sourceState="shown" of={OverflowStories.Default} />
 <div className="hide-col-default">
@@ -29,7 +29,7 @@ The values available are the following:
 - `hidden` hides all of the content that would overflow the container, without any scrollbars.
 - `scroll` does not overflow the content and adds scrollbars to the container.
 
-<div className="alert alert-info alert-sm">
+<div className="banner banner-info banner-md">
   If one of the axis is defined as `visible`, and the other axis is defined as something else, then
   the `visible` axis will be considered to be `auto`.
 </div>

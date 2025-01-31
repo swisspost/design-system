@@ -1,18 +1,29 @@
-@use 'sass:math';
-
 @use './../mixins/icons' as icons-mx;
-@use './../mixins/size' as size-mx;
-@use './../mixins/utilities';
+@use './../mixins/utilities' as utilities-mx;
 
 @use './../variables/color';
 @use './../variables/commons';
 @use './../variables/components/stepper';
 
 @use './../themes/bootstrap/core' as *;
+@use './../mixins/media';
+
+@use './../functions/tokens';
+@use './../tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 // for backward compatibility
 .stepper-container {
-  @include size-mx.responsive-size('big', 'margin-bottom');
+  margin-bottom: tokens.get('utility-gap-20');
+
+  @include media.min(md) {
+    margin-bottom: tokens.get('utility-gap-32');
+  }
+
+  @include media.min(xl) {
+    margin-bottom: tokens.get('utility-gap-40');
+  }
 
   > .stepper-bar {
     display: none;
@@ -20,6 +31,7 @@
 }
 
 .stepper {
+  @include utilities-mx.reset-list;
   // start a counter for the step numbers
   counter-reset: step-index;
 
@@ -28,27 +40,26 @@
   overflow: hidden;
 
   // the first column is half a step wide to make sure the separators are the same size even on small screens
-  grid-template-columns: math.div(stepper.$stepper-indicator-size, 2);
+  grid-template-columns: calc(stepper.$stepper-indicator-size / 2);
 
   // all other columns are 1 fraction of the available space ase we don't know the number of steps
   grid-auto-columns: minmax(0, 1fr);
 
   // we use a padding and negative margin on the last step for the same reason we need the first column
-  padding-inline-end: math.div(stepper.$stepper-indicator-size, 2);
-
-  @include utilities.reset-list;
+  padding-inline-end: calc(stepper.$stepper-indicator-size / 2);
 }
 
 .stepper-item {
   grid-row: 1;
   position: relative;
+  padding-inline-start: 0;
 
   &:not(:first-child) {
-    padding-inline-start: math.div(stepper.$stepper-link-spacing, 2);
+    padding-inline-start: calc(stepper.$stepper-link-spacing / 2);
   }
 
   &:not(:last-child) {
-    padding-inline-end: math.div(stepper.$stepper-link-spacing, 2);
+    padding-inline-end: calc(stepper.$stepper-link-spacing / 2);
     grid-column: span 2;
   }
 
@@ -58,7 +69,7 @@
     content: '';
     display: block;
     position: absolute;
-    inset-block-start: math.div((stepper.$stepper-indicator-size - stepper.$stepper-bar-height), 2);
+    inset-block-start: calc((stepper.$stepper-indicator-size - stepper.$stepper-bar-height) / 2);
     height: stepper.$stepper-bar-height;
     background-color: stepper.$stepper-bar-color;
     inset-inline: 0;
@@ -96,6 +107,7 @@
   color: stepper.$stepper-link-color;
   width: fit-content;
   line-height: stepper.$stepper-link-line-height;
+  word-break: break-word;
 
   // not adding ellipsis if the like doesn't have a title for accessibility reasons
   &:not([title]) {
@@ -109,7 +121,9 @@
 
   .stepper-item:last-child > & {
     margin-inline-start: auto;
-    margin-inline-end: -1 * math.div(stepper.$stepper-indicator-size, 2); // negative margin matching the container padding
+    margin-inline-end: calc(
+      stepper.$stepper-indicator-size / -2
+    ); // negative margin matching the container padding
     text-align: end;
   }
 
@@ -162,7 +176,7 @@
   @include icons-mx.icon(2105);
   display: block;
   position: absolute;
-  top: math.div((stepper.$stepper-indicator-size - stepper.$stepper-indicator-check-icon-size), 2);
+  top: calc((stepper.$stepper-indicator-size - stepper.$stepper-indicator-check-icon-size) / 2);
   z-index: 1;
   height: stepper.$stepper-indicator-check-icon-size;
   width: stepper.$stepper-indicator-check-icon-size;
@@ -170,21 +184,17 @@
   color: stepper.$stepper-indicator-color;
 
   .stepper-item:first-child > & {
-    left: math.div(
-      (stepper.$stepper-indicator-size - stepper.$stepper-indicator-check-icon-size),
-      2
+    left: calc(
+      (#{stepper.$stepper-indicator-size} - stepper.$stepper-indicator-check-icon-size) / 2
     );
   }
 
   .stepper-item:not(:first-child, :last-child) > & {
-    left: calc(50% - #{math.div(stepper.$stepper-indicator-check-icon-size, 2)});
+    left: calc(50% - (stepper.$stepper-indicator-check-icon-size / 2));
   }
 
   .stepper-item:last-child > & {
-    right: math.div(
-      (stepper.$stepper-indicator-size - stepper.$stepper-indicator-check-icon-size),
-      2
-    );
+    right: calc((stepper.$stepper-indicator-size - stepper.$stepper-indicator-check-icon-size) / 2);
   }
 
   // show only for completed steps
@@ -195,11 +205,11 @@
 
 // hover/focus state
 .stepper-link:is(a[href]) {
-  @include utilities.focus-style {
+  @include utilities-mx.focus-style {
     border-radius: commons.$border-radius;
   }
 
-  @include utilities.focus-hover-style-custom() {
+  @include utilities-mx.focus-hover-style-custom() {
     color: stepper.$stepper-link-color;
 
     .stepper-item[aria-current='step'] > & {
@@ -238,10 +248,7 @@
     // progress bar
     &::before {
       grid-row: -1;
-      margin-block-start: math.div(
-        (stepper.$stepper-indicator-size - stepper.$stepper-bar-height),
-        2
-      );
+      margin-block-start: calc((stepper.$stepper-indicator-size - stepper.$stepper-bar-height) / 2);
       position: static;
     }
 
@@ -291,7 +298,7 @@
   }
 }
 
-@include utilities.high-contrast-mode {
+@include utilities-mx.high-contrast-mode {
   .stepper-item {
     &::before,
     &::after {
@@ -332,7 +339,7 @@
 
   .stepper-link:is(a[href]) {
     .stepper-item[aria-current='step'] > & {
-      @include utilities.focus-hover-style-custom() {
+      @include utilities-mx.focus-hover-style-custom() {
         &::before {
           border-color: Highlight;
         }
@@ -344,7 +351,7 @@
         color: Canvas;
       }
 
-      @include utilities.focus-hover-style-custom() {
+      @include utilities-mx.focus-hover-style-custom() {
         &::before {
           background-color: Highlight;
           color: HighlightText;
@@ -357,7 +364,7 @@
         background-color: LinkText;
       }
 
-      @include utilities.focus-hover-style-custom() {
+      @include utilities-mx.focus-hover-style-custom() {
         &::before {
           background-color: Highlight;
         }

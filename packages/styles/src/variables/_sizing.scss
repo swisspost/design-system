@@ -1,0 +1,69 @@
+@use 'sass:map';
+
+@use '../functions/tokens';
+@use '../tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
+
+// Sizing
+//
+// Control the default sizing by modifying these variables.
+
+// Post-Sizes
+$post-px-sizes: () !default;
+$post-px-sizes: map.merge(
+  (
+    '0': tokens.get('post-utility-gap-0'),
+    '1': tokens.get('post-utility-gap-1'),
+    '2': tokens.get('post-utility-gap-2'),
+    '3': tokens.get('post-utility-gap-3'),
+    '4': tokens.get('post-utility-gap-4'),
+    '5': tokens.get('post-utility-gap-5'),
+    '6': tokens.get('post-utility-gap-6'),
+    '8': tokens.get('post-utility-gap-8'),
+    '10': tokens.get('post-utility-gap-10'),
+    '11': tokens.get('post-utility-gap-11'),
+    '12': tokens.get('post-utility-gap-12'),
+    '14': tokens.get('post-utility-gap-14'),
+    '15': tokens.get('post-utility-gap-15'),
+    '16': tokens.get('post-utility-gap-16'),
+    '18': tokens.get('post-utility-gap-18'),
+    '19': tokens.get('post-utility-gap-19'),
+    '20': tokens.get('post-utility-gap-20'),
+    '22': tokens.get('post-utility-gap-22'),
+    '24': tokens.get('post-utility-gap-24'),
+    '26': tokens.get('post-utility-gap-26'),
+    '28': tokens.get('post-utility-gap-28'),
+    '30': tokens.get('post-utility-gap-30'),
+    '32': tokens.get('post-utility-gap-32'),
+    '34': tokens.get('post-utility-gap-34'),
+    '36': tokens.get('post-utility-gap-36'),
+    '40': tokens.get('post-utility-gap-40'),
+    '48': tokens.get('post-utility-gap-48'),
+    '56': tokens.get('post-utility-gap-56'),
+    '64': tokens.get('post-utility-gap-64'),
+    '78': tokens.get('post-utility-gap-78'),
+    '80': tokens.get('post-utility-gap-80'),
+    '96': tokens.get('post-utility-gap-96'),
+    '100': tokens.get('post-utility-gap-100'),
+    '112': tokens.get('post-utility-gap-112'),
+  ),
+  $post-px-sizes
+);
+
+// This variable affects the `.h-*` and `.w-*` classes.
+$post-percentage-sizes: () !default;
+$post-percentage-sizes: map.merge(
+  (
+    'quarter': 25%,
+    'third': 33%,
+    'half': 50%,
+    'two-thirds': 66%,
+    'three-quarters': 75%,
+    'full': 100%,
+    auto: auto,
+  ),
+  $post-percentage-sizes
+);
+
+$post-combined-sizes: map.merge($post-px-sizes, $post-percentage-sizes);

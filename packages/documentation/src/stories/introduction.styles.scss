@@ -1,0 +1,64 @@
+@use 'sass:map';
+@use '@swisspost/design-system-styles/core.scss' as post;
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
+
+#storybook-docs {
+  overflow-x: hidden;
+}
+
+.light-section {
+  position: relative;
+  background-color: post.$light;
+
+  &:before,
+  &:after {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: inherit;
+    width: 100vw;
+  }
+
+  &:before {
+    right: 100%;
+  }
+
+  &:after {
+    left: 100%;
+  }
+}
+
+.tile-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  list-style-type: none;
+  justify-content: center;
+  gap: tokens.get('utility-gap-32');
+
+  @include post.media-breakpoint-down(sm) {
+    gap: tokens.get('utility-gap-16');
+  }
+}
+
+.feature {
+  padding: tokens.get('utility-gap-16');
+
+  .feature--icon {
+    margin-bottom: tokens.get('utility-gap-16');
+    font-size: tokens.get('utility-gap-56');
+    color: #523178;
+  }
+
+  .feature--content {
+    .content--title {
+      font-size: post.$h6-font-size;
+      font-weight: post.$font-weight-bold;
+    }
+  }
+}

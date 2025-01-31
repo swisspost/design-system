@@ -1,0 +1,39 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as switchStories from './switch.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={switchStories} />
+
+<div className="docs-title">
+  # Switch
+
+  <nav>
+    <link-design of={JSON.stringify(switchStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  A switch has the markup of a custom <code>&lt;input type="checkbox"/&gt;</code> but uses the{' '}
+  <code>.form-switch</code> class to render a toggle switch.
+</div>
+
+Consider using `role="switch"` to more accurately convey the nature of the control to assistive technologies that support this role. In older assistive technologies, it will simply be announced as a regular `checkbox` as a fallback. Switches also support the `disabled` attribute.
+
+<Canvas sourceState="shown" of={switchStories.Default} />
+<div className="hide-col-default">
+  <Controls of={switchStories.Default} />
+</div>
+
+<StylesPackageImport components={['form-check']} required={{ validation: true }} />
+
+## Concrete Examples of Application
+
+The following examples show the different characteristics of the component. These can differ in the type of visualization, the HTML structure, as well as when, how and why they are displayed.
+
+### Multiline Labels
+
+Long labels can be used seamlessly and are automatically wrapped at the end of the line.
+You can also include inline elements into the label, such as `<a>`, `<strong>`, etc.<br/>
+However, make sure to always place multiline labels after the `checkbox`.
+
+<Canvas of={switchStories.MultilineLabels} />

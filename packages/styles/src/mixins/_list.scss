@@ -1,0 +1,112 @@
+@use '../functions/tokens';
+@use '../tokens/elements';
+
+@mixin list-bullet($child-selector: 'li') {
+  list-style: none;
+  margin-block: tokens.get('list-bullet-margin-block', elements.$post-listbullet);
+  padding-inline-start: calc(
+    #{tokens.get('list-bullet-item-icon-size', elements.$post-listbullet)} + #{tokens.get(
+        'list-bullet-item-icon-gap-inline',
+        elements.$post-listbullet
+      )}
+  );
+
+  > #{$child-selector} {
+    margin: 0;
+    padding-inline: 0;
+    padding-block: tokens.get('list-bullet-item-text-padding-block', elements.$post-listbullet);
+
+    ~ #{$child-selector} {
+      margin-block-start: tokens.get('list-bullet-item-gap-block', elements.$post-listbullet);
+    }
+
+    &::before {
+      display: block;
+      content: '';
+      box-sizing: content-box;
+      float: inline-start;
+      margin-block-start: calc(
+        (#{tokens.get('body-line-height', elements.$post-body)} * 0.5em) -
+          (#{tokens.get('list-bullet-item-icon-bullet-size', elements.$post-listbullet)} * 0.5)
+      );
+      margin-inline-start: calc(
+        (#{tokens.get('list-bullet-item-icon-size', elements.$post-listbullet)} * -0.5) +
+          (#{tokens.get('list-bullet-item-icon-bullet-size', elements.$post-listbullet)} * -0.5) +
+          (#{tokens.get('post-list-bullet-item-icon-gap-inline', elements.$post-listbullet)} * -1)
+      );
+      width: tokens.get('list-bullet-item-icon-bullet-size', elements.$post-listbullet);
+      height: tokens.get('list-bullet-item-icon-bullet-size', elements.$post-listbullet);
+      background-color: currentColor;
+      border-radius: 50%;
+    }
+  }
+}
+
+@mixin list-number($child-selector: 'li') {
+  margin-block: tokens.get('list-number-item-gap-block', elements.$post-listnumber);
+  padding-inline-end: tokens.get('list-number-item-gap-block', elements.$post-listnumber);
+  padding-inline-start: calc(
+    tokens.get('list-number-item-icon-size', elements.$post-listnumber) +
+      tokens.get('list-number-item-icon-gap-inline', elements.$post-listnumber)
+  );
+
+  > #{$child-selector} {
+    margin-block-end: tokens.get('list-number-margin-block', elements.$post-listnumber);
+    padding-inline-start: tokens.get('list-number-item-icon-gap-inline', elements.$post-listnumber);
+    padding-block: tokens.get('list-number-item-text-padding-block', elements.$post-listnumber);
+
+    &:last-child {
+      margin-block-end: 0;
+    }
+  }
+}
+
+@mixin list-inline($child-selector: 'li') {
+  @include list-unstyled($child-selector) {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: tokens.get('list-bullet-item-gap-block', elements.$post-listbullet);
+    column-gap: calc(
+      tokens.get('post-list-bullet-item-icon-gap-inline', elements.$post-listbullet) * 2
+    );
+    margin-block: tokens.get('list-bullet-margin-block', elements.$post-listbullet);
+  }
+}
+
+@mixin list-revert($child-selector: 'li') {
+  all: revert;
+  @content;
+
+  > #{$child-selector} {
+    all: revert;
+
+    ~ #{$child-selector} {
+      all: revert;
+    }
+
+    &::before {
+      all: revert;
+    }
+  }
+}
+
+@mixin list-unstyled($child-selector: 'li') {
+  all: unset;
+  display: block;
+  list-style: none;
+  @content;
+
+  > #{$child-selector} {
+    all: unset;
+    display: list-item;
+
+    ~ #{$child-selector} {
+      all: unset;
+      display: list-item;
+    }
+
+    &::before {
+      all: unset;
+    }
+  }
+}

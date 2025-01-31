@@ -5,64 +5,45 @@
 <!-- Auto Generated Below -->
 
 
+## Events
+
+| Event                    | Description                                                                                                                                  | Type                   |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| `postToggleMegadropdown` | Emits when the dropdown is shown or hidden. The event payload is a boolean: `true` when the dropdown was opened, `false` when it was closed. | `CustomEvent<boolean>` |
+
+
 ## Methods
 
 ### `hide() => Promise<void>`
 
-Hide megadropdown
+Hides the dropdown with an animation.
 
 #### Returns
 
 Type: `Promise<void>`
 
-boolean
 
-### `show(element: HTMLElement) => Promise<void>`
 
-Show megadropdown
+### `show() => Promise<void>`
 
-#### Parameters
-
-| Name      | Type          | Description |
-| --------- | ------------- | ----------- |
-| `element` | `HTMLElement` | HTMLElement |
+Displays the dropdown.
 
 #### Returns
 
 Type: `Promise<void>`
 
-boolean
 
-### `toggle(element: HTMLElement, force?: boolean) => Promise<boolean>`
 
-Toggle megadropdown
+### `toggle() => Promise<void>`
 
-#### Parameters
-
-| Name      | Type          | Description |
-| --------- | ------------- | ----------- |
-| `element` | `HTMLElement` | HTMLElement |
-| `force`   | `boolean`     | boolean     |
+Toggles the dropdown visibility based on its current state.
 
 #### Returns
 
-Type: `Promise<boolean>`
-
-boolean
+Type: `Promise<void>`
 
 
-## Dependencies
 
-### Depends on
-
-- [post-popovercontainer](../post-popovercontainer)
-
-### Graph
-```mermaid
-graph TD;
-  post-megadropdown --> post-popovercontainer
-  style post-megadropdown fill:#f9f,stroke:#333,stroke-width:4px
-```
 
 ----------------------------------------------
 

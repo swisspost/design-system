@@ -1,3 +1,22 @@
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/functions/tokens';
+
+tokens.$default-map: components.$post-accordion;
+
 :host {
   display: contents;
+}
+
+::slotted(post-accordion-item) {
+  display: block;
+}
+
+::slotted(post-accordion-item:not(:only-of-type:first-of-type)) {
+  margin-top: calc(tokens.get('accordion-group-border-top-width') * -1);
+}
+
+::slotted(post-accordion-item:not(:only-of-type):first-of-type) {
+  --post-accordion-button-border-top: #{tokens.get('accordion-group-border-top-width')} #{tokens.get(
+      'accordion-border-top-style'
+    )} #{tokens.get('accordion-enabled-border')};
 }

@@ -1,7 +1,21 @@
+@use 'sass:list';
+@use 'sass:map';
 @use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/variables/sizing' as tokens;
 
 :export {
-  @each $key, $value in post.$post-sizes {
-    #{$key}: #{$value};
+  @each $key, $value in tokens.$post-percentage-sizes {
+    pcsizes_#{$key}: #{$value};
+  }
+  @each $key, $value in tokens.$post-px-sizes {
+    pxsizes_#{$key}: #{$value};
+  }
+  @each $breakpoint in post.$grid-breakpoints-list {
+    @if (map.get(post.$grid-breakpoints, $breakpoint) == 0) {
+      firstBreakpoint_#{$breakpoint}: $breakpoint;
+    }
+    @if (map.get(post.$grid-breakpoints, $breakpoint) != 0) {
+      breakpoints_#{$breakpoint}: $breakpoint;
+    }
   }
 }
