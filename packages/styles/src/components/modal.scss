@@ -1,6 +1,5 @@
 @forward './../variables/options';
 
-@use './../themes/bootstrap/modal' as bm;
 @use './../themes/bootstrap/core' as *;
 
 @use './../mixins/scroll-shadows' as scroll-shadows-mixin;

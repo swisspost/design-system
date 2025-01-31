@@ -7,7 +7,6 @@
 @use './../../mixins/button' as button-mixins;
 @use './../../mixins/utilities';
 
-@use './../../themes/bootstrap/navbar' as bn;
 @use './../../themes/bootstrap/core' as *;
 
 .top-navigation {

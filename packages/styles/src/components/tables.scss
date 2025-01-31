@@ -2,8 +2,6 @@
 @use './../variables/color';
 @use './../variables/commons';
 
-@use './../themes/bootstrap/tables' as bt;
-
 .table {
   > :not(:first-child) {
     border-width: 0;

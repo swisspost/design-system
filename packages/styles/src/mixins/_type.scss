@@ -6,7 +6,7 @@
 @use './../variables/type';
 @use './../functions/sizing';
 @use './../functions/utilities';
-@use './../themes/bootstrap/core' as *;
+@use './media';
 
 @mixin font-curve($curve-size: 'regular', $curve-map: type.$font-curves) {
   $curve: map.get($curve-map, $curve-size);
@@ -19,7 +19,7 @@
         font-size: $value;
       } @else {
         @if ($font-cache != $value) {
-          @include media-breakpoint-up($key) {
+          @include media.min($key) {
             font-size: $value;
           }
         }

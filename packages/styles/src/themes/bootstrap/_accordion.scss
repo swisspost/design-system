@@ -1,2 +1,2 @@
 @use './core' as *;
-@import 'bootstrap/scss/accordion';
+@forward 'bootstrap/scss/accordion';

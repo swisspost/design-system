@@ -1,11 +1,9 @@
-@use './../themes/bootstrap/core' as *;
-
 @use './../variables/components/badge';
 @use './../variables/components/chip';
 @use './../mixins/utilities';
 
 @mixin chip-styles {
-  @include border-radius(chip.$chip-border-radius);
+  border-radius: chip.$chip-border-radius;
   display: inline-flex;
   align-items: center;
   height: chip.$chip-height;
