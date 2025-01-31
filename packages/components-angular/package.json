@@ -3,10 +3,12 @@
   "version": "1.1.10-next.13",
   "scripts": {
     "start": "ng serve --port 9210",
-    "build": "ng build components",
-    "lint": "ng lint",
+    "build": "pnpm clean && ng build components",
+    "clean": "rimraf dist",
     "e2e": "ng e2e --watch=false",
-    "e2e:watch": "ng e2e"
+    "e2e:watch": "ng e2e",
+    "lint": "ng lint",
+    "lint:fix": "ng lint --fix"
   },
   "private": true,
   "dependencies": {
@@ -40,6 +42,7 @@
     "karma-jasmine": "5.1.0",
     "karma-jasmine-html-reporter": "2.1.0",
     "ng-packagr": "18.1.0",
+    "rimraf": "6.0.1",
     "typescript": "5.5.4",
     "typescript-eslint": "8.16.0"
   }

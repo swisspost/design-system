@@ -3,10 +3,12 @@
   "version": "0.1.14-next.13",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next dev",
+    "build": "pnpm clean && next build",
+    "build:serve": "pnpm build && next start",
+    "clean": "rimraf .next",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix"
   },
   "dependencies": {
     "@swisspost/design-system-components-react": "workspace:9.0.0-next.13",
@@ -28,6 +30,7 @@
     "eslint-plugin-react-hooks": "5.1.0",
     "globals": "15.14.0",
     "postcss": "8.4.49",
+    "rimraf": "6.0.1",
     "sass": "1.78.0",
     "tailwindcss": "3.4.17",
     "typescript": "5.5.4",
