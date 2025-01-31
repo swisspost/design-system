@@ -34,8 +34,7 @@ button {
   &:where(:has(post-avatar:only-child)):hover {
     @include utilities.high-contrast-mode() {
       post-avatar {
-        border-color: Highlight !important;
-        --post-avatar-fg: Highlight !important;
+        --post-avatar-bg: Highlight !important;
       }
     }
   }
