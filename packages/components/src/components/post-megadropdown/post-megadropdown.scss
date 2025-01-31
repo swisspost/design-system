@@ -96,6 +96,9 @@
   background-color: #fafafa;
 
   @include media.max(lg) {
+    display: flex;
+    flex-direction: column;
+    width: inherit;  
     padding: 16px 32px 24px;
   }
 
