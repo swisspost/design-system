@@ -183,6 +183,10 @@ export class PostMegadropdown {
             <div onClick={() => this.hide()} class="close-button">
               <slot name="close-button"></slot>
             </div>
+            <slot name="megadropdown-title"></slot>
+            <div class="megadropdown-content">
+              <slot></slot>
+            </div>
           </div>
         </div>
       </Host>
