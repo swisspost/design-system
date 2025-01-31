@@ -18,35 +18,37 @@ export const FontFamily: Story = {
   render: () => html` <p class="font-sans-serif">This is sans serif text.</p> `,
 };
 
-export const FontSize: Story = {
-  render: () => html` <p class="fs-tiny">This is tiny text.</p> `,
-};
-
 export const FontWeight: Story = {
-  render: () => html` <p class="fw-bold">This is bold text.</p> `,
+  render: () =>
+    html`
+      <p class="fw-normal">This is a normal text.</p>
+      <p class="fw-bold">This is a bold text.</p>
+      <p class="fw-black">This is a black text.</p>
+    `,
 };
 
 export const FontStyle: Story = {
-  render: () => html` <p class="fst-italic">This is italic text.</p> `,
+  render: () =>
+    html`
+      <p class="fst-normal">This is a normal text.</p>
+      <p class="fst-italic">This is an italic text.</p>
+    `,
 };
 
 export const LineHeight: Story = {
-  render: () => html` <p class="lh-1">This text has a line height equal to the font size.</p> `,
-};
-
-export const TextColor: Story = {
-  decorators: [story => html` <div @click=${(e: Event) => e.preventDefault()}>${story()}</div> `],
-  render: () => html`
-    <p class="text-success">This is colored text.</p>
-    <a href="#" class="link-warning">This is a colored link, it lightens on hover.</a>
-  `,
+  render: () =>
+    html`
+      <p class="my-text lh-1">This text has a line height equal to the font size.</p>
+      <p class="my-text lh-sm">This text has a small line height.</p>
+      <p class="my-text lh-lg">This text has a large line height.</p>
+    `,
 };
 
 export const TextColorReset: Story = {
   decorators: [story => html` <div @click=${(e: Event) => e.preventDefault()}>${story()}</div> `],
   render: () => html`
-    <p class="text-danger">
-      This is colored text with a
+    <p class="my-colored-text">
+      This is a colored text with a
       <a href="#" class="text-reset">link</a>
       of the same color.
     </p>
@@ -86,9 +88,9 @@ export const WordBreak: Story = {
 
 export const TextTransform: Story = {
   render: () => html`
-    <p class="text-lowercase">Lowercased text.</p>
-    <p class="text-uppercase">Uppercased text.</p>
-    <p class="text-capitalize">CapiTaliZed text.</p>
+    <p class="text-lowercase">This is a Lowercased text.</p>
+    <p class="text-uppercase">This is an Uppercased text.</p>
+    <p class="text-capitalize">This is a CapiTaliZed text.</p>
   `,
 };
 
@@ -96,6 +98,6 @@ export const TextDecoration: Story = {
   render: () => html`
     <p class="text-decoration-underline">This text has a line underneath it.</p>
     <p class="text-decoration-line-through">This text has a line going through it.</p>
-    <a href="#" class="text-decoration-none">This link has its text decoration removed</a>
+    <a href="#" class="text-decoration-none">This link has its text decoration removed.</a>
   `,
 };

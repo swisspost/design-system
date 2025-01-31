@@ -4,7 +4,7 @@ import { HostElement } from '@stencil/core/internal';
  * Invoke the `componentOnReady` method if it is available, simulate it otherwise
  * @see https://stenciljs.com/docs/api#componentonready
  */
-export const componentOnReady = <T extends HostElement>(el: T): Promise<T> => {
+export function componentOnReady<T extends HostElement>(el: T): Promise<T> {
   if (typeof el.componentOnReady === 'function') {
     return el.componentOnReady();
   } else {
@@ -14,12 +14,12 @@ export const componentOnReady = <T extends HostElement>(el: T): Promise<T> => {
       }),
     );
   }
-};
+}
 
-const customOnReady = (callback: FrameRequestCallback) => {
+function customOnReady(callback: FrameRequestCallback) {
   if (typeof requestAnimationFrame === 'function') {
     return requestAnimationFrame(callback);
   }
 
   return setTimeout(callback);
-};
+}
