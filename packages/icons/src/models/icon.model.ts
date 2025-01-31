@@ -6,6 +6,12 @@ import {
   MediaSize,
 } from './censhare-result-page.model';
 
+export interface IIconSet {
+  name: string;
+  apiUrl: string;
+  downloadDirectory: string;
+}
+
 export interface IIcon {
   uuid: string;
   id: number;

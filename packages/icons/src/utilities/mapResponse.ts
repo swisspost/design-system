@@ -26,7 +26,8 @@ const isExcluded = (icon: IIcon, filters: number[][]): boolean => {
 export const formatResponse = (response: CenshareResultPage): Array<IIcon> => {
   return response.result
     .reduce((acc: IIcon[], item: CenshareResult) => {
-      const svgVariant = item.variants?.find(variant => variant.mime === 'image/svg+xml');
+      const mimeTypeVariants = [item, ...(item.variants ?? [])];
+      const svgVariant = mimeTypeVariants.find(variant => variant.mime === 'image/svg+xml');
 
       if (svgVariant) {
         const fileName = path.basename(svgVariant.name);
@@ -65,6 +66,7 @@ export const formatResponse = (response: CenshareResultPage): Array<IIcon> => {
             typeof item.modifiedAt === 'string' ? new Date(item.modifiedAt) : item.modifiedAt,
         });
       }
+
       return acc;
     }, [])
     .filter(icon => !isExcluded(icon, excludedRanges));

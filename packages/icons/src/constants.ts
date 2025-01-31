@@ -1,5 +1,6 @@
 export const SOURCE_PATH = 'src/icons';
 export const OUTPUT_PATH = 'public';
+export const OUTPUT_PATH_ICONS = `${OUTPUT_PATH}/post-icons`;
 
 export const UI_ICON_SIZES = [16, 24, 32, 40, 48, 64];
 

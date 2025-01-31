@@ -1,16 +1,15 @@
 import fs from 'fs';
 import path from 'path';
-import crypto from 'crypto';
 import { HTMLElement, parse } from 'node-html-parser';
 import { optimize } from 'svgo';
 import { version } from '../../package.json';
 import svgoOptions from '../../svgo.config.ui';
 import type { IJSONReport } from '../models/icon.model';
-import { Businessfield, Type, TypeFilter, VariantMIME } from '../models/censhare-result-page.model';
 
 import {
   SOURCE_PATH,
   OUTPUT_PATH,
+  OUTPUT_PATH_ICONS,
   ID_PREFIX,
   ID_SEPERATOR,
   ID_UNWANTED_PARTS,
@@ -26,8 +25,8 @@ type File = {
   filePath: string;
 };
 
-const iconSourcePath = SOURCE_PATH;
-const iconOutputPath = path.join(OUTPUT_PATH, 'post-icons');
+const iconSourceDirectory = SOURCE_PATH;
+const iconOutputDirectory = path.join(OUTPUT_PATH_ICONS);
 const buildReportOutputPath = path.join(OUTPUT_PATH, 'report.json');
 const baseReport: IJSONReport = {
   icons: [],
@@ -59,15 +58,15 @@ export default function build() {
 
 function setup() {
   // remove generated files & folders
-  if (fs.existsSync(iconOutputPath)) fs.rmSync(iconOutputPath, { recursive: true });
+  if (fs.existsSync(iconOutputDirectory)) fs.rmSync(iconOutputDirectory, { recursive: true });
   if (fs.existsSync(buildReportOutputPath)) fs.unlinkSync(buildReportOutputPath);
 
   // // ensure used folders exist
-  if (!fs.existsSync(iconOutputPath)) fs.mkdirSync(iconOutputPath, { recursive: true });
+  if (!fs.existsSync(iconOutputDirectory)) fs.mkdirSync(iconOutputDirectory, { recursive: true });
 }
 
 function getFileGroups(): Record<string, File[]> {
-  const filePaths = fs.readdirSync(iconSourcePath, { recursive: true });
+  const filePaths = fs.readdirSync(iconSourceDirectory, { recursive: true });
 
   return filePaths
     .filter(p => p.toString().endsWith('.svg'))
@@ -113,7 +112,7 @@ function createFiles(groupedFilePaths: Record<string, File[]>) {
 
     const svgs = files.map(({ size, filePath }) => ({
       size,
-      svg: fs.readFileSync(path.join(iconSourcePath, filePath), 'utf-8'),
+      svg: fs.readFileSync(path.join(iconSourceDirectory, filePath), 'utf-8'),
     }));
 
     const symbolId = isSingleFile ? [ID_PREFIX, id].join(ID_SEPERATOR) : ID_SYMBOL_PREFIX;
@@ -123,7 +122,7 @@ function createFiles(groupedFilePaths: Record<string, File[]>) {
     const uses = svgs.map(({ size }) => getUse(symbolId, size));
     const file = createSvg(id, template, symbols, uses);
 
-    fs.writeFileSync(path.join(iconOutputPath, `${id}.svg`), file);
+    fs.writeFileSync(path.join(iconOutputDirectory, `${id}.svg`), file);
   });
 
   function getSymbol(svg: string, symbolId: string, size: number | null): string {
@@ -172,19 +171,14 @@ function createFiles(groupedFilePaths: Record<string, File[]>) {
 }
 
 function createReport(): IJSONReport {
-  // TODO: remove as soon as UI-Icons get fetched from censhare
-  if (process.argv[2] === 'createUIReport') {
-    createV2Report();
-  }
-
   const filePaths = fs
-    .readdirSync(iconSourcePath, { recursive: true })
+    .readdirSync(iconSourceDirectory, { recursive: true })
     .map(p => p.toString())
     .filter(p => path.basename(p) === 'report.json');
 
   const aggregatedReport = filePaths.reduce(
     (report: IJSONReport, filePath: string): IJSONReport => {
-      const file = JSON.parse(fs.readFileSync(path.join(iconSourcePath, filePath), 'utf-8'));
+      const file = JSON.parse(fs.readFileSync(path.join(iconSourceDirectory, filePath), 'utf-8'));
 
       return {
         icons: [...report.icons, ...(file.icons ?? [])],
@@ -210,66 +204,4 @@ function createReport(): IJSONReport {
   fs.writeFileSync(buildReportOutputPath, JSON.stringify(aggregatedReport, null, 2));
 
   return aggregatedReport;
-}
-
-// TODO: remove as soon as UI-Icons are fetched from censhare
-function createV2Report() {
-  const filePaths = fs
-    .readdirSync(iconOutputPath, { recursive: true })
-    .map(p => p.toString())
-    .filter(p => {
-      const basename = path.basename(p);
-      return basename.endsWith('.svg') && !/^(\d){4}\.svg$/.test(basename);
-    });
-
-  const report = filePaths.reduce((report: IJSONReport, filePath: string): IJSONReport => {
-    const name = path.basename(filePath);
-    const ext = path.extname(name);
-    const basename = name.replace(ext, '');
-    const now = new Date();
-
-    return {
-      ...report,
-      icons: [
-        ...report.icons,
-        {
-          uuid: crypto.randomUUID(),
-          id: crypto.randomInt(100000, 999999),
-          type: Type.PicturePictogram,
-          typeFilter: TypeFilter.Pictograms,
-          meta: {
-            downloadLink: '',
-            businessfield: Businessfield.Kommunikation,
-            keywords: ['UI', name],
-            year: '2024',
-          },
-          file: {
-            mime: VariantMIME.ImageSVGXML,
-            name,
-            basename,
-            ext,
-            size: {
-              width: 0,
-              dpi: 72,
-              height: 0,
-            },
-          },
-          createdAt: now,
-          modifiedAt: now,
-        },
-      ],
-      stats: {
-        errors: report.stats.errors,
-        notFound: report.stats.notFound,
-        success: report.stats.success + 1,
-      },
-    };
-  }, baseReport);
-
-  report.created = new Date();
-  report.version = version;
-
-  fs.writeFileSync(path.join(iconSourcePath, 'ui', 'report.json'), JSON.stringify(report, null, 2));
-
-  return report;
 }
