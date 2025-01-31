@@ -35,5 +35,5 @@ export function getFocusableChildren(element: Element): HTMLElement[] {
     return style.display !== 'none' && style.visibility !== 'hidden';
   });
 
-  return visibleFocusableChildren as HTMLElement[];
+  return visibleFocusableChildren;
 }
