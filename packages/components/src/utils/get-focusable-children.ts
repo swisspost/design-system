@@ -27,7 +27,7 @@ const focusDisablingSelector = `:where(${[
 export function getFocusableChildren(element: Element): NodeListOf<HTMLElement> {
   const focusableChildren = element.querySelectorAll(
     `${focusableSelector}:not(${focusDisablingSelector})`,
-  ) as NodeListOf<HTMLElement>;
+  );
 
   const visibleFocusableChildren = Array.from(focusableChildren).filter(child => {
     const style = window.getComputedStyle(child.parentElement);
