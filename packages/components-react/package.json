@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components-react",
-  "version": "9.0.0-next.12",
+  "version": "9.0.0-next.13",
   "description": "Design System React Components for easy integration with the React ecosystem",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -22,31 +22,28 @@
     "linkDirectory": true
   },
   "scripts": {
-    "build": "pnpm run clean && pnpm run compile",
+    "build": "pnpm run clean && tsc -p .",
     "clean": "rimraf dist",
-    "compile": "pnpm run tsc",
-    "tsc": "tsc -p .",
-    "lint": "eslint src/**/*.ts"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:9.0.0-next.12"
+    "@swisspost/design-system-components": "workspace:9.0.0-next.13"
   },
   "devDependencies": {
+    "@eslint/js": "9.18.0",
+    "@stencil/react-output-target": "0.8.2",
     "@types/node": "22.10.5",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.5",
-    "@typescript-eslint/eslint-plugin": "7.18.0",
-    "@typescript-eslint/parser": "7.18.0",
-    "eslint": "8.57.1",
-    "eslint-config-love": "43.1.0",
-    "eslint-plugin-import": "2.31.0",
-    "eslint-plugin-n": "16.6.2",
-    "eslint-plugin-promise": "6.6.0",
-    "eslint-plugin-react": "7.37.3",
+    "eslint": "9.18.0",
+    "eslint-plugin-react": "7.37.4",
+    "globals": "15.14.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "rimraf": "6.0.1",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "typescript-eslint": "8.20.0"
   },
   "peerDependencies": {
     "react": "18.3.1",
