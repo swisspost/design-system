@@ -18,7 +18,8 @@
   "main": "./dist/index.js",
   "scripts": {
     "build": "tsc",
-    "lint": "eslint"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
   },
   "dependencies": {
     "@changesets/get-github-info": "0.6.0",

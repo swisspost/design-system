@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-migrations",
-  "version": "9.0.0-next.12",
+  "version": "9.0.0-next.13",
   "description": "Scripts to migrate an Angular application from one Design System version to another.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -15,10 +15,11 @@
     "access": "public"
   },
   "scripts": {
-    "copy-files": "copyfiles -f LICENSE README.md package.json CONTRIBUTING.md CHANGELOG.md src/migrations.json dist",
-    "build": "tsc -p tsconfig.json && pnpm copy-files",
+    "build": "pnpm clean && tsc -p tsconfig.json && pnpm copy-files",
     "clean": "rimraf dist",
-    "lint": "eslint"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "copy-files": "copyfiles -f LICENSE README.md package.json CONTRIBUTING.md CHANGELOG.md src/migrations.json dist"
   },
   "dependencies": {
     "@angular-devkit/core": "=15.0.4",
