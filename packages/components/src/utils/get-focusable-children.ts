@@ -25,7 +25,7 @@ const focusDisablingSelector = `:where(${[
   '[hidden]:not([hidden="false"])',
 ].join(',')})`;
 
-export function getFocusableChildren(element: Element): HTMLElement[] {
+export function getFocusableChildren(element: Element) {
   const focusableChildren = element.querySelectorAll(
     `${focusableSelector}:not(${focusDisablingSelector})`,
   );
