@@ -3,11 +3,12 @@ import { version } from '@root/package.json';
 import { HEADING_LEVELS, HeadingLevel } from '@/types';
 import { checkEmptyOrOneOf } from '@/utils';
 import { nanoid } from 'nanoid';
+import { eventGuard } from '@/utils/event-guard'; // Import eventGuard
 
 /**
- * @part button - The pseudo-element, used to override styles on the components internal header `button` element.
- * @part body - The pseudo-element, used to override styles on the components internal `body` element.
- * @slot logo - Slot for the placing a logo before the header.
+ * @part button - The pseudo-element, used to override styles on the component's internal header `button` element.
+ * @part body - The pseudo-element, used to override styles on the component's internal `body` element.
+ * @slot logo - Slot for placing a logo before the header.
  * @slot header - Slot for placing custom content within the accordion item's header.
  * @slot default - Slot for placing content within the accordion item's body.
  */
@@ -27,13 +28,13 @@ export class PostAccordionItem {
   @State() slottedLogo: HTMLElement;
 
   /**
-   * If `true`, the element is collapsed otherwise it is displayed.
+   * If `true`, the element is collapsed; otherwise, it is displayed.
    */
   @Prop({ mutable: true }) collapsed?: boolean = false;
 
   /**
    * Defines the hierarchical level of the accordion item header within the headings structure.
-   * @deprecated set the `heading-level` property on the parent `post-accordion` instead.
+   * @deprecated Set the `heading-level` property on the parent `post-accordion` instead.
    */
   @Prop() readonly headingLevel?: HeadingLevel;
 
@@ -42,7 +43,7 @@ export class PostAccordionItem {
     checkEmptyOrOneOf(
       newValue,
       HEADING_LEVELS,
-      'The `heading-level` property of the `post-accordion-item` must be a number between 1 and 6.',
+      'The `heading-level` property of the `post-accordion-item` must be a number between 1 and 6.'
     );
   }
 
@@ -54,15 +55,18 @@ export class PostAccordionItem {
     this.validateHeadingLevel();
   }
 
-  // capture to make sure the "collapsed" property is updated before the event is consumed
+  // Capture the event to make sure the "collapsed" property is updated before it's consumed
   @Listen('postToggle', { capture: true })
   onCollapseToggle(event: CustomEvent<boolean>): void {
-    if (
-      event.target === this.host &&
-      (event.target as HTMLElement).localName === 'post-accordion-item'
-    ) {
-      this.collapsed = !event.detail;
-    }
+    event.stopPropagation();
+
+    eventGuard(
+      event,
+      () => {
+        this.collapsed = !event.detail;
+      },
+      { targetLocalName: 'post-accordion-item' }
+    );
   }
 
   /**
