@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
+  "extends": ["config:recommended"],
   "labels": ["📦 {{{parentDir}}}"],
   "packageRules": [
     {
@@ -14,63 +14,63 @@
       "groupName": "Angular"
     },
     {
-      "matchPackagePatterns": ["*"],
-      "excludePackageNames": [
-        "typescript",
-        "bootstrap",
-        "sass",
-        "@storybook/*",
-        "@angular/*",
-        "@stencil/*"
-      ],
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "all non-major dependencies",
-      "groupSlug": "all-minor-patch"
+      "groupSlug": "all-minor-patch",
+      "matchPackageNames": [
+        "*",
+        "!typescript",
+        "!bootstrap",
+        "!sass",
+        "!@storybook/*",
+        "!@angular/*",
+        "!@stencil/*"
+      ]
     },
     {
-      "matchPackagePatterns": ["@storybook/*"],
       "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "Storybook"
+      "groupName": "Storybook",
+      "matchPackageNames": ["/@storybook/*/"]
     },
     {
-      "matchPackagePatterns": ["@stencil/*"],
       "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "Stencil"
+      "groupName": "Stencil",
+      "matchPackageNames": ["/@stencil/*/"]
     },
     {
-      "matchPackagePatterns": ["sass"],
       "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "Sass"
+      "groupName": "Sass",
+      "matchPackageNames": ["/sass/"]
     },
     {
-      "matchPackagePatterns": ["@angular/*"],
       "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "Angular"
+      "groupName": "Angular",
+      "matchPackageNames": ["/@angular/*/"]
     },
     {
-      "matchFiles": ["packages/migrations/package.json"],
-      "matchPackagePatterns": ["^@angular"],
-      "allowedVersions": "<=15.0.4"
+      "matchFileNames": ["packages/migrations/package.json"],
+      "allowedVersions": "<=15.0.4",
+      "matchPackageNames": ["/^@angular/"]
     },
     {
-      "matchFiles": ["packages/demo/package.json"],
-      "matchPackagePatterns": ["@types/node"],
-      "allowedVersions": "~18.17"
+      "matchFileNames": ["packages/demo/package.json"],
+      "allowedVersions": "~18.17",
+      "matchPackageNames": ["/@types/node/"]
     },
     {
-      "matchFiles": ["packages/components/package.json"],
-      "matchPackagePatterns": ["@oddbird/popover-polyfill"],
-      "allowedVersions": "0.2.3"
+      "matchFileNames": ["packages/components/package.json"],
+      "allowedVersions": "0.2.3",
+      "matchPackageNames": ["/@oddbird/popover-polyfill/"]
     },
     {
-      "matchPackagePatterns": ["^stylelint"],
       "matchUpdateTypes": ["major"],
-      "groupName": "Stylelint major"
+      "groupName": "Stylelint major",
+      "matchPackageNames": ["/^stylelint/"]
     },
     {
-      "matchPackagePatterns": ["^eslint"],
       "matchUpdateTypes": ["major"],
-      "groupName": "Eslint major"
+      "groupName": "Eslint major",
+      "matchPackageNames": ["/^eslint/"]
     }
   ],
   "timezone": "Europe/Zurich",
