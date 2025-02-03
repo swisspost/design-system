@@ -1,7 +1,7 @@
 import { ESLintUtils } from '@typescript-eslint/utils';
 
 export interface RuleDocs {
-  dir: 'template';
+  dir: 'template' | 'ts';
 }
 
 /**

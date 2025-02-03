@@ -5,4 +5,4 @@
 
 const designSystemESLint = require('./dist');
 
-module.exports = designSystemESLint.configs.templateAll;
+module.exports = Object.values(designSystemESLint.configs).flat();
