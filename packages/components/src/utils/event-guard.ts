@@ -5,7 +5,9 @@ export function eventGuard(
 ): void {
   const target = event.target as HTMLElement | null;
 
-  if (target?.localName === options.targetLocalName) {
+  if (!target) return;
+
+  if (target.localName === options.targetLocalName) {
     if (!options.delegatorSelector || target.closest(options.delegatorSelector)) {
       callback();
     }
