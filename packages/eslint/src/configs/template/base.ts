@@ -1,11 +1,10 @@
 import type { TSESLint } from '@typescript-eslint/utils';
-import pkg from '../../../package.json';
 
 export default (
   plugin: TSESLint.FlatConfig.Plugin,
   parser: TSESLint.FlatConfig.Parser,
 ): TSESLint.FlatConfig.Config => ({
-  name: `${pkg.name}/template-base`,
+  name: '@swisspost/design-system-eslint/template-base',
   languageOptions: {
     parser,
   },

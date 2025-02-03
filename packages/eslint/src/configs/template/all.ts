@@ -1,5 +1,4 @@
 import type { TSESLint } from '@typescript-eslint/utils';
-import pkg from '../../../package.json';
 
 import templateBaseConfig from './base';
 
@@ -9,7 +8,7 @@ export default (
 ): TSESLint.FlatConfig.ConfigArray => [
   templateBaseConfig(plugin, parser),
   {
-    name: `${pkg.name}/template-all`,
+    name: '@swisspost/design-system-eslint/template-all',
     rules: {
       '@swisspost/design-system/template/no-deprecated-btn-rg': 'error',
     },

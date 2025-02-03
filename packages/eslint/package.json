@@ -16,12 +16,11 @@
   "bugs": {
     "url": "https://github.com/swisspost/design-system/issues"
   },
-  "files": [
-    "dist",
-    "package.json",
-    "README.md",
-    "LICENSE"
-  ],
+  "publishConfig": {
+    "directory": "./dist",
+    "access": "public",
+    "linkDirectory": true
+  },
   "scripts": {
     "clean": "rimraf dist",
     "build": "pnpm clean && tsc -p tsconfig.build.json",

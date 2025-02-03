@@ -1,5 +1,4 @@
 import type { TSESLint } from '@typescript-eslint/utils';
-import pkg from '../../../package.json';
 
 import tsBaseConfig from './base';
 
@@ -9,7 +8,7 @@ export default (
 ): TSESLint.FlatConfig.ConfigArray => [
   tsBaseConfig(plugin, parser),
   {
-    name: `${pkg.name}/ts-all`,
+    name: '@swisspost/design-system-eslint/ts-all',
     rules: {},
   },
 ];

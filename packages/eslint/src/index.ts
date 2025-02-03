@@ -1,6 +1,5 @@
 import type { TSESLint } from '@typescript-eslint/utils';
 import { parser } from 'typescript-eslint';
-import pkg from '../package.json';
 import * as templateParserBase from './parsers/template';
 
 import { templateRules } from './rules/template';
@@ -9,11 +8,15 @@ import { tsRules } from './rules/ts';
 import templateAllConfig from './configs/template/all';
 import tsAllConfig from './configs/ts/all';
 
+// NOTE - we cannot migrate this to an import statement because it will make TSC copy the package.json to the dist folder
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+export const version: string = require('../package.json').version;
+
 const templateParser: TSESLint.FlatConfig.Parser = {
   parseForESLint: templateParserBase.parseForESLint,
   meta: {
-    name: `${pkg.name}/template-parser`,
-    version: pkg.version,
+    name: `@swisspost/design-system-eslint/template-parser`,
+    version,
   },
 };
 
@@ -21,7 +24,7 @@ const templatePlugin: TSESLint.FlatConfig.Plugin = {
   rules: templateRules,
   meta: {
     name: '@swisspost/eslint-plugin-design-system-template',
-    version: pkg.version,
+    version,
   },
 };
 
@@ -29,7 +32,7 @@ const tsPlugin: TSESLint.FlatConfig.Plugin = {
   rules: tsRules,
   meta: {
     name: '@swisspost/eslint-plugin-design-system',
-    version: pkg.version,
+    version,
   },
 };
 
