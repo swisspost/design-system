@@ -90,6 +90,32 @@ describe('accordion', () => {
           });
       });
     });
+
+    it('should not react to "postToggle" events emitted by post-popover inside post-accordion-item', () => {
+      const EventHandlerMock = cy.spy();
+
+      cy.get('@accordion').then($el => {
+        Cypress.$($el.get(0)).on('postToggle', EventHandlerMock);
+      });
+
+      // Click on a post-popover inside a post-accordion-item
+      cy.get('@collapsibles')
+        .eq(1) // Assuming this has a post-popover inside
+        .shadow()
+        .find('post-popover')
+        .click()
+        .then(() => {
+          expect(EventHandlerMock).to.not.be.called;
+        });
+
+      // Click on post-accordion-item which should emit postToggle
+      cy.get('@collapsibles')
+        .eq(1)
+        .click()
+        .then(() => {
+          expect(EventHandlerMock).to.be.called;
+        });
+    });
   });
 
   describe('multiple open panels', () => {
@@ -115,28 +141,4 @@ describe('Accessibility', () => {
     cy.getSnapshots('accordion');
     cy.checkA11y('#root-inner');
   });
-});
-
-it('should only react to "postToggle" events emitted by post-accordion-item, not by post-popover', () => {
-  const EventHandlerMock = cy.spy();
-
-  cy.get('@accordion').then($el => {
-    Cypress.$($el.get(0)).on('postToggle', EventHandlerMock);
-  });
-
-  cy.get('@collapsibles')
-    .eq(1)
-    .shadow()
-    .find('post-popover')
-    .click()
-    .then(() => {
-      expect(EventHandlerMock).to.not.be.called;
-    });
-
-  cy.get('@collapsibles')
-    .eq(1)
-    .click()
-    .then(() => {
-      expect(EventHandlerMock).to.be.called;
-    });
 });
