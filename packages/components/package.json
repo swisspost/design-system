@@ -24,19 +24,18 @@
     "linkDirectory": true
   },
   "scripts": {
-    "dev": "stencil build --dev --port 9200 --serve --watch --docs --docs-readme",
+    "play": "stencil build --dev --port 9200 --serve --watch --docs --docs-readme",
     "start": "stencil build --dev --watch --docs --docs-readme",
     "build": "pnpm clean && stencil build --docs-readme",
     "clean": "rimraf www dist loader loaders",
-    "test": "pnpm run unit",
     "unit": "stencil test --spec",
     "unit:watch": "stencil test --spec --watchAll --silent",
     "e2e": "cypress run --browser chrome",
-    "e2e:ci": "xvfb-run -a cypress run --browser chrome",
     "e2e:watch": "cypress open",
-    "generate": "stencil generate",
+    "e2e:ci": "xvfb-run -a cypress run --browser chrome",
     "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "lint:fix": "eslint --fix",
+    "generate": "stencil generate"
   },
   "dependencies": {
     "@floating-ui/dom": "1.6.13",
@@ -54,7 +53,7 @@
     "@percy/cypress": "3.1.2",
     "@stencil-community/eslint-plugin": "0.9.0",
     "@stencil/angular-output-target": "0.10.2",
-    "@stencil/core": "4.25.0",
+    "@stencil/core": "4.25.1",
     "@stencil/react-output-target": "0.8.2",
     "@stencil/sass": "3.0.12",
     "@types/jest": "29.5.14",

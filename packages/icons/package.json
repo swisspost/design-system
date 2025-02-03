@@ -21,16 +21,17 @@
   ],
   "private": false,
   "scripts": {
-    "dev": "pnpm build && http-server ./public -o -a localhost -p 9330",
+    "play": "pnpm build && http-server ./public -o -a localhost -p 9330",
     "start": "nodemon",
     "build": "pnpm clean && ts-node src/build.ts",
-    "fetchSVGs": "ts-node src/index.ts",
-    "createUIReport": "ts-node src/build.ts createUIReport",
+    "clean": "rimraf public/post-icons public/report.json",
     "unit": "jest",
     "unit:watch": "jest --watch",
     "unit:updatesnapshots": "jest -u",
     "lint": "eslint",
-    "clean": "rimraf public/post-icons public/report.json"
+    "lint:fix": "eslint --fix",
+    "fetchSVGs": "ts-node src/index.ts",
+    "createUIReport": "ts-node src/build.ts createUIReport"
   },
   "devDependencies": {
     "@eslint/js": "9.18.0",
