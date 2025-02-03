@@ -30,18 +30,20 @@ describe('accordion', () => {
     });
 
     it('should propagate "postToggle" event from post-accordion-item on post-accordion using eventGuard', () => {
-      const EventHandlerMock = cy.spy();
+      const EventHandlerMock = cy.spy().as('eventSpy');
 
       cy.get('@accordion').then($el => {
-        Cypress.$($el.get(0)).on('postToggle', EventHandlerMock);
+        Cypress.$($el.get(0)).on('postToggle', cy.spy((e) => {
+          console.log('postToggle event fired:', e);
+          EventHandlerMock();
+        }).as('filteredSpy'));
       });
 
       cy.get('@collapsibles')
         .last()
         .click()
         .then(() => {
-          expect(EventHandlerMock).to.be.calledOnce;
-        });
+          cy.get('@filteredSpy').should('have.been.calledOnce');
     });
   });
 

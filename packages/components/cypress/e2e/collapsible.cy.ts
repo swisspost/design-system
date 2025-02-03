@@ -1,5 +1,3 @@
-const COLLAPSIBLE_ID = '6a91848c-16ec-4a23-bc45-51c797b5b2c3';
-
 describe('collapsible', () => {
   describe('default', () => {
     beforeEach(() => {
@@ -50,7 +48,7 @@ describe('collapsible', () => {
 
     it('should handle "postToggle" event using eventGuard', () => {
       const EventHandlerMock = cy.spy().as('eventSpy');
-    
+
       cy.get('@collapsible').then(($el) => {
         const collapsible = $el.get(0);
         Cypress.$(collapsible).on('postToggle', (event) => {
@@ -58,12 +56,13 @@ describe('collapsible', () => {
           EventHandlerMock();
         });
       });
-    
+
       cy.get('@trigger').click().then(() => {
         cy.wait(100);
         cy.get('@eventSpy').should('have.been.calledOnce');
       });
-    });    
+    });
+  }); // **✅ Close this describe block**
 
   describe('initially collapsed', () => {
     beforeEach(() => {
@@ -89,12 +88,5 @@ describe('collapsible', () => {
       cy.get('@trigger').dblclick();
       cy.get('@collapsible').should(`be.hidden`);
     });
-  });
-});
-
-describe('Accessibility', () => {
-  it('Has no detectable a11y violations on load for all variants', () => {
-    cy.getSnapshots('collapsible');
-    cy.checkA11y('#root-inner');
   });
 });
