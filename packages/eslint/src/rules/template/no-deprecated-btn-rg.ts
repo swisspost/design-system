@@ -8,7 +8,7 @@ export default createRule({
   name,
   meta: {
     docs: {
-      category: 'template',
+      dir: 'template',
       description:
         'Flags deprecated "btn-rg" class and suggests removal or replacement with "btn-sm".',
     },
