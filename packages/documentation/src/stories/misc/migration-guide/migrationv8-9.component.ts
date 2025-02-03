@@ -145,11 +145,60 @@ export class MigrationV89Component extends LitElement {
                       <code>.figure-caption</code>
                     </li>
                     <li>Vertical rule: <code>.vr</code></li>
+                    <li>Colored background: <code>.text-bg-*</code></li>
+                    <li>Colored links: <code>.link-*</code></li>
                     <li>Visually hidden: <code>.visually-hidden-focusable</code></li>
                     <li>Stretched link: <code>.stretched-link</code></li>
                     <li>Stacks: <code>.vstack</code> and <code>.hstack</code></li>
                     <li>Ratios: <code>.ratio</code> and <code>.ratio-*x*</code></li>
                     <li>Icon link: <code>.icon-link</code> and <code>.icon-link-hover</code></li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    The following classes have been removed as the new Swiss Post font does not
+                    provide a light font weight (300):
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>.fw-light</code></li>
+                    <li><code>.light</code></li>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    The following Bootstrap utility classes have been removed:
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                    <li>
+                      Shadows: <code>.shadow-none</code>, <code>.shadow-sm</code>,
+                      <code>.shadow</code> and <code>.shadow-lg</code>
+                    </li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    Removed the following display SCSS variables:
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>$display1-weight</code></li>
+                    <li><code>$display2-weight</code></li>
+                    <li><code>$display3-weight</code></li>
+                    <li><code>$display4-weight</code></li>
+                    <li><code>$display-line-height</code></li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    The following elevation utility classes have been renamed:
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>.elevation-1</code> is now <code>.elevation-100</code></li>
+                    <li><code>.elevation-2</code> is now <code>.elevation-200</code></li>
+                    <li><code>.elevation-3</code> is now <code>.elevation-300</code></li>
+                    <li><code>.elevation-4</code> is now <code>.elevation-400</code></li>
+                    <li><code>.elevation-5</code> is now <code>.elevation-500</code></li>
                   </ul>
                 </li>
               </ul>

@@ -25,27 +25,27 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
 </div>
 
 <PackageDocs changelog={changelog}>
-  <div class="card my-40">
-    <div class="card-body">
-      <h5 class="card-title">Request a configuration</h5>
+  <div className="card my-40">
+    <div className="card-body">
+      <h5 className="card-title">Request a configuration</h5>
 
-      <p class="card-text">The Internet Header is built to support the already existing Portal Configuration used for the old Internet Header.
+      <p className="card-text">The Internet Header is built to support the already existing Portal Configuration used for the old Internet Header.
       <br/>If you're working on a new project, you probably need a new configuration. Please contact the Post Portal Team.</p>
 
       <h6>Step 1</h6>
-      <p class="fs-regular">Integration of header only: contact  <a className="link-warning" href="mailto:dm-tec@post.ch" rel="noopener">dm-tec@post.ch <post-icon name="1001" className="fs-large" /></a> directly</p>
-      <p class="fs-regular">Integration of header and KLP: contact KLP first for integration</p>
+      <p className="fs-regular">Integration of header only: contact  <a className="link-warning" href="mailto:dm-tec@post.ch" rel="noopener">dm-tec@post.ch <post-icon name="1001" className="fs-large" /></a> directly</p>
+      <p className="fs-regular">Integration of header and KLP: contact KLP first for integration</p>
 
       <h6>Step 2</h6>
-      <p class="fs-regular">Provide these informations to DM Tec:</p>
-      <ul class="fs-regular">
+      <p className="fs-regular">Provide these informations to DM Tec:</p>
+      <ul className="fs-regular">
         <li>ServiceID (ProjektID)</li>
         <li>Languages which you'd like to support</li>
         <li>Allowed referrers per environment (test/int/prod)</li>
-        <li>Categories for the Online Service (see <a class="link-warning" href="https://www.post.ch/de/kundencenter/onlinedienste#t=AllOSTab&sort=%40servicez32xname%20ascending" rel="noopener">https://www.post.ch/de/kundencenter/onlinedienste#t=AllOSTab&sort=%40servicez32xname%20ascending</a> for a list)</li>
+        <li>Categories for the Online Service (see <a className="link-warning" href="https://www.post.ch/de/kundencenter/onlinedienste#t=AllOSTab&sort=%40servicez32xname%20ascending" rel="noopener">https://www.post.ch/de/kundencenter/onlinedienste#t=AllOSTab&sort=%40servicez32xname%20ascending</a> for a list)</li>
         <li>Name of the Online Service in all available languages</li>
         <li>URLs of all environments and languages (links should be dependent on language)</li>
-        <li>Abstract in all available languages (will be shown on <a class="link-warning" href="https://www.post.ch/de/kundencenter/onlinedienste#t=AllOSTab&sort=%40servicez32xname%20ascending" rel="noopener">https://www.post.ch/de/kundencenter/onlinedienste#t=AllOSTab&sort=%40servicez32xname%20ascending</a>)</li>
+        <li>Abstract in all available languages (will be shown on <a className="link-warning" href="https://www.post.ch/de/kundencenter/onlinedienste#t=AllOSTab&sort=%40servicez32xname%20ascending" rel="noopener">https://www.post.ch/de/kundencenter/onlinedienste#t=AllOSTab&sort=%40servicez32xname%20ascending</a>)</li>
       </ul>
 
       <div className="banner banner-info banner-md mt-24">
@@ -79,13 +79,13 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
       <Source code={SampleFrameworks} dark={SourceDarkScheme} language="html" />
 
       <div>
-        <div class="row mb-8">
-          <div class="col-6 fw-bold">Lazy-Loaded</div>
-          <div class="col-6 fw-bold">Bare Component</div>
+        <div className="row mb-8">
+          <div className="col-6 fw-bold">Lazy-Loaded</div>
+          <div className="col-6 fw-bold">Bare Component</div>
         </div>
-        <div class="row">
-          <div class="col-6"><Source code={SampleLazyLoaded} dark={SourceDarkScheme} language="javascript" /></div>
-          <div class="col-6"><Source code={SampleBareComponent} dark={SourceDarkScheme} language="javascript" /></div>
+        <div className="row">
+          <div className="col-6"><Source code={SampleLazyLoaded} dark={SourceDarkScheme} language="javascript" /></div>
+          <div className="col-6"><Source code={SampleBareComponent} dark={SourceDarkScheme} language="javascript" /></div>
         </div>
       </div>
     </PostTabPanel>
@@ -101,13 +101,13 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
       - [unpkg](https://unpkg.com/): replace `{cdnURL}` with [https://unpkg.com/@swisspost/internet-header](https://unpkg.com/@swisspost/internet-header).
 
       <div>
-        <div class="row mb-8">
-          <div class="col-6 fw-bold">Lazy-Loaded</div>
-          <div class="col-6 fw-bold">Bare Component</div>
+        <div className="row mb-8">
+          <div className="col-6 fw-bold">Lazy-Loaded</div>
+          <div className="col-6 fw-bold">Bare Component</div>
         </div>
-        <div class="row">
-          <div class="col-6"><Source code={SampleCDNLazyLoaded} dark={SourceDarkScheme} language="html" /></div>
-          <div class="col-6"><Source code={SampleCDNBareComponent} dark={SourceDarkScheme} language="html" /></div>
+        <div className="row">
+          <div className="col-6"><Source code={SampleCDNLazyLoaded} dark={SourceDarkScheme} language="html" /></div>
+          <div className="col-6"><Source code={SampleCDNBareComponent} dark={SourceDarkScheme} language="html" /></div>
         </div>
       </div>
     </PostTabPanel>

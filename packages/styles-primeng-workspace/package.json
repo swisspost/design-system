@@ -1,15 +1,15 @@
 {
   "name": "@swisspost/design-system-styles-primeng-workspace",
   "description": "Showcase for a Post like custom prime-ng theme",
-  "version": "1.0.6-next.10",
+  "version": "1.0.6-next.13",
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
+    "start": "npm-run-all --parallel start:lib start:app",
+    "start:lib": "ng build --watch --configuration development styles-primeng",
+    "start:app": "ng serve --port 9325",
+    "build": "pnpm clean && ng build styles-primeng",
     "clean": "rimraf dist",
-    "start": "npm-run-all --parallel watch:lib serve:app",
-    "build": "ng build styles-primeng",
-    "watch:lib": "ng build --watch --configuration development styles-primeng",
-    "serve:app": "ng serve --port 9325",
     "lint": "stylelint projects/styles-primeng/src/**/*.scss",
     "lint:fix": "stylelint projects/styles-primeng/src/**/*.scss --fix"
   },
@@ -22,7 +22,7 @@
     "@angular/platform-browser": "18.2.13",
     "@angular/platform-browser-dynamic": "18.2.13",
     "@angular/router": "18.2.13",
-    "@swisspost/design-system-styles": "workspace:9.0.0-next.10",
+    "@swisspost/design-system-styles": "workspace:9.0.0-next.13",
     "primeng": "17.18.15",
     "rxjs": "7.8.1",
     "tslib": "2.8.1",
@@ -32,7 +32,11 @@
     "@angular-devkit/build-angular": "18.2.12",
     "@angular/cli": "18.2.12",
     "@angular/compiler-cli": "18.2.13",
+    "@eslint/js": "9.18.0",
     "@types/jasmine": "5.1.4",
+    "angular-eslint": "18.4.3",
+    "eslint": "^9.15.0",
+    "globals": "15.14.0",
     "jasmine-core": "5.5.0",
     "karma": "6.4.4",
     "karma-chrome-launcher": "3.2.0",
@@ -41,10 +45,12 @@
     "karma-jasmine-html-reporter": "2.1.0",
     "ng-packagr": "18.1.0",
     "npm-run-all2": "7.0.2",
+    "rimraf": "6.0.1",
     "stylelint": "16.12.0",
     "stylelint-config-sass-guidelines": "11.1.0",
     "stylelint-prettier": "5.0.2",
     "stylelint-scss": "6.10.0",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "typescript-eslint": "8.16.0"
   }
 }

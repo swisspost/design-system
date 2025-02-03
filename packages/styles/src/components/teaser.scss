@@ -47,13 +47,23 @@ tokens.$default-map: components.$post-teaser;
     border-top-right-radius: tokens.get('card-border-radius', components.$post-cards);
   }
 
+  h1,
+  h2,
   h3,
+  h4,
+  h5,
+  h6,
   p {
     margin: 0;
     word-break: break-word;
   }
 
-  h3 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-size: tokens.get('teaser-card-sm-heading-font-size');
   }
 
@@ -81,7 +91,12 @@ tokens.$default-map: components.$post-teaser;
       min-height: tokens.get('teaser-card-lg-image-height');
     }
 
-    h3 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       font-size: tokens.get('teaser-card-lg-heading-font-size');
     }
 
