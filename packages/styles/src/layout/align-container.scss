@@ -13,20 +13,18 @@ tokens.$default-map: components.$post-container;
       $padding: tokens.get('grid-padding-#{$breakpoint}');
       --post-grid-gutter-x: #{$gutter};
 
-      .row:has([class*='col'].align-container-start) {
-        margin-inline: calc(-1 * max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
-
-        .align-container-start {
-          padding-inline-start: 0;
-        }
+      .row > :last-of-type .align-container-end,
+      > .align-container-end:last-of-type {
+        margin-inline-end: calc(-1 * max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
+        width: calc(100% + max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
+        max-width: calc(100% + max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
       }
 
-      .row:has([class*='col'].align-container-end) {
-        margin-inline: calc(-1 * max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
-
-        .align-container-end {
-          padding-inline-end: 0;
-        }
+      .row > :first-of-type .align-container-start,
+      > .align-container-start:first-of-type {
+        margin-inline-start: calc(-1 * max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
+        width: calc(100% + max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
+        max-width: calc(100% + max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
       }
     }
   }
