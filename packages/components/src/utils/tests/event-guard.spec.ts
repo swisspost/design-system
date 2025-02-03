@@ -1,6 +1,6 @@
-import { eventGuard } from "../event-guard";
+import { eventGuard } from '../event-guard';
 
-describe("eventGuard", () => {
+describe('eventGuard', () => {
   let callback: jest.Mock;
 
   beforeEach(() => {
@@ -8,24 +8,24 @@ describe("eventGuard", () => {
   });
 
   afterEach(() => {
-    document.body.innerHTML = "";
+    document.body.innerHTML = '';
   });
 
-  test("calls callback when event target matches targetLocalName", () => {
+  test('calls callback when event target matches targetLocalName', () => {
     const mockEvent = {
-      target: { localName: "button" } as HTMLElement,
+      target: { localName: 'button' } as HTMLElement,
     } as unknown as CustomEvent<any>;
 
-    eventGuard(mockEvent, callback, { targetLocalName: "button" });
+    eventGuard(mockEvent, callback, { targetLocalName: 'button' });
 
     expect(callback).toHaveBeenCalledTimes(1);
   });
 
-  test("calls callback when the delegatorSelector is provided and matches", () => {
-    const container = document.createElement("div");
-    container.classList.add("container");
+  test('calls callback when the delegatorSelector is provided and matches', () => {
+    const container = document.createElement('div');
+    container.classList.add('container');
 
-    const button = document.createElement("button");
+    const button = document.createElement('button');
     container.appendChild(button);
 
     const mockEvent = {
@@ -34,14 +34,14 @@ describe("eventGuard", () => {
 
     document.body.appendChild(container);
 
-    eventGuard(mockEvent, callback, { targetLocalName: "button", delegatorSelector: ".container" });
+    eventGuard(mockEvent, callback, { targetLocalName: 'button', delegatorSelector: '.container' });
 
     expect(callback).toHaveBeenCalledTimes(1);
   });
 
-  test("does not call callback when delegatorSelector does not match", () => {
-    const outerDiv = document.createElement("div");
-    const innerButton = document.createElement("button");
+  test('does not call callback when delegatorSelector does not match', () => {
+    const outerDiv = document.createElement('div');
+    const innerButton = document.createElement('button');
     outerDiv.appendChild(innerButton);
 
     const mockEvent = {
@@ -50,22 +50,22 @@ describe("eventGuard", () => {
 
     document.body.appendChild(outerDiv);
 
-    eventGuard(mockEvent, callback, { targetLocalName: "button", delegatorSelector: ".non-existent-container" });
+    eventGuard(mockEvent, callback, { targetLocalName: 'button', delegatorSelector: '.non-existent-container' });
 
     expect(callback).not.toHaveBeenCalled();
   });
 
-  test("calls callback when the delegatorSelector is undefined", () => {
+  test('calls callback when the delegatorSelector is undefined', () => {
     const mockEvent = {
-      target: { localName: "button" } as HTMLElement,
+      target: { localName: 'button' } as HTMLElement,
     } as unknown as CustomEvent<any>;
 
-    eventGuard(mockEvent, callback, { targetLocalName: "button" });
+    eventGuard(mockEvent, callback, { targetLocalName: 'button' });
 
     expect(callback).toHaveBeenCalledTimes(1);
   });
 
-  test("does not throw error if event target is null", () => {
+  test('does not throw error if event target is null', () => {
     const mockEvent = {
       target: null,
     } as unknown as CustomEvent;
@@ -74,9 +74,9 @@ describe("eventGuard", () => {
     expect(callback).not.toHaveBeenCalled();
   });
 
-  test("calls callback when neither targetLocalName nor delegatorSelector is specified", () => {
+  test('calls callback when neither targetLocalName nor delegatorSelector is specified', () => {
     const mockEvent = {
-      target: { localName: "button" } as HTMLElement,
+      target: { localName: 'button' } as HTMLElement,
     } as unknown as CustomEvent<any>;
 
     eventGuard(mockEvent, callback);
@@ -84,12 +84,12 @@ describe("eventGuard", () => {
     expect(callback).toHaveBeenCalledTimes(1);
   });
 
-  test("does not call callback when targetLocalName is provided but does not match", () => {
+  test('does not call callback when targetLocalName is provided but does not match', () => {
     const mockEvent = {
-      target: { localName: "div" } as HTMLElement,
+      target: { localName: 'div' } as HTMLElement,
     } as unknown as CustomEvent<any>;
 
-    eventGuard(mockEvent, callback, { targetLocalName: "button" });
+    eventGuard(mockEvent, callback, { targetLocalName: 'button' });
 
     expect(callback).not.toHaveBeenCalled();
   });
