@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 8.8.1
+
+### Patch Changes
+
+- Fixed stepper overflow issue. (by [@myrta2302](https://github.com/myrta2302) with [#4520](https://github.com/swisspost/design-system/pull/4520))
+
 ## 8.8.0
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @swisspost/internet-header
 
+## 1.15.7
+
+### Patch Changes
+
+- Replaced `sessionData` and `address` properties in the sessionStorage item `klp.widget.state`. If you're looking for this info, contact the Swiss Post Design System Team! (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4517](https://github.com/swisspost/design-system/pull/4517))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.8.1
+
 ## 1.15.6
 
 ### Patch Changes
