@@ -49,19 +49,21 @@ describe('collapsible', () => {
     });
 
     it('should handle "postToggle" event using eventGuard', () => {
-      const EventHandlerMock = cy.spy();
-      
-      cy.get('@collapsible-trigger').then($el => {
-        Cypress.$($el.get(0)).on('postToggle', EventHandlerMock);
-      });
-
-      cy.get('@trigger')
-        .click()
-        .then(() => {
-          expect(EventHandlerMock).to.be.calledOnce;
+      const EventHandlerMock = cy.spy().as('eventSpy');
+    
+      cy.get('@collapsible').then(($el) => {
+        const collapsible = $el.get(0);
+        Cypress.$(collapsible).on('postToggle', (event) => {
+          console.log('Spy captured event:', event);
+          EventHandlerMock();
         });
-    });
-  });
+      });
+    
+      cy.get('@trigger').click().then(() => {
+        cy.wait(100);
+        cy.get('@eventSpy').should('have.been.calledOnce');
+      });
+    });    
 
   describe('initially collapsed', () => {
     beforeEach(() => {
