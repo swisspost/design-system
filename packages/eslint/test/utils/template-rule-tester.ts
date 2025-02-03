@@ -1,5 +1,5 @@
 import { RuleTester } from '@typescript-eslint/rule-tester';
-import templateParser from '../src/template-parser';
+import * as templateParser from '../../src/parsers/template';
 
 const ruleTester = new RuleTester({
   languageOptions: {

@@ -6,7 +6,7 @@ import globals from 'globals';
 export default [
   {
     name: 'post/global/ignores',
-    ignores: ['dist/*'],
+    ignores: ['dist/*', 'eslint.play.js'],
   },
   {
     name: 'post/defaults',

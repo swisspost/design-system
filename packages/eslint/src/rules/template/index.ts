@@ -1,5 +1,5 @@
 import noDeprecatedBtnRgRule, { name as noDeprecatedBtnRgRuleName } from './no-deprecated-btn-rg';
 
-export const rules = {
+export const templateRules = {
   [noDeprecatedBtnRgRuleName]: noDeprecatedBtnRgRule,
 };

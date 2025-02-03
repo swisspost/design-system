@@ -1,20 +1,33 @@
-import type { FlatConfig } from '@typescript-eslint/utils/ts-eslint';
-import { rules } from './rules';
+import type { TSESLint } from '@typescript-eslint/utils';
+import pkg from '../package.json';
+import * as templateParserBase from './parsers/template';
+import { templateRules } from './rules/template';
+import templateAllConfig from './configs/template/all';
 
-import templateConfig from './configs/template';
-
-const plugin: FlatConfig.Plugin = {
-  meta: {},
-  configs: {},
-  rules,
+const templateParser: TSESLint.FlatConfig.Parser = {
+  parseForESLint: templateParserBase.parseForESLint,
+  meta: {
+    name: `${pkg.name}/template-parser`,
+    version: pkg.version,
+  },
 };
 
-plugin.meta = {
-  name: `post/eslint-plugin`,
+const templatePlugin: TSESLint.FlatConfig.Plugin = {
+  rules: templateRules,
+  meta: {
+    name: '@swisspost/eslint-plugin-design-system-template',
+    version: pkg.version,
+  },
 };
 
-plugin.configs = {
-  template: templateConfig(plugin),
+const configs = {
+  templateAll: templateAllConfig(templatePlugin, templateParser),
 };
 
-export = plugin;
+/* default and named exports allow people to use this package from both CJS and ESM. */
+export default {
+  templateParser,
+  templatePlugin,
+  configs,
+};
+export { templateParser, templatePlugin, configs };

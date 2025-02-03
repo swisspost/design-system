@@ -1,5 +1,5 @@
-import { createRule } from '../utils/create-rule';
-import { TemplateNode } from '../template-parser/template-node';
+import { createRule } from '../../utils/create-rule';
+import { TemplateNode } from '../../parsers/template/template-node';
 
 export const name = 'no-deprecated-btn-rg';
 
