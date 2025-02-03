@@ -4,10 +4,11 @@
   "scripts": {
     "start": "ng serve --port 9210",
     "build": "pnpm clean && ng build components",
-    "lint": "ng lint",
+    "clean": "rimraf dist",
     "e2e": "ng e2e --watch=false",
     "e2e:watch": "ng e2e",
-    "clean": "rimraf dist"
+    "lint": "ng lint",
+    "lint:fix": "ng lint --fix"
   },
   "private": true,
   "dependencies": {

@@ -22,11 +22,10 @@
     "linkDirectory": true
   },
   "scripts": {
-    "build": "pnpm run clean && pnpm run compile",
+    "build": "pnpm run clean && tsc -p .",
     "clean": "rimraf dist",
-    "compile": "pnpm run tsc",
-    "tsc": "tsc -p .",
-    "lint": "eslint src/**/*.ts"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
   },
   "dependencies": {
     "@swisspost/design-system-components": "workspace:9.0.0-next.13"
