@@ -1,11 +1,16 @@
 import fetch, { Response } from 'node-fetch';
-import { Businessfield, Type, TypeFilter, VariantMIME } from '../models/censhare-result-page.model';
+import {
+  Businessfield,
+  Type,
+  TypeFilter,
+  VariantMIME,
+} from '../../models/censhare-result-page.model';
 import mockFs from 'mock-fs';
-import { downloadSVG } from './downloadSVG';
+import { fetchFile } from './fetchFile';
 
 jest.mock('node-fetch');
 
-describe('downloadSVG', () => {
+describe('fetchFile', () => {
   it('should download an svg icon', async () => {
     const outputPath = './icons';
     mockFs({
@@ -18,7 +23,7 @@ describe('downloadSVG', () => {
       } as Response),
     );
 
-    const svg = await downloadSVG(
+    const svg = await fetchFile(
       {
         uuid: '00000000-0000-0000-0000-000000000000',
         id: 0,

@@ -1,6 +1,24 @@
+import { IJSONReport } from '../models/icon.model';
+import { version } from '../../package.json';
+
 export const SOURCE_PATH = 'src/icons';
 export const OUTPUT_PATH = 'public';
 export const OUTPUT_PATH_ICONS = `${OUTPUT_PATH}/post-icons`;
+
+export const REPORT: IJSONReport = {
+  icons: [],
+  wrongViewBox: [],
+  noKeywords: [],
+  noSVG: [],
+  errored: [],
+  stats: {
+    errors: 0,
+    notFound: 0,
+    success: 0,
+  },
+  created: new Date(),
+  version: version,
+};
 
 export const UI_ICON_SIZES = [16, 24, 32, 40, 48, 64];
 

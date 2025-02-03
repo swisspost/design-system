@@ -32,6 +32,7 @@ export interface IIcon {
   };
   createdAt: Date;
   modifiedAt: Date;
+  errored?: boolean;
   errorMessage?: string;
 }
 
@@ -48,4 +49,9 @@ export interface IJSONReport {
   noSVG: IIcon[];
   errored: IIcon[];
   version: string;
+}
+
+export interface IFile {
+  size: number | null;
+  filePath: string;
 }

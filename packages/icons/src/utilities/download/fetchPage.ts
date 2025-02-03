@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
-import { CenshareError, CenshareResultPage } from '../models/censhare-result-page.model';
-import { getRequestInit } from './environment';
+import { CenshareError, CenshareResultPage } from '../../models/censhare-result-page.model';
+import { getRequestInit } from '../environment';
 
 /**
  * Fetch a page of SVG results from zenshare
