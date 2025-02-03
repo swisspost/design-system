@@ -13,6 +13,7 @@ import { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { getRoot } from '@/utils';
+import { eventGuard } from '@/utils/event-guard';
 
 @Component({
   tag: 'post-menu',
@@ -71,8 +72,14 @@ export class PostMenu {
 
   componentDidLoad() {
     this.popoverRef.addEventListener('postToggle', (event: CustomEvent<boolean>) => {
-      this.isVisible = event.detail;
-      this.toggleMenu.emit(this.isVisible);
+      eventGuard(
+        event,
+        () => {
+          this.isVisible = event.detail;
+          this.toggleMenu.emit(this.isVisible);
+        },
+        { targetLocalName: 'post-popovercontainer' }
+      );
     });
   }
 

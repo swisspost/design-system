@@ -2,6 +2,7 @@ import { Component, Element, Method, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkNonEmpty, checkType, debounce, getRoot } from '@/utils';
 import { PostCollapsibleCustomEvent } from '@/components';
+import { eventGuard } from '@/utils/event-guard';
 
 @Component({
   tag: 'post-collapsible-trigger',
@@ -42,12 +43,18 @@ export class PostCollapsibleTrigger {
    */
   componentWillLoad() {
     this.root = getRoot(this.host);
-
+  
     this.root.addEventListener('postToggle', (e: PostCollapsibleCustomEvent<boolean>) => {
-      if (!this.trigger || !e.target.isEqualNode(this.collapsible)) return;
-      this.trigger.setAttribute('aria-expanded', `${e.detail}`);
+      eventGuard(
+        e,
+        () => {
+          if (!this.trigger || !e.target.isEqualNode(this.collapsible)) return;
+          this.trigger.setAttribute('aria-expanded', `${e.detail}`);
+        },
+        { targetLocalName: 'post-collapsible' }
+      );
     });
-  }
+  }  
 
   /**
    * Add the "data-version" to the host element and set the trigger
