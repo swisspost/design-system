@@ -1,7 +1,7 @@
 import type { Args, StoryObj } from '@storybook/web-components';
 import { StoryContext, StoryFn } from '@storybook/web-components';
 import { MetaExtended } from '@root/types';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import './align-container.styles.scss';
 
 const meta: MetaExtended = {
@@ -18,11 +18,38 @@ export default meta;
 
 type Story = StoryObj;
 
+export const AlignContainerBasic: Story = {
+  argTypes: {
+    AlignContainer: {
+      name: 'Align Container',
+      description: 'Align an element to its Container edge.',
+      control: {
+        type: 'select',
+      },
+      options: ['none', 'align-container-start', 'align-container-end'],
+    },
+  },
+  args: {
+    AlignContainer: 'align-container-start',
+  },
+  render: (args: Args) => html`
+    <div class="container">
+      <h2>Some content</h2>
+      <p>Some text</p>
+      <img
+        alt="image aligned with the inline-start edge of the container"
+        src="public/images/design-system-preview.png"
+        class="${args.AlignContainer !== 'none' ? args.AlignContainer : nothing}"
+      />
+    </div>
+  `,
+};
+
 export const AlignContainerStart: Story = {
   argTypes: {
     AlignContainer: {
       name: 'Align Container',
-      description: 'Align an grid element to its container start edge.',
+      description: 'Align an element to its container start edge.',
       control: {
         type: 'select',
       },
@@ -35,10 +62,11 @@ export const AlignContainerStart: Story = {
   render: (args: Args) => html`
     <div class="container">
       <div class="row">
-        <div class="col-6 ${args.AlignContainer}">
+        <div class="col-6">
           <img
             alt="image aligned with the inline-start edge of the container"
             src="public/images/design-system-preview.png"
+            class="${args.AlignContainer !== 'none' ? args.AlignContainer : nothing}"
           />
         </div>
         <div class="col-6">
@@ -57,7 +85,7 @@ export const AlignContainerEnd: Story = {
   argTypes: {
     AlignContainer: {
       name: 'Align Container',
-      description: 'Align an grid element to its container end edge.',
+      description: 'Align an element to its container end edge.',
       control: {
         type: 'select',
       },
@@ -71,10 +99,11 @@ export const AlignContainerEnd: Story = {
           <h2>Some inline-start content</h2>
           <p>Some inline-start text</p>
         </div>
-        <div class="col-6 ${args.AlignContainer !== 'none' ? args.AlignContainer : ''}">
+        <div class="col-6">
           <img
             alt="image aligned with the inline-end edge of the container"
             src="public/images/design-system-preview.png"
+            class="${args.AlignContainer !== 'none' ? args.AlignContainer : nothing}"
           />
         </div>
       </div>

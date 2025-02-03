@@ -6,15 +6,23 @@ import * as alignContainerStories from './align-container.stories';
 # Align Elements To Container
 
 <div className="lead">Align-container-start</div>
+
 Use the `align-container-start` class to align the content at the start of the container. This will stretch
 the image to the boundary of the container, ensuring it aligns with the inline-start edge.
-
-<Canvas sourceState="shown" of={alignContainerStories.AlignContainerStart} />
-<Controls of={alignContainerStories.AlignContainerStart} />
 
 <div className="lead">Align-container-end</div>
 Use the `align-container-end` class to align the content at the end of the container. This will stretch
 the image to the boundary of the container, ensuring it aligns with the inline-end edge.
+
+## Basic Example
+
+<Canvas sourceState="shown" of={alignContainerStories.AlignContainerBasic} />
+<Controls of={alignContainerStories.AlignContainerBasic} />
+
+## Grid Examples
+
+<Canvas sourceState="shown" of={alignContainerStories.AlignContainerStart} />
+<Controls of={alignContainerStories.AlignContainerStart} />
 
 <Canvas sourceState="shown" of={alignContainerStories.AlignContainerEnd} />
 <Controls of={alignContainerStories.AlignContainerEnd} />
