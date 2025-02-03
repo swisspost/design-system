@@ -23,16 +23,22 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "pnpm clean && tsc -p tsconfig.build.json",
     "clean": "rimraf dist",
+    "build": "pnpm clean && tsc -p tsconfig.build.json",
+    "start": "pnpm build --watch",
+    "inspect": "wait-on dist && eslint --c eslint.play.js --inspect-config",
+    "play": "npm-run-all --parallel --print-label start inspect",
     "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "test": "jest",
     "test:watch": "jest --watchAll"
   },
   "dependencies": {
     "@typescript-eslint/utils": "8.19.1",
     "cheerio": "1.0.0",
-    "eslint-scope": "8.2.0"
+    "eslint-scope": "8.2.0",
+    "npm-run-all": "4.1.5",
+    "wait-on": "8.0.1"
   },
   "devDependencies": {
     "@eslint/js": "9.18.0",
