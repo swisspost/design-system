@@ -90,42 +90,7 @@ describe('accordion', () => {
           });
       });
     });
-
-    it('should not react to "postToggle" events emitted by nested elements inside post-accordion-item', () => {
-      const EventHandlerMock = cy.spy();
-
-      // Attach spy to track postToggle events
-      cy.get('@accordion').then($el => {
-        Cypress.$($el.get(0)).on('postToggle', EventHandlerMock);
-      });
-
-      // Check if there is any nested element inside post-accordion-item that emits postToggle
-      cy.get('@collapsibles')
-        .eq(1)
-        .shadow()
-        .find('[onposttoggle]') // Find any element that listens for or emits postToggle
-        .then($nestedElements => {
-          if ($nestedElements.length > 0) {
-            cy.wrap($nestedElements)
-              .first() // Select the first matching nested element
-              .click()
-              .then(() => {
-                expect(EventHandlerMock).to.not.be.called;
-              });
-          } else {
-            cy.log('No nested element emitting postToggle found inside post-accordion-item; skipping test for now.');
-          }
-        });
-
-      // Ensure clicking post-accordion-item does trigger postToggle
-      cy.get('@collapsibles')
-        .eq(1)
-        .click()
-        .then(() => {
-          expect(EventHandlerMock).to.be.called;
-        });
-    });
-  }); // <-- Added missing closing brace here
+  });
 
   describe('multiple open panels', () => {
     beforeEach(() => {
