@@ -29,7 +29,7 @@ describe('accordion', () => {
       cy.get('@collapsibles').first().shadow().find('post-collapsible').should('be.hidden');
     });
 
-    it('should propagate "postToggle" event using eventGuard from post-accordion-item to post-accordion', () => {
+    it('should propagate "postToggle" event from post-accordion-item on post-accordion using eventGuard', () => {
       const EventHandlerMock = cy.spy();
 
       cy.get('@accordion').then($el => {
@@ -77,7 +77,7 @@ describe('accordion', () => {
       cy.get('@collapsibles').eq(7).shadow().find('post-collapsible').should('be.visible');
     });
 
-    it('should not propagate "postToggle" event from nested post-accordion', () => {
+    it('should not propagate "postToggle" event from nested post-accordion due to eventGuard', () => {
       cy.document().then(document => {
         const EventHandlerMock = cy.spy();
         Cypress.$(document.querySelector('post-accordion')).on('postToggle', EventHandlerMock);

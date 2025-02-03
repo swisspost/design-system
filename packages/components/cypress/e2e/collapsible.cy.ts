@@ -47,6 +47,20 @@ describe('collapsible', () => {
       cy.get('@trigger').dblclick();
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'true');
     });
+
+    it('should handle "postToggle" event using eventGuard', () => {
+      const EventHandlerMock = cy.spy();
+      
+      cy.get('@collapsible-trigger').then($el => {
+        Cypress.$($el.get(0)).on('postToggle', EventHandlerMock);
+      });
+
+      cy.get('@trigger')
+        .click()
+        .then(() => {
+          expect(EventHandlerMock).to.be.calledOnce;
+        });
+    });
   });
 
   describe('initially collapsed', () => {
