@@ -1,5 +1,5 @@
-export function eventGuard<T = unknown>(
-  event: CustomEvent<T>,
+export function eventGuard(
+  event: CustomEvent,
   callback: () => void,
   options: { targetLocalName?: string; delegatorSelector?: string } = {}
 ): void {
