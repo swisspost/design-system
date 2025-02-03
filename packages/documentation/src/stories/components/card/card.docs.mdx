@@ -23,13 +23,20 @@ This is easily customizable using the grid for example. For more details on that
 
 ## Foundations
 
-Card elements can contain many things, they can be interactive or not. Cards containing a link or a button are considered interactive and will have a shadow instead of simple border. To force a card to be interactive, the class `.interactive-card` may also be used.
+Card elements can contain many things, they can be interactive or not. Interactive cards will have a shadow and an hover effect. To make your card interactive, simply add the `.interactive-card` class on it.
+The `.interactive-card` will take the first `a` or `button` tag and make it so that clicking on the card will click on that interactive element.
 
 <Canvas sourceState="shown" of={CardStories.Default} />
 
 <StylesPackageImport components={['card']} />
 
 ## Examples
+
+### Palettes
+
+Cards should never be the same color as its section's background. Therefore, depending on the palette, the card's background color will adapt.
+
+<Canvas sourceState="hidden" of={CardStories.Palette} />
 
 ### Basic Content
 

@@ -1,5 +1,11 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import meta, { Default, CustomContent, CardGroup } from './card.stories';
+import meta, {
+  CustomContent,
+  CardGroup,
+  BasicContent,
+  renderSimpleInteractiveCard,
+  renderSimpleNonInteractiveCard,
+} from './card.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
@@ -15,8 +21,22 @@ type Story = StoryObj;
 
 export const Card: Story = {
   render: (_args: Args, context: StoryContext) => {
-    // Define default template variants
-    const defaultTemplateVariants = [
+    // Define default variants
+    const defaultVariants = ['default', 'accent', 'alternate', 'brand'].map((palette: string) => {
+      return html`
+        <div class="palette-${palette}">
+          <div class="container py-16">
+            <div class="row">
+              <div class="col-sm-6 col-12">${renderSimpleInteractiveCard()}</div>
+              <div class="col-sm-6 col-12">${renderSimpleNonInteractiveCard()}</div>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+
+    // Define basic content template variants
+    const basicContentTemplateVariants = [
       // Layout related combinations
       ...bombArgs({
         showImage: [false, true],
@@ -62,7 +82,7 @@ export const Card: Story = {
       .map(
         args => html`
           <div class="col-6 p-16">
-            ${Default.render && Default.render({ ...meta.args, ...args }, context)}
+            ${BasicContent.render && BasicContent.render({ ...meta.args, ...args }, context)}
           </div>
         `,
       );
@@ -83,7 +103,12 @@ export const Card: Story = {
 
     // Render all variants on white and dark background
     return schemes(
-      () => html` <div class="row">${defaultTemplateVariants} ${customTemplateVariants}</div> `,
+      () =>
+        html`
+          <div class="row">
+            ${defaultVariants} ${basicContentTemplateVariants} ${customTemplateVariants}
+          </div>
+        `,
     );
   },
 };

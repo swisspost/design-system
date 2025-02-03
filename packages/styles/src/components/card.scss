@@ -10,6 +10,7 @@
 @use './../mixins/icons' as icons-mx;
 @use './../variables/icons';
 @use './../variables/animation';
+@use '../mixins/utilities' as utilities-mx;
 
 @use './../functions/tokens';
 @use './../tokens/utilities';
@@ -25,19 +26,47 @@ tokens.$default-map: components.$post-cards;
 }
 
 .card {
-  transition: box-shadow 0.25s;
+  transition: all 250ms;
   color: card.$card-color;
   border-radius: tokens.get('card-border-radius');
+  background-color: tokens.get('card-enabled-bg1');
 
-  // Add an elevation only if card has an interactive element
-  &:has(button, a),
-  .interactive-card {
+  .palette-alternate & {
+    background-color: tokens.get('card-enabled-bg2');
+  }
+
+  // Add an elevation only if card is interactive
+  &.interactive-card {
     border: 0;
     box-shadow: tokens.get('card-interactive-elevation');
+
+    &:hover {
+      background-color: tokens.get('card-hover-bg');
+      color: tokens.get('card-hover-fg');
+    }
+
+    a:first-of-type,
+    button:first-of-type {
+      position: unset;
+      outline-style: none !important;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        border-radius: tokens.get('card-border-radius', components.$post-cards);
+      }
+
+      @include utilities-mx.focus-style('::before');
+    }
   }
 
   // Add a border if card has no interactive element
-  &:not(:has(button, a)) {
+  &:not(.interactive-card) {
     border: 1px solid tokens.get('card-non-interactive-stroke');
   }
 
@@ -72,6 +101,13 @@ tokens.$default-map: components.$post-cards;
 
   .list-group {
     margin-block: 0 !important;
+  }
+
+  .card-title,
+  .card-body,
+  a:hover,
+  .btn-tertiary:hover {
+    color: inherit;
   }
 
   .card-group > & {
@@ -207,7 +243,6 @@ tokens.$default-map: components.$post-cards;
     align-items: center;
     padding-inline: tokens.get('utility-gap-8', utilities.$post-spacing);
     gap: tokens.get('utility-gap-8', utilities.$post-spacing);
-    color: color.$gray-60;
     text-decoration: none;
     -ms-flex-align: center;
 
@@ -217,11 +252,6 @@ tokens.$default-map: components.$post-cards;
       display: inline-block;
       width: icons.$icon-size-default;
       height: icons.$icon-size-default;
-    }
-
-    &:hover,
-    &:focus {
-      color: color.$black;
     }
   }
 }

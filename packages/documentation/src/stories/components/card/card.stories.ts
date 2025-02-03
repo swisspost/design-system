@@ -8,7 +8,7 @@ const meta: MetaComponent = {
   id: '605c788d-3f75-4e6c-8498-be3d546843c2',
   title: 'Components/Card',
   tags: ['package:HTML'],
-  decorators: [clickBlocker, paddedContainer],
+  decorators: [clickBlocker],
   parameters: {
     badges: [],
     controls: {
@@ -33,6 +33,7 @@ const meta: MetaComponent = {
     showListGroup: false,
     showFooter: false,
     customFooter: null,
+    interactive: false,
   },
   argTypes: {
     showImage: {
@@ -135,6 +136,17 @@ const meta: MetaComponent = {
         category: 'Card Body',
       },
     },
+    interactive: {
+      name: 'Is interactive',
+      description:
+        'Whether the card is interactive and clicking on the whole card should click on its first child interactive element.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'General',
+      },
+    },
     content: {
       name: 'Content',
       description: 'The text contained in the card body.',
@@ -212,10 +224,6 @@ function clickBlocker(story: StoryFn, context: StoryContext) {
   `;
 }
 
-function paddedContainer(story: StoryFn, context: StoryContext) {
-  return html` <div class="p-8">${story(context.args, context)}</div> `;
-}
-
 function gridContainer(story: StoryFn, context: StoryContext) {
   return html`
     <div class="row">
@@ -290,14 +298,31 @@ function getCardImage({ imagePosition }: Args) {
 }
 
 function renderCard(args: Args) {
-  const { showImage, imagePosition, showHeader, showBody, showListGroup, showFooter } = args;
+  const { showImage, imagePosition, showHeader, showBody, showListGroup, showFooter, interactive } =
+    args;
 
   return html`
-    <div class="card">
+    <div class="card${interactive ? ' interactive-card' : ''}">
       ${showImage && imagePosition === 'top' ? getCardImage(args) : nothing}
       ${showHeader ? getCardHeader(args) : nothing} ${showBody ? getCardBody(args) : nothing}
       ${showListGroup ? getCardListGroup() : nothing} ${showFooter ? getCardFooter(args) : nothing}
       ${showImage && imagePosition === 'bottom' ? getCardImage(args) : nothing}
+    </div>
+  `;
+}
+
+export function renderSimpleInteractiveCard() {
+  return html`
+    <div class="card interactive-card p-16">
+      <p><a href="#">Interactive card</a></p>
+    </div>
+  `;
+}
+
+export function renderSimpleNonInteractiveCard() {
+  return html`
+    <div class="card p-16">
+      <p>Non-interactive card</p>
     </div>
   `;
 }
@@ -312,19 +337,40 @@ const singleCardStory: Story = {
 
 export const Default: Story = {
   decorators: [gridContainer],
+  render: () => html` ${renderSimpleNonInteractiveCard()} ${renderSimpleInteractiveCard()} `,
+};
+
+export const Palette: Story = {
+  decorators: [],
+  parameters: {
+    layout: 'fullscreen',
+  },
   render: () =>
     html`
-      <div class="card p-16">
-        <p>Non-interactive card</p>
+      <div class="palette-default">
+        <div class="container py-32">
+          <div class="row">
+            <div class="col-sm-6 col-12">${renderSimpleInteractiveCard()}</div>
+            <div class="col-sm-6 col-12">${renderSimpleInteractiveCard()}</div>
+          </div>
+        </div>
       </div>
-      <div class="card p-16">
-        <p><a href="#">Interactive card</a></p>
+      <div class="palette-alternate">
+        <div class="container py-32">
+          <div class="row">
+            <div class="col-sm-6 col-12">${renderSimpleInteractiveCard()}</div>
+            <div class="col-sm-6 col-12">${renderSimpleInteractiveCard()}</div>
+          </div>
+        </div>
       </div>
     `,
 };
 
 export const BasicContent: Story = {
   ...singleCardStory,
+  args: {
+    interactive: true,
+  },
   parameters: {
     controls: {
       exclude: ['Custom Header', 'Custom Body', 'Custom Footer', 'Show Body', 'Show List Group'],

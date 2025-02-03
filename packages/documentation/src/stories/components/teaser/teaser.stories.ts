@@ -72,7 +72,9 @@ export default meta;
 type Story = StoryObj;
 
 export function renderTeaserCard(args: Args) {
-  return html`<div class="card teaser-card${args.size === 'lg' ? ' teaser-card-lg' : ''}">
+  return html`<div class="card interactive-card teaser-card${
+    args.size === 'lg' ? ' teaser-card-lg' : ''
+  }">
     <img src="https://picsum.photos/id/38/500/400" alt="My placeholder image">
     <div>
       <div>
