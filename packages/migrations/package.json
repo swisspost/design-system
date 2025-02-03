@@ -15,10 +15,11 @@
     "access": "public"
   },
   "scripts": {
-    "copy-files": "copyfiles -f LICENSE README.md package.json CONTRIBUTING.md CHANGELOG.md src/migrations.json dist",
     "build": "pnpm clean && tsc -p tsconfig.json && pnpm copy-files",
     "clean": "rimraf dist",
-    "lint": "eslint"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "copy-files": "copyfiles -f LICENSE README.md package.json CONTRIBUTING.md CHANGELOG.md src/migrations.json dist"
   },
   "dependencies": {
     "@angular-devkit/core": "=15.0.4",
