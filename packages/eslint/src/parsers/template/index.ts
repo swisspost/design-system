@@ -202,3 +202,7 @@ export function parseForESLint(code: string): {
     },
   };
 }
+
+export const meta = {
+  name: `@swisspost/design-system-eslint/template-parser`,
+};

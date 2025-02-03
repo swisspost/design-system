@@ -1,5 +1,5 @@
-import rule, { name } from '../../../src/rules/template/no-deprecated-btn-rg';
-import { templateRuleTester } from '../../utils/template-rule-tester';
+import rule, { name } from '../../../../src/rules/template/migrations/no-deprecated-btn-rg';
+import { templateRuleTester } from '../../../utils/template-rule-tester';
 
 templateRuleTester.run(name, rule, {
   valid: [

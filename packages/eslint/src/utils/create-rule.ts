@@ -1,7 +1,7 @@
 import { ESLintUtils } from '@typescript-eslint/utils';
 
 export interface RuleDocs {
-  dir: 'template' | 'ts';
+  dir: 'template' | 'template/migrations' | 'ts' | 'ts/migrations';
 }
 
 /**

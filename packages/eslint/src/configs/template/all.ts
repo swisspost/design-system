@@ -9,8 +9,6 @@ export default (
   templateBaseConfig(plugin, parser),
   {
     name: '@swisspost/design-system-eslint/template-all',
-    rules: {
-      '@swisspost/design-system/template/no-deprecated-btn-rg': 'error',
-    },
+    rules: {},
   },
 ];
