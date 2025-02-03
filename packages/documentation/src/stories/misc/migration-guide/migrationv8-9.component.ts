@@ -156,14 +156,36 @@ export class MigrationV89Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
-                    The following Bootstrap utility classes have been removed:
+                    The following classes have been removed as the new Swiss Post font does not
+                    provide a light font weight (300):
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <ul>
+                    <li><code>.fw-light</code></li>
+                    <li><code>.light</code></li>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    The following Bootstrap utility classes have been removed:
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
                     <li>
                       Shadows: <code>.shadow-none</code>, <code>.shadow-sm</code>,
                       <code>.shadow</code> and <code>.shadow-lg</code>
                     </li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    Removed the following display SCSS variables:
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>$display1-weight</code></li>
+                    <li><code>$display2-weight</code></li>
+                    <li><code>$display3-weight</code></li>
+                    <li><code>$display4-weight</code></li>
+                    <li><code>$display-line-height</code></li>
                   </ul>
                 </li>
                 <li class="mb-16">
