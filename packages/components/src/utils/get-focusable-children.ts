@@ -30,10 +30,12 @@ export function getFocusableChildren(element: Element) {
     `${focusableSelector}:not(${focusDisablingSelector})`,
   );
 
-  const visibleFocusableChildren = Array.from(focusableChildren).filter(child => {
-    const style = window.getComputedStyle(child.parentElement);
-    return style.display !== 'none' && style.visibility !== 'hidden';
-  });
+  const visibleFocusableChildren = Array.from(focusableChildren as NodeListOf<HTMLElement>).filter(
+    child => {
+      const style = window.getComputedStyle(child.parentElement);
+      return style.display !== 'none' && style.visibility !== 'hidden';
+    },
+  );
 
   return visibleFocusableChildren;
 }
