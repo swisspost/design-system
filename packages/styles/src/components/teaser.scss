@@ -6,15 +6,8 @@ tokens.$default-map: components.$post-teaser;
 .teaser-card {
   height: 100%;
   position: relative;
-  background-color: tokens.get('teaser-card-enabled-bg');
-  color: tokens.get('teaser-card-content-enabled-fg');
   display: flex;
   flex-direction: column;
-
-  &:hover {
-    background-color: tokens.get('teaser-card-hover-bg');
-    color: tokens.get('teaser-card-content-hover-fg');
-  }
 
   img {
     height: tokens.get('teaser-card-sm-image-height');
