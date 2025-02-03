@@ -1,13 +1,17 @@
 import fs from 'fs';
 import path from 'path';
 import { version } from '../../../package.json';
-import { IJSONReport } from '../../models/icon.model';
+import { IJSONReport, IFile } from '../../models/icon.model';
 import { getBaseReport } from '../helpers';
 
 export function writeReport(
   iconSourceDirectory: string,
   buildReportOutputPath: string,
+  fileGroups: Record<string, IFile[]>[],
 ): IJSONReport {
+  fileGroups.forEach(iconSet => {
+    console.log(iconSet);
+  });
   const filePaths = fs
     .readdirSync(iconSourceDirectory, { recursive: true })
     .map(p => p.toString())
