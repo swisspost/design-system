@@ -116,3 +116,27 @@ describe('Accessibility', () => {
     cy.checkA11y('#root-inner');
   });
 });
+
+it('should only react to "postToggle" events emitted by post-accordion-item, not by post-popover', () => {
+  const EventHandlerMock = cy.spy();
+
+  cy.get('@accordion').then($el => {
+    Cypress.$($el.get(0)).on('postToggle', EventHandlerMock);
+  });
+
+  cy.get('@collapsibles')
+    .eq(1)
+    .shadow()
+    .find('post-popover')
+    .click()
+    .then(() => {
+      expect(EventHandlerMock).to.not.be.called;
+    });
+
+  cy.get('@collapsibles')
+    .eq(1)
+    .click()
+    .then(() => {
+      expect(EventHandlerMock).to.be.called;
+    });
+});
