@@ -105,7 +105,7 @@
     "tokens:lint": "pnpm --filter design-system-tokens lint",
     "tokens:lint:fix": "pnpm --filter design-system-tokens lint:fix",
     "tokens:usage": "node ./utilities/token-checker.cjs",
-    "changeset:publish": "pnpm changeset publish",
+    "changeset:publish": "pnpm changeset publish --provenance",
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
   },
   "devDependencies": {
