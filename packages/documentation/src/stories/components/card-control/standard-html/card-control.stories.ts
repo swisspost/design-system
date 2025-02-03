@@ -1,14 +1,10 @@
-import type { Args, StoryContext, StoryFn } from '@storybook/web-components';
+import type { Args } from '@storybook/web-components';
 import { useArgs, useState } from '@storybook/preview-api';
 import { nothing } from 'lit';
 import { html } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { mapClasses } from '@/utils';
 import { MetaComponent } from '@root/types';
-import { parse } from '@/utils/sass-export';
-import scss from '../card-control.module.scss';
-
-const SCSS_VARIABLES: { [key: string]: string } = parse(scss);
 
 type useStateFn = typeof useState;
 
@@ -96,7 +92,7 @@ const meta: MetaComponent = {
     validation: {
       name: 'Validation',
       description:
-        'Defines the validation state of the card control and controls the display of the corresponding return message.<span className="mt-8 alert alert-info alert-sm">Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs##card-control">validation guidelines here</a>.</span> ',
+        'Defines the validation state of the card control and controls the display of the corresponding return message.<span className="mt-8 banner banner-info banner-sm">Please read our <a href="/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs##card-control">validation guidelines here</a>.</span> ',
       control: {
         type: 'radio',
         labels: {
@@ -183,40 +179,6 @@ export const Default = {
       ${args.validation === 'is-invalid' && !args.GroupValidation ? invalidFeedback : nothing}
     `;
   },
-};
-
-export const DarkBackground = {
-  parameters: {
-    docs: {
-      controls: {
-        include: ['Background-Color', 'Type', 'Checked', 'Disabled', 'Validation'],
-      },
-    },
-  },
-  decorators: [
-    (story: StoryFn, context: StoryContext) =>
-      html`<div
-        class="bg-${context.args.background}"
-        style="margin: -40px -30px; padding: 40px 30px;"
-      >
-        ${story(context.args, context)}
-      </div>`,
-  ],
-  args: {
-    background: 'dark',
-    icon: '1001',
-  },
-  argTypes: {
-    background: {
-      name: 'Background-Color',
-      description: 'The background color of a surrounding wrapper element.',
-      control: {
-        type: 'select',
-      },
-      options: [...Object.keys(SCSS_VARIABLES.dark)],
-    },
-  },
-  render: Default.render,
 };
 
 function col(label: string, args: Args, useState: useStateFn) {

@@ -12,14 +12,14 @@ const meta: Meta = {
 
 function render() {
   return html`
-    <div class="bg-light error-container">
+    <div class="palette-alternate error-container">
       <div class="container">
         <div class="row">
           <div class="col-sm-8 py-56">
             <h2>
               This page could not be found.
               <br />
-              <span class="fw-light">A reasons for this could be a misspelled URL.</span>
+              <span class="fw-normal">A reasons for this could be a misspelled URL.</span>
             </h2>
             <p class="mt-16">
               We kindly ask you to review this once again. It is also possible that we have moved,

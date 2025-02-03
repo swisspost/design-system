@@ -7,10 +7,13 @@ const meta: MetaComponent<HTMLPostLogoElement> = {
   title: 'Foundations/Logo',
   tags: ['package:WebComponents'],
   component: 'post-logo',
-  render: renderLogo(),
   parameters: {
-    design: {},
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=7402-44020&t=NlJxMtn6FqcqrXok-4',
+    },
   },
+  render: renderLogo(),
   argTypes: {
     url: {
       control: {
@@ -24,7 +27,7 @@ export default meta;
 
 // DECORATORS
 function containerWithHeight(story: StoryFn, context: StoryContext) {
-  return html` <div class="h-giant">${story(context.args, context)}</div> `;
+  return html` <div class="h-80">${story(context.args, context)}</div> `;
 }
 
 // RENDERER
@@ -57,5 +60,5 @@ export const Link: Story = {
 };
 
 export const Height: Story = {
-  render: () => html` <post-logo class="h-huge">Logo of the Post</post-logo> `,
+  render: () => html` <post-logo class="h-56">Logo of the Post</post-logo> `,
 };

@@ -9,14 +9,6 @@ body {
   }
   @include mixins.focus-outline();
 
-  @include mixins.bezel-small();
-  @include mixins.bezel-small-regular();
-  @include mixins.bezel-regular();
-  @include mixins.bezel-bigger-regular();
-  @include mixins.bezel-medium();
-  @include mixins.bezel-large();
-  @include mixins.bezel-big();
-
   @include mixins.font-curve('tiny');
   @include mixins.font-smoothing();
   @include mixins.font-smoothing-reset();

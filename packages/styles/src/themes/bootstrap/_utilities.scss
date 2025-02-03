@@ -1,6 +1,9 @@
 @use 'sass:map';
 @use './core' as *;
-@import 'bootstrap/scss/helpers';
+
+@import 'bootstrap/scss/helpers/position';
+@import 'bootstrap/scss/helpers/text-truncation';
+
 @import 'bootstrap/scss/utilities';
 
 // manipulate $utilities before you import utilities/api
@@ -40,6 +43,16 @@ $utilities: map.remove($utilities, 'border-radius-top');
 $utilities: map.remove($utilities, 'border-radius-bottom');
 $utilities: map.remove($utilities, 'border-radius-start');
 $utilities: map.remove($utilities, 'border-radius-end');
+$utilities: map.remove($utilities, 'width');
+$utilities: map.remove($utilities, 'height');
+$utilities: map.remove($utilities, 'max-width');
+$utilities: map.remove($utilities, 'max-height');
+$utilities: map.remove($utilities, 'min-width');
+$utilities: map.remove($utilities, 'min-height');
+$utilities: map.remove($utilities, 'viewport-width');
+$utilities: map.remove($utilities, 'viewport-height');
+$utilities: map.remove($utilities, 'min-viewport-width');
+$utilities: map.remove($utilities, 'min-viewport-height');
 
 $utilities: map.remove($utilities, 'flex');
 $utilities: map.remove($utilities, 'flex-direction');
@@ -49,7 +62,9 @@ $utilities: map.remove($utilities, 'align-self');
 $utilities: map.remove($utilities, 'flex-grow');
 $utilities: map.remove($utilities, 'flex-shrink');
 $utilities: map.remove($utilities, 'flex-wrap');
+
 $utilities: map.remove($utilities, 'order');
+
 $utilities: map.remove($utilities, 'justify-content');
 
 $utilities: map.remove($utilities, 'display');
@@ -60,8 +75,27 @@ $utilities: map.remove($utilities, 'float');
 
 $utilities: map.remove($utilities, 'opacity');
 
+$utilities: map.remove($utilities, 'position');
+$utilities: map.remove($utilities, 'top');
+$utilities: map.remove($utilities, 'bottom');
+$utilities: map.remove($utilities, 'start');
+$utilities: map.remove($utilities, 'end');
+$utilities: map.remove($utilities, 'translate-middle');
+
 $utilities: map.remove($utilities, 'overflow');
 $utilities: map.remove($utilities, 'overflow-x');
 $utilities: map.remove($utilities, 'overflow-y');
+
+$utilities: map.remove($utilities, 'font-family');
+$utilities: map.remove($utilities, 'font-size');
+$utilities: map.remove($utilities, 'font-style');
+$utilities: map.remove($utilities, 'shadow');
+$utilities: map.remove($utilities, 'font-weight');
+$utilities: map.remove($utilities, 'line-height');
+$utilities: map.remove($utilities, 'text-align');
+$utilities: map.remove($utilities, 'text-decoration');
+$utilities: map.remove($utilities, 'text-transform');
+$utilities: map.remove($utilities, 'white-space');
+$utilities: map.remove($utilities, 'word-wrap');
 
 @import 'bootstrap/scss/utilities/api';

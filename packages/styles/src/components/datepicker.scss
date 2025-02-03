@@ -13,7 +13,7 @@
 
 ngb-datepicker {
   // Conversion for compatibility
-  --bs-light: var(--post-light);
+  --bs-light: color.$light;
 }
 
 ngb-datepicker.dropdown-menu {
@@ -75,7 +75,7 @@ span.ngb-dp-navigation-chevron {
 }
 
 .ngb-dp-weekday {
-  color: rgba(var(--post-contrast-color-rgb), 0.6) !important;
+  color: color.$black-alpha-60 !important;
   font-size: 1rem;
   font-style: normal !important;
   line-height: type.$line-height-copy !important;
@@ -105,7 +105,7 @@ span.ngb-dp-navigation-chevron {
     height: 40px !important;
     line-height: 40px;
 
-    &.active:not(.bg-primary) {
+    &.active {
       outline: none;
     }
   }
@@ -127,10 +127,6 @@ span.ngb-dp-navigation-chevron {
 .ngb-dp-day > .btn-light:not(:disabled):not(.disabled):active,
 .ngb-dp-day > .btn-light:not(:disabled):not(.disabled).active {
   background-color: transparent;
-}
-
-.ngb-dp-day > .btn-light.bg-primary.text-white {
-  background-color: color.$yellow !important;
 }
 
 .ngb-dp-open {

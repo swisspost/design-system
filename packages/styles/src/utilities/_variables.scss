@@ -2,6 +2,9 @@
 
 @use './functions' as *;
 
+@use '../variables/sizing' as *;
+@use '../variables/type';
+
 /*
   Utilities are generated with our utility API using bellow $utilities map.
 
@@ -20,6 +23,12 @@
 
   Our API is based on bootstrap utility API, more information is available here: https://getbootstrap.com/docs/5.3/utilities/api/
 */
+
+$position-values: (
+  0: 0,
+  50: 50%,
+  100: 100%,
+);
 
 $utilities: (
   'border': (
@@ -86,6 +95,144 @@ $utilities: (
       50: 0.5,
       75: 0.75,
       100: 1,
+    ),
+  ),
+  'grid-gutter': (
+    responsive: true,
+    property: --post-grid-gutter-x --post-grid-gutter-y,
+    class: g,
+    values: from-tokens('spacing', 'gap'),
+  ),
+  'grid-gutter-x': (
+    responsive: true,
+    property: --post-grid-gutter-x,
+    class: gx,
+    values: from-tokens('spacing', 'gap'),
+  ),
+  'grid-gutter-y': (
+    responsive: true,
+    property: --post-grid-gutter-y,
+    class: gy,
+    values: from-tokens('spacing', 'gap'),
+  ),
+  'width': (
+    responsive: true,
+    property: width,
+    class: w,
+    values: $post-combined-sizes,
+  ),
+  'height': (
+    responsive: true,
+    property: height,
+    class: h,
+    values: $post-combined-sizes,
+  ),
+  'max-width': (
+    responsive: true,
+    property: max-width,
+    class: max-w,
+    values: $post-combined-sizes,
+  ),
+  'max-height': (
+    responsive: true,
+    property: max-height,
+    class: max-h,
+    values: $post-combined-sizes,
+  ),
+  'min-width': (
+    responsive: true,
+    property: min-width,
+    class: min-w,
+    values: $post-combined-sizes,
+  ),
+  'min-height': (
+    responsive: true,
+    property: min-height,
+    class: min-h,
+    values: $post-combined-sizes,
+  ),
+  'viewport-width': (
+    responsive: true,
+    property: width,
+    class: vw,
+    values: (
+      0: 0,
+      25: 25vw,
+      33: 25vw,
+      50: 50vw,
+      66: 66vw,
+      75: 75vw,
+      100: 100vw,
+    ),
+  ),
+  'viewport-height': (
+    responsive: true,
+    property: height,
+    class: vh,
+    values: (
+      0: 0,
+      25: 25vh,
+      33: 33vh,
+      50: 50vh,
+      66: 66vh,
+      75: 75vh,
+      100: 100vh,
+    ),
+  ),
+  'min-viewport-width': (
+    responsive: true,
+    property: min-width,
+    class: min-vw,
+    values: (
+      0: 0,
+      25: 25vw,
+      33: 25vw,
+      50: 50vw,
+      66: 66vw,
+      75: 75vw,
+      100: 100vw,
+    ),
+  ),
+  'min-viewport-height': (
+    responsive: true,
+    property: min-height,
+    class: min-vh,
+    values: (
+      0: 0,
+      25: 25vh,
+      33: 33vh,
+      50: 50vh,
+      66: 66vh,
+      75: 75vh,
+      100: 100vh,
+    ),
+  ),
+  'max-viewport-width': (
+    responsive: true,
+    property: max-width,
+    class: max-vw,
+    values: (
+      0: 0,
+      25: 25vw,
+      33: 25vw,
+      50: 50vw,
+      66: 66vw,
+      75: 75vw,
+      100: 100vw,
+    ),
+  ),
+  'max-viewport-height': (
+    responsive: true,
+    property: max-height,
+    class: max-vh,
+    values: (
+      0: 0,
+      25: 25vh,
+      33: 33vh,
+      50: 50vh,
+      66: 66vh,
+      75: 75vh,
+      100: 100vh,
     ),
   ),
   'align': (
@@ -395,6 +542,37 @@ $utilities: (
     values: inline inline-block block grid inline-grid table table-row table-cell flex inline-flex
       none,
   ),
+  'position': (
+    property: position,
+    values: static relative absolute fixed sticky,
+  ),
+  'top': (
+    property: top,
+    values: $position-values,
+  ),
+  'bottom': (
+    property: bottom,
+    values: $position-values,
+  ),
+  'start': (
+    property: left,
+    class: start,
+    values: $position-values,
+  ),
+  'end': (
+    property: right,
+    class: end,
+    values: $position-values,
+  ),
+  'translate-middle': (
+    property: transform,
+    class: translate-middle,
+    values: (
+      null: translate(-50%, -50%),
+      x: translateX(-50%),
+      y: translateY(-50%),
+    ),
+  ),
   'overflow': (
     property: overflow,
     values: auto hidden visible scroll,
@@ -407,5 +585,76 @@ $utilities: (
     property: overflow-y,
     values: auto hidden visible scroll,
   ),
-  // IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`.
+  'font-family': (
+    property: font-family,
+    class: font,
+    values: (
+      'sans-serif': type.$font-family-sans-serif,
+    ),
+  ),
+  'font-style': (
+    property: font-style,
+    class: fst,
+    values: italic normal,
+  ),
+  'font-weight': (
+    property: font-weight,
+    class: fw,
+    values: (
+      black: type.$font-weight-black,
+      bold: type.$font-weight-bold,
+      normal: type.$font-weight-normal,
+    ),
+  ),
+  'line-height': (
+    property: line-height,
+    class: lh,
+    values: (
+      1: type.$line-height-1,
+      sm: type.$line-height-sm,
+      lg: type.$line-height-lg,
+    ),
+  ),
+  'text-align': (
+    responsive: true,
+    property: text-align,
+    class: text,
+    values: (
+      start: left,
+      end: right,
+      center: center,
+    ),
+  ),
+  'text-decoration': (
+    property: text-decoration,
+    values: none underline line-through,
+  ),
+  'text-transform': (
+    property: text-transform,
+    class: text,
+    values: lowercase uppercase capitalize,
+  ),
+  'white-space': (
+    property: white-space,
+    class: text,
+    values: (
+      wrap: normal,
+      nowrap: nowrap,
+    ),
+  ),
+  'word-wrap': (
+    property: word-wrap word-break,
+    class: text,
+    values: (
+      break: break-word,
+    ),
+    rtl: false,
+  ),
+  'elevation': (
+    property: box-shadow,
+    values: from-tokens('elevation', 'elevation'),
+    class: elevation,
+  ),
 );
+
+/* IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`. */

@@ -174,4 +174,5 @@ export interface ICustomHeaderConfig {
   navMain: NavMainEntity[];
 }
 
-export type MainNavScoreList = { main: NavMainEntity; sub?: LinkListEntity; score: number }[];
+export type MainNavScoreListItem = { main: NavMainEntity; sub?: LinkListEntity; score: number };
+export type MainNavScoreList = MainNavScoreListItem[];

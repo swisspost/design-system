@@ -86,10 +86,11 @@ const meta: MetaComponent = {
           'btn-primary': 'Primary',
           'btn-secondary': 'Secondary',
           'btn-tertiary': 'Tertiary',
-          'btn-link': 'Link (no padding)',
+          'btn-tertiary px-0': 'Tertiary (no padding)',
+          'btn-link': 'Link',
         },
       },
-      options: ['btn-primary', 'btn-secondary', 'btn-tertiary', 'btn-link'],
+      options: ['btn-primary', 'btn-secondary', 'btn-tertiary', 'btn-tertiary px-0', 'btn-link'],
       table: {
         category: 'General',
       },
@@ -229,16 +230,6 @@ export const Default: Story = {
   ...Template,
 };
 
-export const Inverted: Story = {
-  ...Template,
-  decorators: [
-    (story: StoryFn, context: StoryContext) =>
-      html`
-        <div class="p-16 bg-dark" data-color-scheme="dark">${story(context.args, context)}</div>
-      `,
-  ],
-};
-
 const VariantsTemplate = {
   parameters: {
     controls: {
@@ -247,7 +238,7 @@ const VariantsTemplate = {
   },
   decorators: [
     (story: StoryFn, context: StoryContext) =>
-      html` <div class="d-flex gap-small-r flex-wrap">${story(context.args, context)}</div> `,
+      html` <div class="d-flex gap-12 flex-wrap">${story(context.args, context)}</div> `,
   ],
   render: (args: Args) =>
     html`

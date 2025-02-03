@@ -2059,6 +2059,41 @@
       "modifiedAt": "2024-11-29T13:53:16.000Z"
     },
     {
+      "uuid": "873cd1f0-c5fc-11e7-a943-005056a94f4a",
+      "id": 352126,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352126/storage/MzU0NzQ2LzAvbWFzdGVy",
+        "businessfield": [
+          "kommunikation"
+        ],
+        "keywords": [
+          "Videostamp",
+          "Briefmarke",
+          "Postage Stamp",
+          "Timbro postale",
+          "Timbre-poste"
+        ],
+        "year": [
+          "2017"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "1041.svg",
+        "basename": "1041",
+        "ext": ".svg",
+        "size": {
+          "width": 32,
+          "dpi": 72,
+          "height": 32
+        }
+      },
+      "createdAt": "2017-11-10T09:50:05.000Z",
+      "modifiedAt": "2025-01-17T08:07:49.000Z"
+    },
+    {
       "uuid": "874165d0-c5fc-11e7-a943-005056a94f4a",
       "id": 352127,
       "type": "picture.pictogram.",
@@ -2342,41 +2377,6 @@
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
       "modifiedAt": "2024-11-29T13:53:17.000Z"
-    },
-    {
-      "uuid": "873cd1f0-c5fc-11e7-a943-005056a94f4a",
-      "id": 352126,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352126/storage/MzU5NzQ4LzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          "Videostamp",
-          "Briefmarke",
-          "Postage Stamp",
-          "Timbro postale",
-          "Timbre-poste"
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "1047.svg",
-        "basename": "1047",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-11-29T13:53:16.000Z"
     },
     {
       "uuid": "24090480-17cf-11e8-b180-005056a94f4a",
@@ -11391,7 +11391,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539481/storage/NTM5NDg5LzAvbWFzdGVy",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539481/storage/NTM5NDgzLzAvbWFzdGVy",
         "keywords": [
           "LAD",
           "Leistung am Domizil",
@@ -11417,8 +11417,8 @@
       },
       "file": {
         "mime": "image/svg+xml",
-        "name": "2205.svg",
-        "basename": "2205",
+        "name": "2204.svg",
+        "basename": "2204",
         "ext": ".svg",
         "size": {
           "width": 0,
@@ -11427,7 +11427,7 @@
         }
       },
       "createdAt": "2021-01-21T13:49:50.000Z",
-      "modifiedAt": "2024-11-29T13:56:22.000Z"
+      "modifiedAt": "2025-01-17T08:06:53.000Z"
     },
     {
       "uuid": "4cc7c010-5bf0-11eb-9f99-005056873709",
@@ -11473,7 +11473,7 @@
         }
       },
       "createdAt": "2021-01-21T13:55:20.000Z",
-      "modifiedAt": "2024-11-29T13:56:23.000Z"
+      "modifiedAt": "2025-01-17T08:05:53.000Z"
     },
     {
       "uuid": "044e0500-5bf1-11eb-9f99-005056873709",
@@ -20022,7 +20022,21 @@
           "Waffe",
           "Weapon",
           "Arma",
-          "Arme"
+          "Arme",
+          "strategic objective",
+          "Strategieziel",
+          "Objectif stratégique",
+          "Obiettivo strategico",
+          "ambition",
+          "Ambition",
+          "Ambizione",
+          "Ambitions",
+          "Ambitionen",
+          "Ambizioni",
+          "Strategie Post",
+          "Swiss Post strategy",
+          "Stratégie Poste",
+          "Strategia Posta"
         ],
         "year": [
           "2022"
@@ -20040,7 +20054,7 @@
         }
       },
       "createdAt": "2022-06-13T09:14:57.000Z",
-      "modifiedAt": "2024-11-29T13:57:17.000Z"
+      "modifiedAt": "2024-12-09T07:41:40.000Z"
     },
     {
       "uuid": "b66ea4c0-ec86-11ec-aa92-005056873709",
@@ -29129,6 +29143,288 @@
       },
       "createdAt": "2024-11-13T06:28:55.000Z",
       "modifiedAt": "2024-11-29T13:58:11.000Z"
+    },
+    {
+      "uuid": "f0d61690-b243-11ef-97b1-005056873709",
+      "id": 822647,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/822647/storage/ODIyNjQ2LzAvbWFzdGVy",
+        "keywords": [
+          "Bevölkerung",
+          "Popolazione",
+          "Population",
+          "strategic objective",
+          "Strategieziel",
+          "Objectif stratégique",
+          "Obiettivo strategico",
+          "Schweiz",
+          "Switzerland",
+          "Svizzera",
+          "Suisse"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2634.svg",
+        "basename": "2634",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-12-04T13:30:34.000Z",
+      "modifiedAt": "2024-12-06T09:02:57.000Z"
+    },
+    {
+      "uuid": "2fd599f0-b245-11ef-97b1-005056873709",
+      "id": 822653,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/822653/storage/ODIyNjUyLzAvbWFzdGVy",
+        "keywords": [
+          "digital und physisch",
+          "Digital and physical",
+          "Numérique et physique",
+          "Digitale e fisico",
+          "physisch",
+          "Fisico",
+          "Physique",
+          "Digital",
+          "DIGITAL",
+          "Numérique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2635.svg",
+        "basename": "2635",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-12-04T13:39:29.000Z",
+      "modifiedAt": "2024-12-06T09:12:28.000Z"
+    },
+    {
+      "uuid": "db723fc1-b245-11ef-97b1-005056873709",
+      "id": 822657,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/822657/storage/ODIyNjU2LzAvbWFzdGVy",
+        "keywords": [
+          "Mitarbeiter",
+          "Collaborateurs",
+          "Collaboratore",
+          "collaborator",
+          "strategic objective",
+          "Strategieziel",
+          "Objectif stratégique",
+          "Obiettivo strategico",
+          "Strategie Post",
+          "Swiss Post strategy",
+          "Stratégie Poste",
+          "Strategia Posta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2636.svg",
+        "basename": "2636",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-12-04T13:44:17.000Z",
+      "modifiedAt": "2024-12-09T07:44:15.000Z"
+    },
+    {
+      "uuid": "9163daf0-b246-11ef-97b1-005056873709",
+      "id": 822661,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/822661/storage/ODIyNjYwLzAvbWFzdGVy",
+        "keywords": [
+          "strategic objective",
+          "Strategieziel",
+          "Objectif stratégique",
+          "Obiettivo strategico"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2637.svg",
+        "basename": "2637",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-12-04T13:49:22.000Z",
+      "modifiedAt": "2024-12-06T09:22:04.000Z"
+    },
+    {
+      "uuid": "036635d0-b3b4-11ef-97b1-005056873709",
+      "id": 822846,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/822846/storage/ODIyODQ1LzAvbWFzdGVy",
+        "keywords": [
+          "Netto-Null",
+          "strategic objective",
+          "Strategieziel",
+          "Objectif stratégique",
+          "Obiettivo strategico"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2638.svg",
+        "basename": "2638",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-12-06T09:25:20.000Z",
+      "modifiedAt": "2024-12-06T09:29:00.000Z"
+    },
+    {
+      "uuid": "55a04330-b3ba-11ef-97b1-005056873709",
+      "id": 822853,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/822853/storage/ODIyODUyLzAvbWFzdGVy",
+        "keywords": [
+          "strategic objective",
+          "Strategieziel",
+          "Objectif stratégique",
+          "Obiettivo strategico"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2639.svg",
+        "basename": "2639",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-12-06T10:10:35.000Z",
+      "modifiedAt": "2024-12-06T10:13:02.000Z"
+    },
+    {
+      "uuid": "3cc22f30-b3bb-11ef-97b1-005056873709",
+      "id": 822858,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/822858/storage/ODIyODU3LzAvbWFzdGVy",
+        "keywords": [
+          "Clienti",
+          "Kunden",
+          "Customers",
+          "Clients",
+          "strategic objective",
+          "Strategieziel",
+          "Objectif stratégique",
+          "Obiettivo strategico",
+          "Strategie Post",
+          "Swiss Post strategy",
+          "Stratégie Poste",
+          "Strategia Posta"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2640.svg",
+        "basename": "2640",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-12-06T10:17:03.000Z",
+      "modifiedAt": "2024-12-09T07:42:45.000Z"
+    },
+    {
+      "uuid": "3b054bb0-b897-11ef-97b1-005056873709",
+      "id": 823360,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/823360/storage/ODIzMzU5LzAvbWFzdGVy",
+        "keywords": [
+          "Stab",
+          "Wand",
+          "Bacchetta",
+          "Baguette"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2641.svg",
+        "basename": "2641",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-12-12T14:41:54.000Z",
+      "modifiedAt": "2024-12-12T14:45:04.000Z"
+    },
+    {
+      "uuid": "b46287d5-d308-11ef-a15d-005056873709",
+      "id": 1209043,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1209043/storage/MDAxMjA5MDQyLzAvbWFzdGVy",
+        "keywords": [
+          "verlinken",
+          "to link",
+          "per collegare",
+          "lier"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2642.svg",
+        "basename": "2642",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-01-15T06:19:41.000Z",
+      "modifiedAt": "2025-01-15T06:22:54.000Z"
     },
     {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
@@ -41538,6 +41834,32 @@
       },
       "createdAt": "2020-12-03T14:50:16.000Z",
       "modifiedAt": "2024-11-29T13:55:46.000Z"
+    },
+    {
+      "uuid": "885606d0-d40c-11ef-a15d-005056873709",
+      "id": 1242757,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1242757/storage/MDAxMjQyNzU2LzAvbWFzdGVy",
+        "keywords": [
+          "Social Media",
+          "Réseaux sociaux"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "8020.svg",
+        "basename": "8020",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-01-16T13:19:36.000Z",
+      "modifiedAt": "2025-01-16T13:21:23.000Z"
     }
   ],
   "wrongViewBox": [],
@@ -41716,11 +42038,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2024-12-02T12:13:24.595Z",
+  "created": "2025-01-23T15:56:36.988Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 963
+    "success": 973
   },
-  "version": "9.0.0-next.6"
+  "version": "9.0.0-next.12"
 }

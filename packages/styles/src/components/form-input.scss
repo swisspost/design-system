@@ -13,7 +13,7 @@ tokens.$default-map: components.$post-text-input;
 input.form-control {
   display: block;
   width: 100%;
-  font-family: tokens.get('body-font-family', elements.$post-body);
+  font-family: inherit;
   appearance: none; // Fix appearance for date inputs in Safari
   background-clip: padding-box;
   border: tokens.get('input-border-width') tokens.get('input-border-style-default')
@@ -192,13 +192,7 @@ input.form-control {
     }
   }
 
-  &.is-valid:not(:disabled) {
-    background-image: forms.$valid-icon;
-  }
-
-  &.is-invalid:not(:disabled) {
-    background-image: forms.$invalid-icon;
-  }
+  @include forms-mx.validation-icons;
 }
 
 .form-label:has(+ input.form-control[disabled]) {

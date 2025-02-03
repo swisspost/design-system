@@ -14,10 +14,6 @@
   font-weight: 700;
 }
 
-.light {
-  font-weight: 300;
-}
-
 .regular {
   font-weight: 400;
 }
@@ -57,11 +53,4 @@ span.spacer {
 
 .no-toggle-arrow::after {
   display: none !important;
-}
-
-// Background Utility
-@each $name, $color in color.$background-colors {
-  .bg-#{$name} {
-    @include color-mx.colored-background($color);
-  }
 }

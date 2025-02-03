@@ -4,7 +4,7 @@
 @use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/variables/spacing';
 @use '@swisspost/design-system-styles/mixins/color' as color-mx;
-@use '@swisspost/design-system-styles/mixins/elevation' as elevation-mx;
+@use '@swisspost/design-system-styles/variables/elevation';
 @use '@swisspost/design-system-styles/functions/color' as color-fn;
 @use '@swisspost/design-system-styles/mixins/utilities';
 
@@ -20,11 +20,11 @@
 }
 
 :where(post-popovercontainer) {
-  @include elevation-mx.elevation('elevation-3');
-
+  box-shadow: elevation.$elevation-300;
+  background: var(--post-current-palette-bg);
+  color: var(--post-current-palette-fg);
   position: fixed;
   z-index: commons.$zindex-popover;
-
   width: max-content;
   margin: 0;
   padding: 0;
@@ -34,13 +34,39 @@
   }
 
   box-sizing: border-box;
-  color: var(--post-contrast-color);
-  background-color: rgb(var(--post-bg-rgb));
   border: 2px solid transparent; // Keeping the default border for HCM
   border-radius: commons.$border-radius;
 
   // Keeps the little arrow visible
   overflow: visible;
+
+  &:not(:has(.arrow)) {
+    box-shadow: elevation.$elevation-300;
+  }
+
+  &:has(.arrow) {
+    filter: drop-shadow(1px 2px 3px hsla(216, 9%, 11%, 0.15))
+      drop-shadow(2px 4px 6px hsla(225, 17%, 9%, 0.15))
+      drop-shadow(4px 8px 12px hsla(225, 7%, 11%, 0.15));
+  }
+
+  &:has(.arrow.top) {
+    filter: drop-shadow(0px -2px 3px hsla(216, 9%, 11%, 0.15))
+      drop-shadow(0px -4px 6px hsla(225, 17%, 9%, 0.15))
+      drop-shadow(0px -8px 12px hsla(225, 7%, 11%, 0.15));
+  }
+
+  &:has(.arrow.left) {
+    filter: drop-shadow(-2px 0px 3px hsla(216, 9%, 11%, 0.15))
+      drop-shadow(-4px 0px 6px hsla(225, 17%, 9%, 0.15))
+      drop-shadow(-8px 0px 12px hsla(225, 7%, 11%, 0.15));
+  }
+
+  &:has(.arrow.right) {
+    filter: drop-shadow(2px 0px 3px hsla(216, 9%, 11%, 0.15))
+      drop-shadow(4px 0px 6px hsla(225, 17%, 9%, 0.15))
+      drop-shadow(8px 0px 12px hsla(225, 7%, 11%, 0.15));
+  }
 
   .arrow {
     $arrow-size: 0.5825rem;

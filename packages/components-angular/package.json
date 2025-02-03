@@ -1,12 +1,14 @@
 {
   "name": "@swisspost/design-system-components-angular-workspace",
-  "version": "1.1.10-next.6",
+  "version": "1.1.10-next.13",
   "scripts": {
     "start": "ng serve --port 9210",
-    "build": "ng build components",
-    "lint": "ng lint",
+    "build": "pnpm clean && ng build components",
+    "clean": "rimraf dist",
     "e2e": "ng e2e --watch=false",
-    "e2e:watch": "ng e2e"
+    "e2e:watch": "ng e2e",
+    "lint": "ng lint",
+    "lint:fix": "ng lint --fix"
   },
   "private": true,
   "dependencies": {
@@ -18,31 +20,30 @@
     "@angular/platform-browser": "18.2.13",
     "@angular/platform-browser-dynamic": "18.2.13",
     "@angular/router": "18.2.13",
-    "@swisspost/design-system-components": "workspace:9.0.0-next.6",
-    "@swisspost/design-system-styles": "workspace:9.0.0-next.6",
+    "@swisspost/design-system-components": "workspace:9.0.0-next.13",
+    "@swisspost/design-system-styles": "workspace:9.0.0-next.13",
     "rxjs": "7.8.1",
-    "tslib": "2.6.3",
-    "zone.js": "0.14.8"
+    "tslib": "2.8.1",
+    "zone.js": "0.15.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "18.2.12",
-    "@angular-eslint/builder": "18.4.3",
-    "@angular-eslint/eslint-plugin": "18.4.3",
-    "@angular-eslint/eslint-plugin-template": "18.4.3",
-    "@angular-eslint/template-parser": "18.4.3",
     "@angular/cli": "18.2.12",
     "@angular/compiler-cli": "18.2.13",
     "@cypress/schematic": "2.5.2",
-    "@typescript-eslint/eslint-plugin": "7.18.0",
-    "@typescript-eslint/parser": "7.18.0",
+    "@eslint/js": "9.18.0",
+    "angular-eslint": "18.4.3",
     "cypress": "13.13.2",
-    "eslint": "8.57.0",
+    "eslint": "^9.15.0",
+    "globals": "15.14.0",
     "karma": "6.4.4",
     "karma-chrome-launcher": "3.2.0",
     "karma-coverage": "2.2.1",
     "karma-jasmine": "5.1.0",
     "karma-jasmine-html-reporter": "2.1.0",
     "ng-packagr": "18.1.0",
-    "typescript": "5.5.4"
+    "rimraf": "6.0.1",
+    "typescript": "5.5.4",
+    "typescript-eslint": "8.16.0"
   }
 }

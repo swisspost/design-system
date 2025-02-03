@@ -1,11 +1,9 @@
 import { type Args, StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
-import { spread } from '@open-wc/lit-helpers';
 import buttonMeta from '../button/button.stories';
 
 export interface PostTogglebuttonProps {
-  type?: 'button' | 'submit' | 'reset';
   toggled?: boolean;
   variant?: string;
   size?: string;
@@ -15,7 +13,7 @@ export interface PostTogglebuttonProps {
 
 const meta: MetaComponent<PostTogglebuttonProps> = {
   id: '1a6f47c2-5e8a-45a0-b1c3-9f7e2b834c24',
-  title: 'Components/Toggle Button',
+  title: 'Components/Button Toggle',
   tags: ['package:WebComponents'],
   render: renderBadge,
   component: 'post-togglebutton',
@@ -50,7 +48,7 @@ const meta: MetaComponent<PostTogglebuttonProps> = {
       ...buttonMeta.argTypes?.size,
       description:
         'Sets the size of the component.' +
-        '<span className="mt-8 alert alert-info alert-sm">' +
+        '<span className="mt-8 banner banner-info banner-sm">' +
         'For more options, please see the ' +
         '<a href="/?path=/docs/eb78afcb-ce92-4990-94b6-6536d5ec6af4--docs">button documentation</a>' +
         '.</span>',
@@ -59,7 +57,7 @@ const meta: MetaComponent<PostTogglebuttonProps> = {
       ...buttonMeta.argTypes?.variant,
       description:
         'Defines a style variant.' +
-        '<span className="mt-8 alert alert-info alert-sm">' +
+        '<span className="mt-8 banner banner-info banner-sm">' +
         'For more options, please see the ' +
         '<a href="/?path=/docs/eb78afcb-ce92-4990-94b6-6536d5ec6af4--docs">button documentation</a>' +
         '.</span>',
@@ -70,34 +68,30 @@ const meta: MetaComponent<PostTogglebuttonProps> = {
 export default meta;
 
 function renderBadge(args: Args) {
+  const btnClasses = ['btn', args.variant, args.size].filter(c => c && c !== 'null').join(' ');
   return html`
-    <post-togglebutton ${spread(createProps(args))}>
-      <span slot="untoggled">${args.contentWhenUntoggled}</span>
-      <span slot="toggled">${args.contentWhenToggled}</span>
+    <post-togglebutton class=${btnClasses} toggled=${args.toggled || nothing}>
+      <span data-showwhen="untoggled">${args.contentWhenUntoggled}</span>
+      <span data-showwhen="toggled">${args.contentWhenToggled}</span>
     </post-togglebutton>
   `;
-}
-
-function createProps(args: Args) {
-  return {
-    class: ['btn', args.variant, args.size].filter(c => c && c !== 'null').join(' '),
-    type: args.type,
-    ...(args.toggled && { toggled: true }),
-  };
 }
 
 export const Default: StoryObj<PostTogglebuttonProps> = {};
 
 export const InitiallyToggled: StoryObj<PostTogglebuttonProps> = {
-  render: args => html` ${renderBadge({ ...args, toggled: true })} `,
+  args: {
+    toggled: true,
+  },
 };
 
-export const IconContent: StoryObj<PostTogglebuttonProps> = {
+export const ContentVisibility: StoryObj<PostTogglebuttonProps> = {
   render: () => {
     return html`
-      <post-togglebutton class="btn btn-icon btn-primary">
-        <span slot="untoggled"><post-icon name="2070"></post-icon></span>
-        <span slot="toggled"><post-icon name="2043"></post-icon></span>
+      <post-togglebutton class="btn btn-primary">
+        Menu
+        <span data-showwhen="untoggled"><post-icon name="2070"></post-icon></span>
+        <span data-showwhen="toggled"><post-icon name="2043"></post-icon></span>
       </post-togglebutton>
     `;
   },

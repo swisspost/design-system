@@ -56,7 +56,7 @@ export const Checkbox: Story = {
               </span>
             `;
           })}
-          <div class="mt-32 w-100"></div>
+          <div class="mt-32 w-full"></div>
           ${Inline.render?.({ ...context.args, ...Inline.args }, context)}
         </div>
       `,

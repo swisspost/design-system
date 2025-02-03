@@ -22,11 +22,13 @@ export const config: Config = {
     },
     {
       type: 'dist-custom-elements',
+      externalRuntime: false,
     },
     {
       type: 'dist-custom-elements',
       customElementsExportBehavior: 'single-export-module',
       dir: 'loaders',
+      externalRuntime: false,
     },
     {
       type: 'www',
@@ -34,6 +36,14 @@ export const config: Config = {
         {
           src: '../node_modules/@swisspost/design-system-styles/*.css',
           dest: 'assets/css',
+        },
+        {
+          src: '../node_modules/@swisspost/design-system-styles/palettes/*.css',
+          dest: 'assets/css',
+        },
+        {
+          src: '../node_modules/@swisspost/design-system-icons/public/post-icons/*.svg',
+          dest: 'assets/icons',
         },
       ],
       serviceWorker: null, // disable service workers,
@@ -46,9 +56,8 @@ export const config: Config = {
       file: 'dist/docs.json',
     },
     reactOutputTarget({
-      componentCorePackage: '@swisspost/design-system-components',
-      proxiesFile: '../components-react/src/components/stencil-generated/index.ts',
-      includeDefineCustomElements: true,
+      outDir: '../components-react/src/components/stencil-generated',
+      stencilPackageName: '@swisspost/design-system-components',
     }),
     angularOutputTarget({
       componentCorePackage: '@swisspost/design-system-components',

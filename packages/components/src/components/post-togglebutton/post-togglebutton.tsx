@@ -1,9 +1,9 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, Watch, Element } from '@stencil/core';
 import { version } from '@root/package.json';
+import { checkType } from '@/utils';
 
 /**
- * @slot toggled - Slot for content displayed when the button is in the "on" state.
- * @slot untoggled - Slot for content displayed when the button is in the "off" state.
+ * @slot default - Slot for the content of the button.
  */
 
 @Component({
@@ -12,38 +12,51 @@ import { version } from '@root/package.json';
   shadow: true,
 })
 export class PostTogglebutton {
+  @Element() host: HTMLPostTogglebuttonElement;
+
   /**
    * If `true`, the button is in the "on" state, otherwise it is in the "off" state.
    */
-  @Prop({ reflect: true, mutable: true }) toggled: boolean = false;
+  @Prop({ mutable: true }) toggled: boolean = false;
+
+  @Watch('toggled')
+  validateToggled(value = this.toggled) {
+    checkType(
+      value,
+      'boolean',
+      'The "toggled" property of the post-togglebutton must be a boolean.',
+    );
+  }
+
+  componentWillLoad() {
+    this.validateToggled();
+
+    // add event listener to not override listener that might be set on the host
+    this.host.addEventListener('click', () => this.handleClick());
+    this.host.addEventListener('keydown', (e: KeyboardEvent) => this.handleKeydown(e));
+  }
 
   private handleClick = () => {
     this.toggled = !this.toggled;
   };
 
   private handleKeydown = (event: KeyboardEvent) => {
-    if (event.key === 'Enter') {
-      this.toggled = !this.toggled;
+    // perform a click when enter or spaced are pressed to mimic the button behavior
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault(); // prevents the page from scrolling when space is pressed
+      this.host.click();
     }
   };
 
   render() {
     return (
       <Host
-        slot="post-togglebutton"
-        tabindex="0"
         data-version={version}
         role="button"
+        tabindex="0"
         aria-pressed={this.toggled.toString()}
-        onClick={this.handleClick}
-        onKeyDown={this.handleKeydown}
       >
-        <span hidden={this.toggled}>
-          <slot name="untoggled" />
-        </span>
-        <span hidden={!this.toggled}>
-          <slot name="toggled" />
-        </span>
+        <slot />
       </Host>
     );
   }

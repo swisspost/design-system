@@ -1,0 +1,67 @@
+@use '../../mixins/media';
+@use '../../mixins/utilities';
+
+@use 'mixins' as *;
+
+post-header {
+  ul[slot='meta-navigation'] {
+    gap: var(--post-core-dimension-4);
+
+    @include media.max(lg) {
+      flex-direction: column;
+
+      a,
+      button {
+        justify-content: space-between;
+        border-radius: 0;
+        @include mobile-header-interactive;
+
+        @include utilities.focus-style-custom {
+          border-radius: var(--post-core-dimension-4);
+        }
+      }
+    }
+
+    @include media.max(sm) {
+      a,
+      button {
+        font-size: var(--post-core-font-size-14);
+      }
+    }
+  }
+
+  a,
+  post-togglebutton {
+    &:not(post-mainnavigation *) {
+      @include subsidiary-header-interactive;
+
+      @include media.min(sm) {
+        post-icon {
+          height: var(--post-core-dimension-22);
+          width: var(--post-core-dimension-22);
+        }
+      }
+
+      @include media.max(sm) {
+        padding: var(--post-core-dimension-8);
+
+        post-icon {
+          height: var(--post-core-dimension-24);
+          width: var(--post-core-dimension-24);
+        }
+
+        .visually-hidden-sm {
+          @include utilities.visuallyhidden;
+        }
+      }
+    }
+  }
+
+  a.selected,
+  post-togglebutton[aria-pressed='true'] {
+    &:not(post-mainnavigation *) {
+      color: var(--post-core-color-brand-white);
+      background: var(--post-core-color-sandgrey-100);
+    }
+  }
+}

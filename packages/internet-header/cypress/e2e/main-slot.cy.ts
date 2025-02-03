@@ -58,7 +58,7 @@ describe('main-navigation', () => {
       cy.get('@custom-content')
         .next()
         .should('have.prop', 'tagName')
-        .should('eq', 'POST-LANGUAGE-SWITCH');
+        .should('eq', 'POST-LANGUAGE-SWITCH-2');
     });
 
     it('should show a border on the left of the custom content', () => {
@@ -92,7 +92,7 @@ describe('main-navigation', () => {
         })
         .each($el => {
           cy.wrap($el).should(() => {
-            const { scrollWidth, clientWidth } = $el.get(0);
+            const { scrollWidth, clientWidth } = $el.get(0) as HTMLSwisspostInternetHeaderElement;
             expect(clientWidth).not.to.equal(0);
             expect(scrollWidth).not.to.be.greaterThan(clientWidth);
           });
