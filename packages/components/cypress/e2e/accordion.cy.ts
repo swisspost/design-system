@@ -29,7 +29,7 @@ describe('accordion', () => {
       cy.get('@collapsibles').first().shadow().find('post-collapsible').should('be.hidden');
     });
 
-    it('should propagate "postToggle" event from post-accordion-item on post-accordion', () => {
+    it('should propagate "postToggle" event using eventGuard from post-accordion-item to post-accordion', () => {
       const EventHandlerMock = cy.spy();
 
       cy.get('@accordion').then($el => {
@@ -40,7 +40,7 @@ describe('accordion', () => {
         .last()
         .click()
         .then(() => {
-          expect(EventHandlerMock).to.be.calledTwice;
+          expect(EventHandlerMock).to.be.calledOnce;
         });
     });
   });
