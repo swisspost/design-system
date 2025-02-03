@@ -9,8 +9,8 @@
 
 | Property       | Attribute       | Description                                                                                                                                                                                                                  | Type                         | Default     |
 | -------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- | ----------- |
-| `collapsed`    | `collapsed`     | If `true`, the element is collapsed; otherwise, it is displayed.                                                                                                                                                             | `boolean`                    | `false`     |
-| `headingLevel` | `heading-level` | <span style="color:red">**[DEPRECATED]**</span> Set the `heading-level` property on the parent `post-accordion` instead.<br/><br/>Defines the hierarchical level of the accordion item header within the headings structure. | `1 \| 2 \| 3 \| 4 \| 5 \| 6` | `undefined` |
+| `collapsed`    | `collapsed`     | If `true`, the element is collapsed otherwise it is displayed.                                                                                                                                                               | `boolean`                    | `false`     |
+| `headingLevel` | `heading-level` | <span style="color:red">**[DEPRECATED]**</span> set the `heading-level` property on the parent `post-accordion` instead.<br/><br/>Defines the hierarchical level of the accordion item header within the headings structure. | `1 \| 2 \| 3 \| 4 \| 5 \| 6` | `undefined` |
 
 
 ## Methods
@@ -38,16 +38,16 @@ Type: `Promise<boolean>`
 | ----------- | ------------------------------------------------------------------- |
 | `"default"` | Slot for placing content within the accordion item's body.          |
 | `"header"`  | Slot for placing custom content within the accordion item's header. |
-| `"logo"`    | Slot for placing a logo before the header.                          |
+| `"logo"`    | Slot for the placing a logo before the header.                      |
 
 
 ## Shadow Parts
 
-| Part               | Description                                                                                      |
-| ------------------ | ------------------------------------------------------------------------------------------------ |
-| `"accordion-item"` |                                                                                                  |
-| `"body"`           | The pseudo-element, used to override styles on the component's internal `body` element.          |
-| `"button"`         | The pseudo-element, used to override styles on the component's internal header `button` element. |
+| Part               | Description                                                                                     |
+| ------------------ | ----------------------------------------------------------------------------------------------- |
+| `"accordion-item"` |                                                                                                 |
+| `"body"`           | The pseudo-element, used to override styles on the components internal `body` element.          |
+| `"button"`         | The pseudo-element, used to override styles on the components internal header `button` element. |
 
 
 ## Dependencies

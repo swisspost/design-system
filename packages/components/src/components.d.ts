@@ -40,12 +40,12 @@ export namespace Components {
     }
     interface PostAccordionItem {
         /**
-          * If `true`, the element is collapsed; otherwise, it is displayed.
+          * If `true`, the element is collapsed otherwise it is displayed.
          */
         "collapsed"?: boolean;
         /**
           * Defines the hierarchical level of the accordion item header within the headings structure.
-          * @deprecated Set the `heading-level` property on the parent `post-accordion` instead.
+          * @deprecated set the `heading-level` property on the parent `post-accordion` instead.
          */
         "headingLevel"?: HeadingLevel;
         /**
@@ -904,12 +904,12 @@ declare namespace LocalJSX {
     }
     interface PostAccordionItem {
         /**
-          * If `true`, the element is collapsed; otherwise, it is displayed.
+          * If `true`, the element is collapsed otherwise it is displayed.
          */
         "collapsed"?: boolean;
         /**
           * Defines the hierarchical level of the accordion item header within the headings structure.
-          * @deprecated Set the `heading-level` property on the parent `post-accordion` instead.
+          * @deprecated set the `heading-level` property on the parent `post-accordion` instead.
          */
         "headingLevel"?: HeadingLevel;
     }
