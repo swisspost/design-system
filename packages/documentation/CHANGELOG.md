@@ -1,5 +1,92 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.15
+
+### Major Changes
+
+- Removed Bootstrap shadow utility classes from the Design System, as the elevation classes are replacing them. (by [@leagrdv](https://github.com/leagrdv) with [#4361](https://github.com/swisspost/design-system/pull/4361))
+
+- Renamed elevation utility classes and SCSS variables to allow for more variants in the future. (by [@leagrdv](https://github.com/leagrdv) with [#4361](https://github.com/swisspost/design-system/pull/4361))
+
+### Minor Changes
+
+- Removed deprecated `$displayX-weight` scss variables and font-weight light (`.light`) utilities as the new Swiss Post font does not have a 300 weight version. (by [@leagrdv](https://github.com/leagrdv) with [#4531](https://github.com/swisspost/design-system/pull/4531))
+
+- Updated the styles for `.focus-ring` and added documentation. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4543](https://github.com/swisspost/design-system/pull/4543))
+
+- Added the `post-linkarea` component. (by [@veyaromain](https://github.com/veyaromain) with [#4030](https://github.com/swisspost/design-system/pull/4030))
+
+- Added duplicate icons in icons health report. (by [@myrta2302](https://github.com/myrta2302) with [#4528](https://github.com/swisspost/design-system/pull/4528))
+
+### Patch Changes
+
+- Fixed the sizing of the technology and supported browser images on the introduction page of the documentation. (by [@schaertim](https://github.com/schaertim) with [#4549](https://github.com/swisspost/design-system/pull/4549))
+
+- Internalized Bootstrap text utilities into the Design System. (by [@leagrdv](https://github.com/leagrdv) with [#4360](https://github.com/swisspost/design-system/pull/4360))
+
+- Added fake content on the header preview to show the sticky behaviour. (by [@leagrdv](https://github.com/leagrdv) with [#4367](https://github.com/swisspost/design-system/pull/4367))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.14
+  - @swisspost/design-system-components@9.0.0-next.14
+  - @swisspost/design-system-tokens@9.0.0-next.14
+  - @swisspost/internet-header@2.0.0-next.14
+  - @swisspost/design-system-components-react@9.0.0-next.14
+  - @swisspost/design-system-icons@9.0.0-next.14
+
+## 6.0.0-next.14
+
+### Minor Changes
+
+- Updated icon search, by implementing a paging and separating icon sets from each other. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4351](https://github.com/swisspost/design-system/pull/4351))
+
+- Added documentation for responsive design. (by [@leagrdv](https://github.com/leagrdv) with [#4452](https://github.com/swisspost/design-system/pull/4452))
+
+### Patch Changes
+
+- Replaced previously deleted CSS variables with SASS variables. (by [@leagrdv](https://github.com/leagrdv) with [#4446](https://github.com/swisspost/design-system/pull/4446))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.0.0-next.13
+  - @swisspost/design-system-styles@9.0.0-next.13
+  - @swisspost/design-system-components@9.0.0-next.13
+  - @swisspost/internet-header@2.0.0-next.13
+  - @swisspost/design-system-components-react@9.0.0-next.13
+  - @swisspost/design-system-tokens@9.0.0-next.13
+
+## 6.0.0-next.13
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.12
+  - @swisspost/design-system-styles@9.0.0-next.12
+  - @swisspost/design-system-components-react@9.0.0-next.12
+  - @swisspost/internet-header@2.0.0-next.12
+  - @swisspost/design-system-tokens@9.0.0-next.12
+  - @swisspost/design-system-icons@9.0.0-next.12
+
+## 6.0.0-next.12
+
+### Minor Changes
+
+- Updated figma links in the documentation. (by [@myrta2302](https://github.com/myrta2302) with [#4419](https://github.com/swisspost/design-system/pull/4419))
+
+- Added Teaser Card component. (by [@leagrdv](https://github.com/leagrdv) with [#4460](https://github.com/swisspost/design-system/pull/4460))
+
+- Added Swiss Post Sans as the new default font (by [@gfellerph](https://github.com/gfellerph) with [#4467](https://github.com/swisspost/design-system/pull/4467))
+
+### Patch Changes
+
+- Moved the Bootstrap `.clearfix` helper class to the design system and documented it. (by [@leagrdv](https://github.com/leagrdv) with [#4443](https://github.com/swisspost/design-system/pull/4443))
+
+- Moved the Bootstrap `.visually-hidden` helper class to design system styles and documented it. (by [@leagrdv](https://github.com/leagrdv) with [#4438](https://github.com/swisspost/design-system/pull/4438))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.11
+  - @swisspost/design-system-components@9.0.0-next.11
+  - @swisspost/internet-header@2.0.0-next.11
+  - @swisspost/design-system-components-react@9.0.0-next.11
+  - @swisspost/design-system-tokens@9.0.0-next.11
+  - @swisspost/design-system-icons@9.0.0-next.11
+
 ## 6.0.0-next.11
 
 ### Major Changes
