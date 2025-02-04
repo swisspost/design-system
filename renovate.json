@@ -30,47 +30,47 @@
     {
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "Storybook",
-      "matchPackageNames": ["/@storybook/*/"]
+      "matchPackageNames": ["@storybook/*"]
     },
     {
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "Stencil",
-      "matchPackageNames": ["/@stencil/*/"]
+      "matchPackageNames": ["@stencil/*"]
     },
     {
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "Sass",
-      "matchPackageNames": ["/sass/"]
+      "matchPackageNames": ["sass"]
     },
     {
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "Angular",
-      "matchPackageNames": ["/@angular/*/"]
+      "matchPackageNames": ["@angular/*"]
     },
     {
       "matchFileNames": ["packages/migrations/package.json"],
       "allowedVersions": "<=15.0.4",
-      "matchPackageNames": ["/^@angular/"]
+      "matchPackageNames": ["^@angular"]
     },
     {
       "matchFileNames": ["packages/demo/package.json"],
       "allowedVersions": "~18.17",
-      "matchPackageNames": ["/@types/node/"]
+      "matchPackageNames": ["@types/node"]
     },
     {
       "matchFileNames": ["packages/components/package.json"],
       "allowedVersions": "0.2.3",
-      "matchPackageNames": ["/@oddbird/popover-polyfill/"]
+      "matchPackageNames": ["@oddbird/popover-polyfill"]
     },
     {
       "matchUpdateTypes": ["major"],
       "groupName": "Stylelint major",
-      "matchPackageNames": ["/^stylelint/"]
+      "matchPackageNames": ["^stylelint"]
     },
     {
       "matchUpdateTypes": ["major"],
       "groupName": "Eslint major",
-      "matchPackageNames": ["/^eslint/"]
+      "matchPackageNames": ["^eslint"]
     }
   ],
   "timezone": "Europe/Zurich",
