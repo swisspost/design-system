@@ -190,7 +190,6 @@ export const Default: Story = {
         </post-list>
       </post-mainnavigation>
     </post-header>
-    <p>enwewkjfbkjewbfkjewbfkjewbfkjewbfkjbewfkjewbfkjewbfbewkjfbewkfbkjewbfkjewbfkjefb
     <div class="d-flex justify-content-center">
   <button class="btn btn-secondary btn-large" data-popover-target="popover-one">
     Click here to see a popover
@@ -259,62 +258,6 @@ export const Default: Story = {
   <p class="mb-0">
     A longer message that needs more time to read. <a href="#">Links</a> are also possible.
   </p>
-</post-popover>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>
-<p>Hello</p>`;
+</post-popover>`;
   },
 };
