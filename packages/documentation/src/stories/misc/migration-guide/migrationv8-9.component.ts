@@ -198,7 +198,7 @@ export class MigrationV89Component extends LitElement {
                     <li><code>*-bigger-big</code> is now <code>*-40</code></li>
                     <li><code>*-small-huge</code> is now <code>*-48</code></li>
                     <li><code>*-huge</code> is now <code>*-56</code></li>
-                    <li><code>*-small-giant</code> is now <code>*-72</code></li>
+                    <li><code>*-small-giant</code> is now <code>*-78</code></li>
                     <li><code>*-giant</code> is now <code>*-80</code></li>
                     <li><code>*-bigger-giant</code> is now <code>*-112</code></li>
                   </ul>
@@ -259,7 +259,7 @@ export class MigrationV89Component extends LitElement {
                       <code>*-small-huge</code> and <code>*-5</code> are now <code>*-48</code>
                     </li>
                     <li><code>*-huge</code> is now <code>*-56</code></li>
-                    <li><code>*-small-giant</code> is now <code>*-72</code></li>
+                    <li><code>*-small-giant</code> is now <code>*-78</code></li>
                     <li><code>*-giant</code> is now <code>*-80</code></li>
                     <li><code>*-bigger-giant</code> is now <code>*-112</code></li>
                   </ul>
