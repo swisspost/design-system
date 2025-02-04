@@ -11,8 +11,6 @@ jobs:
   changeset-magic:
     name: Set up Changeset PR or Release Packages
     runs-on: ubuntu-latest
-    # permissions:
-    #   id-token: write
     steps:
       # Checkout the Branch which was pushed ('main' or 'release/v*')
       - name: Checkout
