@@ -42,18 +42,19 @@ const vpSamples = [
 ];
 
 const pxSamples = [
-  { w: '12', h: '18', maxW: '33', minW: '12', maxH: '48', minH: '22' },
-  { w: '24', h: '36', maxW: '32', minW: '20', maxH: '40', minH: '24' },
+  { w: '12', h: '16', maxW: '32', minW: '12', maxH: '48', minH: '16' },
+  { w: '24', h: '32', maxW: '32', minW: '20', maxH: '40', minH: '24' },
   { w: '40', h: '56', maxW: '48', minW: '24', maxH: '56', minH: '32' },
-  { w: '28', h: '64', maxW: '80', minW: '56', maxH: '96', minH: '36' },
-  { w: '96', h: '48', maxW: '100', minW: '40', maxH: '112', minH: '48' },
-  { w: '64', h: '56', maxW: '80', minW: '32', maxH: '78', minH: '64' },
-  { w: '20', h: '15', maxW: '22', minW: '12', maxH: '32', minH: '18' },
-  { w: '32', h: '22', maxW: '40', minW: '24', maxH: '36', minH: '20' },
-  { w: '78', h: '96', maxW: '80', minW: '40', maxH: '112', minH: '56' },
-  { w: '48', h: '80', maxW: '96', minW: '50', maxH: '112', minH: '56' },
-  { w: '80', h: '96', maxW: '112', minW: '64', maxH: '100', minH: '36' },
+  { w: '64', h: '64', maxW: '80', minW: '56', maxH: '112', minH: '32' },
+  { w: '112', h: '48', maxW: '112', minW: '40', maxH: '112', minH: '48' },
+  { w: '64', h: '64', maxW: '80', minW: '32', maxH: '78', minH: '64' },
+  { w: '20', h: '16', maxW: '20', minW: '12', maxH: '32', minH: '16' },
+  { w: '32', h: '20', maxW: '40', minW: '24', maxH: '32', minH: '20' },
+  { w: '78', h: '112', maxW: '80', minW: '40', maxH: '112', minH: '56' },
+  { w: '48', h: '80', maxW: '112', minW: '48', maxH: '112', minH: '56' },
+  { w: '80', h: '112', maxW: '112', minW: '64', maxH: '112', minH: '32' },
 ];
+
 function generateClassNames(sample: Record<string, string>, isViewport = false) {
   const prefix = isViewport ? 'v' : '';
 
@@ -90,7 +91,7 @@ export const PercentageSizing: StoryObj = {
             return html`<div class="sizing-example snapshot">
               <div class="${generateClassNames(sample)}"></div>
             </div>`;
-          })};
+          })}
         `;
       },
       { filter: scheme => scheme === COLOR_SCHEMES.light },

@@ -28,7 +28,7 @@ export const CardControl: StoryObj = {
   render: () => {
     return schemes(
       () => html`
-        <div class="row g-3">
+        <div class="row g-16">
           ${bombedArgs.map(args => html` <div class="col-sm-6">${Default.render(args)}</div> `)}
         </div>
       `,

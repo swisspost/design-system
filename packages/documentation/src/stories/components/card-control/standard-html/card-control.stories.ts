@@ -213,7 +213,7 @@ export const Group = {
     return html`
       <fieldset class="container-fluid">
         <legend aria-describedby="invalid-feedback">Legend</legend>
-        <div class="row g-3">${CONTROL_LABELS.map(n => col(n, args, useState))}</div>
+        <div class="row g-16">${CONTROL_LABELS.map(n => col(n, args, useState))}</div>
         ${args.validation === 'is-invalid' ? invalidFeedback : nothing}
       </fieldset>
     `;
