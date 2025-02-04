@@ -1,5 +1,29 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.15
+
+### Major Changes
+
+- Removed Bootstrap shadow utility classes from the Design System, as the elevation classes are replacing them. (by [@leagrdv](https://github.com/leagrdv) with [#4361](https://github.com/swisspost/design-system/pull/4361))
+
+- Renamed elevation utility classes and SCSS variables to allow for more variants in the future. (by [@leagrdv](https://github.com/leagrdv) with [#4361](https://github.com/swisspost/design-system/pull/4361))
+
+### Minor Changes
+
+- Updated the styles for `.focus-ring` and added documentation. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4543](https://github.com/swisspost/design-system/pull/4543))
+
+- Added duplicate icons in icons health report. (by [@myrta2302](https://github.com/myrta2302) with [#4528](https://github.com/swisspost/design-system/pull/4528))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.14
+  - @swisspost/design-system-styles@9.0.0-next.14
+  - @swisspost/internet-header@2.0.0-next.14
+  - @swisspost/design-system-components-react@9.0.0-next.14
+  - @swisspost/design-system-tokens@9.0.0-next.14
+  - @swisspost/design-system-icons@9.0.0-next.14
+
 ## 6.0.0-next.14
 
 ### Minor Changes

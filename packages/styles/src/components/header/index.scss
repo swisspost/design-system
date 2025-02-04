@@ -3,10 +3,6 @@
 
 @use 'mixins' as *;
 
-*:has(> post-header) {
-  overflow-x: hidden;
-}
-
 post-header {
   ul[slot='meta-navigation'] {
     gap: var(--post-core-dimension-4);

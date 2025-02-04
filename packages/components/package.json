@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components",
-  "version": "9.0.0-next.13",
+  "version": "9.0.0-next.14",
   "description": "A collection of web components built with Stencil JS for the Swiss Post Design System.",
   "license": "Apache-2.0",
   "main": "dist/index.cjs.js",
@@ -24,25 +24,24 @@
     "linkDirectory": true
   },
   "scripts": {
-    "dev": "stencil build --dev --port 9200 --serve --watch --docs --docs-readme",
+    "play": "stencil build --dev --port 9200 --serve --watch --docs --docs-readme",
     "start": "stencil build --dev --watch --docs --docs-readme",
     "build": "pnpm clean && stencil build --docs-readme",
     "clean": "rimraf www dist loader loaders",
-    "test": "pnpm run unit",
     "unit": "stencil test --spec",
     "unit:watch": "stencil test --spec --watchAll --silent",
     "e2e": "cypress run --browser chrome",
-    "e2e:ci": "xvfb-run -a cypress run --browser chrome",
     "e2e:watch": "cypress open",
-    "generate": "stencil generate",
+    "e2e:ci": "xvfb-run -a cypress run --browser chrome",
     "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "lint:fix": "eslint --fix",
+    "generate": "stencil generate"
   },
   "dependencies": {
     "@floating-ui/dom": "1.6.13",
     "@oddbird/popover-polyfill": "0.3.7",
-    "@swisspost/design-system-icons": "workspace:9.0.0-next.13",
-    "@swisspost/design-system-styles": "workspace:9.0.0-next.13",
+    "@swisspost/design-system-icons": "workspace:9.0.0-next.14",
+    "@swisspost/design-system-styles": "workspace:9.0.0-next.14",
     "ally.js": "1.4.1",
     "long-press-event": "2.5.0",
     "nanoid": "5.0.9"
