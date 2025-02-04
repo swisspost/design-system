@@ -143,12 +143,35 @@ export class PostHeader {
       0,
       this.scrollParent instanceof Document
         ? this.scrollParent.documentElement.scrollTop
-        : this.scrollParent.scrollTop,
+        : this.scrollParent.scrollTop
     );
-
+  
     this.host.style.setProperty('--header-scroll-top', `${st}px`);
-  }
-
+  
+    if (this.device !== 'desktop') {
+      this.host.style.setProperty('--total-header-height', `${this.host.getBoundingClientRect().height}px`);
+      return;
+    }
+  
+    const computedStyles = getComputedStyle(this.host);
+  
+    const getCSSValue = (property: string, fallback: number) =>
+      parseFloat(computedStyles.getPropertyValue(property)) || fallback;
+  
+    const globalHeaderHeight = getCSSValue('--global-header-height', 72);
+    const globalHeaderReducedHeight = getCSSValue('--global-header-reduced-height', 24);
+    const localHeaderHeight = getCSSValue('--local-header-height', 112);
+    const localHeaderMinHeight = getCSSValue('--local-header-min-height', 56);
+  
+    const maxGlobalScroll = globalHeaderHeight - globalHeaderReducedHeight;
+    const scrolledPastGlobal = Math.max(0, st - maxGlobalScroll);
+  
+    const newGlobalHeaderHeight = Math.max(globalHeaderHeight - Math.min(st, maxGlobalScroll), globalHeaderReducedHeight);
+    const newLocalHeaderHeight = Math.max(localHeaderHeight - scrolledPastGlobal, localHeaderMinHeight);
+  
+    this.host.style.setProperty('--total-header-height', `${newGlobalHeaderHeight + newLocalHeaderHeight}px`);
+  }  
+  
   private getScrollParent(node: Element): Element | Document {
     let currentParent = node.parentElement;
     while (currentParent) {

@@ -158,15 +158,13 @@ export class PostPopovercontainer {
    */
   private getHeaderHeight(): number {
     const headerElement = document.querySelector("post-header");
-  
-    if (!headerElement) {
-      return 0;
-    }
-  
-    const headerRectHeight = headerElement.getBoundingClientRect().height;
 
-    console.log(headerRectHeight)
-    return headerRectHeight;
+    if (!headerElement) {
+        return 0;
+    }
+
+    const computedStyles = getComputedStyle(headerElement);
+    return parseFloat(computedStyles.getPropertyValue('--total-header-height')) || 0;
   }
   
   private async calculatePosition() {
