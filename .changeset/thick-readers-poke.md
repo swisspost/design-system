@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Added a margin top for `post-tooltip` and `post-popover` to prevent them from overlaying the `post-header` on opening.
+Adjusted `post-tooltip` and `post-popover` positioning by adding a top margin to ensure they do not overlap the `post-header` upon opening.
