@@ -6,8 +6,7 @@
 
 tokens.$default-map: components.$post-container;
 
-.container:has(.align-container-start),
-.container:has(.align-container-end) {
+.container:has(.align-container-start, .align-container-end) {
   @each $breakpoint in map.keys(breakpoints.$grid-breakpoints) {
     @include media.min($breakpoint) {
       $gutter: tokens.get('grid-gutter-#{$breakpoint}');
