@@ -1,6 +1,6 @@
 import path from 'path';
 import { CenshareResultPage, CenshareResult } from '../../models/censhare-result-page.model';
-import { IIcon } from '../../models/icon.model';
+import { Icon } from '../../models/icon.model';
 
 const excludedRanges = [[4000, 7999]];
 const excludedKeywords = ['Piktogramme "Die Post" ab 2017', 'Piktogramme "Die Post" 2017'];
@@ -10,9 +10,9 @@ const excludedKeywords = ['Piktogramme "Die Post" ab 2017', 'Piktogramme "Die Po
  * @param response Zenshare result page
  * @returns Array of icons
  */
-export const format = (response: CenshareResultPage): Array<IIcon> => {
+export const format = (response: CenshareResultPage): Array<Icon> => {
   return response.result
-    .reduce((acc: IIcon[], item: CenshareResult) => {
+    .reduce((acc: Icon[], item: CenshareResult) => {
       const mimeTypeVariants = [item, ...(item.variants ?? [])];
       const svgVariant = mimeTypeVariants.find(variant => variant.mime === 'image/svg+xml');
 
@@ -58,7 +58,7 @@ export const format = (response: CenshareResultPage): Array<IIcon> => {
     }, [])
     .filter(icon => !isExcluded(icon, excludedRanges));
 
-  function isExcluded(icon: IIcon, filters: number[][]): boolean {
+  function isExcluded(icon: Icon, filters: number[][]): boolean {
     const name = Number(icon.file.basename);
     let isExcluded = false;
 

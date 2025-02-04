@@ -1,10 +1,7 @@
-import path from 'path';
-import { IIconSet, IJSONReport } from './models/icon.model';
-import { urls } from './utilities/environment';
-import { SOURCE_PATH } from './utilities/constants';
-
+import { IconSet, JsonReport } from './models/icon.model';
+import iconSets from './iconsets.config';
 import { setup } from './utilities/download/setup';
-import { getBaseReport } from './utilities/helpers';
+import { getBaseReport } from './utilities/shared';
 import { fetchPage } from './utilities/download/fetchPage';
 import { fetchFile } from './utilities/download/fetchFile';
 import { format } from './utilities/download/format';
@@ -12,28 +9,15 @@ import { updateReport, writeReport } from './utilities/download/report';
 
 import buildSVGs from './utilities/build';
 
-const iconSets: IIconSet[] = [
-  // {
-  //   name: 'post',
-  //   apiUrl: urls.post,
-  //   downloadDirectory: path.join(SOURCE_PATH, 'post'),
-  // },
-  {
-    name: 'ui',
-    apiUrl: urls.ui,
-    downloadDirectory: path.join(SOURCE_PATH, 'ui'),
-  },
-];
-
 async function fetchSVGs() {
-  setup(iconSets);
+  setup();
 
   for (const iconSet of iconSets) {
     if (iconSet.apiUrl) {
       console.log('\x1b[32mStarting to download icons...\x1b[0m');
       const report = await downloadIconSet(iconSet, getBaseReport());
       console.log(
-        `\x1b[32mDownload finished.\x1b[0m Saved \x1b[32m${report.stats.success}\x1b[0m icons, \x1b[31m${report.stats.errors}\x1b[0m errored, \x1b[31m${report.stats.notFound}\x1b[0m not found.`,
+        `\x1b[32mDownload finished.\x1b[0m Downloaded \x1b[32m${report.stats.success}\x1b[0m icons, \x1b[31m${report.stats.errors}\x1b[0m errored, \x1b[31m${report.stats.notFound}\x1b[0m not found.`,
       );
     }
   }
@@ -42,10 +26,10 @@ async function fetchSVGs() {
 }
 
 async function downloadIconSet(
-  iconSet: IIconSet,
-  report: IJSONReport,
+  iconSet: IconSet,
+  report: JsonReport,
   nextPage?: string,
-): Promise<IJSONReport> {
+): Promise<JsonReport> {
   const body = await fetchPage(nextPage ?? iconSet.apiUrl);
 
   if (body === undefined) {

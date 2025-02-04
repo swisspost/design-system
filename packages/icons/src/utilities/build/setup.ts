@@ -1,10 +1,16 @@
 import fs from 'fs';
 
-export function setup(iconOutputDirectory: string, buildReportOutputPath: string) {
-  // remove generated files & folders
-  if (fs.existsSync(iconOutputDirectory)) fs.rmSync(iconOutputDirectory, { recursive: true });
-  if (fs.existsSync(buildReportOutputPath)) fs.unlinkSync(buildReportOutputPath);
+export function setup(iconOutputDirectory: string, reportOutputPath: string) {
+  // remove output folders & files
+  if (fs.existsSync(iconOutputDirectory)) {
+    fs.rmSync(iconOutputDirectory, { recursive: true });
+  }
+  if (fs.existsSync(reportOutputPath)) {
+    fs.unlinkSync(reportOutputPath);
+  }
 
-  // // ensure used folders exist
-  if (!fs.existsSync(iconOutputDirectory)) fs.mkdirSync(iconOutputDirectory, { recursive: true });
+  // // ensure output folders exist
+  if (!fs.existsSync(iconOutputDirectory)) {
+    fs.mkdirSync(iconOutputDirectory, { recursive: true });
+  }
 }

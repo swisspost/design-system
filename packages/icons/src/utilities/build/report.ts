@@ -1,48 +1,91 @@
 import fs from 'fs';
 import path from 'path';
 import { version } from '../../../package.json';
-import { IJSONReport, IFile } from '../../models/icon.model';
-import { getBaseReport } from '../helpers';
+import { OutputIcon, JsonReport, GroupItem, IconSetGroups } from '../../models/icon.model';
+import { getBaseReport, sortIcons } from '../shared';
 
 export function writeReport(
-  iconSourceDirectory: string,
   buildReportOutputPath: string,
-  fileGroups: Record<string, IFile[]>[],
-): IJSONReport {
-  fileGroups.forEach(iconSet => {
-    console.log(iconSet);
-  });
-  const filePaths = fs
-    .readdirSync(iconSourceDirectory, { recursive: true })
-    .map(p => p.toString())
-    .filter(p => path.basename(p) === 'report.json');
+  iconSetGroups: IconSetGroups[],
+): JsonReport {
+  const outputReport = iconSetGroups.reduce((report: JsonReport, iconSet: IconSetGroups) => {
+    const iconSetReport = JSON.parse(
+      fs.readFileSync(path.join(iconSet.sourceDirectory, 'report.json'), 'utf-8'),
+    ) as JsonReport;
 
-  const aggregatedReport = filePaths.reduce(
-    (report: IJSONReport, filePath: string): IJSONReport => {
-      const file = JSON.parse(fs.readFileSync(path.join(iconSourceDirectory, filePath), 'utf-8'));
-
+    const outputIcons = Object.entries(iconSet.groups).map(([name, items]) => {
       return {
-        icons: [...report.icons, ...(file.icons ?? [])],
-        wrongViewBox: [...report.wrongViewBox, ...(file.wrongViewBox ?? [])],
-        noKeywords: [...report.noKeywords, ...(file.noKeywords ?? [])],
-        noSVG: [...report.noSVG, ...(file.noSVG ?? [])],
-        errored: [...report.errored, ...(file.errored ?? [])],
-        stats: {
-          errors: report.stats.errors + file.stats.errors,
-          notFound: report.stats.notFound + file.stats.notFound,
-          success: report.stats.success + file.stats.success,
+        uuid: crypto.randomUUID(),
+        id: parseInt(crypto.getRandomValues(new Uint32Array(1))[0].toString().slice(0, 6)),
+        meta: {
+          businessfield: getBusinessfield(items),
+          keywords: getKeywords(items),
         },
-        created: report.created,
-        version: report.version,
-      };
-    },
-    getBaseReport(),
-  );
+        file: {
+          mime: 'image/svg+xml',
+          name: `${name}.svg`,
+          basename: name,
+          ext: '.svg',
+        },
+        createdAt: getCreatedAt(items),
+        modifiedAt: getModifiedAt(items),
+        raws: items.map((item: GroupItem) => item.report.uuid),
+      } as OutputIcon;
+    });
 
-  aggregatedReport.created = new Date();
-  aggregatedReport.version = version;
+    return {
+      ...report,
+      raw: [...(report.raw ?? []), ...iconSetReport.raw],
+      icons: [...report.icons, ...outputIcons],
+      wrongViewBox: [...report.wrongViewBox, ...iconSetReport.wrongViewBox],
+      noKeywords: [...report.noKeywords, ...iconSetReport.noKeywords],
+      noSVG: [...report.noSVG, ...iconSetReport.noSVG],
+      errored: [...report.errored, ...iconSetReport.errored],
+      stats: {
+        errors: report.stats.errors + iconSetReport.stats.errors,
+        notFound: report.stats.notFound + iconSetReport.stats.notFound,
+        success: report.stats.success + iconSetReport.stats.success,
+        output: [...report.icons, ...outputIcons].length,
+      },
+    };
+  }, getBaseReport());
 
-  fs.writeFileSync(buildReportOutputPath, JSON.stringify(aggregatedReport, null, 2));
+  outputReport.raw?.sort(sortIcons);
+  outputReport.icons.sort(sortIcons);
+  outputReport.wrongViewBox.sort(sortIcons);
+  outputReport.noKeywords.sort(sortIcons);
+  outputReport.noSVG.sort(sortIcons);
+  outputReport.errored.sort(sortIcons);
+  outputReport.created = new Date();
+  outputReport.version = version;
 
-  return aggregatedReport;
+  fs.writeFileSync(buildReportOutputPath, JSON.stringify(outputReport, null, 2));
+
+  return outputReport;
+
+  // get first businessfield
+  function getBusinessfield(items: GroupItem[]): string {
+    return items[0].report.meta.businessfield ?? 'kommunikation';
+  }
+
+  // get merged, unic keywords
+  function getKeywords(items: GroupItem[]): string[] {
+    return items.reduce<string[]>(
+      (keywords, item: GroupItem) =>
+        Array.from(new Set([...keywords, ...item.report.meta.keywords])),
+      [],
+    );
+  }
+
+  // get oldest createdAt date
+  function getCreatedAt(items: GroupItem[]): Date {
+    return items.map(item => item.report.createdAt).sort((a: Date, b: Date) => (a > b ? 1 : -1))[0];
+  }
+
+  // get newest modifiedAt date
+  function getModifiedAt(items: GroupItem[]): Date {
+    return items
+      .map(item => item.report.modifiedAt)
+      .sort((a: Date, b: Date) => (a > b ? -1 : 1))[0];
+  }
 }

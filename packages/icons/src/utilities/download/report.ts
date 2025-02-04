@@ -1,26 +1,26 @@
 import fs from 'fs';
 import path from 'path';
-import { IIconSet, IIcon, IJSONReport } from '../../models/icon.model';
-import { getNameParts } from '../helpers';
+import { Icon, IconSet, JsonReport } from '../../models/icon.model';
+import { getNameParts, sortIcons } from '../shared';
 
 export function updateReport(
-  iconSet: IIconSet,
+  iconSet: IconSet,
   svg: string | false,
-  icon: IIcon,
-  report: IJSONReport,
-): IJSONReport {
+  icon: Icon,
+  report: JsonReport,
+): JsonReport {
   if (svg === false) {
     report.noSVG.push(icon);
   } else {
     // avoid duplicates
-    const existingIconIndex = report.icons.findIndex(i => i.file.name === icon.file.name);
+    const existingIconIndex = report.raw.findIndex(i => i.file.name === icon.file.name);
 
     if (existingIconIndex >= 0) {
       // override existing icon in report (because the file gets overridden as well)
-      report.icons[existingIconIndex] = icon;
+      report.raw[existingIconIndex] = icon;
     } else {
       // add non-existing icon to report
-      report.icons.push(icon);
+      report.raw.push(icon);
     }
 
     // check for wrong viewBox in svg
@@ -51,13 +51,17 @@ export function updateReport(
   return report;
 }
 
-export function writeReport(iconSet: IIconSet, report: IJSONReport) {
-  report.icons = report.icons.toSorted(sortIcons);
-  report.errored = report.errored.toSorted(sortIcons);
-  report.noSVG = report.noSVG.toSorted(sortIcons);
+export function writeReport(iconSet: IconSet, report: JsonReport) {
+  report.raw.sort(sortIcons);
+  report.icons.sort(sortIcons);
+  report.wrongViewBox.sort(sortIcons);
+  report.noKeywords.sort(sortIcons);
+  report.noSVG.sort(sortIcons);
+  report.errored.sort(sortIcons);
   report.stats.errors = report.errored.length;
-  report.stats.success = report.icons.length;
   report.stats.notFound = report.noSVG.length;
+  report.stats.success = report.raw.length;
+  report.stats.output = report.icons.length;
 
   fs.writeFileSync(
     path.join(iconSet.downloadDirectory, 'report.json'),
@@ -65,8 +69,4 @@ export function writeReport(iconSet: IIconSet, report: IJSONReport) {
   );
 
   return report;
-
-  function sortIcons(a: IIcon, b: IIcon) {
-    return a.file.name < b.file.name ? -1 : 1;
-  }
 }

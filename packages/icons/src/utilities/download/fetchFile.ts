@@ -3,10 +3,10 @@ import fs from 'fs';
 import path from 'path';
 import { optimize } from 'svgo';
 import svgoOptions from '../../../svgo.config';
-import { IIcon } from '../../models/icon.model';
+import { Icon } from '../../models/icon.model';
 import { getRequestInit } from '../environment';
 
-export async function fetchFile(icon: IIcon, output: string) {
+export async function fetchFile(icon: Icon, output: string) {
   if (!icon.meta.downloadLink) {
     return false;
   }

@@ -6,13 +6,7 @@ import {
   MediaSize,
 } from './censhare-result-page.model';
 
-export interface IIconSet {
-  name: string;
-  apiUrl: string;
-  downloadDirectory: string;
-}
-
-export interface IIcon {
+export interface Icon {
   uuid: string;
   id: number;
   type: Type;
@@ -36,22 +30,55 @@ export interface IIcon {
   errorMessage?: string;
 }
 
-export interface IJSONReport {
-  created: Date;
-  stats: {
-    errors: number;
-    success: number;
-    notFound: number;
+export interface OutputIcon {
+  uuid: string;
+  id: number;
+  meta: {
+    businessfield: Businessfield;
+    keywords: string[];
   };
-  icons: IIcon[];
-  wrongViewBox: IIcon[];
-  noKeywords: IIcon[];
-  noSVG: IIcon[];
-  errored: IIcon[];
-  version: string;
+  file: {
+    mime: VariantMIME;
+    name: string;
+    basename: string;
+    ext: string;
+  };
+  createdAt: Date;
+  modifiedAt: Date;
+  raws: string[];
 }
 
-export interface IFile {
+export interface IconSet {
+  name: string;
+  apiUrl: string;
+  downloadDirectory: string;
+}
+
+export interface GroupItem {
   size: number | null;
   filePath: string;
+  report: Icon;
+}
+
+export interface IconSetGroups {
+  name: string;
+  sourceDirectory: string;
+  groups: Record<string, GroupItem[]>;
+}
+
+export interface JsonReport {
+  raw: Icon[];
+  icons: OutputIcon[];
+  wrongViewBox: Icon[];
+  noKeywords: Icon[];
+  noSVG: Icon[];
+  errored: Icon[];
+  stats: {
+    errors: number;
+    notFound: number;
+    success: number;
+    output: number;
+  };
+  created: Date;
+  version: string;
 }
