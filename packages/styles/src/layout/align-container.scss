@@ -6,7 +6,8 @@
 
 tokens.$default-map: components.$post-container;
 
-.container :has(.align-container-start, .align-container-end) {
+.container:has(.align-container-start),
+.container:has(.align-container-end) {
   @each $breakpoint in map.keys(breakpoints.$grid-breakpoints) {
     @include media.min($breakpoint) {
       $gutter: tokens.get('grid-gutter-#{$breakpoint}');
@@ -14,15 +15,19 @@ tokens.$default-map: components.$post-container;
       --post-grid-gutter-x: #{$gutter};
 
       > .row > [class*='col']:last-of-type > .align-container-end,
-      > :not([class*='col']) > .align-container-end:last-of-type {
+      > .align-container-end:last-of-type:not([class*='col']) {
         margin-inline-end: calc(-1 * max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
+        min-width: calc(100% + max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
         max-width: calc(100% + max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
+        width: calc(100% + max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
       }
 
       > .row > [class*='col']:first-of-type > .align-container-start,
-      > :not([class*='col']) > .align-container-start:first-of-type {
+      > .align-container-start:first-of-type:not([class*='col']) {
         margin-inline-start: calc(-1 * max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
+        min-width: calc(100% + max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
         max-width: calc(100% + max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
+        width: calc(100% + max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
       }
     }
   }
