@@ -1,0 +1,5 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+.colored-text-error {
+  color: post.$error;
+}
