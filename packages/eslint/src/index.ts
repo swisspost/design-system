@@ -1,6 +1,6 @@
 import type { TSESLint } from '@typescript-eslint/utils';
 import { parser } from 'typescript-eslint';
-import * as templateParser from '@parsers/template';
+import { templateParser } from '@parsers/template';
 
 import { templateRules } from '@rules/template';
 import { tsRules } from '@rules/ts';
