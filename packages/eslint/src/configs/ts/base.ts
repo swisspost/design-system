@@ -5,6 +5,7 @@ export default (
   parser: TSESLint.FlatConfig.Parser,
 ): TSESLint.FlatConfig.Config => ({
   name: '@swisspost/design-system-eslint/ts-base',
+  files: ['**/*.{ts,tsx,mts,cts}'],
   languageOptions: {
     parser,
     sourceType: 'module',

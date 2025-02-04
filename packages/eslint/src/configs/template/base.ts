@@ -5,6 +5,7 @@ export default (
   parser: TSESLint.FlatConfig.Parser,
 ): TSESLint.FlatConfig.Config => ({
   name: '@swisspost/design-system-eslint/template-base',
+  files: ['**/*.{html,htm}'],
   languageOptions: {
     parser,
   },

@@ -3,6 +3,7 @@
  * It is used only to test the ESLint configurations exported by the package.
  */
 
-const designSystemESLint = require('./dist');
+const linting = require('./dist');
+const migrations = require('./dist/migrations');
 
-module.exports = Object.values(designSystemESLint.configs).flat();
+module.exports = [...Object.values(linting.configs).flat(), ...migrations];

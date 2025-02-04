@@ -6,12 +6,20 @@ Please note that these guidelines extend the [general contribution guidelines](.
 
 ## Getting Started
 
-### Build the Plugin
+### Build the Rules
 
 To build the ESLint plugin for production, run:
 
 ```bash
 pnpm eslint:build
+```
+
+### Inspect the Configs
+
+To inspect the ESLint ESLint configs as you develop them, run:
+
+```bash
+pnpm eslint:play
 ```
 
 ### Run Unit Tests
@@ -63,15 +71,10 @@ It takes the following configuration:
 
 _More details about the structure can be found in the [ESLint documentation](https://eslint.org/docs/latest/extend/custom-rules#rule-structure)._
 
-The **meta** object also contains additional details about the rule, including its category.
-The category determines which ESLint configuration the rule belongs to.
-Currently, there is only the `template` category, which is used for HTML-related rules and is included in the `post/template` configuration.
-However, more categories may be added in the future.
-
 ### Writing Template Rules
 
 Template rules are specific to HTML and use a custom parser.
-This parser is located in the `src/template-parser` folder.
+This parser is located in the `src/parsers/template` folder.
 It allows you to target HTML nodes such as `tag`, `text`, and `comment`.
 
 Here’s an example of a simple rule that checks for the presence of `button` tags:
@@ -111,11 +114,12 @@ Additionally, the **context** object provides access to the [Cheerio API](https:
 To test template rules, use the `TemplateRuleTester.run()` function.
 This allows you to provide sample HTML strings for testing valid and invalid rule cases.
 
-## Adding Rules to the Plugin
+## Exporting Rules
 
-To add a new rule to the plugin:
-- Import the rule into the `src/rules/index.ts` file.
-- Add the rule to the `rules` object.
+Rules can be exported for two different purposes:
 
-The rule will automatically be included in the appropriate ESLint configuration based on its category.
+- **Linting**: To be used in the consumer's ESLint configuration.
+- **Migration**: To be used once for automatically migrating a project to a new version of the Design System.
 
+Depending on the purpose, the rules should be exported in the appropriate `index.ts` file.
+It will then be automatically exported in the correct way.

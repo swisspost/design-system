@@ -1,49 +1,94 @@
-# Design System ESLint Plugin
+# Design System ESLint
 
 ![Swiss Post Design System splash screen](https://github.com/swisspost/design-system/assets/1659006/e84f1fea-e666-4853-8c85-726a6bf22e6c)
 
-ESLint plugin for the Swiss Post Design System.
+ESLint rules for linting and migrating projects that use the Swiss Post Design System.
 
 ## Documentation
 
-[Rules documentation](https://github.com/swisspost/design-system/blob/main/packages/eslint-plugin/docs)
+All rules offered by this package are documented individually in the [rules documentation](https://github.com/swisspost/design-system/blob/main/packages/eslint/docs/rules).
 
 ## Installation
 
+To install the package, run:
+
 ```bash
-npm install @swisspost/design-system-eslint-plugin
+npm install @swisspost/design-system-eslint --save-dev
 ```
 
-## Configuration
+## Linting Configuration
 
-To Use the Swiss Post Design System ESLint plugin simply add it to your ESLint configuration file:
+To use the Swiss Post Design System ESLint package, simply add the predefined to your ESLint configuration file:
 
 ```js
-// eslint.config.js
-import designSystemESLint from "@swisspost/design-system-eslint-plugin";
+// eslint.config.mjs
+import post from "@swisspost/design-system-eslint";
 
 export default [
-  designSystemESLint.configs.template
+  ...post.configs.tsAll,
+  ...post.configs.templateAll,
 ];
 ```
 
-To override the default configuration, you can extend the rules:
+To override the default configuration, you can extend the rules as follows:
 
 ```js
-// eslint.config.js
-import designSystemESLint from "@swisspost/design-system-eslint-plugin";
+// eslint.config.mjs
+import post from "@swisspost/design-system-eslint";
 
 export default [
+  ...post.configs.tsAll,
+  
+  // apply template rules only to files in the src/safe directory
+  ...post.configs.templateAll.map(config => ({
+    ...config,
+    files: ["**/src/safe/*.html"],
+  })),
+
+  // override rules as needed
   {
-    ...designSystemESLint.configs.template,
+    name: "custom-config",
     rules: {
-      "@swisspost-eslint/template/some-rule-name": "warn"
-    }
-  }
+      '@swisspost/design-system/ts-rule-name': 'off',
+      '@swisspost/design-system/template/template-rule-name': 'warn',
+    },
+  },
 ];
 ```
 
-_More information in [ESLint plugin documentation](https://eslint.org/docs/latest/use/configure/plugins)_.
+For more information, check the [ESLint configuration documentation](https://eslint.org/docs/latest/use/configure/combine-configs).
+
+## Running Linting
+
+To run the linting, use the following command at the root of the project:
+
+```bash
+eslint
+```
+
+You can also use the `--fix` flag to automatically fix some issues:
+
+```bash
+eslint --fix
+```
+
+## Inspecting Configuration
+
+To get a better overview of the rules configured in your project, run:
+
+```bash
+eslint --inspect-config
+```
+
+## Running Migrations
+
+In addition to linting rules, the `@swisspost/design-system-eslint` package provides rules to help migrate from one version of the Design System to another.
+These migration rules do not need to be added to your ESLint configuration and can be run once using the following command at the root of the project:
+
+```bash
+eslint -c @swisspost/design-system-eslint/migrations.js --fix
+```
+
 
 ## Contribute
 
