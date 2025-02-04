@@ -115,7 +115,9 @@ export class PostSearch implements HasDropdown, IsFocusable {
       // Get basic suggestions when dropdown opens
       try {
         this.coveoSuggestions = await getCoveoSuggestions('');
-      } catch {}
+      } catch {
+        // Intentionally ignored
+      }
     }
 
     this.setBodyScroll();

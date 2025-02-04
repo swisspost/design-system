@@ -78,11 +78,11 @@ const TEAM_MEMBERS: TeamMember[] = [
 
 const BASEURL = 'https://github.com/swisspost/design-system/tree/main/packages/documentation';
 
-function getGitHubUrl(path: String) {
+function getGitHubUrl(path: string) {
   return `${BASEURL}${path.replace(/^\./, '').replace(/\.stories\.ts$/, '.docs.mdx')}`;
 }
 
-export default (params: { pathToStoryFile?: String }) => (
+export default (params: { pathToStoryFile?: string }) => (
   <>
     <div className="container mt-56 font-size-18 text-end">
       {params.pathToStoryFile && (

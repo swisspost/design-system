@@ -5,12 +5,14 @@ import { CodeOrSourceMdx } from '@/utils/codeOrSourceMdx';
 <PostTabs className='sb-tabs-lg'>
   <PostTabHeader panel="instructions">Instructions</PostTabHeader>
   <PostTabPanel name="instructions">
+    {/* eslint-disable-next-line no-undef */}
     {props.children}
   </PostTabPanel>
 
   <PostTabHeader panel="changelog">Changelog</PostTabHeader>
   <PostTabPanel name="changelog">
     <Markdown className="sb-markdown-no-h1" options={{ overrides: { code: CodeOrSourceMdx } }}>
+      {/* eslint-disable-next-line no-undef */}
       {props.changelog}
     </Markdown>
   </PostTabPanel>
