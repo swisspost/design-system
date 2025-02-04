@@ -12,15 +12,8 @@ const meta: MetaExtended = {
       <div class="align-container-examples">${story(context.args, context)}</div>
     `,
   ],
-};
-
-export default meta;
-
-type Story = StoryObj;
-
-export const AlignContainerBasic: Story = {
   argTypes: {
-    AlignContainer: {
+    alignContainer: {
       name: 'Align Container',
       description: 'Align an element to its Container edge.',
       control: {
@@ -30,7 +23,7 @@ export const AlignContainerBasic: Story = {
     },
   },
   args: {
-    AlignContainer: 'align-container-start',
+    alignContainer: 'align-container-start',
   },
   render: (args: Args) => html`
     <div class="container">
@@ -39,74 +32,90 @@ export const AlignContainerBasic: Story = {
       <img
         alt="image aligned with the inline-start edge of the container"
         src="public/images/design-system-preview.png"
-        class="${args.AlignContainer !== 'none' ? args.AlignContainer : nothing}"
+        class="${args.alignContainer !== 'none' ? args.alignContainer : nothing}"
       />
     </div>
   `,
 };
 
-export const AlignContainerStart: Story = {
+export default meta;
+
+type Story = StoryObj;
+
+export const Default: Story = {};
+
+export const AlignContainerGrid: Story = {
+  args: {
+    alignContainer: 'align-container-start',
+  },
   argTypes: {
-    AlignContainer: {
+    alignContainer: {
       name: 'Align Container',
-      description: 'Align an element to its container start edge.',
+      description: 'Align an element to its container end edge.',
       control: {
         type: 'select',
       },
-      options: ['none', 'align-container-start'],
+      options: ['none', 'align-container-start', 'align-container-end'],
     },
-  },
-  args: {
-    AlignContainer: 'align-container-start',
   },
   render: (args: Args) => html`
     <div class="container">
       <div class="row">
-        <div class="col-6">
+        <div class="col-4">
           <img
-            alt="image aligned with the inline-start edge of the container"
+            alt="image aligned with the inline-end edge of the container"
             src="public/images/design-system-preview.png"
-            class="${args.AlignContainer !== 'none' ? args.AlignContainer : nothing}"
+            class="${args.alignContainer !== 'none' ? args.alignContainer : nothing}"
           />
         </div>
-        <div class="col-6">
-          <h2>Some inline-end content</h2>
-          <p>Some inline-end text</p>
+        <div class="col-4">
+          <h2>Some inline-start content</h2>
+          <p>Some inline-start text</p>
+        </div>
+        <div class="col-4">
+          <img
+            alt="image aligned with the inline-end edge of the container"
+            src="public/images/design-system-preview.png"
+            class="${args.alignContainer !== 'none' ? args.alignContainer : nothing}"
+          />
         </div>
       </div>
     </div>
   `,
 };
 
-export const AlignContainerEnd: Story = {
-  args: {
-    AlignContainer: 'align-container-end',
-  },
-  argTypes: {
-    AlignContainer: {
-      name: 'Align Container',
-      description: 'Align an element to its container end edge.',
-      control: {
-        type: 'select',
-      },
-      options: ['none', 'align-container-end'],
-    },
-  },
-  render: (args: Args) => html`
-    <div class="container">
-      <div class="row">
-        <div class="col-6">
-          <h2>Some inline-start content</h2>
-          <p>Some inline-start text</p>
-        </div>
-        <div class="col-6">
-          <img
-            alt="image aligned with the inline-end edge of the container"
-            src="public/images/design-system-preview.png"
-            class="${args.AlignContainer !== 'none' ? args.AlignContainer : nothing}"
-          />
-        </div>
-      </div>
-    </div>
-  `,
-};
+// <div class="container">
+// <div class="row">
+//   <div class="col-6">
+//     <img
+//       alt="image aligned with the inline-start edge of the container"
+//       src="public/images/design-system-preview.png"
+//       class="${args.alignContainer !== 'none' ? args.alignContainer : nothing}"
+//     />
+//   </div>
+//   <div class="col-6">
+//     <h2>Some inline-end content</h2>
+//     <p>Some inline-end text</p>
+//   </div>
+// </div>
+// <div class="row">
+//   <div class="col-4">
+//     <img
+//       alt="image aligned with the inline-start edge of the container"
+//       src="public/images/design-system-preview.png"
+//       class="${args.alignContainer !== 'none' ? args.alignContainer : nothing}"
+//     />
+//   </div>
+//   <div class="col-4">
+//     <h2>Some inline-end content</h2>
+//     <p>Some inline-end text</p>
+//   </div>
+//   <div class="col-4">
+//     <img
+//       alt="image aligned with the inline-start edge of the container"
+//       src="public/images/design-system-preview.png"
+//       class="${args.alignContainer !== 'none' ? args.alignContainer : nothing}"
+//     />
+//   </div>
+// </div>
+// </div>
