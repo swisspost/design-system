@@ -24,3 +24,16 @@ export const TOKENSET_LAYERS = {
 };
 export const TOKENSET_PREFIX = 'post';
 export const CUSTOM_FORMAT_INDENT = '  ';
+
+// https://docs.tokens.studio/token-types/token-type-overview#available-token-types
+export const NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES = [
+  'fontSize',
+  'lineHeight',
+  'letterSpacing',
+  'paragraphSpacing',
+  'dimension',
+  'borderRadius',
+  'borderWidth',
+  'spacing',
+  'sizing',
+];
