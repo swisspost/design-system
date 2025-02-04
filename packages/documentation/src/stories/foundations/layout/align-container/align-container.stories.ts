@@ -83,39 +83,3 @@ export const AlignContainerGrid: Story = {
     </div>
   `,
 };
-
-// <div class="container">
-// <div class="row">
-//   <div class="col-6">
-//     <img
-//       alt="image aligned with the inline-start edge of the container"
-//       src="public/images/design-system-preview.png"
-//       class="${args.alignContainer !== 'none' ? args.alignContainer : nothing}"
-//     />
-//   </div>
-//   <div class="col-6">
-//     <h2>Some inline-end content</h2>
-//     <p>Some inline-end text</p>
-//   </div>
-// </div>
-// <div class="row">
-//   <div class="col-4">
-//     <img
-//       alt="image aligned with the inline-start edge of the container"
-//       src="public/images/design-system-preview.png"
-//       class="${args.alignContainer !== 'none' ? args.alignContainer : nothing}"
-//     />
-//   </div>
-//   <div class="col-4">
-//     <h2>Some inline-end content</h2>
-//     <p>Some inline-end text</p>
-//   </div>
-//   <div class="col-4">
-//     <img
-//       alt="image aligned with the inline-start edge of the container"
-//       src="public/images/design-system-preview.png"
-//       class="${args.alignContainer !== 'none' ? args.alignContainer : nothing}"
-//     />
-//   </div>
-// </div>
-// </div>
