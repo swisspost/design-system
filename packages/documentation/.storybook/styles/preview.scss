@@ -196,6 +196,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 }
 
 .fake-content {
+  margin-block: var(--post-core-dimension-32) !important;
   position: relative;
   min-height: calc(1.6rem * 8);
   background: repeating-linear-gradient(
@@ -207,7 +208,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
   &::after {
     content: '';
-    background: white;
+    background: var(--post-current-palette-bg);
     width: 33%;
     height: 1.7rem;
     display: block;
