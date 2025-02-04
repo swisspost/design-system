@@ -1,8 +1,8 @@
 import type { TSESLint } from '@typescript-eslint/utils';
 
 import templateBaseConfig, { pluginName } from './base';
-import { getAllRules } from '../../utils/get-all-rules';
 import { templateRules } from '../../rules/template';
+import { getRecommendedRules } from '../../utils/get-recommended-rules';
 
 export default (
   plugin: TSESLint.FlatConfig.Plugin,
@@ -10,7 +10,7 @@ export default (
 ): TSESLint.FlatConfig.ConfigArray => [
   templateBaseConfig(plugin, parser),
   {
-    name: '@swisspost/design-system-eslint/template-all',
-    rules: getAllRules(pluginName, templateRules),
+    name: '@swisspost/design-system-eslint/template-recommended',
+    rules: getRecommendedRules(pluginName, templateRules),
   },
 ];

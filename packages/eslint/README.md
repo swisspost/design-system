@@ -25,8 +25,8 @@ To use the Swiss Post Design System ESLint package, simply add the predefined to
 import post from "@swisspost/design-system-eslint";
 
 export default [
-  ...post.configs.tsAll,
-  ...post.configs.templateAll,
+  ...post.configs.tsRecommended,
+  ...post.configs.templateRecommended,
 ];
 ```
 
@@ -37,10 +37,10 @@ To override the default configuration, you can extend the rules as follows:
 import post from "@swisspost/design-system-eslint";
 
 export default [
-  ...post.configs.tsAll,
+  ...post.configs.tsRecommended,
   
   // apply template rules only to files in the src/safe directory
-  ...post.configs.templateAll.map(config => ({
+  ...post.configs.templateRecommended.map(config => ({
     ...config,
     files: ["**/src/safe/*.html"],
   })),

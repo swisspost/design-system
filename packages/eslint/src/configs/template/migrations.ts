@@ -1,4 +1,8 @@
 import type { TSESLint } from '@typescript-eslint/utils';
+import { getAllRules } from '../../utils/get-all-rules';
+import { templateMigrationRules } from '../../rules/template/migrations';
+
+const migrationPluginName = '@swisspost/design-system/template-migrations';
 
 export default (
   plugin: TSESLint.FlatConfig.Plugin,
@@ -10,9 +14,7 @@ export default (
     parser,
   },
   plugins: {
-    '@swisspost/design-system/template-migrations': plugin,
+    [migrationPluginName]: plugin,
   },
-  rules: {
-    '@swisspost/design-system/template-migrations/no-deprecated-btn-rg': 'error',
-  },
+  rules: getAllRules(migrationPluginName, templateMigrationRules),
 });

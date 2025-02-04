@@ -1,5 +1,7 @@
 import type { TSESLint } from '@typescript-eslint/utils';
 
+export const pluginName = '@swisspost/design-system/template';
+
 export default (
   plugin: TSESLint.FlatConfig.Plugin,
   parser: TSESLint.FlatConfig.Parser,
@@ -10,6 +12,6 @@ export default (
     parser,
   },
   plugins: {
-    '@swisspost/design-system/template': plugin,
+    [pluginName]: plugin,
   },
 });

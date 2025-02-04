@@ -2,6 +2,7 @@ import { ESLintUtils } from '@typescript-eslint/utils';
 
 export interface RuleDocs {
   dir: 'template' | 'template/migrations' | 'ts' | 'ts/migrations';
+  recommended?: boolean;
 }
 
 /**
