@@ -157,10 +157,10 @@ export class PostPopovercontainer {
    * its rendered height and the applied scroll offset.
    */
   private getHeaderHeight(): number {
-    const headerElement = document.querySelector("post-header");
+    const headerElement = document.querySelector('post-header');
 
     if (!headerElement) {
-        return 0;
+      return 0;
     }
 
     const computedStyles = getComputedStyle(headerElement);
