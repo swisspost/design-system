@@ -18,16 +18,12 @@ tokens.$default-map: components.$post-container;
       > .align-container-end:last-of-type:not([class*='col']) {
         margin-inline-end: calc(-1 * max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
         min-width: calc(100% + max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
-        max-width: calc(100% + max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
-        width: calc(100% + max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
       }
 
       > .row > [class*='col']:first-of-type > .align-container-start,
       > .align-container-start:first-of-type:not([class*='col']) {
         margin-inline-start: calc(-1 * max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
         min-width: calc(100% + max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
-        max-width: calc(100% + max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
-        width: calc(100% + max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
       }
     }
   }
