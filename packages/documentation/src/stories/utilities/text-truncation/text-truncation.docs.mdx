@@ -1,0 +1,15 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import * as TextTruncationStories from './text-truncation.stories';
+
+<Meta of={TextTruncationStories} />
+
+# Text Truncation
+
+The `text-truncation` class helps in truncating long text when it exceeds a specified width.
+
+## Usage
+
+<Canvas sourceState="shown" of={TextTruncationStories.Default} />
+<div className="hide-col-default">
+  <Controls of={TextTruncationStories.Default} />
+</div>
