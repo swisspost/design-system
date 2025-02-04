@@ -9,7 +9,7 @@ tokens.$default-map: components.$post-teaser;
   box-shadow: tokens.get('card-interactive-elevation', components.$post-cards);
   border-radius: tokens.get('card-border-radius', components.$post-cards);
   position: relative;
-  background-color: tokens.get('teaser-card-enabled-bg');
+  background-color: tokens.get('card-enabled-bg2', components.$post-cards);
   color: tokens.get('teaser-card-content-enabled-fg');
   display: flex;
   flex-direction: column;
@@ -18,8 +18,8 @@ tokens.$default-map: components.$post-teaser;
     color 150ms;
 
   &:hover {
-    background-color: tokens.get('teaser-card-hover-bg');
-    color: tokens.get('teaser-card-content-hover-fg');
+    background-color: tokens.get('card-hover-bg', components.$post-cards);
+    color: tokens.get('card-hover-fg', components.$post-cards);
   }
 
   a.btn {
