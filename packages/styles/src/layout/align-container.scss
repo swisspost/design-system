@@ -14,7 +14,7 @@ tokens.$default-map: components.$post-container;
       --post-grid-gutter-x: #{$gutter};
 
       > .row > [class*='col']:last-of-type > .align-container-end,
-      :not([class*='col']) .align-container-end:last-of-type {
+      > :not([class*='col']) > .align-container-end:last-of-type {
         margin-inline-end: calc(-1 * max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
         float: right;
       }

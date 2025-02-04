@@ -1,7 +1,6 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta from './align-container.stories';
 import { html } from 'lit';
-import { StoryFn } from '@storybook/web-components';
 import { schemes } from '@/shared/snapshots/schemes';
 const { id, ...metaWithoutId } = meta;
 
