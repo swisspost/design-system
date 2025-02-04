@@ -1,12 +1,12 @@
 import type { TSESLint } from '@typescript-eslint/utils';
 import { parser } from 'typescript-eslint';
-import * as templateParser from './parsers/template';
+import * as templateParser from '@parsers/template';
 
-import { templateMigrationRules } from './rules/template/migrations';
-import { tsMigrationRules } from './rules/ts/migrations';
+import { templateMigrationRules } from '@rules/template/migrations';
+import { tsMigrationRules } from '@rules/ts/migrations';
 
-import templateMigrationConfig from './configs/template/migrations';
-import tsMigrationConfig from './configs/ts/migrations';
+import templateMigrationConfig from '@configs/template/migrations';
+import tsMigrationConfig from '@configs/ts/migrations';
 
 const templateMigrationPlugin: TSESLint.FlatConfig.Plugin = {
   rules: templateMigrationRules,

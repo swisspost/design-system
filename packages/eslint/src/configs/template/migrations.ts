@@ -1,6 +1,6 @@
 import type { TSESLint } from '@typescript-eslint/utils';
-import { getAllRules } from '../../utils/get-all-rules';
-import { templateMigrationRules } from '../../rules/template/migrations';
+import { getAllRules } from '@utils/get-all-rules';
+import { templateMigrationRules } from '@rules/template/migrations';
 
 const migrationPluginName = '@swisspost/design-system/template-migrations';
 

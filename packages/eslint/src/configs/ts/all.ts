@@ -1,6 +1,6 @@
 import type { TSESLint } from '@typescript-eslint/utils';
-import { getAllRules } from '../../utils/get-all-rules';
-import { tsRules } from '../../rules/ts';
+import { getAllRules } from '@utils/get-all-rules';
+import { tsRules } from '@rules/ts';
 import tsBaseConfig, { pluginName } from './base';
 
 export default (

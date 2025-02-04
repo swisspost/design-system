@@ -1,8 +1,8 @@
 import type { TSESLint } from '@typescript-eslint/utils';
 
 import templateBaseConfig, { pluginName } from './base';
-import { templateRules } from '../../rules/template';
-import { getRecommendedRules } from '../../utils/get-recommended-rules';
+import { templateRules } from '@rules/template';
+import { getRecommendedRules } from '@utils/get-recommended-rules';
 
 export default (
   plugin: TSESLint.FlatConfig.Plugin,
