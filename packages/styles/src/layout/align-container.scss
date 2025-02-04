@@ -16,19 +16,14 @@ tokens.$default-map: components.$post-container;
       > .row > [class*='col']:last-of-type > .align-container-end,
       > :not([class*='col']) > .align-container-end:last-of-type {
         margin-inline-end: calc(-1 * max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
-        float: right;
+        max-width: calc(100% + max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
       }
 
       > .row > [class*='col']:first-of-type > .align-container-start,
       > :not([class*='col']) > .align-container-start:first-of-type {
         margin-inline-start: calc(-1 * max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
+        max-width: calc(100% + max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
       }
     }
-  }
-
-  &::after {
-    content: '';
-    display: table;
-    clear: both;
   }
 }
