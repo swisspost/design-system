@@ -4,7 +4,6 @@ import metaStyles from '@/stories/packages/styles/styles.stories';
 import metaComponents from '@/stories/packages/components/components.stories';
 import metaComponentsAngular from '@/stories/packages/components-angular/components-angular.stories';
 import metaInternetHeader from '@/stories/packages/internet-header/internet-header.stories';
-import metaIntranetHeader from '@/stories/packages/intranet-header/intranet-header.stories';
 import metaIcons from '@/stories/packages/icons/package-icons.stories';
 import metaTokens from '@/stories/packages/tokens/tokens.stories';
 import { PackageType } from '@/../types';
@@ -106,26 +105,6 @@ export const packages: IPackage[] = [
       alt: '',
     },
     version: `v${getVersion(DEPENDENCIES['@swisspost/internet-header'])}`,
-  },
-  {
-    name: 'Intranet-Header',
-    docsStoryId: metaIntranetHeader.id,
-    type: PackageType.Angular,
-    link: {
-      github: {
-        href: 'https://github.com/swisspost/design-system/tree/main/packages/intranet-header-workspace/projects/intranet-header',
-        ariaLabel: 'Source of Intranet-Header package',
-      },
-      docs: {
-        href: generateDocsRelativeLink(metaIntranetHeader.id),
-        ariaLabel: 'Getting started with Intranet-Header package',
-      },
-    },
-    img: {
-      src: '/assets/images/packages/intranet-header.svg',
-      alt: '',
-    },
-    version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-intranet-header'])}`,
   },
   {
     name: 'Icons',

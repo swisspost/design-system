@@ -45,17 +45,6 @@ Please contact [security@post.ch](mailto:security@post.ch).
 | ------- | ------------------ | --------------------------------------- |
 | 1       | :white_check_mark: | Angular, Vue JS, React, Vanilla JS, ... |
 
-### Intranet Header
-
-@swisspost/design-system-intranet-header
-
-| Version | Supported          | Supported Dependencies                     |
-| ------- | ------------------ | ------------------------------------------ |
-| 8       | :white_check_mark: | Bootstrap 5.3, Angular 18, ng-bootstrap 17 |
-| 7[^1]   | until June 2025    | Bootstrap 5.3, Angular 17, ng-bootstrap 16 |
-| 4       | :white_check_mark: | Bootstrap 5.2, Angular 15, ng-bootstrap 14 |
-| 3       | until end of 2023  | Bootstrap 5.1, Angular 14, ng-bootstrap 12 |
-
 ### Icons
 
 @swisspost/design-system-icons
