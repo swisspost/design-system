@@ -1,25 +1,5 @@
 # @swisspost/design-system-styles
 
-## 9.0.0-next.14
-
-### Major Changes
-
-- Removed Bootstrap shadow utility classes from the Design System, as the elevation classes are replacing them. (by [@leagrdv](https://github.com/leagrdv) with [#4361](https://github.com/swisspost/design-system/pull/4361))
-
-- Renamed elevation utility classes and SCSS variables to allow for more variants in the future. (by [@leagrdv](https://github.com/leagrdv) with [#4361](https://github.com/swisspost/design-system/pull/4361))
-
-### Minor Changes
-
-- Removed `post-popovercontainer` from the `post-megadropdown` component and added desktop animations with new slide-down and slide-up effects. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4421](https://github.com/swisspost/design-system/pull/4421))
-
-### Patch Changes
-
-- Made the following components hidden until fully loaded to prevent flickering: `post-avatar`, `post-banner`, `post-breadcrumb`, `post-breadcrumb-item`, `post-closebutton`, `post-collapsible-trigger`, `post-footer`, `post-header`, `post-language-option`, `post-language-switch`, `post-mainnavigation`, `post-megadropdown`, `post-megadropdown-trigger`, `post-menu`, `post-menu-item`, and `post-menu-trigger`. (by [@schaertim](https://github.com/schaertim) with [#4544](https://github.com/swisspost/design-system/pull/4544))
-
-- Fixed z-indexes for header components to ensure proper stacking order. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4421](https://github.com/swisspost/design-system/pull/4421))
-
-- Updated the styles for `.focus-ring` and added documentation. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4543](https://github.com/swisspost/design-system/pull/4543))
-
 ## 9.0.0-next.13
 
 ### Major Changes
