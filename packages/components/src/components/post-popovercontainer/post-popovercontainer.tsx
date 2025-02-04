@@ -164,10 +164,9 @@ export class PostPopovercontainer {
     }
   
     const headerRectHeight = headerElement.getBoundingClientRect().height;
-    const computedStyle = getComputedStyle(headerElement);
-    const headerScrollTop = parseInt(computedStyle.getPropertyValue('--header-scroll-top').trim(), 10) || 0;
-  
-    return headerRectHeight - headerScrollTop;
+
+    console.log(headerRectHeight)
+    return headerRectHeight;
   }
   
   private async calculatePosition() {
