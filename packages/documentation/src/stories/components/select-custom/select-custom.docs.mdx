@@ -2,12 +2,7 @@ import { Meta, Source } from '@storybook/blocks';
 import * as CustomSelectStories from './select-custom.stories.ts';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 import NgbComponentImport from '@/shared/nb-bootstrap/ngb-component-import.mdx';
-import {
-  PostBanner,
-  PostTabHeader,
-  PostTabPanel,
-  PostTabs,
-} from '@swisspost/design-system-components-react';
+import { PostBanner } from '@swisspost/design-system-components-react';
 import SampleBasicHTML from './select-custom-basic.sample.html?raw';
 import SampleBasicTS from './select-custom-basic.sample.ts?raw';
 import SampleFloatingHTML from './select-custom-floating.sample.html?raw';
@@ -56,19 +51,19 @@ import PostComponentDemoLink from '@/shared/post-component-demo-link.mdx';
 
 ## Examples
 
-<PostTabs>
-  <PostTabHeader panel="sampleBasic">Basic example</PostTabHeader>
-  <PostTabPanel name="sampleBasic">
+<post-tabs>
+  <post-tab-header panel="sampleBasic">Basic example</post-tab-header>
+  <post-tab-panel name="sampleBasic">
     ### HTML
     <Source code={SampleBasicHTML} language="html" />
     ### Typescript
     <Source code={SampleBasicTS} language="typescript" />
-  </PostTabPanel>
-  <PostTabHeader panel="sampleFloating">Floating example</PostTabHeader>
-  <PostTabPanel name="sampleFloating">
+  </post-tab-panel>
+  <post-tab-header panel="sampleFloating">Floating example</post-tab-header>
+  <post-tab-panel name="sampleFloating">
     ### HTML
     <Source code={SampleFloatingHTML} language="html" />
     ### Typescript
     <Source code={SampleFloatingTS} language="typescript" />
-  </PostTabPanel>
-</PostTabs>
+  </post-tab-panel>
+</post-tabs>
