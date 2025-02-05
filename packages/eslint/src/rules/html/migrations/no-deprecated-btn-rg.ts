@@ -1,5 +1,5 @@
 import { createRule } from '../../../utils/create-rule';
-import { TemplateNode } from '../../../parsers/template/template-node';
+import { HtmlNode } from '../../../parsers/html/html-node';
 
 export const name = 'no-deprecated-btn-rg';
 
@@ -8,7 +8,7 @@ export default createRule({
   name,
   meta: {
     docs: {
-      dir: 'template',
+      dir: 'html',
       description:
         'Flags deprecated "btn-rg" class and suggests removal or replacement with "btn-sm".',
     },
@@ -23,7 +23,7 @@ export default createRule({
   defaultOptions: [],
   create(context) {
     return {
-      tag(node: TemplateNode) {
+      tag(node: HtmlNode) {
         if (node.name && ['button', 'input', 'a'].includes(node.name)) {
           const $node = node.toCheerio();
           if ($node.hasClass('btn-rg')) {

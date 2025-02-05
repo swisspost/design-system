@@ -1,17 +1,17 @@
 import type { TSESLint } from '@typescript-eslint/utils';
 import { parser } from 'typescript-eslint';
-import { templateParser } from '@parsers/template';
+import { htmlParser } from '@parsers/html';
 
-import { templateMigrationRules } from '@rules/template/migrations';
+import { htmlMigrationRules } from '@rules/html/migrations';
 import { tsMigrationRules } from '@rules/ts/migrations';
 
-import templateMigrationConfig from '@configs/template/migrations';
+import htmlMigrationConfig from '@configs/html/migrations';
 import tsMigrationConfig from '@configs/ts/migrations';
 
-const templateMigrationPlugin: TSESLint.FlatConfig.Plugin = {
-  rules: templateMigrationRules,
+const htmlMigrationPlugin: TSESLint.FlatConfig.Plugin = {
+  rules: htmlMigrationRules,
   meta: {
-    name: '@swisspost/eslint-plugin-design-system-template-migrations',
+    name: '@swisspost/eslint-plugin-design-system-html-migrations',
   },
 };
 
@@ -23,8 +23,8 @@ const tsMigrationPlugin: TSESLint.FlatConfig.Plugin = {
 };
 
 const configs = {
-  templateAll: templateMigrationConfig(templateMigrationPlugin, templateParser),
+  htmlAll: htmlMigrationConfig(htmlMigrationPlugin, htmlParser),
   tsAll: tsMigrationConfig(tsMigrationPlugin, parser),
 };
 
-export = [configs.templateAll, configs.tsAll];
+export = [configs.htmlAll, configs.tsAll];

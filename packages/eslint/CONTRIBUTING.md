@@ -71,10 +71,10 @@ It takes the following configuration:
 
 _More details about the structure can be found in the [ESLint documentation](https://eslint.org/docs/latest/extend/custom-rules#rule-structure)._
 
-### Writing Template Rules
+### Writing Html Rules
 
-Template rules are specific to HTML and use a custom parser.
-This parser is located in the `src/parsers/template` folder.
+Html rules are specific to HTML and use a custom parser.
+This parser is located in the `src/parsers/html` folder.
 It allows you to target HTML nodes such as `tag`, `text`, and `comment`.
 
 Here’s an example of a simple rule that checks for the presence of `button` tags:
@@ -83,7 +83,7 @@ Here’s an example of a simple rule that checks for the presence of `button` ta
 {
   create(context) {
     return {
-      tag(node: TemplateNode) {
+      tag(node: HtmlNode) {
         if (node.name === 'button') {
           context.report({
             node,
@@ -96,9 +96,9 @@ Here’s an example of a simple rule that checks for the presence of `button` ta
 }
 ```
 
-#### Template Node Properties
+#### Html Node Properties
 
-Each template node is represented by a `TemplateNode` object.
+Each html node is represented by a `HtmlNode` object.
 Key properties include:
 
 - **type**: The type of node (e.g., `tag`, `text`, `comment`).
@@ -109,9 +109,9 @@ Key properties include:
 
 Additionally, the **context** object provides access to the [Cheerio API](https://cheerio.js.org/docs/api/interfaces/CheerioAPI) via `context.sourceCode.parserServices.cheerioAPI`.
 
-#### Testing Template Rules
+#### Testing Html Rules
 
-To test template rules, use the `TemplateRuleTester.run()` function.
+To test html rules, use the `HtmlRuleTester.run()` function.
 This allows you to provide sample HTML strings for testing valid and invalid rule cases.
 
 ## Exporting Rules

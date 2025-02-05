@@ -4,16 +4,16 @@ import * as cheerio from 'cheerio';
 import { type CheerioAPI } from 'cheerio';
 import { AnyNode, ChildNode, ParentNode } from 'domhandler';
 import { type Token } from 'parse5';
-import { TemplateNode } from './template-node';
+import { HtmlNode } from './html-node';
 
-interface TemplateToken extends TemplateNode {
+interface HtmlToken extends HtmlNode {
   value: string;
 }
 
-interface AST extends TemplateNode {
+interface AST extends HtmlNode {
   type: 'Program';
-  comments: TemplateToken[];
-  tokens: TemplateToken[];
+  comments: HtmlToken[];
+  tokens: HtmlToken[];
 }
 
 interface VisitorKeys {
@@ -116,8 +116,8 @@ function isNode(node: unknown): node is AnyNode {
  * @see https://eslint.org/docs/latest/extend/custom-parsers#ast-specification
  * @see https://cheerio.js.org/docs/api/classes/Cheerio
  */
-function getAST($: CheerioAPI, node: AnyNode = $.root()[0]): TemplateNode {
-  const astNode: Partial<TemplateNode> = { type: node.type, toCheerio: () => $(node) };
+function getAST($: CheerioAPI, node: AnyNode = $.root()[0]): HtmlNode {
+  const astNode: Partial<HtmlNode> = { type: node.type, toCheerio: () => $(node) };
 
   if ('name' in node) {
     astNode.name = node.name;
@@ -160,7 +160,7 @@ function getAST($: CheerioAPI, node: AnyNode = $.root()[0]): TemplateNode {
     astNode.children = astNode.children.filter(child => !!child.loc && !!child.range);
   }
 
-  return astNode as TemplateNode;
+  return astNode as HtmlNode;
 }
 
 /**

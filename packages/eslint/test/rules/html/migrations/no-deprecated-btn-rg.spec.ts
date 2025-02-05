@@ -1,7 +1,7 @@
-import rule, { name } from '@rules/template/migrations/no-deprecated-btn-rg';
-import { templateRuleTester } from '@test-utils/template-rule-tester';
+import rule, { name } from '@rules/html/migrations/no-deprecated-btn-rg';
+import { htmlRuleTester } from '@test-utils/html-rule-tester';
 
-templateRuleTester.run(name, rule, {
+htmlRuleTester.run(name, rule, {
   valid: [
     {
       code: '<button class="btn btn-sm">Click me</button>',

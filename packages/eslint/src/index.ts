@@ -1,19 +1,19 @@
 import type { TSESLint } from '@typescript-eslint/utils';
 import { parser } from 'typescript-eslint';
-import { templateParser } from '@parsers/template';
+import { htmlParser } from '@parsers/html';
 
-import { templateRules } from '@rules/template';
+import { htmlRules } from '@rules/html';
 import { tsRules } from '@rules/ts';
 
-import templateAllConfig from '@configs/template/all';
-import templateRecommendedConfig from '@configs/template/recommended';
+import htmlAllConfig from '@configs/html/all';
+import htmlRecommendedConfig from '@configs/html/recommended';
 import tsAllConfig from '@configs/ts/all';
 import tsRecommendedConfig from '@configs/ts/recommended';
 
-const templatePlugin: TSESLint.FlatConfig.Plugin = {
-  rules: templateRules,
+const htmlPlugin: TSESLint.FlatConfig.Plugin = {
+  rules: htmlRules,
   meta: {
-    name: '@swisspost/eslint-plugin-design-system-template',
+    name: '@swisspost/eslint-plugin-design-system-html',
   },
 };
 
@@ -25,17 +25,17 @@ const tsPlugin: TSESLint.FlatConfig.Plugin = {
 };
 
 const configs = {
-  templateAll: templateAllConfig(templatePlugin, templateParser),
-  templateRecommended: templateRecommendedConfig(templatePlugin, templateParser),
+  htmlAll: htmlAllConfig(htmlPlugin, htmlParser),
+  htmlRecommended: htmlRecommendedConfig(htmlPlugin, htmlParser),
   tsAll: tsAllConfig(tsPlugin, parser),
   tsRecommended: tsRecommendedConfig(tsPlugin, parser),
 };
 
 /* default and named exports allow people to use this package from both CJS and ESM. */
 export default {
-  templateParser,
-  templatePlugin,
+  htmlParser,
+  htmlPlugin,
   tsPlugin,
   configs,
 };
-export { templateParser, templatePlugin, tsPlugin, configs };
+export { htmlParser, htmlPlugin, tsPlugin, configs };

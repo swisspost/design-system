@@ -1,14 +1,14 @@
 import type { TSESLint } from '@typescript-eslint/utils';
 import { getAllRules } from '@utils/get-all-rules';
-import { templateMigrationRules } from '@rules/template/migrations';
+import { htmlMigrationRules } from '@rules/html/migrations';
 
-const migrationPluginName = '@swisspost/design-system/template-migrations';
+const migrationPluginName = '@swisspost/design-system/html-migrations';
 
 export default (
   plugin: TSESLint.FlatConfig.Plugin,
   parser: TSESLint.FlatConfig.Parser,
 ): TSESLint.FlatConfig.Config => ({
-  name: '@swisspost/design-system-eslint/template-migrations',
+  name: '@swisspost/design-system-eslint/html-migrations',
   files: ['**/*.{html,htm}'],
   languageOptions: {
     parser,
@@ -16,5 +16,5 @@ export default (
   plugins: {
     [migrationPluginName]: plugin,
   },
-  rules: getAllRules(migrationPluginName, templateMigrationRules),
+  rules: getAllRules(migrationPluginName, htmlMigrationRules),
 });

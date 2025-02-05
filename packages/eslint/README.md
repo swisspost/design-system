@@ -26,7 +26,7 @@ import post from "@swisspost/design-system-eslint";
 
 export default [
   ...post.configs.tsRecommended,
-  ...post.configs.templateRecommended,
+  ...post.configs.htmlRecommended,
 ];
 ```
 
@@ -39,8 +39,8 @@ import post from "@swisspost/design-system-eslint";
 export default [
   ...post.configs.tsRecommended,
   
-  // apply template rules only to files in the src/safe directory
-  ...post.configs.templateRecommended.map(config => ({
+  // apply html rules only to files in the src/safe directory
+  ...post.configs.htmlRecommended.map(config => ({
     ...config,
     files: ["**/src/safe/*.html"],
   })),
@@ -50,7 +50,7 @@ export default [
     name: "custom-config",
     rules: {
       '@swisspost/design-system/ts-rule-name': 'off',
-      '@swisspost/design-system/template/template-rule-name': 'warn',
+      '@swisspost/design-system/html/html-rule-name': 'warn',
     },
   },
 ];
