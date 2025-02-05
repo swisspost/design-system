@@ -50,6 +50,11 @@ export class PostHeader {
     this.getFocusableElements();
   }
 
+  componentDidLoad() {
+    const mhh = this.host.shadowRoot.querySelector('.local-header')?.clientHeight;
+    this.host.style.setProperty('--main-header-height', `${mhh}px`);
+  }
+
   @Element() host: HTMLPostHeaderElement;
 
   @State() device: DEVICE_SIZE = null;
@@ -192,9 +197,6 @@ export class PostHeader {
       this.toggleMobileMenu();
       this.mobileMenuAnimation.finish(); // no animation
     }
-
-    const mhh = this.host.shadowRoot.querySelector('.local-header')?.clientHeight;
-    this.host.style.setProperty('--main-header-height', `${mhh}px`);
 
     // Apply only on change for doing work only when necessary
     if (newDevice !== previousDevice) {
