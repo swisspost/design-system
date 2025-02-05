@@ -105,7 +105,6 @@ slot[name='post-logo'] {
 
   @include media.min(lg) {
     height: calc(var(--global-header-height) - var(--header-scroll-top));
-    padding-top: var(--logo-padding-top, 0px); // Controlled dynamically
   }
 }
 
