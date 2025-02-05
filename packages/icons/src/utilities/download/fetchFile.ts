@@ -3,8 +3,8 @@ import fs from 'fs';
 import path from 'path';
 import { optimize } from 'svgo';
 import svgoOptions from '../../../svgo.config';
+import { requestInit } from '../environment';
 import { Icon } from '../../models/icon.model';
-import { getRequestInit } from '../environment';
 
 export async function fetchFile(icon: Icon, output: string) {
   if (!icon.meta.downloadLink) {
@@ -12,7 +12,7 @@ export async function fetchFile(icon: Icon, output: string) {
   }
 
   try {
-    const svg = await fetch(icon.meta.downloadLink, getRequestInit());
+    const svg = await fetch(icon.meta.downloadLink, requestInit);
     const svgString = await svg.text();
     const optimizedSvg = optimize(extractSVG(svgString), svgoOptions);
     const optimizedName = icon.file.name

@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
+import { requestInit } from '../environment';
 import { CenshareError, CenshareResultPage } from '../../models/censhare-result-page.model';
-import { getRequestInit } from '../environment';
 import { coloredLogMessage } from '../shared';
 
 /**
@@ -12,7 +12,7 @@ export const fetchPage = async (
   url: string,
 ): Promise<CenshareResultPage | CenshareError | undefined> => {
   const response = await fetch(url, {
-    ...getRequestInit(),
+    ...requestInit,
     method: 'GET',
   });
 

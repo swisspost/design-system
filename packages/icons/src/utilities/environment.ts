@@ -21,16 +21,9 @@ if (!user || !pw || (!urls.post && !urls.ui)) {
   );
 }
 
-export const getRequestInit = () => {
-  const request: RequestInit = {
-    headers: {
-      Authorization: `Basic ${passphrase}`,
-    },
-  };
-
-  if (proxy) {
-    request.agent = new HttpsProxyAgent(proxy);
-  }
-
-  return request;
+export const requestInit: RequestInit = {
+  headers: {
+    Authorization: `Basic ${passphrase}`,
+  },
+  agent: proxy ? new HttpsProxyAgent(proxy) : undefined,
 };
