@@ -1,5 +1,6 @@
-import { JsonReport } from '../models/icon.model';
 import { version } from '../../package.json';
+import { JsonReport } from '../models/icon.model';
+import { coloredLogMessage } from './shared';
 
 export const SOURCE_PATH = 'src/icons';
 export const OUTPUT_PATH = 'public';
@@ -69,3 +70,8 @@ export const UI_ICON_TEMPLATE = `<svg xmlns="http://www.w3.org/2000/svg">
     <use href="#{id}"/>
   </g>
 </svg>`;
+
+// Log messages
+export const MESSAGE_ENV_VARS_MISSING_ERROR = coloredLogMessage(
+  '<red>Environment variables are not defined. Please check your .env file and compare it to the .template.env. Are there any variables missing or undefined?</red>',
+);

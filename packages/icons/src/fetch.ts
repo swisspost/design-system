@@ -1,25 +1,27 @@
-import { IconSet, JsonReport } from './models/icon.model';
 import iconSets from './iconsets.config';
+import { IconSet, JsonReport } from './models/icon.model';
+
 import { setup } from './utilities/download/setup';
-import { getBaseReport } from './utilities/shared';
+import { getBaseReport, coloredLogMessage } from './utilities/shared';
 import { fetchPage } from './utilities/download/fetchPage';
 import { fetchFile } from './utilities/download/fetchFile';
 import { format } from './utilities/download/format';
 import { updateReport, writeReport } from './utilities/download/report';
-
 import buildSVGs from './utilities/build';
+
+import { MESSAGE_ENV_VARS_MISSING_ERROR } from './utilities/constants';
 
 async function fetchSVGs() {
   setup();
 
   for (const iconSet of iconSets) {
-    if (iconSet.apiUrl) {
-      console.log('\x1b[32mStarting to download icons...\x1b[0m');
-      const report = await downloadIconSet(iconSet, getBaseReport());
-      console.log(
-        `\x1b[32mDownload finished.\x1b[0m Downloaded \x1b[32m${report.stats.success}\x1b[0m icons, \x1b[31m${report.stats.errors}\x1b[0m errored, \x1b[31m${report.stats.notFound}\x1b[0m not found.`,
-      );
-    }
+    console.log(coloredLogMessage(`<blue>Start downloading "${iconSet.name}" icons...</blue>`));
+    const report = await downloadIconSet(iconSet, getBaseReport());
+    console.log(
+      coloredLogMessage(
+        `<blue>Downloading "${iconSet.name}" finished.</blue>\nDownloaded <green>${report.stats.success}</green> icons, <red>${report.stats.errors}</red> errored, <red>${report.stats.notFound}</red> not found.\n`,
+      ),
+    );
   }
 
   buildSVGs();
@@ -41,7 +43,11 @@ async function downloadIconSet(
   }
 
   console.log(
-    `Fetching icons ${body.offset} - ${body.offset + body.count} of ${body['total-count']}`,
+    coloredLogMessage(
+      `<yellow>Fetching icons</yellow> ${body.offset} - ${body.offset + body.count} of ${
+        body['total-count']
+      }`,
+    ),
   );
 
   await Promise.all(

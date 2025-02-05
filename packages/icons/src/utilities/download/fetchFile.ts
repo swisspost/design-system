@@ -23,7 +23,9 @@ export async function fetchFile(icon: Icon, output: string) {
     fs.writeFileSync(path.join(output, optimizedName), optimizedSvg.data);
     return optimizedSvg.data;
   } catch (err) {
-    console.log(`SVG Download error: ${err} @ ${icon.meta.downloadLink}`);
+    console.log(
+      `SVG Download Error: Failed to download ${icon.file.name} from ${icon.meta.downloadLink}\n`,
+    );
     throw err;
   }
 
