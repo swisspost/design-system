@@ -54,7 +54,8 @@ jobs:
         env:
           CEN_USERNAME: ${{ secrets.CEN_USERNAME }}
           CEN_PASSWORD: ${{ secrets.CEN_PASSWORD }}
-          CEN_URL: ${{ secrets.CEN_URL }}
+          CEN_URL_ICONSET_POST: ${{ secrets.CEN_URL_ICONSET_POST }}
+          CEN_URL_ICONSET_UI: ${{ secrets.CEN_URL_ICONSET_UI }}
 
       - name: Build styles
         run: pnpm --filter design-system-styles... build
