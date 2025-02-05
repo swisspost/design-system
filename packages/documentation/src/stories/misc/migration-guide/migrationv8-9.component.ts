@@ -530,7 +530,7 @@ export class MigrationV89Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
-                    The <code>heading level</code> property on <code>post-accordion</code> is now
+                    The <code>heading-level</code> property on <code>post-accordion</code> is now
                     required
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
