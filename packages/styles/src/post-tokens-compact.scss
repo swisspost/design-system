@@ -3,6 +3,6 @@
 @layer design-system {
   @include meta.load-css('./tokens/schemes');
   @include meta.load-css('./tokens/device-compact');
-  @include meta.load-css('./tokens/internal');
+  @include meta.load-css('./tokens/appearance-compact');
   @include meta.load-css('./tokens/post-theme');
 }
