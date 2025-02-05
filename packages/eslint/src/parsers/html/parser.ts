@@ -1,5 +1,5 @@
 import { Scope, ScopeManager } from 'eslint-scope';
-import { TSESTree } from '@typescript-eslint/utils';
+import type { TSESTree } from '@typescript-eslint/utils';
 import * as cheerio from 'cheerio';
 import { type CheerioAPI } from 'cheerio';
 import { AnyNode, ChildNode, ParentNode } from 'domhandler';

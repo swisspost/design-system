@@ -1,4 +1,4 @@
-import { ESLintUtils } from '@typescript-eslint/utils';
+import type { ESLintUtils } from '@typescript-eslint/utils';
 import { RuleDocs } from './create-rule';
 
 export const getRecommendedRules = (

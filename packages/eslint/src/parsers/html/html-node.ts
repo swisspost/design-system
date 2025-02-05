@@ -1,4 +1,4 @@
-import { TSESTree } from '@typescript-eslint/utils';
+import type { TSESTree } from '@typescript-eslint/utils';
 import { Cheerio } from 'cheerio';
 import { type AnyNode } from 'domhandler';
 
