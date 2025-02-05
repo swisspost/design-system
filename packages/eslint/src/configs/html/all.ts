@@ -1,8 +1,8 @@
 import type { TSESLint } from '@typescript-eslint/utils';
 
 import htmlBaseConfig, { pluginName } from './base';
-import { getAllRules } from '@utils/get-all-rules';
-import { htmlRules } from '@rules/html';
+import { getAllRules } from '../../utils/get-all-rules';
+import { htmlRules } from '../../rules/html';
 
 export default (
   plugin: TSESLint.FlatConfig.Plugin,

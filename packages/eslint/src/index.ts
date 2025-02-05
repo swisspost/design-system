@@ -1,14 +1,14 @@
 import type { TSESLint } from '@typescript-eslint/utils';
 import { parser } from 'typescript-eslint';
-import { htmlParser } from '@parsers/html';
+import { htmlParser } from './parsers/html';
 
-import { htmlRules } from '@rules/html';
-import { tsRules } from '@rules/ts';
+import { htmlRules } from './rules/html';
+import { tsRules } from './rules/ts';
 
-import htmlAllConfig from '@configs/html/all';
-import htmlRecommendedConfig from '@configs/html/recommended';
-import tsAllConfig from '@configs/ts/all';
-import tsRecommendedConfig from '@configs/ts/recommended';
+import htmlAllConfig from './configs/html/all';
+import htmlRecommendedConfig from './configs/html/recommended';
+import tsAllConfig from './configs/ts/all';
+import tsRecommendedConfig from './configs/ts/recommended';
 
 const htmlPlugin: TSESLint.FlatConfig.Plugin = {
   rules: htmlRules,
