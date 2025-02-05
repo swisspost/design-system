@@ -19,9 +19,10 @@ export class PostTabPanel {
   /**
    * The name of the panel, used to associate it with a tab header.
    */
-  @Prop() readonly name: string;
+  @Prop({ reflect: true }) readonly name: string;
 
   componentWillLoad() {
+
     // get the id set on the host element or use a random id by default
     this.panelId = `panel-${this.host.id || nanoid(6)}`;
   }
