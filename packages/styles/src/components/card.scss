@@ -3,13 +3,9 @@
 @use './../themes/bootstrap/core' as *;
 @use './../themes/bootstrap/card' as bootstrap-card;
 @use './../variables/color';
-@use './../variables/spacing';
 @use './../variables/commons';
-@use './../variables/components/card';
-@use './../functions/sizing';
 @use './../mixins/icons' as icons-mx;
 @use './../variables/icons';
-@use './../variables/animation';
 @use '../mixins/utilities' as utilities-mx;
 
 @use './../functions/tokens';
@@ -19,69 +15,55 @@
 tokens.$default-map: components.$post-cards;
 
 .card-group {
-  margin-top: commons.$border-width;
-  margin-left: commons.$border-width;
-  box-shadow: tokens.get('card-interactive-elevation');
+  margin-block-start: commons.$border-width;
+  margin-inline-start: commons.$border-width;
   border-radius: tokens.get('card-border-radius');
+}
+
+post-linkarea:has(> .card) {
+  border-radius: tokens.get('card-border-radius');
+  display: block;
+  @include utilities-mx.focus-style();
 }
 
 .card {
   transition: all 250ms;
-  color: card.$card-color;
   border-radius: tokens.get('card-border-radius');
   background-color: tokens.get('card-enabled-bg1');
+  border: 1px solid tokens.get('card-non-interactive-stroke');
 
   .palette-alternate & {
     background-color: tokens.get('card-enabled-bg2');
   }
 
   // Add an elevation only if card is interactive
-  &.interactive-card {
+  post-linkarea > & {
     border: 0;
     box-shadow: tokens.get('card-interactive-elevation');
 
     &:hover {
       background-color: tokens.get('card-hover-bg');
       color: tokens.get('card-hover-fg');
-    }
 
-    a:first-of-type,
-    button:first-of-type {
-      position: unset;
-      outline-style: none !important;
-
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        cursor: pointer;
-        border-radius: tokens.get('card-border-radius', components.$post-cards);
+      a,
+      .btn-tertiary {
+        color: tokens.get('card-hover-fg');
       }
-
-      @include utilities-mx.focus-style('::before');
     }
-  }
-
-  // Add a border if card has no interactive element
-  &:not(.interactive-card) {
-    border: 1px solid tokens.get('card-non-interactive-stroke');
   }
 
   .card-header:first-child,
   .list-group:first-child,
   .card-img-top {
-    border-top-left-radius: tokens.get('card-border-radius');
-    border-top-right-radius: tokens.get('card-border-radius');
+    border-start-start-radius: tokens.get('card-border-radius');
+    border-start-end-radius: tokens.get('card-border-radius');
   }
 
   .card-footer:last-child,
   .list-group:last-child,
   .card-img-bottom {
-    border-bottom-left-radius: tokens.get('card-border-radius');
-    border-bottom-right-radius: tokens.get('card-border-radius');
+    border-end-start-radius: tokens.get('card-border-radius');
+    border-end-end-radius: tokens.get('card-border-radius');
   }
 
   &.product-card,
@@ -95,34 +77,13 @@ tokens.$default-map: components.$post-cards;
     }
   }
 
-  & + & {
-    margin-top: sizing.calculate-single-box-shadow-size(commons.$box-shadow-lg) * 2;
-  }
-
   .list-group {
     margin-block: 0 !important;
   }
 
-  .card-title,
-  .card-body,
-  a:hover,
-  .btn-tertiary:hover {
-    color: inherit;
-  }
-
-  .card-group > & {
-    margin-right: commons.$border-width;
-    margin-bottom: commons.$border-width;
-    box-shadow: none;
-
-    + .card {
-      margin-top: 0;
-    }
-  }
-
   .list-group-item {
     padding: 1.25rem 1rem;
-    border-color: card.$card-border-color;
+    border-color: tokens.get('card-non-interactive-stroke');
   }
 
   .link-icon {
@@ -131,13 +92,13 @@ tokens.$default-map: components.$post-cards;
     post-icon {
       width: 1.5rem;
       height: 1.5rem;
-      margin-right: 0.5rem;
+      margin-inline-end: 0.5rem;
     }
   }
 
   > .list-group + .card-footer,
   .card-body ~ .card-body {
-    border-top: 1px solid color.$gray-20;
+    border-block-start: 1px solid color.$gray-20;
   }
 }
 
@@ -148,11 +109,11 @@ tokens.$default-map: components.$post-cards;
 .card-footer,
 .list-group-item {
   > *:first-child {
-    margin-top: 0;
+    margin-block-start: 0;
   }
 
   > *:last-child {
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 }
 
@@ -185,7 +146,7 @@ tokens.$default-map: components.$post-cards;
   align-items: center;
 
   > *:not(:last-child) {
-    margin-right: 1rem;
+    margin-inline-end: 1rem;
   }
 }
 
@@ -235,8 +196,7 @@ tokens.$default-map: components.$post-cards;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
+  padding-inline: 0.5rem;
 
   a {
     display: inline-flex;

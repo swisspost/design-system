@@ -33,7 +33,6 @@ const meta: MetaComponent = {
     showListGroup: false,
     showFooter: false,
     customFooter: null,
-    interactive: false,
   },
   argTypes: {
     showImage: {
@@ -136,17 +135,6 @@ const meta: MetaComponent = {
         category: 'Card Body',
       },
     },
-    interactive: {
-      name: 'Is interactive',
-      description:
-        'Whether the card is interactive and clicking on the whole card should click on its first child interactive element.',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'General',
-      },
-    },
     content: {
       name: 'Content',
       description: 'The text contained in the card body.',
@@ -226,7 +214,7 @@ function clickBlocker(story: StoryFn, context: StoryContext) {
 
 function gridContainer(story: StoryFn, context: StoryContext) {
   return html`
-    <div class="row">
+    <div class="row gy-16">
       <div class="col-lg-4 col-sm-6 col-12">${story(context.args, context)}</div>
     </div>
   `;
@@ -298,11 +286,10 @@ function getCardImage({ imagePosition }: Args) {
 }
 
 function renderCard(args: Args) {
-  const { showImage, imagePosition, showHeader, showBody, showListGroup, showFooter, interactive } =
-    args;
+  const { showImage, imagePosition, showHeader, showBody, showListGroup, showFooter } = args;
 
   return html`
-    <div class="card${interactive ? ' interactive-card' : ''}">
+    <div class="card">
       ${showImage && imagePosition === 'top' ? getCardImage(args) : nothing}
       ${showHeader ? getCardHeader(args) : nothing} ${showBody ? getCardBody(args) : nothing}
       ${showListGroup ? getCardListGroup() : nothing} ${showFooter ? getCardFooter(args) : nothing}
@@ -313,9 +300,11 @@ function renderCard(args: Args) {
 
 export function renderSimpleInteractiveCard() {
   return html`
-    <div class="card interactive-card p-16">
-      <p><a href="#">Interactive card</a></p>
-    </div>
+    <post-linkarea>
+      <div class="card p-16">
+        <p><a href="http://google.com">Interactive card</a></p>
+      </div>
+    </post-linkarea>
   `;
 }
 
@@ -336,7 +325,7 @@ const singleCardStory: Story = {
 };
 
 export const Default: Story = {
-  decorators: [gridContainer],
+  decorators: [story => html`<div class="d-flex gap-16">${story()}</div>`],
   render: () => html` ${renderSimpleNonInteractiveCard()} ${renderSimpleInteractiveCard()} `,
 };
 
@@ -349,7 +338,7 @@ export const Palette: Story = {
     html`
       <div class="palette-default">
         <div class="container py-32">
-          <div class="row">
+          <div class="row gy-16">
             <div class="col-sm-6 col-12">${renderSimpleInteractiveCard()}</div>
             <div class="col-sm-6 col-12">${renderSimpleInteractiveCard()}</div>
           </div>
@@ -357,7 +346,7 @@ export const Palette: Story = {
       </div>
       <div class="palette-alternate">
         <div class="container py-32">
-          <div class="row">
+          <div class="row gy-16">
             <div class="col-sm-6 col-12">${renderSimpleInteractiveCard()}</div>
             <div class="col-sm-6 col-12">${renderSimpleInteractiveCard()}</div>
           </div>
