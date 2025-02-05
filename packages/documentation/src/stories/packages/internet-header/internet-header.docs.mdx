@@ -1,5 +1,4 @@
 import { Meta, Source } from '@storybook/blocks';
-import { PostTabHeader, PostTabPanel, PostTabs, PostPopover } from '@swisspost/design-system-components-react';
 import SampleFrameworks from './internet-header-frameworks.sample.html?raw';
 import SampleLazyLoaded from './internet-header-lazy-loaded.sample.js?raw';
 import SampleBareComponent from './internet-header-bare-component.sample.js?raw';
@@ -65,9 +64,9 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
   - Lazy-loaded (default): it allows better performance by dynamically load the component when used, so it reduces bundle size, startup time and first paint.
   - Bare component: if you already manage the lazy-loading or don't need it for any reason, you can use the component without any overhead.
 
-  <PostTabs>
-    <PostTabHeader panel="with-bundler">Install with a bundler</PostTabHeader>
-    <PostTabPanel name="with-bundler">
+  <post-tabs>
+    <post-tab-header panel="with-bundler">Install with a bundler</post-tab-header>
+    <post-tab-panel name="with-bundler">
       All the popular frameworks come with some form of bundler.
       This makes it easy to use npm packages like the Internet Header as you can import,
       bundle and deliver the header with your own code.
@@ -88,10 +87,10 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
           <div className="col-6"><Source code={SampleBareComponent} dark={SourceDarkScheme} language="javascript" /></div>
         </div>
       </div>
-    </PostTabPanel>
+    </post-tab-panel>
 
-    <PostTabHeader panel="with-cdn">Include from a CDN</PostTabHeader>
-    <PostTabPanel name="with-cdn">
+    <post-tab-header panel="with-cdn">Include from a CDN</post-tab-header>
+    <post-tab-panel name="with-cdn">
       If you are not using any bundler or don't want to install from npm, you can load the `internet-header` from your favourite [CDN](https://en.wikipedia.org/wiki/Content_delivery_network).<br/>
       Make sure to replace `{version}` with the version you want to use or remove `@{version}` to use the latest version.
 
@@ -110,8 +109,8 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
           <div className="col-6"><Source code={SampleCDNBareComponent} dark={SourceDarkScheme} language="html" /></div>
         </div>
       </div>
-    </PostTabPanel>
-  </PostTabs>
+    </post-tab-panel>
+  </post-tabs>
 
   ### Usage with Angular
 
@@ -121,6 +120,17 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
 
   The internet header package provides a stylesheet aimed at facilitating the use of key CSS variables beyond the header itself.
   This stylesheet allows you to access CSS variables to implement styling relative to the header as needed, but it is completely optional.
+
+  <post-tabs>
+    <post-tab-header panel="sass-import">Sass Import</post-tab-header>
+    <post-tab-panel name="sass-import">
+      <Source code={`@use "@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css";`} dark={SourceDarkScheme} language="scss" />
+    </post-tab-panel>
+    <post-tab-header panel="html-import">HTML Import</post-tab-header>
+    <post-tab-panel name="html-import">
+      <Source code={`<link rel="stylesheet" href="@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css"/>`} dark={SourceDarkScheme} language="html" />
+    </post-tab-panel>
+  </post-tabs>
 
   ## Migration from the old header
 
