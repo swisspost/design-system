@@ -56,7 +56,6 @@
   background-color: #ffcc00;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   position: sticky;
   padding-inline: var(--post-core-dimension-4);
   height: var(--global-header-height);
@@ -72,6 +71,14 @@
     inset-block-start: calc(
       (var(--global-header-height) - var(--global-header-reduced-height)) * -1
     );
+
+  &:first-child {
+    align-items: flex-end;
+  }
+
+  &:last-child {
+    align-items: center;
+  }
   }
 }
 
@@ -98,6 +105,7 @@ slot[name='post-logo'] {
 
   @include media.min(lg) {
     height: calc(var(--global-header-height) - var(--header-scroll-top));
+    padding-top: var(--logo-padding-top, 0px); // Controlled dynamically
   }
 }
 
