@@ -1,5 +1,35 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.15
+
+### Patch Changes
+
+- Fixed an occurence of `aria-role` which should be declared as `role` on the `<post-language-switch>` (by [@gfellerph](https://github.com/gfellerph) with [#4598](https://github.com/swisspost/design-system/pull/4598))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.15
+  - @swisspost/design-system-icons@9.0.0-next.15
+
+## 9.0.0-next.14
+
+### Minor Changes
+
+- Improved main navigation overflow display. (by [@alizedebray](https://github.com/alizedebray) with [#4273](https://github.com/swisspost/design-system/pull/4273))
+
+- Removed `post-popovercontainer` from the `post-megadropdown` component and added desktop animations with new slide-down and slide-up effects. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4421](https://github.com/swisspost/design-system/pull/4421))
+
+- Added the `post-linkarea` component. (by [@veyaromain](https://github.com/veyaromain) with [#4030](https://github.com/swisspost/design-system/pull/4030))
+
+### Patch Changes
+
+- Removed nav for `post-header` component causing blank space on scroll for screens <1025px. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4532](https://github.com/swisspost/design-system/pull/4532))
+
+- Added z-index to the `post-header` component to display it on top of other contents. (by [@leagrdv](https://github.com/leagrdv) with [#4367](https://github.com/swisspost/design-system/pull/4367))
+
+- Fixed header mobile menu behavior by trapping the focus within it when opened as well as making it scrollable. (by [@leagrdv](https://github.com/leagrdv) with [#4395](https://github.com/swisspost/design-system/pull/4395))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.14
+  - @swisspost/design-system-icons@9.0.0-next.14
+
 ## 9.0.0-next.13
 
 ### Patch Changes

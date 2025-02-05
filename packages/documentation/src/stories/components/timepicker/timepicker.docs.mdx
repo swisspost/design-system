@@ -5,7 +5,6 @@ import NgbComponentDemoLink from '@/shared/nb-bootstrap/ngb-component-demo-link.
 import NgbComponentBanner from '@/shared/nb-bootstrap/ngb-component-banner.mdx';
 import NgbComponentImport from '@/shared/nb-bootstrap/ngb-component-import.mdx';
 import NgbComponentInternationalization from '@/shared/nb-bootstrap/ngb-component-internationalization.mdx';
-import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
 import SampleBasic from './timepicker-basic.sample.html?raw';
 import SampleSizes from './timepicker-sizes.sample.html?raw';
 import SampleValidation from './timepicker-validation.sample.html?raw';
@@ -55,23 +54,23 @@ import SampleValidation from './timepicker-validation.sample.html?raw';
 
 ## Examples
 
-<PostTabs>
-  <PostTabHeader panel="sampleBasic">Basic example</PostTabHeader>
-  <PostTabPanel name="sampleBasic">
+<post-tabs>
+  <post-tab-header panel="sampleBasic">Basic example</post-tab-header>
+  <post-tab-panel name="sampleBasic">
     <Source code={SampleBasic} language="html" />
-  </PostTabPanel>
+  </post-tab-panel>
 
-  <PostTabHeader panel="sampleSizes">Sizes</PostTabHeader>
-  <PostTabPanel name="sampleSizes">
+  <post-tab-header panel="sampleSizes">Sizes</post-tab-header>
+  <post-tab-panel name="sampleSizes">
     By default, the timepicker component only supports 3 different sizes: sm , md , and lg .
 
     To use one of these predefined sizes, simply set the `[size]` entry as defined in the [component api](https://ng-bootstrap.github.io/#/components/timepicker/api).
     <Source code={SampleSizes} language="html" />
 
-  </PostTabPanel>
+  </post-tab-panel>
 
-  <PostTabHeader panel="sampleValidation">Validation</PostTabHeader>
-  <PostTabPanel name="sampleValidation">
+  <post-tab-header panel="sampleValidation">Validation</post-tab-header>
+  <post-tab-panel name="sampleValidation">
     <Source code={SampleValidation} language="html" />
-  </PostTabPanel>
-</PostTabs>
+  </post-tab-panel>
+</post-tabs>

@@ -111,11 +111,7 @@ export class PostLanguageSwitch {
 
   private renderList() {
     return (
-      <Host
-        data-version={version}
-        aria-label={`${this.caption}, ${this.description}`}
-        aria-role="list"
-      >
+      <Host data-version={version} aria-label={`${this.caption}, ${this.description}`} role="list">
         <slot></slot>
       </Host>
     );
