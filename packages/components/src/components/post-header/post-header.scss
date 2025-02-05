@@ -71,14 +71,6 @@
     inset-block-start: calc(
       (var(--global-header-height) - var(--global-header-reduced-height)) * -1
     );
-
-  &:first-child {
-    align-items: flex-end;
-  }
-
-  &:last-child {
-    align-items: center;
-  }
   }
 }
 
@@ -90,6 +82,12 @@ slot[name='post-logo'] {
   display: flex;
   align-items: center;
   gap: var(--post-core-dimension-24);
+}
+
+.global-sub:first-of-type {
+  @include media.min(lg) {
+  align-items: end;
+  }
 }
 
 .align-end {
