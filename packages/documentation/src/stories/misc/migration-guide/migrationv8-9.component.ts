@@ -537,8 +537,8 @@ export class MigrationV89Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
-                    The stencil hydrated flag has switched from <code>hydrated</code> to
-                    <code>data-hydrated</code>
+                    The stencil hydrated flag has switched from the <code>.hydrated</code> class to
+                    to the <code>data-hydrated</code> attribute
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <p class="info">
