@@ -110,7 +110,7 @@ export class PostLanguageSwitch {
 
   private renderList() {
     return (
-      <Host data-version={version} aria-role="list" aria-label={this.caption} role="list">
+      <Host data-version={version} role="list" aria-label={this.caption}>
         <span aria-label={this.description} role="listitem">
           {this.activeLang.toUpperCase()}
         </span>
