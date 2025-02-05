@@ -22,7 +22,7 @@ type Story = StoryObj;
 export const Card: Story = {
   render: (_args: Args, context: StoryContext) => {
     // Define default variants
-    const defaultVariants = ['default', 'accent', 'alternate', 'brand'].map((palette: string) => {
+    const defaultVariants = ['default', 'alternate'].map((palette: string) => {
       return html`
         <div class="palette-${palette}">
           <div class="container py-16">
