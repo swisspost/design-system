@@ -1,3 +1,5 @@
+import { version } from '@swisspost/design-system-components/package.json';
+
 export const openInCodePen = (e: Event) => {
   const target = e.target as HTMLButtonElement;
   const canvas = target.closest('.docs-story');
@@ -20,9 +22,8 @@ export const openInCodePen = (e: Event) => {
   const data = JSON.stringify({
     html,
     title: 'Storybook Example',
-    js: 'import "https://esm.sh/@swisspost/design-system-components/dist/post-components/post-components.esm.js";',
-    css_external:
-      'https://cdn.jsdelivr.net/npm/@swisspost/design-system-styles@9.0.0-next.14/cargo-external.css',
+    js: `import "https://esm.sh/@swisspost/design-system-components@${version}/dist/post-components/post-components.esm.js";`,
+    css_external: `https://cdn.jsdelivr.net/npm/@swisspost/design-system-styles@${version}/cargo-external.css`,
   });
 
   // Create and submit form
