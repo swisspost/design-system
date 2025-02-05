@@ -2,7 +2,7 @@
 
 @layer design-system {
   @include meta.load-css('./tokens/schemes');
-  @include meta.load-css('./tokens/device');
-  @include meta.load-css('./tokens/external');
+  @include meta.load-css('./tokens/device-application');
+  @include meta.load-css('./tokens/internal');
   @include meta.load-css('./tokens/cargo-theme');
 }

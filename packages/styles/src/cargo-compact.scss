@@ -1,8 +1,8 @@
 @use './tokens/schemes';
-@use './tokens/device';
+@use './tokens/device-compact';
 @use './tokens/internal';
-@use './tokens/post-theme';
-@use './palettes/post-palettes';
+@use './tokens/cargo-theme';
+@use './palettes/cargo-palettes';
 @use './layout';
 @use './utilities';
 @use './elements';
