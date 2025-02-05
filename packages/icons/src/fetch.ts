@@ -77,4 +77,9 @@ async function downloadIconSet(
   return writeReport(iconSet, report);
 }
 
-fetchSVGs();
+// start fetching icons if every iconSet has an "apiUrl" defined
+if (iconSets.every(iconSet => iconSet.apiUrl)) {
+  fetchSVGs();
+} else {
+  throw new Error(MESSAGE_ENV_VARS_MISSING_ERROR);
+}
