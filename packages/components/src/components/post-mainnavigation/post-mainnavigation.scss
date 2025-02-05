@@ -78,10 +78,6 @@ post-mainnavigation {
         font-size: var(--post-core-font-size-16);
         border-block: 0 solid transparent;
         border-block-end-color: currentColor;
-        @include utilities.high-contrast-mode() {
-          color: ButtonText;
-          background-color: ButtonFace;
-        }
         &:hover {
           border-block-width: var(--post-core-dimension-2);
         }

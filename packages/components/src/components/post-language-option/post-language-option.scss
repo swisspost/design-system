@@ -8,13 +8,6 @@
 
 button {
   @include post.reset-button;
-  @include utilities.high-contrast-mode() {
-    background-color: ButtonFace !important;
-    color: ButtonText !important;
-    &:hover {
-      background-color: Highlight !important;
-    }
-  }
 }
 
 a {

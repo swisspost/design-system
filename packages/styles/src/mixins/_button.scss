@@ -17,10 +17,14 @@ tokens.$default-map: components.$post-button;
   overflow: visible;
   border: 0;
   background: none;
-  color: inherit;
+  color: var(--post-current-palette-fg); //tokens.get('button-primary-enabled-fg');
   font: inherit;
   user-select: none;
   appearance: button; // for input
+
+  @include utilities.high-contrast-mode() {
+    background-color: ButtonFace !important;
+  }
 }
 
 @mixin button-size($size: md) {
