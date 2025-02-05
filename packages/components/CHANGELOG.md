@@ -1,5 +1,14 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.15
+
+### Patch Changes
+
+- Fixed an occurence of `aria-role` which should be declared as `role` on the `<post-language-switch>` (by [@gfellerph](https://github.com/gfellerph) with [#4598](https://github.com/swisspost/design-system/pull/4598))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.15
+  - @swisspost/design-system-icons@9.0.0-next.15
+
 ## 9.0.0-next.14
 
 ### Minor Changes
