@@ -17,7 +17,7 @@ tokens.$default-map: components.$post-button;
   overflow: visible;
   border: 0;
   background: none;
-  color: var(--post-current-palette-fg); //tokens.get('button-primary-enabled-fg');
+  color: tokens.get('button-primary-enabled-fg', components.$post-button);
   font: inherit;
   user-select: none;
   appearance: button; // for input
