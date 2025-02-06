@@ -14,6 +14,16 @@
 
 ## Methods
 
+### `focusFirst() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 ### `hide() => Promise<void>`
 
 Hides the dropdown with an animation.

@@ -13,6 +13,8 @@ export class PostMegadropdown {
   private firstFocusableEl: HTMLElement | null;
   private lastFocusableEl: HTMLElement | null;
 
+  private triggerElement: HTMLPostMegadropdownTriggerElement | null = null;
+
   @State() device: DEVICE_SIZE;
 
   @Element() host: HTMLPostMegadropdownElement;
@@ -75,6 +77,9 @@ export class PostMegadropdown {
     PostMegadropdown.activeDropdown = this;
     this.postToggleMegadropdown.emit(this.isVisible);
     this.addOutsideClickListener();
+    this.triggerElement = document.querySelector(
+      `post-megadropdown-trigger[for="${this.host.id}"]`,
+    );
   }
 
   /**
@@ -84,6 +89,11 @@ export class PostMegadropdown {
   async hide() {
     this.animationClass = 'slide-out';
     this.host.removeEventListener('keydown', e => this.keyboardHandler(e));
+  }
+
+  @Method()
+  async focusFirst() {
+    this.firstFocusableEl?.focus();
   }
 
   connectedCallback() {
@@ -166,6 +176,13 @@ export class PostMegadropdown {
     }
   }
 
+  private handleBackClick() {
+    this.hide();
+    if (this.triggerElement) {
+      setTimeout(() => this.triggerElement.querySelector('button')?.focus(), 100);
+    }
+  }
+
   render() {
     const containerStyle = this.isVisible ? {} : { display: 'none' };
 
@@ -177,7 +194,7 @@ export class PostMegadropdown {
           onAnimationEnd={() => this.handleAnimationEnd()}
         >
           <div class="megadropdown">
-            <div onClick={() => this.hide()} class="back-button">
+            <div onClick={() => this.handleBackClick()} class="back-button">
               <slot name="back-button"></slot>
             </div>
             <div onClick={() => this.hide()} class="close-button">

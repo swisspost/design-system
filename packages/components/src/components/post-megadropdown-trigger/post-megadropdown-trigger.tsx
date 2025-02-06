@@ -50,6 +50,16 @@ export class PostMegadropdownTrigger {
     }
   }
 
+  private handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      this.handleToggle();
+      if (this.megadropdown && !this.ariaExpanded) {
+        setTimeout(() => this.megadropdown.focusFirst(), 100);
+      }
+    }
+  };
+
   componentDidLoad() {
     this.validateControlFor();
 
@@ -69,6 +79,7 @@ export class PostMegadropdownTrigger {
       this.slottedButton.addEventListener('click', () => {
         this.handleToggle();
       });
+      this.slottedButton.addEventListener('keydown', this.handleKeyDown);
     } else {
       console.warn('No button found within post-megadropdown-trigger');
     }
