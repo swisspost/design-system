@@ -50,13 +50,4 @@ tokens.$default-map: components.$post-button;
     height: var(--post-core-dimension-16);
     width: var(--post-core-dimension-16);
   }
-
-  @include utilities-mx.high-contrast-mode() {
-    background-color: ButtonFace !important;
-    color: ButtonText !important;
-    border: 2px solid ButtonBorder;
-    &:hover {
-      border-color: Highlight !important;
-    }
-  }
 }

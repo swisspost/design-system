@@ -13,17 +13,15 @@ post-mainnavigation {
 
   // reset links and buttons
   post-list-item {
-    a {
+    > a {
       text-decoration: none;
       border-radius: 0;
     }
 
-    post-megadropdown-trigger {
-      button {
-        @include button.reset-button;
-        text-align: start;
-        @include utilities.focus-style;
-      }
+    post-megadropdown-trigger button {
+      @include button.reset-button;
+      text-align: start;
+      @include utilities.focus-style;
     }
 
     > a,
