@@ -14,8 +14,8 @@ const meta: MetaExtended = {
   ],
   argTypes: {
     alignContainer: {
-      name: 'Align Container',
-      description: 'Align an element to its Container edge.',
+      name: 'Align To Container',
+      description: 'Align an element to its container edge.',
       control: {
         type: 'select',
       },
@@ -23,7 +23,7 @@ const meta: MetaExtended = {
         'none',
         'align-container-start',
         'align-container-end',
-        'align-container-start align-container-end',
+        'align-container-start & align-container-end',
       ],
       table: {
         category: 'General',
@@ -33,20 +33,31 @@ const meta: MetaExtended = {
   args: {
     alignContainer: 'align-container-start',
   },
-  render: (args: Args) => html`
-    <div class="container">
-      <h3>Title</h3>
-      <p>
-        ${args.alignContainer !== 'none'
-          ? 'Image aligned to the  ' + args.alignContainer.substring(16) + ' of the container.'
-          : 'Image not aligned to the container.'}
-      </p>
-      <img
-        src="https://www.post.ch/-/media/portal-opp/pn/bilder/filialezukunft.jpg?mw=1600&vs=1&hash=92E85C90640D8F24A1B21E150E1BC9C5"
-        class="${args.alignContainer !== 'none' ? args.alignContainer : nothing}"
-      />
-    </div>
-  `,
+  render: (args: Args) => {
+    let alignmentMessage;
+    if (args.alignContainer !== 'none') {
+      alignmentMessage =
+        'Image is aligned to the ' + args.alignContainer.substring(16) + ' of the container.';
+    } else if (
+      args.alignContainer === 'align-container-start' ||
+      args.alignContainer === 'align-container-end'
+    ) {
+      alignmentMessage = 'Image is aligned to both edges of the container.';
+    } else {
+      alignmentMessage = 'Image is not aligned to the container.';
+    }
+
+    return html`
+      <div class="container">
+        <h3>Title</h3>
+        <p>${alignmentMessage}</p>
+        <img
+          src="https://www.post.ch/-/media/portal-opp/pn/bilder/filialezukunft.jpg?mw=1600&vs=1&hash=92E85C90640D8F24A1B21E150E1BC9C5"
+          class="${args.alignContainer.replace(/[~&]/g, '').trim()}"
+        />
+      </div>
+    `;
+  },
 };
 
 export default meta;
@@ -69,8 +80,10 @@ export const AlignContainerGrid: Story = {
           <h3>Title</h3>
           <p>
             ${args.alignContainer !== 'none'
-              ? 'Images aligned to the ' + args.alignContainer.substring(16) + ' of the container.'
-              : 'Images not aligned to the container.'}
+              ? 'Images are aligned to the ' +
+                args.alignContainer.substring(16) +
+                ' of the container.'
+              : 'Images are not aligned to the container.'}
           </p>
         </div>
         <div class="col-4">
