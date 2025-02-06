@@ -11,8 +11,6 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
 #storybook-root,
 #storybook-docs {
-  background-color: white;
-
   .sbdocs-content .container >,
   .sbdocs-content .container > post-tabs > post-tab-panel >,
   .sbdocs-content .container > migration-global-state {
@@ -61,7 +59,8 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
   .sbdocs-content .container {
     // Support for autolink-headings
-    :is(h1, h2, h3, h4, h5, h6) {
+    .docs-title :is(h1, h2, h3, h4, h5, h6),
+    > :is(h1, h2, h3, h4, h5, h6) {
       position: relative;
 
       @media (hover: hover) {
@@ -123,8 +122,8 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
       display: block;
       margin-top: 0.25rem;
       padding: 1rem;
-      background-color: var(--post-contrast-color);
-      color: var(--post-contrast-color-inverted);
+      background-color: post.$black;
+      color: post.$white;
     }
   }
 
@@ -197,6 +196,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 }
 
 .fake-content {
+  margin-block: var(--post-core-dimension-32) !important;
   position: relative;
   min-height: calc(1.6rem * 8);
   background: repeating-linear-gradient(
@@ -208,7 +208,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
   &::after {
     content: '';
-    background: white;
+    background: var(--post-current-palette-bg);
     width: 33%;
     height: 1.7rem;
     display: block;

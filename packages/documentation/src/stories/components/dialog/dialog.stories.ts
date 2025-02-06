@@ -210,7 +210,7 @@ const CustomContentTemplate = {
   render: () => {
     return html`
       <dialog>
-        <form method="dialog" onsubmit="console.log(event)" class="p-regular-r">
+        <form method="dialog" onsubmit="console.log(event)" class="p-16">
           <h2>Custom content</h2>
           <p>This is some other content, just placed inside the dialog.</p>
           <button class="btn btn-primary">Ok</button>

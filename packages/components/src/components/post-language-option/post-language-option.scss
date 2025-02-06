@@ -1,72 +1,55 @@
 @use '@swisspost/design-system-styles/core' as post;
-@use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
 
-:host {
+post-language-option {
   display: inline-block;
-  width: fit-content;
+
+  button {
+    @include post.reset-button;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  :is(a, button) {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 2px;
+    @include utilities-mx.focus-style;
+  }
+
+  &:has([aria-current]):not([aria-current='false']) {
+    display: none;
+  }
 }
 
-button {
-  @include post.reset-button;
-}
+post-language-option:where([variant='list']) {
+  :is(a, button) {
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-:is(a, button) {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  padding: var(--post-language-option-padding);
-}
-
-.post-language-option-list {
-  @include post.focus-style;
-  border-radius: 2px;
-  width: 40px;
-  height: 40px;
-
-  &[aria-current='true'],
-  &[aria-current='page'] {
-    background-color: #050400;
-    color: #fff;
-    @include utilities.high-contrast-mode() {
-      background-color: SelectedItem !important;
+    &:hover {
+      color: #504f4b;
     }
   }
 }
 
-.post-language-option-dropdown {
-  padding-block: 13px;
-  padding-inline: 24px;
-  box-sizing: border-box;
-  position: relative;
+post-language-option:where([variant='menu']) {
+  width: 100%;
 
-  &[aria-current='true'],
-  &[aria-current='page'] {
-    @include utilities.high-contrast-mode() {
-      background-color: SelectedItem !important;
-    }
-
-    &::after {
-      content: '';
-      left: -2px;
-      height: 3px;
-      background-color: #504f4b;
-      width: calc(100% + 4px);
-      display: block;
-      position: absolute;
-      bottom: 3px;
-    }
-
-    &:focus::after {
-      width: calc(100% - 5px);
-      left: 2px;
-    }
+  :is(a, button) {
+    padding-block: 13px;
+    padding-inline: 24px;
+    box-sizing: border-box;
+    position: relative;
+    left: -1px;
+    width: calc(100% + 2px);
   }
 }

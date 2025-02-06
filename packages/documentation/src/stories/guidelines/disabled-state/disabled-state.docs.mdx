@@ -7,24 +7,24 @@ import * as DisabledStateStories from './disabled-state.stories';
 
 Disabled states of input fields or buttons pose many accessibility issues.
 
-<ul class="list-unstyled ms-regular">
-  <li class="d-flex gap-mini">
+<ul className="list-unstyled ms-16">
+  <li className="d-flex gap-8">
     <div>❌</div>
     <div>Disabled fields cannot be reached by pressing tab</div>
   </li>
-  <li class="d-flex gap-mini">
+  <li className="d-flex gap-8">
     <div>❌</div>
     <div>It's often unclear why something is disabled</div>
   </li>
-  <li class="d-flex gap-mini">
+  <li className="d-flex gap-8">
     <div>❌</div>
     <div>It's often unclear how to enable a disabled field or button</div>
   </li>
-  <li class="d-flex gap-mini">
+  <li className="d-flex gap-8">
     <div>❌</div>
     <div>Disabled fields have low contrast</div>
   </li>
-  <li class="d-flex gap-mini">
+  <li className="d-flex gap-8">
     <div>❌</div>
     <div>
       The disabled state of a field is not always obvious (hard to discern from an enabled field)
@@ -32,8 +32,8 @@ Disabled states of input fields or buttons pose many accessibility issues.
   </li>
 </ul>
 
-<div class="table-responsive">
-  <table class="table caption-top">
+<div className="table-responsive">
+  <table className="table caption-top">
     <caption>Common use cases and how to handle them.</caption>
     <colgroup>
       <col style={{ width: '50%' }} />
@@ -41,14 +41,14 @@ Disabled states of input fields or buttons pose many accessibility issues.
     </colgroup>
     <tbody>
       <tr>
-        <td colSpan="2" class="fw-bold">
+        <td colSpan="2" className="fw-bold">
           Disabled button on forms with required fields
         </td>
       </tr>
       <tr>
         <td>
-          <ul class="list-unstyled">
-            <li class="d-flex gap-mini">
+          <ul className="list-unstyled">
+            <li className="d-flex gap-8">
               <div>❌</div>
               <div>
                 Forms with required fields tend to have the send button disabled until all required
@@ -59,8 +59,8 @@ Disabled states of input fields or buttons pose many accessibility issues.
           </ul>
         </td>
         <td>
-          <ul class="list-unstyled">
-            <li class="d-flex gap-mini">
+          <ul className="list-unstyled">
+            <li className="d-flex gap-8">
               <div>✔️</div>
               <div>
                 Let the user make mistakes and help them to correct them. Mark the required fields
@@ -72,14 +72,14 @@ Disabled states of input fields or buttons pose many accessibility issues.
         </td>
       </tr>
       <tr>
-        <td colSpan="2" class="fw-bold">
+        <td colSpan="2" className="fw-bold">
           Disabled button on form submit
         </td>
       </tr>
       <tr>
         <td>
-          <ul class="list-unstyled">
-            <li class="d-flex gap-mini">
+          <ul className="list-unstyled">
+            <li className="d-flex gap-8">
               <div>❌</div>
               <div>
                 The user submits a form. While the client waits for the server response and to
@@ -90,8 +90,8 @@ Disabled states of input fields or buttons pose many accessibility issues.
           </ul>
         </td>
         <td>
-          <ul class="list-unstyled">
-            <li class="d-flex gap-mini">
+          <ul className="list-unstyled">
+            <li className="d-flex gap-8">
               <div>✔️</div>
               <div>
                 Provide a loading indicator or display a message that shows current progress when
@@ -105,14 +105,14 @@ Disabled states of input fields or buttons pose many accessibility issues.
         </td>
       </tr>
       <tr>
-        <td colSpan="2" class="fw-bold">
+        <td colSpan="2" className="fw-bold">
           Disabled select options
         </td>
       </tr>
       <tr>
         <td>
-          <ul class="list-unstyled">
-            <li class="d-flex gap-mini">
+          <ul className="list-unstyled">
+            <li className="d-flex gap-8">
               <div>❌</div>
               <div>
                 Some options in a radio button group or select field are disabled because they are
@@ -124,8 +124,8 @@ Disabled states of input fields or buttons pose many accessibility issues.
           </ul>
         </td>
         <td>
-          <ul class="list-unstyled">
-            <li class="d-flex gap-mini">
+          <ul className="list-unstyled">
+            <li className="d-flex gap-8">
               <div>✔️</div>
               <div>
                 There are multiple possible solutions, depending on the situation:

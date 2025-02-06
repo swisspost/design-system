@@ -3,16 +3,37 @@
 @use '@swisspost/design-system-styles/mixins/button' as button-mx;
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
+@use '@swisspost/design-system-styles/mixins/media';
 
 tokens.$default-map: components.$post-button;
 
 :host {
-  display: block;
+  display: flex;
+
+  > span {
+    display: flex;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    background-color: #050400;
+    color: #fff;
+    border-radius: 2px;
+  }
+}
+
+:host(:where([variant='list'])) {
+  column-gap: 0.5rem;
 }
 
 .post-language-switch-dropdown-container {
   display: flex;
   flex-direction: column;
+
+  > * {
+    width: 100%;
+  }
 }
 
 .post-language-switch-trigger {

@@ -1,5 +1,22 @@
 # @swisspost/design-system-tokens
 
+## 9.0.0-next.15
+
+## 9.0.0-next.14
+
+### Patch Changes
+
+- Added a transform function to avoid unitless zero values for specific token types (like `dimension`, etc.), which allows us to use these tokens also in css `calc()` functions. Because `<number-token>`s are always interpreted as `<number>`s or `<integer>`s, "unitless 0" `<length>`s aren’t supported in calc().
+  Source: https://drafts.csswg.org/css-values-3/#calc-type-checking (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4534](https://github.com/swisspost/design-system/pull/4534))
+
+## 9.0.0-next.13
+
+## 9.0.0-next.12
+
+## 9.0.0-next.11
+
+## 9.0.0-next.10
+
 ## 9.0.0-next.9
 
 ## 9.0.0-next.8

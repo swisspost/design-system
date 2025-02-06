@@ -1,11 +1,6 @@
 import { Canvas, Meta, Source } from '@storybook/blocks';
-import { SCSS_VARIABLES, TextUtilityAPI } from './text.blocks';
 import * as TextStories from './text.stories';
 import SampleFontFamily from './text-font-family.sample.scss?raw';
-import SampleFontSize from './text-font-size.sample.scss?raw';
-import SampleFontWeight from './text-font-weight.sample.scss?raw';
-import SampleLineHeight from './text-line-height.sample.scss?raw';
-import SampleColor from './text-color.sample.scss?raw';
 import './text.styles.scss';
 
 <Meta of={TextStories} />
@@ -20,92 +15,37 @@ import './text.styles.scss';
 
 ### Font Family
 
+Use the class `.font-sans-serif` to set the text as the default font-family.
+
 <Canvas of={TextStories.FontFamily} sourceState="shown" />
 
 #### Set Font Family in SCSS
 
 <Source code={SampleFontFamily} language="scss" />
 
-#### Possible Values
-
-<TextUtilityAPI values={SCSS_VARIABLES.fontFamilies} cssPrefix="font" scssPrefix="font-family" />
-
-### Font Size
-
-<Canvas of={TextStories.FontSize} sourceState="shown" />
-
-#### Set Font Size in SCSS
-
-<Source code={SampleFontSize} language="scss" />
-
-#### Possible Values
-
-<TextUtilityAPI values={SCSS_VARIABLES.fontSizes} cssPrefix="fs" scssPrefix="font-size" />
-
 ### Font Weight
 
-<div className="banner banner-warning my-24">
-  The `.bold`, `.regular`, and `.light` classes are deprecated in favor of the `.fw-*` classes.
-</div>
+The font weight classes available are `.fw-normal`, `.fw-bold` and `.fw-black`.
 
 <Canvas of={TextStories.FontWeight} sourceState="shown" />
 
-#### Set Font Weight in SCSS
-
-<Source code={SampleFontWeight} language="scss" />
-
-#### Possible Values
-
-<TextUtilityAPI values={SCSS_VARIABLES.fontWeights} cssPrefix="fw" scssPrefix="font-weight" />
-
 ### Font Style
+
+The font style classes available are `.fst-normal` and `.fst-italic`.
 
 <Canvas of={TextStories.FontStyle} sourceState="shown" />
 
-<p className="mb-32">
-  <em>There are no Sass variables for font styles at this time.</em>
-</p>
-
-#### Possible Values
-
-<TextUtilityAPI values={SCSS_VARIABLES.fontStyles} cssPrefix="fst" />
-
 ### Line Heights
 
+The line height classes available are `.lh-1`, `.lh-sm` and `.lh-lg`.
+
+For good accessibility, the line height is set to <code>1.5</code> for body text and <code>1.2</code> for headings by default.
+
 <Canvas of={TextStories.LineHeight} sourceState="shown" />
-
-#### Set Line Height in SCSS
-
-<Source code={SampleLineHeight} language="scss" />
-
-#### Possible Values
-
-##### Relative
-
-For good accessibility, the line height is set to <code>1.5</code> for body text and <code>1.2</code> for headings.
-To make the line height equal to the font size, you can use the `.lh-1` class.
-There are no Sass variables for these row heights.
-
-<TextUtilityAPI values={SCSS_VARIABLES.relativeLineHeights} cssPrefix="lh" />
 
 ## Text
 
 Define how text-blocks are displayed.
-
-### Color
-
-Colorize text with `.text-*` utility classes.
-To colorize links, use the `.link-*` classes instead as they also provide styling for the `:hover` and `:focus` states.
-
-<Canvas of={TextStories.TextColor} sourceState="shown" />
-
-#### Set the Color in SCSS
-
-<Source code={SampleColor} language="scss" />
-
-#### Possible Values
-
-<TextUtilityAPI values={SCSS_VARIABLES.colors} cssPrefix="text" />
 
 ### Reset Color
 
@@ -146,6 +86,6 @@ Transform text with the following text capitalization classes: `.text-lowercase`
 
 ### Decorations
 
-Decorate text with the following text decoration classes.: `.text-decoration-line-through` and `.text-decoration-none`.
+Decorate text with the following text decoration classes: `text-decoration-underline`, `.text-decoration-line-through` and `.text-decoration-none`.
 
 <Canvas of={TextStories.TextDecoration} sourceState="shown" />

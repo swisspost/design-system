@@ -1,0 +1,51 @@
+import { Meta, Source, Canvas } from '@storybook/blocks';
+import * as ResponsiveDesignStories from './responsive-design.stories';
+import './responsive-design.styles.scss';
+import responsiveImage from './responsive-image.sample.html?raw';
+
+<Meta of={ResponsiveDesignStories} />
+
+# Responsive Design
+
+<div className="lead">
+  Responsive design and development ensures that a website or an application provides an optimal
+  viewing experience across different devices, from large desktop computers to mobile phones.
+  Nowadays, users access the web on a variety of screen sizes and resolutions, so it's crucial for
+  websites to adapt seamlessly to any screen.
+</div>
+
+## Flexible grids
+
+Grids should use percentage-based widths for elements rather than fixed pixel values, which allows content to adapt to the user's screen size.
+For more details, read our [grid system docs](/?path=/docs/7240f2ef-216a-490e-9bd8-c0cef19f7b31--docs).
+
+<Canvas of={ResponsiveDesignStories.FluidLayout} sourceState="hidden" />
+
+<Canvas of={ResponsiveDesignStories.NotFluidLayout} sourceState="hidden" />
+
+## Media queries and Breakpoints
+
+Media queries are CSS rules that apply specific styles based on a device's width or height.
+Our design system defines breakpoints from mobile to large desktop and comes with a full range of responsive helper classes and mixins. For more details on that, read our [breakpoint docs](/?path=/docs/20af6e2b-32b1-42ef-a187-b026aea7fe13--docs).
+
+Breakpoints are used to adapt the display of contents in a webpage depending on the screen size to maintain usability.
+
+<Canvas of={ResponsiveDesignStories.BreakpointsLayout} sourceState="hidden" />
+
+<Canvas of={ResponsiveDesignStories.NoBreakpointsLayout} sourceState="hidden" />
+
+## Typography
+
+In the design system, responsive typography is achieved by using CSS variables that adjust font sizes based on the viewport size. This allows for dynamic scaling of text accross devices. By using the correct semantic elements (such as headings, paragraphs, etc.), content adapts to maintain a consistent and responsive layout.
+For more details, read our [typography docs](/?path=/docs/677cfabf-dbf0-4de2-ad07-6d5bfb9e2375--docs).
+
+## Responsive images
+
+Responsive images use the `srcset` attribute to load different image sizes based on screen size and resolution, which optimizes loading times and data usage. This overall will improve a website's performance as it reduces unnecessary bandwidth use on mobile devices.
+More informations on `srcset` can be found on the [mdn web docs](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/srcset).
+
+<Source code={responsiveImage} language="html" />
+
+## Components
+
+All components in our design system are fully responsive. From the header, which seamlessly transitions between mobile and desktop versions, to smaller components with dynamic spacing and font sizes that adjust based on the viewport, our system ensures your website delivers an optimized, responsive experience across all devices.

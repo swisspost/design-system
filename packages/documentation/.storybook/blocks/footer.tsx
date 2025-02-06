@@ -78,11 +78,11 @@ const TEAM_MEMBERS: TeamMember[] = [
 
 const BASEURL = 'https://github.com/swisspost/design-system/tree/main/packages/documentation';
 
-function getGitHubUrl(path: String) {
+function getGitHubUrl(path: string) {
   return `${BASEURL}${path.replace(/^\./, '').replace(/\.stories\.ts$/, '.docs.mdx')}`;
 }
 
-export default (params: { pathToStoryFile?: String }) => (
+export default (params: { pathToStoryFile?: string }) => (
   <>
     <div className="container mt-56 font-size-18 text-end">
       {params.pathToStoryFile && (
@@ -94,7 +94,7 @@ export default (params: { pathToStoryFile?: String }) => (
     <footer className="docs-footer mt-56">
       <div>
         <div className="container">
-          <div className="pt-big-r pb-big-r">
+          <div className="py-32">
             <h2 className="mt-0">Design System Team Members</h2>
             <ul className="list-profile">
               {TEAM_MEMBERS.sort(() => (Math.random() > 0.5 ? 1 : -1)).map((developer, index) => (
@@ -114,8 +114,8 @@ export default (params: { pathToStoryFile?: String }) => (
                 </li>
               ))}
             </ul>
-            <div className="row mt-regular-r">
-              <div className="col-12 col-sm-auto mt-regular-r">
+            <div className="row mt-24">
+              <div className="col-12 col-sm-auto mt-24">
                 <a
                   className="btn-primary btn"
                   href="https://github.com/swisspost/design-system/issues"

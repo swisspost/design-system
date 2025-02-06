@@ -1,5 +1,4 @@
 import { Meta, Source } from '@storybook/blocks';
-import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
 import * as DropdownStories from './dropdown.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 import NgbComponentDemoLink from '@/shared/nb-bootstrap/ngb-component-demo-link.mdx';
@@ -52,21 +51,21 @@ import SampleIcons from './dropdown-icons.sample.html?raw';
 
 ## Examples
 
-<PostTabs>
-  <PostTabHeader panel="basicDropdown">Basic Dropdown</PostTabHeader>
-  <PostTabPanel name="basicDropdown">
+<post-tabs>
+  <post-tab-header panel="basicDropdown">Basic Dropdown</post-tab-header>
+  <post-tab-panel name="basicDropdown">
     <Source code={SampleBasic} language="html" />
-  </PostTabPanel>
-  <PostTabHeader panel="basicDropup">Basic Dropup</PostTabHeader>
-  <PostTabPanel name="basicDropup">
+  </post-tab-panel>
+  <post-tab-header panel="basicDropup">Basic Dropup</post-tab-header>
+  <post-tab-panel name="basicDropup">
     <Source code={SampleDropup} language="html" />
-  </PostTabPanel>
-  <PostTabHeader panel="scrollableDropup">Scrollable Dropup</PostTabHeader>
-  <PostTabPanel name="scrollableDropup">
+  </post-tab-panel>
+  <post-tab-header panel="scrollableDropup">Scrollable Dropup</post-tab-header>
+  <post-tab-panel name="scrollableDropup">
     <Source code={SampleDropupScroll} language="html" />
-  </PostTabPanel>
-  <PostTabHeader panel="dropdownIcon">Dropdown with Icons</PostTabHeader>
-  <PostTabPanel name="dropdownIcon">
+  </post-tab-panel>
+  <post-tab-header panel="dropdownIcon">Dropdown with Icons</post-tab-header>
+  <post-tab-panel name="dropdownIcon">
     <Source code={SampleIcons} language="html" />
-  </PostTabPanel>
-</PostTabs>
+  </post-tab-panel>
+</post-tabs>
