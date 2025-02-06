@@ -7,7 +7,6 @@ import { version } from '@root/package.json';
 @Component({
   tag: 'post-closebutton',
   shadow: false,
-  styleUrl: 'post-closebutton.scss',
 })
 export class PostClosebutton {
   @Element() host: HTMLPostClosebuttonElement;
