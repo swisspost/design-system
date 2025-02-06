@@ -189,6 +189,17 @@ export const Default: Story = {
           </post-list-item>
         </post-list>
       </post-mainnavigation>
-    </post-header>`;
+    </post-header>
+    <div style="
+        position: relative;
+        height: 400px;
+        width: 100%;
+        background-color: red;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      ">
+      </div>
+    `;
   },
 };
