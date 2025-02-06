@@ -14,144 +14,134 @@
     <link rel="stylesheet" href="/assets/css/index.css" />
     <script type="module" src="/build/post-components.esm.js"></script>
     <script nomodule src="/build/post-components.js"></script>
+
+    <style>
+      /* Ensure the entire page does not scroll */
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      /* Scrollable wrapper to contain the header and content */
+      .scrollable-wrapper {
+        height: 100vh;
+        overflow: scroll;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Scrollable content area */
+      .content {
+        padding: 20px;
+        background: #f3f3f3;
+        min-height: 200vh; /* Ensures scrolling */
+      }
+    </style>
   </head>
-  <body style="min-height: 200vh">
-    <post-header>
-      <!-- Logo -->
-      <post-logo slot="post-logo">Homepage</post-logo>
 
-      <!-- Meta navigation -->
-      <ul class="list-inline" slot="meta-navigation">
-        <li><a href="">Jobs</a></li>
-        <li><a href="">Über uns</a></li>
-      </ul>
+  <body>
+    <div class="scrollable-wrapper">
+      <post-header>
+        <!-- Logo -->
+        <post-logo slot="post-logo">Homepage</post-logo>
 
-      <!-- Menu button for mobile -->
-      <post-togglebutton slot="post-togglebutton">
-        <span class="visually-hidden-sm">Menu</span>
-        <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
-        <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
-      </post-togglebutton>
+        <!-- Meta navigation -->
+        <ul class="list-inline" slot="meta-navigation">
+          <li><a href="">Jobs</a></li>
+          <li><a href="">Über uns</a></li>
+        </ul>
 
-      <!-- Language switch -->
-      <post-language-switch
-        caption="Change the language"
-        description="The currently selected language is English."
-        name="language-switch-example"
-        slot="post-language-switch"
-      >
-        <post-language-option active="false" code="de" name="Deutsch">DE</post-language-option>
-        <post-language-option active="false" code="fr" name="French">FR</post-language-option>
-        <post-language-option active="false" code="it" name="Italiano">IT</post-language-option>
-        <post-language-option active="true" code="en" name="English">EN</post-language-option>
-      </post-language-switch>
+        <!-- Menu button for mobile -->
+        <post-togglebutton slot="post-togglebutton">
+          <span class="visually-hidden-sm">Menu</span>
+          <post-icon aria-hidden="true" name="burger" data-showWhen="untoggled"></post-icon>
+          <post-icon aria-hidden="true" name="closex" data-showWhen="toggled"></post-icon>
+        </post-togglebutton>
 
-      <!-- Application title (optional) -->
-      <h1 slot="title">Application title</h1>
+        <!-- Language switch -->
+        <post-language-switch
+          caption="Change the language"
+          description="The currently selected language is English."
+          name="language-switch-example"
+          slot="post-language-switch"
+        >
+          <post-language-option active="false" code="de" name="Deutsch">DE</post-language-option>
+          <post-language-option active="false" code="fr" name="French">FR</post-language-option>
+          <post-language-option active="false" code="it" name="Italiano">IT</post-language-option>
+          <post-language-option active="true" code="en" name="English">EN</post-language-option>
+        </post-language-switch>
 
-      <!-- Custom content (optional) -->
-      <ul class="list-inline">
-        <li>
-          <a href="#">
-            <span class="visually-hidden-sm">Search</span>
-            <post-icon aria-hidden="true" name="search"></post-icon>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="visually-hidden-sm">Login</span>
-            <post-icon aria-hidden="true" name="login"></post-icon>
-          </a>
-        </li>
-      </ul>
+        <!-- Application title -->
+        <h1 slot="title">Application title</h1>
 
-      <!-- Main navigation -->
-      <post-mainnavigation caption="Hauptnavigation">
-        <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
-          <post-icon aria-hidden="true" name="arrowright"></post-icon> Back
-        </button>
+        <!-- Custom content -->
+        <ul class="list-inline">
+          <li>
+            <a href="#">
+              <span class="visually-hidden-sm">Search</span>
+              <post-icon aria-hidden="true" name="search"></post-icon>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="visually-hidden-sm">Login</span>
+              <post-icon aria-hidden="true" name="login"></post-icon>
+            </a>
+          </li>
+        </ul>
 
-        <post-list title-hidden="">
-          <h2>Main Navigation</h2>
+        <!-- Main navigation -->
+        <post-mainnavigation caption="Hauptnavigation">
+          <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
+            <post-icon aria-hidden="true" name="arrowright"></post-icon> Back
+          </button>
 
-          <!-- Link only level 1 -->
-          <post-list-item><a href="/briefe">Briefe</a></post-list-item>
-          <post-list-item><a href="/pakete">Pakete</a></post-list-item>
+          <post-list title-hidden="">
+            <h2>Main Navigation</h2>
+            <post-list-item><a href="/briefe">Briefe</a></post-list-item>
+            <post-list-item><a href="/pakete">Pakete</a></post-list-item>
+          </post-list>
+        </post-mainnavigation>
+      </post-header>
 
-          <!-- Level 1 with megadropdown -->
-          <post-list-item>
-            <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
-            <post-megadropdown id="briefe">
-              <button slot="back-button" class="btn btn-tertiary btn-sm">
-                <post-icon name="arrowright"></post-icon>
-                Back
-              </button>
-              <post-closebutton slot="close-button">Schliessen</post-closebutton>
-              <h2 slot="megadropdown-title">Briefe title</h2>
-              <post-list>
-                <h3>Briefe senden</h3>
-                <post-list-item><a href="/sch">Briefe Schweiz</a></post-list-item>
-                <post-list-item><a href="/kl">Kleinwaren Ausland</a></post-list-item>
-                <post-list-item><a href="">Waren Ausland</a></post-list-item>
-                <post-list-item><a href="">Express und Kurier</a></post-list-item>
-              </post-list>
-              <post-list>
-                <h3><a href="/schritt-für-schritt">Schritt für Schritt</a></h3>
-                <post-list-item><a href="/sch">Pakete Schweiz</a></post-list-item>
-                <post-list-item><a href="/kl">Kleinwaren Ausland</a></post-list-item>
-                <post-list-item><a href="">Waren Ausland</a></post-list-item>
-                <post-list-item><a href="">Express und Kurier</a></post-list-item>
-              </post-list>
-            </post-megadropdown>
-          </post-list-item>
-          <post-list-item>
-            <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
-            <post-megadropdown id="pakete">
-              <button slot="back-button" class="btn btn-tertiary btn-sm">
-                <post-icon name="arrowright"></post-icon>
-                Back
-              </button>
-              <post-closebutton slot="close-button">Schliessen</post-closebutton>
-              <h2 slot="megadropdown-title">Pakete title</h2>
-              <post-list>
-                <h3>Pakete senden</h3>
-                <post-list-item><a href="/sch">Pakete Schweiz</a></post-list-item>
-                <post-list-item><a href="/kl">Kleinwaren Ausland</a></post-list-item>
-                <post-list-item><a href="">Waren Ausland</a></post-list-item>
-                <post-list-item><a href="">Express und Kurier</a></post-list-item>
-              </post-list>
-              <post-list>
-                <h3><a href="/schritt-für-schritt">Schritt für Schritt</a></h3>
-                <post-list-item><a href="/sch">Pakete Schweiz</a></post-list-item>
-                <post-list-item><a href="/kl">Kleinwaren Ausland</a></post-list-item>
-                <post-list-item><a href="">Waren Ausland</a></post-list-item>
-                <post-list-item><a href="">Express und Kurier</a></post-list-item>
-              </post-list>
-            </post-megadropdown>
-          </post-list-item>
-        </post-list>
-      </post-mainnavigation>
-    </post-header>
+      <div class="content">
+        <h1>Components package playground</h1>
+        <h1>Components package playground</h1>
+        <h1>Components package playground</h1>
+        <h1>Components package playground</h1>
+        <h1>Components package playground</h1>
+        <h1>Components package playground</h1>
 
-    <h1>Components package playground</h1>
-    <p class="mb-4">
-      Use this playground for quickly developing Stencil web-components. Run
-      <code style="background-color: lightgrey; padding: 0.125rem 0.25rem; border-radius: 0.25rem"
-        >pnpm components:start</code
-      >
-      to get going.
-    </p>
-    <label for="tokens-select">Select tokens package: </label>
-    <select
-      name="tokens"
-      id="tokens-select"
-      value="external"
-      class="mb-4"
-      onchange="if (['external', 'internal'].includes(this.value)) { document.getElementById('tokens').setAttribute('href', `/assets/css/post-tokens-${encodeURIComponent(this.value)}.css`); }"
-    >
-      <option value="external">Post external</option>
-      <option value="internal">Post internal</option>
-    </select>
-    <hr />
+        <h1>Components package playground</h1>
+        <h1>Components package playground</h1>
+        <h1>Components package playground</h1>
+        <h1>Components package playground</h1>
+        <h1>Components package playground</h1>
+        <h1>Components package playground</h1>
+        <h1>Components package playground</h1>
+        <h1>Components package playground</h1>
+        <p class="mb-4">
+          Use this playground for quickly developing Stencil web-components. Run
+          <code style="background-color: lightgrey; padding: 0.125rem 0.25rem; border-radius: 0.25rem"
+            >pnpm components:start</code
+          >
+          to get going.
+        </p>
+        <label for="tokens-select">Select tokens package: </label>
+        <select
+          name="tokens"
+          id="tokens-select"
+          value="external"
+          class="mb-4"
+          onchange="if (['external', 'internal'].includes(this.value)) { document.getElementById('tokens').setAttribute('href', `/assets/css/post-tokens-${encodeURIComponent(this.value)}.css`); }"
+        >
+          <option value="external">Post external</option>
+          <option value="internal">Post internal</option>
+        </select>
+        <hr />
+      </div>
+    </div>
   </body>
 </html>
