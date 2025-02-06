@@ -1,6 +1,6 @@
+import type { Icon } from '../../models/icon.model';
+import type { CenshareResultPage, CenshareResult } from '../../models/censhare-result-page.model';
 import path from 'path';
-import { CenshareResultPage, CenshareResult } from '../../models/censhare-result-page.model';
-import { Icon } from '../../models/icon.model';
 
 const excludedRanges = [[4000, 7999]];
 const excludedKeywords = ['Piktogramme "Die Post" ab 2017', 'Piktogramme "Die Post" 2017'];

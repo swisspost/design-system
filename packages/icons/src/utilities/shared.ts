@@ -1,6 +1,5 @@
+import type { Icon, OutputIcon, JsonReport } from '../models/icon.model';
 import { styleText } from 'node:util';
-import { Icon, OutputIcon, JsonReport } from '../models/icon.model';
-
 import { REPORT } from './constants';
 
 export function getBaseReport(): JsonReport {

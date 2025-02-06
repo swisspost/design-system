@@ -1,5 +1,5 @@
+import type { JsonReport } from '../models/icon.model';
 import { version } from '../../package.json';
-import { JsonReport } from '../models/icon.model';
 import { coloredLogMessage } from './shared';
 
 export const SOURCE_PATH = 'src/icons';

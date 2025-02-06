@@ -1,5 +1,5 @@
+import type { IconSet } from './models/icon.model';
 import path from 'path';
-import { IconSet } from './models/icon.model';
 import { urls } from './utilities/environment';
 import { SOURCE_PATH } from './utilities/constants';
 

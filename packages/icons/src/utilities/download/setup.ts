@@ -1,5 +1,5 @@
-import fs from 'fs';
 import iconSets from '../../iconsets.config';
+import fs from 'fs';
 
 export function setup() {
   iconSets.forEach(iconsSet => {

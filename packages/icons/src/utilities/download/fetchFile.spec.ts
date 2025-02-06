@@ -1,10 +1,10 @@
-import fetch, { Response } from 'node-fetch';
-import {
+import type {
   Businessfield,
   Type,
   TypeFilter,
   VariantMIME,
 } from '../../models/censhare-result-page.model';
+import fetch, { Response } from 'node-fetch';
 import mockFs from 'mock-fs';
 import { fetchFile } from './fetchFile';
 

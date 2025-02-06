@@ -1,7 +1,7 @@
+import type { OutputIcon, JsonReport, GroupItem, IconSetGroups } from '../../models/icon.model';
 import fs from 'fs';
 import path from 'path';
 import { version } from '../../../package.json';
-import { OutputIcon, JsonReport, GroupItem, IconSetGroups } from '../../models/icon.model';
 import { getBaseReport, sortIcons } from '../shared';
 
 export function writeReport(

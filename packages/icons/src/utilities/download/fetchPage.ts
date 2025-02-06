@@ -1,6 +1,6 @@
+import type { CenshareError, CenshareResultPage } from '../../models/censhare-result-page.model';
 import fetch from 'node-fetch';
 import { requestInit } from '../environment';
-import { CenshareError, CenshareResultPage } from '../../models/censhare-result-page.model';
 import { coloredLogMessage } from '../shared';
 
 /**

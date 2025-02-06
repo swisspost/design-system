@@ -1,7 +1,7 @@
+import type { Icon, JsonReport, IconSetGroups, GroupItem } from '../../models/icon.model';
+import iconSets from '../../iconsets.config';
 import fs from 'fs';
 import path from 'path';
-import iconSets from '../../iconsets.config';
-import { Icon, JsonReport, IconSetGroups, GroupItem } from '../../models/icon.model';
 import { getNameParts } from '../shared';
 
 import { ID_SEPERATOR, ID_UNWANTED_PARTS, UI_ICON_SIZES } from '../constants';

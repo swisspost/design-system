@@ -1,6 +1,6 @@
+import type { IconSet, JsonReport } from './models/icon.model';
 import iconSets from './iconsets.config';
-import { IconSet, JsonReport } from './models/icon.model';
-
+import { checkEnvVarsExist } from './utilities/environment';
 import { setup } from './utilities/download/setup';
 import { getBaseReport, coloredLogMessage } from './utilities/shared';
 import { fetchPage } from './utilities/download/fetchPage';
@@ -8,8 +8,6 @@ import { fetchFile } from './utilities/download/fetchFile';
 import { format } from './utilities/download/format';
 import { updateReport, writeReport } from './utilities/download/report';
 import buildSVGs from './utilities/build';
-
-import { MESSAGE_ENV_VARS_MISSING_ERROR } from './utilities/constants';
 
 async function fetchSVGs() {
   setup();
@@ -77,9 +75,6 @@ async function downloadIconSet(
   return writeReport(iconSet, report);
 }
 
-// start fetching icons if every iconSet has an "apiUrl" defined
-if (iconSets.every(iconSet => iconSet.apiUrl)) {
+if (checkEnvVarsExist()) {
   fetchSVGs();
-} else {
-  throw new Error(MESSAGE_ENV_VARS_MISSING_ERROR);
 }

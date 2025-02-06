@@ -4,7 +4,6 @@ import { getIconSetGroups } from './iconSetGroups';
 import { createFiles } from './createFiles';
 import { writeReport } from './report';
 import { coloredLogMessage } from '../shared';
-
 import { OUTPUT_PATH, OUTPUT_PATH_ICONS } from '../constants';
 
 const iconOutputDirectory = path.resolve(OUTPUT_PATH_ICONS);

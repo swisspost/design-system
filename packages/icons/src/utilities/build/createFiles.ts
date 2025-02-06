@@ -1,9 +1,9 @@
+import type { IconSetGroups } from '../../models/icon.model';
+import svgoOptions from '../../../svgo.config.ui';
 import fs from 'fs';
 import path from 'path';
 import { HTMLElement, parse } from 'node-html-parser';
 import { optimize } from 'svgo';
-import svgoOptions from '../../../svgo.config.ui';
-import { IconSetGroups } from '../../models/icon.model';
 
 import {
   ID_PREFIX,

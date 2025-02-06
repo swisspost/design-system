@@ -1,10 +1,10 @@
+import type { Icon } from '../../models/icon.model';
+import svgoOptions from '../../../svgo.config';
 import fetch from 'node-fetch';
 import fs from 'fs';
 import path from 'path';
 import { optimize } from 'svgo';
-import svgoOptions from '../../../svgo.config';
 import { requestInit } from '../environment';
-import { Icon } from '../../models/icon.model';
 
 export async function fetchFile(icon: Icon, output: string) {
   if (!icon.meta.downloadLink) {
