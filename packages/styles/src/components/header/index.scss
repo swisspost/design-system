@@ -64,4 +64,9 @@ post-header {
       background: var(--post-core-color-sandgrey-100);
     }
   }
+  button {
+    @include utilities.high-contrast-mode() {
+      color: ButtonText !important;
+    }
+  }
 }

@@ -54,22 +54,8 @@ tokens.$default-map: components.$post-button;
 
   @include utilities.focus-style;
 
-  // Styles  to improve accessibility in high contrast mode
   @include utilities.high-contrast-mode() {
-    &[class] {
-      border-color: ButtonBorder;
-      background-color: ButtonFace;
-
-      &:not(:disabled, .disabled) {
-        &:hover {
-          border-color: highlight;
-        }
-      }
-
-      &:disabled {
-        border-color: GrayText !important;
-      }
-    }
+    background-color: ButtonFace !important;
   }
 }
 
@@ -91,14 +77,6 @@ tokens.$default-map: components.$post-button;
     @include utilities.not-disabled-hover() {
       @include button-mx.button-variant-def('hover', $color);
     }
-  }
-}
-
-.btn-tertiary {
-  // Styles  to improve accessibility in high contrast mode
-  @include utilities.high-contrast-mode() {
-    color: linktext;
-    text-decoration: underline !important;
   }
 }
 
