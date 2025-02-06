@@ -13,16 +13,29 @@ tokens.$default-map: components.$post-container;
       $padding: tokens.get('grid-padding-#{$breakpoint}');
       --post-grid-gutter-x: #{$gutter};
 
+      // Align element to the container end
       > .row > [class*='col']:last-of-type > .align-container-end,
       > .align-container-end:last-of-type:not([class*='col']) {
         margin-inline-end: calc(-1 * max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
         min-width: calc(100% + max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
       }
 
+      // Align element to the container start
       > .row > [class*='col']:first-of-type > .align-container-start,
       > .align-container-start:first-of-type:not([class*='col']) {
         margin-inline-start: calc(-1 * max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
         min-width: calc(100% + max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
+      }
+
+      // Align element to both container edges
+      > .row
+        > [class*='col']:first-of-type:last-of-type
+        > .align-container-start.align-container-end,
+      > .align-container-start:first-of-type:not(
+          [class*='col']
+        ).align-container-end:last-of-type:not([class*='col']) {
+        margin-inline: calc(-1 * max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x))));
+        min-width: calc(100% + calc(2 * max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x)))));
       }
     }
   }

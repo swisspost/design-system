@@ -19,7 +19,15 @@ const meta: MetaExtended = {
       control: {
         type: 'select',
       },
-      options: ['none', 'align-container-start', 'align-container-end'],
+      options: [
+        'none',
+        'align-container-start',
+        'align-container-end',
+        'align-container-start align-container-end',
+      ],
+      table: {
+        category: 'General',
+      },
     },
   },
   args: {
@@ -27,11 +35,14 @@ const meta: MetaExtended = {
   },
   render: (args: Args) => html`
     <div class="container">
-      <h2>Some content</h2>
-      <p>Some text</p>
+      <h3>Title</h3>
+      <p>
+        ${args.alignContainer !== 'none'
+          ? 'Image aligned to the  ' + args.alignContainer.substring(16) + ' of the container.'
+          : 'Image not aligned to the container.'}
+      </p>
       <img
-        alt="image aligned with the inline-start edge of the container"
-        src="public/images/design-system-preview.png"
+        src="https://www.post.ch/-/media/portal-opp/pn/bilder/filialezukunft.jpg?mw=1600&vs=1&hash=92E85C90640D8F24A1B21E150E1BC9C5"
         class="${args.alignContainer !== 'none' ? args.alignContainer : nothing}"
       />
     </div>
@@ -45,37 +56,26 @@ type Story = StoryObj;
 export const Default: Story = {};
 
 export const AlignContainerGrid: Story = {
-  args: {
-    alignContainer: 'align-container-start',
-  },
-  argTypes: {
-    alignContainer: {
-      name: 'Align Container',
-      description: 'Align an element to its container end edge.',
-      control: {
-        type: 'select',
-      },
-      options: ['none', 'align-container-start', 'align-container-end'],
-    },
-  },
   render: (args: Args) => html`
     <div class="container">
       <div class="row">
         <div class="col-4">
           <img
-            alt="image aligned with the inline-end edge of the container"
-            src="public/images/design-system-preview.png"
+            src="https://www.post.ch/-/media/portal-opp/pn/bilder/filialezukunft.jpg?mw=1600&vs=1&hash=92E85C90640D8F24A1B21E150E1BC9C5"
             class="${args.alignContainer !== 'none' ? args.alignContainer : nothing}"
           />
         </div>
         <div class="col-4">
-          <h2>Some inline-start content</h2>
-          <p>Some inline-start text</p>
+          <h3>Title</h3>
+          <p>
+            ${args.alignContainer !== 'none'
+              ? 'Images aligned to the ' + args.alignContainer.substring(16) + ' of the container.'
+              : 'Images not aligned to the container.'}
+          </p>
         </div>
         <div class="col-4">
           <img
-            alt="image aligned with the inline-end edge of the container"
-            src="public/images/design-system-preview.png"
+            src="https://www.post.ch/-/media/portal-opp/pn/bilder/filialezukunft.jpg?mw=1600&vs=1&hash=92E85C90640D8F24A1B21E150E1BC9C5"
             class="${args.alignContainer !== 'none' ? args.alignContainer : nothing}"
           />
         </div>

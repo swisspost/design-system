@@ -15,7 +15,12 @@ export const AlignContainer: Story = {
   render: (_args: Args, context: StoryContext) => {
     return schemes(
       () => html`
-        ${['none', 'align-container-start', 'align-container-end'].map(
+        ${[
+          'none',
+          'align-container-start',
+          'align-container-end',
+          'align-container-start align-container-end',
+        ].map(
           alignContainer =>
             html`
               ${meta.render({ alignContainer }, context)}
