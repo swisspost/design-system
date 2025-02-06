@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-tokens",
-  "version": "9.0.0-next.13",
+  "version": "9.0.0-next.15",
   "description": "Design Tokens for the Swiss Post Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -14,11 +14,12 @@
   },
   "type": "module",
   "scripts": {
-    "copy-files": "copyfiles -f package.json README.md CONTRIBUTING.md CHANGELOG.md LICENSE dist",
     "build": "pnpm clean && node ./build.js && pnpm copy-files",
-    "clean": "rimraf dist",
     "build:verbose": "node ./build.js --verbosity=verbose",
-    "lint": "eslint"
+    "clean": "rimraf dist",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "copy-files": "copyfiles -f package.json README.md CONTRIBUTING.md CHANGELOG.md LICENSE dist"
   },
   "keywords": [
     "tokens",

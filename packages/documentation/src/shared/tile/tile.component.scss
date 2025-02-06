@@ -66,7 +66,7 @@ $tile-rg-size: var(--post-docs-tile-rg-size, calc($tile-size / 1.2));
       border-bottom-right-radius: inherit;
 
       ::slotted(img) {
-        height: 0;
+        height: 0 !important;
         min-height: min(100%, calc($tile-size * 0.4));
       }
 
