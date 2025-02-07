@@ -1,8 +1,11 @@
 import type {
+  SourceIcon,
   OutputIcon,
-  JsonReport,
+  MinimalIcon,
   IconSetGroupsItem,
   IconSetGroups,
+  JsonReport,
+  MinimalJsonReport,
 } from '../../models/icon.model';
 import fs from 'fs';
 import path from 'path';
@@ -10,7 +13,7 @@ import { version } from '../../../package.json';
 import { getBaseReport, sortIcons } from '../shared';
 
 export function writeReport(
-  buildReportOutputPath: string,
+  reportOutputDirectory: string,
   iconSetGroups: IconSetGroups[],
 ): JsonReport {
   const outputReport = iconSetGroups.reduce((report: JsonReport, iconSet: IconSetGroups) => {
@@ -34,13 +37,13 @@ export function writeReport(
         },
         createdAt: getCreatedAt(items),
         modifiedAt: getModifiedAt(items),
-        sources: items.map((item: IconSetGroupsItem) => item.report.uuid),
+        sources: items.map((item: IconSetGroupsItem) => item.report.id),
       } as OutputIcon;
     });
 
     return {
       ...report,
-      source: [...(report.sources ?? []), ...iconSetReport.sources],
+      sources: [...(report.sources ?? []), ...iconSetReport.sources],
       icons: [...report.icons, ...outputIcons],
       wrongViewBox: [...report.wrongViewBox, ...iconSetReport.wrongViewBox],
       noKeywords: [...report.noKeywords, ...iconSetReport.noKeywords],
@@ -52,10 +55,10 @@ export function writeReport(
         success: report.stats.success + iconSetReport.stats.success,
         output: [...report.icons, ...outputIcons].length,
       },
-    };
+    } as JsonReport;
   }, getBaseReport());
 
-  outputReport.sources?.sort(sortIcons);
+  outputReport.sources.sort(sortIcons);
   outputReport.icons.sort(sortIcons);
   outputReport.wrongViewBox.sort(sortIcons);
   outputReport.noKeywords.sort(sortIcons);
@@ -64,7 +67,11 @@ export function writeReport(
   outputReport.created = new Date();
   outputReport.version = version;
 
-  fs.writeFileSync(buildReportOutputPath, JSON.stringify(outputReport, null, 2));
+  fs.writeFileSync(
+    path.join(reportOutputDirectory, 'report.json'),
+    JSON.stringify(outputReport, null, 2),
+  );
+  writeMinimalReport(reportOutputDirectory, outputReport);
 
   return outputReport;
 
@@ -92,5 +99,28 @@ export function writeReport(
     return items
       .map(item => item.report.modifiedAt)
       .sort((a: Date, b: Date) => (a > b ? -1 : 1))[0];
+  }
+}
+
+function writeMinimalReport(reportOutputDirectory: string, report: JsonReport) {
+  const minimalReport: MinimalJsonReport = {
+    sources: mapMinimalIcons(report.sources),
+    icons: mapMinimalIcons(report.icons),
+    created: report.created,
+    version: report.version,
+  };
+
+  fs.writeFileSync(
+    path.join(reportOutputDirectory, 'report.min.json'),
+    JSON.stringify(minimalReport),
+  );
+
+  function mapMinimalIcons(icons: (SourceIcon | OutputIcon)[]): MinimalIcon[] {
+    return icons.map(i => ({
+      id: i.id,
+      name: i.file.basename,
+      keys: i.meta.keywords,
+      sources: 'sources' in i ? i.sources : [],
+    }));
   }
 }

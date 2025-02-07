@@ -1,6 +1,6 @@
 import React from 'react';
-import report from '@swisspost/design-system-icons/public/report.json';
-import { SourceIcon } from '@swisspost/design-system-icons/src/models/icon.model';
+import report from '@swisspost/design-system-icons/public/report.min.json';
+import { MinimalIcon } from '@swisspost/design-system-icons/src/models/icon.model';
 import './search-icons.styles.scss';
 
 interface Icon {
@@ -15,20 +15,21 @@ interface IconSets {
   uiSolid: Icon[];
 }
 
-const ICON_SETS: IconSets = (report.icons as unknown as SourceIcon[]).reduce(
-  (sets: IconSets, icon: SourceIcon) => {
+const ICON_SETS: IconSets = (report.icons as unknown as MinimalIcon[]).reduce(
+  (sets: IconSets, icon: MinimalIcon) => {
     let typeOfSet = 'post';
+    const basename = icon.name.replace(/.svg$/, '');
 
-    if (/-solid$/.test(icon.file.basename)) {
+    if (basename.endsWith('-solid')) {
       typeOfSet = 'uiSolid';
-    } else if (!/^(\d){4}$/.test(icon.file.basename)) {
+    } else if (!/^(\d){4}$/.test(basename)) {
       typeOfSet = 'uiLight';
     }
 
     sets[typeOfSet as keyof IconSets].push({
-      name: icon.file.basename,
-      keywords: icon.meta.keywords.join(', '),
-      searchKeywords: [icon.file.basename, ...icon.meta.keywords].map(word =>
+      name: basename,
+      keywords: icon.keys.join(', '),
+      searchKeywords: [basename, ...icon.keys].map(word =>
         word
           .normalize('NFD')
           .replace(/[\u0300-\u036f]/g, '')
@@ -271,7 +272,7 @@ export class Search extends React.Component {
       <div className="container">
         <div className="search-form">{this.searchForm()}</div>
         <div className="search-results">
-          <a href="#results-top" />
+          <a href="#results-top"></a>
           {this.paging()}
           {this.resultsList()}
           {this.paging()}

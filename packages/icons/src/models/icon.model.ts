@@ -51,7 +51,14 @@ export interface OutputIcon {
   };
   createdAt: Date;
   modifiedAt: Date;
-  sources: string[];
+  sources: number[];
+}
+
+export interface MinimalIcon {
+  id: number;
+  name: string;
+  keys: string[];
+  sources: number[];
 }
 
 export interface IconSetGroupsItem {
@@ -79,6 +86,13 @@ export interface JsonReport {
     success: number;
     output: number;
   };
+  created: Date;
+  version: string;
+}
+
+export interface MinimalJsonReport {
+  sources: MinimalIcon[];
+  icons: MinimalIcon[];
   created: Date;
   version: string;
 }

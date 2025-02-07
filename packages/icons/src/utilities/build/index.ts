@@ -7,16 +7,16 @@ import { coloredLogMessage } from '../shared';
 import { OUTPUT_PATH, OUTPUT_PATH_ICONS } from '../constants';
 
 const iconOutputDirectory = path.resolve(OUTPUT_PATH_ICONS);
-const reportOutputPath = path.join(OUTPUT_PATH, 'report.json');
+const reportOutputDirectory = path.resolve(OUTPUT_PATH);
 
 export default function buildSVGs() {
   console.log(coloredLogMessage('<blue>Building icons...</blue>'));
 
-  setup(iconOutputDirectory, reportOutputPath);
+  setup(iconOutputDirectory, reportOutputDirectory);
 
   const iconSetGroups = getIconSetGroups();
   createFiles(iconOutputDirectory, iconSetGroups);
-  const report = writeReport(reportOutputPath, iconSetGroups);
+  const report = writeReport(reportOutputDirectory, iconSetGroups);
 
   console.log(
     coloredLogMessage(
