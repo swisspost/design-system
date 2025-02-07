@@ -40,7 +40,7 @@ The design-system is formed with several packages and different compatibilities 
           Internet-header:
           <list-component packageType={PackageType.InternetHeader}></list-component>
         </td>
-        <td rowSpan="5">
+        <td rowSpan="4">
           {[packages.find(pkg => pkg.name === 'Styles')].map((p => (
             <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel} key={p.name}>
               <img src={p.img.src} alt={p.img.alt}/>
@@ -59,19 +59,6 @@ The design-system is formed with several packages and different compatibilities 
           </div>
         </td>
         <td>TBD</td>
-      </tr>
-      <tr>
-        <td scope="row">Intranet-header</td>
-        <td>N/A</td>
-        <td>
-          {[packages.find(pkg => pkg.name === 'Intranet-Header')].map((p => (
-            <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel} key={p.name}>
-              <img src={p.img.src} alt={p.img.alt}/>
-              <span>{p.version}</span>
-            </ti-le>
-            )))}
-        </td>
-        <td >N/A</td>
       </tr>
       <tr>
         <td scope="row">
