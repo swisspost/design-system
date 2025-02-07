@@ -1,5 +1,13 @@
 # @swisspost/design-system-components
 
+## 7.4.11
+
+### Patch Changes
+
+- Fixed the way the icon url gets generated in the `post-icon` component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4628](https://github.com/swisspost/design-system/pull/4628))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.4.11
+
 ## 7.4.10
 
 ### Patch Changes
