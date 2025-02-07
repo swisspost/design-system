@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Fixed `post-logo` from shrinking on `post-header` scroll.
+Fixed `post-logo` from disappearing on `post-header` scroll.
