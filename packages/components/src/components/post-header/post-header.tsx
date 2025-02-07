@@ -138,6 +138,7 @@ export class PostHeader {
   }
 
   private handleScrollEvent() {
+    console.log(this.scrollParent.scrollTop)
     // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
     const st = Math.max(
       0,
@@ -145,7 +146,6 @@ export class PostHeader {
         ? this.scrollParent.documentElement.scrollTop
         : this.scrollParent.scrollTop,
     );
-
     this.host.style.setProperty('--header-scroll-top', `${st}px`);
   }
 
@@ -175,6 +175,7 @@ export class PostHeader {
   }
 
   private handleResize() {
+    this.handleScrollEvent()
     const previousDevice = this.device;
     let newDevice: DEVICE_SIZE;
     const width = window?.innerWidth;
