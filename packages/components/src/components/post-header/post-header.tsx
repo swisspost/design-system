@@ -51,7 +51,7 @@ export class PostHeader {
   }
 
   componentDidLoad() {
-    this.updateHeaderHeight();
+    this.updateLocalHeaderHeight();
   }
 
   @Element() host: HTMLPostHeaderElement;
@@ -178,7 +178,7 @@ export class PostHeader {
     });
   }
 
-  private updateHeaderHeight() {
+  private updateLocalHeaderHeight() {
     requestAnimationFrame(() => {
       const mhh = this.host.shadowRoot.querySelector('.local-header')?.clientHeight || 0;
       this.host.style.setProperty('--main-header-height', `${mhh}px`);
@@ -204,7 +204,7 @@ export class PostHeader {
       this.mobileMenuAnimation.finish(); // no animation
     }
 
-    this.updateHeaderHeight();
+    this.updateLocalHeaderHeight();
 
     // Apply only on change for doing work only when necessary
     if (newDevice !== previousDevice) {
