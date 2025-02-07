@@ -51,8 +51,7 @@ export class PostHeader {
   }
 
   componentDidLoad() {
-    const mhh = this.host.shadowRoot.querySelector('.local-header')?.clientHeight;
-    this.host.style.setProperty('--main-header-height', `${mhh}px`);
+    this.updateHeaderHeight();
   }
 
   @Element() host: HTMLPostHeaderElement;
@@ -179,6 +178,13 @@ export class PostHeader {
     });
   }
 
+  private updateHeaderHeight() {
+    requestAnimationFrame(() => {
+      const mhh = this.host.shadowRoot.querySelector('.local-header')?.clientHeight || 0;
+      this.host.style.setProperty('--main-header-height', `${mhh}px`);
+    });
+  }
+
   private handleResize() {
     const previousDevice = this.device;
     let newDevice: DEVICE_SIZE;
@@ -197,6 +203,8 @@ export class PostHeader {
       this.toggleMobileMenu();
       this.mobileMenuAnimation.finish(); // no animation
     }
+
+    this.updateHeaderHeight();
 
     // Apply only on change for doing work only when necessary
     if (newDevice !== previousDevice) {
