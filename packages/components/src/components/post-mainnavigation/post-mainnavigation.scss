@@ -10,6 +10,7 @@
 
 post-mainnavigation {
   flex: 0 0 auto;
+  box-shadow: var(--post-core-elevation-3);
 
   // reset links and buttons
   post-list-item {

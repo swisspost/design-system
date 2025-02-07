@@ -18,6 +18,7 @@
 
   z-index: 1020;
   position: relative;
+  height: var(--header-height);
 
   @include media.min(lg) {
     --global-header-reduced-height: 24px;
@@ -113,13 +114,13 @@ slot[name='post-logo'] {
 .local-header {
   display: flex;
   position: sticky;
+  box-sizing: border-box;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--post-core-dimension-8);
+  gap: var(--post-core-dimension-4);
   min-height: var(--local-header-min-height);
   background: var(--post-core-color-brand-white);
-  transition: box-shadow 0.2s ease-in-out; 
 
   @include media.min(lg) {
     z-index: 3;
@@ -127,7 +128,6 @@ slot[name='post-logo'] {
       -1 * (var(--local-header-height) - var(--main-navigation-height)) + var(--global-header-reduced-height)
     );
     padding-block-start: var(--post-core-dimension-18);
-    box-shadow: var(--post-core-elevation-3);
   }
 
   @include media.max(lg) {
@@ -170,6 +170,7 @@ slot[name='post-logo'] {
   }
 
   @include media.min(lg) {
+    line-height: 34px !important;
     font-size: var(--post-core-font-size-28) !important;
   }
 

@@ -42,12 +42,14 @@ export class PostHeader {
   private throttledResize = throttle(50, () => this.handleResize());
 
   componentWillRender() {
-    this.scrollParent = this.getScrollParent(this.host);
-    this.scrollParent.addEventListener('scroll', this.throttledScroll, { passive: true });
-    window.addEventListener('resize', this.throttledResize, { passive: true });
-    this.handleResize();
-    this.handleScrollEvent();
-    this.getFocusableElements();
+    setTimeout(() => {
+      this.scrollParent = this.getScrollParent(this.host);
+      this.scrollParent.addEventListener('scroll', this.throttledScroll, { passive: true });
+      window.addEventListener('resize', this.throttledResize, { passive: true });
+      this.handleResize();
+      this.handleScrollEvent();
+      this.getFocusableElements();
+    }, 1000); // 3-second delay before execution
   }
 
   componentDidLoad() {
