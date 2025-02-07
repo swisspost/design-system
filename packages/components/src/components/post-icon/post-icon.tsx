@@ -1,6 +1,12 @@
-import { Component, Element, Host, h, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
 import { checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '@/utils';
 import { version } from '@root/package.json';
+
+type UrlDefinition = {
+  url: URL;
+  definesDomain: boolean;
+  definesSlug: boolean;
+};
 
 const CDN_URL = 'https://unpkg.com/@swisspost/design-system-icons/public/post-icons';
 const ANIMATION_NAMES = [
@@ -25,12 +31,7 @@ type Animation = (typeof ANIMATION_NAMES)[number];
   shadow: true,
 })
 export class PostIcon {
-  private path: string;
-
   @Element() host: HTMLPostIconElement;
-
-  @State() svgStyles: string;
-  @State() svgOutput: string;
 
   /**
    * The name of the animation.
@@ -110,6 +111,80 @@ export class PostIcon {
     checkEmptyOrType(newValue, 'number', 'The post-icon "scale" prop should be a number.');
   }
 
+  // Construct the icon url from different possible sources
+  private getUrl() {
+    // the first definition object which defines a domain, will be used to set the domain of the file url
+    // the first definition object which defines a slug, will be used to set the slug of the file url
+    const urlDefinitions = [
+      getUrlDefinition(this.base, 'both'),
+      getUrlDefinition(
+        document.head
+          .querySelector('meta[name="design-system-settings"][data-post-icon-base]')
+          ?.getAttribute('data-post-icon-base'),
+        'relative',
+      ),
+      getUrlDefinition(document.querySelector('base[href]')?.getAttribute('href'), 'both'),
+    ];
+
+    // in case no other definition defines a domain, the current origin is used as a fallback
+    const origin = urlDefinitions.find(d => d.definesDomain)?.url?.origin ?? window.location.origin;
+    // in case no other definition defines a slug, the cdn url is used as a fallback
+    const slug = urlDefinitions.find(d => d.definesSlug)?.url?.pathname;
+    const file = `${this.name}.svg`;
+
+    let url: string;
+
+    if (slug) {
+      url = new URL(`${origin}${slug}/${file}`).toString();
+    } else {
+      url = new URL(`${CDN_URL}/${file}`).toString();
+    }
+
+    return url;
+
+    function getUrlDefinition(
+      url: string | undefined | null,
+      allow: 'both' | 'absolute' | 'relative',
+    ): UrlDefinition {
+      return {
+        url: getUrlObject(url),
+        definesDomain: allow !== 'relative' ? definesDomain(url) : false,
+        definesSlug: allow !== 'absolute' ? definesSlug(url) : false,
+      } as UrlDefinition;
+
+      function getUrlObject(url: string | undefined | null) {
+        if (url) {
+          return definesDomain(url) ? new URL(url) : new URL(url, window.location.origin);
+        } else {
+          return null;
+        }
+      }
+
+      function definesDomain(url: string | undefined | null) {
+        return url ? /^https?:\/\//.test(url) : false;
+      }
+
+      function definesSlug(url: string | undefined | null) {
+        const urlObject = getUrlObject(url);
+        return Boolean(/^\/.+/.test(urlObject?.pathname));
+      }
+    }
+  }
+
+  private getStyles() {
+    const url = this.getUrl();
+
+    return Object.entries({
+      '-webkit-mask-image': `url(${url})`,
+      'mask-image': `url('${url}')`,
+      'transform':
+        (this.scale && !isNaN(Number(this.scale)) ? 'scale(' + this.scale + ')' : '') +
+        (this.rotate && !isNaN(Number(this.rotate)) ? ' rotate(' + this.rotate + 'deg)' : ''),
+    })
+      .filter(([_key, value]) => value !== null)
+      .reduce((styles, [key, value]) => Object.assign(styles, { [key]: value }), {});
+  }
+
   componentDidLoad() {
     this.validateBase();
     this.validateName();
@@ -120,54 +195,10 @@ export class PostIcon {
     this.validateAnimation();
   }
 
-  componentWillRender() {
-    this.setPath();
-  }
-
-  private setPath() {
-    // Construct icon path from different possible sources
-    const metaBase =
-      document.head
-        .querySelector('meta[name="design-system-settings"][data-post-icon-base]')
-        ?.getAttribute('data-post-icon-base') ?? null;
-
-    const baseHref = document.getElementsByTagName('base')[0]?.href;
-
-    let calculatedBase: string | null;
-
-    // If this.base or metaBase are relative, prefix them with the baseHref if it exists
-    const absolutePathReg = /^(?:[a-z+]+:)?\/\//i;
-    if (baseHref) {
-      if (this.base && !absolutePathReg.test(this.base)) {
-        calculatedBase = baseHref + this.base;
-      } else if (metaBase && !absolutePathReg.test(metaBase)) {
-        calculatedBase = baseHref + metaBase;
-      }
-    } else {
-      calculatedBase = this.base ?? metaBase;
-    }
-
-    const fileBase = `${calculatedBase ?? baseHref ?? CDN_URL}/`.replace(/\/\/$/, '/');
-    const fileName = `${this.name}.svg`;
-    const filePath = `${fileBase}${fileName}`;
-
-    this.path = new URL(filePath, window.location.origin).toString();
-  }
-
   render() {
-    // create inline styles for some properties
-    const svgStyles = Object.entries({
-      '-webkit-mask-image': `url('${this.path}')`,
-      'mask-image': `url('${this.path}')`,
-      'transform':
-        (this.scale && !isNaN(Number(this.scale)) ? 'scale(' + this.scale + ')' : '') +
-        (this.rotate && !isNaN(Number(this.rotate)) ? ' rotate(' + this.rotate + 'deg)' : ''),
-    })
-      .filter(([_key, value]) => value !== null)
-      .reduce((styles, [key, value]) => Object.assign(styles, { [key]: value }), {});
     return (
       <Host data-version={version}>
-        <span style={svgStyles}></span>
+        <span style={this.getStyles()}></span>
       </Host>
     );
   }
