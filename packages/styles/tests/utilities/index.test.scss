@@ -3,11 +3,7 @@
 @use 'tests/jest';
 @use 'src/utilities';
 
-
 .test {
-  // it should include legacy utilities
-  @extend .bold;
-
   // it should correctly create utilities from tokens
   @extend .m-16;
   @extend .mt-24;
