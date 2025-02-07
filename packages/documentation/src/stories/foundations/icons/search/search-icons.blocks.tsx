@@ -1,22 +1,22 @@
 import React from 'react';
 import report from '@swisspost/design-system-icons/public/report.json';
-import { IIcon } from '@swisspost/design-system-icons/src/models/icon.model';
+import { SourceIcon } from '@swisspost/design-system-icons/src/models/icon.model';
 import './search-icons.styles.scss';
 
-interface IIconSetIcon {
+interface Icon {
   name: string;
   keywords: string;
   searchKeywords: string[];
 }
 
-interface IIconSets {
-  post: IIconSetIcon[];
-  uiLight: IIconSetIcon[];
-  uiSolid: IIconSetIcon[];
+interface IconSets {
+  post: Icon[];
+  uiLight: Icon[];
+  uiSolid: Icon[];
 }
 
-const ICON_SETS: IIconSets = report.icons.reduce(
-  (sets: IIconSets, icon: IIcon) => {
+const ICON_SETS: IconSets = (report.icons as unknown as SourceIcon[]).reduce(
+  (sets: IconSets, icon: SourceIcon) => {
     let typeOfSet = 'post';
 
     if (/-solid$/.test(icon.file.basename)) {
@@ -25,7 +25,7 @@ const ICON_SETS: IIconSets = report.icons.reduce(
       typeOfSet = 'uiLight';
     }
 
-    sets[typeOfSet as keyof IIconSets].push({
+    sets[typeOfSet as keyof IconSets].push({
       name: icon.file.basename,
       keywords: icon.meta.keywords.join(', '),
       searchKeywords: [icon.file.basename, ...icon.meta.keywords].map(word =>
@@ -89,7 +89,7 @@ export class Search extends React.Component {
   }
 
   updateResults(query?: string) {
-    let icons = ICON_SETS[this.form.set.current as keyof IIconSets];
+    let icons = ICON_SETS[this.form.set.current as keyof IconSets];
     if (query) icons = icons.filter(icon => icon.searchKeywords.find(word => word.includes(query)));
 
     this.results.icons = icons;
@@ -180,7 +180,7 @@ export class Search extends React.Component {
 
           <p className="form-hint">
             Showing {this.results.icons.length} of{' '}
-            {ICON_SETS[this.form.set.current as keyof IIconSets].length} icons.
+            {ICON_SETS[this.form.set.current as keyof IconSets].length} icons.
           </p>
         </div>
       </>

@@ -6,7 +6,13 @@ import type {
   MediaSize,
 } from './censhare-result-page.model';
 
-export interface Icon {
+export interface IconSet {
+  name: string;
+  apiUrl: string;
+  downloadDirectory: string;
+}
+
+export interface SourceIcon {
   uuid: string;
   id: number;
   type: Type;
@@ -45,34 +51,28 @@ export interface OutputIcon {
   };
   createdAt: Date;
   modifiedAt: Date;
-  raws: string[];
+  sources: string[];
 }
 
-export interface IconSet {
-  name: string;
-  apiUrl: string;
-  downloadDirectory: string;
-}
-
-export interface GroupItem {
+export interface IconSetGroupsItem {
   size: number | null;
   filePath: string;
-  report: Icon;
+  report: SourceIcon;
 }
 
 export interface IconSetGroups {
   name: string;
   sourceDirectory: string;
-  groups: Record<string, GroupItem[]>;
+  groups: Record<string, IconSetGroupsItem[]>;
 }
 
 export interface JsonReport {
-  raw: Icon[];
+  sources: SourceIcon[];
   icons: OutputIcon[];
-  wrongViewBox: Icon[];
-  noKeywords: Icon[];
-  noSVG: Icon[];
-  errored: Icon[];
+  wrongViewBox: SourceIcon[];
+  noKeywords: SourceIcon[];
+  noSVG: SourceIcon[];
+  errored: SourceIcon[];
   stats: {
     errors: number;
     notFound: number;

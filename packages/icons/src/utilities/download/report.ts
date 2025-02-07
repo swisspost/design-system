@@ -1,26 +1,26 @@
+import type { SourceIcon, IconSet, JsonReport } from '../../models/icon.model';
 import fs from 'fs';
 import path from 'path';
-import { Icon, IconSet, JsonReport } from '../../models/icon.model';
 import { getNameParts, sortIcons } from '../shared';
 
 export function updateReport(
   iconSet: IconSet,
   svg: string | false,
-  icon: Icon,
+  icon: SourceIcon,
   report: JsonReport,
 ): JsonReport {
   if (svg === false) {
     report.noSVG.push(icon);
   } else {
     // avoid duplicates
-    const existingIconIndex = report.raw.findIndex(i => i.file.name === icon.file.name);
+    const existingIconIndex = report.sources.findIndex(i => i.file.name === icon.file.name);
 
     if (existingIconIndex >= 0) {
       // override existing icon in report (because the file gets overridden as well)
-      report.raw[existingIconIndex] = icon;
+      report.sources[existingIconIndex] = icon;
     } else {
       // add non-existing icon to report
-      report.raw.push(icon);
+      report.sources.push(icon);
     }
 
     // check for wrong viewBox in svg
@@ -52,7 +52,7 @@ export function updateReport(
 }
 
 export function writeReport(iconSet: IconSet, report: JsonReport) {
-  report.raw.sort(sortIcons);
+  report.sources.sort(sortIcons);
   report.icons.sort(sortIcons);
   report.wrongViewBox.sort(sortIcons);
   report.noKeywords.sort(sortIcons);
@@ -60,7 +60,7 @@ export function writeReport(iconSet: IconSet, report: JsonReport) {
   report.errored.sort(sortIcons);
   report.stats.errors = report.errored.length;
   report.stats.notFound = report.noSVG.length;
-  report.stats.success = report.raw.length;
+  report.stats.success = report.sources.length;
   report.stats.output = report.icons.length;
 
   fs.writeFileSync(

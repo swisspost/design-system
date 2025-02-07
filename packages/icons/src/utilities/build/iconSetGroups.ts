@@ -1,4 +1,9 @@
-import type { Icon, JsonReport, IconSetGroups, GroupItem } from '../../models/icon.model';
+import type {
+  SourceIcon,
+  JsonReport,
+  IconSetGroups,
+  IconSetGroupsItem,
+} from '../../models/icon.model';
 import iconSets from '../../iconsets.config';
 import fs from 'fs';
 import path from 'path';
@@ -12,14 +17,14 @@ export function getIconSetGroups(): IconSetGroups[] {
       fs.readFileSync(path.join(iconSet.downloadDirectory, 'report.json'), 'utf-8'),
     ) as JsonReport;
 
-    return iconSetReport.raw.reduce(
+    return iconSetReport.sources.reduce(
       (
         iconSetGroups: {
           name: string;
           sourceDirectory: string;
-          groups: Record<string, GroupItem[]>;
+          groups: Record<string, IconSetGroupsItem[]>;
         },
-        icon: Icon,
+        icon: SourceIcon,
       ) => {
         const nameParts = getNameParts(icon.file.basename);
         const isMultiPartName = nameParts.length > 1;
@@ -28,8 +33,8 @@ export function getIconSetGroups(): IconSetGroups[] {
         const name = getGroupId(nameParts, isMultiPartName, hasSizeIndicator);
         const size =
           isMultiPartName && hasSizeIndicator ? parseInt(nameParts[nameParts.length - 1]) : null;
-        const existingGroupItems: GroupItem[] = iconSetGroups.groups[name] ?? [];
-        const currentGroupItem: GroupItem = {
+        const existingItems: IconSetGroupsItem[] = iconSetGroups.groups[name] ?? [];
+        const currentItem: IconSetGroupsItem = {
           size,
           filePath: path.join(iconSet.downloadDirectory, icon.file.name),
           report: icon,
@@ -37,7 +42,7 @@ export function getIconSetGroups(): IconSetGroups[] {
 
         iconSetGroups.groups = {
           ...iconSetGroups.groups,
-          [name]: [...existingGroupItems, currentGroupItem],
+          [name]: [...existingItems, currentItem],
         };
 
         return iconSetGroups;

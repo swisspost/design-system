@@ -7,7 +7,7 @@ export const OUTPUT_PATH = 'public';
 export const OUTPUT_PATH_ICONS = `${OUTPUT_PATH}/post-icons`;
 
 export const REPORT: JsonReport = {
-  raw: [],
+  sources: [],
   icons: [],
   wrongViewBox: [],
   noKeywords: [],

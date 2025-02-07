@@ -1,4 +1,9 @@
-import type { OutputIcon, JsonReport, GroupItem, IconSetGroups } from '../../models/icon.model';
+import type {
+  OutputIcon,
+  JsonReport,
+  IconSetGroupsItem,
+  IconSetGroups,
+} from '../../models/icon.model';
 import fs from 'fs';
 import path from 'path';
 import { version } from '../../../package.json';
@@ -29,13 +34,13 @@ export function writeReport(
         },
         createdAt: getCreatedAt(items),
         modifiedAt: getModifiedAt(items),
-        raws: items.map((item: GroupItem) => item.report.uuid),
+        sources: items.map((item: IconSetGroupsItem) => item.report.uuid),
       } as OutputIcon;
     });
 
     return {
       ...report,
-      raw: [...(report.raw ?? []), ...iconSetReport.raw],
+      source: [...(report.sources ?? []), ...iconSetReport.sources],
       icons: [...report.icons, ...outputIcons],
       wrongViewBox: [...report.wrongViewBox, ...iconSetReport.wrongViewBox],
       noKeywords: [...report.noKeywords, ...iconSetReport.noKeywords],
@@ -50,7 +55,7 @@ export function writeReport(
     };
   }, getBaseReport());
 
-  outputReport.raw?.sort(sortIcons);
+  outputReport.sources?.sort(sortIcons);
   outputReport.icons.sort(sortIcons);
   outputReport.wrongViewBox.sort(sortIcons);
   outputReport.noKeywords.sort(sortIcons);
@@ -64,26 +69,26 @@ export function writeReport(
   return outputReport;
 
   // get first businessfield
-  function getBusinessfield(items: GroupItem[]): string {
+  function getBusinessfield(items: IconSetGroupsItem[]): string {
     return items[0].report.meta.businessfield ?? 'kommunikation';
   }
 
   // get merged, unic keywords
-  function getKeywords(items: GroupItem[]): string[] {
+  function getKeywords(items: IconSetGroupsItem[]): string[] {
     return items.reduce<string[]>(
-      (keywords, item: GroupItem) =>
+      (keywords, item: IconSetGroupsItem) =>
         Array.from(new Set([...keywords, ...item.report.meta.keywords])),
       [],
     );
   }
 
   // get oldest createdAt date
-  function getCreatedAt(items: GroupItem[]): Date {
+  function getCreatedAt(items: IconSetGroupsItem[]): Date {
     return items.map(item => item.report.createdAt).sort((a: Date, b: Date) => (a > b ? 1 : -1))[0];
   }
 
   // get newest modifiedAt date
-  function getModifiedAt(items: GroupItem[]): Date {
+  function getModifiedAt(items: IconSetGroupsItem[]): Date {
     return items
       .map(item => item.report.modifiedAt)
       .sort((a: Date, b: Date) => (a > b ? -1 : 1))[0];
