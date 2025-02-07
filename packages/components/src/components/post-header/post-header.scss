@@ -74,20 +74,10 @@
   }
 }
 
-slot[name='post-logo'] {
-  align-self: flex-end;
-}
-
 .global-sub {
   display: flex;
   align-items: center;
   gap: var(--post-core-dimension-24);
-}
-
-.global-sub:first-of-type {
-  @include media.min(lg) {
-  align-items: end;
-  }
 }
 
 .align-end {
