@@ -1,5 +1,4 @@
 packages:
   - 'packages/*'
   - 'packages/components-angular/projects/*'
-  - 'packages/intranet-header-workspace/projects/*'
   - 'packages/styles-primeng-workspace/projects/*'

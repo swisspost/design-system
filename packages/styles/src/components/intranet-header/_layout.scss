@@ -1,8 +1,0 @@
-// Fix a regression after new version of grid
-sp-intranet-header ~ .container-fluid {
-  padding-left: 0;
-
-  > .row {
-    margin-left: 0;
-  }
-}
