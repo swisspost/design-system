@@ -43,16 +43,16 @@ const vpSamples = [
 
 const pxSamples = [
   { w: '12', h: '16', maxW: '32', minW: '12', maxH: '48', minH: '16' },
-  { w: '24', h: '32', maxW: '32', minW: '20', maxH: '40', minH: '24' },
+  { w: '24', h: '32', maxW: '32', minW: '12', maxH: '40', minH: '24' },
   { w: '40', h: '56', maxW: '48', minW: '24', maxH: '56', minH: '32' },
-  { w: '64', h: '64', maxW: '80', minW: '56', maxH: '112', minH: '32' },
-  { w: '112', h: '48', maxW: '112', minW: '40', maxH: '112', minH: '48' },
+  { w: '64', h: '64', maxW: '80', minW: '56', maxH: '104', minH: '32' },
+  { w: '104', h: '48', maxW: '104', minW: '40', maxH: '104', minH: '48' },
   { w: '64', h: '64', maxW: '80', minW: '32', maxH: '78', minH: '64' },
-  { w: '20', h: '16', maxW: '20', minW: '12', maxH: '32', minH: '16' },
-  { w: '32', h: '20', maxW: '40', minW: '24', maxH: '32', minH: '20' },
-  { w: '78', h: '112', maxW: '80', minW: '40', maxH: '112', minH: '56' },
-  { w: '48', h: '80', maxW: '112', minW: '48', maxH: '112', minH: '56' },
-  { w: '80', h: '112', maxW: '112', minW: '64', maxH: '112', minH: '32' },
+  { w: '12', h: '16', maxW: '16', minW: '12', maxH: '32', minH: '16' },
+  { w: '32', h: '12', maxW: '40', minW: '24', maxH: '32', minH: '12' },
+  { w: '78', h: '104', maxW: '80', minW: '40', maxH: '104', minH: '56' },
+  { w: '48', h: '80', maxW: '104', minW: '48', maxH: '104', minH: '56' },
+  { w: '80', h: '104', maxW: '104', minW: '64', maxH: '104', minH: '32' },
 ];
 
 function generateClassNames(sample: Record<string, string>, isViewport = false) {
