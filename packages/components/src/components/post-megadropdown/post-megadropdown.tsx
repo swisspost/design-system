@@ -67,11 +67,12 @@ export class PostMegadropdown {
     if (PostMegadropdown.activeDropdown && PostMegadropdown.activeDropdown !== this) {
       // Close the previously active dropdown without animation
       PostMegadropdown.activeDropdown.forceClose();
+    } else {
+      this.animationClass = 'slide-in';
     }
 
     this.isVisible = true;
     this.host.addEventListener('keydown', e => this.keyboardHandler(e));
-    this.animationClass = 'slide-in';
     PostMegadropdown.activeDropdown = this;
     this.postToggleMegadropdown.emit(this.isVisible);
     this.addOutsideClickListener();
@@ -83,6 +84,7 @@ export class PostMegadropdown {
   @Method()
   async hide() {
     this.animationClass = 'slide-out';
+    PostMegadropdown.activeDropdown = null;
     this.host.removeEventListener('keydown', e => this.keyboardHandler(e));
   }
 

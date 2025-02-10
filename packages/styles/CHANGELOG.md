@@ -1,8 +1,14 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.16
+
+## 9.0.0-next.15
+
 ## 9.0.0-next.14
 
 ### Major Changes
+
+- Removed the `.lh-base` utility class. (by [@leagrdv](https://github.com/leagrdv) with [#4360](https://github.com/swisspost/design-system/pull/4360))
 
 - Removed Bootstrap shadow utility classes from the Design System, as the elevation classes are replacing them. (by [@leagrdv](https://github.com/leagrdv) with [#4361](https://github.com/swisspost/design-system/pull/4361))
 
@@ -12,6 +18,8 @@
 
 - Removed `post-popovercontainer` from the `post-megadropdown` component and added desktop animations with new slide-down and slide-up effects. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4421](https://github.com/swisspost/design-system/pull/4421))
 
+- Removed deprecated `$displayX-weight` scss variables and font-weight light (`.light`) utilities as the new Swiss Post font does not have a 300 weight version. (by [@leagrdv](https://github.com/leagrdv) with [#4531](https://github.com/swisspost/design-system/pull/4531))
+
 ### Patch Changes
 
 - Made the following components hidden until fully loaded to prevent flickering: `post-avatar`, `post-banner`, `post-breadcrumb`, `post-breadcrumb-item`, `post-closebutton`, `post-collapsible-trigger`, `post-footer`, `post-header`, `post-language-option`, `post-language-switch`, `post-mainnavigation`, `post-megadropdown`, `post-megadropdown-trigger`, `post-menu`, `post-menu-item`, and `post-menu-trigger`. (by [@schaertim](https://github.com/schaertim) with [#4544](https://github.com/swisspost/design-system/pull/4544))
@@ -19,6 +27,10 @@
 - Fixed z-indexes for header components to ensure proper stacking order. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4421](https://github.com/swisspost/design-system/pull/4421))
 
 - Updated the styles for `.focus-ring` and added documentation. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4543](https://github.com/swisspost/design-system/pull/4543))
+
+- Fixed high contrast mode hover and focus styles for `post-avatar` component in anchor and button contexts. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4338](https://github.com/swisspost/design-system/pull/4338))
+
+- Internalized Bootstrap text utilities into the Design System. (by [@leagrdv](https://github.com/leagrdv) with [#4360](https://github.com/swisspost/design-system/pull/4360))
 
 ## 9.0.0-next.13
 

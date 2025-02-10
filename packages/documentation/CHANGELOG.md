@@ -1,5 +1,36 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.17
+
+### Minor Changes
+
+- Updated language switch behavior. (by [@myrta2302](https://github.com/myrta2302) with [#4376](https://github.com/swisspost/design-system/pull/4376))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.16
+  - @swisspost/design-system-components-react@9.0.0-next.16
+  - @swisspost/design-system-styles@9.0.0-next.16
+  - @swisspost/design-system-tokens@9.0.0-next.16
+  - @swisspost/design-system-icons@9.0.0-next.16
+  - @swisspost/internet-header@2.0.0-next.16
+
+## 6.0.0-next.16
+
+### Patch Changes
+
+- Updated the migrations documentation for v9. (by [@leagrdv](https://github.com/leagrdv) with [#4582](https://github.com/swisspost/design-system/pull/4582))
+
+- Fixed tabs in documentation pages. (by [@leagrdv](https://github.com/leagrdv) with [#4600](https://github.com/swisspost/design-system/pull/4600))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.15
+  - @swisspost/design-system-components-react@9.0.0-next.15
+  - @swisspost/design-system-styles@9.0.0-next.15
+  - @swisspost/design-system-tokens@9.0.0-next.15
+  - @swisspost/design-system-icons@9.0.0-next.15
+  - @swisspost/internet-header@2.0.0-next.15
+
 ## 6.0.0-next.15
 
 ### Major Changes
@@ -10,18 +41,27 @@
 
 ### Minor Changes
 
+- Removed deprecated `$displayX-weight` scss variables and font-weight light (`.light`) utilities as the new Swiss Post font does not have a 300 weight version. (by [@leagrdv](https://github.com/leagrdv) with [#4531](https://github.com/swisspost/design-system/pull/4531))
+
 - Updated the styles for `.focus-ring` and added documentation. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4543](https://github.com/swisspost/design-system/pull/4543))
+
+- Added the `post-linkarea` component. (by [@veyaromain](https://github.com/veyaromain) with [#4030](https://github.com/swisspost/design-system/pull/4030))
 
 - Added duplicate icons in icons health report. (by [@myrta2302](https://github.com/myrta2302) with [#4528](https://github.com/swisspost/design-system/pull/4528))
 
 ### Patch Changes
 
+- Fixed the sizing of the technology and supported browser images on the introduction page of the documentation. (by [@schaertim](https://github.com/schaertim) with [#4549](https://github.com/swisspost/design-system/pull/4549))
+
+- Internalized Bootstrap text utilities into the Design System. (by [@leagrdv](https://github.com/leagrdv) with [#4360](https://github.com/swisspost/design-system/pull/4360))
+
+- Added fake content on the header preview to show the sticky behaviour. (by [@leagrdv](https://github.com/leagrdv) with [#4367](https://github.com/swisspost/design-system/pull/4367))
 - Updated dependencies:
-  - @swisspost/design-system-components@9.0.0-next.14
   - @swisspost/design-system-styles@9.0.0-next.14
+  - @swisspost/design-system-components@9.0.0-next.14
+  - @swisspost/design-system-tokens@9.0.0-next.14
   - @swisspost/internet-header@2.0.0-next.14
   - @swisspost/design-system-components-react@9.0.0-next.14
-  - @swisspost/design-system-tokens@9.0.0-next.14
   - @swisspost/design-system-icons@9.0.0-next.14
 
 ## 6.0.0-next.14

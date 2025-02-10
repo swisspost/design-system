@@ -20,9 +20,12 @@ post-language-option {
     justify-content: center;
     height: 100%;
     width: 100%;
-    padding: var(--post-language-option-padding);
     border-radius: 2px;
     @include utilities-mx.focus-style;
+  }
+
+  &:has([aria-current]):not([aria-current='false']) {
+    display: none;
   }
 }
 
@@ -30,19 +33,10 @@ post-language-option:where([variant='list']) {
   :is(a, button) {
     width: 40px;
     height: 40px;
+    border-radius: 2px;
 
     &:hover {
       color: #504f4b;
-    }
-
-    &[aria-current='true'],
-    &[aria-current='page'] {
-      background-color: #050400;
-      color: #fff;
-
-      &:hover {
-        background-color: #504f4b;
-      }
     }
   }
 }
@@ -57,27 +51,5 @@ post-language-option:where([variant='menu']) {
     position: relative;
     left: -1px;
     width: calc(100% + 2px);
-
-    &[aria-current='true'],
-    &[aria-current='page'] {
-      &::after {
-        content: '';
-        left: 0;
-        height: 3px;
-        background-color: #050400;
-        width: 100%;
-        display: block;
-        position: absolute;
-        bottom: 3px;
-      }
-
-      &:hover::after {
-        background-color: #504f4b;
-      }
-    }
-
-    &:hover {
-      color: #504f4b;
-    }
   }
 }
