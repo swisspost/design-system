@@ -4,11 +4,20 @@ describe('collapsible', () => {
   describe('default', () => {
     beforeEach(() => {
       cy.getComponents(COLLAPSIBLE_ID, 'default', 'post-collapsible', 'post-collapsible-trigger');
+
+      // Ensure Cypress uses a valid ID selector
+      cy.get('@collapsible')
+        .invoke('attr', 'id')
+        .then((id) => {
+          const safeId = Cypress.$.escapeSelector(id);
+          cy.wrap(`#${safeId}`).as('collapsibleSafeSelector');
+        });
+
       cy.get('@collapsible-trigger').find('.btn').as('trigger');
     });
 
     it('should have a collapsible', () => {
-      cy.get('@collapsible').should('exist');
+      cy.get('@collapsibleSafeSelector').should('exist');
     });
 
     it('should have a trigger', () => {
@@ -16,21 +25,27 @@ describe('collapsible', () => {
     });
 
     it('should show the collapsible', () => {
-      cy.get('@collapsible').should(`be.visible`);
+      cy.get('@collapsibleSafeSelector').should('be.visible');
     });
 
     it('should set the correct ARIA attribute on the trigger', () => {
-      cy.get('@collapsible')
+      cy.get('@collapsibleSafeSelector')
         .invoke('attr', 'id')
-        .then(collapsibleId => {
+        .then((collapsibleId) => {
           cy.get('@trigger').should('have.attr', 'aria-controls', collapsibleId);
         });
+
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'true');
     });
 
     it('should hide the collapsible after clicking on the trigger once', () => {
       cy.get('@trigger').click();
-      cy.get('@collapsible').should(`be.hidden`);
+      
+      // Ensure aria-expanded updates first
+      cy.get('@trigger').invoke('attr', 'aria-expanded').should('equal', 'false');
+
+      // Then check visibility
+      cy.get('@collapsibleSafeSelector').should('be.hidden');
     });
 
     it('should update the "aria-expanded" attribute after hiding the collapsible', () => {
@@ -40,7 +55,12 @@ describe('collapsible', () => {
 
     it('should show the collapsible after clicking on the trigger twice', () => {
       cy.get('@trigger').dblclick();
-      cy.get('@collapsible').should(`be.visible`);
+      
+      // Ensure aria-expanded updates first
+      cy.get('@trigger').invoke('attr', 'aria-expanded').should('equal', 'true');
+
+      // Then check visibility
+      cy.get('@collapsibleSafeSelector').should('be.visible');
     });
 
     it('should update the "aria-expanded" attribute after showing the collapsible', () => {
@@ -55,23 +75,37 @@ describe('collapsible', () => {
         COLLAPSIBLE_ID,
         'initially-collapsed',
         'post-collapsible',
-        'post-collapsible-trigger',
+        'post-collapsible-trigger'
       );
+
+      cy.get('@collapsible')
+        .invoke('attr', 'id')
+        .then((id) => {
+          const safeId = Cypress.$.escapeSelector(id);
+          cy.wrap(`#${safeId}`).as('collapsibleSafeSelector');
+        });
+
       cy.get('@collapsible-trigger').find('.btn').as('trigger');
     });
 
     it('should hide the collapsible', () => {
-      cy.get('@collapsible').should(`be.hidden`);
+      cy.get('@collapsibleSafeSelector').should('be.hidden');
     });
 
     it('should show the collapsible after clicking on the trigger once', () => {
       cy.get('@trigger').click();
-      cy.get('@collapsible').should(`be.visible`);
+      
+      cy.get('@trigger').invoke('attr', 'aria-expanded').should('equal', 'true');
+
+      cy.get('@collapsibleSafeSelector').should('be.visible');
     });
 
     it('should hide the collapsible after clicking on the trigger twice', () => {
       cy.get('@trigger').dblclick();
-      cy.get('@collapsible').should(`be.hidden`);
+      
+      cy.get('@trigger').invoke('attr', 'aria-expanded').should('equal', 'false');
+
+      cy.get('@collapsibleSafeSelector').should('be.hidden');
     });
   });
 });
