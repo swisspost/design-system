@@ -27767,6 +27767,38 @@
       "modifiedAt": "2024-11-29T13:58:03.000Z"
     },
     {
+      "uuid": "c7dc7760-0c31-11ef-93cb-005056873709",
+      "id": 803519,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/803519/storage/ODAzNTE4LzAvbWFzdGVy",
+        "keywords": [
+          "Anhänger",
+          "Trailer",
+          "Rimorchio",
+          "Remorque",
+          "Trailer three-wheeler",
+          "Anhänger Dreirad",
+          "Remorque tricycle",
+          "Rimorchio a tre ruote"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2588.svg",
+        "basename": "2588",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-05-07T05:22:21.000Z",
+      "modifiedAt": "2024-11-29T13:58:03.000Z"
+    },
+    {
       "uuid": "c907f2e0-18c5-11ef-93cb-005056873709",
       "id": 804801,
       "type": "picture.pictogram.",
@@ -29425,6 +29457,66 @@
       },
       "createdAt": "2025-01-15T06:19:41.000Z",
       "modifiedAt": "2025-01-15T06:22:54.000Z"
+    },
+    {
+      "uuid": "df450ab0-dedc-11ef-a15d-005056873709",
+      "id": 1608180,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1608180/storage/MDAxNjA4MTc5LzAvbWFzdGVy",
+        "keywords": [
+          "Purchasing",
+          "Einkauf",
+          "Achats",
+          "Acquisti"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2643.svg",
+        "basename": "2643",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-01-30T07:36:09.000Z",
+      "modifiedAt": "2025-01-30T07:38:38.000Z"
+    },
+    {
+      "uuid": "55eeed40-e2be-11ef-a15d-005056873709",
+      "id": 1741398,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1741398/storage/MDAxNzQxMzk3LzAvbWFzdGVy",
+        "keywords": [
+          "Kalender",
+          "Calendar",
+          "Calendario",
+          "Calendrier",
+          "löschen",
+          "put out",
+          "Cancellare",
+          "Supprimer"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2644.svg",
+        "basename": "2644",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-02-04T06:07:38.000Z",
+      "modifiedAt": "2025-02-04T06:13:16.000Z"
     },
     {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
@@ -42038,11 +42130,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2025-01-17T14:09:38.959Z",
+  "created": "2025-02-09T01:37:50.296Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 973
+    "success": 976
   },
-  "version": "8.7.0"
+  "version": "8.8.1"
 }
