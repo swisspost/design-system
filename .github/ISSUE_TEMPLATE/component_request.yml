@@ -1,0 +1,28 @@
+name: New component request
+description: Add a working item for a component targeted at the new Design v2
+title: ''
+labels: ['request']
+projects: ['swisspost/3']
+assignees: []
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A short description of the component and why it should be included into the Design System
+      placeholder: Where do you need this component? Why do you need it? How can this component be useful for the organisation?
+    validations:
+      required: true
+  - type: textarea
+    id: requirements
+    attributes:
+      label: Requirements
+      description: What's the expected structure, behaviour and functionality of the component?
+      placeholder: Describe the specific requirements for this component like variants, API, options, responsive behaviour and parts.
+  - type: textarea
+    id: resources
+    attributes:
+      label: Resources
+      description: Can you provide additonal ressources like screenshots and links?
+      placeholder: Provide screenshots, links to a Design, the component in an existing project or somewhere in the wild. The more the better.
+
