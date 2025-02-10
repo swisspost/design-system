@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-documentation",
-  "version": "5.5.9",
+  "version": "5.5.10",
   "description": "Swiss Post Design System Documentation.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -28,11 +28,11 @@
     "lint": "eslint **/*.{ts,tsx,mdx}"
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:8.8.1",
-    "@swisspost/design-system-components-react": "workspace:8.8.1",
-    "@swisspost/design-system-icons": "workspace:8.8.1",
-    "@swisspost/design-system-styles": "workspace:8.8.1",
-    "@swisspost/internet-header": "workspace:1.15.7",
+    "@swisspost/design-system-components": "workspace:8.9.0",
+    "@swisspost/design-system-components-react": "workspace:8.9.0",
+    "@swisspost/design-system-icons": "workspace:8.9.0",
+    "@swisspost/design-system-styles": "workspace:8.9.0",
+    "@swisspost/internet-header": "workspace:1.15.8",
     "bootstrap": "5.3.3"
   },
   "devDependencies": {
@@ -53,8 +53,8 @@
     "@storybook/types": "8.2.7",
     "@storybook/web-components": "8.2.7",
     "@storybook/web-components-vite": "8.2.7",
-    "@swisspost/design-system-components-angular": "workspace:8.8.1",
-    "@swisspost/design-system-intranet-header": "workspace:8.8.1",
+    "@swisspost/design-system-components-angular": "workspace:8.9.0",
+    "@swisspost/design-system-intranet-header": "workspace:8.9.0",
     "@types/css-modules": "1.0.5",
     "@types/mdx": "2.0.13",
     "@types/react": "18.3.3",
