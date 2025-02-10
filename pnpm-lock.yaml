@@ -59,10 +59,10 @@ importers:
         specifier: 0.3.7
         version: 0.3.7
       '@swisspost/design-system-icons':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../styles/dist
       ally.js:
         specifier: 1.4.1
@@ -180,10 +180,10 @@ importers:
         specifier: 18.2.13
         version: 18.2.13(@angular/common@18.2.13(@angular/core@18.2.13(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@18.2.13(rxjs@7.8.1)(zone.js@0.15.0))(@angular/platform-browser@18.2.13(@angular/animations@18.2.13(@angular/core@18.2.13(rxjs@7.8.1)(zone.js@0.15.0)))(@angular/common@18.2.13(@angular/core@18.2.13(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@18.2.13(rxjs@7.8.1)(zone.js@0.15.0)))(rxjs@7.8.1)
       '@swisspost/design-system-components':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../components
       '@swisspost/design-system-styles':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../styles/dist
       rxjs:
         specifier: 7.8.1
@@ -259,7 +259,7 @@ importers:
         specifier: ^16.0.0 || ^17.0.0 || ^18.0.0
         version: 18.1.1(rxjs@7.8.1)(zone.js@0.15.0)
       '@swisspost/design-system-components':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../../../components
       tslib:
         specifier: 2.8.1
@@ -269,7 +269,7 @@ importers:
   packages/components-react:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../components
     devDependencies:
       '@eslint/js':
@@ -315,22 +315,22 @@ importers:
   packages/documentation:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../components
       '@swisspost/design-system-components-react':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../components-react
       '@swisspost/design-system-icons':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../styles/dist
       '@swisspost/design-system-tokens':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../tokens/dist
       '@swisspost/internet-header':
-        specifier: workspace:2.0.0-next.15
+        specifier: workspace:2.0.0-next.16
         version: link:../internet-header
       bootstrap:
         specifier: 5.3.3
@@ -391,10 +391,10 @@ importers:
         specifier: 8.4.7
         version: 8.4.7(lit@3.2.1)(storybook@8.4.7(prettier@2.8.8))(vite@6.0.9(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.0)(sass-embedded@1.78.0)(sass@1.78.0)(terser@5.31.6)(yaml@2.7.0))
       '@swisspost/design-system-components-angular':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../components-angular/dist/components
       '@swisspost/design-system-intranet-header':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../intranet-header-workspace/dist/intranet-header
       '@types/css-modules':
         specifier: 1.0.5
@@ -559,7 +559,7 @@ importers:
   packages/internet-header:
     dependencies:
       '@swisspost/design-system-styles':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../styles/dist
       body-scroll-lock:
         specifier: 4.0.0-beta.0
@@ -728,7 +728,7 @@ importers:
         specifier: 2.11.8
         version: 2.11.8
       '@swisspost/design-system-styles':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../styles/dist
       rxjs:
         specifier: 7.8.1
@@ -816,21 +816,21 @@ importers:
         specifier: ^16.0.0 || ^17.0.0 || ^18.0.0
         version: 18.1.1(rxjs@7.8.1)(zone.js@0.15.0)
       '@swisspost/design-system-styles':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../../../styles/dist
       tslib:
         specifier: 2.8.1
         version: 2.8.1
     devDependencies:
       '@swisspost/design-system-intranet-header-workspace':
-        specifier: workspace:3.0.22-next.15
+        specifier: workspace:3.0.22-next.16
         version: link:../..
     publishDirectory: ../../dist/intranet-header
 
   packages/intranet-header-workspace/projects/intranet-header-showcase:
     dependencies:
       '@swisspost/design-system-intranet-header':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../../dist/intranet-header
 
   packages/migrations:
@@ -879,13 +879,13 @@ importers:
   packages/nextjs-integration:
     dependencies:
       '@swisspost/design-system-components-react':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../components-react
       '@swisspost/design-system-styles':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: workspace:2.0.0-next.15
+        specifier: workspace:2.0.0-next.16
         version: link:../internet-header
       next:
         specifier: 15.1.4
@@ -965,10 +965,10 @@ importers:
         version: 3.0.0
     devDependencies:
       '@swisspost/design-system-icons':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../icons
       '@swisspost/design-system-tokens':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../tokens/dist
       '@types/node':
         specifier: 22.10.5
@@ -1059,7 +1059,7 @@ importers:
         specifier: 18.2.13
         version: 18.2.13(@angular/common@18.2.13(@angular/core@18.2.13(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@18.2.13(rxjs@7.8.1)(zone.js@0.15.0))(@angular/platform-browser@18.2.13(@angular/animations@18.2.13(@angular/core@18.2.13(rxjs@7.8.1)(zone.js@0.15.0)))(@angular/common@18.2.13(@angular/core@18.2.13(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@18.2.13(rxjs@7.8.1)(zone.js@0.15.0)))(rxjs@7.8.1)
       '@swisspost/design-system-styles':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../styles/dist
       primeng:
         specifier: 17.18.15
@@ -1153,7 +1153,7 @@ importers:
         specifier: ^18.0.0
         version: 18.1.1(rxjs@7.8.1)(zone.js@0.15.0)
       '@swisspost/design-system-styles':
-        specifier: workspace:9.0.0-next.15
+        specifier: workspace:9.0.0-next.16
         version: link:../../../styles/dist
       primeng:
         specifier: ^17.18.0
@@ -11495,7 +11495,7 @@ snapshots:
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.1802.12(chokidar@3.6.0)
-      '@angular-devkit/build-webpack': 0.1802.12(chokidar@3.6.0)(webpack-dev-server@5.0.4(webpack@5.94.0(esbuild@0.23.0)))(webpack@5.94.0(esbuild@0.23.0))
+      '@angular-devkit/build-webpack': 0.1802.12(chokidar@3.6.0)(webpack-dev-server@5.0.4(webpack@5.94.0))(webpack@5.94.0(esbuild@0.23.0))
       '@angular-devkit/core': 18.2.12(chokidar@3.6.0)
       '@angular/build': 18.2.12(@angular/compiler-cli@18.2.13(@angular/compiler@18.2.13(@angular/core@18.2.13(rxjs@7.8.1)(zone.js@0.15.0)))(typescript@5.5.4))(@angular/localize@18.2.13(@angular/compiler-cli@18.2.13(@angular/compiler@18.2.13(@angular/core@18.2.13(rxjs@7.8.1)(zone.js@0.15.0)))(typescript@5.5.4))(@angular/compiler@18.2.13(@angular/core@18.2.13(rxjs@7.8.1)(zone.js@0.15.0))))(@types/node@22.10.5)(chokidar@3.6.0)(less@4.2.0)(postcss@8.4.41)(sass-embedded@1.81.0)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.5.4)))(terser@5.31.6)(typescript@5.5.4)
       '@angular/compiler-cli': 18.2.13(@angular/compiler@18.2.13(@angular/core@18.2.13(rxjs@7.8.1)(zone.js@0.15.0)))(typescript@5.5.4)
@@ -11553,8 +11553,8 @@ snapshots:
       vite: 5.4.6(@types/node@22.10.5)(less@4.2.0)(sass-embedded@1.81.0)(sass@1.77.6)(terser@5.31.6)
       watchpack: 2.4.1
       webpack: 5.94.0(esbuild@0.23.0)
-      webpack-dev-middleware: 7.4.2(webpack@5.94.0(esbuild@0.23.0))
-      webpack-dev-server: 5.0.4(webpack@5.94.0(esbuild@0.23.0))
+      webpack-dev-middleware: 7.4.2(webpack@5.94.0)
+      webpack-dev-server: 5.0.4(webpack@5.94.0)
       webpack-merge: 6.0.1
       webpack-subresource-integrity: 5.1.0(webpack@5.94.0(esbuild@0.23.0))
     optionalDependencies:
@@ -11583,12 +11583,12 @@ snapshots:
       - utf-8-validate
       - webpack-cli
 
-  '@angular-devkit/build-webpack@0.1802.12(chokidar@3.6.0)(webpack-dev-server@5.0.4(webpack@5.94.0(esbuild@0.23.0)))(webpack@5.94.0(esbuild@0.23.0))':
+  '@angular-devkit/build-webpack@0.1802.12(chokidar@3.6.0)(webpack-dev-server@5.0.4(webpack@5.94.0))(webpack@5.94.0(esbuild@0.23.0))':
     dependencies:
       '@angular-devkit/architect': 0.1802.12(chokidar@3.6.0)
       rxjs: 7.8.1
       webpack: 5.94.0(esbuild@0.23.0)
-      webpack-dev-server: 5.0.4(webpack@5.94.0(esbuild@0.23.0))
+      webpack-dev-server: 5.0.4(webpack@5.94.0)
     transitivePeerDependencies:
       - chokidar
 
@@ -23450,7 +23450,7 @@ snapshots:
 
   webidl-conversions@7.0.0: {}
 
-  webpack-dev-middleware@7.4.2(webpack@5.94.0(esbuild@0.23.0)):
+  webpack-dev-middleware@7.4.2(webpack@5.94.0):
     dependencies:
       colorette: 2.0.20
       memfs: 4.9.3
@@ -23461,7 +23461,7 @@ snapshots:
     optionalDependencies:
       webpack: 5.94.0(esbuild@0.23.0)
 
-  webpack-dev-server@5.0.4(webpack@5.94.0(esbuild@0.23.0)):
+  webpack-dev-server@5.0.4(webpack@5.94.0):
     dependencies:
       '@types/bonjour': 3.5.13
       '@types/connect-history-api-fallback': 1.5.4
@@ -23491,7 +23491,7 @@ snapshots:
       serve-index: 1.9.1
       sockjs: 0.3.24
       spdy: 4.0.2
-      webpack-dev-middleware: 7.4.2(webpack@5.94.0(esbuild@0.23.0))
+      webpack-dev-middleware: 7.4.2(webpack@5.94.0)
       ws: 8.17.1
     optionalDependencies:
       webpack: 5.94.0(esbuild@0.23.0)
