@@ -190,6 +190,7 @@ slot[name='post-logo'] {
   width: 100%;
 
   @include media.min(lg) {
+    height: var(--main-navigation-height);
     inset-block-start: var(--global-header-minimal-height);
 
     &::before {

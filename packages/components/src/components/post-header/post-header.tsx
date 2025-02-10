@@ -49,7 +49,7 @@ export class PostHeader {
       this.handleResize();
       this.handleScrollEvent();
       this.getFocusableElements();
-    }, 1000); // 3-second delay before execution
+    }, 2000); // delay
   }
 
   componentDidLoad() {
