@@ -39,7 +39,6 @@ export class PostBreadcrumbItem {
     const hasBaseURL = /^https?:\/\//.test(String(this.url));
     if (typeof value === 'string') {
       this.fullUrl = hasBaseURL ? value : `${window.location.origin}${value}`;
-      console.log(this);
       checkEmptyOrUrl(this, 'fullUrl');
       return this.fullUrl;
     }
