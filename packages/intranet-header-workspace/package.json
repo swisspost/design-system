@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-intranet-header-workspace",
-  "version": "3.0.28",
+  "version": "3.0.29",
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
@@ -21,7 +21,7 @@
     "@angular/router": "17.3.11",
     "@ng-bootstrap/ng-bootstrap": "16.0.0",
     "@popperjs/core": "2.11.8",
-    "@swisspost/design-system-styles": "workspace:7.4.10",
+    "@swisspost/design-system-styles": "workspace:7.4.11",
     "rxjs": "7.8.1",
     "tslib": "2.6.3",
     "watch": "1.0.2",
