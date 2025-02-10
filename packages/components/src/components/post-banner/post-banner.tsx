@@ -71,7 +71,7 @@ export class PostBanner {
   @Prop() readonly icon: string;
 
   @Watch('icon')
-  validateIcon(icon = this.icon) {
+  validateIcon() {
     checkEmptyOrPattern(
       this,
       'icon',
