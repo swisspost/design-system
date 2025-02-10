@@ -1,4 +1,11 @@
-export function checkPattern(component: any, prop: string, pattern: RegExp, customMessage: string) {
+import { ComponentInterface } from '@stencil/core/internal';
+
+export function checkPattern(
+  component: ComponentInterface,
+  prop: string,
+  pattern: RegExp,
+  customMessage: string,
+) {
   const componentName = component.host.localName;
   const value = component[prop];
 

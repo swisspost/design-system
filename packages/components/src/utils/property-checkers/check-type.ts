@@ -1,3 +1,5 @@
+import { ComponentInterface } from '@stencil/core/internal';
+
 export type PropertyType = 'boolean' | 'number' | 'string' | 'array' | 'object' | 'function';
 
 export function checkType(

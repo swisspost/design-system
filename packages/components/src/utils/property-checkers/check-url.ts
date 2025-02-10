@@ -1,4 +1,6 @@
-export function checkUrl(component: any, prop: string, customMessage?: string) {
+import { ComponentInterface } from '@stencil/core/internal';
+
+export function checkUrl(component: ComponentInterface, prop: string, customMessage?: string) {
   const componentName = component.host.localName;
   const value = component[prop];
 

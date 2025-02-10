@@ -1,8 +1,9 @@
 import { checkPattern } from '../check-pattern';
+import { ComponentInterface } from '@stencil/core/internal';
 
 describe('checkPattern', () => {
+  let component: ComponentInterface;
   let prop: string;
-  let component: any;
   const pattern = /[a-z]{5}/;
   const error = 'Does not match pattern.';
 

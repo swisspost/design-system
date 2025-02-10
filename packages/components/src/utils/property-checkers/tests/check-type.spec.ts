@@ -1,10 +1,11 @@
 import { checkType, PropertyType } from '../check-type';
+import { ComponentInterface } from '@stencil/core/internal';
 
 describe('checkType', () => {
   let type: PropertyType;
   let error: string;
   let prop: string;
-  let component: any;
+  let component: ComponentInterface;
 
   beforeEach(() => {
     // Create a mock component object

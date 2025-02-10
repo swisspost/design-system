@@ -1,7 +1,8 @@
 import { checkOneOf } from '../check-one-of';
+import { ComponentInterface } from '@stencil/core/internal';
 
-let component: any; // Declare component globally
-let prop: string; // Declare prop globally
+let component: ComponentInterface;
+let prop: string;
 
 beforeEach(() => {
   // Create a mock component object
