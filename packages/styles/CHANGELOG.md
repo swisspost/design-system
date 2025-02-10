@@ -1,5 +1,7 @@
 # @swisspost/design-system-styles
 
+## 8.9.0
+
 ## 8.8.1
 
 ### Patch Changes
