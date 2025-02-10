@@ -6,15 +6,14 @@ let prop: string;
 
 beforeEach(() => {
   // Create a mock component object
-  component = { host: { localName: 'post-component' } };
-  prop = 'testProp';
 });
 
 describe('checkOneOf', () => {
   const possibleValues = ['A', 'B', 'C', 'D'];
   const error = 'Is not one of.';
   const runCheckForValue = (value: string) => () => {
-    component[prop] = value;
+    component = { prop: value };
+
     checkOneOf(component, prop, possibleValues, error);
   };
 

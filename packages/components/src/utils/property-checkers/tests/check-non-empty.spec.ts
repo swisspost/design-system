@@ -30,15 +30,10 @@ describe('checkNonEmpty', () => {
 
   let component: ComponentInterface;
 
-  beforeEach(() => {
-    // Create a mock component object
-    component = { host: { localName: 'post-component' } };
-  });
-
   describe('empty value', () => {
     it('should not throw an error if the value is a non-empty value', () => {
       for (const value of NON_EMPTY_VALUES) {
-        component[prop] = value;
+        component = { prop: value };
         expect(() => checkNonEmpty(component, prop)).not.toThrow();
       }
     });

@@ -4,17 +4,12 @@ import { ComponentInterface } from '@stencil/core/internal';
 describe('checkType', () => {
   let type: PropertyType;
   let error: string;
-  let prop: string;
   let component: ComponentInterface;
-
-  beforeEach(() => {
-    // Create a mock component object
-    component = { host: { localName: 'post-component' } };
-    prop = 'testProp';
-  });
+  let prop: string;
 
   const runCheckForValue = (value: any) => () => {
-    component[prop] = value;
+    component = { host: { localName: 'post-component' } };
+    prop = value;
     checkType(component, prop, type, error);
   };
 

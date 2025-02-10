@@ -1,14 +1,15 @@
 import { checkPattern } from '../check-pattern';
 import { ComponentInterface } from '@stencil/core/internal';
 
+let component: ComponentInterface;
+let prop: string;
+
 describe('checkPattern', () => {
-  let component: ComponentInterface;
-  let prop: string;
   const pattern = /[a-z]{5}/;
   const error = 'Does not match pattern.';
 
   const runCheckForValue = (value: any) => () => {
-    component[prop] = value;
+    component = { prop: value };
     checkPattern(component, prop, pattern, error);
   };
 
