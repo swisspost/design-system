@@ -40,14 +40,7 @@ export class PostIcon {
 
   @Watch('animation')
   validateAnimation(newValue = this.animation) {
-    if (newValue !== undefined)
-      checkEmptyOrOneOf(
-        newValue,
-        ANIMATION_KEYS,
-        `The post-icon "animation" prop requires one of the following values: ${ANIMATION_KEYS.join(
-          ', ',
-        )}.`,
-      );
+    if (newValue !== undefined) checkEmptyOrOneOf(this, 'animation', ANIMATION_KEYS);
   }
 
   /**
@@ -56,8 +49,8 @@ export class PostIcon {
   @Prop() readonly base?: string | null = null;
 
   @Watch('base')
-  validateBase(newValue = this.base) {
-    checkEmptyOrType(newValue, 'string', 'The post-icon "base" prop should be a string.');
+  validateBase() {
+    checkEmptyOrType(this, 'base', 'string');
   }
 
   /**
@@ -66,8 +59,8 @@ export class PostIcon {
   @Prop() readonly flipH?: boolean = false;
 
   @Watch('flipH')
-  validateFlipH(newValue = this.flipH) {
-    checkEmptyOrType(newValue, 'boolean', 'The post-icon "flipH" prop should be a boolean.');
+  validateFlipH() {
+    checkEmptyOrType(this, 'flipH', 'boolean');
   }
 
   /**
@@ -76,8 +69,8 @@ export class PostIcon {
   @Prop() readonly flipV?: boolean = false;
 
   @Watch('flipV')
-  validateFlipV(newValue = this.flipV) {
-    checkEmptyOrType(newValue, 'boolean', 'The post-icon "flipV" prop should be a boolean.');
+  validateFlipV() {
+    checkEmptyOrType(this, 'flipV', 'boolean');
   }
 
   /**
@@ -86,9 +79,9 @@ export class PostIcon {
   @Prop() readonly name!: string;
 
   @Watch('name')
-  validateName(newValue = this.name) {
-    checkNonEmpty(newValue, 'The post-icon "name" prop is required!.');
-    checkType(newValue, 'string', 'The post-icon "name" prop should be a string.');
+  validateName() {
+    checkNonEmpty(this, 'name');
+    checkType(this, 'name', 'string');
   }
 
   /**
@@ -97,8 +90,8 @@ export class PostIcon {
   @Prop() readonly rotate?: number | null = null;
 
   @Watch('rotate')
-  validateRotate(newValue = this.rotate) {
-    checkEmptyOrType(newValue, 'number', 'The post-icon "rotate" prop should be a number.');
+  validateRotate() {
+    checkEmptyOrType(this, 'rotate', 'number');
   }
 
   /**
@@ -107,8 +100,8 @@ export class PostIcon {
   @Prop() readonly scale?: number | null = null;
 
   @Watch('scale')
-  validateScale(newValue = this.scale) {
-    checkEmptyOrType(newValue, 'number', 'The post-icon "scale" prop should be a number.');
+  validateScale() {
+    checkEmptyOrType(this, 'scale', 'number');
   }
 
   // Construct the icon url from different possible sources

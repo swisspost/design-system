@@ -31,8 +31,8 @@ export class PostMegadropdownTrigger {
    * @param forValue - The new value of the `for` property.
    */
   @Watch('for')
-  validateControlFor(forValue = this.for) {
-    checkType(forValue, 'string', 'The "for" property is required and should be a string.');
+  validateControlFor() {
+    checkType(this, 'for', 'string');
   }
 
   private get megadropdown(): HTMLPostMegadropdownElement | null {

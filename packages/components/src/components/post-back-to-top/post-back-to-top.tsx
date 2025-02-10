@@ -48,15 +48,8 @@ export class PostBackToTop {
   // Validate the label
   @Watch('label')
   validateLabel() {
-    checkType(
-      this.label,
-      'string',
-      'The label property of the Back to Top component is required for accessibility purposes. Please ensure it is set.',
-    );
-    checkNonEmpty(
-      this.label,
-      'The label property of the Back to Top component must not be empty. Please provide a proper text for the label',
-    );
+    checkType(this, 'label', 'string');
+    checkNonEmpty(this, 'label');
   }
 
   // Set the initial state

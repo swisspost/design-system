@@ -57,7 +57,7 @@ export class PostAvatar {
 
   @Watch('firstname')
   validateFirstname() {
-    checkNonEmpty(this.firstname, 'The `firstname` property of the `post-avatar` is required!');
+    checkNonEmpty(this, 'firstname');
   }
 
   private async getAvatar() {

@@ -18,6 +18,8 @@ export class PostBreadcrumbItem {
    */
   @Prop() url?: string | URL;
 
+  @Prop() fullUrl?: string | URL;
+
   private validUrl?: string;
 
   @Watch('url')
@@ -32,13 +34,13 @@ export class PostBreadcrumbItem {
   // Helper to construct a valid URL string or return undefined
   private constructUrl(value: unknown): string | undefined {
     const hasBaseURL = /^https?:\/\//.test(String(this.url));
+    console.log(value);
     if (typeof value === 'string') {
-      const urlString = hasBaseURL
-        ? value
-        : `${window.location.origin}${value}`;
-      checkEmptyOrUrl(urlString, 'The "url" property of the post-breadcrumb-item is invalid');
-      return urlString;
-    } return undefined;
+      this.fullUrl = hasBaseURL ? value : `${window.location.origin}${value}`;
+      checkEmptyOrUrl(this, 'fullUrl');
+      return this.fullUrl;
+    }
+    return undefined;
   }
 
   connectedCallback() {
@@ -61,8 +63,11 @@ export class PostBreadcrumbItem {
     return (
       <Host data-version={version}>
         <post-icon name="2111" class="breadcrumb-item-icon" />
-        <BreadcrumbTag class="breadcrumb-item" {...(this.validUrl ? { href: this.validUrl } : {})}
-          onKeyDown={(event) => this.handleKeyDown(event)}>
+        <BreadcrumbTag
+          class="breadcrumb-item"
+          {...(this.validUrl ? { href: this.validUrl } : {})}
+          onKeyDown={event => this.handleKeyDown(event)}
+        >
           <slot></slot>
         </BreadcrumbTag>
       </Host>
