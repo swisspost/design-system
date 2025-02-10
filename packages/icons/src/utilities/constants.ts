@@ -2,6 +2,8 @@ import type { JsonReport } from '../models/icon.model';
 import { version } from '../../package.json';
 import { coloredLogMessage } from './shared';
 
+export const DOWNLOAD_PAGE_DELAY = 1200;
+
 export const SOURCE_PATH = 'src/icons';
 export const OUTPUT_PATH = 'public';
 export const OUTPUT_PATH_ICONS = `${OUTPUT_PATH}/post-icons`;
