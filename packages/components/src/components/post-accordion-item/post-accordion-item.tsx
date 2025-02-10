@@ -61,6 +61,9 @@ export class PostAccordionItem {
     eventGuard(
       event,
       () => {
+        // Ensure the event is coming from THIS specific accordion item
+        if (event.target !== this.host) return;
+
         this.collapsed = !event.detail;
       },
       { targetLocalName: 'post-accordion-item', delegatorSelector: 'post-accordion-item' }

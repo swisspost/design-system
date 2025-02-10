@@ -51,7 +51,7 @@ export class PostCollapsibleTrigger {
           if (!this.trigger || !e.target.isEqualNode(this.collapsible)) return;
           this.trigger.setAttribute('aria-expanded', `${e.detail}`);
         },
-        { targetLocalName: 'post-collapsible' }
+        { targetLocalName: 'post-collapsible', delegatorSelector: `#${this.for}` }
       );
     });
   }  

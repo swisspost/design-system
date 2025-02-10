@@ -69,12 +69,13 @@ export class PostMenu {
     this.host.removeEventListener('keydown', this.handleKeyDown);
     this.host.removeEventListener('click', this.handleClick);
   }
-
+  
   componentDidLoad() {
     this.popoverRef.addEventListener('postToggle', (event: CustomEvent<boolean>) => {
       eventGuard(
         event,
         () => {
+          if (event.target !== this.popoverRef) return;
           this.isVisible = event.detail;
           this.toggleMenu.emit(this.isVisible);
         },
