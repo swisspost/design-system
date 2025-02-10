@@ -50,6 +50,10 @@ export class PostHeader {
     this.getFocusableElements();
   }
 
+  componentDidLoad() {
+    this.updateLocalHeaderHeight();
+  }
+
   @Element() host: HTMLPostHeaderElement;
 
   @State() device: DEVICE_SIZE = null;
@@ -174,6 +178,13 @@ export class PostHeader {
     });
   }
 
+  private updateLocalHeaderHeight() {
+    requestAnimationFrame(() => {
+      const mhh = this.host.shadowRoot.querySelector('.local-header')?.clientHeight || 0;
+      this.host.style.setProperty('--main-header-height', `${mhh}px`);
+    });
+  }
+
   private handleResize() {
     const previousDevice = this.device;
     let newDevice: DEVICE_SIZE;
@@ -193,8 +204,7 @@ export class PostHeader {
       this.mobileMenuAnimation.finish(); // no animation
     }
 
-    const mhh = this.host.shadowRoot.querySelector('.local-header')?.clientHeight;
-    this.host.style.setProperty('--main-header-height', `${mhh}px`);
+    this.updateLocalHeaderHeight();
 
     // Apply only on change for doing work only when necessary
     if (newDevice !== previousDevice) {
