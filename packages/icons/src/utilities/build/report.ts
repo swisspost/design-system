@@ -77,7 +77,7 @@ export function writeReport(
 
   // get first businessfield
   function getBusinessfield(items: IconSetGroupsItem[]): string {
-    return items[0].report.meta.businessfield ?? 'kommunikation';
+    return items[0].report.meta.businessfield ?? '';
   }
 
   // get merged, unic keywords
