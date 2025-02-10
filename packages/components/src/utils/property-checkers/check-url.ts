@@ -11,8 +11,8 @@ export function checkUrl(component: any, prop: string, customMessage?: string) {
   }
 
   try {
-    new URL(value);
-  } catch (e) {
-    throw new Error(message);
+    new URL(value, window.location.href);
+  } catch {
+    throw new Error(customMessage);
   }
 }
