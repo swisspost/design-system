@@ -1,4 +1,4 @@
-import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Prop, Watch, State } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkEmptyOrUrl } from '@/utils';
 
@@ -18,9 +18,12 @@ export class PostBreadcrumbItem {
    */
   @Prop() url?: string | URL;
 
-  @Prop() fullUrl?: string | URL;
-
   private validUrl?: string;
+
+  /**
+   * The full path URL to validate.
+   */
+  @State() fullUrl: string | undefined;
 
   @Watch('url')
   validateUrl() {
@@ -34,9 +37,9 @@ export class PostBreadcrumbItem {
   // Helper to construct a valid URL string or return undefined
   private constructUrl(value: unknown): string | undefined {
     const hasBaseURL = /^https?:\/\//.test(String(this.url));
-    console.log(value);
     if (typeof value === 'string') {
       this.fullUrl = hasBaseURL ? value : `${window.location.origin}${value}`;
+      console.log(this);
       checkEmptyOrUrl(this, 'fullUrl');
       return this.fullUrl;
     }

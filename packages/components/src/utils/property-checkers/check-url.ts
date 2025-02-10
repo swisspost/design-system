@@ -6,6 +6,7 @@ export function checkUrl(component: any, prop: string, customMessage?: string) {
     'The `' + prop + '` property of the `' + componentName + '` component is invalid.';
   const message = customMessage || defaultMessage;
 
+  console.log(component);
   if (typeof value !== 'string' && !(value instanceof URL)) {
     throw new Error(message);
   }

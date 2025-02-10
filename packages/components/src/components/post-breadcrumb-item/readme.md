@@ -7,10 +7,9 @@
 
 ## Properties
 
-| Property  | Attribute  | Description                                              | Type            | Default     |
-| --------- | ---------- | -------------------------------------------------------- | --------------- | ----------- |
-| `fullUrl` | `full-url` |                                                          | `URL \| string` | `undefined` |
-| `url`     | `url`      | The optional URL to which the breadcrumb item will link. | `URL \| string` | `undefined` |
+| Property | Attribute | Description                                              | Type            | Default     |
+| -------- | --------- | -------------------------------------------------------- | --------------- | ----------- |
+| `url`    | `url`     | The optional URL to which the breadcrumb item will link. | `URL \| string` | `undefined` |
 
 
 ## Slots
