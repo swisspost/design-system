@@ -3,8 +3,19 @@ const COLLAPSIBLE_ID = '6a91848c-16ec-4a23-bc45-51c797b5b2c3';
 describe('collapsible', () => {
   describe('default', () => {
     beforeEach(() => {
-      cy.getComponents(COLLAPSIBLE_ID, 'default', 'post-collapsible', 'post-collapsible-trigger');
-      cy.get('@collapsible-trigger').find('.btn').as('trigger');
+      cy.getComponents(
+      COLLAPSIBLE_ID,
+      'initially-collapsed',
+      'post-collapsible',
+      'post-collapsible-trigger',
+    );
+
+    cy.get('@collapsible').invoke('attr', 'id').then((id) => {
+      const safeId = Cypress.$.escapeSelector(id);
+      cy.wrap(`#${safeId}`).as('collapsibleSafeSelector');
+    });
+
+    cy.get('@collapsible-trigger').find('.btn').as('trigger');
     });
 
     it('should have a collapsible', () => {
