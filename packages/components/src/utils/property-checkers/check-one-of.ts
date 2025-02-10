@@ -9,7 +9,6 @@ export function checkOneOf<T>(
   const componentName = component.host.localName;
   const value = component[prop];
 
-  console.log(component);
   const defaultMessage =
     'The `' +
     prop +

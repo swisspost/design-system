@@ -1,5 +1,6 @@
 import { EMPTY_VALUES } from '../constants';
 import { checkNonEmpty } from '../check-non-empty';
+import { ComponentInterface } from '@stencil/core/internal';
 
 const TEST_VALUES = [
   undefined,
@@ -27,7 +28,7 @@ describe('checkNonEmpty', () => {
   const error = 'Is empty!';
   const prop = 'testProp';
 
-  let component: any;
+  let component: ComponentInterface;
 
   beforeEach(() => {
     // Create a mock component object
