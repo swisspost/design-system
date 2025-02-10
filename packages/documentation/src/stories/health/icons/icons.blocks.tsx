@@ -1,5 +1,5 @@
 import React from 'react';
-import reportData from '../../../../node_modules/@swisspost/design-system-icons/public/report.json';
+import reportData from '@swisspost/design-system-icons/public/report.json';
 import { IconReport } from './icons-report';
 
 const report = reportData as IconReport;

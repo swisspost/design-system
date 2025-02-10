@@ -1,5 +1,29 @@
+import type { JsonReport } from '../models/icon.model';
+import { version } from '../../package.json';
+import { coloredLogMessage } from './shared';
+
+export const DOWNLOAD_PAGE_DELAY = 1200;
+
 export const SOURCE_PATH = 'src/icons';
 export const OUTPUT_PATH = 'public';
+export const OUTPUT_PATH_ICONS = `${OUTPUT_PATH}/post-icons`;
+
+export const REPORT: JsonReport = {
+  sources: [],
+  icons: [],
+  wrongViewBox: [],
+  noKeywords: [],
+  noSVG: [],
+  errored: [],
+  stats: {
+    errors: 0,
+    notFound: 0,
+    success: 0,
+    output: 0,
+  },
+  created: new Date(),
+  version: version,
+};
 
 export const UI_ICON_SIZES = [16, 24, 32, 40, 48, 64];
 
@@ -48,3 +72,8 @@ export const UI_ICON_TEMPLATE = `<svg xmlns="http://www.w3.org/2000/svg">
     <use href="#{id}"/>
   </g>
 </svg>`;
+
+// Log messages
+export const MESSAGE_ENV_VARS_MISSING_ERROR = coloredLogMessage(
+  '<red>Environment variables are not defined. Please check your .env file and compare it to the .template.env. Are there any variables missing or undefined?</red>',
+);

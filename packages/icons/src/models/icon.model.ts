@@ -1,4 +1,4 @@
-import {
+import type {
   Type,
   TypeFilter,
   VariantMIME,
@@ -6,7 +6,13 @@ import {
   MediaSize,
 } from './censhare-result-page.model';
 
-export interface IIcon {
+export interface IconSet {
+  name: string;
+  apiUrl: string;
+  downloadDirectory: string;
+}
+
+export interface SourceIcon {
   uuid: string;
   id: number;
   type: Type;
@@ -26,20 +32,67 @@ export interface IIcon {
   };
   createdAt: Date;
   modifiedAt: Date;
+  errored?: boolean;
   errorMessage?: string;
 }
 
-export interface IJSONReport {
-  created: Date;
+export interface OutputIcon {
+  uuid: string;
+  id: number;
+  meta: {
+    businessfield: Businessfield;
+    keywords: string[];
+  };
+  file: {
+    mime: VariantMIME;
+    name: string;
+    basename: string;
+    ext: string;
+  };
+  createdAt: Date;
+  modifiedAt: Date;
+  sources: number[];
+}
+
+export interface MinimalIcon {
+  id: number;
+  name: string;
+  keys: string[];
+  sources: number[];
+}
+
+export interface IconSetGroupsItem {
+  size: number | null;
+  filePath: string;
+  report: SourceIcon;
+}
+
+export interface IconSetGroups {
+  name: string;
+  sourceDirectory: string;
+  groups: Record<string, IconSetGroupsItem[]>;
+}
+
+export interface JsonReport {
+  sources: SourceIcon[];
+  icons: OutputIcon[];
+  wrongViewBox: SourceIcon[];
+  noKeywords: SourceIcon[];
+  noSVG: SourceIcon[];
+  errored: SourceIcon[];
   stats: {
     errors: number;
-    success: number;
     notFound: number;
+    success: number;
+    output: number;
   };
-  icons: IIcon[];
-  wrongViewBox: IIcon[];
-  noKeywords: IIcon[];
-  noSVG: IIcon[];
-  errored: IIcon[];
+  created: Date;
+  version: string;
+}
+
+export interface MinimalJsonReport {
+  sources: MinimalIcon[];
+  icons: MinimalIcon[];
+  created: Date;
   version: string;
 }
