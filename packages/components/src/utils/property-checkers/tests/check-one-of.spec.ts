@@ -1,9 +1,21 @@
 import { checkOneOf } from '../check-one-of';
 
+let component: any; // Declare component globally
+let prop: string; // Declare prop globally
+
+beforeEach(() => {
+  // Create a mock component object
+  component = { host: { localName: 'post-component' } };
+  prop = 'testProp';
+});
+
 describe('checkOneOf', () => {
   const possibleValues = ['A', 'B', 'C', 'D'];
   const error = 'Is not one of.';
-  const runCheckForValue = value => () => checkOneOf(value, possibleValues, error);
+  const runCheckForValue = (value: string) => () => {
+    component[prop] = value;
+    checkOneOf(component, prop, possibleValues, error);
+  };
 
   it('should not throw an error if the value is one of the possible values', () => {
     expect(runCheckForValue('A')).not.toThrow();

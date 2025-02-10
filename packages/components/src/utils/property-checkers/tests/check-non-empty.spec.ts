@@ -18,24 +18,35 @@ const TEST_VALUES = [
     /* empty */
   },
 ];
+
 const NON_EMPTY_VALUES = TEST_VALUES.filter(
   tValue => !EMPTY_VALUES.some(eValue => eValue === tValue),
 );
 
-describe('notEmpty', () => {
+describe('checkNonEmpty', () => {
   const error = 'Is empty!';
+  const prop = 'testProp';
+
+  let component: any;
+
+  beforeEach(() => {
+    // Create a mock component object
+    component = { host: { localName: 'post-component' } };
+  });
 
   describe('empty value', () => {
-    it('should not throw an error if the value is an non-empty value', () => {
-      NON_EMPTY_VALUES.forEach(value => {
-        expect(() => checkNonEmpty(value, error)).not.toThrow();
-      });
+    it('should not throw an error if the value is a non-empty value', () => {
+      for (const value of NON_EMPTY_VALUES) {
+        component[prop] = value;
+        expect(() => checkNonEmpty(component, prop)).not.toThrow();
+      }
     });
 
     it('should throw an error if the value is an empty value', () => {
-      EMPTY_VALUES.forEach(value => {
-        expect(() => checkNonEmpty(value, error)).toThrow(error);
-      });
+      for (const value of EMPTY_VALUES) {
+        component[prop] = value;
+        expect(() => checkNonEmpty(component, prop, error)).toThrow(error);
+      }
     });
   });
 });

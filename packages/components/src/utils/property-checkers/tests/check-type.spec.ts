@@ -3,7 +3,19 @@ import { checkType, PropertyType } from '../check-type';
 describe('checkType', () => {
   let type: PropertyType;
   let error: string;
-  const runCheckForValue = value => () => checkType(value, type, error);
+  let prop: string;
+  let component: any;
+
+  beforeEach(() => {
+    // Create a mock component object
+    component = { host: { localName: 'post-component' } };
+    prop = 'testProp';
+  });
+
+  const runCheckForValue = (value: any) => () => {
+    component[prop] = value;
+    checkType(component, prop, type, error);
+  };
 
   describe('boolean', () => {
     beforeAll(() => {
