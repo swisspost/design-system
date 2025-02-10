@@ -1,1 +1,2 @@
-export * from './components/stencil-generated/components';
+'use client';
+export * from './components';

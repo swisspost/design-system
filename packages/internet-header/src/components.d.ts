@@ -103,7 +103,7 @@ export namespace Components {
           * Toggle an overlay associated with a button.
           * @param overlayId
          */
-        "toggleOverlayById": (overlayId: IBreadcrumbOverlay["id"]) => Promise<void>;
+        "toggleOverlayById": (overlayId: IBreadcrumbOverlay['id']) => Promise<void>;
     }
     interface SwisspostInternetFooter {
     }
@@ -132,7 +132,7 @@ export namespace Components {
           * Get the currently set language as a two letter string ("de", "fr" "it" or "en")
           * @returns string
          */
-        "getCurrentLanguage": () => Promise<"de" | "fr" | "it" | "en" | string>;
+        "getCurrentLanguage": () => Promise<'de' | 'fr' | 'it' | 'en' | string>;
         /**
           * Initial language to be used. Overrides automatic language detection.
          */
