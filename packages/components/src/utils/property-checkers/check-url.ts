@@ -18,6 +18,6 @@ export function checkUrl<T extends { host: HTMLElement }>(
   try {
     new URL(value, window.location.href);
   } catch {
-    throw new Error(customMessage);
+    throw new Error(message);
   }
 }
