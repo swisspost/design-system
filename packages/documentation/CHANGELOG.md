@@ -1,5 +1,36 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.17
+
+### Minor Changes
+
+- Updated language switch behavior. (by [@myrta2302](https://github.com/myrta2302) with [#4376](https://github.com/swisspost/design-system/pull/4376))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.16
+  - @swisspost/design-system-components-react@9.0.0-next.16
+  - @swisspost/design-system-styles@9.0.0-next.16
+  - @swisspost/design-system-tokens@9.0.0-next.16
+  - @swisspost/design-system-icons@9.0.0-next.16
+  - @swisspost/internet-header@2.0.0-next.16
+
+## 6.0.0-next.16
+
+### Patch Changes
+
+- Updated the migrations documentation for v9. (by [@leagrdv](https://github.com/leagrdv) with [#4582](https://github.com/swisspost/design-system/pull/4582))
+
+- Fixed tabs in documentation pages. (by [@leagrdv](https://github.com/leagrdv) with [#4600](https://github.com/swisspost/design-system/pull/4600))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.15
+  - @swisspost/design-system-components-react@9.0.0-next.15
+  - @swisspost/design-system-styles@9.0.0-next.15
+  - @swisspost/design-system-tokens@9.0.0-next.15
+  - @swisspost/design-system-icons@9.0.0-next.15
+  - @swisspost/internet-header@2.0.0-next.15
+
 ## 6.0.0-next.15
 
 ### Major Changes
