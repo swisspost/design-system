@@ -74,7 +74,7 @@ $post-segmented-button-max-count: 8;
         border-color: tokens.get('button-segmented-hover-border');
 
         @include utilities.high-contrast-mode() {
-          border-color: Highlight;
+          border-color: SelectedItem;
         }
       }
     }
@@ -107,7 +107,7 @@ $post-segmented-button-max-count: 8;
           border-color: tokens.get('button-segmented-selected-border');
 
           @include utilities.high-contrast-mode() {
-            border-color: Highlight;
+            border-color: SelectedItem;
           }
         }
       }
@@ -191,7 +191,7 @@ $post-segmented-button-max-count: 8;
           border-color: tokens.get('button-segmented-hover-border');
 
           @include utilities.high-contrast-mode() {
-            border-color: Highlight;
+            border-color: SelectedItem;
           }
         }
       }
