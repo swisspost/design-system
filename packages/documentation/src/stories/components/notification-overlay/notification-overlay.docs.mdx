@@ -1,5 +1,4 @@
 import { Meta, Source } from '@storybook/blocks';
-import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 import PostComponentDemoLink from '@/shared/post-component-demo-link.mdx';
 import NgbComponentImport from '@/shared/nb-bootstrap/ngb-component-import.mdx';
@@ -65,14 +64,14 @@ However, You can decide to focus any other element by adding an `ngbAutofocus` a
 
 ### Notify the user of an incomplete field before continuing
 
-<PostTabs>
-  <PostTabHeader panel="basicExampleHTML">template.html</PostTabHeader>
-  <PostTabPanel name="basicExampleHTML">
+<post-tabs>
+  <post-tab-header panel="basicExampleHTML">template.html</post-tab-header>
+  <post-tab-panel name="basicExampleHTML">
     <Source code={basicExampleHTML} language="html"/>
-  </PostTabPanel>
+  </post-tab-panel>
 
-  <PostTabHeader panel="basicExampleAngular">component.ts</PostTabHeader>
-  <PostTabPanel name="basicExampleAngular">
+  <post-tab-header panel="basicExampleAngular">component.ts</post-tab-header>
+  <post-tab-panel name="basicExampleAngular">
     <Source code={basicExampleAngular} language="ts"/>
-  </PostTabPanel>
-</PostTabs>
+  </post-tab-panel>
+</post-tabs>

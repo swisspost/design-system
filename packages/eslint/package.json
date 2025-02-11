@@ -1,0 +1,66 @@
+{
+  "name": "@swisspost/design-system-eslint",
+  "version": "1.0.0",
+  "description": "A set of custom ESLint rules to help keeping projects using the Swiss Post Design System up-to-date.",
+  "author": "Swiss Post <design-system@post.ch>",
+  "license": "Apache-2.0",
+  "main": "dist/index.ts",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system",
+    "directory": "packages/eslint-plugin"
+  },
+  "homepage": "https://design-system.post.ch",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
+  "publishConfig": {
+    "directory": "./dist",
+    "access": "public",
+    "linkDirectory": true
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "pnpm clean && tsc -p tsconfig.build.json",
+    "start": "pnpm build --watch",
+    "inspect": "concurrently -n start,inspect -c cyan,green \"pnpm start\" \"eslint --c eslint.play.js --inspect-config\"",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "unit": "jest",
+    "unit:watch": "jest --watchAll"
+  },
+  "dependencies": {
+    "@typescript-eslint/utils": "8.22.0",
+    "cheerio": "1.0.0",
+    "eslint-scope": "8.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.19.0",
+    "@types/eslint-scope": "3.7.7",
+    "@types/jest": "29.5.14",
+    "@typescript-eslint/rule-tester": "8.22.0",
+    "concurrently": "9.1.2",
+    "domhandler": "5.0.3",
+    "eslint": "9.19.0",
+    "globals": "15.14.0",
+    "jest": "29.7.0",
+    "parse5": "7.2.1",
+    "rimraf": "6.0.1",
+    "ts-jest": "29.2.5",
+    "typescript": "5.7.3",
+    "typescript-eslint": "8.22.0"
+  },
+  "peerDependencies": {
+    "eslint": ">=9.0.0",
+    "typescript": ">=5.0.0"
+  },
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin",
+    "design-system",
+    "ui",
+    "frontend"
+  ]
+}
