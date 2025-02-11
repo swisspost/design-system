@@ -74,6 +74,11 @@ export class PostPopovercontainer {
    */
   @Prop() readonly arrow?: boolean = false;
 
+  /**
+   * Whether or not the popover should close when user clicks outside of it
+   */
+  @Prop() manualClose: boolean = false;
+
   componentDidLoad() {
     this.host.setAttribute('popover', '');
     this.host.addEventListener('beforetoggle', this.handleToggle.bind(this));
@@ -218,7 +223,7 @@ export class PostPopovercontainer {
 
   render() {
     return (
-      <Host data-version={version} data-animation={this.animation}>
+      <Host data-version={version} data-animation={this.animation} popover={this.manualClose ? 'manual' : 'auto'}>
         {this.arrow && (
           <span
             class="arrow"
