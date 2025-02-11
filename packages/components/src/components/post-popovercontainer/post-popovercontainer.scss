@@ -4,7 +4,7 @@
 @use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/variables/spacing';
 @use '@swisspost/design-system-styles/mixins/color' as color-mx;
-@use '@swisspost/design-system-styles/mixins/animation' as animation-mx;
+@use '@swisspost/design-system-styles/mixins/animation';
 @use '@swisspost/design-system-styles/variables/elevation';
 @use '@swisspost/design-system-styles/functions/color' as color-fn;
 @use '@swisspost/design-system-styles/mixins/utilities';
@@ -23,7 +23,7 @@
 :where(post-popovercontainer) {
 
   &[data-animation='pop-in']:where(:popover-open, .popover-open) {
-    @include animation-mx.top-layer-pop-in(0.25s, ':popover-open');
+    @include animation.top-layer-pop-in(0.25s, ':popover-open');
 
   @media (prefers-reduced-motion) {
     & {
