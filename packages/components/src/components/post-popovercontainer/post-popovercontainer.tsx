@@ -80,7 +80,6 @@ export class PostPopovercontainer {
   @Prop() manualClose: boolean = false;
 
   componentDidLoad() {
-    this.host.setAttribute('popover', '');
     this.host.addEventListener('beforetoggle', this.handleToggle.bind(this));
   }
 

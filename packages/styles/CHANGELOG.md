@@ -1,5 +1,99 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.16
+
+## 9.0.0-next.15
+
+## 9.0.0-next.14
+
+### Major Changes
+
+- Removed the `.lh-base` utility class. (by [@leagrdv](https://github.com/leagrdv) with [#4360](https://github.com/swisspost/design-system/pull/4360))
+
+- Removed Bootstrap shadow utility classes from the Design System, as the elevation classes are replacing them. (by [@leagrdv](https://github.com/leagrdv) with [#4361](https://github.com/swisspost/design-system/pull/4361))
+
+- Renamed elevation utility classes and SCSS variables to allow for more variants in the future. (by [@leagrdv](https://github.com/leagrdv) with [#4361](https://github.com/swisspost/design-system/pull/4361))
+
+### Minor Changes
+
+- Removed `post-popovercontainer` from the `post-megadropdown` component and added desktop animations with new slide-down and slide-up effects. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4421](https://github.com/swisspost/design-system/pull/4421))
+
+- Removed deprecated `$displayX-weight` scss variables and font-weight light (`.light`) utilities as the new Swiss Post font does not have a 300 weight version. (by [@leagrdv](https://github.com/leagrdv) with [#4531](https://github.com/swisspost/design-system/pull/4531))
+
+### Patch Changes
+
+- Made the following components hidden until fully loaded to prevent flickering: `post-avatar`, `post-banner`, `post-breadcrumb`, `post-breadcrumb-item`, `post-closebutton`, `post-collapsible-trigger`, `post-footer`, `post-header`, `post-language-option`, `post-language-switch`, `post-mainnavigation`, `post-megadropdown`, `post-megadropdown-trigger`, `post-menu`, `post-menu-item`, and `post-menu-trigger`. (by [@schaertim](https://github.com/schaertim) with [#4544](https://github.com/swisspost/design-system/pull/4544))
+
+- Fixed z-indexes for header components to ensure proper stacking order. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4421](https://github.com/swisspost/design-system/pull/4421))
+
+- Updated the styles for `.focus-ring` and added documentation. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4543](https://github.com/swisspost/design-system/pull/4543))
+
+- Fixed high contrast mode hover and focus styles for `post-avatar` component in anchor and button contexts. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4338](https://github.com/swisspost/design-system/pull/4338))
+
+- Internalized Bootstrap text utilities into the Design System. (by [@leagrdv](https://github.com/leagrdv) with [#4360](https://github.com/swisspost/design-system/pull/4360))
+
+## 9.0.0-next.13
+
+### Major Changes
+
+- Removed the Bootstrap `.text-bg-*` and `.link-*` helper classes. (by [@leagrdv](https://github.com/leagrdv) with [#4448](https://github.com/swisspost/design-system/pull/4448))
+
+### Minor Changes
+
+- Add `interpolate-size: allow-keyword` for all supporting browsers, enabling transitions from and to `height: auto` (https://developer.mozilla.org/en-US/docs/Web/CSS/interpolate-size) (by [@gfellerph](https://github.com/gfellerph) with [#4524](https://github.com/swisspost/design-system/pull/4524))
+
+### Patch Changes
+
+- Added media mixins to mixin/index.scss to include them in the core file. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4351](https://github.com/swisspost/design-system/pull/4351))
+
+- Replaced previously deleted CSS variables with SASS variables. (by [@leagrdv](https://github.com/leagrdv) with [#4446](https://github.com/swisspost/design-system/pull/4446))
+
+- Refactored hover styling for links in `<post-footer>` to ensure they are underlined, aligning with the design specifications in Figma. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4510](https://github.com/swisspost/design-system/pull/4510))
+
+- Got rid of the page wide yellow background as it can cause yellow flashing between page loads (by [@gfellerph](https://github.com/gfellerph) with [#4523](https://github.com/swisspost/design-system/pull/4523))
+
+- Fixed display of `post-megadropdown` in header. (by [@leagrdv](https://github.com/leagrdv) with [#4350](https://github.com/swisspost/design-system/pull/4350))
+
+- Corrected high contrast mode styles for `checkbox` and `radio-button`. (by [@schaertim](https://github.com/schaertim) with [#4334](https://github.com/swisspost/design-system/pull/4334))
+
+## 9.0.0-next.12
+
+### Patch Changes
+
+- Positioned `ul.list-bullet > li::before` elements statically, so they can't cause render context issues anymore. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4478](https://github.com/swisspost/design-system/pull/4478))
+
+## 9.0.0-next.11
+
+### Major Changes
+
+- Removed the Bootstrap `.stretched-link` helper class. (by [@leagrdv](https://github.com/leagrdv) with [#4428](https://github.com/swisspost/design-system/pull/4428))
+
+- Removed the Bootstrap icon link helper classes. (by [@leagrdv](https://github.com/leagrdv) with [#4435](https://github.com/swisspost/design-system/pull/4435))
+
+- Removed the Bootstrap figures helper classes and css variables. (by [@leagrdv](https://github.com/leagrdv) with [#4426](https://github.com/swisspost/design-system/pull/4426))
+
+- Removed the Bootstrap `.vr` helper class. (by [@leagrdv](https://github.com/leagrdv) with [#4427](https://github.com/swisspost/design-system/pull/4427))
+
+- Removed the Bootstrap ratio helper classes. (by [@leagrdv](https://github.com/leagrdv) with [#4434](https://github.com/swisspost/design-system/pull/4434))
+
+- Removed the Bootstrap `.visually-hidden-focusable` helper class. (by [@leagrdv](https://github.com/leagrdv) with [#4438](https://github.com/swisspost/design-system/pull/4438))
+
+- Removed the Bootstrap stacks helper classes. (by [@leagrdv](https://github.com/leagrdv) with [#4429](https://github.com/swisspost/design-system/pull/4429))
+
+### Minor Changes
+
+- Added Teaser Card component. (by [@leagrdv](https://github.com/leagrdv) with [#4460](https://github.com/swisspost/design-system/pull/4460))
+
+- Added Swiss Post Sans as the new default font (by [@gfellerph](https://github.com/gfellerph) with [#4467](https://github.com/swisspost/design-system/pull/4467))
+
+### Patch Changes
+
+- Fixed visibility of the arrow-icon in Form Select for high contrast mode. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4325](https://github.com/swisspost/design-system/pull/4325))
+
+- Moved the Bootstrap `.clearfix` helper class to the design system and documented it. (by [@leagrdv](https://github.com/leagrdv) with [#4443](https://github.com/swisspost/design-system/pull/4443))
+
+- Moved the Bootstrap `.visually-hidden` helper class to design system styles and documented it. (by [@leagrdv](https://github.com/leagrdv) with [#4438](https://github.com/swisspost/design-system/pull/4438))
+
 ## 9.0.0-next.10
 
 ### Major Changes

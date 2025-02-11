@@ -1,9 +1,4 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
-import {
-  PostTabs,
-  PostTabHeader,
-  PostTabPanel,
-} from '@swisspost/design-system-components-react';
 import * as TagStories from './standard-html/tag.stories';
 import * as PostTagStories from './web-component/post-tag.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
@@ -21,9 +16,9 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 <div className="lead">
   A small label, generally appearing inside or in close proximity to another larger interface component, representing a status, property, or some other metadata.
 </div>
-<PostTabs>
-  <PostTabHeader panel="standardHTML">Standard HTML</PostTabHeader>
-  <PostTabPanel name="standardHTML">
+<post-tabs>
+  <post-tab-header panel="standardHTML">Standard HTML</post-tab-header>
+  <post-tab-panel name="standardHTML">
     <Canvas of={TagStories.Default} sourceState="shown"/>
     <div className="hide-col-default">
       <Controls of={TagStories.Default}/>
@@ -42,10 +37,10 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
     Here is a quick overview of all the background colors available for this component.
 
     <Canvas of={TagStories.Variants}/>
-  </PostTabPanel>
+  </post-tab-panel>
 
-  <PostTabHeader panel="webcomponent">Web Component</PostTabHeader>
-  <PostTabPanel name="webcomponent">
+  <post-tab-header panel="webcomponent">Web Component</post-tab-header>
+  <post-tab-panel name="webcomponent">
     <Canvas sourceState="shown" of={PostTagStories.Default}/>
     <Controls of={PostTagStories.Default}/>
 
@@ -65,5 +60,5 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
     Here is a quick overview of all the background colors available for this component.
 
     <Canvas of={PostTagStories.Variants}/>
-  </PostTabPanel>
-</PostTabs>
+  </post-tab-panel>
+</post-tabs>

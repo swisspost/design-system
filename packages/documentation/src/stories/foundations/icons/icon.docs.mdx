@@ -1,8 +1,7 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
 import * as IconStories from './icon.stories';
-import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
 import SampleMixin from './mixin.sample.scss?raw';
-import { Search } from './search/search-icons.blocks';
+import { POST_ICONS_COUNT, UI_ICONS_COUNT, Search } from './search/search-icons.blocks';
 import './icon.styles.scss';
 
 <Meta of={IconStories} />
@@ -16,12 +15,12 @@ import './icon.styles.scss';
 </div>
 
 <div className="lead">
-  The official Swiss Post Icon Library with 900+ high-quality svg icons and the brand new UI Icon Set, exclusively designed and provided for the web with 160+ icons and responsive level-of-detail.
+  The official Swiss Post Icon Library with {Math.floor(POST_ICONS_COUNT / 10) * 10}+ high-quality svg icons and the brand new UI Icon Set, exclusively designed and provided for the web with {Math.floor(UI_ICONS_COUNT / 10) * 10}+ icons and responsive level-of-detail.
 </div>
 
-<PostTabs activePanel="search">
-  <PostTabHeader panel="installation">Installation</PostTabHeader>
-  <PostTabPanel name="installation">
+<post-tabs activePanel="search">
+  <post-tab-header panel="installation">Installation</post-tab-header>
+  <post-tab-panel name="installation">
     ## Installation
 
     ### Icon Component
@@ -33,10 +32,10 @@ import './icon.styles.scss';
 
     The SVG files for icons should be hosted within your project.
     For guidelines on how to set this up, please refer to the [icon package documentation](/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs#usage).
-  </PostTabPanel>
+  </post-tab-panel>
 
-  <PostTabHeader panel="component">Usage as Web-Component</PostTabHeader>
-  <PostTabPanel name="component">
+  <post-tab-header panel="component">Usage as Web-Component</post-tab-header>
+  <post-tab-panel name="component">
     ## Usage as Web-Component
 
     Our <code>&lt;post-icon&gt;</code> component renders SVGs, so it scales quickly and easily and can
@@ -103,10 +102,10 @@ import './icon.styles.scss';
 
     <Canvas of={IconStories.Animate} sourceState="shown" />
 
-  </PostTabPanel>
+  </post-tab-panel>
 
-  <PostTabHeader panel="scss">Usage as CSS-Background</PostTabHeader>
-  <PostTabPanel name="scss">
+  <post-tab-header panel="scss">Usage as CSS-Background</post-tab-header>
+  <post-tab-panel name="scss">
     ## Usage in CSS
 
     To define an icon in your own CSS, you need the `@swisspost/design-system-styles` package and use our `post-icon` mixin. The icons are responsive and can have a different level-of-detail, depending on how big they are rendered on the page.
@@ -144,10 +143,10 @@ import './icon.styles.scss';
       code={SampleMixin}
     ></Source>
 
-  </PostTabPanel>
+  </post-tab-panel>
 
-  <PostTabHeader panel="search">Find your Icon</PostTabHeader>
-  <PostTabPanel name="search">
+  <post-tab-header panel="search">Find your Icon</post-tab-header>
+  <post-tab-panel name="search">
     <Search />
-  </PostTabPanel>
-</PostTabs>
+  </post-tab-panel>
+</post-tabs>

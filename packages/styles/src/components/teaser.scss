@@ -1,0 +1,114 @@
+@use '../tokens/components';
+@use '../functions/tokens';
+@use '../mixins/utilities';
+
+tokens.$default-map: components.$post-teaser;
+
+.teaser-card {
+  height: 100%;
+  box-shadow: tokens.get('card-interactive-elevation', components.$post-cards);
+  border-radius: tokens.get('card-border-radius', components.$post-cards);
+  position: relative;
+  background-color: tokens.get('card-enabled-bg2', components.$post-cards);
+  color: tokens.get('teaser-card-content-enabled-fg');
+  display: flex;
+  flex-direction: column;
+  transition:
+    background-color 150ms,
+    color 150ms;
+
+  &:hover {
+    background-color: tokens.get('card-hover-bg', components.$post-cards);
+    color: tokens.get('card-hover-fg', components.$post-cards);
+  }
+
+  a.btn {
+    position: unset;
+    outline-style: none !important;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      border-radius: tokens.get('card-border-radius', components.$post-cards);
+    }
+
+    @include utilities.focus-style('::before');
+  }
+
+  img {
+    height: tokens.get('teaser-card-sm-image-height');
+    min-height: tokens.get('teaser-card-sm-image-height');
+    width: 100%;
+    object-fit: cover;
+    border-top-left-radius: tokens.get('card-border-radius', components.$post-cards);
+    border-top-right-radius: tokens.get('card-border-radius', components.$post-cards);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin: 0;
+    word-break: break-word;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: tokens.get('teaser-card-sm-heading-font-size');
+  }
+
+  // Card content (text + button)
+  > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: tokens.get('teaser-card-sm-section-content-padding');
+    gap: tokens.get('teaser-card-sm-section-content-gap');
+    height: 100%;
+    justify-content: space-between;
+
+    // Card text button
+    > div {
+      display: flex;
+      flex-direction: column;
+      gap: tokens.get('teaser-card-sm-content-gap');
+    }
+  }
+
+  &.teaser-card-lg {
+    img {
+      height: tokens.get('teaser-card-lg-image-height');
+      min-height: tokens.get('teaser-card-lg-image-height');
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: tokens.get('teaser-card-lg-heading-font-size');
+    }
+
+    > div {
+      padding: tokens.get('teaser-card-lg-section-content-padding');
+      gap: tokens.get('teaser-card-lg-section-content-gap');
+
+      > div {
+        gap: tokens.get('teaser-card-lg-content-gap');
+      }
+    }
+  }
+}
