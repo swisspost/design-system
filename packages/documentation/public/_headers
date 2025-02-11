@@ -3,3 +3,9 @@
 
 /assets/versions.json
   Access-Control-Allow-Origin: *
+
+/assets/*.css
+  Access-Control-Allow-Origin: https://cdpn.io
+
+/post-icons/*.svg
+  Access-Control-Allow-Origin: https://cdpn.io
