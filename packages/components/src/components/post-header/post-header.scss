@@ -16,6 +16,9 @@
   --local-header-min-height: 56px;
   --header-height: calc(var(--global-header-height) + var(--local-header-height));
 
+  z-index: 1020;
+  position: relative;
+
   @include media.min(lg) {
     --global-header-reduced-height: 24px;
     --main-navigation-height: 56px;
@@ -53,7 +56,6 @@
   background-color: #ffcc00;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   position: sticky;
   padding-inline: var(--post-core-dimension-4);
   height: var(--global-header-height);
@@ -70,10 +72,6 @@
       (var(--global-header-height) - var(--global-header-reduced-height)) * -1
     );
   }
-}
-
-slot[name='post-logo'] {
-  align-self: flex-end;
 }
 
 .global-sub {
@@ -116,6 +114,7 @@ slot[name='post-logo'] {
   gap: var(--post-core-dimension-8);
   min-height: var(--local-header-min-height);
   background: var(--post-core-color-brand-white);
+  transition: box-shadow 0.2s ease-in-out; 
 
   @include media.min(lg) {
     z-index: 3;
@@ -134,6 +133,10 @@ slot[name='post-logo'] {
 
     &.local-header-mobile-extended {
       border-bottom: 1px solid var(--post-core-color-sandgrey-012);
+    }
+
+    &:not(.title-header-mobile-extended) {
+      box-shadow: var(--post-core-elevation-3);
     }
   }
 }
@@ -202,9 +205,6 @@ slot[name='post-logo'] {
     inset-inline: 0;
     background: var(--post-core-color-brand-white);
     inset-block-end: calc(100vh - var(--header-height));
-    box-shadow: var(--post-core-elevation-3);
-    min-height: var(--post-core-dimension-10); // needed for the box-shadow to always show
-    max-height: calc(100vh - var(--header-height));
   }
 
   ::slotted(post-mainnavigation),

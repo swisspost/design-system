@@ -1,5 +1,54 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.16
+
+### Minor Changes
+
+- Updated language switch behavior. (by [@myrta2302](https://github.com/myrta2302) with [#4376](https://github.com/swisspost/design-system/pull/4376))
+
+### Patch Changes
+
+- Updated the URL check on the post-logo component. It now also accepts relative URLs as valid props. (by [@gfellerph](https://github.com/gfellerph) with [#4616](https://github.com/swisspost/design-system/pull/4616))
+
+- Removed megadropdown animation when another one is already opened. (by [@leagrdv](https://github.com/leagrdv) with [#4627](https://github.com/swisspost/design-system/pull/4627))
+
+- Fixed `post-logo` from disappearing on `post-header` scroll. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4606](https://github.com/swisspost/design-system/pull/4606))
+
+- Fixed the `--main-header-height` custom property for `post-header` component, which was previously undefined on initial load. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4614](https://github.com/swisspost/design-system/pull/4614))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.16
+  - @swisspost/design-system-icons@9.0.0-next.16
+
+## 9.0.0-next.15
+
+### Patch Changes
+
+- Fixed an occurence of `aria-role` which should be declared as `role` on the `<post-language-switch>` (by [@gfellerph](https://github.com/gfellerph) with [#4598](https://github.com/swisspost/design-system/pull/4598))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.15
+  - @swisspost/design-system-icons@9.0.0-next.15
+
+## 9.0.0-next.14
+
+### Minor Changes
+
+- Improved main navigation overflow display. (by [@alizedebray](https://github.com/alizedebray) with [#4273](https://github.com/swisspost/design-system/pull/4273))
+
+- Removed `post-popovercontainer` from the `post-megadropdown` component and added desktop animations with new slide-down and slide-up effects. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4421](https://github.com/swisspost/design-system/pull/4421))
+
+- Added the `post-linkarea` component. (by [@veyaromain](https://github.com/veyaromain) with [#4030](https://github.com/swisspost/design-system/pull/4030))
+
+### Patch Changes
+
+- Removed nav for `post-header` component causing blank space on scroll for screens <1025px. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4532](https://github.com/swisspost/design-system/pull/4532))
+
+- Added z-index to the `post-header` component to display it on top of other contents. (by [@leagrdv](https://github.com/leagrdv) with [#4367](https://github.com/swisspost/design-system/pull/4367))
+
+- Fixed header mobile menu behavior by trapping the focus within it when opened as well as making it scrollable. (by [@leagrdv](https://github.com/leagrdv) with [#4395](https://github.com/swisspost/design-system/pull/4395))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.14
+  - @swisspost/design-system-icons@9.0.0-next.14
+
 ## 9.0.0-next.13
 
 ### Patch Changes

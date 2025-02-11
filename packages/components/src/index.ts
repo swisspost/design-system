@@ -17,6 +17,7 @@ export { PostHeader, DEVICE_SIZE } from './components/post-header/post-header';
 export { PostIcon } from './components/post-icon/post-icon';
 export { PostLanguageOption } from './components/post-language-option/post-language-option';
 export { PostLanguageSwitch } from './components/post-language-switch/post-language-switch';
+export { PostLinkarea } from './components/post-linkarea/post-linkarea';
 export { PostList } from './components/post-list/post-list';
 export { PostListItem } from './components/post-list-item/post-list-item';
 export { PostLogo } from './components/post-logo/post-logo';
