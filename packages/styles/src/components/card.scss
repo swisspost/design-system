@@ -12,12 +12,6 @@
 
 tokens.$default-map: components.$post-cards;
 
-.card-group {
-  margin-block-start: commons.$border-width;
-  margin-inline-start: commons.$border-width;
-  border-radius: tokens.get('card-border-radius');
-}
-
 post-linkarea:has(> .card) {
   border-radius: tokens.get('card-border-radius');
   display: block;
@@ -41,8 +35,14 @@ post-linkarea:has(> .card) {
 
     &:hover {
       background-color: tokens.get('card-hover-bg');
-      color: tokens.get('card-hover-fg');
 
+      p,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
       a,
       .btn-tertiary {
         color: tokens.get('card-hover-fg');
@@ -174,18 +174,6 @@ post-linkarea:has(> .card) {
   .card {
     img {
       height: 100%;
-    }
-  }
-
-  .card-group .card {
-    img {
-      height: auto;
-      max-height: 50%;
-    }
-
-    > .card-header,
-    > .card-footer {
-      flex: 0 0 auto;
     }
   }
 }

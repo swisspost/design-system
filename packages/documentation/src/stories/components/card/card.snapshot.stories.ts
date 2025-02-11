@@ -1,11 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import meta, {
-  CustomContent,
-  CardGroup,
-  BasicContent,
-  renderSimpleInteractiveCard,
-  renderSimpleNonInteractiveCard,
-} from './card.stories';
+import meta, { CustomContent, Default } from './card.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
@@ -21,22 +15,8 @@ type Story = StoryObj;
 
 export const Card: Story = {
   render: (_args: Args, context: StoryContext) => {
-    // Define default variants
-    const defaultVariants = ['default', 'alternate'].map((palette: string) => {
-      return html`
-        <div class="palette-${palette}">
-          <div class="container py-16">
-            <div class="row">
-              <div class="col-sm-6 col-12">${renderSimpleInteractiveCard()}</div>
-              <div class="col-sm-6 col-12">${renderSimpleNonInteractiveCard()}</div>
-            </div>
-          </div>
-        </div>
-      `;
-    });
-
     // Define basic content template variants
-    const basicContentTemplateVariants = [
+    const defaultTemplateVariants = [
       // Layout related combinations
       ...bombArgs({
         showImage: [false, true],
@@ -82,31 +62,28 @@ export const Card: Story = {
       .map(
         args => html`
           <div class="col-6 p-16">
-            ${BasicContent.render && BasicContent.render({ ...meta.args, ...args }, context)}
+            ${Default.render && Default.render({ ...meta.args, ...args }, context)}
           </div>
         `,
       );
 
-    // Define custom template variants
-    const customTemplateVariants = [
-      { story: CustomContent, colWidth: 6 },
-      { story: CardGroup, colWidth: 12 },
-    ]
-      // Map custom template variants
-      .map(
-        ({ story, colWidth }) => html`
-          <div class=${'p-16 col-' + colWidth}>
-            ${story.render && story.render({ ...meta.args, ...story.args }, context)}
-          </div>
-        `,
-      );
+    // Define custom template variant
+    const customTemplateVariant = html`
+      <div class="p-16 col-6">
+        ${CustomContent.render &&
+        CustomContent.render({ ...meta.args, ...CustomContent.args }, context)}
+      </div>
+    `;
 
-    // Render all variants on white and dark background
     return schemes(
       () =>
         html`
           <div class="row">
-            ${defaultVariants} ${basicContentTemplateVariants} ${customTemplateVariants}
+            <h1>Cards</h1>
+            <h2 class="mt-32">Default template variants cards</h2>
+            ${defaultTemplateVariants}
+            <h2 class="mt-32">Custom template variants cards</h2>
+            ${customTemplateVariant}
           </div>
         `,
     );
