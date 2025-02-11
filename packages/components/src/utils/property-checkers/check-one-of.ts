@@ -9,8 +9,9 @@ export function checkOneOf<T extends { host: HTMLElement }>(
   console.log(value);
   const defaultMessage = `The prop \`${String(
     prop,
-  )}\` of the \`${componentName}\` component must be one of the following values: \`
-    ${possibleValues.join(', ')} \`.`;
+  )}\` of the \`${componentName}\` component must be one of the following values: ${possibleValues.join(
+    ', ',
+  )}.`;
 
   const message = customMessage || defaultMessage;
   if (!possibleValues.includes(value)) {
