@@ -1,11 +1,14 @@
-import { ComponentInterface } from '@stencil/core/internal';
-
-export function checkUrl(component: ComponentInterface, prop: string, customMessage?: string) {
+export function checkUrl<T extends { host: HTMLElement }>(
+  component: T,
+  prop: keyof T,
+  customMessage?: string,
+) {
   const componentName = component.host.localName;
   const value = component[prop];
 
-  const defaultMessage =
-    'The `' + prop + '` property of the `' + componentName + '` component is invalid.';
+  const defaultMessage = `The prop \`${String(
+    prop,
+  )}\` of the \`${componentName}\` component is invalid.`;
   const message = customMessage || defaultMessage;
 
   if (typeof value !== 'string' && !(value instanceof URL)) {

@@ -43,7 +43,7 @@ export class PostBanner {
 
   @Watch('dismissible')
   validateDismissible() {
-    checkType(this, 'isDismissible', 'boolean');
+    checkType(this, 'dismissible', 'boolean');
     setTimeout(() => this.validateDismissLabel());
   }
 

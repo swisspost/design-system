@@ -1,10 +1,8 @@
-import { ComponentInterface } from '@stencil/core/internal';
-
 export type PropertyType = 'boolean' | 'number' | 'string' | 'array' | 'object' | 'function';
 
-export function checkType(
-  component: ComponentInterface,
-  prop: string,
+export function checkType<T extends { host: HTMLElement }>(
+  component: T,
+  prop: keyof T,
   type: PropertyType,
   customMessage?: string,
 ) {
@@ -14,14 +12,10 @@ export function checkType(
   const typeIsArray = type === 'array';
   const valueIsArray = Array.isArray(value);
 
-  const defaultMessage =
-    'The `' +
-    prop +
-    '` property of the `' +
-    componentName +
-    '` component must be of type `' +
-    type +
-    '`.';
+  const defaultMessage = `The prop \`${String(
+    prop,
+  )}\` of the \`${componentName}\` component must be of type \`
+    ${type}\`.`;
   const message = customMessage || defaultMessage;
 
   if (typeIsArray || valueIsArray) {

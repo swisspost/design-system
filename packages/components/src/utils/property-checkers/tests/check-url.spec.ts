@@ -1,8 +1,4 @@
 import { checkUrl } from '../check-url';
-import { ComponentInterface } from '@stencil/core/internal';
-
-let component: ComponentInterface;
-let prop: string;
 
 describe('checkUrl', () => {
   const errorMessage = 'Invalid URL';
@@ -18,8 +14,8 @@ describe('checkUrl', () => {
       'mailto:email@me.something',
       'localhost:3000',
     ].forEach(validUrl => {
-      component = { prop: validUrl };
-      expect(() => checkUrl(component, prop)).not.toThrow();
+      const component = { host: { localName: 'post-component' } as HTMLElement, prop: validUrl };
+      expect(() => checkUrl(component, 'prop', errorMessage)).not.toThrow();
     });
   });
 
@@ -33,9 +29,9 @@ describe('checkUrl', () => {
       { url: 'https://www.example.com' },
       () => 'https://www.example.com',
     ].forEach(invalidUrl => {
-      component = { prop: invalidUrl };
+      const component = { host: { localName: 'post-component' } as HTMLElement, prop: invalidUrl };
       // Type casting because we know that these are not valid arguments, it's just for testing
-      expect(() => checkUrl(component, prop)).toThrow(errorMessage);
+      expect(() => checkUrl(component, 'prop', errorMessage)).toThrow(errorMessage);
     });
   });
 });

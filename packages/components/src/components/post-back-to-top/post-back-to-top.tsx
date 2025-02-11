@@ -9,7 +9,7 @@ import { checkType, checkNonEmpty } from '@/utils';
   shadow: true,
 })
 export class PostBackToTop {
-  @Element() el: HTMLPostBackToTopElement;
+  @Element() host: HTMLPostBackToTopElement;
 
   /**
    * The label of the back-to-top button, intended solely for accessibility purposes.
@@ -33,9 +33,9 @@ export class PostBackToTop {
   @Watch('belowFold')
   watchBelowFold(newValue: boolean) {
     if (newValue) {
-      slideUp(this.el, this.translateY);
+      slideUp(this.host, this.translateY);
     } else {
-      slideDown(this.el, this.translateY);
+      slideDown(this.host, this.translateY);
     }
   }
 
@@ -61,16 +61,16 @@ export class PostBackToTop {
     window.addEventListener('scroll', this.handleScroll, false);
 
     this.translateY = window
-      .getComputedStyle(this.el)
+      .getComputedStyle(this.host)
       .getPropertyValue('--post-floating-button-translate-y');
 
     if (!this.belowFold) {
-      this.el.style.transform = `translateY(${this.translateY})`;
+      this.host.style.transform = `translateY(${this.translateY})`;
     }
 
     // Initial load
     if (this.belowFold) {
-      slideUp(this.el, this.translateY);
+      slideUp(this.host, this.translateY);
     }
 
     this.validateLabel();

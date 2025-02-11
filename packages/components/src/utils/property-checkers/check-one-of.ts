@@ -1,7 +1,5 @@
-import { ComponentInterface } from '@stencil/core/internal';
-
-export function checkOneOf<T>(
-  component: ComponentInterface,
+export function checkOneOf<T, H extends { host: HTMLElement }>(
+  component: H,
   prop: string,
   possibleValues: readonly T[],
   customMessage?: string,
@@ -9,6 +7,7 @@ export function checkOneOf<T>(
   const componentName = component.host.localName;
   const value = component[prop];
 
+  console.log(component);
   const defaultMessage =
     'The `' +
     prop +

@@ -1,16 +1,12 @@
 import { checkPattern } from '../check-pattern';
-import { ComponentInterface } from '@stencil/core/internal';
-
-let component: ComponentInterface;
-let prop: string;
 
 describe('checkPattern', () => {
   const pattern = /[a-z]{5}/;
   const error = 'Does not match pattern.';
 
-  const runCheckForValue = (value: any) => () => {
-    component = { prop: value };
-    checkPattern(component, prop, pattern, error);
+  const runCheckForValue = (value: unknown) => () => {
+    const component = { host: { localName: 'post-component' } as HTMLElement, prop: value };
+    checkPattern(component, 'prop', pattern, error);
   };
 
   it('should not throw an error if the value matches the provided pattern', () => {

@@ -1,16 +1,12 @@
 import { checkType, PropertyType } from '../check-type';
-import { ComponentInterface } from '@stencil/core/internal';
 
 describe('checkType', () => {
   let type: PropertyType;
   let error: string;
-  let component: ComponentInterface;
-  let prop: string;
 
-  const runCheckForValue = (value: any) => () => {
-    component = { host: { localName: 'post-component' } };
-    prop = value;
-    checkType(component, prop, type, error);
+  const runCheckForValue = (value: unknown) => () => {
+    const component = { host: { localName: 'post-component' } as HTMLElement, prop: value };
+    checkType(component, 'prop', type, error);
   };
 
   describe('boolean', () => {

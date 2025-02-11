@@ -1,20 +1,12 @@
 import { checkOneOf } from '../check-one-of';
-import { ComponentInterface } from '@stencil/core/internal';
-
-let component: ComponentInterface;
-let prop: string;
-
-beforeEach(() => {
-  // Create a mock component object
-});
 
 describe('checkOneOf', () => {
   const possibleValues = ['A', 'B', 'C', 'D'];
   const error = 'Is not one of.';
-  const runCheckForValue = (value: string) => () => {
-    component = { prop: value };
 
-    checkOneOf(component, prop, possibleValues, error);
+  const runCheckForValue = (value: string) => () => {
+    const component = { host: { localName: 'post-component' } as HTMLElement, prop: value };
+    checkOneOf(component, 'prop', possibleValues, error);
   };
 
   it('should not throw an error if the value is one of the possible values', () => {
