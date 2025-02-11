@@ -63,7 +63,6 @@ export class PostLanguageSwitch {
 
   connectedCallback() {
     this.updateChildrenVariant();
-
     // Get the active language based on children's active state
     this.activeLang = Array.from(this.host.querySelectorAll('post-language-option'))
       .find(el => el.getAttribute('active') == 'true')
@@ -111,7 +110,10 @@ export class PostLanguageSwitch {
 
   private renderList() {
     return (
-      <Host data-version={version} aria-label={`${this.caption}, ${this.description}`} role="list">
+      <Host data-version={version} role="list" aria-label={this.caption}>
+        <span aria-label={this.description} role="listitem">
+          {this.activeLang.toUpperCase()}
+        </span>
         <slot></slot>
       </Host>
     );
@@ -121,15 +123,16 @@ export class PostLanguageSwitch {
     return (
       <Host data-version={version}>
         <post-menu-trigger for={this.menuId}>
-          <button
-            class="post-language-switch-trigger"
-            aria-label={`${this.caption}, ${this.description}`}
-          >
+          <button class="post-language-switch-trigger" aria-label={this.description}>
             {this.activeLang.toUpperCase()}
             <post-icon aria-hidden="true" name="chevrondown"></post-icon>
           </button>
         </post-menu-trigger>
-        <post-menu id={this.menuId} class="post-language-switch-dropdown-container">
+        <post-menu
+          id={this.menuId}
+          class="post-language-switch-dropdown-container"
+          aria-label={this.caption}
+        >
           <slot></slot>
         </post-menu>
       </Host>
