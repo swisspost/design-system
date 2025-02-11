@@ -1,6 +1,6 @@
 ---
 '@swisspost/design-system-documentation': minor
-'@swisspost/design-system-styles': minor
+'@swisspost/design-system-styles': patch
 ---
 
-Moved `text-truncate` bootstrap class to design system
+Internalized Bootstrap `.text-truncate` class into the Design System.
