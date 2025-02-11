@@ -1,6 +1,12 @@
 import { version } from '@swisspost/design-system-components/package.json';
 
 export const openInCodePen = (e: Event) => {
+  // Extract stylesheet tags from document head, skipping first two
+  const stylesheetTags = Array.from(document.head.querySelectorAll('link[rel="stylesheet"]'))
+    .slice(2)
+    .map(link => link.outerHTML)
+    .join('\n');
+
   const target = e.target as HTMLButtonElement;
   const canvas = target.closest('.docs-story');
   const rootInner = canvas?.querySelector('#root-inner') as HTMLElement;
@@ -22,6 +28,7 @@ export const openInCodePen = (e: Event) => {
   const data = JSON.stringify({
     html,
     title: 'Storybook Example',
+    head: stylesheetTags,
     js: `import "https://esm.sh/@swisspost/design-system-components@${version}/dist/post-components/post-components.esm.js";`,
     css_external: `https://cdn.jsdelivr.net/npm/@swisspost/design-system-styles@${version}/cargo-external.css`,
   });
