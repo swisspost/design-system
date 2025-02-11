@@ -6,3 +6,6 @@
 
 /assets/*.css
   Access-Control-Allow-Origin: https://cdpn.io
+
+/post-icons/*.svg
+  Access-Control-Allow-Origin: https://cdpn.io
