@@ -33,7 +33,7 @@ interface PopoverElement {
 export type PostPopoverElement = HTMLElement & PopoverElement;
 
 /**
- * @slot - Default slot for placing content inside the popovercontainer.
+ * @slot - Default slot for placing content inside the popover-container.
  */
 
 @Component({
@@ -48,31 +48,36 @@ export class PostPopovercontainer {
   private toggleTimeoutId: number;
 
   /**
-   * Fires whenever the popover gets shown or hidden, passing the new state in event.details as a boolean
+   * Fires whenever the popover-container gets shown or hidden, passing the new state in event.details as a boolean
    */
   @Event() postToggle: EventEmitter<boolean>;
 
   /**
-   * Whether or not the popover should close when user clicks outside of it
-   */
-  @Prop() manualClose: boolean = false;
-
-  /**
-   * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
-   * Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted
+   * Defines the placement of the popover-container according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
+   * Popover-containers are automatically flipped to the opposite side if there is not enough available space and are shifted
    * towards the viewport if they would overlap edge boundaries.
    */
   @Prop() readonly placement?: Placement = 'top';
 
   /**
-   * Gap between the edge of the page and the popover
+   * Gap between the edge of the page and the popover-container
    */
   @Prop() readonly edgeGap?: number = 8;
 
   /**
-   * Wheter or not to display a little pointer arrow
+   * Animation style
+   */
+  @Prop() readonly animation?: 'pop-in';
+
+  /**
+   * Whether or not to display a little pointer arrow
    */
   @Prop() readonly arrow?: boolean = false;
+
+  /**
+   * Whether or not the popover should close when user clicks outside of it
+   */
+  @Prop() manualClose: boolean = false;
 
   componentDidLoad() {
     this.host.addEventListener('beforetoggle', this.handleToggle.bind(this));
@@ -83,8 +88,8 @@ export class PostPopovercontainer {
   }
 
   /**
-   * Programmatically display the tooltip
-   * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+   * Programmatically display the popover-container
+   * @param target An element with [data-popover-target="id"] where the popover-container should be shown
    */
   @Method()
   async show(target: HTMLElement) {
@@ -96,7 +101,7 @@ export class PostPopovercontainer {
   }
 
   /**
-   * Programmatically hide this tooltip
+   * Programmatically hide the popover-container
    */
   @Method()
   async hide() {
@@ -107,8 +112,8 @@ export class PostPopovercontainer {
   }
 
   /**
-   * Toggle tooltip display
-   * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+   * Toggle popover-container display
+   * @param target An element with [data-popover-target="id"] where the popover-container should be shown
    * @param force Pass true to always show or false to always hide
    */
   @Method()
@@ -124,8 +129,8 @@ export class PostPopovercontainer {
   }
 
   /**
-   * Start or stop auto updates based on tooltip events.
-   * Tooltips can be closed or opened with other methods than class members,
+   * Start or stop auto updates based on popover-container events.
+   * Popover-containers can be closed or opened with other methods than class members,
    * therefore listening to the toggle event is safer for cleaning up.
    * @param e ToggleEvent
    */
@@ -142,7 +147,7 @@ export class PostPopovercontainer {
 
   /**
    * Start listening for DOM updates, scroll events etc. that have
-   * an influence on tooltip positioning
+   * an influence on popover-container positioning
    */
   private startAutoupdates() {
     this.clearAutoUpdate = autoUpdate(
@@ -191,7 +196,7 @@ export class PostPopovercontainer {
       middleware,
     });
 
-    // Tooltip
+    // Popover-container
     this.host.style.left = `${x}px`;
     this.host.style.top = `${y}px`;
 
@@ -217,7 +222,7 @@ export class PostPopovercontainer {
 
   render() {
     return (
-      <Host data-version={version} popover={this.manualClose ? 'manual' : 'auto'}>
+      <Host data-version={version} data-animation={this.animation} popover={this.manualClose ? 'manual' : 'auto'}>
         {this.arrow && (
           <span
             class="arrow"

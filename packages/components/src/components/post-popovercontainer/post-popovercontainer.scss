@@ -4,6 +4,7 @@
 @use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/variables/spacing';
 @use '@swisspost/design-system-styles/mixins/color' as color-mx;
+@use '@swisspost/design-system-styles/mixins/animation';
 @use '@swisspost/design-system-styles/variables/elevation';
 @use '@swisspost/design-system-styles/functions/color' as color-fn;
 @use '@swisspost/design-system-styles/mixins/utilities';
@@ -20,6 +21,17 @@
 }
 
 :where(post-popovercontainer) {
+
+  &[data-animation='pop-in']:where(:popover-open, .popover-open) {
+    @include animation.top-layer-pop-in(0.25s, ':popover-open');
+
+  @media (prefers-reduced-motion) {
+    & {
+      --post-transition-duration: 0s;
+    }
+  }
+}
+
   box-shadow: elevation.$elevation-300;
   background: var(--post-current-palette-bg);
   color: var(--post-current-palette-fg);
@@ -39,6 +51,34 @@
 
   // Keeps the little arrow visible
   overflow: visible;
+
+  &:not(:has(.arrow)) {
+    box-shadow: elevation.$elevation-300;
+  }
+
+  &:has(.arrow) {
+    filter: drop-shadow(1px 2px 3px hsla(216, 9%, 11%, 0.15))
+      drop-shadow(2px 4px 6px hsla(225, 17%, 9%, 0.15))
+      drop-shadow(4px 8px 12px hsla(225, 7%, 11%, 0.15));
+  }
+
+  &:has(.arrow.top) {
+    filter: drop-shadow(0px -2px 3px hsla(216, 9%, 11%, 0.15))
+      drop-shadow(0px -4px 6px hsla(225, 17%, 9%, 0.15))
+      drop-shadow(0px -8px 12px hsla(225, 7%, 11%, 0.15));
+  }
+
+  &:has(.arrow.left) {
+    filter: drop-shadow(-2px 0px 3px hsla(216, 9%, 11%, 0.15))
+      drop-shadow(-4px 0px 6px hsla(225, 17%, 9%, 0.15))
+      drop-shadow(-8px 0px 12px hsla(225, 7%, 11%, 0.15));
+  }
+
+  &:has(.arrow.right) {
+    filter: drop-shadow(2px 0px 3px hsla(216, 9%, 11%, 0.15))
+      drop-shadow(4px 0px 6px hsla(225, 17%, 9%, 0.15))
+      drop-shadow(8px 0px 12px hsla(225, 7%, 11%, 0.15));
+  }
 
   &:not(:has(.arrow)) {
     box-shadow: elevation.$elevation-300;
