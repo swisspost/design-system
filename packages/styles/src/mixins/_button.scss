@@ -17,10 +17,18 @@ tokens.$default-map: components.$post-button;
   overflow: visible;
   border: 0;
   background: none;
-  color: inherit;
+  color: tokens.get('button-secondary-enabled-fg', components.$post-button);
   font: inherit;
   user-select: none;
   appearance: button; // for input
+
+  @include utilities.high-contrast-mode() {
+    background-color: ButtonFace !important;
+
+    &:hover {
+      background-color: Highlight !important;
+    }
+  }
 }
 
 @mixin button-size($size: md) {
