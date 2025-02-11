@@ -16,7 +16,7 @@ export const PostLogo: Story = {
   render: (_args: Partial<HTMLPostLogoElement>, context: StoryContext<HTMLPostLogoElement>) => {
     return schemes(
       () => html`
-        <div class="row gx-5">
+        <div class="row gx-48">
           ${['', 'https://www.post.ch'].map(
             url => html`
               <div class="col">
