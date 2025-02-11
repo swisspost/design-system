@@ -128,7 +128,7 @@ export class PostPopovercontainer {
       this.host.togglePopover(force);
       this.toggleTimeoutId = null;
     }
-    return this.host.matches(':where(:popover-open, .popover-open');
+    return this.host.matches(':where(:popover-open, .popover-open)');
   }
 
   /**

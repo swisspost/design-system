@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': minor
 ---
 
-Added optional safe triangle and trapeziod to `post-popovercontainer` to improve accessability.
+Added optional safe triangle and trapezoid to `post-popovercontainer` to improve accessability.
