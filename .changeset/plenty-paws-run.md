@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-styles': patch
+'@swisspost/design-system-documentation': patch
 ---
 
-Renamed `form-check.scss` file so that it is included in the build process.
+Removed `form-check.scss` import suggestions from documentation.
