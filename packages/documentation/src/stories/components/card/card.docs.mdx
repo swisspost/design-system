@@ -19,8 +19,7 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 Built with flexbox, they offer easy alignment and mix well with other components.
 
 They have no fixed width to start, so they’ll naturally fill the full width of its parent element.
-This is easily customizable using the grid for example,
-for more details read our [grid docs](/?path=/docs/7240f2ef-216a-490e-9bd8-c0cef19f7b31--docs).
+This is easily customizable using the grid for example. For more details on that, read our [grid docs](/?path=/docs/7240f2ef-216a-490e-9bd8-c0cef19f7b31--docs).
 
 <Canvas sourceState="shown" of={CardStories.Default} />
 <div className="hide-col-default">
@@ -29,7 +28,26 @@ for more details read our [grid docs](/?path=/docs/7240f2ef-216a-490e-9bd8-c0cef
 
 <StylesPackageImport components={['card']} />
 
+## Foundations
+
+Card elements can contain many things, they can be interactive or not. Interactive cards will have a shadow and an hover effect. To make your card interactive, simply add the `post-linkarea` component around it.
+To read more about it, read our [post-linkarea docs](/?path=/docs/1d52b794-768b-464e-90eb-4fd15774aa90--docs).
+
+<div className="banner banner-info">
+  Do not place more than one interactive element on an interactive card. If your card should contain
+  more than one action, consider using a non-interactive card which can contain multiple different
+  actionable/interactive elements.
+</div>
+
+<Canvas sourceState="shown" of={CardStories.Foundation} />
+
 ## Examples
+
+### Palettes
+
+Cards should never be the same color as its section's background. Therefore, depending on the palette, the card's background color will adapt.
+
+<Canvas sourceState="hidden" of={CardStories.Palette} />
 
 ### Custom Content
 
@@ -43,12 +61,6 @@ This applies to the body of the card as well as its header and footer.
 Create lists of content in a card by simply using a flush list group in place of the card body.
 
 <Canvas of={CardStories.ListGroup} />
-
-### Card Group
-
-Use card groups to render cards as a single, attached element with equal width and height columns.
-
-<Canvas of={CardStories.CardGroup} />
 
 ### Bad example
 

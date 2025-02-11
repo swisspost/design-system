@@ -1,44 +1,13 @@
 @use '../tokens/components';
 @use '../functions/tokens';
-@use '../mixins/utilities';
 
 tokens.$default-map: components.$post-teaser;
 
 .teaser-card {
   height: 100%;
-  box-shadow: tokens.get('card-interactive-elevation', components.$post-cards);
-  border-radius: tokens.get('card-border-radius', components.$post-cards);
   position: relative;
-  background-color: tokens.get('card-enabled-bg2', components.$post-cards);
-  color: tokens.get('teaser-card-content-enabled-fg');
   display: flex;
   flex-direction: column;
-  transition:
-    background-color 150ms,
-    color 150ms;
-
-  &:hover {
-    background-color: tokens.get('card-hover-bg', components.$post-cards);
-    color: tokens.get('card-hover-fg', components.$post-cards);
-  }
-
-  a.btn {
-    position: unset;
-    outline-style: none !important;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-      border-radius: tokens.get('card-border-radius', components.$post-cards);
-    }
-
-    @include utilities.focus-style('::before');
-  }
 
   img {
     height: tokens.get('teaser-card-sm-image-height');

@@ -1,33 +1,68 @@
 @use './../themes/bootstrap/core' as *;
 @use './../themes/bootstrap/card' as bootstrap-card;
 @use './../variables/color';
-@use './../variables/spacing';
 @use './../variables/commons';
-@use './../variables/components/card';
-@use './../functions/sizing';
 @use './../mixins/icons' as icons-mx;
 @use './../variables/icons';
-@use './../variables/animation';
+@use '../mixins/utilities' as utilities-mx;
 
 @use './../functions/tokens';
 @use './../tokens/utilities';
+@use './../tokens/components';
 
-tokens.$default-map: utilities.$post-spacing;
+tokens.$default-map: components.$post-cards;
 
-.card-group {
-  margin-top: commons.$border-width;
-  margin-left: commons.$border-width;
-  box-shadow: commons.$box-shadow-lg;
+post-linkarea:has(> .card) {
+  border-radius: tokens.get('card-border-radius');
+  display: block;
+  @include utilities-mx.focus-style();
 }
 
 .card {
-  transition: box-shadow 0.25s;
-  border: 0;
-  border-radius: 0;
-  // Outline with card-group margin trick prevents double/jumping (on hover) borders
-  outline: 1px solid card.$card-border-color;
-  box-shadow: commons.$box-shadow-lg;
-  color: card.$card-color;
+  transition: all 250ms;
+  border-radius: tokens.get('card-border-radius');
+  background-color: tokens.get('card-enabled-bg1');
+  border: 1px solid tokens.get('card-non-interactive-stroke');
+
+  .palette-alternate & {
+    background-color: tokens.get('card-enabled-bg2');
+  }
+
+  // Add an elevation only if card is interactive
+  post-linkarea > & {
+    border: 0;
+    box-shadow: tokens.get('card-interactive-elevation');
+
+    &:hover {
+      background-color: tokens.get('card-hover-bg');
+
+      p,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      a,
+      .btn-tertiary {
+        color: tokens.get('card-hover-fg');
+      }
+    }
+  }
+
+  .card-header:first-child,
+  .list-group:first-child,
+  .card-img-top {
+    border-start-start-radius: tokens.get('card-border-radius');
+    border-start-end-radius: tokens.get('card-border-radius');
+  }
+
+  .card-footer:last-child,
+  .list-group:last-child,
+  .card-img-bottom {
+    border-end-start-radius: tokens.get('card-border-radius');
+    border-end-end-radius: tokens.get('card-border-radius');
+  }
 
   &.product-card,
   &.card-button {
@@ -40,23 +75,13 @@ tokens.$default-map: utilities.$post-spacing;
     }
   }
 
-  & + & {
-    margin-top: sizing.calculate-single-box-shadow-size(commons.$box-shadow-lg) * 2;
-  }
-
-  .card-group > & {
-    margin-right: commons.$border-width;
-    margin-bottom: commons.$border-width;
-    box-shadow: none;
-
-    + .card {
-      margin-top: 0;
-    }
+  .list-group {
+    margin-block: 0 !important;
   }
 
   .list-group-item {
     padding: 1.25rem 1rem;
-    border-color: card.$card-border-color;
+    border-color: tokens.get('card-non-interactive-stroke');
   }
 
   .link-icon {
@@ -65,13 +90,13 @@ tokens.$default-map: utilities.$post-spacing;
     post-icon {
       width: 1.5rem;
       height: 1.5rem;
-      margin-right: 0.5rem;
+      margin-inline-end: 0.5rem;
     }
   }
 
   > .list-group + .card-footer,
   .card-body ~ .card-body {
-    border-top: 1px solid color.$gray-20;
+    border-block-start: 1px solid color.$gray-20;
   }
 }
 
@@ -82,11 +107,11 @@ tokens.$default-map: utilities.$post-spacing;
 .card-footer,
 .list-group-item {
   > *:first-child {
-    margin-top: 0;
+    margin-block-start: 0;
   }
 
   > *:last-child {
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 }
 
@@ -98,15 +123,15 @@ tokens.$default-map: utilities.$post-spacing;
   .product-card &,
   .card-button & {
     @include media-breakpoint-down(sm) {
-      padding: tokens.get('utility-gap-16');
+      padding: tokens.get('utility-gap-16', utilities.$post-spacing);
     }
 
     @include media-breakpoint-between(sm, md) {
-      padding: tokens.get('utility-gap-24');
+      padding: tokens.get('utility-gap-24', utilities.$post-spacing);
     }
 
     @include media-breakpoint-up(md) {
-      padding: tokens.get('utility-gap-32');
+      padding: tokens.get('utility-gap-32', utilities.$post-spacing);
     }
   }
 
@@ -119,7 +144,7 @@ tokens.$default-map: utilities.$post-spacing;
   align-items: center;
 
   > *:not(:last-child) {
-    margin-right: 1rem;
+    margin-inline-end: 1rem;
   }
 }
 
@@ -151,33 +176,19 @@ tokens.$default-map: utilities.$post-spacing;
       height: 100%;
     }
   }
-
-  .card-group .card {
-    img {
-      height: auto;
-      max-height: 50%;
-    }
-
-    > .card-header,
-    > .card-footer {
-      flex: 0 0 auto;
-    }
-  }
 }
 
 .card-links {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
+  padding-inline: 0.5rem;
 
   a {
     display: inline-flex;
     align-items: center;
-    padding-inline: tokens.get('utility-gap-8');
-    gap: tokens.get('utility-gap-8');
-    color: color.$gray-60;
+    padding-inline: tokens.get('utility-gap-8', utilities.$post-spacing);
+    gap: tokens.get('utility-gap-8', utilities.$post-spacing);
     text-decoration: none;
     -ms-flex-align: center;
 
@@ -187,11 +198,6 @@ tokens.$default-map: utilities.$post-spacing;
       display: inline-block;
       width: icons.$icon-size-default;
       height: icons.$icon-size-default;
-    }
-
-    &:hover,
-    &:focus {
-      color: color.$black;
     }
   }
 }
