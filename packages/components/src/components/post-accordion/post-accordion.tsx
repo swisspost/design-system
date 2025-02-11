@@ -26,9 +26,9 @@ export class PostAccordion {
   @Watch('headingLevel')
   validateHeadingLevel(newValue = this.headingLevel) {
     if (!newValue) return;
-
     checkOneOf(
-      newValue,
+      this,
+      'headingLevel',
       HEADING_LEVELS,
       'The `heading-level` property of the `post-accordion` must be a number between 1 and 6.',
     );
