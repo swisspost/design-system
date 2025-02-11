@@ -76,14 +76,16 @@ export interface IconSetGroups {
 export interface JsonReport {
   sources: SourceIcon[];
   icons: OutputIcon[];
+  errored: SourceIcon[];
+  noSVG: SourceIcon[];
   wrongViewBox: SourceIcon[];
   noKeywords: SourceIcon[];
-  noSVG: SourceIcon[];
-  errored: SourceIcon[];
   stats: {
-    errors: number;
-    notFound: number;
     success: number;
+    errors: number;
+    noSVG: number;
+    wrongViewBox: number;
+    noKeywords: number;
     output: number;
   };
   created: Date;

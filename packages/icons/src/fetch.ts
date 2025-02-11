@@ -17,7 +17,7 @@ async function fetchSVGs() {
     const report = await downloadIconSet(iconSet, getBaseReport());
     console.log(
       coloredLogMessage(
-        `<blue>Downloading "${iconSet.name}" finished.</blue>\nDownloaded <green>${report.stats.success}</green> icons, <red>${report.stats.errors}</red> errored, <red>${report.stats.notFound}</red> not found.\n`,
+        `<blue>Downloading "${iconSet.name}" finished.</blue>\nDownloaded <green>${report.stats.success}</green> icons, <red>${report.stats.errors}</red> errored, <red>${report.stats.noSVG}</red> with wrong format (no SVG).\n`,
       ),
     );
   }

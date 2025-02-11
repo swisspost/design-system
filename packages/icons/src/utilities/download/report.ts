@@ -54,14 +54,16 @@ export function updateReport(
 export function writeReport(iconSet: IconSet, report: JsonReport) {
   report.sources.sort(sortIcons);
   report.icons.sort(sortIcons);
+  report.errored.sort(sortIcons);
+  report.noSVG.sort(sortIcons);
   report.wrongViewBox.sort(sortIcons);
   report.noKeywords.sort(sortIcons);
-  report.noSVG.sort(sortIcons);
-  report.errored.sort(sortIcons);
-  report.stats.errors = report.errored.length;
-  report.stats.notFound = report.noSVG.length;
   report.stats.success = report.sources.length;
   report.stats.output = report.icons.length;
+  report.stats.errors = report.errored.length;
+  report.stats.noSVG = report.noSVG.length;
+  report.stats.wrongViewBox = report.wrongViewBox.length;
+  report.stats.noKeywords = report.noKeywords.length;
 
   fs.writeFileSync(
     path.join(iconSet.downloadDirectory, 'report.json'),

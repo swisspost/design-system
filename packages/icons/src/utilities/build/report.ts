@@ -50,20 +50,22 @@ export function writeReport(
       noSVG: [...report.noSVG, ...iconSetReport.noSVG],
       errored: [...report.errored, ...iconSetReport.errored],
       stats: {
-        errors: report.stats.errors + iconSetReport.stats.errors,
-        notFound: report.stats.notFound + iconSetReport.stats.notFound,
         success: report.stats.success + iconSetReport.stats.success,
         output: [...report.icons, ...outputIcons].length,
+        errors: report.stats.errors + iconSetReport.stats.errors,
+        noSVG: report.stats.noSVG + iconSetReport.stats.noSVG,
+        wrongViewBox: report.stats.wrongViewBox + iconSetReport.stats.wrongViewBox,
+        noKeywords: report.stats.noKeywords + iconSetReport.stats.noKeywords,
       },
     } as JsonReport;
   }, getBaseReport());
 
   outputReport.sources.sort(sortIcons);
   outputReport.icons.sort(sortIcons);
+  outputReport.errored.sort(sortIcons);
+  outputReport.noSVG.sort(sortIcons);
   outputReport.wrongViewBox.sort(sortIcons);
   outputReport.noKeywords.sort(sortIcons);
-  outputReport.noSVG.sort(sortIcons);
-  outputReport.errored.sort(sortIcons);
   outputReport.created = new Date();
   outputReport.version = version;
 
