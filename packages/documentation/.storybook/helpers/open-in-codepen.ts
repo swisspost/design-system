@@ -1,11 +1,20 @@
 import { version } from '@swisspost/design-system-components/package.json';
 
 export const openInCodePen = (e: Event) => {
-  // Extract stylesheet tags from document head, skipping first two
-  const stylesheetTags = Array.from(document.head.querySelectorAll('link[rel="stylesheet"]'))
-    .slice(2)
-    .map(link => link.outerHTML)
-    .join('\n');
+  // Get document from parent window's iframe
+  const parentDocument = window.parent.document;
+  const iframe = parentDocument.querySelector<HTMLIFrameElement>(
+    'iframe[data-is-storybook="true"]',
+  );
+  const iframeDocument = iframe?.contentDocument;
+
+  // Extract stylesheet tags from iframe head, skipping first two
+  const stylesheetTags = iframeDocument
+    ? Array.from(iframeDocument.head.querySelectorAll('link[rel="stylesheet"]'))
+        .slice(2)
+        .map(link => link.outerHTML)
+        .join('\n')
+    : '';
 
   const target = e.target as HTMLButtonElement;
   const canvas = target.closest('.docs-story');
