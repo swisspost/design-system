@@ -43,11 +43,6 @@
   .local-sub {
     display: none;
   }
-  .navigation {
-    @include utilities.high-contrast-mode() {
-      border-block-end: 3px solid ButtonBorder;
-    }
-  }
 }
 
 .d-flex {
@@ -125,7 +120,11 @@ slot[name='post-logo'] {
   gap: var(--post-core-dimension-8);
   min-height: var(--local-header-min-height);
   background: var(--post-core-color-brand-white);
-  transition: box-shadow 0.2s ease-in-out; 
+  transition: box-shadow 0.2s ease-in-out;
+
+  @include utilities.high-contrast-mode() {
+    border-block-end: 1px solid CanvasText;
+  }
 
   @include media.min(lg) {
     z-index: 3;
@@ -149,9 +148,6 @@ slot[name='post-logo'] {
     &:not(.title-header-mobile-extended) {
       box-shadow: var(--post-core-elevation-3);
     }
-  }
-  @include media.max(lg) {
-    border-block-end: 1px solid ButtonBorder;
   }
 }
 

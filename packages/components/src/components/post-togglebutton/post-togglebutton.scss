@@ -10,6 +10,7 @@
 
   @include utilities.high-contrast-mode() {
     background-color: ButtonFace !important;
+    border-color: ButtonBorder !important;
     color: ButtonText !important;
   }
 }
