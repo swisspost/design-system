@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/internet-header",
-  "version": "2.0.0-next.15",
+  "version": "2.0.0-next.16",
   "description": "The header for client facing applications.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -42,7 +42,7 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@swisspost/design-system-styles": "workspace:9.0.0-next.15",
+    "@swisspost/design-system-styles": "workspace:9.0.0-next.16",
     "body-scroll-lock": "4.0.0-beta.0",
     "iframe-resizer": "4.4.5",
     "jquery": "3.7.1",
@@ -56,7 +56,7 @@
     "@percy/cli": "1.30.6",
     "@percy/cypress": "3.1.2",
     "@stencil-community/eslint-plugin": "0.9.0",
-    "@stencil/core": "4.25.1",
+    "@stencil/core": "4.19.2",
     "@stencil/sass": "3.0.12",
     "@stencil/store": "2.0.16",
     "@types/body-scroll-lock": "3.1.2",
