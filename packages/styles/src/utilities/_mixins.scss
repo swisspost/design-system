@@ -20,13 +20,16 @@
       $properties: list.append((), $properties);
     }
 
-    // Use custom class if present
-    $property-class: if(
+    // Check if the class value is a list (multiple classes)
+    $class-list: if(
       map.has-key($utility, class),
       map.get($utility, class),
       list.nth($properties, 1)
     );
-    $property-class: if($property-class == null, '', $property-class);
+
+    @if meta.type-of($class-list) != 'list' {
+      $class-list: ($class-list);
+    }
 
     // Use custom CSS variable name if present, otherwise default to `class`
     $css-variable-name: if(
@@ -39,34 +42,36 @@
     $state: if(map.has-key($utility, state), map.get($utility, state), ());
 
     $infix: if(
-      $property-class == '' and string.slice($infix, 1, 1) == '-',
+      $class-list == '' and string.slice($infix, 1, 1) == '-',
       string.slice($infix, 2),
       $infix
     );
 
     // Don't prefix if value key is null (e.g. with shadow class)
-    $property-class-modifier: if(
-      $key,
-      if($property-class == '' and $infix == '', '', '-') + $key,
-      ''
-    );
+    $property-class-modifier: if($key, if($class-list == '' and $infix == '', '', '-') + $key, '');
 
     $is-css-var: map.get($utility, css-var);
     $is-local-vars: map.get($utility, local-vars);
 
     @if $value != null {
+      $class-selectors: ();
+
+      @each $class in $class-list {
+        $class-selectors: append(
+          $class-selectors,
+          '.#{$class + $infix + $property-class-modifier}',
+          comma
+        );
+      }
+
+      $class-selectors: join($class-selectors, ', ');
+
       @if $is-css-var {
-        .#{$property-class + $infix + $property-class-modifier} {
+        #{$class-selectors} {
           --post-#{$css-variable-name}: #{$value};
         }
-
-        @each $pseudo in $state {
-          .#{$property-class + $infix + $property-class-modifier}-#{$pseudo}:#{$pseudo} {
-            --post-#{$css-variable-name}: #{$value};
-          }
-        }
       } @else {
-        .#{$property-class + $infix + $property-class-modifier} {
+        #{$class-selectors} {
           @each $property in $properties {
             @if $is-local-vars {
               @each $local-var, $variable in $is-local-vars {
@@ -74,19 +79,6 @@
               }
             }
             #{$property}: $value !important;
-          }
-        }
-
-        @each $pseudo in $state {
-          .#{$property-class + $infix + $property-class-modifier}-#{$pseudo}:#{$pseudo} {
-            @each $property in $properties {
-              @if $is-local-vars {
-                @each $local-var, $variable in $is-local-vars {
-                  --post-#{$local-var}: #{$variable};
-                }
-              }
-              #{$property}: $value !important;
-            }
           }
         }
       }
