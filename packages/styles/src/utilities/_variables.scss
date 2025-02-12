@@ -1,6 +1,4 @@
-@use '../tokens/utilities' as tokens;
-
-@use './functions' as *;
+@use '../tokens/utilities_formatted';
 
 @use '../variables/sizing' as *;
 @use '../variables/type';
@@ -35,19 +33,19 @@ $utilities: (
     responsive: true,
     property: --post-grid-gutter-x --post-grid-gutter-y,
     class: g,
-    values: from-tokens('spacing', 'gap'),
+    values: utilities_formatted.$gap,
   ),
   'grid-gutter-x': (
     responsive: true,
     property: --post-grid-gutter-x,
     class: gx,
-    values: from-tokens('spacing', 'gap'),
+    values: utilities_formatted.$gap,
   ),
   'grid-gutter-y': (
     responsive: true,
     property: --post-grid-gutter-y,
     class: gy,
-    values: from-tokens('spacing', 'gap'),
+    values: utilities_formatted.$gap,
   ),
   'width': (
     responsive: true,
@@ -197,103 +195,103 @@ $utilities: (
     responsive: true,
     property: margin,
     class: m,
-    values: from-tokens('spacing', 'margin'),
+    values: utilities_formatted.$margin,
   ),
   'margin-x': (
     responsive: true,
     property: margin-right margin-left,
     class: mx,
-    values: from-tokens('spacing', 'margin'),
+    values: utilities_formatted.$margin,
   ),
   'margin-y': (
     responsive: true,
     property: margin-top margin-bottom,
     class: my,
-    values: from-tokens('spacing', 'margin'),
+    values: utilities_formatted.$margin,
   ),
   'margin-top': (
     responsive: true,
     property: margin-top,
     class: mt,
-    values: from-tokens('spacing', 'margin'),
+    values: utilities_formatted.$margin,
   ),
   'margin-end': (
     responsive: true,
     property: margin-right,
     class: me,
-    values: from-tokens('spacing', 'margin'),
+    values: utilities_formatted.$margin,
   ),
   'margin-bottom': (
     responsive: true,
     property: margin-bottom,
     class: mb,
-    values: from-tokens('spacing', 'margin'),
+    values: utilities_formatted.$margin,
   ),
   'margin-start': (
     responsive: true,
     property: margin-left,
     class: ms,
-    values: from-tokens('spacing', 'margin'),
+    values: utilities_formatted.$margin,
   ),
   'padding': (
     responsive: true,
     property: padding,
     class: p,
-    values: from-tokens('spacing', 'padding'),
+    values: utilities_formatted.$padding,
   ),
   'padding-x': (
     responsive: true,
     property: padding-right padding-left,
     class: px,
-    values: from-tokens('spacing', 'padding'),
+    values: utilities_formatted.$padding,
   ),
   'padding-y': (
     responsive: true,
     property: padding-top padding-bottom,
     class: py,
-    values: from-tokens('spacing', 'padding'),
+    values: utilities_formatted.$padding,
   ),
   'padding-top': (
     responsive: true,
     property: padding-top,
     class: pt,
-    values: from-tokens('spacing', 'padding'),
+    values: utilities_formatted.$padding,
   ),
   'padding-end': (
     responsive: true,
     property: padding-right,
     class: pe,
-    values: from-tokens('spacing', 'padding'),
+    values: utilities_formatted.$padding,
   ),
   'padding-bottom': (
     responsive: true,
     property: padding-bottom,
     class: pb,
-    values: from-tokens('spacing', 'padding'),
+    values: utilities_formatted.$padding,
   ),
   'padding-start': (
     responsive: true,
     property: padding-left,
     class: ps,
-    values: from-tokens('spacing', 'padding'),
+    values: utilities_formatted.$padding,
   ),
   'gap': (
     responsive: true,
     property: gap,
     class: gap,
-    values: from-tokens('spacing', 'gap'),
+    values: utilities_formatted.$gap,
   ),
   'row-gap': (
     responsive: true,
     property: row-gap,
     class: row-gap,
-    values: from-tokens('spacing', 'gap'),
+    values: utilities_formatted.$gap,
   ),
   'column-gap': (
     responsive: true,
     property: column-gap,
     class: column-gap,
-    values: from-tokens('spacing', 'gap'),
+    values: utilities_formatted.$gap,
   ),
   'flex': (
     responsive: true,
@@ -511,7 +509,7 @@ $utilities: (
   ),
   'elevation': (
     property: box-shadow,
-    values: from-tokens('elevation', 'elevation'),
+    values: utilities_formatted.$elevation,
     class: elevation,
   ),
 );

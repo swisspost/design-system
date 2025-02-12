@@ -1,10 +1,10 @@
 import { fileHeader } from 'style-dictionary/utils';
-import { TOKENSET_LAYERS, TOKENSET_PREFIX } from '../constants.js';
+import { TOKENSET_LAYERS, TOKENSET_NAMES, TOKENSET_PREFIX } from '../constants.js';
 import StyleDictionary from '../style-dictionary.js';
 import { registerConfigMethod, getTokenValue } from '../methods.js';
 import { objectDeepmerge, objectTextoutput } from '../utils/index.js';
 
-const TAILWIND_TOKENSET_NAMES = ['utilities', 'helpers'];
+const TAILWIND_TOKENSET_NAMES = [TOKENSET_NAMES.Utilities, TOKENSET_NAMES.Helpers];
 
 /**
  * Registers a config getter method to generate output files for tailwind relevant tokens in the tokens.json.
@@ -32,8 +32,8 @@ registerConfigMethod((tokenSets, { sourcePath, buildPath }) => {
             files: [
               {
                 destination: `${name}.tailwind.js`,
+                filter: 'swisspost/source-tokens-filter',
                 format: 'swisspost/tailwind-format',
-                filter: 'swisspost/tailwind-filter',
                 options: {
                   outputReferences: true,
                 },
@@ -43,25 +43,6 @@ registerConfigMethod((tokenSets, { sourcePath, buildPath }) => {
         },
       };
     });
-});
-
-/**
- * @function StyleDictionary.registerFilter()
- * Defines a custom StyleDictionary filter.
- *
- * @param object {
- *   name: string,
- *   filter: (token: TransformedToken, options: Config) => boolean
- * }
- *
- * swisspost/tailwind-filter:
- * Used to filter only the component layer tokens defined in the tokensets with the names in TAILWIND_TOKENSET_NAMES.
- */
-StyleDictionary.registerFilter({
-  name: 'swisspost/tailwind-filter',
-  filter: token => {
-    return token.filePath.includes('/output/');
-  },
 });
 
 /**
