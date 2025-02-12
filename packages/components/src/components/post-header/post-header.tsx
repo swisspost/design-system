@@ -6,16 +6,13 @@ import {
   Element,
   Method,
   Watch,
-  Event,
-  EventEmitter,
 } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
+import { breakpoint } from '../../utils/breakpoints';
 import { slideDown, slideUp } from '@/animations/slide';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
-
-export type DEVICE_SIZE = 'mobile' | 'tablet' | 'desktop' | null;
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
@@ -56,7 +53,7 @@ export class PostHeader {
 
   @Element() host: HTMLPostHeaderElement;
 
-  @State() device: DEVICE_SIZE = null;
+  @State() device: string = breakpoint.get('name');
   @State() mobileMenuExtended: boolean = false;
 
   @Watch('mobileMenuExtended')
@@ -74,10 +71,21 @@ export class PostHeader {
     }
   }
 
-  /**
-   * An event emitted when the device has changed
-   */
-  @Event() postUpdateDevice: EventEmitter<DEVICE_SIZE>;
+  connectedCallback() {
+    window.addEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
+    window.addEventListener('resize', this.throttledResize, { passive: true });
+    this.handleResize();
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
+    window.removeEventListener('resize', this.throttledResize);
+  }
+
+  private breakpointChange(e: CustomEvent) {
+    this.device = e.detail;
+    this.switchLanguageSwitchMode();
+  }
 
   /**
    * Toggles the mobile navigation.
@@ -186,35 +194,8 @@ export class PostHeader {
   }
 
   private handleResize() {
-    const previousDevice = this.device;
-    let newDevice: DEVICE_SIZE;
-    const width = window?.innerWidth;
-
-    if (width >= 1024) {
-      newDevice = 'desktop';
-    } else if (width >= 600) {
-      newDevice = 'tablet';
-    } else {
-      newDevice = 'mobile';
-    }
-
-    // Close any open mobile menu
-    if (newDevice === 'desktop' && this.mobileMenuExtended) {
-      this.toggleMobileMenu();
-      this.mobileMenuAnimation.finish(); // no animation
-    }
-
-    this.updateLocalHeaderHeight();
-
-    // Apply only on change for doing work only when necessary
-    if (newDevice !== previousDevice) {
-      this.device = newDevice;
-
-      this.postUpdateDevice.emit(this.device);
-      window.requestAnimationFrame(() => {
-        this.switchLanguageSwitchMode();
-      });
-    }
+    this.device = breakpoint.get('name');
+    this.switchLanguageSwitchMode();
   }
 
   private switchLanguageSwitchMode() {
