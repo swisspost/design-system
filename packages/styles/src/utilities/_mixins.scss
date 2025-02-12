@@ -57,14 +57,14 @@
       $class-selectors: ();
 
       @each $class in $class-list {
-        $class-selectors: append(
+        $class-selectors: list.append(
           $class-selectors,
           '.#{$class + $infix + $property-class-modifier}',
           comma
         );
       }
 
-      $class-selectors: join($class-selectors, ', ');
+      $class-selectors: list.join($class-selectors, ', ');
 
       @if $is-css-var {
         #{$class-selectors} {
