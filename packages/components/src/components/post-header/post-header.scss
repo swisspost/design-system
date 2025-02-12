@@ -111,10 +111,10 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--post-core-dimension-8);
+  gap: var(--post-core-dimension-4);
   min-height: var(--local-header-min-height);
   background: var(--post-core-color-brand-white);
-  transition: box-shadow 0.2s ease-in-out; 
+  transition: box-shadow 0.2s ease-in-out;
 
   @include media.min(lg) {
     z-index: 3;

@@ -56,6 +56,17 @@ post-mainnavigation {
     }
   }
 
+  // styles specific to for the mega-dropdown buttons
+  > button,
+  post-megadropdown-trigger button {
+    &::after {
+      content: '';
+      @include icons.icon(2113);
+      height: var(--post-core-dimension-24);
+      width: var(--post-core-dimension-24);
+    }
+  }
+
   // desktop styles
   @include media.min(lg) {
     display: block;
@@ -117,8 +128,6 @@ post-mainnavigation {
         height: var(--main-navigation-height);
         gap: var(--post-core-dimension-4);
         font-size: var(--post-core-font-size-16);
-        border-block: 0 solid transparent;
-        border-block-end-color: currentColor;
 
         @include media.max(lg) {
           z-index: 3;
@@ -128,14 +137,16 @@ post-mainnavigation {
           z-index: 4;
         }
 
-        &:hover {
-          border-block-width: var(--post-core-dimension-2);
-        }
-
         &.selected,
         &[aria-expanded='true'] {
-          border-block-width: var(--post-core-dimension-4);
+          background-color: #050400;
+          color: #fff;
           font-weight: var(--post-core-font-weight-700);
+        }
+
+        &:hover {
+          background-color: #504f4b;
+          color: #fff;
         }
 
         @include media.max(sm) {
@@ -150,10 +161,6 @@ post-mainnavigation {
         transition: border-block-end-color animation.$transition-base-timing;
 
         &::after {
-          content: '';
-          @include icons.icon(2113);
-          height: var(--post-core-dimension-24);
-          width: var(--post-core-dimension-24);
           transition: transform animation.$transition-base-timing;
         }
 
@@ -193,6 +200,12 @@ post-mainnavigation {
       post-megadropdown-trigger button {
         @include header-mx.mobile-header-interactive;
       }
+    }
+
+    // styles specific to for the mega-dropdown buttons
+    > button::after,
+    post-megadropdown-trigger button::after {
+      transform: rotate(-90deg);
     }
   }
 
