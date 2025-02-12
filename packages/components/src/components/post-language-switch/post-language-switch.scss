@@ -50,4 +50,21 @@ tokens.$default-map: components.$post-button;
     height: var(--post-core-dimension-16);
     width: var(--post-core-dimension-16);
   }
+
+  &[aria-expanded="true"] {
+    background-color: #050400;
+    color: #fff;
+
+    post-icon {
+      height: var(--post-core-dimension-16);
+      width: var(--post-core-dimension-16);
+      color: #fff;
+      transform: rotate(180deg);
+    }
+
+    &:hover {
+      background-color: #504F4B;
+      color: white;
+    }
+  }
 }
