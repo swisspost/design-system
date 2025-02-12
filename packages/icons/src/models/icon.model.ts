@@ -70,7 +70,7 @@ export interface MergedIcon {
     sourcesErrored: number[];
     sourcesNoSVG: number[];
     sourcesWrongViewBox: number[];
-    hasRightAmountOfSources: boolean;
+    hasAllSources: boolean;
     hasKeywords: boolean;
     success: boolean;
   };
@@ -92,7 +92,7 @@ export interface MinimalIcon {
     sourcesErrored: number[];
     sourcesNoSVG: number[];
     sourcesWrongViewBox: number[];
-    hasRightAmountOfSources: boolean;
+    hasAllSources: boolean;
     hasKeywords: boolean;
     success: boolean;
   };
@@ -122,7 +122,7 @@ export interface MergedReport {
     errored: number;
     noSVG: number;
     wrongViewBox: number;
-    hasRightAmountOfSources: number;
+    hasAllSources: number;
     noKeywords: number;
     success: number;
   };
@@ -137,7 +137,7 @@ export interface MinimalReport {
     errored: number;
     noSVG: number;
     wrongViewBox: number;
-    hasRightAmountOfSources: number;
+    hasAllSources: number;
     noKeywords: number;
     success: number;
   };

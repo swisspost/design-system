@@ -32,7 +32,7 @@ export const MERGED_REPORT: MergedReport = {
     errored: 0,
     noSVG: 0,
     wrongViewBox: 0,
-    hasRightAmountOfSources: 0,
+    hasAllSources: 0,
     noKeywords: 0,
     success: 0,
   },

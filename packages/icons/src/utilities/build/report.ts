@@ -53,7 +53,7 @@ export function writeReport(
           sourcesErrored,
           sourcesNoSVG,
           sourcesWrongViewBox,
-          hasRightAmountOfSources: items.length === iconSet.options.expectedSourcesPerIcon,
+          hasAllSources: items.length === iconSet.options.expectedSourcesPerIcon,
           hasKeywords: keywords.length > 0,
           success: [...sourcesErrored, ...sourcesNoSVG, ...sourcesWrongViewBox].length === 0,
         },
