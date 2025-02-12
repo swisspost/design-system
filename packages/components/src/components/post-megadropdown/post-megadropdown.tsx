@@ -83,9 +83,14 @@ export class PostMegadropdown {
    */
   @Method()
   async hide() {
+    this.postToggleMegadropdown.emit(false);
     this.animationClass = 'slide-out';
-    PostMegadropdown.activeDropdown = null;
     this.host.removeEventListener('keydown', e => this.keyboardHandler(e));
+  }
+
+  @Method()
+  async focusFirst() {
+    this.firstFocusableEl?.focus();
   }
 
   connectedCallback() {
@@ -112,7 +117,7 @@ export class PostMegadropdown {
     if (this.animationClass === 'slide-out') {
       this.isVisible = false;
       this.animationClass = null;
-      this.postToggleMegadropdown.emit(this.isVisible);
+      PostMegadropdown.activeDropdown = null;
       this.removeOutsideClickListener();
     }
   }
