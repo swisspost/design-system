@@ -5,7 +5,6 @@
 @use './../mixins/notification' as notification-mx;
 @use './../placeholders/close' as close-ph;
 
-@use './../variables/commons';
 @use './../variables/spacing';
 @use './../variables/components/notification';
 @use './../tokens/components';
@@ -48,7 +47,7 @@ tokens.$default-map: components.$post-banner;
 // Positioning
 .toast-container {
   position: fixed;
-  z-index: commons.$zindex-alert;
+  z-index: 1080;
   display: flex;
   flex-direction: column;
 
