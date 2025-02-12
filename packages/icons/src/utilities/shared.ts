@@ -1,16 +1,20 @@
-import type { SourceIcon, OutputIcon, JsonReport } from '../models/icon.model';
+import type { SourceIcon, MergedIcon, SourceReport, MergedReport } from '../models/icon.model';
 import { styleText } from 'node:util';
-import { REPORT } from './constants';
+import { SOURCE_REPORT, MERGED_REPORT } from './constants';
 
-export function getBaseReport(): JsonReport {
-  return JSON.parse(JSON.stringify(REPORT));
+export function getBaseSourceReport(): SourceReport {
+  return JSON.parse(JSON.stringify(SOURCE_REPORT));
+}
+
+export function getBaseMergedReport(): MergedReport {
+  return JSON.parse(JSON.stringify(MERGED_REPORT));
 }
 
 export function getNameParts(name: string): string[] {
   return name.split(/([^a-zA-Z0-9])/g).filter(part => !/^[^a-zA-Z0-9]$/.test(part));
 }
 
-export function sortIcons(a: SourceIcon | OutputIcon, b: SourceIcon | OutputIcon) {
+export function sortIcons(a: SourceIcon | MergedIcon, b: SourceIcon | OutputIcon) {
   return a.file.basename < b.file.basename ? -1 : 1;
 }
 

@@ -20,7 +20,7 @@ export default function buildSVGs() {
 
   console.log(
     coloredLogMessage(
-      `<blue>Build finished.</blue>\nCreated <green>${report.stats.output}</green> output icons out of <yellow>${report.stats.success}</yellow> source icons.`,
+      `<blue>Build finished.</blue>\nCreated <green>${report.stats.success}</green> output icons out of <yellow>${report.stats.sources}</yellow> source icons.`,
     ),
   );
 }

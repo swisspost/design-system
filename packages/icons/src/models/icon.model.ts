@@ -10,6 +10,22 @@ export interface IconSet {
   name: string;
   apiUrl: string;
   downloadDirectory: string;
+  expectedSourcesPerIcon: number;
+}
+
+export interface IconSetGroupsItem {
+  size: number | null;
+  filePath: string;
+  sourceIcon: SourceIcon;
+}
+
+export interface IconSetGroups {
+  name: string;
+  options: {
+    sourceDirectory: string;
+    expectedSourcesPerIcon: number;
+  };
+  groups: Record<string, IconSetGroupsItem[]>;
 }
 
 export interface SourceIcon {
@@ -36,7 +52,7 @@ export interface SourceIcon {
   errorMessage?: string;
 }
 
-export interface OutputIcon {
+export interface MergedIcon {
   uuid: string;
   id: number;
   meta: {
@@ -49,33 +65,41 @@ export interface OutputIcon {
     basename: string;
     ext: string;
   };
+  stats: {
+    sources: SourceIcon[];
+    sourcesErrored: number[];
+    sourcesNoSVG: number[];
+    sourcesWrongViewBox: number[];
+    hasRightAmountOfSources: boolean;
+    hasKeywords: boolean;
+    success: boolean;
+  };
   createdAt: Date;
   modifiedAt: Date;
-  sources: number[];
+}
+
+export interface MinimalSourceIcon {
+  id: number;
+  name: string;
 }
 
 export interface MinimalIcon {
   id: number;
   name: string;
   keys: string[];
-  sources: number[];
+  stats: {
+    sources: MinimalSourceIcon[];
+    sourcesErrored: number[];
+    sourcesNoSVG: number[];
+    sourcesWrongViewBox: number[];
+    hasRightAmountOfSources: boolean;
+    hasKeywords: boolean;
+    success: boolean;
+  };
 }
 
-export interface IconSetGroupsItem {
-  size: number | null;
-  filePath: string;
-  report: SourceIcon;
-}
-
-export interface IconSetGroups {
-  name: string;
-  sourceDirectory: string;
-  groups: Record<string, IconSetGroupsItem[]>;
-}
-
-export interface JsonReport {
-  sources: SourceIcon[];
-  icons: OutputIcon[];
+export interface SourceReport {
+  icons: SourceIcon[];
   errored: SourceIcon[];
   noSVG: SourceIcon[];
   wrongViewBox: SourceIcon[];
@@ -86,15 +110,37 @@ export interface JsonReport {
     noSVG: number;
     wrongViewBox: number;
     noKeywords: number;
-    output: number;
   };
   created: Date;
   version: string;
 }
 
-export interface MinimalJsonReport {
-  sources: MinimalIcon[];
+export interface MergedReport {
+  icons: MergedIcon[];
+  stats: {
+    sources: number;
+    errored: number;
+    noSVG: number;
+    wrongViewBox: number;
+    hasRightAmountOfSources: number;
+    noKeywords: number;
+    success: number;
+  };
+  created: Date;
+  version: string;
+}
+
+export interface MinimalReport {
   icons: MinimalIcon[];
+  stats: {
+    sources: number;
+    errored: number;
+    noSVG: number;
+    wrongViewBox: number;
+    hasRightAmountOfSources: number;
+    noKeywords: number;
+    success: number;
+  };
   created: Date;
   version: string;
 }

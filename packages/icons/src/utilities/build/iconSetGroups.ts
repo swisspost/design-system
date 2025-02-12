@@ -1,6 +1,6 @@
 import type {
   SourceIcon,
-  JsonReport,
+  SourceReport,
   IconSetGroups,
   IconSetGroupsItem,
 } from '../../models/icon.model';
@@ -13,15 +13,18 @@ import { ID_SEPERATOR, ID_UNWANTED_PARTS, UI_ICON_SIZES } from '../constants';
 
 export function getIconSetGroups(): IconSetGroups[] {
   return iconSets.map(iconSet => {
-    const iconSetReport = JSON.parse(
+    const iconSetSourceReport = JSON.parse(
       fs.readFileSync(path.join(iconSet.downloadDirectory, 'report.json'), 'utf-8'),
-    ) as JsonReport;
+    ) as SourceReport;
 
-    return iconSetReport.sources.reduce(
+    return iconSetSourceReport.icons.reduce(
       (
         iconSetGroups: {
           name: string;
-          sourceDirectory: string;
+          options: {
+            sourceDirectory: string;
+            expectedSourcesPerIcon: number;
+          };
           groups: Record<string, IconSetGroupsItem[]>;
         },
         icon: SourceIcon,
@@ -37,7 +40,7 @@ export function getIconSetGroups(): IconSetGroups[] {
         const currentItem: IconSetGroupsItem = {
           size,
           filePath: path.join(iconSet.downloadDirectory, icon.file.name),
-          report: icon,
+          sourceIcon: icon,
         };
 
         iconSetGroups.groups = {
@@ -47,7 +50,14 @@ export function getIconSetGroups(): IconSetGroups[] {
 
         return iconSetGroups;
       },
-      { name: iconSet.name, sourceDirectory: iconSet.downloadDirectory, groups: {} },
+      {
+        name: iconSet.name,
+        options: {
+          sourceDirectory: iconSet.downloadDirectory,
+          expectedSourcesPerIcon: iconSet.expectedSourcesPerIcon,
+        },
+        groups: {},
+      },
     );
   });
 

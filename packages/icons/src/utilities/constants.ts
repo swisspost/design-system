@@ -1,4 +1,4 @@
-import type { JsonReport } from '../models/icon.model';
+import type { SourceReport, MergedReport } from '../models/icon.model';
 import { version } from '../../package.json';
 import { coloredLogMessage } from './shared';
 
@@ -8,8 +8,7 @@ export const SOURCE_PATH = 'src/icons';
 export const OUTPUT_PATH = 'public';
 export const OUTPUT_PATH_ICONS = `${OUTPUT_PATH}/post-icons`;
 
-export const REPORT: JsonReport = {
-  sources: [],
+export const SOURCE_REPORT: SourceReport = {
   icons: [],
   errored: [],
   noSVG: [],
@@ -17,11 +16,25 @@ export const REPORT: JsonReport = {
   noKeywords: [],
   stats: {
     success: 0,
-    output: 0,
     errors: 0,
     noSVG: 0,
     wrongViewBox: 0,
     noKeywords: 0,
+  },
+  created: new Date(),
+  version: version,
+};
+
+export const MERGED_REPORT: MergedReport = {
+  icons: [],
+  stats: {
+    sources: 0,
+    errored: 0,
+    noSVG: 0,
+    wrongViewBox: 0,
+    hasRightAmountOfSources: 0,
+    noKeywords: 0,
+    success: 0,
   },
   created: new Date(),
   version: version,
