@@ -79,7 +79,7 @@ export class PostMenuTrigger {
 
       // Listen to the `toggleMenu` event emitted by the `post-menu` component
       const menu = this.menu;
-      if (menu) {
+      if (menu && this.slottedButton) {
         menu.addEventListener('toggleMenu', (event: CustomEvent<boolean>) => {
           this.ariaExpanded = event.detail;
           this.slottedButton.setAttribute('aria-expanded', this.ariaExpanded.toString());
