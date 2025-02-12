@@ -364,7 +364,7 @@ export namespace Components {
     }
     interface PostPopovercontainer {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
         /**
@@ -1188,7 +1188,7 @@ declare namespace LocalJSX {
     }
     interface PostPopovercontainer {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
         /**

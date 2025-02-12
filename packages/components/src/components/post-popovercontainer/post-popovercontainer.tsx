@@ -34,6 +34,28 @@ export type PostPopoverElement = HTMLElement & PopoverElement;
   styleUrl: 'post-popovercontainer.scss',
 })
 export class PostPopovercontainer {
+  private static readonly STATIC_SIDES = {
+    top: 'bottom',
+    right: 'left',
+    bottom: 'top',
+    left: 'right',
+  } as const;
+
+  private static readonly PROPERTIES_TO_CLEAR = [
+    '--safe-space-popover-x',
+    '--safe-space-popover-y',
+    '--safe-space-popover-x-start',
+    '--safe-space-popover-x-end',
+    '--safe-space-popover-y-start',
+    '--safe-space-popover-y-end',
+    '--safe-space-trigger-x',
+    '--safe-space-trigger-y',
+    '--safe-space-trigger-x-start',
+    '--safe-space-trigger-x-end',
+    '--safe-space-trigger-y-start',
+    '--safe-space-trigger-y-end',
+  ] as const;
+
   @Element() host: HTMLPostPopovercontainerElement;
   private arrowRef: HTMLElement;
   private eventTarget: Element;
@@ -58,7 +80,7 @@ export class PostPopovercontainer {
   @Prop() readonly edgeGap?: number = 8;
 
   /**
-   * Wheter or not to display a little pointer arrow
+   * Whether or not to display a little pointer arrow
    */
   @Prop() readonly arrow?: boolean = false;
 
@@ -173,18 +195,13 @@ export class PostPopovercontainer {
     // Position arrow if enabled
     if (this.arrow && middlewareData.arrow) {
       const { x: arrowX, y: arrowY } = middlewareData.arrow;
-      const staticSide = {
-        top: 'bottom',
-        right: 'left',
-        bottom: 'top',
-        left: 'right',
-      }[currentPlacement];
+      const staticSide = PostPopovercontainer.STATIC_SIDES[currentPlacement];
 
       if (staticSide) {
         Object.assign(this.arrowRef.style, {
           left: arrowX ? `${arrowX}px` : '',
           top: arrowY ? `${arrowY}px` : '',
-          [staticSide]: '-4px',
+          [staticSide]: '-7px',
         });
       }
     }
@@ -230,6 +247,7 @@ export class PostPopovercontainer {
   private async updateSafeSpaceBoundaries(currentPlacement: string) {
     const targetRect = this.eventTarget.getBoundingClientRect();
     const popoverRect = this.host.getBoundingClientRect();
+
     const isVertical = currentPlacement === 'top' || currentPlacement === 'bottom';
 
     // Helper function to get positioning data based on placement
@@ -267,22 +285,7 @@ export class PostPopovercontainer {
     const posData = getPositioningData(currentPlacement, popoverRect, targetRect);
 
     // Clear previous values
-    const propertiesToClear = [
-      '--safe-space-popover-x',
-      '--safe-space-popover-y',
-      '--safe-space-popover-x-start',
-      '--safe-space-popover-x-end',
-      '--safe-space-popover-y-start',
-      '--safe-space-popover-y-end',
-      '--safe-space-trigger-x',
-      '--safe-space-trigger-y',
-      '--safe-space-trigger-x-start',
-      '--safe-space-trigger-x-end',
-      '--safe-space-trigger-y-start',
-      '--safe-space-trigger-y-end',
-    ];
-
-    propertiesToClear.forEach(prop => {
+    PostPopovercontainer.PROPERTIES_TO_CLEAR.forEach(prop => {
       this.host.style.removeProperty(prop);
     });
 
@@ -291,7 +294,6 @@ export class PostPopovercontainer {
       this.host.style.setProperty('--safe-space-popover-y', `${posData.popover.y}px`);
       this.host.style.setProperty('--safe-space-popover-x-start', `${posData.popover.xStart}px`);
       this.host.style.setProperty('--safe-space-popover-x-end', `${posData.popover.xEnd}px`);
-
       this.host.style.setProperty('--safe-space-trigger-y', `${posData.trigger.y}px`);
       this.host.style.setProperty('--safe-space-trigger-x-start', `${posData.trigger.xStart}px`);
       this.host.style.setProperty('--safe-space-trigger-x-end', `${posData.trigger.xEnd}px`);
@@ -300,7 +302,6 @@ export class PostPopovercontainer {
       this.host.style.setProperty('--safe-space-popover-x', `${posData.popover.x}px`);
       this.host.style.setProperty('--safe-space-popover-y-start', `${posData.popover.yStart}px`);
       this.host.style.setProperty('--safe-space-popover-y-end', `${posData.popover.yEnd}px`);
-
       this.host.style.setProperty('--safe-space-trigger-x', `${posData.trigger.x}px`);
       this.host.style.setProperty('--safe-space-trigger-y-start', `${posData.trigger.yStart}px`);
       this.host.style.setProperty('--safe-space-trigger-y-end', `${posData.trigger.yEnd}px`);
@@ -310,15 +311,17 @@ export class PostPopovercontainer {
   render() {
     return (
       <Host data-version={version}>
-        {this.arrow && (
-          <span
-            class="arrow"
-            ref={el => {
-              this.arrowRef = el;
-            }}
-          ></span>
-        )}
-        <slot></slot>
+        <div>
+          {this.arrow && (
+            <span
+              class="arrow"
+              ref={el => {
+                this.arrowRef = el;
+              }}
+            ></span>
+          )}
+          <slot></slot>
+        </div>
       </Host>
     );
   }

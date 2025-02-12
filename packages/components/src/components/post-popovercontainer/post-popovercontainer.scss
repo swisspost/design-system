@@ -20,15 +20,19 @@
 }
 
 :where(post-popovercontainer) {
-  @include elevation-mx.elevation('elevation-3');
-
-  background: var(--post-current-palette-bg);
-  color: var(--post-current-palette-fg);
   position: fixed;
   z-index: commons.$zindex-popover;
-  width: max-content;
   margin: 0;
   padding: 0;
+
+  > div {
+    @include elevation-mx.elevation('elevation-3');
+    width: max-content;
+    color: var(--post-current-palette-fg);
+    background: var(--post-current-palette-bg);
+    border-radius: inherit;
+    border: inherit;
+  }
 
   &[tooltip] {
     @include utilities.visuallyhidden();
@@ -73,29 +77,29 @@
     );
   }
 
-  &:not(:has(.arrow)) {
+  &:not(:has(.arrow)) > div {
     @include elevation-mx.elevation('elevation-3');
   }
 
-  &:has(.arrow) {
+  &:has(.arrow) > div {
     filter: drop-shadow(1px 2px 3px hsla(216, 9%, 11%, 0.15))
       drop-shadow(2px 4px 6px hsla(225, 17%, 9%, 0.15))
       drop-shadow(4px 8px 12px hsla(225, 7%, 11%, 0.15));
   }
 
-  &:has(.arrow.top) {
+  &:has(.arrow.top) > div {
     filter: drop-shadow(0px -2px 3px hsla(216, 9%, 11%, 0.15))
       drop-shadow(0px -4px 6px hsla(225, 17%, 9%, 0.15))
       drop-shadow(0px -8px 12px hsla(225, 7%, 11%, 0.15));
   }
 
-  &:has(.arrow.left) {
+  &:has(.arrow.left) > div {
     filter: drop-shadow(-2px 0px 3px hsla(216, 9%, 11%, 0.15))
       drop-shadow(-4px 0px 6px hsla(225, 17%, 9%, 0.15))
       drop-shadow(-8px 0px 12px hsla(225, 7%, 11%, 0.15));
   }
 
-  &:has(.arrow.right) {
+  &:has(.arrow.right) > div {
     filter: drop-shadow(2px 0px 3px hsla(216, 9%, 11%, 0.15))
       drop-shadow(4px 0px 6px hsla(225, 17%, 9%, 0.15))
       drop-shadow(8px 0px 12px hsla(225, 7%, 11%, 0.15));
