@@ -100,7 +100,7 @@ export class PostMenu {
     }
   }
 
-   /**
+  /**
    * Displays the popover menu, focusing the first menu item.
    *
    * @param target - The HTML element relative to which the popover menu should be displayed.
