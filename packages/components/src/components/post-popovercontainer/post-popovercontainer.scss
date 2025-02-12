@@ -20,33 +20,27 @@
 }
 
 :where(post-popovercontainer) {
-  box-shadow: elevation.$elevation-300;
-  background: var(--post-current-palette-bg);
-  color: var(--post-current-palette-fg);
+  background-color: transparent;
+  border: transparent;
   position: fixed;
   z-index: commons.$zindex-popover;
   margin: 0;
   padding: 0;
+  // Keeps the little arrow visible
+  overflow: visible;
 
   > div {
-    @include elevation-mx.elevation('elevation-3');
+    box-shadow: elevation.$elevation-300;
     width: max-content;
     color: var(--post-current-palette-fg);
-    background: var(--post-current-palette-bg);
-    border-radius: inherit;
-    border: inherit;
+    background-color: var(--post-current-palette-bg);
+    border: 2px solid transparent; // Keeping the default border for HCM
+    border-radius: commons.$border-radius;
   }
 
   &[tooltip] {
     @include utilities.visuallyhidden();
   }
-
-  box-sizing: border-box;
-  border: 2px solid transparent; // Keeping the default border for HCM
-  border-radius: commons.$border-radius;
-
-  // Keeps the little arrow visible
-  overflow: visible;
 
   // Safe space overlay styles
   &[safe-space]::after {
@@ -81,7 +75,7 @@
   }
 
   &:not(:has(.arrow)) > div {
-    @include elevation-mx.elevation('elevation-3');
+    box-shadow: elevation.$elevation-300;
   }
 
   &:has(.arrow) > div {

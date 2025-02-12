@@ -2,20 +2,24 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
-| Property      | Attribute      | Description                                                                                                                                                                                                                                                                                                               | Type                                                                                                                                                                 | Default |
-| ------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| `arrow`       | `arrow`        | Wheter or not to display a little pointer arrow                                                                                                                                                                                                                                                                           | `boolean`                                                                                                                                                            | `false` |
-| `edgeGap`     | `edge-gap`     | Gap between the edge of the page and the popover                                                                                                                                                                                                                                                                          | `number`                                                                                                                                                             | `8`     |
-| `manualClose` | `manual-close` | Whether or not the popover should close when user clicks outside of it                                                                                                                                                                                                                                                    | `boolean`                                                                                                                                                            | `false` |
-| `placement`   | `placement`    | Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'top'` |
+| Property      | Attribute      | Description                                                                                                                                                                                                                                                                                                               | Type                                                                                                                                                                 | Default     |
+| ------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `arrow`       | `arrow`        | Whether or not to display a little pointer arrow                                                                                                                                                                                                                                                                          | `boolean`                                                                                                                                                            | `false`     |
+| `edgeGap`     | `edge-gap`     | Gap between the edge of the page and the popover                                                                                                                                                                                                                                                                          | `number`                                                                                                                                                             | `8`         |
+| `manualClose` | `manual-close` | Whether or not the popover should close when user clicks outside of it                                                                                                                                                                                                                                                    | `boolean`                                                                                                                                                            | `false`     |
+| `placement`   | `placement`    | Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'top'`     |
+| `safeSpace`   | `safe-space`   | Enables a safespace through which the cursor can be moved without the popover being disabled                                                                                                                                                                                                                              | `"trapezoid" \| "triangle"`                                                                                                                                          | `undefined` |
+
 
 ## Events
 
 | Event        | Description                                                                                          | Type                   |
 | ------------ | ---------------------------------------------------------------------------------------------------- | ---------------------- |
 | `postToggle` | Fires whenever the popover gets shown or hidden, passing the new state in event.details as a boolean | `CustomEvent<boolean>` |
+
 
 ## Methods
 
@@ -26,6 +30,8 @@ Programmatically hide this tooltip
 #### Returns
 
 Type: `Promise<void>`
+
+
 
 ### `show(target: HTMLElement) => Promise<void>`
 
@@ -40,6 +46,8 @@ Programmatically display the tooltip
 #### Returns
 
 Type: `Promise<void>`
+
+
 
 ### `toggle(target: HTMLElement, force?: boolean) => Promise<boolean>`
 
@@ -56,22 +64,25 @@ Toggle tooltip display
 
 Type: `Promise<boolean>`
 
+
+
+
 ## Slots
 
 | Slot | Description                                                   |
 | ---- | ------------------------------------------------------------- |
 |      | Default slot for placing content inside the popovercontainer. |
 
+
 ## Dependencies
 
 ### Used by
 
-- [post-menu](../post-menu)
-- [post-popover](../post-popover)
-- [post-tooltip](../post-tooltip)
+ - [post-menu](../post-menu)
+ - [post-popover](../post-popover)
+ - [post-tooltip](../post-tooltip)
 
 ### Graph
-
 ```mermaid
 graph TD;
   post-menu --> post-popovercontainer
@@ -80,6 +91,6 @@ graph TD;
   style post-popovercontainer fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*
