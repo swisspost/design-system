@@ -4,19 +4,21 @@
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  border-radius: 24px;
-  font-size: 16px;
-  padding: 3px 10px;
+  gap: var(--post-core-dimension-6);
+  border-radius: var(--post-core-dimension-24);
+  font-size: var(--post-core-font-size-16);
+  padding: var(--post-core-dimension-3) var(--post-core-dimension-10);
 }
 
 @mixin mobile-header-interactive() {
   width: 100%;
   min-width: 100%;
-  height: 48px;
-  padding-inline-end: 46px;
-  gap: 16px;
-  font-weight: 400;
+  height: var(--post-core-dimension-48);
+  padding-inline-end: calc(
+    var(--post-core-dimension-6) + var(--post-core-dimension-24) + var(--post-core-dimension-16)
+  );
+  gap: var(--post-core-dimension-16);
+  font-weight: var(--post-core-font-weight-400);
   position: relative;
 
   @content;
@@ -26,22 +28,22 @@
     background-color: currentColor;
     bottom: 0;
     width: 100%;
-    height: 1px;
+    height: var(--post-core-dimension-1);
     position: absolute;
     left: 0;
   }
 
   &:hover::before {
-    height: 3px;
+    height: var(--post-core-dimension-3);
   }
 
   &:hover::after {
     content: '';
     display: block;
-    margin-right: -40px;
+    margin-right: calc((var(--post-core-dimension-24) + var(--post-core-dimension-16)) * -1);
     @include icons.icon('arrowright');
-    width: 20px;
-    min-width: 20px;
-    height: 20px;
+    width: var(--post-core-dimension-20);
+    min-width: var(--post-core-dimension-20);
+    height: var(--post-core-dimension-20);
   }
 }
