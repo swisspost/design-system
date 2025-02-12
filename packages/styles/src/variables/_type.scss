@@ -10,7 +10,7 @@
 @use './../tokens/utilities';
 @use './../tokens/elements' as element-tokens;
 
-tokens.$default-map: utilities.$post-spacing;
+tokens.$default-map: utilities.$post-typo;
 
 // Fonts
 //
@@ -54,13 +54,12 @@ $font-size-40: sizing.px-to-rem(40px);
 $font-size-48: sizing.px-to-rem(48px);
 $font-size-56: sizing.px-to-rem(56px);
 
-$line-height-sm: 1;
 $line-height-copy: 1.5;
 $line-height-heading: 1.2;
 
-$font-weight-normal: 400 !default;
-$font-weight-bold: 700 !default;
-$font-weight-black: 900 !default;
+$font-weight-normal: tokens.get('utility-font-weight-regular') !default;
+$font-weight-bold: tokens.get('utility-font-weight-bold') !default;
+$font-weight-black: tokens.get('utility-font-weight-black') !default;
 
 // Deprecated
 $font-sizes: (
@@ -163,8 +162,9 @@ $font-curves: (
 $font-size-base: $font-size-regular !default;
 $font-weight-base: $font-weight-normal !default;
 $line-height-base: $line-height-copy;
-$line-height-sm: $line-height-heading;
-$line-height-lg: $line-height-copy;
+$line-height-1: tokens.get('utility-line-height-1');
+$line-height-sm: tokens.get('utility-line-height-sm');
+$line-height-lg: tokens.get('utility-line-height-lg');
 
 $headings-margin-bottom: (spacing.$spacer * 0.5) !default;
 $headings-font-family: inherit !default;
@@ -172,23 +172,16 @@ $headings-font-weight: 700 !default;
 $headings-line-height: $line-height-heading;
 $headings-color: inherit !default;
 
-// Deprecated because unused
-$display1-weight: 300 !default;
-$display2-weight: 300 !default;
-$display3-weight: 300 !default;
-$display4-weight: 300 !default;
-$display-line-height: $headings-line-height !default;
-
 $small-font-size: 80% !default;
 
 $text-muted: color.$gray-60;
 
 $blockquote-font-weight: $font-weight-bold !default;
 $blockquote-border-left: commons.$border-thick solid color.$black !default;
-$blockquote-border-left-width-md: tokens.get('utility-gap-4') !default;
-$blockquote-padding-left: tokens.get('utility-gap-12') !default;
-$blockquote-margin-top: tokens.get('utility-gap-24') !default;
-$blockquote-margin-y: tokens.get('utility-gap-16') !default;
+$blockquote-border-left-width-md: tokens.get('utility-gap-4', utilities.$post-spacing) !default;
+$blockquote-padding-left: tokens.get('utility-gap-12', utilities.$post-spacing) !default;
+$blockquote-margin-top: tokens.get('utility-gap-24', utilities.$post-spacing) !default;
+$blockquote-margin-y: tokens.get('utility-gap-16', utilities.$post-spacing) !default;
 $blockquote-footer-font-size: math.div(1em * sizing.strip-unit($small-font-size), 100) !default;
 $blockquote-cite-font-weight: $font-weight-normal !default;
 

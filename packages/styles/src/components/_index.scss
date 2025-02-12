@@ -1,5 +1,3 @@
-@forward './../variables/options';
-
 @use 'breakpoints';
 @use 'globals';
 @use 'appstore-badge';
@@ -14,7 +12,6 @@
 @use 'card-control';
 @use 'chip';
 @use 'close';
-@use 'elevation';
 @use 'error-container';
 @use 'form-footer';
 @use 'form-range';

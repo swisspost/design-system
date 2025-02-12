@@ -1,15 +1,16 @@
 {
   "name": "@swisspost/design-system-intranet-header-workspace",
-  "version": "3.0.22-next.13",
+  "version": "3.0.22-next.16",
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "clean": "rimraf dist",
     "start": "npm-run-all --parallel --print-label start:**",
     "start:lib": "rimraf dist/intranet-header && ng build intranet-header --watch",
     "start:app": "wait-on dist/intranet-header && ng serve --port 9320",
     "build": "pnpm clean && ng build intranet-header",
-    "lint": "ng lint"
+    "clean": "rimraf dist",
+    "lint": "ng lint",
+    "lint:fix": "ng lint --fix"
   },
   "dependencies": {
     "@angular/animations": "18.2.13",
@@ -23,7 +24,7 @@
     "@angular/router": "18.2.13",
     "@ng-bootstrap/ng-bootstrap": "17.0.1",
     "@popperjs/core": "2.11.8",
-    "@swisspost/design-system-styles": "workspace:9.0.0-next.13",
+    "@swisspost/design-system-styles": "workspace:9.0.0-next.16",
     "rxjs": "7.8.1",
     "tslib": "2.8.1",
     "watch": "1.0.2",

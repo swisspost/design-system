@@ -1,5 +1,4 @@
 import { ArgTypes, Meta, Source } from '@storybook/blocks';
-import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
 import * as IntranetHeaderStories from './intranet-header.stories';
 import SampleNavigationBar from './intranet-header-navigation-bar.sample.html?raw';
 import SampleSideNavigation from './intranet-header-side-navigation.sample.html?raw';
@@ -32,29 +31,31 @@ For installation and usage see the <a href="/?path=/docs/7068be42-1a20-4a34-9e79
 
 ## Examples
 
-<PostTabs>
-  <PostTabHeader panel="headerNavbar">Header with a navigation bar</PostTabHeader>
-  <PostTabPanel name="headerNavbar">
+<post-tabs>
+  <post-tab-header panel="headerNavbar">Header with a navigation bar</post-tab-header>
+  <post-tab-panel name="headerNavbar">
     <Source code={SampleNavigationBar} language="html" />
-  </PostTabPanel>
+  </post-tab-panel>
 
 {' '}
-<PostTabHeader panel="headerWithCustomUserMenu">Header with a custom user menu</PostTabHeader>
-<PostTabPanel name="headerWithCustomUserMenu">
+<post-tab-header panel="headerWithCustomUserMenu">Header with a custom user menu</post-tab-header>
+<post-tab-panel name="headerWithCustomUserMenu">
+
   <Source code={SampleSideUserMenuDropdown} language="html" />
-</PostTabPanel>
+</post-tab-panel>
 
 {' '}
-<PostTabHeader panel="headerSideNavigation">Header with a side navigation</PostTabHeader>
-<PostTabPanel name="headerSideNavigation">
-  <Source code={SampleSideNavigation} language="html" />
-</PostTabPanel>
+<post-tab-header panel="headerSideNavigation">Header with a side navigation</post-tab-header>
+<post-tab-panel name="headerSideNavigation">
 
-  <PostTabHeader panel="headerPostweb">"Postweb" intranet header</PostTabHeader>
-  <PostTabPanel name="headerPostweb">
-    <Source code={SamplePostweb} language="html" />
-  </PostTabPanel>
-</PostTabs>
+  <Source code={SampleSideNavigation} language="html" />
+</post-tab-panel>
+
+<post-tab-header panel="headerPostweb">"Postweb" intranet header</post-tab-header>
+<post-tab-panel name="headerPostweb">
+<Source code={SamplePostweb} language="html" />
+</post-tab-panel>
+</post-tabs>
 
 ### Props
 
