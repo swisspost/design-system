@@ -493,6 +493,21 @@ export class MigrationV89Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    Some z-index scss variables have been removed
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>$zindex-sticky</code></li>
+                    <li><code>$zindex-fixed</code></li>
+                    <li><code>$zindex-modal-backdrop</code></li>
+                    <li><code>$zindex-modal</code></li>
+                    <li><code>$zindex-popover</code></li>
+                    <li><code>$zindex-tooltip</code></li>
+                    <li><code>$zindex-alert</code></li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
                     Accent colors have been removed
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>

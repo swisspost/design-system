@@ -16,7 +16,6 @@
   --local-header-min-height: 56px;
   --header-height: calc(var(--global-header-height) + var(--local-header-height));
 
-  z-index: 1020;
   position: relative;
 
   @include media.min(lg) {
@@ -114,7 +113,7 @@
   gap: var(--post-core-dimension-8);
   min-height: var(--local-header-min-height);
   background: var(--post-core-color-brand-white);
-  transition: box-shadow 0.2s ease-in-out; 
+  transition: box-shadow 0.2s ease-in-out;
 
   @include media.min(lg) {
     z-index: 3;
