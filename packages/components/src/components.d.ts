@@ -371,7 +371,7 @@ export namespace Components {
     }
     interface PostPopovercontainer {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
         /**
@@ -390,6 +390,10 @@ export namespace Components {
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
+        /**
+          * Enables a safespace through which the cursor can be moved without the popover being disabled
+         */
+        "safeSpace"?: 'triangle' | 'trapezoid';
         /**
           * Programmatically display the tooltip
           * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
@@ -1204,7 +1208,7 @@ declare namespace LocalJSX {
     }
     interface PostPopovercontainer {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
         /**
@@ -1223,6 +1227,10 @@ declare namespace LocalJSX {
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
+        /**
+          * Enables a safespace through which the cursor can be moved without the popover being disabled
+         */
+        "safeSpace"?: 'triangle' | 'trapezoid';
     }
     interface PostRating {
         /**
