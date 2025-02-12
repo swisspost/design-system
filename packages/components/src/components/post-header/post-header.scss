@@ -1,6 +1,8 @@
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/variables/animation';
+@use '@swisspost/design-system-styles/variables/elevation';
+@use '@swisspost/design-system-styles/variables/color';
 
 *,
 ::before,
@@ -57,7 +59,7 @@
   display: flex;
   justify-content: space-between;
   position: sticky;
-  padding-inline: var(--post-core-dimension-4);
+  padding-inline: 4px;
   height: var(--global-header-height);
 
   @include media.max(lg) {
@@ -67,7 +69,7 @@
 
   @include media.min(lg) {
     z-index: 5;
-    padding-inline-end: var(--post-core-dimension-12);
+    padding-inline-end: 12px;
     inset-block-start: calc(
       (var(--global-header-height) - var(--global-header-reduced-height)) * -1
     );
@@ -77,7 +79,7 @@
 .global-sub {
   display: flex;
   align-items: center;
-  gap: var(--post-core-dimension-24);
+  gap: 24px;
 }
 
 .align-end {
@@ -111,38 +113,38 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--post-core-dimension-8);
+  gap: 8px;
   min-height: var(--local-header-min-height);
-  background: var(--post-core-color-brand-white);
-  transition: box-shadow 0.2s ease-in-out; 
+  background: color.$white;
+  transition: box-shadow 0.2s ease-in-out;
 
   @include media.min(lg) {
     z-index: 3;
     inset-block-start: calc(
       -1 * (var(--local-header-height) - var(--main-navigation-height)) + var(--global-header-reduced-height)
     );
-    padding-block-start: var(--post-core-dimension-18);
-    box-shadow: var(--post-core-elevation-3);
+    padding-block-start: 18px;
+    box-shadow: elevation.$elevation-300;
   }
 
   @include media.max(lg) {
     z-index: 2;
     inset-block-start: var(--global-header-height);
-    padding-block: var(--post-core-dimension-9);
+    padding-block: 9px;
     flex-wrap: wrap;
 
     &.local-header-mobile-extended {
-      border-bottom: 1px solid var(--post-core-color-sandgrey-012);
+      border-bottom: 1px solid #e1e0dc;
     }
 
     &:not(.title-header-mobile-extended) {
-      box-shadow: var(--post-core-elevation-3);
+      box-shadow: elevation.$elevation-300;
     }
   }
 }
 
 .local-sub {
-  margin-inline-end: var(--post-core-dimension-16);
+  margin-inline-end: 16px;
 }
 
 ::slotted(.list-inline) {
@@ -157,20 +159,20 @@
   z-index: 3;
 
   @include media.min(sm) {
-    margin-inline-start: var(--post-core-dimension-12) !important;
+    margin-inline-start: 12px !important;
   }
 
   @include media.max(sm) {
-    margin-inline-start: var(--post-core-dimension-8) !important;
+    margin-inline-start: 8px !important;
   }
 
   @include media.min(lg) {
-    font-size: var(--post-core-font-size-28) !important;
+    font-size: 28px !important;
   }
 
   @include media.max(lg) {
-    font-size: var(--post-core-font-size-20) !important;
-    max-width: calc(100vw - var(--post-core-dimension-8) - var(--post-core-dimension-16));
+    font-size: 20px !important;
+    max-width: calc(100vw - 8px - 16px);
   }
 }
 
@@ -192,7 +194,7 @@
       position: absolute;
       inset: 0;
       z-index: 2;
-      background: var(--post-core-color-brand-white);
+      background: color.$white;
     }
   }
 }
@@ -203,7 +205,7 @@
     position: fixed;
     z-index: 1;
     inset-inline: 0;
-    background: var(--post-core-color-brand-white);
+    background: color.$white;
     inset-block-end: calc(100vh - var(--header-height));
   }
 
@@ -211,8 +213,8 @@
   .navigation-footer {
     display: none;
     flex-direction: column;
-    padding-block: var(--post-core-dimension-16) var(--post-core-dimension-24);
-    padding-inline: var(--post-core-dimension-32);
+    padding-block: 16px 24px;
+    padding-inline: 32px;
 
     .navigation.extended & {
       display: flex;
@@ -230,13 +232,13 @@
   }
 
   ::slotted(post-mainnavigation) {
-    background-color: var(--post-core-color-sandgrey-002);
-    gap: var(--post-core-dimension-32);
+    background-color: #fafafa;
+    gap: 32px;
   }
 
   .navigation-footer {
-    background-color: var(--post-core-color-sandgrey-006);
-    gap: var(--post-core-dimension-24);
+    background-color: #f0efed;
+    gap: 24px;
   }
 }
 
@@ -244,6 +246,6 @@
 @include media.max(sm) {
   ::slotted(post-mainnavigation),
   .navigation-footer {
-    padding-inline: var(--post-core-dimension-16);
+    padding-inline: 16px;
   }
 }
