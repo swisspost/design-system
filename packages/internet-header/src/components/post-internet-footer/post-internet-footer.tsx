@@ -123,7 +123,7 @@ export class PostInternetFooter {
               ))}
           </div>
           <div class="copyright container">
-            <span class="bold">{footerConfig.entry.text}</span>
+            <span>{footerConfig.entry.text}</span>
             <ul class="no-list footer-meta-links">
               {footerConfig.links !== undefined
                 ? footerConfig.links.map(link => (
