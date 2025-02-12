@@ -73,6 +73,18 @@ export class PostMenu {
     this.popoverRef.addEventListener('postToggle', (event: CustomEvent<boolean>) => {
       this.isVisible = event.detail;
       this.toggleMenu.emit(this.isVisible);
+  
+      requestAnimationFrame(() => {
+        if (this.isVisible) {
+          this.lastFocusedElement = this.root.activeElement as HTMLElement;
+          const menuItems = this.getSlottedItems();
+          if (menuItems.length > 0) {
+            (menuItems[0] as HTMLElement).focus();
+          }
+        } else if (this.lastFocusedElement) {
+          this.lastFocusedElement.focus();
+        }
+      });
     });
   }
 
@@ -81,14 +93,14 @@ export class PostMenu {
    */
   @Method()
   async toggle(target: HTMLElement) {
-    if (this.isVisible) {
-      await this.hide();
+    if (this.popoverRef) {
+      await this.popoverRef.toggle(target);
     } else {
-      await this.show(target);
+      console.error('toggle: popoverRef is null or undefined');
     }
   }
 
-  /**
+   /**
    * Displays the popover menu, focusing the first menu item.
    *
    * @param target - The HTML element relative to which the popover menu should be displayed.
@@ -97,12 +109,6 @@ export class PostMenu {
   async show(target: HTMLElement) {
     if (this.popoverRef) {
       await this.popoverRef.show(target);
-      this.lastFocusedElement = this.root.activeElement as HTMLElement; // Use root's activeElement
-
-      const menuItems = this.getSlottedItems();
-      if (menuItems.length > 0) {
-        (menuItems[0] as HTMLElement).focus();
-      }
     } else {
       console.error('show: popoverRef is null or undefined');
     }
@@ -115,9 +121,6 @@ export class PostMenu {
   async hide() {
     if (this.popoverRef) {
       await this.popoverRef.hide();
-      if (this.lastFocusedElement) {
-        this.lastFocusedElement.focus();
-      }
     } else {
       console.error('hide: popoverRef is null or undefined');
     }
@@ -145,13 +148,12 @@ export class PostMenu {
 
   private controlKeyDownHandler(e: KeyboardEvent) {
     const menuItems = this.getSlottedItems();
-
     if (!menuItems.length) {
       return;
     }
 
     let currentIndex = menuItems.findIndex(el => {
-      // Check if the item is currently focused within its rendered scope (document or shadow root)
+    // Check if the item is currently focused within its rendered scope (document or shadow root)
       return el === getRoot(el).activeElement;
     });
 
@@ -168,6 +170,7 @@ export class PostMenu {
         currentIndex = 0;
         break;
       case this.KEYCODES.END:
+        e.preventDefault();
         currentIndex = menuItems.length - 1;
         break;
       case this.KEYCODES.SPACE:
