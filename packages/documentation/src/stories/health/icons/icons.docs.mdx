@@ -4,12 +4,13 @@ import './icons.styles.scss';
 
 import {
   StatusBlock,
-  IconsBlock,
-  WrongViewBoxBlock,
-  NoKeywordsBlock,
-  ErroredBlock,
-  NoSVGBlock,
-  DuplicatesBlock,
+  SourceFiles,
+  ErroredIcons,
+  NoSVGIcons,
+  WrongViewBoxIcons,
+  WrongAmountOfSourcesIcons,
+  NoKeywords,
+  DublicateIcons
 } from './icons.blocks';
 
 <Meta of={IconStories} />
@@ -24,19 +25,32 @@ import {
 
 <div className="report-container"> 
   <StatusBlock />
+</div>
 
-<hr className="my-16" />
+<div className="report-container"> 
+  <SourceFiles />
+</div>
 
-<IconsBlock />
+<div className="report-container"> 
+  <ErroredIcons />
+</div>
 
-<WrongViewBoxBlock />
+<div className="report-container"> 
+  <NoSVGIcons />
+</div>
 
-<NoKeywordsBlock />
+<div className="report-container"> 
+  <WrongViewBoxIcons />
+</div>
 
-<ErroredBlock />
+<div className="report-container"> 
+  <WrongAmountOfSourcesIcons />
+</div>
 
-<NoSVGBlock />
+<div className="report-container"> 
+  <NoKeywords />
+</div>
 
-<DuplicatesBlock />
-
+<div className="report-container"> 
+  <DublicateIcons />
 </div>

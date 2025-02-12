@@ -1,16 +1,19 @@
 .report-container {
   border: 1px hsl(0, 0%, 80%) solid;
   border-radius: 0.5rem;
+  margin-block-start: 2rem;
   padding: 2rem;
 
-  .status {
-    line-height: 1.25rem;
-    font-size: 1rem;
+  .status-danger {
+    color: red;
   }
 
-  hr {
-    border: none;
-    border-top: 1px solid hsl(0, 0%, 80%);
+  .status-success {
+    color: green;
+  }
+
+  .form {
+    margin-block: 1rem;
   }
 
   .icons {
