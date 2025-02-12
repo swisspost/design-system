@@ -4,7 +4,7 @@ import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '7ecd87f1-de96-4e39-a057-ba1798eb6959',
-  title: 'Components/Heading',
+  title: 'Foundations/Typography/Heading',
   tags: ['package:HTML'],
   parameters: {
     badges: [],
