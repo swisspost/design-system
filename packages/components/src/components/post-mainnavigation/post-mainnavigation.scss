@@ -7,6 +7,8 @@
 @use '@swisspost/design-system-styles/variables/animation';
 @use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
+@use '@swisspost/design-system-styles/variables/elevation';
+@use '@swisspost/design-system-styles/variables/color';
 
 post-mainnavigation {
   flex: 0 0 auto;
@@ -37,7 +39,7 @@ post-mainnavigation {
       }
 
       &:focus-visible {
-        border-radius: var(--post-core-dimension-4);
+        border-radius: 4px;
       }
     }
   }
@@ -48,11 +50,11 @@ post-mainnavigation {
     }
 
     @include media.max(lg) {
-      font-size: var(--post-core-font-size-16);
+      font-size: 16px;
     }
 
     @include media.max(sm) {
-      font-size: var(--post-core-font-size-14);
+      font-size: 14px;
     }
   }
 
@@ -62,7 +64,7 @@ post-mainnavigation {
 
     nav {
       max-width: 100vw;
-      background: var(--post-core-color-brand-white);
+      background: color.$white;
       max-height: var(--main-navigation-height);
       user-select: none;
       transition: transform animation.$transition-base-timing;
@@ -76,10 +78,10 @@ post-mainnavigation {
 
       button {
         @include button.reset-button;
-        background: var(--post-core-color-brand-white);
-        padding: var(--post-core-dimension-16);
-        box-shadow: var(--post-core-elevation-5);
-        line-height: var(--post-core-line-height-100);
+        background: color.$white;
+        padding: 16px;
+        box-shadow: elevation.$elevation-500;
+        line-height: 100%;
         height: 100%;
 
         post-icon {
@@ -99,7 +101,7 @@ post-mainnavigation {
     }
 
     post-list {
-      margin-inline: var(--post-core-dimension-4);
+      margin-inline: 4px;
 
       > [role='list'] {
         flex-direction: row;
@@ -113,10 +115,10 @@ post-mainnavigation {
       > button,
       post-megadropdown-trigger button {
         position: sticky;
-        padding-inline: var(--post-core-dimension-12);
+        padding-inline: 12px;
         height: var(--main-navigation-height);
-        gap: var(--post-core-dimension-4);
-        font-size: var(--post-core-font-size-16);
+        gap: 4px;
+        font-size: 16px;
         border-block: 0 solid transparent;
         border-block-end-color: currentColor;
 
@@ -129,31 +131,31 @@ post-mainnavigation {
         }
 
         &:hover {
-          border-block-width: var(--post-core-dimension-2);
+          border-block-width: 2px;
         }
 
         &.selected,
         &[aria-expanded='true'] {
-          border-block-width: var(--post-core-dimension-4);
-          font-weight: var(--post-core-font-weight-700);
+          border-block-width: 4px;
+          font-weight: 700;
         }
 
         @include media.max(sm) {
-          font-size: var(--post-core-font-size-14);
+          font-size: 14px;
         }
       }
 
       // styles specific to for the mega-dropdown buttons
       > button,
       post-megadropdown-trigger button {
-        padding-inline-end: var(--post-core-dimension-12);
+        padding-inline-end: 12px;
         transition: border-block-end-color animation.$transition-base-timing;
 
         &::after {
           content: '';
           @include icons.icon(2113);
-          height: var(--post-core-dimension-24);
-          width: var(--post-core-dimension-24);
+          height: 24px;
+          width: 24px;
           transition: transform animation.$transition-base-timing;
         }
 
