@@ -1,5 +1,22 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.18
+
+### Minor Changes
+
+- Removed occurences of `.text-*` and `.link-*` color utility classes and its documentation. (by [@schaertim](https://github.com/schaertim) with [#4399](https://github.com/swisspost/design-system/pull/4399))
+
+### Patch Changes
+
+- Removed `form-check.scss` import suggestions from documentation. (by [@leagrdv](https://github.com/leagrdv) with [#4647](https://github.com/swisspost/design-system/pull/4647))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.17
+  - @swisspost/design-system-components@9.0.0-next.17
+  - @swisspost/internet-header@2.0.0-next.17
+  - @swisspost/design-system-components-react@9.0.0-next.17
+  - @swisspost/design-system-tokens@9.0.0-next.17
+  - @swisspost/design-system-icons@9.0.0-next.17
+
 ## 6.0.0-next.17
 
 ### Minor Changes
