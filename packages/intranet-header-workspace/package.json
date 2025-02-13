@@ -4,10 +4,13 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
+    "start": "npm-run-all --parallel --print-label start:**",
+    "start:lib": "rimraf dist/intranet-header && ng build intranet-header --watch",
+    "start:app": "wait-on dist/intranet-header && ng serve --port 9320",
+    "build": "pnpm clean && ng build intranet-header",
     "clean": "rimraf dist",
-    "start": "ng serve --port 9320",
-    "build": "ng build intranet-header",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "lint:fix": "ng lint --fix"
   },
   "dependencies": {
     "@angular/animations": "18.1.3",
@@ -47,8 +50,10 @@
     "karma-jasmine": "5.1.0",
     "karma-jasmine-html-reporter": "2.1.0",
     "ng-packagr": "18.1.0",
+    "npm-run-all2": "7.0.2",
     "rimraf": "6.0.1",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "wait-on": "8.0.1"
   },
   "keywords": [
     "components",

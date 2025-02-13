@@ -122,7 +122,7 @@
       <ng-container *ngTemplateOutlet="navbar"></ng-container>
     </nav>
     <div
-      *ngIf="(showIntranetSearch && condenseHeader && !openedMenu) || !condenseHeader"
+      *ngIf="showIntranetSearch && ((condenseHeader && !openedMenu) || !condenseHeader)"
       class="search-textbox d-md-none"
     >
       <ng-template [ngTemplateOutlet]="intranetSearch"></ng-template>
