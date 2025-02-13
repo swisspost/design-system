@@ -1,6 +1,6 @@
 import React from 'react';
 import report from '@swisspost/design-system-icons/public/report.min.json';
-import { MinimalIcon, MinimalReport } from '@swisspost/design-system-icons/src/models/icon.model';
+import { MinimalIcon } from '@swisspost/design-system-icons/src/models/icon.model';
 import './search-icons.styles.scss';
 
 interface Icon {
@@ -15,7 +15,7 @@ interface IconSets {
   uiSolid: Icon[];
 }
 
-const ICON_SETS: IconSets = (report as unknown as MinimalReport).icons.reduce(
+const ICON_SETS: IconSets = report.icons.reduce(
   (sets: IconSets, icon: MinimalIcon) => {
     let typeOfSet = 'post';
     const basename = icon.name.replace(/.svg$/, '');

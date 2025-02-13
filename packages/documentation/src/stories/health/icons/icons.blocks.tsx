@@ -228,19 +228,6 @@ export const StatusBlock: React.FC = () => {
           <div className="status-container">
             <h2 className="status-title">Output files</h2>
             <div className="status-count">{report.icons.length}</div>
-            <div className="status-insights">
-              <ul className="list-inline justify-content-center my-0">
-                <li>
-                  without issues: <span className="status-success">{report.stats.success}</span>
-                </li>
-                <li>
-                  with issues:{' '}
-                  <span className="status-danger">
-                    {report.icons.length - report.stats.success}
-                  </span>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
       </div>
@@ -362,7 +349,22 @@ export const WrongAmountOfSourcesIcons: React.FC = () => {
           <summary>{header}</summary>
           <Search
             filter={(icon: MinimalIcon) => !icon.stats.hasAllSources}
-            mapper={mapper.bind(this)}
+            mapper={(icon: MinimalIcon) => {
+              return (
+                <details>
+                  <summary>
+                    <code>{icon.name}</code>
+                  </summary>
+                  <ul>
+                    {icon.stats.sources.map((sourceIcon: MinimalSourceIcon) => (
+                      <li key={sourceIcon.id}>
+                        <code>{sourceIcon.name}</code>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              );
+            }}
           ></Search>
         </details>
       ) : (
@@ -410,7 +412,24 @@ const KeywordsInspectorDetail: React.FC<{ icon: MinimalIcon }> = ({ icon }) => {
       {isOpen ? (
         <div className="row mt-8">
           <div className="col-auto">
-            <post-icon class="preview-icon" name={icon.name}></post-icon>
+            <div>
+              <post-icon class="preview-icon" name={icon.name}></post-icon>
+            </div>
+            <div>
+              <post-icon class="preview-icon size-24" name={icon.name}></post-icon>
+            </div>
+            <div>
+              <post-icon class="preview-icon size-32" name={icon.name}></post-icon>
+            </div>
+            <div>
+              <post-icon class="preview-icon size-40" name={icon.name}></post-icon>
+            </div>
+            <div>
+              <post-icon class="preview-icon size-48" name={icon.name}></post-icon>
+            </div>
+            <div>
+              <post-icon class="preview-icon size-64" name={icon.name}></post-icon>
+            </div>
           </div>
           <div className="col">
             <ul>
