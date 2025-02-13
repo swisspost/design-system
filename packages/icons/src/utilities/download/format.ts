@@ -1,32 +1,20 @@
+import type { SourceIcon } from '../../models/icon.model';
+import type { CenshareResultPage, CenshareResult } from '../../models/censhare-result-page.model';
 import path from 'path';
-import { CenshareResultPage, CenshareResult } from '../models/censhare-result-page.model';
-import { IIcon } from '../models/icon.model';
 
 const excludedRanges = [[4000, 7999]];
 const excludedKeywords = ['Piktogramme "Die Post" ab 2017', 'Piktogramme "Die Post" 2017'];
-
-const isExcluded = (icon: IIcon, filters: number[][]): boolean => {
-  const name = Number(icon.file.basename);
-  let isExcluded = false;
-
-  filters.forEach(([min, max]) => {
-    if (min <= name && name <= max) {
-      isExcluded = true;
-    }
-  });
-
-  return isExcluded;
-};
 
 /**
  * Parses zenshare results into a useful format
  * @param response Zenshare result page
  * @returns Array of icons
  */
-export const formatResponse = (response: CenshareResultPage): Array<IIcon> => {
+export const format = (response: CenshareResultPage): Array<SourceIcon> => {
   return response.result
-    .reduce((acc: IIcon[], item: CenshareResult) => {
-      const svgVariant = item.variants?.find(variant => variant.mime === 'image/svg+xml');
+    .reduce((acc: SourceIcon[], item: CenshareResult) => {
+      const mimeTypeVariants = [item, ...(item.variants ?? [])];
+      const svgVariant = mimeTypeVariants.find(variant => variant.mime === 'image/svg+xml');
 
       if (svgVariant) {
         const fileName = path.basename(svgVariant.name);
@@ -65,7 +53,21 @@ export const formatResponse = (response: CenshareResultPage): Array<IIcon> => {
             typeof item.modifiedAt === 'string' ? new Date(item.modifiedAt) : item.modifiedAt,
         });
       }
+
       return acc;
     }, [])
     .filter(icon => !isExcluded(icon, excludedRanges));
+
+  function isExcluded(icon: SourceIcon, filters: number[][]): boolean {
+    const name = Number(icon.file.basename);
+    let isExcluded = false;
+
+    filters.forEach(([min, max]) => {
+      if (min <= name && name <= max) {
+        isExcluded = true;
+      }
+    });
+
+    return isExcluded;
+  }
 };

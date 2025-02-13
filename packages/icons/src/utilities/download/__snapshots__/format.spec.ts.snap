@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`mapResponse Should map the result object to a meaningful data structure 1`] = `
+exports[`format Should format the result object to a meaningful data structure 1`] = `
 [
   {
     "createdAt": 2017-11-10T09:43:19.000Z,

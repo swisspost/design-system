@@ -4,12 +4,14 @@ import './icons.styles.scss';
 
 import {
   StatusBlock,
-  IconsBlock,
-  WrongViewBoxBlock,
-  NoKeywordsBlock,
-  ErroredBlock,
-  NoSVGBlock,
-  DuplicatesBlock,
+  SourceFiles,
+  ErroredIcons,
+  NoSVGIcons,
+  WrongViewBoxIcons,
+  DuplicateIcons,
+  WrongAmountOfSourcesIcons,
+  NoKeywords,
+  KeywordsInspector,
 } from './icons.blocks';
 
 <Meta of={IconStories} />
@@ -22,21 +24,39 @@ import {
   Monitor the quality, consistency, and completeness of the design system icons.
 </div>
 
-<div className="report-container"> 
+<section> 
   <StatusBlock />
+</section>
 
-<hr className="my-16" />
+<section> 
+  <SourceFiles />
+</section>
 
-<IconsBlock />
+<section> 
+  <KeywordsInspector />
+</section>
 
-<WrongViewBoxBlock />
+<section> 
+  <ErroredIcons />
+</section>
 
-<NoKeywordsBlock />
+<section> 
+  <NoSVGIcons />
+</section>
 
-<ErroredBlock />
+<section> 
+  <WrongViewBoxIcons />
+</section>
 
-<NoSVGBlock />
+<section> 
+  <DuplicateIcons />
+</section>
 
-<DuplicatesBlock />
+<section> 
+  <WrongAmountOfSourcesIcons />
+</section>
 
-</div>
+<section> 
+  <NoKeywords />
+</section>
+

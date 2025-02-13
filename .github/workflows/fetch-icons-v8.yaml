@@ -23,7 +23,7 @@ on:
     #        │  │ │ ┌───────────── month (1 - 12 or JAN-DEC)
     #        │  │ │ │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
     #        │  │ │ │ │
-    - cron: '15 0 * * 0' # the job will run every Sunday at 0:15
+    - cron: '30 0 * * 0' # the job will run every Sunday at 0:30
 
 jobs:
   fetch:
@@ -46,7 +46,7 @@ jobs:
       - name: Create Branch
         id: current-branch
         run: |
-          git checkout -b $BRANCH_NAME origin/main
+          git checkout -b $BRANCH_NAME origin/release/v8
           echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
         env:
           BRANCH_NAME: ${{ steps.current-date.outputs.date }}-update-icons
@@ -59,8 +59,7 @@ jobs:
         env:
           CEN_USERNAME: ${{ secrets.CEN_USERNAME }}
           CEN_PASSWORD: ${{ secrets.CEN_PASSWORD }}
-          CEN_URL_ICONSET_POST: ${{ secrets.CEN_URL_ICONSET_POST }}
-          CEN_URL_ICONSET_UI: ${{ secrets.CEN_URL_ICONSET_UI }}
+          CEN_URL: ${{ secrets.CEN_URL }}
 
       - name: Build styles
         run: pnpm --filter design-system-styles... build

@@ -7,6 +7,7 @@ node_modules
 # Ignore generated files
 public/post-icons
 public/report.json
+public/report.min.json
 
 icons-optimized
 icons.json
