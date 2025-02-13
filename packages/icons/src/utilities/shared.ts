@@ -14,7 +14,7 @@ export function getNameParts(name: string): string[] {
   return name.split(/([^a-zA-Z0-9])/g).filter(part => !/^[^a-zA-Z0-9]$/.test(part));
 }
 
-export function sortIcons(a: SourceIcon | MergedIcon, b: SourceIcon | OutputIcon) {
+export function sortIcons(a: SourceIcon | MergedIcon, b: SourceIcon | MergedIcon) {
   return a.file.basename < b.file.basename ? -1 : 1;
 }
 
