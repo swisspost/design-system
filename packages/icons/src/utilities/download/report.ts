@@ -12,7 +12,17 @@ export function updateReport(
   if (svg === false) {
     report.noSVG.push(icon);
   } else {
-    report.icons.push(icon);
+    // avoid duplicates
+    const existingIconIndex = report.icons.findIndex(i => i.file.name === icon.file.name);
+
+    if (existingIconIndex >= 0) {
+      report.duplicates.push(icon);
+      // override existing icon in report (because the svg file gets overridden as well)
+      report.icons[existingIconIndex] = icon;
+    } else {
+      // add non-existing icon to report
+      report.icons.push(icon);
+    }
 
     // check for wrong viewBox in svg
     // ui icons must contain the viewBox width/height in their file.basename
@@ -53,6 +63,7 @@ export function writeReport(iconSet: IconSet, report: SourceReport) {
   report.stats.noSVG = report.noSVG.length;
   report.stats.wrongViewBox = report.wrongViewBox.length;
   report.stats.noKeywords = report.noKeywords.length;
+  report.stats.duplicates = report.duplicates.length;
 
   fs.writeFileSync(
     path.join(iconSet.downloadDirectory, 'report.json'),

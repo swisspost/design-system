@@ -25,15 +25,17 @@ export function writeReport(
     const erroredIds = iconSetSourceReport.errored.map((icon: SourceIcon) => icon.id);
     const noSVGIds = iconSetSourceReport.noSVG.map((icon: SourceIcon) => icon.id);
     const wrongViewBoxIds = iconSetSourceReport.wrongViewBox.map((icon: SourceIcon) => icon.id);
+    const duplicateIds = iconSetSourceReport.duplicates.map((icon: SourceIcon) => icon.id);
 
     const mergedIcons = Object.entries(iconSet.groups).map(([name, items]) => {
       const sources = items.map((icon: IconSetGroupsItem) => icon.sourceIcon);
       const sourcesIds = sources.map((icon: SourceIcon) => icon.id);
       const keywords = getIconKeywords(items);
 
-      const sourcesErrored = sourcesIds.filter((id: number) => erroredIds.includes(id));
-      const sourcesNoSVG = sourcesIds.filter((id: number) => noSVGIds.includes(id));
-      const sourcesWrongViewBox = sourcesIds.filter((id: number) => wrongViewBoxIds.includes(id));
+      const errored = sourcesIds.filter((id: number) => erroredIds.includes(id));
+      const noSVG = sourcesIds.filter((id: number) => noSVGIds.includes(id));
+      const wrongViewBox = sourcesIds.filter((id: number) => wrongViewBoxIds.includes(id));
+      const duplicates = sourcesIds.filter((id: number) => duplicateIds.includes(id));
 
       return {
         uuid: crypto.randomUUID(),
@@ -50,12 +52,13 @@ export function writeReport(
         },
         stats: {
           sources,
-          sourcesErrored,
-          sourcesNoSVG,
-          sourcesWrongViewBox,
+          errored,
+          noSVG,
+          wrongViewBox,
+          duplicates,
           hasAllSources: items.length === iconSet.options.expectedSourcesPerIcon,
           hasKeywords: keywords.length > 0,
-          success: [...sourcesErrored, ...sourcesNoSVG, ...sourcesWrongViewBox].length === 0,
+          success: [...errored, ...noSVG, ...wrongViewBox, ...duplicates].length === 0,
         },
         createdAt: getIconCreatedAt(items),
         modifiedAt: getIconModifiedAt(items),
@@ -70,9 +73,11 @@ export function writeReport(
 
   mergedReport.icons.sort(sortIcons);
   mergedReport.stats.sources = getReportStats('sources');
-  mergedReport.stats.errored = getReportStats('sourcesErrored');
-  mergedReport.stats.noSVG = getReportStats('sourcesNoSVG');
-  mergedReport.stats.wrongViewBox = getReportStats('sourcesWrongViewBox');
+  mergedReport.stats.errored = getReportStats('errored');
+  mergedReport.stats.noSVG = getReportStats('noSVG');
+  mergedReport.stats.wrongViewBox = getReportStats('wrongViewBox');
+  mergedReport.stats.duplicates = getReportStats('duplicates');
+  mergedReport.stats.hasAllSources = mergedReport.icons.filter(i => !i.stats.hasAllSources).length;
   mergedReport.stats.noKeywords = mergedReport.icons.filter(i => !i.stats.hasKeywords).length;
   mergedReport.stats.success = mergedReport.icons.filter(i => i.stats.success).length;
   mergedReport.created = new Date();
@@ -115,7 +120,7 @@ export function writeReport(
   }
 
   function getReportStats(
-    key: 'sources' | 'sourcesErrored' | 'sourcesNoSVG' | 'sourcesWrongViewBox',
+    key: 'sources' | 'errored' | 'noSVG' | 'wrongViewBox' | 'duplicates',
   ): number {
     return mergedReport.icons.reduce((sum, icon: MergedIcon) => sum + icon.stats[key].length, 0);
   }

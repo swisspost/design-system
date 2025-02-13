@@ -67,9 +67,10 @@ export interface MergedIcon {
   };
   stats: {
     sources: SourceIcon[];
-    sourcesErrored: number[];
-    sourcesNoSVG: number[];
-    sourcesWrongViewBox: number[];
+    errored: number[];
+    noSVG: number[];
+    wrongViewBox: number[];
+    duplicates: number[];
     hasAllSources: boolean;
     hasKeywords: boolean;
     success: boolean;
@@ -89,9 +90,10 @@ export interface MinimalIcon {
   keys: string[];
   stats: {
     sources: MinimalSourceIcon[];
-    sourcesErrored: number[];
-    sourcesNoSVG: number[];
-    sourcesWrongViewBox: number[];
+    errored: number[];
+    noSVG: number[];
+    wrongViewBox: number[];
+    duplicates: number[];
     hasAllSources: boolean;
     hasKeywords: boolean;
     success: boolean;
@@ -104,12 +106,14 @@ export interface SourceReport {
   noSVG: SourceIcon[];
   wrongViewBox: SourceIcon[];
   noKeywords: SourceIcon[];
+  duplicates: SourceIcon[];
   stats: {
     success: number;
     errors: number;
     noSVG: number;
     wrongViewBox: number;
     noKeywords: number;
+    duplicates: number;
   };
   created: Date;
   version: string;
@@ -124,6 +128,7 @@ export interface MergedReport {
     wrongViewBox: number;
     hasAllSources: number;
     noKeywords: number;
+    duplicates: number;
     success: number;
   };
   created: Date;
@@ -139,6 +144,7 @@ export interface MinimalReport {
     wrongViewBox: number;
     hasAllSources: number;
     noKeywords: number;
+    duplicates: number;
     success: number;
   };
   created: Date;
