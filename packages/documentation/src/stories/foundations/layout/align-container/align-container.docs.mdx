@@ -1,0 +1,20 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as alignContainerStories from './align-container.stories';
+
+<Meta of={alignContainerStories} />
+
+# Align Elements To Container
+
+The `align-container-start` and `align-container-end` classes aligns content to the start and end of the container, respectively, ensuring the image extends to its boundaries.
+
+When used together, they allow the element to span the full width, stretching from edge to edge.
+
+## Basic Example
+
+<Canvas sourceState="shown" of={alignContainerStories.Default} />
+<Controls of={alignContainerStories.Default} />
+
+## Grid Example
+
+<Canvas sourceState="shown" of={alignContainerStories.AlignContainerGrid} />
+<Controls of={alignContainerStories.AlignContainerGrid} />
