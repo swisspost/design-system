@@ -48,3 +48,11 @@ $post-border-colors: (
   post-utility-border-white: rgba(var(--post-border-color-white), var(--post-border-opacity)),
   post-utility-border-black: rgba(var(--post-border-color-black), var(--post-border-opacity)),
 );
+
+$post-border-radius: (
+  post-utility-border-radius: 0.25rem,
+  post-utility-border-radius-sm: 0.2rem,
+  post-utility-border-radius-lg: 0.3rem,
+  post-utility-border-radius-pill: 50rem,
+  post-utility-border-radius-circle: 50%,
+);

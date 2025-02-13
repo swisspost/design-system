@@ -34,7 +34,7 @@ type Story = StoryObj;
 export const Borders: Story = {
   argTypes: {
     border: {
-      name: 'border',
+      name: 'border-{side}',
       description:
         'Sets the default border on all sides. Use `border-top`, `border-end`, `border-bottom`, or `border-start` to apply borders to specific sides.',
       control: {
