@@ -24,10 +24,6 @@ section {
       font-size: 3rem;
       font-weight: 900;
     }
-
-    .status-insights {
-      font-size: 0.8rem;
-    }
   }
 
   .status-danger {
@@ -74,6 +70,22 @@ section {
   }
 
   post-icon.preview-icon {
-    font-size: 64px;
+    font-size: 16px;
+
+    &.size-24 {
+      font-size: 24px;
+    }
+    &.size-32 {
+      font-size: 32px;
+    }
+    &.size-40 {
+      font-size: 40px;
+    }
+    &.size-48 {
+      font-size: 48px;
+    }
+    &.size-64 {
+      font-size: 64px;
+    }
   }
 }
