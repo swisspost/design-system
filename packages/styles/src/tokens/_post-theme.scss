@@ -8,8 +8,11 @@
 
   // temporarily set here until tokens are implemented
   --post-border-width: 1px;
-  --post-border-color: hsl(0, 0%, 80%);
+  --post-border-color-base: 204, 204, 204;
+  --post-border-opacity: 1;
+  --post-border-color: rgba(204, 204, 204, 1);
   --post-border-style: solid;
+  --post-border-color-translucent: rgba($black, 0.175);
   --post-border-color-primary: 13, 110, 253;
   --post-border-color-secondary: 108, 117, 125;
   --post-border-color-success: 25, 135, 84;
@@ -20,7 +23,9 @@
   --post-border-color-dark: 33, 37, 41;
   --post-border-color-white: 245, 245, 245;
   --post-border-radius-sm: 0.25rem;
-  --post-border-radius: 0.2rem;
-  --post-border-radius-lg: 0.3rem;
+  --post-border-radius: 0.375rem;
+  --post-border-radius-lg: 0.5rem;
+  --post-border-radius-xl: 1rem;
+  --post-border-radius-xl: 2rem;
   --post-border-radius-pill: 50rem;
 }

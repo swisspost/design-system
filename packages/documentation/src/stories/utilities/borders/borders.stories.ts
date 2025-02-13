@@ -25,6 +25,14 @@ console.log(border_args);
 const meta: MetaExtended = {
   id: 'cbee1b5e-c98b-4818-8b88-b3c9989796d8',
   title: 'Utilities/Borders',
+
+  decorators: [
+    story => html` <div class="border-example">
+      <div class="d-flex p-2 gap-2" style="height: auto">
+        <div class="flex-fill">${story()}</div>
+      </div>
+    </div>`,
+  ],
 };
 
 export default meta;
@@ -69,23 +77,35 @@ export const Borders: Story = {
         category: 'Set Border Color',
       },
     },
+    borderOpacity: {
+      name: 'border-opacity',
+      description:
+        'Sets the opacity of the border. Use values between 0, 10, 25, 50, 100 to define the transparency level (e.g., `border-opacity-50` for 50% opacity).',
+      control: {
+        type: 'select',
+      },
+      options: [0, 10, 25, 50, 75, 100],
+      table: {
+        category: 'Set Border Opacity',
+      },
+    },
   },
   args: {
     border: 'border',
     borderWidth: 'none',
     borderColor: 'none',
+    borderOpacity: 'none',
   },
   render: (args: Args) => {
     const border = args.border != 'none' ? args.border : '';
     const borderWidthClass = args.borderWidth != 'none' ? ` border-${args.borderWidth}` : '';
     const borderColorClass = args.borderColor != 'none' ? ` border-${args.borderColor}` : '';
+    const borderOpacityClass =
+      args.borderOpacity != 'none' ? ` border-opacity-${args.borderOpacity}` : '';
+    console.log(borderOpacityClass);
     return html`
-      <div class="border-example">
-        <div class="d-flex p-2 gap-2" style="height: auto">
-          <div class="flex-fill">
-            <div class="${border}${borderWidthClass}${borderColorClass}">Sample Text</div>
-          </div>
-        </div>
+      <div class="${border}${borderWidthClass}${borderColorClass}${borderOpacityClass}">
+        Sample Text
       </div>
     `;
   },
@@ -112,45 +132,7 @@ export const RemoveBorders: Story = {
   render: (args: Args) => {
     const borderToRemove = args.borderToRemove != 'none' ? ` ${args.borderToRemove}` : '';
 
-    return html`
-      <div class="border-example">
-        <div class="d-flex p-2 gap-2" style="height: auto">
-          <div class="flex-fill">
-            <div class="border${borderToRemove}">Sample Text</div>
-          </div>
-        </div>
-      </div>
-    `;
-  },
-};
-
-export const BorderOpacity: Story = {
-  argTypes: {
-    borderOpacity: {
-      name: 'border-opacity',
-      description:
-        'Sets the opacity of the border. Use values between 0, 10, 25, 50, 100 to define the transparency level (e.g., `border-opacity-50` for 50% opacity).',
-      control: {
-        type: 'select',
-      },
-      options: [0, 10, 25, 50, 75, 100],
-    },
-  },
-  args: {
-    borderOpacity: 'border',
-  },
-  render: (args: Args) => {
-    const borderOpacity =
-      args.borderOpacity != 'none' ? `border-opacity-${args.borderOpacity}` : '';
-    return html`
-      <div class="border-example">
-        <div class="d-flex p-2 gap-2" style="height: auto">
-          <div class="flex-fill">
-            <div class="border border-dark ${borderOpacity}">Sample Text</div>
-          </div>
-        </div>
-      </div>
-    `;
+    return html` <div class="border${borderToRemove}">Sample Text</div> `;
   },
 };
 
@@ -182,13 +164,7 @@ export const BorderRounded: Story = {
     const borderRounded = args.borderRounded != '-' ? `-${args.borderRounded}` : '';
 
     return html`
-      <div class="border-example">
-        <div class="d-flex p-2 gap-2" style="height: auto">
-          <div class="flex-fill">
-            <div class="border rounded${borderRoundedSide}${borderRounded}">Sample Text</div>
-          </div>
-        </div>
-      </div>
+      <div class="border rounded${borderRoundedSide}${borderRounded}">Sample Text</div>
     `;
   },
 };

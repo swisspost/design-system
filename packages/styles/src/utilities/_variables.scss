@@ -36,7 +36,8 @@ $utilities: (
     property: border,
     class: border,
     values: (
-      null: var(--post-border-width) var(--post-border-style) var(--post-border-color),
+      null: var(--post-border-width) var(--post-border-style)
+        rgba(var(--post-border-color-base), var(--post-border-opacity)),
       0: 0,
     ),
   ),

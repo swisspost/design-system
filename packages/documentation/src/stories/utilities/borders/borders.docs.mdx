@@ -14,7 +14,7 @@ import * as BordersStories from './borders.stories';
 
 Border utilities allow precise control over an element’s borders, enabling you to add, remove, or modify borders on specific sides or all around.
 
-- `border`: Applies a border on all sides.
+- `border`: Applies a border on all sides of an element.
 
 - `border-{side}`: Sets the border on a specific side. Supports border-top (top edge), border-end (inline end, mapped to right in LTR), border-bottom (bottom edge), and border-start (inline start, mapped to left in LTR).
 
@@ -41,19 +41,6 @@ class to set specific side(s)' border width(s) to zero.
 <Canvas sourceState="shown" of={BordersStories.RemoveBorders} />
 <div className="hide-col-default">
   <Controls of={BordersStories.RemoveBorders} />
-</div>
-
-#### Border Opacity
-
-<Canvas sourceState="shown" of={BordersStories.BorderOpacity} />
-<div className="hide-col-default">
-  <Controls of={BordersStories.BorderOpacity} />
-</div>
-
-<div className="alert alert-info mb-40">
-  For the opacity to take effect, you must first apply a `border-{color}` class, as the opacity
-  modifies the color of the border. Without a defined border color, the opacity setting will not
-  have any visible impact.
 </div>
 
 ## Border Radius
