@@ -4,6 +4,28 @@
 @use 'mixins' as *;
 
 post-header {
+  --global-header-height: 72px;
+  --global-header-minimal-height: 24px;
+  --local-header-height: 112px;
+  --local-header-min-height: 56px;
+  --header-height: calc(var(--global-header-height) + var(--local-header-height));
+
+  @include media.min(lg) {
+    --global-header-reduced-height: 24px;
+    --main-navigation-height: 56px;
+  }
+
+  @include media.max(lg) {
+    --global-header-height: 64px;
+    --local-header-height: 48px;
+    --local-header-min-height: 48px;
+    --main-navigation-height: 0px;
+  }
+
+  &:not(:has([slot='title'])) {
+    --local-header-height: var(--main-navigation-height);
+  }
+
   ul[slot='meta-navigation'] {
     gap: var(--post-core-dimension-4);
 
