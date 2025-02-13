@@ -9,9 +9,6 @@
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 
 post-mainnavigation {
-  z-index: 2;
-  position: relative;
-
   // reset links and buttons
   post-list-item {
     > a {
@@ -73,7 +70,7 @@ post-mainnavigation {
     .right-scroll-button {
       z-index: 4;
       position: absolute;
-      inset-block: 0;
+      inset-block-end: 0;
       overflow: hidden;
 
       button {
