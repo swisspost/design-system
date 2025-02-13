@@ -1,5 +1,14 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.17
+
+### Patch Changes
+
+- Moved the border styles for the post-accordion-item from the host to an inner element within the shadow DOM to prevent conflicts with external document styles. (by [@alizedebray](https://github.com/alizedebray) with [#4645](https://github.com/swisspost/design-system/pull/4645))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.17
+  - @swisspost/design-system-icons@9.0.0-next.17
+
 ## 9.0.0-next.16
 
 ### Minor Changes
