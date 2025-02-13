@@ -1,5 +1,33 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.17
+
+### Patch Changes
+
+- Moved the border styles for the post-accordion-item from the host to an inner element within the shadow DOM to prevent conflicts with external document styles. (by [@alizedebray](https://github.com/alizedebray) with [#4645](https://github.com/swisspost/design-system/pull/4645))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.17
+  - @swisspost/design-system-icons@9.0.0-next.17
+
+## 9.0.0-next.16
+
+### Minor Changes
+
+- Updated language switch behavior. (by [@myrta2302](https://github.com/myrta2302) with [#4376](https://github.com/swisspost/design-system/pull/4376))
+
+### Patch Changes
+
+- Updated the URL check on the post-logo component. It now also accepts relative URLs as valid props. (by [@gfellerph](https://github.com/gfellerph) with [#4616](https://github.com/swisspost/design-system/pull/4616))
+
+- Removed megadropdown animation when another one is already opened. (by [@leagrdv](https://github.com/leagrdv) with [#4627](https://github.com/swisspost/design-system/pull/4627))
+
+- Fixed `post-logo` from disappearing on `post-header` scroll. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4606](https://github.com/swisspost/design-system/pull/4606))
+
+- Fixed the `--main-header-height` custom property for `post-header` component, which was previously undefined on initial load. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4614](https://github.com/swisspost/design-system/pull/4614))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.16
+  - @swisspost/design-system-icons@9.0.0-next.16
+
 ## 9.0.0-next.15
 
 ### Patch Changes
