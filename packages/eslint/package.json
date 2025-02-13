@@ -1,5 +1,6 @@
 {
   "name": "@swisspost/design-system-eslint",
+  "private": true,
   "version": "1.0.0",
   "description": "A set of custom ESLint rules to help keeping projects using the Swiss Post Design System up-to-date.",
   "author": "Swiss Post <design-system@post.ch>",
@@ -14,11 +15,6 @@
   "homepage": "https://design-system.post.ch",
   "bugs": {
     "url": "https://github.com/swisspost/design-system/issues"
-  },
-  "publishConfig": {
-    "directory": "./dist",
-    "access": "public",
-    "linkDirectory": true
   },
   "scripts": {
     "clean": "rimraf dist",
