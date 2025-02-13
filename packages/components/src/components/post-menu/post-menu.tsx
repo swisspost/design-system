@@ -73,6 +73,18 @@ export class PostMenu {
     this.popoverRef.addEventListener('postToggle', (event: CustomEvent<boolean>) => {
       this.isVisible = event.detail;
       this.toggleMenu.emit(this.isVisible);
+  
+      requestAnimationFrame(() => {
+        if (this.isVisible) {
+          this.lastFocusedElement = this.root.activeElement as HTMLElement;
+          const menuItems = this.getSlottedItems();
+          if (menuItems.length > 0) {
+            (menuItems[0] as HTMLElement).focus();
+          }
+        } else if (this.lastFocusedElement) {
+          this.lastFocusedElement.focus();
+        }
+      });
     });
   }
 
@@ -81,10 +93,10 @@ export class PostMenu {
    */
   @Method()
   async toggle(target: HTMLElement) {
-    if (this.isVisible) {
-      await this.hide();
+    if (this.popoverRef) {
+      await this.popoverRef.toggle(target);
     } else {
-      await this.show(target);
+      console.error('toggle: popoverRef is null or undefined');
     }
   }
 
@@ -97,12 +109,6 @@ export class PostMenu {
   async show(target: HTMLElement) {
     if (this.popoverRef) {
       await this.popoverRef.show(target);
-      this.lastFocusedElement = this.root.activeElement as HTMLElement; // Use root's activeElement
-
-      const menuItems = this.getSlottedItems();
-      if (menuItems.length > 0) {
-        (menuItems[0] as HTMLElement).focus();
-      }
     } else {
       console.error('show: popoverRef is null or undefined');
     }
@@ -115,9 +121,6 @@ export class PostMenu {
   async hide() {
     if (this.popoverRef) {
       await this.popoverRef.hide();
-      if (this.lastFocusedElement) {
-        this.lastFocusedElement.focus();
-      }
     } else {
       console.error('hide: popoverRef is null or undefined');
     }
@@ -138,20 +141,39 @@ export class PostMenu {
 
   private handleClick = (e: MouseEvent) => {
     const target = e.target as HTMLElement;
-    if (['BUTTON', 'A', 'INPUT', 'SELECT', 'TEXTAREA'].includes(target.tagName)) {
+  
+    const trigger = this.findAssociatedTrigger();
+  
+    // Check if the target is inside the associated post-menu-trigger
+    const isInsideTrigger = trigger?.contains(target);
+  
+    // Only toggle if the click is inside the associated post-menu-trigger
+    if (isInsideTrigger && ['BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'].includes(target.tagName)) {
       this.toggle(this.host);
     }
   };
+  
+  private findAssociatedTrigger(): HTMLPostMenuTriggerElement | null {
+    // Find all post-menu-trigger elements in the document
+    const triggers = Array.from(document.querySelectorAll('post-menu-trigger'));
+  
+    // Find the trigger that references this menu
+    const trigger = triggers.find(trigger => {
+      const menuId = trigger.getAttribute('for');
+      return menuId === this.host.id;
+    });
+  
+    return trigger as HTMLPostMenuTriggerElement | null;
+  }
 
   private controlKeyDownHandler(e: KeyboardEvent) {
     const menuItems = this.getSlottedItems();
-
     if (!menuItems.length) {
       return;
     }
 
     let currentIndex = menuItems.findIndex(el => {
-      // Check if the item is currently focused within its rendered scope (document or shadow root)
+    // Check if the item is currently focused within its rendered scope (document or shadow root)
       return el === getRoot(el).activeElement;
     });
 
@@ -168,6 +190,7 @@ export class PostMenu {
         currentIndex = 0;
         break;
       case this.KEYCODES.END:
+        e.preventDefault();
         currentIndex = menuItems.length - 1;
         break;
       case this.KEYCODES.SPACE:
