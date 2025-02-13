@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-styles-primeng",
-  "version": "9.0.0-next.16",
+  "version": "9.0.0-next.17",
   "description": "Swiss Post styles for PrimeNg datatable.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
@@ -23,7 +23,7 @@
     "primeng": "^17.18.0"
   },
   "dependencies": {
-    "@swisspost/design-system-styles": "workspace:9.0.0-next.16",
+    "@swisspost/design-system-styles": "workspace:9.0.0-next.17",
     "tslib": "2.8.1"
   },
   "sideEffects": false,
