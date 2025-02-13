@@ -16,7 +16,7 @@ export function setup(iconOutputDirectory: string, reportOutputDirectory: string
     fs.unlinkSync(minimalReportOutputPath);
   }
 
-  // // ensure output folders exist
+  // ensure output folders exist
   if (!fs.existsSync(iconOutputDirectory)) {
     fs.mkdirSync(iconOutputDirectory, { recursive: true });
   }

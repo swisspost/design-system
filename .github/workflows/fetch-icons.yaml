@@ -5,6 +5,11 @@
 # This workflow has access to secrets and
 # therefore will not run from a fork.
 #
+# The schedule event can be delayed during periods of high loads of GitHub Actions workflow runs.
+# High load times include the start of every hour. If the load is sufficiently high enough, some queued jobs may be dropped.
+# To decrease the chance of delay, schedule your workflow to run at a different time of the hour.
+# Source: https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule
+#
 ###
 
 name: Fetch Icons
@@ -12,13 +17,13 @@ name: Fetch Icons
 on:
   workflow_dispatch:
   schedule:
-    #            ┌───────────── minute (0 - 59)
-    #            │ ┌───────────── hour (0 - 23)
-    #            │ │ ┌───────────── day of the month (1 - 31)
-    #            │ │ │ ┌───────────── month (1 - 12 or JAN-DEC)
-    #            │ │ │ │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
-    #            │ │ │ │ │
-    - cron: '0 0 * * 0' # the job will run every Sunday at 0:00
+    #        ┌───────────── minute (0 - 59)
+    #        │  ┌───────────── hour (0 - 23)
+    #        │  │ ┌───────────── day of the month (1 - 31)
+    #        │  │ │ ┌───────────── month (1 - 12 or JAN-DEC)
+    #        │  │ │ │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
+    #        │  │ │ │ │
+    - cron: '15 0 * * 0' # the job will run every Sunday at 0:15
 
 jobs:
   fetch:
@@ -41,7 +46,7 @@ jobs:
       - name: Create Branch
         id: current-branch
         run: |
-          git checkout -b $BRANCH_NAME origin/release/v8
+          git checkout -b $BRANCH_NAME origin/main
           echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
         env:
           BRANCH_NAME: ${{ steps.current-date.outputs.date }}-update-icons

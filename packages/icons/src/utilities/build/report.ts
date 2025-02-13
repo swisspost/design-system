@@ -1,33 +1,48 @@
 import type {
   SourceIcon,
-  OutputIcon,
+  MergedIcon,
   MinimalIcon,
   IconSetGroupsItem,
   IconSetGroups,
-  JsonReport,
-  MinimalJsonReport,
+  SourceReport,
+  MergedReport,
+  MinimalReport,
 } from '../../models/icon.model';
 import fs from 'fs';
 import path from 'path';
 import { version } from '../../../package.json';
-import { getBaseReport, sortIcons } from '../shared';
+import { getBaseMergedReport, sortIcons } from '../shared';
 
 export function writeReport(
   reportOutputDirectory: string,
   iconSetGroups: IconSetGroups[],
-): JsonReport {
-  const outputReport = iconSetGroups.reduce((report: JsonReport, iconSet: IconSetGroups) => {
-    const iconSetReport = JSON.parse(
-      fs.readFileSync(path.join(iconSet.sourceDirectory, 'report.json'), 'utf-8'),
-    ) as JsonReport;
+): MergedReport {
+  const mergedReport = iconSetGroups.reduce((report: MergedReport, iconSet: IconSetGroups) => {
+    const iconSetSourceReport = JSON.parse(
+      fs.readFileSync(path.join(iconSet.options.sourceDirectory, 'report.json'), 'utf-8'),
+    ) as SourceReport;
 
-    const outputIcons = Object.entries(iconSet.groups).map(([name, items]) => {
+    const erroredIds = iconSetSourceReport.errored.map((icon: SourceIcon) => icon.id);
+    const noSVGIds = iconSetSourceReport.noSVG.map((icon: SourceIcon) => icon.id);
+    const wrongViewBoxIds = iconSetSourceReport.wrongViewBox.map((icon: SourceIcon) => icon.id);
+    const duplicateIds = iconSetSourceReport.duplicates.map((icon: SourceIcon) => icon.id);
+
+    const mergedIcons = Object.entries(iconSet.groups).map(([name, items]) => {
+      const sources = items.map((icon: IconSetGroupsItem) => icon.sourceIcon);
+      const sourcesIds = sources.map((icon: SourceIcon) => icon.id);
+      const keywords = getIconKeywords(items);
+
+      const errored = sourcesIds.filter((id: number) => erroredIds.includes(id));
+      const noSVG = sourcesIds.filter((id: number) => noSVGIds.includes(id));
+      const wrongViewBox = sourcesIds.filter((id: number) => wrongViewBoxIds.includes(id));
+      const duplicates = sourcesIds.filter((id: number) => duplicateIds.includes(id));
+
       return {
         uuid: crypto.randomUUID(),
         id: parseInt(crypto.getRandomValues(new Uint32Array(1))[0].toString().slice(0, 6)),
         meta: {
-          businessfield: getBusinessfield(items),
-          keywords: getKeywords(items),
+          businessfield: getIconBusinessfield(items),
+          keywords,
         },
         file: {
           mime: 'image/svg+xml',
@@ -35,77 +50,86 @@ export function writeReport(
           basename: name,
           ext: '.svg',
         },
-        createdAt: getCreatedAt(items),
-        modifiedAt: getModifiedAt(items),
-        sources: items.map((item: IconSetGroupsItem) => item.report.id),
-      } as OutputIcon;
+        stats: {
+          sources,
+          errored,
+          noSVG,
+          wrongViewBox,
+          duplicates,
+          hasAllSources: items.length === iconSet.options.expectedSourcesPerIcon,
+          hasKeywords: keywords.length > 0,
+          success: [...errored, ...noSVG, ...wrongViewBox, ...duplicates].length === 0,
+        },
+        createdAt: getIconCreatedAt(items),
+        modifiedAt: getIconModifiedAt(items),
+      } as MergedIcon;
     });
 
     return {
       ...report,
-      sources: [...(report.sources ?? []), ...iconSetReport.sources],
-      icons: [...report.icons, ...outputIcons],
-      wrongViewBox: [...report.wrongViewBox, ...iconSetReport.wrongViewBox],
-      noKeywords: [...report.noKeywords, ...iconSetReport.noKeywords],
-      noSVG: [...report.noSVG, ...iconSetReport.noSVG],
-      errored: [...report.errored, ...iconSetReport.errored],
-      stats: {
-        errors: report.stats.errors + iconSetReport.stats.errors,
-        notFound: report.stats.notFound + iconSetReport.stats.notFound,
-        success: report.stats.success + iconSetReport.stats.success,
-        output: [...report.icons, ...outputIcons].length,
-      },
-    } as JsonReport;
-  }, getBaseReport());
+      icons: [...report.icons, ...mergedIcons],
+    } as MergedReport;
+  }, getBaseMergedReport());
 
-  outputReport.sources.sort(sortIcons);
-  outputReport.icons.sort(sortIcons);
-  outputReport.wrongViewBox.sort(sortIcons);
-  outputReport.noKeywords.sort(sortIcons);
-  outputReport.noSVG.sort(sortIcons);
-  outputReport.errored.sort(sortIcons);
-  outputReport.created = new Date();
-  outputReport.version = version;
+  mergedReport.icons.sort(sortIcons);
+  mergedReport.stats.sources = getReportStats('sources');
+  mergedReport.stats.errored = getReportStats('errored');
+  mergedReport.stats.noSVG = getReportStats('noSVG');
+  mergedReport.stats.wrongViewBox = getReportStats('wrongViewBox');
+  mergedReport.stats.duplicates = getReportStats('duplicates');
+  mergedReport.stats.hasAllSources = mergedReport.icons.filter(i => !i.stats.hasAllSources).length;
+  mergedReport.stats.noKeywords = mergedReport.icons.filter(i => !i.stats.hasKeywords).length;
+  mergedReport.stats.success = mergedReport.icons.filter(i => i.stats.success).length;
+  mergedReport.created = new Date();
+  mergedReport.version = version;
 
   fs.writeFileSync(
     path.join(reportOutputDirectory, 'report.json'),
-    JSON.stringify(outputReport, null, 2),
+    JSON.stringify(mergedReport, null, 2),
   );
-  writeMinimalReport(reportOutputDirectory, outputReport);
+  writeMinimalReport(reportOutputDirectory, mergedReport);
 
-  return outputReport;
+  return mergedReport;
 
   // get first businessfield
-  function getBusinessfield(items: IconSetGroupsItem[]): string {
-    return items[0].report.meta.businessfield ?? '';
+  function getIconBusinessfield(items: IconSetGroupsItem[]): string {
+    return items[0].sourceIcon.meta.businessfield ?? '';
   }
 
   // get merged, unic keywords
-  function getKeywords(items: IconSetGroupsItem[]): string[] {
+  function getIconKeywords(items: IconSetGroupsItem[]): string[] {
     return items.reduce<string[]>(
       (keywords, item: IconSetGroupsItem) =>
-        Array.from(new Set([...keywords, ...item.report.meta.keywords])),
+        Array.from(new Set([...keywords, ...item.sourceIcon.meta.keywords])),
       [],
     );
   }
 
   // get oldest createdAt date
-  function getCreatedAt(items: IconSetGroupsItem[]): Date {
-    return items.map(item => item.report.createdAt).sort((a: Date, b: Date) => (a > b ? 1 : -1))[0];
+  function getIconCreatedAt(items: IconSetGroupsItem[]): Date {
+    return items
+      .map(item => item.sourceIcon.createdAt)
+      .sort((a: Date, b: Date) => (a > b ? 1 : -1))[0];
   }
 
   // get newest modifiedAt date
-  function getModifiedAt(items: IconSetGroupsItem[]): Date {
+  function getIconModifiedAt(items: IconSetGroupsItem[]): Date {
     return items
-      .map(item => item.report.modifiedAt)
+      .map(item => item.sourceIcon.modifiedAt)
       .sort((a: Date, b: Date) => (a > b ? -1 : 1))[0];
+  }
+
+  function getReportStats(
+    key: 'sources' | 'errored' | 'noSVG' | 'wrongViewBox' | 'duplicates',
+  ): number {
+    return mergedReport.icons.reduce((sum, icon: MergedIcon) => sum + icon.stats[key].length, 0);
   }
 }
 
-function writeMinimalReport(reportOutputDirectory: string, report: JsonReport) {
-  const minimalReport: MinimalJsonReport = {
-    sources: mapMinimalIcons(report.sources),
+function writeMinimalReport(reportOutputDirectory: string, report: MergedReport) {
+  const minimalReport: MinimalReport = {
     icons: mapMinimalIcons(report.icons),
+    stats: report.stats,
     created: report.created,
     version: report.version,
   };
@@ -115,12 +139,18 @@ function writeMinimalReport(reportOutputDirectory: string, report: JsonReport) {
     JSON.stringify(minimalReport),
   );
 
-  function mapMinimalIcons(icons: (SourceIcon | OutputIcon)[]): MinimalIcon[] {
-    return icons.map(i => ({
-      id: i.id,
-      name: i.file.basename,
-      keys: i.meta.keywords,
-      sources: 'sources' in i ? i.sources : [],
+  function mapMinimalIcons(icons: MergedIcon[]): MinimalIcon[] {
+    return icons.map((icon: MergedIcon) => ({
+      id: icon.id,
+      name: icon.file.basename,
+      keys: icon.meta.keywords,
+      stats: {
+        ...icon.stats,
+        sources: icon.stats.sources.map((source: SourceIcon) => ({
+          id: source.id,
+          name: source.file.name,
+        })),
+      },
     }));
   }
 }

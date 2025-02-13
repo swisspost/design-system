@@ -1,46 +1,79 @@
-.report-container {
+section {
+  margin-block-start: 2rem;
+  padding: 2rem;
   border: 1px hsl(0, 0%, 80%) solid;
   border-radius: 0.5rem;
-  padding: 2rem;
 
-  .status {
-    line-height: 1.25rem;
-    font-size: 1rem;
-  }
-
-  hr {
-    border: none;
-    border-top: 1px solid hsl(0, 0%, 80%);
-  }
-
-  .icons {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(35px, 1fr));
-    gap: 1rem;
-  }
-
-  .icon {
+  .status-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    text-align: center;
-    font-size: 0.8rem;
-    span {
-      max-width: 100%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      vertical-align: middle;
+    padding: 1rem;
+    border: 1px hsl(0, 0%, 80%) solid;
+    border-radius: 8px;
+    height: 100%;
+
+    .status-title {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    .status-count {
+      font-size: 3rem;
+      font-weight: 900;
+    }
+
+    .status-insights {
+      font-size: 0.8rem;
     }
   }
 
-  .icon img {
-    width: 24px;
-    height: 24px;
-    margin: 0.2rem 0;
+  .status-danger {
+    color: red;
   }
-  pre {
-    white-space: pre-wrap;
-    word-break: break-all;
+
+  .status-success {
+    color: green;
+  }
+
+  .form {
+    margin-block: 1rem;
+  }
+
+  .overall-status {
+    padding: 1rem;
+    border: 2px solid currentColor;
+    border-radius: 8px;
+    font-size: 2rem !important;
+
+    > span {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .error-count {
+      display: none;
+    }
+
+    post-icon {
+      font-size: 32px;
+      color: inherit;
+    }
+
+    &.status-success {
+      color: rgb(0, 100, 0);
+      background-color: rgb(100, 240, 100);
+    }
+
+    &.status-danger {
+      color: rgb(100, 0, 0);
+      background-color: rgb(240, 100, 100);
+    }
+  }
+
+  post-icon.preview-icon {
+    font-size: 64px;
   }
 }

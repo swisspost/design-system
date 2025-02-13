@@ -1,8 +1,8 @@
-import type { IconSet, JsonReport } from './models/icon.model';
+import type { IconSet, SourceReport } from './models/icon.model';
 import iconSets from './iconsets.config';
 import { checkEnvVarsExist } from './utilities/environment';
 import { setup } from './utilities/download/setup';
-import { getBaseReport, coloredLogMessage } from './utilities/shared';
+import { getBaseSourceReport, coloredLogMessage } from './utilities/shared';
 import { fetchPage } from './utilities/download/fetchPage';
 import { fetchFile } from './utilities/download/fetchFile';
 import { format } from './utilities/download/format';
@@ -14,10 +14,10 @@ async function fetchSVGs() {
 
   for (const iconSet of iconSets) {
     console.log(coloredLogMessage(`<blue>Start downloading "${iconSet.name}" icons...</blue>`));
-    const report = await downloadIconSet(iconSet, getBaseReport());
+    const report = await downloadIconSet(iconSet, getBaseSourceReport());
     console.log(
       coloredLogMessage(
-        `<blue>Downloading "${iconSet.name}" finished.</blue>\nDownloaded <green>${report.stats.success}</green> icons, <red>${report.stats.errors}</red> errored, <red>${report.stats.notFound}</red> not found.\n`,
+        `<blue>Downloading "${iconSet.name}" finished.</blue>\nDownloaded <green>${report.stats.success}</green> icons, <red>${report.stats.errors}</red> errored, <red>${report.stats.noSVG}</red> with wrong format (no SVG).\n`,
       ),
     );
   }
@@ -27,9 +27,9 @@ async function fetchSVGs() {
 
 async function downloadIconSet(
   iconSet: IconSet,
-  report: JsonReport,
+  report: SourceReport,
   nextPage?: string,
-): Promise<JsonReport> {
+): Promise<SourceReport> {
   const body = await fetchPage(nextPage ?? iconSet.apiUrl);
 
   if (body === undefined) {
