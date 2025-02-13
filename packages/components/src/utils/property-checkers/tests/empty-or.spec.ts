@@ -2,11 +2,13 @@ import { emptyOr } from '../empty-or';
 
 describe('emptyOr', () => {
   const mockCheck = jest.fn();
+
   const mockEmptyOrCheck = emptyOr(mockCheck);
 
   it('should not run the check if the provided value is empty', () => {
     [undefined, null, ''].forEach(emptyValue => {
-      mockEmptyOrCheck(emptyValue);
+      const component = { host: { localName: 'post-component' } as HTMLElement, prop: emptyValue };
+      mockEmptyOrCheck(component, 'prop');
       expect(mockCheck).not.toHaveBeenCalled();
     });
   });
@@ -23,14 +25,24 @@ describe('emptyOr', () => {
         /* empty */
       },
     ].forEach((nonEmptyValue, index) => {
-      mockEmptyOrCheck(nonEmptyValue);
+      const component = {
+        host: { localName: 'post-component' } as HTMLElement,
+        prop: nonEmptyValue,
+      };
+      mockEmptyOrCheck(component, 'prop');
       expect(mockCheck).toHaveBeenCalledTimes(index + 1);
     });
   });
 
   it('should pass all provided arguments to the nested check function', () => {
     const args = ['non empty value', true, false, ['arg in an array'], { arg: 'in an object' }];
-    mockEmptyOrCheck(...args);
-    expect(mockCheck).toHaveBeenCalledWith(...args);
+
+    args.forEach(arg => {
+      const component = { host: { localName: 'post-component' } as HTMLElement, prop: arg };
+
+      mockEmptyOrCheck(component, 'prop', arg);
+
+      expect(mockCheck).toHaveBeenLastCalledWith(component, 'prop', arg);
+    });
   });
 });

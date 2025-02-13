@@ -29,7 +29,7 @@ export class PostBreadcrumb {
 
   @Watch('homeUrl')
   validateUrl() {
-    checkUrl(this.homeUrl, 'The "url" property of the home-icon is invalid');
+    checkUrl(this, 'homeUrl');
   }
 
   componentWillLoad() {
@@ -56,12 +56,12 @@ export class PostBreadcrumb {
 
   // Updates breadcrumb items and sets the last item
   private updateBreadcrumbItems() {
-    this.breadcrumbItems = Array.from(
-      this.host.querySelectorAll('post-breadcrumb-item')
-    ).map((item) => ({
-      text: item.textContent || '',
-      url: item.getAttribute('url') || '',
-    }));
+    this.breadcrumbItems = Array.from(this.host.querySelectorAll('post-breadcrumb-item')).map(
+      item => ({
+        text: item.textContent || '',
+        url: item.getAttribute('url') || '',
+      }),
+    );
     this.lastItem = this.breadcrumbItems[this.breadcrumbItems.length - 1];
   }
 
@@ -83,21 +83,21 @@ export class PostBreadcrumb {
 
   private checkConcatenation() {
     if (!this.breadcrumbNavRef) return;
-  
+
     const visibleWidth = this.getParentWidth();
-  
+
     // Measure all hidden breadcrumb items
     const hiddenItems = Array.from(
-      this.host.shadowRoot?.querySelectorAll('.hidden-breadcrumb-item') || []
+      this.host.shadowRoot?.querySelectorAll('.hidden-breadcrumb-item') || [],
     );
-  
+
     const totalWidth = hiddenItems.reduce((accum, element) => {
       const rect = (element as HTMLElement).getBoundingClientRect();
       return accum + rect.width;
     }, 0);
-  
+
     this.isConcatenated = totalWidth > visibleWidth;
-  }  
+  }
 
   // Handles breadcrumb item click to open the menu
   private handleBreadcrumbItemClick() {
@@ -105,19 +105,23 @@ export class PostBreadcrumb {
       const menuTrigger = this.host.shadowRoot
         ?.querySelector('.menu-trigger-wrapper')
         ?.querySelector('button');
-      
+
       if (menuTrigger) {
         menuTrigger.click();
       }
     }
-  }  
+  }
 
   render() {
     const visibleItems = this.breadcrumbItems.slice(0, -1);
-  
+
     return (
       <Host data-version={version}>
-        <nav aria-label="Breadcrumb" class="breadcrumbs-nav" ref={(el) => (this.breadcrumbNavRef = el)}>
+        <nav
+          aria-label="Breadcrumb"
+          class="breadcrumbs-nav"
+          ref={el => (this.breadcrumbNavRef = el)}
+        >
           <ol class="no-list breadcrumbs-list">
             <li>
               <a href={this.homeUrl} class="breadcrumb-link">
@@ -125,13 +129,13 @@ export class PostBreadcrumb {
                 <post-icon name="home" class="home-icon" />
               </a>
             </li>
-  
+
             {/* Conditionally render concatenated menu or individual breadcrumb items */}
             {this.isConcatenated ? (
               <div
                 class="menu-trigger-wrapper"
                 aria-label="More breadcrumbs"
-                onKeyDown={(e) => {
+                onKeyDown={e => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
                     this.handleBreadcrumbItemClick();
@@ -146,11 +150,11 @@ export class PostBreadcrumb {
                     </button>
                   </post-menu-trigger>
                   <post-menu id="breadcrumb-menu">
-                    {visibleItems.map((item) => (
+                    {visibleItems.map(item => (
                       <post-menu-item
                         key={item.url || item.text}
                         class="breadcrumb-item"
-                        onKeyDown={(e) => {
+                        onKeyDown={e => {
                           if (e.key === 'Enter' || e.key === ' ') {
                             const linkElement = (e.currentTarget as HTMLElement).querySelector('a');
                             linkElement?.click();
@@ -165,31 +169,27 @@ export class PostBreadcrumb {
                 </div>
               </div>
             ) : (
-              visibleItems.map((item) => (
+              visibleItems.map(item => (
                 <post-breadcrumb-item url={item.url} key={item.url || item.text}>
                   {item.text}
                 </post-breadcrumb-item>
               ))
             )}
-  
+
             {this.lastItem && (
-              <post-breadcrumb-item
-                url={this.lastItem.url}
-                aria-current="page"
-                tabindex={-1}
-              >
+              <post-breadcrumb-item url={this.lastItem.url} aria-current="page" tabindex={-1}>
                 {this.lastItem.text}
               </post-breadcrumb-item>
             )}
           </ol>
-  
+
           {/* Hidden items for width calculation */}
           <div class="hidden-items">
             <a href={this.homeUrl} class="hidden-breadcrumb-item">
               <span class="visually-hidden">{this.homeText}</span>
               <post-icon name="home" class="home-icon" />
             </a>
-            {this.breadcrumbItems.map((item) => (
+            {this.breadcrumbItems.map(item => (
               <post-breadcrumb-item
                 url={item.url}
                 key={`hidden-${item.url || item.text}`}

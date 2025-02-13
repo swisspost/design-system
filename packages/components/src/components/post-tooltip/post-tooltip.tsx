@@ -135,11 +135,7 @@ export class PostTooltip {
 
   @Watch('delayed')
   validateDelayed() {
-    checkEmptyOrType(
-      this.delayed,
-      'boolean',
-      'The post-tooltip "delayed" property should be a boolean.',
-    );
+    checkEmptyOrType(this, 'delayed', 'boolean');
   }
 
   connectedCallback() {

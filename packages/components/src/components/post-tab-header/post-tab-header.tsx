@@ -23,8 +23,8 @@ export class PostTabHeader {
   @Prop() readonly panel: HTMLPostTabPanelElement['name'];
 
   @Watch('panel')
-  validateFor(newValue: HTMLPostTabPanelElement['name']) {
-    checkNonEmpty(newValue, 'The "panel" prop is required for the post-tab-header.');
+  validateFor() {
+    checkNonEmpty(this, 'panel');
   }
 
   componentWillLoad() {
