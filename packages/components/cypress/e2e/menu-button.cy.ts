@@ -1,15 +1,15 @@
 const MENUBUTTON_ID = '8ca2bd70-56e6-4da9-b1fd-4e55388dca88';
 
-describe('post-menu and post-menu-trigger', () => {
-  describe('default behavior', () => {
+describe('menu and menu-trigger', () => {
+  describe('default', () => {
     beforeEach(() => {
       // Load the components
       cy.getComponents(MENUBUTTON_ID, 'default', 'post-menu', 'post-menu-trigger');
 
       // Alias the elements for easier access
-      cy.get('@post-menu').as('menu');
-      cy.get('@post-menu-trigger').as('trigger');
-      cy.get('@trigger').find('button').as('triggerButton');
+      cy.get('@menu').as('menu');
+      cy.get('@menu-trigger').as('trigger');
+      cy.get('@menu-trigger').find('.btn').as('triggerButton');
     });
 
     it('should render the post-menu and post-menu-trigger', () => {
@@ -95,9 +95,9 @@ describe('post-menu and post-menu-trigger', () => {
       cy.getComponents(MENUBUTTON_ID, 'default', 'post-menu', 'post-menu-trigger');
 
       // Alias the elements for easier access
-      cy.get('@post-menu').as('menu');
-      cy.get('@post-menu-trigger').as('trigger');
-      cy.get('@trigger').find('button').as('triggerButton');
+      cy.get('@menu').as('menu');
+      cy.get('@menu-trigger').as('trigger');
+      cy.get('@menu-trigger').find('.btn').as('triggerButton');
 
       // Open the menu
       cy.get('@triggerButton').click();
@@ -196,8 +196,8 @@ describe('post-menu and post-menu-trigger', () => {
 
   describe('Accessibility', () => {
     it('Has no detectable a11y violations on load for all variants', () => {
-      cy.getSnapshots('post-menu');
-      cy.getSnapshots('post-menu-trigger');
+      cy.getSnapshots('menu');
+      cy.getSnapshots('menu-trigger');
       cy.checkA11y('#root-inner');
     });
   });
