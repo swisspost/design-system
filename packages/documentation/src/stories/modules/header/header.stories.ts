@@ -53,9 +53,24 @@ const meta: MetaComponent = {
       },
     },
   },
+  
   decorators: [
-    story => html` <div class="header-story-wrapper">${story()} ${fakeContent()}</div> `,
-  ],
+    story => html`
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const scrollPosition = sessionStorage.getItem('scrollPosition');
+          if (scrollPosition !== null) {
+            window.scrollTo(0, parseInt(scrollPosition, 10));
+          }
+        });
+  
+        window.addEventListener('beforeunload', () => {
+          sessionStorage.setItem('scrollPosition', window.scrollY);
+        });
+      </script>
+      <div class="header-story-wrapper">${story()} ${fakeContent()}</div>
+    `,
+  ],  
 };
 
 export default meta;
