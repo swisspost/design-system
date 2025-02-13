@@ -9,32 +9,11 @@
 }
 
 :host {
-  z-index: commons.$zindex-header;
-  --global-header-height: 72px;
-  --global-header-minimal-height: 24px;
-  --local-header-height: 112px;
-  --local-header-min-height: 56px;
-  --header-height: calc(var(--global-header-height) + var(--local-header-height));
-
   z-index: 1020;
   position: relative;
-
-  @include media.min(lg) {
-    --global-header-reduced-height: 24px;
-    --main-navigation-height: 56px;
-  }
-
-  @include media.max(lg) {
-    --global-header-height: 64px;
-    --local-header-height: 48px;
-    --local-header-min-height: 48px;
-    --main-navigation-height: 0px;
-  }
 }
 
 :host(:not(:has([slot='title']))) {
-  --local-header-height: var(--main-navigation-height);
-
   .local-header {
     padding-block-start: 0;
   }
@@ -114,7 +93,7 @@
   gap: var(--post-core-dimension-8);
   min-height: var(--local-header-min-height);
   background: var(--post-core-color-brand-white);
-  transition: box-shadow 0.2s ease-in-out; 
+  transition: box-shadow 0.2s ease-in-out;
 
   @include media.min(lg) {
     z-index: 3;
