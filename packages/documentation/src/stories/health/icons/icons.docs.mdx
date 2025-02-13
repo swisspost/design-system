@@ -8,9 +8,10 @@ import {
   ErroredIcons,
   NoSVGIcons,
   WrongViewBoxIcons,
+  DuplicateIcons,
   WrongAmountOfSourcesIcons,
   NoKeywords,
-  DublicateIcons
+  KeywordsInspector,
 } from './icons.blocks';
 
 <Meta of={IconStories} />
@@ -23,34 +24,39 @@ import {
   Monitor the quality, consistency, and completeness of the design system icons.
 </div>
 
-<div className="report-container"> 
+<section> 
   <StatusBlock />
-</div>
+</section>
 
-<div className="report-container"> 
+<section> 
   <SourceFiles />
-</div>
+</section>
 
-<div className="report-container"> 
+<section> 
+  <KeywordsInspector />
+</section>
+
+<section> 
   <ErroredIcons />
-</div>
+</section>
 
-<div className="report-container"> 
+<section> 
   <NoSVGIcons />
-</div>
+</section>
 
-<div className="report-container"> 
+<section> 
   <WrongViewBoxIcons />
-</div>
+</section>
 
-<div className="report-container"> 
+<section> 
+  <DuplicateIcons />
+</section>
+
+<section> 
   <WrongAmountOfSourcesIcons />
-</div>
+</section>
 
-<div className="report-container"> 
+<section> 
   <NoKeywords />
-</div>
+</section>
 
-<div className="report-container"> 
-  <DublicateIcons />
-</div>

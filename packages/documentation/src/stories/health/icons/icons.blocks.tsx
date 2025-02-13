@@ -10,20 +10,30 @@ const report = reportData as unknown as MinimalReport;
 
 interface SearchProps {
   filter?: (icon: MinimalIcon) => boolean;
-  mapper: (icon: MinimalIcon) => React.ReactNode;
+  mapper: (icon: MinimalIcon, index?: number) => JSX.Element | JSX.Element[];
 }
+
+type StatsKey = 'errored' | 'noSVG' | 'wrongViewBox' | 'duplicates';
 
 interface ErrorInSourceProps {
   title: string;
-  statsKey: 'sourcesErrored' | 'sourcesNoSVG' | 'sourcesWrongViewBox';
+  statsKey: StatsKey;
 }
 
-function getHeader({ title, hasErrors }: { title: string; hasErrors: boolean }): React.ReactNode {
+function getHeader({
+  title,
+  errors,
+}: {
+  title: string;
+  errors: number;
+}): JSX.Element | JSX.Element[] {
   return (
     <span>
-      <span>{title}</span>
+      <span>
+        {title} <span className="error-count">({errors})</span>
+      </span>
       <span className="float-end">
-        {hasErrors ? (
+        {errors > 0 ? (
           <post-icon name="error" class="status-danger" />
         ) : (
           <post-icon name="success" class="status-success" />
@@ -48,7 +58,7 @@ class Search extends React.Component<SearchProps> {
   };
 
   filter: (icon: MinimalIcon) => boolean = () => true;
-  mapper: (icon: MinimalIcon) => React.ReactNode;
+  mapper: (icon: MinimalIcon) => JSX.Element | JSX.Element[];
 
   constructor(props: SearchProps) {
     super(props);
@@ -74,9 +84,9 @@ class Search extends React.Component<SearchProps> {
   searchFilter(icon: MinimalIcon) {
     if (this.form.query === '') return true;
 
-    return `${icon.id}, ${icon.name}, ${icon.keys.join(', ')}, ${icon.stats.sources.join(
-      ', ',
-    )}`.includes(this.form.query);
+    return `${icon.name}, ${icon.keys.join(', ')}, ${icon.stats.sources
+      .map((sourceIcon: MinimalSourceIcon) => sourceIcon.name)
+      .join(', ')}`.includes(this.form.query);
   }
 
   render() {
@@ -95,7 +105,7 @@ class Search extends React.Component<SearchProps> {
                   onChange={e => this.search(e.target.value)}
                 />
                 <label className="form-label" htmlFor={this.form.id}>
-                  "id", "name", "keyword" or "sourceId"
+                  "name" or "keyword"
                 </label>
 
                 <button className="delete-button" aria-label="Clear search" onClick={this.reset}>
@@ -114,8 +124,8 @@ class Search extends React.Component<SearchProps> {
           {this.form.results
             .filter(this.searchFilter)
             .filter(this.filter)
-            .map(icon => (
-              <div key={icon.id}>{this.mapper(icon)}</div>
+            .map((icon: MinimalIcon, i: number) => (
+              <div key={`${icon.id}-${i}`}>{this.mapper(icon)}</div>
             ))}
         </div>
       </div>
@@ -124,10 +134,11 @@ class Search extends React.Component<SearchProps> {
 }
 
 class ErrorInSource extends React.Component<ErrorInSourceProps> {
-  hasErrors: boolean;
+  errors: number;
   title: string;
-  statsKey: 'sourcesErrored' | 'sourcesNoSVG' | 'sourcesWrongViewBox';
-  getHeader: (props: { title: string; hasErrors: boolean }) => React.ReactNode;
+  statsKey: StatsKey;
+  getHeader: (props: { title: string; errors: number }) => JSX.Element | JSX.Element[];
+  header: JSX.Element | JSX.Element[];
 
   constructor(props: ErrorInSourceProps) {
     super(props);
@@ -136,8 +147,9 @@ class ErrorInSource extends React.Component<ErrorInSourceProps> {
 
     this.title = props.title;
     this.statsKey = props.statsKey;
-    this.hasErrors = report.icons.some(this.filter);
+    this.errors = report.icons.filter(this.filter).length;
     this.getHeader = getHeader.bind(this);
+    this.header = this.getHeader({ title: this.title, errors: this.errors });
   }
 
   filter(icon: MinimalIcon) {
@@ -170,98 +182,151 @@ class ErrorInSource extends React.Component<ErrorInSourceProps> {
   render() {
     return (
       <div>
-        {this.hasErrors ? (
+        {this.errors > 0 ? (
           <details>
-            <summary>{this.getHeader({ title: this.title, hasErrors: this.hasErrors })}</summary>
+            <summary>{this.header}</summary>
             <Search filter={this.filter} mapper={this.mapper}></Search>
           </details>
         ) : (
-          this.getHeader({ title: this.title, hasErrors: this.hasErrors })
+          this.header
         )}
       </div>
     );
   }
 }
 
-export const StatusBlock: React.FC = () => (
-  <div className="status">
-    <div>
-      <strong>Version:</strong> {report.version}
-    </div>
-    <div>
-      <strong>Last updated:</strong> {new Date(report.created).toString()}
-    </div>
+export const StatusBlock: React.FC = () => {
+  const errors = report.icons.length - report.stats.success;
+  const header = getHeader({ title: 'Overall status', errors });
+  const statusBannerClass = errors === 0 ? 'status-success' : 'status-danger';
 
-    <hr />
+  return (
+    <div className="status">
+      <p>
+        <strong>Version:</strong> {report.version}
+        <br />
+        <strong>Last updated:</strong> {new Date(report.created).toString()}
+      </p>
 
-    <div>
-      <strong>Source files:</strong> {report.stats.sources}
-    </div>
-    <div>
-      <strong>Output files:</strong> {report.stats.success}
-    </div>
+      <p className={`overall-status ${statusBannerClass} my-16`}>{header}</p>
 
-    <hr />
+      <hr className="my-32" />
 
-    <div>
-      <strong>Download errors:</strong>{' '}
-      <span className={report.stats.errored > 0 ? 'status-danger' : 'status-success'}>
-        {report.stats.errored}
-      </span>
-    </div>
+      <p className="banner banner-info banner-md my-16">
+        The amount of source files can be higher than the amount of output files, because one output
+        file can contain multiple source files.
+      </p>
 
-    <div>
-      <strong>Invalid SVG content:</strong>{' '}
-      <span className={report.stats.noSVG > 0 ? 'status-danger' : 'status-success'}>
-        {report.stats.noSVG}
-      </span>
-    </div>
+      <div className="row gy-16 mb-16">
+        <div className="col-12 col-md-6">
+          <div className="status-container">
+            <h2 className="status-title">Source Files</h2>
+            <div className="status-count">{report.stats.sources}</div>
+          </div>
+        </div>
+        <div className="col-12 col-md-6">
+          <div className="status-container">
+            <h2 className="status-title">Output files</h2>
+            <div className="status-count">{report.icons.length}</div>
+            <div className="status-insights">
+              <ul className="list-inline justify-content-center my-0">
+                <li>
+                  without issues: <span className="status-success">{report.stats.success}</span>
+                </li>
+                <li>
+                  with issues:{' '}
+                  <span className="status-danger">
+                    {report.icons.length - report.stats.success}
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <div>
-      <strong>Wrong ViewBox:</strong>{' '}
-      <span className={report.stats.wrongViewBox > 0 ? 'status-danger' : 'status-success'}>
-        {report.stats.wrongViewBox}
-      </span>
+      <div className="row gy-16">
+        <div className="col-12 col-md-6 col-lg-4">
+          <div className="status-container">
+            <h2 className="status-title">Download errors</h2>
+            <div className="status-count">
+              <span className={report.stats.errored > 0 ? 'status-danger' : 'status-success'}>
+                {report.stats.errored}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="col-12 col-md-6 col-lg-4">
+          <div className="status-container">
+            <h2 className="status-title">Invalid SVG content</h2>
+            <div className="status-count">
+              <span className={report.stats.noSVG > 0 ? 'status-danger' : 'status-success'}>
+                {report.stats.noSVG}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="col-12 col-md-6 col-lg-4">
+          <div className="status-container">
+            <h2 className="status-title">Wrong ViewBox</h2>
+            <div className="status-count">
+              <span className={report.stats.wrongViewBox > 0 ? 'status-danger' : 'status-success'}>
+                {report.stats.wrongViewBox}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="col-12 col-md-6 col-lg-4">
+          <div className="status-container">
+            <h2 className="status-title">Duplicates</h2>
+            <div className="status-count">
+              <span className={report.stats.duplicates > 0 ? 'status-danger' : 'status-success'}>
+                {report.stats.duplicates}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="col-12 col-md-6 col-lg-4">
+          <div className="status-container">
+            <h2 className="status-title">Wrong amount of sources</h2>
+            <div className="status-count">
+              <span className={report.stats.hasAllSources > 0 ? 'status-danger' : 'status-success'}>
+                {report.stats.hasAllSources}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="col-12 col-md-6 col-lg-4">
+          <div className="status-container">
+            <h2 className="status-title">No Keywords</h2>
+            <div className="status-count">
+              <span className={report.stats.noKeywords > 0 ? 'status-danger' : 'status-success'}>
+                {report.stats.noKeywords}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div>
-      <strong>Wrong amount of sources:</strong>{' '}
-      <span className={report.stats.wrongAmountOfSources > 0 ? 'status-danger' : 'status-success'}>
-        {report.stats.wrongAmountOfSources}
-      </span>
-    </div>
-
-    <div>
-      <strong>No Keywords:</strong>{' '}
-      <span className={report.stats.noKeywords > 0 ? 'status-danger' : 'status-success'}>
-        {report.stats.noKeywords}
-      </span>
-    </div>
-  </div>
-);
+  );
+};
 
 export const SourceFiles: React.FC = () => (
   <details>
-    <summary>Available source files</summary>
+    <summary>Downloaded source files</summary>
     <Search mapper={mapper.bind(this)}></Search>
   </details>
 );
 
 export const ErroredIcons: React.FC = () => {
   return (
-    <ErrorInSource
-      title="Icons with sources, which errored while downloading"
-      statsKey="sourcesErrored"
-    />
+    <ErrorInSource title="Icons with sources, which errored while downloading" statsKey="errored" />
   );
 };
 
 export const NoSVGIcons: React.FC = () => {
   return (
-    <ErrorInSource
-      title="Icons with sources, which contain invalid SVG code"
-      statsKey="sourcesNoSVG"
-    />
+    <ErrorInSource title="Icons with sources, which contain invalid SVG markup" statsKey="noSVG" />
   );
 };
 
@@ -269,25 +334,34 @@ export const WrongViewBoxIcons: React.FC = () => {
   return (
     <ErrorInSource
       title="Icons with sources, which contain wrong ViewBox attributes"
-      statsKey="sourcesWrongViewBox"
+      statsKey="wrongViewBox"
+    />
+  );
+};
+
+export const DuplicateIcons: React.FC = () => {
+  return (
+    <ErrorInSource
+      title="Icons with sources, which have been downloaded multiple times"
+      statsKey="duplicates"
     />
   );
 };
 
 export const WrongAmountOfSourcesIcons: React.FC = () => {
-  const hasErrors = report.icons.some(icon => !icon.stats.hasRightAmountOfSources);
+  const errors = report.icons.filter(icon => !icon.stats.hasAllSources).length;
   const header = getHeader({
-    title: 'Icons with a wrong amount of sources',
-    hasErrors,
+    title: 'Output icons with a wrong amount of sources',
+    errors,
   });
 
   return (
     <div>
-      {hasErrors ? (
+      {errors ? (
         <details>
           <summary>{header}</summary>
           <Search
-            filter={(icon: MinimalIcon) => !icon.stats.hasRightAmountOfSources}
+            filter={(icon: MinimalIcon) => !icon.stats.hasAllSources}
             mapper={mapper.bind(this)}
           ></Search>
         </details>
@@ -299,15 +373,15 @@ export const WrongAmountOfSourcesIcons: React.FC = () => {
 };
 
 export const NoKeywords: React.FC = () => {
-  const hasErrors = report.icons.some(icon => !icon.stats.hasKeywords);
+  const errors = report.icons.filter(icon => !icon.stats.hasKeywords).length;
   const header = getHeader({
-    title: 'Icons with no keywords',
-    hasErrors,
+    title: 'Output icons without keywords',
+    errors,
   });
 
   return (
     <div>
-      {hasErrors ? (
+      {errors ? (
         <details>
           <summary>{header}</summary>
           <Search
@@ -322,41 +396,46 @@ export const NoKeywords: React.FC = () => {
   );
 };
 
-export const DublicateIcons: React.FC = () => {
-  const sources = report.icons
-    .map((icon: MinimalIcon) =>
-      icon.stats.sources.map((souceIcon: MinimalSourceIcon) => souceIcon.name),
-    )
-    .flat();
-  const unique = new Set();
-  const duplicates: string[] = [];
-
-  sources.forEach((source: string) => {
-    if (unique.has(source)) {
-      duplicates.push(source);
-    } else {
-      unique.add(source);
-    }
-  });
-
-  const hasErrors = duplicates.length > 0;
-  const header = getHeader({
-    title: 'Duplicate source icons',
-    hasErrors,
-  });
+const KeywordsInspectorDetail: React.FC<{ icon: MinimalIcon }> = ({ icon }) => {
+  const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <div>
-      {hasErrors ? (
-        <details>
-          <summary>{header}</summary>
-          {duplicates.map((duplicate: string, i: number) => (
-            <code key={i}>{duplicate}</code>
-          ))}
-        </details>
-      ) : (
-        header
-      )}
-    </div>
+    <details
+      open={isOpen}
+      onToggle={(event: React.SyntheticEvent<HTMLDetailsElement>) =>
+        setIsOpen((event.target as HTMLDetailsElement).open)
+      }
+    >
+      <summary>{icon.name}</summary>
+      {isOpen ? (
+        <div className="row mt-8">
+          <div className="col-auto">
+            <post-icon class="preview-icon" name={icon.name}></post-icon>
+          </div>
+          <div className="col">
+            <ul>
+              {icon.keys.map((key: string, i: number) => (
+                <li key={`${key}-${i}`}>
+                  <code>{key}</code>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ) : null}
+    </details>
+  );
+};
+
+export const KeywordsInspector: React.FC = () => {
+  return (
+    <details>
+      <summary>Keywords inspector</summary>
+      <Search
+        mapper={(icon: MinimalIcon, i?: number) => (
+          <KeywordsInspectorDetail key={`${icon.name}-${i}`} icon={icon} />
+        )}
+      ></Search>
+    </details>
   );
 };
