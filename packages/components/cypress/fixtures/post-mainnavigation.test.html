@@ -1,21 +1,16 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="../../node_modules/@swisspost/design-system-styles/post-external.css"
     />
-    <meta name="design-system-settings" data-post-icon-base="/assets/icons" />
-    <title>Stencil Component Starter</title>
-
-    <link id="tokens" rel="stylesheet" href="/assets/css/post-tokens-external.css" />
-    <link id="palette" rel="stylesheet" href="/assets/css/post-palettes.css" />
-    <link rel="stylesheet" href="/assets/css/index.css" />
-    <script type="module" src="/build/post-components.esm.js"></script>
-    <script nomodule src="/build/post-components.js"></script>
+    <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
   </head>
-  <body style="min-height: 200vh">
+  <body>
     <post-header>
       <!-- Logo -->
       <post-logo slot="post-logo">Homepage</post-logo>
@@ -74,9 +69,45 @@
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
 
+          <post-list-item slot="post-list-item">
+            <post-megadropdown-trigger for="item-1">Item 1</post-megadropdown-trigger>
+            <post-megadropdown id="item-1">
+              <button slot="back-button" class="btn btn-tertiary btn-sm">
+                <post-icon name="arrowright"></post-icon>
+                Back
+              </button>
+              <post-closebutton slot="close-button">Schliessen</post-closebutton>
+              <h2 slot="megadropdown-title">Briefe title</h2>
+              <post-list>
+                <h3>Briefe senden</h3>
+                <post-list-item slot="post-list-item"
+                  ><a href="/sch">Briefe Schweiz</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"
+                  ><a href="/kl">Kleinwaren Ausland</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
+                <post-list-item slot="post-list-item"
+                  ><a href="">Express und Kurier</a></post-list-item
+                >
+              </post-list>
+              <post-list>
+                <h3><a href="/schritt-für-schritt">Schritt für Schritt</a></h3>
+                <post-list-item slot="post-list-item"
+                  ><a href="/sch">Pakete Schweiz</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"
+                  ><a href="/kl">Kleinwaren Ausland</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
+                <post-list-item slot="post-list-item"
+                  ><a href="">Express und Kurier</a></post-list-item
+                >
+              </post-list>
+            </post-megadropdown>
+          </post-list-item>
+
           <!-- Link only level 1 -->
-          <post-list-item slot="post-list-item"><a href="/item-0">Item 0</a></post-list-item>
-          <post-list-item slot="post-list-item"><a href="/item-1">Item 1</a></post-list-item>
           <post-list-item slot="post-list-item"><a href="/item-2">Item 2</a></post-list-item>
           <post-list-item slot="post-list-item"><a href="/item-3">Item 3</a></post-list-item>
           <post-list-item slot="post-list-item"><a href="/item-4">Item 4</a></post-list-item>
@@ -95,42 +126,10 @@
           <post-list-item slot="post-list-item"><a href="/item-17">Item 17</a></post-list-item>
           <post-list-item slot="post-list-item"><a href="/item-18">Item 18</a></post-list-item>
           <post-list-item slot="post-list-item"><a href="/item-19">Item 19</a></post-list-item>
-          <post-list-item slot="post-list-item"><a href="/item-20">Item 20</a></post-list-item>
-          <post-list-item slot="post-list-item"><a href="/item-21">Item 21</a></post-list-item>
-          <post-list-item slot="post-list-item"><a href="/item-22">Item 22</a></post-list-item>
-          <post-list-item slot="post-list-item"><a href="/item-23">Item 23</a></post-list-item>
-          <post-list-item slot="post-list-item"><a href="/item-24">Item 24</a></post-list-item>
-          <post-list-item slot="post-list-item"><a href="/item-25">Item 25</a></post-list-item>
 
-          <!-- Level 1 with megadropdown -->
-          <post-list-item>
-            <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
-            <post-megadropdown id="briefe">
-              <button slot="back-button" class="btn btn-tertiary btn-sm">
-                <post-icon name="arrowright"></post-icon>
-                Back
-              </button>
-              <post-closebutton slot="close-button">Schliessen</post-closebutton>
-              <h2 slot="megadropdown-title">Briefe title</h2>
-              <post-list>
-                <h3>Briefe senden</h3>
-                <post-list-item><a href="/sch">Briefe Schweiz</a></post-list-item>
-                <post-list-item><a href="/kl">Kleinwaren Ausland</a></post-list-item>
-                <post-list-item><a href="">Waren Ausland</a></post-list-item>
-                <post-list-item><a href="">Express und Kurier</a></post-list-item>
-              </post-list>
-              <post-list>
-                <h3><a href="/schritt-für-schritt">Schritt für Schritt</a></h3>
-                <post-list-item><a href="/sch">Pakete Schweiz</a></post-list-item>
-                <post-list-item><a href="/kl">Kleinwaren Ausland</a></post-list-item>
-                <post-list-item><a href="">Waren Ausland</a></post-list-item>
-                <post-list-item><a href="">Express und Kurier</a></post-list-item>
-              </post-list>
-            </post-megadropdown>
-          </post-list-item>
-          <post-list-item>
-            <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
-            <post-megadropdown id="pakete">
+          <post-list-item slot="post-list-item">
+            <post-megadropdown-trigger for="item-20">Item 20</post-megadropdown-trigger>
+            <post-megadropdown id="item-20">
               <button slot="back-button" class="btn btn-tertiary btn-sm">
                 <post-icon name="arrowright"></post-icon>
                 Back
@@ -139,43 +138,34 @@
               <h2 slot="megadropdown-title">Pakete title</h2>
               <post-list>
                 <h3>Pakete senden</h3>
-                <post-list-item><a href="/sch">Pakete Schweiz</a></post-list-item>
-                <post-list-item><a href="/kl">Kleinwaren Ausland</a></post-list-item>
-                <post-list-item><a href="">Waren Ausland</a></post-list-item>
-                <post-list-item><a href="">Express und Kurier</a></post-list-item>
+                <post-list-item slot="post-list-item"
+                  ><a href="/sch">Pakete Schweiz</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"
+                  ><a href="/kl">Kleinwaren Ausland</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
+                <post-list-item slot="post-list-item"
+                  ><a href="">Express und Kurier</a></post-list-item
+                >
               </post-list>
               <post-list>
                 <h3><a href="/schritt-für-schritt">Schritt für Schritt</a></h3>
-                <post-list-item><a href="/sch">Pakete Schweiz</a></post-list-item>
-                <post-list-item><a href="/kl">Kleinwaren Ausland</a></post-list-item>
-                <post-list-item><a href="">Waren Ausland</a></post-list-item>
-                <post-list-item><a href="">Express und Kurier</a></post-list-item>
+                <post-list-item slot="post-list-item"
+                  ><a href="/sch">Pakete Schweiz</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"
+                  ><a href="/kl">Kleinwaren Ausland</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
+                <post-list-item slot="post-list-item"
+                  ><a href="">Express und Kurier</a></post-list-item
+                >
               </post-list>
             </post-megadropdown>
           </post-list-item>
         </post-list>
       </post-mainnavigation>
     </post-header>
-
-    <h1>Components package playground</h1>
-    <p class="mb-4">
-      Use this playground for quickly developing Stencil web-components. Run
-      <code style="background-color: lightgrey; padding: 0.125rem 0.25rem; border-radius: 0.25rem"
-        >pnpm components:start</code
-      >
-      to get going.
-    </p>
-    <label for="tokens-select">Select tokens package: </label>
-    <select
-      name="tokens"
-      id="tokens-select"
-      value="external"
-      class="mb-4"
-      onchange="if (['external', 'internal'].includes(this.value)) { document.getElementById('tokens').setAttribute('href', `/assets/css/post-tokens-${encodeURIComponent(this.value)}.css`); }"
-    >
-      <option value="external">Post external</option>
-      <option value="internal">Post internal</option>
-    </select>
-    <hr />
   </body>
 </html>

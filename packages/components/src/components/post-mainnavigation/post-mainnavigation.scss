@@ -9,7 +9,8 @@
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 
 post-mainnavigation {
-  flex: 0 0 auto;
+  z-index: 2;
+  position: relative;
 
   // reset links and buttons
   post-list-item {
@@ -65,11 +66,12 @@ post-mainnavigation {
       background: var(--post-core-color-brand-white);
       max-height: var(--main-navigation-height);
       user-select: none;
-      transition: transform animation.$transition-base-timing;
+      transition: margin animation.$transition-base-timing;
     }
 
     .left-scroll-button,
     .right-scroll-button {
+      z-index: 4;
       position: absolute;
       inset-block: 0;
       overflow: hidden;
@@ -98,14 +100,10 @@ post-mainnavigation {
       padding-inline-start: 2rem;
     }
 
-    post-list {
+    post-list > [role='list'] {
+      flex-direction: row;
+      max-width: 100vw;
       margin-inline: var(--post-core-dimension-4);
-
-      > [role='list'] {
-        flex-direction: row;
-        max-width: 100vw;
-        transition: transform animation.$transition-base-timing;
-      }
     }
 
     post-list-item {
@@ -155,6 +153,7 @@ post-mainnavigation {
           height: var(--post-core-dimension-24);
           width: var(--post-core-dimension-24);
           transition: transform animation.$transition-base-timing;
+
         }
 
         &.selected::after,
