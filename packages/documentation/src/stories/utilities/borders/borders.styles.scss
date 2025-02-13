@@ -1,12 +1,3 @@
-@use 'sass:color';
-@use '@swisspost/design-system-styles/core' as post;
-
-$margin-color: color.adjust(red, $lightness: 30%);
-$padding-color: color.complement($margin-color);
-$gap-color: color.adjust(gray, $lightness: 30%);
-$content-color: post.$white;
-$border: 1px solid post.$gray-40;
-
 .borders-example {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;

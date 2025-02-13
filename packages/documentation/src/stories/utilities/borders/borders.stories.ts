@@ -10,8 +10,6 @@ export const SCSS_VARIABLES: any = parse(scss);
 
 const properties = ['border', 'color'];
 
-console.log(SCSS_VARIABLES);
-
 const border_args = properties.reduce((options, property) => {
   return {
     ...options,
@@ -21,7 +19,6 @@ const border_args = properties.reduce((options, property) => {
   };
 }, {} as { [property: string]: string[] });
 
-console.log(border_args);
 const meta: MetaExtended = {
   id: 'cbee1b5e-c98b-4818-8b88-b3c9989796d8',
   title: 'Utilities/Borders',
@@ -138,33 +135,32 @@ export const RemoveBorders: Story = {
 
 export const BorderRounded: Story = {
   argTypes: {
-    borderRounded: {
-      name: 'rounded-{radius}',
-      description: 'Enables the border radius and sets its size',
-      control: {
-        type: 'select',
-      },
-      options: ['-', '1', '2', '3', '4', '5', 'circle', 'pill'],
-    },
     borderRoundedSide: {
       name: 'rounded-{side}',
       description: 'Applies a border-radius to the selected side.',
       control: {
         type: 'select',
       },
-      options: ['-', 'top', 'end', 'bottom', 'start'],
+      options: ['none', 'rounded', 'rounded-top', 'rounded-end', 'rounded-bottom', 'rounded-start'],
+    },
+    borderRoundedRadius: {
+      name: 'rounded-{radius}',
+      description: 'Enables the border radius and sets its size',
+      control: {
+        type: 'select',
+      },
+      options: ['none', '1', '2', '3', '4', '5', 'circle', 'pill'],
     },
   },
   args: {
-    borderRounded: '-',
-    borderRoundedSide: '-',
+    borderRoundedRadius: 'none',
+    borderRoundedSide: 'rounded',
   },
   render: (args: Args) => {
-    const borderRoundedSide = args.borderRoundedSide != '-' ? `-${args.borderRoundedSide}` : '';
-    const borderRounded = args.borderRounded != '-' ? `-${args.borderRounded}` : '';
+    const borderRoundedSide = args.borderRoundedSide != 'none' ? `${args.borderRoundedSide}` : '';
+    const borderRoundedRadius =
+      args.borderRoundedRadius != 'none' ? ` rounded-${args.borderRoundedRadius}` : '';
 
-    return html`
-      <div class="border rounded${borderRoundedSide}${borderRounded}">Sample Text</div>
-    `;
+    return html` <div class="border ${borderRoundedSide}${borderRoundedRadius}">Sample Text</div> `;
   },
 };
