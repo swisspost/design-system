@@ -68,10 +68,10 @@ post-mainnavigation {
 
     .left-scroll-button,
     .right-scroll-button {
+      z-index: 4;
       position: absolute;
       inset-block-end: 0;
       overflow: hidden;
-      z-index: 4;
 
       button {
         @include button.reset-button;
