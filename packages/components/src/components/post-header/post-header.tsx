@@ -90,6 +90,7 @@ export class PostHeader {
     // Close mobile menu when switching to desktop
     if (this.device === 'desktop' && this.mobileMenuExtended) {
       this.toggleMobileMenu();
+      this.mobileMenuExtended = false;
       this.mobileMenuAnimation.finish();
     }
 
