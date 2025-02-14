@@ -3,6 +3,10 @@
 
 @use 'mixins' as *;
 
+:has(> post-header) {
+  overflow-x: hidden;
+}
+
 post-header {
   ul[slot='meta-navigation'] {
     @include media.min(lg) {
