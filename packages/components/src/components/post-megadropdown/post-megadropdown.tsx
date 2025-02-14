@@ -1,6 +1,6 @@
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
-import { DEVICE_SIZE } from '../post-header/post-header';
+import { breakpoint } from '../../utils/breakpoints';
 
 @Component({
   tag: 'post-megadropdown',
@@ -8,12 +8,8 @@ import { DEVICE_SIZE } from '../post-header/post-header';
   shadow: false,
 })
 export class PostMegadropdown {
-  private header: HTMLPostHeaderElement | null;
-
   private firstFocusableEl: HTMLElement | null;
   private lastFocusableEl: HTMLElement | null;
-
-  @State() device: DEVICE_SIZE;
 
   @Element() host: HTMLPostMegadropdownElement;
 
@@ -30,6 +26,8 @@ export class PostMegadropdown {
   /** Holds the current animation class. */
   @State() animationClass: string | null = null;
 
+  @State() device: string = breakpoint.get('name');
+
   /**
    * Emits when the dropdown is shown or hidden.
    * The event payload is a boolean: `true` when the dropdown was opened, `false` when it was closed.
@@ -41,6 +39,11 @@ export class PostMegadropdown {
     if (PostMegadropdown.activeDropdown === this) {
       PostMegadropdown.activeDropdown = null;
     }
+    window.removeEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
+  }
+
+  private breakpointChange(e: CustomEvent) {
+    this.device = e.detail;
   }
 
   componentWillRender() {
@@ -89,13 +92,7 @@ export class PostMegadropdown {
   }
 
   connectedCallback() {
-    this.header = this.host.closest('post-header');
-    if (this.header) {
-      this.header.addEventListener(
-        'postUpdateDevice',
-        (event: CustomEvent<DEVICE_SIZE>) => (this.device = event.detail),
-      );
-    }
+    window.addEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
   }
 
   /**
