@@ -1,5 +1,18 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.19
+
+### Patch Changes
+
+- Updated styles of the card component. (by [@leagrdv](https://github.com/leagrdv) with [#4577](https://github.com/swisspost/design-system/pull/4577))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.18
+  - @swisspost/design-system-styles@9.0.0-next.18
+  - @swisspost/design-system-components-react@9.0.0-next.18
+  - @swisspost/internet-header@2.0.0-next.18
+  - @swisspost/design-system-tokens@9.0.0-next.18
+  - @swisspost/design-system-icons@9.0.0-next.18
+
 ## 6.0.0-next.18
 
 ### Minor Changes

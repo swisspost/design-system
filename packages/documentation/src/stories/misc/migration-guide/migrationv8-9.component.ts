@@ -467,6 +467,13 @@ export class MigrationV89Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    The <code>.card-group</code> class has been removed.
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <p class="info">Card elements should be set inside a grid container.</p>
+                </li>
+                <li class="mb-16">
+                  <p>
                     Some datatable scss variables have been removed
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
