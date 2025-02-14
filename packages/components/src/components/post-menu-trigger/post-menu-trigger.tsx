@@ -43,9 +43,7 @@ export class PostMenuTrigger {
 
   private handleToggle() {
     const menu = this.menu;
-    if (menu && this.slottedButton) {
-      this.ariaExpanded = !this.ariaExpanded;
-      this.slottedButton.setAttribute('aria-expanded', this.ariaExpanded.toString());
+    if (menu) {
       menu.toggle(this.host);
     } else {
       console.warn(`No post-menu found with ID: ${this.for}`);
@@ -78,6 +76,16 @@ export class PostMenuTrigger {
 
     if (this.slottedButton) {
       this.slottedButton.setAttribute('aria-haspopup', 'menu');
+
+      // Listen to the `toggleMenu` event emitted by the `post-menu` component
+      const menu = this.menu;
+      if (menu && this.slottedButton) {
+        menu.addEventListener('toggleMenu', (event: CustomEvent<boolean>) => {
+          this.ariaExpanded = event.detail;
+          this.slottedButton.setAttribute('aria-expanded', this.ariaExpanded.toString());
+        });
+      }
+
       this.slottedButton.addEventListener('click', () => {
         this.handleToggle();
       });
