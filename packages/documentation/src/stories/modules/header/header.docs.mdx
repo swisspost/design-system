@@ -1,6 +1,5 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as HeaderStories from './header.stories';
-import './header.scss';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
 <Meta of={HeaderStories} />
@@ -15,7 +14,7 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
 <div className="lead">The header of the Post.</div>
 
-<Canvas sourceState="shown" of={HeaderStories.Default} />
+<Canvas sourceState="shown" of={HeaderStories.Default} story={{ inline: false, height: 700 }} />
 <div className="hide-col-default">
   <Controls of={HeaderStories.Default} />
 </div>
