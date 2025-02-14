@@ -1,0 +1,46 @@
+import { Meta, Source } from '@storybook/blocks';
+import * as PackageStories from './components-react.stories';
+import ReactAppModuleSample from './react-app-module.sample.ts?raw';
+import changelog from '@/../../components-react/CHANGELOG.md?raw';
+import PackageDocs from '@/shared/packages-docs-layout.mdx';
+
+<Meta of={PackageStories} />
+
+# @swisspost/design-system-components-react
+
+[![npm version](https://badge.fury.io/js/@swisspost%2Fdesign-system-components-react.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-components-react)
+
+<div className="lead">The Design System React Components, ready for use in your React project.</div>
+
+<PackageDocs changelog={changelog}>
+  ## Dependencies
+
+  <div className="table-responsive table-fit-content text-start">
+    <table aria-describedby="dependencies" className="table">
+      <thead>
+        <tr>
+          <th scope="col">Version</th>
+          <th scope="col">React</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th scope="row">9.x</th>
+          <td>18.x</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+## Installation
+
+<Source code={`npm install @swisspost/design-system-components-react`} language="bash" />
+
+## Usage
+
+Importing the components to your project.
+
+<Source code={ReactAppModuleSample} language="typescript" />
+</PackageDocs>
