@@ -222,7 +222,6 @@ exports.default = gulp.task(
   'build',
   gulp.parallel(
     gulp.series('map-icons', 'copy', 'autoprefixer', 'transform-package-json'),
-    gulp.series('temporarily-copy-token-files', 'sass'),
-    gulp.series('extract-component-names'),
+    gulp.series('temporarily-copy-token-files', 'sass', 'extract-component-names'),
   ),
 );
