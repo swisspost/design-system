@@ -165,7 +165,7 @@ gulp.task(
  */
 
 gulp.task('extract-component-names', done => {
-  const filePath = path.join(__dirname, '../components/dist/collection/index.js');
+  const filePath = path.join(__dirname, '../components/src/index.js');
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading file:', err);
