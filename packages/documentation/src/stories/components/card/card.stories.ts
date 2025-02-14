@@ -8,11 +8,11 @@ const meta: MetaComponent = {
   id: '605c788d-3f75-4e6c-8498-be3d546843c2',
   title: 'Components/Card',
   tags: ['package:HTML'],
-  decorators: [clickBlocker, paddedContainer],
+  decorators: [clickBlocker],
   parameters: {
     badges: [],
     controls: {
-      exclude: ['Custom Header', 'Custom Body', 'Custom Footer'],
+      exclude: ['Custom Header', 'Custom Body', 'Custom Footer', 'Show Body', 'Show List Group'],
     },
     design: {
       type: 'figma',
@@ -212,13 +212,9 @@ function clickBlocker(story: StoryFn, context: StoryContext) {
   `;
 }
 
-function paddedContainer(story: StoryFn, context: StoryContext) {
-  return html` <div class="p-8">${story(context.args, context)}</div> `;
-}
-
 function gridContainer(story: StoryFn, context: StoryContext) {
   return html`
-    <div class="row">
+    <div class="row gy-16">
       <div class="col-lg-4 col-sm-6 col-12">${story(context.args, context)}</div>
     </div>
   `;
@@ -302,48 +298,84 @@ function renderCard(args: Args) {
   `;
 }
 
+function renderCardWithInteractiveContainer(args: Args) {
+  return html`<post-linkarea>${renderCard(args)}</post-linkarea>`;
+}
+
+const renderSimpleInteractiveCard = html`
+  <post-linkarea>
+    <div class="card p-16">
+      <p><a href="http://google.com">Interactive card</a></p>
+    </div>
+  </post-linkarea>
+`;
+
 // STORIES
 type Story = StoryObj;
 
 const singleCardStory: Story = {
   decorators: [gridContainer],
-  render: renderCard,
+  render: (args: Args) =>
+    html`${args.action === 'button' ? renderCardWithInteractiveContainer(args) : renderCard(args)}`,
 };
 
 export const Default: Story = {
   ...singleCardStory,
+};
+
+export const Foundation: Story = {
+  decorators: [story => html`<div class="d-flex gap-16">${story()}</div>`],
+  render: () => html`
+    <div class="card p-16">
+      <p>Non-interactive card</p>
+    </div>
+    ${renderSimpleInteractiveCard}
+  `,
+};
+
+export const Palette: Story = {
+  decorators: [],
   parameters: {
-    controls: {
-      exclude: ['Custom Header', 'Custom Body', 'Custom Footer', 'Show Body', 'Show List Group'],
-    },
+    layout: 'fullscreen',
   },
+  render: () =>
+    html`
+      <div class="palette-default">
+        <div class="container py-32">
+          <div class="row gy-16">
+            <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
+            <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
+          </div>
+        </div>
+      </div>
+      <div class="palette-alternate">
+        <div class="container py-32">
+          <div class="row gy-16">
+            <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
+            <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
+          </div>
+        </div>
+      </div>
+    `,
 };
 
 export const ListGroup: Story = {
   ...singleCardStory,
-  parameters: {
-    controls: {
-      include: ['Show Image', 'Image Position', 'Show Header', 'Show Body', 'Show Footer'],
-    },
-  },
   args: {
     showImage: false,
     showBody: false,
     showListGroup: true,
+    action: 'none',
   },
 };
 
 export const CustomContent: Story = {
   ...singleCardStory,
-  parameters: {
-    controls: {
-      include: ['Show Header', 'Show Footer'],
-    },
-  },
   args: {
     showImage: false,
     showHeader: true,
     showFooter: true,
+    action: 'links',
     customHeader: `<div class="card-header d-flex">
   <post-icon aria-hidden="true" class="fs-small-huge" name="3217"></post-icon>
   <h3 class="fw-bold mb-0 me-auto">Detaloj de la Uzanto</h3>
@@ -376,37 +408,8 @@ export const CustomContent: Story = {
   },
 };
 
-export const CardGroup: Story = {
-  parameters: {
-    controls: {
-      include: ['Show Image', 'Image Position', 'Show Header', 'Show Footer'],
-    },
-  },
-  args: {
-    action: 'none',
-  },
-  render: args => {
-    const cardTexts = [
-      'Enhavo de la maldekstra karto, ĉi tiu teksto estas tie nur kiel ekzemplo.',
-      'Enhavo de la meza karto, ĉi tiu teksto estas tie nur kiel ekzemplo.',
-      'Enhavo de la ĝusta karto, ĉi tiu teksto estas tie nur kiel ekzemplo.',
-    ];
-
-    return html`
-      <div class="card-group">
-        ${cardTexts.map(text => html` ${renderCard({ ...args, text })} `)}
-      </div>
-    `;
-  },
-};
-
 export const BackgroundImage: Story = {
   ...singleCardStory,
-  parameters: {
-    controls: {
-      include: [],
-    },
-  },
   args: {
     showImage: false,
     customBody: `<img class="card-img" src="https://picsum.photos/id/20/300/200" alt="" />
