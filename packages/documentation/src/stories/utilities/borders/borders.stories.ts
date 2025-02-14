@@ -155,7 +155,7 @@ export const BorderRounded: Story = {
 export const BorderRadius: Story = {
   argTypes: {
     borderRoundedRadius: {
-      name: 'rounded-{radius}',
+      name: 'rounded-{radius-scale}',
       description: 'Enables the border radius and sets its size',
       control: {
         type: 'select',

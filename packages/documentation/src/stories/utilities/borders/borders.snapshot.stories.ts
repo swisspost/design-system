@@ -1,4 +1,4 @@
-import type { StoryContext, StoryObj } from '@storybook/web-components';
+import type { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import meta from './borders.stories';
 import './borders.styles.scss';
@@ -12,7 +12,7 @@ export default {
 
 type Story = StoryObj;
 
-const BorderSnapshot: Story = {
+export const Borders: Story = {
   render: () => {
     const samples = [
       ['border', 'null', 'null', 'null'],
@@ -55,9 +55,10 @@ const BorderSnapshot: Story = {
       })}
     `;
   },
+  decorators: [story => html` <div class="borders-example">${story()}</div> `],
 };
 
-const RoundedSnapshot: Story = {
+export const Rounded: Story = {
   render: () => {
     const samples = [
       ['rounded', 'null'],
@@ -84,14 +85,5 @@ const RoundedSnapshot: Story = {
       })}
     `;
   },
-};
-
-export const Borders: Story = {
-  render: (_, context) =>
-    html`<div class="borders-example">${BorderSnapshot.render?.({}, context)}</div>`,
-};
-
-export const Rounded: Story = {
-  render: (_, context: StoryContext) =>
-    html` <div class="borders-example">${RoundedSnapshot.render?.({}, context)}</div> `,
+  decorators: [story => html` <div class="borders-example">${story()}</div> `],
 };

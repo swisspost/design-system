@@ -5,24 +5,23 @@ import * as BordersStories from './borders.stories';
 
 # Borders & Radius
 
-## Border
-
 <div className="lead">
-  Use border utilities to quickly style the border and border-radius of an element. Great for
-  images, buttons, or any other element.
+  Use border utilities to define and style the border and border-radius of an element.
 </div>
 
-Border utilities allow precise control over an element’s borders, enabling you to add, remove, or modify borders on specific sides or all around.
+## Border
+
+The Border utility provides precise control over an element’s borders, allowing you to add, remove, or adjust borders on specific sides or all around using predefined classes.
 
 - `border`: Applies a border on all sides of an element.
 
-- `border-{side}`: Sets the border on a specific side. Supports border-top (top edge), border-end (inline end, mapped to right in LTR), border-bottom (bottom edge), and border-start (inline start, mapped to left in LTR).
+- `border-{side}`: Sets the border on a specific side. Supports `border-top` (top edge), `border-end` (inline end, mapped to right in LTR), `border-bottom` (bottom edge), and `border-start` (inline start, mapped to left in LTR).
 
 - `border-color`: Defines the border color.
 
 - `border-width`: Defines the border width.
 
-- `border-opacity`: Defines the border opacity. For the opacity to take effect, a border-color must be applied.
+- `border-opacity`: Defines the border opacity.
 
 ### Examples
 
@@ -45,22 +44,24 @@ class to set specific side(s)' border width(s) to zero.
 
 ## Border Radius
 
-Add `rounded` to an element to easily round its corners.
-Use the scaling classes to adjust the size of rounded corners. Available sizes range from 0 (no rounding) to 5 (maximum rounding).
+Add `rounded` to an element to easily apply a border-radius on its corners.
 
-- `rounded`: Applies a border-radius on all corners.
-- `rounded-{side}`: Αpplies a border-radius on a specific side. Supports rounded-top (top edge), rounded-end (inline end, mapped to right in LTR), rounded-bottom (bottom edge), and rounded-start (inline start, mapped to left in LTR).
+- `rounded`: Applies the default border-radius on all corners.
+- `rounded-{side}`: Αpplies the default border-radius on a specific side. Supports `rounded-top` (top edge), `rounded-end` (inline end, mapped to right in LTR), `rounded-bottom` (bottom edge), and `rounded-start` (inline start, mapped to left in LTR).
 
 ### Examples
 
-### Apply `rounded` to all or specific sides
+### Apply a border-radius to all or specific sides
 
 <Canvas sourceState="shown" of={BordersStories.BorderRounded} />
 <div className="hide-col-default">
   <Controls of={BordersStories.BorderRounded} />
 </div>
 
-### Set the border-radius to different predefined values
+### Set the border-radius scale
+
+Use the predefined classes to adjust the scale of the rounded corners.
+Available classes are: `rounded-0` ... `rounded-5`, `rounded-pill` and `rounded-circle`.
 
 <Canvas sourceState="shown" of={BordersStories.BorderRadius} />
 <div className="hide-col-default">
