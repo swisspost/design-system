@@ -1,6 +1,7 @@
 @use '@swisspost/design-system-styles/mixins/media';
 @use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/variables/animation';
+@use '@swisspost/design-system-styles/mixins/utilities';
 
 *,
 ::before,
@@ -114,7 +115,11 @@
   gap: var(--post-core-dimension-8);
   min-height: var(--local-header-min-height);
   background: var(--post-core-color-brand-white);
-  transition: box-shadow 0.2s ease-in-out; 
+  transition: box-shadow 0.2s ease-in-out;
+
+  @include utilities.high-contrast-mode() {
+    border-block-end: 1px solid CanvasText;
+  }
 
   @include media.min(lg) {
     z-index: 3;
