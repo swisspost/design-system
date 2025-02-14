@@ -152,10 +152,29 @@ export class PostPopovercontainer {
     );
   }
 
+  /**
+   * Retrieves the dynamic height of the header by considering both 
+   * its rendered height and the applied scroll offset.
+   */
+  private getHeaderHeight(): number {
+    const headerElement = document.querySelector('post-header');
+
+    if (!headerElement) {
+      return 0;
+    }
+
+    const computedStyles = getComputedStyle(headerElement);
+    return parseFloat(computedStyles.getPropertyValue('--total-header-height')) || 0;
+  }
+  
   private async calculatePosition() {
+    const headerHeight = this.getHeaderHeight();
+
     const gap = this.edgeGap;
     const middleware = [
-      flip(),
+      flip({
+        padding: headerHeight,
+      }),
       inline(),
       shift({
         padding: gap,
