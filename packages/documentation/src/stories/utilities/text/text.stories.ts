@@ -35,6 +35,14 @@ export const FontStyle: Story = {
     `,
 };
 
+export const TextSize: Story = {
+  render: () => html`
+    <p class="fs-small">This text has a small font size.</p>
+    <p class="fs-regular">This text has a regular font size.</p>
+    <p class="fs-large">This text has a large font size.</p>
+  `,
+};
+
 export const LineHeight: Story = {
   render: () =>
     html`

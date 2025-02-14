@@ -30,6 +30,12 @@ function getTextUtility(type: string) {
           (val: string) => html`<p class="fw-${val}">Font weight ${val}</p>`,
         )}
       `;
+    case 'Text Size':
+      return html`
+        ${['small', 'regular', 'large'].map(
+          val => html`<p class="fs-${val}">This text has a ${val} font size.</p>`,
+        )}
+      `;
     case 'Line height':
       return html`
         ${['1', 'sm', 'lg'].map(

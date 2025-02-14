@@ -1,0 +1,17 @@
+@use './../tokens/utilities' as utilities;
+@use './../functions/tokens' as tokens;
+
+tokens.$default-map: utilities.$post-typo;
+
+.small,
+.fs-small {
+  font-size: tokens.get('utility-font-size-sm');
+}
+
+.fs-regular {
+  font-size: tokens.get('utility-font-size-md');
+}
+
+.fs-large {
+  font-size: tokens.get('utility-font-size-lg');
+}
