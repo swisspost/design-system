@@ -9,6 +9,7 @@ tokens.$default-map: components.$post-button;
 
 :host {
   display: flex !important;
+  flex-wrap: wrap;
 
   > span {
     display: inline-flex;
