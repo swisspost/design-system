@@ -64,4 +64,12 @@ post-header {
       background: var(--post-core-color-sandgrey-100);
     }
   }
+
+  post-togglebutton {
+    @include utilities.high-contrast-mode() {
+      background-color: ButtonFace !important;
+      border-color: ButtonBorder !important;
+      color: ButtonText !important;
+    }
+  }
 }

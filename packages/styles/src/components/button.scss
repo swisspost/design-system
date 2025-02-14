@@ -54,6 +54,10 @@ tokens.$default-map: components.$post-button;
 
   @include utilities.high-contrast-mode() {
     background-color: ButtonFace !important;
+
+    &:hover {
+      background-color: Highlight !important;
+    }
   }
 }
 
