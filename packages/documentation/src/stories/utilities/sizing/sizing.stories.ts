@@ -29,9 +29,7 @@ const meta: MetaExtended = {
     (story: StoryFn, context: StoryContext) => {
       const storyTemplate = html`
         <div class="sizing-example">
-          <div class="h-112">
-            ${story(context.args, context)}
-          </div>
+          <div class="h-104">${story(context.args, context)}</div>
         </div>
       `;
       return storyTemplate;
@@ -98,7 +96,7 @@ const pxArgTypes = [
 
 export const PxSizes: Story = {
   args: {
-    width: '100',
+    width: '104',
     height: '80',
   },
   argTypes: Object.fromEntries(

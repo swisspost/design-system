@@ -15,14 +15,14 @@ tokens.$default-map: utilities.$post-spacing;
 
 // for backward compatibility
 .stepper-container {
-  margin-bottom: tokens.get('utility-gap-20');
+  margin-bottom: 20px;
 
   @include media.min(md) {
-    margin-bottom: tokens.get('utility-gap-32');
+    margin-bottom: tokens.get('utility-margin-32');
   }
 
   @include media.min(xl) {
-    margin-bottom: tokens.get('utility-gap-40');
+    margin-bottom: tokens.get('utility-margin-40');
   }
 
   > .stepper-bar {

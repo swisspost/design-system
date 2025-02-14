@@ -22,7 +22,7 @@ export const Togglebutton: Story = {
     return html`
       ${SCHEME.map(
         scheme => html`
-          <div data-color-scheme="${scheme}" class="palette-default px-5">
+          <div data-color-scheme="${scheme}" class="palette-default px-48">
             ${BTN.map(btn =>
               SIZES.map(size =>
                 TOGGLED.map(
