@@ -96,6 +96,9 @@
   background-color: #fafafa;
 
   @include media.max(lg) {
+    display: flex;
+    flex-direction: column;
+    width: inherit;  
     padding: 16px 32px 24px;
   }
 
@@ -127,6 +130,7 @@
 
     a {
       text-decoration: none;
+      display: none;
       font-weight: inherit;
       border-bottom: 0;
       border-top: 0;
@@ -259,6 +263,7 @@
     }
 
     @include media.max(lg) {
+      order: -1;
       display: block;
     }
   }
