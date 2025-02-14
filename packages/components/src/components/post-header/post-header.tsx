@@ -86,15 +86,24 @@ export class PostHeader {
   private breakpointChange(e: CustomEvent) {
     this.device = e.detail;
     this.switchLanguageSwitchMode();
-  
+
     // Close mobile menu when switching to desktop
     if (this.device === 'desktop' && this.mobileMenuExtended) {
-      this.toggleMobileMenu();
-      this.mobileMenuExtended = false;
-      this.mobileMenuAnimation.finish();
+        this.closeMobileMenu();
     }
 
     this.updateLocalHeaderHeight();
+  }
+
+  private async closeMobileMenu() {
+    this.mobileMenuAnimation.finish();
+
+    const menuButton = this.getMenuButton();
+    if (menuButton) {
+        menuButton.toggled = false;
+    }
+
+    this.mobileMenuExtended = false;
   }
 
   /**
@@ -103,15 +112,15 @@ export class PostHeader {
   @Method()
   async toggleMobileMenu() {
     if (this.device === 'desktop') return;
-
+    
     this.mobileMenuAnimation = this.mobileMenuExtended
-      ? slideUp(this.mobileMenu)
-      : slideDown(this.mobileMenu);
-
+    ? slideUp(this.mobileMenu)
+    : slideDown(this.mobileMenu);
+    
     // Update the state of the toggle button
-    const menuButton = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
+    const menuButton = this.getMenuButton();
     menuButton.toggled = !this.mobileMenuExtended;
-
+    
     // Toggle menu visibility before it slides down and after it slides back up
     if (this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
     this.mobileMenuExtended = !this.mobileMenuExtended;
@@ -143,6 +152,10 @@ export class PostHeader {
 
     this.firstFocusableEl = focusableChildren[0];
     this.lastFocusableEl = focusableChildren[focusableChildren.length - 1];
+  }
+
+  private getMenuButton(): HTMLPostTogglebuttonElement | null {
+    return this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
   }
 
   private keyboardHandler(e: KeyboardEvent) {
