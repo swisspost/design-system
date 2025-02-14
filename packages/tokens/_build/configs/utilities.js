@@ -60,8 +60,6 @@ StyleDictionary.registerFormat({
       return `$${subitem}: (${values.join('')}\n);\n`;
     });
 
-    console.log(header + utilityMaps.join('\n'));
-
     return header + utilityMaps.join('\n');
   },
 });
