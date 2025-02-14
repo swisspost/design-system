@@ -9,6 +9,24 @@ export const FILE_HEADER = [
   new Date().toUTCString(),
 ];
 
+/**
+ * Enum for possible tokenset names.
+ * @readonly
+ * @enum {string}
+ */
+export const TOKENSET_NAMES = {
+  Core: 'core',
+  Scheme: 'scheme',
+  Device: 'device',
+  Channel: 'channel',
+  Theme: 'theme',
+  Elements: 'elements',
+  Components: 'components',
+  Utilities: 'utilities',
+  Palettes: 'palettes',
+  Helpers: 'helpers',
+};
+
 export const EXPLICIT_COMPONENT_LAYER_GROUPNAMES = [
   'elements',
   'components',
