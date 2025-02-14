@@ -8,11 +8,39 @@
 tokens.$default-map: components.$post-button;
 
 :host {
-  display: block;
+  display: flex !important;
+  flex-wrap: wrap;
 
-  @include media.max(lg) {
-    display: flex !important;
-    gap: 0.5rem;
+  > span {
+    display: inline-flex;
+    flex-shrink: 0;
+    padding-inline: 0.7rem;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    background-color: #050400;
+    color: #fff;
+    border-radius: 2px;
+  }
+}
+
+:host(:where([variant='list'])) {
+  gap: 0.5rem;
+}
+
+:host(:where(:not([type]), [type='language'])) {
+  > span {
+    padding-inline: 0;
+    width: 40px;
+    text-transform: uppercase;
+  }
+
+  .post-language-switch-trigger {
+    text-transform: uppercase;
+  }
+
+  .post-language-switch-dropdown-container {
+    text-transform: uppercase;
   }
 }
 

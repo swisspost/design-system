@@ -8,12 +8,12 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
 import { DEVICE_SIZE } from "./components/post-header/post-header";
-import { SwitchVariant } from "./components/post-language-switch/switch-variants";
+import { SwitchType, SwitchVariant } from "./components/post-language-switch/switch-variants";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { DEVICE_SIZE } from "./components/post-header/post-header";
-export { SwitchVariant } from "./components/post-language-switch/switch-variants";
+export { SwitchType, SwitchVariant } from "./components/post-language-switch/switch-variants";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
     interface PostAccordion {
@@ -249,11 +249,15 @@ export namespace Components {
          */
         "select": () => Promise<void>;
         /**
+          * To communicate the type prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
+         */
+        "type"?: SwitchType | null;
+        /**
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
         "url": string;
         /**
-          * The variant of the post-language-switch parent (dynamically set by the parent)
+          * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
          */
         "variant"?: SwitchVariant | null;
     }
@@ -267,9 +271,15 @@ export namespace Components {
          */
         "description": string;
         /**
-          * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
+          * Whether the component is rendered with uppercased text and fix widths or without any text transformation and fluid widths
+         */
+        "type": SwitchType;
+        /**
+          * Whether the component is rendered as a list or a menu
          */
         "variant": SwitchVariant;
+    }
+    interface PostLinkarea {
     }
     interface PostList {
         /**
@@ -690,6 +700,12 @@ declare global {
         prototype: HTMLPostLanguageSwitchElement;
         new (): HTMLPostLanguageSwitchElement;
     };
+    interface HTMLPostLinkareaElement extends Components.PostLinkarea, HTMLStencilElement {
+    }
+    var HTMLPostLinkareaElement: {
+        prototype: HTMLPostLinkareaElement;
+        new (): HTMLPostLinkareaElement;
+    };
     interface HTMLPostListElement extends Components.PostList, HTMLStencilElement {
     }
     var HTMLPostListElement: {
@@ -871,6 +887,7 @@ declare global {
         "post-icon": HTMLPostIconElement;
         "post-language-option": HTMLPostLanguageOptionElement;
         "post-language-switch": HTMLPostLanguageSwitchElement;
+        "post-linkarea": HTMLPostLinkareaElement;
         "post-list": HTMLPostListElement;
         "post-list-item": HTMLPostListItemElement;
         "post-logo": HTMLPostLogoElement;
@@ -1105,11 +1122,15 @@ declare namespace LocalJSX {
          */
         "onPostChange"?: (event: PostLanguageOptionCustomEvent<string>) => void;
         /**
+          * To communicate the type prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
+         */
+        "type"?: SwitchType | null;
+        /**
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
         "url"?: string;
         /**
-          * The variant of the post-language-switch parent (dynamically set by the parent)
+          * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
          */
         "variant"?: SwitchVariant | null;
     }
@@ -1123,9 +1144,15 @@ declare namespace LocalJSX {
          */
         "description"?: string;
         /**
-          * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
+          * Whether the component is rendered with uppercased text and fix widths or without any text transformation and fluid widths
+         */
+        "type"?: SwitchType;
+        /**
+          * Whether the component is rendered as a list or a menu
          */
         "variant"?: SwitchVariant;
+    }
+    interface PostLinkarea {
     }
     interface PostList {
         /**
@@ -1312,6 +1339,7 @@ declare namespace LocalJSX {
         "post-icon": PostIcon;
         "post-language-option": PostLanguageOption;
         "post-language-switch": PostLanguageSwitch;
+        "post-linkarea": PostLinkarea;
         "post-list": PostList;
         "post-list-item": PostListItem;
         "post-logo": PostLogo;
@@ -1358,6 +1386,7 @@ declare module "@stencil/core" {
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
             "post-language-option": LocalJSX.PostLanguageOption & JSXBase.HTMLAttributes<HTMLPostLanguageOptionElement>;
             "post-language-switch": LocalJSX.PostLanguageSwitch & JSXBase.HTMLAttributes<HTMLPostLanguageSwitchElement>;
+            "post-linkarea": LocalJSX.PostLinkarea & JSXBase.HTMLAttributes<HTMLPostLinkareaElement>;
             "post-list": LocalJSX.PostList & JSXBase.HTMLAttributes<HTMLPostListElement>;
             "post-list-item": LocalJSX.PostListItem & JSXBase.HTMLAttributes<HTMLPostListItemElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;

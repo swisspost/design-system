@@ -1,7 +1,7 @@
 import { Component, Element, Host, h, Prop, Watch, State } from '@stencil/core';
 import { checkEmptyOrOneOf, checkType } from '@/utils';
 import { version } from '@root/package.json';
-import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
+import { SWITCH_VARIANTS, SWITCH_TYPES, SwitchVariant, SwitchType } from './switch-variants';
 import { nanoid } from 'nanoid';
 
 @Component({
@@ -41,7 +41,7 @@ export class PostLanguageSwitch {
   }
 
   /**
-   * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
+   * Whether the component is rendered as a list or a menu
    */
   @Prop() variant: SwitchVariant = 'list';
 
@@ -57,13 +57,28 @@ export class PostLanguageSwitch {
   }
 
   /**
+   * Whether the component is rendered with uppercased text and fix widths or without any text transformation and fluid widths
+   */
+  @Prop() type: SwitchType = 'language';
+
+  @Watch('type')
+  validateType(value = this.type) {
+    checkEmptyOrOneOf(
+      value,
+      SWITCH_TYPES,
+      `The "type" property of the post-language-switch component must be:  ${SWITCH_TYPES.join(
+        ', ',
+      )}`,
+    );
+  }
+
+  /**
    * The active language of the language switch
    */
   @State() activeLang: string;
 
   connectedCallback() {
-    this.updateChildrenVariant();
-
+    this.updateChildrenProps();
     // Get the active language based on children's active state
     this.activeLang = Array.from(this.host.querySelectorAll('post-language-option'))
       .find(el => el.getAttribute('active') == 'true')
@@ -71,14 +86,15 @@ export class PostLanguageSwitch {
   }
 
   // Update post-language-option variant to have the correct style
-  private updateChildrenVariant() {
+  private updateChildrenProps() {
     this.host.querySelectorAll('post-language-option').forEach(el => {
       el.setAttribute('variant', this.variant);
+      el.setAttribute('type', this.type);
     });
   }
 
   componentWillUpdate() {
-    this.updateChildrenVariant();
+    this.updateChildrenProps();
   }
 
   componentDidLoad() {
@@ -111,11 +127,10 @@ export class PostLanguageSwitch {
 
   private renderList() {
     return (
-      <Host
-        data-version={version}
-        aria-label={`${this.caption}, ${this.description}`}
-        aria-role="list"
-      >
+      <Host data-version={version} role="list" aria-label={this.caption}>
+        <span aria-label={this.description} role="listitem">
+          {this.activeLang}
+        </span>
         <slot></slot>
       </Host>
     );
@@ -125,15 +140,16 @@ export class PostLanguageSwitch {
     return (
       <Host data-version={version}>
         <post-menu-trigger for={this.menuId}>
-          <button
-            class="post-language-switch-trigger"
-            aria-label={`${this.caption}, ${this.description}`}
-          >
-            {this.activeLang.toUpperCase()}
+          <button class="post-language-switch-trigger" aria-label={this.description}>
+            {this.activeLang}
             <post-icon aria-hidden="true" name="chevrondown"></post-icon>
           </button>
         </post-menu-trigger>
-        <post-menu id={this.menuId} class="post-language-switch-dropdown-container">
+        <post-menu
+          id={this.menuId}
+          class="post-language-switch-dropdown-container"
+          aria-label={this.caption}
+        >
           <slot></slot>
         </post-menu>
       </Host>

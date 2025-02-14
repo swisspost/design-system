@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import meta, { Default, CustomContent, CardGroup } from './card.stories';
+import meta, { CustomContent, Default } from './card.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
@@ -15,7 +15,7 @@ type Story = StoryObj;
 
 export const Card: Story = {
   render: (_args: Args, context: StoryContext) => {
-    // Define default template variants
+    // Define basic content template variants
     const defaultTemplateVariants = [
       // Layout related combinations
       ...bombArgs({
@@ -67,23 +67,25 @@ export const Card: Story = {
         `,
       );
 
-    // Define custom template variants
-    const customTemplateVariants = [
-      { story: CustomContent, colWidth: 6 },
-      { story: CardGroup, colWidth: 12 },
-    ]
-      // Map custom template variants
-      .map(
-        ({ story, colWidth }) => html`
-          <div class=${'p-16 col-' + colWidth}>
-            ${story.render && story.render({ ...meta.args, ...story.args }, context)}
+    // Define custom template variant
+    const customTemplateVariant = html`
+      <div class="p-16 col-6">
+        ${CustomContent.render &&
+        CustomContent.render({ ...meta.args, ...CustomContent.args }, context)}
+      </div>
+    `;
+
+    return schemes(
+      () =>
+        html`
+          <div class="row">
+            <h1>Cards</h1>
+            <h2 class="mt-32">Default template variants cards</h2>
+            ${defaultTemplateVariants}
+            <h2 class="mt-32">Custom template variants cards</h2>
+            ${customTemplateVariant}
           </div>
         `,
-      );
-
-    // Render all variants on white and dark background
-    return schemes(
-      () => html` <div class="row">${defaultTemplateVariants} ${customTemplateVariants}</div> `,
     );
   },
 };
