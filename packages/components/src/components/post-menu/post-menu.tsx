@@ -93,6 +93,7 @@ export class PostMenu {
    */
   @Method()
   async toggle(target: HTMLElement) {
+
     if (this.popoverRef) {
       await this.popoverRef.toggle(target);
     } else {
@@ -174,7 +175,6 @@ export class PostMenu {
         currentIndex = menuItems.length - 1;
         break;
       case this.KEYCODES.SPACE:
-      case this.KEYCODES.ENTER:
         this.toggle(this.host);
         return;
       case this.KEYCODES.TAB:
