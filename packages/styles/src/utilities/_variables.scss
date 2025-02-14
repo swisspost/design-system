@@ -1,5 +1,5 @@
 @use '../tokens/utilities' as tokens;
-
+@use 'sass:map';
 @use './functions' as *;
 
 @use '../variables/sizing' as *;
@@ -31,6 +31,117 @@ $position-values: (
 );
 
 $utilities: (
+  'border': (
+    property: border,
+    class: border,
+    values: (
+      null: var(--post-border-width) var(--post-border-style-default)
+        rgba(var(--post-border-color-default), var(--post-border-opacity)),
+      0: 0,
+    ),
+  ),
+
+  'border-top': (
+    property: border-block-start,
+    class: border-top,
+    values: (
+      null: var(--post-border-width) var(--post-border-style-default)
+        rgba(var(--post-border-color-default), var(--post-border-opacity)),
+      0: 0,
+    ),
+  ),
+  'border-end': (
+    property: border-inline-end,
+    class: border-end,
+    values: (
+      null: var(--post-border-width) var(--post-border-style-default)
+        rgba(var(--post-border-color-default), var(--post-border-opacity)),
+      0: 0,
+    ),
+  ),
+  'border-bottom': (
+    property: border-block-end,
+    class: border-bottom,
+    values: (
+      null: var(--post-border-width) var(--post-border-style-default)
+        rgba(var(--post-border-color-default), var(--post-border-opacity)),
+      0: 0,
+    ),
+  ),
+  'border-start': (
+    property: border-inline-start,
+    class: border-start,
+    values: (
+      null: var(--post-border-width) var(--post-border-style-default)
+        rgba(var(--post-border-color-default), var(--post-border-opacity)),
+      0: 0,
+    ),
+  ),
+  'border-width': (
+    css-var: true,
+    css-variable-name: border-width,
+    class: border,
+    values: from-tokens('border-widths', 'border'),
+  ),
+  'border-color': (
+    property: border-color,
+    class: border,
+    local-vars: (
+      'border-opacity': 1,
+    ),
+    values: from-tokens('border-colors', 'border'),
+  ),
+  'border-opacity': (
+    css-var: true,
+    class: border-opacity,
+    values: (
+      0: 0,
+      10: 0.1,
+      25: 0.25,
+      50: 0.5,
+      75: 0.75,
+      100: 1,
+    ),
+  ),
+  'rounded': (
+    property: border-radius,
+    class: rounded,
+    values:
+      map.merge(
+        (
+          null: var(--post-border-radius),
+        ),
+        from-tokens('border-radius', 'border')
+      ),
+  ),
+  'rounded-top': (
+    property: border-start-start-radius border-start-end-radius,
+    class: rounded-top,
+    values: (
+      null: var(--post-border-radius),
+    ),
+  ),
+  'rounded-end': (
+    property: border-start-end-radius border-end-end-radius,
+    class: rounded-end,
+    values: (
+      null: var(--post-border-radius),
+    ),
+  ),
+  'rounded-bottom': (
+    property: border-end-end-radius border-end-start-radius,
+    class: rounded-bottom,
+    values: (
+      null: var(--post-border-radius),
+    ),
+  ),
+  'rounded-start': (
+    property: border-end-start-radius border-start-start-radius,
+    class: rounded-start,
+    values: (
+      null: var(--post-border-radius),
+    ),
+  ),
   'grid-gutter': (
     responsive: true,
     property: --post-grid-gutter-x --post-grid-gutter-y,
