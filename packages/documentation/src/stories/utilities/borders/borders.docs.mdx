@@ -51,7 +51,18 @@ Use the scaling classes to adjust the size of rounded corners. Available sizes r
 - `rounded`: Applies a border-radius on all corners.
 - `rounded-{side}`: Αpplies a border-radius on a specific side. Supports rounded-top (top edge), rounded-end (inline end, mapped to right in LTR), rounded-bottom (bottom edge), and rounded-start (inline start, mapped to left in LTR).
 
+### Examples
+
+### Apply `rounded` to all or specific sides
+
 <Canvas sourceState="shown" of={BordersStories.BorderRounded} />
 <div className="hide-col-default">
   <Controls of={BordersStories.BorderRounded} />
+</div>
+
+### Set the border-radius to different predefined values
+
+<Canvas sourceState="shown" of={BordersStories.BorderRadius} />
+<div className="hide-col-default">
+  <Controls of={BordersStories.BorderRadius} />
 </div>

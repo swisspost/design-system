@@ -8,12 +8,12 @@ import './borders.styles.scss';
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 export const SCSS_VARIABLES: any = parse(scss);
 
-const properties = ['border', 'color'];
+const properties = ['width', 'color', 'rounded'];
 
 const border_args = properties.reduce((options, property) => {
   return {
     ...options,
-    [property]: Object.keys(SCSS_VARIABLES[`${property}s`])
+    [property]: Object.keys(SCSS_VARIABLES[`${property}`])
       .filter((key: string) => key.startsWith(`post-utility-border-`))
       .map((key: string) => key.replace(`post-utility-border-`, '')),
   };
@@ -57,7 +57,7 @@ export const Borders: Story = {
       control: {
         type: 'select',
       },
-      options: ['none', ...border_args.border],
+      options: ['none', ...border_args.width],
       table: {
         category: 'Set Border Width',
       },
@@ -99,7 +99,6 @@ export const Borders: Story = {
     const borderColorClass = args.borderColor != 'none' ? ` border-${args.borderColor}` : '';
     const borderOpacityClass =
       args.borderOpacity != 'none' ? ` border-opacity-${args.borderOpacity}` : '';
-    console.log(borderOpacityClass);
     return html`
       <div class="${border}${borderWidthClass}${borderColorClass}${borderOpacityClass}">
         Sample Text
@@ -143,24 +142,34 @@ export const BorderRounded: Story = {
       },
       options: ['none', 'rounded', 'rounded-top', 'rounded-end', 'rounded-bottom', 'rounded-start'],
     },
+  },
+  args: {
+    borderRoundedSide: 'rounded',
+  },
+  render: (args: Args) => {
+    const borderRoundedSide = args.borderRoundedSide != 'none' ? `${args.borderRoundedSide}` : '';
+    return html` <div class="border ${borderRoundedSide}">Sample Text</div> `;
+  },
+};
+
+export const BorderRadius: Story = {
+  argTypes: {
     borderRoundedRadius: {
       name: 'rounded-{radius}',
       description: 'Enables the border radius and sets its size',
       control: {
         type: 'select',
       },
-      options: ['none', '1', '2', '3', '4', '5', 'circle', 'pill'],
+      options: ['none', ...border_args.rounded],
     },
   },
   args: {
-    borderRoundedRadius: 'none',
-    borderRoundedSide: 'rounded',
+    borderRoundedRadius: '1',
   },
   render: (args: Args) => {
-    const borderRoundedSide = args.borderRoundedSide != 'none' ? `${args.borderRoundedSide}` : '';
     const borderRoundedRadius =
       args.borderRoundedRadius != 'none' ? ` rounded-${args.borderRoundedRadius}` : '';
 
-    return html` <div class="border ${borderRoundedSide}${borderRoundedRadius}">Sample Text</div> `;
+    return html` <div class="border${borderRoundedRadius}">Sample Text</div> `;
   },
 };

@@ -1,5 +1,5 @@
 @use '../tokens/utilities' as tokens;
-
+@use 'sass:map';
 @use './functions' as *;
 
 @use '../variables/sizing' as *;
@@ -32,47 +32,52 @@ $position-values: (
 
 $utilities: (
   'border': (
-    responsive: true,
     property: border,
     class: border,
     values: (
-      null: var(--post-border-width) var(--post-border-style)
-        rgba(var(--post-border-color-base), var(--post-border-opacity)),
+      null: var(--post-border-width) var(--post-border-style-default)
+        rgba(var(--post-border-color-default), var(--post-border-opacity)),
       0: 0,
     ),
   ),
+
   'border-top': (
-    property: border-top,
+    property: border-block-start,
+    class: border-top,
     values: (
-      null: var(--post-border-width) var(--post-border-style) var(--post-border-color),
+      null: var(--post-border-width) var(--post-border-style-default)
+        rgba(var(--post-border-color-default), var(--post-border-opacity)),
       0: 0,
     ),
   ),
   'border-end': (
-    property: border-right,
+    property: border-inline-end,
     class: border-end,
     values: (
-      null: var(--post-border-width) var(--post-border-style) var(--post-border-color),
+      null: var(--post-border-width) var(--post-border-style-default)
+        rgba(var(--post-border-color-default), var(--post-border-opacity)),
       0: 0,
     ),
   ),
   'border-bottom': (
-    property: border-bottom,
+    property: border-block-end,
+    class: border-bottom,
     values: (
-      null: var(--post-border-width) var(--post-border-style) var(--post-border-color),
+      null: var(--post-border-width) var(--post-border-style-default)
+        rgba(var(--post-border-color-default), var(--post-border-opacity)),
       0: 0,
     ),
   ),
   'border-start': (
-    property: border-left,
+    property: border-inline-start,
     class: border-start,
     values: (
-      null: var(--post-border-width) var(--post-border-style) var(--post-border-color),
+      null: var(--post-border-width) var(--post-border-style-default)
+        rgba(var(--post-border-color-default), var(--post-border-opacity)),
       0: 0,
     ),
   ),
   'border-width': (
-    responsive: true,
     css-var: true,
     css-variable-name: border-width,
     class: border,
@@ -101,72 +106,40 @@ $utilities: (
   'rounded': (
     property: border-radius,
     class: rounded,
-    values: (
-      null: var(--post-border-radius),
-      0: 0,
-      1: var(--post-border-radius-sm),
-      2: var(--post-border-radius),
-      3: var(--post-border-radius-lg),
-      4: var(--post-border-radius-xl),
-      5: var(--post-border-radius-xxl),
-      circle: 50%,
-      pill: var(--post-border-radius-pill),
-    ),
+    values:
+      map.merge(
+        (
+          null: var(--post-border-radius),
+        ),
+        from-tokens('border-radius', 'border')
+      ),
   ),
   'rounded-top': (
-    property: border-top-left-radius border-top-right-radius,
+    property: border-start-start-radius border-start-end-radius,
     class: rounded-top,
     values: (
       null: var(--post-border-radius),
-      0: 0,
-      1: var(--post-border-radius-sm),
-      2: var(--post-border-radius),
-      3: var(--post-border-radius-lg),
-      4: var(--post-border-radius-xl),
-      5: var(--post-border-radius-xxl),
-      circle: 50%,
-      pill: var(--post-border-radius-pill),
     ),
   ),
   'rounded-end': (
-    property: border-top-right-radius border-bottom-right-radius,
+    property: border-start-end-radius border-end-end-radius,
     class: rounded-end,
     values: (
       null: var(--post-border-radius),
-      0: 0,
-      1: var(--post-border-radius-sm),
-      2: var(--post-border-radius),
-      3: var(--post-border-radius-lg),
-      4: var(--post-border-radius-xl),
-      5: var(--post-border-radius-xxl),
-      circle: 50%,
-      pill: var(--post-border-radius-pill),
     ),
   ),
   'rounded-bottom': (
-    property: border-bottom-right-radius border-bottom-left-radius,
+    property: border-end-end-radius border-end-start-radius,
     class: rounded-bottom,
     values: (
       null: var(--post-border-radius),
-      0: 0,
-      1: var(--post-border-radius-sm),
-      2: var(--post-border-radius),
-      3: var(--post-border-radius-lg),
-      circle: 50%,
-      pill: var(--post-border-radius-pill),
     ),
   ),
   'rounded-start': (
-    property: border-bottom-left-radius border-top-left-radius,
+    property: border-end-start-radius border-start-start-radius,
     class: rounded-start,
     values: (
       null: var(--post-border-radius),
-      0: 0,
-      1: var(--post-border-radius-sm),
-      2: var(--post-border-radius),
-      3: var(--post-border-radius-lg),
-      circle: 50%,
-      pill: var(--post-border-radius-pill),
     ),
   ),
   'grid-gutter': (
