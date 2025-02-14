@@ -96,18 +96,24 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
       });
 
       it('should not be able to click on a navigation item for a short amount of time after scroll', () => {
+        const click = () => {
+          cy.get('post-header').then($header => {
+            cy.get('post-header').click(Cypress.config('viewportWidth') - 5, $header.height() - 5);
+          });
+        };
+
         // click until the last navigation item is visible
         cy.get('@navigationItems').each($el => {
-          if (!isFullyVisible($el)) cy.get('@rightScroll').click();
+          if (!isFullyVisible($el)) click();
         });
 
         // click on the position where the scroll right button was, the last item should not be triggered
-        cy.get('@mainnavigation').click(Cypress.config('viewportWidth') - 5, 5);
+        click();
         cy.get('@navigationItems').last().invoke('attr', 'aria-expanded').should('not.eq', 'true');
 
         // wait and click again on the position where the scroll right button was, the last item should then be triggered
         cy.wait(400);
-        cy.get('@mainnavigation').click(Cypress.config('viewportWidth') - 5, 5);
+        click();
         cy.get('@navigationItems').last().invoke('attr', 'aria-expanded').should('eq', 'true');
       });
 
@@ -180,18 +186,23 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
       });
 
       it('should not be able to click on a navigation item for a short amount of time after scroll', () => {
+        const click = () => {
+          cy.get('post-header').then($header => {
+            cy.get('post-header').click(5, $header.height() - 5);
+          });
+        };
         // click until the first navigation item is visible
         cy.get('@navigationItemsReversed').each($el => {
-          if (!isFullyVisible($el)) cy.get('@leftScroll').click();
+          if (!isFullyVisible($el)) click();
         });
 
         // click on the position where the scroll left button was, the first item should not be triggered
-        cy.get('@mainnavigation').click(5, 5);
+        click();
         cy.get('@navigationItems').first().invoke('attr', 'aria-expanded').should('not.eq', 'true');
 
         // wait and click again on the position where the scroll left button was, the first item should then be triggered
         cy.wait(400);
-        cy.get('@mainnavigation').click(5, 5);
+        click();
         cy.get('@navigationItems').first().invoke('attr', 'aria-expanded').should('eq', 'true');
       });
     });
