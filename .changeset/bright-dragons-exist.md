@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Implemented borders utility classes.
+Internalized bootstrap border utility classes.
