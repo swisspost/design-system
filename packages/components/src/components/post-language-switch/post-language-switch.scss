@@ -31,6 +31,7 @@ tokens.$default-map: components.$post-button;
   > span {
     padding-inline: 0;
     width: 40px;
+    text-transform: uppercase;
   }
 
   .post-language-switch-trigger {
