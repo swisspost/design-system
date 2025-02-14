@@ -89,7 +89,7 @@ export class PostHeader {
 
     // Close mobile menu when switching to desktop
     if (this.device === 'desktop' && this.mobileMenuExtended) {
-        this.closeMobileMenu();
+      this.closeMobileMenu();
     }
 
     this.updateLocalHeaderHeight();
@@ -100,7 +100,7 @@ export class PostHeader {
 
     const menuButton = this.getMenuButton();
     if (menuButton) {
-        menuButton.toggled = false;
+      menuButton.toggled = false;
     }
 
     this.mobileMenuExtended = false;
@@ -114,8 +114,8 @@ export class PostHeader {
     if (this.device === 'desktop') return;
     
     this.mobileMenuAnimation = this.mobileMenuExtended
-    ? slideUp(this.mobileMenu)
-    : slideDown(this.mobileMenu);
+      ? slideUp(this.mobileMenu)
+      : slideDown(this.mobileMenu);
     
     // Update the state of the toggle button
     const menuButton = this.getMenuButton();
