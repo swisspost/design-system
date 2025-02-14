@@ -21,7 +21,6 @@ post-language-option {
     height: 100%;
     width: 100%;
     border-radius: 2px;
-    text-transform: inherit;
     @include utilities-mx.focus-style;
   }
 
@@ -44,6 +43,7 @@ post-language-option {
       :is(a, button) {
         padding-inline: 0;
         width: 40px;
+        text-transform: uppercase;
       }
     }
   }
@@ -58,6 +58,12 @@ post-language-option {
       position: relative;
       left: -1px;
       width: calc(100% + 2px);
+    }
+
+    &:where(:not([type]), [type='language']) {
+      :is(a, button) {
+        text-transform: uppercase;
+      }
     }
   }
 }
