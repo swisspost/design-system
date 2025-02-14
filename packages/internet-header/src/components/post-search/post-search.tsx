@@ -436,7 +436,10 @@ export class PostSearch implements HasDropdown, IsFocusable {
                         {isParcelTrackingNr ? 1 : suggestionCount} {translate('search result(s)')}
                       </p>
                       {showPortalRecommendations && (
-                        <h2 id="post-internet-header-search-recommendations-title" class="bold">
+                        <h2
+                          id="post-internet-header-search-recommendations-title"
+                          class="portal-recommendations-title"
+                        >
                           {search.searchRecommendations.title}
                         </h2>
                       )}
@@ -476,7 +479,9 @@ export class PostSearch implements HasDropdown, IsFocusable {
                               onMouseEnter={e => this.handleMouseEnterSuggestion(e)}
                             >
                               <SvgIcon name="pi-letter-parcel" />
-                              <span class="bold">{this.parcelSuggestion?.sending?.id}:&nbsp;</span>
+                              <span class="fw-bold">
+                                {this.parcelSuggestion?.sending?.id}:&nbsp;
+                              </span>
                               <span>
                                 {[
                                   this.parcelSuggestion?.sending?.product,
