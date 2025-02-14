@@ -21,35 +21,43 @@ post-language-option {
     height: 100%;
     width: 100%;
     border-radius: 2px;
+    text-transform: inherit;
     @include utilities-mx.focus-style;
   }
 
   &:has([aria-current]):not([aria-current='false']) {
     display: none;
   }
-}
 
-post-language-option:where([variant='list']) {
-  :is(a, button) {
-    width: 40px;
-    height: 40px;
-    border-radius: 2px;
+  &:where([variant='list']) {
+    :is(a, button) {
+      padding-inline: 0.7rem;
+      height: 40px;
+      border-radius: 2px;
 
-    &:hover {
-      color: #504f4b;
+      &:hover {
+        color: #504f4b;
+      }
+    }
+
+    &:where(:not([type]), [type='language']) {
+      :is(a, button) {
+        padding-inline: 0;
+        width: 40px;
+      }
     }
   }
-}
 
-post-language-option:where([variant='menu']) {
-  width: 100%;
+  &:where([variant='menu']) {
+    width: 100%;
 
-  :is(a, button) {
-    padding-block: 13px;
-    padding-inline: 24px;
-    box-sizing: border-box;
-    position: relative;
-    left: -1px;
-    width: calc(100% + 2px);
+    :is(a, button) {
+      padding-block: 13px;
+      padding-inline: 24px;
+      box-sizing: border-box;
+      position: relative;
+      left: -1px;
+      width: calc(100% + 2px);
+    }
   }
 }

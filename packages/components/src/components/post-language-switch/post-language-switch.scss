@@ -8,12 +8,12 @@
 tokens.$default-map: components.$post-button;
 
 :host {
-  display: flex;
+  display: flex !important;
 
   > span {
-    display: flex;
+    display: inline-flex;
     flex-shrink: 0;
-    width: 40px;
+    padding-inline: 0.7rem;
     height: 40px;
     align-items: center;
     justify-content: center;
@@ -24,7 +24,22 @@ tokens.$default-map: components.$post-button;
 }
 
 :host(:where([variant='list'])) {
-  column-gap: 0.5rem;
+  gap: 0.5rem;
+}
+
+:host(:where(:not([type]), [type='language'])) {
+  > span {
+    padding-inline: 0;
+    width: 40px;
+  }
+
+  .post-language-switch-trigger {
+    text-transform: uppercase;
+  }
+
+  .post-language-switch-dropdown-container {
+    text-transform: uppercase;
+  }
 }
 
 .post-language-switch-dropdown-container {
