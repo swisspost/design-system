@@ -9,10 +9,13 @@
 
 post-header {
   ul[slot='meta-navigation'] {
-    gap: var(--post-core-dimension-4);
+    @include media.min(lg) {
+      gap: var(--post-core-dimension-4);
+    }
 
     @include media.max(lg) {
       flex-direction: column;
+      gap: 0;
 
       a,
       button {
