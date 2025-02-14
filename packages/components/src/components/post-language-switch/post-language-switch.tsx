@@ -41,7 +41,7 @@ export class PostLanguageSwitch {
   }
 
   /**
-   * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
+   * Whether the component is rendered as a list or a menu
    */
   @Prop() variant: SwitchVariant = 'list';
 
@@ -57,7 +57,7 @@ export class PostLanguageSwitch {
   }
 
   /**
-   * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
+   * Whether the component is rendered with uppercased text and fix widths or without any text transformation and fluid widths
    */
   @Prop() type: SwitchType = 'language';
 

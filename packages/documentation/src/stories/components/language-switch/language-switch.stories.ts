@@ -20,38 +20,6 @@ const meta: MetaComponent<HTMLPostLanguageSwitchElement> = {
     caption: 'Change the language',
     description: 'The currently selected language is English.',
   },
-  argTypes: {
-    variant: {
-      description: 'View variant of the language switch.',
-      table: {
-        category: 'content',
-      },
-    },
-    type: {
-      description: 'View type of the language switch.',
-      table: {
-        category: 'content',
-      },
-    },
-    caption: {
-      description: 'Caption of the language switch.',
-      table: {
-        category: 'content',
-        type: {
-          summary: 'string',
-        },
-      },
-    },
-    description: {
-      description: 'Description of the language switch.',
-      table: {
-        category: 'content',
-        type: {
-          summary: 'string',
-        },
-      },
-    },
-  },
 };
 
 export default meta;

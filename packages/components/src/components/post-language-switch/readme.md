@@ -5,12 +5,12 @@
 
 ## Properties
 
-| Property      | Attribute     | Description                                                                                                                                                | Type                     | Default      |
-| ------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | ------------ |
-| `caption`     | `caption`     | A title for the list of language options                                                                                                                   | `string`                 | `undefined`  |
-| `description` | `description` | A descriptive text for the list of language options                                                                                                        | `string`                 | `undefined`  |
-| `type`        | `type`        | Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header) | `"language" \| "region"` | `'language'` |
-| `variant`     | `variant`     | Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header) | `"list" \| "menu"`       | `'list'`     |
+| Property      | Attribute     | Description                                                                                                               | Type                     | Default      |
+| ------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------ | ------------ |
+| `caption`     | `caption`     | A title for the list of language options                                                                                  | `string`                 | `undefined`  |
+| `description` | `description` | A descriptive text for the list of language options                                                                       | `string`                 | `undefined`  |
+| `type`        | `type`        | Whether the component is rendered with uppercased text and fix widths or without any text transformation and fluid widths | `"language" \| "region"` | `'language'` |
+| `variant`     | `variant`     | Whether the component is rendered as a list or a menu                                                                     | `"list" \| "menu"`       | `'list'`     |
 
 
 ## Dependencies

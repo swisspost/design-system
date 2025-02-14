@@ -52,12 +52,12 @@ export class PostLanguageOption {
   }
 
   /**
-   * The variant of the post-language-switch parent (dynamically set by the parent)
+   * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
    */
   @Prop() variant?: SwitchVariant | null;
 
   /**
-   * The type of the post-language-switch parent (dynamically set by the parent)
+   * To communicate the type prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
    */
   @Prop() type?: SwitchType | null;
 
