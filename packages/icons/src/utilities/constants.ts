@@ -30,6 +30,7 @@ export const SOURCE_REPORT: SourceReport = {
 export const MERGED_REPORT: MergedReport = {
   icons: [],
   stats: {
+    set: {},
     sources: 0,
     errored: 0,
     noSVG: 0,

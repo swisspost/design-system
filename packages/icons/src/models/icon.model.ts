@@ -66,6 +66,7 @@ export interface MergedIcon {
     ext: string;
   };
   stats: {
+    set: string;
     sources: SourceIcon[];
     errored: number[];
     noSVG: number[];
@@ -79,17 +80,18 @@ export interface MergedIcon {
   modifiedAt: Date;
 }
 
-export interface MinimalSourceIcon {
+export interface ReportSourceIcon {
   id: number;
   name: string;
 }
 
-export interface MinimalIcon {
+export interface ReportIcon {
   id: number;
   name: string;
   keys: string[];
   stats: {
-    sources: MinimalSourceIcon[];
+    sources: ReportSourceIcon[];
+    set: string;
     errored: number[];
     noSVG: number[];
     wrongViewBox: number[];
@@ -122,6 +124,7 @@ export interface SourceReport {
 export interface MergedReport {
   icons: MergedIcon[];
   stats: {
+    set: Record<string, IconSetStats>;
     sources: number;
     errored: number;
     noSVG: number;
@@ -135,9 +138,15 @@ export interface MergedReport {
   version: string;
 }
 
-export interface MinimalReport {
-  icons: MinimalIcon[];
+export interface IconSetStats {
+  sources: number;
+  outputs: number;
+}
+
+export interface Report {
+  icons: ReportIcon[];
   stats: {
+    set: Record<string, IconSetStats>;
     sources: number;
     errored: number;
     noSVG: number;

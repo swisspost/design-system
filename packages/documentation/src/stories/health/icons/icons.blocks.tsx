@@ -1,16 +1,20 @@
 import type {
-  MinimalReport,
-  MinimalIcon,
-  MinimalSourceIcon,
+  Report,
+  ReportIcon,
+  ReportSourceIcon,
+  IconSetStats,
 } from '@swisspost/design-system-icons/src/models/icon.model';
 import React from 'react';
 import reportData from '@swisspost/design-system-icons/public/report.min.json';
 
-const report = reportData as unknown as MinimalReport;
+const report: Report = {
+  ...reportData,
+  created: new Date(reportData.created),
+};
 
 interface SearchProps {
-  filter?: (icon: MinimalIcon) => boolean;
-  mapper: (icon: MinimalIcon, index?: number) => JSX.Element | JSX.Element[];
+  filter?: (icon: ReportIcon) => boolean;
+  mapper: (icon: ReportIcon, index?: number) => JSX.Element | JSX.Element[];
 }
 
 type StatsKey = 'errored' | 'noSVG' | 'wrongViewBox' | 'duplicates';
@@ -43,8 +47,8 @@ function getHeader({
   );
 }
 
-function mapper(icon: MinimalIcon) {
-  const sources = icon.stats.sources.map((icon: MinimalSourceIcon) => (
+function mapper(icon: ReportIcon) {
+  const sources = icon.stats.sources.map((icon: ReportSourceIcon) => (
     <code key={icon.id}>{icon.name}</code>
   ));
   return sources.length > 1 ? <div key={icon.id}>{sources}</div> : sources;
@@ -57,8 +61,8 @@ class Search extends React.Component<SearchProps> {
     results: report.icons,
   };
 
-  filter: (icon: MinimalIcon) => boolean = () => true;
-  mapper: (icon: MinimalIcon) => JSX.Element | JSX.Element[];
+  filter: (icon: ReportIcon) => boolean = () => true;
+  mapper: (icon: ReportIcon) => JSX.Element | JSX.Element[];
 
   constructor(props: SearchProps) {
     super(props);
@@ -81,11 +85,11 @@ class Search extends React.Component<SearchProps> {
     this.search('');
   }
 
-  searchFilter(icon: MinimalIcon) {
+  searchFilter(icon: ReportIcon) {
     if (this.form.query === '') return true;
 
     return `${icon.name}, ${icon.keys.join(', ')}, ${icon.stats.sources
-      .map((sourceIcon: MinimalSourceIcon) => sourceIcon.name)
+      .map((sourceIcon: ReportSourceIcon) => sourceIcon.name)
       .join(', ')}`.includes(this.form.query);
   }
 
@@ -124,7 +128,7 @@ class Search extends React.Component<SearchProps> {
           {this.form.results
             .filter(this.searchFilter)
             .filter(this.filter)
-            .map((icon: MinimalIcon, i: number) => (
+            .map((icon: ReportIcon, i: number) => (
               <div key={`${icon.id}-${i}`}>{this.mapper(icon)}</div>
             ))}
         </div>
@@ -152,11 +156,11 @@ class ErrorInSource extends React.Component<ErrorInSourceProps> {
     this.header = this.getHeader({ title: this.title, errors: this.errors });
   }
 
-  filter(icon: MinimalIcon) {
+  filter(icon: ReportIcon) {
     return (icon.stats[this.statsKey as keyof typeof icon.stats] as number[]).length > 0;
   }
 
-  mapper(icon: MinimalIcon) {
+  mapper(icon: ReportIcon) {
     return (
       <details>
         <summary>
@@ -165,7 +169,7 @@ class ErrorInSource extends React.Component<ErrorInSourceProps> {
         <ul>
           {(icon.stats[this.statsKey as keyof typeof icon.stats] as number[]).map((id: number) => {
             const source = icon.stats.sources.find(
-              (sourceIcon: MinimalSourceIcon) => sourceIcon.id === id,
+              (sourceIcon: ReportSourceIcon) => sourceIcon.id === id,
             );
 
             return (
@@ -222,12 +226,40 @@ export const StatusBlock: React.FC = () => {
           <div className="status-container">
             <h2 className="status-title">Source Files</h2>
             <div className="status-count">{report.stats.sources}</div>
+            <div className="status-insights">
+              {Object.entries(report.stats.set).map(
+                ([key, value]: [key: string, value: IconSetStats], i) => (
+                  <div key={`${key}-count-${i}`}>
+                    <code>{key}</code>: {value.sources}
+                  </div>
+                ),
+              )}
+            </div>
+            <div className="status-insights">&nbsp;</div>
           </div>
         </div>
         <div className="col-12 col-md-6">
           <div className="status-container">
             <h2 className="status-title">Output files</h2>
             <div className="status-count">{report.icons.length}</div>
+            <div className="status-insights">
+              {Object.entries(report.stats.set).map(
+                ([key, value]: [key: string, value: IconSetStats], i) => (
+                  <div key={`${key}-count-${i}`}>
+                    <code>{key}</code>: {value.outputs}
+                  </div>
+                ),
+              )}
+            </div>
+            <div className="status-insights">
+              <div>
+                Successful: <span className="status-success">{report.stats.success}</span>
+              </div>
+              <div>
+                With issues:{' '}
+                <span className="status-danger">{report.icons.length - report.stats.success}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -342,29 +374,31 @@ export const WrongAmountOfSourcesIcons: React.FC = () => {
     errors,
   });
 
+  function mapper(icon: ReportIcon) {
+    return (
+      <details>
+        <summary>
+          <code>{icon.name}</code>
+        </summary>
+        <ul>
+          {icon.stats.sources.map((sourceIcon: ReportSourceIcon) => (
+            <li key={sourceIcon.id}>
+              <code>{sourceIcon.name}</code>
+            </li>
+          ))}
+        </ul>
+      </details>
+    );
+  }
+
   return (
     <div>
       {errors ? (
         <details>
           <summary>{header}</summary>
           <Search
-            filter={(icon: MinimalIcon) => !icon.stats.hasAllSources}
-            mapper={(icon: MinimalIcon) => {
-              return (
-                <details>
-                  <summary>
-                    <code>{icon.name}</code>
-                  </summary>
-                  <ul>
-                    {icon.stats.sources.map((sourceIcon: MinimalSourceIcon) => (
-                      <li key={sourceIcon.id}>
-                        <code>{sourceIcon.name}</code>
-                      </li>
-                    ))}
-                  </ul>
-                </details>
-              );
-            }}
+            filter={(icon: ReportIcon) => !icon.stats.hasAllSources}
+            mapper={mapper.bind(this)}
           ></Search>
         </details>
       ) : (
@@ -387,7 +421,7 @@ export const NoKeywords: React.FC = () => {
         <details>
           <summary>{header}</summary>
           <Search
-            filter={(icon: MinimalIcon) => !icon.stats.hasKeywords}
+            filter={(icon: ReportIcon) => !icon.stats.hasKeywords}
             mapper={mapper.bind(this)}
           ></Search>
         </details>
@@ -398,7 +432,7 @@ export const NoKeywords: React.FC = () => {
   );
 };
 
-const KeywordsInspectorDetail: React.FC<{ icon: MinimalIcon }> = ({ icon }) => {
+const KeywordsInspectorDetail: React.FC<{ icon: ReportIcon }> = ({ icon }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
@@ -447,14 +481,14 @@ const KeywordsInspectorDetail: React.FC<{ icon: MinimalIcon }> = ({ icon }) => {
 };
 
 export const KeywordsInspector: React.FC = () => {
+  function mapper(icon: ReportIcon, i?: number) {
+    return <KeywordsInspectorDetail key={`${icon.name}-${i}`} icon={icon} />;
+  }
+
   return (
     <details>
       <summary>Keywords inspector</summary>
-      <Search
-        mapper={(icon: MinimalIcon, i?: number) => (
-          <KeywordsInspectorDetail key={`${icon.name}-${i}`} icon={icon} />
-        )}
-      ></Search>
+      <Search mapper={mapper.bind(this)}></Search>
     </details>
   );
 };
