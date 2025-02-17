@@ -1,6 +1,6 @@
 import React from 'react';
 import report from '@swisspost/design-system-icons/public/report.min.json';
-import { MinimalIcon } from '@swisspost/design-system-icons/src/models/icon.model';
+import { ReportIcon } from '@swisspost/design-system-icons/src/models/icon.model';
 import './search-icons.styles.scss';
 
 interface Icon {
@@ -16,14 +16,16 @@ interface IconSets {
 }
 
 const ICON_SETS: IconSets = report.icons.reduce(
-  (sets: IconSets, icon: MinimalIcon) => {
-    let typeOfSet = 'post';
+  (sets: IconSets, icon: ReportIcon) => {
+    let typeOfSet = icon.stats.set;
     const basename = icon.name.replace(/.svg$/, '');
 
-    if (basename.endsWith('-solid')) {
-      typeOfSet = 'uiSolid';
-    } else if (!/^(\d){4}$/.test(basename)) {
-      typeOfSet = 'uiLight';
+    if (typeOfSet === 'ui') {
+      if (basename.endsWith('-solid')) {
+        typeOfSet += 'Solid';
+      } else {
+        typeOfSet += 'Light';
+      }
     }
 
     sets[typeOfSet as keyof IconSets].push({

@@ -1,12 +1,13 @@
 import type {
   SourceIcon,
   MergedIcon,
-  MinimalIcon,
+  ReportIcon,
   IconSetGroupsItem,
   IconSetGroups,
   SourceReport,
   MergedReport,
-  MinimalReport,
+  Report,
+  IconSetStats,
 } from '../../models/icon.model';
 import fs from 'fs';
 import path from 'path';
@@ -36,6 +37,8 @@ export function writeReport(
       const noSVG = sourcesIds.filter((id: number) => noSVGIds.includes(id));
       const wrongViewBox = sourcesIds.filter((id: number) => wrongViewBoxIds.includes(id));
       const duplicates = sourcesIds.filter((id: number) => duplicateIds.includes(id));
+      const hasAllSources = items.length === iconSet.options.expectedSourcesPerIcon;
+      const hasKeywords = keywords.length > 0;
 
       return {
         uuid: crypto.randomUUID(),
@@ -51,14 +54,18 @@ export function writeReport(
           ext: '.svg',
         },
         stats: {
+          set: iconSet.name,
           sources,
           errored,
           noSVG,
           wrongViewBox,
           duplicates,
-          hasAllSources: items.length === iconSet.options.expectedSourcesPerIcon,
-          hasKeywords: keywords.length > 0,
-          success: [...errored, ...noSVG, ...wrongViewBox, ...duplicates].length === 0,
+          hasAllSources,
+          hasKeywords,
+          success:
+            [...errored, ...noSVG, ...wrongViewBox, ...duplicates].length === 0 &&
+            hasAllSources &&
+            hasKeywords,
         },
         createdAt: getIconCreatedAt(items),
         modifiedAt: getIconModifiedAt(items),
@@ -72,6 +79,7 @@ export function writeReport(
   }, getBaseMergedReport());
 
   mergedReport.icons.sort(sortIcons);
+  mergedReport.stats.set = getReportSetStats();
   mergedReport.stats.sources = getReportStats('sources');
   mergedReport.stats.errored = getReportStats('errored');
   mergedReport.stats.noSVG = getReportStats('noSVG');
@@ -87,7 +95,7 @@ export function writeReport(
     path.join(reportOutputDirectory, 'report.json'),
     JSON.stringify(mergedReport, null, 2),
   );
-  writeMinimalReport(reportOutputDirectory, mergedReport);
+  writeMinReport(reportOutputDirectory, mergedReport);
 
   return mergedReport;
 
@@ -119,6 +127,15 @@ export function writeReport(
       .sort((a: Date, b: Date) => (a > b ? -1 : 1))[0];
   }
 
+  function getReportSetStats() {
+    return mergedReport.icons.reduce((acc: { [key: string]: IconSetStats }, icon: MergedIcon) => {
+      acc[icon.stats.set] = acc[icon.stats.set] ?? ({ sources: 0, outputs: 0 } as IconSetStats);
+      acc[icon.stats.set].sources += icon.stats.sources.length;
+      acc[icon.stats.set].outputs++;
+      return acc;
+    }, {});
+  }
+
   function getReportStats(
     key: 'sources' | 'errored' | 'noSVG' | 'wrongViewBox' | 'duplicates',
   ): number {
@@ -126,9 +143,9 @@ export function writeReport(
   }
 }
 
-function writeMinimalReport(reportOutputDirectory: string, report: MergedReport) {
-  const minimalReport: MinimalReport = {
-    icons: mapMinimalIcons(report.icons),
+function writeMinReport(reportOutputDirectory: string, report: MergedReport) {
+  const minimalReport: Report = {
+    icons: mapReportIcons(report.icons),
     stats: report.stats,
     created: report.created,
     version: report.version,
@@ -139,7 +156,7 @@ function writeMinimalReport(reportOutputDirectory: string, report: MergedReport)
     JSON.stringify(minimalReport),
   );
 
-  function mapMinimalIcons(icons: MergedIcon[]): MinimalIcon[] {
+  function mapReportIcons(icons: MergedIcon[]): ReportIcon[] {
     return icons.map((icon: MergedIcon) => ({
       id: icon.id,
       name: icon.file.basename,

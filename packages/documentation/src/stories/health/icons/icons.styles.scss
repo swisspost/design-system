@@ -24,6 +24,12 @@ section {
       font-size: 3rem;
       font-weight: 900;
     }
+
+    .status-insights {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.85rem;
+    }
   }
 
   .status-danger {
