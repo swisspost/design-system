@@ -3,7 +3,7 @@ import { checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '@
 import { version } from '@root/package.json';
 
 type UrlDefinition = {
-  url: URL;
+  url: URL | null;
   definesDomain: boolean;
   definesSlug: boolean;
 };
@@ -31,6 +31,8 @@ type Animation = (typeof ANIMATION_NAMES)[number];
   shadow: true,
 })
 export class PostIcon {
+  private readonly isSSR: boolean = typeof window === 'undefined';
+
   @Element() host: HTMLPostIconElement;
 
   /**
@@ -113,6 +115,12 @@ export class PostIcon {
 
   // Construct the icon url from different possible sources
   private getUrl() {
+    const file = `${this.name}.svg`;
+
+    if (this.isSSR) {
+      return `${CDN_URL}/${file}`;
+    }
+
     // the first definition object which defines a domain, will be used to set the domain of the file url
     // the first definition object which defines a slug, will be used to set the slug of the file url
     const urlDefinitions = [
@@ -130,14 +138,13 @@ export class PostIcon {
     const origin = urlDefinitions.find(d => d.definesDomain)?.url?.origin ?? window.location.origin;
     // in case no other definition defines a slug, the cdn url is used as a fallback
     const slug = urlDefinitions.find(d => d.definesSlug)?.url?.pathname;
-    const file = `${this.name}.svg`;
 
     let url: string;
 
     if (slug) {
-      url = new URL(`${origin}${slug}/${file}`).toString();
+      url = `${origin}${slug}/${file}`;
     } else {
-      url = new URL(`${CDN_URL}/${file}`).toString();
+      url = `${CDN_URL}/${file}`;
     }
 
     return url;
