@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': major
 ---
 
-Removed some z-index scss variables.
+Removed z-index scss variables that were no longer necessary as they had been replaced with popover elements.
