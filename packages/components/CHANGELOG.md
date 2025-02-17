@@ -1,5 +1,14 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.19
+
+### Patch Changes
+
+- Fixed focus order on desktop for `post-megadropdown` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4379](https://github.com/swisspost/design-system/pull/4379))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.19
+  - @swisspost/design-system-icons@9.0.0-next.19
+
 ## 9.0.0-next.18
 
 ### Minor Changes
