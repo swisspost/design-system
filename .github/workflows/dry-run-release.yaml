@@ -2,9 +2,9 @@ name: Dry Run Publish
 
 on:
   pull_request:
-    branches:
-      - main
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize, edited, reopened]
+    paths:
+      - ".changeset/**"
 
 jobs:
   dry-run-publish:
