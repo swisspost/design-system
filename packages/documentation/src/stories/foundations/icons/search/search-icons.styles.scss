@@ -55,9 +55,15 @@ tokens.$default-map: utilities.$post-spacing;
     }
 
     .icon {
-      padding: tokens.get('utility-gap-16') 0.5rem 0.5rem;
       border: 1px solid post.$gray-20;
       border-radius: post.$border-radius;
+
+      > button {
+        padding: tokens.get('utility-gap-16') 0.5rem 0.5rem;
+        width: 100%;
+        background-color: transparent;
+        border: none;
+      }
 
       .gfx {
         display: flex;
@@ -67,6 +73,7 @@ tokens.$default-map: utilities.$post-spacing;
       }
 
       .name {
+        display: block;
         margin-block-start: tokens.get('utility-gap-16');
         font-size: 0.8rem;
         font-weight: bold;
@@ -82,6 +89,48 @@ tokens.$default-map: utilities.$post-spacing;
 
     ul {
       @include post.list-inline();
+    }
+  }
+}
+
+.icon-dialog {
+  min-height: 100vh;
+  max-width: 240px;
+  margin: 0 0 0 auto;
+  border: 0;
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(0) !important;
+  }
+
+  .dialog-body {
+    padding-top: 2rem;
+  }
+
+  .resizer-container {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 2rem;
+  }
+
+  dl {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 14px;
+
+    dt,
+    dd {
+      margin-bottom: 0.5rem;
+    }
+
+    dt {
+      flex: 0 0 40%;
+      font-weight: 700;
+    }
+
+    dd {
+      flex: 0 0 60%;
     }
   }
 }

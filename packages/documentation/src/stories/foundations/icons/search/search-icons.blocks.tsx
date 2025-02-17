@@ -4,6 +4,7 @@ import { IIcon } from '@swisspost/design-system-icons/src/models/icon.model';
 import './search-icons.styles.scss';
 
 interface IIconSetIcon {
+  set: string;
   name: string;
   keywords: string;
   searchKeywords: string[];
@@ -26,6 +27,7 @@ const ICON_SETS: IIconSets = report.icons.reduce(
     }
 
     sets[typeOfSet as keyof IIconSets].push({
+      set: typeOfSet,
       name: icon.file.basename,
       keywords: icon.meta.keywords.join(', '),
       searchKeywords: [icon.file.basename, ...icon.meta.keywords].map(word =>
@@ -66,6 +68,8 @@ export class Search extends React.Component {
       ],
     },
   };
+
+  activeIcon: IIconSetIcon | null = null;
 
   results = {
     icons: ICON_SETS.post,
@@ -125,6 +129,47 @@ export class Search extends React.Component {
         });
       }
     }
+  }
+
+  openIconDetails(icon: IIconSetIcon) {
+    this.activeIcon = icon;
+    this.setState(this.activeIcon);
+    (document.querySelector('#icon-dialog') as HTMLDialogElement).showModal();
+  }
+
+  iconDetailPanel() {
+    return (
+      <>
+        <dialog id="icon-dialog" className="palette-default icon-dialog">
+          <form method="dialog" className="dialog-grid">
+            <div className="dialog-body">
+              <div className="resizer-container">
+                <div className="resizer">
+                  <post-icon name={this.activeIcon?.name}></post-icon>
+                </div>
+              </div>
+              <dl>
+                <dt>Set</dt>
+                <dd className="text-capitalize">{this.activeIcon?.set}</dd>
+                <dt>Name</dt>
+                <dd>{this.activeIcon?.name}</dd>
+                <dt>Download</dt>
+                <dd>
+                  <a href={`/post-icons/${this.activeIcon?.name}.svg`}>
+                    {this.activeIcon?.name}.svg
+                  </a>
+                </dd>
+                <dt>Keywords</dt>
+                <dd>{this.activeIcon?.keywords}</dd>
+              </dl>
+            </div>
+            <button className="btn btn-close">
+              <span className="visually-hidden">Close</span>
+            </button>
+          </form>
+        </dialog>
+      </>
+    );
   }
 
   searchForm() {
@@ -204,11 +249,13 @@ export class Search extends React.Component {
         {this.results.icons.slice(pageStartIndex, pageEndIndex).map((icon, i) => {
           return (
             <li className="icon" key={`icon-${icon.name}-${i}`}>
-              <div className="gfx">
-                <post-icon name={icon.name} />
-              </div>
-              <div className="name">{icon.name}</div>
-              <div className="visually-hidden">{icon.keywords}</div>
+              <button onClick={() => this.openIconDetails(icon)}>
+                <span className="gfx">
+                  <post-icon name={icon.name} />
+                </span>
+                <span className="name">{icon.name}</span>
+                <span className="visually-hidden">{icon.keywords}</span>
+              </button>
             </li>
           );
         })}
@@ -275,6 +322,7 @@ export class Search extends React.Component {
           {this.paging()}
           {this.resultsList()}
           {this.paging()}
+          {this.iconDetailPanel()}
         </div>
       </div>
     );
