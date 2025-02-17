@@ -13,37 +13,24 @@ type InteractiveElement = HTMLAnchorElement;
 export class PostLinkarea {
   @Element() host: HTMLPostLinkareaElement;
 
-  private delegateClick() {
-    // get any child with a data-link attribute and check that it is interactive
-    const elementWithDataLink = this.host.querySelector('[data-link]');
-    if (!this.isInteractive(elementWithDataLink)) {
-      throw new Error(
-        `The \`data-link\` attribute must be used on a interactive element inside the \`post-linkarea\` component. Possible elements are: ${INTERACTIVE_ELEMENTS}`,
-      );
-    }
-
-    // if no element with a data-link attribute was found then try and find the first interactive element
-    const interactiveElement: InteractiveElement = elementWithDataLink
-      ? elementWithDataLink
-      : this.host.querySelector(INTERACTIVE_ELEMENTS_SELECTOR);
+  private dispatchClick({ ctrlKey, shiftKey, altKey, metaKey }: MouseEvent) {
+    const interactiveElement: InteractiveElement =
+      this.host.querySelector(`[data-link]${INTERACTIVE_ELEMENTS_SELECTOR}`) ??
+      this.host.querySelector(INTERACTIVE_ELEMENTS_SELECTOR);
 
     if (!interactiveElement) {
       throw new Error(
-        `The \`post-linkarea\` component must contain an interactive element. Possible elements are: ${INTERACTIVE_ELEMENTS}`,
+        `The \`post-linkarea\` component must contain an interactive element. Possible elements are: ${INTERACTIVE_ELEMENTS}.`,
       );
     }
 
-    // delegate the click to the interactive element
-    interactiveElement.click();
+    interactiveElement.dispatchEvent(
+      new MouseEvent('click', { ctrlKey, shiftKey, altKey, metaKey }),
+    );
   }
-
-  private isInteractive(element: Element): element is InteractiveElement | null {
-    return !element || element.matches(INTERACTIVE_ELEMENTS_SELECTOR);
-  }
-
   render() {
     return (
-      <Host data-version={version} onClick={() => this.delegateClick()} tabindex="0">
+      <Host data-version={version} onClick={e => this.dispatchClick(e)} tabindex="0">
         <slot></slot>
       </Host>
     );
