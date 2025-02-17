@@ -493,7 +493,8 @@ export class MigrationV89Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
-                    Some z-index scss variables have been removed
+                    The following z-index scss variables have been removed, as they were set on  
+                    elements that are now using popover which place them in the top layer.
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <ul>
