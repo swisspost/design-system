@@ -8,12 +8,12 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
 import { DEVICE_SIZE } from "./components/post-header/post-header";
-import { SwitchType, SwitchVariant } from "./components/post-language-switch/switch-variants";
+import { SwitchVariant } from "./components/post-language-switch/switch-variants";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { DEVICE_SIZE } from "./components/post-header/post-header";
-export { SwitchType, SwitchVariant } from "./components/post-language-switch/switch-variants";
+export { SwitchVariant } from "./components/post-language-switch/switch-variants";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
     interface PostAccordion {
@@ -249,10 +249,6 @@ export namespace Components {
          */
         "select": () => Promise<void>;
         /**
-          * To communicate the type prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
-         */
-        "type"?: SwitchType | null;
-        /**
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
         "url": string;
@@ -270,10 +266,6 @@ export namespace Components {
           * A descriptive text for the list of language options
          */
         "description": string;
-        /**
-          * Whether the component is rendered with uppercased text and fix widths or without any text transformation and fluid widths
-         */
-        "type": SwitchType;
         /**
           * Whether the component is rendered as a list or a menu
          */
@@ -1122,10 +1114,6 @@ declare namespace LocalJSX {
          */
         "onPostChange"?: (event: PostLanguageOptionCustomEvent<string>) => void;
         /**
-          * To communicate the type prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
-         */
-        "type"?: SwitchType | null;
-        /**
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
         "url"?: string;
@@ -1143,10 +1131,6 @@ declare namespace LocalJSX {
           * A descriptive text for the list of language options
          */
         "description"?: string;
-        /**
-          * Whether the component is rendered with uppercased text and fix widths or without any text transformation and fluid widths
-         */
-        "type"?: SwitchType;
         /**
           * Whether the component is rendered as a list or a menu
          */

@@ -14,34 +14,19 @@ tokens.$default-map: components.$post-button;
   > span {
     display: inline-flex;
     flex-shrink: 0;
-    padding-inline: 0.7rem;
-    height: 40px;
     align-items: center;
+    width: 40px;
+    height: 40px;
     justify-content: center;
     background-color: #050400;
-    color: #fff;
     border-radius: 2px;
+    color: #fff;
+    text-transform: uppercase;
   }
 }
 
 :host(:where([variant='list'])) {
   gap: 0.5rem;
-}
-
-:host(:where(:not([type]), [type='language'])) {
-  > span {
-    padding-inline: 0;
-    width: 40px;
-    text-transform: uppercase;
-  }
-
-  .post-language-switch-trigger {
-    text-transform: uppercase;
-  }
-
-  .post-language-switch-dropdown-container {
-    text-transform: uppercase;
-  }
 }
 
 .post-language-switch-dropdown-container {
@@ -55,6 +40,8 @@ tokens.$default-map: components.$post-button;
 
 .post-language-switch-trigger {
   cursor: pointer;
+  text-transform: uppercase;
+
   @include button-mx.reset-button;
   @include header-mx.subsidiary-header-interactive;
 

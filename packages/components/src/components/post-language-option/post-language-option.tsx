@@ -11,7 +11,7 @@ import {
 } from '@stencil/core';
 import { checkEmptyOrType, checkType } from '@/utils';
 import { version } from '@root/package.json';
-import { SwitchVariant, SwitchType } from '../post-language-switch/switch-variants';
+import { SwitchVariant } from '../post-language-switch/switch-variants';
 
 /**
  * @slot default - Slot for placing the content inside the anchor or button.
@@ -55,11 +55,6 @@ export class PostLanguageOption {
    * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
    */
   @Prop() variant?: SwitchVariant | null;
-
-  /**
-   * To communicate the type prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
-   */
-  @Prop() type?: SwitchType | null;
 
   /**
    * The full name of the language. For example, "Deutsch".
