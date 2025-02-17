@@ -37,8 +37,8 @@ export class PostLinkarea {
     interactiveElement.click();
   }
 
-  private isInteractive(element: Element): element is InteractiveElement {
-    return element && !element.matches(INTERACTIVE_ELEMENTS_SELECTOR);
+  private isInteractive(element: Element): element is InteractiveElement | null {
+    return !element || element.matches(INTERACTIVE_ELEMENTS_SELECTOR);
   }
 
   render() {
