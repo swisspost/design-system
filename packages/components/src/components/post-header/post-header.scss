@@ -16,7 +16,6 @@
   --local-header-min-height: 56px;
   --header-height: calc(var(--global-header-height) + var(--local-header-height));
 
-  z-index: 1020;
   position: relative;
 
   @include media.min(lg) {
