@@ -99,7 +99,7 @@ export class PostPopovercontainer {
    * Sets CSS custom properties for dynamic styling of safe area.
    * @param event MouseEvent with cursor position
    */
-  private mouseTrackingHandler = (event: MouseEvent) => {
+  private mouseTrackingHandler(event: MouseEvent) {
     if (!this.safeSpace || !this.host.matches(':where(:popover-open, .popover-open)')) return;
 
     this.host.style.setProperty('--safe-space-cursor-x', `${event.clientX}px`);
