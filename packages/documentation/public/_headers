@@ -7,5 +7,5 @@
 /assets/*.css
   Access-Control-Allow-Origin: https://cdpn.io
 
-/post-icons/*.svg
+post-icons/*.{svg,png,jpg,jpeg,gif}
   Access-Control-Allow-Origin: https://cdpn.io
