@@ -41,7 +41,7 @@ export class PostLanguageSwitch {
   }
 
   /**
-   * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
+   * Whether the component is rendered as a list or a menu
    */
   @Prop() variant: SwitchVariant = 'list';
 
@@ -112,7 +112,7 @@ export class PostLanguageSwitch {
     return (
       <Host data-version={version} role="list" aria-label={this.caption}>
         <span aria-label={this.description} role="listitem">
-          {this.activeLang.toUpperCase()}
+          {this.activeLang}
         </span>
         <slot></slot>
       </Host>
@@ -124,7 +124,7 @@ export class PostLanguageSwitch {
       <Host data-version={version}>
         <post-menu-trigger for={this.menuId}>
           <button class="post-language-switch-trigger" aria-label={this.description}>
-            {this.activeLang.toUpperCase()}
+            {this.activeLang}
             <post-icon aria-hidden="true" name="chevrondown"></post-icon>
           </button>
         </post-menu-trigger>
