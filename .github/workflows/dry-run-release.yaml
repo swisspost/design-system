@@ -1,0 +1,55 @@
+name: Dry Run Publish on Release Branches
+
+on:
+  pull_request:
+    branches:
+      - 'release/v*'
+
+jobs:
+  dry-run-publish:
+    name: Dry Run Publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js & pnpm
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Check for Changeset Updates
+        id: check_changes
+        run: |
+          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q '.changeset/'; then
+            echo "changeset_modified=true" >> $GITHUB_ENV
+          else
+            echo "changeset_modified=false" >> $GITHUB_ENV
+          fi
+
+      - name: Dry Run Publish
+        if: env.changeset_modified == 'true'
+        run: pnpm -r publish --dry-run
+
+      - name: Capture Output
+        id: dry-run-output
+        run: |
+          pnpm -r publish --dry-run > dry-run.log 2>&1 || true
+          echo "LOG_CONTENT<<EOF" >> $GITHUB_ENV
+          cat dry-run.log >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Upload Dry Run Log
+        uses: actions/upload-artifact@v4
+        with:
+          name: dry-run-publish-log
+          path: dry-run.log
+
+      - name: Notify on Failure
+        if: failure()
+        run: |
+          echo "Dry Run Publish failed. Check the logs below:"
+          cat dry-run.log
+          exit 1
