@@ -117,7 +117,7 @@ export class PostIcon {
   private getUrl() {
     const file = `${this.name}.svg`;
 
-    if (!this.isSSR) {
+    if (this.isSSR) {
       if (this.base) {
         return `/${this.base}/${file}`.replaceAll(/\/\//g, '/');
       } else {
