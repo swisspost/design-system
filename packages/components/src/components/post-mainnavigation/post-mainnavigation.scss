@@ -157,7 +157,6 @@ post-mainnavigation {
 
         &::after {
           transition: transform animation.$transition-base-timing;
-
         }
 
         &.selected::after,
