@@ -134,40 +134,49 @@ export class Search extends React.Component {
   openIconDetails(icon: IIconSetIcon) {
     this.activeIcon = icon;
     this.setState(this.activeIcon);
-    (document.querySelector('#icon-dialog') as HTMLDialogElement).showModal();
+    const popover = document.querySelector('#icon-panel') as HTMLElement;
+    popover.showPopover();
+  }
+
+  handleScroll(e: ToggleEvent) {
+    if (e.newState === 'open') {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
   }
 
   iconDetailPanel() {
+    const popover = document.querySelector('#icon-panel') as HTMLElement;
+    popover?.removeEventListener('toggle', this.handleScroll);
+    popover?.addEventListener('toggle', this.handleScroll);
+
     return (
       <>
-        <dialog id="icon-dialog" className="palette-default icon-dialog">
-          <form method="dialog" className="dialog-grid">
-            <div className="dialog-body">
-              <div className="resizer-container">
-                <div className="resizer">
-                  <post-icon name={this.activeIcon?.name}></post-icon>
-                </div>
+        <div id="icon-panel" popover="auto" className="palette-default icon-panel">
+          <div>
+            <div className="resizer-container">
+              <div className="resizer">
+                {this.activeIcon && <post-icon name={this.activeIcon?.name}></post-icon>}
               </div>
-              <dl>
-                <dt>Set</dt>
-                <dd className="text-capitalize">{this.activeIcon?.set}</dd>
-                <dt>Name</dt>
-                <dd>{this.activeIcon?.name}</dd>
-                <dt>Download</dt>
-                <dd>
-                  <a href={`/post-icons/${this.activeIcon?.name}.svg`}>
-                    {this.activeIcon?.name}.svg
-                  </a>
-                </dd>
-                <dt>Keywords</dt>
-                <dd>{this.activeIcon?.keywords}</dd>
-              </dl>
             </div>
-            <button className="btn btn-close">
-              <span className="visually-hidden">Close</span>
-            </button>
-          </form>
-        </dialog>
+            <dl>
+              <dt>Set</dt>
+              <dd className="text-capitalize">{this.activeIcon?.set}</dd>
+              <dt>Name</dt>
+              <dd>{this.activeIcon?.name}</dd>
+              <dt>Download</dt>
+              <dd>
+                <a href={`/post-icons/${this.activeIcon?.name}.svg`}>{this.activeIcon?.name}.svg</a>
+              </dd>
+              <dt>Keywords</dt>
+              <dd>{this.activeIcon?.keywords}</dd>
+            </dl>
+          </div>
+          <button className="btn btn-close" onClick={() => popover.hidePopover()}>
+            <span className="visually-hidden">Close</span>
+          </button>
+        </div>
       </>
     );
   }
