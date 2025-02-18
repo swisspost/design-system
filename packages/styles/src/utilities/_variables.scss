@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 @use '../tokens/utilities' as tokens;
 
 @use './functions' as *;
@@ -53,37 +55,37 @@ $utilities: (
     responsive: true,
     property: width,
     class: w,
-    values: $post-combined-sizes,
+    values: map.merge(from-tokens('spacing', 'gap'), $post-percentage-sizes),
   ),
   'height': (
     responsive: true,
     property: height,
     class: h,
-    values: $post-combined-sizes,
+    values: map.merge(from-tokens('spacing', 'gap'), $post-percentage-sizes),
   ),
   'max-width': (
     responsive: true,
     property: max-width,
     class: max-w,
-    values: $post-combined-sizes,
+    values: map.merge(from-tokens('spacing', 'gap'), $post-percentage-sizes),
   ),
   'max-height': (
     responsive: true,
     property: max-height,
     class: max-h,
-    values: $post-combined-sizes,
+    values: map.merge(from-tokens('spacing', 'gap'), $post-percentage-sizes),
   ),
   'min-width': (
     responsive: true,
     property: min-width,
     class: min-w,
-    values: $post-combined-sizes,
+    values: map.merge(from-tokens('spacing', 'gap'), $post-percentage-sizes),
   ),
   'min-height': (
     responsive: true,
     property: min-height,
     class: min-h,
-    values: $post-combined-sizes,
+    values: map.merge(from-tokens('spacing', 'gap'), $post-percentage-sizes),
   ),
   'viewport-width': (
     responsive: true,

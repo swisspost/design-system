@@ -7,8 +7,13 @@ import './sizing.styles.scss';
 import { camelToKebabCase } from '@/utils/naming';
 
 const sizes: Record<string, string> = parse(sizing);
-const percentageSizes = Object.keys(sizes.pcsizes);
-const pixelSizes = Object.keys(sizes.pxsizes);
+
+const pixelSizes = Object.keys(sizes.pxsizes)
+  .filter((key: string) => key.startsWith(`post-utility-gap-`) && !key.includes('-auto'))
+  .map((key: string) => key.replace(`post-utility-gap-`, ''));
+
+// Removed 'auto' from pixel sizes and moved it to the percentage sizes as it makes more sense
+const percentageSizes = [...Object.keys(sizes.pcsizes), 'auto'];
 
 const meta: MetaExtended = {
   render: renderSizing,
@@ -29,7 +34,7 @@ const meta: MetaExtended = {
     (story: StoryFn, context: StoryContext) => {
       const storyTemplate = html`
         <div class="sizing-example">
-          <div class="h-104">${story(context.args, context)}</div>
+          <div class="h-104" style="border: 1px solid #b4b3af">${story(context.args, context)}</div>
         </div>
       `;
       return storyTemplate;
