@@ -1,0 +1,15 @@
+@use '@swisspost/design-system-styles/tokens/utilities' as tokens;
+
+:export {
+  @each $key, $value in tokens.$post-border-widths {
+    width_#{$key}: #{$value};
+  }
+
+  @each $key, $value in tokens.$post-border-colors {
+    color_#{$key}: #{$value};
+  }
+
+  @each $key, $value in tokens.$post-border-radius {
+    rounded_#{$key}: #{$value};
+  }
+}
