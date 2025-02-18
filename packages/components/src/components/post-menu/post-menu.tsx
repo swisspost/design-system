@@ -72,14 +72,14 @@ export class PostMenu {
   
   componentDidLoad() {
     this.popoverRef.addEventListener('postToggle', (event: CustomEvent<boolean>) => {
-      eventGuard(
+      eventGuard.bind(this)(
         event,
+        { targetLocalName: 'post-popovercontainer' },
         () => {
           if (event.target !== this.popoverRef) return;
           this.isVisible = event.detail;
           this.toggleMenu.emit(this.isVisible);
-        },
-        { targetLocalName: 'post-popovercontainer' }
+        }
       );
     });
   }

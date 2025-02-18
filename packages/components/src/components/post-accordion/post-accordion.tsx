@@ -53,28 +53,28 @@ export class PostAccordion {
   collapseToggleHandler(event: CustomEvent<boolean>) {
     event.stopPropagation();
 
-    eventGuard(
+    eventGuard.bind(this)(
       event,
+      { targetLocalName: 'post-accordion-item', delegatorSelector: 'post-accordion' },
       () => {
         const toggledAccordionItem = event.target as HTMLPostAccordionItemElement;
         const isClosing = this.expandedItems.has(toggledAccordionItem);
-
+    
         if (isClosing) {
           this.expandedItems.delete(toggledAccordionItem);
         } else {
           this.expandedItems.add(toggledAccordionItem);
         }
-
+    
         if (this.multiple || isClosing) return;
-
+    
         // Close other open accordion items to ensure only one is open at a time
         Array.from(this.expandedItems.values())
           .filter(item => item !== toggledAccordionItem)
           .forEach(item => {
             item.toggle(false);
           });
-      },
-      { targetLocalName: 'post-accordion-item', delegatorSelector: 'post-accordion' }
+      }
     );
   }
 
