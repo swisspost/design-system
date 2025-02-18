@@ -1,10 +1,5 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
-import {
-  PostBanner,
-  PostTabHeader,
-  PostTabPanel,
-  PostTabs,
-} from '@swisspost/design-system-components-react';
+import { PostBanner } from '@swisspost/design-system-components-react';
 import * as ProductCardStories from './card-product.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 import ProductCardSyncHeights from './card-product.sample.js?raw';
@@ -51,14 +46,14 @@ For presenting a collection of products with comparable features, use cards with
 
 <Canvas of={ProductCardStories.Multipart} />
 
-<PostTabs>
-  <PostTabHeader panel="javascript">Vanilla JavaScript</PostTabHeader>
-  <PostTabPanel name="javascript">
+<post-tabs>
+  <post-tab-header panel="javascript">Vanilla JavaScript</post-tab-header>
+  <post-tab-panel name="javascript">
     <Source code={ProductCardSyncHeights} language="js"/>
-  </PostTabPanel>
+  </post-tab-panel>
 
-  <PostTabHeader panel="angular">Angular Implementation</PostTabHeader>
-  <PostTabPanel name="angular">
-    <Source code={ProductCardAngularSyncHeights} language="typescript"/>
-  </PostTabPanel>
-</PostTabs>
+<post-tab-header panel="angular">Angular Implementation</post-tab-header>
+<post-tab-panel name="angular">
+<Source code={ProductCardAngularSyncHeights} language="typescript"/>
+</post-tab-panel>
+</post-tabs>
