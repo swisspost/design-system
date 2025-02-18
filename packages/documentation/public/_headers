@@ -9,3 +9,15 @@
 
 /post-icons/*.svg
   Access-Control-Allow-Origin: https://cdpn.io
+
+/post-icons/*.png
+  Access-Control-Allow-Origin: https://cdpn.io
+
+/post-icons/*.jpg
+  Access-Control-Allow-Origin: https://cdpn.io
+
+/post-icons/*.jpeg
+  Access-Control-Allow-Origin: https://cdpn.io
+
+/post-icons/*.gif
+  Access-Control-Allow-Origin: https://cdpn.io
