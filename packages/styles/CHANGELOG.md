@@ -1,5 +1,19 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.18
+
+### Major Changes
+
+- Removed the `.card-group` class. (by [@leagrdv](https://github.com/leagrdv) with [#4577](https://github.com/swisspost/design-system/pull/4577))
+
+### Patch Changes
+
+- Updated styles for the header main navigation and mega dropdown elements. (by [@leagrdv](https://github.com/leagrdv) with [#4621](https://github.com/swisspost/design-system/pull/4621))
+
+- Updated styles of the card component. (by [@leagrdv](https://github.com/leagrdv) with [#4577](https://github.com/swisspost/design-system/pull/4577))
+
+- Fixed segmented button style in HCM. (by [@leagrdv](https://github.com/leagrdv) with [#4311](https://github.com/swisspost/design-system/pull/4311))
+
 ## 9.0.0-next.17
 
 ### Patch Changes
