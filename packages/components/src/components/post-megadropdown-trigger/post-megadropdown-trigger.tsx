@@ -28,6 +28,12 @@ export class PostMegadropdownTrigger {
   private slottedButton: HTMLButtonElement | null = null;
 
   /**
+   * Tracks whether this trigger's dropdown was expanded before a state change.
+   * Used to determine if this trigger should handle focus when its dropdown closes.
+   */
+  private wasExpanded: boolean = false;
+
+  /**
    * Watch for changes to the `for` property to validate its type and ensure it is a string.
    * @param forValue - The new value of the `for` property.
    */
@@ -50,6 +56,16 @@ export class PostMegadropdownTrigger {
       console.warn(`No post-megadropdown found with ID: ${this.for}`);
     }
   }
+
+  private handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      this.handleToggle();
+      if (this.megadropdown && !this.ariaExpanded) {
+        setTimeout(() => this.megadropdown.focusFirst(), 100);
+      }
+    }
+  };
 
   componentDidLoad() {
     this.validateControlFor();
@@ -76,6 +92,7 @@ export class PostMegadropdownTrigger {
       this.slottedButton.addEventListener('click', () => {
         this.handleToggle();
       });
+      this.slottedButton.addEventListener('keydown', this.handleKeyDown);
     } else {
       console.warn('No button found within post-megadropdown-trigger');
     }
