@@ -33,8 +33,8 @@ const meta: MetaComponent = {
         "The email address of the currently logged on user, used to display the user's profile picture." +
         '<p class="alert alert-info alert-sm">By default, a fallback image is displayed.</p>' +
         '<div class="mt-3 alert alert-warning alert-sm">' +
-        '<div class="alert-heading">The required input value has recently changed</div>' +
-        '<p>Due to the technical conversion of the intranet backend from Sitecore to Sharepoint, the value required for the property to display a user image has changed. Previously the user ID was required, now this property expects the user-specific e-mail address.</p>' +
+        '<div class="alert-heading">Temporary removal of user specific profile image</div>' +
+        '<p>Due to the technical conversion of the intranet backend from Sitecore to Sharepoint, this property has been changed to use the user-specific email address instead of a user ID to display the user image. However, the image would only load if the user had already authenticated against SharePoint in the browser. To address this issue, the logic for individual user profile images has been temporarily removed and thus the `currentUserId` is not currently used.</p>' +
         '</div>',
       control: 'text',
       table: {
