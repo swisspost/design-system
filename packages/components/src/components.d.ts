@@ -253,7 +253,7 @@ export namespace Components {
          */
         "url": string;
         /**
-          * The variant of the post-language-switch parent (dynamically set by the parent)
+          * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
          */
         "variant"?: SwitchVariant | null;
     }
@@ -267,7 +267,7 @@ export namespace Components {
          */
         "description": string;
         /**
-          * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
+          * Whether the component is rendered as a list or a menu
          */
         "variant": SwitchVariant;
     }
@@ -1122,7 +1122,7 @@ declare namespace LocalJSX {
          */
         "url"?: string;
         /**
-          * The variant of the post-language-switch parent (dynamically set by the parent)
+          * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
          */
         "variant"?: SwitchVariant | null;
     }
@@ -1136,7 +1136,7 @@ declare namespace LocalJSX {
          */
         "description"?: string;
         /**
-          * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
+          * Whether the component is rendered as a list or a menu
          */
         "variant"?: SwitchVariant;
     }

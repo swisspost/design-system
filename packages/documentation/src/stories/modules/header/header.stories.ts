@@ -93,10 +93,10 @@ export const Default: Story = {
         name="language-switch-example"
         slot="post-language-switch"
       >
-        <post-language-option active="false" code="de" name="Deutsch">DE</post-language-option>
-        <post-language-option active="false" code="fr" name="French">FR</post-language-option>
-        <post-language-option active="false" code="it" name="Italiano">IT</post-language-option>
-        <post-language-option active="true" code="en" name="English">EN</post-language-option>
+        <post-language-option active="false" code="de" name="Deutsch">de</post-language-option>
+        <post-language-option active="false" code="fr" name="French">fr</post-language-option>
+        <post-language-option active="false" code="it" name="Italiano">it</post-language-option>
+        <post-language-option active="true" code="en" name="English">en</post-language-option>
       </post-language-switch>
 
       ${args.title
