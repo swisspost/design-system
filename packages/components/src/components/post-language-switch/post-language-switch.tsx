@@ -3,6 +3,7 @@ import { checkEmptyOrOneOf, checkType } from '@/utils';
 import { version } from '@root/package.json';
 import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
 import { nanoid } from 'nanoid';
+import { eventGuard } from '@/utils/event-guard';
 
 @Component({
   tag: 'post-language-switch',
@@ -84,25 +85,27 @@ export class PostLanguageSwitch {
     this.validateCaption();
     this.validateDescription();
     this.validateVariant();
-
+  
     // Detects a change in the active language
-    this.host.addEventListener('postChange', (el: CustomEvent<string>) => {
-      this.activeLang = el.detail;
-
-      // Update the active state in the children post-language-option components
-      this.host.querySelectorAll('post-language-option').forEach(lang => {
-        if (lang.code && lang.code === this.activeLang) {
-          lang.setAttribute('active', 'true');
-        } else {
-          lang.setAttribute('active', 'false');
+    this.host.addEventListener('postChange', (event: CustomEvent<string>) => {
+      eventGuard.call(this, event, { targetLocalName: 'post-language-option' }, () => {
+        this.activeLang = event.detail;
+  
+        // Update the active state in the children post-language-option components
+        this.host.querySelectorAll('post-language-option').forEach(lang => {
+          if (lang.getAttribute('code') === this.activeLang) {
+            lang.setAttribute('active', 'true');
+          } else {
+            lang.setAttribute('active', 'false');
+          }
+        });
+  
+        // Hides the dropdown when an option has been clicked
+        if (this.variant === 'menu') {
+          const menu = this.host.shadowRoot?.querySelector('post-menu') as HTMLPostMenuElement;
+          if (menu) menu.toggle(menu);
         }
       });
-
-      // Hides the dropdown when an option has been clicked
-      if (this.variant === 'menu') {
-        const menu = this.host.shadowRoot.querySelector('post-menu') as HTMLPostMenuElement;
-        menu.toggle(menu);
-      }
     });
   }
 
