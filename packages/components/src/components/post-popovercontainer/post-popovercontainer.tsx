@@ -100,11 +100,9 @@ export class PostPopovercontainer {
    * @param event MouseEvent with cursor position
    */
   private mouseTrackingHandler(event: MouseEvent) {
-    if (!this.safeSpace || !this.host.matches(':where(:popover-open, .popover-open)')) return;
-
     this.host.style.setProperty('--safe-space-cursor-x', `${event.clientX}px`);
     this.host.style.setProperty('--safe-space-cursor-y', `${event.clientY}px`);
-  };
+  }
 
   componentDidLoad() {
     this.host.addEventListener('beforetoggle', this.handleToggle.bind(this));
@@ -165,13 +163,16 @@ export class PostPopovercontainer {
    */
   private handleToggle(e: ToggleEvent) {
     this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
+
     const isOpen = e.newState === 'open';
     if (isOpen) {
-      window.addEventListener('mousemove', this.mouseTrackingHandler);
       this.startAutoupdates();
+      if (this.safeSpace)
+        window.addEventListener('mousemove', this.mouseTrackingHandler.bind(this));
     } else {
-      window.removeEventListener('mousemove', this.mouseTrackingHandler);
       if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
+      if (this.safeSpace)
+        window.removeEventListener('mousemove', this.mouseTrackingHandler.bind(this));
     }
     this.postToggle.emit(isOpen);
   }
