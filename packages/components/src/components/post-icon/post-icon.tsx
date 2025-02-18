@@ -117,8 +117,12 @@ export class PostIcon {
   private getUrl() {
     const file = `${this.name}.svg`;
 
-    if (this.isSSR) {
-      return `${CDN_URL}/${file}`;
+    if (!this.isSSR) {
+      if (this.base) {
+        return `/${this.base}/${file}`.replaceAll(/\/\//g, '/');
+      } else {
+        return `${CDN_URL}/${file}`;
+      }
     }
 
     // the first definition object which defines a domain, will be used to set the domain of the file url
