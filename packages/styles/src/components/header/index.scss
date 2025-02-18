@@ -73,6 +73,10 @@ post-header {
       background-color: ButtonFace !important;
       border-color: ButtonBorder !important;
       color: ButtonText !important;
+
+      &:hover {
+        background-color: Highlight !important;
+      }
     }
   }
 }
