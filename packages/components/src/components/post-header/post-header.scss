@@ -116,10 +116,6 @@
   min-height: var(--local-header-min-height);
   background: var(--post-core-color-brand-white);
   transition: box-shadow 0.2s ease-in-out;
-
-  // @include utilities.high-contrast-mode() {
-  //   border-block-end: 1px solid CanvasText;
-  // }
   border-block-end: 1px solid #e1e0dc;
 
   @include media.min(lg) {
