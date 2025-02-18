@@ -1,5 +1,13 @@
 # @swisspost/design-system-intranet-header
 
+## 8.9.1
+
+### Patch Changes
+
+- Fixed intranet header searchbar showing on mobile. (by [@myrta2302](https://github.com/myrta2302) with [#4664](https://github.com/swisspost/design-system/pull/4664))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.9.1
+
 ## 8.9.0
 
 ### Patch Changes
