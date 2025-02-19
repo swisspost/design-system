@@ -302,3 +302,7 @@ tokens.$default-map: components.$post-select;
     }
   }
 }
+
+.no-toggle-arrow::after {
+  display: none !important;
+}
