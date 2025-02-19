@@ -28,7 +28,7 @@ $datatable-flush-border-color: color.$gray-10;
 $datatable-flush-border: $datatable-flush-border-width solid $datatable-flush-border-color;
 
 $datatable-footer-padding-x: tokens.get('utility-gap-16');
-$datatable-footer-padding-y: button.$input-btn-focus-width;
+$datatable-footer-padding-y: 0.125rem !default; // 2px;
 $datatable-footer-padding: $datatable-footer-padding-y $datatable-footer-padding-x;
 
 $datatable-footer-separator-width: tokens.get('utility-gap-2');
@@ -37,10 +37,12 @@ $datatable-footer-separator: $datatable-flush-border-width solid $datatable-flus
 
 $datatable-row-count-input-width: tokens.get('utility-gap-112');
 
-$datatable-button-margin: button.$btn-focus-width;
+$datatable-button-margin: 0.125rem !default;
 $datatable-button-width: calc(100% - 2 * #{$datatable-button-margin});
 $datatable-button-height: $datatable-button-width;
-$datatable-button-focus-shadow: button.$btn-focus-box-shadow;
+
+$datatable-button-focus-color: rgba(color.$gray-80, 0.25) !default;
+$datatable-button-focus-shadow: 0 0 0 0.125rem $datatable-button-focus-color !default;
 
 $datatable-progressbar-height: tokens.get('utility-gap-4');
 $datatable-progressbar-backgroundcolor: color.$gray-10;
