@@ -139,7 +139,7 @@
     }
 
     &:not(.local-header-mobile-extended) {
-      box-shadow: $elevation-300;
+      box-shadow: elevation.$elevation-300;
     }
   }
 }
