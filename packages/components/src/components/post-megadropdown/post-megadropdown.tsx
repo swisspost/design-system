@@ -107,7 +107,6 @@ export class PostMegadropdown {
           const newDevice = event.detail;
           if (this.device !== newDevice) {
             this.device = newDevice;
-            // If the device changes to desktop and the dropdown is open, close it without animation
             if (newDevice === 'desktop' && this.isVisible) {
               this.animationClass= null;
             }
