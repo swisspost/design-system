@@ -95,7 +95,6 @@ export class PostMegadropdown {
 
   /**
    * Sets focus to the first focusable element within the component.
-   * If no focusable element is found, no action is taken.
   */
   @Method()
   async focusFirst() {
