@@ -93,6 +93,10 @@ export class PostMegadropdown {
     this.host.removeEventListener('keydown', e => this.keyboardHandler(e));
   }
 
+  /**
+   * Sets focus to the first focusable element within the component.
+   * If no focusable element is found, no action is taken.
+  */
   @Method()
   async focusFirst() {
     this.firstFocusableEl?.focus();
@@ -108,7 +112,7 @@ export class PostMegadropdown {
           if (this.device !== newDevice) {
             this.device = newDevice;
             if (newDevice === 'desktop' && this.isVisible) {
-              this.animationClass= null;
+              this.animationClass = null;
             }
           }
         },
