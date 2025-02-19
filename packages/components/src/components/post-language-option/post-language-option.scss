@@ -18,9 +18,10 @@ post-language-option {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
     width: 100%;
+    height: 100%;
     border-radius: 2px;
+    text-transform: uppercase;
     @include utilities-mx.focus-style;
   }
 
@@ -30,20 +31,13 @@ post-language-option {
 
   &:where([variant='list']) {
     :is(a, button) {
-      padding-inline: 0.7rem;
+      padding-inline: 0;
+      width: 40px;
       height: 40px;
       border-radius: 2px;
 
       &:hover {
         color: #504f4b;
-      }
-    }
-
-    &:where(:not([type]), [type='language']) {
-      :is(a, button) {
-        padding-inline: 0;
-        width: 40px;
-        text-transform: uppercase;
       }
     }
   }
@@ -58,12 +52,6 @@ post-language-option {
       position: relative;
       left: -1px;
       width: calc(100% + 2px);
-    }
-
-    &:where(:not([type]), [type='language']) {
-      :is(a, button) {
-        text-transform: uppercase;
-      }
     }
   }
 }
