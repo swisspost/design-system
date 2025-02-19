@@ -103,7 +103,16 @@ export class PostMegadropdown {
     if (this.header) {
       this.header.addEventListener(
         'postUpdateDevice',
-        (event: CustomEvent<DEVICE_SIZE>) => (this.device = event.detail),
+        (event: CustomEvent<DEVICE_SIZE>) => {
+          const newDevice = event.detail;
+          if (this.device !== newDevice) {
+            this.device = newDevice;
+            // If the device changes to desktop and the dropdown is open, close it without animation
+            if (newDevice === 'desktop' && this.isVisible) {
+              this.animationClass= null;
+            }
+          }
+        },
       );
     }
   }
