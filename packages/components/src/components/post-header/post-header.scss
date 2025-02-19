@@ -113,10 +113,11 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 4px;
   min-height: var(--local-header-min-height);
   background: color.$white;
   transition: box-shadow 0.2s ease-in-out;
+  border-block-end: 1px solid #e1e0dc;
 
   @include media.min(lg) {
     z-index: 3;
@@ -137,8 +138,8 @@
       border-bottom: 1px solid #e1e0dc;
     }
 
-    &:not(.title-header-mobile-extended) {
-      box-shadow: elevation.$elevation-300;
+    &:not(.local-header-mobile-extended) {
+      box-shadow: $elevation-300;
     }
   }
 }

@@ -8,23 +8,25 @@
 tokens.$default-map: components.$post-button;
 
 :host {
-  display: flex;
+  display: flex !important;
+  flex-wrap: wrap;
 
   > span {
-    display: flex;
+    display: inline-flex;
     flex-shrink: 0;
+    align-items: center;
     width: 40px;
     height: 40px;
-    align-items: center;
     justify-content: center;
     background-color: #050400;
-    color: #fff;
     border-radius: 2px;
+    color: #fff;
+    text-transform: uppercase;
   }
 }
 
 :host(:where([variant='list'])) {
-  column-gap: 0.5rem;
+  gap: 0.5rem;
 }
 
 .post-language-switch-dropdown-container {
@@ -38,6 +40,8 @@ tokens.$default-map: components.$post-button;
 
 .post-language-switch-trigger {
   cursor: pointer;
+  text-transform: uppercase;
+
   @include button-mx.reset-button;
   @include header-mx.subsidiary-header-interactive;
 

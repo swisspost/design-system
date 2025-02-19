@@ -4,7 +4,7 @@ import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '68699b2c-ec1f-467d-81ae-8b3f48d7c595',
-  title: 'Components/Teaser Card',
+  title: 'Components/Card Teaser',
   tags: ['package:HTML'],
   parameters: {
     design: {
@@ -72,18 +72,20 @@ export default meta;
 type Story = StoryObj;
 
 export function renderTeaserCard(args: Args) {
-  return html`<div class="teaser-card${args.size === 'lg' ? ' teaser-card-lg' : ''}">
-    <img src="https://picsum.photos/id/38/500/400" alt="My placeholder image">
-    <div>
+  return html`<post-linkarea>
+    <div class="card teaser-card${args.size === 'lg' ? ' teaser-card-lg' : ''}">
+      <img src="https://picsum.photos/id/38/500/400" alt="My placeholder image">
       <div>
-        <h3>${args.title}</h3>
-        <p>${args.content}</p>
+        <div>
+          <h3>${args.title}</h3>
+          <p>${args.content}</p>
+        </div>
+        <a href="#" class="btn btn-tertiary px-0">${
+          args.buttonLabel
+        } <post-icon name="arrowright"></post-icon></post-icon></a>
       </div>
-      <a href="#" class="btn btn-tertiary px-0">${
-        args.buttonLabel
-      } <post-icon name="arrowright"></post-icon></post-icon></a>
     </div>
-  </div>
+  </post-linkarea>
   `;
 }
 

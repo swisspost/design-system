@@ -6,10 +6,13 @@
 
 post-header {
   ul[slot='meta-navigation'] {
-    gap: 4px;
+    @include media.min(lg) {
+      gap: 4px;
+    }
 
     @include media.max(lg) {
       flex-direction: column;
+      gap: 0;
 
       a,
       button {

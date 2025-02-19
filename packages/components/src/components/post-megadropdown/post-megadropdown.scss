@@ -96,6 +96,9 @@
   background-color: #fafafa;
 
   @include media.max(lg) {
+    display: flex;
+    flex-direction: column;
+    width: inherit;  
     padding: 16px 32px 24px;
   }
 
@@ -127,6 +130,7 @@
 
     a {
       text-decoration: none;
+      display: none;
       font-weight: inherit;
       border-bottom: 0;
       border-top: 0;
@@ -167,14 +171,26 @@
         display: block;
         font-weight: 900;
 
+        &:not(:has(a)),
+        a {
+          padding: 16px 12px 14px 8px;
+        }
+
         &:not(:has(a)) {
-          padding: 15px 12px 14px 8px;
-          border-bottom: 1px solid #050400;
+          position: relative;
+
+          &::before {
+            content: '';
+            background-color: #050400;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            position: absolute;
+            left: 0;
+          }
         }
 
         a {
-          padding-block: 15px 14px;
-          padding-inline-start: 8px;
           border-radius: 0;
           text-decoration: none;
           font-size: inherit;
@@ -187,14 +203,18 @@
             height: unset;
             font-weight: 900;
           }
+
+          &::before {
+            height: 2px;
+          }
         }
 
         @include media.max(lg) {
           font-size: 1rem;
 
-          &:not(:has(a)) {
-            padding: 15px 12px 14px 8px;
-            border-bottom: 1px solid #050400;
+          &:not(:has(a)),
+          a {
+            padding: 14px 12px 12px 8px;
           }
         }
 
@@ -243,6 +263,7 @@
     }
 
     @include media.max(lg) {
+      order: -1;
       display: block;
     }
   }
