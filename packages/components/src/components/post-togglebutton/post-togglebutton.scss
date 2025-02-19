@@ -6,7 +6,7 @@
   cursor: pointer;
   outline-offset: tokens.get('focus-outline-offset', helpers.$post-focus) !important;
   outline: tokens.get('focus-outline-color', helpers.$post-focus) none
-    tokens.get('focus-outline-width', helpers.$post-focus) !important;
+  tokens.get('focus-outline-width', helpers.$post-focus) !important;
 }
 
 :host(:focus-visible) {
@@ -17,14 +17,14 @@
   }
 }
 
-:host([aria-pressed='true']) {
-  ::slotted([data-showwhen='untoggled']) {
+:host([aria-pressed="true"]) {
+  ::slotted([data-showwhen="untoggled"]) {
     display: none;
   }
 }
 
-:host([aria-pressed='false']) {
-  ::slotted([data-showwhen='toggled']) {
+:host([aria-pressed="false"]) {
+  ::slotted([data-showwhen="toggled"]) {
     display: none;
   }
 }
