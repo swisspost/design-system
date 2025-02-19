@@ -16,34 +16,9 @@ const meta: MetaComponent<HTMLPostLanguageSwitchElement> = {
   },
   args: {
     variant: 'list',
-    caption: 'Caption',
-    description: 'Description',
-  },
-  argTypes: {
-    variant: {
-      description: 'View variant of the language switch.',
-      table: {
-        category: 'content',
-      },
-    },
-    caption: {
-      description: 'Caption of the language switch.',
-      table: {
-        category: 'content',
-        type: {
-          summary: 'string',
-        },
-      },
-    },
-    description: {
-      description: 'Description of the language switch.',
-      table: {
-        category: 'content',
-        type: {
-          summary: 'string',
-        },
-      },
-    },
+    type: 'language',
+    caption: 'Change the language',
+    description: 'The currently selected language is English.',
   },
 };
 
@@ -54,10 +29,11 @@ function renderLanguageSwitch(args: Partial<HTMLPostLanguageSwitchElement>) {
     caption=${args.caption}
     description=${args.description}
     variant=${args.variant}
+    type=${args.type}
   >
-    <post-language-option active="true" code="de" name="Deutsch">DE</post-language-option>
-    <post-language-option active="false" code="en" name="English">EN</post-language-option>
-    <post-language-option active="false" code="fr" name="French">FR</post-language-option>
+    <post-language-option active="false" code="de" name="Deutsch">de</post-language-option>
+    <post-language-option active="true" code="en" name="English">en</post-language-option>
+    <post-language-option active="false" code="fr" name="French">fr</post-language-option>
   </post-language-switch> `;
 }
 
@@ -67,10 +43,10 @@ function renderLanguageSwitchAsLinks(args: Partial<HTMLPostLanguageSwitchElement
     description=${args.description}
     variant="menu"
   >
-    <post-language-option url="/de" active="true" code="de" name="Deutsch">DE</post-language-option>
-    <post-language-option url="/en" active="false" code="en" name="English"
-      >EN</post-language-option
+    <post-language-option url="/de" active="false" code="de" name="Deutsch"
+      >DE</post-language-option
     >
+    <post-language-option url="/en" active="true" code="en" name="English">EN</post-language-option>
     <post-language-option url="/fr" active="false" code="fr" name="French">FR</post-language-option>
   </post-language-switch> `;
 }

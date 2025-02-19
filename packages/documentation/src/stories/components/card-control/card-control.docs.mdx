@@ -1,10 +1,5 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
-import {
-  PostBanner,
-  PostTabs,
-  PostTabHeader,
-  PostTabPanel,
-} from '@swisspost/design-system-components-react';
+import { PostBanner } from '@swisspost/design-system-components-react';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
 import * as CardControlStandardHTMLStories from './standard-html/card-control.stories';
@@ -33,9 +28,9 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
   </p>
 </PostBanner>
 
-<PostTabs>
-  <PostTabHeader panel="standardhtml">Standard HTML</PostTabHeader>
-  <PostTabPanel name="standardhtml">
+<post-tabs>
+  <post-tab-header panel="standardhtml">Standard HTML</post-tab-header>
+  <post-tab-panel name="standardhtml">
     <Canvas sourceState="shown" of={CardControlStandardHTMLStories.Default} />
     <div className="hide-col-default">
       <Controls of={CardControlStandardHTMLStories.Default} />
@@ -80,12 +75,12 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 
     <StylesPackageImport components={['choice-control-card']} />
 
-  </PostTabPanel>
+  </post-tab-panel>
 
-  <PostTabHeader panel="webcomponent">Webcomponent</PostTabHeader>
-  <PostTabPanel name="webcomponent">
-    <Canvas of={CardControlStories.Default} sourceState="shown"/>
-    <Controls of={CardControlStories.Default} />
+<post-tab-header panel="webcomponent">Webcomponent</post-tab-header>
+<post-tab-panel name="webcomponent">
+<Canvas of={CardControlStories.Default} sourceState="shown"/>
+<Controls of={CardControlStories.Default} />
 
     ## Installation
 
@@ -149,5 +144,5 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
       language="typescript"
     />
 
-  </PostTabPanel>
-</PostTabs>
+  </post-tab-panel>
+</post-tabs>

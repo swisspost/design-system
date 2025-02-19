@@ -1,5 +1,4 @@
 import { Meta, Source } from '@storybook/blocks';
-import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 import NgbComponentDemoLink from '@/shared/nb-bootstrap/ngb-component-demo-link.mdx';
 import NgbComponentBanner from '@/shared/nb-bootstrap/ngb-component-banner.mdx';
@@ -66,19 +65,19 @@ However, You can decide to focus any other element by adding an `ngbAutofocus` a
 
 ## Examples
 
-<PostTabs>
-  <PostTabHeader panel="varying-content">Varying Content</PostTabHeader>
-  <PostTabPanel name="varying-content">
+<post-tabs>
+  <post-tab-header panel="varying-content">Varying Content</post-tab-header>
+  <post-tab-panel name="varying-content">
     <Source code={modalVaryingContent} language="typescript"/>
-  </PostTabPanel>
+  </post-tab-panel>
 
-<PostTabHeader panel="focused-content">Focused Content</PostTabHeader>
-<PostTabPanel name="focused-content">
+<post-tab-header panel="focused-content">Focused Content</post-tab-header>
+<post-tab-panel name="focused-content">
   <Source code={modalFocusedContent} language="typescript" />
-</PostTabPanel>
+</post-tab-panel>
 
-  <PostTabHeader panel="blocking">Mandatory Confirmation</PostTabHeader>
-  <PostTabPanel name="blocking">
+  <post-tab-header panel="blocking">Mandatory Confirmation</post-tab-header>
+  <post-tab-panel name="blocking">
     <Source code={modalBlocking} language="typescript"/>
-  </PostTabPanel>
-</PostTabs>
+  </post-tab-panel>
+</post-tabs>
