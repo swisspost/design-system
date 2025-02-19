@@ -1,12 +1,13 @@
 @use '../../mixins/media';
 @use '../../mixins/utilities';
+@use '../../variables/color';
 
 @use 'mixins' as *;
 
 post-header {
   ul[slot='meta-navigation'] {
     @include media.min(lg) {
-      gap: var(--post-core-dimension-4);
+      gap: 4px;
     }
 
     @include media.max(lg) {
@@ -20,7 +21,7 @@ post-header {
         @include mobile-header-interactive;
 
         @include utilities.focus-style-custom {
-          border-radius: var(--post-core-dimension-4);
+          border-radius: 4px;
         }
       }
     }
@@ -28,7 +29,7 @@ post-header {
     @include media.max(sm) {
       a,
       button {
-        font-size: var(--post-core-font-size-14);
+        font-size: 14px;
       }
     }
   }
@@ -40,17 +41,17 @@ post-header {
 
       @include media.min(sm) {
         post-icon {
-          height: var(--post-core-dimension-22);
-          width: var(--post-core-dimension-22);
+          height: 22px;
+          width: 22px;
         }
       }
 
       @include media.max(sm) {
-        padding: var(--post-core-dimension-8);
+        padding: 8px;
 
         post-icon {
-          height: var(--post-core-dimension-24);
-          width: var(--post-core-dimension-24);
+          height: 24px;
+          width: 24px;
         }
 
         .visually-hidden-sm {
@@ -63,8 +64,8 @@ post-header {
   a.selected,
   post-togglebutton[aria-pressed='true'] {
     &:not(post-mainnavigation *) {
-      color: var(--post-core-color-brand-white);
-      background: var(--post-core-color-sandgrey-100);
+      color: color.$white;
+      background: #050400;
     }
   }
 }
