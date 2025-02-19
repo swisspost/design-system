@@ -6,7 +6,6 @@
 
 post-header {
   --global-header-height: 72px;
-  --global-header-minimal-height: 24px;
   --local-header-height: 112px;
   --local-header-min-height: 56px;
   --header-height: calc(var(--global-header-height) + var(--local-header-height));

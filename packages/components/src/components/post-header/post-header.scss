@@ -166,7 +166,7 @@
   width: 100%;
 
   @include media.min(lg) {
-    inset-block-start: var(--global-header-minimal-height);
+    inset-block-start: var(--global-header-reduced-height);
 
     &::before {
       display: block;
