@@ -5,13 +5,12 @@
 @use 'mixins' as *;
 
 post-header {
-  --global-header-height: 72px;
-  --local-header-height: 112px;
-  --local-header-min-height: 56px;
   --header-height: calc(var(--global-header-height) + var(--local-header-height));
-  --global-header-reduced-height: var(--global-header-height);
 
   @include media.min(lg) {
+    --global-header-height: 72px;
+    --local-header-height: 112px;
+    --local-header-min-height: 56px;
     --global-header-reduced-height: 24px;
     --main-navigation-height: 56px;
   }
@@ -20,6 +19,7 @@ post-header {
     --global-header-height: 64px;
     --local-header-height: 48px;
     --local-header-min-height: 48px;
+    --global-header-reduced-height: var(--global-header-height);
     --main-navigation-height: 0px;
   }
 
