@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Updated the utilities API mixin to shorten output CSS as well as removed unnecessary code regarding pseudo elements in that same mixin.
+Merged utility classes that were setting the same properties, which reduces the size of the CSS output.
