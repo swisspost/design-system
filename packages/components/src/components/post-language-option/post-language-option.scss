@@ -42,6 +42,7 @@ post-language-option {
       :is(a, button) {
         background-color: #050400 !important;
         color: #fff;
+        pointer-events: none;
       }
 
       :hover {
