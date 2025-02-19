@@ -318,9 +318,6 @@ export class MigrationV89Component extends LitElement {
                       <code>.h-visuallyhidden-up-md</code>, <code>.h-visuallyhidden-down-rg</code>,
                       <code>.h-visuallyhidden-down-lg</code>
                     </li>
-                    <li>
-                      <code>.no-toggle-arrow</code>
-                    </li>
                   </ul>
                 </li>
               </ul>
