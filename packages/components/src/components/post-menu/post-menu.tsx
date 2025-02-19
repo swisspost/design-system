@@ -13,6 +13,7 @@ import { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { getRoot } from '@/utils';
+import { eventGuard } from '@/utils/event-guard';
 
 @Component({
   tag: 'post-menu',
@@ -68,11 +69,18 @@ export class PostMenu {
     this.host.removeEventListener('keydown', this.handleKeyDown);
     this.host.removeEventListener('click', this.handleClick);
   }
-
+  
   componentDidLoad() {
     this.popoverRef.addEventListener('postToggle', (event: CustomEvent<boolean>) => {
-      this.isVisible = event.detail;
-      this.toggleMenu.emit(this.isVisible);
+      eventGuard.bind(this)(
+        event,
+        { targetLocalName: 'post-popovercontainer' },
+        () => {
+          if (event.target !== this.popoverRef) return;
+          this.isVisible = event.detail;
+          this.toggleMenu.emit(this.isVisible);
+        }
+      );
     });
   }
 

@@ -1,6 +1,7 @@
 import { Component, Element, Prop, h, Host, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkType } from '@/utils';
+import { eventGuard } from '@/utils/event-guard';
 
 @Component({
   tag: 'post-megadropdown-trigger',
@@ -70,19 +71,19 @@ export class PostMegadropdownTrigger {
     this.validateControlFor();
 
     // Check if the mega dropdown attached to the trigger is expanded or not
-    document.addEventListener('postToggleMegadropdown', (event: CustomEvent) => {
-      if ((event.target as HTMLPostMegadropdownElement).id === this.for) {
-        this.ariaExpanded = event.detail;
-
-        if (this.wasExpanded && !this.ariaExpanded) {
-          setTimeout(() => this.slottedButton?.focus(), 100);
+    document.addEventListener('postToggle', (event: CustomEvent) => {
+      eventGuard.call(this, event, { targetLocalName: 'post-megadropdown' }, () => {
+        if ((event.target as HTMLPostMegadropdownElement).id === this.for) {
+          this.ariaExpanded = event.detail;
+          if (this.wasExpanded && !this.ariaExpanded) {
+            setTimeout(() => this.slottedButton?.focus(), 100);
+          }
+          this.wasExpanded = this.ariaExpanded;
+          if (this.slottedButton) {
+            this.slottedButton.setAttribute('aria-expanded', this.ariaExpanded.toString());
+          }
         }
-        this.wasExpanded = this.ariaExpanded;
-
-        if (this.slottedButton) {
-          this.slottedButton.setAttribute('aria-expanded', this.ariaExpanded.toString());
-        }
-      }
+      });
     });
 
     this.slottedButton = this.host.querySelector('button');
