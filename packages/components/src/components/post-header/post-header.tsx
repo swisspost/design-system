@@ -219,7 +219,9 @@ export class PostHeader {
 
   private switchLanguageSwitchMode() {
     const variant: SwitchVariant = this.device === 'desktop' ? 'menu' : 'list';
-    this.host.querySelector('post-language-switch')?.setAttribute('variant', variant);
+    Array.from(this.host.querySelectorAll('post-language-switch')).forEach(languageSwitch => {
+      languageSwitch?.setAttribute('variant', variant);
+    });
   }
 
   private renderNavigation() {
