@@ -5,6 +5,28 @@
 @use 'mixins' as *;
 
 post-header {
+  --header-height: calc(var(--global-header-height) + var(--local-header-height));
+
+  @include media.min(lg) {
+    --global-header-height: 72px;
+    --local-header-height: 112px;
+    --local-header-min-height: 56px;
+    --global-header-reduced-height: 24px;
+    --main-navigation-height: 56px;
+  }
+
+  @include media.max(lg) {
+    --global-header-height: 64px;
+    --local-header-height: 48px;
+    --local-header-min-height: 48px;
+    --global-header-reduced-height: var(--global-header-height);
+    --main-navigation-height: 0px;
+  }
+
+  &:not(:has([slot='title'])) {
+    --local-header-height: var(--main-navigation-height);
+  }
+
   ul[slot='meta-navigation'] {
     @include media.min(lg) {
       gap: 4px;
@@ -66,6 +88,18 @@ post-header {
     &:not(post-mainnavigation *) {
       color: color.$white;
       background: #050400;
+    }
+  }
+
+  post-togglebutton {
+    @include utilities.high-contrast-mode() {
+      background-color: ButtonFace !important;
+      border-color: ButtonBorder !important;
+      color: ButtonText !important;
+
+      &:hover {
+        background-color: Highlight !important;
+      }
     }
   }
 }
