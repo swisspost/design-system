@@ -15,11 +15,6 @@
   position: relative;
 }
 
-:host:has(slot[name='post-mainnavigation']:has(slot[name='post-mainnavigation']))
-  .navigation.extended {
-  overflow: hidden !important;
-}
-
 :host(:not(:has([slot='title']))) {
   .local-header {
     padding-block-start: 0;
