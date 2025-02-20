@@ -63,10 +63,13 @@ export class PostLanguageSwitch {
 
   connectedCallback() {
     this.updateChildrenVariant();
+
     // Get the active language based on children's active state
-    this.activeLang = Array.from(this.host.querySelectorAll('post-language-option'))
-      .find(el => el.getAttribute('active') == 'true')
-      .getAttribute('code');
+    const activeLanguageOption = this.host.querySelector(
+      'post-language-option[active]:not([active="false"])',
+    );
+
+    if (activeLanguageOption) this.activeLang = activeLanguageOption.getAttribute('code');
   }
 
   // Update post-language-option variant to have the correct style
