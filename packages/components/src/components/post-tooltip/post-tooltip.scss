@@ -21,7 +21,7 @@ post-popovercontainer {
 
   & > div {
     padding: tokens.get('utility-gap-4') tokens.get('utility-gap-8');
-    max-width: calc(2 * tokens.get('utility-gap-112') - tokens.get('utility-gap-8'));
+    max-width: calc(2 * 112px - tokens.get('utility-gap-8'));
     min-height: tokens.get('utility-gap-16');
   }
 }
