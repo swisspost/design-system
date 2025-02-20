@@ -52,12 +52,19 @@ export class PostHeader {
 
   componentDidLoad() {
     this.updateLocalHeaderHeight();
+
+    // Check if the mega dropdown is expanded
+    document.addEventListener('postToggleMegadropdown', (event: CustomEvent) => {
+      this.megadropdownOpen = !!event.detail;
+    });
   }
 
   @Element() host: HTMLPostHeaderElement;
 
   @State() device: DEVICE_SIZE = null;
   @State() mobileMenuExtended: boolean = false;
+
+  @State() megadropdownOpen: boolean = false;
 
   @Watch('mobileMenuExtended')
   frozeBody(isMobileMenuExtended: boolean) {
@@ -225,9 +232,14 @@ export class PostHeader {
   }
 
   private renderNavigation() {
-    const navigationClasses = ['navigation'];
+    var navigationClasses = ['navigation'];
     if (this.mobileMenuExtended) {
       navigationClasses.push('extended');
+    }
+    if (this.megadropdownOpen) {
+      navigationClasses = navigationClasses.filter(className => className !== 'scroll-y');
+    } else {
+      navigationClasses.push('scroll-y');
     }
 
     return (
