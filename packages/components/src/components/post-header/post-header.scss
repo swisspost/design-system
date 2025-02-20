@@ -148,6 +148,7 @@
 
   @include media.min(lg) {
     font-size: 28px !important;
+    line-height: 34px !important;
   }
 
   @include media.max(lg) {
