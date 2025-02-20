@@ -29,8 +29,7 @@ $btn-height-map: (
   'lg': tokens.get('button-large-height'),
 );
 
-$input-btn-border-width: commons.$border-thick !default;
-$btn-border-width: $input-btn-border-width !default;
+$btn-border-width: commons.$border-thick !default;
 
 // Allows for customizing button radius independently from global border radius
 $btn-border-radius: tokens.get('button-border-radius-round') !default;
@@ -57,41 +56,3 @@ $btn-icon-size-map: (
   'md': tokens.get('button-medium-icon'),
   'lg': tokens.get('button-large-icon'),
 );
-
-// Old variables / Used elsewhere than on the v2 button component
-$input-btn-border-width-rem: sizing.px-to-rem($input-btn-border-width);
-
-$input-btn-padding-y: sizing.px-to-rem(16) - $input-btn-border-width-rem !default; // px value to avoid build errors
-$input-btn-padding-x: sizing.px-to-rem(20) - $input-btn-border-width-rem !default; // px value to avoid build errors
-$input-btn-line-height: type.$line-height-copy !default;
-
-$input-btn-padding-y-sm: 4px !default; // px value to avoid build errors
-$input-btn-padding-x-sm: 16px !default; // px value to avoid build errors
-
-$input-btn-padding-y-rg: sizing.px-to-rem(12) - $input-btn-border-width-rem !default; // px value to avoid build errors
-$input-btn-padding-x-rg: sizing.px-to-rem(16) - $input-btn-border-width-rem !default; // px value to avoid build errors
-
-$input-btn-padding-y-lg: 12px !default; // px value to avoid build errors
-$input-btn-padding-x-lg: 16px !default; // px value to avoid build errors
-
-$input-btn-focus-width: 0.125rem !default; // 2px
-$input-btn-focus-color: rgba(color.$gray-80, 0.25) !default;
-$input-btn-focus-box-shadow: 0 0 0 $input-btn-focus-width $input-btn-focus-color !default;
-
-$btn-height-sm: 2rem;
-$btn-icon-size-sm: tokens.get('utility-gap-16', utilities.$post-spacing) !default;
-$btn-font-size-rg: type.$font-size-14 !default;
-$btn-icon-size-rg: 1.125rem !default;
-$btn-height-md: 3rem;
-$btn-icon-size-md: tokens.get('utility-gap-20', utilities.$post-spacing) !default;
-$btn-icon-size-lg: 1.375rem !default;
-$old-btn-icon-size-map: (
-  'sm': $btn-icon-size-sm,
-  'rg': $btn-icon-size-rg,
-  'md': $btn-icon-size-md,
-  'lg': $btn-icon-size-lg,
-);
-
-$btn-focus-width: $input-btn-focus-width !default;
-$btn-focus-box-shadow: $input-btn-focus-box-shadow !default;
-$btn-disabled-opacity: 0.4 !default;

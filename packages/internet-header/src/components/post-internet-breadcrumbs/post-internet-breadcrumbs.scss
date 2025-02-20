@@ -5,7 +5,6 @@
 @use '@swisspost/design-system-styles/variables/color';
 @use '@swisspost/design-system-styles/functions';
 @use '@swisspost/design-system-styles/mixins/utilities';
-@use '@swisspost/design-system-styles/variables/components/button' as button-var;
 @use '../../utils/utils.scss';
 @use '../../utils/mixins.scss';
 
@@ -22,7 +21,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  min-height: button-var.$btn-height-md; // Avoid visual shift when buttons are hidden.
+  min-height: 3rem; // Avoid visual shift when buttons are hidden.
 
   @include mixins.max(rg) {
     font-size: functions.px-to-rem(14px);
