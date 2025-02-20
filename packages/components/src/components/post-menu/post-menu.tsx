@@ -56,7 +56,7 @@ export class PostMenu {
    **/
   @Event() toggleMenu: EventEmitter<boolean>;
 
-  private root?: Document | ShadowRoot;
+  private root?: Document | ShadowRoot | null;
 
   connectedCallback() {
     this.root = getRoot(this.host);
