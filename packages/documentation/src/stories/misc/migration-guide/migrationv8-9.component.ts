@@ -236,7 +236,11 @@ export class MigrationV89Component extends LitElement {
                       <code>.shadow</code> and <code>.shadow-lg</code>
                     </li>
                   </ul>
+                  <p class="info">
+                    We recommend using the <code>.elevation-*</code> classes instead.
+                  </p>
                 </li>
+
                 <li class="mb-16">
                   <p>
                     The following elevation utility classes have been renamed
@@ -292,7 +296,7 @@ export class MigrationV89Component extends LitElement {
                   </p>
                 </li>
                 <li class="mb-16">
-                  <p>Removed utility mixins: <span class="tag tag-sm tag-danger">breaking</span></p>
+                  <p>Removed utility mixins <span class="tag tag-sm tag-danger">breaking</span></p>
                   <ul>
                     <li>
                       <code>@mixin responsive-size</code>
@@ -306,6 +310,31 @@ export class MigrationV89Component extends LitElement {
                       <code>@mixin bezel-bigger-regular()</code>,
                       <code>@mixin bezel-medium()</code>, <code>@mixin bezel-large()</code>,
                       <code>@mixin bezel-big()</code>
+                    </li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    Renamed some utility classes
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>.h-visuallyhidden</code> is now <code>.visually-hidden</code></li>
+                    <li><code>.h-clearfix</code> is now <code>.clearfix</code></li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    Removed some utility classes
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li>
+                      <code>.spacer</code>
+                    </li>
+                    <li>
+                      <code>.h-visuallyhidden-up-md</code>, <code>.h-visuallyhidden-down-rg</code>,
+                      <code>.h-visuallyhidden-down-lg</code>
                     </li>
                   </ul>
                 </li>
@@ -366,6 +395,16 @@ export class MigrationV89Component extends LitElement {
                   <ul>
                     <li><code>.fw-light</code></li>
                     <li><code>.light</code></li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    Renamed font-weight utility classes
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>.bold</code> is now <code>.fw-bold</code></li>
+                    <li><code>.regular</code> is now <code>.fw-regular</code></li>
                   </ul>
                 </li>
                 <li class="mb-16">
