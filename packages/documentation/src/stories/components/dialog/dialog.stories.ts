@@ -177,7 +177,7 @@ const FormTemplate = {
         >
           <h3 class="dialog-header">Form example</h3>
           <div class="dialog-body">
-            <div class="form-floating mt-3">
+            <div class="form-floating mt-16">
               <input
                 id="example-dialog-text-field"
                 class="form-control form-control-lg"

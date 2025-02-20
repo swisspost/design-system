@@ -16,7 +16,7 @@ export function checkUrl<T extends { host: HTMLElement }>(
   }
 
   try {
-    new URL(value, window.location.href);
+    new URL(value, 'https://www.post.ch');
   } catch {
     throw new Error(message);
   }

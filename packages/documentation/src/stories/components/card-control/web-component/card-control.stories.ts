@@ -341,7 +341,7 @@ export const LinedUp: Story = {
     },
   },
   render: (args: Args, context: StoryContext) => html`
-    <div class="row gy-3">
+    <div class="row gy-16">
       ${[1, 2, 3, 4, 5, 6].map(
         i => html`
           <div class="col-${12 / args.colCount}">

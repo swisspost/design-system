@@ -75,6 +75,11 @@ export class PostMegadropdown {
     this.host.addEventListener('keydown', e => this.keyboardHandler(e));
     PostMegadropdown.activeDropdown = this;
     this.postToggleMegadropdown.emit(this.isVisible);
+    requestAnimationFrame(() => {
+      if (this.firstFocusableEl && window.getComputedStyle(this.firstFocusableEl).display !== 'none') {
+        this.firstFocusableEl.focus();
+      }
+    });
     this.addOutsideClickListener();
   }
 
@@ -83,9 +88,14 @@ export class PostMegadropdown {
    */
   @Method()
   async hide() {
+    this.postToggleMegadropdown.emit(false);
     this.animationClass = 'slide-out';
-    PostMegadropdown.activeDropdown = null;
     this.host.removeEventListener('keydown', e => this.keyboardHandler(e));
+  }
+
+  @Method()
+  async focusFirst() {
+    this.firstFocusableEl?.focus();
   }
 
   connectedCallback() {
@@ -112,7 +122,7 @@ export class PostMegadropdown {
     if (this.animationClass === 'slide-out') {
       this.isVisible = false;
       this.animationClass = null;
-      this.postToggleMegadropdown.emit(this.isVisible);
+      PostMegadropdown.activeDropdown = null;
       this.removeOutsideClickListener();
     }
   }
@@ -139,16 +149,17 @@ export class PostMegadropdown {
 
   private addOutsideClickListener() {
     document.addEventListener('mousedown', this.handleClickOutside);
+    document.addEventListener('focusin', this.handleFocusOutside);
   }
 
   private removeOutsideClickListener() {
     document.removeEventListener('mousedown', this.handleClickOutside);
+    document.removeEventListener('focusin', this.handleFocusOutside);
   }
 
   private getFocusableElements() {
     const focusableEls = Array.from(this.host.querySelectorAll('post-list-item, h3, .back-button'));
     const focusableChildren = focusableEls.flatMap(el => Array.from(getFocusableChildren(el)));
-
     this.firstFocusableEl = focusableChildren[0];
     this.lastFocusableEl = focusableChildren[focusableChildren.length - 1];
   }
@@ -168,6 +179,16 @@ export class PostMegadropdown {
     }
   }
 
+  private handleFocusOutside = (event: FocusEvent) => {
+    const target = event.target as Node;
+  
+    if (this.host.contains(target)) {
+      return;
+    }
+  
+    this.hide();
+  };
+
   render() {
     const containerStyle = this.isVisible ? {} : { display: 'none' };
 
@@ -179,15 +200,15 @@ export class PostMegadropdown {
           onAnimationEnd={() => this.handleAnimationEnd()}
         >
           <div class="megadropdown">
+            <slot name="megadropdown-title"></slot>
+            <div class="megadropdown-content">
+              <slot></slot>
+            </div>
             <div onClick={() => this.hide()} class="back-button">
               <slot name="back-button"></slot>
             </div>
             <div onClick={() => this.hide()} class="close-button">
               <slot name="close-button"></slot>
-            </div>
-            <slot name="megadropdown-title"></slot>
-            <div class="megadropdown-content">
-              <slot></slot>
             </div>
           </div>
         </div>
