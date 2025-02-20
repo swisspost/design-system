@@ -47,10 +47,6 @@ export class PostHeader {
     this.getFocusableElements();
   }
 
-  componentDidLoad() {
-    this.updateLocalHeaderHeight();
-  }
-
   @Element() host: HTMLPostHeaderElement;
 
   @State() device: string = breakpoint.get('name');
@@ -91,8 +87,6 @@ export class PostHeader {
     if (this.device === 'desktop' && this.mobileMenuExtended) {
       this.closeMobileMenu();
     }
-
-    this.updateLocalHeaderHeight();
   }
 
   private async closeMobileMenu() {
