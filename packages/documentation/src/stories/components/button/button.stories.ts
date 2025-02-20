@@ -256,7 +256,7 @@ export const FullWidth: Story = {
   ...VariantsTemplate,
   args: {
     variants: ['btn-primary'],
-    additionalClasses: ['w-sm-100', 'w-md-auto'],
+    additionalClasses: ['w-sm-full', 'w-md-auto'],
   },
 };
 
