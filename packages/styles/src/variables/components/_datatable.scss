@@ -35,7 +35,7 @@ $datatable-footer-separator-width: tokens.get('utility-gap-2');
 $datatable-footer-separator-color: color.$gray-10;
 $datatable-footer-separator: $datatable-flush-border-width solid $datatable-flush-border-color;
 
-$datatable-row-count-input-width: tokens.get('utility-gap-112');
+$datatable-row-count-input-width: 7rem;
 
 $datatable-button-margin: button.$btn-focus-width;
 $datatable-button-width: calc(100% - 2 * #{$datatable-button-margin});

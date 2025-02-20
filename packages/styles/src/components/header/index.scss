@@ -1,12 +1,35 @@
 @use '../../mixins/media';
 @use '../../mixins/utilities';
+@use '../../variables/color';
 
 @use 'mixins' as *;
 
 post-header {
+  --header-height: calc(var(--global-header-height) + var(--local-header-height));
+
+  @include media.min(lg) {
+    --global-header-height: 72px;
+    --local-header-height: 112px;
+    --local-header-min-height: 56px;
+    --global-header-reduced-height: 24px;
+    --main-navigation-height: 56px;
+  }
+
+  @include media.max(lg) {
+    --global-header-height: 64px;
+    --local-header-height: 48px;
+    --local-header-min-height: 48px;
+    --global-header-reduced-height: var(--global-header-height);
+    --main-navigation-height: 0px;
+  }
+
+  &:not(:has([slot='title'])) {
+    --local-header-height: var(--main-navigation-height);
+  }
+
   ul[slot='meta-navigation'] {
     @include media.min(lg) {
-      gap: var(--post-core-dimension-4);
+      gap: 4px;
     }
 
     @include media.max(lg) {
@@ -20,7 +43,7 @@ post-header {
         @include mobile-header-interactive;
 
         @include utilities.focus-style-custom {
-          border-radius: var(--post-core-dimension-4);
+          border-radius: 4px;
         }
       }
     }
@@ -28,7 +51,7 @@ post-header {
     @include media.max(sm) {
       a,
       button {
-        font-size: var(--post-core-font-size-14);
+        font-size: 14px;
       }
     }
   }
@@ -40,17 +63,17 @@ post-header {
 
       @include media.min(sm) {
         post-icon {
-          height: var(--post-core-dimension-22);
-          width: var(--post-core-dimension-22);
+          height: 22px;
+          width: 22px;
         }
       }
 
       @include media.max(sm) {
-        padding: var(--post-core-dimension-8);
+        padding: 8px;
 
         post-icon {
-          height: var(--post-core-dimension-24);
-          width: var(--post-core-dimension-24);
+          height: 24px;
+          width: 24px;
         }
 
         .visually-hidden-sm {
@@ -63,8 +86,20 @@ post-header {
   a.selected,
   post-togglebutton[aria-pressed='true'] {
     &:not(post-mainnavigation *) {
-      color: var(--post-core-color-brand-white);
-      background: var(--post-core-color-sandgrey-100);
+      color: color.$white;
+      background: #050400;
+    }
+  }
+
+  post-togglebutton {
+    @include utilities.high-contrast-mode() {
+      background-color: ButtonFace !important;
+      border-color: ButtonBorder !important;
+      color: ButtonText !important;
+
+      &:hover {
+        background-color: Highlight !important;
+      }
     }
   }
 }
