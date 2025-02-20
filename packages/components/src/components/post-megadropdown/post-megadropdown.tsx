@@ -30,12 +30,14 @@ export class PostMegadropdown {
 
   /**
    * Emits when the dropdown is shown or hidden.
-   * The event payload is a boolean: `true` when the dropdown was opened, `false` when it was closed.
+   * The event payload is an object.
+   * `isVisible` is true when the dropdown gets opened and false when it gets closed
+   * `focusParent` determines whether after the closing of the mega dropdown, the focus should go back to the trigger parent or naturally go to the next focusable element in the page
    **/
-  @Event() postToggleMegadropdown: EventEmitter<boolean>;
+  @Event() postToggleMegadropdown: EventEmitter<{ isVisible: boolean; focusParent?: boolean }>;
 
   disconnectedCallback() {
-    this.removeOutsideClickListener();
+    this.removeListeners();
     if (PostMegadropdown.activeDropdown === this) {
       PostMegadropdown.activeDropdown = null;
     }
@@ -75,20 +77,31 @@ export class PostMegadropdown {
     }
 
     this.isVisible = true;
-    this.host.addEventListener('keydown', e => this.keyboardHandler(e));
     PostMegadropdown.activeDropdown = this;
-    this.postToggleMegadropdown.emit(this.isVisible);
-    this.addOutsideClickListener();
+    this.postToggleMegadropdown.emit({ isVisible: this.isVisible });
+    requestAnimationFrame(() => {
+      if (
+        this.firstFocusableEl &&
+        window.getComputedStyle(this.firstFocusableEl).display !== 'none'
+      ) {
+        this.firstFocusableEl.focus();
+      }
+    });
+    this.addListeners();
   }
 
   /**
    * Hides the dropdown with an animation.
    */
   @Method()
-  async hide() {
+  async hide(focusParent = true) {
+    this.postToggleMegadropdown.emit({ isVisible: false, focusParent: focusParent });
     this.animationClass = 'slide-out';
-    PostMegadropdown.activeDropdown = null;
-    this.host.removeEventListener('keydown', e => this.keyboardHandler(e));
+  }
+
+  @Method()
+  async focusFirst() {
+    this.firstFocusableEl?.focus();
   }
 
   connectedCallback() {
@@ -101,16 +114,16 @@ export class PostMegadropdown {
   private forceClose() {
     this.isVisible = false;
     this.animationClass = null;
-    this.postToggleMegadropdown.emit(this.isVisible);
-    this.removeOutsideClickListener();
+    this.postToggleMegadropdown.emit({ isVisible: this.isVisible, focusParent: false });
+    this.removeListeners();
   }
 
   private handleAnimationEnd() {
     if (this.animationClass === 'slide-out') {
       this.isVisible = false;
       this.animationClass = null;
-      this.postToggleMegadropdown.emit(this.isVisible);
-      this.removeOutsideClickListener();
+      PostMegadropdown.activeDropdown = null;
+      this.removeListeners();
     }
   }
 
@@ -131,21 +144,24 @@ export class PostMegadropdown {
       }
     }
 
-    this.hide();
+    this.hide(false);
   };
 
-  private addOutsideClickListener() {
+  private addListeners() {
+    this.host.addEventListener('keydown', e => this.keyboardHandler(e));
+    document.addEventListener('keyup', e => this.handleTabOutside(e));
     document.addEventListener('mousedown', this.handleClickOutside);
   }
 
-  private removeOutsideClickListener() {
+  private removeListeners() {
+    this.host.removeEventListener('keydown', e => this.keyboardHandler(e));
+    document.removeEventListener('keyup', e => this.handleTabOutside(e));
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
   private getFocusableElements() {
     const focusableEls = Array.from(this.host.querySelectorAll('post-list-item, h3, .back-button'));
     const focusableChildren = focusableEls.flatMap(el => Array.from(getFocusableChildren(el)));
-
     this.firstFocusableEl = focusableChildren[0];
     this.lastFocusableEl = focusableChildren[focusableChildren.length - 1];
   }
@@ -165,6 +181,14 @@ export class PostMegadropdown {
     }
   }
 
+  private handleTabOutside(e: KeyboardEvent) {
+    if (e.key === 'Tab' && this.device === 'desktop') {
+      if (!this.host.contains(e.target as Node)) {
+        this.hide(false);
+      }
+    }
+  }
+
   render() {
     const containerStyle = this.isVisible ? {} : { display: 'none' };
 
@@ -176,15 +200,15 @@ export class PostMegadropdown {
           onAnimationEnd={() => this.handleAnimationEnd()}
         >
           <div class="megadropdown">
-            <div onClick={() => this.hide()} class="back-button">
-              <slot name="back-button"></slot>
-            </div>
-            <div onClick={() => this.hide()} class="close-button">
-              <slot name="close-button"></slot>
-            </div>
             <slot name="megadropdown-title"></slot>
             <div class="megadropdown-content">
               <slot></slot>
+            </div>
+            <div onClick={() => this.hide(true)} class="back-button">
+              <slot name="back-button"></slot>
+            </div>
+            <div onClick={() => this.hide(true)} class="close-button">
+              <slot name="close-button"></slot>
             </div>
           </div>
         </div>
