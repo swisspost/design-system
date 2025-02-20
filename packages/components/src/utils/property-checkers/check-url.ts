@@ -4,7 +4,7 @@ export function checkUrl(value: string | URL, error: string) {
   }
 
   try {
-    new URL(value, window.location.href);
+    new URL(value, 'https://www.post.ch');
   } catch {
     throw new Error(error);
   }
