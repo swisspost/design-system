@@ -18,66 +18,40 @@ post-language-option {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
     width: 100%;
-    padding: var(--post-language-option-padding);
+    height: 100%;
     border-radius: 2px;
+    text-transform: uppercase;
     @include utilities-mx.focus-style;
   }
-}
 
-post-language-option:where([variant='list']) {
-  :is(a, button) {
-    width: 40px;
-    height: 40px;
+  &:has([aria-current]):not([aria-current='false']) {
+    display: none;
+  }
 
-    &:hover {
-      color: #504f4b;
-    }
-
-    &[aria-current='true'],
-    &[aria-current='page'] {
-      background-color: #050400;
-      color: #fff;
+  &:where([variant='list']) {
+    :is(a, button) {
+      padding-inline: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 2px;
 
       &:hover {
-        background-color: #504f4b;
+        color: #504f4b;
       }
     }
   }
-}
 
-post-language-option:where([variant='menu']) {
-  width: 100%;
+  &:where([variant='menu']) {
+    width: 100%;
 
-  :is(a, button) {
-    padding-block: 13px;
-    padding-inline: 24px;
-    box-sizing: border-box;
-    position: relative;
-    left: -1px;
-    width: calc(100% + 2px);
-
-    &[aria-current='true'],
-    &[aria-current='page'] {
-      &::after {
-        content: '';
-        left: 0;
-        height: 3px;
-        background-color: #050400;
-        width: 100%;
-        display: block;
-        position: absolute;
-        bottom: 3px;
-      }
-
-      &:hover::after {
-        background-color: #504f4b;
-      }
-    }
-
-    &:hover {
-      color: #504f4b;
+    :is(a, button) {
+      padding-block: 13px;
+      padding-inline: 24px;
+      box-sizing: border-box;
+      position: relative;
+      left: -1px;
+      width: calc(100% + 2px);
     }
   }
 }

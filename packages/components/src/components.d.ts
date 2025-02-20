@@ -253,7 +253,7 @@ export namespace Components {
          */
         "url": string;
         /**
-          * The variant of the post-language-switch parent (dynamically set by the parent)
+          * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
          */
         "variant"?: SwitchVariant | null;
     }
@@ -267,7 +267,7 @@ export namespace Components {
          */
         "description": string;
         /**
-          * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
+          * Whether the component is rendered as a list or a menu
          */
         "variant": SwitchVariant;
     }
@@ -294,6 +294,7 @@ export namespace Components {
     interface PostMainnavigation {
     }
     interface PostMegadropdown {
+        "focusFirst": () => Promise<void>;
         /**
           * Hides the dropdown with an animation.
          */
@@ -371,7 +372,7 @@ export namespace Components {
     }
     interface PostPopovercontainer {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
         /**
@@ -390,6 +391,10 @@ export namespace Components {
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
+        /**
+          * Enables a safespace through which the cursor can be moved without the popover being disabled
+         */
+        "safeSpace"?: 'triangle' | 'trapezoid';
         /**
           * Programmatically display the tooltip
           * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
@@ -1118,7 +1123,7 @@ declare namespace LocalJSX {
          */
         "url"?: string;
         /**
-          * The variant of the post-language-switch parent (dynamically set by the parent)
+          * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
          */
         "variant"?: SwitchVariant | null;
     }
@@ -1132,7 +1137,7 @@ declare namespace LocalJSX {
          */
         "description"?: string;
         /**
-          * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
+          * Whether the component is rendered as a list or a menu
          */
         "variant"?: SwitchVariant;
     }
@@ -1204,7 +1209,7 @@ declare namespace LocalJSX {
     }
     interface PostPopovercontainer {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
         /**
@@ -1223,6 +1228,10 @@ declare namespace LocalJSX {
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
+        /**
+          * Enables a safespace through which the cursor can be moved without the popover being disabled
+         */
+        "safeSpace"?: 'triangle' | 'trapezoid';
     }
     interface PostRating {
         /**

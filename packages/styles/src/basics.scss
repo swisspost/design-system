@@ -1,8 +1,4 @@
-@forward './variables/options';
-
 @use 'layout';
 @use 'elements';
 @use 'utilities';
 @use 'helpers';
-
-@use 'components/sizing';

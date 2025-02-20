@@ -41,7 +41,7 @@ export class PostLanguageSwitch {
   }
 
   /**
-   * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
+   * Whether the component is rendered as a list or a menu
    */
   @Prop() variant: SwitchVariant = 'list';
 
@@ -65,9 +65,11 @@ export class PostLanguageSwitch {
     this.updateChildrenVariant();
 
     // Get the active language based on children's active state
-    this.activeLang = Array.from(this.host.querySelectorAll('post-language-option'))
-      .find(el => el.getAttribute('active') == 'true')
-      .getAttribute('code');
+    const activeLanguageOption = this.host.querySelector(
+      'post-language-option[active]:not([active="false"])',
+    );
+
+    if (activeLanguageOption) this.activeLang = activeLanguageOption.getAttribute('code');
   }
 
   // Update post-language-option variant to have the correct style
@@ -111,11 +113,10 @@ export class PostLanguageSwitch {
 
   private renderList() {
     return (
-      <Host
-        data-version={version}
-        aria-label={`${this.caption}, ${this.description}`}
-        aria-role="list"
-      >
+      <Host data-version={version} role="list" aria-label={this.caption}>
+        <span aria-label={this.description} role="listitem">
+          {this.activeLang}
+        </span>
         <slot></slot>
       </Host>
     );
@@ -125,15 +126,16 @@ export class PostLanguageSwitch {
     return (
       <Host data-version={version}>
         <post-menu-trigger for={this.menuId}>
-          <button
-            class="post-language-switch-trigger"
-            aria-label={`${this.caption}, ${this.description}`}
-          >
-            {this.activeLang.toUpperCase()}
+          <button class="post-language-switch-trigger" aria-label={this.description}>
+            {this.activeLang}
             <post-icon aria-hidden="true" name="chevrondown"></post-icon>
           </button>
         </post-menu-trigger>
-        <post-menu id={this.menuId} class="post-language-switch-dropdown-container">
+        <post-menu
+          id={this.menuId}
+          class="post-language-switch-dropdown-container"
+          aria-label={this.caption}
+        >
           <slot></slot>
         </post-menu>
       </Host>

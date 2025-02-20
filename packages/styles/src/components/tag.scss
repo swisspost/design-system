@@ -1,5 +1,4 @@
 @use 'sass:map';
-@forward './../variables/options';
 @use './../variables/color';
 @use './../variables/components/tag';
 @use './../functions/contrast' as contrast-fn;

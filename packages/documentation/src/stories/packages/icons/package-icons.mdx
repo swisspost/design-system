@@ -1,5 +1,4 @@
 import { Meta, Source } from '@storybook/blocks';
-import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
 import * as PackageIconsStories from './package-icons.stories';
 import SampleNode16 from './package-icons-node-16.7.0.sample.json?raw';
 import SampleNodeOlder from './package-icons-node-old.sample.json?raw';
@@ -44,18 +43,18 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
   Add a `postinstall` script to your `package.json`, to copy & paste the icons to a public folder within your web project.<br/>
   If you want to know more about pre & post scripts and how they are handled, please read the <a href="https://docs.npmjs.com/cli/v7/using-npm/scripts#description">npm documentation</a>.
 
-  <PostTabs>
-    <PostTabHeader panel="nodeNew">NodeJS version 16.7.0 or newer</PostTabHeader>
-    <PostTabPanel name="nodeNew">
+  <post-tabs>
+    <post-tab-header panel="nodeNew">NodeJS version 16.7.0 or newer</post-tab-header>
+    <post-tab-panel name="nodeNew">
       <Source  code={SampleNode16} language="json"/>
-    </PostTabPanel>
+    </post-tab-panel>
 
-    <PostTabHeader panel="nodeOld">Older NodeJS versions</PostTabHeader>
-    <PostTabPanel name="nodeOld">
+    <post-tab-header panel="nodeOld">Older NodeJS versions</post-tab-header>
+    <post-tab-panel name="nodeOld">
       <Source code={SampleNodeOlder} language="json"/>
       <Source code={SampleNodeOlderJs} language="javascript" />
-    </PostTabPanel>
-  </PostTabs>
+    </post-tab-panel>
+  </post-tabs>
 
   ### Configure the icons base-path
 
@@ -65,17 +64,17 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
   1. Use the **meta-tag** solution to configure the `base-path` globally for all icons on the page.
   2. Use the **base-attribute** solution, to configure the `base-path` on every `icon` component. This can also be used to overwrite the global `base-path` for a single icon.
 
-  <PostTabs>
-    <PostTabHeader panel="metaTag">Meta-tag solution (recommended)</PostTabHeader>
-    <PostTabPanel name="metaTag">
+  <post-tabs>
+    <post-tab-header panel="metaTag">Meta-tag solution (recommended)</post-tab-header>
+    <post-tab-panel name="metaTag">
       <Source code={SampleIconMeta} language="html" />
-    </PostTabPanel>
+    </post-tab-panel>
 
-    <PostTabHeader panel="baseAttribute">Base-attribute solution</PostTabHeader>
-    <PostTabPanel name="baseAttribute">
+    <post-tab-header panel="baseAttribute">Base-attribute solution</post-tab-header>
+    <post-tab-panel name="baseAttribute">
       <Source  code={`<post-icon name="1000" base="/base-path/to/your/own/icon-folder"></post-icon>`} language="html"/>
-    </PostTabPanel>
-  </PostTabs>
+    </post-tab-panel>
+  </post-tabs>
 
   ## Usage with CDN
 
