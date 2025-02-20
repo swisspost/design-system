@@ -232,7 +232,7 @@ export class PostHeader {
   }
 
   private renderNavigation() {
-    var navigationClasses = ['navigation'];
+    let navigationClasses = ['navigation'];
     if (this.mobileMenuExtended) {
       navigationClasses.push('extended');
     }
