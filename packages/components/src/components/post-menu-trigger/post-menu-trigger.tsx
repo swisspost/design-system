@@ -25,7 +25,7 @@ export class PostMenuTrigger {
    * Used to manage click and key events for menu control.
    */
   private slottedButton: HTMLButtonElement | null = null;
-  private root?: Document | ShadowRoot;
+  private root: Document | ShadowRoot | null;
 
   /**
    * Watch for changes to the `for` property to validate its type and ensure it is a string.
@@ -42,9 +42,8 @@ export class PostMenuTrigger {
   }
 
   private handleToggle() {
-    const menu = this.menu;
-    if (menu) {
-      menu.toggle(this.host);
+    if (this.menu) {
+      this.menu.toggle(this.host);
     } else {
       console.warn(`No post-menu found with ID: ${this.for}`);
     }
@@ -57,8 +56,11 @@ export class PostMenuTrigger {
     }
   };
 
-  componentDidLoad() {
+  connectedCallback() {
     this.root = getRoot(this.host);
+  }
+
+  componentDidLoad() {
     this.validateControlFor();
 
     this.slottedButton = this.host.querySelector('button');
@@ -78,9 +80,8 @@ export class PostMenuTrigger {
       this.slottedButton.setAttribute('aria-haspopup', 'menu');
 
       // Listen to the `toggleMenu` event emitted by the `post-menu` component
-      const menu = this.menu;
-      if (menu && this.slottedButton) {
-        menu.addEventListener('toggleMenu', (event: CustomEvent<boolean>) => {
+      if (this.menu && this.slottedButton) {
+        this.menu.addEventListener('toggleMenu', (event: CustomEvent<boolean>) => {
           this.ariaExpanded = event.detail;
           this.slottedButton.setAttribute('aria-expanded', this.ariaExpanded.toString());
         });

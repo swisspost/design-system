@@ -56,7 +56,7 @@ export class PostMenu {
    **/
   @Event() toggleMenu: EventEmitter<boolean>;
 
-  private root?: Document | ShadowRoot;
+  private root?: Document | ShadowRoot | null;
 
   connectedCallback() {
     this.root = getRoot(this.host);
@@ -93,6 +93,7 @@ export class PostMenu {
    */
   @Method()
   async toggle(target: HTMLElement) {
+
     if (this.popoverRef) {
       await this.popoverRef.toggle(target);
     } else {
@@ -141,30 +142,10 @@ export class PostMenu {
 
   private handleClick = (e: MouseEvent) => {
     const target = e.target as HTMLElement;
-  
-    const trigger = this.findAssociatedTrigger();
-  
-    // Check if the target is inside the associated post-menu-trigger
-    const isInsideTrigger = trigger?.contains(target);
-  
-    // Only toggle if the click is inside the associated post-menu-trigger
-    if (isInsideTrigger && ['BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'].includes(target.tagName)) {
+    if (['BUTTON', 'A', 'INPUT', 'SELECT', 'TEXTAREA'].includes(target.tagName)) {
       this.toggle(this.host);
     }
   };
-  
-  private findAssociatedTrigger(): HTMLPostMenuTriggerElement | null {
-    // Find all post-menu-trigger elements in the document
-    const triggers = Array.from(document.querySelectorAll('post-menu-trigger'));
-  
-    // Find the trigger that references this menu
-    const trigger = triggers.find(trigger => {
-      const menuId = trigger.getAttribute('for');
-      return menuId === this.host.id;
-    });
-  
-    return trigger as HTMLPostMenuTriggerElement | null;
-  }
 
   private controlKeyDownHandler(e: KeyboardEvent) {
     const menuItems = this.getSlottedItems();
@@ -194,7 +175,6 @@ export class PostMenu {
         currentIndex = menuItems.length - 1;
         break;
       case this.KEYCODES.SPACE:
-      case this.KEYCODES.ENTER:
         this.toggle(this.host);
         return;
       case this.KEYCODES.TAB:
