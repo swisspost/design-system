@@ -72,10 +72,13 @@ export class PostMegadropdownTrigger {
     // Check if the mega dropdown attached to the trigger is expanded or not
     document.addEventListener('postToggleMegadropdown', (event: CustomEvent) => {
       if ((event.target as HTMLPostMegadropdownElement).id === this.for) {
-        this.ariaExpanded = event.detail;
+        this.ariaExpanded = event.detail.isVisible;
 
-        if (this.wasExpanded && !this.ariaExpanded) {
-          setTimeout(() => this.slottedButton?.focus(), 100);
+        // Focus on the trigger parent of the dropdown after it's closed if close button had been clicked
+        if (this.wasExpanded && !this.ariaExpanded && event.detail.focusParent) {
+          setTimeout(() => {
+            this.slottedButton?.focus();
+          }, 100);
         }
         this.wasExpanded = this.ariaExpanded;
 
