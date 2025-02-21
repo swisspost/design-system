@@ -47,6 +47,19 @@ export class PostHeader {
     this.getFocusableElements();
   }
 
+  componentDidLoad() {
+    this.updateLocalHeaderHeight();
+  }
+
+  // Clean up possible side effects when post-header is disconnected
+  disconnectedCallback() {
+    this.mobileMenuExtended = false;
+    document.body.style.overflow = '';
+    this.host.removeEventListener('keydown', e => {
+      this.keyboardHandler(e);
+    });
+  }
+
   @Element() host: HTMLPostHeaderElement;
 
   @State() device: string = breakpoint.get('name');
