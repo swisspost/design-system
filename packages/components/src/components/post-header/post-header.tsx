@@ -81,6 +81,7 @@ export class PostHeader {
   private breakpointChange(e: CustomEvent) {
     this.device = e.detail;
     this.switchLanguageSwitchMode();
+    this.updateLocalHeaderHeight(); 
 
     // Close mobile menu when switching to desktop
     if (this.device === 'desktop' && this.mobileMenuExtended) {
@@ -199,6 +200,16 @@ export class PostHeader {
     return ['overflow', 'overflow-x', 'overflow-y'].some(propertyName => {
       const value = style.getPropertyValue(propertyName);
       return value === 'auto' || value === 'scroll';
+    });
+  }
+
+  private updateLocalHeaderHeight() {
+    requestAnimationFrame(() => {
+      const localHeader = this.host.shadowRoot.querySelector('.local-header');
+      const boundingBox = localHeader?.getBoundingClientRect();
+      const height = boundingBox ? boundingBox.height : 0;
+      console.log(height)
+      this.host.style.setProperty('--main-header-height', `${height}px`);
     });
   }
 
