@@ -38,62 +38,65 @@ export const Bleed: Story = {
   render: () => html`
     <section class="section palette-brand">
       <div class="container">
-        <img class="section-bleed" src="https://picsum.photos/id/20/1920/640" alt="" />
-        <img class="section-bleed-start" src="https://picsum.photos/id/20/1920/640" alt="" />
-        <img class="section-bleed-end" src="https://picsum.photos/id/20/1920/640" alt="" />
+        <h2>Aligning classes</h2>
+        <img class="align-section-stretch" src="https://picsum.photos/id/20/1920/640" alt="" />
+        <img class="align-section-start" src="https://picsum.photos/id/20/1920/640" alt="" />
+        <img class="align-section-end" src="https://picsum.photos/id/20/1920/640" alt="" />
 
+        <h2>Responsive aligning classes</h2>
         <img
-          class="section-bleed section-md-bleed-start section-lg-bleed-end section-xl-bleed-none"
+          class="align-section-stretch align-section-md-start align-section-lg-end align-section-xl-none"
           src="https://picsum.photos/id/20/1920/640"
           alt=""
         />
         <img
-          class="section-bleed section-md-bleed-start section-lg-bleed-end section-sm-bleed-none"
+          class="align-section-stretch align-section-sm-none align-section-md-start align-section-lg-end"
           src="https://picsum.photos/id/20/1920/640"
           alt=""
         />
 
-        <div class="row">
+        <h2>Aligning classes in grid</h2>
+        <div class="row gy-16">
           <div class="col">
-            <img class="section-bleed" src="https://picsum.photos/id/20/1920/640" alt="" />
+            <img class="align-section-stretch" src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
           <div class="w-full"></div>
           <div class="col">
-            <img class="section-bleed-start" src="https://picsum.photos/id/20/1920/640" alt="" />
+            <img class="align-section-start" src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
           <div class="col">
-            <img class="section-bleed-end" src="https://picsum.photos/id/20/1920/640" alt="" />
-          </div>
-          <div class="w-full"></div>
-          <div class="col">
-            <img class="section-bleed-start" src="https://picsum.photos/id/20/1920/640" alt="" />
-          </div>
-          <div class="col">
-            <p>Text next to a <code>.section-bleed-start</code> image.</p>
+            <img class="align-section-end" src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
           <div class="w-full"></div>
           <div class="col">
-            <p>Text next to a <code>.section-bleed-end</code> image.</p>
+            <img class="align-section-start" src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
           <div class="col">
-            <img class="section-bleed-end" src="https://picsum.photos/id/20/1920/640" alt="" />
+            <p>Text next to a <code>.align-section-start</code> image.</p>
+          </div>
+          <div class="w-full"></div>
+          <div class="col">
+            <p>Text next to a <code>.align-section-end</code> image.</p>
+          </div>
+          <div class="col">
+            <img class="align-section-end" src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
           <div class="w-full"></div>
           <div class="col-3">
-            <img class="section-bleed-start" src="https://picsum.photos/id/20/1920/640" alt="" />
+            <img class="align-section-start" src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
           <div class="col">
             <p>
-              Text between <code>.section-bleed-start</code> and
-              <code>.section-bleed-end</code> images.
+              Text between <code>.align-section-start</code> and
+              <code>.align-section-end</code> images.
             </p>
           </div>
           <div class="col-3">
-            <img class="section-bleed-end" src="https://picsum.photos/id/20/1920/640" alt="" />
+            <img class="align-section-end" src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
           <div class="w-full"></div>
           <div class="col">
-            <img class="section-bleed-start" src="https://picsum.photos/id/20/1920/640" alt="" />
+            <img class="align-section-start" src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
           <div class="col">
             <p>Works also with more columns.</p>
@@ -105,11 +108,11 @@ export const Bleed: Story = {
             </p>
           </div>
           <div class="col">
-            <img class="section-bleed-end" src="https://picsum.photos/id/20/1920/640" alt="" />
+            <img class="align-section-end" src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
           <div class="w-full"></div>
           <div class="col-8">
-            <img class="section-bleed-start" src="https://picsum.photos/id/20/1920/640" alt="" />
+            <img class="align-section-start" src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
           <div class="col">
             <p>Works also with custom with columns.</p>
@@ -119,13 +122,13 @@ export const Bleed: Story = {
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
           </div>
           <div class="col-8">
-            <img class="section-bleed-end" src="https://picsum.photos/id/20/1920/640" alt="" />
+            <img class="align-section-end" src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
           <div class="w-full"></div>
           <div class="col">
-            <p class="section-bleed-start">
-              The bleeing classes do not need to be applied on an image tag, you can let bleed out,
-              whatever block element you want.
+            <p class="align-section-start">
+              The aligning classes do not need to be applied on an image tag, you can align whatever
+              block element you want.
             </p>
           </div>
           <div class="col-4">
@@ -136,9 +139,9 @@ export const Bleed: Story = {
             <img src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
           <div class="col">
-            <p class="section-bleed-end">
-              The bleeing classes do not need to be applied on an image tag, you can let bleed out,
-              whatever block element you want.
+            <p class="align-section-end">
+              The aligning classes do not need to be applied on an image tag, you can align whatever
+              block element you want.
             </p>
           </div>
         </div>

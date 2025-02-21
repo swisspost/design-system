@@ -29,12 +29,12 @@ tokens.$default-map: components.$post-container;
     @each $breakpoint in map.keys(breakpoints.$grid-breakpoints) {
       @include media.min($breakpoint) {
         @if $breakpoint == 'xs' {
-          .section-bleed,
-          .section-bleed-start,
-          .section-bleed-end,
-          .container-bleed,
-          .container-bleed-start,
-          .container-bleed-end {
+          .align-section-stretch,
+          .align-section-start,
+          .align-section-end,
+          .align-container-stretch,
+          .align-container-start,
+          .align-container-end {
             display: block;
             margin-inline: unset;
             min-width: unset;
@@ -42,48 +42,48 @@ tokens.$default-map: components.$post-container;
             width: unset;
           }
 
-          .section-bleed-none,
-          .container-bleed-none {
+          .align-section-none,
+          .align-container-none {
             margin-inline: 0;
             width: 100%;
           }
 
-          .section-bleed {
+          .align-section-stretch {
             margin-inline: calc(var(--section-container-content-offset) * -1);
             width: var(--section-width);
           }
 
-          .section-bleed-start {
+          .align-section-start {
             margin-inline-start: calc(var(--section-container-content-offset) * -1);
             width: calc(100% + var(--section-container-content-offset));
           }
 
-          .section-bleed-end {
+          .align-section-end {
             margin-inline-end: calc(var(--section-container-content-offset) * -1);
             width: calc(100% + var(--section-container-content-offset));
           }
 
-          .container-bleed {
+          .align-container-stretch {
             margin-inline: calc(var(--section-container-padding) * -1);
             width: var(--section-container-width);
           }
 
-          .container-bleed-start {
+          .align-container-start {
             margin-inline-start: calc(var(--section-container-padding) * -1);
             width: calc(100% + var(--section-container-padding));
           }
 
-          .container-bleed-end {
+          .align-container-end {
             margin-inline-end: calc(var(--section-container-padding) * -1);
             width: calc(100% + var(--section-container-padding));
           }
         } @else {
-          .section-#{$breakpoint}-bleed,
-          .section-#{$breakpoint}-bleed-start,
-          .section-#{$breakpoint}-bleed-end,
-          .container-#{$breakpoint}-bleed,
-          .container-#{$breakpoint}-bleed-start,
-          .container-#{$breakpoint}-bleed-end {
+          .align-section-#{$breakpoint}-stretch,
+          .align-section-#{$breakpoint}-start,
+          .align-section-#{$breakpoint}-end,
+          .align-container-#{$breakpoint}-stretch,
+          .align-container-#{$breakpoint}-start,
+          .align-container-#{$breakpoint}-end {
             display: block;
             margin-inline: unset;
             min-width: unset;
@@ -91,38 +91,38 @@ tokens.$default-map: components.$post-container;
             width: unset;
           }
 
-          .section-#{$breakpoint}-bleed-none,
-          .container-#{$breakpoint}-bleed-none {
+          .align-section-#{$breakpoint}-none,
+          .align-container-#{$breakpoint}-none {
             margin-inline: 0;
             width: 100%;
           }
 
-          .section-#{$breakpoint}-bleed {
+          .align-section-#{$breakpoint}-stretch {
             margin-inline: calc(var(--section-container-content-offset) * -1);
             width: var(--section-width);
           }
 
-          .section-#{$breakpoint}-bleed-start {
+          .align-section-#{$breakpoint}-start {
             margin-inline-start: calc(var(--section-container-content-offset) * -1);
             width: calc(100% + var(--section-container-content-offset));
           }
 
-          .section-#{$breakpoint}-bleed-end {
+          .align-section-#{$breakpoint}-end {
             margin-inline-end: calc(var(--section-container-content-offset) * -1);
             width: calc(100% + var(--section-container-content-offset));
           }
 
-          .container-#{$breakpoint}-bleed {
+          .align-container-#{$breakpoint}-stretch {
             margin-inline: calc(var(--section-container-padding) * -1);
             width: var(--section-container-width);
           }
 
-          .container-#{$breakpoint}-bleed-start {
+          .align-container-#{$breakpoint}-start {
             margin-inline-start: calc(var(--section-container-padding) * -1);
             width: calc(100% + var(--section-container-padding));
           }
 
-          .container-#{$breakpoint}-bleed-end {
+          .align-container-#{$breakpoint}-end {
             margin-inline-end: calc(var(--section-container-padding) * -1);
             width: calc(100% + var(--section-container-padding));
           }
