@@ -180,13 +180,10 @@ export class PostHeader {
 
   private updateLocalHeaderHeight() {
     requestAnimationFrame(() => {
-      const localHeader = this.host.shadowRoot.querySelector('.local-header');
-      const boundingBox = localHeader?.getBoundingClientRect();
-      const height = boundingBox ? boundingBox.height : 0;
-      this.host.style.setProperty('--main-header-height', `${height}px`);
+      const mhh = this.host.shadowRoot.querySelector('.local-header')?.clientHeight || 0;
+      this.host.style.setProperty('--local-header-height', `${mhh}px`);
     });
   }
-  
 
   private handleResize() {
     const previousDevice = this.device;
