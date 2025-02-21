@@ -1,5 +1,18 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.18
+
+### Minor Changes
+
+- Made it possible to use multiple `post-language-switch` components in the `post-header` component. Fixed language switch options being wrapped to multiple lines on mobile. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4674](https://github.com/swisspost/design-system/pull/4674))
+
+### Patch Changes
+
+- Updated styles for the header main navigation and mega dropdown elements. (by [@leagrdv](https://github.com/leagrdv) with [#4621](https://github.com/swisspost/design-system/pull/4621))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.18
+  - @swisspost/design-system-icons@9.0.0-next.18
+
 ## 9.0.0-next.17
 
 ### Patch Changes
