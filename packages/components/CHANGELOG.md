@@ -1,5 +1,54 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.19
+
+### Minor Changes
+
+- Changed list version of `post-language-switch` to always keep the same order of `post-language-options`. (by [@schaertim](https://github.com/schaertim) with [#4706](https://github.com/swisspost/design-system/pull/4706))
+
+- Added optional safe triangle and trapezoid to `post-popovercontainer` to improve accessability. (by [@schaertim](https://github.com/schaertim) with [#4436](https://github.com/swisspost/design-system/pull/4436))
+
+- Enhanced the `post-linkarea` component so that modifier keys (`ctrl`, `shift`, `alt`, `meta`) are passed along when clicking the component. (by [@alizedebray](https://github.com/alizedebray) with [#4696](https://github.com/swisspost/design-system/pull/4696))
+
+- Updated the `post-icon` component to make it SSR conform. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4697](https://github.com/swisspost/design-system/pull/4697))
+
+### Patch Changes
+
+- Improved keyboard navigation for the `post-megadropdown` by focusing on the first element when it is opened with the Enter key and returning the focus to the trigger when it is closed. (by [@schaertim](https://github.com/schaertim) with [#4625](https://github.com/swisspost/design-system/pull/4625))
+
+- Fixed the correct assignment of the expanded attribute in the `post-menu` component, ensuring proper aria-expanded handling in components utilizing `post-menu`, such as `post-language-switch` and `post-breadcrumb`. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4661](https://github.com/swisspost/design-system/pull/4661))
+
+- Tokenized the back to top button's shadow. (by [@leagrdv](https://github.com/leagrdv) with [#4641](https://github.com/swisspost/design-system/pull/4641))
+
+- Cleaned up possible side effects on `post-header` by adding a `disconnectedCallback()` function. (by [@leagrdv](https://github.com/leagrdv) with [#4736](https://github.com/swisspost/design-system/pull/4736))
+
+- Duplicated `post-mainnavigation` links' content to avoid layout shift on active elements. (by [@leagrdv](https://github.com/leagrdv) with [#4694](https://github.com/swisspost/design-system/pull/4694))
+
+- Added documentation for the `design-system-components-react` package. (by [@leagrdv](https://github.com/leagrdv) with [#4669](https://github.com/swisspost/design-system/pull/4669))
+
+- Fixed the `post-language-switch` component to support any boolean notation for the `active` attribute on `post-language-option`. (by [@alizedebray](https://github.com/alizedebray) with [#4701](https://github.com/swisspost/design-system/pull/4701))
+
+- Fixed focus order on desktop for `post-megadropdown` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4379](https://github.com/swisspost/design-system/pull/4379))
+
+- Added high contrast mode styles for header. (by [@myrta2302](https://github.com/myrta2302) with [#4262](https://github.com/swisspost/design-system/pull/4262))
+
+- Fixed the animation glitch when switching between megadropdowns. (by [@leagrdv](https://github.com/leagrdv) with [#4723](https://github.com/swisspost/design-system/pull/4723))
+
+- Fixed the `post-header` component to correctly set the `--local-header-height` property. (by [@alizedebray](https://github.com/alizedebray) with [#4746](https://github.com/swisspost/design-system/pull/4746))
+
+- Switched from thrown error to logged errors when `post-list` title is missing. (by [@leagrdv](https://github.com/leagrdv) with [#4725](https://github.com/swisspost/design-system/pull/4725))
+
+- Fixed overflow handling in the main navigation to ensure all navigation items can be accessed. (by [@alizedebray](https://github.com/alizedebray) with [#4666](https://github.com/swisspost/design-system/pull/4666))
+
+- Added a line separator between the header and the page content. (by [@leagrdv](https://github.com/leagrdv) with [#4637](https://github.com/swisspost/design-system/pull/4637))
+
+- Removed the custom properties from the `post-header` component styles and moved them to the styles package. This change allows these properties to be accessed before the component is loaded. (by [@leagrdv](https://github.com/leagrdv) with [#4663](https://github.com/swisspost/design-system/pull/4663))
+
+- Updated the post-linkarea component so that it no longer uses the `Window` object. (by [@alizedebray](https://github.com/alizedebray) with [#4696](https://github.com/swisspost/design-system/pull/4696))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.19
+  - @swisspost/design-system-icons@9.0.0-next.19
+
 ## 9.0.0-next.18
 
 ### Minor Changes
