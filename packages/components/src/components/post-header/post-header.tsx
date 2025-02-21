@@ -181,7 +181,7 @@ export class PostHeader {
   private updateLocalHeaderHeight() {
     requestAnimationFrame(() => {
       const mhh = this.host.shadowRoot.querySelector('.local-header')?.clientHeight || 0;
-      this.host.style.setProperty('--main-header-height', `${mhh}px`);
+      this.host.style.setProperty('--local-header-height', `${mhh}px`);
     });
   }
 
