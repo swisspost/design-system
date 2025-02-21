@@ -57,28 +57,28 @@ export const Bleed: Story = {
           <div class="col">
             <img class="section-bleed" src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
-          <div class="w-100"></div>
+          <div class="w-full"></div>
           <div class="col">
             <img class="section-bleed-start" src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
           <div class="col">
             <img class="section-bleed-end" src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
-          <div class="w-100"></div>
+          <div class="w-full"></div>
           <div class="col">
             <img class="section-bleed-start" src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
           <div class="col">
             <p>Text next to a <code>.section-bleed-start</code> image.</p>
           </div>
-          <div class="w-100"></div>
+          <div class="w-full"></div>
           <div class="col">
             <p>Text next to a <code>.section-bleed-end</code> image.</p>
           </div>
           <div class="col">
             <img class="section-bleed-end" src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
-          <div class="w-100"></div>
+          <div class="w-full"></div>
           <div class="col-3">
             <img class="section-bleed-start" src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
@@ -91,7 +91,7 @@ export const Bleed: Story = {
           <div class="col-3">
             <img class="section-bleed-end" src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
-          <div class="w-100"></div>
+          <div class="w-full"></div>
           <div class="col">
             <img class="section-bleed-start" src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
@@ -107,21 +107,21 @@ export const Bleed: Story = {
           <div class="col">
             <img class="section-bleed-end" src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
-          <div class="w-100"></div>
+          <div class="w-full"></div>
           <div class="col-8">
             <img class="section-bleed-start" src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
           <div class="col">
             <p>Works also with custom with columns.</p>
           </div>
-          <div class="w-100"></div>
+          <div class="w-full"></div>
           <div class="col">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
           </div>
           <div class="col-8">
             <img class="section-bleed-end" src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
-          <div class="w-100"></div>
+          <div class="w-full"></div>
           <div class="col">
             <p class="section-bleed-start">
               The bleeing classes do not need to be applied on an image tag, you can let bleed out,
@@ -131,7 +131,7 @@ export const Bleed: Story = {
           <div class="col-4">
             <img src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
-          <div class="w-100"></div>
+          <div class="w-full"></div>
           <div class="col-4">
             <img src="https://picsum.photos/id/20/1920/640" alt="" />
           </div>
