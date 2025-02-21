@@ -81,13 +81,13 @@ export class PostHeader {
   connectedCallback() {
     window.addEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
     window.addEventListener('resize', this.throttledResize, { passive: true });
+    this.switchLanguageSwitchMode();
     this.handleResize();
   }
 
   private breakpointChange(e: CustomEvent) {
     this.device = e.detail;
     this.switchLanguageSwitchMode();
-    this.updateLocalHeaderHeight(); 
 
     // Close mobile menu when switching to desktop
     if (this.device === 'desktop' && this.mobileMenuExtended) {
@@ -220,7 +220,7 @@ export class PostHeader {
 
   private handleResize() {
     this.device = breakpoint.get('name');
-    this.switchLanguageSwitchMode();
+    this.updateLocalHeaderHeight(); 
   }
 
   private switchLanguageSwitchMode() {

@@ -100,9 +100,7 @@
 
   @include media.min(lg) {
     z-index: 3;
-    inset-block-start: calc(
-      -1 * (var(--local-header-height) - var(--main-navigation-height)) + var(--global-header-reduced-height)
-    );
+    top: var(--global-header-reduced-height);
     padding-block-start: 18px;
     box-shadow: elevation.$elevation-300;
   }
