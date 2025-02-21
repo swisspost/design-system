@@ -34,7 +34,7 @@ export const Default: Story = {
   `,
 };
 
-export const Bleed: Story = {
+export const Alignment: Story = {
   render: () => html`
     <section class="section palette-brand">
       <div class="container">
