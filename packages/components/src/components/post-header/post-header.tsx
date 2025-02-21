@@ -52,6 +52,11 @@ export class PostHeader {
 
   componentDidLoad() {
     this.updateLocalHeaderHeight();
+
+    // Check if the mega dropdown is expanded
+    document.addEventListener('postToggleMegadropdown', (event: CustomEvent) => {
+      this.megadropdownOpen = !!event.detail;
+    });
   }
 
   // Clean up possible side effects when post-header is disconnected
@@ -67,6 +72,8 @@ export class PostHeader {
 
   @State() device: DEVICE_SIZE = null;
   @State() mobileMenuExtended: boolean = false;
+
+  @State() megadropdownOpen: boolean = false;
 
   @Watch('mobileMenuExtended')
   frozeBody(isMobileMenuExtended: boolean) {
@@ -234,9 +241,14 @@ export class PostHeader {
   }
 
   private renderNavigation() {
-    const navigationClasses = ['navigation'];
+    let navigationClasses = ['navigation'];
     if (this.mobileMenuExtended) {
       navigationClasses.push('extended');
+    }
+    if (this.megadropdownOpen) {
+      navigationClasses = navigationClasses.filter(className => className !== 'scroll-y');
+    } else {
+      navigationClasses.push('scroll-y');
     }
 
     return (
