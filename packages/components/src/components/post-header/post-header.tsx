@@ -47,12 +47,10 @@ export class PostHeader {
     this.getFocusableElements();
   }
 
-  componentDidLoad() {
-    this.updateLocalHeaderHeight();
-  }
-
   // Clean up possible side effects when post-header is disconnected
   disconnectedCallback() {
+    window.removeEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
+    window.removeEventListener('resize', this.throttledResize);
     this.mobileMenuExtended = false;
     document.body.style.overflow = '';
     this.host.removeEventListener('keydown', e => {
@@ -84,11 +82,6 @@ export class PostHeader {
     window.addEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
     window.addEventListener('resize', this.throttledResize, { passive: true });
     this.handleResize();
-  }
-
-  disconnectedCallback() {
-    window.removeEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
-    window.removeEventListener('resize', this.throttledResize);
   }
 
   private breakpointChange(e: CustomEvent) {
@@ -221,7 +214,6 @@ export class PostHeader {
       const localHeader = this.host.shadowRoot.querySelector('.local-header');
       const boundingBox = localHeader?.getBoundingClientRect();
       const height = boundingBox ? boundingBox.height : 0;
-      console.log(height)
       this.host.style.setProperty('--main-header-height', `${height}px`);
     });
   }
