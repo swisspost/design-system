@@ -11,8 +11,6 @@
 @use '@swisspost/design-system-styles/variables/color';
 
 post-mainnavigation {
-  flex: 0 0 auto;
-
   // reset links and buttons
   post-list-item {
     > a {
@@ -78,13 +76,14 @@ post-mainnavigation {
       background: color.$white;
       max-height: var(--main-navigation-height);
       user-select: none;
-      transition: transform animation.$transition-base-timing;
+      transition: margin animation.$transition-base-timing;
     }
 
     .left-scroll-button,
     .right-scroll-button {
+      z-index: 4;
       position: absolute;
-      inset-block: 0;
+      inset-block-end: 0;
       overflow: hidden;
 
       button {
@@ -93,7 +92,7 @@ post-mainnavigation {
         padding: 16px;
         box-shadow: elevation.$elevation-500;
         line-height: 100%;
-        height: 100%;
+        height: var(--main-navigation-height);
 
         post-icon {
           font-size: 1rem;
@@ -111,14 +110,10 @@ post-mainnavigation {
       padding-inline-start: 2rem;
     }
 
-    post-list {
+    post-list > [role='list'] {
+      flex-direction: row;
+      max-width: 100vw;
       margin-inline: 4px;
-
-      > [role='list'] {
-        flex-direction: row;
-        max-width: 100vw;
-        transition: transform animation.$transition-base-timing;
-      }
     }
 
     post-list-item {
