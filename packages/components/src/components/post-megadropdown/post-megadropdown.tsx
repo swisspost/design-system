@@ -96,6 +96,9 @@ export class PostMegadropdown {
     this.animationClass = 'slide-out';
   }
 
+  /**
+   * Sets focus to the first focusable element within the component.
+  */
   @Method()
   async focusFirst() {
     this.firstFocusableEl?.focus();
@@ -104,9 +107,18 @@ export class PostMegadropdown {
   connectedCallback() {
     this.header = this.host.closest('post-header');
     if (this.header) {
-      this.header.addEventListener('postUpdateDevice', (event: CustomEvent<DEVICE_SIZE>) => {
-        this.device = event.detail;
-      });
+      this.header.addEventListener(
+        'postUpdateDevice',
+        (event: CustomEvent<DEVICE_SIZE>) => {
+          const newDevice = event.detail;
+          if (this.device !== newDevice) {
+            this.device = newDevice;
+            if (newDevice === 'desktop' && this.isVisible) {
+              this.animationClass = null;
+            }
+          }
+        },
+      );
     }
   }
 
