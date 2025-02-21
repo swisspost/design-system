@@ -1,4 +1,72 @@
+@use 'sass:map';
+
+@use '../functions/tokens';
+@use '../mixins/media';
+@use '../tokens/components';
+@use '../variables/breakpoints';
+
+tokens.$default-map: components.$post-container;
+
 .section {
+  container: section / inline-size;
   margin-inline: auto;
   max-width: 1920px;
+
+  > .container {
+    --section-width: 100cqw;
+    --section-container-width: min(#{tokens.get('grid-max-width')}, var(--section-width));
+    --section-container-content-offset: calc(
+      (var(--section-width) - var(--section-container-width)) * 0.5 +
+        var(--section-container-padding)
+    );
+
+    @each $breakpoint in map.keys(breakpoints.$grid-breakpoints) {
+      @include media.min($breakpoint) {
+        --section-container-padding: #{tokens.get('grid-padding-#{$breakpoint}')};
+      }
+    }
+
+    .section-bleed,
+    .section-bleed-start,
+    .section-bleed-end,
+    .container-bleed,
+    .container-bleed-start,
+    .container-bleed-end {
+      display: block;
+      margin-inline: unset;
+      min-width: unset;
+      max-width: unset;
+      width: unset;
+    }
+
+    .section-bleed {
+      margin-inline: calc(var(--section-container-content-offset) * -1);
+      width: var(--section-width);
+    }
+
+    .section-bleed-start {
+      margin-inline-start: calc(var(--section-container-content-offset) * -1);
+      width: calc(100% + var(--section-container-content-offset));
+    }
+
+    .section-bleed-end {
+      margin-inline-end: calc(var(--section-container-content-offset) * -1);
+      width: calc(100% + var(--section-container-content-offset));
+    }
+
+    .container-bleed {
+      margin-inline: calc(var(--section-container-padding) * -1);
+      width: var(--section-container-width);
+    }
+
+    .container-bleed-start {
+      margin-inline-start: calc(var(--section-container-padding) * -1);
+      width: calc(100% + var(--section-container-padding));
+    }
+
+    .container-bleed-end {
+      margin-inline-end: calc(var(--section-container-padding) * -1);
+      width: calc(100% + var(--section-container-padding));
+    }
+  }
 }
