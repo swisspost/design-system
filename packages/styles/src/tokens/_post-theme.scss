@@ -5,11 +5,4 @@
 
 :root {
   @include tokens.from(themes.$post-post);
-
-  // temporarily set here until tokens are implemented
-  --post-border-width: 1px;
-  --post-border-style-default: solid;
-  --post-border-color-default: 204, 204, 204;
-  --post-border-opacity: 1;
-  --post-border-radius: 0.375rem;
 }

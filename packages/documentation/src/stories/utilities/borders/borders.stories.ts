@@ -8,7 +8,7 @@ import './borders.styles.scss';
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 export const SCSS_VARIABLES: any = parse(scss);
 
-const properties = ['width', 'color', 'rounded'];
+const properties = ['width', 'radius'];
 
 const border_args = properties.reduce((options, property) => {
   return {
@@ -19,6 +19,7 @@ const border_args = properties.reduce((options, property) => {
   };
 }, {} as { [property: string]: string[] });
 
+console.log(border_args);
 const meta: MetaExtended = {
   id: 'cbee1b5e-c98b-4818-8b88-b3c9989796d8',
   title: 'Utilities/Borders',
@@ -62,48 +63,16 @@ export const Borders: Story = {
         category: 'Set Border Width',
       },
     },
-    borderColor: {
-      name: 'border-{color}',
-      description:
-        'Sets the border color using predefined color classes like `border-primary`, `border-secondary`, `border-success`, etc.',
-      control: {
-        type: 'select',
-      },
-      options: ['none', ...border_args.color],
-      table: {
-        category: 'Set Border Color',
-      },
-    },
-    borderOpacity: {
-      name: 'border-opacity',
-      description:
-        'Sets the opacity of the border. Use values between 0, 10, 25, 50, 100 to define the transparency level (e.g., `border-opacity-50` for 50% opacity).',
-      control: {
-        type: 'select',
-      },
-      options: [0, 10, 25, 50, 75, 100],
-      table: {
-        category: 'Set Border Opacity',
-      },
-    },
   },
   args: {
     border: 'border',
     borderWidth: 'none',
-    borderColor: 'none',
-    borderOpacity: 'none',
   },
   render: (args: Args) => {
     const border = args.border != 'none' ? args.border : '';
     const borderWidthClass = args.borderWidth != 'none' ? ` border-${args.borderWidth}` : '';
-    const borderColorClass = args.borderColor != 'none' ? ` border-${args.borderColor}` : '';
-    const borderOpacityClass =
-      args.borderOpacity != 'none' ? ` border-opacity-${args.borderOpacity}` : '';
-    return html`
-      <div class="${border}${borderWidthClass}${borderColorClass}${borderOpacityClass}">
-        Sample Text
-      </div>
-    `;
+
+    return html` <div class="${border}${borderWidthClass}">Sample Text</div> `;
   },
 };
 
@@ -160,7 +129,7 @@ export const BorderRadius: Story = {
       control: {
         type: 'select',
       },
-      options: ['none', ...border_args.rounded],
+      options: ['none', ...border_args.radius],
     },
   },
   args: {

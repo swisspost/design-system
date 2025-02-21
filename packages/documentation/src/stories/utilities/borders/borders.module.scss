@@ -1,15 +1,15 @@
 @use '@swisspost/design-system-styles/tokens/utilities' as tokens;
 
 :export {
-  @each $key, $value in tokens.$post-border-widths {
-    width_#{$key}: #{$value};
-  }
-
-  @each $key, $value in tokens.$post-border-colors {
-    color_#{$key}: #{$value};
-  }
-
-  @each $key, $value in tokens.$post-border-radius {
-    rounded_#{$key}: #{$value};
+  @each $key, $value in tokens.$post-border-utility {
+    @if str-index($key, 'border-width') {
+      width_#{$key}: #{$value};
+    }
+    @if str-index($key, 'border-radius') {
+      radius_#{$key}: #{$value};
+    }
+    @if str-index($key, 'border-default') {
+      default_#{$key}: #{$value};
+    }
   }
 }
