@@ -54,6 +54,15 @@ export class PostHeader {
     this.updateLocalHeaderHeight();
   }
 
+  // Clean up possible side effects when post-header is disconnected
+  disconnectedCallback() {
+    this.mobileMenuExtended = false;
+    document.body.style.overflow = '';
+    this.host.removeEventListener('keydown', e => {
+      this.keyboardHandler(e);
+    });
+  }
+
   @Element() host: HTMLPostHeaderElement;
 
   @State() device: DEVICE_SIZE = null;
