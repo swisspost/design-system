@@ -18,12 +18,8 @@ export class PostLanguageSwitch {
   @Prop() caption: string;
 
   @Watch('caption')
-  validateCaption(value = this.caption) {
-    checkType(
-      value,
-      'string',
-      'The "caption" property of the post-language-switch component must be a string.',
-    );
+  validateCaption() {
+    checkType(this, 'caption', 'string');
   }
 
   /**
@@ -32,12 +28,8 @@ export class PostLanguageSwitch {
   @Prop() description: string;
 
   @Watch('description')
-  validateDescription(value = this.description) {
-    checkType(
-      value,
-      'string',
-      'The "description" property of the post-language-switch component must be a string.',
-    );
+  validateDescription() {
+    checkType(this, 'description', 'string');
   }
 
   /**
@@ -46,14 +38,8 @@ export class PostLanguageSwitch {
   @Prop() variant: SwitchVariant = 'list';
 
   @Watch('variant')
-  validateVariant(value = this.variant) {
-    checkEmptyOrOneOf(
-      value,
-      SWITCH_VARIANTS,
-      `The "variant" property of the post-language-switch component must be:  ${SWITCH_VARIANTS.join(
-        ', ',
-      )}`,
-    );
+  validateVariant() {
+    checkEmptyOrOneOf(this, 'variant', SWITCH_VARIANTS);
   }
 
   /**
