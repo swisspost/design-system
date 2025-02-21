@@ -70,7 +70,6 @@ export class PostHeader {
   connectedCallback() {
     window.addEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
     window.addEventListener('resize', this.throttledResize, { passive: true });
-    this.updateLocalHeaderHeight(); 
     this.handleResize();
   }
 
@@ -203,17 +202,9 @@ export class PostHeader {
     });
   }
 
-  private updateLocalHeaderHeight() {
-    requestAnimationFrame(() => {
-      const mhh = this.host.shadowRoot.querySelector('.local-header')?.clientHeight || 0;
-      this.host.style.setProperty('--main-header-height', `${mhh}px`);
-    });
-  }
-
   private handleResize() {
     this.device = breakpoint.get('name');
     this.switchLanguageSwitchMode();
-    this.updateLocalHeaderHeight(); 
   }
 
   private switchLanguageSwitchMode() {
