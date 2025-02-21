@@ -70,7 +70,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
         cy.get('@rightScroll').should('be.visible');
 
         cy.get('@navigationItems').each($el => {
-          if (!isFullyVisible($el)) cy.get('@rightScroll').click();
+          if (!isFullyVisible($el)) cy.get('@rightScroll').click({ force: true });
           cy.wrap($el).then(isFullyVisible).should('be.true');
         });
 
@@ -160,7 +160,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
         cy.get('@leftScroll').should('be.visible');
 
         cy.get('@navigationItemsReversed').each($el => {
-          if (!isFullyVisible($el)) cy.get('@leftScroll').click();
+          if (!isFullyVisible($el)) cy.get('@leftScroll').click({ force: true });
           cy.wrap($el).then(isFullyVisible).should('be.true');
         });
 
