@@ -42,6 +42,17 @@ export const Bleed: Story = {
         <img class="section-bleed-start" src="https://picsum.photos/id/20/1920/640" alt="" />
         <img class="section-bleed-end" src="https://picsum.photos/id/20/1920/640" alt="" />
 
+        <img
+          class="section-bleed section-md-bleed-start section-lg-bleed-end section-xl-bleed-none"
+          src="https://picsum.photos/id/20/1920/640"
+          alt=""
+        />
+        <img
+          class="section-bleed section-md-bleed-start section-lg-bleed-end section-sm-bleed-none"
+          src="https://picsum.photos/id/20/1920/640"
+          alt=""
+        />
+
         <div class="row">
           <div class="col">
             <img class="section-bleed" src="https://picsum.photos/id/20/1920/640" alt="" />

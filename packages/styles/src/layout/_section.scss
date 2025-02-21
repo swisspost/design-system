@@ -26,47 +26,108 @@ tokens.$default-map: components.$post-container;
       }
     }
 
-    .section-bleed,
-    .section-bleed-start,
-    .section-bleed-end,
-    .container-bleed,
-    .container-bleed-start,
-    .container-bleed-end {
-      display: block;
-      margin-inline: unset;
-      min-width: unset;
-      max-width: unset;
-      width: unset;
-    }
+    @each $breakpoint in map.keys(breakpoints.$grid-breakpoints) {
+      @include media.min($breakpoint) {
+        @if $breakpoint == 'xs' {
+          .section-bleed,
+          .section-bleed-start,
+          .section-bleed-end,
+          .container-bleed,
+          .container-bleed-start,
+          .container-bleed-end {
+            display: block;
+            margin-inline: unset;
+            min-width: unset;
+            max-width: unset;
+            width: unset;
+          }
 
-    .section-bleed {
-      margin-inline: calc(var(--section-container-content-offset) * -1);
-      width: var(--section-width);
-    }
+          .section-bleed-none,
+          .container-bleed-none {
+            margin-inline: 0;
+            width: 100%;
+          }
 
-    .section-bleed-start {
-      margin-inline-start: calc(var(--section-container-content-offset) * -1);
-      width: calc(100% + var(--section-container-content-offset));
-    }
+          .section-bleed {
+            margin-inline: calc(var(--section-container-content-offset) * -1);
+            width: var(--section-width);
+          }
 
-    .section-bleed-end {
-      margin-inline-end: calc(var(--section-container-content-offset) * -1);
-      width: calc(100% + var(--section-container-content-offset));
-    }
+          .section-bleed-start {
+            margin-inline-start: calc(var(--section-container-content-offset) * -1);
+            width: calc(100% + var(--section-container-content-offset));
+          }
 
-    .container-bleed {
-      margin-inline: calc(var(--section-container-padding) * -1);
-      width: var(--section-container-width);
-    }
+          .section-bleed-end {
+            margin-inline-end: calc(var(--section-container-content-offset) * -1);
+            width: calc(100% + var(--section-container-content-offset));
+          }
 
-    .container-bleed-start {
-      margin-inline-start: calc(var(--section-container-padding) * -1);
-      width: calc(100% + var(--section-container-padding));
-    }
+          .container-bleed {
+            margin-inline: calc(var(--section-container-padding) * -1);
+            width: var(--section-container-width);
+          }
 
-    .container-bleed-end {
-      margin-inline-end: calc(var(--section-container-padding) * -1);
-      width: calc(100% + var(--section-container-padding));
+          .container-bleed-start {
+            margin-inline-start: calc(var(--section-container-padding) * -1);
+            width: calc(100% + var(--section-container-padding));
+          }
+
+          .container-bleed-end {
+            margin-inline-end: calc(var(--section-container-padding) * -1);
+            width: calc(100% + var(--section-container-padding));
+          }
+        } @else {
+          .section-#{$breakpoint}-bleed,
+          .section-#{$breakpoint}-bleed-start,
+          .section-#{$breakpoint}-bleed-end,
+          .container-#{$breakpoint}-bleed,
+          .container-#{$breakpoint}-bleed-start,
+          .container-#{$breakpoint}-bleed-end {
+            display: block;
+            margin-inline: unset;
+            min-width: unset;
+            max-width: unset;
+            width: unset;
+          }
+
+          .section-#{$breakpoint}-bleed-none,
+          .container-#{$breakpoint}-bleed-none {
+            margin-inline: 0;
+            width: 100%;
+          }
+
+          .section-#{$breakpoint}-bleed {
+            margin-inline: calc(var(--section-container-content-offset) * -1);
+            width: var(--section-width);
+          }
+
+          .section-#{$breakpoint}-bleed-start {
+            margin-inline-start: calc(var(--section-container-content-offset) * -1);
+            width: calc(100% + var(--section-container-content-offset));
+          }
+
+          .section-#{$breakpoint}-bleed-end {
+            margin-inline-end: calc(var(--section-container-content-offset) * -1);
+            width: calc(100% + var(--section-container-content-offset));
+          }
+
+          .container-#{$breakpoint}-bleed {
+            margin-inline: calc(var(--section-container-padding) * -1);
+            width: var(--section-container-width);
+          }
+
+          .container-#{$breakpoint}-bleed-start {
+            margin-inline-start: calc(var(--section-container-padding) * -1);
+            width: calc(100% + var(--section-container-padding));
+          }
+
+          .container-#{$breakpoint}-bleed-end {
+            margin-inline-end: calc(var(--section-container-padding) * -1);
+            width: calc(100% + var(--section-container-padding));
+          }
+        }
+      }
     }
   }
 }
