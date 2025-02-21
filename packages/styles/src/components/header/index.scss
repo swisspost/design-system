@@ -40,7 +40,7 @@ post-header {
   }
 
   &:not(:has([slot='title'])) {
-    --local-header-height: var(--main-navigation-height);
+    --local-header-height: var(--main-navigation-height) !important;
   }
 
   &:not(:defined) {
