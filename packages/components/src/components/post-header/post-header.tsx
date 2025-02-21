@@ -214,7 +214,7 @@ export class PostHeader {
       const localHeader = this.host.shadowRoot.querySelector('.local-header');
       const boundingBox = localHeader?.getBoundingClientRect();
       const height = boundingBox ? boundingBox.height : 0;
-      this.host.style.setProperty('--main-header-height', `${height}px`);
+      this.host.style.setProperty('--local-header-height', `${height}px`);
     });
   }
 
