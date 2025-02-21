@@ -94,4 +94,16 @@ post-header {
       background: #050400;
     }
   }
+
+  post-togglebutton {
+    @include utilities.high-contrast-mode() {
+      background-color: ButtonFace !important;
+      border-color: ButtonBorder !important;
+      color: ButtonText !important;
+
+      &:hover {
+        background-color: Highlight !important;
+      }
+    }
+  }
 }

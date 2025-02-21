@@ -1,13 +1,14 @@
 @use 'sass:list';
 @use 'sass:map';
 @use '@swisspost/design-system-styles/core' as post;
-@use '@swisspost/design-system-styles/variables/sizing' as tokens;
+@use '@swisspost/design-system-styles/variables/sizing' as vars;
+@use '@swisspost/design-system-styles/tokens/utilities' as tokens;
 
 :export {
-  @each $key, $value in tokens.$post-percentage-sizes {
+  @each $key, $value in vars.$post-percentage-sizes {
     pcsizes_#{$key}: #{$value};
   }
-  @each $key, $value in tokens.$post-px-sizes {
+  @each $key, $value in tokens.$post-spacing {
     pxsizes_#{$key}: #{$value};
   }
   @each $breakpoint in post.$grid-breakpoints-list {

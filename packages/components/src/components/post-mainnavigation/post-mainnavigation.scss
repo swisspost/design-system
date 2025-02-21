@@ -125,13 +125,20 @@ post-mainnavigation {
         height: var(--main-navigation-height);
         gap: 4px;
         font-size: 16px;
+        z-index: 4;
 
-        @include media.max(lg) {
-          z-index: 3;
+        .nav-el-active {
+          font-weight: 700;
+          text-align: center;
+          opacity: 0;
         }
 
-        @include media.min(lg) {
-          z-index: 4;
+        .nav-el-inactive {
+          position: absolute;
+          opacity: 1;
+          text-align: center;
+          width: 100%;
+          left: 0;
         }
 
         &.selected,
@@ -139,6 +146,14 @@ post-mainnavigation {
           background-color: #050400;
           color: #fff;
           font-weight: 700;
+
+          .nav-el-active {
+            opacity: 1;
+          }
+
+          .nav-el-inactive {
+            opacity: 0;
+          }
         }
 
         &:hover {
@@ -156,6 +171,10 @@ post-mainnavigation {
       post-megadropdown-trigger button {
         padding-inline-end: 12px;
         transition: border-block-end-color animation.$transition-base-timing;
+
+        .nav-el-inactive {
+          width: calc(100% - 28px);
+        }
 
         &::after {
           transition: transform animation.$transition-base-timing;
@@ -196,6 +215,10 @@ post-mainnavigation {
       > button,
       post-megadropdown-trigger button {
         @include header-mx.mobile-header-interactive;
+
+        .nav-el-inactive {
+          display: none;
+        }
       }
     }
 
