@@ -45,9 +45,6 @@ tokens.$default-map: components.$post-button;
     color: #fff;
 
     post-icon {
-      height: var(--post-core-dimension-16);
-      width: var(--post-core-dimension-16);
-      color: #fff;
       transform: rotate(180deg);
     }
 
