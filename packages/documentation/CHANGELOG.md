@@ -1,5 +1,43 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.20
+
+### Major Changes
+
+- Removed deprecated legacy utility classes. (by [@leagrdv](https://github.com/leagrdv) with [#4631](https://github.com/swisspost/design-system/pull/4631))
+
+- Removed some utility spacing/sizing sizes to better reflect the ones used on Figma. (by [@leagrdv](https://github.com/leagrdv) with [#4588](https://github.com/swisspost/design-system/pull/4588))
+
+### Minor Changes
+
+- Added docs page for the new `.section` css component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4733](https://github.com/swisspost/design-system/pull/4733))
+
+- Internalized Bootstrap `.text-truncate` class into the Design System. (by [@veyaromain](https://github.com/veyaromain) with [#4599](https://github.com/swisspost/design-system/pull/4599))
+
+### Patch Changes
+
+- Moved `Heading` documentation from components to typography section. (by [@leagrdv](https://github.com/leagrdv) with [#4655](https://github.com/swisspost/design-system/pull/4655))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.19
+  - @swisspost/internet-header@2.0.0-next.19
+  - @swisspost/design-system-styles@9.0.0-next.19
+  - @swisspost/design-system-tokens@9.0.0-next.19
+  - @swisspost/design-system-components-react@9.0.0-next.19
+  - @swisspost/design-system-icons@9.0.0-next.19
+
+## 6.0.0-next.19
+
+### Patch Changes
+
+- Updated styles of the card component. (by [@leagrdv](https://github.com/leagrdv) with [#4577](https://github.com/swisspost/design-system/pull/4577))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.18
+  - @swisspost/design-system-styles@9.0.0-next.18
+  - @swisspost/design-system-components-react@9.0.0-next.18
+  - @swisspost/internet-header@2.0.0-next.18
+  - @swisspost/design-system-tokens@9.0.0-next.18
+  - @swisspost/design-system-icons@9.0.0-next.18
+
 ## 6.0.0-next.18
 
 ### Minor Changes
