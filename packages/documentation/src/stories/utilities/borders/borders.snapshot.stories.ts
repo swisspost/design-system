@@ -47,7 +47,7 @@ export const Rounded: Story = {
           <div
             class="border ${bombargs.roundedSide !== 'none'
               ? bombargs.roundedSide
-              : ''}${bombargs.roundedScale !== 'null' ? ` rounded-${bombargs.roundedScale}` : ''}"
+              : ''}${bombargs.roundedScale !== 'none' ? `-${bombargs.roundedScale}` : ''}"
           >
             Sample Text
           </div>

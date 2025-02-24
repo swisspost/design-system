@@ -116,7 +116,7 @@ export const BorderRounded: Story = {
       control: {
         type: 'select',
       },
-      options: ['none', 'rounded', 'rounded-top', 'rounded-end', 'rounded-bottom', 'rounded-start'],
+      options: ['rounded', 'rounded-top', 'rounded-end', 'rounded-bottom', 'rounded-start'],
     },
   },
   args: {
@@ -125,7 +125,7 @@ export const BorderRounded: Story = {
   },
   render: (args: Args) => {
     const borderRoundedRadius =
-      args.borderRoundedRadius != 'none' ? ` rounded-${args.borderRoundedRadius}` : '';
+      args.borderRoundedRadius != 'none' ? `-${args.borderRoundedRadius}` : '';
     const borderRoundedSide = args.borderRoundedSide != 'none' ? `${args.borderRoundedSide}` : '';
     return html` <div class="border ${borderRoundedSide}${borderRoundedRadius}">Sample Text</div> `;
   },

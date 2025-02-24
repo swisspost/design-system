@@ -87,65 +87,72 @@ $utilities: (
     css-var: true,
     css-variable-name: border-width,
     class: border,
-    values: (
-      1: tokens.get('utility-border-width-1', utilities.$post-border),
-      2: tokens.get('utility-border-width-2', utilities.$post-border),
-    ),
+    values: utilities_formatted.$border-width,
   ),
   'rounded': (
     property: border-radius,
     class: rounded,
-    values: (
-      null: tokens.get('utility-border-default-radius', utilities.$post-border),
-      4: tokens.get('utility-border-radius-4', utilities.$post-border),
-      8: tokens.get('utility-border-radius-8', utilities.$post-border),
-      pill: 50rem,
-      circle: 50%,
-    ),
+    values:
+      map.merge(
+        utilities_formatted.$border-radius,
+        (
+          null: tokens.get('utility-border-default-radius', utilities.$post-border),
+          pill: 50rem,
+          circle: 50%,
+        )
+      ),
   ),
   'rounded-top': (
     property: border-start-start-radius border-start-end-radius,
     class: rounded-top,
-    values: (
-      null: tokens.get('utility-border-default-radius', utilities.$post-border),
-      4: tokens.get('utility-border-radius-4', utilities.$post-border),
-      8: tokens.get('utility-border-radius-8', utilities.$post-border),
-      pill: 50rem,
-      circle: 50%,
-    ),
+    values:
+      map.merge(
+        utilities_formatted.$border-radius,
+        (
+          null: tokens.get('utility-border-default-radius', utilities.$post-border),
+          pill: 50rem,
+          circle: 50%,
+        )
+      ),
   ),
   'rounded-end': (
     property: border-start-end-radius border-end-end-radius,
     class: rounded-end,
-    values: (
-      null: tokens.get('utility-border-default-radius', utilities.$post-border),
-      4: tokens.get('utility-border-radius-4', utilities.$post-border),
-      8: tokens.get('utility-border-radius-8', utilities.$post-border),
-      pill: 50rem,
-      circle: 50%,
-    ),
+    values:
+      map.merge(
+        utilities_formatted.$border-radius,
+        (
+          null: tokens.get('utility-border-default-radius', utilities.$post-border),
+          pill: 50rem,
+          circle: 50%,
+        )
+      ),
   ),
   'rounded-bottom': (
     property: border-end-end-radius border-end-start-radius,
     class: rounded-bottom,
-    values: (
-      null: tokens.get('utility-border-default-radius', utilities.$post-border),
-      4: tokens.get('utility-border-radius-4', utilities.$post-border),
-      8: tokens.get('utility-border-radius-8', utilities.$post-border),
-      pill: 50rem,
-      circle: 50%,
-    ),
+    values:
+      map.merge(
+        utilities_formatted.$border-radius,
+        (
+          null: tokens.get('utility-border-default-radius', utilities.$post-border),
+          pill: 50rem,
+          circle: 50%,
+        )
+      ),
   ),
   'rounded-start': (
     property: border-end-start-radius border-start-start-radius,
     class: rounded-start,
-    values: (
-      null: tokens.get('utility-border-default-radius', utilities.$post-border),
-      4: tokens.get('utility-border-radius-4', utilities.$post-border),
-      8: tokens.get('utility-border-radius-8', utilities.$post-border),
-      pill: 50rem,
-      circle: 50%,
-    ),
+    values:
+      map.merge(
+        utilities_formatted.$border-radius,
+        (
+          null: tokens.get('utility-border-default-radius', utilities.$post-border),
+          pill: 50rem,
+          circle: 50%,
+        )
+      ),
   ),
   'grid-gutter': (
     responsive: true,
