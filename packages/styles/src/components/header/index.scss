@@ -17,7 +17,7 @@ post-header {
   );
   --header-height: calc(
     var(--header-expanded-height) - min(
-        var(--header-scroll-top, 0px),
+        (var(--header-scroll-top, 0) * 1px),
         calc(var(--header-expanded-height) - var(--header-reduced-height))
       )
   );

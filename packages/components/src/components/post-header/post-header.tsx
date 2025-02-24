@@ -159,7 +159,7 @@ export class PostHeader {
         : this.scrollParent.scrollTop,
     );
 
-    this.host.style.setProperty('--header-scroll-top', `${st}px`);
+    this.host.style.setProperty('--header-scroll-top', `${st}`);
   }
 
   private getScrollParent(node: Element): Element | Document {

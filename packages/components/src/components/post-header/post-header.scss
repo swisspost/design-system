@@ -59,6 +59,13 @@
   display: flex;
   align-items: center;
   gap: 24px;
+
+  @include media.min(lg) {
+    // targets the right links and language switch to hide them on scroll
+    &:nth-child(2) {
+      transform: scale(calc(35 / max(var(--header-scroll-top), 35)));
+    }
+  }
 }
 
 .align-end {
@@ -73,7 +80,7 @@
   align-self: flex-end;
 
   @include media.min(lg) {
-    height: calc(var(--global-header-height) - var(--header-scroll-top));
+    height: calc(var(--global-header-height) - (var(--header-scroll-top) * 1px));
   }
 }
 
@@ -125,7 +132,11 @@
 }
 
 .local-sub {
-  margin-inline-end: 16px;
+  margin-inline-end: 8px;
+
+  @include media.max(lg) {
+    margin-inline-end: 4px;
+  }
 }
 
 ::slotted(.list-inline) {
