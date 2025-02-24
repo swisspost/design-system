@@ -38,12 +38,3 @@ $other-icons: map.merge(
   ),
   $other-icons
 );
-
-$arrowright-icon-name: 'arrowright';
-$arrowright-icon-svg-path: 'm31.95 16-9.11 9.11c-.2.2-.45.29-.71.29s-.51-.1-.71-.29a.996.996 0 0 1 0-1.41l6.69-6.69H-.05v-2h28.17l-6.69-6.69a.996.996 0 1 1 1.41-1.41l9.11 9.11Z';
-$other-icons: map.merge(
-  (
-    $arrowright-icon-name: $arrowright-icon-svg-path,
-  ),
-  $other-icons
-);

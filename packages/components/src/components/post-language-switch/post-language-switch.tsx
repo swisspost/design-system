@@ -18,12 +18,8 @@ export class PostLanguageSwitch {
   @Prop() caption: string;
 
   @Watch('caption')
-  validateCaption(value = this.caption) {
-    checkType(
-      value,
-      'string',
-      'The "caption" property of the post-language-switch component must be a string.',
-    );
+  validateCaption() {
+    checkType(this, 'caption', 'string');
   }
 
   /**
@@ -32,28 +28,18 @@ export class PostLanguageSwitch {
   @Prop() description: string;
 
   @Watch('description')
-  validateDescription(value = this.description) {
-    checkType(
-      value,
-      'string',
-      'The "description" property of the post-language-switch component must be a string.',
-    );
+  validateDescription() {
+    checkType(this, 'description', 'string');
   }
 
   /**
-   * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
+   * Whether the component is rendered as a list or a menu
    */
   @Prop() variant: SwitchVariant = 'list';
 
   @Watch('variant')
-  validateVariant(value = this.variant) {
-    checkEmptyOrOneOf(
-      value,
-      SWITCH_VARIANTS,
-      `The "variant" property of the post-language-switch component must be:  ${SWITCH_VARIANTS.join(
-        ', ',
-      )}`,
-    );
+  validateVariant() {
+    checkEmptyOrOneOf(this, 'variant', SWITCH_VARIANTS);
   }
 
   /**
@@ -63,10 +49,13 @@ export class PostLanguageSwitch {
 
   connectedCallback() {
     this.updateChildrenVariant();
+
     // Get the active language based on children's active state
-    this.activeLang = Array.from(this.host.querySelectorAll('post-language-option'))
-      .find(el => el.getAttribute('active') == 'true')
-      .getAttribute('code');
+    const activeLanguageOption = this.host.querySelector(
+      'post-language-option[active]:not([active="false"])',
+    );
+
+    if (activeLanguageOption) this.activeLang = activeLanguageOption.getAttribute('code');
   }
 
   // Update post-language-option variant to have the correct style
@@ -111,10 +100,9 @@ export class PostLanguageSwitch {
   private renderList() {
     return (
       <Host data-version={version} role="list" aria-label={this.caption}>
-        <span aria-label={this.description} role="listitem">
-          {this.activeLang.toUpperCase()}
-        </span>
-        <slot></slot>
+        <div class="post-language-switch-list" role="group" aria-label={this.description}>
+          <slot></slot>
+        </div>
       </Host>
     );
   }
@@ -124,7 +112,7 @@ export class PostLanguageSwitch {
       <Host data-version={version}>
         <post-menu-trigger for={this.menuId}>
           <button class="post-language-switch-trigger" aria-label={this.description}>
-            {this.activeLang.toUpperCase()}
+            {this.activeLang}
             <post-icon aria-hidden="true" name="chevrondown"></post-icon>
           </button>
         </post-menu-trigger>

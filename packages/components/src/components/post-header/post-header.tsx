@@ -54,6 +54,15 @@ export class PostHeader {
     this.updateLocalHeaderHeight();
   }
 
+  // Clean up possible side effects when post-header is disconnected
+  disconnectedCallback() {
+    this.mobileMenuExtended = false;
+    document.body.style.overflow = '';
+    this.host.removeEventListener('keydown', e => {
+      this.keyboardHandler(e);
+    });
+  }
+
   @Element() host: HTMLPostHeaderElement;
 
   @State() device: DEVICE_SIZE = null;
@@ -181,7 +190,7 @@ export class PostHeader {
   private updateLocalHeaderHeight() {
     requestAnimationFrame(() => {
       const mhh = this.host.shadowRoot.querySelector('.local-header')?.clientHeight || 0;
-      this.host.style.setProperty('--main-header-height', `${mhh}px`);
+      this.host.style.setProperty('--local-header-height', `${mhh}px`);
     });
   }
 
@@ -219,7 +228,9 @@ export class PostHeader {
 
   private switchLanguageSwitchMode() {
     const variant: SwitchVariant = this.device === 'desktop' ? 'menu' : 'list';
-    this.host.querySelector('post-language-switch')?.setAttribute('variant', variant);
+    Array.from(this.host.querySelectorAll('post-language-switch')).forEach(languageSwitch => {
+      languageSwitch?.setAttribute('variant', variant);
+    });
   }
 
   private renderNavigation() {
