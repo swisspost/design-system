@@ -1,12 +1,55 @@
 @use '../../mixins/media';
 @use '../../mixins/utilities';
+@use '../../variables/color';
 
 @use 'mixins' as *;
 
+:has(> post-header) {
+  overflow-x: hidden;
+}
+
 post-header {
+  --header-expanded-height: calc(
+    var(--global-header-height) + var(--local-header-height) + 1px /* bottom border */
+  );
+  --header-reduced-height: calc(
+    var(--global-header-reduced-height) + var(--main-navigation-height) + 1px /* bottom border */
+  );
+  --header-height: calc(
+    var(--header-expanded-height) - min(
+        var(--header-scroll-top, 0px),
+        calc(var(--header-expanded-height) - var(--header-reduced-height))
+      )
+  );
+
+  @include media.min(lg) {
+    --global-header-height: 72px;
+    --global-header-reduced-height: 24px;
+    --local-header-min-height: 56px;
+    --main-navigation-height: 56px;
+    --local-header-height: 112px;
+  }
+
+  @include media.max(lg) {
+    --header-reduced-height: var(--header-expanded-height);
+    --global-header-height: 64px;
+    --global-header-reduced-height: var(--global-header-height);
+    --local-header-height: 48px;
+    --local-header-min-height: 48px;
+    --main-navigation-height: 0px; /* stylelint-disable-line length-zero-no-unit */ /* needed for calculation */
+  }
+
+  &:not(:has([slot='title'])) {
+    --local-header-height: var(--main-navigation-height) !important;
+  }
+
+  &:not(:defined) {
+    height: var(--header-height);
+  }
+
   ul[slot='meta-navigation'] {
     @include media.min(lg) {
-      gap: var(--post-core-dimension-4);
+      gap: 4px;
     }
 
     @include media.max(lg) {
@@ -20,7 +63,7 @@ post-header {
         @include mobile-header-interactive;
 
         @include utilities.focus-style-custom {
-          border-radius: var(--post-core-dimension-4);
+          border-radius: 4px;
         }
       }
     }
@@ -28,7 +71,7 @@ post-header {
     @include media.max(sm) {
       a,
       button {
-        font-size: var(--post-core-font-size-14);
+        font-size: 14px;
       }
     }
   }
@@ -40,17 +83,17 @@ post-header {
 
       @include media.min(sm) {
         post-icon {
-          height: var(--post-core-dimension-22);
-          width: var(--post-core-dimension-22);
+          height: 22px;
+          width: 22px;
         }
       }
 
       @include media.max(sm) {
-        padding: var(--post-core-dimension-8);
+        padding: 8px;
 
         post-icon {
-          height: var(--post-core-dimension-24);
-          width: var(--post-core-dimension-24);
+          height: 24px;
+          width: 24px;
         }
 
         .visually-hidden-sm {
@@ -63,8 +106,20 @@ post-header {
   a.selected,
   post-togglebutton[aria-pressed='true'] {
     &:not(post-mainnavigation *) {
-      color: var(--post-core-color-brand-white);
-      background: var(--post-core-color-sandgrey-100);
+      color: color.$white;
+      background: #050400;
+    }
+  }
+
+  post-togglebutton {
+    @include utilities.high-contrast-mode() {
+      background-color: ButtonFace !important;
+      border-color: ButtonBorder !important;
+      color: ButtonText !important;
+
+      &:hover {
+        background-color: Highlight !important;
+      }
     }
   }
 }

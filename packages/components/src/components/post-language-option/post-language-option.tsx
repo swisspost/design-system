@@ -11,7 +11,7 @@ import {
 } from '@stencil/core';
 import { checkEmptyOrType, checkType } from '@/utils';
 import { version } from '@root/package.json';
-import { SwitchVariant, SwitchType } from '../post-language-switch/switch-variants';
+import { SwitchVariant } from '../post-language-switch/switch-variants';
 
 /**
  * @slot default - Slot for placing the content inside the anchor or button.
@@ -29,12 +29,8 @@ export class PostLanguageOption {
   @Prop() code!: string;
 
   @Watch('code')
-  validateCode(value = this.code) {
-    checkType(
-      value,
-      'string',
-      'The "code" property of the post-language-option component must be a string.',
-    );
+  validateCode() {
+    checkType(this, 'code', 'string');
   }
 
   /**
@@ -43,12 +39,8 @@ export class PostLanguageOption {
   @Prop({ mutable: true, reflect: true }) active: boolean;
 
   @Watch('active')
-  validateActiveProp(value = this.active) {
-    checkEmptyOrType(
-      value,
-      'boolean',
-      'The "active" property of the post-language-option component must be a boolean value.',
-    );
+  validateActiveProp() {
+    checkEmptyOrType(this, 'active', 'boolean');
   }
 
   /**
@@ -57,22 +49,13 @@ export class PostLanguageOption {
   @Prop() variant?: SwitchVariant | null;
 
   /**
-   * To communicate the type prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
-   */
-  @Prop() type?: SwitchType | null;
-
-  /**
    * The full name of the language. For example, "Deutsch".
    */
   @Prop() name: string;
 
   @Watch('name')
-  validateName(value = this.name) {
-    checkEmptyOrType(
-      value,
-      'string',
-      'The "name" property of the post-language-option component must be a string.',
-    );
+  validateName() {
+    checkEmptyOrType(this, 'name', 'string');
   }
 
   /**
@@ -82,12 +65,8 @@ export class PostLanguageOption {
   @Prop() url: string;
 
   @Watch('url')
-  validateUrl(value = this.url) {
-    checkEmptyOrType(
-      value,
-      'string',
-      'The "url" property of the post-language-option component must be a valid URL.',
-    );
+  validateUrl() {
+    checkEmptyOrType(this, 'url', 'string');
   }
 
   componentDidLoad() {

@@ -1,7 +1,7 @@
 import { Component, Element, Host, h, Prop, Watch, State } from '@stencil/core';
 import { checkEmptyOrOneOf, checkType } from '@/utils';
 import { version } from '@root/package.json';
-import { SWITCH_VARIANTS, SWITCH_TYPES, SwitchVariant, SwitchType } from './switch-variants';
+import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
 import { nanoid } from 'nanoid';
 
 @Component({
@@ -18,12 +18,8 @@ export class PostLanguageSwitch {
   @Prop() caption: string;
 
   @Watch('caption')
-  validateCaption(value = this.caption) {
-    checkType(
-      value,
-      'string',
-      'The "caption" property of the post-language-switch component must be a string.',
-    );
+  validateCaption() {
+    checkType(this, 'caption', 'string');
   }
 
   /**
@@ -32,12 +28,8 @@ export class PostLanguageSwitch {
   @Prop() description: string;
 
   @Watch('description')
-  validateDescription(value = this.description) {
-    checkType(
-      value,
-      'string',
-      'The "description" property of the post-language-switch component must be a string.',
-    );
+  validateDescription() {
+    checkType(this, 'description', 'string');
   }
 
   /**
@@ -46,30 +38,8 @@ export class PostLanguageSwitch {
   @Prop() variant: SwitchVariant = 'list';
 
   @Watch('variant')
-  validateVariant(value = this.variant) {
-    checkEmptyOrOneOf(
-      value,
-      SWITCH_VARIANTS,
-      `The "variant" property of the post-language-switch component must be:  ${SWITCH_VARIANTS.join(
-        ', ',
-      )}`,
-    );
-  }
-
-  /**
-   * Whether the component is rendered with uppercased text and fix widths or without any text transformation and fluid widths
-   */
-  @Prop() type: SwitchType = 'language';
-
-  @Watch('type')
-  validateType(value = this.type) {
-    checkEmptyOrOneOf(
-      value,
-      SWITCH_TYPES,
-      `The "type" property of the post-language-switch component must be:  ${SWITCH_TYPES.join(
-        ', ',
-      )}`,
-    );
+  validateVariant() {
+    checkEmptyOrOneOf(this, 'variant', SWITCH_VARIANTS);
   }
 
   /**
@@ -78,23 +48,25 @@ export class PostLanguageSwitch {
   @State() activeLang: string;
 
   connectedCallback() {
-    this.updateChildrenProps();
+    this.updateChildrenVariant();
+
     // Get the active language based on children's active state
-    this.activeLang = Array.from(this.host.querySelectorAll('post-language-option'))
-      .find(el => el.getAttribute('active') == 'true')
-      .getAttribute('code');
+    const activeLanguageOption = this.host.querySelector(
+      'post-language-option[active]:not([active="false"])',
+    );
+
+    if (activeLanguageOption) this.activeLang = activeLanguageOption.getAttribute('code');
   }
 
   // Update post-language-option variant to have the correct style
-  private updateChildrenProps() {
+  private updateChildrenVariant() {
     this.host.querySelectorAll('post-language-option').forEach(el => {
       el.setAttribute('variant', this.variant);
-      el.setAttribute('type', this.type);
     });
   }
 
   componentWillUpdate() {
-    this.updateChildrenProps();
+    this.updateChildrenVariant();
   }
 
   componentDidLoad() {
@@ -128,10 +100,9 @@ export class PostLanguageSwitch {
   private renderList() {
     return (
       <Host data-version={version} role="list" aria-label={this.caption}>
-        <span aria-label={this.description} role="listitem">
-          {this.activeLang}
-        </span>
-        <slot></slot>
+        <div class="post-language-switch-list" role="group" aria-label={this.description}>
+          <slot></slot>
+        </div>
       </Host>
     );
   }
