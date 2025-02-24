@@ -3,7 +3,11 @@ import { checkType, PropertyType } from '../check-type';
 describe('checkType', () => {
   let type: PropertyType;
   let error: string;
-  const runCheckForValue = value => () => checkType(value, type, error);
+
+  const runCheckForValue = (value: unknown) => () => {
+    const component = { host: { localName: 'post-component' } as HTMLElement, prop: value };
+    checkType(component, 'prop', type, error);
+  };
 
   describe('boolean', () => {
     beforeAll(() => {
