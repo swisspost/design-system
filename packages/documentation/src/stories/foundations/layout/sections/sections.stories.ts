@@ -1,6 +1,8 @@
-import type { StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components';
 import { MetaExtended } from '@root/types';
 import { html } from 'lit';
+import './sections.styles.scss';
+import { c } from '@swisspost/internet-header/dist/esm/bodyScrollLock.esm-afcc00e3';
 
 const meta: MetaExtended = {
   id: '49b036fc-5c54-46da-b6d1-081f0c731b05',
@@ -11,6 +13,97 @@ const meta: MetaExtended = {
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/sybxin85kCZNXQjQFOTc2a/PPNL-Cargo-layout-examples?node-id=609-51503&m=dev',
+    },
+    docs: {
+      canvas: {
+        className: 'section-example-story',
+      },
+    },
+  },
+  args: {
+    element: '',
+    alignment: '',
+    breakpoint: '',
+    nestInGrid: false,
+    columnsCount: 2,
+    contentColumn: 'first',
+  },
+  argTypes: {
+    element: {
+      name: 'Element',
+      description: 'To which element the content should be aligned to.',
+      control: {
+        type: 'select',
+      },
+      options: ['section', 'container'],
+      table: {
+        category: 'Alignment',
+      },
+    },
+    alignment: {
+      name: 'Alignment',
+      description:
+        'Alignment of the content inside the `.section` element containing the alignment class.',
+      control: {
+        type: 'select',
+      },
+      options: ['stretch', 'start', 'end', 'none'],
+      table: {
+        category: 'Alignment',
+      },
+    },
+    breakpoint: {
+      name: 'Breakpoint',
+      description:
+        'Breakpoint at which the alignment class is applied. The alignment class is applied from the specified breakpoint and up.',
+      control: {
+        type: 'select',
+      },
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+      table: {
+        category: 'Alignment',
+      },
+    },
+    nestInGrid: {
+      name: 'Nest in grid',
+      description: 'Whether to nest the content inside our grid-system or not.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content insertion',
+      },
+    },
+    columnsCount: {
+      name: 'Amount of columns',
+      description: 'The amount of columns rendered in the grid',
+      control: {
+        type: 'number',
+        min: 1,
+        max: 6,
+      },
+      if: {
+        arg: 'nestInGrid',
+        truthy: true,
+      },
+      table: {
+        category: 'Content insertion',
+      },
+    },
+    contentColumn: {
+      name: 'Content placement',
+      description: 'Column in which the content is inserted.',
+      control: {
+        type: 'select',
+      },
+      options: ['first', 'last'],
+      if: {
+        arg: 'nestInGrid',
+        truthy: true,
+      },
+      table: {
+        category: 'Content insertion',
+      },
     },
   },
 };
@@ -34,118 +127,39 @@ export const Default: Story = {
   `,
 };
 
-export const Bleed: Story = {
-  render: () => html`
-    <section class="section palette-brand">
-      <div class="container">
-        <h2>Aligning classes</h2>
-        <img class="align-section-stretch" src="https://picsum.photos/id/20/1920/640" alt="" />
-        <img class="align-section-start" src="https://picsum.photos/id/20/1920/640" alt="" />
-        <img class="align-section-end" src="https://picsum.photos/id/20/1920/640" alt="" />
+export const Alignment: Story = {
+  render: (args: Args) => {
+    const alignmentClass =
+      args.element && args.alignment
+        ? ['align', args.element, args.breakpoint === 'xs' ? null : args.breakpoint, args.alignment]
+            .filter(Boolean)
+            .join('-')
+        : null;
+    const contentElement = html`<img
+      class=${alignmentClass}
+      src="https://picsum.photos/id/20/1920/640"
+      alt=""
+    />`;
+    let content = contentElement;
 
-        <h2>Responsive aligning classes</h2>
-        <img
-          class="align-section-stretch align-section-md-start align-section-lg-end align-section-xl-none"
-          src="https://picsum.photos/id/20/1920/640"
-          alt=""
-        />
-        <img
-          class="align-section-stretch align-section-sm-none align-section-md-start align-section-lg-end"
-          src="https://picsum.photos/id/20/1920/640"
-          alt=""
-        />
+    if (args.nestInGrid) {
+      const contentCols = Array.from(Array(args.columnsCount), (_, i) => i);
+      const contentIndex = args.contentColumn === 'first' ? 0 : contentCols.length - 1;
+      const contentText = 'Lorem ipsum dolor sit amet';
 
-        <h2>Aligning classes in grid</h2>
-        <div class="row gy-16">
-          <div class="col">
-            <img class="align-section-stretch" src="https://picsum.photos/id/20/1920/640" alt="" />
-          </div>
-          <div class="w-full"></div>
-          <div class="col">
-            <img class="align-section-start" src="https://picsum.photos/id/20/1920/640" alt="" />
-          </div>
-          <div class="col">
-            <img class="align-section-end" src="https://picsum.photos/id/20/1920/640" alt="" />
-          </div>
-          <div class="w-full"></div>
-          <div class="col">
-            <img class="align-section-start" src="https://picsum.photos/id/20/1920/640" alt="" />
-          </div>
-          <div class="col">
-            <p>Text next to a <code>.align-section-start</code> image.</p>
-          </div>
-          <div class="w-full"></div>
-          <div class="col">
-            <p>Text next to a <code>.align-section-end</code> image.</p>
-          </div>
-          <div class="col">
-            <img class="align-section-end" src="https://picsum.photos/id/20/1920/640" alt="" />
-          </div>
-          <div class="w-full"></div>
-          <div class="col-3">
-            <img class="align-section-start" src="https://picsum.photos/id/20/1920/640" alt="" />
-          </div>
-          <div class="col">
-            <p>
-              Text between <code>.align-section-start</code> and
-              <code>.align-section-end</code> images.
-            </p>
-          </div>
-          <div class="col-3">
-            <img class="align-section-end" src="https://picsum.photos/id/20/1920/640" alt="" />
-          </div>
-          <div class="w-full"></div>
-          <div class="col">
-            <img class="align-section-start" src="https://picsum.photos/id/20/1920/640" alt="" />
-          </div>
-          <div class="col">
-            <p>Works also with more columns.</p>
-          </div>
-          <div class="col">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque eius sit eligendi
-              nulla.
-            </p>
-          </div>
-          <div class="col">
-            <img class="align-section-end" src="https://picsum.photos/id/20/1920/640" alt="" />
-          </div>
-          <div class="w-full"></div>
-          <div class="col-8">
-            <img class="align-section-start" src="https://picsum.photos/id/20/1920/640" alt="" />
-          </div>
-          <div class="col">
-            <p>Works also with custom with columns.</p>
-          </div>
-          <div class="w-full"></div>
-          <div class="col">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-          </div>
-          <div class="col-8">
-            <img class="align-section-end" src="https://picsum.photos/id/20/1920/640" alt="" />
-          </div>
-          <div class="w-full"></div>
-          <div class="col">
-            <p class="align-section-start">
-              The aligning classes do not need to be applied on an image tag, you can align whatever
-              block element you want.
-            </p>
-          </div>
-          <div class="col-4">
-            <img src="https://picsum.photos/id/20/1920/640" alt="" />
-          </div>
-          <div class="w-full"></div>
-          <div class="col-4">
-            <img src="https://picsum.photos/id/20/1920/640" alt="" />
-          </div>
-          <div class="col">
-            <p class="align-section-end">
-              The aligning classes do not need to be applied on an image tag, you can align whatever
-              block element you want.
-            </p>
-          </div>
+      content = html`
+        <div class="row">
+          ${contentCols.map(
+            i => html`<div class="col">${contentIndex === i ? contentElement : contentText}</div>`,
+          )}
         </div>
-      </div>
-    </section>
-  `,
+      `;
+    }
+
+    return html`
+      <section class="section palette-brand">
+        <div class="container">${content}</div>
+      </section>
+    `;
+  },
 };
