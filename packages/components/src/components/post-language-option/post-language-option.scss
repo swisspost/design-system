@@ -60,7 +60,8 @@ post-language-option {
 
     :is(a, button) {
       padding-block: 13px;
-      padding-inline: 24px;
+      padding-inline-start: 16px;
+      padding-inline-end: 32px;
       box-sizing: border-box;
       position: relative;
       left: -1px;
