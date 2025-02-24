@@ -36,7 +36,7 @@ export default meta;
 
 type Story = StoryObj;
 
-export const Borders: Story = {
+export const BorderSides: Story = {
   argTypes: {
     border: {
       name: 'border-{side}',

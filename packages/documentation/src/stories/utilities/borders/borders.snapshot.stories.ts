@@ -1,6 +1,6 @@
 import type { StoryObj, Args } from '@storybook/web-components';
 import { html } from 'lit';
-import meta from './borders.stories';
+import meta, { BorderRounded, BorderSides, RemoveBorders } from './borders.stories';
 import './borders.styles.scss';
 import { bombArgs } from '@/utils';
 
@@ -17,14 +17,15 @@ export const Borders: Story = {
   render: () => {
     return html`
       ${bombArgs({
-        borderWidth: Borders.argTypes?.borderWidth?.values,
-        borderSide: Borders.argTypes?.border?.values,
+        borderWidth: BorderSides.argTypes?.borderWidth?.options,
+        borderSide: BorderSides.argTypes?.border?.options,
+        removeBorders: RemoveBorders.argTypes?.borderToRemove?.options,
       }).map((bombargs: Args) => {
         return html`
           <div
-            class="${bombargs.borderSide} ${bombargs.borderWidth !== 'null'
-              ? `border-${bombargs.borderWidth}`
-              : ''}"
+            class="${bombargs.borderSide} ${bombargs.removeBorders !== 'none'
+              ? '' + bombargs.removeBorders
+              : ''} ${bombargs.borderWidth !== 'none' ? `border-${bombargs.borderWidth} ` : ''}"
           >
             Sample Text
           </div>
@@ -39,14 +40,14 @@ export const Rounded: Story = {
   render: () => {
     return html`
       ${bombArgs({
-        roundedScale: Borders.argTypes?.radius?.values,
-        roundedSide: Borders.argTypes?.roundedSide?.values,
-      }).map((bombargs: Args) => {
+        roundedScale: BorderRounded.argTypes?.borderRoundedRadius?.options,
+        roundedSide: BorderRounded.argTypes?.borderRoundedSide?.options,
+      }).map(bombargs => {
         return html`
           <div
-            class="border ${bombargs.roundedSide}${bombargs.radius !== 'null'
-              ? `-${bombargs.radius}`
-              : ''}"
+            class="border ${bombargs.roundedSide !== 'none'
+              ? bombargs.roundedSide
+              : ''}${bombargs.roundedScale !== 'null' ? ` rounded-${bombargs.roundedScale}` : ''}"
           >
             Sample Text
           </div>
