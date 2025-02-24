@@ -1,5 +1,34 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.22
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.21
+  - @swisspost/design-system-components-react@9.0.0-next.21
+  - @swisspost/design-system-styles@9.0.0-next.21
+  - @swisspost/design-system-tokens@9.0.0-next.21
+  - @swisspost/design-system-icons@9.0.0-next.21
+  - @swisspost/internet-header@2.0.0-next.21
+
+## 6.0.0-next.21
+
+### Minor Changes
+
+- Added story to show how the alignment classes work together with the `.section` component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4760](https://github.com/swisspost/design-system/pull/4760))
+
+### Patch Changes
+
+- Fixed an issue where the `post-header` was no longer sticky. (by [@alizedebray](https://github.com/alizedebray) with [#4748](https://github.com/swisspost/design-system/pull/4748))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.20
+  - @swisspost/design-system-styles@9.0.0-next.20
+  - @swisspost/design-system-components-react@9.0.0-next.20
+  - @swisspost/internet-header@2.0.0-next.20
+  - @swisspost/design-system-tokens@9.0.0-next.20
+  - @swisspost/design-system-icons@9.0.0-next.20
+
 ## 6.0.0-next.20
 
 ### Major Changes

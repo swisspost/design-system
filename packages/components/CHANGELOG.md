@@ -1,5 +1,33 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.21
+
+### Patch Changes
+
+- Updated hover styles for `post-language-switch` and `post-language-option` components. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4665](https://github.com/swisspost/design-system/pull/4665))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.21
+  - @swisspost/design-system-icons@9.0.0-next.21
+
+## 9.0.0-next.20
+
+### Patch Changes
+
+- Increased gap between header title and local controls in `post-header`. (by [@leagrdv](https://github.com/leagrdv) with [#4739](https://github.com/swisspost/design-system/pull/4739))
+
+- Fixed misaligned second level navigation in the `post-megadropdown` component on desktop. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4757](https://github.com/swisspost/design-system/pull/4757))
+
+- Fixed breakpoint utility, by normalizing the read custom-properties. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4764](https://github.com/swisspost/design-system/pull/4764))
+
+- Changed from `vh` to dynamic viewport height (`dvh`) unit on post-header to take into account the mobile devices height change. (by [@leagrdv](https://github.com/leagrdv) with [#4747](https://github.com/swisspost/design-system/pull/4747))
+
+- Aligned prop validation throughout the component library. (by [@myrta2302](https://github.com/myrta2302) with [#4638](https://github.com/swisspost/design-system/pull/4638))
+
+- Fixed the scroll to top that occurs when opening the `post-megadropdown` on desktop. (by [@leagrdv](https://github.com/leagrdv) with [#4761](https://github.com/swisspost/design-system/pull/4761))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.20
+  - @swisspost/design-system-icons@9.0.0-next.20
+
 ## 9.0.0-next.19
 
 ### Minor Changes

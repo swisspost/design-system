@@ -85,14 +85,12 @@ export class PostMegadropdown {
     this.isVisible = true;
     PostMegadropdown.activeDropdown = this;
     this.postToggleMegadropdown.emit({ isVisible: this.isVisible });
-    requestAnimationFrame(() => {
-      if (
-        this.firstFocusableEl &&
-        window.getComputedStyle(this.firstFocusableEl).display !== 'none'
-      ) {
-        this.firstFocusableEl.focus();
-      }
-    });
+    if (
+      this.firstFocusableEl &&
+      window.getComputedStyle(this.firstFocusableEl).display !== 'none'
+    ) {
+      this.firstFocusableEl.focus();
+    }
     this.addListeners();
   }
 
