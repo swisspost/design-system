@@ -2,7 +2,6 @@ import type { Args, StoryObj } from '@storybook/web-components';
 import { MetaExtended } from '@root/types';
 import { html } from 'lit';
 import './sections.styles.scss';
-import { c } from '@swisspost/internet-header/dist/esm/bodyScrollLock.esm-afcc00e3';
 
 const meta: MetaExtended = {
   id: '49b036fc-5c54-46da-b6d1-081f0c731b05',
