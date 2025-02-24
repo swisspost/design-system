@@ -63,8 +63,12 @@ post-language-option {
       padding-inline: 24px;
       box-sizing: border-box;
       position: relative;
-      left: -1px;
-      width: calc(100% + 2px);
+      width: 100%;
+
+      &:hover {
+        color: white;
+        background-color: #504f4b;
+      }
     }
   }
 }
