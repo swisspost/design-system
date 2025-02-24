@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`downloadSVG should download an svg icon 1`] = `
+exports[`fetchFile should download an svg icon 1`] = `
 "<svg>
   <path d="M16 8.4 3.467 20.8z"/>
 </svg>
