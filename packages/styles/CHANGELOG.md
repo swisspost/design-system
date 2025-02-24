@@ -1,5 +1,15 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.20
+
+### Patch Changes
+
+- Increased gap between header title and local controls in `post-header`. (by [@leagrdv](https://github.com/leagrdv) with [#4739](https://github.com/swisspost/design-system/pull/4739))
+
+- Fixed breakpoint utility, by normalizing the read custom-properties. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4764](https://github.com/swisspost/design-system/pull/4764))
+
+- Updated validation styles to be applied to all input types. (by [@myrta2302](https://github.com/myrta2302) with [#4762](https://github.com/swisspost/design-system/pull/4762))
+
 ## 9.0.0-next.19
 
 ### Major Changes
