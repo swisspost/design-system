@@ -26,15 +26,15 @@
   Our API is based on bootstrap utility API, more information is available here: https://getbootstrap.com/docs/5.3/utilities/api/
 */
 
-// $post-border: (
-//   post-utility-border-width-1: 1px,
-//   post-utility-border-width-2: 2px,
-//   post-utility-border-radius-4: 4px,
-//   post-utility-border-radius-8: 8px,
-//   post-utility-border-default-radius: 4px,
-//   post-utility-border-default-color: gray,
-//   post-utility-border-default-width: 1px,
-// );
+$post-border: (
+  post-utility-border-width-1: 1px,
+  post-utility-border-width-2: 2px,
+  post-utility-border-radius-4: 4px,
+  post-utility-border-radius-8: 8px,
+  post-utility-border-default-radius: 4px,
+  post-utility-border-default-color: gray,
+  post-utility-border-default-width: 1px,
+);
 
 $position-values: (
   0: 0,
@@ -47,9 +47,8 @@ $utilities: (
     property: border,
     class: border,
     values: (
-      null:
-        var(--post-border-width, tokens.get('utility-border-default-width', utilities.$post-border))
-        solid tokens.get('utility-border-default-color', utilities.$post-border),
+      null: var(--post-border-width, tokens.get('utility-border-default-width', $post-border)) solid
+        tokens.get('utility-border-default-color', $post-border),
       0: 0,
     ),
   ),
@@ -57,9 +56,8 @@ $utilities: (
     property: border-block-start,
     class: border-top,
     values: (
-      null:
-        var(--post-border-width, tokens.get('utility-border-default-width', utilities.$post-border))
-        solid tokens.get('utility-border-default-color', utilities.$post-border),
+      null: var(--post-border-width, tokens.get('utility-border-default-width', $post-border)) solid
+        tokens.get('utility-border-default-color', $post-border),
       0: 0,
     ),
   ),
@@ -67,8 +65,8 @@ $utilities: (
     property: border-inline-end,
     class: border-end,
     values: (
-      null: tokens.get('utility-border-default-width', utilities.$post-border) solid
-        tokens.get('utility-border-default-color', utilities.$post-border),
+      null: tokens.get('utility-border-default-width', $post-border) solid
+        tokens.get('utility-border-default-color', $post-border),
       0: 0,
     ),
   ),
@@ -76,8 +74,8 @@ $utilities: (
     property: border-block-end,
     class: border-bottom,
     values: (
-      null: tokens.get('utility-border-default-width', utilities.$post-border) solid
-        tokens.get('utility-border-default-color', utilities.$post-border),
+      null: tokens.get('utility-border-default-width', $post-border) solid
+        tokens.get('utility-border-default-color', $post-border),
       0: 0,
     ),
   ),
@@ -85,8 +83,8 @@ $utilities: (
     property: border-inline-start,
     class: border-start,
     values: (
-      null: tokens.get('utility-border-default-width', utilities.$post-border) solid
-        tokens.get('utility-border-default-color', utilities.$post-border),
+      null: tokens.get('utility-border-default-width', $post-border) solid
+        tokens.get('utility-border-default-color', $post-border),
       0: 0,
     ),
   ),
@@ -95,17 +93,17 @@ $utilities: (
     css-variable-name: border-width,
     class: border,
     values: (
-      1: tokens.get('utility-border-width-1', utilities.$post-border),
-      2: tokens.get('utility-border-width-2', utilities.$post-border),
+      1: tokens.get('utility-border-width-1', $post-border),
+      2: tokens.get('utility-border-width-2', $post-border),
     ),
   ),
   'rounded': (
     property: border-radius,
     class: rounded,
     values: (
-      null: tokens.get('utility-border-default-radius', utilities.$post-border),
-      4: tokens.get('utility-border-radius-4', utilities.$post-border),
-      8: tokens.get('utility-border-radius-8', utilities.$post-border),
+      null: tokens.get('utility-border-default-radius', $post-border),
+      4: tokens.get('utility-border-radius-4', $post-border),
+      8: tokens.get('utility-border-radius-8', $post-border),
       pill: 50rem,
       circle: 50%,
     ),
@@ -114,9 +112,9 @@ $utilities: (
     property: border-start-start-radius border-start-end-radius,
     class: rounded-top,
     values: (
-      null: tokens.get('utility-border-default-radius', utilities.$post-border),
-      4: tokens.get('utility-border-radius-4', utilities.$post-border),
-      8: tokens.get('utility-border-radius-8', utilities.$post-border),
+      null: tokens.get('utility-border-default-radius', $post-border),
+      4: tokens.get('utility-border-radius-4', $post-border),
+      8: tokens.get('utility-border-radius-8', $post-border),
       pill: 50rem,
       circle: 50%,
     ),
@@ -125,9 +123,9 @@ $utilities: (
     property: border-start-end-radius border-end-end-radius,
     class: rounded-end,
     values: (
-      null: tokens.get('utility-border-default-radius', utilities.$post-border),
-      4: tokens.get('utility-border-radius-4', utilities.$post-border),
-      8: tokens.get('utility-border-radius-8', utilities.$post-border),
+      null: tokens.get('utility-border-default-radius', $post-border),
+      4: tokens.get('utility-border-radius-4', $post-border),
+      8: tokens.get('utility-border-radius-8', $post-border),
       pill: 50rem,
       circle: 50%,
     ),
@@ -136,9 +134,9 @@ $utilities: (
     property: border-end-end-radius border-end-start-radius,
     class: rounded-bottom,
     values: (
-      null: tokens.get('utility-border-default-radius', utilities.$post-border),
-      4: tokens.get('utility-border-radius-4', utilities.$post-border),
-      8: tokens.get('utility-border-radius-8', utilities.$post-border),
+      null: tokens.get('utility-border-default-radius', $post-border),
+      4: tokens.get('utility-border-radius-4', $post-border),
+      8: tokens.get('utility-border-radius-8', $post-border),
       pill: 50rem,
       circle: 50%,
     ),
@@ -147,9 +145,9 @@ $utilities: (
     property: border-end-start-radius border-start-start-radius,
     class: rounded-start,
     values: (
-      null: tokens.get('utility-border-default-radius', utilities.$post-border),
-      4: tokens.get('utility-border-radius-4', utilities.$post-border),
-      8: tokens.get('utility-border-radius-8', utilities.$post-border),
+      null: tokens.get('utility-border-default-radius', $post-border),
+      4: tokens.get('utility-border-radius-4', $post-border),
+      8: tokens.get('utility-border-radius-8', $post-border),
       pill: 50rem,
       circle: 50%,
     ),
