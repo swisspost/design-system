@@ -1,5 +1,14 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.21
+
+### Patch Changes
+
+- Updated hover styles for `post-language-switch` and `post-language-option` components. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4665](https://github.com/swisspost/design-system/pull/4665))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.21
+  - @swisspost/design-system-icons@9.0.0-next.21
+
 ## 9.0.0-next.20
 
 ### Patch Changes
