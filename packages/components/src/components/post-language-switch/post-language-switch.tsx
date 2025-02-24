@@ -77,7 +77,7 @@ export class PostLanguageSwitch {
     // Detects a change in the active language
     this.host.addEventListener('postChange', (el: CustomEvent<string>) => {
       this.activeLang = el.detail;
-  
+
       // Update the active state in the children post-language-option components
       this.host.querySelectorAll('post-language-option').forEach(lang => {
         if (lang.code && lang.code === this.activeLang) {
@@ -86,7 +86,7 @@ export class PostLanguageSwitch {
           lang.setAttribute('active', 'false');
         }
       });
-  
+
       // Hides the dropdown when an option has been clicked
       if (this.variant === 'menu') {
         const menu = this.host.shadowRoot.querySelector('post-menu') as HTMLPostMenuElement;
