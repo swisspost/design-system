@@ -1,17 +1,7 @@
 @use '@swisspost/design-system-styles/tokens/utilities' as tokens;
 
-$post-border: (
-  post-utility-border-width-1: 1px,
-  post-utility-border-width-2: 2px,
-  post-utility-border-radius-4: 4px,
-  post-utility-border-radius-8: 8px,
-  post-utility-border-default-radius: 4px,
-  post-utility-border-default-color: gray,
-  post-utility-border-default-width: 1px,
-);
-
 :export {
-  @each $key, $value in $post-border {
+  @each $key, $value in tokens.$post-border {
     @if str-index($key, 'border-width') {
       width_#{$key}: #{$value};
     }

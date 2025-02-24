@@ -112,7 +112,7 @@ export const BorderRounded: Story = {
     },
     borderRoundedSide: {
       name: 'rounded-{side}',
-      description: 'Applies the default `border-radius` to all or specific sides.',
+      description: 'Applies a `border-radius` to all or specific sides.',
       control: {
         type: 'select',
       },
