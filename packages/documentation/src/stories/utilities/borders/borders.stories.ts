@@ -1,23 +1,7 @@
 import type { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit/static-html.js';
 import { MetaExtended } from '@root/types';
-import { parse } from '@/utils/sass-export';
-import scss from './borders.module.scss';
 import './borders.styles.scss';
-
-/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-export const SCSS_VARIABLES: any = parse(scss);
-
-const properties = ['width', 'radius'];
-
-const border_args = properties.reduce((options, property) => {
-  return {
-    ...options,
-    [property]: Object.keys(SCSS_VARIABLES[`${property}`])
-      .filter((key: string) => key.startsWith(`post-utility-border-${property}`))
-      .map((key: string) => key.replace(`post-utility-border-${property}-`, '')),
-  };
-}, {} as { [property: string]: string[] });
 
 const meta: MetaExtended = {
   id: 'cbee1b5e-c98b-4818-8b88-b3c9989796d8',
@@ -53,11 +37,11 @@ export const BorderSides: Story = {
     borderWidth: {
       name: 'border-{width}',
       description:
-        'Sets the border width in pixels based on the given number (e.g. `border-2` applies a 2px border, `border-10` applies a 10px border, etc.).',
+        'Sets the border width (`border-1` applies a 1px border, `border-2` applies a 2px border).',
       control: {
         type: 'select',
       },
-      options: ['none', ...border_args.width],
+      options: ['none', '1', '2'],
       table: {
         category: 'Set Border Width',
       },
