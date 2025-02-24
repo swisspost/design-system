@@ -52,6 +52,10 @@ export class PostHeader {
 
   componentDidLoad() {
     this.updateLocalHeaderHeight();
+
+    if (this.mobileMenu) {
+      this.mobileMenu.addEventListener('click', this.handleNavigationClick);
+    }
   }
 
   // Clean up possible side effects when post-header is disconnected
@@ -61,6 +65,10 @@ export class PostHeader {
     this.host.removeEventListener('keydown', e => {
       this.keyboardHandler(e);
     });
+
+    if (this.mobileMenu) {
+      this.mobileMenu.removeEventListener('click', this.handleNavigationClick);
+    }
   }
 
   @Element() host: HTMLPostHeaderElement;
@@ -193,6 +201,13 @@ export class PostHeader {
       this.host.style.setProperty('--local-header-height', `${mhh}px`);
     });
   }
+
+  private handleNavigationClick = (event: MouseEvent) => {
+    const target = event.target as HTMLElement;
+    if (target.tagName === 'A' && this.mobileMenuExtended) {
+      this.toggleMobileMenu();
+    }
+  };  
 
   private handleResize() {
     const previousDevice = this.device;
