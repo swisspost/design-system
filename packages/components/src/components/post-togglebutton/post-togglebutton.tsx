@@ -20,12 +20,8 @@ export class PostTogglebutton {
   @Prop({ mutable: true }) toggled: boolean = false;
 
   @Watch('toggled')
-  validateToggled(value = this.toggled) {
-    checkType(
-      value,
-      'boolean',
-      'The "toggled" property of the post-togglebutton must be a boolean.',
-    );
+  validateToggled() {
+    checkType(this, 'toggled', 'boolean');
   }
 
   componentWillLoad() {

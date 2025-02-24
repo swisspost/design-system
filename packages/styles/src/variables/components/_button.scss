@@ -83,7 +83,7 @@ $btn-icon-size-sm: tokens.get('utility-gap-16', utilities.$post-spacing) !defaul
 $btn-font-size-rg: type.$font-size-14 !default;
 $btn-icon-size-rg: 1.125rem !default;
 $btn-height-md: 3rem;
-$btn-icon-size-md: tokens.get('utility-gap-20', utilities.$post-spacing) !default;
+$btn-icon-size-md: 1.25rem !default;
 $btn-icon-size-lg: 1.375rem !default;
 $old-btn-icon-size-map: (
   'sm': $btn-icon-size-sm,

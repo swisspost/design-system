@@ -17,7 +17,7 @@ export const FormFooter: Story = {
   render: () => {
     return schemes(
       () => html`
-        <div class="d-flex flex-column gap-3">
+        <div class="d-flex flex-column gap-16">
           ${bombArgs({
             showPrimaryButton: [true, false],
             showSecondaryButton: [true, false],

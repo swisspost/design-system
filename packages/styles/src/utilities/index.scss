@@ -8,8 +8,6 @@
 @use './variables' as *;
 @use './not-defined' as *;
 
-@use './temp/legacy';
-
 @each $breakpoint, $device-size in breakpoints.$grid-breakpoints {
   @include media.min($device-size) {
     $infix: if($device-size == 0, '', '-#{$breakpoint}');

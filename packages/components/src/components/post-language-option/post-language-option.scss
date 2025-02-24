@@ -25,9 +25,7 @@ post-language-option {
     @include utilities-mx.focus-style;
   }
 
-  &:has([aria-current]):not([aria-current='false']) {
-    display: none;
-  }
+  // Show all options now, instead of hiding the active one
 
   &:where([variant='list']) {
     :is(a, button) {
@@ -40,10 +38,25 @@ post-language-option {
         color: #504f4b;
       }
     }
+    &:not([active='false']) {
+      :is(a, button) {
+        background-color: #050400 !important;
+        color: #fff;
+        pointer-events: none;
+      }
+
+      :hover {
+        color: #fff;
+      }
+    }
   }
 
   &:where([variant='menu']) {
     width: 100%;
+
+    &:not([active='false']) {
+      display: none;
+    }
 
     :is(a, button) {
       padding-block: 13px;

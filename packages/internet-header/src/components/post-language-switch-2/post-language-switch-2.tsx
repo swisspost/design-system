@@ -138,7 +138,7 @@ export class PostLanguageSwitch2 implements HasDropdown {
               <SvgIcon name="pi-arrow-down" classNames={this.langSwitchOpen ? 'rotated' : ''} />
             </button>
           ) : (
-            <span class="bold current-language">
+            <span class="current-language">
               <span class="visually-hidden">{translate('Current language is English')}</span>
               <span>{state.currentLanguage}</span>
             </span>

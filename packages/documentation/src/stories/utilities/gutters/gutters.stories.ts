@@ -5,19 +5,11 @@ import { parse } from '@/utils/sass-export';
 import scss from './gutters.module.scss';
 import './gutters.styles.scss';
 
-/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-export const SCSS_VARIABLES: any = parse(scss);
+export const SCSS_VARIABLES: Record<string, string> = parse(scss);
 
-const properties = ['gap'];
-
-const sizes = properties.reduce((options, property) => {
-  return {
-    ...options,
-    [property]: Object.keys(SCSS_VARIABLES.spacing)
-      .filter((key: string) => key.startsWith(`post-utility-${property}-`))
-      .map((key: string) => key.replace(`post-utility-${property}-`, '')),
-  };
-}, {} as { [property: string]: string[] });
+const sizes = Object.keys(SCSS_VARIABLES.spacing)
+  .filter((key: string) => key.startsWith(`post-utility-gap-`))
+  .map((key: string) => key.replace(`post-utility-gap-`, ''));
 
 const meta: MetaExtended = {
   id: '64b63483-79fa-4e9f-9441-f7d6b2eabae2',
@@ -44,7 +36,7 @@ export const HorizontalGutters: Story = {
       control: {
         type: 'select',
       },
-      options: sizes.gap,
+      options: sizes,
     },
   },
   args: {
@@ -75,7 +67,7 @@ export const VerticalGutters: Story = {
       control: {
         type: 'select',
       },
-      options: sizes.gap,
+      options: sizes,
     },
   },
   args: {
@@ -106,7 +98,7 @@ export const GeneralGutters: Story = {
       control: {
         type: 'select',
       },
-      options: sizes.gap,
+      options: sizes,
     },
   },
   args: {
