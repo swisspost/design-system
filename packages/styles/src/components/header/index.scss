@@ -25,7 +25,6 @@ post-header {
   @include media.min(lg) {
     --global-header-height: 72px;
     --global-header-reduced-height: 24px;
-    --local-header-min-height: 56px;
     --main-navigation-height: 56px;
     --local-header-height: 112px;
   }
@@ -35,8 +34,15 @@ post-header {
     --global-header-height: 64px;
     --global-header-reduced-height: var(--global-header-height);
     --local-header-height: 48px;
-    --local-header-min-height: 48px;
     --main-navigation-height: 0px; /* stylelint-disable-line length-zero-no-unit */ /* needed for calculation */
+  }
+
+  @include media.min(md) {
+    --local-header-min-height: 56px;
+  }
+
+  @include media.max(md) {
+    --local-header-min-height: 48px;
   }
 
   &:not(:has([slot='title'])) {
