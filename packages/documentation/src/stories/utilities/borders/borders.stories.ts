@@ -100,33 +100,40 @@ export const RemoveBorders: Story = {
   },
 };
 
+const border_args_sides = [
+  'rounded',
+  'rounded-top',
+  'rounded-end',
+  'rounded-bottom',
+  'rounded-start',
+];
+const border_args_scales = ['', '-4', '-8', '-pill', '-circle'];
+
+const combinedOptions: string[] = [];
+
+border_args_scales.forEach(cls => {
+  border_args_sides.forEach(arg => {
+    combinedOptions.push(arg + cls);
+  });
+});
+
 export const BorderRounded: Story = {
   argTypes: {
-    borderRoundedRadius: {
-      name: 'rounded-{radius-scale}',
+    borderRounded: {
+      name: 'rounded-{side}-{scale}',
       description: 'Enables the `border radius` and sets its scale.',
       control: {
         type: 'select',
       },
-      options: ['none', ...border_args.radius, 'pill', 'circle'],
-    },
-    borderRoundedSide: {
-      name: 'rounded-{side}',
-      description: 'Applies a `border-radius` to all or specific sides.',
-      control: {
-        type: 'select',
-      },
-      options: ['rounded', 'rounded-top', 'rounded-end', 'rounded-bottom', 'rounded-start'],
+      options: ['none', ...combinedOptions],
     },
   },
   args: {
-    borderRoundedSide: 'rounded',
-    borderRoundedRadius: 'none',
+    borderRounded: 'rounded',
   },
   render: (args: Args) => {
-    const borderRoundedRadius =
-      args.borderRoundedRadius != 'none' ? `-${args.borderRoundedRadius}` : '';
-    const borderRoundedSide = args.borderRoundedSide != 'none' ? `${args.borderRoundedSide}` : '';
-    return html` <div class="border ${borderRoundedSide}${borderRoundedRadius}">Sample Text</div> `;
+    const borderRounded = args.borderRounded != 'none' ? `${args.borderRounded}` : '';
+
+    return html` <div class="border ${borderRounded}">Sample Text</div> `;
   },
 };

@@ -33,27 +33,16 @@ export const Borders: Story = {
       })}
     `;
   },
-  decorators: [story => html` <div class="borders-example">${story()}</div> `],
+  decorators: [story => html`<div class="borders-example">${story()}</div>`],
 };
 
 export const Rounded: Story = {
   render: () => {
     return html`
-      ${bombArgs({
-        roundedScale: BorderRounded.argTypes?.borderRoundedRadius?.options,
-        roundedSide: BorderRounded.argTypes?.borderRoundedSide?.options,
-      }).map(bombargs => {
-        return html`
-          <div
-            class="border ${bombargs.roundedSide !== 'none'
-              ? bombargs.roundedSide
-              : ''}${bombargs.roundedScale !== 'none' ? `-${bombargs.roundedScale}` : ''}"
-          >
-            Sample Text
-          </div>
-        `;
+      ${(BorderRounded.argTypes?.borderRounded?.options).map(option => {
+        return html`<div class="border ${option !== 'none' ? option : ''}">Sample Text</div>`;
       })}
     `;
   },
-  decorators: [story => html` <div class="borders-example">${story()}</div> `],
+  decorators: [story => html`<div class="borders-example">${story()}</div>`],
 };

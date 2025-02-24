@@ -1,9 +1,6 @@
 @use 'sass:map';
 @use '../tokens/utilities_formatted';
 
-@use '../tokens/utilities' as utilities;
-@use '../functions/tokens';
-
 @use '../variables/sizing' as *;
 @use '../variables/type';
 
@@ -37,9 +34,8 @@ $utilities: (
     property: border,
     class: border,
     values: (
-      null:
-        var(--post-border-width, tokens.get('utility-border-default-width', utilities.$post-border))
-        solid tokens.get('utility-border-default-color', utilities.$post-border),
+      null: var(--post-border-width, map.get(utilities_formatted.$border-default, width)) solid
+        map.get(utilities_formatted.$border-default, color),
       0: 0,
     ),
   ),
@@ -47,9 +43,8 @@ $utilities: (
     property: border-block-start,
     class: border-top,
     values: (
-      null:
-        var(--post-border-width, tokens.get('utility-border-default-width', utilities.$post-border))
-        solid tokens.get('utility-border-default-color', utilities.$post-border),
+      null: var(--post-border-width, map.get(utilities_formatted.$border-default, width)) solid
+        map.get(utilities_formatted.$border-default, color),
       0: 0,
     ),
   ),
@@ -57,9 +52,8 @@ $utilities: (
     property: border-inline-end,
     class: border-end,
     values: (
-      null:
-        var(--post-border-width, tokens.get('utility-border-default-width', utilities.$post-border))
-        solid tokens.get('utility-border-default-color', utilities.$post-border),
+      null: var(--post-border-width, map.get(utilities_formatted.$border-default, width)) solid
+        map.get(utilities_formatted.$border-default, color),
       0: 0,
     ),
   ),
@@ -67,9 +61,8 @@ $utilities: (
     property: border-block-end,
     class: border-bottom,
     values: (
-      null:
-        var(--post-border-width, tokens.get('utility-border-default-width', utilities.$post-border))
-        solid tokens.get('utility-border-default-color', utilities.$post-border),
+      null: var(--post-border-width, map.get(utilities_formatted.$border-default, width)) solid
+        map.get(utilities_formatted.$border-default, color),
       0: 0,
     ),
   ),
@@ -77,9 +70,8 @@ $utilities: (
     property: border-inline-start,
     class: border-start,
     values: (
-      null:
-        var(--post-border-width, tokens.get('utility-border-default-width', utilities.$post-border))
-        solid tokens.get('utility-border-default-color', utilities.$post-border),
+      null: var(--post-border-width, map.get(utilities_formatted.$border-default, width)) solid
+        map.get(utilities_formatted.$border-default, color),
       0: 0,
     ),
   ),
@@ -96,7 +88,7 @@ $utilities: (
       map.merge(
         utilities_formatted.$border-radius,
         (
-          null: tokens.get('utility-border-default-radius', utilities.$post-border),
+          null: map.get(utilities_formatted.$border-default, radius),
           pill: 50rem,
           circle: 50%,
         )
@@ -109,7 +101,7 @@ $utilities: (
       map.merge(
         utilities_formatted.$border-radius,
         (
-          null: tokens.get('utility-border-default-radius', utilities.$post-border),
+          null: map.get(utilities_formatted.$border-default, radius),
           pill: 50rem,
           circle: 50%,
         )
@@ -122,7 +114,7 @@ $utilities: (
       map.merge(
         utilities_formatted.$border-radius,
         (
-          null: tokens.get('utility-border-default-radius', utilities.$post-border),
+          null: map.get(utilities_formatted.$border-default, radius),
           pill: 50rem,
           circle: 50%,
         )
@@ -135,7 +127,7 @@ $utilities: (
       map.merge(
         utilities_formatted.$border-radius,
         (
-          null: tokens.get('utility-border-default-radius', utilities.$post-border),
+          null: map.get(utilities_formatted.$border-default, radius),
           pill: 50rem,
           circle: 50%,
         )
@@ -148,7 +140,7 @@ $utilities: (
       map.merge(
         utilities_formatted.$border-radius,
         (
-          null: tokens.get('utility-border-default-radius', utilities.$post-border),
+          null: map.get(utilities_formatted.$border-default, radius),
           pill: 50rem,
           circle: 50%,
         )
