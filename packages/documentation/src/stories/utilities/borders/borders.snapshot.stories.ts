@@ -38,11 +38,12 @@ export const Borders: Story = {
 
 export const Rounded: Story = {
   render: () => {
+    const roundedOptions = BorderRounded.argTypes?.borderRounded?.options || [];
     return html`
-      ${(BorderRounded.argTypes?.borderRounded?.options).map(option => {
+      ${roundedOptions.map(option => {
         return html`<div class="border ${option !== 'none' ? option : ''}">Sample Text</div>`;
       })}
     `;
   },
-  decorators: [story => html`<div class="borders-example">${story()}</div>`],
+  decorators: [story => html` <div class="borders-example">${story()}</div> `],
 };
