@@ -22,6 +22,19 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
       cy.visit('./cypress/fixtures/post-mainnavigation.test.html');
 
       cy.get('post-mainnavigation[data-hydrated]').as('mainnavigation');
+    });
+
+    it('should not show the scroll buttons', () => {
+      cy.get('@mainnavigation').find('.right-scroll-button').should('not.be.visible');
+      cy.get('@mainnavigation').find('.left-scroll-button').should('not.be.visible');
+    });
+  });
+
+  describe('overflow', () => {
+    beforeEach(() => {
+      cy.visit('./cypress/fixtures/post-mainnavigation-overflow.test.html');
+
+      cy.get('post-mainnavigation[data-hydrated]').as('mainnavigation');
 
       cy.get('@mainnavigation')
         .find('post-megadropdown-trigger > button, a:not(post-megadropdown *)')
@@ -210,7 +223,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
 
   describe('Accessibility', () => {
     beforeEach(() => {
-      cy.visit('./cypress/fixtures/post-mainnavigation.test.html');
+      cy.visit('./cypress/fixtures/post-mainnavigation-overflow.test.html');
       cy.get('post-mainnavigation[data-hydrated]').should('be.visible');
       cy.injectAxe();
     });

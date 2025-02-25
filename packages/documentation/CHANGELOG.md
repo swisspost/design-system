@@ -1,5 +1,18 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.23
+
+### Patch Changes
+
+- Fixed mobile navigation position and scrolling issues within storybook. (by [@myrta2302](https://github.com/myrta2302) with [#4738](https://github.com/swisspost/design-system/pull/4738))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.22
+  - @swisspost/design-system-styles@9.0.0-next.22
+  - @swisspost/design-system-components-react@9.0.0-next.22
+  - @swisspost/internet-header@2.0.0-next.22
+  - @swisspost/design-system-tokens@9.0.0-next.22
+  - @swisspost/design-system-icons@9.0.0-next.22
+
 ## 6.0.0-next.22
 
 ### Patch Changes
