@@ -55,14 +55,6 @@ export class PostHeader {
     this.getFocusableElements();
   }
 
-  private getScrollParent(): Element | Document {
-    let parent: Element | Document = this.host.parentElement;
-    if (parent.tagName === 'BODY') {
-      parent = document;
-    }
-    return parent;
-  }
-
   componentDidLoad() {
     this.updateLocalHeaderHeight();
   }
@@ -160,6 +152,14 @@ export class PostHeader {
         this.firstFocusableEl.focus();
       }
     }
+  }
+
+  private getScrollParent(): Element | Document {
+    let parent: Element | Document = this.host.parentElement;
+    if (parent.tagName === 'BODY') {
+      parent = document;
+    }
+    return parent;
   }
 
   private handleScrollEvent() {
