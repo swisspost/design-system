@@ -294,6 +294,9 @@ export namespace Components {
     interface PostMainnavigation {
     }
     interface PostMegadropdown {
+        /**
+          * Sets focus to the first focusable element within the component.
+         */
         "focusFirst": () => Promise<void>;
         /**
           * Hides the dropdown with an animation.
