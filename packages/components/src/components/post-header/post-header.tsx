@@ -52,6 +52,11 @@ export class PostHeader {
 
   componentDidLoad() {
     this.updateLocalHeaderHeight();
+    // Check if the mega dropdown is expanded
+    document.addEventListener('postToggleMegadropdown', (event: CustomEvent) => {
+      this.megadropdownOpen = event.detail.isVisible;
+    });
+    this.host.addEventListener('click', this.handleLinkClick.bind(this));
   }
 
   // Clean up possible side effects when post-header is disconnected
@@ -61,12 +66,15 @@ export class PostHeader {
     this.host.removeEventListener('keydown', e => {
       this.keyboardHandler(e);
     });
+    this.host.removeEventListener('click', this.handleLinkClick.bind(this));
   }
 
   @Element() host: HTMLPostHeaderElement;
 
   @State() device: DEVICE_SIZE = null;
   @State() mobileMenuExtended: boolean = false;
+
+  @State() megadropdownOpen: boolean = false;
 
   @Watch('mobileMenuExtended')
   frozeBody(isMobileMenuExtended: boolean) {
@@ -194,6 +202,28 @@ export class PostHeader {
     });
   }
 
+  private handleLinkClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+
+    const isLinkInMainNav = target.closest('post-mainnavigation a');
+    const isLinkInMegadropdown = target.closest('post-megadropdown a');
+
+    if (!isLinkInMainNav && !isLinkInMegadropdown) {
+      return;
+    }
+
+    if (this.mobileMenuExtended && (isLinkInMainNav || isLinkInMegadropdown)) {
+      this.toggleMobileMenu();
+    }
+
+    if (this.device === 'desktop' && isLinkInMegadropdown) {
+      const megadropdownLink = target.closest('post-megadropdown a');
+      if (megadropdownLink) {
+        target.closest('post-megadropdown').hide(true);
+      }
+    }
+  }
+
   private handleResize() {
     const previousDevice = this.device;
     let newDevice: DEVICE_SIZE;
@@ -237,6 +267,9 @@ export class PostHeader {
     const navigationClasses = ['navigation'];
     if (this.mobileMenuExtended) {
       navigationClasses.push('extended');
+    }
+    if (!this.megadropdownOpen) {
+      navigationClasses.push('scroll-y');
     }
 
     return (

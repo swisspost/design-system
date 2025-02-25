@@ -16,7 +16,7 @@
 
 ### `focusFirst() => Promise<void>`
 
-
+Sets focus to the first focusable element within the component.
 
 #### Returns
 

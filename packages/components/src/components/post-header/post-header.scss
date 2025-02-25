@@ -218,6 +218,10 @@
     display: flex;
     flex-direction: column;
 
+    &.scroll-y {
+      overflow-y: auto;
+    }
+
     ::slotted(post-mainnavigation) {
       flex-grow: 1 !important;
     }

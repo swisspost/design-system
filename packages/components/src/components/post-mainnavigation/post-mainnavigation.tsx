@@ -1,5 +1,4 @@
 import { Component, Host, h, Element, State, Watch, Listen } from '@stencil/core';
-import { throttle } from 'throttle-debounce';
 
 const SCROLL_REPEAT_INTERVAL = 100; // Interval for repeated scrolling when holding down scroll button
 const NAVBAR_DISABLE_DURATION = 400; // Duration to temporarily disable navbar interactions during scrolling
@@ -20,6 +19,7 @@ export class PostMainnavigation {
 
   private scrollRepeatInterval: ReturnType<typeof setInterval>;
   private navbarDisableTimer: ReturnType<typeof setInterval>;
+  private resizeObserver: ResizeObserver;
 
   private mutationObserver = new MutationObserver(async mutations => {
     // Wait for all elements to be hydrated
@@ -64,16 +64,30 @@ export class PostMainnavigation {
   disconnectedCallback() {
     this.header = null;
     this.mutationObserver.disconnect();
+
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+    }
   }
 
   componentDidLoad() {
     setTimeout(() => this.checkScrollability()); // Initial check to determine if scrolling is needed
+
+    this.resizeObserver = new ResizeObserver(() => {
+      this.checkScrollability();
+    });
+
+    // Observe the navbar and the navigation list for size changes
+    if (this.navbar) {
+      this.resizeObserver.observe(this.navbar);
+      const navList = this.navigationList;
+      if (navList) {
+        this.resizeObserver.observe(navList);
+      }
+    }
+
     this.mutationObserver.observe(this.navigationList, { subtree: true, childList: true }); // Recheck scrollability when navigation list changes
     this.fixLayoutShift();
-    window.addEventListener(
-      'resize', // Recheck scrollability on window resize
-      throttle(100, () => this.checkScrollability()),
-    );
 
     // Handle focus changes and adjust scroll as needed
     this.navbar.addEventListener('focusin', e => this.adjustTranslation(e));
