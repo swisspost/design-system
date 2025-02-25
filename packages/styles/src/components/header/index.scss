@@ -86,7 +86,7 @@ post-header {
 
   a,
   post-togglebutton {
-    &:not(post-mainnavigation *) {
+    &:not(post-mainnavigation *, post-language-switch *) {
       @include subsidiary-header-interactive;
 
       @include media.min(sm) {
