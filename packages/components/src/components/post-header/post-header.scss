@@ -118,8 +118,9 @@
   @include media.max(lg) {
     z-index: 2;
     inset-block-start: var(--global-header-height);
-    padding-block: 9px;
+    padding-block: 12px;
     flex-wrap: wrap;
+    gap: 16px;
 
     &.local-header-mobile-extended {
       &::after {
@@ -138,7 +139,7 @@
 }
 
 ::slotted(.list-inline) {
-  margin: -8px 0 !important;
+  margin: 0 !important;
   z-index: 3 !important;
   position: relative !important;
 }
@@ -197,7 +198,7 @@
     z-index: 1;
     inset-inline: 0;
     background: color.$white;
-    inset-block-end: calc(100vh - var(--header-height));
+    inset-block-end: calc(100dvh - var(--header-height));
   }
 
   ::slotted(post-mainnavigation),
@@ -213,7 +214,7 @@
   }
 
   .navigation.extended {
-    height: calc(100vh - var(--header-height));
+    height: calc(100dvh - var(--header-height));
     display: flex;
     flex-direction: column;
 
