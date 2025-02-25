@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.22
+
+### Patch Changes
+
+- Added a fixed height to the `post-header` until it's fully loaded to prevent layout shifts. (by [@alizedebray](https://github.com/alizedebray) with [#4769](https://github.com/swisspost/design-system/pull/4769))
+
 ## 9.0.0-next.21
 
 ## 9.0.0-next.20

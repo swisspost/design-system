@@ -90,7 +90,7 @@ export class PostLanguageSwitch {
       // Hides the dropdown when an option has been clicked
       if (this.variant === 'menu') {
         const menu = this.host.shadowRoot.querySelector('post-menu') as HTMLPostMenuElement;
-        menu.toggle(menu);
+        menu.hide();
       }
     });
   }
