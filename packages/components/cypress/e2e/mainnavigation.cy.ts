@@ -219,6 +219,69 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
         cy.get('@navigationItems').first().invoke('attr', 'aria-expanded').should('eq', 'true');
       });
     });
+    describe('resize observer', () => {
+      beforeEach(() => {
+        cy.visit('./cypress/fixtures/post-mainnavigation-overflow.test.html');
+        cy.get('post-mainnavigation[data-hydrated]').as('mainnavigation');
+
+        // remove scroll transition to speed up the tests
+        cy.get('@mainnavigation')
+          .find('nav')
+          .then($nav => {
+            $nav.css('transition', 'none');
+          });
+      });
+
+      it('should update scrollability when viewport changes', () => {
+        cy.viewport(1200, 600);
+        cy.get('@mainnavigation').find('.right-scroll-button').should('be.visible');
+        cy.get('@mainnavigation').find('.left-scroll-button').should('not.be.visible');
+
+        cy.viewport(1600, 600);
+        cy.get('@mainnavigation').find('.right-scroll-button').should('not.be.visible');
+        cy.get('@mainnavigation').find('.left-scroll-button').should('not.be.visible');
+
+        cy.viewport(1200, 600);
+        cy.get('@mainnavigation').find('.right-scroll-button').should('be.visible');
+        cy.get('@mainnavigation').find('.left-scroll-button').should('not.be.visible');
+      });
+
+      it('should hide scroll buttons after removing enough nav items', () => {
+        cy.viewport(1200, 600);
+        cy.get('@mainnavigation').find('.right-scroll-button').should('be.visible');
+        cy.get('@mainnavigation').find('.left-scroll-button').should('not.be.visible');
+
+        cy.get('@mainnavigation')
+          .find('post-list-item')
+          .its('length')
+          .then(itemCount => {
+            // Remove enough items to eliminate the need for scrolling
+            cy.get('@mainnavigation')
+              .find('post-list > [role="list"]')
+              .then($navList => {
+                const itemsToRemove = Math.floor(itemCount / 2);
+                const items = $navList.find('post-list-item').slice(-itemsToRemove);
+                items.each((_, item) => {
+                  item.remove();
+                });
+              });
+          });
+        cy.get('@mainnavigation').find('.right-scroll-button').should('not.be.visible');
+        cy.get('@mainnavigation').find('.left-scroll-button').should('not.be.visible');
+      });
+
+      it('should show left scroll button after scrolling right', () => {
+        cy.viewport(1200, 600);
+
+        cy.get('@mainnavigation').find('.right-scroll-button').should('be.visible');
+        cy.get('@mainnavigation').find('.left-scroll-button').should('not.be.visible');
+
+        cy.get('@mainnavigation').find('.right-scroll-button button').click();
+
+        cy.get('@mainnavigation').find('.left-scroll-button').should('be.visible');
+        cy.get('@mainnavigation').find('.right-scroll-button').should('be.visible');
+      });
+    });
   });
 
   describe('Accessibility', () => {
