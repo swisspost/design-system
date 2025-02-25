@@ -76,8 +76,8 @@
     left: 0;
     width: 100%;
     position: fixed;
-    height: calc(100vh - var(--header-height));
-    max-height: calc(100vh - var(--header-height));
+    height: calc(100dvh - var(--header-height));
+    max-height: calc(100dvh - var(--header-height));
     border-top: unset;
     overflow: auto;
 
@@ -98,7 +98,7 @@
   @include media.max(lg) {
     display: flex;
     flex-direction: column;
-    width: inherit;  
+    width: inherit;
     padding: 16px 32px 24px;
   }
 
@@ -235,6 +235,8 @@
       min-width: 100%;
       height: auto;
       min-height: 48px;
+      white-space: normal;
+      word-break: break-word;
 
       &:hover {
         border-block-width: 0;

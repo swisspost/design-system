@@ -187,7 +187,7 @@
     z-index: 1;
     inset-inline: 0;
     background: color.$white;
-    inset-block-end: calc(100vh - var(--header-height));
+    inset-block-end: calc(100dvh - var(--header-height));
   }
 
   ::slotted(post-mainnavigation),
@@ -203,7 +203,7 @@
   }
 
   .navigation.extended {
-    height: calc(100vh - var(--header-height));
+    height: calc(100dvh - var(--header-height));
     display: flex;
     flex-direction: column;
 

@@ -1,6 +1,6 @@
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
-import { DEVICE_SIZE } from '../post-header/post-header';
+import { breakpoint } from '../../utils/breakpoints';
 
 @Component({
   tag: 'post-megadropdown',
@@ -8,17 +8,22 @@ import { DEVICE_SIZE } from '../post-header/post-header';
   shadow: false,
 })
 export class PostMegadropdown {
-  private header: HTMLPostHeaderElement | null;
-
   private firstFocusableEl: HTMLElement | null;
   private lastFocusableEl: HTMLElement | null;
 
-  @State() device: DEVICE_SIZE;
+  @State() device: string = breakpoint.get('name');
 
   @Element() host: HTMLPostMegadropdownElement;
 
   /** Tracks the currently active dropdown instance. */
   private static activeDropdown: PostMegadropdown | null = null;
+
+  private breakpointChange(e: CustomEvent) {
+    this.device = e.detail;
+    if (this.device === 'desktop' && this.isVisible) {
+      this.animationClass = null;
+    }
+  }
 
   /**
    * Holds the current visibility state of the dropdown.
@@ -40,6 +45,7 @@ export class PostMegadropdown {
 
   disconnectedCallback() {
     this.removeListeners();
+    window.removeEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
     if (PostMegadropdown.activeDropdown === this) {
       PostMegadropdown.activeDropdown = null;
     }
@@ -76,14 +82,12 @@ export class PostMegadropdown {
     this.isVisible = true;
     PostMegadropdown.activeDropdown = this;
     this.postToggleMegadropdown.emit({ isVisible: this.isVisible });
-    requestAnimationFrame(() => {
-      if (
-        this.firstFocusableEl &&
-        window.getComputedStyle(this.firstFocusableEl).display !== 'none'
-      ) {
-        this.firstFocusableEl.focus();
-      }
-    });
+    if (
+      this.firstFocusableEl &&
+      window.getComputedStyle(this.firstFocusableEl).display !== 'none'
+    ) {
+      this.firstFocusableEl.focus();
+    }
     this.addListeners();
   }
 
@@ -96,18 +100,16 @@ export class PostMegadropdown {
     this.animationClass = 'slide-out';
   }
 
+  /**
+   * Sets focus to the first focusable element within the component.
+  */
   @Method()
   async focusFirst() {
     this.firstFocusableEl?.focus();
   }
 
   connectedCallback() {
-    this.header = this.host.closest('post-header');
-    if (this.header) {
-      this.header.addEventListener('postUpdateDevice', (event: CustomEvent<DEVICE_SIZE>) => {
-        this.device = event.detail;
-      });
-    }
+    window.addEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
   }
 
   /**
