@@ -164,10 +164,8 @@ export class PostHeader {
 
   private getScrollParent(node: Element): Element | Document {
     let currentParent = node.parentElement;
+
     while (currentParent) {
-      if (currentParent.nodeName === 'BODY') {
-        return document;
-      }
       if (this.isScrollable(currentParent)) {
         return currentParent;
       }
