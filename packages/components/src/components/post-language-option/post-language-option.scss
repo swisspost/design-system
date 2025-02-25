@@ -38,15 +38,11 @@ post-language-option {
         color: #504f4b;
       }
     }
-    &:not([active='false']) {
+    &[active]:not([active='false']) {
       :is(a, button) {
         background-color: #050400 !important;
         color: #fff;
         pointer-events: none;
-      }
-
-      :hover {
-        color: #fff;
       }
     }
   }
@@ -54,7 +50,7 @@ post-language-option {
   &:where([variant='menu']) {
     width: 100%;
 
-    &:not([active='false']) {
+    &[active]:not([active='false']) {
       display: none;
     }
 
