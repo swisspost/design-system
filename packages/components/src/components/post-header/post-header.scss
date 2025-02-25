@@ -104,6 +104,7 @@
     height: 1px;
     background-color: #e1e0dc;
     bottom: -1px;
+    z-index: 1;
   }
 
   @include media.min(lg) {
