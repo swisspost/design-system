@@ -1,5 +1,30 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.23
+
+### Patch Changes
+
+- Fixed the bug with shifting the `post-language-switch` dropdown to the right on language selection. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4751](https://github.com/swisspost/design-system/pull/4751))
+
+- Fixed navigation scrolling in `post-mainnavigation` to ensure scroll buttons persist until the last item is fully visible. (by [@schaertim](https://github.com/schaertim) with [#4777](https://github.com/swisspost/design-system/pull/4777))
+
+- Prevented slide-down animation for already open `post-megadropdown` component when resizing from mobile/tablet to desktop. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4704](https://github.com/swisspost/design-system/pull/4704))
+
+- Disabled body scrolling when mobile navigation is open. (by [@myrta2302](https://github.com/myrta2302) with [#4775](https://github.com/swisspost/design-system/pull/4775))
+
+- Updated the `post-megadropdown` to make the list links wrap to the next line when texts are too long. (by [@leagrdv](https://github.com/leagrdv) with [#4778](https://github.com/swisspost/design-system/pull/4778))
+
+- Adjusted the composable header height to match the design specifications. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4650](https://github.com/swisspost/design-system/pull/4650))
+
+- Implemented auto-closing behavior for `post-megadropdown` and `post-mainnavigation` when clicking a link inside them, to prevent navigation elements from remaining open after user interaction. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4765](https://github.com/swisspost/design-system/pull/4765))
+
+- Fixed an issue with the language switch active state not highlighting only the active language option. The selector now only targets active options. (by [@gfellerph](https://github.com/gfellerph) with [#4776](https://github.com/swisspost/design-system/pull/4776))
+
+- Enabled header navigation to scroll when content exceeds available height on mobile & tablet. (by [@myrta2302](https://github.com/myrta2302) with [#4712](https://github.com/swisspost/design-system/pull/4712))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.23
+  - @swisspost/design-system-icons@9.0.0-next.23
+
 ## 9.0.0-next.22
 
 ### Patch Changes

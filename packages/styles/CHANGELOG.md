@@ -1,5 +1,7 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.23
+
 ## 9.0.0-next.22
 
 ### Patch Changes
