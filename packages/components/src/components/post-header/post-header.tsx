@@ -211,9 +211,9 @@ export class PostHeader {
     }
 
     if (this.device === 'desktop' && isLinkInMegadropdown) {
-      const megadropdown = target.closest('post-megadropdown a');
-      if (megadropdown) {
-        megadropdown.hide(true);
+      const megadropdownLink = target.closest('post-megadropdown a');
+      if (megadropdownLink) {
+        target.closest('post-megadropdown').hide(true);
       }
     }
   }
