@@ -21,8 +21,8 @@
   --local-header-top: calc(
     -1 * (var(--local-header-height) - var(--main-navigation-height)) + var(--global-header-reduced-height)
   );
-  --logo-height: calc(var(--global-header-height) - (var(--header-scroll-top) * 1px));
-  --global-controls-top: calc(min((var(--header-scroll-top) / 10), 10) * -1 * 1px);
+  --logo-height: calc(var(--global-header-height) - var(--header-scroll-top));
+  --global-controls-top: calc(min((var(--header-scroll-top) / 10), 10) * -1);
 
   // If focus is within the header (except the logo and the post-mainnavigation elements), the header should have be shown fully
   &:has(.global-sub > *:not(.logo):focus-within),
@@ -124,7 +124,7 @@
   min-height: var(--local-header-min-height);
   background: color.$white;
   transition: box-shadow 0.2s ease-in-out;
-  
+
   &::after {
     content: '';
     position: absolute;

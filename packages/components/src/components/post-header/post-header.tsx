@@ -179,7 +179,7 @@ export class PostHeader {
         : this.scrollListenerElement.scrollTop,
     );
 
-    this.host.style.setProperty('--header-scroll-top', `${st}`);
+    this.host.style.setProperty('--header-scroll-top', `${st}px`);
   }
 
   private updateLocalHeaderHeight() {
