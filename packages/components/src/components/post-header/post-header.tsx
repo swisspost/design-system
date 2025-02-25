@@ -241,7 +241,7 @@ export class PostHeader {
   }
 
   private renderNavigation() {
-    let navigationClasses = ['navigation'];
+    const navigationClasses = ['navigation'];
     if (this.mobileMenuExtended) {
       navigationClasses.push('extended');
     }
