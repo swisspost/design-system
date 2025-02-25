@@ -88,7 +88,9 @@ export class PostHeader {
 
     while (element) {
       const overflow = getComputedStyle(element).overflowY;
-      if (['auto', 'scroll'].includes(overflow)) return element;
+      if (['auto', 'scroll'].includes(overflow)) {
+        return element === document.body ? document.documentElement : element;
+      }
       element = element.parentElement;
     }
 
@@ -246,6 +248,9 @@ export class PostHeader {
 
   componentWillRender() {
     window.addEventListener('resize', this.throttledResize, { passive: true });
+    window.addEventListener('scroll', this.handleScrollEvent.bind(this), {
+      passive: true,
+    });
     this.scrollParent.addEventListener('scroll', this.handleScrollEvent.bind(this), {
       passive: true,
     });
@@ -300,11 +305,12 @@ export class PostHeader {
     this.scrollParent.style.overflow = '';
 
     window.removeEventListener('resize', this.throttledResize);
+    window.removeEventListener('scroll', this.handleScrollEvent.bind(this));
+    this.scrollParent.removeEventListener('scroll', this.handleScrollEvent.bind(this));
     document.removeEventListener(
       'postToggleMegadropdown',
       this.megedropdownStateHandler.bind(this),
     );
-    this.scrollParent.removeEventListener('scroll', this.handleScrollEvent.bind(this));
     this.host.removeEventListener('keydown', this.keyboardHandler.bind(this));
     this.host.removeEventListener('click', this.handleLinkClick.bind(this));
     this.localHeaderResizeObserver.disconnect();
