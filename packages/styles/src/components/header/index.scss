@@ -49,7 +49,9 @@ post-header {
     --local-header-height: var(--main-navigation-height) !important;
   }
 
-  &:not(:defined) {
+  &:not(:defined),
+  &:not([data-hydrated]) {
+    display: block;
     height: var(--header-height);
   }
 
