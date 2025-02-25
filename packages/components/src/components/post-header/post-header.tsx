@@ -203,18 +203,18 @@ export class PostHeader {
     const isLinkInMegadropdown = target.closest('post-megadropdown a');
 
     if (!isLinkInMainNav && !isLinkInMegadropdown) {
-        return;
+      return;
     }
 
     if (this.mobileMenuExtended && (isLinkInMainNav || isLinkInMegadropdown)) {
-        this.toggleMobileMenu();
+      this.toggleMobileMenu();
     }
 
     if (this.device === 'desktop' && isLinkInMegadropdown) {
-        const megadropdown = target.closest('post-megadropdown') as HTMLPostMegadropdownElement | null;
-        if (megadropdown) {
-            megadropdown.hide(true);
-        }
+      const megadropdown = target.closest('post-megadropdown') as HTMLPostMegadropdownElement | null;
+      if (megadropdown) {
+        megadropdown.hide(true);
+      }
     }
   }
 
