@@ -89,6 +89,14 @@ post-header {
     }
   }
 
+  > ul.list-inline li button {
+    @include button-mx.reset-button;
+
+    &:hover {
+      color: tokens.get('link-hover-fg');
+    }
+  }
+
   a,
   > ul.list-inline li button,
   post-togglebutton {
@@ -114,14 +122,6 @@ post-header {
           @include utilities.visuallyhidden;
         }
       }
-    }
-  }
-
-  > ul.list-inline li button {
-    @include button-mx.reset-button;
-
-    &:hover {
-      color: tokens.get('link-hover-fg');
     }
   }
 
