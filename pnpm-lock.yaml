@@ -85,7 +85,7 @@ importers:
         version: 1.30.6(typescript@5.5.4)
       '@percy/cypress':
         specifier: 3.1.2
-        version: 3.1.2(cypress@13.13.2)
+        version: 3.1.2(cypress@14.1.0)
       '@stencil-community/eslint-plugin':
         specifier: 0.9.0
         version: 0.9.0(@typescript-eslint/eslint-plugin@8.22.0(@typescript-eslint/parser@7.18.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.5.4))(eslint@9.18.0(jiti@2.4.2))(typescript@5.5.4))(@typescript-eslint/parser@7.18.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.5.4))(eslint-plugin-react@7.37.4(eslint@9.18.0(jiti@2.4.2)))(eslint@9.18.0(jiti@2.4.2))(typescript@5.5.4)
@@ -114,14 +114,14 @@ importers:
         specifier: 5.3.3
         version: 5.3.3(@popperjs/core@2.11.8)
       cypress:
-        specifier: 13.13.2
-        version: 13.13.2
+        specifier: 14.1.0
+        version: 14.1.0
       cypress-axe:
         specifier: 1.5.0
-        version: 1.5.0(axe-core@4.7.0)(cypress@13.13.2)
+        version: 1.5.0(axe-core@4.7.0)(cypress@14.1.0)
       cypress-storybook:
         specifier: 1.0.0
-        version: 1.0.0(cypress@13.13.2)
+        version: 1.0.0(cypress@14.1.0)
       eslint:
         specifier: 9.18.0
         version: 9.18.0(jiti@2.4.2)
@@ -214,8 +214,8 @@ importers:
         specifier: 18.4.3
         version: 18.4.3(chokidar@3.6.0)(eslint@9.18.0(jiti@2.4.2))(typescript-eslint@8.16.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.5.4))(typescript@5.5.4)
       cypress:
-        specifier: 13.13.2
-        version: 13.13.2
+        specifier: 14.1.0
+        version: 14.1.0
       eslint:
         specifier: ^9.15.0
         version: 9.18.0(jiti@2.4.2)
@@ -353,7 +353,7 @@ importers:
         version: 1.30.6(typescript@5.5.4)
       '@percy/cypress':
         specifier: 3.1.2
-        version: 3.1.2(cypress@13.13.2)
+        version: 3.1.2(cypress@14.1.0)
       '@storybook/addon-docs':
         specifier: 8.4.7
         version: 8.4.7(@types/react@18.3.3)(storybook@8.4.7(prettier@2.8.8))
@@ -415,11 +415,11 @@ importers:
         specifier: 7.18.0
         version: 7.18.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.5.4)
       cypress:
-        specifier: 13.13.2
-        version: 13.13.2
+        specifier: 14.1.0
+        version: 14.1.0
       cypress-axe:
         specifier: 1.5.0
-        version: 1.5.0(axe-core@4.7.0)(cypress@13.13.2)
+        version: 1.5.0(axe-core@4.7.0)(cypress@14.1.0)
       eslint:
         specifier: 9.18.0
         version: 9.18.0(jiti@2.4.2)
@@ -646,7 +646,7 @@ importers:
         version: 1.30.6(typescript@5.5.4)
       '@percy/cypress':
         specifier: 3.1.2
-        version: 3.1.2(cypress@13.13.2)
+        version: 3.1.2(cypress@14.1.0)
       '@stencil-community/eslint-plugin':
         specifier: 0.9.0
         version: 0.9.0(@typescript-eslint/eslint-plugin@8.22.0(@typescript-eslint/parser@7.18.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.5.4))(eslint@9.18.0(jiti@2.4.2))(typescript@5.5.4))(@typescript-eslint/parser@7.18.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.5.4))(eslint-plugin-react@7.37.4(eslint@9.18.0(jiti@2.4.2)))(eslint@9.18.0(jiti@2.4.2))(typescript@5.5.4)
@@ -687,14 +687,14 @@ importers:
         specifier: 5.3.3
         version: 5.3.3(@popperjs/core@2.11.8)
       cypress:
-        specifier: 13.13.2
-        version: 13.13.2
+        specifier: 14.1.0
+        version: 14.1.0
       cypress-each:
         specifier: 1.14.0
         version: 1.14.0
       cypress-storybook:
         specifier: 1.0.0
-        version: 1.0.0(cypress@13.13.2)
+        version: 1.0.0(cypress@14.1.0)
       eslint:
         specifier: 9.18.0
         version: 9.18.0(jiti@2.4.2)
@@ -5264,10 +5264,6 @@ packages:
     resolution: {integrity: sha512-p3KULyQg4S7NIHixdwbGX+nFHkoBiA4YQmyWtjb8XngSKV124nJmRysgAeujbUVb15vh+RvFUfCPqU7rXk+hZg==}
     engines: {node: '>=6.0'}
 
-  ci-info@3.8.0:
-    resolution: {integrity: sha512-eXTggHWSooYhq49F2opQhuHWgzucfF2YgODK4e1566GQs5BIfP30B0oenwBJHfWxAs2fyPB1s7Mg949zLf61Yw==}
-    engines: {node: '>=8'}
-
   ci-info@3.9.0:
     resolution: {integrity: sha512-NIxF55hv4nSqQswkAeiOi1r83xy8JldOFDTWiug55KBu9Jnblncd2U6ViHmYgHf01TPZS77NJBhBMKdWj9HQMQ==}
     engines: {node: '>=8'}
@@ -5667,9 +5663,9 @@ packages:
     peerDependencies:
       cypress: '*'
 
-  cypress@13.13.2:
-    resolution: {integrity: sha512-PvJQU33933NvS1StfzEb8/mu2kMy4dABwCF+yd5Bi7Qly1HOVf+Bufrygee/tlmty/6j5lX+KIi8j9Q3JUMbhA==}
-    engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
+  cypress@14.1.0:
+    resolution: {integrity: sha512-pPPj8Uu9NwjaaiXAEcjYZZmgsq6v9Zs1Nw6a+zRF+ANgYSNhH4S32SjFRsvMcuOHR/8dp4GBJhBPqIPSs+TxaA==}
+    engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
 
   d@1.0.2:
@@ -7144,10 +7140,6 @@ packages:
   is-callable@1.2.7:
     resolution: {integrity: sha512-1BC0BVFhS/p0qtw6enp8e+8OD0UrK0oFLztSjNzhcKA3WDuJxxAPXzPuPtKkjEY9UUoEWlX/8fgKeu2S8i9JTA==}
     engines: {node: '>= 0.4'}
-
-  is-ci@3.0.1:
-    resolution: {integrity: sha512-ZYvCgrefwqoQ6yTyYUbQu64HsITZ3NfKX1lzaEYdkTDcfKzzCI/wthRRYKkdjHKFVgNiXKAKm65Zo1pk2as/QQ==}
-    hasBin: true
 
   is-core-module@2.13.1:
     resolution: {integrity: sha512-hHrIjvZsftOsvKSn2TRYl63zvxsgE0K+0mYMoH6gD4omR5IWB2KynivBQczo3+wF1cCkjzvptnI9Q0sPU66ilw==}
@@ -14458,10 +14450,10 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@percy/cypress@3.1.2(cypress@13.13.2)':
+  '@percy/cypress@3.1.2(cypress@14.1.0)':
     dependencies:
       '@percy/sdk-utils': 1.30.6
-      cypress: 13.13.2
+      cypress: 14.1.0
 
   '@percy/dom@1.30.6': {}
 
@@ -16531,8 +16523,6 @@ snapshots:
 
   chrome-trace-event@1.0.3: {}
 
-  ci-info@3.8.0: {}
-
   ci-info@3.9.0: {}
 
   ci-info@4.1.0: {}
@@ -16972,18 +16962,18 @@ snapshots:
 
   custom-event@1.0.1: {}
 
-  cypress-axe@1.5.0(axe-core@4.7.0)(cypress@13.13.2):
+  cypress-axe@1.5.0(axe-core@4.7.0)(cypress@14.1.0):
     dependencies:
       axe-core: 4.7.0
-      cypress: 13.13.2
+      cypress: 14.1.0
 
   cypress-each@1.14.0: {}
 
-  cypress-storybook@1.0.0(cypress@13.13.2):
+  cypress-storybook@1.0.0(cypress@14.1.0):
     dependencies:
-      cypress: 13.13.2
+      cypress: 14.1.0
 
-  cypress@13.13.2:
+  cypress@14.1.0:
     dependencies:
       '@cypress/request': 3.0.7
       '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
@@ -16996,6 +16986,7 @@ snapshots:
       cachedir: 2.4.0
       chalk: 4.1.2
       check-more-types: 2.24.0
+      ci-info: 4.1.0
       cli-cursor: 3.1.0
       cli-table3: 0.6.5
       commander: 6.2.1
@@ -17010,7 +17001,6 @@ snapshots:
       figures: 3.2.0
       fs-extra: 9.1.0
       getos: 3.2.1
-      is-ci: 3.0.1
       is-installed-globally: 0.4.0
       lazy-ass: 1.6.0
       listr2: 3.14.0(enquirer@2.4.1)
@@ -17025,6 +17015,7 @@ snapshots:
       semver: 7.6.3
       supports-color: 8.1.1
       tmp: 0.2.3
+      tree-kill: 1.2.2
       untildify: 4.0.0
       yauzl: 2.10.0
 
@@ -18890,10 +18881,6 @@ snapshots:
 
   is-callable@1.2.7: {}
 
-  is-ci@3.0.1:
-    dependencies:
-      ci-info: 3.9.0
-
   is-core-module@2.13.1:
     dependencies:
       hasown: 2.0.2
@@ -19513,7 +19500,7 @@ snapshots:
       '@jest/types': 29.6.3
       '@types/node': 22.10.5
       chalk: 4.1.2
-      ci-info: 3.8.0
+      ci-info: 3.9.0
       graceful-fs: 4.2.11
       picomatch: 2.3.1
 
