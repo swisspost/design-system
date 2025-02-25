@@ -35,19 +35,32 @@ export type DEVICE_SIZE = 'mobile' | 'tablet' | 'desktop' | null;
 export class PostHeader {
   private firstFocusableEl: HTMLElement | null;
   private lastFocusableEl: HTMLElement | null;
-  private scrollParent = null;
+  private scrollListenerElement = null;
+  private overflowElement = null;
   private mobileMenu: HTMLElement;
   private mobileMenuAnimation: Animation;
-  private throttledScroll = () => this.handleScrollEvent();
-  private throttledResize = throttle(50, () => this.handleResize());
+  private readonly throttledScroll = () => this.handleScrollEvent();
+  private readonly throttledResize = throttle(50, () => this.handleResize());
 
   componentWillRender() {
-    this.scrollParent = this.getScrollParent(this.host);
-    this.scrollParent.addEventListener('scroll', this.throttledScroll, { passive: true });
+    this.scrollListenerElement = this.getScrollParent();
+    this.overflowElement =
+      this.scrollListenerElement === document
+        ? document.documentElement
+        : this.scrollListenerElement;
+    this.scrollListenerElement.addEventListener('scroll', this.throttledScroll, { passive: true });
     window.addEventListener('resize', this.throttledResize, { passive: true });
     this.handleResize();
     this.handleScrollEvent();
     this.getFocusableElements();
+  }
+
+  private getScrollParent(): Element | Document {
+    let parent: Element | Document = this.host.parentElement;
+    if (parent.tagName === 'BODY') {
+      parent = document;
+    }
+    return parent;
   }
 
   componentDidLoad() {
@@ -57,7 +70,7 @@ export class PostHeader {
   // Clean up possible side effects when post-header is disconnected
   disconnectedCallback() {
     this.mobileMenuExtended = false;
-    this.scrollParent.style.overflow = '';
+    this.overflowElement.style.overflow = '';
     this.host.removeEventListener('keydown', e => {
       this.keyboardHandler(e);
     });
@@ -70,8 +83,7 @@ export class PostHeader {
 
   @Watch('mobileMenuExtended')
   frozeBody(isMobileMenuExtended: boolean) {
-    this.scrollParent.style.overflow = isMobileMenuExtended ? 'hidden' : '';
-    console.log(this.scrollParent);
+    this.overflowElement.style.overflow = isMobileMenuExtended ? 'hidden' : '';
     if (isMobileMenuExtended) {
       this.host.addEventListener('keydown', e => {
         this.keyboardHandler(e);
@@ -154,35 +166,12 @@ export class PostHeader {
     // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
     const st = Math.max(
       0,
-      this.scrollParent instanceof Document
-        ? this.scrollParent.documentElement.scrollTop
-        : this.scrollParent.scrollTop,
+      this.scrollListenerElement instanceof Document
+        ? this.scrollListenerElement.documentElement.scrollTop
+        : this.scrollListenerElement.scrollTop,
     );
 
     this.host.style.setProperty('--header-scroll-top', `${st}px`);
-  }
-
-  private getScrollParent(node: Element): Element | Document {
-    let currentParent = node.parentElement;
-
-    while (currentParent) {
-      if (this.isScrollable(currentParent) || this.mobileMenuExtended) {
-        return currentParent;
-      }
-      currentParent = currentParent.parentElement;
-    }
-    return document;
-  }
-
-  private isScrollable(node: Element) {
-    if (!(node instanceof HTMLElement || node instanceof SVGElement)) {
-      return false;
-    }
-    const style = getComputedStyle(node);
-    return ['overflow', 'overflow-x', 'overflow-y'].some(propertyName => {
-      const value = style.getPropertyValue(propertyName);
-      return value === 'auto' || value === 'scroll';
-    });
   }
 
   private updateLocalHeaderHeight() {
