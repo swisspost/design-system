@@ -84,6 +84,30 @@ post-header {
     }
   }
 
+  [slot='title'] {
+    margin: 0 !important;
+    flex-shrink: 10;
+    z-index: 3;
+    font-weight: 900;
+
+    @include media.min(sm) {
+      margin-inline-start: 12px !important;
+    }
+
+    @include media.max(sm) {
+      margin-inline-start: 8px !important;
+    }
+
+    @include media.min(lg) {
+      font-size: 28px !important;
+    }
+
+    @include media.max(lg) {
+      font-size: 20px !important;
+      max-width: calc(100vw - 8px - 16px);
+    }
+  }
+
   a,
   post-togglebutton {
     &:not(post-mainnavigation *, post-language-switch *) {
