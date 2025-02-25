@@ -118,13 +118,6 @@ export class PostMegadropdown {
     this.removeListeners();
   }
 
-  private handleLinkClick = (event: MouseEvent) => {
-    const target = event.target as HTMLElement;
-    if (target.tagName === 'A') {
-      this.hide();
-    }
-  };
-
   private handleAnimationEnd() {
     if (this.animationClass === 'slide-out') {
       this.isVisible = false;
@@ -156,14 +149,12 @@ export class PostMegadropdown {
 
   private addListeners() {
     this.host.addEventListener('keydown', e => this.keyboardHandler(e));
-    this.host.addEventListener('click', this.handleLinkClick);
     document.addEventListener('keyup', e => this.handleTabOutside(e));
     document.addEventListener('mousedown', this.handleClickOutside);
   }
 
   private removeListeners() {
     this.host.removeEventListener('keydown', e => this.keyboardHandler(e));
-    this.host.removeEventListener('click', this.handleLinkClick);
     document.removeEventListener('keyup', e => this.handleTabOutside(e));
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
