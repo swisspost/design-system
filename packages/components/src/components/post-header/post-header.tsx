@@ -71,7 +71,7 @@ export class PostHeader {
   @Watch('mobileMenuExtended')
   frozeBody(isMobileMenuExtended: boolean) {
     this.scrollParent.style.overflow = isMobileMenuExtended ? 'hidden' : '';
-    console.log(this.scrollParent.style.overflow);
+    console.log(this.scrollParent);
     if (isMobileMenuExtended) {
       this.host.addEventListener('keydown', e => {
         this.keyboardHandler(e);
