@@ -166,7 +166,7 @@ export class PostHeader {
     let currentParent = node.parentElement;
 
     while (currentParent) {
-      if (this.isScrollable(currentParent)) {
+      if (this.isScrollable(currentParent) || this.mobileMenuExtended) {
         return currentParent;
       }
       currentParent = currentParent.parentElement;
