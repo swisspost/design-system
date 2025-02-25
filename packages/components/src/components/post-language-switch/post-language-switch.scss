@@ -39,4 +39,18 @@ tokens.$default-map: components.$post-button;
     height: 16px;
     width: 16px;
   }
+
+  &[aria-expanded="true"] {
+    background-color: #050400;
+    color: #fff;
+
+    post-icon {
+      transform: rotate(180deg);
+    }
+
+    &:hover {
+      background-color: #504F4B;
+      color: white;
+    }
+  }
 }

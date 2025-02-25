@@ -61,7 +61,7 @@ export class PostHeader {
   // Clean up possible side effects when post-header is disconnected
   disconnectedCallback() {
     this.mobileMenuExtended = false;
-    document.body.style.overflow = '';
+    this.scrollParent.style.overflow = '';
     this.host.removeEventListener('keydown', e => {
       this.keyboardHandler(e);
     });
@@ -78,7 +78,7 @@ export class PostHeader {
 
   @Watch('mobileMenuExtended')
   frozeBody(isMobileMenuExtended: boolean) {
-    document.body.style.overflow = isMobileMenuExtended ? 'hidden' : '';
+    this.scrollParent.style.overflow = isMobileMenuExtended ? 'hidden' : '';
 
     if (isMobileMenuExtended) {
       this.host.addEventListener('keydown', e => {
