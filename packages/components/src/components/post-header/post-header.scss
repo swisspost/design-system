@@ -13,6 +13,25 @@
 :host {
   z-index: 1020;
   position: relative;
+
+  // The following variables will affect the header to minimize it on scroll
+  --global-header-top: calc(
+    (var(--global-header-height) - var(--global-header-reduced-height)) * -1
+  );
+  --local-header-top: calc(
+    -1 * (var(--local-header-height) - var(--main-navigation-height)) + var(--global-header-reduced-height)
+  );
+  --logo-height: calc(var(--global-header-height) - (var(--header-scroll-top) * 1px));
+  --global-controls-top: calc(min((var(--header-scroll-top) / 10), 10) * -1 * 1px);
+
+  // If focus is within the header (except the logo and the post-mainnavigation elements), the header should have be shown fully
+  &:has(.global-sub > *:not(.logo):focus-within),
+  &:has(.local-sub:focus-within) {
+    --global-header-top: 0;
+    --local-header-top: var(--global-header-height);
+    --logo-height: var(--global-header-height);
+    --global-controls-top: 0;
+  }
 }
 
 :host(:not(:has([slot='title']))) {
@@ -49,9 +68,8 @@
   @include media.min(lg) {
     z-index: 5;
     padding-inline-end: 12px;
-    inset-block-start: calc(
-      (var(--global-header-height) - var(--global-header-reduced-height)) * -1
-    );
+    inset-block-start: var(--global-header-top);
+    transition: inset-block-start 0.2s ease-in-out;
   }
 }
 
@@ -62,8 +80,10 @@
 
   @include media.min(lg) {
     // targets the right links and language switch to hide them on scroll
-    &:nth-child(2) {
-      transform: scale(calc(35 / max(var(--header-scroll-top), 35)));
+    &:not(:has(.logo)) {
+      position: relative;
+      transition: transform 0.2s ease-in-out;
+      inset-block-start: var(--global-controls-top);
     }
   }
 }
@@ -80,7 +100,8 @@
   align-self: flex-end;
 
   @include media.min(lg) {
-    height: calc(var(--global-header-height) - (var(--header-scroll-top) * 1px));
+    transition: height 0.2 ease-in-out;
+    height: var(--logo-height);
   }
 }
 
@@ -107,11 +128,10 @@
 
   @include media.min(lg) {
     z-index: 3;
-    inset-block-start: calc(
-      -1 * (var(--local-header-height) - var(--main-navigation-height)) + var(--global-header-reduced-height)
-    );
+    inset-block-start: var(--local-header-top);
     padding-block-start: 18px;
     box-shadow: elevation.$elevation-300;
+    transition: box-shadow 0.2s ease-in-out, inset-block-start 0.2s ease-in-out;
   }
 
   @include media.max(lg) {
