@@ -19,12 +19,9 @@ export class PostMegadropdown {
   private static activeDropdown: PostMegadropdown | null = null;
 
   private breakpointChange(e: CustomEvent) {
-    const newDevice = e.detail; 
-    if (this.device !== newDevice) { 
-      this.device = newDevice; 
-      if (newDevice === 'desktop' && this.isVisible) { 
-        this.animationClass = null; 
-      } 
+    this.device = e.detail;
+    if (this.device === 'desktop' && this.isVisible) {
+      this.animationClass = null;
     }
   }
 
