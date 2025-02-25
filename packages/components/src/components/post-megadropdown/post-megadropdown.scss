@@ -235,6 +235,8 @@
       min-width: 100%;
       height: auto;
       min-height: 48px;
+      white-space: normal;
+      word-break: break-word;
 
       &:hover {
         border-block-width: 0;
