@@ -248,10 +248,6 @@ export class PostHeader {
     );
   }
 
-  connectedCallback() {
-    this.handleLocalHeaderResize();
-  }
-
   componentWillRender() {
     window.addEventListener('resize', this.throttledResize, { passive: true });
     window.addEventListener('scroll', this.handleScrollEvent.bind(this), {
@@ -303,6 +299,8 @@ export class PostHeader {
     // Check if the mega dropdown is expanded
     document.addEventListener('postToggleMegadropdown', this.megedropdownStateHandler.bind(this));
     this.host.addEventListener('click', this.handleLinkClick.bind(this));
+
+    this.handleLocalHeaderResize();
   }
 
   // Clean up possible side effects when post-header is disconnected
