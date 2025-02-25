@@ -55,7 +55,7 @@ export class PostHeader {
 
     // Check if the mega dropdown is expanded
     document.addEventListener('postToggleMegadropdown', (event: CustomEvent) => {
-      this.megadropdownOpen = !!event.detail;
+      this.megadropdownOpen = event.detail.isVisible;
     });
   }
 
@@ -241,7 +241,7 @@ export class PostHeader {
   }
 
   private renderNavigation() {
-    const navigationClasses = ['navigation'];
+    let navigationClasses = ['navigation'];
     if (this.mobileMenuExtended) {
       navigationClasses.push('extended');
     }
