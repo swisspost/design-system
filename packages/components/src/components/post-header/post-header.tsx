@@ -241,13 +241,11 @@ export class PostHeader {
   }
 
   private renderNavigation() {
-    let navigationClasses = ['navigation'];
+    const navigationClasses = ['navigation'];
     if (this.mobileMenuExtended) {
       navigationClasses.push('extended');
     }
-    if (this.megadropdownOpen) {
-      navigationClasses = navigationClasses.filter(className => className !== 'scroll-y');
-    } else {
+    if (!this.megadropdownOpen) {
       navigationClasses.push('scroll-y');
     }
 
