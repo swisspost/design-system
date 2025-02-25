@@ -1,5 +1,16 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.22
+
+### Patch Changes
+
+- Fixed an issue with the main navigation where the scroll arrows were always displayed, even when there were no elements to scroll to. (by [@alizedebray](https://github.com/alizedebray) with [#4766](https://github.com/swisspost/design-system/pull/4766))
+
+- Fixed mobile navigation position and scrolling issues within storybook. (by [@myrta2302](https://github.com/myrta2302) with [#4738](https://github.com/swisspost/design-system/pull/4738))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.22
+  - @swisspost/design-system-icons@9.0.0-next.22
+
 ## 9.0.0-next.21
 
 ### Patch Changes
