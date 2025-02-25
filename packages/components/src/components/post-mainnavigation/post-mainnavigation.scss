@@ -72,7 +72,7 @@ post-mainnavigation {
     display: block;
 
     nav {
-      max-width: 100vw;
+      max-width: 100%;
       background: color.$white;
       max-height: var(--main-navigation-height);
       user-select: none;
