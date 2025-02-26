@@ -22,7 +22,7 @@
     -1 * (var(--local-header-height) - var(--main-navigation-height)) + var(--global-header-reduced-height)
   );
   --logo-height: calc(var(--global-header-height) - var(--header-scroll-top));
-  --global-controls-top: calc(min((var(--header-scroll-top) / 10), 10) * -1);
+  --global-controls-top: calc(min((var(--header-scroll-top) / 4), 20px) * -1);
 
   // If focus is within the header (except the logo and the post-mainnavigation elements), the header should have be shown fully
   &:has(.global-sub > *:not(.logo):focus-within),
@@ -82,7 +82,7 @@
     // targets the right links and language switch to hide them on scroll
     &:not(:has(.logo)) {
       position: relative;
-      transition: transform 0.2s ease-in-out;
+      transition: inset-block-start 0.2s ease-in-out;
       inset-block-start: var(--global-controls-top);
     }
   }
