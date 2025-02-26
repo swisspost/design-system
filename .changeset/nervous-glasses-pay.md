@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Updated header list styles to also be applied to buttons.
+Updated header button styles to match the header anchor styles.
