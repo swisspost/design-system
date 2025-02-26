@@ -89,20 +89,13 @@ post-header {
     &:not(post-mainnavigation *, post-language-switch *) {
       @include subsidiary-header-interactive;
 
-      @include media.min(sm) {
-        post-icon {
-          height: 22px;
-          width: 22px;
-        }
+      post-icon {
+        height: 24px;
+        width: 24px;
       }
 
       @include media.max(sm) {
         padding: 8px;
-
-        post-icon {
-          height: 24px;
-          width: 24px;
-        }
 
         .visually-hidden-sm {
           @include utilities.visuallyhidden;
