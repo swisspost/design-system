@@ -250,10 +250,6 @@ export class PostHeader {
         target.closest('post-megadropdown').hide(true);
       }
     }
-    event.preventDefault();
-    const x = document.querySelector('post-header');
-    x.remove();
-    document.body.prepend(x);
   }
 
   private handleResize() {
