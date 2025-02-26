@@ -200,6 +200,7 @@
     inset-inline: 0;
     background: color.$white;
     inset-block-start: var(--header-height);
+    overflow: hidden;
   }
 
   ::slotted(post-mainnavigation),
@@ -215,11 +216,13 @@
   }
 
   .navigation.extended {
-    height: calc(min(var(--header-scroll-parent-height, 100dvh), 100dvh) - var(--header-height));
-    display: flex;
-    flex-direction: column;
+    > div {
+      height: calc(min(var(--header-scroll-parent-height, 100dvh), 100dvh) - var(--header-height));
+      display: flex;
+      flex-direction: column;
+    }
 
-    &.scroll-y {
+    &.scroll-y > div {
       overflow-y: auto;
       overflow-x: hidden;
     }

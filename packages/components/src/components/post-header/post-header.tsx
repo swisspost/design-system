@@ -295,15 +295,17 @@ export class PostHeader {
     }
 
     return (
-      <div ref={el => (this.mobileMenu = el)} class={navigationClasses.join(' ')}>
-        <slot name="post-mainnavigation"></slot>
+      <div class={navigationClasses.join(' ')}>
+        <div ref={el => (this.mobileMenu = el)}>
+          <slot name="post-mainnavigation"></slot>
 
-        {(this.device === 'mobile' || this.device === 'tablet') && (
-          <div class="navigation-footer">
-            <slot name="meta-navigation"></slot>
-            <slot name="post-language-switch"></slot>
-          </div>
-        )}
+          {(this.device === 'mobile' || this.device === 'tablet') && (
+            <div class="navigation-footer">
+              <slot name="meta-navigation"></slot>
+              <slot name="post-language-switch"></slot>
+            </div>
+          )}
+        </div>
       </div>
     );
   }
