@@ -1,5 +1,17 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.25
+
+### Patch Changes
+
+- Updated `post-header` styles to hide horizontal overflow on desktop only. (by [@myrta2302](https://github.com/myrta2302) with [#4792](https://github.com/swisspost/design-system/pull/4792))
+
+## 9.0.0-next.24
+
+### Patch Changes
+
+- Updated the icon sizes in the `post-header` and the `post-language-switch` components, to match the design specs. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4783](https://github.com/swisspost/design-system/pull/4783))
+
 ## 9.0.0-next.23
 
 ## 9.0.0-next.22
