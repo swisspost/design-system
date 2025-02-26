@@ -3,12 +3,12 @@ import { checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '@
 import { version } from '@root/package.json';
 
 type UrlDefinition = {
-  url: URL;
+  url: URL | null;
   definesDomain: boolean;
   definesSlug: boolean;
 };
 
-const CDN_URL = 'https://unpkg.com/@swisspost/design-system-icons/public/post-icons';
+const CDN_URL = 'https://unpkg.com/@swisspost/design-system-icons/public/post-icons/';
 const ANIMATION_NAMES = [
   'cylon',
   'cylon-vertical',
@@ -31,6 +31,8 @@ type Animation = (typeof ANIMATION_NAMES)[number];
   shadow: true,
 })
 export class PostIcon {
+  private readonly isSSR: boolean = typeof window === 'undefined';
+
   @Element() host: HTMLPostIconElement;
 
   /**
@@ -40,14 +42,7 @@ export class PostIcon {
 
   @Watch('animation')
   validateAnimation(newValue = this.animation) {
-    if (newValue !== undefined)
-      checkEmptyOrOneOf(
-        newValue,
-        ANIMATION_KEYS,
-        `The post-icon "animation" prop requires one of the following values: ${ANIMATION_KEYS.join(
-          ', ',
-        )}.`,
-      );
+    if (newValue !== undefined) checkEmptyOrOneOf(this, 'animation', ANIMATION_KEYS);
   }
 
   /**
@@ -56,8 +51,8 @@ export class PostIcon {
   @Prop() readonly base?: string | null = null;
 
   @Watch('base')
-  validateBase(newValue = this.base) {
-    checkEmptyOrType(newValue, 'string', 'The post-icon "base" prop should be a string.');
+  validateBase() {
+    checkEmptyOrType(this, 'base', 'string');
   }
 
   /**
@@ -66,8 +61,8 @@ export class PostIcon {
   @Prop() readonly flipH?: boolean = false;
 
   @Watch('flipH')
-  validateFlipH(newValue = this.flipH) {
-    checkEmptyOrType(newValue, 'boolean', 'The post-icon "flipH" prop should be a boolean.');
+  validateFlipH() {
+    checkEmptyOrType(this, 'flipH', 'boolean');
   }
 
   /**
@@ -76,8 +71,8 @@ export class PostIcon {
   @Prop() readonly flipV?: boolean = false;
 
   @Watch('flipV')
-  validateFlipV(newValue = this.flipV) {
-    checkEmptyOrType(newValue, 'boolean', 'The post-icon "flipV" prop should be a boolean.');
+  validateFlipV() {
+    checkEmptyOrType(this, 'flipV', 'boolean');
   }
 
   /**
@@ -86,9 +81,9 @@ export class PostIcon {
   @Prop() readonly name!: string;
 
   @Watch('name')
-  validateName(newValue = this.name) {
-    checkNonEmpty(newValue, 'The post-icon "name" prop is required!.');
-    checkType(newValue, 'string', 'The post-icon "name" prop should be a string.');
+  validateName() {
+    checkNonEmpty(this, 'name');
+    checkType(this, 'name', 'string');
   }
 
   /**
@@ -97,8 +92,8 @@ export class PostIcon {
   @Prop() readonly rotate?: number | null = null;
 
   @Watch('rotate')
-  validateRotate(newValue = this.rotate) {
-    checkEmptyOrType(newValue, 'number', 'The post-icon "rotate" prop should be a number.');
+  validateRotate() {
+    checkEmptyOrType(this, 'rotate', 'number');
   }
 
   /**
@@ -107,68 +102,75 @@ export class PostIcon {
   @Prop() readonly scale?: number | null = null;
 
   @Watch('scale')
-  validateScale(newValue = this.scale) {
-    checkEmptyOrType(newValue, 'number', 'The post-icon "scale" prop should be a number.');
+  validateScale() {
+    checkEmptyOrType(this, 'scale', 'number');
   }
 
   // Construct the icon url from different possible sources
   private getUrl() {
-    // the first definition object which defines a domain, will be used to set the domain of the file url
-    // the first definition object which defines a slug, will be used to set the slug of the file url
-    const urlDefinitions = [
-      getUrlDefinition(this.base, 'both'),
-      getUrlDefinition(
-        document.head
-          .querySelector('meta[name="design-system-settings"][data-post-icon-base]')
-          ?.getAttribute('data-post-icon-base'),
-        'relative',
-      ),
-      getUrlDefinition(document.querySelector('base[href]')?.getAttribute('href'), 'both'),
-    ];
-
-    // in case no other definition defines a domain, the current origin is used as a fallback
-    const origin = urlDefinitions.find(d => d.definesDomain)?.url?.origin ?? window.location.origin;
-    // in case no other definition defines a slug, the cdn url is used as a fallback
-    const slug = urlDefinitions.find(d => d.definesSlug)?.url?.pathname;
+    let url: string;
     const file = `${this.name}.svg`;
 
-    let url: string;
+    // the first definition object which defines a domain, will be used to set the domain of the file url
+    // the first definition object which defines a slug, will be used to set the slug of the file url
+    const urlDefinitions = [this.getUrlDefinition(this.base, 'both')];
 
-    if (slug) {
-      url = new URL(`${origin}${slug}/${file}`).toString();
+    if (!this.isSSR) {
+      urlDefinitions.push(
+        this.getUrlDefinition(
+          document.head
+            .querySelector('meta[name="design-system-settings"][data-post-icon-base]')
+            ?.getAttribute('data-post-icon-base'),
+          'relative',
+        ),
+      );
+      urlDefinitions.push(
+        this.getUrlDefinition(document.querySelector('base[href]')?.getAttribute('href'), 'both'),
+      );
+    }
+
+    // in case no definition defines a domain, a relative url is used to load the icon
+    const origin = urlDefinitions.find(d => d.definesDomain)?.url?.origin;
+    // in case no definition defines a slug either, the cdn url is used as a fallback
+    const slug = urlDefinitions.find(d => d.definesSlug)?.url?.pathname;
+
+    if (origin && slug) {
+      url = `${origin}${slug}${file}`;
+    } else if (!origin && slug) {
+      url = `${slug}${file}`;
     } else {
-      url = new URL(`${CDN_URL}/${file}`).toString();
+      url = `${CDN_URL}${file}`;
     }
 
     return url;
+  }
 
-    function getUrlDefinition(
-      url: string | undefined | null,
-      allow: 'both' | 'absolute' | 'relative',
-    ): UrlDefinition {
-      return {
-        url: getUrlObject(url),
-        definesDomain: allow !== 'relative' ? definesDomain(url) : false,
-        definesSlug: allow !== 'absolute' ? definesSlug(url) : false,
-      } as UrlDefinition;
+  private getUrlDefinition(
+    url: string | undefined | null,
+    allow: 'both' | 'absolute' | 'relative',
+  ): UrlDefinition {
+    return {
+      url: this.getUrlObject(url),
+      definesDomain: allow !== 'relative' ? this.definesDomain(url) : false,
+      definesSlug: allow !== 'absolute' ? this.definesSlug(url) : false,
+    } as UrlDefinition;
+  }
 
-      function getUrlObject(url: string | undefined | null) {
-        if (url) {
-          return definesDomain(url) ? new URL(url) : new URL(url, window.location.origin);
-        } else {
-          return null;
-        }
-      }
-
-      function definesDomain(url: string | undefined | null) {
-        return url ? /^https?:\/\//.test(url) : false;
-      }
-
-      function definesSlug(url: string | undefined | null) {
-        const urlObject = getUrlObject(url);
-        return Boolean(/^\/.+/.test(urlObject?.pathname));
-      }
+  private getUrlObject(url: string | undefined | null) {
+    if (url) {
+      url = url?.endsWith('/') ? url : `${url}/`;
+      return new URL(url, 'https://url.base');
+    } else {
+      return null;
     }
+  }
+
+  private definesDomain(url: string | undefined | null) {
+    return url ? /^https?:\/\//.test(url) : false;
+  }
+
+  private definesSlug(url: string | undefined | null) {
+    return Boolean(/^\/.+/.test(this.getUrlObject(url)?.pathname));
   }
 
   private getStyles() {

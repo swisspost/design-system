@@ -1,5 +1,35 @@
 # @swisspost/design-system-tokens
 
+## 9.0.0-next.28
+
+## 9.0.0-next.27
+
+## 9.0.0-next.26
+
+## 9.0.0-next.25
+
+## 9.0.0-next.24
+
+## 9.0.0-next.23
+
+## 9.0.0-next.22
+
+## 9.0.0-next.21
+
+## 9.0.0-next.20
+
+## 9.0.0-next.19
+
+### Minor Changes
+
+- Added a new output that includes utility tokens as Sass maps, enabling direct iteration to generate utility classes. (by [@alizedebray](https://github.com/alizedebray) with [#4613](https://github.com/swisspost/design-system/pull/4613))
+
+## 9.0.0-next.18
+
+## 9.0.0-next.17
+
+## 9.0.0-next.16
+
 ## 9.0.0-next.15
 
 ## 9.0.0-next.14
