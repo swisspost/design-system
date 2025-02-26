@@ -38,6 +38,7 @@ export class PostHeader {
   private mobileMenu: HTMLElement;
   private mobileMenuAnimation: Animation;
   private readonly throttledResize = throttle(50, () => this.handleResize());
+  private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
 
   @Element() host: HTMLPostHeaderElement;
@@ -157,6 +158,13 @@ export class PostHeader {
     this.host.style.setProperty('--local-header-height', `${mhh}px`);
   }
 
+  private updateScrollParentHeight() {
+    this.host.style.setProperty(
+      '--header-scroll-parent-height',
+      `${this.scrollParent.clientHeight}px`,
+    );
+  }
+
   private handleLinkClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
 
@@ -206,6 +214,15 @@ export class PostHeader {
       window.requestAnimationFrame(() => {
         this.switchLanguageSwitchMode();
       });
+    }
+  }
+
+  private handleScrollParentResize() {
+    if (this.scrollParent) {
+      this.scrollParentResizeObserver = new ResizeObserver(
+        this.updateScrollParentHeight.bind(this),
+      );
+      this.scrollParentResizeObserver.observe(this.scrollParent);
     }
   }
 
@@ -300,6 +317,7 @@ export class PostHeader {
     document.addEventListener('postToggleMegadropdown', this.megedropdownStateHandler.bind(this));
     this.host.addEventListener('click', this.handleLinkClick.bind(this));
 
+    this.handleScrollParentResize();
     this.handleLocalHeaderResize();
   }
 
