@@ -35,43 +35,26 @@ export type DEVICE_SIZE = 'mobile' | 'tablet' | 'desktop' | null;
 export class PostHeader {
   private firstFocusableEl: HTMLElement | null;
   private lastFocusableEl: HTMLElement | null;
-  private scrollListenerElement = null;
-  private overflowElement = null;
   private mobileMenu: HTMLElement;
   private mobileMenuAnimation: Animation;
-  private readonly throttledScroll = () => this.handleScrollEvent();
   private readonly throttledResize = throttle(50, () => this.handleResize());
+  private scrollParentResizeObserver: ResizeObserver;
+  private localHeaderResizeObserver: ResizeObserver;
+  get scrollParent(): HTMLElement {
+    let element: HTMLElement | null = this.host.parentElement;
 
-  componentWillRender() {
-    this.scrollListenerElement = this.getScrollParent();
-    this.overflowElement =
-      this.scrollListenerElement === document
-        ? document.documentElement
-        : this.scrollListenerElement;
-    this.scrollListenerElement.addEventListener('scroll', this.throttledScroll, { passive: true });
-    window.addEventListener('resize', this.throttledResize, { passive: true });
-    this.handleResize();
-    this.handleScrollEvent();
-    this.getFocusableElements();
-  }
+    while (element) {
+      const hasScrollParentAttr = element.hasAttribute('data-is-post-header-scroll-parent');
+      const overflow = getComputedStyle(element).overflowY;
 
-  componentDidLoad() {
-    this.updateLocalHeaderHeight();
-    // Check if the mega dropdown is expanded
-    document.addEventListener('postToggleMegadropdown', (event: CustomEvent) => {
-      this.megadropdownOpen = event.detail.isVisible;
-    });
-    this.host.addEventListener('click', this.handleLinkClick.bind(this));
-  }
+      if (hasScrollParentAttr || ['auto', 'scroll'].includes(overflow)) {
+        return element;
+      }
 
-  // Clean up possible side effects when post-header is disconnected
-  disconnectedCallback() {
-    this.mobileMenuExtended = false;
-    this.overflowElement.style.overflow = '';
-    this.host.removeEventListener('keydown', e => {
-      this.keyboardHandler(e);
-    });
-    this.host.removeEventListener('click', this.handleLinkClick.bind(this));
+      element = element.parentElement;
+    }
+
+    return document.documentElement;
   }
 
   @Element() host: HTMLPostHeaderElement;
@@ -83,15 +66,14 @@ export class PostHeader {
 
   @Watch('mobileMenuExtended')
   frozeBody(isMobileMenuExtended: boolean) {
-    this.overflowElement.style.overflow = isMobileMenuExtended ? 'hidden' : '';
     if (isMobileMenuExtended) {
-      this.host.addEventListener('keydown', e => {
-        this.keyboardHandler(e);
-      });
+      this.scrollParent.setAttribute('data-is-post-header-scroll-parent', '');
+      this.scrollParent.style.overflow = 'hidden';
+      this.host.addEventListener('keydown', this.keyboardHandler.bind(this));
     } else {
-      this.host.removeEventListener('keydown', e => {
-        this.keyboardHandler(e);
-      });
+      this.scrollParent.style.overflow = '';
+      this.scrollParent.removeAttribute('data-is-post-header-scroll-parent');
+      this.host.removeEventListener('keydown', this.keyboardHandler.bind(this));
     }
   }
 
@@ -99,6 +81,49 @@ export class PostHeader {
    * An event emitted when the device has changed
    */
   @Event() postUpdateDevice: EventEmitter<DEVICE_SIZE>;
+
+  componentWillRender() {
+    window.addEventListener('resize', this.throttledResize, { passive: true });
+    window.addEventListener('scroll', this.handleScrollEvent.bind(this), {
+      passive: true,
+    });
+    this.scrollParent.addEventListener('scroll', this.handleScrollEvent.bind(this), {
+      passive: true,
+    });
+
+    this.handleResize();
+    this.handleScrollEvent();
+    this.getFocusableElements();
+  }
+
+  componentDidLoad() {
+    // Check if the mega dropdown is expanded
+    document.addEventListener('postToggleMegadropdown', this.megedropdownStateHandler.bind(this));
+    this.host.addEventListener('click', this.handleLinkClick.bind(this));
+
+    this.handleScrollParentResize();
+    this.handleLocalHeaderResize();
+  }
+
+  // Clean up possible side effects when post-header is disconnected
+  disconnectedCallback() {
+    this.mobileMenuExtended = false;
+    this.scrollParent.style.overflow = '';
+    this.scrollParent.removeAttribute('data-is-post-header-scroll-parent');
+
+    window.removeEventListener('resize', this.throttledResize);
+    window.removeEventListener('scroll', this.handleScrollEvent.bind(this));
+    this.scrollParent.removeEventListener('scroll', this.handleScrollEvent.bind(this));
+    document.removeEventListener(
+      'postToggleMegadropdown',
+      this.megedropdownStateHandler.bind(this),
+    );
+    this.host.removeEventListener('keydown', this.keyboardHandler.bind(this));
+    this.host.removeEventListener('click', this.handleLinkClick.bind(this));
+
+    if (this.scrollParentResizeObserver) this.scrollParentResizeObserver.disconnect();
+    if (this.localHeaderResizeObserver) this.localHeaderResizeObserver.disconnect();
+  }
 
   /**
    * Toggles the mobile navigation.
@@ -119,6 +144,10 @@ export class PostHeader {
     if (this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
     this.mobileMenuExtended = !this.mobileMenuExtended;
     if (!this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
+  }
+
+  private megedropdownStateHandler(event: CustomEvent) {
+    this.megadropdownOpen = event.detail.isVisible;
   }
 
   // Get all the focusable elements in the post-header mobile menu
@@ -162,31 +191,21 @@ export class PostHeader {
     }
   }
 
-  private getScrollParent(): Element | Document {
-    let parent: Element | Document = this.host.parentElement;
-    if (parent.tagName === 'BODY') {
-      parent = document;
-    }
-    return parent;
-  }
-
   private handleScrollEvent() {
-    // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
-    const st = Math.max(
-      0,
-      this.scrollListenerElement instanceof Document
-        ? this.scrollListenerElement.documentElement.scrollTop
-        : this.scrollListenerElement.scrollTop,
-    );
-
-    this.host.style.setProperty('--header-scroll-top', `${st}px`);
+    this.host.style.setProperty('--header-scroll-top', `${this.scrollParent.scrollTop}px`);
   }
 
   private updateLocalHeaderHeight() {
-    requestAnimationFrame(() => {
-      const mhh = this.host.shadowRoot.querySelector('.local-header')?.clientHeight || 0;
-      this.host.style.setProperty('--local-header-height', `${mhh}px`);
-    });
+    const localHeaderHeight =
+      this.host.shadowRoot.querySelector('.local-header')?.clientHeight || 0;
+    this.host.style.setProperty('--local-header-height', `${localHeaderHeight}px`);
+  }
+
+  private updateScrollParentHeight() {
+    this.host.style.setProperty(
+      '--header-scroll-parent-height',
+      `${this.scrollParent.clientHeight}px`,
+    );
   }
 
   private handleLinkClick(event: MouseEvent) {
@@ -230,8 +249,6 @@ export class PostHeader {
       this.mobileMenuAnimation.finish(); // no animation
     }
 
-    this.updateLocalHeaderHeight();
-
     // Apply only on change for doing work only when necessary
     if (newDevice !== previousDevice) {
       this.device = newDevice;
@@ -240,6 +257,24 @@ export class PostHeader {
       window.requestAnimationFrame(() => {
         this.switchLanguageSwitchMode();
       });
+    }
+  }
+
+  private handleScrollParentResize() {
+    if (this.scrollParent) {
+      this.scrollParentResizeObserver = new ResizeObserver(
+        this.updateScrollParentHeight.bind(this),
+      );
+      this.scrollParentResizeObserver.observe(this.scrollParent);
+    }
+  }
+
+  private handleLocalHeaderResize() {
+    const localHeader = this.host.shadowRoot.querySelector('.local-header');
+
+    if (localHeader) {
+      this.localHeaderResizeObserver = new ResizeObserver(this.updateLocalHeaderHeight.bind(this));
+      this.localHeaderResizeObserver.observe(localHeader);
     }
   }
 
@@ -260,15 +295,17 @@ export class PostHeader {
     }
 
     return (
-      <div ref={el => (this.mobileMenu = el)} class={navigationClasses.join(' ')}>
-        <slot name="post-mainnavigation"></slot>
+      <div class={navigationClasses.join(' ')}>
+        <div ref={el => (this.mobileMenu = el)}>
+          <slot name="post-mainnavigation"></slot>
 
-        {(this.device === 'mobile' || this.device === 'tablet') && (
-          <div class="navigation-footer">
-            <slot name="meta-navigation"></slot>
-            <slot name="post-language-switch"></slot>
-          </div>
-        )}
+          {(this.device === 'mobile' || this.device === 'tablet') && (
+            <div class="navigation-footer">
+              <slot name="meta-navigation"></slot>
+              <slot name="post-language-switch"></slot>
+            </div>
+          )}
+        </div>
       </div>
     );
   }
