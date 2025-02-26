@@ -76,11 +76,11 @@ export class PostHeader {
     if (isMobileMenuExtended) {
       scrollParent.setAttribute('data-is-post-header-scroll-parent', '');
       scrollParent.style.overflow = 'hidden';
-      this.host.addEventListener('keydown', this.keyboardHandler.bind(this));
+      this.host.addEventListener('keydown', this.keyboardHandler);
     } else {
       scrollParent.style.overflow = '';
       scrollParent.removeAttribute('data-is-post-header-scroll-parent');
-      this.host.removeEventListener('keydown', this.keyboardHandler.bind(this));
+      this.host.removeEventListener('keydown', this.keyboardHandler);
     }
   }
 
@@ -89,33 +89,39 @@ export class PostHeader {
    */
   @Event() postUpdateDevice: EventEmitter<DEVICE_SIZE>;
 
-  connectedCallback() {
-    const scrollParent = this.scrollParent;
-    scrollParent.style.overflow = '';
-    scrollParent.removeAttribute('data-is-post-header-scroll-parent');
+  constructor() {
+    this.handleScrollEvent = this.handleScrollEvent.bind(this);
+    this.updateScrollParentHeight = this.updateScrollParentHeight.bind(this);
+    this.updateLocalHeaderHeight = this.updateLocalHeaderHeight.bind(this);
+    this.megedropdownStateHandler = this.megedropdownStateHandler.bind(this);
+    this.keyboardHandler = this.keyboardHandler.bind(this);
+    this.handleLinkClick = this.handleLinkClick.bind(this);
   }
 
-  componentWillRender() {
+  connectedCallback() {
     window.addEventListener('resize', this.throttledResize, { passive: true });
-    window.addEventListener('scroll', this.handleScrollEvent.bind(this), {
+    window.addEventListener('scroll', this.handleScrollEvent, {
       passive: true,
     });
-    this.scrollParent.addEventListener('scroll', this.handleScrollEvent.bind(this), {
+    this.scrollParent.addEventListener('scroll', this.handleScrollEvent, {
       passive: true,
     });
+    document.addEventListener('postToggleMegadropdown', this.megedropdownStateHandler);
+    this.host.addEventListener('click', this.handleLinkClick);
 
+    this.frozeBody(false);
     this.handleResize();
     this.handleScrollEvent();
+    this.handleScrollParentResize();
+  }
+
+  componentDidRender() {
     this.getFocusableElements();
+    this.handleLocalHeaderResize();
   }
 
   componentDidLoad() {
     // Check if the mega dropdown is expanded
-    document.addEventListener('postToggleMegadropdown', this.megedropdownStateHandler.bind(this));
-    this.host.addEventListener('click', this.handleLinkClick.bind(this));
-
-    this.handleScrollParentResize();
-    this.handleLocalHeaderResize();
   }
 
   // Clean up possible side effects when post-header is disconnected
@@ -123,14 +129,11 @@ export class PostHeader {
     const scrollParent = this.scrollParent;
 
     window.removeEventListener('resize', this.throttledResize);
-    window.removeEventListener('scroll', this.handleScrollEvent.bind(this));
-    scrollParent.removeEventListener('scroll', this.handleScrollEvent.bind(this));
-    document.removeEventListener(
-      'postToggleMegadropdown',
-      this.megedropdownStateHandler.bind(this),
-    );
-    this.host.removeEventListener('keydown', this.keyboardHandler.bind(this));
-    this.host.removeEventListener('click', this.handleLinkClick.bind(this));
+    window.removeEventListener('scroll', this.handleScrollEvent);
+    scrollParent.removeEventListener('scroll', this.handleScrollEvent);
+    document.removeEventListener('postToggleMegadropdown', this.megedropdownStateHandler);
+    this.host.removeEventListener('keydown', this.keyboardHandler);
+    this.host.removeEventListener('click', this.handleLinkClick);
 
     if (this.scrollParentResizeObserver) this.scrollParentResizeObserver.disconnect();
     if (this.localHeaderResizeObserver) this.localHeaderResizeObserver.disconnect();
@@ -277,9 +280,7 @@ export class PostHeader {
 
   private handleScrollParentResize() {
     if (this.scrollParent) {
-      this.scrollParentResizeObserver = new ResizeObserver(
-        this.updateScrollParentHeight.bind(this),
-      );
+      this.scrollParentResizeObserver = new ResizeObserver(this.updateScrollParentHeight);
       this.scrollParentResizeObserver.observe(this.scrollParent);
     }
   }
@@ -287,8 +288,8 @@ export class PostHeader {
   private handleLocalHeaderResize() {
     const localHeader = this.host.shadowRoot.querySelector('.local-header');
 
-    if (localHeader) {
-      this.localHeaderResizeObserver = new ResizeObserver(this.updateLocalHeaderHeight.bind(this));
+    if (localHeader && !this.localHeaderResizeObserver) {
+      this.localHeaderResizeObserver = new ResizeObserver(this.updateLocalHeaderHeight);
       this.localHeaderResizeObserver.observe(localHeader);
     }
   }
