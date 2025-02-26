@@ -4,10 +4,6 @@
 
 @use 'mixins' as *;
 
-body:has(post-header) {
-  overflow-x: hidden;
-}
-
 post-header {
   --header-expanded-height: calc(
     var(--global-header-height) + var(--local-header-height) + 1px /* bottom border */
