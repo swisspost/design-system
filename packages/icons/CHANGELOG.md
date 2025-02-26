@@ -1,5 +1,9 @@
 # @swisspost/design-system-icons
 
+## 9.0.0-next.24
+
+## 9.0.0-next.23
+
 ## 9.0.0-next.22
 
 ## 9.0.0-next.21

@@ -35,15 +35,20 @@ export type DEVICE_SIZE = 'mobile' | 'tablet' | 'desktop' | null;
 export class PostHeader {
   private firstFocusableEl: HTMLElement | null;
   private lastFocusableEl: HTMLElement | null;
-  private scrollParent = null;
+  private scrollListenerElement = null;
+  private overflowElement = null;
   private mobileMenu: HTMLElement;
   private mobileMenuAnimation: Animation;
-  private throttledScroll = () => this.handleScrollEvent();
-  private throttledResize = throttle(50, () => this.handleResize());
+  private readonly throttledScroll = () => this.handleScrollEvent();
+  private readonly throttledResize = throttle(50, () => this.handleResize());
 
   componentWillRender() {
-    this.scrollParent = this.getScrollParent(this.host);
-    this.scrollParent.addEventListener('scroll', this.throttledScroll, { passive: true });
+    this.scrollListenerElement = this.getScrollParent();
+    this.overflowElement =
+      this.scrollListenerElement === document
+        ? document.documentElement
+        : this.scrollListenerElement;
+    this.scrollListenerElement.addEventListener('scroll', this.throttledScroll, { passive: true });
     window.addEventListener('resize', this.throttledResize, { passive: true });
     this.handleResize();
     this.handleScrollEvent();
@@ -52,15 +57,21 @@ export class PostHeader {
 
   componentDidLoad() {
     this.updateLocalHeaderHeight();
+    // Check if the mega dropdown is expanded
+    document.addEventListener('postToggleMegadropdown', (event: CustomEvent) => {
+      this.megadropdownOpen = event.detail.isVisible;
+    });
+    this.host.addEventListener('click', this.handleLinkClick.bind(this));
   }
 
   // Clean up possible side effects when post-header is disconnected
   disconnectedCallback() {
     this.mobileMenuExtended = false;
-    this.scrollParent.style.overflow = '';
+    this.overflowElement.style.overflow = '';
     this.host.removeEventListener('keydown', e => {
       this.keyboardHandler(e);
     });
+    this.host.removeEventListener('click', this.handleLinkClick.bind(this));
   }
 
   @Element() host: HTMLPostHeaderElement;
@@ -68,10 +79,11 @@ export class PostHeader {
   @State() device: DEVICE_SIZE = null;
   @State() mobileMenuExtended: boolean = false;
 
+  @State() megadropdownOpen: boolean = false;
+
   @Watch('mobileMenuExtended')
   frozeBody(isMobileMenuExtended: boolean) {
-    this.scrollParent.style.overflow = isMobileMenuExtended ? 'hidden' : '';
-
+    this.overflowElement.style.overflow = isMobileMenuExtended ? 'hidden' : '';
     if (isMobileMenuExtended) {
       this.host.addEventListener('keydown', e => {
         this.keyboardHandler(e);
@@ -150,41 +162,24 @@ export class PostHeader {
     }
   }
 
+  private getScrollParent(): Element | Document {
+    let parent: Element | Document = this.host.parentElement;
+    if (parent.tagName === 'BODY') {
+      parent = document;
+    }
+    return parent;
+  }
+
   private handleScrollEvent() {
     // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
     const st = Math.max(
       0,
-      this.scrollParent instanceof Document
-        ? this.scrollParent.documentElement.scrollTop
-        : this.scrollParent.scrollTop,
+      this.scrollListenerElement instanceof Document
+        ? this.scrollListenerElement.documentElement.scrollTop
+        : this.scrollListenerElement.scrollTop,
     );
 
     this.host.style.setProperty('--header-scroll-top', `${st}px`);
-  }
-
-  private getScrollParent(node: Element): Element | Document {
-    let currentParent = node.parentElement;
-    while (currentParent) {
-      if (currentParent.nodeName === 'BODY') {
-        return document;
-      }
-      if (this.isScrollable(currentParent)) {
-        return currentParent;
-      }
-      currentParent = currentParent.parentElement;
-    }
-    return document;
-  }
-
-  private isScrollable(node: Element) {
-    if (!(node instanceof HTMLElement || node instanceof SVGElement)) {
-      return false;
-    }
-    const style = getComputedStyle(node);
-    return ['overflow', 'overflow-x', 'overflow-y'].some(propertyName => {
-      const value = style.getPropertyValue(propertyName);
-      return value === 'auto' || value === 'scroll';
-    });
   }
 
   private updateLocalHeaderHeight() {
@@ -192,6 +187,28 @@ export class PostHeader {
       const mhh = this.host.shadowRoot.querySelector('.local-header')?.clientHeight || 0;
       this.host.style.setProperty('--local-header-height', `${mhh}px`);
     });
+  }
+
+  private handleLinkClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+
+    const isLinkInMainNav = target.closest('post-mainnavigation a');
+    const isLinkInMegadropdown = target.closest('post-megadropdown a');
+
+    if (!isLinkInMainNav && !isLinkInMegadropdown) {
+      return;
+    }
+
+    if (this.mobileMenuExtended && (isLinkInMainNav || isLinkInMegadropdown)) {
+      this.toggleMobileMenu();
+    }
+
+    if (this.device === 'desktop' && isLinkInMegadropdown) {
+      const megadropdownLink = target.closest('post-megadropdown a');
+      if (megadropdownLink) {
+        target.closest('post-megadropdown').hide(true);
+      }
+    }
   }
 
   private handleResize() {
@@ -237,6 +254,9 @@ export class PostHeader {
     const navigationClasses = ['navigation'];
     if (this.mobileMenuExtended) {
       navigationClasses.push('extended');
+    }
+    if (!this.megadropdownOpen) {
+      navigationClasses.push('scroll-y');
     }
 
     return (
