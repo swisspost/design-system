@@ -36,11 +36,11 @@ tokens.$default-map: components.$post-button;
   }
 
   post-icon {
-    height: 16px;
-    width: 16px;
+    height: 24px;
+    width: 24px;
   }
 
-  &[aria-expanded="true"] {
+  &[aria-expanded='true'] {
     background-color: #050400;
     color: #fff;
 
@@ -49,7 +49,7 @@ tokens.$default-map: components.$post-button;
     }
 
     &:hover {
-      background-color: #504F4B;
+      background-color: #504f4b;
       color: white;
     }
   }
