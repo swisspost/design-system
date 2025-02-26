@@ -57,7 +57,7 @@ export class PostMegadropdownTrigger {
   }
 
   private handleKeyDown = (event: KeyboardEvent) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       this.handleToggle();
       if (this.megadropdown && !this.ariaExpanded) {
