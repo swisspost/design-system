@@ -1,5 +1,57 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.24
+
+### Patch Changes
+
+- Updated the icon sizes in the `post-header` and the `post-language-switch` components, to match the design specs. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4783](https://github.com/swisspost/design-system/pull/4783))
+
+## 9.0.0-next.23
+
+## 9.0.0-next.22
+
+### Patch Changes
+
+- Added a fixed height to the `post-header` until it's fully loaded to prevent layout shifts. (by [@alizedebray](https://github.com/alizedebray) with [#4769](https://github.com/swisspost/design-system/pull/4769))
+
+## 9.0.0-next.21
+
+## 9.0.0-next.20
+
+### Patch Changes
+
+- Increased gap between header title and local controls in `post-header`. (by [@leagrdv](https://github.com/leagrdv) with [#4739](https://github.com/swisspost/design-system/pull/4739))
+
+- Fixed breakpoint utility, by normalizing the read custom-properties. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4764](https://github.com/swisspost/design-system/pull/4764))
+
+- Updated validation styles to be applied to all input types. (by [@myrta2302](https://github.com/myrta2302) with [#4762](https://github.com/swisspost/design-system/pull/4762))
+
+## 9.0.0-next.19
+
+### Major Changes
+
+- Removed deprecated legacy utility classes. (by [@leagrdv](https://github.com/leagrdv) with [#4631](https://github.com/swisspost/design-system/pull/4631))
+
+- Removed some utility spacing/sizing sizes to better reflect the ones used on Figma. (by [@leagrdv](https://github.com/leagrdv) with [#4588](https://github.com/swisspost/design-system/pull/4588))
+
+### Minor Changes
+
+- Added helper classes to the `.section` component, which allow content to bleed out to the edge of the `.section` or the `.container` element. Either on both sides, or only to the left or right edge. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4741](https://github.com/swisspost/design-system/pull/4741))
+
+- Added new css component `.section` to be used as wrapper for hero elements and/or palettes. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4733](https://github.com/swisspost/design-system/pull/4733))
+
+- Added a new CSS output file that includes all the utility classes. (by [@alizedebray](https://github.com/alizedebray) with [#4613](https://github.com/swisspost/design-system/pull/4613))
+
+### Patch Changes
+
+- Internalized Bootstrap `.text-truncate` class into the Design System. (by [@veyaromain](https://github.com/veyaromain) with [#4599](https://github.com/swisspost/design-system/pull/4599))
+
+- Update the `--header-height` custom property to take the scroll position and reduced header height into account. (by [@alizedebray](https://github.com/alizedebray) with [#4746](https://github.com/swisspost/design-system/pull/4746))
+
+- Added high contrast mode styles for header. (by [@myrta2302](https://github.com/myrta2302) with [#4262](https://github.com/swisspost/design-system/pull/4262))
+
+- Removed the custom properties from the `post-header` component styles and moved them to the styles package. This change allows these properties to be accessed before the component is loaded. (by [@leagrdv](https://github.com/leagrdv) with [#4663](https://github.com/swisspost/design-system/pull/4663))
+
 ## 9.0.0-next.18
 
 ### Major Changes
