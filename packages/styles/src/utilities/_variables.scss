@@ -88,7 +88,6 @@ $utilities: (
       map.merge(
         utilities_formatted.$border-radius,
         (
-          null: map.get(utilities_formatted.$border-default, radius),
           pill: 50rem,
           circle: 50%,
         )
@@ -101,7 +100,6 @@ $utilities: (
       map.merge(
         utilities_formatted.$border-radius,
         (
-          null: map.get(utilities_formatted.$border-default, radius),
           pill: 50rem,
           circle: 50%,
         )
@@ -114,7 +112,6 @@ $utilities: (
       map.merge(
         utilities_formatted.$border-radius,
         (
-          null: map.get(utilities_formatted.$border-default, radius),
           pill: 50rem,
           circle: 50%,
         )
@@ -127,7 +124,6 @@ $utilities: (
       map.merge(
         utilities_formatted.$border-radius,
         (
-          null: map.get(utilities_formatted.$border-default, radius),
           pill: 50rem,
           circle: 50%,
         )
@@ -140,7 +136,6 @@ $utilities: (
       map.merge(
         utilities_formatted.$border-radius,
         (
-          null: map.get(utilities_formatted.$border-default, radius),
           pill: 50rem,
           circle: 50%,
         )

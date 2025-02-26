@@ -91,7 +91,7 @@ const border_args_sides = [
   'rounded-bottom',
   'rounded-start',
 ];
-const border_args_scales = ['', '-4', '-8', '-pill', '-circle'];
+const border_args_scales = ['-4', '-8', '-pill', '-circle'];
 
 const combinedOptions: string[] = [];
 
@@ -113,7 +113,7 @@ export const BorderRounded: Story = {
     },
   },
   args: {
-    borderRounded: 'rounded',
+    borderRounded: 'rounded-4',
   },
   render: (args: Args) => {
     const borderRounded = args.borderRounded != 'none' ? `${args.borderRounded}` : '';
