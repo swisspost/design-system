@@ -1,5 +1,14 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.27
+
+### Patch Changes
+
+- Fixed post-header disconnectCallback, by removing the eventListeners first and reset internal states and the scrollParent element afterwards. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4813](https://github.com/swisspost/design-system/pull/4813))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.27
+  - @swisspost/design-system-icons@9.0.0-next.27
+
 ## 9.0.0-next.26
 
 ### Patch Changes
