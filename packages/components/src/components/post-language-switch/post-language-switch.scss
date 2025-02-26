@@ -41,7 +41,7 @@ post-menu::part(popover-container) {
     width: 24px;
   }
 
-  &[aria-expanded="true"] {
+  &[aria-expanded='true'] {
     background-color: #050400;
     color: #fff;
 
@@ -50,7 +50,7 @@ post-menu::part(popover-container) {
     }
 
     &:hover {
-      background-color: #504F4B;
+      background-color: #504f4b;
       color: white;
     }
   }
