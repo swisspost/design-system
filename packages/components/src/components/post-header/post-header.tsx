@@ -99,6 +99,7 @@ export class PostHeader {
   }
 
   connectedCallback() {
+    console.log('co');
     window.addEventListener('resize', this.throttledResize, { passive: true });
     window.addEventListener('scroll', this.handleScrollEvent, {
       passive: true,
@@ -126,6 +127,7 @@ export class PostHeader {
 
   // Clean up possible side effects when post-header is disconnected
   disconnectedCallback() {
+    console.log('disco');
     const scrollParent = this.scrollParent;
 
     window.removeEventListener('resize', this.throttledResize);
@@ -145,8 +147,10 @@ export class PostHeader {
     }
 
     this.mobileMenuExtended = false;
+    console.log(this.scrollParent.style.overflow);
     scrollParent.style.overflow = '';
     scrollParent.removeAttribute('data-is-post-header-scroll-parent');
+    console.log(this.scrollParent.style.overflow);
   }
 
   /**
@@ -252,6 +256,10 @@ export class PostHeader {
         target.closest('post-megadropdown').hide(true);
       }
     }
+    event.preventDefault();
+    const x = document.querySelector('post-header');
+    x.remove();
+    document.body.prepend(x);
   }
 
   private handleResize() {
