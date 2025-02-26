@@ -1,8 +1,13 @@
 @use '../../mixins/media';
 @use '../../mixins/utilities';
 @use '../../variables/color';
+@use '../../functions/tokens';
+@use '../../tokens/elements';
+@use '../../mixins/button' as button-mx;
 
 @use 'mixins' as *;
+
+tokens.$default-map: elements.$post-link;
 
 @include media.min(lg) {
   body:has(post-header) {
@@ -86,7 +91,16 @@ post-header {
     }
   }
 
+  > ul > li button {
+    @include button-mx.reset-button;
+
+    &:hover {
+      color: tokens.get('link-hover-fg');
+    }
+  }
+
   a,
+  > ul > li button,
   post-togglebutton {
     &:not(post-mainnavigation *, post-language-switch *) {
       @include subsidiary-header-interactive;
