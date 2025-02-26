@@ -55,7 +55,7 @@ export class PostLanguageSwitch {
 
     setTimeout(() => {
       const triggerEl = this.host.shadowRoot.querySelector('.post-language-switch-trigger') as HTMLElement;
-      console.log(triggerEl)
+      console.log(triggerEl);
       if (triggerEl) {
         const width = triggerEl.getBoundingClientRect().width;
         this.host.style.setProperty('--language-switch-trigger-width', `${width}px`);
