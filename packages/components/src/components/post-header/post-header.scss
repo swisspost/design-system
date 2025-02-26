@@ -1,4 +1,5 @@
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/variables/animation';
 @use '@swisspost/design-system-styles/variables/elevation';
@@ -105,6 +106,10 @@
     background-color: #e1e0dc;
     bottom: -1px;
     z-index: 1;
+
+    @include utilities.high-contrast-mode() {
+      background-color: Highlight;
+    }
   }
 
   @include media.min(lg) {
