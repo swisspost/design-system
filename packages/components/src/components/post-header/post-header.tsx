@@ -99,7 +99,6 @@ export class PostHeader {
   }
 
   connectedCallback() {
-    console.log('co');
     window.addEventListener('resize', this.throttledResize, { passive: true });
     window.addEventListener('scroll', this.handleScrollEvent, {
       passive: true,
@@ -127,7 +126,6 @@ export class PostHeader {
 
   // Clean up possible side effects when post-header is disconnected
   disconnectedCallback() {
-    console.log('disco');
     const scrollParent = this.scrollParent;
 
     window.removeEventListener('resize', this.throttledResize);
@@ -147,17 +145,13 @@ export class PostHeader {
     }
 
     this.mobileMenuExtended = false;
-    console.log(this.scrollParent.style.overflow);
-    scrollParent.style.overflow = '';
-    scrollParent.removeAttribute('data-is-post-header-scroll-parent');
-    console.log(this.scrollParent.style.overflow);
   }
 
   /**
    * Toggles the mobile navigation.
    */
   @Method()
-  async toggleMobileMenu() {
+  async toggleMobileMenu(force?: boolean) {
     if (this.device === 'desktop') return;
 
     this.mobileMenuAnimation = this.mobileMenuExtended
@@ -166,11 +160,11 @@ export class PostHeader {
 
     // Update the state of the toggle button
     const menuButton = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
-    menuButton.toggled = !this.mobileMenuExtended;
+    menuButton.toggled = force ?? !this.mobileMenuExtended;
 
     // Toggle menu visibility before it slides down and after it slides back up
     if (this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
-    this.mobileMenuExtended = !this.mobileMenuExtended;
+    this.mobileMenuExtended = force ?? !this.mobileMenuExtended;
     if (!this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
   }
 
@@ -247,7 +241,7 @@ export class PostHeader {
     }
 
     if (this.mobileMenuExtended && (isLinkInMainNav || isLinkInMegadropdown)) {
-      this.toggleMobileMenu();
+      this.toggleMobileMenu(false);
     }
 
     if (this.device === 'desktop' && isLinkInMegadropdown) {
