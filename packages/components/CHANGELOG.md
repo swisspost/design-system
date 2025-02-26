@@ -1,5 +1,18 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.26
+
+### Patch Changes
+
+- Fixed post-header component scrollParent getter function. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4811](https://github.com/swisspost/design-system/pull/4811))
+
+- Fixed calculation of `post-mainnavigation` mobile placement and put back the header border on HCM. (by [@leagrdv](https://github.com/leagrdv) with [#4806](https://github.com/swisspost/design-system/pull/4806))
+
+- Applied styles to the slot title selector rather than `h1` on the `post-header` to have consistent styles whether or not `h1` is used. (by [@leagrdv](https://github.com/leagrdv) with [#4782](https://github.com/swisspost/design-system/pull/4782))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.26
+  - @swisspost/design-system-icons@9.0.0-next.26
+
 ## 9.0.0-next.25
 
 ### Patch Changes
