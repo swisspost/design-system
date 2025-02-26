@@ -91,16 +91,8 @@ export class PostHeader {
 
   connectedCallback() {
     const scrollParent = this.scrollParent;
-
     scrollParent.style.overflow = '';
     scrollParent.removeAttribute('data-is-post-header-scroll-parent');
-    console.log(
-      'disconnectedCallback',
-      this.mobileMenuExtended,
-      this.scrollParent,
-      this.scrollParent.style.overflow,
-      this.scrollParent.hasAttribute('data-is-post-header-scroll-parent'),
-    );
   }
 
   componentWillRender() {
@@ -146,14 +138,6 @@ export class PostHeader {
     this.mobileMenuExtended = false;
     scrollParent.style.overflow = '';
     scrollParent.removeAttribute('data-is-post-header-scroll-parent');
-
-    console.log(
-      'disconnectedCallback',
-      this.mobileMenuExtended,
-      this.scrollParent,
-      this.scrollParent.style.overflow,
-      this.scrollParent.hasAttribute('data-is-post-header-scroll-parent'),
-    );
   }
 
   /**
