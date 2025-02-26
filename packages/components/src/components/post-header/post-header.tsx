@@ -116,10 +116,6 @@ export class PostHeader {
   disconnectedCallback() {
     const scrollParent = this.scrollParent;
 
-    this.mobileMenuExtended = false;
-    scrollParent.style.overflow = '';
-    scrollParent.removeAttribute('data-is-post-header-scroll-parent');
-
     window.removeEventListener('resize', this.throttledResize);
     window.removeEventListener('scroll', this.handleScrollEvent.bind(this));
     scrollParent.removeEventListener('scroll', this.handleScrollEvent.bind(this));
@@ -132,6 +128,10 @@ export class PostHeader {
 
     if (this.scrollParentResizeObserver) this.scrollParentResizeObserver.disconnect();
     if (this.localHeaderResizeObserver) this.localHeaderResizeObserver.disconnect();
+
+    this.mobileMenuExtended = false;
+    scrollParent.style.overflow = '';
+    scrollParent.removeAttribute('data-is-post-header-scroll-parent');
   }
 
   /**
