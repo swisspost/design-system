@@ -48,7 +48,7 @@ export class PostHeader {
       const overflow = getComputedStyle(element).overflowY;
 
       if (hasScrollParentAttr || ['auto', 'scroll'].includes(overflow)) {
-        return element;
+        return element === document.body ? document.documentElement : element;
       }
 
       element = element.parentElement;
@@ -192,6 +192,7 @@ export class PostHeader {
   }
 
   private handleScrollEvent() {
+    console.log(this.scrollParent);
     this.host.style.setProperty('--header-scroll-top', `${this.scrollParent.scrollTop}px`);
   }
 
