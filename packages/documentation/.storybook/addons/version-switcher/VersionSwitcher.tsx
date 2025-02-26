@@ -17,7 +17,6 @@ interface Version {
   dependencies?: {
     ['@angular/core']: string;
     ['@ng-bootstrap/ng-bootstrap']: string;
-    ['@swisspost/design-system-intranet-header']: string;
     ['@swisspost/design-system-styles']: string;
     bootstrap: string;
   };
