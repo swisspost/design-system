@@ -9,8 +9,10 @@
 
 tokens.$default-map: elements.$post-link;
 
-body:has(post-header) {
-  overflow-x: hidden;
+@include media.min(lg) {
+  body:has(post-header) {
+    overflow-x: hidden;
+  }
 }
 
 post-header {
