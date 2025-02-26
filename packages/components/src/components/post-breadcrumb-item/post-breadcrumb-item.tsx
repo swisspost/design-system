@@ -1,4 +1,4 @@
-import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Prop, Watch, State } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkEmptyOrUrl } from '@/utils';
 
@@ -20,6 +20,11 @@ export class PostBreadcrumbItem {
 
   private validUrl?: string;
 
+  /**
+   * The full path URL to validate.
+   */
+  @State() fullUrl: string | undefined;
+
   @Watch('url')
   validateUrl() {
     try {
@@ -33,12 +38,11 @@ export class PostBreadcrumbItem {
   private constructUrl(value: unknown): string | undefined {
     const hasBaseURL = /^https?:\/\//.test(String(this.url));
     if (typeof value === 'string') {
-      const urlString = hasBaseURL
-        ? value
-        : `${window.location.origin}${value}`;
-      checkEmptyOrUrl(urlString, 'The "url" property of the post-breadcrumb-item is invalid');
-      return urlString;
-    } return undefined;
+      this.fullUrl = hasBaseURL ? value : `${window.location.origin}${value}`;
+      checkEmptyOrUrl(this, 'fullUrl');
+      return this.fullUrl;
+    }
+    return undefined;
   }
 
   connectedCallback() {
@@ -61,8 +65,11 @@ export class PostBreadcrumbItem {
     return (
       <Host data-version={version}>
         <post-icon name="2111" class="breadcrumb-item-icon" />
-        <BreadcrumbTag class="breadcrumb-item" {...(this.validUrl ? { href: this.validUrl } : {})}
-          onKeyDown={(event) => this.handleKeyDown(event)}>
+        <BreadcrumbTag
+          class="breadcrumb-item"
+          {...(this.validUrl ? { href: this.validUrl } : {})}
+          onKeyDown={event => this.handleKeyDown(event)}
+        >
           <slot></slot>
         </BreadcrumbTag>
       </Host>

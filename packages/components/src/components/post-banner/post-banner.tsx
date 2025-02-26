@@ -42,8 +42,8 @@ export class PostBanner {
   @Prop() readonly dismissible: boolean = false;
 
   @Watch('dismissible')
-  validateDismissible(isDismissible = this.dismissible) {
-    checkType(isDismissible, 'boolean', 'The post-banner "dismissible" prop should be a boolean.');
+  validateDismissible() {
+    checkType(this, 'dismissible', 'boolean');
     setTimeout(() => this.validateDismissLabel());
   }
 
@@ -53,9 +53,13 @@ export class PostBanner {
   @Prop() readonly dismissLabel: string;
 
   @Watch('dismissLabel')
-  validateDismissLabel(dismissLabel = this.dismissLabel) {
+  validateDismissLabel() {
     if (this.dismissible) {
-      checkNonEmpty(dismissLabel, 'Dismissible post-banner\'s require a "dismiss-label" prop.');
+      checkNonEmpty(
+        this,
+        'dismissLabel',
+        'Dismissible post-banner\'s require a "dismiss-label" prop.',
+      );
     }
   }
 
@@ -67,11 +71,12 @@ export class PostBanner {
   @Prop() readonly icon: string;
 
   @Watch('icon')
-  validateIcon(icon = this.icon) {
+  validateIcon() {
     checkEmptyOrPattern(
-      icon,
+      this,
+      'icon',
       /\d{4}|none/,
-      'The post-banner "icon" prop should be a 4-digits string.',
+      'The post-banner "icon" prop should be a 4-digit string.',
     );
   }
 
@@ -81,12 +86,8 @@ export class PostBanner {
   @Prop() readonly type: BannerType = 'neutral';
 
   @Watch('type')
-  validateType(type = this.type) {
-    checkEmptyOrOneOf(
-      type,
-      BANNER_TYPES,
-      `The post-banner requires a type form: ${BANNER_TYPES.join(', ')}`,
-    );
+  validateType() {
+    checkEmptyOrOneOf(this, 'type', BANNER_TYPES);
   }
 
   /**
