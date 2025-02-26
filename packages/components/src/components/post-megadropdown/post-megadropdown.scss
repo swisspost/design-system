@@ -75,8 +75,10 @@
     left: 0;
     width: 100%;
     position: fixed;
-    height: calc(100dvh - var(--header-height));
-    max-height: calc(100dvh - var(--header-height));
+    height: calc(min(var(--header-scroll-parent-height, 100dvh), 100dvh) - var(--header-height));
+    max-height: calc(
+      min(var(--header-scroll-parent-height, 100dvh), 100dvh) - var(--header-height)
+    );
     border-top: unset;
     overflow: auto;
 
