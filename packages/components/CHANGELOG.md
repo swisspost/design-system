@@ -1,5 +1,14 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.28
+
+### Patch Changes
+
+- Fixed post-header component scrollParent state reset. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4815](https://github.com/swisspost/design-system/pull/4815))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.28
+  - @swisspost/design-system-icons@9.0.0-next.28
+
 ## 9.0.0-next.27
 
 ### Patch Changes
