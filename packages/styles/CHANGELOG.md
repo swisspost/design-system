@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.25
+
+### Patch Changes
+
+- Updated `post-header` styles to hide horizontal overflow on desktop only. (by [@myrta2302](https://github.com/myrta2302) with [#4792](https://github.com/swisspost/design-system/pull/4792))
+
 ## 9.0.0-next.24
 
 ### Patch Changes
