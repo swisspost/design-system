@@ -40,6 +40,22 @@ export class PostHeader {
   private readonly throttledResize = throttle(50, () => this.handleResize());
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
+  get scrollParent(): HTMLElement {
+    let element: HTMLElement | null = this.host.parentElement;
+
+    while (element) {
+      const hasScrollParentAttr = element.hasAttribute('data-is-post-header-scroll-parent');
+      const overflow = getComputedStyle(element).overflowY;
+
+      if (hasScrollParentAttr || ['auto', 'scroll'].includes(overflow)) {
+        return element;
+      }
+
+      element = element.parentElement;
+    }
+
+    return element;
+  }
 
   @Element() host: HTMLPostHeaderElement;
 
@@ -66,6 +82,49 @@ export class PostHeader {
    */
   @Event() postUpdateDevice: EventEmitter<DEVICE_SIZE>;
 
+  componentWillRender() {
+    window.addEventListener('resize', this.throttledResize, { passive: true });
+    window.addEventListener('scroll', this.handleScrollEvent.bind(this), {
+      passive: true,
+    });
+    this.scrollParent.addEventListener('scroll', this.handleScrollEvent.bind(this), {
+      passive: true,
+    });
+
+    this.handleResize();
+    this.handleScrollEvent();
+    this.getFocusableElements();
+  }
+
+  componentDidLoad() {
+    // Check if the mega dropdown is expanded
+    document.addEventListener('postToggleMegadropdown', this.megedropdownStateHandler.bind(this));
+    this.host.addEventListener('click', this.handleLinkClick.bind(this));
+
+    this.handleScrollParentResize();
+    this.handleLocalHeaderResize();
+  }
+
+  // Clean up possible side effects when post-header is disconnected
+  disconnectedCallback() {
+    this.mobileMenuExtended = false;
+    this.scrollParent.style.overflow = '';
+    this.scrollParent.removeAttribute('data-is-post-header-scroll-parent');
+
+    window.removeEventListener('resize', this.throttledResize);
+    window.removeEventListener('scroll', this.handleScrollEvent.bind(this));
+    this.scrollParent.removeEventListener('scroll', this.handleScrollEvent.bind(this));
+    document.removeEventListener(
+      'postToggleMegadropdown',
+      this.megedropdownStateHandler.bind(this),
+    );
+    this.host.removeEventListener('keydown', this.keyboardHandler.bind(this));
+    this.host.removeEventListener('click', this.handleLinkClick.bind(this));
+
+    if (this.scrollParentResizeObserver) this.scrollParentResizeObserver.disconnect();
+    if (this.localHeaderResizeObserver) this.localHeaderResizeObserver.disconnect();
+  }
+
   /**
    * Toggles the mobile navigation.
    */
@@ -85,23 +144,6 @@ export class PostHeader {
     if (this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
     this.mobileMenuExtended = !this.mobileMenuExtended;
     if (!this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
-  }
-
-  get scrollParent(): HTMLElement {
-    let element: HTMLElement | null = this.host.parentElement;
-
-    while (element) {
-      const hasScrollParentAttr = element.hasAttribute('data-is-post-header-scroll-parent');
-      const overflow = getComputedStyle(element).overflowY;
-
-      if (hasScrollParentAttr || ['auto', 'scroll'].includes(overflow)) {
-        return element;
-      }
-
-      element = element.parentElement;
-    }
-
-    return element;
   }
 
   private megedropdownStateHandler(event: CustomEvent) {
@@ -154,8 +196,9 @@ export class PostHeader {
   }
 
   private updateLocalHeaderHeight() {
-    const mhh = this.host.shadowRoot.querySelector('.local-header')?.clientHeight || 0;
-    this.host.style.setProperty('--local-header-height', `${mhh}px`);
+    const localHeaderHeight =
+      this.host.shadowRoot.querySelector('.local-header')?.clientHeight || 0;
+    this.host.style.setProperty('--local-header-height', `${localHeaderHeight}px`);
   }
 
   private updateScrollParentHeight() {
@@ -265,20 +308,6 @@ export class PostHeader {
     );
   }
 
-  componentWillRender() {
-    window.addEventListener('resize', this.throttledResize, { passive: true });
-    window.addEventListener('scroll', this.handleScrollEvent.bind(this), {
-      passive: true,
-    });
-    this.scrollParent.addEventListener('scroll', this.handleScrollEvent.bind(this), {
-      passive: true,
-    });
-
-    this.handleResize();
-    this.handleScrollEvent();
-    this.getFocusableElements();
-  }
-
   render() {
     return (
       <Host version={version}>
@@ -310,32 +339,5 @@ export class PostHeader {
         {this.device !== 'desktop' && this.renderNavigation()}
       </Host>
     );
-  }
-
-  componentDidLoad() {
-    // Check if the mega dropdown is expanded
-    document.addEventListener('postToggleMegadropdown', this.megedropdownStateHandler.bind(this));
-    this.host.addEventListener('click', this.handleLinkClick.bind(this));
-
-    this.handleScrollParentResize();
-    this.handleLocalHeaderResize();
-  }
-
-  // Clean up possible side effects when post-header is disconnected
-  disconnectedCallback() {
-    this.mobileMenuExtended = false;
-    this.scrollParent.style.overflow = '';
-    this.scrollParent.removeAttribute('data-is-post-header-scroll-parent');
-
-    window.removeEventListener('resize', this.throttledResize);
-    window.removeEventListener('scroll', this.handleScrollEvent.bind(this));
-    this.scrollParent.removeEventListener('scroll', this.handleScrollEvent.bind(this));
-    document.removeEventListener(
-      'postToggleMegadropdown',
-      this.megedropdownStateHandler.bind(this),
-    );
-    this.host.removeEventListener('keydown', this.keyboardHandler.bind(this));
-    this.host.removeEventListener('click', this.handleLinkClick.bind(this));
-    this.localHeaderResizeObserver.disconnect();
   }
 }
