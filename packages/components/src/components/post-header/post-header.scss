@@ -198,7 +198,6 @@
     position: fixed;
     z-index: 1;
     inset-inline: 0;
-    background: color.$white;
     inset-block-start: var(--header-height);
     overflow: hidden;
   }
@@ -217,9 +216,9 @@
 
   .navigation.extended {
     > div {
-      height: calc(min(var(--header-scroll-parent-height, 100dvh), 100dvh) - var(--header-height));
       display: flex;
       flex-direction: column;
+      height: calc(min(var(--header-scroll-parent-height, 100dvh), 100dvh) - var(--header-height));
     }
 
     &.scroll-y > div {
