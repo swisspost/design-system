@@ -135,8 +135,14 @@ export class PostHeader {
     this.host.removeEventListener('keydown', this.keyboardHandler);
     this.host.removeEventListener('click', this.handleLinkClick);
 
-    if (this.scrollParentResizeObserver) this.scrollParentResizeObserver.disconnect();
-    if (this.localHeaderResizeObserver) this.localHeaderResizeObserver.disconnect();
+    if (this.scrollParentResizeObserver) {
+      this.scrollParentResizeObserver.disconnect();
+      this.scrollParentResizeObserver = null;
+    }
+    if (this.localHeaderResizeObserver) {
+      this.localHeaderResizeObserver.disconnect();
+      this.localHeaderResizeObserver = null;
+    }
 
     this.mobileMenuExtended = false;
     scrollParent.style.overflow = '';
