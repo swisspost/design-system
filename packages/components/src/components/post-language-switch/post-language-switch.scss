@@ -17,11 +17,12 @@ tokens.$default-map: components.$post-button;
 .post-language-switch-dropdown-container {
   display: flex;
   flex-direction: column;
-
-  > * {
-    width: 100%;
-  }
 }
+
+post-menu::part(popover-container) {
+  width: var(--language-switch-trigger-width);
+}
+
 
 .post-language-switch-trigger {
   cursor: pointer;
@@ -36,8 +37,8 @@ tokens.$default-map: components.$post-button;
   }
 
   post-icon {
-    height: 16px;
-    width: 16px;
+    height: 24px;
+    width: 24px;
   }
 
   &[aria-expanded="true"] {

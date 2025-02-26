@@ -74,6 +74,15 @@ export class PostLanguageSwitch {
     this.validateDescription();
     this.validateVariant();
 
+    setTimeout(() => {
+      const triggerEl = this.host.shadowRoot.querySelector('.post-language-switch-trigger') as HTMLElement;
+      console.log(triggerEl)
+      if (triggerEl) {
+        const width = triggerEl.getBoundingClientRect().width;
+        this.host.style.setProperty('--language-switch-trigger-width', `${width}px`);
+      }
+    }, 300);
+
     // Detects a change in the active language
     this.host.addEventListener('postChange', (el: CustomEvent<string>) => {
       this.activeLang = el.detail;
