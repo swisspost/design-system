@@ -4,12 +4,6 @@
 
 @use 'mixins' as *;
 
-@include media.min(lg) {
-  body:has(post-header) {
-    overflow-x: hidden;
-  }
-}
-
 post-header {
   --header-expanded-height: calc(
     var(--global-header-height) + var(--local-header-height) + 1px /* bottom border */
@@ -18,7 +12,8 @@ post-header {
     var(--global-header-reduced-height) + var(--main-navigation-height) + 1px /* bottom border */
   );
   --header-height: calc(
-    var(--header-expanded-height) - min(
+    var(--header-expanded-height) -
+      min(
         var(--header-scroll-top, 0px),
         calc(var(--header-expanded-height) - var(--header-reduced-height))
       )
