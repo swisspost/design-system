@@ -1,5 +1,18 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.25
+
+### Patch Changes
+
+- Fixed wrong implementation of the relative scroll parent of the `post-header` component.` (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4786](https://github.com/swisspost/design-system/pull/4786))
+
+- Fixed wrong implemented and added missing eventListener removals in the `post-header` component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4786](https://github.com/swisspost/design-system/pull/4786))
+
+- Fixed timeing issue in the calculation of the custom property `--local-header-height`, so it's defined from the very beginning. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4786](https://github.com/swisspost/design-system/pull/4786))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.25
+  - @swisspost/design-system-icons@9.0.0-next.25
+
 ## 9.0.0-next.24
 
 ### Patch Changes
