@@ -89,7 +89,7 @@ post-header {
     }
   }
 
-  > ul.list-inline li button {
+  > ul > li button {
     @include button-mx.reset-button;
 
     &:hover {
@@ -98,7 +98,7 @@ post-header {
   }
 
   a,
-  > ul.list-inline li button,
+  > ul > li button,
   post-togglebutton {
     &:not(post-mainnavigation *, post-language-switch *) {
       @include subsidiary-header-interactive;
