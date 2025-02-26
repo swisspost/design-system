@@ -161,6 +161,48 @@ gulp.task(
 );
 
 /**
+ * Get all available components names from the components package and add them to the scss file (packages\styles\src\utilities\_not-defined.scss) which sets initial visibility to hidden (for unregistered state).
+ */
+
+gulp.task('generate-not-defined-components-scss', done => {
+  const filePath = path.join(__dirname, '../components/src/index.ts');
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      done(err);
+      return;
+    }
+
+    const content = data;
+    const componentNames = content
+      .match(/export \{ (\w+) \} from/g)
+      .map(match => match.replace(/export \{ (\w+) \} from/, '$1'));
+
+    const kebabCaseNames = componentNames.map(name =>
+      name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase(),
+    );
+
+    const componentNamesContent = `/*
+  Initial visibility of the components is set to hidden to prevent 'flickering' effect due to stencil js/scss delay.
+*/
+
+:where(
+    ${kebabCaseNames.join(',\n    ')}
+):not(:defined) {
+  visibility: hidden;
+}
+    `;
+    const outputPath = path.join(__dirname, 'src/utilities/_not-defined.scss');
+    fs.writeFile(outputPath, componentNamesContent, err => {
+      if (err) {
+        done(err);
+        return;
+      }
+      done();
+    });
+  });
+});
+
+/**
  * Watch task for scss development
  */
 gulp.task(
@@ -177,6 +219,6 @@ exports.default = gulp.task(
   'build',
   gulp.parallel(
     gulp.series('map-icons', 'copy', 'autoprefixer', 'transform-package-json'),
-    gulp.series('temporarily-copy-token-files', 'sass'),
+    gulp.series('temporarily-copy-token-files', 'sass', 'generate-not-defined-components-scss'),
   ),
 );
