@@ -1,4 +1,5 @@
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/variables/animation';
 @use '@swisspost/design-system-styles/variables/elevation';
@@ -105,6 +106,10 @@
     background-color: #e1e0dc;
     bottom: -1px;
     z-index: 1;
+
+    @include utilities.high-contrast-mode() {
+      background-color: Highlight;
+    }
   }
 
   @include media.min(lg) {
@@ -143,30 +148,6 @@
   margin: 0 !important;
   z-index: 3 !important;
   position: relative !important;
-}
-
-::slotted(h1) {
-  margin: 0 !important;
-  flex-shrink: 10;
-  z-index: 3;
-
-  @include media.min(sm) {
-    margin-inline-start: 12px !important;
-  }
-
-  @include media.max(sm) {
-    margin-inline-start: 8px !important;
-  }
-
-  @include media.min(lg) {
-    font-size: 28px !important;
-    line-height: 34px !important;
-  }
-
-  @include media.max(lg) {
-    font-size: 20px !important;
-    max-width: calc(100vw - 8px - 16px);
-  }
 }
 
 .mobile-toggle {
