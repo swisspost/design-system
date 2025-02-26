@@ -1,5 +1,16 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.29
+
+### Patch Changes
+
+- Removed console.logs out of the post-header component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4817](https://github.com/swisspost/design-system/pull/4817))
+
+- Fixed post-header component lifecycle hooks and event bindings. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4817](https://github.com/swisspost/design-system/pull/4817))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.29
+  - @swisspost/design-system-icons@9.0.0-next.29
+
 ## 9.0.0-next.28
 
 ### Patch Changes
