@@ -41,13 +41,18 @@ export class PostHeader {
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
   get scrollParent(): HTMLElement {
+    const frozenScrollParent: HTMLElement | null = document.querySelector(
+      '[data-is-post-header-scroll-parent]',
+    );
+
+    if (frozenScrollParent) return frozenScrollParent;
+
     let element: HTMLElement | null = this.host.parentElement;
 
     while (element) {
-      const hasScrollParentAttr = element.hasAttribute('data-is-post-header-scroll-parent');
       const overflow = getComputedStyle(element).overflowY;
 
-      if (hasScrollParentAttr || ['auto', 'scroll'].includes(overflow)) {
+      if (['auto', 'scroll'].includes(overflow)) {
         return element;
       }
 
@@ -66,13 +71,15 @@ export class PostHeader {
 
   @Watch('mobileMenuExtended')
   frozeBody(isMobileMenuExtended: boolean) {
+    const scrollParent = this.scrollParent;
+
     if (isMobileMenuExtended) {
-      this.scrollParent.setAttribute('data-is-post-header-scroll-parent', '');
-      this.scrollParent.style.overflow = 'hidden';
+      scrollParent.setAttribute('data-is-post-header-scroll-parent', '');
+      scrollParent.style.overflow = 'hidden';
       this.host.addEventListener('keydown', this.keyboardHandler.bind(this));
     } else {
-      this.scrollParent.style.overflow = '';
-      this.scrollParent.removeAttribute('data-is-post-header-scroll-parent');
+      scrollParent.style.overflow = '';
+      scrollParent.removeAttribute('data-is-post-header-scroll-parent');
       this.host.removeEventListener('keydown', this.keyboardHandler.bind(this));
     }
   }
@@ -107,13 +114,15 @@ export class PostHeader {
 
   // Clean up possible side effects when post-header is disconnected
   disconnectedCallback() {
+    const scrollParent = this.scrollParent;
+
     this.mobileMenuExtended = false;
-    this.scrollParent.style.overflow = '';
-    this.scrollParent.removeAttribute('data-is-post-header-scroll-parent');
+    scrollParent.style.overflow = '';
+    scrollParent.removeAttribute('data-is-post-header-scroll-parent');
 
     window.removeEventListener('resize', this.throttledResize);
     window.removeEventListener('scroll', this.handleScrollEvent.bind(this));
-    this.scrollParent.removeEventListener('scroll', this.handleScrollEvent.bind(this));
+    scrollParent.removeEventListener('scroll', this.handleScrollEvent.bind(this));
     document.removeEventListener(
       'postToggleMegadropdown',
       this.megedropdownStateHandler.bind(this),
