@@ -181,6 +181,7 @@
     inset-inline: 0;
     inset-block-start: var(--header-height);
     overflow: hidden;
+    background-color: #fafafa;
   }
 
   ::slotted(post-mainnavigation),
@@ -213,7 +214,6 @@
   }
 
   ::slotted(post-mainnavigation) {
-    background-color: #fafafa;
     gap: 32px;
   }
 
