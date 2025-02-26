@@ -89,6 +89,20 @@ export class PostHeader {
    */
   @Event() postUpdateDevice: EventEmitter<DEVICE_SIZE>;
 
+  connectedCallback() {
+    const scrollParent = this.scrollParent;
+
+    scrollParent.style.overflow = '';
+    scrollParent.removeAttribute('data-is-post-header-scroll-parent');
+    console.log(
+      'disconnectedCallback',
+      this.mobileMenuExtended,
+      this.scrollParent,
+      this.scrollParent.style.overflow,
+      this.scrollParent.hasAttribute('data-is-post-header-scroll-parent'),
+    );
+  }
+
   componentWillRender() {
     window.addEventListener('resize', this.throttledResize, { passive: true });
     window.addEventListener('scroll', this.handleScrollEvent.bind(this), {
@@ -132,6 +146,14 @@ export class PostHeader {
     this.mobileMenuExtended = false;
     scrollParent.style.overflow = '';
     scrollParent.removeAttribute('data-is-post-header-scroll-parent');
+
+    console.log(
+      'disconnectedCallback',
+      this.mobileMenuExtended,
+      this.scrollParent,
+      this.scrollParent.style.overflow,
+      this.scrollParent.hasAttribute('data-is-post-header-scroll-parent'),
+    );
   }
 
   /**
