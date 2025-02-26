@@ -70,6 +70,7 @@ post-mainnavigation {
   // desktop styles
   @include media.min(lg) {
     display: block;
+    overflow-x: hidden;
 
     nav {
       max-width: 100%;
