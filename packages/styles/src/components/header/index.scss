@@ -126,7 +126,8 @@ post-header {
     }
   }
 
-  post-togglebutton {
+  post-togglebutton,
+  > ul > li button {
     @include utilities.high-contrast-mode() {
       background-color: ButtonFace !important;
       border-color: ButtonBorder !important;
