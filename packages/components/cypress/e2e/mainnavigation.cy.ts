@@ -14,7 +14,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
     }
 
     const { left, width } = $el.get(0).getBoundingClientRect();
-    return left >= firstVisiblePosition && left + width <= lastVisiblePosition;
+    return left >= firstVisiblePosition && Math.floor(left + width) <= lastVisiblePosition;
   }
 
   describe('default', () => {

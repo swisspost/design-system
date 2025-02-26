@@ -1,5 +1,16 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.24
+
+### Patch Changes
+
+- Updated the icon sizes in the `post-header` and the `post-language-switch` components, to match the design specs. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4783](https://github.com/swisspost/design-system/pull/4783))
+
+- Added an initial event to language switch options to get the initially active language option (by [@gfellerph](https://github.com/gfellerph) with [#4788](https://github.com/swisspost/design-system/pull/4788))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.24
+  - @swisspost/design-system-icons@9.0.0-next.24
+
 ## 9.0.0-next.23
 
 ### Patch Changes

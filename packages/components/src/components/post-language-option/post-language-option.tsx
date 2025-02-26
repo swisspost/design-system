@@ -80,12 +80,21 @@ export class PostLanguageOption {
         'The "name" property of the post-language-option component is required when the full language name is not displayed.',
       );
     }
+
+    if (this.active) {
+      this.postLanguageOptionInitiallyActive.emit(this.code);
+    }
   }
 
   /**
    * An event emitted when the language option is clicked. The payload is the ISO 639 code of the language.
    */
   @Event() postChange: EventEmitter<string>;
+
+  /**
+   * An event emitted when the language option is initially active. The payload is the ISO 639 code of the language.
+   */
+  @Event() postLanguageOptionInitiallyActive: EventEmitter<string>;
 
   /**
    * Selects the language option programmatically.

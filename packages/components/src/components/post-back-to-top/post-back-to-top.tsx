@@ -33,9 +33,9 @@ export class PostBackToTop {
   @Watch('belowFold')
   watchBelowFold(newValue: boolean) {
     if (newValue) {
-      slideUp(this.host, this.translateY);
-    } else {
       slideDown(this.host, this.translateY);
+    } else {
+      slideUp(this.host, this.translateY);
     }
   }
 

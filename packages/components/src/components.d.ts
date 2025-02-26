@@ -679,6 +679,7 @@ declare global {
     };
     interface HTMLPostLanguageOptionElementEventMap {
         "postChange": string;
+        "postLanguageOptionInitiallyActive": string;
     }
     interface HTMLPostLanguageOptionElement extends Components.PostLanguageOption, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostLanguageOptionElementEventMap>(type: K, listener: (this: HTMLPostLanguageOptionElement, ev: PostLanguageOptionCustomEvent<HTMLPostLanguageOptionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1121,6 +1122,10 @@ declare namespace LocalJSX {
           * An event emitted when the language option is clicked. The payload is the ISO 639 code of the language.
          */
         "onPostChange"?: (event: PostLanguageOptionCustomEvent<string>) => void;
+        /**
+          * An event emitted when the language option is initially active. The payload is the ISO 639 code of the language.
+         */
+        "onPostLanguageOptionInitiallyActive"?: (event: PostLanguageOptionCustomEvent<string>) => void;
         /**
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */

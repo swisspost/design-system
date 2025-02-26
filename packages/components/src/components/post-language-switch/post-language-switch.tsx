@@ -1,4 +1,4 @@
-import { Component, Element, Host, h, Prop, Watch, State } from '@stencil/core';
+import { Component, Element, Host, h, Prop, Watch, State, Listen } from '@stencil/core';
 import { checkEmptyOrOneOf, checkType } from '@/utils';
 import { version } from '@root/package.json';
 import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
@@ -40,6 +40,7 @@ export class PostLanguageSwitch {
   @Watch('variant')
   validateVariant() {
     checkEmptyOrOneOf(this, 'variant', SWITCH_VARIANTS);
+    this.updateChildrenVariant();
   }
 
   /**
@@ -47,51 +48,66 @@ export class PostLanguageSwitch {
    */
   @State() activeLang: string;
 
-  connectedCallback() {
-    this.updateChildrenVariant();
-
-    // Get the active language based on children's active state
-    const activeLanguageOption = this.host.querySelector(
-      'post-language-option[active]:not([active="false"])',
-    );
-
-    if (activeLanguageOption) this.activeLang = activeLanguageOption.getAttribute('code');
-  }
-
-  // Update post-language-option variant to have the correct style
-  private updateChildrenVariant() {
-    this.host.querySelectorAll('post-language-option').forEach(el => {
-      el.setAttribute('variant', this.variant);
-    });
-  }
-
-  componentWillUpdate() {
-    this.updateChildrenVariant();
-  }
-
   componentDidLoad() {
     this.validateCaption();
     this.validateDescription();
     this.validateVariant();
 
-    // Detects a change in the active language
-    this.host.addEventListener('postChange', (el: CustomEvent<string>) => {
-      this.activeLang = el.detail;
+    // Initially set variants and active language
+    // Handles cases where the language-switch is rendered after the language-options have been rendered
+    this.updateChildrenVariant();
+    this.updateActiveLanguage();
+  }
 
-      // Update the active state in the children post-language-option components
-      this.host.querySelectorAll('post-language-option').forEach(lang => {
-        if (lang.code && lang.code === this.activeLang) {
-          lang.setAttribute('active', 'true');
-        } else {
-          lang.setAttribute('active', 'false');
-        }
-      });
+  @Listen('postChange')
+  handlePostChange(event: CustomEvent<string>) {
+    this.activeLang = event.detail;
 
-      // Hides the dropdown when an option has been clicked
-      if (this.variant === 'menu') {
-        const menu = this.host.shadowRoot.querySelector('post-menu') as HTMLPostMenuElement;
-        menu.hide();
+    // Update the active state in the children post-language-option components
+    this.languageOptions.forEach(lang => {
+      if (lang.code && lang.code === this.activeLang) {
+        lang.setAttribute('active', '');
+      } else {
+        lang.removeAttribute('active');
       }
+    });
+
+    // Hides the dropdown when an option has been clicked
+    if (this.variant === 'menu') {
+      const menu = this.host.shadowRoot.querySelector('post-menu') as HTMLPostMenuElement;
+      menu.hide();
+    }
+  }
+
+  /**
+   * Handles cases where the language switch is being rendered before options are available
+   * @param event Initially emitted by <post-langauge-option>
+   */
+  @Listen('postLanguageOptionInitiallyActive')
+  handleInitiallyActive(event: CustomEvent<string>) {
+    this.activeLang = event.detail;
+  }
+
+  private get languageOptions() {
+    return this.host.querySelectorAll('post-language-option');
+  }
+
+  private get activeLanguageOption() {
+    return this.host.querySelector('post-language-option[active]:not([active="false"])');
+  }
+
+  private handleSlotChange() {
+    this.updateActiveLanguage();
+  }
+
+  private updateActiveLanguage() {
+    this.activeLang = this.activeLanguageOption.getAttribute('code');
+  }
+
+  // Update post-language-option variant to have the correct style
+  private updateChildrenVariant() {
+    this.languageOptions.forEach(el => {
+      el.setAttribute('variant', this.variant);
     });
   }
 
@@ -101,7 +117,7 @@ export class PostLanguageSwitch {
     return (
       <Host data-version={version} role="list" aria-label={this.caption}>
         <div class="post-language-switch-list" role="group" aria-label={this.description}>
-          <slot></slot>
+          <slot onSlotchange={() => this.handleSlotChange()}></slot>
         </div>
       </Host>
     );
@@ -121,7 +137,7 @@ export class PostLanguageSwitch {
           class="post-language-switch-dropdown-container"
           aria-label={this.caption}
         >
-          <slot></slot>
+          <slot onSlotchange={() => this.handleSlotChange()}></slot>
         </post-menu>
       </Host>
     );
