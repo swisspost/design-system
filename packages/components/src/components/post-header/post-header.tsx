@@ -41,13 +41,18 @@ export class PostHeader {
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
   get scrollParent(): HTMLElement {
+    const frozenScrollParent: HTMLElement | null = document.querySelector(
+      '[data-is-post-header-scroll-parent]',
+    );
+
+    if (frozenScrollParent) return frozenScrollParent;
+
     let element: HTMLElement | null = this.host.parentElement;
 
     while (element) {
-      const hasScrollParentAttr = element.hasAttribute('data-is-post-header-scroll-parent');
       const overflow = getComputedStyle(element).overflowY;
 
-      if (hasScrollParentAttr || ['auto', 'scroll'].includes(overflow)) {
+      if (['auto', 'scroll'].includes(overflow)) {
         return element;
       }
 
@@ -66,13 +71,15 @@ export class PostHeader {
 
   @Watch('mobileMenuExtended')
   frozeBody(isMobileMenuExtended: boolean) {
+    const scrollParent = this.scrollParent;
+
     if (isMobileMenuExtended) {
-      this.scrollParent.setAttribute('data-is-post-header-scroll-parent', '');
-      this.scrollParent.style.overflow = 'hidden';
+      scrollParent.setAttribute('data-is-post-header-scroll-parent', '');
+      scrollParent.style.overflow = 'hidden';
       this.host.addEventListener('keydown', this.keyboardHandler.bind(this));
     } else {
-      this.scrollParent.style.overflow = '';
-      this.scrollParent.removeAttribute('data-is-post-header-scroll-parent');
+      scrollParent.style.overflow = '';
+      scrollParent.removeAttribute('data-is-post-header-scroll-parent');
       this.host.removeEventListener('keydown', this.keyboardHandler.bind(this));
     }
   }
@@ -81,6 +88,20 @@ export class PostHeader {
    * An event emitted when the device has changed
    */
   @Event() postUpdateDevice: EventEmitter<DEVICE_SIZE>;
+
+  connectedCallback() {
+    const scrollParent = this.scrollParent;
+
+    scrollParent.style.overflow = '';
+    scrollParent.removeAttribute('data-is-post-header-scroll-parent');
+    console.log(
+      'disconnectedCallback',
+      this.mobileMenuExtended,
+      this.scrollParent,
+      this.scrollParent.style.overflow,
+      this.scrollParent.hasAttribute('data-is-post-header-scroll-parent'),
+    );
+  }
 
   componentWillRender() {
     window.addEventListener('resize', this.throttledResize, { passive: true });
@@ -107,13 +128,11 @@ export class PostHeader {
 
   // Clean up possible side effects when post-header is disconnected
   disconnectedCallback() {
-    this.mobileMenuExtended = false;
-    this.scrollParent.style.overflow = '';
-    this.scrollParent.removeAttribute('data-is-post-header-scroll-parent');
+    const scrollParent = this.scrollParent;
 
     window.removeEventListener('resize', this.throttledResize);
     window.removeEventListener('scroll', this.handleScrollEvent.bind(this));
-    this.scrollParent.removeEventListener('scroll', this.handleScrollEvent.bind(this));
+    scrollParent.removeEventListener('scroll', this.handleScrollEvent.bind(this));
     document.removeEventListener(
       'postToggleMegadropdown',
       this.megedropdownStateHandler.bind(this),
@@ -123,6 +142,18 @@ export class PostHeader {
 
     if (this.scrollParentResizeObserver) this.scrollParentResizeObserver.disconnect();
     if (this.localHeaderResizeObserver) this.localHeaderResizeObserver.disconnect();
+
+    this.mobileMenuExtended = false;
+    scrollParent.style.overflow = '';
+    scrollParent.removeAttribute('data-is-post-header-scroll-parent');
+
+    console.log(
+      'disconnectedCallback',
+      this.mobileMenuExtended,
+      this.scrollParent,
+      this.scrollParent.style.overflow,
+      this.scrollParent.hasAttribute('data-is-post-header-scroll-parent'),
+    );
   }
 
   /**

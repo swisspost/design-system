@@ -1,5 +1,19 @@
 # @swisspost/design-system-styles-primeng
 
+## 9.0.0-next.27
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.27
+
+## 9.0.0-next.26
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.26
+
 ## 9.0.0-next.25
 
 ### Patch Changes
