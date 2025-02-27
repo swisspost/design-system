@@ -42,7 +42,7 @@ export class PostHeader {
   private localHeaderResizeObserver: ResizeObserver;
   get scrollParent(): HTMLElement {
     const frozenScrollParent: HTMLElement | null = document.querySelector(
-      '[data-is-post-header-scroll-parent]',
+      '[data-post-scroll-locked]',
     );
 
     if (frozenScrollParent) return frozenScrollParent;
@@ -59,7 +59,7 @@ export class PostHeader {
       element = element.parentElement;
     }
 
-    return document.documentElement;
+    return document.body;
   }
 
   @Element() host: HTMLPostHeaderElement;
@@ -74,12 +74,10 @@ export class PostHeader {
     const scrollParent = this.scrollParent;
 
     if (isMobileMenuExtended) {
-      scrollParent.setAttribute('data-is-post-header-scroll-parent', '');
-      scrollParent.style.overflow = 'hidden';
+      scrollParent.setAttribute('data-post-scroll-locked', '');
       this.host.addEventListener('keydown', this.keyboardHandler);
     } else {
-      scrollParent.style.overflow = '';
-      scrollParent.removeAttribute('data-is-post-header-scroll-parent');
+      scrollParent.removeAttribute('data-post-scroll-locked');
       this.host.removeEventListener('keydown', this.keyboardHandler);
     }
   }
@@ -214,7 +212,9 @@ export class PostHeader {
   }
 
   private handleScrollEvent() {
-    this.host.style.setProperty('--header-scroll-top', `${this.scrollParent.scrollTop}px`);
+    const scrollTop =
+      this.scrollParent === document.body ? window.scrollY : this.scrollParent.scrollTop;
+    this.host.style.setProperty('--header-scroll-top', `${scrollTop}px`);
   }
 
   private updateLocalHeaderHeight() {
@@ -307,11 +307,9 @@ export class PostHeader {
 
   private renderNavigation() {
     const navigationClasses = ['navigation'];
+
     if (this.mobileMenuExtended) {
       navigationClasses.push('extended');
-    }
-    if (!this.megadropdownOpen) {
-      navigationClasses.push('scroll-y');
     }
 
     return (
