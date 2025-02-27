@@ -217,11 +217,11 @@ exports.default = gulp.task(
   'build',
   gulp.parallel(
     gulp.series(
+      'generate-not-defined-components-scss',
       'map-icons',
       'copy',
       'autoprefixer',
       'transform-package-json',
-      'generate-not-defined-components-scss',
     ),
     gulp.series('temporarily-copy-token-files', 'sass'),
   ),
