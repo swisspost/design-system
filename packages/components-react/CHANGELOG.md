@@ -1,5 +1,33 @@
 # @swisspost/design-system-components-react
 
+## 9.0.0-next.29
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.29
+
+## 9.0.0-next.28
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.28
+
+## 9.0.0-next.27
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.27
+
+## 9.0.0-next.26
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.26
+
 ## 9.0.0-next.25
 
 ### Patch Changes
