@@ -190,13 +190,11 @@ export class PostPopovercontainer {
   }
 
   /**
-   * Retrieves the dynamic height of the header by considering both 
-   * its rendered height and the applied scroll offset.
+   * Retrieves the dynamic height of the header
    */
   private getHeaderHeight(): number {
     const header = document.querySelector('post-header');
-    const height = header ? parseFloat(getComputedStyle(header).height) : 0;
-    return height;
+    return header ? parseFloat(getComputedStyle(header).height) : 0;
   }  
   
   private async calculatePosition() {
