@@ -69,11 +69,14 @@ export class PostHeader {
 
   @State() megadropdownOpen: boolean = false;
 
+  @Watch('device')
   @Watch('mobileMenuExtended')
-  frozeBody(isMobileMenuExtended: boolean) {
+  bodyLock(newValue: boolean | string, _oldValue: boolean | string, propName: string) {
     const scrollParent = this.scrollParent;
+    const mobileMenuExtended =
+      propName === 'mobileMenuExtended' ? newValue : this.mobileMenuExtended;
 
-    if (isMobileMenuExtended) {
+    if (this.device !== 'desktop' && mobileMenuExtended) {
       scrollParent.setAttribute('data-post-scroll-locked', '');
       this.host.addEventListener('keydown', this.keyboardHandler);
     } else {
@@ -107,10 +110,10 @@ export class PostHeader {
     document.addEventListener('postToggleMegadropdown', this.megedropdownStateHandler);
     this.host.addEventListener('click', this.handleLinkClick);
 
-    this.frozeBody(false);
     this.handleResize();
     this.handleScrollEvent();
     this.handleScrollParentResize();
+    this.bodyLock(false, this.mobileMenuExtended, 'mobileMenuExtended');
   }
 
   componentDidRender() {
@@ -263,12 +266,6 @@ export class PostHeader {
       newDevice = 'tablet';
     } else {
       newDevice = 'mobile';
-    }
-
-    // Close any open mobile menu
-    if (newDevice === 'desktop' && this.mobileMenuExtended) {
-      this.toggleMobileMenu();
-      this.mobileMenuAnimation.finish(); // no animation
     }
 
     // Apply only on change for doing work only when necessary
