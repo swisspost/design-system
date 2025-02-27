@@ -1,5 +1,9 @@
 #storybook-docs {
-  #root-inner {
-    max-height: 35rem !important;
+  .header-story-wrapper {
+    transform: translate(0);
+
+    .virtual-body {
+      max-height: 600px;
+    }
   }
 }
