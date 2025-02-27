@@ -10,6 +10,7 @@ import {
   SecurityContext,
   TemplateRef,
   ViewChild,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationStart, Router } from '@angular/router';
@@ -91,6 +92,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, AfterViewInit {
     private router: Router,
     private zone: NgZone,
     private domSanitizer: DomSanitizer,
+    private cd: ChangeDetectorRef,
   ) {
     this.router.events.subscribe(e => {
       if (e instanceof NavigationStart) {
@@ -142,12 +144,14 @@ export class SwissPostIntranetHeaderComponent implements OnInit, AfterViewInit {
 
       if (!MutationObserver) return;
 
-      this.navChanges = new MutationObserver(m => this.navMutationCallback(m));
-      this.navChanges.observe(this.navElement, {
-        childList: true,
-        characterData: true,
-        subtree: true,
-      });
+      if (this.navElement) {
+        this.navChanges = new MutationObserver(m => this.navMutationCallback(m));
+        this.navChanges.observe(this.navElement, {
+          childList: true,
+          characterData: true,
+          subtree: true,
+        });
+      }
     }
 
     this.optionDropdownClick();
@@ -157,6 +161,8 @@ export class SwissPostIntranetHeaderComponent implements OnInit, AfterViewInit {
       subtree: true,
       childList: true,
     });
+
+    this.cd.detectChanges();
   }
 
   public navMutationCallback(mutationList: MutationRecord[]) {
