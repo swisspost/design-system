@@ -18,19 +18,19 @@ post-language-option {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
     width: 100%;
+    height: 100%;
     border-radius: 2px;
+    text-transform: uppercase;
     @include utilities-mx.focus-style;
   }
 
-  &:has([aria-current]):not([aria-current='false']) {
-    display: none;
-  }
+  // Show all options now, instead of hiding the active one
 
   &:where([variant='list']) {
     :is(a, button) {
-      padding-inline: 0.7rem;
+      padding-inline: 0;
+      width: 40px;
       height: 40px;
       border-radius: 2px;
 
@@ -38,12 +38,11 @@ post-language-option {
         color: #504f4b;
       }
     }
-
-    &:where(:not([type]), [type='language']) {
+    &[active]:not([active='false']) {
       :is(a, button) {
-        padding-inline: 0;
-        width: 40px;
-        text-transform: uppercase;
+        background-color: #050400 !important;
+        color: #fff;
+        pointer-events: none;
       }
     }
   }
@@ -51,18 +50,20 @@ post-language-option {
   &:where([variant='menu']) {
     width: 100%;
 
+    &[active]:not([active='false']) {
+      display: none;
+    }
+
     :is(a, button) {
       padding-block: 13px;
       padding-inline: 24px;
       box-sizing: border-box;
       position: relative;
-      left: -1px;
-      width: calc(100% + 2px);
-    }
+      width: 100%;
 
-    &:where(:not([type]), [type='language']) {
-      :is(a, button) {
-        text-transform: uppercase;
+      &:hover {
+        color: white;
+        background-color: #504f4b;
       }
     }
   }

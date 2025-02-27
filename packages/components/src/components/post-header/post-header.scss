@@ -1,6 +1,9 @@
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/utilities';
 @use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/variables/animation';
+@use '@swisspost/design-system-styles/variables/elevation';
+@use '@swisspost/design-system-styles/variables/color';
 
 *,
 ::before,
@@ -9,32 +12,11 @@
 }
 
 :host {
-  z-index: commons.$zindex-header;
-  --global-header-height: 72px;
-  --global-header-minimal-height: 24px;
-  --local-header-height: 112px;
-  --local-header-min-height: 56px;
-  --header-height: calc(var(--global-header-height) + var(--local-header-height));
-
   z-index: 1020;
   position: relative;
-
-  @include media.min(lg) {
-    --global-header-reduced-height: 24px;
-    --main-navigation-height: 56px;
-  }
-
-  @include media.max(lg) {
-    --global-header-height: 64px;
-    --local-header-height: 48px;
-    --local-header-min-height: 48px;
-    --main-navigation-height: 0px;
-  }
 }
 
 :host(:not(:has([slot='title']))) {
-  --local-header-height: var(--main-navigation-height);
-
   .local-header {
     padding-block-start: 0;
   }
@@ -57,7 +39,7 @@
   display: flex;
   justify-content: space-between;
   position: sticky;
-  padding-inline: var(--post-core-dimension-4);
+  padding-inline: 4px;
   height: var(--global-header-height);
 
   @include media.max(lg) {
@@ -67,7 +49,7 @@
 
   @include media.min(lg) {
     z-index: 5;
-    padding-inline-end: var(--post-core-dimension-12);
+    padding-inline-end: 12px;
     inset-block-start: calc(
       (var(--global-header-height) - var(--global-header-reduced-height)) * -1
     );
@@ -77,7 +59,7 @@
 .global-sub {
   display: flex;
   align-items: center;
-  gap: var(--post-core-dimension-24);
+  gap: 24px;
 }
 
 .align-end {
@@ -111,67 +93,61 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--post-core-dimension-4);
+  gap: 4px;
   min-height: var(--local-header-min-height);
-  background: var(--post-core-color-brand-white);
+  background: color.$white;
   transition: box-shadow 0.2s ease-in-out;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: #e1e0dc;
+    bottom: -1px;
+    z-index: 1;
+
+    @include utilities.high-contrast-mode() {
+      background-color: Highlight;
+    }
+  }
 
   @include media.min(lg) {
     z-index: 3;
     inset-block-start: calc(
       -1 * (var(--local-header-height) - var(--main-navigation-height)) + var(--global-header-reduced-height)
     );
-    padding-block-start: var(--post-core-dimension-18);
-    box-shadow: var(--post-core-elevation-3);
+    padding-block-start: 18px;
+    box-shadow: elevation.$elevation-300;
   }
 
   @include media.max(lg) {
     z-index: 2;
     inset-block-start: var(--global-header-height);
-    padding-block: var(--post-core-dimension-9);
+    padding-block: 12px;
     flex-wrap: wrap;
+    gap: 16px;
 
     &.local-header-mobile-extended {
-      border-bottom: 1px solid var(--post-core-color-sandgrey-012);
+      &::after {
+        bottom: 0;
+      }
     }
 
-    &:not(.title-header-mobile-extended) {
-      box-shadow: var(--post-core-elevation-3);
+    &:not(.local-header-mobile-extended) {
+      box-shadow: elevation.$elevation-300;
     }
   }
 }
 
 .local-sub {
-  margin-inline-end: var(--post-core-dimension-16);
+  margin-inline-end: 16px;
 }
 
 ::slotted(.list-inline) {
-  margin: -8px 0 !important;
+  margin: 0 !important;
   z-index: 3 !important;
   position: relative !important;
-}
-
-::slotted(h1) {
-  margin: 0 !important;
-  flex-shrink: 10;
-  z-index: 3;
-
-  @include media.min(sm) {
-    margin-inline-start: var(--post-core-dimension-12) !important;
-  }
-
-  @include media.max(sm) {
-    margin-inline-start: var(--post-core-dimension-8) !important;
-  }
-
-  @include media.min(lg) {
-    font-size: var(--post-core-font-size-28) !important;
-  }
-
-  @include media.max(lg) {
-    font-size: var(--post-core-font-size-20) !important;
-    max-width: calc(100vw - var(--post-core-dimension-8) - var(--post-core-dimension-16));
-  }
 }
 
 .mobile-toggle {
@@ -184,7 +160,7 @@
   width: 100%;
 
   @include media.min(lg) {
-    inset-block-start: var(--global-header-minimal-height);
+    inset-block-start: var(--global-header-reduced-height);
 
     &::before {
       display: block;
@@ -192,7 +168,7 @@
       position: absolute;
       inset: 0;
       z-index: 2;
-      background: var(--post-core-color-brand-white);
+      background: color.$white;
     }
   }
 }
@@ -203,16 +179,16 @@
     position: fixed;
     z-index: 1;
     inset-inline: 0;
-    background: var(--post-core-color-brand-white);
-    inset-block-end: calc(100vh - var(--header-height));
+    inset-block-start: var(--header-height);
+    overflow: hidden;
   }
 
   ::slotted(post-mainnavigation),
   .navigation-footer {
     display: none;
     flex-direction: column;
-    padding-block: var(--post-core-dimension-16) var(--post-core-dimension-24);
-    padding-inline: var(--post-core-dimension-32);
+    padding-block: 16px 24px;
+    padding-inline: 32px;
 
     .navigation.extended & {
       display: flex;
@@ -220,9 +196,16 @@
   }
 
   .navigation.extended {
-    height: calc(100vh - var(--header-height));
-    display: flex;
-    flex-direction: column;
+    > div {
+      display: flex;
+      flex-direction: column;
+      height: calc(100dvh - var(--header-height));
+    }
+
+    &.scroll-y > div {
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
 
     ::slotted(post-mainnavigation) {
       flex-grow: 1 !important;
@@ -230,13 +213,13 @@
   }
 
   ::slotted(post-mainnavigation) {
-    background-color: var(--post-core-color-sandgrey-002);
-    gap: var(--post-core-dimension-32);
+    background-color: #fafafa;
+    gap: 32px;
   }
 
   .navigation-footer {
-    background-color: var(--post-core-color-sandgrey-006);
-    gap: var(--post-core-dimension-24);
+    background-color: #f0efed;
+    gap: 24px;
   }
 }
 
@@ -244,6 +227,6 @@
 @include media.max(sm) {
   ::slotted(post-mainnavigation),
   .navigation-footer {
-    padding-inline: var(--post-core-dimension-16);
+    padding-inline: 16px;
   }
 }
