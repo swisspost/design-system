@@ -216,7 +216,13 @@ gulp.task(
 exports.default = gulp.task(
   'build',
   gulp.parallel(
-    gulp.series('map-icons', 'copy', 'autoprefixer', 'transform-package-json'),
-    gulp.series('temporarily-copy-token-files', 'sass', 'generate-not-defined-components-scss'),
+    gulp.series(
+      'map-icons',
+      'copy',
+      'autoprefixer',
+      'transform-package-json',
+      'generate-not-defined-components-scss',
+    ),
+    gulp.series('temporarily-copy-token-files', 'sass'),
   ),
 );
