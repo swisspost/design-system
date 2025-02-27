@@ -1,5 +1,82 @@
 # @swisspost/design-system-intranet-header-workspace
 
+## 3.0.22-next.29
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.29
+
+## 3.0.22-next.28
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.28
+
+## 3.0.22-next.27
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.27
+
+## 3.0.22-next.26
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.26
+
+## 3.0.22-next.25
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.25
+
+## 3.0.22-next.24
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.24
+
+## 3.0.22-next.23
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.23
+
+## 3.0.22-next.22
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.22
+
+## 3.0.22-next.21
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.21
+
+## 3.0.22-next.20
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.20
+
+## 3.0.22-next.19
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.19
+
 ## 3.0.22-next.18
 
 ### Patch Changes

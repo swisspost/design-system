@@ -2,6 +2,7 @@
 @use '@swisspost/design-system-styles/variables/color';
 @use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
+@use '@swisspost/design-system-styles/mixins/utilities';
 
 @keyframes slide-in {
   0% {
@@ -51,11 +52,14 @@
   background-color: #fafafa;
   border: none;
   z-index: 1;
-  border-top: 1px solid #e1e0dc;
   width: 100%;
   top: 100%;
   left: 0;
   border-radius: 0;
+
+  @include utilities.high-contrast-mode() {
+    border-block-end: 1px solid CanvasText;
+  }
 
   &.slide-in {
     animation: slide-down 350ms forwards;
@@ -71,8 +75,8 @@
     left: 0;
     width: 100%;
     position: fixed;
-    height: calc(100vh - var(--header-height));
-    max-height: calc(100vh - var(--header-height));
+    height: calc(100dvh - var(--header-height));
+    max-height: calc(100dvh - var(--header-height));
     border-top: unset;
     overflow: auto;
 
@@ -93,7 +97,7 @@
   @include media.max(lg) {
     display: flex;
     flex-direction: column;
-    width: inherit;  
+    width: inherit;
     padding: 16px 32px 24px;
   }
 
@@ -230,6 +234,8 @@
       min-width: 100%;
       height: auto;
       min-height: 48px;
+      white-space: normal;
+      word-break: break-word;
 
       &:hover {
         border-block-width: 0;
