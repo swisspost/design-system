@@ -172,32 +172,30 @@ gulp.task('generate-not-defined-components-scss', done => {
       return;
     }
 
-    const content = data;
-    const componentNames = content
-      .match(/export \{ (\w+) \} from/g)
-      .map(match => match.replace(/export \{ (\w+) \} from/, '$1'));
+    const kebabCaseNames = Array.from(data.matchAll(/export \{ (\w+) \} from/g), m =>
+      m[1].replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase(),
+    ).join(',\n    ');
 
-    const kebabCaseNames = componentNames.map(name =>
-      name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase(),
-    );
-
-    const componentNamesContent = `/*
-  Initial visibility of the components is set to hidden to prevent 'flickering' effect due to stencil js/scss delay.
-*/
-
-:where(
-    ${kebabCaseNames.join(',\n    ')}
-):not(:defined) {
-  visibility: hidden;
-}
-    `;
-    const outputPath = path.join(__dirname, 'src/utilities/_not-defined.scss');
-    fs.writeFile(outputPath, componentNamesContent, err => {
+    const templatePath = path.join(__dirname, 'src/templates/_not-defined.template.scss');
+    fs.readFile(templatePath, 'utf8', (err, data) => {
       if (err) {
+        console.error('Error reading template file:', err);
         done(err);
         return;
       }
-      done();
+      const result = data.replace('/* WEB_COMPONENT_NAMES */', kebabCaseNames);
+
+      const outputPath = path.join(__dirname, 'src/utilities/_not-defined.scss');
+      fs.writeFile(outputPath, result, 'utf8', err => {
+        if (err) {
+          console.error('Error writing output file:', err);
+          done(err);
+          return;
+        }
+
+        console.log('Output file generated successfully.');
+        done();
+      });
     });
   });
 });
