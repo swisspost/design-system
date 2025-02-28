@@ -174,7 +174,7 @@ gulp.task('generate-not-defined-components-scss', done => {
 
     const kebabCaseNames = Array.from(data.matchAll(/export \{ (\w+) \} from/g), m =>
       m[1].replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase(),
-    ).join(',\n    ');
+    ).join(',\n  ');
 
     const templatePath = path.join(__dirname, 'src/templates/_not-defined.template.scss');
     fs.readFile(templatePath, 'utf8', (err, data) => {
