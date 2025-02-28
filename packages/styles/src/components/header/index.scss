@@ -9,12 +9,6 @@
 
 tokens.$default-map: elements.$post-link;
 
-@include media.min(lg) {
-  body:has(post-header) {
-    overflow-x: hidden;
-  }
-}
-
 post-header {
   --header-expanded-height: calc(var(--global-header-height) + var(--local-header-height));
   --header-reduced-height: calc(
