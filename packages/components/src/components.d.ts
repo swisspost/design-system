@@ -484,6 +484,10 @@ export namespace Components {
          */
         "arrow"?: boolean;
         /**
+          * If `true`, the tooltip is displayed a few milliseconds after it is triggered
+         */
+        "delayed": boolean;
+        /**
           * Programmatically hide this tooltip
          */
         "hide": () => Promise<void>;
@@ -1342,6 +1346,10 @@ declare namespace LocalJSX {
           * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
+        /**
+          * If `true`, the tooltip is displayed a few milliseconds after it is triggered
+         */
+        "delayed"?: boolean;
         /**
           * Indicates the open state of the tooltip
          */

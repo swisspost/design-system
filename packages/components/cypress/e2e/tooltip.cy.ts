@@ -10,10 +10,6 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
     it('should display a tooltip', () => {
       cy.get('@tooltip').should('not.be.visible');
       cy.get('@target2').focus();
-      // Checking if a popover is open is a bit tricky, but it either matches the pseudo selector :popover-open
-      // or the polyfill sets the class :popover-open (a bit tricky to escape)
-      // https://github.com/oddbird/popover-polyfill#caveats
-      // prettier-ignore
       cy.get('.\\:popover-open, :popover-open').should('exist');
       cy.get('@target2').blur();
       cy.get('@tooltip').should('not.be.visible');

@@ -2,11 +2,14 @@ import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core'
 import { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
 import { PostPopovercontainerCustomEvent } from '@/components';
-import { checkType } from '@/utils';
+import { checkEmptyOrType, checkType } from '@/utils';
+
+const OPEN_DELAY = 650; // matches HTML title delay	
 
 /**
  * @slot default - Slot for the content of the tooltip.
  */
+let tooltipTimeout = null;
 
 @Component({
   tag: 'post-tooltip',
@@ -39,15 +42,28 @@ export class PostTooltip {
    * Indicates the open state of the tooltip
    */
   @Prop({ reflect: true, mutable: true }) open = false;
+  
+  /**
+   * If `true`, the tooltip is displayed a few milliseconds after it is triggered
+   */
+  @Prop() readonly delayed: boolean = false;
+
+  @Watch('delayed')
+  validateDelayed() {
+    checkEmptyOrType(this, 'delayed', 'boolean');
+  }
 
   @Watch('open')
   validateOpen() {
     checkType(this, 'open', 'boolean', 'The "open" property of the post-tooltip must be a boolean.');
   }
 
-  componentDidLoad() {
+  connectedCallback() {
+    this.validateDelayed();
     this.validateOpen();
+  }
 
+  componentDidLoad() {
     if (!this.host.id) {
       console.error(
         /*prettier-ignore*/
@@ -63,6 +79,14 @@ export class PostTooltip {
   @Method()
   async show(target: HTMLElement) {
     this.popoverRef.show(target);
+
+    if (this.delayed) {
+      tooltipTimeout = setTimeout(() => {
+        this.popoverRef.show(target);
+      }, OPEN_DELAY);
+    } else {
+      this.popoverRef.show(target);
+    }
   }
 
   /**
