@@ -79,6 +79,7 @@
     transform: scale(1);
     opacity: 1;
 
+    /* stylelint-disable-next-line property-no-unknown */
     @starting-style {
       opacity: 0;
       transform: scale(0.8);
