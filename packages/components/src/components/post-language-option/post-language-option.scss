@@ -48,7 +48,7 @@ post-language-option {
   }
 
   &:where([variant='menu']) {
-    min-width: 73px;
+    min-width: 72px;
 
     &[active]:not([active='false']) {
       display: none;
