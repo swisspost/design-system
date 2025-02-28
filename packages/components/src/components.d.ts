@@ -488,7 +488,7 @@ export namespace Components {
          */
         "delayed": boolean;
         /**
-          * Programmatically hide this tooltip
+          * Programmatically hide this tooltip. Clears any pending delay timeout.
          */
         "hide": () => Promise<void>;
         /**
@@ -500,12 +500,12 @@ export namespace Components {
          */
         "placement"?: Placement;
         /**
-          * Programmatically display the tooltip
+          * Programmatically display the tooltip. If delayed is true, waits OPEN_DELAY milliseconds before showing.
           * @param target An element where the tooltip should be shown
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
-          * Toggle tooltip display
+          * Toggle tooltip display. Clears any pending delay timeout before toggling.
           * @param target An element where the tooltip should be shown
           * @param force Pass true to always show or false to always hide
          */

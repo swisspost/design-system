@@ -9,16 +9,15 @@ const OPEN_DELAY = 650; // matches HTML title delay
 /**
  * @slot default - Slot for the content of the tooltip.
  */
-let tooltipTimeout = null;
-
 @Component({
   tag: 'post-tooltip',
   styleUrl: 'post-tooltip.scss',
   shadow: true
 })
-
 export class PostTooltip {
   private popoverRef: HTMLPostPopovercontainerElement;
+  private tooltipTimeout: number | null = null;
+
   @Element() host: HTMLPostTooltipElement;
 
   /**
@@ -67,22 +66,22 @@ export class PostTooltip {
     if (!this.host.id) {
       console.error(
         /*prettier-ignore*/
-        'No id set: <post-tooltip> must have an id, linking it to it\'s target element with a <post-tooltip-trigger> element.',
+        'No id set: <post-tooltip> must have an id, linking it to it\'s target element with a <post-tooltip-trigger> element.'
       );
     }
   }
 
   /**
-   * Programmatically display the tooltip
+   * Programmatically display the tooltip.
+   * If delayed is true, waits OPEN_DELAY milliseconds before showing.
    * @param target An element where the tooltip should be shown
    */
   @Method()
   async show(target: HTMLElement) {
-    this.popoverRef.show(target);
-
     if (this.delayed) {
-      tooltipTimeout = setTimeout(() => {
+      this.tooltipTimeout = window.setTimeout(() => {
         this.popoverRef.show(target);
+        this.tooltipTimeout = null;
       }, OPEN_DELAY);
     } else {
       this.popoverRef.show(target);
@@ -90,25 +89,35 @@ export class PostTooltip {
   }
 
   /**
-   * Programmatically hide this tooltip
+   * Programmatically hide this tooltip.
+   * Clears any pending delay timeout.
    */
   @Method()
   async hide() {
+    if (this.tooltipTimeout) {
+      clearTimeout(this.tooltipTimeout);
+      this.tooltipTimeout = null;
+    }
     this.popoverRef.hide();
   }
 
   /**
-   * Toggle tooltip display
+   * Toggle tooltip display.
+   * Clears any pending delay timeout before toggling.
    * @param target An element where the tooltip should be shown
    * @param [force] Pass true to always show or false to always hide
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean) {
+    if (this.tooltipTimeout) {
+      clearTimeout(this.tooltipTimeout);
+      this.tooltipTimeout = null;
+    }
     this.popoverRef.toggle(target, force);
   }
 
   /**
-   * Set the open state based on the toggle event
+   * Set the open state based on the toggle event.
    * @param e Popovercontainer toggle event
    */
   private handleToggle(e: PostPopovercontainerCustomEvent<boolean>) {
