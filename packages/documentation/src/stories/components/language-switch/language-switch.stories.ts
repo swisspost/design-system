@@ -31,7 +31,7 @@ function renderLanguageSwitch(args: Partial<HTMLPostLanguageSwitchElement>) {
     variant=${args.variant}
     type=${args.type}
   >
-    <post-language-option active="false" code="de" name="Deutsch">WW</post-language-option>
+    <post-language-option active="false" code="de" name="Deutsch">de</post-language-option>
     <post-language-option active="true" code="en" name="English">en</post-language-option>
     <post-language-option active="false" code="fr" name="French">fr</post-language-option>
   </post-language-switch> `;
@@ -44,7 +44,7 @@ function renderLanguageSwitchAsLinks(args: Partial<HTMLPostLanguageSwitchElement
     variant="menu"
   >
     <post-language-option url="/de" active="false" code="de" name="Deutsch"
-      >WW</post-language-option
+      >DE</post-language-option
     >
     <post-language-option url="/en" active="true" code="en" name="English">EN</post-language-option>
     <post-language-option url="/fr" active="false" code="fr" name="French">FR</post-language-option>
