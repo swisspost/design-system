@@ -1,11 +1,23 @@
-export function checkUrl(value: string | URL, error: string) {
+export function checkUrl<T extends { host: HTMLElement }>(
+  component: T,
+  prop: keyof T,
+  customMessage?: string,
+) {
+  const componentName = component.host.localName;
+  const value = component[prop];
+
+  const defaultMessage = `The prop \`${String(
+    prop,
+  )}\` of the \`${componentName}\` component is invalid.`;
+  const message = customMessage || defaultMessage;
+
   if (typeof value !== 'string' && !(value instanceof URL)) {
-    throw new Error(error);
+    throw new Error(message);
   }
 
   try {
-    new URL(value, window.location.href);
+    new URL(value, 'https://www.post.ch');
   } catch {
-    throw new Error(error);
+    throw new Error(message);
   }
 }

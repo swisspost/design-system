@@ -1,5 +1,3 @@
-@forward './../variables/options';
-
 @use 'breakpoints';
 @use 'globals';
 @use 'appstore-badge';
@@ -40,7 +38,6 @@
 @use 'product-card';
 @use 'progress';
 @use 'segmented-button';
-@use 'sizing';
 @use 'skiplinks';
 @use 'spinner';
 @use 'stepper';

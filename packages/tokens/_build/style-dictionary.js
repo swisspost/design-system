@@ -90,4 +90,12 @@ StyleDictionary.registerPreprocessor({
   },
 });
 
+/**
+ * Filters only the component source tokens.
+ */
+StyleDictionary.registerFilter({
+  name: 'swisspost/source-tokens-filter',
+  filter: token => token.isSource,
+});
+
 export default StyleDictionary;
