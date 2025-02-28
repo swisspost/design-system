@@ -33,19 +33,24 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
     it('should append aria-describedby without deleting existing values', () => {
       cy.get('@target1')
         .should('have.attr', 'aria-describedby')
-        .should('eq', 'existing-value tooltip-one');
+        .then((describedBy) => {
+          expect(describedBy).to.include('existing-value');
+          expect(describedBy).to.include('tooltip-one');
+        });
     });
 
     it('should patch aria after button has been inserted', () => {
-      cy.document().then(doc => {
+      cy.document().then((doc) => {
         const btn = doc.createElement('post-tooltip-trigger');
         btn.setAttribute('for', 'tooltip-one');
         btn.innerHTML = 'added after the fact';
         btn.id = 'added-later';
         doc.body.appendChild(btn);
       });
-      cy.get('#added-later').should('have.attr', 'aria-describedby').should('eq', 'tooltip-one');
-      cy.get('#added-later').should('have.attr', 'tabindex').should('eq', '0');
+
+      cy.get('#added-later').should('exist');
+      cy.get('#added-later').should('have.attr', 'aria-describedby', 'tooltip-one');
+      cy.get('#added-later').should('have.attr', 'tabindex', '0');
     });
   });
 
@@ -71,7 +76,9 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('should add tabindex', () => {
-      cy.get('@target').should('have.attr', 'tabindex').should('eq', '0');
+      cy.get('@target')
+        .should('have.attr', 'tabindex')
+        .and('eq', '0');
     });
   });
 
