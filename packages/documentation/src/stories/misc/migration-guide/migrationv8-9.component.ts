@@ -392,7 +392,7 @@ export class MigrationV89Component extends LitElement {
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <p class="info">
-                    Instead, use the class <code>.$font-size-14</code>.
+                    Instead, use the class <code>.font-size-14</code>.
                   </p>
                 </li>
                 <li class="mb-16">
