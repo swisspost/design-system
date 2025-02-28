@@ -24,12 +24,12 @@
   &[data-animation='pop-in']:where(:popover-open, .popover-open) {
     @include animation.top-layer-pop-in(0.25s, ':popover-open');
 
-  @media (prefers-reduced-motion) {
-    & {
-      --post-transition-duration: 0s;
+    @media (prefers-reduced-motion) {
+      & {
+        --post-transition-duration: 0s;
+      }
     }
   }
-}
   background-color: transparent;
   border: transparent;
   position: fixed;
@@ -111,5 +111,36 @@
       drop-shadow(4px 0px 6px hsla(225, 17%, 9%, 0.15))
       drop-shadow(8px 0px 12px hsla(225, 7%, 11%, 0.15));
   }
+
+  .arrow {
+    $arrow-size: 0.5825rem;
+    position: absolute;
+    width: $arrow-size;
+    height: $arrow-size;
+    background-color: inherit;
+    rotate: 45deg;
+    pointer-events: none;
+    z-index: -1;
+
+    // Create transparent border to be styled by and for the high contrast mode
+    &.top {
+      border-left: 2px solid transparent;
+      border-top: 2px solid transparent;
+    }
+
+    &.right {
+      border-right: 2px solid transparent;
+      border-top: 2px solid transparent;
+    }
+
+    &.left {
+      border-left: 2px solid transparent;
+      border-bottom: 2px solid transparent;
+    }
+
+    &.bottom {
+      border-right: 2px solid transparent;
+      border-bottom: 2px solid transparent;
+    }
+  }
 }
-  

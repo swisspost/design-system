@@ -41,8 +41,8 @@ export class PostTooltip {
   @Prop({ reflect: true, mutable: true }) open = false;
 
   @Watch('open')
-  validateOpen(newValue: boolean = this.open) {
-    checkType(newValue, 'boolean', 'The "open" property of the post-tooltip must be a boolean.');
+  validateOpen() {
+    checkType(this, 'open', 'boolean', 'The "open" property of the post-tooltip must be a boolean.');
   }
 
   componentDidLoad() {
