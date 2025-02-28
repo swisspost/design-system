@@ -7,6 +7,7 @@ import {
   openFullScreenDemo,
   prettierOptions,
   resetComponents,
+  withUrlParams,
 } from './helpers';
 import './helpers/register-web-components';
 import './addons/cypress-storybook/client';
@@ -22,7 +23,7 @@ SyntaxHighlighter.registerLanguage('scss', scss);
 export const SourceDarkScheme = true;
 
 const preview: Preview = {
-  decorators: [fullScreenUrlDecorator],
+  decorators: [fullScreenUrlDecorator, withUrlParams],
   parameters: {
     options: {
       storySort: {
