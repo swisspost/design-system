@@ -121,10 +121,6 @@ export class PostHeader {
     this.handleLocalHeaderResize();
   }
 
-  componentDidLoad() {
-    // Check if the mega dropdown is expanded
-  }
-
   // Clean up possible side effects when post-header is disconnected
   disconnectedCallback() {
     const scrollParent = this.scrollParent;
@@ -166,7 +162,12 @@ export class PostHeader {
     // Toggle menu visibility before it slides down and after it slides back up
     if (this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
     this.mobileMenuExtended = force ?? !this.mobileMenuExtended;
-    if (!this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
+
+    if (this.mobileMenuExtended === false) {
+      Array.from(this.host.querySelectorAll('post-megadropdown')).forEach(dropdown => {
+        dropdown.hide(false, true);
+      });
+    }
   }
 
   private megedropdownStateHandler(event: CustomEvent) {
@@ -305,6 +306,8 @@ export class PostHeader {
   private renderNavigation() {
     const navigationClasses = ['navigation'];
 
+    const mobileMenuScrollTop = this.mobileMenu?.scrollTop ?? 0;
+
     if (this.mobileMenuExtended) {
       navigationClasses.push('extended');
     }
@@ -314,7 +317,10 @@ export class PostHeader {
     }
 
     return (
-      <div class={navigationClasses.join(' ')}>
+      <div
+        class={navigationClasses.join(' ')}
+        style={{ '--header-navigation-scroll-top': `${mobileMenuScrollTop}px` }}
+      >
         <div ref={el => (this.mobileMenu = el)}>
           <slot name="post-mainnavigation"></slot>
 
