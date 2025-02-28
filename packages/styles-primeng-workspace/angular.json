@@ -48,7 +48,8 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": {
-              "base": "dist/styles-primeng-showcase"
+              "base": "dist/styles-primeng-showcase",
+              "browser": ""
             },
             "index": "projects/styles-primeng-showcase/src/index.html",
             "polyfills": ["zone.js"],
