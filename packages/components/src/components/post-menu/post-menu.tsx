@@ -13,6 +13,7 @@ import { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { getRoot } from '@/utils';
+import { eventGuard } from '@/utils/event-guard';
 
 @Component({
   tag: 'post-menu',
@@ -71,20 +72,27 @@ export class PostMenu {
 
   componentDidLoad() {
     this.popoverRef.addEventListener('postToggle', (event: CustomEvent<boolean>) => {
-      this.isVisible = event.detail;
-      this.toggleMenu.emit(this.isVisible);
-  
-      requestAnimationFrame(() => {
-        if (this.isVisible) {
-          this.lastFocusedElement = this.root.activeElement as HTMLElement;
-          const menuItems = this.getSlottedItems();
-          if (menuItems.length > 0) {
-            (menuItems[0] as HTMLElement).focus();
-          }
-        } else if (this.lastFocusedElement) {
-          this.lastFocusedElement.focus();
+      eventGuard.call(
+        this,
+        event,
+        { targetLocalName: 'post-popovercontainer' },
+        () => {
+          this.isVisible = event.detail;
+          this.toggleMenu.emit(this.isVisible);
+
+          requestAnimationFrame(() => {
+            if (this.isVisible) {
+              this.lastFocusedElement = this.root.activeElement as HTMLElement;
+              const menuItems = this.getSlottedItems();
+              if (menuItems.length > 0) {
+                (menuItems[0] as HTMLElement).focus();
+              }
+            } else if (this.lastFocusedElement) {
+              this.lastFocusedElement.focus();
+            }
+          });
         }
-      });
+      );
     });
   }
 
