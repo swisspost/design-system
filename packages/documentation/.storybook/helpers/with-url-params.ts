@@ -31,5 +31,5 @@ export const withUrlParams = (Story: StoryFn, context: StoryContext) => {
   }
 
   // Return the Story with updated args and controls
-  return Story(context);
+  return Story(context.args, context);
 };
