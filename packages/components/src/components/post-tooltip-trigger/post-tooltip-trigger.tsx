@@ -55,15 +55,21 @@ export class PostTooltipTrigger {
     const assignedElements = slot?.assignedElements() || [];
     this.trigger = (assignedElements[0] as HTMLElement) || this.host;
   
+    // If not focusable, explicitly set tabindex="0"
+    if (!isFocusable(this.trigger)) {
+      this.trigger.setAttribute('tabindex', '0');
+    } else {
+      this.trigger.removeAttribute('tabindex');
+    }
   
-    this.trigger.toggleAttribute('tabIndex', !isFocusable(this.trigger));
-  
+    // Append the tooltip id to aria-describedby without overwriting existing values
     const describedBy = this.trigger.getAttribute('aria-describedby') || '';
     if (!describedBy.includes(this.for)) {
-      this.trigger.setAttribute('aria-describedby', `${describedBy} ${this.for}`.trim());
+      const newDescribedBy = describedBy ? `${describedBy} ${this.for}` : this.for;
+      this.trigger.setAttribute('aria-describedby', newDescribedBy.trim());
     }
-  }  
-
+  }
+   
   private attachListeners() {
     this.host.addEventListener('pointerover', this.localInterestHandler);
     this.host.addEventListener('pointerout', this.localInterestLostHandler);

@@ -21,17 +21,15 @@
 }
 
 :where(post-popovercontainer) {
-  @supports selector(:popover-open) {
-    &[data-animation='pop-in']:where(:popover-open, .popover-open) {
-      @include animation.top-layer-pop-in(0.25s, ':popover-open');
-      @media (prefers-reduced-motion) {
-        & {
-          --post-transition-duration: 0s;
-        }
+  &[data-animation='pop-in']:where(:popover-open, .popover-open) {
+    @include animation.top-layer-pop-in(0.25s, ':popover-open');
+
+    @media (prefers-reduced-motion) {
+      & {
+        --post-transition-duration: 0s;
       }
     }
   }
-
   background-color: transparent;
   border: transparent;
   position: fixed;
