@@ -391,9 +391,6 @@ export class MigrationV89Component extends LitElement {
                     Removed font-size class <code>.small</code>
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
-                  <p class="info">
-                    Instead, use the class <code>.font-size-14</code>.
-                  </p>
                 </li>
                 <li class="mb-16">
                   <p>
