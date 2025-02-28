@@ -179,8 +179,7 @@
     position: fixed;
     z-index: 1;
     inset-inline: 0;
-    inset-block-start: var(--header-height);
-    overflow: hidden;
+    inset-block-start: calc(var(--header-scroll-top) + var(--header-height));
   }
 
   ::slotted(post-mainnavigation),
@@ -199,12 +198,15 @@
     > div {
       display: flex;
       flex-direction: column;
-      height: calc(100dvh - var(--header-height));
-    }
-
-    &.scroll-y > div {
       overflow-y: auto;
       overflow-x: hidden;
+      height: calc(min(var(--header-scroll-parent-height, 100dvh), 100dvh) - var(--header-height));
+    }
+
+    &.megadropdown-open {
+      > div {
+        overflow-y: hidden;
+      }
     }
 
     ::slotted(post-mainnavigation) {

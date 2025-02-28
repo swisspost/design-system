@@ -309,6 +309,10 @@ export class PostHeader {
       navigationClasses.push('extended');
     }
 
+    if (this.megadropdownOpen) {
+      navigationClasses.push('megadropdown-open');
+    }
+
     return (
       <div class={navigationClasses.join(' ')}>
         <div ref={el => (this.mobileMenu = el)}>
