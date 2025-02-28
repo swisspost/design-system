@@ -19,9 +19,6 @@ tokens.$default-map: components.$post-button;
   flex-direction: column;
 }
 
-post-menu::part(popover-container) {
-}
-
 .post-language-switch-trigger {
   cursor: pointer;
   text-transform: uppercase;
