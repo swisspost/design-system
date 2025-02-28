@@ -1,5 +1,65 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.30
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.29
+  - @swisspost/design-system-components-react@9.0.0-next.29
+  - @swisspost/design-system-styles@9.0.0-next.29
+  - @swisspost/design-system-tokens@9.0.0-next.29
+  - @swisspost/design-system-icons@9.0.0-next.29
+  - @swisspost/internet-header@2.0.0-next.29
+
+## 6.0.0-next.29
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.28
+  - @swisspost/design-system-components-react@9.0.0-next.28
+  - @swisspost/design-system-styles@9.0.0-next.28
+  - @swisspost/design-system-tokens@9.0.0-next.28
+  - @swisspost/design-system-icons@9.0.0-next.28
+  - @swisspost/internet-header@2.0.0-next.28
+
+## 6.0.0-next.28
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.27
+  - @swisspost/design-system-components-react@9.0.0-next.27
+  - @swisspost/design-system-styles@9.0.0-next.27
+  - @swisspost/design-system-tokens@9.0.0-next.27
+  - @swisspost/design-system-icons@9.0.0-next.27
+  - @swisspost/internet-header@2.0.0-next.27
+
+## 6.0.0-next.27
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.26
+  - @swisspost/design-system-styles@9.0.0-next.26
+  - @swisspost/design-system-components-react@9.0.0-next.26
+  - @swisspost/internet-header@2.0.0-next.26
+  - @swisspost/design-system-tokens@9.0.0-next.26
+  - @swisspost/design-system-icons@9.0.0-next.26
+
+## 6.0.0-next.26
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.25
+  - @swisspost/design-system-components@9.0.0-next.25
+  - @swisspost/internet-header@2.0.0-next.25
+  - @swisspost/design-system-components-react@9.0.0-next.25
+  - @swisspost/design-system-tokens@9.0.0-next.25
+  - @swisspost/design-system-icons@9.0.0-next.25
+
 ## 6.0.0-next.25
 
 ### Patch Changes

@@ -1,5 +1,60 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.29
+
+### Patch Changes
+
+- Removed console.logs out of the post-header component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4817](https://github.com/swisspost/design-system/pull/4817))
+
+- Fixed post-header component lifecycle hooks and event bindings. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4817](https://github.com/swisspost/design-system/pull/4817))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.29
+  - @swisspost/design-system-icons@9.0.0-next.29
+
+## 9.0.0-next.28
+
+### Patch Changes
+
+- Fixed post-header component scrollParent state reset. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4815](https://github.com/swisspost/design-system/pull/4815))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.28
+  - @swisspost/design-system-icons@9.0.0-next.28
+
+## 9.0.0-next.27
+
+### Patch Changes
+
+- Fixed post-header disconnectCallback, by removing the eventListeners first and reset internal states and the scrollParent element afterwards. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4813](https://github.com/swisspost/design-system/pull/4813))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.27
+  - @swisspost/design-system-icons@9.0.0-next.27
+
+## 9.0.0-next.26
+
+### Patch Changes
+
+- Fixed post-header component scrollParent getter function. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4811](https://github.com/swisspost/design-system/pull/4811))
+
+- Fixed calculation of `post-mainnavigation` mobile placement and put back the header border on HCM. (by [@leagrdv](https://github.com/leagrdv) with [#4806](https://github.com/swisspost/design-system/pull/4806))
+
+- Applied styles to the slot title selector rather than `h1` on the `post-header` to have consistent styles whether or not `h1` is used. (by [@leagrdv](https://github.com/leagrdv) with [#4782](https://github.com/swisspost/design-system/pull/4782))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.26
+  - @swisspost/design-system-icons@9.0.0-next.26
+
+## 9.0.0-next.25
+
+### Patch Changes
+
+- Fixed wrong implementation of the relative scroll parent of the `post-header` component.` (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4786](https://github.com/swisspost/design-system/pull/4786))
+
+- Fixed wrong implemented and added missing eventListener removals in the `post-header` component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4786](https://github.com/swisspost/design-system/pull/4786))
+
+- Fixed timeing issue in the calculation of the custom property `--local-header-height`, so it's defined from the very beginning. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4786](https://github.com/swisspost/design-system/pull/4786))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.25
+  - @swisspost/design-system-icons@9.0.0-next.25
+
 ## 9.0.0-next.24
 
 ### Patch Changes
