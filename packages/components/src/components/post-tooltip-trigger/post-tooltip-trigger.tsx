@@ -31,7 +31,7 @@ export class PostTooltipTrigger {
     return ref && ref.localName === 'post-tooltip' ? (ref as HTMLPostTooltipElement) : null;
   }
 
-  componentDidLoad() {
+  connectedCallback() {
     this.host.setAttribute('data-version', version);
     this.setupTrigger();
     this.attachListeners();
