@@ -1,7 +1,7 @@
 import { Component, Element, Prop, h, Host, Watch } from '@stencil/core';
-import isFocusable from 'ally.js/is/focusable';
 import { checkType } from '@/utils';
 import { version } from '@root/package.json';
+import { getFocusableChildren } from '@/utils/get-focusable-children';
 
 @Component({
   tag: 'post-tooltip-trigger',
@@ -16,7 +16,10 @@ export class PostTooltipTrigger {
    */
   @Prop() for!: string;
 
-  private trigger: HTMLElement;
+  /**
+   * Reference to the element inside the host that will act as the trigger.
+   */
+  private trigger: HTMLElement | null = null;
 
   @Watch('for')
   validateControlFor() {
@@ -35,17 +38,18 @@ export class PostTooltipTrigger {
   }
 
   private setupTrigger() {
-    // Directly select the first button element inside the host.
-    this.trigger = this.host.querySelector('button') || this.host;
+    // Get all focusable children within the host element.
+    const focusableChildren = getFocusableChildren(this.host);
+    // Use the first focusable child, or fallback to the host if none are found.
+    this.trigger = focusableChildren.length > 0 ? focusableChildren[0] : this.host;
+    console.log('Trigger element:', this.trigger);
 
-    // If the trigger element is not natively focusable, add a tabindex.
-    if (!isFocusable(this.trigger)) {
+    // If the trigger isn't naturally focusable (or is the host fallback), add a tabindex.
+    if (!this.trigger.hasAttribute('tabindex')) {
       this.trigger.setAttribute('tabindex', '0');
-    } else {
-      this.trigger.removeAttribute('tabindex');
     }
 
-    // Append the tooltip id to aria-describedby without overwriting existing values.
+    // Append the tooltip ID to aria-describedby without overwriting existing values.
     const describedBy = this.trigger.getAttribute('aria-describedby') || '';
     if (!describedBy.includes(this.for)) {
       this.trigger.setAttribute('aria-describedby', `${describedBy} ${this.for}`.trim());
@@ -53,12 +57,13 @@ export class PostTooltipTrigger {
   }
 
   private attachListeners() {
-    // Use the host as the event delegation point.
-    this.host.addEventListener('pointerover', this.interestHandler.bind(this));
-    this.host.addEventListener('pointerout', this.interestLostHandler.bind(this));
-    this.host.addEventListener('focusin', this.interestHandler.bind(this));
-    this.host.addEventListener('focusout', this.interestLostHandler.bind(this));
-    this.host.addEventListener('long-press', this.interestHandler.bind(this));
+    if (this.trigger) {
+      this.trigger.addEventListener('pointerover', this.interestHandler.bind(this));
+      this.trigger.addEventListener('pointerout', this.interestLostHandler.bind(this));
+      this.trigger.addEventListener('focusin', this.interestHandler.bind(this));
+      this.trigger.addEventListener('focusout', this.interestLostHandler.bind(this));
+      this.trigger.addEventListener('long-press', this.interestHandler.bind(this));
+    }
   }
 
   private interestHandler() {
@@ -71,7 +76,7 @@ export class PostTooltipTrigger {
 
   render() {
     return (
-      <Host data-version={version} tab-index="-1">
+      <Host data-version={version}>
         <slot></slot>
       </Host>
     );
