@@ -364,7 +364,7 @@ export class MigrationV89Component extends LitElement {
                 </li>
               </ul>
 
-              <h5>Typography</h5>
+              <h5>Typography</h5>              
               <ul>
                 <li class="mb-16">
                   <p>
@@ -385,6 +385,15 @@ export class MigrationV89Component extends LitElement {
                     <li><code>$line-height-small-huge</code></li>
                     <li><code>$line-height-huge</code></li>
                   </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    Removed font-size class <code>.small</code>
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <p class="info">
+                    Instead, use the class <code>.fs-14</code>.
+                  </p>
                 </li>
                 <li class="mb-16">
                   <p>
