@@ -53,15 +53,6 @@ export class PostLanguageSwitch {
     this.validateDescription();
     this.validateVariant();
 
-    setTimeout(() => {
-      const triggerEl = this.host.shadowRoot.querySelector('.post-language-switch-trigger') as HTMLElement;
-      console.log(triggerEl);
-      if (triggerEl) {
-        const width = triggerEl.getBoundingClientRect().width;
-        this.host.style.setProperty('--language-switch-trigger-width', `${width}px`);
-      }
-    }, 300);
-
     // Initially set variants and active language
     // Handles cases where the language-switch is rendered after the language-options have been rendered
     this.updateChildrenVariant();

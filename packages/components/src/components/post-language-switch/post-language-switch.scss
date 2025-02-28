@@ -20,7 +20,6 @@ tokens.$default-map: components.$post-button;
 }
 
 post-menu::part(popover-container) {
-  width: var(--language-switch-trigger-width);
 }
 
 .post-language-switch-trigger {
