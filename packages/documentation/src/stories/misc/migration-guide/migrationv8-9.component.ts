@@ -364,7 +364,7 @@ export class MigrationV89Component extends LitElement {
                 </li>
               </ul>
 
-              <h5>Typography</h5>              
+              <h5>Typography</h5>
               <ul>
                 <li class="mb-16">
                   <p>
