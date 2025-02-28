@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 
+import { SwissPostIntranetHeaderModule } from 'dist/intranet-header';
 import { AppComponent } from './app.component';
 import { SamplesNavigationComponent } from './samples/navigation/navigation.component';
 import { SamplesSidebarComponent } from './samples/sidebar/sidebar.component';
-import { SwissPostIntranetHeaderModule } from '@swisspost/design-system-intranet-header';
 import { SamplesIndexComponent } from './samples/samples-index.component';
 import { SamplesSidebarWithSearchbarComponent } from './samples/sidebar-with-searchbar/sidebar-with-searchbar.component';
 

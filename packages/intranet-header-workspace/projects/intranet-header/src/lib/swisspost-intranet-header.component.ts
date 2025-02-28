@@ -21,9 +21,10 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { userImage } from './user';
 
 @Component({
-  selector: 'sp-intranet-header',
-  templateUrl: './swisspost-intranet-header.component.html',
-  styleUrls: ['./swisspost-intranet-header.component.scss'],
+    selector: 'sp-intranet-header',
+    templateUrl: './swisspost-intranet-header.component.html',
+    styleUrls: ['./swisspost-intranet-header.component.scss'],
+    standalone: false
 })
 export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() siteTitle: string = '';
