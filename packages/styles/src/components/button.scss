@@ -1,5 +1,3 @@
-@forward './../variables/options';
-
 @use 'sass:map';
 @use 'sass:math';
 
@@ -37,7 +35,6 @@ tokens.$default-map: components.$post-button;
   border-radius: tokens.get('button-border-radius-round');
   background-color: transparent;
   box-shadow: none;
-  color: var(--post-gray-80);
   font-family: inherit;
   font-weight: tokens.get('button-label-font-weight');
   text-decoration: none;
@@ -55,20 +52,12 @@ tokens.$default-map: components.$post-button;
 
   @include utilities.focus-style;
 
-  // Styles  to improve accessibility in high contrast mode
   @include utilities.high-contrast-mode() {
-    &[class] {
-      border-color: ButtonBorder;
-      background-color: ButtonFace;
+    background-color: ButtonFace !important;
 
-      &:not(:disabled, .disabled) {
-        &:hover {
-          border-color: highlight;
-        }
-      }
-
-      &:disabled {
-        border-color: GrayText !important;
+    &:not(:disabled, .disabled) {
+      &:hover {
+        background-color: Highlight !important;
       }
     }
   }
@@ -92,14 +81,6 @@ tokens.$default-map: components.$post-button;
     @include utilities.not-disabled-hover() {
       @include button-mx.button-variant-def('hover', $color);
     }
-  }
-}
-
-.btn-tertiary {
-  // Styles  to improve accessibility in high contrast mode
-  @include utilities.high-contrast-mode() {
-    color: linktext;
-    text-decoration: underline !important;
   }
 }
 

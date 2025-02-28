@@ -1,9 +1,19 @@
-// icons.blocks.tsx
 import React from 'react';
 import reportData from '../../../../node_modules/@swisspost/design-system-icons/public/report.json';
 import { IconReport } from './icons-report';
 
 const report = reportData as IconReport;
+
+const checkIconCodesDuplicates = () => {
+  const reportIconCodes = reportData.icons.map(icon => icon.file.basename);
+  const duplicateIcons = reportIconCodes.filter(
+    (title, index, self) => self.indexOf(title) !== index,
+  );
+  const duplicatesCount = duplicateIcons.length;
+  return { duplicateIcons, duplicatesCount };
+};
+
+const { duplicateIcons, duplicatesCount } = checkIconCodesDuplicates();
 
 export const StatusBlock: React.FC = () => (
   <div className="status">
@@ -21,13 +31,15 @@ export const StatusBlock: React.FC = () => (
     <br />
     <strong>Missing SVG:</strong> {report.noSVG.length}
     <br />
+    <strong>Duplicates:</strong> {duplicatesCount}
+    <br />
     <strong>Last updated:</strong> {new Date(report.created).toString()}
   </div>
 );
 
 export const IconsBlock: React.FC = () => (
   <section>
-    <h2>Successfull</h2>
+    <h2>Successful</h2>
     <div className="icons">
       {report.icons.map(icon => renderImage(icon.file.name, icon.file.basename))}
     </div>
@@ -98,7 +110,7 @@ export const NoSVGBlock: React.FC = () => {
 
 function renderImage(name: string, baseName: string) {
   return (
-    <div key={name} className="icon">
+    <div key={name} className="icon" title={`${baseName}`}>
       <img
         loading="lazy"
         src={`/post-icons/${name}`}
@@ -118,3 +130,13 @@ function renderImage(name: string, baseName: string) {
     </div>
   );
 }
+
+export const DuplicatesBlock: React.FC = () => {
+  return (
+    <section>
+      <h2>Duplicate Icons</h2>
+      <p>There are {duplicatesCount} duplicate icons within the SVG icon set.</p>
+      <div className="icons">{duplicateIcons.map(icon => renderImage(`${icon}.svg`, icon))}</div>
+    </section>
+  );
+};

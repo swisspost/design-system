@@ -2,7 +2,7 @@
 @use 'sass:meta';
 @use '../functions/breakpoint';
 
-$offset: 0.01;
+$offset: 0.02;
 
 /**
   Creates a min-width breakpoint with the given value
@@ -51,5 +51,27 @@ $offset: 0.01;
 
   @media screen and (min-width: $min-size) and (max-width: ($max-size - $offset)) {
     @content;
+  }
+}
+
+/**
+  Creates a breakpoint with only the given value
+  @param $size A key for the breakpoint to target
+*/
+@mixin only($size) {
+  @if (meta.type-of($size) == 'string') {
+    $min-size: breakpoint.min-width($size);
+    $next: breakpoint.next($size);
+    $max-size: breakpoint.min-width($next);
+
+    @if $max-size != null {
+      @media screen and (min-width: $min-size) and (max-width: ($max-size - $offset)) {
+        @content;
+      }
+    } @else if $max-size == null {
+      @media screen and (min-width: $min-size) {
+        @content;
+      }
+    }
   }
 }

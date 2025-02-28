@@ -7,10 +7,12 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
+import { DEVICE_SIZE } from "./components/post-header/post-header";
 import { SwitchVariant } from "./components/post-language-switch/switch-variants";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
+export { DEVICE_SIZE } from "./components/post-header/post-header";
 export { SwitchVariant } from "./components/post-language-switch/switch-variants";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
@@ -194,7 +196,7 @@ export namespace Components {
         /**
           * Toggles the mobile navigation.
          */
-        "toggleMobileMenu": () => Promise<void>;
+        "toggleMobileMenu": (force?: boolean) => Promise<void>;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -251,7 +253,7 @@ export namespace Components {
          */
         "url": string;
         /**
-          * The variant of the post-language-switch parent (dynamically set by the parent)
+          * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
          */
         "variant"?: SwitchVariant | null;
     }
@@ -265,9 +267,11 @@ export namespace Components {
          */
         "description": string;
         /**
-          * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
+          * Whether the component is rendered as a list or a menu
          */
         "variant": SwitchVariant;
+    }
+    interface PostLinkarea {
     }
     interface PostList {
         /**
@@ -291,14 +295,21 @@ export namespace Components {
     }
     interface PostMegadropdown {
         /**
-          * Displays the popover dropdown
-          * @param target - The HTML element relative to which the popover dropdown should be displayed.
+          * Sets focus to the first focusable element within the component.
          */
-        "show": (target: HTMLElement) => Promise<void>;
+        "focusFirst": () => Promise<void>;
+        /**
+          * Hides the dropdown with an animation.
+         */
+        "hide": (focusParent?: boolean) => Promise<void>;
+        /**
+          * Displays the dropdown.
+         */
+        "show": () => Promise<void>;
         /**
           * Toggles the dropdown visibility based on its current state.
          */
-        "toggle": (target: HTMLElement) => Promise<void>;
+        "toggle": () => Promise<void>;
     }
     interface PostMegadropdownTrigger {
         /**
@@ -364,7 +375,7 @@ export namespace Components {
     }
     interface PostPopovercontainer {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
         /**
@@ -376,9 +387,17 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
+          * Whether or not the popover should close when user clicks outside of it
+         */
+        "manualClose": boolean;
+        /**
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
+        /**
+          * Enables a safespace through which the cursor can be moved without the popover being disabled
+         */
+        "safeSpace"?: 'triangle' | 'trapezoid';
         /**
           * Programmatically display the tooltip
           * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
@@ -494,13 +513,13 @@ export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
 }
+export interface PostHeaderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostHeaderElement;
+}
 export interface PostLanguageOptionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostLanguageOptionElement;
-}
-export interface PostMainnavigationCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLPostMainnavigationElement;
 }
 export interface PostMegadropdownCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -632,7 +651,18 @@ declare global {
         prototype: HTMLPostFooterElement;
         new (): HTMLPostFooterElement;
     };
+    interface HTMLPostHeaderElementEventMap {
+        "postUpdateDevice": DEVICE_SIZE;
+    }
     interface HTMLPostHeaderElement extends Components.PostHeader, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostHeaderElementEventMap>(type: K, listener: (this: HTMLPostHeaderElement, ev: PostHeaderCustomEvent<HTMLPostHeaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostHeaderElementEventMap>(type: K, listener: (this: HTMLPostHeaderElement, ev: PostHeaderCustomEvent<HTMLPostHeaderElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostHeaderElement: {
         prototype: HTMLPostHeaderElement;
@@ -649,6 +679,7 @@ declare global {
     };
     interface HTMLPostLanguageOptionElementEventMap {
         "postChange": string;
+        "postLanguageOptionInitiallyActive": string;
     }
     interface HTMLPostLanguageOptionElement extends Components.PostLanguageOption, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostLanguageOptionElementEventMap>(type: K, listener: (this: HTMLPostLanguageOptionElement, ev: PostLanguageOptionCustomEvent<HTMLPostLanguageOptionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -670,6 +701,12 @@ declare global {
         prototype: HTMLPostLanguageSwitchElement;
         new (): HTMLPostLanguageSwitchElement;
     };
+    interface HTMLPostLinkareaElement extends Components.PostLinkarea, HTMLStencilElement {
+    }
+    var HTMLPostLinkareaElement: {
+        prototype: HTMLPostLinkareaElement;
+        new (): HTMLPostLinkareaElement;
+    };
     interface HTMLPostListElement extends Components.PostList, HTMLStencilElement {
     }
     var HTMLPostListElement: {
@@ -688,25 +725,14 @@ declare global {
         prototype: HTMLPostLogoElement;
         new (): HTMLPostLogoElement;
     };
-    interface HTMLPostMainnavigationElementEventMap {
-        "postToggle": any;
-    }
     interface HTMLPostMainnavigationElement extends Components.PostMainnavigation, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostMainnavigationElementEventMap>(type: K, listener: (this: HTMLPostMainnavigationElement, ev: PostMainnavigationCustomEvent<HTMLPostMainnavigationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostMainnavigationElementEventMap>(type: K, listener: (this: HTMLPostMainnavigationElement, ev: PostMainnavigationCustomEvent<HTMLPostMainnavigationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostMainnavigationElement: {
         prototype: HTMLPostMainnavigationElement;
         new (): HTMLPostMainnavigationElement;
     };
     interface HTMLPostMegadropdownElementEventMap {
-        "postToggleMegadropdown": boolean;
+        "postToggleMegadropdown": { isVisible: boolean; focusParent?: boolean };
     }
     interface HTMLPostMegadropdownElement extends Components.PostMegadropdown, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostMegadropdownElementEventMap>(type: K, listener: (this: HTMLPostMegadropdownElement, ev: PostMegadropdownCustomEvent<HTMLPostMegadropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -811,7 +837,7 @@ declare global {
         new (): HTMLPostTabPanelElement;
     };
     interface HTMLPostTabsElementEventMap {
-        "postChange": HTMLPostTabPanelElement['name'];
+        "postChange": string;
     }
     interface HTMLPostTabsElement extends Components.PostTabs, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostTabsElementEventMap>(type: K, listener: (this: HTMLPostTabsElement, ev: PostTabsCustomEvent<HTMLPostTabsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -862,6 +888,7 @@ declare global {
         "post-icon": HTMLPostIconElement;
         "post-language-option": HTMLPostLanguageOptionElement;
         "post-language-switch": HTMLPostLanguageSwitchElement;
+        "post-linkarea": HTMLPostLinkareaElement;
         "post-list": HTMLPostListElement;
         "post-list-item": HTMLPostListItemElement;
         "post-logo": HTMLPostLogoElement;
@@ -1040,6 +1067,10 @@ declare namespace LocalJSX {
         "label": string;
     }
     interface PostHeader {
+        /**
+          * An event emitted when the device has changed
+         */
+        "onPostUpdateDevice"?: (event: PostHeaderCustomEvent<DEVICE_SIZE>) => void;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -1092,11 +1123,15 @@ declare namespace LocalJSX {
          */
         "onPostChange"?: (event: PostLanguageOptionCustomEvent<string>) => void;
         /**
+          * An event emitted when the language option is initially active. The payload is the ISO 639 code of the language.
+         */
+        "onPostLanguageOptionInitiallyActive"?: (event: PostLanguageOptionCustomEvent<string>) => void;
+        /**
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
         "url"?: string;
         /**
-          * The variant of the post-language-switch parent (dynamically set by the parent)
+          * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
          */
         "variant"?: SwitchVariant | null;
     }
@@ -1110,9 +1145,11 @@ declare namespace LocalJSX {
          */
         "description"?: string;
         /**
-          * Variant that determines the rendering of the language switch either as a list (used on mobile in the header) or a dropdown (used on desktop in the header)
+          * Whether the component is rendered as a list or a menu
          */
         "variant"?: SwitchVariant;
+    }
+    interface PostLinkarea {
     }
     interface PostList {
         /**
@@ -1133,16 +1170,12 @@ declare namespace LocalJSX {
         "url"?: string | URL;
     }
     interface PostMainnavigation {
-        /**
-          * Gets emitted when a user closes the main navigation on mobile
-         */
-        "onPostToggle"?: (event: PostMainnavigationCustomEvent<any>) => void;
     }
     interface PostMegadropdown {
         /**
-          * Emits when the dropdown is shown or hidden. The event payload is a boolean: `true` when the dropdown was opened, `false` when it was closed.
+          * Emits when the dropdown is shown or hidden. The event payload is an object. `isVisible` is true when the dropdown gets opened and false when it gets closed `focusParent` determines whether after the closing of the mega dropdown, the focus should go back to the trigger parent or naturally go to the next focusable element in the page
          */
-        "onPostToggleMegadropdown"?: (event: PostMegadropdownCustomEvent<boolean>) => void;
+        "onPostToggleMegadropdown"?: (event: PostMegadropdownCustomEvent<{ isVisible: boolean; focusParent?: boolean }>) => void;
     }
     interface PostMegadropdownTrigger {
         /**
@@ -1184,13 +1217,17 @@ declare namespace LocalJSX {
     }
     interface PostPopovercontainer {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
         /**
           * Gap between the edge of the page and the popover
          */
         "edgeGap"?: number;
+        /**
+          * Whether or not the popover should close when user clicks outside of it
+         */
+        "manualClose"?: boolean;
         /**
           * Fires whenever the popover gets shown or hidden, passing the new state in event.details as a boolean
          */
@@ -1199,6 +1236,10 @@ declare namespace LocalJSX {
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
+        /**
+          * Enables a safespace through which the cursor can be moved without the popover being disabled
+         */
+        "safeSpace"?: 'triangle' | 'trapezoid';
     }
     interface PostRating {
         /**
@@ -1246,7 +1287,7 @@ declare namespace LocalJSX {
         /**
           * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly shown panel.
          */
-        "onPostChange"?: (event: PostTabsCustomEvent<HTMLPostTabPanelElement['name']>) => void;
+        "onPostChange"?: (event: PostTabsCustomEvent<string>) => void;
     }
     interface PostTag {
         /**
@@ -1299,6 +1340,7 @@ declare namespace LocalJSX {
         "post-icon": PostIcon;
         "post-language-option": PostLanguageOption;
         "post-language-switch": PostLanguageSwitch;
+        "post-linkarea": PostLinkarea;
         "post-list": PostList;
         "post-list-item": PostListItem;
         "post-logo": PostLogo;
@@ -1345,6 +1387,7 @@ declare module "@stencil/core" {
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
             "post-language-option": LocalJSX.PostLanguageOption & JSXBase.HTMLAttributes<HTMLPostLanguageOptionElement>;
             "post-language-switch": LocalJSX.PostLanguageSwitch & JSXBase.HTMLAttributes<HTMLPostLanguageSwitchElement>;
+            "post-linkarea": LocalJSX.PostLinkarea & JSXBase.HTMLAttributes<HTMLPostLinkareaElement>;
             "post-list": LocalJSX.PostList & JSXBase.HTMLAttributes<HTMLPostListElement>;
             "post-list-item": LocalJSX.PostListItem & JSXBase.HTMLAttributes<HTMLPostListItemElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;

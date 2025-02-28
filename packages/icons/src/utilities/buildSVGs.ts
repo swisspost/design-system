@@ -11,15 +11,14 @@ import { Businessfield, Type, TypeFilter, VariantMIME } from '../models/censhare
 import {
   SOURCE_PATH,
   OUTPUT_PATH,
-  ICON_V2_SIZES,
   ID_PREFIX,
   ID_SEPERATOR,
   ID_UNWANTED_PARTS,
   ID_SYMBOL_PREFIX,
   ID_SYMBOL_SEPERATOR,
-  ICON_SIZE_VAR_NAME,
-  ICON_V1_TEMPLATE,
-  ICON_V2_TEMPLATE,
+  POST_ICON_TEMPLATE,
+  UI_ICON_TEMPLATE,
+  UI_ICON_SIZES,
 } from '../constants';
 
 type File = {
@@ -79,7 +78,7 @@ function getFileGroups(): Record<string, File[]> {
         .split(/([^a-zA-Z0-9])/g)
         .filter(part => !/^[^a-zA-Z0-9]$/.test(part));
       const isMultiPartName = nameParts.length > 1;
-      const isSizeIndicator = ICON_V2_SIZES.includes(Number(nameParts[nameParts.length - 1]));
+      const isSizeIndicator = UI_ICON_SIZES.includes(Number(nameParts[nameParts.length - 1]));
 
       const id = getGroupId(nameParts, isMultiPartName, isSizeIndicator);
       const group = groups[id as keyof typeof groups] ?? [];
@@ -118,7 +117,7 @@ function createFiles(groupedFilePaths: Record<string, File[]>) {
     }));
 
     const symbolId = isSingleFile ? [ID_PREFIX, id].join(ID_SEPERATOR) : ID_SYMBOL_PREFIX;
-    const template = isSingleFile ? ICON_V1_TEMPLATE : ICON_V2_TEMPLATE;
+    const template = isSingleFile ? POST_ICON_TEMPLATE : UI_ICON_TEMPLATE;
 
     const symbols = svgs.map(({ size, svg }) => getSymbol(svg, symbolId, size));
     const uses = svgs.map(({ size }) => getUse(symbolId, size));
@@ -147,7 +146,7 @@ function createFiles(groupedFilePaths: Record<string, File[]>) {
     const useElement = parse('<use/>').querySelector('use') as HTMLElement;
 
     if (size !== null)
-      useElement.setAttribute('style', `display: var(--${ICON_SIZE_VAR_NAME}-${size}, none)`);
+      useElement.setAttribute('style', `display: var(--${ID_SYMBOL_PREFIX}${size}, none)`);
     useElement.setAttribute('href', `#${getSymbolId(symbolId, size)}`);
 
     return useElement.toString();
@@ -159,7 +158,7 @@ function createFiles(groupedFilePaths: Record<string, File[]>) {
 
   function createSvg(id: string, template: string, symbols: string[], uses: string[]): string {
     const file = template
-      .replace('{id}', `${ID_PREFIX}-${id}`)
+      .replaceAll('{id}', `${ID_PREFIX}-${id}`)
       .replace('{symbols}', symbols.join(''))
       .replace('{uses}', uses.join(''));
 

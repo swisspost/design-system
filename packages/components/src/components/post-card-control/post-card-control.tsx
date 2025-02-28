@@ -144,20 +144,13 @@ export class PostCardControl {
   }
 
   @Watch('label')
-  validateControlLabel(label = this.label) {
-    checkNonEmpty(
-      label,
-      'The "post-card-control" element requires its "label" property to be set.',
-    );
+  validateControlLabel() {
+    checkNonEmpty(this, 'label');
   }
 
   @Watch('type')
-  validateControlType(type = this.type) {
-    checkOneOf(
-      type,
-      ['checkbox', 'radio'],
-      'The "post-card-control" element requires its "type" prop to be one of either "checkbox" or "radio".',
-    );
+  validateControlType() {
+    checkOneOf(this, 'type', ['checkbox', 'radio']);
   }
 
   @Watch('checked')
@@ -413,8 +406,6 @@ export class PostCardControl {
     this.validateControlType();
   }
 
-  // https://stenciljs.com/docs/form-associated
-  /* eslint-disable @stencil-community/own-methods-must-be-private */
   formAssociatedCallback() {
     this.controlSetChecked(this.checked);
   }
@@ -430,5 +421,4 @@ export class PostCardControl {
   formResetCallback() {
     this.reset();
   }
-  /* eslint-enable @stencil-community/own-methods-must-be-private */
 }

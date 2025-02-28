@@ -13,22 +13,22 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
   ],
 })
 export class PostCardControlCheckboxValueAccessorDirective implements ControlValueAccessor {
-  private onChange: (value: any) => void = () => {
+  private onChange: (value: unknown) => void = () => {
     /**/
   };
   private onTouched: () => void = () => {
     /**/
   };
-  protected lastValue: any;
+  protected lastValue: unknown;
 
   constructor(protected el: ElementRef) {}
 
-  writeValue(value: any) {
+  writeValue(value: unknown) {
     this.el.nativeElement.checked = this.lastValue = value === null ? false : value;
   }
 
   @HostListener('postChange', ['$event.detail.state'])
-  handleChangeEvent(value: any) {
+  handleChangeEvent(value: unknown) {
     this.onChange(value);
   }
 
@@ -37,7 +37,7 @@ export class PostCardControlCheckboxValueAccessorDirective implements ControlVal
     this.onTouched();
   }
 
-  registerOnChange(fn: (value: any) => void) {
+  registerOnChange(fn: (value: unknown) => void) {
     this.onChange = fn;
   }
   registerOnTouched(fn: () => void) {

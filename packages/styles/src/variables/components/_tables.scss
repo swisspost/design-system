@@ -15,7 +15,7 @@ $table-cell-padding-x: tokens.get('utility-gap-4') !default;
 $table-cell-padding-y-sm: tokens.get('utility-gap-8') !default;
 $table-cell-padding-x-sm: tokens.get('utility-gap-4') !default;
 $table-cell-vertical-align: top !default;
-$table-color: var(--post-contrast-color) !default;
+$table-color: color.$black !default;
 $table-bg: transparent !default;
 $table-accent-bg: transparent !default;
 $table-th-font-weight: type.$font-weight-bold !default;
@@ -34,7 +34,7 @@ $table-border-color: color.$gray-10 !default;
 $table-striped-order: odd !default;
 $table-striped-columns-order: even !default;
 $table-group-separator-color: color.$gray-10 !default;
-$table-caption-color: var(--post-gray-60) !default;
+$table-caption-color: color.$gray-60 !default;
 $table-bg-scale: -80% !default;
 
 // Custom variables

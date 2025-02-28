@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as FloatStories from './float.stories';
 
 <Meta of={FloatStories} />
@@ -33,3 +33,11 @@ import * as FloatStories from './float.stories';
 <div className="hide-col-default">
   <Controls of={FloatStories.Float} />
 </div>
+
+## Clearfix
+
+The helper class `.clearfix` can be used alongside float elements.
+
+In the following example, the `.clearfix` class is added to the div wrapping the first two buttons, which makes the div wrap the buttons completely. The second line only contains float elements and has no clearfix, therefore the layout is broken.
+
+<Canvas sourceState="shown" of={FloatStories.Clearfix} />

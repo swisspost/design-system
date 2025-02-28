@@ -1,5 +1,4 @@
 import { Meta, Source } from '@storybook/blocks';
-import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
 import NgbComponentDemoLink from '@/shared/nb-bootstrap/ngb-component-demo-link.mdx';
 import NgbComponentBanner from '@/shared/nb-bootstrap/ngb-component-banner.mdx';
 import NgbComponentImport from '@/shared/nb-bootstrap/ngb-component-import.mdx';
@@ -52,14 +51,14 @@ A typeahead example that gets values from a static
   <li>limits to 10 results</li>
 </ul>
 
-<PostTabs>
-  <PostTabHeader panel="typeaheadSampleBasicHtml">template.html</PostTabHeader>
-  <PostTabPanel name="typeaheadSampleBasicHtml">
+<post-tabs>
+  <post-tab-header panel="typeaheadSampleBasicHtml">template.html</post-tab-header>
+  <post-tab-panel name="typeaheadSampleBasicHtml">
     <Source code={typeaheadSampleBasicHtml} language="html"/>
-  </PostTabPanel>
+  </post-tab-panel>
 
-  <PostTabHeader panel="typeaheadSampleBasicAngular">component.ts</PostTabHeader>
-  <PostTabPanel name="typeaheadSampleBasicAngular">
+  <post-tab-header panel="typeaheadSampleBasicAngular">component.ts</post-tab-header>
+  <post-tab-panel name="typeaheadSampleBasicAngular">
     <Source code={typeaheadSampleBasicAngular} language="ts"/>
-  </PostTabPanel>
-</PostTabs>
+  </post-tab-panel>
+</post-tabs>

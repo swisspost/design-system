@@ -5,6 +5,6 @@ export const HighlightedText = (props: { text: string; highlightClass?: string }
   const highlightedString = props.text
     .replace(/[{(]/g, `<span class="${highlightClass}">`)
     .replace(/[})]/g, '</span>')
-    .replace(/[\[\]]/g, '');
+    .replace(/[[\]]/g, '');
   return <span innerHTML={highlightedString}></span>;
 };

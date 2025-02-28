@@ -1,0 +1,9 @@
+#storybook-docs {
+  .header-story-wrapper {
+    transform: translate(0);
+
+    .virtual-body {
+      max-height: 600px;
+    }
+  }
+}

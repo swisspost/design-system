@@ -1,6 +1,6 @@
 @use '@swisspost/design-system-styles/core' as post;
 
-@include post.media-breakpoint-between(sm, lg) {
+@include post.between(sm, lg) {
   .custom-class {
     display: block;
   }

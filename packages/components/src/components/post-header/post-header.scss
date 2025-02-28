@@ -1,5 +1,9 @@
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/variables/animation';
+@use '@swisspost/design-system-styles/variables/elevation';
+@use '@swisspost/design-system-styles/variables/color';
 
 *,
 ::before,
@@ -8,27 +12,17 @@
 }
 
 :host {
-  --global-header-height: 72px;
-  --global-header-minimal-height: 24px;
-  --main-header-height: 56px;
-  --main-header-min-height: 56px;
-  --header-height: calc(var(--global-header-height) + var(--main-header-height));
+  z-index: 1020;
+  position: relative;
+}
 
-  @include media.min(lg) {
-    display: block;
-    position: sticky;
-    inset-inline: 0;
-    inset-block-start: calc(
-      -1 * (var(--global-header-height) + var(--main-header-height) -
-            var(--global-header-minimal-height))
-    );
-    box-shadow: var(--post-core-elevation-3);
+:host(:not(:has([slot='title']))) {
+  .local-header {
+    padding-block-start: 0;
   }
 
-  @include media.max(lg) {
-    --global-header-height: 64px;
-    --main-header-height: 48px;
-    --main-header-min-height: 48px;
+  .local-sub {
+    display: none;
   }
 }
 
@@ -44,30 +38,28 @@
   background-color: #ffcc00;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   position: sticky;
-  padding-inline: var(--post-core-dimension-4);
+  padding-inline: 4px;
   height: var(--global-header-height);
-  z-index: 1;
 
   @include media.max(lg) {
+    z-index: 3;
     inset-block-start: 0;
   }
 
   @include media.min(lg) {
-    padding-inline-end: var(--post-core-dimension-12);
-    top: calc((var(--global-header-height) - var(--global-header-minimal-height)) * -1);
+    z-index: 5;
+    padding-inline-end: 12px;
+    inset-block-start: calc(
+      (var(--global-header-height) - var(--global-header-reduced-height)) * -1
+    );
   }
-}
-
-slot[name='post-logo'] {
-  align-self: flex-end;
 }
 
 .global-sub {
   display: flex;
   align-items: center;
-  gap: var(--post-core-dimension-24);
+  gap: 24px;
 }
 
 .align-end {
@@ -78,7 +70,7 @@ slot[name='post-logo'] {
   flex: 1 0 auto;
   height: var(--global-header-height);
   width: var(--global-header-height);
-  min-height: var(--global-header-minimal-height);
+  min-height: var(--global-header-reduced-height);
   align-self: flex-end;
 
   @include media.min(lg) {
@@ -87,7 +79,7 @@ slot[name='post-logo'] {
 }
 
 ::slotted(ul) {
-  margin-block: 0;
+  margin-block: 0 !important;
   list-style: none;
   display: flex;
   padding-left: 0;
@@ -95,49 +87,67 @@ slot[name='post-logo'] {
   flex-shrink: 0 !important;
 }
 
-.title-header {
+.local-header {
   display: flex;
+  position: sticky;
+  flex-wrap: wrap;
   align-items: center;
-  gap: var(--post-core-dimension-8);
-  min-height: var(--main-header-min-height);
   justify-content: space-between;
-  background: var(--post-core-color-brand-white);
+  gap: 4px;
+  min-height: var(--local-header-min-height);
+  background: color.$white;
+  transition: box-shadow 0.2s ease-in-out;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: #e1e0dc;
+    bottom: -1px;
+    z-index: 1;
+
+    @include utilities.high-contrast-mode() {
+      background-color: Highlight;
+    }
+  }
 
   @include media.min(lg) {
-    padding: var(--post-core-dimension-18) var(--post-core-dimension-16)
-      var(--post-core-dimension-4) var(--post-core-dimension-12);
+    z-index: 3;
+    inset-block-start: calc(
+      -1 * (var(--local-header-height) - var(--main-navigation-height)) + var(--global-header-reduced-height)
+    );
+    padding-block-start: 18px;
+    box-shadow: elevation.$elevation-300;
   }
 
   @include media.max(lg) {
-    position: sticky;
-    z-index: 1;
+    z-index: 2;
     inset-block-start: var(--global-header-height);
-    padding-inline: var(--post-core-dimension-8) var(--post-core-dimension-16);
-    padding-block: var(--post-core-dimension-9);
+    padding-block: 12px;
     flex-wrap: wrap;
+    gap: 16px;
 
-    &.title-header-mobile-extended {
-      border-bottom: 1px solid var(--post-core-color-sandgrey-012);
+    &.local-header-mobile-extended {
+      &::after {
+        bottom: 0;
+      }
+    }
+
+    &:not(.local-header-mobile-extended) {
+      box-shadow: elevation.$elevation-300;
     }
   }
 }
 
-:host(:not(:has([slot='title']))) .title-header {
-  display: none;
+.local-sub {
+  margin-inline-end: 16px;
 }
 
-::slotted(h1) {
+::slotted(.list-inline) {
   margin: 0 !important;
-  flex-shrink: 10;
-
-  @include media.min(lg) {
-    font-size: var(--post-core-font-size-28) !important;
-  }
-
-  @include media.max(lg) {
-    font-size: var(--post-core-font-size-20) !important;
-    max-width: calc(100vw - var(--post-core-dimension-8) - var(--post-core-dimension-16));
-  }
+  z-index: 3 !important;
+  position: relative !important;
 }
 
 .mobile-toggle {
@@ -147,12 +157,19 @@ slot[name='post-logo'] {
 }
 
 .navigation {
-  background: var(--post-core-color-brand-white);
+  width: 100%;
 
   @include media.min(lg) {
-    position: sticky;
-    z-index: 1;
-    inset-block-start: var(--global-header-minimal-height);
+    inset-block-start: var(--global-header-reduced-height);
+
+    &::before {
+      display: block;
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: color.$white;
+    }
   }
 }
 
@@ -160,33 +177,56 @@ slot[name='post-logo'] {
 @include media.max(lg) {
   .navigation {
     position: fixed;
+    z-index: 1;
     inset-inline: 0;
-    inset-block-end: calc(100vh - var(--header-height));
-    box-shadow: var(--post-core-elevation-3);
-    min-height: var(--post-core-dimension-10); // needed for the box-shadow to always show
-    max-height: calc(100vh - var(--header-height));
-    overflow: auto;
+    inset-block-start: var(--header-height);
+    overflow: hidden;
   }
 
   ::slotted(post-mainnavigation),
   .navigation-footer {
     display: none;
     flex-direction: column;
-    padding-block: var(--post-core-dimension-16) var(--post-core-dimension-24);
-    padding-inline: var(--post-core-dimension-32);
+    padding-block: 16px 24px;
+    padding-inline: 32px;
 
     .navigation.extended & {
       display: flex;
     }
   }
 
+  .navigation.extended {
+    > div {
+      display: flex;
+      flex-direction: column;
+      height: calc(100dvh - var(--header-height));
+    }
+
+    &.scroll-y > div {
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    ::slotted(post-mainnavigation) {
+      flex-grow: 1 !important;
+    }
+  }
+
   ::slotted(post-mainnavigation) {
-    background-color: var(--post-core-color-sandgrey-002);
-    gap: var(--post-core-dimension-32);
+    background-color: #fafafa;
+    gap: 32px;
   }
 
   .navigation-footer {
-    background-color: var(--post-core-color-sandgrey-006);
-    gap: var(--post-core-dimension-24);
+    background-color: #f0efed;
+    gap: 24px;
+  }
+}
+
+// only for mobile
+@include media.max(sm) {
+  ::slotted(post-mainnavigation),
+  .navigation-footer {
+    padding-inline: 16px;
   }
 }

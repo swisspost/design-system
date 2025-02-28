@@ -24,7 +24,7 @@
       display: block;
       content: '';
       box-sizing: content-box;
-      position: absolute;
+      float: inline-start;
       margin-block-start: calc(
         (#{tokens.get('body-line-height', elements.$post-body)} * 0.5em) -
           (#{tokens.get('list-bullet-item-icon-bullet-size', elements.$post-listbullet)} * 0.5)

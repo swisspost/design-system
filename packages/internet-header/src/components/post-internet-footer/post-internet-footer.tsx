@@ -26,7 +26,7 @@ export class PostInternetFooter {
      * show the live support button.
      */
     if (!this.liveSupportEnabled) {
-      let intervalId: number;
+      let intervalId: number | undefined = undefined;
       let runs = 0;
 
       const checker = () => {
@@ -123,7 +123,7 @@ export class PostInternetFooter {
               ))}
           </div>
           <div class="copyright container">
-            <span class="bold">{footerConfig.entry.text}</span>
+            <span>{footerConfig.entry.text}</span>
             <ul class="no-list footer-meta-links">
               {footerConfig.links !== undefined
                 ? footerConfig.links.map(link => (

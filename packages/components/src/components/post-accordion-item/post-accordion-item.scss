@@ -1,5 +1,4 @@
 @use '@swisspost/design-system-styles/mixins/button' as button-mx;
-@use '@swisspost/design-system-styles/mixins/focus' as focus-mx;
 @use '@swisspost/design-system-styles/mixins/icons' as icon-mx;
 @use '@swisspost/design-system-styles/mixins/utilities' as utility-mx;
 
@@ -11,7 +10,7 @@
 
 tokens.$default-map: components.$post-accordion;
 
-:host {
+.accordion-item {
   &::after {
     display: block;
     content: '';
@@ -19,6 +18,7 @@ tokens.$default-map: components.$post-accordion;
     border-bottom: tokens.get('accordion-border-bottom-width')
       tokens.get('accordion-border-bottom-style') tokens.get('accordion-enabled-border');
   }
+
   &:has(.accordion-button:hover)::after {
     border-color: tokens.get('accordion-hover-border');
     @include utility-mx.high-contrast-mode() {

@@ -27,4 +27,4 @@ jobs:
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
       - name: Lint packages
-        run: pnpm -r lint
+        run: pnpm lint

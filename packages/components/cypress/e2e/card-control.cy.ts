@@ -59,7 +59,7 @@ describe('Card-Control', () => {
         .invoke('getCalls')
         .then(calls => {
           expect(calls[0].args[0].message).to.eq(
-            'The "post-card-control" element requires its "label" property to be set.',
+            'The prop `label` of the `post-card-control` component is required.',
           );
         });
     });
@@ -93,7 +93,7 @@ describe('Card-Control', () => {
         .invoke('getCalls')
         .then(calls => {
           expect(calls[0].args[0].message).to.eq(
-            'The "post-card-control" element requires its "type" prop to be one of either "checkbox" or "radio".',
+            'The prop `type` of the `post-card-control` component must be one of the following values: checkbox, radio.',
           );
         });
     });
@@ -156,7 +156,7 @@ describe('Card-Control', () => {
         .invoke('attr', 'icon', '1000')
         .find('.card-control--icon slot[name="icon"] post-icon')
         .should('exist')
-        .find('use[href*="/1000.svg"]')
+        .find('[style*="/1000.svg"]')
         .should('exist');
       cy.get('@card-control')
         .invoke('removeAttr', 'icon')

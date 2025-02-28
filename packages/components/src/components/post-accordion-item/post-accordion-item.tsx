@@ -38,9 +38,10 @@ export class PostAccordionItem {
   @Prop() readonly headingLevel?: HeadingLevel;
 
   @Watch('headingLevel')
-  validateHeadingLevel(newValue = this.headingLevel) {
+  validateHeadingLevel() {
     checkEmptyOrOneOf(
-      newValue,
+      this,
+      'headingLevel',
       HEADING_LEVELS,
       'The `heading-level` property of the `post-accordion-item` must be a number between 1 and 6.',
     );
@@ -82,7 +83,7 @@ export class PostAccordionItem {
   }
 
   render() {
-    const headingLevel = this.host.closest('post-accorddion')?.getAttribute('heading-level');
+    const headingLevel = this.host.closest('post-accordion')?.getAttribute('heading-level');
     const HeadingTag = `h${headingLevel ?? this.headingLevel ?? 2}`;
 
     return (

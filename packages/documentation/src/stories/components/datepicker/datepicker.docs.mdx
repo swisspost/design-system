@@ -1,5 +1,4 @@
 import { Meta, Source } from '@storybook/blocks';
-import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 import NgbComponentDemoLink from '@/shared/nb-bootstrap/ngb-component-demo-link.mdx';
 import NgbComponentBanner from '@/shared/nb-bootstrap/ngb-component-banner.mdx';
@@ -85,21 +84,22 @@ The formatter below transforms the NgbDateStruct into the usual Swiss format str
 
 ## Examples
 
-<PostTabs>
-  <PostTabHeader panel="floating-label">Floating Label Input</PostTabHeader>
-  <PostTabPanel name="floating-label">
+<post-tabs>
+  <post-tab-header panel="floating-label">Floating Label Input</post-tab-header>
+  <post-tab-panel name="floating-label">
     <Source code={datepickerFloatingLabel} language="html"/>
-  </PostTabPanel>
+  </post-tab-panel>
 
 {' '}
 
-<PostTabHeader panel="navigation-arrows">Navigation Arrows Only</PostTabHeader>
-<PostTabPanel name="navigation-arrows">
-  <Source code={datepickerNavigationArrows} language="html" />
-</PostTabPanel>
+<post-tab-header panel="navigation-arrows">Navigation Arrows Only</post-tab-header>
+<post-tab-panel name="navigation-arrows">
 
-  <PostTabHeader panel="validation">Invalid Feedback</PostTabHeader>
-  <PostTabPanel name="validation">
-    <Source code={datepickerValidation} language="html"/>
-  </PostTabPanel>
-</PostTabs>
+  <Source code={datepickerNavigationArrows} language="html" />
+</post-tab-panel>
+
+<post-tab-header panel="validation">Invalid Feedback</post-tab-header>
+<post-tab-panel name="validation">
+<Source code={datepickerValidation} language="html"/>
+</post-tab-panel>
+</post-tabs>

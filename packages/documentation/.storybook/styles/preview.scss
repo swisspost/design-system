@@ -11,39 +11,40 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
 #storybook-root,
 #storybook-docs {
-  background-color: white;
-
   .sbdocs-content .container >,
   .sbdocs-content .container > post-tabs > post-tab-panel >,
   .sbdocs-content .container > migration-global-state {
-    // Target content headings only
-    h1 {
-      margin-block: 5rem 1rem;
+    :not(#root-inner) {
+      // Target content headings only
+      h1 {
+        margin-block: 5rem 1rem;
 
-      &:first-of-type {
-        margin-block-start: 0;
+        &:first-of-type {
+          margin-block-start: 0;
+        }
+      }
+
+      h2 {
+        margin-block: 3rem 1rem;
+      }
+
+      h3 {
+        margin-block: 2.5rem 1rem;
+      }
+
+      h4 {
+        margin-block: 2rem 1rem;
+      }
+
+      h5 {
+        margin-block: 1.5rem 1rem;
+      }
+
+      h6 {
+        margin-block: 1rem;
       }
     }
 
-    h2 {
-      margin-block: 3rem 1rem;
-    }
-
-    h3 {
-      margin-block: 2.5rem 1rem;
-    }
-
-    h4 {
-      margin-block: 2rem 1rem;
-    }
-
-    h5 {
-      margin-block: 1.5rem 1rem;
-    }
-
-    h6 {
-      margin-block: 1rem;
-    }
     .table,
     .table-responsive {
       margin-block: 1.5rem 1rem;
@@ -124,8 +125,8 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
       display: block;
       margin-top: 0.25rem;
       padding: 1rem;
-      background-color: var(--post-contrast-color);
-      color: var(--post-contrast-color-inverted);
+      background-color: post.$black;
+      color: post.$white;
     }
   }
 
@@ -198,6 +199,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 }
 
 .fake-content {
+  margin-block: 2rem !important;
   position: relative;
   min-height: calc(1.6rem * 8);
   background: repeating-linear-gradient(
@@ -209,7 +211,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
   &::after {
     content: '';
-    background: white;
+    background: var(--post-current-palette-bg);
     width: 33%;
     height: 1.7rem;
     display: block;

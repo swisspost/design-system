@@ -40,6 +40,8 @@ post-footer {
       text-decoration: none;
 
       &:hover {
+        text-decoration: underline;
+
         @include utilities.high-contrast-mode() {
           text-decoration: underline;
         }

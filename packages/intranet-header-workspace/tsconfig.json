@@ -16,18 +16,12 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "ES2022",
-    "module": "es2020",
+    "target": "es2022",
+    "module": "esnext",
     "paths": {
-      "intranet-header": [
-        "dist/intranet-header/intranet-header",
-        "dist/intranet-header"
-      ]
+      "intranet-header": ["dist/intranet-header/intranet-header", "dist/intranet-header"]
     },
-    "lib": [
-      "es2020",
-      "dom"
-    ],
+    "lib": ["es2022", "dom"],
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {

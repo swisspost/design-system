@@ -153,10 +153,10 @@ export class PostInternetBreadcrumbs {
    */
   private setBodyScroll(overlay: IBreadcrumbOverlay) {
     if (this.overlayVisible) {
-      // @ts-ignore
+      // @ts-expect-error first argument should by of type HTMLElement | Element but instead uses a custom interface
       disableBodyScroll(overlay, { reserveScrollBarGap: true });
     } else {
-      // @ts-ignore
+      // @ts-expect-error first argument should by of type HTMLElement | Element but instead uses a custom interface
       enableBodyScroll(overlay);
     }
   }

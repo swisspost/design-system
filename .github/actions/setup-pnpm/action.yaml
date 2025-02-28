@@ -62,5 +62,5 @@ runs:
       shell: bash
       run: |
         echo "Installed versions:"
-        echo "- node: ${{ inputs.node_version || fromJSON(steps.wanted-versions.outputs.result).node }}"
-        echo "- pnpm: ${{ inputs.pnpm_version || fromJSON(steps.wanted-versions.outputs.result).pnpm }}"
+        echo "- node: $(node -v)"
+        echo "- pnpm: $(pnpm -v)"

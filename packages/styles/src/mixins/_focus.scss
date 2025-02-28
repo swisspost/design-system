@@ -1,9 +1,0 @@
-@use '../variables/commons';
-
-@mixin focus-ring {
-  outline: none;
-
-  &:focus-visible {
-    outline: commons.$outline-width solid commons.$outline-color;
-  }
-}

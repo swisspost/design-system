@@ -1,0 +1,5 @@
+@use './../mixins/utilities';
+
+.focus-ring {
+  @include utilities.focus-style;
+}

@@ -1,5 +1,3 @@
-@forward './../variables/options';
-
 @use 'breakpoints';
 @use 'globals';
 @use 'appstore-badge';
@@ -14,7 +12,6 @@
 @use 'card-control';
 @use 'chip';
 @use 'close';
-@use 'elevation';
 @use 'error-container';
 @use 'form-footer';
 @use 'form-range';
@@ -41,13 +38,13 @@
 @use 'product-card';
 @use 'progress';
 @use 'segmented-button';
-@use 'sizing';
 @use 'skiplinks';
 @use 'spinner';
 @use 'stepper';
 @use 'subnavigation';
 @use 'tables';
 @use 'tabs';
+@use 'teaser';
 @use 'text-highlight';
 @use 'timepicker';
 @use 'toast';

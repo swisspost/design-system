@@ -1,18 +1,35 @@
-/* 
+/*
   Initial visibility of the components is set to hidden to prevent 'flickering' effect due to stencil js/scss delay.
 */
 
 :where(
-    post-list,
-    post-list-item,
     post-accordion,
     post-accordion-item,
     post-alert,
+    post-avatar,
     post-back-to-top,
+    post-banner,
+    post-breadcrumb,
+    post-breadcrumb-item,
     post-card-control,
+    post-closebutton,
     post-collapsible,
+    post-collapsible-trigger,
+    post-footer,
+    post-header,
     post-icon,
+    post-language-option,
+    post-language-switch,
+    post-linkarea,
+    post-list,
+    post-list-item,
     post-logo,
+    post-mainnavigation,
+    post-megadropdown,
+    post-megadropdown-trigger,
+    post-menu,
+    post-menu-item,
+    post-menu-trigger,
     post-popover,
     post-popovercontainer,
     post-rating,
@@ -20,6 +37,7 @@
     post-tab-panel,
     post-tabs,
     post-tag,
+    post-togglebutton,
     post-tooltip
   ):not(:defined) {
   visibility: hidden;

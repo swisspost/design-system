@@ -1,6 +1,5 @@
 import { Meta, Source } from '@storybook/blocks';
 import * as PackageStories from './components.stories';
-import { PostTabs, PostTabHeader, PostTabPanel } from '@swisspost/design-system-components-react';
 import SampleCdnBareComponent from './components-cdn-bare-component-all.sample.html?raw';
 import SampleCdnLazyLoadedAll from './components-cdn-lazy-loaded-all.sample.html?raw';
 import SampleCdnLazyLoadedSpecific from './components-cdn-lazy-loaded-specific.sample.html?raw';
@@ -58,18 +57,18 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
   - [jsDelivr](https://www.jsdelivr.com/): replace `{cdnURL}` with [https://cdn.jsdelivr.net/npm/@swisspost/design-system-components](https://cdn.jsdelivr.net/npm/@swisspost/design-system-components).
   - [unpkg](https://unpkg.com/): replace `{cdnURL}` with [https://unpkg.com/@swisspost/design-system-components](https://unpkg.com/@swisspost/design-system-components).
 
-  <PostTabs>
-    <PostTabHeader panel="lazy-loaded">Lazy-Loaded</PostTabHeader>
-    <PostTabPanel name="lazy-loaded">
+  <post-tabs>
+    <post-tab-header panel="lazy-loaded">Lazy-Loaded</post-tab-header>
+    <post-tab-panel name="lazy-loaded">
       Load all components at once
       <Source code={SampleCdnLazyLoadedAll} language="html" />
       Load specific components only
       <Source code={SampleCdnLazyLoadedSpecific} language="html" />
-    </PostTabPanel>
+    </post-tab-panel>
 
-    <PostTabHeader panel="bare-component">Bare component</PostTabHeader>
-    <PostTabPanel name="bare-component">
+    <post-tab-header panel="bare-component">Bare component</post-tab-header>
+    <post-tab-panel name="bare-component">
       <Source code={SampleCdnBareComponent} language="html" />
-    </PostTabPanel>
-  </PostTabs>
+    </post-tab-panel>
+  </post-tabs>
 </PackageDocs>

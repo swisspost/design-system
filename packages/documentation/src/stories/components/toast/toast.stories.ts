@@ -433,15 +433,19 @@ function render(args: Args, context: StoryContext) {
 
 function updateAlignments(args: Args, updateArgs: (newArgs: Partial<Args>) => void) {
   if (args.alignH && args.alignHRestricted && args.alignH !== args.alignHRestricted) {
-    args.alignV === 'center'
-      ? updateArgs({ alignH: args.alignHRestricted })
-      : updateArgs({ alignHRestricted: args.alignH });
+    if (args.alignV === 'center') {
+      updateArgs({ alignH: args.alignHRestricted });
+    } else {
+      updateArgs({ alignHRestricted: args.alignH });
+    }
   }
 
   if (args.alignV && args.alignVRestricted && args.alignV !== args.alignVRestricted) {
-    args.alignH === 'full-width'
-      ? updateArgs({ alignV: args.alignVRestricted })
-      : updateArgs({ alignVRestricted: args.alignV });
+    if (args.alignH === 'full-width') {
+      updateArgs({ alignV: args.alignVRestricted });
+    } else {
+      updateArgs({ alignVRestricted: args.alignV });
+    }
   }
 }
 
