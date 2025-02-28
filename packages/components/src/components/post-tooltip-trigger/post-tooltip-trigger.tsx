@@ -1,7 +1,7 @@
 import { Component, Element, Prop, h, Host, Watch } from '@stencil/core';
 import { checkType } from '@/utils';
 import { version } from '@root/package.json';
-import { getFocusableChildren } from '@/utils/get-focusable-children';
+import isFocusable from 'ally.js/is/focusable';
 
 @Component({
   tag: 'post-tooltip-trigger',
@@ -38,21 +38,22 @@ export class PostTooltipTrigger {
   }
 
   private setupTrigger() {
-    // Get all focusable children within the host element.
-    const focusableChildren = getFocusableChildren(this.host);
-    // Use the first focusable child, or fallback to the host if none are found.
-    this.trigger = focusableChildren.length > 0 ? focusableChildren[0] : this.host;
-    console.log('Trigger element:', this.trigger);
+    // Use the first child element in the light DOM as the trigger
+    this.trigger = this.host.firstElementChild as HTMLElement;
 
-    // If the trigger isn't naturally focusable (or is the host fallback), add a tabindex.
-    if (!this.trigger.hasAttribute('tabindex')) {
-      this.trigger.setAttribute('tabindex', '0');
-    }
+    if (this.trigger) {
+      // If the trigger is not focusable, add a tabindex
+      if (!isFocusable(this.trigger)) {
+        this.trigger.setAttribute('tabindex', '0');
+      }
 
-    // Append the tooltip ID to aria-describedby without overwriting existing values.
-    const describedBy = this.trigger.getAttribute('aria-describedby') || '';
-    if (!describedBy.includes(this.for)) {
-      this.trigger.setAttribute('aria-describedby', `${describedBy} ${this.for}`.trim());
+      // Append the tooltip ID to aria-describedby without overwriting existing values
+      const describedBy = this.trigger.getAttribute('aria-describedby') || '';
+      if (!describedBy.includes(this.for)) {
+        this.trigger.setAttribute('aria-describedby', `${describedBy} ${this.for}`.trim());
+      }
+    } else {
+      console.warn('No light DOM element found within post-tooltip-trigger');
     }
   }
 
