@@ -20,7 +20,8 @@
 
 ### `hide() => Promise<void>`
 
-Programmatically hide this tooltip
+Programmatically hide this tooltip.
+Clears any pending delay timeout.
 
 #### Returns
 
@@ -30,7 +31,8 @@ Type: `Promise<void>`
 
 ### `show(target: HTMLElement) => Promise<void>`
 
-Programmatically display the tooltip
+Programmatically display the tooltip.
+If delayed is true, waits OPEN_DELAY milliseconds before showing.
 
 #### Parameters
 
@@ -46,7 +48,8 @@ Type: `Promise<void>`
 
 ### `toggle(target: HTMLElement, force?: boolean) => Promise<void>`
 
-Toggle tooltip display
+Toggle tooltip display.
+Clears any pending delay timeout before toggling.
 
 #### Parameters
 

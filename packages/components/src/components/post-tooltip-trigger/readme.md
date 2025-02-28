@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property           | Attribute | Description                                                                                             | Type     | Default     |
-| ------------------ | --------- | ------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `for` _(required)_ | `for`     | ID of the tooltip element that this trigger is linked to. Used to open and close the specified tooltip. | `string` | `undefined` |
+| Property           | Attribute | Description                                               | Type     | Default     |
+| ------------------ | --------- | --------------------------------------------------------- | -------- | ----------- |
+| `for` _(required)_ | `for`     | ID of the tooltip element that this trigger is linked to. | `string` | `undefined` |
 
 
 ----------------------------------------------

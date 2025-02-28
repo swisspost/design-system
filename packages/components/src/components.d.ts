@@ -513,7 +513,7 @@ export namespace Components {
     }
     interface PostTooltipTrigger {
         /**
-          * ID of the tooltip element that this trigger is linked to. Used to open and close the specified tooltip.
+          * ID of the tooltip element that this trigger is linked to.
          */
         "for": string;
     }
@@ -1361,7 +1361,7 @@ declare namespace LocalJSX {
     }
     interface PostTooltipTrigger {
         /**
-          * ID of the tooltip element that this trigger is linked to. Used to open and close the specified tooltip.
+          * ID of the tooltip element that this trigger is linked to.
          */
         "for": string;
     }
