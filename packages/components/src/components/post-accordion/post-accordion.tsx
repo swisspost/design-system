@@ -53,7 +53,8 @@ export class PostAccordion {
   collapseToggleHandler(event: CustomEvent<boolean>) {
     event.stopPropagation();
 
-    eventGuard.bind(this)(
+    eventGuard.call(
+      this,
       event,
       { targetLocalName: 'post-accordion-item', delegatorSelector: 'post-accordion' },
       () => {
