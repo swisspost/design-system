@@ -40,19 +40,16 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('should patch aria after button has been inserted', () => {
-      cy.document().then((doc) => {
-        const btn = doc.createElement('post-tooltip-trigger');
-        btn.setAttribute('for', 'tooltip-one');
+      cy.document().then(doc => {
+        const btn = doc.createElement('span');
+        btn.setAttribute('data-tooltip-target', 'tooltip-one');
         btn.innerHTML = 'added after the fact';
         btn.id = 'added-later';
         doc.body.appendChild(btn);
       });
-
-      cy.get('#added-later').should('exist');
-      cy.get('#added-later').should('have.attr', 'aria-describedby', 'tooltip-one');
-      cy.get('#added-later').should('have.attr', 'tabindex', '0');
+      cy.get('#added-later').should('have.attr', 'aria-describedby').should('eq', 'tooltip-one');
+      cy.get('#added-later').should('have.attr', 'tabindex').should('eq', '0');
     });
-  });
 
   describe('with child element', () => {
     beforeEach(() => {
