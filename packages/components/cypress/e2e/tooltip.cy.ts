@@ -39,18 +39,34 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
         });
     });
 
-    it('should patch aria after button has been inserted', () => {
-      cy.document().then(doc => {
-        const btn = doc.createElement('span');
-        btn.setAttribute('data-tooltip-target', 'tooltip-one');
-        btn.innerHTML = 'added after the fact';
-        btn.id = 'added-later';
-        doc.body.appendChild(btn);
+    it('should patch aria and tabindex on the trigger element', () => {
+      const trigger = document.createElement('post-tooltip-trigger');
+      trigger.setAttribute('for', 'tooltip-one');
+
+      const button = document.createElement('button');
+      button.classList.add('btn', 'btn-secondary', 'btn-large');
+      button.innerHTML = 'Button';
+
+      trigger.appendChild(button);
+
+      document.body.appendChild(trigger);
+
+      const tooltip = document.createElement('post-tooltip');
+      tooltip.setAttribute('id', 'tooltip-one');
+      tooltip.setAttribute('placement', 'top');
+      tooltip.setAttribute('animation', 'pop-in');
+      tooltip.innerHTML = 'Hi there 👋';
+
+      document.body.appendChild(tooltip);
+
+      cy.wait(100).then(() => {
+        cy.wrap(button)
+          .should('have.attr', 'aria-describedby')
+          .and('eq', 'tooltip-one');
+        cy.wrap(button).should('have.attr', 'tabindex').and('eq', '0');
       });
-      cy.get('#added-later').should('have.attr', 'aria-describedby').should('eq', 'tooltip-one');
-      cy.get('#added-later').should('have.attr', 'tabindex').should('eq', '0');
-    })
-  });	
+    });
+  });
 
   describe('with child element', () => {
     beforeEach(() => {
