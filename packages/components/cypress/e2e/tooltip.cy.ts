@@ -40,31 +40,39 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('should patch aria and tabindex on the trigger element', () => {
+      // Create the tooltip trigger and tooltip elements
       const trigger = document.createElement('post-tooltip-trigger');
       trigger.setAttribute('for', 'tooltip-one');
-
+    
       const button = document.createElement('button');
       button.classList.add('btn', 'btn-secondary', 'btn-large');
       button.innerHTML = 'Button';
-
+    
+      // Append the button as the trigger's child
       trigger.appendChild(button);
-
+    
+      // Append the trigger to the document body
       document.body.appendChild(trigger);
-
+    
+      // Create the tooltip element
       const tooltip = document.createElement('post-tooltip');
       tooltip.setAttribute('id', 'tooltip-one');
       tooltip.setAttribute('placement', 'top');
       tooltip.setAttribute('animation', 'pop-in');
       tooltip.innerHTML = 'Hi there 👋';
-
+    
+      // Append the tooltip to the document body
       document.body.appendChild(tooltip);
-
-      cy.wait(100).then(() => {
-        cy.wrap(button)
-          .should('have.attr', 'aria-describedby')
-          .and('eq', 'tooltip-one');
-        cy.wrap(button).should('have.attr', 'tabindex').and('eq', '0');
+    
+      // Debugging: Log the button's outerHTML to verify its state
+      cy.wrap(button).then(($button) => {
+        console.log('Button HTML:', $button[0].outerHTML);
       });
+    
+      // Wait for the component to initialize and apply attributes
+      cy.wrap(button)
+        .should('have.attr', 'aria-describedby', 'tooltip-one')
+        .and('have.attr', 'tabindex', '0');
     });
   });
 
