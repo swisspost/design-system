@@ -49,7 +49,8 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
       });
       cy.get('#added-later').should('have.attr', 'aria-describedby').should('eq', 'tooltip-one');
       cy.get('#added-later').should('have.attr', 'tabindex').should('eq', '0');
-    });
+    })
+  });	
 
   describe('with child element', () => {
     beforeEach(() => {
