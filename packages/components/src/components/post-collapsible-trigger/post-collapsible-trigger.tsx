@@ -33,6 +33,8 @@ export class PostCollapsibleTrigger {
    * Initiate a mutation observer that updates the trigger whenever necessary
    */
   connectedCallback() {
+    this.root = getRoot(this.host);
+    this.root.addEventListener('postToggle', this.handlePosToggle)
     this.observer.observe(this.host, { childList: true, subtree: true });
   }
 
@@ -42,14 +44,6 @@ export class PostCollapsibleTrigger {
    */
   componentWillLoad() {
     this.root = getRoot(this.host);
-
-    this.root.addEventListener('postToggle', (e: CustomEvent) => {
-      eventGuard.call(this, e, { targetLocalName: 'post-collapsible' }, () => {
-        if (this.trigger) {
-          this.trigger.setAttribute('aria-expanded', `${e.detail}`);
-        }
-      });
-    });
   }
 
   /**
@@ -67,6 +61,7 @@ export class PostCollapsibleTrigger {
    */
   disconnectedCallback() {
     this.observer.disconnect();
+    this.root.removeEventListener('postToggle', this.handlePosToggle);
   }
 
   /**
@@ -75,6 +70,23 @@ export class PostCollapsibleTrigger {
   @Method()
   async update() {
     this.debouncedUpdate();
+  }
+
+  /**
+   * Private handler for the 'postToggle' event.
+   * This updates the trigger's "aria-expanded" attribute based on the event detail.
+   */
+  private handlePosToggle(e: CustomEvent): void {
+    eventGuard(
+      this.host,
+      e, 
+      { targetLocalName: 'post-collapsible' },
+      () => {
+        if (this.trigger) {
+          this.trigger.setAttribute('aria-expanded', `${e.detail}`)
+        }
+      }
+    );
   }
 
   private debouncedUpdate = debounce(() => {
