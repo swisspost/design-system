@@ -16,16 +16,6 @@
   position: relative;
 }
 
-:host(:not(:has([slot='title']))) {
-  .local-header {
-    padding-block-start: 0;
-  }
-
-  .local-sub {
-    display: none;
-  }
-}
-
 .d-flex {
   display: flex;
 }
@@ -119,6 +109,10 @@
     );
     padding-block-start: 18px;
     box-shadow: elevation.$elevation-300;
+
+    &:has(> .local-sub) {
+      padding-block-start: 18px;
+    }
   }
 
   @include media.max(lg) {
@@ -136,6 +130,10 @@
 
     &:not(.local-header-mobile-extended) {
       box-shadow: elevation.$elevation-300;
+    }
+
+    &:not(:has(> .local-sub)) {
+      display: none;
     }
   }
 }

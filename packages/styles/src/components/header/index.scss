@@ -5,6 +5,7 @@
 @use 'mixins' as *;
 
 post-header {
+  --local-header-height: var(--local-header-min-height);
   --header-expanded-height: calc(var(--global-header-height) + var(--local-header-height));
   --header-reduced-height: calc(
     var(--global-header-reduced-height) + var(--main-navigation-height)
@@ -21,27 +22,32 @@ post-header {
     --global-header-height: 72px;
     --global-header-reduced-height: 24px;
     --main-navigation-height: 56px;
-    --local-header-height: 112px;
+    --local-header-min-height: var(--main-navigation-height);
   }
 
   @include media.max(lg) {
     --header-reduced-height: var(--header-expanded-height);
     --global-header-height: 64px;
     --global-header-reduced-height: var(--global-header-height);
-    --local-header-height: 48px;
-    --main-navigation-height: 0px; /* stylelint-disable-line length-zero-no-unit */ /* needed for calculation */
+    // stylelint-disable length-zero-no-unit
+    // units are needed for calculation
+    --main-navigation-height: 0px;
+    --local-header-min-height: 0px;
+    // stylelint-enable length-zero-no-unit
   }
 
-  @include media.min(md) {
-    --local-header-min-height: 56px;
-  }
+  &:has([slot='title']) {
+    @include media.min(lg) {
+      --local-header-min-height: 112px;
+    }
 
-  @include media.max(md) {
-    --local-header-min-height: 48px;
-  }
+    @include media.between(md, lg) {
+      --local-header-min-height: 56px;
+    }
 
-  &:not(:has([slot='title'])) {
-    --local-header-height: var(--main-navigation-height) !important;
+    @include media.max(md) {
+      --local-header-min-height: 48px;
+    }
   }
 
   &:not(:defined),
