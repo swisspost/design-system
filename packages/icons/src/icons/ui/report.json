@@ -1639,7 +1639,7 @@
         }
       },
       "createdAt": "2025-02-07T22:12:33.000Z",
-      "modifiedAt": "2025-02-09T20:32:08.000Z"
+      "modifiedAt": "2025-03-03T10:24:52.000Z"
     },
     {
       "uuid": "a1863530-e5a0-11ef-a15d-005056873709",
@@ -1682,7 +1682,7 @@
         }
       },
       "createdAt": "2025-02-07T22:12:33.000Z",
-      "modifiedAt": "2025-02-09T20:32:09.000Z"
+      "modifiedAt": "2025-03-03T10:25:42.000Z"
     },
     {
       "uuid": "a183c430-e5a0-11ef-a15d-005056873709",
@@ -1898,6 +1898,49 @@
       },
       "createdAt": "2025-02-07T22:12:36.000Z",
       "modifiedAt": "2025-03-03T10:05:28.000Z"
+    },
+    {
+      "uuid": "eb116c43-e51b-11ef-a15d-005056873709",
+      "id": 1819869,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/1819869/storage/MDAxODE5ODY5LzAvbWFzdGVy",
+        "businessfield": [
+          "edk"
+        ],
+        "keywords": [
+          "Handicapé",
+          "Behinderte",
+          "Disabled",
+          "Disabile",
+          "Sehbehinderung",
+          "visual impairment",
+          "Disabilità visiva",
+          "Handicap de la vue",
+          "with learning difficulties",
+          "Lernbehindert",
+          "Handicapés d’apprentissage",
+          "Disabile all’apprendimento",
+          "Person mit Behinderung",
+          "Person with disability",
+          "Persona con disabilità",
+          "Personne handicapée"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "Accessibility_Solid_Shape_24.svg",
+        "basename": "Accessibility_Solid_Shape_24",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-02-07T06:22:34.000Z",
+      "modifiedAt": "2025-03-03T13:10:29.000Z"
     },
     {
       "uuid": "eb26c900-e51b-11ef-a15d-005056873709",
@@ -160151,13 +160194,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 2855,
+    "success": 2856,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 41,
     "duplicates": 0
   },
-  "created": "2025-03-03T10:13:46.024Z",
+  "created": "2025-03-03T13:26:52.125Z",
   "version": "9.0.0-next.19"
 }
