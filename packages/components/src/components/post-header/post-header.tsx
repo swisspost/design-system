@@ -316,7 +316,7 @@ export class PostHeader {
 
     return (
       <div class={navigationClasses.join(' ')}>
-        <div ref={el => (this.mobileMenu = el)}>
+        <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
           <slot name="post-mainnavigation"></slot>
 
           {(this.device === 'mobile' || this.device === 'tablet') && (

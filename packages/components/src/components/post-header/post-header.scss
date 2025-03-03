@@ -183,6 +183,10 @@
     overflow: hidden;
   }
 
+  .mobile-menu {
+    background-color: #fafafa;
+  }
+
   ::slotted(post-mainnavigation),
   .navigation-footer {
     display: none;
@@ -213,7 +217,6 @@
   }
 
   ::slotted(post-mainnavigation) {
-    background-color: #fafafa;
     gap: 32px;
   }
 
