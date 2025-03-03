@@ -25,7 +25,7 @@ const meta: MetaComponent = {
       language="en"
     ></swisspost-internet-header>
     ${fakeContent(17)}
-    <post-back-to-top />
+    <post-back-to-top label="Back to top button" />
   </div>`,
   decorators: [
     (story: StoryFn, { args, context }: StoryContext) => html` ${story(args, context)} `,
