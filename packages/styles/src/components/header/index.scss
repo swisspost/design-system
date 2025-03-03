@@ -15,6 +15,7 @@ post-header {
         calc(var(--header-expanded-height) - var(--header-reduced-height))
       )
   );
+  height: var(--header-height);
 
   @include media.min(lg) {
     --global-header-height: 72px;
@@ -46,7 +47,6 @@ post-header {
   &:not(:defined),
   &:not([data-hydrated]) {
     display: block;
-    height: var(--header-height);
   }
 
   ul[slot='meta-navigation'] {
