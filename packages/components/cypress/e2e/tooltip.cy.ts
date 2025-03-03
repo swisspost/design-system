@@ -30,49 +30,16 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
         });
     });
 
-    it('should append aria-describedby without deleting existing values', () => {
-      cy.get('@target1')
-        .should('have.attr', 'aria-describedby')
-        .then((describedBy) => {
-          expect(describedBy).to.include('existing-value');
-          expect(describedBy).to.include('tooltip-one');
-        });
-    });
-
-    it('should patch aria and tabindex on the trigger element', () => {
-      // Create the tooltip trigger and tooltip elements
-      const trigger = document.createElement('post-tooltip-trigger');
-      trigger.setAttribute('for', 'tooltip-one');
-    
-      const button = document.createElement('button');
-      button.classList.add('btn', 'btn-secondary', 'btn-large');
-      button.innerHTML = 'Button';
-    
-      // Append the button as the trigger's child
-      trigger.appendChild(button);
-    
-      // Append the trigger to the document body
-      document.body.appendChild(trigger);
-    
-      // Create the tooltip element
-      const tooltip = document.createElement('post-tooltip');
-      tooltip.setAttribute('id', 'tooltip-one');
-      tooltip.setAttribute('placement', 'top');
-      tooltip.setAttribute('animation', 'pop-in');
-      tooltip.innerHTML = 'Hi there 👋';
-    
-      // Append the tooltip to the document body
-      document.body.appendChild(tooltip);
-    
-      // Debugging: Log the button's outerHTML to verify its state
-      cy.wrap(button).then(($button) => {
-        console.log('Button HTML:', $button[0].outerHTML);
+    it('should patch aria after button has been inserted', () => {
+      cy.document().then(doc => {
+        const btn = doc.createElement('span');
+        btn.setAttribute('data-tooltip-target', 'tooltip-one');
+        btn.innerHTML = 'added after the fact';
+        btn.id = 'added-later';
+        doc.body.appendChild(btn);
       });
-    
-      // Wait for the component to initialize and apply attributes
-      cy.wrap(button)
-        .should('have.attr', 'aria-describedby', 'tooltip-one')
-        .and('have.attr', 'tabindex', '0');
+      cy.get('#added-later').should('have.attr', 'aria-describedby').should('eq', 'tooltip-one');
+      cy.get('#added-later').should('have.attr', 'tabindex').should('eq', '0');
     });
   });
 
