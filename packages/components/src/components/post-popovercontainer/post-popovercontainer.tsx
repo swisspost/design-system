@@ -194,6 +194,14 @@ export class PostPopovercontainer {
     );
   }
 
+  /**
+   * Retrieves the dynamic height of the header
+   */
+  private getHeaderHeight(): number {
+    const header = document.querySelector('post-header');
+    return header ? parseFloat(getComputedStyle(header).height) : 0;
+  }  
+  
   private async calculatePosition() {
     const { x, y, middlewareData, placement } = await this.computeMainPosition();
     const currentPlacement = placement.split('-')[0];
@@ -225,7 +233,9 @@ export class PostPopovercontainer {
   private async computeMainPosition() {
     const gap = this.edgeGap;
     const middleware = [
-      flip(),
+      flip({
+        padding: this.getHeaderHeight(),
+      }),
       inline(),
       shift({
         padding: gap,

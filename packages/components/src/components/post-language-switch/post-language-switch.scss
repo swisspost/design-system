@@ -17,10 +17,6 @@ tokens.$default-map: components.$post-button;
 .post-language-switch-dropdown-container {
   display: flex;
   flex-direction: column;
-
-  > * {
-    width: 100%;
-  }
 }
 
 .post-language-switch-trigger {
