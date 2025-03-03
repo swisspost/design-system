@@ -1,5 +1,114 @@
 # @swisspost/internet-header
 
+## 2.0.0-next.29
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.29
+
+## 2.0.0-next.28
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.28
+
+## 2.0.0-next.27
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.27
+
+## 2.0.0-next.26
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.26
+
+## 2.0.0-next.25
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.25
+
+## 2.0.0-next.24
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.24
+
+## 2.0.0-next.23
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.23
+
+## 2.0.0-next.22
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.22
+
+## 2.0.0-next.21
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.21
+
+## 2.0.0-next.20
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.20
+
+## 2.0.0-next.19
+
+### Major Changes
+
+- Removed deprecated legacy utility classes. (by [@leagrdv](https://github.com/leagrdv) with [#4631](https://github.com/swisspost/design-system/pull/4631))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.19
+
+## 2.0.0-next.18
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.18
+
+## 2.0.0-next.17
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.17
+
+## 2.0.0-next.16
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.16
+
+## 2.0.0-next.15
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.15
+
 ## 2.0.0-next.14
 
 ### Patch Changes

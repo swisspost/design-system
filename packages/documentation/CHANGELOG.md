@@ -1,5 +1,217 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.30
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.29
+  - @swisspost/design-system-components-react@9.0.0-next.29
+  - @swisspost/design-system-styles@9.0.0-next.29
+  - @swisspost/design-system-tokens@9.0.0-next.29
+  - @swisspost/design-system-icons@9.0.0-next.29
+  - @swisspost/internet-header@2.0.0-next.29
+
+## 6.0.0-next.29
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.28
+  - @swisspost/design-system-components-react@9.0.0-next.28
+  - @swisspost/design-system-styles@9.0.0-next.28
+  - @swisspost/design-system-tokens@9.0.0-next.28
+  - @swisspost/design-system-icons@9.0.0-next.28
+  - @swisspost/internet-header@2.0.0-next.28
+
+## 6.0.0-next.28
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.27
+  - @swisspost/design-system-components-react@9.0.0-next.27
+  - @swisspost/design-system-styles@9.0.0-next.27
+  - @swisspost/design-system-tokens@9.0.0-next.27
+  - @swisspost/design-system-icons@9.0.0-next.27
+  - @swisspost/internet-header@2.0.0-next.27
+
+## 6.0.0-next.27
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.26
+  - @swisspost/design-system-styles@9.0.0-next.26
+  - @swisspost/design-system-components-react@9.0.0-next.26
+  - @swisspost/internet-header@2.0.0-next.26
+  - @swisspost/design-system-tokens@9.0.0-next.26
+  - @swisspost/design-system-icons@9.0.0-next.26
+
+## 6.0.0-next.26
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.25
+  - @swisspost/design-system-components@9.0.0-next.25
+  - @swisspost/internet-header@2.0.0-next.25
+  - @swisspost/design-system-components-react@9.0.0-next.25
+  - @swisspost/design-system-tokens@9.0.0-next.25
+  - @swisspost/design-system-icons@9.0.0-next.25
+
+## 6.0.0-next.25
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.24
+  - @swisspost/design-system-styles@9.0.0-next.24
+  - @swisspost/design-system-components-react@9.0.0-next.24
+  - @swisspost/internet-header@2.0.0-next.24
+  - @swisspost/design-system-tokens@9.0.0-next.24
+  - @swisspost/design-system-icons@9.0.0-next.24
+
+## 6.0.0-next.24
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.23
+  - @swisspost/design-system-components-react@9.0.0-next.23
+  - @swisspost/design-system-styles@9.0.0-next.23
+  - @swisspost/design-system-tokens@9.0.0-next.23
+  - @swisspost/design-system-icons@9.0.0-next.23
+  - @swisspost/internet-header@2.0.0-next.23
+
+## 6.0.0-next.23
+
+### Patch Changes
+
+- Fixed mobile navigation position and scrolling issues within storybook. (by [@myrta2302](https://github.com/myrta2302) with [#4738](https://github.com/swisspost/design-system/pull/4738))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.22
+  - @swisspost/design-system-styles@9.0.0-next.22
+  - @swisspost/design-system-components-react@9.0.0-next.22
+  - @swisspost/internet-header@2.0.0-next.22
+  - @swisspost/design-system-tokens@9.0.0-next.22
+  - @swisspost/design-system-icons@9.0.0-next.22
+
+## 6.0.0-next.22
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.21
+  - @swisspost/design-system-components-react@9.0.0-next.21
+  - @swisspost/design-system-styles@9.0.0-next.21
+  - @swisspost/design-system-tokens@9.0.0-next.21
+  - @swisspost/design-system-icons@9.0.0-next.21
+  - @swisspost/internet-header@2.0.0-next.21
+
+## 6.0.0-next.21
+
+### Minor Changes
+
+- Added story to show how the alignment classes work together with the `.section` component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4760](https://github.com/swisspost/design-system/pull/4760))
+
+### Patch Changes
+
+- Fixed an issue where the `post-header` was no longer sticky. (by [@alizedebray](https://github.com/alizedebray) with [#4748](https://github.com/swisspost/design-system/pull/4748))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.20
+  - @swisspost/design-system-styles@9.0.0-next.20
+  - @swisspost/design-system-components-react@9.0.0-next.20
+  - @swisspost/internet-header@2.0.0-next.20
+  - @swisspost/design-system-tokens@9.0.0-next.20
+  - @swisspost/design-system-icons@9.0.0-next.20
+
+## 6.0.0-next.20
+
+### Major Changes
+
+- Removed deprecated legacy utility classes. (by [@leagrdv](https://github.com/leagrdv) with [#4631](https://github.com/swisspost/design-system/pull/4631))
+
+- Removed some utility spacing/sizing sizes to better reflect the ones used on Figma. (by [@leagrdv](https://github.com/leagrdv) with [#4588](https://github.com/swisspost/design-system/pull/4588))
+
+### Minor Changes
+
+- Added docs page for the new `.section` css component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4733](https://github.com/swisspost/design-system/pull/4733))
+
+- Internalized Bootstrap `.text-truncate` class into the Design System. (by [@veyaromain](https://github.com/veyaromain) with [#4599](https://github.com/swisspost/design-system/pull/4599))
+
+### Patch Changes
+
+- Moved `Heading` documentation from components to typography section. (by [@leagrdv](https://github.com/leagrdv) with [#4655](https://github.com/swisspost/design-system/pull/4655))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.19
+  - @swisspost/internet-header@2.0.0-next.19
+  - @swisspost/design-system-styles@9.0.0-next.19
+  - @swisspost/design-system-tokens@9.0.0-next.19
+  - @swisspost/design-system-components-react@9.0.0-next.19
+  - @swisspost/design-system-icons@9.0.0-next.19
+
+## 6.0.0-next.19
+
+### Patch Changes
+
+- Updated styles of the card component. (by [@leagrdv](https://github.com/leagrdv) with [#4577](https://github.com/swisspost/design-system/pull/4577))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.18
+  - @swisspost/design-system-styles@9.0.0-next.18
+  - @swisspost/design-system-components-react@9.0.0-next.18
+  - @swisspost/internet-header@2.0.0-next.18
+  - @swisspost/design-system-tokens@9.0.0-next.18
+  - @swisspost/design-system-icons@9.0.0-next.18
+
+## 6.0.0-next.18
+
+### Minor Changes
+
+- Removed occurences of `.text-*` and `.link-*` color utility classes and its documentation. (by [@schaertim](https://github.com/schaertim) with [#4399](https://github.com/swisspost/design-system/pull/4399))
+
+### Patch Changes
+
+- Removed `form-check.scss` import suggestions from documentation. (by [@leagrdv](https://github.com/leagrdv) with [#4647](https://github.com/swisspost/design-system/pull/4647))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.17
+  - @swisspost/design-system-components@9.0.0-next.17
+  - @swisspost/internet-header@2.0.0-next.17
+  - @swisspost/design-system-components-react@9.0.0-next.17
+  - @swisspost/design-system-tokens@9.0.0-next.17
+  - @swisspost/design-system-icons@9.0.0-next.17
+
+## 6.0.0-next.17
+
+### Minor Changes
+
+- Updated language switch behavior. (by [@myrta2302](https://github.com/myrta2302) with [#4376](https://github.com/swisspost/design-system/pull/4376))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.16
+  - @swisspost/design-system-components-react@9.0.0-next.16
+  - @swisspost/design-system-styles@9.0.0-next.16
+  - @swisspost/design-system-tokens@9.0.0-next.16
+  - @swisspost/design-system-icons@9.0.0-next.16
+  - @swisspost/internet-header@2.0.0-next.16
+
+## 6.0.0-next.16
+
+### Patch Changes
+
+- Updated the migrations documentation for v9. (by [@leagrdv](https://github.com/leagrdv) with [#4582](https://github.com/swisspost/design-system/pull/4582))
+
+- Fixed tabs in documentation pages. (by [@leagrdv](https://github.com/leagrdv) with [#4600](https://github.com/swisspost/design-system/pull/4600))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.15
+  - @swisspost/design-system-components-react@9.0.0-next.15
+  - @swisspost/design-system-styles@9.0.0-next.15
+  - @swisspost/design-system-tokens@9.0.0-next.15
+  - @swisspost/design-system-icons@9.0.0-next.15
+  - @swisspost/internet-header@2.0.0-next.15
+
 ## 6.0.0-next.15
 
 ### Major Changes
@@ -10,18 +222,27 @@
 
 ### Minor Changes
 
+- Removed deprecated `$displayX-weight` scss variables and font-weight light (`.light`) utilities as the new Swiss Post font does not have a 300 weight version. (by [@leagrdv](https://github.com/leagrdv) with [#4531](https://github.com/swisspost/design-system/pull/4531))
+
 - Updated the styles for `.focus-ring` and added documentation. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4543](https://github.com/swisspost/design-system/pull/4543))
+
+- Added the `post-linkarea` component. (by [@veyaromain](https://github.com/veyaromain) with [#4030](https://github.com/swisspost/design-system/pull/4030))
 
 - Added duplicate icons in icons health report. (by [@myrta2302](https://github.com/myrta2302) with [#4528](https://github.com/swisspost/design-system/pull/4528))
 
 ### Patch Changes
 
+- Fixed the sizing of the technology and supported browser images on the introduction page of the documentation. (by [@schaertim](https://github.com/schaertim) with [#4549](https://github.com/swisspost/design-system/pull/4549))
+
+- Internalized Bootstrap text utilities into the Design System. (by [@leagrdv](https://github.com/leagrdv) with [#4360](https://github.com/swisspost/design-system/pull/4360))
+
+- Added fake content on the header preview to show the sticky behaviour. (by [@leagrdv](https://github.com/leagrdv) with [#4367](https://github.com/swisspost/design-system/pull/4367))
 - Updated dependencies:
-  - @swisspost/design-system-components@9.0.0-next.14
   - @swisspost/design-system-styles@9.0.0-next.14
+  - @swisspost/design-system-components@9.0.0-next.14
+  - @swisspost/design-system-tokens@9.0.0-next.14
   - @swisspost/internet-header@2.0.0-next.14
   - @swisspost/design-system-components-react@9.0.0-next.14
-  - @swisspost/design-system-tokens@9.0.0-next.14
   - @swisspost/design-system-icons@9.0.0-next.14
 
 ## 6.0.0-next.14
