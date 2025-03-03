@@ -34,7 +34,7 @@ export class PostCollapsibleTrigger {
    */
   connectedCallback() {
     this.root = getRoot(this.host);
-    this.root.addEventListener('postToggle', this.handlePosToggle);
+    this.root.addEventListener('postToggle', this.handlePostToggle);
     this.observer.observe(this.host, { childList: true, subtree: true });
   }
 
@@ -61,7 +61,7 @@ export class PostCollapsibleTrigger {
    */
   disconnectedCallback() {
     this.observer.disconnect();
-    this.root.removeEventListener('postToggle', this.handlePosToggle);
+    this.root.removeEventListener('postToggle', this.handlePostToggle);
   }
 
   /**
@@ -76,7 +76,7 @@ export class PostCollapsibleTrigger {
    * Private handler for the 'postToggle' event.
    * This updates the trigger's "aria-expanded" attribute based on the event detail.
    */
-  private handlePosToggle(e: CustomEvent): void {
+  private handlePostToggle(e: CustomEvent): void {
     eventGuard(
       this.host,
       e, 
