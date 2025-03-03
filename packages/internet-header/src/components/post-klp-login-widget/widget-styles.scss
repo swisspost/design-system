@@ -143,6 +143,7 @@ li.name-and-surname {
   padding-top: 0;
   vertical-align: middle;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  height: auto !important;
 }
 
 .initials-circle {
@@ -240,6 +241,7 @@ li.name-and-surname span.infoHidden {
   min-height: 78px;
   padding: 16px 0;
   line-height: 46px;
+  height: auto !important;
 }
 
 .widget_icon_profile {
