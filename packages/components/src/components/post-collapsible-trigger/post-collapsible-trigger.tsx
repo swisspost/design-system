@@ -34,7 +34,7 @@ export class PostCollapsibleTrigger {
    */
   connectedCallback() {
     this.root = getRoot(this.host);
-    this.root.addEventListener('postToggle', this.handlePosToggle)
+    this.root.addEventListener('postToggle', this.handlePosToggle);
     this.observer.observe(this.host, { childList: true, subtree: true });
   }
 
@@ -83,7 +83,7 @@ export class PostCollapsibleTrigger {
       { targetLocalName: 'post-collapsible' },
       () => {
         if (this.trigger) {
-          this.trigger.setAttribute('aria-expanded', `${e.detail}`)
+          this.trigger.setAttribute('aria-expanded', `${e.detail}`);
         }
       }
     );
