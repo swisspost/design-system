@@ -69,11 +69,11 @@ export class PostMegadropdownTrigger {
 
   componentDidLoad() {
     this.validateControlFor();
-
+  
     // Check if the mega dropdown attached to the trigger is expanded or not
     document.addEventListener('postToggleMegadropdown', (event: CustomEvent<{ isVisible: boolean; focusParent: boolean }>) => {
-      eventGuard.call(
-        this,
+      eventGuard(
+        this.host,
         event,
         { targetLocalName: 'post-megadropdown' },
         () => {
@@ -87,7 +87,7 @@ export class PostMegadropdownTrigger {
               }, 100);
             }
             this.wasExpanded = this.ariaExpanded;
-
+  
             if (this.slottedButton) {
               this.slottedButton.setAttribute('aria-expanded', this.ariaExpanded.toString());
             }
@@ -95,7 +95,7 @@ export class PostMegadropdownTrigger {
         }
       );
     });
-
+  
     this.slottedButton = this.host.querySelector('button');
     if (this.slottedButton) {
       this.slottedButton.setAttribute('aria-haspopup', 'menu');
@@ -106,7 +106,7 @@ export class PostMegadropdownTrigger {
     } else {
       console.warn('No button found within post-megadropdown-trigger');
     }
-  }
+  }  
 
   render() {
     return (

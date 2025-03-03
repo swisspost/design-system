@@ -18,7 +18,7 @@ describe('eventGuard', () => {
       target: { localName: 'button' } as HTMLElement,
     } as unknown as CustomEvent<unknown>;
 
-    eventGuard.call({ host: mockHost }, mockEvent, { targetLocalName: 'button' }, callback);
+    eventGuard(mockHost, mockEvent, { targetLocalName: 'button' }, callback);
 
     expect(callback).toHaveBeenCalledTimes(1);
   });
@@ -36,7 +36,7 @@ describe('eventGuard', () => {
 
     document.body.appendChild(container);
 
-    eventGuard.call({ host: container }, mockEvent, { targetLocalName: 'button', delegatorSelector: '.container' }, callback);
+    eventGuard(container, mockEvent, { targetLocalName: 'button', delegatorSelector: '.container' }, callback);
 
     expect(callback).toHaveBeenCalledTimes(1);
   });
@@ -52,7 +52,7 @@ describe('eventGuard', () => {
 
     document.body.appendChild(outerDiv);
 
-    eventGuard.call({ host: outerDiv }, mockEvent, { targetLocalName: 'button', delegatorSelector: '.non-existent-container' }, callback);
+    eventGuard(outerDiv, mockEvent, { targetLocalName: 'button', delegatorSelector: '.non-existent-container' }, callback);
 
     expect(callback).not.toHaveBeenCalled();
   });
@@ -62,7 +62,7 @@ describe('eventGuard', () => {
       target: { localName: 'button' } as HTMLElement,
     } as unknown as CustomEvent<unknown>;
 
-    eventGuard.call({ host: mockHost }, mockEvent, { targetLocalName: 'button' }, callback);
+    eventGuard(mockHost, mockEvent, { targetLocalName: 'button' }, callback);
 
     expect(callback).toHaveBeenCalledTimes(1);
   });
@@ -73,7 +73,7 @@ describe('eventGuard', () => {
     } as unknown as CustomEvent<unknown>;
 
     expect(() =>
-      eventGuard.call({ host: mockHost }, mockEvent, { targetLocalName: 'button' }, callback)
+      eventGuard(mockHost, mockEvent, { targetLocalName: 'button' }, callback)
     ).not.toThrow();
     expect(callback).not.toHaveBeenCalled();
   });
@@ -83,7 +83,7 @@ describe('eventGuard', () => {
       target: { localName: 'div' } as HTMLElement,
     } as unknown as CustomEvent<unknown>;
 
-    eventGuard.call({ host: mockHost }, mockEvent, { targetLocalName: 'button' }, callback);
+    eventGuard(mockHost, mockEvent, { targetLocalName: 'button' }, callback);
 
     expect(callback).not.toHaveBeenCalled();
   });

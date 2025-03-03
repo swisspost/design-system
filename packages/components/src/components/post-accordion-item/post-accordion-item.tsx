@@ -59,15 +59,16 @@ export class PostAccordionItem {
   // Capture to make sure the "collapsed" property is updated before the event is consumed
   @Listen('postToggle', { capture: true })
   onCollapseToggle(event: CustomEvent<boolean>): void {
-    eventGuard.call(
-      this,
+    eventGuard(
+      this.host,
       event,
       { targetLocalName: 'post-accordion-item', delegatorSelector: 'post-accordion-item' },
       () => {
         this.collapsed = !event.detail;
-      }
-    );
-  }
+    }
+  );
+}
+
 
   /**
    * Triggers the collapse programmatically.

@@ -1,5 +1,5 @@
 export function eventGuard(
-  this: { host: HTMLElement },
+  host: HTMLElement,
   event: CustomEvent,
   options: { targetLocalName: string; delegatorSelector?: string },
   callback: () => void
@@ -9,7 +9,7 @@ export function eventGuard(
   if (!target) return;
 
   if (target.localName === options.targetLocalName) {
-    if (!options.delegatorSelector || this.host === target.closest(options.delegatorSelector)) {
+    if (!options.delegatorSelector || host === target.closest(options.delegatorSelector)) {
       callback();
     }
   }

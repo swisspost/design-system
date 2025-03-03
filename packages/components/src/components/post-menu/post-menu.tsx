@@ -72,14 +72,14 @@ export class PostMenu {
 
   componentDidLoad() {
     this.popoverRef.addEventListener('postToggle', (event: CustomEvent<boolean>) => {
-      eventGuard.call(
-        this,
+      eventGuard(
+        this.host,
         event,
         { targetLocalName: 'post-popovercontainer' },
         () => {
           this.isVisible = event.detail;
           this.toggleMenu.emit(this.isVisible);
-
+  
           requestAnimationFrame(() => {
             if (this.isVisible) {
               this.lastFocusedElement = this.root.activeElement as HTMLElement;
