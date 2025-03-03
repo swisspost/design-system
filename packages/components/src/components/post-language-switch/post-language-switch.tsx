@@ -68,7 +68,7 @@ export class PostLanguageSwitch {
     eventGuard(
       this.host,
       event,
-      { targetLocalName: 'post-language-option' },
+      { targetLocalName: 'post-language-option', delegatorSelector: 'post-language-switch' },
       () => {
         this.activeLang = event.detail;
   

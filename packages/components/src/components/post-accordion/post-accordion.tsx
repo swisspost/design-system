@@ -51,7 +51,6 @@ export class PostAccordion {
 
   @Listen('postToggle')
   collapseToggleHandler(event: CustomEvent<boolean>) {
-    event.stopPropagation();
 
     eventGuard(
       this.host,

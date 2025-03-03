@@ -75,7 +75,7 @@ export class PostMenu {
       eventGuard(
         this.host,
         event,
-        { targetLocalName: 'post-popovercontainer' },
+        { targetLocalName: 'post-popovercontainer', delegatorSelector: 'post-menu' },
         () => {
           this.isVisible = event.detail;
           this.toggleMenu.emit(this.isVisible);
