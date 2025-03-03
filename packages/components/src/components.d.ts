@@ -196,7 +196,7 @@ export namespace Components {
         /**
           * Toggles the mobile navigation.
          */
-        "toggleMobileMenu": () => Promise<void>;
+        "toggleMobileMenu": (force?: boolean) => Promise<void>;
     }
     /**
      * @class PostIcon - representing a stencil component
