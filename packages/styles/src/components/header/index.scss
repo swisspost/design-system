@@ -4,6 +4,11 @@
 
 @use 'mixins' as *;
 
+[data-post-scroll-locked] {
+  overflow: hidden !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+
 post-header {
   --header-expanded-height: calc(var(--global-header-height) + var(--local-header-height));
   --header-reduced-height: calc(
