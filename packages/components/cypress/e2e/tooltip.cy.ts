@@ -62,14 +62,17 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
 
       it('should show tooltip on trigger hover', () => {
         cy.get('@tooltip').should('not.be.visible');
-        cy.get('@trigger').first().trigger('pointerover');
+        cy.get('@trigger').first().trigger('pointerenter');
+        cy.wait(100);
         cy.get('.\\:popover-open, :popover-open').should('exist');
       });
 
       it('should hide tooltip on trigger pointerout', () => {
-        cy.get('@trigger').first().trigger('pointerover');
+        cy.get('@trigger').first().trigger('pointerenter');
+        cy.wait(100);
         cy.get('.\\:popover-open, :popover-open').should('exist');
-        cy.get('@trigger').first().trigger('pointerout');
+        cy.get('@trigger').first().trigger('pointerleave');
+        cy.wait(100);
         cy.get('@tooltip').should('not.be.visible');
       });
 
@@ -98,7 +101,8 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
 
     it('should show tooltip on hovered child element', () => {
       cy.get('@tooltip').should('not.be.visible');
-      cy.get('@target-child').trigger('pointerover');
+      cy.get('@target-child').trigger('pointerenter');
+      cy.wait(100); // Add a small delay
       cy.get('.\\:popover-open, :popover-open').should('exist');
     });
   });

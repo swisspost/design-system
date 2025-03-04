@@ -135,7 +135,7 @@ export class PostPopover {
     return (
       <Host data-version={version}>
         <post-popovercontainer
-        safeSpace='triangle'
+          safeSpace='triangle'
           arrow={this.arrow}
           placement={this.placement}
           ref={e => (this.popoverRef = e)}

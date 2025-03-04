@@ -127,11 +127,13 @@ export class PostTooltipTrigger {
 
   private interestHandler() {
     if (this.delay > 0) {
+      // If there's a delay, set a timeout
       this.delayTimeout = window.setTimeout(() => {
         this.tooltip?.show(this.trigger);
         this.delayTimeout = null;
       }, this.delay);
     } else {
+      // If no delay, show the tooltip immediately
       this.tooltip?.show(this.trigger);
     }
   }
