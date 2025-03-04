@@ -196,7 +196,7 @@ export namespace Components {
         /**
           * Toggles the mobile navigation.
          */
-        "toggleMobileMenu": () => Promise<void>;
+        "toggleMobileMenu": (force?: boolean) => Promise<void>;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -294,11 +294,14 @@ export namespace Components {
     interface PostMainnavigation {
     }
     interface PostMegadropdown {
+        /**
+          * Sets focus to the first focusable element within the component.
+         */
         "focusFirst": () => Promise<void>;
         /**
           * Hides the dropdown with an animation.
          */
-        "hide": () => Promise<void>;
+        "hide": (focusParent?: boolean) => Promise<void>;
         /**
           * Displays the dropdown.
          */
@@ -372,7 +375,7 @@ export namespace Components {
     }
     interface PostPopovercontainer {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
         /**
@@ -391,6 +394,10 @@ export namespace Components {
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
+        /**
+          * Enables a safespace through which the cursor can be moved without the popover being disabled
+         */
+        "safeSpace"?: 'triangle' | 'trapezoid';
         /**
           * Programmatically display the tooltip
           * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
@@ -672,6 +679,7 @@ declare global {
     };
     interface HTMLPostLanguageOptionElementEventMap {
         "postChange": string;
+        "postLanguageOptionInitiallyActive": string;
     }
     interface HTMLPostLanguageOptionElement extends Components.PostLanguageOption, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostLanguageOptionElementEventMap>(type: K, listener: (this: HTMLPostLanguageOptionElement, ev: PostLanguageOptionCustomEvent<HTMLPostLanguageOptionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -724,7 +732,7 @@ declare global {
         new (): HTMLPostMainnavigationElement;
     };
     interface HTMLPostMegadropdownElementEventMap {
-        "postToggleMegadropdown": boolean;
+        "postToggleMegadropdown": { isVisible: boolean; focusParent?: boolean };
     }
     interface HTMLPostMegadropdownElement extends Components.PostMegadropdown, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostMegadropdownElementEventMap>(type: K, listener: (this: HTMLPostMegadropdownElement, ev: PostMegadropdownCustomEvent<HTMLPostMegadropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1115,6 +1123,10 @@ declare namespace LocalJSX {
          */
         "onPostChange"?: (event: PostLanguageOptionCustomEvent<string>) => void;
         /**
+          * An event emitted when the language option is initially active. The payload is the ISO 639 code of the language.
+         */
+        "onPostLanguageOptionInitiallyActive"?: (event: PostLanguageOptionCustomEvent<string>) => void;
+        /**
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
         "url"?: string;
@@ -1161,9 +1173,9 @@ declare namespace LocalJSX {
     }
     interface PostMegadropdown {
         /**
-          * Emits when the dropdown is shown or hidden. The event payload is a boolean: `true` when the dropdown was opened, `false` when it was closed.
+          * Emits when the dropdown is shown or hidden. The event payload is an object. `isVisible` is true when the dropdown gets opened and false when it gets closed `focusParent` determines whether after the closing of the mega dropdown, the focus should go back to the trigger parent or naturally go to the next focusable element in the page
          */
-        "onPostToggleMegadropdown"?: (event: PostMegadropdownCustomEvent<boolean>) => void;
+        "onPostToggleMegadropdown"?: (event: PostMegadropdownCustomEvent<{ isVisible: boolean; focusParent?: boolean }>) => void;
     }
     interface PostMegadropdownTrigger {
         /**
@@ -1205,7 +1217,7 @@ declare namespace LocalJSX {
     }
     interface PostPopovercontainer {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
         /**
@@ -1224,6 +1236,10 @@ declare namespace LocalJSX {
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
+        /**
+          * Enables a safespace through which the cursor can be moved without the popover being disabled
+         */
+        "safeSpace"?: 'triangle' | 'trapezoid';
     }
     interface PostRating {
         /**
