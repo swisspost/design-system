@@ -55,7 +55,7 @@ tokens.$default-map: components.$post-button;
   @include utilities.high-contrast-mode() {
     &:is(a) {
       color: LinkText;
-      border: none;
+      border: unset;
     }
 
     &:is(button) {
