@@ -33,18 +33,31 @@ export class PostTooltipTrigger {
 
   @Watch('for')
   validateControlFor() {
-    checkType(this, 'for', 'string', 'The "for" property is required and should be a string.');
+    checkType(
+      this,
+      'for',
+      'string',
+      'The "for" property is required and should be a string.'
+    );
   }
 
   private get tooltip(): HTMLPostTooltipElement | null {
     const ref = document.getElementById(this.for);
-    return ref && ref.localName === 'post-tooltip' ? (ref as HTMLPostTooltipElement) : null;
+    return ref && ref.localName === 'post-tooltip'
+      ? (ref as HTMLPostTooltipElement)
+      : null;
   }
 
   componentDidLoad() {
     this.host.setAttribute('data-version', version);
     this.setupTrigger();
     this.attachListeners();
+
+    // Attach listeners on the tooltip to handle pointer enter/leave events
+    if (this.tooltip) {
+      this.tooltip.addEventListener('pointerenter', this.handleTooltipEnter.bind(this));
+      this.tooltip.addEventListener('pointerleave', this.handleTooltipLeave.bind(this));
+    }
   }
 
   private setupTrigger() {
@@ -69,34 +82,65 @@ export class PostTooltipTrigger {
 
   private attachListeners() {
     if (this.trigger) {
-      this.trigger.addEventListener('pointerover', this.interestHandler.bind(this));
-      this.trigger.addEventListener('pointerout', this.interestLostHandler.bind(this));
-      this.trigger.addEventListener('focusin', this.interestHandler.bind(this));
-      this.trigger.addEventListener('focusout', this.interestLostHandler.bind(this));
-      this.trigger.addEventListener('long-press', this.interestHandler.bind(this));
+      this.trigger.addEventListener('pointerenter', this.handleTriggerEnter.bind(this));
+      this.trigger.addEventListener('pointerleave', this.handleTriggerLeave.bind(this));
+      this.trigger.addEventListener('focusin', this.handleTriggerEnter.bind(this));
+      this.trigger.addEventListener('focusout', this.handleTriggerLeave.bind(this));
+      this.trigger.addEventListener('long-press', this.handleTriggerEnter.bind(this));
     }
+  }
+
+  private handleTriggerEnter() {
+    if (this.delayTimeout) {
+      clearTimeout(this.delayTimeout);
+      this.delayTimeout = null;
+    }
+    this.interestHandler();
+  }
+
+  private handleTriggerLeave(event: PointerEvent) {
+    // Check where the pointer is headed
+    const newTarget = event.relatedTarget as HTMLElement | null;
+    if (this.tooltip && newTarget && this.tooltip.contains(newTarget)) {
+      // Pointer is moving to the tooltip; keep it open.
+      return;
+    }
+    this.interestLostHandler();
+  }
+
+  private handleTooltipEnter() {
+    if (this.delayTimeout) {
+      clearTimeout(this.delayTimeout);
+      this.delayTimeout = null;
+    }
+    this.interestHandler();
+  }
+
+  private handleTooltipLeave(event: PointerEvent) {
+    // Check if the pointer is heading back to the trigger.
+    const newTarget = event.relatedTarget as HTMLElement | null;
+    if (this.trigger && newTarget && this.trigger.contains(newTarget)) {
+      return;
+    }
+    this.interestLostHandler();
   }
 
   private interestHandler() {
     if (this.delay > 0) {
-      // If there's a delay, set a timeout
       this.delayTimeout = window.setTimeout(() => {
         this.tooltip?.show(this.trigger);
         this.delayTimeout = null;
       }, this.delay);
     } else {
-      // If no delay, show the tooltip immediately
       this.tooltip?.show(this.trigger);
     }
   }
 
   private interestLostHandler() {
     if (this.delayTimeout) {
-      // If the delay is still pending, clear the timeout
       clearTimeout(this.delayTimeout);
       this.delayTimeout = null;
     }
-    // Hide the tooltip
     this.tooltip?.hide();
   }
 
