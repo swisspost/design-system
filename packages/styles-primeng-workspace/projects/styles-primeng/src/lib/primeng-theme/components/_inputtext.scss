@@ -1,0 +1,32 @@
+p-table,
+.p-datatable-filter-overlay {
+  --p-inputtext-background: var(--p-form-field-background);
+  --p-inputtext-disabled-background: var(--p-form-field-disabled-background);
+  --p-inputtext-filled-background: var(--p-form-field-filled-background);
+  --p-inputtext-filled-hover-background: var(--p-form-field-filled-hover-background);
+  --p-inputtext-filled-focus-background: var(--p-form-field-filled-focus-background);
+  --p-inputtext-border-color: var(--p-form-field-border-color);
+  --p-inputtext-hover-border-color: var(--p-form-field-hover-border-color);
+  --p-inputtext-focus-border-color: var(--p-form-field-focus-border-color);
+  --p-inputtext-invalid-border-color: var(--p-form-field-invalid-border-color);
+  --p-inputtext-color: var(--p-form-field-color);
+  --p-inputtext-disabled-color: var(--p-form-field-disabled-color);
+  --p-inputtext-placeholder-color: var(--p-form-field-placeholder-color);
+  --p-inputtext-invalid-placeholder-color: var(--p-form-field-invalid-placeholder-color);
+  --p-inputtext-shadow: var(--p-form-field-shadow);
+  --p-inputtext-padding-x: var(--p-form-field-padding-x);
+  --p-inputtext-padding-y: var(--p-form-field-padding-y);
+  --p-inputtext-border-radius: var(--p-form-field-border-radius);
+  --p-inputtext-focus-ring-width: var(--p-form-field-focus-ring-width);
+  --p-inputtext-focus-ring-style: var(--p-form-field-focus-ring-style);
+  --p-inputtext-focus-ring-color: var(--p-form-field-focus-ring-color);
+  --p-inputtext-focus-ring-offset: var(--p-form-field-focus-ring-offset);
+  --p-inputtext-focus-ring-shadow: var(--p-form-field-focus-ring-shadow);
+  --p-inputtext-transition-duration: var(--p-form-field-transition-duration);
+  --p-inputtext-sm-font-size: var(--p-form-field-sm-font-size);
+  --p-inputtext-sm-padding-x: var(--p-form-field-sm-padding-x);
+  --p-inputtext-sm-padding-y: var(--p-form-field-sm-padding-y);
+  --p-inputtext-lg-font-size: var(--p-form-field-lg-font-size);
+  --p-inputtext-lg-padding-x: var(--p-form-field-lg-padding-x);
+  --p-inputtext-lg-padding-y: var(--p-form-field-lg-padding-y);
+}

@@ -1,0 +1,38 @@
+:root {
+  --p-overlay-select-background: var(--post-white);
+  --p-overlay-select-border-color: transparent;
+  --p-overlay-select-color: var(--p-text-color);
+  --p-overlay-popover-background: var(--post-white);
+  --p-overlay-popover-border-color: transparent;
+  --p-overlay-popover-color: var(--p-text-color);
+  --p-overlay-modal-background: var(--post-white);
+  --p-overlay-modal-border-color: transparent;
+  --p-overlay-modal-color: var(--p-text-color);
+  --p-overlay-select-border-radius: var(--p-border-radius-none);
+  --p-overlay-select-shadow: 0.5px 3px 4px 0 rgba(0, 0, 0, 0.1), 2px 4px 10px 4px rgba(0, 0, 0, 0.1);
+  --p-overlay-popover-border-radius: var(--p-border-radius-none);
+  --p-overlay-popover-padding: 0.75rem;
+  --p-overlay-popover-shadow: 0.5px 3px 4px 0 rgba(0, 0, 0, 0.1),
+    2px 4px 10px 4px rgba(0, 0, 0, 0.1);
+  --p-overlay-modal-border-radius: var(--p-border-radius-rounded);
+  --p-overlay-modal-padding: 1.25rem;
+  --p-overlay-modal-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --p-overlay-navigation-shadow: 0.5px 3px 4px 0 rgba(0, 0, 0, 0.1),
+    2px 4px 10px 4px rgba(0, 0, 0, 0.1);
+  --p-datatable-filter-overlay-select-background: var(--p-overlay-select-background);
+  --p-datatable-filter-overlay-select-border-color: var(--p-overlay-select-border-color);
+  --p-datatable-filter-overlay-select-border-radius: var(--p-overlay-select-border-radius);
+  --p-datatable-filter-overlay-select-color: var(--p-overlay-select-color);
+  --p-datatable-filter-overlay-select-shadow: var(--p-overlay-select-shadow);
+  --p-datatable-filter-overlay-popover-background: var(--p-overlay-popover-background);
+  --p-datatable-filter-overlay-popover-border-color: var(--p-overlay-popover-border-color);
+  --p-datatable-filter-overlay-popover-border-radius: var(--p-overlay-popover-border-radius);
+  --p-datatable-filter-overlay-popover-color: var(--p-overlay-popover-color);
+  --p-datatable-filter-overlay-popover-shadow: var(--p-overlay-popover-shadow);
+  --p-datatable-filter-overlay-popover-padding: var(--p-overlay-popover-padding);
+  --p-datatable-filter-overlay-popover-gap: 0.5rem;
+}
+
+.p-select-overlay {
+  border: 0 !important;
+}
