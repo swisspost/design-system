@@ -161,6 +161,46 @@ gulp.task(
 );
 
 /**
+ * Get all available components names from the components package and add them to the scss file (packages\styles\src\utilities\_not-defined.scss) which sets initial visibility to hidden (for unregistered state).
+ */
+
+gulp.task('generate-not-defined-components-scss', done => {
+  const filePath = path.join(__dirname, '../components/src/index.ts');
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      done(err);
+      return;
+    }
+
+    const kebabCaseNames = Array.from(data.matchAll(/export \{ (\w+) \} from/g), m =>
+      m[1].replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase(),
+    ).join(',\n  ');
+
+    const templatePath = path.join(__dirname, 'src/templates/_not-defined.template.scss');
+    fs.readFile(templatePath, 'utf8', (err, data) => {
+      if (err) {
+        console.error('Error reading template file:', err);
+        done(err);
+        return;
+      }
+      const result = data.replace('/* WEB_COMPONENT_NAMES */', kebabCaseNames);
+
+      const outputPath = path.join(__dirname, 'src/utilities/_not-defined.scss');
+      fs.writeFile(outputPath, result, 'utf8', err => {
+        if (err) {
+          console.error('Error writing output file:', err);
+          done(err);
+          return;
+        }
+
+        console.log('Output file generated successfully.');
+        done();
+      });
+    });
+  });
+});
+
+/**
  * Watch task for scss development
  */
 gulp.task(
@@ -176,7 +216,13 @@ gulp.task(
 exports.default = gulp.task(
   'build',
   gulp.parallel(
-    gulp.series('map-icons', 'copy', 'autoprefixer', 'transform-package-json'),
+    gulp.series(
+      'generate-not-defined-components-scss',
+      'map-icons',
+      'copy',
+      'autoprefixer',
+      'transform-package-json',
+    ),
     gulp.series('temporarily-copy-token-files', 'sass'),
   ),
 );
