@@ -6,14 +6,12 @@ import {
   Input,
   LOCALE_ID,
   NgZone,
-  OnChanges,
   OnInit,
   SecurityContext,
-  SimpleChanges,
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { fromEvent, Subject } from 'rxjs';
@@ -25,7 +23,7 @@ import { userImage } from './user';
   templateUrl: './swisspost-intranet-header.component.html',
   styleUrls: ['./swisspost-intranet-header.component.scss'],
 })
-export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, AfterViewInit {
+export class SwissPostIntranetHeaderComponent implements OnInit, AfterViewInit {
   @Input() siteTitle: string = '';
   @Input() languages = 'de,fr,it,en';
   @Input() currentUserId: string = '';
@@ -45,7 +43,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   optionDropdownElement!: ElementRef<HTMLElement>;
 
   appLangs!: string[];
-  avatarUrl = this.createSafeAvatarUrl();
+  avatarUrl = userImage;
   openedMenu = false;
   openedLangChooser = false;
   openedMenuOverflow = false;
@@ -124,12 +122,6 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
     const tempArr = RegExp(/lang=([a-zA-Z]{2})/).exec(location.href);
     if (tempArr && tempArr.length > 1) {
       this.setLang(tempArr[1]);
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['currentUserId']) {
-      this.avatarUrl = this.createSafeAvatarUrl();
     }
   }
 
@@ -331,14 +323,6 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
 
   public isLanguageActive(lang: string) {
     return this.lang.toLowerCase() === lang.toLowerCase();
-  }
-
-  private createSafeAvatarUrl(): SafeUrl {
-    return this.currentUserId === ''
-      ? userImage
-      : `https://postchag.sharepoint.com/_layouts/15/userphoto.aspx?size=S&username=${encodeURIComponent(
-          this.currentUserId,
-        )}`;
   }
 
   private updateMoreElementText() {
