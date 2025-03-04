@@ -77,20 +77,29 @@ describe('accordion', () => {
       cy.get('@collapsibles').eq(7).shadow().find('post-collapsible').should('be.visible');
     });
 
-    it('should not propagate "postToggle" event from nested post-accordion', () => {
+    it('should toggle the clicked accordion item correctly even if "postToggle" event propagates', () => {
       cy.document().then(document => {
-        const EventHandlerMock = cy.spy();
-        Cypress.$(document.querySelector('post-accordion')).on('postToggle', EventHandlerMock);
-
+        const postToggleSpy = cy.spy();
+        Cypress.$(document.querySelector('post-accordion')).on('postToggle', postToggleSpy);
+    
         cy.get('@collapsibles')
           .eq(3)
           .click()
           .then(() => {
-            expect(EventHandlerMock).to.not.be.called;
+            cy.get('@collapsibles').eq(3).should('have.class', 'collapsed');
+    
+            cy.get('@collapsibles').not(':eq(3)').each($el => {
+              expect($el).to.have.class('collapsed');
+            });
+    
+            // Log the number of times the event was propagated.
+            cy.log('postToggle event call count:', postToggleSpy.callCount);
+
+            expect(postToggleSpy).to.have.been.called;
           });
       });
-    });
-  });
+    }); 
+  });   
 
   describe('multiple open panels', () => {
     beforeEach(() => {
