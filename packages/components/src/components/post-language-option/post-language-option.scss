@@ -48,7 +48,7 @@ post-language-option {
   }
 
   &:where([variant='menu']) {
-    width: 100%;
+    min-width: 72px;
 
     &[active]:not([active='false']) {
       display: none;
@@ -56,10 +56,10 @@ post-language-option {
 
     :is(a, button) {
       padding-block: 13px;
-      padding-inline: 24px;
+      padding-inline: 16px;
       box-sizing: border-box;
+      justify-content: flex-start;
       position: relative;
-      width: 100%;
 
       &:hover {
         color: white;

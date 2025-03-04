@@ -21,7 +21,6 @@ post-mainnavigation {
     post-megadropdown-trigger button {
       @include button.reset-button;
       text-align: start;
-      @include utilities.focus-style;
     }
 
     > a,
@@ -38,6 +37,7 @@ post-mainnavigation {
 
       &:focus-visible {
         border-radius: 4px;
+        outline-offset: -2px !important;
       }
     }
   }
@@ -70,6 +70,7 @@ post-mainnavigation {
   // desktop styles
   @include media.min(lg) {
     display: block;
+    overflow-x: hidden;
 
     nav {
       max-width: 100%;
