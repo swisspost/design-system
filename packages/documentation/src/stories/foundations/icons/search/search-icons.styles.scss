@@ -93,19 +93,17 @@ tokens.$default-map: utilities.$post-spacing;
   }
 }
 
-.icon-panel:popover-open {
+.icon-panel {
   height: 100vh;
   max-width: 350px;
   margin: 0 0 0 auto;
   border: 0;
-  display: flex;
-  align-items: flex-start;
   padding: 2rem 1rem 1rem 2rem;
   border-left: 1px solid #e1e0dc;
 
-  &::backdrop {
-    background-color: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(0) !important;
+  .icon-panel-content {
+    display: flex;
+    align-items: flex-start;
   }
 
   .resizer-container {

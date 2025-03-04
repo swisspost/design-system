@@ -2,6 +2,7 @@ import React from 'react';
 import report from '@swisspost/design-system-icons/public/report.json';
 import { IIcon } from '@swisspost/design-system-icons/src/models/icon.model';
 import './search-icons.styles.scss';
+import { PostPopovercontainer } from '@swisspost/design-system-components-react';
 
 interface IIconSetIcon {
   set: string;
@@ -138,22 +139,12 @@ export class Search extends React.Component {
     popover.showPopover();
   }
 
-  handleScroll(e: ToggleEvent) {
-    if (e.newState === 'open') {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }
-
   iconDetailPanel() {
-    const popover = document.querySelector('#icon-panel') as HTMLElement;
-    popover?.removeEventListener('toggle', this.handleScroll);
-    popover?.addEventListener('toggle', this.handleScroll);
+    const popover = document.querySelector('#icon-panel') as HTMLPostPopovercontainerElement;
 
     return (
-      <>
-        <div id="icon-panel" popover="auto" className="palette-default icon-panel">
+      <PostPopovercontainer id="icon-panel" class="palette-default icon-panel">
+        <div className="icon-panel-content">
           <div>
             <div className="resizer-container">
               <div className="resizer">
@@ -177,7 +168,7 @@ export class Search extends React.Component {
             <span className="visually-hidden">Close</span>
           </button>
         </div>
-      </>
+      </PostPopovercontainer>
     );
   }
 
