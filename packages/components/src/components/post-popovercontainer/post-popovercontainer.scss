@@ -55,6 +55,7 @@
   &[safe-space]::after {
     content: '';
     position: fixed;
+    background-color: red;
     inset: 0;
     z-index: -1;
     pointer-events: auto;

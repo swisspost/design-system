@@ -27,7 +27,7 @@ export class PostTooltip {
   /**
    * Choose a tooltip animation
    */
-  @Prop() readonly animation?: 'pop-in' | null = 'pop-in';
+  @Prop() readonly animation?: 'pop-in' | null = null;
   /**
    * Indicates the open state of the tooltip
    */
@@ -92,6 +92,7 @@ export class PostTooltip {
     return (
       <Host data-version={version} role="tooltip">
         <post-popovercontainer
+        safeSpace='triangle'
           class={popoverClass}
           arrow={this.arrow}
           animation={this.animation}

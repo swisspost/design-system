@@ -23,7 +23,7 @@ const meta: MetaComponent = {
     innerHTML: 'Hi there 👋',
     palette: 'palette-accent',
     placement: 'top',
-    animation: 'pop-in',
+    animation: 'none',
   },
   argTypes: {
     id: {
