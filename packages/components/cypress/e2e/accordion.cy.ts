@@ -77,23 +77,20 @@ describe('accordion', () => {
       cy.get('@collapsibles').eq(7).shadow().find('post-collapsible').should('be.visible');
     });
 
-    it('should propagate "postToggle" event from nested post-accordion, but parent should not react', () => {
-      cy.document().then((document) => {
+    it('should propagate "postToggle" event from nested post-accordion', () => {
+      cy.document().then(document => {
         const EventHandlerMock = cy.spy();
-        // Attach a listener to the parent post-accordion for the "postToggle" event
         Cypress.$(document.querySelector('post-accordion')).on('postToggle', EventHandlerMock);
-    
-        // Click the nested post-accordion's collapsible trigger
+
         cy.get('@collapsibles')
           .eq(3)
           .click()
           .then(() => {
-            // Verify that the parent's event handler was not called
-            expect(EventHandlerMock).to.not.be.called;
+            expect(EventHandlerMock).to.be.called;
           });
       });
     });
-  });    
+  });
 
   describe('multiple open panels', () => {
     beforeEach(() => {
