@@ -19,17 +19,17 @@ export class PostBackToTop {
 
   @State() belowFold: boolean = false;
 
-  private translateY: string;
+  private translateY: string = '-100%';
 
   private isBelowFold(): boolean {
     return window.scrollY > window.innerHeight;
   }
 
-  private handleScroll = () => {
+  private readonly handleScroll = () => {
     this.belowFold = this.isBelowFold();
   };
 
-  // Watch for changes in belowFold
+  // Watch for changes in belowFold to show/hide the back to top button
   @Watch('belowFold')
   watchBelowFold(newValue: boolean) {
     if (newValue) {
@@ -60,17 +60,16 @@ export class PostBackToTop {
   componentDidLoad() {
     window.addEventListener('scroll', this.handleScroll, false);
 
-    this.translateY = window
-      .getComputedStyle(this.host)
-      .getPropertyValue('--post-floating-button-translate-y');
+    const topV = window.getComputedStyle(this.host).getPropertyValue('--post-header-height');
+
+    this.translateY = String((-1 * 100) / 100 - parseFloat(topV.replace('px', '')) - 32) + 'px';
+
+    if (this.belowFold) {
+      slideDown(this.host, this.translateY);
+    }
 
     if (!this.belowFold) {
       this.host.style.transform = `translateY(${this.translateY})`;
-    }
-
-    // Initial load
-    if (this.belowFold) {
-      slideUp(this.host, this.translateY);
     }
 
     this.validateLabel();
