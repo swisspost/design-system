@@ -19,7 +19,7 @@ export class PostBackToTop {
 
   @State() belowFold: boolean = false;
 
-  private translateY: string = '-100%';
+  private translateY: string;
 
   private isBelowFold(): boolean {
     return window.scrollY > window.innerHeight;
@@ -60,9 +60,12 @@ export class PostBackToTop {
   componentDidLoad() {
     window.addEventListener('scroll', this.handleScroll, false);
 
-    const topV = window.getComputedStyle(this.host).getPropertyValue('--post-header-height');
+    const headerHeight = window
+      .getComputedStyle(this.host)
+      .getPropertyValue('--post-header-height');
 
-    this.translateY = String((-1 * 100) / 100 - parseFloat(topV.replace('px', '')) - 32) + 'px';
+    this.translateY =
+      String((-1 * 100) / 100 - parseFloat(headerHeight.replace('px', '')) - 32) + 'px';
 
     if (this.belowFold) {
       slideDown(this.host, this.translateY);
