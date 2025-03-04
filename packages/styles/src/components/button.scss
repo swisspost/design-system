@@ -53,11 +53,23 @@ tokens.$default-map: components.$post-button;
   @include utilities.focus-style;
 
   @include utilities.high-contrast-mode() {
-    background-color: ButtonFace !important;
+    &:is(a) {
+      color: LinkText;
+      border: none;
+    }
+
+    &:is(button) {
+      background-color: ButtonFace !important;
+      border: 1px solid ButtonBorder !important;
+    }
 
     &:not(:disabled, .disabled) {
-      &:hover {
+      &:is(button):hover {
         background-color: Highlight !important;
+
+        > post-icon {
+          color: HighlightText !important;
+        }
       }
     }
   }

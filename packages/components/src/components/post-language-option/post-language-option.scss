@@ -37,12 +37,22 @@ post-language-option {
       &:hover {
         color: #504f4b;
       }
+
+      @include utilities-mx.high-contrast-mode() {
+        border: 1px solid ButtonBorder;
+        color: ButtonText;
+      }
     }
+
     &[active]:not([active='false']) {
       :is(a, button) {
         background-color: #050400 !important;
         color: #fff;
         pointer-events: none;
+
+        @include utilities-mx.high-contrast-mode() {
+          background-color: Highlight !important;
+        }
       }
     }
   }

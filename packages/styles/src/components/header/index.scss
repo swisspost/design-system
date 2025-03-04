@@ -134,11 +134,15 @@ post-header {
   post-togglebutton {
     @include utilities.high-contrast-mode() {
       background-color: ButtonFace !important;
-      border-color: ButtonBorder !important;
+      border: 1px solid ButtonBorder !important;
       color: ButtonText !important;
 
       &:hover {
         background-color: Highlight !important;
+
+        post-icon {
+          color: HighlightText;
+        }
       }
     }
   }
