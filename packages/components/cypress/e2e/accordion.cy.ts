@@ -77,31 +77,23 @@ describe('accordion', () => {
       cy.get('@collapsibles').eq(7).shadow().find('post-collapsible').should('be.visible');
     });
 
-    it('should not trigger "postToggle" event handler on parent when nested post-accordion-item is clicked', () => {
-      cy.document().then(document => {
+    it('should propagate "postToggle" event from nested post-accordion, but parent should not react', () => {
+      cy.document().then((document) => {
         const EventHandlerMock = cy.spy();
-        // Set up a parent post-accordion and a nested post-accordion structure
-        const parentAccordion = document.querySelector('post-accordion');
-        parentAccordion.innerHTML = `
-          <post-accordion-item></post-accordion-item>
-          <post-accordion>
-            <post-accordion-item id="nested-item"></post-accordion-item>
-          </post-accordion>
-        `;
-        // Attach spy to the parent post-accordion
-        Cypress.$(parentAccordion).on('postToggle', EventHandlerMock);
+        // Attach a listener to the parent post-accordion for the "postToggle" event
+        Cypress.$(document.querySelector('post-accordion')).on('postToggle', EventHandlerMock);
     
-        // Click the nested post-accordion-item's collapsible
-        cy.get('#nested-item')
-          .find('post-collapsible')
+        // Click the nested post-accordion's collapsible trigger
+        cy.get('@collapsibles')
+          .eq(3)
           .click()
           .then(() => {
-            // Verify the parent's handler was not called
-            expect(EventHandlerMock).not.to.have.been.called;
+            // Verify that the parent's event handler was not called
+            expect(EventHandlerMock).to.not.be.called;
           });
       });
     });
-  });
+  });    
 
   describe('multiple open panels', () => {
     beforeEach(() => {
