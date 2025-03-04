@@ -1,0 +1,20 @@
+.gutters-example,
+.gutters-snapshot-example {
+  text-align: center;
+
+  .container {
+    overflow: hidden;
+  }
+
+  .row {
+    .col,
+    .col-6 {
+      background: linear-gradient(#b8e2f3, #b8e2f3), linear-gradient(#a69ce1, #a69ce1);
+      background-clip: content-box, border-box;
+      color: #59718b;
+    }
+  }
+  .row:has(.col-6) {
+    background: linear-gradient(#a69ce1, #a69ce1);
+  }
+}

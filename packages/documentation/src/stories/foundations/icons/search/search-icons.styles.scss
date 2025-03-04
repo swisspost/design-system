@@ -1,0 +1,87 @@
+@use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
+
+.search-form {
+  margin-block-start: tokens.get('utility-gap-32');
+
+  .sets {
+    margin-inline: auto;
+    max-width: 80%;
+
+    @include post.max('md') {
+      max-width: 300px;
+    }
+  }
+
+  .search-text {
+    margin-block: tokens.get('utility-gap-64') tokens.get('utility-gap-48');
+    margin-inline: auto;
+    max-width: 400px;
+  }
+}
+
+.search-results {
+  margin-block-start: tokens.get('utility-gap-48');
+
+  .no-results {
+    text-align: center;
+
+    post-icon {
+      font-size: 3rem;
+    }
+  }
+
+  .result-list {
+    @include post.list-unstyled();
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    gap: tokens.get('utility-gap-16');
+    margin-block: tokens.get('utility-gap-24');
+
+    @include post.min('sm') {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include post.min('md') {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @include post.min('lg') {
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    .icon {
+      padding: tokens.get('utility-gap-16') 0.5rem 0.5rem;
+      border: 1px solid post.$gray-20;
+      border-radius: post.$border-radius;
+
+      .gfx {
+        display: flex;
+        justify-content: center;
+        height: tokens.get('utility-gap-32');
+        font-size: tokens.get('utility-gap-32');
+      }
+
+      .name {
+        margin-block-start: tokens.get('utility-gap-16');
+        font-size: 0.8rem;
+        font-weight: bold;
+        text-align: center;
+        hyphens: auto;
+      }
+    }
+  }
+
+  .paging {
+    display: flex;
+    justify-content: center;
+
+    ul {
+      @include post.list-inline();
+    }
+  }
+}

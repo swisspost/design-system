@@ -1,0 +1,102 @@
+import { Canvas, Meta, Source } from '@storybook/blocks';
+import * as FormGuidelinesStories from './forms.stories';
+
+<Meta of={FormGuidelinesStories} />
+
+# How to forms
+
+## Page layout
+
+All things need to be contained inside a container. The container limits the size of the content and centers it on the page.
+
+<Source code={`<div class="container">...</div>`} language="html" />
+
+## Basic input
+
+For accessibility reasons, form fields should always have a label linked via the id/for
+attributes. Screen-readers will announce the label when the input gets the focus. If there is no
+label, screen-reader users have no idea what the input should be, even if there is other text
+next to the field.
+
+<Canvas of={FormGuidelinesStories.BasicInput} sourceState="shown" />
+
+## Vertical spacing
+
+To add space between input, you can use [margin utilities](/?path=/docs/facaacfd-18f1-49b4-80f1-a96680730fa0--docs).
+
+<Canvas of={FormGuidelinesStories.VerticalSpacing} sourceState="shown" />
+
+## Rows'n'cols
+
+If you want a form field to span the whole available width, you don't need a row nor a col. You
+only need those, if you want to place two things next to each other.
+
+Simply use `.row` and `.col` to have the width distributed evenly between all inputs.
+To make it responsive, you can add `.row-cols-*` classes to the row (see [Grid page](/?path=/docs/7240f2ef-216a-490e-9bd8-c0cef19f7b31--docs#row-columns)).
+
+<Canvas of={FormGuidelinesStories.RowSimple} sourceState="shown" />
+
+For finer adjustment, you can also use the `.col-*` classes (see [Columns page](/?path=/docs/cd70f48f-6308-4ec8-a8c6-982bd72c855c--docs)) on your columns. For example for a 2/1 ratio, given that a row has twelve columns in total,
+just add `.col-8` and `.col-4` to you two columns respectively.
+
+<Canvas of={FormGuidelinesStories.ColSimple} sourceState="shown" />
+
+## Fields with custom width
+
+Some fields may not fit into the twelve row schema, they need a custom width. The PLZ field may
+be one of those cases. Two `.col` next to each other will have equal width. If one of the cols has the
+`.col-auto` class, this col is sized based on it's content. The other row is stretched to the container
+width. With this setup, we can define a max-width on the input field to shrink it.
+
+<Canvas of={FormGuidelinesStories.CustomWidth} sourceState="shown" />
+
+## Form buttons
+
+Buttons, often at the end of the form are right aligned. We can achieve this with the classes `d-flex flex-row-reverse`. This will ensure that the primary button is focused first (because of the markup order) but is
+still aligned to the right. To get some margin between the button we can use the `.gap-8` class. Note that for the buttons, we don't need any row/col structure.
+
+<Canvas of={FormGuidelinesStories.Buttons} sourceState="shown" />
+
+## Floating labels
+
+For internet applications, bigger input fields with floating labels are the Post way of creating
+forms. The particularity of these fields, is that the `<label>` and `<input>`
+elements are inverted and wrapped in a `.form-floating` div.
+In addition, the input field needs a placeholder attribute, preferably equal to a single space.
+
+<Canvas of={FormGuidelinesStories.FloatingLabels} sourceState="shown" />
+
+## Validation messages
+
+Validation messages are placed directly after the `<input>`
+(or after the `<label>` in the case of floating label). Showing and hiding of these messages is typically controlled by
+adding and removing validation classes on the input:
+
+- The message needs the class `.invalid-feedback/.valid-feedback`
+- The form needs the class `.was-validated`. With this class you can manage when to display errors. Usually, errors should not be
+  shown on untouched fields.
+
+Or
+
+The input field needs the class `.is-invalid/.is-valid`
+
+<Canvas of={FormGuidelinesStories.Validation} sourceState="shown" />
+
+## Hints
+
+Hints can help users better understand the type of information they need to provide. Hints, like
+validation messages, must be placed after the `<input>` (or `<label>`
+in the case of floating label) and after validation messages if there are some.
+
+Hints use the class `.form-hint`.
+
+To enable screen-readers to detect and read your hints, link the `<input>`
+with the aria-describedby attribute to the hint via id.
+
+<Canvas of={FormGuidelinesStories.Hints} sourceState="shown" />
+
+## Form footer
+
+The form footer is placed at the end/bottom of a form or a form step, in case the form is splitted with a stepper. It provides workflow-related actions to the form or form step.
+
+<Canvas of={FormGuidelinesStories.Footer} sourceState="shown" />

@@ -16,6 +16,7 @@ tokens.$default-map: components.$post-close;
   color: tokens.get('close-enabled-fg');
 
   > post-icon {
+    min-width: tokens.get('close-icon-size');
     width: tokens.get('close-icon-size');
     height: tokens.get('close-icon-size');
   }

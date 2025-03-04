@@ -1,0 +1,15 @@
+.container {
+  div {
+    overflow: visible;
+  }
+}
+
+#storybook-docs {
+  .header-story-wrapper {
+    max-height: 20rem !important;
+  }
+}
+
+.paragraph {
+  margin-top: 1em;
+}

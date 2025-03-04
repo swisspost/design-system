@@ -13,11 +13,20 @@ import * as StepperStories from './stepper.stories';
   </nav>
 </div>
 
-<p className="lead">The stepped progression component provides an interactive visual overview of a process. It shows at a glance the amount of steps a user is required to go through, and serves as a guide for each step, indicating its status.</p>
+<p className="lead">
+  The stepped progression component provides an interactive visual overview of a process. It shows
+  at a glance the amount of steps a user is required to go through, and serves as a guide for each
+  step, indicating its status.
+</p>
 
-<div className="alert alert-warning mb-40">
-  <p className="alert-heading">The stepper previously used ng-bootstrap's progressbar component, this has been deprecated in favor of the CSS-only stepper documented below.</p>
-  <div className="d-flex justify-content-end"><PostComponentDemoLink component="stepper" /></div>
+<div className="banner banner-warning mb-40">
+  <p className="banner-heading">
+    The stepper previously used ng-bootstrap's progressbar component, this has been deprecated in
+    favor of the CSS-only stepper documented below.
+  </p>
+  <div className="d-flex justify-content-end">
+    <PostComponentDemoLink component="stepper" />
+  </div>
 </div>
 
 <Canvas sourceState="shown" of={StepperStories.Default} />

@@ -1,25 +1,70 @@
 @use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
 
-:host {
+post-language-option {
   display: inline-block;
-  width: fit-content;
-}
 
-button {
-  @include post.reset-button;
-}
+  button {
+    @include post.reset-button;
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
-:is(a, button) {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  padding: var(--post-language-option-padding);
+  :is(a, button) {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+    text-transform: uppercase;
+    @include utilities-mx.focus-style;
+  }
+
+  // Show all options now, instead of hiding the active one
+
+  &:where([variant='list']) {
+    :is(a, button) {
+      padding-inline: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 2px;
+
+      &:hover {
+        color: #504f4b;
+      }
+    }
+    &[active]:not([active='false']) {
+      :is(a, button) {
+        background-color: #050400 !important;
+        color: #fff;
+        pointer-events: none;
+      }
+    }
+  }
+
+  &:where([variant='menu']) {
+    min-width: 72px;
+
+    &[active]:not([active='false']) {
+      display: none;
+    }
+
+    :is(a, button) {
+      padding-block: 13px;
+      padding-inline: 16px;
+      box-sizing: border-box;
+      justify-content: flex-start;
+      position: relative;
+
+      &:hover {
+        color: white;
+        background-color: #504f4b;
+      }
+    }
+  }
 }

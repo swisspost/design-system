@@ -35,11 +35,7 @@ export class PostCollapsible {
 
   @Watch('collapsed')
   collapsedChange() {
-    checkEmptyOrType(
-      this.collapsed,
-      'boolean',
-      'The `collapsed` property of the `post-collapsible` must be a boolean.',
-    );
+    checkEmptyOrType(this, 'collapsed', 'boolean');
 
     void this.toggle(!this.collapsed);
   }
@@ -96,7 +92,7 @@ export class PostCollapsible {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={version} tabindex={this.collapsed ? -1 : undefined}>
         <slot />
       </Host>
     );

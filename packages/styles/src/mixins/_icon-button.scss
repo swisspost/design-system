@@ -13,13 +13,15 @@ tokens.$default-map: components.$post-icon-button;
     'lg': 'large',
   );
   $actual-size: map.get($size-map, $size);
-  min-width: tokens.get('icon-button-#{$actual-size}-outer');
+  padding: 0;
   width: tokens.get('icon-button-#{$actual-size}-outer');
   height: tokens.get('icon-button-#{$actual-size}-outer');
+  min-height: 0;
+  vertical-align: text-bottom;
 
-  > .pi,
   > post-icon {
-    min-width: tokens.get('icon-button-#{$actual-size}-icon');
+    display: block;
+    width: tokens.get('icon-button-#{$actual-size}-icon');
     height: tokens.get('icon-button-#{$actual-size}-icon');
   }
 }

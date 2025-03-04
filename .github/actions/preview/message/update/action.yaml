@@ -32,23 +32,39 @@ runs:
             owner: context.repo.owner,
             issue_number: Number(ISSUE_NUMBER)
           })).data || []
+
           const previewComment = comments.find(c => c.user.login === 'swisspost-bot' && c.body.includes(commentTitle))
+          const iconsUpdateTitle = 'chore(icons): :point_up: update icons'
 
           if (previewComment && !previewComment.body.includes(PREVIEW_URL)) {
-            github.rest.issues.updateComment({
+            let updates = [];
+
+            const issue = await github.rest.issues.get({
+              repo: context.repo.repo,
+              owner: context.repo.owner,
+              issue_number: Number(ISSUE_NUMBER),
+            });
+
+            if (issue?.data?.title.includes(iconsUpdateTitle)) {
+              updates.push(`- ${PREVIEW_URL}?path=/docs/health-icons--docs\n`)
+            }
+
+            await github.rest.issues.updateComment({
               repo: context.repo.repo,
               owner: context.repo.owner,
               comment_id: previewComment.id,
               body: previewComment.body
                 .replace(commentInitialBody, '')
                 .concat(`- ${PREVIEW_URL}\n`)
-            })
+                .concat(updates.join(''))
+            });
 
             const reactions = (await github.rest.reactions.listForIssueComment({
               repo: context.repo.repo,
               owner: context.repo.owner,
               comment_id: previewComment.id,
             })).data || []
+
             const createReaction = reactions.find(r => r.user.login === 'swisspost-bot' && r.content === 'eyes')
             const updateReaction = reactions.find(r => r.user.login === 'swisspost-bot' && r.content === 'rocket')
 

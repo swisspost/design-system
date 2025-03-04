@@ -1,3 +1,7 @@
-:host {
-  display: inline-block;
+@use '@swisspost/design-system-styles/mixins/media';
+
+post-megadropdown-trigger {
+  width: 100%;
+  position: relative;
+  z-index: 3;
 }

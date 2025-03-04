@@ -1,4 +1,8 @@
 @use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/functions/tokens' as tokens;
+@use '@swisspost/design-system-styles/tokens/utilities' as utilities;
+
+tokens.$default-map: utilities.$post-spacing;
 
 .addon-label {
   color: post.$body-color !important;
@@ -8,11 +12,11 @@
   min-width: 12rem;
   display: flex;
   flex-flow: column nowrap;
-  gap: post.$size-line;
+  gap: tokens.get('utility-gap-2');
   position: absolute;
   top: -5px;
   right: 0;
-  padding: post.$size-mini;
+  padding: tokens.get('utility-gap-8');
   background-color: post.$white;
   border: post.$border-width solid post.$border-color;
   border-radius: post.$border-radius;
@@ -20,7 +24,7 @@
 
   .addon-dropdown__item {
     display: block;
-    padding: post.$size-mini post.$size-small-regular;
+    padding: tokens.get('utility-gap-8') tokens.get('utility-gap-12');
     border-radius: post.$border-radius-sm;
     text-decoration: none;
     color: post.$body-color !important;
@@ -38,6 +42,6 @@
 .addon-button {
   post-icon {
     font-size: post.$font-size-20;
-    margin-inline-end: post.$size-line;
+    margin-inline-end: tokens.get('utility-gap-2');
   }
 }

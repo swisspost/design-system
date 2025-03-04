@@ -1,0 +1,35 @@
+@use '../../../../node_modules/@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
+
+.elevation-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: tokens.get('utility-gap-32');
+  margin-block: tokens.get('utility-gap-24') tokens.get('utility-gap-40');
+}
+
+.elevation-tile {
+  padding: tokens.get('utility-gap-16');
+  border-radius: post.$border-radius;
+
+  .h3 {
+    margin-bottom: tokens.get('utility-gap-24');
+    text-transform: capitalize;
+  }
+
+  dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    column-gap: tokens.get('utility-gap-16');
+    margin-bottom: 0;
+  }
+
+  dl,
+  dt,
+  dd {
+    @include post.font-curve(tiny);
+  }
+}

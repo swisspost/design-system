@@ -8,6 +8,10 @@
 @use './../type';
 
 @use './../../functions/sizing';
+@use '../../tokens/utilities';
+@use '../../functions/tokens';
+
+tokens.$default-map: utilities.$post-spacing;
 
 $chip-color: color.$gray-80;
 $chip-bg: color.$white;
@@ -17,8 +21,8 @@ $chip-border-radius: commons.$border-radius-pill;
 
 $chip-height: map.get(button.$btn-height-map, 'md');
 $chip-max-width: 100%;
-$chip-padding-x: spacing.$size-regular;
-$chip-gap: spacing.$size-mini;
+$chip-padding-x: tokens.get('utility-gap-16');
+$chip-gap: tokens.get('utility-gap-8');
 
 $chip-font-size: type.$font-size-16;
 $chip-font-weight: type.$font-weight-normal;
@@ -32,7 +36,7 @@ $chip-transition:
 $chip-height-sm: button.$btn-height-sm;
 $chip-gap-sm: sizing.px-to-rem(6px);
 $chip-font-size-sm: type.$font-size-14;
-$chip-padding-x-sm: spacing.$size-small-regular;
+$chip-padding-x-sm: tokens.get('utility-gap-12');
 
 $chip-hover-color: color.$black;
 $chip-hover-bg: color.$gray-20;
@@ -53,7 +57,7 @@ $chip-close-button-icon: 2043;
 $chip-close-button-border-width: commons.$border-width;
 $chip-close-button-border-radius: commons.$border-radius-round;
 $chip-close-button-border: $chip-close-button-border-width solid $chip-border-color;
-$chip-close-button-height: spacing.$size-large;
-$chip-close-button-height-sm: spacing.$size-regular;
+$chip-close-button-height: tokens.get('utility-gap-24');
+$chip-close-button-height-sm: tokens.get('utility-gap-16');
 
-$chip-dismissable-padding-start: spacing.$size-mini;
+$chip-dismissable-padding-start: tokens.get('utility-gap-8');

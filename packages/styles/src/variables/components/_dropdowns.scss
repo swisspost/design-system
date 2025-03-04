@@ -12,7 +12,7 @@ $dropdown-bg: color.$white !default;
 $dropdown-border-color: rgba(color.$black, 0.15) !default;
 $dropdown-border-radius: commons.$border-radius !default;
 $dropdown-border-width: commons.$border-width !default;
-$dropdown-divider-bg: rgba(var(--post-contrast-color-inverted-rgb), 0.6) !default;
+$dropdown-divider-bg: color.$white-alpha-60 !default;
 $dropdown-box-shadow: 0 0.5rem 1rem rgba(color.$black, 0.175) !default;
 
 $dropdown-link-color: color.$gray-60 !default;

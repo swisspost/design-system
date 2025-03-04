@@ -12,19 +12,24 @@ describe('fetchPage', () => {
         Promise.resolve({ status: 200, json: () => Promise.resolve(testResult) } as Response),
       );
     const json = await fetchPage('test');
+    const count = getCount();
 
-    if (json && !('error' in json)) {
-      expect(json.count).toBeDefined();
-      expect(json.count).toBe(10);
-    } else {
-      fail('fetchPage errored in test');
+    expect(count).toBeDefined();
+    expect(count).toBe(10);
+
+    function getCount() {
+      if (json && !('error' in json)) {
+        return json.count;
+      } else {
+        throw new Error('fetchPage errored in test');
+      }
     }
   });
 
   it('Should error if the call fails', async () => {
     jest.mocked(fetch).mockImplementationOnce(() => Promise.reject('NOK'));
     const t = async () => fetchPage('test');
-    expect(t).rejects.toEqual('NOK');
+    await expect(t).rejects.toEqual('NOK');
   });
 
   it('Should error if the response is not 200', async () => {
@@ -35,6 +40,6 @@ describe('fetchPage', () => {
       } as Response),
     );
     const t = async () => fetchPage('test');
-    expect(t).rejects.toBeInstanceOf(Error);
+    await expect(t).rejects.toBeInstanceOf(Error);
   });
 });

@@ -1,5 +1,9 @@
 @use '@swisspost/design-system-styles/core' as post;
 @use './variables' as variables;
+@use '@swisspost/design-system-styles/tokens/utilities';
+@use '@swisspost/design-system-styles/functions/tokens';
+
+tokens.$default-map: utilities.$post-spacing;
 
 .p-datatable-wrapper {
   overflow: initial;
@@ -7,7 +11,7 @@
 
 .p-datatable {
   .p-datatable-thead > tr > th {
-    gap: post.$size-mini;
+    gap: tokens.get('utility-gap-8');
   }
 
   .p-sortable-column {
@@ -31,7 +35,7 @@
   }
 
   p-columnfilter {
-    margin-inline: post.$size-mini;
+    margin-inline: tokens.get('utility-gap-8');
     height: 1.5rem;
 
     filtericon {
@@ -123,7 +127,7 @@
 }
 
 .p-button {
-  gap: post.$size-mini;
+  gap: tokens.get('utility-gap-8');
 
   &.p-button-text {
     color: post.$dark;

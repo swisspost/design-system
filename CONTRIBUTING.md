@@ -4,7 +4,6 @@ These contribution guidelines apply to this repository in general and describe h
 
 - [Angular Demo](./packages/demo/README.md)
 - [Design System Styles](./packages/styles/CONTRIBUTING.md)
-- [Intranet Header Component](./packages/intranet-header-workspace/projects/intranet-header/CONTRIBUTING.md)
 
 ## Setup
 
@@ -17,8 +16,7 @@ Use these commands whenever you want to work on one of these packages. Ideally, 
 | Command                           | Description                                                                                  |
 | --------------------------------- | -------------------------------------------------------------------------------------------- |
 | `pnpm start` or `pnpm docs:start` | starts the design-system-documentation storybook and the `start` scripts of all dependencies |
-| `pnpm demo:start`                 | starts the demo Angular application and the `start` scripts of all dependencies              |
-| `pnpm intranet-header:start`      | starts the intranet header demo application                                                  |
+| `pnpm demo:start`                 | starts the demo Angular application and the `start` application                                                  |
 | `pnpm styles:start`               | starts the sass compiler                                                                     |
 | `pnpm components:start`           | starts the stencil compiler                                                                  |
 | `pnpm header:start`               | starts the stencil compiler for the header                                                   |
@@ -55,7 +53,7 @@ Use these commands whenever you want to work on one of these packages. Ideally, 
 
 - Add the `id` property in the meta of each story file. The property should contain an UUID (feel free to use your favorite tool)
 - No react related attributes in code snippets (e.g. className, htmlFor, key, etc.)
-- No nested `<p>` tags (beware of .lead and .alert)
+- No nested `<p>` tags (except for .lead and .banner)
 - When adding a link, we do not use the LinkTo element, but the standard `<a>` element
 - `div.hide-col-default` wrapper for controls on CSS only component docs
 - Add the `sourceState="shown"` attribute to the first canvas if the code is not too long (less than 8 lines)
@@ -236,7 +234,6 @@ For some packages it's necessary to run multiple dev servers at the same time. T
 | :-------------- | ---: |
 | Styles (unused) | 9300 |
 | Internet-Header | 9310 |
-| Intranet-Header | 9320 |
 | Icons           | 9330 |
 
 ## Branching

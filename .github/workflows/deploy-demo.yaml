@@ -1,0 +1,54 @@
+###
+#
+# Not used for v9 anymore
+# But since workflows run always from the `main` branch we need to keep it for older versions
+#
+###
+
+name: Deploy Demo App Preview to Netlify
+on:
+  workflow_run:
+    workflows: ['Build Demo App']
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: >
+      ${{ github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_branch }}
+
+      - name: Setup
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Download build artifacts
+        uses: ./.github/actions/artifact-download
+        id: build
+        with:
+          name: design-system-demo
+          folder: build-output
+
+      - name: Deploy demo app to netlify
+        uses: swisspost/design-system/.github/actions/deploy-to-netlify@release/v8
+        id: deploy
+        with:
+          id: ${{ steps.build.outputs.id }}
+          netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          netlify_site_id: ${{ secrets.NETLIFY_SITE_ID }}
+          netlify_site_url: swisspost-web-frontend.netlify.app
+          folder: ${{ steps.build.outputs.folder }}
+          package_name: '@swisspost/design-system-demo'
+
+      - name: Update preview message
+        uses: ./.github/actions/preview/message/update
+        with:
+          access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+          issue-number: ${{ steps.build.outputs.id }}
+          preview-url: ${{ steps.deploy.outputs.preview-url }}

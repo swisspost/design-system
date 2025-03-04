@@ -37,7 +37,7 @@ export namespace Components {
          */
         "setFocus": () => Promise<void>;
     }
-    interface PostLanguageSwitch {
+    interface PostLanguageSwitch2 {
         /**
           * Visualization of the language switch. Possible values: 'dropdown' | 'list'
          */
@@ -183,9 +183,9 @@ export namespace Components {
         "stickyness": StickynessOptions;
     }
 }
-export interface PostLanguageSwitchCustomEvent<T> extends CustomEvent<T> {
+export interface PostLanguageSwitch2CustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLPostLanguageSwitchElement;
+    target: HTMLPostLanguageSwitch2Element;
 }
 export interface PostMainNavigationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -222,23 +222,23 @@ declare global {
         prototype: HTMLPostKlpLoginWidgetElement;
         new (): HTMLPostKlpLoginWidgetElement;
     };
-    interface HTMLPostLanguageSwitchElementEventMap {
+    interface HTMLPostLanguageSwitch2ElementEventMap {
         "dropdownToggled": DropdownEvent;
         "languageChanged": string;
     }
-    interface HTMLPostLanguageSwitchElement extends Components.PostLanguageSwitch, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostLanguageSwitchElementEventMap>(type: K, listener: (this: HTMLPostLanguageSwitchElement, ev: PostLanguageSwitchCustomEvent<HTMLPostLanguageSwitchElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+    interface HTMLPostLanguageSwitch2Element extends Components.PostLanguageSwitch2, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostLanguageSwitch2ElementEventMap>(type: K, listener: (this: HTMLPostLanguageSwitch2Element, ev: PostLanguageSwitch2CustomEvent<HTMLPostLanguageSwitch2ElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostLanguageSwitchElementEventMap>(type: K, listener: (this: HTMLPostLanguageSwitchElement, ev: PostLanguageSwitchCustomEvent<HTMLPostLanguageSwitchElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostLanguageSwitch2ElementEventMap>(type: K, listener: (this: HTMLPostLanguageSwitch2Element, ev: PostLanguageSwitch2CustomEvent<HTMLPostLanguageSwitch2ElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
-    var HTMLPostLanguageSwitchElement: {
-        prototype: HTMLPostLanguageSwitchElement;
-        new (): HTMLPostLanguageSwitchElement;
+    var HTMLPostLanguageSwitch2Element: {
+        prototype: HTMLPostLanguageSwitch2Element;
+        new (): HTMLPostLanguageSwitch2Element;
     };
     interface HTMLPostMainNavigationElementEventMap {
         "dropdownToggled": DropdownEvent;
@@ -320,7 +320,7 @@ declare global {
         "focus-trap": HTMLFocusTrapElement;
         "post-header-logo": HTMLPostHeaderLogoElement;
         "post-klp-login-widget": HTMLPostKlpLoginWidgetElement;
-        "post-language-switch": HTMLPostLanguageSwitchElement;
+        "post-language-switch-2": HTMLPostLanguageSwitch2Element;
         "post-main-navigation": HTMLPostMainNavigationElement;
         "post-meta-navigation": HTMLPostMetaNavigationElement;
         "post-search": HTMLPostSearchElement;
@@ -346,7 +346,7 @@ declare namespace LocalJSX {
          */
         "logoutUrl"?: string;
     }
-    interface PostLanguageSwitch {
+    interface PostLanguageSwitch2 {
         /**
           * Visualization of the language switch. Possible values: 'dropdown' | 'list'
          */
@@ -354,11 +354,11 @@ declare namespace LocalJSX {
         /**
           * Fires when the dropdown has been toggled.
          */
-        "onDropdownToggled"?: (event: PostLanguageSwitchCustomEvent<DropdownEvent>) => void;
+        "onDropdownToggled"?: (event: PostLanguageSwitch2CustomEvent<DropdownEvent>) => void;
         /**
           * Fires when the language has been changed.
          */
-        "onLanguageChanged"?: (event: PostLanguageSwitchCustomEvent<string>) => void;
+        "onLanguageChanged"?: (event: PostLanguageSwitch2CustomEvent<string>) => void;
     }
     interface PostMainNavigation {
         /**
@@ -478,7 +478,7 @@ declare namespace LocalJSX {
         "focus-trap": FocusTrap;
         "post-header-logo": PostHeaderLogo;
         "post-klp-login-widget": PostKlpLoginWidget;
-        "post-language-switch": PostLanguageSwitch;
+        "post-language-switch-2": PostLanguageSwitch2;
         "post-main-navigation": PostMainNavigation;
         "post-meta-navigation": PostMetaNavigation;
         "post-search": PostSearch;
@@ -499,7 +499,7 @@ declare module "@stencil/core" {
             "focus-trap": LocalJSX.FocusTrap & JSXBase.HTMLAttributes<HTMLFocusTrapElement>;
             "post-header-logo": LocalJSX.PostHeaderLogo & JSXBase.HTMLAttributes<HTMLPostHeaderLogoElement>;
             "post-klp-login-widget": LocalJSX.PostKlpLoginWidget & JSXBase.HTMLAttributes<HTMLPostKlpLoginWidgetElement>;
-            "post-language-switch": LocalJSX.PostLanguageSwitch & JSXBase.HTMLAttributes<HTMLPostLanguageSwitchElement>;
+            "post-language-switch-2": LocalJSX.PostLanguageSwitch2 & JSXBase.HTMLAttributes<HTMLPostLanguageSwitch2Element>;
             "post-main-navigation": LocalJSX.PostMainNavigation & JSXBase.HTMLAttributes<HTMLPostMainNavigationElement>;
             "post-meta-navigation": LocalJSX.PostMetaNavigation & JSXBase.HTMLAttributes<HTMLPostMetaNavigationElement>;
             "post-search": LocalJSX.PostSearch & JSXBase.HTMLAttributes<HTMLPostSearchElement>;

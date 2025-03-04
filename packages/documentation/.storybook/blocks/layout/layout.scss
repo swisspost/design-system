@@ -6,6 +6,7 @@
   background-repeat: no-repeat;
   background-position: center left 60vw;
   background-size: auto 100%;
+  background-color: post.$yellow;
 
   .container {
     padding-right: 20vw;
@@ -13,24 +14,12 @@
 
   @include post.media-breakpoint-up(sm) {
     .container {
-      padding-right: 30vw;
-    }
-  }
-
-  @include post.media-breakpoint-up(rg) {
-    .container {
       padding-right: 35vw;
     }
   }
 
   @include post.media-breakpoint-up(xl) {
     background-position: center right;
-  }
-
-  @include post.media-breakpoint-up(xxl) {
-    .container {
-      padding-right: 30%;
-    }
   }
 }
 
@@ -40,6 +29,10 @@
 }
 
 .docs-footer {
+  > div:first-child {
+    background-color: post.$light;
+  }
+
   ul.list-profile {
     display: grid;
     grid-template-rows: auto;

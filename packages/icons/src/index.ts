@@ -3,12 +3,21 @@ import { IIcon, IJSONReport } from './models/icon.model';
 import { downloadSVG } from './utilities/downloadSVG';
 import { formatResponse } from './utilities/mapResponse';
 import { fetchPage } from './utilities/fetchPage';
+import buildSVGs from './utilities/buildSVGs';
 import { url } from './utilities/environment';
 import path from 'path';
 import packageJSON from '../package.json';
 
-const outputPath = './public/post-icons';
-const reportPath = './public';
+import { SOURCE_PATH, OUTPUT_PATH } from './constants';
+
+// UI-Icons will be loaded from a different icon set (url) from censhare
+const downloadUrls: (string | undefined)[] = [url];
+// UI-Icons will need to be saved under {SOURCE_PATH}/ui
+const iconDownloadDirectories: string[] = [path.join(SOURCE_PATH, 'post')];
+// UI-Icons will end up in the same output folder
+// icon names of Post-Icons are number-based (e.g. 1000.svg, etc.)
+// while UI-Icon names are letter-based (e.g. accessibility.svg, etc.)
+const iconBuildDirectory: string = path.join(OUTPUT_PATH, 'post-icons');
 
 const jsonReport: IJSONReport = {
   icons: [],
@@ -25,8 +34,54 @@ const jsonReport: IJSONReport = {
   version: packageJSON.version,
 };
 
-const downloadAllIcons = async (currentUrl: string): Promise<IJSONReport> => {
-  const body = await fetchPage(currentUrl);
+export const fetchAndBuildSVGs = async () => {
+  setup();
+
+  let i = 0;
+
+  await fetchSVGs();
+  buildSVGs();
+
+  async function fetchSVGs() {
+    for (const directory of iconDownloadDirectories) {
+      const downloadUrl = downloadUrls[i++];
+
+      // Start recursively downloading pages of icons
+      if (downloadUrl !== undefined) {
+        console.log('Starting to download icons');
+
+        const report = await downloadAllIcons(downloadUrl, directory);
+        fs.writeFileSync(path.join(directory, 'report.json'), JSON.stringify(report, null, 2));
+
+        console.log(
+          `\x1b[32mDownload finished.\x1b[0m Saved \x1b[32m${report.stats.success}\x1b[0m icons, \x1b[31m${report.stats.errors}\x1b[0m icons errored and \x1b[31m${report.stats.notFound}\x1b[0m where not found.`,
+        );
+      }
+    }
+  }
+};
+
+function setup() {
+  // remove generated files & folders
+  iconDownloadDirectories.forEach(directory => {
+    if (fs.existsSync(directory)) fs.rmSync(directory, { recursive: true });
+  });
+  if (fs.existsSync(iconBuildDirectory)) fs.rmSync(iconBuildDirectory, { recursive: true });
+
+  // ensure used folders exist
+  iconDownloadDirectories.forEach(directory => {
+    if (!fs.existsSync(directory)) fs.mkdirSync(directory, { recursive: true });
+  });
+  if (!fs.existsSync(iconBuildDirectory)) fs.mkdirSync(iconBuildDirectory, { recursive: true });
+}
+
+const sortIcons = (a: IIcon, b: IIcon) => (a.file.name < b.file.name ? -1 : 1);
+
+const downloadAllIcons = async (
+  downloadUrl: string,
+  downloadFolder: string,
+): Promise<IJSONReport> => {
+  const body = await fetchPage(downloadUrl);
 
   if (body === undefined) {
     throw new Error(`Fetch icons failed, response was ${body}`);
@@ -45,7 +100,7 @@ const downloadAllIcons = async (currentUrl: string): Promise<IJSONReport> => {
   await Promise.all(
     formattedResponse.map(async icon => {
       try {
-        const svg = await downloadSVG(icon, outputPath);
+        const svg = await downloadSVG(icon, downloadFolder);
 
         if (svg === false) {
           jsonReport.noSVG.push(icon);
@@ -66,7 +121,7 @@ const downloadAllIcons = async (currentUrl: string): Promise<IJSONReport> => {
 
   if (body.page.next) {
     // Recursively fetch more pages
-    return downloadAllIcons(body.page.next);
+    return downloadAllIcons(body.page.next, downloadFolder);
   } else {
     // Write JSON
     jsonReport.icons = [...jsonReport.icons].sort(sortIcons);
@@ -80,22 +135,5 @@ const downloadAllIcons = async (currentUrl: string): Promise<IJSONReport> => {
   return jsonReport;
 };
 
-const sortIcons = (a: IIcon, b: IIcon) => (a.file.name < b.file.name ? -1 : 1);
-
-export const main = async () => {
-  // Setup environment
-  if (!fs.existsSync(outputPath)) fs.mkdirSync(outputPath, { recursive: true });
-
-  // Start recursively downloading pages of icons
-  if (url !== undefined) {
-    console.log('Starting to download icons');
-    const report = await downloadAllIcons(url);
-    fs.writeFileSync(path.join(reportPath, 'report.json'), JSON.stringify(report, null, 2));
-    console.log(
-      `Download finished. Saved ${report.stats.success} icons, ${report.stats.errors} icons errored and ${report.stats.notFound} where not found.`,
-    );
-  }
-};
-
 // Run Forest, run
-main();
+fetchAndBuildSVGs();

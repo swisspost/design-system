@@ -1,8 +1,7 @@
 @use '@swisspost/design-system-styles/core' as post;
 @use '@swisspost/design-system-styles/variables/color';
-@use '@swisspost/design-system-styles/components/forms';
-@use '@swisspost/design-system-styles/components/floating-label';
-@use '@swisspost/design-system-styles/components/grid';
+@use '@swisspost/design-system-styles/components/form-input';
+@use '@swisspost/design-system-styles/layout';
 @use '../../utils/utils.scss';
 @use '../../utils/mixins.scss';
 
@@ -117,6 +116,10 @@
   right: 3rem;
   padding-right: 0.5rem;
   visibility: hidden;
+}
+
+.portal-recommendations-title {
+  font-weight: 700;
 }
 
 .suggestions {

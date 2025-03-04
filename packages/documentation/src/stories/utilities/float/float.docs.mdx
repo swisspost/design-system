@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as FloatStories from './float.stories';
 
 <Meta of={FloatStories} />
@@ -17,7 +17,7 @@ import * as FloatStories from './float.stories';
 
 ### Relative to breakpoints
 
-<div className="alert alert-info">
+<div className="banner banner-info">
   The `float-{breakpoint}-{position}` classes provide control over floating elements at specific
   breakpoints, enabling you to float elements or remove floating based on the screen size.
 </div>
@@ -26,7 +26,6 @@ import * as FloatStories from './float.stories';
 > - `float-md-{start|end|none}`
 > - `float-lg-{start|end|none}`
 > - `float-xl-{start|end|none}`
-> - `float-xxl-{start|end|none}`
 
 #### Example
 
@@ -34,3 +33,11 @@ import * as FloatStories from './float.stories';
 <div className="hide-col-default">
   <Controls of={FloatStories.Float} />
 </div>
+
+## Clearfix
+
+The helper class `.clearfix` can be used alongside float elements.
+
+In the following example, the `.clearfix` class is added to the div wrapping the first two buttons, which makes the div wrap the buttons completely. The second line only contains float elements and has no clearfix, therefore the layout is broken.
+
+<Canvas sourceState="shown" of={FloatStories.Clearfix} />

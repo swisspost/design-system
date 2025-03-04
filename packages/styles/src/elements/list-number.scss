@@ -1,0 +1,33 @@
+@use '../functions/tokens';
+@use '../tokens/elements';
+@use '../mixins/list';
+
+tokens.$default-map: elements.$post-listnumber;
+
+ol {
+  margin-block: tokens.get('list-number-item-gap-block');
+  padding-inline-end: tokens.get('list-number-item-gap-block');
+  padding-inline-start: calc(
+    tokens.get('list-number-item-icon-size') + tokens.get('list-number-item-icon-gap-inline')
+  );
+
+  ::marker {
+    font-weight: tokens.get('list-number-item-icon-font-weight');
+  }
+
+  &.list-number {
+    @include list.list-number();
+  }
+
+  &.list-inline {
+    @include list.list-inline();
+  }
+
+  &.list-revert {
+    @include list.list-revert();
+  }
+
+  &.list-unstyled {
+    @include list.list-unstyled();
+  }
+}

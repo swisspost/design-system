@@ -1,0 +1,19 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+.column-example {
+  font-size: post.$font-size-sm;
+
+  .row > *:not(.w-100) {
+    padding-block: 0.75rem;
+    background-color: lighten(#0076a8, 55%);
+    border: 1px solid lighten(#004976, 45%);
+  }
+
+  .row {
+    background-color: lighten(#0076a8, 61.5%);
+  }
+
+  .high-row .row {
+    min-height: 10rem;
+  }
+}

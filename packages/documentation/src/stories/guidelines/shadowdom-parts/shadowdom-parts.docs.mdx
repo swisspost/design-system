@@ -1,0 +1,48 @@
+import { Meta, Source } from '@storybook/blocks';
+import * as ShadowdomPartsStories from './shadowdom-parts.stories';
+import parts from './parts.sample.html?raw';
+import partsSass from './partsSass.sample.scss?raw';
+import pseudoParts from './pseudoParts.sample.html?raw';
+import pseudoPartsSass from './pseudoPartsSass.sample.scss?raw';
+
+<Meta of={ShadowdomPartsStories} />
+
+# Styling Shadow DOM Parts
+
+<div className="lead">
+  Any web component element within the Shadow DOM that has a `part` attribute can be styled by its
+  direct parent DOM using the `::part` pseudo-element.
+</div>
+
+To style a shadow element with a `part` attribute:
+
+- Identify the reference name assigned to the element's `part` attribute (e.g. `<element part="reference name">)`.
+- Use the `::part` selector followed by the reference name (e.g. `::part(reference-name)`) to target and apply CSS styles.
+
+### Example
+
+<Source code={parts} language="html" />
+
+<Source code={partsSass} language="scss" />
+
+## Pseudo-classes & pseudo-elements
+
+The `::part` selector supports the addition of pseudo-classes such as `:hover` and pseudo-elements like `::before` and `::after`. This enables precise styling for states and structural modifications of shadow DOM elements.
+
+### Example
+
+<Source code={pseudoParts} language="html" />
+
+<Source code={pseudoPartsSass} language="scss" />
+
+## Limitations
+
+### Structural pseudo-classes
+
+Structural pseudo-classes, such as `:nth-child` and `:first-child`, which depend on tree structure
+and sibling relationships, cannot be applied to elements targeted by the `::part` selector. This restriction ensures that internal structure remains encapsulated and isn't exposed beyond the intended scope.
+
+### Nested `::part` selectors
+
+Each `part` must be directly exposed since styling cannot cascade through nested `::part` selectors.
+The `::part selector` only targets the element associated with the specified part attribute. As a result, using nesting part selectors like `::part(header)::part(footer)` is not supported.

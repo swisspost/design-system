@@ -1,0 +1,31 @@
+import { Canvas, Meta } from '@storybook/blocks';
+import * as ContainerStories from './containers.stories';
+
+<Meta of={ContainerStories} />
+
+# Containers
+
+<div className="lead">
+  Containers are essential layout elements ensuring content is aligned and properly padded across all devices and viewports.
+</div>
+
+<div className="banner banner-info my-24">
+  Containers are required when using the <a href="/?path=/docs/7240f2ef-216a-490e-9bd8-c0cef19f7b31--docs">grid system</a>.
+</div>
+
+There are two types of containers. The only difference between them is how they behave on wider screens.
+To see the difference, click the **"View full screen"** button in the examples below.
+
+## Container
+
+The `.container` adapts its width based on the viewport size, but it will not exceed 1200px.
+This ensures content stays centered and does not stretch too wide on large screens.
+
+<Canvas sourceState="shown" of={ContainerStories.Container} />
+
+## Fluid Container
+
+The `.container-fluid` spans the entire width of the viewport, regardless of its size.
+Use this for layouts where the content should stretch edge-to-edge, even on large screens.
+
+<Canvas sourceState="shown" of={ContainerStories.ContainerFluid} />

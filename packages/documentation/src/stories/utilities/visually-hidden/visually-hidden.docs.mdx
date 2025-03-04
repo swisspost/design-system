@@ -1,0 +1,16 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as VisuallyHiddenStories from './visually-hidden.stories';
+
+<Meta of={VisuallyHiddenStories} />
+
+# Visually Hidden
+
+<div className="lead">
+  The `.visually-hidden` helper class is used to hide elements visually from the screen, keeping
+  them accessible to assistive technologies such as screen readers.
+</div>
+
+<Canvas sourceState="shown" of={VisuallyHiddenStories.Default} />
+<div className="hide-col-default">
+  <Controls of={VisuallyHiddenStories.Default} />
+</div>

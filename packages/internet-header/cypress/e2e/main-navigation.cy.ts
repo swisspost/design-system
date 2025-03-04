@@ -1,6 +1,6 @@
 import testConfiguration from '../fixtures/internet-header/test-configuration.json';
 import { prepare } from '../support/prepare-story';
-import { HEADER, HEADER_CUSTOM_CONFIG } from './shared/variables';
+import { HEADER } from './shared/variables';
 
 describe('main-navigation', () => {
   beforeEach(() => {
@@ -49,7 +49,7 @@ describe('main-navigation', () => {
   });
 
   it('Changes active link also in custom config nav links', () => {
-    prepare(HEADER_CUSTOM_CONFIG, 'Default');
+    prepare(HEADER, 'CustomConfig');
     cy.changeArg('language', 'en');
     cy.changeArg('active-route', 'https://maps.google.com');
     cy.get('swisspost-internet-header')

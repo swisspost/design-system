@@ -6,7 +6,7 @@ import Header from '../header';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 function shouldShowHeader() {
-  return new URLSearchParams(window.location.search).get('id') === 'home--docs';
+  return new URLSearchParams(window.location.search).get('id') === 'introduction--docs';
 }
 
 function shouldShowFooter() {
