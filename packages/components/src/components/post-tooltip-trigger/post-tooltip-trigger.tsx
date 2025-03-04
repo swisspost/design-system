@@ -17,9 +17,19 @@ export class PostTooltipTrigger {
   @Prop() for!: string;
 
   /**
+   * Delay (in milliseconds) before the tooltip is shown.
+   */
+  @Prop() delay: number = 0;
+
+  /**
    * Reference to the element inside the host that will act as the trigger.
    */
   private trigger: HTMLElement | null = null;
+
+  /**
+   * Timeout ID for the delay.
+   */
+  private delayTimeout: number | null = null;
 
   @Watch('for')
   validateControlFor() {
@@ -68,10 +78,25 @@ export class PostTooltipTrigger {
   }
 
   private interestHandler() {
-    this.tooltip?.show(this.trigger);
+    if (this.delay > 0) {
+      // If there's a delay, set a timeout
+      this.delayTimeout = window.setTimeout(() => {
+        this.tooltip?.show(this.trigger);
+        this.delayTimeout = null;
+      }, this.delay);
+    } else {
+      // If no delay, show the tooltip immediately
+      this.tooltip?.show(this.trigger);
+    }
   }
 
   private interestLostHandler() {
+    if (this.delayTimeout) {
+      // If the delay is still pending, clear the timeout
+      clearTimeout(this.delayTimeout);
+      this.delayTimeout = null;
+    }
+    // Hide the tooltip
     this.tooltip?.hide();
   }
 

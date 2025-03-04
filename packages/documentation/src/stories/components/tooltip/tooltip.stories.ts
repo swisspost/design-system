@@ -23,7 +23,7 @@ const meta: MetaComponent = {
     innerHTML: 'Hi there 👋',
     palette: 'palette-accent',
     placement: 'top',
-    animation: 'pop-in'
+    animation: 'pop-in',
   },
   argTypes: {
     id: {
@@ -68,6 +68,14 @@ const meta: MetaComponent = {
     animation: {
       options: ['none', 'pop-in'],
     },
+    delay: {
+      name: 'Delay',
+      category: 'Props',
+      description: 'Delay (in milliseconds) before the tooltip is shown.',
+      control: {
+        type: 'number',
+      },
+    },
   },
 };
 
@@ -82,7 +90,7 @@ function render(args: Args) {
   if (currentArgs.innerHTML !== innerHTML) updateArgs({ innerHTML });
 
   return html`
-    <post-tooltip-trigger for="${args.id}"
+    <post-tooltip-trigger for="${args.id}" delay="${args.delay}"
       ><button class="btn btn-secondary btn-large">Button</button></post-tooltip-trigger
     >
     <post-tooltip
@@ -104,10 +112,11 @@ export const Default: StoryObj = {};
 export const NonFocusable: StoryObj = {
   args: {
     id: 'tooltip-non-focusable',
+    delay: 650,
   },
   render: (args: Args) => {
     return html`
-      <post-tooltip-trigger for="${args.id}">
+      <post-tooltip-trigger for="${args.id}" delay="${args.delay}">
         <cite>This is a cite element with a tooltip on it.</cite>
       </post-tooltip-trigger>
       <post-tooltip
@@ -125,13 +134,14 @@ export const NonFocusable: StoryObj = {
 export const Multiple: StoryObj = {
   args: {
     id: 'tooltip-multiple',
+    delay: 650,
   },
   render: (args: Args) => {
     return html`
-      <post-tooltip-trigger for="${args.id}">
+      <post-tooltip-trigger for="${args.id}" delay="${args.delay}">
         <button class="btn btn-secondary btn-large">Tooltip button</button>
       </post-tooltip-trigger>
-      <post-tooltip-trigger for="${args.id}">
+      <post-tooltip-trigger for="${args.id}" delay="${args.delay}">
         <button class="btn btn-secondary btn-large">Same tooltip, different button</button>
       </post-tooltip-trigger>
       <post-tooltip

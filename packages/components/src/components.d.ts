@@ -484,11 +484,7 @@ export namespace Components {
          */
         "arrow"?: boolean;
         /**
-          * If `true`, the tooltip is displayed a few milliseconds after it is triggered
-         */
-        "delayed": boolean;
-        /**
-          * Programmatically hide this tooltip. Clears any pending delay timeout.
+          * Programmatically hide this tooltip.
          */
         "hide": () => Promise<void>;
         /**
@@ -500,18 +496,22 @@ export namespace Components {
          */
         "placement"?: Placement;
         /**
-          * Programmatically display the tooltip. If delayed is true, waits OPEN_DELAY milliseconds before showing.
+          * Programmatically display the tooltip.
           * @param target An element where the tooltip should be shown
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
-          * Toggle tooltip display. Clears any pending delay timeout before toggling.
+          * Toggle tooltip display.
           * @param target An element where the tooltip should be shown
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
     }
     interface PostTooltipTrigger {
+        /**
+          * Delay (in milliseconds) before the tooltip is shown.
+         */
+        "delay": number;
         /**
           * ID of the tooltip element that this trigger is linked to.
          */
@@ -1347,10 +1347,6 @@ declare namespace LocalJSX {
          */
         "arrow"?: boolean;
         /**
-          * If `true`, the tooltip is displayed a few milliseconds after it is triggered
-         */
-        "delayed"?: boolean;
-        /**
           * Indicates the open state of the tooltip
          */
         "open"?: boolean;
@@ -1360,6 +1356,10 @@ declare namespace LocalJSX {
         "placement"?: Placement;
     }
     interface PostTooltipTrigger {
+        /**
+          * Delay (in milliseconds) before the tooltip is shown.
+         */
+        "delay"?: number;
         /**
           * ID of the tooltip element that this trigger is linked to.
          */
