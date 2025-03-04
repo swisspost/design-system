@@ -42,13 +42,17 @@
     $state: if(map.has-key($utility, state), map.get($utility, state), ());
 
     $infix: if(
-      $class-list == '' and string.slice($infix, 1, 1) == '-',
+      length($class-list) == 0 and string.slice($infix, 1, 1) == '-',
       string.slice($infix, 2),
       $infix
     );
 
     // Don't prefix if value key is null (e.g. with shadow class)
-    $property-class-modifier: if($key, if($class-list == '' and $infix == '', '', '-') + $key, '');
+    $property-class-modifier: if(
+      $key,
+      if(length($class-list) == 0 and $infix == '', '', '-') + $key,
+      ''
+    );
 
     $is-css-var: map.get($utility, css-var);
     $is-local-vars: map.get($utility, local-vars);

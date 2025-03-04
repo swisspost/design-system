@@ -29,6 +29,26 @@ $position-values: (
   100: 100%,
 );
 
+$vw-values: (
+  0: 0,
+  25: 25vw,
+  33: 25vw,
+  50: 50vw,
+  66: 66vw,
+  75: 75vw,
+  100: 100vw,
+);
+
+$vh-values: (
+  0: 0,
+  25: 25vh,
+  33: 33vh,
+  50: 50vh,
+  66: 66vh,
+  75: 75vh,
+  100: 100vh,
+);
+
 $utilities: (
   'grid-gutter-x': (
     responsive: true,
@@ -82,85 +102,37 @@ $utilities: (
     responsive: true,
     property: width,
     class: vw,
-    values: (
-      0: 0,
-      25: 25vw,
-      33: 25vw,
-      50: 50vw,
-      66: 66vw,
-      75: 75vw,
-      100: 100vw,
-    ),
+    values: $vw-values,
   ),
   'viewport-height': (
     responsive: true,
     property: height,
     class: vh,
-    values: (
-      0: 0,
-      25: 25vh,
-      33: 33vh,
-      50: 50vh,
-      66: 66vh,
-      75: 75vh,
-      100: 100vh,
-    ),
+    values: $vh-values,
   ),
   'min-viewport-width': (
     responsive: true,
     property: min-width,
     class: min-vw,
-    values: (
-      0: 0,
-      25: 25vw,
-      33: 25vw,
-      50: 50vw,
-      66: 66vw,
-      75: 75vw,
-      100: 100vw,
-    ),
+    values: $vw-values,
   ),
   'min-viewport-height': (
     responsive: true,
     property: min-height,
     class: min-vh,
-    values: (
-      0: 0,
-      25: 25vh,
-      33: 33vh,
-      50: 50vh,
-      66: 66vh,
-      75: 75vh,
-      100: 100vh,
-    ),
+    values: $vh-values,
   ),
   'max-viewport-width': (
     responsive: true,
     property: max-width,
     class: max-vw,
-    values: (
-      0: 0,
-      25: 25vw,
-      33: 25vw,
-      50: 50vw,
-      66: 66vw,
-      75: 75vw,
-      100: 100vw,
-    ),
+    values: $vw-values,
   ),
   'max-viewport-height': (
     responsive: true,
     property: max-height,
     class: max-vh,
-    values: (
-      0: 0,
-      25: 25vh,
-      33: 33vh,
-      50: 50vh,
-      66: 66vh,
-      75: 75vh,
-      100: 100vh,
-    ),
+    values: $vh-values,
   ),
   'align': (
     property: vertical-align,
