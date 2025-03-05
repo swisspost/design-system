@@ -9,30 +9,6 @@ tokens.$default-map: utilities.$post-spacing;
   overflow-x: hidden;
 }
 
-.light-section {
-  position: relative;
-  background-color: post.$light;
-
-  &:before,
-  &:after {
-    display: block;
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    background-color: inherit;
-    width: 100vw;
-  }
-
-  &:before {
-    right: 100%;
-  }
-
-  &:after {
-    left: 100%;
-  }
-}
-
 .tile-wrapper {
   display: flex;
   flex-wrap: wrap;
