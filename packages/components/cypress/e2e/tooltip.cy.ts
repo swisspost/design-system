@@ -102,7 +102,7 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
     it('should show tooltip on hovered child element', () => {
       cy.get('@tooltip').should('not.be.visible');
       cy.get('@target-child').trigger('pointerenter');
-      cy.wait(100); // Add a small delay
+      cy.wait(100);
       cy.get('.\\:popover-open, :popover-open').should('exist');
     });
   });

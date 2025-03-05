@@ -383,11 +383,11 @@ export namespace Components {
          */
         "arrow"?: boolean;
         /**
-          * Gap between the edge of the page and the popover-container
+          * Gap between the edge of the page and the popovercontainer
          */
         "edgeGap"?: number;
         /**
-          * Programmatically hide the popover-container
+          * Programmatically hide the popovercontainer
          */
         "hide": () => Promise<void>;
         /**
@@ -395,7 +395,7 @@ export namespace Components {
          */
         "manualClose": boolean;
         /**
-          * Defines the placement of the popover-container according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popover-containers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
         /**
@@ -403,13 +403,13 @@ export namespace Components {
          */
         "safeSpace"?: 'triangle' | 'trapezoid';
         /**
-          * Programmatically display the popover-container
-          * @param target An element with [data-popover-target="id"] where the popover-container should be shown
+          * Programmatically display the popovercontainer
+          * @param target An element with [data-popover-target="id"] where the popovercontainer should be shown
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
-          * Toggle popover-container display
-          * @param target An element with [data-popover-target="id"] where the popover-container should be shown
+          * Toggle popovercontainer display
+          * @param target An element with [data-popover-target="id"] where the popovercontainer should be shown
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<boolean>;
@@ -1249,7 +1249,7 @@ declare namespace LocalJSX {
          */
         "arrow"?: boolean;
         /**
-          * Gap between the edge of the page and the popover-container
+          * Gap between the edge of the page and the popovercontainer
          */
         "edgeGap"?: number;
         /**
@@ -1257,11 +1257,11 @@ declare namespace LocalJSX {
          */
         "manualClose"?: boolean;
         /**
-          * Fires whenever the popover-container gets shown or hidden, passing the new state in event.details as a boolean
+          * Fires whenever the popovercontainer gets shown or hidden, passing the new state in event.details as a boolean
          */
         "onPostToggle"?: (event: PostPopovercontainerCustomEvent<boolean>) => void;
         /**
-          * Defines the placement of the popover-container according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popover-containers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
         /**
