@@ -12,5 +12,14 @@ assignees: ''
 ### 🎨 Design
 <!-- Link to the Figma Design File if available -->
 
+### 🎯 Purpose & Use Cases
+<!-- Outline common use cases for this component and its role in the design system -->
+
+### 🔀 Variants & States
+<!-- List variations of the component and different interaction states -->
+
+### 🔄 Dependencies & Related Components
+<!-- List related components or dependencies -->
+
 ### 🔗 References
 <!-- Add references to other Design Systems that implement this component, for example from the [component gallery](https://component.gallery/) -->
