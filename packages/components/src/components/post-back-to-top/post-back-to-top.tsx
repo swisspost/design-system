@@ -60,12 +60,12 @@ export class PostBackToTop {
   componentDidLoad() {
     window.addEventListener('scroll', this.handleScroll, false);
 
-    // Get the back-to-top button top
+    // Get the back-to-top button top postiion
     const positionTop = window.getComputedStyle(this.host).getPropertyValue('top');
 
     const buttonElement = this.host.shadowRoot.querySelector('button');
 
-    // Get the elevation height
+    // Extract the elevation height from the back-to-top button elevation token
     const elevation = getComputedStyle(buttonElement).getPropertyValue(
       '--post-back-to-top-elevation',
     );
@@ -79,12 +79,12 @@ export class PostBackToTop {
           return pixelValues[1];
         }
       }
-      return undefined; // Return undefined if no valid second pixel value is found
+      return 0; // Return 0 if no valid second pixel value is found
     }
 
     const elevationHeight = getSecondPixelValue(elevationParts);
 
-    // The translateY will be => -100% - topPosition - elevationHeight
+    // The translateY is calculated as => -100% (btt button height) - topPosition - elevationHeight
     this.translateY =
       String(
         (-1 * 100) / 100 -
