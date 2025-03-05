@@ -25,9 +25,7 @@ post-language-option {
     @include utilities-mx.focus-style;
   }
 
-  &:has([aria-current]):not([aria-current='false']) {
-    display: none;
-  }
+  // Show all options now, instead of hiding the active one
 
   &:where([variant='list']) {
     :is(a, button) {
@@ -40,18 +38,33 @@ post-language-option {
         color: #504f4b;
       }
     }
+    &[active]:not([active='false']) {
+      :is(a, button) {
+        background-color: #050400 !important;
+        color: #fff;
+        pointer-events: none;
+      }
+    }
   }
 
   &:where([variant='menu']) {
-    width: 100%;
+    min-width: 72px;
+
+    &[active]:not([active='false']) {
+      display: none;
+    }
 
     :is(a, button) {
       padding-block: 13px;
-      padding-inline: 24px;
+      padding-inline: 16px;
       box-sizing: border-box;
+      justify-content: flex-start;
       position: relative;
-      left: -1px;
-      width: calc(100% + 2px);
+
+      &:hover {
+        color: white;
+        background-color: #504f4b;
+      }
     }
   }
 }
