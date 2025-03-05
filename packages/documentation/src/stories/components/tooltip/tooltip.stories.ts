@@ -69,12 +69,14 @@ const meta: MetaComponent = {
       options: ['none', 'pop-in'],
     },
     delay: {
-      name: 'Delay',
-      category: 'Props',
+      name: 'delay',
       description: 'Delay (in milliseconds) before the tooltip is shown.',
       control: {
         type: 'number',
       },
+      table: {
+        category: 'props',
+      }
     },
   },
 };
@@ -90,8 +92,8 @@ function render(args: Args) {
   if (currentArgs.innerHTML !== innerHTML) updateArgs({ innerHTML });
 
   return html`
-    <post-tooltip-trigger for="${args.id}" delay="${args.delay}"
-      ><button class="btn btn-secondary btn-large">Button</button></post-tooltip-trigger
+    <post-tooltip-trigger for="${args.id}" delay="${ifDefined(args.delay !== 0 ? args.delay : undefined)}">
+      <button class="btn btn-secondary btn-large">Button</button></post-tooltip-trigger
     >
     <post-tooltip
       id="${args.id}"
