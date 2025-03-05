@@ -39,7 +39,7 @@
     border-radius: commons.$border-radius;
     
     &.animate-pop-in {
-      @include animation.pop-in-animation(0.35s);
+      @include animation.pop-in-animation(0.25s);
     }
   }
 

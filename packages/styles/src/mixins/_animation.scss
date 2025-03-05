@@ -51,7 +51,7 @@
 
 @keyframes popIn {
   from {
-    transform: scale(0.8);
+    transform: scale(0.9);
     opacity: 0;
     transition-property: transform, opacity, overlay, display;
     transition-behavior: allow-discrete;
