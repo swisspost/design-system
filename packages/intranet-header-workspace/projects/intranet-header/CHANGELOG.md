@@ -1,5 +1,13 @@
 # @swisspost/design-system-intranet-header
 
+## 7.4.12
+
+### Patch Changes
+
+- Removed the user profile image from the intranet header due to loading issues from SharePoint, which were causing missing image errors. The header now displays a default user avatar. (by [@myrta2302](https://github.com/myrta2302) with [#4821](https://github.com/swisspost/design-system/pull/4821))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.4.12
+
 ## 7.4.11
 
 ### Patch Changes

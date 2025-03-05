@@ -1,5 +1,19 @@
 # @swisspost/design-system-documentation
 
+## 5.3.12
+
+### Patch Changes
+
+- Removed the user profile image from the intranet header due to loading issues from SharePoint, which were causing missing image errors. The header now displays a default user avatar. (by [@myrta2302](https://github.com/myrta2302) with [#4821](https://github.com/swisspost/design-system/pull/4821))
+
+- Removed duplicate size class from `select` elements using floating labels. (by [@schaertim](https://github.com/schaertim) with [#4867](https://github.com/swisspost/design-system/pull/4867))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.4.12
+  - @swisspost/design-system-components@7.4.12
+  - @swisspost/internet-header@1.14.13
+  - @swisspost/design-system-components-react@7.4.12
+  - @swisspost/design-system-icons@7.4.12
+
 ## 5.3.11
 
 ### Patch Changes
