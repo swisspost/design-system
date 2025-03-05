@@ -13,4 +13,4 @@ assignees: ''
 <!-- Link to the Figma Design File if available -->
 
 ### 🔗 References
-<!-- Add references to other Design Systems that implement this component -->
+<!-- Add references to other Design Systems that implement this component, for example from the [component gallery](https://component.gallery/) -->
