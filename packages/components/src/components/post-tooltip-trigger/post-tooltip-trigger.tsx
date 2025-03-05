@@ -52,12 +52,7 @@ export class PostTooltipTrigger {
     this.host.setAttribute('data-version', version);
     this.setupTrigger();
     this.attachListeners();
-
-    // Attach listeners on the tooltip to handle pointer enter/leave events
-    if (this.tooltip) {
-      this.tooltip.addEventListener('pointerenter', this.handleTooltipEnter.bind(this));
-      this.tooltip.addEventListener('pointerleave', this.handleTooltipLeave.bind(this));
-    }
+    this.attachTooltipListeners();
   }
 
   private setupTrigger() {
@@ -79,15 +74,46 @@ export class PostTooltipTrigger {
 
   private attachListeners() {
     if (this.trigger) {
-      this.trigger.addEventListener('pointerenter', this.handleTriggerEnter.bind(this));
-      this.trigger.addEventListener('pointerleave', this.handleTriggerLeave.bind(this));
-      this.trigger.addEventListener('focusin', this.handleTriggerEnter.bind(this));
-      this.trigger.addEventListener('focusout', this.handleTriggerLeave.bind(this));
-      this.trigger.addEventListener('long-press', this.handleTriggerEnter.bind(this));
+      const events = ['pointerenter', 'pointerleave', 'focusin', 'focusout', 'long-press'];
+      events.forEach(event => {
+        this.trigger.addEventListener(event, this.handleTriggerEvent.bind(this));
+      });
     }
   }
 
-  private handleTriggerEnter() {
+  private attachTooltipListeners() {
+    if (this.tooltip) {
+      this.tooltip.addEventListener('pointerenter', this.handleTooltipEvent.bind(this));
+      this.tooltip.addEventListener('pointerleave', this.handleTooltipEvent.bind(this));
+    }
+  }
+
+  private handleTriggerEvent(event: Event) {
+    switch (event.type) {
+      case 'pointerenter':
+      case 'focusin':
+      case 'long-press':
+        this.handleEnter();
+        break;
+      case 'pointerleave':
+      case 'focusout':
+        this.handleLeave(event as PointerEvent);
+        break;
+    }
+  }
+
+  private handleTooltipEvent(event: PointerEvent) {
+    switch (event.type) {
+      case 'pointerenter':
+        this.handleEnter();
+        break;
+      case 'pointerleave':
+        this.handleLeave(event);
+        break;
+    }
+  }
+
+  private handleEnter() {
     if (this.delayTimeout) {
       clearTimeout(this.delayTimeout);
       this.delayTimeout = null;
@@ -95,27 +121,9 @@ export class PostTooltipTrigger {
     this.interestHandler();
   }
 
-  private handleTriggerLeave(event: PointerEvent) {
-    // Check where the pointer is headed
+  private handleLeave(event: PointerEvent) {
     const newTarget = event.relatedTarget as HTMLElement | null;
     if (this.tooltip && newTarget && this.tooltip.contains(newTarget)) {
-      // Pointer is moving to the tooltip; keep it open.
-      return;
-    }
-    this.interestLostHandler();
-  }
-
-  private handleTooltipEnter() {
-    if (this.delayTimeout) {
-      clearTimeout(this.delayTimeout);
-      this.delayTimeout = null;
-    }
-    this.interestHandler();
-  }
-
-  private handleTooltipLeave(event: PointerEvent) {
-    const newTarget = event.relatedTarget as HTMLElement | null;
-    if (this.trigger && newTarget && this.trigger.contains(newTarget)) {
       return;
     }
     this.interestLostHandler();
