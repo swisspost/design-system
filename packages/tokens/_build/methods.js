@@ -200,7 +200,6 @@ export async function createOutputFiles() {
       .map(method =>
         method(tokenSets, { sourcePath: `${SOURCE_PATH}/`, buildPath: `${OUTPUT_PATH}/` }),
       )
-      .filter(configs => Array.isArray(configs))
       .flat()
       .map(config => {
         config = objectDeepmerge(config, {

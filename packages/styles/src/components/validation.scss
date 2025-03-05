@@ -54,7 +54,7 @@ Default feedback message classes
   }
 }
 
-input[type='text'],
+input:not([type='checkbox'], [type='radio']),
 select,
 textarea {
   ~ .invalid-feedback,

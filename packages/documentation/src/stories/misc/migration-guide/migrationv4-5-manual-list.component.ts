@@ -1766,7 +1766,7 @@ export class MigrationV45ManualListComponent extends LitElement {
 
           <!-- jQuery Accordion -->
           <div>
-            <h6 class="h6 bold">Accordion</h6>
+            <h6 class="h6 fw-bold">Accordion</h6>
             <ul class="list-unstyled my-16">
               <li>
                 <div class="form-check">

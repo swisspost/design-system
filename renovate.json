@@ -48,11 +48,6 @@
       "matchPackageNames": ["@angular/*"]
     },
     {
-      "matchFileNames": ["packages/migrations/package.json"],
-      "allowedVersions": "<=15.0.4",
-      "matchPackageNames": ["^@angular"]
-    },
-    {
       "matchFileNames": ["packages/demo/package.json"],
       "allowedVersions": "~18.17",
       "matchPackageNames": ["@types/node"]

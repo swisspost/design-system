@@ -7,21 +7,21 @@
 
 ## Properties
 
-| Property            | Attribute | Description                                                                                                                                                                                  | Type                     | Default     |
-| ------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | ----------- |
-| `active`            | `active`  | If set to `true`, the language option is considered the current language for the page.                                                                                                       | `boolean`                | `undefined` |
-| `code` _(required)_ | `code`    | The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".                                       | `string`                 | `undefined` |
-| `name`              | `name`    | The full name of the language. For example, "Deutsch".                                                                                                                                       | `string`                 | `undefined` |
-| `type`              | `type`    | To communicate the type prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.    | `"language" \| "region"` | `undefined` |
-| `url`               | `url`     | The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.                                  | `string`                 | `undefined` |
-| `variant`           | `variant` | To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself. | `"list" \| "menu"`       | `undefined` |
+| Property            | Attribute | Description                                                                                                                                                                                  | Type               | Default     |
+| ------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | ----------- |
+| `active`            | `active`  | If set to `true`, the language option is considered the current language for the page.                                                                                                       | `boolean`          | `undefined` |
+| `code` _(required)_ | `code`    | The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".                                       | `string`           | `undefined` |
+| `name`              | `name`    | The full name of the language. For example, "Deutsch".                                                                                                                                       | `string`           | `undefined` |
+| `url`               | `url`     | The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.                                  | `string`           | `undefined` |
+| `variant`           | `variant` | To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself. | `"list" \| "menu"` | `undefined` |
 
 
 ## Events
 
-| Event        | Description                                                                                            | Type                  |
-| ------------ | ------------------------------------------------------------------------------------------------------ | --------------------- |
-| `postChange` | An event emitted when the language option is clicked. The payload is the ISO 639 code of the language. | `CustomEvent<string>` |
+| Event                               | Description                                                                                                     | Type                  |
+| ----------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------- |
+| `postChange`                        | An event emitted when the language option is clicked. The payload is the ISO 639 code of the language.          | `CustomEvent<string>` |
+| `postLanguageOptionInitiallyActive` | An event emitted when the language option is initially active. The payload is the ISO 639 code of the language. | `CustomEvent<string>` |
 
 
 ## Methods

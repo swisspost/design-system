@@ -14,41 +14,43 @@ export class Breakpoint {
 
   constructor() {
     if (!this.breakpointMap) {
-      const styles = getComputedStyle(document.documentElement);
-      const keys = styles.getPropertyValue('--post-breakpoint-keys').split(', ');
-      const names = styles.getPropertyValue('--post-breakpoint-names').split(', ');
+      const keys = this.getStyles('--post-breakpoint-keys');
+      const names = this.getStyles('--post-breakpoint-names');
+      const widths = this.getStyles('--post-breakpoint-widths');
 
-      this.breakpointMap = styles
-        .getPropertyValue('--post-breakpoint-widths')
-        .split(', ')
-        .map((width, i) => {
-          return {
-            minWidth: Number(width),
-            key: keys[i],
-            name: names[i],
-          };
-        })
+      this.breakpointMap = widths
+        .map((width, i) => ({
+          minWidth: Number(width),
+          key: keys[i],
+          name: names[i],
+        }))
         .reverse();
 
       window.addEventListener('resize', () => this.updateHandler(), { passive: true });
     }
   }
 
-  private updateHandler(emitEvents = true) {
+  private getStyles(propertyName: string) {
+    const styles = getComputedStyle(document.documentElement);
+    return (
+      styles
+        .getPropertyValue(propertyName)
+        ?.split(',')
+        .map(w => w.trim()) ?? []
+    );
+  }
+
+  private updateHandler(emitEvents: boolean = true) {
     const calculated = this.breakpointMap.find(({ minWidth }) => innerWidth >= minWidth);
 
     if (this.current.key !== calculated.key) {
       this.current.key = calculated.key;
-      if (emitEvents) {
-        this.dispatchEvent('key');
-      }
+      if (emitEvents) this.dispatchEvent('key');
     }
 
     if (this.current.name !== calculated.name) {
       this.current.name = calculated.name;
-      if (emitEvents) {
-        this.dispatchEvent('name');
-      }
+      if (emitEvents) this.dispatchEvent('name');
     }
   }
 

@@ -14,9 +14,15 @@
 
 ## Methods
 
-### `toggleMobileMenu() => Promise<void>`
+### `toggleMobileMenu(force?: boolean) => Promise<void>`
 
 Toggles the mobile navigation.
+
+#### Parameters
+
+| Name    | Type      | Description |
+| ------- | --------- | ----------- |
+| `force` | `boolean` |             |
 
 #### Returns
 

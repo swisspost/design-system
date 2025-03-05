@@ -1,12 +1,10 @@
 import { Component, Host, h, Element, State, Watch, Listen } from '@stencil/core';
-import { throttle } from 'throttle-debounce';
 
 const SCROLL_REPEAT_INTERVAL = 100; // Interval for repeated scrolling when holding down scroll button
 const NAVBAR_DISABLE_DURATION = 400; // Duration to temporarily disable navbar interactions during scrolling
 
-const NAVIGATION_LIST_SELECTOR = 'post-list:not(post-megadropdown *) > [role="list"]';
-const NAVIGATION_ITEM_SELECTOR =
-  ':is(post-list-item > a, post-list-item > post-megadropdown-trigger > button):not(post-megadropdown *)';
+const NAVIGATION_LIST_SELECTOR = 'post-list > [role="list"]:not(post-megadropdown *)';
+const NAVIGATION_ITEM_SELECTOR = 'post-list-item :is(a, button):not(post-megadropdown *)';
 
 @Component({
   tag: 'post-mainnavigation',
@@ -21,6 +19,7 @@ export class PostMainnavigation {
 
   private scrollRepeatInterval: ReturnType<typeof setInterval>;
   private navbarDisableTimer: ReturnType<typeof setInterval>;
+  private resizeObserver: ResizeObserver;
 
   private mutationObserver = new MutationObserver(async mutations => {
     // Wait for all elements to be hydrated
@@ -40,14 +39,14 @@ export class PostMainnavigation {
 
   @State() canScrollLeft = false;
   @State() canScrollRight = false;
-  @State() translateAmount = 0;
+  @State() translationAmount = 0;
 
   /**
    * Update navbar translation when 'translateAmount' changes and recalculate scrollability
    */
-  @Watch('translateAmount')
+  @Watch('translationAmount')
   onTranslateAmountChanges(value: number) {
-    this.navbar.style.transform = `translateX(-${value}px)`;
+    this.navbar.style.marginInlineStart = `-${value}px`;
     this.checkScrollability();
   }
 
@@ -65,18 +64,47 @@ export class PostMainnavigation {
   disconnectedCallback() {
     this.header = null;
     this.mutationObserver.disconnect();
+
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+    }
   }
 
   componentDidLoad() {
     setTimeout(() => this.checkScrollability()); // Initial check to determine if scrolling is needed
+
+    this.resizeObserver = new ResizeObserver(() => {
+      this.checkScrollability();
+    });
+
+    // Observe the navbar and the navigation list for size changes
+    if (this.navbar) {
+      this.resizeObserver.observe(this.navbar);
+      const navList = this.navigationList;
+      if (navList) {
+        this.resizeObserver.observe(navList);
+      }
+    }
+
     this.mutationObserver.observe(this.navigationList, { subtree: true, childList: true }); // Recheck scrollability when navigation list changes
-    window.addEventListener(
-      'resize', // Recheck scrollability on window resize
-      throttle(100, () => this.checkScrollability()),
-    );
+    this.fixLayoutShift();
 
     // Handle focus changes and adjust scroll as needed
     this.navbar.addEventListener('focusin', e => this.adjustTranslation(e));
+  }
+
+  // Hack that duplicates navigation elements to fix the layout shift on active elements
+  private fixLayoutShift() {
+    // Select first level of main navigation elements, both the links and the megadropdown trigger buttons
+    const children = this.host.querySelectorAll(
+      'nav > post-list > div > post-list-item > a, nav > post-list > div > post-list-item > post-megadropdown-trigger > button',
+    );
+
+    // Update HTML so that the content is duplicated
+    children.forEach(
+      child =>
+        (child.innerHTML = `<span class="nav-el-active">${child.innerHTML}</span><span class="nav-el-inactive"aria-hidden="true">${child.innerHTML}</span>`),
+    );
   }
 
   private handleBackButtonClick() {
@@ -113,12 +141,12 @@ export class PostMainnavigation {
       // If scroll width equals client width, scrolling is disabled in both directions
       this.canScrollLeft = this.canScrollRight = false;
     } else {
-      this.canScrollLeft = this.translateAmount !== 0; // Scrolling left is possible if not at the start
-      this.canScrollRight = clientWidth + this.translateAmount !== scrollWidth; // Scrolling right is possible if not at the end
+      this.canScrollLeft = this.translationAmount > 0; // Scrolling left is possible if not at the start
+      this.canScrollRight = clientWidth + this.translationAmount < scrollWidth; // Scrolling right is possible if not at the end
     }
 
     if (couldScroll && !this.canScroll) {
-      this.withoutTransition(() => (this.translateAmount = 0));
+      this.withoutTransition(() => (this.translationAmount = 0));
     }
   }
 
@@ -161,49 +189,68 @@ export class PostMainnavigation {
 
     for (const item of navigationItems) {
       const couldScroll =
-        direction === 'left' ? this.translateLeftTo(item) : this.translateRightTo(item);
+        direction === 'left' ? this.translateLeftTo(item, true) : this.translateRightTo(item, true);
       if (couldScroll) break;
     }
   }
 
-  private translateRightTo(navigationItem: HTMLElement) {
-    const itemRightEdgePosition =
-      navigationItem.offsetLeft + navigationItem.offsetWidth + this.getFocusMargin(navigationItem);
-    const lastVisiblePosition = this.navbar.clientWidth + this.translateAmount;
+  private translateRightTo(navigationItem: HTMLElement, skipSmallTranslation = false) {
+    const listItem: HTMLElement = navigationItem.closest('post-list-item');
 
-    // If the item is already fully visible, don't scroll
-    if (itemRightEdgePosition < lastVisiblePosition) return false;
+    // Calculate the right edge position of the list item relative to the left of the screen
+    const rightEdgePosition = listItem.offsetLeft + listItem.offsetWidth;
 
-    const maxTranslateAmount = this.navbar.scrollWidth - this.navbar.clientWidth;
-    const newRightEdgePosition =
-      itemRightEdgePosition + this.rightScrollButton.clientWidth - this.navbar.clientWidth;
+    // Calculate the last visible position on the screen, right before the right scroll button
+    const lastVisiblePosition = this.host.clientWidth - this.rightScrollButton.clientWidth;
 
-    this.translateAmount = Math.min(maxTranslateAmount, newRightEdgePosition);
+    // If the item is already fully visible, no translation is needed
+    if (rightEdgePosition < lastVisiblePosition) return false;
 
-    return true;
-  }
+    const translationIncrease = rightEdgePosition - lastVisiblePosition + 1; // + 1 because offset values are rounded
 
-  private translateLeftTo(navigationItem: HTMLElement) {
-    const itemLeftEdgePosition = navigationItem.offsetLeft - this.getFocusMargin(navigationItem);
-    const firstVisiblePosition = this.translateAmount;
+    // If the required scroll distance is too small (less than half the width of the item), avoid unnecessary scroll
+    if (skipSmallTranslation && translationIncrease < listItem.clientWidth / 2) return false;
 
-    // If the item is already fully visible, don't scroll
-    if (itemLeftEdgePosition > firstVisiblePosition) return false;
+    // Calculate the maximum translation amount to prevent scrolling past the end of the content
+    const maximumTranslation = this.navbar.scrollWidth - this.host.clientWidth;
 
-    const minTranslateAmount = 0;
-    const newRightEdgePosition = itemLeftEdgePosition - this.leftScrollButton.clientWidth;
-
-    this.translateAmount = Math.max(minTranslateAmount, newRightEdgePosition);
+    // Adjust the translation amount, ensuring it doesn't exceed the maximum scrollable area
+    const { marginRight } = getComputedStyle(this.navigationList);
+    this.translationAmount =
+      Math.min(this.translationAmount + translationIncrease, maximumTranslation) +
+      parseInt(marginRight);
 
     return true;
   }
 
-  /**
-   * Calculate the margin required for focus outline around navigation items
-   */
-  private getFocusMargin(navigationItem: HTMLElement) {
-    const { outlineWidth, outlineOffset } = getComputedStyle(navigationItem);
-    return parseInt(outlineWidth) + parseInt(outlineOffset) + 1;
+  private translateLeftTo(navigationItem: HTMLElement, skipSmallTranslation = false) {
+    const listItem: HTMLElement = navigationItem.closest('post-list-item');
+
+    // Get the left edge position of the list item relative to the left of the screen
+    const leftEdgePosition = listItem.offsetLeft;
+
+    // Calculate the first visible position on the screen to the left, right after the left scroll button
+    const firstVisiblePosition = this.leftScrollButton.clientWidth;
+
+    // If the item is already fully visible, no translation is needed
+    if (leftEdgePosition > firstVisiblePosition) return false;
+
+    const translationDecrease = firstVisiblePosition - leftEdgePosition + 1; // + 1 because offset values are rounded
+
+    // If the required scroll distance is too small (less than half the width of the item), don't perform the scroll
+    if (skipSmallTranslation && translationDecrease < listItem.clientWidth / 2) return false;
+
+    // Calculate the minimum allowed translation amount (no negative scrolling allowed)
+    const minimumTranslation = 0;
+
+    // Adjust the translation amount, ensuring it doesn't go below the minimum scrollable area
+    const { marginLeft } = getComputedStyle(this.navigationList);
+    this.translationAmount = Math.max(
+      this.translationAmount - translationDecrease - parseInt(marginLeft),
+      minimumTranslation,
+    );
+
+    return true;
   }
 
   /**

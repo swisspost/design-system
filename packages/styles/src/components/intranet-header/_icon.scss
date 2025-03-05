@@ -1,6 +1,0 @@
-@use './../../mixins/icons' as icon-mixin;
-
-.navbar-toggler .pi-menu,
-#sidebar .pi-menu {
-  @include icon-mixin.icon(2070);
-}
