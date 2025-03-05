@@ -1,5 +1,7 @@
 # @swisspost/design-system-tokens
 
+## 7.4.12
+
 ## 7.4.11
 
 ## 7.4.10
