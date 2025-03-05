@@ -1,4 +1,12 @@
-@import './variables';
-@import './theme-base/components';
-@import './extensions';
-@import './icons';
+@forward './component-overrides/button';
+@forward './component-overrides/datatable';
+@forward './component-overrides/pagination';
+@forward './component-overrides/select';
+
+.p-button,
+.p-inputtext,
+.p-select,
+.p-checkbox-box,
+.p-radiobutton-box {
+  border-width: 2px !important;
+}

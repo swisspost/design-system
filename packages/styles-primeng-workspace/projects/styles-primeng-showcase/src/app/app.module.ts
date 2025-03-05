@@ -6,9 +6,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 import { TableModule } from 'primeng/table';
 import { providePrimeNG } from 'primeng/config';
-import Aura from '@primeng/themes/aura';
 
 import { AppComponent } from './app.component';
+import { Post } from 'dist/styles-primeng';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +17,7 @@ import { AppComponent } from './app.component';
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: Aura,
+        preset: Post,
       },
     }),
   ],

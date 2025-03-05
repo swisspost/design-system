@@ -1,0 +1,63 @@
+@use '../mixins/icon';
+
+.p-paginator {
+  justify-content: flex-end !important;
+
+  .p-disabled {
+    display: none !important;
+  }
+}
+
+.p-paginator-current {
+  margin-right: 8px !important;
+}
+
+.p-paginator-rpp-dropdown {
+  margin-left: 8px !important;
+}
+
+.p-paginator-page,
+.p-paginator-next,
+.p-paginator-last,
+.p-paginator-first,
+.p-paginator-prev {
+  border: 2px solid var(--p-surface-200) !important;
+}
+
+.p-paginator-first,
+.p-paginator-first.p-disabled + .p-paginator-prev,
+.p-paginator-first.p-disabled + .p-paginator-prev.p-disabled + .p-paginator-pages :first-child {
+  border-top-left-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
+}
+
+.p-paginator-last,
+.p-paginator-next:has(+ .p-paginator-last.p-disabled),
+.p-paginator-pages:has(+ .p-paginator-next.p-disabled + .p-paginator-last.p-disabled) :last-child {
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+}
+
+:not(.p-disabled) + .p-paginator-prev,
+:not(.p-disabled) + :not(.p-disabled) + .p-paginator-pages :first-child,
+.p-paginator-page:not(:first-child),
+.p-paginator-next,
+.p-paginator-last {
+  border-left: 0 !important;
+}
+
+.p-paginator-first > angledoublelefticon {
+  @include icon.replace-with(2396);
+}
+
+.p-paginator-prev > anglelefticon {
+  @include icon.replace-with(2110);
+}
+
+.p-paginator-next > anglerighticon {
+  @include icon.replace-with(2111);
+}
+
+.p-paginator-last > angledoublerighticon {
+  @include icon.replace-with(2395);
+}
