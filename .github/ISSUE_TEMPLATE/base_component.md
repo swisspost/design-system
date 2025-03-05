@@ -4,6 +4,7 @@ about: Parent issue for adding sub-issues related to this component.
 title: ''
 labels: '🧩 base component'
 assignees: ''
+type: 'Feature'
 ---
 
 ### 📝 Description
