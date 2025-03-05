@@ -61,16 +61,13 @@ export class PostTooltipTrigger {
   }
 
   private setupTrigger() {
-    // Use the first child element in the light DOM as the trigger
     this.trigger = this.host.firstElementChild as HTMLElement;
 
     if (this.trigger) {
-      // If the trigger is not focusable, add a tabindex
       if (!isFocusable(this.trigger)) {
         this.trigger.setAttribute('tabindex', '0');
       }
 
-      // Append the tooltip ID to aria-describedby without overwriting existing values
       const describedBy = this.trigger.getAttribute('aria-describedby') || '';
       if (!describedBy.includes(this.for)) {
         this.trigger.setAttribute('aria-describedby', `${describedBy} ${this.for}`.trim());
@@ -117,7 +114,6 @@ export class PostTooltipTrigger {
   }
 
   private handleTooltipLeave(event: PointerEvent) {
-    // Check if the pointer is heading back to the trigger.
     const newTarget = event.relatedTarget as HTMLElement | null;
     if (this.trigger && newTarget && this.trigger.contains(newTarget)) {
       return;
@@ -127,13 +123,11 @@ export class PostTooltipTrigger {
 
   private interestHandler() {
     if (this.delay > 0) {
-      // If there's a delay, set a timeout
       this.delayTimeout = window.setTimeout(() => {
         this.tooltip?.show(this.trigger);
         this.delayTimeout = null;
       }, this.delay);
     } else {
-      // If no delay, show the tooltip immediately
       this.tooltip?.show(this.trigger);
     }
   }
