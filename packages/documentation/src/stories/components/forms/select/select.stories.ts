@@ -213,8 +213,7 @@ const Template: Story = {
     const [_, updateArgs] = useArgs();
     const classes = [
       'form-select',
-      args.size,
-      args.sizeFloatingLabel,
+      args.floatingLabel ? args.sizeFloatingLabel : args.size, // Only include the appropriate size based on mode
       args.validation,
       args.floatingLabelPlaceholder && !args.value ? 'form-select-empty' : null,
     ]
