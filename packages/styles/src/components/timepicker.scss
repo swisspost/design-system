@@ -8,7 +8,7 @@
 @use './../variables/type';
 @use './../variables/color';
 @use './../variables/components/forms';
-@use './../variables/components/button';
+@use './../variables/components/timepicker';
 
 // Basic timepicker overrides
 .ngb-tp {
@@ -36,8 +36,8 @@
   .ngb-tp-chevron {
     &::before {
       @include icon-mixins.icon('2051');
-      width: map.get(button.$old-btn-icon-size-map, 'md');
-      height: map.get(button.$old-btn-icon-size-map, 'md');
+      width: map.get(timepicker.$timepicker-icon-size-map, 'md');
+      height: map.get(timepicker.$timepicker-icon-size-map, 'md');
       transform: none;
     }
 
@@ -48,8 +48,8 @@
 
   @each $size in sm, lg {
     .btn-#{$size} .ngb-tp-chevron::before {
-      width: map.get(button.$old-btn-icon-size-map, $size);
-      height: map.get(button.$old-btn-icon-size-map, $size);
+      width: map.get(timepicker.$timepicker-icon-size-map, $size);
+      height: map.get(timepicker.$timepicker-icon-size-map, $size);
     }
   }
 
@@ -67,8 +67,8 @@
 .timepicker-rg {
   .btn {
     .ngb-tp-chevron::before {
-      width: map.get(button.$old-btn-icon-size-map, 'rg');
-      height: map.get(button.$old-btn-icon-size-map, 'rg');
+      width: map.get(timepicker.$timepicker-icon-size-map, 'rg');
+      height: map.get(timepicker.$timepicker-icon-size-map, 'rg');
     }
   }
 
