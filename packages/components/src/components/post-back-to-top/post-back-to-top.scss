@@ -8,7 +8,9 @@
 tokens.$default-map: components.$post-floating-button;
 
 :host {
-  --top: calc(var(--post-header-height) + 32px);
+  --floating-button-position-top: #{tokens.get('floating-button-position-top')};
+  --top: calc(var(--post-header-height) + var(--floating-button-position-top));
+  --elevation: #{tokens.get('floating-button-elevation')};
   position: fixed;
   top: var(--top);
   right: tokens.get('floating-button-position-right');
@@ -16,7 +18,7 @@ tokens.$default-map: components.$post-floating-button;
   .back-to-top {
     @include button-mx.reset-button;
     @include utilities.focus-style;
-    box-shadow: tokens.get('floating-button-elevation');
+    box-shadow: var(--elevation);
     cursor: pointer;
     border-radius: tokens.get('floating-button-border-radius-round');
     width: tokens.get('floating-button-size-outer');
@@ -28,11 +30,13 @@ tokens.$default-map: components.$post-floating-button;
     display: flex;
     align-items: center;
     justify-content: center;
+
     &:hover {
       border-color: tokens.get('floating-button-hover-border');
       color: tokens.get('floating-button-hover-fg');
       background-color: tokens.get('floating-button-hover-bg');
     }
+
     post-icon {
       height: tokens.get('floating-button-size-icon');
       width: tokens.get('floating-button-size-icon');
