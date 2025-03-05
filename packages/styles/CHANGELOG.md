@@ -1,5 +1,21 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.30
+
+### Major Changes
+
+- Uninstalled **Intranet Header** package and all its style references. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4587](https://github.com/swisspost/design-system/pull/4587))
+
+- Removed z-index scss variables that were no longer necessary as they had been replaced with popover elements. (by [@leagrdv](https://github.com/leagrdv) with [#4658](https://github.com/swisspost/design-system/pull/4658))
+
+### Patch Changes
+
+- Internalized bootstrap border utility classes. (by [@myrta2302](https://github.com/myrta2302) with [#3751](https://github.com/swisspost/design-system/pull/3751))
+
+- Updated header button styles to match the header anchor styles. (by [@myrta2302](https://github.com/myrta2302) with [#4785](https://github.com/swisspost/design-system/pull/4785))
+
+- Cleaned up \_button.scss by moving button-specific variables to button.scss. Redefined cross-referenced variables in respective component files. Removed unused variables. (by [@schaertim](https://github.com/schaertim) with [#4702](https://github.com/swisspost/design-system/pull/4702))
+
 ## 9.0.0-next.29
 
 ## 9.0.0-next.28
