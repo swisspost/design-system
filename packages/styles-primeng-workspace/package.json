@@ -36,7 +36,7 @@
     "@types/jasmine": "5.1.4",
     "angular-eslint": "18.4.3",
     "eslint": "^9.15.0",
-    "globals": "15.14.0",
+    "globals": "16.0.0",
     "jasmine-core": "5.5.0",
     "karma": "6.4.4",
     "karma-chrome-launcher": "3.2.0",
