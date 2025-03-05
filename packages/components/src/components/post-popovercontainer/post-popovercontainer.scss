@@ -21,19 +21,11 @@
 }
 
 :where(post-popovercontainer) {
-  &[data-animation='pop-in']:where(:popover-open, .popover-open) {
-    @include animation.top-layer-pop-in(0.25s, ':popover-open');
 
-    @media (prefers-reduced-motion) {
-      & {
-        --post-transition-duration: 0s;
-      }
-    }
-  }
   background-color: transparent;
   border: transparent;
   position: fixed;
-  margin: 0;
+  margin: 0;  
   padding: 0;
   // Keeps the little arrow visible
   overflow: visible;
@@ -45,6 +37,10 @@
     background-color: var(--post-current-palette-bg);
     border: 2px solid transparent; // Keeping the default border for HCM
     border-radius: commons.$border-radius;
+    
+    &.animate-pop-in {
+      @include animation.pop-in-animation(0.35s);
+    }
   }
 
   &[tooltip] {
@@ -55,7 +51,6 @@
   &[safe-space]::after {
     content: '';
     position: fixed;
-    background-color: red;
     inset: 0;
     z-index: -1;
     pointer-events: auto;

@@ -95,7 +95,6 @@ function render(args: Args) {
     >
     <post-tooltip
       id="${args.id}"
-      safe-space="trapezoid"
       arrow="${ifDefined(args.arrow)}"
       class="${args.palette}"
       placement="${ifDefined(args.placement)}"

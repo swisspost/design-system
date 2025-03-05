@@ -329,9 +329,11 @@ export class PostPopovercontainer {
   }
 
   render() {
+    const animationClass = this.animation ? `animate-${this.animation}` : '';
+
     return (
-      <Host data-version={version} data-animation={this.animation} popover={this.manualClose ? 'manual' : 'auto'}>
-        <div>
+      <Host data-version={version} popover={this.manualClose ? 'manual' : 'auto'}>
+        <div class={animationClass}>
           {this.arrow && (
             <span
               class="arrow"
