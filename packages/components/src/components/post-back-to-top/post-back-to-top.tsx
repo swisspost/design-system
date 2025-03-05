@@ -71,14 +71,15 @@ export class PostBackToTop {
     );
     const elevationParts = elevation.split(',');
 
-    function getSecondPixelValue(parts: string[]) {
+    function getSecondPixelValue(parts) {
       for (let part of parts) {
-        const pixelValues = part.match(/-?\d+px/g);
+        const pixelValues = part.match(/\b\d+px\b/g);
+
         if (pixelValues && pixelValues.length > 1) {
           return pixelValues[1];
         }
       }
-      return undefined;
+      return undefined; // Return undefined if no valid second pixel value is found
     }
 
     const elevationHeight = getSecondPixelValue(elevationParts);
