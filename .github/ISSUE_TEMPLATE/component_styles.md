@@ -1,5 +1,5 @@
 ---
-name: Component Styles
+name: HTML/CSS Component
 about: Issue for implementing a HTML/CSS component in the styles package.
 title: ''
 labels: '📦 styles'
