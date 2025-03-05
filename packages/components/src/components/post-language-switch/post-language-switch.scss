@@ -8,25 +8,21 @@
 tokens.$default-map: components.$post-button;
 
 :host {
-  display: block;
-
-  @include media.max(lg) {
-    display: flex !important;
-    gap: 0.5rem;
-  }
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
+// Style for dropdown variant
 .post-language-switch-dropdown-container {
   display: flex;
   flex-direction: column;
-
-  > * {
-    width: 100%;
-  }
 }
 
 .post-language-switch-trigger {
   cursor: pointer;
+  text-transform: uppercase;
+
   @include button-mx.reset-button;
   @include header-mx.subsidiary-header-interactive;
 
@@ -36,7 +32,21 @@ tokens.$default-map: components.$post-button;
   }
 
   post-icon {
-    height: var(--post-core-dimension-16);
-    width: var(--post-core-dimension-16);
+    height: 24px;
+    width: 24px;
+  }
+
+  &[aria-expanded='true'] {
+    background-color: #050400;
+    color: #fff;
+
+    post-icon {
+      transform: rotate(180deg);
+    }
+
+    &:hover {
+      background-color: #504f4b;
+      color: white;
+    }
   }
 }
