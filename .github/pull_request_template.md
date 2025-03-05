@@ -1,7 +1,3 @@
-## 📌 Ticket
-
-Please provide the URL to the Jira ticket related to this PR.
-
 ## 📄 Description
 
 Please include a summary of the changes made in this PR.
