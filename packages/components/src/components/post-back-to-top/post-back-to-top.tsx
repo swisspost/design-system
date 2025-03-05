@@ -60,41 +60,36 @@ export class PostBackToTop {
   componentDidLoad() {
     window.addEventListener('scroll', this.handleScroll, false);
 
-    const headerHeight = window
-      .getComputedStyle(this.host)
-      .getPropertyValue('--post-header-height');
-
-    const positionTop = window
-      .getComputedStyle(this.host)
-      .getPropertyValue('--floating-button-position-top');
+    // Get the back-to-top button top
+    const positionTop = window.getComputedStyle(this.host).getPropertyValue('top');
 
     const buttonElement = this.host.shadowRoot.querySelector('button');
-    const elevation = getComputedStyle(buttonElement).getPropertyValue('--elevation');
+
+    // Get the elevation height
+    const elevation = getComputedStyle(buttonElement).getPropertyValue(
+      '--post-back-to-top-elevation',
+    );
     const elevationParts = elevation.split(',');
-    // Function to get the second pixel value (height)
+
     function getSecondPixelValue(parts: string[]) {
       for (let part of parts) {
-        // Extract only the parts with pixel values
         const pixelValues = part.match(/-?\d+px/g);
-        // Return the second element (height) if it exists
         if (pixelValues && pixelValues.length > 1) {
           return pixelValues[1];
         }
       }
-      return undefined; // Return undefined if no valid second pixel value is found
+      return undefined;
     }
+
     const elevationHeight = getSecondPixelValue(elevationParts);
 
-    console.log(elevationHeight);
-
+    // The translateY will be => -100% - topPosition - elevationHeight
     this.translateY =
       String(
         (-1 * 100) / 100 -
-          parseFloat(headerHeight.replace('px', '')) -
           parseFloat(positionTop.replace('px', '')) -
           parseFloat(elevationHeight.replace('px', '')),
       ) + 'px';
-    console.log(this.translateY);
 
     if (this.belowFold) {
       slideDown(this.host, this.translateY);
