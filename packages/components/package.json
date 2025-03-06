@@ -3,25 +3,56 @@
   "version": "9.0.0-next.29",
   "description": "A collection of web components built with Stencil JS for the Swiss Post Design System.",
   "license": "Apache-2.0",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.js",
-  "types": "dist/types/index.d.ts",
-  "collection": "dist/collection/collection-manifest.json",
-  "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/post-components/post-components.esm.js",
   "private": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system"
+  },
+  "publishConfig": {
+    "access": "public",
+    "linkDirectory": true
   },
   "files": [
     "dist/",
     "loader/",
     "loaders/"
   ],
-  "publishConfig": {
-    "access": "public",
-    "linkDirectory": true
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "unpkg": "dist/post-components/post-components.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/components/components.esm.js",
+      "require": "./dist/components/components.cjs.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./dist/*": {
+      "import": "./dist/*",
+      "types": "./dist/*"
+    },
+    "./components/*": {
+      "import": "./dist/components/*.js",
+      "types": "./dist/components/*.d.ts"
+    },
+    "./loader": {
+      "import": "./loader/index.js",
+      "require": "./loader/index.cjs",
+      "types": "./loader/index.d.ts"
+    },
+    "./loaders": {
+      "import": "./loaders/index.js",
+      "require": "./loaders/index.cjs",
+      "types": "./loaders/index.d.ts"
+    },
+    "./hydrate": {
+      "types": "./hydrate/index.d.ts",
+      "import": "./hydrate/index.js",
+      "require": "./hydrate/index.cjs.js",
+      "default": "./hydrate/index.js"
+    }
   },
   "scripts": {
     "play": "stencil build --dev --port 9200 --serve --watch --docs --docs-readme",
@@ -52,9 +83,9 @@
     "@percy/cli": "1.30.6",
     "@percy/cypress": "3.1.2",
     "@stencil-community/eslint-plugin": "0.9.0",
-    "@stencil/angular-output-target": "0.8.4",
-    "@stencil/core": "4.19.2",
-    "@stencil/react-output-target": "0.5.3",
+    "@stencil/angular-output-target": "0.10.2",
+    "@stencil/core": "4.27.2",
+    "@stencil/react-output-target": "0.8.2",
     "@stencil/sass": "3.0.12",
     "@types/jest": "29.5.14",
     "@types/node": "22.10.5",
