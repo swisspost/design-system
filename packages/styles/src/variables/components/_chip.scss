@@ -33,7 +33,7 @@ $chip-transition:
   background-color animation.$transition-base-timing,
   border-color animation.$transition-base-timing;
 
-$chip-height-sm: button.$btn-height-sm;
+$chip-height-sm: 2rem;
 $chip-gap-sm: sizing.px-to-rem(6px);
 $chip-font-size-sm: type.$font-size-14;
 $chip-padding-x-sm: tokens.get('utility-gap-12');
