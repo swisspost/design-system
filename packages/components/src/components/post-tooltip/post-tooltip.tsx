@@ -5,7 +5,7 @@ import { version } from '@root/package.json';
 import isFocusable from 'ally.js/is/focusable';
 import 'long-press-event';
 import { getAttributeObserver } from '@/utils/attribute-observer';
-import { checkEmptyOrType, checkOneOf } from '@/utils';
+import { checkOneOf } from '@/utils';
 
 const OPEN_DELAY = 650; // matches HTML title delay
 
