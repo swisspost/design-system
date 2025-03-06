@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkUrl, debounce } from '@/utils';
+import { checkNonEmpty, checkUrl, debounce } from '@/utils';
 
 @Component({
   tag: 'post-breadcrumb',
@@ -29,6 +29,7 @@ export class PostBreadcrumb {
 
   @Watch('homeUrl')
   validateUrl() {
+    checkNonEmpty(this, 'homeUrl');
     checkUrl(this, 'homeUrl');
   }
 
@@ -37,6 +38,7 @@ export class PostBreadcrumb {
   }
 
   componentDidLoad() {
+    this.validateUrl();
     window.addEventListener('resize', this.handleResize);
     this.waitForBreadcrumbRef();
   }

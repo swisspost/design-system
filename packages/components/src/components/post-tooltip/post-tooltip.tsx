@@ -1,10 +1,11 @@
 import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
+import { PLACEMENT_TYPES } from '@/types';
 import { version } from '@root/package.json';
 import isFocusable from 'ally.js/is/focusable';
 import 'long-press-event';
 import { getAttributeObserver } from '@/utils/attribute-observer';
-import { checkEmptyOrType } from '@/utils';
+import { checkEmptyOrType, checkOneOf } from '@/utils';
 
 const OPEN_DELAY = 650; // matches HTML title delay
 
@@ -133,13 +134,13 @@ export class PostTooltip {
    */
   @Prop() readonly delayed: boolean = false;
 
-  @Watch('delayed')
-  validateDelayed() {
-    checkEmptyOrType(this, 'delayed', 'boolean');
+  @Watch('placement')
+  validatePlacement() {
+    checkOneOf(this, 'placement', PLACEMENT_TYPES);
   }
 
   connectedCallback() {
-    this.validateDelayed();
+    this.validatePlacement();
   }
 
   componentDidLoad() {
