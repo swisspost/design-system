@@ -11,6 +11,13 @@ const autoprefixer = require('autoprefixer');
 const { globSync } = require('glob');
 const options = require('./package.json').sass;
 
+const COMPONENT_SOURCE_PATHS = [path.join(__dirname, '../components/src/components')];
+const COMPONENT_NOT_DEFINED_TEMPLATE_PATH = path.join(
+  __dirname,
+  'src/templates/_not-defined.template.scss',
+);
+const COMPONENT_NOT_DEFIEND_OUTPUT_PATH = path.join(__dirname, 'src/utilities/_not-defined.scss');
+
 /**
  * Copy task
  */
@@ -165,39 +172,22 @@ gulp.task(
  */
 
 gulp.task('generate-not-defined-components-scss', done => {
-  const filePath = path.join(__dirname, '../components/src/index.ts');
-  fs.readFile(filePath, 'utf8', (err, data) => {
-    if (err) {
-      done(err);
-      return;
+  const webComponentNames = COMPONENT_SOURCE_PATHS.reduce((names, srcPath) => {
+    if (fs.existsSync(srcPath)) {
+      const componentNames = fs.readdirSync(srcPath);
+      const camelCaseNames = componentNames.map(name =>
+        name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase(),
+      );
+      names.push(...camelCaseNames);
     }
+    return names;
+  }, []);
 
-    const kebabCaseNames = Array.from(data.matchAll(/export \{ (\w+) \} from/g), m =>
-      m[1].replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase(),
-    ).join(',\n  ');
+  const template = fs.readFileSync(COMPONENT_NOT_DEFINED_TEMPLATE_PATH, 'utf8');
+  const output = template.replace('/* WEB_COMPONENT_NAMES */', webComponentNames.join(',\n  '));
 
-    const templatePath = path.join(__dirname, 'src/templates/_not-defined.template.scss');
-    fs.readFile(templatePath, 'utf8', (err, data) => {
-      if (err) {
-        console.error('Error reading template file:', err);
-        done(err);
-        return;
-      }
-      const result = data.replace('/* WEB_COMPONENT_NAMES */', kebabCaseNames);
-
-      const outputPath = path.join(__dirname, 'src/utilities/_not-defined.scss');
-      fs.writeFile(outputPath, result, 'utf8', err => {
-        if (err) {
-          console.error('Error writing output file:', err);
-          done(err);
-          return;
-        }
-
-        console.log('Output file generated successfully.');
-        done();
-      });
-    });
-  });
+  fs.writeFileSync(COMPONENT_NOT_DEFIEND_OUTPUT_PATH, output, 'utf8');
+  done();
 });
 
 /**
