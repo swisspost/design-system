@@ -120,7 +120,8 @@ function renderStepper(args: Args) {
   const stepperEl = document.querySelector('.stepper') as HTMLElement;
   if (stepperEl) {
     stepperEl.style.display = 'none';
-    stepperEl.offsetHeight;
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+    const t = stepperEl.offsetHeight;
     stepperEl.style.display = '';
   }
 
