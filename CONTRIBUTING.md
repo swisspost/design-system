@@ -4,7 +4,6 @@ These contribution guidelines apply to this repository in general and describe h
 
 - [Angular Demo](./packages/demo/README.md)
 - [Design System Styles](./packages/styles/CONTRIBUTING.md)
-- [Intranet Header Component](./packages/intranet-header-workspace/projects/intranet-header/CONTRIBUTING.md)
 
 ## Setup
 
@@ -17,8 +16,7 @@ Use these commands whenever you want to work on one of these packages. Ideally, 
 | Command                           | Description                                                                                  |
 | --------------------------------- | -------------------------------------------------------------------------------------------- |
 | `pnpm start` or `pnpm docs:start` | starts the design-system-documentation storybook and the `start` scripts of all dependencies |
-| `pnpm demo:start`                 | starts the demo Angular application and the `start` scripts of all dependencies              |
-| `pnpm intranet-header:start`      | starts the intranet header demo application                                                  |
+| `pnpm demo:start`                 | starts the demo Angular application and the `start` application                                                  |
 | `pnpm styles:start`               | starts the sass compiler                                                                     |
 | `pnpm components:start`           | starts the stencil compiler                                                                  |
 | `pnpm header:start`               | starts the stencil compiler for the header                                                   |
@@ -236,7 +234,6 @@ For some packages it's necessary to run multiple dev servers at the same time. T
 | :-------------- | ---: |
 | Styles (unused) | 9300 |
 | Internet-Header | 9310 |
-| Intranet-Header | 9320 |
 | Icons           | 9330 |
 
 ## Branching

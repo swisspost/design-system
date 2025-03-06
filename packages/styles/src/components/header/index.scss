@@ -1,8 +1,13 @@
 @use '../../mixins/media';
 @use '../../mixins/utilities';
 @use '../../variables/color';
+@use '../../functions/tokens';
+@use '../../tokens/elements';
+@use '../../mixins/button' as button-mx;
 
 @use 'mixins' as *;
+
+tokens.$default-map: elements.$post-link;
 
 post-header {
   --header-expanded-height: calc(var(--global-header-height) + var(--local-header-height));
@@ -15,6 +20,7 @@ post-header {
         calc(var(--header-expanded-height) - var(--header-reduced-height))
       )
   );
+  height: var(--header-height);
 
   @include media.min(lg) {
     --global-header-height: 72px;
@@ -46,7 +52,6 @@ post-header {
   &:not(:defined),
   &:not([data-hydrated]) {
     display: block;
-    height: var(--header-height);
   }
 
   ul[slot='meta-navigation'] {
@@ -103,7 +108,16 @@ post-header {
     }
   }
 
+  button:not(post-mainnavigation *, post-language-switch *) {
+    @include button-mx.reset-button;
+
+    &:hover {
+      color: tokens.get('link-hover-fg');
+    }
+  }
+
   a,
+  button,
   post-togglebutton {
     &:not(post-mainnavigation *, post-language-switch *) {
       @include subsidiary-header-interactive;
