@@ -8,3 +8,7 @@
 
   --post-header-height: 120px; //dummy value
 }
+
+body:has(post-header:not([data-hydrated])) post-back-to-top {
+  visibility: hidden !important;
+}
