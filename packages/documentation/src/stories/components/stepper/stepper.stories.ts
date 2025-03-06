@@ -9,7 +9,7 @@ const defaultSteps = ['Sender', 'Product', 'Other details', 'Order summary'];
 const meta: MetaComponent = {
   id: '7dc546d9-e248-4d06-befe-3ad62fcd310f',
   title: 'Components/Stepper',
-  tags: ['package:Angular'],
+  tags: ['package:HTML'],
   render: renderStepper,
   parameters: {
     badges: [],
@@ -71,7 +71,12 @@ const meta: MetaComponent = {
 export default meta;
 
 // RENDERER
-function getStepperItem(args: Args, step: string, index: number, updateStep: (newStep: number, event: Event) => void) {
+function getStepperItem(
+  args: Args,
+  step: string,
+  index: number,
+  updateStep: (newStep: number, event: Event) => void,
+) {
   const currentStepIndex = args.currentStepNumber - 1;
   const isCompletedStep = index < currentStepIndex;
   const isCurrentStep = index === currentStepIndex;
@@ -91,11 +96,15 @@ function getStepperItem(args: Args, step: string, index: number, updateStep: (ne
     <li aria-current=${ifDefined(isCurrentStep ? 'step' : undefined)} class="stepper-item">
       ${isLink
         ? html`
-            <a class="stepper-link" href="../step-${index + 1}" title=${ifDefined(title)}
+            <a
+              class="stepper-link"
+              href="../step-${index + 1}"
+              title=${ifDefined(title)}
               @click=${(e: Event) => {
                 e.preventDefault();
                 updateStep(index + 1, e);
-              }}>
+              }}
+            >
               ${text}
             </a>
           `
@@ -104,9 +113,16 @@ function getStepperItem(args: Args, step: string, index: number, updateStep: (ne
   `;
 }
 
-
 function renderStepper(args: Args) {
   const [_, updateArgs] = useArgs();
+
+  // Hack to force a reflow when the current step changes
+  const stepperEl = document.querySelector('.stepper') as HTMLElement;
+  if (stepperEl) {
+    stepperEl.style.display = 'none';
+    stepperEl.offsetHeight;
+    stepperEl.style.display = '';
+  }
 
   const updateStep = (newStepNumber: number, event: Event) => {
     event.preventDefault();
@@ -119,8 +135,8 @@ function renderStepper(args: Args) {
     class="stepper"
     aria-label=${ifDefined(isNav ? undefined : args.processName + ' Progress')}
   >
-    ${args.steps.map((step: string, index: number) => 
-      getStepperItem(args, step, index, updateStep)
+    ${args.steps.map((step: string, index: number) =>
+      getStepperItem(args, step, index, updateStep),
     )}
   </ol>`;
 
