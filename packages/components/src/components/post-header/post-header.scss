@@ -124,9 +124,8 @@
   @include media.max(lg) {
     z-index: 2;
     inset-block-start: var(--global-header-height);
-    padding-block: 12px;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 12px;
 
     &.local-header-mobile-extended {
       &::after {
@@ -142,6 +141,17 @@
 
 .local-sub {
   margin-inline-end: 16px;
+}
+
+::slotted([slot="title"]) {
+  @include media.max(lg) {
+    padding-block-start: 4px;
+  }
+  @include media.min(sm) {
+    @include media.max(md) {
+      padding-block-start: 8px;
+    }
+  }
 }
 
 ::slotted(.list-inline) {
