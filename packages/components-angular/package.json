@@ -30,7 +30,7 @@
     "@angular-devkit/build-angular": "18.2.12",
     "@angular/cli": "18.2.12",
     "@angular/compiler-cli": "18.2.13",
-    "@cypress/schematic": "2.5.2",
+    "@cypress/schematic": "3.0.0",
     "@eslint/js": "9.18.0",
     "angular-eslint": "18.4.3",
     "cypress": "13.13.2",
