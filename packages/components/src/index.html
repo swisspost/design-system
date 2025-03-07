@@ -9,7 +9,7 @@
     <meta name="design-system-settings" data-post-icon-base="/assets/icons" />
     <title>Stencil Component Starter</title>
 
-    <link id="tokens" rel="stylesheet" href="/assets/css/post-tokens-external.css" />
+    <link id="tokens" rel="stylesheet" href="/assets/css/post-tokens-default.css" />
     <link id="palette" rel="stylesheet" href="/assets/css/post-palettes.css" />
     <link rel="stylesheet" href="/assets/css/index.css" />
     <script type="module" src="/build/post-components.esm.js"></script>
@@ -170,12 +170,12 @@
     <select
       name="tokens"
       id="tokens-select"
-      value="external"
+      value="default"
       class="mb-4"
-      onchange="if (['external', 'internal'].includes(this.value)) { document.getElementById('tokens').setAttribute('href', `/assets/css/post-tokens-${encodeURIComponent(this.value)}.css`); }"
+      onchange="if (['default', 'compact'].includes(this.value)) { document.getElementById('tokens').setAttribute('href', `/assets/css/post-tokens-${encodeURIComponent(this.value)}.css`); }"
     >
-      <option value="external">Post external</option>
-      <option value="internal">Post internal</option>
+      <option value="default">Post default</option>
+      <option value="compact">Post compact</option>
     </select>
     <hr />
   </body>
