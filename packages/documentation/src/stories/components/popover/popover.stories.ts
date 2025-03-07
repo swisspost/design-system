@@ -30,6 +30,7 @@ const meta: MetaComponent = {
     placement: 'top',
     arrow: true,
     title: true,
+    maxWidth: '80vw',
   },
   argTypes: {
     id: {
@@ -42,6 +43,14 @@ const meta: MetaComponent = {
     },
     innerHtml: {
       name: 'Content',
+      table: {
+        category: 'General',
+      },
+    },
+    maxWidth: {
+      name: 'Max width of the popover',
+      description:
+        'Value can either be in `vw`, `px` or `%`. If no max-width is defined, the popover will extend to the width of its content.',
       table: {
         category: 'General',
       },
@@ -95,6 +104,7 @@ function render(args: Args) {
       id="${args.id}"
       placement="${args.placement}"
       ?arrow="${args.arrow}"
+      style="${args.maxWidth ? '--post-popover-max-width: ' + args.maxWidth : ''}"
     >
       ${args.title ? html` <h2 class="h6">Optional title</h2> ` : null}
       <p class="mb-0">${unsafeHTML(args.innerHtml)}</p>
