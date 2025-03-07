@@ -50,16 +50,19 @@
   );
 
   @if ($state) {
-    $state: url('#{icons.get-colored-svg-url('2052', map.get($arrow-color-map, '#{$state}-#{$mode}'))}');
+    $icon: icons.get-colored-svg-url('2052', map.get($arrow-color-map, '#{$state}-#{$mode}'));
+    $state: url('#{$icon}');
   }
 
   @return $state;
 }
 
 @function success-icon($color: #107800) {
-  @return url('#{icons.get-colored-svg-url('success', $color)}');
+  $icon: icons.get-colored-svg-url('success', $color);
+  @return url('#{$icon}');
 }
 
 @function warning-icon($color: #b20000) {
-  @return url('#{icons.get-colored-svg-url('warning', $color)}');
+  $icon: icons.get-colored-svg-url('warning', $color);
+  @return url('#{$icon}');
 }

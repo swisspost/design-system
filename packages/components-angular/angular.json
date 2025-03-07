@@ -51,17 +51,20 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/consumer-app",
+            "outputPath": {
+              "base": "dist/consumer-app",
+              "browser": ""
+            },
             "index": "projects/consumer-app/src/index.html",
-            "main": "projects/consumer-app/src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "projects/consumer-app/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["projects/consumer-app/src/favicon.ico", "projects/consumer-app/src/assets"],
             "styles": ["projects/consumer-app/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "browser": "projects/consumer-app/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -80,9 +83,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
