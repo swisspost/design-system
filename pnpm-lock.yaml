@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    optionalDependencies:
-      '@web-types/lit':
-        specifier: 2.0.0-3
-        version: 2.0.0-3
     devDependencies:
       '@changesets/cli':
         specifier: 2.27.11
@@ -18,6 +14,10 @@ importers:
       start-server-and-test:
         specifier: 2.0.9
         version: 2.0.9
+    optionalDependencies:
+      '@web-types/lit':
+        specifier: 2.0.0-3
+        version: 2.0.0-3
 
   packages/changelog-github:
     dependencies:
