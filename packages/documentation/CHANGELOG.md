@@ -1,5 +1,24 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.31
+
+### Major Changes
+
+- Uninstalled **Intranet Header** package, documentation and all references to it. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4587](https://github.com/swisspost/design-system/pull/4587))
+
+### Patch Changes
+
+- Internalized bootstrap border utility classes. (by [@myrta2302](https://github.com/myrta2302) with [#3751](https://github.com/swisspost/design-system/pull/3751))
+
+- Added documentation for developing and designing accessible webpages. (by [@leagrdv](https://github.com/leagrdv) with [#4847](https://github.com/swisspost/design-system/pull/4847))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.30
+  - @swisspost/design-system-components@9.0.0-next.30
+  - @swisspost/internet-header@2.0.0-next.30
+  - @swisspost/design-system-components-react@9.0.0-next.30
+  - @swisspost/design-system-tokens@9.0.0-next.30
+  - @swisspost/design-system-icons@9.0.0-next.30
+
 ## 6.0.0-next.30
 
 ### Patch Changes
