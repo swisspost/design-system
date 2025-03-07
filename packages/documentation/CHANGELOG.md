@@ -1,5 +1,17 @@
 # @swisspost/design-system-documentation
 
+## 5.5.11
+
+### Patch Changes
+
+- Removed user specific profile image logic from the intranet header. (by [@myrta2302](https://github.com/myrta2302) with [#4667](https://github.com/swisspost/design-system/pull/4667))
+- Updated dependencies:
+  - @swisspost/internet-header@1.15.9
+  - @swisspost/design-system-styles@8.9.1
+  - @swisspost/design-system-components@8.9.1
+  - @swisspost/design-system-components-react@8.9.1
+  - @swisspost/design-system-icons@8.9.1
+
 ## 5.5.10
 
 ### Patch Changes
