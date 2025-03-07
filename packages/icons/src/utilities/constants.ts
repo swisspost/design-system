@@ -2,7 +2,7 @@ import type { SourceReport, MergedReport } from '../models/icon.model';
 import { version } from '../../package.json';
 import { coloredLogMessage } from './shared';
 
-export const DOWNLOAD_PAGE_DELAY = 1200;
+export const DOWNLOAD_PAGE_DELAY = 2000;
 
 export const SOURCE_PATH = 'src/icons';
 export const OUTPUT_PATH = 'public';
