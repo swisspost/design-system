@@ -1,34 +1,37 @@
 import React from 'react';
-import report from '@swisspost/design-system-icons/public/report.json';
-import { IIcon } from '@swisspost/design-system-icons/src/models/icon.model';
+import report from '@swisspost/design-system-icons/public/report.min.json';
+import { ReportIcon } from '@swisspost/design-system-icons/src/models/icon.model';
 import './search-icons.styles.scss';
 
-interface IIconSetIcon {
+interface Icon {
   name: string;
   keywords: string;
   searchKeywords: string[];
 }
 
-interface IIconSets {
-  post: IIconSetIcon[];
-  uiLight: IIconSetIcon[];
-  uiSolid: IIconSetIcon[];
+interface IconSets {
+  post: Icon[];
+  uiLight: Icon[];
+  uiSolid: Icon[];
 }
 
-const ICON_SETS: IIconSets = report.icons.reduce(
-  (sets: IIconSets, icon: IIcon) => {
-    let typeOfSet = 'post';
+const ICON_SETS: IconSets = report.icons.reduce(
+  (sets: IconSets, icon: ReportIcon) => {
+    let typeOfSet = icon.stats.set;
+    const basename = icon.name.replace(/.svg$/, '');
 
-    if (/-solid$/.test(icon.file.basename)) {
-      typeOfSet = 'uiSolid';
-    } else if (!/^(\d){4}$/.test(icon.file.basename)) {
-      typeOfSet = 'uiLight';
+    if (typeOfSet === 'ui') {
+      if (basename.endsWith('-solid')) {
+        typeOfSet += 'Solid';
+      } else {
+        typeOfSet += 'Light';
+      }
     }
 
-    sets[typeOfSet as keyof IIconSets].push({
-      name: icon.file.basename,
-      keywords: icon.meta.keywords.join(', '),
-      searchKeywords: [icon.file.basename, ...icon.meta.keywords].map(word =>
+    sets[typeOfSet as keyof IconSets].push({
+      name: basename,
+      keywords: icon.keys.join(', '),
+      searchKeywords: [basename, ...icon.keys].map(word =>
         word
           .normalize('NFD')
           .replace(/[\u0300-\u036f]/g, '')
@@ -89,7 +92,7 @@ export class Search extends React.Component {
   }
 
   updateResults(query?: string) {
-    let icons = ICON_SETS[this.form.set.current as keyof IIconSets];
+    let icons = ICON_SETS[this.form.set.current as keyof IconSets];
     if (query) icons = icons.filter(icon => icon.searchKeywords.find(word => word.includes(query)));
 
     this.results.icons = icons;
@@ -180,7 +183,7 @@ export class Search extends React.Component {
 
           <p className="form-hint">
             Showing {this.results.icons.length} of{' '}
-            {ICON_SETS[this.form.set.current as keyof IIconSets].length} icons.
+            {ICON_SETS[this.form.set.current as keyof IconSets].length} icons.
           </p>
         </div>
       </>
@@ -271,7 +274,7 @@ export class Search extends React.Component {
       <div className="container">
         <div className="search-form">{this.searchForm()}</div>
         <div className="search-results">
-          <a href="#results-top" />
+          <a href="#results-top"></a>
           {this.paging()}
           {this.resultsList()}
           {this.paging()}
