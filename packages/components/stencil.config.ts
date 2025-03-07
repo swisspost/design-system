@@ -78,7 +78,7 @@ export const config: Config = {
         'post-collapsible-trigger',
         'post-footer',
         'post-header',
-        'post-icon',
+        // 'post-icon',
         'post-language-option',
         'post-language-switch',
         'post-linkarea',
