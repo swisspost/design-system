@@ -65,6 +65,15 @@ post-mainnavigation {
       height: 24px;
       width: 24px;
     }
+
+    @include utilities.high-contrast-mode() {
+      border: 1px solid ButtonBorder !important;
+
+      &:hover::after,
+      &[aria-expanded='true']::after {
+        color: HighlightText;
+      }
+    }
   }
 
   // desktop styles
