@@ -106,8 +106,8 @@
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
   },
   "devDependencies": {
-    "@changesets/cli": "2.27.11",
-    "start-server-and-test": "2.0.9"
+    "@changesets/cli": "2.28.1",
+    "start-server-and-test": "2.0.10"
   },
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
@@ -115,7 +115,7 @@
   "engines": {
     "node": "22"
   },
-  "packageManager": "pnpm@9.15.3+sha512.1f79bc245a66eb0b07c5d4d83131240774642caaa86ef7d0434ab47c0d16f66b04e21e0c086eb61e62c77efc4d7f7ec071afad3796af64892fae66509173893a",
+  "packageManager": "pnpm@9.15.8+sha512.4a64c3cd524cb562bfdad4572820776816e6f98afadbf2283a860f8497d9767f68419918e099791be8c116a1fa218f1379250d97bb706831227859b7d598122c",
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": {},
