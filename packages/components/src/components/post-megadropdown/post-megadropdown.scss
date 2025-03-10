@@ -87,6 +87,11 @@
       animation: slide-out 350ms forwards;
     }
   }
+
+  @include media.min(lg) {
+    max-height: calc(100vh - var(--header-height) - 48px);
+    overflow-y: auto;
+  }
 }
 
 .megadropdown {
