@@ -1,5 +1,6 @@
 export * from './component-on-ready';
 export * from './property-checkers';
+export * from './breakpoints';
 export * from './debounce';
 export * from './get-root';
 export * from './is-motion-reduced';
