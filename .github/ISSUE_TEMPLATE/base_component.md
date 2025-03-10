@@ -8,7 +8,7 @@ type: 'Feature'
 ---
 
 ### 📝 Description
-<!-- Generic descripton of the component, a screenshot if available  -->
+<!-- Generic description of the component, a screenshot if available  -->
 
 ### 🎨 Design
 <!-- Link to the Figma Design File if available -->
