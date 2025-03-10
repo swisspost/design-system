@@ -58,7 +58,7 @@
     "play": "stencil build --dev --port 9200 --serve --watch --docs --docs-readme",
     "start": "stencil build --dev --watch --docs --docs-readme",
     "build": "pnpm clean && stencil build --docs-readme",
-    "clean": "rimraf www dist loader loaders",
+    "clean": "rimraf dist hydrate loader loaders www ../components-react/src/components/stencil-generated/ ../components-angular/projects/components/src/lib/stencil-generated/",
     "unit": "stencil test --spec",
     "unit:watch": "stencil test --spec --watchAll --silent",
     "e2e": "cypress run --browser chrome",
