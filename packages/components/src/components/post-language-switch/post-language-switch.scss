@@ -17,10 +17,6 @@ tokens.$default-map: components.$post-button;
 .post-language-switch-dropdown-container {
   display: flex;
   flex-direction: column;
-
-  > * {
-    width: 100%;
-  }
 }
 
 .post-language-switch-trigger {
@@ -51,6 +47,17 @@ tokens.$default-map: components.$post-button;
     &:hover {
       background-color: #504f4b;
       color: white;
+    }
+  }
+
+  @include utilities-mx.high-contrast-mode() {
+    border: 1px solid ButtonBorder;
+
+    &[aria-expanded='true'],
+    &:hover {
+      post-icon {
+        color: HighlightText;
+      }
     }
   }
 }

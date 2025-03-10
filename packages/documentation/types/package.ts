@@ -4,6 +4,5 @@ export enum PackageType {
   Angular = 'Angular',
   React = 'React',
   InternetHeader = 'InternetHeader',
-  IntranetHeader = 'IntranetHeader',
   Assets = 'Assets',
 }
