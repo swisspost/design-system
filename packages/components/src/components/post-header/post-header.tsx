@@ -71,7 +71,7 @@ export class PostHeader {
 
   @Watch('device')
   @Watch('mobileMenuExtended')
-  bodyLock(newValue: boolean | string, _oldValue: boolean | string, propName: string) {
+  lockBody(newValue: boolean | string, _oldValue: boolean | string, propName: string) {
     const scrollParent = this.scrollParent;
     const mobileMenuExtended =
       propName === 'mobileMenuExtended' ? newValue : this.mobileMenuExtended;
@@ -113,7 +113,7 @@ export class PostHeader {
     this.handleResize();
     this.handleScrollEvent();
     this.handleScrollParentResize();
-    this.bodyLock(false, this.mobileMenuExtended, 'mobileMenuExtended');
+    this.lockBody(false, this.mobileMenuExtended, 'mobileMenuExtended');
   }
 
   componentDidRender() {
