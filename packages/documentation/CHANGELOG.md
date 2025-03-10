@@ -1,5 +1,32 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.31
+
+### Major Changes
+
+- Uninstalled **Intranet Header** package, documentation and all references to it. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4587](https://github.com/swisspost/design-system/pull/4587))
+
+### Minor Changes
+
+- The two icon sets “Post” and “UI” have been updated with the latest icons. The “UI” icons are now also updated via cdn. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4611](https://github.com/swisspost/design-system/pull/4611))
+
+### Patch Changes
+
+- Added release lines for the styles package versions. (by [@leagrdv](https://github.com/leagrdv) with [#4827](https://github.com/swisspost/design-system/pull/4827))
+
+- Internalized bootstrap border utility classes. (by [@myrta2302](https://github.com/myrta2302) with [#3751](https://github.com/swisspost/design-system/pull/3751))
+
+- Fixed the mobile menu height in the `post-header` component when the scrollable parent is not the document's body. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4829](https://github.com/swisspost/design-system/pull/4829))
+
+- Added documentation for developing and designing accessible webpages. (by [@leagrdv](https://github.com/leagrdv) with [#4847](https://github.com/swisspost/design-system/pull/4847))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.30
+  - @swisspost/design-system-components@9.0.0-next.30
+  - @swisspost/design-system-icons@9.0.0-next.30
+  - @swisspost/internet-header@2.0.0-next.30
+  - @swisspost/design-system-components-react@9.0.0-next.30
+  - @swisspost/design-system-tokens@9.0.0-next.30
+
 ## 6.0.0-next.30
 
 ### Patch Changes

@@ -1,3 +1,3 @@
-import buildSVGs from './utilities/buildSVGs';
+import buildSVGs from './utilities/build';
 
 buildSVGs();
