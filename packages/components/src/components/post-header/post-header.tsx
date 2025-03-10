@@ -321,7 +321,7 @@ export class PostHeader {
         class={navigationClasses.join(' ')}
         style={{ '--header-navigation-scroll-top': `${mobileMenuScrollTop}px` }}
       >
-        <div ref={el => (this.mobileMenu = el)}>
+        <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
           <slot name="post-mainnavigation"></slot>
 
           {(this.device === 'mobile' || this.device === 'tablet') && (
