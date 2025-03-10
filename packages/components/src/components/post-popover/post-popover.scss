@@ -1,11 +1,14 @@
 @use '@swisspost/design-system-styles/core' as post;
 @use '@swisspost/design-system-styles/components/close';
+@use '@swisspost/design-system-styles/mixins/media';
 
 * {
   box-sizing: border-box;
 }
 
 :host {
+  --post-popover-max-width: 280px;
+
   display: block;
 }
 
@@ -19,10 +22,10 @@
   padding: 0.5em;
 
   min-width: 160px;
-  max-width: 280px;
+  max-width: var(--post-popover-max-width);
 
   // Max available width on mobile, popovercontainer will handle offsets
-  @include post.media-breakpoint-down(rg) {
+  @include media.max(sm) {
     max-width: 100%;
   }
 }

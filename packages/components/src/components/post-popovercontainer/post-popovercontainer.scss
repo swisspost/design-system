@@ -31,11 +31,11 @@
   > div {
     box-shadow: elevation.$elevation-300;
     width: max-content;
+    max-width: 100%;
     color: var(--post-current-palette-fg);
     background-color: var(--post-current-palette-bg);
     border: 2px solid transparent; // Keeping the default border for HCM
     border-radius: commons.$border-radius;
-    max-width: var(--post-popover-max-width);
   }
 
   &[tooltip] {
