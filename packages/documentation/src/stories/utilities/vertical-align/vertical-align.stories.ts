@@ -46,7 +46,7 @@ type Story = StoryObj;
 
 export const Default: Story = {};
 
-export const tableVersion: Story = {
+export const TableVersion: Story = {
   argTypes: {
     align: {
       options: alignOptions.filter(o => !o.includes('text-')),
