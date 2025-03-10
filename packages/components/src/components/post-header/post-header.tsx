@@ -71,7 +71,7 @@ export class PostHeader {
 
   @Watch('device')
   @Watch('mobileMenuExtended')
-  bodyLock(newValue: boolean | string, _oldValue: boolean | string, propName: string) {
+  lockBody(newValue: boolean | string, _oldValue: boolean | string, propName: string) {
     const scrollParent = this.scrollParent;
     const mobileMenuExtended =
       propName === 'mobileMenuExtended' ? newValue : this.mobileMenuExtended;
@@ -113,16 +113,12 @@ export class PostHeader {
     this.handleResize();
     this.handleScrollEvent();
     this.handleScrollParentResize();
-    this.bodyLock(false, this.mobileMenuExtended, 'mobileMenuExtended');
+    this.lockBody(false, this.mobileMenuExtended, 'mobileMenuExtended');
   }
 
   componentDidRender() {
     this.getFocusableElements();
     this.handleLocalHeaderResize();
-  }
-
-  componentDidLoad() {
-    // Check if the mega dropdown is expanded
   }
 
   // Clean up possible side effects when post-header is disconnected
@@ -166,7 +162,12 @@ export class PostHeader {
     // Toggle menu visibility before it slides down and after it slides back up
     if (this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
     this.mobileMenuExtended = force ?? !this.mobileMenuExtended;
-    if (!this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
+
+    if (this.mobileMenuExtended === false) {
+      Array.from(this.host.querySelectorAll('post-megadropdown')).forEach(dropdown => {
+        dropdown.hide(false, true);
+      });
+    }
   }
 
   private megedropdownStateHandler(event: CustomEvent) {
@@ -305,12 +306,21 @@ export class PostHeader {
   private renderNavigation() {
     const navigationClasses = ['navigation'];
 
+    const mobileMenuScrollTop = this.mobileMenu?.scrollTop ?? 0;
+
     if (this.mobileMenuExtended) {
       navigationClasses.push('extended');
     }
 
+    if (this.megadropdownOpen) {
+      navigationClasses.push('megadropdown-open');
+    }
+
     return (
-      <div class={navigationClasses.join(' ')}>
+      <div
+        class={navigationClasses.join(' ')}
+        style={{ '--header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
+      >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
           <slot name="post-mainnavigation"></slot>
 
