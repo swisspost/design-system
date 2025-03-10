@@ -1,3 +1,5 @@
+import { IS_SSR } from '@/utils';
+
 const collapseDuration = 350;
 const collapseEasing = 'ease';
 const collapsedKeyframe: Keyframe = { height: '0', overflow: 'hidden' };
@@ -9,7 +11,8 @@ const animationOptions: KeyframeAnimationOptions = {
 };
 
 export function collapse(el: HTMLElement): Animation {
-  const expandedKeyframe: Keyframe = { height: window.getComputedStyle(el).height };
+  const elHeight = IS_SSR ? `${el.scrollHeight}px` : window.getComputedStyle(el).height;
+  const expandedKeyframe: Keyframe = { height: elHeight };
 
   return el.animate([expandedKeyframe, collapsedKeyframe], animationOptions);
 }
