@@ -37,18 +37,28 @@ post-language-option {
       &:hover {
         color: #504f4b;
       }
+
+      @include utilities-mx.high-contrast-mode() {
+        border: 1px solid ButtonBorder;
+        color: ButtonText;
+      }
     }
+
     &[active]:not([active='false']) {
       :is(a, button) {
         background-color: #050400 !important;
         color: #fff;
         pointer-events: none;
+
+        @include utilities-mx.high-contrast-mode() {
+          background-color: Highlight !important;
+        }
       }
     }
   }
 
   &:where([variant='menu']) {
-    width: 100%;
+    min-width: 72px;
 
     &[active]:not([active='false']) {
       display: none;
@@ -56,10 +66,10 @@ post-language-option {
 
     :is(a, button) {
       padding-block: 13px;
-      padding-inline: 24px;
+      padding-inline: 16px;
       box-sizing: border-box;
+      justify-content: flex-start;
       position: relative;
-      width: 100%;
 
       &:hover {
         color: white;
