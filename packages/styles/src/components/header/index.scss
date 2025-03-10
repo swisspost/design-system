@@ -20,8 +20,7 @@ post-header {
     var(--global-header-reduced-height) + var(--main-navigation-height)
   );
   --header-height: calc(
-    var(--header-expanded-height) -
-      min(
+    var(--header-expanded-height) - min(
         var(--header-scroll-top, 0px),
         calc(var(--header-expanded-height) - var(--header-reduced-height))
       )

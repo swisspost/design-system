@@ -5,10 +5,8 @@
   list-style: none;
   margin-block: tokens.get('list-bullet-margin-block', elements.$post-listbullet);
   padding-inline-start: calc(
-    #{tokens.get('list-bullet-item-icon-size', elements.$post-listbullet)} + #{tokens.get(
-        'list-bullet-item-icon-gap-inline',
-        elements.$post-listbullet
-      )}
+    #{tokens.get('list-bullet-item-icon-size', elements.$post-listbullet)} +
+      #{tokens.get('list-bullet-item-icon-gap-inline', elements.$post-listbullet)}
   );
 
   > #{$child-selector} {
