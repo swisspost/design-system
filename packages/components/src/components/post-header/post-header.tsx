@@ -319,7 +319,7 @@ export class PostHeader {
     return (
       <div
         class={navigationClasses.join(' ')}
-        style={{ '--header-navigation-scroll-top': `${mobileMenuScrollTop}px` }}
+        style={{ '--header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
       >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
           <slot name="post-mainnavigation"></slot>
