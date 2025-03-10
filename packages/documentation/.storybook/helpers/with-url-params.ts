@@ -1,7 +1,7 @@
 import { StoryFn, StoryContext } from '@storybook/web-components';
 import { useArgs } from '@storybook/preview-api';
 
-// Function to perform deep comparison of two objects
+// Compare the arg objects
 const argsMatch = (obj1: Record<string, any>, obj2: Record<string, any>): boolean => {
   return JSON.stringify(obj1) === JSON.stringify(obj2);
 };
@@ -37,7 +37,7 @@ export const withUrlParams = (Story: StoryFn, context: StoryContext) => {
         }
       }
     });
-
+    // Only the first time update the args
     if (firstRender && context.story === 'Default' && !argsMatch(initialArgs, updatedArgs)) {
       updateArgs(updatedArgs);
       firstRender = false;
