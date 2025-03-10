@@ -1,19 +1,25 @@
 import { EMPTY_VALUES } from './constants';
+import { MsgType } from '@/types';
 
 export function checkNonEmpty<T extends { host: HTMLElement }>(
   component: T,
   prop: keyof T,
   customMessage?: string,
+  msgType: MsgType = 'error',
 ) {
   const componentName = component.host.localName;
   const value = component[prop];
   const defaultMessage = `The prop \`${String(
     prop,
-  )}\` of the \`${componentName}\` component is required.`;
+  )}\` of the \`${componentName}\` component is not defined.`;
 
   const message = customMessage || defaultMessage;
 
   if (EMPTY_VALUES.some(v => v === value)) {
-    throw new Error(message);
+    if (msgType != 'warning') {
+      throw new Error(message);
+    } else {
+      console.warn(message);
+    }
   }
 }

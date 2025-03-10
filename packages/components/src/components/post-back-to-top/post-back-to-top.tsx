@@ -48,8 +48,8 @@ export class PostBackToTop {
   // Validate the label
   @Watch('label')
   validateLabel() {
-    checkType(this, 'label', 'string');
     checkNonEmpty(this, 'label');
+    checkType(this, 'label', 'string');
   }
 
   // Set the initial state
