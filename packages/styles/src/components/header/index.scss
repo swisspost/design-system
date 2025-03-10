@@ -9,13 +9,18 @@
 
 tokens.$default-map: elements.$post-link;
 
+[data-post-scroll-locked] {
+  overflow: hidden !important;
+}
+
 post-header {
   --header-expanded-height: calc(var(--global-header-height) + var(--local-header-height));
   --header-reduced-height: calc(
     var(--global-header-reduced-height) + var(--main-navigation-height)
   );
   --header-height: calc(
-    var(--header-expanded-height) - min(
+    var(--header-expanded-height) -
+      min(
         var(--header-scroll-top, 0px),
         calc(var(--header-expanded-height) - var(--header-reduced-height))
       )
