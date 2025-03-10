@@ -1,6 +1,6 @@
 ---
-name: Web Component
-about: Parent issue for adding sub-issues related to this component.
+name: Component/Web Component
+about: For creating a web component implementation.
 title: ''
 labels: '📦 components'
 assignees: ''
