@@ -24,7 +24,13 @@ ngb-datepicker-navigation {
   justify-content: space-between;
 
   button.ngb-dp-arrow-btn {
+    margin: 0;
+    border-radius: 0;
     @include utilities.focus-style();
+
+    &:disabled {
+      border-width: 2px;
+    }
   }
 }
 
