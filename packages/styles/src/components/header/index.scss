@@ -157,3 +157,8 @@ post-header {
     }
   }
 }
+
+// Added to prevent Back-to-top button from showing up before header is hydrated
+body:has(post-header:not([data-hydrated])) post-back-to-top {
+  visibility: hidden !important;
+}
