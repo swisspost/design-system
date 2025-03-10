@@ -71,7 +71,7 @@
     "sass": "1.78.0",
     "throttle-debounce": "5.0.2",
     "ts-jest": "29.2.5",
-    "typescript": "5.5.4",
+    "typescript": "5.8.2",
     "typescript-eslint": "8.20.0"
   },
   "keywords": [
