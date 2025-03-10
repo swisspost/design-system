@@ -53,8 +53,8 @@
   border: none;
   z-index: 1;
   width: 100%;
-  top: 100%;
-  left: 0;
+  inset-block-start: 100%;
+  inset-inline-start: 0;
   border-radius: 0;
 
   @include utilities.high-contrast-mode() {
@@ -72,9 +72,8 @@
   @include media.max(lg) {
     z-index: 4;
     position: fixed;
-    top: var(--header-navigation-scroll-top);
-    left: 0;
-    right: 0;
+    inset-block-start: var(--header-navigation-scroll-top);
+    inset-inline: 0;
     height: calc(min(var(--header-scroll-parent-height, 100dvh), 100dvh) - var(--header-height));
     border-top: unset;
     overflow-y: auto;
