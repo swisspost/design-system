@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Switched the most outer element that can be the `post-header` scrollParent from `html` to the `body` element.
+Switched the outermost scrollable parent of the `post-header` component from the `html` to the `body` element.
