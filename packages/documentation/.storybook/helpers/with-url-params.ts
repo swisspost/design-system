@@ -1,13 +1,13 @@
-import { StoryFn, StoryContext } from '@storybook/web-components';
+import { StoryFn, StoryContext, Args } from '@storybook/web-components';
 import { useArgs } from '@storybook/preview-api';
 
 // Compare the arg objects
-const argsMatch = (obj1: Record<string, any>, obj2: Record<string, any>): boolean => {
+const argsMatch = (obj1: Args, obj2: Args): boolean => {
   return JSON.stringify(obj1) === JSON.stringify(obj2);
 };
 
 let firstRender = true;
-let initialArgs;
+let initialArgs: Args;
 
 export const withUrlParams = (Story: StoryFn, context: StoryContext) => {
   const [_, updateArgs] = useArgs();
@@ -18,7 +18,7 @@ export const withUrlParams = (Story: StoryFn, context: StoryContext) => {
     initialArgs = { ...context.args };
   }
   initialArgs = { ...context.args };
-  const updatedArgs = { ...context.args };
+  const updatedArgs: Args = { ...context.args };
 
   if (argsParam) {
     argsParam.split(';').forEach(pair => {
