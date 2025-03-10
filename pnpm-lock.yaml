@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    optionalDependencies:
-      '@web-types/lit':
-        specifier: 2.0.0-3
-        version: 2.0.0-3
     devDependencies:
       '@changesets/cli':
         specifier: 2.27.11
@@ -18,6 +14,10 @@ importers:
       start-server-and-test:
         specifier: 2.0.9
         version: 2.0.9
+    optionalDependencies:
+      '@web-types/lit':
+        specifier: 2.0.0-3
+        version: 2.0.0-3
 
   packages/changelog-github:
     dependencies:
@@ -937,7 +937,7 @@ importers:
         version: link:../styles/dist
       primeng:
         specifier: 19.0.9
-        version: 19.0.9(fxrnogyevcwbkooc5wfwgygr6i)
+        version: 19.0.9(553da6a5bf19415560b0c79df2838c31)
       rxjs:
         specifier: 7.8.1
         version: 7.8.1
@@ -1025,7 +1025,7 @@ importers:
         version: link:../../../styles/dist
       primeng:
         specifier: ^19.0.0
-        version: 19.0.9(fxrnogyevcwbkooc5wfwgygr6i)
+        version: 19.0.9(553da6a5bf19415560b0c79df2838c31)
       tslib:
         specifier: 2.8.1
         version: 2.8.1
@@ -21642,7 +21642,7 @@ snapshots:
       ansi-styles: 5.2.0
       react-is: 18.2.0
 
-  primeng@19.0.9(fxrnogyevcwbkooc5wfwgygr6i):
+  primeng@19.0.9(553da6a5bf19415560b0c79df2838c31):
     dependencies:
       '@angular/animations': 19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))
       '@angular/cdk': 19.2.2(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1)
