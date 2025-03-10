@@ -4,4 +4,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Fixed mobile menu height in post-header component, if scrollParent is not document.body.
+Fixed the mobile menu height in the `post-header` component when the scrollable parent is not the document's body.
