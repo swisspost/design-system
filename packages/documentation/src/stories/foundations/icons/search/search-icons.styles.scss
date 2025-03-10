@@ -100,8 +100,9 @@ tokens.$default-map: utilities.$post-spacing;
     height: 100vh;
     max-width: 350px;
     border: 0;
-    padding: 2rem 1rem 1rem 2rem;
+    padding: 2rem 1rem 1rem 1rem;
     border-left: 1px solid #e1e0dc;
+    overflow-y: auto;
   }
 
   .icon-panel-content {
@@ -112,12 +113,10 @@ tokens.$default-map: utilities.$post-spacing;
   .resizer-container {
     width: 100px;
     height: 100px;
-    margin: 0 auto 2rem;
+    margin: 0 auto 1rem;
   }
 
   dl {
-    display: flex;
-    flex-wrap: wrap;
     font-size: 14px;
 
     dt,
@@ -126,12 +125,7 @@ tokens.$default-map: utilities.$post-spacing;
     }
 
     dt {
-      flex: 0 0 40%;
       font-weight: 700;
-    }
-
-    dd {
-      flex: 0 0 60%;
     }
   }
 }

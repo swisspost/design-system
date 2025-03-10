@@ -1,6 +1,6 @@
 import React from 'react';
 import report from '@swisspost/design-system-icons/public/report.min.json';
-import { ReportIcon } from '@swisspost/design-system-icons/src/models/icon.model';
+import { ReportIcon, ReportSourceIcon } from '@swisspost/design-system-icons/src/models/icon.model';
 import './search-icons.styles.scss';
 
 interface Icon {
@@ -8,6 +8,7 @@ interface Icon {
   name: string;
   keywords: string;
   searchKeywords: string[];
+  sources: ReportSourceIcon[];
 }
 
 interface IconSets {
@@ -31,6 +32,7 @@ const ICON_SETS: IconSets = report.icons.reduce(
 
     sets[typeOfSet as keyof IconSets].push({
       set: typeOfSet,
+      sources: icon.stats.sources,
       name: basename,
       keywords: icon.keys.join(', '),
       searchKeywords: [basename, ...icon.keys].map(word =>
@@ -134,11 +136,18 @@ export class Search extends React.Component {
     }
   }
 
+  popoverEventListener() {
+    document.body.style.overflow = '';
+  }
+
   openIconDetails(icon: Icon) {
+    const popover = document.querySelector('#icon-panel') as HTMLPostPopovercontainerElement;
+    popover?.removeEventListener('postToggle', this.popoverEventListener);
+    document.body.style.overflow = 'hidden';
     this.activeIcon = icon;
     this.setState(this.activeIcon);
-    const popover = document.querySelector('#icon-panel') as HTMLElement;
     popover.showPopover();
+    popover?.addEventListener('postToggle', this.popoverEventListener);
   }
 
   iconDetailPanel() {
@@ -164,6 +173,17 @@ export class Search extends React.Component {
               </dd>
               <dt>Keywords</dt>
               <dd>{this.activeIcon?.keywords}</dd>
+              <dt>Source files</dt>
+              <dd>
+                {this.activeIcon?.sources.map((source, i) => {
+                  return (
+                    <span key={source.id}>
+                      {source.name}
+                      {i + 1 === this.activeIcon?.sources.length ? '' : ', '}
+                    </span>
+                  );
+                })}
+              </dd>
             </dl>
           </div>
           <button className="btn btn-close" onClick={() => popover.hidePopover()}>
