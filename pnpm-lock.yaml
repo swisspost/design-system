@@ -660,8 +660,8 @@ importers:
         specifier: 3.1.2
         version: 3.1.2
       '@types/iframe-resizer':
-        specifier: 3.5.13
-        version: 3.5.13
+        specifier: 4.0.0
+        version: 4.0.0
       '@types/jest':
         specifier: 29.5.14
         version: 29.5.14
@@ -678,8 +678,8 @@ importers:
         specifier: 7.18.0
         version: 7.18.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.5.4)
       babel-loader:
-        specifier: 9.2.1
-        version: 9.2.1(@babel/core@7.26.0)(webpack@5.94.0)
+        specifier: 10.0.0
+        version: 10.0.0(@babel/core@7.26.0)(webpack@5.94.0)
       bootstrap:
         specifier: 5.3.3
         version: 5.3.3(@popperjs/core@2.11.8)
@@ -3983,8 +3983,8 @@ packages:
   '@types/http-proxy@1.17.15':
     resolution: {integrity: sha512-25g5atgiVNTIv0LBDTg1H74Hvayx0ajtJPLLcYE3whFv75J0pWNtOBzaXJQgDTmrX1bx5U9YC2w/n65BN1HwRQ==}
 
-  '@types/iframe-resizer@3.5.13':
-    resolution: {integrity: sha512-/Np2ntlOWd/NOHs23Mj7QlNEnZ6SL02AWWdYZLm4RQNukDdpqpagfMAdin5FvQDLngR8LWfh/qUnYxuDmR8BCg==}
+  '@types/iframe-resizer@4.0.0':
+    resolution: {integrity: sha512-RKrT4goNVtqZvf9WPkV0cUcphQWXzLVW1IE4yOIY21c1W+obJJbcHFD1lQu5ncNHm/6TeQSeedVf9bmkx2NaGQ==}
 
   '@types/is-empty@1.2.3':
     resolution: {integrity: sha512-4J1l5d79hoIvsrKh5VUKVRA1aIdsOb10Hu5j3J2VfP/msDnfTdGPmNp2E1Wg+vs97Bktzo+MZePFFXSGoykYJw==}
@@ -4797,15 +4797,15 @@ packages:
     peerDependencies:
       '@babel/core': ^7.8.0
 
-  babel-loader@9.1.3:
-    resolution: {integrity: sha512-xG3ST4DglodGf8qSwv0MdeWLhrDsw/32QMdTO5T1ZIp9gQur0HkCyFs7Awskr10JKXFXwpAhiCuYX5oGXnRGbw==}
-    engines: {node: '>= 14.15.0'}
+  babel-loader@10.0.0:
+    resolution: {integrity: sha512-z8jt+EdS61AMw22nSfoNJAZ0vrtmhPRVi6ghL3rCeRZI8cdNYFiV5xeV3HbE7rlZZNmGH8BVccwWt8/ED0QOHA==}
+    engines: {node: ^18.20.0 || ^20.10.0 || >=22.0.0}
     peerDependencies:
       '@babel/core': ^7.12.0
-      webpack: '>=5'
+      webpack: '>=5.61.0'
 
-  babel-loader@9.2.1:
-    resolution: {integrity: sha512-fqe8naHt46e0yIdkjUZYqddSXfej3AHajX+CSO5X7oy0EmPc6o5Xh+RClNoHjnieWz9AW4kZxW9yyFMhVB1QLA==}
+  babel-loader@9.1.3:
+    resolution: {integrity: sha512-xG3ST4DglodGf8qSwv0MdeWLhrDsw/32QMdTO5T1ZIp9gQur0HkCyFs7Awskr10JKXFXwpAhiCuYX5oGXnRGbw==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
       '@babel/core': ^7.12.0
@@ -14959,7 +14959,7 @@ snapshots:
     dependencies:
       '@types/node': 22.10.5
 
-  '@types/iframe-resizer@3.5.13': {}
+  '@types/iframe-resizer@4.0.0': {}
 
   '@types/is-empty@1.2.3': {}
 
@@ -15985,18 +15985,17 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  babel-loader@10.0.0(@babel/core@7.26.0)(webpack@5.94.0):
+    dependencies:
+      '@babel/core': 7.26.0
+      find-up: 5.0.0
+      webpack: 5.94.0(esbuild@0.23.0)
+
   babel-loader@9.1.3(@babel/core@7.25.2)(webpack@5.94.0(esbuild@0.23.0)):
     dependencies:
       '@babel/core': 7.25.2
       find-cache-dir: 4.0.0
       schema-utils: 4.0.1
-      webpack: 5.94.0(esbuild@0.23.0)
-
-  babel-loader@9.2.1(@babel/core@7.26.0)(webpack@5.94.0):
-    dependencies:
-      '@babel/core': 7.26.0
-      find-cache-dir: 4.0.0
-      schema-utils: 4.2.0
       webpack: 5.94.0(esbuild@0.23.0)
 
   babel-plugin-istanbul@6.1.1:
