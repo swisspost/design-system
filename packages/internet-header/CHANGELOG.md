@@ -1,5 +1,13 @@
 # @swisspost/internet-header
 
+## 1.15.9
+
+### Patch Changes
+
+- Fixed the name of the customer being cut on the user dropdown in the internet header. (by [@leagrdv](https://github.com/leagrdv) with [#4854](https://github.com/swisspost/design-system/pull/4854))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.9.1
+
 ## 1.15.8
 
 ### Patch Changes

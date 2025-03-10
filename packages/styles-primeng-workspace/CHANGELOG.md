@@ -1,5 +1,12 @@
 # @swisspost/design-system-styles-primeng-workspace
 
+## 1.0.19
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.9.1
+
 ## 1.0.18
 
 ### Patch Changes
