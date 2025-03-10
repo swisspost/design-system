@@ -25,20 +25,20 @@
     "@primeng/themes": "19.0.9",
     "@swisspost/design-system-styles": "workspace:9.0.0-next.30",
     "primeng": "19.0.9",
-    "rxjs": "7.8.1",
+    "rxjs": "7.8.2",
     "tslib": "2.8.1",
     "zone.js": "0.15.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "19.2.0",
+    "@angular-devkit/build-angular": "19.2.1",
     "@angular/cli": "19.2.0",
     "@angular/compiler-cli": "19.2.0",
-    "@eslint/js": "9.18.0",
-    "@types/jasmine": "5.1.4",
-    "angular-eslint": "19.1.0",
+    "@eslint/js": "9.22.0",
+    "@types/jasmine": "5.1.7",
+    "angular-eslint": "19.2.1",
     "eslint": "^9.15.0",
-    "globals": "15.14.0",
-    "jasmine-core": "5.5.0",
+    "globals": "15.15.0",
+    "jasmine-core": "5.6.0",
     "karma": "6.4.4",
     "karma-chrome-launcher": "3.2.0",
     "karma-coverage": "2.2.1",
@@ -47,11 +47,11 @@
     "ng-packagr": "19.2.0",
     "npm-run-all2": "7.0.2",
     "rimraf": "6.0.1",
-    "stylelint": "16.12.0",
+    "stylelint": "16.15.0",
     "stylelint-config-sass-guidelines": "11.1.0",
-    "stylelint-prettier": "5.0.2",
-    "stylelint-scss": "6.10.0",
+    "stylelint-prettier": "5.0.3",
+    "stylelint-scss": "6.11.1",
     "typescript": "5.5.4",
-    "typescript-eslint": "8.16.0"
+    "typescript-eslint": "8.26.0"
   }
 }
