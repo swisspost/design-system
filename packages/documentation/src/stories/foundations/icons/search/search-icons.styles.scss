@@ -94,12 +94,15 @@ tokens.$default-map: utilities.$post-spacing;
 }
 
 .icon-panel {
-  height: 100vh;
-  max-width: 350px;
   margin: 0 0 0 auto;
-  border: 0;
-  padding: 2rem 1rem 1rem 2rem;
-  border-left: 1px solid #e1e0dc;
+
+  > div {
+    height: 100vh;
+    max-width: 350px;
+    border: 0;
+    padding: 2rem 1rem 1rem 2rem;
+    border-left: 1px solid #e1e0dc;
+  }
 
   .icon-panel-content {
     display: flex;

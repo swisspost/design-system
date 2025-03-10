@@ -2,7 +2,6 @@ import React from 'react';
 import report from '@swisspost/design-system-icons/public/report.min.json';
 import { ReportIcon } from '@swisspost/design-system-icons/src/models/icon.model';
 import './search-icons.styles.scss';
-import { PostPopovercontainer } from '@swisspost/design-system-components-react';
 
 interface Icon {
   set: string;
@@ -146,7 +145,7 @@ export class Search extends React.Component {
     const popover = document.querySelector('#icon-panel') as HTMLPostPopovercontainerElement;
 
     return (
-      <PostPopovercontainer id="icon-panel" class="palette-default icon-panel">
+      <post-popovercontainer id="icon-panel" class="palette-default icon-panel">
         <div className="icon-panel-content">
           <div>
             <div className="resizer-container">
@@ -171,7 +170,7 @@ export class Search extends React.Component {
             <span className="visually-hidden">Close</span>
           </button>
         </div>
-      </PostPopovercontainer>
+      </post-popovercontainer>
     );
   }
 
