@@ -179,7 +179,7 @@
     position: fixed;
     z-index: 1;
     inset-inline: 0;
-    inset-block-start: calc(var(--post-header-scroll-top) + var(--header-height));
+    inset-block-start: calc(var(--post-header-scroll-top) + var(--post-header-height));
   }
 
   .mobile-menu {
@@ -204,7 +204,9 @@
       flex-direction: column;
       overflow-y: auto;
       overflow-x: hidden;
-      height: calc(min(var(--header-scroll-parent-height, 100dvh), 100dvh) - var(--header-height));
+      height: calc(
+        min(var(--header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
+      );
     }
 
     &.megadropdown-open {
