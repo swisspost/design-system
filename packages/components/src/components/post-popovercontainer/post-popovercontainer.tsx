@@ -1,4 +1,7 @@
 import { Component, Element, Event, EventEmitter, Host, Method, Prop, h } from '@stencil/core';
+import { IS_SSR } from '@/utils';
+import { version } from '@root/package.json';
+
 import {
   arrow,
   autoUpdate,
@@ -13,9 +16,8 @@ import {
 } from '@floating-ui/dom';
 
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
-import '@oddbird/popover-polyfill';
-
-import { version } from '@root/package.json';
+// This import is a workaround, since '@oddbird/popover-polyfill/fn' is not working as expected
+import { apply, isSupported } from '@oddbird/popover-polyfill/dist/popover-fn.js';
 
 interface PopoverElement {
   showPopover: () => void;
@@ -102,6 +104,12 @@ export class PostPopovercontainer {
   private mouseTrackingHandler(event: MouseEvent) {
     this.host.style.setProperty('--safe-space-cursor-x', `${event.clientX}px`);
     this.host.style.setProperty('--safe-space-cursor-y', `${event.clientY}px`);
+  }
+
+  connectedCallback() {
+    if (!IS_SSR && !isSupported()) {
+      apply();
+    }
   }
 
   componentDidLoad() {
