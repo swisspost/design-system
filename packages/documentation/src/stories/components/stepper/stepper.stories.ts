@@ -116,14 +116,6 @@ function getStepperItem(
 function renderStepper(args: Args) {
   const [_, updateArgs] = useArgs();
 
-  // Hack to force a reflow when the current step changes
-  const stepperEl = document.querySelector('.stepper') as HTMLElement;
-  if (stepperEl) {
-    stepperEl.style.display = 'none';
-    console.log(stepperEl.offsetHeight);
-    stepperEl.style.display = '';
-  }
-
   const updateStep = (newStepNumber: number, event: Event) => {
     event.preventDefault();
     updateArgs({ currentStepNumber: newStepNumber });
