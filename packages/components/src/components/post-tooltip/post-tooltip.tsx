@@ -1,10 +1,9 @@
 import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
-import { version } from '@root/package.json';
 import isFocusable from 'ally.js/is/focusable';
-import 'long-press-event';
-import { getAttributeObserver } from '@/utils/attribute-observer';
-import { checkEmptyOrType } from '@/utils';
+// import 'long-press-event';
+import { IS_SSR, checkEmptyOrType, getAttributeObserver } from '@/utils';
+import { version } from '@root/package.json';
 
 const OPEN_DELAY = 650; // matches HTML title delay
 
@@ -82,29 +81,6 @@ const globalHideTooltip = (tooltip: HTMLPostTooltipElement | PostTooltip) => {
   }, 42);
 };
 
-/**
- * Patch some accessibility features that are hard to remember or understand
- * @param {HTMLElement} trigger
- */
-const patchAccessibilityFeatures = (trigger: HTMLElement) => {
-  const describedBy = trigger.getAttribute('aria-describedby');
-  const id = trigger.getAttribute(tooltipTargetAttribute);
-
-  // Add tooltip to aria-describedby
-  if (!describedBy?.includes(id)) {
-    const newDescribedBy = describedBy ? `${describedBy} ${id}` : id;
-    trigger.setAttribute('aria-describedby', newDescribedBy);
-  }
-
-  // Make element focusable
-  if (!isFocusable(trigger)) {
-    trigger.setAttribute('tabindex', '0');
-  }
-};
-
-// Initialize a mutation observer for patching accessibility features
-const triggerObserver = getAttributeObserver(tooltipTargetAttribute, patchAccessibilityFeatures);
-
 @Component({
   tag: 'post-tooltip',
   styleUrl: 'post-tooltip.scss',
@@ -113,6 +89,10 @@ const triggerObserver = getAttributeObserver(tooltipTargetAttribute, patchAccess
 export class PostTooltip {
   private popoverRef: HTMLPostPopovercontainerElement;
   private wasOpenedByFocus: boolean = false;
+  // Initialize a mutation observer for patching accessibility features
+  private readonly triggerObserver = !IS_SSR
+    ? getAttributeObserver(tooltipTargetAttribute, this.patchAccessibilityFeatures)
+    : null;
 
   @Element() host: HTMLPostTooltipElement;
 
@@ -165,10 +145,10 @@ export class PostTooltip {
       document.addEventListener('long-press', globalInterestHandler);
 
       // Initially run the accessibility patcher on all triggers
-      document.querySelectorAll('[data-tooltip-target]').forEach(patchAccessibilityFeatures);
+      document.querySelectorAll('[data-tooltip-target]').forEach(this.patchAccessibilityFeatures);
 
       // Start watching for future triggers
-      triggerObserver.observe(document.body, {
+      this.triggerObserver?.observe(document.body, {
         subtree: true,
         childList: true,
         attributeFilter: [tooltipTargetAttribute],
@@ -190,7 +170,7 @@ export class PostTooltip {
       document.removeEventListener('focusin', globalInterestHandler);
       document.removeEventListener('focusout', globalInterestLostHandler);
       document.removeEventListener('long-press', globalInterestHandler);
-      triggerObserver.disconnect();
+      this.triggerObserver?.disconnect();
     }
   }
 
@@ -262,6 +242,26 @@ export class PostTooltip {
   private handleInterestLost() {
     globalHideTooltip(this);
     this.host.style.pointerEvents = 'auto';
+  }
+
+  /**
+   * Patch some accessibility features that are hard to remember or understand
+   * @param {HTMLElement} trigger
+   */
+  private patchAccessibilityFeatures(trigger: HTMLElement) {
+    const describedBy = trigger.getAttribute('aria-describedby');
+    const id = trigger.getAttribute(tooltipTargetAttribute);
+
+    // Add tooltip to aria-describedby
+    if (!describedBy?.includes(id)) {
+      const newDescribedBy = describedBy ? `${describedBy} ${id}` : id;
+      trigger.setAttribute('aria-describedby', newDescribedBy);
+    }
+
+    // Make element focusable
+    if (!isFocusable(trigger)) {
+      trigger.setAttribute('tabindex', '0');
+    }
   }
 
   render() {
