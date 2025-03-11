@@ -1,7 +1,7 @@
 ---
 name: Component/Design
 about: For creating a new component design
-title: ''
+title: '[design] componentnamehere'
 labels: '🎨 figma'
 assignees: ''
 type: 'Task'
