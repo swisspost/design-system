@@ -1,7 +1,7 @@
 ---
-name: HTML/CSS Component
+name: Component/HTML/CSS
 about: Issue for implementing a HTML/CSS component in the styles package.
-title: ''
+title: '[html/css] componentnamehere'
 labels: '📦 styles'
 assignees: ''
 type: 'Task'
