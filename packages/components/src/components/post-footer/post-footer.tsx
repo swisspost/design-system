@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { version } from '@root/package.json';
-import { IS_SSR, breakpoint } from '@/utils';
+import { breakpoint } from '@/utils';
 
 /**
  * @slot grid-{1|2|3|4}-title - Slot for the accordion headers (mobile).
@@ -27,9 +27,7 @@ export class PostFooter {
   @State() isMobile: boolean = breakpoint.get('name') === 'mobile';
 
   connectedCallback() {
-    if (!IS_SSR) {
-      window.addEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
-    }
+    window.addEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
   }
 
   private breakpointChange(e: CustomEvent) {
@@ -125,8 +123,6 @@ export class PostFooter {
   }
 
   disconnectedCallback() {
-    if (!IS_SSR) {
-      window.removeEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
-    }
+    window.removeEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
   }
 }
