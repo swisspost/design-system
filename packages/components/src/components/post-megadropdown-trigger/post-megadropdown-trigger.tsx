@@ -1,6 +1,6 @@
 import { Component, Element, Prop, h, Host, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkType } from '@/utils';
+import { IS_SSR, checkType } from '@/utils';
 
 @Component({
   tag: 'post-megadropdown-trigger',
@@ -42,7 +42,8 @@ export class PostMegadropdownTrigger {
   }
 
   private get megadropdown(): HTMLPostMegadropdownElement | null {
-    const ref = document.getElementById(this.for);
+    const ref = !IS_SSR ? document.getElementById(this.for) : null;
+
     return ref && ref.localName === 'post-megadropdown'
       ? (ref as HTMLPostMegadropdownElement)
       : null;
