@@ -20,7 +20,7 @@ post-header {
     --local-header-height: 48px;
     --local-header-min-height: 48px;
     --global-header-reduced-height: var(--global-header-height);
-    --main-navigation-height: 0px;
+    --main-navigation-height: 0;
   }
 
   &:not(:has([slot='title'])) {

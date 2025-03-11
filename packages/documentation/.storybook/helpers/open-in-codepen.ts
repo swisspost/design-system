@@ -39,24 +39,6 @@ const findSourceButton = (canvas: Element | null): HTMLElement | null => {
 };
 
 /**
- * Attempt to click a "Show Code" button
- */
-const clickSourceButton = (canvas: Element | null): boolean => {
-  const sourceButton = findSourceButton(canvas);
-
-  if (sourceButton) {
-    try {
-      sourceButton.click();
-      return true;
-    } catch (e) {
-      console.error('Error clicking source button:', e);
-      return false;
-    }
-  }
-  return false;
-};
-
-/**
  * Extract story code by searching for source block
  * Returns a Promise that resolves with the source code
  */
@@ -68,7 +50,7 @@ const getSourceForStory = (canvas: Element | null): Promise<string | null> => {
     }
 
     // First try to find the source code without clicking any buttons
-    let sourceCode = searchForSourceElement(canvas);
+    const sourceCode = searchForSourceElement(canvas);
     if (sourceCode) {
       // Source code already visible, no need to open/close
       resolve(sourceCode);
