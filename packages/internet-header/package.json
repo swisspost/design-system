@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/internet-header",
-  "version": "2.0.0-next.18",
+  "version": "2.0.0-next.30",
   "description": "The header for client facing applications.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -42,7 +42,7 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@swisspost/design-system-styles": "workspace:9.0.0-next.18",
+    "@swisspost/design-system-styles": "workspace:9.0.0-next.30",
     "body-scroll-lock": "4.0.0-beta.0",
     "iframe-resizer": "4.4.5",
     "jquery": "3.7.1",
@@ -60,13 +60,13 @@
     "@stencil/sass": "3.0.12",
     "@stencil/store": "2.0.16",
     "@types/body-scroll-lock": "3.1.2",
-    "@types/iframe-resizer": "3.5.13",
+    "@types/iframe-resizer": "4.0.0",
     "@types/jest": "29.5.14",
     "@types/jquery": "3.5.32",
     "@types/node": "22.10.5",
     "@types/throttle-debounce": "5.0.2",
     "@typescript-eslint/parser": "7.18.0",
-    "babel-loader": "9.2.1",
+    "babel-loader": "10.0.0",
     "bootstrap": "5.3.3",
     "cypress": "13.13.2",
     "cypress-each": "1.14.0",
@@ -86,7 +86,7 @@
     "sass": "1.78.0",
     "start-server-and-test": "2.0.9",
     "ts-jest": "29.2.5",
-    "typescript": "5.5.4",
+    "typescript": "5.8.2",
     "typescript-eslint": "8.20.0"
   },
   "keywords": [

@@ -28,11 +28,17 @@ tokens.$default-map: components.$post-floating-button;
     display: flex;
     align-items: center;
     justify-content: center;
+
     &:hover {
       border-color: tokens.get('floating-button-hover-border');
       color: tokens.get('floating-button-hover-fg');
       background-color: tokens.get('floating-button-hover-bg');
+
+      @include utilities.high-contrast-mode() {
+        color: HighlightText !important;
+      }
     }
+
     post-icon {
       height: tokens.get('floating-button-size-icon');
       width: tokens.get('floating-button-size-icon');

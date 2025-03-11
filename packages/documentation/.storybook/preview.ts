@@ -45,7 +45,7 @@ const preview: Preview = {
             'Typography',
             ['Overview'],
             'Layout',
-            ['Breakpoints', 'Containers', 'Grid', 'Columns'],
+            ['Breakpoints', 'Sections', 'Containers', 'Grid', 'Columns'],
           ],
 
           // Category - Raw Components (INTERNAL ONLY)

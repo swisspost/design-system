@@ -37,8 +37,8 @@ export class PostMegadropdownTrigger {
    * @param forValue - The new value of the `for` property.
    */
   @Watch('for')
-  validateControlFor(forValue = this.for) {
-    checkType(forValue, 'string', 'The "for" property is required and should be a string.');
+  validateControlFor() {
+    checkType(this, 'for', 'string');
   }
 
   private get megadropdown(): HTMLPostMegadropdownElement | null {
@@ -57,7 +57,7 @@ export class PostMegadropdownTrigger {
   }
 
   private handleKeyDown = (event: KeyboardEvent) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       this.handleToggle();
       if (this.megadropdown && !this.ariaExpanded) {
@@ -72,10 +72,13 @@ export class PostMegadropdownTrigger {
     // Check if the mega dropdown attached to the trigger is expanded or not
     document.addEventListener('postToggleMegadropdown', (event: CustomEvent) => {
       if ((event.target as HTMLPostMegadropdownElement).id === this.for) {
-        this.ariaExpanded = event.detail;
+        this.ariaExpanded = event.detail.isVisible;
 
-        if (this.wasExpanded && !this.ariaExpanded) {
-          setTimeout(() => this.slottedButton?.focus(), 100);
+        // Focus on the trigger parent of the dropdown after it's closed if close button had been clicked
+        if (this.wasExpanded && !this.ariaExpanded && event.detail.focusParent) {
+          setTimeout(() => {
+            this.slottedButton?.focus();
+          }, 100);
         }
         this.wasExpanded = this.ariaExpanded;
 
