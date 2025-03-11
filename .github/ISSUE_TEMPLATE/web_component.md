@@ -1,7 +1,7 @@
 ---
 name: Component/Web Component
 about: For creating a web component implementation.
-title: ''
+title: '[web component] componentnamehere'
 labels: '📦 components'
 assignees: ''
 type: 'Task'
