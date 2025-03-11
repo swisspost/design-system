@@ -59,6 +59,8 @@ const getSourceForStory = (canvas: Element | null): Promise<string | null> => {
 
     let buttonWasClicked = false;
     let sourceButton: HTMLElement | null = null;
+    let wrapperContainer: HTMLElement | null = null;
+
     const observer = new MutationObserver(() => {
       const newSourceCode = searchForSourceElement(canvas);
 
@@ -66,6 +68,9 @@ const getSourceForStory = (canvas: Element | null): Promise<string | null> => {
         observer.disconnect();
         if (buttonWasClicked && sourceButton) {
           try {
+            if (wrapperContainer) {
+              wrapperContainer.classList.remove('source-hidden');
+            }
             sourceButton.click();
           } catch (e) {
             console.error('Error clicking source button to close:', e);
@@ -90,6 +95,10 @@ const getSourceForStory = (canvas: Element | null): Promise<string | null> => {
       sourceButton = findSourceButton(canvas);
       if (sourceButton) {
         try {
+          wrapperContainer = canvas.closest('.sbdocs.sbdocs-preview.sb-unstyled');
+          if (wrapperContainer) {
+            wrapperContainer.classList.add('source-hidden');
+          }
           sourceButton.click();
           buttonWasClicked = true;
         } catch (e) {
