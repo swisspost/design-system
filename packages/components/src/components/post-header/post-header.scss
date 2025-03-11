@@ -40,7 +40,7 @@
   justify-content: space-between;
   position: sticky;
   padding-inline: 4px;
-  height: var(--global-header-height);
+  height: var(--post-global-header-height);
 
   @include media.max(lg) {
     z-index: 3;
@@ -51,7 +51,7 @@
     z-index: 5;
     padding-inline-end: 12px;
     inset-block-start: calc(
-      (var(--global-header-height) - var(--global-header-reduced-height)) * -1
+      (var(--post-global-header-height) - var(--post-global-header-reduced-height)) * -1
     );
   }
 }
@@ -68,13 +68,13 @@
 
 .logo {
   flex: 1 0 auto;
-  height: var(--global-header-height);
-  width: var(--global-header-height);
-  min-height: var(--global-header-reduced-height);
+  height: var(--post-global-header-height);
+  width: var(--post-global-header-height);
+  min-height: var(--post-global-header-reduced-height);
   align-self: flex-end;
 
   @include media.min(lg) {
-    height: calc(var(--global-header-height) - var(--header-scroll-top));
+    height: calc(var(--post-global-header-height) - var(--post-header-scroll-top));
   }
 }
 
@@ -94,7 +94,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 4px;
-  min-height: var(--local-header-min-height);
+  min-height: var(--post-local-header-min-height);
   background: color.$white;
   transition: box-shadow 0.2s ease-in-out;
 
@@ -115,7 +115,7 @@
   @include media.min(lg) {
     z-index: 3;
     inset-block-start: calc(
-      -1 * (var(--local-header-height) - var(--main-navigation-height)) + var(--global-header-reduced-height)
+      -1 * (var(--post-local-header-height) - var(--post-main-navigation-height)) + var(--post-global-header-reduced-height)
     );
     padding-block-start: 18px;
     box-shadow: elevation.$elevation-300;
@@ -123,7 +123,7 @@
 
   @include media.max(lg) {
     z-index: 2;
-    inset-block-start: var(--global-header-height);
+    inset-block-start: var(--post-global-header-height);
     padding-block: 12px;
     flex-wrap: wrap;
     gap: 16px;
@@ -160,7 +160,7 @@
   width: 100%;
 
   @include media.min(lg) {
-    inset-block-start: var(--global-header-reduced-height);
+    inset-block-start: var(--post-global-header-reduced-height);
 
     &::before {
       display: block;
@@ -179,7 +179,7 @@
     position: fixed;
     z-index: 1;
     inset-inline: 0;
-    inset-block-start: calc(var(--header-scroll-top) + var(--header-height));
+    inset-block-start: calc(var(--post-header-scroll-top) + var(--header-height));
   }
 
   .mobile-menu {

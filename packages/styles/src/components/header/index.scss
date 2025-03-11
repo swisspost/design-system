@@ -9,51 +9,56 @@
 
 tokens.$default-map: elements.$post-link;
 
+:root:has(post-header) {
+  --post-header-expanded-height: calc(
+    var(--post-global-header-height) + var(--post-local-header-height)
+  );
+  --post-header-reduced-height: calc(
+    var(--post-global-header-reduced-height) + var(--post-main-navigation-height)
+  );
+  --post-header-height: calc(
+    var(--post-header-expanded-height) - min(
+        var(--post-header-scroll-top, 0px),
+        calc(var(--post-header-expanded-height) - var(--post-header-reduced-height))
+      )
+  );
+  scroll-padding-top: var(--post-header-height);
+
+  @include media.min(lg) {
+    --post-global-header-height: 72px;
+    --post-global-header-reduced-height: 24px;
+    --post-main-navigation-height: 56px;
+    --post-local-header-height: 112px;
+  }
+
+  @include media.max(lg) {
+    --post-header-reduced-height: var(--post-header-expanded-height);
+    --post-global-header-height: 64px;
+    --post-global-header-reduced-height: var(--post-global-header-height);
+    --post-local-header-height: 48px;
+    --post-main-navigation-height: 0px; /* stylelint-disable-line length-zero-no-unit */ /* needed for calculation */
+  }
+
+  @include media.min(md) {
+    --post-local-header-min-height: 56px;
+  }
+
+  @include media.max(md) {
+    --post-local-header-min-height: 48px;
+  }
+
+  &:not(:has([slot='title'])) {
+    --post-local-header-height: var(--post-main-navigation-height) !important;
+  }
+}
+
 [data-post-scroll-locked] {
   overflow: hidden !important;
   transform: translate3d(0, 0, 0) !important;
 }
 
 post-header {
-  --header-expanded-height: calc(var(--global-header-height) + var(--local-header-height));
-  --header-reduced-height: calc(
-    var(--global-header-reduced-height) + var(--main-navigation-height)
-  );
-  --header-height: calc(
-    var(--header-expanded-height) -
-      min(
-        var(--header-scroll-top, 0px),
-        calc(var(--header-expanded-height) - var(--header-reduced-height))
-      )
-  );
-  height: var(--header-height);
-
-  @include media.min(lg) {
-    --global-header-height: 72px;
-    --global-header-reduced-height: 24px;
-    --main-navigation-height: 56px;
-    --local-header-height: 112px;
-  }
-
-  @include media.max(lg) {
-    --header-reduced-height: var(--header-expanded-height);
-    --global-header-height: 64px;
-    --global-header-reduced-height: var(--global-header-height);
-    --local-header-height: 48px;
-    --main-navigation-height: 0px; /* stylelint-disable-line length-zero-no-unit */ /* needed for calculation */
-  }
-
-  @include media.min(md) {
-    --local-header-min-height: 56px;
-  }
-
-  @include media.max(md) {
-    --local-header-min-height: 48px;
-  }
-
-  &:not(:has([slot='title'])) {
-    --local-header-height: var(--main-navigation-height) !important;
-  }
+  height: var(--post-header-height);
 
   &:not(:defined),
   &:not([data-hydrated]) {
