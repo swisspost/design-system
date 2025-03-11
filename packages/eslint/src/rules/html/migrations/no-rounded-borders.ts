@@ -41,7 +41,7 @@ export default createRule({
         if (node.name) {
           const $node = node.toCheerio();
 
-          classesMap.map(classMapEl => {
+          classesMap.forEach(classMapEl => {
             if ($node.hasClass(classMapEl.old)) {
               context.report({
                 messageId: classMapEl.old,
