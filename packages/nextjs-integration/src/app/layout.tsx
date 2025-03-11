@@ -190,12 +190,14 @@ export default function RootLayout({ children }: { readonly children: React.Reac
         </PostHeader>
 
         <main style={{ paddingBlock: '3rem' }}>
-          <PostBreadcrumb home-url="/" home-text="Home">
-            <PostBreadcrumbItem url="/section1">Section 1</PostBreadcrumbItem>
-            <PostBreadcrumbItem url="/section2">Section 2</PostBreadcrumbItem>
-            <PostBreadcrumbItem url="/section3">Section 3</PostBreadcrumbItem>
-          </PostBreadcrumb>
-          <div className="container">{children}</div>
+          <div className="container">
+            <PostBreadcrumb home-url="/" home-text="Home">
+              <PostBreadcrumbItem url="/section1">Section 1</PostBreadcrumbItem>
+              <PostBreadcrumbItem url="/section2">Section 2</PostBreadcrumbItem>
+              <PostBreadcrumbItem url="/section3">Section 3</PostBreadcrumbItem>
+            </PostBreadcrumb>
+            {children}
+          </div>
         </main>
 
         <PostFooter label="Footer label">
