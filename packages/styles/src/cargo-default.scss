@@ -1,6 +1,6 @@
 @use './tokens/schemes';
-@use './tokens/device';
-@use './tokens/internal';
+@use './tokens/device-default';
+@use './tokens/appearance-default';
 @use './tokens/cargo-theme';
 @use './palettes/cargo-palettes';
 @use './layout';
