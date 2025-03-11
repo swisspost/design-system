@@ -59,7 +59,7 @@ const getSourceForStory = (canvas: Element | null): Promise<string | null> => {
 
     let buttonWasClicked = false;
     let sourceButton: HTMLElement | null = null;
-    const observer = new MutationObserver(_ => {
+    const observer = new MutationObserver(() => {
       const newSourceCode = searchForSourceElement(canvas);
 
       if (newSourceCode) {
