@@ -1,3 +1,5 @@
+export * from './get-focusable-children';
+export * from './attribute-observer';
 export * from './component-on-ready';
 export * from './property-checkers';
 export * from './breakpoints';
