@@ -1,5 +1,33 @@
 # @swisspost/design-system-icons
 
+## 9.0.0-next.30
+
+### Minor Changes
+
+- The two icon sets “Post” and “UI” have been updated with the latest icons. The “UI” icons are now also updated via cdn. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4611](https://github.com/swisspost/design-system/pull/4611))
+
+## 9.0.0-next.29
+
+## 9.0.0-next.28
+
+## 9.0.0-next.27
+
+## 9.0.0-next.26
+
+## 9.0.0-next.25
+
+## 9.0.0-next.24
+
+## 9.0.0-next.23
+
+## 9.0.0-next.22
+
+## 9.0.0-next.21
+
+## 9.0.0-next.20
+
+## 9.0.0-next.19
+
 ## 9.0.0-next.18
 
 ## 9.0.0-next.17
