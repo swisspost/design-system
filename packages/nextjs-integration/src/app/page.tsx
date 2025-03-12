@@ -38,60 +38,11 @@ export default function Home() {
   return (
     <>
       <h1>Design System Components</h1>
-
-      <h2>Accordion</h2>
-      {/* <PostAccordion heading-level="3">
-        <PostAccordionItem>
-          <span slot="header">Titulum 1</span>
-          <div>
-            <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-          </div>
-        </PostAccordionItem>
-
-        <PostAccordionItem>
-          <span slot="header">Titulum 2</span>
-          <div>
-            <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-          </div>
-        </PostAccordionItem>
-
-        <PostAccordionItem>
-          <span slot="header">Titulum 3</span>
-          <div>
-            <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-          </div>
-        </PostAccordionItem>
-      </PostAccordion> */}
-
-      {/* <PostAvatar></PostAvatar>
-      <PostBackToTop></PostBackToTop>
-      <PostBanner></PostBanner>
-      <PostBreadcrumb></PostBreadcrumb>
-      <PostBreadcrumbItem></PostBreadcrumbItem>
-      <PostCardControl></PostCardControl>
-      <PostClosebutton></PostClosebutton>
-      <PostCollapsible></PostCollapsible>
-      <PostCollapsibleTrigger></PostCollapsibleTrigger>
-      <PostIcon></PostIcon>
-      <PostLanguageOption></PostLanguageOption>
-      <PostLanguageSwitch></PostLanguageSwitch>
-      <PostLinkarea></PostLinkarea>
-      <PostLogo></PostLogo>
-      <PostMainnavigation></PostMainnavigation>
-      <PostMegadropdown></PostMegadropdown>
-      <PostMegadropdownTrigger></PostMegadropdownTrigger>
-      <PostMenu></PostMenu>
-      <PostMenuItem></PostMenuItem>
-      <PostMenuTrigger></PostMenuTrigger>
-      <PostPopover></PostPopover>
-      <PostPopovercontainer></PostPopovercontainer>
-      <PostRating></PostRating>
-      <PostTabHeader></PostTabHeader>
-      <PostTabPanel></PostTabPanel>
-      <PostTabs></PostTabs>
-      <PostTag></PostTag>
-      <PostTogglebutton></PostTogglebutton>
-      <PostTooltip></PostTooltip> */}
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea debitis ex rem minus! Ut
+        mollitia deserunt iure impedit. Enim, officia. Fugiat, cupiditate repellat? Excepturi est
+        iusto suscipit, omnis iste laboriosam!
+      </p>
     </>
   );
 }
