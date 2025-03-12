@@ -332,52 +332,43 @@ export default function RootLayout({ children }: { readonly children: React.Reac
           <PostList slot="socialmedia">
             <h3>Follow us</h3>
             <PostListItem>
-              <a href="https://www.facebook.com/swisspost" className="btn btn-primary btn-icon">
+              <a href="#facebook" className="btn btn-primary btn-icon">
                 <PostIcon aria-hidden="true" name="8004"></PostIcon>
                 <span className="visually-hidden">Facebook</span>
               </a>
             </PostListItem>
             <PostListItem>
-              <a href="https://www.instagram.com/swisspost/" className="btn btn-primary btn-icon">
+              <a href="#instagram" className="btn btn-primary btn-icon">
                 <PostIcon aria-hidden="true" name="8007"></PostIcon>
                 <span className="visually-hidden">Instagram</span>
               </a>
             </PostListItem>
             <PostListItem>
-              <a href="http://www.youtube.com/swisspost" className="btn btn-primary btn-icon">
+              <a href="#youtube" className="btn btn-primary btn-icon">
                 <PostIcon aria-hidden="true" name="8002"></PostIcon>
                 <span className="visually-hidden">Youtube</span>
               </a>
             </PostListItem>
             <PostListItem>
-              <a
-                href="https://www.snapchat.com/add/swisspostjobs"
-                className="btn btn-primary btn-icon"
-              >
+              <a href="#snapchat" className="btn btn-primary btn-icon">
                 <PostIcon aria-hidden="true" name="8017"></PostIcon>
                 <span className="visually-hidden">Snapchat</span>
               </a>
             </PostListItem>
             <PostListItem>
-              <a href="https://twitter.com/PostSchweiz" className="btn btn-primary btn-icon">
+              <a href="#twitter-x" className="btn btn-primary btn-icon">
                 <PostIcon aria-hidden="true" name="8000"></PostIcon>
                 <span className="visually-hidden">Titter X</span>
               </a>
             </PostListItem>
             <PostListItem>
-              <a
-                href="https://www.linkedin.com/company/swiss-post"
-                className="btn btn-primary btn-icon"
-              >
+              <a href="#linkedin" className="btn btn-primary btn-icon">
                 <PostIcon aria-hidden="true" name="8005"></PostIcon>
                 <span className="visually-hidden">Linkedin</span>
               </a>
             </PostListItem>
             <PostListItem>
-              <a
-                href="https://www.xing.com/companies/dieschweizerischepost"
-                className="btn btn-primary btn-icon"
-              >
+              <a href="#xing" className="btn btn-primary btn-icon">
                 <PostIcon aria-hidden="true" name="8001"></PostIcon>
                 <span className="visually-hidden">Xing</span>
               </a>
