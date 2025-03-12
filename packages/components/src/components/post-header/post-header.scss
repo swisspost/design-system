@@ -25,7 +25,7 @@
   --logo-height: calc(var(--global-header-height) - var(--header-scroll-top));
   --global-controls-top: calc(min((var(--header-scroll-top) / 4), 20px) * -1);
 
-  // If focus is within the header (except the logo and the post-mainnavigation elements), the header should have be shown fully
+  // If focus is within the header (except the logo and the post-mainnavigation elements), the header should be shown fully
   &:has(.global-sub > *:not(.logo):focus-within),
   &:has(.local-sub:focus-within) {
     --global-header-top: 0;
