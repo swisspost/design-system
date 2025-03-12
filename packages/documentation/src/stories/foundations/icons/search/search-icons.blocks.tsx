@@ -169,7 +169,7 @@ export class Search extends React.Component {
               <dd>{this.activeIcon?.name}</dd>
               <dt>Download</dt>
               <dd>
-                <a href={`/post-icons/${this.activeIcon?.name}.svg`}>{this.activeIcon?.name}.svg</a>
+                <a href={`/post-icons/${this.activeIcon?.name}.svg`} download>{this.activeIcon?.name}.svg</a>
               </dd>
               <dt>Keywords</dt>
               <dd>{this.activeIcon?.keywords}</dd>
