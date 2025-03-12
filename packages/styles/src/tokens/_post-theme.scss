@@ -5,6 +5,4 @@
 
 :root {
   @include tokens.from(themes.$post-post);
-
-  --post-header-height: 120px; //dummy value
 }
