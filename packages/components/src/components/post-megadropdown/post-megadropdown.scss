@@ -74,7 +74,9 @@
     position: fixed;
     inset-block-start: var(--header-navigation-current-inset);
     inset-inline: 0;
-    height: calc(min(var(--header-scroll-parent-height, 100dvh), 100dvh) - var(--header-height));
+    height: calc(
+      min(var(--header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
+    );
     border-top: unset;
     overflow-y: auto;
     overscroll-behavior: contain;
