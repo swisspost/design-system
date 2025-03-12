@@ -1,7 +1,7 @@
 ---
 name: Component/Base
 about: Parent issue for adding sub-issues related to this component.
-title: ''
+title: '[base] componentnamehere'
 labels: '🧩 base component'
 assignees: ''
 type: 'Feature'
