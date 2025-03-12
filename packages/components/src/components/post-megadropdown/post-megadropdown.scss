@@ -53,8 +53,8 @@
   border: none;
   z-index: 1;
   width: 100%;
-  top: 100%;
-  left: 0;
+  inset-block-start: 100%;
+  inset-inline-start: 0;
   border-radius: 0;
 
   @include utilities.high-contrast-mode() {
@@ -71,14 +71,13 @@
 
   @include media.max(lg) {
     z-index: 4;
-    top: 0 !important;
-    left: 0;
-    width: 100%;
     position: fixed;
-    height: calc(100dvh - var(--header-height));
-    max-height: calc(100dvh - var(--header-height));
+    inset-block-start: var(--header-navigation-current-inset);
+    inset-inline: 0;
+    height: calc(min(var(--header-scroll-parent-height, 100dvh), 100dvh) - var(--header-height));
     border-top: unset;
-    overflow: auto;
+    overflow-y: auto;
+    overscroll-behavior: contain;
 
     &.slide-in {
       animation: slide-in 350ms forwards;
