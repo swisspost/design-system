@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Adjusted paddings and hid top global header buttons on scroll in the `post-header`.
+Improved header accessibility by ensuring that elements which are hidden on scroll get visible again if they receive focus.
