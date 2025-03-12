@@ -1,9 +1,14 @@
 import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
 import isFocusable from 'ally.js/is/focusable';
-// import 'long-press-event';
 import { IS_SSR, checkEmptyOrType, getAttributeObserver } from '@/utils';
 import { version } from '@root/package.json';
+
+if (!IS_SSR) {
+  (async () => {
+    await import('long-press-event');
+  })();
+}
 
 const OPEN_DELAY = 650; // matches HTML title delay
 
