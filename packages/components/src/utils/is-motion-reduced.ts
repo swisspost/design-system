@@ -1,3 +1,5 @@
+import { IS_SERVER } from './environment';
+
 export function isMotionReduced(): boolean {
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  return !IS_SERVER ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false;
 }
