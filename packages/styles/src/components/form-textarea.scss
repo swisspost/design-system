@@ -131,6 +131,7 @@ textarea.form-control {
 
     &::placeholder {
       color: transparent;
+      opacity: 0;
     }
 
     &:focus,
@@ -139,10 +140,6 @@ textarea.form-control {
         font-size: tokens.get('textarea-label-filled-font-size');
         padding-block-start: tokens.get('textarea-label-filled-padding-block-start');
       }
-    }
-
-    &::placeholder {
-      opacity: 0;
     }
 
     &:focus::placeholder {

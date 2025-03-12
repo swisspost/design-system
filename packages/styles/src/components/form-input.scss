@@ -231,6 +231,7 @@ input.form-control {
 
     &::placeholder {
       color: transparent;
+      opacity: 0;
     }
 
     &:focus,
@@ -249,10 +250,6 @@ input.form-control {
           color: tokens.get('input-color-selected-fg');
         }
       }
-    }
-
-    &::placeholder {
-      opacity: 0;
     }
 
     &:focus::placeholder {
