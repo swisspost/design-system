@@ -118,6 +118,53 @@ const getSourceForStory = (canvas: Element | null): Promise<string | null> => {
   });
 };
 
+/**
+ * Parses the source code and converts relative URLs to absolute URLs
+ * Returns the source code with all relative URLs converted to absolute URLs
+ */
+const parseUrls = (sourceCode: string | null): string | null => {
+  if (!sourceCode) {
+    return null;
+  }
+
+  // Get the base URL from the current window
+  const baseUrl = window.location.origin;
+
+  const patterns = [
+    /(href=["'])(\/|\.\/|\.\.\/[^"']*["'])/g,
+    /(src=["'])(\/|\.\/|\.\.\/[^"']*["'])/g,
+    /(url\(["']?)(\/|\.\/|\.\.\/[^"')]*["']?\))/g,
+  ];
+
+  let result = sourceCode;
+
+  patterns.forEach(pattern => {
+    result = result.replace(pattern, (match, prefix, url) => {
+      if (url.startsWith('http://') || url.startsWith('https://')) {
+        return match;
+      }
+
+      // Handle different types of relative paths
+      if (url.startsWith('/')) {
+        // Root-relative URL
+        return `${prefix}${baseUrl}${url}`;
+      } else if (url.startsWith('./')) {
+        // Current directory relative URL
+        return `${prefix}${baseUrl}${window.location.pathname}${url.substring(1)}`;
+      } else if (url.startsWith('../')) {
+        // Parent directory relative URL
+        const pathParts = window.location.pathname.split('/');
+        pathParts.pop(); // Remove current directory
+        const parentPath = pathParts.join('/');
+        return `${prefix}${baseUrl}${parentPath}/${url.substring(3)}`;
+      }
+      return match;
+    });
+  });
+
+  return result;
+};
+
 export const openInCodePen = async (e: Event) => {
   // Get document from parent window's iframe
   const parentDocument = window.parent.document;
@@ -146,8 +193,16 @@ export const openInCodePen = async (e: Event) => {
       return;
     }
 
+    // Parse URLs in the source code to make relative URLs absolute
+    const parsedSourceCode = parseUrls(sourceCode);
+
+    if (!parsedSourceCode) {
+      console.error('Error parsing URLs in source code');
+      return;
+    }
+
     const data = JSON.stringify({
-      html: sourceCode,
+      html: parsedSourceCode,
       title: 'Storybook Example',
       head: stylesheetTags,
       js: `import "https://esm.sh/@swisspost/design-system-components@${version}/dist/post-components/post-components.esm.js";`,
