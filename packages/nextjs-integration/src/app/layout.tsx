@@ -3,6 +3,7 @@ import '@swisspost/design-system-styles/cargo-external.css';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import {
+  PostBackToTop,
   PostBreadcrumb,
   PostBreadcrumbItem,
   PostClosebutton,
@@ -458,6 +459,8 @@ export default function RootLayout({ children }: { readonly children: React.Reac
           <span slot="copyright">© Copyright 2024 by Swiss Post Ltd.</span>
           <span slot="copyright">All rights reserved.</span>
         </PostFooter>
+
+        <PostBackToTop label="Back to top button" />
       </body>
     </html>
   );
