@@ -37,9 +37,8 @@ let tooltipTimeout = null;
  * @returns
  */
 const globalInterestHandler = (e: PointerEvent | FocusEvent) => {
-  const targetElement = (e.target as HTMLElement).closest(
-    tooltipTargetAttributeSelector,
-  ) as HTMLElement;
+  const eventTarget: HTMLElement = e.target as HTMLElement;
+  const targetElement: HTMLElement = eventTarget.closest(tooltipTargetAttributeSelector);
   globalCurrentTarget = targetElement;
   if (!targetElement || !('getAttribute' in targetElement)) {
     clearTimeout(tooltipTimeout);
@@ -51,7 +50,7 @@ const globalInterestHandler = (e: PointerEvent | FocusEvent) => {
 
   // Determine if the tooltip was triggered by a focus event
   const triggeredByFocus = e.type === 'focusin';
-  void tooltip?.show(targetElement, triggeredByFocus);
+  tooltip?.show(targetElement, triggeredByFocus);
 
   if (hideTooltipTimeout) {
     window.clearTimeout(hideTooltipTimeout);
