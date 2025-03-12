@@ -178,7 +178,7 @@ export namespace Components {
          */
         "search": boolean;
         /**
-          * Overrides the logout-url provided by the portal config.
+          * Overrides the selfadmin url in case it needs to differ from the logoutUrl, which is the url that is used by default.
          */
         "selfAdminOrigin"?: string;
         /**
@@ -478,7 +478,7 @@ declare namespace LocalJSX {
          */
         "search"?: boolean;
         /**
-          * Overrides the logout-url provided by the portal config.
+          * Overrides the selfadmin url in case it needs to differ from the logoutUrl, which is the url that is used by default.
          */
         "selfAdminOrigin"?: string;
         /**

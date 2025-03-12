@@ -109,7 +109,7 @@ export class PostInternetHeader {
   @Prop() logoutUrl?: string;
 
   /**
-   * Overrides the logout-url provided by the portal config.
+   * Overrides the selfadmin url in case it needs to differ from the logoutUrl, which is the url that is used by default.
    */
   @Prop() selfAdminOrigin?: string;
 
