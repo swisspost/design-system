@@ -141,15 +141,13 @@ textarea.form-control {
       }
     }
 
-    @include forms-mx.placeholder {
+    &::placeholder {
       opacity: 0;
     }
 
-    &:focus {
-      @include forms-mx.placeholder {
-        color: tokens.get('textarea-placeholder-fg');
-        opacity: 1;
-      }
+    &:focus::placeholder {
+      color: tokens.get('textarea-placeholder-fg');
+      opacity: 1;
     }
 
     &:disabled ~ label {
