@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
-import { IS_SSR, getAttributeObserver } from '@/utils';
+import { IS_SERVER, getAttributeObserver } from '@/utils';
 import { version } from '@root/package.json';
 
 /**
@@ -28,7 +28,7 @@ export class PostPopover {
   private popoverRef: HTMLPostPopovercontainerElement;
   private localBeforeToggleHandler;
   // Initialize a mutation observer for patching accessibility features
-  private readonly triggerObserver = !IS_SSR
+  private readonly triggerObserver = !IS_SERVER
     ? getAttributeObserver(popoverTargetAttribute, this.patchAccessibilityFeatures)
     : null;
 

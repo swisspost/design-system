@@ -1,5 +1,5 @@
 import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
-import { IS_SSR, checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '@/utils';
+import { IS_SERVER, checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '@/utils';
 import { version } from '@root/package.json';
 
 type UrlDefinition = {
@@ -113,7 +113,7 @@ export class PostIcon {
     // the first definition object which defines a slug, will be used to set the slug of the file url
     const urlDefinitions = [this.getUrlDefinition(this.base, 'both')];
 
-    if (!IS_SSR) {
+    if (!IS_SERVER) {
       urlDefinitions.push(
         this.getUrlDefinition(
           document.head

@@ -1,4 +1,4 @@
-import { IS_SSR } from '@/utils/is-ssr';
+import { IS_SERVER } from '@/utils/environment';
 
 type MapItem = {
   minWidth: number;
@@ -15,7 +15,7 @@ export class Breakpoint {
   };
 
   constructor() {
-    if (!IS_SSR && !this.breakpointMap) {
+    if (!IS_SERVER && !this.breakpointMap) {
       const keys = this.getStyles('--post-breakpoint-keys');
       const names = this.getStyles('--post-breakpoint-names');
       const widths = this.getStyles('--post-breakpoint-widths');
@@ -57,7 +57,7 @@ export class Breakpoint {
   }
 
   private dispatchEvent(type: ListenerType) {
-    if (!IS_SSR) {
+    if (!IS_SERVER) {
       window.dispatchEvent(
         new CustomEvent(`postBreakpoint:${type}`, { detail: this.current[type] }),
       );

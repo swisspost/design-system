@@ -1,10 +1,10 @@
 import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
 import isFocusable from 'ally.js/is/focusable';
-import { IS_SSR, checkEmptyOrType, getAttributeObserver } from '@/utils';
+import { IS_SERVER, checkEmptyOrType, getAttributeObserver } from '@/utils';
 import { version } from '@root/package.json';
 
-if (!IS_SSR) {
+if (!IS_SERVER) {
   (async () => {
     await import('long-press-event');
   })();
@@ -95,7 +95,7 @@ export class PostTooltip {
   private popoverRef: HTMLPostPopovercontainerElement;
   private wasOpenedByFocus: boolean = false;
   // Initialize a mutation observer for patching accessibility features
-  private readonly triggerObserver = !IS_SSR
+  private readonly triggerObserver = !IS_SERVER
     ? getAttributeObserver(tooltipTargetAttribute, this.patchAccessibilityFeatures)
     : null;
 

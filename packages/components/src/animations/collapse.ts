@@ -1,4 +1,4 @@
-import { IS_SSR } from '@/utils';
+import { IS_SERVER } from '@/utils';
 
 const collapseDuration = 350;
 const collapseEasing = 'ease';
@@ -11,7 +11,7 @@ const animationOptions: KeyframeAnimationOptions = {
 };
 
 export function collapse(el: HTMLElement): Animation {
-  const elHeight = IS_SSR ? `${el.scrollHeight}px` : window.getComputedStyle(el).height;
+  const elHeight = IS_SERVER ? `${el.scrollHeight}px` : window.getComputedStyle(el).height;
   const expandedKeyframe: Keyframe = { height: elHeight };
 
   return el.animate([expandedKeyframe, collapsedKeyframe], animationOptions);

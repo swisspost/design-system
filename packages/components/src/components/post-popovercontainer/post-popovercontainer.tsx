@@ -1,5 +1,5 @@
 import { Component, Element, Event, EventEmitter, Host, Method, Prop, h } from '@stencil/core';
-import { IS_SSR } from '@/utils';
+import { IS_SERVER } from '@/utils';
 import { version } from '@root/package.json';
 
 import {
@@ -107,7 +107,7 @@ export class PostPopovercontainer {
   }
 
   connectedCallback() {
-    if (!IS_SSR && !isSupported()) {
+    if (!IS_SERVER && !isSupported()) {
       apply();
     }
   }
@@ -203,8 +203,8 @@ export class PostPopovercontainer {
   private getHeaderHeight(): number {
     const header = document.querySelector('post-header');
     return header ? parseFloat(getComputedStyle(header).height) : 0;
-  }  
-  
+  }
+
   private async calculatePosition() {
     const { x, y, middlewareData, placement } = await this.computeMainPosition();
     const currentPlacement = placement.split('-')[0];
