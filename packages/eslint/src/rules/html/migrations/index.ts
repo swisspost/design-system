@@ -1,7 +1,9 @@
 import noDeprecatedBtnRgRule, { name as noDeprecatedBtnRgRuleName } from './no-deprecated-btn-rg';
-import noRoundedBordersRule, { name as noRoundedBordersRuleName } from './no-rounded-borders';
+import noUnnumberedBorderRadiusRule, {
+  name as noUnnumberedBorderRadiusRuleName,
+} from './no-unnumbered-border-radius';
 
 export const htmlMigrationRules = {
   [noDeprecatedBtnRgRuleName]: noDeprecatedBtnRgRule,
-  [noRoundedBordersRuleName]: noRoundedBordersRule,
+  [noUnnumberedBorderRadiusRuleName]: noUnnumberedBorderRadiusRule,
 };

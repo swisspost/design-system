@@ -1,4 +1,4 @@
-import rule, { name } from '../../../../src/rules/html/migrations/no-rounded-borders';
+import rule, { name } from '../../../../src/rules/html/migrations/no-unnumbered-border-radius';
 import { htmlRuleTester } from '../../../utils/html-rule-tester';
 
 htmlRuleTester.run(name, rule, {

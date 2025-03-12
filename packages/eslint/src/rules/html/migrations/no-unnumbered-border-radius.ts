@@ -1,7 +1,7 @@
 import { createRule } from '../../../utils/create-rule';
 import { HtmlNode } from '../../../parsers/html/html-node';
 
-export const name = 'no-rounded-borders';
+export const name = 'no-unnumbered-border-radius';
 
 const classesMap = [
   { old: 'rounded', new: 'rounded-4' },
@@ -15,7 +15,7 @@ function getRemovedRoundedClassMsgs(): Record<string, string> {
   return classesMap.reduce(
     (o, key) =>
       Object.assign(o, {
-        [key.old]: `The "${key.old}" class have been deleted. Please remove it or replace it with "${key.new}".`,
+        [key.old]: `The "${key.old}" class has been deleted. Please remove it or replace it with "${key.new}".`,
       }),
     {},
   );
