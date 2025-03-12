@@ -7,7 +7,7 @@ const meta: MetaExtended = {
   id: '5e27e48d-a5f6-4e57-a343-7f40507fc27b',
   title: 'Utilities/Opacity',
   args: {
-    opacity: '100',
+    opacity: 100,
   },
   argTypes: {
     opacity: {

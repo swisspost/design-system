@@ -37,6 +37,10 @@ tokens.$default-map: components.$post-floating-button;
       border-color: tokens.get('floating-button-hover-border');
       color: tokens.get('floating-button-hover-fg');
       background-color: tokens.get('floating-button-hover-bg');
+
+      @include utilities.high-contrast-mode() {
+        color: HighlightText !important;
+      }
     }
 
     post-icon {

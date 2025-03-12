@@ -99,6 +99,7 @@ export interface PostInfo {
 
 export enum Businessfield {
   Kommunikation = 'kommunikation',
+  Edk = 'edk',
 }
 
 export enum Type {
