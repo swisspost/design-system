@@ -5,7 +5,7 @@
 @use '../variables/components/form-check';
 @use '../mixins/utilities' as utilities-mx;
 @use '../functions/tokens';
-@use '../functions/elements';
+@use '../tokens/elements';
 @use '../tokens/utilities';
 
 tokens.$default-map: utilities.$post-spacing;
