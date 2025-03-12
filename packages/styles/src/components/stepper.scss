@@ -76,8 +76,8 @@
 
   // current and completed steps are preceded by a yellow segment (except for the first step)
   &:not(&[aria-current='step'] ~ *, :first-child)::before,
-  // completed steps are also followed by a yellow segment (except for the last step)
-  &:not([aria-current='step']:not(:last-child), &[aria-current='step'] ~ *)::after {
+  // steps that are not the current step or preceded by a current step are followed by a yellow segment
+    &:not([aria-current='step'], .stepper-item[aria-current='step'] ~ *)::after {
     background-color: stepper.$stepper-bar-fill-color;
     z-index: 1;
   }
