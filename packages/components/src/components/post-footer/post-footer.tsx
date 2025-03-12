@@ -27,12 +27,16 @@ export class PostFooter {
   @State() isMobile: boolean = breakpoint.get('name') === 'mobile';
 
   connectedCallback() {
-    window.addEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
+    window.addEventListener('postBreakpoint:name', this.breakpointChange);
   }
 
-  private breakpointChange(e: CustomEvent) {
-    this.isMobile = e.detail === 'mobile';
+  disconnectedCallback() {
+    window.removeEventListener('postBreakpoint:name', this.breakpointChange);
   }
+
+  private readonly breakpointChange = (e: CustomEvent) => {
+    this.isMobile = e.detail === 'mobile';
+  };
 
   private renderAccordion() {
     return (
@@ -120,9 +124,5 @@ export class PostFooter {
         </footer>
       </Host>
     );
-  }
-
-  disconnectedCallback() {
-    window.removeEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
   }
 }
