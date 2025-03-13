@@ -22,7 +22,6 @@ tokens.$default-map: elements.$post-link;
         calc(var(--post-header-expanded-height) - var(--post-header-reduced-height))
       )
   );
-  scroll-padding-top: var(--post-header-height);
 
   @include media.min(lg) {
     --post-global-header-height: 72px;
@@ -47,9 +46,13 @@ tokens.$default-map: elements.$post-link;
     --post-local-header-min-height: 48px;
   }
 
-  &:not(:has([slot='title'])) {
+  &:not(:has(post-header [slot='title'])) {
     --post-local-header-height: var(--post-main-navigation-height) !important;
   }
+}
+
+body:has(post-header) {
+  scroll-padding-top: var(--post-header-height);
 }
 
 [data-post-scroll-locked] {
