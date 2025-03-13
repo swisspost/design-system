@@ -5,6 +5,7 @@ import DocsLayout from './blocks/layout/layout';
 import {
   fullScreenUrlDecorator,
   openFullScreenDemo,
+  copyStoryConfigUrl,
   prettierOptions,
   resetComponents,
   withUrlParams,
@@ -80,6 +81,10 @@ const preview: Preview = {
           {
             title: 'View full screen',
             onClick: openFullScreenDemo,
+          },
+          {
+            title: 'Copy cofiguration link',
+            onClick: copyStoryConfigUrl,
           },
         ],
       },

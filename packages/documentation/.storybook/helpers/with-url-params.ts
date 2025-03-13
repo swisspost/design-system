@@ -11,40 +11,62 @@ let initialArgs: Args;
 
 export const withUrlParams = (Story: StoryFn, context: StoryContext) => {
   const [_, updateArgs] = useArgs();
-
   const params = new URLSearchParams(window.location.search);
-  const argsParam = params.get('args');
-  if (firstRender) {
-    initialArgs = { ...context.args };
-  }
-  initialArgs = { ...context.args };
-  const updatedArgs: Args = { ...context.args };
 
-  if (argsParam) {
-    argsParam.split(';').forEach(pair => {
-      const [key, value] = pair.split(':');
-      if (key && value !== undefined) {
-        if (key in updatedArgs) {
-          if (typeof updatedArgs[key] === 'boolean') {
-            updatedArgs[key] = value === 'true';
-          } else if (typeof updatedArgs[key] === 'number') {
-            updatedArgs[key] = Number(value);
+  const storyParam = params.get('story')?.replace(/\s+/g, '').toLowerCase();
+  const storyName = context.name.replace(/\s+/g, '').toLowerCase();
+
+  if (firstRender && storyParam && storyParam == storyName) {
+    const elementId = `#story--${context.id}`;
+
+    // Scroll the story to view
+    const observer = new MutationObserver((_, obs) => {
+      const scrollTarget = document.querySelector(elementId)?.closest('.docs-story');
+      if (scrollTarget) {
+        setTimeout(() => {
+          scrollTarget.scrollIntoView({ behavior: 'smooth' });
+        }, 700);
+        obs.disconnect();
+      }
+    });
+    observer.observe(document, { childList: true, subtree: true });
+
+    const argsParam = params.get('args');
+
+    if (firstRender) {
+      initialArgs = { ...context.args };
+    }
+
+    const updatedArgs: Args = { ...context.args };
+    // Extract the args from the URL
+    if (argsParam) {
+      argsParam.split(';').forEach(pair => {
+        const [key, value] = pair.split(':');
+        if (key && value !== undefined) {
+          if (key in updatedArgs) {
+            if (typeof updatedArgs[key] === 'boolean') {
+              updatedArgs[key] = value === 'true';
+            } else if (typeof updatedArgs[key] === 'number') {
+              updatedArgs[key] = Number(value);
+            } else {
+              updatedArgs[key] = value;
+            }
           } else {
             updatedArgs[key] = value;
           }
-        } else {
-          updatedArgs[key] = value;
         }
+      });
+
+      // Only the first time update the args
+      if (firstRender && !argsMatch(initialArgs, updatedArgs)) {
+        updateArgs(updatedArgs);
+
+        // Remove the args from the URL
+        params.delete('args');
+        const newUrl = `${window.location.pathname}?${params.toString()}`;
+        window.history.replaceState({}, '', newUrl);
+        firstRender = false;
       }
-    });
-    // Only the first time update the args
-    if (firstRender && context.story === 'Default' && !argsMatch(initialArgs, updatedArgs)) {
-      updateArgs(updatedArgs);
-      firstRender = false;
-      // Remove the args from the URL
-      params.delete('args');
-      const newUrl = `${window.location.pathname}?${params.toString()}`;
-      window.history.replaceState({}, '', newUrl);
     }
   }
 
