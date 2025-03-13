@@ -1,12 +1,14 @@
 import React from 'react';
 import report from '@swisspost/design-system-icons/public/report.min.json';
-import { ReportIcon } from '@swisspost/design-system-icons/src/models/icon.model';
+import { ReportIcon, ReportSourceIcon } from '@swisspost/design-system-icons/src/models/icon.model';
 import './search-icons.styles.scss';
 
 interface Icon {
+  set: string;
   name: string;
   keywords: string;
   searchKeywords: string[];
+  sources: ReportSourceIcon[];
 }
 
 interface IconSets {
@@ -29,6 +31,8 @@ const ICON_SETS: IconSets = report.icons.reduce(
     }
 
     sets[typeOfSet as keyof IconSets].push({
+      set: typeOfSet,
+      sources: icon.stats.sources,
       name: basename,
       keywords: icon.keys.join(', '),
       searchKeywords: [basename, ...icon.keys].map(word =>
@@ -69,6 +73,8 @@ export class Search extends React.Component {
       ],
     },
   };
+
+  activeIcon: Icon | null = null;
 
   results = {
     icons: ICON_SETS.post,
@@ -128,6 +134,64 @@ export class Search extends React.Component {
         });
       }
     }
+  }
+
+  popoverEventListener() {
+    document.body.style.overflow = '';
+  }
+
+  openIconDetails(icon: Icon) {
+    const popover = document.querySelector('#icon-panel') as HTMLPostPopovercontainerElement;
+    popover?.removeEventListener('postToggle', this.popoverEventListener);
+    document.body.style.overflow = 'hidden';
+    this.activeIcon = icon;
+    this.setState(this.activeIcon);
+    popover.showPopover();
+    popover?.addEventListener('postToggle', this.popoverEventListener);
+  }
+
+  iconDetailPanel() {
+    const popover = document.querySelector('#icon-panel') as HTMLPostPopovercontainerElement;
+
+    return (
+      <post-popovercontainer id="icon-panel" class="palette-default icon-panel">
+        <div className="icon-panel-content">
+          <div>
+            <div className="resizer-container">
+              <div className="resizer">
+                {this.activeIcon && <post-icon name={this.activeIcon?.name}></post-icon>}
+              </div>
+            </div>
+            <dl>
+              <dt>Set</dt>
+              <dd className="text-capitalize">{this.activeIcon?.set}</dd>
+              <dt>Name</dt>
+              <dd>{this.activeIcon?.name}</dd>
+              <dt>Download</dt>
+              <dd>
+                <a href={`/post-icons/${this.activeIcon?.name}.svg`} download>{this.activeIcon?.name}.svg</a>
+              </dd>
+              <dt>Keywords</dt>
+              <dd>{this.activeIcon?.keywords}</dd>
+              <dt>Source files</dt>
+              <dd>
+                {this.activeIcon?.sources.map((source, i) => {
+                  return (
+                    <span key={source.id}>
+                      {source.name}
+                      {i + 1 === this.activeIcon?.sources.length ? '' : ', '}
+                    </span>
+                  );
+                })}
+              </dd>
+            </dl>
+          </div>
+          <button className="btn btn-close" onClick={() => popover.hidePopover()}>
+            <span className="visually-hidden">Close</span>
+          </button>
+        </div>
+      </post-popovercontainer>
+    );
   }
 
   searchForm() {
@@ -207,11 +271,13 @@ export class Search extends React.Component {
         {this.results.icons.slice(pageStartIndex, pageEndIndex).map((icon, i) => {
           return (
             <li className="icon" key={`icon-${icon.name}-${i}`}>
-              <div className="gfx">
-                <post-icon name={icon.name} />
-              </div>
-              <div className="name">{icon.name}</div>
-              <div className="visually-hidden">{icon.keywords}</div>
+              <button onClick={() => this.openIconDetails(icon)}>
+                <span className="gfx">
+                  <post-icon name={icon.name} />
+                </span>
+                <span className="name">{icon.name}</span>
+                <span className="visually-hidden">{icon.keywords}</span>
+              </button>
             </li>
           );
         })}
@@ -278,6 +344,7 @@ export class Search extends React.Component {
           {this.paging()}
           {this.resultsList()}
           {this.paging()}
+          {this.iconDetailPanel()}
         </div>
       </div>
     );
