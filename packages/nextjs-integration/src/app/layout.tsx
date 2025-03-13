@@ -1,4 +1,4 @@
-import '@swisspost/design-system-styles/cargo-external.css';
+import '@swisspost/design-system-styles/cargo-default.css';
 
 import type { Metadata } from 'next';
 import Image from 'next/image';
