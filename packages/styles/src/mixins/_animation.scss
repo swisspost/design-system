@@ -36,10 +36,12 @@
   &:not(:disabled):not(.disabled) > span {
     &::after {
       @if ($stroke-width == null) {
-        background-image: url('#{icons.get-colored-svg-url($icon-name, $color)}');
+        $icon: icons.get-colored-svg-url($icon-name, $color);
+        background-image: url('#{$icon}');
       } @else {
         $icon: icons.get-colored-svg-url($icon-name, $color);
-        background-image: url('#{icons.add-stroke-color($icon, $color, $stroke-width)}');
+        $icon: icons.add-stroke-color($icon, $color, $stroke-width);
+        background-image: url('#{$icon}');
       }
     }
   }

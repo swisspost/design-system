@@ -1,34 +1,41 @@
 import React from 'react';
-import report from '@swisspost/design-system-icons/public/report.json';
-import { IIcon } from '@swisspost/design-system-icons/src/models/icon.model';
+import report from '@swisspost/design-system-icons/public/report.min.json';
+import { ReportIcon, ReportSourceIcon } from '@swisspost/design-system-icons/src/models/icon.model';
 import './search-icons.styles.scss';
 
-interface IIconSetIcon {
+interface Icon {
+  set: string;
   name: string;
   keywords: string;
   searchKeywords: string[];
+  sources: ReportSourceIcon[];
 }
 
-interface IIconSets {
-  post: IIconSetIcon[];
-  uiLight: IIconSetIcon[];
-  uiSolid: IIconSetIcon[];
+interface IconSets {
+  post: Icon[];
+  uiLight: Icon[];
+  uiSolid: Icon[];
 }
 
-const ICON_SETS: IIconSets = report.icons.reduce(
-  (sets: IIconSets, icon: IIcon) => {
-    let typeOfSet = 'post';
+const ICON_SETS: IconSets = report.icons.reduce(
+  (sets: IconSets, icon: ReportIcon) => {
+    let typeOfSet = icon.stats.set;
+    const basename = icon.name.replace(/.svg$/, '');
 
-    if (/-solid$/.test(icon.file.basename)) {
-      typeOfSet = 'uiSolid';
-    } else if (!/^(\d){4}$/.test(icon.file.basename)) {
-      typeOfSet = 'uiLight';
+    if (typeOfSet === 'ui') {
+      if (basename.endsWith('-solid')) {
+        typeOfSet += 'Solid';
+      } else {
+        typeOfSet += 'Light';
+      }
     }
 
-    sets[typeOfSet as keyof IIconSets].push({
-      name: icon.file.basename,
-      keywords: icon.meta.keywords.join(', '),
-      searchKeywords: [icon.file.basename, ...icon.meta.keywords].map(word =>
+    sets[typeOfSet as keyof IconSets].push({
+      set: typeOfSet,
+      sources: icon.stats.sources,
+      name: basename,
+      keywords: icon.keys.join(', '),
+      searchKeywords: [basename, ...icon.keys].map(word =>
         word
           .normalize('NFD')
           .replace(/[\u0300-\u036f]/g, '')
@@ -67,6 +74,8 @@ export class Search extends React.Component {
     },
   };
 
+  activeIcon: Icon | null = null;
+
   results = {
     icons: ICON_SETS.post,
     paging: {
@@ -89,7 +98,7 @@ export class Search extends React.Component {
   }
 
   updateResults(query?: string) {
-    let icons = ICON_SETS[this.form.set.current as keyof IIconSets];
+    let icons = ICON_SETS[this.form.set.current as keyof IconSets];
     if (query) icons = icons.filter(icon => icon.searchKeywords.find(word => word.includes(query)));
 
     this.results.icons = icons;
@@ -125,6 +134,64 @@ export class Search extends React.Component {
         });
       }
     }
+  }
+
+  popoverEventListener() {
+    document.body.style.overflow = '';
+  }
+
+  openIconDetails(icon: Icon) {
+    const popover = document.querySelector('#icon-panel') as HTMLPostPopovercontainerElement;
+    popover?.removeEventListener('postToggle', this.popoverEventListener);
+    document.body.style.overflow = 'hidden';
+    this.activeIcon = icon;
+    this.setState(this.activeIcon);
+    popover.showPopover();
+    popover?.addEventListener('postToggle', this.popoverEventListener);
+  }
+
+  iconDetailPanel() {
+    const popover = document.querySelector('#icon-panel') as HTMLPostPopovercontainerElement;
+
+    return (
+      <post-popovercontainer id="icon-panel" class="palette-default icon-panel">
+        <div className="icon-panel-content">
+          <div>
+            <div className="resizer-container">
+              <div className="resizer">
+                {this.activeIcon && <post-icon name={this.activeIcon?.name}></post-icon>}
+              </div>
+            </div>
+            <dl>
+              <dt>Set</dt>
+              <dd className="text-capitalize">{this.activeIcon?.set}</dd>
+              <dt>Name</dt>
+              <dd>{this.activeIcon?.name}</dd>
+              <dt>Download</dt>
+              <dd>
+                <a href={`/post-icons/${this.activeIcon?.name}.svg`} download>{this.activeIcon?.name}.svg</a>
+              </dd>
+              <dt>Keywords</dt>
+              <dd>{this.activeIcon?.keywords}</dd>
+              <dt>Source files</dt>
+              <dd>
+                {this.activeIcon?.sources.map((source, i) => {
+                  return (
+                    <span key={source.id}>
+                      {source.name}
+                      {i + 1 === this.activeIcon?.sources.length ? '' : ', '}
+                    </span>
+                  );
+                })}
+              </dd>
+            </dl>
+          </div>
+          <button className="btn btn-close" onClick={() => popover.hidePopover()}>
+            <span className="visually-hidden">Close</span>
+          </button>
+        </div>
+      </post-popovercontainer>
+    );
   }
 
   searchForm() {
@@ -180,7 +247,7 @@ export class Search extends React.Component {
 
           <p className="form-hint">
             Showing {this.results.icons.length} of{' '}
-            {ICON_SETS[this.form.set.current as keyof IIconSets].length} icons.
+            {ICON_SETS[this.form.set.current as keyof IconSets].length} icons.
           </p>
         </div>
       </>
@@ -204,11 +271,13 @@ export class Search extends React.Component {
         {this.results.icons.slice(pageStartIndex, pageEndIndex).map((icon, i) => {
           return (
             <li className="icon" key={`icon-${icon.name}-${i}`}>
-              <div className="gfx">
-                <post-icon name={icon.name} />
-              </div>
-              <div className="name">{icon.name}</div>
-              <div className="visually-hidden">{icon.keywords}</div>
+              <button onClick={() => this.openIconDetails(icon)}>
+                <span className="gfx">
+                  <post-icon name={icon.name} />
+                </span>
+                <span className="name">{icon.name}</span>
+                <span className="visually-hidden">{icon.keywords}</span>
+              </button>
             </li>
           );
         })}
@@ -271,10 +340,11 @@ export class Search extends React.Component {
       <div className="container">
         <div className="search-form">{this.searchForm()}</div>
         <div className="search-results">
-          <a href="#results-top" />
+          <a href="#results-top"></a>
           {this.paging()}
           {this.resultsList()}
           {this.paging()}
+          {this.iconDetailPanel()}
         </div>
       </div>
     );
