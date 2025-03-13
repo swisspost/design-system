@@ -30,7 +30,7 @@ const meta: MetaComponent = {
     placement: 'top',
     arrow: true,
     title: true,
-    maxWidth: '80vw',
+    maxWidth: '',
   },
   argTypes: {
     id: {

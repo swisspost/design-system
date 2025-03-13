@@ -7,8 +7,6 @@
 }
 
 :host {
-  --post-popover-max-width: 280px;
-
   display: block;
 }
 
@@ -22,12 +20,7 @@
   padding: 0.5em;
 
   min-width: 160px;
-  max-width: var(--post-popover-max-width);
-
-  // Max available width on mobile, popovercontainer will handle offsets
-  @include media.max(sm) {
-    max-width: 100%;
-  }
+  max-width: min(var(--post-popover-max-width, 280px), 100vw);
 }
 
 .popover-content {
