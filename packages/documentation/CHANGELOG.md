@@ -1,5 +1,19 @@
 # @swisspost/design-system-documentation
 
+## 5.5.12
+
+### Patch Changes
+
+- Removed duplicate size class from `select` elements using floating labels. (by [@schaertim](https://github.com/schaertim) with [#4866](https://github.com/swisspost/design-system/pull/4866))
+
+- Added the MDN documentation link to the `dialog` component. (by [@schaertim](https://github.com/schaertim) with [#4940](https://github.com/swisspost/design-system/pull/4940))
+- Updated dependencies:
+  - @swisspost/design-system-components@8.9.2
+  - @swisspost/design-system-styles@8.9.2
+  - @swisspost/design-system-components-react@8.9.2
+  - @swisspost/internet-header@1.15.10
+  - @swisspost/design-system-icons@8.9.2
+
 ## 5.5.11
 
 ### Patch Changes
