@@ -16,6 +16,8 @@ export const fullScreenUrlDecorator = (story: StoryFn, context: StoryContext) =>
     .filter(arg => !!arg)
     .join(';');
 
+  console.log(args);
+
   let storyURL = `/?path=/story/${id}&full=true`;
   if (args.length) storyURL += `&args=${args}`;
 

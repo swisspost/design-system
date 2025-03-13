@@ -156,7 +156,9 @@ export const Default = {
     const controlId = `CardControl_${id}`;
     const description = html`<span class="font-size-12">${args.description}</span>`;
     const icon = html` <post-icon name="${args.icon}" aria-hidden="true"></post-icon> `;
-    const invalidFeedback = html`<p class="invalid-feedback mt-8">Invalid feedback</p>`;
+    const invalidFeedback = html`<p class="invalid-feedback mt-8" id="is-invalid-id"
+      Invalid feedback
+    </p>`;
 
     return html`
       <div class="${cardClasses}">
@@ -169,6 +171,7 @@ export const Default = {
           .checked="${args.checked}"
           checked="${args.checked || nothing}"
           @input="${(e: InputEvent) => inputHandler(e, updateArgs)}"
+          aria-describedby="is-invalid-id"
         />
         <label for="${controlId}">
           <span>${args.label}</span>
