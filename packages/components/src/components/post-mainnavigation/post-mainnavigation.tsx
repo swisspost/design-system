@@ -1,4 +1,5 @@
 import { Component, Host, h, Element, State, Watch, Listen } from '@stencil/core';
+import { version } from '@root/package.json';
 
 const SCROLL_REPEAT_INTERVAL = 100; // Interval for repeated scrolling when holding down scroll button
 const NAVBAR_DISABLE_DURATION = 400; // Duration to temporarily disable navbar interactions during scrolling
@@ -297,7 +298,7 @@ export class PostMainnavigation {
 
   render() {
     return (
-      <Host slot="post-mainnavigation">
+      <Host slot="post-mainnavigation" version={version}>
         <div onClick={() => this.handleBackButtonClick()} class="back-button">
           <slot name="back-button"></slot>
         </div>

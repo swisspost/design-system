@@ -1,0 +1,13 @@
+.borders-example {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  width: fit-content;
+  gap: 4vw;
+
+  > div {
+    height: auto;
+    padding: 10px;
+    width: 160px;
+    text-align: center;
+  }
+}
