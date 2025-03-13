@@ -119,50 +119,26 @@ const getSourceForStory = (canvas: Element | null): Promise<string | null> => {
 };
 
 /**
- * Parses the source code and converts relative URLs to absolute URLs
- * Returns the source code with all relative URLs converted to absolute URLs
+ * Parses HTML markup and converts relative URLs to absolute URLs
  */
 const parseUrls = (sourceCode: string | null): string | null => {
-  if (!sourceCode) {
-    return null;
-  }
+  if (!sourceCode) return null;
 
-  // Get the base URL from the current window
+  // Create base URL for resolving relative paths
   const baseUrl = window.location.origin;
+  const basePath = window.location.pathname;
+  const baseUrlWithPath = basePath.endsWith('/') ? baseUrl + basePath : baseUrl + basePath + '/';
 
-  const patterns = [
-    /(href=["'])(\/|\.\/|\.\.\/[^"']*["'])/g,
-    /(src=["'])(\/|\.\/|\.\.\/[^"']*["'])/g,
-    /(url\(["']?)(\/|\.\/|\.\.\/[^"')]*["']?\))/g,
-  ];
-
-  let result = sourceCode;
-
-  patterns.forEach(pattern => {
-    result = result.replace(pattern, (match, prefix, url) => {
-      if (url.startsWith('http://') || url.startsWith('https://')) {
-        return match;
-      }
-
-      // Handle different types of relative paths
-      if (url.startsWith('/')) {
-        // Root-relative URL
-        return `${prefix}${baseUrl}${url}`;
-      } else if (url.startsWith('./')) {
-        // Current directory relative URL
-        return `${prefix}${baseUrl}${window.location.pathname}${url.substring(1)}`;
-      } else if (url.startsWith('../')) {
-        // Parent directory relative URL
-        const pathParts = window.location.pathname.split('/');
-        pathParts.pop(); // Remove current directory
-        const parentPath = pathParts.join('/');
-        return `${prefix}${baseUrl}${parentPath}/${url.substring(3)}`;
-      }
+  // Process both href and src attributes in a single operation
+  return sourceCode.replace(/(href|src)=["'](?!http[s]?:\/\/)([^"']*)["']/g, (match, attr, url) => {
+    try {
+      const absoluteUrl = new URL(url, baseUrlWithPath).href;
+      return `${attr}="${absoluteUrl}"`;
+    } catch (e) {
+      console.error(`Error parsing URL ${url}:`, e);
       return match;
-    });
+    }
   });
-
-  return result;
 };
 
 export const openInCodePen = async (e: Event) => {
