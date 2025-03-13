@@ -62,10 +62,6 @@ li {
       border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
     }
 
-  .home-icon {
-    padding-block: tokens.get('breadcrumb-padding-block-icon-home');
-    padding-inline: tokens.get('breadcrumb-padding-inline-icon-home');
-
     .home-icon {
       padding-block: tokens.get('breadcrumb-padding-block-icon-home');
       padding-inline: tokens.get('breadcrumb-padding-inline-icon-home');
