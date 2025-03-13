@@ -91,16 +91,16 @@ importers:
         version: 0.9.0(@typescript-eslint/eslint-plugin@8.22.0(@typescript-eslint/parser@7.18.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.2))(@typescript-eslint/parser@7.18.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.2))(eslint-plugin-react@7.37.4(eslint@9.18.0(jiti@2.4.2)))(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.2)
       '@stencil/angular-output-target':
         specifier: 0.10.2
-        version: 0.10.2(@stencil/core@4.27.2)
+        version: 0.10.2(@stencil/core@4.28.1)
       '@stencil/core':
-        specifier: 4.27.2
-        version: 4.27.2
+        specifier: 4.28.1
+        version: 4.28.1
       '@stencil/react-output-target':
         specifier: 0.8.2
-        version: 0.8.2(@stencil/core@4.27.2)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 0.8.2(@stencil/core@4.28.1)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@stencil/sass':
         specifier: 3.0.12
-        version: 3.0.12(@stencil/core@4.27.2)
+        version: 3.0.12(@stencil/core@4.28.1)
       '@types/jest':
         specifier: 29.5.14
         version: 29.5.14
@@ -273,7 +273,7 @@ importers:
     dependencies:
       '@stencil/react-output-target':
         specifier: 0.8.2
-        version: 0.8.2(@stencil/core@4.27.2)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 0.8.2(@stencil/core@4.28.1)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@swisspost/design-system-components':
         specifier: workspace:9.0.0-next.30
         version: link:../components
@@ -3635,6 +3635,11 @@ packages:
     cpu: [arm64]
     os: [darwin]
 
+  '@rollup/rollup-darwin-arm64@4.34.9':
+    resolution: {integrity: sha512-0CY3/K54slrzLDjOA7TOjN1NuLKERBgk9nY5V34mhmuu673YNb+7ghaDUs6N0ujXR7fz5XaS5Aa6d2TNxZd0OQ==}
+    cpu: [arm64]
+    os: [darwin]
+
   '@rollup/rollup-darwin-x64@4.30.1':
     resolution: {integrity: sha512-x78BavIwSH6sqfP2xeI1hd1GpHL8J4W2BXcVM/5KYKoAD3nNsfitQhvWSw+TFtQTLZ9OmlF+FEInEHyubut2OA==}
     cpu: [x64]
@@ -3642,6 +3647,11 @@ packages:
 
   '@rollup/rollup-darwin-x64@4.34.8':
     resolution: {integrity: sha512-qIP/elwR/tq/dYRx3lgwK31jkZvMiD6qUtOycLhTzCvrjbZ3LjQnEM9rNhSGpbLXVJYQ3rq39A6Re0h9tU2ynw==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@rollup/rollup-darwin-x64@4.34.9':
+    resolution: {integrity: sha512-eOojSEAi/acnsJVYRxnMkPFqcxSMFfrw7r2iD9Q32SGkb/Q9FpUY1UlAu1DH9T7j++gZ0lHjnm4OyH2vCI7l7Q==}
     cpu: [x64]
     os: [darwin]
 
@@ -3695,6 +3705,11 @@ packages:
     cpu: [arm64]
     os: [linux]
 
+  '@rollup/rollup-linux-arm64-gnu@4.34.9':
+    resolution: {integrity: sha512-6TZjPHjKZUQKmVKMUowF3ewHxctrRR09eYyvT5eFv8w/fXarEra83A2mHTVJLA5xU91aCNOUnM+DWFMSbQ0Nxw==}
+    cpu: [arm64]
+    os: [linux]
+
   '@rollup/rollup-linux-arm64-musl@4.30.1':
     resolution: {integrity: sha512-i4Ab2vnvS1AE1PyOIGp2kXni69gU2DAUVt6FSXeIqUCPIR3ZlheMW3oP2JkukDfu3PsexYRbOiJrY+yVNSk9oA==}
     cpu: [arm64]
@@ -3702,6 +3717,11 @@ packages:
 
   '@rollup/rollup-linux-arm64-musl@4.34.8':
     resolution: {integrity: sha512-KdSfaROOUJXgTVxJNAZ3KwkRc5nggDk+06P6lgi1HLv1hskgvxHUKZ4xtwHkVYJ1Rep4GNo+uEfycCRRxht7+Q==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@rollup/rollup-linux-arm64-musl@4.34.9':
+    resolution: {integrity: sha512-LD2fytxZJZ6xzOKnMbIpgzFOuIKlxVOpiMAXawsAZ2mHBPEYOnLRK5TTEsID6z4eM23DuO88X0Tq1mErHMVq0A==}
     cpu: [arm64]
     os: [linux]
 
@@ -3755,6 +3775,11 @@ packages:
     cpu: [x64]
     os: [linux]
 
+  '@rollup/rollup-linux-x64-gnu@4.34.9':
+    resolution: {integrity: sha512-FwBHNSOjUTQLP4MG7y6rR6qbGw4MFeQnIBrMe161QGaQoBQLqSUEKlHIiVgF3g/mb3lxlxzJOpIBhaP+C+KP2A==}
+    cpu: [x64]
+    os: [linux]
+
   '@rollup/rollup-linux-x64-musl@4.30.1':
     resolution: {integrity: sha512-V9U8Ey2UqmQsBT+xTOeMzPzwDzyXmnAoO4edZhL7INkwQcaW1Ckv3WJX3qrrp/VHaDkEWIBWhRwP47r8cdrOow==}
     cpu: [x64]
@@ -3765,6 +3790,11 @@ packages:
     cpu: [x64]
     os: [linux]
 
+  '@rollup/rollup-linux-x64-musl@4.34.9':
+    resolution: {integrity: sha512-cYRpV4650z2I3/s6+5/LONkjIz8MBeqrk+vPXV10ORBnshpn8S32bPqQ2Utv39jCiDcO2eJTuSlPXpnvmaIgRA==}
+    cpu: [x64]
+    os: [linux]
+
   '@rollup/rollup-win32-arm64-msvc@4.30.1':
     resolution: {integrity: sha512-WabtHWiPaFF47W3PkHnjbmWawnX/aE57K47ZDT1BXTS5GgrBUEpvOzq0FI0V/UYzQJgdb8XlhVNH8/fwV8xDjw==}
     cpu: [arm64]
@@ -3772,6 +3802,11 @@ packages:
 
   '@rollup/rollup-win32-arm64-msvc@4.34.8':
     resolution: {integrity: sha512-YHYsgzZgFJzTRbth4h7Or0m5O74Yda+hLin0irAIobkLQFRQd1qWmnoVfwmKm9TXIZVAD0nZ+GEb2ICicLyCnQ==}
+    cpu: [arm64]
+    os: [win32]
+
+  '@rollup/rollup-win32-arm64-msvc@4.34.9':
+    resolution: {integrity: sha512-z4mQK9dAN6byRA/vsSgQiPeuO63wdiDxZ9yg9iyX2QTzKuQM7T4xlBoeUP/J8uiFkqxkcWndWi+W7bXdPbt27Q==}
     cpu: [arm64]
     os: [win32]
 
@@ -3792,6 +3827,11 @@ packages:
 
   '@rollup/rollup-win32-x64-msvc@4.34.8':
     resolution: {integrity: sha512-U0FaE5O1BCpZSeE6gBl3c5ObhePQSfk9vDRToMmTkbhCOgW4jqvtS5LGyQ76L1fH8sM0keRp4uDTsbjiUyjk0g==}
+    cpu: [x64]
+    os: [win32]
+
+  '@rollup/rollup-win32-x64-msvc@4.34.9':
+    resolution: {integrity: sha512-AyleYRPU7+rgkMWbEh71fQlrzRfeP6SyMnRf9XX4fCdDPAJumdSBqYEcWPMzVQ4ScAl7E4oFfK0GUVn77xSwbw==}
     cpu: [x64]
     os: [win32]
 
@@ -3873,8 +3913,8 @@ packages:
     engines: {node: '>=16.0.0', npm: '>=7.10.0'}
     hasBin: true
 
-  '@stencil/core@4.27.2':
-    resolution: {integrity: sha512-phsgSxWYumdjVhNHZ0pPTXhrM8CgajWidRuoxBfVl76+sVLu3+O2gTuIKd+bZEjixGFb1bHvQeMmlNuwKgxf8Q==}
+  '@stencil/core@4.28.1':
+    resolution: {integrity: sha512-RXZjsK/YcKBvfUt8iosV/ilAulw1G0ExOM+GSaNN1x178MLbPDewMm4Y3tUF1yed9DvHLJzehiFJUKoIL6PymA==}
     engines: {node: '>=16.0.0', npm: '>=7.10.0'}
     hasBin: true
 
@@ -14725,10 +14765,16 @@ snapshots:
   '@rollup/rollup-darwin-arm64@4.34.8':
     optional: true
 
+  '@rollup/rollup-darwin-arm64@4.34.9':
+    optional: true
+
   '@rollup/rollup-darwin-x64@4.30.1':
     optional: true
 
   '@rollup/rollup-darwin-x64@4.34.8':
+    optional: true
+
+  '@rollup/rollup-darwin-x64@4.34.9':
     optional: true
 
   '@rollup/rollup-freebsd-arm64@4.30.1':
@@ -14761,10 +14807,16 @@ snapshots:
   '@rollup/rollup-linux-arm64-gnu@4.34.8':
     optional: true
 
+  '@rollup/rollup-linux-arm64-gnu@4.34.9':
+    optional: true
+
   '@rollup/rollup-linux-arm64-musl@4.30.1':
     optional: true
 
   '@rollup/rollup-linux-arm64-musl@4.34.8':
+    optional: true
+
+  '@rollup/rollup-linux-arm64-musl@4.34.9':
     optional: true
 
   '@rollup/rollup-linux-loongarch64-gnu@4.30.1':
@@ -14797,16 +14849,25 @@ snapshots:
   '@rollup/rollup-linux-x64-gnu@4.34.8':
     optional: true
 
+  '@rollup/rollup-linux-x64-gnu@4.34.9':
+    optional: true
+
   '@rollup/rollup-linux-x64-musl@4.30.1':
     optional: true
 
   '@rollup/rollup-linux-x64-musl@4.34.8':
     optional: true
 
+  '@rollup/rollup-linux-x64-musl@4.34.9':
+    optional: true
+
   '@rollup/rollup-win32-arm64-msvc@4.30.1':
     optional: true
 
   '@rollup/rollup-win32-arm64-msvc@4.34.8':
+    optional: true
+
+  '@rollup/rollup-win32-arm64-msvc@4.34.9':
     optional: true
 
   '@rollup/rollup-win32-ia32-msvc@4.30.1':
@@ -14819,6 +14880,9 @@ snapshots:
     optional: true
 
   '@rollup/rollup-win32-x64-msvc@4.34.8':
+    optional: true
+
+  '@rollup/rollup-win32-x64-msvc@4.34.9':
     optional: true
 
   '@rollup/wasm-node@4.35.0':
@@ -14905,18 +14969,27 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@stencil/angular-output-target@0.10.2(@stencil/core@4.27.2)':
+  '@stencil/angular-output-target@0.10.2(@stencil/core@4.28.1)':
     dependencies:
-      '@stencil/core': 4.27.2
+      '@stencil/core': 4.28.1
 
   '@stencil/core@4.19.2': {}
 
-  '@stencil/core@4.27.2': {}
+  '@stencil/core@4.28.1':
+    optionalDependencies:
+      '@rollup/rollup-darwin-arm64': 4.34.9
+      '@rollup/rollup-darwin-x64': 4.34.9
+      '@rollup/rollup-linux-arm64-gnu': 4.34.9
+      '@rollup/rollup-linux-arm64-musl': 4.34.9
+      '@rollup/rollup-linux-x64-gnu': 4.34.9
+      '@rollup/rollup-linux-x64-musl': 4.34.9
+      '@rollup/rollup-win32-arm64-msvc': 4.34.9
+      '@rollup/rollup-win32-x64-msvc': 4.34.9
 
-  '@stencil/react-output-target@0.8.2(@stencil/core@4.27.2)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@stencil/react-output-target@0.8.2(@stencil/core@4.28.1)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@lit/react': 1.0.7(@types/react@18.3.3)
-      '@stencil/core': 4.27.2
+      '@stencil/core': 4.28.1
       html-react-parser: 5.2.2(@types/react@18.3.3)(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -14929,9 +15002,9 @@ snapshots:
     dependencies:
       '@stencil/core': 4.19.2
 
-  '@stencil/sass@3.0.12(@stencil/core@4.27.2)':
+  '@stencil/sass@3.0.12(@stencil/core@4.28.1)':
     dependencies:
-      '@stencil/core': 4.27.2
+      '@stencil/core': 4.28.1
 
   '@stencil/store@2.0.16(@stencil/core@4.19.2)':
     dependencies:
