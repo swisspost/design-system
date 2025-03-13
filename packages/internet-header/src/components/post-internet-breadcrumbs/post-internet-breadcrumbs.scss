@@ -5,6 +5,8 @@
 @use '@swisspost/design-system-styles/variables/color';
 @use '@swisspost/design-system-styles/functions';
 @use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/elements';
 @use '../../utils/utils.scss';
 @use '../../utils/mixins.scss';
 
@@ -135,7 +137,7 @@
   height: 1.5em;
   min-height: 0;
   font-size: inherit;
-  color: inherit;
+  color: tokens.get('body-color', elements.$post-body);
 
   span {
     margin: 0;

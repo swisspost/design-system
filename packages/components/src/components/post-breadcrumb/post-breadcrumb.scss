@@ -17,7 +17,6 @@ tokens.$default-map: components.$post-breadcrumb;
 .breadcrumbs-nav {
   display: flex;
   align-items: center;
-
 }
 
 .hidden-items {
@@ -63,21 +62,21 @@ li {
       border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
     }
 
-  .home-icon {
-    padding-block: tokens.get('breadcrumb-padding-block-icon-home');
-    padding-inline: tokens.get('breadcrumb-padding-inline-icon-home');
+    .home-icon {
+      padding-block: tokens.get('breadcrumb-padding-block-icon-home');
+      padding-inline: tokens.get('breadcrumb-padding-inline-icon-home');
 
-    &:hover {
-      color: tokens.get('breadcrumb-hover-fg');
-    }
-
-    @include utilities.high-contrast-mode() {
-      a,
-      &:focus,
       &:hover {
-        color: CanvasText !important;
+        color: tokens.get('breadcrumb-hover-fg');
       }
-    }
+
+      @include utilities.high-contrast-mode() {
+        a,
+        &:focus,
+        &:hover {
+          color: CanvasText !important;
+        }
+      }
     }
   }
 }
@@ -99,9 +98,9 @@ post-menu-trigger {
   padding-block: tokens.get('breadcrumb-padding-block-text');
   @include utilities.focus-style;
 
-    &:focus {
-      border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
-    }
+  &:focus {
+    border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
+  }
 
   button {
     background: none;
@@ -146,7 +145,7 @@ post-menu::part(popover-container) {
 
   a {
     text-decoration: none;
-    color: inherit;
+    color: tokens.get('body-color', elements.$post-body);
     line-height: 150%;
     padding-block: tokens.get('breadcrumb-padding-block-text');
     font-size: tokens.get('body-font-size', elements.$post-body);
