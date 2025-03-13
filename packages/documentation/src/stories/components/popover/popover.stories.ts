@@ -53,6 +53,7 @@ const meta: MetaComponent = {
         'Value can either be in `vw`, `px` or `%`. If no max-width is defined, the popover will extend to the width of its content.',
       table: {
         category: 'General',
+        defaultValue: { summary: '280px' }
       },
     },
     palette: {
