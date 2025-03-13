@@ -74,7 +74,7 @@ export class PostCollapsibleTrigger {
     this.debouncedUpdate();
   }
 
-  private debouncedUpdate = debounce(() => {
+  private readonly debouncedUpdate = debounce(() => {
     if (!this.trigger) return;
 
     // add the provided id to the aria-controls list
