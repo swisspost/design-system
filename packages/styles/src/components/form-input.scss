@@ -231,6 +231,7 @@ input.form-control {
 
     &::placeholder {
       color: transparent;
+      opacity: 0;
     }
 
     &:focus,
@@ -251,15 +252,9 @@ input.form-control {
       }
     }
 
-    @include forms-mx.placeholder {
-      opacity: 0;
-    }
-
-    &:focus {
-      @include forms-mx.placeholder {
-        color: tokens.get('input-color-helptext-fg');
-        opacity: 1;
-      }
+    &:focus::placeholder {
+      color: tokens.get('input-color-helptext-fg');
+      opacity: 1;
     }
 
     &:disabled ~ label {
@@ -292,10 +287,8 @@ input.form-control {
   }
 
   @include utilities.high-contrast-mode() {
-    > input {
-      @include forms-mx.placeholder() {
-        opacity: 0;
-      }
+    > input::placeholder {
+      opacity: 0;
     }
   }
 }
