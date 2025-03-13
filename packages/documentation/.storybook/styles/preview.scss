@@ -141,10 +141,15 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
+    padding-top: 0;
     background-color: transparent;
 
     .sbdocs-content {
       max-width: none;
+    }
+
+    .docs-container {
+      padding-top: 4rem;
     }
   }
 
