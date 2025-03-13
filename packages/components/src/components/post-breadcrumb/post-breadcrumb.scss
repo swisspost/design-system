@@ -62,6 +62,10 @@ li {
       border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
     }
 
+  .home-icon {
+    padding-block: tokens.get('breadcrumb-padding-block-icon-home');
+    padding-inline: tokens.get('breadcrumb-padding-inline-icon-home');
+
     .home-icon {
       padding-block: tokens.get('breadcrumb-padding-block-icon-home');
       padding-inline: tokens.get('breadcrumb-padding-inline-icon-home');
@@ -133,7 +137,7 @@ post-menu::part(popover-container) {
   gap: tokens.get('breadcrumb-gap-inline-outer');
 
   ::slotted(post-menu-item:not(:last-child)) {
-    margin-bottom: tokens.get('breadcrumb-gap-inline-outer');
+    margin-block-end: tokens.get('breadcrumb-gap-inline-outer');
   }
 }
 

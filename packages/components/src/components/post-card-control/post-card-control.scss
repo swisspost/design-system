@@ -27,7 +27,7 @@ tokens.$default-map: utilities.$post-spacing;
 :host-context(fieldset) {
   &:host(:not(:last-child)) {
     .card-control {
-      margin-bottom: tokens.get('utility-gap-16');
+      margin-block-end: tokens.get('utility-gap-16');
     }
   }
 }
@@ -437,7 +437,7 @@ tokens.$default-map: utilities.$post-spacing;
 
 :host([data-context*='fieldset']:not(:last-child)) {
   .card-control {
-    margin-bottom: tokens.get('utility-gap-16');
+    margin-block-end: tokens.get('utility-gap-16');
   }
 }
 

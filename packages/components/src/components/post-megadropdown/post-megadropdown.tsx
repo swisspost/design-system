@@ -1,5 +1,6 @@
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
+import { version } from '@root/package.json';
 import { breakpoint } from '../../utils/breakpoints';
 
 @Component({
@@ -204,7 +205,7 @@ export class PostMegadropdown {
     const containerStyle = this.isVisible ? {} : { display: 'none' };
 
     return (
-      <Host>
+      <Host version={version}>
         <div
           class={`megadropdown-container ${this.animationClass || ''}`}
           style={containerStyle}
