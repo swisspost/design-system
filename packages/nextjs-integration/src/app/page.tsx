@@ -139,7 +139,7 @@ export default function Home() {
       <button className="btn btn-secondary btn-large" data-tooltip-target="tooltip-one">
         Button
       </button>
-      <PostTooltip id="tooltip-one" className="palette-accent" placement="top" delayed="false">
+      <PostTooltip id="tooltip-one" className="palette-accent" placement="top" delayed={false}>
         Hi there 👋
       </PostTooltip>
     </>
