@@ -1,24 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Styles playground</title>
 
-    <!-- Token imports -->
-    <link rel="stylesheet" href="src/tokens/_core.scss" />
-    <link id="channel" rel="stylesheet" href="src/tokens/_external.scss" />
-    <link id="palettes" rel="stylesheet" href="src/palettes/post-palettes.scss" />
-    <link id="theme" rel="stylesheet" href="src/tokens/_post-theme.scss" />
-    <link rel="stylesheet" href="src/tokens/_device.scss" />
-    <link rel="stylesheet" href="src/tokens/_components.scss" />
-    <link rel="stylesheet" href="src/tokens/_schemes.scss" />
-
     <!-- Styles -->
-    <link rel="stylesheet" href="src/layout/index.scss" />
-    <link rel="stylesheet" href="src/utilities/index.scss" />
-    <link rel="stylesheet" href="src/elements/_index.scss" />
-    <link rel="stylesheet" href="src/components/_index.scss" />
+    <link rel="stylesheet" id="styles" href="src/post-default.scss" />
+
     <script src="playground.js" defer></script>
   </head>
   <body>
@@ -31,10 +20,10 @@
           <option value="post">Post</option>
           <option value="cargo">Cargo</option>
         </select>
-        <label for="tokens-select">Channel</label>
-        <select name="channel" id="channel-select" value="external" class="mb-4 me-8">
-          <option value="external">Post external</option>
-          <option value="internal">Post internal</option>
+        <label for="tokens-select">Appearance</label>
+        <select name="appearance" id="appearance-select" value="default" class="mb-4 me-8">
+          <option value="default">Default</option>
+          <option value="compact">Compact</option>
         </select>
         <label for="scheme-select">Color scheme</label>
         <select name="scheme" id="scheme-select" value="light" class="mb-4">

@@ -1,14 +1,22 @@
-// Change tokens
-document.getElementById('channel-select').addEventListener('change', e => {
-  document.getElementById('channel').setAttribute('href', `src/tokens/_${e.target.value}.scss`);
-});
+const handleThemeAppearanceChange = () => {
+  const theme = getTheme();
+  const appearance = getAppearance();
+  document.getElementById('styles').setAttribute('href', `src/${theme}-${appearance}.scss`);
+};
 
-document.getElementById('theme-select').addEventListener('change', e => {
-  document.getElementById('theme').setAttribute('href', `src/tokens/_${e.target.value}-theme.scss`);
-  document
-    .getElementById('palettes')
-    .setAttribute('href', `src/palettes/${e.target.value}-palettes.scss`);
-});
+const getAppearance = () => {
+  return document.querySelector('#appearance-select').value;
+};
+
+const getTheme = () => {
+  return document.querySelector('#theme-select').value;
+};
+
+// Change tokens
+document
+  .getElementById('appearance-select')
+  .addEventListener('change', handleThemeAppearanceChange);
+document.getElementById('theme-select').addEventListener('change', handleThemeAppearanceChange);
 
 document.getElementById('scheme-select').addEventListener('change', e => {
   document.body.setAttribute('data-color-scheme', e.target.value);
