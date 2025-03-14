@@ -153,7 +153,7 @@ function getLabel({ label }: Args, { id }: StoryContext) {
 
 function getValidationFeedback({ validation }: Args) {
   return html`
-    <p class="${validation + '-feedback'}">
+    <p class="${validation + '-feedback'}" id="is-${validation}-id">
       ${validation === 'valid' ? 'Ggranda sukceso!' : 'Eraro okazis!'}
     </p>
   `;
@@ -187,6 +187,7 @@ function renderCheckbox(args: Args, context: StoryContext) {
         type="checkbox"
         aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
         aria-label="${ifDefined(args.hiddenLabel ? args.label : undefined)}"
+        aria-describedby="${args.validation != 'null' ? `is-${args.validation}-id` : nothing}"
         ?disabled="${args.disabled}"
         .checked="${CHECKED_STATE_MAP[args.checked]}"
         @change="${handleChange}"
