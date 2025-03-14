@@ -486,6 +486,13 @@ export class MigrationV89Component extends LitElement {
               <ul>
                 <li class="mb-16">
                   <p>
+                    The card button CSS component has been removed.The <code>.card-button</code> and
+                    <code>.card-buttons</code> are therefore no longer available.
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                </li>
+                <li class="mb-16">
+                  <p>
                     The <code>.btn-rg</code> class has been removed. Buttons using this class will
                     now fall back to the default <code>btn-md</code>
                     <span class="tag tag-sm tag-danger">breaking</span>
