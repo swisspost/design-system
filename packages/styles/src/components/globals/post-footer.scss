@@ -47,18 +47,6 @@ post-footer {
         }
       }
     }
-
-    &.btn-icon {
-      @include utilities.high-contrast-mode() {
-        color: CanvasText !important;
-      }
-
-      &:hover {
-        @include utilities.high-contrast-mode() {
-          color: LinkText !important;
-        }
-      }
-    }
   }
 
   post-list {

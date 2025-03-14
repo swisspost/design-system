@@ -1,4 +1,4 @@
-import { CSP_NONCE, ENVIRONMENT_INITIALIZER, inject, NgModule } from '@angular/core';
+import { CSP_NONCE, inject, NgModule, provideEnvironmentInitializer } from '@angular/core';
 import { defineCustomElements, setNonce } from '@swisspost/design-system-components/loader';
 
 import { DIRECTIVES } from './stencil-generated';
@@ -12,13 +12,11 @@ const DECLARATIONS = [
 ];
 
 @NgModule({
-  declarations: DECLARATIONS,
+  imports: DECLARATIONS,
   exports: DECLARATIONS,
   providers: [
-    {
-      // Use ENVIRONMENT_INITIALIZER to be compatible with lazy-loaded modules
-      provide: ENVIRONMENT_INITIALIZER,
-      useFactory: () => () => {
+    provideEnvironmentInitializer(() => {
+      const initializerFn = (() => () => {
         // Check if Post components are already defined, if so do nothing
         if (typeof customElements.get('post-icon') !== 'undefined') return;
 
@@ -28,9 +26,9 @@ const DECLARATIONS = [
 
         // Define Post components
         defineCustomElements();
-      },
-      multi: true,
-    },
+      })();
+      return initializerFn();
+    }),
   ],
 })
 export class PostComponentsModule {}

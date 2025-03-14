@@ -1,5 +1,5 @@
 @use '@swisspost/design-system-styles/core' as post;
-@use './variables' as variables;
+
 @use '@swisspost/design-system-styles/tokens/utilities';
 @use '@swisspost/design-system-styles/functions/tokens';
 
@@ -38,15 +38,14 @@ tokens.$default-map: utilities.$post-spacing;
     margin-inline: tokens.get('utility-gap-8');
     height: 1.5rem;
 
+    .p-datatable-column-filter-button {
+      transform: translateY(-10px);
+    }
+
     filtericon {
       height: 1.25rem;
       width: 1.25rem;
     }
-  }
-
-  .p-datatable-tbody > tr > td {
-    border: variables.$tableBodyCellBorder;
-    border-width: variables.$tableBodyCellBorderWidth;
   }
 
   &.p-datatable-striped .p-datatable-tbody > tr {

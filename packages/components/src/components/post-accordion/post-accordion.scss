@@ -12,7 +12,7 @@ tokens.$default-map: components.$post-accordion;
 }
 
 ::slotted(post-accordion-item:not(:only-of-type:first-of-type)) {
-  margin-top: calc(tokens.get('accordion-group-border-top-width') * -1);
+  margin-block-start: calc(tokens.get('accordion-group-border-top-width') * -1);
 }
 
 ::slotted(post-accordion-item:not(:only-of-type):first-of-type) {

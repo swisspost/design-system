@@ -1,5 +1,31 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.30
+
+### Major Changes
+
+- Uninstalled **Intranet Header** package and all its style references. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4587](https://github.com/swisspost/design-system/pull/4587))
+
+- Removed z-index scss variables that were no longer necessary as they had been replaced with popover elements. (by [@leagrdv](https://github.com/leagrdv) with [#4658](https://github.com/swisspost/design-system/pull/4658))
+
+### Patch Changes
+
+- Internalized bootstrap border utility classes. (by [@myrta2302](https://github.com/myrta2302) with [#3751](https://github.com/swisspost/design-system/pull/3751))
+
+- Merged utility classes that were setting the same properties, which reduces the size of the CSS output. (by [@leagrdv](https://github.com/leagrdv) with [#4654](https://github.com/swisspost/design-system/pull/4654))
+
+- Fixed the mobile menu height in the `post-header` component when the scrollable parent is not the document's body. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4829](https://github.com/swisspost/design-system/pull/4829))
+
+- Updated header button styles to match the header anchor styles. (by [@myrta2302](https://github.com/myrta2302) with [#4785](https://github.com/swisspost/design-system/pull/4785))
+
+- Switched the outermost scrollable parent of the `post-header` component from the `html` to the `body` element. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4823](https://github.com/swisspost/design-system/pull/4823))
+
+- Cleaned up \_button.scss by moving button-specific variables to button.scss. Redefined cross-referenced variables in respective component files. Removed unused variables. (by [@schaertim](https://github.com/schaertim) with [#4702](https://github.com/swisspost/design-system/pull/4702))
+
+- Improved the consistency of styles for buttons and links in HCM. (by [@leagrdv](https://github.com/leagrdv) with [#4864](https://github.com/swisspost/design-system/pull/4864))
+
+- Corrected icon URL declarations to avoid errors during the build process when using Vite. (by [@alizedebray](https://github.com/alizedebray) with [#4853](https://github.com/swisspost/design-system/pull/4853))
+
 ## 9.0.0-next.29
 
 ## 9.0.0-next.28

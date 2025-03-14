@@ -2,6 +2,7 @@ import { DocsContainer, DocsContainerProps, Unstyled } from '@storybook/blocks';
 import { PropsWithChildren } from 'react';
 import './layout.scss';
 import Footer from '../footer';
+import BetaBanner from '../beta-banner';
 import Header from '../header';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
@@ -24,8 +25,9 @@ export default (props: PropsWithChildren<DocsContainerProps>) => {
   return (
     <DocsContainer context={context}>
       <Unstyled>
+        <BetaBanner />
         {shouldShowHeader() && <Header />}
-        <div className={container}>{children}</div>
+        <div className={container + (!shouldShowHeader() && ' docs-container')}>{children}</div>
         {shouldShowFooter() && <Footer pathToStoryFile={ifDefined(pathToStoryFile)} />}
       </Unstyled>
     </DocsContainer>

@@ -1,5 +1,6 @@
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
+import { version } from '@root/package.json';
 import { breakpoint } from '../../utils/breakpoints';
 
 @Component({
@@ -95,14 +96,18 @@ export class PostMegadropdown {
    * Hides the dropdown with an animation.
    */
   @Method()
-  async hide(focusParent = true) {
+  async hide(focusParent = true, forceClose = false) {
     this.postToggleMegadropdown.emit({ isVisible: false, focusParent: focusParent });
-    this.animationClass = 'slide-out';
+    if (forceClose) {
+      this.forceClose();
+    } else {
+      this.animationClass = 'slide-out';
+    }
   }
 
   /**
    * Sets focus to the first focusable element within the component.
-  */
+   */
   @Method()
   async focusFirst() {
     this.firstFocusableEl?.focus();
@@ -132,6 +137,8 @@ export class PostMegadropdown {
   }
 
   private handleClickOutside = (event: MouseEvent) => {
+    if (this.device !== 'desktop') return;
+
     const target = event.target as Node;
 
     if (this.host.contains(target)) {
@@ -140,6 +147,7 @@ export class PostMegadropdown {
 
     if (target instanceof HTMLElement) {
       const trigger = target.closest('post-megadropdown-trigger');
+
       if (trigger) {
         const targetDropdownId = trigger.getAttribute('for');
         if (targetDropdownId !== this.host.id) {
@@ -197,7 +205,7 @@ export class PostMegadropdown {
     const containerStyle = this.isVisible ? {} : { display: 'none' };
 
     return (
-      <Host>
+      <Host version={version}>
         <div
           class={`megadropdown-container ${this.animationClass || ''}`}
           style={containerStyle}

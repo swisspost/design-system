@@ -1,5 +1,13 @@
 # @swisspost/design-system-components-angular
 
+## 9.0.0-next.30
+
+### Patch Changes
+
+- Updated the project to use Angular version 19. (by [@alizedebray](https://github.com/alizedebray) with [#4853](https://github.com/swisspost/design-system/pull/4853))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.30
+
 ## 9.0.0-next.29
 
 ### Patch Changes

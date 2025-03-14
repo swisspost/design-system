@@ -1,9 +1,5 @@
 @use 'src/mixins/forms';
 
 body {
-  @include forms.placeholder() {
-    color: red;
-  }
-
   @include forms.focus-outline();
 }

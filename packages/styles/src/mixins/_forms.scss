@@ -6,20 +6,6 @@
 @use './../functions/utilities' as utilities-fx;
 @use './../variables/color';
 
-// Placeholder in input fields
-@mixin placeholder() {
-  &::placeholder {
-    @content;
-  }
-
-  // For very old Edge
-  /* stylelint-disable */
-  &::input-placeholder {
-    @content;
-  }
-  /* stylelint-enable */
-}
-
 /* Deprecated use the one in utilities.scss */
 @mixin focus-outline {
   outline: none;

@@ -108,7 +108,7 @@ export const MarginAndPadding: Story = {
   },
   args: {
     marginSides: 'null',
-    marginSize: '20',
+    marginSize: '24',
     paddingSides: 'null',
     paddingSize: '12',
   },

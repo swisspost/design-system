@@ -31,6 +31,7 @@
   > div {
     box-shadow: elevation.$elevation-300;
     width: max-content;
+    max-width: 100%;
     color: var(--post-current-palette-fg);
     background-color: var(--post-current-palette-bg);
     border: 2px solid transparent; // Keeping the default border for HCM
@@ -113,23 +114,23 @@
 
     // Create transparent border to be styled by and for the high contrast mode
     &.top {
-      border-left: 2px solid transparent;
-      border-top: 2px solid transparent;
+      border-block-start: 2px solid transparent;
+      border-inline-start: 2px solid transparent;
     }
 
     &.right {
-      border-right: 2px solid transparent;
-      border-top: 2px solid transparent;
+      border-block-start: 2px solid transparent;
+      border-inline-end: 2px solid transparent;
     }
 
     &.left {
-      border-left: 2px solid transparent;
-      border-bottom: 2px solid transparent;
+      border-block-end: 2px solid transparent;
+      border-inline-start: 2px solid transparent;
     }
 
     &.bottom {
-      border-right: 2px solid transparent;
-      border-bottom: 2px solid transparent;
+      border-block-end: 2px solid transparent;
+      border-inline-end: 2px solid transparent;
     }
   }
 }

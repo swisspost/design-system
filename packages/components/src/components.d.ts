@@ -301,7 +301,7 @@ export namespace Components {
         /**
           * Hides the dropdown with an animation.
          */
-        "hide": (focusParent?: boolean) => Promise<void>;
+        "hide": (focusParent?: boolean, forceClose?: boolean) => Promise<void>;
         /**
           * Displays the dropdown.
          */

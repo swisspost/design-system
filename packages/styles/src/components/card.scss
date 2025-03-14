@@ -8,6 +8,7 @@
 
 @use './../functions/tokens';
 @use './../tokens/utilities';
+@use './../tokens/elements';
 @use './../tokens/components';
 
 tokens.$default-map: components.$post-cards;
@@ -153,7 +154,7 @@ post-linkarea:has(> .card) {
 
   &:hover,
   &:focus {
-    color: inherit;
+    color: tokens.get('body-color', elements.$post-body);
     text-decoration: none;
   }
 

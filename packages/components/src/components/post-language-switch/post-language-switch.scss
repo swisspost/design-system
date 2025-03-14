@@ -49,4 +49,15 @@ tokens.$default-map: components.$post-button;
       color: white;
     }
   }
+
+  @include utilities-mx.high-contrast-mode() {
+    border: 1px solid ButtonBorder;
+
+    &[aria-expanded='true'],
+    &:hover {
+      post-icon {
+        color: HighlightText;
+      }
+    }
+  }
 }

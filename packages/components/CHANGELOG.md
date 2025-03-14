@@ -1,5 +1,30 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.30
+
+### Patch Changes
+
+- Fixed the gap that appeared between the header and the main navigation when scrolling up. (by [@alizedebray](https://github.com/alizedebray) with [#4810](https://github.com/swisspost/design-system/pull/4810))
+
+- Fixed text-alignment for `post-language-switch` component to match the design. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4759](https://github.com/swisspost/design-system/pull/4759))
+
+- Updated the keydown event handling for `post-megadropdown` component to move focus to the first dropdown element when activated via Space, ensuring consistency with the Enter key behavior. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4799](https://github.com/swisspost/design-system/pull/4799))
+
+- Fixed the mobile menu height in the `post-header` component when the scrollable parent is not the document's body. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4829](https://github.com/swisspost/design-system/pull/4829))
+
+- Switched the outermost scrollable parent of the `post-header` component from the `html` to the `body` element. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4823](https://github.com/swisspost/design-system/pull/4823))
+
+- Fixed the mobile menu behavior in the `post-header` and `post-megadropdown` components, so the second navigation level is always showing at the correct location in design, no matter if the user has scrolled on the first navigation level. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4829](https://github.com/swisspost/design-system/pull/4829))
+
+- Fixed the clipped focus ring on `post-mainnavigation` items ensuring a fully visible and accessible focus state. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4808](https://github.com/swisspost/design-system/pull/4808))
+
+- Adjusted `post-tooltip` and `post-popover` positioning by adding a top margin to ensure they do not overlap the `post-header` upon opening. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4589](https://github.com/swisspost/design-system/pull/4589))
+
+- Improved the consistency of styles for buttons and links in HCM. (by [@leagrdv](https://github.com/leagrdv) with [#4864](https://github.com/swisspost/design-system/pull/4864))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.30
+  - @swisspost/design-system-icons@9.0.0-next.30
+
 ## 9.0.0-next.29
 
 ### Patch Changes
