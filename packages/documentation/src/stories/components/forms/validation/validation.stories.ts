@@ -8,12 +8,12 @@ const validationObject: object = {
   control: {
     type: 'radio',
     labels: {
-      'null': 'Default',
+      '': 'Default',
       'is-valid': 'Valid',
       'is-invalid': 'Invalid',
     },
   },
-  options: ['is-invalid', 'is-valid', 'null'],
+  options: ['is-invalid', 'is-valid', ''],
   table: {
     category: 'States',
   },
@@ -21,28 +21,27 @@ const validationObject: object = {
 
 export function getValidationProps(component: string, args: Args) {
   const key = `validation${component}`;
+  const validationState = args[key];
+  const isValidationSet = args[key] !== '';
+  const isValid = validationState === 'is-valid';
 
   const scheme = args.scheme ? `-${args.scheme}` : '';
   const name = args.componentName ? `-${args.componentName}` : '';
   const id = `-id${name}${scheme}`;
-  const validationState = args[key] !== 'null' ? args[key] + id : '';
-  if (component == 'Select') console.log(validationState);
-  const isValidationSet = args[key] !== 'null';
-  const isValid = validationState === 'is-valid';
-
+  const nothingOrBlank = ['textarea', 'select', 'input'].includes(component.toLowerCase())
+    ? ''
+    : nothing;
+  console.log(validationState);
   return {
     scheme,
     validationState,
     isValidationSet,
     ariaInvalid: isValidationSet ? !isValid : nothing,
-    ariaDescribedBy:
-      isValidationSet || ['textarea', 'select'].includes(component.toLowerCase())
-        ? `${validationState}`
-        : nothing,
+    ariaDescribedBy: isValidationSet ? `${validationState}${id}` : nothingOrBlank,
     validFeedbackId:
-      isValidationSet && validationState !== 'is-invalid' ? `${validationState}` : nothing,
+      isValidationSet && validationState !== 'is-invalid' ? `${validationState}${id}` : nothing,
     invalidFeedbackId:
-      isValidationSet && validationState !== 'is-valid' ? `${validationState}` : nothing,
+      isValidationSet && validationState !== 'is-valid' ? `${validationState}${id}` : nothing,
   };
 }
 
@@ -119,13 +118,13 @@ export const Input: Story = {
         id="Input_1${props.validationState}${props.scheme}"
         class="form-control form-control-lg ${props.isValidationSet ? props.validationState : ''}"
         aria-invalid=${props.ariaInvalid}
-        aria-describedby="${props.ariaDescribedBy}"
+        aria-describedby="Input_1-form-hint${props.validationState}${props.scheme} ${props.ariaDescribedBy}"
         type="text"
         placeholder="Placeholder"
       />
       <label class="form-label" for="Input_1${props.validationState}${props.scheme}">Label</label>
       ${feedbackTemplate}
-      <p class="form-hint">
+      <p class="form-hint" id="Input_1-form-hint${props.validationState}${props.scheme}">
         Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
         illum dolore eu feugiat nulla facilisis.
       </p>
@@ -227,13 +226,12 @@ export const Select: Story = {
     const component = context.name.replace(/\s+/g, '');
     const props = getValidationProps(component, args);
     const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
-
     return html`<div class="form-floating">
       <select
         id="Select_1${props.validationState}${props.scheme}"
         class="form-select form-select-lg ${props.isValidationSet ? props.validationState : ''}"
-        aria-invalid="${props.ariaInvalid}"
-        aria-describedby="form-hint-${context.id} ${props.ariaDescribedBy}"
+        aria-invalid=${props.ariaInvalid}
+        aria-describedby="Select_1-form-hint${props.validationState}${props.scheme} ${props.ariaDescribedBy}"
       >
         <option>Select option...</option>
         <option value="value_1">Option 1</option>
@@ -245,7 +243,7 @@ export const Select: Story = {
         <span>Label</span>
       </label>
       ${feedbackTemplate}
-      <p class="form-hint" id="form-hint-${context.id}">
+      <p class="form-hint" id="Select_1-form-hint${props.validationState}${props.scheme}">
         Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
         illum dolore eu feugiat nulla facilisis.
       </p>
@@ -301,13 +299,13 @@ export const TextArea: Story = {
         id="TextArea_1${props.validationState}${props.scheme}"
         class="form-control form-control-lg ${props.isValidationSet ? props.validationState : ''}"
         aria-invalid=${props.ariaInvalid}
-        aria-describedby="form-hint-${context.id} ${props.ariaDescribedBy}"
+        aria-describedby="TextArea_1-form-hint${props.validationState}${props.scheme} ${props.ariaDescribedBy}"
       ></textarea
       ><label class="form-label" for="TextArea_1${props.validationState}${props.scheme}"
         >Label</label
       >
       ${feedbackTemplate}
-      <p class="form-hint" id="form-hint-${context.id}">
+      <p class="form-hint" id="TextArea_1-form-hint${props.validationState}${props.scheme}">
         Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
         illum dolore eu feugiat nulla facilisis.
       </p>
