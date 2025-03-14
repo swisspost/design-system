@@ -25,7 +25,7 @@ jobs:
 
       # Dry-run the publish process to validate the setup
       - name: Test publish step
-        run: pnpm -r publish --dry-run
+        run: pnpm -r publish --dry-run --no-git-checks
 
       # Run Changeset Magic in dry-run mode
       - name: Changeset Magic (Dry Run)
