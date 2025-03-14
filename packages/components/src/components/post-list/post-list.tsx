@@ -42,7 +42,12 @@ export class PostList {
   }
 
   private checkTitle() {
-    if (!this.titleEl.textContent.trim()) {
+    const slotContent = this.titleEl
+      .querySelector('slot')
+      .assignedNodes()
+      .map(node => node.textContent.trim());
+
+    if (!slotContent) {
       console.error(
         'Please provide a title to the list component. Title is mandatory for accessibility purposes.',
       );
