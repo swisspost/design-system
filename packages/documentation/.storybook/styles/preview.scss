@@ -249,3 +249,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     left: 100%;
   }
 }
+
+.sbdocs.sbdocs-preview.source-hidden > *:nth-child(2) {
+  display: none !important;
+}
