@@ -148,9 +148,29 @@ export class PostCardControl {
     checkNonEmpty(this, 'label');
   }
 
+  @Watch('name')
+  validateControlName() {
+    checkNonEmpty(this, 'name', undefined, this.type === 'radio' ? 'error' : 'warning');
+  }
+
+  @Watch('value')
+  validateControlValue() {
+    checkNonEmpty(this, 'value', undefined, this.type === 'radio' ? 'error' : 'warning');
+  }
+
+  @Watch('description')
+  validateControlDescription() {
+    checkNonEmpty(this, 'description', undefined, 'warning');
+  }
+
   @Watch('type')
   validateControlType() {
     checkOneOf(this, 'type', ['checkbox', 'radio']);
+  }
+
+  @Watch('icon')
+  validateControlIcon() {
+    checkNonEmpty(this, 'icon', undefined, 'warning');
   }
 
   @Watch('checked')
@@ -403,7 +423,11 @@ export class PostCardControl {
 
   componentDidLoad() {
     this.validateControlLabel();
+    this.validateControlName();
+    this.validateControlValue();
+    this.validateControlDescription();
     this.validateControlType();
+    this.validateControlIcon();
   }
 
   formAssociatedCallback() {
