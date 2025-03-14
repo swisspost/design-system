@@ -1,4 +1,4 @@
-name: Dry Run Publish on Changeset PRs
+name: Dry Run Publish
 
 on:
   pull_request:
