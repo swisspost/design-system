@@ -167,7 +167,7 @@ function renderTextarea(args: Args, context: StoryContext) {
       aria-invalid=${VALIDATION_STATE_MAP[args.validation] ?? nothing}
       aria-describedby="${args.hint ? 'form-hint-' + context.id : ''} ${args.validation != 'null'
         ? `${args.validation}-id`
-        : nothing}"
+        : ''}"
       style=${args.resize ?? nothing}
     >
 ${args.textInside ?? nothing}</textarea

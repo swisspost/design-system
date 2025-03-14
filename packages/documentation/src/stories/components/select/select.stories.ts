@@ -212,7 +212,10 @@ const Template: Story = {
         ?disabled="${args.disabled}"
         aria-label="${useAriaLabel ? args.label : nothing}"
         aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
-        aria-describedby="${args.hint !== '' ? 'form-hint-' + context.id : ''}"
+        aria-describedby="${args.hint !== '' ? 'form-hint-' + context.id : ''} ${args.validation !=
+        'null'
+          ? `${args.validation}-id`
+          : ''}"
         @change="${(e: Event) => {
           updateArgs({ value: (e.target as HTMLSelectElement).value });
         }}"
