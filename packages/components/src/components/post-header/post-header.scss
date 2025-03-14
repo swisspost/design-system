@@ -14,6 +14,25 @@
 :host {
   z-index: commons.$zindex-header;
   position: relative;
+
+  // The following variables will affect the header to minimize it on scroll
+  --global-header-top: calc(
+    (var(--global-header-height) - var(--global-header-reduced-height)) * -1
+  );
+  --local-header-top: calc(
+    -1 * (var(--local-header-height) - var(--main-navigation-height)) + var(--global-header-reduced-height)
+  );
+  --logo-height: calc(var(--global-header-height) - var(--header-scroll-top));
+  --global-controls-top: calc(min((var(--header-scroll-top) / 4), 20px) * -1);
+
+  // If focus is within the header (except the logo and the post-mainnavigation elements), the header should be shown fully
+  &:has(.global-sub > *:not(.logo):focus-within),
+  &:has(.local-sub:focus-within) {
+    --global-header-top: 0;
+    --local-header-top: var(--global-header-height);
+    --logo-height: var(--global-header-height);
+    --global-controls-top: 0;
+  }
 }
 
 :host(:not(:has([slot='title']))) {
@@ -50,9 +69,8 @@
   @include media.min(lg) {
     z-index: 5;
     padding-inline-end: 12px;
-    inset-block-start: calc(
-      (var(--global-header-height) - var(--global-header-reduced-height)) * -1
-    );
+    inset-block-start: var(--global-header-top);
+    transition: inset-block-start 0.2s ease-in-out;
   }
 }
 
@@ -60,6 +78,15 @@
   display: flex;
   align-items: center;
   gap: 24px;
+
+  @include media.min(lg) {
+    // targets the right links and language switch to hide them on scroll
+    &:not(:has(.logo)) {
+      position: relative;
+      transition: inset-block-start 0.2s ease-in-out;
+      inset-block-start: var(--global-controls-top);
+    }
+  }
 }
 
 .align-end {
@@ -74,7 +101,8 @@
   align-self: flex-end;
 
   @include media.min(lg) {
-    height: calc(var(--global-header-height) - var(--header-scroll-top));
+    transition: height 0.2 ease-in-out;
+    height: var(--logo-height);
   }
 }
 
@@ -82,7 +110,7 @@
   margin-block: 0 !important;
   list-style: none;
   display: flex;
-  padding-left: 0;
+  padding-inline-start: 0;
   gap: 1rem;
   flex-shrink: 0 !important;
 }
@@ -104,7 +132,7 @@
     width: 100%;
     height: 1px;
     background-color: #e1e0dc;
-    bottom: -1px;
+    inset-block-end: -1px;
     z-index: 1;
 
     @include utilities.high-contrast-mode() {
@@ -114,11 +142,10 @@
 
   @include media.min(lg) {
     z-index: 3;
-    inset-block-start: calc(
-      -1 * (var(--local-header-height) - var(--main-navigation-height)) + var(--global-header-reduced-height)
-    );
+    inset-block-start: var(--local-header-top);
     padding-block-start: 18px;
     box-shadow: elevation.$elevation-300;
+    transition: box-shadow 0.2s ease-in-out, inset-block-start 0.2s ease-in-out;
   }
 
   @include media.max(lg) {
@@ -130,7 +157,7 @@
 
     &.local-header-mobile-extended {
       &::after {
-        bottom: 0;
+        inset-block-end: 0;
       }
     }
 
@@ -141,7 +168,11 @@
 }
 
 .local-sub {
-  margin-inline-end: 16px;
+  margin-inline-end: 8px;
+
+  @include media.max(lg) {
+    margin-inline-end: 4px;
+  }
 }
 
 ::slotted(.list-inline) {
@@ -179,8 +210,7 @@
     position: fixed;
     z-index: 1;
     inset-inline: 0;
-    inset-block-start: var(--header-height);
-    overflow: hidden;
+    inset-block-start: calc(var(--header-scroll-top) + var(--header-height));
   }
 
   .mobile-menu {
@@ -203,12 +233,15 @@
     > div {
       display: flex;
       flex-direction: column;
-      height: calc(100dvh - var(--header-height));
-    }
-
-    &.scroll-y > div {
       overflow-y: auto;
       overflow-x: hidden;
+      height: calc(min(var(--header-scroll-parent-height, 100dvh), 100dvh) - var(--header-height));
+    }
+
+    &.megadropdown-open {
+      > div {
+        overflow-y: hidden;
+      }
     }
 
     ::slotted(post-mainnavigation) {
