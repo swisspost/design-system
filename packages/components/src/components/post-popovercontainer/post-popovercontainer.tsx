@@ -1,5 +1,5 @@
 import { Component, Element, Event, EventEmitter, Host, Method, Prop, h } from '@stencil/core';
-import { IS_SERVER } from '@/utils';
+import { IS_BROWSER } from '@/utils';
 import { version } from '@root/package.json';
 
 import {
@@ -106,7 +106,7 @@ export class PostPopovercontainer {
   }
 
   connectedCallback() {
-    if (!IS_SERVER && !isSupported()) {
+    if (IS_BROWSER && !isSupported()) {
       apply();
     }
   }

@@ -16,12 +16,41 @@ import {
   PostTabPanel,
   PostTag,
   PostTooltip,
+  PostList,
+  PostListItem,
 } from '@swisspost/design-system-components-react';
 
 export default function Home() {
   return (
     <>
       <h1>Design System Components</h1>
+      <PostList id="grid-1">
+        <h3>Title 1</h3>
+
+        <PostListItem>
+          <a href="#test">Text link 1</a>
+        </PostListItem>
+
+        <PostListItem>
+          <a href="#test">Text link 2</a>
+        </PostListItem>
+
+        <PostListItem>
+          <a href="#test">Text link 3</a>
+        </PostListItem>
+
+        <PostListItem>
+          <a href="#test">Text link 4</a>
+        </PostListItem>
+
+        <PostListItem>
+          <a href="#test">Text link 5</a>
+        </PostListItem>
+
+        <PostListItem>
+          <a href="#test">Text link 6</a>
+        </PostListItem>
+      </PostList>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea debitis ex rem minus! Ut
         mollitia deserunt iure impedit. Enim, officia. Fugiat, cupiditate repellat? Excepturi est
@@ -67,9 +96,11 @@ export default function Home() {
       <PostClosebutton>Close button</PostClosebutton>
 
       <h2>Collapsible</h2>
-      <PostCollapsibleTrigger for="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default">
-        <button className="btn btn-secondary">Toggle Collapsible</button>
-      </PostCollapsibleTrigger>
+      {/* <PostCollapsibleTrigger for="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default">
+        <button className="btn btn-secondary" aria-haspopup="menu" aria-expanded="true">
+          Toggle Collapsible
+        </button>
+      </PostCollapsibleTrigger> */}
 
       <PostCollapsible id="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default">
         <p className="border rounded p-24">
@@ -81,13 +112,11 @@ export default function Home() {
       <PostIcon name="1000" />
 
       <h2>Linkarea</h2>
-      <PostLinkarea>
+      {/* <PostLinkarea>
         <div className="card">
           <div className="card-body">
             <h5 className="card-title">Titulum</h5>
-
             <p className="card-text">Contentus momentus vero siteos et accusam iretea et justo.</p>
-
             <a className="card-link" href="#test">
               Ligilo teksto
             </a>
@@ -96,15 +125,20 @@ export default function Home() {
             </a>
           </div>
         </div>
-      </PostLinkarea>
+      </PostLinkarea> */}
 
       <h2>Popover</h2>
       <div className="d-flex justify-content-center">
-        <button className="btn btn-secondary btn-large" data-popover-target="popover-one">
+        {/* The aria-expanded attribute need to be defined on the trigger already, otherwise nextjs will report a hydration error */}
+        <button
+          className="btn btn-secondary btn-large"
+          data-popover-target="popover-one"
+          aria-expanded="false"
+        >
           Click here to see a popover
         </button>
       </div>
-      <PostPopover className="palette-accent" id="popover-one" placement="top" arrow={true}>
+      <PostPopover className="palette-alternate" id="popover-one" placement="top" arrow={true}>
         <h2 className="h6">Optional title</h2>
         <p className="mb-0">
           A longer message that needs more time to read. <a href="#test">Links</a> are also
@@ -136,10 +170,15 @@ export default function Home() {
       <PostTag>Tag</PostTag>
 
       <h2>Tooltip</h2>
-      <button className="btn btn-secondary btn-large" data-tooltip-target="tooltip-one">
+      {/* The aria-describedby attribute need to be defined on the trigger already, otherwise nextjs will report a hydration error */}
+      <button
+        className="btn btn-secondary btn-large"
+        data-tooltip-target="tooltip-one"
+        aria-describedby="tooltip-one"
+      >
         Button
       </button>
-      <PostTooltip id="tooltip-one" className="palette-accent" placement="top" delayed={false}>
+      <PostTooltip id="tooltip-one" className="palette-alternate" placement="top" delayed={false}>
         Hi there 👋
       </PostTooltip>
     </>

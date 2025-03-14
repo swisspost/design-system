@@ -21,7 +21,7 @@ export class PostMainnavigation {
   private navbarDisableTimer: ReturnType<typeof setInterval>;
   private resizeObserver: ResizeObserver;
 
-  private mutationObserver = new MutationObserver(async mutations => {
+  private readonly mutationObserver = new MutationObserver(async mutations => {
     // Wait for all elements to be hydrated
     await Promise.all(
       mutations

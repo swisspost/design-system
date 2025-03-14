@@ -1,5 +1,5 @@
 import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
-import { IS_SERVER, checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '@/utils';
+import { IS_BROWSER, checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '@/utils';
 import { version } from '@root/package.json';
 
 type UrlDefinition = {
@@ -8,7 +8,7 @@ type UrlDefinition = {
   definesSlug: boolean;
 };
 
-const CDN_URL = 'https://unpkg.com/@swisspost/design-system-icons/public/post-icons/';
+const CDN_URL = `https://unpkg.com/@swisspost/design-system-icons@${version}/public/post-icons/`;
 const ANIMATION_NAMES = [
   'cylon',
   'cylon-vertical',
@@ -76,7 +76,7 @@ export class PostIcon {
   /**
    * The name/id of the icon (e.g. 1000, 1001, ...).
    */
-  @Prop() readonly name!: string;
+  @Prop({ reflect: true }) readonly name!: string;
 
   @Watch('name')
   validateName() {
@@ -113,7 +113,7 @@ export class PostIcon {
     // the first definition object which defines a slug, will be used to set the slug of the file url
     const urlDefinitions = [this.getUrlDefinition(this.base, 'both')];
 
-    if (!IS_SERVER) {
+    if (IS_BROWSER) {
       urlDefinitions.push(
         this.getUrlDefinition(
           document.head

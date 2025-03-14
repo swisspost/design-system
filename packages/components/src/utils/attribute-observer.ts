@@ -1,4 +1,4 @@
-import { IS_SERVER } from './environment';
+import { IS_BROWSER } from './environment';
 
 export function getAttributeObserver(
   attribute: string,
@@ -28,5 +28,5 @@ export function getAttributeObserver(
   }
 
   // Initialize a mutation observer for patching accessibility features
-  return !IS_SERVER ? new MutationObserver(observerHandler) : null;
+  return IS_BROWSER ? new MutationObserver(observerHandler) : null;
 }

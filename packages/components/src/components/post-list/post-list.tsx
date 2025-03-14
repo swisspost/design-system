@@ -10,7 +10,7 @@ import { nanoid } from 'nanoid';
 @Component({
   tag: 'post-list',
   styleUrl: 'post-list.scss',
-  shadow: false,
+  shadow: true,
 })
 export class PostList {
   @Element() host: HTMLPostListElement;
@@ -32,10 +32,8 @@ export class PostList {
 
   private titleEl: HTMLElement;
 
-  componentWillLoad() {
-    /**
-     * Get the id set on the host element or use a random id by default
-     */
+  constructor() {
+    // Get the id set on the host element or use a random id by default
     this.titleId = `title-${this.host.id || nanoid(6)}`;
   }
 

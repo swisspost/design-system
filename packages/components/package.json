@@ -14,8 +14,7 @@
   },
   "files": [
     "dist/",
-    "loader/",
-    "loaders/"
+    "loader/"
   ],
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",

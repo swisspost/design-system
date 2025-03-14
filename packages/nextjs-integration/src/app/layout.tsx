@@ -53,7 +53,7 @@ export default function RootLayout({ children }: { readonly children: React.Reac
           <PostLanguageSwitch
             caption="Change the language"
             description="The currently selected language is English."
-            variant="list"
+            variant="menu"
             slot="post-language-switch"
           >
             <PostLanguageOption active={false} code="de" name="Deutsch">
@@ -87,7 +87,7 @@ export default function RootLayout({ children }: { readonly children: React.Reac
             </li>
           </ul>
 
-          <PostMainnavigation>
+          {/* <PostMainnavigation>
             <button type="button" slot="back-button" className="btn btn-sm btn-tertiary">
               <PostIcon aria-hidden="true" name="arrowright"></PostIcon> Back
             </button>
@@ -187,7 +187,7 @@ export default function RootLayout({ children }: { readonly children: React.Reac
                 </PostMegadropdown>
               </PostListItem>
             </PostList>
-          </PostMainnavigation>
+          </PostMainnavigation> */}
         </PostHeader>
 
         <main style={{ paddingBlock: '3rem' }}>
@@ -203,7 +203,7 @@ export default function RootLayout({ children }: { readonly children: React.Reac
 
         <PostFooter label="Footer label">
           <span slot="grid-1-title">Title 1</span>
-          <PostList slot="grid-1">
+          {/* <PostList slot="grid-1" id="grid-1">
             <h3>Title 1</h3>
 
             <PostListItem>
@@ -229,9 +229,9 @@ export default function RootLayout({ children }: { readonly children: React.Reac
             <PostListItem>
               <a href="#test">Text link 6</a>
             </PostListItem>
-          </PostList>
+          </PostList> */}
 
-          <span slot="grid-2-title">Title 2</span>
+          {/* <span slot="grid-2-title">Title 2</span>
           <PostList slot="grid-2">
             <h3>Title 2</h3>
 
@@ -454,7 +454,7 @@ export default function RootLayout({ children }: { readonly children: React.Reac
                 Cookie Settings
               </button>
             </PostListItem>
-          </PostList>
+          </PostList>*/}
 
           <span slot="copyright">© Copyright 2024 by Swiss Post Ltd.</span>
           <span slot="copyright">All rights reserved.</span>
