@@ -146,10 +146,14 @@ function renderTextarea(args: Args, context: StoryContext) {
     : null;
   const contextual = [
     args.validation === 'is-valid'
-      ? html`<div class="valid-feedback" id="${args.validation}-id">Ggranda sukceso!</div>`
+      ? html`<div class="valid-feedback" id="${args.validation}-id-${context.id}">
+          Ggranda sukceso!
+        </div>`
       : null,
     args.validation === 'is-invalid'
-      ? html`<div class="invalid-feedback" id="${args.validation}-id">Eraro okazis!</div>`
+      ? html`<div class="invalid-feedback" id="${args.validation}-id-${context.id}">
+          Eraro okazis!
+        </div>`
       : null,
     args.hint !== ''
       ? html`<p class="form-hint" id="form-hint-${context.id}">${args.hint}</p>`
@@ -166,7 +170,7 @@ function renderTextarea(args: Args, context: StoryContext) {
       aria-label=${useAriaLabel ? args.label : nothing}
       aria-invalid=${VALIDATION_STATE_MAP[args.validation] ?? nothing}
       aria-describedby="${args.hint ? 'form-hint-' + context.id : ''} ${args.validation != 'null'
-        ? `${args.validation}-id`
+        ? `${args.validation}-id-${context.id}`
         : ''}"
       style=${args.resize ?? nothing}
     >

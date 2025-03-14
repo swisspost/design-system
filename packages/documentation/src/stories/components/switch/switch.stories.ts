@@ -137,7 +137,10 @@ function renderSwitch(args: Args, context: StoryContext) {
   const validationFeedback =
     args.validation !== 'null'
       ? html`
-          <p class=${args.validation.split('-')[1] + '-feedback'} id="${args.validation}-id">
+          <p
+            class=${args.validation.split('-')[1] + '-feedback'}
+            id="${args.validation}-id-${context.id}"
+          >
             ${validationText}
           </p>
         `
@@ -155,7 +158,9 @@ function renderSwitch(args: Args, context: StoryContext) {
         ?disabled=${args.disabled}
         aria-label=${useAriaLabel ? ariaLabel : nothing}
         aria-invalid=${ifDefined(VALIDATION_STATE_MAP[args.validation])}
-        aria-describedby="${args.validation != 'null' ? `${args.validation}-id` : nothing}"
+        aria-describedby="${args.validation != 'null'
+          ? `${args.validation}-id-${context.id}`
+          : nothing}"
         @change=${() => updateArgs({ checked: !args.checked })}
       />
       ${labelBefore} ${labelAfter} ${args.validation !== 'null' ? validationFeedback : nothing}

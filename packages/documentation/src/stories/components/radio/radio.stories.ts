@@ -123,10 +123,14 @@ function render(args: Args, context: StoryContext) {
 
   const contextual: (TemplateResult | null)[] = [
     args.validation === 'is-valid'
-      ? html` <p class="valid-feedback" id="${args.validation}-id">Ggranda sukceso!</p> `
+      ? html`
+          <p class="valid-feedback" id="${args.validation}-id-${context.id}">Ggranda sukceso!</p>
+        `
       : null,
     args.validation === 'is-invalid'
-      ? html` <p class="invalid-feedback" id="${args.validation}-id">Eraro okazis!</p> `
+      ? html`
+          <p class="invalid-feedback" id="${args.validation}-id-${context.id}">Eraro okazis!</p>
+        `
       : null,
   ];
 
@@ -140,7 +144,9 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
-      aria-describedby="${args.validation != 'null' ? `${args.validation}-id` : nothing}"
+      aria-describedby="${args.validation != 'null'
+        ? `${args.validation}-id-${context.id}`
+        : nothing}"
       @change="${(e: Event) => updateArgs({ checked: (e.target as HTMLInputElement).checked })}"
     />
   `;

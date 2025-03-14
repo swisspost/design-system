@@ -156,7 +156,10 @@ export const Default = {
     const controlId = `CardControl_${id}`;
     const description = html`<span class="font-size-12">${args.description}</span>`;
     const icon = html` <post-icon name="${args.icon}" aria-hidden="true"></post-icon> `;
-    const invalidFeedback = html`<p class="invalid-feedback mt-8" id="${args.validation}-id">
+    const invalidFeedback = html`<p
+      class="invalid-feedback mt-8"
+      id="${args.validation}-id-${controlId}"
+    >
       Invalid feedback
     </p>`;
 
@@ -171,7 +174,9 @@ export const Default = {
           .checked="${args.checked}"
           checked="${args.checked || nothing}"
           @input="${(e: InputEvent) => inputHandler(e, updateArgs)}"
-          aria-describedby="${args.validation != 'null' ? `${args.validation}-id` : nothing}"
+          aria-describedby="${args.validation != 'null'
+            ? `${args.validation}-id-${controlId}`
+            : nothing}"
           aria-invalid="${args.validation != 'null' ? true : nothing}"
         />
         <label for="${controlId}">

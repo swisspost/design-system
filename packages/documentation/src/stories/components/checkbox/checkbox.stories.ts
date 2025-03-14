@@ -151,9 +151,9 @@ function getLabel({ label }: Args, { id }: StoryContext) {
   return html` <label for="${id}">${label}</label> `;
 }
 
-function getValidationFeedback({ validation }: Args) {
+function getValidationFeedback({ validation }: Args, context: StoryContext) {
   return html`
-    <p class="${validation + '-feedback'}" id="is-${validation}-id">
+    <p class="${validation + '-feedback'}" id="is-${validation}-id-${context.id}-">
       ${validation === 'valid' ? 'Ggranda sukceso!' : 'Eraro okazis!'}
     </p>
   `;
@@ -168,7 +168,8 @@ function renderCheckbox(args: Args, context: StoryContext) {
     'form-check-inline': args.inline,
   });
 
-  const validationClass = args.validation !== 'null' ? `is-${args.validation}` : undefined;
+  const validationClass =
+    args.validation !== 'null' ? `${context.id}-is-${args.validation}` : undefined;
 
   const handleChange = () => {
     updateArgs({ checked: CHECKED_STATE_TOGGLE_MAP[args.checked] });
@@ -187,13 +188,15 @@ function renderCheckbox(args: Args, context: StoryContext) {
         type="checkbox"
         aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
         aria-label="${ifDefined(args.hiddenLabel ? args.label : undefined)}"
-        aria-describedby="${args.validation != 'null' ? `is-${args.validation}-id` : nothing}"
+        aria-describedby="${args.validation != 'null'
+          ? `is-${args.validation}-id-${context.id}`
+          : nothing}"
         ?disabled="${args.disabled}"
         .checked="${CHECKED_STATE_MAP[args.checked]}"
         @change="${handleChange}"
       />
       ${args.hiddenLabel ? nothing : getLabel(args, context)}
-      ${args.validation !== 'null' ? getValidationFeedback(args) : nothing}
+      ${args.validation !== 'null' ? getValidationFeedback(args, context) : nothing}
     </div>
   `;
 }
