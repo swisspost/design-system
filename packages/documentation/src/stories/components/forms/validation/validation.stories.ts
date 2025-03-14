@@ -31,7 +31,7 @@ export function getValidationProps(component: string, args: Args) {
   const nothingOrBlank = ['textarea', 'select', 'input'].includes(component.toLowerCase())
     ? ''
     : nothing;
-  console.log(validationState);
+
   return {
     scheme,
     validationState,
