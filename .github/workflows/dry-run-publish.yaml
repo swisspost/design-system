@@ -1,0 +1,60 @@
+name: Dry Run Publish
+
+on:
+  pull_request:
+    branches:
+      - main
+      - release/v*
+    types: [opened, synchronize, reopened, edited]
+
+concurrency: dry-run-changeset-publish-${{ github.ref }}
+
+jobs:
+  dry-run-publish:
+    name: Dry Run Publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node & pnpm
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Install & build Dependencies
+        run: pnpm bootstrap
+
+      # Dry-run the publish process to validate the setup
+      - name: Test publish step
+        run: pnpm -r publish --dry-run --no-git-checks
+
+      # Run Changeset Magic in dry-run mode
+      - name: Changeset Magic (Dry Run)
+        id: changesets
+        uses: changesets/action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        with:
+          title: 'chore(changesets): 🦋📦 dry-run publish packages (${{ github.ref_name }})'
+          commit: 'chore(changesets): dry-run publish packages'
+          publish: pnpm changeset:publish
+          version: pnpm changeset:version
+
+      # Create a summary of the dry-run results
+      - name: Create Summary
+        id: summary
+        uses: actions/github-script@v7
+        env:
+          PUBLISHED: ${{ steps.changesets.outputs.published }}
+          PUBLISHED_PACKAGES: ${{ steps.changesets.outputs.publishedPackages }}
+        with:
+          script: |
+            return `# Changeset Dry Run Results
+            - Changesets published: <code>${process.env.PUBLISHED}</code>
+            - Published Packages:
+            <pre>${JSON.stringify(JSON.parse(process.env.PUBLISHED_PACKAGES), null, 2)}</pre>
+            `
+
+      # Output the summary to the GitHub Actions step summary
+      - name: Output Summary
+        run: echo -e ${{ steps.summary.outputs.result }} >> $GITHUB_STEP_SUMMARY
