@@ -1,10 +1,11 @@
-import { Component, Element, Method, Prop, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkNonEmpty, checkType, debounce, getRoot } from '@/utils';
 import { PostCollapsibleCustomEvent } from '@/components';
 
 @Component({
   tag: 'post-collapsible-trigger',
+  shadow: true,
 })
 export class PostCollapsibleTrigger {
   private trigger?: HTMLButtonElement;
@@ -49,7 +50,6 @@ export class PostCollapsibleTrigger {
       this.trigger.setAttribute('aria-expanded', `${e.detail}`);
     });
 
-    this.host.setAttribute('data-version', version);
     this.setTrigger();
 
     if (!this.trigger) console.warn('The post-collapsible-trigger must contain a button.');
@@ -119,5 +119,13 @@ export class PostCollapsibleTrigger {
 
     this.trigger.addEventListener('click', () => this.toggleCollapsible());
     this.setAriaAttributes();
+  }
+
+  render() {
+    return (
+      <Host data-version={version}>
+        <slot></slot>
+      </Host>
+    );
   }
 }
