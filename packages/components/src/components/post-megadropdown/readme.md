@@ -7,16 +7,33 @@
 
 ## Events
 
-| Event                    | Description                                                                                                                                  | Type                   |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
-| `postToggleMegadropdown` | Emits when the dropdown is shown or hidden. The event payload is a boolean: `true` when the dropdown was opened, `false` when it was closed. | `CustomEvent<boolean>` |
+| Event                    | Description                                                                                                                                                                                                                                                                                                                                   | Type                                                          |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| `postToggleMegadropdown` | Emits when the dropdown is shown or hidden. The event payload is an object. `isVisible` is true when the dropdown gets opened and false when it gets closed `focusParent` determines whether after the closing of the mega dropdown, the focus should go back to the trigger parent or naturally go to the next focusable element in the page | `CustomEvent<{ isVisible: boolean; focusParent?: boolean; }>` |
 
 
 ## Methods
 
-### `hide() => Promise<void>`
+### `focusFirst() => Promise<void>`
+
+Sets focus to the first focusable element within the component.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `hide(focusParent?: boolean, forceClose?: boolean) => Promise<void>`
 
 Hides the dropdown with an animation.
+
+#### Parameters
+
+| Name          | Type      | Description |
+| ------------- | --------- | ----------- |
+| `focusParent` | `boolean` |             |
+| `forceClose`  | `boolean` |             |
 
 #### Returns
 

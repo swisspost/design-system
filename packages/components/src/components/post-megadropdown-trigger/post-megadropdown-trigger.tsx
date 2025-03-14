@@ -27,12 +27,18 @@ export class PostMegadropdownTrigger {
   private slottedButton: HTMLButtonElement | null = null;
 
   /**
+   * Tracks whether this trigger's dropdown was expanded before a state change.
+   * Used to determine if this trigger should handle focus when its dropdown closes.
+   */
+  private wasExpanded: boolean = false;
+
+  /**
    * Watch for changes to the `for` property to validate its type and ensure it is a string.
    * @param forValue - The new value of the `for` property.
    */
   @Watch('for')
-  validateControlFor(forValue = this.for) {
-    checkType(forValue, 'string', 'The "for" property is required and should be a string.');
+  validateControlFor() {
+    checkType(this, 'for', 'string');
   }
 
   private get megadropdown(): HTMLPostMegadropdownElement | null {
@@ -50,13 +56,32 @@ export class PostMegadropdownTrigger {
     }
   }
 
+  private handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.handleToggle();
+      if (this.megadropdown && !this.ariaExpanded) {
+        setTimeout(() => this.megadropdown.focusFirst(), 100);
+      }
+    }
+  };
+
   componentDidLoad() {
     this.validateControlFor();
 
     // Check if the mega dropdown attached to the trigger is expanded or not
     document.addEventListener('postToggleMegadropdown', (event: CustomEvent) => {
       if ((event.target as HTMLPostMegadropdownElement).id === this.for) {
-        this.ariaExpanded = event.detail;
+        this.ariaExpanded = event.detail.isVisible;
+
+        // Focus on the trigger parent of the dropdown after it's closed if close button had been clicked
+        if (this.wasExpanded && !this.ariaExpanded && event.detail.focusParent) {
+          setTimeout(() => {
+            this.slottedButton?.focus();
+          }, 100);
+        }
+        this.wasExpanded = this.ariaExpanded;
+
         if (this.slottedButton) {
           this.slottedButton.setAttribute('aria-expanded', this.ariaExpanded.toString());
         }
@@ -69,6 +94,7 @@ export class PostMegadropdownTrigger {
       this.slottedButton.addEventListener('click', () => {
         this.handleToggle();
       });
+      this.slottedButton.addEventListener('keydown', this.handleKeyDown);
     } else {
       console.warn('No button found within post-megadropdown-trigger');
     }

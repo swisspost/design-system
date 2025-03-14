@@ -20,49 +20,83 @@
 }
 
 :where(post-popovercontainer) {
-  box-shadow: elevation.$elevation-300;
-  background: var(--post-current-palette-bg);
-  color: var(--post-current-palette-fg);
+  background-color: transparent;
+  border: transparent;
   position: fixed;
-  z-index: commons.$zindex-popover;
-  width: max-content;
   margin: 0;
   padding: 0;
+  // Keeps the little arrow visible
+  overflow: visible;
+
+  > div {
+    box-shadow: elevation.$elevation-300;
+    width: max-content;
+    max-width: 100%;
+    color: var(--post-current-palette-fg);
+    background-color: var(--post-current-palette-bg);
+    border: 2px solid transparent; // Keeping the default border for HCM
+    border-radius: commons.$border-radius;
+  }
 
   &[tooltip] {
     @include utilities.visuallyhidden();
   }
 
-  box-sizing: border-box;
-  border: 2px solid transparent; // Keeping the default border for HCM
-  border-radius: commons.$border-radius;
+  // Safe space overlay styles
+  &[safe-space]::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: auto;
+  }
 
-  // Keeps the little arrow visible
-  overflow: visible;
+  &[safe-space='triangle']::after {
+    clip-path: polygon(
+      var(--safe-space-cursor-x, 0) var(--safe-space-cursor-y, 0),
+      var(--safe-space-popover-x-start, var(--safe-space-popover-x, 0))
+        var(--safe-space-popover-y, var(--safe-space-popover-y-start, 0)),
+      var(--safe-space-popover-x-end, var(--safe-space-popover-x, 0))
+        var(--safe-space-popover-y, var(--safe-space-popover-y-end, 0))
+    );
+  }
 
-  &:not(:has(.arrow)) {
+  &[safe-space='trapezoid']::after {
+    clip-path: polygon(
+      var(--safe-space-trigger-x-start, var(--safe-space-trigger-x, 0))
+        var(--safe-space-trigger-y, var(--safe-space-trigger-y-start, 0)),
+      var(--safe-space-trigger-x-end, var(--safe-space-trigger-x, 0))
+        var(--safe-space-trigger-y, var(--safe-space-trigger-y-end, 0)),
+      var(--safe-space-popover-x-end, var(--safe-space-popover-x, 0))
+        var(--safe-space-popover-y, var(--safe-space-popover-y-end, 0)),
+      var(--safe-space-popover-x-start, var(--safe-space-popover-x, 0))
+        var(--safe-space-popover-y, var(--safe-space-popover-y-start, 0))
+    );
+  }
+
+  &:not(:has(.arrow)) > div {
     box-shadow: elevation.$elevation-300;
   }
 
-  &:has(.arrow) {
+  &:has(.arrow) > div {
     filter: drop-shadow(1px 2px 3px hsla(216, 9%, 11%, 0.15))
       drop-shadow(2px 4px 6px hsla(225, 17%, 9%, 0.15))
       drop-shadow(4px 8px 12px hsla(225, 7%, 11%, 0.15));
   }
 
-  &:has(.arrow.top) {
+  &:has(.arrow.top) > div {
     filter: drop-shadow(0px -2px 3px hsla(216, 9%, 11%, 0.15))
       drop-shadow(0px -4px 6px hsla(225, 17%, 9%, 0.15))
       drop-shadow(0px -8px 12px hsla(225, 7%, 11%, 0.15));
   }
 
-  &:has(.arrow.left) {
+  &:has(.arrow.left) > div {
     filter: drop-shadow(-2px 0px 3px hsla(216, 9%, 11%, 0.15))
       drop-shadow(-4px 0px 6px hsla(225, 17%, 9%, 0.15))
       drop-shadow(-8px 0px 12px hsla(225, 7%, 11%, 0.15));
   }
 
-  &:has(.arrow.right) {
+  &:has(.arrow.right) > div {
     filter: drop-shadow(2px 0px 3px hsla(216, 9%, 11%, 0.15))
       drop-shadow(4px 0px 6px hsla(225, 17%, 9%, 0.15))
       drop-shadow(8px 0px 12px hsla(225, 7%, 11%, 0.15));
@@ -80,23 +114,23 @@
 
     // Create transparent border to be styled by and for the high contrast mode
     &.top {
-      border-left: 2px solid transparent;
-      border-top: 2px solid transparent;
+      border-block-start: 2px solid transparent;
+      border-inline-start: 2px solid transparent;
     }
 
     &.right {
-      border-right: 2px solid transparent;
-      border-top: 2px solid transparent;
+      border-block-start: 2px solid transparent;
+      border-inline-end: 2px solid transparent;
     }
 
     &.left {
-      border-left: 2px solid transparent;
-      border-bottom: 2px solid transparent;
+      border-block-end: 2px solid transparent;
+      border-inline-start: 2px solid transparent;
     }
 
     &.bottom {
-      border-right: 2px solid transparent;
-      border-bottom: 2px solid transparent;
+      border-block-end: 2px solid transparent;
+      border-inline-end: 2px solid transparent;
     }
   }
 }

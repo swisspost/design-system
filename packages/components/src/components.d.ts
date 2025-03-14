@@ -8,12 +8,12 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
 import { DEVICE_SIZE } from "./components/post-header/post-header";
-import { SwitchType, SwitchVariant } from "./components/post-language-switch/switch-variants";
+import { SwitchVariant } from "./components/post-language-switch/switch-variants";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
 export { DEVICE_SIZE } from "./components/post-header/post-header";
-export { SwitchType, SwitchVariant } from "./components/post-language-switch/switch-variants";
+export { SwitchVariant } from "./components/post-language-switch/switch-variants";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
     interface PostAccordion {
@@ -196,7 +196,7 @@ export namespace Components {
         /**
           * Toggles the mobile navigation.
          */
-        "toggleMobileMenu": () => Promise<void>;
+        "toggleMobileMenu": (force?: boolean) => Promise<void>;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -249,10 +249,6 @@ export namespace Components {
          */
         "select": () => Promise<void>;
         /**
-          * To communicate the type prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
-         */
-        "type"?: SwitchType | null;
-        /**
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
         "url": string;
@@ -270,10 +266,6 @@ export namespace Components {
           * A descriptive text for the list of language options
          */
         "description": string;
-        /**
-          * Whether the component is rendered with uppercased text and fix widths or without any text transformation and fluid widths
-         */
-        "type": SwitchType;
         /**
           * Whether the component is rendered as a list or a menu
          */
@@ -303,9 +295,13 @@ export namespace Components {
     }
     interface PostMegadropdown {
         /**
+          * Sets focus to the first focusable element within the component.
+         */
+        "focusFirst": () => Promise<void>;
+        /**
           * Hides the dropdown with an animation.
          */
-        "hide": () => Promise<void>;
+        "hide": (focusParent?: boolean, forceClose?: boolean) => Promise<void>;
         /**
           * Displays the dropdown.
          */
@@ -379,7 +375,7 @@ export namespace Components {
     }
     interface PostPopovercontainer {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
         /**
@@ -398,6 +394,10 @@ export namespace Components {
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
+        /**
+          * Enables a safespace through which the cursor can be moved without the popover being disabled
+         */
+        "safeSpace"?: 'triangle' | 'trapezoid';
         /**
           * Programmatically display the tooltip
           * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
@@ -679,6 +679,7 @@ declare global {
     };
     interface HTMLPostLanguageOptionElementEventMap {
         "postChange": string;
+        "postLanguageOptionInitiallyActive": string;
     }
     interface HTMLPostLanguageOptionElement extends Components.PostLanguageOption, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostLanguageOptionElementEventMap>(type: K, listener: (this: HTMLPostLanguageOptionElement, ev: PostLanguageOptionCustomEvent<HTMLPostLanguageOptionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -731,7 +732,7 @@ declare global {
         new (): HTMLPostMainnavigationElement;
     };
     interface HTMLPostMegadropdownElementEventMap {
-        "postToggleMegadropdown": boolean;
+        "postToggleMegadropdown": { isVisible: boolean; focusParent?: boolean };
     }
     interface HTMLPostMegadropdownElement extends Components.PostMegadropdown, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostMegadropdownElementEventMap>(type: K, listener: (this: HTMLPostMegadropdownElement, ev: PostMegadropdownCustomEvent<HTMLPostMegadropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1122,9 +1123,9 @@ declare namespace LocalJSX {
          */
         "onPostChange"?: (event: PostLanguageOptionCustomEvent<string>) => void;
         /**
-          * To communicate the type prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
+          * An event emitted when the language option is initially active. The payload is the ISO 639 code of the language.
          */
-        "type"?: SwitchType | null;
+        "onPostLanguageOptionInitiallyActive"?: (event: PostLanguageOptionCustomEvent<string>) => void;
         /**
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
@@ -1143,10 +1144,6 @@ declare namespace LocalJSX {
           * A descriptive text for the list of language options
          */
         "description"?: string;
-        /**
-          * Whether the component is rendered with uppercased text and fix widths or without any text transformation and fluid widths
-         */
-        "type"?: SwitchType;
         /**
           * Whether the component is rendered as a list or a menu
          */
@@ -1176,9 +1173,9 @@ declare namespace LocalJSX {
     }
     interface PostMegadropdown {
         /**
-          * Emits when the dropdown is shown or hidden. The event payload is a boolean: `true` when the dropdown was opened, `false` when it was closed.
+          * Emits when the dropdown is shown or hidden. The event payload is an object. `isVisible` is true when the dropdown gets opened and false when it gets closed `focusParent` determines whether after the closing of the mega dropdown, the focus should go back to the trigger parent or naturally go to the next focusable element in the page
          */
-        "onPostToggleMegadropdown"?: (event: PostMegadropdownCustomEvent<boolean>) => void;
+        "onPostToggleMegadropdown"?: (event: PostMegadropdownCustomEvent<{ isVisible: boolean; focusParent?: boolean }>) => void;
     }
     interface PostMegadropdownTrigger {
         /**
@@ -1220,7 +1217,7 @@ declare namespace LocalJSX {
     }
     interface PostPopovercontainer {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
         /**
@@ -1239,6 +1236,10 @@ declare namespace LocalJSX {
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
+        /**
+          * Enables a safespace through which the cursor can be moved without the popover being disabled
+         */
+        "safeSpace"?: 'triangle' | 'trapezoid';
     }
     interface PostRating {
         /**

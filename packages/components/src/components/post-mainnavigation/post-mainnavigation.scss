@@ -7,10 +7,10 @@
 @use '@swisspost/design-system-styles/variables/animation';
 @use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
+@use '@swisspost/design-system-styles/variables/elevation';
+@use '@swisspost/design-system-styles/variables/color';
 
 post-mainnavigation {
-  flex: 0 0 auto;
-
   // reset links and buttons
   post-list-item {
     > a {
@@ -21,7 +21,6 @@ post-mainnavigation {
     post-megadropdown-trigger button {
       @include button.reset-button;
       text-align: start;
-      @include utilities.focus-style;
     }
 
     > a,
@@ -37,7 +36,8 @@ post-mainnavigation {
       }
 
       &:focus-visible {
-        border-radius: var(--post-core-dimension-4);
+        border-radius: 4px;
+        outline-offset: -2px !important;
       }
     }
   }
@@ -48,11 +48,11 @@ post-mainnavigation {
     }
 
     @include media.max(lg) {
-      font-size: var(--post-core-font-size-16);
+      font-size: 16px;
     }
 
     @include media.max(sm) {
-      font-size: var(--post-core-font-size-14);
+      font-size: 14px;
     }
   }
 
@@ -62,40 +62,55 @@ post-mainnavigation {
     &::after {
       content: '';
       @include icons.icon(2113);
-      height: var(--post-core-dimension-24);
-      width: var(--post-core-dimension-24);
+      height: 24px;
+      width: 24px;
+    }
+
+    @include utilities.high-contrast-mode() {
+      border: 1px solid ButtonBorder !important;
+
+      &:hover::after,
+      &[aria-expanded='true']::after {
+        color: HighlightText;
+      }
     }
   }
 
   // desktop styles
   @include media.min(lg) {
     display: block;
+    overflow-x: hidden;
 
     nav {
-      max-width: 100vw;
-      background: var(--post-core-color-brand-white);
+      max-width: 100%;
+      background: color.$white;
       max-height: var(--main-navigation-height);
       user-select: none;
-      transition: transform animation.$transition-base-timing;
+      transition: margin animation.$transition-base-timing;
     }
 
     .left-scroll-button,
     .right-scroll-button {
+      z-index: 4;
       position: absolute;
-      inset-block: 0;
+      inset-block-end: 0;
       overflow: hidden;
 
       button {
         @include button.reset-button;
-        background: var(--post-core-color-brand-white);
-        padding: var(--post-core-dimension-16);
-        box-shadow: var(--post-core-elevation-5);
-        line-height: var(--post-core-line-height-100);
-        height: 100%;
+        background: color.$white;
+        padding: 16px;
+        box-shadow: elevation.$elevation-500;
+        line-height: 100%;
+        height: var(--main-navigation-height);
 
         post-icon {
           font-size: 1rem;
         }
+      }
+
+      &.d-none {
+        display: none;
       }
     }
 
@@ -109,14 +124,9 @@ post-mainnavigation {
       padding-inline-start: 2rem;
     }
 
-    post-list {
-      margin-inline: var(--post-core-dimension-4);
-
-      > [role='list'] {
-        flex-direction: row;
-        max-width: 100vw;
-        transition: transform animation.$transition-base-timing;
-      }
+    post-list > [role='list'] {
+      flex-direction: row;
+      max-width: 100vw;
     }
 
     post-list-item {
@@ -124,24 +134,39 @@ post-mainnavigation {
       > button,
       post-megadropdown-trigger button {
         position: sticky;
-        padding-inline: var(--post-core-dimension-12);
+        padding-inline: 12px;
         height: var(--main-navigation-height);
-        gap: var(--post-core-dimension-4);
-        font-size: var(--post-core-font-size-16);
+        gap: 4px;
+        font-size: 16px;
+        z-index: 4;
 
-        @include media.max(lg) {
-          z-index: 3;
+        .nav-el-active {
+          font-weight: 700;
+          text-align: center;
+          opacity: 0;
         }
 
-        @include media.min(lg) {
-          z-index: 4;
+        .nav-el-inactive {
+          position: absolute;
+          opacity: 1;
+          text-align: center;
+          width: 100%;
+          inset-inline-start: 0;
         }
 
         &.selected,
         &[aria-expanded='true'] {
           background-color: #050400;
           color: #fff;
-          font-weight: var(--post-core-font-weight-700);
+          font-weight: 700;
+
+          .nav-el-active {
+            opacity: 1;
+          }
+
+          .nav-el-inactive {
+            opacity: 0;
+          }
         }
 
         &:hover {
@@ -150,15 +175,19 @@ post-mainnavigation {
         }
 
         @include media.max(sm) {
-          font-size: var(--post-core-font-size-14);
+          font-size: 14px;
         }
       }
 
       // styles specific to for the mega-dropdown buttons
       > button,
       post-megadropdown-trigger button {
-        padding-inline-end: var(--post-core-dimension-12);
+        padding-inline-end: 12px;
         transition: border-block-end-color animation.$transition-base-timing;
+
+        .nav-el-inactive {
+          width: calc(100% - 28px);
+        }
 
         &::after {
           transition: transform animation.$transition-base-timing;
@@ -199,6 +228,10 @@ post-mainnavigation {
       > button,
       post-megadropdown-trigger button {
         @include header-mx.mobile-header-interactive;
+
+        .nav-el-inactive {
+          display: none;
+        }
       }
     }
 

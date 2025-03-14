@@ -1,5 +1,7 @@
 @use '@swisspost/design-system-styles/core' as post;
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/elements';
 
 post-language-option {
   display: inline-block;
@@ -9,7 +11,7 @@ post-language-option {
   }
 
   a {
-    color: inherit;
+    color: tokens.get('body-color', elements.$post-body);
     text-decoration: none;
   }
 
@@ -18,51 +20,63 @@ post-language-option {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
     width: 100%;
+    height: 100%;
     border-radius: 2px;
+    text-transform: uppercase;
     @include utilities-mx.focus-style;
   }
 
-  &:has([aria-current]):not([aria-current='false']) {
-    display: none;
-  }
+  // Show all options now, instead of hiding the active one
 
   &:where([variant='list']) {
     :is(a, button) {
-      padding-inline: 0.7rem;
+      padding-inline: 0;
+      width: 40px;
       height: 40px;
       border-radius: 2px;
 
       &:hover {
         color: #504f4b;
       }
+
+      @include utilities-mx.high-contrast-mode() {
+        border: 1px solid ButtonBorder;
+        color: ButtonText;
+      }
     }
 
-    &:where(:not([type]), [type='language']) {
+    &[active]:not([active='false']) {
       :is(a, button) {
-        padding-inline: 0;
-        width: 40px;
-        text-transform: uppercase;
+        background-color: #050400 !important;
+        color: #fff;
+        pointer-events: none;
+
+        @include utilities-mx.high-contrast-mode() {
+          background-color: Highlight !important;
+          color: HighlightText;
+        }
       }
     }
   }
 
   &:where([variant='menu']) {
-    width: 100%;
+    min-width: 72px;
+
+    &[active]:not([active='false']) {
+      display: none;
+    }
 
     :is(a, button) {
       padding-block: 13px;
-      padding-inline: 24px;
+      padding-inline: 16px;
       box-sizing: border-box;
+      justify-content: flex-start;
       position: relative;
-      left: -1px;
-      width: calc(100% + 2px);
-    }
 
-    &:where(:not([type]), [type='language']) {
-      :is(a, button) {
-        text-transform: uppercase;
+      &:hover {
+        color: white;
+        background-color: #504f4b;
       }
     }
   }
