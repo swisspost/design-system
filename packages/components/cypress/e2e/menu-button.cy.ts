@@ -24,9 +24,20 @@ describe('menu', () => {
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'true');
     });
 
+    it('should show the menu after clicking on the trigger', () => {
+      cy.get('@trigger').click();
+      cy.get('@menu')
+        .shadow()
+        .find('post-popovercontainer')
+        .should('not.have.css', 'display', 'none');
+    });
+
     it('should hide the menu after clicking on the trigger twice', () => {
       cy.get('@trigger').dblclick();
-      cy.get('@menu').should(`be.hidden`);
+      cy.get('@menu')
+        .shadow()
+        .find('post-popovercontainer')
+        .should('have.css', 'display', 'none');
     });
 
     it('should update the "aria-expanded" attribute after hiding the menu', () => {
