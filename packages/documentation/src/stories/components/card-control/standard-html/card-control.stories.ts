@@ -172,6 +172,7 @@ export const Default = {
           checked="${args.checked || nothing}"
           @input="${(e: InputEvent) => inputHandler(e, updateArgs)}"
           aria-describedby="${args.validation != 'null' ? `${args.validation}-id` : nothing}"
+          aria-invalid="${args.validation != 'null' ? true : nothing}"
         />
         <label for="${controlId}">
           <span>${args.label}</span>
