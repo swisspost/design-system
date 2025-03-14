@@ -65,8 +65,7 @@ post-linkarea:has(> .card) {
     border-end-end-radius: tokens.get('card-border-radius');
   }
 
-  &.product-card,
-  &.card-button {
+  &.product-card {
     box-shadow: none;
 
     &:hover,
@@ -121,8 +120,7 @@ post-linkarea:has(> .card) {
 .card-body {
   padding: 1.25rem 1rem;
 
-  .product-card &,
-  .card-button & {
+  .product-card & {
     @include media-breakpoint-down(sm) {
       padding: tokens.get('utility-gap-16', utilities.$post-spacing);
     }
