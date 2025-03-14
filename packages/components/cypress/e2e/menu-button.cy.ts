@@ -46,3 +46,68 @@ describe('menu', () => {
     });
   });
 });
+
+describe('menus', { baseUrl: null, includeShadowDom: true }, () => {
+describe('multiple menus', () => {
+  beforeEach(() => {
+    cy.visit('cypress/fixtures/post-menu.test.html'); 
+    cy.get('post-menu-trigger[for="menu-one"]').as('triggerA');
+    cy.get('post-menu#menu-one').as('menuA');
+    cy.get('post-menu-trigger[for="menu-two"]').as('triggerB');
+    cy.get('post-menu#menu-two').as('menuB');
+  });
+
+  it('should have both triggers and menus', () => {
+    cy.get('@triggerA').should('exist');
+    cy.get('@triggerB').should('exist');
+    cy.get('@menuA').should('exist');
+    cy.get('@menuB').should('exist');
+  });
+
+  it('should be initially hidden', () => {
+    cy.get('@menuA').should('not.be.visible');
+    cy.get('@menuB').should('not.be.visible');
+  });
+
+  
+  it('should toggle menuA when clicking triggerA', () => {
+    cy.get('@triggerA').click();
+    cy.get('@menuA')
+      .shadow()
+      .find('post-popovercontainer')
+      .should('not.have.css', 'display', 'none'); // Ensure menuA is visible
+    cy.get('@menuB')
+      .shadow()
+      .find('post-popovercontainer')
+      .should('have.css', 'display', 'none'); // Ensure menuB remains hidden
+  });
+
+  it('should toggle menuB when clicking triggerB', () => {
+    cy.get('@triggerB').click();
+    cy.get('@menuB')
+      .shadow()
+      .find('post-popovercontainer')
+      .should('not.have.css', 'display', 'none');
+    cy.get('@menuA')
+      .shadow()
+      .find('post-popovercontainer')
+      .should('have.css', 'display', 'none');
+  });
+
+  it('should hide menuA when clicking triggerA twice', () => {
+    cy.get('@triggerA').dblclick();
+    cy.get('@menuA')
+      .shadow()
+      .find('post-popovercontainer')
+      .should('have.css', 'display', 'none');
+  });
+
+  it('should hide menuB when clicking triggerB twice', () => {
+    cy.get('@triggerB').dblclick();
+    cy.get('@menuB')
+      .shadow()
+      .find('post-popovercontainer')
+      .should('have.css', 'display', 'none');
+  });
+});
+});
