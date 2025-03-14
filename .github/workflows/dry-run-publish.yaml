@@ -37,8 +37,8 @@ jobs:
         with:
           title: 'chore(changesets): 🦋📦 dry-run publish packages (${{ github.ref_name }})'
           commit: 'chore(changesets): dry-run publish packages'
-          publish: pnpm changeset:publish --dry-run
-          version: pnpm changeset:version --dry-run
+          publish: pnpm changeset:publish
+          version: pnpm changeset:version
 
       # Create a summary of the dry-run results
       - name: Create Summary
