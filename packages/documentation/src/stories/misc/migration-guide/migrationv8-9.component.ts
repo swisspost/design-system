@@ -117,6 +117,16 @@ export class MigrationV89Component extends LitElement {
                     <li><code>$form-check-feedback-margin-top</code></li>
                   </ul>
                 </li>
+                <li class="mb-16">
+                  <p>
+                    Removed the <code>@mixin placeholder()</code>
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <p class="info">
+                    The CSS selector <code>::placeholder</code> can be used instead as it is now
+                    widely available.
+                  </p>
+                </li>
               </ul>
 
               <h5>Grid</h5>
@@ -559,6 +569,22 @@ export class MigrationV89Component extends LitElement {
                     <li><code>$stepper-link-current-font-size</code></li>
                     <li><code>$stepper-indicator-hover-check-icon</code></li>
                     <li><code>$stepper-indicator-height</code></li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    The following z-index scss variables have been removed, as they were set on
+                    elements that are now using popover which place them in the top layer.
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>$zindex-sticky</code></li>
+                    <li><code>$zindex-fixed</code></li>
+                    <li><code>$zindex-modal-backdrop</code></li>
+                    <li><code>$zindex-modal</code></li>
+                    <li><code>$zindex-popover</code></li>
+                    <li><code>$zindex-tooltip</code></li>
+                    <li><code>$zindex-alert</code></li>
                   </ul>
                 </li>
                 <li class="mb-16">

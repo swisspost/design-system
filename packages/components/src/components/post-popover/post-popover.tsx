@@ -11,12 +11,18 @@ let popoverInstances = 0;
 const popoverTargetAttribute = 'data-popover-target';
 
 const globalToggleHandler = (e: PointerEvent | KeyboardEvent) => {
-  const target = e.target as HTMLElement;
-  if (!target || !('getAttribute' in target)) return;
-  const popoverTarget = target.getAttribute(popoverTargetAttribute);
+  let currentElement = e.target as HTMLElement;
+
+  // Traverse up the DOM tree to find if any parent has the popover target attribute
+  while (currentElement && !currentElement.getAttribute(popoverTargetAttribute)) {
+    if (currentElement === document.body || !currentElement.parentElement) break;
+    currentElement = currentElement.parentElement;
+  }
+
+  const popoverTarget = currentElement?.getAttribute(popoverTargetAttribute);
   if (!popoverTarget || ('key' in e && e.key !== 'Enter')) return;
   const popover = document.getElementById(popoverTarget) as HTMLPostPopoverElement;
-  popover?.toggle(target);
+  popover?.toggle(currentElement);
 };
 
 // Initialize a mutation observer for patching accessibility features

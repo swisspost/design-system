@@ -21,7 +21,6 @@ post-mainnavigation {
     post-megadropdown-trigger button {
       @include button.reset-button;
       text-align: start;
-      @include utilities.focus-style;
     }
 
     > a,
@@ -38,6 +37,7 @@ post-mainnavigation {
 
       &:focus-visible {
         border-radius: 4px;
+        outline-offset: -2px !important;
       }
     }
   }
@@ -64,6 +64,15 @@ post-mainnavigation {
       @include icons.icon(2113);
       height: 24px;
       width: 24px;
+    }
+
+    @include utilities.high-contrast-mode() {
+      border: 1px solid ButtonBorder !important;
+
+      &:hover::after,
+      &[aria-expanded='true']::after {
+        color: HighlightText;
+      }
     }
   }
 
@@ -142,7 +151,7 @@ post-mainnavigation {
           opacity: 1;
           text-align: center;
           width: 100%;
-          left: 0;
+          inset-inline-start: 0;
         }
 
         &.selected,
