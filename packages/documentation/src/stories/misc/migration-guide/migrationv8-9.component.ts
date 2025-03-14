@@ -117,6 +117,16 @@ export class MigrationV89Component extends LitElement {
                     <li><code>$form-check-feedback-margin-top</code></li>
                   </ul>
                 </li>
+                <li class="mb-16">
+                  <p>
+                    Removed the <code>@mixin placeholder()</code>
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <p class="info">
+                    The CSS selector <code>::placeholder</code> can be used instead as it is now
+                    widely available.
+                  </p>
+                </li>
               </ul>
 
               <h5>Grid</h5>
@@ -388,6 +398,12 @@ export class MigrationV89Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    Removed font-size class <code>.small</code>
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                </li>
+                <li class="mb-16">
+                  <p>
                     The following classes have been removed as the new Swiss Post font does not
                     provide a light font weight (300)
                     <span class="tag tag-sm tag-danger">breaking</span>
@@ -557,7 +573,7 @@ export class MigrationV89Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
-                    The following z-index scss variables have been removed, as they were set on  
+                    The following z-index scss variables have been removed, as they were set on
                     elements that are now using popover which place them in the top layer.
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
