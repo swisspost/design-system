@@ -123,7 +123,7 @@ export class PostLanguageOption {
     };
 
     return (
-      <Host data-version={version} role={this.variant ? `${this.variant}item` : null}>
+      <Host data-version={version}>
         {this.url ? (
           <a
             aria-current={this.active ? 'page' : undefined}

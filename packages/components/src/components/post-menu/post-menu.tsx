@@ -197,8 +197,6 @@ export class PostMenu {
       slottedElements
         // If the element is a slot, get the assigned elements
         .flatMap(el => (el instanceof HTMLSlotElement ? el.assignedElements() : el))
-        // Filter out elements that have a 'menuitem' role
-        .filter(el => el.getAttribute('role') === 'menuitem')
         // For each menu item, get any focusable children (e.g., buttons, links)
         .flatMap(el => Array.from(getFocusableChildren(el)))
     );
@@ -206,7 +204,7 @@ export class PostMenu {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={version} role="menu">
         <post-popovercontainer placement={this.placement} ref={e => (this.popoverRef = e)}>
           <div class="popover-container" part="popover-container">
             <slot></slot>
