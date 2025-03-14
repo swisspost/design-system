@@ -150,13 +150,13 @@ export const Default = {
       'checkbox-button-card': args.type === 'checkbox',
       'radio-button-card': args.type === 'radio',
     });
-    const validationClass = args.validation !== 'null' ? `is-${args.validation}` : undefined;
+    const validationClass = args.validation !== 'null' ? `${args.validation}` : undefined;
 
     // Child components
     const controlId = `CardControl_${id}`;
     const description = html`<span class="font-size-12">${args.description}</span>`;
     const icon = html` <post-icon name="${args.icon}" aria-hidden="true"></post-icon> `;
-    const invalidFeedback = html`<p class="invalid-feedback mt-8" id="is-invalid-id"
+    const invalidFeedback = html`<p class="invalid-feedback mt-8" id="${args.validation}-id">
       Invalid feedback
     </p>`;
 
@@ -171,7 +171,7 @@ export const Default = {
           .checked="${args.checked}"
           checked="${args.checked || nothing}"
           @input="${(e: InputEvent) => inputHandler(e, updateArgs)}"
-          aria-describedby="is-invalid-id"
+          aria-describedby="${args.validation != 'null' ? `${args.validation}-id` : nothing}"
         />
         <label for="${controlId}">
           <span>${args.label}</span>
