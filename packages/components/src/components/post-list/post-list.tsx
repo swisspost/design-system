@@ -59,7 +59,7 @@ export class PostList {
         >
           <slot></slot>
         </div>
-        <div role="list" aria-labelledby={this.titleId}>
+        <div role="list" aria-labelledby={this.titleId} part="list">
           <slot name="post-list-item"></slot>
         </div>
       </Host>
