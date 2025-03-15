@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu Test</title>
+    <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
+  </head>
+  <body>
+    <post-menu-trigger for="menu-one">
+      <button class="btn btn-primary">Menu button 1</button>
+    </post-menu-trigger>
+    <post-menu id="menu-one">
+      <post-menu-item><button>Example 1</button></post-menu-item>
+      <post-menu-item>
+        <a href="#">Example 2</a>
+        <post-menu-item><div>Example 3</div></post-menu-item>
+      </post-menu-item>
+    </post-menu>
+
+    <post-menu-trigger for="menu-two">
+      <button class="btn btn-primary">Menu button 2</button>
+    </post-menu-trigger>
+    <post-menu id="menu-two">
+      <post-menu-item><button>Example 1</button></post-menu-item>
+      <post-menu-item>
+        <a href="#">Example 2</a>
+        <post-menu-item><div>Example 3</div></post-menu-item>
+      </post-menu-item>
+    </post-menu>
+
+    <!-- Menus for the multiple triggers scenario -->
+    <post-menu-trigger for="menu-three">
+      <button class="btn btn-primary">Menu button 3</button>
+    </post-menu-trigger>
+    <post-menu-trigger for="menu-three">
+      <button class="btn btn-primary">Menu button 4</button>
+    </post-menu-trigger>
+    <post-menu id="menu-three">
+      <post-menu-item><button>Example 1</button></post-menu-item>
+      <post-menu-item>
+        <a href="#">Example 2</a>
+        <post-menu-item><div>Example 3</div></post-menu-item>
+      </post-menu-item>
+    </post-menu>
+
+    <post-menu id="menu-four">
+      <post-menu-item><button>Example 1</button></post-menu-item>
+      <post-menu-item>
+        <a href="#">Example 2</a>
+        <post-menu-item><div>Example 3</div></post-menu-item>
+      </post-menu-item>
+    </post-menu>
+  </body>
+</html>
