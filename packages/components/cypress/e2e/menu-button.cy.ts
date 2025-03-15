@@ -16,7 +16,10 @@ describe('menu', () => {
     });
 
     it('should be initially hidden', () => {
-      cy.get('@menu').should('not.be.visible');
+      cy.get('@menu')
+        .shadow()
+        .find('post-popovercontainer')
+        .should('have.css', 'display', 'none')
     });
 
     it('should update the "aria-expanded" attribute after showing the menu', () => {
@@ -73,10 +76,23 @@ describe('menus', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('should be initially hidden', () => {
-      cy.get('@menuA').should('not.be.visible');
-      cy.get('@menuB').should('not.be.visible');
-      cy.get('@menuC').should('not.be.visible');
-      cy.get('@menuD').should('not.be.visible');
+
+      cy.get('@menuA')
+        .shadow()
+        .find('post-popovercontainer')
+        .should('have.css', 'display', 'none')
+      cy.get('@menuB')
+        .shadow()
+        .find('post-popovercontainer')
+        .should('have.css', 'display', 'none')
+      cy.get('@menuC')
+        .shadow()
+        .find('post-popovercontainer')
+        .should('have.css', 'display', 'none')
+      cy.get('@menuD')
+        .shadow()
+        .find('post-popvercontainer')
+        .should('have.css', 'display', 'none')
     });
 
     it('should toggle menuA when clicking triggerA', () => {
