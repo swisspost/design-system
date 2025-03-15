@@ -76,7 +76,6 @@ describe('menus', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('should be initially hidden', () => {
-
       cy.get('@menuA')
         .shadow()
         .find('post-popovercontainer')
@@ -91,7 +90,7 @@ describe('menus', { baseUrl: null, includeShadowDom: true }, () => {
         .should('have.css', 'display', 'none')
       cy.get('@menuD')
         .shadow()
-        .find('post-popvercontainer')
+        .find('post-popovercontainer')
         .should('have.css', 'display', 'none')
     });
 
