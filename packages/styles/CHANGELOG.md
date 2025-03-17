@@ -1,5 +1,13 @@
 # @swisspost/design-system-styles
 
+## 7.4.13
+
+### Patch Changes
+
+- Implemented the new "Swiss Post Sans" font (by [@leagrdv](https://github.com/leagrdv) with [#4946](https://github.com/swisspost/design-system/pull/4946))
+
+- Fixed the stepper as the progress bar was not being filled correctly on steps progress on firefox. (by [@leagrdv](https://github.com/leagrdv) with [#4943](https://github.com/swisspost/design-system/pull/4943))
+
 ## 7.4.12
 
 ### Patch Changes
