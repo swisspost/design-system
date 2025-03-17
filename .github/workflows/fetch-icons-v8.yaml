@@ -12,7 +12,7 @@
 #
 ###
 
-name: Fetch Icons
+name: Fetch Icons v8
 
 on:
   workflow_dispatch:
