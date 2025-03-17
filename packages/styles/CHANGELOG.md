@@ -1,5 +1,13 @@
 # @swisspost/design-system-styles
 
+## 8.9.2
+
+### Patch Changes
+
+- Fixed the stepper as the progress bar was not being filled correctly on steps progress on firefox. (by [@leagrdv](https://github.com/leagrdv) with [#4942](https://github.com/swisspost/design-system/pull/4942))
+
+- Removed a mention of Frutiger Neue in the tokens file. (by [@gfellerph](https://github.com/gfellerph) with [#4963](https://github.com/swisspost/design-system/pull/4963))
+
 ## 8.9.1
 
 ## 8.9.0

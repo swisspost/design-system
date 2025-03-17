@@ -1,5 +1,13 @@
 # @swisspost/design-system-components
 
+## 8.9.2
+
+### Patch Changes
+
+- Adapted the trigger of the `post-popover` component to be able to handle nested elements. (by [@schaertim](https://github.com/schaertim) with [#4911](https://github.com/swisspost/design-system/pull/4911))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.9.2
+
 ## 8.9.1
 
 ### Patch Changes

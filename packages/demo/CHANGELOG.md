@@ -1,5 +1,14 @@
 # @swisspost/design-system-demo
 
+## 8.0.17
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.9.2
+  - @swisspost/design-system-intranet-header@8.9.2
+  - @swisspost/design-system-migrations@8.9.2
+
 ## 8.0.16
 
 ### Patch Changes
