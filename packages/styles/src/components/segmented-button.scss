@@ -55,6 +55,16 @@ $post-segmented-button-max-count: 8;
       border: tokens.get('button-segmented-border-width') solid transparent;
       border-radius: inherit;
       @include utilities.focus-style();
+
+      @supports (-webkit-touch-callout: none) {
+        @media (hover: none) and (pointer: coarse) {
+          margin: 0;
+          width: 100%;
+          height: 100%;
+          border-width: tokens.get('button-segmented-border-width');
+          transform: translateZ(0);
+        }
+      }
     }
 
     &:last-of-type {
@@ -73,6 +83,12 @@ $post-segmented-button-max-count: 8;
       input {
         border-color: tokens.get('button-segmented-hover-border');
 
+        @supports (-webkit-touch-callout: none) {
+          @media (hover: none) and (pointer: coarse) {
+            border-width: tokens.get('button-segmented-border-width');
+          }
+        }
+        
         @include utilities.high-contrast-mode() {
           border-color: SelectedItem;
         }
