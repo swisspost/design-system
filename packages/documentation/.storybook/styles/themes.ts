@@ -13,7 +13,7 @@ export const light = create({
   appBorderRadius: 3,
 
   // Typography
-  fontBase: '"Frutiger Neue For Post", sans-serif',
+  fontBase: '"Swiss Post Sans", sans-serif',
   fontCode: 'monospace',
 
   // Text colors
@@ -51,7 +51,7 @@ export const dark = create({
   appBorderRadius: 3,
 
   // Typography
-  fontBase: '"Frutiger Neue For Post", sans-serif',
+  fontBase: '"Swiss Post Sans", sans-serif',
   fontCode: 'monospace',
 
   // Text colors
