@@ -93,7 +93,7 @@
   }
 
   @include media.min(lg) {
-    max-height: calc(100vh - var(--header-height) - 48px);
+    max-height: calc(100vh - var(--post-header-height) - 48px);
     overflow-y: auto;
   }
 }
