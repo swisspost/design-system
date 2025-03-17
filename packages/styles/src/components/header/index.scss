@@ -4,7 +4,6 @@
 @use '../../functions/tokens';
 @use '../../tokens/elements';
 @use '../../mixins/button' as button-mx;
-
 @use 'mixins' as *;
 
 tokens.$default-map: elements.$post-link;

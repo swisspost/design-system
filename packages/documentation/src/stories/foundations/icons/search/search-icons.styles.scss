@@ -55,9 +55,15 @@ tokens.$default-map: utilities.$post-spacing;
     }
 
     .icon {
-      padding: tokens.get('utility-gap-16') 0.5rem 0.5rem;
       border: 1px solid post.$gray-20;
       border-radius: post.$border-radius;
+
+      > button {
+        padding: tokens.get('utility-gap-16') 0.5rem 0.5rem;
+        width: 100%;
+        background-color: transparent;
+        border: none;
+      }
 
       .gfx {
         display: flex;
@@ -67,6 +73,7 @@ tokens.$default-map: utilities.$post-spacing;
       }
 
       .name {
+        display: block;
         margin-block-start: tokens.get('utility-gap-16');
         font-size: 0.8rem;
         font-weight: bold;
@@ -82,6 +89,43 @@ tokens.$default-map: utilities.$post-spacing;
 
     ul {
       @include post.list-inline();
+    }
+  }
+}
+
+.icon-panel {
+  margin: 0 0 0 auto;
+
+  > div {
+    height: 100vh;
+    max-width: 350px;
+    border: 0;
+    padding: 2rem 1rem 1rem 1rem;
+    border-left: 1px solid #e1e0dc;
+    overflow-y: auto;
+  }
+
+  .icon-panel-content {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .resizer-container {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1rem;
+  }
+
+  dl {
+    font-size: 14px;
+
+    dt,
+    dd {
+      margin-bottom: 0.5rem;
+    }
+
+    dt {
+      font-weight: 700;
     }
   }
 }

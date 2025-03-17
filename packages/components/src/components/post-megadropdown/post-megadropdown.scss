@@ -74,10 +74,12 @@
     position: fixed;
     inset-block-start: var(--header-navigation-current-inset);
     inset-inline: 0;
+
     height: calc(
       min(var(--header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
     );
-    border-top: unset;
+    border-block-start: unset;
+
     overflow-y: auto;
     overscroll-behavior: contain;
 
@@ -88,6 +90,11 @@
     &.slide-out {
       animation: slide-out 350ms forwards;
     }
+  }
+
+  @include media.min(lg) {
+    max-height: calc(100vh - var(--header-height) - 48px);
+    overflow-y: auto;
   }
 }
 
@@ -124,16 +131,14 @@
 
   h2 {
     display: none;
-    margin-top: 0;
-    margin-bottom: 8px;
+    margin-block: 0 8px;
     font-weight: 900;
 
     a {
       text-decoration: none;
       display: none;
       font-weight: inherit;
-      border-bottom: 0;
-      border-top: 0;
+      border-block: 0;
     }
 
     @include media.max(lg) {
@@ -182,11 +187,11 @@
           &::before {
             content: '';
             background-color: #050400;
-            bottom: 0;
+            inset-block-end: 0;
+            inset-inline-start: 0;
             width: 100%;
             height: 2px;
             position: absolute;
-            left: 0;
           }
         }
 
@@ -258,7 +263,7 @@
 
   .back-button {
     display: none;
-    margin-bottom: 2rem;
+    margin-block-end: 2rem;
 
     .btn {
       width: auto;
@@ -272,8 +277,8 @@
 
   .close-button {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    inset-block-start: 1rem;
+    inset-inline-end: 1rem;
 
     @include media.max(lg) {
       display: none;
