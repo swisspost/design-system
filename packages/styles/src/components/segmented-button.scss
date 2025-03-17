@@ -58,10 +58,8 @@ $post-segmented-button-max-count: 8;
 
       @supports (-webkit-touch-callout: none) {
         @media (hover: none) and (pointer: coarse) {
-          margin: 0;
           width: 100%;
           height: calc(100% + #{tokens.get('button-segmented-border-width')});
-          transform: translateZ(0);
         }
       }
     }
