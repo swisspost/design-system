@@ -210,7 +210,7 @@
     position: fixed;
     z-index: 1;
     inset-inline: 0;
-    inset-block-start: calc(var(--header-scroll-top) + var(--header-height));
+    inset-block-start: var(--header-scroll-locked-navigation-inline-block-start, --header-height);
   }
 
   .mobile-menu {

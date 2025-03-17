@@ -10,7 +10,16 @@ tokens.$default-map: elements.$post-link;
 
 [data-post-scroll-locked] {
   overflow: hidden !important;
-  transform: translate3d(0, 0, 0) !important;
+
+  &:not(body) {
+    transform: translate3d(0, 0, 0) !important;
+
+    post-header {
+      --header-scroll-locked-navigation-inline-block-start: calc(
+        var(--header-scroll-top) + var(--header-height)
+      );
+    }
+  }
 }
 
 post-header {
