@@ -1,5 +1,13 @@
 # @swisspost/internet-header
 
+## 1.14.14
+
+### Patch Changes
+
+- Implemented the new "Swiss Post Sans" font (by [@leagrdv](https://github.com/leagrdv) with [#4946](https://github.com/swisspost/design-system/pull/4946))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.4.13
+
 ## 1.14.13
 
 ### Patch Changes
