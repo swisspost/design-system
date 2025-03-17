@@ -1,5 +1,63 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.32
+
+### Major Changes
+
+- Removed the deprecated css component `card-button`. (by [@leagrdv](https://github.com/leagrdv) with [#4950](https://github.com/swisspost/design-system/pull/4950))
+
+### Minor Changes
+
+- Added a button to open component examples in a codepen where they can be edited/configured as desired. (by [@schaertim](https://github.com/schaertim) with [#4602](https://github.com/swisspost/design-system/pull/4602))
+
+- Added icons detail panel on documentation. (by [@leagrdv](https://github.com/leagrdv) with [#4685](https://github.com/swisspost/design-system/pull/4685))
+
+### Patch Changes
+
+- Cleaned up documentation to remove the nested paragraphs errors. (by [@leagrdv](https://github.com/leagrdv) with [#4954](https://github.com/swisspost/design-system/pull/4954))
+
+- Added the MDN documentation link to the `dialog` component. (by [@schaertim](https://github.com/schaertim) with [#4939](https://github.com/swisspost/design-system/pull/4939))
+
+- Added the CSS variable `--post-popover-max-width` that enables configuring the max-width of the `post-popover` component. (by [@leagrdv](https://github.com/leagrdv) with [#4898](https://github.com/swisspost/design-system/pull/4898))
+
+- Added a beta version disclaimer on all the documentation pages to avoid confusion. (by [@leagrdv](https://github.com/leagrdv) with [#4929](https://github.com/swisspost/design-system/pull/4929))
+
+- Removed wrongfully added top margins on some headings in the docs components. (by [@leagrdv](https://github.com/leagrdv) with [#4953](https://github.com/swisspost/design-system/pull/4953))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.31
+  - @swisspost/design-system-components@9.0.0-next.31
+  - @swisspost/internet-header@2.0.0-next.31
+  - @swisspost/design-system-components-react@9.0.0-next.31
+  - @swisspost/design-system-tokens@9.0.0-next.31
+  - @swisspost/design-system-icons@9.0.0-next.31
+
+## 6.0.0-next.31
+
+### Major Changes
+
+- Uninstalled **Intranet Header** package, documentation and all references to it. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4587](https://github.com/swisspost/design-system/pull/4587))
+
+### Minor Changes
+
+- The two icon sets “Post” and “UI” have been updated with the latest icons. The “UI” icons are now also updated via cdn. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4611](https://github.com/swisspost/design-system/pull/4611))
+
+### Patch Changes
+
+- Added release lines for the styles package versions. (by [@leagrdv](https://github.com/leagrdv) with [#4827](https://github.com/swisspost/design-system/pull/4827))
+
+- Internalized bootstrap border utility classes. (by [@myrta2302](https://github.com/myrta2302) with [#3751](https://github.com/swisspost/design-system/pull/3751))
+
+- Fixed the mobile menu height in the `post-header` component when the scrollable parent is not the document's body. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4829](https://github.com/swisspost/design-system/pull/4829))
+
+- Added documentation for developing and designing accessible webpages. (by [@leagrdv](https://github.com/leagrdv) with [#4847](https://github.com/swisspost/design-system/pull/4847))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.30
+  - @swisspost/design-system-components@9.0.0-next.30
+  - @swisspost/design-system-icons@9.0.0-next.30
+  - @swisspost/internet-header@2.0.0-next.30
+  - @swisspost/design-system-components-react@9.0.0-next.30
+  - @swisspost/design-system-tokens@9.0.0-next.30
+
 ## 6.0.0-next.30
 
 ### Patch Changes

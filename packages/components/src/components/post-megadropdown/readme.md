@@ -24,7 +24,7 @@ Type: `Promise<void>`
 
 
 
-### `hide(focusParent?: boolean) => Promise<void>`
+### `hide(focusParent?: boolean, forceClose?: boolean) => Promise<void>`
 
 Hides the dropdown with an animation.
 
@@ -33,6 +33,7 @@ Hides the dropdown with an animation.
 | Name          | Type      | Description |
 | ------------- | --------- | ----------- |
 | `focusParent` | `boolean` |             |
+| `forceClose`  | `boolean` |             |
 
 #### Returns
 
