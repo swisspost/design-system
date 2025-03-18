@@ -1,11 +1,11 @@
 @use '../variables/breakpoints' as bp;
 
 @function breakpoint-min($name, $breakpoints: bp.$grid-breakpoints) {
-  @return map-get($breakpoints, $name);
+  @return map.get($breakpoints, $name);
 }
 
 @function breakpoint-infix($name, $breakpoints: bp.$grid-breakpoints) {
-  @return if(breakpoint-min($name, $breakpoints) == 0, "", "-#{$name}");
+  @return if(breakpoint-min($name, $breakpoints) == 0, '', '-#{$name}');
 }
 
 @mixin media-breakpoint-up($name, $breakpoints: bp.$grid-breakpoints) {
@@ -19,7 +19,7 @@
   }
 }
 
-@each $breakpoint in map-keys(bp.$grid-breakpoints) {
+@each $breakpoint in map.keys(bp.$grid-breakpoints) {
   @include media-breakpoint-up($breakpoint, bp.$grid-breakpoints) {
     $infix: breakpoint-infix($breakpoint, bp.$grid-breakpoints);
 
