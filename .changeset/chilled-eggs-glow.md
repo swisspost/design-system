@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Implemented consistent local header padding for wrapped and unwrapped titles across mobile and tablet devices.
+Fixed inconsistent paddings in the `post-header` component for wrapped and unwrapped titles across mobile and tablet devices.
