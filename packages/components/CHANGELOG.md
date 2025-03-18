@@ -1,5 +1,24 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.31
+
+### Patch Changes
+
+- Added a max-height to the `post-megadropdown` on desktop to add scrolling in case its content is bigger than the space available. (by [@leagrdv](https://github.com/leagrdv) with [#4906](https://github.com/swisspost/design-system/pull/4906))
+
+- Replaced usages of `color: inherit` with tokens to improve high contrast mode compatability. (by [@schaertim](https://github.com/schaertim) with [#4933](https://github.com/swisspost/design-system/pull/4933))
+
+- Adapted the trigger of the `post-popover` component to be able to handle nested elements. (by [@schaertim](https://github.com/schaertim) with [#4910](https://github.com/swisspost/design-system/pull/4910))
+
+- Improved header accessibility by ensuring that elements which are hidden on scroll get visible again if they receive focus. (by [@leagrdv](https://github.com/leagrdv) with [#4767](https://github.com/swisspost/design-system/pull/4767))
+
+- Added the CSS variable `--post-popover-max-width` that enables configuring the max-width of the `post-popover` component. (by [@leagrdv](https://github.com/leagrdv) with [#4898](https://github.com/swisspost/design-system/pull/4898))
+
+- Resolved accessibility violations in the `post-language-switch` component by adding the role="menu" to the `post-menu` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4951](https://github.com/swisspost/design-system/pull/4951))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.31
+  - @swisspost/design-system-icons@9.0.0-next.31
+
 ## 9.0.0-next.30
 
 ### Patch Changes
