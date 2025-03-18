@@ -1,6 +1,7 @@
 @use './../variables/commons';
 @use '../variables/breakpoints' as bp;
 @use '../mixins/breakpoints' as bp-mixin;
+@use "sass:map";
 
 .fixed-top {
   position: fixed;
