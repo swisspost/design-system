@@ -24,12 +24,12 @@
   "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/types/index.d.ts"
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.js"
     },
     "./components/*": {
-      "import": "./dist/components/stencil-generated/*.js",
-      "types": "./dist/components/stencil-generated/*.d.ts"
+      "types": "./dist/components/stencil-generated/*.d.ts",
+      "import": "./dist/components/stencil-generated/*.js"
     }
   },
   "scripts": {

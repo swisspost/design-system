@@ -24,27 +24,27 @@
   "unpkg": "dist/post-components/post-components.esm.js",
   "exports": {
     ".": {
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/components/components.esm.js",
-      "require": "./dist/components/components.cjs.js",
-      "types": "./dist/types/index.d.ts"
+      "require": "./dist/components/components.cjs.js"
     },
     "./dist/*": {
-      "import": "./dist/*",
-      "types": "./dist/*"
+      "types": "./dist/*",
+      "import": "./dist/*"
     },
     "./components/*": {
-      "import": "./dist/components/*.js",
-      "types": "./dist/components/*.d.ts"
+      "types": "./dist/components/*.d.ts",
+      "import": "./dist/components/*.js"
     },
     "./loader": {
+      "types": "./loader/index.d.ts",
       "import": "./loader/index.js",
-      "require": "./loader/index.cjs",
-      "types": "./loader/index.d.ts"
+      "require": "./loader/index.cjs"
     },
     "./loaders": {
+      "types": "./loaders/index.d.ts",
       "import": "./loaders/index.js",
-      "require": "./loaders/index.cjs",
-      "types": "./loaders/index.d.ts"
+      "require": "./loaders/index.cjs"
     },
     "./hydrate": {
       "types": "./hydrate/index.d.ts",
