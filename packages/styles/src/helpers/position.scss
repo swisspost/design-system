@@ -19,7 +19,7 @@
 }
 
 // Responsive sticky top and bottom
-@each $breakpoint in map-keys(bp.$grid-breakpoints) {
+@each $breakpoint in map.keys(bp.$grid-breakpoints) {
   @include bp-mixin.media-breakpoint-up($breakpoint, bp.$grid-breakpoints) {
     $infix: bp-mixin.breakpoint-infix($breakpoint, bp.$grid-breakpoints);
 
