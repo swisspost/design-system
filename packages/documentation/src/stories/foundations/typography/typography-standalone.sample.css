@@ -18,10 +18,3 @@
   font-display: swap;
   src: url('https://fonts.post.ch/swiss-post-sans/v1/SwissPostSans-Regular.woff2') format('woff2');
 }
-
-@font-face {
-  font-family: 'Swiss Post Sans';
-  font-weight: 300;
-  font-display: swap;
-  src: url('https://fonts.post.ch/swiss-post-sans/v1/SwissPostSans-Light.woff2') format('woff2');
-}
