@@ -207,7 +207,7 @@
 // only for tablet and mobile
 @include media.max(lg) {
   .navigation {
-    position: fixed;
+    position: sticky;
     z-index: 1;
     inset-inline: 0;
     inset-block-start: var(--header-height);
