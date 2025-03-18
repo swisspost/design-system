@@ -56,7 +56,7 @@ export class PostMenu {
    **/
   @Event() toggleMenu: EventEmitter<boolean>;
 
-  private root?: Document | ShadowRoot;
+  private root?: Document | ShadowRoot | null;
 
   connectedCallback() {
     this.root = getRoot(this.host);
@@ -73,6 +73,18 @@ export class PostMenu {
     this.popoverRef.addEventListener('postToggle', (event: CustomEvent<boolean>) => {
       this.isVisible = event.detail;
       this.toggleMenu.emit(this.isVisible);
+  
+      requestAnimationFrame(() => {
+        if (this.isVisible) {
+          this.lastFocusedElement = this.root.activeElement as HTMLElement;
+          const menuItems = this.getSlottedItems();
+          if (menuItems.length > 0) {
+            (menuItems[0] as HTMLElement).focus();
+          }
+        } else if (this.lastFocusedElement) {
+          this.lastFocusedElement.focus();
+        }
+      });
     });
   }
 
@@ -81,10 +93,11 @@ export class PostMenu {
    */
   @Method()
   async toggle(target: HTMLElement) {
-    if (this.isVisible) {
-      await this.hide();
+
+    if (this.popoverRef) {
+      await this.popoverRef.toggle(target);
     } else {
-      await this.show(target);
+      console.error('toggle: popoverRef is null or undefined');
     }
   }
 
@@ -97,12 +110,6 @@ export class PostMenu {
   async show(target: HTMLElement) {
     if (this.popoverRef) {
       await this.popoverRef.show(target);
-      this.lastFocusedElement = this.root.activeElement as HTMLElement; // Use root's activeElement
-
-      const menuItems = this.getSlottedItems();
-      if (menuItems.length > 0) {
-        (menuItems[0] as HTMLElement).focus();
-      }
     } else {
       console.error('show: popoverRef is null or undefined');
     }
@@ -115,9 +122,6 @@ export class PostMenu {
   async hide() {
     if (this.popoverRef) {
       await this.popoverRef.hide();
-      if (this.lastFocusedElement) {
-        this.lastFocusedElement.focus();
-      }
     } else {
       console.error('hide: popoverRef is null or undefined');
     }
@@ -145,13 +149,12 @@ export class PostMenu {
 
   private controlKeyDownHandler(e: KeyboardEvent) {
     const menuItems = this.getSlottedItems();
-
     if (!menuItems.length) {
       return;
     }
 
     let currentIndex = menuItems.findIndex(el => {
-      // Check if the item is currently focused within its rendered scope (document or shadow root)
+    // Check if the item is currently focused within its rendered scope (document or shadow root)
       return el === getRoot(el).activeElement;
     });
 
@@ -168,10 +171,10 @@ export class PostMenu {
         currentIndex = 0;
         break;
       case this.KEYCODES.END:
+        e.preventDefault();
         currentIndex = menuItems.length - 1;
         break;
       case this.KEYCODES.SPACE:
-      case this.KEYCODES.ENTER:
         this.toggle(this.host);
         return;
       case this.KEYCODES.TAB:
@@ -194,8 +197,6 @@ export class PostMenu {
       slottedElements
         // If the element is a slot, get the assigned elements
         .flatMap(el => (el instanceof HTMLSlotElement ? el.assignedElements() : el))
-        // Filter out elements that have a 'menuitem' role
-        .filter(el => el.getAttribute('role') === 'menuitem')
         // For each menu item, get any focusable children (e.g., buttons, links)
         .flatMap(el => Array.from(getFocusableChildren(el)))
     );
@@ -203,7 +204,7 @@ export class PostMenu {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={version} role="menu">
         <post-popovercontainer placement={this.placement} ref={e => (this.popoverRef = e)}>
           <div class="popover-container" part="popover-container">
             <slot></slot>

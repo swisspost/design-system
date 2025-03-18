@@ -11,9 +11,9 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
 #storybook-root,
 #storybook-docs {
-  .sbdocs-content .container >,
-  .sbdocs-content .container > post-tabs > post-tab-panel >,
-  .sbdocs-content .container > migration-global-state {
+  .sbdocs-content *:not(.section) > .container >,
+  .sbdocs-content *:not(.section) > .container > post-tabs > post-tab-panel >,
+  .sbdocs-content *:not(.section) > .container > migration-global-state {
     // Target content headings only
     h1 {
       margin-block: 5rem 1rem;
@@ -42,6 +42,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     h6 {
       margin-block: 1rem;
     }
+
     .table,
     .table-responsive {
       margin-block: 1.5rem 1rem;
@@ -138,10 +139,15 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
+    padding-top: 0;
     background-color: transparent;
 
     .sbdocs-content {
       max-width: none;
+    }
+
+    .docs-container {
+      padding-top: 4rem;
     }
   }
 
@@ -216,4 +222,32 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     bottom: 0;
     right: 0;
   }
+}
+
+.light-section {
+  position: relative;
+  background-color: post.$white;
+
+  &:before,
+  &:after {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: inherit;
+    width: 100vw;
+  }
+
+  &:before {
+    right: 100%;
+  }
+
+  &:after {
+    left: 100%;
+  }
+}
+
+.sbdocs.sbdocs-preview.source-hidden > *:nth-child(2) {
+  display: none !important;
 }

@@ -117,6 +117,16 @@ export class MigrationV89Component extends LitElement {
                     <li><code>$form-check-feedback-margin-top</code></li>
                   </ul>
                 </li>
+                <li class="mb-16">
+                  <p>
+                    Removed the <code>@mixin placeholder()</code>
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <p class="info">
+                    The CSS selector <code>::placeholder</code> can be used instead as it is now
+                    widely available.
+                  </p>
+                </li>
               </ul>
 
               <h5>Grid</h5>
@@ -184,6 +194,17 @@ export class MigrationV89Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    Removed some pixel sizing utility classes (<code>w-*</code>, <code>h-*</code>,
+                    <code>mh-*</code>, <code>mw-*</code>).
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>*-small-large</code></li>
+                    <li><code>*-bigger-giant</code></li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
                     Changed the pixel sizing utility classes (<code>w-*</code>, <code>h-*</code>,
                     <code>mh-*</code>, <code>mw-*</code>) to pixel-based names
                     <span class="tag tag-sm tag-danger">breaking</span>
@@ -195,7 +216,6 @@ export class MigrationV89Component extends LitElement {
                     <li><code>*-mini</code> is now <code>*-8</code></li>
                     <li><code>*-small-regular</code> is now <code>*-12</code></li>
                     <li><code>*-regular</code> is now <code>*-16</code></li>
-                    <li><code>*-small-large</code> is now <code>*-20</code></li>
                     <li><code>*-large</code> is now <code>*-24</code></li>
                     <li><code>*-big</code> is now <code>*-32</code></li>
                     <li><code>*-bigger-big</code> is now <code>*-40</code></li>
@@ -203,7 +223,6 @@ export class MigrationV89Component extends LitElement {
                     <li><code>*-huge</code> is now <code>*-56</code></li>
                     <li><code>*-small-giant</code> is now <code>*-78</code></li>
                     <li><code>*-giant</code> is now <code>*-80</code></li>
-                    <li><code>*-bigger-giant</code> is now <code>*-112</code></li>
                   </ul>
                 </li>
                 <li class="mb-16">
@@ -247,6 +266,17 @@ export class MigrationV89Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    Removed some spacing utilities' classes (margin and padding
+                    <code>{m/p}{x/y/s/e/t/b}-*</code>)
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>*-small-large</code></li>
+                    <li><code>*-bigger-giant</code></li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
                     Changed the spacing utilities' classes (margin and padding
                     <code>{m/p}{x/y/s/e/t/b}-*</code>) naming to pixel-based names
                     <span class="tag tag-sm tag-danger">breaking</span>
@@ -258,7 +288,6 @@ export class MigrationV89Component extends LitElement {
                     <li><code>*-mini</code> and <code>*-2</code> are now <code>*-8</code></li>
                     <li><code>*-small-regular</code> is now <code>*-12</code></li>
                     <li><code>*-regular</code> and <code>*-3</code> are now <code>*-16</code></li>
-                    <li><code>*-small-large</code> is now <code>*-20</code></li>
                     <li><code>*-large</code> and <code>*-4</code> are now <code>*-24</code></li>
                     <li><code>*-big</code> is now <code>*-32</code></li>
                     <li><code>*-bigger-big</code> is now <code>*-40</code></li>
@@ -268,7 +297,6 @@ export class MigrationV89Component extends LitElement {
                     <li><code>*-huge</code> is now <code>*-56</code></li>
                     <li><code>*-small-giant</code> is now <code>*-78</code></li>
                     <li><code>*-giant</code> is now <code>*-80</code></li>
-                    <li><code>*-bigger-giant</code> is now <code>*-112</code></li>
                   </ul>
                 </li>
                 <li class="mb-16">
@@ -370,6 +398,12 @@ export class MigrationV89Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    Removed font-size class <code>.small</code>
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                </li>
+                <li class="mb-16">
+                  <p>
                     The following classes have been removed as the new Swiss Post font does not
                     provide a light font weight (300)
                     <span class="tag tag-sm tag-danger">breaking</span>
@@ -458,6 +492,13 @@ export class MigrationV89Component extends LitElement {
               <ul>
                 <li class="mb-16">
                   <p>
+                    The card button CSS component has been removed.The <code>.card-button</code> and
+                    <code>.card-buttons</code> are therefore no longer available.
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                </li>
+                <li class="mb-16">
+                  <p>
                     The <code>.btn-rg</code> class has been removed. Buttons using this class will
                     now fall back to the default <code>btn-md</code>
                     <span class="tag tag-sm tag-danger">breaking</span>
@@ -535,6 +576,22 @@ export class MigrationV89Component extends LitElement {
                     <li><code>$stepper-link-current-font-size</code></li>
                     <li><code>$stepper-indicator-hover-check-icon</code></li>
                     <li><code>$stepper-indicator-height</code></li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    The following z-index scss variables have been removed, as they were set on
+                    elements that are now using popover which place them in the top layer.
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>$zindex-sticky</code></li>
+                    <li><code>$zindex-fixed</code></li>
+                    <li><code>$zindex-modal-backdrop</code></li>
+                    <li><code>$zindex-modal</code></li>
+                    <li><code>$zindex-popover</code></li>
+                    <li><code>$zindex-tooltip</code></li>
+                    <li><code>$zindex-alert</code></li>
                   </ul>
                 </li>
                 <li class="mb-16">

@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use '../tokens/utilities_formatted';
 
 @use '../variables/sizing' as *;
@@ -28,144 +29,221 @@ $position-values: (
   100: 100%,
 );
 
+$vw-values: (
+  0: 0,
+  25: 25vw,
+  33: 25vw,
+  50: 50vw,
+  66: 66vw,
+  75: 75vw,
+  100: 100vw,
+);
+
+$vh-values: (
+  0: 0,
+  25: 25vh,
+  33: 33vh,
+  50: 50vh,
+  66: 66vh,
+  75: 75vh,
+  100: 100vh,
+);
+
 $utilities: (
-  'grid-gutter': (
-    responsive: true,
-    property: --post-grid-gutter-x --post-grid-gutter-y,
-    class: g,
-    values: utilities_formatted.$gap,
+  'border': (
+    property: border,
+    class: border,
+    values: (
+      null: var(--post-border-width, map.get(utilities_formatted.$border-default, width)) solid
+        map.get(utilities_formatted.$border-default, color),
+      0: 0,
+    ),
+  ),
+  'border-top': (
+    property: border-block-start,
+    class: border-top,
+    values: (
+      null: var(--post-border-width, map.get(utilities_formatted.$border-default, width)) solid
+        map.get(utilities_formatted.$border-default, color),
+      0: 0,
+    ),
+  ),
+  'border-end': (
+    property: border-inline-end,
+    class: border-end,
+    values: (
+      null: var(--post-border-width, map.get(utilities_formatted.$border-default, width)) solid
+        map.get(utilities_formatted.$border-default, color),
+      0: 0,
+    ),
+  ),
+  'border-bottom': (
+    property: border-block-end,
+    class: border-bottom,
+    values: (
+      null: var(--post-border-width, map.get(utilities_formatted.$border-default, width)) solid
+        map.get(utilities_formatted.$border-default, color),
+      0: 0,
+    ),
+  ),
+  'border-start': (
+    property: border-inline-start,
+    class: border-start,
+    values: (
+      null: var(--post-border-width, map.get(utilities_formatted.$border-default, width)) solid
+        map.get(utilities_formatted.$border-default, color),
+      0: 0,
+    ),
+  ),
+  'border-width': (
+    css-var: true,
+    css-variable-name: border-width,
+    class: border,
+    values: utilities_formatted.$border-width,
+  ),
+  'rounded': (
+    property: border-radius,
+    class: rounded,
+    values:
+      map.merge(
+        utilities_formatted.$border-radius,
+        (
+          pill: 50rem,
+          circle: 50%,
+        )
+      ),
+  ),
+  'rounded-top': (
+    property: border-start-start-radius border-start-end-radius,
+    class: rounded-top,
+    values:
+      map.merge(
+        utilities_formatted.$border-radius,
+        (
+          pill: 50rem,
+          circle: 50%,
+        )
+      ),
+  ),
+  'rounded-end': (
+    property: border-start-end-radius border-end-end-radius,
+    class: rounded-end,
+    values:
+      map.merge(
+        utilities_formatted.$border-radius,
+        (
+          pill: 50rem,
+          circle: 50%,
+        )
+      ),
+  ),
+  'rounded-bottom': (
+    property: border-end-end-radius border-end-start-radius,
+    class: rounded-bottom,
+    values:
+      map.merge(
+        utilities_formatted.$border-radius,
+        (
+          pill: 50rem,
+          circle: 50%,
+        )
+      ),
+  ),
+  'rounded-start': (
+    property: border-end-start-radius border-start-start-radius,
+    class: rounded-start,
+    values:
+      map.merge(
+        utilities_formatted.$border-radius,
+        (
+          pill: 50rem,
+          circle: 50%,
+        )
+      ),
   ),
   'grid-gutter-x': (
     responsive: true,
     property: --post-grid-gutter-x,
-    class: gx,
+    class: gx g,
     values: utilities_formatted.$gap,
   ),
   'grid-gutter-y': (
     responsive: true,
     property: --post-grid-gutter-y,
-    class: gy,
+    class: gy g,
     values: utilities_formatted.$gap,
   ),
   'width': (
     responsive: true,
     property: width,
     class: w,
-    values: $post-combined-sizes,
+    values: map.merge(utilities_formatted.$gap, $post-percentage-sizes),
   ),
   'height': (
     responsive: true,
     property: height,
     class: h,
-    values: $post-combined-sizes,
+    values: map.merge(utilities_formatted.$gap, $post-percentage-sizes),
   ),
   'max-width': (
     responsive: true,
     property: max-width,
     class: max-w,
-    values: $post-combined-sizes,
+    values: map.merge(utilities_formatted.$gap, $post-percentage-sizes),
   ),
   'max-height': (
     responsive: true,
     property: max-height,
     class: max-h,
-    values: $post-combined-sizes,
+    values: map.merge(utilities_formatted.$gap, $post-percentage-sizes),
   ),
   'min-width': (
     responsive: true,
     property: min-width,
     class: min-w,
-    values: $post-combined-sizes,
+    values: map.merge(utilities_formatted.$gap, $post-percentage-sizes),
   ),
   'min-height': (
     responsive: true,
     property: min-height,
     class: min-h,
-    values: $post-combined-sizes,
+    values: map.merge(utilities_formatted.$gap, $post-percentage-sizes),
   ),
   'viewport-width': (
     responsive: true,
     property: width,
     class: vw,
-    values: (
-      0: 0,
-      25: 25vw,
-      33: 25vw,
-      50: 50vw,
-      66: 66vw,
-      75: 75vw,
-      100: 100vw,
-    ),
+    values: $vw-values,
   ),
   'viewport-height': (
     responsive: true,
     property: height,
     class: vh,
-    values: (
-      0: 0,
-      25: 25vh,
-      33: 33vh,
-      50: 50vh,
-      66: 66vh,
-      75: 75vh,
-      100: 100vh,
-    ),
+    values: $vh-values,
   ),
   'min-viewport-width': (
     responsive: true,
     property: min-width,
     class: min-vw,
-    values: (
-      0: 0,
-      25: 25vw,
-      33: 25vw,
-      50: 50vw,
-      66: 66vw,
-      75: 75vw,
-      100: 100vw,
-    ),
+    values: $vw-values,
   ),
   'min-viewport-height': (
     responsive: true,
     property: min-height,
     class: min-vh,
-    values: (
-      0: 0,
-      25: 25vh,
-      33: 33vh,
-      50: 50vh,
-      66: 66vh,
-      75: 75vh,
-      100: 100vh,
-    ),
+    values: $vh-values,
   ),
   'max-viewport-width': (
     responsive: true,
     property: max-width,
     class: max-vw,
-    values: (
-      0: 0,
-      25: 25vw,
-      33: 25vw,
-      50: 50vw,
-      66: 66vw,
-      75: 75vw,
-      100: 100vw,
-    ),
+    values: $vw-values,
   ),
   'max-viewport-height': (
     responsive: true,
     property: max-height,
     class: max-vh,
-    values: (
-      0: 0,
-      25: 25vh,
-      33: 33vh,
-      50: 50vh,
-      66: 66vh,
-      75: 75vh,
-      100: 100vh,
-    ),
+    values: $vh-values,
   ),
   'align': (
     property: vertical-align,
@@ -191,88 +269,52 @@ $utilities: (
       100: 1,
     ),
   ),
-  'margin': (
-    responsive: true,
-    property: margin,
-    class: m,
-    values: utilities_formatted.$margin,
-  ),
-  'margin-x': (
-    responsive: true,
-    property: margin-right margin-left,
-    class: mx,
-    values: utilities_formatted.$margin,
-  ),
-  'margin-y': (
-    responsive: true,
-    property: margin-top margin-bottom,
-    class: my,
-    values: utilities_formatted.$margin,
-  ),
   'margin-top': (
     responsive: true,
     property: margin-top,
-    class: mt,
+    class: mt my m,
     values: utilities_formatted.$margin,
   ),
   'margin-end': (
     responsive: true,
     property: margin-right,
-    class: me,
+    class: me mx m,
     values: utilities_formatted.$margin,
   ),
   'margin-bottom': (
     responsive: true,
     property: margin-bottom,
-    class: mb,
+    class: mb my m,
     values: utilities_formatted.$margin,
   ),
   'margin-start': (
     responsive: true,
     property: margin-left,
-    class: ms,
+    class: ms mx m,
     values: utilities_formatted.$margin,
-  ),
-  'padding': (
-    responsive: true,
-    property: padding,
-    class: p,
-    values: utilities_formatted.$padding,
-  ),
-  'padding-x': (
-    responsive: true,
-    property: padding-right padding-left,
-    class: px,
-    values: utilities_formatted.$padding,
-  ),
-  'padding-y': (
-    responsive: true,
-    property: padding-top padding-bottom,
-    class: py,
-    values: utilities_formatted.$padding,
   ),
   'padding-top': (
     responsive: true,
     property: padding-top,
-    class: pt,
+    class: pt py p,
     values: utilities_formatted.$padding,
   ),
   'padding-end': (
     responsive: true,
     property: padding-right,
-    class: pe,
+    class: pe px p,
     values: utilities_formatted.$padding,
   ),
   'padding-bottom': (
     responsive: true,
     property: padding-bottom,
-    class: pb,
+    class: pb py p,
     values: utilities_formatted.$padding,
   ),
   'padding-start': (
     responsive: true,
     property: padding-left,
-    class: ps,
+    class: ps px p,
     values: utilities_formatted.$padding,
   ),
   'gap': (

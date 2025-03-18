@@ -1,5 +1,133 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.31
+
+### Major Changes
+
+- Removed the deprecated css component `card-button`. (by [@leagrdv](https://github.com/leagrdv) with [#4950](https://github.com/swisspost/design-system/pull/4950))
+
+- Updated CSS and SCSS entry file names to better represent the styles contained. There is now the choice between compact and default appearance instead of internal and external styles. This change better represents the resulting look of the components.
+  - post-external.[s]css -> post-default.[s]css
+  - post-internal.[s]css -> post-compact.[s]css
+  - post-tokens-external.[s]css -> post-tokens-default.[s]css
+  - post-tokens-internal.[s]css -> post-tokens-compact.[s]css
+  - cargo-external.[s]css -> cargo-default.[s]css
+  - cargo-internal.[s]css -> cargo-compact.[s]css
+  - cargo-tokens-external.[s]css -> cargo-tokens-default.[s]css
+  - cargo-tokens-internal.[s]css -> cargo-tokens-compact.[s]css (by [@gfellerph](https://github.com/gfellerph) with [#4608](https://github.com/swisspost/design-system/pull/4608))
+
+### Minor Changes
+
+- Removed the `@mixin placeholder` as using the `::placeholder` CSS selector is now widely available. (by [@leagrdv](https://github.com/leagrdv) with [#4934](https://github.com/swisspost/design-system/pull/4934))
+
+### Patch Changes
+
+- Replaced usages of `color: inherit` with tokens to improve high contrast mode compatability. (by [@schaertim](https://github.com/schaertim) with [#4933](https://github.com/swisspost/design-system/pull/4933))
+
+- Improved header accessibility by ensuring that elements which are hidden on scroll get visible again if they receive focus. (by [@leagrdv](https://github.com/leagrdv) with [#4767](https://github.com/swisspost/design-system/pull/4767))
+
+- Fixed the stepper as the progress bar was not being filled correctly on steps progress on firefox. (by [@leagrdv](https://github.com/leagrdv) with [#4893](https://github.com/swisspost/design-system/pull/4893))
+
+- Removed the usage of the deprecated pseudo-element `::input-placeholder`. This fixes an issue with CSS validation tools that don't allow deprecated selectors. (by [@leagrdv](https://github.com/leagrdv) with [#4934](https://github.com/swisspost/design-system/pull/4934))
+
+## 9.0.0-next.30
+
+### Major Changes
+
+- Uninstalled **Intranet Header** package and all its style references. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4587](https://github.com/swisspost/design-system/pull/4587))
+
+- Removed z-index scss variables that were no longer necessary as they had been replaced with popover elements. (by [@leagrdv](https://github.com/leagrdv) with [#4658](https://github.com/swisspost/design-system/pull/4658))
+
+### Patch Changes
+
+- Internalized bootstrap border utility classes. (by [@myrta2302](https://github.com/myrta2302) with [#3751](https://github.com/swisspost/design-system/pull/3751))
+
+- Merged utility classes that were setting the same properties, which reduces the size of the CSS output. (by [@leagrdv](https://github.com/leagrdv) with [#4654](https://github.com/swisspost/design-system/pull/4654))
+
+- Fixed the mobile menu height in the `post-header` component when the scrollable parent is not the document's body. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4829](https://github.com/swisspost/design-system/pull/4829))
+
+- Updated header button styles to match the header anchor styles. (by [@myrta2302](https://github.com/myrta2302) with [#4785](https://github.com/swisspost/design-system/pull/4785))
+
+- Switched the outermost scrollable parent of the `post-header` component from the `html` to the `body` element. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4823](https://github.com/swisspost/design-system/pull/4823))
+
+- Cleaned up \_button.scss by moving button-specific variables to button.scss. Redefined cross-referenced variables in respective component files. Removed unused variables. (by [@schaertim](https://github.com/schaertim) with [#4702](https://github.com/swisspost/design-system/pull/4702))
+
+- Improved the consistency of styles for buttons and links in HCM. (by [@leagrdv](https://github.com/leagrdv) with [#4864](https://github.com/swisspost/design-system/pull/4864))
+
+- Corrected icon URL declarations to avoid errors during the build process when using Vite. (by [@alizedebray](https://github.com/alizedebray) with [#4853](https://github.com/swisspost/design-system/pull/4853))
+
+## 9.0.0-next.29
+
+## 9.0.0-next.28
+
+## 9.0.0-next.27
+
+## 9.0.0-next.26
+
+### Patch Changes
+
+- Fixed calculation of `post-mainnavigation` mobile placement and put back the header border on HCM. (by [@leagrdv](https://github.com/leagrdv) with [#4806](https://github.com/swisspost/design-system/pull/4806))
+
+- Applied styles to the slot title selector rather than `h1` on the `post-header` to have consistent styles whether or not `h1` is used. (by [@leagrdv](https://github.com/leagrdv) with [#4782](https://github.com/swisspost/design-system/pull/4782))
+
+## 9.0.0-next.25
+
+### Patch Changes
+
+- Updated `post-header` styles to hide horizontal overflow on desktop only. (by [@myrta2302](https://github.com/myrta2302) with [#4792](https://github.com/swisspost/design-system/pull/4792))
+
+## 9.0.0-next.24
+
+### Patch Changes
+
+- Updated the icon sizes in the `post-header` and the `post-language-switch` components, to match the design specs. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4783](https://github.com/swisspost/design-system/pull/4783))
+
+## 9.0.0-next.23
+
+## 9.0.0-next.22
+
+### Patch Changes
+
+- Added a fixed height to the `post-header` until it's fully loaded to prevent layout shifts. (by [@alizedebray](https://github.com/alizedebray) with [#4769](https://github.com/swisspost/design-system/pull/4769))
+
+## 9.0.0-next.21
+
+## 9.0.0-next.20
+
+### Patch Changes
+
+- Increased gap between header title and local controls in `post-header`. (by [@leagrdv](https://github.com/leagrdv) with [#4739](https://github.com/swisspost/design-system/pull/4739))
+
+- Fixed breakpoint utility, by normalizing the read custom-properties. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4764](https://github.com/swisspost/design-system/pull/4764))
+
+- Updated validation styles to be applied to all input types. (by [@myrta2302](https://github.com/myrta2302) with [#4762](https://github.com/swisspost/design-system/pull/4762))
+
+## 9.0.0-next.19
+
+### Major Changes
+
+- Removed deprecated legacy utility classes. (by [@leagrdv](https://github.com/leagrdv) with [#4631](https://github.com/swisspost/design-system/pull/4631))
+
+- Removed some utility spacing/sizing sizes to better reflect the ones used on Figma. (by [@leagrdv](https://github.com/leagrdv) with [#4588](https://github.com/swisspost/design-system/pull/4588))
+
+### Minor Changes
+
+- Added helper classes to the `.section` component, which allow content to bleed out to the edge of the `.section` or the `.container` element. Either on both sides, or only to the left or right edge. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4741](https://github.com/swisspost/design-system/pull/4741))
+
+- Added new css component `.section` to be used as wrapper for hero elements and/or palettes. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4733](https://github.com/swisspost/design-system/pull/4733))
+
+- Added a new CSS output file that includes all the utility classes. (by [@alizedebray](https://github.com/alizedebray) with [#4613](https://github.com/swisspost/design-system/pull/4613))
+
+### Patch Changes
+
+- Internalized Bootstrap `.text-truncate` class into the Design System. (by [@veyaromain](https://github.com/veyaromain) with [#4599](https://github.com/swisspost/design-system/pull/4599))
+
+- Update the `--header-height` custom property to take the scroll position and reduced header height into account. (by [@alizedebray](https://github.com/alizedebray) with [#4746](https://github.com/swisspost/design-system/pull/4746))
+
+- Added high contrast mode styles for header. (by [@myrta2302](https://github.com/myrta2302) with [#4262](https://github.com/swisspost/design-system/pull/4262))
+
+- Removed the custom properties from the `post-header` component styles and moved them to the styles package. This change allows these properties to be accessed before the component is loaded. (by [@leagrdv](https://github.com/leagrdv) with [#4663](https://github.com/swisspost/design-system/pull/4663))
+
 ## 9.0.0-next.18
 
 ### Major Changes
