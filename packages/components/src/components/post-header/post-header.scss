@@ -176,7 +176,7 @@
 
 ::slotted([slot="title"]) {
   @include media.max(lg) {
-    padding-block-start: 4px;
+    padding-block: 12px;
   }
   @include media.min(sm) {
     @include media.max(md) {
