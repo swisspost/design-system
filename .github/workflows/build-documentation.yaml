@@ -31,6 +31,9 @@ jobs:
       - name: Install documentation & dependencies
         run: pnpm --filter design-system-documentation... install
 
+      - name: Dry Run Publish
+        uses: ./.github/actions/dry-run-publish
+
       - name: Build documentation & dependencies
         run: pnpm --filter design-system-documentation... build
 
