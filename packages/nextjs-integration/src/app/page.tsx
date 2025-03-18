@@ -29,7 +29,7 @@ export default function Home() {
       </p>
 
       <h2>Accordion</h2>
-      <PostAccordion heading-level="3">
+      <PostAccordion headingLevel={3}>
         <PostAccordionItem>
           <span slot="header">Titulum 1</span>
           <div>
@@ -114,7 +114,13 @@ export default function Home() {
           Click here to see a popover
         </button>
       </div>
-      <PostPopover className="palette-alternate" id="popover-one" placement="top" arrow={true}>
+      <PostPopover
+        className="palette-alternate"
+        id="popover-one"
+        placement="top"
+        closeButtonCaption="Close Popover"
+        arrow={true}
+      >
         <h2 className="h6">Optional title</h2>
         <p className="mb-0">
           A longer message that needs more time to read. <a href="#test">Links</a> are also
