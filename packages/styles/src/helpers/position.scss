@@ -1,14 +1,14 @@
 @use './../variables/commons';
 @use '../variables/breakpoints' as bp;
 @use '../mixins/breakpoints' as bp-mixin;
-@use "sass:map";
+@use 'sass:map';
 
 .fixed-top {
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
-  z-index: commons.$zindex-fixed;
+  z-index: commons.$zindex-header + 100;
 }
 
 .fixed-bottom {
@@ -16,7 +16,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: commons.$zindex-fixed;
+  z-index: commons.$zindex-header + 100;
 }
 
 // Responsive sticky top and bottom

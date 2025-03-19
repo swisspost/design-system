@@ -1,5 +1,5 @@
 @use '../variables/breakpoints' as bp;
-@use "sass:map";
+@use 'sass:map';
 
 @function breakpoint-min($name, $breakpoints: bp.$grid-breakpoints) {
   @return map.get($breakpoints, $name);
