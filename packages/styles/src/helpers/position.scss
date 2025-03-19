@@ -8,7 +8,7 @@
   top: 0;
   right: 0;
   left: 0;
-  z-index: commons.$zindex-header + 100;
+  z-index: commons.$zindex-fixed;
 }
 
 .fixed-bottom {
@@ -16,7 +16,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: commons.$zindex-header + 100;
+  z-index: commons.$zindex-header;
 }
 
 // Responsive sticky top and bottom
