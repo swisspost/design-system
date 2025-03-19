@@ -11,9 +11,9 @@ import * as AvatarPictureStories from './avatar.stories';
   </nav>
 </div>
 
-<p className="lead">
+<div className="lead">
   Display a user's profile picture or their initials if the picture is unavailable.
-</p>
+</div>
 
 <Canvas of={AvatarPictureStories.Default} sourceState="shown" />
 <Controls of={AvatarPictureStories.Default} />
@@ -38,7 +38,9 @@ Use this approach to use the component as a menu toggler, ...
 
 The component provides some css-variables, which allow you to switch the background and the foreground color if needed.
 
-<post-banner type="warning">Please ensure at all times, that the background and foreground colors have sufficient contrast!</post-banner>
+<div className="banner banner-warning banner-md">
+  Please ensure at all times, that the background and foreground colors have sufficient contrast!
+</div>
 
 ```scss
 post-avatar {
