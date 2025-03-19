@@ -75,9 +75,9 @@ jobs:
 
       - name: Get Changes
         id: changed-files
-        uses: tj-actions/changed-files@v45
+        uses: step-security/changed-files@v45
         with:
-          files: ./packages/icons/public/post-icons/**
+          files: ./packages/icons/src/icons/**/*.svg
 
       - name: Exit if no changes
         if: steps.changed-files.outputs.any_modified == 'false'
