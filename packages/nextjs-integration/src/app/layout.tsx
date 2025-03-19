@@ -87,20 +87,20 @@ export default function RootLayout({ children }: { readonly children: React.Reac
             </li>
           </ul>
 
-          {/* <PostMainnavigation>
+          <PostMainnavigation caption="Hauptnavigation">
             <button type="button" slot="back-button" className="btn btn-sm btn-tertiary">
               <PostIcon aria-hidden="true" name="arrowright"></PostIcon> Back
             </button>
             <PostList title-hidden="">
               <h2>Main Navigation</h2>
-              <PostListItem>
+              <PostListItem slot="post-list-item">
                 <a href="/briefe">Briefe</a>
               </PostListItem>
-              <PostListItem>
+              <PostListItem slot="post-list-item">
                 <a href="/pakete">Pakete</a>
               </PostListItem>
 
-              <PostListItem>
+              <PostListItem slot="post-list-item">
                 <PostMegadropdownTrigger for="briefe">Briefe</PostMegadropdownTrigger>
                 <PostMegadropdown id="briefe">
                   <button slot="back-button" className="btn btn-tertiary px-0 btn-sm">
@@ -111,16 +111,16 @@ export default function RootLayout({ children }: { readonly children: React.Reac
                   <h2 slot="megadropdown-title">Briefe title</h2>
                   <PostList>
                     <h3>Briefe senden</h3>
-                    <PostListItem>
+                    <PostListItem slot="post-list-item">
                       <a href="/sch">Briefe Schweiz</a>
                     </PostListItem>
-                    <PostListItem>
+                    <PostListItem slot="post-list-item">
                       <a href="/kl">Kleinwaren Ausland</a>
                     </PostListItem>
-                    <PostListItem>
+                    <PostListItem slot="post-list-item">
                       <a href="#test">Waren Ausland</a>
                     </PostListItem>
-                    <PostListItem>
+                    <PostListItem slot="post-list-item">
                       <a href="#test">Express und Kurier</a>
                     </PostListItem>
                   </PostList>
@@ -128,22 +128,22 @@ export default function RootLayout({ children }: { readonly children: React.Reac
                     <h3>
                       <a href="/schritt-für-schritt">Schritt für Schritt</a>
                     </h3>
-                    <PostListItem>
+                    <PostListItem slot="post-list-item">
                       <a href="/sch">Pakete Schweiz</a>
                     </PostListItem>
-                    <PostListItem>
+                    <PostListItem slot="post-list-item">
                       <a href="/kl">Kleinwaren Ausland</a>
                     </PostListItem>
-                    <PostListItem>
+                    <PostListItem slot="post-list-item">
                       <a href="#test">Waren Ausland</a>
                     </PostListItem>
-                    <PostListItem>
+                    <PostListItem slot="post-list-item">
                       <a href="#test">Express und Kurier</a>
                     </PostListItem>
                   </PostList>
                 </PostMegadropdown>
               </PostListItem>
-              <PostListItem>
+              <PostListItem slot="post-list-item">
                 <PostMegadropdownTrigger for="pakete">Pakete</PostMegadropdownTrigger>
                 <PostMegadropdown id="pakete">
                   <button slot="back-button" className="btn btn-tertiary px-0 btn-sm">
@@ -154,16 +154,16 @@ export default function RootLayout({ children }: { readonly children: React.Reac
                   <h2 slot="megadropdown-title">Pakete title</h2>
                   <PostList>
                     <h3>Pakete senden</h3>
-                    <PostListItem>
+                    <PostListItem slot="post-list-item">
                       <a href="/sch">Pakete Schweiz</a>
                     </PostListItem>
-                    <PostListItem>
+                    <PostListItem slot="post-list-item">
                       <a href="/kl">Kleinwaren Ausland</a>
                     </PostListItem>
-                    <PostListItem>
+                    <PostListItem slot="post-list-item">
                       <a href="#test">Waren Ausland</a>
                     </PostListItem>
-                    <PostListItem>
+                    <PostListItem slot="post-list-item">
                       <a href="#test">Express und Kurier</a>
                     </PostListItem>
                   </PostList>
@@ -171,23 +171,23 @@ export default function RootLayout({ children }: { readonly children: React.Reac
                     <h3>
                       <a href="/schritt-für-schritt">Schritt für Schritt</a>
                     </h3>
-                    <PostListItem>
+                    <PostListItem slot="post-list-item">
                       <a href="/sch">Pakete Schweiz</a>
                     </PostListItem>
-                    <PostListItem>
+                    <PostListItem slot="post-list-item">
                       <a href="/kl">Kleinwaren Ausland</a>
                     </PostListItem>
-                    <PostListItem>
+                    <PostListItem slot="post-list-item">
                       <a href="#test">Waren Ausland</a>
                     </PostListItem>
-                    <PostListItem>
+                    <PostListItem slot="post-list-item">
                       <a href="#test">Express und Kurier</a>
                     </PostListItem>
                   </PostList>
                 </PostMegadropdown>
               </PostListItem>
             </PostList>
-          </PostMainnavigation> */}
+          </PostMainnavigation>
         </PostHeader>
 
         <main style={{ paddingBlock: '3rem' }}>
@@ -203,7 +203,7 @@ export default function RootLayout({ children }: { readonly children: React.Reac
 
         <PostFooter label="Footer label">
           <span slot="grid-1-title">Title 1</span>
-          {/* <PostList slot="grid-1" id="grid-1">
+          <PostList slot="grid-1" id="grid-1">
             <h3>Title 1</h3>
 
             <PostListItem>
@@ -229,9 +229,9 @@ export default function RootLayout({ children }: { readonly children: React.Reac
             <PostListItem>
               <a href="#test">Text link 6</a>
             </PostListItem>
-          </PostList> */}
+          </PostList>
 
-          {/* <span slot="grid-2-title">Title 2</span>
+          <span slot="grid-2-title">Title 2</span>
           <PostList slot="grid-2">
             <h3>Title 2</h3>
 
@@ -454,7 +454,7 @@ export default function RootLayout({ children }: { readonly children: React.Reac
                 Cookie Settings
               </button>
             </PostListItem>
-          </PostList>*/}
+          </PostList>
 
           <span slot="copyright">© Copyright 2024 by Swiss Post Ltd.</span>
           <span slot="copyright">All rights reserved.</span>

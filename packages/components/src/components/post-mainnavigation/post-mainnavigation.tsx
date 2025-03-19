@@ -4,12 +4,11 @@ import { version } from '@root/package.json';
 const SCROLL_REPEAT_INTERVAL = 100; // Interval for repeated scrolling when holding down scroll button
 const NAVBAR_DISABLE_DURATION = 400; // Duration to temporarily disable navbar interactions during scrolling
 
-const NAVIGATION_LIST_SELECTOR = 'post-list > [role="list"]:not(post-megadropdown *)';
 const NAVIGATION_ITEM_SELECTOR = 'post-list-item :is(a, button):not(post-megadropdown *)';
 
 @Component({
   tag: 'post-mainnavigation',
-  shadow: false,
+  shadow: true,
   styleUrl: './post-mainnavigation.scss',
 })
 export class PostMainnavigation {
@@ -258,14 +257,32 @@ export class PostMainnavigation {
    * Returns the navigation list container element
    */
   private get navigationList(): HTMLElement {
-    return this.navbar.querySelector(NAVIGATION_LIST_SELECTOR);
+    return this.navbar
+      .querySelector('slot')
+      .assignedElements()
+      .map(element => element.querySelector('post-list') as unknown as HTMLElement | null)
+      .find(element => element !== null);
   }
 
   /**
    * Returns the navigation items
    */
   private get navigationItems(): NodeListOf<HTMLElement> {
+    // const NAVIGATION_ITEM_SELECTOR = 'post-list-item :is(a, button):not(post-megadropdown *)';
     return this.navbar.querySelectorAll(NAVIGATION_ITEM_SELECTOR);
+    // return this.navigationList
+    //   .querySelector('slot')
+    //   .assignedElements()
+    //   .map(element => {
+    //     const listItems = Array.from(
+    //       element.querySelectorAll('post-list-item'),
+    //     ) as (HTMLElement | null)[];
+
+    //     return listItems.map(listItem => {
+    //       const listItemContent = listItem?.shadowRoot?.querySelector('slot').assignedElements() as (HTMLElement | null)[];
+    //       return listItemContent?.querySelectorAll(':is(a, button)');
+    //     });
+    //   });
   }
 
   /**
