@@ -60,6 +60,21 @@ export class PostAvatar {
     checkNonEmpty(this, 'firstname');
   }
 
+  @Watch('lastname')
+  validateLastname() {
+    checkNonEmpty(this, 'lastname', undefined, 'warning');
+  }
+
+  @Watch('userid')
+  validateUserid() {
+    checkNonEmpty(this, 'userid', undefined, 'warning');
+  }
+
+  @Watch('email')
+  validateEmail() {
+    checkNonEmpty(this, 'email', undefined, 'warning');
+  }
+
   private async getAvatar() {
     if (this.slottedImage !== null) {
       this.avatarType = AvatarType.Slotted;
@@ -166,6 +181,9 @@ export class PostAvatar {
 
   componentDidLoad() {
     this.validateFirstname();
+    this.validateLastname();
+    this.validateUserid();
+    this.validateEmail();
   }
 
   render() {
