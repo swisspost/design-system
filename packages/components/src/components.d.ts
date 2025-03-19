@@ -465,9 +465,14 @@ export namespace Components {
         "variant": 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
     interface PostTest {
-        "firstname": string;
-        "lastname": string;
-        "test": boolean;
+        "Array2Boolean": boolean;
+        "Array2String": string;
+        "Boolean2String": string;
+        "Number2Boolean": boolean;
+        "Object2Boolean": boolean;
+        "Object2String": string;
+        "String2Boolean": boolean;
+        "String2String": string;
     }
     interface PostTogglebutton {
         /**
@@ -1316,9 +1321,14 @@ declare namespace LocalJSX {
         "variant"?: 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
     interface PostTest {
-        "firstname"?: string;
-        "lastname"?: string;
-        "test"?: boolean;
+        "Array2Boolean"?: boolean;
+        "Array2String"?: string;
+        "Boolean2String"?: string;
+        "Number2Boolean"?: boolean;
+        "Object2Boolean"?: boolean;
+        "Object2String"?: string;
+        "String2Boolean"?: boolean;
+        "String2String"?: string;
     }
     interface PostTogglebutton {
         /**

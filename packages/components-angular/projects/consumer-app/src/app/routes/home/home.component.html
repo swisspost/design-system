@@ -1,4 +1,23 @@
 <div class="my-4">
   <h3>test props</h3>
-  <post-test [firstname]="firstname" [lastname]="lastname" [test]="test"></post-test>
+  <post-test
+    [String2String]="String2String"
+    [Boolean2String]="Boolean2String"
+    [Object2String]="Object2String"
+    [Array2String]="Array2String"
+    [String2Boolean]="String2Boolean"
+    [Number2Boolean]="Number2Boolean"
+    [Object2Boolean]="String2Boolean"
+    [Array2Boolean]="Number2Boolean"
+  ></post-test>
 </div>
+
+<!-- String2String: string = 'whatever';
+Boolean2String: boolean = true;
+Object2String: object = { id: '1', name: 'test' };
+Array2String: string[] = ['a', 'b'];
+String2Boolean: string = 'whatever';
+Number2Boolean: boolean = true; 
+Object2Boolean: object = { id: '1', name: 'test' };
+Array2Boolean: string[] = ['item1', 'item2', 'item3'];
+  -->
