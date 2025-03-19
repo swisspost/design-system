@@ -23,18 +23,16 @@
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/post-components/post-components.esm.js",
   "exports": {
+    "./package.json": "./package.json",
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/components/components.esm.js",
-      "require": "./dist/components/components.cjs.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs.js"
     },
     "./dist/*": {
       "types": "./dist/*",
-      "import": "./dist/*"
-    },
-    "./components/*": {
-      "types": "./dist/components/*.d.ts",
-      "import": "./dist/components/*.js"
+      "import": "./dist/*",
+      "require": "./dist/*"
     },
     "./loader": {
       "types": "./loader/index.d.ts",
