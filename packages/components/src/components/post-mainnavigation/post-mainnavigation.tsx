@@ -21,7 +21,6 @@ export class PostMainnavigation {
   private scrollRepeatInterval: ReturnType<typeof setInterval>;
   private navbarDisableTimer: ReturnType<typeof setInterval>;
 
-  private readonly resizeObserver: ResizeObserver;
   private readonly mutationObserver: MutationObserver;
 
   @Element() host: HTMLPostMainnavigationElement;
@@ -42,7 +41,6 @@ export class PostMainnavigation {
   constructor() {
     this.checkScrollability = this.checkScrollability.bind(this);
 
-    this.resizeObserver = new ResizeObserver(this.checkScrollability);
     this.mutationObserver = new MutationObserver(async mutations => {
       // Wait for all elements to be hydrated
       await Promise.all(
@@ -51,7 +49,7 @@ export class PostMainnavigation {
           .map((item: HTMLPostListItemElement) =>
             item.componentOnReady ? item.componentOnReady() : Promise.resolve(item),
           ),
-      );
+      ).finally(this.checkScrollability);
     });
   }
 
@@ -65,21 +63,22 @@ export class PostMainnavigation {
   }
 
   componentDidLoad() {
-    const navList = this.navigationList;
-
     // Initial check to determine if scrolling is needed
-    setTimeout(this.checkScrollability);
+    this.checkScrollability();
 
     // Observe the navbar and the navigation list for size changes
     if (this.navbar) {
-      this.resizeObserver.observe(this.navbar);
       // Handle focus changes and adjust scroll as needed
       this.navbar.addEventListener('focusin', e => this.adjustTranslation(e));
     }
 
-    if (navList) {
-      this.resizeObserver.observe(navList);
-      this.mutationObserver.observe(navList, { subtree: true, childList: true }); // Recheck scrollability when navigation list changes
+    if (this.navigationList) {
+      // Recheck scrollability when navigation list changes
+      this.mutationObserver.observe(this.navigationList, {
+        attributes: true,
+        childList: true,
+        subtree: true,
+      });
     }
   }
 
@@ -89,9 +88,6 @@ export class PostMainnavigation {
   disconnectedCallback() {
     this.header = null;
 
-    if (this.resizeObserver) {
-      this.resizeObserver.disconnect();
-    }
     if (this.mutationObserver) {
       this.mutationObserver.disconnect();
     }

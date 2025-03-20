@@ -26,8 +26,8 @@
 
   nav {
     max-width: 100%;
-    background: color.$white;
     max-height: var(--main-navigation-height);
+    background: color.$white;
     user-select: none;
     transition: margin animation.$transition-base-timing;
   }
@@ -46,6 +46,7 @@
       box-shadow: elevation.$elevation-500;
       line-height: 100%;
       height: var(--main-navigation-height);
+      cursor: pointer;
 
       post-icon {
         font-size: 1rem;
