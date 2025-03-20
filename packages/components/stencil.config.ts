@@ -7,6 +7,7 @@ import { angularValueAccessorBindings } from './.config/bindings.angular';
 
 export const config: Config = {
   namespace: 'post-components',
+  globalStyle: './src/_global/styles/index.scss',
   buildDist: true,
   sourceMap: false,
   validatePrimaryPackageOutputTarget: true,

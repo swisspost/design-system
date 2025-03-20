@@ -4,13 +4,13 @@ import { version } from '@root/package.json';
 const SCROLL_REPEAT_INTERVAL = 100; // Interval for repeated scrolling when holding down scroll button
 const NAVBAR_DISABLE_DURATION = 400; // Duration to temporarily disable navbar interactions during scrolling
 
-const NAVIGATION_LIST_SELECTOR = 'post-list > [role="list"]:not(post-megadropdown *)';
+const NAVIGATION_LIST_SELECTOR = 'post-list:not([slot])';
 const NAVIGATION_ITEM_SELECTOR = 'post-list-item :is(a, button):not(post-megadropdown *)';
 
 @Component({
   tag: 'post-mainnavigation',
   styleUrl: './post-mainnavigation.scss',
-  shadow: false,
+  shadow: true,
 })
 export class PostMainnavigation {
   private header: HTMLPostHeaderElement | null;
@@ -20,21 +20,9 @@ export class PostMainnavigation {
 
   private scrollRepeatInterval: ReturnType<typeof setInterval>;
   private navbarDisableTimer: ReturnType<typeof setInterval>;
-  private resizeObserver: ResizeObserver;
 
-  private readonly mutationObserver = new MutationObserver(async mutations => {
-    // Wait for all elements to be hydrated
-    await Promise.all(
-      mutations
-        .flatMap((mutation: MutationRecord) => Array.from(mutation.addedNodes))
-        .map((item: HTMLPostListItemElement) =>
-          item.componentOnReady ? item.componentOnReady() : Promise.resolve(item),
-        ),
-    );
-
-    // Recalculate scrollability after DOM changes
-    this.checkScrollability();
-  });
+  private readonly resizeObserver: ResizeObserver;
+  private readonly mutationObserver: MutationObserver;
 
   @Element() host: HTMLPostMainnavigationElement;
 
@@ -51,12 +39,48 @@ export class PostMainnavigation {
     this.checkScrollability();
   }
 
+  constructor() {
+    this.checkScrollability = this.checkScrollability.bind(this);
+
+    this.resizeObserver = new ResizeObserver(this.checkScrollability);
+    this.mutationObserver = new MutationObserver(async mutations => {
+      // Wait for all elements to be hydrated
+      await Promise.all(
+        mutations
+          .flatMap((mutation: MutationRecord) => Array.from(mutation.addedNodes))
+          .map((item: HTMLPostListItemElement) =>
+            item.componentOnReady ? item.componentOnReady() : Promise.resolve(item),
+          ),
+      );
+    });
+  }
+
   /**
    * Retrieves a reference to the closest 'post-header' element when the main navigation is added to the DOM.
    * This ensures that we can interact with the header for mobile menu toggling.
    */
   connectedCallback() {
     this.header = this.host.closest('post-header');
+    this.fixLayoutShift();
+  }
+
+  componentDidLoad() {
+    const navList = this.navigationList;
+
+    // Initial check to determine if scrolling is needed
+    setTimeout(this.checkScrollability);
+
+    // Observe the navbar and the navigation list for size changes
+    if (this.navbar) {
+      this.resizeObserver.observe(this.navbar);
+      // Handle focus changes and adjust scroll as needed
+      this.navbar.addEventListener('focusin', e => this.adjustTranslation(e));
+    }
+
+    if (navList) {
+      this.resizeObserver.observe(navList);
+      this.mutationObserver.observe(navList, { subtree: true, childList: true }); // Recheck scrollability when navigation list changes
+    }
   }
 
   /**
@@ -64,47 +88,24 @@ export class PostMainnavigation {
    */
   disconnectedCallback() {
     this.header = null;
-    this.mutationObserver.disconnect();
 
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();
     }
-  }
-
-  componentDidLoad() {
-    setTimeout(() => this.checkScrollability()); // Initial check to determine if scrolling is needed
-
-    this.resizeObserver = new ResizeObserver(() => {
-      this.checkScrollability();
-    });
-
-    // Observe the navbar and the navigation list for size changes
-    if (this.navbar) {
-      this.resizeObserver.observe(this.navbar);
-      const navList = this.navigationList;
-      if (navList) {
-        this.resizeObserver.observe(navList);
-      }
+    if (this.mutationObserver) {
+      this.mutationObserver.disconnect();
     }
-
-    this.mutationObserver.observe(this.navigationList, { subtree: true, childList: true }); // Recheck scrollability when navigation list changes
-    this.fixLayoutShift();
-
-    // Handle focus changes and adjust scroll as needed
-    this.navbar.addEventListener('focusin', e => this.adjustTranslation(e));
   }
 
   // Hack that duplicates navigation elements to fix the layout shift on active elements
   private fixLayoutShift() {
     // Select first level of main navigation elements, both the links and the megadropdown trigger buttons
-    const children = this.host.querySelectorAll(
-      'nav > post-list > div > post-list-item > a, nav > post-list > div > post-list-item > post-megadropdown-trigger > button',
-    );
+    const children = this.navigationListItems;
 
     // Update HTML so that the content is duplicated
     children.forEach(
       child =>
-        (child.innerHTML = `<span class="nav-el-active">${child.innerHTML}</span><span class="nav-el-inactive"aria-hidden="true">${child.innerHTML}</span>`),
+        (child.innerHTML = `<span class="mainnavigation-item-active">${child.innerHTML}</span><span class="mainnavigation-item-inactive" aria-hidden="true">${child.innerHTML}</span>`),
     );
   }
 
@@ -185,10 +186,11 @@ export class PostMainnavigation {
   }
 
   private scroll(direction: 'left' | 'right') {
-    const navigationItems = Array.from(this.navigationItems);
-    if (direction === 'left') navigationItems.reverse();
+    const navigationListItems = this.navigationListItems;
 
-    for (const item of navigationItems) {
+    if (direction === 'left') navigationListItems.reverse();
+
+    for (const item of navigationListItems) {
       const couldScroll =
         direction === 'left' ? this.translateLeftTo(item, true) : this.translateRightTo(item, true);
       if (couldScroll) break;
@@ -216,7 +218,9 @@ export class PostMainnavigation {
     const maximumTranslation = this.navbar.scrollWidth - this.host.clientWidth;
 
     // Adjust the translation amount, ensuring it doesn't exceed the maximum scrollable area
-    const { marginRight } = getComputedStyle(this.navigationList);
+    const { marginRight } = getComputedStyle(
+      this.navigationList?.shadowRoot.querySelector('[role="list"]'),
+    );
     this.translationAmount =
       Math.min(this.translationAmount + translationIncrease, maximumTranslation) +
       parseInt(marginRight);
@@ -245,7 +249,10 @@ export class PostMainnavigation {
     const minimumTranslation = 0;
 
     // Adjust the translation amount, ensuring it doesn't go below the minimum scrollable area
-    const { marginLeft } = getComputedStyle(this.navigationList);
+    const { marginLeft } = this.navigationShadowList
+      ? getComputedStyle(this.navigationShadowList)
+      : { marginLeft: '0px' };
+
     this.translationAmount = Math.max(
       this.translationAmount - translationDecrease - parseInt(marginLeft),
       minimumTranslation,
@@ -255,17 +262,24 @@ export class PostMainnavigation {
   }
 
   /**
-   * Returns the navigation list container element
+   * Returns the navigation list host element
    */
-  private get navigationList(): HTMLElement {
-    return this.navbar.querySelector(NAVIGATION_LIST_SELECTOR);
+  private get navigationList(): HTMLElement | null {
+    return this.host.querySelector(NAVIGATION_LIST_SELECTOR);
+  }
+
+  /**
+   * Returns the navigation list shadow [role="list"] element
+   */
+  private get navigationShadowList(): HTMLElement | null {
+    return this.navigationList?.shadowRoot.querySelector('[role="list"]') ?? null;
   }
 
   /**
    * Returns the navigation items
    */
-  private get navigationItems(): NodeListOf<HTMLElement> {
-    return this.navbar.querySelectorAll(NAVIGATION_ITEM_SELECTOR);
+  private get navigationListItems(): HTMLElement[] {
+    return Array.from(this.host.querySelectorAll(NAVIGATION_ITEM_SELECTOR));
   }
 
   /**
@@ -303,7 +317,7 @@ export class PostMainnavigation {
           <slot name="back-button"></slot>
         </div>
 
-        <nav ref={el => (this.navbar = el)}>
+        <nav ref={(el: HTMLElement) => (this.navbar = el)}>
           <slot></slot>
         </nav>
 
@@ -311,7 +325,7 @@ export class PostMainnavigation {
           <button
             type="button"
             tabindex="-1"
-            ref={el => (this.leftScrollButton = el)}
+            ref={(el: HTMLButtonElement) => (this.leftScrollButton = el)}
             onMouseDown={() => this.handleScrollButtonClick('left')}
           >
             <post-icon aria-hidden="true" name="chevronleft"></post-icon>
@@ -325,7 +339,7 @@ export class PostMainnavigation {
           <button
             type="button"
             tabindex="-1"
-            ref={el => (this.rightScrollButton = el)}
+            ref={(el: HTMLButtonElement) => (this.rightScrollButton = el)}
             onMouseDown={() => this.handleScrollButtonClick('right')}
           >
             <post-icon aria-hidden="true" name="chevronright"></post-icon>
