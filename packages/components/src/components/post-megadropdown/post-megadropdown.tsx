@@ -6,7 +6,7 @@ import { breakpoint } from '../../utils/breakpoints';
 @Component({
   tag: 'post-megadropdown',
   styleUrl: 'post-megadropdown.scss',
-  shadow: true,
+  shadow: false,
 })
 export class PostMegadropdown {
   private firstFocusableEl: HTMLElement | null;
