@@ -1,0 +1,55 @@
+@use '../mixins/mode';
+
+p-table,
+.p-datatable-filter-overlay {
+  --p-radiobutton-width: 1.25rem;
+  --p-radiobutton-height: 1.25rem;
+  --p-radiobutton-background: var(--p-form-field-background);
+  --p-radiobutton-checked-background: var(--p-form-field-background);
+  --p-radiobutton-checked-hover-background: var(--p-form-field-background);
+  --p-radiobutton-disabled-background: var(--p-form-field-disabled-background);
+  --p-radiobutton-filled-background: var(--p-form-field-filled-background);
+  --p-radiobutton-border-color: var(--p-form-field-border-color);
+  --p-radiobutton-hover-border-color: var(--p-form-field-hover-border-color);
+  --p-radiobutton-focus-border-color: var(--p-form-field-focus-border-color);
+  --p-radiobutton-checked-border-color: var(--p-form-field-border-color);
+  --p-radiobutton-checked-hover-border-color: var(--p-form-field-hover-border-color);
+  --p-radiobutton-checked-focus-border-color: var(--p-form-field-focus-border-color);
+  --p-radiobutton-checked-disabled-border-color: var(--p-form-field-border-color);
+  --p-radiobutton-invalid-border-color: var(--p-form-field-invalid-border-color);
+  --p-radiobutton-shadow: var(--p-form-field-shadow);
+  --p-radiobutton-focus-ring-width: var(--p-focus-ring-width);
+  --p-radiobutton-focus-ring-style: var(--p-focus-ring-style);
+  --p-radiobutton-focus-ring-color: var(--p-focus-ring-color);
+  --p-radiobutton-focus-ring-offset: var(--p-focus-ring-offset);
+  --p-radiobutton-focus-ring-shadow: var(--p-focus-ring-shadow);
+  --p-radiobutton-transition-duration: var(--p-form-field-transition-duration);
+  --p-radiobutton-sm-width: 1rem;
+  --p-radiobutton-sm-height: 1rem;
+  --p-radiobutton-lg-width: 1.5rem;
+  --p-radiobutton-lg-height: 1.5rem;
+  --p-radiobutton-icon-size: 0.75rem;
+  --p-radiobutton-icon-checked-color: var(--p-form-field-border-color);
+  --p-radiobutton-icon-checked-hover-color: var(--p-form-field-hover-border-color);
+  --p-radiobutton-icon-disabled-color: var(--p-form-field-disabled-color);
+  --p-radiobutton-icon-sm-size: 0.5rem;
+  --p-radiobutton-icon-lg-size: 1rem;
+}
+
+@include mode.dark {
+  p-table,
+  .p-datatable-filter-overlay {
+    --p-radiobutton-background: transparent;
+    --p-radiobutton-hover-background: var(--p-radiobutton-background);
+    --p-radiobutton-checked-background: var(--p-radiobutton-background);
+    --p-radiobutton-checked-hover-background: var(--p-radiobutton-background);
+
+    --p-radiobutton-border-color: var(--post-gray-80);
+    --p-radiobutton-hover-border-color: var(--p-radiobutton-border-color);
+    --p-radiobutton-checked-border-color: var(--p-radiobutton-border-color);
+    --p-radiobutton-icon-checked-color: var(--p-radiobutton-border-color);
+
+    --p-radiobutton-icon-checked-hover-color: var(--post-white);
+    --p-radiobutton-checked-hover-border-color: var(--post-white);
+  }
+}

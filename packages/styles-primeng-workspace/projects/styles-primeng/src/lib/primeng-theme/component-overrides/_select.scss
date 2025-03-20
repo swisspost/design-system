@@ -1,9 +1,0 @@
-@use '../mixins/icon';
-
-.p-select-overlay {
-  border-width: 0 !important;
-}
-
-.p-select-dropdown > chevrondownicon {
-  @include icon.replace-with(2113);
-}

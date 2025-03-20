@@ -1,0 +1,88 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+@mixin custom-icon($icon) {
+  display: block;
+  position: relative;
+  height: var(--p-icon-size);
+  width: var(--p-icon-size);
+
+  &::after {
+    content: '';
+    display: block;
+    height: calc(1.5 * var(--p-icon-size));
+    width: calc(1.5 * var(--p-icon-size));
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @include post.icon($icon);
+  }
+
+  .p-icon {
+    display: none;
+  }
+}
+
+anglerighticon {
+  @include custom-icon(2111);
+}
+
+angledoublerighticon {
+  @include custom-icon(2395);
+}
+
+anglelefticon {
+  @include custom-icon(2110);
+}
+
+angledoublelefticon {
+  @include custom-icon(2396);
+}
+
+plusicon {
+  @include custom-icon(2040);
+}
+
+trashicon {
+  @include custom-icon(2015);
+}
+
+chevrondownicon {
+  @include custom-icon(2113);
+}
+
+filtericon {
+  @include custom-icon(2060);
+}
+
+sortalticon {
+  @include custom-icon(2127);
+}
+
+sortamountupalticon {
+  @include custom-icon(2112);
+}
+
+sortamountdownicon {
+  @include custom-icon(2113);
+}
+
+arrowupicon {
+  @include custom-icon(3026);
+}
+
+arrowdownicon {
+  @include custom-icon(3022);
+}
+
+checkicon {
+  @include custom-icon(3035);
+}
+
+timesicon {
+  @include custom-icon(2043);
+}
+
+.p-datatable-reorderable-row-handle {
+  @include custom-icon(2070);
+}

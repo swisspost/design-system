@@ -1,7 +1,15 @@
-@forward './component-overrides/button';
-@forward './component-overrides/datatable';
-@forward './component-overrides/pagination';
-@forward './component-overrides/select';
+@forward './primitive';
+@forward './semantic';
+@forward './icons';
+
+@forward './components/button';
+@forward './components/checkbox';
+@forward './components/datatable';
+@forward './components/inputtext';
+@forward './components/overlay';
+@forward './components/paginator';
+@forward './components/radiobutton';
+@forward './components/select';
 
 .p-button,
 .p-inputtext,

@@ -14,13 +14,13 @@ interface Product {
 }
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    standalone: false
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  standalone: false,
 })
 export class AppComponent {
   @HostBinding('class') containerClasses = 'd-block container my-big py-large';
-  @HostBinding('class.bg-nightblue') hasDarkBackground = false;
+  @HostBinding('class.bg-dark') hasDarkBackground = false;
 
   datatableStyleClass = '';
 

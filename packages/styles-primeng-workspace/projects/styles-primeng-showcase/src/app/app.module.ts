@@ -8,7 +8,7 @@ import { TableModule } from 'primeng/table';
 import { providePrimeNG } from 'primeng/config';
 
 import { AppComponent } from './app.component';
-import { Post } from 'dist/styles-primeng';
+import { Post } from '../../../../dist/styles-primeng';
 
 @NgModule({
   declarations: [AppComponent],
