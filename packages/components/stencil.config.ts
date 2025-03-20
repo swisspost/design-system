@@ -25,34 +25,34 @@ export const config: Config = {
       externalRuntime: false,
       customElementsExportBehavior: 'auto-define-custom-elements',
     },
-    // {
-    //   type: 'dist-custom-elements',
-    //   dir: 'loaders',
-    //   externalRuntime: false,
-    //   customElementsExportBehavior: 'single-export-module',
-    // },
+    {
+      type: 'dist-custom-elements',
+      dir: 'loaders',
+      externalRuntime: false,
+      customElementsExportBehavior: 'single-export-module',
+    },
     {
       type: 'dist-hydrate-script',
       dir: './hydrate',
     },
-    // {
-    //   type: 'www',
-    //   copy: [
-    //     {
-    //       src: '../node_modules/@swisspost/design-system-styles/*.css',
-    //       dest: 'assets/css',
-    //     },
-    //     {
-    //       src: '../node_modules/@swisspost/design-system-styles/palettes/*.css',
-    //       dest: 'assets/css',
-    //     },
-    //     {
-    //       src: '../node_modules/@swisspost/design-system-icons/public/post-icons/*.svg',
-    //       dest: 'assets/icons',
-    //     },
-    //   ],
-    //   serviceWorker: null, // disable service workers,
-    // },
+    {
+      type: 'www',
+      copy: [
+        {
+          src: '../node_modules/@swisspost/design-system-styles/*.css',
+          dest: 'assets/css',
+        },
+        {
+          src: '../node_modules/@swisspost/design-system-styles/palettes/*.css',
+          dest: 'assets/css',
+        },
+        {
+          src: '../node_modules/@swisspost/design-system-icons/public/post-icons/*.svg',
+          dest: 'assets/icons',
+        },
+      ],
+      serviceWorker: null, // disable service workers,
+    },
     {
       type: 'docs-readme',
     },
