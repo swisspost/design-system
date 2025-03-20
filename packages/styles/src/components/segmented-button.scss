@@ -55,6 +55,13 @@ $post-segmented-button-max-count: 8;
       border: tokens.get('button-segmented-border-width') solid transparent;
       border-radius: inherit;
       @include utilities.focus-style();
+
+      @supports (-webkit-touch-callout: none) {
+        @media (hover: none) and (pointer: coarse) {
+          width: 100%;
+          height: calc(100% + #{tokens.get('button-segmented-border-width')});
+        }
+      }
     }
 
     &:last-of-type {
@@ -137,6 +144,14 @@ $post-segmented-button-max-count: 8;
       &:first-of-type {
         border-top-left-radius: inherit;
         border-top-right-radius: inherit;
+
+        @supports (-webkit-touch-callout: none) {
+          @media (hover: none) and (pointer: coarse) {
+            input {
+              height: 100%;
+            }
+          }
+        }
 
         &:has(input:checked) ~ :last-of-type::after {
           border-top-left-radius: tokens.get('button-segmented-vertical-border-radius');
