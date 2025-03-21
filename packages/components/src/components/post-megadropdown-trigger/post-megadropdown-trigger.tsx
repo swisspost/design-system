@@ -14,15 +14,13 @@ export class PostMegadropdownTrigger {
    */
   private button: HTMLButtonElement | null = null;
 
-  private slot: HTMLSlotElement | null = null;
-  private slotMirror: HTMLSpanElement | null = null;
-  private readonly slotObserver: MutationObserver;
-
   /**
    * Tracks whether this trigger's dropdown was expanded before a state change.
    * Used to determine if this trigger should handle focus when its dropdown closes.
    */
   private wasExpanded: boolean = false;
+
+  private readonly slotObserver: MutationObserver;
 
   private get megadropdown(): HTMLPostMegadropdownElement | null {
     const ref = IS_BROWSER ? document.getElementById(this.for) : null;
@@ -32,12 +30,12 @@ export class PostMegadropdownTrigger {
       : null;
   }
 
+  @Element() host: HTMLPostMegadropdownTriggerElement;
+
   /**
    * ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown.
    */
   @Prop() for!: string;
-
-  @Element() host: HTMLPostMegadropdownTriggerElement;
 
   /**
    * Manages the accessibility attribute `aria-expanded` to indicate whether the associated mega dropdown is expanded or collapsed.
@@ -45,26 +43,30 @@ export class PostMegadropdownTrigger {
   @State() ariaExpanded: boolean = false;
 
   /**
+   * Slotted html which need to be mirrored in the .active element to avoid layout shifts.
+   */
+  @State() slottedHTML: string;
+
+  /**
    * Watch for changes to the `for` property to validate its type and ensure it is a string.
    * @param forValue - The new value of the `for` property.
    */
   @Watch('for')
-  validateControlFor() {
+  validateFor() {
     checkType(this, 'for', 'string');
   }
 
   constructor() {
-    this.setSlotMirror = this.setSlotMirror.bind(this);
+    this.setSlottedHTML = this.setSlottedHTML.bind(this);
     this.toggle = this.toggle.bind(this);
     this.keyDown = this.keyDown.bind(this);
     this.handleToggleEvent = this.handleToggleEvent.bind(this);
 
-    this.slotObserver = new MutationObserver(this.setSlotMirror);
+    this.slotObserver = new MutationObserver(this.setSlottedHTML);
   }
 
-  private setSlotMirror() {
-    this.slotMirror.innerHTML = '';
-    this.slotMirror.append(...this.slot.assignedNodes().map(node => node.cloneNode(true)));
+  private setSlottedHTML() {
+    this.slottedHTML = this.host.innerHTML;
   }
 
   private toggle() {
@@ -101,15 +103,16 @@ export class PostMegadropdownTrigger {
   }
 
   connectedCallback() {
+    this.setSlottedHTML();
+
     // Check if the mega dropdown attached to the trigger is expanded or not
     document.addEventListener('postToggleMegadropdown', this.handleToggleEvent);
   }
 
   componentDidLoad() {
-    this.validateControlFor();
-    this.setSlotMirror();
+    this.validateFor();
 
-    this.slotObserver.observe(this.host, { childList: true, subtree: true });
+    this.slotObserver.observe(this.host, { characterData: true, childList: true, subtree: true });
     this.button.addEventListener('click', this.toggle);
     this.button.addEventListener('keydown', this.keyDown);
   }
@@ -130,13 +133,9 @@ export class PostMegadropdownTrigger {
           aria-expanded={this.ariaExpanded.toString()}
         >
           <span>
-            <span
-              class="active"
-              ref={(el: HTMLSpanElement) => (this.slotMirror = el)}
-              aria-hidden="true"
-            ></span>
+            <span class="active" aria-hidden="true" innerHTML={this.slottedHTML}></span>
             <span class="inactive">
-              <slot ref={(el: HTMLSlotElement) => (this.slot = el)}></slot>
+              <slot></slot>
             </span>
           </span>
         </button>
