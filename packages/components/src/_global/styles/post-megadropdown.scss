@@ -1,0 +1,147 @@
+@use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/variables/commons';
+@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
+@use '@swisspost/design-system-styles/mixins/utilities';
+
+post-megadropdown {
+  > .btn[slot='back-button'],
+  > [slot='back-button'] .btn {
+    width: auto;
+  }
+
+  > h2[slot='megadropdown-title'],
+  > [slot='megadropdown-title'] h2 {
+    display: none;
+    margin-block: 0 8px;
+    font-weight: 900;
+
+    a {
+      text-decoration: none;
+      display: none;
+      font-weight: inherit;
+      border-block: 0;
+    }
+
+    @include media.max(lg) {
+      display: block;
+      font-size: 1.25rem;
+    }
+
+    @include media.max(sm) {
+      font-size: 1.125rem;
+    }
+  }
+
+  > post-list {
+    display: grid;
+    grid-row: span 2;
+    grid-template-rows: subgrid;
+    row-gap: 0px;
+
+    > * {
+      width: 100%;
+    }
+
+    &::part(list) {
+      display: unset;
+      flex-direction: unset;
+    }
+
+    &::part(title) {
+      display: flex;
+      flex-direction: column-reverse;
+      height: 100%;
+    }
+
+    > h3:not([slot]) {
+      display: block;
+      margin: 0;
+      font-size: 20px;
+      font-weight: 900;
+
+      &:not(:has(a)),
+      a {
+        padding: 16px 12px 14px 8px;
+      }
+
+      &:not(:has(a)) {
+        position: relative;
+
+        &::before {
+          display: block;
+          content: '';
+          position: absolute;
+          inset-block-end: 0;
+          inset-inline-start: 0;
+          width: 100%;
+          height: 2px;
+          background-color: #050400;
+        }
+      }
+
+      a {
+        border-radius: 0;
+        text-decoration: none;
+        font-size: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 53px;
+
+        @include header-mx.mobile-header-interactive() {
+          height: unset;
+          font-weight: 900;
+        }
+
+        &::before {
+          height: 2px;
+        }
+      }
+
+      @include media.max(lg) {
+        font-size: 1rem;
+
+        &:not(:has(a)),
+        a {
+          padding: 14px 12px 12px 8px;
+        }
+      }
+
+      @include media.max(sm) {
+        font-size: 0.875rem;
+      }
+    }
+
+    > post-list-item {
+      > a {
+        @include header-mx.mobile-header-interactive;
+        display: flex;
+        padding-block: 13px 12px;
+        padding-inline-start: 8px;
+        width: 100%;
+        height: auto;
+        min-height: 48px;
+        text-decoration: none;
+        white-space: normal;
+        word-break: break-word;
+
+        &:hover {
+          border-block-width: 0;
+        }
+
+        @include media.min(lg) {
+          font-size: 1.25rem;
+        }
+
+        @include media.max(lg) {
+          padding-block: 12px 11px;
+        }
+
+        @include media.max(sm) {
+          font-size: 0.875rem;
+        }
+      }
+    }
+  }
+}
