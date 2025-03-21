@@ -1,5 +1,11 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.34
+
+### Patch Changes
+
+- Added a dedicated URL pointing to a @font-face definitions CSS file hosted on our CDN. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4865](https://github.com/swisspost/design-system/pull/4865))
+
 ## 6.0.0-next.33
 
 ### Patch Changes
