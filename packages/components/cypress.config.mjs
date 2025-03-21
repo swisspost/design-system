@@ -1,4 +1,8 @@
 import { defineConfig } from 'cypress';
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+const { version } = require('./package.json');
 
 export default defineConfig({
   e2e: {
@@ -7,6 +11,9 @@ export default defineConfig({
     includeShadowDom: true,
     viewportWidth: 1024,
     viewportHeight: 576,
+    env: {
+      PACKAGE_VERSION: version,
+    },
   },
   includeShadowDom: true,
   retries: {

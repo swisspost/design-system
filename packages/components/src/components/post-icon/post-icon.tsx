@@ -8,7 +8,7 @@ type UrlDefinition = {
   definesSlug: boolean;
 };
 
-const CDN_URL = 'https://unpkg.com/@swisspost/design-system-icons/public/post-icons/';
+const CDN_URL = `https://unpkg.com/@swisspost/design-system-icons@${version}/public/post-icons/`;
 const ANIMATION_NAMES = [
   'cylon',
   'cylon-vertical',
