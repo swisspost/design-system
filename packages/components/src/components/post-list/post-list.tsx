@@ -61,6 +61,7 @@ export class PostList {
           ref={el => (this.titleEl = el)}
           id={this.titleId}
           class={`list-title${this.titleHidden ? ' visually-hidden' : ''}`}
+          part="title"
         >
           <slot></slot>
         </div>
