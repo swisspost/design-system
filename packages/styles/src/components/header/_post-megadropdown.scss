@@ -1,8 +1,8 @@
-@use '@swisspost/design-system-styles/mixins/media';
-@use '@swisspost/design-system-styles/variables/color';
-@use '@swisspost/design-system-styles/variables/commons';
-@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
-@use '@swisspost/design-system-styles/mixins/utilities';
+@use '../../mixins/media';
+@use '../../variables/color';
+@use '../../variables/commons';
+@use '../../components/header/mixins' as header-mx;
+@use '../../mixins/utilities';
 
 post-megadropdown {
   > .btn[slot='back-button'],
