@@ -190,15 +190,14 @@ describe('Icon', () => {
       );
     });
 
-    it('should use "cdn" fallback url if no "slug" is available', () => {
+    it('should use "cdn" fallback url if no "slug" is available', () => {      
       cy.get('@meta')
         .invoke('removeAttr', 'data-post-icon-base')
         .should('not.have.attr', 'data-post-icon-base');
       cy.get('@inner').should(
         'have.css',
         'mask-image',
-        'url("https://unpkg.com/@swisspost/design-system-icons/public/post-icons/1000.svg")',
-      );
+        `url("https://unpkg.com/@swisspost/design-system-icons@${Cypress.env('PACKAGE_VERSION')}/public/post-icons/1000.svg")`,      );
     });
   });
 
