@@ -1,5 +1,5 @@
 const { defineConfig } = require('cypress');
-const { version } = require('../../package.json');
+import { version } from '@root/package.json';
 
 module.exports = defineConfig({
   e2e: {
