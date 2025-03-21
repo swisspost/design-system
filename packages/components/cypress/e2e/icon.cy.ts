@@ -1,3 +1,5 @@
+import { version } from '@root/package.json';
+
 const POSTICON_ID = '0dcfe3c0-bfc0-4107-b43b-7e9d825b805f';
 
 describe('Icon', () => {
@@ -197,7 +199,7 @@ describe('Icon', () => {
       cy.get('@inner').should(
         'have.css',
         'mask-image',
-        'url("https://unpkg.com/@swisspost/design-system-icons/public/post-icons/1000.svg")',
+        `url("https://unpkg.com/@swisspost/design-system-icons@${version}/public/post-icons/1000.svg")`,
       );
     });
   });
