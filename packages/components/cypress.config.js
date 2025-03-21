@@ -1,6 +1,5 @@
 const { defineConfig } = require('cypress');
-import { version } from '@root/package.json';
-
+const { version } = require('../../../package.json');
 module.exports = defineConfig({
   e2e: {
     baseUrl: 'http://localhost:9001',
