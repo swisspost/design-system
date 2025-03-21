@@ -1,4 +1,5 @@
 const { defineConfig } = require('cypress');
+const { version } = require('../../package.json');
 
 module.exports = defineConfig({
   e2e: {
@@ -7,6 +8,9 @@ module.exports = defineConfig({
     includeShadowDom: true,
     viewportWidth: 1024,
     viewportHeight: 576,
+  },
+  env: {
+    PACKAGE_VERSION: version,
   },
   includeShadowDom: true,
   retries: {
