@@ -1,1 +1,6 @@
 @use '@swisspost/design-system-styles/post-default.scss';
+
+#root {
+  height: 100dvh;
+  width: 100dvw;
+}

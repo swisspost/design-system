@@ -23,8 +23,8 @@ function App() {
     <>
       <PostHeader>
         <Router>
-          <Link to="/test">
-            <PostLogo slot="post-logo">Homepage</PostLogo>
+          <Link to="/test" slot="post-logo">
+            <PostLogo>Homepage</PostLogo>
           </Link>
           <ul className="list-inline" slot="meta-navigation">
             <li>

@@ -1,1 +1,16 @@
 @use '@swisspost/design-system-styles/post-internal.scss';
+
+#root {
+  height: 100dvh;
+  width: 100dvw;
+}
+post-header a {
+  width: 36px;
+  height: 36px;
+  display: block;
+
+  svg {
+    width: 36px;
+    height: 36px;
+  }
+}
