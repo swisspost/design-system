@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 6.6.5
+
+### Patch Changes
+
+- Implemented the new "Swiss Post Sans" font (by [@leagrdv](https://github.com/leagrdv) with [#4947](https://github.com/swisspost/design-system/pull/4947))
+
 ## 6.6.4
 
 ### Patch Changes
