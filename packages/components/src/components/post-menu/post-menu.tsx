@@ -68,32 +68,13 @@ export class PostMenu {
   disconnectedCallback() {
     this.host.removeEventListener('keydown', this.handleKeyDown);
     this.host.removeEventListener('click', this.handleClick);
+    this.popoverRef?.removeEventListener('postToggle', this.handlePostToggle);
   }
 
   componentDidLoad() {
-    this.popoverRef.addEventListener('postToggle', (event: CustomEvent<boolean>) => {
-      eventGuard(
-        this.host,
-        event,
-        { targetLocalName: 'post-popovercontainer', delegatorSelector: 'post-menu' },
-        () => {
-          this.isVisible = event.detail;
-          this.toggleMenu.emit(this.isVisible);
-  
-          requestAnimationFrame(() => {
-            if (this.isVisible) {
-              this.lastFocusedElement = this.root.activeElement as HTMLElement;
-              const menuItems = this.getSlottedItems();
-              if (menuItems.length > 0) {
-                (menuItems[0] as HTMLElement).focus();
-              }
-            } else if (this.lastFocusedElement) {
-              this.lastFocusedElement.focus();
-            }
-          });
-        }
-      );
-    });
+    if (this.popoverRef) {
+      this.popoverRef.addEventListener('postToggle', this.handlePostToggle);
+    }
   }
 
   /**
@@ -146,6 +127,30 @@ export class PostMenu {
     if (Object.values(this.KEYCODES).includes(e.key)) {
       this.controlKeyDownHandler(e);
     }
+  };
+
+  private handlePostToggle = (event: CustomEvent<boolean>) => {
+    eventGuard(
+      this.host,
+      event,
+      { targetLocalName: 'post-popovercontainer', delegatorSelector: 'post-menu' },
+      () => {
+        this.isVisible = event.detail;
+        this.toggleMenu.emit(this.isVisible);
+
+        requestAnimationFrame(() => {
+          if (this.isVisible) {
+            this.lastFocusedElement = this.root?.activeElement as HTMLElement;
+            const menuItems = this.getSlottedItems();
+            if (menuItems.length > 0) {
+              (menuItems[0] as HTMLElement).focus();
+            }
+          } else if (this.lastFocusedElement) {
+            this.lastFocusedElement.focus();
+          }
+        });
+      }
+    );
   };
 
   private handleClick = (e: MouseEvent) => {
