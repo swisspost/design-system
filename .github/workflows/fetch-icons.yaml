@@ -77,7 +77,7 @@ jobs:
         id: changed-files
         uses: step-security/changed-files@v45
         with:
-          files: ./packages/icons/public/post-icons/**
+          files: ./packages/icons/src/icons/**/*.svg
 
       - name: Exit if no changes
         if: steps.changed-files.outputs.any_modified == 'false'
