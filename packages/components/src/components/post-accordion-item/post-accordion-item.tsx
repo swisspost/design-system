@@ -62,7 +62,7 @@ export class PostAccordionItem {
     eventGuard(
       this.host,
       event,
-      { targetLocalName: 'post-accordion-item', delegatorSelector: 'post-collapsible' },
+      { targetLocalName: 'post-collapsible', delegatorSelector: 'post-accordion-item' },
       () => {
         this.collapsed = !event.detail;
       }
