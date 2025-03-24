@@ -110,6 +110,10 @@ export class PostMegadropdownTrigger {
     }
   }
 
+  disconnectedCallback() {
+    document.removeEventListener('postToggleMegadropdown', this.handleToggleMegadropdown);
+  }
+
   render() {
     return (
       <Host data-version={version} tab-index="-1">
