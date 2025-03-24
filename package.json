@@ -126,5 +126,11 @@
       }
     },
     "overrides": {}
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "4.3.4",
+    "react-router-dom": "7.4.0",
+    "typescript": "5.8.2",
+    "vite": "6.0.9"
   }
 }
