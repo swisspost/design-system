@@ -4,14 +4,12 @@
 @use '../../functions/tokens';
 @use '../../tokens/elements';
 @use '../../mixins/button' as button-mx;
-
 @use 'mixins' as *;
 
 tokens.$default-map: elements.$post-link;
 
 [data-post-scroll-locked] {
   overflow: hidden !important;
-  transform: translate3d(0, 0, 0) !important;
 }
 
 post-header {
@@ -20,8 +18,7 @@ post-header {
     var(--global-header-reduced-height) + var(--main-navigation-height)
   );
   --header-height: calc(
-    var(--header-expanded-height) -
-      min(
+    var(--header-expanded-height) - min(
         var(--header-scroll-top, 0px),
         calc(var(--header-expanded-height) - var(--header-reduced-height))
       )

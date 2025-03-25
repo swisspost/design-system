@@ -14,9 +14,9 @@ tokens.$default-map: components.$post-floating-button;
   );
   --post-back-to-top-elevation: #{tokens.get('floating-button-elevation')};
   position: fixed;
-  top: var(--post-back-to-top-position-top);
-  right: tokens.get('floating-button-position-right');
-
+  inset-block-start: var(--post-back-to-top-position-top);
+  inset-inline-end: tokens.get('floating-button-position-right');
+  
   .back-to-top {
     @include button-mx.reset-button;
     @include utilities.focus-style;
