@@ -126,5 +126,8 @@
       }
     },
     "overrides": {}
+  },
+  "dependencies": {
+    "eslint-plugin-cypress": "4.2.0"
   }
 }
