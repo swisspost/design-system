@@ -207,10 +207,11 @@
 // only for tablet and mobile
 @include media.max(lg) {
   .navigation {
-    position: fixed;
+    position: sticky;
     z-index: 1;
     inset-inline: 0;
-    inset-block-start: calc(var(--post-header-scroll-top) + var(--post-header-height));
+    inset-block-start: var(--post-header-height);
+
   }
 
   .mobile-menu {

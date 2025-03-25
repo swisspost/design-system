@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.32
+
+### Patch Changes
+
+- Removed the `transform` property from the scroll-locked `post-header` parent, to avoid side effects. Updated the mobile menu of the `post-header`, so it works as before. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4957](https://github.com/swisspost/design-system/pull/4957))
+
 ## 9.0.0-next.31
 
 ### Major Changes
