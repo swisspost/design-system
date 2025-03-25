@@ -112,11 +112,6 @@ export default ts.config(
   },
   {
     name: 'cypress/config',
-    // languageOptions: {
-    //   globals: {
-    //     ...pluginCypress.configs.globals,
-    //   },
-    // },
     files: ['cypress/**/*.ts'],
     ...pluginCypress.configs.recommended,
     rules: {},
