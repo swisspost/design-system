@@ -79,7 +79,6 @@
       min(var(--header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
     );
     border-block-start: unset;
-
     overflow-y: auto;
     overscroll-behavior: contain;
 
