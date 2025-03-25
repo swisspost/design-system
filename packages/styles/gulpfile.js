@@ -107,6 +107,20 @@ gulp.task('transform-package-json', done => {
   done();
 });
 
+gulp.task('generate-icon-version-scss', done => {
+  const version = require('./package.json').version;
+
+  const content = `$post-icon-version: '${version}';\n`;
+
+  fs.writeFileSync(
+    path.join(__dirname, 'src/utilities/_post-icon-version.scss'),
+    content,
+    'utf8'
+  );
+
+  done();
+});
+
 /**
  * Compile Scss to Css
  *  - Compile
@@ -221,6 +235,7 @@ exports.default = gulp.task(
       'generate-not-defined-components-scss',
       'map-icons',
       'copy',
+      'generate-icon-version-scss',
       'autoprefixer',
       'transform-package-json',
     ),
