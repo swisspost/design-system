@@ -1,7 +1,5 @@
 import './App.scss';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Home from './components/home.tsx';
-import Test from './components/test.tsx';
+// import { Router, Link } from 'react-router-dom';
 
 import {
   PostHeader,
@@ -22,116 +20,165 @@ function App() {
   return (
     <>
       <PostHeader>
-        <Router>
-          <Link to="/test" slot="post-logo">
-            <PostLogo>Homepage</PostLogo>
-          </Link>
-          <ul className="list-inline" slot="meta-navigation">
-            <li>
-              <a href="/">Jobs</a>
-            </li>
-            <li>
-              <a href="/">Über uns</a>
-            </li>
-          </ul>
+        <PostLogo slot="post-logo">Homepage</PostLogo>
 
-          <PostTogglebutton slot="post-togglebutton">
-            <span className="visually-hidden-sm">Menu</span>
-            <PostIcon aria-hidden="true" name="burger" data-showwhen="untoggled"></PostIcon>
-            <PostIcon aria-hidden="true" name="closex" data-showwhen="toggled"></PostIcon>
-          </PostTogglebutton>
+        <ul className="list-inline" slot="meta-navigation">
+          <li>
+            <a href="">Jobs</a>
+          </li>
+          <li>
+            <a href="">Über uns</a>
+          </li>
+        </ul>
 
-          <PostLanguageSwitch
-            caption="Change the language"
-            description="The currently selected language is English."
-            variant="list"
-            slot="postLanguageSwitch"
-          >
-            <PostLanguageOption active={false} code="de" name="Deutsch">
-              de
-            </PostLanguageOption>
-            <PostLanguageOption active={false} code="fr" name="French">
-              fr
-            </PostLanguageOption>
-            <PostLanguageOption active={false} code="it" name="Italiano">
-              it
-            </PostLanguageOption>
-            <PostLanguageOption active={true} code="en" name="English">
-              en
-            </PostLanguageOption>
-          </PostLanguageSwitch>
+        <PostTogglebutton slot="post-togglebutton">
+          <span className="visually-hidden-sm">Menu</span>
+          <PostIcon aria-hidden="true" name="burger" data-showwhen="untoggled"></PostIcon>
+          <PostIcon aria-hidden="true" name="closex" data-showwhen="toggled"></PostIcon>
+        </PostTogglebutton>
 
-          <h1 slot="title">Application title</h1>
+        <PostLanguageSwitch
+          caption="Change the language"
+          description="The currently selected language is English."
+          variant="list"
+          slot="post-language-switch"
+        >
+          <PostLanguageOption active={false} code="de" name="Deutsch">
+            de
+          </PostLanguageOption>
+          <PostLanguageOption active={false} code="fr" name="French">
+            fr
+          </PostLanguageOption>
+          <PostLanguageOption active={false} code="it" name="Italiano">
+            it
+          </PostLanguageOption>
+          <PostLanguageOption active={true} code="en" name="English">
+            en
+          </PostLanguageOption>
+        </PostLanguageSwitch>
 
-          <ul className="list-inline">
-            <li>
-              <Link to="/home">
-                <span className="visually-hidden-sm">Search</span>
-                <PostIcon aria-hidden="true" name="search"></PostIcon>
-              </Link>
-            </li>
-            <li>
-              <Link to="/other">
-                <span className="visually-hidden-sm">Login</span>
-                <PostIcon aria-hidden="true" name="login"></PostIcon>
-              </Link>
-            </li>
-          </ul>
+        <h1 slot="title">Application title</h1>
 
-          <PostMainnavigation>
-            <button type="button" slot="back-button" className="btn btn-sm btn-tertiary">
-              <PostIcon aria-hidden="true" name="arrowright"></PostIcon> Back
-            </button>
-            <PostList title-hidden="">
-              <h2>Main Navigation</h2>
+        <ul className="list-inline">
+          <li>
+            <a href="/">
+              <span className="visually-hidden-sm">Search</span>
+              <PostIcon aria-hidden="true" name="search"></PostIcon>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <span className="visually-hidden-sm">Login</span>
+              <PostIcon aria-hidden="true" name="login"></PostIcon>
+            </a>
+          </li>
+        </ul>
 
-              <PostListItem slot="post-list-item">afasf</PostListItem>
-              <PostListItem slot="post-list-item">asfasf</PostListItem>
+        <PostMainnavigation>
+          <button type="button" slot="back-button" className="btn btn-sm btn-tertiary">
+            <PostIcon aria-hidden="true" name="arrowright"></PostIcon> Back
+          </button>
+          <PostList title-hidden="">
+            <h2>Main Navigation</h2>
 
-              <PostListItem slot="post-list-item">
-                <PostMegadropdownTrigger for="briefe">Briefe</PostMegadropdownTrigger>
-                <PostMegadropdown id="briefe">
-                  <button slot="back-button" className="btn btn-tertiary px-0 btn-sm">
-                    <PostIcon name="arrowright"></PostIcon>
-                    Back
-                  </button>
-                  <PostClosebutton slot="close-button">Schliessen</PostClosebutton>
-                  <h2 slot="megadropdown-title">Briefe title</h2>
-                  <PostList>
-                    <h3>Briefe senden</h3>
-                    <PostListItem slot="post-list-item"></PostListItem>
-                    <PostListItem slot="post-list-item"></PostListItem>
-                  </PostList>
-                </PostMegadropdown>
-              </PostListItem>
-              <PostListItem slot="post-list-item">
-                <PostMegadropdownTrigger for="pakete">Pakete</PostMegadropdownTrigger>
-                <PostMegadropdown id="pakete">
-                  <button slot="back-button" className="btn btn-tertiary px-0 btn-sm">
-                    <PostIcon name="arrowright"></PostIcon>
-                    Back
-                  </button>
-                  <PostClosebutton slot="close-button">Schliessen</PostClosebutton>
-                  <h2 slot="megadropdown-title">Pakete title</h2>
-                  <PostList>
-                    <h3>Pakete senden</h3>
-                  </PostList>
-                  <PostList>
-                    <h3>ιυθιυ</h3>
-                  </PostList>
-                </PostMegadropdown>
-              </PostListItem>
-            </PostList>
-          </PostMainnavigation>
+            <PostListItem slot="post-list-item">
+              <a href="/briefe">Briefe</a>
+            </PostListItem>
+            <PostListItem slot="post-list-item">
+              <a href="/pakete">Pakete</a>
+            </PostListItem>
 
-          <Routes>
-            <Route path="/home" element={<Home />} />
-            <Route path="/test" element={<Test />} />
-          </Routes>
-        </Router>
+            <PostListItem slot="post-list-item">
+              <PostMegadropdownTrigger for="briefe">Briefe</PostMegadropdownTrigger>
+              <PostMegadropdown id="briefe">
+                <button slot="back-button" className="btn btn-tertiary px-0 btn-sm">
+                  <PostIcon name="arrowright"></PostIcon>
+                  Back
+                </button>
+                <PostClosebutton slot="close-button">Schliessen</PostClosebutton>
+                <h2 slot="megadropdown-title">Briefe title</h2>
+                <PostList>
+                  <h3>Briefe senden</h3>
+                  <PostListItem slot="post-list-item">
+                    <a href="/sch">Briefe Schweiz</a>
+                  </PostListItem>
+                  <PostListItem slot="post-list-item">
+                    <a href="/kl">Kleinwaren Ausland</a>
+                  </PostListItem>
+                  <PostListItem slot="post-list-item">
+                    <a href="/">Waren Ausland</a>
+                  </PostListItem>
+                  <PostListItem slot="post-list-item">
+                    <a href="/">Express und Kurier</a>
+                  </PostListItem>
+                </PostList>
+                <PostList>
+                  <h3>
+                    <a href="/schritt-für-schritt">Schritt für Schritt</a>
+                  </h3>
+                  <PostListItem slot="post-list-item">
+                    <a href="/sch">Pakete Schweiz</a>
+                  </PostListItem>
+                  <PostListItem slot="post-list-item">
+                    <a href="/kl">Kleinwaren Ausland</a>
+                  </PostListItem>
+                  <PostListItem slot="post-list-item">
+                    <a href="/">Waren Ausland</a>
+                  </PostListItem>
+                  <PostListItem slot="post-list-item">
+                    <a href="/">Express und Kurier</a>
+                  </PostListItem>
+                </PostList>
+              </PostMegadropdown>
+            </PostListItem>
+            <PostListItem slot="post-list-item">
+              <PostMegadropdownTrigger for="pakete">Pakete</PostMegadropdownTrigger>
+              <PostMegadropdown id="pakete">
+                <button slot="back-button" className="btn btn-tertiary px-0 btn-sm">
+                  <PostIcon name="arrowright"></PostIcon>
+                  Back
+                </button>
+                <PostClosebutton slot="close-button">Schliessen</PostClosebutton>
+                <h2 slot="megadropdown-title">Pakete title</h2>
+                <PostList>
+                  <h3>Pakete senden</h3>
+                  <PostListItem slot="post-list-item">
+                    <a href="/sch">Pakete Schweiz</a>
+                  </PostListItem>
+                  <PostListItem slot="post-list-item">
+                    <a href="/kl">Kleinwaren Ausland</a>
+                  </PostListItem>
+                  <PostListItem slot="post-list-item">
+                    <a href="/">Waren Ausland</a>
+                  </PostListItem>
+                  <PostListItem slot="post-list-item">
+                    <a href="/">Express und Kurier</a>
+                  </PostListItem>
+                </PostList>
+                <PostList>
+                  <h3>
+                    <a href="/schritt-für-schritt">Schritt für Schritt</a>
+                  </h3>
+                  <PostListItem slot="post-list-item">
+                    <a href="/sch">Pakete Schweiz</a>
+                  </PostListItem>
+                  <PostListItem slot="post-list-item">
+                    <a href="/kl">Kleinwaren Ausland</a>
+                  </PostListItem>
+                  <PostListItem slot="post-list-item">
+                    <a href="/">Waren Ausland</a>
+                  </PostListItem>
+                  <PostListItem slot="post-list-item">
+                    <a href="/">Express und Kurier</a>
+                  </PostListItem>
+                </PostList>
+              </PostMegadropdown>
+            </PostListItem>
+          </PostList>
+        </PostMainnavigation>
       </PostHeader>
 
-      <h1>Post Logo & Header Check with React</h1>
+      <h5>Post Logo & Header Check with React</h5>
     </>
   );
 }

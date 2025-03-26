@@ -4,14 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite build && vite",
     "build": "rimraf dist && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:9.0.0-next.31",
-    "@swisspost/design-system-styles": "8.9.2",
+    "@swisspost/design-system-components-react": "9.0.0-next.32",
+    "@swisspost/design-system-styles": "9.0.0-next.32",
+    "install": "0.13.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "7.4.0",
