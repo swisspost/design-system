@@ -190,7 +190,7 @@ describe('Icon', () => {
       );
     });
 
-    it('should use "cdn" fallback url if no "slug" is available', () => {      
+    it('should use "cdn" fallback url if no "slug" is available', () => {
       cy.get('@meta')
         .invoke('removeAttr', 'data-post-icon-base')
         .should('not.have.attr', 'data-post-icon-base');
