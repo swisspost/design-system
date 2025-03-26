@@ -1,0 +1,17 @@
+<header class="palette-alternate">
+  <nav class="container py-8">
+    <ul class="d-flex flex-wrap row-gap-4 column-gap-16 m-0 list-unstyled">
+      <li style="width: 30px">
+        <a routerLink="/card-control" slot="post-logo"><post-logo></post-logo></a>
+      </li>
+      <li *ngFor="let route of navigationRoutes">
+        <a [routerLink]="route.path">{{ route.title }}</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container my-16">
+  <h1>Hurray, it works!</h1>
+  <router-outlet></router-outlet>
+</main>
