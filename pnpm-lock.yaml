@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      eslint-plugin-cypress:
+        specifier: 4.2.0
+        version: 4.2.0(eslint@9.19.0(jiti@2.4.2))
     optionalDependencies:
       '@web-types/lit':
         specifier: 2.0.0-3
@@ -6115,6 +6119,11 @@ packages:
     engines: {node: '>=18.0.0'}
     peerDependencies:
       eslint: '>=8.0.0'
+
+  eslint-plugin-cypress@4.2.0:
+    resolution: {integrity: sha512-v5cyt0VYb1tEEODBJSE44PocYOwQsckyexJhCs7LtdD3FGO6D2GjnZB2s2Sts4RcxdxECTWX01nObOZRs26bQw==}
+    peerDependencies:
+      eslint: '>=9'
 
   eslint-plugin-jest@28.11.0:
     resolution: {integrity: sha512-QAfipLcNCWLVocVbZW8GimKn5p5iiMcgGbRzz8z/P5q7xw+cNEpYqyzFMtIF/ZgF2HLOyy+dYBut+DoYolvqig==}
@@ -17579,6 +17588,11 @@ snapshots:
     transitivePeerDependencies:
       - bluebird
       - supports-color
+
+  eslint-plugin-cypress@4.2.0(eslint@9.19.0(jiti@2.4.2)):
+    dependencies:
+      eslint: 9.19.0(jiti@2.4.2)
+      globals: 15.14.0
 
   eslint-plugin-jest@28.11.0(@typescript-eslint/eslint-plugin@7.18.0(@typescript-eslint/parser@7.18.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.18.0(jiti@2.4.2))(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.2)))(typescript@5.8.2):
     dependencies:

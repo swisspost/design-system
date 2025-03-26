@@ -26,7 +26,7 @@ describe('menu', () => {
 
     it('should hide the menu after clicking on the trigger twice', () => {
       cy.get('@trigger').dblclick();
-      cy.get('@menu').should(`be.hidden`);
+      cy.get('@menu').should('be.hidden');
     });
 
     it('should update the "aria-expanded" attribute after hiding the menu', () => {

@@ -93,7 +93,7 @@ describe('language-switch-2', () => {
           .first()
           .click()
           .then(() => {
-            expect(langugeChangedHandlerMock).to.be.calledOnce;
+            cy.wrap(langugeChangedHandlerMock).should('be.calledOnce');
           });
       });
     });
@@ -130,9 +130,9 @@ describe('language-switch-2', () => {
     });
 
     it('should not be rendered with only one language', () => {
-      let config: IPortalConfig = <any>{ en: testConfiguration.en };
+      const config: IPortalConfig = { en: testConfiguration.en } as unknown as IPortalConfig;
 
-      let navLangEntry: NavLangEntity = {
+      const navLangEntry: NavLangEntity = {
         a11yLabel: '',
         isCurrent: true,
         lang: 'de',

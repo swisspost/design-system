@@ -4,7 +4,7 @@ import mockAuth from '../fixtures/internet-header/auth.json';
 import { IPortalConfig } from '../../src/models/general.model';
 
 export const installInterceptors = (
-  config: Object = testConfiguration,
+  config: object = testConfiguration,
   loggedIn: boolean = false,
 ) => {
   cy.intercept('**/api/headerjs/Json?serviceid=*', config).as('getConfig');
@@ -14,7 +14,7 @@ export const installInterceptors = (
 
 interface PrepareOptions {
   loggedIn?: boolean;
-  config?: Object;
+  config?: object;
 }
 
 export const prepare = (
