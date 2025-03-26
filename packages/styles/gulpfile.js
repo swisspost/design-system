@@ -107,6 +107,11 @@ gulp.task('transform-package-json', done => {
   done();
 });
 
+/**
+ * Generate a SCSS variable `$post-icon-version` containing the current package version.
+ * This allows the `post-icon` mixin to dynamically resolve the correct icon URL
+ * based on the version defined in package.json.
+ */
 gulp.task('generate-icon-version-scss', done => {
   const version = require('./package.json').version;
 
