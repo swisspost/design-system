@@ -149,6 +149,15 @@ post-header {
     }
   }
 
+  button,
+  a:not(post-mainnavigation *, post-language-switch *) {
+    display: flex;
+
+    @include media.max(sm) {
+      padding: 4px 10px;
+    }
+  }
+
   a.selected,
   post-togglebutton[aria-pressed='true'] {
     &:not(post-mainnavigation *) {

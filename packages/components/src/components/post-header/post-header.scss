@@ -151,9 +151,10 @@
   @include media.max(lg) {
     z-index: 2;
     inset-block-start: var(--post-global-header-height);
-    padding-block: 12px;
+    padding-block: 8px;
+
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 12px;
 
     &.local-header-mobile-extended {
       &::after {
