@@ -1,7 +1,10 @@
+import { MsgType } from '@/types';
+
 export function checkUrl<T extends { host: HTMLElement }>(
   component: T,
   prop: keyof T,
   customMessage?: string,
+  msgType: MsgType = 'error',
 ) {
   const componentName = component.host.localName;
   const value = component[prop];
@@ -12,12 +15,21 @@ export function checkUrl<T extends { host: HTMLElement }>(
   const message = customMessage || defaultMessage;
 
   if (typeof value !== 'string' && !(value instanceof URL)) {
-    throw new Error(message);
+    if (msgType != 'warning') {
+      throw new Error(message);
+    } else {
+      console.warn(message);
+    }
+    return;
   }
 
   try {
     new URL(value, 'https://www.post.ch');
   } catch {
-    throw new Error(message);
+    if (msgType != 'warning') {
+      throw new Error(message);
+    } else {
+      console.warn(message);
+    }
   }
 }

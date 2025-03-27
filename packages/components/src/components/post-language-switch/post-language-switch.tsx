@@ -1,5 +1,5 @@
 import { Component, Element, Host, h, Prop, Watch, State, Listen } from '@stencil/core';
-import { checkEmptyOrOneOf, checkType } from '@/utils';
+import { checkEmptyOrOneOf, checkType, checkNonEmpty } from '@/utils';
 import { version } from '@root/package.json';
 import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
 import { nanoid } from 'nanoid';
@@ -15,20 +15,22 @@ export class PostLanguageSwitch {
   /**
    * A title for the list of language options
    */
-  @Prop() caption: string;
+  @Prop() caption!: string;
 
   @Watch('caption')
   validateCaption() {
+    checkNonEmpty(this, 'caption');
     checkType(this, 'caption', 'string');
   }
 
   /**
    * A descriptive text for the list of language options
    */
-  @Prop() description: string;
+  @Prop() description!: string;
 
   @Watch('description')
   validateDescription() {
+    checkNonEmpty(this, 'description');
     checkType(this, 'description', 'string');
   }
 

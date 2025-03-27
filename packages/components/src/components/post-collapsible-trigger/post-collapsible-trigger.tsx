@@ -16,7 +16,7 @@ export class PostCollapsibleTrigger {
   /**
    * Link the trigger to a post-collapsible with this id
    */
-  @Prop() for: string;
+  @Prop() for!: string;
 
   /**
    * Set the "aria-controls" and "aria-expanded" attributes on the trigger to match the state of the controlled post-collapsible
@@ -25,7 +25,6 @@ export class PostCollapsibleTrigger {
   setAriaAttributes() {
     checkNonEmpty(this, 'for');
     checkType(this, 'for', 'string', 'The post-collapsible-trigger "for" prop should be a id.');
-
     void this.update();
   }
 

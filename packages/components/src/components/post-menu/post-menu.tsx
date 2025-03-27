@@ -73,7 +73,7 @@ export class PostMenu {
     this.popoverRef.addEventListener('postToggle', (event: CustomEvent<boolean>) => {
       this.isVisible = event.detail;
       this.toggleMenu.emit(this.isVisible);
-  
+
       requestAnimationFrame(() => {
         if (this.isVisible) {
           this.lastFocusedElement = this.root.activeElement as HTMLElement;
@@ -93,7 +93,6 @@ export class PostMenu {
    */
   @Method()
   async toggle(target: HTMLElement) {
-
     if (this.popoverRef) {
       await this.popoverRef.toggle(target);
     } else {
@@ -154,7 +153,7 @@ export class PostMenu {
     }
 
     let currentIndex = menuItems.findIndex(el => {
-    // Check if the item is currently focused within its rendered scope (document or shadow root)
+      // Check if the item is currently focused within its rendered scope (document or shadow root)
       return el === getRoot(el).activeElement;
     });
 
