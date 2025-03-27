@@ -10,6 +10,11 @@ import { nanoid } from 'nanoid';
   shadow: true,
 })
 export class PostLanguageSwitch {
+  private readonly menuId = `p${nanoid(11)}`;
+  private get languageOptions() {
+    return this.host.querySelectorAll('post-language-option');
+  }
+
   @Element() host: HTMLPostLanguageSwitchElement;
 
   /**
@@ -56,7 +61,6 @@ export class PostLanguageSwitch {
     // Initially set variants and active language
     // Handles cases where the language-switch is rendered after the language-options have been rendered
     this.updateChildrenVariant();
-    this.updateActiveLanguage();
   }
 
   @Listen('postChange')
@@ -74,7 +78,7 @@ export class PostLanguageSwitch {
 
     // Hides the dropdown when an option has been clicked
     if (this.variant === 'menu') {
-      const menu = this.host.shadowRoot.querySelector('post-menu') as HTMLPostMenuElement;
+      const menu = this.host.shadowRoot.querySelector('post-menu');
       menu.hide();
     }
   }
@@ -88,22 +92,6 @@ export class PostLanguageSwitch {
     this.activeLang = event.detail;
   }
 
-  private get languageOptions() {
-    return this.host.querySelectorAll('post-language-option');
-  }
-
-  private get activeLanguageOption() {
-    return this.host.querySelector('post-language-option[active]:not([active="false"])');
-  }
-
-  private handleSlotChange() {
-    this.updateActiveLanguage();
-  }
-
-  private updateActiveLanguage() {
-    this.activeLang = this.activeLanguageOption.getAttribute('code');
-  }
-
   // Update post-language-option variant to have the correct style
   private updateChildrenVariant() {
     this.languageOptions.forEach(el => {
@@ -111,13 +99,11 @@ export class PostLanguageSwitch {
     });
   }
 
-  private menuId = `p${nanoid(11)}`;
-
   private renderList() {
     return (
       <Host data-version={version} role="list" aria-label={this.caption}>
         <div class="post-language-switch-list" role="group" aria-label={this.description}>
-          <slot onSlotchange={() => this.handleSlotChange()}></slot>
+          <slot></slot>
         </div>
       </Host>
     );
@@ -137,7 +123,7 @@ export class PostLanguageSwitch {
           class="post-language-switch-dropdown-container"
           aria-label={this.caption}
         >
-          <slot onSlotchange={() => this.handleSlotChange()}></slot>
+          <slot></slot>
         </post-menu>
       </Host>
     );

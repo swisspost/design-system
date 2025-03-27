@@ -1,7 +1,118 @@
+@use '@swisspost/design-system-styles/variables/animation';
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/icons';
+@use '@swisspost/design-system-styles/mixins/button';
+@use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 
-post-megadropdown-trigger {
+:host {
   width: 100%;
   position: relative;
   z-index: 3;
+}
+
+button {
+  @include button.reset-button;
+  display: flex;
+  flex: 0 0 fit-content;
+  justify-content: space-between;
+  align-items: center;
+  text-align: start;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    @include icons.icon(2113);
+    height: 24px;
+    width: 24px;
+  }
+
+  &:hover {
+    background-color: #504f4b;
+    color: #fff;
+  }
+
+  &:focus-visible {
+    border-radius: 4px;
+    outline-offset: -2px !important;
+  }
+
+  @include utilities.high-contrast-mode() {
+    border: 1px solid ButtonBorder !important;
+
+    &:hover::after,
+    &[aria-expanded='true']::after {
+      color: HighlightText;
+    }
+  }
+
+  @include media.max(sm) {
+    font-size: 14px;
+  }
+
+  @include media.max(lg) {
+    @include header-mx.mobile-header-interactive;
+
+    &::after {
+      transform: rotate(-90deg);
+    }
+
+    .inactive {
+      display: none;
+    }
+  }
+
+  @include media.min(lg) {
+    position: sticky;
+    z-index: 4;
+    gap: 4px;
+    padding-inline: 12px;
+    height: var(--main-navigation-height);
+    font-size: 16px;
+    transition: border-block-end-color animation.$transition-base-timing;
+
+    &::after {
+      transition: transform animation.$transition-base-timing;
+    }
+
+    > span {
+      display: block;
+      position: relative;
+    }
+
+    .active,
+    .inactive {
+      display: inline-block;
+      text-align: center;
+    }
+
+    .active {
+      visibility: hidden;
+      font-weight: 700;
+    }
+
+    .inactive {
+      position: absolute;
+      inset-inline-start: 0;
+      width: 100%;
+    }
+
+    &[aria-expanded='true'] {
+      background-color: #050400;
+      color: #fff;
+
+      &::after {
+        transform: rotate(180deg);
+      }
+
+      .active {
+        visibility: visible;
+      }
+
+      .inactive {
+        visibility: hidden;
+      }
+    }
+  }
 }

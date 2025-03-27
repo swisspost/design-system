@@ -15,7 +15,7 @@ export class PostBackToTop {
    * The label of the back-to-top button, intended solely for accessibility purposes.
    * This label is always hidden from view.
    **/
-  @Prop() label!: string;
+  @Prop({ reflect: true }) label!: string;
 
   @State() belowFold: boolean = false;
 
@@ -48,8 +48,8 @@ export class PostBackToTop {
   // Validate the label
   @Watch('label')
   validateLabel() {
-    checkType(this, 'label', 'string');
     checkNonEmpty(this, 'label');
+    checkType(this, 'label', 'string');
   }
 
   // Set the initial state

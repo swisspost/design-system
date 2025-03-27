@@ -7,6 +7,7 @@ import { angularValueAccessorBindings } from './.config/bindings.angular';
 
 export const config: Config = {
   namespace: 'post-components',
+  globalStyle: './src/_global/styles/index.scss',
   buildDist: true,
   sourceMap: false,
   validatePrimaryPackageOutputTarget: true,
@@ -22,11 +23,18 @@ export const config: Config = {
     },
     {
       type: 'dist-custom-elements',
+      externalRuntime: false,
+      customElementsExportBehavior: 'auto-define-custom-elements',
     },
     {
       type: 'dist-custom-elements',
-      customElementsExportBehavior: 'single-export-module',
       dir: 'loaders',
+      externalRuntime: false,
+      customElementsExportBehavior: 'single-export-module',
+    },
+    {
+      type: 'dist-hydrate-script',
+      dir: './hydrate',
     },
     {
       type: 'www',
@@ -54,9 +62,10 @@ export const config: Config = {
       file: 'dist/docs.json',
     },
     reactOutputTarget({
-      componentCorePackage: '@swisspost/design-system-components',
-      proxiesFile: '../components-react/src/components/stencil-generated/index.ts',
-      includeDefineCustomElements: true,
+      stencilPackageName: '@swisspost/design-system-components',
+      outDir: '../components-react/src/components/stencil-generated/',
+      hydrateModule: '@swisspost/design-system-components/hydrate',
+      esModules: true,
     }),
     angularOutputTarget({
       componentCorePackage: '@swisspost/design-system-components',
@@ -95,6 +104,7 @@ export const config: Config = {
       '<rootDir>/dist/',
       '<rootDir>/loader/',
       '<rootDir>/loaders/',
+      '<rootDir>/hydrate/',
       '<rootDir>/www/',
       '<rootDir>/cypress',
     ],

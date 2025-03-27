@@ -10,7 +10,7 @@ import { nanoid } from 'nanoid';
 @Component({
   tag: 'post-list',
   styleUrl: 'post-list.scss',
-  shadow: false,
+  shadow: true,
 })
 export class PostList {
   @Element() host: HTMLPostListElement;
@@ -32,10 +32,8 @@ export class PostList {
 
   private titleEl: HTMLElement;
 
-  componentWillLoad() {
-    /**
-     * Get the id set on the host element or use a random id by default
-     */
+  constructor() {
+    // Get the id set on the host element or use a random id by default
     this.titleId = `title-${this.host.id || nanoid(6)}`;
   }
 
@@ -44,7 +42,12 @@ export class PostList {
   }
 
   private checkTitle() {
-    if (!this.titleEl.textContent.trim()) {
+    const slotContent = this.titleEl
+      .querySelector('slot')
+      .assignedNodes()
+      .map(node => node.textContent.trim());
+
+    if (!slotContent) {
       console.error(
         'Please provide a title to the list component. Title is mandatory for accessibility purposes.',
       );
@@ -58,10 +61,11 @@ export class PostList {
           ref={el => (this.titleEl = el)}
           id={this.titleId}
           class={`list-title${this.titleHidden ? ' visually-hidden' : ''}`}
+          part="title"
         >
           <slot></slot>
         </div>
-        <div role="list" aria-labelledby={this.titleId}>
+        <div role="list" aria-labelledby={this.titleId} part="list">
           <slot name="post-list-item"></slot>
         </div>
       </Host>
