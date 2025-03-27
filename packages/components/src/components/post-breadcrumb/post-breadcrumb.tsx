@@ -13,7 +13,7 @@ export class PostBreadcrumb {
   /**
    * The URL for the home breadcrumb item.
    */
-  @Prop() homeUrl: string;
+  @Prop() homeUrl?: string;
 
   /**
    * The text label for the home breadcrumb item.

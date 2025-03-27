@@ -11,7 +11,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { checkNonEmpty, checkOneOf } from '@/utils';
+import { checkNonEmpty, checkOneOf, checkType, checkEmptyOrType } from '@/utils';
 import { version } from '@root/package.json';
 
 let cardControlIds = 0;
@@ -146,26 +146,38 @@ export class PostCardControl {
   @Watch('label')
   validateControlLabel() {
     checkNonEmpty(this, 'label');
-  }
-
-  @Watch('name')
-  validateControlName() {
-    checkNonEmpty(this, 'name', undefined, this.type === 'radio' ? 'error' : 'warning');
-  }
-
-  @Watch('value')
-  validateControlValue() {
-    checkNonEmpty(this, 'value', undefined, this.type === 'radio' ? 'error' : 'warning');
+    checkType(this, 'label', 'string');
   }
 
   @Watch('description')
   validateControlDescription() {
-    checkNonEmpty(this, 'description', undefined, 'warning');
+    checkType(this, 'description', 'string', 'warning');
   }
 
   @Watch('type')
   validateControlType() {
+    checkNonEmpty(this, 'type');
     checkOneOf(this, 'type', ['checkbox', 'radio']);
+  }
+
+  @Watch('name')
+  validateControlName() {
+    if (this.type == 'radio') {
+      checkNonEmpty(this, 'name');
+      checkType(this, 'name', 'string');
+    } else {
+      checkEmptyOrType(this, 'name', 'string');
+    }
+  }
+
+  @Watch('value')
+  validateControlValue() {
+    if (this.type == 'radio') {
+      checkNonEmpty(this, 'value');
+      checkType(this, 'value', 'string');
+    } else {
+      checkEmptyOrType(this, 'value', 'string');
+    }
   }
 
   @Watch('icon')

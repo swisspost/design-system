@@ -1,6 +1,6 @@
 import { Component, Element, Prop, h, Host, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkType } from '@/utils';
+import { checkType, checkNonEmpty } from '@/utils';
 
 @Component({
   tag: 'post-megadropdown-trigger',
@@ -38,6 +38,7 @@ export class PostMegadropdownTrigger {
    */
   @Watch('for')
   validateControlFor() {
+    checkNonEmpty(this, 'for');
     checkType(this, 'for', 'string');
   }
 

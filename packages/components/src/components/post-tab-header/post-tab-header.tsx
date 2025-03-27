@@ -20,11 +20,12 @@ export class PostTabHeader {
   /**
    * The name of the panel controlled by the tab header.
    */
-  @Prop() readonly panel: HTMLPostTabPanelElement['name'];
+  @Prop() readonly panel!: HTMLPostTabPanelElement['name'];
 
   @Watch('panel')
   validateFor() {
     checkNonEmpty(this, 'panel');
+    //checkOneOf(this, 'panel'); ???
   }
 
   componentWillLoad() {

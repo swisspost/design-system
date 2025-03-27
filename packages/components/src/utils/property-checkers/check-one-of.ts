@@ -1,8 +1,11 @@
+import { MsgType } from '@/types';
+
 export function checkOneOf<T extends { host: HTMLElement }>(
   component: T,
   prop: keyof T,
   possibleValues: readonly unknown[],
   customMessage?: string,
+  msgType: MsgType = 'error',
 ) {
   const componentName = component.host.localName;
   const value = component[prop];
@@ -14,6 +17,10 @@ export function checkOneOf<T extends { host: HTMLElement }>(
 
   const message = customMessage || defaultMessage;
   if (!possibleValues.includes(value)) {
-    throw new Error(message);
+    if (msgType != 'warning') {
+      throw new Error(message);
+    } else {
+      console.warn(message);
+    }
   }
 }

@@ -1,5 +1,16 @@
-import { Component, Element, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
+  Watch,
+} from '@stencil/core';
 import { version } from '@root/package.json';
+import { checkType, checkNonEmpty } from '@/utils';
 
 @Component({
   tag: 'post-rating',
@@ -45,6 +56,24 @@ export class PostRating {
    * The event payload can be used like so: `event.detail.value`.
    */
   @Event() postChange: EventEmitter<{ value: number }>;
+
+  @Watch('label')
+  validateLabel() {
+    checkNonEmpty(this, 'label');
+    checkType(this, 'label', 'string');
+  }
+
+  @Watch('stars')
+  validateStars() {
+    checkNonEmpty(this, 'stars');
+    checkType(this, 'stars', 'number');
+  }
+
+  @Watch('currentRating')
+  validateCurrentRating() {
+    checkNonEmpty(this, 'currentRating');
+    checkType(this, 'currentRating', 'number');
+  }
 
   constructor() {
     this.keydownHandler = this.keydownHandler.bind(this);

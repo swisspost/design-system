@@ -1,8 +1,11 @@
+import { MsgType } from '@/types';
+
 export function checkPattern<T extends { host: HTMLElement }>(
   component: T,
   prop: keyof T,
   pattern: RegExp,
   customMessage: string,
+  msgType: MsgType = 'error',
 ) {
   const componentName = component.host.localName;
   const value = component[prop];
@@ -13,6 +16,10 @@ export function checkPattern<T extends { host: HTMLElement }>(
   const message = customMessage || defaultMessage;
 
   if (typeof value !== 'string' || !pattern.test(value)) {
-    throw new Error(message);
+    if (msgType != 'warning') {
+      throw new Error(message);
+    } else {
+      console.warn(message);
+    }
   }
 }

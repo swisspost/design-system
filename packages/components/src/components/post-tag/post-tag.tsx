@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-
+import { checkEmptyOrOneOf, checkEmptyOrPattern } from '@/utils';
 /**
  * @slot default - Content to place in the `default` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content">inline content</a>.</p>
  */
@@ -17,7 +17,7 @@ export class PostTag {
   /**
    * Defines the color variant of the component.
    */
-  @Prop() readonly variant: 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
+  @Prop() readonly variant?: 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
 
   /**
    * Defines the size of the component.
@@ -37,12 +37,25 @@ export class PostTag {
 
   @Watch('variant')
   variantChanged() {
+    checkEmptyOrOneOf(
+      this,
+      'variant',
+      ['white', 'info', 'success', 'error', 'warning', 'yellow'],
+      undefined,
+      'warning',
+    );
     this.setClasses();
   }
 
   @Watch('size')
   sizeChanged() {
+    checkEmptyOrOneOf(this, 'size', ['sm', null], undefined, 'warning');
     this.setClasses();
+  }
+
+  @Watch('icon')
+  validateName() {
+    checkEmptyOrPattern(this, 'icon', /\d{4}|none/, 'The "icon" prop should be a 4-digit string.');
   }
 
   private setClasses() {
