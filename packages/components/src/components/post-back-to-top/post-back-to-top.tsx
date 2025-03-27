@@ -45,21 +45,17 @@ export class PostBackToTop {
     });
   }
 
-  // Validate the label
-  @Watch('label')
-  validateLabel() {
-    checkType(this, 'label', 'string');
-    checkNonEmpty(this, 'label');
+  private getSecondPixelValue(parts: string[]) {
+    for (const part of parts) {
+      const pixelValues = part.match(/\b\d+px\b/g);
+
+      if (pixelValues && pixelValues.length > 1) {
+        return pixelValues[1];
+      }
+    }
   }
 
-  // Set the initial state
-  componentWillLoad() {
-    this.belowFold = this.isBelowFold();
-  }
-
-  componentDidLoad() {
-    window.addEventListener('scroll', this.handleScroll, false);
-
+  private animateButton() {
     // Get the back-to-top button top postiion
     const positionTop = window.getComputedStyle(this.host).getPropertyValue('top');
 
@@ -71,17 +67,7 @@ export class PostBackToTop {
     );
     const elevationParts = elevation.split(',');
 
-    function getSecondPixelValue(parts: string[]) {
-      for (const part of parts) {
-        const pixelValues = part.match(/\b\d+px\b/g);
-
-        if (pixelValues && pixelValues.length > 1) {
-          return pixelValues[1];
-        }
-      }
-    }
-
-    const elevationHeight = getSecondPixelValue(elevationParts);
+    const elevationHeight = this.getSecondPixelValue(elevationParts);
 
     // The translateY is calculated as => -100% (btt button height) - topPosition - elevationHeight
     this.translateY =
@@ -98,6 +84,24 @@ export class PostBackToTop {
     if (!this.belowFold) {
       this.host.style.transform = `translateY(${this.translateY})`;
     }
+  }
+
+  // Validate the label
+  @Watch('label')
+  validateLabel() {
+    checkType(this, 'label', 'string');
+    checkNonEmpty(this, 'label');
+  }
+
+  // Set the initial state
+  componentWillLoad() {
+    this.belowFold = this.isBelowFold();
+  }
+
+  componentDidLoad() {
+    window.addEventListener('scroll', this.handleScroll, false);
+
+    this.animateButton();
 
     this.validateLabel();
   }
