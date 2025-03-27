@@ -2,7 +2,7 @@ import { defineConfig } from 'cypress';
 import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
-const { version } = require('./package.json');
+import { version } from './package.json';
 
 export default defineConfig({
   e2e: {
