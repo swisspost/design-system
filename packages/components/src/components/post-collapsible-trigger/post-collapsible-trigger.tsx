@@ -1,7 +1,7 @@
 import { Component, Element, Method, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkNonEmpty, checkType, debounce, getRoot } from '@/utils';
-import { PostCollapsibleCustomEvent } from '@/components';
+import { eventGuard } from '@/utils/event-guard';
 
 @Component({
   tag: 'post-collapsible-trigger',
@@ -33,6 +33,8 @@ export class PostCollapsibleTrigger {
    * Initiate a mutation observer that updates the trigger whenever necessary
    */
   connectedCallback() {
+    this.root = getRoot(this.host);
+    this.root.addEventListener('postToggle', this.handlePostToggle);
     this.observer.observe(this.host, { childList: true, subtree: true });
   }
 
@@ -42,11 +44,6 @@ export class PostCollapsibleTrigger {
    */
   componentWillLoad() {
     this.root = getRoot(this.host);
-
-    this.root.addEventListener('postToggle', (e: PostCollapsibleCustomEvent<boolean>) => {
-      if (!this.trigger || !e.target.isEqualNode(this.collapsible)) return;
-      this.trigger.setAttribute('aria-expanded', `${e.detail}`);
-    });
   }
 
   /**
@@ -64,6 +61,7 @@ export class PostCollapsibleTrigger {
    */
   disconnectedCallback() {
     this.observer.disconnect();
+    this.root.removeEventListener('postToggle', this.handlePostToggle);
   }
 
   /**
@@ -72,6 +70,23 @@ export class PostCollapsibleTrigger {
   @Method()
   async update() {
     this.debouncedUpdate();
+  }
+
+  /**
+   * Private handler for the 'postToggle' event.
+   * This updates the trigger's "aria-expanded" attribute based on the event detail.
+   */
+  private handlePostToggle(e: CustomEvent): void {
+    eventGuard(
+      this.host,
+      e, 
+      { targetLocalName: 'post-collapsible' },
+      () => {
+        if (this.trigger) {
+          this.trigger.setAttribute('aria-expanded', `${e.detail}`);
+        }
+      }
+    );
   }
 
   private debouncedUpdate = debounce(() => {
