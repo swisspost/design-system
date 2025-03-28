@@ -229,13 +229,16 @@ export class PostHeader {
   private handleScrollEvent() {
     const scrollTop =
       this.scrollParent === document.body ? window.scrollY : this.scrollParent.scrollTop;
-    this.host.style.setProperty('--header-scroll-top', `${scrollTop}px`);
+    document.documentElement.style.setProperty('--post-header-scroll-top', `${scrollTop}px`);
   }
 
   private updateLocalHeaderHeight() {
     const localHeaderHeight =
       this.host.shadowRoot.querySelector('.local-header')?.clientHeight || 0;
-    this.host.style.setProperty('--local-header-height', `${localHeaderHeight}px`);
+    document.documentElement.style.setProperty(
+      '--post-local-header-height',
+      `${localHeaderHeight}px`,
+    );
   }
 
   private updateScrollParentHeight() {
