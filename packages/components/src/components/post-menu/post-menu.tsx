@@ -80,8 +80,8 @@ export class PostMenu {
    * Handles the `postToggle` event from the popover container.
    */
   @EventGuard({ targetLocalName: 'post-popovercontainer', delegatorSelector: 'post-menu' })
-  handlePostToggle(event: CustomEvent<boolean>) {
-    console.log('[handlePostToggle] Event received:', event); // Debug log
+  private handlePostToggle(event: CustomEvent<boolean>) {
+    console.log('[handlePostToggle] Event received:', event);
     this.isVisible = event.detail;
     this.toggleMenu.emit(this.isVisible);
 

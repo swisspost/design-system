@@ -1,7 +1,7 @@
 import { shadowClosest } from '../shadow-closest';
 
 export function EventGuard(options: { targetLocalName: string; delegatorSelector?: string }) {
-  return function (_target: any, _propertyKey: string, descriptor: PropertyDescriptor) {
+  return function (_target: object, _propertyKey: string, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value; // Save the original method
     // Override the method
     descriptor.value = function (event: CustomEvent) {
