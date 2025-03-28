@@ -1,12 +1,12 @@
 <post-header>
   <!-- Logo -->
 
-  <post-logo slot="post-logo"></post-logo>
+  <a [routerLink]="/" slot="post-logo"><post-logo></post-logo></a>
 
   <!-- Meta navigation -->
   <ul class="d-flex flex-wrap row-gap-4 column-gap-16 m-0 list-unstyled">
     <li *ngFor="let route of navigationRoutes">
-      <a [routerLink]="route.path">{{ route.title }}</a>
+      <a [routerLink]="/">home</a>
     </li>
   </ul>
 
@@ -123,7 +123,7 @@
     </post-list>
   </post-mainnavigation>
 </post-header>
-<main class="container my-16">
-  <h1>Hurray, it works!</h1>
+<main class="my-16">
+  <h2>Post header check in Angular</h2>
   <router-outlet></router-outlet>
 </main>
