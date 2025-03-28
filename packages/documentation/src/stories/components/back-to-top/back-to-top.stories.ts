@@ -15,10 +15,7 @@ const meta: MetaComponent = {
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=18-11',
     },
   },
-  render: () => html` <div
-    class="header-story-wrapper"
-    style="--header-z-index: 1;overflow: auto; "
-  >
+  render: () => html`<div>
     <post-header>
       <!-- Logo -->
       <post-logo slot="post-logo" url="/">Homepage</post-logo>
