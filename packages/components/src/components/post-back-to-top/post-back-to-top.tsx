@@ -29,7 +29,7 @@ export class PostBackToTop {
     this.belowFold = this.isBelowFold();
   };
 
-  // Watch for changes in belowFold to show/hide the back to top button
+  /*Watch for changes in belowFold to show/hide the back to top button*/
   @Watch('belowFold')
   watchBelowFold(newValue: boolean) {
     if (newValue) {
@@ -42,6 +42,7 @@ export class PostBackToTop {
   private scrollToTop() {
     window.scrollTo({
       top: 0,
+      behavior: 'smooth',
     });
   }
 
