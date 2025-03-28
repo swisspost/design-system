@@ -52,7 +52,7 @@ jobs:
 
       - name: Create skipped analysis notice
         if: steps.check_token.outputs.sonar_skipped == 'true' && github.event_name == 'pull_request'
-        uses: actions/github-script@v6
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         with:
           script: |
             github.rest.checks.create({
