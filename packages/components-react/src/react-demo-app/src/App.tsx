@@ -1,5 +1,8 @@
 import './App.scss';
-// import { Router, Link } from 'react-router-dom';
+import Other from './components/other.tsx';
+import Home from './components/home.tsx';
+
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 import {
   PostHeader,
@@ -18,25 +21,24 @@ import {
 
 function App() {
   return (
-    <>
+    <Router>
       <PostHeader>
-        <PostLogo slot="post-logo">Homepage</PostLogo>
-
+        <Link to="/other" slot="post-logo">
+          <PostLogo>Homepage</PostLogo>
+        </Link>
         <ul className="list-inline" slot="meta-navigation">
           <li>
-            <a href="">Jobs</a>
+            <Link to="/home">Home</Link>
           </li>
           <li>
-            <a href="">Über uns</a>
+            <Link to="/other">Other</Link>
           </li>
         </ul>
-
         <PostTogglebutton slot="post-togglebutton">
           <span className="visually-hidden-sm">Menu</span>
           <PostIcon aria-hidden="true" name="burger" data-showwhen="untoggled"></PostIcon>
           <PostIcon aria-hidden="true" name="closex" data-showwhen="toggled"></PostIcon>
         </PostTogglebutton>
-
         <PostLanguageSwitch
           caption="Change the language"
           description="The currently selected language is English."
@@ -56,9 +58,7 @@ function App() {
             en
           </PostLanguageOption>
         </PostLanguageSwitch>
-
         <h1 slot="title">Application title</h1>
-
         <ul className="list-inline">
           <li>
             <a href="/">
@@ -73,7 +73,6 @@ function App() {
             </a>
           </li>
         </ul>
-
         <PostMainnavigation>
           <button type="button" slot="back-button" className="btn btn-sm btn-tertiary">
             <PostIcon aria-hidden="true" name="arrowright"></PostIcon> Back
@@ -178,8 +177,12 @@ function App() {
         </PostMainnavigation>
       </PostHeader>
 
-      <h5>Post Logo & Header Check with React</h5>
-    </>
+      <h2>Post Header in React</h2>
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/other" element={<Other />} />
+      </Routes>
+    </Router>
   );
 }
 

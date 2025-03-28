@@ -1,7 +1,22 @@
 import React from 'react';
 
 const Home: React.FC = () => {
-  return <h1>Home Page</h1>;
+  const linkCode = `
+<Link to="/other" slot="post-logo">
+  <PostLogo>Homepage</PostLogo>
+</Link>`;
+  const css = `post-header a:has(post-logo) {
+  height: 100%;
+}
+`;
+  return (
+    <>
+      <h4>HTML</h4>
+      <p>{linkCode}</p>
+      <h4>SCSS</h4>
+      <p>{css}</p>
+    </>
+  );
 };
 
 export default Home;
