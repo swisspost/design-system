@@ -23,7 +23,7 @@ const meta: MetaComponent = {
     innerHTML: 'Hi there 👋',
     palette: 'palette-accent',
     placement: 'top',
-    delayed: false,
+    animation: 'none',
   },
   argTypes: {
     id: {
@@ -57,13 +57,26 @@ const meta: MetaComponent = {
       },
     },
     placement: {
-      name: 'Placement',
+      name: 'placement',
     },
     arrow: {
-      name: 'Arrow',
+      name: 'arrow',
       control: {
         type: 'boolean',
       },
+    },
+    animation: {
+      options: ['none', 'pop-in'],
+    },
+    delay: {
+      name: 'delay',
+      description: 'Delay (in milliseconds) before the tooltip is shown.',
+      control: {
+        type: 'number',
+      },
+      table: {
+        category: 'props',
+      }
     },
   },
 };
@@ -72,20 +85,22 @@ function render(args: Args) {
   const [currentArgs, updateArgs] = useArgs();
   // Just for fun
   const innerHTML =
-    args.palette === 'palette-accent'
-      ? args.innerHTML.replace('🤘🏾', '👋')
-      : args.innerHTML.replace('👋', '🤘🏾');
+    args.backgroundColor === 'yellow'
+      ? args.innerHTML.replace('👋', '🤘🏾')
+      : args.innerHTML.replace('🤘🏾', '👋');
 
   if (currentArgs.innerHTML !== innerHTML) updateArgs({ innerHTML });
 
   return html`
-    <button class="btn btn-secondary btn-large" data-tooltip-target="${args.id}">Button</button>
+    <post-tooltip-trigger for="${args.id}" delay="${ifDefined(args.delay !== 0 ? args.delay : undefined)}">
+      <button class="btn btn-secondary btn-large">Button</button></post-tooltip-trigger
+    >
     <post-tooltip
       id="${args.id}"
+      arrow="${ifDefined(args.arrow)}"
       class="${args.palette}"
       placement="${ifDefined(args.placement)}"
-      arrow="${ifDefined(args.arrow)}"
-      delayed="${ifDefined(args.delayed)}"
+      animation="${ifDefined(args.animation)}"
     >
       ${unsafeHTML(innerHTML)}
     </post-tooltip>
@@ -98,13 +113,17 @@ export const Default: StoryObj = {};
 export const NonFocusable: StoryObj = {
   args: {
     id: 'tooltip-non-focusable',
+    delay: 650,
   },
   render: (args: Args) => {
     return html`
-      <cite data-tooltip-target="${args.id}">This is a cite element with a tooltip on it.</cite>
+      <post-tooltip-trigger for="${args.id}" delay="${args.delay}">
+        <cite>This is a cite element with a tooltip on it.</cite>
+      </post-tooltip-trigger>
       <post-tooltip
         id="${args.id}"
-        class="${args.palette}"
+        class="hydrated"
+        background-color=" ${ifDefined(args.backgroundColor)}"
         placement="${ifDefined(args.placement)}"
       >
         This is not the link you are looking for
@@ -116,18 +135,19 @@ export const NonFocusable: StoryObj = {
 export const Multiple: StoryObj = {
   args: {
     id: 'tooltip-multiple',
+    delay: 650,
   },
   render: (args: Args) => {
     return html`
-      <button class="btn btn-secondary btn-large" data-tooltip-target="${args.id}">
-        Tooltip button
-      </button>
-      <button class="btn btn-secondary btn-large" data-tooltip-target="${args.id}">
-        Same tooltip, different button
-      </button>
+      <post-tooltip-trigger for="${args.id}" delay="${args.delay}">
+        <button class="btn btn-secondary btn-large">Tooltip button</button>
+      </post-tooltip-trigger>
+      <post-tooltip-trigger for="${args.id}" delay="${args.delay}">
+        <button class="btn btn-secondary btn-large">Same tooltip, different button</button>
+      </post-tooltip-trigger>
       <post-tooltip
         id="${args.id}"
-        class="${args.palette}"
+        class="hydrated bg-${args.background}"
         placement="${ifDefined(args.placement)}"
       >
         I'm the same, no matter what
