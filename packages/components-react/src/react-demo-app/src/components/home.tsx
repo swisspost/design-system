@@ -5,9 +5,7 @@ const Home: React.FC = () => {
 <Link to="/other" slot="post-logo">
   <PostLogo>Homepage</PostLogo>
 </Link>`;
-  const css = `post-header a:has(post-logo) {
-  height: 100%;
-}
+  const css = `a:has(post-logo) -> height: 100%;
 `;
   return (
     <>

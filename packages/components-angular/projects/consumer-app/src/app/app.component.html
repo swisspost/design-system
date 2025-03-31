@@ -3,6 +3,12 @@
 
   <a [routerLink]="['/']" slot="post-logo"><post-logo></post-logo></a>
 
+  <!-- Meta navigation -->
+  <ul class="list-inline" slot="meta-navigation">
+    <li><a [routerLink]="['/home']">Jobs</a></li>
+    <li><a [routerLink]="['/card-control']">Über uns</a></li>
+  </ul>
+
   <!-- Menu button for mobile -->
   <post-togglebutton slot="post-togglebutton" s>
     <span class="visually-hidden-sm">Menu</span>
@@ -51,7 +57,7 @@
     <post-list title-hidden="">
       <h2>Main Navigation</h2>
       <!-- Link only level 1 -->
-      <post-list-item slot="post-list-item"> <a [routerLink]="['/']">Briefe</a></post-list-item>
+      <post-list-item slot="post-list-item"> <a [routerLink]="['/home']">Briefe</a></post-list-item>
       <post-list-item slot="post-list-item">
         <a [routerLink]="['/card-control']">Pakete</a></post-list-item
       >

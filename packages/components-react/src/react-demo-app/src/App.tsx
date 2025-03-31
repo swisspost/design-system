@@ -61,16 +61,16 @@ function App() {
         <h1 slot="title">Application title</h1>
         <ul className="list-inline">
           <li>
-            <a href="/">
+            <Link to="/home">
               <span className="visually-hidden-sm">Search</span>
               <PostIcon aria-hidden="true" name="search"></PostIcon>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/">
+            <Link to="/other">
               <span className="visually-hidden-sm">Login</span>
               <PostIcon aria-hidden="true" name="login"></PostIcon>
-            </a>
+            </Link>
           </li>
         </ul>
         <PostMainnavigation>
@@ -81,10 +81,10 @@ function App() {
             <h2>Main Navigation</h2>
 
             <PostListItem slot="post-list-item">
-              <a href="/briefe">Briefe</a>
+              <Link to="/home">Briefe</Link>
             </PostListItem>
             <PostListItem slot="post-list-item">
-              <a href="/pakete">Pakete</a>
+              <Link to="/other">Pakete</Link>
             </PostListItem>
 
             <PostListItem slot="post-list-item">
