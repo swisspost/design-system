@@ -20,8 +20,6 @@ export class PostMegadropdownTrigger {
    */
   private wasExpanded: boolean = false;
 
-  private readonly slotObserver: MutationObserver;
-
   private get megadropdown(): HTMLPostMegadropdownElement | null {
     const ref = IS_BROWSER ? document.getElementById(this.for) : null;
 
@@ -43,11 +41,6 @@ export class PostMegadropdownTrigger {
   @State() ariaExpanded: boolean = false;
 
   /**
-   * Slotted html which need to be mirrored in the .active element to avoid layout shifts.
-   */
-  @State() slottedHTML: string;
-
-  /**
    * Watch for changes to the `for` property to validate its type and ensure it is a string.
    * @param forValue - The new value of the `for` property.
    */
@@ -57,16 +50,9 @@ export class PostMegadropdownTrigger {
   }
 
   constructor() {
-    this.setSlottedHTML = this.setSlottedHTML.bind(this);
     this.toggle = this.toggle.bind(this);
     this.keyDown = this.keyDown.bind(this);
     this.handleToggleEvent = this.handleToggleEvent.bind(this);
-
-    this.slotObserver = new MutationObserver(this.setSlottedHTML);
-  }
-
-  private setSlottedHTML() {
-    this.slottedHTML = this.host.innerHTML;
   }
 
   private toggle() {
@@ -103,8 +89,6 @@ export class PostMegadropdownTrigger {
   }
 
   connectedCallback() {
-    this.setSlottedHTML();
-
     // Check if the mega dropdown attached to the trigger is expanded or not
     document.addEventListener('postToggleMegadropdown', this.handleToggleEvent);
   }
@@ -112,14 +96,12 @@ export class PostMegadropdownTrigger {
   componentDidLoad() {
     this.validateFor();
 
-    this.slotObserver.observe(this.host, { characterData: true, childList: true, subtree: true });
     this.button.addEventListener('click', this.toggle);
     this.button.addEventListener('keydown', this.keyDown);
   }
 
   disconnectedCallback() {
     document.removeEventListener('postToggleMegadropdown', this.handleToggleEvent);
-    this.slotObserver.disconnect();
     this.button.removeEventListener('click', this.toggle);
     this.button.removeEventListener('keydown', this.keyDown);
   }
