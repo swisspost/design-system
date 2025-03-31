@@ -1,5 +1,13 @@
 # @swisspost/design-system-components
 
+## 8.9.3
+
+### Patch Changes
+
+- Updated the fallback CDN URL in the `post-icon` component to include the current package version, ensuring icon requests match the used component version. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5090](https://github.com/swisspost/design-system/pull/5090))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.9.3
+
 ## 8.9.2
 
 ### Patch Changes
