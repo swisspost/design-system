@@ -3,6 +3,7 @@
 ---
 
 #### Updated Icons
+
 - HomeService (Solid): 16, 24, 32, 40, 48, 64px
 - Instagram: 16, 24, 32, 40, 48, 64px
 - Instagram (Solid): 16, 24px
