@@ -4,4 +4,8 @@ app-root {
 
 post-header a:has(post-logo) {
   height: 100%;
+  padding: unset !important;
+}
+post-logo {
+  min-height: 24px;
 }
