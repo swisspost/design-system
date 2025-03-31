@@ -131,7 +131,6 @@
     "@swisspost/design-system-components-react": "9.0.0-next.32",
     "@swisspost/design-system-styles": "8.9.2",
     "@vitejs/plugin-react": "4.3.4",
-    "design-system-icons": "link:@swisspost\\design-system-icons",
     "install": "0.13.0",
     "react-router-dom": "7.4.0",
     "typescript": "5.8.2",
