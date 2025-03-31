@@ -1,14 +1,7 @@
 <post-header>
   <!-- Logo -->
 
-  <a [routerLink]="home" slot="post-logo"><post-logo></post-logo></a>
-
-  <!-- Meta navigation -->
-  <ul class="d-flex flex-wrap row-gap-4 column-gap-16 m-0 list-unstyled">
-    <li *ngFor="let route of navigationRoutes">
-      <a [routerLink]="route.path">{{ route.title }}</a>
-    </li>
-  </ul>
+  <a [routerLink]="['/']" slot="post-logo"><post-logo></post-logo></a>
 
   <!-- Menu button for mobile -->
   <post-togglebutton slot="post-togglebutton" s>
@@ -37,13 +30,13 @@
   <!-- Custom content (optional) -->
   <ul class="list-inline">
     <li>
-      <a href="#">
+      <a [routerLink]="['/']">
         <span class="visually-hidden-sm">Search</span>
         <post-icon aria-hidden="true" name="search"></post-icon>
       </a>
     </li>
     <li>
-      <a href="#">
+      <a [routerLink]="['/card-control']">
         <span class="visually-hidden-sm">Login</span>
         <post-icon aria-hidden="true" name="login"></post-icon>
       </a>
@@ -58,8 +51,10 @@
     <post-list title-hidden="">
       <h2>Main Navigation</h2>
       <!-- Link only level 1 -->
-      <post-list-item slot="post-list-item"><a href="/briefe">Briefe</a></post-list-item>
-      <post-list-item slot="post-list-item"><a href="/pakete">Pakete</a></post-list-item>
+      <post-list-item slot="post-list-item"> <a [routerLink]="['/']">Briefe</a></post-list-item>
+      <post-list-item slot="post-list-item">
+        <a [routerLink]="['/card-control']">Pakete</a></post-list-item
+      >
 
       <!-- Level 1 with megadropdown -->
       <post-list-item slot="post-list-item">
