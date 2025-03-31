@@ -3,6 +3,6 @@
 */
 :where(
     /* WEB_COMPONENT_NAMES */
-  ):not(:defined) {
+  ):not([data-hydrated]) {
   visibility: hidden;
 }
