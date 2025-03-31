@@ -1,17 +1,17 @@
 <post-header>
   <!-- Logo -->
 
-  <a [routerLink]="/" slot="post-logo"><post-logo></post-logo></a>
+  <a [routerLink]="home" slot="post-logo"><post-logo></post-logo></a>
 
   <!-- Meta navigation -->
   <ul class="d-flex flex-wrap row-gap-4 column-gap-16 m-0 list-unstyled">
     <li *ngFor="let route of navigationRoutes">
-      <a [routerLink]="/">home</a>
+      <a [routerLink]="route.path">{{ route.title }}</a>
     </li>
   </ul>
 
   <!-- Menu button for mobile -->
-  <post-togglebutton slot="post-togglebutton">
+  <post-togglebutton slot="post-togglebutton" s>
     <span class="visually-hidden-sm">Menu</span>
     <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
     <post-icon aria-hidden="true" name="closex" data-showwhen="toggled"></post-icon>
