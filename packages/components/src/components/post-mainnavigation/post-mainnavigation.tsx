@@ -59,7 +59,6 @@ export class PostMainnavigation {
    */
   connectedCallback() {
     this.header = this.host.closest('post-header');
-    this.fixLayoutShift();
   }
 
   componentDidLoad() {
@@ -91,18 +90,6 @@ export class PostMainnavigation {
     if (this.mutationObserver) {
       this.mutationObserver.disconnect();
     }
-  }
-
-  // Hack that duplicates navigation elements to fix the layout shift on active elements
-  private fixLayoutShift() {
-    // Select first level of main navigation elements, both the links and the megadropdown trigger buttons
-    const children = this.navigationListItems;
-
-    // Update HTML so that the content is duplicated
-    children.forEach(
-      child =>
-        (child.innerHTML = `<span class="mainnavigation-item-active">${child.innerHTML}</span><span class="mainnavigation-item-inactive" aria-hidden="true">${child.innerHTML}</span>`),
-    );
   }
 
   private handleBackButtonClick() {

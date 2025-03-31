@@ -32,12 +32,19 @@ post-mainnavigation {
       white-space: nowrap;
 
       &:hover {
+        font-weight: 700;
         color: tokens.get('post-link-hover-fg', elements.$post-link);
       }
 
       &:focus-visible {
         border-radius: 4px;
         outline-offset: -2px !important;
+      }
+
+      &.selected {
+        background-color: #050400;
+        color: #fff;
+        font-weight: 700;
       }
     }
   }
@@ -61,48 +68,18 @@ post-mainnavigation {
           font-size: 14px;
         }
 
-        .mainnavigation-item-active {
-          font-weight: 700;
-          text-align: center;
-          // visibility: hidden;
-        }
-
-        .mainnavigation-item-inactive {
-          position: absolute;
-          text-align: center;
-          width: 100%;
-          inset-inline-start: 0;
-        }
-
         &:hover {
           background-color: #504f4b;
           color: #fff;
-        }
-
-        &.selected {
-          background-color: #050400;
-          color: #fff;
-
-          .mainnavigation-item-active {
-            visibility: visible;
-          }
-
-          .mainnavigation-item-inactive {
-            visibility: hidden;
-          }
         }
       }
     }
   }
 
   @include media.max(lg) {
-    > post-item:not([slot]) > post-list-item {
+    > post-list:not([slot]) > post-list-item {
       > a {
         @include header-mx.mobile-header-interactive;
-
-        .nav-el-inactive {
-          display: none;
-        }
       }
     }
   }

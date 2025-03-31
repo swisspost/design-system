@@ -16,6 +16,7 @@ import {
   PostListItem,
   PostLogo,
   PostMainnavigation,
+  PostMainnavigationToplevelItem,
   PostMegadropdown,
   PostMegadropdownTrigger,
   PostTogglebutton,
@@ -94,10 +95,14 @@ export default function RootLayout({ children }: { readonly children: React.Reac
             <PostList title-hidden="">
               <h2>Main Navigation</h2>
               <PostListItem slot="post-list-item">
-                <a href="/briefe">Briefe</a>
+                <a href="/briefe">
+                  <PostMainnavigationToplevelItem>Briefe</PostMainnavigationToplevelItem>
+                </a>
               </PostListItem>
               <PostListItem slot="post-list-item">
-                <a href="/pakete">Pakete</a>
+                <a href="/pakete">
+                  <PostMainnavigationToplevelItem>Pakete</PostMainnavigationToplevelItem>
+                </a>
               </PostListItem>
 
               <PostListItem slot="post-list-item">

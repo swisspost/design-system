@@ -132,12 +132,7 @@ export class PostMegadropdownTrigger {
           aria-haspopup="menu"
           aria-expanded={this.ariaExpanded.toString()}
         >
-          <span>
-            <span class="active" aria-hidden="true" innerHTML={this.slottedHTML}></span>
-            <span class="inactive">
-              <slot></slot>
-            </span>
-          </span>
+          <slot></slot>
         </button>
       </Host>
     );

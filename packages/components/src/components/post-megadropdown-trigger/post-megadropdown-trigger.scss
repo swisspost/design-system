@@ -11,6 +11,14 @@
   z-index: 3;
 }
 
+:host(:where(.selected)) {
+  button {
+    background-color: #050400;
+    font-weight: 700;
+    color: #fff;
+  }
+}
+
 button {
   @include button.reset-button;
   display: flex;
@@ -22,14 +30,17 @@ button {
   cursor: pointer;
 
   &::after {
+    display: block;
+    flex: 0 0 auto;
     content: '';
-    @include icons.icon(2113);
-    height: 24px;
     width: 24px;
+    height: 24px;
+    @include icons.icon(2113);
   }
 
   &:hover {
     background-color: #504f4b;
+    font-weight: 700;
     color: #fff;
   }
 
@@ -57,10 +68,6 @@ button {
     &::after {
       transform: rotate(-90deg);
     }
-
-    .inactive {
-      display: none;
-    }
   }
 
   @include media.min(lg) {
@@ -76,42 +83,13 @@ button {
       transition: transform animation.$transition-base-timing;
     }
 
-    > span {
-      display: block;
-      position: relative;
-    }
-
-    .active,
-    .inactive {
-      display: inline-block;
-      text-align: center;
-    }
-
-    .active {
-      visibility: hidden;
-      font-weight: 700;
-    }
-
-    .inactive {
-      position: absolute;
-      inset-inline-start: 0;
-      width: 100%;
-    }
-
     &[aria-expanded='true'] {
       background-color: #050400;
+      font-weight: 700;
       color: #fff;
 
       &::after {
         transform: rotate(180deg);
-      }
-
-      .active {
-        visibility: visible;
-      }
-
-      .inactive {
-        visibility: hidden;
       }
     }
   }
