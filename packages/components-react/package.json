@@ -28,7 +28,10 @@
     "lint:fix": "eslint --fix"
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:9.0.0-next.32"
+    "@swisspost/design-system-components": "workspace:9.0.0-next.32",
+    "@swisspost/design-system-styles": "9.0.0-next.32",
+    "@swisspost/design-system-icons": "workspace:9.0.0-next.32",
+    "@swisspost/design-system-tokens": "workspace:9.0.0-next.32"
   },
   "devDependencies": {
     "@eslint/js": "9.18.0",
