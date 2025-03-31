@@ -1,5 +1,54 @@
 # @swisspost/design-system-icons
 
+## 9.0.0-next.33
+
+### Minor Changes
+
+- #### Updated Icons - HomeService (Solid): 16, 24, 32, 40, 48, 64px
+
+  - Instagram: 16, 24, 32, 40, 48, 64px
+  - Instagram (Solid): 16, 24px
+  - LinkedIn: 16, 24, 32, 40, 48, 64px
+  - Picture (Solid): 16, 24, 32, 40, 48, 64px
+  - Snapchat: 16, 32, 40, 64px
+  - WhatsApp: 16, 24, 32, 40, 48, 64px
+  - Youtube: 16, 24, 32, 40, 48, 64px
+  - kununu: 16, 24, 32, 40, 48, 64px
+
+  #### Added Icons
+
+  All icons include line and solid variants in the sizes 16px, 24px, 32px, 40px, 48px and 64px.
+
+  - AccessBlocked
+  - AccessEPR
+  - Ambulance
+  - Emergency
+  - EmergencyAccess
+  - ProtocolAccess
+  - ProtocolView
+  - Archive
+  - DocumentAuditRecordRepository
+  - DocumentProtocol
+  - Notes / NotesAdd
+  - ArtificialIntelligence
+  - Blueprint
+  - Code
+  - Designsystem
+  - SDCard / SIMCard
+  - UploadAutomated
+  - Authorization
+  - Gear
+  - Group
+  - SoundLow / SoundMid
+  - DisabledBlind
+  - DisabledWalking
+  - AudioFile
+  - Brain
+  - CallConsultation
+  - Flash / FlashOff (by [@swisspost-bot](https://github.com/swisspost-bot) with [#5096](https://github.com/swisspost/design-system/pull/5096))
+
+- Updated icons number packages/icons/src/icons/ui/SpeechtoText_Solid_Shape_16.svg, packages/icons/src/icons/ui/SpeechtoText_Solid_Shape_24.svg, packages/icons/src/icons/ui/SpeechtoText_Solid_Shape_32.svg, packages/icons/src/icons/ui/SpeechtoText_Solid_Shape_40.svg, packages/icons/src/icons/ui/SpeechtoText_Solid_Shape_48.svg and packages/icons/src/icons/ui/SpeechtoText_Solid_Shape_64.svg. Added icons number packages/icons/src/icons/ui/AccessOpen_Shape_16.svg, packages/icons/src/icons/ui/AccessOpen_Shape_24.svg, packages/icons/src/icons/ui/AccessOpen_Shape_32.svg, packages/icons/src/icons/ui/AccessOpen_Shape_40.svg, packages/icons/src/icons/ui/AccessOpen_Shape_48.svg, packages/icons/src/icons/ui/AccessOpen_Shape_64.svg, packages/icons/src/icons/ui/AccessOpen_Solid_Shape_16.svg, packages/icons/src/icons/ui/AccessOpen_Solid_Shape_24.svg, packages/icons/src/icons/ui/AccessOpen_Solid_Shape_32.svg, packages/icons/src/icons/ui/AccessOpen_Solid_Shape_40.svg, packages/icons/src/icons/ui/AccessOpen_Solid_Shape_48.svg, packages/icons/src/icons/ui/AccessOpen_Solid_Shape_64.svg, packages/icons/src/icons/ui/Alarm_Shape_16.svg, packages/icons/src/icons/ui/Alarm_Shape_24.svg, packages/icons/src/icons/ui/Alarm_Shape_32.svg, packages/icons/src/icons/ui/Alarm_Shape_40.svg, packages/icons/src/icons/ui/Alarm_Shape_48.svg, packages/icons/src/icons/ui/Alarm_Shape_64.svg, packages/icons/src/icons/ui/Alarm_Solid_Shape_16.svg, packages/icons/src/icons/ui/Alarm_Solid_Shape_24.svg, packages/icons/src/icons/ui/Alarm_Solid_Shape_32.svg, packages/icons/src/icons/ui/Alarm_Solid_Shape_40.svg, packages/icons/src/icons/ui/Alarm_Solid_Shape_48.svg, packages/icons/src/icons/ui/Alarm_Solid_Shape_64.svg, packages/icons/src/icons/ui/Calculator_Shape_16.svg, packages/icons/src/icons/ui/Calculator_Shape_24.svg, packages/icons/src/icons/ui/Calculator_Shape_32.svg, packages/icons/src/icons/ui/Calculator_Shape_40.svg, packages/icons/src/icons/ui/Calculator_Shape_48.svg, packages/icons/src/icons/ui/Calculator_Shape_64.svg, packages/icons/src/icons/ui/Calculator_Solid_Shape_16.svg, packages/icons/src/icons/ui/Calculator_Solid_Shape_24.svg, packages/icons/src/icons/ui/Calculator_Solid_Shape_32.svg, packages/icons/src/icons/ui/Calculator_Solid_Shape_40.svg, packages/icons/src/icons/ui/Calculator_Solid_Shape_48.svg, packages/icons/src/icons/ui/Calculator_Solid_Shape_64.svg, packages/icons/src/icons/ui/GenderMale_Shape_16.svg, packages/icons/src/icons/ui/GenderMale_Shape_24.svg, packages/icons/src/icons/ui/GenderMale_Shape_32.svg, packages/icons/src/icons/ui/GenderMale_Shape_40.svg, packages/icons/src/icons/ui/GenderMale_Shape_48.svg, packages/icons/src/icons/ui/GenderMale_Shape_64.svg, packages/icons/src/icons/ui/GenderMale_Solid_Shape_16.svg, packages/icons/src/icons/ui/GenderMale_Solid_Shape_24.svg, packages/icons/src/icons/ui/GenderMale_Solid_Shape_32.svg, packages/icons/src/icons/ui/GenderMale_Solid_Shape_40.svg, packages/icons/src/icons/ui/GenderMale_Solid_Shape_48.svg, packages/icons/src/icons/ui/GenderMale_Solid_Shape_64.svg, packages/icons/src/icons/ui/SearchConsignment_Shape_16.svg, packages/icons/src/icons/ui/SearchConsignment_Shape_24.svg, packages/icons/src/icons/ui/SearchConsignment_Shape_32.svg, packages/icons/src/icons/ui/SearchConsignment_Shape_40.svg, packages/icons/src/icons/ui/SearchConsignment_Shape_48.svg, packages/icons/src/icons/ui/SearchConsignment_Shape_64.svg, packages/icons/src/icons/ui/SearchConsignment_Solid_Shape_16.svg, packages/icons/src/icons/ui/SearchConsignment_Solid_Shape_24.svg, packages/icons/src/icons/ui/SearchConsignment_Solid_Shape_32.svg, packages/icons/src/icons/ui/SearchConsignment_Solid_Shape_40.svg, packages/icons/src/icons/ui/SearchConsignment_Solid_Shape_48.svg and packages/icons/src/icons/ui/SearchConsignment_Solid_Shape_64.svg. (by [@swisspost-bot](https://github.com/swisspost-bot) with [#5122](https://github.com/swisspost/design-system/pull/5122))
+
 ## 9.0.0-next.32
 
 ## 9.0.0-next.31
