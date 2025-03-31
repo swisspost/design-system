@@ -1,5 +1,17 @@
 # @swisspost/design-system-documentation
 
+## 5.3.13
+
+### Patch Changes
+
+- Implemented the new "Swiss Post Sans" font (by [@leagrdv](https://github.com/leagrdv) with [#4946](https://github.com/swisspost/design-system/pull/4946))
+- Updated dependencies:
+  - @swisspost/internet-header@1.14.13
+  - @swisspost/design-system-styles@7.4.13
+  - @swisspost/design-system-components@7.4.13
+  - @swisspost/design-system-components-react@7.4.13
+  - @swisspost/design-system-icons@7.4.13
+
 ## 5.3.12
 
 ### Patch Changes

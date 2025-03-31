@@ -1,5 +1,7 @@
 # @swisspost/design-system-icons
 
+## 7.4.13
+
 ## 7.4.12
 
 ## 7.4.11
