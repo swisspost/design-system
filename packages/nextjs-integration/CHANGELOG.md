@@ -5,7 +5,7 @@
 ### Patch Changes
 
 - Updated dependencies:
-  - @swisspost/internet-header@1.14.14
+  - @swisspost/internet-header@1.14.13
   - @swisspost/design-system-styles@7.4.13
   - @swisspost/design-system-components-react@7.4.13
 

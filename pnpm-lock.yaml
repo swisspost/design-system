@@ -47,7 +47,7 @@ importers:
         specifier: 0.3.7
         version: 0.3.7
       '@swisspost/design-system-styles':
-        specifier: workspace:7.4.12
+        specifier: workspace:7.4.13
         version: link:../styles/dist
       ally.js:
         specifier: 1.4.1
@@ -150,10 +150,10 @@ importers:
         specifier: 17.3.11
         version: 17.3.11(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(@angular/platform-browser@17.3.11(@angular/animations@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(rxjs@7.8.1)
       '@swisspost/design-system-components':
-        specifier: workspace:7.4.12
+        specifier: workspace:7.4.13
         version: link:../components
       '@swisspost/design-system-styles':
-        specifier: workspace:7.4.12
+        specifier: workspace:7.4.13
         version: link:../styles/dist
       rxjs:
         specifier: 7.8.1
@@ -232,7 +232,7 @@ importers:
         specifier: ^16.0.0 || ^17.0.0
         version: 17.2.3(rxjs@7.8.1)(zone.js@0.14.7)
       '@swisspost/design-system-components':
-        specifier: workspace:7.4.12
+        specifier: workspace:7.4.13
         version: link:../../../components
       tslib:
         specifier: 2.6.3
@@ -242,7 +242,7 @@ importers:
   packages/components-react:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:7.4.12
+        specifier: workspace:7.4.13
         version: link:../components
     devDependencies:
       '@types/node':
@@ -333,13 +333,13 @@ importers:
         specifier: 20.1.0
         version: 20.1.0(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(@angular/platform-browser@17.3.11(@angular/animations@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(rxjs@7.8.1)
       '@swisspost/design-system-intranet-header':
-        specifier: workspace:7.4.12
+        specifier: workspace:7.4.13
         version: link:../intranet-header-workspace/dist/intranet-header
       '@swisspost/design-system-migrations':
-        specifier: workspace:7.4.12
+        specifier: workspace:7.4.13
         version: link:../migrations
       '@swisspost/design-system-styles':
-        specifier: workspace:7.4.12
+        specifier: workspace:7.4.13
         version: link:../styles/dist
       bootstrap:
         specifier: 5.3.3
@@ -469,16 +469,16 @@ importers:
   packages/documentation:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:7.4.12
+        specifier: workspace:7.4.13
         version: link:../components
       '@swisspost/design-system-components-react':
-        specifier: workspace:7.4.12
+        specifier: workspace:7.4.13
         version: link:../components-react
       '@swisspost/design-system-icons':
-        specifier: workspace:7.4.12
+        specifier: workspace:7.4.13
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:7.4.12
+        specifier: workspace:7.4.13
         version: link:../styles/dist
       '@swisspost/internet-header':
         specifier: workspace:1.14.13
@@ -542,10 +542,10 @@ importers:
         specifier: 8.1.11
         version: 8.1.11(encoding@0.1.13)(lit@3.1.4)(prettier@2.8.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.3.3)(vite@5.1.7(@types/node@20.14.9)(less@4.2.0)(sass@1.77.6)(terser@5.29.1))
       '@swisspost/design-system-components-angular':
-        specifier: workspace:7.4.12
+        specifier: workspace:7.4.13
         version: link:../components-angular/dist/components
       '@swisspost/design-system-intranet-header':
-        specifier: workspace:7.4.12
+        specifier: workspace:7.4.13
         version: link:../intranet-header-workspace/dist/intranet-header
       '@types/css-modules':
         specifier: 1.0.5
@@ -831,7 +831,7 @@ importers:
         specifier: 2.11.8
         version: 2.11.8
       '@swisspost/design-system-styles':
-        specifier: workspace:7.4.12
+        specifier: workspace:7.4.13
         version: link:../styles/dist
       rxjs:
         specifier: 7.8.1
@@ -919,21 +919,21 @@ importers:
         specifier: ^16.0.0 || ^17.0.0
         version: 17.3.3(rxjs@7.8.1)(zone.js@0.14.7)
       '@swisspost/design-system-styles':
-        specifier: workspace:7.4.12
+        specifier: workspace:7.4.13
         version: link:../../../styles/dist
       tslib:
         specifier: 2.6.3
         version: 2.6.3
     devDependencies:
       '@swisspost/design-system-intranet-header-workspace':
-        specifier: workspace:3.0.30
+        specifier: workspace:3.0.31
         version: link:../..
     publishDirectory: ../../dist/intranet-header
 
   packages/intranet-header-workspace/projects/intranet-header-showcase:
     dependencies:
       '@swisspost/design-system-intranet-header':
-        specifier: workspace:7.4.12
+        specifier: workspace:7.4.13
         version: link:../../dist/intranet-header
 
   packages/migrations:
@@ -979,10 +979,10 @@ importers:
   packages/nextjs-integration:
     dependencies:
       '@swisspost/design-system-components-react':
-        specifier: workspace:7.4.12
+        specifier: workspace:7.4.13
         version: link:../components-react
       '@swisspost/design-system-styles':
-        specifier: workspace:7.4.12
+        specifier: workspace:7.4.13
         version: link:../styles/dist
       '@swisspost/internet-header':
         specifier: workspace:1.14.13
@@ -1044,7 +1044,7 @@ importers:
         version: 5.3.3(@popperjs/core@2.11.8)
     devDependencies:
       '@swisspost/design-system-icons':
-        specifier: workspace:7.4.12
+        specifier: workspace:7.4.13
         version: link:../icons
       '@types/node':
         specifier: 20.14.9
@@ -1132,7 +1132,7 @@ importers:
         specifier: 17.3.11
         version: 17.3.11(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.4))(@angular/platform-browser@17.3.11(@angular/animations@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.4)))(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.4)))(rxjs@7.8.1)
       '@swisspost/design-system-styles':
-        specifier: workspace:7.4.12
+        specifier: workspace:7.4.13
         version: link:../styles/dist
       primeng:
         specifier: 17.18.4
@@ -1208,7 +1208,7 @@ importers:
         specifier: ^17.0.0
         version: 17.3.11(rxjs@7.8.1)(zone.js@0.14.7)
       '@swisspost/design-system-styles':
-        specifier: workspace:7.4.12
+        specifier: workspace:7.4.13
         version: link:../../../styles/dist
       primeng:
         specifier: ^17.0.0
@@ -2882,7 +2882,7 @@ packages:
     os: [win32]
 
   '@next/swc-win32-ia32-msvc@14.2.4':
-    resolution: {integrity: sha512-twrmN753hjXRdcrZmZttb/m5xaCBFa48Dt3FbeEItpJArxriYDunWxJn+QFXdJ3hPkm4u7CKxncVvnmgQMY1ag==}
+    resolution: {integrity: sha512-twrmN753hjXRdcrZmZttb/m5xaCBFa48Dt3FbeEItpJArxriYDunWxJn+QFXdJ3hPkm4u7CKxncVvnmgQMY1ag==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-evoting-virtual/@next/swc-win32-ia32-msvc/-/swc-win32-ia32-msvc-14.2.4.tgz}
     engines: {node: '>= 10'}
     cpu: [ia32]
     os: [win32]
@@ -4011,7 +4011,7 @@ packages:
     resolution: {integrity: sha512-6i0aC7jV6QzQB8ne1joVZ0eSFIstHsCrobmOtghM11yGlH0j43FKL2UhWdELkyps0zuf7qVTUVCCR+tgSlyLLw==}
 
   '@types/yauzl@2.10.0':
-    resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==}
+    resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-evoting-virtual/@types/yauzl/-/yauzl-2.10.0.tgz}
 
   '@typescript-eslint/eslint-plugin@5.62.0':
     resolution: {integrity: sha512-TiZzBSJja/LbhNPvk6yc0JrX9XqhQ0hdh6M2svYfsHGejaKFIAGd9MQ+ERIMzLGlN/kZoYIgdxFV0PuljTKXag==}
@@ -4234,7 +4234,7 @@ packages:
       vite: ^3.0.0 || ^4.0.0 || ^5.0.0
 
   '@web-types/lit@2.0.0-3':
-    resolution: {integrity: sha512-vZG6zfQ8+gM5Qsv0D5k9X8f/cBqk3y8qhgy0y5g+or+hi3PH6UNNMBMd6QRrlBZUoXCXR/cpVvfPTDj9w5FlwQ==}
+    resolution: {integrity: sha512-vZG6zfQ8+gM5Qsv0D5k9X8f/cBqk3y8qhgy0y5g+or+hi3PH6UNNMBMd6QRrlBZUoXCXR/cpVvfPTDj9w5FlwQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-evoting-virtual/@web-types/lit/-/lit-2.0.0-3.tgz}
 
   '@webassemblyjs/ast@1.12.1':
     resolution: {integrity: sha512-EKfMUOPRRUTy5UII4qJDGPpqfwjOmZ5jeGFwid9mnoqIFK+e0vqoi1qH56JpmZSzEL53jKnNzScdmftJyG5xWg==}
@@ -4752,7 +4752,7 @@ packages:
     resolution: {integrity: sha512-1ugUSr8BHXRnK23KfuYS+gVMC3LB8QGH9W1iGtDPsNWoQbgtXSExkBu2aDR4epiGWZOjZsj6lDl/N/AqqTC3UA==}
 
   bare-events@2.3.1:
-    resolution: {integrity: sha512-sJnSOTVESURZ61XgEleqmP255T6zTYwHPwE4r6SssIh0U9/uDvfpdoJYpVUerJJZH2fueO+CdT8ZT+OC/7aZDA==}
+    resolution: {integrity: sha512-sJnSOTVESURZ61XgEleqmP255T6zTYwHPwE4r6SssIh0U9/uDvfpdoJYpVUerJJZH2fueO+CdT8ZT+OC/7aZDA==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-evoting-virtual/bare-events/-/bare-events-2.3.1.tgz}
 
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
@@ -10617,7 +10617,7 @@ packages:
     resolution: {integrity: sha512-veRf7dawaj9xaWEu9HoTVn5Pggtc/qj+kqTOFvNiN1l0YdxwC1kvel57UCjThjGa3BHBihE8/UJAHI+uQHmd/g==}
 
   uglify-js@3.17.4:
-    resolution: {integrity: sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==}
+    resolution: {integrity: sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-evoting-virtual/uglify-js/-/uglify-js-3.17.4.tgz}
     engines: {node: '>=0.8.0'}
     hasBin: true
 
