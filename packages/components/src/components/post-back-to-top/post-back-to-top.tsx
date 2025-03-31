@@ -25,11 +25,11 @@ export class PostBackToTop {
     return window.scrollY > window.innerHeight;
   }
 
-  private handleScroll = () => {
+  private readonly handleScroll = () => {
     this.belowFold = this.isBelowFold();
   };
 
-  // Watch for changes in belowFold
+  /*Watch for changes in belowFold to show/hide the back to top button*/
   @Watch('belowFold')
   watchBelowFold(newValue: boolean) {
     if (newValue) {
@@ -42,7 +42,49 @@ export class PostBackToTop {
   private scrollToTop() {
     window.scrollTo({
       top: 0,
+      behavior: 'smooth',
     });
+  }
+
+  private getSecondPixelValue(parts: string[]) {
+    for (const part of parts) {
+      const pixelValues = part.match(/\b\d+px\b/g);
+
+      if (pixelValues && pixelValues.length > 1) {
+        return pixelValues[1];
+      }
+    }
+  }
+
+  private animateButton() {
+    // Get the back-to-top button top postiion
+    const positionTop = window.getComputedStyle(this.host).getPropertyValue('top');
+
+    const buttonElement = this.host.shadowRoot.querySelector('button');
+
+    // Extract the elevation height from the back-to-top button elevation token
+    const elevation = getComputedStyle(buttonElement).getPropertyValue(
+      '--post-back-to-top-elevation',
+    );
+    const elevationParts = elevation.split(',');
+
+    const elevationHeight = this.getSecondPixelValue(elevationParts);
+
+    // The translateY is calculated as => -100% (btt button height) - topPosition - elevationHeight
+    this.translateY =
+      String(
+        (-1 * 100) / 100 -
+          parseFloat(positionTop.replace('px', '')) -
+          parseFloat(elevationHeight.replace('px', '')),
+      ) + 'px';
+
+    if (this.belowFold) {
+      slideDown(this.host, this.translateY);
+    }
+
+    if (!this.belowFold) {
+      this.host.style.transform = `translateY(${this.translateY})`;
+    }
   }
 
   // Validate the label
@@ -60,18 +102,7 @@ export class PostBackToTop {
   componentDidLoad() {
     window.addEventListener('scroll', this.handleScroll, false);
 
-    this.translateY = window
-      .getComputedStyle(this.host)
-      .getPropertyValue('--post-floating-button-translate-y');
-
-    if (!this.belowFold) {
-      this.host.style.transform = `translateY(${this.translateY})`;
-    }
-
-    // Initial load
-    if (this.belowFold) {
-      slideUp(this.host, this.translateY);
-    }
+    this.animateButton();
 
     this.validateLabel();
   }

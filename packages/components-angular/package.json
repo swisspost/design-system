@@ -4,7 +4,7 @@
   "scripts": {
     "start": "ng serve --port 9210",
     "build": "pnpm clean && ng build components",
-    "clean": "rimraf dist",
+    "clean": "rimraf dist .angular",
     "e2e": "ng e2e --watch=false",
     "e2e:watch": "ng e2e",
     "lint": "ng lint",

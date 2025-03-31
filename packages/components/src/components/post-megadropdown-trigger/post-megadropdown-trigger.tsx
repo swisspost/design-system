@@ -1,6 +1,6 @@
 import { Component, Element, Prop, h, Host, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { IS_BROWSER, checkType } from '@/utils';
+import { IS_BROWSER, checkType, eventGuard } from '@/utils';
 
 @Component({
   tag: 'post-megadropdown-trigger',
@@ -52,7 +52,7 @@ export class PostMegadropdownTrigger {
   constructor() {
     this.toggle = this.toggle.bind(this);
     this.keyDown = this.keyDown.bind(this);
-    this.handleToggleEvent = this.handleToggleEvent.bind(this);
+    this.handleToggleMegadropdown = this.handleToggleMegadropdown.bind(this);
   }
 
   private toggle() {
@@ -74,23 +74,27 @@ export class PostMegadropdownTrigger {
     }
   }
 
-  private handleToggleEvent(event: CustomEvent) {
-    if ((event.target as HTMLElement).id === this.for) {
-      this.ariaExpanded = event.detail.isVisible;
+  private handleToggleMegadropdown = (
+    event: CustomEvent<{ isVisible: boolean; focusParent: boolean }>,
+  ) => {
+    eventGuard(this.host, event, { targetLocalName: 'post-megadropdown' }, () => {
+      if ((event.target as HTMLPostMegadropdownElement).id === this.for) {
+        this.ariaExpanded = event.detail.isVisible;
 
-      // Focus on the trigger parent of the dropdown after it's closed if close button had been clicked
-      if (this.wasExpanded && !this.ariaExpanded && event.detail.focusParent) {
-        setTimeout(() => {
-          this.button?.focus();
-        }, 100);
+        // Focus on the trigger parent of the dropdown after it's closed if the close button had been clicked
+        if (this.wasExpanded && !this.ariaExpanded && event.detail.focusParent) {
+          setTimeout(() => {
+            this.button?.focus();
+          }, 100);
+        }
+        this.wasExpanded = this.ariaExpanded;
       }
-      this.wasExpanded = this.ariaExpanded;
-    }
-  }
+    });
+  };
 
   connectedCallback() {
     // Check if the mega dropdown attached to the trigger is expanded or not
-    document.addEventListener('postToggleMegadropdown', this.handleToggleEvent);
+    document.addEventListener('postToggleMegadropdown', this.handleToggleMegadropdown);
   }
 
   componentDidLoad() {
@@ -101,7 +105,7 @@ export class PostMegadropdownTrigger {
   }
 
   disconnectedCallback() {
-    document.removeEventListener('postToggleMegadropdown', this.handleToggleEvent);
+    document.removeEventListener('postToggleMegadropdown', this.handleToggleMegadropdown);
     this.button.removeEventListener('click', this.toggle);
     this.button.removeEventListener('keydown', this.keyDown);
   }

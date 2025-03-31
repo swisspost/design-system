@@ -74,7 +74,10 @@
     position: fixed;
     inset-block-start: var(--header-navigation-current-inset);
     inset-inline: 0;
-    height: calc(min(var(--header-scroll-parent-height, 100dvh), 100dvh) - var(--header-height));
+
+    height: calc(
+      min(var(--header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
+    );
     border-block-start: unset;
     overflow-y: auto;
     overscroll-behavior: contain;
@@ -89,7 +92,7 @@
   }
 
   @include media.min(lg) {
-    max-height: calc(100vh - var(--header-height) - 48px);
+    max-height: calc(100vh - var(--post-header-height) - 48px);
     overflow-y: auto;
   }
 }

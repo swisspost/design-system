@@ -1,7 +1,6 @@
 import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkNonEmpty, checkType, debounce, getRoot } from '@/utils';
-import { PostCollapsibleCustomEvent } from '@/components';
+import { checkNonEmpty, checkType, debounce, eventGuard, getRoot } from '@/utils';
 
 @Component({
   tag: 'post-collapsible-trigger',
@@ -34,32 +33,19 @@ export class PostCollapsibleTrigger {
    * Initiate a mutation observer that updates the trigger whenever necessary
    */
   connectedCallback() {
+    this.root = getRoot(this.host);
+    this.root.addEventListener('postToggle', this.handlePostToggle);
     this.observer.observe(this.host, { childList: true, subtree: true });
   }
 
-  /**
-   * Attach a "postToggle" event listener to the root node
-   * to update the trigger's "aria-expanded" attribute whenever the controlled post-collapsible is toggled
-   * Add the "data-version" to the host element and set the trigger
-   */
   componentDidLoad() {
-    this.root = getRoot(this.host);
-
-    this.root.addEventListener('postToggle', (e: PostCollapsibleCustomEvent<boolean>) => {
-      if (!this.trigger || !e.target.isEqualNode(this.collapsible)) return;
-      this.trigger.setAttribute('aria-expanded', `${e.detail}`);
-    });
-
     this.setTrigger();
-
     if (!this.trigger) console.warn('The post-collapsible-trigger must contain a button.');
   }
 
-  /**
-   * Disconnect the mutation observer
-   */
   disconnectedCallback() {
     this.observer.disconnect();
+    this.root.removeEventListener('postToggle', this.handlePostToggle);
   }
 
   /**
@@ -68,6 +54,18 @@ export class PostCollapsibleTrigger {
   @Method()
   async update() {
     this.debouncedUpdate();
+  }
+
+  /**
+   * Private handler for the 'postToggle' event.
+   * This updates the trigger's "aria-expanded" attribute based on the event detail.
+   */
+  private handlePostToggle(e: CustomEvent): void {
+    eventGuard(this.host, e, { targetLocalName: 'post-collapsible' }, () => {
+      if (this.trigger) {
+        this.trigger.setAttribute('aria-expanded', `${e.detail}`);
+      }
+    });
   }
 
   private debouncedUpdate() {
