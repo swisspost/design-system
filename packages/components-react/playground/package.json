@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@swisspost/design-system-styles": "8.9.3",
+    "@swisspost/design-system-styles": "9.0.0-next.32",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.5",
     "react": "18.3.1",
