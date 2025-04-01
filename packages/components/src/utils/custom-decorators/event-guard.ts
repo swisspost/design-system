@@ -5,18 +5,12 @@ export function EventGuard(options: { targetLocalName: string; delegatorSelector
     const originalMethod = descriptor.value;
 
     descriptor.value = function (event: CustomEvent) {
-      const targetElement = event.target as HTMLElement | null;
+      const target = event.target as HTMLElement | null;
+      const host = this.host as HTMLElement;
 
-      if (!targetElement || targetElement.localName !== options.targetLocalName) {
-        return;
-      }
+      if (!target || target.localName !== options.targetLocalName) return;
 
-      if (options.delegatorSelector) {
-        const closest = shadowClosest(targetElement, options.delegatorSelector);
-        if (closest !== this.host as HTMLElement) {
-          return;
-        }
-      }
+      if (options.delegatorSelector && shadowClosest(target, options.delegatorSelector) !== host) return;
 
       return originalMethod.call(this, event);
     };
@@ -24,3 +18,4 @@ export function EventGuard(options: { targetLocalName: string; delegatorSelector
     return descriptor;
   };
 }
+
