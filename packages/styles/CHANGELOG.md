@@ -1,5 +1,15 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.33
+
+### Patch Changes
+
+- Fixed inconsistent paddings in the `post-header` component for wrapped and unwrapped titles across mobile and tablet devices. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4971](https://github.com/swisspost/design-system/pull/4971))
+
+- Adjusted the placement of the Back-to-top button to accommodate the sticky header. (by [@myrta2302](https://github.com/myrta2302) with [#4879](https://github.com/swisspost/design-system/pull/4879))
+
+- Updated `<post-header>` to expose header height custom CSS properties to `:root` and set `scroll-padding-top` to visible header height. (by [@myrta2302](https://github.com/myrta2302) with [#4925](https://github.com/swisspost/design-system/pull/4925))
+
 ## 9.0.0-next.32
 
 ### Patch Changes
