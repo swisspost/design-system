@@ -1,5 +1,31 @@
 # @swisspost/design-system-intranet-header
 
+## 8.9.3
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.9.3
+
+## 8.9.2
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.9.2
+
+## 8.9.1
+
+### Patch Changes
+
+- Removed user specific profile image logic from the intranet header. (by [@myrta2302](https://github.com/myrta2302) with [#4667](https://github.com/swisspost/design-system/pull/4667))
+
+- Updated the `Intranet-Header` to run `mutationObserver` only when navigation is present and to detect changes `onAfterViewInit`. (by [@myrta2302](https://github.com/myrta2302) with [#4824](https://github.com/swisspost/design-system/pull/4824))
+
+- Fixed intranet header searchbar showing on mobile. (by [@myrta2302](https://github.com/myrta2302) with [#4664](https://github.com/swisspost/design-system/pull/4664))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.9.1
+
 ## 8.9.0
 
 ### Patch Changes

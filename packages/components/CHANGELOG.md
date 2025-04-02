@@ -1,5 +1,28 @@
 # @swisspost/design-system-components
 
+## 8.9.3
+
+### Patch Changes
+
+- Updated the fallback CDN URL in the `post-icon` component to include the current package version, ensuring icon requests match the used component version. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5090](https://github.com/swisspost/design-system/pull/5090))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.9.3
+
+## 8.9.2
+
+### Patch Changes
+
+- Adapted the trigger of the `post-popover` component to be able to handle nested elements. (by [@schaertim](https://github.com/schaertim) with [#4911](https://github.com/swisspost/design-system/pull/4911))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.9.2
+
+## 8.9.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.9.1
+
 ## 8.9.0
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @swisspost/design-system-tokens
 
+## 8.9.3
+
+## 8.9.2
+
+### Patch Changes
+
+- Removed a mention of Frutiger Neue in the tokens file. (by [@gfellerph](https://github.com/gfellerph) with [#4963](https://github.com/swisspost/design-system/pull/4963))
+
+## 8.9.1
+
 ## 8.9.0
 
 ## 8.8.1
