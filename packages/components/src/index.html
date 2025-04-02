@@ -16,17 +16,10 @@
     <script nomodule src="/build/post-components.js"></script>
   </head>
   <body style="min-height: 200vh">
-    <style>
-      [slot='post-logo'] {
-        height: 100%;
-        display: inline-block !important;
-        padding: 0;
-      }
-    </style>
     <post-header>
       <!-- Logo -->
-      <!-- <post-logo slot="post-logo" url="/myurl">Homepage</post-logo>  //host logo svg -> [slot="post-logo"] post-logo log svg -->
-      <a slot="post-logo" href="/myurl"><post-logo>Homepage</post-logo></a>
+      <post-logo slot="post-logo">Homepage</post-logo>
+
       <!-- Meta navigation -->
       <ul class="list-inline" slot="meta-navigation">
         <li><a href="">Jobs</a></li>
