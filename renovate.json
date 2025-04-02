@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
-  "labels": ["📦 {{{parentDir}}}"],
+  "labels": ["⛓️ dependencies"],
   "packageRules": [
     {
       "extends": [
@@ -14,18 +14,19 @@
       "groupName": "Angular"
     },
     {
-      "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "all non-major dependencies",
-      "groupSlug": "all-minor-patch",
-      "matchPackageNames": [
-        "*",
-        "!typescript",
-        "!bootstrap",
-        "!sass",
-        "!@storybook/*",
-        "!@angular/*",
-        "!@stencil/*"
-      ]
+      {
+        "matchUpdateTypes": ["patch"],
+        "groupName": "all patch dependencies",
+        "groupSlug": "all-patch",
+        "matchPackageNames": [
+          "*",
+          "!typescript",
+          "!bootstrap",
+          "!@storybook/*",
+          "!@angular/*",
+          "!@stencil/*"
+        ]
+      },
     },
     {
       "matchUpdateTypes": ["minor", "patch"],
