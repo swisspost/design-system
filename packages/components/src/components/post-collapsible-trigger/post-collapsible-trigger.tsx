@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkNonEmpty, checkType, debounce, eventGuard, getRoot } from '@/utils';
+import { checkNonEmpty, checkType, eventGuard, getRoot } from '@/utils';
 
 @Component({
   tag: 'post-collapsible-trigger',
@@ -22,11 +22,9 @@ export class PostCollapsibleTrigger {
    * Set the "aria-controls" and "aria-expanded" attributes on the trigger to match the state of the controlled post-collapsible
    */
   @Watch('for')
-  setAriaAttributes() {
+  validateAriaAttributes() {
     checkNonEmpty(this, 'for');
     checkType(this, 'for', 'string', 'The post-collapsible-trigger "for" prop should be a id.');
-
-    void this.update();
   }
 
   /**
@@ -41,6 +39,7 @@ export class PostCollapsibleTrigger {
   componentDidLoad() {
     this.setTrigger();
     if (!this.trigger) console.warn('The post-collapsible-trigger must contain a button.');
+    this.validateAriaAttributes();
   }
 
   disconnectedCallback() {
@@ -53,7 +52,7 @@ export class PostCollapsibleTrigger {
    */
   @Method()
   async update() {
-    this.debouncedUpdate();
+    this.updateAriaAttributes();
   }
 
   /**
@@ -68,22 +67,21 @@ export class PostCollapsibleTrigger {
     });
   }
 
-  private debouncedUpdate() {
-    debounce(() => {
-      if (!this.trigger) return;
+  private updateAriaAttributes() {
+    if (!this.trigger) return;
 
-      // add the provided id to the aria-controls list
-      const ariaControls = this.trigger.getAttribute('aria-controls');
-      if (!ariaControls?.includes(this.for)) {
-        const newAriaControls = ariaControls ? `${ariaControls} ${this.for}` : this.for;
-        this.trigger.setAttribute('aria-controls', newAriaControls);
-      }
+    // add the provided id to the aria-controls list
+    const ariaControls = this.trigger.getAttribute('aria-controls');
 
-      // set the aria-expanded to `false` if the controlled collapsible is collapsed or undefined, set it to `true` otherwise
-      const isCollapsed = this.collapsible?.collapsed;
-      const newAriaExpanded = isCollapsed !== undefined ? !isCollapsed : undefined;
-      this.trigger.setAttribute('aria-expanded', `${newAriaExpanded}`);
-    });
+    if (!ariaControls?.includes(this.for)) {
+      const newAriaControls = ariaControls ? `${ariaControls} ${this.for}` : this.for;
+      this.trigger.setAttribute('aria-controls', newAriaControls);
+    }
+
+    // set the aria-expanded to `false` if the controlled collapsible is collapsed or undefined, set it to `true` otherwise
+    const isCollapsed = this.collapsible?.collapsed;
+    const newAriaExpanded = isCollapsed !== undefined ? !isCollapsed : undefined;
+    this.trigger.setAttribute('aria-expanded', `${newAriaExpanded}`);
   }
 
   /**
@@ -116,7 +114,7 @@ export class PostCollapsibleTrigger {
     this.trigger = trigger;
 
     this.trigger.addEventListener('click', () => this.toggleCollapsible());
-    this.setAriaAttributes();
+    this.updateAriaAttributes();
   }
 
   render() {
