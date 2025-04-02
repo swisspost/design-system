@@ -21,11 +21,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Check if version has changed
         id: check # This will be the reference for getting the outputs.
-        uses: EndBug/version-check@v2 # You can choose the version/branch you prefer.
+        uses: EndBug/version-check@36ff30f37c7deabe56a30caa043d127be658c425 # You can choose the version/branch you prefer.
         with:
           file-name: ./packages/demo/package.json
           diff-search: true
