@@ -1,0 +1,72 @@
+p-table,
+.p-datatable-filter-overlay {
+  --p-paginator-padding: 0.5rem 1rem;
+  --p-paginator-gap: 0;
+  --p-paginator-border-radius: var(--p-content-border-radius);
+  --p-paginator-background: var(--p-content-background);
+  --p-paginator-color: var(--p-content-color);
+  --p-paginator-transition-duration: var(--p-transition-duration);
+  --p-paginator-nav-button-background: transparent;
+  --p-paginator-nav-button-hover-background: var(--p-content-hover-background);
+  --p-paginator-nav-button-selected-background: var(--p-highlight-background);
+  --p-paginator-nav-button-color: var(--p-text-muted-color);
+  --p-paginator-nav-button-hover-color: var(--p-content-hover-color);
+  --p-paginator-nav-button-selected-color: var(--p-highlight-color);
+  --p-paginator-nav-button-width: 2.5rem;
+  --p-paginator-nav-button-height: 2.5rem;
+  --p-paginator-nav-button-border-radius: 0;
+  --p-paginator-nav-button-focus-ring-width: var(--p-focus-ring-width);
+  --p-paginator-nav-button-focus-ring-style: var(--p-focus-ring-style);
+  --p-paginator-nav-button-focus-ring-color: var(--p-focus-ring-color);
+  --p-paginator-nav-button-focus-ring-offset: var(--p-focus-ring-offset);
+  --p-paginator-nav-button-focus-ring-shadow: var(--p-focus-ring-shadow);
+  --p-paginator-current-page-report-color: var(--p-text-muted-color);
+  --p-paginator-jump-to-page-input-max-width: 2.5rem;
+}
+
+.p-paginator {
+  justify-content: flex-end !important;
+
+  .p-disabled,
+  .p-paginator-page:only-child {
+    display: none !important;
+  }
+}
+
+.p-paginator-current {
+  margin-right: 8px !important;
+}
+
+.p-paginator-rpp-dropdown {
+  margin-left: 8px !important;
+}
+
+.p-paginator-page,
+.p-paginator-next,
+.p-paginator-last,
+.p-paginator-first,
+.p-paginator-prev {
+  border: 2px solid hsl(0, 0%, 80%) !important;
+}
+
+.p-paginator-first,
+.p-paginator-first.p-disabled + .p-paginator-prev,
+.p-paginator-first.p-disabled + .p-paginator-prev.p-disabled + .p-paginator-pages :first-child {
+  border-top-left-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
+}
+
+.p-paginator-last,
+.p-paginator-next:has(+ .p-paginator-last.p-disabled),
+.p-paginator-pages:has(+ .p-paginator-next.p-disabled + .p-paginator-last.p-disabled) :last-child {
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+}
+
+:not(.p-disabled) + .p-paginator-prev,
+:not(.p-disabled) + :not(.p-disabled) + .p-paginator-pages :first-child,
+.p-paginator-page:not(:first-child),
+.p-paginator-next,
+.p-paginator-last {
+  border-left: 0 !important;
+}

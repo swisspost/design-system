@@ -1,0 +1,57 @@
+@use '../mixins/mode';
+
+p-table,
+.p-datatable-filter-overlay {
+  --p-checkbox-border-radius: var(--p-border-radius-none);
+  --p-checkbox-width: 1.375rem;
+  --p-checkbox-height: 1.375rem;
+  --p-checkbox-background: var(--p-form-field-background);
+  --p-checkbox-checked-background: var(--p-form-field-background);
+  --p-checkbox-checked-hover-background: var(--p-form-field-background);
+  --p-checkbox-disabled-background: var(--p-form-field-background);
+  --p-checkbox-filled-background: var(--p-form-field-background);
+  --p-checkbox-border-color: var(--p-form-field-border-color);
+  --p-checkbox-hover-border-color: var(--p-form-field-hover-border-color);
+  --p-checkbox-focus-border-color: var(--p-form-field-border-color);
+  --p-checkbox-checked-border-color: var(--p-form-field-border-color);
+  --p-checkbox-checked-hover-border-color: var(--p-form-field-hover-border-color);
+  --p-checkbox-checked-focus-border-color: var(--p-form-field-border-color);
+  --p-checkbox-checked-disabled-border-color: var(--p-form-field-disabled-color);
+  --p-checkbox-invalid-border-color: var(--p-form-field-invalid-border-color);
+  --p-checkbox-shadow: var(--p-form-field-shadow);
+  --p-checkbox-focus-ring-width: var(--p-focus-ring-width);
+  --p-checkbox-focus-ring-style: var(--p-focus-ring-style);
+  --p-checkbox-focus-ring-color: var(--p-focus-ring-color);
+  --p-checkbox-focus-ring-offset: var(--p-focus-ring-offset);
+  --p-checkbox-focus-ring-shadow: var(--p-focus-ring-shadow);
+  --p-checkbox-transition-duration: var(--p-form-field-transition-duration);
+  --p-checkbox-sm-width: 1rem;
+  --p-checkbox-sm-height: 1rem;
+  --p-checkbox-lg-width: 1.5rem;
+  --p-checkbox-lg-height: 1.5rem;
+  --p-checkbox-icon-size: 0.875rem;
+  --p-checkbox-icon-color: var(--p-form-field-border-color);
+  --p-checkbox-icon-checked-color: var(--p-form-field-border-color);
+  --p-checkbox-icon-checked-hover-color: var(--p-form-field-hover-border-color);
+  --p-checkbox-icon-disabled-color: var(--p-form-field-disabled-color);
+  --p-checkbox-icon-sm-size: 0.75rem;
+  --p-checkbox-icon-lg-size: 1rem;
+}
+
+@include mode.dark {
+  p-table,
+  .p-datatable-filter-overlay {
+    --p-checkbox-background: transparent;
+    --p-checkbox-hover-background: var(--p-checkbox-background);
+    --p-checkbox-checked-background: var(--p-checkbox-background);
+    --p-checkbox-checked-hover-background: var(--p-checkbox-background);
+
+    --p-checkbox-border-color: var(--post-gray-80);
+    --p-checkbox-hover-border-color: var(--p-checkbox-border-color);
+    --p-checkbox-checked-border-color: var(--p-checkbox-border-color);
+    --p-checkbox-icon-checked-color: var(--p-checkbox-border-color);
+
+    --p-checkbox-icon-checked-hover-color: var(--post-white);
+    --p-checkbox-checked-hover-border-color: var(--post-white);
+  }
+}

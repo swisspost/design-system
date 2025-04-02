@@ -1,0 +1,133 @@
+@use '../mixins/mode';
+
+p-table,
+.p-datatable-filter-overlay {
+  --p-datatable-transition-duration: var(--p-transition-duration);
+  --p-datatable-header-background: var(--p-content-background);
+  --p-datatable-header-border-color: var(--p-datatable-border-color);
+  --p-datatable-header-color: var(--p-content-color);
+  --p-datatable-header-border-width: 1px 0 1px 0;
+  --p-datatable-header-padding: 0.75rem 0.5rem;
+  --p-datatable-header-sm-padding: 0.5rem 0.5rem;
+  --p-datatable-header-lg-padding: 1rem 0.5rem;
+  --p-datatable-header-cell-background: var(--p-content-background);
+  --p-datatable-header-cell-background: var(--p-content-background);
+  --p-datatable-header-cell-hover-background: var(--p-content-hover-background);
+  --p-datatable-header-cell-selected-background: var(--p-highlight-background);
+  --p-datatable-header-cell-border-color: var(--p-datatable-border-color);
+  --p-datatable-header-cell-color: var(--p-content-color);
+  --p-datatable-header-cell-hover-color: var(--p-content-hover-color);
+  --p-datatable-header-cell-selected-color: var(--p-highlight-color);
+  --p-datatable-header-cell-gap: 0.5rem;
+  --p-datatable-header-cell-padding: 0.75rem 0.5rem;
+  --p-datatable-header-cell-focus-ring-width: var(--p-focus-ring-width);
+  --p-datatable-header-cell-focus-ring-style: var(--p-focus-ring-style);
+  --p-datatable-header-cell-focus-ring-color: var(--p-focus-ring-color);
+  --p-datatable-header-cell-focus-ring-offset: -1px;
+  --p-datatable-header-cell-focus-ring-shadow: var(--p-focus-ring-shadow);
+  --p-datatable-header-cell-sm-padding: 0.5rem 0.5rem;
+  --p-datatable-header-cell-lg-padding: 1rem 0.55rem;
+  --p-datatable-column-title-font-weight: 700;
+  --p-datatable-row-background: var(--p-content-background);
+  --p-datatable-row-hover-background: var(--p-content-hover-background);
+  --p-datatable-row-selected-background: var(--p-highlight-background);
+  --p-datatable-row-color: var(--p-content-color);
+  --p-datatable-row-hover-color: var(--p-content-hover-color);
+  --p-datatable-row-selected-color: var(--p-highlight-color);
+  --p-datatable-row-focus-ring-width: var(--p-focus-ring-width);
+  --p-datatable-row-focus-ring-style: var(--p-focus-ring-style);
+  --p-datatable-row-focus-ring-color: var(--p-focus-ring-color);
+  --p-datatable-row-focus-ring-offset: -1px;
+  --p-datatable-row-focus-ring-shadow: var(--p-focus-ring-shadow);
+  --p-datatable-body-cell-border-color: var(--p-datatable-border-color);
+  --p-datatable-body-cell-padding: 0.75rem 0.5rem;
+  --p-datatable-body-cell-sm-padding: 0.5rem 0.5rem;
+  --p-datatable-body-cell-lg-padding: 1rem 0.5rem;
+  --p-datatable-footer-cell-background: var(--p-content-background);
+  --p-datatable-footer-cell-border-color: var(--p-datatable-border-color);
+  --p-datatable-footer-cell-color: var(--p-content-color);
+  --p-datatable-footer-cell-padding: 0.75rem 0.5rem;
+  --p-datatable-footer-cell-sm-padding: 0.5rem 0.5rem;
+  --p-datatable-footer-cell-lg-padding: 1rem 0.5rem;
+  --p-datatable-column-footer-font-weight: 700;
+  --p-datatable-footer-background: var(--p-content-background);
+  --p-datatable-footer-border-color: var(--p-datatable-border-color);
+  --p-datatable-footer-color: var(--p-content-color);
+  --p-datatable-footer-border-width: 0 0 1px 0;
+  --p-datatable-footer-padding: 0.75rem 0.5rem;
+  --p-datatable-footer-sm-padding: 0.5rem 0.5rem;
+  --p-datatable-footer-lg-padding: 1rem 0.5rem;
+  --p-datatable-drop-point-color: var(--p-primary-color);
+  --p-datatable-column-resizer-width: 0.5rem;
+  --p-datatable-resize-indicator-width: 1px;
+  --p-datatable-resize-indicator-color: var(--p-primary-color);
+  --p-datatable-sort-icon-color: var(--p-text-muted-color);
+  --p-datatable-sort-icon-hover-color: var(--p-text-hover-muted-color);
+  --p-datatable-sort-icon-size: 0.875rem;
+  --p-datatable-loading-icon-size: 2rem;
+  --p-datatable-row-toggle-button-hover-background: var(--p-content-hover-background);
+  --p-datatable-row-toggle-button-selected-hover-background: var(--p-content-background);
+  --p-datatable-row-toggle-button-color: var(--p-text-muted-color);
+  --p-datatable-row-toggle-button-hover-color: var(--p-text-color);
+  --p-datatable-row-toggle-button-selected-hover-color: var(--p-primary-color);
+  --p-datatable-row-toggle-button-size: 1.75rem;
+  --p-datatable-row-toggle-button-border-radius: 50%;
+  --p-datatable-row-toggle-button-focus-ring-width: var(--p-focus-ring-width);
+  --p-datatable-row-toggle-button-focus-ring-style: var(--p-focus-ring-style);
+  --p-datatable-row-toggle-button-focus-ring-color: var(--p-focus-ring-color);
+  --p-datatable-row-toggle-button-focus-ring-offset: var(--p-focus-ring-offset);
+  --p-datatable-row-toggle-button-focus-ring-shadow: var(--p-focus-ring-shadow);
+  --p-datatable-filter-inline-gap: 0.5rem;
+  --p-datatable-filter-rule-border-color: var(--p-content-border-color);
+  --p-datatable-filter-constraint-list-padding: var(--p-list-padding);
+  --p-datatable-filter-constraint-list-gap: var(--p-list-gap);
+  --p-datatable-filter-constraint-focus-background: var(--p-list-option-focus-background);
+  --p-datatable-filter-constraint-selected-background: var(--p-list-option-selected-background);
+  --p-datatable-filter-constraint-selected-focus-background: var(
+    --p-list-option-selected-focus-background
+  );
+  --p-datatable-filter-constraint-color: var(--p-list-option-color);
+  --p-datatable-filter-constraint-focus-color: var(--p-list-option-focus-color);
+  --p-datatable-filter-constraint-selected-color: var(--p-list-option-selected-color);
+  --p-datatable-filter-constraint-selected-focus-color: var(--p-list-option-selected-focus-color);
+  --p-datatable-filter-constraint-separator-border-color: var(--p-content-border-color);
+  --p-datatable-filter-constraint-padding: var(--p-list-option-padding);
+  --p-datatable-filter-constraint-border-radius: var(--p-list-option-border-radius);
+  --p-datatable-paginator-top-border-color: var(--p-datatable-border-color);
+  --p-datatable-paginator-top-border-width: 0 0 1px 0;
+  --p-datatable-paginator-bottom-border-color: var(--p-datatable-border-color);
+  --p-datatable-paginator-bottom-border-width: 0 0 1px 0;
+  --p-datatable-border-color: var(--post-gray-10);
+  --p-datatable-row-striped-background: var(--post-light);
+  --p-datatable-body-cell-selected-border-color: var(--p-highlight-background);
+}
+
+@include mode.dark {
+  p-table,
+  .p-datatable-filter-overlay {
+    --p-datatable-border-color: var(--post-gray-20);
+    --p-datatable-row-striped-background: var(--post-gray-20);
+  }
+}
+
+p-columnfilter,
+p-sorticon {
+  margin-inline-start: 4px;
+}
+
+.p-datatable.p-datatable-striped .p-datatable-tbody > tr > td {
+  --p-datatable-body-cell-border-color: var(--p-datatable-row-striped-background);
+}
+
+.p-datatable:not(.p-datatable-gridlines) .p-datatable-tbody > tr:last-of-type > td {
+  border-bottom: 0;
+}
+
+.p-datatable-tfoot {
+  background: var(--p-datatable-footer-background);
+  color: var(--p-datatable-footer-color);
+  border-color: var(--p-datatable-footer-border-color);
+  border-style: solid;
+  border-width: 1px 0 0 0;
+  padding: var(--p-datatable-footer-padding);
+}
