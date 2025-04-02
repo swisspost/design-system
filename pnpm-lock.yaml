@@ -620,8 +620,8 @@ importers:
         specifier: 4.0.0-beta.0
         version: 4.0.0-beta.0
       iframe-resizer:
-        specifier: 4.4.5
-        version: 4.4.5
+        specifier: 5.4.3
+        version: 5.4.3
       jquery:
         specifier: 3.7.1
         version: 3.7.1
@@ -2674,6 +2674,18 @@ packages:
   '@humanwhocodes/retry@0.4.1':
     resolution: {integrity: sha512-c7hNEllBlenFTHBky65mhq8WD2kbN9Q6gk0bTk8lSBvc554jpXSkST1iePudpt7+A/AQvuHs9EMqjHDXMY1lrA==}
     engines: {node: '>=18.18'}
+
+  '@iframe-resizer/child@5.4.3':
+    resolution: {integrity: sha512-R98sm0ofnIaP89I8ociB+z511VYNtwP6ZamP0J1dSNZe0LOR9x5NnQleOkYHtrvhM24dI+BCuJPc5xdwq1VE6A==}
+
+  '@iframe-resizer/core@5.4.3':
+    resolution: {integrity: sha512-0KQKWHvx9ENEmCCl3WJwmcQFjeCrA+BMFZzP/Is9zs9GoJa9piMYYibDAb2uSsljtLn6QvILi6+rcnhQ9KNEJw==}
+
+  '@iframe-resizer/jquery@5.4.3':
+    resolution: {integrity: sha512-vpNwKGjVKxrKyFF9l3y4gSV1V5Ip05bdBsY+cNh6On6rRQB6xKhF26FEqb+u/7GZVsgiQgUlUIZgly4gxmmyfQ==}
+
+  '@iframe-resizer/parent@5.4.3':
+    resolution: {integrity: sha512-QYMG3QGYRv6qnYFki+FVQeWldfx4EbJ0hCTgJ5CeNs3oMse4YpsOL95VuGCnnD5SPA6tocPezrbXtjMciUkYxg==}
 
   '@img/sharp-darwin-arm64@0.33.5':
     resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==}
@@ -4894,6 +4906,9 @@ packages:
     engines: {node: '>= 4.5.0'}
     hasBin: true
 
+  auto-console-group@1.2.1:
+    resolution: {integrity: sha512-rGes+R5TOv6IWI88NH4OoB5QqkkEnT/d6R+hj7lY1nXX6RFch10GJwaNFI7oOyt37ExTc/RAAIKvBErTZ5MV0w==}
+
   autoprefixer@10.4.20:
     resolution: {integrity: sha512-XY25y5xSv/wEoqzDyXXME4AFfkZI0P23z6Fs3YgymDnKJkCGOnkL0iTxCa85UTqaSgfcqyf3UA6+c7wUvx/16g==}
     engines: {node: ^10 || ^12 || >=14}
@@ -6941,9 +6956,8 @@ packages:
   ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
 
-  iframe-resizer@4.4.5:
-    resolution: {integrity: sha512-U8bCywf/Gh07O69RXo6dXAzTtODQrxaHGHRI7Nt4ipXsuq6EMxVsOP/jjaP43YtXz/ibESS0uSVDN3sOGCzSmw==}
-    engines: {node: '>=0.8.0'}
+  iframe-resizer@5.4.3:
+    resolution: {integrity: sha512-GrXjoZnUdign/hmNny9xI9h74bDqCstsCPgRlhVo5aCMQuii2YXsxNgugc6eQvg8tXmgTWLlbjviCrYyzZxwog==}
 
   ignore-by-default@1.0.1:
     resolution: {integrity: sha512-Ius2VYcGNk7T90CppJqcIkS5ooHUZyIQK+ClZfMfMNFEF9VSE73Fq+906u/CWu92x4gzZMWOwfFYckPObzdEbA==}
@@ -11529,7 +11543,7 @@ snapshots:
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.1902.0(chokidar@4.0.1)
-      '@angular-devkit/build-webpack': 0.1902.0(chokidar@4.0.1)(webpack-dev-server@5.2.0(webpack@5.98.0(esbuild@0.25.0)))(webpack@5.98.0(esbuild@0.25.0))
+      '@angular-devkit/build-webpack': 0.1902.0(chokidar@4.0.1)(webpack-dev-server@5.2.0(webpack@5.98.0))(webpack@5.98.0(esbuild@0.25.0))
       '@angular-devkit/core': 19.2.0(chokidar@4.0.1)
       '@angular/build': 19.2.0(@angular/compiler-cli@19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0)))(typescript@5.8.2))(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0)))(@types/node@22.10.5)(chokidar@4.0.1)(jiti@2.4.2)(karma@6.4.4)(less@4.2.2)(ng-packagr@19.2.0(@angular/compiler-cli@19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0)))(typescript@5.8.2))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.2)))(tslib@2.8.1)(typescript@5.8.2))(postcss@8.5.2)(sass-embedded@1.81.0)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.2)))(terser@5.39.0)(typescript@5.8.2)(yaml@2.7.0)
       '@angular/compiler-cli': 19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0)))(typescript@5.8.2)
@@ -11580,8 +11594,8 @@ snapshots:
       tslib: 2.8.1
       typescript: 5.8.2
       webpack: 5.98.0(esbuild@0.25.0)
-      webpack-dev-middleware: 7.4.2(webpack@5.98.0(esbuild@0.25.0))
-      webpack-dev-server: 5.2.0(webpack@5.98.0(esbuild@0.25.0))
+      webpack-dev-middleware: 7.4.2(webpack@5.98.0)
+      webpack-dev-server: 5.2.0(webpack@5.98.0)
       webpack-merge: 6.0.1
       webpack-subresource-integrity: 5.1.0(webpack@5.98.0(esbuild@0.25.0))
     optionalDependencies:
@@ -11618,7 +11632,7 @@ snapshots:
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.1902.0(chokidar@4.0.1)
-      '@angular-devkit/build-webpack': 0.1902.0(chokidar@4.0.1)(webpack-dev-server@5.2.0(webpack@5.98.0(esbuild@0.25.0)))(webpack@5.98.0(esbuild@0.25.0))
+      '@angular-devkit/build-webpack': 0.1902.0(chokidar@4.0.1)(webpack-dev-server@5.2.0(webpack@5.98.0))(webpack@5.98.0(esbuild@0.25.0))
       '@angular-devkit/core': 19.2.0(chokidar@4.0.1)
       '@angular/build': 19.2.0(@angular/compiler-cli@19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0)))(typescript@5.8.2))(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0)))(@types/node@22.10.5)(chokidar@4.0.1)(jiti@2.4.2)(karma@6.4.4)(less@4.2.2)(ng-packagr@19.2.0(@angular/compiler-cli@19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0)))(typescript@5.8.2))(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.2)))(tslib@2.8.1)(typescript@5.8.2))(postcss@8.5.2)(sass-embedded@1.81.0)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.2)))(terser@5.39.0)(typescript@5.8.2)(yaml@2.7.0)
       '@angular/compiler-cli': 19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0)))(typescript@5.8.2)
@@ -11669,8 +11683,8 @@ snapshots:
       tslib: 2.8.1
       typescript: 5.8.2
       webpack: 5.98.0(esbuild@0.25.0)
-      webpack-dev-middleware: 7.4.2(webpack@5.98.0(esbuild@0.25.0))
-      webpack-dev-server: 5.2.0(webpack@5.98.0(esbuild@0.25.0))
+      webpack-dev-middleware: 7.4.2(webpack@5.98.0)
+      webpack-dev-server: 5.2.0(webpack@5.98.0)
       webpack-merge: 6.0.1
       webpack-subresource-integrity: 5.1.0(webpack@5.98.0(esbuild@0.25.0))
     optionalDependencies:
@@ -11703,12 +11717,12 @@ snapshots:
       - webpack-cli
       - yaml
 
-  '@angular-devkit/build-webpack@0.1902.0(chokidar@4.0.1)(webpack-dev-server@5.2.0(webpack@5.98.0(esbuild@0.25.0)))(webpack@5.98.0(esbuild@0.25.0))':
+  '@angular-devkit/build-webpack@0.1902.0(chokidar@4.0.1)(webpack-dev-server@5.2.0(webpack@5.98.0))(webpack@5.98.0(esbuild@0.25.0))':
     dependencies:
       '@angular-devkit/architect': 0.1902.0(chokidar@4.0.1)
       rxjs: 7.8.1
       webpack: 5.98.0(esbuild@0.25.0)
-      webpack-dev-server: 5.2.0(webpack@5.98.0(esbuild@0.25.0))
+      webpack-dev-server: 5.2.0(webpack@5.98.0)
     transitivePeerDependencies:
       - chokidar
 
@@ -13545,6 +13559,23 @@ snapshots:
   '@humanwhocodes/retry@0.3.1': {}
 
   '@humanwhocodes/retry@0.4.1': {}
+
+  '@iframe-resizer/child@5.4.3':
+    dependencies:
+      auto-console-group: 1.2.1
+
+  '@iframe-resizer/core@5.4.3':
+    dependencies:
+      auto-console-group: 1.2.1
+
+  '@iframe-resizer/jquery@5.4.3':
+    dependencies:
+      '@iframe-resizer/core': 5.4.3
+
+  '@iframe-resizer/parent@5.4.3':
+    dependencies:
+      '@iframe-resizer/core': 5.4.3
+      auto-console-group: 1.2.1
 
   '@img/sharp-darwin-arm64@0.33.5':
     optionalDependencies:
@@ -16034,6 +16065,8 @@ snapshots:
   at-least-node@1.0.0: {}
 
   atob@2.1.2: {}
+
+  auto-console-group@1.2.1: {}
 
   autoprefixer@10.4.20(postcss@8.4.49):
     dependencies:
@@ -18698,7 +18731,11 @@ snapshots:
 
   ieee754@1.2.1: {}
 
-  iframe-resizer@4.4.5: {}
+  iframe-resizer@5.4.3:
+    dependencies:
+      '@iframe-resizer/child': 5.4.3
+      '@iframe-resizer/jquery': 5.4.3
+      '@iframe-resizer/parent': 5.4.3
 
   ignore-by-default@1.0.1: {}
 
@@ -23763,7 +23800,7 @@ snapshots:
 
   webidl-conversions@7.0.0: {}
 
-  webpack-dev-middleware@7.4.2(webpack@5.98.0(esbuild@0.25.0)):
+  webpack-dev-middleware@7.4.2(webpack@5.98.0):
     dependencies:
       colorette: 2.0.20
       memfs: 4.9.3
@@ -23774,7 +23811,7 @@ snapshots:
     optionalDependencies:
       webpack: 5.98.0(esbuild@0.25.0)
 
-  webpack-dev-server@5.2.0(webpack@5.98.0(esbuild@0.25.0)):
+  webpack-dev-server@5.2.0(webpack@5.98.0):
     dependencies:
       '@types/bonjour': 3.5.13
       '@types/connect-history-api-fallback': 1.5.4
@@ -23801,7 +23838,7 @@ snapshots:
       serve-index: 1.9.1
       sockjs: 0.3.24
       spdy: 4.0.2
-      webpack-dev-middleware: 7.4.2(webpack@5.98.0(esbuild@0.25.0))
+      webpack-dev-middleware: 7.4.2(webpack@5.98.0)
       ws: 8.18.0
     optionalDependencies:
       webpack: 5.98.0(esbuild@0.25.0)
