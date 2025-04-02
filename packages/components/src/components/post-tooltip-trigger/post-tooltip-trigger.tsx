@@ -31,6 +31,17 @@ export class PostTooltipTrigger {
    */
   private delayTimeout: number | null = null;
 
+  /**
+   * Bound event handlers for proper removal
+   */
+  private boundTriggerHandler: (event: Event) => void;
+  private boundTooltipHandler: (event: PointerEvent) => void;
+
+  constructor() {
+    this.boundTriggerHandler = this.handleTriggerEvent.bind(this);
+    this.boundTooltipHandler = this.handleTooltipEvent.bind(this);
+  }
+
   @Watch('for')
   validateControlFor() {
     checkType(
@@ -55,6 +66,16 @@ export class PostTooltipTrigger {
     this.attachTooltipListeners();
   }
 
+  disconnectedCallback() {
+    this.removeListeners();
+    this.removeTooltipListeners();
+
+    if (this.delayTimeout) {
+      clearTimeout(this.delayTimeout);
+      this.delayTimeout = null;
+    }
+  }
+
   private setupTrigger() {
     this.trigger = this.host.firstElementChild as HTMLElement;
 
@@ -76,15 +97,31 @@ export class PostTooltipTrigger {
     if (this.trigger) {
       const events = ['pointerenter', 'pointerleave', 'focusin', 'focusout', 'long-press'];
       events.forEach(event => {
-        this.trigger.addEventListener(event, this.handleTriggerEvent.bind(this));
+        this.trigger.addEventListener(event, this.boundTriggerHandler);
+      });
+    }
+  }
+
+  private removeListeners() {
+    if (this.trigger) {
+      const events = ['pointerenter', 'pointerleave', 'focusin', 'focusout', 'long-press'];
+      events.forEach(event => {
+        this.trigger.removeEventListener(event, this.boundTriggerHandler);
       });
     }
   }
 
   private attachTooltipListeners() {
     if (this.tooltip) {
-      this.tooltip.addEventListener('pointerenter', this.handleTooltipEvent.bind(this));
-      this.tooltip.addEventListener('pointerleave', this.handleTooltipEvent.bind(this));
+      this.tooltip.addEventListener('pointerenter', this.boundTooltipHandler);
+      this.tooltip.addEventListener('pointerleave', this.boundTooltipHandler);
+    }
+  }
+
+  private removeTooltipListeners() {
+    if (this.tooltip) {
+      this.tooltip.removeEventListener('pointerenter', this.boundTooltipHandler);
+      this.tooltip.removeEventListener('pointerleave', this.boundTooltipHandler);
     }
   }
 
@@ -123,9 +160,14 @@ export class PostTooltipTrigger {
 
   private handleLeave(event: PointerEvent) {
     const newTarget = event.relatedTarget as HTMLElement | null;
-    if (this.tooltip && newTarget && this.tooltip.contains(newTarget)) {
+
+    if (
+      (this.tooltip && newTarget && this.tooltip.contains(newTarget)) ||
+      (newTarget === this.trigger)
+    ) {
       return;
     }
+
     this.interestLostHandler();
   }
 
