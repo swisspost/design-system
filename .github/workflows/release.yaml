@@ -14,7 +14,7 @@ jobs:
     steps:
       # Checkout the Branch which was pushed ('main' or 'release/v*')
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Setup Node & pnpm
         uses: ./.github/actions/setup-pnpm
@@ -34,7 +34,7 @@ jobs:
       #  - no new changesets (the preview PR got merged into github.ref branch): publish packages
       - name: Changeset Magic
         id: changesets
-        uses: changesets/action@v1
+        uses: changesets/action@06245a4e0a36c064a573d4150030f5ec548e4fcc
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -46,7 +46,7 @@ jobs:
 
       - name: Create Summary
         id: summary
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         env:
           PUBLISHED: ${{ steps.changesets.outputs.published }}
           PUBLISHED_PACKAGES: ${{ steps.changesets.outputs.publishedPackages }}
@@ -76,7 +76,7 @@ jobs:
     steps:
       # Checkout the Branch which has been pushed ('main' or 'release/v*')
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Setup Node & pnpm
         uses: ./.github/actions/setup-pnpm
@@ -93,7 +93,7 @@ jobs:
       # Read the status Files and collect release data on the @swisspost/design-system-styles package
       - name: Collect Release Data
         id: release-data
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         with:
           script: |
             const fs = require('fs')
@@ -128,25 +128,25 @@ jobs:
 
       - name: Check if changset-release/main Branch exists
         id: changeset-branch-exists
-        uses: GuillaumeFalourd/branch-exists@v1
+        uses: GuillaumeFalourd/branch-exists@009290475dc3d75b5d7ec680c0c5b614b0d9855d
         with:
           branch: changeset-release/main
 
       - name: Check if release/v* Branch exists
         id: release-branch-exists
-        uses: GuillaumeFalourd/branch-exists@v1
+        uses: GuillaumeFalourd/branch-exists@009290475dc3d75b5d7ec680c0c5b614b0d9855d
         with:
           branch: ${{ fromJSON(steps.release-data.outputs.result).branchName }}
 
       - name: Check if changeset-release/release/v* Branch exists
         id: release-changeset-branch-exists
-        uses: GuillaumeFalourd/branch-exists@v1
+        uses: GuillaumeFalourd/branch-exists@009290475dc3d75b5d7ec680c0c5b614b0d9855d
         with:
           branch: changeset-release/${{ fromJSON(steps.release-data.outputs.result).branchName }}
 
       - name: Create Summary
         id: summary
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         env:
           REF_NAME: ${{ github.ref_name }}
           RELEASE_DATA: ${{ steps.release-data.outputs.result }}
@@ -182,7 +182,7 @@ jobs:
     steps:
       # Checkout the changeset Branch
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           ref: changeset-release/${{ github.ref_name }}
@@ -199,7 +199,7 @@ jobs:
       - name: Update or create Documentation _redirects
         id: update-redirects
         if: fromJSON(needs.collect-release-data.outputs.release-data).isMajor == true
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         with:
           script: |
             const fs = require('fs')
@@ -221,7 +221,7 @@ jobs:
             return true
 
       - name: Update Documentation versions.json
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         with:
           script: |
             const fs = require('fs')
@@ -260,7 +260,7 @@ jobs:
         run: rm -f monorepo.json
 
       - name: Commit Changes and Push Branch
-        uses: EndBug/add-and-commit@v9
+        uses: EndBug/add-and-commit@a94899bca583c204427a224a7af87c02f9b325d5
         with:
           author_name: Swiss Post Bot
           author_email: 103635272+swisspost-bot@users.noreply.github.com
@@ -269,7 +269,7 @@ jobs:
 
       - name: Create Summary
         id: summary
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         env:
           REF_NAME: ${{ github.ref_name }}
           RELEASE_DATA: ${{ needs.collect-release-data.outputs.release-data }}
@@ -301,7 +301,7 @@ jobs:
     steps:
       # Checkout the commit with the release.old.version tag (e.g. @swisspost/design-system-styles@5.3.2)
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           ref: '@swisspost/design-system-styles@${{ fromJSON(needs.collect-release-data.outputs.release-data).old.version }}'
@@ -351,7 +351,7 @@ jobs:
           netlify deploy --filter @swisspost/design-system-documentation --build false --dir packages/documentation/storybook-static --prod
 
       - name: Update Changeset config.json
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         with:
           script: |
             const fs = require('fs')
@@ -365,7 +365,7 @@ jobs:
             }, null, 2) + '\n')
 
       - name: Update Documentation netlify.config.json
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         with:
           script: |
             const fs = require('fs')
@@ -379,7 +379,7 @@ jobs:
 
       # Commit the changes to a new release/v* branch
       - name: Commit Changes and Push Release Branch
-        uses: EndBug/add-and-commit@v9
+        uses: EndBug/add-and-commit@a94899bca583c204427a224a7af87c02f9b325d5
         with:
           author_name: Swiss Post Bot
           author_email: 103635272+swisspost-bot@users.noreply.github.com
@@ -389,7 +389,7 @@ jobs:
 
       - name: Create Summary
         id: summary
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         env:
           RELEASE_DATA: ${{ needs.collect-release-data.outputs.release-data }}
         with:
@@ -417,7 +417,7 @@ jobs:
     if: github.ref_name == 'main' && (needs.collect-release-data.outputs.release-branch-exists == 'true' || needs.collect-release-data.outputs.release-changeset-branch-exists == 'true') && fromJSON(needs.collect-release-data.outputs.release-data) != null && fromJSON(needs.collect-release-data.outputs.release-data).isMajor == false
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
 
@@ -431,7 +431,7 @@ jobs:
 
       - name: Create Summary
         id: summary
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         env:
           RELEASE_DATA: ${{ needs.collect-release-data.outputs.release-data }}
         with:
