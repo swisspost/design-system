@@ -1,22 +1,29 @@
-export const firstStep = `<post-logo>Homepage</post-logo>`;
+export const firstStep = `
+
+<!-- Angular -->
+<post-logo>Homepage</post-logo>
+
+{/* React & Next.js */}
+<PostLogo>Homepage</PostLogo>
+`;
 
 export const secondStep = `
 <!-- Angular -->
-<a routerLink="card-control"><post-logo>Homepage</post-logo></a>
+<a routerLink="#"><post-logo>Homepage</post-logo></a>
 
-<!-- React -->
-<Link to="/path"><post-logo>Homepage</post-logo></Link>
+{/* React */}
+<Link to="#"><PostLogo>Homepage</PostLogo></Link>
 
-<!-- Next.js -->
-<Link href="/path"><post-logo>Homepage</post-logo></Link>
+{/* Next.js */}
+<Link href="#"><PostLogo>Homepage</PostLogo></Link>
 `;
 export const thirdStep = `
 <!-- Angular -->
-<a routerLink="card-control" slot="post-logo"><post-logo>Homepage</post-logo></a>
+<a routerLink="#" slot="post-logo"><post-logo>Homepage</post-logo></a>
 
-<!-- React -->
-<Link to="/path" slot="post-logo"><post-logo>Homepage</post-logo></Link>
+{/* React */}
+<Link to="#" slot="post-logo"><PostLogo>Homepage</PostLogo></Link>
 
-<!-- Next.js -->
-<Link href="/path" slot="post-logo"><post-logo>Homepage</post-logo></Link>
+{/* Next.js */}
+<Link href="#" slot="post-logo"><PostLogo>Homepage</PostLogo></Link>
 `;

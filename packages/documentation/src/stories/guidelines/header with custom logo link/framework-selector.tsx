@@ -2,13 +2,18 @@ import { useState } from 'react';
 import { Source } from '@storybook/addon-docs';
 
 const code = `
+<post-header>
+
+  <!-- Logo -->
+{{logoLink}}
+
   <!-- Meta navigation -->
   <ul class="list-inline" slot="meta-navigation">
     <li><a href="#">Jobs</a></li>
     <li><a href="#">Über uns</a></li>
   </ul>
 
-  <!-- Menu button for mobile -->
+  <!-- Menu button mobile -->
   <post-togglebutton slot="post-togglebutton">
     <span class="visually-hidden-sm">Menu</span>
     <post-icon aria-hidden="true" name="burger" data-showwhen="untoggled"></post-icon>
@@ -21,8 +26,7 @@ const code = `
     description="The currently selected language is English."
     variant="list"
     name="language-switch-example"
-    slot="post-language-switch"
-  >
+    slot="post-language-switch">
     <post-language-option active="false" code="de" name="Deutsch">de</post-language-option>
     <post-language-option active="false" code="fr" name="French">fr</post-language-option>
     <post-language-option active="false" code="it" name="Italiano">it</post-language-option>
@@ -120,55 +124,73 @@ const code = `
       </post-list-item>
     </post-list>
   </post-mainnavigation>
-`;
-
-const angularExample = `
-<post-header>
-  <!-- Logo -->
-  <a routerLink="path" slot="post-logo"><post-logo></post-logo></a>
-  ${code}
 </post-header>
 `;
 
-const codeReact = code
-  .replace(/<post-logo/g, '<PostLogo')
-  .replace(/<\/post-logo/g, '</PostLogo')
-  .replace(/<post-togglebutton/g, '<PostTogglebutton')
-  .replace(/<\/post-togglebutton/g, '</PostTogglebutton')
-  .replace(/<post-icon/g, '<PostIcon')
-  .replace(/<\/post-icon/g, '</PostIcon')
-  .replace(/<post-language-switch/g, '<PostLanguageSwitch')
-  .replace(/<\/post-language-switch/g, '</PostLanguageSwitch')
-  .replace(/<post-language-option/g, '<PostLanguageOption')
-  .replace(/<\/post-language-option/g, '</PostLanguageOption')
-  .replace(/<post-mainnavigation/g, '<PostMainnavigation')
-  .replace(/<\/post-mainnavigation/g, '</PostMainnavigation')
-  .replace(/<post-list/g, '<PostList')
-  .replace(/<\/post-list/g, '</PostList')
-  .replace(/<post-list-item/g, '<PostListItem')
-  .replace(/<\/post-list-item/g, '</PostListItem')
-  .replace(/<post-megadropdown-trigger/g, '<PostMegadropdownTrigger')
-  .replace(/<\/post-megadropdown-trigger/g, '</PostMegadropdownTrigger')
-  .replace(/<post-megadropdown/g, '<PostMegadropdown')
-  .replace(/<\/post-megadropdown/g, '</PostMegadropdown')
-  .replace(/<post-closebutton/g, '<PostClosebutton')
-  .replace(/<\/post-closebutton/g, '</PostClosebutton');
+const extractPostTags = (html: string): string[] => {
+  // Match full tag names like <post-list-item> and </post-list-item>, excluding the '/'
+  const postTagRegex = /<\/?post-[a-zA-Z0-9-]+/g;
+  const matches = html.match(postTagRegex);
+  const uniqueTags = new Set(
+    matches
+      ? matches.map(tag =>
+          tag
+            .replace(/^\/|\/$/, '')
+            .slice(1)
+            .replace(/[^a-zA-Z0-9-]/g, ''),
+        )
+      : [],
+  );
+  return Array.from(uniqueTags);
+};
 
-const reactExample = `
-<PostHeader>
-  <!-- Logo -->
-  <Link to="/path" slot="post-logo"><post-logo>Homepage</post-logo></Link>
-  ${codeReact.replace(/<a href="/g, '<Link to="').replace(/<\/a>/g, '</Link>')}
-</PostHeader>
-`;
+const toPascalCase = (tag: string): string => {
+  return tag
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join('');
+};
 
-const nextJsExample = `
-<PostHeader>
-  <!-- Logo -->
-  <Link href="/path" slot="post-logo"><post-logo>Homepage</post-logo></Link>
-  ${codeReact.replace(/<a href="/g, '<Link href="').replace(/<\/a>/g, '</Link>')}
-</PostHeader>
-`;
+const replaceTagsWithPascalCase = (html: string): string => {
+  const tags = extractPostTags(html);
+  const tagPairs = tags.map(tag => [tag, toPascalCase(tag)]);
+  console.log(tagPairs);
+  let updatedHtml = html;
+  tagPairs.forEach(([originalTag, pascalTag]) => {
+    const regex = new RegExp(`(<\\/?${originalTag})(\\s|>)`, 'g');
+    updatedHtml = updatedHtml.replace(regex, match => {
+      return match.startsWith('</')
+        ? `</${pascalTag}${match.endsWith('>') ? '>' : ' '}`
+        : `<${pascalTag}${match.endsWith('>') ? '>' : ' '}`;
+    });
+  });
+  return updatedHtml;
+};
+
+const htmlToJsx = (code: string): string => {
+  let updatedHtml = replaceTagsWithPascalCase(code)
+    .replace(/\bclass\b/g, 'className')
+    .replace(/\bfor\b/g, 'htmlFor')
+    .replace(/<a href="/g, '<Link to="')
+    .replace(/<\/a>/g, '</Link>')
+    .replace(/<!--(.*?)-->/g, '{/*$1*/}');
+  return updatedHtml;
+};
+
+const jsxCode = htmlToJsx(code);
+const nextjsCode = htmlToJsx(code).replace(/to="/g, 'href="');
+
+const angularLink = `<a routerLink="#" slot="post-logo"><post-logo>Homepage</post-logo></a>`;
+const reactLink = `<Link to="#" slot="post-logo"><PostLogo>Homepage</PostLogo></Link>`;
+const nextJsLink = `<Link href="#" slot="post-logo"><PostLogo>Homepage</PostLogo></Link>`;
+
+const injectLogoLink = (html: string, logoLink: string) => {
+  return html.replace('{{logoLink}}', logoLink);
+};
+
+const angularExample = injectLogoLink(code, angularLink);
+const reactExample = injectLogoLink(jsxCode, reactLink);
+const nextJsExample = injectLogoLink(nextjsCode, nextJsLink);
 
 const ExampleComponent = () => {
   const [framework, setFramework] = useState('angular');
@@ -188,10 +210,10 @@ const ExampleComponent = () => {
 
   return (
     <div>
-      <div className="form-floating mb-20">
+      <div className="form-floating">
         <select
           className="form-select"
-          htmlFor="framework-label"
+          id="framework-label"
           onChange={e => setFramework(e.target.value)}
         >
           <option value="angular">Angular</option>
@@ -202,7 +224,9 @@ const ExampleComponent = () => {
           Select a js framework:
         </label>
       </div>
-      <Source code={getExampleCode()} language="html" />
+      <div className="mt-24">
+        <Source code={getExampleCode()} language="html" />
+      </div>
     </div>
   );
 };
