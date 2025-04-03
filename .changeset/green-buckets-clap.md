@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Added the `reflect: true` option to the `post-card-control` component property `label`.
+Enhanced the `label` property of the `post-card-control` component to ensure it stays synchronized in the DOM whenever it changes, enabling compatibility with `querySelector` and similar methods.
