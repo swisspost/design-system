@@ -117,15 +117,15 @@ export class PostIcon {
 
     if (!this.isSSR) {
       urlDefinitions.push(
+        this.getUrlDefinition(document.querySelector('base[href]')?.getAttribute('href'), 'both'),
+      );
+      urlDefinitions.push(
         this.getUrlDefinition(
           document.head
             .querySelector('meta[name="design-system-settings"][data-post-icon-base]')
             ?.getAttribute('data-post-icon-base'),
-          'relative',
+          'both',
         ),
-      );
-      urlDefinitions.push(
-        this.getUrlDefinition(document.querySelector('base[href]')?.getAttribute('href'), 'both'),
       );
     }
 
@@ -170,6 +170,7 @@ export class PostIcon {
   }
 
   private definesSlug(url: string | undefined | null) {
+    if (url == '/') return true;
     return Boolean(/^\/.+/.test(this.getUrlObject(url)?.pathname));
   }
 
