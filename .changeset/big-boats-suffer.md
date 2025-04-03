@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Fixed the `post-footer` component event bindings, to make sure they get removed properly when the component gets detached.
+Resolved an issue with the `post-footer` component to ensure event bindings are correctly removed when the component is detached.
