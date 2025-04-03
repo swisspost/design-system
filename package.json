@@ -37,6 +37,8 @@
     "styles:unit": "pnpm --filter design-system-styles unit",
     "styles:lint": "pnpm --filter design-system-styles lint",
     "styles:lint:fix": "pnpm --filter design-system-styles lint:fix",
+    "styles:visual:test": "pnpm --filter design-system-styles exec playwright test --config=playwright.config.ts",
+    "styles:visual:update": "pnpm --filter design-system-styles exec playwright test --update-snapshots --config=playwright.config.ts",
     "components": "pnpm components:start",
     "components:play": "pnpm --filter design-system-components play",
     "components:start": "pnpm --filter design-system-components start",
