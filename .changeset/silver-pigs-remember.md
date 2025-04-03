@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': minor
 ---
 
-Made `post-icon` component ssr conform to avoid hydration errors.
+Enabled server-side rendering for the `post-icon` component, ensuring no hydration errors occur on the client side.
