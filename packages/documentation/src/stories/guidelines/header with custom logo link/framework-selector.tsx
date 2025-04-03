@@ -154,21 +154,20 @@ const toPascalCase = (tag: string): string => {
 const replaceTagsWithPascalCase = (html: string): string => {
   const tags = extractPostTags(html);
   const tagPairs = tags.map(tag => [tag, toPascalCase(tag)]);
-  console.log(tagPairs);
-  let updatedHtml = html;
+
   tagPairs.forEach(([originalTag, pascalTag]) => {
     const regex = new RegExp(`(<\\/?${originalTag})(\\s|>)`, 'g');
-    updatedHtml = updatedHtml.replace(regex, match => {
+    html.replace(regex, match => {
       return match.startsWith('</')
         ? `</${pascalTag}${match.endsWith('>') ? '>' : ' '}`
         : `<${pascalTag}${match.endsWith('>') ? '>' : ' '}`;
     });
   });
-  return updatedHtml;
+  return html;
 };
 
 const htmlToJsx = (code: string): string => {
-  let updatedHtml = replaceTagsWithPascalCase(code)
+  const updatedHtml = replaceTagsWithPascalCase(code)
     .replace(/\bclass\b/g, 'className')
     .replace(/\bfor\b/g, 'htmlFor')
     .replace(/<a href="/g, '<Link to="')
