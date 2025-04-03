@@ -160,11 +160,10 @@ function renderTextarea(args: Args, context: StoryContext) {
 
   const ariaDescribedByParts = [
     args.hint ? 'form-hint-' + context.id : '',
-    args.hint && args.validation !== 'null' ? ' ' : '',
     args.validation !== 'null' ? `${args.validation}-id-${context.id}` : '',
-  ];
+  ].filter(Boolean);
 
-  const ariaDescribedBy = ariaDescribedByParts.join('');
+  const ariaDescribedBy = ariaDescribedByParts.join(' ');
 
   const control = html`
     <textarea
