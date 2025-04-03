@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': minor
 ---
 
-Made the `post-popover` and `post-tooltip` components SSR conform.
+Enabled server-side rendering for the `post-popover` and the `post-tooltip` components, ensuring no hydration errors occur on the client side.
