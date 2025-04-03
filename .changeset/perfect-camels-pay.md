@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Added the `reflect: true` option to the `post-tab-header` component property `panel` and the `post-tab-panel` components property `name`.
+Enhanced the `panel` property of the `post-tab-header` component and the `name` property of the `post-tab-panel` component, to ensure they stay synchronized in the DOM whenever they change, enabling compatibility with `querySelector` and similar methods.
