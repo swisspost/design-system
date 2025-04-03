@@ -4,8 +4,8 @@ import { Source } from '@storybook/addon-docs';
 const code = `
   <!-- Meta navigation -->
   <ul class="list-inline" slot="meta-navigation">
-    <li><a href="">Jobs</a></li>
-    <li><a href="">Über uns</a></li>
+    <li><a href="#">Jobs</a></li>
+    <li><a href="#">Über uns</a></li>
   </ul>
 
   <!-- Menu button for mobile -->
@@ -56,8 +56,8 @@ const code = `
     <post-list title-hidden="">
       <h2>Main Navigation</h2>
       <!-- Link only level 1 -->
-      <post-list-item slot="post-list-item"><a href="/briefe">Briefe</a></post-list-item>
-      <post-list-item slot="post-list-item"><a href="/pakete">Pakete</a></post-list-item>
+      <post-list-item slot="post-list-item"><a href="#">Briefe</a></post-list-item>
+      <post-list-item slot="post-list-item"><a href="#">Pakete</a></post-list-item>
 
       <!-- Level 1 with megadropdown -->
       <post-list-item slot="post-list-item">
@@ -71,21 +71,21 @@ const code = `
           <h2 slot="megadropdown-title">Briefe title</h2>
           <post-list>
             <h3>Briefe senden</h3>
-            <post-list-item slot="post-list-item"><a href="/sch">Briefe Schweiz</a></post-list-item>
+            <post-list-item slot="post-list-item"><a href="#">Briefe Schweiz</a></post-list-item>
             <post-list-item slot="post-list-item"
-              ><a href="/kl">Kleinwaren Ausland</a></post-list-item
+              ><a href="#">Kleinwaren Ausland</a></post-list-item
             >
-            <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
-            <post-list-item slot="post-list-item"><a href="">Express und Kurier</a></post-list-item>
+            <post-list-item slot="post-list-item"><a href="#">Waren Ausland</a></post-list-item>
+            <post-list-item slot="post-list-item"><a href="#">Express und Kurier</a></post-list-item>
           </post-list>
           <post-list>
-            <h3><a href="/schritt-für-schritt">Schritt für Schritt</a></h3>
-            <post-list-item slot="post-list-item"><a href="/sch">Pakete Schweiz</a></post-list-item>
+            <h3><a href="#">Schritt für Schritt</a></h3>
+            <post-list-item slot="post-list-item"><a href="#">Pakete Schweiz</a></post-list-item>
             <post-list-item slot="post-list-item"
-              ><a href="/kl">Kleinwaren Ausland</a></post-list-item
+              ><a href="#">Kleinwaren Ausland</a></post-list-item
             >
-            <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
-            <post-list-item slot="post-list-item"><a href="">Express und Kurier</a></post-list-item>
+            <post-list-item slot="post-list-item"><a href="#">Waren Ausland</a></post-list-item>
+            <post-list-item slot="post-list-item"><a href="#">Express und Kurier</a></post-list-item>
           </post-list>
         </post-megadropdown>
       </post-list-item>
@@ -100,21 +100,21 @@ const code = `
           <h2 slot="megadropdown-title">Pakete title</h2>
           <post-list>
             <h3>Pakete senden</h3>
-            <post-list-item slot="post-list-item"><a href="/sch">Pakete Schweiz</a></post-list-item>
+            <post-list-item slot="post-list-item"><a href="#">Pakete Schweiz</a></post-list-item>
             <post-list-item slot="post-list-item"
-              ><a href="/kl">Kleinwaren Ausland</a></post-list-item
+              ><a href="#">Kleinwaren Ausland</a></post-list-item
             >
-            <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
-            <post-list-item slot="post-list-item"><a href="">Express und Kurier</a></post-list-item>
+            <post-list-item slot="post-list-item"><a href="#">Waren Ausland</a></post-list-item>
+            <post-list-item slot="post-list-item"><a href="#">Express und Kurier</a></post-list-item>
           </post-list>
           <post-list>
-            <h3><a href="/schritt-für-schritt">Schritt für Schritt</a></h3>
-            <post-list-item slot="post-list-item"><a href="/sch">Pakete Schweiz</a></post-list-item>
+            <h3><a href="#">Schritt für Schritt</a></h3>
+            <post-list-item slot="post-list-item"><a href="#">Pakete Schweiz</a></post-list-item>
             <post-list-item slot="post-list-item"
-              ><a href="/kl">Kleinwaren Ausland</a></post-list-item
+              ><a href="#">Kleinwaren Ausland</a></post-list-item
             >
-            <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
-            <post-list-item slot="post-list-item"><a href="">Express und Kurier</a></post-list-item>
+            <post-list-item slot="post-list-item"><a href="#">Waren Ausland</a></post-list-item>
+            <post-list-item slot="post-list-item"><a href="#">Express und Kurier</a></post-list-item>
           </post-list>
         </post-megadropdown>
       </post-list-item>
@@ -188,18 +188,20 @@ const ExampleComponent = () => {
 
   return (
     <div>
-      <label>
-        Select Framework:
+      <div className="form-floating mb-20">
         <select
-          className="ms-12 mb-16"
-          value={framework}
+          className="form-select"
+          htmlFor="framework-label"
           onChange={e => setFramework(e.target.value)}
         >
           <option value="angular">Angular</option>
           <option value="react">React</option>
           <option value="nextjs">Next.js</option>
         </select>
-      </label>
+        <label className="form-label" htmlFor="framework-label">
+          Select a js framework:
+        </label>
+      </div>
       <Source code={getExampleCode()} language="html" />
     </div>
   );
