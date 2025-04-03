@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Updated the `not-defined` selector, so ssr components can be rendered without js being ready on a page. Only client side rendered web-components will stay invisible, until they are hydrated.
+Updated the `not-defined` selector to ensure server-side rendered components are visible on the client-side even before JavaScript initializes, while client-side rendered web components remain hidden until fully hydrated.
