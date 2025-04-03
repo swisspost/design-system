@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': minor
 ---
 
-Made the collapse animation ssr conform.
+Adjusted the collapse animation to be compatible with server-side rendering (SSR).
