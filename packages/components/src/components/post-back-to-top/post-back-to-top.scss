@@ -8,15 +8,19 @@
 tokens.$default-map: components.$post-floating-button;
 
 :host {
-  --post-floating-button-translate-y: calc(-1 * #{tokens.get('floating-button-translate-y')});
+  --post-floating-button-position-top: #{tokens.get('floating-button-position-top')};
+  --post-back-to-top-position-top: calc(
+    var(--post-header-height) + var(--post-floating-button-position-top)
+  );
+  --post-back-to-top-elevation: #{tokens.get('floating-button-elevation')};
   position: fixed;
-  inset-block-start: tokens.get('floating-button-position-top');
+  inset-block-start: var(--post-back-to-top-position-top);
   inset-inline-end: tokens.get('floating-button-position-right');
-
+  
   .back-to-top {
     @include button-mx.reset-button;
     @include utilities.focus-style;
-    box-shadow: tokens.get('floating-button-elevation');
+    box-shadow: var(--post-back-to-top-elevation);
     cursor: pointer;
     border-radius: tokens.get('floating-button-border-radius-round');
     width: tokens.get('floating-button-size-outer');

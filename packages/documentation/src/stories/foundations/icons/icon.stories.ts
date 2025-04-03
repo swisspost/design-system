@@ -3,7 +3,7 @@ import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { spreadArgs } from '@/utils';
-import { Components } from '@swisspost/design-system-components/src';
+import { PostIcon } from '@swisspost/design-system-components/dist/components/post-icon';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
@@ -62,7 +62,7 @@ const meta: MetaComponent = {
 };
 
 export default meta;
-type Story = StoryObj<Components.PostIcon>;
+type Story = StoryObj<PostIcon>;
 
 function normalizeArgs(args: Args) {
   // remove attribute with falsy values
