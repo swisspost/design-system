@@ -135,7 +135,7 @@ const extractPostTags = (html: string): string[] => {
     matches
       ? matches.map(tag =>
           tag
-            .replace(/^\/|\/$/, '')
+            .replace(/(^\/|\/$)/g, '')
             .slice(1)
             .replace(/[^a-zA-Z0-9-]/g, ''),
         )
@@ -158,9 +158,13 @@ const replaceTagsWithPascalCase = (html: string): string => {
   tagPairs.forEach(([originalTag, pascalTag]) => {
     const regex = new RegExp(`(<\\/?${originalTag})(\\s|>)`, 'g');
     html.replace(regex, match => {
-      return match.startsWith('</')
-        ? `</${pascalTag}${match.endsWith('>') ? '>' : ' '}`
-        : `<${pascalTag}${match.endsWith('>') ? '>' : ' '}`;
+      let result;
+      if (match.startsWith('</')) {
+        result = `</${pascalTag}${match.endsWith('>') ? '>' : ' '}`;
+      } else {
+        result = `<${pascalTag}${match.endsWith('>') ? '>' : ' '}`;
+      }
+      return result;
     });
   });
   return html;
