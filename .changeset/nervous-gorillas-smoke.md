@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Fixed `post-language-switch` component, which implemented redundant update functions and unnecessary slot events.
+Refactored the `post-language-switch` component to remove redundant update functions and unnecessary slot event handling.
