@@ -1,5 +1,22 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.34
+
+### Patch Changes
+
+- Added a dedicated URL pointing to a @font-face definitions CSS file hosted on our CDN. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4865](https://github.com/swisspost/design-system/pull/4865))
+
+- Adjusted the placement of the Back-to-top button to accommodate the sticky header. (by [@myrta2302](https://github.com/myrta2302) with [#4879](https://github.com/swisspost/design-system/pull/4879))
+
+- Updated `<post-header>` to expose header height custom CSS properties to `:root` and set `scroll-padding-top` to visible header height. (by [@myrta2302](https://github.com/myrta2302) with [#4925](https://github.com/swisspost/design-system/pull/4925))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.0.0-next.33
+  - @swisspost/design-system-styles@9.0.0-next.33
+  - @swisspost/design-system-components@9.0.0-next.33
+  - @swisspost/internet-header@2.0.0-next.33
+  - @swisspost/design-system-components-react@9.0.0-next.33
+  - @swisspost/design-system-tokens@9.0.0-next.33
+
 ## 6.0.0-next.33
 
 ### Patch Changes

@@ -3,6 +3,7 @@ import { checkEmptyOrOneOf, checkType } from '@/utils';
 import { version } from '@root/package.json';
 import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
 import { nanoid } from 'nanoid';
+import { eventGuard } from '@/utils/event-guard';
 
 @Component({
   tag: 'post-language-switch',
@@ -59,25 +60,35 @@ export class PostLanguageSwitch {
     this.updateActiveLanguage();
   }
 
+  /**
+   * Listen for the postChange event and guard it to run only for events originating from a <post-language-option> element.
+   */
   @Listen('postChange')
   handlePostChange(event: CustomEvent<string>) {
-    this.activeLang = event.detail;
-
-    // Update the active state in the children post-language-option components
-    this.languageOptions.forEach(lang => {
-      if (lang.code && lang.code === this.activeLang) {
-        lang.setAttribute('active', '');
-      } else {
-        lang.removeAttribute('active');
+    eventGuard(
+      this.host,
+      event,
+      { targetLocalName: 'post-language-option', delegatorSelector: 'post-language-switch' },
+      () => {
+        this.activeLang = event.detail;
+  
+        // Update the active state in the children post-language-option components
+        this.languageOptions.forEach(lang => {
+          if (lang.code && lang.code === this.activeLang) {
+            lang.setAttribute('active', '');
+          } else {
+            lang.removeAttribute('active');
+          }
+        });
+  
+        // Hides the dropdown when an option has been clicked
+        if (this.variant === 'menu') {
+          const menu = this.host.shadowRoot.querySelector('post-menu') as HTMLPostMenuElement;
+          menu.hide();
+        }
       }
-    });
-
-    // Hides the dropdown when an option has been clicked
-    if (this.variant === 'menu') {
-      const menu = this.host.shadowRoot.querySelector('post-menu') as HTMLPostMenuElement;
-      menu.hide();
-    }
-  }
+    );
+  }  
 
   /**
    * Handles cases where the language switch is being rendered before options are available
