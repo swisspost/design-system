@@ -171,6 +171,14 @@ function render(args: Args, context: StoryContext) {
     args.hint !== '' ? html` <p class="form-hint" id="form-hint-${id}">${args.hint}</p> ` : null,
   ];
 
+  const ariaDescribedByParts = [
+    args.hint ? 'form-hint-' + context.id : '',
+    args.hint && args.validation !== 'null' ? ' ' : '',
+    args.validation !== 'null' ? `${args.validation}-id-${context.id}` : '',
+  ];
+
+  const ariaDescribedBy = ariaDescribedByParts.join('');
+
   const control: TemplateResult = html`
     <input
       id="${id}"
@@ -180,10 +188,7 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
-      aria-describedby="${args.hint !== '' ? 'form-hint-' + context.id : ''} ${args.validation !=
-      'null'
-        ? `${args.validation}-id-${context.id}`
-        : ''}"
+      aria-describedby="${ariaDescribedBy}"
       value="${args.value ? args.value : nothing}"
     />
   `;

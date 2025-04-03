@@ -205,9 +205,18 @@ const Template: Story = {
           `
         : null,
       args.hint !== ''
-        ? html` <p class="form-hint" id="form-hint-${context.id}">${context.id}</p> `
+        ? html` <p class="form-hint" id="form-hint-${context.id}">${args.hint}</p> `
         : null,
     ];
+
+    const ariaDescribedByParts = [
+      args.hint ? 'form-hint-' + context.id : '',
+      args.hint && args.validation !== 'null' ? ' ' : '',
+      args.validation !== 'null' ? `${args.validation}-id-${context.id}` : '',
+    ];
+
+    const ariaDescribedBy = ariaDescribedByParts.join('');
+
     const control = html`
       <select
         id="${context.id}"
@@ -217,10 +226,7 @@ const Template: Story = {
         ?disabled="${args.disabled}"
         aria-label="${useAriaLabel ? args.label : nothing}"
         aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
-        aria-describedby="${args.hint !== '' ? 'form-hint-' + context.id : ''} ${args.validation !=
-        'null'
-          ? `${args.validation}-id-${context.id}`
-          : ''}"
+        aria-describedby="${ariaDescribedBy}"
         @change="${(e: Event) => {
           updateArgs({ value: (e.target as HTMLSelectElement).value });
         }}"

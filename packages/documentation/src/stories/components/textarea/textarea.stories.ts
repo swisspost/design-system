@@ -146,19 +146,26 @@ function renderTextarea(args: Args, context: StoryContext) {
     : null;
   const contextual = [
     args.validation === 'is-valid'
-      ? html`<div class="valid-feedback" id="${args.validation}-id-${context.id}">
+      ? html`<p class="valid-feedback" id="${args.validation}-id-${context.id}">
           Ggranda sukceso!
-        </div>`
+        </p>`
       : null,
     args.validation === 'is-invalid'
-      ? html`<div class="invalid-feedback" id="${args.validation}-id-${context.id}">
-          Eraro okazis!
-        </div>`
+      ? html`<p class="invalid-feedback" id="${args.validation}-id-${context.id}">Eraro okazis!</p>`
       : null,
     args.hint !== ''
       ? html`<p class="form-hint" id="form-hint-${context.id}">${args.hint}</p>`
       : null,
   ];
+
+  const ariaDescribedByParts = [
+    args.hint ? 'form-hint-' + context.id : '',
+    args.hint && args.validation !== 'null' ? ' ' : '',
+    args.validation !== 'null' ? `${args.validation}-id-${context.id}` : '',
+  ];
+
+  const ariaDescribedBy = ariaDescribedByParts.join('');
+
   const control = html`
     <textarea
       id=${context.id}
@@ -169,9 +176,7 @@ function renderTextarea(args: Args, context: StoryContext) {
       ?disabled=${args.disabled}
       aria-label=${useAriaLabel ? args.label : nothing}
       aria-invalid=${VALIDATION_STATE_MAP[args.validation] ?? nothing}
-      aria-describedby="${args.hint ? 'form-hint-' + context.id : ''} ${args.validation != 'null'
-        ? `${args.validation}-id-${context.id}`
-        : ''}"
+      aria-describedby="${ariaDescribedBy}"
       style=${args.resize ?? nothing}
     >
 ${args.textInside ?? nothing}</textarea
