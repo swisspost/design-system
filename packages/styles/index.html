@@ -1,40 +1,682 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Styles playground</title>
 
-    <!-- Styles -->
-    <link rel="stylesheet" id="styles" href="src/post-default.scss" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Styles playground</title>
 
-    <script src="playground.js" defer></script>
-  </head>
-  <body>
-    <aside class="palette-brand p-16">
-      <h1>Styles package playground</h1>
-      <fieldset id="token-selects" class="mt-16">
-        <legend class="my-8">Select tokens</legend>
-        <label for="theme-select">Theme</label>
-        <select name="theme" id="theme-select" value="post" class="mb-4 me-8">
-          <option value="post">Post</option>
-          <option value="cargo">Cargo</option>
-        </select>
-        <label for="tokens-select">Appearance</label>
-        <select name="appearance" id="appearance-select" value="default" class="mb-4 me-8">
-          <option value="default">Default</option>
-          <option value="compact">Compact</option>
-        </select>
-        <label for="scheme-select">Color scheme</label>
-        <select name="scheme" id="scheme-select" value="light" class="mb-4">
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-        </select>
-      </fieldset>
-    </aside>
+  <!-- Styles -->
+  <link rel="stylesheet" id="styles" href="src/post-default.scss" />
 
-    <main class="p-16">
-      <!-- Place your component markup here -->
-    </main>
-  </body>
+  <script src="playground.js" defer></script>
+
+  <!-- TODO: remove after palette integration test -->
+  <style>
+    body {
+      background-color: var(--post-core-color-sandgrey-006);
+      color: var(--post-core-color-brand-black);
+    }
+
+    .d-block-light {
+      display: initial;
+    }
+
+    .d-block-dark {
+      display: none;
+    }
+
+    .col {
+      padding: 1rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: var(--post-core-color-sandgrey-070);
+        color: var(--post-core-color-brand-white);
+      }
+
+      .d-block-light {
+        display: none;
+      }
+
+      .d-block-dark {
+        display: initial;
+      }
+    }
+
+    [data-color-scheme="light"] {
+      background-color: var(--post-core-color-sandgrey-006);
+      color: var(--post-core-color-brand-black);
+
+      .d-block-light {
+        display: initial;
+      }
+
+      .d-block-dark {
+        display: none;
+      }
+    }
+
+    [data-color-scheme="dark"] {
+      background-color: var(--post-core-color-sandgrey-070);
+      color: var(--post-core-color-brand-white);
+
+      .d-block-light {
+        display: none;
+      }
+
+      .d-block-dark {
+        display: initial;
+      }
+    }
+
+    .dot {
+      --test-dot-fg: light-dark(black, white);
+      --test-dot-bg: light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.2));
+
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      width: 3rem;
+      height: 3rem;
+      background-blend-mode: color-dodge;
+      border-radius: 50%;
+      background-color: var(--test-dot-bg);
+      color: var(--test-dot-fg);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <aside class="palette-brand p-16">
+    <h1>Styles package playground</h1>
+    <fieldset id="token-selects" class="mt-16">
+      <legend class="my-8">Select tokens</legend>
+      <label for="theme-select">Theme</label>
+      <select name="theme" id="theme-select" value="post" class="mb-4 me-8">
+        <option value="post">Post</option>
+        <option value="cargo">Cargo</option>
+      </select>
+      <label for="tokens-select">Appearance</label>
+      <select name="appearance" id="appearance-select" value="default" class="mb-4 me-8">
+        <option value="default">Default</option>
+        <option value="compact">Compact</option>
+      </select>
+      <label for="scheme-select">Color scheme</label>
+      <select name="scheme" id="scheme-select" value="light" class="mb-4">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </fieldset>
+  </aside> -->
+
+  <main class="p-16">
+    <h1>Styles Playground</h1>
+
+    <p>Examples</p>
+    <ul>
+      <li>
+        <a href="#banner">Banner &amp; Palettes</a>
+      </li>
+      <li>
+        <a href="#card">Card &amp; Palettes</a>
+      </li>
+    </ul>
+
+    <hr>
+
+    <div class="row">
+      <div class="col">
+        <div>
+          <h2>Color Scheme (prefered): <div><span class="d-block-light">light</span><span
+                class="d-block-dark">dark</span></div>
+          </h2>
+
+          <h3 id="banner">Banner and nested Palettes</h3>
+
+          <!-- <div class="banner success post-scheme-component">
+            <p>Banner success, renders children in color-scheme: <span class="d-block-light">light</span><span
+                class="d-block-dark">dark</span></p>
+            <button class="btn">Button</button>
+            <div class="dot">dot</div>
+          </div>
+          <div class="banner warning post-scheme-component">
+            <p>Banner warning, renders children in color-scheme: <span class="d-block-light">light</span><span
+                class="d-block-dark">dark</span></p>
+            <button class="btn">Button</button>
+            <div class="dot">dot</div>
+          </div>
+          <div class="banner danger post-scheme-component">
+            <p>Banner danger, renders children in color-scheme: <span class="d-block-light">light</span><span
+                class="d-block-dark">dark</span></p>
+            <button class="btn">button</button>
+            <div class="dot">dot</div>
+          </div> -->
+
+          <div class="palette palette-default post-scheme-component">
+            <p>Palette default, renders children in color-scheme: <span class="d-block-light">light</span><span
+                class="d-block-dark">dark</span></p>
+            <button class="btn">button</button>
+            <div class="dot">dot</div>
+            <!-- <div class="banner success post-scheme-component">
+              <p>Banner success, renders children in color-scheme: <span class="d-block-light">light</span><span
+                  class="d-block-dark">dark</span></p>
+              <button class="btn">Button</button>
+              <div class="dot">dot</div>
+            </div>
+            <div class="banner warning post-scheme-component">
+              <p>Banner warning, renders children in color-scheme: <span class="d-block-light">light</span><span
+                  class="d-block-dark">dark</span></p>
+              <button class="btn">Button</button>
+              <div class="dot">dot</div>
+            </div>
+            <div class="banner danger post-scheme-component">
+              <p>Banner danger, renders children in color-scheme: <span class="d-block-light">light</span><span
+                  class="d-block-dark">dark</span></p>
+              <button class="btn">button</button>
+              <div class="dot">dot</div>
+            </div> -->
+            <div class="palette palette-accent post-scheme-component">
+              <p>Palette accent, renders children in color-scheme: <span class="d-block-light">light</span><span
+                  class="d-block-dark">dark</span></p>
+              <button class="btn">button</button>
+              <div class="dot">dot</div>
+              <!-- <div class="banner success post-scheme-component">
+                <p>Banner success, renders children in color-scheme: <span class="d-block-light">light</span><span
+                    class="d-block-dark">dark</span></p>
+                <button class="btn">Button</button>
+                <div class="dot">dot</div>
+              </div>
+              <div class="banner warning post-scheme-component">
+                <p>Banner warning, renders children in color-scheme: <span class="d-block-light">light</span><span
+                    class="d-block-dark">dark</span></p>
+                <button class="btn">Button</button>
+                <div class="dot">dot</div>
+              </div>
+              <div class="banner danger post-scheme-component">
+                <p>Banner danger, renders children in color-scheme: <span class="d-block-light">light</span><span
+                    class="d-block-dark">dark</span></p>
+                <button class="btn">button</button>
+                <div class="dot">dot</div>
+              </div> -->
+              <div class="palette palette-alternate post-scheme-component">
+                <p>Palette alternate, renders children in color-scheme: <span class="d-block-light">light</span><span
+                    class="d-block-dark">dark</span></p>
+                <button class="btn">button</button>
+                <div class="dot">dot</div>
+                <!-- <div class="banner success post-scheme-component">
+                  <p>Banner success, renders children in color-scheme: <span class="d-block-light">light</span><span
+                      class="d-block-dark">dark</span></p>
+                  <button class="btn">Button</button>
+                  <div class="dot">dot</div>
+                </div>
+                <div class="banner warning post-scheme-component">
+                  <p>Banner warning, renders children in color-scheme: <span class="d-block-light">light</span><span
+                      class="d-block-dark">dark</span></p>
+                  <button class="btn">Button</button>
+                  <div class="dot">dot</div>
+                </div>
+                <div class="banner danger post-scheme-component">
+                  <p>Banner danger, renders children in color-scheme: <span class="d-block-light">light</span><span
+                      class="d-block-dark">dark</span></p>
+                  <button class="btn">button</button>
+                  <div class="dot">dot</div>
+                </div> -->
+                <div class="palette palette-brand post-scheme-component">
+                  <p>Palette brand, renders children in color-scheme: <span class="d-block-light">light</span><span
+                      class="d-block-dark">dark</span></p>
+                  <button class="btn">button</button>
+                  <div class="dot">dot</div>
+                  <!-- <div class="banner success post-scheme-component">
+                    <p>Banner success, renders children in color-scheme: <span class="d-block-light">light</span><span
+                        class="d-block-dark">dark</span></p>
+                    <button class="btn">Button</button>
+                    <div class="dot">dot</div>
+                  </div>
+                  <div class="banner warning post-scheme-component">
+                    <p>Banner warning, renders children in color-scheme: <span class="d-block-light">light</span><span
+                        class="d-block-dark">dark</span></p>
+                    <button class="btn">Button</button>
+                    <div class="dot">dot</div>
+                  </div>
+                  <div class="banner danger post-scheme-component">
+                    <p>Banner danger, renders children in color-scheme: <span class="d-block-light">light</span><span
+                        class="d-block-dark">dark</span></p>
+                    <button class="btn">button</button>
+                    <div class="dot">dot</div>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="card">Card and nested Palettes</h3>
+
+          <!-- <div class="card post-scheme-component">
+            <p>Card default, renders children in color-scheme: <span class="d-block-light">light</span><span
+                class="d-block-dark">dark</span></p>
+            <button class="btn">button</button>
+            <div class="dot">dot</div>
+          </div> -->
+
+          <div class="palette palette-brand post-scheme-component">
+            <p>Palette brand, renders children in color-scheme: <span class="d-block-light">light</span><span
+                class="d-block-dark">dark</span></p>
+            <button class="btn">button</button>
+            <div class="dot">dot</div>
+            <!-- <div class="card post-scheme-component">
+              <p>Card in palette brand, renders children in color-scheme: <span class="d-block-light">light</span><span
+                  class="d-block-dark">dark</span></p>
+              <button class="btn">button</button>
+              <div class="dot">dot</div>
+            </div> -->
+            <div class="palette palette-alternate post-scheme-component">
+              <p>Palette alternate, renders children in color-scheme: <span class="d-block-light">light</span><span
+                  class="d-block-dark">dark</span></p>
+              <button class="btn">button</button>
+              <div class="dot">dot</div>
+              <!-- <div class="card post-scheme-component">
+                <p>Card in palette altrenate, renders children in color-scheme: <span
+                    class="d-block-light">light</span><span class="d-block-dark">dark</span></p>
+                <button class="btn">button</button>
+                <div class="dot">dot</div>
+              </div> -->
+              <div class="palette palette-accent post-scheme-component">
+                <p>Palette accent, renders children in color-scheme: <span class="d-block-light">light</span><span
+                    class="d-block-dark">dark</span></p>
+                <button class="btn">button</button>
+                <div class="dot">dot</div>
+                <!-- <div class="card post-scheme-component">
+                  <p>Card in palette accent, renders children in color-scheme: <span
+                      class="d-block-light">light</span><span class="d-block-dark">dark</span></p>
+                  <button class="btn">button</button>
+                  <div class="dot">dot</div>
+                </div> -->
+                <div class="palette palette-default post-scheme-component">
+                  <p>Palette default, renders children in color-scheme: <span class="d-block-light">light</span><span
+                      class="d-block-dark">dark</span></p>
+                  <button class="btn">button</button>
+                  <div class="dot">dot</div>
+                  <!-- <div class="card post-scheme-component">
+                    <p>Card in palette default, renders children in color-scheme: <span
+                        class="d-block-light">light</span><span class="d-block-dark">dark</span></p>
+                    <button class="btn">button</button>
+                    <div class="dot">dot</div>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col" data-color-scheme="light">
+        <h2>Color Scheme (forced): <div><span class="d-block-light">light</span><span class="d-block-dark">dark</span>
+          </div>
+        </h2>
+
+        <h3>Banner and nested Palettes</h3>
+
+        <!-- <div class="banner success post-scheme-component">
+          <p>Banner success, renders children in color-scheme: <span class="d-block-light">light</span><span
+              class="d-block-dark">dark</span></p>
+          <button class="btn">Button</button>
+          <div class="dot">dot</div>
+        </div>
+        <div class="banner warning post-scheme-component">
+          <p>Banner warning, renders children in color-scheme: <span class="d-block-light">light</span><span
+              class="d-block-dark">dark</span></p>
+          <button class="btn">Button</button>
+          <div class="dot">dot</div>
+        </div>
+        <div class="banner danger post-scheme-component">
+          <p>Banner danger, renders children in color-scheme: <span class="d-block-light">light</span><span
+              class="d-block-dark">dark</span></p>
+          <button class="btn">button</button>
+          <div class="dot">dot</div>
+        </div> -->
+
+        <div class="palette palette-default post-scheme-component">
+          <p>Palette default, renders children in color-scheme: <span class="d-block-light">light</span><span
+              class="d-block-dark">dark</span></p>
+          <button class="btn">button</button>
+          <div class="dot">dot</div>
+          <!-- <div class="banner success post-scheme-component">
+            <p>Banner success, renders children in color-scheme: <span class="d-block-light">light</span><span
+                class="d-block-dark">dark</span></p>
+            <button class="btn">Button</button>
+            <div class="dot">dot</div>
+          </div>
+          <div class="banner warning post-scheme-component">
+            <p>Banner warning, renders children in color-scheme: <span class="d-block-light">light</span><span
+                class="d-block-dark">dark</span></p>
+            <button class="btn">Button</button>
+            <div class="dot">dot</div>
+          </div>
+          <div class="banner danger post-scheme-component">
+            <p>Banner danger, renders children in color-scheme: <span class="d-block-light">light</span><span
+                class="d-block-dark">dark</span></p>
+            <button class="btn">button</button>
+            <div class="dot">dot</div>
+          </div> -->
+          <div class="palette palette-accent post-scheme-component">
+            <p>Palette accent, renders children in color-scheme: <span class="d-block-light">light</span><span
+                class="d-block-dark">dark</span></p>
+            <button class="btn">button</button>
+            <div class="dot">dot</div>
+            <!-- <div class="banner success post-scheme-component">
+              <p>Banner success, renders children in color-scheme: <span class="d-block-light">light</span><span
+                  class="d-block-dark">dark</span></p>
+              <button class="btn">Button</button>
+              <div class="dot">dot</div>
+            </div>
+            <div class="banner warning post-scheme-component">
+              <p>Banner warning, renders children in color-scheme: <span class="d-block-light">light</span><span
+                  class="d-block-dark">dark</span></p>
+              <button class="btn">Button</button>
+              <div class="dot">dot</div>
+            </div>
+            <div class="banner danger post-scheme-component">
+              <p>Banner danger, renders children in color-scheme: <span class="d-block-light">light</span><span
+                  class="d-block-dark">dark</span></p>
+              <button class="btn">button</button>
+              <div class="dot">dot</div>
+            </div> -->
+            <div class="palette palette-alternate post-scheme-component">
+              <p>Palette alternate, renders children in color-scheme: <span class="d-block-light">light</span><span
+                  class="d-block-dark">dark</span></p>
+              <button class="btn">button</button>
+              <div class="dot">dot</div>
+              <!-- <div class="banner success post-scheme-component">
+                <p>Banner success, renders children in color-scheme: <span class="d-block-light">light</span><span
+                    class="d-block-dark">dark</span></p>
+                <button class="btn">Button</button>
+                <div class="dot">dot</div>
+              </div>
+              <div class="banner warning post-scheme-component">
+                <p>Banner warning, renders children in color-scheme: <span class="d-block-light">light</span><span
+                    class="d-block-dark">dark</span></p>
+                <button class="btn">Button</button>
+                <div class="dot">dot</div>
+              </div>
+              <div class="banner danger post-scheme-component">
+                <p>Banner danger, renders children in color-scheme: <span class="d-block-light">light</span><span
+                    class="d-block-dark">dark</span></p>
+                <button class="btn">button</button>
+                <div class="dot">dot</div>
+              </div> -->
+              <div class="palette palette-brand post-scheme-component">
+                <p>Palette brand, renders children in color-scheme: <span class="d-block-light">light</span><span
+                    class="d-block-dark">dark</span></p>
+                <button class="btn">button</button>
+                <div class="dot">dot</div>
+                <!-- <div class="banner success post-scheme-component">
+                  <p>Banner success, renders children in color-scheme: <span class="d-block-light">light</span><span
+                      class="d-block-dark">dark</span></p>
+                  <button class="btn">Button</button>
+                  <div class="dot">dot</div>
+                </div>
+                <div class="banner warning post-scheme-component">
+                  <p>Banner warning, renders children in color-scheme: <span class="d-block-light">light</span><span
+                      class="d-block-dark">dark</span></p>
+                  <button class="btn">Button</button>
+                  <div class="dot">dot</div>
+                </div>
+                <div class="banner danger post-scheme-component">
+                  <p>Banner danger, renders children in color-scheme: <span class="d-block-light">light</span><span
+                      class="d-block-dark">dark</span></p>
+                  <button class="btn">button</button>
+                  <div class="dot">dot</div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3>Card and nested Palettes</h3>
+
+        <!-- <div class="card post-scheme-component">
+          <p>Card default, renders children in color-scheme: <span class="d-block-light">light</span><span
+              class="d-block-dark">dark</span></p>
+          <button class="btn">button</button>
+          <div class="dot">dot</div>
+        </div> -->
+
+        <div class="palette palette-brand post-scheme-component">
+          <p>Palette brand, renders children in color-scheme: <span class="d-block-light">light</span><span
+              class="d-block-dark">dark</span></p>
+          <button class="btn">button</button>
+          <div class="dot">dot</div>
+          <!-- <div class="card post-scheme-component">
+            <p>Card in palette brand, renders children in color-scheme: <span class="d-block-light">light</span><span
+                class="d-block-dark">dark</span></p>
+            <button class="btn">button</button>
+            <div class="dot">dot</div>
+          </div> -->
+          <div class="palette palette-alternate post-scheme-component">
+            <p>Palette alternate, renders children in color-scheme: <span class="d-block-light">light</span><span
+                class="d-block-dark">dark</span></p>
+            <button class="btn">button</button>
+            <div class="dot">dot</div>
+            <!-- <div class="card post-scheme-component">
+              <p>Card in palette altrenate, renders children in color-scheme: <span
+                  class="d-block-light">light</span><span class="d-block-dark">dark</span></p>
+              <button class="btn">button</button>
+              <div class="dot">dot</div>
+            </div> -->
+            <div class="palette palette-accent post-scheme-component">
+              <p>Palette accent, renders children in color-scheme: <span class="d-block-light">light</span><span
+                  class="d-block-dark">dark</span></p>
+              <button class="btn">button</button>
+              <div class="dot">dot</div>
+              <!-- <div class="card post-scheme-component">
+                <p>Card in palette accent, renders children in color-scheme: <span
+                    class="d-block-light">light</span><span class="d-block-dark">dark</span></p>
+                <button class="btn">button</button>
+                <div class="dot">dot</div>
+              </div> -->
+              <div class="palette palette-default post-scheme-component">
+                <p>Palette default, renders children in color-scheme: <span class="d-block-light">light</span><span
+                    class="d-block-dark">dark</span></p>
+                <button class="btn">button</button>
+                <div class="dot">dot</div>
+                <!-- <div class="card post-scheme-component">
+                  <p>Card in palette default, renders children in color-scheme: <span
+                      class="d-block-light">light</span><span class="d-block-dark">dark</span></p>
+                  <button class="btn">button</button>
+                  <div class="dot">dot</div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col" data-color-scheme="dark">
+        <h2>Color Scheme (forced): <div><span class="d-block-light">light</span><span class="d-block-dark">dark</span>
+          </div>
+        </h2>
+
+        <h3>Banner and nested Palettes</h3>
+
+        <!-- <div class="banner success post-scheme-component">
+          <p>Banner success, renders children in color-scheme: <span class="d-block-light">light</span><span
+              class="d-block-dark">dark</span></p>
+          <button class="btn">Button</button>
+          <div class="dot">dot</div>
+        </div>
+        <div class="banner warning post-scheme-component">
+          <p>Banner warning, renders children in color-scheme: <span class="d-block-light">light</span><span
+              class="d-block-dark">dark</span></p>
+          <button class="btn">Button</button>
+          <div class="dot">dot</div>
+        </div>
+        <div class="banner danger post-scheme-component">
+          <p>Banner danger, renders children in color-scheme: <span class="d-block-light">light</span><span
+              class="d-block-dark">dark</span></p>
+          <button class="btn">button</button>
+          <div class="dot">dot</div>
+        </div> -->
+
+        <div class="palette palette-default post-scheme-component">
+          <p>Palette default, renders children in color-scheme: <span class="d-block-light">light</span><span
+              class="d-block-dark">dark</span></p>
+          <button class="btn">button</button>
+          <div class="dot">dot</div>
+          <!-- <div class="banner success post-scheme-component">
+            <p>Banner success, renders children in color-scheme: <span class="d-block-light">light</span><span
+                class="d-block-dark">dark</span></p>
+            <button class="btn">Button</button>
+            <div class="dot">dot</div>
+          </div>
+          <div class="banner warning post-scheme-component">
+            <p>Banner warning, renders children in color-scheme: <span class="d-block-light">light</span><span
+                class="d-block-dark">dark</span></p>
+            <button class="btn">Button</button>
+            <div class="dot">dot</div>
+          </div>
+          <div class="banner danger post-scheme-component">
+            <p>Banner danger, renders children in color-scheme: <span class="d-block-light">light</span><span
+                class="d-block-dark">dark</span></p>
+            <button class="btn">button</button>
+            <div class="dot">dot</div>
+          </div> -->
+          <div class="palette palette-accent post-scheme-component">
+            <p>Palette accent, renders children in color-scheme: <span class="d-block-light">light</span><span
+                class="d-block-dark">dark</span></p>
+            <button class="btn">button</button>
+            <div class="dot">dot</div>
+            <!-- <div class="banner success post-scheme-component">
+              <p>Banner success, renders children in color-scheme: <span class="d-block-light">light</span><span
+                  class="d-block-dark">dark</span></p>
+              <button class="btn">Button</button>
+              <div class="dot">dot</div>
+            </div>
+            <div class="banner warning post-scheme-component">
+              <p>Banner warning, renders children in color-scheme: <span class="d-block-light">light</span><span
+                  class="d-block-dark">dark</span></p>
+              <button class="btn">Button</button>
+              <div class="dot">dot</div>
+            </div>
+            <div class="banner danger post-scheme-component">
+              <p>Banner danger, renders children in color-scheme: <span class="d-block-light">light</span><span
+                  class="d-block-dark">dark</span></p>
+              <button class="btn">button</button>
+              <div class="dot">dot</div>
+            </div> -->
+            <div class="palette palette-alternate post-scheme-component">
+              <p>Palette alternate, renders children in color-scheme: <span class="d-block-light">light</span><span
+                  class="d-block-dark">dark</span></p>
+              <button class="btn">button</button>
+              <div class="dot">dot</div>
+              <!-- <div class="banner success post-scheme-component">
+                <p>Banner success, renders children in color-scheme: <span class="d-block-light">light</span><span
+                    class="d-block-dark">dark</span></p>
+                <button class="btn">Button</button>
+                <div class="dot">dot</div>
+              </div>
+              <div class="banner warning post-scheme-component">
+                <p>Banner warning, renders children in color-scheme: <span class="d-block-light">light</span><span
+                    class="d-block-dark">dark</span></p>
+                <button class="btn">Button</button>
+                <div class="dot">dot</div>
+              </div>
+              <div class="banner danger post-scheme-component">
+                <p>Banner danger, renders children in color-scheme: <span class="d-block-light">light</span><span
+                    class="d-block-dark">dark</span></p>
+                <button class="btn">button</button>
+                <div class="dot">dot</div>
+              </div> -->
+              <div class="palette palette-brand post-scheme-component">
+                <p>Palette brand, renders children in color-scheme: <span class="d-block-light">light</span><span
+                    class="d-block-dark">dark</span></p>
+                <button class="btn">button</button>
+                <div class="dot">dot</div>
+                <!-- <div class="banner success post-scheme-component">
+                  <p>Banner success, renders children in color-scheme: <span class="d-block-light">light</span><span
+                      class="d-block-dark">dark</span></p>
+                  <button class="btn">Button</button>
+                  <div class="dot">dot</div>
+                </div>
+                <div class="banner warning post-scheme-component">
+                  <p>Banner warning, renders children in color-scheme: <span class="d-block-light">light</span><span
+                      class="d-block-dark">dark</span></p>
+                  <button class="btn">Button</button>
+                  <div class="dot">dot</div>
+                </div>
+                <div class="banner danger post-scheme-component">
+                  <p>Banner danger, renders children in color-scheme: <span class="d-block-light">light</span><span
+                      class="d-block-dark">dark</span></p>
+                  <button class="btn">button</button>
+                  <div class="dot">dot</div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3>Card and nested Palettes</h3>
+
+        <!-- <div class="card post-scheme-component">
+          <p>Card default, renders children in color-scheme: <span class="d-block-light">light</span><span
+              class="d-block-dark">dark</span></p>
+          <button class="btn">button</button>
+          <div class="dot">dot</div>
+        </div> -->
+
+        <div class="palette palette-brand post-scheme-component">
+          <p>Palette brand, renders children in color-scheme: <span class="d-block-light">light</span><span
+              class="d-block-dark">dark</span></p>
+          <button class="btn">button</button>
+          <div class="dot">dot</div>
+          <!-- <div class="card post-scheme-component">
+            <p>Card in palette brand, renders children in color-scheme: <span class="d-block-light">light</span><span
+                class="d-block-dark">dark</span></p>
+            <button class="btn">button</button>
+            <div class="dot">dot</div>
+          </div> -->
+          <div class="palette palette-alternate post-scheme-component">
+            <p>Palette alternate, renders children in color-scheme: <span class="d-block-light">light</span><span
+                class="d-block-dark">dark</span></p>
+            <button class="btn">button</button>
+            <div class="dot">dot</div>
+            <!-- <div class="card post-scheme-component">
+              <p>Card in palette altrenate, renders children in color-scheme: <span
+                  class="d-block-light">light</span><span class="d-block-dark">dark</span></p>
+              <button class="btn">button</button>
+              <div class="dot">dot</div>
+            </div> -->
+            <div class="palette palette-accent post-scheme-component">
+              <p>Palette accent, renders children in color-scheme: <span class="d-block-light">light</span><span
+                  class="d-block-dark">dark</span></p>
+              <button class="btn">button</button>
+              <div class="dot">dot</div>
+              <!-- <div class="card post-scheme-component">
+                <p>Card in palette accent, renders children in color-scheme: <span
+                    class="d-block-light">light</span><span class="d-block-dark">dark</span></p>
+                <button class="btn">button</button>
+                <div class="dot">dot</div>
+              </div> -->
+              <div class="palette palette-default post-scheme-component">
+                <p>Palette default, renders children in color-scheme: <span class="d-block-light">light</span><span
+                    class="d-block-dark">dark</span></p>
+                <button class="btn">button</button>
+                <div class="dot">dot</div>
+                <!-- <div class="card post-scheme-component">
+                  <p>Card in palette default, renders children in color-scheme: <span
+                      class="d-block-light">light</span><span class="d-block-dark">dark</span></p>
+                  <button class="btn">button</button>
+                  <div class="dot">dot</div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</body>
+
 </html>
