@@ -1,5 +1,22 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.34
+
+### Patch Changes
+
+- Enhanced the `for` property of the `post-menu-trigger` component to ensure it stays synchronized in the DOM whenever it changes, enabling compatibility with `querySelector` and similar methods. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5157](https://github.com/swisspost/design-system/pull/5157))
+
+- Fixed `post-header` component `version` attribute. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5152](https://github.com/swisspost/design-system/pull/5152))
+
+- Added the `reflect: true` option to the `post-back-to-top` component property `label`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5149](https://github.com/swisspost/design-system/pull/5149))
+
+- Enhanced the `panel` property of the `post-tab-header` component and the `name` property of the `post-tab-panel` component, to ensure they stay synchronized in the DOM whenever they change, enabling compatibility with `querySelector` and similar methods. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5158](https://github.com/swisspost/design-system/pull/5158))
+
+- Added the `reflect: true` option to the `post-avatar` component property `firstname` to prepare the component for the next stencil update. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5148](https://github.com/swisspost/design-system/pull/5148))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.34
+  - @swisspost/design-system-icons@9.0.0-next.34
+
 ## 9.0.0-next.33
 
 ### Minor Changes
