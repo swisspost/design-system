@@ -14,6 +14,11 @@ tokens.$default-map: components.$post-palettes;
   margin-top: 1rem;
   padding: 1rem;
 
+  // TODO: remove for prod
+  .palette ~ .palette {
+    margin-top: 0;
+  }
+
   .card {
     // TODO: add nested color-scheme
     background-color: #{tokens.get('palettes-nested-bg')};
