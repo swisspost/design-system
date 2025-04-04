@@ -14,19 +14,17 @@
       "groupName": "Angular"
     },
     {
-      {
-        "matchUpdateTypes": ["patch"],
-        "groupName": "all patch dependencies",
-        "groupSlug": "all-patch",
-        "matchPackageNames": [
-          "*",
-          "!typescript",
-          "!bootstrap",
-          "!@storybook/*",
-          "!@angular/*",
-          "!@stencil/*"
-        ]
-      },
+      "matchUpdateTypes": ["patch"],
+      "groupName": "all patch dependencies",
+      "groupSlug": "all-patch",
+      "matchPackageNames": [
+        "*",
+        "!typescript",
+        "!bootstrap",
+        "!@storybook/*",
+        "!@angular/*",
+        "!@stencil/*"
+      ]
     },
     {
       "matchUpdateTypes": ["minor", "patch"],
