@@ -1,11 +1,21 @@
+@use 'sass:map';
 @use './core';
-@use '../placeholders/schemes';
+@use '../tokens/temp/scheme';
+// @use '../placeholders/schemes';
+
+// :root,
+// [data-color-scheme='light'] {
+//   @extend %color-scheme-light;
+// }
+
+// [data-color-scheme='dark'] {
+//   @extend %color-scheme-dark;
+// }
 
 :root,
-[data-color-scheme='light'] {
-  @extend %color-scheme-light;
-}
-
+[data-color-scheme='light'],
 [data-color-scheme='dark'] {
-  @extend %color-scheme-dark;
+  @each $key, $light-value in scheme.$post-light {
+    --#{$key}: light-dark(#{$light-value}, #{map.get(scheme.$post-dark, $key)});
+  }
 }
