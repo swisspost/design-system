@@ -13,10 +13,37 @@
 
   <!-- TODO: remove after palette integration test -->
   <style>
+    /*
+      TODO: implement something similar in the elements/body.scss ???
+    */
+    body {
+      background-color: var(--post-core-color-sandgrey-002);
+      color: var(--post-core-color-brand-black);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: var(--post-core-color-sandgrey-080);
+        color: var(--post-core-color-brand-white);
+      }
+    }
+
+    [data-color-scheme="light"] {
+      background-color: var(--post-core-color-sandgrey-002);
+      color: var(--post-core-color-brand-black);
+    }
+
+    [data-color-scheme="dark"] {
+      background-color: var(--post-core-color-sandgrey-080);
+      color: var(--post-core-color-brand-white);
+    }
+
     aside {
       position: sticky;
       top: 0;
       background-color: light-dark(white, black);
+      border-bottom: 4px solid #808080;
+      box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
       z-index: 1;
     }
 
@@ -57,31 +84,6 @@
       border-radius: 50%;
       background-color: var(--test-dot-bg);
       color: var(--test-dot-fg);
-    }
-
-    /*
-      TODO: implement something similar in the elements/body.scss ???
-    */
-    body {
-      background-color: var(--post-core-color-sandgrey-006);
-      color: var(--post-core-color-brand-black);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: var(--post-core-color-sandgrey-070);
-        color: var(--post-core-color-brand-white);
-      }
-    }
-
-    [data-color-scheme="light"] {
-      background-color: var(--post-core-color-sandgrey-006);
-      color: var(--post-core-color-brand-black);
-    }
-
-    [data-color-scheme="dark"] {
-      background-color: var(--post-core-color-sandgrey-070);
-      color: var(--post-core-color-brand-white);
     }
   </style>
 </head>
