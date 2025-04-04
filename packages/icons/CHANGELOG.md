@@ -1,5 +1,7 @@
 # @swisspost/design-system-icons
 
+## 9.0.0-next.34
+
 ## 9.0.0-next.33
 
 ### Minor Changes

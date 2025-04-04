@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.34
+
+### Patch Changes
+
+- Resolved styling inconsistencies for `segmented-button` component on iOS devices. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4964](https://github.com/swisspost/design-system/pull/4964))
+
 ## 9.0.0-next.33
 
 ### Patch Changes
