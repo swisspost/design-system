@@ -1,0 +1,22 @@
+@use '../functions/tokens';
+@use '../tokens/components';
+
+tokens.$default-map: components.$post-palettes;
+
+.palette {
+  --post-palette-accent-color: #{tokens.get('palettes-accent')};
+
+  color-scheme: #{tokens.get('palettes-scheme')};
+  background-color: #{tokens.get('palettes-bg')};
+  color: #{tokens.get('palettes-fg')};
+
+  // TODO: define tokens for sizes
+  margin-top: 1rem;
+  padding: 1rem;
+
+  .card {
+    // TODO: add nested color-scheme
+    background-color: #{tokens.get('palettes-nested-bg')};
+    color: #{tokens.get('palettes-nested-fg')};
+  }
+}
