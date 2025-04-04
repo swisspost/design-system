@@ -5,8 +5,7 @@
 @use './../mixins/media';
 
 :root,
-[data-color-scheme='light'],
-[data-color-scheme='dark'] {
+[data-color-scheme] {
   @include media.max(600px) {
     @include tokens.from(device.$post-mobile);
   }

@@ -4,7 +4,6 @@
 @use './../mixins/tokens';
 
 :root,
-[data-color-scheme='light'],
-[data-color-scheme='dark'] {
+[data-color-scheme] {
   @include tokens.from(themes.$post-cargo);
 }

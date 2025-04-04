@@ -2,36 +2,25 @@
 @use './core';
 @use '../tokens/temp/palette';
 
-:root,
-[data-color-scheme='light'],
-[data-color-scheme='dark'],
+.palette,
 .palette-default {
   @each $key, $value in palette.$post-default {
     --#{$key}: #{$value};
   }
 }
 
-:root,
-[data-color-scheme='light'],
-[data-color-scheme='dark'],
 .palette-alternate {
   @each $key, $value in palette.$post-alternate {
     --#{$key}: #{$value};
   }
 }
 
-:root,
-[data-color-scheme='light'],
-[data-color-scheme='dark'],
 .palette-accent {
   @each $key, $value in palette.$post-accent {
     --#{$key}: #{$value};
   }
 }
 
-:root,
-[data-color-scheme='light'],
-[data-color-scheme='dark'],
 .palette-brand {
   @each $key, $value in palette.$post-brand {
     --#{$key}: #{$value};
