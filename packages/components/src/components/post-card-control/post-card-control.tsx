@@ -65,7 +65,7 @@ export class PostCardControl {
   /**
    * Defines the text in the control-label.
    */
-  @Prop() readonly label!: string;
+  @Prop({ reflect: true }) readonly label!: string;
 
   /**
    * Defines the description in the control-label.
