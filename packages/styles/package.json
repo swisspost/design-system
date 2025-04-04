@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "@popperjs/core": "2.11.8",
+    "ag-grid-community": "33.2.1",
     "bootstrap": "5.3.3",
     "gulp-sourcemaps": "3.0.0"
   },

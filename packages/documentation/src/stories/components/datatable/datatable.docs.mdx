@@ -1,0 +1,128 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as DatatableStories from './datatable.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={DatatableStories} />
+
+<div className="docs-title">
+  # Datatable AG Grid
+
+  <nav>
+    <link-design of={JSON.stringify(DatatableStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">Small POC for the AG Grid community</div>
+
+<Canvas sourceState="shown" of={DatatableStories.Default} />
+<div className="hide-col-default">
+  <Controls of={DatatableStories.Default} />
+</div>
+2022 Survey on datatables requirements (based on 10 responses):
+<table className="table">
+  <thead>
+    <tr className="text-start">
+      <th>Requirement</th>
+      <th>AG Community?</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Filtering (9)</td>
+      <td>Partially</td>
+      <td style={{ fontSize: 14 + 'px' }}>
+        The only filters on columns that are available on the community version are: text, number
+        and date. On the above table, we could not for instance get the list of "types" and have it
+        as a list on the filtering of the column to filter only the type we want -> A workaround to
+        this would be to use [outside
+        filters](https://www.ag-grid.com/react-data-grid/filter-external/) (but it feels like a lot
+        of custom development)
+      </td>
+    </tr>
+    <tr>
+      <td>Paging (9)</td>
+      <td>Yes</td>
+      <td style={{ fontSize: 14 + 'px' }}>
+        Also includes server-side paging, filtering and sorting
+      </td>
+    </tr>
+    <tr>
+      <td>Sorting (8)</td>
+      <td>Yes</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Selectable rows (7)</td>
+      <td>Yes</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Action buttons (edit row, delete row, ...) (7)</td>
+      <td>Yes</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Custom HTML template for each row/cell (6)</td>
+      <td>Yes</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Responsiveness for all screen sizes (6)</td>
+      <td>Yes</td>
+      <td style={{ fontSize: 14 + 'px' }}>
+        AG Grid provides a lot of [column sizing
+        options](https://www.ag-grid.com/javascript-data-grid/column-sizing/)
+      </td>
+    </tr>
+    <tr>
+      <td>Expandable rows (accordion) to display more information (3)</td>
+      <td>No</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Horizontal scroll (3)</td>
+      <td>Yes</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Inline editing (3)</td>
+      <td>Yes</td>
+      <td style={{ fontSize: 14 + 'px' }}>The "type" column is editable in the preview</td>
+    </tr>
+    <tr>
+      <td>Different color themes or style variants (3)</td>
+      <td>Yes</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Custom API Schema (you define the data structure) (3)</td>
+      <td>No</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Fixed rows or columns (2)</td>
+      <td>Yes</td>
+      <td style={{ fontSize: 14 + 'px' }}>
+        The bottom row as well as the first column in the preview is fixed
+      </td>
+    </tr>
+    <tr>
+      <td>Resizable columns (2)</td>
+      <td>Yes</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>User can toggle visibility of columns (show/hide) (2)</td>
+      <td>Yes</td>
+      <td style={{ fontSize: 14 + 'px' }}>This can be done with a sidebar</td>
+    </tr>
+    <tr>
+      <td>Overlay with detail view or edit form (1)</td>
+      <td>No</td>
+      <td style={{ fontSize: 14 + 'px' }}>
+        This can easily be achieved with a popover and can be set on any grid
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -35,6 +35,7 @@
     "@swisspost/design-system-styles": "workspace:9.0.0-next.33",
     "@swisspost/design-system-tokens": "workspace:9.0.0-next.33",
     "@swisspost/internet-header": "workspace:2.0.0-next.33",
+    "ag-grid-community": "33.2.1",
     "bootstrap": "5.3.3"
   },
   "devDependencies": {

@@ -1,0 +1,12 @@
+.ag-root-wrapper {
+  border: none;
+  border-radius: 0;
+
+  .ag-header {
+    border-bottom: 1px solid #ccc;
+  }
+
+  .ag-cell {
+    line-height: unset !important;
+  }
+}
