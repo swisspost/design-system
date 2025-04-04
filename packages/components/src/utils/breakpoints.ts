@@ -1,3 +1,5 @@
+import { IS_BROWSER } from '@/utils/environment';
+
 type MapItem = {
   minWidth: number;
   key: string;
@@ -13,7 +15,7 @@ export class Breakpoint {
   };
 
   constructor() {
-    if (!this.breakpointMap) {
+    if (IS_BROWSER && !this.breakpointMap) {
       const keys = this.getStyles('--post-breakpoint-keys');
       const names = this.getStyles('--post-breakpoint-names');
       const widths = this.getStyles('--post-breakpoint-widths');
@@ -55,7 +57,11 @@ export class Breakpoint {
   }
 
   private dispatchEvent(type: ListenerType) {
-    window.dispatchEvent(new CustomEvent(`postBreakpoint:${type}`, { detail: this.current[type] }));
+    if (IS_BROWSER) {
+      window.dispatchEvent(
+        new CustomEvent(`postBreakpoint:${type}`, { detail: this.current[type] }),
+      );
+    }
   }
 
   public get(type: ListenerType) {
