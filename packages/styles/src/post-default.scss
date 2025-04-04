@@ -1,7 +1,9 @@
+@use './tokens/schemes-static';
 @use './tokens/schemes';
 @use './tokens/device-default';
 @use './tokens/appearance-default';
 @use './tokens/post-theme';
+@use './tokens/palette';
 @use './layout';
 @use './utilities';
 @use './elements';

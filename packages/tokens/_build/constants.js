@@ -17,9 +17,11 @@ export const FILE_HEADER = [
 export const TOKENSET_NAMES = {
   Core: 'core',
   Scheme: 'scheme',
+  SchemeStatic: 'scheme',
   Device: 'device',
   Channel: 'channel',
   Theme: 'theme',
+  Palette: 'palette',
   Elements: 'elements',
   Components: 'components',
   Utilities: 'utilities',
