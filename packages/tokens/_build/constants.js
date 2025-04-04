@@ -23,7 +23,6 @@ export const TOKENSET_NAMES = {
   Elements: 'elements',
   Components: 'components',
   Utilities: 'utilities',
-  Palettes: 'palettes',
   Helpers: 'helpers',
 };
 
