@@ -14,6 +14,6 @@ export function checkNonEmpty<T extends { host: HTMLElement }>(
   const message = customMessage || defaultMessage;
 
   if (EMPTY_VALUES.some(v => v === value)) {
-    throw new Error(message);
+    console.error(message);
   }
 }

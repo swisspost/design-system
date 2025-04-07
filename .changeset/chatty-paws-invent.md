@@ -3,4 +3,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Updated prop validation on various components and added a `warning` option.
+Aligned prop validation across the component library and replaced thrown errors with console errors.
