@@ -1,12 +1,4 @@
 import React from 'react';
-import { parse } from '@/utils/sass-export';
-import { forEach } from '@/utils/react';
-import { round } from '@/utils/units';
-import scss from './typography.module.scss';
-
-/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-const SCSS_VARIABLES: any = parse(scss);
-const baseFontSize = parseFloat(SCSS_VARIABLES.base.fontSize);
 
 export function FontFaceWrapper(props: { children: React.ReactElement[] | null }) {
   return <div className="sb-fontface-wrapper">{props.children}</div>;
@@ -41,81 +33,6 @@ export function FontFace(props: { face: string; family: string; weight: string; 
         </div>
       </div>
     </article>
-  );
-}
-
-export function FontSizesAndLineheights() {
-  return (
-    <div className="sb-fontsizes table-responsive">
-      <table className="table">
-        <thead>
-          <tr>
-            <th className="w-quarter">Name</th>
-            <th>Class</th>
-            <th>Scss variable</th>
-            <th>Font Size</th>
-            <th>Line Height</th>
-          </tr>
-        </thead>
-        <tbody>
-          {forEach(SCSS_VARIABLES.fontSizes, ({ key, value }) => (
-            <tr key={key}>
-              <th>font-size-{key}</th>
-              <td>
-                <code>font-size-{key}</code>
-              </td>
-              <td>
-                <code>$font-size-{key}</code>
-              </td>
-              <td>
-                <span>{`${round(parseFloat(value) * baseFontSize, 4)}px`}</span>
-                <br />
-                <span className="fs-tiny text-muted">{value}</span>
-              </td>
-              <td>
-                <span>1.{parseInt(key) >= 24 ? '2' : '5'}</span>
-                <br />
-                <span className="fs-tiny text-muted">
-                  {round(parseFloat(value) * (parseFloat(key) >= 24 ? 1.2 : 1.5), 4)}
-                  rem
-                </span>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
-export function FontCurves() {
-  return (
-    <div className="sb-fontcurves table-responsive">
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            {forEach(SCSS_VARIABLES.fontCurves.tiny, ({ key }) => (
-              <th key={key}>{key}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {forEach(SCSS_VARIABLES.fontCurves, curve => (
-            <tr key={curve.key}>
-              <th>{curve.key}</th>
-              {forEach(curve.value, ({ key, value }) => (
-                <td key={key}>
-                  <span>{round(parseFloat(value) * baseFontSize, 4)}px</span>
-                  <br />
-                  <span className="fs-tiny text-muted">{value}</span>
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
   );
 }
 
