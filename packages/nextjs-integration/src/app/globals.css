@@ -18,14 +18,10 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
     rgb(var(--background-start-rgb));
-}
-
-[slot='post-logo'],
-:has(post-logo) &,
-a:has(post-logo) {
-  height: 100%;
-  display: inline-block !important;
-  padding: 0;
 }

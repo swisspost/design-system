@@ -30,9 +30,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <PostHeader>
-          <Link href="other" slot="post-logo">
-            <PostLogo>/page</PostLogo>
-          </Link>
+          <PostLogo slot="post-logo">/page</PostLogo>
+
           <ul className="list-inline" slot="meta-navigation">
             <li>
               <Link href="/"></Link>
