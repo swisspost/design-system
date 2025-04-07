@@ -30,9 +30,8 @@ jobs:
 
       - name: Install Playwright
         run: |
-          cd packages/styles
-          pnpm add -D @playwright/test
-          pnpm exec playwright install --with-deps
+          pnpm add -D @playwright/test --filter design-system-styles
+          pnpm exec playwright install --with-deps --filter design-system-styles
 
       - name: Set up cache for snapshots
         id: cache
@@ -48,14 +47,10 @@ jobs:
 
       - name: Initialize snapshots if cache missed
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
-        run: |
-          cd packages/styles
-          pnpm exec playwright test --config=visual-tests/playwright.config.ts --update-snapshots
+        run: pnpm --filter design-system-styles exec playwright test --config=packages/styles/visual-tests/playwright.config.ts --update-snapshots
 
       - name: Run visual tests
-        run: |
-          cd packages/styles
-          pnpm exec playwright test --config=visual-tests/playwright.config.ts
+        run: pnpm --filter design-system-styles exec playwright test --config=packages/styles/visual-tests/playwright.config.ts
 
       - name: Upload test results
         if: always()
@@ -66,4 +61,3 @@ jobs:
             packages/styles/visual-tests/test-results
             packages/styles/visual-tests/playwright-report
           retention-days: 7
-
