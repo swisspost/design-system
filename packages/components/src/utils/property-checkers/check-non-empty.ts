@@ -1,11 +1,9 @@
 import { EMPTY_VALUES } from './constants';
-import { MsgType } from '@/types';
 
 export function checkNonEmpty<T extends { host: HTMLElement }>(
   component: T,
   prop: keyof T,
   customMessage?: string,
-  msgType: MsgType = 'error',
 ) {
   const componentName = component.host.localName;
   const value = component[prop];
@@ -16,10 +14,6 @@ export function checkNonEmpty<T extends { host: HTMLElement }>(
   const message = customMessage || defaultMessage;
 
   if (EMPTY_VALUES.some(v => v === value)) {
-    if (msgType != 'warning') {
-      throw new Error(message);
-    } else {
-      console.warn(message);
-    }
+    throw new Error(message);
   }
 }
