@@ -1,6 +1,6 @@
 import { PostIcon } from '@swisspost/design-system-components-react';
 
-export default function Home() {
+export default function Other() {
   return (
     <>
       <h1 className="visually-hidden">This is another page</h1>
