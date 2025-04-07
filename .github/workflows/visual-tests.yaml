@@ -2,11 +2,17 @@ name: Visual Tests
 
 on:
   pull_request:
+    paths:
+      - 'packages/styles/visual-tests/**'
+      - 'packages/styles/**' # Add other paths that might affect visual tests
     branches:
       - main
 
 jobs:
   visual-tests:
+    permissions:
+      contents: read
+      pull-requests: write
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -23,7 +29,7 @@ jobs:
         run: pnpm bootstrap
 
       - name: Install Playwright
-        pnpm --filter design-system-styles exec playwright install --with-deps
+        run: pnpm --filter design-system-styles exec playwright install --with-deps
 
       - name: Set up cache for snapshots
         id: cache
