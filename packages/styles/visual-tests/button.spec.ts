@@ -5,5 +5,5 @@ test('button default visual regression', async ({ page }) => {
 
   const button = page.locator('button.btn-primary').first();
 
-  await expect(button).toHaveScreenshot('button-default.png');
+  await expect(button).toHaveScreenshot('button-primary.png');
 });
