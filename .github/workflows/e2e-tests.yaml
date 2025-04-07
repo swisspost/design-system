@@ -26,7 +26,7 @@ jobs:
         run: pnpm bootstrap
 
       - name: Install Playwright
-        run: pnpm exec playwright install --with-deps
+        pnpm --filter design-system-styles exec playwright install --with-deps
 
       - name: Set up cache for snapshots
         id: cache
