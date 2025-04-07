@@ -1,4 +1,7 @@
 import { Component, Element, Event, EventEmitter, Host, Method, Prop, h } from '@stencil/core';
+import { IS_BROWSER } from '@/utils';
+import { version } from '@root/package.json';
+
 import {
   arrow,
   autoUpdate,
@@ -13,9 +16,7 @@ import {
 } from '@floating-ui/dom';
 
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
-import '@oddbird/popover-polyfill';
-
-import { version } from '@root/package.json';
+import { apply, isSupported } from '@oddbird/popover-polyfill/dist/popover-fn.js';
 
 interface PopoverElement {
   showPopover: () => void;
@@ -102,6 +103,12 @@ export class PostPopovercontainer {
   private mouseTrackingHandler(event: MouseEvent) {
     this.host.style.setProperty('--safe-space-cursor-x', `${event.clientX}px`);
     this.host.style.setProperty('--safe-space-cursor-y', `${event.clientY}px`);
+  }
+
+  connectedCallback() {
+    if (IS_BROWSER && !isSupported()) {
+      apply();
+    }
   }
 
   componentDidLoad() {
@@ -195,8 +202,8 @@ export class PostPopovercontainer {
   private getHeaderHeight(): number {
     const header = document.querySelector('post-header');
     return header ? parseFloat(getComputedStyle(header).height) : 0;
-  }  
-  
+  }
+
   private async calculatePosition() {
     const { x, y, middlewareData, placement } = await this.computeMainPosition();
     const currentPlacement = placement.split('-')[0];
