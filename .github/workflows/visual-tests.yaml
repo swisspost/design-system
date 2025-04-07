@@ -48,7 +48,7 @@ jobs:
 
       - name: Initialize snapshots if cache missed
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
-        run: pnpm --filter design-system-styles exec playwright test --config=packages/styles/playwright.config.ts --update-snapshots
+        run: pnpm --filter design-system-styles exec playwright test --config=./playwright.config.ts --update-snapshots
 
       - name: Run visual tests
         run: pnpm --filter design-system-styles exec playwright test --config=packages/styles/playwright.config.ts
