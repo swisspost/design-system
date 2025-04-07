@@ -12,6 +12,7 @@
 //   @extend %color-scheme-dark;
 // }
 
+// all scheme tokens which do rely on the current color-scheme
 :root,
 [data-color-scheme] {
   @each $key, $light-value in scheme.$post-light {

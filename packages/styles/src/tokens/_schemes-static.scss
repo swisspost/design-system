@@ -2,6 +2,7 @@
 @use './core';
 @use '../tokens/temp/schemestatic';
 
+// prefered root color-scheme
 :root {
   color-scheme: light dark;
 
@@ -16,6 +17,7 @@
   }
 }
 
+// forced root color-scheme light
 [data-color-scheme='light'] {
   color-scheme: light;
 
@@ -24,6 +26,7 @@
   }
 }
 
+// forced root color-scheme dark
 [data-color-scheme='dark'] {
   color-scheme: dark;
 
