@@ -2,56 +2,57 @@ name: Visual Tests
 
 on:
   pull_request:
-    branches:
-      - main
     paths:
+      - 'packages/styles/visual-tests/**'
       - 'packages/styles/**'
-      - 'packages/tokens/**'
-      - 'packages/documentation/**'
-
-  workflow_dispatch:
+    branches:
+      - "*"
 
 jobs:
-  visual-regression:
-    name: Run Playwright Visual Tests
+  visual-tests:
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
     steps:
-      - name: 📥 Checkout
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: 🔧 Setup Node & pnpm
+      - name: Setup
         uses: ./.github/actions/setup-pnpm
-        with:
-          use_cache: false
 
-      - name: 📦 Install deps & browsers
-        run: |
-          pnpm install
-          pnpm --filter design-system-styles exec playwright install --with-deps
+      - name: Install dependencies and build packages
+        run: pnpm bootstrap
 
-      - name: 💾 Cache snapshots
-        uses: actions/cache@v4
+      - name: Install Playwright
+        pnpm --filter design-system-styles exec playwright install --with-deps
+
+      - name: Set up cache for snapshots
         id: cache
+        uses: actions/cache@v4
         with:
-          path: packages/styles/visual-tests/__screenshots__
-          key: snapshots-${{ github.ref }}
+          key: ${{ runner.os }}-visual-snapshots-${{ hashFiles('packages/styles/visual-tests/**') }}
+          path: |
+            packages/styles/visual-tests/__screenshots__
+            packages/styles/visual-tests/test-results
+            packages/styles/visual-tests/playwright-report
           restore-keys: |
-            snapshots-main
-            snapshots-
+            ${{ runner.os }}-visual-snapshots-
 
-      - name: 🧪 Start Storybook & Run visual tests
-        run: |
-          pnpm exec start-server-and-test docs:headless 9000 "pnpm --filter design-system-styles exec playwright test --config=playwright.config.ts"
-        env:
-          BASE_URL: http://localhost:9000
+      - name: Initialize snapshots if cache missed
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        run: pnpm exec playwright test --config=packages/styles/visual-tests/playwright.config.ts --update-snapshots
 
-      - name: 📤 Upload Playwright report
+      - name: Run visual tests
+        run: pnpm exec playwright test --config=packages/styles/visual-tests/playwright.config.ts
+
+      - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report
-          path: packages/styles/visual-tests/playwright-report/
+          name: visual-test-results
+          path: |
+            packages/styles/visual-tests/test-results
+            packages/styles/visual-tests/playwright-report
+          retention-days: 7

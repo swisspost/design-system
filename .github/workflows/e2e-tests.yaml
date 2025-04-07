@@ -1,58 +1,56 @@
-name: Visual Tests
-
+name: End to end tests
 on:
   pull_request:
     paths:
-      - 'packages/styles/visual-tests/**'
+      - 'packages/documentation/**'
       - 'packages/styles/**'
-    branches:
-      - "*"
+      - 'packages/components/**'
+      - 'packages/internet-header/**'
+      - 'packages/icons/**'
+      - 'packages/tokens/tokensstudio-generated/tokens.json'
+  workflow_dispatch:
 
 jobs:
-  visual-tests:
+  e2e:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           fetch-depth: 0
 
       - name: Setup
         uses: ./.github/actions/setup-pnpm
+        with:
+          use_cache: false
 
-      - name: Install dependencies and build packages
+      - name: Cache cypress
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+        with:
+          path: /home/runner/.cache/Cypress
+          key: ${{ runner.os }}-cypress-${{ hashFiles('./pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-cypress-
+
+      - name: Install & build dependencies
         run: pnpm bootstrap
 
-      - name: Install Playwright
-        pnpm --filter design-system-styles exec playwright install --with-deps
+      - name: Prepare Cypress – Spawn Xvfb server
+        run: Xvfb :99 &
 
-      - name: Set up cache for snapshots
-        id: cache
-        uses: actions/cache@v4
+      - name: Prepare Cypress – Share Xvfb server as environment variable
+        run: export DISPLAY=:99
+
+      - name: Cypress info
+        run: pnpm --filter design-system-documentation exec cypress info
+
+      - name: Run tests
+        run: pnpm e2e:ci
+
+      - name: Upload screenshots
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: failure()
         with:
-          key: ${{ runner.os }}-visual-snapshots-${{ hashFiles('packages/styles/visual-tests/**') }}
-          path: |
-            packages/styles/visual-tests/__screenshots__
-            packages/styles/visual-tests/test-results
-            packages/styles/visual-tests/playwright-report
-          restore-keys: |
-            ${{ runner.os }}-visual-snapshots-
-
-      - name: Initialize snapshots if cache missed
-        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
-        run: pnpm exec playwright test --config=packages/styles/visual-tests/playwright.config.ts --update-snapshots
-
-      - name: Run visual tests
-        run: pnpm exec playwright test --config=packages/styles/visual-tests/playwright.config.ts
-
-      - name: Upload test results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: visual-test-results
-          path: |
-            packages/styles/visual-tests/test-results
-            packages/styles/visual-tests/playwright-report
-          retention-days: 7
+          name: cypress-snapshots
+          path: packages/**/cypress/screenshots
+          retention-days: 14
