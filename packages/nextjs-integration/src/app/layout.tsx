@@ -183,7 +183,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </PostList>
           </PostMainnavigation>
         </PostHeader>
-        <main className="container">{children}</main>
+        {children}
       </body>
     </html>
   );
