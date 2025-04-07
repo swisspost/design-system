@@ -70,7 +70,7 @@ export class PostCardControl {
   /**
    * Defines the description in the control-label.
    */
-  @Prop() readonly description: string = null;
+  @Prop() readonly description?: string;
 
   /**
    * Defines the `type` attribute of the control.
@@ -82,12 +82,12 @@ export class PostCardControl {
    * <span className="banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span>
    * <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
    */
-  @Prop() readonly name: string = null;
+  @Prop() readonly name?: string;
 
   /**
    * Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
    */
-  @Prop() readonly value: string = null;
+  @Prop() readonly value?: string;
 
   /**
    * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms' data.
@@ -103,13 +103,13 @@ export class PostCardControl {
    * Defines the validation `validity` of the control.
    * To reset validity to an undefined state, simply remove the attribute from the control.
    */
-  @Prop({ mutable: true }) validity: null | 'true' | 'false' = null;
+  @Prop({ mutable: true }) validity?: 'true' | 'false';
 
   /**
    * Defines the icon `name` inside the card.
    * <span className="banner banner-sm banner-info">If not set the icon will not show up.</span>
    */
-  @Prop() readonly icon: string = null;
+  @Prop() readonly icon?: string;
 
   /**
    * An event emitted whenever the components checked state is toggled.
@@ -151,7 +151,7 @@ export class PostCardControl {
 
   @Watch('description')
   validateControlDescription() {
-    checkType(this, 'description', 'string', 'warning');
+    checkEmptyOrType(this, 'description', 'string');
   }
 
   @Watch('type')
@@ -182,7 +182,8 @@ export class PostCardControl {
 
   @Watch('icon')
   validateControlIcon() {
-    checkNonEmpty(this, 'icon', undefined, 'warning');
+    checkNonEmpty(this, 'icon');
+    checkType(this, 'icon', 'string');
   }
 
   @Watch('checked')

@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkNonEmpty, checkEmptyOrType, checkEmptyOrPattern } from '@/utils';
+import { checkNonEmpty, checkEmptyOrType, checkEmptyOrPattern, checkType } from '@/utils';
 
 // https://docs.gravatar.com/api/avatars/images/
 const GRAVATAR_DEFAULT = '404';
@@ -60,21 +60,22 @@ export class PostAvatar {
   @Watch('firstname')
   validateFirstname() {
     checkNonEmpty(this, 'firstname');
+    checkType(this, 'firstname', 'string');
   }
 
   @Watch('lastname')
   validateLastname() {
-    checkEmptyOrType(this, 'lastname', 'string', 'warning');
+    checkEmptyOrType(this, 'lastname', 'string');
   }
 
   @Watch('userid')
   validateUserid() {
-    checkEmptyOrType(this, 'userid', 'string', 'warning');
+    checkEmptyOrType(this, 'userid', 'string');
   }
 
   @Watch('email')
   validateEmail() {
-    checkEmptyOrPattern(this, 'email', emailPattern, 'warning');
+    checkEmptyOrPattern(this, 'email', emailPattern);
   }
 
   private async getAvatar() {

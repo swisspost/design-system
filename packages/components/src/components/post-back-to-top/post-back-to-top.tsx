@@ -29,6 +29,12 @@ export class PostBackToTop {
     this.belowFold = this.isBelowFold();
   };
 
+  @Watch('label')
+  validateLabel() {
+    checkNonEmpty(this, 'label');
+    checkType(this, 'label', 'string');
+  }
+
   /*Watch for changes in belowFold to show/hide the back to top button*/
   @Watch('belowFold')
   watchBelowFold(newValue: boolean) {
@@ -85,13 +91,6 @@ export class PostBackToTop {
     if (!this.belowFold) {
       this.host.style.transform = `translateY(${this.translateY})`;
     }
-  }
-
-  // Validate the label
-  @Watch('label')
-  validateLabel() {
-    checkNonEmpty(this, 'label');
-    checkType(this, 'label', 'string');
   }
 
   // Set the initial state
