@@ -7,18 +7,18 @@
     <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
   </head>
   <body>
-    <button aria-describedby="existing-value" data-tooltip-target="tooltip-one" id="target1">
-      toggle
-    </button>
-    <button data-tooltip-target="tooltip-one" id="target2">
-      toggle 2 <span>child element</span>
-    </button>
-    <button data-tooltip-target="tooltip-one" id="target-child-element">
-      toggle with <span>child element</span>
-    </button>
-    <post-tooltip id="tooltip-one">
-      <p>This is a test</p>
-    </post-tooltip>
-    <span id="non-focusable-span" data-tooltip-target="tooltip-one">non-focusable</span>
+    <post-tooltip-trigger for="tooltip-one">
+      <button aria-describedby="existing-value" id="target1">toggle</button>
+    </post-tooltip-trigger>
+    <post-tooltip-trigger for="tooltip-one">
+      <button id="target2">toggle 2 <span>child element</span></button>
+    </post-tooltip-trigger>
+    <post-tooltip-trigger for="tooltip-one">
+      <button id="target-child-element">toggle with <span>child element</span></button>
+    </post-tooltip-trigger>
+    <post-tooltip id="tooltip-one">This is a test</post-tooltip>
+    <post-tooltip-trigger for="tooltip-one"
+      ><span id="non-focusable-span">non-focusable</span></post-tooltip-trigger
+    >
   </body>
 </html>
