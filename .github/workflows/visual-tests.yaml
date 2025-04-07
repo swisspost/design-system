@@ -22,16 +22,22 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup
-        uses: ./.github/actions/setup-pnpm
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
 
-      - name: Install dependencies and build packages
-        run: pnpm bootstrap
-
-      - name: Install Playwright
+      - name: Install dependencies
         run: |
-          pnpm add -D @playwright/test --filter design-system-styles
-          pnpm exec playwright install --with-deps --filter design-system-styles
+          pnpm install
+          cd packages/styles
+          pnpm add -D @playwright/test
+          pnpm exec playwright install --with-deps
+          cd ../..
+
+      - name: Build packages
+        run: pnpm -r --filter "!*-integration" build
 
       - name: Set up cache for snapshots
         id: cache
@@ -45,12 +51,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-visual-snapshots-
 
-      - name: Run visual tests with server
+      - name: Run visual tests with Storybook
         run: |
-          if [ "${{ steps.cache.outputs.cache-hit }}" != "true" ]; then
-            pnpm --filter design-system-styles exec start-server-and-test 'pnpm docs:headless' http://localhost:9000 'playwright test --config=./playwright.config.ts --update-snapshots'
+          cd packages/styles
+          if [ "${{ steps.cache.outputs.cache-hit }}" = "true" ]; then
+            pnpm exec start-server-and-test 'pnpm docs:headless' http://localhost:9000 'playwright test --config=./playwright.config.ts'
           else
-            pnpm --filter design-system-styles exec start-server-and-test 'pnpm docs:headless' http://localhost:9000 'playwright test --config=./playwright.config.ts'
+            pnpm exec start-server-and-test 'pnpm docs:headless' http://localhost:9000 'playwright test --config=./playwright.config.ts --update-snapshots'
           fi
 
       - name: Upload test results
