@@ -2,6 +2,7 @@ import { Component, Element, h, Host, Listen, Method, Prop, Watch } from '@stenc
 import { version } from '@root/package.json';
 import { HEADING_LEVELS, HeadingLevel } from '@/types';
 import { checkOneOf } from '@/utils';
+import { eventGuard } from '@/utils/event-guard'; // Import eventGuard
 
 /**
  * @slot default - Slot for placing post-accordion-item components.
@@ -50,32 +51,33 @@ export class PostAccordion {
 
   @Listen('postToggle')
   collapseToggleHandler(event: CustomEvent<boolean>) {
-    event.stopPropagation();
 
-    const toggledItem = event.target as HTMLElement;
-    const closestParentAccordion = toggledItem.closest('post-accordion');
+    eventGuard(
+      this.host,
+      event,
+      { targetLocalName: 'post-accordion-item', delegatorSelector: 'post-accordion' },
+      () => {
+        const toggledAccordionItem = event.target as HTMLPostAccordionItemElement;
+        const isClosing = this.expandedItems.has(toggledAccordionItem);
 
-    if (closestParentAccordion === this.host && toggledItem.localName === 'post-accordion-item') {
-      const toggledAccordionItem = event.target as HTMLPostAccordionItemElement;
-      const isClosing = this.expandedItems.has(toggledAccordionItem);
+        if (isClosing) {
+          this.expandedItems.delete(toggledAccordionItem);
+        } else {
+          this.expandedItems.add(toggledAccordionItem);
+        }
 
-      if (isClosing) {
-        this.expandedItems.delete(toggledAccordionItem);
-      } else {
-        this.expandedItems.add(toggledAccordionItem);
+        if (this.multiple || isClosing) return;
+
+        // Close other open accordion items to ensure only one is open at a time
+        Array.from(this.expandedItems.values())
+          .filter(item => item !== toggledAccordionItem)
+          .forEach(item => {
+            item.toggle(false);
+          });
       }
-
-      if (this.multiple || isClosing) return;
-
-      // close other open accordion items to have only one opened at a time
-      Array.from(this.expandedItems.values())
-        .filter(item => item !== toggledAccordionItem)
-        .forEach(item => {
-          item.toggle(false);
-        });
-    }
+    );
   }
-
+  
   /**
    * Toggles the `post-accordion-item` with the given id.
    */
