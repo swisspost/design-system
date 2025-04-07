@@ -9,6 +9,10 @@ import {
   h,
   Watch,
 } from '@stencil/core';
+
+import { IS_BROWSER } from '@/utils';
+import { version } from '@root/package.json';
+
 import {
   arrow,
   autoUpdate,
@@ -22,14 +26,10 @@ import {
   size,
 } from '@floating-ui/dom';
 
-import { checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
-
 import { PLACEMENT_TYPES } from '@/types';
 
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
-import '@oddbird/popover-polyfill';
-
-import { version } from '@root/package.json';
+import { apply, isSupported } from '@oddbird/popover-polyfill/dist/popover-fn.js';
 
 interface PopoverElement {
   showPopover: () => void;
@@ -131,6 +131,12 @@ export class PostPopovercontainer {
   private mouseTrackingHandler(event: MouseEvent) {
     this.host.style.setProperty('--safe-space-cursor-x', `${event.clientX}px`);
     this.host.style.setProperty('--safe-space-cursor-y', `${event.clientY}px`);
+  }
+
+  connectedCallback() {
+    if (IS_BROWSER && !isSupported()) {
+      apply();
+    }
   }
 
   componentDidLoad() {

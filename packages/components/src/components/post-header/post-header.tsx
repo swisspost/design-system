@@ -14,6 +14,7 @@ import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
 import { slideDown, slideUp } from '@/animations/slide';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
+import { eventGuard } from '@/utils/event-guard';
 
 export type DEVICE_SIZE = 'mobile' | 'tablet' | 'desktop' | null;
 
@@ -42,7 +43,7 @@ export class PostHeader {
   private localHeaderResizeObserver: ResizeObserver;
   get scrollParent(): HTMLElement {
     const frozenScrollParent: HTMLElement | null = document.querySelector(
-      '[data-is-post-header-scroll-parent]',
+      '[data-post-scroll-locked]',
     );
 
     if (frozenScrollParent) return frozenScrollParent;
@@ -59,7 +60,7 @@ export class PostHeader {
       element = element.parentElement;
     }
 
-    return document.documentElement;
+    return document.body;
   }
 
   @Element() host: HTMLPostHeaderElement;
@@ -69,17 +70,18 @@ export class PostHeader {
 
   @State() megadropdownOpen: boolean = false;
 
+  @Watch('device')
   @Watch('mobileMenuExtended')
-  frozeBody(isMobileMenuExtended: boolean) {
+  lockBody(newValue: boolean | string, _oldValue: boolean | string, propName: string) {
     const scrollParent = this.scrollParent;
+    const mobileMenuExtended =
+      propName === 'mobileMenuExtended' ? newValue : this.mobileMenuExtended;
 
-    if (isMobileMenuExtended) {
-      scrollParent.setAttribute('data-is-post-header-scroll-parent', '');
-      scrollParent.style.overflow = 'hidden';
+    if (this.device !== 'desktop' && mobileMenuExtended) {
+      scrollParent.setAttribute('data-post-scroll-locked', '');
       this.host.addEventListener('keydown', this.keyboardHandler);
     } else {
-      scrollParent.style.overflow = '';
-      scrollParent.removeAttribute('data-is-post-header-scroll-parent');
+      scrollParent.removeAttribute('data-post-scroll-locked');
       this.host.removeEventListener('keydown', this.keyboardHandler);
     }
   }
@@ -109,19 +111,15 @@ export class PostHeader {
     document.addEventListener('postToggleMegadropdown', this.megedropdownStateHandler);
     this.host.addEventListener('click', this.handleLinkClick);
 
-    this.frozeBody(false);
     this.handleResize();
     this.handleScrollEvent();
     this.handleScrollParentResize();
+    this.lockBody(false, this.mobileMenuExtended, 'mobileMenuExtended');
   }
 
   componentDidRender() {
     this.getFocusableElements();
     this.handleLocalHeaderResize();
-  }
-
-  componentDidLoad() {
-    // Check if the mega dropdown is expanded
   }
 
   // Clean up possible side effects when post-header is disconnected
@@ -165,12 +163,27 @@ export class PostHeader {
     // Toggle menu visibility before it slides down and after it slides back up
     if (this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
     this.mobileMenuExtended = force ?? !this.mobileMenuExtended;
-    if (!this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
+
+    if (this.mobileMenuExtended === false) {
+      Array.from(this.host.querySelectorAll('post-megadropdown')).forEach(dropdown => {
+        dropdown.hide(false, true);
+      });
+    }
   }
 
-  private megedropdownStateHandler(event: CustomEvent) {
-    this.megadropdownOpen = event.detail.isVisible;
-  }
+  private megedropdownStateHandler = (event: CustomEvent) => {
+    eventGuard(
+      this.host,
+      event,
+      {
+        targetLocalName: 'post-megadropdown',
+        delegatorSelector: 'post-header',
+      },
+      () => {
+        this.megadropdownOpen = event.detail.isVisible;
+      }
+    );
+  };
 
   // Get all the focusable elements in the post-header mobile menu
   private getFocusableElements() {
@@ -214,13 +227,18 @@ export class PostHeader {
   }
 
   private handleScrollEvent() {
-    this.host.style.setProperty('--header-scroll-top', `${this.scrollParent.scrollTop}px`);
+    const scrollTop =
+      this.scrollParent === document.body ? window.scrollY : this.scrollParent.scrollTop;
+    document.documentElement.style.setProperty('--post-header-scroll-top', `${scrollTop}px`);
   }
 
   private updateLocalHeaderHeight() {
     const localHeaderHeight =
       this.host.shadowRoot.querySelector('.local-header')?.clientHeight || 0;
-    this.host.style.setProperty('--local-header-height', `${localHeaderHeight}px`);
+    document.documentElement.style.setProperty(
+      '--post-local-header-height',
+      `${localHeaderHeight}px`,
+    );
   }
 
   private updateScrollParentHeight() {
@@ -265,12 +283,6 @@ export class PostHeader {
       newDevice = 'mobile';
     }
 
-    // Close any open mobile menu
-    if (newDevice === 'desktop' && this.mobileMenuExtended) {
-      this.toggleMobileMenu();
-      this.mobileMenuAnimation.finish(); // no animation
-    }
-
     // Apply only on change for doing work only when necessary
     if (newDevice !== previousDevice) {
       this.device = newDevice;
@@ -307,15 +319,22 @@ export class PostHeader {
 
   private renderNavigation() {
     const navigationClasses = ['navigation'];
+
+    const mobileMenuScrollTop = this.mobileMenu?.scrollTop ?? 0;
+
     if (this.mobileMenuExtended) {
       navigationClasses.push('extended');
     }
-    if (!this.megadropdownOpen) {
-      navigationClasses.push('scroll-y');
+
+    if (this.megadropdownOpen) {
+      navigationClasses.push('megadropdown-open');
     }
 
     return (
-      <div class={navigationClasses.join(' ')}>
+      <div
+        class={navigationClasses.join(' ')}
+        style={{ '--header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
+      >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
           <slot name="post-mainnavigation"></slot>
 
@@ -332,7 +351,7 @@ export class PostHeader {
 
   render() {
     return (
-      <Host version={version}>
+      <Host data-version={version}>
         <div class="global-header">
           <div class="global-sub">
             <div class="logo">

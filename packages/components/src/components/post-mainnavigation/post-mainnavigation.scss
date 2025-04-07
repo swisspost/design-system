@@ -65,6 +65,15 @@ post-mainnavigation {
       height: 24px;
       width: 24px;
     }
+
+    @include utilities.high-contrast-mode() {
+      border: 1px solid ButtonBorder !important;
+
+      &:hover::after,
+      &[aria-expanded='true']::after {
+        color: HighlightText;
+      }
+    }
   }
 
   // desktop styles
@@ -75,7 +84,7 @@ post-mainnavigation {
     nav {
       max-width: 100%;
       background: color.$white;
-      max-height: var(--main-navigation-height);
+      max-height: var(--post-main-navigation-height);
       user-select: none;
       transition: margin animation.$transition-base-timing;
     }
@@ -93,7 +102,7 @@ post-mainnavigation {
         padding: 16px;
         box-shadow: elevation.$elevation-500;
         line-height: 100%;
-        height: var(--main-navigation-height);
+        height: var(--post-main-navigation-height);
 
         post-icon {
           font-size: 1rem;
@@ -126,7 +135,7 @@ post-mainnavigation {
       post-megadropdown-trigger button {
         position: sticky;
         padding-inline: 12px;
-        height: var(--main-navigation-height);
+        height: var(--post-main-navigation-height);
         gap: 4px;
         font-size: 16px;
         z-index: 4;
@@ -142,7 +151,7 @@ post-mainnavigation {
           opacity: 1;
           text-align: center;
           width: 100%;
-          left: 0;
+          inset-inline-start: 0;
         }
 
         &.selected,

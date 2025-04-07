@@ -11,7 +11,7 @@ export class PostMenuTrigger {
   /**
    * ID of the menu element that this trigger is linked to. Used to open and close the specified menu.
    */
-  @Prop() for!: string;
+  @Prop({ reflect: true }) for!: string;
 
   @Element() host: HTMLPostMenuTriggerElement;
 
@@ -50,7 +50,7 @@ export class PostMenuTrigger {
     }
   }
 
-  private handleKeyDown = (e: KeyboardEvent) => {
+  private readonly handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
       e.preventDefault();
       this.handleToggle();

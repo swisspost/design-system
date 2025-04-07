@@ -20,7 +20,8 @@ export class PostTabPanel {
   /**
    * The name of the panel, used to associate it with a tab header.
    */
-  @Prop() readonly name!: string;
+
+  @Prop({ reflect: true }) readonly name!: string;
 
   @Watch('name')
   validateName() {

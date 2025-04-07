@@ -34,7 +34,7 @@ export class PostAvatar {
   /**
    * Defines the users firstname.
    */
-  @Prop() readonly firstname!: string;
+  @Prop({ reflect: true }) readonly firstname!: string;
 
   /**
    * Defines the users lastname.

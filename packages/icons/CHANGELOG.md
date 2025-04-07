@@ -1,5 +1,79 @@
 # @swisspost/design-system-icons
 
+## 9.0.0-next.33
+
+### Minor Changes
+
+- #### Updated Icons
+
+  - HomeService (Solid): 16, 24, 32, 40, 48, 64px
+  - Instagram: 16, 24, 32, 40, 48, 64px
+  - Instagram (Solid): 16, 24px
+  - LinkedIn: 16, 24, 32, 40, 48, 64px
+  - Picture (Solid): 16, 24, 32, 40, 48, 64px
+  - Snapchat: 16, 32, 40, 64px
+  - WhatsApp: 16, 24, 32, 40, 48, 64px
+  - Youtube: 16, 24, 32, 40, 48, 64px
+  - kununu: 16, 24, 32, 40, 48, 64px
+
+  #### Added Icons
+
+  All icons include line and solid variants in the sizes 16px, 24px, 32px, 40px, 48px and 64px.
+
+  - AccessBlocked
+  - AccessEPR
+  - Ambulance
+  - Emergency
+  - EmergencyAccess
+  - ProtocolAccess
+  - ProtocolView
+  - Archive
+  - DocumentAuditRecordRepository
+  - DocumentProtocol
+  - Notes / NotesAdd
+  - ArtificialIntelligence
+  - Blueprint
+  - Code
+  - Designsystem
+  - SDCard / SIMCard
+  - UploadAutomated
+  - Authorization
+  - Gear
+  - Group
+  - SoundLow / SoundMid
+  - DisabledBlind
+  - DisabledWalking
+  - AudioFile
+  - Brain
+  - CallConsultation
+  - Flash / FlashOff (by [@swisspost-bot](https://github.com/swisspost-bot) with [#5096](https://github.com/swisspost/design-system/pull/5096))
+
+- #### Updated Icons The following icons have been updated:
+
+  - **Speech to Text (Solid Shape)**: 16, 24, 32, 40, 48, 64px
+
+  #### Added Icons
+
+  The following new icons have been added:
+
+  - **Access Open (Shape & Solid)**: 16, 24, 32, 40, 48, 64px
+  - **Alarm (Shape & Solid)**: 16, 24, 32, 40, 48, 64px
+  - **Calculator (Shape & Solid)**: 16, 24, 32, 40, 48, 64px
+  - **Gender Male (Shape & Solid)**: 16, 24, 32, 40, 48, 64px
+  - **Search Consignment (Shape & Solid)**: 16, 24, 32, 40, 48, 64px
+
+  This update includes refinements to existing icons and introduces new icons to enhance usability and visual consistency. (by [@swisspost-bot](https://github.com/swisspost-bot) with [#5122](https://github.com/swisspost/design-system/pull/5122))
+
+## 9.0.0-next.32
+
+## 9.0.0-next.31
+
+## 9.0.0-next.30
+
+### Minor Changes
+
+- The two icon sets “Post” and “UI” have been updated with the latest icons. The “UI” icons are now also updated via cdn. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4611](https://github.com/swisspost/design-system/pull/4611))
+
 ## 9.0.0-next.29
 
 ## 9.0.0-next.28
