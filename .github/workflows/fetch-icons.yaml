@@ -46,7 +46,7 @@ jobs:
       - name: Create Branch
         id: current-branch
         run: |
-          git checkout -b $BRANCH_NAME origin/main
+          git checkout -b $BRANCH_NAME origin/icons-workflow
           echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
         env:
           BRANCH_NAME: ${{ steps.current-date.outputs.date }}-update-icons
@@ -82,7 +82,7 @@ jobs:
       - name: New Step
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         with:
-          script: console.log(context)
+          script: console.log(context, process)
 
       - name: Exit if no changes
         if: steps.changed-files.outputs.any_modified == 'false'
