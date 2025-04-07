@@ -31,8 +31,7 @@ jobs:
       - name: 📦 Install deps & browsers
         run: |
           pnpm install
-          pnpm --filter design-system-styles exec playwright test
-
+          pnpm --filter design-system-styles exec playwright install --with-deps
 
       - name: 💾 Cache snapshots
         uses: actions/cache@v4
