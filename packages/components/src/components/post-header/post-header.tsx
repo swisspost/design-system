@@ -351,7 +351,7 @@ export class PostHeader {
 
   render() {
     return (
-      <Host version={version}>
+      <Host data-version={version}>
         <div class="global-header">
           <div class="global-sub">
             <div class="logo">
