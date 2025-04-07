@@ -4,9 +4,6 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - 'packages/styles/**'
-      - 'packages/styles/visual-tests/**'
 
 jobs:
   visual-tests:
