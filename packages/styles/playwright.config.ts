@@ -1,5 +1,7 @@
 import { defineConfig } from '@playwright/test';
 
+const baseURL = process.env.BASE_URL || 'http://localhost:9000';
+
 export default defineConfig({
   testDir: './visual-tests',
   outputDir: './visual-tests/test-results',
@@ -13,6 +15,7 @@ export default defineConfig({
     ['list']
   ],
   use: {
+    baseURL,
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
     screenshot: 'only-on-failure',
