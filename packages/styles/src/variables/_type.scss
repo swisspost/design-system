@@ -28,32 +28,6 @@ $font-family-sans-serif:
 $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
   monospace !default;
 
-// Deprecated
-$font-size-tiny: sizing.px-to-rem(13px);
-$font-size-small: sizing.px-to-rem(15px);
-$font-size-regular: sizing.px-to-rem(16px);
-$font-size-bigger-regular: sizing.px-to-rem(17px);
-$font-size-medium: sizing.px-to-rem(20px);
-$font-size-large: sizing.px-to-rem(24px);
-$font-size-small-big: sizing.px-to-rem(28px);
-$font-size-big: sizing.px-to-rem(32px);
-$font-size-bigger-big: sizing.px-to-rem(40px);
-$font-size-small-huge: sizing.px-to-rem(48px);
-$font-size-huge: sizing.px-to-rem(56px);
-
-// New
-$font-size-12: sizing.px-to-rem(12px);
-$font-size-14: sizing.px-to-rem(14px);
-$font-size-16: sizing.px-to-rem(16px);
-$font-size-18: sizing.px-to-rem(18px);
-$font-size-20: sizing.px-to-rem(20px);
-$font-size-24: sizing.px-to-rem(24px);
-$font-size-28: sizing.px-to-rem(28px);
-$font-size-32: sizing.px-to-rem(32px);
-$font-size-40: sizing.px-to-rem(40px);
-$font-size-48: sizing.px-to-rem(48px);
-$font-size-56: sizing.px-to-rem(56px);
-
 $line-height-copy: 1.5;
 $line-height-heading: 1.2;
 
@@ -61,7 +35,7 @@ $font-weight-normal: tokens.get('utility-font-weight-regular') !default;
 $font-weight-bold: tokens.get('utility-font-weight-bold') !default;
 $font-weight-black: tokens.get('utility-font-weight-black') !default;
 
-$font-size-base: $font-size-regular !default;
+$font-size-base: 1rem !default;
 $font-weight-base: $font-weight-normal !default;
 $line-height-base: $line-height-copy;
 $line-height-1: tokens.get('utility-line-height-1');
