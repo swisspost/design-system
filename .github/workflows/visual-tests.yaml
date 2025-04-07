@@ -30,14 +30,8 @@ jobs:
 
       - name: Install Playwright
         run: |
-          cd packages/styles
-          pnpm add -D @playwright/test
-          pnpm exec playwright install --with-deps
-
-      - name: Start Storybook server
-        run: pnpm docs:headless &
-        env:
-          NODE_ENV: test
+          pnpm add -D @playwright/test --filter design-system-styles
+          pnpm exec playwright install --with-deps --filter design-system-styles
 
       - name: Set up cache for snapshots
         id: cache
@@ -47,16 +41,17 @@ jobs:
           path: |
             packages/styles/visual-tests/__screenshots__
             packages/styles/visual-tests/test-results
-            packages/styles/visual-tests/playwright-report
+            packages/styles/playwright-report
           restore-keys: |
             ${{ runner.os }}-visual-snapshots-
 
-      - name: Initialize snapshots if cache missed
-        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
-        run: pnpm --filter design-system-styles exec playwright test --config=./playwright.config.ts --update-snapshots
-
-      - name: Run visual tests
-        run: pnpm --filter design-system-styles exec playwright test --config=packages/styles/playwright.config.ts
+      - name: Run visual tests with server
+        run: |
+          if [ "${{ steps.cache.outputs.cache-hit }}" != "true" ]; then
+            pnpm --filter design-system-styles exec start-server-and-test 'pnpm docs:headless' http://localhost:9000 'playwright test --config=./playwright.config.ts --update-snapshots'
+          else
+            pnpm --filter design-system-styles exec start-server-and-test 'pnpm docs:headless' http://localhost:9000 'playwright test --config=./playwright.config.ts'
+          fi
 
       - name: Upload test results
         if: always()
