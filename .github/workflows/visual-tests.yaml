@@ -2,11 +2,11 @@ name: Visual Tests
 
 on:
   pull_request:
-    paths:
-      - 'packages/styles/visual-tests/**'
-      - 'packages/styles/**'
     branches:
-      - "*"
+      - main
+    paths:
+      - 'packages/styles/**'
+      - 'packages/styles/visual-tests/**'
 
 jobs:
   visual-tests:
