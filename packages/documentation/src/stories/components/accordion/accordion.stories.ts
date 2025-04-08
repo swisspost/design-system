@@ -53,7 +53,6 @@ function getAccordionItemContent(position: number | string, headingLevel?: numbe
     <div>
       <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
     </div>
-    
   `;
 }
 

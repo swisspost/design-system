@@ -3,10 +3,8 @@ name: Run Visual Regression Tests
 on:
   pull_request:
     paths:
-      - 'packages/**'
-      - 'apps/**'
-      - 'storybook/**'
-      - '.github/workflows/**'
+      - 'packages/styles/**'
+      - 'packages/documentation/**'
   workflow_run:
     workflows: ['Deploy Documentation Preview']
     types:
