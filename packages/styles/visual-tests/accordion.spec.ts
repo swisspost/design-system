@@ -5,5 +5,8 @@ test('accordion default visual regression', async ({ page }) => {
 
   const accordion = page.locator('post-accordion').first();
 
+  // ⏳ Wait until the component is actually visible and rendered
+  await expect(accordion).toBeVisible();
+
   await expect(accordion).toHaveScreenshot('accordion.png');
 });
