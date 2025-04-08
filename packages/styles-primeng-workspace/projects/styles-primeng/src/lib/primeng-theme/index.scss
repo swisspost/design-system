@@ -1,4 +1,20 @@
-@import './variables';
-@import './theme-base/components';
-@import './extensions';
-@import './icons';
+@forward './primitive';
+@forward './semantic';
+@forward './icons';
+
+@forward './components/button';
+@forward './components/checkbox';
+@forward './components/datatable';
+@forward './components/inputtext';
+@forward './components/overlay';
+@forward './components/paginator';
+@forward './components/radiobutton';
+@forward './components/select';
+
+.p-button,
+.p-inputtext,
+.p-select,
+.p-checkbox-box,
+.p-radiobutton-box {
+  border-width: 2px !important;
+}

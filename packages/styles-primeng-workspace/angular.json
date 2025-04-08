@@ -45,11 +45,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/styles-primeng-showcase",
+            "outputPath": {
+              "base": "dist/styles-primeng-showcase"
+            },
             "index": "projects/styles-primeng-showcase/src/index.html",
-            "main": "projects/styles-primeng-showcase/src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "projects/styles-primeng-showcase/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -61,7 +62,8 @@
             "stylePreprocessorOptions": {
               "includePaths": ["dist/styles-primeng"]
             },
-            "scripts": []
+            "scripts": [],
+            "browser": "projects/styles-primeng-showcase/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -80,9 +82,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
