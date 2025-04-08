@@ -1,7 +1,9 @@
-describe('header', { baseUrl: null, includeShadowDom: true }, () => {
-  const testFiles = ['post-header', 'post-header-without-title'];
+const HEADER_ID = '27a2e64d-55ba-492d-ab79-5f7c5e818498';
+const TEST_FILES = ['post-header', 'post-header-without-title'];
 
-  testFiles.forEach(testFile => {
+describe('header', { baseUrl: null, includeShadowDom: true }, () => {
+
+  TEST_FILES.forEach(testFile => {
     describe(testFile.replaceAll('-', ' '), () => {
       beforeEach(() => {
         cy.visit(`./cypress/fixtures/${testFile}.test.html`);
@@ -42,6 +44,43 @@ describe('header', { baseUrl: null, includeShadowDom: true }, () => {
         cy.viewport('iphone-6');
         checkLayoutShift();
       });
+    });
+  });
+
+  describe('React Navigation', { viewportHeight: 1000, viewportWidth: 400 }, () => {
+    beforeEach(() => {
+      cy.getComponent('header', HEADER_ID);
+    });
+
+    // Function to remove and reattach the header
+    const removeAndReattachHeader = () => {
+      cy.get('@header').then($header => {
+        const headerElement = $header[0];
+        headerElement.remove();
+        cy.document().then(doc => {
+          doc.body.prepend(headerElement);
+        });
+      });
+    };
+
+    it('should close mobile nav menu after reattaching header', () => {
+      cy.get('div.local-header-mobile-extended').should('not.exist');
+      cy.get('post-togglebutton').click();
+      cy.get('div.local-header-mobile-extended').should('exist');
+
+      removeAndReattachHeader();
+
+      cy.get('div.local-header-mobile-extended').should('not.exist');
+    });
+
+    it('should release scroll lock after reattaching header', () => {
+      cy.get('[data-post-scroll-locked]').should('not.exist');
+      cy.get('post-togglebutton').click();
+      cy.get('[data-post-scroll-locked]').should('exist');
+
+      removeAndReattachHeader();
+
+      cy.get('[data-post-scroll-locked]').should('not.exist');
     });
   });
 
