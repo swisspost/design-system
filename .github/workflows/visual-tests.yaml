@@ -25,7 +25,7 @@ jobs:
         run: pnpm install
 
       - name: Install Playwright browsers
-        run: pnpm exec playwright install
+        run: pnpm --filter design-system-styles exec playwright install
 
       - name: Run visual tests
         run: BASE_URL=${{ needs.deploy.outputs.preview-url }} pnpm styles:visual:test
