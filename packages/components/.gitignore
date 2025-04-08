@@ -2,6 +2,7 @@ dist/
 www/
 loader/
 loaders/
+hydrate/
 storybook-static/
 
 *~

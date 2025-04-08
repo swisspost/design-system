@@ -56,44 +56,40 @@ post-footer {
         margin-block-end: var(--post-footer-grid-list-title-gap);
       }
 
-      > [role='list'] {
+      &::part(list) {
         @include list.list-bullet($child-selector: 'post-list-item');
         margin-block: 0;
         padding-inline-start: 0;
         list-style: none;
+      }
 
-        > post-list-item {
-          &::before {
-            display: none;
-          }
-
-          ~ post-list-item {
-            margin-block-start: var(--post-footer-grid-list-item-gap);
-          }
+      > post-list-item {
+        ~ post-list-item {
+          margin-block-start: var(--post-footer-grid-list-item-gap);
         }
       }
     }
 
     &:is([slot='socialmedia'], [slot='app'], [slot='businesssectors'], [slot='meta']) {
-      > [role='list'] {
+      &::part(list) {
         @include list.list-inline($child-selector: 'post-list-item');
         margin: 0;
       }
     }
 
-    &[slot='socialmedia'] > [role='list'] {
+    &[slot='socialmedia']::part(list) {
       gap: var(--post-footer-socialmedia-list-item-gap);
     }
 
-    &[slot='app'] > [role='list'] {
+    &[slot='app']::part(list) {
       gap: var(--post-footer-app-list-item-gap);
     }
 
-    &[slot='businesssectors'] > [role='list'] {
+    &[slot='businesssectors']::part(list) {
       gap: var(--post-footer-businesssector-list-item-gap);
     }
 
-    &[slot='meta'] > [role='list'] {
+    &[slot='meta']::part(list) {
       row-gap: 0;
       column-gap: var(--post-footer-meta-list-item-gap);
     }

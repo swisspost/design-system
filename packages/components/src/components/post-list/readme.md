@@ -21,6 +21,14 @@
 | `"post-list-item"` | Slot for placing post-list-item components. |
 
 
+## Shadow Parts
+
+| Part      | Description |
+| --------- | ----------- |
+| `"list"`  |             |
+| `"title"` |             |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
