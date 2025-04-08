@@ -15,11 +15,11 @@
   height: 100%;
 
   &--title {
-    font-size: post.$font-size-regular;
+    font-size: 1rem;
   }
 
   &--description {
-    font-size: post.$font-size-sm;
+    font-size: 0.875rem;
     margin-top: 1rem;
   }
 }
