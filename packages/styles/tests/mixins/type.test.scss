@@ -2,7 +2,6 @@
 @use 'src/variables/type' as typevars;
 
 body {
-  @include type.font-curve('tiny');
   @include type.font-smoothing();
   @include type.font-smoothing-reset();
 }
