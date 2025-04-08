@@ -80,7 +80,6 @@ post-mainnavigation {
   @include media.min(lg) {
     display: block;
     position: relative;
-    overflow: hidden;
     height: var(--post-main-navigation-height);
     background: color.$white;
     user-select: none;

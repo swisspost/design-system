@@ -20,7 +20,6 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
       scrollRight.getBoundingClientRect().left || mainNavigation.getBoundingClientRect().right;
 
     const { left, right } = $el.get(0).getBoundingClientRect();
-    console.log($el.text(), Math.floor(left), leftEdge, Math.floor(right), rightEdge);
     return Math.floor(left) >= leftEdge && Math.floor(right) <= rightEdge;
   }
 
@@ -88,7 +87,8 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
       });
 
       it('should scroll continuously until the last navigation item is visible', () => {
-        cy.get('@mainnavigation').trigger('mousedown', Cypress.config('viewportWidth') - 5, 5);
+        const rightScrollPosition = [Cypress.config('viewportWidth') - 5, 5];
+        cy.get('@mainnavigation').trigger('mousedown', ...rightScrollPosition, { button: 0 });
         cy.wait(800);
         cy.get('@mainnavigation').trigger('mouseup');
 
@@ -171,17 +171,16 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
 
         cy.get('@navigationItemsReversed').each($el => {
           if (!isFullyVisible($el)) {
-            cy.log('click to see', $el.text());
             cy.get('@leftScroll').click();
           }
-          cy.log('checks', $el.text());
           cy.wrap($el).then(isFullyVisible).should('be.true');
         });
 
         cy.get('@leftScroll').should('be.hidden');
       });
       it('should scroll continuously until the first navigation item is visible', () => {
-        cy.get('@mainnavigation').trigger('mousedown', 5, 5);
+        const leftScrollPosition = [5, 5];
+        cy.get('@mainnavigation').trigger('mousedown', ...leftScrollPosition, { button: 0 });
         cy.wait(800);
         cy.get('@mainnavigation').trigger('mouseup');
 
