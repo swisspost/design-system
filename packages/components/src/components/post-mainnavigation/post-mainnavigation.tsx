@@ -88,24 +88,9 @@ export class PostMainnavigation {
     }
 
     this.mutationObserver.observe(this.navigationList, { subtree: true, childList: true }); // Recheck scrollability when navigation list changes
-    this.fixLayoutShift();
 
     // Handle focus changes and adjust scroll as needed
     this.navbar.addEventListener('focusin', e => this.adjustTranslation(e));
-  }
-
-  // Hack that duplicates navigation elements to fix the layout shift on active elements
-  private fixLayoutShift() {
-    // Select first level of main navigation elements, both the links and the megadropdown trigger buttons
-    const children = this.host.querySelectorAll(
-      'nav > post-list > div > post-list-item > a, nav > post-list > div > post-list-item > post-megadropdown-trigger > button',
-    );
-
-    // Update HTML so that the content is duplicated
-    children.forEach(
-      child =>
-        (child.innerHTML = `<span class="nav-el-active">${child.innerHTML}</span><span class="nav-el-inactive"aria-hidden="true">${child.innerHTML}</span>`),
-    );
   }
 
   private handleBackButtonClick() {
