@@ -64,7 +64,6 @@ export const config: Config = {
       stencilPackageName: '@swisspost/design-system-components',
       outDir: '../components-react/src/components/stencil-generated/',
       hydrateModule: '@swisspost/design-system-components/hydrate',
-      esModules: true,
     }),
     angularOutputTarget({
       componentCorePackage: '@swisspost/design-system-components',
