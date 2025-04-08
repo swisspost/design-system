@@ -11,8 +11,10 @@ import { nanoid } from 'nanoid';
 })
 export class PostLanguageSwitch {
   private readonly menuId = `p${nanoid(11)}`;
-  private get languageOptions() {
-    return this.host.querySelectorAll('post-language-option');
+  private get languageOptions(): HTMLPostLanguageOptionElement[] {
+    return Array.from(
+      this.host.querySelectorAll<HTMLPostLanguageOptionElement>('post-language-option'),
+    );
   }
 
   @Element() host: HTMLPostLanguageSwitchElement;
@@ -86,7 +88,7 @@ export class PostLanguageSwitch {
 
         // Hides the dropdown when an option has been clicked
         if (this.variant === 'menu') {
-          const menu = this.host.shadowRoot.querySelector('post-menu');
+          const menu = this.host.shadowRoot.querySelector<HTMLPostMenuElement>('post-menu');
           menu.hide();
         }
       },
