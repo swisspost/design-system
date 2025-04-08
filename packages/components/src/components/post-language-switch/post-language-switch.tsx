@@ -73,7 +73,7 @@ export class PostLanguageSwitch {
       { targetLocalName: 'post-language-option', delegatorSelector: 'post-language-switch' },
       () => {
         this.activeLang = event.detail;
-  
+
         // Update the active state in the children post-language-option components
         this.languageOptions.forEach(lang => {
           if (lang.code && lang.code === this.activeLang) {
@@ -82,15 +82,15 @@ export class PostLanguageSwitch {
             lang.removeAttribute('active');
           }
         });
-  
+
         // Hides the dropdown when an option has been clicked
         if (this.variant === 'menu') {
           const menu = this.host.shadowRoot.querySelector('post-menu') as HTMLPostMenuElement;
           menu.hide();
         }
-      }
+      },
     );
-  }  
+  }
 
   /**
    * Handles cases where the language switch is being rendered before options are available

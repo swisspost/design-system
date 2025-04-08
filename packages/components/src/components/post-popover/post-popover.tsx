@@ -3,7 +3,7 @@ import { Placement } from '@floating-ui/dom';
 import { PLACEMENT_TYPES } from '@/types';
 import { version } from '@root/package.json';
 import { getAttributeObserver } from '@/utils/attribute-observer';
-import { checkOneOf, checkNonEmpty } from '@/utils';
+import { checkEmptyOrOneOf, checkNonEmpty, checkType } from '@/utils';
 
 /**
  * @slot default - Slot for placing content inside the popover.
@@ -63,12 +63,13 @@ export class PostPopover {
 
   @Watch('placement')
   validatePlacement() {
-    checkOneOf(this, 'placement', PLACEMENT_TYPES);
+    checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
   }
 
   @Watch('closeButtonCaption')
   validateCloseButtonCaption() {
-    checkNonEmpty(this, 'closeButtonCaption', undefined, 'warning');
+    checkNonEmpty(this, 'closeButtonCaption');
+    checkType(this, 'closeButtonCaption', 'string');
   }
 
   constructor() {

@@ -1,6 +1,12 @@
 import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
 
-import { IS_BROWSER, checkEmptyOrPattern, checkEmptyOrType, checkEmptyOrOneOf } from '@/utils';
+import {
+  IS_BROWSER,
+  checkPattern,
+  checkEmptyOrType,
+  checkEmptyOrOneOf,
+  checkNonEmpty,
+} from '@/utils';
 
 import { version } from '@root/package.json';
 
@@ -38,7 +44,7 @@ export class PostIcon {
   /**
    * The name of the animation.
    */
-  @Prop() readonly animation?: Animation | null = null;
+  @Prop() readonly animation?: Animation;
 
   @Watch('animation')
   validateAnimation(newValue = this.animation) {
@@ -48,7 +54,7 @@ export class PostIcon {
   /**
    * The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url.
    */
-  @Prop() readonly base?: string | null = null;
+  @Prop() readonly base?: string;
 
   @Watch('base')
   validateBase() {
@@ -60,20 +66,10 @@ export class PostIcon {
    */
   @Prop() readonly flipH?: boolean = false;
 
-  @Watch('flipH')
-  validateFlipH() {
-    checkEmptyOrType(this, 'flipH', 'boolean');
-  }
-
   /**
    * When set to `true`, the icon will be flipped vertically.
    */
   @Prop() readonly flipV?: boolean = false;
-
-  @Watch('flipV')
-  validateFlipV() {
-    checkEmptyOrType(this, 'flipV', 'boolean');
-  }
 
   /**
    * The name/id of the icon (e.g. 1000, 1001, ...).
@@ -82,18 +78,14 @@ export class PostIcon {
 
   @Watch('name')
   validateName() {
-    checkEmptyOrPattern(
-      this,
-      'name',
-      /\d{4}|none/,
-      'The icon "name" prop should be a 4-digit string.',
-    );
+    checkNonEmpty(this, 'name');
+    checkPattern(this, 'name', /\d{4}|none/, 'The icon "name" prop should be a 4-digit string.');
   }
 
   /**
    * The number of degree for the css rotate transformation.
    */
-  @Prop() readonly rotate?: number | null = null;
+  @Prop() readonly rotate?: number;
 
   @Watch('rotate')
   validateRotate() {
@@ -103,7 +95,7 @@ export class PostIcon {
   /**
    * The number for the css scale transformation.
    */
-  @Prop() readonly scale?: number | null = null;
+  @Prop() readonly scale?: number;
 
   @Watch('scale')
   validateScale() {
@@ -194,8 +186,6 @@ export class PostIcon {
   componentDidLoad() {
     this.validateBase();
     this.validateName();
-    this.validateFlipH();
-    this.validateFlipV();
     this.validateScale();
     this.validateRotate();
     this.validateAnimation();

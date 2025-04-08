@@ -8,11 +8,13 @@ import {
   Method,
   Prop,
   State,
+  Watch,
 } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
+import { PLACEMENT_TYPES } from '@/types';
 import { version } from '@root/package.json';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
-import { getRoot } from '@/utils';
+import { getRoot, checkEmptyOrOneOf } from '@/utils';
 import { eventGuard } from '@/utils/event-guard';
 
 @Component({
@@ -43,6 +45,11 @@ export class PostMenu {
    * towards the viewport if they would overlap edge boundaries.
    */
   @Prop() readonly placement?: Placement = 'bottom';
+
+  @Watch('placement')
+  validatePlacement() {
+    checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
+  }
 
   /**
    * Holds the current visibility state of the menu.

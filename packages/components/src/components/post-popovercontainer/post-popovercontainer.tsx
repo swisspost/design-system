@@ -10,7 +10,7 @@ import {
   Watch,
 } from '@stencil/core';
 
-import { IS_BROWSER } from '@/utils';
+import { IS_BROWSER, checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
 import { version } from '@root/package.json';
 
 import {

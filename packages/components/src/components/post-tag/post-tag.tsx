@@ -22,14 +22,14 @@ export class PostTag {
   /**
    * Defines the size of the component.
    */
-  @Prop() readonly size: null | 'sm' = null;
+  @Prop() readonly size: 'sm';
 
   /**
    * Defines the icon `name` inside of the component.
    * <span className="banner banner-sm banner-info">If not set the icon will not show up.</span>
    * To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs">icon library</a>.
    */
-  @Prop() readonly icon: null | string = null;
+  @Prop() readonly icon: string;
 
   constructor() {
     this.setClasses = this.setClasses.bind(this);
@@ -37,19 +37,13 @@ export class PostTag {
 
   @Watch('variant')
   variantChanged() {
-    checkEmptyOrOneOf(
-      this,
-      'variant',
-      ['white', 'info', 'success', 'error', 'warning', 'yellow'],
-      undefined,
-      'warning',
-    );
+    checkEmptyOrOneOf(this, 'variant', ['white', 'info', 'success', 'error', 'warning', 'yellow']);
     this.setClasses();
   }
 
   @Watch('size')
   sizeChanged() {
-    checkEmptyOrOneOf(this, 'size', ['sm', null], undefined, 'warning');
+    checkEmptyOrOneOf(this, 'size', ['sm', null]);
     this.setClasses();
   }
 

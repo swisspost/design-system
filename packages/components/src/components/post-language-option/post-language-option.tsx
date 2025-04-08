@@ -45,15 +45,10 @@ export class PostLanguageOption {
    */
   @Prop({ mutable: true, reflect: true }) active?: boolean;
 
-  @Watch('active')
-  validateActiveProp() {
-    checkEmptyOrType(this, 'active', 'boolean');
-  }
-
   /**
    * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
    */
-  @Prop() variant?: SwitchVariant | null;
+  @Prop() variant?: SwitchVariant;
 
   @Watch('variant')
   validateVariant() {
@@ -83,7 +78,6 @@ export class PostLanguageOption {
 
   componentDidLoad() {
     this.validateCode();
-    this.validateActiveProp();
     this.validateName();
     this.validateUrl();
 

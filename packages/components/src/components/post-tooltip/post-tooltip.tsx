@@ -5,7 +5,7 @@ import { version } from '@root/package.json';
 import isFocusable from 'ally.js/is/focusable';
 import 'long-press-event';
 import { getAttributeObserver } from '@/utils/attribute-observer';
-import { checkOneOf } from '@/utils';
+import { checkEmptyOrOneOf } from '@/utils';
 
 const OPEN_DELAY = 650; // matches HTML title delay
 
@@ -136,7 +136,7 @@ export class PostTooltip {
 
   @Watch('placement')
   validatePlacement() {
-    checkOneOf(this, 'placement', PLACEMENT_TYPES);
+    checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
   }
 
   connectedCallback() {

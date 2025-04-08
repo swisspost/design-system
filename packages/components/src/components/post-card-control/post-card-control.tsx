@@ -11,7 +11,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { checkNonEmpty, checkOneOf, checkType, checkEmptyOrType } from '@/utils';
+import { checkNonEmpty, checkOneOf, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '@/utils';
 import { version } from '@root/package.json';
 
 let cardControlIds = 0;
@@ -178,6 +178,11 @@ export class PostCardControl {
     } else {
       checkEmptyOrType(this, 'value', 'string');
     }
+  }
+
+  @Watch('validity')
+  validateValidity() {
+    checkEmptyOrOneOf(this, 'validity', ['true', 'false']);
   }
 
   @Watch('icon')
