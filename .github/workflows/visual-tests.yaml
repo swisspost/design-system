@@ -27,8 +27,9 @@ jobs:
       - name: Install Playwright browsers
         run: pnpm --filter design-system-styles exec playwright install
 
-      - name: Run visual tests
-        run: BASE_URL=${{ needs.deploy.outputs.preview-url }} pnpm styles:visual:test
+      - name: Run visual regression tests
+        run: |
+          pnpm exec start-server-and-test 'pnpm docs:start' 9000 'pnpm styles:visual:test'
 
       - name: Upload test results
         if: always()
