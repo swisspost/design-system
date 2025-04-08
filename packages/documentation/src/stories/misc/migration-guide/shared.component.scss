@@ -76,7 +76,7 @@ migration-global-state {
     display: block;
     margin-top: 0.25rem;
     margin-bottom: 0.75rem;
-    font-size: post.$font-size-12;
+    font-size: 0.75rem;
     color: post.$gray-60;
 
     + .info {
@@ -85,7 +85,7 @@ migration-global-state {
   }
 
   .todo-list-status {
-    font-size: post.$font-size-14;
+    font-size: 0.875rem;
   }
 }
 
