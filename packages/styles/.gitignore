@@ -19,6 +19,5 @@ src/utilities/_not-defined.scss
 src/tokens/temp/
 
 # Visual regression tests files
-visual-tests/__screenshots__/
 visual-tests/playwright-report/
 visual-tests/test-results/
