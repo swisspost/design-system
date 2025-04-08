@@ -167,7 +167,7 @@ export class PostIcon {
       function definesSlug(url: string | undefined | null) {
         if (url == '/') return true;
         const urlObject = getUrlObject(url);
-        return Boolean(/^\/.*/.test(urlObject?.pathname));
+        return Boolean(/^\/.+/.test(urlObject?.pathname));
       }
     }
   }
