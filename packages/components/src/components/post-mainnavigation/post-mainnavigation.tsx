@@ -60,6 +60,7 @@ export class PostMainnavigation {
    * Stops the repeated scrolling when the mouse button is released.
    */
   @Listen('mouseup', { target: 'window' })
+  @Listen('mouseleave', { target: 'window' })
   stopScrolling() {
     if (this.scrollRepeatInterval) clearInterval(this.scrollRepeatInterval);
   }
@@ -76,20 +77,7 @@ export class PostMainnavigation {
       ),
     );
 
-    // If there are new navigation items, fix the layout shift first
-    const wereNavigationItemsAdded = addedNodes.some(node => {
-      return (
-        node instanceof HTMLElement &&
-        node.matches(':is(post-list-item, a, button):not(post-megadropdown *)')
-      );
-    });
-
-    if (wereNavigationItemsAdded) {
-      this.fixLayoutShift();
-      return;
-    }
-
-    // Recalculate scrollability after DOM changes
+    this.fixLayoutShift();
     this.checkScrollability();
   }
 
@@ -104,7 +92,10 @@ export class PostMainnavigation {
     this.navigationItems
       .filter(item => !item.matches(':has(.nav-el-active)'))
       .forEach(item => {
-        item.innerHTML = `<span class="nav-el-active">${item.innerHTML}</span><span class="nav-el-inactive"aria-hidden="true">${item.innerHTML}</span>`;
+        item.innerHTML = `
+          <span class="nav-el-active">${item.innerHTML}</span>
+          <span class="nav-el-inactive" aria-hidden="true">${item.innerHTML}</span>
+        `;
       });
   }
 
@@ -137,8 +128,8 @@ export class PostMainnavigation {
   /**
    * Handles the scrolling behavior when a user clicks on the left or right scroll buttons.
    */
-  private handleScrollButtonClick(direction: 'left' | 'right') {
-    if (!this.canScroll) return;
+  private handleScrollButtonClick(e: MouseEvent, direction: 'left' | 'right') {
+    if (!this.canScroll || e.button !== 0) return;
 
     // Disable interaction with the navbar during scrolling
     this.temporarilyDisableNavbar();
@@ -211,7 +202,7 @@ export class PostMainnavigation {
         <div
           aria-hidden="true"
           class={{ 'scroll-control scroll-left': true, 'd-none': !this.canScrollLeft }}
-          onMouseDown={() => this.handleScrollButtonClick('left')}
+          onMouseDown={e => this.handleScrollButtonClick(e, 'left')}
         >
           <post-icon aria-hidden="true" name="chevronleft"></post-icon>
         </div>
@@ -223,7 +214,7 @@ export class PostMainnavigation {
         <div
           aria-hidden="true"
           class={{ 'scroll-control scroll-right': true, 'd-none': !this.canScrollRight }}
-          onMouseDown={() => this.handleScrollButtonClick('right')}
+          onMouseDown={e => this.handleScrollButtonClick(e, 'right')}
         >
           <post-icon aria-hidden="true" name="chevronright"></post-icon>
         </div>
