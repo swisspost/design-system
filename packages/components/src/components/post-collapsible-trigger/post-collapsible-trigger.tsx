@@ -124,12 +124,4 @@ export class PostCollapsibleTrigger {
       </Host>
     );
   }
-
-  render() {
-    return (
-      <Host data-version={version}>
-        <slot></slot>
-      </Host>
-    );
-  }
 }
