@@ -67,6 +67,7 @@ export class PostHeader {
 
   @State() device: DEVICE_SIZE = null;
   @State() mobileMenuExtended: boolean = false;
+  @State() localSubShown: boolean;
 
   @State() megadropdownOpen: boolean = false;
 
@@ -115,6 +116,10 @@ export class PostHeader {
     this.handleScrollEvent();
     this.handleScrollParentResize();
     this.lockBody(false, this.mobileMenuExtended, 'mobileMenuExtended');
+  }
+
+  componentWillRender() {
+    this.localSubShown = this.host.querySelectorAll('[slot="title"]').length > 0;
   }
 
   componentDidRender() {
@@ -294,6 +299,11 @@ export class PostHeader {
     }
   }
 
+  private checkSlottedTitle(e: Event) {
+    const target = e.target as HTMLSlotElement;
+    this.localSubShown = target.assignedElements().length > 0;
+  }
+
   private handleScrollParentResize() {
     if (this.scrollParent) {
       this.scrollParentResizeObserver = new ResizeObserver(this.updateScrollParentHeight);
@@ -370,11 +380,13 @@ export class PostHeader {
         <div
           class={'local-header ' + (this.mobileMenuExtended ? 'local-header-mobile-extended' : '')}
         >
-          <slot name="title"></slot>
-          <div class="local-sub">
-            <slot name="local-controls"></slot>
-            <slot></slot>
-          </div>
+          <slot name="title" onSlotchange={e => this.checkSlottedTitle(e)}></slot>
+          {this.localSubShown && (
+            <div class="local-sub">
+              <slot name="local-controls"></slot>
+              <slot></slot>
+            </div>
+          )}
           {this.device === 'desktop' && this.renderNavigation()}
         </div>
         {this.device !== 'desktop' && this.renderNavigation()}
