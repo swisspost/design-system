@@ -36,7 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           <ul className="list-inline" slot="meta-navigation">
             <li>
-              <Link href="/"></Link>
+              <Link href="other2">Other2</Link>
             </li>
             <li>
               <Link href="other">Other</Link>
@@ -69,7 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <h1 slot="title">Application title</h1>
           <ul className="list-inline">
             <li>
-              <Link href="/">
+              <Link href="other2">
                 <span className="visually-hidden-sm">Search</span>
                 <PostIcon aria-hidden="true" name="search"></PostIcon>
               </Link>
@@ -89,7 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <h2>Main Navigation</h2>
 
               <PostListItem slot="post-list-item">
-                <Link href="/">Briefe</Link>
+                <Link href="other2">Briefe</Link>
               </PostListItem>
               <PostListItem slot="post-list-item">
                 <Link href="other">Pakete</Link>

@@ -14,7 +14,7 @@ import {
 } from '@swisspost/design-system-components-react';
 
 // import Link from 'next/link';
-export default function Home() {
+export default function Other2() {
   return (
     <>
       {/* <PostHeader suppressHydrationWarning={true}>
@@ -23,7 +23,7 @@ export default function Home() {
         </PostLogo>
         <ul className="list-inline" slot="meta-navigation">
           <li>
-            <Link href="{other2}">Other2</Link>
+            <Link href="other2">Other2</Link>
           </li>
           <li>
             <Link href="other">Other</Link>
