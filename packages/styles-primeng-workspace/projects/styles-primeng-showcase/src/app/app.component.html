@@ -157,8 +157,8 @@
 >
   <ng-template #header let-columns>
     <tr>
-      <th style="width: 3rem"></th>
-      <th *ngFor="let col of columns" pReorderableColumn>
+      <th scope="col" style="width: 3rem"></th>
+      <th scope="col" *ngFor="let col of columns" pReorderableColumn>
         {{ col.header }}
       </th>
     </tr>
@@ -190,10 +190,10 @@
   <ng-template #caption>Multiple Selection with MetaKey</ng-template>
   <ng-template #header>
     <tr>
-      <th>Code</th>
-      <th>Name</th>
-      <th>Category</th>
-      <th>Quantity</th>
+      <th scope="col">Code</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Quantity</th>
     </tr>
   </ng-template>
   <ng-template #body let-product let-rowIndex="rowIndex">
@@ -213,13 +213,13 @@
 <p-table [value]="productsCheckboxes" [(selection)]="selectedProductsCheckboxes" dataKey="code">
   <ng-template #header>
     <tr>
-      <th style="width: 4rem">
+      <th scope="col" style="width: 4rem">
         <p-tableHeaderCheckbox />
       </th>
-      <th>Code</th>
-      <th>Name</th>
-      <th>Category</th>
-      <th>Quantity</th>
+      <th scope="col">Code</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Quantity</th>
     </tr>
   </ng-template>
   <ng-template #body let-product>
@@ -247,11 +247,11 @@
 >
   <ng-template #header>
     <tr>
-      <th style="width: 4rem"></th>
-      <th>Code</th>
-      <th>Name</th>
-      <th>Category</th>
-      <th>Quantity</th>
+      <th scope="col" style="width: 4rem"></th>
+      <th scope="col">Code</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Quantity</th>
     </tr>
   </ng-template>
   <ng-template #body let-product>
