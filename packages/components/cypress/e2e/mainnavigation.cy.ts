@@ -19,7 +19,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
 
   describe('default', () => {
     beforeEach(() => {
-      cy.visit('./cypress/fixtures/post-mainnavigation.test.html');
+      cy.visit('./cypress/fixtures/post-header.test.html');
 
       cy.get('post-mainnavigation[data-hydrated]').as('mainnavigation');
     });
@@ -32,7 +32,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
 
   describe('overflow', () => {
     beforeEach(() => {
-      cy.visit('./cypress/fixtures/post-mainnavigation-overflow.test.html');
+      cy.visit('./cypress/fixtures/post-mainnavigation.test.html');
 
       cy.get('post-mainnavigation[data-hydrated]').as('mainnavigation');
 
@@ -221,7 +221,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
     });
     describe('resize observer', () => {
       beforeEach(() => {
-        cy.visit('./cypress/fixtures/post-mainnavigation-overflow.test.html');
+        cy.visit('./cypress/fixtures/post-mainnavigation.test.html');
         cy.get('post-mainnavigation[data-hydrated]').as('mainnavigation');
 
         // remove scroll transition to speed up the tests
@@ -286,7 +286,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
 
   describe('Accessibility', () => {
     beforeEach(() => {
-      cy.visit('./cypress/fixtures/post-mainnavigation-overflow.test.html');
+      cy.visit('./cypress/fixtures/post-mainnavigation.test.html');
       cy.get('post-mainnavigation[data-hydrated]').should('be.visible');
       cy.injectAxe();
     });
