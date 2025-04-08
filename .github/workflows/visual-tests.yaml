@@ -1,71 +1,53 @@
-name: Visual Tests
+name: Run Visual Regression Tests
 
 on:
-  pull_request:
-    paths:
-      - 'packages/styles/visual-tests/**'
-      - 'packages/styles/**'
-    branches:
-      - main
+  workflow_run:
+    workflows: ['Deploy Documentation Preview']
+    types:
+      - completed
 
 jobs:
   visual-tests:
-    permissions:
-      contents: read
-      pull-requests: write
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 15
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Node and pnpm
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Download build artifacts (optional if needed)
+        uses: ./.github/actions/artifact-download
         with:
-          fetch-depth: 0
+          name: design-system-documentation
+          folder: build-output
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Get preview URL from deploy step
+        uses: actions/github-script@v7
+        id: get-preview-url
         with:
-          node-version: 22
-          cache: 'pnpm'
+          script: |
+            const runId = ${{ github.event.workflow_run.id }};
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const runs = await github.rest.actions.listWorkflowRuns({
+              owner,
+              repo,
+              workflow_id: 'deploy-documentation-preview.yml',
+            });
 
-      - name: Install dependencies
-        run: |
-          pnpm install
-          cd packages/styles
-          pnpm add -D @playwright/test
-          pnpm exec playwright install --with-deps
-          cd ../..
+            const previewRun = runs.data.workflow_runs.find(run => run.id === runId);
+            if (!previewRun) {
+              throw new Error('Preview run not found');
+            }
 
-      - name: Build packages
-        run: pnpm -r --filter "!*-integration" build
+            // Replace this with how you store the preview URL
+            const previewUrl = 'https://preview-<ID>--swisspost-design-system-next.netlify.app';
+            core.setOutput('preview_url', previewUrl);
 
-      - name: Set up cache for snapshots
-        id: cache
-        uses: actions/cache@v4
-        with:
-          key: ${{ runner.os }}-visual-snapshots-${{ hashFiles('packages/styles/visual-tests/**') }}
-          path: |
-            packages/styles/visual-tests/__screenshots__
-            packages/styles/visual-tests/test-results
-            packages/styles/playwright-report
-          restore-keys: |
-            ${{ runner.os }}-visual-snapshots-
-
-      - name: Run visual tests with Storybook
-        run: |
-          cd packages/styles
-          if [ "${{ steps.cache.outputs.cache-hit }}" = "true" ]; then
-            pnpm exec start-server-and-test 'pnpm docs:headless' http://localhost:9000 'playwright test --config=./playwright.config.ts'
-          else
-            pnpm exec start-server-and-test 'pnpm docs:headless' http://localhost:9000 'playwright test --config=./playwright.config.ts --update-snapshots'
-          fi
-
-      - name: Upload test results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: visual-test-results
-          path: |
-            packages/styles/visual-tests/test-results
-            packages/styles/playwright-report
-          retention-days: 7
+      - name: Run visual regression tests
+        run: pnpm run styles:visual:test
+        env:
+          BASE_URL: ${{ steps.get-preview-url.outputs.preview_url }}
