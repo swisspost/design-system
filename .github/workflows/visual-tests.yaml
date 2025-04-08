@@ -11,10 +11,8 @@ jobs:
   visual-tests:
     name: Run Visual Regression Tests
     runs-on: ubuntu-latest
-    needs: deploy  # Required if using outputs from Deploy Documentation Preview
 
-    # Only run if the deploy succeeded or on PR directly
-    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'pull_request' }}
+    if: ${{ github.event_name == 'pull_request' || (github.event.workflow_run && github.event.workflow_run.conclusion == 'success') }}
 
     steps:
       - name: Checkout code
