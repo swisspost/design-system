@@ -5,36 +5,34 @@ describe('Header', () => {
     beforeEach(() => {
       cy.getComponent('header', HEADER_ID);
     });
+
+    // Function to remove and reattach the header
+    const removeAndReattachHeader = () => {
+      cy.get('@header').then($header => {
+        const headerElement = $header[0];
+        headerElement.remove();
+        cy.document().then(doc => {
+          doc.body.prepend(headerElement);
+        });
+      });
+    };
+
     it('should close mobile nav menu after reattaching header', () => {
       cy.get('div.local-header-mobile-extended').should('not.exist');
       cy.get('post-togglebutton').click();
       cy.get('div.local-header-mobile-extended').should('exist');
 
-      // Remove and re-attach the header
-      cy.get('@header').then($header => {
-        const headerElement = $header[0];
-        headerElement.remove();
-        cy.document().then(doc => {
-          doc.body.prepend(headerElement);
-        });
-      });
+      removeAndReattachHeader();
+
       cy.get('div.local-header-mobile-extended').should('not.exist');
     });
 
-    it.skip('should release scroll lock after reattaching header', () => {
+    it('should release scroll lock after reattaching header', () => {
       cy.get('[data-post-scroll-locked]').should('not.exist');
       cy.get('post-togglebutton').click();
       cy.get('[data-post-scroll-locked]').should('exist');
 
-      // Remove and re-attach the header
-      cy.get('@header').then($header => {
-        const headerElement = $header[0];
-        headerElement.remove();
-        cy.get('[data-post-scroll-locked]').should('not.exist');
-        cy.document().then(doc => {
-          doc.body.prepend(headerElement);
-        });
-      });
+      removeAndReattachHeader();
 
       cy.get('[data-post-scroll-locked]').should('not.exist');
     });
