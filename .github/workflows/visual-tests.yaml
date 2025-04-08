@@ -21,8 +21,9 @@ jobs:
       - name: Setup pnpm & node
         uses: ./.github/actions/setup-pnpm
 
-      - name: Install dependencies
-        run: pnpm install
+      - name: Install & bootstrap all packages
+        run: |
+          pnpm bootstrap
 
       - name: Install Playwright browsers
         run: pnpm --filter design-system-styles exec playwright install
