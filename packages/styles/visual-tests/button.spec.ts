@@ -11,7 +11,7 @@ test('button default visual regression', async ({ page }) => {
 
   await expect(button).toBeVisible();
 
-  await expect(button).toHaveScreenshot('button.png', {
+  await expect(button).toHaveScreenshot('button-primary.png', {
     timeout: 10000,
     maxDiffPixelRatio: 0.01,
   });
