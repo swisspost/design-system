@@ -1,10 +1,9 @@
 const HEADER_ID = '27a2e64d-55ba-492d-ab79-5f7c5e818498';
 const TEST_FILES = ['post-header', 'post-header-without-title'];
 
-describe('header', { baseUrl: null, includeShadowDom: true }, () => {
-
+describe('header', () => {
   TEST_FILES.forEach(testFile => {
-    describe(testFile.replaceAll('-', ' '), () => {
+    describe(testFile.replaceAll('-', ' '), { baseUrl: null }, () => {
       beforeEach(() => {
         cy.visit(`./cypress/fixtures/${testFile}.test.html`);
 
@@ -84,7 +83,7 @@ describe('header', { baseUrl: null, includeShadowDom: true }, () => {
     });
   });
 
-  describe('Accessibility', () => {
+  describe('Accessibility', { baseUrl: null }, () => {
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-header.test.html');
       cy.get('post-header[data-hydrated]').should('be.visible');
