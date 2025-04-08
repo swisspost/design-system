@@ -33,7 +33,7 @@ describe('header', { baseUrl: null, includeShadowDom: true }, () => {
         checkLayoutShift();
       });
 
-      it('should not shift layout on mobile', () => {
+      it('should not shift layout on tablet', () => {
         cy.viewport('ipad-2');
         checkLayoutShift();
       });
