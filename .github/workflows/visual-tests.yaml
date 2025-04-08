@@ -1,6 +1,10 @@
 name: Run Visual Regression Tests
 
 on:
+  pull_request:
+    paths:
+      - 'packages/styles/**'
+      - 'packages/tokens/**'
   workflow_run:
     workflows: ['Deploy Documentation Preview']
     types:
