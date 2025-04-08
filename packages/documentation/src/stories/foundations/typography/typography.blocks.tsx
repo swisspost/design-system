@@ -476,11 +476,11 @@ export function Lists() {
             </td>
             <td>
               <dl>
-                <dt>Title</dt>
+                <dt className="fw-bold">Title</dt>
                 <dd>Nullam quis risus eget urna mollis.</dd>
-                <dt>Second Title</dt>
+                <dt className="fw-bold">Second Title</dt>
                 <dd>At vero eos et justo accusam et duo dolores et ea rebum.</dd>
-                <dt>Third Title</dt>
+                <dt className="fw-bold">Third Title</dt>
                 <dd>Invidunt ut labore et dolore magna aliquyam erat.</dd>
               </dl>
             </td>
@@ -501,13 +501,13 @@ export function Lists() {
             <td>
               <div className="overflow-hidden">
                 <dl className="row">
-                  <dt className="col-3">Title</dt>
+                  <dt className="col-3 fw-bold">Title</dt>
                   <dd className="col-9">Nullam quis risus eget urna mollis.</dd>
-                  <dt className="col-3">Second Title</dt>
+                  <dt className="col-3 fw-bold">Second Title</dt>
                   <dd className="col-9">
                     At vero eos et justo accusam et duo dolores et ea rebum.
                   </dd>
-                  <dt className="col-3">Third Title</dt>
+                  <dt className="col-3 fw-bold">Third Title</dt>
                   <dd className="col-9">Invidunt ut labore et dolore magna aliquyam erat.</dd>
                 </dl>
               </div>
