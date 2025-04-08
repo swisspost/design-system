@@ -1,10 +1,8 @@
 import { Meta, Source } from '@storybook/blocks';
 import * as TypographyStories from './typography.stories';
 import {
-  FontCurves,
   FontFace,
   FontFaceWrapper,
-  FontSizesAndLineheights,
   Headings,
   Inlines,
   Links,
@@ -51,21 +49,7 @@ The default font size is `16px`. This corresponds to the CSS value of `1rem`. Us
 
 The line height depends on the font size and is specified with a multiplying factor. This multiplication factor decreases as the font size increases.
 
-<FontSizesAndLineheights />
-
-### Responsive font size
-
-<div className="banner banner-info my-16">
-  <h4 className="h5">Deprecated font-size definitions</h4>
-  <div>
-    The size and number of font-curves will change in the future because the naming and values used
-    here are being deprecated in favor of a pixel based naming.
-  </div>
-</div>
-
-For legible font sizes on all screen sizes, you can make use of so called font-curves, responsive font size definitions.
-
-<FontCurves />
+Font sizes variants are available in the [text utilities](/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs).
 
 ## Elements
 
