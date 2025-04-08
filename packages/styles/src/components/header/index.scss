@@ -9,7 +9,6 @@
 tokens.$default-map: elements.$post-link;
 
 :root:has(post-header) {
-  --post-header-scroll-top: 0px;
   --post-header-expanded-height: calc(
     var(--post-global-header-height) + var(--post-local-header-height)
   );

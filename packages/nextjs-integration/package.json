@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "next dev",
-    "build": "pnpm clean && next build",
+    "build": "rimraf .next node-modules && pnpm install && pnpm clean && next build",
     "build:serve": "pnpm build && next start",
     "clean": "rimraf .next",
     "lint": "next lint",
