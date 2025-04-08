@@ -9,8 +9,6 @@ test('accordion default visual regression', async ({ page }) => {
   const accordion = page.locator('post-accordion').first();
 
   await expect(accordion).toHaveScreenshot('accordion.png', {
-    animations: 'disabled',
     timeout: 10000,
-    maxDiffPixelRatio: 0.01,
   });
 });
