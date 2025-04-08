@@ -3,8 +3,10 @@ name: Run Visual Regression Tests
 on:
   pull_request:
     paths:
-      - 'packages/styles/**'
-      - 'packages/tokens/**'
+      - 'packages/**'
+      - 'apps/**'
+      - 'storybook/**'
+      - '.github/workflows/**'
   workflow_run:
     workflows: ['Deploy Documentation Preview']
     types:
@@ -12,23 +14,35 @@ on:
 
 jobs:
   visual-tests:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    # Runs only if PR is updated or if deploy workflow succeeded
+    if: github.event_name == 'pull_request' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
 
     steps:
+      - name: Debug Event
+        run: echo "Triggered by event: ${{ github.event_name }}"
+
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Node and pnpm
         uses: ./.github/actions/setup-pnpm
 
-      - name: Download build artifacts (optional if needed)
+      # Optional: Only needed if you depend on build artifacts
+      - name: Download build artifacts
+        if: github.event_name == 'workflow_run'
         uses: ./.github/actions/artifact-download
         with:
           name: design-system-documentation
           folder: build-output
 
+      # Set BASE_URL depending on the event type
+      - name: Set BASE_URL for pull_request
+        if: github.event_name == 'pull_request'
+        run: echo "BASE_URL=http://localhost:6006" >> $GITHUB_ENV
+
       - name: Get preview URL from deploy step
+        if: github.event_name == 'workflow_run'
         uses: actions/github-script@v7
         id: get-preview-url
         with:
@@ -47,11 +61,24 @@ jobs:
               throw new Error('Preview run not found');
             }
 
-            // Replace this with how you store the preview URL
-            const previewUrl = 'https://preview-<ID>--swisspost-design-system-next.netlify.app';
+            // You can extract from deploy logs or artifacts if needed
+            const previewUrl = 'https://preview-${{ github.run_number }}--swisspost-design-system-next.netlify.app';
             core.setOutput('preview_url', previewUrl);
+            core.exportVariable('BASE_URL', previewUrl);
+
+      # Build Storybook (for PR runs)
+      - name: Build Storybook
+        if: github.event_name == 'pull_request'
+        run: pnpm run build-storybook
+
+      # Serve Storybook locally for visual tests
+      - name: Serve Storybook
+        if: github.event_name == 'pull_request'
+        run: npx serve ./storybook-static -l 6006 &
+        env:
+          NODE_ENV: test
 
       - name: Run visual regression tests
         run: pnpm run styles:visual:test
         env:
-          BASE_URL: ${{ steps.get-preview-url.outputs.preview_url }}
+          BASE_URL: ${{ env.BASE_URL }}
