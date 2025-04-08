@@ -4,6 +4,7 @@
 @use './components';
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/utilities';
+@use '@swisspost/design-system-styles/tokens/elements';
 
 tokens.$default-map: utilities.$post-color;
 
@@ -11,38 +12,36 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
 #storybook-root,
 #storybook-docs {
-  .sbdocs-content .container >,
-  .sbdocs-content .container > post-tabs > post-tab-panel >,
-  .sbdocs-content .container > migration-global-state {
-    :not(#root-inner) {
-      // Target content headings only
-      h1 {
-        margin-block: 5rem 1rem;
+  .sbdocs-content *:not(.section) > .container >,
+  .sbdocs-content *:not(.section) > .container > post-tabs > post-tab-panel >,
+  .sbdocs-content *:not(.section) > .container > migration-global-state {
+    // Target content headings only
+    h1 {
+      margin-block: 5rem 1rem;
 
-        &:first-of-type {
-          margin-block-start: 0;
-        }
+      &:first-of-type {
+        margin-block-start: 0;
       }
+    }
 
-      h2 {
-        margin-block: 3rem 1rem;
-      }
+    h2 {
+      margin-block: 3rem 1rem;
+    }
 
-      h3 {
-        margin-block: 2.5rem 1rem;
-      }
+    h3 {
+      margin-block: 2.5rem 1rem;
+    }
 
-      h4 {
-        margin-block: 2rem 1rem;
-      }
+    h4 {
+      margin-block: 2rem 1rem;
+    }
 
-      h5 {
-        margin-block: 1.5rem 1rem;
-      }
+    h5 {
+      margin-block: 1.5rem 1rem;
+    }
 
-      h6 {
-        margin-block: 1rem;
-      }
+    h6 {
+      margin-block: 1rem;
     }
 
     .table,
@@ -63,8 +62,10 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
   .sbdocs-content .container {
     // Support for autolink-headings
     .docs-title :is(h1, h2, h3, h4, h5, h6),
+    post-tab-panel > :is(h1, h2, h3, h4, h5, h6),
     > :is(h1, h2, h3, h4, h5, h6) {
       position: relative;
+      padding-right: 32px; // needed to add space for the link icon
 
       @media (hover: hover) {
         > a {
@@ -74,10 +75,9 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
       > a {
         position: absolute;
-        top: 52%;
-        transform: translateY(-50%);
+        bottom: 0;
         font-size: 1.5rem;
-        padding: 0.625rem;
+        padding: 0.5rem;
         line-height: 1;
       }
 
@@ -95,6 +95,12 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     align-items: center;
     gap: tokens.get('utility-gap-8', utilities.$post-spacing);
   }
+
+  // aligns figma button to the title
+  .docs-title nav {
+    margin-block-end: tokens.get('h1-margin-block-end', elements.$post-heading);
+  }
+
   .docs-title {
     margin-bottom: tokens.get('utility-gap-8', utilities.$post-spacing);
 
@@ -141,10 +147,15 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
+    padding-top: 0;
     background-color: transparent;
 
     .sbdocs-content {
       max-width: none;
+    }
+
+    .docs-container {
+      padding-top: 4rem;
     }
   }
 
@@ -243,4 +254,8 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
   &:after {
     left: 100%;
   }
+}
+
+.sbdocs.sbdocs-preview.source-hidden > *:nth-child(2) {
+  display: none !important;
 }

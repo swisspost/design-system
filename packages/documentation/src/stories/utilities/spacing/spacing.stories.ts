@@ -41,7 +41,7 @@ type Story = StoryObj;
 function withLegend(template: TemplateResult, ...legendItems: string[]) {
   legendItems.unshift('element');
   return html`
-    <div class="d-flex align-items-start justify-content-between">
+    <div class="d-flex align-items-start justify-content-between flex-wrap gap-16">
       ${template}
       <ul class="legend list-unstyled">
         ${legendItems.map(
@@ -108,7 +108,7 @@ export const MarginAndPadding: Story = {
   },
   args: {
     marginSides: 'null',
-    marginSize: '20',
+    marginSize: '24',
     paddingSides: 'null',
     paddingSize: '12',
   },

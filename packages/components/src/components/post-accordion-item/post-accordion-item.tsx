@@ -3,6 +3,7 @@ import { version } from '@root/package.json';
 import { HEADING_LEVELS, HeadingLevel } from '@/types';
 import { checkEmptyOrOneOf } from '@/utils';
 import { nanoid } from 'nanoid';
+import { eventGuard } from '@/utils/event-guard';
 
 /**
  * @part button - The pseudo-element, used to override styles on the components internal header `button` element.
@@ -55,15 +56,17 @@ export class PostAccordionItem {
     this.validateHeadingLevel();
   }
 
-  // capture to make sure the "collapsed" property is updated before the event is consumed
+  // Capture to make sure the "collapsed" property is updated before the event is consumed
   @Listen('postToggle', { capture: true })
   onCollapseToggle(event: CustomEvent<boolean>): void {
-    if (
-      event.target === this.host &&
-      (event.target as HTMLElement).localName === 'post-accordion-item'
-    ) {
-      this.collapsed = !event.detail;
-    }
+    eventGuard(
+      this.host,
+      event,
+      { targetLocalName: 'post-collapsible', delegatorSelector: 'post-accordion-item' },
+      () => {
+        this.collapsed = !event.detail;
+      }
+    );
   }
 
   /**

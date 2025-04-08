@@ -28,32 +28,6 @@ $font-family-sans-serif:
 $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
   monospace !default;
 
-// Deprecated
-$font-size-tiny: sizing.px-to-rem(13px);
-$font-size-small: sizing.px-to-rem(15px);
-$font-size-regular: sizing.px-to-rem(16px);
-$font-size-bigger-regular: sizing.px-to-rem(17px);
-$font-size-medium: sizing.px-to-rem(20px);
-$font-size-large: sizing.px-to-rem(24px);
-$font-size-small-big: sizing.px-to-rem(28px);
-$font-size-big: sizing.px-to-rem(32px);
-$font-size-bigger-big: sizing.px-to-rem(40px);
-$font-size-small-huge: sizing.px-to-rem(48px);
-$font-size-huge: sizing.px-to-rem(56px);
-
-// New
-$font-size-12: sizing.px-to-rem(12px);
-$font-size-14: sizing.px-to-rem(14px);
-$font-size-16: sizing.px-to-rem(16px);
-$font-size-18: sizing.px-to-rem(18px);
-$font-size-20: sizing.px-to-rem(20px);
-$font-size-24: sizing.px-to-rem(24px);
-$font-size-28: sizing.px-to-rem(28px);
-$font-size-32: sizing.px-to-rem(32px);
-$font-size-40: sizing.px-to-rem(40px);
-$font-size-48: sizing.px-to-rem(48px);
-$font-size-56: sizing.px-to-rem(56px);
-
 $line-height-copy: 1.5;
 $line-height-heading: 1.2;
 
@@ -61,105 +35,7 @@ $font-weight-normal: tokens.get('utility-font-weight-regular') !default;
 $font-weight-bold: tokens.get('utility-font-weight-bold') !default;
 $font-weight-black: tokens.get('utility-font-weight-black') !default;
 
-// Deprecated
-$font-sizes: (
-  'tiny': $font-size-tiny,
-  'small': $font-size-small,
-  'regular': $font-size-regular,
-  'bigger-regular': $font-size-bigger-regular,
-  'medium': $font-size-medium,
-  'large': $font-size-large,
-  'small-big': $font-size-small-big,
-  'big': $font-size-big,
-  'bigger-big': $font-size-bigger-big,
-  'small-huge': $font-size-small-huge,
-  'huge': $font-size-huge,
-);
-
-$font-size-map: (
-  12: $font-size-12,
-  14: $font-size-14,
-  16: $font-size-16,
-  18: $font-size-18,
-  20: $font-size-20,
-  24: $font-size-24,
-  28: $font-size-28,
-  32: $font-size-32,
-  40: $font-size-40,
-  48: $font-size-48,
-  56: $font-size-56,
-);
-
-// Deprecated
-$font-curve-tiny: (
-  'xs': $font-size-tiny,
-  'sm': $font-size-tiny,
-  'rg': $font-size-small,
-  'md': $font-size-small,
-  'lg': $font-size-regular,
-  'xl': $font-size-regular,
-);
-$font-curve-small: (
-  'xs': $font-size-small,
-  'sm': $font-size-small,
-  'rg': $font-size-regular,
-  'md': $font-size-regular,
-  'lg': $font-size-bigger-regular,
-  'xl': $font-size-bigger-regular,
-);
-$font-curve-regular: (
-  'xs': $font-size-bigger-regular,
-  'sm': $font-size-bigger-regular,
-  'rg': $font-size-bigger-regular,
-  'md': $font-size-bigger-regular,
-  'lg': $font-size-medium,
-  'xl': $font-size-medium,
-);
-$font-curve-bigger-regular: (
-  'xs': $font-size-bigger-regular,
-  'sm': $font-size-bigger-regular,
-  'rg': $font-size-medium,
-  'md': $font-size-medium,
-  'lg': $font-size-large,
-  'xl': $font-size-large,
-);
-$font-curve-medium: (
-  'xs': $font-size-medium,
-  'sm': $font-size-medium,
-  'rg': $font-size-medium,
-  'md': $font-size-medium,
-  'lg': $font-size-large,
-  'xl': $font-size-large,
-);
-$font-curve-large: (
-  'xs': $font-size-large,
-  'sm': $font-size-large,
-  'rg': $font-size-small-big,
-  'md': $font-size-small-big,
-  'lg': $font-size-big,
-  'xl': $font-size-big,
-);
-$font-curve-big: (
-  'xs': $font-size-small-big,
-  'sm': $font-size-small-big,
-  'rg': $font-size-big,
-  'md': $font-size-big,
-  'lg': $font-size-bigger-big,
-  'xl': $font-size-bigger-big,
-);
-
-// Deprecated
-$font-curves: (
-  'tiny': $font-curve-tiny,
-  'small': $font-curve-small,
-  'regular': $font-curve-regular,
-  'bigger-regular': $font-curve-bigger-regular,
-  'medium': $font-curve-medium,
-  'large': $font-curve-large,
-  'big': $font-curve-big,
-);
-
-$font-size-base: $font-size-regular !default;
+$font-size-base: 1rem !default;
 $font-weight-base: $font-weight-normal !default;
 $line-height-base: $line-height-copy;
 $line-height-1: tokens.get('utility-line-height-1');
@@ -170,7 +46,7 @@ $headings-margin-bottom: (spacing.$spacer * 0.5) !default;
 $headings-font-family: inherit !default;
 $headings-font-weight: 700 !default;
 $headings-line-height: $line-height-heading;
-$headings-color: inherit !default;
+$headings-color: tokens.get('body-color', element-tokens.$post-body) !default;
 
 $small-font-size: 80% !default;
 

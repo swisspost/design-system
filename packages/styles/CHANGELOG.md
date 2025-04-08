@@ -1,5 +1,77 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.33
+
+### Patch Changes
+
+- Fixed inconsistent paddings in the `post-header` component for wrapped and unwrapped titles across mobile and tablet devices. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4971](https://github.com/swisspost/design-system/pull/4971))
+
+- Adjusted the placement of the Back-to-top button to accommodate the sticky header. (by [@myrta2302](https://github.com/myrta2302) with [#4879](https://github.com/swisspost/design-system/pull/4879))
+
+- Updated `<post-header>` to expose header height custom CSS properties to `:root` and set `scroll-padding-top` to visible header height. (by [@myrta2302](https://github.com/myrta2302) with [#4925](https://github.com/swisspost/design-system/pull/4925))
+
+## 9.0.0-next.32
+
+### Patch Changes
+
+- Removed the `transform` property from the scroll-locked `post-header` parent, to avoid side effects. Updated the mobile menu of the `post-header`, so it works as before. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4957](https://github.com/swisspost/design-system/pull/4957))
+
+## 9.0.0-next.31
+
+### Major Changes
+
+- Removed the deprecated css component `card-button`. (by [@leagrdv](https://github.com/leagrdv) with [#4950](https://github.com/swisspost/design-system/pull/4950))
+
+- Updated CSS and SCSS entry file names to better represent the styles contained. There is now the choice between compact and default appearance instead of internal and external styles. This change better represents the resulting look of the components.
+  - post-external.[s]css -> post-default.[s]css
+  - post-internal.[s]css -> post-compact.[s]css
+  - post-tokens-external.[s]css -> post-tokens-default.[s]css
+  - post-tokens-internal.[s]css -> post-tokens-compact.[s]css
+  - cargo-external.[s]css -> cargo-default.[s]css
+  - cargo-internal.[s]css -> cargo-compact.[s]css
+  - cargo-tokens-external.[s]css -> cargo-tokens-default.[s]css
+  - cargo-tokens-internal.[s]css -> cargo-tokens-compact.[s]css (by [@gfellerph](https://github.com/gfellerph) with [#4608](https://github.com/swisspost/design-system/pull/4608))
+
+### Minor Changes
+
+- Removed the `@mixin placeholder` as using the `::placeholder` CSS selector is now widely available. (by [@leagrdv](https://github.com/leagrdv) with [#4934](https://github.com/swisspost/design-system/pull/4934))
+
+### Patch Changes
+
+- Replaced usages of `color: inherit` with tokens to improve high contrast mode compatability. (by [@schaertim](https://github.com/schaertim) with [#4933](https://github.com/swisspost/design-system/pull/4933))
+
+- Improved header accessibility by ensuring that elements which are hidden on scroll get visible again if they receive focus. (by [@leagrdv](https://github.com/leagrdv) with [#4767](https://github.com/swisspost/design-system/pull/4767))
+
+- Fixed the stepper as the progress bar was not being filled correctly on steps progress on firefox. (by [@leagrdv](https://github.com/leagrdv) with [#4893](https://github.com/swisspost/design-system/pull/4893))
+
+- Removed the usage of the deprecated pseudo-element `::input-placeholder`. This fixes an issue with CSS validation tools that don't allow deprecated selectors. (by [@leagrdv](https://github.com/leagrdv) with [#4934](https://github.com/swisspost/design-system/pull/4934))
+
+## 9.0.0-next.30
+
+### Major Changes
+
+- Uninstalled **Intranet Header** package and all its style references. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4587](https://github.com/swisspost/design-system/pull/4587))
+
+- Removed z-index scss variables that were no longer necessary as they had been replaced with popover elements. (by [@leagrdv](https://github.com/leagrdv) with [#4658](https://github.com/swisspost/design-system/pull/4658))
+
+### Patch Changes
+
+- Internalized bootstrap border utility classes. (by [@myrta2302](https://github.com/myrta2302) with [#3751](https://github.com/swisspost/design-system/pull/3751))
+
+- Merged utility classes that were setting the same properties, which reduces the size of the CSS output. (by [@leagrdv](https://github.com/leagrdv) with [#4654](https://github.com/swisspost/design-system/pull/4654))
+
+- Fixed the mobile menu height in the `post-header` component when the scrollable parent is not the document's body. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4829](https://github.com/swisspost/design-system/pull/4829))
+
+- Updated header button styles to match the header anchor styles. (by [@myrta2302](https://github.com/myrta2302) with [#4785](https://github.com/swisspost/design-system/pull/4785))
+
+- Switched the outermost scrollable parent of the `post-header` component from the `html` to the `body` element. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4823](https://github.com/swisspost/design-system/pull/4823))
+
+- Cleaned up \_button.scss by moving button-specific variables to button.scss. Redefined cross-referenced variables in respective component files. Removed unused variables. (by [@schaertim](https://github.com/schaertim) with [#4702](https://github.com/swisspost/design-system/pull/4702))
+
+- Improved the consistency of styles for buttons and links in HCM. (by [@leagrdv](https://github.com/leagrdv) with [#4864](https://github.com/swisspost/design-system/pull/4864))
+
+- Corrected icon URL declarations to avoid errors during the build process when using Vite. (by [@alizedebray](https://github.com/alizedebray) with [#4853](https://github.com/swisspost/design-system/pull/4853))
+
 ## 9.0.0-next.29
 
 ## 9.0.0-next.28

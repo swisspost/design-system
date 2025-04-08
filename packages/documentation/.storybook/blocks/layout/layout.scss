@@ -1,7 +1,11 @@
 @use '@swisspost/design-system-styles/core' as post;
 
+.docs-beta {
+  background-color: post.$info;
+  font-size: 1rem;
+}
+
 .docs-header {
-  margin-top: -4rem;
   background-image: url('/assets/images/header.png');
   background-repeat: no-repeat;
   background-position: center left 60vw;

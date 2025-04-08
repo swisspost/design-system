@@ -14,6 +14,25 @@
 :host {
   z-index: commons.$zindex-header;
   position: relative;
+
+  // The following variables will affect the header to minimize it on scroll
+  --global-header-top: calc(
+    (var(--post-global-header-height) - var(--post-global-header-reduced-height)) * -1
+  );
+  --local-header-top: calc(
+    -1 * (var(--post-local-header-height) - var(--post-main-navigation-height)) + var(--post-global-header-reduced-height)
+  );
+  --logo-height: calc(var(--post-global-header-height) - var(--post-header-scroll-top));
+  --global-controls-top: calc(min((var(--post-header-scroll-top) / 4), 20px) * -1);
+
+  // If focus is within the header (except the logo and the post-mainnavigation elements), the header should be shown fully
+  &:has(.global-sub > *:not(.logo):focus-within),
+  &:has(.local-sub:focus-within) {
+    --global-header-top: 0;
+    --local-header-top: var(--post-global-header-height);
+    --logo-height: var(--post-global-header-height);
+    --global-controls-top: 0;
+  }
 }
 
 .d-flex {
@@ -30,7 +49,7 @@
   justify-content: space-between;
   position: sticky;
   padding-inline: 4px;
-  height: var(--global-header-height);
+  height: var(--post-global-header-height);
 
   @include media.max(lg) {
     z-index: 3;
@@ -40,9 +59,8 @@
   @include media.min(lg) {
     z-index: 5;
     padding-inline-end: 12px;
-    inset-block-start: calc(
-      (var(--global-header-height) - var(--global-header-reduced-height)) * -1
-    );
+    inset-block-start: var(--global-header-top);
+    transition: inset-block-start 0.2s ease-in-out;
   }
 }
 
@@ -50,6 +68,15 @@
   display: flex;
   align-items: center;
   gap: 24px;
+
+  @include media.min(lg) {
+    // targets the right links and language switch to hide them on scroll
+    &:not(:has(.logo)) {
+      position: relative;
+      transition: inset-block-start 0.2s ease-in-out;
+      inset-block-start: var(--global-controls-top);
+    }
+  }
 }
 
 .align-end {
@@ -58,13 +85,14 @@
 
 .logo {
   flex: 1 0 auto;
-  height: var(--global-header-height);
-  width: var(--global-header-height);
-  min-height: var(--global-header-reduced-height);
+  height: var(--post-global-header-height);
+  width: var(--post-global-header-height);
+  min-height: var(--post-global-header-reduced-height);
   align-self: flex-end;
 
   @include media.min(lg) {
-    height: calc(var(--global-header-height) - var(--header-scroll-top));
+    transition: height 0.2 ease-in-out;
+    height: var(--logo-height);
   }
 }
 
@@ -72,7 +100,7 @@
   margin-block: 0 !important;
   list-style: none;
   display: flex;
-  padding-left: 0;
+  padding-inline-start: 0;
   gap: 1rem;
   flex-shrink: 0 !important;
 }
@@ -84,7 +112,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 4px;
-  min-height: var(--local-header-min-height);
+  min-height: var(--post-local-header-min-height);
   background: color.$white;
   transition: box-shadow 0.2s ease-in-out;
 
@@ -94,7 +122,7 @@
     width: 100%;
     height: 1px;
     background-color: #e1e0dc;
-    bottom: -1px;
+    inset-block-end: -1px;
     z-index: 1;
 
     @include utilities.high-contrast-mode() {
@@ -104,11 +132,9 @@
 
   @include media.min(lg) {
     z-index: 3;
-    inset-block-start: calc(
-      -1 * (var(--local-header-height) - var(--main-navigation-height)) + var(--global-header-reduced-height)
-    );
-    padding-block-start: 18px;
+    inset-block-start: var(--local-header-top);
     box-shadow: elevation.$elevation-300;
+    transition: box-shadow 0.2s ease-in-out, inset-block-start 0.2s ease-in-out;
 
     &:has(> .local-sub) {
       padding-block-start: 18px;
@@ -117,14 +143,15 @@
 
   @include media.max(lg) {
     z-index: 2;
-    inset-block-start: var(--global-header-height);
-    padding-block: 12px;
+    inset-block-start: var(--post-global-header-height);
+    padding-block: 8px;
+
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 12px;
 
     &.local-header-mobile-extended {
       &::after {
-        bottom: 0;
+        inset-block-end: 0;
       }
     }
 
@@ -139,7 +166,11 @@
 }
 
 .local-sub {
-  margin-inline-end: 16px;
+  margin-inline-end: 8px;
+
+  @include media.max(lg) {
+    margin-inline-end: 4px;
+  }
 }
 
 ::slotted(.list-inline) {
@@ -158,7 +189,7 @@
   width: 100%;
 
   @include media.min(lg) {
-    inset-block-start: var(--global-header-reduced-height);
+    inset-block-start: var(--post-global-header-reduced-height);
 
     &::before {
       display: block;
@@ -174,11 +205,11 @@
 // only for tablet and mobile
 @include media.max(lg) {
   .navigation {
-    position: fixed;
+    position: sticky;
     z-index: 1;
     inset-inline: 0;
-    inset-block-start: var(--header-height);
-    overflow: hidden;
+    inset-block-start: var(--post-header-height);
+
   }
 
   .mobile-menu {
@@ -201,12 +232,17 @@
     > div {
       display: flex;
       flex-direction: column;
-      height: calc(100dvh - var(--header-height));
-    }
-
-    &.scroll-y > div {
       overflow-y: auto;
       overflow-x: hidden;
+      height: calc(
+        min(var(--header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
+      );
+    }
+
+    &.megadropdown-open {
+      > div {
+        overflow-y: hidden;
+      }
     }
 
     ::slotted(post-mainnavigation) {

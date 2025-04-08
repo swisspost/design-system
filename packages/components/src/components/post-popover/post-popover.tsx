@@ -1,7 +1,7 @@
 import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
+import { IS_BROWSER, getAttributeObserver } from '@/utils';
 import { version } from '@root/package.json';
-import { getAttributeObserver } from '@/utils/attribute-observer';
 
 /**
  * @slot default - Slot for placing content inside the popover.
@@ -11,19 +11,19 @@ let popoverInstances = 0;
 const popoverTargetAttribute = 'data-popover-target';
 
 const globalToggleHandler = (e: PointerEvent | KeyboardEvent) => {
-  const target = e.target as HTMLElement;
-  if (!target || !('getAttribute' in target)) return;
-  const popoverTarget = target.getAttribute(popoverTargetAttribute);
+  let currentElement = e.target as HTMLElement;
+
+  // Traverse up the DOM tree to find if any parent has the popover target attribute
+  while (currentElement && !currentElement.getAttribute(popoverTargetAttribute)) {
+    if (currentElement === document.body || !currentElement.parentElement) break;
+    currentElement = currentElement.parentElement;
+  }
+
+  const popoverTarget = currentElement?.getAttribute(popoverTargetAttribute);
   if (!popoverTarget || ('key' in e && e.key !== 'Enter')) return;
   const popover = document.getElementById(popoverTarget) as HTMLPostPopoverElement;
-  popover?.toggle(target);
+  popover?.toggle(currentElement);
 };
-
-// Initialize a mutation observer for patching accessibility features
-const triggerObserver = getAttributeObserver(popoverTargetAttribute, trigger => {
-  const force = trigger.hasAttribute(popoverTargetAttribute);
-  trigger.setAttribute('aria-expanded', force ? 'false' : null);
-});
 
 @Component({
   tag: 'post-popover',
@@ -32,7 +32,11 @@ const triggerObserver = getAttributeObserver(popoverTargetAttribute, trigger => 
 })
 export class PostPopover {
   private popoverRef: HTMLPostPopovercontainerElement;
-  private localBeforeToggleHandler;
+  private readonly localBeforeToggleHandler: () => void;
+  // Initialize a mutation observer for patching accessibility features
+  private readonly triggerObserver = IS_BROWSER
+    ? getAttributeObserver(popoverTargetAttribute, this.patchAccessibilityFeatures)
+    : null;
 
   @Element() host: HTMLPostPopoverElement;
 
@@ -62,7 +66,7 @@ export class PostPopover {
     if (popoverInstances === 0) {
       window.addEventListener('pointerup', globalToggleHandler);
       window.addEventListener('keydown', globalToggleHandler);
-      triggerObserver.observe(document.body, {
+      this.triggerObserver?.observe(document.body, {
         subtree: true,
         childList: true,
         attributeFilter: [popoverTargetAttribute],
@@ -85,7 +89,7 @@ export class PostPopover {
     if (popoverInstances === 0) {
       window.removeEventListener('click', globalToggleHandler);
       window.removeEventListener('keydown', globalToggleHandler);
-      triggerObserver.disconnect();
+      this.triggerObserver?.disconnect();
     }
 
     this.popoverRef.removeEventListener('beforetoggle', this.localBeforeToggleHandler);
@@ -129,6 +133,11 @@ export class PostPopover {
 
   private beforeToggleHandler() {
     this.triggers.forEach(trigger => trigger.setAttribute('aria-expanded', 'false'));
+  }
+
+  private patchAccessibilityFeatures(trigger: HTMLElement) {
+    const force = trigger.hasAttribute(popoverTargetAttribute);
+    trigger.setAttribute('aria-expanded', force ? 'false' : null);
   }
 
   render() {

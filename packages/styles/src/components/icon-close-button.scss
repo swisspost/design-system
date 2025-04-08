@@ -25,5 +25,9 @@ tokens.$default-map: components.$post-close;
     cursor: pointer;
     background-color: tokens.get('close-hover-bg');
     color: tokens.get('close-hover-fg');
+
+    @include utilities.high-contrast-mode() {
+      color: HighlightText !important;
+    }
   }
 }
