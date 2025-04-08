@@ -12,7 +12,7 @@
 #
 ###
 
-name: Fetch Icons
+name: Fetch Icons v8
 
 on:
   workflow_dispatch:
@@ -32,7 +32,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           fetch-depth: 0
 
@@ -74,7 +74,7 @@ jobs:
 
       - name: Get Changes
         id: changed-files
-        uses: tj-actions/changed-files@v45
+        uses: step-security/changed-files@3dbe17c78367e7d60f00d78ae6781a35be47b4a1
         with:
           files: ./packages/icons/public/post-icons/**
 

@@ -81,7 +81,7 @@ post-mainnavigation {
     display: block;
     position: relative;
     overflow: hidden;
-    height: var(--main-navigation-height);
+    height: var(--post-main-navigation-height);
     background: color.$white;
     user-select: none;
 
@@ -129,7 +129,7 @@ post-mainnavigation {
       post-megadropdown-trigger button {
         position: sticky;
         padding-inline: 12px;
-        height: var(--main-navigation-height);
+        height: var(--post-main-navigation-height);
         gap: 4px;
         font-size: 16px;
         z-index: 4;

@@ -1,5 +1,50 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.33
+
+### Minor Changes
+
+- Implemented an event-guard utility to ensure our custom events are only handled when originating from the expected element. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4574](https://github.com/swisspost/design-system/pull/4574))
+
+### Patch Changes
+
+- Updated the fallback CDN URL in the `post-icon` component to include the current package version, ensuring icon requests match the used component version. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5091](https://github.com/swisspost/design-system/pull/5091))
+
+- Adjusted the placement of the Back-to-top button to accommodate the sticky header. (by [@myrta2302](https://github.com/myrta2302) with [#4879](https://github.com/swisspost/design-system/pull/4879))
+
+- Updated `<post-header>` to expose header height custom CSS properties to `:root` and set `scroll-padding-top` to visible header height. (by [@myrta2302](https://github.com/myrta2302) with [#4925](https://github.com/swisspost/design-system/pull/4925))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.0.0-next.33
+  - @swisspost/design-system-styles@9.0.0-next.33
+
+## 9.0.0-next.32
+
+### Patch Changes
+
+- Removed the `transform` property from the scroll-locked `post-header` parent, to avoid side effects. Updated the mobile menu of the `post-header`, so it works as before. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4957](https://github.com/swisspost/design-system/pull/4957))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.32
+  - @swisspost/design-system-icons@9.0.0-next.32
+
+## 9.0.0-next.31
+
+### Patch Changes
+
+- Added a max-height to the `post-megadropdown` on desktop to add scrolling in case its content is bigger than the space available. (by [@leagrdv](https://github.com/leagrdv) with [#4906](https://github.com/swisspost/design-system/pull/4906))
+
+- Replaced usages of `color: inherit` with tokens to improve high contrast mode compatability. (by [@schaertim](https://github.com/schaertim) with [#4933](https://github.com/swisspost/design-system/pull/4933))
+
+- Adapted the trigger of the `post-popover` component to be able to handle nested elements. (by [@schaertim](https://github.com/schaertim) with [#4910](https://github.com/swisspost/design-system/pull/4910))
+
+- Improved header accessibility by ensuring that elements which are hidden on scroll get visible again if they receive focus. (by [@leagrdv](https://github.com/leagrdv) with [#4767](https://github.com/swisspost/design-system/pull/4767))
+
+- Added the CSS variable `--post-popover-max-width` that enables configuring the max-width of the `post-popover` component. (by [@leagrdv](https://github.com/leagrdv) with [#4898](https://github.com/swisspost/design-system/pull/4898))
+
+- Resolved accessibility violations in the `post-language-switch` component by adding the role="menu" to the `post-menu` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4951](https://github.com/swisspost/design-system/pull/4951))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.31
+  - @swisspost/design-system-icons@9.0.0-next.31
+
 ## 9.0.0-next.30
 
 ### Patch Changes

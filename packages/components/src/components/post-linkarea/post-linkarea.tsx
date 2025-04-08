@@ -9,6 +9,7 @@ type InteractiveElement = HTMLAnchorElement;
 @Component({
   tag: 'post-linkarea',
   styleUrl: 'post-linkarea.scss',
+  shadow: true,
 })
 export class PostLinkarea {
   @Element() host: HTMLPostLinkareaElement;
@@ -28,9 +29,10 @@ export class PostLinkarea {
       new MouseEvent('click', { ctrlKey, shiftKey, altKey, metaKey }),
     );
   }
+
   render() {
     return (
-      <Host data-version={version} onClick={e => this.dispatchClick(e)} tabindex="0">
+      <Host data-version={version} onClick={(e: MouseEvent) => this.dispatchClick(e)} tabindex="0">
         <slot></slot>
       </Host>
     );
