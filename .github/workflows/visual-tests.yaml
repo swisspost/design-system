@@ -1,38 +1,35 @@
 name: Visual Regression Tests
 on:
-  workflow_run:
-    workflows: ['Deploy Documentation Preview']
-    types: [completed]
+  pull_request:
+    branches: [main]  # or your main branch name
 
 jobs:
   visual-tests:
     name: Run Visual Regression Tests
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
+
       - name: Install dependencies
         run: pnpm install
-      - name: Get preview URL
-        id: get-preview
-        run: |
-          # Extract the preview URL from the previous workflow
-          PREVIEW_URL=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }}/jobs" \
-            | jq -r '.jobs[].steps[] | select(.name == "Deploy Documentation Preview") | .outputs["site-url"]')
-          echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
+
+      - name: Build production version
+        run: pnpm build
+
       - name: Run visual tests
-        run: |
-          BASE_URL=${{ steps.get-preview.outputs.preview_url }} pnpm styles:visual:test
+        run: BASE_URL=http://localhost:3000 pnpm styles:visual:test
+
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v4
@@ -42,32 +39,18 @@ jobs:
             visual-tests/__screenshots__/
             visual-tests/playwright-report/
             visual-tests/test-results/
+
       - name: Comment test results
         if: failure()
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const { data: comments } = await github.rest.issues.listComments({
+            const message = `❌ Visual regression tests failed for [${{ github.sha }}](${{ github.repository }}/commit/${{ github.sha }})
+            [View test results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})`;
+            await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: ${{ github.event.workflow_run.pull_requests[0].number }}
+              issue_number: ${{ github.event.pull_request.number }},
+              body: message
             });
-            const existingComment = comments.find(c => c.user.login === 'github-actions[bot]' && c.body.includes('Visual Regression Test Results'));
-            const message = `❌ Visual regression tests failed for [${{ github.event.workflow_run.head_sha }}](${{ github.event.workflow_run.head_repository.html_url }}/commit/${{ github.event.workflow_run.head_sha }})
-            [View test results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})`;
-            if (existingComment) {
-              await github.rest.issues.updateComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                comment_id: existingComment.id,
-                body: message
-              });
-            } else {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: ${{ github.event.workflow_run.pull_requests[0].number }},
-                body: message
-              });
-            }
