@@ -1,4 +1,5 @@
 name: Deploy Documentation Preview
+
 on:
   workflow_run:
     workflows: ['Build Documentation']
@@ -9,6 +10,9 @@ jobs:
     name: Deploy Documentation Preview
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success' }}
+    outputs:
+      preview-url: ${{ steps.deploy.outputs.site-url }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
@@ -72,4 +76,4 @@ jobs:
             `
 
       - name: Output Summary
-        run: echo -e ${{ steps.summary.outputs.result }} >> $GITHUB_STEP_SUMMARY
+        run: echo -e "${{ steps.summary.outputs.result }}" >> $GITHUB_STEP_SUMMARY
