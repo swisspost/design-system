@@ -10,6 +10,5 @@ test('accordion default visual regression', async ({ page }) => {
 
   await expect(accordion).toHaveScreenshot('accordion.png', {
     timeout: 10000,
-    maxDiffPixelRatio: 0.01,
   });
 });
