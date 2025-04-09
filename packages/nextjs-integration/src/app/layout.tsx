@@ -106,7 +106,9 @@ export default function RootLayout({ children }: { readonly children: React.Reac
               </PostListItem>
 
               <PostListItem slot="post-list-item">
-                <PostMegadropdownTrigger for="briefe">Briefe</PostMegadropdownTrigger>
+                <PostMegadropdownTrigger for="briefe">
+                  <PostMainnavigationToplevelItem>Briefe</PostMainnavigationToplevelItem>
+                </PostMegadropdownTrigger>
                 <PostMegadropdown id="briefe">
                   <button slot="back-button" className="btn btn-tertiary px-0 btn-sm">
                     <PostIcon name="arrowright"></PostIcon>
@@ -149,7 +151,9 @@ export default function RootLayout({ children }: { readonly children: React.Reac
                 </PostMegadropdown>
               </PostListItem>
               <PostListItem slot="post-list-item">
-                <PostMegadropdownTrigger for="pakete">Pakete</PostMegadropdownTrigger>
+                <PostMegadropdownTrigger for="pakete">
+                  <PostMainnavigationToplevelItem>Pakete</PostMainnavigationToplevelItem>
+                </PostMegadropdownTrigger>
                 <PostMegadropdown id="pakete">
                   <button slot="back-button" className="btn btn-tertiary px-0 btn-sm">
                     <PostIcon name="arrowright"></PostIcon>
