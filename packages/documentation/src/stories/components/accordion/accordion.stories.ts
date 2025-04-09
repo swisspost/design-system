@@ -84,7 +84,7 @@ type Story = StoryObj<HTMLPostAccordionElement>;
 
 export const Default: Story = {
   args: {
-    headingLevel: '3' as HeadingLevel, // needs to be a string for the control to properly initialize
+    headingLevel: '7' as HeadingLevel, // needs to be a string for the control to properly initialize
   },
 };
 
