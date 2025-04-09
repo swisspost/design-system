@@ -22,7 +22,7 @@ export function checkType<T extends { host: HTMLElement }>(
     if (valueIsArray !== typeIsArray) {
       console.error(message);
     }
-  } else if (typeof value !== type) {
+  } else if (typeof value !== type || (typeof value == 'number' && isNaN(value))) {
     console.error(message);
   }
 }
