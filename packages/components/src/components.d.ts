@@ -85,7 +85,7 @@ export namespace Components {
         /**
           * The label to use for the close button of a dismissible banner.
          */
-        "dismissLabel": string;
+        "dismissLabel"?: string;
         /**
           * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
          */
@@ -93,7 +93,7 @@ export namespace Components {
         /**
           * The icon to display in the banner. By default, the icon depends on the banner type.  If `none`, no icon is displayed.
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * The type of the banner.
          */
@@ -126,7 +126,7 @@ export namespace Components {
         /**
           * Defines the description in the control-label.
          */
-        "description": string;
+        "description"?: string;
         /**
           * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms' data.
          */
@@ -138,7 +138,7 @@ export namespace Components {
         /**
           * Defines the icon `name` inside the card. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span>
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Defines the text in the control-label.
          */
@@ -146,7 +146,7 @@ export namespace Components {
         /**
           * Defines the `name` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
          */
-        "name": string;
+        "name"?: string;
         /**
           * A public method to reset the controls `checked` and `validity` state. The validity state is set to `null`, so it's neither valid nor invalid.
          */
@@ -158,11 +158,11 @@ export namespace Components {
         /**
           * Defines the validation `validity` of the control. To reset validity to an undefined state, simply remove the attribute from the control.
          */
-        "validity": null | 'true' | 'false';
+        "validity"?: 'true' | 'false';
         /**
           * Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
          */
-        "value": string;
+        "value"?: string;
     }
     interface PostClosebutton {
     }
@@ -205,11 +205,11 @@ export namespace Components {
         /**
           * The name of the animation.
          */
-        "animation"?: Animation | null;
+        "animation"?: Animation;
         /**
           * The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url.
          */
-        "base"?: string | null;
+        "base"?: string;
         /**
           * When set to `true`, the icon will be flipped horizontally.
          */
@@ -225,17 +225,17 @@ export namespace Components {
         /**
           * The number of degree for the css rotate transformation.
          */
-        "rotate"?: number | null;
+        "rotate"?: number;
         /**
           * The number for the css scale transformation.
          */
-        "scale"?: number | null;
+        "scale"?: number;
     }
     interface PostLanguageOption {
         /**
           * If set to `true`, the language option is considered the current language for the page.
          */
-        "active": boolean;
+        "active"?: boolean;
         /**
           * The ISO 639 language code, formatted according to [RFC 5646 (also known as BCP 47)](https://datatracker.ietf.org/doc/html/rfc5646). For example, "de".
          */
@@ -243,7 +243,7 @@ export namespace Components {
         /**
           * The full name of the language. For example, "Deutsch".
          */
-        "name": string;
+        "name"?: string;
         /**
           * Selects the language option programmatically.
          */
@@ -251,11 +251,11 @@ export namespace Components {
         /**
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
-        "url": string;
+        "url"?: string;
         /**
           * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
          */
-        "variant"?: SwitchVariant | null;
+        "variant"?: SwitchVariant;
     }
     interface PostLanguageSwitch {
         /**
@@ -289,7 +289,7 @@ export namespace Components {
         /**
           * The URL to which the user is redirected upon clicking the logo.
          */
-        "url": string | URL;
+        "url"?: string | URL;
     }
     interface PostMainnavigation {
     }
@@ -444,7 +444,7 @@ export namespace Components {
         /**
           * The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.**
          */
-        "activePanel": HTMLPostTabPanelElement['name'];
+        "activePanel"?: HTMLPostTabPanelElement['name'];
         /**
           * Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
          */
@@ -454,15 +454,15 @@ export namespace Components {
         /**
           * Defines the icon `name` inside of the component. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs">icon library</a>.
          */
-        "icon": null | string;
+        "icon": string;
         /**
           * Defines the size of the component.
          */
-        "size": null | 'sm';
+        "size": 'sm' | null;
         /**
           * Defines the color variant of the component.
          */
-        "variant": 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
+        "variant"?: 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
     interface PostTogglebutton {
         /**
@@ -472,7 +472,7 @@ export namespace Components {
     }
     interface PostTooltip {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
         /**
@@ -985,7 +985,7 @@ declare namespace LocalJSX {
         /**
           * The URL for the home breadcrumb item.
          */
-        "homeUrl"?: string;
+        "homeUrl": string;
     }
     interface PostBreadcrumbItem {
         /**
@@ -1036,7 +1036,7 @@ declare namespace LocalJSX {
         /**
           * Defines the validation `validity` of the control. To reset validity to an undefined state, simply remove the attribute from the control.
          */
-        "validity"?: null | 'true' | 'false';
+        "validity"?: 'true' | 'false';
         /**
           * Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
          */
@@ -1058,7 +1058,7 @@ declare namespace LocalJSX {
         /**
           * Link the trigger to a post-collapsible with this id
          */
-        "for"?: string;
+        "for": string;
     }
     interface PostFooter {
         /**
@@ -1079,11 +1079,11 @@ declare namespace LocalJSX {
         /**
           * The name of the animation.
          */
-        "animation"?: Animation | null;
+        "animation"?: Animation;
         /**
           * The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url.
          */
-        "base"?: string | null;
+        "base"?: string;
         /**
           * When set to `true`, the icon will be flipped horizontally.
          */
@@ -1099,11 +1099,11 @@ declare namespace LocalJSX {
         /**
           * The number of degree for the css rotate transformation.
          */
-        "rotate"?: number | null;
+        "rotate"?: number;
         /**
           * The number for the css scale transformation.
          */
-        "scale"?: number | null;
+        "scale"?: number;
     }
     interface PostLanguageOption {
         /**
@@ -1133,17 +1133,17 @@ declare namespace LocalJSX {
         /**
           * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
          */
-        "variant"?: SwitchVariant | null;
+        "variant"?: SwitchVariant;
     }
     interface PostLanguageSwitch {
         /**
           * A title for the list of language options
          */
-        "caption"?: string;
+        "caption": string;
         /**
           * A descriptive text for the list of language options
          */
-        "description"?: string;
+        "description": string;
         /**
           * Whether the component is rendered as a list or a menu
          */
@@ -1271,13 +1271,13 @@ declare namespace LocalJSX {
         /**
           * The name of the panel controlled by the tab header.
          */
-        "panel"?: HTMLPostTabPanelElement['name'];
+        "panel": HTMLPostTabPanelElement['name'];
     }
     interface PostTabPanel {
         /**
           * The name of the panel, used to associate it with a tab header.
          */
-        "name"?: string;
+        "name": string;
     }
     interface PostTabs {
         /**
@@ -1293,11 +1293,11 @@ declare namespace LocalJSX {
         /**
           * Defines the icon `name` inside of the component. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs">icon library</a>.
          */
-        "icon"?: null | string;
+        "icon"?: string;
         /**
           * Defines the size of the component.
          */
-        "size"?: null | 'sm';
+        "size"?: 'sm' | null;
         /**
           * Defines the color variant of the component.
          */
@@ -1311,7 +1311,7 @@ declare namespace LocalJSX {
     }
     interface PostTooltip {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
         /**
