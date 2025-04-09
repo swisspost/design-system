@@ -66,7 +66,6 @@ export class PostRating {
 
   @Watch('stars')
   validateStars() {
-    console.log(this.stars);
     if (!checkNonEmpty(this, 'stars')) {
       checkType(this, 'stars', 'number');
     }
