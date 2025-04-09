@@ -1,7 +1,5 @@
-@use '@swisspost/design-system-styles/core' as post;
-
 .column-example {
-  font-size: post.$font-size-sm;
+  font-size: 0.875rem;
 
   .row > *:not(.w-100) {
     padding-block: 0.75rem;

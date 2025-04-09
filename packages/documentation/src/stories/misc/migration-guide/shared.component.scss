@@ -1,6 +1,10 @@
 @use '@swisspost/design-system-styles/core.scss' as post;
 
 migration-global-state {
+  h3 {
+    margin-block-start: 0.75rem !important;
+  }
+
   .change-badge {
     display: inline-block;
     padding: 0.05rem 0.3rem;
@@ -22,7 +26,7 @@ migration-global-state {
       margin-left: 2rem;
       padding-bottom: 2rem;
       padding-left: 3rem;
-      border-left: 4px solid post.$white;
+      border-left: 4px solid post.$gray-10;
       min-height: 5rem;
 
       @include post.media-breakpoint-down(sm) {
@@ -48,7 +52,7 @@ migration-global-state {
         left: calc(-2rem - 2px);
         width: 4rem;
         height: 4rem;
-        background: post.$white;
+        background: post.$gray-10;
         text-align: center;
         font-weight: bold;
         font-size: 1.2em;
@@ -76,7 +80,7 @@ migration-global-state {
     display: block;
     margin-top: 0.25rem;
     margin-bottom: 0.75rem;
-    font-size: post.$font-size-12;
+    font-size: 0.75rem;
     color: post.$gray-60;
 
     + .info {
@@ -85,7 +89,7 @@ migration-global-state {
   }
 
   .todo-list-status {
-    font-size: post.$font-size-14;
+    font-size: 0.875rem;
   }
 }
 

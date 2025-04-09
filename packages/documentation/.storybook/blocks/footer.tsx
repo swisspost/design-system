@@ -84,7 +84,7 @@ function getGitHubUrl(path: string) {
 
 export default (params: { pathToStoryFile?: string }) => (
   <>
-    <div className="container mt-56 font-size-18 text-end">
+    <div className="container mt-56 fs-5 text-end">
       {params.pathToStoryFile && (
         <a href={getGitHubUrl(params.pathToStoryFile)} rel="noopener">
           Edit this page on GitHub

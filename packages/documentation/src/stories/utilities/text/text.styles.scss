@@ -12,3 +12,7 @@
 .my-colored-text {
   color: post.$error;
 }
+
+p[class*='fs-'] {
+  margin-block: 0.25rem;
+}

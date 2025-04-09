@@ -1,3 +1,5 @@
+import { IS_BROWSER } from './environment';
+
 export function isMotionReduced(): boolean {
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  return IS_BROWSER ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false;
 }

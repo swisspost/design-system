@@ -6,9 +6,9 @@ export const SCSS_VARIABLES: any = parse(scss);
 
 export const ElevationTile = (props: { level: string }) => {
   return (
-    <div className={`elevation-tile ${props.level}`}>
+    <div className={`elevation-tile ${props.level} rounded-4`}>
       <h2 className="h3">{props.level.replace('-', ' ')}</h2>
-      <dl>
+      <dl className="fs-9">
         <dt>Class</dt>
         <dd>
           <code>.{props.level}</code>
