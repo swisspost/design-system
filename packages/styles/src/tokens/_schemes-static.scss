@@ -6,8 +6,10 @@
 :root {
   color-scheme: light dark;
 
-  @each $key, $value in schemestatic.$post-light {
-    --#{$key}: #{$value};
+  @media (prefers-color-scheme: light) {
+    @each $key, $value in schemestatic.$post-light {
+      --#{$key}: #{$value};
+    }
   }
 
   @media (prefers-color-scheme: dark) {
