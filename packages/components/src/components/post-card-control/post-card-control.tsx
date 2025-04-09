@@ -168,8 +168,6 @@ export class PostCardControl {
       if (!checkNonEmpty(this, 'name')) {
         checkType(this, 'name', 'string');
       }
-    } else {
-      checkEmptyOrType(this, 'name', 'string');
     }
   }
 
@@ -179,8 +177,6 @@ export class PostCardControl {
       if (!checkNonEmpty(this, 'value')) {
         checkType(this, 'value', 'string');
       }
-    } else {
-      checkEmptyOrType(this, 'value', 'string');
     }
   }
 
