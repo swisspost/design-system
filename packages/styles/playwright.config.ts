@@ -1,6 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const baseURL = process.env.BASE_URL || 'http://localhost:9000';
 const isCI = !!process.env.CI;
 
 export default defineConfig({
@@ -17,7 +16,6 @@ export default defineConfig({
   ],
 
   use: {
-    baseURL,
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
     screenshot: 'only-on-failure',
