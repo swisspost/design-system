@@ -1,8 +1,8 @@
 import { Component, Element, h, Host, Listen, Method, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { HEADING_LEVELS, HeadingLevel } from '@/types';
-import { checkOneOf } from '@/utils';
 import { EventGuard } from '@/utils/custom-decorators/event-guard';
+import { CheckOneOf } from '@/utils/custom-decorators/check-one-of';
 
 /**
  * @slot default - Slot for placing post-accordion-item components.
@@ -24,15 +24,21 @@ export class PostAccordion {
    */
   @Prop() readonly headingLevel!: HeadingLevel;
 
+  @CheckOneOf<PostAccordion>(
+    'headingLevel',
+    HEADING_LEVELS,
+    'The `heading-level` property of the `post-accordion` must be a number between 1 and 6.'
+  )
   @Watch('headingLevel')
   validateHeadingLevel(newValue = this.headingLevel) {
-    if (!newValue) return;
-    checkOneOf(
-      this,
-      'headingLevel',
-      HEADING_LEVELS,
-      'The `heading-level` property of the `post-accordion` must be a number between 1 and 6.',
+    console.log(
+      `%c[@Watch:headingLevel]%c validateHeadingLevel() called with = %c${newValue}`,
+      'background: #e0f7fa; color: #006064; font-weight: bold; padding: 2px 6px; border-radius: 4px;',
+      'color: #666;',
+      'color: #007acc;',
     );
+
+    if (!newValue) return;
 
     this.accordionItems.forEach(item => {
       item.setAttribute('heading-level', String(newValue));
