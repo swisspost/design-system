@@ -39,15 +39,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: visual-test-results
-          path: |
-            packages/**/visual-tests/__screenshots__/
-            packages/**/visual-tests/playwright-report/
-            packages/**/visual-tests/test-results/
+          path: packages/**/visual-tests/test-results/
 
       - name: Generate summary for visual test results
         if: failure()
         run: |
           echo "## ❌ Visual Regression Tests Failed" >> $GITHUB_STEP_SUMMARY
           echo "- Commit: [${GITHUB_SHA}](https://github.com/${{ github.repository }}/commit/${GITHUB_SHA})" >> $GITHUB_STEP_SUMMARY
-          echo "- 📸 Snapshot diffs and Playwright report saved to artifact: \`visual-test-results\`" >> $GITHUB_STEP_SUMMARY
+          echo "- 📸 Playwright test results saved to artifact: \`visual-test-results\`" >> $GITHUB_STEP_SUMMARY
           echo "- Download it from the **Artifacts** section below to review failures." >> $GITHUB_STEP_SUMMARY
