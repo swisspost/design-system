@@ -1004,7 +1004,7 @@ importers:
         version: 16.12.0(typescript@5.8.2)
       stylelint-config-sass-guidelines:
         specifier: 11.1.0
-        version: 11.1.0(postcss@8.5.2)(stylelint@16.12.0(typescript@5.8.2))
+        version: 11.1.0(postcss@8.4.49)(stylelint@16.12.0(typescript@5.8.2))
       stylelint-prettier:
         specifier: 5.0.2
         version: 5.0.2(prettier@3.4.2)(stylelint@16.12.0(typescript@5.8.2))
@@ -21439,10 +21439,6 @@ snapshots:
     dependencies:
       postcss: 8.4.49
 
-  postcss-scss@4.0.9(postcss@8.5.2):
-    dependencies:
-      postcss: 8.5.2
-
   postcss-selector-parser@6.1.2:
     dependencies:
       cssesc: 3.0.0
@@ -22862,13 +22858,6 @@ snapshots:
     dependencies:
       postcss: 8.4.49
       postcss-scss: 4.0.9(postcss@8.4.49)
-      stylelint: 16.12.0(typescript@5.8.2)
-      stylelint-scss: 6.10.0(stylelint@16.12.0(typescript@5.8.2))
-
-  stylelint-config-sass-guidelines@11.1.0(postcss@8.5.2)(stylelint@16.12.0(typescript@5.8.2)):
-    dependencies:
-      postcss: 8.5.2
-      postcss-scss: 4.0.9(postcss@8.5.2)
       stylelint: 16.12.0(typescript@5.8.2)
       stylelint-scss: 6.10.0(stylelint@16.12.0(typescript@5.8.2))
 
