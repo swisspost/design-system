@@ -151,7 +151,7 @@ post-linkarea:has(> .card) {
 
   &:hover,
   &:focus {
-    color: tokens.get('body-color', elements.$post-body);
+    color: tokens.get('body-color-fg', elements.$post-body);
     text-decoration: none;
   }
 

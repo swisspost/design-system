@@ -22,7 +22,7 @@
 
     .page-link {
       height: 100%;
-      color: tokens.get('body-color', elements.$post-body);
+      color: tokens.get('body-color-fg', elements.$post-body);
       text-align: center;
       text-decoration: none;
 

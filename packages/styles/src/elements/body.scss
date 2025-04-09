@@ -17,8 +17,7 @@ body {
   line-height: tokens.get('body-line-height');
   letter-spacing: tokens.get('body-letter-spacing');
   font-variant-numeric: proportional-nums;
-  background-color: #{tokens.get('palettes-bg', components.$post-palettes)};
-  color: #{tokens.get('palettes-fg', components.$post-palettes)};
-  // color: tokens.get('body-color');
+  color: tokens.get('body-color-fg');
+  background-color: tokens.get('body-color-bg');
   min-height: 100vh;
 }
