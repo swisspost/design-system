@@ -49,7 +49,7 @@ export default meta;
 function getAccordionItemContent(position: number | string, headingLevel?: number) {
   const level = headingLevel ? html` <code>h${headingLevel}</code>` : nothing;
   return html`
-    <span slot="header">Titulum ${position}${level}</span>
+    <span slot="header">Hello ${position}${level}</span>
     <div>
       <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
     </div>
@@ -84,7 +84,7 @@ type Story = StoryObj<HTMLPostAccordionElement>;
 
 export const Default: Story = {
   args: {
-    headingLevel: '7' as HeadingLevel, // needs to be a string for the control to properly initialize
+    headingLevel: '3' as HeadingLevel, // needs to be a string for the control to properly initialize
   },
 };
 
