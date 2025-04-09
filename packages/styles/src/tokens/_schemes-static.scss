@@ -1,42 +1,15 @@
-@use 'sass:map';
 @use './core';
-@use '../tokens/temp/schemestatic';
 @use '../mixins/supports';
-
-@mixin light-scheme-variables() {
-  @each $key, $value in schemestatic.$post-light {
-    --#{$key}: #{$value};
-  }
-
-  @include supports.light-dark(false) {
-    --post-scheme-even: ;
-    --post-scheme-swapped: initial;
-    --post-scheme-light: ;
-    --post-scheme-dark: initial;
-  }
-}
-
-@mixin dark-scheme-variables() {
-  @each $key, $value in schemestatic.$post-dark {
-    --#{$key}: #{$value};
-  }
-
-  @include supports.light-dark(false) {
-    --post-scheme-even: initial;
-    --post-scheme-swapped: ;
-    --post-scheme-light: ;
-    --post-scheme-dark: initial;
-  }
-}
+@use '../mixins/schemes';
 
 // prefered root color-scheme
 :root {
   @media (prefers-color-scheme: light) {
-    @include light-scheme-variables;
+    @include schemes.light-variables;
   }
 
   @media (prefers-color-scheme: dark) {
-    @include dark-scheme-variables;
+    @include schemes.dark-variables;
   }
 
   @include supports.light-dark(true) {
@@ -50,7 +23,7 @@
 
 // forced root color-scheme light
 [data-color-scheme='light'] {
-  @include light-scheme-variables;
+  @include schemes.light-variables;
 
   @include supports.light-dark(true) {
     color-scheme: light;
@@ -63,7 +36,7 @@
 
 // forced root color-scheme dark
 [data-color-scheme='dark'] {
-  @include dark-scheme-variables;
+  @include schemes.dark-variables;
 
   @include supports.light-dark(true) {
     color-scheme: dark;
