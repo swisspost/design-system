@@ -2,8 +2,13 @@ import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core'
 import { Placement } from '@floating-ui/dom';
 import { PLACEMENT_TYPES } from '@/types';
 import { version } from '@root/package.json';
-import { getAttributeObserver } from '@/utils/attribute-observer';
-import { checkEmptyOrOneOf, checkNonEmpty, checkType } from '@/utils';
+import {
+  IS_BROWSER,
+  getAttributeObserver,
+  checkEmptyOrOneOf,
+  checkNonEmpty,
+  checkType,
+} from '@/utils';
 
 /**
  * @slot default - Slot for placing content inside the popover.
@@ -27,12 +32,6 @@ const globalToggleHandler = (e: PointerEvent | KeyboardEvent) => {
   popover?.toggle(currentElement);
 };
 
-// Initialize a mutation observer for patching accessibility features
-const triggerObserver = getAttributeObserver(popoverTargetAttribute, trigger => {
-  const force = trigger.hasAttribute(popoverTargetAttribute);
-  trigger.setAttribute('aria-expanded', force ? 'false' : null);
-});
-
 @Component({
   tag: 'post-popover',
   styleUrl: 'post-popover.scss',
@@ -40,7 +39,11 @@ const triggerObserver = getAttributeObserver(popoverTargetAttribute, trigger => 
 })
 export class PostPopover {
   private popoverRef: HTMLPostPopovercontainerElement;
-  private localBeforeToggleHandler;
+  private readonly localBeforeToggleHandler: () => void;
+  // Initialize a mutation observer for patching accessibility features
+  private readonly triggerObserver = IS_BROWSER
+    ? getAttributeObserver(popoverTargetAttribute, this.patchAccessibilityFeatures)
+    : null;
 
   @Element() host: HTMLPostPopoverElement;
 
@@ -82,7 +85,7 @@ export class PostPopover {
     if (popoverInstances === 0) {
       window.addEventListener('pointerup', globalToggleHandler);
       window.addEventListener('keydown', globalToggleHandler);
-      triggerObserver.observe(document.body, {
+      this.triggerObserver?.observe(document.body, {
         subtree: true,
         childList: true,
         attributeFilter: [popoverTargetAttribute],
@@ -107,7 +110,7 @@ export class PostPopover {
     if (popoverInstances === 0) {
       window.removeEventListener('click', globalToggleHandler);
       window.removeEventListener('keydown', globalToggleHandler);
-      triggerObserver.disconnect();
+      this.triggerObserver?.disconnect();
     }
 
     this.popoverRef.removeEventListener('beforetoggle', this.localBeforeToggleHandler);
@@ -151,6 +154,11 @@ export class PostPopover {
 
   private beforeToggleHandler() {
     this.triggers.forEach(trigger => trigger.setAttribute('aria-expanded', 'false'));
+  }
+
+  private patchAccessibilityFeatures(trigger: HTMLElement) {
+    const force = trigger.hasAttribute(popoverTargetAttribute);
+    trigger.setAttribute('aria-expanded', force ? 'false' : null);
   }
 
   render() {
