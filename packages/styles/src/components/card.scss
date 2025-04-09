@@ -7,6 +7,7 @@
 @use '../mixins/utilities' as utilities-mx;
 
 @use './../functions/tokens';
+@use './../mixins/color-scheme';
 @use './../tokens/utilities';
 @use './../tokens/elements';
 @use './../tokens/components';
@@ -24,10 +25,8 @@ post-linkarea:has(> .card) {
   border-radius: tokens.get('card-border-radius');
   background-color: tokens.get('card-bg');
   color: tokens.get('card-fg');
-  color-scheme: tokens.get('card-scheme');
-  // TODO: color-scheme fallback
-
   border: 1px solid tokens.get('card-non-interactive-stroke');
+  @include color-scheme.set(tokens.get('card-scheme'));
 
   // Add an elevation only if card is interactive
   post-linkarea > & {

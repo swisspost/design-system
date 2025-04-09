@@ -1,10 +1,9 @@
+@use 'sass:map';
 @use '../tokens/temp/scheme';
-@use './../mixins/tokens';
 
-%color-scheme-light {
-  @include tokens.from(scheme.$post-light);
-}
-
-%color-scheme-dark {
-  @include tokens.from(scheme.$post-dark);
+%scheme-fallback-variables {
+  @each $key, $light-value in scheme.$post-light {
+    --#{$key}-light: var(--fallback-prefers-light) #{$light-value};
+    --#{$key}: var(--#{$key}-light, #{map.get(scheme.$post-dark, $key)});
+  }
 }

@@ -1,22 +1,11 @@
 @use '../functions/tokens';
 @use '../tokens/components';
+@use '../mixins/color-scheme';
 @use '../mixins/supports';
 
 tokens.$default-map: components.$post-palettes;
 
 .palette {
-  .palette-text {
-    color: tokens.get('palettes-accent');
-  }
-
-  @include supports.light-dark(true) {
-    color-scheme: #{tokens.get('palettes-scheme')};
-  }
-
-  @include supports.light-dark(false) {
-    --fallback-prefers-light: #{tokens.get('palettes-scheme')};
-  }
-
   background-color: #{tokens.get('palettes-bg')};
   color: #{tokens.get('palettes-fg')};
 
@@ -27,5 +16,11 @@ tokens.$default-map: components.$post-palettes;
   // TODO: remove for prod
   .palette ~ .palette {
     margin-top: 0;
+  }
+
+  @include color-scheme.set(tokens.get('palettes-scheme'));
+
+  .palette-text {
+    color: tokens.get('palettes-accent');
   }
 }
