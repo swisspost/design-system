@@ -14,8 +14,8 @@ export interface IFooterConfig {
 export interface BlockEntity {
   columnType: string;
   title: string;
-  links?: LinksEntity[];
-  content?: ContentEntity[];
+  links?: LinksEntity[] | null;
+  content?: ContentEntity[] | null;
 }
 
 export interface LinksEntity {
@@ -30,14 +30,14 @@ export interface LinksEntity {
 }
 
 export interface ContentEntity {
-  address: string;
-  describe: string;
-  hours: string;
-  links: LinksEntity[];
-  name: string;
-  number: string;
-  text: string;
-  title: string;
+  address?: string | null;
+  describe?: string | null;
+  hours?: string | null;
+  links?: LinksEntity[] | null;
+  name?: string | null;
+  number?: string | null;
+  text?: string | null;
+  title?: string | null;
 }
 
 export interface ICustomFooterConfig {

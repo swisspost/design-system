@@ -107,7 +107,8 @@
   },
   "devDependencies": {
     "@changesets/cli": "2.27.11",
-    "start-server-and-test": "2.0.9"
+    "start-server-and-test": "2.0.9",
+    "eslint-plugin-cypress": "4.2.0"
   },
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
@@ -126,8 +127,5 @@
       }
     },
     "overrides": {}
-  },
-  "dependencies": {
-    "eslint-plugin-cypress": "4.2.0"
   }
 }

@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      eslint-plugin-cypress:
-        specifier: 4.2.0
-        version: 4.2.0(eslint@9.19.0(jiti@2.4.2))
     optionalDependencies:
       '@web-types/lit':
         specifier: 2.0.0-3
@@ -19,6 +15,9 @@ importers:
       '@changesets/cli':
         specifier: 2.27.11
         version: 2.27.11
+      eslint-plugin-cypress:
+        specifier: 4.2.0
+        version: 4.2.0(eslint@9.19.0(jiti@2.4.2))
       start-server-and-test:
         specifier: 2.0.9
         version: 2.0.9
@@ -129,6 +128,9 @@ importers:
       eslint:
         specifier: 9.18.0
         version: 9.18.0(jiti@2.4.2)
+      eslint-plugin-cypress:
+        specifier: 4.2.0
+        version: 4.2.0(eslint@9.18.0(jiti@2.4.2))
       eslint-plugin-react:
         specifier: 7.37.4
         version: 7.37.4(eslint@9.18.0(jiti@2.4.2))
@@ -427,6 +429,9 @@ importers:
       eslint:
         specifier: 9.18.0
         version: 9.18.0(jiti@2.4.2)
+      eslint-plugin-cypress:
+        specifier: 4.2.0
+        version: 4.2.0(eslint@9.18.0(jiti@2.4.2))
       eslint-plugin-markdown:
         specifier: 5.1.0
         version: 5.1.0(eslint@9.18.0(jiti@2.4.2))
@@ -702,6 +707,9 @@ importers:
       eslint:
         specifier: 9.18.0
         version: 9.18.0(jiti@2.4.2)
+      eslint-plugin-cypress:
+        specifier: 4.2.0
+        version: 4.2.0(eslint@9.18.0(jiti@2.4.2))
       eslint-plugin-jest:
         specifier: 28.11.0
         version: 28.11.0(@typescript-eslint/eslint-plugin@8.22.0(@typescript-eslint/parser@7.18.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.18.0(jiti@2.4.2))(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.2)))(typescript@5.8.2)
@@ -1008,7 +1016,7 @@ importers:
         version: 16.12.0(typescript@5.8.2)
       stylelint-config-sass-guidelines:
         specifier: 11.1.0
-        version: 11.1.0(postcss@8.5.2)(stylelint@16.12.0(typescript@5.8.2))
+        version: 11.1.0(postcss@8.4.49)(stylelint@16.12.0(typescript@5.8.2))
       stylelint-prettier:
         specifier: 5.0.2
         version: 5.0.2(prettier@3.4.2)(stylelint@16.12.0(typescript@5.8.2))
@@ -17584,6 +17592,11 @@ snapshots:
       - bluebird
       - supports-color
 
+  eslint-plugin-cypress@4.2.0(eslint@9.18.0(jiti@2.4.2)):
+    dependencies:
+      eslint: 9.18.0(jiti@2.4.2)
+      globals: 15.14.0
+
   eslint-plugin-cypress@4.2.0(eslint@9.19.0(jiti@2.4.2)):
     dependencies:
       eslint: 9.19.0(jiti@2.4.2)
@@ -21448,10 +21461,6 @@ snapshots:
     dependencies:
       postcss: 8.4.49
 
-  postcss-scss@4.0.9(postcss@8.5.2):
-    dependencies:
-      postcss: 8.5.2
-
   postcss-selector-parser@6.1.2:
     dependencies:
       cssesc: 3.0.0
@@ -22872,13 +22881,6 @@ snapshots:
     dependencies:
       postcss: 8.4.49
       postcss-scss: 4.0.9(postcss@8.4.49)
-      stylelint: 16.12.0(typescript@5.8.2)
-      stylelint-scss: 6.10.0(stylelint@16.12.0(typescript@5.8.2))
-
-  stylelint-config-sass-guidelines@11.1.0(postcss@8.5.2)(stylelint@16.12.0(typescript@5.8.2)):
-    dependencies:
-      postcss: 8.5.2
-      postcss-scss: 4.0.9(postcss@8.5.2)
       stylelint: 16.12.0(typescript@5.8.2)
       stylelint-scss: 6.10.0(stylelint@16.12.0(typescript@5.8.2))
 

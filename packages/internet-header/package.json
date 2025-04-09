@@ -87,7 +87,8 @@
     "start-server-and-test": "2.0.9",
     "ts-jest": "29.2.5",
     "typescript": "5.8.2",
-    "typescript-eslint": "8.20.0"
+    "typescript-eslint": "8.20.0",
+    "eslint-plugin-cypress": "4.2.0"
   },
   "keywords": [
     "components",
