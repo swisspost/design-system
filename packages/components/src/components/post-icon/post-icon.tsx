@@ -120,8 +120,8 @@ export class PostIcon {
       this.base ||
       (IS_BROWSER
         ? document
-            .querySelector('meta[name="design-system-settings"]')
-            ?.getAttribute('data-post-icon-base') || ''
+          .querySelector('meta[name="design-system-settings"]')
+          ?.getAttribute('data-post-icon-base') || ''
         : '');
     const isIconBaseAbsolute = /^https?:\/\//.test(iconBase);
 
