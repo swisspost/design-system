@@ -22,6 +22,7 @@ export { PostList } from './components/post-list/post-list';
 export { PostListItem } from './components/post-list-item/post-list-item';
 export { PostLogo } from './components/post-logo/post-logo';
 export { PostMainnavigation } from './components/post-mainnavigation/post-mainnavigation';
+export { PostMainnavigationToplevelItem } from './components/post-mainnavigation-toplevel-item/post-mainnavigation-toplevel-item';
 export { PostMegadropdown } from './components/post-megadropdown/post-megadropdown';
 export { PostMegadropdownTrigger } from './components/post-megadropdown-trigger/post-megadropdown-trigger';
 export { PostMenu } from './components/post-menu/post-menu';
