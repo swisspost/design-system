@@ -120,13 +120,20 @@ export class PostIcon {
       this.base ||
       (IS_BROWSER
         ? document
-          .querySelector('meta[name="design-system-settings"]')
-          ?.getAttribute('data-post-icon-base') || ''
+            .querySelector('meta[name="design-system-settings"]')
+            ?.getAttribute('data-post-icon-base') || ''
         : '');
     const isIconBaseAbsolute = /^https?:\/\//.test(iconBase);
 
-    const normalizedBaseHref = baseHref ? (baseHref.endsWith('/') ? baseHref : `${baseHref}/`) : '';
-    const normalizedIconBase = iconBase ? (iconBase.endsWith('/') ? iconBase : `${iconBase}/`) : '';
+    let normalizedBaseHref = '';
+    if (baseHref) {
+      normalizedBaseHref = baseHref.endsWith('/') ? baseHref : `${baseHref}/`;
+    }
+
+    let normalizedIconBase = '';
+    if (iconBase) {
+      normalizedIconBase = iconBase.endsWith('/') ? iconBase : `${iconBase}/`;
+    }
 
     let url: string;
 
