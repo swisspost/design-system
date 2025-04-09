@@ -31,12 +31,6 @@ export class PostAccordion {
   )
   @Watch('headingLevel')
   validateHeadingLevel(newValue = this.headingLevel) {
-    console.log(
-      `%c[@Watch:headingLevel]%c validateHeadingLevel() called with = %c${newValue}`,
-      'background: #e0f7fa; color: #006064; font-weight: bold; padding: 2px 6px; border-radius: 4px;',
-      'color: #666;',
-      'color: #007acc;',
-    );
 
     if (!newValue) return;
 

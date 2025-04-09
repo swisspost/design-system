@@ -14,43 +14,58 @@ export function EventGuard(options: {
     descriptor.value = function (event: CustomEvent) {
       const target = event.target as HTMLElement | null;
 
-      console.group(`[EventGuard] Event: ${event.type}`);
-      console.log('→ Target:', target);
-      console.log('→ Expected localName:', options.targetLocalName);
+      console.groupCollapsed(
+        `%c[EventGuard]%c Event: %c${event.type}`,
+        'background: #ff9800; color: white; font-weight: bold; padding: 2px 6px; border-radius: 4px;',
+        'color: gray;',
+        'color: #03a9f4; font-weight: bold;'
+      );
+
+      console.log('%c→ Target:', 'color: #666;', target);
+      console.log(
+        `%c→ Expected localName: %c${options.targetLocalName}`,
+        'color: #666;',
+        'color: #4caf50; font-weight: bold;'
+      );
 
       if (!target) {
-        console.warn('✘ No target found on event.');
+        console.warn(
+          '%c✘ No target found on event.',
+          'color: red; font-weight: bold;'
+        );
         console.groupEnd();
         return;
       }
 
       if (target.localName !== options.targetLocalName) {
         console.warn(
-          `✘ Target localName mismatch: expected "${options.targetLocalName}", got "${target.localName}"`
+          `%c✘ Target localName mismatch: expected "${options.targetLocalName}", got "${target.localName}"`,
+          'color: red; font-weight: bold;'
         );
         console.groupEnd();
         return;
       }
 
-      console.log('✓ localName matched.');
+      console.log('%c✓ localName matched.', 'color: #4caf50; font-weight: bold;');
 
       if (options.delegatorSelector) {
         const closest = shadowClosest(target, options.delegatorSelector);
-        console.log('→ shadowClosest result:', closest);
-        console.log('→ Host:', this.host);
+        console.log('%c→ closestHost result:', 'color: #666;', closest);
+        console.log('%c→ Host:', 'color: #666;', this.host);
 
         if (closest !== this.host) {
           console.warn(
-            `✘ shadowClosest did not match host: expected "${this.host}", got "${closest}"`
+            `%c✘ closestHost mismatch`,
+            'color: white; background-color: red; font-weight: bold; padding: 2px 6px; border-radius: 4px;',
           );
           console.groupEnd();
           return;
-        }
+        }                
 
-        console.log('✓ shadowClosest matched host.');
+        console.log('%c✓ closestHost matched host.', 'color: #4caf50; font-weight: bold;');
       }
 
-      console.log('✓ All checks passed. Executing original method.');
+      console.log('%c✓ All checks passed. Executing original method.', 'color: #2196f3; font-weight: bold;');
       console.groupEnd();
 
       return originalMethod.call(this, event);

@@ -8,7 +8,8 @@ export function checkOneOf<T extends { host: HTMLElement }>(
   const value = component[prop];
   const defaultMessage = `The prop \`${String(
     prop,
-  )}\` of the \`${componentName}\` component must be one of the following values: ${possibleValues.join(
+  )}\` of the \`${componentName}\` component must be one of 
+  the following values: ${possibleValues.join(
     ', ',
   )}.`;
 
