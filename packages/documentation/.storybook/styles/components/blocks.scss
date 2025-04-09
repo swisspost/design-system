@@ -12,8 +12,13 @@ tokens.$default-map: utilities.$post-spacing;
     box-shadow: none;
   }
 
+  div:has(> .docblock-argstable) {
+    overflow-x: auto;
+  }
+
   .docblock-argstable {
     border-radius: tokens.get('utility-gap-8');
+    margin-inline: 0;
 
     tbody {
       position: relative;
@@ -31,10 +36,21 @@ tokens.$default-map: utilities.$post-spacing;
       }
 
       > tr {
+        // to prevent category arrow from shrinking
+        > td:first-child span > svg {
+          min-width: 12px;
+          min-height: 12px;
+        }
+
         > th,
         > td {
           background-color: transparent;
           border: 0 none;
+
+          // description
+          &:nth-child(2) {
+            min-width: 160px;
+          }
         }
 
         &:not(:first-child) {
@@ -80,6 +96,12 @@ tokens.$default-map: utilities.$post-spacing;
             }
           }
         }
+      }
+
+      select {
+        padding-right: 28px;
+        text-overflow: ellipsis;
+        min-width: 120px;
       }
     }
   }

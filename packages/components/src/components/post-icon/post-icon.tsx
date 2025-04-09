@@ -1,8 +1,8 @@
 import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
-import { checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '@/utils';
+import { IS_BROWSER, checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '@/utils';
 import { version } from '@root/package.json';
 
-const CDN_URL = 'https://unpkg.com/@swisspost/design-system-icons/public/post-icons/';
+const CDN_URL = `https://unpkg.com/@swisspost/design-system-icons@${version}/public/post-icons/`;
 const ANIMATION_NAMES = [
   'cylon',
   'cylon-vertical',
@@ -18,14 +18,13 @@ type Animation = (typeof ANIMATION_NAMES)[number];
 /**
  * @class PostIcon - representing a stencil component
  */
+
 @Component({
   tag: 'post-icon',
   styleUrl: 'post-icon.scss',
   shadow: true,
 })
 export class PostIcon {
-  private readonly isSSR: boolean = typeof window === 'undefined';
-
   @Element() host: HTMLPostIconElement;
 
   /**
@@ -71,7 +70,7 @@ export class PostIcon {
   /**
    * The name/id of the icon (e.g. 1000, 1001, ...).
    */
-  @Prop() readonly name!: string;
+  @Prop({ reflect: true }) readonly name!: string;
 
   @Watch('name')
   validateName() {
@@ -106,16 +105,16 @@ export class PostIcon {
   private getUrl(): string {
     const fileName = `${this.name}.svg`;
 
-    // Return default CDN URL during SSR if no component base is specified
-    if (this.isSSR && !this.base) {
+    // Return default CDN URL during non-browser environment if no component base is specified
+    if (!IS_BROWSER && !this.base) {
       return `${CDN_URL}${fileName}`;
     }
 
     // Get current domain
-    const currentDomain = !this.isSSR ? window.location.origin : '';
+    const currentDomain = IS_BROWSER ? window.location.origin : '';
 
     // Get base href if it exists
-    const baseHref = !this.isSSR
+    const baseHref = IS_BROWSER
       ? document.querySelector('base[href]')?.getAttribute('href') || ''
       : '';
     const isBaseHrefAbsolute = /^https?:\/\//.test(baseHref);
@@ -123,7 +122,7 @@ export class PostIcon {
     // Get icon base path (component prop has priority over meta tag)
     const iconBase =
       this.base ||
-      (!this.isSSR
+      (IS_BROWSER
         ? document
             .querySelector('meta[name="design-system-settings"]')
             ?.getAttribute('data-post-icon-base') || ''

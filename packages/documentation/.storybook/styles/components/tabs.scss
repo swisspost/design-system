@@ -53,7 +53,7 @@ tokens.$default-map: utilities.$post-spacing;
 
   &:not(.sb-tabs-lg, :has(post-tab-panel > .sbdocs)) {
     > post-tab-header {
-      font-size: post.$font-size-sm;
+      font-size: 0.875rem;
     }
 
     &::part(content) {

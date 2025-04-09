@@ -6,7 +6,6 @@ body {
   @include mixins.hover-animation-svg-icon(red, 2021);
   @include mixins.focus-outline();
 
-  @include mixins.font-curve('tiny');
   @include mixins.font-smoothing();
   @include mixins.font-smoothing-reset();
 }
