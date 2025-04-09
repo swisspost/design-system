@@ -74,12 +74,24 @@ const meta: MetaComponent = {
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
           <!-- Link only level 1 -->
-          <post-list-item slot="post-list-item"><a href="/briefe">Briefe</a></post-list-item>
-          <post-list-item slot="post-list-item"><a href="/pakete">Pakete</a></post-list-item>
+          <post-list-item slot="post-list-item"
+            ><a href="/briefe"
+              ><post-mainnavigation-toplevel-item>Briefe</post-mainnavigation-toplevel-item></a
+            ></post-list-item
+          >
+          <post-list-item slot="post-list-item"
+            ><a href="/pakete"
+              ><post-mainnavigation-toplevel-item>Pakete</post-mainnavigation-toplevel-item></a
+            ></post-list-item
+          >
 
           <!-- Level 1 with megadropdown -->
           <post-list-item slot="post-list-item">
-            <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
+            <post-megadropdown-trigger for="briefe"
+              ><post-mainnavigation-toplevel-item
+                >Briefe</post-mainnavigation-toplevel-item
+              ></post-megadropdown-trigger
+            >
             <post-megadropdown id="briefe">
               <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
                 <post-icon name="arrowright"></post-icon>
@@ -116,7 +128,11 @@ const meta: MetaComponent = {
             </post-megadropdown>
           </post-list-item>
           <post-list-item slot="post-list-item">
-            <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
+            <post-megadropdown-trigger for="pakete"
+              ><post-mainnavigation-toplevel-item
+                >Pakete</post-mainnavigation-toplevel-item
+              ></post-megadropdown-trigger
+            >
             <post-megadropdown id="pakete">
               <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
                 <post-icon name="arrowright"></post-icon>

@@ -1,0 +1,35 @@
+@use '@swisspost/design-system-styles/variables/animation';
+@use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/icons';
+@use '@swisspost/design-system-styles/mixins/button';
+@use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
+
+:host {
+  display: inline-flex;
+  position: relative;
+}
+
+@include media.max(lg) {
+  .active {
+    display: none;
+  }
+}
+
+@include media.min(lg) {
+  .active,
+  .inactive {
+    display: block;
+    text-align: center;
+  }
+
+  .active {
+    visibility: hidden;
+    font-weight: 700;
+  }
+
+  .inactive {
+    position: absolute;
+    inset-inline: 0;
+  }
+}
