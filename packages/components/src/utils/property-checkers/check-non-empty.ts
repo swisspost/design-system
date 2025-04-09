@@ -16,4 +16,5 @@ export function checkNonEmpty<T extends { host: HTMLElement }>(
   if (EMPTY_VALUES.some(v => v === value)) {
     console.error(message);
   }
+  return EMPTY_VALUES.some(v => v === value);
 }

@@ -1,12 +1,6 @@
 import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
 
-import {
-  IS_BROWSER,
-  checkPattern,
-  checkEmptyOrType,
-  checkEmptyOrOneOf,
-  checkNonEmpty,
-} from '@/utils';
+import { IS_BROWSER, checkType, checkEmptyOrType, checkEmptyOrOneOf, checkNonEmpty } from '@/utils';
 
 import { version } from '@root/package.json';
 
@@ -78,8 +72,9 @@ export class PostIcon {
 
   @Watch('name')
   validateName() {
-    checkNonEmpty(this, 'name');
-    checkPattern(this, 'name', /\d{4}|none/, 'The icon "name" prop should be a 4-digit string.');
+    if (!checkNonEmpty(this, 'name')) {
+      checkType(this, 'name', 'string');
+    }
   }
 
   /**

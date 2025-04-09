@@ -25,17 +25,15 @@ export class PostTabPanel {
 
   @Watch('name')
   validateName() {
-    checkNonEmpty(this, 'name');
-    checkType(this, 'name', 'string');
+    if (!checkNonEmpty(this, 'name')) {
+      checkType(this, 'name', 'string');
+    }
   }
 
   componentWillLoad() {
+    this.validateName();
     // get the id set on the host element or use a random id by default
     this.panelId = `panel-${this.host.id || nanoid(6)}`;
-  }
-
-  componentDidLoad() {
-    this.validateName();
   }
 
   render() {

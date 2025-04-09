@@ -68,8 +68,9 @@ export class PostPopover {
 
   @Watch('closeButtonCaption')
   validateCloseButtonCaption() {
-    checkNonEmpty(this, 'closeButtonCaption');
-    checkType(this, 'closeButtonCaption', 'string');
+    if (!checkNonEmpty(this, 'closeButtonCaption')) {
+      checkType(this, 'closeButtonCaption', 'string');
+    }
   }
 
   constructor() {

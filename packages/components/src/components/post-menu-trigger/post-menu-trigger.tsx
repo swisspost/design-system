@@ -33,8 +33,9 @@ export class PostMenuTrigger {
    */
   @Watch('for')
   validateControlFor() {
-    checkNonEmpty(this, 'for');
-    checkType(this, 'for', 'string');
+    if (!checkNonEmpty(this, 'for')) {
+      checkType(this, 'for', 'string');
+    }
   }
 
   private get menu(): HTMLPostMenuElement | null {

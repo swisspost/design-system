@@ -39,8 +39,9 @@ export class PostMegadropdownTrigger {
    */
   @Watch('for')
   validateControlFor() {
-    checkNonEmpty(this, 'for');
-    checkType(this, 'for', 'string');
+    if (!checkNonEmpty(this, 'for')) {
+      checkType(this, 'for', 'string');
+    }
   }
 
   private get megadropdown(): HTMLPostMegadropdownElement | null {

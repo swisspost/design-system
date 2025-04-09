@@ -59,20 +59,24 @@ export class PostRating {
 
   @Watch('label')
   validateLabel() {
-    checkNonEmpty(this, 'label');
-    checkType(this, 'label', 'string');
+    if (!checkNonEmpty(this, 'label')) {
+      checkType(this, 'label', 'string');
+    }
   }
 
   @Watch('stars')
   validateStars() {
-    checkNonEmpty(this, 'stars');
-    checkType(this, 'stars', 'number');
+    console.log(this.stars);
+    if (!checkNonEmpty(this, 'stars')) {
+      checkType(this, 'stars', 'number');
+    }
   }
 
   @Watch('currentRating')
   validateCurrentRating() {
-    checkNonEmpty(this, 'currentRating');
-    checkType(this, 'currentRating', 'number');
+    if (!checkNonEmpty(this, 'currentRating')) {
+      checkType(this, 'currentRating', 'number');
+    }
   }
 
   constructor() {
@@ -133,6 +137,12 @@ export class PostRating {
     } else if (e.type === 'mouseleave') {
       this.hoveredIndex = undefined;
     }
+  }
+
+  componentWillLoad() {
+    this.validateLabel();
+    this.validateStars();
+    this.validateCurrentRating();
   }
 
   render() {

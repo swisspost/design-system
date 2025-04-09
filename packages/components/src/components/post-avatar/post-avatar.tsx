@@ -59,8 +59,9 @@ export class PostAvatar {
 
   @Watch('firstname')
   validateFirstname() {
-    checkNonEmpty(this, 'firstname');
-    checkType(this, 'firstname', 'string');
+    if (!checkNonEmpty(this, 'firstname')) {
+      checkType(this, 'firstname', 'string');
+    }
   }
 
   @Watch('lastname')

@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkEmptyOrOneOf, checkEmptyOrPattern } from '@/utils';
+import { checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
 /**
  * @slot default - Content to place in the `default` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content">inline content</a>.</p>
  */
@@ -22,7 +22,7 @@ export class PostTag {
   /**
    * Defines the size of the component.
    */
-  @Prop() readonly size: 'sm';
+  @Prop() readonly size: 'sm' | null;
 
   /**
    * Defines the icon `name` inside of the component.
@@ -49,7 +49,7 @@ export class PostTag {
 
   @Watch('icon')
   validateName() {
-    checkEmptyOrPattern(this, 'icon', /\d{4}|none/, 'The "icon" prop should be a 4-digit string.');
+    checkEmptyOrType(this, 'icon', 'string');
   }
 
   private setClasses() {
@@ -64,6 +64,12 @@ export class PostTag {
 
   connectedCallback() {
     this.setClasses();
+  }
+
+  componentWillLoad() {
+    this.validateName();
+    this.variantChanged();
+    this.sizeChanged();
   }
 
   render() {

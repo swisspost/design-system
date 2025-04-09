@@ -125,7 +125,7 @@ export class PostTooltip {
   @Prop() readonly placement?: Placement = 'top';
 
   /**
-   * Wheter or not to display a little pointer arrow
+   * Whether or not to display a little pointer arrow
    */
   @Prop() readonly arrow?: boolean = true;
 

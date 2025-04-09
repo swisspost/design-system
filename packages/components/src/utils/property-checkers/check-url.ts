@@ -5,7 +5,7 @@ export function checkUrl<T extends { host: HTMLElement }>(
 ) {
   const componentName = component.host.localName;
   const value = component[prop];
-
+  console.log(value);
   const defaultMessage = `The prop \`${String(
     prop,
   )}\` of the \`${componentName}\` component is invalid.`;

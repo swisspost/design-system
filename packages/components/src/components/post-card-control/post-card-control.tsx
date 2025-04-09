@@ -145,8 +145,9 @@ export class PostCardControl {
 
   @Watch('label')
   validateControlLabel() {
-    checkNonEmpty(this, 'label');
-    checkType(this, 'label', 'string');
+    if (!checkNonEmpty(this, 'label')) {
+      checkType(this, 'label', 'string');
+    }
   }
 
   @Watch('description')
@@ -156,15 +157,17 @@ export class PostCardControl {
 
   @Watch('type')
   validateControlType() {
-    checkNonEmpty(this, 'type');
-    checkOneOf(this, 'type', ['checkbox', 'radio']);
+    if (!checkNonEmpty(this, 'type')) {
+      checkOneOf(this, 'type', ['checkbox', 'radio']);
+    }
   }
 
   @Watch('name')
   validateControlName() {
     if (this.type == 'radio') {
-      checkNonEmpty(this, 'name');
-      checkType(this, 'name', 'string');
+      if (!checkNonEmpty(this, 'name')) {
+        checkType(this, 'name', 'string');
+      }
     } else {
       checkEmptyOrType(this, 'name', 'string');
     }
@@ -173,8 +176,9 @@ export class PostCardControl {
   @Watch('value')
   validateControlValue() {
     if (this.type == 'radio') {
-      checkNonEmpty(this, 'value');
-      checkType(this, 'value', 'string');
+      if (!checkNonEmpty(this, 'value')) {
+        checkType(this, 'value', 'string');
+      }
     } else {
       checkEmptyOrType(this, 'value', 'string');
     }
@@ -187,8 +191,9 @@ export class PostCardControl {
 
   @Watch('icon')
   validateControlIcon() {
-    checkNonEmpty(this, 'icon');
-    checkType(this, 'icon', 'string');
+    if (!checkNonEmpty(this, 'icon')) {
+      checkType(this, 'icon', 'string');
+    }
   }
 
   @Watch('checked')

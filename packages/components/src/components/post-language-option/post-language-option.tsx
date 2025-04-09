@@ -36,8 +36,9 @@ export class PostLanguageOption {
 
   @Watch('code')
   validateCode() {
-    checkNonEmpty(this, 'code');
-    checkType(this, 'code', 'string');
+    if (!checkNonEmpty(this, 'code')) {
+      checkType(this, 'code', 'string');
+    }
   }
 
   /**
@@ -120,7 +121,7 @@ export class PostLanguageOption {
   }
 
   render() {
-    const lang = this.code.toLowerCase();
+    const lang: string = this.code ? this.code.toLowerCase() : '';
 
     const emitOnKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter' || e.key === ' ') {

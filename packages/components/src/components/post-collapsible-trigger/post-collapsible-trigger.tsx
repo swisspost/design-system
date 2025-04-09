@@ -23,8 +23,9 @@ export class PostCollapsibleTrigger {
    */
   @Watch('for')
   setAriaAttributes() {
-    checkNonEmpty(this, 'for');
-    checkType(this, 'for', 'string', 'The post-collapsible-trigger "for" prop should be a id.');
+    if (!checkNonEmpty(this, 'for')) {
+      checkType(this, 'for', 'string', 'The post-collapsible-trigger "for" prop should be a id.');
+    }
     void this.update();
   }
 
@@ -76,16 +77,11 @@ export class PostCollapsibleTrigger {
    * This updates the trigger's "aria-expanded" attribute based on the event detail.
    */
   private handlePostToggle(e: CustomEvent): void {
-    eventGuard(
-      this.host,
-      e, 
-      { targetLocalName: 'post-collapsible' },
-      () => {
-        if (this.trigger) {
-          this.trigger.setAttribute('aria-expanded', `${e.detail}`);
-        }
+    eventGuard(this.host, e, { targetLocalName: 'post-collapsible' }, () => {
+      if (this.trigger) {
+        this.trigger.setAttribute('aria-expanded', `${e.detail}`);
       }
-    );
+    });
   }
 
   private debouncedUpdate = debounce(() => {

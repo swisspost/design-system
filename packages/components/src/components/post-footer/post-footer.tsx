@@ -29,12 +29,17 @@ export class PostFooter {
 
   @Watch('label')
   validateLabel() {
-    checkNonEmpty(this, 'label');
-    checkType(this, 'label', 'string');
+    if (!checkNonEmpty(this, 'label')) {
+      checkType(this, 'label', 'string');
+    }
   }
 
   connectedCallback() {
     window.addEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
+  }
+
+  componentWillLoad() {
+    this.validateLabel();
   }
 
   private breakpointChange(e: CustomEvent) {

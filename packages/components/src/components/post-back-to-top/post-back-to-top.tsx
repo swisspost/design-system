@@ -31,8 +31,9 @@ export class PostBackToTop {
 
   @Watch('label')
   validateLabel() {
-    checkNonEmpty(this, 'label');
-    checkType(this, 'label', 'string');
+    if (!checkNonEmpty(this, 'label')) {
+      checkType(this, 'label', 'string');
+    }
   }
 
   /*Watch for changes in belowFold to show/hide the back to top button*/

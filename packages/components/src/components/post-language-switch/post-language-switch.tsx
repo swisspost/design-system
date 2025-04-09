@@ -20,8 +20,9 @@ export class PostLanguageSwitch {
 
   @Watch('caption')
   validateCaption() {
-    checkNonEmpty(this, 'caption');
-    checkType(this, 'caption', 'string');
+    if (!checkNonEmpty(this, 'caption')) {
+      checkType(this, 'caption', 'string');
+    }
   }
 
   /**
@@ -31,8 +32,9 @@ export class PostLanguageSwitch {
 
   @Watch('description')
   validateDescription() {
-    checkNonEmpty(this, 'description');
-    checkType(this, 'description', 'string');
+    if (!checkNonEmpty(this, 'description')) {
+      checkType(this, 'description', 'string');
+    }
   }
 
   /**

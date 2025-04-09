@@ -29,8 +29,9 @@ export class PostBreadcrumb {
 
   @Watch('homeUrl')
   validateHomeUrl() {
-    checkNonEmpty(this, 'homeUrl');
-    checkUrl(this, 'homeUrl');
+    if (!checkNonEmpty(this, 'homeUrl')) {
+      checkUrl(this, 'homeUrl');
+    }
   }
 
   @Watch('homeText')
