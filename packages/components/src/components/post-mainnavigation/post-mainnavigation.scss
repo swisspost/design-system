@@ -140,33 +140,11 @@ post-mainnavigation {
         font-size: 16px;
         z-index: 4;
 
-        .nav-el-active {
-          font-weight: 700;
-          text-align: center;
-          opacity: 0;
-        }
-
-        .nav-el-inactive {
-          position: absolute;
-          opacity: 1;
-          text-align: center;
-          width: 100%;
-          inset-inline-start: 0;
-        }
-
         &.selected,
         &[aria-expanded='true'] {
           background-color: #050400;
           color: #fff;
           font-weight: 700;
-
-          .nav-el-active {
-            opacity: 1;
-          }
-
-          .nav-el-inactive {
-            opacity: 0;
-          }
         }
 
         &:hover {
@@ -184,10 +162,6 @@ post-mainnavigation {
       post-megadropdown-trigger button {
         padding-inline-end: 12px;
         transition: border-block-end-color animation.$transition-base-timing;
-
-        .nav-el-inactive {
-          width: calc(100% - 28px);
-        }
 
         &::after {
           transition: transform animation.$transition-base-timing;
@@ -228,10 +202,6 @@ post-mainnavigation {
       > button,
       post-megadropdown-trigger button {
         @include header-mx.mobile-header-interactive;
-
-        .nav-el-inactive {
-          display: none;
-        }
       }
     }
 
