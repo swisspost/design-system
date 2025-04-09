@@ -293,6 +293,8 @@ export namespace Components {
     }
     interface PostMainnavigation {
     }
+    interface PostMainnavigationToplevelItem {
+    }
     interface PostMegadropdown {
         /**
           * Sets focus to the first focusable element within the component.
@@ -731,6 +733,12 @@ declare global {
         prototype: HTMLPostMainnavigationElement;
         new (): HTMLPostMainnavigationElement;
     };
+    interface HTMLPostMainnavigationToplevelItemElement extends Components.PostMainnavigationToplevelItem, HTMLStencilElement {
+    }
+    var HTMLPostMainnavigationToplevelItemElement: {
+        prototype: HTMLPostMainnavigationToplevelItemElement;
+        new (): HTMLPostMainnavigationToplevelItemElement;
+    };
     interface HTMLPostMegadropdownElementEventMap {
         "postToggleMegadropdown": { isVisible: boolean; focusParent?: boolean };
     }
@@ -893,6 +901,7 @@ declare global {
         "post-list-item": HTMLPostListItemElement;
         "post-logo": HTMLPostLogoElement;
         "post-mainnavigation": HTMLPostMainnavigationElement;
+        "post-mainnavigation-toplevel-item": HTMLPostMainnavigationToplevelItemElement;
         "post-megadropdown": HTMLPostMegadropdownElement;
         "post-megadropdown-trigger": HTMLPostMegadropdownTriggerElement;
         "post-menu": HTMLPostMenuElement;
@@ -1171,6 +1180,8 @@ declare namespace LocalJSX {
     }
     interface PostMainnavigation {
     }
+    interface PostMainnavigationToplevelItem {
+    }
     interface PostMegadropdown {
         /**
           * Emits when the dropdown is shown or hidden. The event payload is an object. `isVisible` is true when the dropdown gets opened and false when it gets closed `focusParent` determines whether after the closing of the mega dropdown, the focus should go back to the trigger parent or naturally go to the next focusable element in the page
@@ -1345,6 +1356,7 @@ declare namespace LocalJSX {
         "post-list-item": PostListItem;
         "post-logo": PostLogo;
         "post-mainnavigation": PostMainnavigation;
+        "post-mainnavigation-toplevel-item": PostMainnavigationToplevelItem;
         "post-megadropdown": PostMegadropdown;
         "post-megadropdown-trigger": PostMegadropdownTrigger;
         "post-menu": PostMenu;
@@ -1392,6 +1404,7 @@ declare module "@stencil/core" {
             "post-list-item": LocalJSX.PostListItem & JSXBase.HTMLAttributes<HTMLPostListItemElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
             "post-mainnavigation": LocalJSX.PostMainnavigation & JSXBase.HTMLAttributes<HTMLPostMainnavigationElement>;
+            "post-mainnavigation-toplevel-item": LocalJSX.PostMainnavigationToplevelItem & JSXBase.HTMLAttributes<HTMLPostMainnavigationToplevelItemElement>;
             "post-megadropdown": LocalJSX.PostMegadropdown & JSXBase.HTMLAttributes<HTMLPostMegadropdownElement>;
             "post-megadropdown-trigger": LocalJSX.PostMegadropdownTrigger & JSXBase.HTMLAttributes<HTMLPostMegadropdownTriggerElement>;
             "post-menu": LocalJSX.PostMenu & JSXBase.HTMLAttributes<HTMLPostMenuElement>;
