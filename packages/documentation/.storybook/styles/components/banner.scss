@@ -41,7 +41,7 @@ $post-docs-banner-line-height-sm: 1.25;
     a {
       font-size: inherit;
       font-weight: inherit;
-      color: tokens.get('body-color', elements.$post-body);
+      color: tokens.get('body-color-fg', elements.$post-body);
 
       &:hover {
         color: black;

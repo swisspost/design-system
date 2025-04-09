@@ -11,7 +11,7 @@ post-language-option {
   }
 
   a {
-    color: tokens.get('body-color', elements.$post-body);
+    color: tokens.get('body-color-fg', elements.$post-body);
     text-decoration: none;
   }
 

@@ -86,7 +86,7 @@ tokens.$default-map: utilities.$post-spacing;
     grid-area: label;
     margin: tokens.get('utility-gap-4') 0;
     padding: 0 !important;
-    color: tokens.get('body-color', elements.$post-body) !important;
+    color: tokens.get('body-color-fg', elements.$post-body) !important;
     pointer-events: none;
     transition: none;
 

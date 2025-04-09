@@ -137,7 +137,7 @@
   height: 1.5em;
   min-height: 0;
   font-size: inherit;
-  color: tokens.get('body-color', elements.$post-body);
+  color: tokens.get('body-color-fg', elements.$post-body);
 
   span {
     margin: 0;
