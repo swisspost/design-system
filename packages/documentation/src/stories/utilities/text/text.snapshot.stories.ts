@@ -24,6 +24,10 @@ function getTextUtility(type: string) {
           (val: string) => html`<p class="fst-${val}">Font style ${val}</p>`,
         )}
       `;
+    case 'Size':
+      return html`
+        ${Array.from({ length: 11 }, (_, i) => html`<p class="fs-${i + 1}">Font size ${i + 1}</p>`)}
+      `;
     case 'Weight':
       return html`
         ${['normal', 'bold', 'black'].map(
@@ -89,6 +93,7 @@ export const Text: Story = {
         ${[
           'Family',
           'Style',
+          'Size',
           'Weight',
           'Line height',
           'Text align',

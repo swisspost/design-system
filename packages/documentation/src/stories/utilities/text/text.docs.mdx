@@ -23,6 +23,19 @@ Use the class `.font-sans-serif` to set the text as the default font-family.
 
 <Source code={SampleFontFamily} language="scss" />
 
+### Font Sizes
+
+The font size classes available are `.fs-*` from 1 to 11, `.fs-1` being the biggest and `.fs-11` the smallest one.
+The font sizes are responsive and will adapt with the viewport.
+
+The font sizes `.fs-1` to `.fs-5` are equivalent to ones defined for the headings elements (h1 to h5), while `.fs-6` is equivalent to the default body text.
+
+<div className="banner banner-md banner-warning">
+  Please be cautious when using the smallest font sizes utilities, as they might be hard to read for
+  some users.
+</div>
+<Canvas of={TextStories.FontSize} sourceState="shown" />
+
 ### Font Weight
 
 The font weight classes available are `.fw-normal`, `.fw-bold` and `.fw-black`.

@@ -24,5 +24,5 @@ $badge-padding-x: tokens.get('utility-gap-8');
 $badge-padding-x-sm: tokens.get('utility-gap-4');
 $badge-padding-x-empty: 0%; // needs a unit for the calculated min-width
 
-$badge-font-size: type.$font-size-12;
+$badge-font-size: 0.75rem;
 $badge-font-size-sm: 10px;

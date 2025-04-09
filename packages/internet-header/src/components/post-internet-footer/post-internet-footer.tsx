@@ -98,7 +98,7 @@ export class PostInternetFooter {
     return (
       <Host>
         <SvgSprite />
-        <footer class="post-internet-footer light font-curve-regular">
+        <footer class="post-internet-footer light fs-6">
           <h2 class="visually-hidden">{footerConfig.title}</h2>
           {customFooterConfig?.block && <PostFooterBlockCustom block={customFooterConfig?.block} />}
           <div class="footer-container container">

@@ -123,13 +123,13 @@ tokens.$default-map: utilities.$post-spacing;
   padding: datatable.$datatable-footer-padding;
 
   .datatable-row-count-label {
-    @extend %font-curve-small;
+    @extend %fs-9;
     flex: 0 0 auto;
     margin: 0 tokens.get('utility-gap-8') 0 0;
   }
 
   .datatable-row-count-input {
-    @extend %font-curve-small;
+    @extend %fs-9;
     flex: 0 0 datatable.$datatable-row-count-input-width;
     height: pagination.$pagination-height;
     padding-top: 0;
