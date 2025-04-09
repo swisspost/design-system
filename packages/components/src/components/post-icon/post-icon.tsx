@@ -105,21 +105,17 @@ export class PostIcon {
   private getUrl(): string {
     const fileName = `${this.name}.svg`;
 
-    // Return default CDN URL during non-browser environment if no component base is specified
     if (!IS_BROWSER && !this.base) {
       return `${CDN_URL}${fileName}`;
     }
 
-    // Get current domain
     const currentDomain = IS_BROWSER ? window.location.origin : '';
 
-    // Get base href if it exists
     const baseHref = IS_BROWSER
       ? document.querySelector('base[href]')?.getAttribute('href') || ''
       : '';
     const isBaseHrefAbsolute = /^https?:\/\//.test(baseHref);
 
-    // Get icon base path (component prop has priority over meta tag)
     const iconBase =
       this.base ||
       (IS_BROWSER
@@ -129,11 +125,9 @@ export class PostIcon {
         : '');
     const isIconBaseAbsolute = /^https?:\/\//.test(iconBase);
 
-    // Normalize paths to ensure they end with a slash
     const normalizedBaseHref = baseHref ? (baseHref.endsWith('/') ? baseHref : `${baseHref}/`) : '';
     const normalizedIconBase = iconBase ? (iconBase.endsWith('/') ? iconBase : `${iconBase}/`) : '';
 
-    // Construct URL according to rules
     let url: string;
 
     if (isIconBaseAbsolute) {
@@ -150,7 +144,6 @@ export class PostIcon {
       url = `${CDN_URL}${fileName}`;
     }
 
-    // Clean up double slashes (except after protocol)
     return url.replace(/([^:])\/\//g, '$1/');
   }
 
