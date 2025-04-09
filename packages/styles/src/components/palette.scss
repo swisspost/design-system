@@ -5,7 +5,9 @@
 tokens.$default-map: components.$post-palettes;
 
 .palette {
-  --post-palette-accent-color: #{tokens.get('palettes-accent')};
+  .palette-text {
+    color: tokens.get('palettes-accent');
+  }
 
   @include supports.light-dark(true) {
     color-scheme: #{tokens.get('palettes-scheme')};
@@ -25,11 +27,5 @@ tokens.$default-map: components.$post-palettes;
   // TODO: remove for prod
   .palette ~ .palette {
     margin-top: 0;
-  }
-
-  .card {
-    // TODO: add nested color-scheme
-    background-color: #{tokens.get('palettes-nested-bg')};
-    color: #{tokens.get('palettes-nested-fg')};
   }
 }
