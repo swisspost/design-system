@@ -1,12 +1,20 @@
 @use '../functions/tokens';
 @use '../tokens/components';
+@use '../mixins/supports';
 
 tokens.$default-map: components.$post-palettes;
 
 .palette {
   --post-palette-accent-color: #{tokens.get('palettes-accent')};
 
-  color-scheme: #{tokens.get('palettes-scheme')};
+  @include supports.light-dark(true) {
+    color-scheme: #{tokens.get('palettes-scheme')};
+  }
+
+  @include supports.light-dark(false) {
+    --fallback-prefers-light: #{tokens.get('palettes-scheme')};
+  }
+
   background-color: #{tokens.get('palettes-bg')};
   color: #{tokens.get('palettes-fg')};
 

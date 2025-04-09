@@ -1,238 +1,304 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Styles playground</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Styles playground</title>
+    <!-- Styles -->
+    <link rel="stylesheet" id="styles" href="src/post-default.scss" />
 
-  <!-- Styles -->
-  <link rel="stylesheet" id="styles" href="src/post-default.scss" />
+    <script src="playground.js" defer></script>
 
-  <script src="playground.js" defer></script>
-
-  <!-- TODO: remove after palette integration test -->
-  <style>
-    aside {
-      position: sticky;
-      top: 0;
-      background-color: light-dark(white, black);
-      border-bottom: 4px solid #808080;
-      box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
-      z-index: 1;
-    }
-
-    .d-block-scheme {
-      position: relative;
-
-      :first-child {
-        color: light-dark(black, transparent);
+    <!-- TODO: remove after palette integration test -->
+    <style>
+      aside {
+        position: sticky;
+        top: 0;
+        background-color: light-dark(white, black);
+        border-bottom: 4px solid #808080;
+        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+        z-index: 1;
       }
 
-      :last-child {
-        position: absolute;
-        left: 0;
-        color: light-dark(transparent, white);
+      .d-block-scheme {
+        position: relative;
+
+        :first-child {
+          color: light-dark(black, transparent);
+        }
+
+        :last-child {
+          position: absolute;
+          left: 0;
+          color: light-dark(transparent, white);
+        }
       }
-    }
 
-    .col {
-      padding: 1rem;
-    }
+      .col {
+        padding: 1rem;
+      }
 
-    /*
+      /*
       This works with out :root, [data-color-scheme="light|dark"],
       because the variables using light-dark are defined
       and therefore recalculated on the .dot selector itself
     */
-    .dot {
-      --test-dot-fg: light-dark(black, white);
-      --test-dot-bg: light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.2));
+      .dot {
+        --test-dot-fg: light-dark(black, white);
+        --test-dot-bg: light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.2));
 
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 0.5rem;
-      width: 3rem;
-      height: 3rem;
-      background-blend-mode: color-dodge;
-      border-radius: 50%;
-      background-color: var(--test-dot-bg);
-      color: var(--test-dot-fg);
-    }
-  </style>
-</head>
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 0.5rem;
+        width: 3rem;
+        height: 3rem;
+        background-blend-mode: color-dodge;
+        border-radius: 50%;
+        background-color: var(--test-dot-bg);
+        color: var(--test-dot-fg);
+      }
+    </style>
+    <script type="module">
+      import 'https://esm.sh/@swisspost/design-system-components@9.0.0-next.33/dist/post-components/post-components.esm.js';
+    </script>
+  </head>
 
-<body>
-  <aside class="p-16">
-    <h1>Styles package playground</h1>
-    <fieldset id="token-selects" class="mt-16">
-      <legend class="my-8">Select tokens</legend>
-      <label for="theme-select">Theme</label>
-      <select name="theme" id="theme-select" value="post" class="mb-4 me-8">
-        <option value="post">Post</option>
-        <option value="cargo">Cargo</option>
-      </select>
-      <label for="tokens-select">Appearance</label>
-      <select name="appearance" id="appearance-select" value="default" class="mb-4 me-8">
-        <option value="default">Default</option>
-        <option value="compact">Compact</option>
-      </select>
-      <label for="scheme-select">Color scheme</label>
-      <select name="scheme" id="scheme-select" value="" class="mb-4">
-        <option value="">User Prefered</option>
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-      </select>
-    </fieldset>
-  </aside>
+  <body>
+    <aside class="p-16">
+      <h1>Styles package playground</h1>
+      <fieldset id="token-selects" class="mt-16">
+        <legend class="my-8">Select tokens</legend>
+        <label for="theme-select">Theme</label>
+        <select name="theme" id="theme-select" value="post" class="mb-4 me-8">
+          <option value="post">Post</option>
+          <option value="cargo">Cargo</option>
+        </select>
+        <label for="tokens-select">Appearance</label>
+        <select name="appearance" id="appearance-select" value="default" class="mb-4 me-8">
+          <option value="default">Default</option>
+          <option value="compact">Compact</option>
+        </select>
+        <label for="scheme-select">Color scheme</label>
+        <select name="scheme" id="scheme-select" value="" class="mb-4">
+          <option value="">User Prefered</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </fieldset>
+    </aside>
 
-  <main class="p-16">
-    <h1>Palettes</h1>
+    <main class="p-16">
+      <h1>Palettes</h1>
 
-    <div class="row">
-      <div class="col">
-        <div>
-          <h2>Color Scheme (prefered): <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-          </h2>
-
-          <div class="palette palette-default">
-            <p>Palette default scheme:
+      <div class="row">
+        <div class="col">
+          <div>
+            <h2>
+              Color Scheme (prefered):
               <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-            </p>
-            <button class="btn btn-primary">button</button>
-            <div class="dot">dot</div>
+            </h2>
 
-            <div>
-              <div class="palette palette-alternate">
-                <p>Palette alternate scheme:
-                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-                </p>
-                <button class="btn btn-primary">button</button>
-                <div class="dot">dot</div>
-              </div>
+            <div class="palette palette-default">
+              <p>
+                Palette default scheme:
+                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+              </p>
+              <button class="btn btn-primary">button</button>
+              <div class="dot">dot</div>
 
-              <div class="palette palette-accent">
-                <p>Palette accent scheme:
-                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-                </p>
-                <button class="btn btn-primary">button</button>
-                <div class="dot">dot</div>
-              </div>
+              <div>
+                <div class="palette palette-alternate">
+                  <p>
+                    Palette alternate scheme:
+                    <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                  </p>
+                  <button class="btn btn-primary">button</button>
+                  <div class="dot">dot</div>
 
-              <div class="palette palette-brand">
-                <p>Palette brand scheme:
-                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-                </p>
-                <button class="btn btn-primary">button</button>
-                <div class="dot">dot</div>
+                  <post-accordion heading-level="3">
+                    <post-accordion-item>
+                      <span slot="header">Titulum 1</span>
+                      <div>
+                        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+                      </div>
+                    </post-accordion-item>
+
+                    <post-accordion-item>
+                      <span slot="header">Titulum 2</span>
+                      <div>
+                        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+                      </div>
+                    </post-accordion-item>
+
+                    <post-accordion-item>
+                      <span slot="header">Titulum 3</span>
+                      <div>
+                        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+                      </div>
+                    </post-accordion-item>
+                  </post-accordion>
+                </div>
+
+                <div class="palette palette-accent">
+                  <p>
+                    Palette accent scheme:
+                    <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                  </p>
+                  <button class="btn btn-primary">button</button>
+                  <div class="dot">dot</div>
+
+                  <post-accordion heading-level="3">
+                    <post-accordion-item>
+                      <span slot="header">Titulum 1</span>
+                      <div>
+                        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+                      </div>
+                    </post-accordion-item>
+
+                    <post-accordion-item>
+                      <span slot="header">Titulum 2</span>
+                      <div>
+                        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+                      </div>
+                    </post-accordion-item>
+
+                    <post-accordion-item>
+                      <span slot="header">Titulum 3</span>
+                      <div>
+                        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+                      </div>
+                    </post-accordion-item>
+                  </post-accordion>
+                </div>
+
+                <div class="palette palette-brand">
+                  <p>
+                    Palette brand scheme:
+                    <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                  </p>
+                  <button class="btn btn-primary">button</button>
+                  <div class="dot">dot</div>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="palette palette-alternate">
-            <p>Palette alternate scheme:
-              <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-            </p>
-            <button class="btn btn-primary">button</button>
-            <div class="dot">dot</div>
+            <div class="palette palette-alternate">
+              <p>
+                Palette alternate scheme:
+                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+              </p>
+              <button class="btn btn-primary">button</button>
+              <div class="dot">dot</div>
 
-            <div>
-              <div class="palette palette-default">
-                <p>Palette default scheme:
-                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-                </p>
-                <button class="btn btn-primary">button</button>
-                <div class="dot">dot</div>
-              </div>
+              <div>
+                <div class="palette palette-default">
+                  <p>
+                    Palette default scheme:
+                    <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                  </p>
+                  <button class="btn btn-primary">button</button>
+                  <div class="dot">dot</div>
+                </div>
 
-              <div class="palette palette-accent">
-                <p>Palette accent scheme:
-                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-                </p>
-                <button class="btn btn-primary">button</button>
-                <div class="dot">dot</div>
-              </div>
+                <div class="palette palette-accent">
+                  <p>
+                    Palette accent scheme:
+                    <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                  </p>
+                  <button class="btn btn-primary">button</button>
+                  <div class="dot">dot</div>
+                </div>
 
-              <div class="palette palette-brand">
-                <p>Palette brand scheme:
-                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-                </p>
-                <button class="btn btn-primary">button</button>
-                <div class="dot">dot</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="palette palette-accent">
-            <p>Palette accent scheme:
-              <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-            </p>
-            <button class="btn btn-primary">button</button>
-            <div class="dot">dot</div>
-
-            <div>
-              <div class="palette palette-default">
-                <p>Palette default scheme:
-                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-                </p>
-                <button class="btn btn-primary">button</button>
-                <div class="dot">dot</div>
-              </div>
-
-              <div class="palette palette-alternate">
-                <p>Palette alternate scheme:
-                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-                </p>
-                <button class="btn btn-primary">button</button>
-                <div class="dot">dot</div>
-              </div>
-
-              <div class="palette palette-brand">
-                <p>Palette brand scheme:
-                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-                </p>
-                <button class="btn btn-primary">button</button>
-                <div class="dot">dot</div>
+                <div class="palette palette-brand">
+                  <p>
+                    Palette brand scheme:
+                    <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                  </p>
+                  <button class="btn btn-primary">button</button>
+                  <div class="dot">dot</div>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="palette palette-brand">
-            <p>Palette brand scheme:
-              <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-            </p>
-            <button class="btn btn-primary">button</button>
-            <div class="dot">dot</div>
+            <div class="palette palette-accent">
+              <p>
+                Palette accent scheme:
+                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+              </p>
+              <button class="btn btn-primary">button</button>
+              <div class="dot">dot</div>
 
-            <div>
-              <div class="palette palette-default">
-                <p>Palette default scheme:
-                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-                </p>
-                <button class="btn btn-primary">button</button>
-                <div class="dot">dot</div>
-              </div>
+              <div>
+                <div class="palette palette-default">
+                  <p>
+                    Palette default scheme:
+                    <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                  </p>
+                  <button class="btn btn-primary">button</button>
+                  <div class="dot">dot</div>
+                </div>
 
-              <div class="palette palette-alternate">
-                <p>Palette alternate scheme:
-                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-                </p>
-                <button class="btn btn-primary">button</button>
-                <div class="dot">dot</div>
-              </div>
+                <div class="palette palette-alternate">
+                  <p>
+                    Palette alternate scheme:
+                    <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                  </p>
+                  <button class="btn btn-primary">button</button>
+                  <div class="dot">dot</div>
+                </div>
 
-              <div class="palette palette-accent">
-                <p>Palette accent scheme:
-                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-                </p>
-                <button class="btn btn-primary">button</button>
-                <div class="dot">dot</div>
+                <div class="palette palette-brand">
+                  <p>
+                    Palette brand scheme:
+                    <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                  </p>
+                  <button class="btn btn-primary">button</button>
+                  <div class="dot">dot</div>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- <div class="banner success">
+            <div class="palette palette-brand">
+              <p>
+                Palette brand scheme:
+                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+              </p>
+              <button class="btn btn-primary">button</button>
+              <div class="dot">dot</div>
+
+              <div>
+                <div class="palette palette-default">
+                  <p>
+                    Palette default scheme:
+                    <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                  </p>
+                  <button class="btn btn-primary">button</button>
+                  <div class="dot">dot</div>
+                </div>
+
+                <div class="palette palette-alternate">
+                  <p>
+                    Palette alternate scheme:
+                    <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                  </p>
+                  <button class="btn btn-primary">button</button>
+                  <div class="dot">dot</div>
+                </div>
+
+                <div class="palette palette-accent">
+                  <p>
+                    Palette accent scheme:
+                    <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                  </p>
+                  <button class="btn btn-primary">button</button>
+                  <div class="dot">dot</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="banner success">
             <p>Banner success scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
             <button class="btn btn-primary">Button</button>
             <div class="dot">dot</div>
@@ -248,13 +314,14 @@
             <div class="dot">dot</div>
           </div> -->
 
-          <div class="palette palette-default">
-            <p>Palette default scheme:
-              <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-            </p>
-            <button class="btn btn-primary">button</button>
-            <div class="dot">dot</div>
-            <!-- <div class="banner success">
+            <div class="palette palette-default">
+              <p>
+                Palette default scheme:
+                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+              </p>
+              <button class="btn btn-primary">button</button>
+              <div class="dot">dot</div>
+              <!-- <div class="banner success">
               <p>Banner success scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
               <button class="btn btn-primary">Button</button>
               <div class="dot">dot</div>
@@ -269,14 +336,15 @@
               <button class="btn btn-primary">button</button>
               <div class="dot">dot</div>
             </div> -->
-            <div>
-              <div class="palette palette-accent">
-                <p>Palette accent scheme:
-                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-                </p>
-                <button class="btn btn-primary">button</button>
-                <div class="dot">dot</div>
-                <!-- <div class="banner success">
+              <div>
+                <div class="palette palette-accent">
+                  <p>
+                    Palette accent scheme:
+                    <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                  </p>
+                  <button class="btn btn-primary">button</button>
+                  <div class="dot">dot</div>
+                  <!-- <div class="banner success">
                   <p>Banner success scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
                   <button class="btn btn-primary">Button</button>
                   <div class="dot">dot</div>
@@ -291,13 +359,14 @@
                   <button class="btn btn-primary">button</button>
                   <div class="dot">dot</div>
                 </div> -->
-                <div class="palette palette-alternate">
-                  <p>Palette alternate scheme:
-                    <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-                  </p>
-                  <button class="btn btn-primary">button</button>
-                  <div class="dot">dot</div>
-                  <!-- <div class="banner success">
+                  <div class="palette palette-alternate">
+                    <p>
+                      Palette alternate scheme:
+                      <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                    </p>
+                    <button class="btn btn-primary">button</button>
+                    <div class="dot">dot</div>
+                    <!-- <div class="banner success">
                     <p>Banner success scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
                     <button class="btn btn-primary">Button</button>
                     <div class="dot">dot</div>
@@ -312,13 +381,14 @@
                     <button class="btn btn-primary">button</button>
                     <div class="dot">dot</div>
                   </div> -->
-                  <div class="palette palette-brand">
-                    <p>Palette brand scheme:
-                      <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-                    </p>
-                    <button class="btn btn-primary">button</button>
-                    <div class="dot">dot</div>
-                    <!-- <div class="banner success">
+                    <div class="palette palette-brand">
+                      <p>
+                        Palette brand scheme:
+                        <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                      </p>
+                      <button class="btn btn-primary">button</button>
+                      <div class="dot">dot</div>
+                      <!-- <div class="banner success">
                       <p>Banner success scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
                       <button class="btn btn-primary">Button</button>
                       <div class="dot">dot</div>
@@ -333,64 +403,69 @@
                       <button class="btn btn-primary">button</button>
                       <div class="dot">dot</div>
                     </div> -->
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- <div class="card">
+            <!-- <div class="card">
             <p>Card default scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
             <button class="btn btn-primary">button</button>
             <div class="dot">dot</div>
           </div> -->
 
-          <div class="palette palette-brand">
-            <p>Palette brand scheme:
-              <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-            </p>
-            <button class="btn btn-primary">button</button>
-            <div class="dot">dot</div>
-            <!-- <div class="card">
+            <div class="palette palette-brand">
+              <p>
+                Palette brand scheme:
+                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+              </p>
+              <button class="btn btn-primary">button</button>
+              <div class="dot">dot</div>
+              <!-- <div class="card">
               <p>Card in palette brand scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
               <button class="btn btn-primary">button</button>
               <div class="dot">dot</div>
             </div> -->
-            <div>
-              <div class="palette palette-alternate">
-                <p>Palette alternate scheme:
-                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-                </p>
-                <button class="btn btn-primary">button</button>
-                <div class="dot">dot</div>
-                <!-- <div class="card">
+              <div>
+                <div class="palette palette-alternate">
+                  <p>
+                    Palette alternate scheme:
+                    <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                  </p>
+                  <button class="btn btn-primary">button</button>
+                  <div class="dot">dot</div>
+                  <!-- <div class="card">
                 <p>Card in palette altrenate scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
                 <button class="btn btn-primary">button</button>
                 <div class="dot">dot</div>
               </div> -->
-                <div>
-                  <div class="palette palette-accent">
-                    <p>Palette accent scheme:
-                      <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-                    </p>
-                    <button class="btn btn-primary">button</button>
-                    <div class="dot">dot</div>
-                    <!-- <div class="card">
-                  <p>Card in palette accent scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
-                  <button class="btn btn-primary">button</button>
-                  <div class="dot">dot</div>
-                </div> -->
-                    <div class="palette palette-default">
-                      <p>Palette default scheme:
+                  <div>
+                    <div class="palette palette-accent">
+                      <p>
+                        Palette accent scheme:
                         <span class="d-block-scheme"><span>light</span><span>dark</span></span>
                       </p>
                       <button class="btn btn-primary">button</button>
                       <div class="dot">dot</div>
                       <!-- <div class="card">
+                  <p>Card in palette accent scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
+                  <button class="btn btn-primary">button</button>
+                  <div class="dot">dot</div>
+                </div> -->
+                      <div class="palette palette-default">
+                        <p>
+                          Palette default scheme:
+                          <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                        </p>
+                        <button class="btn btn-primary">button</button>
+                        <div class="dot">dot</div>
+                        <!-- <div class="card">
                     <p>Card in palette default scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
                     <button class="btn btn-primary">button</button>
                     <div class="dot">dot</div>
                   </div> -->
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -398,148 +473,165 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="col" data-color-scheme="light">
-        <h2>Color Scheme (forced): <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-        </h2>
-
-        <div class="palette palette-default">
-          <p>Palette default scheme:
+        <div class="col" data-color-scheme="light">
+          <h2>
+            Color Scheme (forced):
             <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-          </p>
-          <button class="btn btn-primary">button</button>
-          <div class="dot">dot</div>
+          </h2>
 
-          <div>
-            <div class="palette palette-alternate">
-              <p>Palette alternate scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
-            </div>
+          <div class="palette palette-default">
+            <p>
+              Palette default scheme:
+              <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+            </p>
+            <button class="btn btn-primary">button</button>
+            <div class="dot">dot</div>
 
-            <div class="palette palette-accent">
-              <p>Palette accent scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
-            </div>
+            <div>
+              <div class="palette palette-alternate">
+                <p>
+                  Palette alternate scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
 
-            <div class="palette palette-brand">
-              <p>Palette brand scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
+              <div class="palette palette-accent">
+                <p>
+                  Palette accent scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
+
+              <div class="palette palette-brand">
+                <p>
+                  Palette brand scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="palette palette-alternate">
-          <p>Palette alternate scheme:
-            <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-          </p>
-          <button class="btn btn-primary">button</button>
-          <div class="dot">dot</div>
+          <div class="palette palette-alternate">
+            <p>
+              Palette alternate scheme:
+              <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+            </p>
+            <button class="btn btn-primary">button</button>
+            <div class="dot">dot</div>
 
-          <div>
-            <div class="palette palette-default">
-              <p>Palette default scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
-            </div>
+            <div>
+              <div class="palette palette-default">
+                <p>
+                  Palette default scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
 
-            <div class="palette palette-accent">
-              <p>Palette accent scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
-            </div>
+              <div class="palette palette-accent">
+                <p>
+                  Palette accent scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
 
-            <div class="palette palette-brand">
-              <p>Palette brand scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="palette palette-accent">
-          <p>Palette accent scheme:
-            <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-          </p>
-          <button class="btn btn-primary">button</button>
-          <div class="dot">dot</div>
-
-          <div>
-            <div class="palette palette-default">
-              <p>Palette default scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
-            </div>
-
-            <div class="palette palette-alternate">
-              <p>Palette alternate scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
-            </div>
-
-            <div class="palette palette-brand">
-              <p>Palette brand scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
+              <div class="palette palette-brand">
+                <p>
+                  Palette brand scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="palette palette-brand">
-          <p>Palette brand scheme:
-            <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-          </p>
-          <button class="btn btn-primary">button</button>
-          <div class="dot">dot</div>
+          <div class="palette palette-accent">
+            <p>
+              Palette accent scheme:
+              <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+            </p>
+            <button class="btn btn-primary">button</button>
+            <div class="dot">dot</div>
 
-          <div>
-            <div class="palette palette-default">
-              <p>Palette default scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
-            </div>
+            <div>
+              <div class="palette palette-default">
+                <p>
+                  Palette default scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
 
-            <div class="palette palette-alternate">
-              <p>Palette alternate scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
-            </div>
+              <div class="palette palette-alternate">
+                <p>
+                  Palette alternate scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
 
-            <div class="palette palette-accent">
-              <p>Palette accent scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
+              <div class="palette palette-brand">
+                <p>
+                  Palette brand scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- <div class="banner success">
+          <div class="palette palette-brand">
+            <p>
+              Palette brand scheme:
+              <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+            </p>
+            <button class="btn btn-primary">button</button>
+            <div class="dot">dot</div>
+
+            <div>
+              <div class="palette palette-default">
+                <p>
+                  Palette default scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
+
+              <div class="palette palette-alternate">
+                <p>
+                  Palette alternate scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
+
+              <div class="palette palette-accent">
+                <p>
+                  Palette accent scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="banner success">
           <p>Banner success scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
           <button class="btn btn-primary">Button</button>
           <div class="dot">dot</div>
@@ -555,11 +647,14 @@
           <div class="dot">dot</div>
         </div> -->
 
-        <div class="palette palette-default">
-          <p>Palette default scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
-          <button class="btn btn-primary">button</button>
-          <div class="dot">dot</div>
-          <!-- <div class="banner success">
+          <div class="palette palette-default">
+            <p>
+              Palette default scheme:
+              <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+            </p>
+            <button class="btn btn-primary">button</button>
+            <div class="dot">dot</div>
+            <!-- <div class="banner success">
             <p>Banner success scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
             <button class="btn btn-primary">Button</button>
             <div class="dot">dot</div>
@@ -574,13 +669,14 @@
             <button class="btn btn-primary">button</button>
             <div class="dot">dot</div>
           </div> -->
-          <div class="palette palette-accent">
-            <p>Palette accent scheme:
-              <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-            </p>
-            <button class="btn btn-primary">button</button>
-            <div class="dot">dot</div>
-            <!-- <div class="banner success">
+            <div class="palette palette-accent">
+              <p>
+                Palette accent scheme:
+                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+              </p>
+              <button class="btn btn-primary">button</button>
+              <div class="dot">dot</div>
+              <!-- <div class="banner success">
               <p>Banner success scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
               <button class="btn btn-primary">Button</button>
               <div class="dot">dot</div>
@@ -595,13 +691,14 @@
               <button class="btn btn-primary">button</button>
               <div class="dot">dot</div>
             </div> -->
-            <div class="palette palette-alternate">
-              <p>Palette alternate scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
-              <!-- <div class="banner success">
+              <div class="palette palette-alternate">
+                <p>
+                  Palette alternate scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+                <!-- <div class="banner success">
                 <p>Banner success scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
                 <button class="btn btn-primary">Button</button>
                 <div class="dot">dot</div>
@@ -616,13 +713,14 @@
                 <button class="btn btn-primary">button</button>
                 <div class="dot">dot</div>
               </div> -->
-              <div class="palette palette-brand">
-                <p>Palette brand scheme:
-                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-                </p>
-                <button class="btn btn-primary">button</button>
-                <div class="dot">dot</div>
-                <!-- <div class="banner success">
+                <div class="palette palette-brand">
+                  <p>
+                    Palette brand scheme:
+                    <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                  </p>
+                  <button class="btn btn-primary">button</button>
+                  <div class="dot">dot</div>
+                  <!-- <div class="banner success">
                   <p>Banner success scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
                   <button class="btn btn-primary">Button</button>
                   <div class="dot">dot</div>
@@ -637,206 +735,229 @@
                   <button class="btn btn-primary">button</button>
                   <div class="dot">dot</div>
                 </div> -->
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- <div class="card">
+          <!-- <div class="card">
           <p>Card default scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
           <button class="btn btn-primary">button</button>
           <div class="dot">dot</div>
         </div> -->
 
-        <div class="palette palette-brand">
-          <p>Palette brand scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
-          <button class="btn btn-primary">button</button>
-          <div class="dot">dot</div>
-          <!-- <div class="card">
-            <p>Card in palette brand scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
-            <button class="btn btn-primary">button</button>
-            <div class="dot">dot</div>
-          </div> -->
-          <div class="palette palette-alternate">
-            <p>Palette alternate scheme:
+          <div class="palette palette-brand">
+            <p>
+              Palette brand scheme:
               <span class="d-block-scheme"><span>light</span><span>dark</span></span>
             </p>
             <button class="btn btn-primary">button</button>
             <div class="dot">dot</div>
             <!-- <div class="card">
-              <p>Card in palette altrenate scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
-            </div> -->
-            <div class="palette palette-accent">
-              <p>Palette accent scheme:
+            <p>Card in palette brand scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
+            <button class="btn btn-primary">button</button>
+            <div class="dot">dot</div>
+          </div> -->
+            <div class="palette palette-alternate">
+              <p>
+                Palette alternate scheme:
                 <span class="d-block-scheme"><span>light</span><span>dark</span></span>
               </p>
               <button class="btn btn-primary">button</button>
               <div class="dot">dot</div>
               <!-- <div class="card">
-                <p>Card in palette accent scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
-                <button class="btn btn-primary">button</button>
-                <div class="dot">dot</div>
-              </div> -->
-              <div class="palette palette-default">
-                <p>Palette default scheme:
+              <p>Card in palette altrenate scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
+              <button class="btn btn-primary">button</button>
+              <div class="dot">dot</div>
+            </div> -->
+              <div class="palette palette-accent">
+                <p>
+                  Palette accent scheme:
                   <span class="d-block-scheme"><span>light</span><span>dark</span></span>
                 </p>
                 <button class="btn btn-primary">button</button>
                 <div class="dot">dot</div>
                 <!-- <div class="card">
+                <p>Card in palette accent scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div> -->
+                <div class="palette palette-default">
+                  <p>
+                    Palette default scheme:
+                    <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                  </p>
+                  <button class="btn btn-primary">button</button>
+                  <div class="dot">dot</div>
+                  <!-- <div class="card">
                   <p>Card in palette default scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
                   <button class="btn btn-primary">button</button>
                   <div class="dot">dot</div>
                 </div> -->
+                </div>
               </div>
             </div>
           </div>
         </div>
-
-      </div>
-      <div class="col" data-color-scheme="dark">
-        <h2>Color Scheme (forced): <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-        </h2>
-
-        <div class="palette palette-default">
-          <p>Palette default scheme:
+        <div class="col" data-color-scheme="dark">
+          <h2>
+            Color Scheme (forced):
             <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-          </p>
-          <button class="btn btn-primary">button</button>
-          <div class="dot">dot</div>
+          </h2>
 
-          <div>
-            <div class="palette palette-alternate">
-              <p>Palette alternate scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
-            </div>
+          <div class="palette palette-default">
+            <p>
+              Palette default scheme:
+              <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+            </p>
+            <button class="btn btn-primary">button</button>
+            <div class="dot">dot</div>
 
-            <div class="palette palette-accent">
-              <p>Palette accent scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
-            </div>
+            <div>
+              <div class="palette palette-alternate">
+                <p>
+                  Palette alternate scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
 
-            <div class="palette palette-brand">
-              <p>Palette brand scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
+              <div class="palette palette-accent">
+                <p>
+                  Palette accent scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
+
+              <div class="palette palette-brand">
+                <p>
+                  Palette brand scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="palette palette-alternate">
-          <p>Palette alternate scheme:
-            <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-          </p>
-          <button class="btn btn-primary">button</button>
-          <div class="dot">dot</div>
+          <div class="palette palette-alternate">
+            <p>
+              Palette alternate scheme:
+              <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+            </p>
+            <button class="btn btn-primary">button</button>
+            <div class="dot">dot</div>
 
-          <div>
-            <div class="palette palette-default">
-              <p>Palette default scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
-            </div>
+            <div>
+              <div class="palette palette-default">
+                <p>
+                  Palette default scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
 
-            <div class="palette palette-accent">
-              <p>Palette accent scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
-            </div>
+              <div class="palette palette-accent">
+                <p>
+                  Palette accent scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
 
-            <div class="palette palette-brand">
-              <p>Palette brand scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="palette palette-accent">
-          <p>Palette accent scheme:
-            <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-          </p>
-          <button class="btn btn-primary">button</button>
-          <div class="dot">dot</div>
-
-          <div>
-            <div class="palette palette-default">
-              <p>Palette default scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
-            </div>
-
-            <div class="palette palette-alternate">
-              <p>Palette alternate scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
-            </div>
-
-            <div class="palette palette-brand">
-              <p>Palette brand scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
+              <div class="palette palette-brand">
+                <p>
+                  Palette brand scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="palette palette-brand">
-          <p>Palette brand scheme:
-            <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-          </p>
-          <button class="btn btn-primary">button</button>
-          <div class="dot">dot</div>
+          <div class="palette palette-accent">
+            <p>
+              Palette accent scheme:
+              <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+            </p>
+            <button class="btn btn-primary">button</button>
+            <div class="dot">dot</div>
 
-          <div>
-            <div class="palette palette-default">
-              <p>Palette default scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
-            </div>
+            <div>
+              <div class="palette palette-default">
+                <p>
+                  Palette default scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
 
-            <div class="palette palette-alternate">
-              <p>Palette alternate scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
-            </div>
+              <div class="palette palette-alternate">
+                <p>
+                  Palette alternate scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
 
-            <div class="palette palette-accent">
-              <p>Palette accent scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
+              <div class="palette palette-brand">
+                <p>
+                  Palette brand scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- <div class="banner success">
+          <div class="palette palette-brand">
+            <p>
+              Palette brand scheme:
+              <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+            </p>
+            <button class="btn btn-primary">button</button>
+            <div class="dot">dot</div>
+
+            <div>
+              <div class="palette palette-default">
+                <p>
+                  Palette default scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
+
+              <div class="palette palette-alternate">
+                <p>
+                  Palette alternate scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
+
+              <div class="palette palette-accent">
+                <p>
+                  Palette accent scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="banner success">
           <p>Banner success scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
           <button class="btn btn-primary">Button</button>
           <div class="dot">dot</div>
@@ -852,11 +973,14 @@
           <div class="dot">dot</div>
         </div> -->
 
-        <div class="palette palette-default">
-          <p>Palette default scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
-          <button class="btn btn-primary">button</button>
-          <div class="dot">dot</div>
-          <!-- <div class="banner success">
+          <div class="palette palette-default">
+            <p>
+              Palette default scheme:
+              <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+            </p>
+            <button class="btn btn-primary">button</button>
+            <div class="dot">dot</div>
+            <!-- <div class="banner success">
             <p>Banner success scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
             <button class="btn btn-primary">Button</button>
             <div class="dot">dot</div>
@@ -871,13 +995,14 @@
             <button class="btn btn-primary">button</button>
             <div class="dot">dot</div>
           </div> -->
-          <div class="palette palette-accent">
-            <p>Palette accent scheme:
-              <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-            </p>
-            <button class="btn btn-primary">button</button>
-            <div class="dot">dot</div>
-            <!-- <div class="banner success">
+            <div class="palette palette-accent">
+              <p>
+                Palette accent scheme:
+                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+              </p>
+              <button class="btn btn-primary">button</button>
+              <div class="dot">dot</div>
+              <!-- <div class="banner success">
               <p>Banner success scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
               <button class="btn btn-primary">Button</button>
               <div class="dot">dot</div>
@@ -892,13 +1017,14 @@
               <button class="btn btn-primary">button</button>
               <div class="dot">dot</div>
             </div> -->
-            <div class="palette palette-alternate">
-              <p>Palette alternate scheme:
-                <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-              </p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
-              <!-- <div class="banner success">
+              <div class="palette palette-alternate">
+                <p>
+                  Palette alternate scheme:
+                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                </p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+                <!-- <div class="banner success">
                 <p>Banner success scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
                 <button class="btn btn-primary">Button</button>
                 <div class="dot">dot</div>
@@ -913,13 +1039,14 @@
                 <button class="btn btn-primary">button</button>
                 <div class="dot">dot</div>
               </div> -->
-              <div class="palette palette-brand">
-                <p>Palette brand scheme:
-                  <span class="d-block-scheme"><span>light</span><span>dark</span></span>
-                </p>
-                <button class="btn btn-primary">button</button>
-                <div class="dot">dot</div>
-                <!-- <div class="banner success">
+                <div class="palette palette-brand">
+                  <p>
+                    Palette brand scheme:
+                    <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                  </p>
+                  <button class="btn btn-primary">button</button>
+                  <div class="dot">dot</div>
+                  <!-- <div class="banner success">
                   <p>Banner success scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
                   <button class="btn btn-primary">Button</button>
                   <div class="dot">dot</div>
@@ -934,67 +1061,71 @@
                   <button class="btn btn-primary">button</button>
                   <div class="dot">dot</div>
                 </div> -->
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- <div class="card">
+          <!-- <div class="card">
           <p>Card default scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
           <button class="btn btn-primary">button</button>
           <div class="dot">dot</div>
         </div> -->
 
-        <div class="palette palette-brand">
-          <p>Palette brand scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
-          <button class="btn btn-primary">button</button>
-          <div class="dot">dot</div>
-          <!-- <div class="card">
-            <p>Card in palette brand scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
-            <button class="btn btn-primary">button</button>
-            <div class="dot">dot</div>
-          </div> -->
-          <div class="palette palette-alternate">
-            <p>Palette alternate scheme:
+          <div class="palette palette-brand">
+            <p>
+              Palette brand scheme:
               <span class="d-block-scheme"><span>light</span><span>dark</span></span>
             </p>
             <button class="btn btn-primary">button</button>
             <div class="dot">dot</div>
             <!-- <div class="card">
-              <p>Card in palette altrenate scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
-              <button class="btn btn-primary">button</button>
-              <div class="dot">dot</div>
-            </div> -->
-            <div class="palette palette-accent">
-              <p>Palette accent scheme:
+            <p>Card in palette brand scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
+            <button class="btn btn-primary">button</button>
+            <div class="dot">dot</div>
+          </div> -->
+            <div class="palette palette-alternate">
+              <p>
+                Palette alternate scheme:
                 <span class="d-block-scheme"><span>light</span><span>dark</span></span>
               </p>
               <button class="btn btn-primary">button</button>
               <div class="dot">dot</div>
               <!-- <div class="card">
-                <p>Card in palette accent scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
-                <button class="btn btn-primary">button</button>
-                <div class="dot">dot</div>
-              </div> -->
-              <div class="palette palette-default">
-                <p>Palette default scheme:
+              <p>Card in palette altrenate scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
+              <button class="btn btn-primary">button</button>
+              <div class="dot">dot</div>
+            </div> -->
+              <div class="palette palette-accent">
+                <p>
+                  Palette accent scheme:
                   <span class="d-block-scheme"><span>light</span><span>dark</span></span>
                 </p>
                 <button class="btn btn-primary">button</button>
                 <div class="dot">dot</div>
                 <!-- <div class="card">
+                <p>Card in palette accent scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
+                <button class="btn btn-primary">button</button>
+                <div class="dot">dot</div>
+              </div> -->
+                <div class="palette palette-default">
+                  <p>
+                    Palette default scheme:
+                    <span class="d-block-scheme"><span>light</span><span>dark</span></span>
+                  </p>
+                  <button class="btn btn-primary">button</button>
+                  <div class="dot">dot</div>
+                  <!-- <div class="card">
                   <p>Card in palette default scheme: <span class="d-block-scheme"><span>light</span><span>dark</span></span></p>
                   <button class="btn btn-primary">button</button>
                   <div class="dot">dot</div>
                 </div> -->
+                </div>
               </div>
             </div>
           </div>
         </div>
-
       </div>
-    </div>
-  </main>
-</body>
-
+    </main>
+  </body>
 </html>
