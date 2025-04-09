@@ -20,6 +20,20 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
   <Controls of={HeaderStories.Default} />
 </div>
 
+## CSS Properties
+
+The `<post-header>` component exposes the following custom properties to the `:root` element:
+
+<ul>
+  <li>
+    `--post-header-height`: This property represents the height of the header that is currently
+    visible in the viewport.
+  </li>
+  <li>`--post-header-expanded-height`: This property represents the actual size of the header.</li>
+</ul>
+Additionally, it sets the `scroll-padding-top` property to equal the visible header height, which can
+be useful for pages that use scroll navigation.
+
 ## Installation
 
 The `<post-header>` element is part of the `@swisspost/design-system-components` package.

@@ -3,7 +3,7 @@ import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { spreadArgs } from '@/utils';
-import { Components } from '@swisspost/design-system-components/src';
+import { PostIcon } from '@swisspost/design-system-components/dist/components/post-icon';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
@@ -62,7 +62,7 @@ const meta: MetaComponent = {
 };
 
 export default meta;
-type Story = StoryObj<Components.PostIcon>;
+type Story = StoryObj<PostIcon>;
 
 function normalizeArgs(args: Args) {
   // remove attribute with falsy values
@@ -91,7 +91,7 @@ const renderAnimateVariants = (args: Args, customAttrs: { name: string; animatio
       variantArgs =>
         html`
           <div class="w-half py-16">
-            <p class="text-muted fs-tiny">Animation: ${variantArgs.animation}</p>
+            <p class="text-muted fs-9">Animation: ${variantArgs.animation}</p>
             <post-icon ${spread(normalizeArgs(args))} ${spread(variantArgs)}></post-icon>
           </div>
         `,
@@ -101,7 +101,7 @@ const renderAnimateVariants = (args: Args, customAttrs: { name: string; animatio
 
 export const Default: Story = {
   decorators: [
-    (story: StoryFn, context: StoryContext) => generateDecorators(story, context, 'fs-32'),
+    (story: StoryFn, context: StoryContext) => generateDecorators(story, context, 'fs-2'),
   ],
 };
 
@@ -128,7 +128,7 @@ export const Color: Story = {
     ]),
   decorators: [
     (story: StoryFn, context: StoryContext) =>
-      generateDecorators(story, context, 'd-flex flex-wrap gap-8 fs-32'),
+      generateDecorators(story, context, 'd-flex flex-wrap gap-8 fs-2'),
   ],
 };
 
@@ -165,7 +165,7 @@ export const Flip: Story = {
     ]),
   decorators: [
     (story: StoryFn, context: StoryContext) =>
-      generateDecorators(story, context, 'd-flex flex-wrap gap-8 fs-32'),
+      generateDecorators(story, context, 'd-flex flex-wrap gap-8 fs-2'),
   ],
 };
 
@@ -178,7 +178,7 @@ export const Scale: Story = {
   render: args => renderVariants(args, [{ scale: 0.5 }, {}, { scale: 1.5 }]),
   decorators: [
     (story: StoryFn, context: StoryContext) =>
-      generateDecorators(story, context, 'd-flex flex-wrap gap-24 fs-32 scale-container'),
+      generateDecorators(story, context, 'd-flex flex-wrap gap-24 fs-2 scale-container'),
   ],
 };
 
@@ -200,7 +200,7 @@ export const Rotate: Story = {
     ]),
   decorators: [
     (story: StoryFn, context: StoryContext) =>
-      generateDecorators(story, context, 'd-flex flex-wrap gap-8 fs-32'),
+      generateDecorators(story, context, 'd-flex flex-wrap gap-8 fs-2'),
   ],
 };
 
@@ -221,7 +221,7 @@ export const Animate: Story = {
     ]),
   decorators: [
     (story: StoryFn, context: StoryContext) =>
-      generateDecorators(story, context, 'd-flex flex-wrap text-center fs-32'),
+      generateDecorators(story, context, 'd-flex flex-wrap text-center fs-2'),
   ],
 };
 
@@ -230,7 +230,7 @@ export const CSS_Default: Story = {
     return html`<div class="my-1022-icon"></div>`;
   },
   decorators: [
-    (story: StoryFn, context: StoryContext) => generateDecorators(story, context, 'fs-32'),
+    (story: StoryFn, context: StoryContext) => generateDecorators(story, context, 'fs-2'),
   ],
 };
 
@@ -248,7 +248,7 @@ export const CSS_Color: Story = {
     return html`<div class="my-1022-icon" style="color: blue"></div>`;
   },
   decorators: [
-    (story: StoryFn, context: StoryContext) => generateDecorators(story, context, 'fs-32'),
+    (story: StoryFn, context: StoryContext) => generateDecorators(story, context, 'fs-2'),
   ],
 };
 

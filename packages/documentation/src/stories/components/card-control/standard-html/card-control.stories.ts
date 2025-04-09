@@ -154,7 +154,7 @@ export const Default = {
 
     // Child components
     const controlId = `CardControl_${id}`;
-    const description = html`<span class="font-size-12">${args.description}</span>`;
+    const description = html`<span class="fs-11">${args.description}</span>`;
     const icon = html` <post-icon name="${args.icon}" aria-hidden="true"></post-icon> `;
     const invalidFeedback = html`<p class="invalid-feedback mt-8">Invalid feedback</p>`;
 
