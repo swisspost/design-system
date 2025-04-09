@@ -22,7 +22,7 @@ export class PostTag {
   /**
    * Defines the size of the component.
    */
-  @Prop() readonly size: 'sm' | null;
+  @Prop() readonly size?: 'sm';
 
   /**
    * Defines the icon `name` inside of the component.
@@ -43,7 +43,7 @@ export class PostTag {
 
   @Watch('size')
   sizeChanged() {
-    checkEmptyOrOneOf(this, 'size', ['sm', null]);
+    checkEmptyOrOneOf(this, 'size', ['sm']);
     this.setClasses();
   }
 
