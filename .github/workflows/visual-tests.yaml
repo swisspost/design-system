@@ -25,7 +25,7 @@ jobs:
 
       - name: Install & bootstrap all packages
         run: |
-          pnpm styles:build
+          pnpm bootstrap
 
       - name: Install Playwright & latest browsers
         run: |
