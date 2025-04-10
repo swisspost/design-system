@@ -12,7 +12,7 @@ permissions:
 jobs:
   visual-tests:
     name: Run Visual Regression Tests
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -33,6 +33,7 @@ jobs:
           pnpm --filter design-system-styles exec playwright install
 
       - name: Run visual tests in playground
+        shell: bash
         run: |
           pnpm exec start-server-and-test \
             'pnpm --filter design-system-styles play' \

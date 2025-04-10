@@ -12,6 +12,5 @@ test('button default visual regression', async ({ page }) => {
 
   await expect(button).toHaveScreenshot('button-primary.png', {
     timeout: 10000,
-    maxDiffPixelRatio: 0.03,
   });
 });
