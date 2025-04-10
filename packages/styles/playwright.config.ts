@@ -6,7 +6,7 @@ export default defineConfig({
   timeout: 60 * 1000,
   testDir: './visual-tests',
   outputDir: './visual-tests/test-results',
-  snapshotPathTemplate: '{testDir}/__screenshots__/{projectName}/{testFilePath}/{arg}{ext}',
+  snapshotPathTemplate: '{testDir}/__screenshots__/{testFilePath}/{arg}{ext}',
   workers: isCI ? 4 : 2,
   forbidOnly: isCI,
 
@@ -33,15 +33,4 @@ export default defineConfig({
       maxDiffPixelRatio: 0.03,
     }
   },
-
-  projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] }
-    },
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] }
-    },
-  ]
 });
