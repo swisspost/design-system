@@ -86,7 +86,7 @@ describe('accordion', () => {
           .eq(3)
           .click()
           .then(() => {
-            cy.wrap(EventHandlerMock).should('not.be.called');
+            cy.wrap(EventHandlerMock).should('have.been.called');
           });
       });
     });
