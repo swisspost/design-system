@@ -61,15 +61,15 @@ $input-height-content: type.$font-size-base * $input-line-height !default;
 $input-height-inner: $input-height-content + ($input-padding-y * 2) !default;
 $input-height: $input-height-inner + sizing.px-to-rem($input-height-border) !default;
 
-$input-height-content-sm: type.$font-size-14 * 1 !default;
+$input-height-content-sm: 0.875rem * 1 !default;
 $input-height-inner-sm: $input-height-content-sm + ($input-padding-y-sm * 2) + sizing.px-to-rem(2) !default; // + 2px approximation from Figma mockup
 $input-height-sm: $input-height-inner-sm + sizing.px-to-rem($input-height-border) !default;
 
-$input-height-content-rg: type.$font-size-regular * $input-line-height-rg !default;
+$input-height-content-rg: 1rem * $input-line-height-rg !default;
 $input-height-inner-rg: $input-height-content-rg + ($input-padding-y-rg * 2) !default;
 $input-height-rg: calc(#{$input-height-inner-rg} + #{$input-height-border}) !default;
 
-$input-height-content-lg: (type.$font-size-16 * $input-line-height-lg) - sizing.px-to-rem(2) !default; // - 2px and remove approximation in Figma
+$input-height-content-lg: (1rem * $input-line-height-lg) - sizing.px-to-rem(2) !default; // - 2px and remove approximation in Figma
 $input-height-inner-lg: $input-height-content-lg + ($input-padding-y-lg * 2) !default;
 $input-height-lg: $input-height-inner-lg + sizing.px-to-rem($input-height-border) !default;
 

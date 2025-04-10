@@ -56,8 +56,8 @@ importers:
         specifier: 1.6.13
         version: 1.6.13
       '@oddbird/popover-polyfill':
-        specifier: 0.3.7
-        version: 0.3.7
+        specifier: 0.5.2
+        version: 0.5.2
       '@swisspost/design-system-icons':
         specifier: workspace:9.0.0-next.33
         version: link:../icons
@@ -3376,8 +3376,8 @@ packages:
     resolution: {integrity: sha512-aoNSbxtkePXUlbZB+anS1LqsJdctG5n3UVhfU47+CDdwMi6uNTBMF9gPcQRnqghQd2FGzcwwIFBruFMxjhBewg==}
     engines: {node: ^18.17.0 || >=20.5.0}
 
-  '@oddbird/popover-polyfill@0.3.7':
-    resolution: {integrity: sha512-WNthEIPPXnFQkumLby6yVxhyOcA/GtMnlByHwEglMO9WZckoaqidnpLp2JFzAh2RDOZxn+Xt3ffSMKId9cPjOQ==}
+  '@oddbird/popover-polyfill@0.5.2':
+    resolution: {integrity: sha512-iFrvar5SOMtKFOSjYvs4z9UlLqDdJbMx0mgISLcPedv+g0ac5sgeETLGtipHCVIae6HJPclNEH5aCyD1RZaEHw==}
 
   '@open-wc/lit-helpers@0.7.0':
     resolution: {integrity: sha512-4NBlx5ve0EvZplCRJbESm0MdMbRCw16alP2y76KAAAwzmFFXXrUj5hFwhw55+sSg5qaRRx6sY+s7usKgnNo3TQ==}
@@ -14295,7 +14295,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@oddbird/popover-polyfill@0.3.7': {}
+  '@oddbird/popover-polyfill@0.5.2': {}
 
   '@open-wc/lit-helpers@0.7.0(lit@3.2.1)':
     dependencies:
