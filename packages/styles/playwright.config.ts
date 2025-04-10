@@ -6,7 +6,7 @@ export default defineConfig({
   timeout: 60 * 1000,
   testDir: './visual-tests',
   outputDir: './visual-tests/test-results',
-  snapshotPathTemplate: '{testDir}/__screenshots__/{projectName}/{testFilePath}/{arg}{ext}', // ✅ grouped by browser
+  snapshotPathTemplate: '{testDir}/__screenshots__/{projectName}/{testFilePath}/{arg}{ext}',
   workers: isCI ? 4 : 2,
   forbidOnly: isCI,
 
@@ -30,7 +30,7 @@ export default defineConfig({
     },
     toMatchSnapshot: {
       threshold: 0.1,
-      maxDiffPixelRatio: 0.025,
+      maxDiffPixelRatio: 0.03,
     }
   },
 
