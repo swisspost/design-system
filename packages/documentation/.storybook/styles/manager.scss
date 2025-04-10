@@ -8,6 +8,10 @@
   :nth-of-type(1) {
     flex: 0 0 48px;
   }
+
+  > div:last-child {
+    display: block;
+  }
 }
 
 .visually-hidden {
