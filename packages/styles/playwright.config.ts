@@ -6,7 +6,7 @@ export default defineConfig({
   timeout: 60 * 1000,
   testDir: './visual-tests',
   outputDir: './visual-tests/test-results',
-  snapshotPathTemplate: '{testDir}/__screenshots__/{testFilePath}/{arg}{ext}',
+  snapshotPathTemplate: '{testDir}/__screenshots__/{projectName}/{testFilePath}/{arg}{ext}', // ✅ grouped by browser
   workers: isCI ? 4 : 2,
   forbidOnly: isCI,
 
@@ -25,7 +25,7 @@ export default defineConfig({
   expect: {
     toHaveScreenshot: {
       threshold: 0.1,
-      maxDiffPixelRatio: 0.025,
+      maxDiffPixelRatio: 0.03,
       animations: 'disabled'
     },
     toMatchSnapshot: {

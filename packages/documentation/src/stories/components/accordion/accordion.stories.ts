@@ -49,7 +49,7 @@ export default meta;
 function getAccordionItemContent(position: number | string, headingLevel?: number) {
   const level = headingLevel ? html` <code>h${headingLevel}</code>` : nothing;
   return html`
-    <span slot="header">Hello ${position}${level}</span>
+    <span slot="header">Titulum ${position}${level}</span>
     <div>
       <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
     </div>
