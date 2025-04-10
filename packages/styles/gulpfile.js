@@ -11,13 +11,6 @@ const autoprefixer = require('autoprefixer');
 const { globSync } = require('glob');
 const options = require('./package.json').sass;
 
-const COMPONENT_SOURCE_PATHS = [path.join(__dirname, '../components/src/components')];
-const COMPONENT_NOT_DEFINED_TEMPLATE_PATH = path.join(
-  __dirname,
-  'src/templates/_not-defined.template.scss',
-);
-const COMPONENT_NOT_DEFIEND_OUTPUT_PATH = path.join(__dirname, 'src/utilities/_not-defined.scss');
-
 /**
  * Copy task
  */
@@ -168,29 +161,6 @@ gulp.task(
 );
 
 /**
- * Get all available components names from the components package and add them to the scss file (packages\styles\src\utilities\_not-defined.scss) which sets initial visibility to hidden (for unregistered state).
- */
-
-gulp.task('generate-not-defined-components-scss', done => {
-  const webComponentNames = COMPONENT_SOURCE_PATHS.reduce((names, srcPath) => {
-    if (fs.existsSync(srcPath)) {
-      const componentNames = fs.readdirSync(srcPath);
-      const camelCaseNames = componentNames.map(name =>
-        name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase(),
-      );
-      names.push(...camelCaseNames);
-    }
-    return names;
-  }, []);
-
-  const template = fs.readFileSync(COMPONENT_NOT_DEFINED_TEMPLATE_PATH, 'utf8');
-  const output = template.replace('/* WEB_COMPONENT_NAMES */', webComponentNames.join(',\n    '));
-
-  fs.writeFileSync(COMPONENT_NOT_DEFIEND_OUTPUT_PATH, output, 'utf8');
-  done();
-});
-
-/**
  * Watch task for scss development
  */
 gulp.task(
@@ -206,13 +176,7 @@ gulp.task(
 exports.default = gulp.task(
   'build',
   gulp.parallel(
-    gulp.series(
-      'generate-not-defined-components-scss',
-      'map-icons',
-      'copy',
-      'autoprefixer',
-      'transform-package-json',
-    ),
+    gulp.series('map-icons', 'copy', 'autoprefixer', 'transform-package-json'),
     gulp.series('temporarily-copy-token-files', 'sass'),
   ),
 );
