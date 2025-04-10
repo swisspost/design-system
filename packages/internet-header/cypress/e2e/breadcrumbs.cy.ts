@@ -3,7 +3,7 @@ import rawTestConfiguration from '../fixtures/internet-header/test-configuration
 import { prepare } from '../support/prepare-story';
 import { BREADCRUMBS } from './shared/variables';
 
-const testConfiguration: IPortalConfig = rawTestConfiguration;
+const testConfiguration: IPortalConfig = rawTestConfiguration as unknown as IPortalConfig;
 
 describe('breadcrumb', () => {
   function closeOverlayOnKey(key: string) {

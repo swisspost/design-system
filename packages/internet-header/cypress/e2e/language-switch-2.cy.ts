@@ -130,7 +130,7 @@ describe('language-switch-2', () => {
     });
 
     it('should not be rendered with only one language', () => {
-      const config: IPortalConfig = { en: testConfiguration.en };
+      const config: IPortalConfig = { en: testConfiguration.en } as unknown as IPortalConfig;
 
       const navLangEntry: NavLangEntity = {
         a11yLabel: '',

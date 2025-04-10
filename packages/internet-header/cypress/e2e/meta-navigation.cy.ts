@@ -112,7 +112,7 @@ describe('meta-navigation', () => {
     describe('navMeta config contains only home link', () => {
       it(`removes meta navigation`, () => {
         // Cast the imported JSON object to the IPortalConfig interface
-        const config: IPortalConfig = testConfiguration;
+        const config: IPortalConfig = testConfiguration as unknown as IPortalConfig;
 
         // Set navMeta to contain only one entry with 'isHomeLink' set to true
         config.de!.header.navMeta = [

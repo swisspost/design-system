@@ -17,7 +17,7 @@ export interface IHeaderConfig {
     loginIcon: IIconConfig;
   };
   loginWidgetOptions?: ILoginWidgetOptions;
-  loginWidgetId: string | null;
+  loginWidgetId: string;
   logo: ILogoConfig;
   mobileMenu: {
     text: string;
@@ -73,7 +73,7 @@ export interface ISearchConfig {
   packageTrackingRedirectUrl: string;
   searchHubName: string;
   searchPipelineName: string;
-  searchRecommendations?: ISearchRecommendationContainer;
+  searchRecommendations: ISearchRecommendationContainer;
   isCustomSuggestionHidden?: boolean;
 }
 
@@ -94,7 +94,7 @@ export interface NavMainEntity {
   id?: string;
   text: string;
   title: string;
-  url?: string | null;
+  url: string;
   isActive?: boolean;
   isActiveOverride?: boolean;
   noFlyout?: boolean;
@@ -102,14 +102,14 @@ export interface NavMainEntity {
 }
 
 export interface FlyoutEntity {
-  title?: string | null;
+  title: string;
   linkList: LinkListEntity[];
 }
 
 export interface LinkListEntity {
   title: string;
   url: string;
-  target?: string | null;
+  target?: string;
   isActive?: boolean;
   isActiveOverride?: boolean;
 }
@@ -117,18 +117,18 @@ export interface LinkListEntity {
 export interface NavMetaEntity {
   isActive: boolean;
   isHomeLink: boolean;
-  target?: string | null;
+  target?: string;
   text: string;
   url: string;
 }
 
 export interface NavLangEntity {
-  a11yLabel?: string | null;
+  a11yLabel?: string;
   isCurrent: boolean;
   lang: string;
   text: string;
   title: string;
-  url?: string | null;
+  url?: string;
 }
 
 export interface IHeaderTranslations {
