@@ -101,7 +101,6 @@ export class PostHeader {
   }
 
   connectedCallback() {
-    console.log('connected');
     window.addEventListener('resize', this.throttledResize, { passive: true });
     window.addEventListener('scroll', this.handleScrollEvent, {
       passive: true,
@@ -113,19 +112,14 @@ export class PostHeader {
     this.host.addEventListener('click', this.handleLinkClick);
 
     this.handleResize();
-    this.handleScrollEvent();
-    this.handleScrollParentResize();
-    this.lockBody(false, this.mobileMenuExtended, 'mobileMenuExtended');
   }
 
   componentDidRender() {
-    console.log('didRender');
+    this.handleScrollEvent();
+    this.handleScrollParentResize();
+    this.lockBody(false, this.mobileMenuExtended, 'mobileMenuExtended');
     this.getFocusableElements();
     this.handleLocalHeaderResize();
-  }
-
-  componentDidUpdate() {
-    console.log('didUpdate');
   }
 
   // Clean up possible side effects when post-header is disconnected
@@ -149,8 +143,6 @@ export class PostHeader {
     }
 
     this.mobileMenuExtended = false;
-
-    console.log('disconnected, eventListeners removed');
   }
 
   /**
@@ -238,13 +230,6 @@ export class PostHeader {
     const scrollTop =
       this.scrollParent === document.body ? window.scrollY : this.scrollParent.scrollTop;
     document.documentElement.style.setProperty('--post-header-scroll-top', `${scrollTop}px`);
-    console.log(
-      scrollTop,
-      document,
-      this.scrollParent,
-      document.documentElement.style.getPropertyValue('--post-header-scroll-top'),
-      'test',
-    );
   }
 
   private updateLocalHeaderHeight() {
