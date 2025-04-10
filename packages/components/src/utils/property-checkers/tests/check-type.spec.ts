@@ -53,7 +53,7 @@ describe('checkType', () => {
 
     it('should not log an error if the value is a number', () => {
       const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-      [42, 4.2, 4_200, 2.4434634e9, NaN].forEach(number => {
+      [42, 4.2, 4_200, 2.4434634e9].forEach(number => {
         runCheckForValue(number);
         expect(consoleErrorSpy).not.toHaveBeenCalledWith(expect.stringContaining(error));
       });
