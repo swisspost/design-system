@@ -40,7 +40,7 @@ describe('accordion', () => {
         .last()
         .click()
         .then(() => {
-          expect(EventHandlerMock).to.be.calledTwice;
+          cy.wrap(EventHandlerMock).should('have.been.calledTwice');
         });
     });
   });
@@ -86,7 +86,7 @@ describe('accordion', () => {
           .eq(3)
           .click()
           .then(() => {
-            expect(EventHandlerMock).to.be.called;
+            cy.wrap(EventHandlerMock).should('have.been.called');
           });
       });
     });

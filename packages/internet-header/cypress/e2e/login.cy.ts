@@ -26,7 +26,7 @@ describe('login', () => {
     describe('login widget options not set', () => {
       it(`removes login control`, () => {
         // Cast the imported JSON object to the IPortalConfig interface
-        let config: IPortalConfig = JSON.parse(JSON.stringify(testConfiguration));
+        const config: IPortalConfig = JSON.parse(JSON.stringify(testConfiguration));
 
         // Clear login widget options config
         config.de!.header.loginWidgetOptions = undefined;
@@ -47,7 +47,7 @@ describe('login', () => {
   describe('jobs login widget', () => {
     describe('showJobsLoginWidget: true', () => {
       it(`shows jobs login widget`, () => {
-        let config: IPortalConfig = JSON.parse(JSON.stringify(testConfiguration));
+        const config: IPortalConfig = JSON.parse(JSON.stringify(testConfiguration));
         config.de!.header.showJobsLoginWidget = true;
         config.de!.header.isLoginWidgetHidden = false;
         prepare(HEADER, 'Default', { config });
@@ -61,7 +61,7 @@ describe('login', () => {
 
     describe('showJobsLoginWidget: false', () => {
       it(`shows default login widget`, () => {
-        let config: IPortalConfig = JSON.parse(JSON.stringify(testConfiguration));
+        const config: IPortalConfig = JSON.parse(JSON.stringify(testConfiguration));
         config.de!.header.showJobsLoginWidget = false;
         config.de!.header.isLoginWidgetHidden = false;
         prepare(HEADER, 'Default', { config });

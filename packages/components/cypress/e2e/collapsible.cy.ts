@@ -16,7 +16,7 @@ describe('collapsible', () => {
     });
 
     it('should show the collapsible', () => {
-      cy.get('@collapsible').should(`be.visible`);
+      cy.get('@collapsible').should('be.visible');
     });
 
     it('should set the correct ARIA attribute on the trigger', () => {
@@ -30,7 +30,7 @@ describe('collapsible', () => {
 
     it('should hide the collapsible after clicking on the trigger once', () => {
       cy.get('@trigger').click();
-      cy.get('@collapsible').should(`be.hidden`);
+      cy.get('@collapsible').should('be.hidden');
     });
 
     it('should update the "aria-expanded" attribute after hiding the collapsible', () => {
@@ -40,7 +40,7 @@ describe('collapsible', () => {
 
     it('should show the collapsible after clicking on the trigger twice', () => {
       cy.get('@trigger').dblclick();
-      cy.get('@collapsible').should(`be.visible`);
+      cy.get('@collapsible').should('be.visible');
     });
 
     it('should update the "aria-expanded" attribute after showing the collapsible', () => {
@@ -61,17 +61,17 @@ describe('collapsible', () => {
     });
 
     it('should hide the collapsible', () => {
-      cy.get('@collapsible').should(`be.hidden`);
+      cy.get('@collapsible').should('be.hidden');
     });
 
     it('should show the collapsible after clicking on the trigger once', () => {
       cy.get('@trigger').click();
-      cy.get('@collapsible').should(`be.visible`);
+      cy.get('@collapsible').should('be.visible');
     });
 
     it('should hide the collapsible after clicking on the trigger twice', () => {
       cy.get('@trigger').dblclick();
-      cy.get('@collapsible').should(`be.hidden`);
+      cy.get('@collapsible').should('be.hidden');
     });
   });
 });
