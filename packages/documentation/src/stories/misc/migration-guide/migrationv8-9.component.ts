@@ -128,6 +128,49 @@ export class MigrationV89Component extends LitElement {
                   </p>
                 </li>
               </ul>
+              <h5>post-button</h5>
+              <ul>
+                <li class="mb-16">
+                  <p>
+                    Some <code>post-button</code> scss variables have been removed
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>$btn-height-sm</code></li>
+                    <li><code>$btn-height-md</code></li>
+                    <li><code>$btn-disabled-opacity</code></li>
+                    <li><code>$btn-focus-width</code></li>
+                    <li><code>$btn-focus-box-shadow</code></li>
+                    <li><code>$btn-icon-size-sm</code></li>
+                    <li><code>$btn-icon-size-md</code></li>
+                    <li><code>$btn-icon-size-rg</code></li>
+                    <li><code>$btn-icon-size-lg</code></li>
+                    <li><code>$input-btn-border-width-rem</code></li>
+                    <li><code>$input-btn-line-height</code></li>
+                    <li><code>$input-btn-focus-color</code></li>
+                    <li><code>$input-btn-focus-box-shadow</code></li>
+                    <li><code>$old-btn-icon-size-map</code></li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    The following <code>post-button</code> scss variables have been refactored
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>$input-btn-border-width</code></li>
+                    <li><code>$input-btn-padding-y</code></li>
+                    <li><code>$input-btn-padding-x</code></li>
+                    <li><code>$input-btn-padding-y-sm</code></li>
+                    <li><code>$input-btn-padding-x-sm</code></li>
+                    <li><code>$input-btn-padding-y-rg</code></li>
+                    <li><code>$input-btn-padding-x-rg</code></li>
+                    <li><code>$input-btn-padding-y-lg</code></li>
+                    <li><code>$input-btn-padding-x-lg</code></li>
+                    <li><code>$input-btn-focus-width</code></li>
+                  </ul>
+                </li>
+              </ul>
 
               <h5>Grid</h5>
               <ul>
