@@ -27,18 +27,24 @@ describe('checkNonEmpty', () => {
   const error = 'Is empty!';
 
   describe('empty value', () => {
-    it('should not throw an error if the value is a non-empty value', () => {
+    it('should not log an error if the value is a non-empty value', () => {
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
       for (const value of NON_EMPTY_VALUES) {
         const component = { host: { localName: 'post-component' } as HTMLElement, prop: value };
-        expect(() => checkNonEmpty(component, 'prop', error)).not.toThrow();
+        checkNonEmpty(component, 'prop', error);
+        expect(consoleErrorSpy).not.toHaveBeenCalledWith(error);
       }
+      consoleErrorSpy.mockRestore();
     });
 
-    it('should throw an error if the value is an empty value', () => {
+    it('should log an error if the value is an empty value', () => {
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
       for (const value of EMPTY_VALUES) {
         const component = { host: { localName: 'post-component' } as HTMLElement, prop: value };
-        expect(() => checkNonEmpty(component, 'prop', error)).toThrow(error);
+        checkNonEmpty(component, 'prop', error);
+        expect(consoleErrorSpy).toHaveBeenCalledWith(error);
       }
+      consoleErrorSpy.mockRestore();
     });
   });
 });

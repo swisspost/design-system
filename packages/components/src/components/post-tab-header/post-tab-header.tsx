@@ -25,7 +25,6 @@ export class PostTabHeader {
   @Watch('panel')
   validateFor() {
     checkNonEmpty(this, 'panel');
-    //checkOneOf(this, 'panel'); ???
   }
 
   componentWillLoad() {
