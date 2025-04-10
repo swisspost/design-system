@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Source } from '@storybook/addon-docs';
-import sanitizeHtml from 'sanitize-html';
+
 const code = `
 <post-header>
 
@@ -172,18 +172,12 @@ const replaceTagsWithPascalCase = (html: string): string => {
 };
 
 const htmlToJsx = (code: string): string => {
-  const sanitizedHtml = sanitizeHtml(code, {
-    allowedTags: false, // Allow all tags
-    allowedAttributes: false, // Allow all attributes
-    textFilter: function(text) {
-      return text.replace(/<!--(.*?)-->/gs, '{/*$1*/}');
-    }
-  });
-  const updatedHtml = replaceTagsWithPascalCase(sanitizedHtml)
+  const updatedHtml = replaceTagsWithPascalCase(code)
     .replace(/\bclass\b/g, 'className')
     .replace(/\bfor\b/g, 'htmlFor')
     .replace(/<a href="/g, '<Link to="')
-    .replace(/<\/a>/g, '</Link>');
+    .replace(/<\/a>/g, '</Link>')
+    .replace(/<!--(.*?)-->/g, '{/*$1*/}');
   return updatedHtml;
 };
 
