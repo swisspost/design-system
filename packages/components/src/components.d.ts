@@ -458,7 +458,7 @@ export namespace Components {
         /**
           * Defines the size of the component.
          */
-        "size": 'sm' | null;
+        "size"?: 'sm';
         /**
           * Defines the color variant of the component.
          */
@@ -1297,7 +1297,7 @@ declare namespace LocalJSX {
         /**
           * Defines the size of the component.
          */
-        "size"?: 'sm' | null;
+        "size"?: 'sm';
         /**
           * Defines the color variant of the component.
          */
