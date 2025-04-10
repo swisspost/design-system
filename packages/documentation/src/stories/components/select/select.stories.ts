@@ -214,7 +214,8 @@ const Template: Story = {
       args.validation !== 'null' ? `${args.validation}-id-${context.id}` : '',
     ].filter(Boolean);
 
-    const ariaDescribedBy = ariaDescribedByParts.join(' ');
+    const ariaDescribedBy =
+      args.hint || args.validation !== 'null' ? ariaDescribedByParts.join(' ') : nothing;
 
     const control = html`
       <select

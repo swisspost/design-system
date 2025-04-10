@@ -163,7 +163,8 @@ function renderTextarea(args: Args, context: StoryContext) {
     args.validation !== 'null' ? `${args.validation}-id-${context.id}` : '',
   ].filter(Boolean);
 
-  const ariaDescribedBy = ariaDescribedByParts.join(' ');
+  const ariaDescribedBy =
+    args.hint || args.validation !== 'null' ? ariaDescribedByParts.join(' ') : nothing;
 
   const control = html`
     <textarea
