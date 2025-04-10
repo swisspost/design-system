@@ -32,9 +32,9 @@ jobs:
           pnpm --filter design-system-styles add -D @playwright/test@latest
           pnpm --filter design-system-styles exec playwright install
 
-      - name: Run visual regression tests
+      - name: Run visual regression tests via playground
         run: |
-          pnpm exec start-server-and-test 'pnpm docs:start' 9000 'pnpm styles:visual:test'
+          pnpm exec start-server-and-test 'pnpm styles:play' 5173 'pnpm styles:visual:test'
 
       - name: Upload test results
         if: always()

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('button default visual regression', async ({ page }) => {
   await page.goto(
-    'http://localhost:9000/iframe.html?viewMode=story&id=eb78afcb-ce92-4990-94b6-6536d5ec6af4--default',
+    'http://localhost:5173/',
     { waitUntil: 'networkidle' }
   );
 
