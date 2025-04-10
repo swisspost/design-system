@@ -24,10 +24,10 @@
     "linkDirectory": true
   },
   "scripts": {
-    "play": "stencil build --dev --port 9200 --serve --watch --docs --docs-readme",
-    "start": "stencil build --dev --watch --docs --docs-readme",
-    "build": "pnpm clean && stencil build --docs-readme",
-    "clean": "rimraf dist hydrate loader loaders www ../components-react/src/components/stencil-generated/ ../components-angular/projects/components/src/lib/stencil-generated/",
+    "play": "pnpm prebuild && stencil build --dev --port 9200 --serve --watch --docs --docs-readme",
+    "start": "pnpm prebuild && stencil build --dev --watch --docs --docs-readme",
+    "build": "pnpm clean && pnpm prebuild && stencil build --docs-readme",
+    "clean": "rimraf dist hydrate loader loaders www src/styles/generated ../components-react/src/components/stencil-generated/ ../components-angular/projects/components/src/lib/stencil-generated/",
     "unit": "stencil test --spec",
     "unit:watch": "stencil test --spec --watchAll --silent",
     "e2e": "cypress run --browser chrome",
@@ -35,7 +35,8 @@
     "e2e:ci": "xvfb-run -a cypress run --browser chrome",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "prebuild": "pnpm ts-node --project tsconfig.ts-node.json ./generate-component-names-scss.ts"
   },
   "dependencies": {
     "@floating-ui/dom": "1.6.13",
@@ -71,6 +72,7 @@
     "sass": "1.78.0",
     "throttle-debounce": "5.0.2",
     "ts-jest": "29.2.5",
+    "ts-node": "10.9.2",
     "typescript": "5.8.2",
     "typescript-eslint": "8.20.0"
   },
