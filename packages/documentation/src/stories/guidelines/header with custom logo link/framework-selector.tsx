@@ -176,8 +176,7 @@ const htmlToJsx = (code: string): string => {
     .replace(/\bclass\b/g, 'className')
     .replace(/\bfor\b/g, 'htmlFor')
     .replace(/<a href="/g, '<Link to="')
-    .replace(/<\/a>/g, '</Link>')
-    .replace(/<!--(.*?)-->/g, '{/*$1*/}');
+    .replace(/<\/a>/g, '</Link>');
   return updatedHtml;
 };
 
