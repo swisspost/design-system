@@ -327,6 +327,14 @@ Changesets indicate a change relevant to users of a package. The changeset also 
 
 Using changesets enables us to automatically generate a changelog for every package while also maintaining control over what content ends up in the changelog. Changes like updates to the build system might be irrelevant to package users and therefore do not need a changeset.
 
+### Major, minor or patch change?
+
+We're following the [semantic versioning philosophy](https://semver.org/) for versioning our packages:
+
+- **Major**: This is a breaking change. Either it cannot be installed without changes on user side without breaking the build or it contains [significant Design Changes](https://github.com/swisspost/design-system/discussions/5114)
+- **Minor**: This is a new feature. The package can be upgraded without breaking anything.
+- **Patch**: This is a bugfix, small improvement or non-consequential change and the package can be safely updated without breaking a build.
+
 ### How to write a good changeset
 
 There are some general rules you can follow to improve the usefulness of the changelog. The ["keep a changelog"](https://keepachangelog.com/en/1.0.0/) site is a good resource to start. Changesets already ticks a few boxes for us.
