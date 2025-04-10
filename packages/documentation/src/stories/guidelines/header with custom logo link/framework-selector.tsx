@@ -157,13 +157,14 @@ const replaceTagsWithPascalCase = (html: string): string => {
 
   tagPairs.forEach(([originalTag, pascalTag]) => {
     const regex = new RegExp(`(<\\/?${originalTag})(\\s|>)`, 'g');
-    html.replace(regex, match => {
+    html = html.replace(regex, match => {
       let result;
       if (match.startsWith('</')) {
         result = `</${pascalTag}${match.endsWith('>') ? '>' : ' '}`;
       } else {
         result = `<${pascalTag}${match.endsWith('>') ? '>' : ' '}`;
       }
+
       return result;
     });
   });
@@ -181,6 +182,7 @@ const htmlToJsx = (code: string): string => {
 };
 
 const jsxCode = htmlToJsx(code);
+console.log(jsxCode);
 const nextjsCode = htmlToJsx(code).replace(/to="/g, 'href="');
 
 const angularLink = `<a routerLink="#" slot="post-logo"><post-logo>Homepage</post-logo></a>`;
