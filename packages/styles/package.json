@@ -18,7 +18,7 @@
     "linkDirectory": true
   },
   "scripts": {
-    "play": "vite --open",
+    "play": "vite --host 127.0.0.1 --port 5173",
     "start": "gulp watch",
     "build": "pnpm clean && gulp build",
     "clean": "rimraf out-tsc dist src/tokens/temp",

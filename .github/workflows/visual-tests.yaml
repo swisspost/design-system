@@ -25,16 +25,19 @@ jobs:
 
       - name: Install & bootstrap all packages
         run: |
-          pnpm bootstrap
+          pnpm styles:build
 
       - name: Install Playwright & latest browsers
         run: |
           pnpm --filter design-system-styles add -D @playwright/test@latest
           pnpm --filter design-system-styles exec playwright install
 
-      - name: Run visual regression tests via playground
+      - name: Run visual tests in playground
         run: |
-          pnpm exec start-server-and-test 'pnpm styles:play' 5173 'pnpm styles:visual:test'
+          pnpm exec start-server-and-test \
+            'pnpm --filter design-system-styles play' \
+            http://127.0.0.1:5173 \
+            'pnpm --filter design-system-styles exec playwright test --config=playwright.config.ts'
 
       - name: Upload test results
         if: always()
