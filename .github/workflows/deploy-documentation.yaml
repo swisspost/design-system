@@ -19,9 +19,6 @@ jobs:
       - name: Setup netlify-cli
         uses: ./.github/actions/setup-netlify-cli
 
-      - name: Create temporary directory for artifacts
-        run: mkdir -p ${{ runner.temp }}/artifacts/
-
       - name: Download build artifacts
         uses: ./.github/actions/artifact-download
         id: build
@@ -35,7 +32,15 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            return JSON.parse(fs.readFileSync('${{ steps.build.outputs.folder }}/netlify.config.json', 'utf8'));
+            const configPath = '${{ steps.build.outputs.folder }}/netlify.config.json';
+            const raw = fs.readFileSync(configPath, 'utf8');
+            const config = JSON.parse(raw);
+
+            if (typeof config.siteId !== 'string' || typeof config.siteUrl !== 'string') {
+              throw new Error('Invalid netlify config: expected siteId and siteUrl to be strings');
+            }
+
+            return config;
 
       - name: Remove netlify.config.json from artifact folder
         run: rm ${{ steps.build.outputs.folder }}/netlify.config.json
