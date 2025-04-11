@@ -38,17 +38,18 @@ runs:
         run_id: ${{ github.event.workflow_run.id }}
         workflow_conclusion: success
 
-    - name: Unzip artifacts
-      shell: bash
-      run: unzip artifacts.zip -d ${{ inputs.folder }}
+    - name: Secure Artifact Extraction
+      run: mkdir -p ${{ runner.temp }}/artifacts/
+
+    - name: Unzip artifacts to secure directory
+      run: unzip artifacts.zip -d ${{ runner.temp }}/artifacts/
 
     - name: Clean up
-      shell: bash
       run: rm -r artifacts.zip
 
     - name: Create outputs
       id: build
-      shell: bash
       run: |
-        echo "id=$(cat ${{ inputs.folder }}/GHA-EVENT-ID)" >> $GITHUB_OUTPUT
-        echo "action=$(cat ${{ inputs.folder }}/GHA-EVENT-ACTION)" >> $GITHUB_OUTPUT
+        echo "id=$(cat ${{ runner.temp }}/artifacts/GHA-EVENT-ID)" >> $GITHUB_OUTPUT
+        echo "action=$(cat ${{ runner.temp }}/artifacts/GHA-EVENT-ACTION)" >> $GITHUB_OUTPUT
+        echo "folder=${{ runner.temp }}/artifacts" >> $GITHUB_OUTPUT
