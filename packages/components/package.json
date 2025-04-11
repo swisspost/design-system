@@ -24,9 +24,9 @@
     "linkDirectory": true
   },
   "scripts": {
-    "play": "pnpm prebuild && stencil build --dev --port 9200 --serve --watch --docs --docs-readme",
-    "start": "pnpm prebuild && stencil build --dev --watch --docs --docs-readme",
-    "prebuild": "pnpm clean && pnpm ts-node --project tsconfig.ts-node.json ./prebuild.ts",
+    "play": "pnpm prebuild:script && stencil build --dev --port 9200 --serve --watch --docs --docs-readme",
+    "start": "pnpm prebuild:script && stencil build --dev --watch --docs --docs-readme",
+    "prebuild": "pnpm clean && pnpm prebuild:script",
     "build": "stencil build --docs-readme",
     "postbuild": "pnpm copy:styles:components-react & pnpm copy:styles:components-angular",
     "clean": "rimraf dist hydrate loader loaders www src/styles/generated ../components-react/src/components/stencil-generated/ ../components-angular/projects/components/src/lib/stencil-generated/",
@@ -38,8 +38,9 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "generate": "stencil generate",
-    "copy:styles:components-react": "copyfiles -f dist/post-components/post-components.css ../components-react/src/components/stencil-generated/",
-    "copy:styles:components-angular": "copyfiles -f dist/post-components/post-components.css ../components-angular/projects/components/src/lib/stencil-generated/"
+    "prebuild:script": "pnpm ts-node --project tsconfig.ts-node.json ./prebuild.ts",
+    "copy:styles:components-react": "copyfiles -f www/build/post-components.css ../components-react/src/components/stencil-generated/",
+    "copy:styles:components-angular": "copyfiles -f www/build/post-components.css ../components-angular/projects/components/src/lib/stencil-generated/"
   },
   "dependencies": {
     "@floating-ui/dom": "1.6.13",
