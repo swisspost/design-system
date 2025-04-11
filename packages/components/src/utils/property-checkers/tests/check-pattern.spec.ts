@@ -4,16 +4,20 @@ describe('checkPattern', () => {
   const pattern = /[a-z]{5}/;
   const error = 'Does not match pattern.';
 
-  const runCheckForValue = (value: unknown) => () => {
+  const runCheckForValue = (value: unknown) => {
     const component = { host: { localName: 'post-component' } as HTMLElement, prop: value };
     checkPattern(component, 'prop', pattern, error);
   };
 
-  it('should not throw an error if the value matches the provided pattern', () => {
-    expect(runCheckForValue('hello')).not.toThrow();
+  it('should not log an error if the value matches the provided pattern', () => {
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    runCheckForValue('hello');
+    expect(consoleErrorSpy).not.toHaveBeenCalledWith(expect.stringContaining(error));
+    consoleErrorSpy.mockRestore();
   });
 
-  it('should throw the provided error if the value is not a string', () => {
+  it('should log the provided error if the value is not a string', () => {
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
     [
       undefined,
       null,
@@ -26,11 +30,16 @@ describe('checkPattern', () => {
         /* empty */
       },
     ].forEach(notString => {
-      expect(runCheckForValue(notString)).toThrow(error);
+      runCheckForValue(notString);
+      expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
     });
+    consoleErrorSpy.mockRestore();
   });
 
-  it('should throw the provided error if the value does not match the provided pattern', () => {
-    expect(runCheckForValue('WORLD')).toThrow(error);
+  it('should log the provided error if the value does not match the provided pattern', () => {
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    runCheckForValue('WORLD');
+    expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
+    consoleErrorSpy.mockRestore();
   });
 });

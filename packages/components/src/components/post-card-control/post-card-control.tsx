@@ -11,7 +11,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { checkNonEmpty, checkOneOf } from '@/utils';
+import { checkNonEmpty, checkOneOf, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '@/utils';
 import { version } from '@root/package.json';
 
 let cardControlIds = 0;
@@ -70,7 +70,7 @@ export class PostCardControl {
   /**
    * Defines the description in the control-label.
    */
-  @Prop() readonly description: string = null;
+  @Prop() readonly description?: string;
 
   /**
    * Defines the `type` attribute of the control.
@@ -82,12 +82,12 @@ export class PostCardControl {
    * <span className="mb-4 banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span>
    * <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
    */
-  @Prop() readonly name: string = null;
+  @Prop() readonly name?: string;
 
   /**
    * Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
    */
-  @Prop() readonly value: string = null;
+  @Prop() readonly value?: string;
 
   /**
    * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms' data.
@@ -103,13 +103,13 @@ export class PostCardControl {
    * Defines the validation `validity` of the control.
    * To reset validity to an undefined state, simply remove the attribute from the control.
    */
-  @Prop({ mutable: true }) validity: null | 'true' | 'false' = null;
+  @Prop({ mutable: true }) validity?: 'true' | 'false';
 
   /**
    * Defines the icon `name` inside the card.
    * <span className="banner banner-sm banner-info">If not set the icon will not show up.</span>
    */
-  @Prop() readonly icon: string = null;
+  @Prop() readonly icon?: string;
 
   /**
    * An event emitted whenever the components checked state is toggled.
@@ -145,12 +145,51 @@ export class PostCardControl {
 
   @Watch('label')
   validateControlLabel() {
-    checkNonEmpty(this, 'label');
+    if (!checkNonEmpty(this, 'label')) {
+      checkType(this, 'label', 'string');
+    }
+  }
+
+  @Watch('description')
+  validateControlDescription() {
+    checkEmptyOrType(this, 'description', 'string');
   }
 
   @Watch('type')
   validateControlType() {
-    checkOneOf(this, 'type', ['checkbox', 'radio']);
+    if (!checkNonEmpty(this, 'type')) {
+      checkOneOf(this, 'type', ['checkbox', 'radio']);
+    }
+  }
+
+  @Watch('name')
+  validateControlName() {
+    if (this.type == 'radio') {
+      if (!checkNonEmpty(this, 'name')) {
+        checkType(this, 'name', 'string');
+      }
+    }
+  }
+
+  @Watch('value')
+  validateControlValue() {
+    if (this.type == 'radio') {
+      if (!checkNonEmpty(this, 'value')) {
+        checkType(this, 'value', 'string');
+      }
+    }
+  }
+
+  @Watch('validity')
+  validateValidity() {
+    checkEmptyOrOneOf(this, 'validity', ['true', 'false']);
+  }
+
+  @Watch('icon')
+  validateControlIcon() {
+    if (!checkNonEmpty(this, 'icon')) {
+      checkType(this, 'icon', 'string');
+    }
   }
 
   @Watch('checked')
@@ -403,7 +442,11 @@ export class PostCardControl {
 
   componentDidLoad() {
     this.validateControlLabel();
+    this.validateControlName();
+    this.validateControlValue();
+    this.validateControlDescription();
     this.validateControlType();
+    this.validateControlIcon();
   }
 
   formAssociatedCallback() {

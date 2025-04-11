@@ -10,17 +10,22 @@ describe('Back-to-top', () => {
       cy.get('post-back-to-top').should('exist');
     });
 
-    it('should throw an error if the label is missing', () => {
-      cy.on('uncaught:exception', err => {
-        expect(err.message).to.include(
-          'The label property of the Back to Top component is required for accessibility purposes. Please ensure it is set.',
-        );
-        return false;
+    it('should log an error if the label is missing', () => {
+      cy.visit('/', {
+        onBeforeLoad(win) {
+          cy.spy(win.console, 'error').as('consoleError');
+        },
       });
       cy.document().then(doc => {
         const element = doc.createElement('post-back-to-top');
         doc.body.appendChild(element);
       });
+      cy.get('@consoleError').should(
+        'be.calledWith',
+        Cypress.sinon.match(
+          'The `label` property of the `Post Back to Top` component is not defined.',
+        ),
+      );
     });
 
     it('should hide the label visually', () => {
