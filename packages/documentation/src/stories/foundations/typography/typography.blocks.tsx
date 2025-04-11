@@ -1,12 +1,4 @@
 import React from 'react';
-import { parse } from '@/utils/sass-export';
-import { forEach } from '@/utils/react';
-import { round } from '@/utils/units';
-import scss from './typography.module.scss';
-
-/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-const SCSS_VARIABLES: any = parse(scss);
-const baseFontSize = parseFloat(SCSS_VARIABLES.base.fontSize);
 
 export function FontFaceWrapper(props: { children: React.ReactElement[] | null }) {
   return <div className="sb-fontface-wrapper">{props.children}</div>;
@@ -41,81 +33,6 @@ export function FontFace(props: { face: string; family: string; weight: string; 
         </div>
       </div>
     </article>
-  );
-}
-
-export function FontSizesAndLineheights() {
-  return (
-    <div className="sb-fontsizes table-responsive">
-      <table className="table">
-        <thead>
-          <tr>
-            <th className="w-quarter">Name</th>
-            <th>Class</th>
-            <th>Scss variable</th>
-            <th>Font Size</th>
-            <th>Line Height</th>
-          </tr>
-        </thead>
-        <tbody>
-          {forEach(SCSS_VARIABLES.fontSizes, ({ key, value }) => (
-            <tr key={key}>
-              <th>font-size-{key}</th>
-              <td>
-                <code>font-size-{key}</code>
-              </td>
-              <td>
-                <code>$font-size-{key}</code>
-              </td>
-              <td>
-                <span>{`${round(parseFloat(value) * baseFontSize, 4)}px`}</span>
-                <br />
-                <span className="fs-tiny text-muted">{value}</span>
-              </td>
-              <td>
-                <span>1.{parseInt(key) >= 24 ? '2' : '5'}</span>
-                <br />
-                <span className="fs-tiny text-muted">
-                  {round(parseFloat(value) * (parseFloat(key) >= 24 ? 1.2 : 1.5), 4)}
-                  rem
-                </span>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
-export function FontCurves() {
-  return (
-    <div className="sb-fontcurves table-responsive">
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            {forEach(SCSS_VARIABLES.fontCurves.tiny, ({ key }) => (
-              <th key={key}>{key}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {forEach(SCSS_VARIABLES.fontCurves, curve => (
-            <tr key={curve.key}>
-              <th>{curve.key}</th>
-              {forEach(curve.value, ({ key, value }) => (
-                <td key={key}>
-                  <span>{round(parseFloat(value) * baseFontSize, 4)}px</span>
-                  <br />
-                  <span className="fs-tiny text-muted">{value}</span>
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
   );
 }
 
@@ -476,11 +393,11 @@ export function Lists() {
             </td>
             <td>
               <dl>
-                <dt>Title</dt>
+                <dt className="fw-bold">Title</dt>
                 <dd>Nullam quis risus eget urna mollis.</dd>
-                <dt>Second Title</dt>
+                <dt className="fw-bold">Second Title</dt>
                 <dd>At vero eos et justo accusam et duo dolores et ea rebum.</dd>
-                <dt>Third Title</dt>
+                <dt className="fw-bold">Third Title</dt>
                 <dd>Invidunt ut labore et dolore magna aliquyam erat.</dd>
               </dl>
             </td>
@@ -501,13 +418,13 @@ export function Lists() {
             <td>
               <div className="overflow-hidden">
                 <dl className="row">
-                  <dt className="col-3">Title</dt>
+                  <dt className="col-3 fw-bold">Title</dt>
                   <dd className="col-9">Nullam quis risus eget urna mollis.</dd>
-                  <dt className="col-3">Second Title</dt>
+                  <dt className="col-3 fw-bold">Second Title</dt>
                   <dd className="col-9">
                     At vero eos et justo accusam et duo dolores et ea rebum.
                   </dd>
-                  <dt className="col-3">Third Title</dt>
+                  <dt className="col-3 fw-bold">Third Title</dt>
                   <dd className="col-9">Invidunt ut labore et dolore magna aliquyam erat.</dd>
                 </dl>
               </div>

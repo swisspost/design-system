@@ -18,7 +18,7 @@ export default function Home() {
       <section>
         <h2 className="h4 mt-40">Sendung Verfolgen</h2>
         <form className="palette-brand mt-16 py-16 px-32 d-flex gap-24">
-          <PostIcon name="1010" className="fs-small-huge"></PostIcon>
+          <PostIcon name="1010" scale={2}></PostIcon>
           <div className="form-floating" style={{ minWidth: '50%' }}>
             <input
               id="ExampleTextarea_Default"
@@ -43,8 +43,8 @@ export default function Home() {
           <div className="col-xl-2 col-md-6">
             <a href="#" className="card h-full product-card">
               <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
-                <PostIcon name="2146" className="fs-bigger-big"></PostIcon>
-                <p className="mt-8 text-center text-muted fs-regular fw-normal">Umzug melden</p>
+                <PostIcon name="2146" scale={1.5}></PostIcon>
+                <p className="mt-8 text-center text-muted fw-normal">Umzug melden</p>
               </div>
             </a>
           </div>
@@ -52,8 +52,8 @@ export default function Home() {
           <div className="col-xl-2 col-md-6">
             <a href="#" className="card h-full product-card">
               <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
-                <PostIcon name="2026" className="fs-bigger-big"></PostIcon>
-                <p className="mt-8 text-center text-muted fs-regular fw-normal">Shop</p>
+                <PostIcon name="2026" scale={1.5}></PostIcon>
+                <p className="mt-8 text-center text-muted fw-normal">Shop</p>
               </div>
             </a>
           </div>
@@ -61,8 +61,8 @@ export default function Home() {
           <div className="col-xl-2 col-md-6">
             <a href="#" className="card h-full product-card">
               <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
-                <PostIcon name="3140" className="fs-bigger-big"></PostIcon>
-                <p className="mt-8 text-center text-muted fs-regular fw-normal">
+                <PostIcon name="3140" scale={1.5}></PostIcon>
+                <p className="mt-8 text-center text-muted fw-normal">
                   Preise für Briefe und Pakete
                 </p>
               </div>
@@ -72,10 +72,8 @@ export default function Home() {
           <div className="col-xl-2 col-md-6">
             <a href="#" className="card h-full product-card">
               <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
-                <PostIcon name="2456" className="fs-bigger-big"></PostIcon>
-                <p className="mt-8 text-center text-muted fs-regular fw-normal">
-                  Paketetiketten erstellen
-                </p>
+                <PostIcon name="2456" scale={1.5}></PostIcon>
+                <p className="mt-8 text-center text-muted fw-normal">Paketetiketten erstellen</p>
               </div>
             </a>
           </div>
@@ -83,10 +81,8 @@ export default function Home() {
           <div className="col-xl-2 col-md-6">
             <a href="#" className="card h-full product-card">
               <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
-                <PostIcon name="1012" className="fs-bigger-big"></PostIcon>
-                <p className="mt-8 text-center text-muted fs-regular fw-normal">
-                  Pakete abholen lassen
-                </p>
+                <PostIcon name="1012" scale={1.5}></PostIcon>
+                <p className="mt-8 text-center text-muted fw-normal">Pakete abholen lassen</p>
               </div>
             </a>
           </div>
@@ -94,10 +90,8 @@ export default function Home() {
           <div className="col-xl-2 col-md-6">
             <a href="#" className="card h-full product-card">
               <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
-                <PostIcon name="1024" className="fs-bigger-big"></PostIcon>
-                <p className="mt-8 text-center text-muted fs-regular fw-normal">
-                  Personalisierte Briefmarken
-                </p>
+                <PostIcon name="1024" scale={1.5}></PostIcon>
+                <p className="mt-8 text-center text-muted fw-normal">Personalisierte Briefmarken</p>
               </div>
             </a>
           </div>

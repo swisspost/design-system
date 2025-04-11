@@ -17,12 +17,12 @@
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "importHelpers": true,
-    "target": "es2022",
     "module": "esnext",
+    "target": "es2021",
     "useDefineForClassFields": false,
-    "lib": ["es2022", "dom"]
+    "lib": ["es2021", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

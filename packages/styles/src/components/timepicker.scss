@@ -4,7 +4,6 @@
 @use './../mixins/icons' as icon-mixins;
 @use './../mixins/button' as button-mixins;
 
-@use './../variables/type';
 @use './../variables/color';
 @use './../variables/components/forms';
 @use './../variables/components/timepicker';
@@ -74,7 +73,7 @@
 
   .form-control {
     padding: forms.$input-padding-y-rg forms.$input-padding-x-rg;
-    font-size: type.$font-size-regular;
+    font-size: 1rem;
     line-height: forms.$input-line-height-rg;
   }
 }
