@@ -36,7 +36,7 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "generate": "stencil generate",
-    "prebuild": "pnpm ts-node --project tsconfig.ts-node.json ./generate-component-names-scss.ts"
+    "prebuild": "pnpm ts-node --project tsconfig.ts-node.json ./prebuild.ts"
   },
   "dependencies": {
     "@floating-ui/dom": "1.6.13",
