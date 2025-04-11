@@ -116,8 +116,11 @@ export class PostHeader {
     this.lockBody(false, this.mobileMenuExtended, 'mobileMenuExtended');
   }
 
-  componentDidRender() {
+  componentWillRender() {
     this.handleScrollEvent();
+  }
+
+  componentDidRender() {
     this.getFocusableElements();
     this.handleLocalHeaderResize();
   }
