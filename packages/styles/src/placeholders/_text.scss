@@ -1,10 +1,9 @@
-@use './../variables/type';
-@use './../mixins/type' as type-mx;
 @use './../variables/components/paragraph';
+@use '../tokens/utilities_formatted';
 
-@each $key, $value in type.$font-curves {
-  %font-curve-#{$key} {
-    @include type-mx.font-curve($key);
+@each $key, $value in utilities_formatted.$font-size {
+  %fs-#{$key} {
+    font-size: $value;
   }
 }
 

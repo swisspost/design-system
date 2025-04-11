@@ -55,7 +55,7 @@ describe('Back-to-top', () => {
   describe('Accessibility', () => {
     it('Has no detectable a11y violations on load for all variants', () => {
       cy.getSnapshots('post-back-to-top');
-      cy.checkA11y('#root-inner');
+      cy.checkA11y('post-back-to-top');
     });
   });
 });
