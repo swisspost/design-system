@@ -24,7 +24,7 @@ $chip-max-width: 100%;
 $chip-padding-x: tokens.get('utility-gap-16');
 $chip-gap: tokens.get('utility-gap-8');
 
-$chip-font-size: type.$font-size-16;
+$chip-font-size: 1rem;
 $chip-font-weight: type.$font-weight-normal;
 $chip-line-height: type.$line-height-copy;
 
@@ -35,7 +35,7 @@ $chip-transition:
 
 $chip-height-sm: 2rem;
 $chip-gap-sm: sizing.px-to-rem(6px);
-$chip-font-size-sm: type.$font-size-14;
+$chip-font-size-sm: 0.875rem;
 $chip-padding-x-sm: tokens.get('utility-gap-12');
 
 $chip-hover-color: color.$black;

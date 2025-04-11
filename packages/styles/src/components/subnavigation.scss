@@ -51,7 +51,7 @@ $module-name: 'subnavigation';
   }
 
   &-link {
-    @extend %font-curve-small;
+    @extend %fs-9;
     display: flex;
     position: relative;
     align-items: center;

@@ -1,9 +1,8 @@
-@use './../type';
 @use './../color';
 
 // Tooltips
 
-$tooltip-font-size: type.$font-size-regular !default;
+$tooltip-font-size: 1rem !default;
 $tooltip-max-width: 310px !default;
 $tooltip-color: color.$black !default;
 $tooltip-bg: color.$yellow !default;
