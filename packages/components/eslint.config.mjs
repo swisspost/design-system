@@ -20,7 +20,6 @@ export default [
     name: 'post/global/ignores',
     ignores: [
       'prebuild.ts',
-      'postbuild.ts',
       'dist/*',
       'loader/*',
       'loaders/*',
