@@ -1,0 +1,48 @@
+@use './core';
+@use '../mixins/supports';
+@use '../mixins/schemes';
+
+// prefered root color-scheme
+:root {
+  @media (prefers-color-scheme: light) {
+    @include schemes.light-variables;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    @include schemes.dark-variables;
+  }
+
+  @include supports.light-dark(true) {
+    color-scheme: light dark;
+  }
+
+  @include supports.light-dark(false) {
+    --fallback-prefers-light: ;
+  }
+}
+
+// forced root color-scheme light
+[data-color-scheme='light'] {
+  @include schemes.light-variables;
+
+  @include supports.light-dark(true) {
+    color-scheme: light;
+  }
+
+  @include supports.light-dark(false) {
+    --fallback-prefers-light: ;
+  }
+}
+
+// forced root color-scheme dark
+[data-color-scheme='dark'] {
+  @include schemes.dark-variables;
+
+  @include supports.light-dark(true) {
+    color-scheme: dark;
+  }
+
+  @include supports.light-dark(false) {
+    --fallback-prefers-light: initial;
+  }
+}

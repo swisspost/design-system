@@ -68,7 +68,7 @@ fieldset {
     }
 
     ~ label {
-      color: tokens.get('body-color', elements.$post-body) !important;
+      color: tokens.get('body-color-fg', elements.$post-body) !important;
     }
   }
 

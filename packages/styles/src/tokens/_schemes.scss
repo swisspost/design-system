@@ -1,11 +1,18 @@
+@use 'sass:map';
 @use './core';
+@use '../tokens/temp/scheme';
+@use '../mixins/supports';
 @use '../placeholders/schemes';
 
 :root,
-[data-color-scheme='light'] {
-  @extend %color-scheme-light;
-}
+[data-color-scheme] {
+  @include supports.light-dark(true) {
+    @each $key, $light-value in scheme.$post-light {
+      --#{$key}: light-dark(#{$light-value}, #{map.get(scheme.$post-dark, $key)});
+    }
+  }
 
-[data-color-scheme='dark'] {
-  @extend %color-scheme-dark;
+  @include supports.light-dark(false) {
+    @extend %scheme-fallback-variables;
+  }
 }

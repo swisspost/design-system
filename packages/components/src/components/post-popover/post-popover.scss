@@ -31,7 +31,7 @@
 }
 
 .btn-close {
-  color: tokens.get('body-color', elements.$post-body);
+  color: tokens.get('body-color-fg', elements.$post-body);
 
   &:hover {
     @include utilities-mx.high-contrast-mode() {
