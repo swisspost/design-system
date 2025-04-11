@@ -22,8 +22,8 @@
     "linkDirectory": true
   },
   "scripts": {
-    "prebuild": "pnpm clean && pnpm copy:styles:dist",
-    "build": "tsc -p .",
+    "build": "pnpm clean && tsc -p .",
+    "postbuild": "pnpm copy:styles:dist",
     "clean": "rimraf dist",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
