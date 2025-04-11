@@ -24,35 +24,56 @@ jobs:
         id: build
         with:
           name: design-system-documentation
-          folder: build-output
-
-      - name: Create preview message
-        uses: ./.github/actions/preview/message/create
-        with:
-          access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-          issue-number: ${{ steps.build.outputs.id }}
+          folder: ${{ runner.temp }}/artifacts/
 
       - name: Get netlify config
         id: netlify-config
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         with:
           script: |
-            const fs = require('fs')
-            return JSON.parse(fs.readFileSync('./${{ steps.build.outputs.folder }}/netlify.config.json', 'utf8'))
+            const fs = require('fs');
+            const configPath = '${{ steps.build.outputs.folder }}/netlify.config.json';
+            const raw = fs.readFileSync(configPath, 'utf8');
+            const config = JSON.parse(raw);
+
+            if (typeof config.siteId !== 'string' || typeof config.siteUrl !== 'string') {
+              throw new Error('Invalid netlify config: expected siteId and siteUrl to be strings');
+            }
+
+            return config;
 
       - name: Remove netlify.config.json from artifact folder
         run: rm ${{ steps.build.outputs.folder }}/netlify.config.json
+
+      - name: Generate Safe URL Alias
+        id: generate-url
+        env:
+          BUILD_ID: ${{ steps.build.outputs.id }}
+        run: |
+          safe_id=$(echo "$BUILD_ID" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+|-+$//g' | tr A-Z a-z)
+          url_alias="preview-${safe_id}"
+          echo "url-alias=$url_alias" >> $GITHUB_OUTPUT
 
       - name: Deploy Documentation Preview
         id: deploy
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ fromJSON(steps.netlify-config.outputs.result).siteId }}
-        # run command taken from https://gist.github.com/oneohthree/f528c7ae1e701ad990e6, shortened to 28 chars, prepended with build-number
+          SITE_URL: ${{ fromJSON(steps.netlify-config.outputs.result).siteUrl }}
+          FOLDER: ${{ steps.build.outputs.folder }}
+          URL_ALIAS: ${{ steps.generate-url.outputs.url-alias }}
         run: |
-          url_alias=`echo "preview-${{ steps.build.outputs.id }}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
-          echo "site-url=https://$url_alias--${{ fromJSON(steps.netlify-config.outputs.result).siteUrl }}" >> $GITHUB_OUTPUT
-          netlify deploy --filter @swisspost/design-system-documentation --dir ${{ steps.build.outputs.folder }} --alias $url_alias
+          echo "site-url=https://$URL_ALIAS--$SITE_URL" >> $GITHUB_OUTPUT
+          netlify deploy \
+            --filter @swisspost/design-system-documentation \
+            --dir "$FOLDER" \
+            --alias "$URL_ALIAS"
+
+      - name: Create preview message
+        uses: ./.github/actions/preview/message/create
+        with:
+          access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+          issue-number: ${{ steps.build.outputs.id }}
 
       - name: Update preview message
         uses: ./.github/actions/preview/message/update
@@ -66,10 +87,7 @@ jobs:
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         with:
           script: |
-            return `# Deployed Documentation Preview
-            - SiteId: <code>${{ fromJSON(steps.netlify-config.outputs.result).siteId }}</code>
-            - SiteUrl: ${{ steps.deploy.outputs.site-url }}
-            `
+            return `# Deployed Documentation Preview\n- SiteId: <code>${{ fromJSON(steps.netlify-config.outputs.result).siteId }}</code>\n- SiteUrl: ${{ steps.deploy.outputs.site-url }}`;
 
       - name: Output Summary
-        run: echo -e ${{ steps.summary.outputs.result }} >> $GITHUB_STEP_SUMMARY
+        run: echo -e "${{ steps.summary.outputs.result }}" >> $GITHUB_STEP_SUMMARY
