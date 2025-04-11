@@ -19,20 +19,23 @@ jobs:
       - name: Setup netlify-cli
         uses: ./.github/actions/setup-netlify-cli
 
+      - name: Create temporary directory for artifacts
+        run: mkdir -p ${{ runner.temp }}/artifacts/
+
       - name: Download build artifacts
         uses: ./.github/actions/artifact-download
         id: build
         with:
           name: design-system-documentation
-          folder: build-output
+          folder: ${{ runner.temp }}/artifacts/
 
       - name: Get netlify config
         id: netlify-config
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         with:
           script: |
-            const fs = require('fs')
-            return JSON.parse(fs.readFileSync('./${{ steps.build.outputs.folder }}/netlify.config.json', 'utf8'))
+            const fs = require('fs');
+            return JSON.parse(fs.readFileSync('${{ steps.build.outputs.folder }}/netlify.config.json', 'utf8'));
 
       - name: Remove netlify.config.json from artifact folder
         run: rm ${{ steps.build.outputs.folder }}/netlify.config.json
