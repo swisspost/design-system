@@ -9,6 +9,7 @@ export const config: Config = {
   namespace: 'post-components',
   buildDist: true,
   sourceMap: false,
+  globalStyle: 'src/styles/index.scss',
   validatePrimaryPackageOutputTarget: true,
   hydratedFlag: {
     name: 'data-hydrated',
