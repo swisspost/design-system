@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Source } from '@storybook/addon-docs';
+
 const code = `
 <post-header>
 
@@ -176,17 +177,11 @@ const htmlToJsx = (code: string): string => {
     .replace(/\bfor\b/g, 'htmlFor')
     .replace(/<a href="/g, '<Link to="')
     .replace(/<\/a>/g, '</Link>');
-
-  const sanitizedHtml = updatedHtml.replace(/<!--(.*?)-->/g, (match, p1) => {
-    const tempDiv = document.createElement('div');
-    tempDiv.textContent = p1;
-    return `{/*${tempDiv.innerHTML}*/}`;
-  });
-
-  return sanitizedHtml;
+  return updatedHtml;
 };
 
 const jsxCode = htmlToJsx(code);
+console.log(jsxCode);
 const nextjsCode = htmlToJsx(code).replace(/to="/g, 'href="');
 
 const angularLink = `<a routerLink="#" slot="post-logo"><post-logo>Homepage</post-logo></a>`;
