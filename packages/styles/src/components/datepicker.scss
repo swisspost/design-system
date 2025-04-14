@@ -22,9 +22,25 @@ ngb-datepicker.dropdown-menu {
 
 ngb-datepicker-navigation {
   justify-content: space-between;
+  min-height: 48px;
 
   button.ngb-dp-arrow-btn {
+    margin: 0;
+    border-radius: 0;
+    min-width: 3rem;
     @include utilities.focus-style();
+
+    &:disabled {
+      display: none;
+    }
+  }
+
+  .ngb-dp-arrow-next .ngb-dp-navigation-chevron {
+    margin-right: 0.5rem;
+  }
+
+  .ngb-dp-arrow-prev .ngb-dp-navigation-chevron {
+    margin-left: 0.5rem;
   }
 }
 
@@ -45,6 +61,7 @@ ngb-datepicker-navigation-select.ngb-dp-navigation-select {
 ngb-datepicker .ngb-dp-arrow {
   flex-grow: 0;
   height: auto;
+  margin: 0 8px;
 
   span {
     flex-shrink: 0;
