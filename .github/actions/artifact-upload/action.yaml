@@ -31,7 +31,6 @@ runs:
     - name: Save Event Infos into the artifact folder
       shell: bash
       run: |
-        # Sanitize and validate inputs
         if ! [[ "${{ github.event.number }}" =~ ^[0-9]*$ ]]; then
           echo "Warning: Invalid event number format, using default"
           echo "0" > ${{ inputs.folder }}/GHA-EVENT-ID
@@ -39,9 +38,7 @@ runs:
           echo "${{ github.event.number }}" > ${{ inputs.folder }}/GHA-EVENT-ID
         fi
         
-        # Sanitize action value
         ACTION="${{ github.event.action }}"
-        # Only allow alphanumeric and limited characters
         SANITIZED_ACTION=$(echo "$ACTION" | tr -cd '[:alnum:]-_')
         echo "$SANITIZED_ACTION" > ${{ inputs.folder }}/GHA-EVENT-ACTION
 
