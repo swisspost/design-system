@@ -1,0 +1,56 @@
+name: Visual Regression Tests
+
+on:
+  pull_request:
+    branches: main
+
+permissions:
+  contents: read
+  actions: read
+  checks: write
+
+jobs:
+  visual-tests:
+    name: Run Visual Regression Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm & node
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Install & bootstrap all packages
+        run: |
+          pnpm bootstrap
+
+      - name: Install Playwright & latest browsers
+        run: |
+          pnpm --filter design-system-styles add -D @playwright/test@latest
+          pnpm --filter design-system-styles exec playwright install
+
+      - name: Run visual tests in playground
+        shell: bash
+        run: |
+          pnpm exec start-server-and-test \
+            'pnpm --filter design-system-styles play' \
+            http://127.0.0.1:5173 \
+            'pnpm --filter design-system-styles exec playwright test --config=playwright.config.ts'
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-test-results
+          path: packages/**/visual-tests/test-results/
+
+      - name: Generate summary for visual test results
+        if: failure()
+        run: |
+          echo "## ❌ Visual Regression Tests Failed" >> $GITHUB_STEP_SUMMARY
+          echo "- Commit: [${GITHUB_SHA}](https://github.com/${{ github.repository }}/commit/${GITHUB_SHA})" >> $GITHUB_STEP_SUMMARY
+          echo "- 📸 Playwright test results saved to artifact: \`visual-test-results\`" >> $GITHUB_STEP_SUMMARY
+          echo "- Download it from the **Artifacts** section below to review failures." >> $GITHUB_STEP_SUMMARY
