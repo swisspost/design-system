@@ -85,7 +85,7 @@ Cypress.Commands.add(
 
 Cypress.Commands.add(
   'checkFormDataPropValue',
-  ($form: JQuery<HTMLElement>, key: string, value: any) => {
+  ($form: JQuery<HTMLElement>, key: string, value: string | number | boolean | null) => {
     const formControlData = new FormData($form.get(0) as HTMLFormElement).get(key);
     expect(formControlData).to.be.eq(value);
   },

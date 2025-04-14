@@ -1,6 +1,6 @@
 describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
   describe('default', () => {
-    let selector = isPopoverSupported() ? ':popover-open' : '.\\:popover-open';
+    const selector = isPopoverSupported() ? ':popover-open' : '.\\:popover-open';
 
     beforeEach(() => {
       // There is no dedicated docs page for the popovercontainer
