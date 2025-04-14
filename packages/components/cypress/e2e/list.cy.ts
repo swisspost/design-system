@@ -23,19 +23,17 @@ describe('PostList Component', { baseUrl: null, includeShadowDom: false }, () =>
   });
 
   it('should log an error if the title is missing', () => {
-    cy.visit('/', {
-      onBeforeLoad(win) {
-        cy.spy(win.console, 'error').as('consoleError');
-      },
+    cy.window().then(win => {
+      cy.spy(win.console, 'error').as('consoleError');
     });
 
     cy.get('post-list').within(() => {
-      cy.get('[slot="post-list-item"]').first().invoke('remove');
+      cy.get(':first-child').invoke('remove');
     });
 
     cy.get('@consoleError').should(
       'be.calledWith',
-      Cypress.sinon.match('The `title` prop of the `post-list` component is not defined.'),
+      'Please provide a title to the list component. Title is mandatory for accessibility purposes.',
     );
   });
 

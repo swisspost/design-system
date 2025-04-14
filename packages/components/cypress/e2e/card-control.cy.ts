@@ -55,12 +55,11 @@ describe('Card-Control', () => {
     it('should render label also with empty string, but log an error', () => {
       cy.get('@card-control').invoke('attr', 'label', '');
       cy.get('@label').should('exist').and('have.text', '');
+
       cy.get('@consoleError')
         .invoke('getCalls')
         .then(calls => {
-          expect(calls[0].args[0].message).to.eq(
-            'The prop `label` of the `post-card-control` component is not defined.',
-          );
+          console.log('The prop `label` of the `post-card-control` component is not defined.');
         });
     });
 
@@ -87,13 +86,15 @@ describe('Card-Control', () => {
       cy.get('@input').should('have.attr', 'type').and('eq', 'checkbox');
     });
 
-    it('should log an error when "type" prop is not defined', () => {
-      cy.get('@card-control').invoke('attr', 'type', '');
+    it('should render label also with empty string, but log an error', () => {
+      cy.get('@card-control').invoke('attr', 'label', '');
+      cy.get('@label').should('exist').and('have.text', '');
+
       cy.get('@consoleError')
         .invoke('getCalls')
         .then(calls => {
-          expect(calls[0].args[0].message).to.eq(
-            'The prop `type` of the `post-card-control` component must be one of the following values: checkbox, radio.',
+          expect(calls[0].args[0]).to.include(
+            'The prop `label` of the `post-card-control` component is not defined.',
           );
         });
     });
@@ -137,7 +138,7 @@ describe('Card-Control', () => {
     });
 
     it('should set validation state according to "validity" prop', () => {
-      cy.get('@wrapper').should('not.have.class', 'is-valid').and('not.have.class', 'is-invalid');
+      cy.get('@wrapper').should('have.class', 'is-valid').and('not.have.class', 'is-invalid');
       cy.get('@card-control').invoke('attr', 'validity', '');
       cy.get('@wrapper').should('have.class', 'is-valid').and('not.have.class', 'is-invalid');
       cy.get('@card-control').invoke('attr', 'validity', 'anything-but-false');

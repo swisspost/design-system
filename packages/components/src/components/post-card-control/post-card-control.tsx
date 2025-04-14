@@ -387,7 +387,7 @@ export class PostCardControl {
             'is-checked': this.checked,
             'is-disabled': this.disabled,
             'is-focused': this.focused,
-            'is-valid': this.validity !== null && this.validity !== 'false',
+            'is-valid': this.validity !== undefined && this.validity !== 'false',
             'is-invalid': this.validity === 'false',
           }}
         >
