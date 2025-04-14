@@ -20,11 +20,30 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: Validate folder exists
+      shell: bash
+      run: |
+        if [[ ! -d "${{ inputs.folder }}" ]]; then
+          echo "Error: Folder ${{ inputs.folder }} does not exist"
+          exit 1
+        fi
+
     - name: Save Event Infos into the artifact folder
       shell: bash
       run: |
-        echo ${{ github.event.number }} > ${{ inputs.folder }}/GHA-EVENT-ID
-        echo ${{ github.event.action }} > ${{ inputs.folder }}/GHA-EVENT-ACTION
+        # Sanitize and validate inputs
+        if ! [[ "${{ github.event.number }}" =~ ^[0-9]*$ ]]; then
+          echo "Warning: Invalid event number format, using default"
+          echo "0" > ${{ inputs.folder }}/GHA-EVENT-ID
+        else
+          echo "${{ github.event.number }}" > ${{ inputs.folder }}/GHA-EVENT-ID
+        fi
+        
+        # Sanitize action value
+        ACTION="${{ github.event.action }}"
+        # Only allow alphanumeric and limited characters
+        SANITIZED_ACTION=$(echo "$ACTION" | tr -cd '[:alnum:]-_')
+        echo "$SANITIZED_ACTION" > ${{ inputs.folder }}/GHA-EVENT-ACTION
 
     - name: Zip artifact folder
       shell: bash
