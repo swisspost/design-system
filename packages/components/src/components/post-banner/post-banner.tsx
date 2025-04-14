@@ -12,7 +12,7 @@ import {
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { fadeOut } from '@/animations';
-import { checkEmptyOrOneOf, checkEmptyOrPattern, checkNonEmpty, checkType } from '@/utils';
+import { checkEmptyOrOneOf, checkNonEmpty, checkEmptyOrType, checkType } from '@/utils';
 import { BANNER_TYPES, BannerType } from './banner-types';
 import { nanoid } from 'nanoid';
 
@@ -43,24 +43,28 @@ export class PostBanner {
 
   @Watch('dismissible')
   validateDismissible() {
-    checkType(this, 'dismissible', 'boolean');
     setTimeout(() => this.validateDismissLabel());
   }
 
   /**
    * The label to use for the close button of a dismissible banner.
    */
-  @Prop() readonly dismissLabel: string;
+  @Prop() readonly dismissLabel?: string;
 
   @Watch('dismissLabel')
   validateDismissLabel() {
     if (this.dismissible) {
-      checkNonEmpty(
-        this,
-        'dismissLabel',
-        'Dismissible post-banner\'s require a "dismiss-label" prop.',
-      );
+      if (
+        !checkNonEmpty(
+          this,
+          'dismissLabel',
+          'Dismissible post-banner\'s require a "dismiss-label" prop.',
+        )
+      ) {
+        checkType(this, 'dismissLabel', 'string');
+      }
     }
+    checkEmptyOrType(this, 'dismissLabel', 'string');
   }
 
   /**
@@ -68,16 +72,11 @@ export class PostBanner {
    *
    * If `none`, no icon is displayed.
    */
-  @Prop() readonly icon: string;
+  @Prop() readonly icon?: string;
 
   @Watch('icon')
   validateIcon() {
-    checkEmptyOrPattern(
-      this,
-      'icon',
-      /\d{4}|none/,
-      'The post-banner "icon" prop should be a 4-digit string.',
-    );
+    checkEmptyOrType(this, 'icon', 'string');
   }
 
   /**

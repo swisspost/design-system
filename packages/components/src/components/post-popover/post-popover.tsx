@@ -1,7 +1,14 @@
-import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
-import { IS_BROWSER, getAttributeObserver } from '@/utils';
+import { PLACEMENT_TYPES } from '@/types';
 import { version } from '@root/package.json';
+import {
+  IS_BROWSER,
+  getAttributeObserver,
+  checkEmptyOrOneOf,
+  checkNonEmpty,
+  checkType,
+} from '@/utils';
 
 /**
  * @slot default - Slot for placing content inside the popover.
@@ -57,6 +64,18 @@ export class PostPopover {
   // eslint-disable-next-line @stencil-community/ban-default-true
   @Prop() readonly arrow?: boolean = true;
 
+  @Watch('placement')
+  validatePlacement() {
+    checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
+  }
+
+  @Watch('closeButtonCaption')
+  validateCloseButtonCaption() {
+    if (!checkNonEmpty(this, 'closeButtonCaption')) {
+      checkType(this, 'closeButtonCaption', 'string');
+    }
+  }
+
   constructor() {
     this.localBeforeToggleHandler = this.beforeToggleHandler.bind(this);
   }
@@ -79,6 +98,8 @@ export class PostPopover {
   }
 
   componentDidLoad() {
+    this.validatePlacement();
+    this.validateCloseButtonCaption();
     this.popoverRef.addEventListener('beforetoggle', this.localBeforeToggleHandler);
   }
 

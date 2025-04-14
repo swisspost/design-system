@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkUrl, debounce } from '@/utils';
+import { checkEmptyOrType, checkNonEmpty, checkUrl, debounce } from '@/utils';
 
 @Component({
   tag: 'post-breadcrumb',
@@ -13,7 +13,7 @@ export class PostBreadcrumb {
   /**
    * The URL for the home breadcrumb item.
    */
-  @Prop() homeUrl: string;
+  @Prop() homeUrl!: string;
 
   /**
    * The text label for the home breadcrumb item.
@@ -28,8 +28,15 @@ export class PostBreadcrumb {
   private lastItem: { url: string; text: string };
 
   @Watch('homeUrl')
-  validateUrl() {
-    checkUrl(this, 'homeUrl');
+  validateHomeUrl() {
+    if (!checkNonEmpty(this, 'homeUrl')) {
+      checkUrl(this, 'homeUrl');
+    }
+  }
+
+  @Watch('homeText')
+  validateHomeText() {
+    checkEmptyOrType(this, 'homeUrl', 'string');
   }
 
   componentWillLoad() {
@@ -37,6 +44,8 @@ export class PostBreadcrumb {
   }
 
   componentDidLoad() {
+    this.validateHomeUrl();
+    this.validateHomeText();
     window.addEventListener('resize', this.handleResize);
     this.waitForBreadcrumbRef();
   }

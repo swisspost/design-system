@@ -1,7 +1,9 @@
 import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
+import { PLACEMENT_TYPES } from '@/types';
+import 'long-press-event';
 import isFocusable from 'ally.js/is/focusable';
-import { IS_BROWSER, checkEmptyOrType, getAttributeObserver } from '@/utils';
+import { IS_BROWSER, getAttributeObserver, checkEmptyOrOneOf } from '@/utils';
 import { version } from '@root/package.json';
 
 if (IS_BROWSER) {
@@ -108,7 +110,7 @@ export class PostTooltip {
   @Prop() readonly placement?: Placement = 'top';
 
   /**
-   * Wheter or not to display a little pointer arrow
+   * Whether or not to display a little pointer arrow
    */
   @Prop() readonly arrow?: boolean = true;
 
@@ -117,13 +119,13 @@ export class PostTooltip {
    */
   @Prop() readonly delayed: boolean = false;
 
-  @Watch('delayed')
-  validateDelayed() {
-    checkEmptyOrType(this, 'delayed', 'boolean');
+  @Watch('placement')
+  validatePlacement() {
+    checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
   }
 
   connectedCallback() {
-    this.validateDelayed();
+    this.validatePlacement();
   }
 
   componentDidLoad() {

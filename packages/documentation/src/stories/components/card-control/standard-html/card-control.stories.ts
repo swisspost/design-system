@@ -146,6 +146,7 @@ export const Default = {
     const cardClasses = mapClasses({
       'checked': args.checked,
       'disabled': args.disabled,
+      'is-valid': args.validation === 'is-valid',
       'is-invalid': args.validation === 'is-invalid',
       'checkbox-button-card': args.type === 'checkbox',
       'radio-button-card': args.type === 'radio',

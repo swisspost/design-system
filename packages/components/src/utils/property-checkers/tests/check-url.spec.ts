@@ -3,7 +3,8 @@ import { checkUrl } from '../check-url';
 describe('checkUrl', () => {
   const errorMessage = 'Invalid URL';
 
-  test('should not throw an error if the value is an URL string or an URL object', () => {
+  test('should not log an error if the value is an URL string or an URL object', () => {
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
     [
       'https://www.example.com',
       new URL('https://www.example.com'),
@@ -15,11 +16,14 @@ describe('checkUrl', () => {
       'localhost:3000',
     ].forEach(validUrl => {
       const component = { host: { localName: 'post-component' } as HTMLElement, prop: validUrl };
-      expect(() => checkUrl(component, 'prop', errorMessage)).not.toThrow();
+      checkUrl(component, 'prop', errorMessage);
+      expect(consoleErrorSpy).not.toHaveBeenCalledWith(expect.stringContaining(errorMessage));
     });
+    consoleErrorSpy.mockRestore();
   });
 
-  test('should throw an error if the value is not an URL string or an URL object', () => {
+  test('should log an error if the value is not an URL string or an URL object', () => {
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
     [
       123,
       true,
@@ -31,7 +35,9 @@ describe('checkUrl', () => {
     ].forEach(invalidUrl => {
       const component = { host: { localName: 'post-component' } as HTMLElement, prop: invalidUrl };
       // Type casting because we know that these are not valid arguments, it's just for testing
-      expect(() => checkUrl(component, 'prop', errorMessage)).toThrow(errorMessage);
+      checkUrl(component, 'prop', errorMessage);
+      expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(errorMessage));
     });
+    consoleErrorSpy.mockRestore();
   });
 });
