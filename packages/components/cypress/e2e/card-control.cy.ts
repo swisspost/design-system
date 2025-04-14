@@ -431,84 +431,82 @@ describe('Card-Control', () => {
       });
     });
 
-    //     it('should check next group member, when focused + keydown {downArrow | rightArrow}', () => {
-    //       cy.get('@input')
-    //         .its('length')
-    //         .then(length => {
-    //           cy.get('@input').each(($input, i) => {
-    //             cy.wrap($input).type('{downArrow}');
-    //             cy.get('@input')
-    //               .eq(i + 1 < length ? i + 1 : 0)
-    //               .should('be.checked');
-    //           });
+    it('should check next group member, when focused + keydown {downArrow | rightArrow}', () => {
+      cy.get('@input')
+        .its('length')
+        .then(length => {
+          cy.get('@input').each(($input, i) => {
+            cy.wrap($input).type('{downArrow}');
+            cy.get('@input')
+              .eq(i + 1 < length ? i + 1 : 0)
+              .should('be.checked');
+          });
 
-    //           cy.get('@input').each(($input, i) => {
-    //             cy.wrap($input).type('{rightArrow}');
-    //             cy.get('@input')
-    //               .eq(i + 1 < length ? i + 1 : 0)
-    //               .should('be.checked');
-    //           });
-    //         });
-    //     });
+          cy.get('@input').each(($input, i) => {
+            cy.wrap($input).type('{rightArrow}');
+            cy.get('@input')
+              .eq(i + 1 < length ? i + 1 : 0)
+              .should('be.checked');
+          });
+        });
+    });
 
-    //     it('should check previous group member, when focused + keydown {upArrow | leftArrow}', () => {
-    //       cy.get('@input')
-    //         .its('length')
-    //         .then(length => {
-    //           let $input = cy.get('@input').eq(0);
+    it('should check previous group member, when focused + keydown {upArrow | leftArrow}', () => {
+      cy.get('@input')
+        .its('length')
+        .then(length => {
+          let $input = cy.get('@input').eq(0);
 
-    //           while (length > 0) {
-    //             $input.type('{upArrow}');
-    //             $input = cy.get('@input').eq(--length).should('be.checked');
-    //           }
-    //         })
-    //         .then(length => {
-    //           let $input = cy.get('@input').eq(0);
+          while (length > 0) {
+            $input.type('{upArrow}');
+            $input = cy.get('@input').eq(--length).should('be.checked');
+          }
+        })
+        .then(length => {
+          let $input = cy.get('@input').eq(0);
 
-    //           while (length > 0) {
-    //             $input.type('{leftArrow}');
-    //             $input = cy.get('@input').eq(--length).should('be.checked');
-    //           }
-    //         });
-    //     });
+          while (length > 0) {
+            $input.type('{leftArrow}');
+            $input = cy.get('@input').eq(--length).should('be.checked');
+          }
+        });
+    });
 
-    //     it('should update surrounding form when checked', () => {
-    //       cy.get('@form').then($form => {
-    //         cy.get('@wrapper').each(($wrapper, i) => {
-    //           cy.wrap($wrapper).click();
-    //           cy.checkFormDataPropValue($form, 'CardControlGroup', i.toString());
-    //         });
+    it('should update surrounding form when checked', () => {
+      cy.get('@form').then($form => {
+        cy.get('@wrapper').each(($wrapper, i) => {
+          cy.wrap($wrapper).click();
+          cy.checkFormDataPropValue($form, 'CardControlGroup', i.toString());
+        });
 
-    //         cy.get('@input').each(($input, i) => {
-    //           cy.wrap($input).type(' ');
-    //           cy.checkFormDataPropValue($form, 'CardControlGroup', i.toString());
-    //         });
-    //       });
-    //     });
+        cy.get('@input').each(($input, i) => {
+          cy.wrap($input).type(' ');
+          cy.checkFormDataPropValue($form, 'CardControlGroup', i.toString());
+        });
+      });
+    });
 
-    //     it('should not update the surrounding form value, when a disabled group member has been checked by keyboard', () => {
-    //       cy.get('@card-control').eq(1).invoke('attr', 'disabled', true);
-    //       cy.get('@wrapper').eq(1).should('have.class', 'is-disabled');
-    //       cy.get('@input').eq(1).should('have.attr', 'aria-disabled');
+    it('should not update the surrounding form value, when a disabled group member has been checked by keyboard', () => {
+      cy.get('@card-control').eq(1).invoke('attr', 'disabled', true);
+      cy.get('@wrapper').eq(1).should('have.class', 'is-disabled');
+      cy.get('@input').eq(1).should('have.attr', 'aria-disabled');
 
-    //       let formValue = null;
+      let formValue = null;
 
-    //       cy.get('@form').then($form => {
-    //         cy.get('@input').each(($input, i) => {
-    //           if (i !== 1) formValue = i.toString();
-    //           cy.wrap($input).type(' ');
-    //           cy.checkFormDataPropValue($form, 'CardControlGroup', formValue);
-    //         });
-    //       });
-    //     });
-    //   });
+      cy.get('@form').then($form => {
+        cy.get('@input').each(($input, i) => {
+          if (i !== 1) formValue = i.toString();
+          cy.wrap($input).type(' ');
+          cy.checkFormDataPropValue($form, 'CardControlGroup', formValue);
+        });
+      });
+    });
+  });
 
-    //   describe('Accessibility', () => {
-    //     it('Has no detectable a11y violations on load for all variants', () => {
-    //       cy.getSnapshots('post-card-control');
-    //       cy.checkA11y('#root-inner');
-    //     });
-    //   });
-    // });
+  describe('Accessibility', () => {
+    it('Has no detectable a11y violations on load for all variants', () => {
+      cy.getSnapshots('post-card-control');
+      cy.checkA11y('#root-inner');
+    });
   });
 });
