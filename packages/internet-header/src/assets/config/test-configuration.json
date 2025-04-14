@@ -55,6 +55,7 @@
           "endPoint": "https://n.post.ch",
           "notificationsEndPoint": "https://post.ch/selfadmin/messages/unreadmessages",
           "logoutURL": "https://post.ch/logout/",
+          "selfAdminOrigin": "https://post.ch",
           "keepAliveURL": "https://post.ch/keepalive",
           "autoLoginURL": "https://post.ch/idp/?app=loginwidget"
         }
@@ -1385,6 +1386,7 @@
           "endPoint": "https://n.post.ch",
           "notificationsEndPoint": "https://post.ch/selfadmin/messages/unreadmessages",
           "logoutURL": "https://post.ch/logout/",
+          "selfAdminOrigin": "https://post.ch",
           "keepAliveURL": "https://post.ch/keepalive",
           "autoLoginURL": "https://post.ch/idp/?app=loginwidget"
         }
@@ -2297,6 +2299,7 @@
           "endPoint": "https://n.post.ch",
           "notificationsEndPoint": "https://post.ch/selfadmin/messages/unreadmessages",
           "logoutURL": "https://post.ch/logout/",
+          "selfAdminOrigin": "https://post.ch",
           "keepAliveURL": "https://post.ch/keepalive",
           "autoLoginURL": "https://post.ch/idp/?app=loginwidget"
         }
@@ -3209,6 +3212,7 @@
           "endPoint": "https://n.post.ch",
           "notificationsEndPoint": "https://post.ch/selfadmin/messages/unreadmessages",
           "logoutURL": "https://post.ch/logout/",
+          "selfAdminOrigin": "https://post.ch",
           "keepAliveURL": "https://post.ch/keepalive",
           "autoLoginURL": "https://post.ch/idp/?app=loginwidget"
         }
