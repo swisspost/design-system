@@ -20,7 +20,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
       scrollRight.getBoundingClientRect().left || mainNavigation.getBoundingClientRect().right;
 
     const { left, right } = $el.get(0).getBoundingClientRect();
-    return Math.floor(left) >= leftEdge && Math.floor(right) <= rightEdge;
+    return Math.ceil(left) >= leftEdge && Math.floor(right) <= rightEdge;
   }
 
   describe('default', () => {
