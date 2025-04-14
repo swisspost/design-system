@@ -5,13 +5,16 @@ on:
       - changeset-release/main
       - changeset-release/release/v*
 
+permissions:
+  contents: read
+
 jobs:
   dry-run-publish:
     name: Publish Verification
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Setup Node & pnpm
         uses: ./.github/actions/setup-pnpm
