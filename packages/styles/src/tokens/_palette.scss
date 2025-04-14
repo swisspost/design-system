@@ -1,0 +1,28 @@
+@use 'sass:map';
+@use './core';
+@use '../tokens/temp/palette';
+
+body,
+.palette-default {
+  @each $key, $value in palette.$post-default {
+    --#{$key}: #{$value};
+  }
+}
+
+.palette-alternate {
+  @each $key, $value in palette.$post-alternate {
+    --#{$key}: #{$value};
+  }
+}
+
+.palette-accent {
+  @each $key, $value in palette.$post-accent {
+    --#{$key}: #{$value};
+  }
+}
+
+.palette-brand {
+  @each $key, $value in palette.$post-brand {
+    --#{$key}: #{$value};
+  }
+}
