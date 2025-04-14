@@ -79,49 +79,42 @@ post-mainnavigation {
   // desktop styles
   @include media.min(lg) {
     display: block;
-    overflow-x: hidden;
+    position: relative;
+    height: var(--post-main-navigation-height);
+    background: color.$white;
+    user-select: none;
 
     nav {
-      max-width: 100%;
-      background: color.$white;
-      max-height: var(--post-main-navigation-height);
-      user-select: none;
-      transition: margin animation.$transition-base-timing;
+      flex: 1 1 auto;
+      overflow: hidden;
+      scroll-behavior: smooth;
     }
 
-    .left-scroll-button,
-    .right-scroll-button {
-      z-index: 4;
+    .scroll-control {
+      cursor: pointer;
       position: absolute;
-      inset-block-end: 0;
-      overflow: hidden;
+      inset-block: 0;
+      z-index: 5;
+      padding: 16px;
+      background: color.$white;
+      box-shadow: elevation.$elevation-500;
+      line-height: 1;
 
-      button {
-        @include button.reset-button;
-        background: color.$white;
-        padding: 16px;
-        box-shadow: elevation.$elevation-500;
-        line-height: 100%;
-        height: var(--post-main-navigation-height);
+      &.scroll-left {
+        inset-inline-start: 0;
+      }
 
-        post-icon {
-          font-size: 1rem;
-        }
+      &.scroll-right {
+        inset-inline-end: 0;
       }
 
       &.d-none {
         display: none;
       }
-    }
 
-    .left-scroll-button {
-      inset-inline-start: 0;
-      padding-inline-end: 2rem;
-    }
-
-    .right-scroll-button {
-      inset-inline-end: 0;
-      padding-inline-start: 2rem;
+      post-icon {
+        font-size: 1rem;
+      }
     }
 
     post-list > [role='list'] {
@@ -218,8 +211,7 @@ post-mainnavigation {
       transform: none !important;
     }
 
-    .left-scroll-button,
-    .right-scroll-button {
+    .scroll-control {
       display: none;
     }
 
