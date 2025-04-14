@@ -1,20 +1,26 @@
 describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
+  function isVisible($el: JQuery<HTMLElement>) {
+    const mainNavigation = $el.parents('post-mainnavigation').get(0);
+
+    const { left, right } = $el.get(0).getBoundingClientRect();
+    return (
+      Math.floor(left) <= mainNavigation.getBoundingClientRect().right &&
+      Math.floor(right) >= mainNavigation.getBoundingClientRect().left
+    );
+  }
+
   function isFullyVisible($el: JQuery<HTMLElement>) {
-    const $mainnavigation = $el.parents('post-mainnavigation');
-    const $listItem = $el.parents('post-list-item');
+    const mainNavigation = $el.parents('post-mainnavigation').get(0);
+    const scrollLeft = $el.parents('post-mainnavigation').children('.scroll-left').get(0);
+    const scrollRight = $el.parents('post-mainnavigation').children('.scroll-right').get(0);
 
-    let firstVisiblePosition = 0;
-    if (!$listItem.is(':first-child')) {
-      firstVisiblePosition += $mainnavigation.children('.left-scroll-button').width();
-    }
+    const leftEdge =
+      scrollLeft.getBoundingClientRect().right || mainNavigation.getBoundingClientRect().left;
+    const rightEdge =
+      scrollRight.getBoundingClientRect().left || mainNavigation.getBoundingClientRect().right;
 
-    let lastVisiblePosition = Cypress.config('viewportWidth');
-    if (!$listItem.is(':last-child')) {
-      lastVisiblePosition -= $mainnavigation.children('.right-scroll-button').width();
-    }
-
-    const { left, width } = $el.get(0).getBoundingClientRect();
-    return left >= firstVisiblePosition && Math.floor(left + width) <= lastVisiblePosition;
+    const { left, right } = $el.get(0).getBoundingClientRect();
+    return Math.floor(left) >= leftEdge && Math.floor(right) <= rightEdge;
   }
 
   describe('default', () => {
@@ -25,8 +31,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('should not show the scroll buttons', () => {
-      cy.get('@mainnavigation').find('.right-scroll-button').should('not.be.visible');
-      cy.get('@mainnavigation').find('.left-scroll-button').should('not.be.visible');
+      cy.get('@mainnavigation').find('.scroll-control').should('not.be.visible');
     });
   });
 
@@ -37,26 +42,17 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('post-mainnavigation[data-hydrated]').as('mainnavigation');
 
       cy.get('@mainnavigation')
-        .find('post-megadropdown-trigger > button, a:not(post-megadropdown *)')
+        .find('nav :is(a,button):not(post-megadropdown *)')
         .should('have.length', 20)
         .as('navigationItems');
 
-      // remove scroll transition to speed up the tests
+      // remove smooth scroll to speed up the tests
       cy.get('@mainnavigation')
         .find('nav')
         .then($nav => {
-          $nav.css('transition', 'none');
+          $nav.css('scroll-behavior', 'auto');
         });
     });
-
-    // it('should be in a container with an hidden horizontal overflow', () => {
-    //   cy.get('@mainnavigation')
-    //     .parent('post-header')
-    //     .parent()
-    //     .then($parent => {
-    //       expect($parent.css('overflow-x')).eq('hidden');
-    //     });
-    // });
 
     it('should always show the navigation item that is currently focused', () => {
       cy.get('@navigationItems').last().as('last').focus();
@@ -68,7 +64,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
 
     describe('right scroll', () => {
       beforeEach(() => {
-        cy.get('@mainnavigation').find('.right-scroll-button button').as('rightScroll');
+        cy.get('@mainnavigation').find('.scroll-right').as('rightScroll');
       });
 
       it('should correctly show the right scroll button', () => {
@@ -83,7 +79,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
         cy.get('@rightScroll').should('be.visible');
 
         cy.get('@navigationItems').each($el => {
-          if (!isFullyVisible($el)) cy.get('@rightScroll').click({ force: true });
+          if (!isFullyVisible($el)) cy.get('@rightScroll').click();
           cy.wrap($el).then(isFullyVisible).should('be.true');
         });
 
@@ -91,7 +87,8 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
       });
 
       it('should scroll continuously until the last navigation item is visible', () => {
-        cy.get('@mainnavigation').trigger('mousedown', Cypress.config('viewportWidth') - 5, 5);
+        const rightScrollPosition = [Cypress.config('viewportWidth') - 5, 5];
+        cy.get('@mainnavigation').trigger('mousedown', ...rightScrollPosition, { button: 0 });
         cy.wait(800);
         cy.get('@mainnavigation').trigger('mouseup');
 
@@ -102,7 +99,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
         cy.get('@rightScroll').should('be.visible');
 
         cy.get('@navigationItems').each($el => {
-          cy.wrap($el).focus().then(isFullyVisible).should('be.true');
+          cy.wrap($el).focus().then(isVisible).should('be.true');
         });
 
         cy.get('@rightScroll').should('be.hidden');
@@ -156,7 +153,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
           .then($options => $options.get().reverse())
           .as('navigationItemsReversed');
 
-        cy.get('@mainnavigation').find('.left-scroll-button button').as('leftScroll');
+        cy.get('@mainnavigation').find('.scroll-left').as('leftScroll');
 
         cy.wait(0); // wait for rendering
       });
@@ -173,15 +170,17 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
         cy.get('@leftScroll').should('be.visible');
 
         cy.get('@navigationItemsReversed').each($el => {
-          if (!isFullyVisible($el)) cy.get('@leftScroll').click({ force: true });
+          if (!isFullyVisible($el)) {
+            cy.get('@leftScroll').click();
+          }
           cy.wrap($el).then(isFullyVisible).should('be.true');
         });
 
         cy.get('@leftScroll').should('be.hidden');
       });
-
       it('should scroll continuously until the first navigation item is visible', () => {
-        cy.get('@mainnavigation').trigger('mousedown', 5, 5);
+        const leftScrollPosition = [5, 5];
+        cy.get('@mainnavigation').trigger('mousedown', ...leftScrollPosition, { button: 0 });
         cy.wait(800);
         cy.get('@mainnavigation').trigger('mouseup');
 
@@ -192,7 +191,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
         cy.get('@leftScroll').should('be.visible');
 
         cy.get('@navigationItemsReversed').each($el => {
-          cy.wrap($el).focus().then(isFullyVisible).should('be.true');
+          cy.wrap($el).focus().then(isVisible).should('be.true');
         });
 
         cy.get('@leftScroll').should('be.hidden');
@@ -219,37 +218,33 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
         cy.get('@navigationItems').first().invoke('attr', 'aria-expanded').should('eq', 'true');
       });
     });
+
     describe('resize observer', () => {
       beforeEach(() => {
         cy.visit('./cypress/fixtures/post-mainnavigation-overflow.test.html');
         cy.get('post-mainnavigation[data-hydrated]').as('mainnavigation');
-
-        // remove scroll transition to speed up the tests
-        cy.get('@mainnavigation')
-          .find('nav')
-          .then($nav => {
-            $nav.css('transition', 'none');
-          });
+        cy.get('@mainnavigation').find('.scroll-left').as('leftScroll');
+        cy.get('@mainnavigation').find('.scroll-right').as('rightScroll');
       });
 
       it('should update scrollability when viewport changes', () => {
         cy.viewport(1200, 600);
-        cy.get('@mainnavigation').find('.right-scroll-button').should('be.visible');
-        cy.get('@mainnavigation').find('.left-scroll-button').should('not.be.visible');
+        cy.get('@rightScroll').should('be.visible');
+        cy.get('@leftScroll').should('not.be.visible');
 
         cy.viewport(1600, 600);
-        cy.get('@mainnavigation').find('.right-scroll-button').should('not.be.visible');
-        cy.get('@mainnavigation').find('.left-scroll-button').should('not.be.visible');
+        cy.get('@rightScroll').should('not.be.visible');
+        cy.get('@leftScroll').should('not.be.visible');
 
         cy.viewport(1200, 600);
-        cy.get('@mainnavigation').find('.right-scroll-button').should('be.visible');
-        cy.get('@mainnavigation').find('.left-scroll-button').should('not.be.visible');
+        cy.get('@rightScroll').should('be.visible');
+        cy.get('@leftScroll').should('not.be.visible');
       });
 
       it('should hide scroll buttons after removing enough nav items', () => {
         cy.viewport(1200, 600);
-        cy.get('@mainnavigation').find('.right-scroll-button').should('be.visible');
-        cy.get('@mainnavigation').find('.left-scroll-button').should('not.be.visible');
+        cy.get('@rightScroll').should('be.visible');
+        cy.get('@leftScroll').should('not.be.visible');
 
         cy.get('@mainnavigation')
           .find('post-list-item')
@@ -266,20 +261,20 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
                 });
               });
           });
-        cy.get('@mainnavigation').find('.right-scroll-button').should('not.be.visible');
-        cy.get('@mainnavigation').find('.left-scroll-button').should('not.be.visible');
+        cy.get('@rightScroll').should('not.be.visible');
+        cy.get('@leftScroll').should('not.be.visible');
       });
 
       it('should show left scroll button after scrolling right', () => {
         cy.viewport(1200, 600);
 
-        cy.get('@mainnavigation').find('.right-scroll-button').should('be.visible');
-        cy.get('@mainnavigation').find('.left-scroll-button').should('not.be.visible');
+        cy.get('@rightScroll').should('be.visible');
+        cy.get('@leftScroll').should('not.be.visible');
 
-        cy.get('@mainnavigation').find('.right-scroll-button button').click();
+        cy.get('@rightScroll').click();
 
-        cy.get('@mainnavigation').find('.left-scroll-button').should('be.visible');
-        cy.get('@mainnavigation').find('.right-scroll-button').should('be.visible');
+        cy.get('@leftScroll').should('be.visible');
+        cy.get('@rightScroll').should('be.visible');
       });
     });
   });
