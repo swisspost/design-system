@@ -27,11 +27,20 @@ ngb-datepicker-navigation {
   button.ngb-dp-arrow-btn {
     margin: 0;
     border-radius: 0;
+    min-width: 3rem;
     @include utilities.focus-style();
 
     &:disabled {
       display: none;
     }
+  }
+
+  .ngb-dp-arrow-next .ngb-dp-navigation-chevron {
+    margin-right: 0.5rem;
+  }
+
+  .ngb-dp-arrow-prev .ngb-dp-navigation-chevron {
+    margin-left: 0.5rem;
   }
 }
 
