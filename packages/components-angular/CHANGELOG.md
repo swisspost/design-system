@@ -1,5 +1,13 @@
 # @swisspost/design-system-components-angular-workspace
 
+## 1.1.10-next.34
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.34
+  - @swisspost/design-system-styles@9.0.0-next.34
+
 ## 1.1.10-next.33
 
 ### Patch Changes
