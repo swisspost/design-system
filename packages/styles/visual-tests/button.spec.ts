@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import path from 'path';
 
 test('button default visual regression', async ({ page }) => {
   await page.goto(
