@@ -20,7 +20,7 @@ tokens.$default-map: utilities.$post-spacing;
   background-color: post.$white;
   border: post.$border-width solid post.$border-color;
   border-radius: post.$border-radius;
-  font-size: post.$font-size-sm;
+  font-size: 0.875rem;
 
   .addon-dropdown__item {
     display: block;
@@ -41,7 +41,7 @@ tokens.$default-map: utilities.$post-spacing;
 
 .addon-button {
   post-icon {
-    font-size: post.$font-size-20;
+    font-size: 1.25rem;
     margin-inline-end: tokens.get('utility-gap-2');
   }
 }
