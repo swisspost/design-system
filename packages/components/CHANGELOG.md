@@ -1,5 +1,99 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.34
+
+### Minor Changes
+
+- Added a new utility, to distinguish between server and client environment. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5160](https://github.com/swisspost/design-system/pull/5160))
+
+- Adjusted the collapse animation to be compatible with server-side rendering (SSR). (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5182](https://github.com/swisspost/design-system/pull/5182))
+
+- Enabled server-side rendering for the `post-popover` and the `post-tooltip` components, ensuring no hydration errors occur on the client side. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5166](https://github.com/swisspost/design-system/pull/5166))
+
+- Made `post-linkarea` a shadow component to avoid hydration errors when used in a server-side rendered environment. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5156](https://github.com/swisspost/design-system/pull/5156))
+
+- Made `post-close-button` a shadow component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5151](https://github.com/swisspost/design-system/pull/5151))
+
+- Made `post-collapsible-trigger` a shadow component to avoid hydration errors when used in a server-side rendered environment. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5168](https://github.com/swisspost/design-system/pull/5168))
+
+- Enabled server-side rendering for the `post-icon` component, ensuring no hydration errors occur on the client side. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5170](https://github.com/swisspost/design-system/pull/5170))
+
+- Made utilities SSR conform. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5166](https://github.com/swisspost/design-system/pull/5166))
+
+### Patch Changes
+
+- Resolved an issue with the `post-footer` component to ensure event bindings are correctly removed when the component is detached. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5173](https://github.com/swisspost/design-system/pull/5173))
+
+- Enhanced the `for` property of the `post-menu-trigger` component to ensure it stays synchronized in the DOM whenever it changes, enabling compatibility with `querySelector` and similar methods. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5157](https://github.com/swisspost/design-system/pull/5157))
+
+- Fixed update flow for `post-collapsible` and `post-collapsible-trigger` aria attributes. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5168](https://github.com/swisspost/design-system/pull/5168))
+
+- Fixed `post-header` component `version` attribute. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5152](https://github.com/swisspost/design-system/pull/5152))
+
+- Enhanced the `label` property of the `post-card-control` component to ensure it stays synchronized in the DOM whenever it changes, enabling compatibility with `querySelector` and similar methods. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5150](https://github.com/swisspost/design-system/pull/5150))
+
+- Enabled server-side rendering for the `post-popovercontainer` component, ensuring no hydration errors occur on the client side. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5161](https://github.com/swisspost/design-system/pull/5161))
+
+- Refactored the `post-language-switch` component to remove redundant update functions and unnecessary slot event handling. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5184](https://github.com/swisspost/design-system/pull/5184))
+
+- Updated `post-header` by moving `handleScrollEvent` from `connectedCallback` to `componentWillRender`. Added fallback value to the `--post-header-scroll-top` property within the `--logo-height` calculation. (by [@myrta2302](https://github.com/myrta2302) with [#5268](https://github.com/swisspost/design-system/pull/5268))
+
+- Enhanced the `label` property of the `post-back-to-top` component to ensure it stays synchronized in the DOM whenever it changes, enabling compatibility with `querySelector` and similar methods. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5149](https://github.com/swisspost/design-system/pull/5149))
+
+- Enhanced the `panel` property of the `post-tab-header` component and the `name` property of the `post-tab-panel` component, to ensure they stay synchronized in the DOM whenever they change, enabling compatibility with `querySelector` and similar methods. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5158](https://github.com/swisspost/design-system/pull/5158))
+
+- Added the `reflect: true` option to the `post-avatar` component property `firstname` to prepare the component for the next stencil update. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5148](https://github.com/swisspost/design-system/pull/5148))
+
+- Refactored the `post-mainnavigation` component to handle overflow using native scroll. (by [@alizedebray](https://github.com/alizedebray) with [#4948](https://github.com/swisspost/design-system/pull/4948))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.0.0-next.34
+  - @swisspost/design-system-styles@9.0.0-next.34
+
+## 9.0.0-next.33
+
+### Minor Changes
+
+- Implemented an event-guard utility to ensure our custom events are only handled when originating from the expected element. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4574](https://github.com/swisspost/design-system/pull/4574))
+
+### Patch Changes
+
+- Updated the fallback CDN URL in the `post-icon` component to include the current package version, ensuring icon requests match the used component version. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5091](https://github.com/swisspost/design-system/pull/5091))
+
+- Adjusted the placement of the Back-to-top button to accommodate the sticky header. (by [@myrta2302](https://github.com/myrta2302) with [#4879](https://github.com/swisspost/design-system/pull/4879))
+
+- Updated `<post-header>` to expose header height custom CSS properties to `:root` and set `scroll-padding-top` to visible header height. (by [@myrta2302](https://github.com/myrta2302) with [#4925](https://github.com/swisspost/design-system/pull/4925))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.0.0-next.33
+  - @swisspost/design-system-styles@9.0.0-next.33
+
+## 9.0.0-next.32
+
+### Patch Changes
+
+- Removed the `transform` property from the scroll-locked `post-header` parent, to avoid side effects. Updated the mobile menu of the `post-header`, so it works as before. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4957](https://github.com/swisspost/design-system/pull/4957))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.32
+  - @swisspost/design-system-icons@9.0.0-next.32
+
+## 9.0.0-next.31
+
+### Patch Changes
+
+- Added a max-height to the `post-megadropdown` on desktop to add scrolling in case its content is bigger than the space available. (by [@leagrdv](https://github.com/leagrdv) with [#4906](https://github.com/swisspost/design-system/pull/4906))
+
+- Replaced usages of `color: inherit` with tokens to improve high contrast mode compatability. (by [@schaertim](https://github.com/schaertim) with [#4933](https://github.com/swisspost/design-system/pull/4933))
+
+- Adapted the trigger of the `post-popover` component to be able to handle nested elements. (by [@schaertim](https://github.com/schaertim) with [#4910](https://github.com/swisspost/design-system/pull/4910))
+
+- Improved header accessibility by ensuring that elements which are hidden on scroll get visible again if they receive focus. (by [@leagrdv](https://github.com/leagrdv) with [#4767](https://github.com/swisspost/design-system/pull/4767))
+
+- Added the CSS variable `--post-popover-max-width` that enables configuring the max-width of the `post-popover` component. (by [@leagrdv](https://github.com/leagrdv) with [#4898](https://github.com/swisspost/design-system/pull/4898))
+
+- Resolved accessibility violations in the `post-language-switch` component by adding the role="menu" to the `post-menu` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4951](https://github.com/swisspost/design-system/pull/4951))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.31
+  - @swisspost/design-system-icons@9.0.0-next.31
+
 ## 9.0.0-next.30
 
 ### Patch Changes

@@ -8,6 +8,7 @@
 
 @use './../functions/tokens';
 @use './../tokens/utilities';
+@use './../tokens/elements';
 @use './../tokens/components';
 
 tokens.$default-map: components.$post-cards;
@@ -64,8 +65,7 @@ post-linkarea:has(> .card) {
     border-end-end-radius: tokens.get('card-border-radius');
   }
 
-  &.product-card,
-  &.card-button {
+  &.product-card {
     box-shadow: none;
 
     &:hover,
@@ -120,8 +120,7 @@ post-linkarea:has(> .card) {
 .card-body {
   padding: 1.25rem 1rem;
 
-  .product-card &,
-  .card-button & {
+  .product-card & {
     @include media-breakpoint-down(sm) {
       padding: tokens.get('utility-gap-16', utilities.$post-spacing);
     }
@@ -153,7 +152,7 @@ post-linkarea:has(> .card) {
 
   &:hover,
   &:focus {
-    color: inherit;
+    color: tokens.get('body-color', elements.$post-body);
     text-decoration: none;
   }
 

@@ -14,6 +14,7 @@ import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
 import { slideDown, slideUp } from '@/animations/slide';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
+import { eventGuard } from '@/utils/event-guard';
 
 export type DEVICE_SIZE = 'mobile' | 'tablet' | 'desktop' | null;
 
@@ -111,9 +112,12 @@ export class PostHeader {
     this.host.addEventListener('click', this.handleLinkClick);
 
     this.handleResize();
-    this.handleScrollEvent();
     this.handleScrollParentResize();
     this.lockBody(false, this.mobileMenuExtended, 'mobileMenuExtended');
+  }
+
+  componentWillRender() {
+    this.handleScrollEvent();
   }
 
   componentDidRender() {
@@ -170,9 +174,19 @@ export class PostHeader {
     }
   }
 
-  private megedropdownStateHandler(event: CustomEvent) {
-    this.megadropdownOpen = event.detail.isVisible;
-  }
+  private megedropdownStateHandler = (event: CustomEvent) => {
+    eventGuard(
+      this.host,
+      event,
+      {
+        targetLocalName: 'post-megadropdown',
+        delegatorSelector: 'post-header',
+      },
+      () => {
+        this.megadropdownOpen = event.detail.isVisible;
+      },
+    );
+  };
 
   // Get all the focusable elements in the post-header mobile menu
   private getFocusableElements() {
@@ -218,13 +232,16 @@ export class PostHeader {
   private handleScrollEvent() {
     const scrollTop =
       this.scrollParent === document.body ? window.scrollY : this.scrollParent.scrollTop;
-    this.host.style.setProperty('--header-scroll-top', `${scrollTop}px`);
+    document.documentElement.style.setProperty('--post-header-scroll-top', `${scrollTop}px`);
   }
 
   private updateLocalHeaderHeight() {
     const localHeaderHeight =
       this.host.shadowRoot.querySelector('.local-header')?.clientHeight || 0;
-    this.host.style.setProperty('--local-header-height', `${localHeaderHeight}px`);
+    document.documentElement.style.setProperty(
+      '--post-local-header-height',
+      `${localHeaderHeight}px`,
+    );
   }
 
   private updateScrollParentHeight() {
@@ -337,7 +354,7 @@ export class PostHeader {
 
   render() {
     return (
-      <Host version={version}>
+      <Host data-version={version}>
         <div class="global-header">
           <div class="global-sub">
             <div class="logo">

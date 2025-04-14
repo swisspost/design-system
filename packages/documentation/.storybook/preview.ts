@@ -9,6 +9,7 @@ import {
   prettierOptions,
   resetComponents,
   withUrlParams,
+  openInCodePen,
 } from './helpers';
 import './helpers/register-web-components';
 import './addons/cypress-storybook/client';
@@ -85,6 +86,10 @@ const preview: Preview = {
           {
             title: 'Copy variation',
             onClick: copyStoryConfigUrl,
+          },
+          {
+            title: 'Open in CodePen',
+            onClick: openInCodePen,
           },
         ],
       },

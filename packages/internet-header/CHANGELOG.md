@@ -1,5 +1,34 @@
 # @swisspost/internet-header
 
+## 2.0.0-next.34
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.34
+
+## 2.0.0-next.33
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.33
+
+## 2.0.0-next.32
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.32
+
+## 2.0.0-next.31
+
+### Patch Changes
+
+- Replaced usages of `color: inherit` with tokens to improve high contrast mode compatability. (by [@schaertim](https://github.com/schaertim) with [#4933](https://github.com/swisspost/design-system/pull/4933))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.31
+
 ## 2.0.0-next.30
 
 ### Patch Changes
