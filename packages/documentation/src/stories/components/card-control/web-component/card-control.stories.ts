@@ -242,8 +242,8 @@ export const FormIntegration: Story = {
       ${story()}
       <div class="mt-16">
         <h4>FormData</h4>
-        <p class="fs-small">Submit or reset the form to see how the FormData will look like.</p>
-        <pre id="AssociatedFormOutput" class="p-8 palette-accent rounded fs-tiny">{}</pre>
+        <p class="fs-9">Submit or reset the form to see how the FormData will look like.</p>
+        <pre id="AssociatedFormOutput" class="p-8 palette-accent rounded fs-10">{}</pre>
       </div>
     `,
   ],

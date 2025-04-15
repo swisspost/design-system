@@ -67,7 +67,7 @@ export namespace Components {
          */
         "lastname"?: string;
         /**
-          * Defines the company internal userId.<div className="mb-1 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
+          * Defines the company internal userId.<div className="mb-4 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
          */
         "userid"?: string;
     }
@@ -144,7 +144,7 @@ export namespace Components {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `name` attribute of the control. <span className="mb-4 banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
          */
         "name": string;
         /**
@@ -969,7 +969,7 @@ declare namespace LocalJSX {
          */
         "lastname"?: string;
         /**
-          * Defines the company internal userId.<div className="mb-1 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
+          * Defines the company internal userId.<div className="mb-4 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
          */
         "userid"?: string;
     }
@@ -1042,7 +1042,7 @@ declare namespace LocalJSX {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `name` attribute of the control. <span className="mb-4 banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
          */
         "name"?: string;
         /**
