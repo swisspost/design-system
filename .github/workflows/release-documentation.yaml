@@ -7,6 +7,11 @@ on:
     paths:
       - 'packages/documentation/package.json'
 
+permissions:
+  contents: read
+  deployments: write
+  id-token: write
+
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
