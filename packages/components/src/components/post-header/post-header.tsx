@@ -98,9 +98,27 @@ export class PostHeader {
     this.megedropdownStateHandler = this.megedropdownStateHandler.bind(this);
     this.keyboardHandler = this.keyboardHandler.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
+    console.log(
+      't:',
+      'constructor',
+      document.documentElement.style.getPropertyValue('--post-header-scroll-top'),
+      document,
+      this.getTimestamp(),
+    );
   }
 
+  private readonly getTimestamp = () => {
+    return new Date().toISOString(); // Returns a timestamp in ISO format
+  };
+
   connectedCallback() {
+    console.log(
+      't:',
+      'BEFORE connectedCallback',
+      document.documentElement.style.getPropertyValue('--post-header-scroll-top'),
+      document,
+      this.getTimestamp(),
+    );
     window.addEventListener('resize', this.throttledResize, { passive: true });
     window.addEventListener('scroll', this.handleScrollEvent, {
       passive: true,
@@ -114,13 +132,25 @@ export class PostHeader {
     this.handleResize();
     this.handleScrollParentResize();
     this.lockBody(false, this.mobileMenuExtended, 'mobileMenuExtended');
-  }
-
-  componentWillRender() {
     this.handleScrollEvent();
+    console.log(
+      't:',
+      'AFTER connectedCallback',
+      document.documentElement.style.getPropertyValue('--post-header-scroll-top'),
+      document,
+      this.getTimestamp(),
+    );
   }
 
   componentDidRender() {
+    console.log(
+      't:',
+      'componentDidRender',
+      document.documentElement.style.getPropertyValue('--post-header-scroll-top'),
+      document,
+      this.getTimestamp(),
+    );
+
     this.getFocusableElements();
     this.handleLocalHeaderResize();
   }
@@ -146,6 +176,13 @@ export class PostHeader {
     }
 
     this.mobileMenuExtended = false;
+    console.log(
+      't:',
+      'disconnectedCallback',
+      document.documentElement.style.getPropertyValue('--post-header-scroll-top'),
+      document,
+      this.getTimestamp(),
+    );
   }
 
   /**
