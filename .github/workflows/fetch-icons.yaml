@@ -105,6 +105,9 @@ jobs:
             const { DATE, ICON_CHANGES } = process.env
             const { deleted_icons, added_icons, updated_icons } = JSON.parse(ICON_CHANGES);
 
+            console.log('ICON_CHANGES:', ICON_CHANGES);
+            console.log('added_icons:', added_icons);
+
             function writeChangeset(title, icons, bump) {
               try {
                 const content = `---\n'@swisspost/design-system-icons': ${bump}\n---\n\n${title}:\n\n${icons}`;

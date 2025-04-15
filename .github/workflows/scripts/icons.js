@@ -7,8 +7,6 @@ function getUiIconChanges({
   COPIED_FILES,
   DELETED_FILES,
 }) {
-  console.log('ADDED_FILES:', ADDED_FILES);
-
   function getIcons(...fileSet) {
     const icons = new Map();
     fileSet
@@ -44,8 +42,6 @@ function getUiIconChanges({
     added_icons: getIcons(ADDED_FILES),
     updated_icons: getIcons(MODIFIED_FILES, RENAMED_FILES, COPIED_FILES),
   };
-
-  console.log('result:', result);
 
   return result;
 }
