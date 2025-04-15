@@ -120,22 +120,11 @@ jobs:
                 .join('\n')
             }
 
-            const result = {}
-
-            if (DELETED_FILES) {
-              result.deleted_icons = getIcons(DELETED_FILES)
+            return {
+              deleted_icons: getIcons(DELETED_FILES)
+              added_icons: getIcons(ADDED_FILES)
+              updated_icons: getIcons([MODIFIED_FILES, RENAMED_FILES, COPIED_FILES].filter(Boolean).join(' '))
             }
-
-            if (ADDED_FILES) {
-              result.added_icons = getIcons(ADDED_FILES)
-            }
-
-            if (MODIFIED_FILES || RENAMED_FILES || COPIED_FILES) {
-              const UPDATED_FILES = [MODIFIED_FILES, RENAMED_FILES, COPIED_FILES].filter(Boolean).join(' ');
-              result.updated_icons = getIcons(UPDATED_FILES)
-            }
-
-            return result;
 
       - name: Get result
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
@@ -144,4 +133,6 @@ jobs:
         with:
           script: |
             const { ICON_CHANGES } = process.env
-            console.log(typeof ICON_CHANGES, ICON_CHANGES)
+            const { added_icons, updated_icons } = JSON.parse(ICON_CHANGES);
+
+            console.log(ICON_CHANGES, added_icons)
