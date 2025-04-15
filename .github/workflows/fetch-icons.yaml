@@ -136,7 +136,7 @@ jobs:
           script: |
             const fs = require('fs')
             const { DATE, ICON_CHANGES } = process.env
-            const { deleted_icons, added_icons, updated_icons } = JSON.parse(ICON_CHANGES)`
+            const { deleted_icons, added_icons, updated_icons } = JSON.parse(ICON_CHANGES);
 
             function writeChangeset(title, icons, bump) {
               try {
