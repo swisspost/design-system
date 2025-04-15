@@ -26,7 +26,7 @@ The login widget is a relic of old times, adapted to work within the shadow-dom.
 
 ### Breadcrumbs
 
-The breadcrumbs can easily be too long to be displayed on one line on small screens. A mechanism using an invisible second breadcrumbs element is used to determine if there is enough space to render the breadcrumbs fully or not. If there is not, breadcrumbs will be shortened and a dropdown provides the middle steps.
+The breadcrumbs can easily be too long to be displayed on one line on small screens. A mechanism using an invisible second breadcrumb element is used to determine if there is enough space to render the breadcrumbs fully or not. If there is not, breadcrumbs will be shortened and a dropdown provides the middle steps.
 
 ### Help & Contact overlays
 
