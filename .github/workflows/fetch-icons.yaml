@@ -131,19 +131,18 @@ jobs:
             }
 
             if (MODIFIED_FILES || RENAMED_FILES || COPIED_FILES) {
-              result.updated_icons = getIcons([MODIFIED_FILES, RENAMED_FILES, COPIED_FILES].join(' '))
+              const UPDATED_FILES = [MODIFIED_FILES, RENAMED_FILES, COPIED_FILES].filter(Boolean).join(' ');
+              result.updated_icons = getIcons(UPDATED_FILES)
             }
-
-            console.log(result)
 
             return result;
 
       - name: Get result
-        run: |
-          echo "$DELETED_ICONS"
-          echo "$ADDED_ICONS"
-          echo "$UPDATED_ICONS"
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         env:
           DELETED_ICONS: ${{ steps.changed-icons.outputs.result.deleted_icons }}
           ADDED_ICONS: ${{ steps.changed-icons.outputs.result.added_icons }}
           UPDATED_ICONS: ${{ steps.changed-icons.outputs.result.updated_icons }}
+        with:
+          script: |
+            console.log(process.env)
