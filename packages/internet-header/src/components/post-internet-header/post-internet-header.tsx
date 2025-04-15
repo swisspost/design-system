@@ -192,82 +192,109 @@ export class PostInternetHeader {
   }
 
   async componentWillLoad() {
-    this.scrollParent = getScrollParent(this.host);
-    this.scrollParent.addEventListener('scroll', this.throttledScroll, { passive: true });
-    this.scrollParent.addEventListener('resize', this.debouncedResize, { passive: true });
-  
+    this.setupScrollListeners();
+    
     // Wait for the config to arrive, then render the header
     try {
-      state.projectId = encodeURIComponent(this.project);
-      state.stickyness = this.stickyness;
-      
-      const validEnvironments = ['prod', 'int01', 'dev'];
-      const sanitizedEnvironment = this.environment.toLowerCase();
-      if (!validEnvironments.includes(sanitizedEnvironment)) {
-        throw new Error(`Invalid environment: ${this.environment}`);
-      }
-      state.environment = sanitizedEnvironment as Environment;
-      
-      if (this.language !== undefined) {
-        const validLanguages = ['de', 'fr', 'it', 'en'];
-        if (!validLanguages.includes(this.language)) {
-          throw new Error(`Invalid language: ${this.language}`);
-        }
-        state.currentLanguage = this.language;
-      }
-      
-      if (this.languageSwitchOverrides !== undefined) {
-        try {
-          state.languageSwitchOverrides = typeof this.languageSwitchOverrides === 'string'
-            ? JSON.parse(this.languageSwitchOverrides)
-            : this.languageSwitchOverrides;
-        } catch (error) {
-          console.error('Invalid languageSwitchOverrides format', error);
-          state.languageSwitchOverrides = undefined;
-        }
-      }
-      
-      if (this.osFlyoutOverrides !== undefined) {
-        try {
-          state.osFlyoutOverrides = typeof this.osFlyoutOverrides === 'string'
-            ? JSON.parse(this.osFlyoutOverrides)
-            : this.osFlyoutOverrides;
-        } catch (error) {
-          console.error('Invalid osFlyoutOverrides format', error);
-          state.osFlyoutOverrides = undefined;
-        }
-      }
-  
-      if (this.customConfig !== undefined) {
-        let parsedConfig;
-        try {
-          parsedConfig = typeof this.customConfig === 'string' 
-            ? JSON.parse(this.customConfig) 
-            : this.customConfig;
-        } catch (error) {
-          console.error('Invalid customConfig format', error);
-          parsedConfig = {};
-        }
-        
-        const langs = Object.keys(parsedConfig);
-        const lang = state.currentLanguage || getUserLang(langs, this.language);
-        state.localizedCustomConfig = getLocalizedCustomConfig(parsedConfig, lang);
-      }
-  
-      // Sanitize all parameters before requesting config
-      state.localizedConfig = await getLocalizedConfig({
-        projectId: encodeURIComponent(this.project),
-        environment: state.environment,
-        language: this.language ? encodeURIComponent(this.language) : undefined,
-        cookieKey: this.languageCookieKey ? encodeURIComponent(this.languageCookieKey) : undefined,
-        localStorageKey: this.languageLocalStorageKey ? encodeURIComponent(this.languageLocalStorageKey) : undefined,
-        activeRouteProp: this.activeRoute,
-        localizedCustomConfig: state.localizedCustomConfig,
-        osFlyoutOverrides: state.osFlyoutOverrides,
-      });
+      await this.initializeState();
+      await this.loadConfiguration();
     } catch (error) {
       console.error(error);
     }
+  }
+
+  private setupScrollListeners() {
+    this.scrollParent = getScrollParent(this.host);
+    this.scrollParent.addEventListener('scroll', this.throttledScroll, { passive: true });
+    this.scrollParent.addEventListener('resize', this.debouncedResize, { passive: true });
+  }
+
+  private async initializeState() {
+    state.projectId = encodeURIComponent(this.project);
+    state.stickyness = this.stickyness;
+    
+    this.validateAndSetEnvironment();
+    this.validateAndSetLanguage();
+    this.parseLanguageSwitchOverrides();
+    this.parseOsFlyoutOverrides();
+    this.parseCustomConfig();
+  }
+
+  private validateAndSetEnvironment() {
+    const validEnvironments = ['prod', 'int01', 'dev'];
+    const sanitizedEnvironment = this.environment.toLowerCase();
+    if (!validEnvironments.includes(sanitizedEnvironment)) {
+      throw new Error(`Invalid environment: ${this.environment}`);
+    }
+    state.environment = sanitizedEnvironment as Environment;
+  }
+
+  private validateAndSetLanguage() {
+    if (this.language !== undefined) {
+      const validLanguages = ['de', 'fr', 'it', 'en'];
+      if (!validLanguages.includes(this.language)) {
+        throw new Error(`Invalid language: ${this.language}`);
+      }
+      state.currentLanguage = this.language;
+    }
+  }
+
+  private parseLanguageSwitchOverrides() {
+    if (this.languageSwitchOverrides !== undefined) {
+      try {
+        state.languageSwitchOverrides = typeof this.languageSwitchOverrides === 'string'
+          ? JSON.parse(this.languageSwitchOverrides)
+          : this.languageSwitchOverrides;
+      } catch (error) {
+        console.error('Invalid languageSwitchOverrides format', error);
+        state.languageSwitchOverrides = undefined;
+      }
+    }
+  }
+
+  private parseOsFlyoutOverrides() {
+    if (this.osFlyoutOverrides !== undefined) {
+      try {
+        state.osFlyoutOverrides = typeof this.osFlyoutOverrides === 'string'
+          ? JSON.parse(this.osFlyoutOverrides)
+          : this.osFlyoutOverrides;
+      } catch (error) {
+        console.error('Invalid osFlyoutOverrides format', error);
+        state.osFlyoutOverrides = undefined;
+      }
+    }
+  }
+
+  private parseCustomConfig() {
+    if (this.customConfig !== undefined) {
+      let parsedConfig;
+      try {
+        parsedConfig = typeof this.customConfig === 'string' 
+          ? JSON.parse(this.customConfig) 
+          : this.customConfig;
+      } catch (error) {
+        console.error('Invalid customConfig format', error);
+        parsedConfig = {};
+      }
+      
+      const langs = Object.keys(parsedConfig);
+      const lang = state.currentLanguage || getUserLang(langs, this.language);
+      state.localizedCustomConfig = getLocalizedCustomConfig(parsedConfig, lang);
+    }
+  }
+
+  private async loadConfiguration() {
+    // Sanitize all parameters before requesting config
+    state.localizedConfig = await getLocalizedConfig({
+      projectId: encodeURIComponent(this.project),
+      environment: state.environment,
+      language: this.language ? encodeURIComponent(this.language) : undefined,
+      cookieKey: this.languageCookieKey ? encodeURIComponent(this.languageCookieKey) : undefined,
+      localStorageKey: this.languageLocalStorageKey ? encodeURIComponent(this.languageLocalStorageKey) : undefined,
+      activeRouteProp: this.activeRoute,
+      localizedCustomConfig: state.localizedCustomConfig,
+      osFlyoutOverrides: state.osFlyoutOverrides,
+    });
   }
 
   componentDidLoad() {
