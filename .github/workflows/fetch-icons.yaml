@@ -80,6 +80,7 @@ jobs:
           files: ./packages/icons/src/icons/**/*.svg
 
       - name: New Step
+        id: changed-icons
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         env:
           ADDED_FILES: ${{ steps.changed-files.outputs.added_files }}
@@ -92,3 +93,7 @@ jobs:
             const fs = require('fs')
             const { ADDED_FILES, MODIFIED_FILES, RENAMED_FILES, COPIED_FILES, DELETED_FILES } = process.env
             console.log(ADDED_FILES, MODIFIED_FILES, RENAMED_FILES, COPIED_FILES, DELETED_FILES)
+            return { added_icons: ADDED_FILES }
+
+      - name: Get result
+        run: echo "${{steps.changed-icons.outputs.added_icons}}"
