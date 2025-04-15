@@ -1,5 +1,17 @@
 # @swisspost/design-system-icons
 
+## 9.0.0-next.34
+
+### Minor Changes
+
+- Added icons number 2645, 2646, 2647, 2648, 2649, 2650, 2651, 2652, 2653, 2654, 2655, 2656, 2657, 2658, 2659, 2660, 2661, 2662, 2663, 2664, 2665, 2666, 2667, 2668, 2669, 2670, 2671, 2672, 2673, 2674, 2675, 2676, 2677, 2678, 2679, 2680, 2681, 2682, 2683 and 2684. (by [@swisspost-bot](https://github.com/swisspost-bot) with [#5272](https://github.com/swisspost/design-system/pull/5272))
+
+### Patch Changes
+
+- #### Updated Icons
+  - `adressbook` (line): 16, 24, and 32px
+  - `arrowleftdown` (line & solid): 16, 24, 32, 40, 48, and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#5199](https://github.com/swisspost/design-system/pull/5199))
+
 ## 9.0.0-next.33
 
 ### Minor Changes
