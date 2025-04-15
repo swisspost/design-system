@@ -83,6 +83,7 @@ jobs:
         id: changed-icons
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         env:
+          FILE_CHANGES: ${{ steps.changed-files.outputs }}
           ADDED_FILES: ${{ steps.changed-files.outputs.added_files }}
           MODIFIED_FILES: ${{ steps.changed-files.outputs.modified_files }}
           RENAMED_FILES: ${{ steps.changed-files.outputs.renamed_files }}
@@ -90,8 +91,11 @@ jobs:
           DELETED_FILES: ${{ steps.changed-files.outputs.deleted_files }}
         with:
           script: |
-            const icons = require('.github/workflows/scripts/icons.js')
-            return icons.getUiIconChanges(process.env)
+            const { FILE_CHANGES } = process.env
+            console.log(typeof FILE_CHANGES, FILE_CHANGES)
+
+            const { getUiIconChanges } = require('.github/workflows/scripts/icons.js')
+            return getUiIconChanges(process.env)
 
       - name: Create Changeset
         if: steps.changed-files.outputs.any_modified != 'false'
@@ -101,33 +105,8 @@ jobs:
           ICON_CHANGES: ${{ steps.changed-icons.outputs.result }}
         with:
           script: |
-            const fs = require('fs')
-            const { DATE, ICON_CHANGES } = process.env
-            const { deleted_icons, added_icons, updated_icons } = JSON.parse(ICON_CHANGES);
-
-            console.log('ICON_CHANGES:', ICON_CHANGES);
-            console.log('added_icons:', added_icons);
-
-            function writeChangeset(title, icons, bump) {
-              try {
-                const content = `---\n'@swisspost/design-system-icons': ${bump}\n---\n\n${title}:\n\n${icons}`;
-                fs.writeFileSync(`./.changeset/${DATE}-${bump}-ui-icon-update.md`, content);
-              } catch (err) {
-                console.error(err);
-              }
-            }
-
-            if (deleted_icons) {
-              writeChangeset('Deleted Icons', deleted_icons, 'major');
-            }
-
-            if (added_icons) {
-              writeChangeset('Added Icons', added_icons, 'minor');
-            }
-
-            if (updated_icons) {
-              writeChangeset('Updated Icons', updated_icons, 'patch');
-            }
+            const icons = require('.github/workflows/scripts/icons.js')
+            return icons.writeChangesets(process.env)
 
       - name: Commit Changeset
         if: steps.changed-files.outputs.any_modified != 'false'
