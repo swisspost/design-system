@@ -90,7 +90,7 @@ jobs:
           DELETED_FILES: ${{ steps.changed-files.outputs.deleted_files }}
         with:
           script: |
-            const icons = require('./scripts/icons.js')
+            const icons = require('.github/workflows/scripts/icons.js')
             return icons.getUiIconChanges(process.env)
 
       - name: Create Changeset
