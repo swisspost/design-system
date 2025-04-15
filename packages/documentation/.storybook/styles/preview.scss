@@ -111,6 +111,15 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
   pre {
     font-size: 100%;
+
+    .token.comment,
+    .token.doctype {
+      color: #888;
+    }
+
+    .token.property {
+      color: #cb0000;
+    }
   }
 
   code {
