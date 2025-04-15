@@ -120,10 +120,18 @@ jobs:
                 .join('\n')
             }
 
-            const res = {
-              updated_icons: getIcons([...MODIFIED_FILES, ...RENAMED_FILES, ...COPIED_FILES]),
-              added_icons: getIcons(ADDED_FILES),
-              deleted_icons: getIcons(DELETED_FILES),
+            const res = {}
+
+            if (ADDED_FILES) {
+              res.added_icons = getIcons(ADDED_FILES);
+            }
+
+            if (DELETED_FILES) {
+              res.deleted_icons = getIcons(DELETED_FILES);
+            }
+
+            if (MODIFIED_FILES || RENAMED_FILES || COPIED_FILES) {
+              res.updated_icons = getIcons([...MODIFIED_FILES || [], ...RENAMED_FILES || [], ...COPIED_FILES || []]);
             }
 
             console.log(res)
