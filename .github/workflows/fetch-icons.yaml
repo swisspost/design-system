@@ -121,8 +121,8 @@ jobs:
             }
 
             return {
-              deleted_icons: getIcons(DELETED_FILES)
-              added_icons: getIcons(ADDED_FILES)
+              deleted_icons: getIcons(DELETED_FILES),
+              added_icons: getIcons(ADDED_FILES),
               updated_icons: getIcons([MODIFIED_FILES, RENAMED_FILES, COPIED_FILES].filter(Boolean).join(' '))
             }
 
