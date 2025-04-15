@@ -83,7 +83,6 @@ jobs:
         id: changed-icons
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         env:
-          FILE_CHANGES: ${{ steps.changed-files.outputs }}
           ADDED_FILES: ${{ steps.changed-files.outputs.added_files }}
           MODIFIED_FILES: ${{ steps.changed-files.outputs.modified_files }}
           RENAMED_FILES: ${{ steps.changed-files.outputs.renamed_files }}
@@ -91,11 +90,8 @@ jobs:
           DELETED_FILES: ${{ steps.changed-files.outputs.deleted_files }}
         with:
           script: |
-            const { FILE_CHANGES } = process.env
-            console.log(typeof FILE_CHANGES, FILE_CHANGES)
-
-            const { getUiIconChanges } = require('.github/workflows/scripts/icons.js')
-            return getUiIconChanges(process.env)
+            const { getIconChanges } = require('.github/workflows/scripts/icons.js')
+            return getIconChanges(process.env)
 
       - name: Create Changeset
         if: steps.changed-files.outputs.any_modified != 'false'
@@ -105,8 +101,19 @@ jobs:
           ICON_CHANGES: ${{ steps.changed-icons.outputs.result }}
         with:
           script: |
-            const icons = require('.github/workflows/scripts/icons.js')
-            return icons.writeChangesets(process.env)
+            const { writeChangesets } = require('.github/workflows/scripts/icons.js')
+            return writeChangesets(process.env)
+
+      - name: Write PR Body
+        id: pr-body
+        if: steps.changed-files.outputs.any_modified != 'false'
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
+        env:
+          ICON_CHANGES: ${{ steps.changed-icons.outputs.result }}
+        with:
+          script: |
+            const { writePrBody } = require('.github/workflows/scripts/icons.js')
+            return writePrBody(process.env)
 
       - name: Commit Changeset
         if: steps.changed-files.outputs.any_modified != 'false'
