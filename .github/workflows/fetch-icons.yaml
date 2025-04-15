@@ -140,9 +140,7 @@ jobs:
       - name: Get result
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         env:
-          DELETED_ICONS: ${{ steps.changed-icons.outputs.result.deleted_icons }}
-          ADDED_ICONS: ${{ steps.changed-icons.outputs.result.added_icons }}
-          UPDATED_ICONS: ${{ steps.changed-icons.outputs.result.updated_icons }}
+          RESULT: ${{ steps.changed-icons.outputs.result }}
         with:
           script: |
             console.log(process.env)
