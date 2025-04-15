@@ -152,10 +152,28 @@ export class PostInternetHeader {
   private updateLogoAnimation: () => void;
   private scrollParent: Element | Document;
 
+  private isValidVersion(str: string): boolean {
+    if (typeof str !== 'string') return false;
+    const validCharRegex = /^[a-z0-9-]+$/;
+    return validCharRegex.test(str);
+  }
+
   constructor() {
     if (this.project === undefined || this.project === '' || !isValidProjectId(this.project)) {
       throw new Error(
-        `Internet Header project key is "${this.project}". Please provide a valid project key.`,
+        `Internet Header project key is "${this.project}". Please provide a valid project key.`
+      );
+    }
+    
+    const validEnvironments = ['prod', 'int01', 'dev'];
+    if (!validEnvironments.includes(this.environment.toLowerCase())) {
+      throw new Error(
+        `Internet Header environment "${this.environment}" is not valid. Please use one of: ${validEnvironments.join(', ')}`
+      );
+    }
+    if (!this.isValidVersion(packageJson.version)) {
+      throw new Error(
+        `Invalid data-version format: "${packageJson.version}". Version should only contain lowercase letters, numbers, and dashes.`
       );
     }
   }
@@ -174,46 +192,109 @@ export class PostInternetHeader {
   }
 
   async componentWillLoad() {
-    this.scrollParent = getScrollParent(this.host);
-    this.scrollParent.addEventListener('scroll', this.throttledScroll, { passive: true });
-    this.scrollParent.addEventListener('resize', this.debouncedResize, { passive: true });
-
+    this.setupScrollListeners();
+    
     // Wait for the config to arrive, then render the header
     try {
-      state.projectId = this.project;
-      state.stickyness = this.stickyness;
-      state.environment = this.environment.toLocaleLowerCase() as Environment;
-      if (this.language !== undefined) state.currentLanguage = this.language;
-      state.languageSwitchOverrides =
-        typeof this.languageSwitchOverrides === 'string'
-          ? JSON.parse(this.languageSwitchOverrides)
-          : this.languageSwitchOverrides;
-      state.osFlyoutOverrides =
-        typeof this.osFlyoutOverrides === 'string'
-          ? JSON.parse(this.osFlyoutOverrides)
-          : this.osFlyoutOverrides;
-
-      if (this.customConfig !== undefined) {
-        const langs = Object.keys(
-          typeof this.customConfig === 'string' ? JSON.parse(this.customConfig) : this.customConfig,
-        );
-        const lang = state.currentLanguage || getUserLang(langs, this.language);
-        state.localizedCustomConfig = getLocalizedCustomConfig(this.customConfig, lang);
-      }
-
-      state.localizedConfig = await getLocalizedConfig({
-        projectId: this.project,
-        environment: state.environment,
-        language: this.language,
-        cookieKey: this.languageCookieKey,
-        localStorageKey: this.languageLocalStorageKey,
-        activeRouteProp: this.activeRoute,
-        localizedCustomConfig: state.localizedCustomConfig,
-        osFlyoutOverrides: state.osFlyoutOverrides,
-      });
+      await this.initializeState();
+      await this.loadConfiguration();
     } catch (error) {
       console.error(error);
     }
+  }
+
+  private setupScrollListeners() {
+    this.scrollParent = getScrollParent(this.host);
+    this.scrollParent.addEventListener('scroll', this.throttledScroll, { passive: true });
+    this.scrollParent.addEventListener('resize', this.debouncedResize, { passive: true });
+  }
+
+  private async initializeState() {
+    state.projectId = encodeURIComponent(this.project);
+    state.stickyness = this.stickyness;
+    
+    this.validateAndSetEnvironment();
+    this.validateAndSetLanguage();
+    this.parseLanguageSwitchOverrides();
+    this.parseOsFlyoutOverrides();
+    this.parseCustomConfig();
+  }
+
+  private validateAndSetEnvironment() {
+    const validEnvironments = ['prod', 'int01', 'dev'];
+    const sanitizedEnvironment = this.environment.toLowerCase();
+    if (!validEnvironments.includes(sanitizedEnvironment)) {
+      throw new Error(`Invalid environment: ${this.environment}`);
+    }
+    state.environment = sanitizedEnvironment as Environment;
+  }
+
+  private validateAndSetLanguage() {
+    if (this.language !== undefined) {
+      const validLanguages = ['de', 'fr', 'it', 'en'];
+      if (!validLanguages.includes(this.language)) {
+        throw new Error(`Invalid language: ${this.language}`);
+      }
+      state.currentLanguage = this.language;
+    }
+  }
+
+  private parseLanguageSwitchOverrides() {
+    if (this.languageSwitchOverrides !== undefined) {
+      try {
+        state.languageSwitchOverrides = typeof this.languageSwitchOverrides === 'string'
+          ? JSON.parse(this.languageSwitchOverrides)
+          : this.languageSwitchOverrides;
+      } catch (error) {
+        console.error('Invalid languageSwitchOverrides format', error);
+        state.languageSwitchOverrides = undefined;
+      }
+    }
+  }
+
+  private parseOsFlyoutOverrides() {
+    if (this.osFlyoutOverrides !== undefined) {
+      try {
+        state.osFlyoutOverrides = typeof this.osFlyoutOverrides === 'string'
+          ? JSON.parse(this.osFlyoutOverrides)
+          : this.osFlyoutOverrides;
+      } catch (error) {
+        console.error('Invalid osFlyoutOverrides format', error);
+        state.osFlyoutOverrides = undefined;
+      }
+    }
+  }
+
+  private parseCustomConfig() {
+    if (this.customConfig !== undefined) {
+      let parsedConfig;
+      try {
+        parsedConfig = typeof this.customConfig === 'string' 
+          ? JSON.parse(this.customConfig) 
+          : this.customConfig;
+      } catch (error) {
+        console.error('Invalid customConfig format', error);
+        parsedConfig = {};
+      }
+      
+      const langs = Object.keys(parsedConfig);
+      const lang = state.currentLanguage || getUserLang(langs, this.language);
+      state.localizedCustomConfig = getLocalizedCustomConfig(parsedConfig, lang);
+    }
+  }
+
+  private async loadConfiguration() {
+    // Sanitize all parameters before requesting config
+    state.localizedConfig = await getLocalizedConfig({
+      projectId: encodeURIComponent(this.project),
+      environment: state.environment,
+      language: this.language ? encodeURIComponent(this.language) : undefined,
+      cookieKey: this.languageCookieKey ? encodeURIComponent(this.languageCookieKey) : undefined,
+      localStorageKey: this.languageLocalStorageKey ? encodeURIComponent(this.languageLocalStorageKey) : undefined,
+      activeRouteProp: this.activeRoute,
+      localizedCustomConfig: state.localizedCustomConfig,
+      osFlyoutOverrides: state.osFlyoutOverrides,
+    });
   }
 
   componentDidLoad() {
@@ -238,17 +319,24 @@ export class PostInternetHeader {
 
   @Watch('language')
   async handleLanguageChange(newValue: string) {
+    const validLanguages = ['de', 'fr', 'it', 'en'];
+    if (!validLanguages.includes(newValue)) {
+      console.error(`Invalid language: ${newValue}`);
+      return;
+    }
+    
     state.currentLanguage = newValue;
     state.localizedConfig = await getLocalizedConfig({
-      projectId: this.project,
-      environment: this.environment,
-      language: newValue,
-      cookieKey: this.languageCookieKey,
-      localStorageKey: this.languageLocalStorageKey,
+      projectId: encodeURIComponent(this.project),
+      environment: state.environment,
+      language: encodeURIComponent(newValue),
+      cookieKey: this.languageCookieKey ? encodeURIComponent(this.languageCookieKey) : undefined,
+      localStorageKey: this.languageLocalStorageKey ? encodeURIComponent(this.languageLocalStorageKey) : undefined,
       activeRouteProp: this.activeRoute,
       localizedCustomConfig: state.localizedCustomConfig,
       osFlyoutOverrides: state.osFlyoutOverrides,
     });
+    
     if (this.customConfig !== undefined)
       state.localizedCustomConfig = getLocalizedCustomConfig(this.customConfig, newValue);
   }
@@ -460,13 +548,14 @@ export class PostInternetHeader {
     const renderLanguageSwitch = config.header.navLang.length > 1;
 
     const initialLogoScale = renderMetaNavigation ? getLogoScale(this.host) : '1';
+    const safeVersion = this.isValidVersion(packageJson.version) ? packageJson.version : 'unknown';
 
     return (
       <Host
         class={`stickyness-${this.stickyness} ${
           Boolean(this.activeDropdownElement) || Boolean(this.activeFlyout) ? 'dropdown-open' : ''
         }`}
-        data-version={packageJson.version}
+        data-version={safeVersion}
         onKeyup={(e: KeyboardEvent) => this.handleKeyUp(e)}
         style={{ '--logo-scale': initialLogoScale }}
       >
