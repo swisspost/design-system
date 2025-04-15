@@ -140,7 +140,8 @@ jobs:
       - name: Get result
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         env:
-          RESULT: ${{ steps.changed-icons.outputs.result }}
+          ICON_CHANGES: ${{ steps.changed-icons.outputs.result }}
         with:
           script: |
-            console.log(process.env)
+            const { ICON_CHANGES } = process.env
+            console.log(typeof ICON_CHANGES, ICON_CHANGES)
