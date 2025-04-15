@@ -91,7 +91,6 @@ jobs:
         with:
           script: |
 
-
       - name: Create Changeset
         if: steps.changed-files.outputs.any_modified != 'false'
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
@@ -123,3 +122,10 @@ jobs:
             if (updated_icons) {
               writeChangeset('Updated Icons', updated_icons, 'patch');
             }
+
+      - name: Commit Changeset
+        if: steps.changed-files.outputs.any_modified != 'false'
+        run: |
+          git add .
+          git commit -am "chore(icons): add changeset"
+          git push -u origin ${{ steps.current-branch.outputs.branch }}
