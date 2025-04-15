@@ -134,6 +134,7 @@ jobs:
           ICON_CHANGES: ${{ steps.changed-icons.outputs.result }}
         with:
           script: |
+            const fs = require('fs')
             const { DATE, ICON_CHANGES } = process.env
             const { deleted_icons, added_icons, updated_icons } = JSON.parse(ICON_CHANGES)`
 
