@@ -10,11 +10,13 @@
 ### Used by
 
  - [post-breadcrumb](../post-breadcrumb)
+ - [post-breadcrumbs](../post-breadcrumbs)
 
 ### Graph
 ```mermaid
 graph TD;
   post-breadcrumb --> post-menu-item
+  post-breadcrumbs --> post-menu-item
   style post-menu-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

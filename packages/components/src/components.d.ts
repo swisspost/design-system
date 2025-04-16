@@ -115,6 +115,16 @@ export namespace Components {
          */
         "url"?: string | URL;
     }
+    interface PostBreadcrumbs {
+        /**
+          * The text label for the home breadcrumb item.
+         */
+        "homeText": string;
+        /**
+          * The URL for the home breadcrumb item.
+         */
+        "homeUrl": string;
+    }
     /**
      * @class PostCardControl - representing a stencil component
      */
@@ -595,6 +605,12 @@ declare global {
         prototype: HTMLPostBreadcrumbItemElement;
         new (): HTMLPostBreadcrumbItemElement;
     };
+    interface HTMLPostBreadcrumbsElement extends Components.PostBreadcrumbs, HTMLStencilElement {
+    }
+    var HTMLPostBreadcrumbsElement: {
+        prototype: HTMLPostBreadcrumbsElement;
+        new (): HTMLPostBreadcrumbsElement;
+    };
     interface HTMLPostCardControlElementEventMap {
         "postInput": { state: boolean; value: string };
         "postChange": { state: boolean; value: string };
@@ -879,6 +895,7 @@ declare global {
         "post-banner": HTMLPostBannerElement;
         "post-breadcrumb": HTMLPostBreadcrumbElement;
         "post-breadcrumb-item": HTMLPostBreadcrumbItemElement;
+        "post-breadcrumbs": HTMLPostBreadcrumbsElement;
         "post-card-control": HTMLPostCardControlElement;
         "post-closebutton": HTMLPostClosebuttonElement;
         "post-collapsible": HTMLPostCollapsibleElement;
@@ -992,6 +1009,16 @@ declare namespace LocalJSX {
           * The optional URL to which the breadcrumb item will link.
          */
         "url"?: string | URL;
+    }
+    interface PostBreadcrumbs {
+        /**
+          * The text label for the home breadcrumb item.
+         */
+        "homeText"?: string;
+        /**
+          * The URL for the home breadcrumb item.
+         */
+        "homeUrl"?: string;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -1331,6 +1358,7 @@ declare namespace LocalJSX {
         "post-banner": PostBanner;
         "post-breadcrumb": PostBreadcrumb;
         "post-breadcrumb-item": PostBreadcrumbItem;
+        "post-breadcrumbs": PostBreadcrumbs;
         "post-card-control": PostCardControl;
         "post-closebutton": PostClosebutton;
         "post-collapsible": PostCollapsible;
@@ -1372,6 +1400,7 @@ declare module "@stencil/core" {
             "post-banner": LocalJSX.PostBanner & JSXBase.HTMLAttributes<HTMLPostBannerElement>;
             "post-breadcrumb": LocalJSX.PostBreadcrumb & JSXBase.HTMLAttributes<HTMLPostBreadcrumbElement>;
             "post-breadcrumb-item": LocalJSX.PostBreadcrumbItem & JSXBase.HTMLAttributes<HTMLPostBreadcrumbItemElement>;
+            "post-breadcrumbs": LocalJSX.PostBreadcrumbs & JSXBase.HTMLAttributes<HTMLPostBreadcrumbsElement>;
             /**
              * @class PostCardControl - representing a stencil component
              */

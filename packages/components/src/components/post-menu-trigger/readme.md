@@ -17,12 +17,14 @@
 ### Used by
 
  - [post-breadcrumb](../post-breadcrumb)
+ - [post-breadcrumbs](../post-breadcrumbs)
  - [post-language-switch](../post-language-switch)
 
 ### Graph
 ```mermaid
 graph TD;
   post-breadcrumb --> post-menu-trigger
+  post-breadcrumbs --> post-menu-trigger
   post-language-switch --> post-menu-trigger
   style post-menu-trigger fill:#f9f,stroke:#333,stroke-width:4px
 ```
