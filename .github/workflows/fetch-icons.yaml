@@ -90,7 +90,7 @@ jobs:
           DELETED_FILES: ${{ steps.changed-files.outputs.deleted_files }}
         with:
           script: |
-            const { getIconChanges } = require('.github/workflows/scripts/icons.js')
+            const { getIconChanges } = require('.github/workflows/scripts/icons.mjs')
             return getIconChanges(process.env)
 
       - name: Create Changeset
@@ -101,7 +101,7 @@ jobs:
           ICON_CHANGES: ${{ steps.changed-icons.outputs.result }}
         with:
           script: |
-            const { writeChangesets } = require('.github/workflows/scripts/icons.js')
+            const { writeChangesets } = require('.github/workflows/scripts/icons.mjs')
             return writeChangesets(process.env)
 
       - name: Write PR Body
@@ -112,7 +112,7 @@ jobs:
           ICON_CHANGES: ${{ steps.changed-icons.outputs.result }}
         with:
           script: |
-            const { writePrBody } = require('.github/workflows/scripts/icons.js')
+            const { writePrBody } = require('.github/workflows/scripts/icons.mjs')
             return writePrBody(process.env)
 
       - name: Commit Changeset
