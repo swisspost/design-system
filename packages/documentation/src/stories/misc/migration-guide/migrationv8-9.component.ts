@@ -687,6 +687,13 @@ export class MigrationV89Component extends LitElement {
                     </li>
                   </ul>
                 </li>
+                <li class="mb-16">
+                  <p>
+                    All classes and CSS variables related to the bootstrap
+                    <code>navbar</code> component have been removed
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                </li>
               </ul>
             </section>
 
