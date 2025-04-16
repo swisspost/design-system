@@ -1,11 +1,6 @@
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
-import { parse } from '@/utils/sass-export';
-import scss from './subnavigation.module.scss';
-
-/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-const SCSS_VARIABLES: any = parse(scss);
 
 const meta: MetaComponent = {
   id: '87ceabbb-f552-46eb-8a47-4d84e7f8cef0',
@@ -21,16 +16,16 @@ const meta: MetaComponent = {
   },
   args: {
     itemCount: 3,
-    backgroundColor: 'default',
+    palette: 'palette-default',
   },
   argTypes: {
-    backgroundColor: {
-      name: 'Background Color',
-      description: 'Sets the background of the component',
+    palette: {
+      name: 'Palette',
+      description: 'Sets the color scheme of the component',
       control: {
         type: 'select',
       },
-      options: ['default', ...SCSS_VARIABLES['bg-classes']],
+      options: ['palette-default', 'palette-accent', 'palette-alternate', 'palette-brand'],
       table: {
         category: 'General',
       },
@@ -68,9 +63,7 @@ function clickBlocker(story: StoryFn, context: StoryContext) {
 
 function renderTest(args: Args) {
   return html`
-    <div
-      class="subnavigation${args.backgroundColor !== 'default' ? ' ' + args.backgroundColor : ''}"
-    >
+    <div class="subnavigation ${args.palette}">
       <div class="container container-fluid-xs container-fluid-sm">
         <ul class="subnavigation-list">
           ${Array.from(
@@ -94,9 +87,9 @@ type Story = StoryObj;
 
 export const Default: Story = {};
 
-export const ColoredBackground: Story = {
+export const AlternativeColors: Story = {
   args: {
-    backgroundColor: 'bg-gray',
+    palette: 'palette-accent',
   },
 };
 

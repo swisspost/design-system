@@ -7,6 +7,7 @@ import {
   openFullScreenDemo,
   prettierOptions,
   resetComponents,
+  openInCodePen,
 } from './helpers';
 import './helpers/register-web-components';
 import './addons/cypress-storybook/client';
@@ -15,7 +16,6 @@ import './styles/preview.scss';
 
 import { SyntaxHighlighter } from '@storybook/components';
 import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
-import { ArgTypes } from '@storybook/blocks';
 
 SyntaxHighlighter.registerLanguage('scss', scss);
 
@@ -28,50 +28,44 @@ const preview: Preview = {
       storySort: {
         method: 'alphabetical',
         order: [
-          'Home',
+          'Introduction',
 
           // Category - Getting Started
           'Getting Started',
-          [
-            'Introduction',
-            'Design Principles',
-            'Mission',
-            'Angular',
-            'Compatibility',
-            'Packages',
-            'Changelogs',
-            'Migration Guide',
-          ],
+
+          // Category - Packages
+          'Packages',
 
           // Category - Foundations
           'Foundations',
           [
+            'Logo',
+            'Icons',
+            'Palettes',
             'Typography',
-            'Color',
-            'Search for Icons',
+            ['Overview'],
             'Layout',
-            ['Breakpoints', 'Containers', 'Grid', 'Columns', 'TODOS'],
-            'Elevation',
-            'Accessibility',
-            ['Regulation'],
+            ['Breakpoints', 'Sections', 'Containers', 'Grid', 'Columns'],
           ],
+
+          // Category - Raw Components (INTERNAL ONLY)
+          'Raw Components',
 
           // Category - Components
           'Components',
 
-          // Category - Patterns
-          'Patterns',
-          ['Metadata', 'Forms'],
-
           // Category - Utilities
           'Utilities',
 
+          // Category - Templates
+          'Templates',
+
+          // Category - Guidelines
+          'Guidelines',
+
           // Category - Misc
           'Misc',
-          ['Migration Guide', 'Changelog', 'Versions'],
-
-          // Category - Snapshots (hidden)
-          'Snapshots',
+          ['Mission', 'Design Principles', 'Migration'],
         ],
       },
     },
@@ -82,6 +76,10 @@ const preview: Preview = {
           {
             title: 'View full screen',
             onClick: openFullScreenDemo,
+          },
+          {
+            title: 'Open in CodePen',
+            onClick: openInCodePen,
           },
         ],
       },

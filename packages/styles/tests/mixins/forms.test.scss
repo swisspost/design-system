@@ -1,11 +1,5 @@
 @use 'src/mixins/forms';
 
 body {
-  @include forms.placeholder() {
-    color: red;
-  }
-
-  @include forms.icon-placement();
-  @include forms.form-rg();
   @include forms.focus-outline();
 }

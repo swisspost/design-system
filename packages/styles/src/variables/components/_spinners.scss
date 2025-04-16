@@ -1,33 +1,36 @@
 @use 'sass:math';
 @use './../color';
 @use './../spacing';
-@use './../type';
-@use './../../functions/sizing';
+
+@use './../../functions/tokens';
+@use './../../tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 // Spinners
 
 $spinner-color-primary: color.$yellow !default;
 $spinner-color-secondary: color.$gray-60 !default;
 
-$spinner-size: type.$font-size-56 !default;
+$spinner-size: 3.5rem !default;
 $spinner-border-width: 6px !default;
 
 $spinner-duration: 3.125s !default;
 $spinner-speed-reduced-motion: math.div(1, 8) !default;
 
 $spinner-size-map: (
-  16: type.$font-size-16,
-  24: type.$font-size-24,
-  32: type.$font-size-32,
-  40: type.$font-size-40,
-  48: type.$font-size-48,
+  16: 1rem,
+  24: 1.5rem,
+  32: 2rem,
+  40: 2.5rem,
+  48: 3rem,
   // 56 is already defined as default
-  80: sizing.px-to-rem(80px),
+  80: 5rem,
 );
 
 // DEPRECATED
-$spinner-size-sm: type.$font-size-40 !default;
-$spinner-border-width-sm: spacing.$size-micro !default;
+$spinner-size-sm: 2.5rem !default;
+$spinner-border-width-sm: tokens.get('utility-gap-4') !default;
 
-$spinner-size-xs: type.$font-size-16 !default;
-$spinner-border-width-xs: spacing.$size-line !default;
+$spinner-size-xs: 1rem !default;
+$spinner-border-width-xs: tokens.get('utility-gap-2') !default;

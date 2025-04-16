@@ -19,6 +19,8 @@
   "main": "./dist/index.js",
   "scripts": {
     "build": "tsc",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "clean": "rimraf dist"
   },
   "dependencies": {
@@ -28,8 +30,12 @@
   },
   "devDependencies": {
     "@changesets/parse": "*",
-    "typescript": "5.5.4",
+    "@eslint/js": "9.18.0",
+    "eslint": "9.18.0",
+    "globals": "15.14.0",
+    "typescript": "5.8.2",
+    "typescript-eslint": "8.20.0",
     "rimraf": "6.0.1"
   },
-  "keywords": []
+  "keywords": ["changelog", "github", "changesets"]
 }

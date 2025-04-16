@@ -129,23 +129,6 @@ $background-colors: map.merge(
   )
 );
 
-$notification-colors: () !default;
-$notification-colors: list.join(
-  $notification-colors,
-  (
-    // When changed, check $notification-variants as well in packages/styles/src/variables/components/_notification.scss
-    'primary' $gray-80,
-    'success' $success,
-    'danger' $error,
-    'warning' $warning,
-    'info' $info,
-    'gray' $gray,
-    // deprecated
-    'notification' $gray-80,
-    'error' $error
-  )
-);
-
 // Merge with the other color maps
 $background-colors: map.merge($background-colors, $signal-colors);
 $background-colors: map.merge($background-colors, $signal-background-colors);
@@ -159,16 +142,6 @@ $_backgrounds: (
 @each $color-name, $color in $background-colors {
   $key: contrast-fn.light-or-dark($color);
   $values: list.append(map.get($_backgrounds, $key), '.bg-#{$color-name}', $separator: comma);
-  $_backgrounds: map.set($_backgrounds, $key, $values);
-}
-
-@each $color-name, $color in $notification-colors {
-  $key: contrast-fn.light-or-dark($color);
-  $values: list.join(
-    map.get($_backgrounds, $key),
-    '.alert-#{$color-name}' 'post-alert[type=#{$color-name}]',
-    $separator: comma
-  );
   $_backgrounds: map.set($_backgrounds, $key, $values);
 }
 

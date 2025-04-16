@@ -11,6 +11,7 @@ import {
 } from '@stencil/core';
 import { checkEmptyOrType, checkType } from '@/utils';
 import { version } from '@root/package.json';
+import { SwitchVariant } from '../post-language-switch/switch-variants';
 
 /**
  * @slot default - Slot for placing the content inside the anchor or button.
@@ -18,7 +19,6 @@ import { version } from '@root/package.json';
 @Component({
   tag: 'post-language-option',
   styleUrl: 'post-language-option.scss',
-  shadow: true,
 })
 export class PostLanguageOption {
   @Element() host: HTMLPostLanguageOptionElement;
@@ -29,12 +29,8 @@ export class PostLanguageOption {
   @Prop() code!: string;
 
   @Watch('code')
-  validateCode(value = this.code) {
-    checkType(
-      value,
-      'string',
-      'The "code" property of the post-language-option component must be a string.',
-    );
+  validateCode() {
+    checkType(this, 'code', 'string');
   }
 
   /**
@@ -43,13 +39,14 @@ export class PostLanguageOption {
   @Prop({ mutable: true, reflect: true }) active: boolean;
 
   @Watch('active')
-  validateActiveProp(value = this.active) {
-    checkEmptyOrType(
-      value,
-      'boolean',
-      'The "active" property of the post-language-option component must be a boolean value.',
-    );
+  validateActiveProp() {
+    checkEmptyOrType(this, 'active', 'boolean');
   }
+
+  /**
+   * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
+   */
+  @Prop() variant?: SwitchVariant | null;
 
   /**
    * The full name of the language. For example, "Deutsch".
@@ -57,12 +54,8 @@ export class PostLanguageOption {
   @Prop() name: string;
 
   @Watch('name')
-  validateName(value = this.name) {
-    checkEmptyOrType(
-      value,
-      'string',
-      'The "name" property of the post-language-option component must be a string.',
-    );
+  validateName() {
+    checkEmptyOrType(this, 'name', 'string');
   }
 
   /**
@@ -72,12 +65,8 @@ export class PostLanguageOption {
   @Prop() url: string;
 
   @Watch('url')
-  validateUrl(value = this.url) {
-    checkEmptyOrType(
-      value,
-      'string',
-      'The "url" property of the post-language-option component must be a valid URL.',
-    );
+  validateUrl() {
+    checkEmptyOrType(this, 'url', 'string');
   }
 
   componentDidLoad() {
@@ -91,12 +80,21 @@ export class PostLanguageOption {
         'The "name" property of the post-language-option component is required when the full language name is not displayed.',
       );
     }
+
+    if (this.active) {
+      this.postLanguageOptionInitiallyActive.emit(this.code);
+    }
   }
 
   /**
    * An event emitted when the language option is clicked. The payload is the ISO 639 code of the language.
    */
   @Event() postChange: EventEmitter<string>;
+
+  /**
+   * An event emitted when the language option is initially active. The payload is the ISO 639 code of the language.
+   */
+  @Event() postLanguageOptionInitiallyActive: EventEmitter<string>;
 
   /**
    * Selects the language option programmatically.
@@ -118,8 +116,14 @@ export class PostLanguageOption {
   render() {
     const lang = this.code.toLowerCase();
 
+    const emitOnKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        this.emitChange();
+      }
+    };
+
     return (
-      <Host data-version={version} role="listitem">
+      <Host data-version={version}>
         {this.url ? (
           <a
             aria-current={this.active ? 'page' : undefined}
@@ -128,6 +132,7 @@ export class PostLanguageOption {
             hrefLang={lang}
             lang={lang}
             onClick={() => this.emitChange()}
+            onKeyDown={emitOnKeyDown}
           >
             <slot />
           </a>
@@ -137,6 +142,7 @@ export class PostLanguageOption {
             aria-label={this.name}
             lang={lang}
             onClick={() => this.emitChange()}
+            onKeyDown={emitOnKeyDown}
           >
             <slot />
           </button>

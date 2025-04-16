@@ -1,0 +1,39 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as InputStories from './input.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={InputStories} />
+
+<div className="docs-title">
+  # Input
+
+  <nav>
+    <link-design of={JSON.stringify(InputStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  Customize the native `<input>` with CSS that changes the element’s initial appearance.
+</div>
+
+Custom input elements need only the class `.form-control` to trigger the custom styles.
+
+<Canvas sourceState="shown" of={InputStories.Default} />
+<div className="hide-col-default">
+  <Controls of={InputStories.Default} />
+</div>
+
+<StylesPackageImport components={['form-input']} required={{ 'validation': true }} />
+
+## Concrete Examples of Application
+
+The following examples show the different characteristics of the component. These can differ in the type of visualization, the HTML structure, as well as when, how and why they are displayed.
+
+### Floating Label
+
+Wrap a pair of `<input>` and `<label>` elements in a `.form-floating` container to enable floating labels.<br/>
+But note that the `<input>` element must come first, so we can ensure the correct styles.
+
+Ensure that `placeholder` attribute is set (even with an empty value) so the label can act as a placeholder when no value is set.
+
+<Canvas of={InputStories.FloatingLabel} />

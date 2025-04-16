@@ -9,3 +9,8 @@ post-popovercontainer {
   background-color: var(--post-menu-bg, #ffffff);
   border-color: var(--post-menu-bg, #ffffff);
 }
+
+.popover-container {
+  display: flex;
+  flex-direction: column;
+}

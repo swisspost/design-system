@@ -1,0 +1,153 @@
+@use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/list';
+@use '@swisspost/design-system-styles/mixins/utilities';
+
+:host {
+  display: block;
+}
+
+footer {
+  background-color: color.$yellow;
+
+  // mobile
+  --post-footer-container-padding-block: 32px;
+  --post-footer-container-padding-inline: 16px;
+  --post-footer-container-max-width: 1200px;
+
+  --post-footer-grid-template: auto / auto;
+  --post-footer-grid-row-gap: 0;
+  --post-footer-grid-column-gap: 0;
+  --post-footer-grid-margin-block-end: 24px;
+  --post-footer-grid-padding-block-end: 0;
+
+  --post-footer-column-flex-direction: column;
+  --post-footer-column-align-items: start;
+  --post-footer-column-gap: 0;
+
+  --post-footer-post-list-flex-direction: column;
+  --post-footer-post-list-gap: 8px;
+  --post-footer-post-list-align-items: start;
+
+  --post-footer-socialmedia-margin-block-end: var(--post-footer-grid-margin-block-end);
+  --post-footer-app-margin-block-end: var(--post-footer-grid-margin-block-end);
+  --post-footer-businesssectors-margin-block-end: var(--post-footer-grid-margin-block-end);
+
+  --post-footer-meta-margin-block-end: 16px;
+  --post-footer-meta-font-size: inherit;
+
+  --post-footer-copyright-font-size: var(--post-footer-meta-font-size);
+
+  // tablet sm
+  @include media.min(sm) {
+    --post-footer-container-padding-block: 40px;
+
+    --post-footer-grid-template: repeat(2, auto) / repeat(2, auto);
+    --post-footer-grid-row-gap: 32px;
+    --post-footer-grid-column-gap: 16px;
+    --post-footer-grid-margin-block-end: 32px;
+    --post-footer-grid-padding-block-end: 32px;
+
+    --post-footer-post-list-flex-direction: row;
+    --post-footer-post-list-gap: 16px;
+    --post-footer-post-list-align-items: center;
+
+    --post-footer-meta-margin-block-end: 8px;
+  }
+
+  // tablet md
+  @include media.min(md) {
+    --post-footer-container-padding-inline: 40px;
+  }
+
+  // desktop lg
+  @include media.min(lg) {
+    --post-footer-container-padding-block: 56px;
+
+    --post-footer-grid-template: auto / repeat(4, auto);
+    --post-footer-grid-row-gap: 0;
+    --post-footer-grid-column-gap: 24px;
+    --post-footer-grid-margin-block-end: 40px;
+
+    --post-footer-column-flex-direction: row;
+    --post-footer-column-align-items: center;
+    --post-footer-column-gap: 32px;
+
+    --post-footer-post-list-gap: 24px;
+
+    --post-footer-businesssectors-margin-block-end: 24px;
+
+    --post-footer-meta-font-size: 16px;
+  }
+}
+
+.visually-hidden {
+  @include utilities.visuallyhidden();
+}
+
+.footer-container {
+  box-sizing: content-box;
+  margin: 0 auto;
+  padding: var(--post-footer-container-padding-block) var(--post-footer-container-padding-inline);
+  max-width: var(--post-footer-container-max-width);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template: var(--post-footer-grid-template);
+  row-gap: var(--post-footer-grid-row-gap);
+  column-gap: var(--post-footer-grid-column-gap);
+  margin-block-end: var(--post-footer-grid-margin-block-end);
+  padding-block-end: var(--post-footer-grid-padding-block-end);
+
+  // post-accordion-item
+  ::part(button),
+  ::part(body) {
+    padding-inline: 0;
+  }
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: var(--post-footer-column-flex-direction);
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: var(--post-footer-column-align-items);
+  column-gap: var(--post-footer-column-gap);
+}
+
+.footer-socialmedia,
+.footer-app,
+.footer-businesssectors,
+.footer-meta {
+  ::slotted(post-list) {
+    display: flex !important;
+    flex-direction: var(--post-footer-post-list-flex-direction) !important;
+    gap: var(--post-footer-post-list-gap) !important;
+    align-items: var(--post-footer-post-list-align-items) !important;
+  }
+}
+
+.footer-socialmedia {
+  margin-block-end: var(--post-footer-socialmedia-margin-block-end);
+}
+
+.footer-app {
+  margin-block-end: var(--post-footer-app-margin-block-end);
+}
+
+.footer-businesssectors {
+  margin-block-end: var(--post-footer-businesssectors-margin-block-end);
+}
+
+.footer-meta {
+  margin-block-end: var(--post-footer-meta-margin-block-end);
+  font-size: var(--post-footer-meta-font-size);
+}
+
+.footer-copyright {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.5rem;
+  font-size: var(--post-footer-copyright-font-size);
+}

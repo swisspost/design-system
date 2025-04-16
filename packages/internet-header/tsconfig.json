@@ -4,10 +4,10 @@
     "allowUnreachableCode": false,
     "declaration": true,
     "experimentalDecorators": true,
-    "lib": ["dom", "DOM.Iterable", "es2017"],
+    "lib": ["dom", "DOM.Iterable", "es2022"],
     "moduleResolution": "node",
     "module": "esnext",
-    "target": "es2017",
+    "target": "es2022",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "resolveJsonModule": true,
@@ -17,5 +17,5 @@
     "skipLibCheck": true
   },
   "include": ["src"],
-  "exclude": ["node_modules", "**/tests", "**/*.spec.*"]
+  "exclude": ["node_modules"]
 }

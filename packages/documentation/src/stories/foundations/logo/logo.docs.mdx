@@ -1,0 +1,40 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as logoStories from './logo.stories';
+
+<Meta of={logoStories} />
+
+<div className="docs-title">
+ # Post Logo
+
+  <nav>
+    <link-design of={JSON.stringify(logoStories)}></link-design>
+  </nav>
+</div>
+
+<p className="lead">Display the Post logo as a clickable link or as a simple image.</p>
+
+<Canvas sourceState="shown" of={logoStories.Default} />
+<div className="hide-col-default">
+  <Controls of={logoStories.Default} />
+</div>
+
+## Installation
+
+The `<post-logo>` element is part of the `@swisspost/design-system-components` package.
+For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
+
+## Examples
+
+### Height
+
+By default, the logo will be 100% of the height of its parent.
+You can also set the height on the logo using one of the <a href="/?path=/docs/e728de1f-0d71-4317-8bb8-cbef0bf8d5db--docs">sizing utility classes</a>.
+
+<Canvas of={logoStories.Height} />
+
+### Link
+
+You can use the logo as a link by setting its `url` property.
+Ensure that the descriptive text clearly indicates the destination the user will be redirected to after clicking the logo.
+
+<Canvas of={logoStories.Link} />

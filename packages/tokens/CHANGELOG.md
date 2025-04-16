@@ -1,5 +1,78 @@
 # @swisspost/design-system-tokens
 
+## 9.0.0-next.34
+
+## 9.0.0-next.33
+
+## 9.0.0-next.32
+
+## 9.0.0-next.31
+
+## 9.0.0-next.30
+
+## 9.0.0-next.29
+
+## 9.0.0-next.28
+
+## 9.0.0-next.27
+
+## 9.0.0-next.26
+
+## 9.0.0-next.25
+
+## 9.0.0-next.24
+
+## 9.0.0-next.23
+
+## 9.0.0-next.22
+
+## 9.0.0-next.21
+
+## 9.0.0-next.20
+
+## 9.0.0-next.19
+
+### Minor Changes
+
+- Added a new output that includes utility tokens as Sass maps, enabling direct iteration to generate utility classes. (by [@alizedebray](https://github.com/alizedebray) with [#4613](https://github.com/swisspost/design-system/pull/4613))
+
+## 9.0.0-next.18
+
+## 9.0.0-next.17
+
+## 9.0.0-next.16
+
+## 9.0.0-next.15
+
+## 9.0.0-next.14
+
+### Patch Changes
+
+- Added a transform function to avoid unitless zero values for specific token types (like `dimension`, etc.), which allows us to use these tokens also in css `calc()` functions. Because `<number-token>`s are always interpreted as `<number>`s or `<integer>`s, "unitless 0" `<length>`s aren’t supported in calc().
+  Source: https://drafts.csswg.org/css-values-3/#calc-type-checking (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4534](https://github.com/swisspost/design-system/pull/4534))
+
+## 9.0.0-next.13
+
+## 9.0.0-next.12
+
+## 9.0.0-next.11
+
+## 9.0.0-next.10
+
+## 9.0.0-next.9
+
+## 9.0.0-next.8
+
+## 9.0.0-next.7
+
+## 9.0.0-next.6
+
+### Minor Changes
+
+- Export new SASS maps for Post and Cargo palettes, directly linking to the raw color values for both light and dark color schemes. (by [@alizedebray](https://github.com/alizedebray) with [#3992](https://github.com/swisspost/design-system/pull/3992))
+
+## 9.0.0-next.5
+
 ## 9.0.0-next.4
 
 ## 9.0.0-next.3

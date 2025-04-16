@@ -1,0 +1,42 @@
+import { Meta, Source } from '@storybook/blocks';
+import * as BackToTopStories from './back-to-top.stories.ts';
+import BackToTop from './back-to-top.sample.html?raw';
+
+<Meta of={BackToTopStories} />
+
+<div className="docs-title">
+ # Back To Top
+
+  <nav>
+    <link-design of={JSON.stringify(BackToTopStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  The Back to top component enables the user to scroll back to the top of the page with only a
+  click. This is especially helpful for pages which require a lot of scrolling to reach the end.
+</div>
+
+<Source code={BackToTop} language="html" />
+
+<div className="banner banner-info">
+  The `label` property is essential for accessibility and must provide a clear, descriptive text for
+  the Back to Top button.
+</div>
+
+## Installation
+
+The `<post-back-to-top>` element is part of the `@swisspost/design-system-components` package.
+For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
+
+## Examples
+
+Click the button below to view a full-screen example of the Back To Top button.
+
+<a
+  className="btn btn-primary"
+  target="_blank"
+  href={`?path=%2Fstory%2F1a1b4cab-d0a8-4b01-bd85-b70e18668cb5--default&full=true`} rel="noreferrer"
+>
+  Back To Top example
+</a>

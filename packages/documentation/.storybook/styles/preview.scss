@@ -2,8 +2,9 @@
 @use '@swisspost/design-system-styles/core.scss' as post;
 @use '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css';
 @use './components';
-@use '@swisspost/design-system-styles/functions/tokens' as tokens;
-@use '@swisspost/design-system-styles/tokens/utilities' as utilities;
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/utilities';
+@use '@swisspost/design-system-styles/tokens/elements';
 
 tokens.$default-map: utilities.$post-color;
 
@@ -11,9 +12,9 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
 #storybook-root,
 #storybook-docs {
-  .sbdocs-content .container >,
-  .sbdocs-content .container > post-tabs > post-tab-panel >,
-  .sbdocs-content .container > migration-global-state {
+  .sbdocs-content *:not(.section) > .container >,
+  .sbdocs-content *:not(.section) > .container > post-tabs > post-tab-panel >,
+  .sbdocs-content *:not(.section) > .container > migration-global-state {
     // Target content headings only
     h1 {
       margin-block: 5rem 1rem;
@@ -42,16 +43,29 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     h6 {
       margin-block: 1rem;
     }
+
     .table,
     .table-responsive {
       margin-block: 1.5rem 1rem;
+    }
+
+    .table-fit-content {
+      width: fit-content;
+
+      th,
+      td {
+        padding-inline: 2rem;
+      }
     }
   }
 
   .sbdocs-content .container {
     // Support for autolink-headings
-    :is(h1, h2, h3, h4, h5, h6) {
+    .docs-title :is(h1, h2, h3, h4, h5, h6),
+    post-tab-panel > :is(h1, h2, h3, h4, h5, h6),
+    > :is(h1, h2, h3, h4, h5, h6) {
       position: relative;
+      padding-right: 32px; // needed to add space for the link icon
 
       @media (hover: hover) {
         > a {
@@ -61,10 +75,9 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
       > a {
         position: absolute;
-        top: 52%;
-        transform: translateY(-50%);
+        bottom: 0;
         font-size: 1.5rem;
-        padding: 0.625rem;
+        padding: 0.5rem;
         line-height: 1;
       }
 
@@ -72,21 +85,27 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
         display: inline-block;
       }
     }
+  }
 
-    // Style buttons related to the current page next to the tile
-    .docs-title,
-    .docs-title nav {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: post.$size-mini;
-    }
-    .docs-title {
-      margin-bottom: post.$size-mini;
+  // Style buttons related to the current page next to the tile
+  .docs-title,
+  .docs-title nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: tokens.get('utility-gap-8', utilities.$post-spacing);
+  }
 
-      :first-child {
-        margin-right: auto;
-      }
+  // aligns figma button to the title
+  .docs-title nav {
+    margin-block-end: tokens.get('h1-margin-block-end', elements.$post-heading);
+  }
+
+  .docs-title {
+    margin-bottom: tokens.get('utility-gap-8', utilities.$post-spacing);
+
+    :first-child {
+      margin-right: auto;
     }
   }
 
@@ -100,9 +119,8 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     top: -0.1em;
     margin: 0 0.1em;
     padding: 0.15em 0.4em 0.1em;
-    background-color: tokens.get('utility-surface-accent1');
-    border: 1px solid tokens.get('utility-surface-accent2');
-    color: 1px solid tokens.get('utility-surface-accent4');
+    background-color: rgba(#fff, 0.75);
+    border: 1px solid rgba(#000, 0.3);
     border-radius: 0.2em;
     font-family: $monospace;
     font-size: 0.75em;
@@ -113,8 +131,15 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
       display: block;
       margin-top: 0.25rem;
       padding: 1rem;
-      background-color: var(--post-contrast-color);
-      color: var(--post-contrast-color-inverted);
+      background-color: post.$black;
+      color: post.$white;
+    }
+  }
+
+  [data-color-scheme='dark'] {
+    code {
+      background-color: rgba(#000, 0.75);
+      border-color: rgba(#fff, 0.3);
     }
   }
 
@@ -122,10 +147,15 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
+    padding-top: 0;
     background-color: transparent;
 
     .sbdocs-content {
       max-width: none;
+    }
+
+    .docs-container {
+      padding-top: 4rem;
     }
   }
 
@@ -180,6 +210,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 }
 
 .fake-content {
+  margin-block: 2rem !important;
   position: relative;
   min-height: calc(1.6rem * 8);
   background: repeating-linear-gradient(
@@ -191,7 +222,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
   &::after {
     content: '';
-    background: white;
+    background: var(--post-current-palette-bg);
     width: 33%;
     height: 1.7rem;
     display: block;
@@ -199,4 +230,32 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     bottom: 0;
     right: 0;
   }
+}
+
+.light-section {
+  position: relative;
+  background-color: post.$white;
+
+  &:before,
+  &:after {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: inherit;
+    width: 100vw;
+  }
+
+  &:before {
+    right: 100%;
+  }
+
+  &:after {
+    left: 100%;
+  }
+}
+
+.sbdocs.sbdocs-preview.source-hidden > *:nth-child(2) {
+  display: none !important;
 }

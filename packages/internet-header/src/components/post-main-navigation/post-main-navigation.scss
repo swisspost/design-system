@@ -43,10 +43,6 @@
     font-size: functions.px-to-rem(18px);
   }
 
-  @include mixins.min(xxl) {
-    font-size: functions.px-to-rem(20px);
-  }
-
   @include mixins.max(lg) {
     position: absolute;
     top: var(--calculated-header-height);
@@ -247,7 +243,7 @@
 }
 
 .flyout-nav {
-  @extend %font-curve-small;
+  @extend %fs-9;
 
   display: flex;
   justify-content: space-between;
@@ -281,7 +277,7 @@
   }
 
   h3 {
-    @extend %font-curve-small;
+    @extend %fs-9;
     margin-top: 0;
   }
 }
@@ -344,7 +340,7 @@
 }
 
 .flyout-title {
-  @extend %font-curve-bigger-regular;
+  @extend %fs-7;
 
   margin: 2.5rem 0 1.5rem 0;
 

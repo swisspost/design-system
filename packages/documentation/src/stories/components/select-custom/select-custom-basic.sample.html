@@ -1,0 +1,32 @@
+<div ngbDropdown>
+  <input [ngModel]="selectedOption?.value" name="meansOfTransport" type="hidden" />
+  <button
+    #toggle
+    aria-haspopup="listbox"
+    (keydown)="setFocus($event)"
+    id="customSelectButton"
+    class="form-select text-start no-toggle-arrow"
+    ngbDropdownToggle
+    type="button"
+  >
+    <span [class.visually-hidden]="selectedOption">Default custom-select</span>
+    <span *ngIf="selectedOption" aria-hidden="true">{{ selectedOption.label }}</span>
+  </button>
+  <div aria-labelledby="customSelectButton" class="w-full max-w-full" ngbDropdownMenu role="listbox">
+    <button
+      (click)="toggle.focus()"
+      (focus)="selectedOption = option"
+      *ngFor="let option of options"
+      [attr.aria-selected]="selectedOption?.value === option.value"
+      [class.active]="selectedOption?.value === option.value"
+      class="d-flex align-items-center"
+      ngbDropdownItem
+      role="option"
+      type="button"
+      #option
+    >
+      <em aria-hidden="true" class="pi me-12" [class]="'pi-' + option.icon"></em>
+      <span>{{ option.label }}</span>
+    </button>
+  </div>
+</div>

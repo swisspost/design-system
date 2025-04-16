@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const gulp = require('gulp');
-const sass = require('sass');
+const sass = require('sass-embedded');
 const newer = require('gulp-newer');
 const gulpSass = require('gulp-sass')(sass);
 const sourcemaps = require('gulp-sourcemaps');
@@ -27,7 +27,7 @@ gulp.task('copy', () => {
  * See https://github.com/pnpm/pnpm/issues/8338 for more information and reproduction
  */
 gulp.task('temporarily-copy-token-files', () => {
-  return gulp.src(['../tokens/dist/*.scss']).pipe(gulp.dest('./src/tokens/temp'));
+  return gulp.src(['../tokens/dist/**/*.scss']).pipe(gulp.dest('./src/tokens/temp'));
 });
 
 /**
@@ -49,7 +49,7 @@ gulp.task('autoprefixer', function () {
  */
 gulp.task('map-icons', done => {
   const iconVariables = globSync(
-    'node_modules/@swisspost/design-system-icons/public/post-icons/*.svg',
+    'node_modules/@swisspost/design-system-icons/src/icons/post/*.svg',
   ).reduce((entries, iconPath) => {
     const iconName = path.basename(iconPath, '.svg');
 
@@ -108,6 +108,25 @@ gulp.task('transform-package-json', done => {
 });
 
 /**
+ * Generate a SCSS variable `$post-icon-version` containing the current package version.
+ * This allows the `post-icon` mixin to dynamically resolve the correct icon URL
+ * based on the version defined in package.json.
+ */
+gulp.task('generate-icon-version-scss', done => {
+  const version = require('./package.json').version;
+
+  const content = `$post-icon-version: '${version}';\n`;
+
+  fs.writeFileSync(
+    path.join(__dirname, 'src/utilities/_post-icon-version.scss'),
+    content,
+    'utf8'
+  );
+
+  done();
+});
+
+/**
  * Compile Scss to Css
  *  - Compile
  *  - Autoprefix
@@ -118,8 +137,8 @@ gulp.task('sass', () => {
     .src('./src/**/*.scss')
     .pipe(
       gulpSass({
-        outputStyle: 'compressed',
-        includePaths: options.includePaths,
+        style: 'compressed',
+        loadPaths: options.loadPaths,
         quietDeps: true,
       }),
     )
@@ -136,7 +155,7 @@ gulp.task('sass:dev', () => {
     .pipe(sourcemaps.init())
     .pipe(
       gulpSass({
-        includePaths: options.includePaths,
+        loadPaths: options.loadPaths,
         quietDeps: true,
       }),
     )
@@ -153,12 +172,53 @@ gulp.task(
   gulp.series('temporarily-copy-token-files', () => {
     return gulp.src('./tests/**/*.scss').pipe(
       gulpSass.sync({
-        includePaths: options.includePaths,
+        loadPaths: [...options.loadPaths, './'],
         quietDeps: true,
       }),
     );
   }),
 );
+
+/**
+ * Get all available components names from the components package and add them to the scss file (packages\styles\src\utilities\_not-defined.scss) which sets initial visibility to hidden (for unregistered state).
+ */
+
+gulp.task('generate-not-defined-components-scss', done => {
+  const filePath = path.join(__dirname, '../components/src/index.ts');
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      done(err);
+      return;
+    }
+
+    const kebabCaseNames = Array.from(
+      data.matchAll(/export \{ (\w+) \} from/g),
+      m => '    ' + m[1].replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase(),
+    ).join(',\n');
+
+    const templatePath = path.join(__dirname, 'src/templates/_not-defined.template.scss');
+    fs.readFile(templatePath, 'utf8', (err, data) => {
+      if (err) {
+        console.error('Error reading template file:', err);
+        done(err);
+        return;
+      }
+      const result = data.replace('/* WEB_COMPONENT_NAMES */', kebabCaseNames);
+
+      const outputPath = path.join(__dirname, 'src/utilities/_not-defined.scss');
+      fs.writeFile(outputPath, result, 'utf8', err => {
+        if (err) {
+          console.error('Error writing output file:', err);
+          done(err);
+          return;
+        }
+
+        console.log('Output file generated successfully.');
+        done();
+      });
+    });
+  });
+});
 
 /**
  * Watch task for scss development
@@ -176,7 +236,14 @@ gulp.task(
 exports.default = gulp.task(
   'build',
   gulp.parallel(
-    gulp.series('map-icons', 'copy', 'autoprefixer', 'transform-package-json'),
+    gulp.series(
+      'generate-not-defined-components-scss',
+      'map-icons',
+      'copy',
+      'generate-icon-version-scss',
+      'autoprefixer',
+      'transform-package-json',
+    ),
     gulp.series('temporarily-copy-token-files', 'sass'),
   ),
 );

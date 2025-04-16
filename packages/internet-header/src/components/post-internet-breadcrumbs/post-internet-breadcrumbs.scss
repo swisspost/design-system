@@ -1,11 +1,12 @@
 @use '@swisspost/design-system-styles/placeholders/color' as color-ph;
 @use '@swisspost/design-system-styles/components/button';
-@use '@swisspost/design-system-styles/components/grid';
+@use '@swisspost/design-system-styles/layout';
 @use '@swisspost/design-system-styles/components/spinner';
 @use '@swisspost/design-system-styles/variables/color';
 @use '@swisspost/design-system-styles/functions';
 @use '@swisspost/design-system-styles/mixins/utilities';
-@use '@swisspost/design-system-styles/variables/components/button' as button-var;
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/elements';
 @use '../../utils/utils.scss';
 @use '../../utils/mixins.scss';
 
@@ -22,7 +23,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  min-height: button-var.$btn-height-md; // Avoid visual shift when buttons are hidden.
+  min-height: 3rem; // Avoid visual shift when buttons are hidden.
 
   @include mixins.max(rg) {
     font-size: functions.px-to-rem(14px);
@@ -136,7 +137,7 @@
   height: 1.5em;
   min-height: 0;
   font-size: inherit;
-  color: inherit;
+  color: tokens.get('body-color', elements.$post-body);
 
   span {
     margin: 0;

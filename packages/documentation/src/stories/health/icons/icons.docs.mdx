@@ -2,13 +2,16 @@ import { Meta } from '@storybook/addon-docs';
 import * as IconStories from './icons.stories';
 import './icons.styles.scss';
 
-import { 
-  StatusBlock, 
-  IconsBlock, 
-  WrongViewBoxBlock, 
-  NoKeywordsBlock, 
-  ErroredBlock, 
-  NoSVGBlock 
+import {
+  StatusBlock,
+  SourceFiles,
+  ErroredIcons,
+  NoSVGIcons,
+  WrongViewBoxIcons,
+  DuplicateIcons,
+  WrongAmountOfSourcesIcons,
+  NoKeywords,
+  KeywordsInspector,
 } from './icons.blocks';
 
 <Meta of={IconStories} />
@@ -21,18 +24,39 @@ import {
   Monitor the quality, consistency, and completeness of the design system icons.
 </div>
 
-<div className="report-container"> 
+<section> 
   <StatusBlock />
+</section>
 
-  <hr className="my-16" />
+<section> 
+  <SourceFiles />
+</section>
 
-  <IconsBlock />
+<section> 
+  <KeywordsInspector />
+</section>
 
-  <WrongViewBoxBlock />
+<section> 
+  <ErroredIcons />
+</section>
 
-  <NoKeywordsBlock />
+<section> 
+  <NoSVGIcons />
+</section>
 
-  <ErroredBlock />
+<section> 
+  <WrongViewBoxIcons />
+</section>
 
-  <NoSVGBlock />
-</div>
+<section> 
+  <DuplicateIcons />
+</section>
+
+<section> 
+  <WrongAmountOfSourcesIcons />
+</section>
+
+<section> 
+  <NoKeywords />
+</section>
+

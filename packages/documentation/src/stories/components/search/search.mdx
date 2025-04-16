@@ -1,0 +1,25 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as SearchInputStories from './search.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={SearchInputStories} />
+
+<div className="docs-title">
+  # Search Input
+
+  <nav>
+    <link-design of={JSON.stringify(SearchInputStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  Customize the native `<input type="search">` element with CSS that changes the element’s initial appearance.
+</div>
+
+<Canvas sourceState="shown" of={SearchInputStories.Default} />
+
+<div className="hide-col-default">
+  <Controls of={SearchInputStories.Default} />
+</div>
+
+<StylesPackageImport components={['form-search-input', 'form-input']} required={{ 'validation': true }} />

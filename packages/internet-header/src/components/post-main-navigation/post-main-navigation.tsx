@@ -265,9 +265,9 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
                 <LevelOneAction
                   level={levelOne}
                   isOpen={this.isActiveFlyout(levelOne.id)}
-                  onTouchEnd={e => this.handleTouchEnd(e, levelOne)}
-                  onKeyDown={e => this.handleKeyPress(e, levelOne)}
-                  onClick={e => this.handleClick(e, levelOne)}
+                  onTouchEnd={(e: TouchEvent) => this.handleTouchEnd(e, levelOne)}
+                  onKeyDown={(e: KeyboardEvent) => this.handleKeyPress(e, levelOne)}
+                  onClick={(e: MouseEvent) => this.handleClick(e, levelOne)}
                 />
                 {!levelOne.noFlyout ? renderLevelOneFlyout.bind(this)(levelOne) : null}
               </li>

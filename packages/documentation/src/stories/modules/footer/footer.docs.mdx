@@ -1,0 +1,15 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as FooterStories from './footer.stories';
+
+<Meta of={FooterStories}/>
+
+# Composible Footer
+
+<p className="lead">The composible footer component for your Swiss Post page.</p>
+
+Internally the `<post-footer>` component has a fix structure, but it offers a number of slots, which can be used to add your very own content, so it ultimatly fulfills everyones requirements.
+
+
+<Canvas of={FooterStories.Default} />
+
+<Controls of={FooterStories.Default} />

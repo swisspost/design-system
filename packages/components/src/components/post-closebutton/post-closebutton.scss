@@ -1,0 +1,6 @@
+@use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/components/icon-close-button';
+
+.visually-hidden {
+  @include utilities.visuallyhidden();
+}

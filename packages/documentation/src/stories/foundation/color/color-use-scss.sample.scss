@@ -1,9 +1,0 @@
-@use 'sass:map';
-@use '@swisspost/design-system-styles/core' as post;
-
-.my-element {
-  // direct usage
-  color: post.$gray-80;
-  // map usage
-  color: map.get(post.$post-grays, 'gray-80');
-}

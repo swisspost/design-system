@@ -1,0 +1,7 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+.my-component {
+  ul {
+    @include post.list-number();
+  }
+}

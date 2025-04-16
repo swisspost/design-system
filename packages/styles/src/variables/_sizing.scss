@@ -1,0 +1,17 @@
+@use 'sass:map';
+
+// Sizing
+
+// This variable affects the `.h-*` and `.w-*` classes.
+$post-percentage-sizes: () !default;
+$post-percentage-sizes: map.merge(
+  (
+    'quarter': 25%,
+    'third': 33%,
+    'half': 50%,
+    'two-thirds': 66%,
+    'three-quarters': 75%,
+    'full': 100%,
+  ),
+  $post-percentage-sizes
+);

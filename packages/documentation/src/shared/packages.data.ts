@@ -1,10 +1,11 @@
 import { DEPENDENCIES, getVersion } from '@/utils/version';
-import metaStyles from '@/stories/getting-started/packages/styles/styles.stories';
-import metaComponents from '@/stories/getting-started/packages/components/components.stories';
-import metaComponentsAngular from '@/stories/getting-started/packages/components-angular/components-angular.stories';
-import metaInternetHeader from '@/stories/getting-started/packages/internet-header/internet-header.stories';
-import metaIntranetHeader from '@/stories/getting-started/packages/intranet-header/intranet-header.stories';
-import metaIcons from '@/stories/getting-started/packages/icons/package-icons.stories';
+
+import metaStyles from '@/stories/packages/styles/styles.stories';
+import metaComponents from '@/stories/packages/components/components.stories';
+import metaComponentsAngular from '@/stories/packages/components-angular/components-angular.stories';
+import metaInternetHeader from '@/stories/packages/internet-header/internet-header.stories';
+import metaIcons from '@/stories/packages/icons/package-icons.stories';
+import metaTokens from '@/stories/packages/tokens/tokens.stories';
 import { PackageType } from '@/../types';
 
 interface IPackage {
@@ -106,26 +107,6 @@ export const packages: IPackage[] = [
     version: `v${getVersion(DEPENDENCIES['@swisspost/internet-header'])}`,
   },
   {
-    name: 'Intranet-Header',
-    docsStoryId: metaIntranetHeader.id,
-    type: PackageType.Angular,
-    link: {
-      github: {
-        href: 'https://github.com/swisspost/design-system/tree/main/packages/intranet-header-workspace/projects/intranet-header',
-        ariaLabel: 'Source of Intranet-Header package',
-      },
-      docs: {
-        href: generateDocsRelativeLink(metaIntranetHeader.id),
-        ariaLabel: 'Getting started with Intranet-Header package',
-      },
-    },
-    img: {
-      src: '/assets/images/packages/intranet-header.svg',
-      alt: '',
-    },
-    version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-intranet-header'])}`,
-  },
-  {
     name: 'Icons',
     docsStoryId: metaIcons.id,
     type: PackageType.Assets,
@@ -144,6 +125,26 @@ export const packages: IPackage[] = [
       alt: '',
     },
     version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-icons'])}`,
+  },
+  {
+    name: 'Tokens',
+    docsStoryId: metaTokens.id,
+    type: PackageType.Assets,
+    link: {
+      github: {
+        href: 'https://github.com/swisspost/design-system/tree/main/packages/tokens',
+        ariaLabel: 'Source of Tokens package',
+      },
+      docs: {
+        href: generateDocsRelativeLink(metaTokens.id),
+        ariaLabel: 'Getting started with Tokens package',
+      },
+    },
+    img: {
+      src: '/assets/images/packages/tokens.svg',
+      alt: '',
+    },
+    version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-tokens'])}`,
   },
 ];
 

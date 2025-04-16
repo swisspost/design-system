@@ -1,31 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { IconButton, WithTooltip } from '@storybook/components';
 
-const THEMES = ['Post'] as const;
-const CHANNELS = ['External', 'Internal'] as const;
+const THEMES = ['Post', 'Cargo'] as const;
+const APPEARANCE = ['Default', 'Compact'] as const;
 const SCHEMES = ['Light', 'Dark'] as const;
 
 /*
  * Stylesheets
  */
-const getStylesheetUrl = (theme: string, channel: string) => {
-  return `/styles/${theme.toLowerCase()}-${channel.toLowerCase()}.css`;
+const getStylesheetUrl = (theme: string, appearance: string) => {
+  return `/styles/${theme.toLowerCase()}-${appearance.toLowerCase()}.css`;
 };
 const possibleStylesheets = THEMES.flatMap(theme => {
-  return CHANNELS.map(channel => getStylesheetUrl(theme, channel));
+  return APPEARANCE.map(appearance => getStylesheetUrl(theme, appearance));
 });
-
-/*
- * Backgrounds
- */
-const backgroundClasses: { [key in (typeof SCHEMES)[number]]: string } = {
-  Light: 'bg-white',
-  Dark: 'bg-dark',
-};
-const getBackgroundClass = (scheme: string) => {
-  return scheme in backgroundClasses ? backgroundClasses[scheme] : '';
-};
-const possibleBackgrounds = SCHEMES.map(scheme => getBackgroundClass(scheme));
 
 /*
  * Local storage access
@@ -55,11 +43,14 @@ function StylesSwitcher() {
   let observer: MutationObserver;
 
   const [currentTheme, setCurrentTheme] = useState<string>(stored('theme') || THEMES[0]);
-  const [currentChannel, setCurrentChannel] = useState<string>(stored('channel') || CHANNELS[0]);
+  const [currentAppearance, setCurrentAppearance] = useState<string>(
+    stored('appearance') || APPEARANCE[0],
+  );
   const [currentScheme, setCurrentScheme] = useState<string>(stored('scheme') || SCHEMES[0]);
 
   const [preview, setPreview] = useState<Document>();
   const [stories, setStories] = useState<NodeListOf<Element>>();
+  const [stylesCodeBlocks, setStylesCodeBlocks] = useState<NodeListOf<Element>>();
 
   /**
    * Retrieves the preview document after the first rendering
@@ -83,6 +74,7 @@ function StylesSwitcher() {
     observer = new MutationObserver(
       debounce(() => {
         setStories(preview.querySelectorAll('.sbdocs-preview, .sb-main-padded'));
+        setStylesCodeBlocks(preview.querySelectorAll('.docblock-source'));
       }, 200),
     );
 
@@ -90,7 +82,7 @@ function StylesSwitcher() {
   }, [preview]);
 
   /**
-   * Sets the expected stylesheet in the preview head when the theme or channel changes
+   * Sets the expected stylesheet in the preview head when the theme or appearance changes
    */
   useEffect(() => {
     if (!preview) return;
@@ -102,9 +94,49 @@ function StylesSwitcher() {
 
     preview.head.insertAdjacentHTML(
       'beforeend',
-      `<link rel="stylesheet" href="${getStylesheetUrl(currentTheme, currentChannel)}" />`,
+      `<link rel="stylesheet" href="${getStylesheetUrl(currentTheme, currentAppearance)}" />`,
     );
-  }, [preview, currentTheme, currentChannel]);
+  }, [preview, currentTheme, currentAppearance]);
+
+  /**
+   * Sets the design system styles import SCSS file to the correct theme and appearance file
+   */
+  useEffect(() => {
+    if (!stylesCodeBlocks) return;
+
+    const t = currentTheme.toLowerCase();
+    const c = currentAppearance.toLowerCase();
+    const packageName = "'@swisspost/design-system-styles/";
+
+    stylesCodeBlocks.forEach(stylesCodeBlock => {
+      const sourceArray = Array.from(stylesCodeBlock.querySelectorAll('.token.string'));
+      sourceArray.forEach((s, i) => {
+        let source = s.innerHTML;
+        // Remove the packageName from the source to make sure we don't override it
+        source = source.replace(packageName, '');
+
+        // Check if one of the themes or appearances are in the scss path
+        const theme = THEMES.find(tItem => source.indexOf(tItem.toLowerCase()) > -1);
+        const appearance = APPEARANCE.find(cItem => source.indexOf(cItem.toLowerCase()) > -1);
+
+        const updateTheme = theme && theme.toLowerCase() !== t;
+        const updateAppearance = appearance && appearance.toLowerCase() !== c;
+
+        // Only change the source if theme or appearance needs to be changed
+        if (source && (updateTheme || updateAppearance)) {
+          if (updateTheme) {
+            source = source.replace((theme as string).toLowerCase(), t);
+          }
+
+          if (updateAppearance) {
+            source = source.replace((appearance as string).toLowerCase(), c);
+          }
+
+          sourceArray[i].innerHTML = packageName + source;
+        }
+      });
+    });
+  }, [stylesCodeBlocks, currentTheme, currentAppearance]);
 
   /**
    * Sets the expected 'data-color-scheme' attribute on all story containers when the scheme changes
@@ -113,9 +145,8 @@ function StylesSwitcher() {
     if (!stories) return;
 
     stories.forEach(story => {
-      story.classList.remove(...possibleBackgrounds);
-      story.classList.add(getBackgroundClass(currentScheme));
       story.setAttribute('data-color-scheme', currentScheme.toLowerCase());
+      if (!story.classList.contains('palette-default')) story.classList.add('palette-default');
     });
   }, [stories, currentScheme]);
 
@@ -128,11 +159,11 @@ function StylesSwitcher() {
   };
 
   /**
-   * Applies selected channel and registers it to the local storage
+   * Applies selected appearance and registers it to the local storage
    */
-  const applyChannel = (channel: string) => {
-    store('channel', channel);
-    setCurrentChannel(channel);
+  const applyAppearance = (appearance: string) => {
+    store('appearance', appearance);
+    setCurrentAppearance(appearance);
   };
 
   /**
@@ -169,27 +200,29 @@ function StylesSwitcher() {
         </IconButton>
       </WithTooltip>
 
-      {/* Channel dropdown */}
+      {/* Appearance dropdown */}
       <WithTooltip
         placement="bottom-end"
         trigger="click"
         closeOnOutsideClick
         tooltip={
           <div className="addon-dropdown">
-            {CHANNELS.map(channel => (
+            {APPEARANCE.map(appearance => (
               <IconButton
-                className={'addon-dropdown__item' + (channel === currentChannel ? ' active' : '')}
-                key={channel}
-                onClick={() => applyChannel(channel)}
+                className={
+                  'addon-dropdown__item' + (appearance === currentAppearance ? ' active' : '')
+                }
+                key={appearance}
+                onClick={() => applyAppearance(appearance)}
               >
-                {channel}
+                {appearance}
               </IconButton>
             ))}
           </div>
         }
       >
         <IconButton className="addon-label" size="medium">
-          Chanel: {currentChannel}
+          Appearance: {currentAppearance}
         </IconButton>
       </WithTooltip>
 

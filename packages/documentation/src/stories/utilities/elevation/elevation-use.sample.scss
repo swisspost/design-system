@@ -1,0 +1,5 @@
+@use '../../../../node_modules/@swisspost/design-system-styles/core' as post;
+
+.elevated-element {
+  box-shadow: post.$elevation-500;
+}

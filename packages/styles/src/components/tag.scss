@@ -1,5 +1,4 @@
 @use 'sass:map';
-@forward './../variables/options';
 @use './../variables/color';
 @use './../variables/components/tag';
 @use './../functions/contrast' as contrast-fn;
@@ -63,7 +62,7 @@
   }
 
   &.tag-white {
-    border-color: var(--post-contrast-color);
+    border-color: color.$black;
   }
 
   // Can be removed completely as soon as Firefox ESR v128 is released and rolled out

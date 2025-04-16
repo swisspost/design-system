@@ -23,7 +23,7 @@ export const getUserLang = (
    * Build array of possible language definitions in order of importance.
    * At the end is a filter function that will weed out any undefined or null entries.
    */
-  let languagesSet: Array<string> = [
+  const languagesSet: Array<string> = [
     // Check if implementor overrides lang config
     implementorPreferredLanguage,
 

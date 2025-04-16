@@ -24,7 +24,9 @@ describe('stickyness', () => {
     cy.get('.header-story-wrapper').scrollTo('center', { duration: 10 });
     cy.get('.header-story-wrapper').then($el => {
       const el = $el.get(0); //native DOM element
-      el.scrollTo(0, el.scrollTop - 20);
+      if (el) {
+        el.scrollTo(0, el.scrollTop - 20);
+      }
     });
     cy.get('post-main-navigation').should('be.visible');
     cy.get('post-main-navigation').should('be.inViewport');

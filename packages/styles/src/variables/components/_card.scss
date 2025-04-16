@@ -1,21 +1,25 @@
 @use './../color';
 @use './../commons';
 @use './../grid';
-@use './../type';
 @use './../spacing';
 @use './../../functions/sizing';
+@use '../../functions/tokens';
+@use '../../tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 // Cards
-$card-font-size: type.$font-size-small !default; // Design System only
-$card-font-size-large: type.$font-size-large !default; // Design System only
+$card-font-size: 1rem !default; // Design System only
+$card-font-size-large: 1.5rem !default; // Design System only
 
 $card-shadow: commons.$box-shadow !default;
 $card-margin-top: sizing.calculate-single-box-shadow-size(
   commons.$box-shadow
 ) !default; // ensures the shadow is visible
 
-$card-spacer-y: spacing.$size-small-large !default; // Design System 20px
-$card-spacer-x: spacing.$size-regular !default; // Design System 16px
+$card-spacer-y: 20px !default; // px value to avoid bootstrap build errors
+$card-spacer-x: tokens.get('utility-gap-16') !default;
+
 $card-border-width: commons.$border-width !default;
 $card-border-radius: commons.$border-width * 2 !default; // Design System
 $card-border-color: color.$gray-20 !default; // Design System
@@ -27,5 +31,3 @@ $card-bg: color.$white !default;
 $card-color: color.$black !default;
 
 $card-img-overlay-padding: $card-spacer-x !default;
-
-$card-group-margin: (grid.$grid-gutter-width * 0.5) !default;

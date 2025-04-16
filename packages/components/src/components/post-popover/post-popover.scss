@@ -1,14 +1,14 @@
 @use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
 @use '@swisspost/design-system-styles/components/close';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/elements';
 
 * {
   box-sizing: border-box;
 }
 
 :host {
-  --post-contrast-color: #{post.$white};
-  --post-bg-rgb: #{post.rgb-values(post.$gray-80)};
-
   display: block;
 }
 
@@ -22,12 +22,7 @@
   padding: 0.5em;
 
   min-width: 160px;
-  max-width: 280px;
-
-  // Max available width on mobile, popovercontainer will handle offsets
-  @include post.media-breakpoint-down(rg) {
-    max-width: 100%;
-  }
+  max-width: min(var(--post-popover-max-width, 280px), 100vw);
 }
 
 .popover-content {
@@ -36,5 +31,11 @@
 }
 
 .btn-close {
-  color: inherit;
+  color: tokens.get('body-color', elements.$post-body);
+
+  &:hover {
+    @include utilities-mx.high-contrast-mode() {
+      color: HighlightText !important;
+    }
+  }
 }

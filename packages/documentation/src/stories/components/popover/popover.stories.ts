@@ -25,17 +25,18 @@ const meta: MetaComponent = {
     id: 'popover-one',
     innerHtml:
       'A longer message that needs more time to read. <a href="#">Links</a> are also possible.',
-    backgroundColor: 'primary',
+    palette: 'palette-accent',
     closeButtonCaption: 'Close',
     placement: 'top',
     arrow: true,
     title: true,
+    maxWidth: '',
   },
   argTypes: {
     id: {
       name: 'Id',
       description:
-        'The id is used to connect a trigger element with the popover. <div className="mt-8 alert alert-info alert-sm">`<button data-popover-target="...">` is the only valid trigger element for `post-popover`.</div>',
+        'The id is used to connect a trigger element with the popover. <div className="mt-8 banner banner-info banner-sm">`<button data-popover-target="...">` is the only valid trigger element for `post-popover`.</div>',
       table: {
         category: 'General',
       },
@@ -46,17 +47,22 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
-    backgroundColor: {
-      name: 'Background color',
-      description: 'Define a background color, either `bg-primary` or `bg-yellow`.',
-      control: {
-        type: 'radio',
-        labels: {
-          yellow: 'Yellow',
-          primary: 'Primary',
-        },
+    maxWidth: {
+      name: 'Max width of the popover',
+      description:
+        'Value can either be in `vw`, `px` or `%`. If no max-width is defined, the popover will extend to the width of its content.',
+      table: {
+        category: 'General',
+        defaultValue: { summary: '280px' }
       },
-      options: ['primary', 'yellow'],
+    },
+    palette: {
+      name: 'Palette',
+      description: 'Define the popover color scheme.',
+      control: {
+        type: 'select',
+      },
+      options: ['palette-accent', 'palette-brand'],
       table: {
         category: 'General',
         type: {
@@ -95,10 +101,11 @@ function render(args: Args) {
       </button>
     </div>
     <post-popover
-      class="bg-${args.backgroundColor}"
+      class="${args.palette}"
       id="${args.id}"
       placement="${args.placement}"
       ?arrow="${args.arrow}"
+      style="${args.maxWidth ? '--post-popover-max-width: ' + args.maxWidth : ''}"
     >
       ${args.title ? html` <h2 class="h6">Optional title</h2> ` : null}
       <p class="mb-0">${unsafeHTML(args.innerHtml)}</p>

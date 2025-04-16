@@ -4,7 +4,7 @@ import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '9a512414-84c5-473c-a7c8-a434eda9578d',
-  title: 'Components/Modal (deprecated)',
+  title: 'Components/Modal',
   tags: ['package:Angular'],
   parameters: {
     badges: [],

@@ -1,0 +1,28 @@
+@use 'sass:list';
+@use 'sass:map';
+@use '@swisspost/design-system-styles/core' as post;
+
+$breakpointNames: (
+  xs: Extra small,
+  sm: Small,
+  rg: Regular,
+  md: Medium,
+  lg: Large,
+  xl: Extra large,
+);
+
+:export {
+  breakpoint-count: list.length(post.$grid-breakpoints);
+
+  @each $breakpoint, $value in post.$grid-breakpoints {
+    $i: list.index(post.$grid-breakpoints, $breakpoint $value);
+
+    breakpoint_#{$breakpoint}_name: map.get($breakpointNames, $breakpoint) or $breakpoint;
+    breakpoint_#{$breakpoint}_dimensions: if(
+      $i == 1,
+      #{'<' + map.get(post.$grid-breakpoints, list.nth(map.keys(post.$grid-breakpoints), $i + 1))},
+      #{'≥' + $value}
+    );
+    breakpoint_#{$breakpoint}_infix: if($i == 1, none, $breakpoint);
+  }
+}

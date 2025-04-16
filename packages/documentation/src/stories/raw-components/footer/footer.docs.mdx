@@ -1,0 +1,35 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as FooterStories from './footer.stories';
+
+<Meta of={FooterStories} />
+
+<div className="docs-title">
+  # Footer
+
+  <nav>
+    <link-design of={JSON.stringify(FooterStories)}></link-design>
+  </nav>
+</div>
+
+<div className="lead">
+  Provides key app-wide information such as contact details and legal links.
+</div>
+
+<div className="banner banner-info mt-24 mb-36">
+  <p className="banner-heading">Currently, the breadcrumbs may only be used in addition to the internet-header.</p>
+  <p>For more information, read the <a href="/?path=/docs/cfa21cbc-5f8d-4a42-8165-7f6ed20bf133--docs">documentation about the internet header package</a>.</p>
+</div>
+
+The footer comes with its own container and can be placed at the end of your content.
+
+<Canvas sourceState="shown" of={FooterStories.Default} />
+
+<Controls of={FooterStories.Default} />
+
+## Examples
+
+### Footer with custom config
+
+Use the `custom-config` property when you need to add your own footer links.
+
+<Canvas sourceState='shown' of={FooterStories.CustomConfig} />

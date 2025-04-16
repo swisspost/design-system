@@ -1,0 +1,51 @@
+import { Meta, Source } from '@storybook/blocks';
+import * as LiveRegionStories from './live-regions.stories';
+import liveRegionAtomicSample from './live-region-atomic.sample.html?raw';
+import liveRegionGoodAngularSample from './live-region-good-angular.sample.html?raw';
+import liveRegionBadAngularSample from './live-region-bad-angular.sample.html?raw';
+
+<Meta of={LiveRegionStories} />
+
+
+# Live Regions
+
+A live region allows you to notify the user about a dynamic change without requiring the page to reload e.g. alert, loading status, chat logs, update of a product cart, feeds, etc.
+
+They are defined either by using the `aria-live` attribute or some specific `role` attributes such as `role=status`, `role=alert`, `role=log`, etc.
+
+## Implicit aria-live attribute with role attribute
+
+`role=status`, `role=log` and `role=alert` have an implicit default `aria-live` attribute, however for a maximum compatibility, it is recommended to add it as well (except for `role=alert`). Source: [Roles with implicit live region attribute](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions#roles_with_implicit_live_region_attributes)
+
+## Choose the appropriate value for the aria-live attribute
+
+`aria-live` attribute can be either:
+* `polite`: message will be announced after the screen reader is idle.
+* `assertive`: message will interrupt any announcement immediately. It should be used sparingly.
+
+## Announce the whole Live region on change
+
+By default, screen readers will only announce the part that changed. However, it's often better to repeat the context of the change.
+To do so, we can add `aria-atomic=true` attribute on the live region. This attribute force screen readers to read the whole text.
+
+For example on a shopping website, you want to announce to the user that a product was added to the shopping basket. If you announce only the product name, it's not enough to be comprehensive.
+
+<Source code={liveRegionAtomicSample} language="html" />
+
+### Add or remove dynamically a live region
+
+As a best practice, live region should be present on the page load and only the content inside it should change.
+
+### Example with a spinner on Angular
+
+When adding, for example, a spinner above a section, the live region container should be rendered initially while you can use `ng-container` to show and hide the spinner when you need it.
+
+#### Good example
+
+<Source code={liveRegionGoodAngularSample} language="html" />
+
+#### Bad example
+
+You shouldn't add the whole region dynamically as the accessibility bindings might not be [updated with some screen readers](https://www.scottohara.me/blog/2022/02/05/are-we-live.html#non-normative-rule-for-common-live-region-use-case).
+
+<Source code={liveRegionBadAngularSample} language="html" />

@@ -1,5 +1,9 @@
 @use 'sass:map';
 @use './spacing';
+@use '../functions/tokens';
+@use '../tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 // Material Design - Motion Guidelines implementation
 // https://material.io/design/motion/
@@ -42,12 +46,12 @@ $transition-easing-bump-in: linear(
 );
 
 // Distances
-$transition-distance-xsmall: map.get(spacing.$post-sizes, 'micro') !default;
-$transition-distance-small: map.get(spacing.$post-sizes, 'small-regular') !default;
-$transition-distance-medium: map.get(spacing.$post-sizes, 'regular') !default;
-$transition-distance-medium-md: map.get(spacing.$post-sizes, 'big') !default;
-$transition-distance-large: map.get(spacing.$post-sizes, 'huge') !default;
-$transition-distance-large-md: map.get(spacing.$post-sizes, 'giant') !default;
+$transition-distance-xsmall: tokens.get('utility-gap-4') !default;
+$transition-distance-small: tokens.get('utility-gap-12') !default;
+$transition-distance-medium: tokens.get('utility-gap-16') !default;
+$transition-distance-medium-md: tokens.get('utility-gap-32') !default;
+$transition-distance-large: tokens.get('utility-gap-56') !default;
+$transition-distance-large-md: tokens.get('utility-gap-80') !default;
 
 $transition-base-timing: $transition-time-default $transition-easing-default !default;
 $transition-base: all $transition-base-timing !default;
