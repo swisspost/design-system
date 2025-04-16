@@ -104,6 +104,13 @@ jobs:
             const { writeChangesets } = require('.github/workflows/scripts/icons.mjs')
             return writeChangesets(process.env)
 
+      - name: Commit Changeset
+        if: steps.changed-files.outputs.any_modified != 'false'
+        run: |
+          git add .
+          git commit -am "chore(icons): add changeset"
+          git push -u origin ${{ steps.current-branch.outputs.branch }}
+
       - name: Write PR Body
         id: pr-body
         if: steps.changed-files.outputs.any_modified != 'false'
@@ -115,9 +122,9 @@ jobs:
             const { writePrBody } = require('.github/workflows/scripts/icons.mjs')
             return writePrBody(process.env)
 
-      - name: Commit Changeset
+      - name: Create PR
         if: steps.changed-files.outputs.any_modified != 'false'
         run: |
-          git add .
-          git commit -am "chore(icons): add changeset"
-          git push -u origin ${{ steps.current-branch.outputs.branch }}
+          gh pr create --title "chore(icons): :point_up: update icons" --body-file ${{ steps.pr-body.outputs.file }} --base main
+        env:
+          GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
