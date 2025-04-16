@@ -4,7 +4,7 @@
   "description": "Wrapper arround @swisspost/design-system-components for angular",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
-  "private": false,
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git"
@@ -56,5 +56,12 @@
     "rimraf": "6.0.1",
     "typescript": "5.8.2",
     "typescript-eslint": "8.16.0"
-  }
+  },
+  "keywords": [
+    "angular",
+    "design-system",
+    "components",
+    "ui",
+    "frontend"
+  ]
 }

@@ -89,11 +89,5 @@
     "design-system",
     "ui",
     "frontend"
-  ],
-  "sass": {
-    "includePaths": [
-      "node_modules"
-    ],
-    "outputDir": "./dist"
-  }
+  ]
 }

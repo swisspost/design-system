@@ -4,7 +4,7 @@
   "description": "Swiss Post Design System Documentation.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
-  "private": false,
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git"
@@ -85,5 +85,13 @@
     "typescript-eslint": "8.20.0",
     "vite": "6.2.6"
   },
-  "keywords": ["storybook", "design-system", "documentation", "web-components", "stencil", "ui", "frontend"]
+  "keywords": [
+    "storybook",
+    "design-system",
+    "documentation",
+    "web-components",
+    "stencil",
+    "ui",
+    "frontend"
+  ]
 }
