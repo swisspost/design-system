@@ -117,7 +117,7 @@ function processUiIconFiles(parsedFilePaths) {
  * @returns {string} Formatted icon list.
  */
 function formatPostIcons(iconFiles) {
-  const iconNames = iconFiles.map(({ name }) => name);
+  const iconNames = iconFiles.map(({ name }) => `\`${name}\``);
   return formatList(iconNames, ', ', ', and ');
 }
 
@@ -230,13 +230,11 @@ export function writePrBody({ ICON_CHANGES, PR_BODY_FILE }) {
   Object.values(iconChanges).forEach(changes => {
     let changeDetails = '';
 
-    const {ui, post} = changes.sections;
-    if (ui.icons) {
-      changeDetails += `\n\n${ui.title}:\n\n${ui.icons}`;
-    }
-    if (post.icons) {
-      changeDetails += `\n\n${post.title}:\n\n${post.icons}`;
-    }
+    Object.values(changes.sections).forEach(section => {
+      if (section.icons) {
+        changeDetails += `\n\n${section.title}:\n${section.icons}`;
+      }
+    });
 
     if (changeDetails) {
       content += `\n\n## ${changes.title}${changeDetails}`;
