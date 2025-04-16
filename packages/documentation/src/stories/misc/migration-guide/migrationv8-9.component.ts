@@ -610,6 +610,12 @@ export class MigrationV89Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    The ng-bootstrap <code>custom select</code> has been removed
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                </li>
+                <li class="mb-16">
+                  <p>
                     The ng-bootstrap <code>carousel</code> component has been removed
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>

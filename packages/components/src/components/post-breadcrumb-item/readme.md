@@ -23,7 +23,6 @@
 
 ### Used by
 
- - [post-breadcrumb](../post-breadcrumb)
  - [post-breadcrumbs](../post-breadcrumbs)
 
 ### Depends on
@@ -34,7 +33,6 @@
 ```mermaid
 graph TD;
   post-breadcrumb-item --> post-icon
-  post-breadcrumb --> post-breadcrumb-item
   post-breadcrumbs --> post-breadcrumb-item
   style post-breadcrumb-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
