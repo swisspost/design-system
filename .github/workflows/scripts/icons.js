@@ -3,7 +3,6 @@ const path = require('path');
 
 // Helper function to parse icon details from a file path
 function parseIconDetails(filePath) {
-  console.log(filePath);
   const chunks = path.parse(filePath).name.split('_');
   return {
     icon: chunks[0],
@@ -14,17 +13,19 @@ function parseIconDetails(filePath) {
 
 // Helper function to process file sets into a Map of icon details
 function processFiles(files) {
-  const strings = files.flatMap(file => file.split(' ')).filter(str => str !== '');
-  console.log(files, strings);
-  return strings.map(parseIconDetails).reduce((icons, filePath) => {
-    const { icon, size, variant } = parseIconDetails(filePath);
+  return files
+    .flatMap(file => file.split(' '))
+    .reduce((icons, filePath) => {
+      if (!filePath) return icons;
 
-    const details = icons.get(icon) || { sizes: new Set(), variants: new Set() };
-    details.sizes.add(size);
-    details.variants.add(variant);
+      const { icon, size, variant } = parseIconDetails(filePath);
 
-    return icons.set(icon, details);
-  }, new Map());
+      const details = icons.get(icon) || { sizes: new Set(), variants: new Set() };
+      details.sizes.add(size);
+      details.variants.add(variant);
+
+      return icons.set(icon, details);
+    }, new Map());
 }
 
 // Helper function to format the icon details into a readable string
