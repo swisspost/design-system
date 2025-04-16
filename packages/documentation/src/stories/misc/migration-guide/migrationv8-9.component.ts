@@ -620,39 +620,6 @@ export class MigrationV89Component extends LitElement {
                     its classes and scss variables
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
-                  <ul>
-                    <li>
-                      <code>.modal</code>, <code>.modal-dialog</code>, <code>.modal-content</code>,
-                      <code>.modal-text</code>, <code>.modal-header</code>,
-                      <code>.modal-title</code>, <code>.modal-body</code>,
-                      <code>.modal-footer</code>
-                    </li>
-                    <li>
-                      <code>$modal-inner-padding</code>, <code>$modal-body-padding-y</code>,
-                      <code>$modal-body-padding-x</code>, <code>$modal-body-padding</code>,
-                      <code>$modal-footer-margin-between</code>, <code>$modal-dialog-margin</code>,
-                      <code>$modal-dialog-margin-y-sm-up</code>,
-                      <code>$modal-title-line-height</code>, <code>$modal-content-color</code>,
-                      <code>$modal-content-bg</code>, <code>$modal-content-border-color</code>,
-                      <code>$modal-content-border-width</code>,
-                      <code>$modal-content-border-radius</code>,
-                      <code>$modal-content-inner-border-radius</code>,
-                      <code>$modal-content-box-shadow-xs</code>,
-                      <code>$modal-content-box-shadow-sm-up</code>, <code>$modal-backdrop-bg</code>,
-                      <code>$modal-backdrop-opacity</code>, <code>$modal-header-border-color</code>,
-                      <code>$modal-footer-border-color</code>,
-                      <code>$modal-header-border-width</code>,
-                      <code>$modal-footer-border-width</code>, <code>$modal-header-padding-y</code>,
-                      <code>$modal-header-padding-x</code>, <code>$modal-header-padding</code>,
-                      <code>$modal-dialog-width-xl</code>, <code>$modal-dialog-width-lg</code>,
-                      <code>$modal-dialog-width-md</code>, <code>$modal-dialog-width-sm</code>,
-                      <code>$modal-xl</code>, <code>$modal-lg</code>, <code>$modal-md</code>,
-                      <code>$modal-sm</code>, <code>$modal-fade-transform</code>,
-                      <code>$modal-show-transform</code>, <code>$modal-transition</code>,
-                      <code>$modal-scale-transform</code>, <code>$modal-btn-close-margin-y</code>,
-                      <code>$modal-btn-close-margin-x</code>, <code>$modal-btn-close-margin</code>,
-                    </li>
-                  </ul>
                 </li>
                 <li class="mb-16">
                   <p>
