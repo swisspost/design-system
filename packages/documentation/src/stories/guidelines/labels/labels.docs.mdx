@@ -13,25 +13,25 @@ Labels are crucial in ensuring accessibility in web forms, as they provide neces
 
 ## Visible Labels
 
-Use the `&lt;label&gt;` element along with the `for` attribute to create a link between a `&lt;label&gt;` and an `&lt;input&gt;` field. The value of the `for` attribute must match the `id` of the corresponding `&lt;input&gt;` element, allowing screen readers to associate them correctly.
+Use the `<label>` element along with the `for` attribute to create a link between a `<label>` and an `<input>` field. The value of the `for` attribute must match the `id` of the corresponding `<input>` element, allowing screen readers to associate them correctly.
 
 <Source code={visibleLabels} language="html" />
 
 ## Invisible Labels with `aria-label`
 
-Make a hidden `&lt;label&gt;` element available for assistive technologies using the `aria-label` for labeling form elements. The `aria-label` attribute can be used to assign an accessible label to any form element that might not have a visible label.
+Make a hidden `<label>` element available for assistive technologies using the `aria-label` for labeling form elements. The `aria-label` attribute can be used to assign an accessible label to any form element that might not have a visible label.
 
 <Source code={invisibleLabels} language="html" />
 
 ## Referencing Labels with `aria-labelledby`
 
-The `aria-labelledby` attribute allows you to reference the `id` of another element that serves as the `&lt;label&gt;`. This is especially useful when the `&lt;label&gt;` is complex or spans multiple elements. Hidden elements can also be referenced using `aria-labelledby`, allowing screen readers to announce the associated label even though it is not displayed visually.
+The `aria-labelledby` attribute allows you to reference the `id` of another element that serves as the `<label>`. This is especially useful when the `<label>` is complex or spans multiple elements. Hidden elements can also be referenced using `aria-labelledby`, allowing screen readers to announce the associated label even though it is not displayed visually.
 
 <Source code={referenceLabels} language="html" />
 
 # Controls Grouping
 
-When grouping `&lt;form controls&gt;`, the `&lt;fieldset&gt;`and `&lt;legend&gt;` elements play a critical role in providing context to screen readers. However, improper usage of these elements can lead to confusion for users with disabilities.
+When grouping `<form controls>`, the `<fieldset>` and `<legend>` elements play a critical role in providing context to screen readers. However, improper usage of these elements can lead to confusion for users with disabilities.
 
 <div className="table-responsive">
   <table className="table caption-top">
@@ -43,7 +43,7 @@ When grouping `&lt;form controls&gt;`, the `&lt;fieldset&gt;`and `&lt;legend&gt;
     <tbody>
       <tr>
         <td colSpan="2" className="fw-bold">
-          The `&lt;legend/&gt;` element is not a direct child of the `&lt;fieldset/&gt;`
+          The `<legend/>` element is not a direct child of the `<fieldset/>`
         </td>
       </tr>
       <tr>
@@ -51,7 +51,7 @@ When grouping `&lt;form controls&gt;`, the `&lt;fieldset&gt;`and `&lt;legend&gt;
           <ul className="list-unstyled">
             <li className="d-flex gap-mini">
               <div>❌</div>
-              <div>A `&lt;div&gt;` or other element is incorrectly used as the first child of a `&lt;fieldset&gt;` with the `&lt;legend&gt;` nested inside this element.</div>
+              <div>A `<div>` or other element is incorrectly used as the first child of a `<fieldset>` with the `<legend>` nested inside this element.</div>
             </li>
           </ul>
         </td>
@@ -59,14 +59,14 @@ When grouping `&lt;form controls&gt;`, the `&lt;fieldset&gt;`and `&lt;legend&gt;
           <ul className="list-unstyled">
             <li className="d-flex gap-mini">
               <div>✔️</div>
-              <div>Always place the `&lt;legend&gt;` right after the `&lt;fieldset&gt;` to preserve the association.</div>
+              <div>Always place the `<legend>` right after the `<fieldset>` to preserve the association.</div>
             </li>
           </ul>
         </td>
       </tr>
       <tr>
         <td colSpan="2" className="fw-bold">
-          A `&lt;div&gt;` is used for grouping instead of `&lt;fieldset&gt;`
+          A `<div>` is used for grouping instead of `<fieldset>`
         </td>
       </tr>
       <tr>
@@ -74,7 +74,7 @@ When grouping `&lt;form controls&gt;`, the `&lt;fieldset&gt;`and `&lt;legend&gt;
           <ul className="list-unstyled">
             <li className="d-flex gap-mini">
               <div>❌</div>
-              <div>For visual reasons, a `&lt;div&gt;` is used for grouping controls instead of `&lt;fieldset&gt;`. No ARIA roles or attributes are set, failing to provide the necessary semantic meaning on assistive technologies.</div>
+              <div>For visual reasons, a `<div>` is used for grouping controls instead of `<fieldset>`. No ARIA roles or attributes are set, failing to provide the necessary semantic meaning on assistive technologies.</div>
             </li>
           </ul>
         </td>
@@ -82,7 +82,7 @@ When grouping `&lt;form controls&gt;`, the `&lt;fieldset&gt;`and `&lt;legend&gt;
           <ul className="list-unstyled">
             <li className="d-flex gap-mini">
               <div>✔️</div>
-              <div>Assign the `role="group"` to the `&lt;div&gt;` element to provide it with the semantic meaning of a `&lt;fieldset&gt;`. Use `aria-labelledby` or `aria-describedby` to associate any descriptive text with the grouping container to ensure that screen readers can provide context to users.</div>
+              <div>Assign the `role="group"` to the `<div>` element to provide it with the semantic meaning of a `<fieldset>`. Use `aria-labelledby` or `aria-describedby` to associate any descriptive text with the grouping container to ensure that screen readers can provide context to users.</div>
             </li>
           </ul>
         </td>
