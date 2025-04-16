@@ -63,7 +63,10 @@ function processFiles(files) {
         const { postIconFiles, uiIconFiles } = icons;
         const parsedFilePath = path.parse(filePath);
 
-        if (parsedFilePath.dir.match(/\/post$/)) postIconFiles.push(parsedFilePath);
+        if (parsedFilePath.dir.match(/\/post$/)) {
+          console.log('parsedFilePath:', parsedFilePath, filePath);
+          postIconFiles.push(parsedFilePath);
+        }
         if (parsedFilePath.dir.match(/\/ui$/)) uiIconFiles.push(parsedFilePath);
 
         return icons;
@@ -97,6 +100,7 @@ function processUiIconFiles(parsedFilePaths) {
  * @returns {string} Formatted icon list.
  */
 function formatPostIcons(iconFiles) {
+  console.log('iconFiles:', iconFiles);
   const iconNames = iconFiles.map(({ name }) => name);
   return formatList(iconNames, ', ', ', and ');
 }
