@@ -186,7 +186,7 @@ export function writeChangesets({ DATE, ICON_CHANGES }) {
     Object.entries(changes.sections).forEach(([set, { icons }]) => {
       if (icons) {
         const filePath = `./.changeset/${DATE}-${bump}-${set}-icon-update.md`;
-        const content = `---\n'@swisspost/design-system-icons': ${bump}\n---\n\n${changes.title}:\n\n${icons}`;
+        const content = `---\n'@swisspost/design-system-icons': ${bump}\n---\n\n${changes.title}:\n${icons}`;
 
         try {
           fs.writeFileSync(filePath, content);
@@ -214,7 +214,7 @@ export function writePrBody({ ICON_CHANGES }) {
     let changeDetails = '';
     Object.values(changes.sections).forEach(section => {
       if (section.icons) {
-        changeDetails += `\n\n## ${section.title}\n\n${section.icons}`;
+        changeDetails += `\n\n${section.title}:\n${section.icons}`;
       }
     });
 
