@@ -18,7 +18,15 @@ const compatStencilCommunityRecommendedRules = fixupConfigRules(
 export default [
   {
     name: 'post/global/ignores',
-    ignores: ['dist/*', 'loader/*', 'loaders/*', 'www/*', 'cypress/*', 'stencil.config.ts'],
+    ignores: [
+      'prebuild.ts',
+      'dist/*',
+      'loader/*',
+      'loaders/*',
+      'www/*',
+      'cypress/*',
+      'stencil.config.ts',
+    ],
   },
   {
     name: 'post/defaults',

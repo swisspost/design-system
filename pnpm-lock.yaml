@@ -113,6 +113,9 @@ importers:
       bootstrap:
         specifier: 5.3.3
         version: 5.3.3(@popperjs/core@2.11.8)
+      copyfiles:
+        specifier: 2.4.1
+        version: 2.4.1
       cypress:
         specifier: 13.13.2
         version: 13.13.2
@@ -146,6 +149,9 @@ importers:
       ts-jest:
         specifier: 29.2.5
         version: 29.2.5(@babel/core@7.26.9)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.9))(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.2)))(typescript@5.8.2)
+      ts-node:
+        specifier: 10.9.2
+        version: 10.9.2(@types/node@22.10.5)(typescript@5.8.2)
       typescript:
         specifier: 5.8.2
         version: 5.8.2
@@ -210,9 +216,15 @@ importers:
       '@eslint/js':
         specifier: 9.18.0
         version: 9.18.0
+      '@swisspost/design-system-components-angular':
+        specifier: workspace:9.0.0-next.33
+        version: link:dist/components
       angular-eslint:
         specifier: 19.1.0
         version: 19.1.0(chokidar@4.0.1)(eslint@9.18.0(jiti@2.4.2))(typescript-eslint@8.16.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.2))(typescript@5.8.2)
+      copyfiles:
+        specifier: 2.4.1
+        version: 2.4.1
       cypress:
         specifier: 13.13.2
         version: 13.13.2
@@ -290,6 +302,9 @@ importers:
       '@types/react-dom':
         specifier: 18.3.5
         version: 18.3.5(@types/react@18.3.3)
+      copyfiles:
+        specifier: 2.4.1
+        version: 2.4.1
       eslint:
         specifier: 9.18.0
         version: 9.18.0(jiti@2.4.2)
@@ -4630,11 +4645,6 @@ packages:
 
   acorn@6.4.2:
     resolution: {integrity: sha512-XtGIhXwF8YM8bJhGxG5kXgjkEuNGLTkoYqVE+KMR+aspr4KGYmKYg7yUe3KghyQ9yheNwLnjmzh/7+gfDBmHCQ==}
-    engines: {node: '>=0.4.0'}
-    hasBin: true
-
-  acorn@8.11.3:
-    resolution: {integrity: sha512-Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg==}
     engines: {node: '>=0.4.0'}
     hasBin: true
 
@@ -15776,8 +15786,6 @@ snapshots:
 
   acorn@6.4.2: {}
 
-  acorn@8.11.3: {}
-
   acorn@8.14.0: {}
 
   adjust-sourcemap-loader@4.0.0:
@@ -19497,7 +19505,7 @@ snapshots:
   jsdom@20.0.3:
     dependencies:
       abab: 2.0.6
-      acorn: 8.11.3
+      acorn: 8.14.0
       acorn-globals: 7.0.1
       cssom: 0.5.0
       cssstyle: 2.3.0
@@ -23253,7 +23261,7 @@ snapshots:
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
       '@types/node': 22.10.5
-      acorn: 8.11.3
+      acorn: 8.14.0
       acorn-walk: 8.2.0
       arg: 4.1.3
       create-require: 1.1.1
