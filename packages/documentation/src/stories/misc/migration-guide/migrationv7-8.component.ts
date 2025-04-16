@@ -92,7 +92,7 @@ export class MigrationV78Component extends LitElement {
               Angular users with the
               <a href="https://design-system.post.ch/?path=/docs/833ef689-a573-40f5-a6a6-30a999b94733--docs">
               Design System Angular Components package</a>
-              package. With this change, we will limit our dependency on Angular to the
+              . With this change, we will limit our dependency on Angular to the
               components-angular package which allows us to ship Angular upgrades much faster in the
               future.
             </p>` : nothing}
