@@ -47,5 +47,10 @@
     "typescript": "5.8.2",
     "typescript-eslint": "8.20.0"
   },
-  "keywords": ["nextjs", "swisspost", "design-system", "example"]
+  "keywords": [
+    "nextjs",
+    "swisspost",
+    "design-system",
+    "example"
+  ]
 }

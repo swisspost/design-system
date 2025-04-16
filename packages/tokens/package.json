@@ -24,14 +24,6 @@
     "build:verbose": "node ./build.js --verbosity=verbose",
     "clean": "rimraf dist"
   },
-  "keywords": [
-    "tokens",
-    "tokens studio",
-    "scss",
-    "design-system",
-    "ui",
-    "frontend"
-  ],
   "devDependencies": {
     "@eslint/js": "9.18.0",
     "@tokens-studio/sd-transforms": "1.2.9",
@@ -40,5 +32,13 @@
     "globals": "15.14.0",
     "rimraf": "6.0.1",
     "style-dictionary": "4.3.0"
-  }
+  },
+  "keywords": [
+    "tokens",
+    "tokens studio",
+    "scss",
+    "design-system",
+    "ui",
+    "frontend"
+  ]
 }
