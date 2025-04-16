@@ -1,6 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 
+function formatList(list, delimiter, lastDelimiter = delimiter) {
+  const items = Array.from(list).sort();
+  const lastItem = items.pop();
+  return `${items.join(delimiter)}${lastDelimiter}${lastItem}`;
+}
+
 // Helper function to parse icon details from a file path
 function parseIconDetails(fileName) {
   const chunks = fileName.split('_');
@@ -43,14 +49,19 @@ function processUiIconFiles(parsedFilePaths) {
 }
 
 // Helper function to format the icon details into a readable string
-function formatIconDetails(icons) {
+function formatPostIcons(iconFiles) {
+  const iconNames = iconFiles.map(({ name }) => name);
+  return formatList(iconNames, ', ', ', and ');
+}
+
+// Helper function to format the icon details into a readable string
+function formatUiIcons(iconFiles) {
+  const icons = processUiIconFiles(iconFiles);
+
   return Array.from(icons.entries())
     .map(([icon, { sizes, variants }]) => {
-      const allVariants = Array.from(variants).sort().join(' & ');
-      const allSizes = Array.from(sizes)
-        .sort()
-        .join(', ')
-        .replace(/, ([^,]*)$/, ', and $1');
+      const allVariants = formatList(variants, ' & ');
+      const allSizes = formatList(sizes, ', ', ', and ');
       return `- \`${icon}\` (${allVariants}): ${allSizes}px`;
     })
     .join('\n');
@@ -65,37 +76,33 @@ function getIconChanges({
   DELETED_FILES,
 }) {
   const getIcons = (...fileSets) => {
-    const { uiIconFiles } = processFiles(fileSets);
-    const uiIcons = processUiIconFiles(uiIconFiles);
-    return formatIconDetails(uiIcons);
+    const { postIconFiles, uiIconFiles } = processFiles(fileSets);
+    return {
+      post: {
+        title: 'Post icons',
+        icons: formatPostIcons(postIconFiles),
+      },
+      ui: {
+        title: 'UI icons',
+        icons: formatUiIcons(uiIconFiles),
+      },
+    };
   };
 
   return {
     major: {
       title: 'Deleted icons',
-      icons: getIcons(DELETED_FILES),
+      sections: getIcons(DELETED_FILES),
     },
     minor: {
       title: 'Added icons',
-      icons: getIcons(ADDED_FILES),
+      sections: getIcons(ADDED_FILES),
     },
     patch: {
       title: 'Updated icons',
-      icons: getIcons(MODIFIED_FILES, RENAMED_FILES, COPIED_FILES),
+      sections: getIcons(MODIFIED_FILES, RENAMED_FILES, COPIED_FILES),
     },
   };
-}
-
-// Helper function to write the changeset file
-function writeChangesetToFile(changes, bump, date) {
-  const filePath = `./.changeset/${date}-${bump}-ui-icon-update.md`;
-  const content = `---\n'@swisspost/design-system-icons': ${bump}\n---\n\n${changes.title}:\n\n${changes.icons}`;
-
-  try {
-    fs.writeFileSync(filePath, content);
-  } catch (err) {
-    console.error(`Error writing changeset for ${bump}:`, err);
-  }
 }
 
 // Function to write changesets based on icon changes
@@ -103,9 +110,18 @@ function writeChangesets({ DATE, ICON_CHANGES }) {
   const iconChanges = JSON.parse(ICON_CHANGES);
 
   Object.entries(iconChanges).forEach(([bump, changes]) => {
-    if (changes.icons.length) {
-      writeChangesetToFile(changes, bump, DATE);
-    }
+    Object.values(changes.sections).forEach(([set, { icons }]) => {
+      if (icons) {
+        const filePath = `./.changeset/${DATE}-${bump}-${set}-icon-update.md`;
+        const content = `---\n'@swisspost/design-system-icons': ${bump}\n---\n\n${changes.title}:\n\n${icons}`;
+
+        try {
+          fs.writeFileSync(filePath, content);
+        } catch (err) {
+          console.error(`Error writing changeset for ${bump}:`, err);
+        }
+      }
+    });
   });
 }
 
@@ -113,10 +129,18 @@ function writeChangesets({ DATE, ICON_CHANGES }) {
 function writePrBody({ ICON_CHANGES }) {
   const iconChanges = JSON.parse(ICON_CHANGES);
 
-  let content = '# Design system icons are now up to date!';
+  let content = '# Design System Icons: Now Up to Date!';
+
   Object.values(iconChanges).forEach(changes => {
-    if (changes.icons.length) {
-      content += `\n\n## ${changes.title}\n\n${changes.icons}`;
+    let changeDetails = '';
+    Object.values(changes.sections).forEach(section => {
+      if (section.icons) {
+        changeDetails += `\n\n## ${section.title}\n\n${section.icons}`;
+      }
+    });
+
+    if (changeDetails) {
+      content += `\n\n## ${changes.title}${changeDetails}`;
     }
   });
 
