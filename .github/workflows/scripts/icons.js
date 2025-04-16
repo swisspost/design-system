@@ -3,7 +3,7 @@ const path = require('path');
 
 // Helper function to parse icon details from a file path
 function parseIconDetails(filePath) {
-  const chunks = path.basename(filePath, path.extname(filePath)).split('_');
+  const chunks = path.parse(filePath).name.split('_');
   return {
     icon: chunks[0],
     size: chunks[chunks.length - 1],
@@ -56,16 +56,25 @@ function getIconChanges({
   };
 
   return {
-    major: `Deleted icons:\n\n${getIcons(DELETED_FILES)}`,
-    minor: `Added icons:\n\n${getIcons(ADDED_FILES)}`,
-    patch: `Updated icons:\n\n${getIcons(MODIFIED_FILES, RENAMED_FILES, COPIED_FILES)}`,
+    major: {
+      title: 'Deleted icons',
+      icons: getIcons(DELETED_FILES),
+    },
+    minor: {
+      title: 'Added icons',
+      icons: getIcons(ADDED_FILES),
+    },
+    patch: {
+      title: 'Updated icons',
+      icons: getIcons(MODIFIED_FILES, RENAMED_FILES, COPIED_FILES),
+    },
   };
 }
 
 // Helper function to write the changeset file
-function writeChangesetToFile(icons, bump, date) {
+function writeChangesetToFile(changes, bump, date) {
   const filePath = `./.changeset/${date}-${bump}-ui-icon-update.md`;
-  const content = `---\n'@swisspost/design-system-icons': ${bump}\n---\n\n${icons}`;
+  const content = `---\n'@swisspost/design-system-icons': ${bump}\n---\n\n${changes.title}:\n\n${changes.icons}`;
 
   try {
     fs.writeFileSync(filePath, content);
@@ -78,9 +87,9 @@ function writeChangesetToFile(icons, bump, date) {
 function writeChangesets({ DATE, ICON_CHANGES }) {
   const iconChanges = JSON.parse(ICON_CHANGES);
 
-  Object.entries(iconChanges).forEach(([bump, icons]) => {
-    if (icons) {
-      writeChangesetToFile(icons, bump, DATE);
+  Object.entries(iconChanges).forEach(([bump, changes]) => {
+    if (changes.icons.length) {
+      writeChangesetToFile(changes, bump, DATE);
     }
   });
 }
@@ -90,8 +99,10 @@ function writePrBody({ ICON_CHANGES }) {
   const iconChanges = JSON.parse(ICON_CHANGES);
 
   let content = '# Design system icons are now up to date!';
-  Object.values(iconChanges).forEach(icons => {
-    if (icons) content += `\n\n## ${icons}`;
+  Object.values(iconChanges).forEach(changes => {
+    if (changes.icons.length) {
+      content += `\n\n## ${changes.title}\n\n${changes.icons}`;
+    }
   });
 
   try {
