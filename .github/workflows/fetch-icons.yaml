@@ -77,7 +77,7 @@ jobs:
         id: changed-files
         uses: step-security/changed-files@3dbe17c78367e7d60f00d78ae6781a35be47b4a1
         with:
-          files: ./packages/icons/src/icons/ui/*.svg
+          files: ./packages/icons/src/icons/**/*.svg
 
       - name: Get Changed Icons
         id: changed-icons
