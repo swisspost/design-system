@@ -116,6 +116,7 @@ jobs:
         if: steps.changed-files.outputs.any_modified != 'false'
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         env:
+          PR_BODY_FILE: pr-body.md
           ICON_CHANGES: ${{ steps.changed-icons.outputs.result }}
         with:
           script: |

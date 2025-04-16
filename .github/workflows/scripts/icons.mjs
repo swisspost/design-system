@@ -218,9 +218,10 @@ export function writeChangesets({ DATE, ICON_CHANGES }) {
  * Writes a pull request body with a summary of icon changes.
  *
  * @param {Object} param
+ * @param {string} param.PR_BODY_FILE - The name of the file that stores the PR body.
  * @param {string} param.ICON_CHANGES - JSON string of icon changes.
  */
-export function writePrBody({ ICON_CHANGES }) {
+export function writePrBody({ ICON_CHANGES, PR_BODY_FILE }) {
   /** @type {IconChangeSummary} */
   const iconChanges = JSON.parse(ICON_CHANGES);
 
@@ -243,8 +244,10 @@ export function writePrBody({ ICON_CHANGES }) {
   });
 
   try {
-    fs.writeFileSync('./pr-body.md', content);
+    fs.writeFileSync(`./${PR_BODY_FILE}`, content);
   } catch (err) {
     console.error('Error writing PR body:', err);
   }
+
+  return PR_BODY_FILE;
 }
