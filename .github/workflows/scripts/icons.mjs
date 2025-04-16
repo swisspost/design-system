@@ -2,6 +2,16 @@ import fs from 'fs';
 import path from 'path';
 
 /**
+ * @typedef {Object} ParsedPath
+ * @property {string} root - The root of the path.
+ * @property {string} dir - The full directory path excluding the base.
+ * @property {string} base - The full file name including extension.
+ * @property {string} ext - The file extension, including the dot.
+ * @property {string} name - The file name without the extension.
+ */
+
+
+/**
  * @typedef {Object} IconSection
  * @property {string} title - The section title (e.g. 'UI icons').
  * @property {string} icons - Formatted string listing the icons.
@@ -23,14 +33,16 @@ import path from 'path';
 /**
  * Formats a list into a human-readable string with delimiters.
  *
- * @param {ArrayLike<string>} list - The list of items to format.
+ * @param {Array<string> | ArrayLike<string>} list - The list of items to format.
  * @param {string} delimiter - The delimiter used between items.
  * @param {string} [lastDelimiter=delimiter] - The delimiter before the last item.
  * @returns {string} Formatted string.
  */
 function formatList(list, delimiter, lastDelimiter = delimiter) {
-  const items = Array.from(list).sort();
-  const lastItem = items.pop();
+  const items = Array.from(list);
+  if (items.length === 0) return '';
+
+  const lastItem = items.sort().pop();
   return `${items.join(delimiter)}${lastDelimiter}${lastItem}`;
 }
 
@@ -53,7 +65,7 @@ function parseUiIconDetails(fileName) {
  * Parses file paths and categorizes them into `postIconFiles` and `uiIconFiles`.
  *
  * @param {string[]} files - Array of file paths.
- * @returns {{ postIconFiles: Array<import('path').ParsedPath>, uiIconFiles: Array<import('path').ParsedPath> }} Separated file groups.
+ * @returns {{ postIconFiles: Array<ParsedPath>, uiIconFiles: Array<ParsedPath> }} Separated file groups.
  */
 function processFiles(files) {
   return files
@@ -78,7 +90,7 @@ function processFiles(files) {
 /**
  * Builds a Map of UI icon metadata from parsed file paths.
  *
- * @param {Array<import('path').ParsedPath>} parsedFilePaths - Array of parsed file paths.
+ * @param {Array<ParsedPath>} parsedFilePaths - Array of parsed file paths.
  * @returns {Map<string, { sizes: Set<string>, variants: Set<string> }>} Icon metadata map.
  */
 function processUiIconFiles(parsedFilePaths) {
@@ -96,7 +108,7 @@ function processUiIconFiles(parsedFilePaths) {
 /**
  * Formats a list of Post icon files into a readable string.
  *
- * @param {Array<import('path').ParsedPath>} iconFiles - Array of parsed post icon file paths.
+ * @param {Array<ParsedPath>} iconFiles - Array of parsed post icon file paths.
  * @returns {string} Formatted icon list.
  */
 function formatPostIcons(iconFiles) {
@@ -108,7 +120,7 @@ function formatPostIcons(iconFiles) {
 /**
  * Formats a list of UI icon files into a readable Markdown string.
  *
- * @param {Array<import('path').ParsedPath>} iconFiles - Array of parsed UI icon file paths.
+ * @param {Array<ParsedPath>} iconFiles - Array of parsed UI icon file paths.
  * @returns {string} Formatted UI icons description.
  */
 function formatUiIcons(iconFiles) {
@@ -214,7 +226,7 @@ export function writePrBody({ ICON_CHANGES }) {
     let changeDetails = '';
     Object.values(changes.sections).forEach(section => {
       if (section.icons) {
-        changeDetails += `\n\n${section.title}:\n${section.icons}`;
+        changeDetails += `\n\n${section.title}:\n\n${section.icons}`;
       }
     });
 
