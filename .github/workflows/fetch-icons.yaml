@@ -125,6 +125,6 @@ jobs:
       - name: Create PR
         if: steps.changed-files.outputs.any_modified != 'false'
         run: |
-          gh pr create --title "chore(icons): :point_up: update icons" --body-file ${{ steps.pr-body.outputs.file }} --base main
+          gh pr create --title "chore(icons): :point_up: update icons" --body-file ${{ steps.pr-body.outputs.file }} --base origin/main
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
