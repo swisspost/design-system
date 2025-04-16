@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': patch
 ---
 
-Removed the deprected notification overlay documentation page.
+Removed the deprecated notification overlay documentation page.
