@@ -39,7 +39,7 @@ export class MigrationV56Component extends LitElement {
                     <li>
                       <p>
                         Use
-                        <a href="https://update.angular.io/"> https://update.angular.io/ </a>
+                        <a href="https://update.angular.io/">Angular Update Guide</a>
                         to update Angular to version 16
                       </p>
                     </li>
@@ -49,15 +49,11 @@ export class MigrationV56Component extends LitElement {
               <li>
                 <p>
                   Update Bootstrap to version
-                  <a href="https://getbootstrap.com/docs/5.3/migration">5.3.x</a>
+                  <a href="https://getbootstrap.com/docs/5.3/migration">Bootstrap 5.3.x Migration Guide</a>
                   ${this.angular
                     ? html`
                         and ng-bootstrap to version
-                        <a
-                          href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1500-2023-05-25"
-                        >
-                          15.x.x
-                        </a>
+                        <a href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1500-2023-05-25">ng-bootstrap 15.x.x Changelog</a>
                       `
                     : nothing}
                   :
@@ -118,7 +114,7 @@ export class MigrationV56Component extends LitElement {
                 </h5>
                 <p>
                   The markup of the
-                  <a href="https://archive.design-system.post.ch/#/post-samples/stepper">stepper</a>
+                  <a href="https://archive.design-system.post.ch/#/post-samples/stepper">Stepper component</a>
                   component has been changed in order to be more accessible.
                 </p>
                 <ul>
@@ -157,9 +153,7 @@ export class MigrationV56Component extends LitElement {
                       </p>
                       <p class="info">
                         See the
-                        <a href="/?path=/docs/021d61aa-e039-4858-b4b9-b86a3e772811--docs"
-                          >documentation</a
-                        >
+                        <a href="/?path=/docs/021d61aa-e039-4858-b4b9-b86a3e772811--docs">Button component documentation</a>
                         for more detailed information.
                       </p>
                     </li>

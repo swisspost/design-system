@@ -40,10 +40,10 @@ export class PostPopover {
 
   @Element() host: HTMLPostPopoverElement;
 
-  /**
-   * Defines the placement of the popover according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
-   * Popoverss are automatically flipped to the opposite side if there is not enough available space and are shifted
-   * towards the viewport if they would overlap edge boundaries.
+   /**
+   * Defines the position of the popover relative to its trigger.
+   * Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+   * For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
    */
   @Prop() readonly placement?: Placement = 'top';
 
