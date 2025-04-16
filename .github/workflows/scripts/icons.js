@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 // Helper function to parse icon details from a file path
-function parseIconDetails(filePath) {
-  const chunks = path.parse(filePath).name.split('_');
+function parseIconDetails(fileName) {
+  const chunks = fileName.split('_');
   return {
     icon: chunks[0],
     size: chunks[chunks.length - 1],
@@ -15,17 +15,31 @@ function parseIconDetails(filePath) {
 function processFiles(files) {
   return files
     .flatMap(file => file.split(' '))
-    .reduce((icons, filePath) => {
-      if (!filePath) return icons;
+    .reduce(
+      (icons, filePath) => {
+        const { postIconFiles, uiIconFiles } = icons;
+        const parseFilPath = path.parse(filePath);
 
-      const { icon, size, variant } = parseIconDetails(filePath);
+        if (parseFilPath.dir.match(/\/post$/)) postIconFiles.push(parseFilPath);
+        if (parseFilPath.dir.match(/\/ui$/)) uiIconFiles.push(parseFilPath);
 
-      const details = icons.get(icon) || { sizes: new Set(), variants: new Set() };
-      details.sizes.add(size);
-      details.variants.add(variant);
+        return icons;
+      },
+      { postIconFiles: [], uiIconFiles: [] },
+    );
+}
 
-      return icons.set(icon, details);
-    }, new Map());
+// Helper function to process file sets into a Map of icon details
+function processUiIconFiles(parsedFilePaths) {
+  return parsedFilePaths.reduce((icons, parsedFilePath) => {
+    const { icon, size, variant } = parseIconDetails(parsedFilePath.name);
+
+    const details = icons.get(icon) || { sizes: new Set(), variants: new Set() };
+    details.sizes.add(size);
+    details.variants.add(variant);
+
+    return icons.set(icon, details);
+  }, new Map());
 }
 
 // Helper function to format the icon details into a readable string
@@ -51,8 +65,9 @@ function getIconChanges({
   DELETED_FILES,
 }) {
   const getIcons = (...fileSets) => {
-    const icons = processFiles(fileSets);
-    return formatIconDetails(icons);
+    const { uiIconFiles } = processFiles(fileSets);
+    const uiIcons = processUiIconFiles(uiIconFiles);
+    return formatIconDetails(uiIcons);
   };
 
   return {
