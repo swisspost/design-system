@@ -1,8 +1,8 @@
 {
   "name": "@swisspost/design-system-components-react",
-"version": "9.0.0-next.34",
-"description": "Design System React Components for easy integration with the React ecosystem",
-"author": "Swiss Post <oss@post.ch>",
+  "version": "9.0.0-next.34",
+  "description": "Design System React Components for easy integration with the React ecosystem",
+  "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
   "private": false,
   "repository": {

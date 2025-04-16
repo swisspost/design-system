@@ -2,7 +2,7 @@
   "name": "@swisspost/design-system-components-angular-workspace",
   "version": "1.1.10-next.34",
   "description": "Wrapper arround @swisspost/design-system-components for angular",
-  "author": "Swiss Post <oss@post.ch>",
+  "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
   "private": false,
   "repository": {
