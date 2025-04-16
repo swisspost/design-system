@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': patch
 ---
 
-Removed the documentation page about the custom select from ng-bootstrap.
+Removed the deprecated ng-bootstrap custom select documentation page.
