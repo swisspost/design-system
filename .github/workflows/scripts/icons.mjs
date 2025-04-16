@@ -40,10 +40,16 @@ import path from 'path';
  */
 function formatList(list, delimiter, lastDelimiter = delimiter) {
   const items = Array.from(list);
-  if (items.length === 0) return '';
 
-  const lastItem = items.sort().pop();
-  return `${items.join(delimiter)}${lastDelimiter}${lastItem}`;
+  switch (items.length) {
+    case 0:
+      return '';
+    case 1:
+      return items[0];
+    default:
+      const lastItem = items.sort().pop();
+      return `${items.join(delimiter)}${lastDelimiter}${lastItem}`;
+  }
 }
 
 /**
@@ -224,11 +230,14 @@ export function writePrBody({ ICON_CHANGES }) {
 
   Object.values(iconChanges).forEach(changes => {
     let changeDetails = '';
-    Object.values(changes.sections).forEach(section => {
-      if (section.icons) {
-        changeDetails += `\n\n${section.title}:\n\n${section.icons}`;
-      }
-    });
+
+    const {ui, post} = changes.sections;
+    if (ui.icons) {
+      changeDetails += `\n\n${ui.title}:\n\n${ui.icons}`;
+    }
+    if (post.icons) {
+      changeDetails += `\n\n${post.title}:\n\n${post.icons}`;
+    }
 
     if (changeDetails) {
       content += `\n\n## ${changes.title}${changeDetails}`;
