@@ -17,6 +17,10 @@ on:
     paths:
       - 'packages/**'
 
+permissions:
+  contents: read
+  actions: read
+
 jobs:
   build:
     name: Build Documentation

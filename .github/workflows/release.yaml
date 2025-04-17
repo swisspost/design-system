@@ -5,6 +5,12 @@ on:
       - main
       - release/v*
 
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+  pull-requests: write
+
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
