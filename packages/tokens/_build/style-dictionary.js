@@ -1,6 +1,6 @@
 import StyleDictionary from 'style-dictionary';
 import { register } from '@tokens-studio/sd-transforms';
-import { FILE_HEADER, NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES } from './constants.js';
+import { FILE_HEADER, NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES, PX_TO_REM_TOKEN_TYPE } from './constants.js';
 
 register(StyleDictionary);
 
@@ -47,6 +47,34 @@ StyleDictionary.registerTransform({
   transform: token => {
     const usesDtcg = token.$type && token.$value;
     return token[usesDtcg ? '$value' : 'value'] + 'px';
+  },
+});
+
+/**
+ * @function StyleDictionary.registerTransform()
+ * Defines a custom StyleDictionary transform.
+ *
+ * swisspost/px-to-rem:
+ * Used to transform font sizes from px to rem
+ * This ensures accessible font-sizes
+ */
+
+StyleDictionary.registerTransform({
+  name: 'swisspost/px-to-rem',
+  type: 'value',
+  filter: token => {
+    const usesDtcg = token.$type && token.$value;
+    return token[usesDtcg ? '$type' : 'type'] === PX_TO_REM_TOKEN_TYPE;
+  },
+  transform: token => {
+    const usesDtcg = token.$type && token.$value;
+    const baseFontSize = 16;
+    let value = token[usesDtcg ? '$value' : 'value'];
+    if (typeof value === 'string' && value.includes('px')) {
+      // Remove 'px' and convert the result to a number
+      value = parseFloat(value.replace('px', ''), 10);
+    }
+    return `${value / baseFontSize}rem`;
   },
 });
 
