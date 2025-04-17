@@ -171,6 +171,12 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     }
   }
 
+  .docblock-argstable-body td a,
+  // targets only the visible buttons
+  .docblock-argstable-body td button:not([tabindex='-1']):not([tabindex='0']) {
+    color: #0073bc;
+  }
+
   .docblock-source {
     margin: 0 0 1rem;
   }
