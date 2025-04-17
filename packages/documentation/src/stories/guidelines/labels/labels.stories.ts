@@ -20,12 +20,8 @@ export const FieldsetDontExample: Story = {
   render: () => html`
     <fieldset>
       <legend>Gender</legend>
-      <div class="form-check">
         <input type="radio" name="gender" value="male"> Male
-      </div>
-      <div class="form-check">
         <input type="radio" name="gender" value="female"> Female
-      </div>
     </fieldset>
   `,
 };
