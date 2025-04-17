@@ -176,12 +176,10 @@ input.form-control {
     background-color: tokens.get('input-color-hover-bg');
   }
 
+  // Adjust padding for validated fields but don't use background-image
   &.is-valid,
   &.is-invalid {
     &:not(:disabled) {
-      background-size: tokens.get('input-sizing-icon');
-      background-position: center right tokens.get('input-validation-icon-position-inline-end');
-      background-repeat: no-repeat;
       padding-inline-end: calc(
         #{tokens.get('input-padding-inline-end')} + #{tokens.get(
             'input-validation-icon-position-inline-end'
@@ -189,8 +187,6 @@ input.form-control {
       );
     }
   }
-
-  @include forms-mx.validation-icons;
 }
 
 .form-label:has(+ input.form-control[disabled]) {
@@ -199,6 +195,29 @@ input.form-control {
 
 .form-floating {
   position: relative;
+
+  // Validation icon styling with fixed vertical positioning
+  .validation-icon {
+    position: absolute;
+    // Properly center vertically relative to the input field
+    top: calc(tokens.get('input-border-width') + (tokens.get('input-sizing-height') / 2));
+    transform: translateY(-50%);
+    right: tokens.get('input-validation-icon-position-inline-end');
+    width: tokens.get('input-sizing-icon');
+    height: tokens.get('input-sizing-icon');
+    z-index: 2;
+    pointer-events: none;
+    display: none; // Hide by default
+  }
+  
+  // Show appropriate icon based on input state
+  input.form-control.is-valid:not(:disabled) ~ .validation-icon-valid {
+    display: block;
+  }
+  
+  input.form-control.is-invalid:not(:disabled) ~ .validation-icon-invalid {
+    display: block;
+  }
 
   > input.form-control ~ label {
     position: absolute;

@@ -111,21 +111,32 @@ export const Input: Story = {
     const props = getValidationProps(component, args);
     const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
     return html`<div class="form-floating">
-      <input
-        id="Input_1${props.validationState}${props.scheme}"
-        class="form-control form-control-lg ${props.isValidationSet ? props.validationState : ''}"
-        aria-invalid=${props.ariaInvalid}
-        aria-describedby="${props.ariaDescribedBy}"
-        type="text"
-        placeholder="Placeholder"
-      />
-      <label class="form-label" for="Input_1${props.validationState}${props.scheme}">Label</label>
-      ${feedbackTemplate}
-      <p class="form-hint">
-        Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
-        illum dolore eu feugiat nulla facilisis.
-      </p>
-    </div> `;
+  <input
+    type="email"
+    placeholder="your@email.com"
+    id="Input_Email"
+    name="email"
+    class="form-control form-control-lg is-invalid"
+    aria-invalid="true"
+    aria-describedby="email-error"
+    autocomplete="email"
+  />
+  <label class="form-label" for="Input_Email">Label</label>
+  
+  <svg class="validation-icon validation-icon-valid" viewBox="0 0 32 32" aria-hidden="true">
+    <path opacity="1" fill="#107800" d="M16 0C7.18 0 0 7.18 0 16C0 24.82 7.18 32 16 32C24.82 32 32 24.82 32 16C32 7.18 24.82 0 16 0ZM23.52 10.18L15.26 23.19L8.21 17.27C7.79 16.92 7.73 16.28 8.09 15.86C8.44 15.44 9.07 15.38 9.5 15.74L14.8 20.19L21.84 9.1C22.14 8.63 22.76 8.49 23.22 8.79C23.69 9.09 23.82 9.7 23.53 10.17L23.52 10.18Z"></path>
+  </svg>
+  
+  <svg class="validation-icon validation-icon-invalid" viewBox="0 0 32 32" aria-hidden="true">
+    <path opacity="1" fill="#b20000" d="M16 0C7.18 0 0 7.18 0 16C0 24.82 7.18 32 16 32C24.82 32 32 24.82 32 16C32 7.18 24.82 0 16 0ZM14.11 6.96H18.25V11.47L17.47 17.49H14.87L14.11 11.47V6.96ZM16.18 23.63C14.73 23.63 13.79 22.62 13.79 21.4C13.79 20.18 14.73 19.19 16.18 19.19C17.63 19.19 18.57 20.23 18.57 21.4C18.57 22.57 17.63 23.63 16.18 23.63Z"></path>
+  </svg>
+  
+  ${feedbackTemplate}
+  <p class="form-hint">
+    Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
+    illum dolore eu feugiat nulla facilisis.
+  </p>
+</div> `;
   },
 };
 
