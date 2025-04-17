@@ -34,36 +34,41 @@ export class MigrationV67Component extends LitElement {
           <li>
             <h3>Package Update 🩺</h3>
             <ol>
-              ${
-                this.angular
-                  ? html`
-                      <li>
-                        <p>
-                          Use
-                          <a href="https://update.angular.io/">Angular Update Guide</a>
-                          to update Angular to version 17
-                        </p>
-                      </li>
-                    `
-                  : nothing
-              }
-              ${
-                this.angular
-                  ? html`
-                      <li>
-                        <p>
-                          Update ng-bootstrap to version
-                          <a href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1600-2023-11-22">ng-bootstrap 16.x.x</a>
-                          :
-                          <code languages="['bash']">
-                            npm install @ng-bootstrap/ng-bootstrap@16
-                          </code>
-                        </p>
-                      </li>
-                    `
-                  : nothing
-              }
+            ${this.angular
+              ? html`
+                  <li>
+                    <p>
+                      Use
+                      <a href="https://update.angular.io/">Angular Update Guide</a>
+                      to update Angular to version 17
+                    </p>
+                `
+              : nothing}
 
+            ${this.angular
+              ? html`
+                  <li>
+                    <p>
+                      Update ng-bootstrap to version 16.x.x:
+                      <code languages="['bash']">
+                        npm install @ng-bootstrap/ng-bootstrap@16
+                      </code>
+                    </p>
+                    <p class="mt-2">
+                      See the
+                      <a
+                        href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1600-2023-11-22"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        ng-bootstrap 16.x.x changelog
+                      </a>
+                      for more details.
+                    </p>
+                  </li>
+                `
+              : nothing}
+              
               <li>
                 <p>
                   Update Design System style package to version 7:
@@ -174,9 +179,9 @@ export class MigrationV67Component extends LitElement {
                     <span class="tag tag-sm tag-danger">breaking</span>
                     <p class="info">
                       Use
-                      <a href="/?path=/docs/1b1ea384-7421-4064-ad34-e3f48a36b39f--docs">Tag component documentation</a>
+                      <a href="/?path=/docs/1b1ea384-7421-4064-ad34-e3f48a36b39f--docs">tags</a>
                       to display states, properties, or other metadata. Opt for
-                      <a href="/?path=/docs/12576d97-52c3-49ec-be7b-6d37728b75f5--docs">Chip component documentation</a>
+                      <a href="/?path=/docs/12576d97-52c3-49ec-be7b-6d37728b75f5--docs">chips</a>
                       when presenting dismissible or selectable information.
                     </p>
                   </p>
@@ -187,7 +192,7 @@ export class MigrationV67Component extends LitElement {
                   </p>
                   <p class="info">
                     Use the
-                    <a href="/?path=/docs/60852fac-a861-4415-8276-bd38d68653bb--docs">Background utility classes documentation</a>
+                    <a href="/?path=/docs/60852fac-a861-4415-8276-bd38d68653bb--docs">Background utility classes</a>
                     to change the badge color as needed.
                   </p>
                 </li>
@@ -273,7 +278,9 @@ export class MigrationV67Component extends LitElement {
                             component have been removed from ng-bootstrap.
                             <br />
                             Use the <em>post-accordion</em> component from the
-                            <a href="/?path=/docs/833ef689-a573-40f5-a6a6-30a999b94733--docs">Design System Angular Components package</a>
+                            <a href="/?path=/docs/833ef689-a573-40f5-a6a6-30a999b94733--docs"
+                              >@swisspost/design-system-components-angular</a
+                            >
                             package as a replacement.
                           </p>
                           <p class="info">

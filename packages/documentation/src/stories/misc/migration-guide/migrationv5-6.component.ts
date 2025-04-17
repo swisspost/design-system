@@ -47,21 +47,20 @@ export class MigrationV56Component extends LitElement {
                 : nothing}
 
               <li>
-                <p>
-                  Update Bootstrap to version
-                  <a href="https://getbootstrap.com/docs/5.3/migration">Bootstrap 5.3.x</a>
-                  ${this.angular
-                    ? html`
-                        and ng-bootstrap to version
-                        <a href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1500-2023-05-25">ng-bootstrap 15.x.x</a>
-                      `
-                    : nothing}
-                  :
+                <div>
+                  Update Bootstrap to version 5.3.x${this.angular ? html` and ng-bootstrap to version 15.x.x` : nothing}:
                   <code languages="['bash']">
                     npm install bootstrap@5.3
                     ${this.angular ? html` @ng-bootstrap/ng-bootstrap@15 ` : nothing}
                   </code>
-                </p>
+                </div>
+
+                <div class="mt-2">
+                  See the <a href="https://getbootstrap.com/docs/5.3/migration" target="_blank" rel="noopener noreferrer">Bootstrap 5.3.x migration guide</a>
+                  ${this.angular ? html`
+                    and <a href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1500-2023-05-25" target="_blank" rel="noopener noreferrer">ng-bootstrap 15.x.x changelog</a>
+                  ` : nothing} for more details.
+                </div>
               </li>
               <li>
                 <p>
@@ -114,8 +113,8 @@ export class MigrationV56Component extends LitElement {
                 </h5>
                 <p>
                   The markup of the
-                  <a href="https://archive.design-system.post.ch/#/post-samples/stepper">Stepper component</a>
-                  has been changed in order to be more accessible.
+                  <a href="https://archive.design-system.post.ch/#/post-samples/stepper">Stepper</a>
+                  component has been changed in order to be more accessible.
                 </p>
                 <ul>
                   <li>
@@ -153,7 +152,7 @@ export class MigrationV56Component extends LitElement {
                       </p>
                       <p class="info">
                         See the
-                        <a href="/?path=/docs/021d61aa-e039-4858-b4b9-b86a3e772811--docs">Button component documentation</a>
+                          <a href="/?path=/docs/021d61aa-e039-4858-b4b9-b86a3e772811--docs">Button component documentation</a>
                         for more detailed information.
                       </p>
                     </li>
