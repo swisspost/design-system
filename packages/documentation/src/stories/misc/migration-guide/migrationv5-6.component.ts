@@ -115,7 +115,7 @@ export class MigrationV56Component extends LitElement {
                 <p>
                   The markup of the
                   <a href="https://archive.design-system.post.ch/#/post-samples/stepper">Stepper component</a>
-                  component has been changed in order to be more accessible.
+                  has been changed in order to be more accessible.
                 </p>
                 <ul>
                   <li>
