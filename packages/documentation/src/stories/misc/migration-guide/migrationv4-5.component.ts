@@ -158,11 +158,13 @@ export class MigrationV45Component extends LitElement {
 
   private _templateBootstrapInstructions() {
     return html`
-      Update Bootstrap to version
-      <a href="https://getbootstrap.com/docs/5.1/migration">Bootstrap 5.1.x Migration Guide</a>
+       Update Bootstrap to version
+      <a href="https://getbootstrap.com/docs/5.1/migration" target="_blank" rel="noopener noreferrer">
+        Bootstrap 5.1.x
+      </a>
       <ng-container *ngIf="isMigratingAngular">
         and ng-bootstrap to version
-        <a href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1400-2022-12-07">ng-bootstrap 12.x.x Changelog</a>
+        <a href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1400-2022-12-07">ng-bootstrap 12.x.x</a>
       </ng-container>
       :
       <code languages="['bash']">

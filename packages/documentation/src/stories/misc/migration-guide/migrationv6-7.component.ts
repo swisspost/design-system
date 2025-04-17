@@ -53,7 +53,7 @@ export class MigrationV67Component extends LitElement {
                       <li>
                         <p>
                           Update ng-bootstrap to version
-                          <a href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1600-2023-11-22">ng-bootstrap 16.x.x Changelog</a>
+                          <a href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1600-2023-11-22">ng-bootstrap 16.x.x</a>
                           :
                           <code languages="['bash']">
                             npm install @ng-bootstrap/ng-bootstrap@16

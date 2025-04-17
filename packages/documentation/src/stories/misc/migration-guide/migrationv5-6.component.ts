@@ -49,11 +49,11 @@ export class MigrationV56Component extends LitElement {
               <li>
                 <p>
                   Update Bootstrap to version
-                  <a href="https://getbootstrap.com/docs/5.3/migration">Bootstrap 5.3.x Migration Guide</a>
+                  <a href="https://getbootstrap.com/docs/5.3/migration">Bootstrap 5.3.x</a>
                   ${this.angular
                     ? html`
                         and ng-bootstrap to version
-                        <a href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1500-2023-05-25">ng-bootstrap 15.x.x Changelog</a>
+                        <a href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1500-2023-05-25">ng-bootstrap 15.x.x</a>
                       `
                     : nothing}
                   :
