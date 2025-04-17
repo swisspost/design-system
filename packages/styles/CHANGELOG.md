@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.35
+
+### Patch Changes
+
+- Added back the `.text-reset` class as it was deleted accidentally. (by [@leagrdv](https://github.com/leagrdv) with [#5290](https://github.com/swisspost/design-system/pull/5290))
+
 ## 9.0.0-next.34
 
 ### Major Changes

@@ -1,5 +1,32 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.36
+
+### Patch Changes
+
+- Changed a text's color in the Vertical align documentation to improve contrast and make it accessible. (by [@leagrdv](https://github.com/leagrdv) with [#5296](https://github.com/swisspost/design-system/pull/5296))
+
+- Updated Storybook documentation to reflect the renaming of `<post-breadcrumb>` components to `<post-breadcrumbs>`. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5291](https://github.com/swisspost/design-system/pull/5291))
+
+- Changed some of the code colors in `<pre>` tags in the documentation to improve contrast and make it accessible. (by [@leagrdv](https://github.com/leagrdv) with [#5292](https://github.com/swisspost/design-system/pull/5292))
+
+- Removed the stepper warning banner from the documentation as it was no longer relevant. (by [@leagrdv](https://github.com/leagrdv) with [#5301](https://github.com/swisspost/design-system/pull/5301))
+
+- Fixed an issue where the close button in the Toast component was not properly aligned when the toast was rendered with `position: fixed`. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5303](https://github.com/swisspost/design-system/pull/5303))
+
+- Removed all occurences of the `<nav>` tag around the figma links to avoid having two navigations within the same page. (by [@leagrdv](https://github.com/leagrdv) with [#5319](https://github.com/swisspost/design-system/pull/5319))
+
+- Updated some broken links to the documentation. (by [@leagrdv](https://github.com/leagrdv) with [#5280](https://github.com/swisspost/design-system/pull/5280))
+
+- Removed the deprecated ng-bootstrap custom select documentation page. (by [@leagrdv](https://github.com/leagrdv) with [#5302](https://github.com/swisspost/design-system/pull/5302))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.35
+  - @swisspost/design-system-components@9.0.0-next.35
+  - @swisspost/design-system-icons@9.0.0-next.35
+  - @swisspost/internet-header@2.0.0-next.35
+  - @swisspost/design-system-components-react@9.0.0-next.35
+  - @swisspost/design-system-tokens@9.0.0-next.35
+
 ## 6.0.0-next.35
 
 ### Minor Changes

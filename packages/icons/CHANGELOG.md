@@ -1,5 +1,11 @@
 # @swisspost/design-system-icons
 
+## 9.0.0-next.35
+
+### Patch Changes
+
+- Updated some broken links to the documentation. (by [@leagrdv](https://github.com/leagrdv) with [#5280](https://github.com/swisspost/design-system/pull/5280))
+
 ## 9.0.0-next.34
 
 ### Minor Changes
