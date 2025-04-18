@@ -34,7 +34,7 @@
     "eslint": "9.18.0",
     "globals": "15.14.0",
     "rimraf": "6.0.1",
-    "style-dictionary": "4.3.0"
+    "style-dictionary": "4.3.3"
   },
   "keywords": [
     "tokens",
