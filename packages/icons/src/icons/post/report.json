@@ -25692,6 +25692,91 @@
       "modifiedAt": "2025-04-12T08:05:01.463Z"
     },
     {
+      "uuid": "220198b0-190b-11f0-990c-005056873709",
+      "id": 3300389,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3300389/storage/MDAzMzAwMzg5LzAvbWFzdGVy",
+        "keywords": [
+          "Hackademy",
+          "Cibersécurité",
+          "Cibersicurezza",
+          "Cibersecurity",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2685.svg",
+        "basename": "2685",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-14T08:33:25.000Z",
+      "modifiedAt": "2025-04-15T08:05:00.206Z"
+    },
+    {
+      "uuid": "c874ae30-190b-11f0-990c-005056873709",
+      "id": 3300464,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3300464/storage/MDAzMzAwNDY0LzAvbWFzdGVy",
+        "keywords": [
+          "CSIRT",
+          "Cibersecurity",
+          "Cybersécurité",
+          "Cybersecurity"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2686.svg",
+        "basename": "2686",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-14T08:38:04.000Z",
+      "modifiedAt": "2025-04-15T08:05:00.206Z"
+    },
+    {
+      "uuid": "54569df0-190c-11f0-990c-005056873709",
+      "id": 3300519,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3300519/storage/MDAzMzAwNTE5LzAvbWFzdGVy",
+        "keywords": [
+          "SOC",
+          "Security Operations Center",
+          "Centre des opérations de sécurité",
+          "Centro operativo per la sicurezza"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2687.svg",
+        "basename": "2687",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-14T08:41:59.000Z",
+      "modifiedAt": "2025-04-15T08:05:00.206Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -38930,13 +39015,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1016,
+    "success": 1019,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2025-04-13T03:30:10.163Z",
-  "version": "9.0.0-next.33"
+  "created": "2025-04-20T02:16:50.416Z",
+  "version": "9.0.0-next.34"
 }
