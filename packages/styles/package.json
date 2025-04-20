@@ -26,7 +26,13 @@
     "unit": "gulp sass:tests",
     "lint": "stylelint src/**/*.scss !src/tokens/temp/**",
     "lint:fix": "stylelint src/**/*.scss !src/tokens/temp/** --fix",
-    "format": "prettier src/**/*.scss --write"
+    "format": "prettier src/**/*.scss --write",
+    "test:visual": "playwright test",
+    "test:visual:update": "playwright test --update-snapshots",
+    "test:visual:ui": "playwright test --ui",
+    "test:visual:chrome": "playwright test --project=chromium",
+    "test:visual:firefox": "playwright test --project=firefox",
+    "test:visual:safari": "playwright test --project=webkit"
   },
   "peerDependencies": {
     "@angular/core": "^19.0.0",
