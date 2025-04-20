@@ -18,6 +18,13 @@ export const FontFamily: Story = {
   render: () => html` <p class="font-sans-serif">This is sans serif text.</p> `,
 };
 
+export const FontSize: Story = {
+  render: () =>
+    html`
+      ${Array.from({ length: 11 }, (_, i) => html`<p class="fs-${i + 1}">This is a text.</p>`)}
+    `,
+};
+
 export const FontWeight: Story = {
   render: () =>
     html`

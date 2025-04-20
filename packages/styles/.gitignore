@@ -10,6 +10,7 @@ npm-debug.log
 stylelint-report.txt
 storybook-static
 src/utilities/_not-defined.scss
+src/utilities/_post-icon-version.scss
 
 # Mac OSX Finder files.
 **/.DS_Store
@@ -18,6 +19,26 @@ src/utilities/_not-defined.scss
 # Temporary files
 src/tokens/temp/
 
-# Visual regression tests
-visual-tests/playwright-report
-visual-tests/test-results
+# Visual testing ignores
+test-results/
+test-results-*
+playwright-report/
+
+# Screenshot artifacts
+**/tests/visual/__screenshots__/**/chromium/
+**/tests/visual/__screenshots__/**/firefox/
+**/tests/visual/__screenshots__/**/webkit/
+**/tests/visual/__screenshots__/**/*-actual.png
+**/tests/visual/__screenshots__/**/*-diff.png
+**/tests/visual/__screenshots__/**/*-expected.png
+
+# Except baseline screenshots for the primary browser
+!**/tests/visual/__screenshots__/**/*-primary.png
+!**/tests/visual/__screenshots__/**/*-primary-hover.png
+!**/tests/visual/__screenshots__/**/*-primary-focus.png
+!**/tests/visual/__screenshots__/**/*-primary-active.png
+
+# Playwright
+/playwright/.cache/
+playwright/.auth/
+*.tsbuildinfo

@@ -1,27 +1,51 @@
-import { defineConfig } from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-  testDir: './visual-tests',
-  outputDir: './visual-tests/test-results',
-  snapshotPathTemplate: '{testDir}/__screenshots__/{testFilePath}/{arg}{ext}',
-  workers: 4,
-  retries: 1,
+  testDir: './tests/visual',
+  
+  testMatch: '**/*.spec.ts',
+  
+  timeout: 30000,
+  
   reporter: [
-    ['html', {
-      outputFolder: './visual-tests/playwright-report'
-    }],
+    ['html', { outputFolder: 'test-results/html-report' }],
     ['list']
   ],
+  
+  snapshotPathTemplate: '{testDir}/__screenshots__/{projectName}/{testFilePath}/{arg}{ext}',
+  
+  outputDir: 'test-results/artifacts',
+  
   use: {
-    viewport: { width: 1280, height: 720 },
-    ignoreHTTPSErrors: true,
-    screenshot: 'only-on-failure',
-    trace: 'on-first-retry',
+    baseURL: 'http://localhost:9000',
   },
-  expect: {
-    toHaveScreenshot: {
-      threshold: 0.1,
-      animations: 'disabled',
+  
+  // Projects for different browsers
+  projects: [
+    // Desktop Chrome
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
     },
+    
+    // Desktop Firefox
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+    },
+    
+    // Desktop Safari
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
+    }
+  ],
+  
+  // Start a web server for the tests
+  webServer: {
+    command: 'npx http-server . -p 9000',
+    url: 'http://localhost:9000',
+    reuseExistingServer: true,
+    timeout: 60000,
   },
 });

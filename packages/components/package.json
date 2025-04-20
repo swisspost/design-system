@@ -1,28 +1,33 @@
 {
   "name": "@swisspost/design-system-components",
-  "version": "9.0.0-next.33",
+  "version": "9.0.0-next.34",
   "description": "A collection of web components built with Stencil JS for the Swiss Post Design System.",
+  "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.js",
-  "types": "dist/types/index.d.ts",
-  "collection": "dist/collection/collection-manifest.json",
-  "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/post-components/post-components.esm.js",
   "private": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system"
+  },
+  "homepage": "https://design-system.post.ch",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "linkDirectory": true
   },
   "files": [
     "dist/",
     "loader/",
     "loaders/"
   ],
-  "publishConfig": {
-    "access": "public",
-    "linkDirectory": true
-  },
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "unpkg": "dist/post-components/post-components.esm.js",
   "scripts": {
     "play": "stencil build --dev --port 9200 --serve --watch --docs --docs-readme",
     "start": "stencil build --dev --watch --docs --docs-readme",
@@ -39,9 +44,9 @@
   },
   "dependencies": {
     "@floating-ui/dom": "1.6.13",
-    "@oddbird/popover-polyfill": "0.3.7",
-    "@swisspost/design-system-icons": "workspace:9.0.0-next.33",
-    "@swisspost/design-system-styles": "workspace:9.0.0-next.33",
+    "@oddbird/popover-polyfill": "0.5.2",
+    "@swisspost/design-system-icons": "workspace:9.0.0-next.34",
+    "@swisspost/design-system-styles": "workspace:9.0.0-next.34",
     "ally.js": "1.4.1",
     "long-press-event": "2.5.0",
     "nanoid": "5.0.9"

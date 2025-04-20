@@ -378,6 +378,69 @@ export class MigrationV89Component extends LitElement {
               <ul>
                 <li class="mb-16">
                   <p>
+                    Removed deprecated font size variables and classes
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>$font-size-12</code> and <code>.font-size-12</code></li>
+                    <li><code>$font-size-14</code> and <code>.font-size-14</code></li>
+                    <li><code>$font-size-16</code> and <code>.font-size-16</code></li>
+                    <li><code>$font-size-18</code> and <code>.font-size-18</code></li>
+                    <li><code>$font-size-20</code> and <code>.font-size-20</code></li>
+                    <li><code>$font-size-24</code> and <code>.font-size-24</code></li>
+                    <li><code>$font-size-28</code> and <code>.font-size-28</code></li>
+                    <li><code>$font-size-32</code> and <code>.font-size-32</code></li>
+                    <li><code>$font-size-40</code> and <code>.font-size-40</code></li>
+                    <li><code>$font-size-48</code> and <code>.font-size-48</code></li>
+                    <li><code>$font-size-56</code> and <code>.font-size-56</code></li>
+                  </ul>
+                  <p class="info">
+                    You can now use the font curves <code>.fs-1</code> to <code>.fs-11</code> that
+                    are documented in the
+                    <a href="/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs"
+                      >text utilities</a
+                    >.
+                  </p>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    Removed deprecated font curve variables and classes
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>$font-size-tiny</code> and <code>.fs-tiny</code></li>
+                    <li><code>$font-size-small</code> and <code>.fs-small</code></li>
+                    <li><code>$font-size-regular</code> and <code>.fs-regular</code></li>
+                    <li>
+                      <code>$font-size-bigger-regular</code> and <code>.fs-bigger-regular</code>
+                    </li>
+                    <li><code>$font-size-medium</code> and <code>.fs-medium</code></li>
+                    <li><code>$font-size-large</code> and <code>.fs-large</code></li>
+                    <li><code>$font-size-small-big</code> and <code>.fs-small-big</code></li>
+                    <li><code>$font-size-big</code> and <code>.fs-big</code></li>
+                    <li><code>$font-size-bigger-big</code> and <code>.fs-bigger-big</code></li>
+                    <li><code>$font-size-small-huge</code> and <code>.fs-small-huge</code></li>
+                    <li><code>$font-size-huge</code> and <code>.fs-huge</code></li>
+                  </ul>
+                  <p class="info">
+                    You can now use the font curves <code>.fs-1</code> to <code>.fs-11</code> that
+                    are documented in the
+                    <a href="/?path=/docs/c55681df-4d21-469d-a5b3-c67686e7c104--docs"
+                      >text utilities</a
+                    >.
+                  </p>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    Removed font curve mixin
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li><code>@mixin font-curve</code></li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
                     Removed deprecated line-height variables
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
@@ -536,6 +599,12 @@ export class MigrationV89Component extends LitElement {
                   <p>
                     The <code>topic-teaser</code> component and all of its related classes have been
                     removed
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    The ng-bootstrap <code>custom select</code> has been removed
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                 </li>

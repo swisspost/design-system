@@ -81,7 +81,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</span>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -154,7 +154,7 @@ export const Default = {
 
     // Child components
     const controlId = `CardControl_${id}`;
-    const description = html`<span class="font-size-12">${args.description}</span>`;
+    const description = html`<span class="fs-11">${args.description}</span>`;
     const icon = html` <post-icon name="${args.icon}" aria-hidden="true"></post-icon> `;
     const invalidFeedback = html`<p class="invalid-feedback mt-8">Invalid feedback</p>`;
 
