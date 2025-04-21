@@ -10,20 +10,6 @@ on:
         type: boolean
         default: false
 
-
-name: Visual Regression Tests
-
-on:
-  pull_request:
-    paths:
-      - 'packages/styles/**'
-  workflow_dispatch:
-    inputs:
-      update-snapshots:
-        description: 'Update visual snapshots'
-        type: boolean
-        default: false
-
 permissions:
   contents: read
   actions: read
