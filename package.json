@@ -37,7 +37,7 @@
     "styles:unit": "pnpm --filter design-system-styles unit",
     "styles:lint": "pnpm --filter design-system-styles lint",
     "styles:lint:fix": "pnpm --filter design-system-styles lint:fix",
-    "styles:visual": "pnpm --filter design-system-styles test:visual",
+    "styles:visual": "pnpm --filter design-system-styles build && pnpm --filter design-system-styles test:visual",
     "styles:visual:update": "pnpm --filter design-system-styles test:visual:update",
     "styles:visual:ui": "pnpm --filter design-system-styles test:visual:ui",
     "styles:visual:chrome": "pnpm --filter design-system-styles test:visual:chrome",
