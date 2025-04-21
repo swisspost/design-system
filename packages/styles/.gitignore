@@ -25,18 +25,9 @@ test-results-*
 playwright-report/
 
 # Screenshot artifacts
-**/tests/visual/__screenshots__/**/chromium/
-**/tests/visual/__screenshots__/**/firefox/
-**/tests/visual/__screenshots__/**/webkit/
 **/tests/visual/__screenshots__/**/*-actual.png
 **/tests/visual/__screenshots__/**/*-diff.png
 **/tests/visual/__screenshots__/**/*-expected.png
-
-# Except baseline screenshots for the primary browser
-!**/tests/visual/__screenshots__/**/*-primary.png
-!**/tests/visual/__screenshots__/**/*-primary-hover.png
-!**/tests/visual/__screenshots__/**/*-primary-focus.png
-!**/tests/visual/__screenshots__/**/*-primary-active.png
 
 # Playwright
 /playwright/.cache/
