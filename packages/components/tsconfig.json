@@ -3,7 +3,8 @@
     "compilerOptions": {
       "module": "node16",
       "moduleResolution": "node16"
-    }
+    },
+    "include": ["prebuild.ts"],
   },
   "compilerOptions": {
     "paths": {
