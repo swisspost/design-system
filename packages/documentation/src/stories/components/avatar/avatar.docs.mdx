@@ -1,14 +1,13 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
 import * as AvatarPictureStories from './avatar.stories';
+import AvatarSample from './avatar.sample.scss?raw';
 
 <Meta of={AvatarPictureStories} />
 
 <div className="docs-title">
   # Avatar
 
-  <nav>
-    <link-design of={JSON.stringify(AvatarPictureStories)}></link-design>
-  </nav>
+  <link-design of={JSON.stringify(AvatarPictureStories)}></link-design>
 </div>
 
 <div className="lead">
@@ -42,12 +41,7 @@ The component provides some css-variables, which allow you to switch the backgro
   Please ensure at all times, that the background and foreground colors have sufficient contrast!
 </div>
 
-```scss
-post-avatar {
-  --post-avatar-bg: {your-custom-bg-color};
-  --post-avatar-fg: {your-custom-fg-color};
-}
-```
+<Source code={AvatarSample} language="scss" />
 
 ## Properties
 
