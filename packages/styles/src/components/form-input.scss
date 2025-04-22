@@ -196,10 +196,8 @@ input.form-control {
 .form-floating {
   position: relative;
 
-  // New approach using mask images for validation icons
   .validation-icon {
     position: absolute;
-    // Properly center vertically relative to the input field
     top: calc(tokens.get('input-border-width') + (tokens.get('input-sizing-height') / 2));
     transform: translateY(-50%);
     right: tokens.get('input-validation-icon-position-inline-end');
@@ -207,9 +205,8 @@ input.form-control {
     height: tokens.get('input-sizing-icon');
     z-index: 2;
     pointer-events: none;
-    display: none; // Hide by default
+    display: none;
     
-    // Use mask instead of background-image
     background-color: currentColor;
     -webkit-mask-size: contain;
     mask-size: contain;
@@ -220,20 +217,17 @@ input.form-control {
   }
   
   .validation-icon-valid {
-    // Define the mask image for valid state
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E");
     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E");
     color: tokens.get('post-validation-success', components.$post-validation);
   }
   
   .validation-icon-invalid {
-    // Define the mask image for invalid state
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z'/%3E%3C/svg%3E");
     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z'/%3E%3C/svg%3E");
     color: tokens.get('post-validation-error', components.$post-validation);
   }
   
-  // Show appropriate icon based on input state 
   input.form-control.is-valid:not(:disabled) ~ .validation-icon-valid {
     display: block;
   }
@@ -242,7 +236,6 @@ input.form-control {
     display: block;
   }
   
-  // Special handling for autofilled inputs
   input.form-control:-webkit-autofill {
     &.is-valid ~ .validation-icon-valid,
     &.is-invalid ~ .validation-icon-invalid {
