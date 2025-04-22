@@ -2,6 +2,6 @@
 @use 'sass:list';
 @use '../generated/component-names' as *;
 
-:where(#{$component-names}):not([data-hydrated]):not(:defined) {
+:where(#{$component-names}):not([data-hydrated], :defined) {
   visibility: hidden;
 }
