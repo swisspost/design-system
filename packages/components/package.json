@@ -38,7 +38,7 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "generate": "stencil generate",
-    "prebuild:script": "pnpm ts-node --project tsconfig.ts-node.json ./prebuild.ts",
+    "prebuild:script": "ts-node prebuild.ts",
     "copy:styles:components-react": "copyfiles -f www/build/post-components.css ../components-react/src/components/stencil-generated/",
     "copy:styles:components-angular": "copyfiles -f www/build/post-components.css ../components-angular/projects/components/src/lib/stencil-generated/"
   },
