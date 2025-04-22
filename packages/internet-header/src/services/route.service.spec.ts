@@ -25,9 +25,9 @@ describe('route.service.ts', () => {
         getSimilarityScore(['a', 'c'], ['b', 'c']),
         getSimilarityScore([], ['a']),
         getSimilarityScore(['a'], []),
-        // @ts-expect-error
+        // @ts-expect-error first arguments should be of type "string"
         getSimilarityScore(null, ['a']),
-        // @ts-expect-error
+        // @ts-expect-error first arguments should be of type "string"
         getSimilarityScore(undefined, ['a']),
         getSimilarityScore([], []),
         getSimilarityScore(
@@ -43,53 +43,68 @@ describe('route.service.ts', () => {
         ),
       ).toBe(0);
 
-      for (let score of scores) {
+      for (const score of scores) {
         expect(score).toBe(0);
       }
     });
   });
 
   describe('compareRoutes', () => {
-    const post = new URL('https://post.ch');
-    const letters = new URL('https://post.ch/briefe');
-    const deep = new URL('https://post.ch/briefe/inland');
-    const search = new URL('https://post.ch/briefe?q=search');
-    const hash = new URL('https://post.ch/briefe#hash');
-    const nope = new URL('https://post.de/briefe');
-    const upper = new URL('https://post.ch/Briefe');
+    const urls = {
+      post: new URL('https://post.ch'),
+      letters: new URL('https://post.ch/briefe'),
+      deep: new URL('https://post.ch/briefe/inland'),
+      search: new URL('https://post.ch/briefe?q=search'),
+      hash: new URL('https://post.ch/briefe#hash'),
+      nope: new URL('https://post.de/briefe'),
+      upper: new URL('https://post.ch/Briefe'),
+    };
 
     it('Correctly scores routes in auto mode', () => {
       // Left: current browser URL, right: URL in Nav
-      expect(compareRoutes(letters, post, 'auto')).toBe(1);
-      expect(compareRoutes(deep, letters, 'auto')).toBe(2);
-      expect(compareRoutes(search, letters, 'auto')).toBe(Infinity);
-      expect(compareRoutes(search, hash, 'auto')).toBe(Infinity);
-      expect(compareRoutes(letters, deep, 'auto')).toBe(0);
-      expect(compareRoutes(nope, letters, 'auto')).toBe(0);
-      expect(compareRoutes(letters, upper, 'auto')).toBe(Infinity);
-      expect(compareRoutes(deep, upper, 'auto')).toBe(2);
+      expect(compareRoutes(urls.letters, urls.post, false, 'auto')).toBe(1);
+      expect(compareRoutes(urls.deep, urls.letters, false, 'auto')).toBe(2);
+      expect(compareRoutes(urls.search, urls.letters, false, 'auto')).toBe(Infinity);
+      expect(compareRoutes(urls.search, urls.hash, false, 'auto')).toBe(Infinity);
+      expect(compareRoutes(urls.letters, urls.deep, false, 'auto')).toBe(0);
+      expect(compareRoutes(urls.nope, urls.letters, false, 'auto')).toBe(0);
+      expect(compareRoutes(urls.letters, urls.upper, false, 'auto')).toBe(Infinity);
+      expect(compareRoutes(urls.deep, urls.upper, false, 'auto')).toBe(2);
     });
 
     it('Correctly scores routes in exact mode', () => {
-      // Left: current browser URL, right: URL in Nav
-      expect(compareRoutes(post, letters)).toBe(0);
-      expect(compareRoutes(letters, deep)).toBe(0);
-      expect(compareRoutes(letters, search)).toBe(Infinity);
-      expect(compareRoutes(hash, search)).toBe(Infinity);
-      expect(compareRoutes(deep, letters)).toBe(0);
-      expect(compareRoutes(letters, nope)).toBe(0);
-      expect(compareRoutes(nope, letters)).toBe(0);
-      expect(compareRoutes(letters, nope, 'exact')).toBe(0);
-      expect(compareRoutes(letters, upper, 'exact')).toBe(Infinity);
+      expect(compareRoutes(urls.post, urls.letters, false, 'exact')).toBe(0);
+      expect(compareRoutes(urls.letters, urls.deep, false, 'exact')).toBe(0);
+      expect(compareRoutes(urls.letters, urls.search, false, 'exact')).toBe(Infinity);
+      expect(compareRoutes(urls.hash, urls.search, false, 'exact')).toBe(Infinity);
+      expect(compareRoutes(urls.deep, urls.letters, false, 'exact')).toBe(0);
+      expect(compareRoutes(urls.letters, urls.nope, false, 'exact')).toBe(0);
+      expect(compareRoutes(urls.nope, urls.letters, false, 'exact')).toBe(0);
+      expect(compareRoutes(urls.letters, urls.nope, false, 'exact')).toBe(0);
+      expect(compareRoutes(urls.letters, urls.upper, false, 'exact')).toBe(Infinity);
     });
 
     it('Does not fail on invalid arguments', () => {
-      // @ts-expect-error
-      expect(compareRoutes(null, nope, 'auto')).toBe(0);
-      // @ts-expect-error
+      // @ts-expect-error first arguments should be of type url
+      expect(compareRoutes(null, urls.nope, 'auto')).toBe(0);
+      // @ts-expect-error first and second arguments should be of type url
       expect(compareRoutes(null, undefined, 'auto')).toBe(0);
-      // @ts-expect-error
-      expect(compareRoutes(post, nope, null)).toBe(0);
+      // @ts-expect-error third argument should be of type 'auto' or 'exact'
+      expect(compareRoutes(urls.post, urls.nope, null)).toBe(0);
+    });
+
+    it('handles relative and absolute paths the same', () => {
+      const relativeUrl = new URL('/briefe', 'https://post.ch');
+      const faultyRelativeUrl = new URL('/briefee', 'https://post.ch');
+      expect(compareRoutes(urls.letters, relativeUrl, true)).toBe(Infinity);
+      expect(compareRoutes(relativeUrl, urls.letters, true)).toBe(Infinity);
+      expect(compareRoutes(urls.deep, relativeUrl, true)).toBe(0);
+      expect(compareRoutes(urls.letters, faultyRelativeUrl, true)).toBe(0);
+    });
+
+    it('matches based on pathname regardless of origin', () => {
+      const samePathDifferentOrigin = new URL('/briefe', 'https://different-origin.com');
+      expect(compareRoutes(urls.letters, samePathDifferentOrigin, true)).toBe(Infinity);
     });
   });
 
@@ -104,22 +119,22 @@ describe('route.service.ts', () => {
     });
 
     it('Returns a full match', () => {
-      const scorelist = compileScoreList(config, fullMatch, 'auto');
+      const scorelist = compileScoreList(config, fullMatch, 'auto', false);
       expect(scorelist[0].score).toBe(Infinity);
       expect(scorelist[0].sub!.title).toBe('Briefe Inland');
 
-      const scorelistUpper = compileScoreList(config, upper, 'auto');
+      const scorelistUpper = compileScoreList(config, upper, 'auto', false);
       expect(scorelistUpper[0].score).toBe(Infinity);
     });
 
     it('Returns a full match and only one entry', () => {
-      const scorelist = compileScoreList(config, fullMatch, 'exact');
+      const scorelist = compileScoreList(config, fullMatch, 'exact', false);
       expect(scorelist[0].score).toBe(Infinity);
       expect(scorelist.length).toBe(1);
     });
 
     it('Returns no match', () => {
-      const scorelist = compileScoreList(config, noMatch, 'auto');
+      const scorelist = compileScoreList(config, noMatch, 'auto', false);
       expect(scorelist.length).toBe(0);
     });
   });
