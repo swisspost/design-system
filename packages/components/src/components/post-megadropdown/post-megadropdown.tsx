@@ -1,4 +1,7 @@
+import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
+import { version } from '@root/package.json';
+import { breakpoint } from '../../utils/breakpoints';
 
 @Component({
   tag: 'post-megadropdown',
@@ -6,9 +9,22 @@ import { Component, Element, Event, EventEmitter, h, Host, Method, State } from 
   shadow: false,
 })
 export class PostMegadropdown {
-  private popoverRef: HTMLPostPopovercontainerElement;
+  private firstFocusableEl: HTMLElement | null;
+  private lastFocusableEl: HTMLElement | null;
+
+  @State() device: string = breakpoint.get('name');
 
   @Element() host: HTMLPostMegadropdownElement;
+
+  /** Tracks the currently active dropdown instance. */
+  private static activeDropdown: PostMegadropdown | null = null;
+
+  private breakpointChange(e: CustomEvent) {
+    this.device = e.detail;
+    if (this.device === 'desktop' && this.isVisible) {
+      this.animationClass = null;
+    }
+  }
 
   /**
    * Holds the current visibility state of the dropdown.
@@ -17,99 +33,197 @@ export class PostMegadropdown {
    */
   @State() isVisible: boolean = false;
 
+  /** Holds the current animation class. */
   @State() animationClass: string | null = null;
 
   /**
    * Emits when the dropdown is shown or hidden.
-   * The event payload is a boolean: `true` when the dropdown was opened, `false` when it was closed.
+   * The event payload is an object.
+   * `isVisible` is true when the dropdown gets opened and false when it gets closed
+   * `focusParent` determines whether after the closing of the mega dropdown, the focus should go back to the trigger parent or naturally go to the next focusable element in the page
    **/
-  @Event() postToggleMegadropdown: EventEmitter<boolean>;
+  @Event() postToggleMegadropdown: EventEmitter<{ isVisible: boolean; focusParent?: boolean }>;
 
-  componentDidLoad() {
-    this.popoverRef.addEventListener('postToggle', (event: CustomEvent<boolean>) => {
-      this.isVisible = event.detail;
-      this.postToggleMegadropdown.emit(this.isVisible);
-    });
+  disconnectedCallback() {
+    this.removeListeners();
+    window.removeEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
+    if (PostMegadropdown.activeDropdown === this) {
+      PostMegadropdown.activeDropdown = null;
+    }
+  }
 
-    this.popoverRef.addEventListener('animationend', () => {
-      if (this.animationClass === 'slide-out') {
-        this.hide();
-      }
-    });
+  componentWillRender() {
+    this.getFocusableElements();
   }
 
   /**
    * Toggles the dropdown visibility based on its current state.
    */
   @Method()
-  async toggle(target: HTMLElement) {
-    this.isVisible ? this.hide() : await this.show(target);
+  async toggle() {
+    if (this.isVisible) {
+      this.hide();
+    } else {
+      await this.show();
+    }
   }
 
   /**
-   * Displays the popover dropdown
-   *
-   * @param target - The HTML element relative to which the popover dropdown should be displayed.
+   * Displays the dropdown.
    */
   @Method()
-  async show(target: HTMLElement) {
-    if (this.popoverRef) {
-      await this.popoverRef.show(target);
-      this.animationClass = 'slide-in';
+  async show() {
+    if (PostMegadropdown.activeDropdown && PostMegadropdown.activeDropdown !== this) {
+      // Close the previously active dropdown without animation
+      PostMegadropdown.activeDropdown.forceClose();
     } else {
-      console.error('show: popoverRef is null or undefined');
+      this.animationClass = 'slide-in';
+    }
+
+    this.isVisible = true;
+    PostMegadropdown.activeDropdown = this;
+    this.postToggleMegadropdown.emit({ isVisible: this.isVisible });
+    if (
+      this.firstFocusableEl &&
+      window.getComputedStyle(this.firstFocusableEl).display !== 'none'
+    ) {
+      this.firstFocusableEl.focus();
+    }
+    this.addListeners();
+  }
+
+  /**
+   * Hides the dropdown with an animation.
+   */
+  @Method()
+  async hide(focusParent = true, forceClose = false) {
+    this.postToggleMegadropdown.emit({ isVisible: false, focusParent: focusParent });
+    if (forceClose) {
+      this.forceClose();
+    } else {
+      this.animationClass = 'slide-out';
     }
   }
 
   /**
-   * Hides the popover dropdown
+   * Sets focus to the first focusable element within the component.
    */
-  private hide() {
-    if (this.popoverRef) {
-      this.popoverRef.hide();
-    } else {
-      console.error('hide: popoverRef is null or undefined');
+  @Method()
+  async focusFirst() {
+    this.firstFocusableEl?.focus();
+  }
+
+  connectedCallback() {
+    window.addEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
+  }
+
+  /**
+   * Forces the dropdown to close without animation.
+   */
+  private forceClose() {
+    this.isVisible = false;
+    this.animationClass = null;
+    this.postToggleMegadropdown.emit({ isVisible: this.isVisible, focusParent: false });
+    this.removeListeners();
+  }
+
+  private handleAnimationEnd() {
+    if (this.animationClass === 'slide-out') {
+      this.isVisible = false;
+      this.animationClass = null;
+      PostMegadropdown.activeDropdown = null;
+      this.removeListeners();
     }
   }
 
-  private handleBackButtonClick() {
-    this.animationClass = 'slide-out';
+  private handleClickOutside = (event: MouseEvent) => {
+    if (this.device !== 'desktop') return;
+
+    const target = event.target as Node;
+
+    if (this.host.contains(target)) {
+      return;
+    }
+
+    if (target instanceof HTMLElement) {
+      const trigger = target.closest('post-megadropdown-trigger');
+
+      if (trigger) {
+        const targetDropdownId = trigger.getAttribute('for');
+        if (targetDropdownId !== this.host.id) {
+          return;
+        }
+      }
+    }
+
+    this.hide(false);
+  };
+
+  private addListeners() {
+    this.host.addEventListener('keydown', e => this.keyboardHandler(e));
+    document.addEventListener('keyup', e => this.handleTabOutside(e));
+    document.addEventListener('mousedown', this.handleClickOutside);
   }
 
-  private handleCloseButtonClick() {
-    this.popoverRef.hide();
+  private removeListeners() {
+    this.host.removeEventListener('keydown', e => this.keyboardHandler(e));
+    document.removeEventListener('keyup', e => this.handleTabOutside(e));
+    document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
-  private handleFocusout(event: FocusEvent) {
-    const relatedTarget = event.relatedTarget as HTMLElement;
-    const megadropdown = this.popoverRef.querySelector('.megadropdown');
-    if (!megadropdown.contains(relatedTarget)) {
-      this.hide();
+  private getFocusableElements() {
+    const focusableEls = Array.from(this.host.querySelectorAll('post-list-item, h3, .back-button'));
+    const focusableChildren = focusableEls.flatMap(el => Array.from(getFocusableChildren(el)));
+    this.firstFocusableEl = focusableChildren[0];
+    this.lastFocusableEl = focusableChildren[focusableChildren.length - 1];
+  }
+
+  // Loop through the focusable children
+  private keyboardHandler(e: KeyboardEvent) {
+    if (e.key === 'Tab' && this.device !== 'desktop') {
+      if (e.shiftKey && document.activeElement === this.firstFocusableEl) {
+        // If back tab (TAB + Shift) and first element is focused, focus goes to the last element of the megadropdown
+        e.preventDefault();
+        this.lastFocusableEl.focus();
+      } else if (!e.shiftKey && document.activeElement === this.lastFocusableEl) {
+        // If TAB and last element is focused, focus goes back to the first element of the megadropdown
+        e.preventDefault();
+        this.firstFocusableEl.focus();
+      }
+    }
+  }
+
+  private handleTabOutside(e: KeyboardEvent) {
+    if (e.key === 'Tab' && this.device === 'desktop') {
+      if (!this.host.contains(e.target as Node)) {
+        this.hide(false);
+      }
     }
   }
 
   render() {
+    const containerStyle = this.isVisible ? {} : { display: 'none' };
+
     return (
-      <Host>
-        <post-popovercontainer
-          class={this.animationClass}
-          placement="bottom"
-          edge-gap="0"
-          ref={el => (this.popoverRef = el)}
+      <Host version={version}>
+        <div
+          class={`megadropdown-container ${this.animationClass || ''}`}
+          style={containerStyle}
+          onAnimationEnd={() => this.handleAnimationEnd()}
         >
-          <div class="megadropdown" onFocusout={e => this.handleFocusout(e)}>
-            <div onClick={() => this.handleBackButtonClick()} class="back-button">
-              <slot name="back-button"></slot>
-            </div>
-            <div onClick={() => this.handleCloseButtonClick()} class="close-button">
-              <slot name="close-button"></slot>
-            </div>
+          <div class="megadropdown">
             <slot name="megadropdown-title"></slot>
             <div class="megadropdown-content">
               <slot></slot>
             </div>
+            <div onClick={() => this.hide(true)} class="back-button">
+              <slot name="back-button"></slot>
+            </div>
+            <div onClick={() => this.hide(true)} class="close-button">
+              <slot name="close-button"></slot>
+            </div>
           </div>
-        </post-popovercontainer>
+        </div>
       </Host>
     );
   }

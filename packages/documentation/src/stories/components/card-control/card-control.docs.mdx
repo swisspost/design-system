@@ -1,10 +1,5 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
-import {
-  PostBanner,
-  PostTabs,
-  PostTabHeader,
-  PostTabPanel,
-} from '@swisspost/design-system-components-react';
+import { PostBanner } from '@swisspost/design-system-components-react';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
 import * as CardControlStandardHTMLStories from './standard-html/card-control.stories';
@@ -18,24 +13,20 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 <div className="docs-title">
   # Card-Control
 
-  <nav>
-    <link-design of={JSON.stringify(CardControlStories)}></link-design>
-  </nav>
+  <link-design of={JSON.stringify(CardControlStories)}></link-design>
 </div>
 
 <p className="lead">For a more specialized visualization of checkbox and radio elements.</p>
 
 <PostBanner type="info">
   <p slot="heading">There are various methods to integrate this component into your project.</p>
-  <p>
-    We advise opting for the "Standard HTML" approach for when you need full access to the input
-    field and using the "Web Component" method in every other case.
-  </p>
+  <p>We advise opting for the "Standard HTML" approach for when you need full access to the input
+    field and using the "Web Component" method in every other case.</p>
 </PostBanner>
 
-<PostTabs>
-  <PostTabHeader panel="standardhtml">Standard HTML</PostTabHeader>
-  <PostTabPanel name="standardhtml">
+<post-tabs>
+  <post-tab-header panel="standardhtml">Standard HTML</post-tab-header>
+  <post-tab-panel name="standardhtml">
     <Canvas sourceState="shown" of={CardControlStandardHTMLStories.Default} />
     <div className="hide-col-default">
       <Controls of={CardControlStandardHTMLStories.Default} />
@@ -80,12 +71,12 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 
     <StylesPackageImport components={['choice-control-card']} />
 
-  </PostTabPanel>
+  </post-tab-panel>
 
-  <PostTabHeader panel="webcomponent">Webcomponent</PostTabHeader>
-  <PostTabPanel name="webcomponent">
-    <Canvas of={CardControlStories.Default} sourceState="shown"/>
-    <Controls of={CardControlStories.Default} />
+<post-tab-header panel="webcomponent">Webcomponent</post-tab-header>
+<post-tab-panel name="webcomponent">
+<Canvas of={CardControlStories.Default} sourceState="shown"/>
+<Controls of={CardControlStories.Default} />
 
     ## Installation
 
@@ -149,5 +140,5 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
       language="typescript"
     />
 
-  </PostTabPanel>
-</PostTabs>
+  </post-tab-panel>
+</post-tabs>

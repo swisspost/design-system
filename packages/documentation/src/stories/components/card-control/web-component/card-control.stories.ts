@@ -242,8 +242,8 @@ export const FormIntegration: Story = {
       ${story()}
       <div class="mt-16">
         <h4>FormData</h4>
-        <p class="fs-small">Submit or reset the form to see how the FormData will look like.</p>
-        <pre id="AssociatedFormOutput" class="p-8 palette-accent rounded fs-tiny">{}</pre>
+        <p class="fs-9">Submit or reset the form to see how the FormData will look like.</p>
+        <pre id="AssociatedFormOutput" class="p-8 palette-accent rounded fs-10">{}</pre>
       </div>
     `,
   ],
@@ -341,7 +341,7 @@ export const LinedUp: Story = {
     },
   },
   render: (args: Args, context: StoryContext) => html`
-    <div class="row gy-3">
+    <div class="row gy-16">
       ${[1, 2, 3, 4, 5, 6].map(
         i => html`
           <div class="col-${12 / args.colCount}">

@@ -10,9 +10,10 @@ import { getComponentStyleImports } from './styles-package-import-individual.sam
 To import all Design System styles:
 
 <div className="docblock-source-all-design">
-  <Source code={`@use '@swisspost/design-system-styles/post-internal.scss';`} language="scss" />
+  <Source code={`@use '@swisspost/design-system-styles/post-compact.scss';`} language="scss" />
 </div>
 
 To import only the styles required for this component:
 
+{/* eslint-disable-next-line no-undef */}
 <Source code={getComponentStyleImports(props)} language="scss" />

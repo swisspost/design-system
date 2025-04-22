@@ -1,10 +1,11 @@
 import type { StoryObj } from '@storybook/web-components';
 import { MetaComponent } from '@root/types';
-import { html } from 'lit-html';
+import { html } from 'lit';
+import { fakeContent } from '@/utils';
 
 const meta: MetaComponent = {
-  id: 'header',
-  title: 'Modules/Header',
+  id: '27a2e64d-55ba-492d-ab79-5f7c5e818498',
+  title: 'Components/Header',
   tags: ['package:WebComponents'],
   component: 'post-header',
   parameters: {
@@ -52,6 +53,12 @@ const meta: MetaComponent = {
       },
     },
   },
+  decorators: [
+    story =>
+      html` <div class="header-story-wrapper">
+        <div class="virtual-body">${story()} ${fakeContent()}</div>
+      </div>`,
+  ],
 };
 
 export default meta;
@@ -83,16 +90,16 @@ export const Default: Story = {
 
       <!-- Language switch -->
       <post-language-switch
-        caption="Caption"
-        description="Description"
+        caption="Change the language"
+        description="The currently selected language is English."
         variant="list"
         name="language-switch-example"
         slot="post-language-switch"
       >
-        <post-language-option active="true" code="de" name="Deutsch">DE</post-language-option>
-        <post-language-option active="false" code="fr" name="French">FR</post-language-option>
-        <post-language-option active="false" code="it" name="Italiano">IT</post-language-option>
-        <post-language-option active="false" code="en" name="English">EN</post-language-option>
+        <post-language-option active="false" code="de" name="Deutsch">de</post-language-option>
+        <post-language-option active="false" code="fr" name="French">fr</post-language-option>
+        <post-language-option active="false" code="it" name="Italiano">it</post-language-option>
+        <post-language-option active="true" code="en" name="English">en</post-language-option>
       </post-language-switch>
 
       ${args.title
@@ -124,62 +131,86 @@ export const Default: Story = {
       <!-- Main navigation -->
       <post-mainnavigation caption="Hauptnavigation">
         <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
-          <post-icon aria-hidden="true" name="3024"></post-icon> Back
+          <post-icon aria-hidden="true" name="arrowright"></post-icon> Back
         </button>
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
           <!-- Link only level 1 -->
-          <post-list-item><a href="/briefe">Briefe</a></post-list-item>
-          <post-list-item><a href="/pakete">Pakete</a></post-list-item>
+          <post-list-item slot="post-list-item"><a href="/briefe">Briefe</a></post-list-item>
+          <post-list-item slot="post-list-item"><a href="/pakete">Pakete</a></post-list-item>
 
           <!-- Level 1 with megadropdown -->
-          <post-list-item>
+          <post-list-item slot="post-list-item">
             <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
             <post-megadropdown id="briefe">
-              <button slot="back-button" class="btn btn-tertiary">
+              <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
                 <post-icon name="arrowright"></post-icon>
-                Zurück
+                Back
               </button>
               <post-closebutton slot="close-button">Schliessen</post-closebutton>
-              <h2 slot="megadropdown-title"><a href="">Briefe title</a></h2>
+              <h2 slot="megadropdown-title">Briefe title</h2>
               <post-list>
                 <h3>Briefe senden</h3>
-                <post-list-item><a href="/sch">Briefe Schweiz</a></post-list-item>
-                <post-list-item><a href="/kl">Kleinwaren Ausland</a></post-list-item>
-                <post-list-item><a href="">Waren Ausland</a></post-list-item>
-                <post-list-item><a href="">Express und Kurier</a></post-list-item>
+                <post-list-item slot="post-list-item"
+                  ><a href="/sch">Briefe Schweiz</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"
+                  ><a href="/kl">Kleinwaren Ausland</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
+                <post-list-item slot="post-list-item"
+                  ><a href="">Express und Kurier</a></post-list-item
+                >
               </post-list>
               <post-list>
                 <h3><a href="/schritt-für-schritt">Schritt für Schritt</a></h3>
-                <post-list-item><a href="/sch">Pakete Schweiz</a></post-list-item>
-                <post-list-item><a href="/kl">Kleinwaren Ausland</a></post-list-item>
-                <post-list-item><a href="">Waren Ausland</a></post-list-item>
-                <post-list-item><a href="">Express und Kurier</a></post-list-item>
+                <post-list-item slot="post-list-item"
+                  ><a href="/sch">Pakete Schweiz</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"
+                  ><a href="/kl">Kleinwaren Ausland</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
+                <post-list-item slot="post-list-item"
+                  ><a href="">Express und Kurier</a></post-list-item
+                >
               </post-list>
             </post-megadropdown>
           </post-list-item>
-          <post-list-item>
+          <post-list-item slot="post-list-item">
             <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
             <post-megadropdown id="pakete">
-              <button slot="back-button" class="btn btn-tertiary">
+              <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
                 <post-icon name="arrowright"></post-icon>
-                Zurück
+                Back
               </button>
               <post-closebutton slot="close-button">Schliessen</post-closebutton>
-              <h2 slot="megadropdown-title"><a href="">Pakete title</a></h2>
+              <h2 slot="megadropdown-title">Pakete title</h2>
               <post-list>
                 <h3>Pakete senden</h3>
-                <post-list-item><a href="/sch">Pakete Schweiz</a></post-list-item>
-                <post-list-item><a href="/kl">Kleinwaren Ausland</a></post-list-item>
-                <post-list-item><a href="">Waren Ausland</a></post-list-item>
-                <post-list-item><a href="">Express und Kurier</a></post-list-item>
+                <post-list-item slot="post-list-item"
+                  ><a href="/sch">Pakete Schweiz</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"
+                  ><a href="/kl">Kleinwaren Ausland</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
+                <post-list-item slot="post-list-item"
+                  ><a href="">Express und Kurier</a></post-list-item
+                >
               </post-list>
               <post-list>
                 <h3><a href="/schritt-für-schritt">Schritt für Schritt</a></h3>
-                <post-list-item><a href="/sch">Pakete Schweiz</a></post-list-item>
-                <post-list-item><a href="/kl">Kleinwaren Ausland</a></post-list-item>
-                <post-list-item><a href="">Waren Ausland</a></post-list-item>
-                <post-list-item><a href="">Express und Kurier</a></post-list-item>
+                <post-list-item slot="post-list-item"
+                  ><a href="/sch">Pakete Schweiz</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"
+                  ><a href="/kl">Kleinwaren Ausland</a></post-list-item
+                >
+                <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
+                <post-list-item slot="post-list-item"
+                  ><a href="">Express und Kurier</a></post-list-item
+                >
               </post-list>
             </post-megadropdown>
           </post-list-item>

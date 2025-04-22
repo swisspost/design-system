@@ -20,8 +20,8 @@ tokens.$default-map: utilities.$post-spacing;
   display: contents;
 
   .sb-fontface__typo {
-    font-size: post.$font-size-huge;
-    color: var(--post-gray-60);
+    font-size: 3.5rem;
+    color: post.$gray-60;
     line-height: 1;
   }
 
@@ -37,18 +37,18 @@ tokens.$default-map: utilities.$post-spacing;
 
     .settings__weight,
     .settings__style {
-      font-size: post.$font-size-tiny;
-      color: var(--post-gray-80);
+      font-size: 0.75rem;
+      color: post.$gray-80;
 
       > span {
-        color: var(--post-gray-60);
+        color: post.$gray-60;
       }
     }
   }
 
   @include post.media-breakpoint-up(md) {
     .sb-fontface__typo {
-      font-size: post.$font-size-huge * 1.25;
+      font-size: 3.5rem;
     }
 
     .sb-fontface__settings {

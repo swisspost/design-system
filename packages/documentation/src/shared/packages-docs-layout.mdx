@@ -1,17 +1,18 @@
 import { Markdown } from '@storybook/blocks';
-import { PostTabs, PostTabHeader, PostTabPanel } from '@swisspost/design-system-components-react';
 import { CodeOrSourceMdx } from '@/utils/codeOrSourceMdx';
 
-<PostTabs className='sb-tabs-lg'>
-  <PostTabHeader panel="instructions">Instructions</PostTabHeader>
-  <PostTabPanel name="instructions">
+<post-tabs className='sb-tabs-lg'>
+  <post-tab-header panel="instructions">Instructions</post-tab-header>
+  <post-tab-panel name="instructions">
+    {/* eslint-disable-next-line no-undef */}
     {props.children}
-  </PostTabPanel>
+  </post-tab-panel>
 
-  <PostTabHeader panel="changelog">Changelog</PostTabHeader>
-  <PostTabPanel name="changelog">
+  <post-tab-header panel="changelog">Changelog</post-tab-header>
+  <post-tab-panel name="changelog">
     <Markdown className="sb-markdown-no-h1" options={{ overrides: { code: CodeOrSourceMdx } }}>
+      {/* eslint-disable-next-line no-undef */}
       {props.changelog}
     </Markdown>
-  </PostTabPanel>
-</PostTabs>
+  </post-tab-panel>
+</post-tabs>

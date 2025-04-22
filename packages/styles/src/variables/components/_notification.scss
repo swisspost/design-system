@@ -46,7 +46,7 @@ $notification-font-size-map: map.merge(
   $notification-font-size-map,
   (
     'banner': type.$font-size-base,
-    'toast': type.$font-size-tiny,
+    'toast': 0.75rem,
   )
 );
 

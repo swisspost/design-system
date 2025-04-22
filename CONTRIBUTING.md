@@ -4,7 +4,6 @@ These contribution guidelines apply to this repository in general and describe h
 
 - [Angular Demo](./packages/demo/README.md)
 - [Design System Styles](./packages/styles/CONTRIBUTING.md)
-- [Intranet Header Component](./packages/intranet-header-workspace/projects/intranet-header/CONTRIBUTING.md)
 
 ## Setup
 
@@ -17,8 +16,7 @@ Use these commands whenever you want to work on one of these packages. Ideally, 
 | Command                           | Description                                                                                  |
 | --------------------------------- | -------------------------------------------------------------------------------------------- |
 | `pnpm start` or `pnpm docs:start` | starts the design-system-documentation storybook and the `start` scripts of all dependencies |
-| `pnpm demo:start`                 | starts the demo Angular application and the `start` scripts of all dependencies              |
-| `pnpm intranet-header:start`      | starts the intranet header demo application                                                  |
+| `pnpm demo:start`                 | starts the demo Angular application and the `start` application                                                  |
 | `pnpm styles:start`               | starts the sass compiler                                                                     |
 | `pnpm components:start`           | starts the stencil compiler                                                                  |
 | `pnpm header:start`               | starts the stencil compiler for the header                                                   |
@@ -236,7 +234,6 @@ For some packages it's necessary to run multiple dev servers at the same time. T
 | :-------------- | ---: |
 | Styles (unused) | 9300 |
 | Internet-Header | 9310 |
-| Intranet-Header | 9320 |
 | Icons           | 9330 |
 
 ## Branching
@@ -329,6 +326,14 @@ Create a changeset with `pnpm changeset` and follow the CLI instructions and pus
 Changesets indicate a change relevant to users of a package. The changeset also indicates the impact of the change in the form of [semantic versioning](https://semver.org/) (breaking change, new feature or bugfix). This information will show up in the changelog, as well as the description text in the changeset.
 
 Using changesets enables us to automatically generate a changelog for every package while also maintaining control over what content ends up in the changelog. Changes like updates to the build system might be irrelevant to package users and therefore do not need a changeset.
+
+### Major, minor or patch change?
+
+We're following the [semantic versioning philosophy](https://semver.org/) for versioning our packages:
+
+- **Major**: This is a breaking change. Either it cannot be installed without changes on user side without breaking the build or it contains [significant Design Changes](https://github.com/swisspost/design-system/discussions/5114)
+- **Minor**: This is a new feature. The package can be upgraded without breaking anything.
+- **Patch**: This is a bugfix, small improvement or non-consequential change and the package can be safely updated without breaking a build.
 
 ### How to write a good changeset
 

@@ -35,11 +35,7 @@ export class PostCollapsible {
 
   @Watch('collapsed')
   collapsedChange() {
-    checkEmptyOrType(
-      this.collapsed,
-      'boolean',
-      'The `collapsed` property of the `post-collapsible` must be a boolean.',
-    );
+    checkEmptyOrType(this, 'collapsed', 'boolean');
 
     void this.toggle(!this.collapsed);
   }
@@ -79,6 +75,8 @@ export class PostCollapsible {
 
     const isHostRendered = this.host.offsetParent;
     if (isHostRendered) animation.commitStyles();
+
+    this.updateTriggers();
 
     return open;
   }

@@ -1,3 +1,5 @@
+import { IS_BROWSER } from '@/utils/environment';
+
 type MapItem = {
   minWidth: number;
   key: string;
@@ -13,28 +15,34 @@ export class Breakpoint {
   };
 
   constructor() {
-    if (!this.breakpointMap) {
-      const styles = getComputedStyle(document.documentElement);
-      const keys = styles.getPropertyValue('--post-breakpoint-keys').split(', ');
-      const names = styles.getPropertyValue('--post-breakpoint-names').split(', ');
+    if (IS_BROWSER && !this.breakpointMap) {
+      const keys = this.getStyles('--post-breakpoint-keys');
+      const names = this.getStyles('--post-breakpoint-names');
+      const widths = this.getStyles('--post-breakpoint-widths');
 
-      this.breakpointMap = styles
-        .getPropertyValue('--post-breakpoint-widths')
-        .split(', ')
-        .map((width, i) => {
-          return {
-            minWidth: Number(width),
-            key: keys[i],
-            name: names[i],
-          };
-        })
+      this.breakpointMap = widths
+        .map((width, i) => ({
+          minWidth: Number(width),
+          key: keys[i],
+          name: names[i],
+        }))
         .reverse();
 
       window.addEventListener('resize', () => this.updateHandler(), { passive: true });
     }
   }
 
-  private updateHandler(emitEvents = true) {
+  private getStyles(propertyName: string) {
+    const styles = getComputedStyle(document.documentElement);
+    return (
+      styles
+        .getPropertyValue(propertyName)
+        ?.split(',')
+        .map(w => w.trim()) ?? []
+    );
+  }
+
+  private updateHandler(emitEvents: boolean = true) {
     const calculated = this.breakpointMap.find(({ minWidth }) => innerWidth >= minWidth);
 
     if (this.current.key !== calculated.key) {
@@ -49,7 +57,11 @@ export class Breakpoint {
   }
 
   private dispatchEvent(type: ListenerType) {
-    window.dispatchEvent(new CustomEvent(`postBreakpoint:${type}`, { detail: this.current[type] }));
+    if (IS_BROWSER) {
+      window.dispatchEvent(
+        new CustomEvent(`postBreakpoint:${type}`, { detail: this.current[type] }),
+      );
+    }
   }
 
   public get(type: ListenerType) {

@@ -362,19 +362,20 @@ function render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
   updateAlignments(args, updateArgs);
-
-  const timeoutStore = timeoutStores[context.name as keyof ITimeoutStores];
-
+  
+  const timeoutStore = timeoutStores[context.name as keyof ITimeoutStores] || timeoutStores['Default'];
+  
+  const isFixed = args.position === 'fixed';
+  
   const classes = [
     'toast',
     args.variant,
     args.noIcon && 'no-icon',
-    args.dismissible && 'toast-dismissible',
+    (args.dismissible || isFixed) && 'toast-dismissible',
   ]
     .filter(c => c && c !== 'null')
     .join(' ');
 
-  const isFixed = args.position === 'fixed';
   const alignV = args.alignVRestricted ?? args.alignV;
   const alignH = args.alignHRestricted ?? args.alignH;
   let role;
@@ -411,11 +412,14 @@ function render(args: Args, context: StoryContext) {
   if (args.stacked) {
     wrappedContent = html` ${component} ${component} `;
   } else if (isFixed) {
+    wrappedContent = html`
+      <div style="${args.show ? '' : 'display: none;'}">
+        ${component}
+      </div>
+    `;
+    
     if (args.show) {
       createAutoHideTimeout(timeoutStore, args, updateArgs);
-      wrappedContent = component;
-    } else {
-      wrappedContent = null;
     }
   } else {
     return component;
@@ -433,15 +437,19 @@ function render(args: Args, context: StoryContext) {
 
 function updateAlignments(args: Args, updateArgs: (newArgs: Partial<Args>) => void) {
   if (args.alignH && args.alignHRestricted && args.alignH !== args.alignHRestricted) {
-    args.alignV === 'center'
-      ? updateArgs({ alignH: args.alignHRestricted })
-      : updateArgs({ alignHRestricted: args.alignH });
+    if (args.alignV === 'center') {
+      updateArgs({ alignH: args.alignHRestricted });
+    } else {
+      updateArgs({ alignHRestricted: args.alignH });
+    }
   }
 
   if (args.alignV && args.alignVRestricted && args.alignV !== args.alignVRestricted) {
-    args.alignH === 'full-width'
-      ? updateArgs({ alignV: args.alignVRestricted })
-      : updateArgs({ alignVRestricted: args.alignV });
+    if (args.alignH === 'full-width') {
+      updateArgs({ alignV: args.alignVRestricted });
+    } else {
+      updateArgs({ alignVRestricted: args.alignV });
+    }
   }
 }
 

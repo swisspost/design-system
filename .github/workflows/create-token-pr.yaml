@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           fetch-depth: 0
           token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
@@ -50,6 +50,7 @@ jobs:
       - name: Get Token Changes
         id: tokens
         run: |
+          git checkout ${{ steps.pr-branch.outputs.name }}
           git checkout ${{ github.ref_name }} -- packages/tokens/tokensstudio-generated
           git add .
           if [[ -n $(git commit --dry-run --short) ]]; then

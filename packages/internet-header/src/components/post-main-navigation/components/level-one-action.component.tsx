@@ -5,9 +5,9 @@ import { translate } from '../../../services/language.service';
 export const LevelOneAction = (props: {
   level: NavMainEntity;
   isOpen: boolean;
-  onTouchEnd: (e: any) => void;
-  onKeyDown: (e: any) => void;
-  onClick: (e: any) => void;
+  onTouchEnd: (e: Event) => void;
+  onKeyDown: (e: Event) => void;
+  onClick: (e: Event) => void;
 }) => {
   const TagName = props.level.url !== undefined ? 'a' : 'button';
   const title = props.level.title?.trim();

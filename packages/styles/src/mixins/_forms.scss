@@ -4,20 +4,7 @@
 @use './../functions/icons';
 @use './../functions/forms' as forms-fx;
 @use './../functions/utilities' as utilities-fx;
-
-// Placeholder in input fields
-@mixin placeholder() {
-  &::placeholder {
-    @content;
-  }
-
-  // For very old Edge
-  /* stylelint-disable */
-  &::input-placeholder {
-    @content;
-  }
-  /* stylelint-enable */
-}
+@use './../variables/color';
 
 /* Deprecated use the one in utilities.scss */
 @mixin focus-outline {
@@ -26,7 +13,7 @@
 
   /* Compatibility with button-group */
   &:is(:focus-visible, :focus-within, .pretend-focus) {
-    outline: forms.$input-focus-outline-thickness solid var(--post-contrast-color);
+    outline: forms.$input-focus-outline-thickness solid color.$black;
     @content;
   }
 }

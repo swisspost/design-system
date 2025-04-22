@@ -4,113 +4,128 @@
 
 tokens.$default-map: utilities.$post-spacing;
 
-.icon-search {
-  .icon-search--filters {
-    margin: tokens.get('utility-gap-56') auto;
-    max-width: 500px;
+.search-form {
+  margin-block-start: tokens.get('utility-gap-32');
 
-    .freetext {
-      position: relative;
+  .sets {
+    margin-inline: auto;
+    max-width: 80%;
 
-      .form-control {
-        padding-right: post.$input-height-lg;
-      }
-
-      .form-control-reset {
-        position: absolute;
-        top: 0;
-        right: 0;
-        padding: 0;
-        background: none;
-        border: 0 none;
-
-        post-icon {
-          padding: post.$input-padding-y-lg;
-          width: post.$input-height-lg;
-        }
-      }
+    @include post.max('md') {
+      max-width: 300px;
     }
   }
 
-  .icon-search--results {
+  .search-text {
+    margin-block: tokens.get('utility-gap-64') tokens.get('utility-gap-48');
+    margin-inline: auto;
+    max-width: 400px;
+  }
+}
+
+.search-results {
+  margin-block-start: tokens.get('utility-gap-48');
+
+  .no-results {
+    text-align: center;
+
+    post-icon {
+      font-size: 3rem;
+    }
+  }
+
+  .result-list {
+    @include post.list-unstyled();
     display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
     gap: tokens.get('utility-gap-16');
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    margin-top: tokens.get('utility-gap-32');
+    margin-block: tokens.get('utility-gap-24');
 
-    .results--empty {
-      display: flex;
-      gap: tokens.get('utility-gap-8');
-      align-items: center;
-      margin-left: auto;
-      margin-right: auto;
+    @include post.min('sm') {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include post.min('md') {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @include post.min('lg') {
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    .icon {
+      border: 1px solid post.$gray-20;
+      border-radius: post.$border-radius;
+
+      > button {
+        padding: tokens.get('utility-gap-16') 0.5rem 0.5rem;
+        width: 100%;
+        background-color: transparent;
+        border: none;
+      }
+
+      .gfx {
+        display: flex;
+        justify-content: center;
+        height: tokens.get('utility-gap-32');
+        font-size: tokens.get('utility-gap-32');
+      }
+
+      .name {
+        display: block;
+        margin-block-start: tokens.get('utility-gap-16');
+        font-size: 0.8rem;
+        font-weight: bold;
+        text-align: center;
+        hyphens: auto;
+      }
     }
   }
 
-  @include post.media-breakpoint-down(sm) {
-    .icon-search--results {
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  .paging {
+    display: flex;
+    justify-content: center;
+
+    ul {
+      @include post.list-inline();
     }
   }
 }
 
-.icon {
-  display: flex;
-  flex-direction: column;
-  border: post.$border-width solid var(--post-gray-20);
-  border-radius: post.$border-radius;
+.icon-panel {
+  margin: 0 0 0 auto;
 
-  .icon--tile {
-    flex: 0 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: tokens.get('utility-gap-4') tokens.get('utility-gap-16');
-    width: 100%;
-    height: 80px;
-    background-color: var(--post-contrast-color-inverted);
-    border-top-left-radius: post.$border-radius;
-    border-top-right-radius: post.$border-radius;
-
-    post-icon {
-      width: 40px;
-      height: 40px;
-      transition: transform 100ms linear;
-    }
+  > div {
+    height: 100vh;
+    max-width: 350px;
+    border: 0;
+    padding: 2rem 1rem 1rem 1rem;
+    border-left: 1px solid #e1e0dc;
+    overflow-y: auto;
   }
 
-  .icon--info {
-    flex: 1 0 auto;
+  .icon-panel-content {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: tokens.get('utility-gap-4') tokens.get('utility-gap-16');
-    background-color: var(--post-gray-10);
-    border-top: post.$border-width solid var(--post-gray-20);
-    border-bottom-left-radius: post.$border-radius;
-    border-bottom-right-radius: post.$border-radius;
-    font-size: post.$font-size-tiny;
-    text-align: center;
-
-    .info--name {
-      font-weight: post.$font-weight-bold;
-    }
-
-    .info--keywords {
-      font-size: post.$font-size-tiny;
-      color: var(--post-gray-60);
-      hyphens: auto;
-    }
+    align-items: flex-start;
   }
 
-  @include post.media-breakpoint-down(sm) {
-    .icon--tile {
-      height: 60px;
+  .resizer-container {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1rem;
+  }
 
-      post-icon {
-        width: 32px;
-        height: 32px;
-      }
+  dl {
+    font-size: 14px;
+
+    dt,
+    dd {
+      margin-bottom: 0.5rem;
+    }
+
+    dt {
+      font-weight: 700;
     }
   }
 }

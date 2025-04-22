@@ -1,19 +1,18 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
 import * as AvatarPictureStories from './avatar.stories';
+import AvatarSample from './avatar.sample.scss?raw';
 
 <Meta of={AvatarPictureStories} />
 
 <div className="docs-title">
   # Avatar
 
-  <nav>
-    <link-design of={JSON.stringify(AvatarPictureStories)}></link-design>
-  </nav>
+  <link-design of={JSON.stringify(AvatarPictureStories)}></link-design>
 </div>
 
-<p className="lead">
+<div className="lead">
   Display a user's profile picture or their initials if the picture is unavailable.
-</p>
+</div>
 
 <Canvas of={AvatarPictureStories.Default} sourceState="shown" />
 <Controls of={AvatarPictureStories.Default} />
@@ -38,14 +37,11 @@ Use this approach to use the component as a menu toggler, ...
 
 The component provides some css-variables, which allow you to switch the background and the foreground color if needed.
 
-<post-banner type="warning">Please ensure at all times, that the background and foreground colors have sufficient contrast!</post-banner>
+<div className="banner banner-warning banner-md">
+  Please ensure at all times, that the background and foreground colors have sufficient contrast!
+</div>
 
-```scss
-post-avatar {
-  --post-avatar-bg: {your-custom-bg-color};
-  --post-avatar-fg: {your-custom-fg-color};
-}
-```
+<Source code={AvatarSample} language="scss" />
 
 ## Properties
 

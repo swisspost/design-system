@@ -65,7 +65,7 @@ export class PostCardControl {
   /**
    * Defines the text in the control-label.
    */
-  @Prop() readonly label!: string;
+  @Prop({ reflect: true }) readonly label!: string;
 
   /**
    * Defines the description in the control-label.
@@ -79,7 +79,7 @@ export class PostCardControl {
 
   /**
    * Defines the `name` attribute of the control.
-   * <span className="banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span>
+   * <span className="mb-4 banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span>
    * <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
    */
   @Prop() readonly name: string = null;
@@ -144,20 +144,13 @@ export class PostCardControl {
   }
 
   @Watch('label')
-  validateControlLabel(label = this.label) {
-    checkNonEmpty(
-      label,
-      'The "post-card-control" element requires its "label" property to be set.',
-    );
+  validateControlLabel() {
+    checkNonEmpty(this, 'label');
   }
 
   @Watch('type')
-  validateControlType(type = this.type) {
-    checkOneOf(
-      type,
-      ['checkbox', 'radio'],
-      'The "post-card-control" element requires its "type" prop to be one of either "checkbox" or "radio".',
-    );
+  validateControlType() {
+    checkOneOf(this, 'type', ['checkbox', 'radio']);
   }
 
   @Watch('checked')
@@ -413,8 +406,6 @@ export class PostCardControl {
     this.validateControlType();
   }
 
-  // https://stenciljs.com/docs/form-associated
-  /* eslint-disable @stencil-community/own-methods-must-be-private */
   formAssociatedCallback() {
     this.controlSetChecked(this.checked);
   }
@@ -430,5 +421,4 @@ export class PostCardControl {
   formResetCallback() {
     this.reset();
   }
-  /* eslint-enable @stencil-community/own-methods-must-be-private */
 }

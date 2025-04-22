@@ -1,5 +1,3 @@
-@forward './../variables/options';
-
 @use './../mixins/utilities';
 @use './../functions/forms' as forms-fx;
 @use './../mixins/forms' as forms-mx;
@@ -12,7 +10,7 @@ tokens.$default-map: components.$post-select;
 .form-select {
   display: block;
   width: 100%;
-  font-family: tokens.get('body-font-family', elements.$post-body);
+  font-family: inherit;
   appearance: none;
   position: relative;
   min-height: tokens.get('select-sizing-height');
@@ -303,4 +301,8 @@ tokens.$default-map: components.$post-select;
       }
     }
   }
+}
+
+.no-toggle-arrow::after {
+  display: none !important;
 }

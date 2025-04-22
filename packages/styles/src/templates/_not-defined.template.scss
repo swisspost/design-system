@@ -1,0 +1,8 @@
+/*
+  Initial visibility of the components is set to hidden to prevent 'flickering' effect due to stencil js/scss delay.
+*/
+:where(
+    /* WEB_COMPONENT_NAMES */
+  ):not([data-hydrated]) {
+  visibility: hidden;
+}

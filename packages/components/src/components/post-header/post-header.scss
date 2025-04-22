@@ -1,5 +1,9 @@
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/variables/animation';
+@use '@swisspost/design-system-styles/variables/elevation';
+@use '@swisspost/design-system-styles/variables/color';
 
 *,
 ::before,
@@ -8,27 +12,36 @@
 }
 
 :host {
-  --global-header-height: 72px;
-  --global-header-minimal-height: 24px;
-  --main-header-height: 56px;
-  --main-header-min-height: 56px;
-  --header-height: calc(var(--global-header-height) + var(--main-header-height));
+  z-index: commons.$zindex-header;
+  position: relative;
 
-  @include media.min(lg) {
-    display: block;
-    position: sticky;
-    inset-inline: 0;
-    inset-block-start: calc(
-      -1 * (var(--global-header-height) + var(--main-header-height) -
-            var(--global-header-minimal-height))
-    );
-    box-shadow: var(--post-core-elevation-3);
+  // The following variables will affect the header to minimize it on scroll
+  --global-header-top: calc(
+    (var(--post-global-header-height) - var(--post-global-header-reduced-height)) * -1
+  );
+  --local-header-top: calc(
+    -1 * (var(--post-local-header-height) - var(--post-main-navigation-height)) + var(--post-global-header-reduced-height)
+  );
+  --logo-height: calc(var(--post-global-header-height) - var(--post-header-scroll-top, 0px));
+  --global-controls-top: calc(min((var(--post-header-scroll-top) / 4), 20px) * -1);
+
+  // If focus is within the header (except the logo and the post-mainnavigation elements), the header should be shown fully
+  &:has(.global-sub > *:not(.logo):focus-within),
+  &:has(.local-sub:focus-within) {
+    --global-header-top: 0;
+    --local-header-top: var(--post-global-header-height);
+    --logo-height: var(--post-global-header-height);
+    --global-controls-top: 0;
+  }
+}
+
+:host(:not(:has([slot='title']))) {
+  .local-header {
+    padding-block-start: 0;
   }
 
-  @include media.max(lg) {
-    --global-header-height: 64px;
-    --main-header-height: 48px;
-    --main-header-min-height: 48px;
+  .local-sub {
+    display: none;
   }
 }
 
@@ -44,30 +57,36 @@
   background-color: #ffcc00;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   position: sticky;
-  padding-inline: var(--post-core-dimension-4);
-  height: var(--global-header-height);
-  z-index: 1;
+  padding-inline: 4px;
+  height: var(--post-global-header-height);
 
   @include media.max(lg) {
+    z-index: 3;
     inset-block-start: 0;
   }
 
   @include media.min(lg) {
-    padding-inline-end: var(--post-core-dimension-12);
-    top: calc((var(--global-header-height) - var(--global-header-minimal-height)) * -1);
+    z-index: 5;
+    padding-inline-end: 12px;
+    inset-block-start: var(--global-header-top);
+    transition: inset-block-start 0.2s ease-in-out;
   }
-}
-
-slot[name='post-logo'] {
-  align-self: flex-end;
 }
 
 .global-sub {
   display: flex;
   align-items: center;
-  gap: var(--post-core-dimension-24);
+  gap: 24px;
+
+  @include media.min(lg) {
+    // targets the right links and language switch to hide them on scroll
+    &:not(:has(.logo)) {
+      position: relative;
+      transition: inset-block-start 0.2s ease-in-out;
+      inset-block-start: var(--global-controls-top);
+    }
+  }
 }
 
 .align-end {
@@ -76,68 +95,91 @@ slot[name='post-logo'] {
 
 .logo {
   flex: 1 0 auto;
-  height: var(--global-header-height);
-  width: var(--global-header-height);
-  min-height: var(--global-header-minimal-height);
+  height: var(--post-global-header-height);
+  width: var(--post-global-header-height);
+  min-height: var(--post-global-header-reduced-height);
   align-self: flex-end;
 
   @include media.min(lg) {
-    height: calc(var(--global-header-height) - var(--header-scroll-top));
+    transition: height 0.2 ease-in-out;
+    height: var(--logo-height);
   }
 }
 
 ::slotted(ul) {
-  margin-block: 0;
+  margin-block: 0 !important;
   list-style: none;
   display: flex;
-  padding-left: 0;
+  padding-inline-start: 0;
   gap: 1rem;
   flex-shrink: 0 !important;
 }
 
-.title-header {
+.local-header {
   display: flex;
+  position: sticky;
+  flex-wrap: wrap;
   align-items: center;
-  gap: var(--post-core-dimension-8);
-  min-height: var(--main-header-min-height);
   justify-content: space-between;
-  background: var(--post-core-color-brand-white);
+  gap: 4px;
+  min-height: var(--post-local-header-min-height);
+  background: color.$white;
+  transition: box-shadow 0.2s ease-in-out;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: #e1e0dc;
+    inset-block-end: -1px;
+    z-index: 1;
+
+    @include utilities.high-contrast-mode() {
+      background-color: Highlight;
+    }
+  }
 
   @include media.min(lg) {
-    padding: var(--post-core-dimension-18) var(--post-core-dimension-16)
-      var(--post-core-dimension-4) var(--post-core-dimension-12);
+    z-index: 3;
+    inset-block-start: var(--local-header-top);
+    padding-block-start: 18px;
+    box-shadow: elevation.$elevation-300;
+    transition: box-shadow 0.2s ease-in-out, inset-block-start 0.2s ease-in-out;
   }
 
   @include media.max(lg) {
-    position: sticky;
-    z-index: 1;
-    inset-block-start: var(--global-header-height);
-    padding-inline: var(--post-core-dimension-8) var(--post-core-dimension-16);
-    padding-block: var(--post-core-dimension-9);
-    flex-wrap: wrap;
+    z-index: 2;
+    inset-block-start: var(--post-global-header-height);
+    padding-block: 8px;
 
-    &.title-header-mobile-extended {
-      border-bottom: 1px solid var(--post-core-color-sandgrey-012);
+    flex-wrap: wrap;
+    gap: 12px;
+
+    &.local-header-mobile-extended {
+      &::after {
+        inset-block-end: 0;
+      }
+    }
+
+    &:not(.local-header-mobile-extended) {
+      box-shadow: elevation.$elevation-300;
     }
   }
 }
 
-:host(:not(:has([slot='title']))) .title-header {
-  display: none;
-}
-
-::slotted(h1) {
-  margin: 0 !important;
-  flex-shrink: 10;
-
-  @include media.min(lg) {
-    font-size: var(--post-core-font-size-28) !important;
-  }
+.local-sub {
+  margin-inline-end: 8px;
 
   @include media.max(lg) {
-    font-size: var(--post-core-font-size-20) !important;
-    max-width: calc(100vw - var(--post-core-dimension-8) - var(--post-core-dimension-16));
+    margin-inline-end: 4px;
   }
+}
+
+::slotted(.list-inline) {
+  margin: 0 !important;
+  z-index: 3 !important;
+  position: relative !important;
 }
 
 .mobile-toggle {
@@ -147,46 +189,83 @@ slot[name='post-logo'] {
 }
 
 .navigation {
-  background: var(--post-core-color-brand-white);
+  width: 100%;
 
   @include media.min(lg) {
-    position: sticky;
-    z-index: 1;
-    inset-block-start: var(--global-header-minimal-height);
+    inset-block-start: var(--post-global-header-reduced-height);
+
+    &::before {
+      display: block;
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: color.$white;
+    }
   }
 }
 
 // only for tablet and mobile
 @include media.max(lg) {
   .navigation {
-    position: fixed;
+    position: sticky;
+    z-index: 1;
     inset-inline: 0;
-    inset-block-end: calc(100vh - var(--header-height));
-    box-shadow: var(--post-core-elevation-3);
-    min-height: var(--post-core-dimension-10); // needed for the box-shadow to always show
-    max-height: calc(100vh - var(--header-height));
-    overflow: auto;
+    inset-block-start: var(--post-header-height);
+  }
+
+  .mobile-menu {
+    background-color: #fafafa;
   }
 
   ::slotted(post-mainnavigation),
   .navigation-footer {
     display: none;
     flex-direction: column;
-    padding-block: var(--post-core-dimension-16) var(--post-core-dimension-24);
-    padding-inline: var(--post-core-dimension-32);
+    padding-block: 16px 24px;
+    padding-inline: 32px;
 
     .navigation.extended & {
       display: flex;
     }
   }
 
+  .navigation.extended {
+    > div {
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      overflow-x: hidden;
+      height: calc(
+        min(var(--header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
+      );
+    }
+
+    &.megadropdown-open {
+      > div {
+        overflow-y: hidden;
+      }
+    }
+
+    ::slotted(post-mainnavigation) {
+      flex-grow: 1 !important;
+    }
+  }
+
   ::slotted(post-mainnavigation) {
-    background-color: var(--post-core-color-sandgrey-002);
-    gap: var(--post-core-dimension-32);
+    gap: 32px;
   }
 
   .navigation-footer {
-    background-color: var(--post-core-color-sandgrey-006);
-    gap: var(--post-core-dimension-24);
+    background-color: #f0efed;
+    gap: 24px;
+  }
+}
+
+// only for mobile
+@include media.max(sm) {
+  ::slotted(post-mainnavigation),
+  .navigation-footer {
+    padding-inline: 16px;
   }
 }

@@ -32,7 +32,7 @@ export class PostAvatar {
   /**
    * Defines the users firstname.
    */
-  @Prop() readonly firstname!: string;
+  @Prop({ reflect: true }) readonly firstname!: string;
 
   /**
    * Defines the users lastname.
@@ -40,7 +40,7 @@ export class PostAvatar {
   @Prop() readonly lastname?: string;
 
   /**
-   * Defines the company internal userId.<div className="mb-1 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
+   * Defines the company internal userId.<div className="mb-4 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
    */
   @Prop() readonly userid?: string;
 
@@ -57,7 +57,7 @@ export class PostAvatar {
 
   @Watch('firstname')
   validateFirstname() {
-    checkNonEmpty(this.firstname, 'The `firstname` property of the `post-avatar` is required!');
+    checkNonEmpty(this, 'firstname');
   }
 
   private async getAvatar() {

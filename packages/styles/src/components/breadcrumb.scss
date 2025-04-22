@@ -1,5 +1,3 @@
-@forward './../variables/options';
-
 @use 'sass:map';
 
 @use './../themes/bootstrap/core' as *;
@@ -14,7 +12,7 @@
 @use '../tokens/utilities';
 
 .breadcrumb {
-  @extend %font-curve-small;
+  @extend %fs-9;
   flex-wrap: nowrap;
   height: tokens.get('utility-gap-40', utilities.$post-spacing);
   overflow: hidden;

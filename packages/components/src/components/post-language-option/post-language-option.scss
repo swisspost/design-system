@@ -1,5 +1,7 @@
 @use '@swisspost/design-system-styles/core' as post;
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/elements';
 
 post-language-option {
   display: inline-block;
@@ -9,7 +11,7 @@ post-language-option {
   }
 
   a {
-    color: inherit;
+    color: tokens.get('body-color', elements.$post-body);
     text-decoration: none;
   }
 
@@ -18,66 +20,64 @@ post-language-option {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
     width: 100%;
-    padding: var(--post-language-option-padding);
+    height: 100%;
     border-radius: 2px;
+    text-transform: uppercase;
     @include utilities-mx.focus-style;
   }
-}
 
-post-language-option:where([variant='list']) {
-  :is(a, button) {
-    width: 40px;
-    height: 40px;
+  // Show all options now, instead of hiding the active one
 
-    &:hover {
-      color: #504f4b;
-    }
-
-    &[aria-current='true'],
-    &[aria-current='page'] {
-      background-color: #050400;
-      color: #fff;
+  &:where([variant='list']) {
+    :is(a, button) {
+      padding-inline: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 2px;
 
       &:hover {
-        background-color: #504f4b;
+        color: #504f4b;
+      }
+
+      @include utilities-mx.high-contrast-mode() {
+        border: 1px solid ButtonBorder;
+        color: ButtonText;
+      }
+    }
+
+    &[active]:not([active='false']) {
+      :is(a, button) {
+        background-color: #050400 !important;
+        color: #fff;
+        pointer-events: none;
+
+        @include utilities-mx.high-contrast-mode() {
+          background-color: Highlight !important;
+          color: HighlightText;
+        }
       }
     }
   }
-}
 
-post-language-option:where([variant='menu']) {
-  width: 100%;
+  &:where([variant='menu']) {
+    min-width: 72px;
 
-  :is(a, button) {
-    padding-block: 13px;
-    padding-inline: 24px;
-    box-sizing: border-box;
-    position: relative;
-    left: -1px;
-    width: calc(100% + 2px);
-
-    &[aria-current='true'],
-    &[aria-current='page'] {
-      &::after {
-        content: '';
-        left: 0;
-        height: 3px;
-        background-color: #050400;
-        width: 100%;
-        display: block;
-        position: absolute;
-        bottom: 3px;
-      }
-
-      &:hover::after {
-        background-color: #504f4b;
-      }
+    &[active]:not([active='false']) {
+      display: none;
     }
 
-    &:hover {
-      color: #504f4b;
+    :is(a, button) {
+      padding-block: 13px;
+      padding-inline: 16px;
+      box-sizing: border-box;
+      justify-content: flex-start;
+      position: relative;
+
+      &:hover {
+        color: white;
+        background-color: #504f4b;
+      }
     }
   }
 }

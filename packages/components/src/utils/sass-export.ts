@@ -1,14 +1,29 @@
-export function parse(scss: object) {
+type Scss = {
+  [key: string]: string;
+};
+
+type Normalized = string | string[];
+
+type Output = {
+  [key: string]: Normalized | Output;
+};
+
+export function parse(scss: Scss) {
   return Object.entries(scss).reduce((object, [path, value]) => {
-    let output = object;
+    let output: Output = object;
 
     path.split('_').forEach((key, i, values) => {
-      const pathKey = key as keyof typeof output;
-      const normalized = /^\[.*\]$/.test(value) ? JSON.parse(value) : value;
-      const pathValue = i >= values.length - 1 ? normalized : output[pathKey] || {};
+      const normalized: Normalized = /^\[.*\]$/.test(value)
+        ? (JSON.parse(value) as string[])
+        : value;
+      const pathValue: Normalized | Output =
+        i >= values.length - 1 ? normalized : output[key] || {};
 
-      output[pathKey] = pathValue as never;
-      output = output[pathKey];
+      output[key] = pathValue;
+
+      if (i < values.length) {
+        output = output[key] as Output;
+      }
     });
 
     return object;

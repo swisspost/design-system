@@ -1,5 +1,18 @@
 @use '@swisspost/design-system-styles/core' as post;
 
-.my-container {
+.my-container,
+.my-text {
   background-color: post.$info;
+}
+
+.text-example-bordered {
+  border: 1px solid post.$gray-40;
+}
+
+.my-colored-text {
+  color: post.$error;
+}
+
+p[class*='fs-'] {
+  margin-block: 0.25rem;
 }

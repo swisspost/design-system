@@ -3,29 +3,28 @@
     "allowUnreachableCode": false,
     "allowSyntheticDefaultImports": true,
     "declaration": true,
+    "declarationDir": "dist/types",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
-    "lib": ["dom", "es2015"],
-    "module": "es2015",
-    "moduleResolution": "node",
-    "noImplicitAny": true,
+    "jsx": "react",
+    "lib": ["es2021", "dom", "dom.iterable"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "noImplicitAny": false,
     "noImplicitReturns": true,
+    "noLib": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "outDir": "dist",
-    "removeComments": false,
+    "removeComments": true,
+    "skipLibCheck": true,
     "sourceMap": true,
-    "jsx": "react",
-    "target": "es2015"
+    "target": "es2021",
+    "useDefineForClassFields": true
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
-  "exclude": [
-    "**/__tests__/**"
-  ],
+  "include": ["src"],
+  "exclude": ["node_modules"],
   "compileOnSave": false,
   "buildOnSave": false
 }

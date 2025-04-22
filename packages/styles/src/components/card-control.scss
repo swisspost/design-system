@@ -5,6 +5,7 @@
 @use '../variables/components/form-check';
 @use '../mixins/utilities' as utilities-mx;
 @use '../functions/tokens';
+@use '../tokens/elements';
 @use '../tokens/utilities';
 
 tokens.$default-map: utilities.$post-spacing;
@@ -57,7 +58,7 @@ fieldset {
     @include utilities-mx.focus-style-none();
 
     &:hover:not([disabled]) ~ label {
-      color: var(--post-contrast-color);
+      color: color.$black;
       background-color: transparent !important;
     }
 
@@ -67,7 +68,7 @@ fieldset {
     }
 
     ~ label {
-      color: inherit !important;
+      color: tokens.get('body-color', elements.$post-body) !important;
     }
   }
 

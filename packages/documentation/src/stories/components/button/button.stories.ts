@@ -12,7 +12,7 @@ const meta: MetaComponent = {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=16826-33449&mode=design&t=3lniLiZhl7q9Gqgn-4',
+      url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=302-9575&m=dev',
     },
   },
   args: {
@@ -117,7 +117,7 @@ const meta: MetaComponent = {
         'Defines a custom icon.' +
         '<span className="mt-8 banner banner-info banner-sm">' +
         '<span>To use a custom icon, you must first ' +
-        '<a href="/packages/documentation/public?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs">set up the icons in your project</a>' +
+        '<a href="/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs">set up the icons in your project</a>' +
         '.</span></span>',
       if: {
         arg: 'tag',
@@ -175,7 +175,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, makes the component appear inactive and disables its functionality.<div className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/packages/documentation/public?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
+        'When set to `true`, makes the component appear inactive and disables its functionality.<div className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</div>',
       control: {
         type: 'boolean',
       },
@@ -256,7 +256,7 @@ export const FullWidth: Story = {
   ...VariantsTemplate,
   args: {
     variants: ['btn-primary'],
-    additionalClasses: ['w-sm-100', 'w-md-auto'],
+    additionalClasses: ['w-sm-full', 'w-md-auto'],
   },
 };
 

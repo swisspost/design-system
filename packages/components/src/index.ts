@@ -1,4 +1,4 @@
-export { Components, JSX } from './components';
+export { Components, JSX, PostHeaderCustomEvent } from './components';
 
 // Export every single component so it gets included in the dist output
 export { PostAccordion } from './components/post-accordion/post-accordion';
@@ -6,17 +6,18 @@ export { PostAccordionItem } from './components/post-accordion-item/post-accordi
 export { PostAvatar } from './components/post-avatar/post-avatar';
 export { PostBackToTop } from './components/post-back-to-top/post-back-to-top';
 export { PostBanner } from './components/post-banner/post-banner';
-export { PostBreadcrumb } from './components/post-breadcrumb/post-breadcrumb';
+export { PostBreadcrumbs } from './components/post-breadcrumbs/post-breadcrumbs';
 export { PostBreadcrumbItem } from './components/post-breadcrumb-item/post-breadcrumb-item';
 export { PostCardControl } from './components/post-card-control/post-card-control';
 export { PostClosebutton } from './components/post-closebutton/post-closebutton';
 export { PostCollapsible } from './components/post-collapsible/post-collapsible';
 export { PostCollapsibleTrigger } from './components/post-collapsible-trigger/post-collapsible-trigger';
 export { PostFooter } from './components/post-footer/post-footer';
-export { PostHeader } from './components/post-header/post-header';
+export { PostHeader, DEVICE_SIZE } from './components/post-header/post-header';
 export { PostIcon } from './components/post-icon/post-icon';
 export { PostLanguageOption } from './components/post-language-option/post-language-option';
 export { PostLanguageSwitch } from './components/post-language-switch/post-language-switch';
+export { PostLinkarea } from './components/post-linkarea/post-linkarea';
 export { PostList } from './components/post-list/post-list';
 export { PostListItem } from './components/post-list-item/post-list-item';
 export { PostLogo } from './components/post-logo/post-logo';

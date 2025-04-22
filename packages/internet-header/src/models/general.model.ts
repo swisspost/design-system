@@ -4,11 +4,11 @@ import { IFooterConfig, ICustomFooterConfig } from './footer.model';
 
 declare global {
   interface Window {
-    OPPklpWidget: any;
-    klpWidgetDev: any;
-    jQuery: any;
-    $: any;
-    SockJS: any;
+    OPPklpWidget: unknown;
+    klpWidgetDev: unknown;
+    jQuery: unknown;
+    $: unknown;
+    SockJS: unknown;
   }
 }
 export interface IPortalConfig {

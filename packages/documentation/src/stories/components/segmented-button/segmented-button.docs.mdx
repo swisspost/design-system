@@ -7,20 +7,16 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 <div className="docs-title">
   # Segmented Button
 
-  <nav>
-    <link-design of={JSON.stringify(SegmentedButtonStories)}></link-design>
-  </nav>
+  <link-design of={JSON.stringify(SegmentedButtonStories)}></link-design>
 </div>
 
-The segmented button is a single-select component. 
+The segmented button is a single-select component.
 It allows users to toggle between two or more content sections within the same area on the screen.
 
-<div role="alert" class="banner banner-info">
-  <p>
-    If the labels are too long or the number of options is excessive for the available space,
-    consider using a select component. Keep in mind that long labels may cause layout issues,
-    such as text overflowing or word breaks.
-  </p>
+<div role="alert" className="banner banner-info">
+  If the labels are too long or the number of options is excessive for the available space, consider
+  using a select component. Keep in mind that long labels may cause layout issues, such as text
+  overflowing or word breaks.
 </div>
 
 <Canvas of={SegmentedButtonStories.TextExample} sourceState="shown" />

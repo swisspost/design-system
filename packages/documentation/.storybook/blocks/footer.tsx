@@ -16,7 +16,7 @@ const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     name: 'Alizé Debray',
-    title: 'UI Mademoiselle',
+    title: 'UI Developer',
     githubImageId: '33580481',
     githubUsername: 'alizedebray',
   },
@@ -33,7 +33,7 @@ const TEAM_MEMBERS: TeamMember[] = [
     githubUsername: 'myrta2302',
   },
   {
-    name: 'Lea Gardavaud',
+    name: 'Léa Gardavaud',
     title: 'UI Developer',
     githubImageId: '183501002',
     githubUsername: 'leagrdv',
@@ -78,13 +78,13 @@ const TEAM_MEMBERS: TeamMember[] = [
 
 const BASEURL = 'https://github.com/swisspost/design-system/tree/main/packages/documentation';
 
-function getGitHubUrl(path: String) {
+function getGitHubUrl(path: string) {
   return `${BASEURL}${path.replace(/^\./, '').replace(/\.stories\.ts$/, '.docs.mdx')}`;
 }
 
-export default (params: { pathToStoryFile?: String }) => (
+export default (params: { pathToStoryFile?: string }) => (
   <>
-    <div className="container mt-56 font-size-18 text-end">
+    <div className="container mt-56 fs-5 text-end">
       {params.pathToStoryFile && (
         <a href={getGitHubUrl(params.pathToStoryFile)} rel="noopener">
           Edit this page on GitHub

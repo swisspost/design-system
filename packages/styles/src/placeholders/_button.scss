@@ -1,14 +1,15 @@
 @use './../mixins/utilities';
 @use './../mixins/color' as color-mx;
+@use './../variables/color';
 @use './../variables/components/button';
 
 %btn-transparent-background {
   @include utilities.not-disabled-focus-hover() {
-    color: var(--post-contrast-color);
+    color: color.$black;
   }
 
   // Invert icon on dark backgrounds
   @include color-mx.on-dark-background() {
-    color: var(--post-contrast-color);
+    color: color.$black;
   }
 }
