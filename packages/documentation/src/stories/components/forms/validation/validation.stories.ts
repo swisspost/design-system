@@ -110,20 +110,17 @@ export const Input: Story = {
     const component = context.name.replace(/\s+/g, '');
     const props = getValidationProps(component, args);
     const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
-    return html`<div class="form-floating">
-      <input
-        id="Input_1${props.validationState}${props.scheme}"
-        class="form-control form-control-lg ${props.isValidationSet ? props.validationState : ''}"
-        aria-invalid=${props.ariaInvalid}
-        aria-describedby="${props.ariaDescribedBy}"
-        type="text"
-        placeholder="Placeholder"
-      />
-      <label class="form-label" for="Input_1${props.validationState}${props.scheme}">Label</label>
-      ${feedbackTemplate}
+    return html`
+    <div class="form-floating">
+      <input type="text" placeholder="Placeholder" id="Input_1is-invalid" class="form-control form-control-lg is-invalid" aria-invalid="true" aria-describedby="is-invalid-id-"     autocomplete="email"
+    />
+      <label class="form-label" for="Input_1is-invalid">Label</label>
+      <span class="validation-icon validation-icon-valid"></span>
+      <span class="validation-icon validation-icon-invalid"></span>
+      <p class="valid-feedback">Valid message.</p>
+      <p class="invalid-feedback" id="is-invalid-id-">Invalid message.</p>
       <p class="form-hint">
-        Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
-        illum dolore eu feugiat nulla facilisis.
+        Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.
       </p>
     </div> `;
   },
