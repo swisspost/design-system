@@ -85,11 +85,11 @@ describe('route.service.ts', () => {
     });
 
     it('Does not fail on invalid arguments', () => {
-      // @ts-expect-error
+      // @ts-expect-error first arguments should be of type url
       expect(compareRoutes(null, urls.nope, 'auto')).toBe(0);
-      // @ts-expect-error
+      // @ts-expect-error first and second arguments should be of type url
       expect(compareRoutes(null, undefined, 'auto')).toBe(0);
-      // @ts-expect-error
+      // @ts-expect-error third argument should be of type 'auto' or 'exact'
       expect(compareRoutes(urls.post, urls.nope, null)).toBe(0);
     });
 
