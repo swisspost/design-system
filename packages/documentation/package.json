@@ -63,7 +63,7 @@
     "@types/react-syntax-highlighter": "15.5.13",
     "@typescript-eslint/eslint-plugin": "7.18.0",
     "@typescript-eslint/parser": "7.18.0",
-    "cypress": "13.13.2",
+    "cypress": "14.3.2",
     "cypress-axe": "1.5.0",
     "eslint": "9.18.0",
     "eslint-plugin-markdown": "5.1.0",
