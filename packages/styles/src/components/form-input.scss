@@ -179,9 +179,6 @@ input.form-control {
   &.is-valid,
   &.is-invalid {
     &:not(:disabled) {
-      background-size: tokens.get('input-sizing-icon');
-      background-position: center right tokens.get('input-validation-icon-position-inline-end');
-      background-repeat: no-repeat;
       padding-inline-end: calc(
         #{tokens.get('input-padding-inline-end')} + #{tokens.get(
             'input-validation-icon-position-inline-end'
@@ -189,8 +186,6 @@ input.form-control {
       );
     }
   }
-
-  @include forms-mx.validation-icons;
 }
 
 .form-label:has(+ input.form-control[disabled]) {
@@ -199,6 +194,26 @@ input.form-control {
 
 .form-floating {
   position: relative;
+
+  .validation-icon {
+    position: absolute;
+    top: calc(tokens.get('input-border-width') + (tokens.get('input-sizing-height') / 2));
+    transform: translateY(-50%);
+    right: tokens.get('input-validation-icon-position-inline-end');
+    width: tokens.get('input-sizing-icon');
+    height: tokens.get('input-sizing-icon');
+    z-index: 2;
+    pointer-events: none;
+    display: none;
+  }
+  
+  input.form-control.is-valid:not(:disabled) ~ .validation-icon-valid {
+    display: block;
+  }
+  
+  input.form-control.is-invalid:not(:disabled) ~ .validation-icon-invalid {
+    display: block;
+  }
 
   > input.form-control ~ label {
     position: absolute;
