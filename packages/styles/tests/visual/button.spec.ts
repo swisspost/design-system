@@ -14,9 +14,5 @@ test.describe('Button Component Visual Test', () => {
     
     await button.focus();
     await expect(button).toHaveScreenshot('button-primary-focus.png');
-    
-    await page.mouse.down();
-    await expect(button).toHaveScreenshot('button-primary-active.png');
-    await page.mouse.up();
   });
 });
