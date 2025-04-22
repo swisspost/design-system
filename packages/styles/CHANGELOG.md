@@ -1,5 +1,30 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.34
+
+### Major Changes
+
+- Removed all of the font sizes variables (`$font-size-*`) and CSS classes (`.font-size-*`), which can now be replaced by the font sizes utilities. (by [@leagrdv](https://github.com/leagrdv) with [#5205](https://github.com/swisspost/design-system/pull/5205))
+
+- Removed the `@mixin font-curve()`. (by [@leagrdv](https://github.com/leagrdv) with [#5205](https://github.com/swisspost/design-system/pull/5205))
+
+- Updated the file structure for the `post-footer` component global styles:  
+  `dist/components/globals/post-footer.(css|scss)` -> `dist/components/footer/index.(css|scss)`
+
+  If you're importing one of these files manually in your project, you'll need to update the import path! (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5180](https://github.com/swisspost/design-system/pull/5180))
+
+- Renamed all of the font curve variables (`$fs-*`) and CSS classes (`.fs-*`) to numbers 1 to 11 (e.g. `fs-huge` is now `fs-1`, and `fs-tiny` would be `fs-11`). (by [@leagrdv](https://github.com/leagrdv) with [#5205](https://github.com/swisspost/design-system/pull/5205))
+
+### Minor Changes
+
+- Added 11 font sizes utilities, from `.fs-1` to `.fs-11`. (by [@leagrdv](https://github.com/leagrdv) with [#5205](https://github.com/swisspost/design-system/pull/5205))
+
+### Patch Changes
+
+- Resolved styling inconsistencies for `segmented-button` component on iOS devices. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4964](https://github.com/swisspost/design-system/pull/4964))
+
+- Updated the `not-defined` selector to ensure server-side rendered components are visible on the client-side even before JavaScript initializes, while client-side rendered web components remain hidden until fully hydrated. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5163](https://github.com/swisspost/design-system/pull/5163))
+
 ## 9.0.0-next.33
 
 ### Patch Changes
