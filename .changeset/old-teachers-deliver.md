@@ -5,10 +5,10 @@
 '@swisspost/design-system-components': major
 ---
 
-Removed the `not-defined.scss` file, which controlled when web components become visible:
+Moved the file responsible for preventing flashes of unstyled content for components from the styles to the components package. The flashes occur when non-hydrated components are rendered before JavaScript has loaded on a client. These styles hide the non-hydrated component, preventing the flash.
 
-- for server-side rendered components: immediately
-- for client-side rendered components: after hydration
-
-On the other side, we introduced the global styles file `post-components.css` in all component packages, which repalces the styling logic which was defind in the `not-defined.scss` in our styles package before.
-This file must be included in any project using our component packages to ensure proper functionality of the web components.
+**Changes:**
+Removed: `@swispost/design-system-styles/components/not-defined.(scss|css)`
+Added: `@swisspost/design-system-components/post-components/post-components.css`
+Added: `@swisspost/design-system-components-angular/post-components.css`
+Added: `@swisspost/design-system-components-react/post-components.css`
