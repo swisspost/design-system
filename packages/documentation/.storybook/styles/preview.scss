@@ -110,6 +110,11 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     }
   }
 
+  .npm-package-link a {
+    display: inline-block;
+    @include post.focus-style;
+  }
+
   pre {
     font-size: 100%;
 
