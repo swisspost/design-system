@@ -235,15 +235,17 @@ gulp.task(
  */
 exports.default = gulp.task(
   'build',
-  gulp.parallel(
-    gulp.series(
-      'generate-not-defined-components-scss',
-      'map-icons',
-      'copy',
-      'generate-icon-version-scss',
-      'autoprefixer',
-      'transform-package-json',
-    ),
-    gulp.series('temporarily-copy-token-files', 'sass'),
+  gulp.series(
+    'generate-icon-version-scss', // Run this first, before any other tasks
+    gulp.parallel(
+      gulp.series(
+        'generate-not-defined-components-scss',
+        'map-icons',
+        'copy',
+        'autoprefixer',
+        'transform-package-json',
+      ),
+      gulp.series('temporarily-copy-token-files', 'sass'),
+    )
   ),
 );
