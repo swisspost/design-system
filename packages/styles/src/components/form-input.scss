@@ -177,7 +177,6 @@ input.form-control {
     background-color: tokens.get('input-color-hover-bg');
   }
 
-  // Adjust padding for validated fields but don't use background-image
   &.is-valid,
   &.is-invalid {
     &:not(:disabled) {
@@ -207,7 +206,6 @@ input.form-control {
     z-index: 2;
     pointer-events: none;
     display: none;
-    // Ensure these properties are explicitly set to make the mask work properly
     background-color: currentColor;
     -webkit-mask-size: contain;
     mask-size: contain;
@@ -217,7 +215,6 @@ input.form-control {
     mask-position: center;
   }
   
-  // Explicitly override the base URL while keeping the mixin
   input.form-control.is-valid:not(:disabled) ~ .validation-icon {
     display: block;
     color: tokens.get('post-validation-success', components.$post-validation);
