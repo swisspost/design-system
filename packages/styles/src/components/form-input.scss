@@ -211,23 +211,18 @@ input.form-control {
     width: 24px;
     height: 24px;
     vertical-align: -0.15em;
-    -webkit-mask-position: center center;
     mask-position: center center;
-    -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
-    -webkit-mask-size: 100%;
     mask-size: 100%;
   }
   
   input.form-control.is-valid:not(:disabled) ~ .validation-icon {
     background-color: tokens.get('post-validation-success', components.$post-validation);
-    -webkit-mask-image: url('https://unpkg.com/@swisspost/design-system-icons@9.0.0-next.34/public/post-icons/success-solid.svg');
     mask-image: url('https://unpkg.com/@swisspost/design-system-icons@9.0.0-next.34/public/post-icons/success-solid.svg');
   }
   
   input.form-control.is-invalid:not(:disabled) ~ .validation-icon {
     background-color: tokens.get('post-validation-error', components.$post-validation);
-    -webkit-mask-image: url('https://unpkg.com/@swisspost/design-system-icons@9.0.0-next.34/public/post-icons/warning-solid.svg');
     mask-image: url('https://unpkg.com/@swisspost/design-system-icons@9.0.0-next.34/public/post-icons/warning-solid.svg');
   }
   
