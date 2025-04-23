@@ -4,20 +4,24 @@
 
 // prefered root color-scheme
 :root {
-  @media (prefers-color-scheme: light) {
-    @include schemes.light-variables;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    @include schemes.dark-variables;
-  }
-
   @include supports.light-dark(true) {
     color-scheme: light dark;
   }
 
-  @include supports.light-dark(false) {
-    --fallback-prefers-light: ;
+  @media (prefers-color-scheme: light) {
+    @include schemes.light-variables;
+
+    @include supports.light-dark(false) {
+      --fallback-prefers-light: ;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    @include schemes.dark-variables;
+
+    @include supports.light-dark(false) {
+      --fallback-prefers-light: initial;
+    }
   }
 }
 
