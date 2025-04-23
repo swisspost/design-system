@@ -1,5 +1,13 @@
 {
+  "ts-node": {
+    "compilerOptions": {
+      "module": "node16",
+      "moduleResolution": "node16"
+    },
+    "include": ["prebuild.ts"],
+  },
   "compilerOptions": {
+    "types": ["node", "jest", "mock-fs"],
     "paths": {
       "@/*": ["./src/*"],
       "@root/*": ["./*"]
@@ -20,6 +28,6 @@
     "resolveJsonModule": true,
     "skipLibCheck": true
   },
-  "include": [".config/*", "src", "types"],
+  "include": ["prebuild.ts", "prebuild.spec.ts", ".config/*", "src", "types"],
   "exclude": ["node_modules"]
 }
