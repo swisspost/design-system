@@ -201,40 +201,41 @@ input.form-control {
     top: calc(tokens.get('input-border-width') + (tokens.get('input-sizing-height') / 2));
     transform: translateY(-50%);
     right: tokens.get('input-validation-icon-position-inline-end');
-    width: tokens.get('input-sizing-icon');
-    height: tokens.get('input-sizing-icon');
     z-index: 2;
     pointer-events: none;
     display: none;
-    background-color: currentColor;
-    -webkit-mask-size: contain;
-    mask-size: contain;
+  }
+  
+  input.form-control.is-valid:not(:disabled) ~ .validation-icon,
+  input.form-control.is-invalid:not(:disabled) ~ .validation-icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    vertical-align: -0.15em;
+    -webkit-mask-position: center center;
+    mask-position: center center;
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
-    -webkit-mask-position: center;
-    mask-position: center;
-  }
-
-  input.form-check-input.is-valid:not(:disabled) ~ .validation-icon,
-  input.form-check-input.is-invalid:not(:disabled) ~ .validation-icon {
-    display: block;
-    font-size: 24px;
+    -webkit-mask-size: 100%;
+    mask-size: 100%;
   }
   
   input.form-control.is-valid:not(:disabled) ~ .validation-icon {
-    color: tokens.get('post-validation-success', components.$post-validation);
-    @include icon-mx.post-icon($name: 'success-solid', $color: tokens.get('post-validation-success', components.$post-validation));
+    background-color: tokens.get('post-validation-success', components.$post-validation);
+    -webkit-mask-image: url('https://unpkg.com/@swisspost/design-system-icons@9.0.0-next.34/public/post-icons/success-solid.svg');
+    mask-image: url('https://unpkg.com/@swisspost/design-system-icons@9.0.0-next.34/public/post-icons/success-solid.svg');
   }
   
   input.form-control.is-invalid:not(:disabled) ~ .validation-icon {
-    color: tokens.get('post-validation-error', components.$post-validation);
-    @include icon-mx.post-icon($name: 'warning-solid', $color: tokens.get('post-validation-error', components.$post-validation));
+    background-color: tokens.get('post-validation-error', components.$post-validation);
+    -webkit-mask-image: url('https://unpkg.com/@swisspost/design-system-icons@9.0.0-next.34/public/post-icons/warning-solid.svg');
+    mask-image: url('https://unpkg.com/@swisspost/design-system-icons@9.0.0-next.34/public/post-icons/warning-solid.svg');
   }
   
   input.form-control:-webkit-autofill {
     &.is-valid ~ .validation-icon,
     &.is-invalid ~ .validation-icon {
-      display: block;
+      display: inline-block;
     }
   }
 
@@ -252,7 +253,7 @@ input.form-control {
     padding-block-start: tokens.get('input-label-empty-padding-block-start');
     border: 0;
     color: tokens.get('input-color-enabled-fg');
-    width: auto;font-size: 24px;
+    width: auto;
     height: auto;
     max-width: calc(100% - (#{tokens.get('input-border-width')} * 2));
     white-space: nowrap;
