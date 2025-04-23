@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-function createComponentNamesScssMap() {
+export function createComponentNamesScssMap() {
   // Define the source and output paths
   const SOURCE_PATH: string[] = [path.resolve('src/components')];
   const OUTPUT_PATH: string = path.resolve('src/styles/generated');
