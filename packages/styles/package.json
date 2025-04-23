@@ -4,6 +4,7 @@
   "description": "Design System Styles for the Swiss Post web platform.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
+  "private": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git"
@@ -70,7 +71,7 @@
     "stylelint-prettier": "5.0.2",
     "stylelint-scss": "6.10.0",
     "typescript": "5.8.2",
-    "vite": "6.1.5"
+    "vite": "6.2.6"
   },
   "sass": {
     "loadPaths": [

@@ -2,7 +2,7 @@
   "name": "@swisspost/design-system-styles-primeng",
   "version": "9.0.0-next.34",
   "description": "Swiss Post styles for PrimeNg datatable.",
-  "author": "Swiss Post <oss@post.ch>",
+  "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
