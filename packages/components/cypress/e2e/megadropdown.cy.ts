@@ -13,6 +13,7 @@ describe('megadropdown', () => {
         );
         cy.get('@megadropdown').find('.back-button').as('back-btn');
         cy.get('@megadropdown').find('.close-button').as('close-btn');
+        cy.get('@megadropdown').find('.megadropdown-container').as('megadropdown-container');
       });
 
       it('should render', () => {
