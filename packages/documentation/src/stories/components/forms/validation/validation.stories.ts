@@ -81,7 +81,6 @@ export const Checkbox: Story = {
   render: (args: Args, context: StoryContext) => {
     const component = context.name.replace(/\s+/g, '');
     const props = getValidationProps(component, args);
-
     const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
     return html`<div class="form-check">
       <input
@@ -91,10 +90,9 @@ export const Checkbox: Story = {
         aria-invalid=${props.ariaInvalid}
         aria-describedby="${props.ariaDescribedBy}"
       />
-      <label class="form-check-label" for="Checkbox_1${props.validationState}${props.scheme}">
-        Label
-      </label>
-      <span class="validation-icon"></span>
+      <label class="form-check-label" for="Checkbox_1${props.validationState}${props.scheme}"
+        >Label</label
+      >
       ${feedbackTemplate}
     </div>`;
   },
