@@ -4,6 +4,7 @@
 
 @use './../mixins/forms' as forms-mx;
 @use './../mixins/utilities';
+@use './../mixins/icons' as icon-mx;
 @use './../variables/components/forms';
 
 tokens.$default-map: components.$post-text-input;
@@ -206,7 +207,7 @@ input.form-control {
     z-index: 2;
     pointer-events: none;
     display: none;
-    
+    // Ensure these properties are explicitly set to make the mask work properly
     background-color: currentColor;
     -webkit-mask-size: contain;
     mask-size: contain;
@@ -216,29 +217,22 @@ input.form-control {
     mask-position: center;
   }
   
-  .validation-icon-valid {
-    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E");
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E");
+  // Explicitly override the base URL while keeping the mixin
+  input.form-control.is-valid:not(:disabled) ~ .validation-icon {
+    display: block;
     color: tokens.get('post-validation-success', components.$post-validation);
+    @include icon-mx.post-icon($name: 'success-solid', $color: tokens.get('post-validation-success', components.$post-validation));
   }
   
-  .validation-icon-invalid {
-    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z'/%3E%3C/svg%3E");
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z'/%3E%3C/svg%3E");
+  input.form-control.is-invalid:not(:disabled) ~ .validation-icon {
+    display: block;
     color: tokens.get('post-validation-error', components.$post-validation);
-  }
-  
-  input.form-control.is-valid:not(:disabled) ~ .validation-icon-valid {
-    display: block;
-  }
-  
-  input.form-control.is-invalid:not(:disabled) ~ .validation-icon-invalid {
-    display: block;
+    @include icon-mx.post-icon($name: 'warning-solid', $color: tokens.get('post-validation-error', components.$post-validation));
   }
   
   input.form-control:-webkit-autofill {
-    &.is-valid ~ .validation-icon-valid,
-    &.is-invalid ~ .validation-icon-invalid {
+    &.is-valid ~ .validation-icon,
+    &.is-invalid ~ .validation-icon {
       display: block;
     }
   }
