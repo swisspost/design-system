@@ -6,7 +6,7 @@
 
 name: Turborepo remote caching
 on:
-  push:
+  workflow_dispatch:
 
 jobs:
   build:
