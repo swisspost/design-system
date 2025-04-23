@@ -89,7 +89,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
   // Style buttons related to the current page next to the tile
   .docs-title,
-  .docs-title nav {
+  .docs-title > .buttons-container {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -97,7 +97,8 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
   }
 
   // aligns figma button to the title
-  .docs-title nav {
+  .docs-title > link-design,
+  .docs-title > .buttons-container {
     margin-block-end: tokens.get('h1-margin-block-end', elements.$post-heading);
   }
 
@@ -109,8 +110,18 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     }
   }
 
+  .npm-package-link a {
+    display: inline-block;
+    @include post.focus-style;
+  }
+
   pre {
     font-size: 100%;
+
+    .token.comment,
+    .token.doctype {
+      color: #888;
+    }
   }
 
   code {
@@ -163,6 +174,12 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     [scale] {
       transform: none;
     }
+  }
+
+  .docblock-argstable-body td a,
+  // targets only the visible buttons
+  .docblock-argstable-body td button:not([tabindex='-1']):not([tabindex='0']) {
+    color: #0073bc;
   }
 
   .docblock-source {

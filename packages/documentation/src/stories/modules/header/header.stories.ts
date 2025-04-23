@@ -5,7 +5,7 @@ import { fakeContent } from '@/utils';
 
 const meta: MetaComponent = {
   id: '27a2e64d-55ba-492d-ab79-5f7c5e818498',
-  title: 'Modules/Header',
+  title: 'Components/Header',
   tags: ['package:WebComponents'],
   component: 'post-header',
   parameters: {

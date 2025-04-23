@@ -4,7 +4,7 @@ import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: 'b7db7391-f893-4b1e-a125-b30c6f0b028b',
-  title: 'Components/Breadcrumb',
+  title: 'Components/Breadcrumbs',
   tags: ['package:WebComponents'],
   parameters: {
     badges: [],
@@ -39,17 +39,17 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: (args: Args) => html`
-    <post-breadcrumb home-url=${args.homeUrl} home-text=${args.homeText}>
+    <post-breadcrumbs home-url=${args.homeUrl} home-text=${args.homeText}>
       <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
       <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
       <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
-    </post-breadcrumb>
+    </post-breadcrumbs>
   `,
 };
 
 export const Concatenated: Story = {
   render: (args: Args) => html`
-    <post-breadcrumb home-url=${args.homeUrl} home-text=${args.homeText}>
+    <post-breadcrumbs home-url=${args.homeUrl} home-text=${args.homeText}>
       <post-breadcrumb-item url="/section1">Section 1</post-breadcrumb-item>
       <post-breadcrumb-item url="/section2">Section 2</post-breadcrumb-item>
       <post-breadcrumb-item url="/section3">Section 3</post-breadcrumb-item>
@@ -60,7 +60,7 @@ export const Concatenated: Story = {
       <post-breadcrumb-item url="/section8">Section 8</post-breadcrumb-item>
       <post-breadcrumb-item url="/section9">Section 9</post-breadcrumb-item>
       <post-breadcrumb-item url="/section10">Section 10</post-breadcrumb-item>
-    </post-breadcrumb>
+    </post-breadcrumbs>
   `,
 };
 
