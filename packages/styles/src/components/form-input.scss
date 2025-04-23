@@ -4,6 +4,7 @@
 
 @use './../mixins/forms' as forms-mx;
 @use './../mixins/utilities';
+@use './../mixins/icons' as icon-mx;
 @use './../variables/components/forms';
 
 tokens.$default-map: components.$post-text-input;
@@ -176,6 +177,7 @@ input.form-control {
     background-color: tokens.get('input-color-hover-bg');
   }
 
+  // Adjust padding for validated fields but don't use background-image
   &.is-valid,
   &.is-invalid {
     &:not(:disabled) {
@@ -205,14 +207,34 @@ input.form-control {
     z-index: 2;
     pointer-events: none;
     display: none;
+    // Ensure these properties are explicitly set to make the mask work properly
+    background-color: currentColor;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
   }
   
-  input.form-control.is-valid:not(:disabled) ~ .validation-icon-valid {
+  // Explicitly override the base URL while keeping the mixin
+  input.form-control.is-valid:not(:disabled) ~ .validation-icon {
     display: block;
+    color: tokens.get('post-validation-success', components.$post-validation);
+    @include icon-mx.post-icon($name: 'success-solid', $color: tokens.get('post-validation-success', components.$post-validation));
   }
   
-  input.form-control.is-invalid:not(:disabled) ~ .validation-icon-invalid {
+  input.form-control.is-invalid:not(:disabled) ~ .validation-icon {
     display: block;
+    color: tokens.get('post-validation-error', components.$post-validation);
+    @include icon-mx.post-icon($name: 'warning-solid', $color: tokens.get('post-validation-error', components.$post-validation));
+  }
+  
+  input.form-control:-webkit-autofill {
+    &.is-valid ~ .validation-icon,
+    &.is-invalid ~ .validation-icon {
+      display: block;
+    }
   }
 
   > input.form-control ~ label {
