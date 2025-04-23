@@ -214,15 +214,19 @@ input.form-control {
     -webkit-mask-position: center;
     mask-position: center;
   }
+
+  input.form-check-input.is-valid:not(:disabled) ~ .validation-icon,
+  input.form-check-input.is-invalid:not(:disabled) ~ .validation-icon {
+    display: block;
+    font-size: 24px;
+  }
   
   input.form-control.is-valid:not(:disabled) ~ .validation-icon {
-    display: block;
     color: tokens.get('post-validation-success', components.$post-validation);
     @include icon-mx.post-icon($name: 'success-solid', $color: tokens.get('post-validation-success', components.$post-validation));
   }
   
   input.form-control.is-invalid:not(:disabled) ~ .validation-icon {
-    display: block;
     color: tokens.get('post-validation-error', components.$post-validation);
     @include icon-mx.post-icon($name: 'warning-solid', $color: tokens.get('post-validation-error', components.$post-validation));
   }
@@ -248,7 +252,7 @@ input.form-control {
     padding-block-start: tokens.get('input-label-empty-padding-block-start');
     border: 0;
     color: tokens.get('input-color-enabled-fg');
-    width: auto;
+    width: auto;font-size: 24px;
     height: auto;
     max-width: calc(100% - (#{tokens.get('input-border-width')} * 2));
     white-space: nowrap;
