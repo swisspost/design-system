@@ -42,7 +42,7 @@ export default meta;
 // RENDERER
 function renderPalette(args: Args) {
   return html`
-    <div class="palette-${args.palette} p-24" data-color-scheme=${args.colorScheme ?? nothing}>
+    <div class="palette palette-${args.palette} p-24">
       <h2 class="palette-text">
         I use a specific color from the palette (it might be the same as the body color).
       </h2>
