@@ -203,27 +203,20 @@ input.form-control {
     z-index: 2;
     pointer-events: none;
     display: none;
+    font-size: 24px;
   }
 
   input.form-control.is-valid:not(:disabled) ~ .validation-icon,
   input.form-control.is-invalid:not(:disabled) ~ .validation-icon {
     display: inline-block;
-    width: 24px;
-    height: 24px;
-    vertical-align: -0.15em;
-    mask-position: center center;
-    mask-repeat: no-repeat;
-    mask-size: 100%;
   }
 
   input.form-control.is-valid:not(:disabled) ~ .validation-icon {
-    background-color: tokens.get('post-validation-success', components.$post-validation);
-    mask-image: url('https://unpkg.com/@swisspost/design-system-icons@9.0.0-next.34/public/post-icons/success-solid.svg');
+    @include icon-mx.post-icon($name: 'success-solid', $color: tokens.get('post-validation-success', components.$post-validation));
   }
 
   input.form-control.is-invalid:not(:disabled) ~ .validation-icon {
-    background-color: tokens.get('post-validation-error', components.$post-validation);
-    mask-image: url('https://unpkg.com/@swisspost/design-system-icons@9.0.0-next.34/public/post-icons/warning-solid.svg');
+    @include icon-mx.post-icon($name: 'warning-solid', $color: tokens.get('post-validation-error', components.$post-validation));
   }
 
   input.form-control:-webkit-autofill {
