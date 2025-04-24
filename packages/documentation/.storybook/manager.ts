@@ -72,7 +72,7 @@ setTimeout(() => {
         }
       });
     });
-}, 0);
+}, 500);
 
 function addFocusToLinks() {
   // Get all of the links and buttons that are not reachable by the keyboard
