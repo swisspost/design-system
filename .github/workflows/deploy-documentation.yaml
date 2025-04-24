@@ -34,25 +34,63 @@ jobs:
 
       - name: Get netlify config
         id: netlify-config
-        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
-        with:
-          script: |
-            const fs = require('fs')
-            return JSON.parse(fs.readFileSync('./${{ steps.build.outputs.folder }}/netlify.config.json', 'utf8'))
+        run: |
+          if [[ ! -f "${{ steps.build.outputs.folder }}/netlify.config.json" ]]; then
+            echo "Error: Netlify config file missing"
+            exit 1
+          fi
+          
+          CONFIG=$(cat "${{ steps.build.outputs.folder }}/netlify.config.json")
+          echo "result=$CONFIG" >> $GITHUB_OUTPUT
+
+      - name: Validate netlify config
+        run: |
+          CONFIG=$(cat "${{ steps.build.outputs.folder }}/netlify.config.json")
+          
+          SITE_ID=$(echo "$CONFIG" | grep -o '"siteId"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/"siteId"[[:space:]]*:[[:space:]]*"\([^"]*\)"/\1/')
+          SITE_URL=$(echo "$CONFIG" | grep -o '"siteUrl"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/"siteUrl"[[:space:]]*:[[:space:]]*"\([^"]*\)"/\1/')
+          
+          if [[ -z "$SITE_ID" || -z "$SITE_URL" ]]; then
+            echo "Error: Invalid netlify config"
+            exit 1
+          fi
+          
+          if ! [[ "$SITE_ID" =~ ^[a-zA-Z0-9-]+$ ]]; then
+            echo "Error: Invalid site ID format"
+            exit 1
+          fi
+          
+          if ! [[ "$SITE_URL" =~ ^[a-zA-Z0-9.-]+$ ]]; then
+            echo "Error: Invalid site URL format" 
+            exit 1
+          fi
+          
+          echo "SITE_ID=$SITE_ID" >> $GITHUB_ENV
+          echo "SITE_URL=$SITE_URL" >> $GITHUB_ENV
 
       - name: Remove netlify.config.json from artifact folder
         run: rm ${{ steps.build.outputs.folder }}/netlify.config.json
+
+      - name: Create URL alias
+        env:
+          BUILD_ID: ${{ steps.build.outputs.id }}
+        run: |
+          url_alias=$(echo "preview-$BUILD_ID" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z)
+          echo "URL_ALIAS=$url_alias" >> $GITHUB_ENV
+          
+          preview_url="https://${url_alias}--${SITE_URL}"
+          echo "PREVIEW_URL=$preview_url" >> $GITHUB_ENV
 
       - name: Deploy Documentation Preview
         id: deploy
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ fromJSON(steps.netlify-config.outputs.result).siteId }}
-        # run command taken from https://gist.github.com/oneohthree/f528c7ae1e701ad990e6, shortened to 28 chars, prepended with build-number
+          NETLIFY_SITE_ID: ${{ env.SITE_ID }}
+          URL_ALIAS: ${{ env.URL_ALIAS }}
+          FOLDER: ${{ steps.build.outputs.folder }}
         run: |
-          url_alias=`echo "preview-${{ steps.build.outputs.id }}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
-          echo "site-url=https://$url_alias--${{ fromJSON(steps.netlify-config.outputs.result).siteUrl }}" >> $GITHUB_OUTPUT
-          netlify deploy --filter @swisspost/design-system-documentation --dir ${{ steps.build.outputs.folder }} --alias $url_alias
+          netlify deploy --filter @swisspost/design-system-documentation --dir "$FOLDER" --alias "$URL_ALIAS"
+          echo "site-url=$PREVIEW_URL" >> $GITHUB_OUTPUT
 
       - name: Update preview message
         uses: ./.github/actions/preview/message/update
@@ -62,14 +100,10 @@ jobs:
           preview-url: ${{ steps.deploy.outputs.site-url }}
 
       - name: Create Summary
-        id: summary
-        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
-        with:
-          script: |
-            return `# Deployed Documentation Preview
-            - SiteId: <code>${{ fromJSON(steps.netlify-config.outputs.result).siteId }}</code>
-            - SiteUrl: ${{ steps.deploy.outputs.site-url }}
-            `
-
-      - name: Output Summary
-        run: echo -e ${{ steps.summary.outputs.result }} >> $GITHUB_STEP_SUMMARY
+        env:
+          SITE_ID: ${{ env.SITE_ID }}
+          SITE_URL: ${{ steps.deploy.outputs.site-url }}
+        run: |
+          echo "# Deployed Documentation Preview" >> $GITHUB_STEP_SUMMARY
+          echo "- SiteId: <code>${SITE_ID}</code>" >> $GITHUB_STEP_SUMMARY
+          echo "- SiteUrl: ${SITE_URL}" >> $GITHUB_STEP_SUMMARY
