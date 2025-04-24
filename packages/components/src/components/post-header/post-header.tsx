@@ -102,7 +102,7 @@ export class PostHeader {
       't:',
       'constructor',
       document.documentElement.style.getPropertyValue('--post-header-scroll-top'),
-      document,
+      document.documentElement,
       this.getTimestamp(),
     );
   }
@@ -116,7 +116,7 @@ export class PostHeader {
       't:',
       'BEFORE connectedCallback',
       document.documentElement.style.getPropertyValue('--post-header-scroll-top'),
-      document,
+      document.documentElement,
       this.getTimestamp(),
     );
     window.addEventListener('resize', this.throttledResize, { passive: true });
@@ -137,7 +137,7 @@ export class PostHeader {
       't:',
       'AFTER connectedCallback',
       document.documentElement.style.getPropertyValue('--post-header-scroll-top'),
-      document,
+      document.documentElement,
       this.getTimestamp(),
     );
   }
@@ -180,7 +180,7 @@ export class PostHeader {
       't:',
       'disconnectedCallback',
       document.documentElement.style.getPropertyValue('--post-header-scroll-top'),
-      document,
+      document.documentElement,
       this.getTimestamp(),
     );
   }
