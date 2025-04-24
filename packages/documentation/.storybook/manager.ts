@@ -17,7 +17,6 @@ addons.setConfig({
       'layout',
       'raw-components',
       'components',
-      'modules',
       'utilities',
       'templates',
       'guidelines',

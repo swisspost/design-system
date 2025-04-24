@@ -69,7 +69,7 @@ const meta: MetaComponent = {
     icon: {
       name: 'Icon',
       description:
-        'Defines the icon `name` inside of the component.<br/>To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs">icon library</a>.',
+        'Defines the icon `name` inside of the component.<br/>To learn which icons are available, please visit our <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs">icon library</a>.',
       control: {
         type: 'number',
       },

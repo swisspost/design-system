@@ -1,5 +1,5 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import meta, { Default, Concatenated } from './breadcrumb.stories';
+import meta, { Default, Concatenated } from './breadcrumbs.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 
@@ -12,7 +12,7 @@ export default {
 
 type Story = StoryObj;
 
-export const BreadcrumbSnapshots: Story = {
+export const BreadcrumbsSnapshots: Story = {
   render: (_args: Args, context: StoryContext) => {
     const scenarios = [
       { label: 'Default', story: Default.render?.(context.args, context) || html`<p>Error rendering Default</p>` },
@@ -20,11 +20,11 @@ export const BreadcrumbSnapshots: Story = {
       {
         label: 'Long Text',
         story: html`
-          <post-breadcrumb home-url="/" home-text="Home">
+          <post-breadcrumbs home-url="/" home-text="Home">
             <post-breadcrumb-item url="/section1">This is a very long breadcrumb item </post-breadcrumb-item>
             <post-breadcrumb-item url="/section2">Another long breadcrumb item</post-breadcrumb-item>
             <post-breadcrumb-item url="/section3">Yet another long item that tests wrapping behavior</post-breadcrumb-item>
-          </post-breadcrumb>
+          </post-breadcrumbs>
         `,
       },
     ];

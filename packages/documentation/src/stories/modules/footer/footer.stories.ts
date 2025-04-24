@@ -7,7 +7,7 @@ const LINKS_PER_CELL = [6, 8, 8, 5];
 
 const meta: MetaComponent = {
   id: 'd97528b3-a9ef-4201-bf28-9caf6e8997dc',
-  title: 'Modules/Footer',
+  title: 'Components/Footer',
   component: 'post-footer',
   tags: ['package:WebComponents'],
   parameters: {

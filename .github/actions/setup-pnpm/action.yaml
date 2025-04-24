@@ -53,7 +53,7 @@ runs:
         version: ${{ inputs.pnpm_version || null }}
 
     - name: Install node
-      uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
       with:
         node-version: ${{ inputs.node_version || fromJSON(steps.wanted-versions.outputs.result).node }}
         cache: ${{ inputs.use_cache == 'true' && 'pnpm' || '' }}

@@ -75,7 +75,7 @@ Type: `Promise<void>`
 
 ### Used by
 
- - [post-breadcrumb](../post-breadcrumb)
+ - [post-breadcrumbs](../post-breadcrumbs)
  - [post-language-switch](../post-language-switch)
 
 ### Depends on
@@ -86,7 +86,7 @@ Type: `Promise<void>`
 ```mermaid
 graph TD;
   post-menu --> post-popovercontainer
-  post-breadcrumb --> post-menu
+  post-breadcrumbs --> post-menu
   post-language-switch --> post-menu
   style post-menu fill:#f9f,stroke:#333,stroke-width:4px
 ```

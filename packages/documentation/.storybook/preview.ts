@@ -54,10 +54,6 @@ const preview: Preview = {
           // Category - Components
           'Components',
 
-          // Category - Modules
-          'Modules',
-          ['Header', 'Footer'],
-
           // Category - Utilities
           'Utilities',
 

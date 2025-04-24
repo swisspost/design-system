@@ -560,6 +560,13 @@ $utilities: (
     class: fs,
     values: utilities_formatted.$font-size,
   ),
+  'color': (
+    property: color,
+    class: text,
+    values: (
+      reset: inherit,
+    ),
+  ),
 );
 
 /* IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`. */

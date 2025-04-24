@@ -64,7 +64,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'If `true`, the chip is disabled.<div className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
+        'If `true`, the chip is disabled.<div className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</div>',
       control: {
         type: 'boolean',
       },
@@ -75,7 +75,7 @@ const meta: MetaComponent = {
     active: {
       name: 'Active',
       description:
-        'If `true`, the chip is active.<div className="mt-8 banner banner-info banner-sm">Disabling active chips can result in confusing or unexpected behavior and should be avoided.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
+        'If `true`, the chip is active.<div className="mt-8 banner banner-info banner-sm">Disabling active chips can result in confusing or unexpected behavior and should be avoided.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</div>',
       if: {
         arg: 'type',
         eq: 'filter',
