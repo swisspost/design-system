@@ -112,9 +112,12 @@ export class PostHeader {
     this.host.addEventListener('click', this.handleLinkClick);
 
     this.handleResize();
-    this.handleScrollEvent();
     this.handleScrollParentResize();
     this.lockBody(false, this.mobileMenuExtended, 'mobileMenuExtended');
+  }
+
+  componentWillRender() {
+    this.handleScrollEvent();
   }
 
   componentDidRender() {
@@ -181,7 +184,7 @@ export class PostHeader {
       },
       () => {
         this.megadropdownOpen = event.detail.isVisible;
-      }
+      },
     );
   };
 

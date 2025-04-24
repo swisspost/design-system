@@ -14,13 +14,13 @@ $navbar-padding-x: spacing.$spacer !default;
 
 $navbar-nav-link-padding-x: tokens.get('utility-gap-48', utilities.$post-spacing) !default;
 
-$navbar-brand-font-size: type.$font-size-bigger-regular !default;
+$navbar-brand-font-size: 1rem !default;
 $navbar-brand-height: $navbar-brand-font-size * type.$line-height-copy !default;
 $navbar-brand-padding-y: (nav.$nav-link-height - $navbar-brand-height) * 0.5 !default;
 
 $navbar-toggler-padding-y: 0.25rem !default;
 $navbar-toggler-padding-x: 0.75rem !default;
-$navbar-toggler-font-size: type.$font-size-bigger-regular !default;
+$navbar-toggler-font-size: 1rem !default;
 $navbar-toggler-border-radius: button.$btn-border-radius !default;
 
 $navbar-dark-color: rgba(color.$white, 0.5) !default;

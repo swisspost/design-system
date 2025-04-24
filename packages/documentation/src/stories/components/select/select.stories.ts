@@ -57,7 +57,7 @@ const meta: MetaComponent = {
     hiddenLabel: {
       name: 'Hidden Label',
       description:
-        'Renders the component with or without a visible label.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#labels">label accessibility guide</a>.</span>',
+        'Renders the component with or without a visible label.<span className="mt-8 banner banner-info banner-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/13fb5dfe-6c96-4246-aa6a-6df9569f143f--docs">form labels guidelines</a>.</span>',
       if: {
         arg: 'floatingLabel',
         truthy: false,
@@ -131,7 +131,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-8 banner banner-info banner-sm">There are accessibility issues with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</span>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-8 banner banner-info banner-sm">There are accessibility issues with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -192,17 +192,31 @@ const Template: Story = {
       ],
       ...optionElements,
     ];
+
     const contextuals = [
       args.validation === 'is-valid'
-        ? html` <p class="valid-feedback">Ggranda sukceso!</p> `
+        ? html`
+            <p class="valid-feedback" id="${args.validation}-id-${context.id}">Ggranda sukceso!</p>
+          `
         : null,
       args.validation === 'is-invalid'
-        ? html` <p class="invalid-feedback">Eraro okazis!</p> `
+        ? html`
+            <p class="invalid-feedback" id="${args.validation}-id-${context.id}">Eraro okazis!</p>
+          `
         : null,
       args.hint !== ''
         ? html` <p class="form-hint" id="form-hint-${context.id}">${args.hint}</p> `
         : null,
     ];
+
+    const ariaDescribedByParts = [
+      args.hint ? 'form-hint-' + context.id : '',
+      args.validation !== 'null' ? `${args.validation}-id-${context.id}` : '',
+    ].filter(Boolean);
+
+    const ariaDescribedBy =
+      args.hint || args.validation !== 'null' ? ariaDescribedByParts.join(' ') : nothing;
+
     const control = html`
       <select
         id="${context.id}"
@@ -212,7 +226,7 @@ const Template: Story = {
         ?disabled="${args.disabled}"
         aria-label="${useAriaLabel ? args.label : nothing}"
         aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
-        aria-describedby="${args.hint !== '' ? 'form-hint-' + context.id : ''}"
+        aria-describedby="${ariaDescribedBy}"
         @change="${(e: Event) => {
           updateArgs({ value: (e.target as HTMLSelectElement).value });
         }}"
