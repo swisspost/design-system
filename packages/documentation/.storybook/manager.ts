@@ -33,3 +33,52 @@ addons.setConfig({
     copy: { hidden: true }, // controls the visibility of the "Copy canvas link" button
   },
 });
+
+/**
+ * The storybook sidebar is not accessible as most of the links cannot be reached using keyboard navigation
+ * This function removes the tabindex of -1 to all of the links and make them reachable using tabs
+ *
+ * Since the links are only added to the DOM once its parent accordion is opened,
+ * we need to listen to those accordions opening to update the tabindex when the links appear
+ */
+setTimeout(() => {
+  // Remove negative tabindex to all of the links already present in the sidebar
+  addFocusToLinks();
+
+  // Add listener on click event on all the root items
+  document
+    .querySelectorAll('.sidebar-container .sidebar-subheading button')
+    ?.forEach(subheading => {
+      subheading.addEventListener('click', (e: Event) => {
+        // When a root item is opened, remove negative tabindex to all of its children
+        if ((e.target as HTMLElement).ariaExpanded === 'false') {
+          setTimeout(() => {
+            addFocusToLinks();
+
+            // If section has subfolders, we add an event listener and those subfolders parent
+            document
+              .querySelectorAll('.sidebar-container .sidebar-item button')
+              ?.forEach(subfolder => {
+                subfolder.addEventListener('click', ev => {
+                  // When a subfolder item is opened, remove negative tabindex to all of its children
+                  if ((ev.target as HTMLElement).ariaExpanded === 'false') {
+                    setTimeout(() => {
+                      addFocusToLinks();
+                    }, 0);
+                  }
+                });
+              });
+          }, 0);
+        }
+      });
+    });
+}, 0);
+
+function addFocusToLinks() {
+  // Get all of the links and buttons that are not reachable by the keyboard
+  document
+    .querySelectorAll(
+      '.sidebar-container a[tabindex="-1"], .sidebar-container button[tabindex="-1"]',
+    )
+    ?.forEach(link => link.setAttribute('tabindex', '0'));
+}
