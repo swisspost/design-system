@@ -42,7 +42,7 @@ export const copyStoryConfigUrl = (e: Event) => {
     navigator.clipboard.writeText(linkConfigURL.textContent);
     // Temporarily change text to show copy effect
     const standardText = target.textContent;
-    const tempText = 'Copied';
+    const tempText = 'Copied!';
     target.textContent = tempText;
     setTimeout(() => {
       target.textContent = standardText;

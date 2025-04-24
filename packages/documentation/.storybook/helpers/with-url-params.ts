@@ -47,8 +47,6 @@ export const withUrlParams = (Story: StoryFn, context: StoryContext) => {
       if (firstRender && !argsMatch(initialArgs, updatedArgs)) {
         updateArgs(updatedArgs);
 
-        //const elementId = `#story--${context.id}`;
-
         // Remove the args from the URL
         params.delete('args');
         const newUrl = `${window.location.pathname}?${params.toString()}`;
