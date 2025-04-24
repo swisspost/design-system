@@ -212,11 +212,17 @@ input.form-control {
   }
 
   input.form-control.is-valid:not(:disabled) ~ .validation-icon {
-    @include icon-mx.post-icon($name: 'success-solid', $color: tokens.get('post-validation-success', components.$post-validation));
+    @include icon-mx.post-icon(
+      $name: 'success-solid',
+      $color: tokens.get('post-validation-success', components.$post-validation)
+    );
   }
 
   input.form-control.is-invalid:not(:disabled) ~ .validation-icon {
-    @include icon-mx.post-icon($name: 'warning-solid', $color: tokens.get('post-validation-error', components.$post-validation));
+    @include icon-mx.post-icon(
+      $name: 'warning-solid',
+      $color: tokens.get('post-validation-error', components.$post-validation)
+    );
   }
 
   input.form-control:-webkit-autofill {
