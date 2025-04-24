@@ -45,18 +45,15 @@ jobs:
           restore-keys: |
             visual-snapshots-refs/heads/main
       
-      # Initialize or update snapshots if requested
       - name: Update Snapshots
         if: github.event.inputs.update-snapshots == 'true' || steps.snapshot-cache.outputs.cache-hit != 'true'
         working-directory: packages/styles
         run: pnpm test:visual:update
       
-      # Run tests
       - name: Run visual tests
         working-directory: packages/styles
         run: pnpm test:visual
         
-      # Upload results
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
