@@ -158,10 +158,26 @@ function render(args: Args, context: StoryContext) {
   }
 
   const contextual: (TemplateResult | null)[] = [
-    args.validation === 'is-valid' ? html` <p class="valid-feedback">Ggranda sukceso!</p> ` : null,
-    args.validation === 'is-invalid' ? html` <p class="invalid-feedback">Eraro okazis!</p> ` : null,
+    args.validation === 'is-valid'
+      ? html`
+          <p class="valid-feedback" id="${args.validation}-id-${context.id}">Ggranda sukceso!</p>
+        `
+      : null,
+    args.validation === 'is-invalid'
+      ? html`
+          <p class="invalid-feedback" id="${args.validation}-id-${context.id}">Eraro okazis!</p>
+        `
+      : null,
     args.hint !== '' ? html` <p class="form-hint" id="form-hint-${id}">${args.hint}</p> ` : null,
   ];
+
+  const ariaDescribedByParts = [
+    args.hint ? 'form-hint-' + context.id : '',
+    args.validation !== 'null' ? `${args.validation}-id-${context.id}` : '',
+  ].filter(Boolean);
+
+  const ariaDescribedBy =
+    args.hint || args.validation !== 'null' ? ariaDescribedByParts.join(' ') : nothing;
 
   const control: TemplateResult = html`
     <input
@@ -172,7 +188,7 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
-      aria-describedby="${args.hint !== '' ? 'form-hint-' + id : nothing}"
+      aria-describedby="${ariaDescribedBy}"
       value="${args.value ? args.value : nothing}"
     />
   `;
