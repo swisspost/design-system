@@ -18,3 +18,18 @@ src/utilities/_post-icon-version.scss
 
 # Temporary files
 src/tokens/temp/
+
+# Visual testing ignores
+test-results/
+test-results-*
+playwright-report/
+
+# Screenshot artifacts
+**/tests/visual/__screenshots__/**/*-actual.png
+**/tests/visual/__screenshots__/**/*-diff.png
+**/tests/visual/__screenshots__/**/*-expected.png
+
+# Playwright
+/playwright/.cache/
+playwright/.auth/
+*.tsbuildinfo
