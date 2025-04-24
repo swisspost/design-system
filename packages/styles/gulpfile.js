@@ -236,7 +236,7 @@ gulp.task(
 exports.default = gulp.task(
   'build',
   gulp.series(
-    'generate-icon-version-scss', // Run this first, before any other tasks
+    'generate-icon-version-scss',
     gulp.parallel(
       gulp.series(
         'generate-not-defined-components-scss',
