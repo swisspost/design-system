@@ -17,20 +17,6 @@ export const withUrlParams = (Story: StoryFn, context: StoryContext) => {
   const storyName = context.name.replace(/\s+/g, '').toLowerCase();
 
   if (firstRender && storyParam && storyParam == storyName) {
-    const elementId = `#story--${context.id}`;
-
-    // Scroll the story to view
-    const observer = new MutationObserver((_, obs) => {
-      const scrollTarget = document.querySelector(elementId)?.closest('.docs-story');
-      if (scrollTarget) {
-        setTimeout(() => {
-          scrollTarget.scrollIntoView({ behavior: 'smooth' });
-        }, 700);
-        obs.disconnect();
-      }
-    });
-    observer.observe(document, { childList: true, subtree: true });
-
     const argsParam = params.get('args');
 
     if (firstRender) {
@@ -61,9 +47,12 @@ export const withUrlParams = (Story: StoryFn, context: StoryContext) => {
       if (firstRender && !argsMatch(initialArgs, updatedArgs)) {
         updateArgs(updatedArgs);
 
+        //const elementId = `#story--${context.id}`;
+
         // Remove the args from the URL
         params.delete('args');
         const newUrl = `${window.location.pathname}?${params.toString()}`;
+
         window.history.replaceState({}, '', newUrl);
         firstRender = false;
       }

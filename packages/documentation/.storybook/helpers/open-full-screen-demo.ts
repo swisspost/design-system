@@ -23,7 +23,7 @@ export const fullScreenUrlDecorator = (story: StoryFn, context: StoryContext) =>
   let linkConfigBaseURL = `/?path=/docs/${id.split('--')[0]}--docs&story=${context.story}`;
 
   if (args.length) linkConfigBaseURL += `&args=${args}`;
-  const linkConfigURL = window.location.host + linkConfigBaseURL.replace(':!', ':');
+  const linkConfigURL = window.location.host + linkConfigBaseURL.replace(':!', ':') + '#' + id;
 
   return html`
     <p class="linkConfigURL" hidden>${linkConfigURL}</p>
@@ -37,9 +37,17 @@ export const copyStoryConfigUrl = (e: Event) => {
   const canvas = target.closest('.docs-story');
   const linkConfigURL = canvas && canvas.querySelector('.linkConfigURL');
 
-  if (linkConfigURL && linkConfigURL.textContent)
+  if (linkConfigURL && linkConfigURL.textContent) {
     // Copy link to clipboard
     navigator.clipboard.writeText(linkConfigURL.textContent);
+    // Temporarily change text to show copy effect
+    const standardText = target.textContent;
+    const tempText = 'Copied';
+    target.textContent = tempText;
+    setTimeout(() => {
+      target.textContent = standardText;
+    }, 1500);
+  }
 };
 
 export const openFullScreenDemo = (e: Event) => {
