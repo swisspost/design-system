@@ -3,12 +3,12 @@ import { version } from '@root/package.json';
 import { checkUrl, debounce } from '@/utils';
 
 @Component({
-  tag: 'post-breadcrumb',
-  styleUrl: 'post-breadcrumb.scss',
+  tag: 'post-breadcrumbs',
+  styleUrl: 'post-breadcrumbs.scss',
   shadow: true,
 })
-export class PostBreadcrumb {
-  @Element() host: HTMLPostBreadcrumbElement;
+export class PostBreadcrumbs {
+  @Element() host: HTMLPostBreadcrumbsElement;
 
   /**
    * The URL for the home breadcrumb item.
@@ -24,7 +24,7 @@ export class PostBreadcrumb {
   @State() isConcatenated: boolean;
   @State() lastWindowWidth: number;
 
-  private breadcrumbNavRef?: HTMLElement;
+  private breadcrumbsNavRef?: HTMLElement;
   private lastItem: { url: string; text: string };
 
   @Watch('homeUrl')
@@ -38,19 +38,19 @@ export class PostBreadcrumb {
 
   componentDidLoad() {
     window.addEventListener('resize', this.handleResize);
-    this.waitForBreadcrumbRef();
+    this.waitForBreadcrumbsRef();
   }
 
   disconnectedCallback() {
     window.removeEventListener('resize', this.handleResize);
   }
 
-  // Waits for breadcrumb navigation reference to be available
-  private waitForBreadcrumbRef = debounce(() => {
-    if (this.breadcrumbNavRef?.clientWidth > 0) {
+  // Waits for breadcrumbs navigation reference to be available
+  private waitForBreadcrumbsRef = debounce(() => {
+    if (this.breadcrumbsNavRef?.clientWidth > 0) {
       this.checkConcatenation();
     } else {
-      this.waitForBreadcrumbRef();
+      this.waitForBreadcrumbsRef();
     }
   }, 50);
 
@@ -82,7 +82,7 @@ export class PostBreadcrumb {
   }
 
   private checkConcatenation() {
-    if (!this.breadcrumbNavRef) return;
+    if (!this.breadcrumbsNavRef) return;
 
     const visibleWidth = this.getParentWidth();
 
@@ -118,9 +118,9 @@ export class PostBreadcrumb {
     return (
       <Host data-version={version}>
         <nav
-          aria-label="Breadcrumb"
+          aria-label="Breadcrumbs"
           class="breadcrumbs-nav"
-          ref={el => (this.breadcrumbNavRef = el)}
+          ref={el => (this.breadcrumbsNavRef = el)}
         >
           <ol class="no-list breadcrumbs-list">
             <li>
