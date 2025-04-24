@@ -68,5 +68,8 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: playwright-screenshots
-          path: packages/styles/tests/visual/__screenshots__
+          path: |
+            packages/styles/test-results/**/*-diff.png
+            packages/styles/test-results/**/*-actual.png
+            packages/styles/test-results/**/*-expected.png
           retention-days: 14
