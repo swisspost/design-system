@@ -33,7 +33,7 @@
     "styles": "pnpm styles:start",
     "styles:play": "pnpm --filter design-system-styles play",
     "styles:start": "pnpm --filter design-system-styles start",
-    "styles:build": "pnpm --filter design-system-styles build",
+    "styles:build": "pnpm turbo run build --filter=@swisspost/design-system-styles",
     "styles:unit": "pnpm --filter design-system-styles unit",
     "styles:lint": "pnpm --filter design-system-styles lint",
     "styles:lint:fix": "pnpm --filter design-system-styles lint:fix",

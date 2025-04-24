@@ -1,63 +1,13 @@
 {
   "tasks": {
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**"]
-    },
-
-    "components#build": {
-      "outputs": [
-        "dist/**",
-        "hydrate/**",
-        "loader/**",
-        "loaders/**",
-        "www/**",
-        "../components-react/src/components/stencil-generated/**",
-        "../components-angular/projects/components/src/lib/stencil-generated/**"
-      ]
-    },
-    "components-angular/projects/components#build": {
-      "outputs": ["dist/**", ".angular/**"]
-    },
-    "documentation#build": {
-      "outputs": ["storybook-static/**", "public/manager/**"]
+      "dependsOn": ["^build"]
     },
     "icons#build": {
-      "outputs": ["public/post-icons/**", "public/report.json"]
-    },
-    "nextjs-integration#build": {
-      "outputs": [".next/**"]
+      "outputs": ["public/post-icons/**", "public/report.json", "public/report-min.json"]
     },
     "styles#build": {
       "outputs": ["out-tsc/**", "dist/**", "src/tokens/temp/**"]
-    },
-    "internet-header#build": {
-      "outputs": ["www/**", "dist/**", "loader/**"]
-    },
-
-    "test": {
-      "dependsOn": ["build"],
-      "outputs": []
-    },
-    "unit": {
-      "dependsOn": ["build"],
-      "outputs": []
-    },
-    "e2e": {
-      "dependsOn": ["build"],
-      "outputs": []
-    },
-    "lint": {
-      "outputs": []
-    },
-    "lint:fix": {
-      "outputs": []
-    },
-    "typecheck": {
-      "outputs": []
-    },
-    "start": {
-      "cache": false
     }
   }
 }
