@@ -1,6 +1,6 @@
 import StyleDictionary from 'style-dictionary';
 import { register } from '@tokens-studio/sd-transforms';
-import { FILE_HEADER, NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES, PX_TO_REM_TOKEN_TYPE } from './constants.js';
+import { BASE_FONT_SIZE, FILE_HEADER, NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES, PX_TO_REM_TOKEN_TYPE } from './constants.js';
 
 register(StyleDictionary);
 
@@ -68,11 +68,11 @@ StyleDictionary.registerTransform({
   },
   transform: token => {
     const usesDtcg = token.$type && token.$value;
-    const baseFontSize = 16;
+    const baseFontSize = BASE_FONT_SIZE;
     let value = token[usesDtcg ? '$value' : 'value'];
     if (typeof value === 'string' && value.includes('px')) {
-      // Remove 'px' and convert the result to a number
-      value = parseFloat(value.replace('px', ''), 10);
+      // Convert value to a number
+      value = parseFloat(value);
     }
     return `${value / baseFontSize}rem`;
   },
