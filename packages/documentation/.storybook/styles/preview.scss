@@ -110,6 +110,11 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     }
   }
 
+  .npm-package-link a {
+    display: inline-block;
+    @include post.focus-style;
+  }
+
   pre {
     font-size: 100%;
 
@@ -169,6 +174,12 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     [scale] {
       transform: none;
     }
+  }
+
+  .docblock-argstable-body td a,
+  // targets only the visible buttons
+  .docblock-argstable-body td button:not([tabindex='-1']):not([tabindex='0']) {
+    color: #0073bc;
   }
 
   .docblock-source {
