@@ -151,32 +151,33 @@ export class PostInternetHeader {
   private lastWindowWidth: number = window.innerWidth;
   private updateLogoAnimation: () => void;
   private scrollParent: Element | Document;
-
+  
   private isValidVersion(str: string): boolean {
     if (typeof str !== 'string') return false;
-    const validCharRegex = /^[a-z0-9-]+$/;
-    return validCharRegex.test(str);
+    return /^[a-z0-9.-]+$/.test(str);
   }
 
-  constructor() {
-    if (this.project === undefined || this.project === '' || !isValidProjectId(this.project)) {
+  @Watch('project')
+  handleProjectChange(newValue: string) {
+    if (!isValidProjectId(newValue)) {
       throw new Error(
-        `Internet Header project key is "${this.project}". Please provide a valid project key.`
-      );
-    }
-    
-    const validEnvironments = ['dev01', 'dev02', 'devs1', 'test', 'int01', 'int02', 'prod'];
-    if (!validEnvironments.includes(this.environment.toLowerCase())) {
-      throw new Error(
-        `Internet Header environment "${this.environment}" is not valid. Please use one of: ${validEnvironments.join(', ')}`
-      );
-    }
-    if (!this.isValidVersion(packageJson.version)) {
-      throw new Error(
-        `Invalid data-version format: "${packageJson.version}". Version should only contain lowercase letters, numbers, and dashes.`
+        `Internet Header project key is invalid. Please provide a valid project key.`
       );
     }
   }
+
+  @Watch('environment')
+  handleEnvironmentChange(newValue: string) {
+    const validEnvironments = ['dev01', 'dev02', 'devs1', 'test', 'int01', 'int02', 'prod'];
+    const sanitizedEnvironment = newValue.toLowerCase();
+    if (!validEnvironments.includes(sanitizedEnvironment)) {
+      throw new Error(
+        `Internet Header environment "${newValue}" is not valid. Please use one of: ${validEnvironments.join(', ')}`
+      );
+    }
+  }
+
+  constructor() {}
 
   connectedCallback() {
     this.throttledScroll = throttle(300, () => this.handleScrollEvent());
@@ -192,6 +193,27 @@ export class PostInternetHeader {
   }
 
   async componentWillLoad() {
+    // Validate project ID
+    if (this.project === undefined || this.project === '' || !isValidProjectId(this.project)) {
+      throw new Error(
+        `Internet Header project key is invalid. Please provide a valid project key.`
+      );
+    }
+
+    const validEnvironments = ['dev01', 'dev02', 'devs1', 'test', 'int01', 'int02', 'prod'];
+    const sanitizedEnvironment = this.environment.toLowerCase();
+    if (!validEnvironments.includes(sanitizedEnvironment)) {
+      throw new Error(
+        `Internet Header environment "${this.environment}" is not valid. Please use one of: ${validEnvironments.join(', ')}`
+      );
+    }
+
+    if (!this.isValidVersion(packageJson.version)) {
+      throw new Error(
+        `Invalid data-version format: "${packageJson.version}". Version should only contain lowercase letters, numbers, and dashes.`
+      );
+    }
+
     this.setupScrollListeners();
     
     // Wait for the config to arrive, then render the header
