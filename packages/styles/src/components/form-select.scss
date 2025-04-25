@@ -182,7 +182,7 @@ tokens.$default-map: components.$post-select;
 
     ~ label {
       position: absolute;
-      z-index: 2;
+      z-index: 1;
       text-align: start;
       pointer-events: none;
       display: block;
