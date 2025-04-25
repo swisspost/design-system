@@ -1,9 +1,17 @@
 {
   "name": "@swisspost/design-system-styles-primeng-workspace",
-  "description": "Showcase for a Post like custom prime-ng theme",
   "version": "1.0.6-next.34",
+  "description": "Showcase for a Post like custom prime-ng theme",
   "license": "Apache-2.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git"
+  },
+  "homepage": "https://design-system.post.ch",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
   "scripts": {
     "start": "npm-run-all --parallel start:lib start:app",
     "start:lib": "ng build --watch --configuration development styles-primeng",
@@ -53,5 +61,12 @@
     "stylelint-scss": "6.10.0",
     "typescript": "5.8.2",
     "typescript-eslint": "8.16.0"
-  }
+  },
+  "keywords": [
+    "primeng",
+    "theme",
+    "scss",
+    "styles",
+    "swisspost"
+  ]
 }
