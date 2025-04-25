@@ -6,9 +6,6 @@ on:
   schedule:
     - cron: '9 22 * * *' # the job will run every day at 22:09
 
-permissions:
-  issues: write
-
 jobs:
   stale:
     runs-on: ubuntu-latest
