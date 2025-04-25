@@ -34,6 +34,8 @@ addons.setConfig({
   },
 });
 
+let hasEventListenerOnDeleteBtn = false;
+
 /**
  * The storybook sidebar is not accessible as most of the links cannot be reached using keyboard navigation
  * This function removes the tabindex of -1 to all of the links and make them reachable using tabs
@@ -72,7 +74,34 @@ setTimeout(() => {
         }
       });
     });
-}, 0);
+
+  addRecentlyOpenedClearBtnLabel();
+
+  // Add a listener to the search input, as the clear button gets removed from the DOM when it is filled
+  document
+    .querySelector('#storybook-explorer-searchfield')
+    ?.addEventListener('input', (e: Event) => {
+      if ((e.target as HTMLInputElement)?.value === '') {
+        // If input is emptied, the clear button should be back on the DOM and the label needs to be reattached to it
+        setTimeout(() => {
+          addRecentlyOpenedClearBtnLabel();
+        }, 0);
+      }
+
+      // When input is filled, the clear button of that input appears and an event listener should be added to it
+      if (!hasEventListenerOnDeleteBtn) {
+        hasEventListenerOnDeleteBtn = true;
+        document
+          .querySelector('#storybook-explorer-searchfield + div > button:first-child')
+          ?.addEventListener('click', (e: Event) => {
+            // When the clear button of the input is clicked, the clear button of the recently opened should be back in the DOM
+            setTimeout(() => {
+              addRecentlyOpenedClearBtnLabel();
+            }, 0);
+          });
+      }
+    });
+}, 500);
 
 function addFocusToLinks() {
   // Get all of the links and buttons that are not reachable by the keyboard
@@ -81,4 +110,20 @@ function addFocusToLinks() {
       '.sidebar-container a[tabindex="-1"], .sidebar-container button[tabindex="-1"]',
     )
     ?.forEach(link => link.setAttribute('tabindex', '0'));
+}
+
+/**
+ * Adds a label to the "Clear history of recently opened" button in the sidebar
+ */
+function addRecentlyOpenedClearBtnLabel() {
+  hasEventListenerOnDeleteBtn = false;
+
+  // Create a visually hidden label
+  let label = document.createElement('span');
+  label.classList.add('visually-hidden');
+  let labelText = document.createTextNode('Clear history of recently opened pages');
+  label.appendChild(labelText);
+
+  // Add it to the button
+  document.querySelector('.search-result-recentlyOpened-clear')?.appendChild(label);
 }
