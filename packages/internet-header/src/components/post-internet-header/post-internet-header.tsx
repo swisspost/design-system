@@ -165,7 +165,7 @@ export class PostInternetHeader {
       );
     }
     
-    const validEnvironments = ['prod', 'int01', 'dev'];
+    const validEnvironments = ['dev01', 'dev02', 'devs1', 'test', 'int01', 'int02', 'prod'];
     if (!validEnvironments.includes(this.environment.toLowerCase())) {
       throw new Error(
         `Internet Header environment "${this.environment}" is not valid. Please use one of: ${validEnvironments.join(', ')}`
@@ -221,7 +221,7 @@ export class PostInternetHeader {
   }
 
   private validateAndSetEnvironment() {
-    const validEnvironments = ['prod', 'int01', 'dev'];
+    const validEnvironments = ['dev01', 'dev02', 'devs1', 'test', 'int01', 'int02', 'prod'];
     const sanitizedEnvironment = this.environment.toLowerCase();
     if (!validEnvironments.includes(sanitizedEnvironment)) {
       throw new Error(`Invalid environment: ${this.environment}`);
