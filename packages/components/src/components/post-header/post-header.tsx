@@ -98,27 +98,18 @@ export class PostHeader {
     this.megedropdownStateHandler = this.megedropdownStateHandler.bind(this);
     this.keyboardHandler = this.keyboardHandler.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
-    console.log(
-      't:',
-      'constructor',
-      document.documentElement.style.getPropertyValue('--post-header-scroll-top'),
-      document.documentElement,
-      this.getTimestamp(),
-    );
   }
 
-  private readonly getTimestamp = () => {
-    return new Date().toISOString(); // Returns a timestamp in ISO format
-  };
+  private getTimestamp() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const milliseconds = String(now.getMilliseconds()).padStart(3, '0');
+    return `${hours}:${minutes}:${seconds}.${milliseconds}`;
+  }
 
   connectedCallback() {
-    console.log(
-      't:',
-      'BEFORE connectedCallback',
-      document.documentElement.style.getPropertyValue('--post-header-scroll-top'),
-      document.documentElement,
-      this.getTimestamp(),
-    );
     window.addEventListener('resize', this.throttledResize, { passive: true });
     window.addEventListener('scroll', this.handleScrollEvent, {
       passive: true,
@@ -132,31 +123,34 @@ export class PostHeader {
     this.handleResize();
     this.handleScrollParentResize();
     this.lockBody(false, this.mobileMenuExtended, 'mobileMenuExtended');
+    this.host.style.setProperty('--test-property-on-host', 'works');
+    console.log(
+      `[${this.getTimestamp()}] CONNECTED CALLBACK`,
+      document.documentElement.style.getPropertyValue('--post-header-scroll-top'),
+    );
+  }
+  componentWillLoad() {
     this.handleScrollEvent();
     console.log(
-      't:',
-      'AFTER connectedCallback',
+      `[${this.getTimestamp()}] WILL LOAD`,
       document.documentElement.style.getPropertyValue('--post-header-scroll-top'),
-      document.documentElement,
-      this.getTimestamp(),
+    );
+  }
+  componentWillRender() {
+    console.log(
+      `[${this.getTimestamp()}] WILL RENDER`,
+      document.documentElement.style.getPropertyValue('--post-header-scroll-top'),
     );
   }
 
   componentDidRender() {
-    console.log(
-      't:',
-      'componentDidRender',
-      document.documentElement.style.getPropertyValue('--post-header-scroll-top'),
-      document,
-      this.getTimestamp(),
-    );
-
     this.getFocusableElements();
     this.handleLocalHeaderResize();
   }
 
   // Clean up possible side effects when post-header is disconnected
   disconnectedCallback() {
+    console.log('DISCONNECTED');
     const scrollParent = this.scrollParent;
 
     window.removeEventListener('resize', this.throttledResize);
@@ -174,15 +168,7 @@ export class PostHeader {
       this.localHeaderResizeObserver.disconnect();
       this.localHeaderResizeObserver = null;
     }
-
     this.mobileMenuExtended = false;
-    console.log(
-      't:',
-      'disconnectedCallback',
-      document.documentElement.style.getPropertyValue('--post-header-scroll-top'),
-      document.documentElement,
-      this.getTimestamp(),
-    );
   }
 
   /**
