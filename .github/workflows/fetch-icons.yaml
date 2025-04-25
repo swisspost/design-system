@@ -25,6 +25,10 @@ on:
     #        │  │ │ │ │
     - cron: '15 0 * * 0' # the job will run every Sunday at 0:15
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   fetch:
     runs-on: ubuntu-latest
