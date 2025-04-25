@@ -190,6 +190,7 @@ describe('header', () => {
 
       it('should prevent XSS through active route injection', () => {
         const maliciousRoutes = [
+          // NOSONAR - This is a security test specifically checking for javascript: protocol
           'javascript:alert(1)',
           'data:text/html,<script>alert(1)</script>',
           '"><img src=x onerror=alert(1)>',
@@ -212,6 +213,7 @@ describe('header', () => {
               const href = $link.attr('href');
               if (href) {
                 expect(href).not.to.include('<script>');
+                // NOSONAR - This is a security test specifically checking for javascript: protocol
                 expect(href).not.to.include('javascript:');
                 expect(href).not.to.include('data:text/html');
               }
