@@ -108,13 +108,18 @@ export class PostLanguageSwitch {
   private updateChildrenVariant() {
     this.languageOptions.forEach(el => {
       el.setAttribute('variant', this.variant);
+      el.setAttribute('role', this.variant == 'menu' ? 'menuitem' : 'listitem');
     });
   }
 
   private renderList() {
     return (
-      <Host data-version={version} role="list" aria-label={this.caption}>
-        <div class="post-language-switch-list" role="group" aria-label={this.description}>
+      <Host data-version={version}>
+        <div
+          class="post-language-switch-list"
+          role="list"
+          aria-label={this.caption + this.description}
+        >
           <slot></slot>
         </div>
       </Host>
@@ -125,8 +130,9 @@ export class PostLanguageSwitch {
     return (
       <Host data-version={version}>
         <post-menu-trigger for={this.menuId}>
-          <button class="post-language-switch-trigger" aria-label={this.description}>
+          <button class="post-language-switch-trigger">
             {this.activeLang}
+            <span class="visually-hidden">{this.description}</span>
             <post-icon aria-hidden="true" name="chevrondown"></post-icon>
           </button>
         </post-menu-trigger>

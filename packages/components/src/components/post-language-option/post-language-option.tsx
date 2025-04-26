@@ -139,12 +139,12 @@ export class PostLanguageOption {
         ) : (
           <button
             aria-current={this.active ? 'true' : undefined}
-            aria-label={this.name}
             lang={lang}
             onClick={() => this.emitChange()}
             onKeyDown={emitOnKeyDown}
           >
             <slot />
+            <span class="visually-hidden">{this.name}</span>
           </button>
         )}
       </Host>
