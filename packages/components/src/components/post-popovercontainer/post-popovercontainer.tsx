@@ -91,7 +91,7 @@ export class PostPopovercontainer {
   @Prop() readonly arrow?: boolean = false;
 
   /**
-   * Whether or not the popover should close when user clicks outside of it
+   * Whether or not the popovercontainer should close when user clicks outside of it
    */
   @Prop() manualClose: boolean = false;
 
