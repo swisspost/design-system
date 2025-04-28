@@ -38,8 +38,8 @@
 
   &.horizontal {
     ::slotted(*) {
-      --separator-display: block;
-      --separator-height: #{functions.px-to-rem(34px)};
+      --post-separator-display: block;
+      --post-separator-height: #{functions.px-to-rem(34px)};
     }
 
     &::before {
@@ -47,7 +47,7 @@
       content: '';
       position: absolute;
       top: 0px;
-      height: var(--meta-header-height);
+      height: var(--post-meta-header-height);
       background-color: color.$light;
       left: 50%;
       width: 50%;

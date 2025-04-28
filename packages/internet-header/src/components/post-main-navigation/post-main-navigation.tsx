@@ -56,12 +56,12 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
   // Update window height var
   private setWindowHeight() {
     if (this.host === undefined) return;
-    this.host.style.setProperty('--window-height', `${window.innerHeight}px`);
+    this.host.style.setProperty('--post-window-height', `${window.innerHeight}px`);
 
     // Safari might or might not show a blank bar at the bottom where the browser
     // controls should be. This timeout waits for this bar to appear before resetting the available height
     window.setTimeout(() => {
-      this.host.style.setProperty('--window-height', `${window.innerHeight}px`);
+      this.host.style.setProperty('--post-window-height', `${window.innerHeight}px`);
     }, 100);
   }
 

@@ -468,7 +468,7 @@ export class PostInternetHeader {
         }`}
         data-version={packageJson.version}
         onKeyup={(e: KeyboardEvent) => this.handleKeyUp(e)}
-        style={{ '--logo-scale': initialLogoScale }}
+        style={{ '--post-logo-scale': initialLogoScale }}
       >
         <header class={`post-internet-header${this.fullWidth ? ' full-width' : ''}`}>
           <SvgSprite />

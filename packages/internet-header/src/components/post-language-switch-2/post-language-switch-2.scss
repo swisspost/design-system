@@ -3,8 +3,8 @@
 @use '../../utils/utils.scss';
 
 :host {
-  --separator-display: none;
-  --separator-height: 100%;
+  --post-separator-display: none;
+  --post-separator-height: 100%;
 
   display: flex;
   align-items: center;
@@ -13,8 +13,8 @@
   &::before {
     position: relative;
     content: '';
-    display: var(--separator-display);
-    height: var(--separator-height);
+    display: var(--post-separator-display);
+    height: var(--post-separator-height);
     border-left: 1px solid color.$gray-10;
   }
 }
@@ -79,7 +79,7 @@
     transform: scale(0.1);
     transform-origin: center top;
     transition: transform 0.1s;
-    margin-top: var(--language-dropdown-margin-top);
+    margin-top: var(--post-language-dropdown-margin-top);
 
     @media (prefers-reduced-motion: reduce) {
       transition: none;

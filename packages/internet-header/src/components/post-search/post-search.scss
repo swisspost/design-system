@@ -67,7 +67,7 @@
   }
 
   @include mixins.min(lg) {
-    max-height: calc(100vh - var(--header-height) - var(--meta-header-height) - 1px);
+    max-height: calc(100vh - var(--post-int-header-height) - var(--post-meta-header-height) - 1px);
     box-shadow: 0 0 1px 0 rgb(0 0 0 / 40%);
 
     &.open {
@@ -76,7 +76,7 @@
   }
 
   @include mixins.max(lg) {
-    height: calc(100vh - var(--header-height) - 1px);
+    height: calc(100vh - var(--post-int-header-height) - 1px);
   }
 
   &.open {

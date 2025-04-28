@@ -162,7 +162,7 @@ const meta: MetaComponent = {
       html`
         <div
           class="header-story-wrapper"
-          style="--header-z-index: 1;overflow: auto;max-height: 100svh;"
+          style="--post-header-z-index: 1;overflow: auto;max-height: 100svh;"
         >
           ${story()} ${fakeContent()}
         </div>

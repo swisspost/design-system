@@ -12,19 +12,19 @@
   position: relative;
   font-size: 1rem;
   font-weight: 300;
-  z-index: var(--header-z-index, 10);
+  z-index: var(--post-header-z-index, 10);
 
-  --language-dropdown-margin-top: 0px;
+  --post-language-dropdown-margin-top: 0px;
 
-  @include mixins.set-custom-property(--meta-header-height, variables.$meta-header-height);
-  @include mixins.set-custom-property(--header-height, variables.$header-height);
+  @include mixins.set-custom-property(--post-meta-header-height, variables.$meta-header-height);
+  @include mixins.set-custom-property(--post-int-header-height, variables.$header-height);
 }
 
 // Set height to 0 if meta is never visible
 :host([meta='false']) {
-  --meta-header-height: 0px;
+  --post-meta-header-height: 0px;
   // Compensation for header border-bottom, when language dropdown is displayed within main navigation controls
-  --language-dropdown-margin-top: 1px;
+  --post-language-dropdown-margin-top: 1px;
 }
 
 // Support different kinds of stickyness modes
@@ -42,22 +42,27 @@
 
   // Only main nav is sticky
   :host(.stickyness-main) {
-    top: calc(var(--meta-header-height, 0px) * -1);
+    top: calc(var(--post-meta-header-height, 0px) * -1);
   }
 
   // Hide everything
   :host(.stickyness-minimal) {
-    top: calc((var(--header-height, 0px) + var(--meta-header-height, 0px) + 1px) * -1);
+    top: calc(
+      (var(--post-int-header-height, 0px) + var(--post-meta-header-height, 0px) + 1px) * -1
+    );
     transition: top 200ms ease-in;
   }
 
   // Show main when scrolling up or any of the menus are open
   :host(.stickyness-minimal.scrolling-up),
   :host(.stickyness-minimal.dropdown-open) {
-    top: calc(var(--meta-header-height, 0px) * -1);
+    top: calc(var(--post-meta-header-height, 0px) * -1);
 
-    @include mixins.set-custom-property(--header-slide-in-transition, variables.$header-slide-in-transition);
-    transition: var(--header-slide-in-transition);
+    @include mixins.set-custom-property(
+      --post-header-slide-in-transition,
+      variables.$header-slide-in-transition
+    );
+    transition: var(--post-header-slide-in-transition);
   }
 }
 
@@ -111,7 +116,7 @@
 }
 
 .main-navigation-custom-content {
-  max-height: var(--header-height);
+  max-height: var(--post-int-header-height);
   display: flex;
   align-items: center;
   flex-shrink: 1;
