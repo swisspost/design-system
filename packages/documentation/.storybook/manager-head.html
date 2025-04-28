@@ -5,11 +5,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+<!-- This script ensures accessibility compliance by preventing zoom restrictions.
+  It scans for viewport meta tags with maximum-scale=1 (which prevents zooming)
+  and removes them to allow users to zoom in on content as needed.
+-->
 <script>
-   <!-- This script ensures accessibility compliance by preventing zoom restrictions.
-     It scans for viewport meta tags with maximum-scale=1 (which prevents zooming)
-     and removes them to allow users to zoom in on content as needed.
-  -->
   document.addEventListener('DOMContentLoaded', function() {
     const viewportMetas = document.querySelectorAll('meta[name="viewport"]');
     
