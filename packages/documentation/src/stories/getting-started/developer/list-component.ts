@@ -22,7 +22,6 @@ interface IndexInput {
   };
 }
 
-// Use a unique name for the developer version of the list component
 @customElement('developer-list-component')
 export class DeveloperListComponent extends LitElement {
   @property({ type: String }) packageType: PackageType | null = null;

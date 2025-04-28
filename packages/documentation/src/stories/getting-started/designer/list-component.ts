@@ -22,7 +22,6 @@ interface IndexInput {
   };
 }
 
-// Use a unique name for the designer version of the list component
 @customElement('designer-list-component')
 export class DesignerListComponent extends LitElement {
   @property({ type: String }) packageType: PackageType | null = null;
