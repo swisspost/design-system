@@ -3,6 +3,27 @@
 <script src="/assets/scripts/analytics-helper.js"></script>
 <script src="/assets/scripts/analytics-events.js"></script>
 
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<script>
+   <!-- This script ensures accessibility compliance by preventing zoom restrictions.
+     It scans for viewport meta tags with maximum-scale=1 (which prevents zooming)
+     and removes them to allow users to zoom in on content as needed.
+  -->
+  document.addEventListener('DOMContentLoaded', function() {
+    const viewportMetas = document.querySelectorAll('meta[name="viewport"]');
+    
+    if (viewportMetas.length > 1) {
+      for (let i = 0; i < viewportMetas.length; i++) {
+        const content = viewportMetas[i].getAttribute('content');
+        if (content && content.includes('maximum-scale=1')) {
+          viewportMetas[i].remove();
+        }
+      }
+    }
+  });
+</script>
+
 <!-- Open Graph general (Facebook, Pinterest & Google+) -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Swiss Post Design System" />
