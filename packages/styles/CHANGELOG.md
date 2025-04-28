@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 8.9.4
+
+### Patch Changes
+
+- Updated the `ngb-datepicker` arrows style and removed them when they are disabled. (by [@leagrdv](https://github.com/leagrdv) with [#5100](https://github.com/swisspost/design-system/pull/5100))
+
 ## 8.9.3
 
 ## 8.9.2
