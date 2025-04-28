@@ -3,4 +3,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Updated language switcher button elements by replacing aria-labels with visually hiddent text spans. Also updated/moved role attributes of both variants for accessibility reasons.
+Updated Language Switcher button elements by replacing `aria-labels` with `visually-hidden` text `spans`. An info box regarding proper usage of the language option `name` props was added in the Language Switch page of the documentation.
