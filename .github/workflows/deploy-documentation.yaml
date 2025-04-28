@@ -4,6 +4,11 @@ on:
     workflows: ['Build Documentation']
     types: [completed]
 
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
 jobs:
   deploy:
     name: Deploy Documentation Preview
