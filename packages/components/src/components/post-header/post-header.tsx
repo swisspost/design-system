@@ -126,6 +126,7 @@ export class PostHeader {
     this.host.style.setProperty('--test-property-on-host', 'works');
     console.log(
       `[${this.getTimestamp()}] CONNECTED CALLBACK`,
+      '--post-header-scroll-top:',
       document.documentElement.style.getPropertyValue('--post-header-scroll-top'),
     );
   }
@@ -133,12 +134,14 @@ export class PostHeader {
     this.handleScrollEvent();
     console.log(
       `[${this.getTimestamp()}] WILL LOAD`,
+      '--post-header-scroll-top:',
       document.documentElement.style.getPropertyValue('--post-header-scroll-top'),
     );
   }
   componentWillRender() {
     console.log(
       `[${this.getTimestamp()}] WILL RENDER`,
+      '--post-header-scroll-top:',
       document.documentElement.style.getPropertyValue('--post-header-scroll-top'),
     );
   }
@@ -150,7 +153,11 @@ export class PostHeader {
 
   // Clean up possible side effects when post-header is disconnected
   disconnectedCallback() {
-    console.log('DISCONNECTED');
+    console.log(
+      `[${this.getTimestamp()}] DISCONNECTED CALLBACK`,
+      '--post-header-scroll-top:',
+      document.documentElement.style.getPropertyValue('--post-header-scroll-top'),
+    );
     const scrollParent = this.scrollParent;
 
     window.removeEventListener('resize', this.throttledResize);
