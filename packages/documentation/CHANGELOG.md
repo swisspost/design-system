@@ -1,5 +1,24 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.35
+
+### Minor Changes
+
+- Added 11 font sizes utilities, from `.fs-1` to `.fs-11`. (by [@leagrdv](https://github.com/leagrdv) with [#5205](https://github.com/swisspost/design-system/pull/5205))
+
+### Patch Changes
+
+- Improved responsiveness and mobile behaviour of the documentation. (by [@leagrdv](https://github.com/leagrdv) with [#5216](https://github.com/swisspost/design-system/pull/5216))
+
+- Added End-to-End tests for the `post-header`component which ensure correct behaviour for react routing simulated by removing and reattaching the header. (by [@schaertim](https://github.com/schaertim) with [#5098](https://github.com/swisspost/design-system/pull/5098))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.0.0-next.34
+  - @swisspost/design-system-components@9.0.0-next.34
+  - @swisspost/design-system-styles@9.0.0-next.34
+  - @swisspost/design-system-components-react@9.0.0-next.34
+  - @swisspost/internet-header@2.0.0-next.34
+  - @swisspost/design-system-tokens@9.0.0-next.34
+
 ## 6.0.0-next.34
 
 ### Patch Changes

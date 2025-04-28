@@ -38,7 +38,7 @@ export class MigrationV78Component extends LitElement {
                     <li>
                       <p>
                         Use
-                        <a href="https://update.angular.io/">https://update.angular.io/</a>
+                        <a href="https://update.angular.io/">Angular Update Guide</a>
                         to update Angular to version 18
                       </p>
                     </li>
@@ -47,18 +47,23 @@ export class MigrationV78Component extends LitElement {
               ${this.angular
                 ? html`
                     <li>
-                      <p>
-                        Update ng-bootstrap to version
-                        <a
-                          href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1600-2023-11-22"
-                        >
-                          17.x.x
-                        </a>
-                        :
+                      <div>
+                        Update ng-bootstrap to version 17.x.x:
                         <code languages="['bash']">
                           npm install @ng-bootstrap/ng-bootstrap@17
                         </code>
-                      </p>
+                      </div>
+                      <div class="mt-2">
+                        See the
+                        <a
+                          href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1700-2024-xx-xx"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          ng-bootstrap 17.x.x changelog
+                        </a>
+                        for more details.
+                      </div>
                     </li>
                   `
                 : nothing}
@@ -75,8 +80,8 @@ export class MigrationV78Component extends LitElement {
             <h3>Deprecation notice</h3>
             <p>
               This is the last major release that supports
-              <a href="https://getbootstrap.com/">bootstrap</a>${this.angular ? html` and
-              <a href="https://ng-bootstrap.github.io/#/home">@ng-bootstrap/ng-bootstrap</a>` : nothing}.
+              <a href="https://getbootstrap.com/">Bootstrap framework</a>${this.angular ? html` and
+              <a href="https://ng-bootstrap.github.io/#/home">ng-bootstrap library</a>` : nothing}.
               Support for these packages will be dropped with v9. Long term support for v8 will be
               active until the end of 2025 and will receive critical bugfixes.
             </p>
@@ -92,13 +97,11 @@ export class MigrationV78Component extends LitElement {
               will be detailed in the migration guide for v9.
             </p>
             ${this.angular ? html`<p>
-              Any ng-bootstrap components will be replaced by web components and available for
+               Any ng-bootstrap components will be replaced by web components and available for
               Angular users with the
-              <a
-                href="https://design-system.post.ch/?path=/docs/833ef689-a573-40f5-a6a6-30a999b94733--docs"
-                >@swisspost/design-system-components-angular</a
-              >
-              package. With this change, we will limit our dependency on Angular to the
+              <a href="https://design-system.post.ch/?path=/docs/833ef689-a573-40f5-a6a6-30a999b94733--docs">
+              Design System Angular Components package</a>
+              . With this change, we will limit our dependency on Angular to the
               components-angular package which allows us to ship Angular upgrades much faster in the
               future.
             </p>` : nothing}

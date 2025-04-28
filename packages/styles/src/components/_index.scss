@@ -1,5 +1,4 @@
 @use 'breakpoints';
-@use 'globals';
 @use 'appstore-badge';
 @use 'avatar';
 @use 'badge';
@@ -27,12 +26,12 @@
 @use 'form-hint';
 @use 'form-input';
 @use 'header';
+@use 'footer';
 @use 'icon-button';
 @use 'icon-close-button';
 @use 'lead';
 @use 'list-group';
 @use 'list-check';
-@use 'modal';
 @use 'pagination';
 @use 'popover';
 @use 'product-card';

@@ -10,6 +10,9 @@ name: Run snapshot tests
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   snapshots:
     runs-on: ubuntu-latest

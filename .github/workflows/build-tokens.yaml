@@ -5,6 +5,9 @@ on:
     paths:
       - 'packages/tokens/**'
 
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Build Tokens

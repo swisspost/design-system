@@ -117,7 +117,7 @@ export const Validation: Story = {
     <form action="/">
       <!-- Form Control -->
       <div class="row mb-16">
-        <div class="col">
+        <div class="col-md-6">
           <div class="form-floating">
             <input
               id="formControlInvalid"
@@ -126,11 +126,11 @@ export const Validation: Story = {
               placeholder=" "
               required
             />
-            <label class="form-label" for="FormControlInvalid">Invalid Input</label>
+            <label class="form-label" for="formControlInvalid">Invalid Input</label>
             <p class="invalid-feedback">Error message</p>
           </div>
         </div>
-        <div class="col">
+        <div class="col-md-6">
           <div class="form-floating">
             <input
               id="FormControlValid"
@@ -147,14 +147,14 @@ export const Validation: Story = {
 
       <!-- Form Select -->
       <div class="row mb-16">
-        <div class="col">
+        <div class="col-md-6">
           <div class="form-floating">
             <select id="FormSelectInvalid" class="form-select is-invalid" required></select>
             <label class="form-label" for="FormSelectInvalid">Invalid Select</label>
             <p class="invalid-feedback">Error message</p>
           </div>
         </div>
-        <div class="col">
+        <div class="col-md-6">
           <div class="form-floating">
             <select id="FormSelectValid" class="form-select is-valid">
               <option disabled>Select one..</option>
@@ -169,7 +169,7 @@ export const Validation: Story = {
 
       <!-- Form Select Multiple-->
       <div class="row mb-16">
-        <div class="col">
+        <div class="col-md-6">
           <div class="form-floating">
             <select
               id="FormSelectMultipleInvalid"
@@ -183,7 +183,7 @@ export const Validation: Story = {
             <p class="invalid-feedback">Error message</p>
           </div>
         </div>
-        <div class="col">
+        <div class="col-md-6">
           <div class="form-floating">
             <select id="FormSelectMultipleValid" class="form-select is-valid" multiple>
               <option value="1">Value 1</option>
@@ -197,14 +197,14 @@ export const Validation: Story = {
 
       <!-- Form File -->
       <div class="row mb-16">
-        <div class="col">
+        <div class="col-md-6">
           <div class="form-floating">
             <input id="FormFileInvalid" type="file" class="form-control is-invalid" required />
             <label class="form-label" for="FormFileInvalid">Invalid File</label>
             <p class="invalid-feedback">Error message</p>
           </div>
         </div>
-        <div class="col">
+        <div class="col-md-6">
           <div class="form-floating">
             <input id="FormFileValid" type="file" class="form-control is-valid" />
             <label class="form-label" for="FormFileValid">Valid File</label>
@@ -215,7 +215,7 @@ export const Validation: Story = {
 
       <!-- Form Textarea -->
       <div class="row mb-16">
-        <div class="col">
+        <div class="col-md-6">
           <div class="form-floating">
             <textarea
               id="FormTextareaInvalid"
@@ -228,7 +228,7 @@ export const Validation: Story = {
             <p class="invalid-feedback">Error message</p>
           </div>
         </div>
-        <div class="col">
+        <div class="col-md-6">
           <div class="form-floating">
             <textarea
               id="FormTextareaValid"
@@ -236,7 +236,8 @@ export const Validation: Story = {
               class="form-control is-valid"
               placeholder=" "
             >
-Value</textarea
+              Value
+            </textarea
             >
             <label class="form-label" for="FormTextareaValid">Valid Textarea</label>
             <p class="valid-feedback">Success message (optional)</p>
@@ -246,14 +247,14 @@ Value</textarea
 
       <!-- Form Checkbox -->
       <div class="row mb-16">
-        <div class="col">
+        <div class="col-md-6">
           <div class="form-check">
             <input class="form-check-input is-invalid" id="FormCheckboxInvalid" type="checkbox" />
             <label class="form-check-label" for="FormCheckboxInvalid">Invalid Checkbox</label>
             <p class="invalid-feedback">Error message</p>
           </div>
         </div>
-        <div class="col">
+        <div class="col-md-6">
           <div class="form-check">
             <input
               class="form-check-input is-valid"
@@ -269,14 +270,14 @@ Value</textarea
 
       <!-- Form Radio -->
       <div class="row mb-16">
-        <div class="col">
+        <div class="col-md-6">
           <div class="form-check">
             <input class="form-check-input is-invalid" id="FormRadioInvalid" type="radio" />
             <label class="form-check-label" for="FormRadioInvalid">Invalid Radio</label>
             <p class="invalid-feedback">Error message</p>
           </div>
         </div>
-        <div class="col">
+        <div class="col-md-6">
           <div class="form-check">
             <input class="form-check-input is-valid" id="FormRadioValid" type="radio" checked />
             <label class="form-check-label" for="FormRadioValid">Valid Radio</label>
@@ -287,14 +288,14 @@ Value</textarea
 
       <!-- Form Range -->
       <div class="row mb-16">
-        <div class="col">
+        <div class="col-md-6">
           <div class="">
             <label class="form-label" for="FormRangeInvalid">Invalid Range</label>
             <input class="form-range is-invalid" id="FormRangeInvalid" type="range" />
             <p class="invalid-feedback">Error message</p>
           </div>
         </div>
-        <div class="col">
+        <div class="col-md-6">
           <div class="">
             <label class="form-label" for="FormRangeValid">Valid Range</label>
             <input class="form-range is-valid" id="FormRangeValid" type="range" />
@@ -305,7 +306,7 @@ Value</textarea
 
       <!-- Form Switch -->
       <div class="row mb-16">
-        <div class="col">
+        <div class="col-md-6">
           <div class="form-check form-switch">
             <input
               id="FormSwitchInvalid"
@@ -317,7 +318,7 @@ Value</textarea
             <p class="invalid-feedback">Error message</p>
           </div>
         </div>
-        <div class="col">
+        <div class="col-md-6">
           <div class="form-check form-switch">
             <input
               id="FormSwitchValid"

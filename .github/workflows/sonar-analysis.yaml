@@ -15,6 +15,11 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+permissions:
+  contents: read
+  pull-requests: read
+  checks: write
+
 jobs:
   sonarcloud:
     name: SonarCloud
@@ -30,8 +35,44 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Check for SonarCloud token
+        id: check_token
+        run: |
+          if [ -z "$SONAR_TOKEN" ]; then
+            echo "::warning::1. Go to: Settings → Secrets → Actions → New secret"
+            echo "::warning::2. Name: SONAR_TOKEN"
+            echo "::warning::3. Value: Get from https://sonarcloud.io/account/security"
+            echo "sonar_skipped=true" >> $GITHUB_OUTPUT
+          else
+            echo "sonar_skipped=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@aa494459d7c39c106cc77b166de8b4250a32bb97
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Create skipped analysis notice
+        if: steps.check_token.outputs.sonar_skipped == 'true' && github.event_name == 'pull_request'
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
+        with:
+          script: |
+            github.rest.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: 'SonarCloud Setup',
+              head_sha: context.sha,
+              status: 'completed',
+              conclusion: 'neutral',
+              output: {
+                title: 'Add SONAR_TOKEN to fork',
+                summary: '3 steps: Settings → Secrets → New secret',
+                text: '1. Go to: Settings → Secrets → Actions\n' +
+                      '2. Click "New repository secret"\n' +
+                      '3. Name: SONAR_TOKEN\n' +
+                      '4. Value: Get from sonarcloud.io/account/security'
+              }
+            })

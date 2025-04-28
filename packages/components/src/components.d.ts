@@ -67,7 +67,7 @@ export namespace Components {
          */
         "lastname"?: string;
         /**
-          * Defines the company internal userId.<div className="mb-1 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
+          * Defines the company internal userId.<div className="mb-4 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
          */
         "userid"?: string;
     }
@@ -99,7 +99,13 @@ export namespace Components {
          */
         "type": BannerType;
     }
-    interface PostBreadcrumb {
+    interface PostBreadcrumbItem {
+        /**
+          * The optional URL to which the breadcrumb item will link.
+         */
+        "url"?: string | URL;
+    }
+    interface PostBreadcrumbs {
         /**
           * The text label for the home breadcrumb item.
          */
@@ -108,12 +114,6 @@ export namespace Components {
           * The URL for the home breadcrumb item.
          */
         "homeUrl": string;
-    }
-    interface PostBreadcrumbItem {
-        /**
-          * The optional URL to which the breadcrumb item will link.
-         */
-        "url"?: string | URL;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -144,7 +144,7 @@ export namespace Components {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `name` attribute of the control. <span className="mb-4 banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
          */
         "name": string;
         /**
@@ -323,7 +323,7 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
-          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
          */
         "placement"?: Placement;
         /**
@@ -358,7 +358,7 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
-          * Defines the placement of the popover according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popoverss are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Defines the position of the popover relative to its trigger. Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
          */
         "placement"?: Placement;
         /**
@@ -452,7 +452,7 @@ export namespace Components {
     }
     interface PostTag {
         /**
-          * Defines the icon `name` inside of the component. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs">icon library</a>.
+          * Defines the icon `name` inside of the component. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs">icon library</a>.
          */
         "icon": null | string;
         /**
@@ -484,7 +484,7 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
-          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Defines the position of the tooltip relative to its trigger. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
          */
         "placement"?: Placement;
         /**
@@ -583,17 +583,17 @@ declare global {
         prototype: HTMLPostBannerElement;
         new (): HTMLPostBannerElement;
     };
-    interface HTMLPostBreadcrumbElement extends Components.PostBreadcrumb, HTMLStencilElement {
-    }
-    var HTMLPostBreadcrumbElement: {
-        prototype: HTMLPostBreadcrumbElement;
-        new (): HTMLPostBreadcrumbElement;
-    };
     interface HTMLPostBreadcrumbItemElement extends Components.PostBreadcrumbItem, HTMLStencilElement {
     }
     var HTMLPostBreadcrumbItemElement: {
         prototype: HTMLPostBreadcrumbItemElement;
         new (): HTMLPostBreadcrumbItemElement;
+    };
+    interface HTMLPostBreadcrumbsElement extends Components.PostBreadcrumbs, HTMLStencilElement {
+    }
+    var HTMLPostBreadcrumbsElement: {
+        prototype: HTMLPostBreadcrumbsElement;
+        new (): HTMLPostBreadcrumbsElement;
     };
     interface HTMLPostCardControlElementEventMap {
         "postInput": { state: boolean; value: string };
@@ -877,8 +877,8 @@ declare global {
         "post-avatar": HTMLPostAvatarElement;
         "post-back-to-top": HTMLPostBackToTopElement;
         "post-banner": HTMLPostBannerElement;
-        "post-breadcrumb": HTMLPostBreadcrumbElement;
         "post-breadcrumb-item": HTMLPostBreadcrumbItemElement;
+        "post-breadcrumbs": HTMLPostBreadcrumbsElement;
         "post-card-control": HTMLPostCardControlElement;
         "post-closebutton": HTMLPostClosebuttonElement;
         "post-collapsible": HTMLPostCollapsibleElement;
@@ -945,7 +945,7 @@ declare namespace LocalJSX {
          */
         "lastname"?: string;
         /**
-          * Defines the company internal userId.<div className="mb-1 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
+          * Defines the company internal userId.<div className="mb-4 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
          */
         "userid"?: string;
     }
@@ -977,7 +977,13 @@ declare namespace LocalJSX {
          */
         "type"?: BannerType;
     }
-    interface PostBreadcrumb {
+    interface PostBreadcrumbItem {
+        /**
+          * The optional URL to which the breadcrumb item will link.
+         */
+        "url"?: string | URL;
+    }
+    interface PostBreadcrumbs {
         /**
           * The text label for the home breadcrumb item.
          */
@@ -986,12 +992,6 @@ declare namespace LocalJSX {
           * The URL for the home breadcrumb item.
          */
         "homeUrl"?: string;
-    }
-    interface PostBreadcrumbItem {
-        /**
-          * The optional URL to which the breadcrumb item will link.
-         */
-        "url"?: string | URL;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -1018,7 +1018,7 @@ declare namespace LocalJSX {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `name` attribute of the control. <span className="mb-4 banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
          */
         "name"?: string;
         /**
@@ -1189,7 +1189,7 @@ declare namespace LocalJSX {
          */
         "onToggleMenu"?: (event: PostMenuCustomEvent<boolean>) => void;
         /**
-          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
          */
         "placement"?: Placement;
     }
@@ -1211,7 +1211,7 @@ declare namespace LocalJSX {
          */
         "closeButtonCaption": string;
         /**
-          * Defines the placement of the popover according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popoverss are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Defines the position of the popover relative to its trigger. Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
          */
         "placement"?: Placement;
     }
@@ -1291,7 +1291,7 @@ declare namespace LocalJSX {
     }
     interface PostTag {
         /**
-          * Defines the icon `name` inside of the component. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs">icon library</a>.
+          * Defines the icon `name` inside of the component. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs">icon library</a>.
          */
         "icon"?: null | string;
         /**
@@ -1319,7 +1319,7 @@ declare namespace LocalJSX {
          */
         "delayed"?: boolean;
         /**
-          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Defines the position of the tooltip relative to its trigger. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
          */
         "placement"?: Placement;
     }
@@ -1329,8 +1329,8 @@ declare namespace LocalJSX {
         "post-avatar": PostAvatar;
         "post-back-to-top": PostBackToTop;
         "post-banner": PostBanner;
-        "post-breadcrumb": PostBreadcrumb;
         "post-breadcrumb-item": PostBreadcrumbItem;
+        "post-breadcrumbs": PostBreadcrumbs;
         "post-card-control": PostCardControl;
         "post-closebutton": PostClosebutton;
         "post-collapsible": PostCollapsible;
@@ -1370,8 +1370,8 @@ declare module "@stencil/core" {
             "post-avatar": LocalJSX.PostAvatar & JSXBase.HTMLAttributes<HTMLPostAvatarElement>;
             "post-back-to-top": LocalJSX.PostBackToTop & JSXBase.HTMLAttributes<HTMLPostBackToTopElement>;
             "post-banner": LocalJSX.PostBanner & JSXBase.HTMLAttributes<HTMLPostBannerElement>;
-            "post-breadcrumb": LocalJSX.PostBreadcrumb & JSXBase.HTMLAttributes<HTMLPostBreadcrumbElement>;
             "post-breadcrumb-item": LocalJSX.PostBreadcrumbItem & JSXBase.HTMLAttributes<HTMLPostBreadcrumbItemElement>;
+            "post-breadcrumbs": LocalJSX.PostBreadcrumbs & JSXBase.HTMLAttributes<HTMLPostBreadcrumbsElement>;
             /**
              * @class PostCardControl - representing a stencil component
              */
