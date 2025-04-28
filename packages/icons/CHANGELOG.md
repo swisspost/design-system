@@ -1,5 +1,21 @@
 # @swisspost/design-system-icons
 
+## 9.0.0-next.35
+
+### Minor Changes
+
+- Added icons: `2685`, `2686`, and `2687` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#5333](https://github.com/swisspost/design-system/pull/5333))
+
+### Patch Changes
+
+- Updated icons: - `ArrowLeftDown` (solid): 48px
+
+  - `Preferences` (line & solid): 16, 24, 32, 40, 48, and 64px
+  - `StampAPost` (line & solid): 16, 24, 32, 40, 48, and 64px
+  - `StampBPost` (line & solid): 16, 24, 32, 40, 48, and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#5333](https://github.com/swisspost/design-system/pull/5333))
+
+- Updated some broken links to the documentation. (by [@leagrdv](https://github.com/leagrdv) with [#5280](https://github.com/swisspost/design-system/pull/5280))
+
 ## 9.0.0-next.34
 
 ### Minor Changes
