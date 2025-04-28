@@ -492,10 +492,6 @@ export namespace Components {
          */
         "open": boolean;
         /**
-          * Indicates the open state of the tooltip
-         */
-        "open": boolean;
-        /**
           * Defines the position of the tooltip relative to its trigger. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
          */
         "placement"?: Placement;
