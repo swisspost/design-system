@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': patch
 ---
 
-Added keyboard navigation to the storybook sidebar to make the documentation more accessible to users.
+Added visible focus to the storybook sidebar elements that do get a focus.
