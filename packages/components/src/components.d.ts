@@ -391,7 +391,7 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
-          * Whether or not the popover should close when user clicks outside of it
+          * Whether or not the popovercontainer should close when user clicks outside of it
          */
         "manualClose": boolean;
         /**
@@ -1253,7 +1253,7 @@ declare namespace LocalJSX {
          */
         "edgeGap"?: number;
         /**
-          * Whether or not the popover should close when user clicks outside of it
+          * Whether or not the popovercontainer should close when user clicks outside of it
          */
         "manualClose"?: boolean;
         /**
