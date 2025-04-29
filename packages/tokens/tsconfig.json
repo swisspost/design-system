@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es2021",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "sourceMap": false,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "lib": ["es2021"]
+  },
+  "include": ["**/*.ts", "**/*.js"],
+  "exclude": ["node_modules", "dist"]
+}

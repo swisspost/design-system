@@ -13,8 +13,9 @@
     "url": "https://github.com/swisspost/design-system/issues"
   },
   "type": "module",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "pnpm clean && node ./build.js && pnpm copy-files",
+    "build": "pnpm clean && tsc -p . && node ./dist/build.js && pnpm copy-files",
     "build:verbose": "node ./build.js --verbosity=verbose",
     "clean": "rimraf dist",
     "lint": "eslint",
@@ -41,6 +42,9 @@
     "eslint": "9.18.0",
     "globals": "15.14.0",
     "rimraf": "6.0.1",
-    "style-dictionary": "4.3.0"
+    "style-dictionary": "4.3.0",
+    "typescript": "5.8.2",
+    "typescript-eslint": "8.20.0",
+    "@types/node": "22.10.5"
   }
 }

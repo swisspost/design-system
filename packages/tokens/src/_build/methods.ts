@@ -11,13 +11,21 @@ import {
   EXPLICIT_FIGMAONLY_SETNAMES,
   TOKENSET_PREFIX,
 } from './constants.js';
+
+import {
+  CliOptions,
+  RawTokenJson,
+  TokenDefinition,
+  TokenSetEntry,
+  ProcessedTokenSetsOutput,
+} from './types.js';
 import { objectDeepmerge } from './utils/index.js';
 
-let CLI_OPTIONS;
+let CLI_OPTIONS: CliOptions;
 let tokenSets;
 let registeredConfigMethods = [];
 
-export async function setup() {
+export async function setup(): Promise<void> {
   CLI_OPTIONS = createCliOptions();
 
   const tokensFile = JSON.parse(await promises.readFile(`${SOURCE_PATH}/tokens.json`, 'utf-8'));
@@ -35,8 +43,8 @@ export async function setup() {
  *   verbosity: 'silent' | 'default' | 'verbose'
  * }
  */
-function createCliOptions() {
-  const options = {
+function createCliOptions(): CliOptions {
+  const options: CliOptions = {
     verbosity: 'default',
   };
 
@@ -60,11 +68,11 @@ function createCliOptions() {
  *
  * @returns group-nested tokensets object
  */
-function createTokenSets(tokensFile) {
+function createTokenSets(tokensFile: RawTokenJson) {
   // remove $themes and $metadata objects
   // lowercase set names
   const normalized = Object.entries(tokensFile)
-    .filter(([name]) => !/^\$/.test(name))
+    .filter(([name]) => !/^\$/.test(name)),
     .reduce((sets, [name, set]) => ({ ...sets, [name.toLowerCase()]: set }), {});
 
   // only add non component layer sets to source files
@@ -80,39 +88,44 @@ function createTokenSets(tokensFile) {
   }, {});
 
   // combine tokensets by group so they can be outputted in a single file
-  const output = Object.entries(normalized).reduce((definition, [name, set]) => {
-    const { groupSlug, groupName, setName, baseDefinition } = getDefinition(name);
-    const existingGroup = definition[groupSlug];
+  const output = Object.entries(normalized).reduce(
+    (definition: ProcessedTokenSetsOutput, [name, set]) => {
+      const { groupSlug, groupName, setName, baseDefinition } = getDefinition(name);
+      const existingGroup = definition[groupSlug];
 
-    if (
-      EXPLICIT_FIGMAONLY_GROUPNAMES.includes(groupName) ||
-      EXPLICIT_FIGMAONLY_SETNAMES.includes(setName)
-    ) {
-      return definition;
-    } else {
-      return {
-        ...definition,
-        [groupSlug]: {
-          ...baseDefinition,
-          sets: { ...existingGroup?.sets, [setName]: set },
-        },
-      };
-    }
-  }, {});
+      if (
+        (typeof groupName === 'string' && EXPLICIT_FIGMAONLY_GROUPNAMES.includes(groupName)) ||
+        EXPLICIT_FIGMAONLY_SETNAMES.includes(setName)
+      ) {
+        return definition;
+      } else {
+        return {
+          ...definition,
+          [groupSlug]: {
+            ...baseDefinition,
+            sets: { ...existingGroup?.sets, [setName]: set },
+          },
+        };
+      }
+    },
+    {} as ProcessedTokenSetsOutput,
+  );
 
   return {
     source,
     output,
   };
 
-  function getDefinition(name) {
+  function getDefinition(name: string): TokenDefinition {
     const [groupSlug, setSlug] = name.split('/');
     const groupName = setSlug ? groupSlug : null;
     const setName = setSlug ?? groupSlug;
     const type = !groupName ? 'singleton' : 'collection';
     const isCore = type === 'singleton' && setName === 'core';
     const isComponent =
-      !isCore && (type === 'singleton' || EXPLICIT_COMPONENT_LAYER_GROUPNAMES.includes(groupName));
+      !isCore &&
+      (type === 'singleton' ||
+        (typeof groupName === 'string' && EXPLICIT_COMPONENT_LAYER_GROUPNAMES.includes(groupName)));
 
     return {
       groupSlug,

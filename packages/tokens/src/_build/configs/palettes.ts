@@ -1,6 +1,6 @@
 import { expandTypesMap } from '@tokens-studio/sd-transforms';
 import { registerConfigMethod } from '../methods.js';
-import { TOKENSET_NAMES } from '../constants.js';
+import { TOKENSET_NAMES } from '../constants.ts';
 
 /**
  * Registers a config getter method to generate output files for all code relevant tokens in the tokens.json.

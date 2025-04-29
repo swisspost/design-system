@@ -1,4 +1,4 @@
-import { CUSTOM_FORMAT_INDENT } from '../constants.js';
+import { CUSTOM_FORMAT_INDENT } from '../constants.ts';
 
 export default function textoutput(
   obj = {},

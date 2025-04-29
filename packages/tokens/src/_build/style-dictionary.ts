@@ -1,6 +1,6 @@
 import StyleDictionary from 'style-dictionary';
 import { register } from '@tokens-studio/sd-transforms';
-import { FILE_HEADER, NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES } from './constants.js';
+import { FILE_HEADER, NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES } from './constants.ts';
 
 register(StyleDictionary);
 
