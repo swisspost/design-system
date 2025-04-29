@@ -6,7 +6,7 @@ import isFocusable from 'ally.js/is/focusable';
 @Component({
   tag: 'post-tooltip-trigger',
   styleUrl: 'post-tooltip-trigger.scss',
-  shadow: false,
+  shadow: true,
 })
 export class PostTooltipTrigger {
   @Element() host: HTMLPostTooltipTriggerElement;
