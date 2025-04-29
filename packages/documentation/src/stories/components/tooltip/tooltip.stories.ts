@@ -58,25 +58,35 @@ const meta: MetaComponent = {
     },
     placement: {
       name: 'placement',
+      description: 'Position of the tooltip relative to the trigger element.',
+      control: {
+        type: 'select',
+      },
+      options: ['top', 'right', 'bottom', 'left'],
+      table: {
+        category: 'General',
+      },
     },
     arrow: {
       name: 'arrow',
+      description: 'Whether to show an arrow pointing to the trigger element.',
       control: {
         type: 'boolean',
       },
+      table: {
+        category: 'General',
+      },
     },
     animation: {
-      options: ['none', 'pop-in'],
-    },
-    delay: {
-      name: 'delay',
-      description: 'Delay (in milliseconds) before the tooltip is shown.',
+      name: 'animation',
+      description: 'Animation style for the tooltip.',
       control: {
-        type: 'number',
+        type: 'select',
       },
+      options: ['none', 'pop-in'],
       table: {
-        category: 'props',
-      }
+        category: 'General',
+      },
     },
   },
 };
@@ -92,7 +102,7 @@ function render(args: Args) {
   if (currentArgs.innerHTML !== innerHTML) updateArgs({ innerHTML });
 
   return html`
-    <post-tooltip-trigger for="${args.id}" delay="${ifDefined(args.delay !== 0 ? args.delay : undefined)}">
+    <post-tooltip-trigger for="${args.id}">
       <button class="btn btn-secondary btn-large">Button</button></post-tooltip-trigger
     >
     <post-tooltip
@@ -113,11 +123,11 @@ export const Default: StoryObj = {};
 export const NonFocusable: StoryObj = {
   args: {
     id: 'tooltip-non-focusable',
-    delay: 650,
+    triggerDelay: 650,
   },
   render: (args: Args) => {
     return html`
-      <post-tooltip-trigger for="${args.id}" delay="${args.delay}">
+      <post-tooltip-trigger for="${args.id}" delay="${args.triggerDelay}">
         <cite>This is a cite element with a tooltip on it.</cite>
       </post-tooltip-trigger>
       <post-tooltip
@@ -135,14 +145,14 @@ export const NonFocusable: StoryObj = {
 export const Multiple: StoryObj = {
   args: {
     id: 'tooltip-multiple',
-    delay: 650,
+    triggerDelay: 650,
   },
   render: (args: Args) => {
     return html`
-      <post-tooltip-trigger for="${args.id}" delay="${args.delay}">
+      <post-tooltip-trigger for="${args.id}" delay="${args.triggerDelay}">
         <button class="btn btn-secondary btn-large">Tooltip button</button>
       </post-tooltip-trigger>
-      <post-tooltip-trigger for="${args.id}" delay="${args.delay}">
+      <post-tooltip-trigger for="${args.id}" delay="${args.triggerDelay}">
         <button class="btn btn-secondary btn-large">Same tooltip, different button</button>
       </post-tooltip-trigger>
       <post-tooltip
