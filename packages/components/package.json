@@ -65,7 +65,7 @@
     "@types/node": "22.10.5",
     "@typescript-eslint/parser": "7.18.0",
     "bootstrap": "5.3.3",
-    "cypress": "13.13.2",
+    "cypress": "14.3.2",
     "cypress-axe": "1.5.0",
     "cypress-storybook": "1.0.0",
     "eslint": "9.18.0",
