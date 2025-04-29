@@ -9,6 +9,9 @@ if (IS_BROWSER) {
   })();
 }
 
+/**
+ * @slot default - Content to trigger the tooltip. Can contain any focusable element or will be made focusable automatically.
+ */
 @Component({
   tag: 'post-tooltip-trigger',
   styleUrl: 'post-tooltip-trigger.scss',
@@ -59,10 +62,10 @@ export class PostTooltipTrigger {
   }
 
   private get tooltip(): HTMLPostTooltipElement | null {
-    if (!IS_BROWSER) return;
+    if (!IS_BROWSER) return null;
     
     const ref = document.getElementById(this.for);
-    return ref && ref.localName === 'post-tooltip'
+    return ref?.localName === 'post-tooltip'
       ? (ref as HTMLPostTooltipElement)
       : null;
   }
@@ -84,7 +87,19 @@ export class PostTooltipTrigger {
   }
 
   private setupTrigger() {
-    this.trigger = this.host.firstElementChild as HTMLElement;
+    const slot = this.host.shadowRoot?.querySelector('slot');
+    const assignedElements = slot?.assignedElements({ flatten: true });
+    
+    // Get the first assigned element or its first child that can be used as a trigger
+    if (assignedElements?.length) {
+      // Look for the first focusable element in the slotted content
+      for (const element of assignedElements) {
+        if (element instanceof HTMLElement) {
+          this.trigger = element;
+          break;
+        }
+      }
+    }
 
     if (this.trigger) {
       if (!isFocusable(this.trigger)) {
@@ -96,26 +111,22 @@ export class PostTooltipTrigger {
         this.trigger.setAttribute('aria-describedby', `${describedBy} ${this.for}`.trim());
       }
     } else {
-      console.warn('No light DOM element found within post-tooltip-trigger');
+      console.warn('No content found in the post-tooltip-trigger slot. Please insert a focusable element or content that can receive focus.');
     }
   }
 
   private attachListeners() {
-    if (this.trigger) {
-      const events = ['pointerenter', 'pointerleave', 'focusin', 'focusout', 'long-press'];
-      events.forEach(event => {
-        this.trigger.addEventListener(event, this.boundTriggerHandler);
-      });
-    }
+    const events = ['pointerenter', 'pointerleave', 'focusin', 'focusout', 'long-press'];
+    events.forEach(event => {
+      this.host.addEventListener(event, this.boundTriggerHandler);
+    });
   }
-
+  
   private removeListeners() {
-    if (this.trigger) {
-      const events = ['pointerenter', 'pointerleave', 'focusin', 'focusout', 'long-press'];
-      events.forEach(event => {
-        this.trigger.removeEventListener(event, this.boundTriggerHandler);
-      });
-    }
+    const events = ['pointerenter', 'pointerleave', 'focusin', 'focusout', 'long-press'];
+    events.forEach(event => {
+      this.host.removeEventListener(event, this.boundTriggerHandler);
+    });
   }
 
   private attachTooltipListeners() {

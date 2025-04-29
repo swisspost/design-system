@@ -13,6 +13,13 @@
 | `for` _(required)_ | `for`     | ID of the tooltip element that this trigger is linked to. | `string` | `undefined` |
 
 
+## Slots
+
+| Slot        | Description                                                                                                |
+| ----------- | ---------------------------------------------------------------------------------------------------------- |
+| `"default"` | Content to trigger the tooltip. Can contain any focusable element or will be made focusable automatically. |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
