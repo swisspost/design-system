@@ -121,7 +121,7 @@ jobs:
               .reduce((packages, pkg) => ({ ...packages, [pkg.name]: updatedVersions[pkg.name] ?? pkg.version }), { ...(styles.peerDependencies ?? {}) })
 
             return {
-              isMajor: release.type === 'major',
+              isMajor: release.type === 'major' && newMajor !== oldMajor,
               old: {
                 version: release.oldVersion,
                 major: oldMajor,
