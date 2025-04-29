@@ -150,8 +150,8 @@ export class Search extends React.Component {
       '[tabindex]:not([tabindex="-1"])',
     ];
     const focusables = Array.from(
-      container.querySelectorAll(focusableSelectors.join(',')),
-    ) as HTMLElement[];
+      container.querySelectorAll<HTMLElement>(focusableSelectors.join(',')),
+    );
 
     if (focusables.length === 0) return () => {};
 
