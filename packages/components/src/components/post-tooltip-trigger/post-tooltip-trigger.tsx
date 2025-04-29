@@ -1,7 +1,13 @@
 import { Component, Element, Prop, h, Host, Watch } from '@stencil/core';
-import { checkType } from '@/utils';
+import { checkType, IS_BROWSER } from '@/utils';
 import { version } from '@root/package.json';
 import isFocusable from 'ally.js/is/focusable';
+
+if (IS_BROWSER) {
+  (async () => {
+    await import('long-press-event');
+  })();
+}
 
 @Component({
   tag: 'post-tooltip-trigger',
@@ -53,6 +59,8 @@ export class PostTooltipTrigger {
   }
 
   private get tooltip(): HTMLPostTooltipElement | null {
+    if (!IS_BROWSER) return;
+    
     const ref = document.getElementById(this.for);
     return ref && ref.localName === 'post-tooltip'
       ? (ref as HTMLPostTooltipElement)
