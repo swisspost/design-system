@@ -65,7 +65,7 @@
     "title": "Version 5",
     "version": "5.4.1",
     "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
-    "url": "https://6401b58ebf0f4e298ee2dbe7--swisspost-web-frontend.netlify.app/",
+    "url": "https://swiss-post-design-system-v5.netlify.app",
     "dependencies": {
       "@angular/core": "14.2.12",
       "@ng-bootstrap/ng-bootstrap": "12.1.2",
