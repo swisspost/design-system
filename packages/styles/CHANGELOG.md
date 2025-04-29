@@ -1,5 +1,7 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.36
+
 ## 9.0.0-next.35
 
 ### Major Changes
