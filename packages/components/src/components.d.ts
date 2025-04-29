@@ -464,6 +464,28 @@ export namespace Components {
          */
         "variant": 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
+    interface PostTestForm {
+        /**
+          * Defines the id
+         */
+        "theId"?: string;
+        /**
+          * Defines the id2
+         */
+        "theId2"?: string;
+    }
+    interface PostTestInput {
+        /**
+          * Defines the inputId
+         */
+        "inputId"?: string;
+    }
+    interface PostTestLabel {
+        /**
+          * Defines the for
+         */
+        "for"?: string;
+    }
     interface PostTogglebutton {
         /**
           * If `true`, the button is in the "on" state, otherwise it is in the "off" state.
@@ -859,6 +881,24 @@ declare global {
         prototype: HTMLPostTagElement;
         new (): HTMLPostTagElement;
     };
+    interface HTMLPostTestFormElement extends Components.PostTestForm, HTMLStencilElement {
+    }
+    var HTMLPostTestFormElement: {
+        prototype: HTMLPostTestFormElement;
+        new (): HTMLPostTestFormElement;
+    };
+    interface HTMLPostTestInputElement extends Components.PostTestInput, HTMLStencilElement {
+    }
+    var HTMLPostTestInputElement: {
+        prototype: HTMLPostTestInputElement;
+        new (): HTMLPostTestInputElement;
+    };
+    interface HTMLPostTestLabelElement extends Components.PostTestLabel, HTMLStencilElement {
+    }
+    var HTMLPostTestLabelElement: {
+        prototype: HTMLPostTestLabelElement;
+        new (): HTMLPostTestLabelElement;
+    };
     interface HTMLPostTogglebuttonElement extends Components.PostTogglebutton, HTMLStencilElement {
     }
     var HTMLPostTogglebuttonElement: {
@@ -905,6 +945,9 @@ declare global {
         "post-tab-panel": HTMLPostTabPanelElement;
         "post-tabs": HTMLPostTabsElement;
         "post-tag": HTMLPostTagElement;
+        "post-test-form": HTMLPostTestFormElement;
+        "post-test-input": HTMLPostTestInputElement;
+        "post-test-label": HTMLPostTestLabelElement;
         "post-togglebutton": HTMLPostTogglebuttonElement;
         "post-tooltip": HTMLPostTooltipElement;
     }
@@ -1303,6 +1346,28 @@ declare namespace LocalJSX {
          */
         "variant"?: 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
+    interface PostTestForm {
+        /**
+          * Defines the id
+         */
+        "theId"?: string;
+        /**
+          * Defines the id2
+         */
+        "theId2"?: string;
+    }
+    interface PostTestInput {
+        /**
+          * Defines the inputId
+         */
+        "inputId"?: string;
+    }
+    interface PostTestLabel {
+        /**
+          * Defines the for
+         */
+        "for"?: string;
+    }
     interface PostTogglebutton {
         /**
           * If `true`, the button is in the "on" state, otherwise it is in the "off" state.
@@ -1357,6 +1422,9 @@ declare namespace LocalJSX {
         "post-tab-panel": PostTabPanel;
         "post-tabs": PostTabs;
         "post-tag": PostTag;
+        "post-test-form": PostTestForm;
+        "post-test-input": PostTestInput;
+        "post-test-label": PostTestLabel;
         "post-togglebutton": PostTogglebutton;
         "post-tooltip": PostTooltip;
     }
@@ -1404,6 +1472,9 @@ declare module "@stencil/core" {
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
             "post-tag": LocalJSX.PostTag & JSXBase.HTMLAttributes<HTMLPostTagElement>;
+            "post-test-form": LocalJSX.PostTestForm & JSXBase.HTMLAttributes<HTMLPostTestFormElement>;
+            "post-test-input": LocalJSX.PostTestInput & JSXBase.HTMLAttributes<HTMLPostTestInputElement>;
+            "post-test-label": LocalJSX.PostTestLabel & JSXBase.HTMLAttributes<HTMLPostTestLabelElement>;
             "post-togglebutton": LocalJSX.PostTogglebutton & JSXBase.HTMLAttributes<HTMLPostTogglebuttonElement>;
             "post-tooltip": LocalJSX.PostTooltip & JSXBase.HTMLAttributes<HTMLPostTooltipElement>;
         }
