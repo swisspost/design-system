@@ -60,7 +60,6 @@ export class PostTooltipTrigger {
   }
 
   componentDidLoad() {
-    this.host.setAttribute('data-version', version);
     this.setupTrigger();
     this.attachListeners();
     this.attachTooltipListeners();
