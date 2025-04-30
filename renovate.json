@@ -65,6 +65,11 @@
       "matchUpdateTypes": ["major"],
       "groupName": "Eslint major",
       "matchPackageNames": ["^eslint"]
+    },
+    {
+      "extends": ["monorepo:nextjs"],
+      "groupName": "nextjs monorepo",
+      "matchUpdateTypes": ["digest", "patch", "minor", "major"]
     }
   ],
   "timezone": "Europe/Zurich",
