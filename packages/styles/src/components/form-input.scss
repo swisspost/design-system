@@ -195,41 +195,38 @@ input.form-control {
 .form-floating {
   position: relative;
 
-  .validation-icon {
+  &:has(> input.form-control.is-valid:not(:disabled))::after,
+  &:has(> input.form-control:-webkit-autofill.is-valid)::after {
+    content: '';
     position: absolute;
-    top: calc(tokens.get('input-border-width') + (tokens.get('input-sizing-height') / 2));
+    top: calc(tokens.get('input-sizing-height') / 2);
     transform: translateY(-50%);
     right: tokens.get('input-validation-icon-position-inline-end');
     z-index: 2;
     pointer-events: none;
-    display: none;
-    font-size: 24px;
-  }
-
-  input.form-control.is-valid:not(:disabled) ~ .validation-icon,
-  input.form-control.is-invalid:not(:disabled) ~ .validation-icon {
-    display: inline-block;
-  }
-
-  input.form-control.is-valid:not(:disabled) ~ .validation-icon {
     @include icon-mx.post-icon(
       $name: 'success-solid',
-      $color: tokens.get('post-validation-success', components.$post-validation)
+      $color: tokens.get('post-validation-success', components.$post-validation),
+      $width: 24px,
+      $height: 24px
     );
   }
 
-  input.form-control.is-invalid:not(:disabled) ~ .validation-icon {
+  &:has(> input.form-control.is-invalid:not(:disabled))::after,
+  &:has(> input.form-control:-webkit-autofill.is-invalid)::after {
+    content: '';
+    position: absolute;
+    top: calc(tokens.get('input-sizing-height') / 2);
+    transform: translateY(-50%);
+    right: tokens.get('input-validation-icon-position-inline-end');
+    z-index: 2;
+    pointer-events: none;
     @include icon-mx.post-icon(
       $name: 'warning-solid',
-      $color: tokens.get('post-validation-error', components.$post-validation)
+      $color: tokens.get('post-validation-error', components.$post-validation),
+      $width: 24px,
+      $height: 24px
     );
-  }
-
-  input.form-control:-webkit-autofill {
-    &.is-valid ~ .validation-icon,
-    &.is-invalid ~ .validation-icon {
-      display: inline-block;
-    }
   }
 
   > input.form-control ~ label {

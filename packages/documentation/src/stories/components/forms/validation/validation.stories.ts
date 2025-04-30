@@ -122,7 +122,6 @@ export const Input: Story = {
         placeholder="Placeholder"
       />
       <label class="form-label" for="Input_1${props.validationState}${props.scheme}">Label</label>
-      <span class="validation-icon"></span>
       ${feedbackTemplate}
       <p class="form-hint" id="Input_1-form-hint${props.validationState}${props.scheme}">
         Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
