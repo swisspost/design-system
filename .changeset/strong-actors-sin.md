@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': major
 ---
 
-The trigger for <post-tooltip> has been updated. Rather than using an attribute to associate a trigger element with the tooltip, a new <post-tooltip-trigger> element now wraps the target element to display the tooltip.
+The <post-tooltip-trigger> element has been introduced as the new way to trigger tooltips. Instead of using an attribute to associate a trigger with a <post-tooltip>, you now wrap the target element in <post-tooltip-trigger> to display the tooltip.
