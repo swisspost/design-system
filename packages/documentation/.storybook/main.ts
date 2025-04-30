@@ -11,7 +11,6 @@ const allowedDirs = [
   'components',
   'foundations',
   'guidelines',
-  'misc',
   'modules',
   'packages',
   'templates',
