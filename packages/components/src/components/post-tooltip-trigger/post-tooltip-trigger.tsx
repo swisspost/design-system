@@ -79,10 +79,37 @@ export class PostTooltipTrigger {
   disconnectedCallback() {
     this.removeListeners();
     this.removeTooltipListeners();
+    this.cleanupTrigger();
 
     if (this.delayTimeout) {
       clearTimeout(this.delayTimeout);
       this.delayTimeout = null;
+    }
+  }
+
+  private handleSlotChange() {
+    this.cleanupTrigger();
+    
+    this.setupTrigger();
+  }
+
+  private cleanupTrigger() {
+    if (this.trigger) {
+      const describedBy = this.trigger.getAttribute('aria-describedby') || '';
+      if (describedBy.includes(this.for)) {
+        const newDescribedBy = describedBy
+          .split(' ')
+          .filter(id => id !== this.for)
+          .join(' ');
+        
+        if (newDescribedBy) {
+          this.trigger.setAttribute('aria-describedby', newDescribedBy);
+        } else {
+          this.trigger.removeAttribute('aria-describedby');
+        }
+      }
+
+      this.trigger = null;
     }
   }
 
@@ -209,7 +236,7 @@ export class PostTooltipTrigger {
   render() {
     return (
       <Host data-version={version}>
-        <slot></slot>
+        <slot onSlotchange={() => this.handleSlotChange()}></slot>
       </Host>
     );
   }
