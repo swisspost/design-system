@@ -52,7 +52,7 @@ export function Headings() {
               <code>&lt;h1&gt;&lt;/h1&gt;</code>
             </td>
             <td className="font-sans-serif">
-            <p className="m-0 h1">h1 Heading</p>
+              <p className="m-0 h1">h1 Heading</p>
             </td>
           </tr>
           <tr>

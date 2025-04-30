@@ -118,7 +118,7 @@ export const Default: Story = {
         <h2>Title</h2>
         <p>
           This section demonstrates a foundational layout component with proper spacing and container styling.
-          Sections help organize content into distinct visual blocks, improving readability and structure.
+          Sections help in organizing content into distinct visual blocks, improving readability and structure.
           The container ensures consistent horizontal padding and maximum width across different screen sizes.
         </p>
       </div>
