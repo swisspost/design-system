@@ -62,9 +62,9 @@
       "matchPackageNames": ["^stylelint"]
     },
     {
-      "matchUpdateTypes": ["major"],
-      "groupName": "Eslint major",
-      "matchPackageNames": ["^eslint"]
+      "extends": ["monorepo:eslint"],
+      "groupName": "eslint monorepo",
+      "matchUpdateTypes": ["digest", "patch", "minor", "major"]
     }
   ],
   "timezone": "Europe/Zurich",
