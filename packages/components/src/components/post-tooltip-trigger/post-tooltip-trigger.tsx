@@ -90,9 +90,7 @@ export class PostTooltipTrigger {
     const slot = this.host.shadowRoot?.querySelector('slot');
     const assignedElements = slot?.assignedElements({ flatten: true });
     
-    // Get the first assigned element or its first child that can be used as a trigger
     if (assignedElements?.length) {
-      // Look for the first focusable element in the slotted content
       for (const element of assignedElements) {
         if (element instanceof HTMLElement) {
           this.trigger = element;
