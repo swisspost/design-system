@@ -18,7 +18,7 @@ const meta: MetaComponent<HTMLPostBannerElement> = {
     },
   },
   args: {
-    innerHTML: '<p>Contentus momentus vero siteos et accusam iretea et justo.</p>',
+    innerHTML: '<p>This is the content of the banner. It helps to draw attention to critical messages.</p>',
     dismissible: false,
     dismissLabel: 'Dismiss',
   },
