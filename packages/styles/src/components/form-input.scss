@@ -234,7 +234,7 @@ input.form-control {
 
   > input.form-control ~ label {
     position: absolute;
-    z-index: 2;
+    z-index: 1;
     text-align: start;
     pointer-events: none;
     display: block;
