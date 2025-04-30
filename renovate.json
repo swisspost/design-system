@@ -10,11 +10,30 @@
         "monorepo:angular-eslint",
         "monorepo:jasmine"
       ],
-      "matchUpdateTypes": ["digest", "patch", "minor", "major"],
-      "groupName": "Angular"
+      "groupName": "Angular",
+      "matchUpdateTypes": ["digest", "patch", "minor", "major"]
     },
     {
-      "matchUpdateTypes": ["patch"],
+      "extends": ["monorepo:tailwindcss"],
+      "groupName": "tailwindcss monorepo",
+      "matchUpdateTypes": ["digest", "patch", "minor", "major"]
+    },
+    {
+      "extends": ["monorepo:storybook"],
+      "groupName": "storybook monorepo",
+      "matchUpdateTypes": ["digest", "patch", "minor", "major"]
+    },
+    {
+      "extends": ["monorepo:eslint"],
+      "groupName": "eslint monorepo",
+      "matchUpdateTypes": ["digest", "patch", "minor", "major"]
+    },
+    {
+      "extends": ["monorepo:nextjs"],
+      "groupName": "nextjs monorepo",
+      "matchUpdateTypes": ["digest", "patch", "minor", "major"]
+    },
+    {
       "groupName": "all patch dependencies",
       "groupSlug": "all-patch",
       "matchPackageNames": [
@@ -24,47 +43,28 @@
         "!@storybook/*",
         "!@angular/*",
         "!@stencil/*"
-      ]
+      ],
+      "matchUpdateTypes": ["patch"]
     },
     {
-      "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "Storybook",
-      "matchPackageNames": ["@storybook/*"]
-    },
-    {
-      "matchUpdateTypes": ["minor", "patch"],
       "groupName": "Stencil",
-      "matchPackageNames": ["@stencil/*"]
+      "matchPackageNames": ["@stencil/*"],
+      "matchUpdateTypes": ["digest", "patch", "minor", "major"]
     },
     {
-      "matchUpdateTypes": ["minor", "patch"],
       "groupName": "Sass",
-      "matchPackageNames": ["sass"]
+      "matchPackageNames": ["sass"],
+      "matchUpdateTypes": ["digest", "patch", "minor", "major"]
     },
     {
-      "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "Angular",
-      "matchPackageNames": ["@angular/*"]
-    },
-    {
-      "matchFileNames": ["packages/demo/package.json"],
-      "allowedVersions": "~18.17",
-      "matchPackageNames": ["@types/node"]
+      "groupName": "Stylelint major",
+      "matchPackageNames": ["^stylelint"],
+      "matchUpdateTypes": ["digest", "patch", "minor", "major"]
     },
     {
       "matchFileNames": ["packages/components/package.json"],
       "allowedVersions": "0.2.3",
       "matchPackageNames": ["@oddbird/popover-polyfill"]
-    },
-    {
-      "matchUpdateTypes": ["major"],
-      "groupName": "Stylelint major",
-      "matchPackageNames": ["^stylelint"]
-    },
-    {
-      "matchUpdateTypes": ["major"],
-      "groupName": "Eslint major",
-      "matchPackageNames": ["^eslint"]
     }
   ],
   "timezone": "Europe/Zurich",
