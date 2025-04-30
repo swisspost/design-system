@@ -17,14 +17,16 @@
 }
 
 @mixin post-icon(
-  $base:
-    'https://unpkg.com/@swisspost/design-system-icons@#{icon-version.$post-icon-version}/public/post-icons',
+  $base: 'https://unpkg.com/@swisspost/design-system-icons@#{icon-version.$post-icon-version}/public/post-icons',
   $name,
-  $color: inherit
+  $color: inherit,
+  $width: 1em,
+  $height: 1em
 ) {
   display: inline-block;
-  width: 1em;
-  height: 1em;
+  width: $width;
+  // If $height is null, use $width value (makes it square by default)
+  height: if($height == null, $width, $height);
   vertical-align: -0.15em;
   background-color: currentColor;
   color: $color;
