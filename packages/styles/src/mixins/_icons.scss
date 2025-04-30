@@ -17,7 +17,8 @@
 }
 
 @mixin post-icon(
-  $base: 'https://unpkg.com/@swisspost/design-system-icons@#{icon-version.$post-icon-version}/public/post-icons',
+  $base:
+    'https://unpkg.com/@swisspost/design-system-icons@#{icon-version.$post-icon-version}/public/post-icons',
   $name,
   $color: inherit,
   $width: 1em,
