@@ -52,7 +52,7 @@ export function Headings() {
               <code>&lt;h1&gt;&lt;/h1&gt;</code>
             </td>
             <td className="font-sans-serif">
-              <p className="m-0 h1">h1 Heading</p>
+            <p className="m-0 h1">h1 Heading</p>
             </td>
           </tr>
           <tr>
@@ -118,14 +118,10 @@ export function Paragraphs() {
             </td>
             <td className="font-sans-serif">
               <p>
-                At vero eos et justo accusam et duo dolores et ea rebum. Consetetur sadipscing
-                elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                erat, sed diam voluptua.
+                This is a sample paragraph showing how text will appear in your application. It demonstrates the font style, size, and spacing that will be used throughout your content.
               </p>
               <p>
-                Nullam quis risus eget urna mollis ornare veleu leo. Cum sociis natoque penatibus et
-                magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh
-                ultricies vehicula.
+                Another paragraph follows to illustrate how multiple paragraphs will look. Notice the spacing between paragraphs and how the text flows naturally from one line to the next.
               </p>
             </td>
           </tr>
@@ -135,7 +131,7 @@ export function Paragraphs() {
             </td>
             <td className="font-sans-serif">
               <p className="m-0 lead">
-                Lead sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+                This is a lead paragraph that stands out from regular text, typically used for introductory content.
               </p>
             </td>
           </tr>
@@ -163,7 +159,7 @@ export function Links() {
             <td className="font-sans-serif">
               <p>
                 <a href="#" onClick={e => e.preventDefault()}>
-                  Link
+                  Example Link
                 </a>
               </p>
             </td>
@@ -180,12 +176,10 @@ export function Links() {
             </td>
             <td className="font-sans-serif">
               <p>
-                At vero eos et justo accusam et duo dolores et ea rebum. Consetetur sadipscing
-                elitr, sed diam nonumy eirmod tempor{' '}
-                <a href="#" onClick={e => e.preventDefault()}>
-                  invidunt ut labore et dolore
+                This paragraph contains an inline <a href="#" onClick={e => e.preventDefault()}>
+                  clickable link
                 </a>{' '}
-                magna aliquyam erat, sed diam voluptua.
+                that demonstrates how hyperlinks will appear within body text.
               </p>
             </td>
           </tr>
@@ -212,7 +206,7 @@ export function Inlines() {
             </td>
             <td className="font-sans-serif">
               <p>
-                At vero eos et <small>accusam et justo duo</small> dolores et ea rebum.
+                This text contains <small>small inline text</small> for fine print or disclaimers.
               </p>
             </td>
           </tr>
@@ -222,7 +216,7 @@ export function Inlines() {
             </td>
             <td className="font-sans-serif">
               <p>
-                At vero eos et <strong>accusam et justo duo</strong> dolores et ea rebum.
+                This text shows <strong>strong emphasis</strong> for important words or phrases.
               </p>
             </td>
           </tr>
@@ -232,7 +226,7 @@ export function Inlines() {
             </td>
             <td className="font-sans-serif">
               <p>
-                At vero eos et <em>accusam et justo duo</em> dolores et ea rebum.
+                This text shows <em>emphasis through italics</em> for subtle highlighting.
               </p>
             </td>
           </tr>
@@ -242,7 +236,7 @@ export function Inlines() {
             </td>
             <td className="font-sans-serif">
               <p>
-                At vero eos et <sub>accusam et justo duo</sub> dolores et ea rebum.
+                This text contains <sub>subscript text</sub> for chemical formulas or footnotes.
               </p>
             </td>
           </tr>
@@ -252,7 +246,7 @@ export function Inlines() {
             </td>
             <td className="font-sans-serif">
               <p>
-                At vero eos et <sup>accusam et justo duo</sup> dolores et ea rebum.
+                This text contains <sup>superscript text</sup> for exponents or references.
               </p>
             </td>
           </tr>
@@ -262,7 +256,7 @@ export function Inlines() {
             </td>
             <td className="font-sans-serif">
               <p>
-                At vero eos et <mark>accusam et justo duo</mark> dolores et ea rebum.
+                This text <mark>highlights important information</mark> for visual scanning.
               </p>
             </td>
           </tr>
@@ -272,8 +266,7 @@ export function Inlines() {
             </td>
             <td className="font-sans-serif">
               <p>
-                At vero eos et <abbr title="abbrevation"> accusam et justo duo</abbr> dolores et ea
-                rebum.
+                This text contains an <abbr title="abbreviation">abbr</abbr> element for shortened forms.
               </p>
             </td>
           </tr>
@@ -283,7 +276,7 @@ export function Inlines() {
             </td>
             <td className="font-sans-serif">
               <p>
-                At vero eos et <code>accusam et justo duo</code> dolores et ea rebum.
+                This text shows <code>inline code examples</code> for technical documentation.
               </p>
             </td>
           </tr>
@@ -293,7 +286,7 @@ export function Inlines() {
             </td>
             <td className="font-sans-serif">
               <p>
-                At vero eos et <kbd>accusam et justo duo</kbd> dolores et ea rebum.
+                Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy text to clipboard.
               </p>
             </td>
           </tr>
@@ -303,7 +296,7 @@ export function Inlines() {
             </td>
             <td className="font-sans-serif">
               <p>
-                At vero eos et <del>accusam et justo duo</del> dolores et ea rebum.
+                This shows <del>deleted text</del> for tracking changes or corrections.
               </p>
             </td>
           </tr>
@@ -337,17 +330,17 @@ export function Lists() {
             </td>
             <td>
               <ul>
-                <li>Nullam quis risus eget urna mollis.</li>
-                <li>At vero eos et justo accusam et duo dolores et ea rebum.</li>
+                <li>First item in an unordered list</li>
+                <li>Second item with standard bullet points</li>
                 <li>
-                  Invidunt ut labore et dolore magna aliquyam erat.
+                  Third item with nested list
                   <ul>
-                    <li>Nullam quis risus eget urna mollis.</li>
-                    <li>At vero eos et justo accusam et duo dolores et ea rebum.</li>
-                    <li>Invidunt ut labore et dolore magna aliquyam erat.</li>
+                    <li>First nested item</li>
+                    <li>Second nested item</li>
+                    <li>Third nested item</li>
                   </ul>
                 </li>
-                <li>At vero eos et justo accusam et duo dolores et ea rebum.</li>
+                <li>Final item in the main list</li>
               </ul>
             </td>
           </tr>
@@ -364,17 +357,17 @@ export function Lists() {
             </td>
             <td>
               <ol>
-                <li>Nullam quis risus eget urna mollis.</li>
-                <li>At vero eos et justo accusam et duo dolores et ea rebum.</li>
+                <li>First step in a numbered list</li>
+                <li>Second step with sequential numbering</li>
                 <li>
-                  Invidunt ut labore et dolore magna aliquyam erat.
+                  Third step with nested instructions
                   <ol>
-                    <li>Nullam quis risus eget urna mollis.</li>
-                    <li>At vero eos et justo accusam et duo dolores et ea rebum.</li>
-                    <li>Invidunt ut labore et dolore magna aliquyam erat.</li>
+                    <li>First sub-step</li>
+                    <li>Second sub-step</li>
+                    <li>Third sub-step</li>
                   </ol>
                 </li>
-                <li>At vero eos et justo accusam et duo dolores et ea rebum.</li>
+                <li>Final step in the main sequence</li>
               </ol>
             </td>
           </tr>
@@ -393,12 +386,12 @@ export function Lists() {
             </td>
             <td>
               <dl>
-                <dt className="fw-bold">Title</dt>
-                <dd>Nullam quis risus eget urna mollis.</dd>
-                <dt className="fw-bold">Second Title</dt>
-                <dd>At vero eos et justo accusam et duo dolores et ea rebum.</dd>
-                <dt className="fw-bold">Third Title</dt>
-                <dd>Invidunt ut labore et dolore magna aliquyam erat.</dd>
+                <dt className="fw-bold">Term 1</dt>
+                <dd>Definition or description of the first term</dd>
+                <dt className="fw-bold">Term 2</dt>
+                <dd>Explanation of the second term in the list</dd>
+                <dt className="fw-bold">Term 3</dt>
+                <dd>Detailed description for the third entry</dd>
               </dl>
             </td>
           </tr>
@@ -418,14 +411,12 @@ export function Lists() {
             <td>
               <div className="overflow-hidden">
                 <dl className="row">
-                  <dt className="col-3 fw-bold">Title</dt>
-                  <dd className="col-9">Nullam quis risus eget urna mollis.</dd>
-                  <dt className="col-3 fw-bold">Second Title</dt>
-                  <dd className="col-9">
-                    At vero eos et justo accusam et duo dolores et ea rebum.
-                  </dd>
-                  <dt className="col-3 fw-bold">Third Title</dt>
-                  <dd className="col-9">Invidunt ut labore et dolore magna aliquyam erat.</dd>
+                  <dt className="col-3 fw-bold">Name</dt>
+                  <dd className="col-9">John Smith</dd>
+                  <dt className="col-3 fw-bold">Email</dt>
+                  <dd className="col-9">john@example.com</dd>
+                  <dt className="col-3 fw-bold">Role</dt>
+                  <dd className="col-9">Frontend Developer</dd>
                 </dl>
               </div>
             </td>
