@@ -5,6 +5,26 @@ import { mergeConfig } from 'vite';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
+const isDev = process.env.NODE_ENV === 'development';
+
+const allowedDirs = [
+  'components',
+  'foundations',
+  'guidelines',
+  'misc',
+  'modules',
+  'packages',
+  'templates',
+  'utilities',
+];
+
+const stories = isDev
+  ? ['../src/stories/**/*.mdx', '../src/stories/**/*.stories.@(ts|tsx)'] // include all stories (local)
+  : allowedDirs.flatMap(dir => [
+      `../src/stories/${dir}/**/*.stories.@(ts|tsx)`,
+      `../src/stories/${dir}/**/*.mdx`,
+    ]); // don't include helath and raw-componets stories (int/prod)
+
 const config: StorybookConfig = {
   logLevel: 'info',
   core: {
@@ -14,7 +34,7 @@ const config: StorybookConfig = {
     name: '@storybook/web-components-vite',
     options: {},
   },
-  stories: ['../src/stories/**/*.mdx', '../src/stories/**/*.stories.@(ts|tsx)'],
+  stories, // Use the conditional stories array here
   addons: [
     {
       name: '@storybook/addon-essentials',
