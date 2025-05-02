@@ -226,8 +226,8 @@ export class PostInternetHeader {
       } else {
         // Set height to 0 if meta is never visible and global variables are defined
         const rootStyles = window.getComputedStyle(document.documentElement);
-        if (rootStyles.getPropertyValue('--meta-header-height') !== '') {
-          document.documentElement.style.setProperty('--meta-header-height', '0px');
+        if (rootStyles.getPropertyValue('--post-meta-header-height') !== '') {
+          document.documentElement.style.setProperty('--post-meta-header-height', '0px');
         }
       }
     });

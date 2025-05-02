@@ -187,7 +187,7 @@ export const CssVariables = {
         #my-div {
           z-index: 1000;
           top: 0;
-          transition: var(--post-header-slide-in-transition);
+          transition: var(--header-slide-in-transition);
         }
 
         swisspost-internet-header.scrolling-up + #my-div {
