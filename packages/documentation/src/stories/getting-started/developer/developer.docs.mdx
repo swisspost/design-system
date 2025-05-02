@@ -36,10 +36,10 @@ The design-system is formed with several packages and different compatibilities 
     </thead>
     <tbody>
       <tr>
-        <th scope="row">
+        <td scope="row">
           Internet-header:
           <developer-list-component packageType={PackageType.InternetHeader}></developer-list-component>
-        </th>
+        </td>
         <td rowSpan="4">
           {[packages.find(pkg => pkg.name === 'Styles')].map((p => (
             <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel} key={p.name}>
