@@ -622,6 +622,19 @@ export class MigrationV89Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    The ng-bootstrap <code>modal</code> component has been removed as well as all of
+                    its classes and scss variables
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    The <code>@mixin scroll-shadows-y</code> has been removed
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                </li>
+                <li class="mb-16">
+                  <p>
                     The <code>.card-group</code> class has been removed.
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
@@ -692,6 +705,13 @@ export class MigrationV89Component extends LitElement {
                       <code>$aubergine-bright</code> scss variables no longer exist.
                     </li>
                   </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
+                    All classes and CSS variables related to the bootstrap
+                    <code>navbar</code> component have been removed
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
                 </li>
               </ul>
             </section>

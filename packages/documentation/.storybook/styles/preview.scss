@@ -102,6 +102,11 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     margin-block-end: tokens.get('h1-margin-block-end', elements.$post-heading);
   }
 
+  // ensures the focus ring is visible on anchor links
+  .docs-container ul li a > p {
+    display: inline;
+  }
+
   .docs-title {
     margin-bottom: tokens.get('utility-gap-8', utilities.$post-spacing);
 
@@ -168,6 +173,10 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     .docs-container {
       padding-top: 4rem;
     }
+  }
+
+  .sbdocs-expandable {
+    color: #0073bc;
   }
 
   .docs-story {
