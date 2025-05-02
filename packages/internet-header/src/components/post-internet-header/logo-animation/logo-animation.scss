@@ -6,24 +6,22 @@
  * mobile behaviour without re-calculation
 */
 :host {
-  --post-logo-scale: 1;
+  --logo-scale: 1;
 
   @include mixins.max(lg) {
-    --post-logo-scale: 1 !important;
+    --logo-scale: 1 !important;
   }
 }
 
 post-header-logo {
-  height: var(--post-int-header-height);
+  height: var(--header-height);
   width: var(
-    --post-int-header-height
+    --header-height
   ); // Keep aspect-ratio of 1/1. Support old browser that does not support aspect-ratio property
   transform-origin: bottom left;
-  transform: scale(var(--post-logo-scale));
+  transform: scale(var(--logo-scale));
 }
 
 post-main-navigation {
-  margin-left: calc(
-    (var(--post-int-header-height) * var(--post-logo-scale)) - var(--post-int-header-height)
-  );
+  margin-left: calc((var(--header-height) * var(--logo-scale)) - var(--header-height));
 }

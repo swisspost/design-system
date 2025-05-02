@@ -226,8 +226,8 @@ export class PostInternetHeader {
       } else {
         // Set height to 0 if meta is never visible and global variables are defined
         const rootStyles = window.getComputedStyle(document.documentElement);
-        if (rootStyles.getPropertyValue('--post-meta-header-height') !== '') {
-          document.documentElement.style.setProperty('--post-meta-header-height', '0px');
+        if (rootStyles.getPropertyValue('--meta-header-height') !== '') {
+          document.documentElement.style.setProperty('--meta-header-height', '0px');
         }
       }
     });
@@ -468,7 +468,7 @@ export class PostInternetHeader {
         }`}
         data-version={packageJson.version}
         onKeyup={(e: KeyboardEvent) => this.handleKeyUp(e)}
-        style={{ '--post-logo-scale': initialLogoScale }}
+        style={{ '--logo-scale': initialLogoScale }}
       >
         <header class={`post-internet-header${this.fullWidth ? ' full-width' : ''}`}>
           <SvgSprite />

@@ -12,7 +12,7 @@ export const registerLogoAnimationObserver = (
    * Set intersection ratio as CSS custom property
    */
   const handleScroll = () => {
-    headerRef.style.setProperty('--post-logo-scale', getLogoScale(headerRef, target));
+    headerRef.style.setProperty('--logo-scale', getLogoScale(headerRef, target));
   };
 
   const debounced = debounce(150, handleScroll);

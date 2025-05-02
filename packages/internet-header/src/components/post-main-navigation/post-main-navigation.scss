@@ -6,12 +6,12 @@
 @use '../../utils/mixins.scss';
 
 :host {
-  --post-host-window-height: var(--post-window-height, 100vh);
-  --post-calculated-header-height: calc(var(--post-int-header-height) + 1px);
+  --host-window-height: var(--window-height, 100vh);
+  --calculated-header-height: calc(var(--header-height) + 1px);
 
   display: block;
   min-width: 0;
-  height: var(--post-int-header-height);
+  height: var(--header-height);
   flex-shrink: 0;
 }
 
@@ -45,10 +45,10 @@
 
   @include mixins.max(lg) {
     position: absolute;
-    top: var(--post-calculated-header-height);
+    top: var(--calculated-header-height);
     left: 0;
     background: white;
-    height: calc(var(--post-host-window-height) - var(--post-calculated-header-height));
+    height: calc(var(--host-window-height) - var(--calculated-header-height));
     width: 100%;
     margin: 0;
     overflow: hidden scroll;
@@ -206,7 +206,7 @@
   @include mixins.min(lg) {
     position: absolute;
     top: 100%;
-    max-height: calc(100vh - var(--post-int-header-height) - var(--post-meta-header-height) - 1px);
+    max-height: calc(100vh - var(--header-height) - var(--meta-header-height) - 1px);
     z-index: -1;
     box-shadow: 0 0 1px 0 rgb(0 0 0 / 40%);
     transform: translateY(-100%);

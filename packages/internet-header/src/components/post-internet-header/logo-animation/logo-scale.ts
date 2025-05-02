@@ -23,11 +23,9 @@ export const getLogoScale = (
   } else {
     const headerStyles = window.getComputedStyle(headerRef);
     const fontSize = parseFloat(headerStyles.getPropertyValue('font-size'));
-    metaHeaderHeight =
-      parseFloat(headerStyles.getPropertyValue('--post-meta-header-height')) * fontSize;
+    metaHeaderHeight = parseFloat(headerStyles.getPropertyValue('--meta-header-height')) * fontSize;
     adjustedHeaderHeight =
-      metaHeaderHeight +
-      parseFloat(headerStyles.getPropertyValue('--post-int-header-height')) * fontSize;
+      metaHeaderHeight + parseFloat(headerStyles.getPropertyValue('--header-height')) * fontSize;
   }
 
   // If meta navigation is not visible (mobile, not configured), scale should just be 1
