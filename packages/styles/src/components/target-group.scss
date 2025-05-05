@@ -1,0 +1,41 @@
+@use 'button';
+@use './../mixins/media';
+
+.target-group {
+  gap: 4px;
+  display: flex;
+  justify-content: center;
+  padding-inline-start: 32px;
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    @extend .btn;
+    @extend .btn-tertiary;
+    border: none;
+    font-weight: 400;
+    padding: 4px 16px;
+    min-height: 0;
+    font-size: 1rem;
+  }
+
+  a.active {
+    @extend .btn-primary;
+  }
+
+  @include media.max(lg) {
+    padding: 102px 0 36px;
+  }
+
+  @include media.max(sm) {
+    flex-direction: column;
+    gap: 8px;
+    padding: 68px 16px 8px;
+
+    a {
+      width: 100%;
+    }
+  }
+}
