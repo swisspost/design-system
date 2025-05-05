@@ -26,8 +26,7 @@
 ) {
   display: inline-block;
   width: $width;
-  // If $height is null, use $width value (makes it square by default)
-  height: if($height == null, $width, $height);
+  height: $height;
   vertical-align: -0.15em;
   background-color: currentColor;
   color: $color;
