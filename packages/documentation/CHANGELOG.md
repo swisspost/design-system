@@ -1,5 +1,17 @@
 # @swisspost/design-system-documentation
 
+## 5.5.15
+
+### Patch Changes
+
+- Resolved broken links to v5 documentation. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5366](https://github.com/swisspost/design-system/pull/5366))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.10.0
+  - @swisspost/design-system-components@8.10.0
+  - @swisspost/design-system-components-react@8.10.0
+  - @swisspost/design-system-icons@8.10.0
+  - @swisspost/internet-header@1.15.13
+
 ## 5.5.14
 
 ### Patch Changes
