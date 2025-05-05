@@ -1,5 +1,48 @@
 # @swisspost/design-system-styles
 
+## 9.0.0-next.36
+
+## 9.0.0-next.35
+
+### Major Changes
+
+- Removed all imports and CSS related to the bootstrap `navbar` component. (by [@leagrdv](https://github.com/leagrdv) with [#5313](https://github.com/swisspost/design-system/pull/5313))
+
+- Removed all of the imports from bootstrap regarding the `modal` component as well as all of its CSS style. (by [@leagrdv](https://github.com/leagrdv) with [#5309](https://github.com/swisspost/design-system/pull/5309))
+
+- Removed the `@mixin scroll-shadows-y` as its only use was in the modal component which has been removed. (by [@leagrdv](https://github.com/leagrdv) with [#5309](https://github.com/swisspost/design-system/pull/5309))
+
+### Patch Changes
+
+- Fixed an issue on iOS where floating labels would appear above the `post-header` component when an input was focused, by lowering their z-index to ensure they remain underneath the header, even during Safari's automatic zoom on form inputs, which alters the rendering context and can mess with layering. (by [@leagrdv](https://github.com/leagrdv) with [#5346](https://github.com/swisspost/design-system/pull/5346))
+
+- Added back the `.text-reset` class as it was deleted accidentally. (by [@leagrdv](https://github.com/leagrdv) with [#5290](https://github.com/swisspost/design-system/pull/5290))
+
+## 9.0.0-next.34
+
+### Major Changes
+
+- Removed all of the font sizes variables (`$font-size-*`) and CSS classes (`.font-size-*`), which can now be replaced by the font sizes utilities. (by [@leagrdv](https://github.com/leagrdv) with [#5205](https://github.com/swisspost/design-system/pull/5205))
+
+- Removed the `@mixin font-curve()`. (by [@leagrdv](https://github.com/leagrdv) with [#5205](https://github.com/swisspost/design-system/pull/5205))
+
+- Updated the file structure for the `post-footer` component global styles:  
+  `dist/components/globals/post-footer.(css|scss)` -> `dist/components/footer/index.(css|scss)`
+
+  If you're importing one of these files manually in your project, you'll need to update the import path! (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5180](https://github.com/swisspost/design-system/pull/5180))
+
+- Renamed all of the font curve variables (`$fs-*`) and CSS classes (`.fs-*`) to numbers 1 to 11 (e.g. `fs-huge` is now `fs-1`, and `fs-tiny` would be `fs-11`). (by [@leagrdv](https://github.com/leagrdv) with [#5205](https://github.com/swisspost/design-system/pull/5205))
+
+### Minor Changes
+
+- Added 11 font sizes utilities, from `.fs-1` to `.fs-11`. (by [@leagrdv](https://github.com/leagrdv) with [#5205](https://github.com/swisspost/design-system/pull/5205))
+
+### Patch Changes
+
+- Resolved styling inconsistencies for `segmented-button` component on iOS devices. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4964](https://github.com/swisspost/design-system/pull/4964))
+
+- Updated the `not-defined` selector to ensure server-side rendered components are visible on the client-side even before JavaScript initializes, while client-side rendered web components remain hidden until fully hydrated. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5163](https://github.com/swisspost/design-system/pull/5163))
+
 ## 9.0.0-next.33
 
 ### Patch Changes

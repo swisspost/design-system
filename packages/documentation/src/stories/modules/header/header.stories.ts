@@ -4,8 +4,8 @@ import { html } from 'lit';
 import { fakeContent } from '@/utils';
 
 const meta: MetaComponent = {
-  id: 'header',
-  title: 'Modules/Header',
+  id: '27a2e64d-55ba-492d-ab79-5f7c5e818498',
+  title: 'Components/Header',
   tags: ['package:WebComponents'],
   component: 'post-header',
   parameters: {
