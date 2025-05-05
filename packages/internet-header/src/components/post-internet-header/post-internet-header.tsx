@@ -104,9 +104,14 @@ export class PostInternetHeader {
   @Prop() languageLocalStorageKey?: string = 'swisspost-internet-header-language';
 
   /**
-   * Override the logout-url provided by the portal config.
+   * Overrides the logout-url provided by the portal config.
    */
   @Prop() logoutUrl?: string;
+
+  /**
+   * Overrides the logout-url provided by the portal config.
+   */
+  @Prop() selfAdminOrigin?: string;
 
   /**
    * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted.
@@ -182,6 +187,7 @@ export class PostInternetHeader {
     try {
       state.projectId = this.project;
       state.stickyness = this.stickyness;
+      state.selfAdminOrigin = this.selfAdminOrigin;
       state.environment = this.environment.toLocaleLowerCase() as Environment;
       if (this.language !== undefined) state.currentLanguage = this.language;
       state.languageSwitchOverrides =
@@ -528,7 +534,10 @@ export class PostInternetHeader {
                 <post-search onDropdownToggled={e => this.handleDropdownToggled(e)}></post-search>
               </If>
               <If condition={!!renderLogin}>
-                <post-klp-login-widget logout-url={this.logoutUrl}>
+                <post-klp-login-widget
+                  logout-url={this.logoutUrl}
+                  self-admin-origin={this.selfAdminOrigin}
+                >
                   <slot name="login-widget"></slot>
                 </post-klp-login-widget>
               </If>
