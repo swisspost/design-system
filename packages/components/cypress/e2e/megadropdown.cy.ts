@@ -13,18 +13,20 @@ describe('megadropdown', () => {
         );
         cy.get('@megadropdown').find('.back-button').as('back-btn');
         cy.get('@megadropdown').find('.close-button').as('close-btn');
+        cy.get('@megadropdown').find('.megadropdown-container').as('megadropdown-container');
       });
 
       it('should render', () => {
         cy.get('@megadropdown').should('exist');
         cy.get('@megadropdown-trigger').should('exist');
-        cy.get('@megadropdown').should(`be.hidden`);
+        cy.get('@megadropdown-container').should('exist');
+        cy.get('@megadropdown-container').should(`be.hidden`);
       });
 
       it('should open on trigger click', () => {
         cy.get('@megadropdown-trigger').should('exist');
         cy.get('@megadropdown-trigger').click();
-        cy.get('@megadropdown').should(`be.visible`);
+        cy.get('@megadropdown-container').should(`be.visible`);
       });
 
       it('should show close button', () => {
@@ -40,7 +42,7 @@ describe('megadropdown', () => {
       it('should close on close button click', () => {
         cy.get('@megadropdown-trigger').click();
         cy.get('@close-btn').click();
-        cy.get('@megadropdown').should(`be.hidden`);
+        cy.get('@megadropdown-container').should(`be.hidden`);
       });
     });
 

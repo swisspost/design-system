@@ -22,8 +22,8 @@ interface IndexInput {
   };
 }
 
-@customElement('list-component')
-export class ListComponent extends LitElement {
+@customElement('developer-list-component')
+export class DeveloperListComponent extends LitElement {
   @property({ type: String }) packageType: PackageType | null = null;
 
   createRenderRoot() {

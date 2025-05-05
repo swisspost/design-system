@@ -53,8 +53,3 @@ $nav-pills-outline-border-width: commons.$border-width !default;
 
 $nav-divider-color: color.$gray-20 !default;
 $nav-divider-margin-y: (spacing.$spacer * 0.5) !default;
-
-// Compute the navbar-brand padding-y so the navbar-brand will have the same height as navbar-text and nav-link
-$nav-link-height: (
-  type.$font-size-base * type.$line-height-copy + $nav-link-padding-y * 2
-) !default;
