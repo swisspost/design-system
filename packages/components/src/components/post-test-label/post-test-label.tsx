@@ -12,10 +12,38 @@ export class PostTestLabel {
    */
   @Prop() for?: string;
 
+  /**
+   * Defines the label text
+   */
+  @Prop() labelText: string;
+
+  /**
+   * Defines the selected workaround
+   */
+  @Prop() workaround?: string;
+
+  private setAriaLabel() {
+    const selector = `#${this.for}`;
+    const targetInput = document.querySelector(selector);
+    if (this.workaround == 'arialabel') {
+      targetInput.setAttribute('aria-label', this.labelText);
+    } else {
+      targetInput.removeAttribute('aria-label');
+    }
+  }
+
+  componentDidLoad() {
+    this.setAriaLabel();
+  }
+
+  componentDidUpdate() {
+    this.setAriaLabel();
+  }
+
   render() {
     return (
       <Host data-version={version}>
-        <label htmlFor={this.for}>Label ShadowDOM</label>
+        <label htmlFor={this.for}>{this.labelText}</label>
         <slot></slot>
       </Host>
     );

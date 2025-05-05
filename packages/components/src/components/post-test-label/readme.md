@@ -7,23 +7,12 @@
 
 ## Properties
 
-| Property | Attribute | Description     | Type     | Default     |
-| -------- | --------- | --------------- | -------- | ----------- |
-| `for`    | `for`     | Defines the for | `string` | `undefined` |
+| Property     | Attribute    | Description                     | Type     | Default     |
+| ------------ | ------------ | ------------------------------- | -------- | ----------- |
+| `for`        | `for`        | Defines the for                 | `string` | `undefined` |
+| `labelText`  | `label-text` | Defines the label text          | `string` | `undefined` |
+| `workaround` | `workaround` | Defines the selected workaround | `string` | `undefined` |
 
-
-## Dependencies
-
-### Used by
-
- - [post-test-form](../post-test-form)
-
-### Graph
-```mermaid
-graph TD;
-  post-test-form --> post-test-label
-  style post-test-label fill:#f9f,stroke:#333,stroke-width:4px
-```
 
 ----------------------------------------------
 

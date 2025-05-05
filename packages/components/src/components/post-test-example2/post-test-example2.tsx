@@ -1,4 +1,4 @@
-import { Component, h, Host, Prop, Element } from '@stencil/core';
+import { Component, h, Host, Prop } from '@stencil/core';
 import { version } from '@root/package.json';
 
 declare interface HTMLInputElementPlus extends HTMLInputElement {
@@ -6,16 +6,15 @@ declare interface HTMLInputElementPlus extends HTMLInputElement {
 }
 
 @Component({
-  tag: 'post-test-input',
-  styleUrl: 'post-test-input.scss',
+  tag: 'post-test-example2',
+  styleUrl: 'post-test-example2.scss',
   shadow: true,
 })
-export class PostTestInput {
-  @Element() host: HTMLPostTestInputElement;
+export class PostTestExample2 {
   /**
-   * Defines the inputId
+   * Defines the id
    */
-  @Prop() inputId?: string;
+  @Prop() theId?: string;
 
   /**
    * Defines the selected workaround
@@ -23,28 +22,25 @@ export class PostTestInput {
   @Prop() workaround?: string;
 
   /**
-   * Defines the selected workaround
+   * Defines the text of the retrieved label
    */
   @Prop() foundLabelText?: string;
 
   private updateWorkaround() {
-    const lightDOMLabel = document.querySelector(`label[for="${this.inputId}"]`);
-    const customElement = document.querySelector(`post-test-input[input-id="${this.inputId}"]`);
-    const internalInput = customElement.shadowRoot.querySelector('input') as HTMLInputElementPlus;
+    const lightDOMLabel = document.querySelector(`label[for="${this.theId}"]`);
+
     if (this.workaround == 'ariamixin') {
+      const customElement = document.querySelector(`post-test-example2[the-id="${this.theId}"]`);
+      const internalInput = customElement.shadowRoot.querySelector('input') as HTMLInputElementPlus;
       internalInput.ariaLabelledByElements = [lightDOMLabel];
-    } else {
-      internalInput.ariaLabelledByElements = null;
     }
     if (this.workaround == 'arialabel') {
-      const lightDOMLabel = document.querySelector(`label[for="${this.inputId}"]`);
-      console.log(lightDOMLabel);
+      const lightDOMLabel = document.querySelector(`label[for="${this.theId}"]`);
       if (lightDOMLabel) {
         this.foundLabelText = lightDOMLabel.textContent;
       }
     }
   }
-
   componentDidLoad() {
     this.updateWorkaround();
   }
@@ -55,14 +51,14 @@ export class PostTestInput {
 
   render() {
     return (
+      //Slotted Content - Shadow DOM (since slotted content is in the Light DOM)
       <Host data-version={version}>
         <input
-          type="text"
-          id={this.inputId}
+          id={this.theId}
           value=""
           placeholder="Placeholder"
           aria-label={this.workaround == 'arialabel' ? this.foundLabelText : ''}
-        ></input>
+        />
         <slot></slot>
       </Host>
     );

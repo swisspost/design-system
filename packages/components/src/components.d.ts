@@ -464,27 +464,67 @@ export namespace Components {
          */
         "variant": 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
-    interface PostTestForm {
+    interface PostTestExample {
+        /**
+          * Defines the id
+         */
+        "theId"?: string;
+    }
+    interface PostTestExample2 {
+        /**
+          * Defines the text of the retrieved label
+         */
+        "foundLabelText"?: string;
         /**
           * Defines the id
          */
         "theId"?: string;
         /**
-          * Defines the id2
+          * Defines the selected workaround
          */
-        "theId2"?: string;
+        "workaround"?: string;
+    }
+    interface PostTestExample3 {
+        /**
+          * Defines the text of the retrieved label
+         */
+        "foundLabelText"?: string;
+        /**
+          * Defines the id
+         */
+        "theId"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
     }
     interface PostTestInput {
+        /**
+          * Defines the selected workaround
+         */
+        "foundLabelText"?: string;
         /**
           * Defines the inputId
          */
         "inputId"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
     }
     interface PostTestLabel {
         /**
           * Defines the for
          */
         "for"?: string;
+        /**
+          * Defines the label text
+         */
+        "labelText": string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
     }
     interface PostTogglebutton {
         /**
@@ -881,11 +921,23 @@ declare global {
         prototype: HTMLPostTagElement;
         new (): HTMLPostTagElement;
     };
-    interface HTMLPostTestFormElement extends Components.PostTestForm, HTMLStencilElement {
+    interface HTMLPostTestExampleElement extends Components.PostTestExample, HTMLStencilElement {
     }
-    var HTMLPostTestFormElement: {
-        prototype: HTMLPostTestFormElement;
-        new (): HTMLPostTestFormElement;
+    var HTMLPostTestExampleElement: {
+        prototype: HTMLPostTestExampleElement;
+        new (): HTMLPostTestExampleElement;
+    };
+    interface HTMLPostTestExample2Element extends Components.PostTestExample2, HTMLStencilElement {
+    }
+    var HTMLPostTestExample2Element: {
+        prototype: HTMLPostTestExample2Element;
+        new (): HTMLPostTestExample2Element;
+    };
+    interface HTMLPostTestExample3Element extends Components.PostTestExample3, HTMLStencilElement {
+    }
+    var HTMLPostTestExample3Element: {
+        prototype: HTMLPostTestExample3Element;
+        new (): HTMLPostTestExample3Element;
     };
     interface HTMLPostTestInputElement extends Components.PostTestInput, HTMLStencilElement {
     }
@@ -945,7 +997,9 @@ declare global {
         "post-tab-panel": HTMLPostTabPanelElement;
         "post-tabs": HTMLPostTabsElement;
         "post-tag": HTMLPostTagElement;
-        "post-test-form": HTMLPostTestFormElement;
+        "post-test-example": HTMLPostTestExampleElement;
+        "post-test-example2": HTMLPostTestExample2Element;
+        "post-test-example3": HTMLPostTestExample3Element;
         "post-test-input": HTMLPostTestInputElement;
         "post-test-label": HTMLPostTestLabelElement;
         "post-togglebutton": HTMLPostTogglebuttonElement;
@@ -1346,27 +1400,67 @@ declare namespace LocalJSX {
          */
         "variant"?: 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
-    interface PostTestForm {
+    interface PostTestExample {
+        /**
+          * Defines the id
+         */
+        "theId"?: string;
+    }
+    interface PostTestExample2 {
+        /**
+          * Defines the text of the retrieved label
+         */
+        "foundLabelText"?: string;
         /**
           * Defines the id
          */
         "theId"?: string;
         /**
-          * Defines the id2
+          * Defines the selected workaround
          */
-        "theId2"?: string;
+        "workaround"?: string;
+    }
+    interface PostTestExample3 {
+        /**
+          * Defines the text of the retrieved label
+         */
+        "foundLabelText"?: string;
+        /**
+          * Defines the id
+         */
+        "theId"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
     }
     interface PostTestInput {
+        /**
+          * Defines the selected workaround
+         */
+        "foundLabelText"?: string;
         /**
           * Defines the inputId
          */
         "inputId"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
     }
     interface PostTestLabel {
         /**
           * Defines the for
          */
         "for"?: string;
+        /**
+          * Defines the label text
+         */
+        "labelText"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
     }
     interface PostTogglebutton {
         /**
@@ -1422,7 +1516,9 @@ declare namespace LocalJSX {
         "post-tab-panel": PostTabPanel;
         "post-tabs": PostTabs;
         "post-tag": PostTag;
-        "post-test-form": PostTestForm;
+        "post-test-example": PostTestExample;
+        "post-test-example2": PostTestExample2;
+        "post-test-example3": PostTestExample3;
         "post-test-input": PostTestInput;
         "post-test-label": PostTestLabel;
         "post-togglebutton": PostTogglebutton;
@@ -1472,7 +1568,9 @@ declare module "@stencil/core" {
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
             "post-tag": LocalJSX.PostTag & JSXBase.HTMLAttributes<HTMLPostTagElement>;
-            "post-test-form": LocalJSX.PostTestForm & JSXBase.HTMLAttributes<HTMLPostTestFormElement>;
+            "post-test-example": LocalJSX.PostTestExample & JSXBase.HTMLAttributes<HTMLPostTestExampleElement>;
+            "post-test-example2": LocalJSX.PostTestExample2 & JSXBase.HTMLAttributes<HTMLPostTestExample2Element>;
+            "post-test-example3": LocalJSX.PostTestExample3 & JSXBase.HTMLAttributes<HTMLPostTestExample3Element>;
             "post-test-input": LocalJSX.PostTestInput & JSXBase.HTMLAttributes<HTMLPostTestInputElement>;
             "post-test-label": LocalJSX.PostTestLabel & JSXBase.HTMLAttributes<HTMLPostTestLabelElement>;
             "post-togglebutton": LocalJSX.PostTogglebutton & JSXBase.HTMLAttributes<HTMLPostTogglebuttonElement>;
