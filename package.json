@@ -106,7 +106,7 @@
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
   },
   "devDependencies": {
-    "@changesets/cli": "2.27.11",
+    "@changesets/cli": "2.29.2",
     "start-server-and-test": "2.0.9"
   },
   "optionalDependencies": {

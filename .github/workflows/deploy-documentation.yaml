@@ -4,6 +4,11 @@ on:
     workflows: ['Build Documentation']
     types: [completed]
 
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
 jobs:
   deploy:
     name: Deploy Documentation Preview
@@ -11,7 +16,7 @@ jobs:
     if: ${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
 
       - name: Setup pnpm & node
         uses: ./.github/actions/setup-pnpm
