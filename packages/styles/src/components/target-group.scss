@@ -1,5 +1,12 @@
 @use 'button';
 @use './../mixins/media';
+@use '../functions/tokens';
+@use '../tokens/components';
+@use './../mixins/button' as button-mx;
+@use './../mixins/utilities';
+@use './../placeholders/button' as button-ph;
+
+tokens.$default-map: components.$post-button;
 
 .target-group {
   gap: 4px;
@@ -12,17 +19,36 @@
   }
 
   a {
-    @extend .btn;
-    @extend .btn-tertiary;
-    border: none;
+    @extend %btn;
+    border: unset;
     font-weight: 400;
     padding: 4px 16px;
     min-height: 0;
     font-size: 1rem;
+
+    @include button-mx.button-variant-def('enabled', 'tertiary');
+
+    &:disabled {
+      @include button-mx.button-variant-def('disabled', 'tertiary');
+    }
+
+    @include utilities.not-disabled-hover() {
+      @include button-mx.button-variant-def('hover', 'tertiary');
+    }
   }
 
   a.active {
-    @extend .btn-primary;
+    box-shadow: tokens.get('button-elevation');
+
+    @include button-mx.button-variant-def('enabled', 'primary');
+
+    &:disabled {
+      @include button-mx.button-variant-def('disabled', 'primary');
+    }
+
+    @include utilities.not-disabled-hover() {
+      @include button-mx.button-variant-def('hover', 'primary');
+    }
   }
 
   @include media.max(lg) {
