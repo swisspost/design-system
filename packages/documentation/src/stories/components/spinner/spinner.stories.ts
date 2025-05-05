@@ -82,10 +82,10 @@ export const BlockSection: Story = {
         </div>
       </div>
       <p>
-        There is some continous text here as an example. Lorem ipsum dolor sit amet, consetetur
-        sadipscing elitr, <a href="#">sed diam nonumy eirmod tempor invidunt</a> ut labore et dolore
-        magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-        rebum.
+        There is some continuous text here as an example. This content demonstrates how the spinner
+        overlay appears on top of regular page content. <a href="#">Click here to learn more</a> about
+        how loading states can improve user experience by providing visual feedback while data is
+        being processed in the background.
       </p>
     </div>`,
 };
