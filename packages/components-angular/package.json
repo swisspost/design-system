@@ -44,9 +44,9 @@
     "@cypress/schematic": "2.5.2",
     "@eslint/js": "9.18.0",
     "angular-eslint": "19.1.0",
-    "cypress": "13.13.2",
+    "cypress": "14.3.2",
     "eslint": "^9.15.0",
-    "globals": "15.14.0",
+    "globals": "16.0.0",
     "karma": "6.4.4",
     "karma-chrome-launcher": "3.2.0",
     "karma-coverage": "2.2.1",
@@ -54,7 +54,7 @@
     "karma-jasmine-html-reporter": "2.1.0",
     "ng-packagr": "19.2.0",
     "rimraf": "6.0.1",
-    "typescript": "5.8.2",
+    "typescript": "5.8.3",
     "typescript-eslint": "8.16.0"
   },
   "keywords": [

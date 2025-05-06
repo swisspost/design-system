@@ -70,8 +70,8 @@
     "stylelint-config-sass-guidelines": "11.1.0",
     "stylelint-prettier": "5.0.2",
     "stylelint-scss": "6.10.0",
-    "typescript": "5.8.2",
-    "vite": "6.3.3"
+    "typescript": "5.8.3",
+    "vite": "6.3.4"
   },
   "sass": {
     "loadPaths": [

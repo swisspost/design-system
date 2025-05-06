@@ -45,7 +45,7 @@
     "@types/jasmine": "5.1.4",
     "angular-eslint": "19.1.0",
     "eslint": "^9.15.0",
-    "globals": "15.14.0",
+    "globals": "16.0.0",
     "jasmine-core": "5.5.0",
     "karma": "6.4.4",
     "karma-chrome-launcher": "3.2.0",
@@ -59,7 +59,7 @@
     "stylelint-config-sass-guidelines": "11.1.0",
     "stylelint-prettier": "5.0.2",
     "stylelint-scss": "6.10.0",
-    "typescript": "5.8.2",
+    "typescript": "5.8.3",
     "typescript-eslint": "8.16.0"
   },
   "keywords": [
