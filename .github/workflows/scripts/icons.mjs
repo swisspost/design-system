@@ -118,7 +118,7 @@ function processUiIconFiles(parsedFilePaths) {
  */
 function formatPostIcons(iconFiles) {
   const iconNames = iconFiles.map(({ name }) => `\`${name}\``);
-  return formatList(iconNames, ', ', ', and ');
+  return formatList(iconNames, ', ', ' and ');
 }
 
 /**
@@ -133,7 +133,7 @@ function formatUiIcons(iconFiles) {
   return Array.from(icons.entries())
     .map(([icon, { sizes, variants }]) => {
       const allVariants = formatList(variants, ' & ');
-      const allSizes = formatList(sizes, ', ', ', and ');
+      const allSizes = formatList(sizes, ', ', ' and ');
       return `- \`${icon}\` (${allVariants}): ${allSizes}px`;
     })
     .join('\n');
