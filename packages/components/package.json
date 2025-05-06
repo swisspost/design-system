@@ -49,7 +49,7 @@
     "@swisspost/design-system-styles": "workspace:9.0.0-next.36",
     "ally.js": "1.4.1",
     "long-press-event": "2.5.0",
-    "nanoid": "5.0.9"
+    "nanoid": "5.1.5"
   },
   "devDependencies": {
     "@eslint/compat": "1.2.5",
