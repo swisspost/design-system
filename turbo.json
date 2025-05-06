@@ -3,9 +3,6 @@
     "build": {
       "dependsOn": ["^build"]
     },
-    "icons#build": {
-      "outputs": ["public/post-icons/**", "public/report.json", "public/report-min.json"]
-    },
     "styles#build": {
       "outputs": ["out-tsc/**", "dist/**", "src/tokens/temp/**"]
     }
