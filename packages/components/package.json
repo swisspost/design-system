@@ -43,7 +43,7 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@floating-ui/dom": "1.6.13",
+    "@floating-ui/dom": "1.7.0",
     "@oddbird/popover-polyfill": "0.5.2",
     "@swisspost/design-system-icons": "workspace:9.0.0-next.36",
     "@swisspost/design-system-styles": "workspace:9.0.0-next.36",
