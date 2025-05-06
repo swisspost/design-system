@@ -1,5 +1,11 @@
 # @swisspost/design-system-tokens
 
+## 8.10.0
+
+## 8.9.4
+
+## 8.9.3
+
 ## 8.9.2
 
 ### Patch Changes

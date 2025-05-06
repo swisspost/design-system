@@ -1,5 +1,30 @@
 # @swisspost/design-system-intranet-header
 
+## 8.10.0
+
+### Minor Changes
+
+- changes how the matching for the `active-route` prop works by allowing for usage of relative paths. (by [@schaertim](https://github.com/schaertim) with [#5329](https://github.com/swisspost/design-system/pull/5329))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.10.0
+
+## 8.9.4
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.9.4
+
+## 8.9.3
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.9.3
+
 ## 8.9.2
 
 ### Patch Changes

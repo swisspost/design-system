@@ -206,8 +206,9 @@ export class PostTooltip {
   @Method()
   async show(target: HTMLElement, triggeredByFocus = false) {
     const showTooltip = () => {
+      // The method might have been called after a delay and the host might not be defined anymore
       // If focus or pointer event is not on the button anymore, don't show the tooltip
-      if (globalCurrentTarget !== target) return;
+      if (!this.host || globalCurrentTarget !== target) return;
 
       // Determine if the tooltip was opened by a focus event
       this.wasOpenedByFocus = triggeredByFocus;

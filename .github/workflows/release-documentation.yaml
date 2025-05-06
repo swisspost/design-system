@@ -17,11 +17,11 @@ jobs:
       changed: ${{ steps.check.outputs.changed }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Detect Version Change
         id: check
-        uses: EndBug/version-check@v2
+        uses: EndBug/version-check@36ff30f37c7deabe56a30caa043d127be658c425
         with:
           file-name: ./packages/documentation/package.json
           diff-search: true
@@ -29,7 +29,7 @@ jobs:
 
       - name: Create Summary
         id: summary
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         with:
           script: |
             return `# Version Change Detection
@@ -46,7 +46,7 @@ jobs:
     if: needs.detect-version-change.outputs.changed == 'true'
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Setup pnpm & node
         uses: ./.github/actions/setup-pnpm
@@ -62,7 +62,7 @@ jobs:
 
       - name: Get Netlify Config
         id: netlify-config
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         with:
           script: |
             const fs = require('fs')
@@ -79,7 +79,7 @@ jobs:
 
       - name: Create Summary
         id: summary
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         with:
           script: |
             return `# Deployed Documentation
