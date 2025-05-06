@@ -25,6 +25,10 @@ on:
     #        │  │ │ │ │
     - cron: '15 0 * * 0' # the job will run every Sunday at 0:15
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   fetch:
     runs-on: ubuntu-latest
@@ -32,7 +36,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
         with:
           fetch-depth: 0
 
@@ -75,7 +79,7 @@ jobs:
 
       - name: Get Changes
         id: changed-files
-        uses: step-security/changed-files@3dbe17c78367e7d60f00d78ae6781a35be47b4a1
+        uses: step-security/changed-files@52f756978519f427e38a119d8c4f0c8f549d1402
         with:
           files: ./packages/icons/src/icons/**/*.svg
 
@@ -87,7 +91,7 @@ jobs:
 
       - name: Get Changed Icons
         id: changed-icons
-        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
+        uses: actions/github-script@e7aeb8c663f696059ebb5f9ab1425ed2ef511bdb
         env:
           ADDED_FILES: ${{ steps.changed-files.outputs.added_files }}
           MODIFIED_FILES: ${{ steps.changed-files.outputs.modified_files }}
@@ -101,7 +105,7 @@ jobs:
 
       - name: Create Changeset
         if: steps.changed-files.outputs.any_modified != 'false'
-        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
+        uses: actions/github-script@e7aeb8c663f696059ebb5f9ab1425ed2ef511bdb
         env:
           DATE: ${{ steps.current-date.outputs.date }}
           ICON_CHANGES: ${{ steps.changed-icons.outputs.result }}
@@ -120,7 +124,7 @@ jobs:
       - name: Write PR Body
         id: pr-body
         if: steps.changed-files.outputs.any_modified != 'false'
-        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
+        uses: actions/github-script@e7aeb8c663f696059ebb5f9ab1425ed2ef511bdb
         env:
           PR_BODY_FILE: pr-body.md
           ICON_CHANGES: ${{ steps.changed-icons.outputs.result }}

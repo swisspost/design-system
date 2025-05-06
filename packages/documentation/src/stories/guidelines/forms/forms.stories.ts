@@ -126,7 +126,7 @@ export const Validation: Story = {
               placeholder=" "
               required
             />
-            <label class="form-label" for="FormControlInvalid">Invalid Input</label>
+            <label class="form-label" for="formControlInvalid">Invalid Input</label>
             <p class="invalid-feedback">Error message</p>
           </div>
         </div>

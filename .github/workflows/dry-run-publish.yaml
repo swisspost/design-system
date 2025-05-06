@@ -1,0 +1,26 @@
+name: Dry Run Publish
+on:
+  pull_request:
+    branches:
+      - changeset-release/main
+      - changeset-release/release/v*
+
+permissions:
+  contents: read
+
+jobs:
+  dry-run-publish:
+    name: Publish Verification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
+
+      - name: Setup Node & pnpm
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Install & Build Dependencies
+        run: pnpm bootstrap
+
+      - name: Dry-run publish test
+        run: pnpm -r publish --dry-run

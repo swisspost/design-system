@@ -1,5 +1,26 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.36
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.36
+  - @swisspost/design-system-icons@9.0.0-next.36
+
+## 9.0.0-next.35
+
+### Major Changes
+
+- Renamed the `<post-breadcrumb>` component to `<post-breadcrumbs>` to better reflect its role as a container for multiple breadcrumb items. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5291](https://github.com/swisspost/design-system/pull/5291))
+
+### Patch Changes
+
+- Updated some broken links to the documentation. (by [@leagrdv](https://github.com/leagrdv) with [#5280](https://github.com/swisspost/design-system/pull/5280))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.0.0-next.35
+  - @swisspost/design-system-styles@9.0.0-next.35
+
 ## 9.0.0-next.34
 
 ### Minor Changes
