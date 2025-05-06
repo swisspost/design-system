@@ -117,8 +117,8 @@ export class PostIcon {
     const isBaseHrefAbsolute = /^https?:\/\//.test(baseHref);
     const metaIconBase = IS_BROWSER
       ? document
-          .querySelector('meta[name="design-system-settings"]')
-          ?.getAttribute('data-post-icon-base') || ''
+        .querySelector('meta[name="design-system-settings"]')
+        ?.getAttribute('data-post-icon-base') || ''
       : '';
     const iconBase = this.base || metaIconBase;
 
