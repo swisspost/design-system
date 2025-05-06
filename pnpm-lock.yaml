@@ -28,8 +28,8 @@ importers:
         specifier: 6.0.0
         version: 6.0.0
       dotenv:
-        specifier: 16.4.5
-        version: 16.4.5
+        specifier: 16.5.0
+        version: 16.5.0
     devDependencies:
       '@changesets/parse':
         specifier: '*'
@@ -566,8 +566,8 @@ importers:
         specifier: 7.18.0
         version: 7.18.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.2)
       dotenv:
-        specifier: 16.4.5
-        version: 16.4.5
+        specifier: 16.5.0
+        version: 16.5.0
       eslint:
         specifier: 9.18.0
         version: 9.18.0(jiti@2.4.2)
@@ -6140,8 +6140,8 @@ packages:
   domutils@3.1.0:
     resolution: {integrity: sha512-H78uMmQtI2AhgDJjWeQmHwJJ2bLPD3GMmO7Zja/ZZh84wkm+4ut+IUnUdRa8uCGX88DiVx1j6FRe1XfxEgjEZA==}
 
-  dotenv@16.4.5:
-    resolution: {integrity: sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==}
+  dotenv@16.5.0:
+    resolution: {integrity: sha512-m/C+AwOAr9/W1UOIZUo232ejMNnJAJtYQjUbHoNTBNTJSvqzzDh7vnrei3o3r3m9blf6ZoDkvcw0VmozNRFJxg==}
     engines: {node: '>=12'}
 
   dunder-proto@1.0.1:
@@ -17584,7 +17584,7 @@ snapshots:
       domelementtype: 2.3.0
       domhandler: 5.0.3
 
-  dotenv@16.4.5: {}
+  dotenv@16.5.0: {}
 
   dunder-proto@1.0.1:
     dependencies:
