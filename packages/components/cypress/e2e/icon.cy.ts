@@ -177,7 +177,7 @@ describe('Icon', () => {
       );
     });
 
-    it('should use "meta[name="design-system-settings"]" tag for "slug", before "base[href]" tag', () => {
+    it('should use "base[href]" tag for "slug", before "meta[name="design-system-settings"]" tag', () => {
       cy.get('@meta')
         .invoke('attr', 'data-post-icon-base', '/meta/tag')
         .should('have.attr', 'data-post-icon-base', '/meta/tag');
@@ -186,7 +186,7 @@ describe('Icon', () => {
       cy.get('@inner').should(
         'have.css',
         'mask-image',
-        `url("${window.location.origin}/meta/tag/1000.svg")`,
+        `url("${window.location.origin}/base/tag/1000.svg")`,
       );
     });
 
