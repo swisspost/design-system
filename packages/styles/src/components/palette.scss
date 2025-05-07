@@ -7,6 +7,9 @@ tokens.$default-map: components.$post-palettes;
 
 body,
 .palette {
+  --post-current-bg: #{tokens.get('palettes-bg')};
+  --post-current-fg: #{tokens.get('palettes-fg')};
+
   background-color: #{tokens.get('palettes-bg')};
   color: #{tokens.get('palettes-fg')};
 
