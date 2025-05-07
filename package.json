@@ -90,6 +90,7 @@
     "nextjs:build:serve": "pnpm --filter design-system-nextjs-integration build:serve",
     "nextjs:lint": "pnpm --filter design-system-nextjs-integration lint",
     "nextjs:lint:fix": "pnpm --filter design-system-nextjs-integration lint:fix",
+    "nextjs:typecheck": "pnpm --filter design-system-nextjs-integration typecheck",
     "primeng": "pnpm primeng:start",
     "primeng:start": "pnpm --filter design-system-styles-primeng-workspace start",
     "primeng:start:lib": "pnpm --filter design-system-styles-primeng-workspace start:lib",
