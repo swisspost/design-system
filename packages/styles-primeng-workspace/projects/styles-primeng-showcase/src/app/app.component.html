@@ -3,7 +3,7 @@
 <div
   class="sticky-top border-bottom d-flex align-items-center justify-content-between py-regular mb-huge"
   [class.bg-white]="!hasDarkBackground"
-  [class.bg-nightblue]="hasDarkBackground"
+  [class.bg-dark]="hasDarkBackground"
 >
   <div class="form-check form-switch">
     <input
@@ -32,7 +32,7 @@
       class="btn-check"
       name="basicDatatableStyle"
       [(ngModel)]="datatableStyleClass"
-      value="p-datatable-striped"
+      value="striped"
       id="striped"
     />
     <label class="btn btn-md btn-secondary" for="striped">Striped</label>
@@ -42,7 +42,7 @@
       class="btn-check"
       name="basicDatatableStyle"
       [(ngModel)]="datatableStyleClass"
-      value="p-datatable-gridlines"
+      value="gridlines"
       id="gridlines"
     />
     <label class="btn btn-md btn-secondary" for="gridlines">Gridelines</label>
@@ -52,8 +52,8 @@
 <h2 class="h4">Sortable</h2>
 <p-table
   [value]="productsSortable"
-  [styleClass]="datatableStyleClass"
-  [tableStyle]="{ 'min-width': '60rem' }"
+  [stripedRows]="datatableStyleClass === 'striped'"
+  [showGridlines]="datatableStyleClass === 'gridlines'"
   sortMode="multiple"
 >
   <ng-template pTemplate="header">
@@ -92,7 +92,8 @@
 <p-table
   [value]="productsFilterable"
   dataKey="id"
-  [styleClass]="datatableStyleClass"
+  [stripedRows]="datatableStyleClass === 'striped'"
+  [showGridlines]="datatableStyleClass === 'gridlines'"
   [rows]="5"
   [showCurrentPageReport]="true"
   [rowsPerPageOptions]="[5, 10]"
@@ -151,10 +152,10 @@
   [value]="productsOrderable"
   [columns]="columnsOrderable"
   [reorderableColumns]="true"
-  [tableStyle]="{ 'min-width': '50rem' }"
-  [styleClass]="datatableStyleClass"
+  [stripedRows]="datatableStyleClass === 'striped'"
+  [showGridlines]="datatableStyleClass === 'gridlines'"
 >
-  <ng-template pTemplate="header" let-columns>
+  <ng-template #header let-columns>
     <tr>
       <th scope="col" style="width: 3rem"></th>
       <th scope="col" *ngFor="let col of columns" pReorderableColumn>
@@ -162,10 +163,10 @@
       </th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
+  <ng-template #body let-rowData let-columns="columns" let-index="rowIndex">
     <tr [pReorderableRow]="index">
       <td>
-        <span class="pi pi-bars" pReorderableRowHandle></span>
+        <span pReorderableRowHandle></span>
       </td>
       <td *ngFor="let col of columns">
         {{ rowData[col.field] }}
@@ -181,13 +182,13 @@
   [value]="productsSelectable"
   selectionMode="multiple"
   dataKey="code"
-  [styleClass]="datatableStyleClass"
-  [tableStyle]="{ 'min-width': '50rem' }"
+  [stripedRows]="datatableStyleClass === 'striped'"
+  [showGridlines]="datatableStyleClass === 'gridlines'"
   [metaKeySelection]="true"
   (selectionChange)="setSelectedProductsSelectable($event)"
 >
-  <ng-template pTemplate="caption"> Multiple Selection with MetaKey </ng-template>
-  <ng-template pTemplate="header">
+  <ng-template #caption>Multiple Selection with MetaKey</ng-template>
+  <ng-template #header>
     <tr>
       <th scope="col">Code</th>
       <th scope="col">Name</th>
@@ -195,7 +196,7 @@
       <th scope="col">Quantity</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
+  <ng-template #body let-product let-rowIndex="rowIndex">
     <tr [pSelectableRow]="product" [pSelectableRowIndex]="rowIndex">
       <td>{{ product.code }}</td>
       <td>{{ product.name }}</td>
@@ -203,25 +204,17 @@
       <td>{{ product.quantity }}</td>
     </tr>
   </ng-template>
-  <ng-template pTemplate="summary">
-    Selected: {{ selectedProductsSelectable | lowercase }}.
-  </ng-template>
+  <ng-template #summary> Selected: {{ selectedProductsSelectable | lowercase }}. </ng-template>
 </p-table>
 
 <hr class="my-huge" />
 
 <h2 class="h4">With Checkboxes</h2>
-<p-table
-  [value]="productsCheckboxes"
-  [(selection)]="selectedProductsCheckboxes"
-  dataKey="code"
-  [tableStyle]="{ 'min-width': '50rem' }"
-  [styleClass]="datatableStyleClass"
->
-  <ng-template pTemplate="header">
+<p-table [value]="productsCheckboxes" [(selection)]="selectedProductsCheckboxes" dataKey="code">
+  <ng-template #header>
     <tr>
       <th scope="col" style="width: 4rem">
-        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        <p-tableHeaderCheckbox />
       </th>
       <th scope="col">Code</th>
       <th scope="col">Name</th>
@@ -229,10 +222,10 @@
       <th scope="col">Quantity</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-product>
+  <ng-template #body let-product>
     <tr>
       <td>
-        <p-tableCheckbox [value]="product"></p-tableCheckbox>
+        <p-tableCheckbox [value]="product" />
       </td>
       <td>{{ product.code }}</td>
       <td>{{ product.name }}</td>
@@ -249,10 +242,10 @@
   [value]="productsRadioButtons"
   [(selection)]="selectedProductsRadioButtons"
   dataKey="code"
-  [tableStyle]="{ 'min-width': '50rem' }"
-  [styleClass]="datatableStyleClass"
+  [stripedRows]="datatableStyleClass === 'striped'"
+  [showGridlines]="datatableStyleClass === 'gridlines'"
 >
-  <ng-template pTemplate="header">
+  <ng-template #header>
     <tr>
       <th scope="col" style="width: 4rem"></th>
       <th scope="col">Code</th>
@@ -261,10 +254,10 @@
       <th scope="col">Quantity</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-product>
+  <ng-template #body let-product>
     <tr>
       <td>
-        <p-tableRadioButton [value]="product"></p-tableRadioButton>
+        <p-tableRadioButton [value]="product" />
       </td>
       <td>{{ product.code }}</td>
       <td>{{ product.name }}</td>

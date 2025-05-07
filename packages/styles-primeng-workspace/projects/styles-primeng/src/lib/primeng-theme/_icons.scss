@@ -1,14 +1,42 @@
 @use '@swisspost/design-system-styles/core' as post;
 
 @mixin custom-icon($icon) {
-  @include post.icon($icon);
-  display: inline-block;
-  height: 1rem;
-  width: 1rem;
+  display: block;
+  position: relative;
+  height: var(--p-icon-size);
+  width: var(--p-icon-size);
 
-  > * {
+  &::after {
+    content: '';
+    display: block;
+    height: calc(1.5 * var(--p-icon-size));
+    width: calc(1.5 * var(--p-icon-size));
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @include post.icon($icon);
+  }
+
+  .p-icon {
     display: none;
   }
+}
+
+anglerighticon {
+  @include custom-icon(2111);
+}
+
+angledoublerighticon {
+  @include custom-icon(2395);
+}
+
+anglelefticon {
+  @include custom-icon(2110);
+}
+
+angledoublelefticon {
+  @include custom-icon(2396);
 }
 
 plusicon {
@@ -55,6 +83,6 @@ timesicon {
   @include custom-icon(2043);
 }
 
-.p-datatable-reorderablerow-handle {
+.p-datatable-reorderable-row-handle {
   @include custom-icon(2070);
 }
