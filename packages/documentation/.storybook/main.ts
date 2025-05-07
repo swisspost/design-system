@@ -22,7 +22,7 @@ const stories = isDev
   : allowedDirs.flatMap(dir => [
       `../src/stories/${dir}/**/*.stories.@(ts|tsx)`,
       `../src/stories/${dir}/**/*.mdx`,
-    ]); // don't include helath and raw-componets stories (int/prod)
+    ]); // don't include health and raw-componets stories (int/prod)
 
 const config: StorybookConfig = {
   logLevel: 'info',
