@@ -7,7 +7,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import fs from 'fs';
 import path from 'path';
 
-const isDev = process.env.NODE_ENV === 'test';
+const isDev = process.env.NODE_ENV === 'development';
 
 // Directories to exclude (in int/prod environments)
 const excludedDirs = ['health', 'raw-components'];
