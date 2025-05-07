@@ -3,6 +3,8 @@ import { checkType, IS_BROWSER } from '@/utils';
 import { version } from '@root/package.json';
 import isFocusable from 'ally.js/is/focusable';
 
+const TRIGGER_EVENTS = ['pointerenter', 'pointerleave', 'focusin', 'focusout', 'long-press'];
+
 if (IS_BROWSER) {
   (async () => {
     await import('long-press-event');
@@ -114,17 +116,7 @@ export class PostTooltipTrigger {
   }
 
   private setupTrigger() {
-    const slot = this.host.shadowRoot?.querySelector('slot');
-    const assignedElements = slot?.assignedElements({ flatten: true });
-    
-    if (assignedElements?.length) {
-      for (const element of assignedElements) {
-        if (element instanceof HTMLElement) {
-          this.trigger = element;
-          break;
-        }
-      }
-    }
+    this.trigger = this.host.querySelector('*');
 
     if (this.trigger) {
       if (!isFocusable(this.trigger)) {
@@ -141,15 +133,13 @@ export class PostTooltipTrigger {
   }
 
   private attachListeners() {
-    const events = ['pointerenter', 'pointerleave', 'focusin', 'focusout', 'long-press'];
-    events.forEach(event => {
+    TRIGGER_EVENTS.forEach(event => {
       this.host.addEventListener(event, this.boundTriggerHandler);
     });
   }
   
   private removeListeners() {
-    const events = ['pointerenter', 'pointerleave', 'focusin', 'focusout', 'long-press'];
-    events.forEach(event => {
+    TRIGGER_EVENTS.forEach(event => {
       this.host.removeEventListener(event, this.boundTriggerHandler);
     });
   }
