@@ -2,7 +2,6 @@
 @use './core';
 @use '../tokens/temp/scheme';
 @use '../mixins/supports';
-@use '../placeholders/schemes';
 
 :root,
 [data-color-scheme] {
@@ -13,6 +12,9 @@
   }
 
   @include supports.light-dark(false) {
-    @extend %scheme-fallback-variables;
+    @each $key, $light-value in scheme.$post-light {
+      --#{$key}-light: var(--fallback-prefers-light) #{$light-value};
+      --#{$key}: var(--#{$key}-light, #{map.get(scheme.$post-dark, $key)});
+    }
   }
 }
