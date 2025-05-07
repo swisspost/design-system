@@ -5,18 +5,10 @@
 
 tokens.$default-map: components.$post-palettes;
 
+body,
 .palette {
   background-color: #{tokens.get('palettes-bg')};
   color: #{tokens.get('palettes-fg')};
-
-  // TODO: define tokens for sizes
-  margin-top: 1rem;
-  padding: 1rem;
-
-  // TODO: remove for prod
-  .palette ~ .palette {
-    margin-top: 0;
-  }
 
   @include color-scheme.set(tokens.get('palettes-scheme'));
 
