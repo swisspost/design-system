@@ -181,7 +181,6 @@ const htmlToJsx = (code: string): string => {
 };
 
 const jsxCode = htmlToJsx(code);
-console.log(jsxCode);
 const nextjsCode = htmlToJsx(code).replace(/to="/g, 'href="');
 
 const angularLink = `<a routerLink="#" slot="post-logo"><post-logo>Homepage</post-logo></a>`;
