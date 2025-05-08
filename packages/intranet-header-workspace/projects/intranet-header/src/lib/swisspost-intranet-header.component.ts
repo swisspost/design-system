@@ -23,6 +23,7 @@ import { userImage } from './user';
   selector: 'sp-intranet-header',
   templateUrl: './swisspost-intranet-header.component.html',
   styleUrls: ['./swisspost-intranet-header.component.scss'],
+  standalone: false,
 })
 export class SwissPostIntranetHeaderComponent implements OnInit, AfterViewInit {
   @Input() siteTitle: string = '';
