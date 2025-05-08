@@ -53,24 +53,24 @@
 
   &[safe-space='triangle']::after {
     clip-path: polygon(
-      var(--safe-space-cursor-x, 0) var(--safe-space-cursor-y, 0),
-      var(--safe-space-popover-x-start, var(--safe-space-popover-x, 0))
-        var(--safe-space-popover-y, var(--safe-space-popover-y-start, 0)),
-      var(--safe-space-popover-x-end, var(--safe-space-popover-x, 0))
-        var(--safe-space-popover-y, var(--safe-space-popover-y-end, 0))
+      var(--post-safe-space-cursor-x, 0) var(--post-safe-space-cursor-y, 0),
+      var(--post-safe-space-popover-x-start, var(--post-safe-space-popover-x, 0))
+        var(--post-safe-space-popover-y, var(--post-safe-space-popover-y-start, 0)),
+      var(--post-safe-space-popover-x-end, var(--post-safe-space-popover-x, 0))
+        var(--post-safe-space-popover-y, var(--post-safe-space-popover-y-end, 0))
     );
   }
 
   &[safe-space='trapezoid']::after {
     clip-path: polygon(
-      var(--safe-space-trigger-x-start, var(--safe-space-trigger-x, 0))
-        var(--safe-space-trigger-y, var(--safe-space-trigger-y-start, 0)),
-      var(--safe-space-trigger-x-end, var(--safe-space-trigger-x, 0))
-        var(--safe-space-trigger-y, var(--safe-space-trigger-y-end, 0)),
-      var(--safe-space-popover-x-end, var(--safe-space-popover-x, 0))
-        var(--safe-space-popover-y, var(--safe-space-popover-y-end, 0)),
-      var(--safe-space-popover-x-start, var(--safe-space-popover-x, 0))
-        var(--safe-space-popover-y, var(--safe-space-popover-y-start, 0))
+      var(--post-safe-space-trigger-x-start, var(--post-safe-space-trigger-x, 0))
+        var(--post-safe-space-trigger-y, var(--post-safe-space-trigger-y-start, 0)),
+      var(--post-safe-space-trigger-x-end, var(--post-safe-space-trigger-x, 0))
+        var(--post-safe-space-trigger-y, var(--post-safe-space-trigger-y-end, 0)),
+      var(--post-safe-space-popover-x-end, var(--post-safe-space-popover-x, 0))
+        var(--post-safe-space-popover-y, var(--post-safe-space-popover-y-end, 0)),
+      var(--post-safe-space-popover-x-start, var(--post-safe-space-popover-x, 0))
+        var(--post-safe-space-popover-y, var(--post-safe-space-popover-y-start, 0))
     );
   }
 

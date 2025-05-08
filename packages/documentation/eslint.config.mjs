@@ -6,12 +6,13 @@ import sb from 'eslint-plugin-storybook';
 import mdx from 'eslint-plugin-mdx';
 import globals from 'globals';
 import reactPlugin from 'eslint-plugin-react';
+import pluginCypress from 'eslint-plugin-cypress/flat';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   {
     name: 'post/global/ignores',
-    ignores: ['cypress/*', 'public/*', 'src/**/*.sample.*', 'storybook-static/*'],
+    ignores: ['public/*', 'src/**/*.sample.*', 'storybook-static/*'],
   },
   {
     name: 'post/defaults',
@@ -75,5 +76,11 @@ export default [
     rules: {
       'react/no-unescaped-entities': 'off',
     },
+  },
+  {
+    name: 'cypress/config',
+    files: ['cypress/**/*.ts'],
+    ...pluginCypress.configs.recommended,
+    rules: {},
   },
 ];
