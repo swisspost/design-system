@@ -6,7 +6,7 @@
 @use './../variables/components/button';
 @use './../functions/icons' as icon-fn;
 @use './../mixins/utilities';
-@use './../utilities/post-icon-version' as icon-version;
+@use './../utilities/env-variables' as icon-version;
 
 @mixin icon($name) {
   $icon: icon-fn.get-svg-url($name);

@@ -112,13 +112,13 @@ gulp.task('transform-package-json', done => {
  * This allows the `post-icon` mixin to dynamically resolve the correct icon URL
  * based on the version defined in package.json.
  */
-gulp.task('generate-icon-version-scss', done => {
+gulp.task('prebuild-env-vars', done => {
   const version = require('./package.json').version;
 
   const content = `$post-icon-version: '${version}';\n`;
 
   fs.writeFileSync(
-    path.join(__dirname, 'src/utilities/_post-icon-version.scss'),
+    path.join(__dirname, 'src/utilities/_env-variables.scss'),
     content,
     'utf8'
   );
@@ -236,7 +236,7 @@ gulp.task(
 exports.default = gulp.task(
   'build',
   gulp.series(
-    'generate-icon-version-scss',
+    'prebuild-env-vars',
     gulp.parallel(
       gulp.series(
         'generate-not-defined-components-scss',
