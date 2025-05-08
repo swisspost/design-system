@@ -12,38 +12,19 @@ export class PostTestLabel {
    */
   @Prop() for?: string;
 
-  /**
-   * Defines the label text
-   */
-  @Prop() labelText: string;
-
-  /**
-   * Defines the selected workaround
-   */
-  @Prop() workaround?: string;
-
-  private setAriaLabel() {
-    const selector = `#${this.for}`;
-    const targetInput = document.querySelector(selector);
-    if (this.workaround == 'arialabel') {
-      targetInput.setAttribute('aria-label', this.labelText);
-    } else {
-      targetInput.removeAttribute('aria-label');
-    }
-  }
+  private internalEl: HTMLElement | undefined;
 
   componentDidLoad() {
-    this.setAriaLabel();
-  }
-
-  componentDidUpdate() {
-    this.setAriaLabel();
+    const targetEl = document.querySelector('#' + this.for);
+    targetEl.ariaLabelledByElements = [this.internalEl];
   }
 
   render() {
     return (
-      <Host data-version={version}>
-        <label htmlFor={this.for}>{this.labelText}</label>
+      <Host data-version={version} for={this.for}>
+        <label ref={el => (this.internalEl = el as HTMLElement)} id={this.for} htmlFor={this.for}>
+          My Text
+        </label>
         <slot></slot>
       </Host>
     );

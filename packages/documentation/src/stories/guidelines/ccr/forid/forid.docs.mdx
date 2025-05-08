@@ -1,0 +1,98 @@
+import { Meta, Canvas, Source, Controls } from '@storybook/blocks';
+import * as CCR from './forid.stories';
+
+<Meta of={CCR} />
+
+# Cross Component Referencing Cases
+
+## 1. `for`/ `id`
+
+#### I. Referencing Within the Same DOM Tree ✔️
+
+<ul>
+  <li>Light DOM → Light DOM</li>
+  <li>Shadow DOM → Same Shadow DOM</li>
+</ul>
+
+<Canvas of={CCR.ExampleHTML} />
+
+#### II.Referencing From Outside a Shadow DOM Into That Shadow DOM ❌
+
+<ul>
+  <li>Light DOM → Shadow DOM</li>
+</ul>
+
+The Aria Mixin workaround is to set the relationship using the `ariaLabelledByElements` property on the element on componentDidLoad/Update.
+
+<Canvas of={CCR.Example2} />
+<div className="hide-col-default">
+  <Controls of={CCR.Example2} />
+</div>
+
+<ul>
+  <li>Slotted Content → Shadow DOM</li>
+</ul>
+
+The Aria Mixin works also here. It is recommended that the referencing element is slotted.
+
+<Canvas of={CCR.Example3} />
+<div className="hide-col-default">
+  <Controls of={CCR.Example3} />
+</div>
+
+<h6>Workaround for SSR Components</h6>
+`aria-labelledby` is set directly on the host with `role=""`. This sets the Accessible Name, but NVDA
+does not always announce it.*
+
+Directly setting `aria-labelledby` on the host.
+
+<Canvas of={CCR.Example5} />
+<div className="hide-col-default">
+  <Controls of={CCR.Example5} />
+</div>
+
+Setting `aria-labelledby` via `ElementInternals`.
+
+<Canvas of={CCR.Example7} />
+<div className="hide-col-default">
+  <Controls of={CCR.Example7} />
+</div>
+
+#### III.Referencing From Inside a Shadow DOM Out to the Light DOM ❌
+
+<ul>
+  <li>Shadow DOM → Light DOM</li>
+</ul>
+
+<Canvas of={CCR.Example4} />
+<div className="hide-col-default">
+  <Controls of={CCR.Example4} />
+</div>
+
+The Aria Mixin does not work in this case.
+
+A solution is to programmatically add the id (from the for) on the host element.
+
+Other option is `aria-labelledby` set directly on the host with role="".
+This sets the Accessible Name, but NVDA does not always announce it.
+
+No other workaround found for this case.
+
+#### IV.Referencing From a Shadow DOM Out to another Shadow DOM ❌
+
+<ul>
+  <li>Shadow DOM → Other Shadow DOM</li>
+</ul>
+
+<Canvas of={CCR.Example6} />
+<div className="hide-col-default">
+  <Controls of={CCR.Example6} />
+</div>
+
+The Aria Mixin does not work in this case.
+
+A solution would be to programmatically add the id (get it from the for?) on the host element.
+This will only work if the `aria-labelledby` set directly on the host.
+This sets the Accessible Name, but NVDA does not always announce it.
+
+No other workaround found for this case.

@@ -1,0 +1,54 @@
+import { Meta, Canvas, Source, Controls } from '@storybook/blocks';
+import * as CCR from './arialabelled.stories';
+
+<Meta of={CCR} />
+
+# Cross Component Referencing Cases
+
+## 2. `aria-labelledby`/ `id`
+
+#### I. Referencing Within the Same DOM Tree ✔️
+
+<ul>
+  <li>Light DOM → Light DOM</li>
+  <Canvas of={CCR.ExampleHTML} />
+</ul>
+
+#### II. Referencing From Outside a Shadow DOM Into That Shadow DOM ❌
+
+This works only if `aria-labelledby=""`, `role=""` and `tabindex="0"` are set on the host.
+
+<ul>
+  <li>Light DOM → Shadow DOM</li>
+  <Canvas of={CCR.Example2} />
+  <div className="hide-col-default">
+    <Controls of={CCR.Example2} />
+  </div>
+</ul>
+
+#### III. Referencing From Inside a Shadow DOM Out to the Light DOM ❌
+
+This works only if the relevant `id=""` is set on the host element.
+The referencing component can include anything. All visible text inside the referencing component will be read by NVDA.
+
+<ul>
+  <li>Shadow DOM → Light DOM</li>
+
+    <Canvas of={CCR.Example3} />
+
+  <div className="hide-col-default">
+    <Controls of={CCR.Example3} />
+  </div>
+</ul>
+
+#### IV. Referencing From One Shadow DOM To Another Shadow DOM
+
+<ul>
+  <li>Shadow DOM → Other Shadow DOM</li>
+
+<Canvas of={CCR.Example4} />
+
+  <div className="hide-col-default">
+    <Controls of={CCR.Example4} />
+  </div>
+</ul>

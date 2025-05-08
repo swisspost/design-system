@@ -33,6 +33,7 @@ some content
  - [post-mainnavigation](../post-mainnavigation)
  - [post-rating](../post-rating)
  - [post-tag](../post-tag)
+ - [post-test-button](../post-test-button)
 
 ### Graph
 ```mermaid
@@ -48,6 +49,7 @@ graph TD;
   post-mainnavigation --> post-icon
   post-rating --> post-icon
   post-tag --> post-icon
+  post-test-button --> post-icon
   style post-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
