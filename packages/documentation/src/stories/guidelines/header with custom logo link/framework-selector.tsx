@@ -5,7 +5,7 @@ const code = `
 <post-header>
 
   <!-- Logo -->
-{{logoLink}}
+  {{logoLink}}
 
   <!-- Meta navigation -->
   <ul class="list-inline" slot="meta-navigation">
