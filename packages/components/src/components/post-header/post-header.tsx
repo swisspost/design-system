@@ -124,6 +124,7 @@ export class PostHeader {
     this.handleScrollParentResize();
     this.lockBody(false, this.mobileMenuExtended, 'mobileMenuExtended');
     this.host.style.setProperty('--test-property-on-host', 'works');
+    this.handleScrollEvent();
     console.log(
       `[${this.getTimestamp()}] CONNECTED CALLBACK`,
       '--post-header-scroll-top:',
@@ -131,7 +132,6 @@ export class PostHeader {
     );
   }
   componentWillLoad() {
-    this.handleScrollEvent();
     console.log(
       `[${this.getTimestamp()}] WILL LOAD`,
       '--post-header-scroll-top:',
