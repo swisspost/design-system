@@ -42,16 +42,6 @@ const meta: MetaComponent = {
     },
     delay: {
       name: 'delay',
-      description: 'Delay (in milliseconds) before the tooltip is shown.',
-      control: {
-        type: 'number',
-      },
-      table: {
-        category: 'General',
-        type: {
-          summary: 'number',
-        },
-      },
     },
   },
 };
