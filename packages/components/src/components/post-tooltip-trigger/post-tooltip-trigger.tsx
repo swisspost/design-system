@@ -59,7 +59,6 @@ export class PostTooltipTrigger {
       this,
       'for',
       'string',
-      'The "for" property is required and should be a string.'
     );
   }
 
