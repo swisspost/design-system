@@ -60,7 +60,7 @@ const meta: MetaComponent = {
       name: 'Placement',
     },
     arrow: {
-      name: 'arrow',
+      name: 'Arrow',
       control: {
         type: 'boolean',
       },
