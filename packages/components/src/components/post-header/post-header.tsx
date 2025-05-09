@@ -247,7 +247,7 @@ export class PostHeader {
 
   private updateScrollParentHeight() {
     this.host.style.setProperty(
-      '--header-scroll-parent-height',
+      '--post-header-scroll-parent-height',
       `${this.scrollParent.clientHeight}px`,
     );
   }
@@ -337,7 +337,7 @@ export class PostHeader {
     return (
       <div
         class={navigationClasses.join(' ')}
-        style={{ '--header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
+        style={{ '--post-header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
       >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
           <div class="navigation-target-group">

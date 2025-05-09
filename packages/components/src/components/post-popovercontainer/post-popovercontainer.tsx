@@ -43,18 +43,18 @@ export class PostPopovercontainer {
   } as const;
 
   private static readonly PROPERTIES_TO_CLEAR = [
-    '--safe-space-popover-x',
-    '--safe-space-popover-y',
-    '--safe-space-popover-x-start',
-    '--safe-space-popover-x-end',
-    '--safe-space-popover-y-start',
-    '--safe-space-popover-y-end',
-    '--safe-space-trigger-x',
-    '--safe-space-trigger-y',
-    '--safe-space-trigger-x-start',
-    '--safe-space-trigger-x-end',
-    '--safe-space-trigger-y-start',
-    '--safe-space-trigger-y-end',
+    '--post-safe-space-popover-x',
+    '--post-safe-space-popover-y',
+    '--post-safe-space-popover-x-start',
+    '--post-safe-space-popover-x-end',
+    '--post-safe-space-popover-y-start',
+    '--post-safe-space-popover-y-end',
+    '--post-safe-space-trigger-x',
+    '--post-safe-space-trigger-y',
+    '--post-safe-space-trigger-x-start',
+    '--post-safe-space-trigger-x-end',
+    '--post-safe-space-trigger-y-start',
+    '--post-safe-space-trigger-y-end',
   ] as const;
 
   @Element() host: HTMLPostPopovercontainerElement;
@@ -101,8 +101,8 @@ export class PostPopovercontainer {
    * @param event MouseEvent with cursor position
    */
   private mouseTrackingHandler(event: MouseEvent) {
-    this.host.style.setProperty('--safe-space-cursor-x', `${event.clientX}px`);
-    this.host.style.setProperty('--safe-space-cursor-y', `${event.clientY}px`);
+    this.host.style.setProperty('--post-safe-space-cursor-x', `${event.clientX}px`);
+    this.host.style.setProperty('--post-safe-space-cursor-y', `${event.clientY}px`);
   }
 
   connectedCallback() {
@@ -313,20 +313,32 @@ export class PostPopovercontainer {
 
     if (isVertical) {
       // For top/bottom placement
-      this.host.style.setProperty('--safe-space-popover-y', `${posData.popover.y}px`);
-      this.host.style.setProperty('--safe-space-popover-x-start', `${posData.popover.xStart}px`);
-      this.host.style.setProperty('--safe-space-popover-x-end', `${posData.popover.xEnd}px`);
-      this.host.style.setProperty('--safe-space-trigger-y', `${posData.trigger.y}px`);
-      this.host.style.setProperty('--safe-space-trigger-x-start', `${posData.trigger.xStart}px`);
-      this.host.style.setProperty('--safe-space-trigger-x-end', `${posData.trigger.xEnd}px`);
+      this.host.style.setProperty('--post-safe-space-popover-y', `${posData.popover.y}px`);
+      this.host.style.setProperty(
+        '--post-safe-space-popover-x-start',
+        `${posData.popover.xStart}px`,
+      );
+      this.host.style.setProperty('--post-safe-space-popover-x-end', `${posData.popover.xEnd}px`);
+      this.host.style.setProperty('--post-safe-space-trigger-y', `${posData.trigger.y}px`);
+      this.host.style.setProperty(
+        '--post-safe-space-trigger-x-start',
+        `${posData.trigger.xStart}px`,
+      );
+      this.host.style.setProperty('--post-safe-space-trigger-x-end', `${posData.trigger.xEnd}px`);
     } else {
       // For left/right placement
-      this.host.style.setProperty('--safe-space-popover-x', `${posData.popover.x}px`);
-      this.host.style.setProperty('--safe-space-popover-y-start', `${posData.popover.yStart}px`);
-      this.host.style.setProperty('--safe-space-popover-y-end', `${posData.popover.yEnd}px`);
-      this.host.style.setProperty('--safe-space-trigger-x', `${posData.trigger.x}px`);
-      this.host.style.setProperty('--safe-space-trigger-y-start', `${posData.trigger.yStart}px`);
-      this.host.style.setProperty('--safe-space-trigger-y-end', `${posData.trigger.yEnd}px`);
+      this.host.style.setProperty('--post-safe-space-popover-x', `${posData.popover.x}px`);
+      this.host.style.setProperty(
+        '--post-safe-space-popover-y-start',
+        `${posData.popover.yStart}px`,
+      );
+      this.host.style.setProperty('--post-safe-space-popover-y-end', `${posData.popover.yEnd}px`);
+      this.host.style.setProperty('--post-safe-space-trigger-x', `${posData.trigger.x}px`);
+      this.host.style.setProperty(
+        '--post-safe-space-trigger-y-start',
+        `${posData.trigger.yStart}px`,
+      );
+      this.host.style.setProperty('--post-safe-space-trigger-y-end', `${posData.trigger.yEnd}px`);
     }
   }
 
