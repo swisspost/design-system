@@ -66,7 +66,7 @@ const meta: MetaComponent = {
       },
     },
     animation: {
-      name: 'animation',
+      name: 'Animation',
       control: {
         type: 'select',
       },
