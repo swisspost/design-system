@@ -113,19 +113,21 @@ const Template = {
             <h1 slot="title">${args.title}</h1>
           `
         : ''}
-
-      <ul slot="target-group" class="target-group">
-        <li>
-          <a href="#" class="active">Private customers</a>
-        </li>
-        <li>
-          <a href="#">Business customers</a>
-        </li>
-        <li>
-          <a href="#">Authorities</a>
-        </li>
-      </ul>
-
+      ${args.targetGroup
+        ? html`
+            <ul slot="target-group" class="target-group">
+              <li>
+                <a href="#" class="active">Private customers</a>
+              </li>
+              <li>
+                <a href="#">Business customers</a>
+              </li>
+              <li>
+                <a href="#">Authorities</a>
+              </li>
+            </ul>
+          `
+        : ''}
       ${args.customControls
         ? html`
             <!-- Custom content (optional) -->
