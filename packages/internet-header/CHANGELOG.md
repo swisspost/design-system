@@ -1,5 +1,13 @@
 # @swisspost/internet-header
 
+## 2.0.0-next.37
+
+### Patch Changes
+
+- Added cypress eslint plugin to enable linting for all cypress folders and files. (by [@schaertim](https://github.com/schaertim) with [#5102](https://github.com/swisspost/design-system/pull/5102))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.37
+
 ## 2.0.0-next.36
 
 ### Patch Changes
