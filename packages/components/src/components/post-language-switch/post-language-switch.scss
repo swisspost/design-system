@@ -30,6 +30,9 @@ tokens.$default-map: components.$post-button;
   @include utilities-mx.not-disabled-hover() {
     @include button-mx.button-variant-def('hover', 'tertiary');
   }
+  .visually-hidden {
+    @include utilities-mx.visuallyhidden();
+  }
 
   post-icon {
     height: 24px;
