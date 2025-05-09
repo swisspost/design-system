@@ -67,14 +67,10 @@ const meta: MetaComponent = {
     },
     animation: {
       name: 'animation',
-      description: 'Animation style for the tooltip.',
       control: {
         type: 'select',
       },
       options: ['none', 'pop-in'],
-      table: {
-        category: 'General',
-      },
     },
   },
 };
