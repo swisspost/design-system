@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 9.0.0
+
+### Patch Changes
+
+- Removed Angular as a peer dependency and expanded the supported version range for ng-bootstrap. (by [@alizedebray](https://github.com/alizedebray) with [#5451](https://github.com/swisspost/design-system/pull/5451))
+
 ## 8.10.0
 
 ## 8.9.4

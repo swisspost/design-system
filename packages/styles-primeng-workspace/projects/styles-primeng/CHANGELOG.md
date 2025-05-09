@@ -1,5 +1,16 @@
 # @swisspost/design-system-styles-primeng
 
+## 9.0.0
+
+### Major Changes
+
+- Migrated to PrimeNg v19. (by [@alizedebray](https://github.com/alizedebray) with [#5185](https://github.com/swisspost/design-system/pull/5185))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0
+
 ## 8.10.0
 
 ### Patch Changes

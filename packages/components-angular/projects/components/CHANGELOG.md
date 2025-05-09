@@ -1,5 +1,16 @@
 # @swisspost/design-system-components-angular
 
+## 9.0.0
+
+### Major Changes
+
+- Added support for Angular 19. (by [@alizedebray](https://github.com/alizedebray) with [#5451](https://github.com/swisspost/design-system/pull/5451))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0
+
 ## 8.10.0
 
 ### Patch Changes
