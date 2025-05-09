@@ -57,24 +57,12 @@ const meta: MetaComponent = {
       },
     },
     placement: {
-      name: 'placement',
-      description: 'Position of the tooltip relative to the trigger element.',
-      control: {
-        type: 'select',
-      },
-      options: ['top', 'right', 'bottom', 'left'],
-      table: {
-        category: 'General',
-      },
+      name: 'Placement',
     },
     arrow: {
       name: 'arrow',
-      description: 'Whether to show an arrow pointing to the trigger element.',
       control: {
         type: 'boolean',
-      },
-      table: {
-        category: 'General',
       },
     },
     animation: {
