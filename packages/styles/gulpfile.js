@@ -117,11 +117,7 @@ gulp.task('prebuild-env-vars', done => {
 
   const content = `$post-icon-version: '${version}';\n`;
 
-  fs.writeFileSync(
-    path.join(__dirname, 'src/utilities/_env-variables.scss'),
-    content,
-    'utf8'
-  );
+  fs.writeFileSync(path.join(__dirname, 'src/utilities/_env-variables.scss'), content, 'utf8');
 
   done();
 });
@@ -246,6 +242,6 @@ exports.default = gulp.task(
         'transform-package-json',
       ),
       gulp.series('temporarily-copy-token-files', 'sass'),
-    )
+    ),
   ),
 );
