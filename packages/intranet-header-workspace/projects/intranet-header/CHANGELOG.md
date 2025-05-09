@@ -1,5 +1,13 @@
 # @swisspost/design-system-intranet-header
 
+## 9.0.0
+
+### Patch Changes
+
+- Added support for Angular 19. (by [@alizedebray](https://github.com/alizedebray) with [#5455](https://github.com/swisspost/design-system/pull/5455))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0
+
 ## 8.10.0
 
 ### Minor Changes
