@@ -16,7 +16,7 @@ const meta: MetaComponent = {
     size: 'sm',
     title: 'Title',
     buttonLabel: 'Button label',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    content: 'This is a sample description for the teaser card component.',
   },
   argTypes: {
     title: {
@@ -94,7 +94,7 @@ export function renderTeaserSectionHeader(size?: string) {
     <div class="d-flex flex-column gap-8">
       <h2 class="m-0">Teaser section ${size}</h2>
       <p class="m-0">
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempo.
+        This is a sample description for the teaser section component.
       </p>
     </div>
     <a href="#" class="flex-shrink-0 btn btn-primary"
