@@ -575,6 +575,12 @@ export class MigrationV89Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    The <code>%btn-transparent-background</code> CSS placeholder has been removed.
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                </li>
+                <li class="mb-16">
+                  <p>
                     The <code>.pi-*</code> classes have been removed
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
