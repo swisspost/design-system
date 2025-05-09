@@ -43,10 +43,6 @@ post-mainnavigation {
   }
 
   .back-button {
-    post-icon {
-      transform: rotate(180deg);
-    }
-
     @include media.max(lg) {
       font-size: 16px;
     }
