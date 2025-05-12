@@ -93,7 +93,7 @@ describe('Card-Control', () => {
         .invoke('getCalls')
         .then(calls => {
           expect(calls[0].args[0].message).to.eq(
-            'The prop `type` of the `post-card-control` component must be one of the following values: checkbox, radio.]',
+            'The prop `type` of the `post-card-control` component must be one of the following values: checkbox, radio.',
           );
         });
     });
