@@ -10,17 +10,19 @@ describe('Back-to-top', () => {
       cy.get('post-back-to-top').should('exist');
     });
 
-    it('should throw an error if the label is missing', () => {
-      cy.on('uncaught:exception', err => {
-        expect(err.message).to.include(
-          'The label property of the Back to Top component is required for accessibility purposes. Please ensure it is set.',
-        );
-        return false;
+    it('should log a message if the label is removed', () => {
+      cy.window().then(win => {
+        cy.spy(win.console, 'error').as('consoleError');
       });
-      cy.document().then(doc => {
-        const element = doc.createElement('post-back-to-top');
-        doc.body.appendChild(element);
+
+      cy.get('post-back-to-top').then($el => {
+        $el[0].removeAttribute('label');
       });
+
+      cy.get('@consoleError').should(
+        'be.calledWith',
+        'The prop `label` of the `post-back-to-top` component is not defined.',
+      );
     });
 
     it('should hide the label visually', () => {
