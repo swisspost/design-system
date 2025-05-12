@@ -13,6 +13,6 @@ export function checkPattern<T extends { host: HTMLElement }>(
   const message = customMessage || defaultMessage;
 
   if (typeof value !== 'string' || !pattern.test(value)) {
-    console.error(message);
+    throw new Error(message);
   }
 }
