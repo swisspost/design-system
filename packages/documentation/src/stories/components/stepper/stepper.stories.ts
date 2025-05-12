@@ -154,7 +154,7 @@ export const InformationalStepper: StoryObj = {
 export const LongLabels: StoryObj = {
   args: {
     steps: [
-      'Nullam luctus mi sit amet nisl suscipit, nec tempor justo varius',
+      'Personal information and shipping address',
       ...defaultSteps.slice(1),
     ],
   },
