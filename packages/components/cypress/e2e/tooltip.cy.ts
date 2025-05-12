@@ -5,6 +5,7 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('#target1').as('target1');
       cy.get('#target2').as('target2');
       cy.get('#tooltip-one').find('post-popovercontainer[popover]').as('tooltip');
+      cy.get('post-tooltip-trigger[for="tooltip-one"]').as('trigger');
     });
 
     it('should display a tooltip', () => {
@@ -30,22 +31,63 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
         });
     });
 
-    it('should append aria-describedby without deleting existing values', () => {
-      cy.get('@target1')
-        .should('have.attr', 'aria-describedby')
-        .should('eq', 'existing-value tooltip-one');
+    it('should patch aria after trigger is inserted', () => {
+      cy.document().then(doc => {
+        const trigger = doc.createElement('post-tooltip-trigger');
+        trigger.setAttribute('for', 'tooltip-one');
+
+        const btn = doc.createElement('button');
+        btn.id = 'added-later';
+        btn.textContent = 'added after the fact';
+
+        trigger.appendChild(btn);
+        doc.body.appendChild(trigger);
+      });
+
+      cy.get('#added-later')
+        .should('exist')
+        .and('have.attr', 'aria-describedby', 'tooltip-one');
     });
 
-    it('should patch aria after button has been inserted', () => {
-      cy.document().then(doc => {
-        const btn = doc.createElement('span');
-        btn.setAttribute('data-tooltip-target', 'tooltip-one');
-        btn.innerHTML = 'added after the fact';
-        btn.id = 'added-later';
-        doc.body.appendChild(btn);
+    describe('trigger behavior', () => {
+      it('should initialize trigger with correct attributes', () => {
+        cy.get('@trigger').first().within(() => {
+          cy.get('button')
+            .should('have.attr', 'aria-describedby')
+            .then((ariaDescribedBy) => {
+              expect(ariaDescribedBy).to.include('tooltip-one');
+            });
+        });
       });
-      cy.get('#added-later').should('have.attr', 'aria-describedby').should('eq', 'tooltip-one');
-      cy.get('#added-later').should('have.attr', 'tabindex').should('eq', '0');
+
+      it('should show tooltip on trigger hover', () => {
+        cy.get('@tooltip').should('not.be.visible');
+        cy.get('@trigger').first().trigger('pointerenter');
+        cy.wait(100);
+        cy.get('.\\:popover-open, :popover-open').should('exist');
+      });
+
+      it('should hide tooltip on trigger pointerout', () => {
+        cy.get('@trigger').first().trigger('pointerenter');
+        cy.wait(100);
+        cy.get('.\\:popover-open, :popover-open').should('exist');
+        cy.get('@trigger').first().trigger('pointerleave');
+        cy.wait(100);
+        cy.get('@tooltip').should('not.be.visible');
+      });
+
+      it('should show tooltip on trigger focus', () => {
+        cy.get('@tooltip').should('not.be.visible');
+        cy.get('@trigger').first().find('button').focus();
+        cy.get('.\\:popover-open, :popover-open').should('exist');
+      });
+
+      it('should hide tooltip on trigger blur', () => {
+        cy.get('@trigger').first().find('button').focus();
+        cy.get('.\\:popover-open, :popover-open').should('exist');
+        cy.get('@trigger').first().find('button').blur();
+        cy.get('@tooltip').should('not.be.visible');
+      });
     });
   });
 
@@ -59,7 +101,8 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
 
     it('should show tooltip on hovered child element', () => {
       cy.get('@tooltip').should('not.be.visible');
-      cy.get('@target-child').trigger('pointerover');
+      cy.get('@target-child').trigger('pointerenter');
+      cy.wait(100);
       cy.get('.\\:popover-open, :popover-open').should('exist');
     });
   });
@@ -71,7 +114,9 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('should add tabindex', () => {
-      cy.get('@target').should('have.attr', 'tabindex').should('eq', '0');
+      cy.get('@target')
+        .should('have.attr', 'tabindex')
+        .and('eq', '0');
     });
   });
 
