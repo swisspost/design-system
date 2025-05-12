@@ -1,5 +1,21 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.37
+
+### Minor Changes
+
+- Added icons: `2688` and `2689` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#5351](https://github.com/swisspost/design-system/pull/5351))
+
+- Added icons: `2690` and `2691` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#5414](https://github.com/swisspost/design-system/pull/5414))
+
+- Added icons: `2692` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#5468](https://github.com/swisspost/design-system/pull/5468))
+
+### Patch Changes
+
+- Updated icons: - `LetterReceived` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `MessageReceived` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `Receiving` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#5468](https://github.com/swisspost/design-system/pull/5468))
+
 ## 9.0.0-next.36
 
 ## 9.0.0-next.35
