@@ -2,7 +2,8 @@ import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core'
 import { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
 import { PostPopovercontainerCustomEvent } from '@/components';
-import { checkType } from '@/utils';
+import { checkEmptyOrOneOf } from '@/utils';
+import { PLACEMENT_TYPES } from '@/types';
 
 @Component({
   tag: 'post-tooltip',
@@ -20,6 +21,12 @@ export class PostTooltip {
    * For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
    */
   @Prop() readonly placement?: Placement = 'top';
+
+  @Watch('placement')
+  validatePlacement() {
+    checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
+  }
+
   /**
    * Whether or not to display a little pointer arrow
    */
@@ -33,20 +40,15 @@ export class PostTooltip {
    */
   @Prop({ reflect: true, mutable: true }) open = false;
 
-  @Watch('open')
-  validateOpen() {
-    checkType(this, 'open', 'boolean', 'The "open" property of the post-tooltip must be a boolean.');
-  }
-
-  connectedCallback() {
-    this.validateOpen();
+  componentWillLoad() {
+    this.validatePlacement();
   }
 
   componentDidLoad() {
     if (!this.host.id) {
       console.error(
         /*prettier-ignore*/
-        'No id set: <post-tooltip> must have an id, linking it to it\'s target element with a <post-tooltip-trigger> element.'
+        'No id set: <post-tooltip> must have an id, linking it to it\'s target element with a <post-tooltip-trigger> element.',
       );
     }
   }
@@ -92,7 +94,7 @@ export class PostTooltip {
     return (
       <Host data-version={version} role="tooltip">
         <post-popovercontainer
-          safeSpace='trapezoid'
+          safeSpace="trapezoid"
           class={popoverClass}
           arrow={this.arrow}
           animation={this.animation}

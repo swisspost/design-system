@@ -23,8 +23,9 @@ export class PostCollapsibleTrigger {
    */
   @Watch('for')
   validateAriaAttributes() {
-    checkNonEmpty(this, 'for');
-    checkType(this, 'for', 'string', 'The post-collapsible-trigger "for" prop should be a id.');
+    if (!checkNonEmpty(this, 'for')) {
+      checkType(this, 'for', 'string', 'The post-collapsible-trigger "for" prop should be a id.');
+    }
   }
 
   /**
