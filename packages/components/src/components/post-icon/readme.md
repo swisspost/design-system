@@ -34,6 +34,8 @@ some content
  - [post-rating](../post-rating)
  - [post-tag](../post-tag)
  - [post-test-button](../post-test-button)
+ - [post-test-button2](../post-test-button2)
+ - [post-test-button3](../post-test-button3)
 
 ### Graph
 ```mermaid
@@ -50,6 +52,8 @@ graph TD;
   post-rating --> post-icon
   post-tag --> post-icon
   post-test-button --> post-icon
+  post-test-button2 --> post-icon
+  post-test-button3 --> post-icon
   style post-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

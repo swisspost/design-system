@@ -11,9 +11,9 @@ export class PostTestTarget3 {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={version} tabindex="0" role="textbox">
         <slot name="label-slot"></slot>
-        <input></input>
+        <div class="border">I am not a real input, just a div with border...</div>
       </Host>
     );
   }

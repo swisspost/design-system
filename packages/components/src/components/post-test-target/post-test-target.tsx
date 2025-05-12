@@ -4,6 +4,7 @@
 declare global {
   interface Element {
     ariaLabelledByElements: Element[];
+    ariaDescribedByElements: Element[];
   }
 }
 
@@ -31,7 +32,7 @@ export class PostTestTarget {
 
   private setAriaLabelledByElements() {
     const labelEl = document.querySelector(`[for=${this.ariaLabelledbyId}]`);
-    if (this.workaround == 'ariamixin') {
+    if (this.workaround == 'ariaLabelledByElements') {
       this.internalEl.ariaLabelledByElements = [labelEl];
     } else {
       this.internalEl.ariaLabelledByElements = [];

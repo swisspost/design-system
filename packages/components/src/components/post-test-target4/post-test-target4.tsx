@@ -4,6 +4,7 @@ import { version } from '@root/package.json';
 declare global {
   interface ElementInternals {
     ariaLabelledByElements: Element;
+    ariaDescribedByElements: Element[];
   }
 }
 
@@ -18,24 +19,11 @@ export class PostTestTarget4 {
 
   @AttachInternals() internals!: ElementInternals;
 
-  /**
-   * Handles input events from the internal native input.
-   * Updates the component's state and sets the form value
-   * using ElementInternals.
-   * @param event The input event
-   */
-
   componentDidLoad() {
-    // Get a reference to the slot element
     const slotElement = this.host.shadowRoot?.querySelector('slot[name="label-slot"]');
-
     if (slotElement instanceof HTMLSlotElement) {
-      // Get the elements assigned to the slot
       const assignedElements = slotElement.assignedElements();
-
-      // Assuming the first assigned element is the label
       const labelElement = assignedElements[0];
-
       if (labelElement) {
         this.internals.ariaLabelledByElements = labelElement;
       }
@@ -43,9 +31,9 @@ export class PostTestTarget4 {
   }
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={version} role="textbox" tabindex="0">
         <slot name="label-slot"></slot>
-        <input></input>
+        <div class="border">I am not a real input, just a div with border...</div>
       </Host>
     );
   }

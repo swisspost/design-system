@@ -2,12 +2,12 @@ import { Component, h, Host, Prop, Element } from '@stencil/core';
 import { version } from '@root/package.json';
 
 @Component({
-  tag: 'post-test-span',
-  styleUrl: 'post-test-span.scss',
+  tag: 'post-test-span2',
+  styleUrl: 'post-test-span2.scss',
   shadow: true,
 })
-export class PostTestSpan {
-  @Element() host: HTMLPostTestSpanElement;
+export class PostTestSpan2 {
+  @Element() host: HTMLPostTestSpan2Element;
 
   /**
    * Defines the spanId

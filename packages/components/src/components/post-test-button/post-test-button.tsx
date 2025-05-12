@@ -8,14 +8,27 @@ import { version } from '@root/package.json';
 })
 export class PostTestButton {
   /**
-   * Defines the id
+   * Defines the ariaLabelledbyId
    */
-  @Prop() theId?: string;
+  @Prop() ariaLabelledbyId?: string;
+
+  /**
+   * Defines the ariaDescribedbyId
+   */
+  @Prop() ariaDescribedbyId?: string;
 
   render() {
     return (
       // Shadow DOM - Same Shadow DOM
-      <Host data-version={version} class="btn btn-primary" role="button" tabindex="0">
+      <Host
+        data-version={version}
+        class="btn btn-primary"
+        role="button"
+        tabindex="0"
+        aria-labelledby={this.ariaLabelledbyId}
+        aria-describedby={this.ariaDescribedbyId}
+      >
+        <slot name="label-slot"></slot>
         <div>
           <post-icon name="1022"></post-icon>
         </div>

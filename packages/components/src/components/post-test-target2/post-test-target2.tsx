@@ -18,7 +18,7 @@ export class PostTestTarget2 {
   @Prop() workaround?: string;
 
   private setupInputLabelingFromSlot() {
-    if (this.slotEl && this.internalEl && this.workaround == 'ariamixin') {
+    if (this.slotEl && this.internalEl && this.workaround == 'ariaLabelledByElements') {
       const assignedElements = this.slotEl.assignedElements({ flatten: true });
       const labelElement = assignedElements.find(el => el.tagName === 'LABEL');
 

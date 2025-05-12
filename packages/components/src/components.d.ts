@@ -466,9 +466,41 @@ export namespace Components {
     }
     interface PostTestButton {
         /**
-          * Defines the id
+          * Defines the ariaDescribedbyId
          */
-        "theId"?: string;
+        "ariaDescribedbyId"?: string;
+        /**
+          * Defines the ariaLabelledbyId
+         */
+        "ariaLabelledbyId"?: string;
+    }
+    interface PostTestButton2 {
+        /**
+          * Defines the selected ariaDescribedbyId
+         */
+        "ariaDescribedbyId"?: string;
+        /**
+          * Defines the selected ariaLabelledbyId
+         */
+        "ariaLabelledbyId"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
+    }
+    interface PostTestButton3 {
+        /**
+          * Defines the ariaDescribedbyId
+         */
+        "ariaDescribedbyId"?: string;
+        /**
+          * Defines the ariaLabelledbyId
+         */
+        "ariaLabelledbyId"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
     }
     interface PostTestLabel {
         /**
@@ -477,6 +509,24 @@ export namespace Components {
         "for"?: string;
     }
     interface PostTestSpan {
+        /**
+          * Defines the id of the button to reference
+         */
+        "btnId": string;
+        /**
+          * Defines the label text
+         */
+        "labelText": string;
+        /**
+          * Defines the spanId
+         */
+        "spanId"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
+    }
+    interface PostTestSpan2 {
         /**
           * Defines the id of the button to reference
          */
@@ -915,6 +965,18 @@ declare global {
         prototype: HTMLPostTestButtonElement;
         new (): HTMLPostTestButtonElement;
     };
+    interface HTMLPostTestButton2Element extends Components.PostTestButton2, HTMLStencilElement {
+    }
+    var HTMLPostTestButton2Element: {
+        prototype: HTMLPostTestButton2Element;
+        new (): HTMLPostTestButton2Element;
+    };
+    interface HTMLPostTestButton3Element extends Components.PostTestButton3, HTMLStencilElement {
+    }
+    var HTMLPostTestButton3Element: {
+        prototype: HTMLPostTestButton3Element;
+        new (): HTMLPostTestButton3Element;
+    };
     interface HTMLPostTestLabelElement extends Components.PostTestLabel, HTMLStencilElement {
     }
     var HTMLPostTestLabelElement: {
@@ -926,6 +988,12 @@ declare global {
     var HTMLPostTestSpanElement: {
         prototype: HTMLPostTestSpanElement;
         new (): HTMLPostTestSpanElement;
+    };
+    interface HTMLPostTestSpan2Element extends Components.PostTestSpan2, HTMLStencilElement {
+    }
+    var HTMLPostTestSpan2Element: {
+        prototype: HTMLPostTestSpan2Element;
+        new (): HTMLPostTestSpan2Element;
     };
     interface HTMLPostTestTargetElement extends Components.PostTestTarget, HTMLStencilElement {
     }
@@ -998,8 +1066,11 @@ declare global {
         "post-tabs": HTMLPostTabsElement;
         "post-tag": HTMLPostTagElement;
         "post-test-button": HTMLPostTestButtonElement;
+        "post-test-button2": HTMLPostTestButton2Element;
+        "post-test-button3": HTMLPostTestButton3Element;
         "post-test-label": HTMLPostTestLabelElement;
         "post-test-span": HTMLPostTestSpanElement;
+        "post-test-span2": HTMLPostTestSpan2Element;
         "post-test-target": HTMLPostTestTargetElement;
         "post-test-target2": HTMLPostTestTarget2Element;
         "post-test-target3": HTMLPostTestTarget3Element;
@@ -1404,9 +1475,41 @@ declare namespace LocalJSX {
     }
     interface PostTestButton {
         /**
-          * Defines the id
+          * Defines the ariaDescribedbyId
          */
-        "theId"?: string;
+        "ariaDescribedbyId"?: string;
+        /**
+          * Defines the ariaLabelledbyId
+         */
+        "ariaLabelledbyId"?: string;
+    }
+    interface PostTestButton2 {
+        /**
+          * Defines the selected ariaDescribedbyId
+         */
+        "ariaDescribedbyId"?: string;
+        /**
+          * Defines the selected ariaLabelledbyId
+         */
+        "ariaLabelledbyId"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
+    }
+    interface PostTestButton3 {
+        /**
+          * Defines the ariaDescribedbyId
+         */
+        "ariaDescribedbyId"?: string;
+        /**
+          * Defines the ariaLabelledbyId
+         */
+        "ariaLabelledbyId"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
     }
     interface PostTestLabel {
         /**
@@ -1415,6 +1518,24 @@ declare namespace LocalJSX {
         "for"?: string;
     }
     interface PostTestSpan {
+        /**
+          * Defines the id of the button to reference
+         */
+        "btnId"?: string;
+        /**
+          * Defines the label text
+         */
+        "labelText"?: string;
+        /**
+          * Defines the spanId
+         */
+        "spanId"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
+    }
+    interface PostTestSpan2 {
         /**
           * Defines the id of the button to reference
          */
@@ -1507,8 +1628,11 @@ declare namespace LocalJSX {
         "post-tabs": PostTabs;
         "post-tag": PostTag;
         "post-test-button": PostTestButton;
+        "post-test-button2": PostTestButton2;
+        "post-test-button3": PostTestButton3;
         "post-test-label": PostTestLabel;
         "post-test-span": PostTestSpan;
+        "post-test-span2": PostTestSpan2;
         "post-test-target": PostTestTarget;
         "post-test-target2": PostTestTarget2;
         "post-test-target3": PostTestTarget3;
@@ -1561,8 +1685,11 @@ declare module "@stencil/core" {
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
             "post-tag": LocalJSX.PostTag & JSXBase.HTMLAttributes<HTMLPostTagElement>;
             "post-test-button": LocalJSX.PostTestButton & JSXBase.HTMLAttributes<HTMLPostTestButtonElement>;
+            "post-test-button2": LocalJSX.PostTestButton2 & JSXBase.HTMLAttributes<HTMLPostTestButton2Element>;
+            "post-test-button3": LocalJSX.PostTestButton3 & JSXBase.HTMLAttributes<HTMLPostTestButton3Element>;
             "post-test-label": LocalJSX.PostTestLabel & JSXBase.HTMLAttributes<HTMLPostTestLabelElement>;
             "post-test-span": LocalJSX.PostTestSpan & JSXBase.HTMLAttributes<HTMLPostTestSpanElement>;
+            "post-test-span2": LocalJSX.PostTestSpan2 & JSXBase.HTMLAttributes<HTMLPostTestSpan2Element>;
             "post-test-target": LocalJSX.PostTestTarget & JSXBase.HTMLAttributes<HTMLPostTestTargetElement>;
             "post-test-target2": LocalJSX.PostTestTarget2 & JSXBase.HTMLAttributes<HTMLPostTestTarget2Element>;
             "post-test-target3": LocalJSX.PostTestTarget3 & JSXBase.HTMLAttributes<HTMLPostTestTarget3Element>;

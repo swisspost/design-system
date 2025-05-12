@@ -1,11 +1,11 @@
 import { Meta, Canvas, Source, Controls } from '@storybook/blocks';
-import * as CCR from './arialabelled.stories';
+import * as CCR from './role.stories';
 
 <Meta of={CCR} />
 
 # Cross Component Referencing Cases
 
-## 2. `aria-labelledby`/ `id`
+## 3. `role`
 
 ### I. Referencing Within the Same DOM Tree ✔️
 
@@ -15,7 +15,7 @@ import * as CCR from './arialabelled.stories';
 </ul>
   <Canvas of={CCR.ExampleHTML} sourceState="shown" />
 <p className="lead">
-  In the Light DOM, `aria-labelledby` is used to give an element its accessible name by referencing
+  In the Light DOM, `aria-describedby` is used to give an element its accessible name by referencing
   the id of another element or multiple elements that contain the desired text.
 </p>
 <p>
@@ -30,11 +30,11 @@ import * as CCR from './arialabelled.stories';
   <li>Slotted Content → Shadow DOM</li>
 </ul>
 
-Standard `aria-labelledby` <b>cannot reference elements located inside a Shadow DOM</b> from outside of it. This is because IDs inside a Shadow DOM are encapsulated and not accessible from the Light DOM or other Shadow DOMs.
+Standard `aria-describedby` <b>cannot reference elements located inside a Shadow DOM</b> from outside of it. This is because IDs inside a Shadow DOM are encapsulated and not accessible from the Light DOM or other Shadow DOMs.
 
 ##### Possible Workarounds
 
-###### 1. `Element:ariaLabelledByElements` (Non SSR compatible: to be tested)
+###### 1. `Element:ariaDescribedByElements` (Non SSR compatible: to be tested)
 
 <b>Light DOM → Shadow DOM Example</b>
 <Canvas of={CCR.Example2} sourceState="shown" />
@@ -48,12 +48,12 @@ Standard `aria-labelledby` <b>cannot reference elements located inside a Shadow 
   <Controls of={CCR.Example3} />
 </div>
 
-###### 2. Set `aria-labelledby`on the host (for SSR Components: to be tested)
+###### 2. Set `aria-describedby`on the host (for SSR Components: to be tested)
 
 An option is to set the following attributes directly on the host of the target component:
 
 <ul>
-  <li> the `aria-labelledby`</li>
+  <li> the `aria-describedby`</li>
   <li> a semantic `role` (e.g. `textbox`, `button`)</li>
   <li> `tabindex="0"`</li>
 </ul>
@@ -71,7 +71,7 @@ An option is to set the following attributes directly on the host of the target 
   <li>Shadow DOM → Slotted Content</li>
 </ul>
 
-Similarly to the previous case, <b>referencing an element located outside a Shadow DOM from an element inside that Shadow DOM using standard `aria-labelledby` is not possible</b>. The strong encapsulation of the Shadow DOM prevents elements within it from directly accessing and referencing the IDs of elements in the Light DOM.
+Similarly to the previous case, <b>referencing an element located outside a Shadow DOM from an element inside that Shadow DOM using standard `aria-describedby` is not possible</b>. The strong encapsulation of the Shadow DOM prevents elements within it from directly accessing and referencing the IDs of elements in the Light DOM.
 
 ##### Possible Workaround
 
@@ -85,10 +85,10 @@ An option is to set the `id` directly on the host of the referencing element. Pl
   <li>Shadow DOM → Other Shadow DOM</li>
 </ul>
 
-Referencing an element located inside <b>one Shadow DOM</b> from an element located inside a <b>different, separate Shadow DOM</b> using standard `aria-labelledby` <b>is also not possible</b>. Similar to the other cross-boundary scenarios, the IDs are scoped within their respective Shadow DOMs.
+Referencing an element located inside <b>one Shadow DOM</b> from an element located inside a <b>different, separate Shadow DOM</b> using standard `aria-describedby` <b>is also not possible</b>. Similar to the other cross-boundary scenarios, the IDs are scoped within their respective Shadow DOMs.
 
 ##### Possible Workaround
 
-In this case, in order for the relationship to work, the referencing element must have the `id` directly set on its host (see workaround of case III) and the target element must have the `aria-labelledby`, `role` and `tabindex="0"` set on its host (see workaround of case II).
+In this case, in order for the relationship to work, the referencing element must have the `id` directly set on its host (see workaround of case III) and the target element must have the `aria-describedby`, `role` and `tabindex="0"` set on its host (see workaround of case II).
 
 <Canvas of={CCR.Example7} sourceState="shown" />

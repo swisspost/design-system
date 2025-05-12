@@ -4,7 +4,7 @@ import { html } from 'lit';
 
 const meta: MetaExtended = {
   id: '76ade552-2c03-4d6d-9dce-28daa340f7d3',
-  title: 'Guidelines/Cross Component Referencing/1.For-id',
+  title: 'Guidelines/Crossing the Shadow DOM/1.For',
   parameters: {
     badges: [],
   },
@@ -16,13 +16,16 @@ export default meta;
 
 type Story = StoryObj;
 
+// Case: Standard Light DOM to Light DOM
 export const ExampleHTML: Story = {
   render: () => html`
+  
     <label for="id_0">My Text</label>
     <input id="id_0"></input>
   `,
 };
 
+// Case: Referencing from Shadow DOM (Host Attribute) to Light DOM (Element) workaround setting programmatically the relevant Element property
 export const Example2: Story = {
   argTypes: {
     workaround: {
@@ -30,7 +33,7 @@ export const Example2: Story = {
       control: {
         type: 'radio',
       },
-      options: ['none', 'ariamixin'],
+      options: ['none', 'ariaLabelledByElements'],
     },
   },
   args: {
@@ -42,6 +45,8 @@ export const Example2: Story = {
   `,
 };
 
+// Case: Referencing from Shadow DOM (Host Attribute) to Slotted Content (Element) workaround setting programmatically the relevant Element property
+
 export const Example3: Story = {
   argTypes: {
     workaround: {
@@ -49,7 +54,7 @@ export const Example3: Story = {
       control: {
         type: 'radio',
       },
-      options: ['none', 'ariamixin'],
+      options: ['none', 'ariaLabelledByElements'],
     },
   },
   args: {
@@ -62,26 +67,25 @@ export const Example3: Story = {
   `,
 };
 
-// ssr workaround 1
+// Case: Referencing from Shadow Dom to Light DOM workaround with aria-labelledby directly set on host
 export const Example5: Story = {
   render: () => html`
-    <post-test-target3 aria-labelledby="id_5" role="textbox" tabindex="0">
+    <post-test-target3 aria-labelledby="id_5">
       <label id="id_5" slot="label-slot">My Text</label>
-      >
     </post-test-target3>
   `,
 };
 
-// ssr workaround 2
+// Case: Referencing from Shadow Dom to Slotted Content (Light) DOM workaround with aria-labelledby directly set on host
 export const Example7: Story = {
   render: () => html`
     <post-test-target4 aria-labelledby="id_7">
       <label id="id_7" slot="label-slot">My Text</label>
-      >
     </post-test-target4>
   `,
 };
 
+// Case: Standard Light DOM to Shadow DOM workaround
 export const Example4: Story = {
   argTypes: {
     workaround: {
@@ -89,7 +93,7 @@ export const Example4: Story = {
       control: {
         type: 'radio',
       },
-      options: ['none', 'ariamixin (not working)'],
+      options: ['none', 'ariaLabelledByElements (not working)'],
     },
   },
   args: {
@@ -101,9 +105,11 @@ export const Example4: Story = {
   `,
 };
 
+// Case: Shadow DOM to other Shadow Dom workaround
+
 export const Example6: Story = {
   render: () => html`
     <post-test-label id="id_6"></post-test-label>
-    <post-test-target3 aria-labelledby="id_6" role="button"></post-test-target3>
+    <post-test-target3 aria-labelledby="id_6"></post-test-target3>
   `,
 };

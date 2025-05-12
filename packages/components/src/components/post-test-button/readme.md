@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description    | Type     | Default     |
-| -------- | --------- | -------------- | -------- | ----------- |
-| `theId`  | `the-id`  | Defines the id | `string` | `undefined` |
+| Property            | Attribute             | Description                   | Type     | Default     |
+| ------------------- | --------------------- | ----------------------------- | -------- | ----------- |
+| `ariaDescribedbyId` | `aria-describedby-id` | Defines the ariaDescribedbyId | `string` | `undefined` |
+| `ariaLabelledbyId`  | `aria-labelledby-id`  | Defines the ariaLabelledbyId  | `string` | `undefined` |
 
 
 ## Dependencies
