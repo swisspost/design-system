@@ -12,9 +12,10 @@
 
 ### Patch Changes
 
-- Updated icons: - `LetterReceived` (line & solid): 16, 24, 32, 40, 48 and 64px
-  - `MessageReceived` (line & solid): 16, 24, 32, 40, 48 and 64px
-  - `Receiving` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#5468](https://github.com/swisspost/design-system/pull/5468))
+- Updated icons: 
+  - `letterreceived` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `messagereceived` (line & solid): 16, 24, 32, 40, 48 and 64px
+  - `receiving` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#5468](https://github.com/swisspost/design-system/pull/5468))
 
 ## 9.0.0-next.36
 
