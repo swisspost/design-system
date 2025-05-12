@@ -130,7 +130,7 @@ export class PostCardControl {
    */
   @Method()
   async reset() {
-    this.validity = null;
+    this.validity = undefined;
     this.controlSetChecked(this.initialChecked);
   }
 
