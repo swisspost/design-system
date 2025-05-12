@@ -14,6 +14,6 @@ export function checkOneOf<T extends { host: HTMLElement }>(
 
   const message = customMessage || defaultMessage;
   if (!possibleValues.includes(value)) {
-    console.error(message);
+    throw new Error(message);
   }
 }

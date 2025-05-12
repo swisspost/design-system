@@ -12,13 +12,12 @@ export function checkUrl<T extends { host: HTMLElement }>(
   const message = customMessage || defaultMessage;
 
   if (typeof value !== 'string' && !(value instanceof URL)) {
-    console.error(message);
-    return;
+    throw new Error(message);
   }
 
   try {
     new URL(value, 'https://www.post.ch');
   } catch {
-    console.error(message);
+    throw new Error(message);
   }
 }
