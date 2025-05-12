@@ -1,5 +1,17 @@
 # @swisspost/design-system-documentation
 
+## 5.5.16
+
+### Patch Changes
+
+- The default value of the arrow property for the `post-tooltip` element has been changed to `false`. This means, that tooltips do not display arrows by default anymore. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5470](https://github.com/swisspost/design-system/pull/5470))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0
+  - @swisspost/design-system-styles@9.0.0
+  - @swisspost/design-system-components-react@9.0.0
+  - @swisspost/internet-header@1.15.14
+  - @swisspost/design-system-icons@9.0.0
+
 ## 5.5.15
 
 ### Patch Changes
