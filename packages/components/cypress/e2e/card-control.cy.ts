@@ -58,8 +58,8 @@ describe('Card-Control', () => {
       cy.get('@consoleError')
         .invoke('getCalls')
         .then(calls => {
-          expect(calls[0].args[0]).to.eq(
-            'The prop `label` of the `post-card-control` component is not defined.',
+          expect(calls[0].args[0].message).to.eq(
+            'The prop `label` of the `post-card-control` component is required.',
           );
         });
     });
@@ -92,8 +92,8 @@ describe('Card-Control', () => {
       cy.get('@consoleError')
         .invoke('getCalls')
         .then(calls => {
-          expect(calls[0].args[0]).to.eq(
-            'The prop `type` of the `post-card-control` component is not defined.',
+          expect(calls[0].args[0].message).to.eq(
+            'The prop `type` of the `post-card-control` component must be one of the following values: checkbox, radio.',
           );
         });
     });
