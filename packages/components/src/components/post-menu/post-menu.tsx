@@ -13,7 +13,7 @@ import { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { getRoot } from '@/utils';
-import { eventGuard } from '@/utils/event-guard';
+import { EventGuard } from '@/utils/event-guard';
 
 @Component({
   tag: 'post-menu',
@@ -129,29 +129,27 @@ export class PostMenu {
     }
   };
 
-  private handlePostToggle = (event: CustomEvent<boolean>) => {
-    eventGuard(
-      this.host,
-      event,
-      { targetLocalName: 'post-popovercontainer', delegatorSelector: 'post-menu' },
-      () => {
-        this.isVisible = event.detail;
-        this.toggleMenu.emit(this.isVisible);
+  @EventGuard({
+    targetLocalName: 'post-popovercontainer',
+    delegatorSelector: 'post-menu'
+  })
+  private handlePostToggle(event: CustomEvent<boolean>) {
+    this.isVisible = event.detail;
+    this.toggleMenu.emit(this.isVisible);
 
-        requestAnimationFrame(() => {
-          if (this.isVisible) {
-            this.lastFocusedElement = this.root?.activeElement as HTMLElement;
-            const menuItems = this.getSlottedItems();
-            if (menuItems.length > 0) {
-              (menuItems[0] as HTMLElement).focus();
-            }
-          } else if (this.lastFocusedElement) {
-            this.lastFocusedElement.focus();
-          }
-        });
+    requestAnimationFrame(() => {
+      if (this.isVisible) {
+        this.lastFocusedElement = 
+      this.root.activeElement as HTMLElement;
+        const menuItems = this.getSlottedItems();
+        if (menuItems.length > 0) {
+          (menuItems[0] as HTMLElement).focus();
+        }
+      } else if (this.lastFocusedElement) {
+        this.lastFocusedElement.focus();
       }
-    );
-  };
+    });
+  }
 
   private handleClick = (e: MouseEvent) => {
     const target = e.target as HTMLElement;
