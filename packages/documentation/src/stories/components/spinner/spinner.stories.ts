@@ -82,10 +82,9 @@ export const BlockSection: Story = {
         </div>
       </div>
       <p>
-        There is some continuous text here as an example. This content demonstrates how the spinner
-        overlay appears on top of regular page content. <a href="#">Click here to learn more</a> about
-        how loading states can improve user experience by providing visual feedback while data is
-        being processed in the background.
+        There is some continuous text here as an example. This text demonstrates how content flows within this component. 
+        The words continue to fill the available space to show text wrapping and spacing behavior. 
+        This sample text helps designers and developers visualize how actual content will appear when the component is implemented.
       </p>
     </div>`,
 };
