@@ -61,7 +61,7 @@ function formatList(list, delimiter, lastDelimiter = delimiter) {
 function parseUiIconDetails(fileName) {
   const chunks = fileName.split('_');
   return {
-    icon: chunks[0],
+    icon: chunks[0].toLowerCase(),
     size: chunks[chunks.length - 1],
     variant: chunks.includes('Solid') ? 'solid' : 'line',
   };
@@ -118,7 +118,7 @@ function processUiIconFiles(parsedFilePaths) {
  */
 function formatPostIcons(iconFiles) {
   const iconNames = iconFiles.map(({ name }) => `\`${name}\``);
-  return formatList(iconNames, ', ', ', and ');
+  return formatList(iconNames, ', ', ' and ');
 }
 
 /**
@@ -133,10 +133,10 @@ function formatUiIcons(iconFiles) {
   return Array.from(icons.entries())
     .map(([icon, { sizes, variants }]) => {
       const allVariants = formatList(variants, ' & ');
-      const allSizes = formatList(sizes, ', ', ', and ');
-      return `- \`${icon}\` (${allVariants}): ${allSizes}px`;
+      const allSizes = formatList(sizes, ', ', ' and ');
+      return `\n- \`${icon}\` (${allVariants}): ${allSizes}px`;
     })
-    .join('\n');
+    .join('');
 }
 
 /**

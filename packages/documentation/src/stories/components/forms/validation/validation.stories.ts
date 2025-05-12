@@ -84,7 +84,6 @@ export const Checkbox: Story = {
   render: (args: Args, context: StoryContext) => {
     const component = context.name.replace(/\s+/g, '');
     const props = getValidationProps(component, args);
-
     const feedbackTemplate = renderFeedback(props.validFeedbackId, props.invalidFeedbackId);
     return html`<div class="form-check">
       <input
