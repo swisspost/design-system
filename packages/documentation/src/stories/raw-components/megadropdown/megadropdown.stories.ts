@@ -97,7 +97,7 @@ function render() {
     <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
     <post-megadropdown id="packages">
       <button slot="back-button" class="btn btn-tertiary px-0">
-        <post-icon name="arrowright"></post-icon>
+        <post-icon name="arrowleft"></post-icon>
         Back
       </button>
       <post-closebutton slot="close-button">Close</post-closebutton>
