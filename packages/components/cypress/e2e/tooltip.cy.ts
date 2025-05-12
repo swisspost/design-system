@@ -18,7 +18,6 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('@target2').blur();
       cy.get('@tooltip').should('not.be.visible');
     });
-
     it('tooltip placement right', () => {
       cy.get('#tooltip-one').invoke('attr', 'placement', 'right');
       cy.get('@target2').focus();
@@ -63,7 +62,6 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('.\\:popover-open, :popover-open').should('exist');
     });
   });
-
   describe('non-focusable element', () => {
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-tooltip.test.html');
@@ -79,10 +77,8 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-tooltip.test.html');
       cy.get('#target1').as('target1');
-
       cy.injectAxe();
     });
-
     it('Has no detectable a11y violations on load', () => {
       cy.checkA11y('post-tooltip');
     });
