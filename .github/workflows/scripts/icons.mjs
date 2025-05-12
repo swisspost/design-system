@@ -61,7 +61,7 @@ function formatList(list, delimiter, lastDelimiter = delimiter) {
 function parseUiIconDetails(fileName) {
   const chunks = fileName.split('_');
   return {
-    icon: chunks[0],
+    icon: chunks[0].toLowerCase(),
     size: chunks[chunks.length - 1],
     variant: chunks.includes('Solid') ? 'solid' : 'line',
   };
@@ -134,9 +134,9 @@ function formatUiIcons(iconFiles) {
     .map(([icon, { sizes, variants }]) => {
       const allVariants = formatList(variants, ' & ');
       const allSizes = formatList(sizes, ', ', ' and ');
-      return `- \`${icon}\` (${allVariants}): ${allSizes}px`;
+      return `\n- \`${icon}\` (${allVariants}): ${allSizes}px`;
     })
-    .join('\n');
+    .join('');
 }
 
 /**
