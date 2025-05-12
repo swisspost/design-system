@@ -74,7 +74,7 @@ export class PostLanguageOption {
 
   @Watch('url')
   validateUrl() {
-    checkEmptyOrType(this, 'url', 'string');
+    checkEmptyOrUrl(this, 'url');
   }
 
   componentDidLoad() {
