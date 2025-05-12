@@ -1,11 +1,12 @@
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit/static-html.js';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: 'f321d60b-cf7e-4a64-90af-7b90e6869ee6',
-  title: 'Components/Target group',
+  title: 'Raw Components/Target group',
   tags: ['package:HTML'],
+  decorators: [clickBlocker],
   parameters: {
     badges: [],
     design: {
@@ -66,6 +67,12 @@ const meta: MetaComponent = {
 export default meta;
 
 type Story = StoryObj;
+
+function clickBlocker(story: StoryFn, context: StoryContext) {
+  return html`
+    <div @click=${(e: Event) => e.preventDefault()}>${story(context.args, context)}</div>
+  `;
+}
 
 export const Default: Story = {
   render: (args: Args) => {
