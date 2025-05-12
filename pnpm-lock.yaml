@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    optionalDependencies:
-      '@web-types/lit':
-        specifier: 2.0.0-3
-        version: 2.0.0-3
     devDependencies:
       '@changesets/cli':
         specifier: 2.29.2
@@ -21,6 +17,10 @@ importers:
       turbo:
         specifier: 2.5.0
         version: 2.5.0
+    optionalDependencies:
+      '@web-types/lit':
+        specifier: 2.0.0-3
+        version: 2.0.0-3
 
   packages/changelog-github:
     dependencies:
@@ -65,10 +65,10 @@ importers:
         specifier: 0.5.2
         version: 0.5.2
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.36
+        specifier: workspace:10.0.0-next.37
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.36
+        specifier: workspace:10.0.0-next.37
         version: link:../styles/dist
       ally.js:
         specifier: 1.4.1
@@ -189,10 +189,10 @@ importers:
         specifier: 19.2.0
         version: 19.2.0(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(@angular/platform-browser@19.2.0(@angular/animations@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0)))(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0)))(rxjs@7.8.1)
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.36
+        specifier: workspace:10.0.0-next.37
         version: link:../components
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.36
+        specifier: workspace:10.0.0-next.37
         version: link:../styles/dist
       rxjs:
         specifier: 7.8.1
@@ -271,7 +271,7 @@ importers:
         specifier: ^19.0.0
         version: 19.2.0(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(@angular/platform-browser@19.2.0(@angular/animations@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0)))(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0)))(rxjs@7.8.1)
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.36
+        specifier: workspace:10.0.0-next.37
         version: link:../../../components
       tslib:
         specifier: 2.8.1
@@ -281,7 +281,7 @@ importers:
   packages/components-react:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.36
+        specifier: workspace:10.0.0-next.37
         version: link:../components
     devDependencies:
       '@eslint/js':
@@ -327,22 +327,22 @@ importers:
   packages/documentation:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.36
+        specifier: workspace:10.0.0-next.37
         version: link:../components
       '@swisspost/design-system-components-react':
-        specifier: workspace:10.0.0-next.36
+        specifier: workspace:10.0.0-next.37
         version: link:../components-react
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.36
+        specifier: workspace:10.0.0-next.37
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.36
+        specifier: workspace:10.0.0-next.37
         version: link:../styles/dist
       '@swisspost/design-system-tokens':
-        specifier: workspace:10.0.0-next.36
+        specifier: workspace:10.0.0-next.37
         version: link:../tokens/dist
       '@swisspost/internet-header':
-        specifier: workspace:2.0.0-next.36
+        specifier: workspace:2.0.0-next.37
         version: link:../internet-header
       bootstrap:
         specifier: 5.3.3
@@ -359,7 +359,7 @@ importers:
         version: 1.0.1
       '@open-wc/lit-helpers':
         specifier: 0.7.0
-        version: 0.7.0(lit@3.2.1)
+        version: 0.7.0(lit@3.3.0)
       '@percy/cli':
         specifier: 1.30.6
         version: 1.30.6(typescript@5.8.3)
@@ -398,12 +398,12 @@ importers:
         version: 8.4.7(storybook@8.4.7(prettier@2.8.8))
       '@storybook/web-components':
         specifier: 8.4.7
-        version: 8.4.7(lit@3.2.1)(storybook@8.4.7(prettier@2.8.8))
+        version: 8.4.7(lit@3.3.0)(storybook@8.4.7(prettier@2.8.8))
       '@storybook/web-components-vite':
         specifier: 8.4.7
-        version: 8.4.7(lit@3.2.1)(storybook@8.4.7(prettier@2.8.8))(vite@6.3.4(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.78.0)(sass@1.85.1)(terser@5.39.0)(yaml@2.7.0))
+        version: 8.4.7(lit@3.3.0)(storybook@8.4.7(prettier@2.8.8))(vite@6.3.4(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.78.0)(sass@1.85.1)(terser@5.39.0)(yaml@2.7.0))
       '@swisspost/design-system-components-angular':
-        specifier: workspace:10.0.0-next.36
+        specifier: workspace:10.0.0-next.37
         version: link:../components-angular/dist/components
       '@types/css-modules':
         specifier: 1.0.5
@@ -451,8 +451,8 @@ importers:
         specifier: 16.0.0
         version: 16.0.0
       lit:
-        specifier: 3.2.1
-        version: 3.2.1
+        specifier: 3.3.0
+        version: 3.3.0
       lit-html:
         specifier: 3.3.0
         version: 3.3.0
@@ -629,7 +629,7 @@ importers:
   packages/internet-header:
     dependencies:
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.36
+        specifier: workspace:10.0.0-next.37
         version: link:../styles/dist
       body-scroll-lock:
         specifier: 4.0.0-beta.0
@@ -768,13 +768,13 @@ importers:
   packages/nextjs-integration:
     dependencies:
       '@swisspost/design-system-components-react':
-        specifier: workspace:10.0.0-next.36
+        specifier: workspace:10.0.0-next.37
         version: link:../components-react
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.36
+        specifier: workspace:10.0.0-next.37
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: workspace:2.0.0-next.36
+        specifier: workspace:2.0.0-next.37
         version: link:../internet-header
       next:
         specifier: 15.2.4
@@ -803,7 +803,7 @@ importers:
         version: 18.3.5(@types/react@18.3.3)
       autoprefixer:
         specifier: 10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.20(postcss@8.5.3)
       eslint:
         specifier: 9.18.0
         version: 9.18.0(jiti@2.4.2)
@@ -817,8 +817,8 @@ importers:
         specifier: 16.0.0
         version: 16.0.0
       postcss:
-        specifier: 8.4.49
-        version: 8.4.49
+        specifier: 8.5.3
+        version: 8.5.3
       rimraf:
         specifier: 6.0.1
         version: 6.0.1
@@ -854,17 +854,17 @@ importers:
         version: 3.0.0
     devDependencies:
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.36
+        specifier: workspace:10.0.0-next.37
         version: link:../icons
       '@swisspost/design-system-tokens':
-        specifier: workspace:10.0.0-next.36
+        specifier: workspace:10.0.0-next.37
         version: link:../tokens/dist
       '@types/node':
         specifier: 22.10.5
         version: 22.10.5
       autoprefixer:
         specifier: 10.4.20
-        version: 10.4.20(postcss@8.4.49)
+        version: 10.4.20(postcss@8.5.3)
       copyfiles:
         specifier: 2.4.1
         version: 2.4.1
@@ -879,7 +879,7 @@ importers:
         version: 1.4.0
       gulp-postcss:
         specifier: 10.0.0
-        version: 10.0.0(jiti@2.4.2)(postcss@8.4.49)
+        version: 10.0.0(jiti@2.4.2)(postcss@8.5.3)
       gulp-sass:
         specifier: 6.0.0
         version: 6.0.0
@@ -887,11 +887,11 @@ importers:
         specifier: 29.7.0
         version: 29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3))
       postcss:
-        specifier: 8.4.49
-        version: 8.4.49
+        specifier: 8.5.3
+        version: 8.5.3
       postcss-scss:
         specifier: 4.0.9
-        version: 4.0.9(postcss@8.4.49)
+        version: 4.0.9(postcss@8.5.3)
       prettier:
         specifier: 3.3.3
         version: 3.3.3
@@ -906,7 +906,7 @@ importers:
         version: 16.12.0(typescript@5.8.3)
       stylelint-config-sass-guidelines:
         specifier: 11.1.0
-        version: 11.1.0(postcss@8.4.49)(stylelint@16.12.0(typescript@5.8.3))
+        version: 11.1.0(postcss@8.5.3)(stylelint@16.12.0(typescript@5.8.3))
       stylelint-prettier:
         specifier: 5.0.2
         version: 5.0.2(prettier@3.3.3)(stylelint@16.12.0(typescript@5.8.3))
@@ -951,11 +951,11 @@ importers:
         specifier: 19.0.9
         version: 19.0.9
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.36
+        specifier: workspace:10.0.0-next.37
         version: link:../styles/dist
       primeng:
         specifier: 19.0.9
-        version: 19.0.9(fxrnogyevcwbkooc5wfwgygr6i)
+        version: 19.0.9(553da6a5bf19415560b0c79df2838c31)
       rxjs:
         specifier: 7.8.1
         version: 7.8.1
@@ -1039,11 +1039,11 @@ importers:
   packages/styles-primeng-workspace/projects/styles-primeng:
     dependencies:
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.36
+        specifier: workspace:10.0.0-next.37
         version: link:../../../styles/dist
       primeng:
         specifier: ^19.0.0
-        version: 19.0.9(fxrnogyevcwbkooc5wfwgygr6i)
+        version: 19.0.9(553da6a5bf19415560b0c79df2838c31)
       tslib:
         specifier: 2.8.1
         version: 2.8.1
@@ -3208,6 +3208,9 @@ packages:
 
   '@lit/reactive-element@2.0.4':
     resolution: {integrity: sha512-GFn91inaUa2oHLak8awSIigYz0cU0Payr1rcFsrkf5OJ5eSPxElyZfKh0f2p9FsTiZWXQdWGJeXZICEfXXYSXQ==}
+
+  '@lit/reactive-element@2.1.0':
+    resolution: {integrity: sha512-L2qyoZSQClcBmq0qajBVbhYEcG6iK0XfLn66ifLe/RfC0/ihpc+pl0Wdn8bJ8o+hj38cG0fGXRgSS20MuXn7qA==}
 
   '@lit/task@1.0.1':
     resolution: {integrity: sha512-fVLDtmwCau8NywnFIXaJxsCZjzaIxnVq+cFRKYC1Y4tA4/0rMTvF6DLZZ2JE51BwzOluaKtgJX8x1QDsQtAaIw==}
@@ -8106,14 +8109,14 @@ packages:
     resolution: {integrity: sha512-iyAZCeyD+c1gPyE9qpFu8af0Y+MRtmKOncdGoA2S5EY8iFq99dmmvkNnHiWo+pj0s7yH7l3KPIgee77tKpXPWQ==}
     engines: {node: '>=18.0.0'}
 
-  lit-element@4.1.1:
-    resolution: {integrity: sha512-HO9Tkkh34QkTeUmEdNYhMT8hzLid7YlMlATSi1q4q17HE5d9mrrEHJ/o8O2D0cMi182zK1F3v7x0PWFjrhXFew==}
+  lit-element@4.2.0:
+    resolution: {integrity: sha512-MGrXJVAI5x+Bfth/pU9Kst1iWID6GHDLEzFEnyULB/sFiRLgkd8NPK/PeeXxktA3T6EIIaq8U3KcbTU5XFcP2Q==}
 
   lit-html@3.3.0:
     resolution: {integrity: sha512-RHoswrFAxY2d8Cf2mm4OZ1DgzCoBKUKSPvA1fhtSELxUERq2aQQ2h05pO9j81gS1o7RIRJ+CePLogfyahwmynw==}
 
-  lit@3.2.1:
-    resolution: {integrity: sha512-1BBa1E/z0O9ye5fZprPtdqnc0BFzxIxTTOO/tQFmyC/hj1O3jL4TfmLBw0WEwjAokdLwpclkvGgDJwTIh0/22w==}
+  lit@3.3.0:
+    resolution: {integrity: sha512-DGVsqsOIHBww2DqnuZzW7QsuCdahp50ojuDaBPC7jUDRpYoH0z7kHBBYZewRzer75FwtrkmkKk7iOAwSaWdBmw==}
 
   lmdb@3.2.6:
     resolution: {integrity: sha512-SuHqzPl7mYStna8WRotY8XX/EUZBjjv3QyKIByeCLFfC9uXT/OIHByEcA07PzbMfQAM0KYJtLgtpMRlIe5dErQ==}
@@ -14364,6 +14367,10 @@ snapshots:
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.2.1
 
+  '@lit/reactive-element@2.1.0':
+    dependencies:
+      '@lit-labs/ssr-dom-shim': 1.2.1
+
   '@lit/task@1.0.1':
     dependencies:
       '@lit/reactive-element': 2.0.4
@@ -14665,9 +14672,9 @@ snapshots:
 
   '@oddbird/popover-polyfill@0.5.2': {}
 
-  '@open-wc/lit-helpers@0.7.0(lit@3.2.1)':
+  '@open-wc/lit-helpers@0.7.0(lit@3.3.0)':
     dependencies:
-      lit: 3.2.1
+      lit: 3.3.0
 
   '@parcel/watcher-android-arm64@2.5.1':
     optional: true
@@ -15366,24 +15373,24 @@ snapshots:
     dependencies:
       storybook: 8.4.7(prettier@2.8.8)
 
-  '@storybook/web-components-vite@8.4.7(lit@3.2.1)(storybook@8.4.7(prettier@2.8.8))(vite@6.3.4(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.78.0)(sass@1.85.1)(terser@5.39.0)(yaml@2.7.0))':
+  '@storybook/web-components-vite@8.4.7(lit@3.3.0)(storybook@8.4.7(prettier@2.8.8))(vite@6.3.4(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.78.0)(sass@1.85.1)(terser@5.39.0)(yaml@2.7.0))':
     dependencies:
       '@storybook/builder-vite': 8.4.7(storybook@8.4.7(prettier@2.8.8))(vite@6.3.4(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.78.0)(sass@1.85.1)(terser@5.39.0)(yaml@2.7.0))
-      '@storybook/web-components': 8.4.7(lit@3.2.1)(storybook@8.4.7(prettier@2.8.8))
+      '@storybook/web-components': 8.4.7(lit@3.3.0)(storybook@8.4.7(prettier@2.8.8))
       magic-string: 0.30.17
       storybook: 8.4.7(prettier@2.8.8)
     transitivePeerDependencies:
       - lit
       - vite
 
-  '@storybook/web-components@8.4.7(lit@3.2.1)(storybook@8.4.7(prettier@2.8.8))':
+  '@storybook/web-components@8.4.7(lit@3.3.0)(storybook@8.4.7(prettier@2.8.8))':
     dependencies:
       '@storybook/components': 8.4.7(storybook@8.4.7(prettier@2.8.8))
       '@storybook/global': 5.0.0
       '@storybook/manager-api': 8.4.7(storybook@8.4.7(prettier@2.8.8))
       '@storybook/preview-api': 8.4.7(storybook@8.4.7(prettier@2.8.8))
       '@storybook/theming': 8.4.7(storybook@8.4.7(prettier@2.8.8))
-      lit: 3.2.1
+      lit: 3.3.0
       storybook: 8.4.7(prettier@2.8.8)
       tiny-invariant: 1.3.3
       ts-dedent: 2.2.0
@@ -16465,16 +16472,6 @@ snapshots:
 
   atob@2.1.2: {}
 
-  autoprefixer@10.4.20(postcss@8.4.49):
-    dependencies:
-      browserslist: 4.24.4
-      caniuse-lite: 1.0.30001692
-      fraction.js: 4.3.7
-      normalize-range: 0.1.2
-      picocolors: 1.1.1
-      postcss: 8.4.49
-      postcss-value-parser: 4.2.0
-
   autoprefixer@10.4.20(postcss@8.5.2):
     dependencies:
       browserslist: 4.24.4
@@ -16483,6 +16480,16 @@ snapshots:
       normalize-range: 0.1.2
       picocolors: 1.1.1
       postcss: 8.5.2
+      postcss-value-parser: 4.2.0
+
+  autoprefixer@10.4.20(postcss@8.5.3):
+    dependencies:
+      browserslist: 4.24.4
+      caniuse-lite: 1.0.30001692
+      fraction.js: 4.3.7
+      normalize-range: 0.1.2
+      picocolors: 1.1.1
+      postcss: 8.5.3
       postcss-value-parser: 4.2.0
 
   available-typed-arrays@1.0.7:
@@ -16685,7 +16692,7 @@ snapshots:
       domhandler: 5.0.3
       htmlparser2: 9.1.0
       picocolors: 1.1.1
-      postcss: 8.4.49
+      postcss: 8.5.3
       postcss-media-query-parser: 0.2.3
 
   better-opn@3.0.2:
@@ -17234,12 +17241,12 @@ snapshots:
 
   css-loader@7.1.2(webpack@5.98.0(esbuild@0.25.0)):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.4.49)
-      postcss: 8.4.49
-      postcss-modules-extract-imports: 3.1.0(postcss@8.4.49)
-      postcss-modules-local-by-default: 4.0.5(postcss@8.4.49)
-      postcss-modules-scope: 3.2.0(postcss@8.4.49)
-      postcss-modules-values: 4.0.0(postcss@8.4.49)
+      icss-utils: 5.1.0(postcss@8.5.3)
+      postcss: 8.5.3
+      postcss-modules-extract-imports: 3.1.0(postcss@8.5.3)
+      postcss-modules-local-by-default: 4.0.5(postcss@8.5.3)
+      postcss-modules-scope: 3.2.0(postcss@8.5.3)
+      postcss-modules-values: 4.0.0(postcss@8.5.3)
       postcss-value-parser: 4.2.0
       semver: 7.7.1
     optionalDependencies:
@@ -18886,12 +18893,12 @@ snapshots:
       kew: 0.7.0
       plugin-error: 0.1.2
 
-  gulp-postcss@10.0.0(jiti@2.4.2)(postcss@8.4.49):
+  gulp-postcss@10.0.0(jiti@2.4.2)(postcss@8.5.3):
     dependencies:
       fancy-log: 2.0.0
       plugin-error: 2.0.1
-      postcss: 8.4.49
-      postcss-load-config: 5.1.0(jiti@2.4.2)(postcss@8.4.49)
+      postcss: 8.5.3
+      postcss-load-config: 5.1.0(jiti@2.4.2)(postcss@8.5.3)
       vinyl-sourcemaps-apply: 0.2.1
     transitivePeerDependencies:
       - jiti
@@ -19155,10 +19162,6 @@ snapshots:
       safer-buffer: 2.1.2
 
   icss-replace-symbols@1.1.0: {}
-
-  icss-utils@5.1.0(postcss@8.4.49):
-    dependencies:
-      postcss: 8.4.49
 
   icss-utils@5.1.0(postcss@8.5.3):
     dependencies:
@@ -20266,20 +20269,20 @@ snapshots:
       rfdc: 1.4.1
       wrap-ansi: 9.0.0
 
-  lit-element@4.1.1:
+  lit-element@4.2.0:
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.2.1
-      '@lit/reactive-element': 2.0.4
+      '@lit/reactive-element': 2.1.0
       lit-html: 3.3.0
 
   lit-html@3.3.0:
     dependencies:
       '@types/trusted-types': 2.0.7
 
-  lit@3.2.1:
+  lit@3.3.0:
     dependencies:
-      '@lit/reactive-element': 2.0.4
-      lit-element: 4.1.1
+      '@lit/reactive-element': 2.1.0
+      lit-element: 4.2.0
       lit-html: 3.3.0
 
   lmdb@3.2.6:
@@ -21677,17 +21680,17 @@ snapshots:
     dependencies:
       postcss: 8.5.3
 
-  postcss-import@15.1.0(postcss@8.4.49):
+  postcss-import@15.1.0(postcss@8.5.3):
     dependencies:
-      postcss: 8.4.49
+      postcss: 8.5.3
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.10
 
-  postcss-js@4.0.1(postcss@8.4.49):
+  postcss-js@4.0.1(postcss@8.5.3):
     dependencies:
       camelcase-css: 2.0.1
-      postcss: 8.4.49
+      postcss: 8.5.3
 
   postcss-load-config@3.1.4(postcss@8.5.3)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)):
     dependencies:
@@ -21697,21 +21700,21 @@ snapshots:
       postcss: 8.5.3
       ts-node: 10.9.2(@types/node@22.10.5)(typescript@5.8.3)
 
-  postcss-load-config@4.0.2(postcss@8.4.49)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)):
+  postcss-load-config@4.0.2(postcss@8.5.3)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)):
     dependencies:
       lilconfig: 3.1.3
       yaml: 2.7.0
     optionalDependencies:
-      postcss: 8.4.49
+      postcss: 8.5.3
       ts-node: 10.9.2(@types/node@22.10.5)(typescript@5.8.3)
 
-  postcss-load-config@5.1.0(jiti@2.4.2)(postcss@8.4.49):
+  postcss-load-config@5.1.0(jiti@2.4.2)(postcss@8.5.3):
     dependencies:
       lilconfig: 3.1.2
       yaml: 2.5.1
     optionalDependencies:
       jiti: 2.4.2
-      postcss: 8.4.49
+      postcss: 8.5.3
 
   postcss-loader@8.1.1(postcss@8.5.2)(typescript@5.8.3)(webpack@5.98.0(esbuild@0.25.0)):
     dependencies:
@@ -21768,9 +21771,9 @@ snapshots:
     dependencies:
       postcss: 8.5.3
 
-  postcss-modules-extract-imports@3.1.0(postcss@8.4.49):
+  postcss-modules-extract-imports@3.1.0(postcss@8.5.3):
     dependencies:
-      postcss: 8.4.49
+      postcss: 8.5.3
 
   postcss-modules-local-by-default@4.0.4(postcss@8.5.3):
     dependencies:
@@ -21779,10 +21782,10 @@ snapshots:
       postcss-selector-parser: 6.1.2
       postcss-value-parser: 4.2.0
 
-  postcss-modules-local-by-default@4.0.5(postcss@8.4.49):
+  postcss-modules-local-by-default@4.0.5(postcss@8.5.3):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.4.49)
-      postcss: 8.4.49
+      icss-utils: 5.1.0(postcss@8.5.3)
+      postcss: 8.5.3
       postcss-selector-parser: 6.1.2
       postcss-value-parser: 4.2.0
 
@@ -21791,15 +21794,10 @@ snapshots:
       postcss: 8.5.3
       postcss-selector-parser: 6.1.2
 
-  postcss-modules-scope@3.2.0(postcss@8.4.49):
+  postcss-modules-scope@3.2.0(postcss@8.5.3):
     dependencies:
-      postcss: 8.4.49
+      postcss: 8.5.3
       postcss-selector-parser: 6.1.2
-
-  postcss-modules-values@4.0.0(postcss@8.4.49):
-    dependencies:
-      icss-utils: 5.1.0(postcss@8.4.49)
-      postcss: 8.4.49
 
   postcss-modules-values@4.0.0(postcss@8.5.3):
     dependencies:
@@ -21818,9 +21816,9 @@ snapshots:
       postcss-modules-values: 4.0.0(postcss@8.5.3)
       string-hash: 1.1.3
 
-  postcss-nested@6.2.0(postcss@8.4.49):
+  postcss-nested@6.2.0(postcss@8.5.3):
     dependencies:
-      postcss: 8.4.49
+      postcss: 8.5.3
       postcss-selector-parser: 6.1.2
 
   postcss-normalize-charset@5.1.0(postcss@8.5.3):
@@ -21888,13 +21886,9 @@ snapshots:
 
   postcss-resolve-nested-selector@0.1.6: {}
 
-  postcss-safe-parser@7.0.1(postcss@8.4.49):
+  postcss-safe-parser@7.0.1(postcss@8.5.3):
     dependencies:
-      postcss: 8.4.49
-
-  postcss-scss@4.0.9(postcss@8.4.49):
-    dependencies:
-      postcss: 8.4.49
+      postcss: 8.5.3
 
   postcss-scss@4.0.9(postcss@8.5.3):
     dependencies:
@@ -21974,7 +21968,7 @@ snapshots:
       ansi-styles: 5.2.0
       react-is: 18.2.0
 
-  primeng@19.0.9(fxrnogyevcwbkooc5wfwgygr6i):
+  primeng@19.0.9(553da6a5bf19415560b0c79df2838c31):
     dependencies:
       '@angular/animations': 19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))
       '@angular/cdk': 19.2.2(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1)
@@ -22320,7 +22314,7 @@ snapshots:
       adjust-sourcemap-loader: 4.0.0
       convert-source-map: 1.9.0
       loader-utils: 2.0.4
-      postcss: 8.4.49
+      postcss: 8.5.3
       source-map: 0.6.1
 
   resolve.exports@2.0.2: {}
@@ -23345,13 +23339,6 @@ snapshots:
       postcss: 8.5.3
       postcss-selector-parser: 6.1.2
 
-  stylelint-config-sass-guidelines@11.1.0(postcss@8.4.49)(stylelint@16.12.0(typescript@5.8.3)):
-    dependencies:
-      postcss: 8.4.49
-      postcss-scss: 4.0.9(postcss@8.4.49)
-      stylelint: 16.12.0(typescript@5.8.3)
-      stylelint-scss: 6.10.0(stylelint@16.12.0(typescript@5.8.3))
-
   stylelint-config-sass-guidelines@11.1.0(postcss@8.5.3)(stylelint@16.12.0(typescript@5.8.3)):
     dependencies:
       postcss: 8.5.3
@@ -23412,9 +23399,9 @@ snapshots:
       micromatch: 4.0.8
       normalize-path: 3.0.0
       picocolors: 1.1.1
-      postcss: 8.4.49
+      postcss: 8.5.3
       postcss-resolve-nested-selector: 0.1.6
-      postcss-safe-parser: 7.0.1(postcss@8.4.49)
+      postcss-safe-parser: 7.0.1(postcss@8.5.3)
       postcss-selector-parser: 7.0.0
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
@@ -23527,11 +23514,11 @@ snapshots:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.1.1
-      postcss: 8.4.49
-      postcss-import: 15.1.0(postcss@8.4.49)
-      postcss-js: 4.0.1(postcss@8.4.49)
-      postcss-load-config: 4.0.2(postcss@8.4.49)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3))
-      postcss-nested: 6.2.0(postcss@8.4.49)
+      postcss: 8.5.3
+      postcss-import: 15.1.0(postcss@8.5.3)
+      postcss-js: 4.0.1(postcss@8.5.3)
+      postcss-load-config: 4.0.2(postcss@8.5.3)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3))
+      postcss-nested: 6.2.0(postcss@8.5.3)
       postcss-selector-parser: 6.1.2
       resolve: 1.22.8
       sucrase: 3.35.0
