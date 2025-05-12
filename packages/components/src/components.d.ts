@@ -214,25 +214,37 @@ export namespace Components {
     }
     interface PostPopovercontainer {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Animation style
+         */
+        "animation"?: 'pop-in' | null;
+        /**
+          * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
         /**
-          * Programmatically hide this tooltip
+          * Gap between the edge of the page and the popovercontainer
+         */
+        "edgeGap"?: number;
+        /**
+          * Programmatically hide the popovercontainer
          */
         "hide": () => Promise<void>;
         /**
-          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
         /**
-          * Programmatically display the tooltip
-          * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+          * Enables a safespace through which the cursor can be moved without the popover being disabled
+         */
+        "safeSpace"?: 'triangle' | 'trapezoid';
+        /**
+          * Programmatically display the popovercontainer
+          * @param target An element with [data-popover-target="id"] where the popovercontainer should be shown
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
-          * Toggle tooltip display
-          * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+          * Toggle popovercontainer display
+          * @param target An element with [data-popover-target="id"] where the popovercontainer should be shown
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<boolean>;
@@ -293,33 +305,46 @@ export namespace Components {
     }
     interface PostTooltip {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Choose a tooltip animation
+         */
+        "animation"?: 'pop-in' | null;
+        /**
+          * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
         /**
-          * If `true`, the tooltip is displayed a few milliseconds after it is triggered
-         */
-        "delayed": boolean;
-        /**
-          * Programmatically hide this tooltip
+          * Programmatically hide this tooltip.
          */
         "hide": () => Promise<void>;
         /**
-          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Indicates the open state of the tooltip
+         */
+        "open": boolean;
+        /**
+          * Defines the position of the tooltip relative to its trigger. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
          */
         "placement"?: Placement;
         /**
-          * Programmatically display the tooltip
-          * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
-          * @param triggeredByFocus A boolean indicating if the tooltip was triggered by a focus event.
+          * Programmatically display the tooltip.
+          * @param target An element where the tooltip should be shown
          */
-        "show": (target: HTMLElement, triggeredByFocus?: boolean) => Promise<void>;
+        "show": (target: HTMLElement) => Promise<void>;
         /**
-          * Toggle tooltip display
-          * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+          * Toggle tooltip display.
+          * @param target An element where the tooltip should be shown
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
+    }
+    interface PostTooltipTrigger {
+        /**
+          * Delay (in milliseconds) before the tooltip is shown.
+         */
+        "delay": number;
+        /**
+          * ID of the tooltip element that this trigger is linked to.
+         */
+        "for": string;
     }
 }
 export interface PostAlertCustomEvent<T> extends CustomEvent<T> {
@@ -517,6 +542,12 @@ declare global {
         prototype: HTMLPostTooltipElement;
         new (): HTMLPostTooltipElement;
     };
+    interface HTMLPostTooltipTriggerElement extends Components.PostTooltipTrigger, HTMLStencilElement {
+    }
+    var HTMLPostTooltipTriggerElement: {
+        prototype: HTMLPostTooltipTriggerElement;
+        new (): HTMLPostTooltipTriggerElement;
+    };
     interface HTMLElementTagNameMap {
         "post-accordion": HTMLPostAccordionElement;
         "post-accordion-item": HTMLPostAccordionItemElement;
@@ -534,6 +565,7 @@ declare global {
         "post-tabs": HTMLPostTabsElement;
         "post-tag": HTMLPostTagElement;
         "post-tooltip": HTMLPostTooltipElement;
+        "post-tooltip-trigger": HTMLPostTooltipTriggerElement;
     }
 }
 declare namespace LocalJSX {
@@ -704,17 +736,29 @@ declare namespace LocalJSX {
     }
     interface PostPopovercontainer {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Animation style
+         */
+        "animation"?: 'pop-in' | null;
+        /**
+          * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
         /**
-          * Fires whenever the popover gets shown or hidden, passing the new state in event.details as a boolean
+          * Gap between the edge of the page and the popovercontainer
+         */
+        "edgeGap"?: number;
+        /**
+          * Fires whenever the popovercontainer gets shown or hidden, passing the new state in event.details as a boolean
          */
         "onPostToggle"?: (event: PostPopovercontainerCustomEvent<boolean>) => void;
         /**
-          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
+        /**
+          * Enables a safespace through which the cursor can be moved without the popover being disabled
+         */
+        "safeSpace"?: 'triangle' | 'trapezoid';
     }
     interface PostRating {
         /**
@@ -780,17 +824,31 @@ declare namespace LocalJSX {
     }
     interface PostTooltip {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Choose a tooltip animation
+         */
+        "animation"?: 'pop-in' | null;
+        /**
+          * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
         /**
-          * If `true`, the tooltip is displayed a few milliseconds after it is triggered
+          * Indicates the open state of the tooltip
          */
-        "delayed"?: boolean;
+        "open"?: boolean;
         /**
-          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Defines the position of the tooltip relative to its trigger. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
          */
         "placement"?: Placement;
+    }
+    interface PostTooltipTrigger {
+        /**
+          * Delay (in milliseconds) before the tooltip is shown.
+         */
+        "delay"?: number;
+        /**
+          * ID of the tooltip element that this trigger is linked to.
+         */
+        "for": string;
     }
     interface IntrinsicElements {
         "post-accordion": PostAccordion;
@@ -809,6 +867,7 @@ declare namespace LocalJSX {
         "post-tabs": PostTabs;
         "post-tag": PostTag;
         "post-tooltip": PostTooltip;
+        "post-tooltip-trigger": PostTooltipTrigger;
     }
 }
 export { LocalJSX as JSX };
@@ -837,6 +896,7 @@ declare module "@stencil/core" {
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
             "post-tag": LocalJSX.PostTag & JSXBase.HTMLAttributes<HTMLPostTagElement>;
             "post-tooltip": LocalJSX.PostTooltip & JSXBase.HTMLAttributes<HTMLPostTooltipElement>;
+            "post-tooltip-trigger": LocalJSX.PostTooltipTrigger & JSXBase.HTMLAttributes<HTMLPostTooltipTriggerElement>;
         }
     }
 }

@@ -1,5 +1,6 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as TooltipStories from './tooltip.stories';
+import * as TooltipTriggerStories from './tooltip-trigger.stories';
 
 <Meta of={TooltipStories} />
 
@@ -15,6 +16,13 @@ import * as TooltipStories from './tooltip.stories';
 
 <Canvas sourceState="shown" of={TooltipStories.Default} />
 <Controls of={TooltipStories.Default} />
+
+## `<post-tooltip-trigger>`
+
+The `<post-tooltip-trigger>` component enables you to show tooltips with customizable delay.
+
+<Canvas sourceState="shown" of={TooltipTriggerStories.Default} />
+<Controls of={TooltipTriggerStories.Default} />
 
 ## Installation
 
@@ -34,4 +42,3 @@ If you assign a tooltip to a non-focusable element, the component will add `tabi
 The same tooltip can be displayed on multiple elements. This reduces the amount of markup necessary.
 
 <Canvas of={TooltipStories.Multiple} />
-

@@ -16,4 +16,5 @@ export { PostTabs } from './components/post-tabs/post-tabs';
 export { PostTabHeader } from './components/post-tab-header/post-tab-header';
 export { PostTabPanel } from './components/post-tab-panel/post-tab-panel';
 export { PostTooltip } from './components/post-tooltip/post-tooltip';
+export { PostTooltipTrigger } from './components/post-tooltip-trigger/post-tooltip-trigger';
 export { PostTag } from './components/post-tag/post-tag';
