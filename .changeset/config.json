@@ -22,7 +22,7 @@
   ],
   "linked": [],
   "access": "restricted",
-  "baseBranch": "release/v8",
+  "baseBranch": "release/v9",
   "updateInternalDependencies": "patch",
   "ignore": []
 }
