@@ -5,15 +5,16 @@
 @use '@swisspost/design-system-styles/variables/spacing';
 
 :host {
+  display: none;
   --post-contrast-color: #{color.$white};
   --post-bg-rgb: #{color-fn.rgb-values(color.$gray-80)};
 }
 
-post-popovercontainer {
-  padding: spacing.$size-micro spacing.$size-mini;
-  max-width: 2 * spacing.$size-bigger-giant - spacing.$size-mini;
-  min-height: spacing.$size-regular;
+:host([open]) {
+  display: block;
+}
 
+post-popovercontainer {
   // Creates a safe space around the popovercontainer for save pointer crossing between trigger and tooltip
   &[arrow] {
     &::after {
@@ -22,5 +23,11 @@ post-popovercontainer {
       inset: -13px;
       z-index: -1;
     }
+  }
+
+  & > div {
+    padding: spacing.$size-micro spacing.$size-mini;
+    max-width: 200px;
+    min-height: 32px;
   }
 }
