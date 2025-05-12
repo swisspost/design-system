@@ -95,8 +95,8 @@ function render(args: Args) {
 
   return html`
     <post-tooltip-trigger for="${args.id}">
-      <button class="btn btn-secondary btn-large">Button</button></post-tooltip-trigger
-    >
+      <button class="btn btn-secondary btn-large">Button</button>
+    </post-tooltip-trigger>
     <post-tooltip
       id="${args.id}"
       arrow="${ifDefined(args.arrow)}"
