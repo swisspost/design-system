@@ -4,6 +4,7 @@ export function checkUrl<T extends { host: HTMLElement }>(
   customMessage?: string,
 ) {
   const componentName = component.host.localName;
+
   const value = component[prop];
 
   const defaultMessage = `The prop \`${String(
@@ -13,6 +14,7 @@ export function checkUrl<T extends { host: HTMLElement }>(
 
   if (typeof value !== 'string' && !(value instanceof URL)) {
     console.error(message);
+
     return;
   }
 
