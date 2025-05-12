@@ -1,7 +1,7 @@
 export function checkOneOf<T extends { host: HTMLElement }>(
   component: T,
   prop: keyof T,
-  possibleValues: readonly T[keyof T][],
+  possibleValues: readonly unknown[],
   customMessage?: string,
 ) {
   const componentName = component.host.localName;
