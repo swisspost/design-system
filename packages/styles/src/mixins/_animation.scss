@@ -45,7 +45,6 @@
   }
 }
 
-
 @mixin pop-in-animation($duration) {
   animation: popIn $duration ease-out forwards;
 }
