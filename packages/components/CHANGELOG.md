@@ -1,5 +1,22 @@
 # @swisspost/design-system-components
 
+## 9.0.0
+
+### Major Changes
+
+- The default value of the arrow property for the `post-tooltip` element has been changed to `false`. This means, that tooltips do not display arrows by default anymore. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5470](https://github.com/swisspost/design-system/pull/5470))
+
+- The `post-tooltip-trigger` element has been introduced as the new way to trigger tooltips. Instead of using an attribute to associate a trigger with a `post-tooltip`, you now wrap the element in `post-tooltip-trigger`. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5470](https://github.com/swisspost/design-system/pull/5470))
+
+### Minor Changes
+
+- Improved the accessibility of the `post-tooltip` by expanding the interactive area that allows it to stay open. This change is inspired by the "safe triangle" concept, as explained in [this article](https://www.smashingmagazine.com/2023/08/better-context-menus-safe-triangles/). (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5470](https://github.com/swisspost/design-system/pull/5470))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0
+
 ## 8.10.0
 
 ### Patch Changes
