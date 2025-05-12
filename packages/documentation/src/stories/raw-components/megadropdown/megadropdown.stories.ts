@@ -77,17 +77,15 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       <!-- Main navigation -->
       <post-mainnavigation caption="Main Navigation">
         <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
-          <post-icon aria-hidden="true" name="3024"></post-icon> Back
+          <post-icon aria-hidden="true" name="arrowleft"></post-icon> Back
         </button>
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
-          <post-list-item>
-            ${story(context.args, context)} 
-          </post-list-item>
+          <post-list-item> ${story(context.args, context)} </post-list-item>
         </post-list>
       </post-mainnavigation>
     </post-header>
-     <div class="container">
+    <div class="container">
       <p class="fake-content"></p>
       <p class="fake-content"></p>
     </div>

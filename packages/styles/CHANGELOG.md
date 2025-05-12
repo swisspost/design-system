@@ -1,5 +1,21 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.37
+
+### Major Changes
+
+- Fixed the disappearing validation icons on text input fields when browser autocomplete is applied. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5339](https://github.com/swisspost/design-system/pull/5339))
+
+- Prefixed the following CSS custom variables with `post`:
+  - `--section-width` is now `--post-section-width`
+  - `--section-container-width` is now `--post-section-container-width`
+  - `--section-container-content-offset` is now `--post-section-container-content-offset`
+  - `--section-container-padding` is now `--post-section-container-padding` (by [@leagrdv](https://github.com/leagrdv) with [#5354](https://github.com/swisspost/design-system/pull/5354))
+
+### Patch Changes
+
+- Fixed background on disabled textarea labels to maintain readability when content overflows. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5453](https://github.com/swisspost/design-system/pull/5453))
+
 ## 9.0.0-next.36
 
 ## 9.0.0-next.35
