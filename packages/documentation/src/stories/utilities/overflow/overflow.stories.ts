@@ -52,10 +52,7 @@ const meta: MetaExtended = {
           : ''}${args.overflowY ? ' overflow-y-' + args.overflowY : ''}"
       >
         <div class="content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          This is a long text content that demonstrates how the overflow property works. This paragraph contains several sentences that will help show the different overflow behaviors when the container is too small to contain all the text. It's useful for testing different overflow settings and seeing how they affect the layout and scrolling capabilities of the container element.
         </div>
       </div>
     `;
