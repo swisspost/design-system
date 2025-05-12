@@ -12,9 +12,10 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
+  decorators: [story => html` <div class="display-story">${story()}</div> `],
   render: () =>
     html`
-      <div class="d-inline bg-yellow p-8">Content</div>
-      <div class="d-inline bg-black p-8">Content</div>
+      <div class="d-inline p-8">Content</div>
+      <div class="d-inline p-8">Content</div>
     `,
 };

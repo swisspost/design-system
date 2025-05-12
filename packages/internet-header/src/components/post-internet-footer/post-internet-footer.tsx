@@ -26,7 +26,7 @@ export class PostInternetFooter {
      * show the live support button.
      */
     if (!this.liveSupportEnabled) {
-      let intervalId: number;
+      let intervalId: number | undefined = undefined;
       let runs = 0;
 
       const checker = () => {
@@ -98,7 +98,7 @@ export class PostInternetFooter {
     return (
       <Host>
         <SvgSprite />
-        <footer class="post-internet-footer light font-curve-regular">
+        <footer class="post-internet-footer light fs-6">
           <h2 class="visually-hidden">{footerConfig.title}</h2>
           {customFooterConfig?.block && <PostFooterBlockCustom block={customFooterConfig?.block} />}
           <div class="footer-container container">
@@ -123,7 +123,7 @@ export class PostInternetFooter {
               ))}
           </div>
           <div class="copyright container">
-            <span class="bold">{footerConfig.entry.text}</span>
+            <span>{footerConfig.entry.text}</span>
             <ul class="no-list footer-meta-links">
               {footerConfig.links !== undefined
                 ? footerConfig.links.map(link => (

@@ -1,5 +1,30 @@
 # Adds custom headers for specific resources
+
 # This file is used by Netlify to handle headers
+
+/assets/versions.json
+Access-Control-Allow-Origin: \*
+
+/assets/\*.css
+Access-Control-Allow-Origin: https://cdpn.io
+
+/assets/\*.svg
+Access-Control-Allow-Origin: https://cdpn.io
+
+/assets/\*.png
+Access-Control-Allow-Origin: https://cdpn.io
+
+/assets/\*.jpg
+Access-Control-Allow-Origin: https://cdpn.io
+
+/assets/\*.jpeg
+Access-Control-Allow-Origin: https://cdpn.io
+
+/assets/\*.gif
+Access-Control-Allow-Origin: https://cdpn.io
+
+/post-icons/\*.svg
+Access-Control-Allow-Origin: https://cdpn.io
 
 Access-Control-Allow-Origin: *.post.ch
 X-Frame-Options: SAMEORIGIN

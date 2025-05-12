@@ -1,0 +1,141 @@
+import { Meta } from '@storybook/blocks';
+import * as AccessibilityStories from './accessibility.stories';
+import { Canvas } from '@storybook/blocks';
+
+<Meta of={AccessibilityStories} />
+
+# Accessibility
+
+<figure className="mb-56">
+  <blockquote className="blockquote" lang="de">
+    <div className="mb-16">
+      Die Postdienste müssen so angeboten werden, dass Menschen mit Behinderungen sie in
+      qualitativer, quantitativer und wirtschaftlicher Hinsicht unter vergleichbaren Bedingungen wie
+      Menschen ohne Behinderungen beanspruchen können.
+    </div>
+    <div className="mb-16">
+      (EN) The postal services must be offered in such a way that people with disabilities can use
+      them under comparable conditions to those without disabilities, both qualitatively,
+      quantitatively, and economically.
+    </div>
+  </blockquote>
+  <figcaption className="blockquote-footer">
+    <cite>
+      §14.7 <a href="https://www.fedlex.admin.ch/eli/cc/2012/585">Swiss postal law</a>
+    </cite>
+  </figcaption>
+</figure>
+
+<div className="light-section pt-8 pb-48">
+## Introduction
+
+Swiss Post is guided by the standards of the Web Content Accessibility Guidelines (WCAG), Level AA.
+
+The Web Content Accessibility Guidelines are a recommendation for designing accessible Internet content. They were developed by the World Wide Web Consortium’s (W3C) Web Accessibility Initiative. The Level AA guidelines set out the following requirements in particular:
+
+  <div className="py-12">
+    <div className="row g-48">
+      <div className="col-md-6">
+        <div>
+          <post-icon name="2114" style={{ fontSize: '64px' }}></post-icon>
+          <div>
+            <h3 className="mt-12 h6">Perceivability</h3>
+            <div>
+              through text alternatives for images, subtitles for audio, ability to display content in
+              different ways and change colour contrasts
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="col-md-6">
+        <div>
+          <post-icon name="2130" style={{ fontSize: '64px' }}></post-icon>
+          <div>
+            <h3 className="mt-12 h6">Operability</h3>
+            <div>
+              through keyboard operation, colour contrasts, time limits for data entry, prevention of
+              seizures and navigability.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="col-md-6">
+        <div>
+          <post-icon name="2165" style={{ fontSize: '64px' }}></post-icon>
+          <div>
+            <h3 className="mt-12 h6">Undestandability</h3>
+            <div>through readability, predictability and assistance with entering data.</div>
+          </div>
+        </div>
+      </div>
+      <div className="col-md-6">
+        <div>
+          <post-icon name="2087" style={{ fontSize: '64px' }}></post-icon>
+          <div>
+            <h3 className="mt-12 h6">Robustness</h3>
+            <div>through compatibility with assistive technologies.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div className="pt-8">
+## Best practices
+
+Here are some key best practices to follow when designing and developing accessible websites and applications. While these are important starting points, there are many more considerations to ensure full accessibility. For more in-depth guidance, visit the [W3C website](https://www.w3.org/).
+
+### Color contrast
+
+Ensure that text has sufficient contrast against its background. The minimum recommended contrast ratio for text is 4.5:1 for normal text and 3:1 for large text.
+
+<Canvas sourceState="shown" of={AccessibilityStories.Default} />
+
+### Keyboard navigation
+
+Ensure all interactive elements (buttons, links, forms) are accessible via keyboard. This means they should be focusable and navigable using the Tab key. Use `:focus` styles to indicate focus on elements and avoid `tabindex="-1"` unless it’s necessary.
+
+We provide a `.focus-ring` helper class to add a focus style to custom elements. Read more on [our docs](/?path=/docs/6eea4ad2-d5d2-44bf-a7a5-d5621ecd6c36--docs).
+
+Make sure focus is managed properly during dynamic updates or modal windows. For example, focus should be set to the first interactive element inside a modal when it opens and should return to the original trigger when closed.
+
+<Canvas sourceState="shown" of={AccessibilityStories.Focus} />
+
+### ARIA Landmarks
+
+ARIA landmarks are used to identify larger overall sections of the webpage and allow users to quickly navigate sections of the page. Common landmarks include `role="navigation"`, `role="main"`, `role="header"` and `role="footer"`.
+
+### Forms
+
+Ensure that form elements are clearly labeled and use visual indicators such as asterisks for required fields.
+
+Ensure every form field has a properly associated label element and is linked to it using the `for` attribute.
+Use `aria-describedby` for additional descriptions, such as instructions or errors.
+Read more about [form hints](/?path=/docs/43525c38-d00c-4632-8cc5-0fb8a0f2a741--docs) and [form validations](/?path=/docs/1aa900d9-aa65-4ae0-b8cd-e6cca6cc3472--docs).
+
+<Canvas sourceState="hidden" of={AccessibilityStories.FormHint} />
+
+### Alternative text for images
+
+Always provide text alternatives for non-decorative images. This can be in the form of alt text or ARIA labels.
+Ensure images are meaningful and provide relevant context. Avoid using empty `alt=""` for important images.
+
+<Canvas sourceState="shown" of={AccessibilityStories.AltText} />
+
+### Accessible navigation (Skip links)
+
+Implement skip links that allow users to bypass repetitive content and jump directly to the main content. We provide a component to style those skiplinks, which you can read about [on our docs](/?path=/docs/2fc3b456-19ba-4ede-b1bc-499518f829b1--docs).
+
+### Semantic HTML
+
+- Use proper HTML elements to define the structure of the page. This helps assistive technologies (like screen readers) interpret and navigate the content effectively.
+- Use `<h1>` to `<h6>` tags correctly to represent headings. Ensure only one `<h1>` per page (typically the main heading).
+- Use `<article>`, `<section>`, `<nav>`, and `<footer>` to structure content.
+
+### Responsive design
+
+Ensure your design is responsive and adjusts appropriately across different screen sizes. This helps users with low vision or those using screen magnifiers.
+Use flexible grid layouts and ensure the design is functional across all screen sizes. Read more about [responsive design](/?path=/docs/51785576-8553-4909-8827-fd97de4f874e--docs).
+
+</div>

@@ -2,6 +2,7 @@ import { Canvas, Meta } from '@storybook/blocks';
 import * as DisplayStories from './display.stories';
 import { breakpoints, firstBreakpoint } from '../spacing/spacing.docs.mdx';
 import { forEach } from '@/utils/react';
+import './display.styles.scss';
 
 export const displayOptions = [
   'none',
@@ -31,7 +32,7 @@ The naming convention for display utilities follows this pattern:
 - For all breakpoints (<code>{firstBreakpoint}</code> and up): `d-{display}`
 - Starting from a specific breakpoint ({breakpoints.map(([b, isLast]) => (<span key={b}><code>{b}</code>{isLast ? ', ' : ''}</span>))}): `d-{breakpoint}-{display}`
 
-### Available display values
+## Available display values
 
 The available display utilities values are the following:
 
@@ -41,7 +42,7 @@ The available display utilities values are the following:
   })}
 </ul>
 
-### Usage
+## Usage
 
 To set a display on an element, simply add a `d-{display}` class to it.
 

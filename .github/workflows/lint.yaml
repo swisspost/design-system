@@ -8,13 +8,16 @@ name: Lint files
 on:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
         with:
           fetch-depth: 0
 
@@ -27,4 +30,4 @@ jobs:
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
       - name: Lint packages
-        run: pnpm -r lint
+        run: pnpm lint

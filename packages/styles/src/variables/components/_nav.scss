@@ -41,9 +41,9 @@ $nav-tabs-focus-box-shadow:
   0 0 0 2px color.$gray-80 !default;
 $nav-tabs-focus-box-shadow-width: 2px !default;
 
-$nav-tabs-i-border-color: rgba(var(--post-contrast-color-inverted-rgb), 0.4) !default;
-$nav-tabs-i-link-hover-bg: rgba(var(--post-contrast-color-rgb), 0.1) !default;
-$nav-tabs-i-link-hover-border-color: rgba(var(--post-contrast-color-inverted-rgb), 0.8) !default;
+$nav-tabs-i-border-color: color.$white-alpha-40 !default;
+$nav-tabs-i-link-hover-bg: color.$black-alpha-10 !default;
+$nav-tabs-i-link-hover-border-color: color.$white-alpha-80 !default;
 $nav-tabs-i-link-text-color: color.$white !default;
 $nav-tabs-i-link-active-color: color.$white !default;
 
@@ -53,8 +53,3 @@ $nav-pills-outline-border-width: commons.$border-width !default;
 
 $nav-divider-color: color.$gray-20 !default;
 $nav-divider-margin-y: (spacing.$spacer * 0.5) !default;
-
-// Compute the navbar-brand padding-y so the navbar-brand will have the same height as navbar-text and nav-link
-$nav-link-height: (
-  type.$font-size-base * type.$line-height-copy + $nav-link-padding-y * 2
-) !default;

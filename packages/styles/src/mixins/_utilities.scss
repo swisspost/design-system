@@ -2,26 +2,16 @@
 
 @use '../functions/tokens';
 @use '../tokens/helpers';
+@use '../tokens/components';
 
 @use '../variables/spacing';
 @use '../variables/commons';
 @use '../variables/breakpoints';
 
 @mixin reset-list() {
-  margin: 0;
-  padding: 0;
+  margin-block: 0;
+  padding-inline-start: 0;
   list-style: none;
-
-  &.list-bullet {
-    > li {
-      margin: 0;
-      padding: 0;
-
-      &::before {
-        display: none;
-      }
-    }
-  }
 }
 
 @mixin visuallyhidden() {
@@ -80,14 +70,36 @@
   pointer-events: none;
 }
 
-@mixin generate-utility-class($classname, $size, $property, $value) {
-  .#{$classname}-#{$size}-r {
-    #{$property}: $value !important;
+@mixin high-contrast-mode() {
+  @media (forced-colors: active), (-ms-high-contrast: active), (-ms-high-contrast: white-on-black) {
+    @content;
   }
 }
 
-@mixin high-contrast-mode() {
-  @media (forced-colors: active), (-ms-high-contrast: active), (-ms-high-contrast: white-on-black) {
+@mixin high-contrast-mode-dark() {
+  @media (forced-colors: active) and (prefers-color-scheme: dark),
+    (-ms-high-contrast: white-on-black) {
+    @content;
+  }
+}
+
+@mixin high-contrast-mode-light() {
+  @media (forced-colors: active) and (prefers-color-scheme: light),
+    (-ms-high-contrast: black-on-white) {
+    @content;
+  }
+}
+
+@mixin high-contrast-mode-dark() {
+  @media (forced-colors: active) and (prefers-color-scheme: dark),
+    (-ms-high-contrast: white-on-black) {
+    @content;
+  }
+}
+
+@mixin high-contrast-mode-light() {
+  @media (forced-colors: active) and (prefers-color-scheme: light),
+    (-ms-high-contrast: black-on-white) {
     @content;
   }
 }
@@ -108,7 +120,7 @@
 }
 
 @mixin focus-style-none {
-  outline: none;
+  outline: none !important;
 }
 
 @mixin focus-style($additional-selector: '') {
@@ -170,11 +182,10 @@
 @mixin disabled-style($additional-selector: '') {
   &:disabled#{$additional-selector} {
     pointer-events: none;
-    color: var(--post-gray-60);
-    border-color: var(--post-gray-40);
-    border-style: dashed;
+    color: tokens.get('input-color-disabled-fg', components.$post-text-input);
+    border-color: tokens.get('input-color-disabled-border', components.$post-text-input);
+    border-style: tokens.get('input-border-style-disabled', components.$post-text-input);
     background-clip: padding-box;
-    text-decoration: line-through;
     // In case rules need to be slightly adjusted
     @content;
 

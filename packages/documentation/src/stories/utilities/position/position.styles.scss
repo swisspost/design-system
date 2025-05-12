@@ -1,0 +1,155 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+@mixin square {
+  width: 2rem;
+  height: 2rem;
+  opacity: 0.8;
+  border-radius: post.$border-radius;
+}
+
+@mixin centered-dot {
+  &::after {
+    content: '';
+    background-color: post.$dark;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+// Docs styling
+.translate-middle-container {
+  height: 20rem;
+  flex: 0 0 50%;
+  background-color: post.$gray;
+  @include centered-dot();
+
+  > * {
+    @include square;
+    background-color: post.$yellow;
+
+    &.translate-middle {
+      background-color: post.$info;
+    }
+  }
+}
+
+.position-outer-container {
+  margin: 2rem;
+
+  img {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+
+  .position-container {
+    height: 12rem;
+    background-color: post.$gray;
+
+    .pos-element {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 100%;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      background-color: post.$dark;
+    }
+
+    .my-element {
+      background: post.$yellow;
+      width: 2rem;
+      height: 2rem;
+      border-radius: post.$border-radius;
+    }
+  }
+
+  &-sticky {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 12rem;
+
+    .position-container {
+      height: 40rem;
+    }
+
+    .pos-element {
+      display: none;
+    }
+  }
+
+  &-fixed {
+    .position-container {
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+    }
+
+    .pos-element {
+      display: none;
+    }
+
+    .position-fixed {
+      position: absolute !important;
+    }
+  }
+}
+
+// Snapshots styling
+.snapshot-outer-container {
+  position: relative;
+  max-height: 8rem;
+  overflow-y: scroll;
+}
+
+.snapshot-container {
+  height: 16rem;
+  margin: 2rem;
+  background-color: post.$gray;
+
+  > * {
+    border-radius: post.$border-radius;
+
+    &:not(.my-element) {
+      width: 2rem;
+      height: 2rem;
+      background-color: post.$dark;
+    }
+
+    &.my-element {
+      background-color: post.$yellow;
+      padding: 1rem;
+      display: inline-block;
+    }
+  }
+}
+
+.snapshot-arrange-container,
+.snapshot-translate-middle-container {
+  height: 5rem;
+  border-radius: post.$border-radius;
+  position: relative;
+  background-color: post.$gray;
+  margin: 2rem;
+
+  > * {
+    @include square;
+    position: absolute;
+  }
+}
+
+.snapshot-arrange-container > * {
+  background-color: post.$info;
+}
+
+.snapshot-translate-middle-container {
+  @include centered-dot();
+
+  > * {
+    background-color: post.$yellow;
+  }
+}

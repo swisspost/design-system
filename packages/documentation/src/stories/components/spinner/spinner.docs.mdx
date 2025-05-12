@@ -7,15 +7,14 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 <div className="docs-title">
   # Spinner
 
-  <nav>
-    <link-design of={JSON.stringify(SpinnerStories)}></link-design>
-  </nav>
+  <link-design of={JSON.stringify(SpinnerStories)}></link-design>
 </div>
 
 <p className="lead">Indicate a loading state and prevent interactivity behind it</p>
 
-<div className="alert alert-warning">
-  `.loader-xs` and `loader-sm` classes for sizes are deprecated and will be replace with respectively `.loader-16` and `.loader-40`.
+<div className="banner banner-warning">
+  `.loader-xs` and `loader-sm` classes for sizes are deprecated and will be replace with
+  respectively `.loader-16` and `.loader-40`.
 </div>
 
 <Canvas sourceState="shown" of={SpinnerStories.Default} />
@@ -24,12 +23,12 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
   <Controls of={SpinnerStories.Default} />
 </div>
 
-<StylesPackageImport components={["spinner"]} />
+<StylesPackageImport components={['spinner']} />
 
 ## How to use a live region
 
 Live region should be added at page load and the content should change dynamically.\
-See what it means in practice on the [live region section of the accessibility page](/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#live-region).
+See what it means in practice on the [live regions guidelines](/?path=/docs/548d973c-679c-4a02-96cd-70f82aec5f65--docs).
 
 ## Examples
 

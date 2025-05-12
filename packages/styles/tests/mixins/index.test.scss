@@ -4,22 +4,8 @@
 body {
   @include mixins.hover-animation(10px, 500px, 500px);
   @include mixins.hover-animation-svg-icon(red, 2021);
-  @include mixins.placeholder() {
-    color: red;
-  }
-  @include mixins.icon-placement();
-  @include mixins.form-rg();
   @include mixins.focus-outline();
 
-  @include mixins.bezel-small();
-  @include mixins.bezel-small-regular();
-  @include mixins.bezel-regular();
-  @include mixins.bezel-bigger-regular();
-  @include mixins.bezel-medium();
-  @include mixins.bezel-large();
-  @include mixins.bezel-big();
-
-  @include mixins.font-curve('tiny');
   @include mixins.font-smoothing();
   @include mixins.font-smoothing-reset();
 }

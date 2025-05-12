@@ -1,5 +1,234 @@
 # @swisspost/design-system-components-react
 
+## 9.0.0-next.36
+
+### Patch Changes
+
+- Fixed path to types file, errors like "Could not find a declaration file for module X" should now be gone. (by [@gfellerph](https://github.com/gfellerph) with [#5358](https://github.com/swisspost/design-system/pull/5358))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.36
+
+## 9.0.0-next.35
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.35
+
+## 9.0.0-next.34
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.34
+
+## 9.0.0-next.33
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.33
+
+## 9.0.0-next.32
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.32
+
+## 9.0.0-next.31
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.31
+
+## 9.0.0-next.30
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.30
+
+## 9.0.0-next.29
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.29
+
+## 9.0.0-next.28
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.28
+
+## 9.0.0-next.27
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.27
+
+## 9.0.0-next.26
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.26
+
+## 9.0.0-next.25
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.25
+
+## 9.0.0-next.24
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.24
+
+## 9.0.0-next.23
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.23
+
+## 9.0.0-next.22
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.22
+
+## 9.0.0-next.21
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.21
+
+## 9.0.0-next.20
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.20
+
+## 9.0.0-next.19
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.19
+
+## 9.0.0-next.18
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.18
+
+## 9.0.0-next.17
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.17
+
+## 9.0.0-next.16
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.16
+
+## 9.0.0-next.15
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.15
+
+## 9.0.0-next.14
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.14
+
+## 9.0.0-next.13
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.13
+
+## 9.0.0-next.12
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.12
+
+## 9.0.0-next.11
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.11
+
+## 9.0.0-next.10
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.10
+
+## 9.0.0-next.9
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.9
+
+## 9.0.0-next.8
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.8
+
+## 9.0.0-next.7
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.7
+
+## 9.0.0-next.6
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.6
+
+## 9.0.0-next.5
+
+### Minor Changes
+
+- Added a provisional post-header component with some basic functionality in place. This component is not finished in this state. (by [@gfellerph](https://github.com/gfellerph) with [#3837](https://github.com/swisspost/design-system/pull/3837))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.5
+
 ## 9.0.0-next.4
 
 ### Patch Changes

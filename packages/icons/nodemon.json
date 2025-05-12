@@ -1,0 +1,6 @@
+{
+  "watch": ["src/**/*.ts", "src/icons/**/*.(svg|json)"],
+  "ext": "ts,svg,json",
+  "ignore": ["src/**/*.spec.ts"],
+  "exec": "ts-node ./src/build.ts"
+}

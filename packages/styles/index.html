@@ -4,33 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Styles playground</title>
-    <link id="tokens" rel="stylesheet" href="src/post-tokens-external.scss" />
-    <link rel="stylesheet" href="src/elements/_index.scss" />
-    <link rel="stylesheet" href="src/components/_index.scss" />
-  </head>
-  <body class="p-4">
-    <h1>Styles package playground</h1>
-    <p class="mb-4">
-      Use this playground for quickly developing HTML/CSS components. Run
-      <code style="background-color: lightgrey; padding: 0.125rem 0.25rem; border-radius: 0.25rem"
-        >pnpm styles:start</code
-      >
-      to get going.
-    </p>
-    <label for="tokens-select">Select tokens package: </label>
-    <select
-      name="tokens"
-      id="tokens-select"
-      value="external"
-      class="mb-4"
-      onchange="document.getElementById('tokens').setAttribute('href', `/src/post-tokens-${this.value}.scss`)"
-    >
-      <option value="external">Post external</option>
-      <option value="internal">Post internal</option>
-    </select>
-    <hr />
 
-    <!-- Place your component markup here -->
-    <button class="btn btn-primary">Primary button</button>
+    <!-- Styles -->
+    <link rel="stylesheet" id="styles" href="src/post-default.scss" />
+
+    <script src="playground.js" defer></script>
+  </head>
+  <body>
+    <aside class="palette-brand p-16">
+      <h1>Styles package playground</h1>
+      <fieldset id="token-selects" class="mt-16">
+        <legend class="my-8">Select tokens</legend>
+        <label for="theme-select">Theme</label>
+        <select name="theme" id="theme-select" value="post" class="mb-4 me-8">
+          <option value="post">Post</option>
+          <option value="cargo">Cargo</option>
+        </select>
+        <label for="tokens-select">Appearance</label>
+        <select name="appearance" id="appearance-select" value="default" class="mb-4 me-8">
+          <option value="default">Default</option>
+          <option value="compact">Compact</option>
+        </select>
+        <label for="scheme-select">Color scheme</label>
+        <select name="scheme" id="scheme-select" value="light" class="mb-4">
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </fieldset>
+    </aside>
+
+    <main class="p-16">
+      <!-- Place your component markup here -->
+    </main>
   </body>
 </html>

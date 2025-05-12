@@ -15,12 +15,17 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+permissions:
+  contents: read
+  pull-requests: read
+  checks: write
+
 jobs:
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
 
@@ -30,8 +35,44 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Check for SonarCloud token
+        id: check_token
+        run: |
+          if [ -z "$SONAR_TOKEN" ]; then
+            echo "::warning::1. Go to: Settings → Secrets → Actions → New secret"
+            echo "::warning::2. Name: SONAR_TOKEN"
+            echo "::warning::3. Value: Get from https://sonarcloud.io/account/security"
+            echo "sonar_skipped=true" >> $GITHUB_OUTPUT
+          else
+            echo "sonar_skipped=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarqube-scan-action@be0a85295f276283ca0fc6e8f5eab4342c3b4e63
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Create skipped analysis notice
+        if: steps.check_token.outputs.sonar_skipped == 'true' && github.event_name == 'pull_request'
+        uses: actions/github-script@e7aeb8c663f696059ebb5f9ab1425ed2ef511bdb
+        with:
+          script: |
+            github.rest.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: 'SonarCloud Setup',
+              head_sha: context.sha,
+              status: 'completed',
+              conclusion: 'neutral',
+              output: {
+                title: 'Add SONAR_TOKEN to fork',
+                summary: '3 steps: Settings → Secrets → New secret',
+                text: '1. Go to: Settings → Secrets → Actions\n' +
+                      '2. Click "New repository secret"\n' +
+                      '3. Name: SONAR_TOKEN\n' +
+                      '4. Value: Get from sonarcloud.io/account/security'
+              }
+            })

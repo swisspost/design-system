@@ -5,7 +5,10 @@ node_modules
 .env
 
 # Ignore generated files
-icons
+public/post-icons
+public/report.json
+public/report.min.json
+
 icons-optimized
 icons.json
 no-svgs.json

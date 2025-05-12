@@ -5,6 +5,7 @@ export const initializeKLPLoginWidget = (containerId: string, options: ILoginWid
   if (options === undefined) return;
 
   try {
+    // @ts-expect-error - klpWidgetDev is of type unknown
     window.OPPklpWidget = window.klpWidgetDev(
       containerId,
       options.applicationId,

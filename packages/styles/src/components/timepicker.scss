@@ -1,15 +1,12 @@
-@forward './../variables/options';
-
 @use 'sass:map';
 
 @use './../mixins/utilities';
 @use './../mixins/icons' as icon-mixins;
-@use './../mixins/forms' as form-mixins;
 @use './../mixins/button' as button-mixins;
 
 @use './../variables/color';
 @use './../variables/components/forms';
-@use './../variables/components/button';
+@use './../variables/components/timepicker';
 
 // Basic timepicker overrides
 .ngb-tp {
@@ -29,16 +26,17 @@
   .form-control-lg {
     width: 6rem;
     padding: 1rem 1.375rem;
-    @include form-mixins.placeholder {
-      color: forms.$input-placeholder-color;
+
+    &::placeholder {
+      color: color.$gray-60;
     }
   }
 
   .ngb-tp-chevron {
     &::before {
       @include icon-mixins.icon('2051');
-      width: map.get(button.$old-btn-icon-size-map, 'md');
-      height: map.get(button.$old-btn-icon-size-map, 'md');
+      width: map.get(timepicker.$timepicker-icon-size-map, 'md');
+      height: map.get(timepicker.$timepicker-icon-size-map, 'md');
       transform: none;
     }
 
@@ -49,8 +47,8 @@
 
   @each $size in sm, lg {
     .btn-#{$size} .ngb-tp-chevron::before {
-      width: map.get(button.$old-btn-icon-size-map, $size);
-      height: map.get(button.$old-btn-icon-size-map, $size);
+      width: map.get(timepicker.$timepicker-icon-size-map, $size);
+      height: map.get(timepicker.$timepicker-icon-size-map, $size);
     }
   }
 
@@ -68,13 +66,15 @@
 .timepicker-rg {
   .btn {
     .ngb-tp-chevron::before {
-      width: map.get(button.$old-btn-icon-size-map, 'rg');
-      height: map.get(button.$old-btn-icon-size-map, 'rg');
+      width: map.get(timepicker.$timepicker-icon-size-map, 'rg');
+      height: map.get(timepicker.$timepicker-icon-size-map, 'rg');
     }
   }
 
   .form-control {
-    @include form-mixins.form-rg;
+    padding: forms.$input-padding-y-rg forms.$input-padding-x-rg;
+    font-size: 1rem;
+    line-height: forms.$input-line-height-rg;
   }
 }
 
@@ -90,15 +90,13 @@ ngb-timepicker {
       }
     }
 
-    ~ .invalid-feedback,
-    ~ .invalid-tooltip {
+    ~ .invalid-feedback {
       display: block;
     }
   }
 
   &.ng-valid {
-    ~ .valid-feedback,
-    ~ .valid-tooltip {
+    ~ .valid-feedback {
       display: block;
     }
   }

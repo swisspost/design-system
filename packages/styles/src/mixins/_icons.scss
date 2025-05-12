@@ -6,43 +6,44 @@
 @use './../variables/components/button';
 @use './../functions/icons' as icon-fn;
 @use './../mixins/utilities';
+@use './../utilities/env-variables' as icon-version;
 
 @mixin icon($name) {
-  mask-image: url('#{icon-fn.get-svg-url($name)}');
+  $icon: icon-fn.get-svg-url($name);
+  mask-image: url('#{$icon}');
   background-color: currentColor;
   color: currentColor; // Required in this case with usage of forced-color-adjust: preserve-parent-color
   forced-color-adjust: preserve-parent-color;
 }
 
+@mixin post-icon(
+  $base:
+    'https://unpkg.com/@swisspost/design-system-icons@#{icon-version.$post-icon-version}/public/post-icons',
+  $name,
+  $color: inherit,
+  $width: 1em,
+  $height: 1em
+) {
+  display: inline-block;
+  width: $width;
+  height: $height;
+  vertical-align: -0.15em;
+  background-color: currentColor;
+  color: $color;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask-image: url('#{$base}/#{$name}.svg');
+  mask-image: url('#{$base}/#{$name}.svg');
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask-position: center center;
+  mask-position: center center;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
+}
+
 @mixin remove-icon() {
   mask-image: none;
-}
-
-// DEPRECATED
-@mixin pi($name, $color: color.$black) {
-  $type: meta.type-of($color);
-  $final-color: $color;
-
-  @if ($type != color) {
-    $final-color: map.get(color.$background-colors, $color);
-
-    @if (not $final-color) {
-      @error "Error in Mixin 'pi(name, color?)'. Color '#{$color}' is not available. Please choose one of the following: #{map.keys(color.$background-colors)}.";
-    }
-  }
-  border-color: $final-color;
-  background-image: url('#{icon-fn.get-colored-svg-url($name, $final-color)}');
-
-  // set icon to white on hcm
-  @include utilities.high-contrast-mode() {
-    @if ($final-color == color.$black) {
-      filter: invert(100%);
-    } @else {
-      background-image: url('#{icon-fn.get-colored-svg-url($name, color.$white)}');
-    }
-  }
-}
-
-@mixin pi-pre($name) {
-  background-image: url('#{icon-fn.get-pre-colored-svg-url($name)}');
 }

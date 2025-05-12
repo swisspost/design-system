@@ -1,0 +1,14 @@
+import { Canvas, Meta } from '@storybook/blocks';
+import * as ParagraphStories from './paragraph.stories';
+
+<Meta of={ParagraphStories} />
+
+<div className="docs-title">
+  # Paragraph
+
+  <link-design of={JSON.stringify(ParagraphStories)}></link-design>
+</div>
+
+Default paragraph without size variants.
+
+<Canvas of={ParagraphStories.Default} sourceState="shown" />

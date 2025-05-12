@@ -1,9 +1,9 @@
 import { IPortalConfig } from '../../src/models/general.model';
 import rawTestConfiguration from '../fixtures/internet-header/test-configuration.json';
 import { prepare } from '../support/prepare-story';
-import { BREADCRUMBS, BREADCRUMBS_CUSTOM_ITEMS } from './shared/variables';
+import { BREADCRUMBS } from './shared/variables';
 
-const testConfiguration: IPortalConfig = rawTestConfiguration as any;
+const testConfiguration: IPortalConfig = rawTestConfiguration as unknown as IPortalConfig;
 
 describe('breadcrumb', () => {
   function closeOverlayOnKey(key: string) {
@@ -25,7 +25,7 @@ describe('breadcrumb', () => {
   describe('configuration', () => {
     it(`should not rendered if no config present`, () => {
       // Cast the imported JSON object to the IPortalConfig interface
-      const config: IPortalConfig = <any>testConfiguration;
+      const config: IPortalConfig = testConfiguration;
       const modifiedConfig = JSON.parse(JSON.stringify(config));
 
       // Clear breadcrumb config
@@ -40,7 +40,7 @@ describe('breadcrumb', () => {
     });
 
     it(`should add custom elements`, () => {
-      prepare(BREADCRUMBS_CUSTOM_ITEMS, 'Default');
+      prepare(BREADCRUMBS, 'CustomItems');
 
       cy.changeArg('custom-items', [
         { text: 'Test1', url: '/x/y/z' },

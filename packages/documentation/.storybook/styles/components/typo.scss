@@ -21,29 +21,8 @@ body {
 
   // preview
   #storybook-docs {
-    * {
-      font-family: inherit;
-    }
-
     :is(pre, .prismjs) {
       font-family: var(--post-docs-font-monospace);
     }
-
-    .docs-story > :first-child {
-      font-family: tokens.get('body-font-family');
-    }
-
-    .font-sans-serif {
-      font-family: var(--bs-font-sans-serif) !important;
-    }
-
-    .font-monospace {
-      font-family: var(--bs-font-monospace) !important;
-    }
-  }
-
-  // full-screen preview
-  #storybook-root {
-    font-family: tokens.get('body-font-family');
   }
 }

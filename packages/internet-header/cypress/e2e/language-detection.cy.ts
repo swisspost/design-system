@@ -20,7 +20,7 @@ describe('language detection from storybook', () => {
 
     cy.get('swisspost-internet-header')
       .shadow()
-      .get('post-language-switch')
+      .get('post-language-switch-2')
       .shadow()
       .get('.lang-btn span:not(.visually-hidden)')
       .should('have.text', 'it');

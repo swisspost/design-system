@@ -1,0 +1,9 @@
+@use './temp/palettes/post-light' as post-light;
+@use './temp/palettes/post-dark' as post-dark;
+@use './temp/palettes/cargo-light' as cargo-light;
+@use './temp/palettes/cargo-dark' as cargo-dark;
+
+$post-light: post-light.$post-palettes;
+$post-dark: post-dark.$post-palettes;
+$cargo-light: cargo-light.$post-palettes;
+$cargo-dark: cargo-dark.$post-palettes;

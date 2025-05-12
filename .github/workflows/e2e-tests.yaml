@@ -7,7 +7,11 @@ on:
       - 'packages/components/**'
       - 'packages/internet-header/**'
       - 'packages/icons/**'
+      - 'packages/tokens/tokensstudio-generated/tokens.json'
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   e2e:
@@ -15,7 +19,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
         with:
           fetch-depth: 0
 
@@ -25,7 +29,7 @@ jobs:
           use_cache: false
 
       - name: Cache cypress
-        uses: actions/cache@v4
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
         with:
           path: /home/runner/.cache/Cypress
           key: ${{ runner.os }}-cypress-${{ hashFiles('./pnpm-lock.yaml') }}
@@ -47,7 +51,7 @@ jobs:
         run: pnpm e2e:ci
 
       - name: Upload screenshots
-        uses: actions/upload-artifact@v4.3.4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: failure()
         with:
           name: cypress-snapshots

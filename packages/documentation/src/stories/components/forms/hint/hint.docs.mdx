@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as HintStories from './hint.stories';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+
+<Meta of={HintStories} />
+
+<div className="docs-title">
+  # Form hint
+
+  <link-design of={JSON.stringify(HintStories)}></link-design>
+</div>
+
+<div className="lead">
+  Form hint or assistive text is used under a form element to give guidance to users on how to best
+  fill in fields.
+</div>
+
+<Canvas sourceState="shown" of={HintStories.Default} />
+<div className="hide-col-default">
+  <Controls of={HintStories.Default} />
+</div>
+
+<StylesPackageImport components={['form-hint']} />

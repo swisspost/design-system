@@ -19,8 +19,8 @@
 </div>
 
 <div class="my-24">
-  <h2>Post Alert</h2>
-  <post-alert><p>Contentus momentus vero siteos et accusam iretea et justo.</p></post-alert>
+  <h2>Post Banner</h2>
+  <post-banner><p>Contentus momentus vero siteos et accusam iretea et justo.</p></post-banner>
 </div>
 
 <div class="my-4">
@@ -105,6 +105,7 @@
 
 <div class="my-24">
   <h2>Post Tooltip</h2>
-  <button class="btn btn-secondary btn-large" data-tooltip-target="tooltip-one">Button</button>
-  <post-tooltip id="tooltip-one" placement="top">Hi there 👋</post-tooltip>
+  <post-tooltip-trigger for="tooltip-one">
+    <button class="btn btn-secondary btn-large">Button</button>
+  </post-tooltip-trigger>
 </div>

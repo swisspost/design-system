@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property    | Attribute   | Description                                                                                                                                                                                                                                                                                                               | Type                                                                                                                                                                 | Default    |
-| ----------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| `placement` | `placement` | Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'bottom'` |
+| Property    | Attribute   | Description                                                                                                                                                                                                                                                                                                                                                                         | Type                                                                                                                                                                 | Default    |
+| ----------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| `placement` | `placement` | Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement). | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'bottom'` |
 
 
 ## Events
@@ -64,7 +64,19 @@ Type: `Promise<void>`
 
 
 
+## Shadow Parts
+
+| Part                  | Description |
+| --------------------- | ----------- |
+| `"popover-container"` |             |
+
+
 ## Dependencies
+
+### Used by
+
+ - [post-breadcrumbs](../post-breadcrumbs)
+ - [post-language-switch](../post-language-switch)
 
 ### Depends on
 
@@ -74,6 +86,8 @@ Type: `Promise<void>`
 ```mermaid
 graph TD;
   post-menu --> post-popovercontainer
+  post-breadcrumbs --> post-menu
+  post-language-switch --> post-menu
   style post-menu fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

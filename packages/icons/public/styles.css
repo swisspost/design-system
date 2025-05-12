@@ -3,57 +3,105 @@ body {
 }
 
 .d-flex {
+  display: flex;
+  flex-wrap: wrap;
   gap: 30px;
 }
 
-.icon-variants {
+.filters {
   display: flex;
-  align-items: start;
-  gap: 1rem;
+  flex-wrap: wrap;
+  column-gap: 1.5rem;
+  margin-bottom: 3rem;
 
-  + .icon-variants {
-    margin-top: 1rem;
+  h2 {
+    display: block;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    font-size: 1rem;
   }
+}
 
-  [class^='icon-'] {
-    box-sizing: content-box;
-    padding: 0.5rem;
-    outline: 1px solid gray;
-    line-height: 1;
+.btn-group {
+  display: flex;
 
-    &.current {
-      background-color: red;
+  .form-check {
+    input {
+      position: absolute;
+      appearance: none;
+      clip: rect(0, 0, 0, 0);
+      width: 0;
+      height: 0;
+    }
+
+    label {
+      display: block;
+      padding: 0.5rem 1rem;
+      background-color: transparent;
+      border: 2px solid black;
+      cursor: pointer;
+
+      &:hover {
+        position: relative;
+        z-index: 1;
+        border-color: #888;
+      }
+    }
+
+    &:first-of-type {
+      label {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+      }
+    }
+
+    &:last-of-type {
+      label {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
+    }
+
+    ~ .form-check {
+      label {
+        margin-left: -2px;
+      }
+    }
+
+    input:checked + label {
+      background-color: black;
+      color: white;
     }
   }
+}
 
-  .icon-16 {
-    width: 16px;
+.v1 {
+  .icon-container {
+    width: 4rem;
   }
 
-  .icon-24 {
-    width: 24px;
+  .size-keeper {
+    width: 2rem;
   }
+}
 
-  .icon-32 {
-    width: 32px;
-  }
+.icon-container {
+  padding: 1rem;
+  width: 7rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 
-  .icon-40 {
-    width: 40px;
-  }
-
-  .icon-48 {
-    width: 48px;
-  }
-
-  .icon-64 {
-    width: 64px;
+  h3 {
+    margin: 1rem 0 0;
+    font-size: 0.75rem;
+    text-align: center;
   }
 }
 
 .size-keeper {
   position: relative;
-  height: 6rem;
+  aspect-ratio: 1 / 1;
+  width: 5rem;
 
   .resize {
     position: absolute;
@@ -62,11 +110,11 @@ body {
     padding: 0.5rem;
     width: 2rem;
     min-width: 2rem;
-    max-width: 5rem;
+    max-width: 100%;
     aspect-ratio: 1 / 1;
     overflow: hidden;
     resize: horizontal;
-    outline: 1px solid gray;
+    outline: 1px solid #ddd;
   }
 }
 
@@ -80,41 +128,42 @@ body {
     display: block;
     width: 100%;
     height: 100%;
+    fill: currentColor;
   }
 }
 
 @container post-icon (max-width: 23.98px) {
   svg {
-    --post-icon-size-16: block;
+    --pis-16: block;
   }
 }
 
 @container post-icon (min-width: 24px) and (max-width: 31.98px) {
   svg {
-    --post-icon-size-24: block;
+    --pis-24: block;
   }
 }
 
-@container (min-width: 32px) and (max-width: 39.98px) {
+@container post-icon (min-width: 32px) and (max-width: 39.98px) {
   svg {
-    --post-icon-size-32: block;
+    --pis-32: block;
   }
 }
 
-@container (min-width: 40px) and (max-width: 47.98px) {
+@container post-icon (min-width: 40px) and (max-width: 47.98px) {
   svg {
-    --post-icon-size-40: block;
+    --pis-40: block;
   }
 }
 
-@container (min-width: 48px) and (max-width: 63.98px) {
+@container post-icon (min-width: 48px) and (max-width: 63.98px) {
   svg {
-    --post-icon-size-48: block;
+    --pis-48: block;
   }
 }
 
-@container (min-width: 64px) {
+@container post-icon (min-width: 64px) {
   svg {
-    --post-icon-size-64: block;
+    --pis-64: block;
   }
 }

@@ -1,5 +1,564 @@
 # @swisspost/design-system-components
 
+## 9.0.0-next.36
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.36
+  - @swisspost/design-system-icons@9.0.0-next.36
+
+## 9.0.0-next.35
+
+### Major Changes
+
+- Renamed the `<post-breadcrumb>` component to `<post-breadcrumbs>` to better reflect its role as a container for multiple breadcrumb items. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5291](https://github.com/swisspost/design-system/pull/5291))
+
+### Patch Changes
+
+- Updated some broken links to the documentation. (by [@leagrdv](https://github.com/leagrdv) with [#5280](https://github.com/swisspost/design-system/pull/5280))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.0.0-next.35
+  - @swisspost/design-system-styles@9.0.0-next.35
+
+## 9.0.0-next.34
+
+### Minor Changes
+
+- Added a new utility, to distinguish between server and client environment. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5160](https://github.com/swisspost/design-system/pull/5160))
+
+- Adjusted the collapse animation to be compatible with server-side rendering (SSR). (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5182](https://github.com/swisspost/design-system/pull/5182))
+
+- Enabled server-side rendering for the `post-popover` and the `post-tooltip` components, ensuring no hydration errors occur on the client side. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5166](https://github.com/swisspost/design-system/pull/5166))
+
+- Made `post-linkarea` a shadow component to avoid hydration errors when used in a server-side rendered environment. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5156](https://github.com/swisspost/design-system/pull/5156))
+
+- Made `post-close-button` a shadow component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5151](https://github.com/swisspost/design-system/pull/5151))
+
+- Made `post-collapsible-trigger` a shadow component to avoid hydration errors when used in a server-side rendered environment. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5168](https://github.com/swisspost/design-system/pull/5168))
+
+- Enabled server-side rendering for the `post-icon` component, ensuring no hydration errors occur on the client side. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5170](https://github.com/swisspost/design-system/pull/5170))
+
+- Made utilities SSR conform. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5166](https://github.com/swisspost/design-system/pull/5166))
+
+### Patch Changes
+
+- Resolved an issue with the `post-footer` component to ensure event bindings are correctly removed when the component is detached. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5173](https://github.com/swisspost/design-system/pull/5173))
+
+- Enhanced the `for` property of the `post-menu-trigger` component to ensure it stays synchronized in the DOM whenever it changes, enabling compatibility with `querySelector` and similar methods. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5157](https://github.com/swisspost/design-system/pull/5157))
+
+- Fixed update flow for `post-collapsible` and `post-collapsible-trigger` aria attributes. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5168](https://github.com/swisspost/design-system/pull/5168))
+
+- Fixed `post-header` component `version` attribute. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5152](https://github.com/swisspost/design-system/pull/5152))
+
+- Enhanced the `label` property of the `post-card-control` component to ensure it stays synchronized in the DOM whenever it changes, enabling compatibility with `querySelector` and similar methods. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5150](https://github.com/swisspost/design-system/pull/5150))
+
+- Enabled server-side rendering for the `post-popovercontainer` component, ensuring no hydration errors occur on the client side. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5161](https://github.com/swisspost/design-system/pull/5161))
+
+- Refactored the `post-language-switch` component to remove redundant update functions and unnecessary slot event handling. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5184](https://github.com/swisspost/design-system/pull/5184))
+
+- Updated `post-header` by moving `handleScrollEvent` from `connectedCallback` to `componentWillRender`. Added fallback value to the `--post-header-scroll-top` property within the `--logo-height` calculation. (by [@myrta2302](https://github.com/myrta2302) with [#5268](https://github.com/swisspost/design-system/pull/5268))
+
+- Enhanced the `label` property of the `post-back-to-top` component to ensure it stays synchronized in the DOM whenever it changes, enabling compatibility with `querySelector` and similar methods. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5149](https://github.com/swisspost/design-system/pull/5149))
+
+- Enhanced the `panel` property of the `post-tab-header` component and the `name` property of the `post-tab-panel` component, to ensure they stay synchronized in the DOM whenever they change, enabling compatibility with `querySelector` and similar methods. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5158](https://github.com/swisspost/design-system/pull/5158))
+
+- Added the `reflect: true` option to the `post-avatar` component property `firstname` to prepare the component for the next stencil update. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5148](https://github.com/swisspost/design-system/pull/5148))
+
+- Refactored the `post-mainnavigation` component to handle overflow using native scroll. (by [@alizedebray](https://github.com/alizedebray) with [#4948](https://github.com/swisspost/design-system/pull/4948))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.0.0-next.34
+  - @swisspost/design-system-styles@9.0.0-next.34
+
+## 9.0.0-next.33
+
+### Minor Changes
+
+- Implemented an event-guard utility to ensure our custom events are only handled when originating from the expected element. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4574](https://github.com/swisspost/design-system/pull/4574))
+
+### Patch Changes
+
+- Updated the fallback CDN URL in the `post-icon` component to include the current package version, ensuring icon requests match the used component version. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5091](https://github.com/swisspost/design-system/pull/5091))
+
+- Adjusted the placement of the Back-to-top button to accommodate the sticky header. (by [@myrta2302](https://github.com/myrta2302) with [#4879](https://github.com/swisspost/design-system/pull/4879))
+
+- Updated `<post-header>` to expose header height custom CSS properties to `:root` and set `scroll-padding-top` to visible header height. (by [@myrta2302](https://github.com/myrta2302) with [#4925](https://github.com/swisspost/design-system/pull/4925))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.0.0-next.33
+  - @swisspost/design-system-styles@9.0.0-next.33
+
+## 9.0.0-next.32
+
+### Patch Changes
+
+- Removed the `transform` property from the scroll-locked `post-header` parent, to avoid side effects. Updated the mobile menu of the `post-header`, so it works as before. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4957](https://github.com/swisspost/design-system/pull/4957))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.32
+  - @swisspost/design-system-icons@9.0.0-next.32
+
+## 9.0.0-next.31
+
+### Patch Changes
+
+- Added a max-height to the `post-megadropdown` on desktop to add scrolling in case its content is bigger than the space available. (by [@leagrdv](https://github.com/leagrdv) with [#4906](https://github.com/swisspost/design-system/pull/4906))
+
+- Replaced usages of `color: inherit` with tokens to improve high contrast mode compatability. (by [@schaertim](https://github.com/schaertim) with [#4933](https://github.com/swisspost/design-system/pull/4933))
+
+- Adapted the trigger of the `post-popover` component to be able to handle nested elements. (by [@schaertim](https://github.com/schaertim) with [#4910](https://github.com/swisspost/design-system/pull/4910))
+
+- Improved header accessibility by ensuring that elements which are hidden on scroll get visible again if they receive focus. (by [@leagrdv](https://github.com/leagrdv) with [#4767](https://github.com/swisspost/design-system/pull/4767))
+
+- Added the CSS variable `--post-popover-max-width` that enables configuring the max-width of the `post-popover` component. (by [@leagrdv](https://github.com/leagrdv) with [#4898](https://github.com/swisspost/design-system/pull/4898))
+
+- Resolved accessibility violations in the `post-language-switch` component by adding the role="menu" to the `post-menu` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4951](https://github.com/swisspost/design-system/pull/4951))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.31
+  - @swisspost/design-system-icons@9.0.0-next.31
+
+## 9.0.0-next.30
+
+### Patch Changes
+
+- Fixed the gap that appeared between the header and the main navigation when scrolling up. (by [@alizedebray](https://github.com/alizedebray) with [#4810](https://github.com/swisspost/design-system/pull/4810))
+
+- Fixed text-alignment for `post-language-switch` component to match the design. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4759](https://github.com/swisspost/design-system/pull/4759))
+
+- Updated the keydown event handling for `post-megadropdown` component to move focus to the first dropdown element when activated via Space, ensuring consistency with the Enter key behavior. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4799](https://github.com/swisspost/design-system/pull/4799))
+
+- Fixed the mobile menu height in the `post-header` component when the scrollable parent is not the document's body. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4829](https://github.com/swisspost/design-system/pull/4829))
+
+- Switched the outermost scrollable parent of the `post-header` component from the `html` to the `body` element. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4823](https://github.com/swisspost/design-system/pull/4823))
+
+- Fixed the mobile menu behavior in the `post-header` and `post-megadropdown` components, so the second navigation level is always showing at the correct location in design, no matter if the user has scrolled on the first navigation level. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4829](https://github.com/swisspost/design-system/pull/4829))
+
+- Fixed the clipped focus ring on `post-mainnavigation` items ensuring a fully visible and accessible focus state. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4808](https://github.com/swisspost/design-system/pull/4808))
+
+- Adjusted `post-tooltip` and `post-popover` positioning by adding a top margin to ensure they do not overlap the `post-header` upon opening. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4589](https://github.com/swisspost/design-system/pull/4589))
+
+- Improved the consistency of styles for buttons and links in HCM. (by [@leagrdv](https://github.com/leagrdv) with [#4864](https://github.com/swisspost/design-system/pull/4864))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.30
+  - @swisspost/design-system-icons@9.0.0-next.30
+
+## 9.0.0-next.29
+
+### Patch Changes
+
+- Removed console.logs out of the post-header component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4817](https://github.com/swisspost/design-system/pull/4817))
+
+- Fixed post-header component lifecycle hooks and event bindings. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4817](https://github.com/swisspost/design-system/pull/4817))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.29
+  - @swisspost/design-system-icons@9.0.0-next.29
+
+## 9.0.0-next.28
+
+### Patch Changes
+
+- Fixed post-header component scrollParent state reset. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4815](https://github.com/swisspost/design-system/pull/4815))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.28
+  - @swisspost/design-system-icons@9.0.0-next.28
+
+## 9.0.0-next.27
+
+### Patch Changes
+
+- Fixed post-header disconnectCallback, by removing the eventListeners first and reset internal states and the scrollParent element afterwards. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4813](https://github.com/swisspost/design-system/pull/4813))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.27
+  - @swisspost/design-system-icons@9.0.0-next.27
+
+## 9.0.0-next.26
+
+### Patch Changes
+
+- Fixed post-header component scrollParent getter function. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4811](https://github.com/swisspost/design-system/pull/4811))
+
+- Fixed calculation of `post-mainnavigation` mobile placement and put back the header border on HCM. (by [@leagrdv](https://github.com/leagrdv) with [#4806](https://github.com/swisspost/design-system/pull/4806))
+
+- Applied styles to the slot title selector rather than `h1` on the `post-header` to have consistent styles whether or not `h1` is used. (by [@leagrdv](https://github.com/leagrdv) with [#4782](https://github.com/swisspost/design-system/pull/4782))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.26
+  - @swisspost/design-system-icons@9.0.0-next.26
+
+## 9.0.0-next.25
+
+### Patch Changes
+
+- Fixed wrong implementation of the relative scroll parent of the `post-header` component.` (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4786](https://github.com/swisspost/design-system/pull/4786))
+
+- Fixed wrong implemented and added missing eventListener removals in the `post-header` component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4786](https://github.com/swisspost/design-system/pull/4786))
+
+- Fixed timeing issue in the calculation of the custom property `--local-header-height`, so it's defined from the very beginning. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4786](https://github.com/swisspost/design-system/pull/4786))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.25
+  - @swisspost/design-system-icons@9.0.0-next.25
+
+## 9.0.0-next.24
+
+### Patch Changes
+
+- Updated the icon sizes in the `post-header` and the `post-language-switch` components, to match the design specs. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4783](https://github.com/swisspost/design-system/pull/4783))
+
+- Added an initial event to language switch options to get the initially active language option (by [@gfellerph](https://github.com/gfellerph) with [#4788](https://github.com/swisspost/design-system/pull/4788))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.24
+  - @swisspost/design-system-icons@9.0.0-next.24
+
+## 9.0.0-next.23
+
+### Patch Changes
+
+- Fixed the bug with shifting the `post-language-switch` dropdown to the right on language selection. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4751](https://github.com/swisspost/design-system/pull/4751))
+
+- Fixed navigation scrolling in `post-mainnavigation` to ensure scroll buttons persist until the last item is fully visible. (by [@schaertim](https://github.com/schaertim) with [#4777](https://github.com/swisspost/design-system/pull/4777))
+
+- Prevented slide-down animation for already open `post-megadropdown` component when resizing from mobile/tablet to desktop. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4704](https://github.com/swisspost/design-system/pull/4704))
+
+- Disabled body scrolling when mobile navigation is open. (by [@myrta2302](https://github.com/myrta2302) with [#4775](https://github.com/swisspost/design-system/pull/4775))
+
+- Updated the `post-megadropdown` to make the list links wrap to the next line when texts are too long. (by [@leagrdv](https://github.com/leagrdv) with [#4778](https://github.com/swisspost/design-system/pull/4778))
+
+- Adjusted the composable header height to match the design specifications. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4650](https://github.com/swisspost/design-system/pull/4650))
+
+- Implemented auto-closing behavior for `post-megadropdown` and `post-mainnavigation` when clicking a link inside them, to prevent navigation elements from remaining open after user interaction. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4765](https://github.com/swisspost/design-system/pull/4765))
+
+- Fixed an issue with the language switch active state not highlighting only the active language option. The selector now only targets active options. (by [@gfellerph](https://github.com/gfellerph) with [#4776](https://github.com/swisspost/design-system/pull/4776))
+
+- Enabled header navigation to scroll when content exceeds available height on mobile & tablet. (by [@myrta2302](https://github.com/myrta2302) with [#4712](https://github.com/swisspost/design-system/pull/4712))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.23
+  - @swisspost/design-system-icons@9.0.0-next.23
+
+## 9.0.0-next.22
+
+### Patch Changes
+
+- Fixed an issue with the main navigation where the scroll arrows were always displayed, even when there were no elements to scroll to. (by [@alizedebray](https://github.com/alizedebray) with [#4766](https://github.com/swisspost/design-system/pull/4766))
+
+- Fixed mobile navigation position and scrolling issues within storybook. (by [@myrta2302](https://github.com/myrta2302) with [#4738](https://github.com/swisspost/design-system/pull/4738))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.22
+  - @swisspost/design-system-icons@9.0.0-next.22
+
+## 9.0.0-next.21
+
+### Patch Changes
+
+- Updated hover styles for `post-language-switch` and `post-language-option` components. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4665](https://github.com/swisspost/design-system/pull/4665))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.21
+  - @swisspost/design-system-icons@9.0.0-next.21
+
+## 9.0.0-next.20
+
+### Patch Changes
+
+- Increased gap between header title and local controls in `post-header`. (by [@leagrdv](https://github.com/leagrdv) with [#4739](https://github.com/swisspost/design-system/pull/4739))
+
+- Fixed misaligned second level navigation in the `post-megadropdown` component on desktop. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4757](https://github.com/swisspost/design-system/pull/4757))
+
+- Fixed breakpoint utility, by normalizing the read custom-properties. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4764](https://github.com/swisspost/design-system/pull/4764))
+
+- Changed from `vh` to dynamic viewport height (`dvh`) unit on post-header to take into account the mobile devices height change. (by [@leagrdv](https://github.com/leagrdv) with [#4747](https://github.com/swisspost/design-system/pull/4747))
+
+- Aligned prop validation throughout the component library. (by [@myrta2302](https://github.com/myrta2302) with [#4638](https://github.com/swisspost/design-system/pull/4638))
+
+- Fixed the scroll to top that occurs when opening the `post-megadropdown` on desktop. (by [@leagrdv](https://github.com/leagrdv) with [#4761](https://github.com/swisspost/design-system/pull/4761))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.20
+  - @swisspost/design-system-icons@9.0.0-next.20
+
+## 9.0.0-next.19
+
+### Minor Changes
+
+- Changed list version of `post-language-switch` to always keep the same order of `post-language-options`. (by [@schaertim](https://github.com/schaertim) with [#4706](https://github.com/swisspost/design-system/pull/4706))
+
+- Added optional safe triangle and trapezoid to `post-popovercontainer` to improve accessability. (by [@schaertim](https://github.com/schaertim) with [#4436](https://github.com/swisspost/design-system/pull/4436))
+
+- Enhanced the `post-linkarea` component so that modifier keys (`ctrl`, `shift`, `alt`, `meta`) are passed along when clicking the component. (by [@alizedebray](https://github.com/alizedebray) with [#4696](https://github.com/swisspost/design-system/pull/4696))
+
+- Updated the `post-icon` component to make it SSR conform. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4697](https://github.com/swisspost/design-system/pull/4697))
+
+### Patch Changes
+
+- Improved keyboard navigation for the `post-megadropdown` by focusing on the first element when it is opened with the Enter key and returning the focus to the trigger when it is closed. (by [@schaertim](https://github.com/schaertim) with [#4625](https://github.com/swisspost/design-system/pull/4625))
+
+- Fixed the correct assignment of the expanded attribute in the `post-menu` component, ensuring proper aria-expanded handling in components utilizing `post-menu`, such as `post-language-switch` and `post-breadcrumb`. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4661](https://github.com/swisspost/design-system/pull/4661))
+
+- Tokenized the back to top button's shadow. (by [@leagrdv](https://github.com/leagrdv) with [#4641](https://github.com/swisspost/design-system/pull/4641))
+
+- Cleaned up possible side effects on `post-header` by adding a `disconnectedCallback()` function. (by [@leagrdv](https://github.com/leagrdv) with [#4736](https://github.com/swisspost/design-system/pull/4736))
+
+- Duplicated `post-mainnavigation` links' content to avoid layout shift on active elements. (by [@leagrdv](https://github.com/leagrdv) with [#4694](https://github.com/swisspost/design-system/pull/4694))
+
+- Added documentation for the `design-system-components-react` package. (by [@leagrdv](https://github.com/leagrdv) with [#4669](https://github.com/swisspost/design-system/pull/4669))
+
+- Fixed the `post-language-switch` component to support any boolean notation for the `active` attribute on `post-language-option`. (by [@alizedebray](https://github.com/alizedebray) with [#4701](https://github.com/swisspost/design-system/pull/4701))
+
+- Fixed focus order on desktop for `post-megadropdown` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4379](https://github.com/swisspost/design-system/pull/4379))
+
+- Added high contrast mode styles for header. (by [@myrta2302](https://github.com/myrta2302) with [#4262](https://github.com/swisspost/design-system/pull/4262))
+
+- Fixed the animation glitch when switching between megadropdowns. (by [@leagrdv](https://github.com/leagrdv) with [#4723](https://github.com/swisspost/design-system/pull/4723))
+
+- Fixed the `post-header` component to correctly set the `--local-header-height` property. (by [@alizedebray](https://github.com/alizedebray) with [#4746](https://github.com/swisspost/design-system/pull/4746))
+
+- Switched from thrown error to logged errors when `post-list` title is missing. (by [@leagrdv](https://github.com/leagrdv) with [#4725](https://github.com/swisspost/design-system/pull/4725))
+
+- Fixed overflow handling in the main navigation to ensure all navigation items can be accessed. (by [@alizedebray](https://github.com/alizedebray) with [#4666](https://github.com/swisspost/design-system/pull/4666))
+
+- Added a line separator between the header and the page content. (by [@leagrdv](https://github.com/leagrdv) with [#4637](https://github.com/swisspost/design-system/pull/4637))
+
+- Removed the custom properties from the `post-header` component styles and moved them to the styles package. This change allows these properties to be accessed before the component is loaded. (by [@leagrdv](https://github.com/leagrdv) with [#4663](https://github.com/swisspost/design-system/pull/4663))
+
+- Updated the post-linkarea component so that it no longer uses the `Window` object. (by [@alizedebray](https://github.com/alizedebray) with [#4696](https://github.com/swisspost/design-system/pull/4696))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.19
+  - @swisspost/design-system-icons@9.0.0-next.19
+
+## 9.0.0-next.18
+
+### Minor Changes
+
+- Made it possible to use multiple `post-language-switch` components in the `post-header` component. Fixed language switch options being wrapped to multiple lines on mobile. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4674](https://github.com/swisspost/design-system/pull/4674))
+
+### Patch Changes
+
+- Updated styles for the header main navigation and mega dropdown elements. (by [@leagrdv](https://github.com/leagrdv) with [#4621](https://github.com/swisspost/design-system/pull/4621))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.18
+  - @swisspost/design-system-icons@9.0.0-next.18
+
+## 9.0.0-next.17
+
+### Patch Changes
+
+- Moved the border styles for the post-accordion-item from the host to an inner element within the shadow DOM to prevent conflicts with external document styles. (by [@alizedebray](https://github.com/alizedebray) with [#4645](https://github.com/swisspost/design-system/pull/4645))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.17
+  - @swisspost/design-system-icons@9.0.0-next.17
+
+## 9.0.0-next.16
+
+### Minor Changes
+
+- Updated language switch behavior. (by [@myrta2302](https://github.com/myrta2302) with [#4376](https://github.com/swisspost/design-system/pull/4376))
+
+### Patch Changes
+
+- Updated the URL check on the post-logo component. It now also accepts relative URLs as valid props. (by [@gfellerph](https://github.com/gfellerph) with [#4616](https://github.com/swisspost/design-system/pull/4616))
+
+- Removed megadropdown animation when another one is already opened. (by [@leagrdv](https://github.com/leagrdv) with [#4627](https://github.com/swisspost/design-system/pull/4627))
+
+- Fixed `post-logo` from disappearing on `post-header` scroll. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4606](https://github.com/swisspost/design-system/pull/4606))
+
+- Fixed the `--main-header-height` custom property for `post-header` component, which was previously undefined on initial load. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4614](https://github.com/swisspost/design-system/pull/4614))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.16
+  - @swisspost/design-system-icons@9.0.0-next.16
+
+## 9.0.0-next.15
+
+### Patch Changes
+
+- Fixed an occurence of `aria-role` which should be declared as `role` on the `<post-language-switch>` (by [@gfellerph](https://github.com/gfellerph) with [#4598](https://github.com/swisspost/design-system/pull/4598))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.15
+  - @swisspost/design-system-icons@9.0.0-next.15
+
+## 9.0.0-next.14
+
+### Minor Changes
+
+- Improved main navigation overflow display. (by [@alizedebray](https://github.com/alizedebray) with [#4273](https://github.com/swisspost/design-system/pull/4273))
+
+- Removed `post-popovercontainer` from the `post-megadropdown` component and added desktop animations with new slide-down and slide-up effects. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4421](https://github.com/swisspost/design-system/pull/4421))
+
+- Added the `post-linkarea` component. (by [@veyaromain](https://github.com/veyaromain) with [#4030](https://github.com/swisspost/design-system/pull/4030))
+
+### Patch Changes
+
+- Removed nav for `post-header` component causing blank space on scroll for screens <1025px. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4532](https://github.com/swisspost/design-system/pull/4532))
+
+- Added z-index to the `post-header` component to display it on top of other contents. (by [@leagrdv](https://github.com/leagrdv) with [#4367](https://github.com/swisspost/design-system/pull/4367))
+
+- Fixed header mobile menu behavior by trapping the focus within it when opened as well as making it scrollable. (by [@leagrdv](https://github.com/leagrdv) with [#4395](https://github.com/swisspost/design-system/pull/4395))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.14
+  - @swisspost/design-system-icons@9.0.0-next.14
+
+## 9.0.0-next.13
+
+### Patch Changes
+
+- Replaced previously deleted CSS variables with SASS variables. (by [@leagrdv](https://github.com/leagrdv) with [#4446](https://github.com/swisspost/design-system/pull/4446))
+
+- Added shadow to an optional tooltip arrow for `post-popover` component. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4441](https://github.com/swisspost/design-system/pull/4441))
+
+- Fixed `post-icon` calculated base href. (by [@leagrdv](https://github.com/leagrdv) with [#4491](https://github.com/swisspost/design-system/pull/4491))
+
+- Fixed display of `post-megadropdown` in header. (by [@leagrdv](https://github.com/leagrdv) with [#4350](https://github.com/swisspost/design-system/pull/4350))
+
+- Fixed the way the icon url gets generated in the `post-icon` component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4351](https://github.com/swisspost/design-system/pull/4351))
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.0.0-next.13
+  - @swisspost/design-system-styles@9.0.0-next.13
+
+## 9.0.0-next.12
+
+### Patch Changes
+
+- Positioned the `post-collapsible` host relative so every not static positioned element within uses it as its base render context and therefore gets clipped as it should. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4478](https://github.com/swisspost/design-system/pull/4478))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.12
+  - @swisspost/design-system-icons@9.0.0-next.12
+
+## 9.0.0-next.11
+
+### Patch Changes
+
+- Fixed a typo in the `post-accordion-item` component. (by [@schaertim](https://github.com/schaertim) with [#4391](https://github.com/swisspost/design-system/pull/4391))
+
+- Added focus styles for the `post-logo` component, which contains a link, to improve accessibility. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4462](https://github.com/swisspost/design-system/pull/4462))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.11
+  - @swisspost/design-system-icons@9.0.0-next.11
+
+## 9.0.0-next.10
+
+### Major Changes
+
+- Renamed the "dropdown" variant to "menu" for the `post-language-switch` and `post-language-option` components. (by [@leagrdv](https://github.com/leagrdv) with [#4260](https://github.com/swisspost/design-system/pull/4260))
+
+- Removed `.bg-` classes to define background color of elements. (by [@leagrdv](https://github.com/leagrdv) with [#4201](https://github.com/swisspost/design-system/pull/4201))
+
+### Patch Changes
+
+- Removed the dependency on utility classes in `post-header` component. The header can now be used without importing CSS utility classes. (by [@leagrdv](https://github.com/leagrdv) with [#4358](https://github.com/swisspost/design-system/pull/4358))
+
+- Updated the documentation of the Post header. (by [@leagrdv](https://github.com/leagrdv) with [#4408](https://github.com/swisspost/design-system/pull/4408))
+
+- Added a `type="button"` attribute to the `post-close-button` to prevent it from submitting forms. (by [@schaertim](https://github.com/schaertim) with [#4332](https://github.com/swisspost/design-system/pull/4332))
+
+- Removed auto slotting from `post-togglebutton` component to enable more flexible usage. (by [@schaertim](https://github.com/schaertim) with [#4346](https://github.com/swisspost/design-system/pull/4346))
+
+- Removed all usage of deprecated utility sizing classes. (by [@leagrdv](https://github.com/leagrdv) with [#4343](https://github.com/swisspost/design-system/pull/4343))
+
+- Reduced the length of random IDs generated in the components; they are now generated using the [nanoid library](https://github.com/ai/nanoid) instead of the [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API). (by [@leagrdv](https://github.com/leagrdv) with [#4369](https://github.com/swisspost/design-system/pull/4369))
+
+- Updated style and keyboard navigation of `post-language-switch`. (by [@leagrdv](https://github.com/leagrdv) with [#4260](https://github.com/swisspost/design-system/pull/4260))
+
+- Removed auto slotting from `post-logo` component to enable more flexible usage. (by [@schaertim](https://github.com/schaertim) with [#4345](https://github.com/swisspost/design-system/pull/4345))
+
+- Modified header megadropdown to close when focus is moved outside. (by [@myrta2302](https://github.com/myrta2302) with [#4324](https://github.com/swisspost/design-system/pull/4324))
+
+- Updated header overflow in tablet and mobile for long application titles. (by [@leagrdv](https://github.com/leagrdv) with [#4364](https://github.com/swisspost/design-system/pull/4364))
+
+- Added hover color to `post-accordion` in high contrast mode. (by [@schaertim](https://github.com/schaertim) with [#4316](https://github.com/swisspost/design-system/pull/4316))
+
+- Removed focus from collapsible when in collapsed state. (by [@myrta2302](https://github.com/myrta2302) with [#4309](https://github.com/swisspost/design-system/pull/4309))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.10
+  - @swisspost/design-system-icons@9.0.0-next.10
+
+## 9.0.0-next.9
+
+### Major Changes
+
+- Updated the `post-togglebutton` component to offer greater flexibility. You can now control the visibility of elements within the `post-togglebutton` using the `data-showwhen="toggled"` and `data-showwhen="untoggled"` attributes. Any content without a `data-showwhen` attribute will always be visible, regardless of the toggle state. (by [@alizedebray](https://github.com/alizedebray) with [#4223](https://github.com/swisspost/design-system/pull/4223))
+
+### Minor Changes
+
+- Added composable footer component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4190](https://github.com/swisspost/design-system/pull/4190))
+
+- Added the `post-megadropdown` component. (by [@leagrdv](https://github.com/leagrdv) with [#4177](https://github.com/swisspost/design-system/pull/4177))
+
+- Added the parts `button` and `body` in the `post-accordion-item` component, so one can override styles from the outside. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4190](https://github.com/swisspost/design-system/pull/4190))
+
+- Added the `post-breadcrumb` component to provide a standalone breadcrumb navigation solution. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4065](https://github.com/swisspost/design-system/pull/4065))
+
+- Added the css parts `button` and `body` in the `post-accorddion-item` component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4190](https://github.com/swisspost/design-system/pull/4190))
+
+- Added the `post-language-switch` component that enables users to change the language of a page. (by [@leagrdv](https://github.com/leagrdv) with [#4044](https://github.com/swisspost/design-system/pull/4044))
+
+### Patch Changes
+
+- Switched mega dropdown content to one column on mobile. (by [@leagrdv](https://github.com/leagrdv) with [#4300](https://github.com/swisspost/design-system/pull/4300))
+
+- Fixed opening state of megadropdown trigger and expanded detection. (by [@leagrdv](https://github.com/leagrdv) with [#4299](https://github.com/swisspost/design-system/pull/4299))
+
+- Fix tab isolation in nested `post-tabs` components by scoping tab queries and interactions to the current instance. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4211](https://github.com/swisspost/design-system/pull/4211))
+
+- Added a fixed slot `post-list-item` on the `post-list-item` host element, so it is no longer necessary to add it manually. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4190](https://github.com/swisspost/design-system/pull/4190))
+
+- Fixed the used `headingLevel` in the `post-accorddion-item` component. The component now uses the value from its closest `post-accorddion` parent component, if this is specified and falls back to `h2` if not specified. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#4190](https://github.com/swisspost/design-system/pull/4190))
+
+- Updated the `post-togglebutton` to function like a real button, including support for keyboard navigation and proper focus styles. (by [@alizedebray](https://github.com/alizedebray) with [#4242](https://github.com/swisspost/design-system/pull/4242))
+
+- Fixed an issue with the post-list component where the `horizontal` property could not be set programmatically. Also, reduced the specificity of the component's styles to make customization easier. (by [@alizedebray](https://github.com/alizedebray) with [#4137](https://github.com/swisspost/design-system/pull/4137))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.9
+  - @swisspost/design-system-icons@9.0.0-next.9
+
+## 9.0.0-next.8
+
+### Minor Changes
+
+- Ιmplemented the back-to-top button component. (by [@myrta2302](https://github.com/myrta2302) with [#3991](https://github.com/swisspost/design-system/pull/3991))
+
+- Added the capability to use a slotted img as a logo inside ´accordion-items´. (by [@leagrdv](https://github.com/leagrdv) with [#4166](https://github.com/swisspost/design-system/pull/4166))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@9.0.0-next.8
+  - @swisspost/design-system-styles@9.0.0-next.8
+
+## 9.0.0-next.7
+
+### Minor Changes
+
+- Added the `post-togglebutton` component. (by [@veyaromain](https://github.com/veyaromain) with [#3889](https://github.com/swisspost/design-system/pull/3889))
+
+- Refactored `post-icon` component to use the `<use>` tag to load and show icons under the hood. This enables responsive icons, enables better caching and improves render performance slightly. There is no further action required. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3969](https://github.com/swisspost/design-system/pull/3969))
+
+### Patch Changes
+
+- Fixed bug that showed delayed tooltip even after blur event. (by [@leagrdv](https://github.com/leagrdv) with [#4053](https://github.com/swisspost/design-system/pull/4053))
+
+- Made `post-icon` component use base tag href to define location of icons folder. (by [@leagrdv](https://github.com/leagrdv) with [#4069](https://github.com/swisspost/design-system/pull/4069))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.7
+
+## 9.0.0-next.6
+
+### Major Changes
+
+- Renamed the alert component to banner and updated the styles of banner and toast components. The class `.alert` is still supported for now but is deprecated and will be removed in v10. Changed web component `<post-alert>` to `<post-banner>`. Additionally, the classes `.{toast|alert}-primary`, `.{toast|alert}-gray` and `.toast-notification` have been deprecated. (by [@leagrdv](https://github.com/leagrdv) with [#3862](https://github.com/swisspost/design-system/pull/3862))
+
+- Removed the `alert-fixed-bottom` variant of the alert. (by [@leagrdv](https://github.com/leagrdv) with [#3862](https://github.com/swisspost/design-system/pull/3862))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.6
+
+## 9.0.0-next.5
+
+### Minor Changes
+
+- Added a provisional post-header component with some basic functionality in place. This component is not finished in this state. (by [@gfellerph](https://github.com/gfellerph) with [#3837](https://github.com/swisspost/design-system/pull/3837))
+
+- Added new Menu Button components (post-menu-button, post-menu-trigger, and post-menu-item) for creating accessible dropdown menus. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#3795](https://github.com/swisspost/design-system/pull/3795))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.0-next.5
+
 ## 9.0.0-next.4
 
 ### Major Changes

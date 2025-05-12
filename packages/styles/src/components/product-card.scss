@@ -1,5 +1,3 @@
-@forward './../variables/options';
-
 @use 'sass:map';
 
 @use './../themes/bootstrap/card' as bootstrap-card;
@@ -9,7 +7,13 @@
 @use './../variables/breakpoints';
 @use './../variables/components/card';
 @use './../functions/sizing';
-@use './../mixins/size' as size-mixin;
+@use './../mixins/media';
+
+@use './../functions/tokens';
+@use './../tokens/elements';
+@use './../tokens/utilities';
+
+tokens.$default-map: utilities.$post-spacing;
 
 .product-navigation {
   display: flex;
@@ -26,52 +30,5 @@
         height: auto !important;
       }
     }
-  }
-}
-
-.card-buttons {
-  [class*='col-'] {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-.card-button {
-  align-self: stretch;
-  margin: 0.75rem 0;
-
-  [class*='col-'] > & {
-    height: 100%;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-
-    > .pi,
-    > post-icon {
-      flex-shrink: 0;
-      width: 3rem;
-      height: 3rem;
-      margin-right: 1rem;
-    }
-  }
-
-  .card-body {
-    @include size-mixin.responsive-size(regular);
-  }
-
-  .post-card-favourit {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-    box-shadow: none;
-    color: currentColor;
   }
 }

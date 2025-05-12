@@ -40,7 +40,7 @@ describe('accordion', () => {
         .last()
         .click()
         .then(() => {
-          expect(EventHandlerMock).to.be.calledTwice;
+          cy.wrap(EventHandlerMock).should('have.been.calledTwice');
         });
     });
   });
@@ -77,7 +77,7 @@ describe('accordion', () => {
       cy.get('@collapsibles').eq(7).shadow().find('post-collapsible').should('be.visible');
     });
 
-    it('should not propagate "postToggle" event from nested post-accordion', () => {
+    it('should propagate "postToggle" event from nested post-accordion', () => {
       cy.document().then(document => {
         const EventHandlerMock = cy.spy();
         Cypress.$(document.querySelector('post-accordion')).on('postToggle', EventHandlerMock);
@@ -86,7 +86,7 @@ describe('accordion', () => {
           .eq(3)
           .click()
           .then(() => {
-            expect(EventHandlerMock).to.not.be.called;
+            cy.wrap(EventHandlerMock).should('have.been.called');
           });
       });
     });

@@ -1,0 +1,17 @@
+custom-element::part(header):hover {
+  text-decoration: underline;
+}
+
+custom-element::part(footer):active {
+  color: darkgray;
+}
+
+custom-element::part(header)::before {
+  content: '>> ';
+  color: red;
+}
+
+custom-element::part(footer)::after {
+  content: ' <<';
+  color: lightgray;
+}

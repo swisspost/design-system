@@ -6,7 +6,7 @@ interface Props {
 const requiredLabels: { [key: string]: string } = {
   'icons': 'required if you use icons',
   'floating-label': 'required if you use floating-labels',
-  'form-feedback': 'required if you use validation feedbacks',
+  'validation': 'required if you use validation feedbacks',
 };
 
 export function getComponentStyleImports(props: Props) {

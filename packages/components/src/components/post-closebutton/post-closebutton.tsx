@@ -6,7 +6,8 @@ import { version } from '@root/package.json';
  */
 @Component({
   tag: 'post-closebutton',
-  shadow: false,
+  styleUrl: 'post-closebutton.scss',
+  shadow: true,
 })
 export class PostClosebutton {
   @Element() host: HTMLPostClosebuttonElement;
@@ -14,8 +15,8 @@ export class PostClosebutton {
   render() {
     return (
       <Host data-version={version}>
-        <button class="btn btn-icon-close">
-          <post-icon aria-hidden="true" name="2043"></post-icon>
+        <button class="btn btn-icon-close" type="button">
+          <post-icon aria-hidden="true" name="closex"></post-icon>
           <span class="visually-hidden">
             <slot></slot>
           </span>

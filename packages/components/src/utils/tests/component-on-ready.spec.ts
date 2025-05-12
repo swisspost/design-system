@@ -7,7 +7,7 @@ describe('componentOnReady', () => {
 
   beforeAll(() => {
     global.requestAnimationFrame = mockRequestAnimationFrame;
-    global.setTimeout = mockSetTimeout;
+    global.setTimeout = mockSetTimeout as unknown as typeof setTimeout;
   });
 
   afterEach(() => {
@@ -18,7 +18,7 @@ describe('componentOnReady', () => {
   it('should return the result of componentOnReady if it exists', async () => {
     const el = {
       componentOnReady: jest.fn().mockResolvedValue('resolvedValue'),
-    } as HostElement;
+    } as unknown as HostElement;
 
     const result = await componentOnReady(el);
     expect(el.componentOnReady).toHaveBeenCalledTimes(1);

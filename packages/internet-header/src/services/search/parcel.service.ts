@@ -80,7 +80,7 @@ export const getParcelSuggestion = async (
 ): Promise<(TrackAndTraceInfo & { url: string }) | null> => {
   const parcelInfo = await getParcelInfo(query, searchConfig);
 
-  return Boolean(parcelInfo.ok)
+  return parcelInfo.ok
     ? { ...parcelInfo, url: getTrackAndTraceRedirectUrl(query, searchConfig) }
     : null;
 };

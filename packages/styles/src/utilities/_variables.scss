@@ -1,6 +1,8 @@
-@use '../tokens/utilities' as tokens;
+@use 'sass:map';
+@use '../tokens/utilities_formatted';
 
-@use './functions' as *;
+@use '../variables/sizing' as *;
+@use '../variables/type';
 
 /*
   Utilities are generated with our utility API using bellow $utilities map.
@@ -21,7 +23,228 @@
   Our API is based on bootstrap utility API, more information is available here: https://getbootstrap.com/docs/5.3/utilities/api/
 */
 
+$position-values: (
+  0: 0,
+  50: 50%,
+  100: 100%,
+);
+
+$vw-values: (
+  0: 0,
+  25: 25vw,
+  33: 25vw,
+  50: 50vw,
+  66: 66vw,
+  75: 75vw,
+  100: 100vw,
+);
+
+$vh-values: (
+  0: 0,
+  25: 25vh,
+  33: 33vh,
+  50: 50vh,
+  66: 66vh,
+  75: 75vh,
+  100: 100vh,
+);
+
 $utilities: (
+  'border': (
+    property: border,
+    class: border,
+    values: (
+      null: var(--post-border-width, map.get(utilities_formatted.$border-default, width)) solid
+        map.get(utilities_formatted.$border-default, color),
+      0: 0,
+    ),
+  ),
+  'border-top': (
+    property: border-block-start,
+    class: border-top,
+    values: (
+      null: var(--post-border-width, map.get(utilities_formatted.$border-default, width)) solid
+        map.get(utilities_formatted.$border-default, color),
+      0: 0,
+    ),
+  ),
+  'border-end': (
+    property: border-inline-end,
+    class: border-end,
+    values: (
+      null: var(--post-border-width, map.get(utilities_formatted.$border-default, width)) solid
+        map.get(utilities_formatted.$border-default, color),
+      0: 0,
+    ),
+  ),
+  'border-bottom': (
+    property: border-block-end,
+    class: border-bottom,
+    values: (
+      null: var(--post-border-width, map.get(utilities_formatted.$border-default, width)) solid
+        map.get(utilities_formatted.$border-default, color),
+      0: 0,
+    ),
+  ),
+  'border-start': (
+    property: border-inline-start,
+    class: border-start,
+    values: (
+      null: var(--post-border-width, map.get(utilities_formatted.$border-default, width)) solid
+        map.get(utilities_formatted.$border-default, color),
+      0: 0,
+    ),
+  ),
+  'border-width': (
+    css-var: true,
+    css-variable-name: border-width,
+    class: border,
+    values: utilities_formatted.$border-width,
+  ),
+  'rounded': (
+    property: border-radius,
+    class: rounded,
+    values:
+      map.merge(
+        utilities_formatted.$border-radius,
+        (
+          pill: 50rem,
+          circle: 50%,
+        )
+      ),
+  ),
+  'rounded-top': (
+    property: border-start-start-radius border-start-end-radius,
+    class: rounded-top,
+    values:
+      map.merge(
+        utilities_formatted.$border-radius,
+        (
+          pill: 50rem,
+          circle: 50%,
+        )
+      ),
+  ),
+  'rounded-end': (
+    property: border-start-end-radius border-end-end-radius,
+    class: rounded-end,
+    values:
+      map.merge(
+        utilities_formatted.$border-radius,
+        (
+          pill: 50rem,
+          circle: 50%,
+        )
+      ),
+  ),
+  'rounded-bottom': (
+    property: border-end-end-radius border-end-start-radius,
+    class: rounded-bottom,
+    values:
+      map.merge(
+        utilities_formatted.$border-radius,
+        (
+          pill: 50rem,
+          circle: 50%,
+        )
+      ),
+  ),
+  'rounded-start': (
+    property: border-end-start-radius border-start-start-radius,
+    class: rounded-start,
+    values:
+      map.merge(
+        utilities_formatted.$border-radius,
+        (
+          pill: 50rem,
+          circle: 50%,
+        )
+      ),
+  ),
+  'grid-gutter-x': (
+    responsive: true,
+    property: --post-grid-gutter-x,
+    class: gx g,
+    values: utilities_formatted.$gap,
+  ),
+  'grid-gutter-y': (
+    responsive: true,
+    property: --post-grid-gutter-y,
+    class: gy g,
+    values: utilities_formatted.$gap,
+  ),
+  'width': (
+    responsive: true,
+    property: width,
+    class: w,
+    values: map.merge(utilities_formatted.$gap, $post-percentage-sizes),
+  ),
+  'height': (
+    responsive: true,
+    property: height,
+    class: h,
+    values: map.merge(utilities_formatted.$gap, $post-percentage-sizes),
+  ),
+  'max-width': (
+    responsive: true,
+    property: max-width,
+    class: max-w,
+    values: map.merge(utilities_formatted.$gap, $post-percentage-sizes),
+  ),
+  'max-height': (
+    responsive: true,
+    property: max-height,
+    class: max-h,
+    values: map.merge(utilities_formatted.$gap, $post-percentage-sizes),
+  ),
+  'min-width': (
+    responsive: true,
+    property: min-width,
+    class: min-w,
+    values: map.merge(utilities_formatted.$gap, $post-percentage-sizes),
+  ),
+  'min-height': (
+    responsive: true,
+    property: min-height,
+    class: min-h,
+    values: map.merge(utilities_formatted.$gap, $post-percentage-sizes),
+  ),
+  'viewport-width': (
+    responsive: true,
+    property: width,
+    class: vw,
+    values: $vw-values,
+  ),
+  'viewport-height': (
+    responsive: true,
+    property: height,
+    class: vh,
+    values: $vh-values,
+  ),
+  'min-viewport-width': (
+    responsive: true,
+    property: min-width,
+    class: min-vw,
+    values: $vw-values,
+  ),
+  'min-viewport-height': (
+    responsive: true,
+    property: min-height,
+    class: min-vh,
+    values: $vh-values,
+  ),
+  'max-viewport-width': (
+    responsive: true,
+    property: max-width,
+    class: max-vw,
+    values: $vw-values,
+  ),
+  'max-viewport-height': (
+    responsive: true,
+    property: max-height,
+    class: max-vh,
+    values: $vh-values,
+  ),
   'align': (
     property: vertical-align,
     class: align,
@@ -46,107 +269,71 @@ $utilities: (
       100: 1,
     ),
   ),
-  'margin': (
-    responsive: true,
-    property: margin,
-    class: m,
-    values: from-tokens('spacing', 'margin'),
-  ),
-  'margin-x': (
-    responsive: true,
-    property: margin-right margin-left,
-    class: mx,
-    values: from-tokens('spacing', 'margin'),
-  ),
-  'margin-y': (
-    responsive: true,
-    property: margin-top margin-bottom,
-    class: my,
-    values: from-tokens('spacing', 'margin'),
-  ),
   'margin-top': (
     responsive: true,
     property: margin-top,
-    class: mt,
-    values: from-tokens('spacing', 'margin'),
+    class: mt my m,
+    values: utilities_formatted.$margin,
   ),
   'margin-end': (
     responsive: true,
     property: margin-right,
-    class: me,
-    values: from-tokens('spacing', 'margin'),
+    class: me mx m,
+    values: utilities_formatted.$margin,
   ),
   'margin-bottom': (
     responsive: true,
     property: margin-bottom,
-    class: mb,
-    values: from-tokens('spacing', 'margin'),
+    class: mb my m,
+    values: utilities_formatted.$margin,
   ),
   'margin-start': (
     responsive: true,
     property: margin-left,
-    class: ms,
-    values: from-tokens('spacing', 'margin'),
-  ),
-  'padding': (
-    responsive: true,
-    property: padding,
-    class: p,
-    values: from-tokens('spacing', 'padding'),
-  ),
-  'padding-x': (
-    responsive: true,
-    property: padding-right padding-left,
-    class: px,
-    values: from-tokens('spacing', 'padding'),
-  ),
-  'padding-y': (
-    responsive: true,
-    property: padding-top padding-bottom,
-    class: py,
-    values: from-tokens('spacing', 'padding'),
+    class: ms mx m,
+    values: utilities_formatted.$margin,
   ),
   'padding-top': (
     responsive: true,
     property: padding-top,
-    class: pt,
-    values: from-tokens('spacing', 'padding'),
+    class: pt py p,
+    values: utilities_formatted.$padding,
   ),
   'padding-end': (
     responsive: true,
     property: padding-right,
-    class: pe,
-    values: from-tokens('spacing', 'padding'),
+    class: pe px p,
+    values: utilities_formatted.$padding,
   ),
   'padding-bottom': (
     responsive: true,
     property: padding-bottom,
-    class: pb,
-    values: from-tokens('spacing', 'padding'),
+    class: pb py p,
+    values: utilities_formatted.$padding,
   ),
   'padding-start': (
     responsive: true,
     property: padding-left,
-    class: ps,
-    values: from-tokens('spacing', 'padding'),
+    class: ps px p,
+    values: utilities_formatted.$padding,
   ),
   'gap': (
     responsive: true,
     property: gap,
     class: gap,
-    values: from-tokens('spacing', 'gap'),
+    values: utilities_formatted.$gap,
   ),
   'row-gap': (
     responsive: true,
     property: row-gap,
     class: row-gap,
-    values: from-tokens('spacing', 'gap'),
+    values: utilities_formatted.$gap,
   ),
   'column-gap': (
     responsive: true,
     property: column-gap,
     class: column-gap,
-    values: from-tokens('spacing', 'gap'),
+    values: utilities_formatted.$gap,
   ),
   'flex': (
     responsive: true,
@@ -254,5 +441,132 @@ $utilities: (
     values: inline inline-block block grid inline-grid table table-row table-cell flex inline-flex
       none,
   ),
-  // IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`.
+  'position': (
+    property: position,
+    values: static relative absolute fixed sticky,
+  ),
+  'top': (
+    property: top,
+    values: $position-values,
+  ),
+  'bottom': (
+    property: bottom,
+    values: $position-values,
+  ),
+  'start': (
+    property: left,
+    class: start,
+    values: $position-values,
+  ),
+  'end': (
+    property: right,
+    class: end,
+    values: $position-values,
+  ),
+  'translate-middle': (
+    property: transform,
+    class: translate-middle,
+    values: (
+      null: translate(-50%, -50%),
+      x: translateX(-50%),
+      y: translateY(-50%),
+    ),
+  ),
+  'overflow': (
+    property: overflow,
+    values: auto hidden visible scroll,
+  ),
+  'overflow-x': (
+    property: overflow-x,
+    values: auto hidden visible scroll,
+  ),
+  'overflow-y': (
+    property: overflow-y,
+    values: auto hidden visible scroll,
+  ),
+  'font-family': (
+    property: font-family,
+    class: font,
+    values: (
+      'sans-serif': type.$font-family-sans-serif,
+    ),
+  ),
+  'font-style': (
+    property: font-style,
+    class: fst,
+    values: italic normal,
+  ),
+  'font-weight': (
+    property: font-weight,
+    class: fw,
+    values: (
+      black: type.$font-weight-black,
+      bold: type.$font-weight-bold,
+      normal: type.$font-weight-normal,
+    ),
+  ),
+  'line-height': (
+    property: line-height,
+    class: lh,
+    values: (
+      1: type.$line-height-1,
+      sm: type.$line-height-sm,
+      lg: type.$line-height-lg,
+    ),
+  ),
+  'text-align': (
+    responsive: true,
+    property: text-align,
+    class: text,
+    values: (
+      start: left,
+      end: right,
+      center: center,
+    ),
+  ),
+  'text-decoration': (
+    property: text-decoration,
+    values: none underline line-through,
+  ),
+  'text-transform': (
+    property: text-transform,
+    class: text,
+    values: lowercase uppercase capitalize,
+  ),
+  'white-space': (
+    property: white-space,
+    class: text,
+    values: (
+      wrap: normal,
+      nowrap: nowrap,
+    ),
+  ),
+  'word-wrap': (
+    property: word-wrap word-break,
+    class: text,
+    values: (
+      break: break-word,
+    ),
+    rtl: false,
+  ),
+  'elevation': (
+    property: box-shadow,
+    values: utilities_formatted.$elevation,
+    class: elevation,
+  ),
+  'font-size': (
+    responsive: true,
+    property: font-size,
+    class: fs,
+    values: utilities_formatted.$font-size,
+  ),
+  'color': (
+    property: color,
+    class: text,
+    values: (
+      reset: inherit,
+    ),
+  ),
 );
+
+/* IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`. */

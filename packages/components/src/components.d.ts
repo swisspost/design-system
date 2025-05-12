@@ -6,10 +6,14 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
-import { AlertType } from "./components/post-alert/alert-types";
+import { BannerType } from "./components/post-banner/banner-types";
+import { DEVICE_SIZE } from "./components/post-header/post-header";
+import { SwitchVariant } from "./components/post-language-switch/switch-variants";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
-export { AlertType } from "./components/post-alert/alert-types";
+export { BannerType } from "./components/post-banner/banner-types";
+export { DEVICE_SIZE } from "./components/post-header/post-header";
+export { SwitchVariant } from "./components/post-language-switch/switch-variants";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
     interface PostAccordion {
@@ -49,32 +53,6 @@ export namespace Components {
          */
         "toggle": (force?: boolean) => Promise<boolean>;
     }
-    interface PostAlert {
-        /**
-          * Triggers alert dismissal programmatically (same as clicking on the close button (×)).
-         */
-        "dismiss": () => Promise<void>;
-        /**
-          * The label to use for the close button of a dismissible alert.
-         */
-        "dismissLabel": string;
-        /**
-          * If `true`, a close button (×) is displayed and the alert can be dismissed by the user.
-         */
-        "dismissible": boolean;
-        /**
-          * If `true`, the alert is positioned at the bottom of the window, from edge to edge.
-         */
-        "fixed": boolean;
-        /**
-          * The icon to display in the alert. By default, the icon depends on the alert type.  If `none`, no icon is displayed.
-         */
-        "icon": string;
-        /**
-          * The type of the alert.
-         */
-        "type": AlertType;
-    }
     interface PostAvatar {
         /**
           * Defines the users email address associated with a gravatar profile picture.
@@ -89,15 +67,53 @@ export namespace Components {
          */
         "lastname"?: string;
         /**
-          * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
+          * Defines the company internal userId.<div className="mb-4 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
          */
         "userid"?: string;
+    }
+    interface PostBackToTop {
+        /**
+          * The label of the back-to-top button, intended solely for accessibility purposes. This label is always hidden from view.
+         */
+        "label": string;
+    }
+    interface PostBanner {
+        /**
+          * Triggers banner dismissal programmatically (same as clicking on the close button (×)).
+         */
+        "dismiss": () => Promise<void>;
+        /**
+          * The label to use for the close button of a dismissible banner.
+         */
+        "dismissLabel": string;
+        /**
+          * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
+         */
+        "dismissible": boolean;
+        /**
+          * The icon to display in the banner. By default, the icon depends on the banner type.  If `none`, no icon is displayed.
+         */
+        "icon": string;
+        /**
+          * The type of the banner.
+         */
+        "type": BannerType;
     }
     interface PostBreadcrumbItem {
         /**
           * The optional URL to which the breadcrumb item will link.
          */
         "url"?: string | URL;
+    }
+    interface PostBreadcrumbs {
+        /**
+          * The text label for the home breadcrumb item.
+         */
+        "homeText": string;
+        /**
+          * The URL for the home breadcrumb item.
+         */
+        "homeUrl": string;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -120,7 +136,7 @@ export namespace Components {
          */
         "groupReset": () => Promise<void>;
         /**
-          * Defines the icon `name` inside the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
+          * Defines the icon `name` inside the card. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span>
          */
         "icon": string;
         /**
@@ -128,7 +144,7 @@ export namespace Components {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `name` attribute of the control. <span className="mb-4 banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
          */
         "name": string;
         /**
@@ -144,7 +160,7 @@ export namespace Components {
          */
         "validity": null | 'true' | 'false';
         /**
-          * Defines the `value` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
          */
         "value": string;
     }
@@ -170,7 +186,17 @@ export namespace Components {
          */
         "update": () => Promise<void>;
     }
+    interface PostFooter {
+        /**
+          * The label to add to the footer (visually hidden).
+         */
+        "label": string;
+    }
     interface PostHeader {
+        /**
+          * Toggles the mobile navigation.
+         */
+        "toggleMobileMenu": (force?: boolean) => Promise<void>;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -226,6 +252,26 @@ export namespace Components {
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
         "url": string;
+        /**
+          * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
+         */
+        "variant"?: SwitchVariant | null;
+    }
+    interface PostLanguageSwitch {
+        /**
+          * A title for the list of language options
+         */
+        "caption": string;
+        /**
+          * A descriptive text for the list of language options
+         */
+        "description": string;
+        /**
+          * Whether the component is rendered as a list or a menu
+         */
+        "variant": SwitchVariant;
+    }
+    interface PostLinkarea {
     }
     interface PostList {
         /**
@@ -249,25 +295,27 @@ export namespace Components {
     }
     interface PostMegadropdown {
         /**
-          * Hide megadropdown
-          * @returns boolean
+          * Sets focus to the first focusable element within the component.
          */
-        "hide": () => Promise<void>;
+        "focusFirst": () => Promise<void>;
         /**
-          * Show megadropdown
-          * @param element HTMLElement
-          * @returns boolean
+          * Hides the dropdown with an animation.
          */
-        "show": (element: HTMLElement) => Promise<void>;
+        "hide": (focusParent?: boolean, forceClose?: boolean) => Promise<void>;
         /**
-          * Toggle megadropdown
-          * @param element HTMLElement
-          * @param force boolean
-          * @returns boolean
+          * Displays the dropdown.
          */
-        "toggle": (element: HTMLElement, force?: boolean) => Promise<boolean>;
+        "show": () => Promise<void>;
+        /**
+          * Toggles the dropdown visibility based on its current state.
+         */
+        "toggle": () => Promise<void>;
     }
     interface PostMegadropdownTrigger {
+        /**
+          * ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown.
+         */
+        "for": string;
     }
     interface PostMenu {
         /**
@@ -275,7 +323,7 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
-          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
          */
         "placement"?: Placement;
         /**
@@ -310,7 +358,7 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
-          * Defines the placement of the popover according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popoverss are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Defines the position of the popover relative to its trigger. Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
          */
         "placement"?: Placement;
         /**
@@ -327,29 +375,41 @@ export namespace Components {
     }
     interface PostPopovercontainer {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Animation style
+         */
+        "animation"?: 'pop-in' | null;
+        /**
+          * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
         /**
-          * Gap between the edge of the page and the popover
+          * Gap between the edge of the page and the popovercontainer
          */
         "edgeGap"?: number;
         /**
-          * Programmatically hide this tooltip
+          * Programmatically hide the popovercontainer
          */
         "hide": () => Promise<void>;
         /**
-          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Whether or not the popovercontainer should close when user clicks outside of it
+         */
+        "manualClose": boolean;
+        /**
+          * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
         /**
-          * Programmatically display the tooltip
-          * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+          * Enables a safespace through which the cursor can be moved without the popover being disabled
+         */
+        "safeSpace"?: 'triangle' | 'trapezoid';
+        /**
+          * Programmatically display the popovercontainer
+          * @param target An element with [data-popover-target="id"] where the popovercontainer should be shown
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
-          * Toggle tooltip display
-          * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+          * Toggle popovercontainer display
+          * @param target An element with [data-popover-target="id"] where the popovercontainer should be shown
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<boolean>;
@@ -396,7 +456,7 @@ export namespace Components {
     }
     interface PostTag {
         /**
-          * Defines the icon `name` inside of the component. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs">icon library</a>.
+          * Defines the icon `name` inside of the component. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs">icon library</a>.
          */
         "icon": null | string;
         /**
@@ -408,40 +468,59 @@ export namespace Components {
          */
         "variant": 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
+    interface PostTogglebutton {
+        /**
+          * If `true`, the button is in the "on" state, otherwise it is in the "off" state.
+         */
+        "toggled": boolean;
+    }
     interface PostTooltip {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Choose a tooltip animation
+         */
+        "animation"?: 'pop-in' | null;
+        /**
+          * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
         /**
-          * If `true`, the tooltip is displayed a few milliseconds after it is triggered
-         */
-        "delayed": boolean;
-        /**
-          * Programmatically hide this tooltip
+          * Programmatically hide this tooltip.
          */
         "hide": () => Promise<void>;
         /**
-          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Indicates the open state of the tooltip
+         */
+        "open": boolean;
+        /**
+          * Defines the position of the tooltip relative to its trigger. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
          */
         "placement"?: Placement;
         /**
-          * Programmatically display the tooltip
-          * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
-          * @param triggeredByFocus A boolean indicating if the tooltip was triggered by a focus event.
+          * Programmatically display the tooltip.
+          * @param target An element where the tooltip should be shown
          */
-        "show": (target: HTMLElement, triggeredByFocus?: boolean) => Promise<void>;
+        "show": (target: HTMLElement) => Promise<void>;
         /**
-          * Toggle tooltip display
-          * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+          * Toggle tooltip display.
+          * @param target An element where the tooltip should be shown
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
     }
+    interface PostTooltipTrigger {
+        /**
+          * Delay (in milliseconds) before the tooltip is shown.
+         */
+        "delay": number;
+        /**
+          * ID of the tooltip element that this trigger is linked to.
+         */
+        "for": string;
+    }
 }
-export interface PostAlertCustomEvent<T> extends CustomEvent<T> {
+export interface PostBannerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLPostAlertElement;
+    target: HTMLPostBannerElement;
 }
 export interface PostCardControlCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -451,17 +530,17 @@ export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
 }
+export interface PostHeaderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostHeaderElement;
+}
 export interface PostLanguageOptionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostLanguageOptionElement;
 }
-export interface PostMainnavigationCustomEvent<T> extends CustomEvent<T> {
+export interface PostMegadropdownCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLPostMainnavigationElement;
-}
-export interface PostMegadropdownTriggerCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLPostMegadropdownTriggerElement;
+    target: HTMLPostMegadropdownElement;
 }
 export interface PostMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -492,34 +571,46 @@ declare global {
         prototype: HTMLPostAccordionItemElement;
         new (): HTMLPostAccordionItemElement;
     };
-    interface HTMLPostAlertElementEventMap {
-        "postDismissed": void;
-    }
-    interface HTMLPostAlertElement extends Components.PostAlert, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostAlertElementEventMap>(type: K, listener: (this: HTMLPostAlertElement, ev: PostAlertCustomEvent<HTMLPostAlertElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostAlertElementEventMap>(type: K, listener: (this: HTMLPostAlertElement, ev: PostAlertCustomEvent<HTMLPostAlertElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLPostAlertElement: {
-        prototype: HTMLPostAlertElement;
-        new (): HTMLPostAlertElement;
-    };
     interface HTMLPostAvatarElement extends Components.PostAvatar, HTMLStencilElement {
     }
     var HTMLPostAvatarElement: {
         prototype: HTMLPostAvatarElement;
         new (): HTMLPostAvatarElement;
     };
+    interface HTMLPostBackToTopElement extends Components.PostBackToTop, HTMLStencilElement {
+    }
+    var HTMLPostBackToTopElement: {
+        prototype: HTMLPostBackToTopElement;
+        new (): HTMLPostBackToTopElement;
+    };
+    interface HTMLPostBannerElementEventMap {
+        "postDismissed": void;
+    }
+    interface HTMLPostBannerElement extends Components.PostBanner, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostBannerElementEventMap>(type: K, listener: (this: HTMLPostBannerElement, ev: PostBannerCustomEvent<HTMLPostBannerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostBannerElementEventMap>(type: K, listener: (this: HTMLPostBannerElement, ev: PostBannerCustomEvent<HTMLPostBannerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostBannerElement: {
+        prototype: HTMLPostBannerElement;
+        new (): HTMLPostBannerElement;
+    };
     interface HTMLPostBreadcrumbItemElement extends Components.PostBreadcrumbItem, HTMLStencilElement {
     }
     var HTMLPostBreadcrumbItemElement: {
         prototype: HTMLPostBreadcrumbItemElement;
         new (): HTMLPostBreadcrumbItemElement;
+    };
+    interface HTMLPostBreadcrumbsElement extends Components.PostBreadcrumbs, HTMLStencilElement {
+    }
+    var HTMLPostBreadcrumbsElement: {
+        prototype: HTMLPostBreadcrumbsElement;
+        new (): HTMLPostBreadcrumbsElement;
     };
     interface HTMLPostCardControlElementEventMap {
         "postInput": { state: boolean; value: string };
@@ -571,7 +662,24 @@ declare global {
         prototype: HTMLPostCollapsibleTriggerElement;
         new (): HTMLPostCollapsibleTriggerElement;
     };
+    interface HTMLPostFooterElement extends Components.PostFooter, HTMLStencilElement {
+    }
+    var HTMLPostFooterElement: {
+        prototype: HTMLPostFooterElement;
+        new (): HTMLPostFooterElement;
+    };
+    interface HTMLPostHeaderElementEventMap {
+        "postUpdateDevice": DEVICE_SIZE;
+    }
     interface HTMLPostHeaderElement extends Components.PostHeader, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostHeaderElementEventMap>(type: K, listener: (this: HTMLPostHeaderElement, ev: PostHeaderCustomEvent<HTMLPostHeaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostHeaderElementEventMap>(type: K, listener: (this: HTMLPostHeaderElement, ev: PostHeaderCustomEvent<HTMLPostHeaderElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostHeaderElement: {
         prototype: HTMLPostHeaderElement;
@@ -588,6 +696,7 @@ declare global {
     };
     interface HTMLPostLanguageOptionElementEventMap {
         "postChange": string;
+        "postLanguageOptionInitiallyActive": string;
     }
     interface HTMLPostLanguageOptionElement extends Components.PostLanguageOption, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostLanguageOptionElementEventMap>(type: K, listener: (this: HTMLPostLanguageOptionElement, ev: PostLanguageOptionCustomEvent<HTMLPostLanguageOptionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -602,6 +711,18 @@ declare global {
     var HTMLPostLanguageOptionElement: {
         prototype: HTMLPostLanguageOptionElement;
         new (): HTMLPostLanguageOptionElement;
+    };
+    interface HTMLPostLanguageSwitchElement extends Components.PostLanguageSwitch, HTMLStencilElement {
+    }
+    var HTMLPostLanguageSwitchElement: {
+        prototype: HTMLPostLanguageSwitchElement;
+        new (): HTMLPostLanguageSwitchElement;
+    };
+    interface HTMLPostLinkareaElement extends Components.PostLinkarea, HTMLStencilElement {
+    }
+    var HTMLPostLinkareaElement: {
+        prototype: HTMLPostLinkareaElement;
+        new (): HTMLPostLinkareaElement;
     };
     interface HTMLPostListElement extends Components.PostList, HTMLStencilElement {
     }
@@ -621,41 +742,30 @@ declare global {
         prototype: HTMLPostLogoElement;
         new (): HTMLPostLogoElement;
     };
-    interface HTMLPostMainnavigationElementEventMap {
-        "postToggle": any;
-    }
     interface HTMLPostMainnavigationElement extends Components.PostMainnavigation, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostMainnavigationElementEventMap>(type: K, listener: (this: HTMLPostMainnavigationElement, ev: PostMainnavigationCustomEvent<HTMLPostMainnavigationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostMainnavigationElementEventMap>(type: K, listener: (this: HTMLPostMainnavigationElement, ev: PostMainnavigationCustomEvent<HTMLPostMainnavigationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostMainnavigationElement: {
         prototype: HTMLPostMainnavigationElement;
         new (): HTMLPostMainnavigationElement;
     };
+    interface HTMLPostMegadropdownElementEventMap {
+        "postToggleMegadropdown": { isVisible: boolean; focusParent?: boolean };
+    }
     interface HTMLPostMegadropdownElement extends Components.PostMegadropdown, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostMegadropdownElementEventMap>(type: K, listener: (this: HTMLPostMegadropdownElement, ev: PostMegadropdownCustomEvent<HTMLPostMegadropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostMegadropdownElementEventMap>(type: K, listener: (this: HTMLPostMegadropdownElement, ev: PostMegadropdownCustomEvent<HTMLPostMegadropdownElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostMegadropdownElement: {
         prototype: HTMLPostMegadropdownElement;
         new (): HTMLPostMegadropdownElement;
     };
-    interface HTMLPostMegadropdownTriggerElementEventMap {
-        "postToggle": any;
-    }
     interface HTMLPostMegadropdownTriggerElement extends Components.PostMegadropdownTrigger, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostMegadropdownTriggerElementEventMap>(type: K, listener: (this: HTMLPostMegadropdownTriggerElement, ev: PostMegadropdownTriggerCustomEvent<HTMLPostMegadropdownTriggerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostMegadropdownTriggerElementEventMap>(type: K, listener: (this: HTMLPostMegadropdownTriggerElement, ev: PostMegadropdownTriggerCustomEvent<HTMLPostMegadropdownTriggerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostMegadropdownTriggerElement: {
         prototype: HTMLPostMegadropdownTriggerElement;
@@ -744,7 +854,7 @@ declare global {
         new (): HTMLPostTabPanelElement;
     };
     interface HTMLPostTabsElementEventMap {
-        "postChange": HTMLPostTabPanelElement['name'];
+        "postChange": string;
     }
     interface HTMLPostTabsElement extends Components.PostTabs, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostTabsElementEventMap>(type: K, listener: (this: HTMLPostTabsElement, ev: PostTabsCustomEvent<HTMLPostTabsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -766,25 +876,42 @@ declare global {
         prototype: HTMLPostTagElement;
         new (): HTMLPostTagElement;
     };
+    interface HTMLPostTogglebuttonElement extends Components.PostTogglebutton, HTMLStencilElement {
+    }
+    var HTMLPostTogglebuttonElement: {
+        prototype: HTMLPostTogglebuttonElement;
+        new (): HTMLPostTogglebuttonElement;
+    };
     interface HTMLPostTooltipElement extends Components.PostTooltip, HTMLStencilElement {
     }
     var HTMLPostTooltipElement: {
         prototype: HTMLPostTooltipElement;
         new (): HTMLPostTooltipElement;
     };
+    interface HTMLPostTooltipTriggerElement extends Components.PostTooltipTrigger, HTMLStencilElement {
+    }
+    var HTMLPostTooltipTriggerElement: {
+        prototype: HTMLPostTooltipTriggerElement;
+        new (): HTMLPostTooltipTriggerElement;
+    };
     interface HTMLElementTagNameMap {
         "post-accordion": HTMLPostAccordionElement;
         "post-accordion-item": HTMLPostAccordionItemElement;
-        "post-alert": HTMLPostAlertElement;
         "post-avatar": HTMLPostAvatarElement;
+        "post-back-to-top": HTMLPostBackToTopElement;
+        "post-banner": HTMLPostBannerElement;
         "post-breadcrumb-item": HTMLPostBreadcrumbItemElement;
+        "post-breadcrumbs": HTMLPostBreadcrumbsElement;
         "post-card-control": HTMLPostCardControlElement;
         "post-closebutton": HTMLPostClosebuttonElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
+        "post-footer": HTMLPostFooterElement;
         "post-header": HTMLPostHeaderElement;
         "post-icon": HTMLPostIconElement;
         "post-language-option": HTMLPostLanguageOptionElement;
+        "post-language-switch": HTMLPostLanguageSwitchElement;
+        "post-linkarea": HTMLPostLinkareaElement;
         "post-list": HTMLPostListElement;
         "post-list-item": HTMLPostListItemElement;
         "post-logo": HTMLPostLogoElement;
@@ -801,7 +928,9 @@ declare global {
         "post-tab-panel": HTMLPostTabPanelElement;
         "post-tabs": HTMLPostTabsElement;
         "post-tag": HTMLPostTagElement;
+        "post-togglebutton": HTMLPostTogglebuttonElement;
         "post-tooltip": HTMLPostTooltipElement;
+        "post-tooltip-trigger": HTMLPostTooltipTriggerElement;
     }
 }
 declare namespace LocalJSX {
@@ -826,32 +955,6 @@ declare namespace LocalJSX {
          */
         "headingLevel"?: HeadingLevel;
     }
-    interface PostAlert {
-        /**
-          * The label to use for the close button of a dismissible alert.
-         */
-        "dismissLabel"?: string;
-        /**
-          * If `true`, a close button (×) is displayed and the alert can be dismissed by the user.
-         */
-        "dismissible"?: boolean;
-        /**
-          * If `true`, the alert is positioned at the bottom of the window, from edge to edge.
-         */
-        "fixed"?: boolean;
-        /**
-          * The icon to display in the alert. By default, the icon depends on the alert type.  If `none`, no icon is displayed.
-         */
-        "icon"?: string;
-        /**
-          * An event emitted when the alert element is dismissed, after the transition. It has no payload and only relevant for dismissible alerts.
-         */
-        "onPostDismissed"?: (event: PostAlertCustomEvent<void>) => void;
-        /**
-          * The type of the alert.
-         */
-        "type"?: AlertType;
-    }
     interface PostAvatar {
         /**
           * Defines the users email address associated with a gravatar profile picture.
@@ -866,15 +969,53 @@ declare namespace LocalJSX {
          */
         "lastname"?: string;
         /**
-          * Defines the company internal userId.<div className="mb-1 alert alert-warning alert-sm">Can only be used on post.ch domains!</div>
+          * Defines the company internal userId.<div className="mb-4 banner banner-warning banner-sm">Can only be used on post.ch domains!</div>
          */
         "userid"?: string;
+    }
+    interface PostBackToTop {
+        /**
+          * The label of the back-to-top button, intended solely for accessibility purposes. This label is always hidden from view.
+         */
+        "label": string;
+    }
+    interface PostBanner {
+        /**
+          * The label to use for the close button of a dismissible banner.
+         */
+        "dismissLabel"?: string;
+        /**
+          * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
+         */
+        "dismissible"?: boolean;
+        /**
+          * The icon to display in the banner. By default, the icon depends on the banner type.  If `none`, no icon is displayed.
+         */
+        "icon"?: string;
+        /**
+          * An event emitted when the banner element is dismissed, after the transition. It has no payload and only relevant for dismissible banners.
+         */
+        "onPostDismissed"?: (event: PostBannerCustomEvent<void>) => void;
+        /**
+          * The type of the banner.
+         */
+        "type"?: BannerType;
     }
     interface PostBreadcrumbItem {
         /**
           * The optional URL to which the breadcrumb item will link.
          */
         "url"?: string | URL;
+    }
+    interface PostBreadcrumbs {
+        /**
+          * The text label for the home breadcrumb item.
+         */
+        "homeText"?: string;
+        /**
+          * The URL for the home breadcrumb item.
+         */
+        "homeUrl"?: string;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -893,7 +1034,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Defines the icon `name` inside the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
+          * Defines the icon `name` inside the card. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span>
          */
         "icon"?: string;
         /**
@@ -901,11 +1042,11 @@ declare namespace LocalJSX {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `name` attribute of the control. <span className="mb-4 banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
          */
         "name"?: string;
         /**
-          * An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked. <span className="alert alert-sm alert-info">If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</span>
+          * An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked. <span className="banner banner-sm banner-info">If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</span>
          */
         "onPostChange"?: (event: PostCardControlCustomEvent<{ state: boolean; value: string }>) => void;
         /**
@@ -921,7 +1062,7 @@ declare namespace LocalJSX {
          */
         "validity"?: null | 'true' | 'false';
         /**
-          * Defines the `value` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
          */
         "value"?: string;
     }
@@ -943,7 +1084,17 @@ declare namespace LocalJSX {
          */
         "for"?: string;
     }
+    interface PostFooter {
+        /**
+          * The label to add to the footer (visually hidden).
+         */
+        "label": string;
+    }
     interface PostHeader {
+        /**
+          * An event emitted when the device has changed
+         */
+        "onPostUpdateDevice"?: (event: PostHeaderCustomEvent<DEVICE_SIZE>) => void;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -996,9 +1147,33 @@ declare namespace LocalJSX {
          */
         "onPostChange"?: (event: PostLanguageOptionCustomEvent<string>) => void;
         /**
+          * An event emitted when the language option is initially active. The payload is the ISO 639 code of the language.
+         */
+        "onPostLanguageOptionInitiallyActive"?: (event: PostLanguageOptionCustomEvent<string>) => void;
+        /**
           * The URL used for the href attribute of the internal anchor. This field is optional; if not provided, a button will be used internally instead of an anchor.
          */
         "url"?: string;
+        /**
+          * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
+         */
+        "variant"?: SwitchVariant | null;
+    }
+    interface PostLanguageSwitch {
+        /**
+          * A title for the list of language options
+         */
+        "caption"?: string;
+        /**
+          * A descriptive text for the list of language options
+         */
+        "description"?: string;
+        /**
+          * Whether the component is rendered as a list or a menu
+         */
+        "variant"?: SwitchVariant;
+    }
+    interface PostLinkarea {
     }
     interface PostList {
         /**
@@ -1019,18 +1194,18 @@ declare namespace LocalJSX {
         "url"?: string | URL;
     }
     interface PostMainnavigation {
-        /**
-          * Gets emitted when a user closes the main navigation on mobile
-         */
-        "onPostToggle"?: (event: PostMainnavigationCustomEvent<any>) => void;
     }
     interface PostMegadropdown {
+        /**
+          * Emits when the dropdown is shown or hidden. The event payload is an object. `isVisible` is true when the dropdown gets opened and false when it gets closed `focusParent` determines whether after the closing of the mega dropdown, the focus should go back to the trigger parent or naturally go to the next focusable element in the page
+         */
+        "onPostToggleMegadropdown"?: (event: PostMegadropdownCustomEvent<{ isVisible: boolean; focusParent?: boolean }>) => void;
     }
     interface PostMegadropdownTrigger {
         /**
-          * Emits after each toggle
+          * ID of the mega dropdown element that this trigger is linked to. Used to open and close the specified mega dropdown.
          */
-        "onPostToggle"?: (event: PostMegadropdownTriggerCustomEvent<any>) => void;
+        "for": string;
     }
     interface PostMenu {
         /**
@@ -1038,7 +1213,7 @@ declare namespace LocalJSX {
          */
         "onToggleMenu"?: (event: PostMenuCustomEvent<boolean>) => void;
         /**
-          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
          */
         "placement"?: Placement;
     }
@@ -1060,27 +1235,39 @@ declare namespace LocalJSX {
          */
         "closeButtonCaption": string;
         /**
-          * Defines the placement of the popover according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popoverss are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Defines the position of the popover relative to its trigger. Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
          */
         "placement"?: Placement;
     }
     interface PostPopovercontainer {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Animation style
+         */
+        "animation"?: 'pop-in' | null;
+        /**
+          * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
         /**
-          * Gap between the edge of the page and the popover
+          * Gap between the edge of the page and the popovercontainer
          */
         "edgeGap"?: number;
         /**
-          * Fires whenever the popover gets shown or hidden, passing the new state in event.details as a boolean
+          * Whether or not the popovercontainer should close when user clicks outside of it
+         */
+        "manualClose"?: boolean;
+        /**
+          * Fires whenever the popovercontainer gets shown or hidden, passing the new state in event.details as a boolean
          */
         "onPostToggle"?: (event: PostPopovercontainerCustomEvent<boolean>) => void;
         /**
-          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
+        /**
+          * Enables a safespace through which the cursor can be moved without the popover being disabled
+         */
+        "safeSpace"?: 'triangle' | 'trapezoid';
     }
     interface PostRating {
         /**
@@ -1128,11 +1315,11 @@ declare namespace LocalJSX {
         /**
           * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly shown panel.
          */
-        "onPostChange"?: (event: PostTabsCustomEvent<HTMLPostTabPanelElement['name']>) => void;
+        "onPostChange"?: (event: PostTabsCustomEvent<string>) => void;
     }
     interface PostTag {
         /**
-          * Defines the icon `name` inside of the component. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs">icon library</a>.
+          * Defines the icon `name` inside of the component. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs">icon library</a>.
          */
         "icon"?: null | string;
         /**
@@ -1144,33 +1331,58 @@ declare namespace LocalJSX {
          */
         "variant"?: 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
+    interface PostTogglebutton {
+        /**
+          * If `true`, the button is in the "on" state, otherwise it is in the "off" state.
+         */
+        "toggled"?: boolean;
+    }
     interface PostTooltip {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Choose a tooltip animation
+         */
+        "animation"?: 'pop-in' | null;
+        /**
+          * Whether or not to display a little pointer arrow
          */
         "arrow"?: boolean;
         /**
-          * If `true`, the tooltip is displayed a few milliseconds after it is triggered
+          * Indicates the open state of the tooltip
          */
-        "delayed"?: boolean;
+        "open"?: boolean;
         /**
-          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Defines the position of the tooltip relative to its trigger. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
          */
         "placement"?: Placement;
+    }
+    interface PostTooltipTrigger {
+        /**
+          * Delay (in milliseconds) before the tooltip is shown.
+         */
+        "delay"?: number;
+        /**
+          * ID of the tooltip element that this trigger is linked to.
+         */
+        "for": string;
     }
     interface IntrinsicElements {
         "post-accordion": PostAccordion;
         "post-accordion-item": PostAccordionItem;
-        "post-alert": PostAlert;
         "post-avatar": PostAvatar;
+        "post-back-to-top": PostBackToTop;
+        "post-banner": PostBanner;
         "post-breadcrumb-item": PostBreadcrumbItem;
+        "post-breadcrumbs": PostBreadcrumbs;
         "post-card-control": PostCardControl;
         "post-closebutton": PostClosebutton;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
+        "post-footer": PostFooter;
         "post-header": PostHeader;
         "post-icon": PostIcon;
         "post-language-option": PostLanguageOption;
+        "post-language-switch": PostLanguageSwitch;
+        "post-linkarea": PostLinkarea;
         "post-list": PostList;
         "post-list-item": PostListItem;
         "post-logo": PostLogo;
@@ -1187,7 +1399,9 @@ declare namespace LocalJSX {
         "post-tab-panel": PostTabPanel;
         "post-tabs": PostTabs;
         "post-tag": PostTag;
+        "post-togglebutton": PostTogglebutton;
         "post-tooltip": PostTooltip;
+        "post-tooltip-trigger": PostTooltipTrigger;
     }
 }
 export { LocalJSX as JSX };
@@ -1196,9 +1410,11 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "post-accordion": LocalJSX.PostAccordion & JSXBase.HTMLAttributes<HTMLPostAccordionElement>;
             "post-accordion-item": LocalJSX.PostAccordionItem & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
-            "post-alert": LocalJSX.PostAlert & JSXBase.HTMLAttributes<HTMLPostAlertElement>;
             "post-avatar": LocalJSX.PostAvatar & JSXBase.HTMLAttributes<HTMLPostAvatarElement>;
+            "post-back-to-top": LocalJSX.PostBackToTop & JSXBase.HTMLAttributes<HTMLPostBackToTopElement>;
+            "post-banner": LocalJSX.PostBanner & JSXBase.HTMLAttributes<HTMLPostBannerElement>;
             "post-breadcrumb-item": LocalJSX.PostBreadcrumbItem & JSXBase.HTMLAttributes<HTMLPostBreadcrumbItemElement>;
+            "post-breadcrumbs": LocalJSX.PostBreadcrumbs & JSXBase.HTMLAttributes<HTMLPostBreadcrumbsElement>;
             /**
              * @class PostCardControl - representing a stencil component
              */
@@ -1206,12 +1422,15 @@ declare module "@stencil/core" {
             "post-closebutton": LocalJSX.PostClosebutton & JSXBase.HTMLAttributes<HTMLPostClosebuttonElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             "post-collapsible-trigger": LocalJSX.PostCollapsibleTrigger & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
+            "post-footer": LocalJSX.PostFooter & JSXBase.HTMLAttributes<HTMLPostFooterElement>;
             "post-header": LocalJSX.PostHeader & JSXBase.HTMLAttributes<HTMLPostHeaderElement>;
             /**
              * @class PostIcon - representing a stencil component
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
             "post-language-option": LocalJSX.PostLanguageOption & JSXBase.HTMLAttributes<HTMLPostLanguageOptionElement>;
+            "post-language-switch": LocalJSX.PostLanguageSwitch & JSXBase.HTMLAttributes<HTMLPostLanguageSwitchElement>;
+            "post-linkarea": LocalJSX.PostLinkarea & JSXBase.HTMLAttributes<HTMLPostLinkareaElement>;
             "post-list": LocalJSX.PostList & JSXBase.HTMLAttributes<HTMLPostListElement>;
             "post-list-item": LocalJSX.PostListItem & JSXBase.HTMLAttributes<HTMLPostListItemElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;
@@ -1228,7 +1447,9 @@ declare module "@stencil/core" {
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
             "post-tag": LocalJSX.PostTag & JSXBase.HTMLAttributes<HTMLPostTagElement>;
+            "post-togglebutton": LocalJSX.PostTogglebutton & JSXBase.HTMLAttributes<HTMLPostTogglebuttonElement>;
             "post-tooltip": LocalJSX.PostTooltip & JSXBase.HTMLAttributes<HTMLPostTooltipElement>;
+            "post-tooltip-trigger": LocalJSX.PostTooltipTrigger & JSXBase.HTMLAttributes<HTMLPostTooltipTriggerElement>;
         }
     }
 }

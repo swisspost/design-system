@@ -1,6 +1,6 @@
 import StyleDictionary from 'style-dictionary';
 import { register } from '@tokens-studio/sd-transforms';
-import { FILE_HEADER } from './constants.js';
+import { BASE_FONT_SIZE, FILE_HEADER, NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES, PX_TO_REM_TOKEN_TYPE } from './constants.js';
 
 register(StyleDictionary);
 
@@ -15,6 +15,66 @@ StyleDictionary.registerFileHeader({
   name: 'swisspost/file-header',
   fileHeader: () => {
     return FILE_HEADER;
+  },
+});
+
+/**
+ * @function StyleDictionary.registerTransform()
+ * Defines a custom StyleDictionary transform.
+ *
+ * swisspost/scss-no-unitless-zero-values:
+ * Used to keep pixel unit for zero values.
+ * This is necessary, so these values can also be used within a css `calc()` function:
+ * > Note: Because <number-token>s are always interpreted as <number>s or <integer>s, "unitless 0" <length>s aren’t supported in calc(). That is, width: calc(0 + 5px); is invalid, even though both width: 0; and width: 5px; are valid.
+ * > Source: https://drafts.csswg.org/css-values-3/#calc-type-checking
+ */
+
+StyleDictionary.registerTransform({
+  name: 'swisspost/scss-no-unitless-zero-values',
+  type: 'value',
+  filter: token => {
+    const usesDtcg = token.$type && token.$value;
+    const transformType = NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES.includes(
+      usesDtcg ? token.$type : token.type,
+    );
+
+    if (transformType) {
+      return token[usesDtcg ? '$value' : 'value'] === '0';
+    } else {
+      return false;
+    }
+  },
+  transform: token => {
+    const usesDtcg = token.$type && token.$value;
+    return token[usesDtcg ? '$value' : 'value'] + 'px';
+  },
+});
+
+/**
+ * @function StyleDictionary.registerTransform()
+ * Defines a custom StyleDictionary transform.
+ *
+ * swisspost/px-to-rem:
+ * Used to transform font sizes from px to rem
+ * This ensures accessible font-sizes
+ */
+
+StyleDictionary.registerTransform({
+  name: 'swisspost/px-to-rem',
+  type: 'value',
+  filter: token => {
+    const usesDtcg = token.$type && token.$value;
+    return token[usesDtcg ? '$type' : 'type'] === PX_TO_REM_TOKEN_TYPE;
+  },
+  transform: token => {
+    const usesDtcg = token.$type && token.$value;
+    const baseFontSize = BASE_FONT_SIZE;
+    let value = token[usesDtcg ? '$value' : 'value'];
+    if (typeof value === 'string' && value.includes('px')) {
+      // Convert value to a number
+      value = parseFloat(value);
+    }
+    return `${value / baseFontSize}rem`;
   },
 });
 
@@ -56,6 +116,14 @@ StyleDictionary.registerPreprocessor({
 
     return dictionary;
   },
+});
+
+/**
+ * Filters only the component source tokens.
+ */
+StyleDictionary.registerFilter({
+  name: 'swisspost/source-tokens-filter',
+  filter: token => token.isSource,
 });
 
 export default StyleDictionary;

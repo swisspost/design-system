@@ -1,0 +1,15 @@
+@use '@swisspost/design-system-styles/components/banner';
+@use '@swisspost/design-system-styles/components/close';
+@use '@swisspost/design-system-styles/core' as post;
+
+:host {
+  display: block;
+
+  ::slotted(*) {
+    margin: 0 !important;
+  }
+}
+
+.visually-hidden {
+  @include post.visually-hidden();
+}

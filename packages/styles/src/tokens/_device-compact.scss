@@ -1,0 +1,15 @@
+@use './temp/device' as device;
+
+@use './core';
+@use './../mixins/tokens';
+@use './../mixins/media';
+
+:root {
+  @include media.max(600px) {
+    @include tokens.from(device.$post-mobile);
+  }
+
+  @include media.min(600px) {
+    @include tokens.from(device.$post-tablet);
+  }
+}

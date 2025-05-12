@@ -1,0 +1,16 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as FocusRingStories from './focus-ring.stories';
+
+<Meta of={FocusRingStories} />
+
+# Focus Ring
+
+<div className="lead">
+  The `.focus-ring` is a helper class that provide a custom focus outline for interactive elements.
+</div>
+
+<Canvas sourceState="shown" of={FocusRingStories.Default} />
+
+<div className="hide-col-default">
+  <Controls of={FocusRingStories.Default} />
+</div>

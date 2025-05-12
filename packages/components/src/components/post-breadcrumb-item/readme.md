@@ -21,6 +21,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [post-breadcrumbs](../post-breadcrumbs)
+
 ### Depends on
 
 - [post-icon](../post-icon)
@@ -29,6 +33,7 @@
 ```mermaid
 graph TD;
   post-breadcrumb-item --> post-icon
+  post-breadcrumbs --> post-breadcrumb-item
   style post-breadcrumb-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

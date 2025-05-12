@@ -7,7 +7,7 @@ const meta: MetaExtended = {
   id: '5e27e48d-a5f6-4e57-a343-7f40507fc27b',
   title: 'Utilities/Opacity',
   args: {
-    opacity: '100',
+    opacity: 100,
   },
   argTypes: {
     opacity: {
@@ -17,6 +17,9 @@ const meta: MetaExtended = {
         type: 'select',
       },
       options: [0, 25, 50, 75, 100],
+      table: {
+        category: 'General',
+      },
     },
   },
   render: (args: Args) => {
