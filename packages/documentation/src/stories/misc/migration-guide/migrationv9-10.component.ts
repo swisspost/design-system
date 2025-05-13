@@ -1,5 +1,4 @@
 import { html, LitElement, nothing } from 'lit';
-import { _templateAutoIcon } from './util/template.util';
 import { customElement, property } from 'lit/decorators.js';
 
 @customElement('migration-version-9-10')
@@ -765,9 +764,5 @@ export class MigrationV99Component extends LitElement {
         </ol>
       </section>
     `;
-  }
-
-  private _templateAutoIconAngular() {
-    return html` ${this.angular ? _templateAutoIcon() : nothing} `;
   }
 }
