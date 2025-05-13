@@ -38,7 +38,7 @@ export class MigrationV89Component extends LitElement {
                     <li>
                       <p>
                         Use
-                        <a href="https://update.angular.io/">https://update.angular.io/</a>
+                        <a href="https://angular.dev/update-guide?v=18.0-19.0">https://angular.dev/update-guide</a>
                         to update Angular to version 19
                       </p>
                     </li>
@@ -55,7 +55,7 @@ export class MigrationV89Component extends LitElement {
                   Update Design System styles and components packages to version 9:
                   <code languages="['bash']">npm install @swisspost/design-system-styles@9</code>
                   <code languages="['bash']"
-                    >npm install @swisspost/design-system-components@9</code
+                    >npm install @swisspost/design-system-components${this.angular ? '-angular' : nothing}@9</code
                   >
                 </p>
               </li>
@@ -84,10 +84,22 @@ export class MigrationV89Component extends LitElement {
                   <span class="tag tag-sm tag-danger">breaking</span>
                 </p>
                 <p class="info">
-                  Instead of using the attribute, you should now wrap your target in the
-                  <code>post-tooltip-trigger</code> component.
+                  If you want to add an arrow to your tooltip, use the
+                  <code>arrow="true"</code> property on the component.
                 </p>
               </li>
+              ${this.angular
+                ? html`
+                  <li class="mb-16">
+                    <p>
+                      The <code>PrimeNGConfig</code> has been replaced by <code>PrimeNG</code> and the initial configuration is now done via the <code>providePrimeNG</code> provider during startup.
+                    </p>
+                    <p class="info">
+                      See the <a href="https://primeng.org/guides/migration">PrimeNg migration guide</a> and <a href="/?path=/docs/d2112bed-c611-4098-a1ad-e654f7d622e7--docs">PrimeNg Styles package documentation</a> for more detailed information.
+                    </p>
+                  </li>
+                `
+              : nothing}
             </ol>
           </li>
 
