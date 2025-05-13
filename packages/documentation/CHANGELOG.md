@@ -1,5 +1,11 @@
 # @swisspost/design-system-documentation
 
+## 5.6.0
+
+### Minor Changes
+
+- Added the migration guide for migration from v8 to v9. (by [@leagrdv](https://github.com/leagrdv) with [#5482](https://github.com/swisspost/design-system/pull/5482))
+
 ## 5.5.16
 
 ### Patch Changes
