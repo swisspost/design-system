@@ -18,7 +18,9 @@
     "jsxFactory": "h",
     "jsxFragmentFactory": "h.Fragment",
     "resolveJsonModule": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true
   },
   "include": [".config/*", "src", "types"],
   "exclude": ["node_modules"]
