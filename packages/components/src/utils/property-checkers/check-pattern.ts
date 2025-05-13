@@ -9,10 +9,10 @@ export function checkPattern<T extends { host: HTMLElement }>(
 
   const defaultMessage = `The prop \`${String(
     prop,
-  )}\` of the \`${componentName}\` component must be follow the format \`${pattern}\`.`;
+  )}\` of the \`${componentName}\` component must follow the format \`${pattern}\`.`;
   const message = customMessage || defaultMessage;
 
   if (typeof value !== 'string' || !pattern.test(value)) {
-    console.error(message);
+    throw new Error(message);
   }
 }

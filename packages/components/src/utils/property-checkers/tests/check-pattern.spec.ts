@@ -2,7 +2,8 @@ import { checkPattern } from '../check-pattern';
 
 describe('checkPattern', () => {
   const pattern = /[a-z]{5}/;
-  const error = 'Does not match pattern.';
+  const error =
+    'The prop `prop` of the `post-component` component must follow the format `/[a-z]{5}/`.';
 
   const runCheckForValue = (value: unknown) => {
     const component = { host: { localName: 'post-component' } as HTMLElement, prop: value };

@@ -92,7 +92,7 @@ describe('Card-Control', () => {
       cy.get('@consoleError')
         .invoke('getCalls')
         .then(calls => {
-          expect(calls[0].args[0]).to.eq(
+          expect(calls[0].args[0].message).to.eq(
             'The prop `type` of the `post-card-control` component is not defined.',
           );
         });
@@ -491,7 +491,7 @@ describe('Card-Control', () => {
       cy.get('@wrapper').eq(1).should('have.class', 'is-disabled');
       cy.get('@input').eq(1).should('have.attr', 'aria-disabled');
 
-      let formValue = null;
+      let formValue: string;
 
       cy.get('@form').then($form => {
         cy.get('@input').each(($input, i) => {
