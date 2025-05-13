@@ -92,7 +92,7 @@ describe('Card-Control', () => {
       cy.get('@consoleError')
         .invoke('getCalls')
         .then(calls => {
-          expect(calls[0].args[0].message).to.eq(
+          expect(calls[0].args[0]).to.eq(
             'The prop `type` of the `post-card-control` component is not defined.',
           );
         });
