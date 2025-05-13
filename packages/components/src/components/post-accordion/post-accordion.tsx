@@ -45,8 +45,11 @@ export class PostAccordion {
    */
   @Prop() readonly multiple: boolean = false;
 
-  componentDidLoad() {
+  componentWillLoad() {
     this.registerAccordionItems();
+  }
+
+  componentDidLoad() {
     this.validateHeadingLevel();
   }
 
