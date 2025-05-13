@@ -38,7 +38,9 @@ export class MigrationV89Component extends LitElement {
                     <li>
                       <p>
                         Use
-                        <a href="https://angular.dev/update-guide?v=18.0-19.0">https://angular.dev/update-guide</a>
+                        <a href="https://angular.dev/update-guide?v=18.0-19.0"
+                          >https://angular.dev/update-guide</a
+                        >
                         to update Angular to version 19
                       </p>
                     </li>
@@ -55,7 +57,10 @@ export class MigrationV89Component extends LitElement {
                   Update Design System styles and components packages to version 9:
                   <code languages="['bash']">npm install @swisspost/design-system-styles@9</code>
                   <code languages="['bash']"
-                    >npm install @swisspost/design-system-components${this.angular ? '-angular' : nothing}@9</code
+                    >npm install
+                    @swisspost/design-system-components${this.angular
+                      ? '-angular'
+                      : nothing}@9</code
                   >
                 </p>
               </li>
@@ -90,16 +95,24 @@ export class MigrationV89Component extends LitElement {
               </li>
               ${this.angular
                 ? html`
-                  <li class="mb-16">
-                    <p>
-                      The <code>PrimeNGConfig</code> has been replaced by <code>PrimeNG</code> and the initial configuration is now done via the <code>providePrimeNG</code> provider during startup.
-                    </p>
-                    <p class="info">
-                      See the <a href="https://primeng.org/guides/migration">PrimeNg migration guide</a> and <a href="/?path=/docs/d2112bed-c611-4098-a1ad-e654f7d622e7--docs">PrimeNg Styles package documentation</a> for more detailed information.
-                    </p>
-                  </li>
-                `
-              : nothing}
+                    <li class="mb-16">
+                      <p>
+                        The <code>PrimeNGConfig</code> has been replaced by <code>PrimeNG</code> and
+                        the initial configuration is now done via the
+                        <code>providePrimeNG</code> provider during startup.
+                      </p>
+                      <p class="info">
+                        See the
+                        <a href="https://primeng.org/guides/migration">PrimeNG migration guide</a>
+                        and
+                        <a href="/?path=/docs/d2112bed-c611-4098-a1ad-e654f7d622e7--docs"
+                          >PrimeNG Styles package documentation</a
+                        >
+                        for more detailed information.
+                      </p>
+                    </li>
+                  `
+                : nothing}
             </ol>
           </li>
 
