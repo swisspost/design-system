@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    optionalDependencies:
+      '@web-types/lit':
+        specifier: 2.0.0-3
+        version: 2.0.0-3
     devDependencies:
       '@changesets/cli':
         specifier: 2.29.2
@@ -17,10 +21,6 @@ importers:
       turbo:
         specifier: 2.5.0
         version: 2.5.0
-    optionalDependencies:
-      '@web-types/lit':
-        specifier: 2.0.0-3
-        version: 2.0.0-3
 
   packages/changelog-github:
     dependencies:
@@ -955,7 +955,7 @@ importers:
         version: link:../styles/dist
       primeng:
         specifier: 19.0.9
-        version: 19.0.9(553da6a5bf19415560b0c79df2838c31)
+        version: 19.0.9(fxrnogyevcwbkooc5wfwgygr6i)
       rxjs:
         specifier: 7.8.1
         version: 7.8.1
@@ -1043,7 +1043,7 @@ importers:
         version: link:../../../styles/dist
       primeng:
         specifier: ^19.0.0
-        version: 19.0.9(553da6a5bf19415560b0c79df2838c31)
+        version: 19.0.9(fxrnogyevcwbkooc5wfwgygr6i)
       tslib:
         specifier: 2.8.1
         version: 2.8.1
@@ -1304,7 +1304,7 @@ packages:
       rxjs: ^6.5.3 || ^7.4.0
 
   '@angular/localize@18.2.13':
-    resolution: {integrity: sha512-qQaIYdDS/l1w6tr/wpOoimjpmoJU0WmB8AGbNeKLoM36K+ix6hkvn67+UgkpZtaDHZylm8GsGW1NjzpM2tr3pA==}
+    resolution: {integrity: sha512-qQaIYdDS/l1w6tr/wpOoimjpmoJU0WmB8AGbNeKLoM36K+ix6hkvn67+UgkpZtaDHZylm8GsGW1NjzpM2tr3pA==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@angular/localize/-/localize-18.2.13.tgz}
     engines: {node: ^18.19.1 || ^20.11.1 || >=22.0.0}
     hasBin: true
     peerDependencies:
@@ -1356,7 +1356,7 @@ packages:
     engines: {node: '>=6.9.0'}
 
   '@babel/core@7.25.2':
-    resolution: {integrity: sha512-BBt3opiCOxUr9euZ5/ro/Xv8/V7yJ5bjYMqG/C1YAo8MIKAnumZalCN+msbci3Pigy4lIQfPUpfMM27HMGaYEA==}
+    resolution: {integrity: sha512-BBt3opiCOxUr9euZ5/ro/Xv8/V7yJ5bjYMqG/C1YAo8MIKAnumZalCN+msbci3Pigy4lIQfPUpfMM27HMGaYEA==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@babel/core/-/core-7.25.2.tgz}
     engines: {node: '>=6.9.0'}
 
   '@babel/core@7.26.0':
@@ -2059,7 +2059,7 @@ packages:
     resolution: {integrity: sha512-CdTLvIOPiCNuH71pyDu3rA+Q0n65cmAbXnwWH84rKGiFumFzkmHNT8KHTMEchcxN+Kl8I54xGUhJ7l3E7X396Q==}
 
   '@colors/colors@1.5.0':
-    resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
+    resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@colors/colors/-/colors-1.5.0.tgz}
     engines: {node: '>=0.1.90'}
 
   '@cspotcode/source-map-support@0.8.1':
@@ -2128,7 +2128,7 @@ packages:
     resolution: {integrity: sha512-+nxncfwHM5SgAtrVzgpzJOI1ol0PkumhVo469KCf9lUi21IGcY90G98VuHm9VRrUypmAzawAHO9bs6hqeADaVg==}
 
   '@emnapi/runtime@1.3.1':
-    resolution: {integrity: sha512-kEBmG8KyqtxJZv+ygbEim+KCGtIq1fC22Ms3S4ziXmYKm8uyoLX0MHONVKwp+9opg390VaKRNt4a7A9NwmpNhw==}
+    resolution: {integrity: sha512-kEBmG8KyqtxJZv+ygbEim+KCGtIq1fC22Ms3S4ziXmYKm8uyoLX0MHONVKwp+9opg390VaKRNt4a7A9NwmpNhw==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@emnapi/runtime/-/runtime-1.3.1.tgz}
 
   '@esbuild/aix-ppc64@0.24.2':
     resolution: {integrity: sha512-thpVCb/rhxE/BnMLQ7GReQLLN8q9qbHmI55F4489/ByVg2aQaQ6kbcLb6FHkocZzQhxc4gx0sCk0tJkKBFzDhA==}
@@ -2829,106 +2829,106 @@ packages:
     engines: {node: '>=18.18'}
 
   '@img/sharp-darwin-arm64@0.33.5':
-    resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==}
+    resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@img/sharp-darwin-arm64/-/sharp-darwin-arm64-0.33.5.tgz}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [arm64]
     os: [darwin]
 
   '@img/sharp-darwin-x64@0.33.5':
-    resolution: {integrity: sha512-fyHac4jIc1ANYGRDxtiqelIbdWkIuQaI84Mv45KvGRRxSAa7o7d1ZKAOBaYbnepLC1WqxfpimdeWfvqqSGwR2Q==}
+    resolution: {integrity: sha512-fyHac4jIc1ANYGRDxtiqelIbdWkIuQaI84Mv45KvGRRxSAa7o7d1ZKAOBaYbnepLC1WqxfpimdeWfvqqSGwR2Q==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@img/sharp-darwin-x64/-/sharp-darwin-x64-0.33.5.tgz}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [x64]
     os: [darwin]
 
   '@img/sharp-libvips-darwin-arm64@1.0.4':
-    resolution: {integrity: sha512-XblONe153h0O2zuFfTAbQYAX2JhYmDHeWikp1LM9Hul9gVPjFY427k6dFEcOL72O01QxQsWi761svJ/ev9xEDg==}
+    resolution: {integrity: sha512-XblONe153h0O2zuFfTAbQYAX2JhYmDHeWikp1LM9Hul9gVPjFY427k6dFEcOL72O01QxQsWi761svJ/ev9xEDg==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@img/sharp-libvips-darwin-arm64/-/sharp-libvips-darwin-arm64-1.0.4.tgz}
     cpu: [arm64]
     os: [darwin]
 
   '@img/sharp-libvips-darwin-x64@1.0.4':
-    resolution: {integrity: sha512-xnGR8YuZYfJGmWPvmlunFaWJsb9T/AO2ykoP3Fz/0X5XV2aoYBPkX6xqCQvUTKKiLddarLaxpzNe+b1hjeWHAQ==}
+    resolution: {integrity: sha512-xnGR8YuZYfJGmWPvmlunFaWJsb9T/AO2ykoP3Fz/0X5XV2aoYBPkX6xqCQvUTKKiLddarLaxpzNe+b1hjeWHAQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@img/sharp-libvips-darwin-x64/-/sharp-libvips-darwin-x64-1.0.4.tgz}
     cpu: [x64]
     os: [darwin]
 
   '@img/sharp-libvips-linux-arm64@1.0.4':
-    resolution: {integrity: sha512-9B+taZ8DlyyqzZQnoeIvDVR/2F4EbMepXMc/NdVbkzsJbzkUjhXv/70GQJ7tdLA4YJgNP25zukcxpX2/SueNrA==}
+    resolution: {integrity: sha512-9B+taZ8DlyyqzZQnoeIvDVR/2F4EbMepXMc/NdVbkzsJbzkUjhXv/70GQJ7tdLA4YJgNP25zukcxpX2/SueNrA==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@img/sharp-libvips-linux-arm64/-/sharp-libvips-linux-arm64-1.0.4.tgz}
     cpu: [arm64]
     os: [linux]
 
   '@img/sharp-libvips-linux-arm@1.0.5':
-    resolution: {integrity: sha512-gvcC4ACAOPRNATg/ov8/MnbxFDJqf/pDePbBnuBDcjsI8PssmjoKMAz4LtLaVi+OnSb5FK/yIOamqDwGmXW32g==}
+    resolution: {integrity: sha512-gvcC4ACAOPRNATg/ov8/MnbxFDJqf/pDePbBnuBDcjsI8PssmjoKMAz4LtLaVi+OnSb5FK/yIOamqDwGmXW32g==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@img/sharp-libvips-linux-arm/-/sharp-libvips-linux-arm-1.0.5.tgz}
     cpu: [arm]
     os: [linux]
 
   '@img/sharp-libvips-linux-s390x@1.0.4':
-    resolution: {integrity: sha512-u7Wz6ntiSSgGSGcjZ55im6uvTrOxSIS8/dgoVMoiGE9I6JAfU50yH5BoDlYA1tcuGS7g/QNtetJnxA6QEsCVTA==}
+    resolution: {integrity: sha512-u7Wz6ntiSSgGSGcjZ55im6uvTrOxSIS8/dgoVMoiGE9I6JAfU50yH5BoDlYA1tcuGS7g/QNtetJnxA6QEsCVTA==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@img/sharp-libvips-linux-s390x/-/sharp-libvips-linux-s390x-1.0.4.tgz}
     cpu: [s390x]
     os: [linux]
 
   '@img/sharp-libvips-linux-x64@1.0.4':
-    resolution: {integrity: sha512-MmWmQ3iPFZr0Iev+BAgVMb3ZyC4KeFc3jFxnNbEPas60e1cIfevbtuyf9nDGIzOaW9PdnDciJm+wFFaTlj5xYw==}
+    resolution: {integrity: sha512-MmWmQ3iPFZr0Iev+BAgVMb3ZyC4KeFc3jFxnNbEPas60e1cIfevbtuyf9nDGIzOaW9PdnDciJm+wFFaTlj5xYw==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@img/sharp-libvips-linux-x64/-/sharp-libvips-linux-x64-1.0.4.tgz}
     cpu: [x64]
     os: [linux]
 
   '@img/sharp-libvips-linuxmusl-arm64@1.0.4':
-    resolution: {integrity: sha512-9Ti+BbTYDcsbp4wfYib8Ctm1ilkugkA/uscUn6UXK1ldpC1JjiXbLfFZtRlBhjPZ5o1NCLiDbg8fhUPKStHoTA==}
+    resolution: {integrity: sha512-9Ti+BbTYDcsbp4wfYib8Ctm1ilkugkA/uscUn6UXK1ldpC1JjiXbLfFZtRlBhjPZ5o1NCLiDbg8fhUPKStHoTA==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@img/sharp-libvips-linuxmusl-arm64/-/sharp-libvips-linuxmusl-arm64-1.0.4.tgz}
     cpu: [arm64]
     os: [linux]
 
   '@img/sharp-libvips-linuxmusl-x64@1.0.4':
-    resolution: {integrity: sha512-viYN1KX9m+/hGkJtvYYp+CCLgnJXwiQB39damAO7WMdKWlIhmYTfHjwSbQeUK/20vY154mwezd9HflVFM1wVSw==}
+    resolution: {integrity: sha512-viYN1KX9m+/hGkJtvYYp+CCLgnJXwiQB39damAO7WMdKWlIhmYTfHjwSbQeUK/20vY154mwezd9HflVFM1wVSw==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@img/sharp-libvips-linuxmusl-x64/-/sharp-libvips-linuxmusl-x64-1.0.4.tgz}
     cpu: [x64]
     os: [linux]
 
   '@img/sharp-linux-arm64@0.33.5':
-    resolution: {integrity: sha512-JMVv+AMRyGOHtO1RFBiJy/MBsgz0x4AWrT6QoEVVTyh1E39TrCUpTRI7mx9VksGX4awWASxqCYLCV4wBZHAYxA==}
+    resolution: {integrity: sha512-JMVv+AMRyGOHtO1RFBiJy/MBsgz0x4AWrT6QoEVVTyh1E39TrCUpTRI7mx9VksGX4awWASxqCYLCV4wBZHAYxA==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@img/sharp-linux-arm64/-/sharp-linux-arm64-0.33.5.tgz}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [arm64]
     os: [linux]
 
   '@img/sharp-linux-arm@0.33.5':
-    resolution: {integrity: sha512-JTS1eldqZbJxjvKaAkxhZmBqPRGmxgu+qFKSInv8moZ2AmT5Yib3EQ1c6gp493HvrvV8QgdOXdyaIBrhvFhBMQ==}
+    resolution: {integrity: sha512-JTS1eldqZbJxjvKaAkxhZmBqPRGmxgu+qFKSInv8moZ2AmT5Yib3EQ1c6gp493HvrvV8QgdOXdyaIBrhvFhBMQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@img/sharp-linux-arm/-/sharp-linux-arm-0.33.5.tgz}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [arm]
     os: [linux]
 
   '@img/sharp-linux-s390x@0.33.5':
-    resolution: {integrity: sha512-y/5PCd+mP4CA/sPDKl2961b+C9d+vPAveS33s6Z3zfASk2j5upL6fXVPZi7ztePZ5CuH+1kW8JtvxgbuXHRa4Q==}
+    resolution: {integrity: sha512-y/5PCd+mP4CA/sPDKl2961b+C9d+vPAveS33s6Z3zfASk2j5upL6fXVPZi7ztePZ5CuH+1kW8JtvxgbuXHRa4Q==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@img/sharp-linux-s390x/-/sharp-linux-s390x-0.33.5.tgz}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [s390x]
     os: [linux]
 
   '@img/sharp-linux-x64@0.33.5':
-    resolution: {integrity: sha512-opC+Ok5pRNAzuvq1AG0ar+1owsu842/Ab+4qvU879ippJBHvyY5n2mxF1izXqkPYlGuP/M556uh53jRLJmzTWA==}
+    resolution: {integrity: sha512-opC+Ok5pRNAzuvq1AG0ar+1owsu842/Ab+4qvU879ippJBHvyY5n2mxF1izXqkPYlGuP/M556uh53jRLJmzTWA==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@img/sharp-linux-x64/-/sharp-linux-x64-0.33.5.tgz}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [x64]
     os: [linux]
 
   '@img/sharp-linuxmusl-arm64@0.33.5':
-    resolution: {integrity: sha512-XrHMZwGQGvJg2V/oRSUfSAfjfPxO+4DkiRh6p2AFjLQztWUuY/o8Mq0eMQVIY7HJ1CDQUJlxGGZRw1a5bqmd1g==}
+    resolution: {integrity: sha512-XrHMZwGQGvJg2V/oRSUfSAfjfPxO+4DkiRh6p2AFjLQztWUuY/o8Mq0eMQVIY7HJ1CDQUJlxGGZRw1a5bqmd1g==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@img/sharp-linuxmusl-arm64/-/sharp-linuxmusl-arm64-0.33.5.tgz}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [arm64]
     os: [linux]
 
   '@img/sharp-linuxmusl-x64@0.33.5':
-    resolution: {integrity: sha512-WT+d/cgqKkkKySYmqoZ8y3pxx7lx9vVejxW/W4DOFMYVSkErR+w7mf2u8m/y4+xHe7yY9DAXQMWQhpnMuFfScw==}
+    resolution: {integrity: sha512-WT+d/cgqKkkKySYmqoZ8y3pxx7lx9vVejxW/W4DOFMYVSkErR+w7mf2u8m/y4+xHe7yY9DAXQMWQhpnMuFfScw==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@img/sharp-linuxmusl-x64/-/sharp-linuxmusl-x64-0.33.5.tgz}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [x64]
     os: [linux]
 
   '@img/sharp-wasm32@0.33.5':
-    resolution: {integrity: sha512-ykUW4LVGaMcU9lu9thv85CbRMAwfeadCJHRsg2GmeRa/cJxsVY9Rbd57JcMxBkKHag5U/x7TSBpScF4U8ElVzg==}
+    resolution: {integrity: sha512-ykUW4LVGaMcU9lu9thv85CbRMAwfeadCJHRsg2GmeRa/cJxsVY9Rbd57JcMxBkKHag5U/x7TSBpScF4U8ElVzg==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@img/sharp-wasm32/-/sharp-wasm32-0.33.5.tgz}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [wasm32]
 
   '@img/sharp-win32-ia32@0.33.5':
-    resolution: {integrity: sha512-T36PblLaTwuVJ/zw/LaH0PdZkRz5rd3SmMHX8GSmR7vtNSP5Z6bQkExdSK7xGWyxLw4sUknBuugTelgw2faBbQ==}
+    resolution: {integrity: sha512-T36PblLaTwuVJ/zw/LaH0PdZkRz5rd3SmMHX8GSmR7vtNSP5Z6bQkExdSK7xGWyxLw4sUknBuugTelgw2faBbQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@img/sharp-win32-ia32/-/sharp-win32-ia32-0.33.5.tgz}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [ia32]
     os: [win32]
 
   '@img/sharp-win32-x64@0.33.5':
-    resolution: {integrity: sha512-MpY/o8/8kj+EcnxwvrP4aTJSWw/aZ7JIGR4aBeZkZw5B7/Jn+tY9/VNwtcoGmdT7GfggGIU4kygOMSbYnOrAbg==}
+    resolution: {integrity: sha512-MpY/o8/8kj+EcnxwvrP4aTJSWw/aZ7JIGR4aBeZkZw5B7/Jn+tY9/VNwtcoGmdT7GfggGIU4kygOMSbYnOrAbg==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@img/sharp-win32-x64/-/sharp-win32-x64-0.33.5.tgz}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [x64]
     os: [win32]
@@ -3216,32 +3216,32 @@ packages:
     resolution: {integrity: sha512-fVLDtmwCau8NywnFIXaJxsCZjzaIxnVq+cFRKYC1Y4tA4/0rMTvF6DLZZ2JE51BwzOluaKtgJX8x1QDsQtAaIw==}
 
   '@lmdb/lmdb-darwin-arm64@3.2.6':
-    resolution: {integrity: sha512-yF/ih9EJJZc72psFQbwnn8mExIWfTnzWJg+N02hnpXtDPETYLmQswIMBn7+V88lfCaFrMozJsUvcEQIkEPU0Gg==}
+    resolution: {integrity: sha512-yF/ih9EJJZc72psFQbwnn8mExIWfTnzWJg+N02hnpXtDPETYLmQswIMBn7+V88lfCaFrMozJsUvcEQIkEPU0Gg==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@lmdb/lmdb-darwin-arm64/-/lmdb-darwin-arm64-3.2.6.tgz}
     cpu: [arm64]
     os: [darwin]
 
   '@lmdb/lmdb-darwin-x64@3.2.6':
-    resolution: {integrity: sha512-5BbCumsFLbCi586Bb1lTWQFkekdQUw8/t8cy++Uq251cl3hbDIGEwD9HAwh8H6IS2F6QA9KdKmO136LmipRNkg==}
+    resolution: {integrity: sha512-5BbCumsFLbCi586Bb1lTWQFkekdQUw8/t8cy++Uq251cl3hbDIGEwD9HAwh8H6IS2F6QA9KdKmO136LmipRNkg==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@lmdb/lmdb-darwin-x64/-/lmdb-darwin-x64-3.2.6.tgz}
     cpu: [x64]
     os: [darwin]
 
   '@lmdb/lmdb-linux-arm64@3.2.6':
-    resolution: {integrity: sha512-l5VmJamJ3nyMmeD1ANBQCQqy7do1ESaJQfKPSm2IG9/ADZryptTyCj8N6QaYgIWewqNUrcbdMkJajRQAt5Qjfg==}
+    resolution: {integrity: sha512-l5VmJamJ3nyMmeD1ANBQCQqy7do1ESaJQfKPSm2IG9/ADZryptTyCj8N6QaYgIWewqNUrcbdMkJajRQAt5Qjfg==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@lmdb/lmdb-linux-arm64/-/lmdb-linux-arm64-3.2.6.tgz}
     cpu: [arm64]
     os: [linux]
 
   '@lmdb/lmdb-linux-arm@3.2.6':
-    resolution: {integrity: sha512-+6XgLpMb7HBoWxXj+bLbiiB4s0mRRcDPElnRS3LpWRzdYSe+gFk5MT/4RrVNqd2MESUDmb53NUXw1+BP69bjiQ==}
+    resolution: {integrity: sha512-+6XgLpMb7HBoWxXj+bLbiiB4s0mRRcDPElnRS3LpWRzdYSe+gFk5MT/4RrVNqd2MESUDmb53NUXw1+BP69bjiQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@lmdb/lmdb-linux-arm/-/lmdb-linux-arm-3.2.6.tgz}
     cpu: [arm]
     os: [linux]
 
   '@lmdb/lmdb-linux-x64@3.2.6':
-    resolution: {integrity: sha512-nDYT8qN9si5+onHYYaI4DiauDMx24OAiuZAUsEqrDy+ja/3EbpXPX/VAkMV8AEaQhy3xc4dRC+KcYIvOFefJ4Q==}
+    resolution: {integrity: sha512-nDYT8qN9si5+onHYYaI4DiauDMx24OAiuZAUsEqrDy+ja/3EbpXPX/VAkMV8AEaQhy3xc4dRC+KcYIvOFefJ4Q==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@lmdb/lmdb-linux-x64/-/lmdb-linux-x64-3.2.6.tgz}
     cpu: [x64]
     os: [linux]
 
   '@lmdb/lmdb-win32-x64@3.2.6':
-    resolution: {integrity: sha512-XlqVtILonQnG+9fH2N3Aytria7P/1fwDgDhl29rde96uH2sLB8CHORIf2PfuLVzFQJ7Uqp8py9AYwr3ZUCFfWg==}
+    resolution: {integrity: sha512-XlqVtILonQnG+9fH2N3Aytria7P/1fwDgDhl29rde96uH2sLB8CHORIf2PfuLVzFQJ7Uqp8py9AYwr3ZUCFfWg==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@lmdb/lmdb-win32-x64/-/lmdb-win32-x64-3.2.6.tgz}
     cpu: [x64]
     os: [win32]
 
@@ -3258,32 +3258,32 @@ packages:
       react: '>=16'
 
   '@msgpackr-extract/msgpackr-extract-darwin-arm64@3.0.3':
-    resolution: {integrity: sha512-QZHtlVgbAdy2zAqNA9Gu1UpIuI8Xvsd1v8ic6B2pZmeFnFcMWiPLfWXh7TVw4eGEZ/C9TH281KwhVoeQUKbyjw==}
+    resolution: {integrity: sha512-QZHtlVgbAdy2zAqNA9Gu1UpIuI8Xvsd1v8ic6B2pZmeFnFcMWiPLfWXh7TVw4eGEZ/C9TH281KwhVoeQUKbyjw==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@msgpackr-extract/msgpackr-extract-darwin-arm64/-/msgpackr-extract-darwin-arm64-3.0.3.tgz}
     cpu: [arm64]
     os: [darwin]
 
   '@msgpackr-extract/msgpackr-extract-darwin-x64@3.0.3':
-    resolution: {integrity: sha512-mdzd3AVzYKuUmiWOQ8GNhl64/IoFGol569zNRdkLReh6LRLHOXxU4U8eq0JwaD8iFHdVGqSy4IjFL4reoWCDFw==}
+    resolution: {integrity: sha512-mdzd3AVzYKuUmiWOQ8GNhl64/IoFGol569zNRdkLReh6LRLHOXxU4U8eq0JwaD8iFHdVGqSy4IjFL4reoWCDFw==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@msgpackr-extract/msgpackr-extract-darwin-x64/-/msgpackr-extract-darwin-x64-3.0.3.tgz}
     cpu: [x64]
     os: [darwin]
 
   '@msgpackr-extract/msgpackr-extract-linux-arm64@3.0.3':
-    resolution: {integrity: sha512-YxQL+ax0XqBJDZiKimS2XQaf+2wDGVa1enVRGzEvLLVFeqa5kx2bWbtcSXgsxjQB7nRqqIGFIcLteF/sHeVtQg==}
+    resolution: {integrity: sha512-YxQL+ax0XqBJDZiKimS2XQaf+2wDGVa1enVRGzEvLLVFeqa5kx2bWbtcSXgsxjQB7nRqqIGFIcLteF/sHeVtQg==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@msgpackr-extract/msgpackr-extract-linux-arm64/-/msgpackr-extract-linux-arm64-3.0.3.tgz}
     cpu: [arm64]
     os: [linux]
 
   '@msgpackr-extract/msgpackr-extract-linux-arm@3.0.3':
-    resolution: {integrity: sha512-fg0uy/dG/nZEXfYilKoRe7yALaNmHoYeIoJuJ7KJ+YyU2bvY8vPv27f7UKhGRpY6euFYqEVhxCFZgAUNQBM3nw==}
+    resolution: {integrity: sha512-fg0uy/dG/nZEXfYilKoRe7yALaNmHoYeIoJuJ7KJ+YyU2bvY8vPv27f7UKhGRpY6euFYqEVhxCFZgAUNQBM3nw==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@msgpackr-extract/msgpackr-extract-linux-arm/-/msgpackr-extract-linux-arm-3.0.3.tgz}
     cpu: [arm]
     os: [linux]
 
   '@msgpackr-extract/msgpackr-extract-linux-x64@3.0.3':
-    resolution: {integrity: sha512-cvwNfbP07pKUfq1uH+S6KJ7dT9K8WOE4ZiAcsrSes+UY55E/0jLYc+vq+DO7jlmqRb5zAggExKm0H7O/CBaesg==}
+    resolution: {integrity: sha512-cvwNfbP07pKUfq1uH+S6KJ7dT9K8WOE4ZiAcsrSes+UY55E/0jLYc+vq+DO7jlmqRb5zAggExKm0H7O/CBaesg==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@msgpackr-extract/msgpackr-extract-linux-x64/-/msgpackr-extract-linux-x64-3.0.3.tgz}
     cpu: [x64]
     os: [linux]
 
   '@msgpackr-extract/msgpackr-extract-win32-x64@3.0.3':
-    resolution: {integrity: sha512-x0fWaQtYp4E6sktbsdAqnehxDgEc/VwM7uLsRCYWaiGu0ykYdZPiS8zCWdnjHwyiumousxfBm4SO31eXqwEZhQ==}
+    resolution: {integrity: sha512-x0fWaQtYp4E6sktbsdAqnehxDgEc/VwM7uLsRCYWaiGu0ykYdZPiS8zCWdnjHwyiumousxfBm4SO31eXqwEZhQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@msgpackr-extract/msgpackr-extract-win32-x64/-/msgpackr-extract-win32-x64-3.0.3.tgz}
     cpu: [x64]
     os: [win32]
 
@@ -3693,7 +3693,7 @@ packages:
     engines: {node: '>=14'}
 
   '@pkgjs/parseargs@0.11.0':
-    resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
+    resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@pkgjs/parseargs/-/parseargs-0.11.0.tgz}
     engines: {node: '>=14'}
 
   '@pkgr/core@0.1.1':
@@ -4542,7 +4542,7 @@ packages:
     resolution: {integrity: sha512-WpxBCKWPLr4xSsHgz511rFJAM+wS28w2zEO1QDNY5zM/S8ok70NNfztH0xwhqKyaK0OHCbN98LDAZuy1ctxDkA==}
 
   '@types/yauzl@2.10.3':
-    resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
+    resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@types/yauzl/-/yauzl-2.10.3.tgz}
 
   '@typescript-eslint/eslint-plugin@7.18.0':
     resolution: {integrity: sha512-94EQTWZ40mzBc42ATNIBimBEDltSJ9RQHCC8vc/PDbxi4k8dVwUAv4o98dk50M1zB+JGFxp43FP7f8+FP8R6Sw==}
@@ -4799,7 +4799,7 @@ packages:
       vite: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
 
   '@web-types/lit@2.0.0-3':
-    resolution: {integrity: sha512-vZG6zfQ8+gM5Qsv0D5k9X8f/cBqk3y8qhgy0y5g+or+hi3PH6UNNMBMd6QRrlBZUoXCXR/cpVvfPTDj9w5FlwQ==}
+    resolution: {integrity: sha512-vZG6zfQ8+gM5Qsv0D5k9X8f/cBqk3y8qhgy0y5g+or+hi3PH6UNNMBMd6QRrlBZUoXCXR/cpVvfPTDj9w5FlwQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/@web-types/lit/-/lit-2.0.0-3.tgz}
 
   '@webassemblyjs/ast@1.14.1':
     resolution: {integrity: sha512-nuBEDgQfm1ccRp/8bCQrx1frohyufl4JlbMMZ4P1wpeOfDhF6FQkxZJ1b/e+PLwr6X1Nhw6OLme5usuBWYBvuQ==}
@@ -5171,7 +5171,7 @@ packages:
     resolution: {integrity: sha512-lHe62zvbTB5eEABUVi/AwVh0ZKY9rMMDhmm+eeyuuUQbQ3+J+fONVQOZyj+DdrvD4BY33uYniyRJ4UJIaSKAfw==}
 
   axe-core@4.7.0:
-    resolution: {integrity: sha512-M0JtH+hlOL5pLQwHOLNYZaXuhqmvS8oExsqB1SBYgA4Dk7u/xx+YdGHXaK5pyUfed5mYXdlYiphWq3G8cRi5JQ==}
+    resolution: {integrity: sha512-M0JtH+hlOL5pLQwHOLNYZaXuhqmvS8oExsqB1SBYgA4Dk7u/xx+YdGHXaK5pyUfed5mYXdlYiphWq3G8cRi5JQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/axe-core/-/axe-core-4.7.0.tgz}
     engines: {node: '>=4'}
 
   axios@1.7.7:
@@ -5257,7 +5257,7 @@ packages:
     resolution: {integrity: sha512-1ugUSr8BHXRnK23KfuYS+gVMC3LB8QGH9W1iGtDPsNWoQbgtXSExkBu2aDR4epiGWZOjZsj6lDl/N/AqqTC3UA==}
 
   bare-events@2.4.2:
-    resolution: {integrity: sha512-qMKFd2qG/36aA4GwvKq8MxnPgCQAmBWmSyLWsJcbn8v03wvIPQ/hG1Ms8bPzndZxMDoHpxez5VOS+gC9Yi24/Q==}
+    resolution: {integrity: sha512-qMKFd2qG/36aA4GwvKq8MxnPgCQAmBWmSyLWsJcbn8v03wvIPQ/hG1Ms8bPzndZxMDoHpxez5VOS+gC9Yi24/Q==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/bare-events/-/bare-events-2.4.2.tgz}
 
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
@@ -6216,7 +6216,7 @@ packages:
     resolution: {integrity: sha512-ju7Wq1kg04I3HtiYIOrUrdfdDvkyO9s5XM8QAj/bN61Yo/Vb4vgJxy5vi4Yxk01gWHbrofpPtpxM8bKger9jhg==}
 
   encoding@0.1.13:
-    resolution: {integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==}
+    resolution: {integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/encoding/-/encoding-0.1.13.tgz}
 
   end-of-stream@1.4.4:
     resolution: {integrity: sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==}
@@ -6259,7 +6259,7 @@ packages:
     resolution: {integrity: sha512-2bmlRpNKBxT/CRmPOlyISQpNj+qSeYvcym/uT0Jx2bMOlKLtSy1ZmLuVxSEKKyor/N5yhvp/ZiG1oE3DEYMSFA==}
 
   errno@0.1.8:
-    resolution: {integrity: sha512-dJ6oBr5SQ1VSd9qkk7ByRgb/1SH4JZjCHSW/mr63/QcXO9zLVxvJ6Oy13nio03rxpSnVDDjFor75SjVeZWPW/A==}
+    resolution: {integrity: sha512-dJ6oBr5SQ1VSd9qkk7ByRgb/1SH4JZjCHSW/mr63/QcXO9zLVxvJ6Oy13nio03rxpSnVDDjFor75SjVeZWPW/A==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/errno/-/errno-0.1.8.tgz}
     hasBin: true
 
   error-ex@1.3.2:
@@ -7247,7 +7247,7 @@ packages:
     engines: {node: '>= 4'}
 
   image-size@0.5.5:
-    resolution: {integrity: sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==}
+    resolution: {integrity: sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/image-size/-/image-size-0.5.5.tgz}
     engines: {node: '>=0.10.0'}
     hasBin: true
 
@@ -7840,7 +7840,7 @@ packages:
     hasBin: true
 
   jiti@2.4.2:
-    resolution: {integrity: sha512-rg9zJN+G4n2nfJl5MW3BMygZX56zKPNVEYYqq7adpmMh4Jn2QNEwhvQlFy6jPVdcod7txZtKHWnyZiA3a0zP7A==}
+    resolution: {integrity: sha512-rg9zJN+G4n2nfJl5MW3BMygZX56zKPNVEYYqq7adpmMh4Jn2QNEwhvQlFy6jPVdcod7txZtKHWnyZiA3a0zP7A==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/jiti/-/jiti-2.4.2.tgz}
     hasBin: true
 
   joi@17.13.3:
@@ -8228,7 +8228,7 @@ packages:
     resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==}
 
   make-dir@2.1.0:
-    resolution: {integrity: sha512-LS9X+dc8KLxXCb8dni79fLIIUA5VyZoyjSMCwTluaXA0o27cCK0bhXkpgw+sTXVpPy/lSO57ilRixqk0vDmtRA==}
+    resolution: {integrity: sha512-LS9X+dc8KLxXCb8dni79fLIIUA5VyZoyjSMCwTluaXA0o27cCK0bhXkpgw+sTXVpPy/lSO57ilRixqk0vDmtRA==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/make-dir/-/make-dir-2.1.0.tgz}
     engines: {node: '>=6'}
 
   make-dir@3.1.0:
@@ -8448,7 +8448,7 @@ packages:
     engines: {node: '>= 0.6'}
 
   mime@1.6.0:
-    resolution: {integrity: sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==}
+    resolution: {integrity: sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/mime/-/mime-1.6.0.tgz}
     engines: {node: '>=4'}
     hasBin: true
 
@@ -8568,7 +8568,7 @@ packages:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
 
   msgpackr-extract@3.0.3:
-    resolution: {integrity: sha512-P0efT1C9jIdVRefqjzOQ9Xml57zpOXnIuS+csaB4MdZbTdmGDLo8XhzBG1N7aO11gKDDkJvBLULeFTo46wwreA==}
+    resolution: {integrity: sha512-P0efT1C9jIdVRefqjzOQ9Xml57zpOXnIuS+csaB4MdZbTdmGDLo8XhzBG1N7aO11gKDDkJvBLULeFTo46wwreA==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/msgpackr-extract/-/msgpackr-extract-3.0.3.tgz}
     hasBin: true
 
   msgpackr@1.11.2:
@@ -8607,7 +8607,7 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
   needle@3.2.0:
-    resolution: {integrity: sha512-oUvzXnyLiVyVGoianLijF9O/RecZUf7TkBfimjGrLM4eQhXyeJwM6GeAWccwfQ9aa4gMCZKqhAOuLaMIcQxajQ==}
+    resolution: {integrity: sha512-oUvzXnyLiVyVGoianLijF9O/RecZUf7TkBfimjGrLM4eQhXyeJwM6GeAWccwfQ9aa4gMCZKqhAOuLaMIcQxajQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/needle/-/needle-3.2.0.tgz}
     engines: {node: '>= 4.4.x'}
     hasBin: true
 
@@ -9538,7 +9538,7 @@ packages:
     hasBin: true
 
   prettier@3.4.2:
-    resolution: {integrity: sha512-e9MewbtFo+Fevyuxn/4rrcDAaq0IYxPGLvObpQjiZBMAzB9IGmzlnG9RZy3FFas+eBMu2vA0CszMeduow5dIuQ==}
+    resolution: {integrity: sha512-e9MewbtFo+Fevyuxn/4rrcDAaq0IYxPGLvObpQjiZBMAzB9IGmzlnG9RZy3FFas+eBMu2vA0CszMeduow5dIuQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/prettier/-/prettier-3.4.2.tgz}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -10015,241 +10015,241 @@ packages:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
   sass-embedded-android-arm64@1.78.0:
-    resolution: {integrity: sha512-2sAr11EgwPudAuyk4Ite+fWGYJspiFSiZDU2D8/vjjI7BaB9FG6ksYqww3svoMMnjPUWBCjKPDELpZTxViLJbw==}
+    resolution: {integrity: sha512-2sAr11EgwPudAuyk4Ite+fWGYJspiFSiZDU2D8/vjjI7BaB9FG6ksYqww3svoMMnjPUWBCjKPDELpZTxViLJbw==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-android-arm64/-/sass-embedded-android-arm64-1.78.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [arm64]
     os: [android]
 
   sass-embedded-android-arm64@1.81.0:
-    resolution: {integrity: sha512-I36P77/PKAHx6sqOmexO2iEY5kpsmQ1VxcgITZSOxPMQhdB6m4t3bTabfDuWQQmCrqqiNFtLQHeytB65bUqwiw==}
+    resolution: {integrity: sha512-I36P77/PKAHx6sqOmexO2iEY5kpsmQ1VxcgITZSOxPMQhdB6m4t3bTabfDuWQQmCrqqiNFtLQHeytB65bUqwiw==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-android-arm64/-/sass-embedded-android-arm64-1.81.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [arm64]
     os: [android]
 
   sass-embedded-android-arm@1.78.0:
-    resolution: {integrity: sha512-YM6nrmKsj+ImaSTd96F+jzbWSbhPkRN4kedbLgIJ5FsILNa9NAqhmrCQz9pdcjuAhyfxWImdUACsT23CPGENZQ==}
+    resolution: {integrity: sha512-YM6nrmKsj+ImaSTd96F+jzbWSbhPkRN4kedbLgIJ5FsILNa9NAqhmrCQz9pdcjuAhyfxWImdUACsT23CPGENZQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-android-arm/-/sass-embedded-android-arm-1.78.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [arm]
     os: [android]
 
   sass-embedded-android-arm@1.81.0:
-    resolution: {integrity: sha512-NWEmIuaIEsGFNsIRa+5JpIpPJyZ32H15E85CNZqEIhhwWlk9UNw7vlOCmTH8MtabtnACwC/2NG8VyNa3nxKzUQ==}
+    resolution: {integrity: sha512-NWEmIuaIEsGFNsIRa+5JpIpPJyZ32H15E85CNZqEIhhwWlk9UNw7vlOCmTH8MtabtnACwC/2NG8VyNa3nxKzUQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-android-arm/-/sass-embedded-android-arm-1.81.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [arm]
     os: [android]
 
   sass-embedded-android-ia32@1.78.0:
-    resolution: {integrity: sha512-TyJOo4TgnHpOfC/PfqCBqd+jGRanWoRd4Br/0KAfIvaIFjTGIPdk26vUyDVugV1J8QUEY4INGE8EXAuDeRldUQ==}
+    resolution: {integrity: sha512-TyJOo4TgnHpOfC/PfqCBqd+jGRanWoRd4Br/0KAfIvaIFjTGIPdk26vUyDVugV1J8QUEY4INGE8EXAuDeRldUQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-android-ia32/-/sass-embedded-android-ia32-1.78.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [ia32]
     os: [android]
 
   sass-embedded-android-ia32@1.81.0:
-    resolution: {integrity: sha512-k8V1usXw30w1GVxvrteG1RzgYJzYQ9PfL2aeOqGdroBN7zYTD9VGJXTGcxA4IeeRxmRd7szVW2mKXXS472fh8g==}
+    resolution: {integrity: sha512-k8V1usXw30w1GVxvrteG1RzgYJzYQ9PfL2aeOqGdroBN7zYTD9VGJXTGcxA4IeeRxmRd7szVW2mKXXS472fh8g==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-android-ia32/-/sass-embedded-android-ia32-1.81.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [ia32]
     os: [android]
 
   sass-embedded-android-riscv64@1.78.0:
-    resolution: {integrity: sha512-wwajpsVRuhb7ixrkA3Yu60V2LtROYn45PIYeda30/MrMJi9k3xEqHLhodTexFm6wZoKclGSDZ6L9U5q0XyRKiQ==}
+    resolution: {integrity: sha512-wwajpsVRuhb7ixrkA3Yu60V2LtROYn45PIYeda30/MrMJi9k3xEqHLhodTexFm6wZoKclGSDZ6L9U5q0XyRKiQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-android-riscv64/-/sass-embedded-android-riscv64-1.78.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [riscv64]
     os: [android]
 
   sass-embedded-android-riscv64@1.81.0:
-    resolution: {integrity: sha512-RXlanyLXEpN/DEehXgLuKPsqT//GYlsGFxKXgRiCc8hIPAueFLQXKJmLWlL3BEtHgmFdbsStIu4aZCcb1hOFlQ==}
+    resolution: {integrity: sha512-RXlanyLXEpN/DEehXgLuKPsqT//GYlsGFxKXgRiCc8hIPAueFLQXKJmLWlL3BEtHgmFdbsStIu4aZCcb1hOFlQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-android-riscv64/-/sass-embedded-android-riscv64-1.81.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [riscv64]
     os: [android]
 
   sass-embedded-android-x64@1.78.0:
-    resolution: {integrity: sha512-k5l66PO0LgSHMDbDzAQ/vqrXMlJ3r42ZHJA8MJvUbA6sQxTzDS381V7L+EhOATwyI225j2FhEeTHW6rr4WBQzA==}
+    resolution: {integrity: sha512-k5l66PO0LgSHMDbDzAQ/vqrXMlJ3r42ZHJA8MJvUbA6sQxTzDS381V7L+EhOATwyI225j2FhEeTHW6rr4WBQzA==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-android-x64/-/sass-embedded-android-x64-1.78.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [x64]
     os: [android]
 
   sass-embedded-android-x64@1.81.0:
-    resolution: {integrity: sha512-RQG0FxGQ1DERNyUDED8+BDVaLIjI+BNg8lVcyqlLZUrWY6NhzjwYEeiN/DNZmMmHtqDucAPNDcsdVUNQqsBy2A==}
+    resolution: {integrity: sha512-RQG0FxGQ1DERNyUDED8+BDVaLIjI+BNg8lVcyqlLZUrWY6NhzjwYEeiN/DNZmMmHtqDucAPNDcsdVUNQqsBy2A==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-android-x64/-/sass-embedded-android-x64-1.81.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [x64]
     os: [android]
 
   sass-embedded-darwin-arm64@1.78.0:
-    resolution: {integrity: sha512-3JaxceFSR6N+a22hPYYkj1p45eBaWTt/M8MPTbfzU3TGZrU9bmRX7WlUVtXTo1yYI2iMf22nCv0PQ5ExFF3FMQ==}
+    resolution: {integrity: sha512-3JaxceFSR6N+a22hPYYkj1p45eBaWTt/M8MPTbfzU3TGZrU9bmRX7WlUVtXTo1yYI2iMf22nCv0PQ5ExFF3FMQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-darwin-arm64/-/sass-embedded-darwin-arm64-1.78.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [arm64]
     os: [darwin]
 
   sass-embedded-darwin-arm64@1.81.0:
-    resolution: {integrity: sha512-gLKbsfII9Ppua76N41ODFnKGutla9qv0OGAas8gxe0jYBeAQFi/1iKQYdNtQtKi4mA9n5TQTqz+HHCKszZCoyA==}
+    resolution: {integrity: sha512-gLKbsfII9Ppua76N41ODFnKGutla9qv0OGAas8gxe0jYBeAQFi/1iKQYdNtQtKi4mA9n5TQTqz+HHCKszZCoyA==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-darwin-arm64/-/sass-embedded-darwin-arm64-1.81.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [arm64]
     os: [darwin]
 
   sass-embedded-darwin-x64@1.78.0:
-    resolution: {integrity: sha512-UMTijqE3fJ8vEaaD7GPG7G3GsHuPKOdpS8vuA2v2uwO3BPFp/rEKah66atvGqvGO+0JYApkSv0YTnnexSrkHIQ==}
+    resolution: {integrity: sha512-UMTijqE3fJ8vEaaD7GPG7G3GsHuPKOdpS8vuA2v2uwO3BPFp/rEKah66atvGqvGO+0JYApkSv0YTnnexSrkHIQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-darwin-x64/-/sass-embedded-darwin-x64-1.78.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [x64]
     os: [darwin]
 
   sass-embedded-darwin-x64@1.81.0:
-    resolution: {integrity: sha512-7uMOlT9hD2KUJCbTN2XcfghDxt/rc50ujjfSjSHjX1SYj7mGplkINUXvVbbvvaV2wt6t9vkGkCo5qNbeBhfwBg==}
+    resolution: {integrity: sha512-7uMOlT9hD2KUJCbTN2XcfghDxt/rc50ujjfSjSHjX1SYj7mGplkINUXvVbbvvaV2wt6t9vkGkCo5qNbeBhfwBg==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-darwin-x64/-/sass-embedded-darwin-x64-1.81.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [x64]
     os: [darwin]
 
   sass-embedded-linux-arm64@1.78.0:
-    resolution: {integrity: sha512-juMIMpp3DIAiQ842y+boqh0u2SjN4m3mDKrDfMuBznj8DSQoy9J/3e4hLh3g+p0/j83WuROu5nNoYxm2Xz8rww==}
+    resolution: {integrity: sha512-juMIMpp3DIAiQ842y+boqh0u2SjN4m3mDKrDfMuBznj8DSQoy9J/3e4hLh3g+p0/j83WuROu5nNoYxm2Xz8rww==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-linux-arm64/-/sass-embedded-linux-arm64-1.78.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [arm64]
     os: [linux]
 
   sass-embedded-linux-arm64@1.81.0:
-    resolution: {integrity: sha512-jy4bvhdUmqbyw1jv1f3Uxl+MF8EU/Y/GDx4w6XPJm4Ds+mwH/TwnyAwsxxoBhWfnBnW8q2ADy039DlS5p+9csQ==}
+    resolution: {integrity: sha512-jy4bvhdUmqbyw1jv1f3Uxl+MF8EU/Y/GDx4w6XPJm4Ds+mwH/TwnyAwsxxoBhWfnBnW8q2ADy039DlS5p+9csQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-linux-arm64/-/sass-embedded-linux-arm64-1.81.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [arm64]
     os: [linux]
 
   sass-embedded-linux-arm@1.78.0:
-    resolution: {integrity: sha512-JafT+Co0RK8oO3g9TfVRuG7tkYeh35yDGTgqCFxLrktnkiw5pmIagCfpjxk5GBcSfJMOzhCgclTCDJWAuHGuMQ==}
+    resolution: {integrity: sha512-JafT+Co0RK8oO3g9TfVRuG7tkYeh35yDGTgqCFxLrktnkiw5pmIagCfpjxk5GBcSfJMOzhCgclTCDJWAuHGuMQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-linux-arm/-/sass-embedded-linux-arm-1.78.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [arm]
     os: [linux]
 
   sass-embedded-linux-arm@1.81.0:
-    resolution: {integrity: sha512-REqR9qM4RchCE3cKqzRy9Q4zigIV82SbSpCi/O4O3oK3pg2I1z7vkb3TiJsivusG/li7aqKZGmYOtAXjruGQDA==}
+    resolution: {integrity: sha512-REqR9qM4RchCE3cKqzRy9Q4zigIV82SbSpCi/O4O3oK3pg2I1z7vkb3TiJsivusG/li7aqKZGmYOtAXjruGQDA==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-linux-arm/-/sass-embedded-linux-arm-1.81.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [arm]
     os: [linux]
 
   sass-embedded-linux-ia32@1.78.0:
-    resolution: {integrity: sha512-Gy8GW5g6WX9t8CT2Dto5AL6ikB+pG7aAXWXvfu3RFHktixSwSbyy6CeGqSk1t0xyJCFkQQA/V8HU9bNdeHiBxg==}
+    resolution: {integrity: sha512-Gy8GW5g6WX9t8CT2Dto5AL6ikB+pG7aAXWXvfu3RFHktixSwSbyy6CeGqSk1t0xyJCFkQQA/V8HU9bNdeHiBxg==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-linux-ia32/-/sass-embedded-linux-ia32-1.78.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [ia32]
     os: [linux]
 
   sass-embedded-linux-ia32@1.81.0:
-    resolution: {integrity: sha512-ga/Jk4q5Bn1aC+iHJteDZuLSKnmBUiS3dEg1fnl/Z7GaHIChceKDJOw0zNaILRXI0qT2E1at9MwzoRaRA5Nn/g==}
+    resolution: {integrity: sha512-ga/Jk4q5Bn1aC+iHJteDZuLSKnmBUiS3dEg1fnl/Z7GaHIChceKDJOw0zNaILRXI0qT2E1at9MwzoRaRA5Nn/g==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-linux-ia32/-/sass-embedded-linux-ia32-1.81.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [ia32]
     os: [linux]
 
   sass-embedded-linux-musl-arm64@1.78.0:
-    resolution: {integrity: sha512-Lu/TlRHbe9aJY7B7PwWCJz7pTT5Rc50VkApWEmPiU/nu0mGbSpg0Xwar6pNeG8+98ubgKKdRb01N3bvclf5a4A==}
+    resolution: {integrity: sha512-Lu/TlRHbe9aJY7B7PwWCJz7pTT5Rc50VkApWEmPiU/nu0mGbSpg0Xwar6pNeG8+98ubgKKdRb01N3bvclf5a4A==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-linux-musl-arm64/-/sass-embedded-linux-musl-arm64-1.78.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [arm64]
     os: [linux]
 
   sass-embedded-linux-musl-arm64@1.81.0:
-    resolution: {integrity: sha512-hpntWf5kjkoxncA1Vh8vhsUOquZ8AROZKx0rQh7ZjSRs4JrYZASz1cfevPKaEM3wIim/nYa6TJqm0VqWsrERlA==}
+    resolution: {integrity: sha512-hpntWf5kjkoxncA1Vh8vhsUOquZ8AROZKx0rQh7ZjSRs4JrYZASz1cfevPKaEM3wIim/nYa6TJqm0VqWsrERlA==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-linux-musl-arm64/-/sass-embedded-linux-musl-arm64-1.81.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [arm64]
     os: [linux]
 
   sass-embedded-linux-musl-arm@1.78.0:
-    resolution: {integrity: sha512-DUVXtcsfsiOJ2Zwp4Y3T6KZWX8h0gWpzmFUrx+gSIbg67vV8Ww2DWMjWRwqLe7HOLTYBegMBYpMgMgZiPtXhIA==}
+    resolution: {integrity: sha512-DUVXtcsfsiOJ2Zwp4Y3T6KZWX8h0gWpzmFUrx+gSIbg67vV8Ww2DWMjWRwqLe7HOLTYBegMBYpMgMgZiPtXhIA==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-linux-musl-arm/-/sass-embedded-linux-musl-arm-1.78.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [arm]
     os: [linux]
 
   sass-embedded-linux-musl-arm@1.81.0:
-    resolution: {integrity: sha512-oWVUvQ4d5Kx1Md75YXZl5z1WBjc+uOhfRRqzkJ3nWc8tjszxJN+y/5EOJavhsNI3/2yoTt6eMXRTqDD9b0tWSQ==}
+    resolution: {integrity: sha512-oWVUvQ4d5Kx1Md75YXZl5z1WBjc+uOhfRRqzkJ3nWc8tjszxJN+y/5EOJavhsNI3/2yoTt6eMXRTqDD9b0tWSQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-linux-musl-arm/-/sass-embedded-linux-musl-arm-1.81.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [arm]
     os: [linux]
 
   sass-embedded-linux-musl-ia32@1.78.0:
-    resolution: {integrity: sha512-1E5ywUnq6MRPAecr2r/vDOBr93wXyculEmfyF5JRG8mUufMaxGIhfx64OQE6Drjs+EDURcYZ+Qcg6/ubJWqhcw==}
+    resolution: {integrity: sha512-1E5ywUnq6MRPAecr2r/vDOBr93wXyculEmfyF5JRG8mUufMaxGIhfx64OQE6Drjs+EDURcYZ+Qcg6/ubJWqhcw==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-linux-musl-ia32/-/sass-embedded-linux-musl-ia32-1.78.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [ia32]
     os: [linux]
 
   sass-embedded-linux-musl-ia32@1.81.0:
-    resolution: {integrity: sha512-UEXUYkBuqTSwg5JNWiNlfMZ1Jx6SJkaEdx+fsL3Tk099L8cKSoJWH2EPz4ZJjNbyIMymrSdVfymheTeZ8u24xA==}
+    resolution: {integrity: sha512-UEXUYkBuqTSwg5JNWiNlfMZ1Jx6SJkaEdx+fsL3Tk099L8cKSoJWH2EPz4ZJjNbyIMymrSdVfymheTeZ8u24xA==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-linux-musl-ia32/-/sass-embedded-linux-musl-ia32-1.81.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [ia32]
     os: [linux]
 
   sass-embedded-linux-musl-riscv64@1.78.0:
-    resolution: {integrity: sha512-YvQEvX7ctn5BwC79+HBagDYIciEkwcl2NLgoydmEsBO/0+ncMKSGnjsn/iRzErbq1KJNyjGEni8eSHlrtQI1vQ==}
+    resolution: {integrity: sha512-YvQEvX7ctn5BwC79+HBagDYIciEkwcl2NLgoydmEsBO/0+ncMKSGnjsn/iRzErbq1KJNyjGEni8eSHlrtQI1vQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-linux-musl-riscv64/-/sass-embedded-linux-musl-riscv64-1.78.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [riscv64]
     os: [linux]
 
   sass-embedded-linux-musl-riscv64@1.81.0:
-    resolution: {integrity: sha512-1D7OznytbIhx2XDHWi1nuQ8d/uCVR7FGGzELgaU//T8A9DapVTUgPKvB70AF1k4GzChR9IXU/WvFZs2hDTbaJg==}
+    resolution: {integrity: sha512-1D7OznytbIhx2XDHWi1nuQ8d/uCVR7FGGzELgaU//T8A9DapVTUgPKvB70AF1k4GzChR9IXU/WvFZs2hDTbaJg==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-linux-musl-riscv64/-/sass-embedded-linux-musl-riscv64-1.81.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [riscv64]
     os: [linux]
 
   sass-embedded-linux-musl-x64@1.78.0:
-    resolution: {integrity: sha512-azdUcZZvZmtUBslIKr2/l4aQrTX7BvO96TD0GLdWz9vuXZrokYm09AJZEnb5j6Pk5I4Xr0yM6BG1Vgcbzqi5Zg==}
+    resolution: {integrity: sha512-azdUcZZvZmtUBslIKr2/l4aQrTX7BvO96TD0GLdWz9vuXZrokYm09AJZEnb5j6Pk5I4Xr0yM6BG1Vgcbzqi5Zg==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-linux-musl-x64/-/sass-embedded-linux-musl-x64-1.78.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [x64]
     os: [linux]
 
   sass-embedded-linux-musl-x64@1.81.0:
-    resolution: {integrity: sha512-ia6VCTeVDQtBSMktXRFza1AZCt8/6aUoujot6Ugf4KmdytQqPJIHxkHaGftm5xwi9WdrMGYS7zgolToPijR11A==}
+    resolution: {integrity: sha512-ia6VCTeVDQtBSMktXRFza1AZCt8/6aUoujot6Ugf4KmdytQqPJIHxkHaGftm5xwi9WdrMGYS7zgolToPijR11A==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-linux-musl-x64/-/sass-embedded-linux-musl-x64-1.81.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [x64]
     os: [linux]
 
   sass-embedded-linux-riscv64@1.78.0:
-    resolution: {integrity: sha512-g8M6vqHMjZUoH9C1WJsgwu+qmwdJAAMDaJTM1emeAScUZMTaQGzm+Q6C5oSGnAGR3XLT/drgbHhbmruXDgkdeQ==}
+    resolution: {integrity: sha512-g8M6vqHMjZUoH9C1WJsgwu+qmwdJAAMDaJTM1emeAScUZMTaQGzm+Q6C5oSGnAGR3XLT/drgbHhbmruXDgkdeQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-linux-riscv64/-/sass-embedded-linux-riscv64-1.78.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [riscv64]
     os: [linux]
 
   sass-embedded-linux-riscv64@1.81.0:
-    resolution: {integrity: sha512-KbxSsqu4tT1XbhZfJV/5NfW0VtJIGlD58RjqJqJBi8Rnjrx29/upBsuwoDWtsPV/LhoGwwU1XkSa9Q1ifCz4fQ==}
+    resolution: {integrity: sha512-KbxSsqu4tT1XbhZfJV/5NfW0VtJIGlD58RjqJqJBi8Rnjrx29/upBsuwoDWtsPV/LhoGwwU1XkSa9Q1ifCz4fQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-linux-riscv64/-/sass-embedded-linux-riscv64-1.81.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [riscv64]
     os: [linux]
 
   sass-embedded-linux-x64@1.78.0:
-    resolution: {integrity: sha512-m997ThzpMwql4u6LzZCoHPIQkgK6bbLPLc7ydemo2Wusqzh6j8XAGxVT5oANp6s2Dmj+yh49pKDozal+tzEX9w==}
+    resolution: {integrity: sha512-m997ThzpMwql4u6LzZCoHPIQkgK6bbLPLc7ydemo2Wusqzh6j8XAGxVT5oANp6s2Dmj+yh49pKDozal+tzEX9w==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-linux-x64/-/sass-embedded-linux-x64-1.78.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [x64]
     os: [linux]
 
   sass-embedded-linux-x64@1.81.0:
-    resolution: {integrity: sha512-AMDeVY2T9WAnSFkuQcsOn5c29GRs/TuqnCiblKeXfxCSKym5uKdBl/N7GnTV6OjzoxiJBbkYKdVIaS5By7Gj4g==}
+    resolution: {integrity: sha512-AMDeVY2T9WAnSFkuQcsOn5c29GRs/TuqnCiblKeXfxCSKym5uKdBl/N7GnTV6OjzoxiJBbkYKdVIaS5By7Gj4g==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-linux-x64/-/sass-embedded-linux-x64-1.81.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [x64]
     os: [linux]
 
   sass-embedded-win32-arm64@1.78.0:
-    resolution: {integrity: sha512-qTLIIC5URYRmeuYYllfoL0K1cHSUd+f3sFHAA6fjtdgf288usd6ToCbWpuFb0BtVceEfGQX8lEp+teOG7n7Quw==}
+    resolution: {integrity: sha512-qTLIIC5URYRmeuYYllfoL0K1cHSUd+f3sFHAA6fjtdgf288usd6ToCbWpuFb0BtVceEfGQX8lEp+teOG7n7Quw==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-win32-arm64/-/sass-embedded-win32-arm64-1.78.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [arm64]
     os: [win32]
 
   sass-embedded-win32-arm64@1.81.0:
-    resolution: {integrity: sha512-YOmBRYnygwWUmCoH14QbMRHjcvCJufeJBAp0m61tOJXIQh64ziwV4mjdqjS/Rx3zhTT4T+nulDUw4d3kLiMncA==}
+    resolution: {integrity: sha512-YOmBRYnygwWUmCoH14QbMRHjcvCJufeJBAp0m61tOJXIQh64ziwV4mjdqjS/Rx3zhTT4T+nulDUw4d3kLiMncA==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-win32-arm64/-/sass-embedded-win32-arm64-1.81.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [arm64]
     os: [win32]
 
   sass-embedded-win32-ia32@1.78.0:
-    resolution: {integrity: sha512-BrOWh18T6Y9xgCokGXElEnd8j03fO4W83bwJ9wHRRkrQWaeHtHs3XWW0fX1j2brngWUTjU+jcYUijWF1Z60krw==}
+    resolution: {integrity: sha512-BrOWh18T6Y9xgCokGXElEnd8j03fO4W83bwJ9wHRRkrQWaeHtHs3XWW0fX1j2brngWUTjU+jcYUijWF1Z60krw==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-win32-ia32/-/sass-embedded-win32-ia32-1.78.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [ia32]
     os: [win32]
 
   sass-embedded-win32-ia32@1.81.0:
-    resolution: {integrity: sha512-HFfr/C+uLJGGTENdnssuNTmXI/xnIasUuEHEKqI+2J0FHCWT5cpz3PGAOHymPyJcZVYGUG/7gIxIx/d7t0LFYw==}
+    resolution: {integrity: sha512-HFfr/C+uLJGGTENdnssuNTmXI/xnIasUuEHEKqI+2J0FHCWT5cpz3PGAOHymPyJcZVYGUG/7gIxIx/d7t0LFYw==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-win32-ia32/-/sass-embedded-win32-ia32-1.81.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [ia32]
     os: [win32]
 
   sass-embedded-win32-x64@1.78.0:
-    resolution: {integrity: sha512-C14iFDJd7oGhmQehRiEL7GtzMmLwubcDqsBarQ+u9LbHoDlUQfIPd7y8mVtNgtxJCdrAO/jc5qR4C+85yE3xPQ==}
+    resolution: {integrity: sha512-C14iFDJd7oGhmQehRiEL7GtzMmLwubcDqsBarQ+u9LbHoDlUQfIPd7y8mVtNgtxJCdrAO/jc5qR4C+85yE3xPQ==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-win32-x64/-/sass-embedded-win32-x64-1.78.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [x64]
     os: [win32]
 
   sass-embedded-win32-x64@1.81.0:
-    resolution: {integrity: sha512-wxj52jDcIAwWcXb7ShZ7vQYKcVUkJ+04YM9l46jDY+qwHzliGuorAUyujLyKTE9heGD3gShJ3wPPC1lXzq6v9A==}
+    resolution: {integrity: sha512-wxj52jDcIAwWcXb7ShZ7vQYKcVUkJ+04YM9l46jDY+qwHzliGuorAUyujLyKTE9heGD3gShJ3wPPC1lXzq6v9A==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded-win32-x64/-/sass-embedded-win32-x64-1.81.0.tgz}
     engines: {node: '>=14.0.0'}
     cpu: [x64]
     os: [win32]
@@ -10260,7 +10260,7 @@ packages:
     hasBin: true
 
   sass-embedded@1.81.0:
-    resolution: {integrity: sha512-uZQ2Faxb1oWBHpeSSzjxnhClbMb3QadN0ql0ZFNuqWOLUxwaVhrMlMhPq6TDPbbfDUjihuwrMCuy695Bgna5RA==}
+    resolution: {integrity: sha512-uZQ2Faxb1oWBHpeSSzjxnhClbMb3QadN0ql0ZFNuqWOLUxwaVhrMlMhPq6TDPbbfDUjihuwrMCuy695Bgna5RA==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sass-embedded/-/sass-embedded-1.81.0.tgz}
     engines: {node: '>=16.0.0'}
     hasBin: true
 
@@ -10384,7 +10384,7 @@ packages:
     engines: {node: '>=8'}
 
   sharp@0.33.5:
-    resolution: {integrity: sha512-haPVm1EkS9pgvHrQ/F3Xy+hgcuMV0Wm9vfIBSiwZ05k+xgb0PkBQpGsAA/oWdDobNaZTH5ppvHtzCFbnSEwHVw==}
+    resolution: {integrity: sha512-haPVm1EkS9pgvHrQ/F3Xy+hgcuMV0Wm9vfIBSiwZ05k+xgb0PkBQpGsAA/oWdDobNaZTH5ppvHtzCFbnSEwHVw==, tarball: https://artifactory.tools.pnet.ch/artifactory/api/npm/npm-virtual/sharp/-/sharp-0.33.5.tgz}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
 
   shebang-command@2.0.0:
@@ -21968,7 +21968,7 @@ snapshots:
       ansi-styles: 5.2.0
       react-is: 18.2.0
 
-  primeng@19.0.9(553da6a5bf19415560b0c79df2838c31):
+  primeng@19.0.9(fxrnogyevcwbkooc5wfwgygr6i):
     dependencies:
       '@angular/animations': 19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))
       '@angular/cdk': 19.2.2(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1)
