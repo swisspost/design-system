@@ -115,6 +115,20 @@ export namespace Components {
          */
         "homeUrl": string;
     }
+    interface PostCard {
+        /**
+          * Image position
+         */
+        "imgPosition"?: 'top' | 'bottom';
+        /**
+          * Image source
+         */
+        "imgSrc"?: string;
+        /**
+          * Variant of the card
+         */
+        "variant"?: 'card' | 'card-product' | 'card-teaser';
+    }
     /**
      * @class PostCardControl - representing a stencil component
      */
@@ -163,6 +177,12 @@ export namespace Components {
           * Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
          */
         "value": string;
+    }
+    interface PostCardSection {
+        /**
+          * Palette to use on section
+         */
+        "palette"?: 'alternate' | 'default' | 'accent' | 'brand';
     }
     interface PostClosebutton {
     }
@@ -612,6 +632,12 @@ declare global {
         prototype: HTMLPostBreadcrumbsElement;
         new (): HTMLPostBreadcrumbsElement;
     };
+    interface HTMLPostCardElement extends Components.PostCard, HTMLStencilElement {
+    }
+    var HTMLPostCardElement: {
+        prototype: HTMLPostCardElement;
+        new (): HTMLPostCardElement;
+    };
     interface HTMLPostCardControlElementEventMap {
         "postInput": { state: boolean; value: string };
         "postChange": { state: boolean; value: string };
@@ -632,6 +658,12 @@ declare global {
     var HTMLPostCardControlElement: {
         prototype: HTMLPostCardControlElement;
         new (): HTMLPostCardControlElement;
+    };
+    interface HTMLPostCardSectionElement extends Components.PostCardSection, HTMLStencilElement {
+    }
+    var HTMLPostCardSectionElement: {
+        prototype: HTMLPostCardSectionElement;
+        new (): HTMLPostCardSectionElement;
     };
     interface HTMLPostClosebuttonElement extends Components.PostClosebutton, HTMLStencilElement {
     }
@@ -902,7 +934,9 @@ declare global {
         "post-banner": HTMLPostBannerElement;
         "post-breadcrumb-item": HTMLPostBreadcrumbItemElement;
         "post-breadcrumbs": HTMLPostBreadcrumbsElement;
+        "post-card": HTMLPostCardElement;
         "post-card-control": HTMLPostCardControlElement;
+        "post-card-section": HTMLPostCardSectionElement;
         "post-closebutton": HTMLPostClosebuttonElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
@@ -1017,6 +1051,20 @@ declare namespace LocalJSX {
          */
         "homeUrl"?: string;
     }
+    interface PostCard {
+        /**
+          * Image position
+         */
+        "imgPosition"?: 'top' | 'bottom';
+        /**
+          * Image source
+         */
+        "imgSrc"?: string;
+        /**
+          * Variant of the card
+         */
+        "variant"?: 'card' | 'card-product' | 'card-teaser';
+    }
     /**
      * @class PostCardControl - representing a stencil component
      */
@@ -1065,6 +1113,12 @@ declare namespace LocalJSX {
           * Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
          */
         "value"?: string;
+    }
+    interface PostCardSection {
+        /**
+          * Palette to use on section
+         */
+        "palette"?: 'alternate' | 'default' | 'accent' | 'brand';
     }
     interface PostClosebutton {
     }
@@ -1373,7 +1427,9 @@ declare namespace LocalJSX {
         "post-banner": PostBanner;
         "post-breadcrumb-item": PostBreadcrumbItem;
         "post-breadcrumbs": PostBreadcrumbs;
+        "post-card": PostCard;
         "post-card-control": PostCardControl;
+        "post-card-section": PostCardSection;
         "post-closebutton": PostClosebutton;
         "post-collapsible": PostCollapsible;
         "post-collapsible-trigger": PostCollapsibleTrigger;
@@ -1415,10 +1471,12 @@ declare module "@stencil/core" {
             "post-banner": LocalJSX.PostBanner & JSXBase.HTMLAttributes<HTMLPostBannerElement>;
             "post-breadcrumb-item": LocalJSX.PostBreadcrumbItem & JSXBase.HTMLAttributes<HTMLPostBreadcrumbItemElement>;
             "post-breadcrumbs": LocalJSX.PostBreadcrumbs & JSXBase.HTMLAttributes<HTMLPostBreadcrumbsElement>;
+            "post-card": LocalJSX.PostCard & JSXBase.HTMLAttributes<HTMLPostCardElement>;
             /**
              * @class PostCardControl - representing a stencil component
              */
             "post-card-control": LocalJSX.PostCardControl & JSXBase.HTMLAttributes<HTMLPostCardControlElement>;
+            "post-card-section": LocalJSX.PostCardSection & JSXBase.HTMLAttributes<HTMLPostCardSectionElement>;
             "post-closebutton": LocalJSX.PostClosebutton & JSXBase.HTMLAttributes<HTMLPostClosebuttonElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             "post-collapsible-trigger": LocalJSX.PostCollapsibleTrigger & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
