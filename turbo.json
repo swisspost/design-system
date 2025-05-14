@@ -1,0 +1,10 @@
+{
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"]
+    },
+    "styles#build": {
+      "outputs": ["out-tsc/**", "dist/**", "src/tokens/temp/**"]
+    }
+  }
+}

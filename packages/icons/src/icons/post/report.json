@@ -25840,6 +25840,93 @@
       "modifiedAt": "2025-04-25T12:05:06.942Z"
     },
     {
+      "uuid": "a82a28a0-23ea-11f0-bf8f-005056873709",
+      "id": 3849144,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3849144/storage/MDAzODQ5MTQ0LzAvbWFzdGVy",
+        "keywords": [
+          "power of women",
+          "Frauenpower",
+          "Femmes motivées",
+          "potere alle donne",
+          "feminism",
+          "Feminismus",
+          "Féminisme",
+          "Feminismo",
+          "emancipation",
+          "Emanzipation",
+          "Emancipation",
+          "Emancipazione"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2690.svg",
+        "basename": "2690",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-28T04:38:39.000Z",
+      "modifiedAt": "2025-04-29T04:05:06.259Z"
+    },
+    {
+      "uuid": "43bc1f82-25c6-11f0-bf8f-005056873709",
+      "id": 3937213,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3937213/storage/MDAzOTM3MjEzLzAvbWFzdGVy",
+        "keywords": [
+          "Galaxus"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2691.svg",
+        "basename": "2691",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-04-30T13:23:11.000Z",
+      "modifiedAt": "2025-04-30T13:26:59.000Z"
+    },
+    {
+      "uuid": "5aebff14-297a-11f0-bf8f-005056873709",
+      "id": 4128891,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/4128891/storage/MDA0MTI4ODkxLzAvbWFzdGVy",
+        "keywords": [
+          "CSIRT",
+          "Notfall"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2692.svg",
+        "basename": "2692",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-05-05T06:29:53.000Z",
+      "modifiedAt": "2025-05-07T10:35:14.000Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -39078,13 +39165,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1021,
+    "success": 1024,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2025-04-27T02:17:32.949Z",
-  "version": "9.0.0-next.34"
+  "created": "2025-05-11T02:20:49.183Z",
+  "version": "10.0.0-next.36"
 }

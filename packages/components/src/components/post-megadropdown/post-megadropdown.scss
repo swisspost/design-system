@@ -72,11 +72,11 @@
   @include media.max(lg) {
     z-index: 4;
     position: fixed;
-    inset-block-start: var(--header-navigation-current-inset);
+    inset-block-start: var(--post-header-navigation-current-inset);
     inset-inline: 0;
 
     height: calc(
-      min(var(--header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
+      min(var(--post-header-scroll-parent-height, 100dvh), 100dvh) - var(--post-header-height)
     );
     border-block-start: unset;
     overflow-y: auto;

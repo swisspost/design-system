@@ -140,6 +140,53 @@ export class Search extends React.Component {
     document.body.style.overflow = '';
   }
 
+  private trapFocusInElement(container: HTMLElement) {
+    const focusableSelectors = [
+      'a[href]',
+      'button:not([disabled])',
+      'textarea:not([disabled])',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ];
+    const focusables = Array.from(
+      container.querySelectorAll<HTMLElement>(focusableSelectors.join(',')),
+    );
+
+    if (focusables.length === 0) return () => {};
+
+    // Focus the first focusable element
+    focusables[0].focus();
+
+    function trapFocus(e: KeyboardEvent) {
+      if (e.key !== 'Tab' || focusables.length === 0) return;
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if (e.shiftKey) {
+        // Shift+Tab
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        // Tab
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+
+    container.addEventListener('keydown', trapFocus);
+
+    // Return a cleanup function
+    return () => {
+      container.removeEventListener('keydown', trapFocus);
+    };
+  }
+
   openIconDetails(icon: Icon) {
     const popover = document.querySelector('#icon-panel') as HTMLPostPopovercontainerElement;
     popover?.removeEventListener('postToggle', this.popoverEventListener);
@@ -148,6 +195,17 @@ export class Search extends React.Component {
     this.setState(this.activeIcon);
     popover.showPopover();
     popover?.addEventListener('postToggle', this.popoverEventListener);
+    setTimeout(() => {
+      // Trap focus inside the popover
+      const cleanupFocusTrap = this.trapFocusInElement(popover);
+
+      // Clean up the focus trap when the popover closes
+      const cleanup = () => {
+        cleanupFocusTrap?.();
+        popover.removeEventListener('postToggle', cleanup);
+      };
+      popover.addEventListener('postToggle', cleanup);
+    }, 0);
   }
 
   iconDetailPanel() {
@@ -169,7 +227,9 @@ export class Search extends React.Component {
               <dd>{this.activeIcon?.name}</dd>
               <dt>Download</dt>
               <dd>
-                <a href={`/post-icons/${this.activeIcon?.name}.svg`} download>{this.activeIcon?.name}.svg</a>
+                <a href={`/post-icons/${this.activeIcon?.name}.svg`} download>
+                  {this.activeIcon?.name}.svg
+                </a>
               </dd>
               <dt>Keywords</dt>
               <dd>{this.activeIcon?.keywords}</dd>
