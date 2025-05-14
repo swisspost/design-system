@@ -2,6 +2,7 @@ import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { useArgs } from '@storybook/preview-api';
 import { MetaComponent } from '@root/types';
+import { clickBlocker } from '@/shared/click-blocker';
 
 const meta: MetaComponent = {
   id: '021d61aa-e039-4858-b4b9-b86a3e772811',
@@ -127,19 +128,7 @@ const meta: MetaComponent = {
       },
     },
   },
-  decorators: [
-    story =>
-      html`
-        <div
-          @click="${(e: Event) => {
-            const target = e.target as HTMLElement;
-            if (target.tagName === 'A' || target.tagName === 'BUTTON') e.preventDefault();
-          }}"
-        >
-          ${story()}
-        </div>
-      `,
-  ],
+  decorators: [clickBlocker],
 };
 
 export default meta;

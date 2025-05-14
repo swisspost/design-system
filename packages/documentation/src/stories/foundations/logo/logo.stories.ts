@@ -1,6 +1,7 @@
 import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
+import { clickBlocker } from '@/shared/click-blocker';
 
 const meta: MetaComponent<HTMLPostLogoElement> = {
   id: '73066e1c-0720-4a9b-8f81-a29d4250872a',
@@ -56,7 +57,7 @@ export const Link: Story = {
     url: 'https://www.post.ch/en',
   },
   render: renderLogo('the homepage'),
-  decorators: [containerWithHeight],
+  decorators: [containerWithHeight, clickBlocker],
 };
 
 export const Height: Story = {

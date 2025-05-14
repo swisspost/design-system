@@ -2,6 +2,7 @@ import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-compo
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { nothing } from 'lit';
 import { MetaComponent } from '@root/types';
+import { clickBlocker } from '@/shared/click-blocker';
 
 const meta: MetaComponent = {
   id: 'b4800d9e-4837-4476-a327-bb4586eb7e97',
@@ -57,13 +58,6 @@ const meta: MetaComponent = {
 };
 
 export default meta;
-
-// DECORATORS
-function clickBlocker(story: StoryFn, context: StoryContext) {
-  return html`
-    <div @click=${(e: Event) => e.preventDefault()}>${story(context.args, context)}</div>
-  `;
-}
 
 function paddedContainer(story: StoryFn, context: StoryContext) {
   return html` <div class="p-8">${story(context.args, context)}</div> `;

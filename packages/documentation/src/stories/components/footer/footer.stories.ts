@@ -1,6 +1,7 @@
 import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
+import { clickBlocker } from '@/shared/click-blocker';
 
 const GRID_CELLS = [1, 2, 3, 4];
 const LINKS_PER_CELL = [6, 8, 8, 5];
@@ -10,6 +11,7 @@ const meta: MetaComponent = {
   title: 'Components/Footer',
   component: 'post-footer',
   tags: ['package:WebComponents'],
+  decorators: [clickBlocker],
   parameters: {
     layout: 'fullscreen',
     badges: [],

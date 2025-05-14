@@ -1,6 +1,7 @@
 import type { Args, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
+import { clickBlocker } from '@/shared/click-blocker';
 
 export interface PostLinkarea {
   dataLink?: boolean;
@@ -14,6 +15,7 @@ const meta: MetaComponent<PostLinkarea> = {
   tags: ['package:WebComponents'],
   render: renderLinkarea,
   component: 'post-linkarea',
+  decorators: [clickBlocker],
   parameters: {
     design: {},
   },

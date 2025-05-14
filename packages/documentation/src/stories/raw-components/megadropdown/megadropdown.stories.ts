@@ -2,6 +2,7 @@ import type { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 import { StoryContext, StoryFn } from '@storybook/web-components';
+import { clickBlocker } from '@/shared/click-blocker';
 
 const meta: MetaComponent<HTMLPostMegadropdownElement> = {
   id: '212efc4e-875b-4497-912d-d28c6baf32f5',
@@ -81,7 +82,13 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
         </button>
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
+<<<<<<< Updated upstream
           <post-list-item> ${story(context.args, context)} </post-list-item>
+=======
+          <post-list-item>
+            ${story(context.args, context)}
+          </post-list-item>
+>>>>>>> Stashed changes
         </post-list>
       </post-mainnavigation>
     </post-header>
@@ -124,7 +131,7 @@ function render() {
 type Story = StoryObj<HTMLPostLanguageOptionElement>;
 
 export const Default: Story = {
-  decorators: [megadropdownDecorator],
+  decorators: [megadropdownDecorator, clickBlocker],
 };
 
 // No decorators on the test page

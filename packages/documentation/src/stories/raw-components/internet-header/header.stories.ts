@@ -5,6 +5,7 @@ import customConfig from './config/custom-config';
 import osFlyoutOverrides from './config/os-flyout-overrides';
 import languageSwitchOverrides from './config/language-switch-overrides';
 import { MetaComponent } from '@root/types';
+import { clickBlocker } from '@/shared/click-blocker';
 
 const meta: MetaComponent = {
   id: 'ebb11274-091b-4cb7-9a3f-3e0451c9a865',
@@ -158,15 +159,15 @@ const meta: MetaComponent = {
     },
   },
   decorators: [
-    story =>
-      html`
-        <div
-          class="header-story-wrapper"
-          style="--header-z-index: 1;overflow: auto;max-height: 100svh;"
-        >
-          ${story()} ${fakeContent()}
-        </div>
-      `,
+    story => html`
+      <div
+        class="header-story-wrapper"
+        style="--header-z-index: 1;overflow: auto;max-height: 100svh;"
+      >
+        ${story()} ${fakeContent()}
+      </div>
+    `,
+    clickBlocker,
   ],
 };
 

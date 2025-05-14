@@ -1,12 +1,14 @@
 import { Args, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
+import { clickBlocker } from '@/shared/click-blocker';
 
 const meta: MetaComponent = {
   id: '8ca2bd70-56e6-4da9-b1fd-4e55388dca88',
   title: 'Raw Components/Menu Button',
   tags: ['package:WebComponents'],
   component: 'post-menu',
+  decorators: [clickBlocker],
   parameters: {
     design: {},
   },

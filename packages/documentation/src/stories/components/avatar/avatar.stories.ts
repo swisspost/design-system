@@ -2,6 +2,7 @@ import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { MetaComponent } from '@root/types';
 import { html, nothing } from 'lit';
 import { components } from '@swisspost/design-system-components/dist/docs.json';
+import { clickBlocker } from '@/shared/click-blocker';
 
 const AVATAR_ARGTYPES = components.find(c => c.tag === 'post-avatar');
 const USERID_ARGTYPE = AVATAR_ARGTYPES?.props.find(p => p.name === 'userid');
@@ -75,6 +76,7 @@ export const Default: Story = {
 };
 
 export const AnchorWrapped: Story = {
+  decorators: [clickBlocker],
   render: (args: Args, context: StoryContext) => {
     return html`<a href="#">${Default.render?.(args, context)}</a>`;
   },
