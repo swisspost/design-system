@@ -68,12 +68,12 @@ post-linkarea:has(> .card) {
   &.product-card {
     box-shadow: none;
 
-    & > *:first-child {
+    > *:first-child {
       border-top-left-radius: tokens.get('card-border-radius');
       border-top-right-radius: tokens.get('card-border-radius');
     }
 
-    & > *:last-child {
+    > *:last-child {
       border-bottom-left-radius: tokens.get('card-border-radius');
       border-bottom-right-radius: tokens.get('card-border-radius');
     }
