@@ -20,6 +20,7 @@ const meta: MetaComponent = {
     },
   },
   args: {
+    isWebComponent: false,
     showImage: true,
     imagePosition: 'top',
     showHeader: false,
@@ -223,9 +224,7 @@ function gridContainer(story: StoryFn, context: StoryContext) {
 // RENDERER
 function getCardLinks() {
   return html`
-    ${['Link Text', 'More Link'].map(
-      label => html` <a class="card-link" href="#">${label}</a> `,
-    )}
+    ${['Link Text', 'More Link'].map(label => html` <a class="card-link" href="#">${label}</a> `)}
   `;
 }
 
@@ -243,7 +242,9 @@ function getCardBody({ customBody, content, action, showTitle, showSubtitle }: A
   return html`
     <div class="card-body">
       ${showTitle ? html` <h5 class="card-title">Card Title</h5> ` : nothing}
-      ${showSubtitle ? html` <h6 class="card-subtitle mb-8 text-muted">Card Subtitle</h6> ` : nothing}
+      ${showSubtitle
+        ? html` <h6 class="card-subtitle mb-8 text-muted">Card Subtitle</h6> `
+        : nothing}
       <p class="card-text">${content}</p>
       ${choose(
         action,
@@ -425,4 +426,79 @@ export const BackgroundImage: Story = {
     </div>
   </div>`,
   },
+};
+
+export const CardWebComponent: Story = {
+  decorators: [gridContainer],
+  render: () => html`
+    <post-card img-src="https://picsum.photos/id/20/300/200" img-position="top">
+      <div slot="header">Card header</div>
+      <h5 class="card-title">Title</h5>
+      <h6 class="card-subtitle mb-8 text-muted">Subtitle</h6>
+      <p class="card-text">This is my text</p>
+      <button class="btn btn-tertiary px-0">
+        Button label <post-icon name="arrowright"></post-icon>
+      </button>
+      <div slot="footer">Card footer</div>
+    </post-card>
+  `,
+};
+
+export const CardProductWebComponent: Story = {
+  decorators: [gridContainer],
+  render: () => html`
+    <post-card variant="card-product">
+      <post-card-section palette="default">
+        <div class="product-navigation">
+          <div>
+            <h3>Affordable</h3>
+            <h4 class="mb-16">Sample Product</h4>
+            <p class="lead">
+              With SAMPLE PRODUCT, your letters arrive at their destination cost-effectively and
+              reliably.
+            </p>
+          </div>
+          <div>
+            <a href="#" class="link-icon">
+              <post-icon name="3020" aria-hidden="true"></post-icon>
+              <span>Learn more</span>
+            </a>
+          </div>
+        </div>
+      </post-card-section>
+      <post-card-section palette="alternate">
+        <h5 class="h6">Sample Product</h5>
+        <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
+        <dl class="mt-16">
+          <dt>bis 500 g</dt>
+          <dd class="h3">1.20</dd>
+
+          <dt>bis 50 g</dt>
+          <dd class="h3">2.20</dd>
+        </dl>
+      </post-card-section>
+      <post-card-section>
+        <button class="btn btn-secondary w-full mb-12">
+          <span>Order Sample Product</span>
+        </button>
+
+        <button class="btn btn-primary w-full">
+          <span>Print Sample Product</span>
+        </button>
+      </post-card-section>
+    </post-card>
+  `,
+};
+
+export const CardTeaserWebComponent: Story = {
+  decorators: [gridContainer],
+  render: () => html`
+    <post-card variant="card-teaser" img-src="https://picsum.photos/id/20/300/200">
+      <h3 class="mb-16">Product</h3>
+      <p class="lead">This is the product summary.</p>
+      <button class="btn btn-tertiary px-0">
+        Button label <post-icon name="arrowright"></post-icon>
+      </button>
+    </post-card>
+  `,
 };
