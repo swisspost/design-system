@@ -48,32 +48,31 @@ export const CardWebComponent: Story = {
           ),
       )
       // Map default template variants
-      .map(
-        args => html`
+      .map(args => {
+        const cardBody = html`
+          <h5 class="card-title">Title</h5>
+          <h6 class="card-subtitle mb-8 text-muted">Subtitle</h6>
+          <p class="card-text">This is my text</p>
+          ${args.interactiveContent === 'button'
+            ? html`<button class="btn btn-tertiary px-0">
+                Button label <post-icon name="arrowright"></post-icon>
+              </button>`
+            : ''}
+          ${args.interactiveContent === 'links'
+            ? html`<a class="card-link" href="#">Link one</a
+                ><a class="card-link" href="#">Link two</a>`
+            : ''}
+        `;
+        return html`
           <div class="col-4 pb-16">
             <post-card img-src="${args.imgSrc}" img-position="${args.imgPosition}">
               ${args.showHeader ? html`<div slot="header">Card header</div>` : ''}
-              ${args.showBody
-                ? html`
-                    <h5 class="card-title">Title</h5>
-                    <h6 class="card-subtitle mb-8 text-muted">Subtitle</h6>
-                    <p class="card-text">This is my text</p>
-                    ${args.interactiveContent === 'button'
-                      ? html`<button class="btn btn-tertiary px-0">
-                          Button label <post-icon name="arrowright"></post-icon>
-                        </button>`
-                      : ''}
-                    ${args.interactiveContent === 'links'
-                      ? html`<a class="card-link" href="#">Link one</a
-                          ><a class="card-link" href="#">Link two</a>`
-                      : ''}
-                  `
-                : ''}
+              ${args.showBody ? cardBody : ''}
               ${args.showFooter ? html`<div slot="footer">Card footer</div>` : ''}
             </post-card>
           </div>
-        `,
-      );
+        `;
+      });
 
     const cardProductVariants = [
       // Layout related combinations
