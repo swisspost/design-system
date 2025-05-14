@@ -74,20 +74,6 @@ Create lists of content in a card by simply using a flush list group in place of
 
 Here are examples of what the card component would look like if it was a web component.
 
-Pros:
-
-- Less code for developers - Structure, styles and logic are encapsulated.
-- Automatic link detection - No manual use of the `<post-linkarea>`, reducing errors.
-- Structure validation - Though I didn't have time to implement it, having a web component helps which checking usage of each variant.
-- Single entry point - One component (two, counting the `<post-card-section>`) handles all card variations.
-
-Cons:
-
-- Big breaking change - Teams must migrate from old class-based usage.
-- More logic inside - Adds JS complexity to what was mostly CSS.
-- Component complexity - One component handling all variants (card, card-product and card-teaser) can confuse devs.
-- Conditional usage of component - Having the `<post-card-section>` adds complexity to the usage.
-
 <Canvas sourceState="shown" of={CardStories.CardWebComponent} />
 <Canvas sourceState="shown" of={CardStories.CardProductWebComponent} />
 <Canvas sourceState="shown" of={CardStories.CardTeaserWebComponent} />
