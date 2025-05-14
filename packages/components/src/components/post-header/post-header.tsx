@@ -6,17 +6,14 @@ import {
   Element,
   Method,
   Watch,
-  Event,
-  EventEmitter,
 } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
+import { breakpoint } from '../../utils/breakpoints';
 import { slideDown, slideUp } from '@/animations/slide';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
 import { eventGuard } from '@/utils/event-guard';
-
-export type DEVICE_SIZE = 'mobile' | 'tablet' | 'desktop' | null;
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
@@ -65,9 +62,8 @@ export class PostHeader {
 
   @Element() host: HTMLPostHeaderElement;
 
-  @State() device: DEVICE_SIZE = null;
+  @State() device: string = breakpoint.get('name');
   @State() mobileMenuExtended: boolean = false;
-
   @State() megadropdownOpen: boolean = false;
 
   @Watch('device')
@@ -86,19 +82,22 @@ export class PostHeader {
     }
   }
 
-  /**
-   * An event emitted when the device has changed
-   */
-  @Event() postUpdateDevice: EventEmitter<DEVICE_SIZE>;
-
   constructor() {
     this.handleScrollEvent = this.handleScrollEvent.bind(this);
     this.updateScrollParentHeight = this.updateScrollParentHeight.bind(this);
     this.updateLocalHeaderHeight = this.updateLocalHeaderHeight.bind(this);
-    this.megedropdownStateHandler = this.megedropdownStateHandler.bind(this);
     this.keyboardHandler = this.keyboardHandler.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
   }
+
+  private readonly breakpointChange = (e: CustomEvent) => {
+    this.device = e.detail;
+    this.switchLanguageSwitchMode();
+
+    if (this.device === 'desktop' && this.mobileMenuExtended) {
+      this.closeMobileMenu();
+    }
+  };
 
   connectedCallback() {
     window.addEventListener('resize', this.throttledResize, { passive: true });
@@ -110,6 +109,8 @@ export class PostHeader {
     });
     document.addEventListener('postToggleMegadropdown', this.megedropdownStateHandler);
     this.host.addEventListener('click', this.handleLinkClick);
+    window.addEventListener('postBreakpoint:name', this.breakpointChange);
+    this.switchLanguageSwitchMode();
 
     this.handleResize();
     this.handleScrollParentResize();
@@ -129,6 +130,7 @@ export class PostHeader {
   disconnectedCallback() {
     const scrollParent = this.scrollParent;
 
+    window.removeEventListener('postBreakpoint:name', this.breakpointChange);
     window.removeEventListener('resize', this.throttledResize);
     window.removeEventListener('scroll', this.handleScrollEvent);
     scrollParent.removeEventListener('scroll', this.handleScrollEvent);
@@ -143,6 +145,17 @@ export class PostHeader {
     if (this.localHeaderResizeObserver) {
       this.localHeaderResizeObserver.disconnect();
       this.localHeaderResizeObserver = null;
+    }
+
+    this.mobileMenuExtended = false;
+  }
+
+  private async closeMobileMenu() {
+    this.mobileMenuAnimation.finish();
+
+    const menuButton = this.getMenuButton();
+    if (menuButton) {
+      menuButton.toggled = false;
     }
 
     this.mobileMenuExtended = false;
@@ -215,6 +228,10 @@ export class PostHeader {
     this.lastFocusableEl = focusableChildren[focusableChildren.length - 1];
   }
 
+  private getMenuButton(): HTMLPostTogglebuttonElement | null {
+    return this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
+  }
+
   private keyboardHandler(e: KeyboardEvent) {
     if (e.key === 'Tab' && this.mobileMenuExtended) {
       if (e.shiftKey && document.activeElement === this.firstFocusableEl) {
@@ -272,29 +289,8 @@ export class PostHeader {
       }
     }
   }
-
   private handleResize() {
-    const previousDevice = this.device;
-    let newDevice: DEVICE_SIZE;
-    const width = window?.innerWidth;
-
-    if (width >= 1024) {
-      newDevice = 'desktop';
-    } else if (width >= 600) {
-      newDevice = 'tablet';
-    } else {
-      newDevice = 'mobile';
-    }
-
-    // Apply only on change for doing work only when necessary
-    if (newDevice !== previousDevice) {
-      this.device = newDevice;
-
-      this.postUpdateDevice.emit(this.device);
-      window.requestAnimationFrame(() => {
-        this.switchLanguageSwitchMode();
-      });
-    }
+    this.updateLocalHeaderHeight(); 
   }
 
   private handleScrollParentResize() {
