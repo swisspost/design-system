@@ -8,7 +8,7 @@ import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
 import reactPlugin from 'eslint-plugin-react';
 import stencilCommunityPlugin from '@stencil-community/eslint-plugin';
 import pluginCypress from 'eslint-plugin-cypress/flat';
-import { configs as postEslintConfigs } from '@swisspost/design-system-eslint';
+import { configs as dsEslintConfigs } from '@swisspost/design-system-eslint';
 
 const compatStencilCommunityBaseRules = fixupConfigRules(stencilCommunityPlugin.configs.base)[0]
   .overrides[0].rules;
@@ -55,7 +55,7 @@ export default [
     },
   },
   ...ts.configs.recommended,
-  postEslintConfigs.stencilRecommended, // Add the new Stencil recommended config
+  dsEslintConfigs.stencilRecommended, // Add the new Stencil recommended config
   {
     files: ['**/*.{js,mjs,cjs}'],
     ...ts.configs.disableTypeChecked,
