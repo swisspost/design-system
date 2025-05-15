@@ -4,7 +4,7 @@ import { htmlParser } from './parsers/html';
 
 import { htmlRules } from './rules/html';
 import { tsRules } from './rules/ts';
-import { stencilLintingRules } from './rules'; // Import Stencil rules
+import { dsLintingRules } from './rules';
 
 import htmlAllConfig from './configs/html/all';
 import htmlRecommendedConfig from './configs/html/recommended';
@@ -22,7 +22,7 @@ const htmlPlugin: TSESLint.FlatConfig.Plugin = {
 const tsPlugin: TSESLint.FlatConfig.Plugin = {
   rules: {
     ...tsRules, // Include existing (currently empty) TS rules
-    ...stencilLintingRules, // Include Stencil rules
+    ...dsLintingRules, // Include Stencil rules
   },
   meta: {
     name: '@swisspost/eslint-plugin-design-system',

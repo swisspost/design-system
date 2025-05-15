@@ -2,6 +2,6 @@ import stencilStrictPropsInitializationRule, {
   name as stencilStrictPropsInitializationRuleName,
 } from './stencil-strict-props-initialization';
 
-export const stencilLintingRules = {
+export const dsLintingRules = {
   [stencilStrictPropsInitializationRuleName]: stencilStrictPropsInitializationRule,
 };
