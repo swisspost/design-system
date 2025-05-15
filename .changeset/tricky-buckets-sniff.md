@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Fixed an issue where `post-accordion` placed inside inactive tabs would throw animation errors.
+Resolved an issue where `post-accordion` components placed within inactive tab panels caused animation-related exceptions.
