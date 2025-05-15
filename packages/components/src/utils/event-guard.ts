@@ -17,7 +17,7 @@ export function eventGuard(
 
 export function EventGuard(options: {
  targetLocalName: string;
- delegatorSelector: string;
+ delegatorSelector?: string;
 }) {
   return function (
     _target: object,
