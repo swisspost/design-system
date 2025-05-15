@@ -2,4 +2,5 @@
 '@swisspost/design-system-documentation': patch
 ---
 
-Implemented minor changes in `back-to-top`, `card-control` and `popover` documentation pages.
+Added `close-button-caption` attribute in `post-popover`.
+Removed an obsolete parameter from the `post-back-to-top` component metadata object.
