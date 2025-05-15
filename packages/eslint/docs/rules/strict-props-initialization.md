@@ -1,8 +1,8 @@
 # `strict-props-initialization`
 
-Identifies any Stencil component `@Prop` properties that have been initialized without being marked as explicitly optional (`?`) or definitely assigned (`!`)'.
+Reports any Stencil component `@Prop` that lacks an initial value and is neither marked as optional (?) or definitely assigned (!).',
 
-- Type: suggestion
+- Type: problem
 
 ## Rule Options
 
