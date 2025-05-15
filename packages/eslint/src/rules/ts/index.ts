@@ -1,1 +1,5 @@
-export const tsRules = {};
+import { tsLintingRules } from './components';
+
+export const tsRules = {
+  ...tsLintingRules,
+};
