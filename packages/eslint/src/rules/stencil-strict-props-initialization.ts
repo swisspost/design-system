@@ -1,7 +1,7 @@
-import { createRule } from '../../../utils/create-rule';
+import { createRule } from '../utils/create-rule';
 import { AST_NODE_TYPES } from '@typescript-eslint/utils';
 
-export const name = 'strict-props-initialization';
+export const name = 'stencil-strict-props-initialization';
 
 export default createRule({
   name,
@@ -9,11 +9,11 @@ export default createRule({
     docs: {
       dir: 'ts',
       description:
-        'Identifies any Stencil component @Prop properties that have not been marked as explicitly optional (?) or definitely assigned (!)',
+        'Reports any Stencil component @Prop properties that lack an initial value and are neither marked as optional (?) nor definitely assigned (!).',
     },
     messages: {
       propStrictInit:
-        "The '{{propertyName}}' @Prop properties must be explicitly marked as either optional (?) or definitely assigned (!).",
+        "The '@Prop' property '{{propertyName}}' must have an initial value, or be explicitly marked as optional (?) or definitely assigned (!).",
     },
     type: 'suggestion',
     schema: [],
@@ -40,7 +40,8 @@ export default createRule({
             // Check if the property is optional (?) or definitely assigned (!)
             const isOptional = node.optional;
             const isDefinitelyAssigned = node.definite;
-            if (!isOptional && !isDefinitelyAssigned) {
+            // Also check if the property has no initial value set
+            if (!isOptional && !isDefinitelyAssigned && node.value === null) {
               context.report({
                 node,
                 messageId: 'propStrictInit',
