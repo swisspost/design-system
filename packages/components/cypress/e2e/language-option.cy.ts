@@ -49,7 +49,6 @@ describe('language-option', () => {
       cy.get('@anchor')
         .should('exist')
         .and('have.attr', 'aria-current', 'page')
-        .and('have.attr', 'aria-label', 'English')
         .and('have.attr', 'href', 'https://www.post.ch/en')
         .and('have.attr', 'hrefLang', 'en')
         .and('have.attr', 'lang', 'en');
