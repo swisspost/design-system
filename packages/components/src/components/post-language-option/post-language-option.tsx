@@ -36,7 +36,7 @@ export class PostLanguageOption {
   /**
    * If set to `true`, the language option is considered the current language for the page.
    */
-  @Prop({ mutable: true, reflect: true }) active: boolean;
+  @Prop({ mutable: true, reflect: true }) active?: boolean;
 
   @Watch('active')
   validateActiveProp() {
@@ -46,12 +46,12 @@ export class PostLanguageOption {
   /**
    * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
    */
-  @Prop() variant?: SwitchVariant | null;
+  @Prop() variant?: SwitchVariant;
 
   /**
    * The full name of the language. For example, "Deutsch".
    */
-  @Prop() name: string;
+  @Prop() name?: string;
 
   @Watch('name')
   validateName() {
@@ -62,7 +62,7 @@ export class PostLanguageOption {
    * The URL used for the href attribute of the internal anchor.
    * This field is optional; if not provided, a button will be used internally instead of an anchor.
    */
-  @Prop() url: string;
+  @Prop() url?: string;
 
   @Watch('url')
   validateUrl() {
