@@ -1,20 +1,3 @@
-export function eventGuard(
-  host: HTMLElement,
-  event: CustomEvent,
-  options: { targetLocalName: string; delegatorSelector?: string },
-  callback: () => void
-): void {
-  const target = event.target as HTMLElement | null;
-
-  if (!target) return;
-
-  if (target.localName === options.targetLocalName) {
-    if (!options.delegatorSelector || shadowClosest(target, options.delegatorSelector) === host) {
-      callback();
-    }
-  }
-}
-
 export function EventGuard(options: {
  targetLocalName: string;
  delegatorSelector?: string;
@@ -30,7 +13,6 @@ export function EventGuard(options: {
 
     descriptor.value = function (event: CustomEvent) {
       const target = event.target as HTMLElement | null;
-        console.log("eventGuard", target)
 
       if (!target || target.localName !== options.targetLocalName) return;
 

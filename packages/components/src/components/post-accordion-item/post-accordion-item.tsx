@@ -1,9 +1,8 @@
 import { Component, Element, h, Host, Listen, Method, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { HEADING_LEVELS, HeadingLevel } from '@/types';
-import { checkEmptyOrOneOf } from '@/utils';
+import { checkEmptyOrOneOf, EventGuard } from '@/utils';
 import { nanoid } from 'nanoid';
-import { eventGuard } from '@/utils/event-guard';
 
 /**
  * @part button - The pseudo-element, used to override styles on the components internal header `button` element.
@@ -57,16 +56,10 @@ export class PostAccordionItem {
   }
 
   // Capture to make sure the "collapsed" property is updated before the event is consumed
+  @EventGuard({ targetLocalName: 'post-collapsible', delegatorSelector: 'post-accordion-item' })
   @Listen('postToggle', { capture: true })
   onCollapseToggle(event: CustomEvent<boolean>): void {
-    eventGuard(
-      this.host,
-      event,
-      { targetLocalName: 'post-collapsible', delegatorSelector: 'post-accordion-item' },
-      () => {
-        this.collapsed = !event.detail;
-      }
-    );
+    this.collapsed = !event.detail;
   }
 
   /**
