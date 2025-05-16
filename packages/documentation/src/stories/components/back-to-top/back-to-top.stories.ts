@@ -8,7 +8,8 @@ const meta: MetaComponent = {
   title: 'Components/Button Back-to-Top',
   component: 'post-back-to-top',
   tags: ['package:WebComponents'],
-  parameters: {
+    parameters: {
+      layout: 'fullscreen',
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations-%26-Components-Next-Level?node-id=18-11',
