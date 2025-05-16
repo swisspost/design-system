@@ -12,7 +12,6 @@ import { nanoid } from 'nanoid';
 export class PostLanguageSwitch {
   private readonly menuId = `p${nanoid(11)}`;
   private readonly listSpanId = `list-span-${nanoid(11)}`;
-  private readonly menuSpanId = `menu-span${nanoid(11)}`;
   private get languageOptions(): HTMLPostLanguageOptionElement[] {
     return Array.from(
       this.host.querySelectorAll<HTMLPostLanguageOptionElement>('post-language-option'),

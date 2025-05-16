@@ -127,7 +127,6 @@ export class PostLanguageOption {
         {this.url ? (
           <a
             aria-current={this.active ? 'page' : undefined}
-            aria-label={this.name}
             href={this.url}
             hrefLang={lang}
             lang={lang}
@@ -135,6 +134,7 @@ export class PostLanguageOption {
             onKeyDown={emitOnKeyDown}
           >
             <slot />
+            <span class="visually-hidden">{this.name}</span>
           </a>
         ) : (
           <button
