@@ -27,6 +27,9 @@ export class SetupComponent extends LitElement {
               id="docs_Default_ExampleSelect"
               class="form-select form-select-lg"
             >
+              <option value="8" ?selected="${this.currentVersion === 8}">
+                @swisspost/design-system-styles 8.x.x
+              </option>
               <option value="7" ?selected="${this.currentVersion === 7}">
                 @swisspost/design-system-styles 7.x.x
               </option>
