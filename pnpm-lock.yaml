@@ -342,7 +342,7 @@ importers:
         specifier: workspace:10.0.0-next.37
         version: link:../tokens/dist
       '@swisspost/internet-header':
-        specifier: workspace:2.0.0-next.37
+        specifier: workspace:2.0.0-next.38
         version: link:../internet-header
       bootstrap:
         specifier: 5.3.3
@@ -774,7 +774,7 @@ importers:
         specifier: workspace:10.0.0-next.37
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: workspace:2.0.0-next.37
+        specifier: workspace:2.0.0-next.38
         version: link:../internet-header
       next:
         specifier: 15.2.4
