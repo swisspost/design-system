@@ -36,7 +36,7 @@ export class PostIcon {
   /**
    * The name of the animation.
    */
-  @Prop() readonly animation?: Animation | null = null;
+  @Prop() readonly animation?: Animation;
 
   @Watch('animation')
   validateAnimation(newValue = this.animation) {
@@ -46,7 +46,7 @@ export class PostIcon {
   /**
    * The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url.
    */
-  @Prop() readonly base?: string | null = null;
+  @Prop() readonly base?: string;
 
   @Watch('base')
   validateBase() {
@@ -87,7 +87,7 @@ export class PostIcon {
   /**
    * The number of degree for the css rotate transformation.
    */
-  @Prop() readonly rotate?: number | null = null;
+  @Prop() readonly rotate?: number;
 
   @Watch('rotate')
   validateRotate() {
@@ -97,7 +97,7 @@ export class PostIcon {
   /**
    * The number for the css scale transformation.
    */
-  @Prop() readonly scale?: number | null = null;
+  @Prop() readonly scale?: number;
 
   @Watch('scale')
   validateScale() {
