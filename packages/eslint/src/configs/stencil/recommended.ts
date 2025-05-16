@@ -1,8 +1,5 @@
 import type { TSESLint } from '@typescript-eslint/utils';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import stencilStrictPropsInitializationRule from '../../rules/stencil-strict-props-initialization';
-
 // Define the recommended Stencil configuration
 const stencilRecommendedConfig = (
   stencilPlugin: TSESLint.FlatConfig.Plugin,
@@ -11,7 +8,7 @@ const stencilRecommendedConfig = (
   name: '@swisspost/design-system-eslint/stencil/recommended',
   files: ['**/*.{ts,tsx}'], // Apply to TypeScript and TSX files
   languageOptions: {
-    parser, // Use the provided parser (likely typescript-eslint)
+    parser, // Use the provided parser
     parserOptions: {
       ecmaVersion: 2020,
       sourceType: 'module',
