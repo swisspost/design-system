@@ -11,6 +11,8 @@ import { nanoid } from 'nanoid';
 })
 export class PostLanguageSwitch {
   private readonly menuId = `p${nanoid(11)}`;
+  private readonly listSpanId = `list-span-${nanoid(11)}`;
+  private readonly menuSpanId = `menu-span${nanoid(11)}`;
   private get languageOptions(): HTMLPostLanguageOptionElement[] {
     return Array.from(
       this.host.querySelectorAll<HTMLPostLanguageOptionElement>('post-language-option'),
@@ -118,8 +120,12 @@ export class PostLanguageSwitch {
         <div
           class="post-language-switch-list"
           role="list"
-          aria-label={this.caption + this.description}
+          aria-label={this.caption}
+          aria-describedby={this.listSpanId}
         >
+          <span id={this.listSpanId} class="visually-hidden">
+            {this.description}
+          </span>
           <slot></slot>
         </div>
       </Host>
@@ -132,7 +138,8 @@ export class PostLanguageSwitch {
         <post-menu-trigger for={this.menuId}>
           <button class="post-language-switch-trigger">
             {this.activeLang}
-            <span class="visually-hidden">{this.caption + this.description}</span>
+            <span class="visually-hidden">{this.caption}</span>
+            <span class="visually-hidden">{this.description}</span>
             <post-icon aria-hidden="true" name="chevrondown"></post-icon>
           </button>
         </post-menu-trigger>

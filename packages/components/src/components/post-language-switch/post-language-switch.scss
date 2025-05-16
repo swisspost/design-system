@@ -64,3 +64,9 @@ tokens.$default-map: components.$post-button;
     }
   }
 }
+
+.post-language-switch-list {
+  .visually-hidden {
+    @include utilities-mx.visuallyhidden();
+  }
+}
