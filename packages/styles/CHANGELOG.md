@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 9.0.1
+
+### Patch Changes
+
+- Fixed scroll functionality on disabled textareas. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5515](https://github.com/swisspost/design-system/pull/5515))
+
 ## 9.0.0
 
 ### Patch Changes
