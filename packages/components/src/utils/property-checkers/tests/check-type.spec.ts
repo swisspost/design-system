@@ -4,7 +4,7 @@ describe('checkType', () => {
   let type: PropertyType;
   let error: string;
 
-  const runCheckForValue = (value: unknown) => () => {
+  const runCheckForValue = (value: unknown) => {
     const component = { host: { localName: 'post-component' } as HTMLElement, prop: value };
     checkType(component, 'prop', type, error);
   };
@@ -15,13 +15,17 @@ describe('checkType', () => {
       error = 'Not a boolean.';
     });
 
-    it('should not throw an error if the value is a boolean', () => {
+    it('should not log an error if the value is a boolean', () => {
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
       [true, false].forEach(boolean => {
-        expect(runCheckForValue(boolean)).not.toThrow();
+        runCheckForValue(boolean);
+        expect(consoleErrorSpy).not.toHaveBeenCalledWith(expect.stringContaining(error));
       });
+      consoleErrorSpy.mockRestore();
     });
 
-    it('should throw an error if the value is not a boolean', () => {
+    it('should log an error if the value is not a boolean', () => {
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
       [
         undefined,
         null,
@@ -34,8 +38,10 @@ describe('checkType', () => {
           /* empty */
         },
       ].forEach(nonBoolean => {
-        expect(runCheckForValue(nonBoolean)).toThrow(error);
+        runCheckForValue(nonBoolean);
+        expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
       });
+      consoleErrorSpy.mockRestore();
     });
   });
 
@@ -45,13 +51,17 @@ describe('checkType', () => {
       error = 'Not a number.';
     });
 
-    it('should not throw an error if the value is a number', () => {
-      [42, 4.2, 4_200, 2.4434634e9, NaN].forEach(number => {
-        expect(runCheckForValue(number)).not.toThrow();
+    it('should not log an error if the value is a number', () => {
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+      [42, 4.2, 4_200, 2.4434634e9].forEach(number => {
+        runCheckForValue(number);
+        expect(consoleErrorSpy).not.toHaveBeenCalledWith(expect.stringContaining(error));
       });
+      consoleErrorSpy.mockRestore();
     });
 
-    it('should throw an error if the value is not a number', () => {
+    it('should log an error if the value is not a number', () => {
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
       [
         undefined,
         null,
@@ -63,8 +73,10 @@ describe('checkType', () => {
           /* empty */
         },
       ].forEach(nonNumber => {
-        expect(runCheckForValue(nonNumber)).toThrow(error);
+        runCheckForValue(nonNumber);
+        expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
       });
+      consoleErrorSpy.mockRestore();
     });
   });
 
@@ -74,13 +86,17 @@ describe('checkType', () => {
       error = 'Not a string.';
     });
 
-    it('should not throw an error if the value is a string', () => {
+    it('should not log an error if the value is a string', () => {
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
       ['', 'string', '42', '¡¡Olé 🙌!!'].forEach(string => {
-        expect(runCheckForValue(string)).not.toThrow();
+        runCheckForValue(string);
+        expect(consoleErrorSpy).not.toHaveBeenCalledWith(expect.stringContaining(error));
       });
+      consoleErrorSpy.mockRestore();
     });
 
-    it('should throw an error if the value is not string', () => {
+    it('should log an error if the value is not a string', () => {
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
       [
         undefined,
         null,
@@ -93,8 +109,10 @@ describe('checkType', () => {
           /* empty */
         },
       ].forEach(nonString => {
-        expect(runCheckForValue(nonString)).toThrow(error);
+        runCheckForValue(nonString);
+        expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
       });
+      consoleErrorSpy.mockRestore();
     });
   });
 
@@ -104,13 +122,17 @@ describe('checkType', () => {
       error = 'Not an array.';
     });
 
-    it('should not throw an error if the value is an array', () => {
+    it('should not log an error if the value is an array', () => {
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
       [[], [1, 'a']].forEach(array => {
-        expect(runCheckForValue(array)).not.toThrow();
+        runCheckForValue(array);
+        expect(consoleErrorSpy).not.toHaveBeenCalledWith(expect.stringContaining(error));
       });
+      consoleErrorSpy.mockRestore();
     });
 
-    it('should throw an error if the value is not an array', () => {
+    it('should log an error if the value is not an array', () => {
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
       [
         undefined,
         null,
@@ -123,8 +145,10 @@ describe('checkType', () => {
           /* empty */
         },
       ].forEach(nonArray => {
-        expect(runCheckForValue(nonArray)).toThrow(error);
+        runCheckForValue(nonArray);
+        expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
       });
+      consoleErrorSpy.mockRestore();
     });
   });
 
@@ -134,13 +158,17 @@ describe('checkType', () => {
       error = 'Not an object.';
     });
 
-    it('should not throw an error if the value is an object', () => {
+    it('should not log an error if the value is an object', () => {
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
       [null, {}].forEach(object => {
-        expect(runCheckForValue(object)).not.toThrow();
+        runCheckForValue(object);
+        expect(consoleErrorSpy).not.toHaveBeenCalledWith(expect.stringContaining(error));
       });
+      consoleErrorSpy.mockRestore();
     });
 
-    it('should throw an error if the value is not an object', () => {
+    it('should log an error if the value is not an object', () => {
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
       [
         undefined,
         true,
@@ -151,8 +179,10 @@ describe('checkType', () => {
           /* empty */
         },
       ].forEach(nonObject => {
-        expect(runCheckForValue(nonObject)).toThrow(error);
+        runCheckForValue(nonObject);
+        expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
       });
+      consoleErrorSpy.mockRestore();
     });
   });
 
@@ -162,7 +192,8 @@ describe('checkType', () => {
       error = 'Not a function.';
     });
 
-    it('should not throw an error if the value is a function', () => {
+    it('should not log an error if the value is a function', () => {
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
       [
         function () {
           /* empty */
@@ -171,14 +202,19 @@ describe('checkType', () => {
           /* empty */
         },
       ].forEach(fn => {
-        expect(runCheckForValue(fn)).not.toThrow();
+        runCheckForValue(fn);
+        expect(consoleErrorSpy).not.toHaveBeenCalledWith(expect.stringContaining(error));
       });
+      consoleErrorSpy.mockRestore();
     });
 
-    it('should throw an error if the value is not a function', () => {
+    it('should log an error if the value is not a function', () => {
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
       [undefined, null, true, 42, NaN, 'string', [], {}].forEach(nonFn => {
-        expect(runCheckForValue(nonFn)).toThrow(error);
+        runCheckForValue(nonFn);
+        expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
       });
+      consoleErrorSpy.mockRestore();
     });
   });
 });
