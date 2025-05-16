@@ -103,7 +103,7 @@ export class PostCardControl {
    * Defines the validation `validity` of the control.
    * To reset validity to an undefined state, simply remove the attribute from the control.
    */
-  @Prop({ mutable: true }) validity?: 'true' | 'false';
+  @Prop({ mutable: true }) validity?: boolean;
 
   /**
    * Defines the icon `name` inside the card.
@@ -126,7 +126,7 @@ export class PostCardControl {
 
   /**
    * A public method to reset the controls `checked` and `validity` state.
-   * The validity state is set to `null`, so it's neither valid nor invalid.
+   * The validity state is set to `undefined`, so it's neither valid nor invalid.
    */
   @Method()
   async reset() {
@@ -348,8 +348,8 @@ export class PostCardControl {
             'is-checked': this.checked,
             'is-disabled': this.disabled,
             'is-focused': this.focused,
-            'is-valid': this.validity !== undefined && this.validity !== 'false',
-            'is-invalid': this.validity === 'false',
+            'is-valid': this.validity !== undefined && this.validity !== false,
+            'is-invalid': this.validity === false,
           }}
         >
           <input
@@ -362,7 +362,7 @@ export class PostCardControl {
             checked={this.checked}
             aria-describedby={`${this.controlId}_content`}
             aria-disabled={this.disabled}
-            aria-invalid={this.validity === 'false'}
+            aria-invalid={this.validity === false}
             onClick={this.controlClickHandler}
             onInput={this.controlChangeHandler}
             onChange={this.controlChangeHandler}
