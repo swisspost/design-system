@@ -82,13 +82,7 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
         </button>
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
-<<<<<<< Updated upstream
           <post-list-item> ${story(context.args, context)} </post-list-item>
-=======
-          <post-list-item>
-            ${story(context.args, context)}
-          </post-list-item>
->>>>>>> Stashed changes
         </post-list>
       </post-mainnavigation>
     </post-header>
