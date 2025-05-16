@@ -26,13 +26,9 @@ export class PostAccordion {
 
   @Watch('headingLevel')
   validateHeadingLevel() {
+    console.log(this.headingLevel);
     if (!checkNonEmpty(this, 'headingLevel')) {
-      checkOneOf(
-        this,
-        'headingLevel',
-        HEADING_LEVELS,
-        'The `heading-level` property of the `post-accordion` must be a number between 1 and 6.',
-      );
+      checkOneOf(this, 'headingLevel', HEADING_LEVELS);
 
       this.accordionItems.forEach(item => {
         item.setAttribute('heading-level', String(this.headingLevel));
