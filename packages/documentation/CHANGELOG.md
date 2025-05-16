@@ -1,5 +1,17 @@
 # @swisspost/design-system-documentation
 
+## 5.6.2
+
+### Patch Changes
+
+- Updated link to version 8 of the documentation. (by [@leagrdv](https://github.com/leagrdv) with [#5483](https://github.com/swisspost/design-system/pull/5483))
+- Updated dependencies:
+  - @swisspost/internet-header@1.15.15
+  - @swisspost/design-system-styles@9.0.1
+  - @swisspost/design-system-components@9.0.1
+  - @swisspost/design-system-components-react@9.0.1
+  - @swisspost/design-system-icons@9.0.1
+
 ## 5.6.1
 
 ### Patch Changes
