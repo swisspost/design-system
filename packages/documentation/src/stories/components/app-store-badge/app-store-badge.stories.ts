@@ -1,11 +1,13 @@
 import { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
+import { clickBlocker } from '@/shared/click-blocker';
 
 const meta: MetaComponent = {
   id: 'f1cda0ac-28d4-4afc-b56d-9182bd9bd671',
   title: 'Components/App Store Badge',
   tags: ['package:HTML'],
+  decorators: [clickBlocker],
   parameters: {
     badges: [],
     design: {

@@ -1,6 +1,7 @@
 import type { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { MetaExtended } from '@root/types';
+import { clickBlocker } from '@/shared/click-blocker';
 
 const meta: MetaExtended = {
   id: 'c55681df-4d21-469d-a5b3-c67686e7c104',
@@ -52,7 +53,7 @@ export const LineHeight: Story = {
 };
 
 export const TextColorReset: Story = {
-  decorators: [story => html` <div @click=${(e: Event) => e.preventDefault()}>${story()}</div> `],
+  decorators: [clickBlocker],
   render: () => html`
     <p class="my-colored-text">
       This is a colored text with a

@@ -1,9 +1,11 @@
+import { clickBlocker } from '@/shared/click-blocker';
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 
 const meta: Meta = {
   id: 'a536a61d-cac2-4f39-adbf-092bdd445ce5',
   title: 'Templates/Error page',
+  decorators: [clickBlocker],
   parameters: {
     layout: 'fullscreen',
   },
@@ -28,14 +30,8 @@ function render() {
               page.
             </p>
             <div class="d-flex gap-16 mt-24">
-              <a class="btn btn-primary" href="/" @click="${(e: Event) => e.preventDefault()}"
-                >Home page</a
-              >
-              <a
-                class="btn btn-secondary"
-                href="https://www.post.ch/de/pages/suche#t=AllTab"
-                @click="${(e: Event) => e.preventDefault()}"
-              >
+              <a class="btn btn-primary" href="/">Home page</a>
+              <a class="btn btn-secondary" href="https://www.post.ch/de/pages/suche#t=AllTab">
                 Search
               </a>
             </div>

@@ -3,6 +3,7 @@ import { html } from 'lit';
 import customFooterConfig from './custom-footer-config';
 import { spread } from '@open-wc/lit-helpers';
 import { MetaComponent } from '@root/types';
+import { clickBlocker } from '@/shared/click-blocker';
 
 const meta: MetaComponent = {
   id: '27fc009d-3eec-43a9-b3a2-55531e721817',
@@ -10,7 +11,7 @@ const meta: MetaComponent = {
   component: 'swisspost-internet-footer',
   tags: ['package:InternetHeader'],
   render: renderInternetFooter,
-  decorators: [hiddenHeader],
+  decorators: [hiddenHeader, clickBlocker],
   parameters: {
     layout: 'fullscreen',
     badges: [],

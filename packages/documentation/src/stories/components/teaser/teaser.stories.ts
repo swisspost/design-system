@@ -1,10 +1,12 @@
 import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
+import { clickBlocker } from '@/shared/click-blocker';
 
 const meta: MetaComponent = {
   id: '68699b2c-ec1f-467d-81ae-8b3f48d7c595',
   title: 'Components/Card Teaser',
+  decorators: [clickBlocker],
   tags: ['package:HTML'],
   parameters: {
     design: {
