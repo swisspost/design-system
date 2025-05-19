@@ -1,5 +1,20 @@
 # @swisspost/design-system-components
 
+## 8.10.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.10.0
+
+## 8.9.4
+
+### Patch Changes
+
+- Fixed an error on the `post-tooltip` component that occured when the `show` method was triggered on a delay. (by [@leagrdv](https://github.com/leagrdv) with [#5269](https://github.com/swisspost/design-system/pull/5269))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.9.4
+
 ## 8.9.3
 
 ### Patch Changes
