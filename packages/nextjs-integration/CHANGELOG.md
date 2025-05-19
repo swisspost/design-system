@@ -1,12 +1,5 @@
 # @swisspost/design-system-nextjs-integration
 
-## 0.1.24
-
-### Patch Changes
-
-- Updated dependencies:
-  - @swisspost/internet-header@1.14.14
-
 ## 0.1.23
 
 ### Patch Changes
