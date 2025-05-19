@@ -2,7 +2,8 @@
 '@swisspost/design-system-components': patch
 ---
 
-Set various props as optional:
+Updated the following props to be `optional`:
+
 - `post-banner`: `dismissLabel`, `icon`
 - `post-card-control`: `description`
 - `post-language-option`: `active`, `name`, `url`, `variant`
