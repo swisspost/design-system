@@ -1,4 +1,4 @@
-import { StoryObj, Args } from '@storybook/web-components';
+import { StoryObj } from '@storybook/web-components';
 import { MetaExtended } from '@root/types';
 import { html } from 'lit';
 
@@ -17,93 +17,64 @@ type Story = StoryObj;
 // Case: Standard Light DOM to Light DOM
 export const ExampleHTML: Story = {
   render: () => html`
-    <div tabindex="0">
-      <div id="list_label_id">List Label</div>
-      <div role="list">
-        <div role="listitem">item 1</div>
-        <div role="listitem">item 2</div>
-        <div role="listitem">item 3</div>
-      </div>
+    <div role="list" tabindex="0">
+      <div role="listitem">item 1</div>
+      <div role="listitem">item 2</div>
+      <div role="listitem">item 3</div>
     </div>
   `,
 };
 
-// Case: Referencing from Shadow DOM (Host Attribute) to Light DOM (Element) workaround setting programmatically the relevant Element property
-export const Example2: Story = {
-  argTypes: {
-    workaround: {
-      name: 'Workaround',
-      control: {
-        type: 'radio',
-      },
-      options: ['none', 'ariaControlsElements'],
-    },
-  },
-  args: {
-    workaround: 'none',
-  },
-  render: (args: Args) => html`
-    <post-test-button2
-      aria-controls-id="controlled_id_2"
-      workaround="${args.workaround}"
-    ></post-test-button2>
-    <span id="controlled_id_2">Controlled Element 2</span>
+// Case: Light Dom to child components with Slotted content
+export const Example1a: Story = {
+  render: () => html`
+    <div role="list" tabindex="0">
+      <post-test-list-item-group>
+        <div slot="post-list-item" role="listitem">item 1</div>
+        <div slot="post-list-item" role="listitem">item 2</div>
+        <div slot="post-list-item" role="listitem">item 3</div>
+      </post-test-list-item-group>
+    </div>
   `,
 };
 
-// Case: Referencing from Shadow DOM (Host Attribute) to Slotted Content (Element) workaround setting programmatically the relevant Element property
+// Case: Parent in the Light - children with Slotted content same component
+export const Example1b: Story = {
+  render: () => html`
+    <post-test-list-item-group role="list" tabindex="0">
+      <div slot="post-list-item" role="listitem">item 1</div>
+      <div slot="post-list-item" role="listitem">item 2</div>
+      <div slot="post-list-item" role="listitem">item 3</div>
+    </post-test-list-item-group>
+  `,
+};
+
+// Case: Parent in the Light (Component host) -> Children in the ShadowDOM
+export const Example2a: Story = {
+  render: () =>
+    html` <post-test-list-item-group-2 role="list" tabindex="0"></post-test-list-item-group-2> `,
+};
+
+// Case: Parent in Light (slotted content) - Children in the ShadowDOM
+export const Example2b: Story = {
+  render: () =>
+    html`<post-test-list-item-group-2 tabindex="0"
+      ><div slot="list-parent" role="list"></div>
+    </post-test-list-item-group-2> `,
+};
+
+// Case: Parent in the Shadow - Children in the Light
 export const Example3: Story = {
-  argTypes: {
-    workaround: {
-      name: 'Workaround',
-      control: {
-        type: 'radio',
-      },
-      options: ['none', 'ariaControlsElements'], // Adjusted option name for clarity
-    },
-  },
-  args: {
-    workaround: 'none',
-  },
-  render: (args: Args) => html`
-    <post-test-button3 workaround="${args.workaround}">
-      <span slot="control-slot" id="controlled_id_3">Controlled Element 3 (Slotted)</span>
-    </post-test-button3>
+  render: () => html`
+    <post-test-list>
+      <div role="listitem" slot="post-list-item">item 1</div>
+      <div role="listitem" slot="post-list-item">item 2</div>
+      <div role="listitem" slot="post-list-item">item 3</div>
+    </post-test-list>
   `,
 };
 
-// Case: Referencing from Shadow DOM (Host Attribute) to Light DOM (Element) workaround with aria-controls directly set on host
+// Case: Referencing from Shadow DOM (Host Attribute) to Slotted Content (Element)
 export const Example4: Story = {
-  render: () => html`
-    <post-test-button aria-controls-id="controlled_id_4">Control Element</post-test-button>
-    <span id="controlled_id_4">Controlled Element 4</span>
-  `,
-};
-
-// Case: Referencing from Shadow Dom to Slotted Content (Light DOM) workaround with aria-controls directly set on host
-export const Example5: Story = {
-  render: () => html`
-    <post-test-button aria-controls-id="controlled_id_5">
-      <span slot="control-slot" id="controlled_id_5">Controlled Element 5 (Slotted)</span>
-    </post-test-button>
-  `,
-};
-
-// Case: Standard Light DOM to Shadow DOM
-export const Example6: Story = {
-  render: () => html`
-    <div class="btn btn-primary" aria-controls="controlled_id_6" role="button" tabindex="0">
-      <post-icon name="1022"></post-icon>
-      Control Element
-    </div>
-    <post-test-span2></post-test-span2>
-  `,
-};
-
-// Case: Shadow DOM to other Shadow Dom workaround
-export const Example7: Story = {
-  render: () => html`
-    <post-test-span2 id="controlled_id_7_host"></post-test-span2>
-    <post-test-button aria-controls="controlled_id_7"></post-test-button>
-  `,
+  render: () => html`<post-test-list-2></post-test-list-2> `,
 };

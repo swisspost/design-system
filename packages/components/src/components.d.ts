@@ -474,6 +474,8 @@ export namespace Components {
          */
         "ariaLabelledbyId"?: string;
     }
+    interface PostTestButtonControl {
+    }
     interface PostTestButton2 {
         /**
           * Defines the selected ariaDescribedbyId
@@ -502,11 +504,23 @@ export namespace Components {
          */
         "workaround"?: string;
     }
+    interface PostTestDiv {
+    }
     interface PostTestLabel {
         /**
           * Defines the for
          */
         "for"?: string;
+    }
+    interface PostTestList {
+    }
+    interface PostTestList2 {
+    }
+    interface PostTestListItem {
+    }
+    interface PostTestListItemGroup {
+    }
+    interface PostTestListItemGroup2 {
     }
     interface PostTestSpan {
         /**
@@ -965,6 +979,12 @@ declare global {
         prototype: HTMLPostTestButtonElement;
         new (): HTMLPostTestButtonElement;
     };
+    interface HTMLPostTestButtonControlElement extends Components.PostTestButtonControl, HTMLStencilElement {
+    }
+    var HTMLPostTestButtonControlElement: {
+        prototype: HTMLPostTestButtonControlElement;
+        new (): HTMLPostTestButtonControlElement;
+    };
     interface HTMLPostTestButton2Element extends Components.PostTestButton2, HTMLStencilElement {
     }
     var HTMLPostTestButton2Element: {
@@ -977,11 +997,47 @@ declare global {
         prototype: HTMLPostTestButton3Element;
         new (): HTMLPostTestButton3Element;
     };
+    interface HTMLPostTestDivElement extends Components.PostTestDiv, HTMLStencilElement {
+    }
+    var HTMLPostTestDivElement: {
+        prototype: HTMLPostTestDivElement;
+        new (): HTMLPostTestDivElement;
+    };
     interface HTMLPostTestLabelElement extends Components.PostTestLabel, HTMLStencilElement {
     }
     var HTMLPostTestLabelElement: {
         prototype: HTMLPostTestLabelElement;
         new (): HTMLPostTestLabelElement;
+    };
+    interface HTMLPostTestListElement extends Components.PostTestList, HTMLStencilElement {
+    }
+    var HTMLPostTestListElement: {
+        prototype: HTMLPostTestListElement;
+        new (): HTMLPostTestListElement;
+    };
+    interface HTMLPostTestList2Element extends Components.PostTestList2, HTMLStencilElement {
+    }
+    var HTMLPostTestList2Element: {
+        prototype: HTMLPostTestList2Element;
+        new (): HTMLPostTestList2Element;
+    };
+    interface HTMLPostTestListItemElement extends Components.PostTestListItem, HTMLStencilElement {
+    }
+    var HTMLPostTestListItemElement: {
+        prototype: HTMLPostTestListItemElement;
+        new (): HTMLPostTestListItemElement;
+    };
+    interface HTMLPostTestListItemGroupElement extends Components.PostTestListItemGroup, HTMLStencilElement {
+    }
+    var HTMLPostTestListItemGroupElement: {
+        prototype: HTMLPostTestListItemGroupElement;
+        new (): HTMLPostTestListItemGroupElement;
+    };
+    interface HTMLPostTestListItemGroup2Element extends Components.PostTestListItemGroup2, HTMLStencilElement {
+    }
+    var HTMLPostTestListItemGroup2Element: {
+        prototype: HTMLPostTestListItemGroup2Element;
+        new (): HTMLPostTestListItemGroup2Element;
     };
     interface HTMLPostTestSpanElement extends Components.PostTestSpan, HTMLStencilElement {
     }
@@ -1066,9 +1122,16 @@ declare global {
         "post-tabs": HTMLPostTabsElement;
         "post-tag": HTMLPostTagElement;
         "post-test-button": HTMLPostTestButtonElement;
+        "post-test-button-control": HTMLPostTestButtonControlElement;
         "post-test-button2": HTMLPostTestButton2Element;
         "post-test-button3": HTMLPostTestButton3Element;
+        "post-test-div": HTMLPostTestDivElement;
         "post-test-label": HTMLPostTestLabelElement;
+        "post-test-list": HTMLPostTestListElement;
+        "post-test-list-2": HTMLPostTestList2Element;
+        "post-test-list-item": HTMLPostTestListItemElement;
+        "post-test-list-item-group": HTMLPostTestListItemGroupElement;
+        "post-test-list-item-group-2": HTMLPostTestListItemGroup2Element;
         "post-test-span": HTMLPostTestSpanElement;
         "post-test-span2": HTMLPostTestSpan2Element;
         "post-test-target": HTMLPostTestTargetElement;
@@ -1483,6 +1546,8 @@ declare namespace LocalJSX {
          */
         "ariaLabelledbyId"?: string;
     }
+    interface PostTestButtonControl {
+    }
     interface PostTestButton2 {
         /**
           * Defines the selected ariaDescribedbyId
@@ -1511,11 +1576,23 @@ declare namespace LocalJSX {
          */
         "workaround"?: string;
     }
+    interface PostTestDiv {
+    }
     interface PostTestLabel {
         /**
           * Defines the for
          */
         "for"?: string;
+    }
+    interface PostTestList {
+    }
+    interface PostTestList2 {
+    }
+    interface PostTestListItem {
+    }
+    interface PostTestListItemGroup {
+    }
+    interface PostTestListItemGroup2 {
     }
     interface PostTestSpan {
         /**
@@ -1628,9 +1705,16 @@ declare namespace LocalJSX {
         "post-tabs": PostTabs;
         "post-tag": PostTag;
         "post-test-button": PostTestButton;
+        "post-test-button-control": PostTestButtonControl;
         "post-test-button2": PostTestButton2;
         "post-test-button3": PostTestButton3;
+        "post-test-div": PostTestDiv;
         "post-test-label": PostTestLabel;
+        "post-test-list": PostTestList;
+        "post-test-list-2": PostTestList2;
+        "post-test-list-item": PostTestListItem;
+        "post-test-list-item-group": PostTestListItemGroup;
+        "post-test-list-item-group-2": PostTestListItemGroup2;
         "post-test-span": PostTestSpan;
         "post-test-span2": PostTestSpan2;
         "post-test-target": PostTestTarget;
@@ -1685,9 +1769,16 @@ declare module "@stencil/core" {
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
             "post-tag": LocalJSX.PostTag & JSXBase.HTMLAttributes<HTMLPostTagElement>;
             "post-test-button": LocalJSX.PostTestButton & JSXBase.HTMLAttributes<HTMLPostTestButtonElement>;
+            "post-test-button-control": LocalJSX.PostTestButtonControl & JSXBase.HTMLAttributes<HTMLPostTestButtonControlElement>;
             "post-test-button2": LocalJSX.PostTestButton2 & JSXBase.HTMLAttributes<HTMLPostTestButton2Element>;
             "post-test-button3": LocalJSX.PostTestButton3 & JSXBase.HTMLAttributes<HTMLPostTestButton3Element>;
+            "post-test-div": LocalJSX.PostTestDiv & JSXBase.HTMLAttributes<HTMLPostTestDivElement>;
             "post-test-label": LocalJSX.PostTestLabel & JSXBase.HTMLAttributes<HTMLPostTestLabelElement>;
+            "post-test-list": LocalJSX.PostTestList & JSXBase.HTMLAttributes<HTMLPostTestListElement>;
+            "post-test-list-2": LocalJSX.PostTestList2 & JSXBase.HTMLAttributes<HTMLPostTestList2Element>;
+            "post-test-list-item": LocalJSX.PostTestListItem & JSXBase.HTMLAttributes<HTMLPostTestListItemElement>;
+            "post-test-list-item-group": LocalJSX.PostTestListItemGroup & JSXBase.HTMLAttributes<HTMLPostTestListItemGroupElement>;
+            "post-test-list-item-group-2": LocalJSX.PostTestListItemGroup2 & JSXBase.HTMLAttributes<HTMLPostTestListItemGroup2Element>;
             "post-test-span": LocalJSX.PostTestSpan & JSXBase.HTMLAttributes<HTMLPostTestSpanElement>;
             "post-test-span2": LocalJSX.PostTestSpan2 & JSXBase.HTMLAttributes<HTMLPostTestSpan2Element>;
             "post-test-target": LocalJSX.PostTestTarget & JSXBase.HTMLAttributes<HTMLPostTestTargetElement>;

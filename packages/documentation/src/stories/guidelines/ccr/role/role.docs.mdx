@@ -7,88 +7,57 @@ import * as CCR from './role.stories';
 
 ## 3. `role`
 
-### I. Referencing Within the Same DOM Tree ✔️
-
-<ul>
-  <li>Light DOM → Light DOM</li>
-
-</ul>
-  <Canvas of={CCR.ExampleHTML} sourceState="shown" />
 <p className="lead">
-  In the Light DOM, `aria-describedby` is used to give an element its accessible name by referencing
-  the id of another element or multiple elements that contain the desired text.
+  The `role` attribute defines the purpose of a web element (e.g. `role="menu"`, `role="tab"`,
+  `role="dialog"`, `role="accordion"`, etc.) for assistive technologies like screen readers.
 </p>
+
 <p>
-  This is useful when a simple text label isn't directly associated or when the name needs to be
-  combined from different pieces of text.
+  While native HTML elements have implicit roles, the role attribute adds meaning to non-semantic
+  elements like `div` or `span` when used for custom interactive components.
 </p>
 
-### II. Referencing From Outside a Shadow DOM Into That Shadow DOM ❌
+### I. All Within the Same DOM Tree ✔️
 
 <ul>
-  <li>Light DOM → Shadow DOM</li>
-  <li>Slotted Content → Shadow DOM</li>
+  <li>Basic HTML Example</li>
+</ul>
+<Canvas of={CCR.ExampleHTML} sourceState="shown" />
+<ul>
+  <li>Light DOM → Component with Slotted Children</li>
+</ul>
+<Canvas of={CCR.Example1a} sourceState="shown" />
+
+<ul>
+  <li> Component host → Same Component Slotted Children</li>
+</ul>
+<Canvas of={CCR.Example1b} sourceState="shown" />
+
+### II. Parent in the Light DOM - Children Into That Shadow DOM
+
+<ul>
+  <li>Light DOM → Shadow DOM ❓</li>
+  <Canvas of={CCR.Example2a} sourceState="shown" />
+</ul>
+<ul>
+  <li>Slotted Parent → Shadow DOM ❌</li>
+  <Canvas of={CCR.Example2b} sourceState="shown" />
+</ul>
+Light DOM elements with an ARIA parent role cannot be associated to children elements with the
+respective ARIA child roles across the Shadow DOM.
+
+### III. Parent in the Shadow DOM - Children Out to the Light DOM ✔️
+
+<ul>
+  <li>Shadow DOM → Light DOM </li>
 </ul>
 
-Standard `aria-describedby` <b>cannot reference elements located inside a Shadow DOM</b> from outside of it. This is because IDs inside a Shadow DOM are encapsulated and not accessible from the Light DOM or other Shadow DOMs.
-
-##### Possible Workarounds
-
-###### 1. `Element:ariaDescribedByElements` (Non SSR compatible: to be tested)
-
-<b>Light DOM → Shadow DOM Example</b>
-<Canvas of={CCR.Example2} sourceState="shown" />
-<div className="hide-col-default">
-  <Controls of={CCR.Example2} />
-</div>
-
-<b>Slotted Content → Shadow DOM Example</b>
 <Canvas of={CCR.Example3} sourceState="shown" />
-<div className="hide-col-default">
-  <Controls of={CCR.Example3} />
-</div>
 
-###### 2. Set `aria-describedby`on the host (for SSR Components: to be tested)
-
-An option is to set the following attributes directly on the host of the target component:
+### IV. Referencing From One Shadow DOM To Another Shadow DOM ✔️
 
 <ul>
-  <li> the `aria-describedby`</li>
-  <li> a semantic `role` (e.g. `textbox`, `button`)</li>
-  <li> `tabindex="0"`</li>
+  <li>Shadow DOM → Other nested Shadow DOM</li>
 </ul>
 
-<b>Light DOM → Shadow DOM Example</b>
 <Canvas of={CCR.Example4} sourceState="shown" />
-
-<b>Slotted Content → Shadow DOM Example</b>
-<Canvas of={CCR.Example5} sourceState="shown" />
-
-### III. Referencing From Inside a Shadow DOM Out to the Light DOM ❌
-
-<ul>
-  <li>Shadow DOM → Light DOM</li>
-  <li>Shadow DOM → Slotted Content</li>
-</ul>
-
-Similarly to the previous case, <b>referencing an element located outside a Shadow DOM from an element inside that Shadow DOM using standard `aria-describedby` is not possible</b>. The strong encapsulation of the Shadow DOM prevents elements within it from directly accessing and referencing the IDs of elements in the Light DOM.
-
-##### Possible Workaround
-
-An option is to set the `id` directly on the host of the referencing element. Please note that, in this case all the visible text inside the referencing component will be assigned as the Accessible Name of the target element.
-
-<Canvas of={CCR.Example6} sourceState="shown" />
-
-##### IV. Referencing From One Shadow DOM To Another Shadow DOM
-
-<ul>
-  <li>Shadow DOM → Other Shadow DOM</li>
-</ul>
-
-Referencing an element located inside <b>one Shadow DOM</b> from an element located inside a <b>different, separate Shadow DOM</b> using standard `aria-describedby` <b>is also not possible</b>. Similar to the other cross-boundary scenarios, the IDs are scoped within their respective Shadow DOMs.
-
-##### Possible Workaround
-
-In this case, in order for the relationship to work, the referencing element must have the `id` directly set on its host (see workaround of case III) and the target element must have the `aria-describedby`, `role` and `tabindex="0"` set on its host (see workaround of case II).
-
-<Canvas of={CCR.Example7} sourceState="shown" />

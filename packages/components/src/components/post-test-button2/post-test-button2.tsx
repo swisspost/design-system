@@ -7,7 +7,7 @@ import { version } from '@root/package.json';
   shadow: { delegatesFocus: true },
 })
 export class PostTestButton2 {
-  private internalEl: HTMLElement | undefined;
+  private internalEl: HTMLElement;
   /**
    * Defines the selected workaround
    */

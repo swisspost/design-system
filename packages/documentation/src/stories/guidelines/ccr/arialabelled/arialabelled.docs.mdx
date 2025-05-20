@@ -7,13 +7,6 @@ import * as CCR from './arialabelled.stories';
 
 ## 2. `aria-labelledby`/ `id`
 
-### I. Referencing Within the Same DOM Tree ✔️
-
-<ul>
-  <li>Light DOM → Light DOM</li>
-
-</ul>
-  <Canvas of={CCR.ExampleHTML} sourceState="shown" />
 <p className="lead">
   In the Light DOM, `aria-labelledby` is used to give an element its accessible name by referencing
   the id of another element or multiple elements that contain the desired text.
@@ -22,7 +15,13 @@ import * as CCR from './arialabelled.stories';
   This is useful when a simple text label isn't directly associated or when the name needs to be
   combined from different pieces of text.
 </p>
+### I. Referencing Within the Same DOM Tree ✔️
 
+<ul>
+  <li>Light DOM → Light DOM</li>
+
+</ul>
+  <Canvas of={CCR.ExampleHTML} sourceState="shown" />
 ### II. Referencing From Outside a Shadow DOM Into That Shadow DOM ❌
 
 <ul>
