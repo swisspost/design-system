@@ -5,27 +5,28 @@
 
 ## Properties
 
-| Property      | Attribute      | Description                                                                                                                                                                                                                                                                                                               | Type                                                                                                                                                                 | Default     |
-| ------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `arrow`       | `arrow`        | Whether or not to display a little pointer arrow                                                                                                                                                                                                                                                                          | `boolean`                                                                                                                                                            | `false`     |
-| `edgeGap`     | `edge-gap`     | Gap between the edge of the page and the popover                                                                                                                                                                                                                                                                          | `number`                                                                                                                                                             | `8`         |
-| `manualClose` | `manual-close` | Whether or not the popover should close when user clicks outside of it                                                                                                                                                                                                                                                    | `boolean`                                                                                                                                                            | `false`     |
-| `placement`   | `placement`    | Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'top'`     |
-| `safeSpace`   | `safe-space`   | Enables a safespace through which the cursor can be moved without the popover being disabled                                                                                                                                                                                                                              | `"trapezoid" \| "triangle"`                                                                                                                                          | `undefined` |
+| Property      | Attribute      | Description                                                                                                                                                                                                                                                                                                                                 | Type                                                                                                                                                                 | Default     |
+| ------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `animation`   | `animation`    | Animation style                                                                                                                                                                                                                                                                                                                             | `"pop-in"`                                                                                                                                                           | `null`      |
+| `arrow`       | `arrow`        | Whether or not to display a little pointer arrow                                                                                                                                                                                                                                                                                            | `boolean`                                                                                                                                                            | `false`     |
+| `edgeGap`     | `edge-gap`     | Gap between the edge of the page and the popovercontainer                                                                                                                                                                                                                                                                                   | `number`                                                                                                                                                             | `8`         |
+| `manualClose` | `manual-close` | Whether or not the popovercontainer should close when user clicks outside of it                                                                                                                                                                                                                                                             | `boolean`                                                                                                                                                            | `false`     |
+| `placement`   | `placement`    | Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'top'`     |
+| `safeSpace`   | `safe-space`   | Enables a safespace through which the cursor can be moved without the popover being disabled                                                                                                                                                                                                                                                | `"trapezoid" \| "triangle"`                                                                                                                                          | `undefined` |
 
 
 ## Events
 
-| Event        | Description                                                                                          | Type                   |
-| ------------ | ---------------------------------------------------------------------------------------------------- | ---------------------- |
-| `postToggle` | Fires whenever the popover gets shown or hidden, passing the new state in event.details as a boolean | `CustomEvent<boolean>` |
+| Event        | Description                                                                                                   | Type                   |
+| ------------ | ------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| `postToggle` | Fires whenever the popovercontainer gets shown or hidden, passing the new state in event.details as a boolean | `CustomEvent<boolean>` |
 
 
 ## Methods
 
 ### `hide() => Promise<void>`
 
-Programmatically hide this tooltip
+Programmatically hide the popovercontainer
 
 #### Returns
 
@@ -35,13 +36,13 @@ Type: `Promise<void>`
 
 ### `show(target: HTMLElement) => Promise<void>`
 
-Programmatically display the tooltip
+Programmatically display the popovercontainer
 
 #### Parameters
 
-| Name     | Type          | Description                                                                  |
-| -------- | ------------- | ---------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | An element with [data-tooltip-target="id"] where the tooltip should be shown |
+| Name     | Type          | Description                                                                           |
+| -------- | ------------- | ------------------------------------------------------------------------------------- |
+| `target` | `HTMLElement` | An element with [data-popover-target="id"] where the popovercontainer should be shown |
 
 #### Returns
 
@@ -51,14 +52,14 @@ Type: `Promise<void>`
 
 ### `toggle(target: HTMLElement, force?: boolean) => Promise<boolean>`
 
-Toggle tooltip display
+Toggle popovercontainer display
 
 #### Parameters
 
-| Name     | Type          | Description                                                                  |
-| -------- | ------------- | ---------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | An element with [data-tooltip-target="id"] where the tooltip should be shown |
-| `force`  | `boolean`     | Pass true to always show or false to always hide                             |
+| Name     | Type          | Description                                                                           |
+| -------- | ------------- | ------------------------------------------------------------------------------------- |
+| `target` | `HTMLElement` | An element with [data-popover-target="id"] where the popovercontainer should be shown |
+| `force`  | `boolean`     | Pass true to always show or false to always hide                                      |
 
 #### Returns
 

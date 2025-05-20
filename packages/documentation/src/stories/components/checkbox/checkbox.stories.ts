@@ -20,7 +20,7 @@ const meta: MetaComponent = {
   args: {
     hiddenLegend: false,
     inline: false,
-    label: 'Etikedo',
+    label: 'Label',
     hiddenLabel: false,
     checked: 'unchecked',
     disabled: false,
@@ -154,7 +154,7 @@ function getLabel({ label }: Args, { id }: StoryContext) {
 function getValidationFeedback({ validation }: Args, context: StoryContext) {
   return html`
     <p class="${validation + '-feedback'}" id="is-${validation}-id-${context.id}-">
-      ${validation === 'valid' ? 'Ggranda sukceso!' : 'Eraro okazis!'}
+      ${validation === 'valid' ? 'Great success!' : 'An error occurred!'}
     </p>
   `;
 }
@@ -229,7 +229,7 @@ export const Grouped: Story = {
       <legend class="${ifDefined(args.hiddenLegend ? 'visually-hidden' : undefined)}">
         Legend
       </legend>
-      ${['Unua Etikedo', 'Dua Etikedo', 'Tria Etikedo', 'Kvara  Etikedo'].map((label, index) =>
+      ${['First Label', 'Second Label', 'Third Label', 'Fourth Label'].map((label, index) =>
         renderCheckbox(
           { ...args, label, checked: false },
           { ...context, id: `${context.id}-${index}` },
@@ -250,7 +250,7 @@ export const Inline: Story = {
       <legend class="${ifDefined(args.hiddenLegend ? 'visually-hidden' : undefined)}">
         Legend
       </legend>
-      ${['Unua Etikedo', 'Dua Etikedo', 'Tria Etikedo', 'Kvara  Etikedo'].map((label, index) =>
+      ${['First Label', 'Second Label', 'Third Label', 'Fourth Label'].map((label, index) =>
         renderCheckbox(
           { ...args, label, checked: false },
           { ...context, id: `${context.id}-${index}` },
