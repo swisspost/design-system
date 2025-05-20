@@ -1,6 +1,5 @@
-import { Component, Host, h, Prop, Watch, Element } from '@stencil/core';
+import { Component, Host, h, Prop, Element } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkType } from '@/utils';
 
 /**
  * @slot default - Slot for the content of the button.
@@ -19,14 +18,7 @@ export class PostTogglebutton {
    */
   @Prop({ mutable: true }) toggled: boolean = false;
 
-  @Watch('toggled')
-  validateToggled() {
-    checkType(this, 'toggled', 'boolean');
-  }
-
   componentWillLoad() {
-    this.validateToggled();
-
     // add event listener to not override listener that might be set on the host
     this.host.addEventListener('click', () => this.handleClick());
     this.host.addEventListener('keydown', (e: KeyboardEvent) => this.handleKeydown(e));
