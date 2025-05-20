@@ -41,6 +41,12 @@ export class PostCollapsible {
       'The `collapsed` property of the `post-collapsible` must be a boolean.',
     );
 
+    if (!this.isLoaded) {
+      this.host.style.height = this.collapsed ? '0' : '';
+      this.host.style.overflow = 'hidden';
+      return;
+    }
+    
     void this.toggle(!this.collapsed);
   }
 
@@ -77,10 +83,7 @@ export class PostCollapsible {
 
     await animation.finished;
 
-    const isVisible = this.host.offsetParent || this.host.offsetWidth || this.host.offsetHeight;
-    if (isVisible) {
-      animation.commitStyles();
-    }
+    animation.commitStyles();
 
     return open;
   }
