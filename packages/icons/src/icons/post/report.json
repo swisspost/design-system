@@ -25883,7 +25883,11 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/3937213/storage/MDAzOTM3MjEzLzAvbWFzdGVy",
         "keywords": [
-          "Galaxus"
+          "Galaxus",
+          "Galaxus tortoise",
+          "Galaxus Schildkröte",
+          "Tortue Galaxus",
+          "La tartaruga di Galaxus"
         ]
       },
       "file": {
@@ -25898,7 +25902,33 @@
         }
       },
       "createdAt": "2025-04-30T13:23:11.000Z",
-      "modifiedAt": "2025-04-30T13:26:59.000Z"
+      "modifiedAt": "2025-05-13T12:05:00.559Z"
+    },
+    {
+      "uuid": "5aebff14-297a-11f0-bf8f-005056873709",
+      "id": 4128891,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/4128891/storage/MDA0MTI4ODkxLzAvbWFzdGVy",
+        "keywords": [
+          "CSIRT",
+          "Notfall"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2692.svg",
+        "basename": "2692",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-05-05T06:29:53.000Z",
+      "modifiedAt": "2025-05-07T10:35:14.000Z"
     },
     {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
@@ -39139,13 +39169,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1023,
+    "success": 1024,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2025-05-04T02:23:02.793Z",
-  "version": "9.0.0-next.36"
+  "created": "2025-05-18T02:22:46.447Z",
+  "version": "10.0.0-next.37"
 }
