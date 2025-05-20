@@ -10,7 +10,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { version } from '@root/package.json';
-import { collapse, expand } from '@/animations/collapse';
+import { collapse, collapsedKeyframe, expand } from '@/animations/collapse';
 import { checkEmptyOrType, isMotionReduced } from '@/utils';
 
 /**
@@ -40,10 +40,13 @@ export class PostCollapsible {
       'boolean',
       'The `collapsed` property of the `post-collapsible` must be a boolean.',
     );
-
+    
     if (!this.isLoaded) {
-      this.host.style.height = this.collapsed ? '0' : '';
-      this.host.style.overflow = 'hidden';
+      if (this.collapsed) {
+        Object.assign(this.host.style, collapsedKeyframe);
+      } else {
+        this.host.style.height = 'auto';
+      }
       return;
     }
     
