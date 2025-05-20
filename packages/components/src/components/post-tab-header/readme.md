@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property | Attribute | Description                                         | Type     | Default     |
-| -------- | --------- | --------------------------------------------------- | -------- | ----------- |
-| `panel`  | `panel`   | The name of the panel controlled by the tab header. | `string` | `undefined` |
+| Property             | Attribute | Description                                         | Type     | Default     |
+| -------------------- | --------- | --------------------------------------------------- | -------- | ----------- |
+| `panel` _(required)_ | `panel`   | The name of the panel controlled by the tab header. | `string` | `undefined` |
 
 
 ## Slots

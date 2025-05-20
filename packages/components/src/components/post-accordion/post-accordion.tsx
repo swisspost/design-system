@@ -1,7 +1,7 @@
 import { Component, Element, h, Host, Listen, Method, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { HEADING_LEVELS, HeadingLevel } from '@/types';
-import { checkOneOf } from '@/utils';
+import { checkOneOf, checkNonEmpty } from '@/utils';
 import { eventGuard } from '@/utils/event-guard'; // Import eventGuard
 
 /**
@@ -25,18 +25,19 @@ export class PostAccordion {
   @Prop() readonly headingLevel!: HeadingLevel;
 
   @Watch('headingLevel')
-  validateHeadingLevel(newValue = this.headingLevel) {
-    if (!newValue) return;
-    checkOneOf(
-      this,
-      'headingLevel',
-      HEADING_LEVELS,
-      'The `heading-level` property of the `post-accordion` must be a number between 1 and 6.',
-    );
+  validateHeadingLevel() {
+    if (!checkNonEmpty(this, 'headingLevel')) {
+      checkOneOf(
+        this,
+        'headingLevel',
+        HEADING_LEVELS,
+        'The `heading-level` property of the `post-accordion` must be a number between 1 and 6.',
+      );
 
-    this.accordionItems.forEach(item => {
-      item.setAttribute('heading-level', String(newValue));
-    });
+      this.accordionItems.forEach(item => {
+        item.setAttribute('heading-level', String(this.headingLevel));
+      });
+    }
   }
 
   /**
@@ -46,12 +47,14 @@ export class PostAccordion {
 
   componentWillLoad() {
     this.registerAccordionItems();
+  }
+
+  componentDidLoad() {
     this.validateHeadingLevel();
   }
 
   @Listen('postToggle')
   collapseToggleHandler(event: CustomEvent<boolean>) {
-
     eventGuard(
       this.host,
       event,
@@ -74,10 +77,10 @@ export class PostAccordion {
           .forEach(item => {
             item.toggle(false);
           });
-      }
+      },
     );
   }
-  
+
   /**
    * Toggles the `post-accordion-item` with the given id.
    */
