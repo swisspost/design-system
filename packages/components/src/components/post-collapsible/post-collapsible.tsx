@@ -42,12 +42,7 @@ export class PostCollapsible {
     );
     
     if (!this.isLoaded) {
-      if (this.collapsed) {
         Object.assign(this.host.style, collapsedKeyframe);
-      } else {
-        this.host.style.height = 'auto';
-      }
-      return;
     }
     
     void this.toggle(!this.collapsed);
