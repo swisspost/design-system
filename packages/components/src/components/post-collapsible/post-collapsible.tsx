@@ -10,7 +10,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { version } from '@root/package.json';
-import { collapse, collapsedKeyframe, expand } from '@/animations/collapse';
+import { collapse, collapsedKeyframe, expand, expandedKeyframe } from '@/animations/collapse';
 import { checkEmptyOrType, isMotionReduced } from '@/utils';
 
 /**
@@ -42,11 +42,17 @@ export class PostCollapsible {
     );
     
     if (!this.isLoaded) {
-        Object.assign(this.host.style, collapsedKeyframe);
+    // Apply the appropriate keyframe based on collapsed state without animation
+    if (this.collapsed) {
+      Object.assign(this.host.style, collapsedKeyframe);
+    } else {
+      Object.assign(this.host.style, expandedKeyframe);
     }
-    
-    void this.toggle(!this.collapsed);
+    // Already set the internal state to match props
+    this.isOpen = !this.collapsed;
+    return;
   }
+}
 
   /**
    * An event emitted when the collapse element is shown or hidden, before the transition.

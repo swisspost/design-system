@@ -1,6 +1,7 @@
 const collapseDuration = 350;
 const collapseEasing = 'ease';
 export const collapsedKeyframe: Keyframe = { height: '0', overflow: 'hidden' };
+export const expandedKeyframe: Keyframe = { height: 'auto', overflow: 'visible' };
 
 const animationOptions: KeyframeAnimationOptions = {
   duration: collapseDuration,
