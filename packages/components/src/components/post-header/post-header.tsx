@@ -107,7 +107,7 @@ export class PostHeader {
     this.scrollParent.addEventListener('scroll', this.handleScrollEvent, {
       passive: true,
     });
-    document.addEventListener('postToggleMegadropdown', this.megedropdownStateHandler);
+    document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.addEventListener('click', this.handleLinkClick);
     window.addEventListener('postBreakpoint:name', this.breakpointChange);
     this.switchLanguageSwitchMode();
@@ -134,7 +134,7 @@ export class PostHeader {
     window.removeEventListener('resize', this.throttledResize);
     window.removeEventListener('scroll', this.handleScrollEvent);
     scrollParent.removeEventListener('scroll', this.handleScrollEvent);
-    document.removeEventListener('postToggleMegadropdown', this.megedropdownStateHandler);
+    document.removeEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.removeEventListener('keydown', this.keyboardHandler);
     this.host.removeEventListener('click', this.handleLinkClick);
 
@@ -187,7 +187,7 @@ export class PostHeader {
     }
   }
 
-  private megedropdownStateHandler = (event: CustomEvent) => {
+  private megadropdownStateHandler = (event: CustomEvent) => {
     eventGuard(
       this.host,
       event,
