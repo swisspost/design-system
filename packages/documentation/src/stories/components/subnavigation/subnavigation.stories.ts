@@ -1,6 +1,7 @@
-import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
+import { clickBlocker } from '@/shared/click-blocker';
 
 const meta: MetaComponent = {
   id: '87ceabbb-f552-46eb-8a47-4d84e7f8cef0',
@@ -53,13 +54,6 @@ const meta: MetaComponent = {
 };
 
 export default meta;
-
-// DECORATOR
-function clickBlocker(story: StoryFn, context: StoryContext) {
-  return html`
-    <div @click=${(e: Event) => e.preventDefault()}>${story(context.args, context)}</div>
-  `;
-}
 
 function renderTest(args: Args) {
   return html`
