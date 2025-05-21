@@ -179,8 +179,8 @@ function render(args: Args, context: StoryContext) {
     : null;
 
   const contextual: (TemplateResult | null)[] = [
-    args.validation === 'is-valid' ? html` <p class="valid-feedback">Ggranda sukceso!</p> ` : null,
-    args.validation === 'is-invalid' ? html` <p class="invalid-feedback">Eraro okazis!</p> ` : null,
+    args.validation === 'is-valid' ? html` <p class="valid-feedback">Great success!</p> ` : null,
+    args.validation === 'is-invalid' ? html` <p class="invalid-feedback">An error occurred!</p> ` : null,
   ];
 
   const control: TemplateResult = html`

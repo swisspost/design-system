@@ -1,5 +1,55 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.39
+
+### Patch Changes
+
+- Added the migration guide for v8 to v9 and updated the migration guide for v9 to v10. (by [@leagrdv](https://github.com/leagrdv) with [#5485](https://github.com/swisspost/design-system/pull/5485))
+
+- Replaced fake text (lorem ipsum, esperanto) in documentation stories with meaningful English to improve clarity and usability. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5394](https://github.com/swisspost/design-system/pull/5394))
+
+- Updated the styles package version informations. (by [@leagrdv](https://github.com/leagrdv) with [#5512](https://github.com/swisspost/design-system/pull/5512))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.38
+  - @swisspost/internet-header@2.0.0-next.38
+  - @swisspost/design-system-components@10.0.0-next.38
+  - @swisspost/design-system-styles@10.0.0-next.38
+  - @swisspost/design-system-components-react@10.0.0-next.38
+  - @swisspost/design-system-tokens@10.0.0-next.38
+
+## 6.0.0-next.38
+
+### Major Changes
+
+- Fixed the disappearing validation icons on text input fields when browser autocomplete is applied. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5339](https://github.com/swisspost/design-system/pull/5339))
+
+### Patch Changes
+
+- Removed the rotation of the back button in the `post-header`, which means users need to change the back button's icon `arrowright` to `arrowleft` to make sure it's pointing in the right direction. (by [@leagrdv](https://github.com/leagrdv) with [#5466](https://github.com/swisspost/design-system/pull/5466))
+
+- Updated a table in the developers guide as previously, a `scope="col"` was applied on a `<td>`, but it should only be used on `<th>` elements. (by [@leagrdv](https://github.com/leagrdv) with [#5349](https://github.com/swisspost/design-system/pull/5349))
+
+- Added visible focus to the storybook sidebar elements that do get a focus. (by [@leagrdv](https://github.com/leagrdv) with [#5352](https://github.com/swisspost/design-system/pull/5352))
+
+- Trap keyboard focus within the icon details popover on the find icon page to ensure accessible and consistent keyboard navigation. (by [@schaertim](https://github.com/schaertim) with [#5365](https://github.com/swisspost/design-system/pull/5365))
+
+- Moved header and footer documentation pages to the components folder. (by [@leagrdv](https://github.com/leagrdv) with [#5462](https://github.com/swisspost/design-system/pull/5462))
+
+- Fixed rendering issues for Designer and Developer pages in the Getting Started category. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5356](https://github.com/swisspost/design-system/pull/5356))
+
+- The default value of the arrow property for the <post-tooltip> element has been changed to `false`. This means, that tooltips do not display arrows by default anymore. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4477](https://github.com/swisspost/design-system/pull/4477))
+
+- Added cypress eslint plugin to enable linting for all cypress folders and files. (by [@schaertim](https://github.com/schaertim) with [#5102](https://github.com/swisspost/design-system/pull/5102))
+
+- Resolved broken links to v5 documentation. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5367](https://github.com/swisspost/design-system/pull/5367))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.37
+  - @swisspost/design-system-components@10.0.0-next.37
+  - @swisspost/design-system-styles@10.0.0-next.37
+  - @swisspost/design-system-tokens@10.0.0-next.37
+  - @swisspost/internet-header@2.0.0-next.37
+  - @swisspost/design-system-components-react@10.0.0-next.37
+
 ## 6.0.0-next.37
 
 ### Patch Changes
