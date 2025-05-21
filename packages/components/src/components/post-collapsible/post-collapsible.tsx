@@ -42,17 +42,15 @@ export class PostCollapsible {
     );
     
     if (!this.isLoaded) {
-    // Apply the appropriate keyframe based on collapsed state without animation
-    if (this.collapsed) {
-      Object.assign(this.host.style, collapsedKeyframe);
-    } else {
-      Object.assign(this.host.style, expandedKeyframe);
+      Object.assign(
+        this.host.style, 
+        this.collapsed ? collapsedKeyframe : expandedKeyframe
+      );
+      this.isOpen = !this.collapsed;
     }
-    // Already set the internal state to match props
-    this.isOpen = !this.collapsed;
-    return;
+  
+    void this.toggle(!this.collapsed);
   }
-}
 
   /**
    * An event emitted when the collapse element is shown or hidden, before the transition.
