@@ -1,6 +1,6 @@
 import type { StoryObj } from '@storybook/web-components';
 import meta from './segmented-button.stories';
-import { html } from 'lit';
+import { html, nothing } from 'lit'; // ← ajout de `nothing`
 import { schemes } from '@/shared/snapshots/schemes';
 
 const { id, ...metaWithoutId } = meta;
@@ -35,6 +35,23 @@ export const SegmentedButton: Story = {
                   )}
                 </fieldset>
               </div>
+            `;
+          })}
+          ${labelCounts.map(count => {
+            const labels = Array.from({ length: count }, (_, i) => `Label ${i + 1}`);
+            const name = `text-icon-${count}-${scheme}`;
+            return html`
+              <fieldset class="segmented-button">
+                ${labels.map(
+                  (label, index) => html`
+                    <label class="segmented-button-label">
+                      <input type="radio" name="${name}" />
+                      <post-icon name="${1000 + index}"></post-icon>
+                      ${label}
+                    </label>
+                  `,
+                )}
+              </fieldset>
             `;
           })}
         </div>
