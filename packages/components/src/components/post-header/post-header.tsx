@@ -35,7 +35,7 @@ export class PostHeader {
   private lastFocusableEl: HTMLElement | null;
   private mobileMenu: HTMLElement;
   private mobileMenuAnimation: Animation;
-  private readonly throttledResize = throttle(50, () => this.handleResize());
+  private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
   get scrollParent(): HTMLElement {
@@ -112,7 +112,7 @@ export class PostHeader {
     window.addEventListener('postBreakpoint:name', this.breakpointChange);
     this.switchLanguageSwitchMode();
 
-    this.handleResize();
+    this.updateLocalHeaderHeight();
     this.handleScrollParentResize();
     this.lockBody(false, this.mobileMenuExtended, 'mobileMenuExtended');
   }
@@ -288,9 +288,6 @@ export class PostHeader {
         target.closest('post-megadropdown').hide(true);
       }
     }
-  }
-  private handleResize() {
-    this.updateLocalHeaderHeight(); 
   }
 
   private handleScrollParentResize() {
