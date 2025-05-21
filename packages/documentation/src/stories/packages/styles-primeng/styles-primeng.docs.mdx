@@ -1,30 +1,34 @@
 import { Meta, Source } from '@storybook/blocks';
 import * as PackageStories from './styles-primeng.stories';
-import PrimeNgThemeImportSample from './primeng-theme-import.sample.scss?raw';
-import changelog from '@/../../styles-primeng-workspace/CHANGELOG.md?raw';
-import PackageDocs from '@/shared/packages-docs-layout.mdx';
+import PrimeNGStyleImportsSample from './primeng-style-imports.sample.scss?raw';
+import PrimeNGProviderSample from './primeng-provider.sample.txt?raw';
 
 <Meta of={PackageStories} />
 
 # @swisspost/design-system-styles-primeng
 
-<div className="npm-package-link">
-  [![npm version](https://badge.fury.io/js/@swisspost%2Fdesign-system-styles-primeng.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-styles-primeng)
-</div>
+[![npm version](https://badge.fury.io/js/@swisspost%2Fdesign-system-styles-primeng.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-styles-primeng)
 
-<div className='lead'>
-  The Design System Styles for PrimeNg, style your PrimeNg datatables.
-</div>
+The Design System Styles for PrimeNG to style your PrimeNG datatables.
 
-<PackageDocs changelog={changelog}>
-  ## Installation
+## Prerequisites
 
-  <Source code={`npm install @swisspost/design-system-styles-primeng`} language="bash" />
+Make sure you have already installed and configured **PrimeNG** in your Angular project.
+If not, follow the <a href="https://primeng.org/installation">PrimeNG installation guide</a> first.
 
-  ## Usage
+## Installation
 
-  The PrimeNg theme and core styles are the necessary, as well as the Swiss Post styles.
-  All three should be imported in the main style file of your Angular project, usually `src/styles.scss`.
+Install the Swiss Post Design System styles for PrimeNG DataTables by running:
 
-  <Source code={PrimeNgThemeImportSample} language="scss" />
-</PackageDocs>
+<Source code={`npm install @swisspost/design-system-styles-primeng`} language="bash" />
+
+## Usage
+
+To apply the styles, update your main style file (usually `src/styles.scss`) with the following imports:
+
+<Source code={PrimeNGStyleImportsSample} language="scss" />
+
+In your application configuration file (`app.module.ts` or `app.config.ts`),
+make sure no theme preset is applied when using PrimeNG:
+
+<Source code={PrimeNGProviderSample} language="typescript" />
