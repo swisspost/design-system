@@ -1,4 +1,4 @@
-export { Components, JSX, PostHeaderCustomEvent } from './components';
+export { Components, JSX } from './components';
 
 // Export every single component so it gets included in the dist output
 export { PostAccordion } from './components/post-accordion/post-accordion';
@@ -13,7 +13,7 @@ export { PostClosebutton } from './components/post-closebutton/post-closebutton'
 export { PostCollapsible } from './components/post-collapsible/post-collapsible';
 export { PostCollapsibleTrigger } from './components/post-collapsible-trigger/post-collapsible-trigger';
 export { PostFooter } from './components/post-footer/post-footer';
-export { PostHeader, DEVICE_SIZE } from './components/post-header/post-header';
+export { PostHeader } from './components/post-header/post-header';
 export { PostIcon } from './components/post-icon/post-icon';
 export { PostLanguageOption } from './components/post-language-option/post-language-option';
 export { PostLanguageSwitch } from './components/post-language-switch/post-language-switch';
