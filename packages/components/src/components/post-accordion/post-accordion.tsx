@@ -69,7 +69,7 @@ export class PostAccordion {
       .forEach(item => {
         item.toggle(false);
       });
-    }
+  }
   }
   
   /**
