@@ -8,8 +8,6 @@ export function EventGuard(options: {
     descriptor: PropertyDescriptor
   ) {
     const originalMethod = descriptor.value;
-    console.log("delegatorSelector", options.delegatorSelector)
-        console.log("targetlocalName", options.targetLocalName)
 
     descriptor.value = function (event: CustomEvent) {
       const target = event.target as HTMLElement | null;
@@ -18,8 +16,6 @@ export function EventGuard(options: {
 
       if (options.delegatorSelector) {
         const closest = shadowClosest(target, options.delegatorSelector);
-        console.log("closest", closest)
-        console.log("host", this.host)
         if (closest !== this.host as HTMLElement) return;
       }
 
