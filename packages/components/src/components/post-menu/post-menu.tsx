@@ -139,8 +139,7 @@ export class PostMenu {
 
     requestAnimationFrame(() => {
       if (this.isVisible) {
-        this.lastFocusedElement = 
-      this.root.activeElement as HTMLElement;
+        this.lastFocusedElement = this.root?.activeElement as HTMLElement;
         const menuItems = this.getSlottedItems();
         if (menuItems.length > 0) {
           (menuItems[0] as HTMLElement).focus();
@@ -165,7 +164,7 @@ export class PostMenu {
     }
 
     let currentIndex = menuItems.findIndex(el => {
-    // Check if the item is currently focused within its rendered scope (document or shadow root)
+      // Check if the item is currently focused within its rendered scope (document or shadow root)
       return el === getRoot(el).activeElement;
     });
 
