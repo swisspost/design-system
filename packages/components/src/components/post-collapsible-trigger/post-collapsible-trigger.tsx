@@ -1,14 +1,14 @@
-import { Component, Element, Method, Prop, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkNonEmpty, checkType, debounce, getRoot } from '@/utils';
-import { eventGuard } from '@/utils/event-guard';
+import { checkNonEmpty, checkType, eventGuard, getRoot } from '@/utils';
 
 @Component({
   tag: 'post-collapsible-trigger',
+  shadow: true,
 })
 export class PostCollapsibleTrigger {
   private trigger?: HTMLButtonElement;
-  private observer = new MutationObserver(() => this.setTrigger());
+  private readonly observer = new MutationObserver(() => this.setTrigger());
   private root?: Document | ShadowRoot;
 
   @Element() host: HTMLPostCollapsibleTriggerElement;
@@ -16,17 +16,15 @@ export class PostCollapsibleTrigger {
   /**
    * Link the trigger to a post-collapsible with this id
    */
-  @Prop() for: string;
+  @Prop({ reflect: true }) for!: string;
 
   /**
    * Set the "aria-controls" and "aria-expanded" attributes on the trigger to match the state of the controlled post-collapsible
    */
   @Watch('for')
-  setAriaAttributes() {
+  validateAriaAttributes() {
     checkNonEmpty(this, 'for');
     checkType(this, 'for', 'string', 'The post-collapsible-trigger "for" prop should be a id.');
-
-    void this.update();
   }
 
   /**
@@ -38,27 +36,12 @@ export class PostCollapsibleTrigger {
     this.observer.observe(this.host, { childList: true, subtree: true });
   }
 
-  /**
-   * Attach a "postToggle" event listener to the root node
-   * to update the trigger's "aria-expanded" attribute whenever the controlled post-collapsible is toggled
-   */
-  componentWillLoad() {
-    this.root = getRoot(this.host);
-  }
-
-  /**
-   * Add the "data-version" to the host element and set the trigger
-   */
   componentDidLoad() {
-    this.host.setAttribute('data-version', version);
     this.setTrigger();
-
     if (!this.trigger) console.warn('The post-collapsible-trigger must contain a button.');
+    this.validateAriaAttributes();
   }
 
-  /**
-   * Disconnect the mutation observer
-   */
   disconnectedCallback() {
     this.observer.disconnect();
     this.root.removeEventListener('postToggle', this.handlePostToggle);
@@ -69,7 +52,7 @@ export class PostCollapsibleTrigger {
    */
   @Method()
   async update() {
-    this.debouncedUpdate();
+    this.updateAriaAttributes();
   }
 
   /**
@@ -77,23 +60,19 @@ export class PostCollapsibleTrigger {
    * This updates the trigger's "aria-expanded" attribute based on the event detail.
    */
   private handlePostToggle(e: CustomEvent): void {
-    eventGuard(
-      this.host,
-      e, 
-      { targetLocalName: 'post-collapsible' },
-      () => {
-        if (this.trigger) {
-          this.trigger.setAttribute('aria-expanded', `${e.detail}`);
-        }
+    eventGuard(this.host, e, { targetLocalName: 'post-collapsible' }, () => {
+      if (this.trigger) {
+        this.trigger.setAttribute('aria-expanded', `${e.detail}`);
       }
-    );
+    });
   }
 
-  private debouncedUpdate = debounce(() => {
+  private updateAriaAttributes() {
     if (!this.trigger) return;
 
     // add the provided id to the aria-controls list
     const ariaControls = this.trigger.getAttribute('aria-controls');
+
     if (!ariaControls?.includes(this.for)) {
       const newAriaControls = ariaControls ? `${ariaControls} ${this.for}` : this.for;
       this.trigger.setAttribute('aria-controls', newAriaControls);
@@ -103,7 +82,7 @@ export class PostCollapsibleTrigger {
     const isCollapsed = this.collapsible?.collapsed;
     const newAriaExpanded = isCollapsed !== undefined ? !isCollapsed : undefined;
     this.trigger.setAttribute('aria-expanded', `${newAriaExpanded}`);
-  });
+  }
 
   /**
    * Toggle the post-collapsible controlled by the trigger
@@ -135,6 +114,14 @@ export class PostCollapsibleTrigger {
     this.trigger = trigger;
 
     this.trigger.addEventListener('click', () => this.toggleCollapsible());
-    this.setAriaAttributes();
+    this.updateAriaAttributes();
+  }
+
+  render() {
+    return (
+      <Host data-version={version}>
+        <slot></slot>
+      </Host>
+    );
   }
 }

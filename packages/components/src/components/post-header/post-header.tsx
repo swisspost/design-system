@@ -112,9 +112,12 @@ export class PostHeader {
     this.host.addEventListener('click', this.handleLinkClick);
 
     this.handleResize();
-    this.handleScrollEvent();
     this.handleScrollParentResize();
     this.lockBody(false, this.mobileMenuExtended, 'mobileMenuExtended');
+  }
+
+  componentWillRender() {
+    this.handleScrollEvent();
   }
 
   componentDidRender() {
@@ -181,7 +184,7 @@ export class PostHeader {
       },
       () => {
         this.megadropdownOpen = event.detail.isVisible;
-      }
+      },
     );
   };
 
@@ -243,7 +246,7 @@ export class PostHeader {
 
   private updateScrollParentHeight() {
     this.host.style.setProperty(
-      '--header-scroll-parent-height',
+      '--post-header-scroll-parent-height',
       `${this.scrollParent.clientHeight}px`,
     );
   }
@@ -333,7 +336,7 @@ export class PostHeader {
     return (
       <div
         class={navigationClasses.join(' ')}
-        style={{ '--header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
+        style={{ '--post-header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
       >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
           <slot name="post-mainnavigation"></slot>

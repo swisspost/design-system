@@ -1,9 +1,11 @@
 {
   "name": "@swisspost/design-system-tokens",
-  "version": "9.0.0-next.33",
+  "version": "10.0.0-next.38",
   "description": "Design Tokens for the Swiss Post Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
+  "private": false,
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git"
@@ -12,7 +14,11 @@
   "bugs": {
     "url": "https://github.com/swisspost/design-system/issues"
   },
-  "type": "module",
+  "publishConfig": {
+    "directory": "./dist",
+    "access": "public",
+    "linkDirectory": true
+  },
   "scripts": {
     "build": "pnpm clean && node ./build.js && pnpm copy-files",
     "build:verbose": "node ./build.js --verbosity=verbose",
@@ -21,6 +27,15 @@
     "lint:fix": "eslint --fix",
     "copy-files": "copyfiles -f package.json README.md CONTRIBUTING.md CHANGELOG.md LICENSE dist"
   },
+  "devDependencies": {
+    "@eslint/js": "9.18.0",
+    "@tokens-studio/sd-transforms": "1.2.9",
+    "copyfiles": "2.4.1",
+    "eslint": "9.18.0",
+    "globals": "16.0.0",
+    "rimraf": "6.0.1",
+    "style-dictionary": "4.3.0"
+  },
   "keywords": [
     "tokens",
     "tokens studio",
@@ -28,19 +43,5 @@
     "design-system",
     "ui",
     "frontend"
-  ],
-  "publishConfig": {
-    "directory": "./dist",
-    "access": "public",
-    "linkDirectory": true
-  },
-  "devDependencies": {
-    "@eslint/js": "9.18.0",
-    "@tokens-studio/sd-transforms": "1.2.9",
-    "copyfiles": "2.4.1",
-    "eslint": "9.18.0",
-    "globals": "15.14.0",
-    "rimraf": "6.0.1",
-    "style-dictionary": "4.3.0"
-  }
+  ]
 }

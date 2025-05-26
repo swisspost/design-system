@@ -8,6 +8,20 @@
   :nth-of-type(1) {
     flex: 0 0 48px;
   }
+
+  > div:last-child {
+    display: block;
+  }
+}
+
+.sidebar-container {
+  button:focus,
+  a:focus {
+    border-color: transparent;
+    box-shadow: unset;
+    outline: #050400 solid 2px;
+    border-radius: 4px;
+  }
 }
 
 .visually-hidden {

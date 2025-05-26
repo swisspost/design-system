@@ -31,7 +31,7 @@ runs:
   steps:
     - name: Detect wanted version
       id: wanted-versions
-      uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
+      uses: actions/github-script@e7aeb8c663f696059ebb5f9ab1425ed2ef511bdb
       with:
         script: |
           const fs = require('fs')
@@ -53,7 +53,7 @@ runs:
         version: ${{ inputs.pnpm_version || null }}
 
     - name: Install node
-      uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
       with:
         node-version: ${{ inputs.node_version || fromJSON(steps.wanted-versions.outputs.result).node }}
         cache: ${{ inputs.use_cache == 'true' && 'pnpm' || '' }}

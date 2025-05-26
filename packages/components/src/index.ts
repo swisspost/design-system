@@ -6,7 +6,7 @@ export { PostAccordionItem } from './components/post-accordion-item/post-accordi
 export { PostAvatar } from './components/post-avatar/post-avatar';
 export { PostBackToTop } from './components/post-back-to-top/post-back-to-top';
 export { PostBanner } from './components/post-banner/post-banner';
-export { PostBreadcrumb } from './components/post-breadcrumb/post-breadcrumb';
+export { PostBreadcrumbs } from './components/post-breadcrumbs/post-breadcrumbs';
 export { PostBreadcrumbItem } from './components/post-breadcrumb-item/post-breadcrumb-item';
 export { PostCardControl } from './components/post-card-control/post-card-control';
 export { PostClosebutton } from './components/post-closebutton/post-closebutton';
@@ -36,3 +36,4 @@ export { PostTabPanel } from './components/post-tab-panel/post-tab-panel';
 export { PostTag } from './components/post-tag/post-tag';
 export { PostTogglebutton } from './components/post-togglebutton/post-togglebutton';
 export { PostTooltip } from './components/post-tooltip/post-tooltip';
+export { PostTooltipTrigger } from './components/post-tooltip-trigger/post-tooltip-trigger';

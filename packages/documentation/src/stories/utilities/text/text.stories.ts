@@ -18,6 +18,13 @@ export const FontFamily: Story = {
   render: () => html` <p class="font-sans-serif">This is sans serif text.</p> `,
 };
 
+export const FontSize: Story = {
+  render: () =>
+    html`
+      ${Array.from({ length: 11 }, (_, i) => html`<p class="fs-${i + 1}">This is a text.</p>`)}
+    `,
+};
+
 export const FontWeight: Story = {
   render: () =>
     html`
@@ -67,12 +74,12 @@ export const TextWrapping: Story = {
   render: () => html`
     <div class="my-container w-half">
       <p class="text-nowrap">
-        This text should NOT wrap, saepe excepturi quas nihil repudiandae eius assumenda voluptatem.
+        This text should NOT wrap, demonstrating how text behaves without wrapping enabled.
       </p>
     </div>
     <div class="my-container w-half text-nowrap">
       <p class="text-wrap">
-        This text should wrap, saepe excepturi quas nihil repudiandae eius assumenda voluptatem.
+        This text should wrap, showing how text naturally breaks into multiple lines when wrapping is enabled.
       </p>
     </div>
   `,
