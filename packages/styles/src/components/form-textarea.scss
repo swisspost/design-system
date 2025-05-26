@@ -13,8 +13,7 @@ textarea.form-control {
   width: 100%;
   appearance: none; // Fix appearance for date inputs in Safari
   background-clip: padding-box;
-  border: tokens.get('textarea-border-width') tokens.get('textarea-border-style-enabled')
-    tokens.get('textarea-enabled-border');
+  border: 2px tokens.get('textarea-border-style-enabled') tokens.get('textarea-enabled-border');
   position: relative;
   border-radius: tokens.get('textarea-border-radius');
   background-color: tokens.get('textarea-enabled-bg');
