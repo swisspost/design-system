@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': patch
 ---
 
-Added `close-button-caption` attribute in `post-popover` component.
+Updated `post-popover` component documentation by adding missing `close-button-caption` attribute in component examples.
