@@ -197,8 +197,26 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
   overflow-x: hidden;
 }
 
-.sbdocs-preview:not([data-color-scheme]) {
-  display: none;
+.sbdocs-preview {
+  &:not([data-color-scheme]) {
+    display: none;
+  }
+
+  .docs-story {
+    > div:last-child {
+      background: none !important;
+
+      button {
+        background-color: rgba(0, 0, 0, 0.05);
+        border-color: rgba(0, 0, 0, 0.15);
+        color: inherit;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.15);
+        }
+      }
+    }
+  }
 }
 
 .fake-content {
