@@ -1,7 +1,10 @@
-export function EventGuard(options: {
- targetLocalName: string;
- delegatorSelector?: string;
-}) {
+/**
+ * Decorator that guards event handlers to only execute when the event meets certain criteria.
+ * @param options - Configuration options for the event guard
+ * @param options.targetLocalName - The local name of the element that should be the target of the event
+ * @param options.delegatorSelector - Optional CSS selector to check if the event was delegated from a specific ancestor
+ */
+export function EventGuard(options: { targetLocalName: string; delegatorSelector?: string }) {
   return function (
     _target: object,
     _propertyKey: string,
@@ -10,15 +13,21 @@ export function EventGuard(options: {
     const originalMethod = descriptor.value;
 
     descriptor.value = function (event: CustomEvent) {
-      const target = event.target as HTMLElement | null;
+      // Check if event is properly defined
+      if (!event || !event.target) return;
 
-      if (!target || target.localName !== options.targetLocalName) return;
+      const target = event.target as HTMLElement;
+      
+      // Verify target matches the expected element type
+      if (target.localName !== options.targetLocalName) return;
 
+      // If delegator selector is provided, verify event originated from within the correct component
       if (options.delegatorSelector) {
         const closest = shadowClosest(target, options.delegatorSelector);
-        if (closest !== this.host as HTMLElement) return;
+        if (closest !== this.host) return;
       }
 
+      // All checks passed, call original method
       return originalMethod.call(this, event);
     };
 
@@ -27,33 +36,30 @@ export function EventGuard(options: {
 }
 
 /**
- * Traverses up the DOM (including crossing shadow DOM boundaries) starting from the given element
- * to find and return the closest ancestor that matches the specified CSS selector.
- * If no matching element is found, returns null.
- *
- * @param element - The starting element from which the search begins.
- * @param selector - The CSS selector used to test each ancestor element.
- * @returns The closest matching ancestor element or null if none is found.
+ * Traverses up the DOM (including crossing shadow DOM boundaries) to find the closest ancestor
+ * that matches the specified CSS selector.
+ * @param element - The starting element
+ * @param selector - CSS selector to match
+ * @returns The closest matching ancestor or null if none found
  */
 function shadowClosest(element: Element, selector: string): Element | null {
-  let currentElement: Element | null = element;
-  while (currentElement) {
-    if (currentElement.matches(selector)) {
-      return currentElement;
+  let current: Element | null = element;
+  while (current) {
+    if (current.matches(selector)) {
+      return current;
     }
 
-    const parent = currentElement.parentElement;
-    if (parent) {
-      currentElement = parent;
-    } else {
-      const parentNode = currentElement.parentNode;
-      // When no parentElement exists, check if the current element is inside a shadow DOM.
-      // If so, move up to the shadow host to continue the search outside the shadow boundary.
-      if (parentNode instanceof ShadowRoot) {
-        currentElement = parentNode.host;
-      } else {
-        currentElement = null;
-      }
+    // Check regular parent first
+    if (current.parentElement) {
+      current = current.parentElement;
+    } 
+    // If no parentElement, check if we're in a shadow root
+    else if (current.parentNode instanceof ShadowRoot) {
+      current = current.parentNode.host;
+    } 
+    // No more parents to check
+    else {
+      current = null;
     }
   }
   return null;

@@ -73,7 +73,7 @@ export class PostMenu {
 
   componentDidLoad() {
     if (this.popoverRef) {
-      this.popoverRef.addEventListener('postToggle', this.handlePostToggle);
+      this.popoverRef.addEventListener('postToggle', this.handlePostToggle.bind(this));
     }
   }
 
