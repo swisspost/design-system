@@ -21,98 +21,100 @@
 
 tokens.$default-map: components.$post-button;
 
-.btn {
-  // Resets
-  display: inline-flex;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  max-width: 100%;
-  overflow: hidden;
-  transition: button.$btn-transition;
-  border-width: tokens.get('button-border-width');
-  border-style: solid;
-  border-radius: tokens.get('button-border-radius-round');
-  background-color: transparent;
-  box-shadow: none;
-  font-family: inherit;
-  font-weight: tokens.get('button-label-font-weight');
-  text-decoration: none;
-  white-space: nowrap; // Long content should never break in buttons
-
-  &:hover {
+:host {
+  .btn {
+    // Resets
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    overflow: hidden;
+    transition: button.$btn-transition;
+    border-width: tokens.get('button-border-width');
+    border-style: solid;
+    border-radius: tokens.get('button-border-radius-round');
+    background-color: transparent;
+    box-shadow: none;
+    font-family: inherit;
+    font-weight: tokens.get('button-label-font-weight');
     text-decoration: none;
-  }
+    white-space: nowrap; // Long content should never break in buttons
 
-  @include button-mx.button-size();
-
-  &:disabled {
-    border-style: tokens.get('button-border-style-disabled');
-  }
-
-  @include utilities.focus-style;
-
-  @include utilities.high-contrast-mode() {
-    &:is(a) {
-      color: LinkText;
-      border: unset;
+    &:hover {
+      text-decoration: none;
     }
 
-    &:is(button) {
-      background-color: ButtonFace !important;
-      border: 1px solid ButtonBorder !important;
+    @include button-mx.button-size();
+
+    &:disabled {
+      border-style: tokens.get('button-border-style-disabled');
     }
 
-    &:not(:disabled, .disabled) {
-      &:is(button):hover {
-        background-color: Highlight !important;
+    @include utilities.focus-style;
 
-        > post-icon {
-          color: HighlightText !important;
+    @include utilities.high-contrast-mode() {
+      &:is(a) {
+        color: LinkText;
+        border: unset;
+      }
+
+      &:is(button) {
+        background-color: ButtonFace !important;
+        border: 1px solid ButtonBorder !important;
+      }
+
+      &:not(:disabled, .disabled) {
+        &:is(button):hover {
+          background-color: Highlight !important;
+
+          > post-icon {
+            color: HighlightText !important;
+          }
         }
       }
     }
   }
-}
 
-// Type variants
-@each $variant in button.$btn-variants {
-  .btn-#{$variant} {
-    $color: if($variant == 'default', 'secondary', if($variant == 'link', 'tertiary', $variant));
+  // Type variants
+  @each $variant in button.$btn-variants {
+    .btn-#{$variant} {
+      $color: if($variant == 'default', 'secondary', if($variant == 'link', 'tertiary', $variant));
 
-    @if ($variant != 'link' and $variant != 'tertiary') {
-      box-shadow: tokens.get('button-elevation');
-    }
+      @if ($variant != 'link' and $variant != 'tertiary') {
+        box-shadow: tokens.get('button-elevation');
+      }
 
-    @include button-mx.button-variant-def('enabled', $color);
+      @include button-mx.button-variant-def('enabled', $color);
 
-    &:disabled {
-      @include button-mx.button-variant-def('disabled', $color);
-    }
+      &:disabled {
+        @include button-mx.button-variant-def('disabled', $color);
+      }
 
-    @include utilities.not-disabled-hover() {
-      @include button-mx.button-variant-def('hover', $color);
+      @include utilities.not-disabled-hover() {
+        @include button-mx.button-variant-def('hover', $color);
+      }
     }
   }
-}
 
-// Size variants, default is md
-@each $size in button.$btn-non-default-sizes {
-  .btn-#{$size} {
-    @include button-mx.button-size($size);
+  // Size variants, default is md
+  @each $size in button.$btn-non-default-sizes {
+    .btn-#{$size} {
+      @include button-mx.button-size($size);
+    }
   }
-}
 
-.btn-link {
-  text-decoration: tokens.get('link-decoration', elements.$post-link);
-  border: 0 none;
-  border-radius: tokens.get('link-border-radius', elements.$post-link);
-  min-height: 0;
-  font-size: inherit;
-  font-weight: inherit;
-  padding: 0;
+  .btn-link {
+    text-decoration: tokens.get('link-decoration', elements.$post-link);
+    border: 0 none;
+    border-radius: tokens.get('link-border-radius', elements.$post-link);
+    min-height: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    padding: 0;
 
-  &:hover {
-    color: tokens.get('link-hover-fg', elements.$post-link);
+    &:hover {
+      color: tokens.get('link-hover-fg', elements.$post-link);
+    }
   }
 }

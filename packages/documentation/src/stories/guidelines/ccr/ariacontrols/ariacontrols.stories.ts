@@ -26,12 +26,7 @@ function handleToggleClick(toggleId: string, textId: string): void {
 
 export const ExampleHTML = () => {
   return html`
-    <button
-      class="btn btn-primary"
-      id="toggle"
-      aria-controls="text"
-      @click=${() => handleToggleClick('toggle', 'text')}
-    >
+    <button id="toggle" aria-controls="text" @click=${() => handleToggleClick('toggle', 'text')}>
       Toggle Text
     </button>
     <div id="text" aria-live="polite">
@@ -42,11 +37,51 @@ export const ExampleHTML = () => {
 
 // Case: Referencing from Shadow DOM (Host Attribute) to Light DOM (Element)
 
-export const Example2: Story = {
-  render: () => html`
-    <post-test-button-control id="toggle2" aria-controls="text2">
+export const Example2a: Story = {
+  argTypes: {
+    workaround: {
+      name: 'Workaround',
+      control: {
+        type: 'radio',
+      },
+      options: ['none', 'ariaControlsElements'],
+    },
+  },
+  args: {
+    workaround: 'none',
+  },
+  render: (args: Args) => html`
+    <post-test-button-control workaround="${args.workaround}" aria-controls-id="id_2">
       Toggle Text
     </post-test-button-control>
+  `,
+};
+
+export const Example2b: Story = {
+  argTypes: {
+    workaround: {
+      name: 'Workaround',
+      control: {
+        type: 'radio',
+      },
+      options: ['none', 'ariaControlsElements'],
+    },
+  },
+  args: {
+    workaround: 'none',
+  },
+  render: () => html`
+    <post-test-button-control2 id="toggle3"
+      ><div
+        slot="control-slot"
+        role="button"
+        tabindex="0"
+        aria-expanded="false"
+        aria-controls="text3"
+      >
+        Toggle Text
+      </div>
+    </post-test-button-control2>
   `,
 };
 
@@ -58,16 +93,16 @@ export const Example3: Story = {
       control: {
         type: 'radio',
       },
-      options: ['none', 'ariaControlsElements'], // Adjusted option name for clarity
+      options: ['none', 'ariaControlsElements'],
     },
   },
   args: {
     workaround: 'none',
   },
   render: (args: Args) => html`
-    <post-test-button3 workaround="${args.workaround}">
-      <span slot="control-slot" id="controlled_id_3">Controlled Element 3 (Slotted)</span>
-    </post-test-button3>
+    <post-test-button-control workaround="${args.workaround}" id="toggle2" aria-controls="text2">
+      Toggle Text
+    </post-test-button-control>
   `,
 };
 

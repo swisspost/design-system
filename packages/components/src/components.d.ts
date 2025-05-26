@@ -475,6 +475,20 @@ export namespace Components {
         "ariaLabelledbyId"?: string;
     }
     interface PostTestButtonControl {
+        /**
+          * Defines the ariaContols id
+         */
+        "ariaControlsId"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
+    }
+    interface PostTestButtonControl2 {
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
     }
     interface PostTestButton2 {
         /**
@@ -985,6 +999,12 @@ declare global {
         prototype: HTMLPostTestButtonControlElement;
         new (): HTMLPostTestButtonControlElement;
     };
+    interface HTMLPostTestButtonControl2Element extends Components.PostTestButtonControl2, HTMLStencilElement {
+    }
+    var HTMLPostTestButtonControl2Element: {
+        prototype: HTMLPostTestButtonControl2Element;
+        new (): HTMLPostTestButtonControl2Element;
+    };
     interface HTMLPostTestButton2Element extends Components.PostTestButton2, HTMLStencilElement {
     }
     var HTMLPostTestButton2Element: {
@@ -1123,6 +1143,7 @@ declare global {
         "post-tag": HTMLPostTagElement;
         "post-test-button": HTMLPostTestButtonElement;
         "post-test-button-control": HTMLPostTestButtonControlElement;
+        "post-test-button-control2": HTMLPostTestButtonControl2Element;
         "post-test-button2": HTMLPostTestButton2Element;
         "post-test-button3": HTMLPostTestButton3Element;
         "post-test-div": HTMLPostTestDivElement;
@@ -1547,6 +1568,20 @@ declare namespace LocalJSX {
         "ariaLabelledbyId"?: string;
     }
     interface PostTestButtonControl {
+        /**
+          * Defines the ariaContols id
+         */
+        "ariaControlsId"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
+    }
+    interface PostTestButtonControl2 {
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
     }
     interface PostTestButton2 {
         /**
@@ -1706,6 +1741,7 @@ declare namespace LocalJSX {
         "post-tag": PostTag;
         "post-test-button": PostTestButton;
         "post-test-button-control": PostTestButtonControl;
+        "post-test-button-control2": PostTestButtonControl2;
         "post-test-button2": PostTestButton2;
         "post-test-button3": PostTestButton3;
         "post-test-div": PostTestDiv;
@@ -1770,6 +1806,7 @@ declare module "@stencil/core" {
             "post-tag": LocalJSX.PostTag & JSXBase.HTMLAttributes<HTMLPostTagElement>;
             "post-test-button": LocalJSX.PostTestButton & JSXBase.HTMLAttributes<HTMLPostTestButtonElement>;
             "post-test-button-control": LocalJSX.PostTestButtonControl & JSXBase.HTMLAttributes<HTMLPostTestButtonControlElement>;
+            "post-test-button-control2": LocalJSX.PostTestButtonControl2 & JSXBase.HTMLAttributes<HTMLPostTestButtonControl2Element>;
             "post-test-button2": LocalJSX.PostTestButton2 & JSXBase.HTMLAttributes<HTMLPostTestButton2Element>;
             "post-test-button3": LocalJSX.PostTestButton3 & JSXBase.HTMLAttributes<HTMLPostTestButton3Element>;
             "post-test-div": LocalJSX.PostTestDiv & JSXBase.HTMLAttributes<HTMLPostTestDivElement>;
