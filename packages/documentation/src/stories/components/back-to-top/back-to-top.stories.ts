@@ -69,7 +69,7 @@ const meta: MetaComponent = {
       <!-- Main navigation -->
       <post-mainnavigation caption="Hauptnavigation">
         <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
-          <post-icon aria-hidden="true" name="arrowright"></post-icon> Back
+          <post-icon aria-hidden="true" name="arrowleft"></post-icon> Back
         </button>
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
@@ -82,7 +82,7 @@ const meta: MetaComponent = {
             <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
             <post-megadropdown id="briefe">
               <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-                <post-icon name="arrowright"></post-icon>
+                <post-icon name="arrowleft"></post-icon>
                 Back
               </button>
               <post-closebutton slot="close-button">Schliessen</post-closebutton>
@@ -119,7 +119,7 @@ const meta: MetaComponent = {
             <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
             <post-megadropdown id="pakete">
               <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-                <post-icon name="arrowright"></post-icon>
+                <post-icon name="arrowleft"></post-icon>
                 Back
               </button>
               <post-closebutton slot="close-button">Schliessen</post-closebutton>

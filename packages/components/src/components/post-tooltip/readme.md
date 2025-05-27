@@ -7,18 +7,19 @@
 
 ## Properties
 
-| Property    | Attribute   | Description                                                                                                                                                                                                                                                                                                                                                                               | Type                                                                                                                                                                 | Default |
-| ----------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| `arrow`     | `arrow`     | Wheter or not to display a little pointer arrow                                                                                                                                                                                                                                                                                                                                           | `boolean`                                                                                                                                                            | `true`  |
-| `delayed`   | `delayed`   | If `true`, the tooltip is displayed a few milliseconds after it is triggered                                                                                                                                                                                                                                                                                                              | `boolean`                                                                                                                                                            | `false` |
-| `placement` | `placement` | Defines the position of the tooltip relative to its trigger. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement). | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'top'` |
+| Property    | Attribute   | Description                                                                                                                                                                                                                                                                                                                                                                               | Type                                                                                                                                                                 | Default     |
+| ----------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `animation` | `animation` | Choose a tooltip animation                                                                                                                                                                                                                                                                                                                                                                | `"pop-in"`                                                                                                                                                           | `undefined` |
+| `arrow`     | `arrow`     | Whether or not to display a little pointer arrow                                                                                                                                                                                                                                                                                                                                          | `boolean`                                                                                                                                                            | `false`     |
+| `open`      | `open`      | Indicates the open state of the tooltip                                                                                                                                                                                                                                                                                                                                                   | `boolean`                                                                                                                                                            | `false`     |
+| `placement` | `placement` | Defines the position of the tooltip relative to its trigger. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement). | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'top'`     |
 
 
 ## Methods
 
 ### `hide() => Promise<void>`
 
-Programmatically hide this tooltip
+Programmatically hide this tooltip.
 
 #### Returns
 
@@ -26,16 +27,15 @@ Type: `Promise<void>`
 
 
 
-### `show(target: HTMLElement, triggeredByFocus?: boolean) => Promise<void>`
+### `show(target: HTMLElement) => Promise<void>`
 
-Programmatically display the tooltip
+Programmatically display the tooltip.
 
 #### Parameters
 
-| Name               | Type          | Description                                                                  |
-| ------------------ | ------------- | ---------------------------------------------------------------------------- |
-| `target`           | `HTMLElement` | An element with [data-tooltip-target="id"] where the tooltip should be shown |
-| `triggeredByFocus` | `boolean`     | A boolean indicating if the tooltip was triggered by a focus event.          |
+| Name     | Type          | Description                                  |
+| -------- | ------------- | -------------------------------------------- |
+| `target` | `HTMLElement` | An element where the tooltip should be shown |
 
 #### Returns
 
@@ -45,14 +45,14 @@ Type: `Promise<void>`
 
 ### `toggle(target: HTMLElement, force?: boolean) => Promise<void>`
 
-Toggle tooltip display
+Toggle tooltip display.
 
 #### Parameters
 
-| Name     | Type          | Description                                                                  |
-| -------- | ------------- | ---------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | An element with [data-tooltip-target="id"] where the tooltip should be shown |
-| `force`  | `boolean`     | Pass true to always show or false to always hide                             |
+| Name     | Type          | Description                                      |
+| -------- | ------------- | ------------------------------------------------ |
+| `target` | `HTMLElement` | An element where the tooltip should be shown     |
+| `force`  | `boolean`     | Pass true to always show or false to always hide |
 
 #### Returns
 
