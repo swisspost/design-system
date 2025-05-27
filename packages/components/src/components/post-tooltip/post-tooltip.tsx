@@ -27,7 +27,7 @@ export class PostTooltip {
   /**
    * Choose a tooltip animation
    */
-  @Prop() readonly animation?: 'pop-in' | null = null;
+  @Prop() readonly animation?: 'pop-in';
   /**
    * Indicates the open state of the tooltip
    */
@@ -35,7 +35,12 @@ export class PostTooltip {
 
   @Watch('open')
   validateOpen() {
-    checkType(this, 'open', 'boolean', 'The "open" property of the post-tooltip must be a boolean.');
+    checkType(
+      this,
+      'open',
+      'boolean',
+      'The "open" property of the post-tooltip must be a boolean.',
+    );
   }
 
   connectedCallback() {
@@ -46,7 +51,7 @@ export class PostTooltip {
     if (!this.host.id) {
       console.error(
         /*prettier-ignore*/
-        'No id set: <post-tooltip> must have an id, linking it to it\'s target element with a <post-tooltip-trigger> element.'
+        'No id set: <post-tooltip> must have an id, linking it to it\'s target element with a <post-tooltip-trigger> element.',
       );
     }
   }
@@ -92,7 +97,7 @@ export class PostTooltip {
     return (
       <Host data-version={version} role="tooltip">
         <post-popovercontainer
-          safeSpace='trapezoid'
+          safeSpace="trapezoid"
           class={popoverClass}
           arrow={this.arrow}
           animation={this.animation}
