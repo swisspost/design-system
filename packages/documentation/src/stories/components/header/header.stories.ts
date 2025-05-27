@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components';
 import { MetaComponent } from '@root/types';
 import { html } from 'lit';
 import { fakeContent } from '@/utils';
@@ -20,6 +20,7 @@ const meta: MetaComponent = {
     title: 'Application title',
     metaNavigation: true,
     customControls: true,
+    targetGroup: false,
   },
   argTypes: {
     title: {
@@ -42,6 +43,16 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
+    targetGroup: {
+      name: 'Target group',
+      description: 'Whether or not the target group buttons are visible.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content',
+      },
+    },
     customControls: {
       name: 'Custom controls',
       description: 'Whether or not the custom controls are displayed ("search" and "login").',
@@ -53,20 +64,14 @@ const meta: MetaComponent = {
       },
     },
   },
-  decorators: [
-    story =>
-      html` <div class="header-story-wrapper">
-        <div class="virtual-body">${story()} ${fakeContent()}</div>
-      </div>`,
-  ],
 };
 
 export default meta;
 
 type Story = StoryObj;
 
-export const Default: Story = {
-  render: args => {
+const Template = {
+  render: (args: Args) => {
     return html`<post-header>
       <!-- Logo -->
       <post-logo slot="post-logo" url="/">Homepage</post-logo>
@@ -106,6 +111,21 @@ export const Default: Story = {
         ? html`
             <!-- Application title (optional) -->
             <h1 slot="title">${args.title}</h1>
+          `
+        : ''}
+      ${args.targetGroup
+        ? html`
+            <ul slot="target-group" class="target-group">
+              <li>
+                <a href="#" class="active">Private customers</a>
+              </li>
+              <li>
+                <a href="#">Business customers</a>
+              </li>
+              <li>
+                <a href="#">Authorities</a>
+              </li>
+            </ul>
           `
         : ''}
       ${args.customControls
@@ -218,4 +238,22 @@ export const Default: Story = {
       </post-mainnavigation>
     </post-header>`;
   },
+};
+
+export const Default: Story = {
+  ...Template,
+  decorators: [
+    story =>
+      html` <div class="header-story-wrapper">
+        <div class="virtual-body">${story()} ${fakeContent()}</div>
+      </div>`,
+  ],
+};
+
+export const WithTargetGroup: Story = {
+  args: {
+    targetGroup: true,
+  },
+  ...Template,
+  decorators: [story => html` <div style="min-height: 400px">${story()}</div>`],
 };
