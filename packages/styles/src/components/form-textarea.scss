@@ -125,7 +125,7 @@ textarea.form-control {
     background-color: tokens.get('textarea-enabled-bg');
 
     /* Fixes subpixel rendering gap at 125% OS scaling
-   Prevents the half-pixel of the uuper text line from appearing between
+   Prevents the half-pixel of the upper text line from appearing between
    the textarea border and floating label when Windows display scaling is set to 125% */
     @media (min-resolution: 1.25dppx) and (max-resolution: 1.49dppx) {
       top: calc(tokens.get('textarea-border-width') / 1.25);
