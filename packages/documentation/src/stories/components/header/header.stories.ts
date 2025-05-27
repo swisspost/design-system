@@ -2,6 +2,7 @@ import type { Args, StoryObj } from '@storybook/web-components';
 import { MetaComponent } from '@root/types';
 import { html } from 'lit';
 import { fakeContent } from '@/utils';
+import { clickBlocker } from '@/shared/click-blocker';
 
 const meta: MetaComponent = {
   id: '27a2e64d-55ba-492d-ab79-5f7c5e818498',
@@ -247,6 +248,7 @@ export const Default: Story = {
       html` <div class="header-story-wrapper">
         <div class="virtual-body">${story()} ${fakeContent()}</div>
       </div>`,
+    clickBlocker,
   ],
 };
 
@@ -255,5 +257,5 @@ export const WithTargetGroup: Story = {
     targetGroup: true,
   },
   ...Template,
-  decorators: [story => html` <div style="min-height: 400px">${story()}</div>`],
+  decorators: [story => html` <div style="min-height: 400px">${story()}</div>`, clickBlocker],
 };

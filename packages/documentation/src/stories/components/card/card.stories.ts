@@ -3,6 +3,7 @@ import { html, nothing } from 'lit';
 import { choose } from 'lit/directives/choose.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
+import { clickBlocker } from '@/shared/click-blocker';
 
 const meta: MetaComponent = {
   id: '605c788d-3f75-4e6c-8498-be3d546843c2',
@@ -205,13 +206,6 @@ const meta: MetaComponent = {
 
 export default meta;
 
-// DECORATORS
-function clickBlocker(story: StoryFn, context: StoryContext) {
-  return html`
-    <div @click=${(e: Event) => e.preventDefault()}>${story(context.args, context)}</div>
-  `;
-}
-
 function gridContainer(story: StoryFn, context: StoryContext) {
   return html`
     <div class="row gy-16">
@@ -223,9 +217,7 @@ function gridContainer(story: StoryFn, context: StoryContext) {
 // RENDERER
 function getCardLinks() {
   return html`
-    ${['Link Text', 'More Link'].map(
-      label => html` <a class="card-link" href="#">${label}</a> `,
-    )}
+    ${['Link Text', 'More Link'].map(label => html` <a class="card-link" href="#">${label}</a> `)}
   `;
 }
 
@@ -243,7 +235,9 @@ function getCardBody({ customBody, content, action, showTitle, showSubtitle }: A
   return html`
     <div class="card-body">
       ${showTitle ? html` <h5 class="card-title">Card Title</h5> ` : nothing}
-      ${showSubtitle ? html` <h6 class="card-subtitle mb-8 text-muted">Card Subtitle</h6> ` : nothing}
+      ${showSubtitle
+        ? html` <h6 class="card-subtitle mb-8 text-muted">Card Subtitle</h6> `
+        : nothing}
       <p class="card-text">${content}</p>
       ${choose(
         action,
@@ -314,7 +308,7 @@ const renderSimpleInteractiveCard = html`
 type Story = StoryObj;
 
 const singleCardStory: Story = {
-  decorators: [gridContainer],
+  decorators: [gridContainer, clickBlocker],
   render: (args: Args) =>
     html`${args.action === 'button' ? renderCardWithInteractiveContainer(args) : renderCard(args)}`,
 };
@@ -324,7 +318,7 @@ export const Default: Story = {
 };
 
 export const Foundation: Story = {
-  decorators: [story => html`<div class="d-flex gap-16">${story()}</div>`],
+  decorators: [story => html`<div class="d-flex gap-16">${story()}</div>`, clickBlocker],
   render: () => html`
     <div class="card p-16">
       <p>Non-interactive card</p>
