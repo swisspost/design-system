@@ -83,7 +83,7 @@ export class PostIcon {
   /**
    * The name/id of the icon (e.g. 1000, 1001, ...).
    */
-  @Prop() readonly name!: string;
+  @Prop({ reflect: true }) readonly name!: string;
 
   @Watch('name')
   validateName(newValue = this.name) {
@@ -117,13 +117,13 @@ export class PostIcon {
     // the first definition object which defines a slug, will be used to set the slug of the file url
     const urlDefinitions = [
       getUrlDefinition(this.base, 'both'),
+      getUrlDefinition(document.querySelector('base[href]')?.getAttribute('href'), 'both'),
       getUrlDefinition(
         document.head
           .querySelector('meta[name="design-system-settings"][data-post-icon-base]')
           ?.getAttribute('data-post-icon-base'),
-        'relative',
+        'both',
       ),
-      getUrlDefinition(document.querySelector('base[href]')?.getAttribute('href'), 'both'),
     ];
 
     // in case no other definition defines a domain, the current origin is used as a fallback
@@ -165,6 +165,7 @@ export class PostIcon {
       }
 
       function definesSlug(url: string | undefined | null) {
+        if (url == '/') return true;
         const urlObject = getUrlObject(url);
         return Boolean(/^\/.+/.test(urlObject?.pathname));
       }
