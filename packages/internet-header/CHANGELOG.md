@@ -1,13 +1,5 @@
 # @swisspost/internet-header
 
-## 1.15.14
-
-### Patch Changes
-
-- Added the TikTok icon to the SVG sprite used in the footer. It can now be added to the footer using the icon name `8020_tiktok`. (by [@leagrdv](https://github.com/leagrdv) with [#5519](https://github.com/swisspost/design-system/pull/5519))
-- Updated dependencies:
-  - @swisspost/design-system-styles@8.10.1
-
 ## 1.15.13
 
 ### Patch Changes
