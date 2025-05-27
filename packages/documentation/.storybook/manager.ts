@@ -24,7 +24,7 @@ const includeAllFilter = () => true;
 
 // Get the initial filter state from data-env
 const initialDevMode = document.documentElement.getAttribute('data-env') === 'development';
-let currentFilterFunction = initialDevMode ? includeAllFilter : excludeDevOnlyFilter;
+const currentFilterFunction = initialDevMode ? includeAllFilter : excludeDevOnlyFilter;
 
 // Function to update filters in the Storybook sidebar configuration
 const applyFilter = () => {
