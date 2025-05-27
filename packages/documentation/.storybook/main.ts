@@ -4,42 +4,6 @@ import pkg from '@/../package.json';
 import { mergeConfig } from 'vite';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import fs from 'fs';
-import path from 'path';
-
-const isDev = process.env.NODE_ENV === 'development';
-
-// Directories to exclude (in int/prod environments)
-const excludedDirs = ['health', 'raw-components'];
-
-const storiesBaseDir = path.resolve(__dirname, '../src/stories');
-
-async function findStories(): Promise<string[]> {
-  if (isDev) {
-    // In development, include all stories
-    return ['../src/stories/**/*.mdx', '../src/stories/**/*.stories.@(ts|tsx)'];
-  } else {
-    // In int/prod, exclude the specified directories
-    const storyPatterns: string[] = [];
-    storyPatterns.push('../src/stories/*.mdx', '../src/stories/*.stories.@(ts|tsx)');
-
-    const directories = fs
-      .readdirSync(storiesBaseDir, { withFileTypes: true })
-      .filter(dirent => dirent.isDirectory())
-      .map(dirent => dirent.name)
-      .filter(dirName => !excludedDirs.includes(dirName));
-
-    // Create story patterns for each allowed directory
-    for (const dir of directories) {
-      storyPatterns.push(
-        `../src/stories/${dir}/**/*.mdx`,
-        `../src/stories/${dir}/**/*.stories.@(ts|tsx)`,
-      );
-    }
-
-    return storyPatterns;
-  }
-}
 
 const config: StorybookConfig = {
   logLevel: 'info',
@@ -50,9 +14,7 @@ const config: StorybookConfig = {
     name: '@storybook/web-components-vite',
     options: {},
   },
-  stories: async () => {
-    return await findStories();
-  },
+  stories: ['../src/stories/**/*.mdx', '../src/stories/**/*.stories.@(ts|tsx)'],
   addons: [
     {
       name: '@storybook/addon-essentials',
