@@ -5,7 +5,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'b7db7391-f893-4b1e-a125-b30c6f0b028b',
   title: 'Components/Breadcrumbs',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'devOnly'],
   parameters: {
     badges: [],
     design: {
