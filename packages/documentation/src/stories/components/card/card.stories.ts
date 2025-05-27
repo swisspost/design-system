@@ -217,9 +217,7 @@ function gridContainer(story: StoryFn, context: StoryContext) {
 // RENDERER
 function getCardLinks() {
   return html`
-    ${['Link Text', 'More Link'].map(
-      label => html` <a class="card-link" href="#">${label}</a> `,
-    )}
+    ${['Link Text', 'More Link'].map(label => html` <a class="card-link" href="#">${label}</a> `)}
   `;
 }
 
@@ -237,7 +235,9 @@ function getCardBody({ customBody, content, action, showTitle, showSubtitle }: A
   return html`
     <div class="card-body">
       ${showTitle ? html` <h5 class="card-title">Card Title</h5> ` : nothing}
-      ${showSubtitle ? html` <h6 class="card-subtitle mb-8 text-muted">Card Subtitle</h6> ` : nothing}
+      ${showSubtitle
+        ? html` <h6 class="card-subtitle mb-8 text-muted">Card Subtitle</h6> `
+        : nothing}
       <p class="card-text">${content}</p>
       ${choose(
         action,
@@ -308,7 +308,7 @@ const renderSimpleInteractiveCard = html`
 type Story = StoryObj;
 
 const singleCardStory: Story = {
-  decorators: [gridContainer],
+  decorators: [gridContainer, clickBlocker],
   render: (args: Args) =>
     html`${args.action === 'button' ? renderCardWithInteractiveContainer(args) : renderCard(args)}`,
 };
@@ -318,7 +318,7 @@ export const Default: Story = {
 };
 
 export const Foundation: Story = {
-  decorators: [story => html`<div class="d-flex gap-16">${story()}</div>`],
+  decorators: [story => html`<div class="d-flex gap-16">${story()}</div>`, clickBlocker],
   render: () => html`
     <div class="card p-16">
       <p>Non-interactive card</p>

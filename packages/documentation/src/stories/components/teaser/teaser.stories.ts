@@ -95,9 +95,7 @@ export function renderTeaserSectionHeader(size?: string) {
   return html` <div class="d-flex align-items-end justify-content-between gap-24">
     <div class="d-flex flex-column gap-8">
       <h2 class="m-0">Teaser section ${size}</h2>
-      <p class="m-0">
-        This is a sample description for the teaser section component.
-      </p>
+      <p class="m-0">This is a sample description for the teaser section component.</p>
     </div>
     <a href="#" class="flex-shrink-0 btn btn-primary"
       >Let's go <post-icon name="arrowright"></post-icon
@@ -107,7 +105,7 @@ export function renderTeaserSectionHeader(size?: string) {
 
 export const Default: Story = {
   render: renderTeaserCard,
-  decorators: [story => html`<div style="max-width: 400px;">${story()}</div>`],
+  decorators: [story => html`<div style="max-width: 400px;">${story()}</div>`, clickBlocker],
 };
 
 export const Section: Story = {
