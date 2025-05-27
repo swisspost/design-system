@@ -1,5 +1,5 @@
 import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
-import { IS_BROWSER, checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '@/utils';
+import { checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '@/utils';
 import { version } from '@root/package.json';
 
 type UrlDefinition = {
@@ -112,13 +112,7 @@ export class PostIcon {
   }
 
   // Construct the icon url from different possible sources
-  private getUrl(): string {
-    const fileName = `${this.name}.svg`;
-
-    if (!IS_BROWSER && !this.base) {
-      return `${CDN_URL}/${fileName}`;
-    }
-
+  private getUrl() {
     // the first definition object which defines a domain, will be used to set the domain of the file url
     // the first definition object which defines a slug, will be used to set the slug of the file url
     const urlDefinitions = [
