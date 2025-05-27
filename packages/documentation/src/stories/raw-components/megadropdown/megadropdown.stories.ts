@@ -6,7 +6,7 @@ import { StoryContext, StoryFn } from '@storybook/web-components';
 const meta: MetaComponent<HTMLPostMegadropdownElement> = {
   id: '212efc4e-875b-4497-912d-d28c6baf32f5',
   title: 'Raw Components/Megadropdown',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'devOnly'],
   component: 'post-megadropdown',
   render: render,
   parameters: {
@@ -81,13 +81,11 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
         </button>
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
-          <post-list-item>
-            ${story(context.args, context)} 
-          </post-list-item>
+          <post-list-item> ${story(context.args, context)} </post-list-item>
         </post-list>
       </post-mainnavigation>
     </post-header>
-     <div class="container">
+    <div class="container">
       <p class="fake-content"></p>
       <p class="fake-content"></p>
     </div>
