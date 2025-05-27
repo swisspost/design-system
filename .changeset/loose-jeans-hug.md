@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-styles': minor
+'@swisspost/design-system-styles': major
 ---
 
 Removed the unused placeholder `%btn-transparent-background`.
