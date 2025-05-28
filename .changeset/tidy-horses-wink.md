@@ -2,4 +2,13 @@
 '@swisspost/design-system-components': patch
 ---
 
-Updated props initialization for `post-banner`, ` post-breadcrumbs`, `post-card-control`, `post-collapsible-trigger`, post-icon`, `post-language-option`,`post-language-switch`, `post-logo`, `post-tab-header`, `post-tab-panel`, `post-tabs`and`post-tag`.
+
+Updated the following props to be `optional`:
+
+- `post-banner`: `dismissLabel`, `icon`
+- `post-card-control`: `description`
+- `post-language-option`: `active`, `name`, `url`, `variant`
+- `post-logo`: `url`
+- `post-tabs`: `activePanel`
+- `post-tag`: `variant`
+
