@@ -1,12 +1,13 @@
 @use 'sass:map';
 @use '../tokens/temp/scheme';
+
+/**
+ * Check for light-dark support was added so we don't use CSS functions that don't work anyway.
+ * This check becomes obsolete when the fallback is removed.
+ */
 @use '../mixins/supports';
 
 @mixin set($scheme-token) {
-  /**
-    * Check for light-dark support was added so we don't use CSS functions that don't work anyway.
-    * This check becomes obsolete when the fallback is removed.
-    */
   @include supports.light-dark(true) {
     color-scheme: #{$scheme-token};
   }
