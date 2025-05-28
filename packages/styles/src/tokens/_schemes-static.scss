@@ -12,7 +12,7 @@
     @include schemes.light-variables;
 
     @include supports.light-dark(false) {
-      --fallback-prefers-light: ;
+      --post-fallback-prefers-light: ;
     }
   }
 
@@ -20,7 +20,7 @@
     @include schemes.dark-variables;
 
     @include supports.light-dark(false) {
-      --fallback-prefers-light: initial;
+      --post-fallback-prefers-light: initial;
     }
   }
 }
@@ -34,7 +34,7 @@
   }
 
   @include supports.light-dark(false) {
-    --fallback-prefers-light: ;
+    --post-fallback-prefers-light: ;
   }
 }
 
@@ -47,6 +47,6 @@
   }
 
   @include supports.light-dark(false) {
-    --fallback-prefers-light: initial;
+    --post-fallback-prefers-light: initial;
   }
 }

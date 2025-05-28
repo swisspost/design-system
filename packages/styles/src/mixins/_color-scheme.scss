@@ -8,10 +8,10 @@
   }
 
   @include supports.light-dark(false) {
-    --fallback-prefers-light: #{$scheme-token};
+    --post-fallback-prefers-light: #{$scheme-token};
 
     @each $key, $light-value in scheme.$post-light {
-      --#{$key}-light: var(--fallback-prefers-light) #{$light-value};
+      --#{$key}-light: var(--post-fallback-prefers-light) #{$light-value};
       --#{$key}: var(--#{$key}-light, #{map.get(scheme.$post-dark, $key)});
     }
   }
