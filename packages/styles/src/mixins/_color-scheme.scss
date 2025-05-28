@@ -12,6 +12,13 @@
     color-scheme: #{$scheme-token};
   }
 
+  /**
+   * This fallback works with space toggles. More info:
+   * https://dev.to/janeori/css-lightdark-mode-implementation-without-duplicating-vars-22c9
+   * https://kizu.dev/cyclic-toggles/
+   *
+   * Expiration date: when Safari 17 is not in use any more and the `light-dark` function is properly supported.
+   */
   @include supports.light-dark(false) {
     --post-fallback-prefers-light: #{$scheme-token};
 
