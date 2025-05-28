@@ -2,7 +2,6 @@
 '@swisspost/design-system-components': patch
 ---
 
-
 Updated the following props to be `optional`:
 
 - `post-banner`: `dismissLabel`, `icon`
@@ -11,4 +10,3 @@ Updated the following props to be `optional`:
 - `post-logo`: `url`
 - `post-tabs`: `activePanel`
 - `post-tag`: `variant`
-

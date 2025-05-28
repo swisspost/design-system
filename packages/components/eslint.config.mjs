@@ -55,7 +55,7 @@ export default [
     },
   },
   ...ts.configs.recommended,
-  dsEslintConfigs.stencilRecommended, // Add the new Stencil recommended config
+  dsEslintConfigs.stencilRecommended,
   {
     files: ['**/*.{js,mjs,cjs}'],
     ...ts.configs.disableTypeChecked,
