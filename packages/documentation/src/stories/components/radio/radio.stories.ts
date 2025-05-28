@@ -124,12 +124,12 @@ function render(args: Args, context: StoryContext) {
   const contextual: (TemplateResult | null)[] = [
     args.validation === 'is-valid'
       ? html`
-          <p class="valid-feedback" id="${args.validation}-id-${context.id}">Ggranda sukceso!</p>
+          <p class="valid-feedback" id="${args.validation}-id-${context.id}">Great success!</p>
         `
       : null,
     args.validation === 'is-invalid'
       ? html`
-          <p class="invalid-feedback" id="${args.validation}-id-${context.id}">Eraro okazis!</p>
+          <p class="invalid-feedback" id="${args.validation}-id-${context.id}">An error occurred!</p>
         `
       : null,
   ];
