@@ -18,7 +18,7 @@ export function schemes(renderFn: (scheme: string) => TemplateResult, options: I
   return html`${[...Object.values(COLOR_SCHEMES), ...additionalSchemes].filter(filter).map(
     scheme => html` <div data-color-scheme="${scheme}">
       <div class="p-16 palette palette-default">
-        <h1>Color Scheme: ${scheme}</h1>
+        <p>Color Scheme: ${scheme}</p>
         ${renderFn(scheme)}
       </div>
     </div>`,
