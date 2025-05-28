@@ -149,7 +149,7 @@ textarea.form-control {
 
     &:disabled ~ label {
       color: tokens.get('textarea-disabled-fg');
-      background-color: tokens.get('textarea-disabled-bg');
+      background-color: var(--post-current-palette-bg);
     }
 
     &:not(:disabled):hover ~ label {
