@@ -27,6 +27,9 @@ jobs:
       - name: Install dependencies of changed packages
         run: pnpm install
 
+      - name: Build eslint package
+        run: pnpm --filter @swisspost/design-system-eslint build
+
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
       - name: Lint packages
