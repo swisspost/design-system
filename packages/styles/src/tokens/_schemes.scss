@@ -8,15 +8,17 @@
  */
 @use '../mixins/supports';
 
-:root,
-[data-color-scheme] {
-  @include supports.light-dark(true) {
+@include supports.light-dark(true) {
+  :root {
     @each $key, $light-value in scheme.$post-light {
       --#{$key}: light-dark(#{$light-value}, #{map.get(scheme.$post-dark, $key)});
     }
   }
+}
 
-  @include supports.light-dark(false) {
+@include supports.light-dark(false) {
+  :root,
+  [data-color-scheme] {
     @each $key, $light-value in scheme.$post-light {
       --#{$key}-light: var(--post-fallback-prefers-light) #{$light-value};
       --#{$key}: var(--#{$key}-light, #{map.get(scheme.$post-dark, $key)});
