@@ -231,8 +231,50 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
   overflow-x: hidden;
 }
 
-.sbdocs-preview:not([data-color-scheme]) {
-  display: none;
+.sbdocs-preview {
+  &:not([data-color-scheme]) {
+    display: none;
+  }
+
+  .docs-story {
+    > div:last-child {
+      background: none !important;
+
+      button {
+        color: inherit;
+      }
+    }
+  }
+
+  &[data-color-scheme='light'] {
+    .docs-story {
+      > div:last-child {
+        button {
+          background-color: rgba(0, 0, 0, 0.05);
+          border-color: rgba(0, 0, 0, 0.15);
+
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.15);
+          }
+        }
+      }
+    }
+  }
+
+  &[data-color-scheme='dark'] {
+    .docs-story {
+      > div:last-child {
+        button {
+          background-color: rgba(255, 255, 255, 0.1);
+          border-color: rgba(255, 255, 255, 0.1);
+
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+          }
+        }
+      }
+    }
+  }
 }
 
 .fake-content {

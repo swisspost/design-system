@@ -1,0 +1,11 @@
+@mixin light-dark($supports: true) {
+  @if ($supports) {
+    @supports (color: light-dark(black, white)) {
+      @content;
+    }
+  } @else {
+    @supports not (color: light-dark(black, white)) {
+      @content;
+    }
+  }
+}
