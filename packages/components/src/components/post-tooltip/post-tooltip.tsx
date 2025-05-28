@@ -12,6 +12,8 @@ import { checkType } from '@/utils';
 export class PostTooltip {
   private popoverRef: HTMLPostPopovercontainerElement;
 
+  private slotEl!: HTMLSlotElement;
+
   @Element() host: HTMLPostTooltipElement;
 
   /**
@@ -41,6 +43,31 @@ export class PostTooltip {
       'boolean',
       'The "open" property of the post-tooltip must be a boolean.',
     );
+  }
+
+  private extractText(node: Node): string {
+    if (node.nodeType === Node.TEXT_NODE) {
+      return node.textContent?.trim() ?? '';
+    }
+    if (node.nodeType === Node.ELEMENT_NODE) {
+      const element = node as Element;
+      return Array.from(element.childNodes)
+        .map(child => this.extractText(child))
+        .join(' ');
+    }
+    return '';
+  }
+
+  private setHostAriaLabel() {
+    if (!this.slotEl) return;
+    const assignedNodes = this.slotEl.assignedNodes({ flatten: true });
+    const textContent = assignedNodes
+      .map(node => this.extractText(node))
+      .join(' ')
+      .trim();
+    if (textContent) {
+      this.host.setAttribute('aria-label', textContent);
+    }
   }
 
   connectedCallback() {
@@ -105,7 +132,10 @@ export class PostTooltip {
           onPostToggle={e => this.handleToggle(e)}
           ref={(el: HTMLPostPopovercontainerElement) => (this.popoverRef = el)}
         >
-          <slot></slot>
+          <slot
+            ref={el => (this.slotEl = el as HTMLSlotElement)}
+            onSlotchange={() => this.setHostAriaLabel()}
+          ></slot>
         </post-popovercontainer>
       </Host>
     );
