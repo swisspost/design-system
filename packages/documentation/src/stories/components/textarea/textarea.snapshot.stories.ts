@@ -1,6 +1,7 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta from './textarea.stories';
 import { html } from 'lit';
+import { schemes } from '@/shared/snapshots/schemes';
 import { COMBINATIONS, getCombinations } from '@/utils/inputComponentsGetCombinations';
 
 const { id, ...metaWithoutId } = meta;
@@ -9,8 +10,6 @@ export default {
   ...metaWithoutId,
   title: 'Snapshots',
 };
-
-const SCHEME = ['light', 'dark'];
 
 type Story = StoryObj;
 
@@ -46,34 +45,42 @@ export const Textarea: Story = {
         textInside:
           'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
         rows: 3,
-      }
+      },
     ];
 
-    return html`
-      ${SCHEME.map(
-        scheme => html`
-          <div data-color-scheme="${scheme}" class="palette-default px-48">
-            <h3>Standard Combinations - ${scheme} Theme</h3>
-            <h4>Floating Label</h4>
-            ${getCombinations('floatingLabel', [true], combinations).map((args: Args) => {
-              context.id = crypto.randomUUID();
-              return html` <div class="mb-4">${meta.render?.({ ...context.args, ...args }, context)}</div> `;
-            })}
-            
-            <h4>Standard Label</h4>
-            ${getCombinations('floatingLabel', [false], combinations).map((args: Args) => {
-              context.id = crypto.randomUUID();
-              return html` <div class="mb-4">${meta.render?.({ ...context.args, ...args }, context)}</div> `;
-            })}
-            
-            <h3>Disabled with Overflow Text - ${scheme} Theme</h3>
-            ${disabledOverflowTextCombinations.map((args: Args) => {
-              context.id = crypto.randomUUID();
-              return html` <div class="mb-4">${meta.render?.({ ...context.args, ...args }, context)}</div> `;
-            })}
-          </div>
-        `
-      )}
-    `;
+    return schemes(
+      () => html`
+        <div>
+          <h2>Standard Combinations</h2>
+          <h3>Floating Label</h3>
+          ${getCombinations('floatingLabel', [true], combinations).map((args: Args) => {
+            context.id = crypto.randomUUID();
+            return html`
+              <div class="mb-4">${meta.render?.({ ...context.args, ...args }, context)}</div>
+            `;
+          })}
+
+          <h3>Standard Label</h3>
+          ${getCombinations('floatingLabel', [false], combinations).map((args: Args) => {
+            context.id = crypto.randomUUID();
+            return html`
+              <div class="mb-4">${meta.render?.({ ...context.args, ...args }, context)}</div>
+            `;
+          })}
+
+          <h2>Disabled with Overflow Text</h2>
+          ${disabledOverflowTextCombinations.map((args: Args) => {
+            context.id = crypto.randomUUID();
+            return html`
+              <div class="mb-4">${meta.render?.({ ...context.args, ...args }, context)}</div>
+            `;
+          })}
+        </div>
+      </div>
+    `,
+      {
+        additionalSchemes: ['dark'],
+      },
+    );
   },
 };
