@@ -4,6 +4,7 @@
   "description": "A changelog entry generator for GitHub that links to PRs and users",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
+  "private": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git"
@@ -19,19 +20,22 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "lint:fix": "eslint --fix",
+    "clean": "rimraf dist"
   },
   "dependencies": {
     "@changesets/get-github-info": "0.6.0",
     "@changesets/types": "6.0.0",
-    "dotenv": "16.4.5"
+    "dotenv": "16.5.0"
   },
   "devDependencies": {
     "@changesets/parse": "*",
     "@eslint/js": "9.18.0",
     "eslint": "9.18.0",
-    "globals": "15.14.0",
-    "typescript": "5.8.2",
-    "typescript-eslint": "8.20.0"
-  }
+    "globals": "16.0.0",
+    "typescript": "5.8.3",
+    "typescript-eslint": "8.20.0",
+    "rimraf": "6.0.1"
+  },
+  "keywords": ["changelog", "github", "changesets"]
 }

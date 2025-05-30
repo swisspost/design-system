@@ -5,8 +5,10 @@ import DocsLayout from './blocks/layout/layout';
 import {
   fullScreenUrlDecorator,
   openFullScreenDemo,
+  copyStoryConfigUrl,
   prettierOptions,
   resetComponents,
+  withUrlParams,
   openInCodePen,
 } from './helpers';
 import './helpers/register-web-components';
@@ -22,7 +24,7 @@ SyntaxHighlighter.registerLanguage('scss', scss);
 export const SourceDarkScheme = true;
 
 const preview: Preview = {
-  decorators: [fullScreenUrlDecorator],
+  decorators: [fullScreenUrlDecorator, withUrlParams],
   parameters: {
     options: {
       storySort: {
@@ -54,10 +56,6 @@ const preview: Preview = {
           // Category - Components
           'Components',
 
-          // Category - Modules
-          'Modules',
-          ['Header', 'Footer'],
-
           // Category - Utilities
           'Utilities',
 
@@ -80,6 +78,10 @@ const preview: Preview = {
           {
             title: 'View full screen',
             onClick: openFullScreenDemo,
+          },
+          {
+            title: 'Copy link',
+            onClick: copyStoryConfigUrl,
           },
           {
             title: 'Open in CodePen',
@@ -109,5 +111,4 @@ const preview: Preview = {
     },
   },
 };
-
 export default preview;

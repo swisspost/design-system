@@ -1,9 +1,10 @@
 {
   "name": "@swisspost/design-system-icons",
-  "version": "9.0.0-next.34",
+  "version": "10.0.0-next.38",
   "description": "A collection of Swiss Post icons intended for use with the Design System.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
+  "private": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git"
@@ -19,7 +20,6 @@
   "files": [
     "public"
   ],
-  "private": false,
   "scripts": {
     "play": "pnpm build && http-server ./public -o -a localhost -p 9330",
     "start": "nodemon",
@@ -41,14 +41,14 @@
     "@types/node-fetch": "2.6.11",
     "@typescript-eslint/eslint-plugin": "7.18.0",
     "@typescript-eslint/parser": "7.18.0",
-    "dotenv": "16.4.5",
+    "dotenv": "16.5.0",
     "eslint": "9.18.0",
     "eslint-plugin-jest": "28.11.0",
-    "globals": "15.14.0",
+    "globals": "16.0.0",
     "http-server": "14.1.1",
     "https-proxy-agent": "7.0.5",
     "jest": "29.7.0",
-    "mock-fs": "5.4.1",
+    "mock-fs": "5.5.0",
     "node-fetch": "2.7.0",
     "node-html-parser": "7.0.1",
     "nodemon": "3.1.7",
@@ -56,7 +56,7 @@
     "svgo": "3.3.2",
     "ts-jest": "29.2.5",
     "ts-node": "10.9.2",
-    "typescript": "5.8.2",
+    "typescript": "5.8.3",
     "typescript-eslint": "8.20.0"
   },
   "keywords": [

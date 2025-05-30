@@ -108,6 +108,25 @@ gulp.task('transform-package-json', done => {
 });
 
 /**
+ * Generate a SCSS variable `$post-icon-version` containing the current package version.
+ * This allows the `post-icon` mixin to dynamically resolve the correct icon URL
+ * based on the version defined in package.json.
+ */
+gulp.task('prebuild-env-vars', done => {
+  const version = require('./package.json').version;
+
+  const content = `$post-icon-version: '${version}';\n`;
+
+  fs.writeFileSync(
+    path.join(__dirname, 'src/utilities/_env-variables.scss'),
+    content,
+    'utf8'
+  );
+
+  done();
+});
+
+/**
  * Compile Scss to Css
  *  - Compile
  *  - Autoprefix
@@ -216,14 +235,17 @@ gulp.task(
  */
 exports.default = gulp.task(
   'build',
-  gulp.parallel(
-    gulp.series(
-      'generate-not-defined-components-scss',
-      'map-icons',
-      'copy',
-      'autoprefixer',
-      'transform-package-json',
-    ),
-    gulp.series('temporarily-copy-token-files', 'sass'),
+  gulp.series(
+    'prebuild-env-vars',
+    gulp.parallel(
+      gulp.series(
+        'generate-not-defined-components-scss',
+        'map-icons',
+        'copy',
+        'autoprefixer',
+        'transform-package-json',
+      ),
+      gulp.series('temporarily-copy-token-files', 'sass'),
+    )
   ),
 );

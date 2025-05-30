@@ -1,5 +1,34 @@
 # @swisspost/design-system-components-react
 
+## 10.0.0-next.38
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.38
+
+## 10.0.0-next.37
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.37
+
+## 9.0.0-next.36
+
+### Patch Changes
+
+- Fixed path to types file, errors like "Could not find a declaration file for module X" should now be gone. (by [@gfellerph](https://github.com/gfellerph) with [#5358](https://github.com/swisspost/design-system/pull/5358))
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.36
+
+## 9.0.0-next.35
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@9.0.0-next.35
+
 ## 9.0.0-next.34
 
 ### Patch Changes

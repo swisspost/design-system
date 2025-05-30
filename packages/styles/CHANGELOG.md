@@ -1,5 +1,41 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.38
+
+## 10.0.0-next.37
+
+### Major Changes
+
+- Fixed the disappearing validation icons on text input fields when browser autocomplete is applied. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5339](https://github.com/swisspost/design-system/pull/5339))
+
+- Prefixed the following CSS custom variables with `post`:
+  - `--section-width` is now `--post-section-width`
+  - `--section-container-width` is now `--post-section-container-width`
+  - `--section-container-content-offset` is now `--post-section-container-content-offset`
+  - `--section-container-padding` is now `--post-section-container-padding` (by [@leagrdv](https://github.com/leagrdv) with [#5354](https://github.com/swisspost/design-system/pull/5354))
+
+### Patch Changes
+
+- Fixed background on disabled textarea labels to maintain readability when content overflows. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5453](https://github.com/swisspost/design-system/pull/5453))
+
+## 9.0.0-next.36
+
+## 9.0.0-next.35
+
+### Major Changes
+
+- Removed all imports and CSS related to the bootstrap `navbar` component. (by [@leagrdv](https://github.com/leagrdv) with [#5313](https://github.com/swisspost/design-system/pull/5313))
+
+- Removed all of the imports from bootstrap regarding the `modal` component as well as all of its CSS style. (by [@leagrdv](https://github.com/leagrdv) with [#5309](https://github.com/swisspost/design-system/pull/5309))
+
+- Removed the `@mixin scroll-shadows-y` as its only use was in the modal component which has been removed. (by [@leagrdv](https://github.com/leagrdv) with [#5309](https://github.com/swisspost/design-system/pull/5309))
+
+### Patch Changes
+
+- Fixed an issue on iOS where floating labels would appear above the `post-header` component when an input was focused, by lowering their z-index to ensure they remain underneath the header, even during Safari's automatic zoom on form inputs, which alters the rendering context and can mess with layering. (by [@leagrdv](https://github.com/leagrdv) with [#5346](https://github.com/swisspost/design-system/pull/5346))
+
+- Added back the `.text-reset` class as it was deleted accidentally. (by [@leagrdv](https://github.com/leagrdv) with [#5290](https://github.com/swisspost/design-system/pull/5290))
+
 ## 9.0.0-next.34
 
 ### Major Changes
