@@ -16,7 +16,7 @@
     "noUnusedParameters": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
-    "lib": ["es2021"]
+    "lib": ["es2022"]
   },
   "include": ["**/*.ts", "**/*.js"],
   "exclude": ["node_modules", "dist"]
