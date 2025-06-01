@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property    | Attribute    | Description                                            | Type                  | Default     |
-| ----------- | ------------ | ------------------------------------------------------ | --------------------- | ----------- |
-| `logoutUrl` | `logout-url` | Override the logout-url provided by the portal config. | `string \| undefined` | `undefined` |
+| Property          | Attribute           | Description                                             | Type                  | Default     |
+| ----------------- | ------------------- | ------------------------------------------------------- | --------------------- | ----------- |
+| `logoutUrl`       | `logout-url`        | Overrides the logout-url provided by the portal config. | `string \| undefined` | `undefined` |
+| `selfAdminOrigin` | `self-admin-origin` | Overrides the self-admin origin for menu links.         | `string \| undefined` | `undefined` |
 
 
 ## Methods
