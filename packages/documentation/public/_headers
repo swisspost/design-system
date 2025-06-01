@@ -25,3 +25,7 @@ Access-Control-Allow-Origin: https://cdpn.io
 
 /post-icons/\*.svg
 Access-Control-Allow-Origin: https://cdpn.io
+
+Access-Control-Allow-Origin: *.post.ch
+X-Frame-Options: SAMEORIGIN
+X-Content-Type-Options = nosniff
