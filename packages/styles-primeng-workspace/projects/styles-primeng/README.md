@@ -1,14 +1,14 @@
-# Design System Styles for PrimeNg
+# Design System Styles for PrimeNG
 
 ![Swiss Post Design System splash screen](https://github.com/swisspost/design-system/assets/1659006/e84f1fea-e666-4853-8c85-726a6bf22e6c)
 
-Swiss Post styles for PrimeNg datatable.
+Swiss Post styles for PrimeNG datatable.
 
 ## Documentation
 
-The PrimeNg styles are documented in the Design System storybook.
+The PrimeNG styles are documented in the Design System storybook.
 
-[Styles for PrimeNg Documentation](https://design-system.post.ch/?path=/docs/d2112bed-c611-4098-a1ad-e654f7d622e7--docs)
+[Styles for PrimeNG Documentation](https://design-system.post.ch/?path=/docs/d2112bed-c611-4098-a1ad-e654f7d622e7--docs)
 
 ## Installation
 
@@ -18,7 +18,7 @@ To install the package in a project run:
 npm install primeng @swisspost/design-system-styles-primeng
 ```
 
-The PrimeNg theme and core styles are the necessary, as well as the Swiss Post styles.
+The PrimeNG theme and core styles are the necessary, as well as the Swiss Post styles.
 All three should be imported in the main style file of your Angular project, usually `src/styles.scss`.
 
 Be sure to assign a layer to the Design System styles to avoid interference.
