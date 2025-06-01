@@ -14,7 +14,7 @@ import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
 import { slideDown, slideUp } from '@/animations/slide';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
-import { eventGuard } from '@/utils/event-guard';
+import { EventGuard } from '@/utils/event-guard';
 
 export type DEVICE_SIZE = 'mobile' | 'tablet' | 'desktop' | null;
 
@@ -175,19 +175,13 @@ export class PostHeader {
     }
   }
 
-  private megedropdownStateHandler = (event: CustomEvent) => {
-    eventGuard(
-      this.host,
-      event,
-      {
-        targetLocalName: 'post-megadropdown',
-        delegatorSelector: 'post-header',
-      },
-      () => {
-        this.megadropdownOpen = event.detail.isVisible;
-      },
-    );
-  };
+  @EventGuard({
+    targetLocalName: 'post-megadropdown',
+    delegatorSelector: 'post-header'
+  })
+  private megedropdownStateHandler(event: CustomEvent) {
+    this.megadropdownOpen = event.detail.isVisible;
+  }
 
   // Get all the focusable elements in the post-header mobile menu
   private getFocusableElements() {

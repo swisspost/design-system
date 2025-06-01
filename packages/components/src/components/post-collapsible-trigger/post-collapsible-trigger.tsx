@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkNonEmpty, checkType, eventGuard, getRoot } from '@/utils';
+import { checkNonEmpty, checkType, EventGuard, getRoot } from '@/utils';
 
 @Component({
   tag: 'post-collapsible-trigger',
@@ -59,12 +59,11 @@ export class PostCollapsibleTrigger {
    * Private handler for the 'postToggle' event.
    * This updates the trigger's "aria-expanded" attribute based on the event detail.
    */
+  @EventGuard({ targetLocalName: 'post-collapsible' })
   private handlePostToggle(e: CustomEvent): void {
-    eventGuard(this.host, e, { targetLocalName: 'post-collapsible' }, () => {
-      if (this.trigger) {
-        this.trigger.setAttribute('aria-expanded', `${e.detail}`);
-      }
-    });
+    if (this.trigger) {
+      this.trigger.setAttribute('aria-expanded', `${e.detail}`);
+    }
   }
 
   private updateAriaAttributes() {
