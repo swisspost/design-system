@@ -1,5 +1,40 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.38
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.38
+  - @swisspost/design-system-styles@10.0.0-next.38
+
+## 10.0.0-next.37
+
+### Major Changes
+
+- Prefixed all CSS custom variables with `post`:
+
+  - `--global-header-top` is now `--post-global-header-top`
+  - `--local-header-top` is now `--post-local-header-top`
+  - `--logo-height` is now `--post-logo-height`
+  - `--global-controls-top` is now `--post-global-controls-top`
+  - `--header-navigation-current-inset` is now `--post-header-navigation-current-inset`
+  - `--header-scroll-parent-height` is now `--post-header-scroll-parent-height`
+  - All CSS variables starting with `--safe-space-*` in the `post-popovercontainer` component are now starting with `--post-safe-space-*` (by [@leagrdv](https://github.com/leagrdv) with [#5354](https://github.com/swisspost/design-system/pull/5354))
+
+- Removed the rotation of the back button in the `post-header`, which means users need to change the back button's icon `arrowright` to `arrowleft` to make sure it's pointing in the right direction. (by [@leagrdv](https://github.com/leagrdv) with [#5466](https://github.com/swisspost/design-system/pull/5466))
+
+- The default value of the arrow property for the <post-tooltip> element has been changed to `false`. This means, that tooltips do not display arrows by default anymore. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4477](https://github.com/swisspost/design-system/pull/4477))
+
+- The <post-tooltip-trigger> element has been introduced as the new way to trigger tooltips. Instead of using an attribute to associate a trigger with a <post-tooltip>, you now wrap the element in <post-tooltip-trigger>. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#4477](https://github.com/swisspost/design-system/pull/4477))
+
+### Patch Changes
+
+- Added cypress eslint plugin to enable linting for all cypress folders and files. (by [@schaertim](https://github.com/schaertim) with [#5102](https://github.com/swisspost/design-system/pull/5102))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.37
+  - @swisspost/design-system-styles@10.0.0-next.37
+
 ## 9.0.0-next.36
 
 ### Patch Changes

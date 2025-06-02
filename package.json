@@ -90,6 +90,7 @@
     "nextjs:build:serve": "pnpm --filter design-system-nextjs-integration build:serve",
     "nextjs:lint": "pnpm --filter design-system-nextjs-integration lint",
     "nextjs:lint:fix": "pnpm --filter design-system-nextjs-integration lint:fix",
+    "nextjs:typecheck": "pnpm --filter design-system-nextjs-integration typecheck",
     "primeng": "pnpm primeng:start",
     "primeng:start": "pnpm --filter design-system-styles-primeng-workspace start",
     "primeng:start:lib": "pnpm --filter design-system-styles-primeng-workspace start:lib",
@@ -106,8 +107,9 @@
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
   },
   "devDependencies": {
-    "@changesets/cli": "2.27.11",
-    "start-server-and-test": "2.0.9"
+    "@changesets/cli": "2.29.2",
+    "start-server-and-test": "2.0.9",
+    "turbo": "2.5.0"
   },
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"

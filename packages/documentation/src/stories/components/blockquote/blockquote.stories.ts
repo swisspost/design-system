@@ -15,7 +15,7 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.',
+    text: 'This is a sample blockquote text to demonstrate how the component looks and functions.',
     language: 'en',
     caption: true,
     captionAuthor: 'Author',
@@ -116,6 +116,6 @@ export const Default: Story = {};
 
 export const Nested: Story = {
   args: {
-    text: 'Consectetur <q>I am a nested quote!</q> adipiscing elit. Integer <q>I am a nested quote too!</q> posuere erat a ante.',
+    text: 'This is a text example with <q>I am a nested quote!</q> embedded within the main content. It also contains <q>I am a nested quote too!</q> to demonstrate multiple nested elements.',
   },
 };
