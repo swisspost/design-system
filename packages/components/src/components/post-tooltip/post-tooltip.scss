@@ -9,11 +9,7 @@
 tokens.$default-map: utilities.$post-spacing;
 
 :host {
-  display: none;
-}
-
-:host([open]) {
-  display: block;
+  display: contents;
 }
 
 post-popovercontainer {
