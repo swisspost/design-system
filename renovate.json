@@ -57,7 +57,7 @@
       "matchUpdateTypes": ["digest", "patch", "minor", "major"]
     },
     {
-      "groupName": "Stylelint major",
+      "groupName": "Stylelint",
       "matchPackageNames": ["^stylelint"],
       "matchUpdateTypes": ["digest", "patch", "minor", "major"]
     },
