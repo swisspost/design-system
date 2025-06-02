@@ -219,7 +219,7 @@ input.form-control {
     top: calc(tokens.get('input-sizing-height') / 2);
     transform: translateY(-50%);
     right: tokens.get('input-validation-icon-position-inline-end');
-    z-index: 2;
+    z-index: 1;
     pointer-events: none;
     @include icon-mx.post-icon(
       $name: 'warning-solid',

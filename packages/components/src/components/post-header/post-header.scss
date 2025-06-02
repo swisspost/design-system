@@ -62,7 +62,7 @@
   height: var(--post-global-header-height);
 
   @include media.max(lg) {
-    z-index: 3;
+    z-index: 4;
     inset-block-start: 0;
   }
 
@@ -154,7 +154,7 @@
   }
 
   @include media.max(lg) {
-    z-index: 2;
+    z-index: 3;
     inset-block-start: var(--post-global-header-height);
     padding-block: 8px;
 
@@ -214,7 +214,7 @@
 @include media.max(lg) {
   .navigation {
     position: sticky;
-    z-index: 1;
+    z-index: 2;
     inset-inline: 0;
     inset-block-start: var(--post-header-height);
   }
