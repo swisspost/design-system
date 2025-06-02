@@ -50,8 +50,8 @@ export class PostCollapsible {
       );
       this.isOpen = !this.collapsed;
     } else {
-    void this.toggle(!this.collapsed);
-  }
+      void this.toggle(!this.collapsed);
+    }
   }
 
   /**
