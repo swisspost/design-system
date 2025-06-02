@@ -43,6 +43,19 @@ export class PostTooltip {
     );
   }
 
+  private extractText(node: Node): string {
+    if (node.nodeType === Node.TEXT_NODE) {
+      return node.textContent?.trim() ?? '';
+    }
+    if (node.nodeType === Node.ELEMENT_NODE) {
+      const element = node as Element;
+      return Array.from(element.childNodes)
+        .map(child => this.extractText(child))
+        .join(' ');
+    }
+    return '';
+  }
+
   connectedCallback() {
     this.validateOpen();
   }
@@ -95,10 +108,11 @@ export class PostTooltip {
   render() {
     const popoverClass = `${this.arrow ? 'has-arrow' : ''}`;
     return (
-      <Host data-version={version} role="tooltip">
+      <Host data-version={version}>
         <post-popovercontainer
           safeSpace="trapezoid"
           class={popoverClass}
+          role="tooltip"
           arrow={this.arrow}
           animation={this.animation}
           placement={this.placement}
