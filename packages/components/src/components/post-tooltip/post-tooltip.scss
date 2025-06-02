@@ -9,6 +9,10 @@
 tokens.$default-map: utilities.$post-spacing;
 
 :host {
+  display: none;
+}
+
+:host([open]) {
   display: contents;
 }
 
