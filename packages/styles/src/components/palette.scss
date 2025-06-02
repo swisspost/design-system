@@ -20,15 +20,15 @@ body,
   }
 
   &[data-color-scheme] {
-    background-color: red !important;
-    color: black !important;
+    background-color: #f00 !important;
+    color: #000 !important;
 
     &::before {
       display: block;
       content: 'WARNING: Using the "data-color-scheme" attribute on this element is prohibited! Apply it on a parent element instead.';
       margin-bottom: 0.5rem;
       padding-bottom: 0.5rem;
-      border-bottom: 2px solid black;
+      border-bottom: 2px solid #000;
     }
   }
 }
