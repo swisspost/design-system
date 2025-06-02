@@ -56,6 +56,7 @@ export class PostLanguageOption {
     checkEmptyOrOneOf(this, 'variant', SWITCH_VARIANTS);
   }
 
+
   /**
    * The full name of the language. For example, "Deutsch".
    */

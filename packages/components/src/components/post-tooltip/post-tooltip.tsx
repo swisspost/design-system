@@ -42,7 +42,6 @@ export class PostTooltip {
 
   componentWillLoad() {
     this.validatePlacement();
-  }
 
   componentDidLoad() {
     if (!this.host.id) {
