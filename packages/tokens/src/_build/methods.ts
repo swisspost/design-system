@@ -230,11 +230,11 @@ export async function createOutputFiles(): Promise<void> {
           preprocessors: [
             'swisspost/box-shadow-keep-refs-workaround',
             'tokens-studio',
-            ...(config.proprocessors ?? []),
+            ...(config.preprocessors ?? []),
           ],
         });
 
-        config.platforms = Object.entries(config.platforms).reduce(
+        config.platforms = Object.entries(config.platforms || {}).reduce(
           (platforms, [name, platform]) => ({
             ...platforms,
             [name]: objectDeepmerge(platform, {
@@ -260,7 +260,7 @@ export async function createOutputFiles(): Promise<void> {
    * @param config
    * StyleDictionary Config object
    */
-  async function build(config) {
+  async function build(config: Config): Promise<void> {
     const sd = new StyleDictionary(config);
     await sd.buildAllPlatforms();
   }
@@ -269,7 +269,7 @@ export async function createOutputFiles(): Promise<void> {
    * @function createIndexFile()
    * Creates the index.scss file (which uses/forwards the other output files) in the "OUTPUT_PATH" directory.
    */
-  async function createIndexFile() {
+  async function createIndexFile(): Promise<void> {
     const header = FILE_HEADER.map(h => `// ${h}`).join('\n');
     const imports = Object.entries(tokenSets.output)
       .map(([name, { layer }]) => `@${layer === 'core' ? 'use' : 'forward'} './${name}';`)
@@ -283,7 +283,7 @@ export async function createOutputFiles(): Promise<void> {
    * Copies the tokens.json file from the "SOURCE_PATH" to the "OUTPUT_PATH" directory,
    * to make it availble in the package distribution.
    */
-  async function copySrcFiles() {
+  async function copySrcFiles(): Promise<void> {
     await promises.copyFile(`${SOURCE_PATH}/tokens.json`, `${OUTPUT_PATH}/tokens.json`);
   }
 }
@@ -292,7 +292,7 @@ export async function createOutputFiles(): Promise<void> {
  * @function removeTokenSetFiles()
  * Removes the temporary token set files from the "SOURCE_PATH/_temp" directory.
  */
-export async function removeTokenSetFiles() {
+export async function removeTokenSetFiles(): Promise<void> {
   console.log(`\x1b[90mCleanup...`);
   await promises.rm(`${SOURCE_PATH}/_temp/`, { recursive: true });
   console.log(`\x1b[33m✓ Complete!`);
