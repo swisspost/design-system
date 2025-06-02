@@ -56,3 +56,6 @@ export const NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES = [
   'spacing',
   'sizing',
 ];
+
+export const PX_TO_REM_TOKEN_TYPE = 'fontSize';
+export const BASE_FONT_SIZE = 16;

@@ -9,7 +9,6 @@
 @use './../functions/tokens';
 @use './../mixins/color-scheme';
 @use './../tokens/utilities';
-@use './../tokens/elements';
 @use './../tokens/components';
 
 tokens.$default-map: components.$post-cards;
@@ -151,7 +150,7 @@ post-linkarea:has(> .card) {
 
   &:hover,
   &:focus {
-    color: tokens.get('body-color-fg', elements.$post-body);
+    color: var(--post-current-fg);
     text-decoration: none;
   }
 

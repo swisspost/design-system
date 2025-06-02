@@ -4,6 +4,11 @@ on:
     workflows: ['Build Documentation']
     types: [completed]
 
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
 jobs:
   deploy:
     name: Deploy Documentation Preview
@@ -11,7 +16,7 @@ jobs:
     if: ${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
 
       - name: Setup pnpm & node
         uses: ./.github/actions/setup-pnpm
@@ -34,7 +39,7 @@ jobs:
 
       - name: Get netlify config
         id: netlify-config
-        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
+        uses: actions/github-script@e7aeb8c663f696059ebb5f9ab1425ed2ef511bdb
         with:
           script: |
             const fs = require('fs')
@@ -63,7 +68,7 @@ jobs:
 
       - name: Create Summary
         id: summary
-        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
+        uses: actions/github-script@e7aeb8c663f696059ebb5f9ab1425ed2ef511bdb
         with:
           script: |
             return `# Deployed Documentation Preview

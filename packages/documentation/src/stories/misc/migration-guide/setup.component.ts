@@ -19,10 +19,7 @@ export class SetupComponent extends LitElement {
       <section>
         <div class="row gap-24 migration-options">
           <div class="col-auto">
-            <label
-              class="form-label font-curve-small fw-bold d-block mb-12"
-              for="docs_Default_ExampleSelect"
-            >
+            <label class="form-label fs-9 fw-bold d-block mb-12" for="docs_Default_ExampleSelect">
               What currentVersion of the Design System is your application currently using?
             </label>
             <select
@@ -30,6 +27,9 @@ export class SetupComponent extends LitElement {
               id="docs_Default_ExampleSelect"
               class="form-select form-select-lg"
             >
+              <option value="9" ?selected="${this.currentVersion === 9}">
+                @swisspost/design-system-styles 9.x.x
+              </option>
               <option value="8" ?selected="${this.currentVersion === 8}">
                 @swisspost/design-system-styles 8.x.x
               </option>
@@ -53,7 +53,7 @@ export class SetupComponent extends LitElement {
           </div>
           <div class="col-12">
             <fieldset @change="${this._onEnvironmentChange}">
-              <legend class="font-curve-small fw-bold">
+              <legend class="fs-9 fw-bold">
                 What environment is your application for?
               </legend>
               <div class="form-check form-check-inline mb-0">
@@ -86,7 +86,7 @@ export class SetupComponent extends LitElement {
           </div>
           <div class="col-12">
             <fieldset @change="${this._onAngularChange}">
-              <legend class="font-curve-small fw-bold">
+              <legend class="fs-9 fw-bold">
                 What technology is your application built with?
               </legend>
               <div class="form-check form-check-inline mb-0">

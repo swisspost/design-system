@@ -25,9 +25,6 @@ export const Palette: Story = {
           </div>
         </div>
       `,
-      {
-        additionalSchemes: ['none'],
-      },
     );
   },
 };

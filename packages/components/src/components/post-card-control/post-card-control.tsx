@@ -70,7 +70,7 @@ export class PostCardControl {
   /**
    * Defines the description in the control-label.
    */
-  @Prop() readonly description: string = null;
+  @Prop() readonly description?: string;
 
   /**
    * Defines the `type` attribute of the control.
@@ -79,15 +79,15 @@ export class PostCardControl {
 
   /**
    * Defines the `name` attribute of the control.
-   * <span className="banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span>
+   * <span className="mb-4 banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span>
    * <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
    */
-  @Prop() readonly name: string = null;
+  @Prop() readonly name?: string;
 
   /**
    * Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
    */
-  @Prop() readonly value: string = null;
+  @Prop() readonly value?: string;
 
   /**
    * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms' data.
@@ -103,13 +103,13 @@ export class PostCardControl {
    * Defines the validation `validity` of the control.
    * To reset validity to an undefined state, simply remove the attribute from the control.
    */
-  @Prop({ mutable: true }) validity: null | 'true' | 'false' = null;
+  @Prop({ mutable: true }) validity?: boolean;
 
   /**
    * Defines the icon `name` inside the card.
    * <span className="banner banner-sm banner-info">If not set the icon will not show up.</span>
    */
-  @Prop() readonly icon: string = null;
+  @Prop() readonly icon?: string;
 
   /**
    * An event emitted whenever the components checked state is toggled.
@@ -126,11 +126,11 @@ export class PostCardControl {
 
   /**
    * A public method to reset the controls `checked` and `validity` state.
-   * The validity state is set to `null`, so it's neither valid nor invalid.
+   * The validity state is set to `undefined`, so it's neither valid nor invalid.
    */
   @Method()
   async reset() {
-    this.validity = null;
+    this.validity = undefined;
     this.controlSetChecked(this.initialChecked);
   }
 
@@ -348,8 +348,8 @@ export class PostCardControl {
             'is-checked': this.checked,
             'is-disabled': this.disabled,
             'is-focused': this.focused,
-            'is-valid': this.validity !== null && this.validity !== 'false',
-            'is-invalid': this.validity === 'false',
+            'is-valid': this.validity !== undefined && this.validity !== false,
+            'is-invalid': this.validity === false,
           }}
         >
           <input
@@ -362,7 +362,7 @@ export class PostCardControl {
             checked={this.checked}
             aria-describedby={`${this.controlId}_content`}
             aria-disabled={this.disabled}
-            aria-invalid={this.validity === 'false'}
+            aria-invalid={this.validity === false}
             onClick={this.controlClickHandler}
             onInput={this.controlChangeHandler}
             onChange={this.controlChangeHandler}

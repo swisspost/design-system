@@ -1,6 +1,7 @@
 // importing the complete styles package scss
 @use '@swisspost/design-system-styles/core.scss' as post;
 @use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/tokens/utilities';
 @use '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css';
 @use './components';
@@ -59,8 +60,10 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
   .sbdocs-content .container {
     // Support for autolink-headings
     .docs-title :is(h1, h2, h3, h4, h5, h6),
+    post-tab-panel > :is(h1, h2, h3, h4, h5, h6),
     > :is(h1, h2, h3, h4, h5, h6) {
       position: relative;
+      padding-right: 32px; // needed to add space for the link icon
 
       @media (hover: hover) {
         > a {
@@ -70,10 +73,9 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
       > a {
         position: absolute;
-        top: 52%;
-        transform: translateY(-50%);
+        bottom: 0;
         font-size: 1.5rem;
-        padding: 0.625rem;
+        padding: 0.5rem;
         line-height: 1;
       }
 
@@ -85,12 +87,24 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
   // Style buttons related to the current page next to the tile
   .docs-title,
-  .docs-title nav {
+  .docs-title > .buttons-container {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: tokens.get('utility-gap-8', utilities.$post-spacing);
   }
+
+  // aligns figma button to the title
+  .docs-title > link-design,
+  .docs-title > .buttons-container {
+    margin-block-end: tokens.get('h1-margin-block-end', elements.$post-heading);
+  }
+
+  // ensures the focus ring is visible on anchor links
+  .docs-container ul li a > p {
+    display: inline;
+  }
+
   .docs-title {
     margin-bottom: tokens.get('utility-gap-8', utilities.$post-spacing);
 
@@ -99,8 +113,18 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     }
   }
 
+  .npm-package-link a {
+    display: inline-block;
+    @include post.focus-style;
+  }
+
   pre {
     font-size: 100%;
+
+    .token.comment,
+    .token.doctype {
+      color: #888;
+    }
   }
 
   code {
@@ -149,10 +173,20 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     }
   }
 
+  .sbdocs-expandable {
+    color: #0073bc;
+  }
+
   .docs-story {
     [scale] {
       transform: none;
     }
+  }
+
+  .docblock-argstable-body td a,
+  // targets only the visible buttons
+  .docblock-argstable-body td button:not([tabindex='-1']):not([tabindex='0']) {
+    color: #0073bc;
   }
 
   .docblock-source {
@@ -195,8 +229,50 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
   overflow-x: hidden;
 }
 
-.sbdocs-preview:not([data-color-scheme]) {
-  display: none;
+.sbdocs-preview {
+  &:not([data-color-scheme]) {
+    display: none;
+  }
+
+  .docs-story {
+    > div:last-child {
+      background: none !important;
+
+      button {
+        color: inherit;
+      }
+    }
+  }
+
+  &[data-color-scheme='light'] {
+    .docs-story {
+      > div:last-child {
+        button {
+          background-color: #efefef;
+          border-color: #ccc;
+
+          &:hover {
+            background-color: #e2e2e2;
+          }
+        }
+      }
+    }
+  }
+
+  &[data-color-scheme='dark'] {
+    .docs-story {
+      > div:last-child {
+        button {
+          background-color: #4b4b4b;
+          border-color: #5d5d5d;
+
+          &:hover {
+            background-color: #424242;
+          }
+        }
+      }
+    }
+  }
 }
 
 .fake-content {

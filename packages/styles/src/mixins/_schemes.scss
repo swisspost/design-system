@@ -1,4 +1,9 @@
 @use '../tokens/temp/schemestatic';
+
+/**
+ * Check for light-dark support was added so we don't use CSS functions that don't work anyway.
+ * This check becomes obsolete when the fallback is removed.
+ */
 @use '../mixins/supports';
 
 @mixin light-variables() {

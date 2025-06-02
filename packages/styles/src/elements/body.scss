@@ -17,7 +17,5 @@ body {
   line-height: tokens.get('body-line-height');
   letter-spacing: tokens.get('body-letter-spacing');
   font-variant-numeric: proportional-nums;
-  color: tokens.get('body-color-fg');
-  background-color: tokens.get('body-color-bg');
   min-height: 100vh;
 }

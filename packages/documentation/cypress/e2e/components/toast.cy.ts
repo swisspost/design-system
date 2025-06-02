@@ -7,9 +7,9 @@ describe('toast', () => {
 
     it('should hide on close button click', () => {
       cy.get('@triggerCreateToast').click();
-      cy.get('.toast').should('exist');
+      cy.get('.toast').should('exist').and('be.visible');
       cy.get('.toast-close-button').click();
-      cy.get('.toast').should('not.exist');
+      cy.get('.toast').should('not.be.visible');
     });
   });
 

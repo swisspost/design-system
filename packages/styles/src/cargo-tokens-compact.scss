@@ -6,5 +6,5 @@
   @include meta.load-css('./tokens/device-compact');
   @include meta.load-css('./tokens/appearance-compact');
   @include meta.load-css('./tokens/cargo-theme');
-  @include meta.load-css('./tokens/palette');
+  @include meta.load-css('./tokens/palettes');
 }

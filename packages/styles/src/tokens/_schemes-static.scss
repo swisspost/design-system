@@ -1,6 +1,11 @@
 @use './core';
-@use '../mixins/supports';
 @use '../mixins/schemes';
+
+/**
+ * Check for light-dark support was added so we don't use CSS functions that don't work anyway.
+ * This check becomes obsolete when the fallback is removed.
+ */
+@use '../mixins/supports';
 
 // prefered root color-scheme
 :root {
@@ -12,7 +17,7 @@
     @include schemes.light-variables;
 
     @include supports.light-dark(false) {
-      --fallback-prefers-light: ;
+      --post-fallback-prefers-light: ;
     }
   }
 
@@ -20,7 +25,7 @@
     @include schemes.dark-variables;
 
     @include supports.light-dark(false) {
-      --fallback-prefers-light: initial;
+      --post-fallback-prefers-light: initial;
     }
   }
 }
@@ -34,7 +39,7 @@
   }
 
   @include supports.light-dark(false) {
-    --fallback-prefers-light: ;
+    --post-fallback-prefers-light: ;
   }
 }
 
@@ -47,6 +52,6 @@
   }
 
   @include supports.light-dark(false) {
-    --fallback-prefers-light: initial;
+    --post-fallback-prefers-light: initial;
   }
 }

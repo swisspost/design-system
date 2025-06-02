@@ -6,17 +6,21 @@ interface IOptions {
 }
 
 export const COLOR_SCHEMES = {
+  none: 'preffered',
   light: 'light',
-  // dark: 'dark',
+  dark: 'dark',
 };
 
 export function schemes(renderFn: (scheme: string) => TemplateResult, options: IOptions = {}) {
   const filter = options.filter || (() => true);
   const additionalSchemes = options.additionalSchemes ?? [];
 
-  return html`${[...additionalSchemes, ...Object.values(COLOR_SCHEMES)]
-    .filter(filter)
-    .map(
-      scheme => html` <div data-color-scheme="${scheme}" class="p-16">${renderFn(scheme)}</div>`,
-    )}`;
+  return html`${[...Object.values(COLOR_SCHEMES), ...additionalSchemes].filter(filter).map(
+    scheme => html` <div data-color-scheme="${scheme}">
+      <div class="p-16 palette palette-default">
+        <p>Color Scheme: ${scheme}</p>
+        ${renderFn(scheme)}
+      </div>
+    </div>`,
+  )}`;
 }
