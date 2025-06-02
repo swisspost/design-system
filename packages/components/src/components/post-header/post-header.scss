@@ -53,6 +53,26 @@
   justify-content: space-between;
 }
 
+.global-header,
+.local-header {
+  // Ensure smooth transitions after viewport changes
+  transition: inset-block-start 0.2s ease-in-out, transform 0.1s ease-out;
+  
+  // Force hardware acceleration for smoother repositioning
+  transform: translateZ(0);
+  will-change: inset-block-start;
+}
+
+// iOS Safari specific fixes
+@supports (-webkit-touch-callout: none) {
+  .global-header,
+  .local-header {
+    // Force recomposition after viewport changes
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+}
+
 .global-header {
   background-color: #ffcc00;
   display: flex;
@@ -85,11 +105,6 @@
       position: relative;
       transition: inset-block-start 0.2s ease-in-out;
       inset-block-start: var(--post-global-controls-top);
-    }
-
-    // targets the target group
-    &:not(:last-child):not(:first-child) {
-      flex-grow: 1;
     }
   }
 }
@@ -225,15 +240,10 @@
 
   ::slotted(post-mainnavigation),
   .navigation-footer {
-    padding-block: 16px 24px;
-    padding-inline: 32px;
-  }
-
-  ::slotted(post-mainnavigation),
-  .navigation-footer,
-  .navigation-target-group {
     display: none;
     flex-direction: column;
+    padding-block: 16px 24px;
+    padding-inline: 32px;
 
     .navigation.extended & {
       display: flex;
