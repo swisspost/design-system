@@ -7,7 +7,6 @@
 @use './../mixins/utilities' as utilities-mx;
 
 @use '../functions/tokens';
-@use '../tokens/elements';
 @use '../tokens/utilities';
 
 .pagination {
@@ -22,7 +21,7 @@
 
     .page-link {
       height: 100%;
-      color: tokens.get('body-color-fg', elements.$post-body);
+      color: var(--post-current-fg);
       text-align: center;
       text-decoration: none;
 

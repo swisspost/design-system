@@ -3,7 +3,6 @@
 @use 'sass:map';
 @use '../mixins';
 @use '@swisspost/design-system-styles/functions/tokens';
-@use '@swisspost/design-system-styles/tokens/elements';
 @use '@swisspost/design-system-styles/tokens/utilities';
 
 $post-docs-banner-padding-md: 1em 2em 1em 3.5em;
@@ -43,7 +42,7 @@ $post-docs-banner-line-height-sm: 1.25;
     a {
       font-size: inherit;
       font-weight: inherit;
-      color: tokens.get('body-color-fg', elements.$post-body);
+      color: var(--post-current-fg);
 
       &:hover {
         color: black;
