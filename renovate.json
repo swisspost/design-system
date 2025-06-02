@@ -42,7 +42,10 @@
         "!bootstrap",
         "!@storybook/*",
         "!@angular/*",
-        "!@stencil/*"
+        "!@stencil/*",
+        "!tailwindcss",
+        "!@eslint/*",
+        "!next"
       ],
       "matchUpdateTypes": ["patch"]
     },
