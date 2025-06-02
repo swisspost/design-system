@@ -58,18 +58,6 @@ export class PostTooltip {
     return '';
   }
 
-  private setHostAriaLabel() {
-    if (!this.slotEl) return;
-    const assignedNodes = this.slotEl.assignedNodes({ flatten: true });
-    const textContent = assignedNodes
-      .map(node => this.extractText(node))
-      .join(' ')
-      .trim();
-    if (textContent) {
-      this.host.setAttribute('aria-label', textContent);
-    }
-  }
-
   connectedCallback() {
     this.validateOpen();
   }
@@ -122,20 +110,18 @@ export class PostTooltip {
   render() {
     const popoverClass = `${this.arrow ? 'has-arrow' : ''}`;
     return (
-      <Host data-version={version} role="tooltip">
+      <Host data-version={version}>
         <post-popovercontainer
           safeSpace="trapezoid"
           class={popoverClass}
+          role="tooltip"
           arrow={this.arrow}
           animation={this.animation}
           placement={this.placement}
           onPostToggle={e => this.handleToggle(e)}
           ref={(el: HTMLPostPopovercontainerElement) => (this.popoverRef = el)}
         >
-          <slot
-            ref={el => (this.slotEl = el as HTMLSlotElement)}
-            onSlotchange={() => this.setHostAriaLabel()}
-          ></slot>
+          <slot></slot>
         </post-popovercontainer>
       </Host>
     );
