@@ -1,6 +1,11 @@
 import StyleDictionary from 'style-dictionary';
 import { register } from '@tokens-studio/sd-transforms';
-import { BASE_FONT_SIZE, FILE_HEADER, NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES, PX_TO_REM_TOKEN_TYPE } from './constants.js';
+import {
+  BASE_FONT_SIZE,
+  FILE_HEADER,
+  NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES,
+  PX_TO_REM_TOKEN_TYPE,
+} from './constants.ts';
 
 register(StyleDictionary);
 
