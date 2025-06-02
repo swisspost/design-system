@@ -250,11 +250,11 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     .docs-story {
       > div:last-child {
         button {
-          background-color: rgba(0, 0, 0, 0.05);
-          border-color: rgba(0, 0, 0, 0.15);
+          background-color: #efefef;
+          border-color: #ccc;
 
           &:hover {
-            background-color: rgba(0, 0, 0, 0.15);
+            background-color: #e2e2e2;
           }
         }
       }
@@ -265,11 +265,11 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     .docs-story {
       > div:last-child {
         button {
-          background-color: rgba(255, 255, 255, 0.1);
-          border-color: rgba(255, 255, 255, 0.1);
+          background-color: #4b4b4b;
+          border-color: #5d5d5d;
 
           &:hover {
-            background-color: rgba(255, 255, 255, 0.15);
+            background-color: #424242;
           }
         }
       }
