@@ -129,12 +129,12 @@ describe('Palette', () => {
           // check if palette background- and foreground-color are set correctly, according to the palette color-scheme
           switch (paletteScheme) {
             case 'light':
-              expect(isDark(paletteBg)).to.be.false;
-              expect(isDark(paletteFg)).to.be.true;
+              expect(isDark(paletteBg)).to.equal(false);
+              expect(isDark(paletteFg)).to.equal(true);
               break;
             case 'dark':
-              expect(isDark(paletteBg)).to.be.true;
-              expect(isDark(paletteFg)).to.be.false;
+              expect(isDark(paletteBg)).to.equal(true);
+              expect(isDark(paletteFg)).to.equal(false);
               break;
           }
         });
