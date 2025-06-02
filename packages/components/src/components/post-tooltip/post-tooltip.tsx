@@ -12,8 +12,6 @@ import { checkType } from '@/utils';
 export class PostTooltip {
   private popoverRef: HTMLPostPopovercontainerElement;
 
-  private slotEl!: HTMLSlotElement;
-
   @Element() host: HTMLPostTooltipElement;
 
   /**
