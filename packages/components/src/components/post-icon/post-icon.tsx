@@ -2,12 +2,6 @@ import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
 import { checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '@/utils';
 import { version } from '@root/package.json';
 
-type UrlDefinition = {
-  url: URL;
-  definesDomain: boolean;
-  definesSlug: boolean;
-};
-
 const CDN_URL = `https://unpkg.com/@swisspost/design-system-icons@${version}/public/post-icons`;
 const ANIMATION_NAMES = [
   'cylon',
@@ -111,65 +105,50 @@ export class PostIcon {
     checkEmptyOrType(newValue, 'number', 'The post-icon "scale" prop should be a number.');
   }
 
-  // Construct the icon url from different possible sources
-  private getUrl() {
-    // the first definition object which defines a domain, will be used to set the domain of the file url
-    // the first definition object which defines a slug, will be used to set the slug of the file url
-    const urlDefinitions = [
-      getUrlDefinition(this.base, 'both'),
-      getUrlDefinition(document.querySelector('base[href]')?.getAttribute('href'), 'both'),
-      getUrlDefinition(
-        document.head
-          .querySelector('meta[name="design-system-settings"][data-post-icon-base]')
-          ?.getAttribute('data-post-icon-base'),
-        'both',
-      ),
-    ];
+  // Construct the icon URL according to the following rules:
+  // - URL = current domain + base[href] + meta[data-post-icon-base] (or component base)
+  // - If base[href] is not relative, it's used instead of current domain + base[href]
+  // - If meta[data-post-icon-base] (or component base) is not relative, it's used as is
+  private getUrl(): string {
+    const fileName = `${this.name}.svg`;
+    const currentDomain = window.location.origin;
 
-    // in case no other definition defines a domain, the current origin is used as a fallback
-    const origin = urlDefinitions.find(d => d.definesDomain)?.url?.origin ?? window.location.origin;
-    // in case no other definition defines a slug, the cdn url is used as a fallback
-    const slug = urlDefinitions.find(d => d.definesSlug)?.url?.pathname;
-    const file = `${this.name}.svg`;
+    const baseHref = document.querySelector('base[href]')?.getAttribute('href') || '';
+    const isBaseHrefAbsolute = /^https?:\/\//.test(baseHref);
+
+    const metaIconBase =
+      document
+        .querySelector('meta[name="design-system-settings"]')
+        ?.getAttribute('data-post-icon-base') || '';
+
+    const iconBase = this.base || metaIconBase;
+    const isIconBaseAbsolute = /^https?:\/\//.test(iconBase);
+
+    const normalizedBaseHref = normalizeUrl(baseHref);
+    const normalizedIconBase = normalizeUrl(iconBase);
+
+    function normalizeUrl(url: string) {
+      if (!url) return '';
+      return url.endsWith('/') ? url : `${url}/`;
+    }
 
     let url: string;
 
-    if (slug) {
-      url = new URL(`${origin}${slug}/${file}`).toString();
+    if (isIconBaseAbsolute) {
+      // If icon base is absolute, use it as is
+      url = `${normalizedIconBase}${fileName}`;
+    } else if (isBaseHrefAbsolute) {
+      // If baseHref is absolute, don't use current domain
+      url = `${normalizedBaseHref}${normalizedIconBase}${fileName}`;
+    } else if (iconBase || baseHref) {
+      // Standard case: domain + baseHref + iconBase
+      url = `${currentDomain}${normalizedBaseHref}${normalizedIconBase}${fileName}`;
     } else {
-      url = new URL(`${CDN_URL}/${file}`).toString();
+      // Fallback to CDN if no paths are specified
+      url = `${CDN_URL}/${fileName}`;
     }
 
-    return url;
-
-    function getUrlDefinition(
-      url: string | undefined | null,
-      allow: 'both' | 'absolute' | 'relative',
-    ): UrlDefinition {
-      return {
-        url: getUrlObject(url),
-        definesDomain: allow !== 'relative' ? definesDomain(url) : false,
-        definesSlug: allow !== 'absolute' ? definesSlug(url) : false,
-      } as UrlDefinition;
-
-      function getUrlObject(url: string | undefined | null) {
-        if (url) {
-          return definesDomain(url) ? new URL(url) : new URL(url, window.location.origin);
-        } else {
-          return null;
-        }
-      }
-
-      function definesDomain(url: string | undefined | null) {
-        return url ? /^https?:\/\//.test(url) : false;
-      }
-
-      function definesSlug(url: string | undefined | null) {
-        if (url == '/') return true;
-        const urlObject = getUrlObject(url);
-        return Boolean(/^\/.+/.test(urlObject?.pathname));
-      }
-    }
+    return url.replace(/([^:])\/\//g, '$1/');
   }
 
   private getStyles() {
