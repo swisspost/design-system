@@ -23,6 +23,10 @@ export const Tabs: Story = {
           }).map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
         </div>
       `,
+      {
+        // dark mode is not yet designed/implemented
+        filter: scheme => scheme === 'light',
+      },
     );
   },
 };
