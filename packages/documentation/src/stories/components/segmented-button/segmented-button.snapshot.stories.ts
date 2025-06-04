@@ -1,6 +1,6 @@
 import type { StoryObj } from '@storybook/web-components';
 import meta from './segmented-button.stories';
-import { html, nothing } from 'lit'; // ← ajout de `nothing`
+import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 
 const { id, ...metaWithoutId } = meta;
