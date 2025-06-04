@@ -16,7 +16,7 @@ export class PostLogo {
   /**
    * The URL to which the user is redirected upon clicking the logo.
    */
-  @Prop() url: string | URL;
+  @Prop() url?: string | URL;
 
   @Watch('url')
   validateUrl() {
