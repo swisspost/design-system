@@ -17,6 +17,7 @@ import {
 
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
 import { apply, isSupported } from '@oddbird/popover-polyfill/dist/popover-fn.js';
+import { popInAnimation } from '@/animations/pop-in';
 
 interface PopoverElement {
   showPopover: () => void;
@@ -178,7 +179,12 @@ export class PostPopovercontainer {
 
     const isOpen = e.newState === 'open';
     if (isOpen) {
+      const content = this.host.querySelector('.popover-content');
       this.startAutoupdates();
+      if (content) {
+        popInAnimation(content);
+      }
+
       if (this.safeSpace)
         window.addEventListener('mousemove', this.mouseTrackingHandler.bind(this));
     } else {
@@ -348,11 +354,9 @@ export class PostPopovercontainer {
   }
 
   render() {
-    const animationClass = this.animation ? `animate-${this.animation}` : '';
-
     return (
       <Host data-version={version} popover={this.manualClose ? 'manual' : 'auto'}>
-        <div class={animationClass}>
+        <div class="popover-content">
           {this.arrow && (
             <span
               class="arrow"
