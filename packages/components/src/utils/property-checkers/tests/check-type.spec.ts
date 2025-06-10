@@ -132,7 +132,7 @@ describe('checkType', () => {
   describe('object', () => {
     beforeAll(() => {
       type = 'object';
-      error = 'The prop `prop` of the `post-component` component must be of type `object`';
+      error = 'The prop `prop` of the `post-component` component must be of type `object`.';
     });
 
     it('should not throw an error if the value is an object', () => {

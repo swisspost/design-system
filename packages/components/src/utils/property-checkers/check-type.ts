@@ -13,8 +13,7 @@ export function checkType<T extends { host: HTMLElement }>(
 
   const message = `The prop \`${String(
     prop,
-  )}\` of the \`${componentName}\` component must be of type \`
-    ${type}\`.`;
+  )}\` of the \`${componentName}\` component must be of type \`${type}\`.`;
 
   if (typeIsArray || valueIsArray) {
     if (valueIsArray !== typeIsArray) {
