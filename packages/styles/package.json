@@ -21,8 +21,9 @@
   "scripts": {
     "play": "vite --open",
     "start": "gulp watch",
-    "build": "pnpm clean && gulp build",
-    "clean": "rimraf out-tsc dist src/tokens/temp",
+    "build": "pnpm turbo run build:force",
+    "build:force": "pnpm clean && gulp build",
+    "clean": "rimraf dist src/tokens/temp",
     "unit": "gulp sass:tests",
     "lint": "stylelint src/**/*.scss !src/tokens/temp/**",
     "lint:fix": "stylelint src/**/*.scss !src/tokens/temp/** --fix",
