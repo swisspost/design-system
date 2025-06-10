@@ -134,21 +134,21 @@ export class PostMenu {
     delegatorSelector: 'post-menu'
   })
   private handlePostToggle = (event: CustomEvent<boolean>) => {
-    this.isVisible = event.detail;
-    this.toggleMenu.emit(this.isVisible);
+      this.isVisible = event.detail;
+      this.toggleMenu.emit(this.isVisible);
 
-    requestAnimationFrame(() => {
-      if (this.isVisible) {
-        this.lastFocusedElement = this.root?.activeElement as HTMLElement;
-        const menuItems = this.getSlottedItems();
-        if (menuItems.length > 0) {
-          (menuItems[0] as HTMLElement).focus();
+      requestAnimationFrame(() => {
+        if (this.isVisible) {
+          this.lastFocusedElement = this.root?.activeElement as HTMLElement;
+          const menuItems = this.getSlottedItems();
+          if (menuItems.length > 0) {
+            (menuItems[0] as HTMLElement).focus();
+          }
+        } else if (this.lastFocusedElement) {
+          this.lastFocusedElement.focus();
         }
-      } else if (this.lastFocusedElement) {
-        this.lastFocusedElement.focus();
-      }
-    });
-  }
+      });
+    };
 
   private handleClick = (e: MouseEvent) => {
     const target = e.target as HTMLElement;
