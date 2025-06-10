@@ -15,7 +15,7 @@ describe('checkUrl', () => {
       'localhost:3000',
     ].forEach(validUrl => {
       const component = { host: { localName: 'post-component' } as HTMLElement, prop: validUrl };
-      expect(() => checkUrl(component, 'prop', errorMessage)).not.toThrow();
+      expect(() => checkUrl(component, 'prop')).not.toThrow();
     });
   });
 
@@ -31,7 +31,7 @@ describe('checkUrl', () => {
     ].forEach(invalidUrl => {
       const component = { host: { localName: 'post-component' } as HTMLElement, prop: invalidUrl };
       // Type casting because we know that these are not valid arguments, it's just for testing
-      expect(() => checkUrl(component, 'prop', errorMessage)).toThrow(errorMessage);
+      expect(() => checkUrl(component, 'prop')).toThrow(errorMessage);
     });
   });
 });
