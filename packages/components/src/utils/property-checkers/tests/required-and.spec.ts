@@ -1,15 +1,16 @@
 import { requiredAnd } from '../required-and';
-
+import { EMPTY_VALUES } from '../constants';
 describe('requiredAnd', () => {
   const mockCheck = jest.fn();
 
   const mockRequiredAndCheck = requiredAnd(mockCheck);
 
-  it('should NOT run the check if the provided value is empty', () => {
-    [undefined, null, ''].forEach(emptyValue => {
+  it('should throw error if the provided value is empty', () => {
+    EMPTY_VALUES.forEach(emptyValue => {
       const component = { host: { localName: 'post-component' } as HTMLElement, prop: emptyValue };
-      mockRequiredAndCheck(component, 'prop');
-      expect(mockCheck).not.toHaveBeenCalled();
+      const prop = component['prop'];
+      const error = `The prop \`${emptyValue}\` of the \`post-component\` component is not defined.`;
+      expect(() => mockRequiredAndCheck(component, prop)).toThrow(error);
     });
   });
 

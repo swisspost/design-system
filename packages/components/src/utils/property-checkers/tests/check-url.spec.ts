@@ -1,7 +1,7 @@
 import { checkUrl } from '../check-url';
 
 describe('checkUrl', () => {
-  const errorMessage = 'Invalid URL';
+  const errorMessage = 'The prop `prop` of the `post-component` component is invalid.';
 
   test('should not throw an error if the value is an URL string or an URL object', () => {
     [
