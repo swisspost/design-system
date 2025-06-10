@@ -50,7 +50,7 @@ export class PostIcon {
 
   @Watch('base')
   validateBase() {
-    checkEmptyOrType(this, 'base', 'string');
+    checkType(this, 'base', 'string');
   }
 
   /**
@@ -82,7 +82,7 @@ export class PostIcon {
 
   @Watch('rotate')
   validateRotate() {
-    checkEmptyOrType(this, 'rotate', 'number');
+    checkType(this, 'rotate', 'number');
   }
 
   /**
@@ -92,7 +92,7 @@ export class PostIcon {
 
   @Watch('scale')
   validateScale() {
-    checkEmptyOrType(this, 'scale', 'number');
+    checkType(this, 'scale', 'number');
   }
 
   // Construct the icon url from different possible sources

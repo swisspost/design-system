@@ -65,7 +65,7 @@ export class PostBanner {
         checkType(this, 'dismissLabel', 'string');
       }
     }
-    checkEmptyOrType(this, 'dismissLabel', 'string');
+    checkType(this, 'dismissLabel', 'string');
   }
 
   /**
@@ -77,7 +77,7 @@ export class PostBanner {
 
   @Watch('icon')
   validateIcon() {
-    checkEmptyOrType(this, 'icon', 'string');
+    checkType(this, 'icon', 'string');
   }
 
   /**

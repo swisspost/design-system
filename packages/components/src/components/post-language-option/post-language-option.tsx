@@ -56,7 +56,6 @@ export class PostLanguageOption {
     checkEmptyOrOneOf(this, 'variant', SWITCH_VARIANTS);
   }
 
-
   /**
    * The full name of the language. For example, "Deutsch".
    */
@@ -64,7 +63,7 @@ export class PostLanguageOption {
 
   @Watch('name')
   validateName() {
-    checkEmptyOrType(this, 'name', 'string');
+    checkType(this, 'name', 'string');
   }
 
   /**

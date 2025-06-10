@@ -1,7 +1,7 @@
 import { Component, Element, h, Host, Listen, Method, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { HEADING_LEVELS, HeadingLevel } from '@/types';
-import { checkEmptyOrOneOf } from '@/utils';
+import { checkOneOf } from '@/utils';
 import { nanoid } from 'nanoid';
 import { eventGuard } from '@/utils/event-guard';
 
@@ -40,12 +40,7 @@ export class PostAccordionItem {
 
   @Watch('headingLevel')
   validateHeadingLevel() {
-    checkEmptyOrOneOf(
-      this,
-      'headingLevel',
-      HEADING_LEVELS,
-      'The `heading-level` property of the `post-accordion-item` must be a number between 1 and 6.',
-    );
+    checkOneOf(this, 'headingLevel', HEADING_LEVELS);
   }
 
   componentWillLoad() {
@@ -65,7 +60,7 @@ export class PostAccordionItem {
       { targetLocalName: 'post-collapsible', delegatorSelector: 'post-accordion-item' },
       () => {
         this.collapsed = !event.detail;
-      }
+      },
     );
   }
 

@@ -49,7 +49,7 @@ export class PostTag {
 
   @Watch('icon')
   validateName() {
-    checkEmptyOrType(this, 'icon', 'string');
+    checkType(this, 'icon', 'string');
   }
 
   private setClasses() {

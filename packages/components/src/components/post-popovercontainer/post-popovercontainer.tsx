@@ -118,7 +118,7 @@ export class PostPopovercontainer {
 
   @Watch('edgeGap')
   validateEdgeGap() {
-    checkEmptyOrType(this, 'edgeGap', 'number');
+    checkType(this, 'edgeGap', 'number');
   }
 
   @Watch('safeSpace')

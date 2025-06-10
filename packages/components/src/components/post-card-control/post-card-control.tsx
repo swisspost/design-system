@@ -153,7 +153,7 @@ export class PostCardControl {
 
   @Watch('description')
   validateControlDescription() {
-    checkEmptyOrType(this, 'description', 'string');
+    checkType(this, 'description', 'string');
   }
 
   @Watch('type')

@@ -36,7 +36,7 @@ export class PostBreadcrumbs {
 
   @Watch('homeText')
   validateHomeText() {
-    checkEmptyOrType(this, 'homeUrl', 'string');
+    checkType(this, 'homeUrl', 'string');
   }
 
   componentWillLoad() {
