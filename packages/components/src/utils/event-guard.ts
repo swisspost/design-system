@@ -6,7 +6,7 @@
  */
 export function EventGuard(options: { targetLocalName: string; delegatorSelector?: string }) {
   return function (
-    target: any,
+    target: unknown,
     propertyKey: string,
     descriptor?: PropertyDescriptor
   ) {
@@ -39,7 +39,7 @@ export function EventGuard(options: { targetLocalName: string; delegatorSelector
         get() {
           return this[privateKey];
         },
-        set(originalFunction: Function) {
+        set(originalFunction: (event: CustomEvent) => void) {
           if (typeof originalFunction === 'function') {
             this[privateKey] = (event: CustomEvent) => {
               if (!event || !event.target) return;
@@ -64,23 +64,6 @@ export function EventGuard(options: { targetLocalName: string; delegatorSelector
       });
     }
   };
-}
-
-export function eventGuard(
-  host: HTMLElement,
-  event: CustomEvent,
-  options: { targetLocalName: string; delegatorSelector?: string },
-  callback: () => void
-): void {
-  const target = event.target as HTMLElement | null;
-
-  if (!target) return;
-
-  if (target.localName === options.targetLocalName) {
-    if (!options.delegatorSelector || shadowClosest(target, options.delegatorSelector) === host) {
-      callback();
-    }
-  }
 }
 
 /**

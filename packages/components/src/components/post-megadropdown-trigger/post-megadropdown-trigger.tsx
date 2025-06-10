@@ -68,22 +68,22 @@ export class PostMegadropdownTrigger {
 
   @EventGuard({ targetLocalName: 'post-megadropdown' })
   private handleToggleMegadropdown = (event: CustomEvent<{ isVisible: boolean; focusParent: boolean }>) => {
-    if ((event.target as HTMLPostMegadropdownElement).id === this.for) {
-      this.ariaExpanded = event.detail.isVisible;
+      if ((event.target as HTMLPostMegadropdownElement).id === this.for) {
+        this.ariaExpanded = event.detail.isVisible;
 
-      // Focus on the trigger parent of the dropdown after it's closed if the close button had been clicked
-      if (this.wasExpanded && !this.ariaExpanded && event.detail.focusParent) {
-        setTimeout(() => {
-          this.slottedButton?.focus();
-        }, 100);
-      }
-      this.wasExpanded = this.ariaExpanded;
+        // Focus on the trigger parent of the dropdown after it's closed if the close button had been clicked
+        if (this.wasExpanded && !this.ariaExpanded && event.detail.focusParent) {
+          setTimeout(() => {
+            this.slottedButton?.focus();
+          }, 100);
+        }
+        this.wasExpanded = this.ariaExpanded;
 
-      if (this.slottedButton) {
-        this.slottedButton.setAttribute('aria-expanded', this.ariaExpanded.toString());
+        if (this.slottedButton) {
+          this.slottedButton.setAttribute('aria-expanded', this.ariaExpanded.toString());
+        }
       }
-    }
-  };
+    };
 
   componentDidLoad() {
     this.validateControlFor();
