@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Updated prop checker functions and validate functions for various components.
+Inverted logic of prop checker functions and updated validate functions accross the component library.
