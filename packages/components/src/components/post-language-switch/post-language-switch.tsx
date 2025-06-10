@@ -63,6 +63,8 @@ export class PostLanguageSwitch {
     // Initially set variants and active language
     // Handles cases where the language-switch is rendered after the language-options have been rendered
     this.updateChildrenVariant();
+
+    this.updateLanguageOptionsRole();
   }
 
   /**
@@ -111,6 +113,14 @@ export class PostLanguageSwitch {
     });
   }
 
+  // Update post-language-options to have role="menuitem"
+  private updateLanguageOptionsRole() {
+    const languageOptionBtns = this.host.querySelectorAll('post-language-option > button');
+    languageOptionBtns.forEach(langOptionBtn => {
+      langOptionBtn.setAttribute('role', 'menuitem');
+    });
+  }
+
   private renderList() {
     return (
       <Host data-version={version} role="list" aria-label={this.caption}>
@@ -134,6 +144,7 @@ export class PostLanguageSwitch {
           id={this.menuId}
           class="post-language-switch-dropdown-container"
           aria-label={this.caption}
+          role="menu"
         >
           <slot></slot>
         </post-menu>
