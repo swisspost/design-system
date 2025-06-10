@@ -146,7 +146,7 @@ export namespace Components {
          */
         "name"?: string;
         /**
-          * A public method to reset the controls `checked` and `validity` state. The validity state is set to `undefined`, so it's neither valid nor invalid.
+          * A public method to reset the controls `checked` and `validity` state. The validity state is set to `null`, so it's neither valid nor invalid.
          */
         "reset": () => Promise<void>;
         /**
@@ -156,7 +156,7 @@ export namespace Components {
         /**
           * Defines the validation `validity` of the control. To reset validity to an undefined state, simply remove the attribute from the control.
          */
-        "validity"?: boolean;
+        "validity"?: 'true' | 'false';
         /**
           * Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
          */
@@ -1043,7 +1043,7 @@ declare namespace LocalJSX {
         /**
           * Defines the validation `validity` of the control. To reset validity to an undefined state, simply remove the attribute from the control.
          */
-        "validity"?: boolean;
+        "validity"?: 'true' | 'false';
         /**
           * Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
          */
