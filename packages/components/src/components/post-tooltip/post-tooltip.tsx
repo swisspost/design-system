@@ -2,7 +2,7 @@ import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core'
 import { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
 import { PostPopovercontainerCustomEvent } from '@/components';
-import { checkEmptyOrOneOf } from '@/utils';
+import { checkOneOf } from '@/utils';
 import { PLACEMENT_TYPES } from '@/types';
 
 @Component({
@@ -24,7 +24,7 @@ export class PostTooltip {
 
   @Watch('placement')
   validatePlacement() {
-    checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
+    checkOneOf(this, 'placement', PLACEMENT_TYPES);
   }
 
   /**

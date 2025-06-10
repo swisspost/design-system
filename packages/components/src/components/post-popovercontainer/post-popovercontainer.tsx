@@ -10,7 +10,7 @@ import {
   Watch,
 } from '@stencil/core';
 
-import { IS_BROWSER, checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
+import { IS_BROWSER, checkOneOf, checkType } from '@/utils';
 import { version } from '@root/package.json';
 
 import {
@@ -113,7 +113,7 @@ export class PostPopovercontainer {
   @Prop({ reflect: true }) readonly safeSpace?: 'triangle' | 'trapezoid';
   @Watch('placement')
   validatePlacement() {
-    checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
+    checkOneOf(this, 'placement', PLACEMENT_TYPES);
   }
 
   @Watch('edgeGap')
@@ -123,7 +123,7 @@ export class PostPopovercontainer {
 
   @Watch('safeSpace')
   validateSafeSpace() {
-    checkEmptyOrOneOf(this, 'safeSpace', ['triangle', 'trapezoid']);
+    checkOneOf(this, 'safeSpace', ['triangle', 'trapezoid']);
   }
 
   /**

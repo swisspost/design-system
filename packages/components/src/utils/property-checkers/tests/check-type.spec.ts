@@ -1,4 +1,5 @@
-import { checkType, PropertyType } from '../check-type';
+import { checkType } from '../check-type';
+import { PropertyType } from '@/types';
 
 describe('checkType', () => {
   let type: PropertyType;
@@ -6,7 +7,7 @@ describe('checkType', () => {
 
   const runCheckForValue = (value: unknown) => () => {
     const component = { host: { localName: 'post-component' } as HTMLElement, prop: value };
-    checkType(component, 'prop', type, error);
+    checkType(component, 'prop', type);
   };
 
   describe('boolean', () => {

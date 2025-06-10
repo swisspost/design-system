@@ -6,7 +6,7 @@ describe('checkOneOf', () => {
 
   const runCheckForValue = (value: string) => () => {
     const component = { host: { localName: 'post-component' } as HTMLElement, prop: value };
-    checkOneOf(component, 'prop', possibleValues, error);
+    checkOneOf(component, 'prop', possibleValues);
   };
 
   it('should not throw an error if the value is one of the possible values', () => {

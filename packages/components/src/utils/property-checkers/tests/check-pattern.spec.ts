@@ -7,7 +7,7 @@ describe('checkPattern', () => {
 
   const runCheckForValue = (value: unknown) => () => {
     const component = { host: { localName: 'post-component' } as HTMLElement, prop: value };
-    checkPattern(component, 'prop', pattern, error);
+    checkPattern(component, 'prop', pattern);
   };
 
   it('should not throw an error if the value matches the provided pattern', () => {
