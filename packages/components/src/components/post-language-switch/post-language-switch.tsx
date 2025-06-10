@@ -64,10 +64,7 @@ export class PostLanguageSwitch {
     // Handles cases where the language-switch is rendered after the language-options have been rendered
     this.updateChildrenVariant();
 
-    const languageOptionBtns = this.host.querySelectorAll('post-language-option > button');
-    languageOptionBtns.forEach(langOptionBtn => {
-      langOptionBtn.setAttribute('role', 'menuitem');
-    });
+    this.updateLanguageOptionsRole();
   }
 
   /**
@@ -113,6 +110,14 @@ export class PostLanguageSwitch {
   private updateChildrenVariant() {
     this.languageOptions.forEach(el => {
       el.setAttribute('variant', this.variant);
+    });
+  }
+
+  // Update post-language-options to have role="menuitem"
+  private updateLanguageOptionsRole() {
+    const languageOptionBtns = this.host.querySelectorAll('post-language-option > button');
+    languageOptionBtns.forEach(langOptionBtn => {
+      langOptionBtn.setAttribute('role', 'menuitem');
     });
   }
 
