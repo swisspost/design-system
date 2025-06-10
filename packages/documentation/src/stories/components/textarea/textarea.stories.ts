@@ -26,7 +26,7 @@ const meta: MetaComponent = {
     floatingLabel: true,
     hiddenLabel: false,
     value: undefined,
-    hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
+    hint: 'This is helpful text that provides guidance or additional information to assist the user in filling out this field correctly.',
     disabled: false,
     validation: 'null',
   },
@@ -147,11 +147,11 @@ function renderTextarea(args: Args, context: StoryContext) {
   const contextual = [
     args.validation === 'is-valid'
       ? html`<p class="valid-feedback" id="${args.validation}-id-${context.id}">
-          Ggranda sukceso!
+          Great success!
         </p>`
       : null,
     args.validation === 'is-invalid'
-      ? html`<p class="invalid-feedback" id="${args.validation}-id-${context.id}">Eraro okazis!</p>`
+      ? html`<p class="invalid-feedback" id="${args.validation}-id-${context.id}">An error occurred!</p>`
       : null,
     args.hint !== ''
       ? html`<p class="form-hint" id="form-hint-${context.id}">${args.hint}</p>`

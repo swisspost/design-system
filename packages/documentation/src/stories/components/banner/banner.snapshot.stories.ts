@@ -76,10 +76,10 @@ export const Banner: Story = {
                     ? html`
                         <div class="banner-buttons">
                           <button class="btn btn-primary">
-                            <span>Akcepti</span>
+                            <span>Accept</span>
                           </button>
                           <button class="btn btn-secondary">
-                            <span>Aborti</span>
+                            <span>Cancel</span>
                           </button>
                         </div>
                       `

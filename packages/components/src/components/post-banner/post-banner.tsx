@@ -50,7 +50,7 @@ export class PostBanner {
   /**
    * The label to use for the close button of a dismissible banner.
    */
-  @Prop() readonly dismissLabel: string;
+  @Prop() readonly dismissLabel?: string;
 
   @Watch('dismissLabel')
   validateDismissLabel() {
@@ -68,7 +68,7 @@ export class PostBanner {
    *
    * If `none`, no icon is displayed.
    */
-  @Prop() readonly icon: string;
+  @Prop() readonly icon?: string;
 
   @Watch('icon')
   validateIcon() {

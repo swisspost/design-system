@@ -17,19 +17,19 @@ export class PostTag {
   /**
    * Defines the color variant of the component.
    */
-  @Prop() readonly variant: 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
+  @Prop() readonly variant?: 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
 
   /**
    * Defines the size of the component.
    */
-  @Prop() readonly size: null | 'sm' = null;
+  @Prop() readonly size?: 'sm';
 
   /**
    * Defines the icon `name` inside of the component.
    * <span className="banner banner-sm banner-info">If not set the icon will not show up.</span>
    * To learn which icons are available, please visit our <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs">icon library</a>.
    */
-  @Prop() readonly icon: null | string = null;
+  @Prop() readonly icon: string;
 
   constructor() {
     this.setClasses = this.setClasses.bind(this);
