@@ -1,6 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { schemes } from '@/shared/snapshots/schemes';
 import meta from './palettes.stories';
 
 const { id, ...metaWithoutId } = meta;
@@ -14,14 +13,10 @@ type Story = StoryObj;
 
 export const Palette: Story = {
   render: (_args: Args, context: StoryContext) => {
-    return schemes(
-      (scheme: string) => html`
-        <div class="d-flex">
-          ${meta.argTypes?.palette?.options?.map(palette =>
-            meta.render({ palette, colorScheme: scheme }, context),
-          )}
-        </div>
-      `,
-    );
+    const paletteOptions = meta.argTypes?.palette?.options;
+
+    return html`
+      ${paletteOptions?.map(palette => (meta.render ? meta.render({ palette }, context) : null))}
+    `;
   },
 };

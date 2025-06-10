@@ -1,3 +1,5 @@
+import { addA11yTests } from '../shared/a11y';
+
 interface PaletteDefinition {
   name: string;
   scheme: 'even' | 'swapped' | 'light' | 'dark';
@@ -29,11 +31,13 @@ const THEME_PALETTE_DEFINITIONS: ThemeDefinition[] = [
   },
 ];
 
+const SCHEMES = ['light', 'dark'];
+
 function testGenerator(
   callback: (theme: string, scheme: string, palette: PaletteDefinition) => void,
 ) {
   THEME_PALETTE_DEFINITIONS.forEach(theme => {
-    ['light', 'dark'].forEach(scheme => {
+    SCHEMES.forEach(scheme => {
       theme.palettes.forEach(palette => {
         callback(theme.name, scheme, palette);
       });
@@ -143,14 +147,7 @@ describe('Palette', () => {
   });
 });
 
-describe('Accessibility', () => {
-  beforeEach(() => {
-    cy.visit('/iframe.html?id=snapshots--palette');
-    cy.get('.palette-default', { timeout: 30000 }).should('be.visible');
-    cy.injectAxe();
-  });
-
-  it('Has no detectable a11y violations on load for all variants', () => {
-    cy.checkA11y('#root-inner');
-  });
+addA11yTests({
+  storyName: 'palette',
+  storySelector: '.palette-default',
 });
