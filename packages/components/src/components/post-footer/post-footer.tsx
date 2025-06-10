@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkRequiredAndType, checkType, breakpoint } from '@/utils';
+import { checkRequiredAndType, breakpoint } from '@/utils';
 
 /**
  * @slot grid-{1|2|3|4}-title - Slot for the accordion headers (mobile).
