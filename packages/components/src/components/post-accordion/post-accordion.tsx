@@ -51,7 +51,7 @@ export class PostAccordion {
 
   @Listen('postToggle')
   @EventGuard({ targetLocalName: 'post-accordion-item', delegatorSelector: 'post-accordion' })
-  collapseToggleHandler(event: CustomEvent<boolean>) {{
+  collapseToggleHandler(event: CustomEvent<boolean>) {
     const toggledAccordionItem = event.target as HTMLPostAccordionItemElement;
     const isClosing = this.expandedItems.has(toggledAccordionItem);
 
@@ -69,7 +69,6 @@ export class PostAccordion {
       .forEach(item => {
         item.toggle(false);
       });
-  }
   }
   
   /**

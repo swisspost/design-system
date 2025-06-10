@@ -67,7 +67,7 @@ export class PostMegadropdownTrigger {
   };
 
   @EventGuard({ targetLocalName: 'post-megadropdown' })
-  private handleToggleMegadropdown (event: CustomEvent<{ isVisible: boolean; focusParent: boolean }>) {
+  private handleToggleMegadropdown = (event: CustomEvent<{ isVisible: boolean; focusParent: boolean }>) => {
     if ((event.target as HTMLPostMegadropdownElement).id === this.for) {
       this.ariaExpanded = event.detail.isVisible;
 

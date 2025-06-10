@@ -6,33 +6,81 @@
  */
 export function EventGuard(options: { targetLocalName: string; delegatorSelector?: string }) {
   return function (
-    _target: object,
-    _propertyKey: string,
-    descriptor: PropertyDescriptor
+    target: any,
+    propertyKey: string,
+    descriptor?: PropertyDescriptor
   ) {
-    const originalMethod = descriptor.value;
-
-    descriptor.value = function (event: CustomEvent) {
-      // Check if event is properly defined
-      if (!event || !event.target) return;
-
-      const target = event.target as HTMLElement;
+    if (descriptor) {
+      const originalMethod = descriptor.value;
       
-      // Verify target matches the expected element type
-      if (target.localName !== options.targetLocalName) return;
+      descriptor.value = function (event: CustomEvent) {
+        if (!event || !event.target) return;
 
-      // If delegator selector is provided, verify event originated from within the correct component
-      if (options.delegatorSelector) {
-        const closest = shadowClosest(target, options.delegatorSelector);
-        if (closest !== this.host) return;
-      }
+        const eventTarget = event.target as HTMLElement;
+        
+        if (eventTarget.localName !== options.targetLocalName) return;
+        
+        if (options.delegatorSelector) {
+          const closest = shadowClosest(eventTarget, options.delegatorSelector);
+          if (closest !== this.host) return;
+        }
 
-      // All checks passed, call original method
-      return originalMethod.call(this, event);
-    };
+        return originalMethod.call(this, event);
+      };
+    } else {
+      const privateKey = `__${propertyKey}_original`;
+      
+      Object.defineProperty(target, privateKey, {
+        writable: true,
+        configurable: true
+      });
 
-    return descriptor;
+      Object.defineProperty(target, propertyKey, {
+        get() {
+          return this[privateKey];
+        },
+        set(originalFunction: Function) {
+          if (typeof originalFunction === 'function') {
+            this[privateKey] = (event: CustomEvent) => {
+              if (!event || !event.target) return;
+
+              const eventTarget = event.target as HTMLElement;
+              
+              if (eventTarget.localName !== options.targetLocalName) return;
+              
+              if (options.delegatorSelector) {
+                const closest = shadowClosest(eventTarget, options.delegatorSelector);
+                if (closest !== this.host) return;
+              }
+
+              return originalFunction.call(this, event);
+            };
+          } else {
+            this[privateKey] = originalFunction;
+          }
+        },
+        configurable: true,
+        enumerable: true
+      });
+    }
   };
+}
+
+export function eventGuard(
+  host: HTMLElement,
+  event: CustomEvent,
+  options: { targetLocalName: string; delegatorSelector?: string },
+  callback: () => void
+): void {
+  const target = event.target as HTMLElement | null;
+
+  if (!target) return;
+
+  if (target.localName === options.targetLocalName) {
+    if (!options.delegatorSelector || shadowClosest(target, options.delegatorSelector) === host) {
+      callback();
+    }
+  }
 }
 
 /**
