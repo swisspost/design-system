@@ -1,0 +1,51 @@
+---
+'@swisspost/design-system-icons': minor
+---
+
+Added icons:
+
+- `admin` (line): 64px
+- `advertisement` (line): 64px
+- `agile` (line): 64px
+- `arrowbottomleft` (line): 64px
+- `arrowbottomright` (line): 64px
+- `arrowdownleft` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `arrowdown` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `arrowrightdown` (line): 64px
+- `arrowtopleft` (line): 64px
+- `arrowtopright` (line): 64px
+- `arrowup` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `backoffice` (line): 64px
+- `barcodeno` (line): 64px
+- `call` (line): 64px
+- `consulting` (line): 64px
+- `copy` (line): 64px
+- `counterdelivery` (line): 64px
+- `cybersecurity` (line): 64px
+- `dashboard` (line): 64px
+- `express` (line): 64px
+- `gaslabelnobarcode` (line): 64px
+- `government` (line): 64px
+- `height` (line): 64px
+- `length` (line): 64px
+- `letterbig` (line): 64px
+- `letterin` (line): 64px
+- `letterout` (line): 64px
+- `militaryconsigments` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `parcelin` (line): 64px
+- `parcelout` (line): 64px
+- `pickathome` (line): 64px
+- `prefranked` (line): 64px
+- `receiverservice` (line): 64px
+- `registeredmail` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `retail` (line): 64px
+- `route` (line): 64px
+- `smallconsigment` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `sortocr` (line): 64px
+- `stampapostplus` (line): 64px
+- `switzerland` (line & solid): 16, 24, 32, 40, 48 and 64px
+- `tiktok` (line): 64px
+- `vaccinedocument` (line): 64px
+- `walkfast` (line): 64px
+- `walkslow` (line): 64px
+- `width` (line): 64px
