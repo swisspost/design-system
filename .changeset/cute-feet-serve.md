@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Added ARIA roles to `<post-language-switch>` to enforce screen reader focus mode navigation.
+Improved accessibility by adding ARIA roles to trigger Screen Readers' focus mode navigation.
