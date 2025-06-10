@@ -1,14 +1,14 @@
-import { emptyOr } from '../empty-or';
+import { requiredAnd } from '../required-and';
 
-describe('emptyOr', () => {
+describe('requiredAnd', () => {
   const mockCheck = jest.fn();
 
-  const mockEmptyOrCheck = emptyOr(mockCheck);
+  const mockRequiredAndCheck = requiredAnd(mockCheck);
 
-  it('should not run the check if the provided value is empty', () => {
+  it('should NOT run the check if the provided value is empty', () => {
     [undefined, null, ''].forEach(emptyValue => {
       const component = { host: { localName: 'post-component' } as HTMLElement, prop: emptyValue };
-      mockEmptyOrCheck(component, 'prop');
+      mockRequiredAndCheck(component, 'prop');
       expect(mockCheck).not.toHaveBeenCalled();
     });
   });
@@ -29,7 +29,7 @@ describe('emptyOr', () => {
         host: { localName: 'post-component' } as HTMLElement,
         prop: nonEmptyValue,
       };
-      mockEmptyOrCheck(component, 'prop');
+      mockRequiredAndCheck(component, 'prop');
       expect(mockCheck).toHaveBeenCalledTimes(index + 1);
     });
   });
@@ -40,9 +40,9 @@ describe('emptyOr', () => {
     args.forEach(arg => {
       const component = { host: { localName: 'post-component' } as HTMLElement, prop: arg };
 
-      mockEmptyOrCheck(component, 'prop', arg);
+      mockRequiredAndCheck(component, 'prop', ...args);
 
-      expect(mockCheck).toHaveBeenLastCalledWith(component, 'prop', arg);
+      expect(mockCheck).toHaveBeenLastCalledWith(component, 'prop', ...args);
     });
   });
 });
