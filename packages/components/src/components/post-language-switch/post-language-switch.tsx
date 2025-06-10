@@ -63,6 +63,11 @@ export class PostLanguageSwitch {
     // Initially set variants and active language
     // Handles cases where the language-switch is rendered after the language-options have been rendered
     this.updateChildrenVariant();
+
+    const languageOptionBtns = this.host.querySelectorAll('post-language-option > button');
+    languageOptionBtns.forEach(langOptionBtn => {
+      langOptionBtn.setAttribute('role', 'menuitem');
+    });
   }
 
   /**

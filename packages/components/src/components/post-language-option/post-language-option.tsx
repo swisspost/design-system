@@ -143,7 +143,6 @@ export class PostLanguageOption {
             lang={lang}
             onClick={() => this.emitChange()}
             onKeyDown={emitOnKeyDown}
-            role="menuitem"
           >
             <slot />
           </button>
