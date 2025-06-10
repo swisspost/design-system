@@ -13,7 +13,7 @@ describe('checkType', () => {
   describe('boolean', () => {
     beforeAll(() => {
       type = 'boolean';
-      error = 'Not a boolean.';
+      error = 'The prop `prop` of the `post-component` component must be of type `boolean`.';
     });
 
     it('should not throw an error if the value is a boolean', () => {
@@ -43,7 +43,7 @@ describe('checkType', () => {
   describe('number', () => {
     beforeAll(() => {
       type = 'number';
-      error = 'Not a number.';
+      error = 'The prop `prop` of the `post-component` component must be of type `number`.';
     });
 
     it('should not throw an error if the value is a number', () => {
@@ -72,7 +72,7 @@ describe('checkType', () => {
   describe('string', () => {
     beforeAll(() => {
       type = 'string';
-      error = 'Not a string.';
+      error = 'The prop `prop` of the `post-component` component must be of type `string`.';
     });
 
     it('should not throw an error if the value is a string', () => {
@@ -102,7 +102,7 @@ describe('checkType', () => {
   describe('array', () => {
     beforeAll(() => {
       type = 'array';
-      error = 'Not an array.';
+      error = 'The prop `prop` of the `post-component` component must be of type `array`.';
     });
 
     it('should not throw an error if the value is an array', () => {
@@ -132,7 +132,7 @@ describe('checkType', () => {
   describe('object', () => {
     beforeAll(() => {
       type = 'object';
-      error = 'Not an object.';
+      error = 'The prop `prop` of the `post-component` component must be of type `object`';
     });
 
     it('should not throw an error if the value is an object', () => {
@@ -160,7 +160,7 @@ describe('checkType', () => {
   describe('function', () => {
     beforeAll(() => {
       type = 'function';
-      error = 'Not a function.';
+      error = 'The prop `prop` of the `post-component` component must be of type `function`.';
     });
 
     it('should not throw an error if the value is a function', () => {

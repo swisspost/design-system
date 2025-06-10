@@ -2,7 +2,8 @@ import { checkOneOf } from '../check-one-of';
 
 describe('checkOneOf', () => {
   const possibleValues = ['A', 'B', 'C', 'D'];
-  const error = 'Is not one of.';
+  const error =
+    'The prop `prop` of the `post-component` component must be one of the following values: A, B, C, D.';
 
   const runCheckForValue = (value: string) => () => {
     const component = { host: { localName: 'post-component' } as HTMLElement, prop: value };
