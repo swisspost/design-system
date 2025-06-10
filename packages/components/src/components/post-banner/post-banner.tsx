@@ -12,7 +12,7 @@ import {
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { fadeOut } from '@/animations';
-import { checkEmptyOrOneOf, checkNonEmpty, checkEmptyOrType, checkType } from '@/utils';
+import { checkRequiredAndType, checkOneOf, checkType } from '@/utils';
 import { BANNER_TYPES, BannerType } from './banner-types';
 import { nanoid } from 'nanoid';
 
@@ -55,15 +55,7 @@ export class PostBanner {
   @Watch('dismissLabel')
   validateDismissLabel() {
     if (this.dismissible) {
-      if (
-        !checkNonEmpty(
-          this,
-          'dismissLabel',
-          'Dismissible post-banner\'s require a "dismiss-label" prop.',
-        )
-      ) {
-        checkType(this, 'dismissLabel', 'string');
-      }
+      checkRequiredAndType(this, 'dismissLabel', 'string');
     }
     checkType(this, 'dismissLabel', 'string');
   }
@@ -87,7 +79,7 @@ export class PostBanner {
 
   @Watch('type')
   validateType() {
-    checkEmptyOrOneOf(this, 'type', BANNER_TYPES);
+    checkOneOf(this, 'type', BANNER_TYPES);
   }
 
   /**

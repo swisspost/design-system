@@ -1,5 +1,5 @@
 import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
-import { IS_BROWSER, checkType, checkEmptyOrType, checkEmptyOrOneOf, checkNonEmpty } from '@/utils';
+import { IS_BROWSER, checkType, checkRequiredAndType, checkRequiredAndOneOf } from '@/utils';
 import { version } from '@root/package.json';
 
 type UrlDefinition = {
@@ -40,7 +40,7 @@ export class PostIcon {
 
   @Watch('animation')
   validateAnimation(newValue = this.animation) {
-    if (newValue !== undefined) checkEmptyOrOneOf(this, 'animation', ANIMATION_KEYS);
+    if (newValue !== undefined) checkRequiredAndOneOf(this, 'animation', ANIMATION_KEYS);
   }
 
   /**
@@ -70,9 +70,7 @@ export class PostIcon {
 
   @Watch('name')
   validateName() {
-    if (!checkNonEmpty(this, 'name')) {
-      checkType(this, 'name', 'string');
-    }
+    checkRequiredAndType(this, 'name', 'string');
   }
 
   /**

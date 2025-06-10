@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkEmptyOrType, checkNonEmpty, checkUrl, debounce } from '@/utils';
+import { checkRequiredAndUrl, checkType, debounce } from '@/utils';
 
 @Component({
   tag: 'post-breadcrumbs',
@@ -29,9 +29,7 @@ export class PostBreadcrumbs {
 
   @Watch('homeUrl')
   validateHomeUrl() {
-    if (!checkNonEmpty(this, 'homeUrl')) {
-      checkUrl(this, 'homeUrl');
-    }
+    checkRequiredAndUrl(this, 'homeUrl');
   }
 
   @Watch('homeText')

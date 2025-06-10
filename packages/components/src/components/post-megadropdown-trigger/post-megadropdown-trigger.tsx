@@ -1,6 +1,6 @@
 import { Component, Element, Prop, h, Host, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkType, checkNonEmpty } from '@/utils';
+import { checkRequiredAndType } from '@/utils';
 import { eventGuard } from '@/utils/event-guard';
 
 @Component({
@@ -39,9 +39,7 @@ export class PostMegadropdownTrigger {
    */
   @Watch('for')
   validateControlFor() {
-    if (!checkNonEmpty(this, 'for')) {
-      checkType(this, 'for', 'string');
-    }
+    checkRequiredAndType(this, 'for', 'string');
   }
 
   private get megadropdown(): HTMLPostMegadropdownElement | null {

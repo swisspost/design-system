@@ -2,13 +2,7 @@ import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core'
 import { Placement } from '@floating-ui/dom';
 import { PLACEMENT_TYPES } from '@/types';
 import { version } from '@root/package.json';
-import {
-  IS_BROWSER,
-  getAttributeObserver,
-  checkEmptyOrOneOf,
-  checkNonEmpty,
-  checkType,
-} from '@/utils';
+import { IS_BROWSER, getAttributeObserver, checkRequiredAndType, checkOneOf } from '@/utils';
 
 /**
  * @slot default - Slot for placing content inside the popover.
@@ -56,7 +50,7 @@ export class PostPopover {
 
   @Watch('placement')
   validatePlacement() {
-    checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
+    checkOneOf(this, 'placement', PLACEMENT_TYPES);
   }
 
   /**
@@ -66,9 +60,7 @@ export class PostPopover {
 
   @Watch('closeButtonCaption')
   validateCloseButtonCaption() {
-    if (!checkNonEmpty(this, 'closeButtonCaption')) {
-      checkType(this, 'closeButtonCaption', 'string');
-    }
+    checkRequiredAndType(this, 'closeButtonCaption', 'string');
   }
   /**
    * Show a little indicator arrow

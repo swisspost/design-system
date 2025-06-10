@@ -1,7 +1,7 @@
 import { Component, Element, Host, State, h, Watch, Prop } from '@stencil/core';
 import { slideUp, slideDown } from '@/animations/slide';
 import { version } from '@root/package.json';
-import { checkType, checkNonEmpty } from '@/utils';
+import { checkRequiredAndType } from '@/utils';
 
 @Component({
   tag: 'post-back-to-top',
@@ -31,9 +31,7 @@ export class PostBackToTop {
 
   @Watch('label')
   validateLabel() {
-    if (!checkNonEmpty(this, 'label')) {
-      checkType(this, 'label', 'string');
-    }
+    checkRequiredAndType(this, 'label', 'string');
   }
 
   /*Watch for changes in belowFold to show/hide the back to top button*/

@@ -9,13 +9,7 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import {
-  checkEmptyOrType,
-  checkType,
-  checkNonEmpty,
-  checkEmptyOrOneOf,
-  checkEmptyOrUrl,
-} from '@/utils';
+import { checkType, checkRequiredAndType, checkOneOf, checkUrl } from '@/utils';
 import { version } from '@root/package.json';
 import { SwitchVariant, SWITCH_VARIANTS } from '../post-language-switch/switch-variants';
 
@@ -36,9 +30,7 @@ export class PostLanguageOption {
 
   @Watch('code')
   validateCode() {
-    if (!checkNonEmpty(this, 'code')) {
-      checkType(this, 'code', 'string');
-    }
+    checkRequiredAndType(this, 'code', 'string');
   }
 
   /**
@@ -53,7 +45,7 @@ export class PostLanguageOption {
 
   @Watch('variant')
   validateVariant() {
-    checkEmptyOrOneOf(this, 'variant', SWITCH_VARIANTS);
+    checkOneOf(this, 'variant', SWITCH_VARIANTS);
   }
 
   /**
@@ -74,7 +66,7 @@ export class PostLanguageOption {
 
   @Watch('url')
   validateUrl() {
-    checkEmptyOrUrl(this, 'url');
+    checkUrl(this, 'url');
   }
 
   componentDidLoad() {

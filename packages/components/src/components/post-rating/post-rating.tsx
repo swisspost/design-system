@@ -10,7 +10,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkType, checkNonEmpty } from '@/utils';
+import { checkRequiredAndType } from '@/utils';
 
 @Component({
   tag: 'post-rating',
@@ -59,23 +59,17 @@ export class PostRating {
 
   @Watch('label')
   validateLabel() {
-    if (!checkNonEmpty(this, 'label')) {
-      checkType(this, 'label', 'string');
-    }
+    checkRequiredAndType(this, 'label', 'string');
   }
 
   @Watch('stars')
   validateStars() {
-    if (!checkNonEmpty(this, 'stars')) {
-      checkType(this, 'stars', 'number');
-    }
+    checkRequiredAndType(this, 'stars', 'number');
   }
 
   @Watch('currentRating')
   validateCurrentRating() {
-    if (!checkNonEmpty(this, 'currentRating')) {
-      checkType(this, 'currentRating', 'number');
-    }
+    checkRequiredAndType(this, 'currentRating', 'number');
   }
 
   componentWillLoad() {
