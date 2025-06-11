@@ -191,4 +191,7 @@ jobs:
             `
 
       - name: Output Summary
-        run: echo -e "${{ steps.summary.outputs.result }}" >> $GITHUB_STEP_SUMMARY
+        run: |
+          cat << 'EOF' >> $GITHUB_STEP_SUMMARY
+          ${{ steps.summary.outputs.result }}
+          EOF
