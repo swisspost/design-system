@@ -50,7 +50,7 @@ jobs:
 
       - name: Validate netlify config
         run: |
-          CONFIG=$(cat "${{ steps.build.outputs.folder }}/netlify.config.json")
+          CONFIG='${{ steps.netlify-config.outputs.result }}'
           
           SITE_ID=$(echo "$CONFIG" | grep -o '"siteId"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/"siteId"[[:space:]]*:[[:space:]]*"\([^"]*\)"/\1/')
           SITE_URL=$(echo "$CONFIG" | grep -o '"siteUrl"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/"siteUrl"[[:space:]]*:[[:space:]]*"\([^"]*\)"/\1/')
