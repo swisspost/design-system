@@ -16,7 +16,7 @@ jobs:
     if: ${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout
-        uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
+        uses: actions/checkout@09d2acae674a48949e3602304ab46fd20ae0c42f
 
       - name: Setup pnpm & node
         uses: ./.github/actions/setup-pnpm
@@ -39,7 +39,7 @@ jobs:
 
       - name: Get netlify config
         id: netlify-config
-        uses: actions/github-script@e7aeb8c663f696059ebb5f9ab1425ed2ef511bdb
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         with:
           script: |
             const fs = require('fs')
@@ -68,7 +68,7 @@ jobs:
 
       - name: Create Summary
         id: summary
-        uses: actions/github-script@e7aeb8c663f696059ebb5f9ab1425ed2ef511bdb
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         with:
           script: |
             return `# Deployed Documentation Preview
