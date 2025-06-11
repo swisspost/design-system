@@ -1,6 +1,7 @@
 ###
 #
 # runs all tests in packages changed since main
+# + testing release workflow logic (DRY RUN ONLY - NO ACTUAL RELEASES)
 #
 ###
 
@@ -8,15 +9,20 @@ name: Lint files
 on:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
         with:
           fetch-depth: 0
+          # Ensure we have the main branch reference
+          ref: ${{ github.head_ref }}
 
       - name: Setup
         uses: ./.github/actions/setup-pnpm
@@ -27,4 +33,155 @@ jobs:
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
       - name: Lint packages
-        run: pnpm -r lint
+        run: pnpm lint
+
+  # TEST RELEASE LOGIC (DRY RUN ONLY)
+  test-release-logic:
+    name: Test Release Data Collection (DRY RUN)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node & pnpm
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Install Dependencies
+        run: pnpm i
+
+      # DRY RUN TEST - This will fail the build if something in the publish setup is not correct
+      - name: Test publish step (DRY RUN)
+        run: pnpm -r publish --dry-run --no-git-checks
+
+      - name: Setup Git and fetch main branch
+        run: |
+          git fetch origin main:main
+          git branch -a
+
+      - name: Create Status Files for Testing
+        run: |
+          echo "🔍 Creating status files..."
+          pnpm m ls --depth=0 --json > monorepo.json
+          echo "📊 Running changeset status..."
+          pnpm changeset status --output=changesets.json --since=origin/main || {
+            echo "⚠️ Changeset status failed, creating empty changesets file for testing"
+            echo '{"releases":[],"changesets":[]}' > changesets.json
+          }
+
+      # TEST: Read the status Files and collect release data (same logic as release workflow)
+      - name: TEST - Debug Package.json and Dependencies
+        id: release-data-pre
+        uses: actions/github-script@e7aeb8c663f696059ebb5f9ab1425ed2ef511bdb
+        with:
+          script: |
+            const fs = require('fs')
+
+            console.log('='.repeat(80))
+            console.log('🔍 TESTING VERSIONS.JSON UPDATE LOGIC')
+            console.log('='.repeat(80))
+
+            // Create a mock versions.json for testing
+            const mockVersions = [
+              {
+                "title": "Version 7",
+                "version": "7.4.0",
+                "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
+                "url": "https://design-system-version-7.netlify.app",
+                "dependencies": {
+                  "@angular/core": "^16.0.0 || ^17.0.0",
+                  "@ng-bootstrap/ng-bootstrap": "^15.0.0 || ^16.0.0",
+                  "bootstrap": "~5.3.0",
+                  "@swisspost/design-system-styles": "7.4.0"
+                }
+              }
+            ]
+
+            console.log('📄 MOCK STARTING VERSIONS.JSON:')
+            console.log(JSON.stringify(mockVersions, null, 2))
+            console.log('')
+
+            // Read actual data
+            const styles = JSON.parse(fs.readFileSync('./packages/styles/package.json', 'utf8'))
+            const changesets = JSON.parse(fs.readFileSync('changesets.json', 'utf8'))
+            const monorepo = JSON.parse(fs.readFileSync('monorepo.json', 'utf8'))
+            const release = changesets.releases.find(r => r.name === '@swisspost/design-system-styles')
+
+            if (!release) {
+              console.log('❌ No release found for @swisspost/design-system-styles')
+              return null
+            }
+
+            console.log('🎯 RELEASE DATA:')
+            console.log(`Old version: ${release.oldVersion}`)
+            console.log(`New version: ${release.newVersion}`)
+            console.log(`Release type: ${release.type}`)
+            console.log('')
+
+            // Build dependencies (current logic)
+            const dependencies = monorepo
+              .filter(pkg => pkg.private === false && pkg.version !== undefined)
+              .reduce((packages, pkg) => ({ ...packages, [pkg.name]: pkg.version }), { ...(styles.peerDependencies ?? {}) })
+
+            console.log('🔧 CURRENT DEPENDENCIES (what would be written):')
+            console.log(JSON.stringify(dependencies, null, 2))
+            console.log('')
+
+            // Simulate the release data
+            const mockRelease = {
+              isMajor: release.type === 'major',
+              old: {
+                major: release.oldVersion.split('.')[0],
+                siteUrl: `design-system-version-${release.oldVersion.split('.')[0]}`
+              },
+              new: {
+                major: release.newVersion.split('.')[0],
+                version: release.newVersion,
+                siteUrl: 'design-system'
+              }
+            }
+
+            // TEST YOUR NEW LOGIC
+            console.log('🧪 TESTING NEW VERSIONS.JSON UPDATE LOGIC:')
+            console.log('='.repeat(50))
+
+            const versions = JSON.parse(JSON.stringify(mockVersions)) // deep copy
+            const currentVersion = versions.find(version => version.version.startsWith(mockRelease.old.major))
+
+            console.log(`Found current version entry: ${currentVersion?.title} (${currentVersion?.version})`)
+
+            if (!mockRelease.isMajor) {
+              console.log('📝 MINOR RELEASE - Updating existing entry:')
+              currentVersion.version = mockRelease.new.version
+              currentVersion.dependencies = dependencies
+              console.log(`Updated version: ${currentVersion.version}`)
+            }
+
+            if (mockRelease.isMajor) {
+              console.log('🚀 MAJOR RELEASE - Adding new entry, preserving old:')
+              currentVersion.url = `https://${mockRelease.old.siteUrl}.netlify.app`
+              
+              versions.unshift({
+                title: `Version ${mockRelease.new.major}`,
+                version: mockRelease.new.version,
+                description: 'Pattern documentation, code snippets and implementation guidelines for the Design System Styles.',
+                url: `https://${mockRelease.new.siteUrl}.post.ch`,
+                dependencies
+              })
+              console.log(`Added new entry: Version ${mockRelease.new.major}`)
+              console.log(`Old entry URL updated to: ${currentVersion.url}`)
+            }
+
+            console.log('')
+            console.log('🎉 FINAL VERSIONS.JSON RESULT:')
+            console.log(JSON.stringify(versions, null, 2))
+
+            // Clean up
+            fs.unlinkSync('changesets.json')
+            fs.unlinkSync('monorepo.json')
+
+            return { mockRelease, finalVersions: versions }
+
+      - name: Log Results
+        run: echo "✅ Check the logs above for package.json content and final dependencies object"
