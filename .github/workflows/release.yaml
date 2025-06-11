@@ -39,7 +39,7 @@ jobs:
       #  - no new changesets (the preview PR got merged into github.ref branch): publish packages
       - name: Changeset Magic
         id: changesets
-        uses: changesets/action@06245a4e0a36c064a573d4150030f5ec548e4fcc
+        uses: changesets/action@04d574e831923498156e0b2b93152878063203a3
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
