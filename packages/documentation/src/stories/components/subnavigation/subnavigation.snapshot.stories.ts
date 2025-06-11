@@ -1,7 +1,7 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta from './subnavigation.stories';
 import { html } from 'lit';
-import { COLOR_SCHEMES, schemes } from '@/shared/snapshots/schemes';
+import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
 
 const { id, ...metaWithoutId } = meta;
@@ -26,10 +26,7 @@ export const Subnavigation: Story = {
             .filter(args => !(args.itemCount !== 5 && args.badges === true))
             .map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
         </div>
-      `,
-      {
-        filter: scheme => scheme === COLOR_SCHEMES.light,
-      },
+      `
     );
   },
 };
