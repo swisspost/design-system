@@ -14,7 +14,7 @@
 | `label` _(required)_ | `label`       | Defines the text in the control-label.                                                                                                                                                                                                                                                                                                                                                                | `string`                | `undefined` |
 | `name`               | `name`        | Defines the `name` attribute of the control. <span className="mb-4 banner banner-sm banner-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span> | `string`                | `undefined` |
 | `type` _(required)_  | `type`        | Defines the `type` attribute of the control.                                                                                                                                                                                                                                                                                                                                                          | `"checkbox" \| "radio"` | `undefined` |
-| `validity`           | `validity`    | Defines the validation `validity` of the control. To reset validity to an undefined state, simply remove the attribute from the control.                                                                                                                                                                                                                                                              | `"false" \| "true"`     | `undefined` |
+| `validity`           | `validity`    | Defines the validation `validity` of the control. To reset validity to an undefined state, simply remove the attribute from the control.                                                                                                                                                                                                                                                              | `boolean`               | `undefined` |
 | `value`              | `value`       | Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>                                                                                                                                                                                                                          | `string`                | `undefined` |
 
 
@@ -41,7 +41,7 @@ Type: `Promise<void>`
 ### `reset() => Promise<void>`
 
 A public method to reset the controls `checked` and `validity` state.
-The validity state is set to `null`, so it's neither valid nor invalid.
+The validity state is set to `undefined`, so it's neither valid nor invalid.
 
 #### Returns
 

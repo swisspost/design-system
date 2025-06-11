@@ -1,4 +1,4 @@
-# Contributing to the Design System Styles for PrimeNg
+# Contributing to the Design System Styles for PrimeNG
 
 ## Setup
 

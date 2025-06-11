@@ -6,7 +6,6 @@
 
 @use './mixins' as *;
 @use './variables' as *;
-@use './not-defined' as *;
 
 @each $breakpoint, $device-size in breakpoints.$grid-breakpoints {
   @include media.min($device-size) {
