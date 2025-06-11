@@ -39,34 +39,45 @@ jobs:
 
       - name: Get and validate netlify config
         run: |
-
           if [[ ! -f "${{ steps.build.outputs.folder }}/netlify.config.json" ]]; then
               echo "Error: Netlify config file missing"
               exit 1
           fi
-
-          CONFIG=$(cat "${{ steps.build.outputs.folder }}/netlify.config.json")
           
-          SITE_ID=$(echo "$CONFIG" | grep -o '"siteId"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/"siteId"[[:space:]]*:[[:space:]]*"\([^"]*\)"/\1/')
-          SITE_URL=$(echo "$CONFIG" | grep -o '"siteUrl"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/"siteUrl"[[:space:]]*:[[:space:]]*"\([^"]*\)"/\1/')
-          
-          if [[ -z "$SITE_ID" || -z "$SITE_URL" ]]; then
-            echo "Error: Invalid netlify config"
-            exit 1
-          fi
-          
-          if ! [[ "$SITE_ID" =~ ^[a-zA-Z0-9-]+$ ]]; then
-            echo "Error: Invalid site ID format"
-            exit 1
-          fi
-          
-          if ! [[ "$SITE_URL" =~ ^[a-zA-Z0-9.-]+$ ]]; then
-            echo "Error: Invalid site URL format" 
-            exit 1
-          fi
-          
-          echo "SITE_ID=$SITE_ID" >> $GITHUB_ENV
-          echo "SITE_URL=$SITE_URL" >> $GITHUB_ENV
+          node -e "
+          try {
+            const config = JSON.parse(process.env.CONFIG);
+            const { siteId, siteUrl } = config;
+            
+            // Check if required fields exist
+            if (!siteId || !siteUrl) {
+              console.error('Error: Missing siteId or siteUrl in netlify config');
+              process.exit(1);
+            }
+            
+            // Validate siteId format (alphanumeric and hyphens only)
+            if (!/^[a-zA-Z0-9-]+$/.test(siteId)) {
+              console.error('Error: Invalid site ID format. Must contain only letters, numbers, and hyphens.');
+              process.exit(1);
+            }
+            
+            // Validate siteUrl format (alphanumeric, dots, and hyphens only)
+            if (!/^[a-zA-Z0-9.-]+$/.test(siteUrl)) {
+              console.error('Error: Invalid site URL format. Must contain only letters, numbers, dots, and hyphens.');
+              process.exit(1);
+            }
+            
+            // Output to GitHub environment
+            console.log(\`SITE_ID=\${siteId}\`);
+            console.log(\`SITE_URL=\${siteUrl}\`);
+            
+          } catch (error) {
+            console.error(error.message);
+            process.exit(1);
+          }
+          " >> $GITHUB_ENV
+        env:
+          CONFIG: $(cat "${{ steps.build.outputs.folder }}/netlify.config.json")
 
       - name: Remove netlify.config.json from artifact folder
         run: rm ${{ steps.build.outputs.folder }}/netlify.config.json
