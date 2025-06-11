@@ -80,7 +80,7 @@ const preview: Preview = {
             onClick: openFullScreenDemo,
           },
           {
-            title: 'Copy link',
+            title: 'Copy deep link',
             onClick: copyStoryConfigUrl,
           },
           {
