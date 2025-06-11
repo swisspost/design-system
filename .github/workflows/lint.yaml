@@ -79,16 +79,31 @@ jobs:
             const fs = require('fs')
 
             console.log('='.repeat(80))
-            console.log('🔍 DEBUGGING PACKAGE.JSON AND DEPENDENCIES')
+            console.log('🔍 TESTING VERSIONS.JSON UPDATE LOGIC')
             console.log('='.repeat(80))
 
-            // Read the styles package.json
-            const styles = JSON.parse(fs.readFileSync('./packages/styles/package.json', 'utf8'))
-            console.log('📄 STYLES PACKAGE.JSON CONTENT:')
-            console.log(JSON.stringify(styles, null, 2))
+            // Create a mock versions.json for testing
+            const mockVersions = [
+              {
+                "title": "Version 7",
+                "version": "7.4.0",
+                "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
+                "url": "https://design-system-version-7.netlify.app",
+                "dependencies": {
+                  "@angular/core": "^16.0.0 || ^17.0.0",
+                  "@ng-bootstrap/ng-bootstrap": "^15.0.0 || ^16.0.0",
+                  "bootstrap": "~5.3.0",
+                  "@swisspost/design-system-styles": "7.4.0"
+                }
+              }
+            ]
+
+            console.log('📄 MOCK STARTING VERSIONS.JSON:')
+            console.log(JSON.stringify(mockVersions, null, 2))
             console.log('')
 
-            // Read changeset and monorepo data
+            // Read actual data
+            const styles = JSON.parse(fs.readFileSync('./packages/styles/package.json', 'utf8'))
             const changesets = JSON.parse(fs.readFileSync('changesets.json', 'utf8'))
             const monorepo = JSON.parse(fs.readFileSync('monorepo.json', 'utf8'))
             const release = changesets.releases.find(r => r.name === '@swisspost/design-system-styles')
@@ -98,25 +113,75 @@ jobs:
               return null
             }
 
-            // Build dependencies exactly like the real workflow
-            const updatedVersions = changesets.releases.reduce((deps, r) => ({ ...deps, [r.name]: r.newVersion }), {})
-            console.log('📝 UPDATED VERSIONS FROM CHANGESETS:')
-            console.log(JSON.stringify(updatedVersions, null, 2))
+            console.log('🎯 RELEASE DATA:')
+            console.log(`Old version: ${release.oldVersion}`)
+            console.log(`New version: ${release.newVersion}`)
+            console.log(`Release type: ${release.type}`)
             console.log('')
 
+            // Build dependencies (current logic)
             const dependencies = monorepo
-              .filter(pkg => pkg.version !== undefined)
-              .reduce((packages, pkg) => ({ ...packages, [pkg.name]: updatedVersions[pkg.name] ?? pkg.version }), { ...(styles.peerDependencies ?? {}) })
+              .filter(pkg => pkg.private === false && pkg.version !== undefined)
+              .reduce((packages, pkg) => ({ ...packages, [pkg.name]: pkg.version }), { ...(styles.peerDependencies ?? {}) })
 
-            console.log('🎯 FINAL DEPENDENCIES OBJECT (what goes into versions.json):')
+            console.log('🔧 CURRENT DEPENDENCIES (what would be written):')
             console.log(JSON.stringify(dependencies, null, 2))
             console.log('')
+
+            // Simulate the release data
+            const mockRelease = {
+              isMajor: release.type === 'major',
+              old: {
+                major: release.oldVersion.split('.')[0],
+                siteUrl: `design-system-version-${release.oldVersion.split('.')[0]}`
+              },
+              new: {
+                major: release.newVersion.split('.')[0],
+                version: release.newVersion,
+                siteUrl: 'design-system'
+              }
+            }
+
+            // TEST YOUR NEW LOGIC
+            console.log('🧪 TESTING NEW VERSIONS.JSON UPDATE LOGIC:')
+            console.log('='.repeat(50))
+
+            const versions = JSON.parse(JSON.stringify(mockVersions)) // deep copy
+            const currentVersion = versions.find(version => version.version.startsWith(mockRelease.old.major))
+
+            console.log(`Found current version entry: ${currentVersion?.title} (${currentVersion?.version})`)
+
+            if (!mockRelease.isMajor) {
+              console.log('📝 MINOR RELEASE - Updating existing entry:')
+              currentVersion.version = mockRelease.new.version
+              currentVersion.dependencies = dependencies
+              console.log(`Updated version: ${currentVersion.version}`)
+            }
+
+            if (mockRelease.isMajor) {
+              console.log('🚀 MAJOR RELEASE - Adding new entry, preserving old:')
+              currentVersion.url = `https://${mockRelease.old.siteUrl}.netlify.app`
+              
+              versions.unshift({
+                title: `Version ${mockRelease.new.major}`,
+                version: mockRelease.new.version,
+                description: 'Pattern documentation, code snippets and implementation guidelines for the Design System Styles.',
+                url: `https://${mockRelease.new.siteUrl}.post.ch`,
+                dependencies
+              })
+              console.log(`Added new entry: Version ${mockRelease.new.major}`)
+              console.log(`Old entry URL updated to: ${currentVersion.url}`)
+            }
+
+            console.log('')
+            console.log('🎉 FINAL VERSIONS.JSON RESULT:')
+            console.log(JSON.stringify(versions, null, 2))
 
             // Clean up
             fs.unlinkSync('changesets.json')
             fs.unlinkSync('monorepo.json')
 
-            return dependencies
+            return { mockRelease, finalVersions: versions }
 
       - name: Log Results
         run: echo "✅ Check the logs above for package.json content and final dependencies object"
