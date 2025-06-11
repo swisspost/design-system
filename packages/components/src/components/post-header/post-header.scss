@@ -33,6 +33,12 @@
     --post-logo-height: var(--post-global-header-height);
     --post-global-controls-top: 0;
   }
+
+  @include media.max(lg) {
+    position: fixed;
+    inset: 0;
+    bottom: auto;
+  }
 }
 
 :host(:not(:has([slot='title']))) {
@@ -84,6 +90,7 @@
   @include media.max(lg) {
     z-index: 3;
     inset-block-start: 0;
+    position: relative;
   }
 
   @include media.min(lg) {
@@ -162,7 +169,7 @@
 
   @include media.min(lg) {
     z-index: 3;
-    inset-block-start: var(--post-local-header-top);
+    position: relative;
     padding-block-start: 18px;
     box-shadow: elevation.$elevation-300;
     transition: box-shadow 0.2s ease-in-out, inset-block-start 0.2s ease-in-out;
