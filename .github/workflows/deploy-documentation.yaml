@@ -37,20 +37,15 @@ jobs:
           access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           issue-number: ${{ steps.build.outputs.id }}
 
-      - name: Get netlify config
-        id: netlify-config
+      - name: Get and validate netlify config
         run: |
-          if [[ ! -f "${{ steps.build.outputs.folder }}/netlify.config.json" ]]; then
-            echo "Error: Netlify config file missing"
-            exit 1
-          fi
-          
-          CONFIG=$(cat "${{ steps.build.outputs.folder }}/netlify.config.json")
-          echo "result=$CONFIG" >> $GITHUB_OUTPUT
 
-      - name: Validate netlify config
-        run: |
-          CONFIG='${{ steps.netlify-config.outputs.result }}'
+          if [[ ! -f "${{ steps.build.outputs.folder }}/netlify.config.json" ]]; then
+              echo "Error: Netlify config file missing"
+              exit 1
+          fi
+
+          CONFIG=$(cat "${{ steps.build.outputs.folder }}/netlify.config.json")
           
           SITE_ID=$(echo "$CONFIG" | grep -o '"siteId"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/"siteId"[[:space:]]*:[[:space:]]*"\([^"]*\)"/\1/')
           SITE_URL=$(echo "$CONFIG" | grep -o '"siteUrl"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/"siteUrl"[[:space:]]*:[[:space:]]*"\([^"]*\)"/\1/')
