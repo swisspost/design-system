@@ -15,7 +15,7 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
+    hint: 'This is helpful text that provides guidance or additional information to assist the user in filling out this field correctly.',
   },
   argTypes: {
     hint: {

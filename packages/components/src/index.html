@@ -51,6 +51,18 @@
       <!-- Application title (optional) -->
       <h1 slot="title">Application title</h1>
 
+      <ul slot="target-group" class="target-group">
+        <li>
+          <a href="#" class="active">Private customers</a>
+        </li>
+        <li>
+          <a href="#">Business customers</a>
+        </li>
+        <li>
+          <a href="#">Authorities</a>
+        </li>
+      </ul>
+
       <!-- Custom content (optional) -->
       <ul class="list-inline">
         <li>
@@ -70,7 +82,7 @@
       <!-- Main navigation -->
       <post-mainnavigation caption="Hauptnavigation">
         <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
-          <post-icon aria-hidden="true" name="arrowright"></post-icon> Back
+          <post-icon aria-hidden="true" name="arrowleft"></post-icon> Back
         </button>
 
         <post-list title-hidden="">
@@ -85,7 +97,7 @@
             <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
             <post-megadropdown id="briefe">
               <button slot="back-button" class="btn btn-tertiary btn-sm">
-                <post-icon name="arrowright"></post-icon>
+                <post-icon name="arrowleft"></post-icon>
                 Back
               </button>
               <post-closebutton slot="close-button">Schliessen</post-closebutton>
@@ -122,7 +134,7 @@
             <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
             <post-megadropdown id="pakete">
               <button slot="back-button" class="btn btn-tertiary btn-sm">
-                <post-icon name="arrowright"></post-icon>
+                <post-icon name="arrowleft"></post-icon>
                 Back
               </button>
               <post-closebutton slot="close-button">Schliessen</post-closebutton>

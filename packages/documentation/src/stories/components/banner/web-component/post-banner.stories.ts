@@ -18,7 +18,7 @@ const meta: MetaComponent<HTMLPostBannerElement> = {
     },
   },
   args: {
-    innerHTML: '<p>Contentus momentus vero siteos et accusam iretea et justo.</p>',
+    innerHTML: '<p>This is the content of the banner. It helps to draw attention to critical messages.</p>',
     dismissible: false,
     dismissLabel: 'Dismiss',
   },
@@ -99,7 +99,6 @@ function externalControl(story: StoryFn, context: StoryContext) {
 
 // RENDERER
 function renderBanner(args: Partial<HTMLPostBannerElement>) {
-  console.log(args);
   return html` <post-banner ${spreadArgs(args)}></post-banner> `;
 }
 
@@ -111,15 +110,15 @@ export const Default: Story = {};
 export const Contents: Story = {
   args: {
     innerHTML:
-      '<h4 slot="heading">Titulum</h4>' +
+      '<h4 slot="heading">Heading Title</h4>' +
       '<ul class="list-unstyled">' +
-      '<li class="d-flex gap-8"><post-icon name="1027"></post-icon>Un orde redlis titem</li>' +
-      '<li class="d-flex gap-8"><post-icon name="1028"></post-icon>An deven moreun orde redlis titem</li>' +
+      '<li class="d-flex gap-8"><post-icon name="1027"></post-icon>An example list item</li>' +
+      '<li class="d-flex gap-8"><post-icon name="1028"></post-icon>Another example list item</li>' +
       '</ul>' +
       '<hr/>' +
-      '<p>Contentum momentum ipsum tipsum sit amet, consetetur sadipscing elitr.</p>' +
-      '<button slot="actions" class="btn btn-secondary"><span>Aborti</span></button>' +
-      '<button slot="actions" class="btn btn-primary"><span>Akcepti</span></button>',
+      '<p>This is the banner content that provides important information to the user.</p>' +
+      '<button slot="actions" class="btn btn-secondary"><span>Cancel</span></button>' +
+      '<button slot="actions" class="btn btn-primary"><span>Accept</span></button>',
   },
 };
 

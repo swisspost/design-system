@@ -29,7 +29,7 @@ const meta: MetaComponent = {
     options: 5,
     multiple: false,
     multipleSize: 4,
-    hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
+    hint: 'This is helpful text that provides guidance or additional information to assist the user in filling out this field correctly.',
     disabled: false,
     validation: 'null',
   },
@@ -182,27 +182,41 @@ const Template: Story = {
       ? html` <label for="${context.id}" class="form-label">${args.label}</label> `
       : null;
     const optionElements = Array.from({ length: args.options - 1 }, (_, i) => i + 2).map(
-      (key: number) => html` <option value="valoro_${key}">Opcion ${key}</option> `,
+      (key: number) => html` <option value="value_${key}">Option ${key}</option> `,
     );
     const options = [
       ...[
         args.floatingLabelPlaceholder
           ? html` <option></option> `
-          : html` <option>Elektu opcion...</option> `,
+          : html` <option>Choose an option...</option> `,
       ],
       ...optionElements,
     ];
+
     const contextuals = [
       args.validation === 'is-valid'
-        ? html` <p class="valid-feedback">Ggranda sukceso!</p> `
+        ? html`
+            <p class="valid-feedback" id="${args.validation}-id-${context.id}">Great success!</p>
+          `
         : null,
       args.validation === 'is-invalid'
-        ? html` <p class="invalid-feedback">Eraro okazis!</p> `
+        ? html`
+            <p class="invalid-feedback" id="${args.validation}-id-${context.id}">An error occurred!</p>
+          `
         : null,
       args.hint !== ''
         ? html` <p class="form-hint" id="form-hint-${context.id}">${args.hint}</p> `
         : null,
     ];
+
+    const ariaDescribedByParts = [
+      args.hint ? 'form-hint-' + context.id : '',
+      args.validation !== 'null' ? `${args.validation}-id-${context.id}` : '',
+    ].filter(Boolean);
+
+    const ariaDescribedBy =
+      args.hint || args.validation !== 'null' ? ariaDescribedByParts.join(' ') : nothing;
+
     const control = html`
       <select
         id="${context.id}"
@@ -212,7 +226,7 @@ const Template: Story = {
         ?disabled="${args.disabled}"
         aria-label="${useAriaLabel ? args.label : nothing}"
         aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
-        aria-describedby="${args.hint !== '' ? 'form-hint-' + context.id : ''}"
+        aria-describedby="${ariaDescribedBy}"
         @change="${(e: Event) => {
           updateArgs({ value: (e.target as HTMLSelectElement).value });
         }}"
@@ -224,10 +238,10 @@ const Template: Story = {
             .map(
               (option, index) => html`
                 <option
-                  value="valoro_${index + 1}"
+                  value="value_${index + 1}"
                   ?selected="${index === args.selectedOption - 2}"
                 >
-                  Opcion ${index + 2}
+                  Option ${index + 2}
                 </option>
               `,
             ),

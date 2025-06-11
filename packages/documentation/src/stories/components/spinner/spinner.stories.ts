@@ -82,10 +82,9 @@ export const BlockSection: Story = {
         </div>
       </div>
       <p>
-        There is some continous text here as an example. Lorem ipsum dolor sit amet, consetetur
-        sadipscing elitr, <a href="#">sed diam nonumy eirmod tempor invidunt</a> ut labore et dolore
-        magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-        rebum.
+        There is some continuous text here as an example. This text demonstrates how content flows within this component. 
+        The words continue to fill the available space to show text wrapping and spacing behavior. 
+        This sample text helps designers and developers visualize how actual content will appear when the component is implemented.
       </p>
     </div>`,
 };

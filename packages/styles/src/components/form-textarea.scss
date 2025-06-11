@@ -96,7 +96,7 @@ textarea.form-control {
 
   > textarea ~ label {
     position: absolute;
-    z-index: 2;
+    z-index: 1;
     text-align: start;
     pointer-events: none;
     display: block;
@@ -149,7 +149,7 @@ textarea.form-control {
 
     &:disabled ~ label {
       color: tokens.get('textarea-disabled-fg');
-      background-color: tokens.get('textarea-disabled-bg');
+      background-color: var(--post-current-palette-bg);
     }
 
     &:not(:disabled):hover ~ label {

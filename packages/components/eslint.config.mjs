@@ -7,6 +7,7 @@ import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
 
 import reactPlugin from 'eslint-plugin-react';
 import stencilCommunityPlugin from '@stencil-community/eslint-plugin';
+import pluginCypress from 'eslint-plugin-cypress/flat';
 
 const compatStencilCommunityBaseRules = fixupConfigRules(stencilCommunityPlugin.configs.base)[0]
   .overrides[0].rules;
@@ -24,7 +25,6 @@ export default [
       'loader/*',
       'loaders/*',
       'www/*',
-      'cypress/*',
       'stencil.config.ts',
     ],
   },
@@ -109,5 +109,11 @@ export default [
         },
       ],
     },
+  },
+  {
+    name: 'cypress/config',
+    files: ['cypress/**/*.ts'],
+    ...pluginCypress.configs.recommended,
+    rules: {},
   },
 ];
