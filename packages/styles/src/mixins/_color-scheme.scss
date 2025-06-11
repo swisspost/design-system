@@ -1,0 +1,30 @@
+@use 'sass:map';
+@use '../tokens/temp/scheme';
+
+/**
+ * Check for light-dark support was added so we don't use CSS functions that don't work anyway.
+ * This check becomes obsolete when the fallback is removed.
+ */
+@use '../mixins/supports';
+
+@mixin set($scheme-token) {
+  @include supports.light-dark(true) {
+    color-scheme: #{$scheme-token};
+  }
+
+  /**
+   * This fallback works with space toggles. More info:
+   * https://dev.to/janeori/css-lightdark-mode-implementation-without-duplicating-vars-22c9
+   * https://kizu.dev/cyclic-toggles/
+   *
+   * Expiration date: when Safari 17 is not in use any more and the `light-dark` function is properly supported.
+   */
+  @include supports.light-dark(false) {
+    --post-fallback-prefers-light: #{$scheme-token};
+
+    @each $key, $light-value in scheme.$post-light {
+      --#{$key}-light: var(--post-fallback-prefers-light) #{$light-value};
+      --#{$key}: var(--#{$key}-light, #{map.get(scheme.$post-dark, $key)});
+    }
+  }
+}
