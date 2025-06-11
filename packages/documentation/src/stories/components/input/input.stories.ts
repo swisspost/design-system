@@ -1,7 +1,7 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing, TemplateResult } from 'lit';
 import { MetaComponent } from '@root/types';
-import { getLabelText } from '@root/src/utils/form-elements';
+import { getLabelText, getValidationMessages } from '@root/src/utils/form-elements';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -176,21 +176,7 @@ function render(args: Args, context: StoryContext) {
     args.placeholder = ' '; // a placeholder must always be defined for the floating label to work properly
   }
 
-  const contextual: (TemplateResult | null)[] = [
-    args.validation === 'is-valid'
-      ? html`
-          <p class="valid-feedback" id="${args.validation}-id-${context.id}">Great success!</p>
-        `
-      : null,
-    args.validation === 'is-invalid'
-      ? html`
-          <p class="invalid-feedback" id="${args.validation}-id-${context.id}">
-            An error occurred!
-          </p>
-        `
-      : null,
-    args.hint !== '' ? html` <p class="form-hint" id="form-hint-${id}">${args.hint}</p> ` : null,
-  ];
+  const contextual = getValidationMessages(args, context);
 
   const ariaDescribedByParts = [
     args.hint ? 'form-hint-' + context.id : '',

@@ -2,7 +2,7 @@ import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { useArgs } from '@storybook/preview-api';
 import { html, nothing, TemplateResult } from 'lit';
 import { MetaComponent } from '@root/types';
-import { getLabelText } from '@root/src/utils/form-elements';
+import { getLabelText, getValidationMessages } from '@root/src/utils/form-elements';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -197,12 +197,17 @@ function render(args: Args, context: StoryContext) {
     ? html` <label class="form-label" for="${id}">${getLabelText(args)}</label> `
     : null;
 
-  const contextual: (TemplateResult | null)[] = [
-    args.validation === 'is-valid' ? html` <p class="valid-feedback">Great success!</p> ` : null,
-    args.validation === 'is-invalid'
-      ? html` <p class="invalid-feedback">An error occurred!</p> `
-      : null,
+  const contextual: (TemplateResult | null)[] = getValidationMessages(args, context, false);
+
+  const ariaDescribedByParts = [
+    args.showValue === 'text' ? `form-hint-${context.id}` : '',
+    args.validation !== 'null' ? `${args.validation}-id-${context.id}` : '',
   ];
+
+  const ariaDescribedBy =
+    args.showValue === 'text' || args.validation !== 'null'
+      ? ariaDescribedByParts.join(' ')
+      : nothing;
 
   const control: TemplateResult = html`
     <input
@@ -217,7 +222,7 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
-      aria-describedby="${args.showValue === 'text' ? 'form-hint-' + id : ''}"
+      aria-describedby="${ariaDescribedBy}"
       @input="${(e: MouseEvent) => updateArgs({ value: (e.target as HTMLInputElement).value })}"
     />
   `;

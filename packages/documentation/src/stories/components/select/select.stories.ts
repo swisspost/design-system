@@ -3,7 +3,7 @@ import { html, nothing } from 'lit';
 import { useArgs } from '@storybook/preview-api';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { MetaComponent } from '@root/types';
-import { getLabelText } from '@root/src/utils/form-elements';
+import { getLabelText, getValidationMessages } from '@root/src/utils/form-elements';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -212,23 +212,7 @@ const Template: Story = {
       ...optionElements,
     ];
 
-    const contextuals = [
-      args.validation === 'is-valid'
-        ? html`
-            <p class="valid-feedback" id="${args.validation}-id-${context.id}">Great success!</p>
-          `
-        : null,
-      args.validation === 'is-invalid'
-        ? html`
-            <p class="invalid-feedback" id="${args.validation}-id-${context.id}">
-              An error occurred!
-            </p>
-          `
-        : null,
-      args.hint !== ''
-        ? html` <p class="form-hint" id="form-hint-${context.id}">${args.hint}</p> `
-        : null,
-    ];
+    const contextuals = getValidationMessages(args, context);
 
     const ariaDescribedByParts = [
       args.hint ? 'form-hint-' + context.id : '',

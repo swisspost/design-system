@@ -3,7 +3,7 @@ import { useArgs } from '@storybook/preview-api';
 import { html, nothing, TemplateResult } from 'lit';
 import { MetaComponent } from '@root/types';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { getLabelText } from '@root/src/utils/form-elements';
+import { getLabelText, getValidationMessages } from '@root/src/utils/form-elements';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -139,20 +139,7 @@ function render(args: Args, context: StoryContext) {
     ? html` <label for="${id}">${getLabelText(args)}</label> `
     : null;
 
-  const contextual: (TemplateResult | null)[] = [
-    args.validation === 'is-valid'
-      ? html`
-          <p class="valid-feedback" id="${args.validation}-id-${context.id}">Great success!</p>
-        `
-      : null,
-    args.validation === 'is-invalid'
-      ? html`
-          <p class="invalid-feedback" id="${args.validation}-id-${context.id}">
-            An error occurred!
-          </p>
-        `
-      : null,
-  ];
+  const contextual: (TemplateResult | null)[] = getValidationMessages(args, context, false);
 
   const control = html`
     <input
