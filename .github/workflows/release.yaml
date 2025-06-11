@@ -107,6 +107,12 @@ jobs:
             const monorepo = JSON.parse(fs.readFileSync('monorepo.json', 'utf8'))
             const styles = JSON.parse(fs.readFileSync('./packages/styles/package.json', 'utf8'))
 
+            console.log('Monorepo contents:')
+            console.log(JSON.stringify(monorepo, null, 2))
+
+            console.log('Styles package.json peerDependencies:')
+            console.log(JSON.stringify(styles.peerDependencies, null, 2))
+
             fs.unlinkSync('changesets.json')
             fs.unlinkSync('monorepo.json')
 
@@ -119,6 +125,9 @@ jobs:
             const dependencies = monorepo
               .filter(pkg => pkg.version !== undefined)
               .reduce((packages, pkg) => ({ ...packages, [pkg.name]: updatedVersions[pkg.name] ?? pkg.version }), { ...(styles.peerDependencies ?? {}) })
+
+            console.log('Final dependencies object:')
+            console.log(JSON.stringify(dependencies, null, 2))
 
             return {
               isMajor: release.type === 'major' && newMajor !== oldMajor,
