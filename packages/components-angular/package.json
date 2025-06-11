@@ -16,11 +16,13 @@
   "scripts": {
     "start": "ng serve --port 9210",
     "build": "pnpm clean && ng build components",
+    "postbuild": "pnpm copy:styles:dist",
     "clean": "rimraf dist .angular",
     "e2e": "ng e2e --watch=false",
     "e2e:watch": "ng e2e",
     "lint": "ng lint",
-    "lint:fix": "ng lint --fix"
+    "lint:fix": "ng lint --fix",
+    "copy:styles:dist": "copyfiles -f projects/components/src/lib/stencil-generated/post-components.css dist/components/"
   },
   "dependencies": {
     "@angular/animations": "19.2.0",
@@ -38,12 +40,14 @@
     "zone.js": "0.15.0"
   },
   "devDependencies": {
+    "@swisspost/design-system-components-angular": "workspace:10.0.0-next.38",
     "@angular-devkit/build-angular": "19.2.0",
     "@angular/cli": "19.2.0",
     "@angular/compiler-cli": "19.2.0",
     "@cypress/schematic": "2.5.2",
     "@eslint/js": "9.18.0",
     "angular-eslint": "19.1.0",
+    "copyfiles": "2.4.1",
     "cypress": "14.3.2",
     "eslint": "^9.15.0",
     "globals": "16.0.0",
