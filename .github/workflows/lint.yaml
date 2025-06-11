@@ -51,7 +51,7 @@ jobs:
 
       # DRY RUN TEST - This will fail the build if something in the publish setup is not correct
       - name: Test publish step (DRY RUN)
-        run: pnpm -r publish --dry-run
+        run: pnpm -r publish --dry-run --no-git-checks
 
       - name: Create Status Files for Testing
         run: |
