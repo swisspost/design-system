@@ -36,7 +36,7 @@ runs:
       run: mkdir -p ${{ runner.temp }}/artifact_download
 
     - name: Download artifact
-      uses: dawidd6/action-download-artifact@07ab29fd4a977ae4d2b275087cf67563dfdf0295
+      uses: dawidd6/action-download-artifact@9b54a0a70c3d482a3d96da8a2f9fc08d0209c9ae
       with:
         name: ${{ inputs.name }}
         run_id: ${{ github.event.workflow_run.id }}
