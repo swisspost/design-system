@@ -91,7 +91,7 @@ jobs:
 
       - name: Get Changed Icons
         id: changed-icons
-        uses: actions/github-script@e7aeb8c663f696059ebb5f9ab1425ed2ef511bdb
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         env:
           ADDED_FILES: ${{ steps.changed-files.outputs.added_files }}
           MODIFIED_FILES: ${{ steps.changed-files.outputs.modified_files }}
@@ -105,7 +105,7 @@ jobs:
 
       - name: Create Changeset
         if: steps.changed-files.outputs.any_modified != 'false'
-        uses: actions/github-script@e7aeb8c663f696059ebb5f9ab1425ed2ef511bdb
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         env:
           DATE: ${{ steps.current-date.outputs.date }}
           ICON_CHANGES: ${{ steps.changed-icons.outputs.result }}
@@ -124,7 +124,7 @@ jobs:
       - name: Write PR Body
         id: pr-body
         if: steps.changed-files.outputs.any_modified != 'false'
-        uses: actions/github-script@e7aeb8c663f696059ebb5f9ab1425ed2ef511bdb
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         env:
           PR_BODY_FILE: pr-body.md
           ICON_CHANGES: ${{ steps.changed-icons.outputs.result }}
