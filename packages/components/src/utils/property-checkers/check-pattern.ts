@@ -1,3 +1,5 @@
+import { EMPTY_VALUES } from './constants';
+
 export function checkPattern<T extends { host: HTMLElement }>(
   component: T,
   prop: keyof T,
@@ -5,6 +7,10 @@ export function checkPattern<T extends { host: HTMLElement }>(
 ) {
   const componentName = component.host.localName;
   const value = component[prop];
+
+  if (EMPTY_VALUES.some(v => v === value)) {
+    return;
+  }
 
   const message = `The prop \`${String(
     prop,

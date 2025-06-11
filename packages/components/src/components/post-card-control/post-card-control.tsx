@@ -11,7 +11,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { checkOneOf, checkRequiredAndType, checkType, checkRequiredAndOneOf } from '@/utils';
+import { checkRequiredAndType, checkType, checkRequiredAndOneOf } from '@/utils';
 import { version } from '@root/package.json';
 
 let cardControlIds = 0;
@@ -161,24 +161,19 @@ export class PostCardControl {
 
   @Watch('name')
   validateControlName() {
-    checkRequiredAndType(this, 'name', 'string');
+    checkType(this, 'name', 'string');
   }
 
   @Watch('value')
   validateControlValue() {
     if (this.type == 'radio') {
-      checkRequiredAndType(this, 'value', 'string');
+      checkType(this, 'value', 'string');
     }
-  }
-
-  @Watch('validity')
-  validateValidity() {
-    checkOneOf(this, 'validity', ['true', 'false']);
   }
 
   @Watch('icon')
   validateControlIcon() {
-    checkRequiredAndType(this, 'icon', 'string');
+    checkType(this, 'icon', 'string');
   }
 
   @Watch('checked')

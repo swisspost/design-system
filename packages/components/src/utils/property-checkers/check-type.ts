@@ -1,4 +1,5 @@
 import { PropertyType } from '@/types/property-types';
+import { EMPTY_VALUES } from './constants';
 
 export function checkType<T extends { host: HTMLElement }>(
   component: T,
@@ -7,6 +8,10 @@ export function checkType<T extends { host: HTMLElement }>(
 ) {
   const componentName = component.host.localName;
   const value = component[prop];
+
+  if (EMPTY_VALUES.some(v => v === value)) {
+    return;
+  }
 
   const typeIsArray = type === 'array';
   const valueIsArray = Array.isArray(value);

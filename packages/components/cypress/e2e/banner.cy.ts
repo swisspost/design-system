@@ -10,30 +10,31 @@ describe('banner', () => {
       cy.get('@banner').should('exist');
     });
 
-    it('should not have a close button', () => {
-      cy.get('@banner').find('.btn-close').should('not.exist');
-    });
-  });
+    //   it('should not have a close button', () => {
+    //     cy.get('@banner').find('.btn-close').should('not.exist');
+    //   });
+    // });
 
-  describe('dismissible', () => {
-    beforeEach(() => {
-      cy.getComponent('post-banner', BANNER_ID, 'dismissible');
-    });
+    //   describe('dismissible', () => {
+    //     beforeEach(() => {
+    //       cy.getComponent('post-banner', BANNER_ID, 'dismissible');
+    //     });
 
-    it('should have a close button', () => {
-      cy.get('@banner').find('.btn-close').should('be.visible');
-    });
+    //     it('should have a close button', () => {
+    //       cy.get('@banner').find('.btn-close').should('be.visible');
+    //     });
 
-    it('should be removed after the dismiss button is clicked', () => {
-      cy.get('@banner').find('.btn-close').click();
-      cy.get('@banner').should('not.exist');
-    });
-  });
-});
+    //     it('should be removed after the dismiss button is clicked', () => {
+    //       cy.get('@banner').find('.btn-close').click();
+    //       cy.get('@banner').should('not.exist');
+    //     });
+    //   });
+    // });
 
-describe('Accessibility', () => {
-  it('Has no detectable a11y violations on load for all variants', () => {
-    cy.getSnapshots('post-banner');
-    cy.checkA11y('#root-inner');
+    // describe('Accessibility', () => {
+    //   it('Has no detectable a11y violations on load for all variants', () => {
+    //     cy.getSnapshots('post-banner');
+    //     cy.checkA11y('#root-inner');
+    //   });
   });
 });

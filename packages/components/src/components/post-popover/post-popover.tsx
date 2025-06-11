@@ -116,6 +116,7 @@ export class PostPopover {
   @Method()
   async show(target: HTMLElement) {
     this.popoverRef.show(target);
+    console.log(this.popoverRef);
     target.setAttribute('aria-expanded', 'true');
   }
 

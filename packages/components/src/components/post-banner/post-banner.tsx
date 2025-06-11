@@ -42,9 +42,8 @@ export class PostBanner {
   @Prop() readonly dismissible: boolean = false;
 
   @Watch('dismissible')
-  validateDismissible() {
-    checkType(this, 'dismissible', 'boolean');
-    setTimeout(() => this.validateDismissLabel());
+  checkDismissible() {
+    if (this.dismissible) setTimeout(() => this.validateDismissLabel());
   }
 
   /**
@@ -54,10 +53,7 @@ export class PostBanner {
 
   @Watch('dismissLabel')
   validateDismissLabel() {
-    if (this.dismissible) {
-      checkRequiredAndType(this, 'dismissLabel', 'string');
-    }
-    checkType(this, 'dismissLabel', 'string');
+    checkRequiredAndType(this, 'dismissLabel', 'string');
   }
 
   /**
@@ -89,7 +85,7 @@ export class PostBanner {
   @Event() postDismissed: EventEmitter<void>;
 
   componentDidLoad() {
-    this.validateDismissible();
+    this.checkDismissible();
     this.validateIcon();
     this.validateType();
   }

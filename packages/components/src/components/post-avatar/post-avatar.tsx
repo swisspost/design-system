@@ -74,7 +74,7 @@ export class PostAvatar {
 
   @Watch('email')
   validateEmail() {
-    checkPattern(this, 'email', emailPattern);
+    if (this.email) checkPattern(this, 'email', emailPattern);
   }
 
   private async getAvatar() {
