@@ -1,6 +1,7 @@
 ###
 #
 # runs all tests in packages changed since main
+# + testing release workflow logic (DRY RUN ONLY - NO ACTUAL RELEASES)
 #
 ###
 
@@ -8,15 +9,20 @@ name: Lint files
 on:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
         with:
           fetch-depth: 0
+          # Ensure we have the main branch reference
+          ref: ${{ github.head_ref }}
 
       - name: Setup
         uses: ./.github/actions/setup-pnpm
@@ -27,4 +33,90 @@ jobs:
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
       - name: Lint packages
-        run: pnpm -r lint
+        run: pnpm lint
+
+  # TEST RELEASE LOGIC (DRY RUN ONLY)
+  test-release-logic:
+    name: Test Release Data Collection (DRY RUN)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node & pnpm
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Install Dependencies
+        run: pnpm i
+
+      # DRY RUN TEST - This will fail the build if something in the publish setup is not correct
+      - name: Test publish step (DRY RUN)
+        run: pnpm -r publish --dry-run --no-git-checks
+
+      - name: Setup Git and fetch main branch
+        run: |
+          git fetch origin main:main
+          git branch -a
+
+      - name: Create Status Files for Testing
+        run: |
+          echo "🔍 Creating status files..."
+          pnpm m ls --depth=0 --json > monorepo.json
+          echo "📊 Running changeset status..."
+          pnpm changeset status --output=changesets.json --since=origin/main || {
+            echo "⚠️ Changeset status failed, creating empty changesets file for testing"
+            echo '{"releases":[],"changesets":[]}' > changesets.json
+          }
+
+      # TEST: Read the status Files and collect release data (same logic as release workflow)
+      - name: TEST - Debug Package.json and Dependencies
+        id: release-data-pre
+        uses: actions/github-script@e7aeb8c663f696059ebb5f9ab1425ed2ef511bdb
+        with:
+          script: |
+            const fs = require('fs')
+
+            console.log('='.repeat(80))
+            console.log('🔍 DEBUGGING PACKAGE.JSON AND DEPENDENCIES')
+            console.log('='.repeat(80))
+
+            // Read the styles package.json
+            const styles = JSON.parse(fs.readFileSync('./packages/styles/package.json', 'utf8'))
+            console.log('📄 STYLES PACKAGE.JSON CONTENT:')
+            console.log(JSON.stringify(styles, null, 2))
+            console.log('')
+
+            // Read changeset and monorepo data
+            const changesets = JSON.parse(fs.readFileSync('changesets.json', 'utf8'))
+            const monorepo = JSON.parse(fs.readFileSync('monorepo.json', 'utf8'))
+            const release = changesets.releases.find(r => r.name === '@swisspost/design-system-styles')
+
+            if (!release) {
+              console.log('❌ No release found for @swisspost/design-system-styles')
+              return null
+            }
+
+            // Build dependencies exactly like the real workflow
+            const updatedVersions = changesets.releases.reduce((deps, r) => ({ ...deps, [r.name]: r.newVersion }), {})
+            console.log('📝 UPDATED VERSIONS FROM CHANGESETS:')
+            console.log(JSON.stringify(updatedVersions, null, 2))
+            console.log('')
+
+            const dependencies = monorepo
+              .filter(pkg => pkg.version !== undefined)
+              .reduce((packages, pkg) => ({ ...packages, [pkg.name]: updatedVersions[pkg.name] ?? pkg.version }), { ...(styles.peerDependencies ?? {}) })
+
+            console.log('🎯 FINAL DEPENDENCIES OBJECT (what goes into versions.json):')
+            console.log(JSON.stringify(dependencies, null, 2))
+            console.log('')
+
+            // Clean up
+            fs.unlinkSync('changesets.json')
+            fs.unlinkSync('monorepo.json')
+
+            return dependencies
+
+      - name: Log Results
+        run: echo "✅ Check the logs above for package.json content and final dependencies object"
