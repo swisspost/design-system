@@ -1,6 +1,7 @@
 ###
 #
 # runs all tests in packages changed since main
+# + testing release workflow logic (DRY RUN ONLY - NO ACTUAL RELEASES)
 #
 ###
 
@@ -31,3 +32,145 @@ jobs:
       # https://pnpm.io/filtering#--filter-since
       - name: Lint packages
         run: pnpm lint
+
+  # TEST RELEASE LOGIC (DRY RUN ONLY)
+  test-release-logic:
+    name: Test Release Data Collection (DRY RUN)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node & pnpm
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Install Dependencies
+        run: pnpm i
+
+      # DRY RUN TEST - This will fail the build if something in the publish setup is not correct
+      - name: Test publish step (DRY RUN)
+        run: pnpm -r publish --dry-run
+
+      - name: Create Status Files for Testing
+        run: |
+          pnpm m ls --depth=0 --json > monorepo.json
+          pnpm changeset status --output=changesets.json
+
+      # TEST: Read the status Files and collect release data (same logic as release workflow)
+      - name: TEST - Prepare Release Data
+        id: release-data-pre
+        uses: actions/github-script@e7aeb8c663f696059ebb5f9ab1425ed2ef511bdb
+        with:
+          script: |
+            const fs = require('fs')
+
+            console.log('🧪 TESTING RELEASE DATA COLLECTION (DRY RUN)')
+            console.log('='.repeat(50))
+
+            const changesets = JSON.parse(fs.readFileSync('changesets.json', 'utf8'))
+            const release = changesets.releases.find(r => r.name === '@swisspost/design-system-styles')
+            const monorepo = JSON.parse(fs.readFileSync('monorepo.json', 'utf8'))
+            const styles = JSON.parse(fs.readFileSync('./packages/styles/package.json', 'utf8'))
+
+            console.log('📦 Monorepo contents:')
+            console.log(JSON.stringify(monorepo, null, 2))
+
+            console.log('🔗 Styles package.json peerDependencies:')
+            console.log(JSON.stringify(styles.peerDependencies, null, 2))
+
+            console.log('📋 Changesets releases:')
+            console.log(JSON.stringify(changesets.releases, null, 2))
+
+            console.log('🎯 Found @swisspost/design-system-styles release:')
+            console.log(JSON.stringify(release, null, 2))
+
+            // Clean up test files
+            fs.unlinkSync('changesets.json')
+            fs.unlinkSync('monorepo.json')
+
+            if (!release) {
+              console.log('⚠️  No release found for @swisspost/design-system-styles')
+              return null
+            }
+
+            const oldMajor = release.oldVersion.split('.')[0];
+            const newMajor = release.newVersion.split('.')[0];
+
+            console.log(`🔢 Version comparison: ${release.oldVersion} (major: ${oldMajor}) -> ${release.newVersion} (major: ${newMajor})`)
+
+            const updatedVersions = changesets.releases.reduce((deps, r) => ({ ...deps, [r.name]: r.newVersion }), {})
+            console.log('📝 Updated versions from changesets:')
+            console.log(JSON.stringify(updatedVersions, null, 2))
+
+            const dependencies = monorepo
+              .filter(pkg => pkg.version !== undefined)
+              .reduce((packages, pkg) => ({ ...packages, [pkg.name]: updatedVersions[pkg.name] ?? pkg.version }), { ...(styles.peerDependencies ?? {}) })
+
+            console.log('🏗️  Final dependencies object:')
+            console.log(JSON.stringify(dependencies, null, 2))
+
+            const result = {
+              isMajor: release.type === 'major' && newMajor !== oldMajor,
+              old: {
+                version: release.oldVersion,
+                major: oldMajor,
+                siteUrl: `swisspost-design-system-version-${oldMajor}`,
+                dependencies: {}
+              },
+              new: {
+                version: release.newVersion,
+                major: newMajor,
+                siteUrl: 'design-system',
+                dependencies
+              },
+              branchName: `release/v${oldMajor}`,
+              tagName: `@swisspost/design-system-styles@${release.oldVersion}`,
+              tagPattern: `@swisspost/design-system-styles@${oldMajor}.*`
+            }
+
+            console.log('🎉 Final release data:')
+            console.log(JSON.stringify(result, null, 2))
+
+            return result
+
+      - name: TEST - Create Summary
+        id: summary
+        uses: actions/github-script@e7aeb8c663f696059ebb5f9ab1425ed2ef511bdb
+        env:
+          RELEASE_DATA: ${{ steps.release-data-pre.outputs.result }}
+        with:
+          script: |
+            const release = JSON.parse(process.env.RELEASE_DATA)
+
+            return `# 🧪 TESTING Release Data Collection (DRY RUN - NO ACTUAL RELEASES)
+
+            **⚠️ THIS IS A TEST RUN - NO PACKAGES WILL BE PUBLISHED ⚠️**
+
+            ## Results:
+            - Release Data Found: ${process.env.RELEASE_DATA === 'null' ? '❌ No Release Data' : '✅ SUCCESS!'}
+            - Is Major Release: ${release?.isMajor ? '✅ YES' : '❌ NO'}
+            - Old Version: \`${release?.old?.version || 'N/A'}\`
+            - New Version: \`${release?.new?.version || 'N/A'}\`
+            - Branch Name: \`${release?.branchName || 'N/A'}\`
+
+            ## Full Release Data:
+            <details>
+            <summary>Click to expand</summary>
+
+            \`\`\`json
+            ${JSON.stringify(release, null, 2)}
+            \`\`\`
+            </details>
+
+            ## Next Steps:
+            If you see version mismatches or unexpected data above, check:
+            1. The changeset status output
+            2. The monorepo package list  
+            3. The dependency resolution logic
+            4. The peerDependencies in packages/styles/package.json
+            `
+
+      - name: Output Summary
+        run: echo -e "${{ steps.summary.outputs.result }}" >> $GITHUB_STEP_SUMMARY
