@@ -59,26 +59,6 @@
   justify-content: space-between;
 }
 
-.global-header,
-.local-header {
-  // Ensure smooth transitions after viewport changes
-  transition: inset-block-start 0.2s ease-in-out, transform 0.1s ease-out;
-  
-  // Force hardware acceleration for smoother repositioning
-  transform: translateZ(0);
-  will-change: inset-block-start;
-}
-
-// iOS Safari specific fixes
-@supports (-webkit-touch-callout: none) {
-  .global-header,
-  .local-header {
-    // Force recomposition after viewport changes
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-  }
-}
-
 .global-header {
   background-color: #ffcc00;
   display: flex;
