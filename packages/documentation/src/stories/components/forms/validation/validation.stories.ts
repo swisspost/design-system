@@ -124,8 +124,7 @@ export const Input: Story = {
       <label class="form-label" for="Input_1${props.validationState}${props.scheme}">Label</label>
       ${feedbackTemplate}
       <p class="form-hint" id="Input_1-form-hint${props.validationState}${props.scheme}">
-        Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
-        illum dolore eu feugiat nulla facilisis.
+        This is helpful text that provides guidance or additional information to assist the user in filling out this field correctly.
       </p>
     </div> `;
   },
@@ -243,8 +242,7 @@ export const Select: Story = {
       </label>
       ${feedbackTemplate}
       <p class="form-hint" id="Select_1-form-hint${props.validationState}${props.scheme}">
-        Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
-        illum dolore eu feugiat nulla facilisis.
+        This is helpful text that provides guidance or additional information to assist the user in filling out this field correctly.
       </p>
     </div>`;
   },
@@ -305,8 +303,7 @@ export const TextArea: Story = {
       >
       ${feedbackTemplate}
       <p class="form-hint" id="TextArea_1-form-hint${props.validationState}${props.scheme}">
-        Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
-        illum dolore eu feugiat nulla facilisis.
+        This is helpful text that provides guidance or additional information to assist the user in filling out this field correctly.
       </p>
     </div>`;
   },

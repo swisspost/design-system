@@ -31,7 +31,7 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       <!-- Meta navigation -->
       <ul class="list-inline" slot="meta-navigation">
         <li><a href="">Jobs</a></li>
-        <li><a href="">Über uns</a></li>
+        <li><a href="">About us</a></li>
       </ul>
 
       <!-- Menu button for mobile -->
@@ -49,9 +49,9 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
         name="language-switch-example"
         slot="post-language-switch"
       >
-        <post-language-option active="true" code="de" name="Deutsch">DE</post-language-option>
+        <post-language-option active="true" code="de" name="German">DE</post-language-option>
         <post-language-option active="false" code="fr" name="French">FR</post-language-option>
-        <post-language-option active="false" code="it" name="Italiano">IT</post-language-option>
+        <post-language-option active="false" code="it" name="Italian">IT</post-language-option>
         <post-language-option active="false" code="en" name="English">EN</post-language-option>
       </post-language-switch>
 
@@ -75,19 +75,17 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
       </ul>
 
       <!-- Main navigation -->
-      <post-mainnavigation caption="Hauptnavigation">
+      <post-mainnavigation caption="Main Navigation">
         <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
-          <post-icon aria-hidden="true" name="3024"></post-icon> Back
+          <post-icon aria-hidden="true" name="arrowleft"></post-icon> Back
         </button>
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
-          <post-list-item>
-            ${story(context.args, context)} 
-          </post-list-item>
+          <post-list-item> ${story(context.args, context)} </post-list-item>
         </post-list>
       </post-mainnavigation>
     </post-header>
-     <div class="container">
+    <div class="container">
       <p class="fake-content"></p>
       <p class="fake-content"></p>
     </div>
@@ -96,27 +94,27 @@ export function megadropdownDecorator(story: StoryFn, context: StoryContext) {
 
 function render() {
   return html`
-    <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
-    <post-megadropdown id="pakete">
+    <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
+    <post-megadropdown id="packages">
       <button slot="back-button" class="btn btn-tertiary px-0">
-        <post-icon name="arrowright"></post-icon>
-        Zurück
+        <post-icon name="arrowleft"></post-icon>
+        Back
       </button>
-      <post-closebutton slot="close-button">Schliessen</post-closebutton>
-      <h2 slot="megadropdown-title"><a href="">Pakete title</a></h2>
+      <post-closebutton slot="close-button">Close</post-closebutton>
+      <h2 slot="megadropdown-title"><a href="">Packages title</a></h2>
       <post-list>
-        <h3>Pakete senden</h3>
-        <post-list-item><a href="/sch">Pakete Schweiz</a></post-list-item>
-        <post-list-item><a href="/kl">Kleinwaren Ausland</a></post-list-item>
-        <post-list-item><a href="">Waren Ausland</a></post-list-item>
-        <post-list-item><a href="">Express und Kurier</a></post-list-item>
+        <h3>Send packages</h3>
+        <post-list-item><a href="/sch">Packages Switzerland</a></post-list-item>
+        <post-list-item><a href="/kl">Small goods international</a></post-list-item>
+        <post-list-item><a href="">Goods international</a></post-list-item>
+        <post-list-item><a href="">Express and courier</a></post-list-item>
       </post-list>
       <post-list>
-        <h3><a href="/schritt-für-schritt">Schritt für Schritt</a></h3>
-        <post-list-item><a href="/sch">Pakete Schweiz</a></post-list-item>
-        <post-list-item><a href="/kl">Kleinwaren Ausland</a></post-list-item>
-        <post-list-item><a href="">Waren Ausland</a></post-list-item>
-        <post-list-item><a href="">Express und Kurier</a></post-list-item>
+        <h3><a href="/step-by-step">Step by step</a></h3>
+        <post-list-item><a href="/sch">Packages Switzerland</a></post-list-item>
+        <post-list-item><a href="/kl">Small goods international</a></post-list-item>
+        <post-list-item><a href="">Goods international</a></post-list-item>
+        <post-list-item><a href="">Express and courier</a></post-list-item>
       </post-list>
     </post-megadropdown>
   `;

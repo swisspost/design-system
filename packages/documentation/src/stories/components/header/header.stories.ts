@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components';
 import { MetaComponent } from '@root/types';
 import { html } from 'lit';
 import { fakeContent } from '@/utils';
@@ -20,6 +20,7 @@ const meta: MetaComponent = {
     title: 'Application title',
     metaNavigation: true,
     customControls: true,
+    targetGroup: false,
   },
   argTypes: {
     title: {
@@ -42,6 +43,16 @@ const meta: MetaComponent = {
         category: 'Content',
       },
     },
+    targetGroup: {
+      name: 'Target group',
+      description: 'Whether or not the target group buttons are visible.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content',
+      },
+    },
     customControls: {
       name: 'Custom controls',
       description: 'Whether or not the custom controls are displayed ("search" and "login").',
@@ -53,20 +64,14 @@ const meta: MetaComponent = {
       },
     },
   },
-  decorators: [
-    story =>
-      html` <div class="header-story-wrapper">
-        <div class="virtual-body">${story()} ${fakeContent()}</div>
-      </div>`,
-  ],
 };
 
 export default meta;
 
 type Story = StoryObj;
 
-export const Default: Story = {
-  render: args => {
+const Template = {
+  render: (args: Args) => {
     return html`<post-header>
       <!-- Logo -->
       <post-logo slot="post-logo" url="/">Homepage</post-logo>
@@ -76,7 +81,7 @@ export const Default: Story = {
             <!-- Meta navigation -->
             <ul class="list-inline" slot="meta-navigation">
               <li><a href="">Jobs</a></li>
-              <li><a href="">Über uns</a></li>
+              <li><a href="">About us</a></li>
             </ul>
           `
         : ''}
@@ -96,9 +101,9 @@ export const Default: Story = {
         name="language-switch-example"
         slot="post-language-switch"
       >
-        <post-language-option active="false" code="de" name="Deutsch">de</post-language-option>
+        <post-language-option active="false" code="de" name="German">de</post-language-option>
         <post-language-option active="false" code="fr" name="French">fr</post-language-option>
-        <post-language-option active="false" code="it" name="Italiano">it</post-language-option>
+        <post-language-option active="false" code="it" name="Italian">it</post-language-option>
         <post-language-option active="true" code="en" name="English">en</post-language-option>
       </post-language-switch>
 
@@ -106,6 +111,21 @@ export const Default: Story = {
         ? html`
             <!-- Application title (optional) -->
             <h1 slot="title">${args.title}</h1>
+          `
+        : ''}
+      ${args.targetGroup
+        ? html`
+            <ul slot="target-group" class="target-group">
+              <li>
+                <a href="#" class="active">Private customers</a>
+              </li>
+              <li>
+                <a href="#">Business customers</a>
+              </li>
+              <li>
+                <a href="#">Authorities</a>
+              </li>
+            </ul>
           `
         : ''}
       ${args.customControls
@@ -129,87 +149,87 @@ export const Default: Story = {
         : ''}
 
       <!-- Main navigation -->
-      <post-mainnavigation caption="Hauptnavigation">
+      <post-mainnavigation caption="Main navigation">
         <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
-          <post-icon aria-hidden="true" name="arrowright"></post-icon> Back
+          <post-icon aria-hidden="true" name="arrowleft"></post-icon> Back
         </button>
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
           <!-- Link only level 1 -->
-          <post-list-item slot="post-list-item"><a href="/briefe">Briefe</a></post-list-item>
-          <post-list-item slot="post-list-item"><a href="/pakete">Pakete</a></post-list-item>
+          <post-list-item slot="post-list-item"><a href="/letters">Letters</a></post-list-item>
+          <post-list-item slot="post-list-item"><a href="/packages">Packages</a></post-list-item>
 
           <!-- Level 1 with megadropdown -->
           <post-list-item slot="post-list-item">
-            <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
-            <post-megadropdown id="briefe">
+            <post-megadropdown-trigger for="letters">Letters</post-megadropdown-trigger>
+            <post-megadropdown id="letters">
               <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-                <post-icon name="arrowright"></post-icon>
+                <post-icon name="arrowleft"></post-icon>
                 Back
               </button>
-              <post-closebutton slot="close-button">Schliessen</post-closebutton>
-              <h2 slot="megadropdown-title">Briefe title</h2>
+              <post-closebutton slot="close-button">Close</post-closebutton>
+              <h2 slot="megadropdown-title">Letters title</h2>
               <post-list>
-                <h3>Briefe senden</h3>
+                <h3>Send letters</h3>
                 <post-list-item slot="post-list-item"
-                  ><a href="/sch">Briefe Schweiz</a></post-list-item
+                  ><a href="/sch">Letters Switzerland</a></post-list-item
                 >
                 <post-list-item slot="post-list-item"
-                  ><a href="/kl">Kleinwaren Ausland</a></post-list-item
+                  ><a href="/kl">Small items abroad</a></post-list-item
                 >
-                <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
+                <post-list-item slot="post-list-item"><a href="">Goods abroad</a></post-list-item>
                 <post-list-item slot="post-list-item"
-                  ><a href="">Express und Kurier</a></post-list-item
+                  ><a href="">Express and courier</a></post-list-item
                 >
               </post-list>
               <post-list>
-                <h3><a href="/schritt-für-schritt">Schritt für Schritt</a></h3>
+                <h3><a href="/step-by-step">Step by step</a></h3>
                 <post-list-item slot="post-list-item"
-                  ><a href="/sch">Pakete Schweiz</a></post-list-item
+                  ><a href="/sch">Packages Switzerland</a></post-list-item
                 >
                 <post-list-item slot="post-list-item"
-                  ><a href="/kl">Kleinwaren Ausland</a></post-list-item
+                  ><a href="/kl">Small items abroad</a></post-list-item
                 >
-                <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
+                <post-list-item slot="post-list-item"><a href="">Goods abroad</a></post-list-item>
                 <post-list-item slot="post-list-item"
-                  ><a href="">Express und Kurier</a></post-list-item
+                  ><a href="">Express and courier</a></post-list-item
                 >
               </post-list>
             </post-megadropdown>
           </post-list-item>
           <post-list-item slot="post-list-item">
-            <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
-            <post-megadropdown id="pakete">
+            <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
+            <post-megadropdown id="packages">
               <button slot="back-button" class="btn btn-tertiary px-0 btn-sm">
-                <post-icon name="arrowright"></post-icon>
+                <post-icon name="arrowleft"></post-icon>
                 Back
               </button>
-              <post-closebutton slot="close-button">Schliessen</post-closebutton>
-              <h2 slot="megadropdown-title">Pakete title</h2>
+              <post-closebutton slot="close-button">Close</post-closebutton>
+              <h2 slot="megadropdown-title">Packages title</h2>
               <post-list>
-                <h3>Pakete senden</h3>
+                <h3>Send packages</h3>
                 <post-list-item slot="post-list-item"
-                  ><a href="/sch">Pakete Schweiz</a></post-list-item
+                  ><a href="/sch">Packages Switzerland</a></post-list-item
                 >
                 <post-list-item slot="post-list-item"
-                  ><a href="/kl">Kleinwaren Ausland</a></post-list-item
+                  ><a href="/kl">Small items abroad</a></post-list-item
                 >
-                <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
+                <post-list-item slot="post-list-item"><a href="">Goods abroad</a></post-list-item>
                 <post-list-item slot="post-list-item"
-                  ><a href="">Express und Kurier</a></post-list-item
+                  ><a href="">Express and courier</a></post-list-item
                 >
               </post-list>
               <post-list>
-                <h3><a href="/schritt-für-schritt">Schritt für Schritt</a></h3>
+                <h3><a href="/step-by-step">Step by step</a></h3>
                 <post-list-item slot="post-list-item"
-                  ><a href="/sch">Pakete Schweiz</a></post-list-item
+                  ><a href="/sch">Packages Switzerland</a></post-list-item
                 >
                 <post-list-item slot="post-list-item"
-                  ><a href="/kl">Kleinwaren Ausland</a></post-list-item
+                  ><a href="/kl">Small items abroad</a></post-list-item
                 >
-                <post-list-item slot="post-list-item"><a href="">Waren Ausland</a></post-list-item>
+                <post-list-item slot="post-list-item"><a href="">Goods abroad</a></post-list-item>
                 <post-list-item slot="post-list-item"
-                  ><a href="">Express und Kurier</a></post-list-item
+                  ><a href="">Express and courier</a></post-list-item
                 >
               </post-list>
             </post-megadropdown>
@@ -218,4 +238,22 @@ export const Default: Story = {
       </post-mainnavigation>
     </post-header>`;
   },
+};
+
+export const Default: Story = {
+  ...Template,
+  decorators: [
+    story =>
+      html` <div class="header-story-wrapper">
+        <div class="virtual-body">${story()} ${fakeContent()}</div>
+      </div>`,
+  ],
+};
+
+export const WithTargetGroup: Story = {
+  args: {
+    targetGroup: true,
+  },
+  ...Template,
+  decorators: [story => html` <div style="min-height: 400px">${story()}</div>`],
 };

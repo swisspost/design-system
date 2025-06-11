@@ -133,7 +133,7 @@ function renderSwitch(args: Args, context: StoryContext) {
     ? html` <label for=${context.id} class="form-check-label">${args.label}</label> `
     : null;
 
-  const validationText = args.validation === 'is-valid' ? 'Ggranda sukceso!' : 'Eraro okazis!';
+  const validationText = args.validation === 'is-valid' ? 'Great success!' : 'An error occurred!';
   const validationFeedback =
     args.validation !== 'null'
       ? html`
@@ -181,6 +181,6 @@ export const MultilineLabels: Story = {
   args: {
     labelPosition: 'after',
     label:
-      'Longa etikedo kiu plej versajne ne taugas sur unu linio kaj tial devas esti envolvita. Kaj nur por esti sur la sekura flanko, ni simple aldonu unu plian tre sencelan frazon ci tie. Vi neniam scias...',
+      'A long label that probably does not fit on one line and therefore must be wrapped. And just to be on the safe side, we simply add one more very senseless sentence here. You never know...',
   },
 };
