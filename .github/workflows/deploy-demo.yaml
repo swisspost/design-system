@@ -28,14 +28,17 @@ jobs:
         uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
         with:
           ref: main
+
       - name: Setup
         uses: ./.github/actions/setup-pnpm
+
       - name: Download build artifacts
         uses: ./.github/actions/artifact-download
         id: build
         with:
           name: design-system-demo
           folder: build-output
+
       - name: Validate issue number
         id: validate
         uses: actions/github-script@v6
@@ -48,7 +51,15 @@ jobs:
               core.setFailed('Invalid issue number format - must be 1-10 digits');
               return;
             }
+            // Convert to number and validate range
+            const issueNumber = Number(rawId);
+            if (!Number.isInteger(issueNumber) || issueNumber <= 0) {
+              core.setFailed('Invalid issue number - must be a positive integer');
+              return;
+            }
+            
             core.setOutput('safe_id', rawId);
+            core.setOutput('issue_number', issueNumber);
 
       - name: Deploy demo app to netlify
         if: steps.validate.outcome == 'success'
@@ -61,23 +72,18 @@ jobs:
           netlify_site_url: swisspost-web-frontend.netlify.app
           folder: ${{ steps.build.outputs.folder }}
           package_name: '@swisspost/design-system-demo'
+
       - name: Update preview message
         if: steps.validate.outcome == 'success' && steps.deploy.outcome == 'success'
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         with:
           github-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           env:
-            SAFE_ID: ${{ steps.validate.outputs.safe_id }}
+            ISSUE_NUMBER: ${{ steps.validate.outputs.issue_number }}
             PREVIEW_URL: ${{ steps.deploy.outputs.preview-url }}
           script: |
-            const issueNumber = Number(process.env.SAFE_ID);
+            const issueNumber = Number(process.env.ISSUE_NUMBER);
             const previewUrl = process.env.PREVIEW_URL;
-            
-            if (!Number.isInteger(issueNumber) || issueNumber <= 0) {
-              core.setFailed('Invalid issue number');
-              return;
-            }
-            
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
