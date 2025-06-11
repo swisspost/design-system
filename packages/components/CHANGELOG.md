@@ -1,5 +1,52 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.39
+
+### Major Changes
+
+- Improved `post-header` component responsive behavior for better mobile and desktop experience. Removed `postUpdateDevice` event as part of internal refactoring - if you were listening to this event in your application, you'll need to remove those event listeners. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5490](https://github.com/swisspost/design-system/pull/5490))
+
+- Updated the following props to be `required`:
+
+  - `post-breadcrumbs`: `homeUrl` is now required.
+  - `post-collabpsible-trigger`: `for` is now required.
+  - `post-language-switch`: `caption` and `description` are now required.
+  - `post-tab-header`: `panel` is now required.
+  - `post-tab-panel`: `name` is now required.
+
+  Updated the following props to not accept `null`:
+
+  - `post-card-control`: `icon`, `name`, `value` no longer accept null;
+  - `post-icon`: `animation`, `base`, `rotate`, `scale` no longer accept null.
+  - `post-tag`: `icon`, `size` no longer accept null.
+  - `post-tooltip`: `animation` no longer accepts null.
+
+  Updated prop type:
+
+  - `post-card-control`: `validity` type changed to boolean. (by [@myrta2302](https://github.com/myrta2302) with [#5469](https://github.com/swisspost/design-system/pull/5469))
+
+- Moved the file responsible for preventing flashes of unstyled content for components from the styles to the components package. The flashes occur when non-hydrated components are rendered before JavaScript has loaded on a client. These styles hide the non-hydrated component, preventing the flash.  
+  **Changes:**
+  Removed: `@swispost/design-system-styles/components/not-defined.(scss|css)`
+  Added: `@swisspost/design-system-components/post-components/post-components.css`
+  Added: `@swisspost/design-system-components-angular/post-components.css`
+  Added: `@swisspost/design-system-components-react/post-components.css` (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5165](https://github.com/swisspost/design-system/pull/5165))
+
+### Patch Changes
+
+- Added the `target group` css component. (by [@leagrdv](https://github.com/leagrdv) with [#5424](https://github.com/swisspost/design-system/pull/5424))
+
+- Updated the following props to be `optional`:
+  - `post-banner`: `dismissLabel`, `icon`
+  - `post-card-control`: `description`
+  - `post-language-option`: `active`, `name`, `url`, `variant`
+  - `post-logo`: `url`
+  - `post-tabs`: `activePanel`
+  - `post-tag`: `variant` (by [@myrta2302](https://github.com/myrta2302) with [#5469](https://github.com/swisspost/design-system/pull/5469))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.39
+  - @swisspost/design-system-styles@10.0.0-next.39
+
 ## 10.0.0-next.38
 
 ### Patch Changes

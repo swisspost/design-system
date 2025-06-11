@@ -1,5 +1,21 @@
 # @swisspost/design-system-components-react
 
+## 10.0.0-next.39
+
+### Major Changes
+
+- Moved the file responsible for preventing flashes of unstyled content for components from the styles to the components package. The flashes occur when non-hydrated components are rendered before JavaScript has loaded on a client. These styles hide the non-hydrated component, preventing the flash.  
+  **Changes:**
+  Removed: `@swispost/design-system-styles/components/not-defined.(scss|css)`
+  Added: `@swisspost/design-system-components/post-components/post-components.css`
+  Added: `@swisspost/design-system-components-angular/post-components.css`
+  Added: `@swisspost/design-system-components-react/post-components.css` (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5165](https://github.com/swisspost/design-system/pull/5165))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.39
+
 ## 10.0.0-next.38
 
 ### Patch Changes
