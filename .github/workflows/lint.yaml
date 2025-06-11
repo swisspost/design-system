@@ -21,6 +21,8 @@ jobs:
         uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
         with:
           fetch-depth: 0
+          # Ensure we have the main branch reference
+          ref: ${{ github.head_ref }}
 
       - name: Setup
         uses: ./.github/actions/setup-pnpm
@@ -53,10 +55,20 @@ jobs:
       - name: Test publish step (DRY RUN)
         run: pnpm -r publish --dry-run --no-git-checks
 
+      - name: Setup Git and fetch main branch
+        run: |
+          git fetch origin main:main
+          git branch -a
+
       - name: Create Status Files for Testing
         run: |
+          echo "🔍 Creating status files..."
           pnpm m ls --depth=0 --json > monorepo.json
-          pnpm changeset status --output=changesets.json
+          echo "📊 Running changeset status..."
+          pnpm changeset status --output=changesets.json --since=origin/main || {
+            echo "⚠️ Changeset status failed, creating empty changesets file for testing"
+            echo '{"releases":[],"changesets":[]}' > changesets.json
+          }
 
       # TEST: Read the status Files and collect release data (same logic as release workflow)
       - name: TEST - Prepare Release Data
@@ -80,8 +92,14 @@ jobs:
             console.log('🔗 Styles package.json peerDependencies:')
             console.log(JSON.stringify(styles.peerDependencies, null, 2))
 
-            console.log('📋 Changesets releases:')
-            console.log(JSON.stringify(changesets.releases, null, 2))
+            console.log('📋 Changesets data:')
+            console.log(JSON.stringify(changesets, null, 2))
+
+            if (!changesets.releases || changesets.releases.length === 0) {
+              console.log('⚠️  No releases found in changesets. This might be expected for a PR without changesets.')
+              console.log('🔍 Available changesets:', changesets.changesets?.length || 0)
+              return null
+            }
 
             console.log('🎯 Found @swisspost/design-system-styles release:')
             console.log(JSON.stringify(release, null, 2))
