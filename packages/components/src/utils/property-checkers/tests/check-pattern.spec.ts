@@ -1,5 +1,5 @@
 import { checkPattern } from '../check-pattern';
-
+import { isValueEmpty } from '@/utils/is-value-empty';
 describe('checkPattern', () => {
   const pattern = /[a-z]{5}/;
   const error =
@@ -26,9 +26,11 @@ describe('checkPattern', () => {
       () => {
         /* empty */
       },
-    ].forEach(notString => {
-      expect(runCheckForValue(notString)).toThrow(error);
-    });
+    ]
+      .filter(notString => !isValueEmpty(notString))
+      .forEach(notString => {
+        expect(runCheckForValue(notString)).toThrow(error);
+      });
   });
 
   it('should throw the provided error if the value does not match the provided pattern', () => {

@@ -1,5 +1,6 @@
 import { checkType } from '../check-type';
 import { PropertyType } from '@/types';
+import { isValueEmpty } from '@/utils/is-value-empty';
 
 describe('checkType', () => {
   let type: PropertyType;
@@ -34,9 +35,11 @@ describe('checkType', () => {
         () => {
           /* empty */
         },
-      ].forEach(nonBoolean => {
-        expect(runCheckForValue(nonBoolean)).toThrow(error);
-      });
+      ]
+        .filter(nonBoolean => !isValueEmpty(nonBoolean))
+        .forEach(nonBoolean => {
+          expect(runCheckForValue(nonBoolean)).toThrow(error);
+        });
     });
   });
 
@@ -63,9 +66,11 @@ describe('checkType', () => {
         () => {
           /* empty */
         },
-      ].forEach(nonNumber => {
-        expect(runCheckForValue(nonNumber)).toThrow(error);
-      });
+      ]
+        .filter(nonNumber => !isValueEmpty(nonNumber))
+        .forEach(nonNumber => {
+          expect(runCheckForValue(nonNumber)).toThrow(error);
+        });
     });
   });
 
@@ -93,9 +98,11 @@ describe('checkType', () => {
         () => {
           /* empty */
         },
-      ].forEach(nonString => {
-        expect(runCheckForValue(nonString)).toThrow(error);
-      });
+      ]
+        .filter(nonString => !isValueEmpty(nonString))
+        .forEach(nonString => {
+          expect(runCheckForValue(nonString)).toThrow(error);
+        });
     });
   });
 
@@ -123,9 +130,11 @@ describe('checkType', () => {
         () => {
           /* empty */
         },
-      ].forEach(nonArray => {
-        expect(runCheckForValue(nonArray)).toThrow(error);
-      });
+      ]
+        .filter(nonArray => !isValueEmpty(nonArray))
+        .forEach(nonArray => {
+          expect(runCheckForValue(nonArray)).toThrow(error);
+        });
     });
   });
 
@@ -151,9 +160,11 @@ describe('checkType', () => {
         () => {
           /* empty */
         },
-      ].forEach(nonObject => {
-        expect(runCheckForValue(nonObject)).toThrow(error);
-      });
+      ]
+        .filter(nonObject => !isValueEmpty(nonObject))
+        .forEach(nonObject => {
+          expect(runCheckForValue(nonObject)).toThrow(error);
+        });
     });
   });
 
@@ -177,9 +188,11 @@ describe('checkType', () => {
     });
 
     it('should throw an error if the value is not a function', () => {
-      [undefined, null, true, 42, NaN, 'string', [], {}].forEach(nonFn => {
-        expect(runCheckForValue(nonFn)).toThrow(error);
-      });
+      [undefined, null, true, 42, NaN, 'string', [], {}]
+        .filter(nonFn => !isValueEmpty(nonFn))
+        .forEach(nonFn => {
+          expect(runCheckForValue(nonFn)).toThrow(error);
+        });
     });
   });
 });

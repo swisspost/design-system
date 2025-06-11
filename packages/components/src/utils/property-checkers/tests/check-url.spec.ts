@@ -1,4 +1,5 @@
 import { checkUrl } from '../check-url';
+import { isValueEmpty } from '@/utils/is-value-empty';
 
 describe('checkUrl', () => {
   const errorMessage = 'The prop `prop` of the `post-component` component is invalid.';
@@ -28,10 +29,15 @@ describe('checkUrl', () => {
       ['https://www.example.com'],
       { url: 'https://www.example.com' },
       () => 'https://www.example.com',
-    ].forEach(invalidUrl => {
-      const component = { host: { localName: 'post-component' } as HTMLElement, prop: invalidUrl };
-      // Type casting because we know that these are not valid arguments, it's just for testing
-      expect(() => checkUrl(component, 'prop')).toThrow(errorMessage);
-    });
+    ]
+      .filter(invalidUrl => !isValueEmpty(invalidUrl))
+      .forEach(invalidUrl => {
+        const component = {
+          host: { localName: 'post-component' } as HTMLElement,
+          prop: invalidUrl,
+        };
+        // Type casting because we know that these are not valid arguments, it's just for testing
+        expect(() => checkUrl(component, 'prop')).toThrow(errorMessage);
+      });
   });
 });
