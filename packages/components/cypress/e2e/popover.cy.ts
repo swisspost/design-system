@@ -77,7 +77,7 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
         )
         .then(([trigger, popover]: [HTMLButtonElement, HTMLPostPopoverElement]) => {
           cy.get('@popover').should('not.be.visible');
-          // popover.show(trigger);
+          popover.show(trigger);
           cy.get('@popover').should('be.visible');
           popover.hide();
           cy.get('@popover').should('not.be.visible');
