@@ -2,6 +2,7 @@ import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { useArgs } from '@storybook/preview-api';
 import { html, nothing, TemplateResult } from 'lit';
 import { MetaComponent } from '@root/types';
+import { getLabelText } from '@root/src/utils/form-elements';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -32,6 +33,7 @@ const meta: MetaComponent = {
     showValue: 'none',
     disabled: false,
     validation: 'null',
+    requiredOptional: 'null',
   },
   argTypes: {
     label: {
@@ -160,6 +162,22 @@ const meta: MetaComponent = {
         category: 'States',
       },
     },
+    requiredOptional: {
+      name: 'Required / Optional',
+      description: 'Whether the field is required or optional.',
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          required: 'Required',
+          optional: 'Optional',
+        },
+      },
+      options: ['null', 'required', 'optional'],
+      table: {
+        category: 'States',
+      },
+    },
   },
 };
 
@@ -174,13 +192,16 @@ function render(args: Args, context: StoryContext) {
   const classes = ['form-range', args.validation].filter(c => c && c !== 'null').join(' ');
 
   const useAriaLabel = args.hiddenLabel;
+
   const label: TemplateResult | null = !useAriaLabel
-    ? html` <label class="form-label" for="${id}">${args.label}</label> `
+    ? html` <label class="form-label" for="${id}">${getLabelText(args)}</label> `
     : null;
 
   const contextual: (TemplateResult | null)[] = [
     args.validation === 'is-valid' ? html` <p class="valid-feedback">Great success!</p> ` : null,
-    args.validation === 'is-invalid' ? html` <p class="invalid-feedback">An error occurred!</p> ` : null,
+    args.validation === 'is-invalid'
+      ? html` <p class="invalid-feedback">An error occurred!</p> `
+      : null,
   ];
 
   const control: TemplateResult = html`

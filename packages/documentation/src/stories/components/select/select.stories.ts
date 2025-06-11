@@ -3,6 +3,7 @@ import { html, nothing } from 'lit';
 import { useArgs } from '@storybook/preview-api';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { MetaComponent } from '@root/types';
+import { getLabelText } from '@root/src/utils/form-elements';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -32,6 +33,7 @@ const meta: MetaComponent = {
     hint: 'This is helpful text that provides guidance or additional information to assist the user in filling out this field correctly.',
     disabled: false,
     validation: 'null',
+    requiredOptional: 'null',
   },
   argTypes: {
     label: {
@@ -160,6 +162,22 @@ const meta: MetaComponent = {
         category: 'States',
       },
     },
+    requiredOptional: {
+      name: 'Required / Optional',
+      description: 'Whether the field is required or optional.',
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          required: 'Required',
+          optional: 'Optional',
+        },
+      },
+      options: ['null', 'required', 'optional'],
+      table: {
+        category: 'States',
+      },
+    },
   },
 };
 
@@ -178,8 +196,9 @@ const Template: Story = {
       .filter(c => c && c !== 'null')
       .join(' ');
     const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
+
     const label = !useAriaLabel
-      ? html` <label for="${context.id}" class="form-label">${args.label}</label> `
+      ? html` <label for="${context.id}" class="form-label">${getLabelText(args)}</label> `
       : null;
     const optionElements = Array.from({ length: args.options - 1 }, (_, i) => i + 2).map(
       (key: number) => html` <option value="value_${key}">Option ${key}</option> `,
@@ -201,7 +220,9 @@ const Template: Story = {
         : null,
       args.validation === 'is-invalid'
         ? html`
-            <p class="invalid-feedback" id="${args.validation}-id-${context.id}">An error occurred!</p>
+            <p class="invalid-feedback" id="${args.validation}-id-${context.id}">
+              An error occurred!
+            </p>
           `
         : null,
       args.hint !== ''
@@ -237,10 +258,7 @@ const Template: Story = {
             .slice(1)
             .map(
               (option, index) => html`
-                <option
-                  value="value_${index + 1}"
-                  ?selected="${index === args.selectedOption - 2}"
-                >
+                <option value="value_${index + 1}" ?selected="${index === args.selectedOption - 2}">
                   Option ${index + 2}
                 </option>
               `,

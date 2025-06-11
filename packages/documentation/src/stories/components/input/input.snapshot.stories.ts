@@ -16,11 +16,13 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
   const combinations = [
     ...COMBINATIONS,
     {
-      label: `Label - no Placeholder`,
+      title: 'No placeholder',
+      label: `Label`,
       placeholder: null,
     },
     {
-      label: `Label - with Value`,
+      title: 'With value',
+      label: `Label`,
       value: 'Lorem Ipsum',
     },
   ];
@@ -38,6 +40,7 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
             context.id = `${scheme}-${crypto.randomUUID()}`;
             return html`
               <div>
+                <h4>${args.title}</h4>
                 <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
               </div>
             `;
@@ -51,7 +54,10 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
           )
           .map((args: Args) => {
             context.id = `${scheme}-${crypto.randomUUID()}`;
-            return html` <div>${meta.render?.({ ...context.args, ...args }, context)}</div> `;
+            return html` <div>
+              <h4>${args.title}</h4>
+              <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
+            </div>`;
           })}
       </div>
     `,

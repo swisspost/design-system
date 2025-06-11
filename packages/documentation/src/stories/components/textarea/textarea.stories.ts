@@ -2,6 +2,7 @@ import { MetaComponent } from '@root/types';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { mapClasses } from '@/utils';
+import { getLabelText } from '@root/src/utils/form-elements';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -29,6 +30,7 @@ const meta: MetaComponent = {
     hint: 'This is helpful text that provides guidance or additional information to assist the user in filling out this field correctly.',
     disabled: false,
     validation: 'null',
+    requiredOptional: 'null',
   },
   argTypes: {
     label: {
@@ -128,6 +130,22 @@ const meta: MetaComponent = {
         category: 'States',
       },
     },
+    requiredOptional: {
+      name: 'Required / Optional',
+      description: 'Whether the field is required or optional.',
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          required: 'Required',
+          optional: 'Optional',
+        },
+      },
+      options: ['null', 'required', 'optional'],
+      table: {
+        category: 'States',
+      },
+    },
   },
 };
 
@@ -141,17 +159,18 @@ function renderTextarea(args: Args, context: StoryContext) {
     [args.validation]: args.validation,
   });
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
+
   const label = !useAriaLabel
-    ? html` <label for=${context.id} class="form-label">${args.label}</label> `
+    ? html` <label for=${context.id} class="form-label">${getLabelText(args)}</label> `
     : null;
   const contextual = [
     args.validation === 'is-valid'
-      ? html`<p class="valid-feedback" id="${args.validation}-id-${context.id}">
-          Great success!
-        </p>`
+      ? html`<p class="valid-feedback" id="${args.validation}-id-${context.id}">Great success!</p>`
       : null,
     args.validation === 'is-invalid'
-      ? html`<p class="invalid-feedback" id="${args.validation}-id-${context.id}">An error occurred!</p>`
+      ? html`<p class="invalid-feedback" id="${args.validation}-id-${context.id}">
+          An error occurred!
+        </p>`
       : null,
     args.hint !== ''
       ? html`<p class="form-hint" id="form-hint-${context.id}">${args.hint}</p>`

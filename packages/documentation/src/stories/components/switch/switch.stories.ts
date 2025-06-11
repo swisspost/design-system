@@ -4,6 +4,7 @@ import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { mapClasses } from '@/utils';
 import { MetaComponent } from '@root/types';
+import { getLabelText } from '@root/src/utils/form-elements';
 
 const meta: MetaComponent = {
   id: '7fb639f8-86f6-4937-999c-4ee15f81643b',
@@ -24,6 +25,7 @@ const meta: MetaComponent = {
     checked: false,
     disabled: false,
     validation: 'null',
+    requiredOptional: 'null',
   },
   argTypes: {
     labelPosition: {
@@ -100,6 +102,22 @@ const meta: MetaComponent = {
         category: 'States',
       },
     },
+    requiredOptional: {
+      name: 'Required / Optional',
+      description: 'Whether the field is required or optional.',
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          required: 'Required',
+          optional: 'Optional',
+        },
+      },
+      options: ['null', 'required', 'optional'],
+      table: {
+        category: 'States',
+      },
+    },
   },
   decorators: [story => html` <div class="pt-16">${story()}</div> `],
 };
@@ -126,11 +144,13 @@ function renderSwitch(args: Args, context: StoryContext) {
   const useLabelAfter = !useAriaLabel && 'after' === args.labelPosition;
 
   const labelBefore = useLabelBefore
-    ? html` <label for=${context.id} class="form-check-label order-first">${args.label}</label> `
+    ? html`
+        <label for=${context.id} class="form-check-label order-first">${getLabelText(args)}</label>
+      `
     : null;
 
   const labelAfter = useLabelAfter
-    ? html` <label for=${context.id} class="form-check-label">${args.label}</label> `
+    ? html` <label for=${context.id} class="form-check-label">${getLabelText(args)}</label> `
     : null;
 
   const validationText = args.validation === 'is-valid' ? 'Great success!' : 'An error occurred!';
