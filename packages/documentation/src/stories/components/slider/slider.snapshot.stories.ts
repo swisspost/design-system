@@ -27,13 +27,15 @@ export const Slider: Story = {
               disabled: [false, true],
               validation: context.argTypes.validation.options,
               showValue: context.argTypes.showValue.options,
+              requiredOptional: ['null', 'required', 'optional'],
             })
               //makes sure only one of those 3 Properties has a non default value
               .filter(
                 (args: Args) =>
                   (!args.disabled || args.validation === 'null') &&
                   (!args.disabled || args.showValue === 'none') &&
-                  (args.validation === 'null' || args.showValue === 'none'),
+                  (args.validation === 'null' || args.showValue === 'none') &&
+                  !(args.requiredOptional === 'required' && args.disabled === true),
               )
               // makes sure only one label with long text
               .filter(
