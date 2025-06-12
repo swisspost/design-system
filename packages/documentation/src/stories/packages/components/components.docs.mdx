@@ -5,6 +5,7 @@ import SampleCdnLazyLoadedAll from './components-cdn-lazy-loaded-all.sample.html
 import SampleCdnLazyLoadedSpecific from './components-cdn-lazy-loaded-specific.sample.html?raw';
 import SampleJsAll from './components-js-all.sample?raw';
 import SampleJsSpecific from './components-js-specific.sample?raw';
+import SampleCssGlobal from './components-css-global.sample.css?raw';
 import changelog from '@/../../components/CHANGELOG.md?raw';
 import PackageDocs from '@/shared/packages-docs-layout.mdx';
 
@@ -29,6 +30,13 @@ import PackageDocs from '@/shared/packages-docs-layout.mdx';
   <Source code={`npm install @swisspost/design-system-components`} language="bash" />
 
   ## Usage
+
+  Import the packages global styles. They are required for the components to work properly.
+
+  <Source
+    code={SampleCssGlobal}
+    language="scss"
+  />
 
   Import all or only specific components into your entry file (e.g. `main.js`, `app.js`, ...).
 
