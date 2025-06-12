@@ -43,19 +43,6 @@ export class PostTooltip {
     );
   }
 
-  private extractText(node: Node): string {
-    if (node.nodeType === Node.TEXT_NODE) {
-      return node.textContent?.trim() ?? '';
-    }
-    if (node.nodeType === Node.ELEMENT_NODE) {
-      const element = node as Element;
-      return Array.from(element.childNodes)
-        .map(child => this.extractText(child))
-        .join(' ');
-    }
-    return '';
-  }
-
   connectedCallback() {
     this.validateOpen();
   }
