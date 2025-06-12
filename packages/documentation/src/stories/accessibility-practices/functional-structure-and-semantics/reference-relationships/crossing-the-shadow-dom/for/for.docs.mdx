@@ -1,0 +1,106 @@
+import { Meta, Canvas, Source, Controls } from '@storybook/blocks';
+import * as CCR from './for.stories';
+
+<Meta of={CCR} />
+
+# for
+
+##
+
+<div className="lead">The native HTML `for`/`id` relationship is a fundamental way to connect a `<label>` element to a form control (such as `<input>`, `<select>`, `<textarea>`, etc. or even to a custom form-associated control) within the same document structure (same DOM tree).</div> 
+<div>This connection is established by setting the for attribute on the `<label>` to match the `id` attribute of the form control it describes. </div>
+<div>This relationship is crucial for accessibility, as it allows assistive technologies like screen readers to correctly associate and announce the label text when focus is placed on the associated input field, thereby making forms understandable and navigable.</div>
+
+### I. Referencing Within the Same DOM Tree ✔️
+
+<ul>
+  <li>Light DOM → Light DOM</li>
+  <li>Shadow DOM → Same Shadow DOM</li>
+</ul>
+
+<Canvas of={CCR.ExampleHTML} sourceState="shown" />
+
+### II. Referencing From Outside a Shadow DOM Into That Shadow DOM ❌
+
+<ul>
+  <li>Light DOM → Shadow DOM</li>
+  <li>Slotted Content → Shadow DOM</li>
+</ul>
+
+<p>When the referencing element (e.g. `<label for="...">`) is in the Light DOM and the target element is inside a Shadow DOM, the `for` attribute <b>cannot reference elements inside the Shadow DOM</b> using the standard id mechanism.</p>
+
+##### Possible Workarounds
+
+###### 1. `Element:ariaLabelledByElements` (Non SSR compatible: to be tested)
+
+Define programmatically the `ariaLabelledByElements` property of the element. This solution creates the relationship without the use of an `id`.
+
+<b>Light DOM → Shadow DOM Example</b>
+<Canvas of={CCR.Example2} sourceState="shown" />
+<div className="hide-col-default">
+  <Controls of={CCR.Example2} />
+</div>
+
+<b>Slotted Content → Shadow DOM Example</b>
+<Canvas of={CCR.Example3} sourceState="shown" />
+<div className="hide-col-default">
+  <Controls of={CCR.Example3} />
+</div>
+
+###### 2. Set `aria-labelledby`on the host (for SSR Components : to be tested)
+
+This solution involves setting the `aria-labelledby` directly on the host. In order for this solution to work, the host must have a set `role=""` along with `tabindex="0"`.
+This defines the label text as the Accessible Name of the component, but NVDA does not announce it when an interactive element (e.g. an `<input>`) exists inside the component.
+
+Directly setting `aria-labelledby` on the host.
+
+<Canvas of={CCR.Example5} sourceState="shown" />
+<div className="hide-col-default">
+  <Controls of={CCR.Example5} />
+</div>
+
+Setting `aria-labelledby` via `ElementInternals`.
+
+<Canvas of={CCR.Example7} sourceState="shown" />
+<div className="hide-col-default">
+  <Controls of={CCR.Example7} />
+</div>
+
+### III. Referencing From Inside a Shadow DOM Out to the Light DOM ❌
+
+<ul>
+  <li>Shadow DOM → Light DOM</li>
+  <li>Shadow DOM → Slotted Content</li>
+</ul>
+<p>
+  A `for` attribute on an element inside a Shadow DOM{' '}
+  <b>cannot be used to reference the id of an element outside that Shadow DOM</b> (in the Light DOM
+  or an ancestor Shadow DOM). The way the HTML for attribute resolves an id is strictly limited to
+  the element's shadow-including tree.
+</p>
+
+<Canvas of={CCR.Example4} sourceState="shown" />
+
+##### Possible Workaround
+
+The `Element:ariaLabelledByElements` does not work in this case.
+
+An alternative is to directly add an `id` on the host of the referencing element and an `aria-labelledby`on the target element.
+
+### IV.Referencing From a Shadow DOM Out to another Shadow DOM ❌
+
+<ul>
+  <li>Shadow DOM → Other Shadow DOM</li>
+</ul>
+
+##### Possible Workaround
+
+The `Element:ariaLabelledByElements` does not work in this case.
+
+An alternative would be to combine workarounds for cases II and III.
+This involves setting an `id` on the host of the referencing element and an `aria-labelledby` directly on the host of the target element along with `role=""` and `tabindex="0"`. Same limitation applies as in case II: the label text is defined as the Accessible Name of the component, but NVDA does not announce if an interactive element (e.g. an `<input>`) exists inside the target component.
+
+<Canvas of={CCR.Example6} sourceState="shown" />
+<div className="hide-col-default">
+  <Controls of={CCR.Example6} />
+</div>
