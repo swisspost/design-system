@@ -3,7 +3,7 @@ import { html, nothing } from 'lit';
 import { useArgs } from '@storybook/preview-api';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { MetaComponent } from '@root/types';
-import { getLabelText, getValidationMessages } from '@root/src/utils/form-elements';
+import { getLabelText, getValidationMessages } from '@/utils/form-elements';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,

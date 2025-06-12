@@ -4,7 +4,7 @@ import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { mapClasses } from '@/utils';
 import { MetaComponent } from '@root/types';
-import { getLabelText } from '@root/src/utils/form-elements';
+import { getLabelText } from '@/utils/form-elements';
 
 const meta: MetaComponent = {
   id: '7fb639f8-86f6-4937-999c-4ee15f81643b',

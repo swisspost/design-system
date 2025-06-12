@@ -1,7 +1,7 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing, TemplateResult } from 'lit';
 import { MetaComponent } from '@root/types';
-import { getLabelText, getValidationMessages } from '@root/src/utils/form-elements';
+import { getLabelText, getValidationMessages } from '@/utils/form-elements';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
