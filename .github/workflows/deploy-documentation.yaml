@@ -67,10 +67,6 @@ jobs:
               process.exit(1);
             }
             
-            // Output to GitHub environment
-            console.log(\`SITE_ID=\${siteId}\`);
-            console.log(\`SITE_URL=\${siteUrl}\`);
-            
           } catch (error) {
             console.error(error.message);
             process.exit(1);
