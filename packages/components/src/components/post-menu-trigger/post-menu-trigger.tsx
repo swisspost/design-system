@@ -68,7 +68,7 @@ export class PostMenuTrigger {
     // Check if the slottedButton is within a web component
     if (!this.slottedButton) {
       const webComponent = this.host.querySelector('.menu-trigger-webc');
-      if (webComponent.shadowRoot) {
+      if (webComponent?.shadowRoot) {
         const slottedButton = webComponent.shadowRoot.querySelector('button');
         if (slottedButton) {
           this.slottedButton = slottedButton;
