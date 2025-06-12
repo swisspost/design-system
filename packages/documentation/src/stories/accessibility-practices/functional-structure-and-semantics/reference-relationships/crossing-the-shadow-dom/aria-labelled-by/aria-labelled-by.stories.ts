@@ -3,8 +3,9 @@ import { MetaExtended } from '@root/types';
 import { html } from 'lit';
 
 const meta: MetaExtended = {
-  id: '76ade552-2c03-4d6d-9dce-28daa340f3g6',
-  title: 'Guidelines/Crossing the Shadow DOM/3.AriaDescribedBy',
+  id: '76ade552-2c03-4d6d-9dce-28daa340f7d5',
+  title:
+    'Accessibility Practices/Foundational Structure And Semantics/Reference Relationships/Crossing The Shadow Dom/Aria-LabelledBy',
   parameters: {
     badges: [],
   },
@@ -17,10 +18,10 @@ type Story = StoryObj;
 // Case: Standard Light DOM to Light DOM
 export const ExampleHTML: Story = {
   render: () => html`
-    <div class="btn btn-primary" aria-describedby="id_1" role="button" tabindex="0">
+    <span id="id_1">My Text</span>
+    <div class="btn btn-primary" aria-labelledby="id_1" role="button" tabindex="0">
       <post-icon name="1022"></post-icon>
     </div>
-    <span id="id_1">My Description</span>
   `,
 };
 
@@ -32,18 +33,18 @@ export const Example2: Story = {
       control: {
         type: 'radio',
       },
-      options: ['none', 'ariaDescribedByElements'],
+      options: ['none', 'ariaLabelledByElements'],
     },
   },
   args: {
     workaround: 'none',
   },
   render: (args: Args) => html`
+    <span id="id_2">My Text</span>
     <post-test-button2
-      aria-describedby-id="id_2"
+      aria-labelledby-id="id_2"
       workaround="${args.workaround}"
     ></post-test-button2>
-    <span id="id_2">My Description</span>
   `,
 };
 
@@ -55,7 +56,7 @@ export const Example3: Story = {
       control: {
         type: 'radio',
       },
-      options: ['none', 'ariaDescribedByElements'],
+      options: ['none', 'ariaLabelledByElements'],
     },
   },
   args: {
@@ -63,42 +64,42 @@ export const Example3: Story = {
   },
   render: (args: Args) => html`
     <post-test-button3 workaround="${args.workaround}"
-      ><span slot="label-slot">My Description</span></post-test-button3
+      ><span slot="label-slot">My Text</span></post-test-button3
     >
   `,
 };
 
-// Case: Referencing from Shadow Dom to Light DOM workaround with aria-describedby directly set on host
+// Case: Referencing from Shadow Dom to the Light DOM workaround with aria-labelledby directly set on host
 export const Example4: Story = {
   render: () => html`
-    <post-test-button aria-describedby-id="id_4"></post-test-button>
-    <span id="id_4">My Description</span>
+    <span id="id_4">My Text</span>
+    <post-test-button aria-labelledby-id="id_4"></post-test-button>
   `,
 };
 
-// Case: Referencing from Shadow Dom to Slotted Content (Light DOM) workaround with aria-describedby directly set on host
+// Case: Referencing from Shadow Dom to Slotted Content (Light) DOM workaround with aria-labelledby directly set on host
 export const Example5: Story = {
   render: () => html`
-    <post-test-button aria-describedby-id="id_5"
-      ><span slot="label-slot" id="id_5">My Description</span>
-    </post-test-button>
+    <post-test-button aria-labelledby-id="id_5"
+      ><span slot="label-slot" id="id_5">My Text</span></post-test-button
+    >
   `,
 };
 
 // Case: Standard Light DOM to Shadow DOM workaround
 export const Example6: Story = {
   render: () => html`
-    <div class="btn btn-primary" aria-describedby="id_6" role="button" tabindex="0">
+    <post-test-span id="id_6"></post-test-span>
+    <div class="btn btn-primary" aria-labelledby="id_6" role="button" tabindex="0">
       <post-icon name="1022"></post-icon>
     </div>
-    <post-test-span2 id="id_6"></post-test-span2>
   `,
 };
 
 // Case: Shadow DOM to other Shadow Dom workaround
 export const Example7: Story = {
   render: () => html`
-    <post-test-span2 id="id_7"></post-test-span2>
-    <post-test-button aria-describedby="id_7"></post-test-button>
+    <post-test-span id="id_7"></post-test-span>
+    <post-test-button aria-labelledby="id_7"></post-test-button>
   `,
 };

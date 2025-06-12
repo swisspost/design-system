@@ -4,7 +4,8 @@ import { html } from 'lit';
 
 const meta: MetaExtended = {
   id: '76ade552-2c03-4d6d-9dce-28daa340f7d3',
-  title: 'Guidelines/Crossing the Shadow DOM/1.For',
+  title:
+    'Accessibility Practices/Foundational Structure And Semantics/Reference Relationships/Crossing The Shadow Dom/For',
   parameters: {
     badges: [],
   },
