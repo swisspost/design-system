@@ -13,7 +13,7 @@ tokens.$default-map: utilities.$post-spacing;
 }
 
 :host([open]) {
-  display: block;
+  display: contents;
 }
 
 post-popovercontainer {
@@ -29,7 +29,9 @@ post-popovercontainer {
 
   & > div {
     padding: tokens.get('utility-gap-4') tokens.get('utility-gap-8');
-    max-width: 200px;
+    max-width: 280px;
     min-height: 32px;
+    word-wrap: break-word;
+    white-space: normal;
   }
 }
