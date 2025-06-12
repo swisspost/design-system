@@ -28,8 +28,9 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
   ];
   return schemes(
     scheme => html`
-      <div class="d-flex gap-16 flex-column">
-        <h3>Standard</h3>
+      <h1>Inputs</h1>
+      <h2 class="h4">Standard</h2>
+      <div class="row">
         ${getCombinations('floatingLabel', [false], combinations)
           .filter(
             (args: Args) =>
@@ -39,13 +40,15 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
           .map((args: Args) => {
             context.id = `${scheme}-${crypto.randomUUID()}`;
             return html`
-              <div>
-                <h4>${args.title}</h4>
+              <div class="col-md-6 mb-16">
+                <h3 class="h6">${args.title}</h3>
                 <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
               </div>
             `;
           })}
-        <h3>Floating Label</h3>
+      </div>
+      <h2 class="h4">Floating Label</h2>
+      <div class="row">
         ${getCombinations('floatingLabel', [true], combinations)
           .filter(
             (args: Args) =>
@@ -54,8 +57,8 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
           )
           .map((args: Args) => {
             context.id = `${scheme}-${crypto.randomUUID()}`;
-            return html` <div>
-              <h4>${args.title}</h4>
+            return html` <div class="col-md-6 mb-16">
+              <h3 class="h6">${args.title}</h3>
               <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
             </div>`;
           })}

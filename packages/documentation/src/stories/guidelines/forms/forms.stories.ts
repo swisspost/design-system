@@ -371,8 +371,8 @@ export const RequiredOptional: Story = {
       </div>
       <div class="mb-16">
         <fieldset>
-          <legend class="">Are you an existing customer? (required)</legend>
-          <div class="form-check ">
+          <legend>Are you an existing customer? (required)</legend>
+          <div class="form-check">
             <input
               name="customer-group"
               class="form-check-input"
