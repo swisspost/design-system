@@ -22,6 +22,7 @@
     "loader/",
     "hydrate/"
   ],
+  "type": "module",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
@@ -72,7 +73,7 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "generate": "stencil generate",
-    "prebuild:script": "ts-node prebuild.ts",
+    "prebuild:script": "node --loader ts-node/esm prebuild.ts",
     "copy:styles:components-react": "copyfiles -f www/build/post-components.css ../components-react/src/stencil-generated/",
     "copy:styles:components-angular": "copyfiles -f www/build/post-components.css ../components-angular/projects/components/src/lib/stencil-generated/"
   },
