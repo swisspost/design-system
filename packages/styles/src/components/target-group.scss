@@ -57,7 +57,7 @@ tokens.$default-map: components.$post-button;
   }
 
   @include media.max(lg) {
-    padding: 20px 0;
+    padding: 20px 0 28px;
   }
 
   @include media.max(sm) {
