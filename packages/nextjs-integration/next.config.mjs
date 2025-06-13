@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 
-import { postSSR } from '@swisspost/design-system-components-react/next';
+// import { postComponentsSSR } from '@swisspost/design-system-components-react/next';
 
 const nextConfig = {
   images: {
@@ -13,4 +13,5 @@ const nextConfig = {
   },
 };
 
-export default postSSR(nextConfig);
+export default nextConfig;
+// export default postComponentsSSR(nextConfig);
