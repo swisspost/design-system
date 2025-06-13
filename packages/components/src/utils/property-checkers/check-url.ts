@@ -1,15 +1,14 @@
-export function checkUrl<T extends { host: HTMLElement }>(
-  component: T,
-  prop: keyof T,
-  customMessage?: string,
-) {
+import { EMPTY_VALUES } from './constants';
+
+export function checkUrl<T extends { host: HTMLElement }>(component: T, prop: keyof T) {
   const componentName = component.host.localName;
   const value = component[prop];
 
-  const defaultMessage = `The prop \`${String(
-    prop,
-  )}\` of the \`${componentName}\` component is invalid.`;
-  const message = customMessage || defaultMessage;
+  const message = `The prop \`${String(prop)}\` of the \`${componentName}\` component is invalid.`;
+
+  if (EMPTY_VALUES.some(v => v === value)) {
+    return;
+  }
 
   if (typeof value !== 'string' && !(value instanceof URL)) {
     throw new Error(message);

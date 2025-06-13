@@ -1,7 +1,7 @@
 import { Component, Element, Host, State, h, Watch, Prop } from '@stencil/core';
 import { slideUp, slideDown } from '@/animations/slide';
 import { version } from '@root/package.json';
-import { checkType, checkNonEmpty } from '@/utils';
+import { checkRequiredAndType } from '@/utils';
 
 @Component({
   tag: 'post-back-to-top',
@@ -28,6 +28,11 @@ export class PostBackToTop {
   private readonly handleScroll = () => {
     this.belowFold = this.isBelowFold();
   };
+
+  @Watch('label')
+  validateLabel() {
+    checkRequiredAndType(this, 'label', 'string');
+  }
 
   /*Watch for changes in belowFold to show/hide the back to top button*/
   @Watch('belowFold')
@@ -85,13 +90,6 @@ export class PostBackToTop {
     if (!this.belowFold) {
       this.host.style.transform = `translateY(${this.translateY})`;
     }
-  }
-
-  // Validate the label
-  @Watch('label')
-  validateLabel() {
-    checkNonEmpty(this, 'label');
-    checkType(this, 'label', 'string');
   }
 
   // Set the initial state

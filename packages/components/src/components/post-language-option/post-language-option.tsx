@@ -9,9 +9,9 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import { checkEmptyOrType, checkType } from '@/utils';
+import { checkType, checkRequiredAndType, checkOneOf, checkUrl } from '@/utils';
 import { version } from '@root/package.json';
-import { SwitchVariant } from '../post-language-switch/switch-variants';
+import { SwitchVariant, SWITCH_VARIANTS } from '../post-language-switch/switch-variants';
 
 /**
  * @slot default - Slot for placing the content inside the anchor or button.
@@ -30,7 +30,7 @@ export class PostLanguageOption {
 
   @Watch('code')
   validateCode() {
-    checkType(this, 'code', 'string');
+    checkRequiredAndType(this, 'code', 'string');
   }
 
   /**
@@ -38,15 +38,15 @@ export class PostLanguageOption {
    */
   @Prop({ mutable: true, reflect: true }) active?: boolean;
 
-  @Watch('active')
-  validateActiveProp() {
-    checkEmptyOrType(this, 'active', 'boolean');
-  }
-
   /**
    * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
    */
   @Prop() variant?: SwitchVariant;
+
+  @Watch('variant')
+  validateVariant() {
+    checkOneOf(this, 'variant', SWITCH_VARIANTS);
+  }
 
   /**
    * The full name of the language. For example, "Deutsch".
@@ -55,7 +55,7 @@ export class PostLanguageOption {
 
   @Watch('name')
   validateName() {
-    checkEmptyOrType(this, 'name', 'string');
+    checkType(this, 'name', 'string');
   }
 
   /**
@@ -66,12 +66,11 @@ export class PostLanguageOption {
 
   @Watch('url')
   validateUrl() {
-    checkEmptyOrType(this, 'url', 'string');
+    checkUrl(this, 'url');
   }
 
   componentDidLoad() {
     this.validateCode();
-    this.validateActiveProp();
     this.validateName();
     this.validateUrl();
 

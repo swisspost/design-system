@@ -1,4 +1,6 @@
-import { checkType, PropertyType } from '../check-type';
+import { checkType } from '../check-type';
+import { PropertyType } from '@/types';
+import { isValueEmpty } from '@/utils/is-value-empty';
 
 describe('checkType', () => {
   let type: PropertyType;
@@ -6,13 +8,13 @@ describe('checkType', () => {
 
   const runCheckForValue = (value: unknown) => () => {
     const component = { host: { localName: 'post-component' } as HTMLElement, prop: value };
-    checkType(component, 'prop', type, error);
+    checkType(component, 'prop', type);
   };
 
   describe('boolean', () => {
     beforeAll(() => {
       type = 'boolean';
-      error = 'Not a boolean.';
+      error = 'The prop `prop` of the `post-component` component must be of type `boolean`.';
     });
 
     it('should not throw an error if the value is a boolean', () => {
@@ -33,16 +35,18 @@ describe('checkType', () => {
         () => {
           /* empty */
         },
-      ].forEach(nonBoolean => {
-        expect(runCheckForValue(nonBoolean)).toThrow(error);
-      });
+      ]
+        .filter(nonBoolean => !isValueEmpty(nonBoolean))
+        .forEach(nonBoolean => {
+          expect(runCheckForValue(nonBoolean)).toThrow(error);
+        });
     });
   });
 
   describe('number', () => {
     beforeAll(() => {
       type = 'number';
-      error = 'Not a number.';
+      error = 'The prop `prop` of the `post-component` component must be of type `number`.';
     });
 
     it('should not throw an error if the value is a number', () => {
@@ -62,16 +66,18 @@ describe('checkType', () => {
         () => {
           /* empty */
         },
-      ].forEach(nonNumber => {
-        expect(runCheckForValue(nonNumber)).toThrow(error);
-      });
+      ]
+        .filter(nonNumber => !isValueEmpty(nonNumber))
+        .forEach(nonNumber => {
+          expect(runCheckForValue(nonNumber)).toThrow(error);
+        });
     });
   });
 
   describe('string', () => {
     beforeAll(() => {
       type = 'string';
-      error = 'Not a string.';
+      error = 'The prop `prop` of the `post-component` component must be of type `string`.';
     });
 
     it('should not throw an error if the value is a string', () => {
@@ -92,16 +98,18 @@ describe('checkType', () => {
         () => {
           /* empty */
         },
-      ].forEach(nonString => {
-        expect(runCheckForValue(nonString)).toThrow(error);
-      });
+      ]
+        .filter(nonString => !isValueEmpty(nonString))
+        .forEach(nonString => {
+          expect(runCheckForValue(nonString)).toThrow(error);
+        });
     });
   });
 
   describe('array', () => {
     beforeAll(() => {
       type = 'array';
-      error = 'Not an array.';
+      error = 'The prop `prop` of the `post-component` component must be of type `array`.';
     });
 
     it('should not throw an error if the value is an array', () => {
@@ -122,16 +130,18 @@ describe('checkType', () => {
         () => {
           /* empty */
         },
-      ].forEach(nonArray => {
-        expect(runCheckForValue(nonArray)).toThrow(error);
-      });
+      ]
+        .filter(nonArray => !isValueEmpty(nonArray))
+        .forEach(nonArray => {
+          expect(runCheckForValue(nonArray)).toThrow(error);
+        });
     });
   });
 
   describe('object', () => {
     beforeAll(() => {
       type = 'object';
-      error = 'Not an object.';
+      error = 'The prop `prop` of the `post-component` component must be of type `object`.';
     });
 
     it('should not throw an error if the value is an object', () => {
@@ -150,16 +160,18 @@ describe('checkType', () => {
         () => {
           /* empty */
         },
-      ].forEach(nonObject => {
-        expect(runCheckForValue(nonObject)).toThrow(error);
-      });
+      ]
+        .filter(nonObject => !isValueEmpty(nonObject))
+        .forEach(nonObject => {
+          expect(runCheckForValue(nonObject)).toThrow(error);
+        });
     });
   });
 
   describe('function', () => {
     beforeAll(() => {
       type = 'function';
-      error = 'Not a function.';
+      error = 'The prop `prop` of the `post-component` component must be of type `function`.';
     });
 
     it('should not throw an error if the value is a function', () => {
@@ -176,9 +188,11 @@ describe('checkType', () => {
     });
 
     it('should throw an error if the value is not a function', () => {
-      [undefined, null, true, 42, NaN, 'string', [], {}].forEach(nonFn => {
-        expect(runCheckForValue(nonFn)).toThrow(error);
-      });
+      [undefined, null, true, 42, NaN, 'string', [], {}]
+        .filter(nonFn => !isValueEmpty(nonFn))
+        .forEach(nonFn => {
+          expect(runCheckForValue(nonFn)).toThrow(error);
+        });
     });
   });
 });

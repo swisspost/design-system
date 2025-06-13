@@ -1,6 +1,6 @@
 import { Component, Element, Prop, h, Host, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkType } from '@/utils';
+import { checkRequiredAndType } from '@/utils';
 import { eventGuard } from '@/utils/event-guard';
 
 @Component({
@@ -39,7 +39,7 @@ export class PostMegadropdownTrigger {
    */
   @Watch('for')
   validateControlFor() {
-    checkType(this, 'for', 'string');
+    checkRequiredAndType(this, 'for', 'string');
   }
 
   private get megadropdown(): HTMLPostMegadropdownElement | null {
@@ -67,29 +67,26 @@ export class PostMegadropdownTrigger {
     }
   };
 
-  private handleToggleMegadropdown = (event: CustomEvent<{ isVisible: boolean; focusParent: boolean }>) => {
-    eventGuard(
-      this.host,
-      event,
-      { targetLocalName: 'post-megadropdown' },
-      () => {
-        if ((event.target as HTMLPostMegadropdownElement).id === this.for) {
-          this.ariaExpanded = event.detail.isVisible;
+  private handleToggleMegadropdown = (
+    event: CustomEvent<{ isVisible: boolean; focusParent: boolean }>,
+  ) => {
+    eventGuard(this.host, event, { targetLocalName: 'post-megadropdown' }, () => {
+      if ((event.target as HTMLPostMegadropdownElement).id === this.for) {
+        this.ariaExpanded = event.detail.isVisible;
 
-          // Focus on the trigger parent of the dropdown after it's closed if the close button had been clicked
-          if (this.wasExpanded && !this.ariaExpanded && event.detail.focusParent) {
-            setTimeout(() => {
-              this.slottedButton?.focus();
-            }, 100);
-          }
-          this.wasExpanded = this.ariaExpanded;
+        // Focus on the trigger parent of the dropdown after it's closed if the close button had been clicked
+        if (this.wasExpanded && !this.ariaExpanded && event.detail.focusParent) {
+          setTimeout(() => {
+            this.slottedButton?.focus();
+          }, 100);
+        }
+        this.wasExpanded = this.ariaExpanded;
 
-          if (this.slottedButton) {
-            this.slottedButton.setAttribute('aria-expanded', this.ariaExpanded.toString());
-          }
+        if (this.slottedButton) {
+          this.slottedButton.setAttribute('aria-expanded', this.ariaExpanded.toString());
         }
       }
-    );
+    });
   };
 
   componentDidLoad() {

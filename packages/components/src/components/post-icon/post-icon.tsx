@@ -1,5 +1,5 @@
 import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
-import { IS_BROWSER, checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '@/utils';
+import { IS_BROWSER, checkType, checkRequiredAndType, checkRequiredAndOneOf } from '@/utils';
 import { version } from '@root/package.json';
 
 type UrlDefinition = {
@@ -40,7 +40,7 @@ export class PostIcon {
 
   @Watch('animation')
   validateAnimation(newValue = this.animation) {
-    if (newValue !== undefined) checkEmptyOrOneOf(this, 'animation', ANIMATION_KEYS);
+    if (newValue !== undefined) checkRequiredAndOneOf(this, 'animation', ANIMATION_KEYS);
   }
 
   /**
@@ -50,7 +50,7 @@ export class PostIcon {
 
   @Watch('base')
   validateBase() {
-    checkEmptyOrType(this, 'base', 'string');
+    checkType(this, 'base', 'string');
   }
 
   /**
@@ -58,20 +58,10 @@ export class PostIcon {
    */
   @Prop() readonly flipH?: boolean = false;
 
-  @Watch('flipH')
-  validateFlipH() {
-    checkEmptyOrType(this, 'flipH', 'boolean');
-  }
-
   /**
    * When set to `true`, the icon will be flipped vertically.
    */
   @Prop() readonly flipV?: boolean = false;
-
-  @Watch('flipV')
-  validateFlipV() {
-    checkEmptyOrType(this, 'flipV', 'boolean');
-  }
 
   /**
    * The name/id of the icon (e.g. 1000, 1001, ...).
@@ -80,8 +70,7 @@ export class PostIcon {
 
   @Watch('name')
   validateName() {
-    checkNonEmpty(this, 'name');
-    checkType(this, 'name', 'string');
+    checkRequiredAndType(this, 'name', 'string');
   }
 
   /**
@@ -91,7 +80,7 @@ export class PostIcon {
 
   @Watch('rotate')
   validateRotate() {
-    checkEmptyOrType(this, 'rotate', 'number');
+    checkType(this, 'rotate', 'number');
   }
 
   /**
@@ -101,7 +90,7 @@ export class PostIcon {
 
   @Watch('scale')
   validateScale() {
-    checkEmptyOrType(this, 'scale', 'number');
+    checkType(this, 'scale', 'number');
   }
 
   // Construct the icon url from different possible sources
@@ -188,8 +177,6 @@ export class PostIcon {
   componentDidLoad() {
     this.validateBase();
     this.validateName();
-    this.validateFlipH();
-    this.validateFlipV();
     this.validateScale();
     this.validateRotate();
     this.validateAnimation();
