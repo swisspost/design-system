@@ -14,7 +14,7 @@ tokens.$default-map: components.$post-button;
   justify-content: center;
   padding-inline-start: 32px;
 
-  @include media.max(sm) {
+  @include media.max(lg) {
     gap: 0;
     margin-block: 0 !important;
   }
@@ -57,7 +57,7 @@ tokens.$default-map: components.$post-button;
   }
 
   @include media.max(lg) {
-    padding: 102px 0 36px;
+    padding: 20px 0;
   }
 
   @include media.max(sm) {
