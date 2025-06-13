@@ -162,6 +162,7 @@ export class PostMainnavigation {
 
     for (const navigationItem of this.navigationItems) {
       const { right, width } = navigationItem.getBoundingClientRect();
+
       // Scroll to the first navigation item that is less than 75% visible
       const isThreeQuartersVisible = right - 0.25 * width < scrollRightLeftEdge;
       if (!isThreeQuartersVisible) {
@@ -170,6 +171,7 @@ export class PostMainnavigation {
       }
     }
   }
+
   private scrollLeft() {
     const scrollLeftRightEdge = document
       .querySelector('.scroll-left')
@@ -177,6 +179,7 @@ export class PostMainnavigation {
 
     for (const navigationItem of this.navigationItems.reverse()) {
       const { left, width } = navigationItem.getBoundingClientRect();
+
       // Scroll to the first navigation item that is less than 75% visible
       const isThreeQuartersVisible = left + 0.25 * width > scrollLeftRightEdge;
       if (!isThreeQuartersVisible) {
@@ -201,7 +204,6 @@ export class PostMainnavigation {
   }
 
   render() {
-    console.log('PostMainnavigation device:', this.device);
     const shouldShowTargetGroup = this.device === 'mobile' || this.device === 'tablet';
     
     return (
