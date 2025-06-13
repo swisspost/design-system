@@ -61,3 +61,7 @@ tokens.$default-map: components.$post-button;
     }
   }
 }
+
+post-menu::part(menu) {
+  padding-block: 0;
+}
