@@ -1,12 +1,31 @@
-import { eventGuard } from '../event-guard';
+import { EventGuard } from '../event-guard';
 
-describe('eventGuard', () => {
+describe('EventGuard decorator', () => {
   let callback: jest.Mock;
   let mockHost: HTMLElement;
+  let decoratedMethod: (event: CustomEvent) => void;
 
   beforeEach(() => {
     callback = jest.fn();
     mockHost = document.createElement('div');
+    
+    // Create a test class with a decorated method
+    class TestClass {
+      host = mockHost;
+
+      @EventGuard({ targetLocalName: 'button' })
+      handleButtonEvent(event: CustomEvent) {
+        callback(event);
+      }
+
+      @EventGuard({ targetLocalName: 'button', delegatorSelector: '.container' })
+      handleDelegatedButtonEvent(event: CustomEvent) {
+        callback(event);
+      }
+    }
+
+    const instance = new TestClass();
+    decoratedMethod = instance.handleButtonEvent.bind(instance);
   });
 
   afterEach(() => {
@@ -18,15 +37,13 @@ describe('eventGuard', () => {
       target: { localName: 'button' } as HTMLElement,
     } as unknown as CustomEvent<unknown>;
 
-    eventGuard(mockHost, mockEvent, { targetLocalName: 'button' }, callback);
-
+    decoratedMethod(mockEvent);
     expect(callback).toHaveBeenCalledTimes(1);
   });
 
   test('calls callback when the delegatorSelector is provided and matches', () => {
     const container = document.createElement('div');
     container.classList.add('container');
-
     const button = document.createElement('button');
     container.appendChild(button);
 
@@ -36,8 +53,19 @@ describe('eventGuard', () => {
 
     document.body.appendChild(container);
 
-    eventGuard(container, mockEvent, { targetLocalName: 'button', delegatorSelector: '.container' }, callback);
+    // Need to create a new instance for this specific test
+    class TestClass {
+      host = container;
 
+      @EventGuard({ targetLocalName: 'button', delegatorSelector: '.container' })
+      handleDelegatedButtonEvent(event: CustomEvent) {
+        callback(event);
+      }
+    }
+
+    const instance = new TestClass();
+    instance.handleDelegatedButtonEvent(mockEvent);
+    
     expect(callback).toHaveBeenCalledTimes(1);
   });
 
@@ -52,8 +80,18 @@ describe('eventGuard', () => {
 
     document.body.appendChild(outerDiv);
 
-    eventGuard(outerDiv, mockEvent, { targetLocalName: 'button', delegatorSelector: '.non-existent-container' }, callback);
+    class TestClass {
+      host = outerDiv;
 
+      @EventGuard({ targetLocalName: 'button', delegatorSelector: '.non-existent-container' })
+      handleDelegatedButtonEvent(event: CustomEvent) {
+        callback(event);
+      }
+    }
+
+    const instance = new TestClass();
+    instance.handleDelegatedButtonEvent(mockEvent);
+    
     expect(callback).not.toHaveBeenCalled();
   });
 
@@ -62,8 +100,7 @@ describe('eventGuard', () => {
       target: { localName: 'button' } as HTMLElement,
     } as unknown as CustomEvent<unknown>;
 
-    eventGuard(mockHost, mockEvent, { targetLocalName: 'button' }, callback);
-
+    decoratedMethod(mockEvent);
     expect(callback).toHaveBeenCalledTimes(1);
   });
 
@@ -72,9 +109,7 @@ describe('eventGuard', () => {
       target: null,
     } as unknown as CustomEvent<unknown>;
 
-    expect(() =>
-      eventGuard(mockHost, mockEvent, { targetLocalName: 'button' }, callback)
-    ).not.toThrow();
+    expect(() => decoratedMethod(mockEvent)).not.toThrow();
     expect(callback).not.toHaveBeenCalled();
   });
 
@@ -83,8 +118,7 @@ describe('eventGuard', () => {
       target: { localName: 'div' } as HTMLElement,
     } as unknown as CustomEvent<unknown>;
 
-    eventGuard(mockHost, mockEvent, { targetLocalName: 'button' }, callback);
-
+    decoratedMethod(mockEvent);
     expect(callback).not.toHaveBeenCalled();
   });
 });
