@@ -1,5 +1,6 @@
 import { Component, Host, h, State, Listen } from '@stencil/core';
 import { version } from '@root/package.json';
+import { breakpoint } from '@/utils';
 
 const SCROLL_REPEAT_INTERVAL = 100; // Interval for repeated scrolling when holding down scroll button
 const NAVBAR_DISABLE_DURATION = 400; // Duration to temporarily disable navbar interactions during scrolling
@@ -18,6 +19,7 @@ export class PostMainnavigation {
   private resizeObserver: ResizeObserver;
   private mutationObserver: MutationObserver;
 
+  @State() device: string = breakpoint.get('name');
   @State() canScrollLeft = false;
   @State() canScrollRight = false;
 
@@ -31,6 +33,28 @@ export class PostMainnavigation {
     this.mutationObserver = new MutationObserver(this.handleMutations);
   }
 
+  connectedCallback() {
+    window.addEventListener('postBreakpoint:name', this.breakpointChange);
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener('postBreakpoint:name', this.breakpointChange);
+    
+    if (this.mutationObserver) {
+      this.mutationObserver.disconnect();
+    }
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+    }
+    if (this.navbar) {
+      this.navbar.removeEventListener('scrollend', this.checkScrollability);
+    }
+  }
+
+  private readonly breakpointChange = (e: CustomEvent) => {
+    this.device = e.detail;
+  };
+
   componentDidLoad() {
     setTimeout(() => {
       this.fixLayoutShift();
@@ -40,20 +64,11 @@ export class PostMainnavigation {
     // Observe the navbar for size changes
     this.resizeObserver.observe(this.navbar);
 
-    // Observe the navabar for mutation changes
+    // Observe the navbar for mutation changes
     this.mutationObserver.observe(this.navbar, { subtree: true, childList: true }); // Recheck scrollability when navigation list changes
 
     // Ensure the scroll buttons are correctly displayed or hidden whenever the navbar is scrolled
     this.navbar.addEventListener('scrollend', this.checkScrollability);
-  }
-
-  /**
-   * Disconnects observers and remove event listeners when the main navigation is removed from the DOM.
-   */
-  disconnectedCallback() {
-    this.mutationObserver.disconnect();
-    this.resizeObserver.disconnect();
-    this.navbar.removeEventListener('scrollend', this.checkScrollability);
   }
 
   /**
@@ -147,7 +162,9 @@ export class PostMainnavigation {
   private scrollRight() {
     const scrollRightLeftEdge = document
       .querySelector('.scroll-right')
-      .getBoundingClientRect().left;
+      ?.getBoundingClientRect().left;
+
+    if (!scrollRightLeftEdge) return;
 
     for (const navigationItem of this.navigationItems) {
       const { right, width } = navigationItem.getBoundingClientRect();
@@ -164,7 +181,9 @@ export class PostMainnavigation {
   private scrollLeft() {
     const scrollLeftRightEdge = document
       .querySelector('.scroll-left')
-      .getBoundingClientRect().right;
+      ?.getBoundingClientRect().right;
+
+    if (!scrollLeftRightEdge) return;
 
     for (const navigationItem of this.navigationItems.reverse()) {
       const { left, width } = navigationItem.getBoundingClientRect();
@@ -193,13 +212,17 @@ export class PostMainnavigation {
   }
 
   render() {
+    console.log('PostMainnavigation device:', this.device);
+    const shouldShowTargetGroup = this.device === 'mobile' || this.device === 'tablet';
+    
     return (
       <Host slot="post-mainnavigation" version={version}>
         <div onClick={() => this.handleBackButtonClick()} class="back-button">
           <slot name="back-button"></slot>
         </div>
 
-        <div class="navigation-target-group">
+        {/* Always render target-group slot but control visibility with CSS */}
+        <div class={`navigation-target-group ${shouldShowTargetGroup ? 'show' : 'hide'}`}>
           <slot name="target-group"></slot>
         </div>
 

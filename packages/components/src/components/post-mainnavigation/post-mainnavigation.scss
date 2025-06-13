@@ -11,6 +11,14 @@
 @use '@swisspost/design-system-styles/variables/color';
 
 post-mainnavigation {
+  // Target group container - NEW ADDITION
+  .navigation-target-group {
+      @include media.min(lg) {
+        display: none !important; // Extra safety for desktop
+    }
+  }
+  // END NEW ADDITION
+
   // reset links and buttons
   post-list-item {
     > a {

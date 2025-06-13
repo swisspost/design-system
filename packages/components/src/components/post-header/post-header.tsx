@@ -354,6 +354,9 @@ export class PostHeader {
             </div>
           </div>
           <div class="global-sub">
+            {this.device === 'desktop' && <slot name="target-group"></slot>}
+          </div>
+          <div class="global-sub">
             {this.device === 'desktop' && <slot name="meta-navigation"></slot>}
             <slot name="global-controls"></slot>
             {this.device === 'desktop' && <slot name="post-language-switch"></slot>}
