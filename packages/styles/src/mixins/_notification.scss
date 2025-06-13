@@ -10,7 +10,6 @@
 @use './../variables/components/close';
 @use './../variables/components/notification';
 @use '../tokens/components';
-@use '../tokens/elements';
 @use '../functions/tokens';
 
 tokens.$default-map: components.$post-banner;
@@ -34,7 +33,7 @@ tokens.$default-map: components.$post-banner;
   border-style: tokens.get('banner-border-style');
   border-width: tokens.get('banner-border-width');
   position: relative;
-  color: tokens.get('body-color', elements.$post-body);
+  color: var(--post-current-fg);
 
   // Set the neutral notification as the default color
   @include notification-variant(

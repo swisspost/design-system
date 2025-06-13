@@ -92,7 +92,7 @@ function render(args: Args) {
     <post-tooltip
       id="${args.id}"
       arrow="${ifDefined(args.arrow)}"
-      class="${args.palette}"
+      class="palette ${args.palette}"
       placement="${ifDefined(args.placement)}"
       animation="${ifDefined(args.animation)}"
     >

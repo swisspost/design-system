@@ -53,7 +53,7 @@ const meta: MetaComponent = {
         'Value can either be in `vw`, `px` or `%`. If no max-width is defined, the popover will extend to the width of its content.',
       table: {
         category: 'General',
-        defaultValue: { summary: '280px' }
+        defaultValue: { summary: '280px' },
       },
     },
     palette: {
@@ -101,7 +101,7 @@ function render(args: Args) {
       </button>
     </div>
     <post-popover
-      class="${args.palette}"
+      class="palette ${args.palette}"
       id="${args.id}"
       placement="${args.placement}"
       ?arrow="${args.arrow}"

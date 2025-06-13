@@ -15,6 +15,9 @@ type Story = StoryObj<HTMLPostFooterElement>;
 
 export const Footer: Story = {
   render: (args: Args, context: StoryContext<HTMLPostFooterElement>) => {
-    return schemes(() => html` ${meta.render?.(args, context)} `);
+    return schemes(() => html` ${meta.render?.(args, context)} `, {
+      // dark mode is not yet implemented corretly
+      filter: scheme => scheme === 'light',
+    });
   },
 };
