@@ -3,6 +3,7 @@
 @use '../variables/type';
 @use '../functions/tokens';
 @use '../tokens/elements';
+@use '../tokens/components';
 
 tokens.$default-map: elements.$post-body;
 
@@ -16,6 +17,5 @@ body {
   line-height: tokens.get('body-line-height');
   letter-spacing: tokens.get('body-letter-spacing');
   font-variant-numeric: proportional-nums;
-  color: tokens.get('body-color');
   min-height: 100vh;
 }

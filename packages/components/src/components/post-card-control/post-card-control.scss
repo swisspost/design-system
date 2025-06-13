@@ -6,7 +6,6 @@
 @use '@swisspost/design-system-styles/components/radio-button';
 @use '@swisspost/design-system-styles/tokens/utilities';
 @use '@swisspost/design-system-styles/functions/tokens';
-@use '@swisspost/design-system-styles/tokens/elements';
 
 tokens.$default-map: utilities.$post-spacing;
 
@@ -86,7 +85,7 @@ tokens.$default-map: utilities.$post-spacing;
     grid-area: label;
     margin: tokens.get('utility-gap-4') 0;
     padding: 0 !important;
-    color: tokens.get('body-color', elements.$post-body) !important;
+    color: var(--post-current-fg) !important;
     pointer-events: none;
     transition: none;
 

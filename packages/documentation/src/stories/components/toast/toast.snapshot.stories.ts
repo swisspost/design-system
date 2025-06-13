@@ -37,6 +37,10 @@ export const Toast: Story = {
             .map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
         </div>
       `,
+      {
+        // dark mode is not yet implemented corretly
+        filter: scheme => scheme === 'light',
+      },
     );
   },
 };

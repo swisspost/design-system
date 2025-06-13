@@ -1,8 +1,6 @@
 @use '@swisspost/design-system-styles/core' as post;
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
 @use '@swisspost/design-system-styles/components/close';
-@use '@swisspost/design-system-styles/functions/tokens';
-@use '@swisspost/design-system-styles/tokens/elements';
 
 * {
   box-sizing: border-box;
@@ -31,7 +29,7 @@
 }
 
 .btn-close {
-  color: tokens.get('body-color', elements.$post-body);
+  color: var(--post-current-fg);
 
   &:hover {
     @include utilities-mx.high-contrast-mode() {

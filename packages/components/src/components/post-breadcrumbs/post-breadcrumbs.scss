@@ -145,7 +145,7 @@ post-menu::part(popover-container) {
 
   a {
     text-decoration: none;
-    color: tokens.get('body-color', elements.$post-body);
+    color: var(--post-current-fg);
     line-height: 150%;
     padding-block: tokens.get('breadcrumb-padding-block-text');
     font-size: tokens.get('body-font-size', elements.$post-body);

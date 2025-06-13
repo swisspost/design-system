@@ -1,0 +1,34 @@
+@use '../functions/tokens';
+@use '../tokens/components';
+@use '../mixins/color-scheme';
+@use '../mixins/supports';
+
+tokens.$default-map: components.$post-palettes;
+
+body,
+.palette {
+  --post-current-bg: #{tokens.get('palettes-bg')};
+  --post-current-fg: #{tokens.get('palettes-fg')};
+
+  background-color: #{tokens.get('palettes-bg')};
+  color: #{tokens.get('palettes-fg')};
+
+  @include color-scheme.set(tokens.get('palettes-scheme'));
+
+  .palette-text {
+    color: tokens.get('palettes-accent');
+  }
+
+  &[data-color-scheme] {
+    background-color: #f00 !important;
+    color: #000 !important;
+
+    &::before {
+      display: block;
+      content: 'WARNING: Using the "data-color-scheme" attribute on this element is prohibited! Apply it on a parent element instead.';
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #000;
+    }
+  }
+}

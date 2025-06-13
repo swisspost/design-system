@@ -146,7 +146,7 @@ function StylesSwitcher() {
 
     stories.forEach(story => {
       story.setAttribute('data-color-scheme', currentScheme.toLowerCase());
-      if (!story.classList.contains('palette-default')) story.classList.add('palette-default');
+      story.querySelector('.docs-story')?.classList.add('palette', 'palette-default');
     });
   }, [stories, currentScheme]);
 

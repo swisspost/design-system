@@ -7,8 +7,8 @@
 @use '../mixins/utilities' as utilities-mx;
 
 @use './../functions/tokens';
+@use './../mixins/color-scheme';
 @use './../tokens/utilities';
-@use './../tokens/elements';
 @use './../tokens/components';
 
 tokens.$default-map: components.$post-cards;
@@ -22,12 +22,10 @@ post-linkarea:has(> .card) {
 .card {
   transition: all 250ms;
   border-radius: tokens.get('card-border-radius');
-  background-color: tokens.get('card-enabled-bg1');
+  background-color: tokens.get('card-bg');
+  color: tokens.get('card-fg');
   border: 1px solid tokens.get('card-non-interactive-stroke');
-
-  .palette-alternate & {
-    background-color: tokens.get('card-enabled-bg2');
-  }
+  @include color-scheme.set(tokens.get('card-scheme'));
 
   // Add an elevation only if card is interactive
   post-linkarea > & {
@@ -152,7 +150,7 @@ post-linkarea:has(> .card) {
 
   &:hover,
   &:focus {
-    color: tokens.get('body-color', elements.$post-body);
+    color: var(--post-current-fg);
     text-decoration: none;
   }
 
