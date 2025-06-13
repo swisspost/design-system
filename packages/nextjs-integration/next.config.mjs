@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+
+import { postSSR } from '@swisspost/design-system-components-react/next';
+
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -10,4 +13,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default postSSR(nextConfig);

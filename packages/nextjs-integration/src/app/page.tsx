@@ -1,203 +1,167 @@
 import {
-  PostAccordion,
-  PostAccordionItem,
-  PostIcon,
-  PostPopover,
-  PostTabHeader,
-  PostTabPanel,
-  PostTabs,
-  PostTooltip,
+  // PostAccordion,
+  // PostAccordionItem,
+  // PostAvatar,
+  // PostBanner,
+  // PostCardControl,
+  // PostClosebutton,
+  // PostCollapsible,
+  // PostCollapsibleTrigger,
+  // PostIcon,
+  // PostLinkarea,
+  // PostPopover,
+  // PostRating,
+  // PostTabs,
+  // PostTabHeader,
+  // PostTabPanel,
+  PostTag,
+  // PostTooltipTrigger,
+  // PostTooltip,
 } from '@swisspost/design-system-components-react';
-import Image from 'next/image';
 
 export default function Home() {
   return (
     <>
-      <h1 className="visually-hidden">This is the homepage</h1>
+      <h1>Design System Components</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea debitis ex rem minus! Ut
+        mollitia deserunt iure impedit. Enim, officia. Fugiat, cupiditate repellat? Excepturi est
+        iusto suscipit, omnis iste laboriosam!
+      </p>
 
-      <section>
-        <h2 className="h4 mt-40">Sendung Verfolgen</h2>
-        <form className="palette-brand mt-16 py-16 px-32 d-flex gap-24">
-          <PostIcon name="1010" scale={2}></PostIcon>
-          <div className="form-floating" style={{ minWidth: '50%' }}>
-            <input
-              id="ExampleTextarea_Default"
-              className="form-control"
-              type="text"
-              name="text-input"
-              placeholder="Sendungsnummber eingeben"
-            />
-
-            <label className="form-label" htmlFor="ExampleTextarea_Default">
-              Sendungsnummer
-            </label>
+      {/* <h2>Accordion</h2> */}
+      {/* <PostAccordion headingLevel={3}>
+        <PostAccordionItem>
+          <span slot="header">Titulum 1</span>
+          <div>
+            <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
           </div>
-          <button className="btn btn-primary align-self-center" style={{ marginLeft: 'auto' }}>
-            Suchen
-          </button>
-        </form>
-      </section>
+        </PostAccordionItem>
 
-      <section className="mt-40">
-        <div className="row">
-          <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-full product-card">
-              <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
-                <PostIcon name="2146" scale={1.5}></PostIcon>
-                <p className="mt-8 text-center text-muted fw-normal">Umzug melden</p>
-              </div>
+        <PostAccordionItem>
+          <span slot="header">Titulum 2</span>
+          <div>
+            <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+          </div>
+        </PostAccordionItem>
+
+        <PostAccordionItem>
+          <span slot="header">Titulum 3</span>
+          <div>
+            <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+          </div>
+        </PostAccordionItem>
+      </PostAccordion> */}
+
+      {/* <h2>Avatar</h2> */}
+      {/* <PostAvatar firstname="Firstname" lastname="Lastname"></PostAvatar> */}
+
+      {/* <h2>Banner</h2> */}
+      {/* <PostBanner>
+        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+      </PostBanner> */}
+
+      {/* <h2>Card Control</h2> */}
+      {/* <PostCardControl label="Label" type="checkbox" /> */}
+
+      {/* <h2>Close Button</h2> */}
+      {/* <PostClosebutton>Close button</PostClosebutton> */}
+
+      {/* <h2>Collapsible</h2> */}
+      {/* The aria attributes need to be defined on the button already, otherwise nextjs will report a hydration error */}
+      {/* <PostCollapsibleTrigger for="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default">
+        <button
+          className="btn btn-secondary"
+          aria-expanded={true}
+          aria-controls="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default"
+        >
+          Toggle Collapsible
+        </button>
+      </PostCollapsibleTrigger> */}
+
+      {/* <PostCollapsible id="6a91848c-16ec-4a23-bc45-51c797b5b2c3--default">
+        <p className="border rounded p-24">
+          Contentus momentus vero siteos et accusam iretea et justo.
+        </p>
+      </PostCollapsible> */}
+
+      {/* <h2>Icon</h2> */}
+      {/* <PostIcon name="1000" /> */}
+
+      {/* <h2>Linkarea</h2> */}
+      {/* <PostLinkarea>
+        <div className="card">
+          <div className="card-body">
+            <h5 className="card-title">Titulum</h5>
+            <p className="card-text">Contentus momentus vero siteos et accusam iretea et justo.</p>
+            <a className="card-link" href="#test">
+              Ligilo teksto
             </a>
-          </div>
-
-          <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-full product-card">
-              <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
-                <PostIcon name="2026" scale={1.5}></PostIcon>
-                <p className="mt-8 text-center text-muted fw-normal">Shop</p>
-              </div>
-            </a>
-          </div>
-
-          <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-full product-card">
-              <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
-                <PostIcon name="3140" scale={1.5}></PostIcon>
-                <p className="mt-8 text-center text-muted fw-normal">
-                  Preise für Briefe und Pakete
-                </p>
-              </div>
-            </a>
-          </div>
-
-          <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-full product-card">
-              <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
-                <PostIcon name="2456" scale={1.5}></PostIcon>
-                <p className="mt-8 text-center text-muted fw-normal">Paketetiketten erstellen</p>
-              </div>
-            </a>
-          </div>
-
-          <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-full product-card">
-              <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
-                <PostIcon name="1012" scale={1.5}></PostIcon>
-                <p className="mt-8 text-center text-muted fw-normal">Pakete abholen lassen</p>
-              </div>
-            </a>
-          </div>
-
-          <div className="col-xl-2 col-md-6">
-            <a href="#" className="card h-full product-card">
-              <div className="card-body p-16 product-navigation justify-content-start d-flex flex-column align-items-center">
-                <PostIcon name="1024" scale={1.5}></PostIcon>
-                <p className="mt-8 text-center text-muted fw-normal">Personalisierte Briefmarken</p>
-              </div>
+            <a className="card-link" href="#test">
+              Pli da ligo
             </a>
           </div>
         </div>
-        <a href="" className="text-muted btn btn-tertiary btn-md mt-16">
-          <PostIcon name="3020"></PostIcon>
-          Alle Onlinedienste
-        </a>
-      </section>
+      </PostLinkarea> */}
 
-      <section className="pt-40 mb-40">
-        <div className="row">
-          <div className="col-lg-4 col-sm-6 col-12 mb-16">
-            <div className="card elevation-0">
-              <Image width={400} height={200} className="card-img-top" src="/street.jpg" alt="" />
-              <div className="card-body palette-alternate">
-                <h3 className="card-title">Hier steckt mehr drin</h3>
-                <p className="card-text">Black-Week-Topangebote nicht verpassen</p>
-                <a href="#" className="btn btn-tertiary">
-                  <PostIcon name="3020"></PostIcon>
-                  <span>Mehr erfahren</span>
-                </a>
-              </div>
-            </div>
-          </div>
+      {/* <h2>Popover</h2> */}
+      {/* <div className="d-flex justify-content-center"> */}
+      {/* The aria-expanded attribute need to be defined on the trigger already, otherwise nextjs will report a hydration error */}
+      {/* <button
+          className="btn btn-secondary btn-large"
+          data-popover-target="popover-one"
+          aria-expanded="false"
+        >
+          Click here to see a popover
+        </button>
+      </div> */}
+      {/* <PostPopover
+        className="palette-alternate"
+        id="popover-one"
+        placement="top"
+        closeButtonCaption="Close Popover"
+        arrow={true}
+      >
+        <h2 className="h6">Optional title</h2>
+        <p className="mb-0">
+          A longer message that needs more time to read. <a href="#test">Links</a> are also
+          possible.
+        </p>
+      </PostPopover> */}
 
-          <div className="col-lg-4 col-sm-6 col-12 mb-16">
-            <div className="card elevation-0">
-              <Image width={400} height={200} className="card-img-top" src="/street.jpg" alt="" />
-              <div className="card-body palette-alternate">
-                <h3 className="card-title">Einfach easy frankieren</h3>
-                <p className="card-text">DigitalStamp: Mit der Post-App frankieren</p>
-                <a href="#" className="btn btn-tertiary">
-                  <PostIcon name="3020"></PostIcon>
-                  <span>Mehr erfahren</span>
-                </a>
-              </div>
-            </div>
-          </div>
+      <h2>Rating</h2>
+      {/* <PostRating></PostRating> */}
 
-          <div className="col-lg-4 col-sm-6 col-12 mb-16">
-            <div className="card elevation-0">
-              <Image width={400} height={200} className="card-img-top" src="/street.jpg" alt="" />
-              <div className="card-body palette-alternate">
-                <h3 className="card-title">Neue Briefmarken</h3>
-                <p className="card-text">Entdecken Sie jetzt Ihre liebsten Motive</p>
-                <a href="#" className="btn btn-tertiary">
-                  <PostIcon name="3020"></PostIcon>
-                  <span>Mehr erfahren</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <h2>Tabs</h2>
+      {/* <PostTabs>
+        <PostTabHeader panel="unua">Unua langeto</PostTabHeader>
+        <PostTabHeader panel="dua">Dua langeto</PostTabHeader>
+        <PostTabHeader panel="tria">Tria langeto</PostTabHeader>
 
-      <section className="mt-40">
-        <h2>Testing a couple web components</h2>
-        <PostTabs>
-          <PostTabHeader panel="one" data-tooltip-target="tooltip-one">
-            Active
-          </PostTabHeader>
-          <PostTooltip id="tooltip-one">🚀</PostTooltip>
-          <PostTabPanel name="one">A content</PostTabPanel>
+        <PostTabPanel name="unua">
+          Jen la enhavo de la unua langeto. Defaŭlte ĝi montriĝas komence.
+        </PostTabPanel>
+        <PostTabPanel name="dua">
+          Jen la enhavo de la dua langeto. Defaŭlte ĝi estas kaŝita komence.
+        </PostTabPanel>
+        <PostTabPanel name="tria">
+          Jen la enhavo de la tria langeto. Defaŭlte ĝi ankaŭ estas kaŝita komence.
+        </PostTabPanel>
+      </PostTabs> */}
 
-          <PostTabHeader panel="two" data-tooltip-target="tooltip-two">
-            Delivered
-          </PostTabHeader>
-          <PostTooltip className="palette-brand" id="tooltip-two">
-            👻
-          </PostTooltip>
-          <PostTabPanel name="two">
-            <p>Delivered packages</p>
-            <div>
-              <button className="btn btn-secondary" data-popover-target="popover-one">
-                See details
-              </button>
-              <PostPopover id="popover-one" className="palette-accent" closeButtonCaption="close">
-                <h3 className="h5 mt-0">Details for this content</h3>
-                <p>Here are some more details for this content.</p>
-                <div className="d-flex flex-row-reverse gap-16">
-                  <button className="btn btn-primary">OK</button>
-                  <button className="btn btn-secondary">Nope</button>
-                </div>
-              </PostPopover>
-              <PostPopover closeButtonCaption="close">
-                <h3>This is a direct import</h3>
-              </PostPopover>
-            </div>
-          </PostTabPanel>
-        </PostTabs>
-        <h3>Frequently asked questions</h3>
-        <PostAccordion headingLevel={4} className="mt-32" multiple>
-          <PostAccordionItem>
-            <span slot="header">Is this for real?</span>
-            <p>No, this is just a fantasy.</p>
-          </PostAccordionItem>
-          <PostAccordionItem>
-            <span slot="header">Scaramouche, Scaramouche, will you do the Fandango?</span>
-            <p>
-              Thunderbolt and lightning, very, very frightening me (Galileo) Galileo, (Galileo)
-              Galileo, Galileo Figaro, magnifico
-            </p>
-          </PostAccordionItem>
-        </PostAccordion>
-      </section>
+      <h2>Tag</h2>
+      <PostTag>Tag</PostTag>
+
+      <h2>Tooltip</h2>
+      {/* <PostTooltipTrigger for="tooltip-one"> */}
+      {/* The aria-describedby attribute need to be defined on the button already, otherwise we'll get a hydration error */}
+      {/* <button className="btn btn-secondary btn-large" aria-describedby="undefined">
+          Button
+        </button>
+      </PostTooltipTrigger>
+      <PostTooltip id="tooltip-one" class="palette-accent" placement="top" animation="none">
+        Hi there 👋
+      </PostTooltip> */}
     </>
   );
 }

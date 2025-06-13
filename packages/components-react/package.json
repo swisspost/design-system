@@ -13,29 +13,48 @@
   "bugs": {
     "url": "https://github.com/swisspost/design-system/issues"
   },
+  "files": [
+    "dist"
+  ],
   "publishConfig": {
     "access": "public",
     "linkDirectory": true
   },
-  "files": [
-    "dist"
-  ],
+  "type": "module",
   "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
+  "exports": {
+    "./post-components.css": "./dist/post-components.css",
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.js",
+      "node": "./dist/server.js"
+    },
+    "./next": {
+      "types": "./dist/types/next.d.ts",
+      "import": "./dist/next.js"
+    },
+    "./server": {
+      "types": "./dist/types/server.d.ts",
+      "import": "./dist/server.js"
+    }
+  },
   "scripts": {
     "build": "pnpm clean && tsc -p .",
     "postbuild": "pnpm copy:styles:dist",
     "clean": "rimraf dist",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "copy:styles:dist": "copyfiles -f src/components/stencil-generated/post-components.css dist/"
+    "copy:styles:dist": "copyfiles -f src/stencil-generated/post-components.css dist/"
   },
   "dependencies": {
+    "@stencil/react-output-target": "1.0.4",
     "@swisspost/design-system-components": "workspace:10.0.0-next.38"
   },
   "devDependencies": {
     "@eslint/js": "9.18.0",
-    "@stencil/react-output-target": "0.5.3",
+    "@stencil/ssr": "0.1.1",
     "@types/node": "22.10.5",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.5",
@@ -48,10 +67,6 @@
     "rimraf": "6.0.1",
     "typescript": "5.8.3",
     "typescript-eslint": "8.20.0"
-  },
-  "peerDependencies": {
-    "react": "18.3.1",
-    "react-dom": "18.3.1"
   },
   "keywords": [
     "components",
