@@ -37,20 +37,6 @@ export class PostMainnavigation {
     window.addEventListener('postBreakpoint:name', this.breakpointChange);
   }
 
-  disconnectedCallback() {
-    window.removeEventListener('postBreakpoint:name', this.breakpointChange);
-    
-    if (this.mutationObserver) {
-      this.mutationObserver.disconnect();
-    }
-    if (this.resizeObserver) {
-      this.resizeObserver.disconnect();
-    }
-    if (this.navbar) {
-      this.navbar.removeEventListener('scrollend', this.checkScrollability);
-    }
-  }
-
   private readonly breakpointChange = (e: CustomEvent) => {
     this.device = e.detail;
   };
@@ -69,6 +55,16 @@ export class PostMainnavigation {
 
     // Ensure the scroll buttons are correctly displayed or hidden whenever the navbar is scrolled
     this.navbar.addEventListener('scrollend', this.checkScrollability);
+  }
+
+  /**
+   * Disconnects observers and remove event listeners when the main navigation is removed from the DOM.
+   */
+  disconnectedCallback() {
+    window.removeEventListener('postBreakpoint:name', this.breakpointChange);
+    this.mutationObserver.disconnect();
+    this.resizeObserver.disconnect();
+    this.navbar.removeEventListener('scrollend', this.checkScrollability);
   }
 
   /**
@@ -162,13 +158,10 @@ export class PostMainnavigation {
   private scrollRight() {
     const scrollRightLeftEdge = document
       .querySelector('.scroll-right')
-      ?.getBoundingClientRect().left;
-
-    if (!scrollRightLeftEdge) return;
+      .getBoundingClientRect().left;
 
     for (const navigationItem of this.navigationItems) {
       const { right, width } = navigationItem.getBoundingClientRect();
-
       // Scroll to the first navigation item that is less than 75% visible
       const isThreeQuartersVisible = right - 0.25 * width < scrollRightLeftEdge;
       if (!isThreeQuartersVisible) {
@@ -177,17 +170,13 @@ export class PostMainnavigation {
       }
     }
   }
-
   private scrollLeft() {
     const scrollLeftRightEdge = document
       .querySelector('.scroll-left')
-      ?.getBoundingClientRect().right;
-
-    if (!scrollLeftRightEdge) return;
+      .getBoundingClientRect().right;
 
     for (const navigationItem of this.navigationItems.reverse()) {
       const { left, width } = navigationItem.getBoundingClientRect();
-
       // Scroll to the first navigation item that is less than 75% visible
       const isThreeQuartersVisible = left + 0.25 * width > scrollLeftRightEdge;
       if (!isThreeQuartersVisible) {
