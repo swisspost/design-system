@@ -20,6 +20,7 @@ addons.setConfig({
       'utilities',
       'templates',
       'guidelines',
+      'accessibility-practices',
     ],
   },
 
