@@ -556,24 +556,6 @@ export namespace Components {
          */
         "workaround"?: string;
     }
-    interface PostTestSpan2 {
-        /**
-          * Defines the id of the button to reference
-         */
-        "btnId": string;
-        /**
-          * Defines the label text
-         */
-        "labelText": string;
-        /**
-          * Defines the spanId
-         */
-        "spanId"?: string;
-        /**
-          * Defines the selected workaround
-         */
-        "workaround"?: string;
-    }
     interface PostTestTarget {
         /**
           * Defines the selected workaround
@@ -1065,12 +1047,6 @@ declare global {
         prototype: HTMLPostTestSpanElement;
         new (): HTMLPostTestSpanElement;
     };
-    interface HTMLPostTestSpan2Element extends Components.PostTestSpan2, HTMLStencilElement {
-    }
-    var HTMLPostTestSpan2Element: {
-        prototype: HTMLPostTestSpan2Element;
-        new (): HTMLPostTestSpan2Element;
-    };
     interface HTMLPostTestTargetElement extends Components.PostTestTarget, HTMLStencilElement {
     }
     var HTMLPostTestTargetElement: {
@@ -1160,7 +1136,6 @@ declare global {
         "post-test-list-item-group": HTMLPostTestListItemGroupElement;
         "post-test-list-item-group-2": HTMLPostTestListItemGroup2Element;
         "post-test-span": HTMLPostTestSpanElement;
-        "post-test-span2": HTMLPostTestSpan2Element;
         "post-test-target": HTMLPostTestTargetElement;
         "post-test-target2": HTMLPostTestTarget2Element;
         "post-test-target3": HTMLPostTestTarget3Element;
@@ -1654,24 +1629,6 @@ declare namespace LocalJSX {
          */
         "workaround"?: string;
     }
-    interface PostTestSpan2 {
-        /**
-          * Defines the id of the button to reference
-         */
-        "btnId"?: string;
-        /**
-          * Defines the label text
-         */
-        "labelText"?: string;
-        /**
-          * Defines the spanId
-         */
-        "spanId"?: string;
-        /**
-          * Defines the selected workaround
-         */
-        "workaround"?: string;
-    }
     interface PostTestTarget {
         /**
           * Defines the selected workaround
@@ -1773,7 +1730,6 @@ declare namespace LocalJSX {
         "post-test-list-item-group": PostTestListItemGroup;
         "post-test-list-item-group-2": PostTestListItemGroup2;
         "post-test-span": PostTestSpan;
-        "post-test-span2": PostTestSpan2;
         "post-test-target": PostTestTarget;
         "post-test-target2": PostTestTarget2;
         "post-test-target3": PostTestTarget3;
@@ -1839,7 +1795,6 @@ declare module "@stencil/core" {
             "post-test-list-item-group": LocalJSX.PostTestListItemGroup & JSXBase.HTMLAttributes<HTMLPostTestListItemGroupElement>;
             "post-test-list-item-group-2": LocalJSX.PostTestListItemGroup2 & JSXBase.HTMLAttributes<HTMLPostTestListItemGroup2Element>;
             "post-test-span": LocalJSX.PostTestSpan & JSXBase.HTMLAttributes<HTMLPostTestSpanElement>;
-            "post-test-span2": LocalJSX.PostTestSpan2 & JSXBase.HTMLAttributes<HTMLPostTestSpan2Element>;
             "post-test-target": LocalJSX.PostTestTarget & JSXBase.HTMLAttributes<HTMLPostTestTargetElement>;
             "post-test-target2": LocalJSX.PostTestTarget2 & JSXBase.HTMLAttributes<HTMLPostTestTarget2Element>;
             "post-test-target3": LocalJSX.PostTestTarget3 & JSXBase.HTMLAttributes<HTMLPostTestTarget3Element>;
