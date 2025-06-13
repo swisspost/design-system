@@ -16,6 +16,7 @@ tokens.$default-map: components.$post-button;
 
   @include media.max(sm) {
     gap: 0;
+    margin-block: 0 !important;
   }
 
   li {
@@ -62,7 +63,7 @@ tokens.$default-map: components.$post-button;
   @include media.max(sm) {
     flex-direction: column;
     gap: 8px;
-    padding: 68px 16px 0;
+    padding: 0 16px;
 
     a {
       width: 100%;
