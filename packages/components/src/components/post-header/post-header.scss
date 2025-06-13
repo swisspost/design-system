@@ -230,8 +230,7 @@
   }
 
   ::slotted(post-mainnavigation),
-  .navigation-footer,
-  .navigation-target-group {
+  .navigation-footer {
     display: none;
     flex-direction: column;
 
@@ -277,5 +276,9 @@
   ::slotted(post-mainnavigation),
   .navigation-footer {
     padding-inline: 16px;
+  }
+
+  ::slotted(post-mainnavigation) {
+    gap: 24px;
   }
 }

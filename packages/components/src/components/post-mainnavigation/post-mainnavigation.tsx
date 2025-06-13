@@ -199,6 +199,10 @@ export class PostMainnavigation {
           <slot name="back-button"></slot>
         </div>
 
+        <div class="navigation-target-group">
+          <slot name="target-group"></slot>
+        </div>
+
         <div
           aria-hidden="true"
           class={{ 'scroll-control scroll-left': true, 'd-none': !this.canScrollLeft }}
