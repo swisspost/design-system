@@ -37,7 +37,7 @@
     background-color: var(--post-current-palette-bg);
     border: 2px solid transparent; // Keeping the default border for HCM
     border-radius: commons.$border-radius;
-    
+
     &.animate-pop-in {
       @include animation.pop-in-animation(0.25s);
     }

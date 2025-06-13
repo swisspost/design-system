@@ -15,10 +15,11 @@
 }
 
 .popover-container {
+  color: var(--post-current-fg);
+  background-color: var(--post-current-bg);
   display: flex;
   align-items: self-start;
   padding: 0.5em;
-
   min-width: 160px;
   max-width: min(var(--post-popover-max-width, 280px), 100vw);
 }
