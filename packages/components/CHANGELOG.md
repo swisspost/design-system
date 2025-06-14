@@ -1,5 +1,13 @@
 # @swisspost/design-system-components
 
+## 8.10.2
+
+### Patch Changes
+
+- Resolved an issue where `post-accordion` components placed within inactive tab panels caused animation-related exceptions. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5502](https://github.com/swisspost/design-system/pull/5502))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.10.2
+
 ## 8.10.1
 
 ### Patch Changes
