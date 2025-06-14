@@ -41,9 +41,9 @@ export class PostCollapsible {
       'The `collapsed` property of the `post-collapsible` must be a boolean.',
     );
     
-    const expandedKeyframe: Keyframe = { height: 'auto', overflow: 'visible' };
-
     if (!this.isLoaded) {
+    
+      const expandedKeyframe: Keyframe = { height: 'auto', overflow: 'visible' }; 
       Object.assign(
         this.host.style, 
         this.collapsed ? collapsedKeyframe : expandedKeyframe
