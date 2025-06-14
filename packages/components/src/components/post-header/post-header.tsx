@@ -23,6 +23,7 @@ import { eventGuard } from '@/utils/event-guard';
  * @slot title - Holds the application title.
  * @slot default - Custom controls or content, right aligned in the local header.
  * @slot post-mainnavigation - Has a default slot because it's only meant to be used in the `<post-header>`.
+ * @slot target-group - Holds the list of buttons to choose the target group.
  */
 
 @Component({

@@ -265,6 +265,14 @@
     gap: 32px;
   }
 
+  @include media.max(sm) {
+    :has([slot="target-group"]) {
+      ::slotted(post-mainnavigation) {
+        gap: 24px;
+      }
+    }
+  }
+
   .navigation-footer {
     background-color: #f0efed;
     gap: 24px;
@@ -276,9 +284,5 @@
   ::slotted(post-mainnavigation),
   .navigation-footer {
     padding-inline: 16px;
-  }
-
-  ::slotted(post-mainnavigation) {
-    gap: 24px;
   }
 }
