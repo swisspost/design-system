@@ -25931,6 +25931,34 @@
       "modifiedAt": "2025-05-07T10:35:14.000Z"
     },
     {
+      "uuid": "aae7a530-477c-11f0-bc26-005056873709",
+      "id": 5075952,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/5075952/storage/MDA1MDc1OTUyLzAvbWFzdGVy",
+        "keywords": [
+          "Angebot",
+          "Offer",
+          "Offerta",
+          "Offre"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2693.svg",
+        "basename": "2693",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2025-06-12T11:02:01.000Z",
+      "modifiedAt": "2025-06-12T11:05:32.000Z"
+    },
+    {
       "uuid": "456fe7e0-392f-11eb-9f99-005056873709",
       "id": 536700,
       "type": "picture.pictogram.",
@@ -39169,13 +39197,13 @@
   ],
   "duplicates": [],
   "stats": {
-    "success": 1024,
+    "success": 1025,
     "errors": 0,
     "noSVG": 0,
     "wrongViewBox": 0,
     "noKeywords": 66,
     "duplicates": 0
   },
-  "created": "2025-06-02T07:47:53.901Z",
+  "created": "2025-06-15T02:30:08.749Z",
   "version": "10.0.0-next.38"
 }
