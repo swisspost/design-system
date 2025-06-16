@@ -303,7 +303,7 @@ jobs:
         run: rm -f monorepo.json
 
       - name: Commit Changes and Push Branch
-        uses: EndBug/add-and-commit@a94899bca583c204427a224a7af87c02f9b325d5
+        uses: EndBug/add-and-commit@b5fc3de01ef5614aa38ef8d911f023b0a7a04dca
         with:
           author_name: Swiss Post Bot
           author_email: 103635272+swisspost-bot@users.noreply.github.com
@@ -438,7 +438,7 @@ jobs:
 
       # Commit the changes to a new release/v* branch
       - name: Commit Changes and Push Release Branch
-        uses: EndBug/add-and-commit@a94899bca583c204427a224a7af87c02f9b325d5
+        uses: EndBug/add-and-commit@b5fc3de01ef5614aa38ef8d911f023b0a7a04dca
         with:
           author_name: Swiss Post Bot
           author_email: 103635272+swisspost-bot@users.noreply.github.com
