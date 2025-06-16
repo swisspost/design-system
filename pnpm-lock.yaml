@@ -102,7 +102,7 @@ importers:
         specifier: 4.35.0
         version: 4.35.0
       '@stencil/react-output-target':
-        specifier: 0.8.2
+        specifier: '=0.8.2'
         version: 0.8.2(@stencil/core@4.35.0)(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@stencil/sass':
         specifier: 3.0.12
