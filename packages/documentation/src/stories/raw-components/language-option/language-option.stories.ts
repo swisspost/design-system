@@ -1,7 +1,7 @@
-import type { StoryObj } from '@storybook/web-components';
+import type { StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
-import { StoryContext, StoryFn } from '@storybook/web-components';
+import { StoryContext, StoryFn } from '@storybook/web-components-vite';
 
 const meta: MetaComponent<HTMLPostLanguageOptionElement> = {
   id: '3753ab83-a659-47b5-a2f2-ac452ec97916',

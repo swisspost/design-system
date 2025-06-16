@@ -1,4 +1,4 @@
-import { StoryObj } from '@storybook/web-components';
+import { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaExtended } from '@root/types';
 import * as FormFooterMeta from '../../components/form-footer/form-footer.stories';

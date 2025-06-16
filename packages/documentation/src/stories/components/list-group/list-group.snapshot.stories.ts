@@ -1,4 +1,4 @@
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components-vite';
 import meta, { renderListGroup } from './list-group.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';

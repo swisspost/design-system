@@ -1,7 +1,7 @@
-import type { StoryObj } from '@storybook/web-components';
+import type { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
-import { StoryContext, StoryFn } from '@storybook/web-components';
+import { StoryContext, StoryFn } from '@storybook/web-components-vite';
 
 const meta: MetaComponent<HTMLPostMegadropdownElement> = {
   id: '212efc4e-875b-4497-912d-d28c6baf32f5',

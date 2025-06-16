@@ -1,4 +1,4 @@
-import { StoryObj } from '@storybook/web-components';
+import { StoryObj } from '@storybook/web-components-vite';
 import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {

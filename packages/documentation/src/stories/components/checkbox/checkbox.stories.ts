@@ -1,5 +1,5 @@
-import { useArgs } from '@storybook/preview-api';
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import { useArgs } from 'storybook/preview-api';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { mapClasses } from '@/utils';
