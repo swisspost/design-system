@@ -50,6 +50,8 @@ const config: StorybookConfig = {
     },
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@kurbar/storybook-addon-docs-stencil'),
+    './addons/styles-switcher/register',
+    './addons/version-switcher/register',
   ],
 
   staticDirs: [
@@ -104,6 +106,6 @@ const config: StorybookConfig = {
 
 export default config;
 
-function getAbsolutePath(value: string): any {
+function getAbsolutePath(value: string): string {
   return dirname(require.resolve(join(value, 'package.json')));
 }
