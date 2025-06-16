@@ -1,5 +1,5 @@
 import { PropertyType } from '@/types/property-types';
-import { EMPTY_VALUES } from './constants';
+import { isValueEmpty } from '../is-value-empty';
 
 export function checkType<T extends { host: HTMLElement }>(
   component: T,
@@ -9,7 +9,7 @@ export function checkType<T extends { host: HTMLElement }>(
   const componentName = component.host.localName;
   const value = component[prop];
 
-  if (EMPTY_VALUES.some(v => v === value)) {
+  if (isValueEmpty(value)) {
     return;
   }
 

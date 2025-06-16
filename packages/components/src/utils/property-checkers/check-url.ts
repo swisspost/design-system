@@ -1,4 +1,4 @@
-import { EMPTY_VALUES } from './constants';
+import { isValueEmpty } from '../is-value-empty';
 
 export function checkUrl<T extends { host: HTMLElement }>(component: T, prop: keyof T) {
   const componentName = component.host.localName;
@@ -6,7 +6,7 @@ export function checkUrl<T extends { host: HTMLElement }>(component: T, prop: ke
 
   const message = `The prop \`${String(prop)}\` of the \`${componentName}\` component is invalid.`;
 
-  if (EMPTY_VALUES.some(v => v === value)) {
+  if (isValueEmpty(value)) {
     return;
   }
 

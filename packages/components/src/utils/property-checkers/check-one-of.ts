@@ -1,4 +1,4 @@
-import { EMPTY_VALUES } from './constants';
+import { isValueEmpty } from '../is-value-empty';
 
 export function checkOneOf<T extends { host: HTMLElement }>(
   component: T,
@@ -8,7 +8,7 @@ export function checkOneOf<T extends { host: HTMLElement }>(
   const componentName = component.host.localName;
   const value = component[prop];
 
-  if (EMPTY_VALUES.some(v => v === value)) {
+  if (isValueEmpty(value)) {
     return;
   }
 
