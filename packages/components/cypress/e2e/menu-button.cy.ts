@@ -56,6 +56,7 @@ describe('menus', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('post-menu-trigger[for="menu-three"]').eq(1).as('triggerD');
       cy.get('post-menu#menu-three').as('menuC');
       cy.get('post-menu#menu-four').as('menuD');
+      cy.wait(500);
     });
 
     it('should have all triggers and menus', () => {

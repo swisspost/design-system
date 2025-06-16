@@ -68,6 +68,7 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('should open and close with the API', () => {
+      cy.wait(1000);
       Promise.all([cy.get('@trigger'), cy.get('@popover')])
         .then(
           ([$trigger, $popover]: [JQuery<HTMLButtonElement>, JQuery<HTMLPostPopoverElement>]) => [
@@ -89,7 +90,9 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
     });
 
     it('should switch position', () => {
-      cy.get('post-popover').invoke('attr', 'placement', 'top').should('not.be.visible');
+      cy.get('post-popover').invoke('attr', 'placement', 'top');
+      cy.get('@popover').should('not.be.visible');
+
       Promise.all([cy.get('@trigger'), cy.get('@popover')])
         .then(
           ([$trigger, $popover]: [JQuery<HTMLButtonElement>, JQuery<HTMLPostPopoverElement>]) => [
