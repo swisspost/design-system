@@ -4,6 +4,11 @@ describe('menu', () => {
   describe('default', () => {
     beforeEach(() => {
       cy.getComponents(MENUBUTTON_ID, 'default', 'post-menu', 'post-menu-trigger');
+
+      // Ensure the components are hydrated, which is necessary to ensure the component is ready for interaction
+      cy.get('post-menu-trigger[data-hydrated]');
+      cy.get('post-menu[data-hydrated]');
+
       cy.get('@menu-trigger').find('.btn').as('trigger');
     });
 
@@ -48,6 +53,11 @@ describe('menus', { baseUrl: null, includeShadowDom: true }, () => {
   describe('multiple menus', () => {
     beforeEach(() => {
       cy.visit('cypress/fixtures/post-menu.test.html');
+
+      // Ensure the components are hydrated, which is necessary to ensure the component is ready for interaction
+      cy.get('post-menu-trigger[data-hydrated]');
+      cy.get('post-menu[data-hydrated]');
+
       cy.get('post-menu-trigger[for="menu-one"]').as('triggerA');
       cy.get('post-menu#menu-one').as('menuA');
       cy.get('post-menu-trigger[for="menu-two"]').as('triggerB');
@@ -56,7 +66,6 @@ describe('menus', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('post-menu-trigger[for="menu-three"]').eq(1).as('triggerD');
       cy.get('post-menu#menu-three').as('menuC');
       cy.get('post-menu#menu-four').as('menuD');
-      cy.wait(500);
     });
 
     it('should have all triggers and menus', () => {
