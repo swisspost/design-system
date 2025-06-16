@@ -101,7 +101,7 @@ export const Example4: Story = {
     workaround: 'none',
   },
   render: (args: Args) => html`
-    <post-test-label workaround="${args.workaround}" for="id_4" id="id_4"> </post-test-label>
+    <post-test-label workaround="${args.workaround}" id="id_4"> </post-test-label>
     <input aria-labelledby="id_4"></input>
   `,
 };
