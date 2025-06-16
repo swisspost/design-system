@@ -33,22 +33,20 @@
     "./package.json": "./package.json",
     "./post-components.css": "./dist/post-components/post-components.css",
     ".": {
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/post-components/post-components.esm.js",
       "require": "./dist/cjs/post-components.cjs.js"
     },
     "./dist/*": {
-      "types": "./dist/*",
-      "import": "./dist/*",
-      "require": "./dist/*"
+      "default": "./dist/*"
     },
     "./components/*": {
-      "types": "./dist/components/*.d.ts",
-      "import": "./dist/components/*.js"
+      "default": "./dist/components/*"
     },
     "./loader": {
       "types": "./loader/index.d.ts",
       "import": "./loader/index.js",
-      "require": "./loader/index.cjs"
+      "require": "./loader/index.cjs.js"
     },
     "./hydrate": {
       "types": "./hydrate/index.d.ts",
