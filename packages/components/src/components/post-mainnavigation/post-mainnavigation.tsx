@@ -1,6 +1,5 @@
 import { Component, Host, h, State, Listen } from '@stencil/core';
 import { version } from '@root/package.json';
-import { breakpoint } from '@/utils';
 
 /**
  * @slot target-group - Holds the list of buttons to choose the target group.
@@ -23,7 +22,6 @@ export class PostMainnavigation {
   private resizeObserver: ResizeObserver;
   private mutationObserver: MutationObserver;
 
-  @State() device: string = breakpoint.get('name');
   @State() canScrollLeft = false;
   @State() canScrollRight = false;
 
@@ -36,14 +34,6 @@ export class PostMainnavigation {
     this.resizeObserver = new ResizeObserver(this.checkScrollability);
     this.mutationObserver = new MutationObserver(this.handleMutations);
   }
-
-  connectedCallback() {
-    window.addEventListener('postBreakpoint:name', this.breakpointChange);
-  }
-
-  private readonly breakpointChange = (e: CustomEvent) => {
-    this.device = e.detail;
-  };
 
   componentDidLoad() {
     setTimeout(() => {
@@ -65,7 +55,6 @@ export class PostMainnavigation {
    * Disconnects observers and remove event listeners when the main navigation is removed from the DOM.
    */
   disconnectedCallback() {
-    window.removeEventListener('postBreakpoint:name', this.breakpointChange);
     this.mutationObserver.disconnect();
     this.resizeObserver.disconnect();
     this.navbar.removeEventListener('scrollend', this.checkScrollability);
