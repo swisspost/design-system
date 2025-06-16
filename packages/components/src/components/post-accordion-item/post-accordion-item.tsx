@@ -1,7 +1,7 @@
 import { Component, Element, h, Host, Listen, Method, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { HEADING_LEVELS, HeadingLevel } from '@/types';
-import { checkOneOf } from '@/utils';
+import { checkEmptyOrOneOf } from '@/utils';
 import { nanoid } from 'nanoid';
 import { eventGuard } from '@/utils/event-guard';
 
@@ -40,7 +40,7 @@ export class PostAccordionItem {
 
   @Watch('headingLevel')
   validateHeadingLevel() {
-    checkOneOf(this, 'headingLevel', HEADING_LEVELS);
+    checkEmptyOrOneOf(this, 'headingLevel', HEADING_LEVELS);
   }
 
   componentWillLoad() {

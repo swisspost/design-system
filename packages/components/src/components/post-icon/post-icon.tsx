@@ -1,5 +1,5 @@
 import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
-import { IS_BROWSER, checkType, checkRequiredAndType, checkRequiredAndOneOf } from '@/utils';
+import { IS_BROWSER, checkEmptyOrType, checkRequiredAndType, checkRequiredAndOneOf } from '@/utils';
 import { version } from '@root/package.json';
 
 type UrlDefinition = {
@@ -50,7 +50,7 @@ export class PostIcon {
 
   @Watch('base')
   validateBase() {
-    checkType(this, 'base', 'string');
+    checkEmptyOrType(this, 'base', 'string');
   }
 
   /**
@@ -80,7 +80,7 @@ export class PostIcon {
 
   @Watch('rotate')
   validateRotate() {
-    checkType(this, 'rotate', 'number');
+    checkEmptyOrType(this, 'rotate', 'number');
   }
 
   /**
@@ -90,7 +90,7 @@ export class PostIcon {
 
   @Watch('scale')
   validateScale() {
-    checkType(this, 'scale', 'number');
+    checkEmptyOrType(this, 'scale', 'number');
   }
 
   // Construct the icon url from different possible sources

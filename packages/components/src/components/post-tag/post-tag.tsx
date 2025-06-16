@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkOneOf, checkType } from '@/utils';
+import { checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
 
 /**
  * @slot default - Content to place in the `default` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content">inline content</a>.</p>
@@ -37,19 +37,19 @@ export class PostTag {
   }
   @Watch('variant')
   variantChanged() {
-    checkOneOf(this, 'variant', ['white', 'info', 'success', 'error', 'warning', 'yellow']);
+    checkEmptyOrOneOf(this, 'variant', ['white', 'info', 'success', 'error', 'warning', 'yellow']);
     this.setClasses();
   }
 
   @Watch('size')
   sizeChanged() {
-    checkOneOf(this, 'size', ['sm']);
+    checkEmptyOrOneOf(this, 'size', ['sm']);
     this.setClasses();
   }
 
   @Watch('icon')
   validateName() {
-    checkType(this, 'icon', 'string');
+    checkEmptyOrType(this, 'icon', 'string');
   }
 
   private setClasses() {

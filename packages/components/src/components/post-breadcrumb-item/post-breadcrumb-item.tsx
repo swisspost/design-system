@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, Watch, State } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkUrl } from '@/utils';
+import { checkEmptyOrUrl } from '@/utils';
 
 /**
  * @slot default - Slot for placing the text inside the breadcrumb item.
@@ -39,7 +39,7 @@ export class PostBreadcrumbItem {
     const hasBaseURL = /^https?:\/\//.test(String(this.url));
     if (typeof value === 'string') {
       this.fullUrl = hasBaseURL ? value : `${window.location.origin}${value}`;
-      checkUrl(this, 'fullUrl');
+      checkEmptyOrUrl(this, 'fullUrl');
       return this.fullUrl;
     }
     return undefined;

@@ -14,7 +14,7 @@ import { Placement } from '@floating-ui/dom';
 import { PLACEMENT_TYPES } from '@/types';
 import { version } from '@root/package.json';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
-import { getRoot, checkOneOf } from '@/utils';
+import { getRoot, checkEmptyOrOneOf } from '@/utils';
 import { eventGuard } from '@/utils/event-guard';
 
 @Component({
@@ -48,7 +48,7 @@ export class PostMenu {
 
   @Watch('placement')
   validatePlacement() {
-    checkOneOf(this, 'placement', PLACEMENT_TYPES);
+    checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
   }
 
   /**

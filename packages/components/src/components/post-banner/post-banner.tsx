@@ -12,7 +12,7 @@ import {
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { fadeOut } from '@/animations';
-import { checkRequiredAndType, checkOneOf, checkType } from '@/utils';
+import { checkRequiredAndType, checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
 import { BANNER_TYPES, BannerType } from './banner-types';
 import { nanoid } from 'nanoid';
 
@@ -65,7 +65,7 @@ export class PostBanner {
 
   @Watch('icon')
   validateIcon() {
-    checkType(this, 'icon', 'string');
+    checkEmptyOrType(this, 'icon', 'string');
   }
 
   /**
@@ -75,7 +75,7 @@ export class PostBanner {
 
   @Watch('type')
   validateType() {
-    checkOneOf(this, 'type', BANNER_TYPES);
+    checkEmptyOrOneOf(this, 'type', BANNER_TYPES);
   }
 
   /**
