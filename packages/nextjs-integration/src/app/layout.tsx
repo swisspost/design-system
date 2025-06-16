@@ -2,25 +2,25 @@ import '@swisspost/design-system-styles/cargo-default.css';
 import '@swisspost/design-system-components-react/post-components.css';
 
 import type { Metadata } from 'next';
-// import Image from 'next/image';
-// import {
-//   PostBackToTop,
-//   PostBreadcrumbs,
-//   PostBreadcrumbItem,
-//   PostClosebutton,
-//   PostFooter,
-//   PostHeader,
-//   PostIcon,
-//   PostLanguageOption,
-//   PostLanguageSwitch,
-//   PostList,
-//   PostListItem,
-//   PostLogo,
-//   PostMainnavigation,
-//   PostMegadropdown,
-//   PostMegadropdownTrigger,
-//   PostTogglebutton,
-// } from '@swisspost/design-system-components-react';
+import Image from 'next/image';
+import {
+  PostBackToTop,
+  PostBreadcrumbs,
+  PostBreadcrumbItem,
+  PostClosebutton,
+  PostFooter,
+  PostHeader,
+  PostIcon,
+  PostLanguageOption,
+  PostLanguageSwitch,
+  PostList,
+  PostListItem,
+  PostLogo,
+  PostMainnavigation,
+  PostMegadropdown,
+  PostMegadropdownTrigger,
+  PostTogglebutton,
+} from '@swisspost/design-system-components-react';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -31,7 +31,7 @@ export default function RootLayout({ children }: { readonly children: React.Reac
   return (
     <html lang="en">
       <body>
-        {/* <PostHeader>
+        <PostHeader>
           <PostLogo slot="post-logo" url="/">
             Homepage
           </PostLogo>
@@ -189,20 +189,20 @@ export default function RootLayout({ children }: { readonly children: React.Reac
               </PostListItem>
             </PostList>
           </PostMainnavigation>
-        </PostHeader> */}
+        </PostHeader>
 
         <main style={{ paddingBlock: '3rem' }}>
           <div className="container">
-            {/* <PostBreadcrumbs home-url="/" home-text="Home">
+            <PostBreadcrumbs home-url="/" home-text="Home">
               <PostBreadcrumbItem url="/section1">Section 1</PostBreadcrumbItem>
               <PostBreadcrumbItem url="/section2">Section 2</PostBreadcrumbItem>
               <PostBreadcrumbItem url="/section3">Section 3</PostBreadcrumbItem>
-            </PostBreadcrumbs> */}
+            </PostBreadcrumbs>
             {children}
           </div>
         </main>
 
-        {/* <PostFooter label="Footer label">
+        <PostFooter label="Footer label">
           <span slot="grid-1-title">Title 1</span>
           <PostList slot="grid-1" id="grid-1">
             <h3>Title 1</h3>
@@ -459,9 +459,9 @@ export default function RootLayout({ children }: { readonly children: React.Reac
 
           <span slot="copyright">© Copyright 2024 by Swiss Post Ltd.</span>
           <span slot="copyright">All rights reserved.</span>
-        </PostFooter> */}
+        </PostFooter>
 
-        {/* <PostBackToTop label="Back to top button" /> */}
+        <PostBackToTop label="Back to top button" />
       </body>
     </html>
   );
