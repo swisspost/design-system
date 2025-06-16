@@ -141,19 +141,19 @@ jobs:
 
       - name: Check if changset-release/main Branch exists
         id: changeset-branch-exists
-        uses: GuillaumeFalourd/branch-exists@009290475dc3d75b5d7ec680c0c5b614b0d9855d
+        uses: GuillaumeFalourd/branch-exists@b59b6e80d7a9718439df11e733e26d4f88ffefd3
         with:
           branch: changeset-release/main
 
       - name: Check if release/v* Branch exists
         id: release-branch-exists
-        uses: GuillaumeFalourd/branch-exists@009290475dc3d75b5d7ec680c0c5b614b0d9855d
+        uses: GuillaumeFalourd/branch-exists@b59b6e80d7a9718439df11e733e26d4f88ffefd3
         with:
           branch: ${{ fromJSON(steps.release-data-pre.outputs.result).branchName }}
 
       - name: Check if changeset-release/release/v* Branch exists
         id: release-changeset-branch-exists
-        uses: GuillaumeFalourd/branch-exists@009290475dc3d75b5d7ec680c0c5b614b0d9855d
+        uses: GuillaumeFalourd/branch-exists@b59b6e80d7a9718439df11e733e26d4f88ffefd3
         with:
           branch: changeset-release/${{ fromJSON(steps.release-data-pre.outputs.result).branchName }}
 
