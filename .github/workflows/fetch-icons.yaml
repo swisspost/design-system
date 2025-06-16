@@ -79,7 +79,7 @@ jobs:
 
       - name: Get Changes
         id: changed-files
-        uses: step-security/changed-files@52f756978519f427e38a119d8c4f0c8f549d1402
+        uses: step-security/changed-files@93edf87999a88af96afc15072c8b52bbe8469fb1
         with:
           files: ./packages/icons/src/icons/**/*.svg
 
