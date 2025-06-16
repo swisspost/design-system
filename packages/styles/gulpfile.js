@@ -11,13 +11,6 @@ const autoprefixer = require('autoprefixer');
 const { globSync } = require('glob');
 const options = require('./package.json').sass;
 
-const COMPONENT_SOURCE_PATHS = [path.join(__dirname, '../components/src/components')];
-const COMPONENT_NOT_DEFINED_TEMPLATE_PATH = path.join(
-  __dirname,
-  'src/templates/_not-defined.template.scss',
-);
-const COMPONENT_NOT_DEFIEND_OUTPUT_PATH = path.join(__dirname, 'src/utilities/_not-defined.scss');
-
 /**
  * Copy task
  */
