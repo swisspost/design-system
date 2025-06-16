@@ -1,5 +1,20 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.40
+
+### Patch Changes
+
+- Added the `target group` css component. (by [@leagrdv](https://github.com/leagrdv) with [#5424](https://github.com/swisspost/design-system/pull/5424))
+
+- Updated the PrimeNG styles package documentation. (by [@alizedebray](https://github.com/alizedebray) with [#5488](https://github.com/swisspost/design-system/pull/5488))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.39
+  - @swisspost/design-system-components@10.0.0-next.39
+  - @swisspost/design-system-styles@10.0.0-next.39
+  - @swisspost/design-system-components-react@10.0.0-next.39
+  - @swisspost/internet-header@2.0.0-next.39
+  - @swisspost/design-system-tokens@10.0.0-next.39
+
 ## 6.0.0-next.39
 
 ### Patch Changes
