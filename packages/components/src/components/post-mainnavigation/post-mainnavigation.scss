@@ -11,6 +11,12 @@
 @use '@swisspost/design-system-styles/variables/color';
 
 post-mainnavigation {
+  .target-group {
+      @include media.min(lg) {
+        display: none !important;
+    }
+  }
+
   // reset links and buttons
   post-list-item {
     > a {
