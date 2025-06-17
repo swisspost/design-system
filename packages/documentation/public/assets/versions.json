@@ -125,7 +125,7 @@
       "@ng-bootstrap/ng-bootstrap": "15.2.0",
       "@swisspost/design-system-intranet-header": "4.0.10",
       "@swisspost/design-system-styles": "6.3.0",
-      "bootstrap": "5.3.1"
+      "bootstrap": "5.2.3"
     }
   },
   {
