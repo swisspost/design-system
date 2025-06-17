@@ -1,5 +1,15 @@
 # @swisspost/design-system-components
 
+## 9.0.2
+
+### Patch Changes
+
+- Fixed `post-tooltip` text overflow by implementing proper word wrapping and updating width constraints. Tooltips now break correctly within a maximum width of 280px, preventing text from bleeding outside container boundaries. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5612](https://github.com/swisspost/design-system/pull/5612))
+
+- Resolved an issue where `post-accordion` components placed within inactive tab panels caused animation-related exceptions. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5646](https://github.com/swisspost/design-system/pull/5646))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.2
+
 ## 9.0.1
 
 ### Patch Changes
