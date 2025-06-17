@@ -6,7 +6,7 @@
  */
 export function EventGuard(options: { targetLocalName: string; delegatorSelector?: string }) {
   return function (
-    target: unknown,
+    target: object,
     propertyKey: string,
     descriptor?: PropertyDescriptor
   ) {
