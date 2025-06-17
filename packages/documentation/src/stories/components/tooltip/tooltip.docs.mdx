@@ -1,14 +1,12 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as TooltipStories from './tooltip.stories';
+import * as TooltipTriggerStories from './tooltip-trigger.stories';
 
 <Meta of={TooltipStories} />
 
 <div className="docs-title">
-  # Tooltip
-
-  <nav>
-    <link-design of={JSON.stringify(TooltipStories)}></link-design>
-  </nav>
+  # Tooltip 
+  <link-design of={JSON.stringify(TooltipStories)}></link-design>
 </div>
 
 <div className="lead">For short, informative messages or explanations.</div>
@@ -16,10 +14,16 @@ import * as TooltipStories from './tooltip.stories';
 <Canvas sourceState="shown" of={TooltipStories.Default} />
 <Controls of={TooltipStories.Default} />
 
+## `<post-tooltip-trigger>`
+
+The `<post-tooltip-trigger>` component enables you to show tooltips with customizable delay.
+
+<Canvas sourceState="shown" of={TooltipTriggerStories.Default} />
+<Controls of={TooltipTriggerStories.Default} />
+
 ## Installation
 
-The `<post-tooltip>` element is part of the `@swisspost/design-system-components` package. For more information, read the
-[getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
+The `<post-tooltip>` and `<post-tooltip-trigger>` elements are part of the `@swisspost/design-system-components` package. For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
 
 ## Examples
 
@@ -34,4 +38,3 @@ If you assign a tooltip to a non-focusable element, the component will add `tabi
 The same tooltip can be displayed on multiple elements. This reduces the amount of markup necessary.
 
 <Canvas of={TooltipStories.Multiple} />
-

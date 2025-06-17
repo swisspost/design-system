@@ -10,13 +10,16 @@ on:
       - 'packages/tokens/tokensstudio-generated/tokens.json'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   e2e:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        uses: actions/checkout@09d2acae674a48949e3602304ab46fd20ae0c42f
         with:
           fetch-depth: 0
 
@@ -48,7 +51,7 @@ jobs:
         run: pnpm e2e:ci
 
       - name: Upload screenshots
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@6027e3dd177782cd8ab9af838c04fd81a07f1d47
         if: failure()
         with:
           name: cypress-snapshots

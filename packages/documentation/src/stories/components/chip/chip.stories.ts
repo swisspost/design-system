@@ -14,7 +14,7 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    text: 'Insigno',
+    text: 'Chip',
     size: 'Large',
     type: 'filter',
     disabled: false,
@@ -64,7 +64,7 @@ const meta: MetaComponent = {
     disabled: {
       name: 'Disabled',
       description:
-        'If `true`, the chip is disabled.<div className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
+        'If `true`, the chip is disabled.<div className="mt-8 banner banner-info banner-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</div>',
       control: {
         type: 'boolean',
       },
@@ -75,7 +75,7 @@ const meta: MetaComponent = {
     active: {
       name: 'Active',
       description:
-        'If `true`, the chip is active.<div className="mt-8 banner banner-info banner-sm">Disabling active chips can result in confusing or unexpected behavior and should be avoided.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
+        'If `true`, the chip is active.<div className="mt-8 banner banner-info banner-sm">Disabling active chips can result in confusing or unexpected behavior and should be avoided.<br/>Please read our <a href="/?path=/docs/cb34361c-7d3f-4c21-bb9c-874c73e82578--docs">disabled elements guidelines</a>.</div>',
       if: {
         arg: 'type',
         eq: 'filter',
@@ -198,14 +198,14 @@ export const Default: Story = {
 export const FilterCheckboxChip: Story = {
   render: ({ active, ...args }, context) => {
     const checkboxChips = [
-      { text: 'Aventuro', active: true },
-      { text: 'Familio' },
-      { text: 'Vidoj' },
+      { text: 'Adventure', active: true },
+      { text: 'Family' },
+      { text: 'Sights' },
     ];
 
     return html`
       <fieldset>
-        <legend>Migrandaj Itineroj</legend>
+        <legend>Travel Itineraries</legend>
         <div class="d-flex flex-wrap gap-8">
           ${checkboxChips.map(({ text, active }, index) =>
             renderChip({ ...args, text, active }, context, index),
@@ -223,15 +223,15 @@ export const FilterCheckboxChip: Story = {
 export const FilterRadioChip: Story = {
   render: ({ active, ...args }, context) => {
     const radioChips = [
-      { number: 253, text: 'Ĉiuj' },
-      { number: 12, text: 'Artikoloj', active: true },
-      { number: 5, text: 'Iloj' },
-      { number: 236, text: 'Dokumentoj' },
+      { number: 253, text: 'All' },
+      { number: 12, text: 'Articles', active: true },
+      { number: 5, text: 'Tools' },
+      { number: 236, text: 'Documents' },
     ];
 
     return html`
       <fieldset>
-        <legend class="">Serĉrezultoj</legend>
+        <legend class="">Search Results</legend>
         <div class="d-flex flex-wrap gap-8">
           ${radioChips.map(({ text, number, active }, index) =>
             renderChip({ ...args, text, number, active }, context, index),
@@ -252,10 +252,10 @@ export const FilterRadioChip: Story = {
 export const Dismissible: Story = {
   render: ({ dismissed, ...args }, context) => html`
     <div class="d-flex flex-wrap gap-8">
-      ${renderChip({ ...args, text: 'Unua uzanta enigo' }, context)}
-      ${renderChip({ ...args, text: 'Dua uzanta enigo' }, context)}
-      ${renderChip({ ...args, text: 'Tria uzanta enigo' }, context)}
-      ${renderChip({ ...args, text: 'Fora uzanta enigo' }, context)}
+      ${renderChip({ ...args, text: 'First user input' }, context)}
+      ${renderChip({ ...args, text: 'Second user input' }, context)}
+      ${renderChip({ ...args, text: 'Third user input' }, context)}
+      ${renderChip({ ...args, text: 'Fourth user input' }, context)}
     </div>
   `,
   args: {

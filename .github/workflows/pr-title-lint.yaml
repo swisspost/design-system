@@ -4,11 +4,14 @@ on:
   pull_request:
     types: [opened, synchronize, reopened, edited]
 
+permissions:
+  pull-requests: read
+
 jobs:
   main:
     name: Validate PR title
     runs-on: ubuntu-latest
     steps:
-      - uses: amannn/action-semantic-pull-request@0723387faaf9b38adef4775cd42cfd5155ed6017
+      - uses: amannn/action-semantic-pull-request@335288255954904a41ddda8947c8f2c844b8bfeb
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

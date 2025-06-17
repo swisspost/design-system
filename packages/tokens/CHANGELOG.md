@@ -1,5 +1,19 @@
 # @swisspost/design-system-tokens
 
+## 10.0.0-next.38
+
+## 10.0.0-next.37
+
+### Patch Changes
+
+- Added a function to transform font sizes from px to rem. (by [@leagrdv](https://github.com/leagrdv) with [#5321](https://github.com/swisspost/design-system/pull/5321))
+
+## 9.0.0-next.36
+
+## 9.0.0-next.35
+
+## 9.0.0-next.34
+
 ## 9.0.0-next.33
 
 ## 9.0.0-next.32

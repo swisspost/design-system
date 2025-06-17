@@ -25,6 +25,10 @@ on:
     #        │  │ │ │ │
     - cron: '30 0 * * 0' # the job will run every Sunday at 0:30
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   fetch:
     runs-on: ubuntu-latest
@@ -32,7 +36,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        uses: actions/checkout@09d2acae674a48949e3602304ab46fd20ae0c42f
         with:
           fetch-depth: 0
 
@@ -74,7 +78,7 @@ jobs:
 
       - name: Get Changes
         id: changed-files
-        uses: step-security/changed-files@3dbe17c78367e7d60f00d78ae6781a35be47b4a1
+        uses: step-security/changed-files@93edf87999a88af96afc15072c8b52bbe8469fb1
         with:
           files: ./packages/icons/public/post-icons/**
 

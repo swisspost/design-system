@@ -9,13 +9,13 @@ some content
 
 | Property            | Attribute   | Description                                                                                                               | Type                                                                           | Default     |
 | ------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ----------- |
-| `animation`         | `animation` | The name of the animation.                                                                                                | `"cylon" \| "cylon-vertical" \| "fade" \| "spin" \| "spin-reverse" \| "throb"` | `null`      |
-| `base`              | `base`      | The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url. | `string`                                                                       | `null`      |
+| `animation`         | `animation` | The name of the animation.                                                                                                | `"cylon" \| "cylon-vertical" \| "fade" \| "spin" \| "spin-reverse" \| "throb"` | `undefined` |
+| `base`              | `base`      | The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url. | `string`                                                                       | `undefined` |
 | `flipH`             | `flip-h`    | When set to `true`, the icon will be flipped horizontally.                                                                | `boolean`                                                                      | `false`     |
 | `flipV`             | `flip-v`    | When set to `true`, the icon will be flipped vertically.                                                                  | `boolean`                                                                      | `false`     |
 | `name` _(required)_ | `name`      | The name/id of the icon (e.g. 1000, 1001, ...).                                                                           | `string`                                                                       | `undefined` |
-| `rotate`            | `rotate`    | The number of degree for the css rotate transformation.                                                                   | `number`                                                                       | `null`      |
-| `scale`             | `scale`     | The number for the css scale transformation.                                                                              | `number`                                                                       | `null`      |
+| `rotate`            | `rotate`    | The number of degree for the css rotate transformation.                                                                   | `number`                                                                       | `undefined` |
+| `scale`             | `scale`     | The number for the css scale transformation.                                                                              | `number`                                                                       | `undefined` |
 
 
 ## Dependencies
@@ -25,8 +25,8 @@ some content
  - [post-accordion-item](../post-accordion-item)
  - [post-back-to-top](../post-back-to-top)
  - [post-banner](../post-banner)
- - [post-breadcrumb](../post-breadcrumb)
  - [post-breadcrumb-item](../post-breadcrumb-item)
+ - [post-breadcrumbs](../post-breadcrumbs)
  - [post-card-control](../post-card-control)
  - [post-closebutton](../post-closebutton)
  - [post-language-switch](../post-language-switch)
@@ -40,8 +40,8 @@ graph TD;
   post-accordion-item --> post-icon
   post-back-to-top --> post-icon
   post-banner --> post-icon
-  post-breadcrumb --> post-icon
   post-breadcrumb-item --> post-icon
+  post-breadcrumbs --> post-icon
   post-card-control --> post-icon
   post-closebutton --> post-icon
   post-language-switch --> post-icon
