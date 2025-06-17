@@ -115,7 +115,9 @@ export class PostLanguageSwitch {
 
   // Update post-language-options to have role="menuitem"
   private updateLanguageOptionsRole() {
-    const languageOptionBtns = this.host.querySelectorAll('post-language-option > button');
+    const languageOptionBtns = this.host.querySelectorAll(
+      'post-language-option > button, post-language-option > a',
+    );
     languageOptionBtns.forEach(langOptionBtn => {
       langOptionBtn.setAttribute('role', 'menuitem');
     });
