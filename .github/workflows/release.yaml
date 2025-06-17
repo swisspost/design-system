@@ -27,6 +27,13 @@ jobs:
       - name: Install & build Dependencies
         run: pnpm bootstrap
 
+      - name: Stage and commit build artifacts
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git diff --staged --quiet || git commit -m "chore: add generated files for publish test"
+
       # This will fail the build if something in the publish setup is not correct
       # before changeset magic is starting to run
       - name: Test publish step
