@@ -12,7 +12,7 @@ export class PostTestButtonControl {
   // private readonly handleToggleClick = () => {
   //   if (this.hostEl && this.internalEl) {
   //     const timestamp = Date.now();
-  //     this.internalEl.innerHTML = `<p>Controlled Text shown at ${timestamp}.</p>`;
+  //     this.internalEl.innerHTML = `<p>Text shown at ${timestamp}.</p>`;
   //   }
   // };
 
@@ -24,9 +24,9 @@ export class PostTestButtonControl {
   render() {
     return (
       <Host>
-        Toggle Text
+        Button
         <div role="button" tabindex="0" aria-live="assertive" id="text2">
-          <p>Controlled Text shown at xxxxxxxxxxx.</p>
+          <p>Text shown at xxxxxxxxxxx.</p>
         </div>
       </Host>
     );

@@ -21,17 +21,17 @@ function handleToggleClick(toggleId: string, textId: string): void {
   const text = document.getElementById(textId);
   if (toggle && text) {
     const timestamp = Date.now(); // or use a counter
-    text.innerHTML = `<p>Controlled Text shown at ${timestamp}.</p>`;
+    text.innerHTML = `<p>Text shown at ${timestamp}.</p>`;
   }
 }
 
 export const ExampleHTML = () => {
   return html`
     <button id="toggle" aria-controls="text" @click=${() => handleToggleClick('toggle', 'text')}>
-      Toggle Text
+      Button
     </button>
     <div id="text" aria-live="polite">
-      <p>Controlled Text shown at xxxxxxxxxxx.</p>
+      <p>Text shown at xxxxxxxxxxx.</p>
     </div>
   `;
 };
@@ -53,7 +53,7 @@ export const Example2a: Story = {
   },
   render: (args: Args) => html`
     <post-test-button-control workaround="${args.workaround}" aria-controls-id="id_2">
-      Toggle Text
+      Button
     </post-test-button-control>
   `,
 };
@@ -80,7 +80,7 @@ export const Example2b: Story = {
         aria-expanded="false"
         aria-controls="text3"
       >
-        Toggle Text
+        Button
       </div>
     </post-test-button-control2>
   `,
@@ -102,7 +102,7 @@ export const Example3: Story = {
   },
   render: (args: Args) => html`
     <post-test-button-control workaround="${args.workaround}" id="toggle2" aria-controls="text2">
-      Toggle Text
+      Button
     </post-test-button-control>
   `,
 };
