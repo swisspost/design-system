@@ -39,8 +39,8 @@ export class PostIcon {
   @Prop() readonly animation?: Animation;
 
   @Watch('animation')
-  validateAnimation(newValue = this.animation) {
-    if (newValue !== undefined) checkRequiredAndOneOf(this, 'animation', ANIMATION_KEYS);
+  validateAnimation() {
+    checkRequiredAndOneOf(this, 'animation', ANIMATION_KEYS);
   }
 
   /**

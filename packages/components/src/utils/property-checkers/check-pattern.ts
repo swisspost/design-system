@@ -1,5 +1,3 @@
-import { isValueEmpty } from '../is-value-empty';
-
 export function checkPattern<T extends { host: HTMLElement }>(
   component: T,
   prop: keyof T,
@@ -7,10 +5,6 @@ export function checkPattern<T extends { host: HTMLElement }>(
 ) {
   const componentName = component.host.localName;
   const value = component[prop];
-
-  if (isValueEmpty(value)) {
-    return;
-  }
 
   const message = `The prop \`${String(
     prop,

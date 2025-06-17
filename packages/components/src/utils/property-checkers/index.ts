@@ -14,8 +14,3 @@ export const checkRequiredAndOneOf = requiredAnd(checkOneOf);
 export const checkRequiredAndPattern = requiredAnd(checkPattern);
 export const checkRequiredAndType = requiredAnd(checkType);
 export const checkRequiredAndUrl = requiredAnd(checkUrl);
-
-export * from './check-one-of';
-export * from './check-pattern';
-export * from './check-type';
-export * from './check-url';
