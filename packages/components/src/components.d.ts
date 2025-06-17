@@ -7,12 +7,10 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { HeadingLevel } from "./types/index";
 import { BannerType } from "./components/post-banner/banner-types";
-import { DEVICE_SIZE } from "./components/post-header/post-header";
 import { SwitchVariant } from "./components/post-language-switch/switch-variants";
 import { Placement } from "@floating-ui/dom";
 export { HeadingLevel } from "./types/index";
 export { BannerType } from "./components/post-banner/banner-types";
-export { DEVICE_SIZE } from "./components/post-header/post-header";
 export { SwitchVariant } from "./components/post-language-switch/switch-variants";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
@@ -148,7 +146,7 @@ export namespace Components {
          */
         "name"?: string;
         /**
-          * A public method to reset the controls `checked` and `validity` state. The validity state is set to `null`, so it's neither valid nor invalid.
+          * A public method to reset the controls `checked` and `validity` state. The validity state is set to `undefined`, so it's neither valid nor invalid.
          */
         "reset": () => Promise<void>;
         /**
@@ -158,7 +156,7 @@ export namespace Components {
         /**
           * Defines the validation `validity` of the control. To reset validity to an undefined state, simply remove the attribute from the control.
          */
-        "validity"?: 'true' | 'false';
+        "validity"?: boolean;
         /**
           * Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
          */
@@ -530,10 +528,6 @@ export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
 }
-export interface PostHeaderCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLPostHeaderElement;
-}
 export interface PostLanguageOptionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostLanguageOptionElement;
@@ -668,18 +662,7 @@ declare global {
         prototype: HTMLPostFooterElement;
         new (): HTMLPostFooterElement;
     };
-    interface HTMLPostHeaderElementEventMap {
-        "postUpdateDevice": DEVICE_SIZE;
-    }
     interface HTMLPostHeaderElement extends Components.PostHeader, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostHeaderElementEventMap>(type: K, listener: (this: HTMLPostHeaderElement, ev: PostHeaderCustomEvent<HTMLPostHeaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostHeaderElementEventMap>(type: K, listener: (this: HTMLPostHeaderElement, ev: PostHeaderCustomEvent<HTMLPostHeaderElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostHeaderElement: {
         prototype: HTMLPostHeaderElement;
@@ -1060,7 +1043,7 @@ declare namespace LocalJSX {
         /**
           * Defines the validation `validity` of the control. To reset validity to an undefined state, simply remove the attribute from the control.
          */
-        "validity"?: 'true' | 'false';
+        "validity"?: boolean;
         /**
           * Defines the `value` attribute of the control. <span className="banner banner-sm banner-info">This is a required property, when the control is used with type `radio`.</span>
          */
@@ -1091,10 +1074,6 @@ declare namespace LocalJSX {
         "label": string;
     }
     interface PostHeader {
-        /**
-          * An event emitted when the device has changed
-         */
-        "onPostUpdateDevice"?: (event: PostHeaderCustomEvent<DEVICE_SIZE>) => void;
     }
     /**
      * @class PostIcon - representing a stencil component

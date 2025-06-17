@@ -65,6 +65,9 @@ const preview: Preview = {
           // Category - Guidelines
           'Guidelines',
 
+          // Category - Accessibility (INTERNAL ONLY)
+          'Accessibility Practices',
+
           // Category - Misc
           'Misc',
           ['Mission', 'Design Principles', 'Migration'],
