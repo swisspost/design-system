@@ -53,6 +53,7 @@ addons.setConfig({
       'utilities',
       'templates',
       'guidelines',
+      'accessibility-practices',
     ],
     filters: {
       patterns: currentFilterFunction,
