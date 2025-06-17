@@ -1,4 +1,3 @@
-// components/DependenciesTable.tsx
 import React from 'react';
 import versionsData from '../../../../public/assets/versions.json';
 
