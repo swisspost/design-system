@@ -7,11 +7,10 @@ definePostIcon();
 
 const storedDevMode = localStorage.getItem('devModeEnabled');
 
-let initialEnv;
+let initialEnv  = process.env.NODE_ENV || 'production';
+
 if (storedDevMode !== null) {
   initialEnv = JSON.parse(storedDevMode) ? 'development' : 'production';
-} else {
-  initialEnv = process.env.NODE_ENV || 'production';
 }
 
 document.documentElement.setAttribute('data-env', initialEnv);
