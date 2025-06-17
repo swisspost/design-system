@@ -275,14 +275,15 @@ jobs:
             const versions = JSON.parse(fs.readFileSync(versionsPath, 'utf8'))
 
             const currentVersion = versions.find(version => version.version.startsWith(release.old.major))
+
+            if (!release.isMajor) {
             currentVersion.version = release.new.version
             currentVersion.dependencies = release.new.dependencies
+            }
 
             if (release.isMajor) {
-              currentVersion.version = release.old.version
               currentVersion.url = `https://${release.old.siteUrl}.netlify.app`
-              currentVersion.dependencies = release.old.dependencies
-
+              
               versions.unshift({
                 title: `Version ${release.new.major}`,
                 version: release.new.version,
