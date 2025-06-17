@@ -1,3 +1,4 @@
+// components/DependenciesTable.tsx
 import React from 'react';
 import versionsData from '../../../../public/assets/versions.json';
 
@@ -20,7 +21,7 @@ const DependenciesTable: React.FC = () => {
 
     const formatSingle = (v: string): string => {
       const cleaned = v.trim().replace(/[\^~]/g, '');
-      const match = cleaned.match(/(\d+)\.(\d+)?/);
+      const match = cleaned.match(/^(\d+)(?:\.(\d+))?/);
       if (!match) return cleaned;
       return majorOnly ? `${match[1]}.x` : `${match[1]}.${match[2] || '0'}`;
     };
@@ -32,9 +33,10 @@ const DependenciesTable: React.FC = () => {
 
   const getVersionLabel = (version: string): string => {
     if (version.includes(' - ')) {
-      return version.replace(/(\d+)\.(\d+)\.\d+/g, '$1.$2');
+      return version.replace(/^(\d+)\.(\d+)\.\d+/, '$1.$2');
     }
-    return version.match(/(\d+)\./)?.[1] + '.x' || version;
+    const match = version.match(/^(\d+)\./);
+    return match ? `${match[1]}.x` : version;
   };
 
   return (
@@ -50,8 +52,8 @@ const DependenciesTable: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {versions.map(entry => (
-            <tr key={entry.version}>
+          {versions.map((entry, index) => (
+            <tr key={index}>
               <th scope="col">{getVersionLabel(entry.version)}</th>
               <td>{formatVersion(entry.dependencies.bootstrap)}</td>
               <td>{formatVersion(entry.dependencies['@angular/core'], true)}</td>
