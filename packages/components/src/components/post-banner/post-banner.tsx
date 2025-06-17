@@ -43,19 +43,16 @@ export class PostBanner {
 
   @Watch('dismissible')
   checkDismissible() {
-    if (this.dismissible) setTimeout(() => this.validateDismissLabel());
+    if (this.dismissible)
+      setTimeout(() => {
+        checkRequiredAndType(this, 'dismissLabel', 'string');
+      });
   }
 
   /**
    * The label to use for the close button of a dismissible banner.
    */
   @Prop() readonly dismissLabel?: string;
-
-  @Watch('dismissLabel')
-  validateDismissLabel() {
-    checkRequiredAndType(this, 'dismissLabel', 'string');
-  }
-
   /**
    * The icon to display in the banner. By default, the icon depends on the banner type.
    *
