@@ -50,8 +50,8 @@ const DependenciesTable: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {versions.map((entry, index) => (
-            <tr key={index}>
+          {versions.map(entry => (
+            <tr key={entry.version}>
               <th scope="col">{getVersionLabel(entry.version)}</th>
               <td>{formatVersion(entry.dependencies.bootstrap)}</td>
               <td>{formatVersion(entry.dependencies['@angular/core'], true)}</td>
