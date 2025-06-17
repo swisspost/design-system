@@ -33,7 +33,7 @@ const DependenciesTable: React.FC = () => {
 
   const getVersionLabel = (version: string): string => {
     if (version.includes(' - ')) {
-      return version.replace(/^(\d+)\.(\d+)\.\d+/, '$1.$2');
+      return version;
     }
     const match = version.match(/^(\d+)\./);
     return match ? `${match[1]}.x` : version;
@@ -52,8 +52,8 @@ const DependenciesTable: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {versions.map((entry, index) => (
-            <tr key={index}>
+          {versions.map(entry => (
+            <tr key={entry.version}>
               <th scope="col">{getVersionLabel(entry.version)}</th>
               <td>{formatVersion(entry.dependencies.bootstrap)}</td>
               <td>{formatVersion(entry.dependencies['@angular/core'], true)}</td>
