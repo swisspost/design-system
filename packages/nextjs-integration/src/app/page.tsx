@@ -20,7 +20,7 @@ import {
   PostTag,
   PostTooltipTrigger,
   PostTooltip,
-} from '@swisspost/design-system-components-react';
+} from '@swisspost/design-system-components-react/server';
 
 export default function Home() {
   return (

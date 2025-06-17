@@ -56,6 +56,9 @@ export const config: Config = {
     },
     reactOutputTarget({
       outDir: '../components-react/src/stencil-generated',
+    }),
+    reactOutputTarget({
+      outDir: '../components-react/src/stencil-generated/server',
       hydrateModule: '@swisspost/design-system-components/hydrate',
     }),
     angularOutputTarget({
