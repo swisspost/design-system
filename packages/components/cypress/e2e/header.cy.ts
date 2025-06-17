@@ -15,6 +15,8 @@ describe('header', () => {
       }
 
       function checkLayoutShift() {
+        cy.get('@header').should('exist');
+
         // get the content position before the header is visible
         let initialContentTop: number;
         getContentTop().then(pos => {
