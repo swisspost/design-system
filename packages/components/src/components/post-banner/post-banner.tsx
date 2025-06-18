@@ -12,7 +12,7 @@ import {
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { fadeOut } from '@/animations';
-import { checkEmptyOrOneOf, checkNonEmpty, checkEmptyOrType, checkType } from '@/utils';
+import { checkRequiredAndType, checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
 import { BANNER_TYPES, BannerType } from './banner-types';
 import { nanoid } from 'nanoid';
 
@@ -42,32 +42,18 @@ export class PostBanner {
   @Prop() readonly dismissible: boolean = false;
 
   @Watch('dismissible')
-  validateDismissible() {
-    checkType(this, 'dismissible', 'boolean');
-    setTimeout(() => this.validateDismissLabel());
+  checkDismissible() {
+    if (this.dismissible) {
+      setTimeout(() => {
+        checkRequiredAndType(this, 'dismissLabel', 'string');
+      });
+    }
   }
 
   /**
    * The label to use for the close button of a dismissible banner.
    */
   @Prop() readonly dismissLabel?: string;
-
-  @Watch('dismissLabel')
-  validateDismissLabel() {
-    if (this.dismissible) {
-      if (
-        !checkNonEmpty(
-          this,
-          'dismissLabel',
-          'Dismissible post-banner\'s require a "dismiss-label" prop.',
-        )
-      ) {
-        checkType(this, 'dismissLabel', 'string');
-      }
-    }
-    checkEmptyOrType(this, 'dismissLabel', 'string');
-  }
-
   /**
    * The icon to display in the banner. By default, the icon depends on the banner type.
    *
@@ -97,7 +83,7 @@ export class PostBanner {
   @Event() postDismissed: EventEmitter<void>;
 
   componentDidLoad() {
-    this.validateDismissible();
+    this.checkDismissible();
     this.validateIcon();
     this.validateType();
   }

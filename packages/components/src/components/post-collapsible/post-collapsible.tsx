@@ -11,7 +11,7 @@ import {
 } from '@stencil/core';
 import { version } from '@root/package.json';
 import { collapse, expand } from '@/animations/collapse';
-import { checkType, isMotionReduced } from '@/utils';
+import { checkEmptyOrType, isMotionReduced } from '@/utils';
 
 /**
  * @slot default - Slot for placing content within the collapsible element.
@@ -35,7 +35,7 @@ export class PostCollapsible {
 
   @Watch('collapsed')
   collapsedChange() {
-    checkType(this, 'collapsed', 'boolean');
+    checkEmptyOrType(this, 'collapsed', 'boolean');
     void this.toggle(!this.collapsed);
   }
 

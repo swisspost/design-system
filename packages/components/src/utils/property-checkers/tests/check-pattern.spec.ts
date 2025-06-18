@@ -1,5 +1,5 @@
 import { checkPattern } from '../check-pattern';
-
+import { isValueEmpty } from '@/utils/is-value-empty';
 describe('checkPattern', () => {
   const pattern = /[a-z]{5}/;
   const error =
@@ -7,7 +7,7 @@ describe('checkPattern', () => {
 
   const runCheckForValue = (value: unknown) => {
     const component = { host: { localName: 'post-component' } as HTMLElement, prop: value };
-    checkPattern(component, 'prop', pattern, error);
+    checkPattern(component, 'prop', pattern);
   };
 
   it('should not log an error if the value matches the provided pattern', () => {
@@ -30,10 +30,12 @@ describe('checkPattern', () => {
       () => {
         /* empty */
       },
-    ].forEach(notString => {
-      runCheckForValue(notString);
-      expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
-    });
+    ]
+      .filter(notString => !isValueEmpty(notString))
+      .forEach(notString => {
+        runCheckForValue(notString);
+        expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
+      });
     consoleErrorSpy.mockRestore();
   });
 

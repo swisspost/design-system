@@ -11,8 +11,7 @@ import {
 } from '@stencil/core';
 import {
   checkEmptyOrType,
-  checkType,
-  checkNonEmpty,
+  checkRequiredAndType,
   checkEmptyOrOneOf,
   checkEmptyOrUrl,
 } from '@/utils';
@@ -36,9 +35,7 @@ export class PostLanguageOption {
 
   @Watch('code')
   validateCode() {
-    if (!checkNonEmpty(this, 'code')) {
-      checkType(this, 'code', 'string');
-    }
+    checkRequiredAndType(this, 'code', 'string');
   }
 
   /**

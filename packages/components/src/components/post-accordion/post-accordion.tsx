@@ -1,7 +1,7 @@
 import { Component, Element, h, Host, Listen, Method, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { HEADING_LEVELS, HeadingLevel } from '@/types';
-import { checkOneOf, checkNonEmpty } from '@/utils';
+import { checkRequiredAndOneOf } from '@/utils';
 import { eventGuard } from '@/utils/event-guard'; // Import eventGuard
 
 /**
@@ -26,18 +26,10 @@ export class PostAccordion {
 
   @Watch('headingLevel')
   validateHeadingLevel() {
-    if (!checkNonEmpty(this, 'headingLevel')) {
-      checkOneOf(
-        this,
-        'headingLevel',
-        HEADING_LEVELS,
-        'The `heading-level` property of the `post-accordion` must be a number between 1 and 6.',
-      );
-
-      this.accordionItems.forEach(item => {
-        item.setAttribute('heading-level', String(this.headingLevel));
-      });
-    }
+    checkRequiredAndOneOf(this, 'headingLevel', HEADING_LEVELS);
+    this.accordionItems.forEach(item => {
+      item.setAttribute('heading-level', String(this.headingLevel));
+    });
   }
 
   /**

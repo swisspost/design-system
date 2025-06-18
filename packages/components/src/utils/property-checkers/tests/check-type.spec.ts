@@ -1,4 +1,6 @@
-import { checkType, PropertyType } from '../check-type';
+import { checkType } from '../check-type';
+import { PropertyType } from '@/types';
+import { isValueEmpty } from '@/utils/is-value-empty';
 
 describe('checkType', () => {
   let type: PropertyType;
@@ -6,13 +8,13 @@ describe('checkType', () => {
 
   const runCheckForValue = (value: unknown) => {
     const component = { host: { localName: 'post-component' } as HTMLElement, prop: value };
-    checkType(component, 'prop', type, error);
+    checkType(component, 'prop', type);
   };
 
   describe('boolean', () => {
     beforeAll(() => {
       type = 'boolean';
-      error = 'Not a boolean.';
+      error = 'The prop `prop` of the `post-component` component must be of type `boolean`.';
     });
 
     it('should not log an error if the value is a boolean', () => {
@@ -37,10 +39,12 @@ describe('checkType', () => {
         () => {
           /* empty */
         },
-      ].forEach(nonBoolean => {
-        runCheckForValue(nonBoolean);
-        expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
-      });
+      ]
+        .filter(nonBoolean => !isValueEmpty(nonBoolean))
+        .forEach(nonBoolean => {
+          runCheckForValue(nonBoolean);
+          expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
+        });
       consoleErrorSpy.mockRestore();
     });
   });
@@ -48,7 +52,7 @@ describe('checkType', () => {
   describe('number', () => {
     beforeAll(() => {
       type = 'number';
-      error = 'Not a number.';
+      error = 'The prop `prop` of the `post-component` component must be of type `number`.';
     });
 
     it('should not log an error if the value is a number', () => {
@@ -72,10 +76,12 @@ describe('checkType', () => {
         () => {
           /* empty */
         },
-      ].forEach(nonNumber => {
-        runCheckForValue(nonNumber);
-        expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
-      });
+      ]
+        .filter(nonNumber => !isValueEmpty(nonNumber))
+        .forEach(nonNumber => {
+          runCheckForValue(nonNumber);
+          expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
+        });
       consoleErrorSpy.mockRestore();
     });
   });
@@ -83,7 +89,7 @@ describe('checkType', () => {
   describe('string', () => {
     beforeAll(() => {
       type = 'string';
-      error = 'Not a string.';
+      error = 'The prop `prop` of the `post-component` component must be of type `string`.';
     });
 
     it('should not log an error if the value is a string', () => {
@@ -108,10 +114,12 @@ describe('checkType', () => {
         () => {
           /* empty */
         },
-      ].forEach(nonString => {
-        runCheckForValue(nonString);
-        expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
-      });
+      ]
+        .filter(nonString => !isValueEmpty(nonString))
+        .forEach(nonString => {
+          runCheckForValue(nonString);
+          expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
+        });
       consoleErrorSpy.mockRestore();
     });
   });
@@ -119,7 +127,7 @@ describe('checkType', () => {
   describe('array', () => {
     beforeAll(() => {
       type = 'array';
-      error = 'Not an array.';
+      error = 'The prop `prop` of the `post-component` component must be of type `array`.';
     });
 
     it('should not log an error if the value is an array', () => {
@@ -144,10 +152,12 @@ describe('checkType', () => {
         () => {
           /* empty */
         },
-      ].forEach(nonArray => {
-        runCheckForValue(nonArray);
-        expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
-      });
+      ]
+        .filter(nonArray => !isValueEmpty(nonArray))
+        .forEach(nonArray => {
+          runCheckForValue(nonArray);
+          expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
+        });
       consoleErrorSpy.mockRestore();
     });
   });
@@ -155,7 +165,7 @@ describe('checkType', () => {
   describe('object', () => {
     beforeAll(() => {
       type = 'object';
-      error = 'Not an object.';
+      error = 'The prop `prop` of the `post-component` component must be of type `object`.';
     });
 
     it('should not log an error if the value is an object', () => {
@@ -178,10 +188,12 @@ describe('checkType', () => {
         () => {
           /* empty */
         },
-      ].forEach(nonObject => {
-        runCheckForValue(nonObject);
-        expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
-      });
+      ]
+        .filter(nonObject => !isValueEmpty(nonObject))
+        .forEach(nonObject => {
+          runCheckForValue(nonObject);
+          expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
+        });
       consoleErrorSpy.mockRestore();
     });
   });
@@ -189,7 +201,7 @@ describe('checkType', () => {
   describe('function', () => {
     beforeAll(() => {
       type = 'function';
-      error = 'Not a function.';
+      error = 'The prop `prop` of the `post-component` component must be of type `function`.';
     });
 
     it('should not log an error if the value is a function', () => {
@@ -207,13 +219,14 @@ describe('checkType', () => {
       });
       consoleErrorSpy.mockRestore();
     });
-
     it('should log an error if the value is not a function', () => {
       const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-      [undefined, null, true, 42, NaN, 'string', [], {}].forEach(nonFn => {
-        runCheckForValue(nonFn);
-        expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
-      });
+      [undefined, null, true, 42, NaN, 'string', [], {}]
+        .filter(nonFn => !isValueEmpty(nonFn))
+        .forEach(nonFn => {
+          runCheckForValue(nonFn);
+          expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining(error));
+        });
       consoleErrorSpy.mockRestore();
     });
   });
