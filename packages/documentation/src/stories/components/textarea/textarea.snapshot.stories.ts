@@ -1,4 +1,4 @@
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import meta from './textarea.stories';
 import { html } from 'lit';
 import { COMBINATIONS, getCombinations } from '@/utils/inputComponentsGetCombinations';

@@ -2,7 +2,7 @@ import { LitElement, nothing } from 'lit';
 import { html } from 'lit/static-html.js';
 import { customElement, property } from 'lit/decorators.js';
 import { getTitleFromPath } from '@/utils';
-import { ModuleExport } from '@storybook/types';
+import { ModuleExport } from 'storybook/internal/types';
 
 export interface DesignParameter {
   type: 'figma';

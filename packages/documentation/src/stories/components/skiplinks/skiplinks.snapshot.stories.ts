@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/web-components';
+import type { StoryObj } from '@storybook/web-components-vite';
 import meta, { renderSkiplinks } from './skiplinks.stories';
 import { html } from 'lit';
 import { COLOR_SCHEMES, schemes } from '@/shared/snapshots/schemes';

@@ -1,4 +1,4 @@
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import meta, { Inline } from './checkbox.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';

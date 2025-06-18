@@ -1,5 +1,5 @@
-import type { Args, StoryObj } from '@storybook/web-components';
-import { StoryContext, StoryFn } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components-vite';
+import { StoryContext, StoryFn } from '@storybook/web-components-vite';
 import { MetaExtended } from '@root/types';
 import { html } from 'lit';
 import './containers.styles.scss';

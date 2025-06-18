@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/web-components';
+import type { StoryObj } from '@storybook/web-components-vite';
 import meta, { RenderBadge } from './app-store-badge.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';

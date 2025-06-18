@@ -1,4 +1,4 @@
-import { Args, StoryContext, StoryObj, WebComponentsRenderer } from '@storybook/web-components';
+import { Args, StoryContext, StoryObj, WebComponentsRenderer } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { fakeContent, spreadArgs } from '@/utils';
 import customConfig from './config/custom-config';

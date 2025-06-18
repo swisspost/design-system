@@ -1,4 +1,4 @@
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { COLOR_SCHEMES, schemes } from '@/shared/snapshots/schemes';
 import meta from './opacity.stories';

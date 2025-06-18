@@ -1,4 +1,4 @@
-import { StoryContext, StoryFn } from '@storybook/web-components';
+import { StoryContext, StoryFn } from '@storybook/web-components-vite';
 import { html } from 'lit';
 
 export const fullScreenUrlDecorator = (story: StoryFn, context: StoryContext) => {
