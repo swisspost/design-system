@@ -43,10 +43,11 @@ export class PostBanner {
 
   @Watch('dismissible')
   checkDismissible() {
-    if (this.dismissible)
+    if (this.dismissible) {
       setTimeout(() => {
         checkRequiredAndType(this, 'dismissLabel', 'string');
       });
+    }
   }
 
   /**
