@@ -132,11 +132,11 @@ export class PostPopovercontainer {
    */
   @Method()
   async show(target: HTMLElement) {
-    if (!this.toggleTimeoutId) {
-      this.eventTarget = target;
-      this.calculatePosition();
-      this.host.showPopover();
-    }
+    if (this.toggleTimeoutId || !target) return;
+
+    this.eventTarget = target;
+    this.calculatePosition();
+    this.host.showPopover();
   }
 
   /**
@@ -273,6 +273,7 @@ export class PostPopovercontainer {
 
   private async updateSafeSpaceBoundaries(currentPlacement: string) {
     const targetRect = this.eventTarget.getBoundingClientRect();
+
     const popoverRect = this.host.getBoundingClientRect();
 
     const isVertical = currentPlacement === 'top' || currentPlacement === 'bottom';
