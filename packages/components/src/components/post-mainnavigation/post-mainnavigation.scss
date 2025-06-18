@@ -42,6 +42,12 @@ post-mainnavigation {
     }
   }
 
+  // Absolute positioned so that it goes over the target group if present
+  > .back-button {
+    position: absolute;
+    top: 16px;
+  }
+
   .back-button {
     @include media.max(lg) {
       font-size: 16px;
@@ -128,6 +134,10 @@ post-mainnavigation {
         gap: 4px;
         font-size: 16px;
         z-index: 4;
+
+        @include media.max(lg) {
+          z-index: 5;
+        }
 
         .nav-el-active {
           font-weight: 700;

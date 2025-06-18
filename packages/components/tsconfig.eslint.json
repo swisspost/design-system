@@ -3,5 +3,5 @@
   "compilerOptions": {
     "noEmit": true
   },
-  "include": [".config/*", "cypress", "src", "types"]
+  "include": ["prebuild.ts", "prebuild.spec.ts", ".config/*", "cypress", "src", "types"]
 }

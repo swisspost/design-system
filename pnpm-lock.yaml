@@ -65,10 +65,10 @@ importers:
         specifier: 0.5.2
         version: 0.5.2
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.37
+        specifier: workspace:10.0.0-next.38
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.37
+        specifier: workspace:10.0.0-next.38
         version: link:../styles/dist
       ally.js:
         specifier: 1.4.1
@@ -110,6 +110,9 @@ importers:
       '@types/jest':
         specifier: 29.5.14
         version: 29.5.14
+      '@types/mock-fs':
+        specifier: 4.13.4
+        version: 4.13.4
       '@types/node':
         specifier: 22.10.5
         version: 22.10.5
@@ -119,12 +122,15 @@ importers:
       bootstrap:
         specifier: 5.3.3
         version: 5.3.3(@popperjs/core@2.11.8)
+      copyfiles:
+        specifier: 2.4.1
+        version: 2.4.1
       cypress:
         specifier: 14.3.2
         version: 14.3.2
       cypress-axe:
-        specifier: 1.5.0
-        version: 1.5.0(axe-core@4.7.0)(cypress@14.3.2)
+        specifier: 1.6.0
+        version: 1.6.0(axe-core@4.7.0)(cypress@14.3.2)
       cypress-storybook:
         specifier: 1.0.0
         version: 1.0.0(cypress@14.3.2)
@@ -140,6 +146,9 @@ importers:
       globals:
         specifier: 16.0.0
         version: 16.0.0
+      mock-fs:
+        specifier: 5.5.0
+        version: 5.5.0
       rimraf:
         specifier: 6.0.1
         version: 6.0.1
@@ -155,6 +164,9 @@ importers:
       ts-jest:
         specifier: 29.2.5
         version: 29.2.5(@babel/core@7.26.9)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.9))(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3)
+      ts-node:
+        specifier: 10.9.2
+        version: 10.9.2(@types/node@22.10.5)(typescript@5.8.3)
       typescript:
         specifier: 5.8.3
         version: 5.8.3
@@ -189,10 +201,10 @@ importers:
         specifier: 19.2.0
         version: 19.2.0(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(@angular/platform-browser@19.2.0(@angular/animations@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0)))(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0)))(rxjs@7.8.1)
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.37
+        specifier: workspace:10.0.0-next.38
         version: link:../components
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.37
+        specifier: workspace:10.0.0-next.38
         version: link:../styles/dist
       rxjs:
         specifier: 7.8.1
@@ -219,9 +231,15 @@ importers:
       '@eslint/js':
         specifier: 9.18.0
         version: 9.18.0
+      '@swisspost/design-system-components-angular':
+        specifier: workspace:10.0.0-next.38
+        version: link:dist/components
       angular-eslint:
         specifier: 19.1.0
         version: 19.1.0(chokidar@4.0.1)(eslint@9.18.0(jiti@2.4.2))(typescript-eslint@8.16.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.3))(typescript@5.8.3)
+      copyfiles:
+        specifier: 2.4.1
+        version: 2.4.1
       cypress:
         specifier: 14.3.2
         version: 14.3.2
@@ -271,7 +289,7 @@ importers:
         specifier: ^19.0.0
         version: 19.2.0(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(@angular/platform-browser@19.2.0(@angular/animations@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0)))(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0)))(rxjs@7.8.1)
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.37
+        specifier: workspace:10.0.0-next.38
         version: link:../../../components
       tslib:
         specifier: 2.8.1
@@ -281,7 +299,7 @@ importers:
   packages/components-react:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.37
+        specifier: workspace:10.0.0-next.38
         version: link:../components
     devDependencies:
       '@eslint/js':
@@ -299,6 +317,9 @@ importers:
       '@types/react-dom':
         specifier: 18.3.5
         version: 18.3.5(@types/react@18.3.3)
+      copyfiles:
+        specifier: 2.4.1
+        version: 2.4.1
       eslint:
         specifier: 9.18.0
         version: 9.18.0(jiti@2.4.2)
@@ -327,22 +348,22 @@ importers:
   packages/documentation:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.37
+        specifier: workspace:10.0.0-next.38
         version: link:../components
       '@swisspost/design-system-components-react':
-        specifier: workspace:10.0.0-next.37
+        specifier: workspace:10.0.0-next.38
         version: link:../components-react
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.37
+        specifier: workspace:10.0.0-next.38
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.37
+        specifier: workspace:10.0.0-next.38
         version: link:../styles/dist
       '@swisspost/design-system-tokens':
-        specifier: workspace:10.0.0-next.37
+        specifier: workspace:10.0.0-next.38
         version: link:../tokens/dist
       '@swisspost/internet-header':
-        specifier: workspace:2.0.0-next.37
+        specifier: workspace:2.0.0-next.38
         version: link:../internet-header
       bootstrap:
         specifier: 5.3.3
@@ -403,7 +424,7 @@ importers:
         specifier: 8.4.7
         version: 8.4.7(lit@3.3.0)(storybook@8.4.7(prettier@2.8.8))(vite@6.3.4(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.78.0)(sass@1.85.1)(terser@5.39.0)(yaml@2.7.0))
       '@swisspost/design-system-components-angular':
-        specifier: workspace:10.0.0-next.37
+        specifier: workspace:10.0.0-next.38
         version: link:../components-angular/dist/components
       '@types/css-modules':
         specifier: 1.0.5
@@ -427,8 +448,8 @@ importers:
         specifier: 14.3.2
         version: 14.3.2
       cypress-axe:
-        specifier: 1.5.0
-        version: 1.5.0(axe-core@4.7.0)(cypress@14.3.2)
+        specifier: 1.6.0
+        version: 1.6.0(axe-core@4.7.0)(cypress@14.3.2)
       eslint:
         specifier: 9.18.0
         version: 9.18.0(jiti@2.4.2)
@@ -629,7 +650,7 @@ importers:
   packages/internet-header:
     dependencies:
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.37
+        specifier: workspace:10.0.0-next.38
         version: link:../styles/dist
       body-scroll-lock:
         specifier: 4.0.0-beta.0
@@ -768,13 +789,13 @@ importers:
   packages/nextjs-integration:
     dependencies:
       '@swisspost/design-system-components-react':
-        specifier: workspace:10.0.0-next.37
+        specifier: workspace:10.0.0-next.38
         version: link:../components-react
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.37
+        specifier: workspace:10.0.0-next.38
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: workspace:2.0.0-next.37
+        specifier: workspace:2.0.0-next.38
         version: link:../internet-header
       next:
         specifier: 15.2.4
@@ -854,10 +875,10 @@ importers:
         version: 3.0.0
     devDependencies:
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.37
+        specifier: workspace:10.0.0-next.38
         version: link:../icons
       '@swisspost/design-system-tokens':
-        specifier: workspace:10.0.0-next.37
+        specifier: workspace:10.0.0-next.38
         version: link:../tokens/dist
       '@types/node':
         specifier: 22.10.5
@@ -951,7 +972,7 @@ importers:
         specifier: 19.0.9
         version: 19.0.9
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.37
+        specifier: workspace:10.0.0-next.38
         version: link:../styles/dist
       primeng:
         specifier: 19.0.9
@@ -1039,7 +1060,7 @@ importers:
   packages/styles-primeng-workspace/projects/styles-primeng:
     dependencies:
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.37
+        specifier: workspace:10.0.0-next.38
         version: link:../../../styles/dist
       primeng:
         specifier: ^19.0.0
@@ -4892,11 +4913,6 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  acorn@8.11.3:
-    resolution: {integrity: sha512-Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg==}
-    engines: {node: '>=0.4.0'}
-    hasBin: true
-
   acorn@8.14.0:
     resolution: {integrity: sha512-cl669nCJTZBsL97OF4kUQm5g5hC2uihk0NxY3WENAC0TYdILVkAyHymAntgxGkl7K+t0cXIrH5siy5S4XkFycA==}
     engines: {node: '>=0.4.0'}
@@ -5880,12 +5896,12 @@ packages:
   custom-event@1.0.1:
     resolution: {integrity: sha512-GAj5FOq0Hd+RsCGVJxZuKaIDXDf3h6GQoNEjFgbLLI/trgtavwUbSnZ5pVfg27DVCaWjIohryS0JFwIJyT2cMg==}
 
-  cypress-axe@1.5.0:
-    resolution: {integrity: sha512-Hy/owCjfj+25KMsecvDgo4fC/781ccL+e8p+UUYoadGVM2ogZF9XIKbiM6KI8Y3cEaSreymdD6ZzccbI2bY0lQ==}
+  cypress-axe@1.6.0:
+    resolution: {integrity: sha512-C/ij50G8eebBrl/WsGT7E+T/SFyIsRZ3Epx9cRTLrPL9Y1GcxlQGFoAVdtSFWRrHSCWXq9HC6iJQMaI89O9yvQ==}
     engines: {node: '>=10'}
     peerDependencies:
       axe-core: ^3 || ^4
-      cypress: ^10 || ^11 || ^12 || ^13
+      cypress: ^10 || ^11 || ^12 || ^13 || ^14
 
   cypress-each@1.14.0:
     resolution: {integrity: sha512-mUpF5KSSBy0kQaxYPLFswHceYoUMpXWRAJJ2LrcuHu1Vp5lgMw96lLtpDsNGID13FQhBfPSW6FmYBBCQqdJRBg==}
@@ -16213,8 +16229,6 @@ snapshots:
 
   acorn@6.4.2: {}
 
-  acorn@8.11.3: {}
-
   acorn@8.14.0: {}
 
   adjust-sourcemap-loader@4.0.0:
@@ -17369,7 +17383,7 @@ snapshots:
 
   custom-event@1.0.1: {}
 
-  cypress-axe@1.5.0(axe-core@4.7.0)(cypress@14.3.2):
+  cypress-axe@1.6.0(axe-core@4.7.0)(cypress@14.3.2):
     dependencies:
       axe-core: 4.7.0
       cypress: 14.3.2
@@ -18054,7 +18068,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
       - typescript
-
   eslint-plugin-jest@28.11.0(@typescript-eslint/eslint-plugin@8.22.0(@typescript-eslint/parser@7.18.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.18.0(jiti@2.4.2))(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3):
     dependencies:
       '@typescript-eslint/utils': 8.22.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.3)
@@ -18854,7 +18867,7 @@ snapshots:
   globby@14.0.2:
     dependencies:
       '@sindresorhus/merge-streams': 2.3.0
-      fast-glob: 3.3.2
+      fast-glob: 3.3.3
       ignore: 5.3.1
       path-type: 5.0.0
       slash: 5.1.0
@@ -19962,7 +19975,7 @@ snapshots:
   jsdom@20.0.3:
     dependencies:
       abab: 2.0.6
-      acorn: 8.11.3
+      acorn: 8.14.0
       acorn-globals: 7.0.1
       cssom: 0.5.0
       cssstyle: 2.3.0
@@ -23708,7 +23721,6 @@ snapshots:
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
       babel-jest: 29.7.0(@babel/core@7.26.0)
-
   ts-jest@29.2.5(@babel/core@7.26.9)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.9))(jest@29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@types/node@22.10.5)(typescript@5.8.3)))(typescript@5.8.3):
     dependencies:
       bs-logger: 0.2.6
@@ -23736,7 +23748,7 @@ snapshots:
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
       '@types/node': 22.10.5
-      acorn: 8.11.3
+      acorn: 8.14.0
       acorn-walk: 8.2.0
       arg: 4.1.3
       create-require: 1.1.1

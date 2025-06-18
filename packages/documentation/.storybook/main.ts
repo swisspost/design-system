@@ -67,6 +67,10 @@ const config: StorybookConfig = {
       to: '/styles',
     },
     {
+      from: '../node_modules/@swisspost/design-system-components/www/build',
+      to: '/components',
+    },
+    {
       from: '../node_modules/@swisspost/design-system-icons/public/post-icons',
       to: '/post-icons',
     },
