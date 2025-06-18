@@ -1,5 +1,5 @@
 import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
-import { IS_BROWSER, checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '@/utils';
+import { IS_BROWSER, checkEmptyOrType, checkRequiredAndType, checkEmptyOrOneOf } from '@/utils';
 import { version } from '@root/package.json';
 
 type UrlDefinition = {
@@ -39,8 +39,8 @@ export class PostIcon {
   @Prop() readonly animation?: Animation;
 
   @Watch('animation')
-  validateAnimation(newValue = this.animation) {
-    if (newValue !== undefined) checkEmptyOrOneOf(this, 'animation', ANIMATION_KEYS);
+  validateAnimation() {
+    checkEmptyOrOneOf(this, 'animation', ANIMATION_KEYS);
   }
 
   /**
@@ -58,20 +58,10 @@ export class PostIcon {
    */
   @Prop() readonly flipH?: boolean = false;
 
-  @Watch('flipH')
-  validateFlipH() {
-    checkEmptyOrType(this, 'flipH', 'boolean');
-  }
-
   /**
    * When set to `true`, the icon will be flipped vertically.
    */
   @Prop() readonly flipV?: boolean = false;
-
-  @Watch('flipV')
-  validateFlipV() {
-    checkEmptyOrType(this, 'flipV', 'boolean');
-  }
 
   /**
    * The name/id of the icon (e.g. 1000, 1001, ...).
@@ -80,8 +70,7 @@ export class PostIcon {
 
   @Watch('name')
   validateName() {
-    checkNonEmpty(this, 'name');
-    checkType(this, 'name', 'string');
+    checkRequiredAndType(this, 'name', 'string');
   }
 
   /**
@@ -188,8 +177,6 @@ export class PostIcon {
   componentDidLoad() {
     this.validateBase();
     this.validateName();
-    this.validateFlipH();
-    this.validateFlipV();
     this.validateScale();
     this.validateRotate();
     this.validateAnimation();
