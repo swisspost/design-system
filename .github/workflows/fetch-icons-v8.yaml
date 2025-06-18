@@ -36,7 +36,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
+        uses: actions/checkout@09d2acae674a48949e3602304ab46fd20ae0c42f
         with:
           fetch-depth: 0
 
@@ -78,7 +78,7 @@ jobs:
 
       - name: Get Changes
         id: changed-files
-        uses: step-security/changed-files@52f756978519f427e38a119d8c4f0c8f549d1402
+        uses: step-security/changed-files@93edf87999a88af96afc15072c8b52bbe8469fb1
         with:
           files: ./packages/icons/public/post-icons/**
 
