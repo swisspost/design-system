@@ -1,5 +1,20 @@
 # @swisspost/design-system-components
 
+## 8.11.0
+
+### Minor Changes
+
+- Improved URL handling in `post-icon` component:
+  - Enhanced URL construction to properly handle both absolute and relative URLs
+  - Fixed slug detection to correctly identify root paths ("/") as valid slugs
+  - Maintained priority order for URL sources: base property > base tag > data-post-icon-base meta attribute (by [@schaertim](https://github.com/schaertim) with [#5110](https://github.com/swisspost/design-system/pull/5110))
+
+### Patch Changes
+
+- Resolved an issue where `post-accordion` components placed within inactive tab panels caused animation-related exceptions. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5502](https://github.com/swisspost/design-system/pull/5502))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.11.0
+
 ## 8.10.1
 
 ### Patch Changes
