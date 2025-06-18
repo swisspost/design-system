@@ -1,11 +1,11 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
-import * as ListGroup from './list-group.stories';
+import * as ListGroup from './list-interactive.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
 <Meta of={ListGroup} />
 
 <div className="docs-title">
-  # List Group
+  # List Interactive
 
   <link-design of={JSON.stringify(ListGroup)}></link-design>
 </div>
@@ -19,7 +19,7 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
   <Controls of={ListGroup.Default} />
 </div>
 
-<StylesPackageImport components={['list-group']} />
+<StylesPackageImport components={['list-interactive']} />
 
 ## Types of lists
 
@@ -27,7 +27,7 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
 
 The links list collects and displays a set of links. It is therefore a navigational element which leads the user to other locations.
 
-To have the animation on the arrow, don't forget to add the class `.list-group-item-action` on each `li` item as well as `.list-group-item-right-svg` on the icon to animate.
+To have the animation on the arrow, don't forget to add the class `.list-interactive-item-action` on each `li` item as well as `.list-interactive-item-right-svg` on the icon to animate.
 
 <Canvas of={ListGroup.ListLinks} />
 
