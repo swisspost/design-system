@@ -1,5 +1,10 @@
 import { promises } from 'fs';
-import StyleDictionary from './style-dictionary.js';
+import StyleDictionary, {
+  type Dictionary,
+  type Config,
+  type TransformedToken,
+} from 'style-dictionary';
+
 import { usesReferences } from 'style-dictionary/utils';
 import {
   SOURCE_PATH,
@@ -17,11 +22,11 @@ import {
   RawTokenJson,
   TokenDefinition,
   TokenSets,
+  TokenProperty,
   TokenSetEntry,
   ProcessedTokenSetsOutput,
 } from './types.js';
 import { objectDeepmerge } from './utils/index.js';
-import type { Config } from 'style-dictionary';
 let CLI_OPTIONS: CliOptions;
 let tokenSets: TokenSets;
 let registeredConfigMethods: Array<
@@ -306,7 +311,7 @@ export async function removeTokenSetFiles(): Promise<void> {
  *
  * @returns the normalized set name
  */
-export function getSetName(_options, setName) {
+export function getSetName(_options: Config, setName: string): string {
   return `${TOKENSET_PREFIX ? TOKENSET_PREFIX + '-' : ''}${setName.trim().replace(/\s/g, '-')}`;
 }
 
@@ -328,9 +333,19 @@ export function getSetName(_options, setName) {
  * | a       |        | b      | desktop/tablet = a, mobile = b
  * | a       | b      | c      | desttop = a, tablet = b, mobile = c
  */
-export function getSet(options, dictionary, currentSetName) {
+
+interface ConfigWithOptions extends Config {
+  outputReferences?: boolean;
+  meta: {
+    type: string;
+    layer: string;
+    filePath: string;
+    setNames: string[];
+  };
+}
+export function getSet(options: ConfigWithOptions, dictionary: Dictionary, currentSetName: string) {
   const { meta } = options;
-  let tokenSet = [];
+  let tokenSet: TransformedToken[] = [];
 
   if (meta.layer === 'semantic') {
     const baseSetName = meta.setNames[0];
@@ -358,7 +373,7 @@ export function getSet(options, dictionary, currentSetName) {
 
   return tokenSet;
 
-  function normalizeToken(token) {
+  function normalizeToken(token: TransformedToken) {
     const usesDtcg = token.$type && token.$value;
     const name = token.path.slice(1).join('-');
     const path = name.split('-');
@@ -366,7 +381,7 @@ export function getSet(options, dictionary, currentSetName) {
     // Can be removed, as soon as box-shadow tokens can be outputted with references
     const boxShadowKeepRefsWorkaroundValue = token?.original?.$extensions?.[
       'studio.tokens'
-    ]?.boxShadowKeepRefsWorkaroundValue?.replace(/(\[\[|\]\])/g, match =>
+    ]?.boxShadowKeepRefsWorkaroundValue?.replace(/(\[\[|\]\])/g, (match: string) =>
       match === '[[' ? '{' : '}',
     );
 
@@ -394,7 +409,10 @@ export function getSet(options, dictionary, currentSetName) {
  *
  * @returns the tokens value, with referenced css custom-properties (if original value uses references)
  */
-export function getTokenValue(options, token) {
+export function getTokenValue(
+  options: ConfigWithOptions,
+  token: TransformedToken,
+): string | number | boolean | object {
   const { outputReferences } = options;
 
   const usesDtcg = token.$type && token.$value;
@@ -405,7 +423,7 @@ export function getTokenValue(options, token) {
     tokenValue = replaceAllReferences(originalTokenValue);
   }
 
-  function replaceAllReferences(value) {
+  function replaceAllReferences(value: string | { [key: string]: TokenProperty }) {
     if (typeof value === 'string') {
       return replaceReferences(value);
     }
@@ -422,7 +440,7 @@ export function getTokenValue(options, token) {
     }
   }
 
-  function replaceReferences(value) {
+  function replaceReferences(value: string) {
     return value.replace(
       /{[0-9a-zA-Z-._]+}/g,
       match => `var(--${match.replace(/[{}]/g, '').replace(/\./g, '-')})`,
