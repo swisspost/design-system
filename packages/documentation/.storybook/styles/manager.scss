@@ -50,6 +50,7 @@
   .sidebar-item {
     position: relative;
     border-radius: 0;
+    overflow: visible!important;
 
     &:before,
     &:after {
@@ -73,6 +74,11 @@
     &:hover,
     &:focus-visible {
       background-color: post.$gray-10;
+
+      > a,
+      > button {
+        z-index: 1;
+      }
     }
   }
 
