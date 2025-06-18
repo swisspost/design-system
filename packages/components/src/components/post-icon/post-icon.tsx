@@ -1,5 +1,5 @@
 import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
-import { IS_BROWSER, checkEmptyOrType, checkRequiredAndType, checkRequiredAndOneOf } from '@/utils';
+import { IS_BROWSER, checkEmptyOrType, checkRequiredAndType, checkEmptyOrOneOf } from '@/utils';
 import { version } from '@root/package.json';
 
 type UrlDefinition = {
@@ -40,7 +40,7 @@ export class PostIcon {
 
   @Watch('animation')
   validateAnimation() {
-    checkRequiredAndOneOf(this, 'animation', ANIMATION_KEYS);
+    checkEmptyOrOneOf(this, 'animation', ANIMATION_KEYS);
   }
 
   /**
