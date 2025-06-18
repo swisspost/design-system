@@ -1,5 +1,10 @@
 import { promises } from 'fs';
-import StyleDictionary from './style-dictionary.js';
+import StyleDictionary, {
+  type Dictionary,
+  type Config,
+  type TransformedToken,
+} from 'style-dictionary';
+
 import { usesReferences } from 'style-dictionary/utils';
 import {
   SOURCE_PATH,
@@ -11,13 +16,25 @@ import {
   EXPLICIT_FIGMAONLY_SETNAMES,
   TOKENSET_PREFIX,
 } from './constants.js';
+
+import {
+  CliOptions,
+  RawTokenJson,
+  TokenDefinition,
+  TokenSets,
+  TokenProperty,
+  TokenSetEntry,
+  ProcessedTokenSetsOutput,
+} from './types.js';
 import { objectDeepmerge } from './utils/index.js';
+let CLI_OPTIONS: CliOptions;
+let tokenSets: TokenSets;
+let registeredConfigMethods: Array<
+  (tokenSets: TokenSets, options: { sourcePath: string; buildPath: string }) => Config[]
+>;
+registeredConfigMethods = [];
 
-let CLI_OPTIONS;
-let tokenSets;
-let registeredConfigMethods = [];
-
-export async function setup() {
+export async function setup(): Promise<void> {
   CLI_OPTIONS = createCliOptions();
 
   const tokensFile = JSON.parse(await promises.readFile(`${SOURCE_PATH}/tokens.json`, 'utf-8'));
@@ -35,8 +52,8 @@ export async function setup() {
  *   verbosity: 'silent' | 'default' | 'verbose'
  * }
  */
-function createCliOptions() {
-  const options = {
+function createCliOptions(): CliOptions {
+  const options: CliOptions = {
     verbosity: 'default',
   };
 
@@ -60,12 +77,12 @@ function createCliOptions() {
  *
  * @returns group-nested tokensets object
  */
-function createTokenSets(tokensFile) {
+function createTokenSets(tokensFile: RawTokenJson): TokenSets {
   // remove $themes and $metadata objects
   // lowercase set names
   const normalized = Object.entries(tokensFile)
     .filter(([name]) => !/^\$/.test(name))
-    .reduce((sets, [name, set]) => ({ ...sets, [name.toLowerCase()]: set }), {});
+    .reduce((sets, [name, set]) => ({ ...sets, [name.toLowerCase()]: set }), {} as RawTokenJson);
 
   // only add non component layer sets to source files
   // component layer sets can not be resolved in the browser, and therefore are not usable as sources
@@ -77,42 +94,47 @@ function createTokenSets(tokensFile) {
     } else {
       return sets;
     }
-  }, {});
+  }, {} as TokenSets['source']);
 
   // combine tokensets by group so they can be outputted in a single file
-  const output = Object.entries(normalized).reduce((definition, [name, set]) => {
-    const { groupSlug, groupName, setName, baseDefinition } = getDefinition(name);
-    const existingGroup = definition[groupSlug];
+  const output = Object.entries(normalized).reduce(
+    (definition: ProcessedTokenSetsOutput, [name, set]) => {
+      const { groupSlug, groupName, setName, baseDefinition } = getDefinition(name);
+      const existingGroup = definition[groupSlug];
 
-    if (
-      EXPLICIT_FIGMAONLY_GROUPNAMES.includes(groupName) ||
-      EXPLICIT_FIGMAONLY_SETNAMES.includes(setName)
-    ) {
-      return definition;
-    } else {
-      return {
-        ...definition,
-        [groupSlug]: {
-          ...baseDefinition,
-          sets: { ...existingGroup?.sets, [setName]: set },
-        },
-      };
-    }
-  }, {});
+      if (
+        (typeof groupName === 'string' && EXPLICIT_FIGMAONLY_GROUPNAMES.includes(groupName)) ||
+        EXPLICIT_FIGMAONLY_SETNAMES.includes(setName)
+      ) {
+        return definition;
+      } else {
+        return {
+          ...definition,
+          [groupSlug]: {
+            ...baseDefinition,
+            sets: { ...existingGroup?.sets, [setName]: set },
+          },
+        };
+      }
+    },
+    {} as ProcessedTokenSetsOutput,
+  );
 
   return {
     source,
     output,
   };
 
-  function getDefinition(name) {
+  function getDefinition(name: string): TokenDefinition {
     const [groupSlug, setSlug] = name.split('/');
     const groupName = setSlug ? groupSlug : null;
     const setName = setSlug ?? groupSlug;
     const type = !groupName ? 'singleton' : 'collection';
     const isCore = type === 'singleton' && setName === 'core';
     const isComponent =
-      !isCore && (type === 'singleton' || EXPLICIT_COMPONENT_LAYER_GROUPNAMES.includes(groupName));
+      !isCore &&
+      (type === 'singleton' ||
+        (typeof groupName === 'string' && EXPLICIT_COMPONENT_LAYER_GROUPNAMES.includes(groupName)));
 
     return {
       groupSlug,
@@ -136,7 +158,7 @@ function createTokenSets(tokensFile) {
  * These files are used to be included in the StyleDictionary Config as sources,
  * so StyleDictionary is able to resolve the currently processed tokens.
  */
-export async function createTokenSetFiles() {
+export async function createTokenSetFiles(): Promise<void> {
   console.log(`\x1b[90mProcessing data...`);
   const sourceTokenFolders = Object.keys(tokenSets.source)
     .filter(name => name.includes('/'))
@@ -168,7 +190,9 @@ export async function createTokenSetFiles() {
  * @param {options} object { sourcePath: string, buildPath: string }
  * @returns {Config[]} StyleDictionary Config objects[]
  */
-export function registerConfigMethod(method) {
+export function registerConfigMethod(
+  method: (tokenSets: TokenSets, options: { sourcePath: string; buildPath: string }) => Config[],
+) {
   if (method instanceof Function) {
     registeredConfigMethods.push(method);
   } else {
@@ -182,7 +206,7 @@ export function registerConfigMethod(method) {
  *
  * @param tokenSets group-nested tokensets object
  */
-export async function createOutputFiles() {
+export async function createOutputFiles(): Promise<void> {
   console.log(`\x1b[90mWriting files...`);
   await Promise.all(getConfigs().map(build));
   await createIndexFile();
@@ -195,7 +219,7 @@ export async function createOutputFiles() {
    *
    * @returns Config[]
    */
-  function getConfigs() {
+  function getConfigs(): Config[] {
     return registeredConfigMethods
       .map(method =>
         method(tokenSets, { sourcePath: `${SOURCE_PATH}/`, buildPath: `${OUTPUT_PATH}/` }),
@@ -211,11 +235,11 @@ export async function createOutputFiles() {
           preprocessors: [
             'swisspost/box-shadow-keep-refs-workaround',
             'tokens-studio',
-            ...(config.proprocessors ?? []),
+            ...(config.preprocessors ?? []),
           ],
         });
 
-        config.platforms = Object.entries(config.platforms).reduce(
+        config.platforms = Object.entries(config.platforms || {}).reduce(
           (platforms, [name, platform]) => ({
             ...platforms,
             [name]: objectDeepmerge(platform, {
@@ -241,7 +265,7 @@ export async function createOutputFiles() {
    * @param config
    * StyleDictionary Config object
    */
-  async function build(config) {
+  async function build(config: Config): Promise<void> {
     const sd = new StyleDictionary(config);
     await sd.buildAllPlatforms();
   }
@@ -250,7 +274,7 @@ export async function createOutputFiles() {
    * @function createIndexFile()
    * Creates the index.scss file (which uses/forwards the other output files) in the "OUTPUT_PATH" directory.
    */
-  async function createIndexFile() {
+  async function createIndexFile(): Promise<void> {
     const header = FILE_HEADER.map(h => `// ${h}`).join('\n');
     const imports = Object.entries(tokenSets.output)
       .map(([name, { layer }]) => `@${layer === 'core' ? 'use' : 'forward'} './${name}';`)
@@ -264,7 +288,7 @@ export async function createOutputFiles() {
    * Copies the tokens.json file from the "SOURCE_PATH" to the "OUTPUT_PATH" directory,
    * to make it availble in the package distribution.
    */
-  async function copySrcFiles() {
+  async function copySrcFiles(): Promise<void> {
     await promises.copyFile(`${SOURCE_PATH}/tokens.json`, `${OUTPUT_PATH}/tokens.json`);
   }
 }
@@ -273,7 +297,7 @@ export async function createOutputFiles() {
  * @function removeTokenSetFiles()
  * Removes the temporary token set files from the "SOURCE_PATH/_temp" directory.
  */
-export async function removeTokenSetFiles() {
+export async function removeTokenSetFiles(): Promise<void> {
   console.log(`\x1b[90mCleanup...`);
   await promises.rm(`${SOURCE_PATH}/_temp/`, { recursive: true });
   console.log(`\x1b[33m✓ Complete!`);
@@ -287,7 +311,7 @@ export async function removeTokenSetFiles() {
  *
  * @returns the normalized set name
  */
-export function getSetName(_options, setName) {
+export function getSetName(_options: Config, setName: string): string {
   return `${TOKENSET_PREFIX ? TOKENSET_PREFIX + '-' : ''}${setName.trim().replace(/\s/g, '-')}`;
 }
 
@@ -309,9 +333,19 @@ export function getSetName(_options, setName) {
  * | a       |        | b      | desktop/tablet = a, mobile = b
  * | a       | b      | c      | desttop = a, tablet = b, mobile = c
  */
-export function getSet(options, dictionary, currentSetName) {
+
+interface ConfigWithOptions extends Config {
+  outputReferences?: boolean;
+  meta: {
+    type: string;
+    layer: string;
+    filePath: string;
+    setNames: string[];
+  };
+}
+export function getSet(options: ConfigWithOptions, dictionary: Dictionary, currentSetName: string) {
   const { meta } = options;
-  let tokenSet = [];
+  let tokenSet: TransformedToken[] = [];
 
   if (meta.layer === 'semantic') {
     const baseSetName = meta.setNames[0];
@@ -339,7 +373,7 @@ export function getSet(options, dictionary, currentSetName) {
 
   return tokenSet;
 
-  function normalizeToken(token) {
+  function normalizeToken(token: TransformedToken) {
     const usesDtcg = token.$type && token.$value;
     const name = token.path.slice(1).join('-');
     const path = name.split('-');
@@ -347,7 +381,7 @@ export function getSet(options, dictionary, currentSetName) {
     // Can be removed, as soon as box-shadow tokens can be outputted with references
     const boxShadowKeepRefsWorkaroundValue = token?.original?.$extensions?.[
       'studio.tokens'
-    ]?.boxShadowKeepRefsWorkaroundValue?.replace(/(\[\[|\]\])/g, match =>
+    ]?.boxShadowKeepRefsWorkaroundValue?.replace(/(\[\[|\]\])/g, (match: string) =>
       match === '[[' ? '{' : '}',
     );
 
@@ -375,7 +409,10 @@ export function getSet(options, dictionary, currentSetName) {
  *
  * @returns the tokens value, with referenced css custom-properties (if original value uses references)
  */
-export function getTokenValue(options, token) {
+export function getTokenValue(
+  options: ConfigWithOptions,
+  token: TransformedToken,
+): string | number | boolean | object {
   const { outputReferences } = options;
 
   const usesDtcg = token.$type && token.$value;
@@ -386,7 +423,7 @@ export function getTokenValue(options, token) {
     tokenValue = replaceAllReferences(originalTokenValue);
   }
 
-  function replaceAllReferences(value) {
+  function replaceAllReferences(value: string | { [key: string]: TokenProperty }) {
     if (typeof value === 'string') {
       return replaceReferences(value);
     }
@@ -403,7 +440,7 @@ export function getTokenValue(options, token) {
     }
   }
 
-  function replaceReferences(value) {
+  function replaceReferences(value: string) {
     return value.replace(
       /{[0-9a-zA-Z-._]+}/g,
       match => `var(--${match.replace(/[{}]/g, '').replace(/\./g, '-')})`,

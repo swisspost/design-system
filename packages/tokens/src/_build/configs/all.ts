@@ -1,6 +1,7 @@
 import { fileHeader } from 'style-dictionary/utils';
 import { expandTypesMap } from '@tokens-studio/sd-transforms';
 import StyleDictionary from '../style-dictionary.js';
+import type { Dictionary } from '../types/DesignToken.d.ts';
 import { getSetName, getSet, getTokenValue, registerConfigMethod } from '../methods.js';
 
 /**
@@ -19,7 +20,11 @@ registerConfigMethod((tokenSets, { sourcePath, buildPath }) => {
       include: [`${sourcePath}_temp/source/**/*.json`],
       platforms: {
         scss: {
-          transforms: ['name/kebab', 'swisspost/scss-no-unitless-zero-values', 'swisspost/px-to-rem'],
+          transforms: [
+            'name/kebab',
+            'swisspost/scss-no-unitless-zero-values',
+            'swisspost/px-to-rem',
+          ],
           buildPath,
           expand: {
             include: ['typography'],

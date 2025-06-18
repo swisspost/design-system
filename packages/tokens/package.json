@@ -6,6 +6,7 @@
   "license": "Apache-2.0",
   "private": false,
   "type": "module",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git"
@@ -20,7 +21,7 @@
     "linkDirectory": true
   },
   "scripts": {
-    "build": "pnpm clean && node ./build.js && pnpm copy-files",
+    "build": "pnpm clean && tsc -p . && node ./dist/build.js && pnpm copy-files",
     "build:verbose": "node ./build.js --verbosity=verbose",
     "clean": "rimraf dist",
     "lint": "eslint",
