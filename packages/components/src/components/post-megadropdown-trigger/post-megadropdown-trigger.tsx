@@ -1,6 +1,6 @@
 import { Component, Element, Prop, h, Host, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkType } from '@/utils';
+import { checkType, EventFrom } from '@/utils';
 
 @Component({
   tag: 'post-megadropdown-trigger',
@@ -66,6 +66,7 @@ export class PostMegadropdownTrigger {
     }
   };
 
+  @EventFrom('post-megadropdown')
   private handleToggleMegadropdown = (event: CustomEvent<{ isVisible: boolean; focusParent: boolean }>) => {
       if ((event.target as HTMLPostMegadropdownElement).id === this.for) {
         this.ariaExpanded = event.detail.isVisible;
