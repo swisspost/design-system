@@ -8,7 +8,7 @@
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "jsx": "react",
-    "lib": ["es2021", "dom", "dom.iterable"],
+    "lib": ["es2020", "dom", "dom.iterable"],
     "module": "esnext",
     "moduleResolution": "bundler",
     "noImplicitAny": false,
@@ -20,11 +20,9 @@
     "removeComments": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    "target": "es2021",
+    "target": "es2020",
     "useDefineForClassFields": true
   },
   "include": ["src"],
-  "exclude": ["node_modules"],
-  "compileOnSave": false,
-  "buildOnSave": false
+  "exclude": ["node_modules"]
 }
