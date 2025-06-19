@@ -5,7 +5,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'f321d60b-cf7e-4a64-90af-7b90e6869ee6',
   title: 'Raw Components/Target group',
-  tags: ['package:HTML'],
+  tags: ['package:HTML', 'devOnly'],
   decorators: [clickBlocker],
   parameters: {
     badges: [],
