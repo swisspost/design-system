@@ -9,7 +9,7 @@ import reactPlugin from 'eslint-plugin-react';
 export default [
   {
     name: 'post/global/ignores',
-    ignores: ['dist/*', 'src/components/stencil-generated/*'],
+    ignores: ['dist/*', 'src/stencil-generated/*'],
   },
   {
     name: 'post/defaults',

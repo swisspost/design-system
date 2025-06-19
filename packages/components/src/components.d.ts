@@ -29,6 +29,7 @@ export namespace Components {
         "headingLevel": HeadingLevel;
         /**
           * If `true`, multiple `post-accordion-item` can be open at the same time.
+          * @default false
          */
         "multiple": boolean;
         /**
@@ -39,6 +40,7 @@ export namespace Components {
     interface PostAccordionItem {
         /**
           * If `true`, the element is collapsed otherwise it is displayed.
+          * @default false
          */
         "collapsed"?: boolean;
         /**
@@ -86,6 +88,7 @@ export namespace Components {
         "dismissLabel"?: string;
         /**
           * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
+          * @default false
          */
         "dismissible": boolean;
         /**
@@ -94,6 +97,7 @@ export namespace Components {
         "icon"?: string;
         /**
           * The type of the banner.
+          * @default 'neutral'
          */
         "type": BannerType;
     }
@@ -106,6 +110,7 @@ export namespace Components {
     interface PostBreadcrumbs {
         /**
           * The text label for the home breadcrumb item.
+          * @default 'Home'
          */
         "homeText": string;
         /**
@@ -119,6 +124,7 @@ export namespace Components {
     interface PostCardControl {
         /**
           * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms' data.
+          * @default false
          */
         "checked": boolean;
         /**
@@ -127,6 +133,7 @@ export namespace Components {
         "description"?: string;
         /**
           * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms' data.
+          * @default false
          */
         "disabled": boolean;
         /**
@@ -167,6 +174,7 @@ export namespace Components {
     interface PostCollapsible {
         /**
           * If `true`, the element is collapsed otherwise it is displayed.
+          * @default false
          */
         "collapsed"?: boolean;
         /**
@@ -210,10 +218,12 @@ export namespace Components {
         "base"?: string;
         /**
           * When set to `true`, the icon will be flipped horizontally.
+          * @default false
          */
         "flipH"?: boolean;
         /**
           * When set to `true`, the icon will be flipped vertically.
+          * @default false
          */
         "flipV"?: boolean;
         /**
@@ -266,6 +276,7 @@ export namespace Components {
         "description": string;
         /**
           * Whether the component is rendered as a list or a menu
+          * @default 'list'
          */
         "variant": SwitchVariant;
     }
@@ -274,10 +285,12 @@ export namespace Components {
     interface PostList {
         /**
           * The list can become horizontal by setting `horizontal="true"` or just `horizontal`
+          * @default false
          */
         "horizontal": boolean;
         /**
           * If `true`, the list title will be hidden. Otherwise, it will be displayed.`
+          * @default false
          */
         "titleHidden": boolean;
     }
@@ -322,6 +335,7 @@ export namespace Components {
         "hide": () => Promise<void>;
         /**
           * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
+          * @default 'bottom'
          */
         "placement"?: Placement;
         /**
@@ -345,6 +359,7 @@ export namespace Components {
     interface PostPopover {
         /**
           * Show a little indicator arrow
+          * @default true
          */
         "arrow"?: boolean;
         /**
@@ -357,6 +372,7 @@ export namespace Components {
         "hide": () => Promise<void>;
         /**
           * Defines the position of the popover relative to its trigger. Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
+          * @default 'top'
          */
         "placement"?: Placement;
         /**
@@ -374,14 +390,17 @@ export namespace Components {
     interface PostPopovercontainer {
         /**
           * Animation style
+          * @default null
          */
         "animation"?: 'pop-in' | null;
         /**
           * Whether or not to display a little pointer arrow
+          * @default false
          */
         "arrow"?: boolean;
         /**
           * Gap between the edge of the page and the popovercontainer
+          * @default 8
          */
         "edgeGap"?: number;
         /**
@@ -390,10 +409,12 @@ export namespace Components {
         "hide": () => Promise<void>;
         /**
           * Whether or not the popovercontainer should close when user clicks outside of it
+          * @default false
          */
         "manualClose": boolean;
         /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * @default 'top'
          */
         "placement"?: Placement;
         /**
@@ -415,18 +436,22 @@ export namespace Components {
     interface PostRating {
         /**
           * Defines the rating that the component should show.
+          * @default 0
          */
         "currentRating": number;
         /**
           * Defines a hidden label for the component.
+          * @default 'Rating'
          */
         "label": string;
         /**
           * Defines if the component is readonly or not. This usually should be used together with the `currentRating` property.
+          * @default false
          */
         "readonly": boolean;
         /**
           * Defines the total amount of stars rendered in the component.
+          * @default 5
          */
         "stars": number;
     }
@@ -466,9 +491,120 @@ export namespace Components {
          */
         "variant"?: 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
+    interface PostTestButton {
+        /**
+          * Defines the ariaDescribedbyId
+         */
+        "ariaDescribedbyId"?: string;
+        /**
+          * Defines the ariaLabelledbyId
+         */
+        "ariaLabelledbyId"?: string;
+    }
+    interface PostTestButtonControl {
+        /**
+          * Defines the ariaContols id
+         */
+        "ariaControlsId"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
+    }
+    interface PostTestButtonControl2 {
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
+    }
+    interface PostTestButton2 {
+        /**
+          * Defines the selected ariaDescribedbyId
+         */
+        "ariaDescribedbyId"?: string;
+        /**
+          * Defines the selected ariaLabelledbyId
+         */
+        "ariaLabelledbyId"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
+    }
+    interface PostTestButton3 {
+        /**
+          * Defines the ariaDescribedbyId
+         */
+        "ariaDescribedbyId"?: string;
+        /**
+          * Defines the ariaLabelledbyId
+         */
+        "ariaLabelledbyId"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
+    }
+    interface PostTestDiv {
+    }
+    interface PostTestLabel {
+        /**
+          * Defines the for
+         */
+        "for"?: string;
+    }
+    interface PostTestList {
+    }
+    interface PostTestList2 {
+    }
+    interface PostTestListItem {
+    }
+    interface PostTestListItemGroup {
+    }
+    interface PostTestListItemGroup2 {
+    }
+    interface PostTestSpan {
+        /**
+          * Defines the id of the button to reference
+         */
+        "btnId": string;
+        /**
+          * Defines the label text
+         */
+        "labelText": string;
+        /**
+          * Defines the spanId
+         */
+        "spanId"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
+    }
+    interface PostTestTarget {
+        /**
+          * Defines the selected workaround
+         */
+        "ariaLabelledbyId"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
+    }
+    interface PostTestTarget2 {
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
+    }
+    interface PostTestTarget3 {
+    }
+    interface PostTestTarget4 {
+    }
     interface PostTogglebutton {
         /**
           * If `true`, the button is in the "on" state, otherwise it is in the "off" state.
+          * @default false
          */
         "toggled": boolean;
     }
@@ -479,6 +615,7 @@ export namespace Components {
         "animation"?: 'pop-in';
         /**
           * Whether or not to display a little pointer arrow
+          * @default false
          */
         "arrow"?: boolean;
         /**
@@ -487,10 +624,12 @@ export namespace Components {
         "hide": () => Promise<void>;
         /**
           * Indicates the open state of the tooltip
+          * @default false
          */
         "open": boolean;
         /**
           * Defines the position of the tooltip relative to its trigger. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
+          * @default 'top'
          */
         "placement"?: Placement;
         /**
@@ -508,6 +647,7 @@ export namespace Components {
     interface PostTooltipTrigger {
         /**
           * Delay (in milliseconds) before the tooltip is shown.
+          * @default 0
          */
         "delay": number;
         /**
@@ -859,6 +999,108 @@ declare global {
         prototype: HTMLPostTagElement;
         new (): HTMLPostTagElement;
     };
+    interface HTMLPostTestButtonElement extends Components.PostTestButton, HTMLStencilElement {
+    }
+    var HTMLPostTestButtonElement: {
+        prototype: HTMLPostTestButtonElement;
+        new (): HTMLPostTestButtonElement;
+    };
+    interface HTMLPostTestButtonControlElement extends Components.PostTestButtonControl, HTMLStencilElement {
+    }
+    var HTMLPostTestButtonControlElement: {
+        prototype: HTMLPostTestButtonControlElement;
+        new (): HTMLPostTestButtonControlElement;
+    };
+    interface HTMLPostTestButtonControl2Element extends Components.PostTestButtonControl2, HTMLStencilElement {
+    }
+    var HTMLPostTestButtonControl2Element: {
+        prototype: HTMLPostTestButtonControl2Element;
+        new (): HTMLPostTestButtonControl2Element;
+    };
+    interface HTMLPostTestButton2Element extends Components.PostTestButton2, HTMLStencilElement {
+    }
+    var HTMLPostTestButton2Element: {
+        prototype: HTMLPostTestButton2Element;
+        new (): HTMLPostTestButton2Element;
+    };
+    interface HTMLPostTestButton3Element extends Components.PostTestButton3, HTMLStencilElement {
+    }
+    var HTMLPostTestButton3Element: {
+        prototype: HTMLPostTestButton3Element;
+        new (): HTMLPostTestButton3Element;
+    };
+    interface HTMLPostTestDivElement extends Components.PostTestDiv, HTMLStencilElement {
+    }
+    var HTMLPostTestDivElement: {
+        prototype: HTMLPostTestDivElement;
+        new (): HTMLPostTestDivElement;
+    };
+    interface HTMLPostTestLabelElement extends Components.PostTestLabel, HTMLStencilElement {
+    }
+    var HTMLPostTestLabelElement: {
+        prototype: HTMLPostTestLabelElement;
+        new (): HTMLPostTestLabelElement;
+    };
+    interface HTMLPostTestListElement extends Components.PostTestList, HTMLStencilElement {
+    }
+    var HTMLPostTestListElement: {
+        prototype: HTMLPostTestListElement;
+        new (): HTMLPostTestListElement;
+    };
+    interface HTMLPostTestList2Element extends Components.PostTestList2, HTMLStencilElement {
+    }
+    var HTMLPostTestList2Element: {
+        prototype: HTMLPostTestList2Element;
+        new (): HTMLPostTestList2Element;
+    };
+    interface HTMLPostTestListItemElement extends Components.PostTestListItem, HTMLStencilElement {
+    }
+    var HTMLPostTestListItemElement: {
+        prototype: HTMLPostTestListItemElement;
+        new (): HTMLPostTestListItemElement;
+    };
+    interface HTMLPostTestListItemGroupElement extends Components.PostTestListItemGroup, HTMLStencilElement {
+    }
+    var HTMLPostTestListItemGroupElement: {
+        prototype: HTMLPostTestListItemGroupElement;
+        new (): HTMLPostTestListItemGroupElement;
+    };
+    interface HTMLPostTestListItemGroup2Element extends Components.PostTestListItemGroup2, HTMLStencilElement {
+    }
+    var HTMLPostTestListItemGroup2Element: {
+        prototype: HTMLPostTestListItemGroup2Element;
+        new (): HTMLPostTestListItemGroup2Element;
+    };
+    interface HTMLPostTestSpanElement extends Components.PostTestSpan, HTMLStencilElement {
+    }
+    var HTMLPostTestSpanElement: {
+        prototype: HTMLPostTestSpanElement;
+        new (): HTMLPostTestSpanElement;
+    };
+    interface HTMLPostTestTargetElement extends Components.PostTestTarget, HTMLStencilElement {
+    }
+    var HTMLPostTestTargetElement: {
+        prototype: HTMLPostTestTargetElement;
+        new (): HTMLPostTestTargetElement;
+    };
+    interface HTMLPostTestTarget2Element extends Components.PostTestTarget2, HTMLStencilElement {
+    }
+    var HTMLPostTestTarget2Element: {
+        prototype: HTMLPostTestTarget2Element;
+        new (): HTMLPostTestTarget2Element;
+    };
+    interface HTMLPostTestTarget3Element extends Components.PostTestTarget3, HTMLStencilElement {
+    }
+    var HTMLPostTestTarget3Element: {
+        prototype: HTMLPostTestTarget3Element;
+        new (): HTMLPostTestTarget3Element;
+    };
+    interface HTMLPostTestTarget4Element extends Components.PostTestTarget4, HTMLStencilElement {
+    }
+    var HTMLPostTestTarget4Element: {
+        prototype: HTMLPostTestTarget4Element;
+        new (): HTMLPostTestTarget4Element;
+    };
     interface HTMLPostTogglebuttonElement extends Components.PostTogglebutton, HTMLStencilElement {
     }
     var HTMLPostTogglebuttonElement: {
@@ -911,6 +1153,23 @@ declare global {
         "post-tab-panel": HTMLPostTabPanelElement;
         "post-tabs": HTMLPostTabsElement;
         "post-tag": HTMLPostTagElement;
+        "post-test-button": HTMLPostTestButtonElement;
+        "post-test-button-control": HTMLPostTestButtonControlElement;
+        "post-test-button-control2": HTMLPostTestButtonControl2Element;
+        "post-test-button2": HTMLPostTestButton2Element;
+        "post-test-button3": HTMLPostTestButton3Element;
+        "post-test-div": HTMLPostTestDivElement;
+        "post-test-label": HTMLPostTestLabelElement;
+        "post-test-list": HTMLPostTestListElement;
+        "post-test-list-2": HTMLPostTestList2Element;
+        "post-test-list-item": HTMLPostTestListItemElement;
+        "post-test-list-item-group": HTMLPostTestListItemGroupElement;
+        "post-test-list-item-group-2": HTMLPostTestListItemGroup2Element;
+        "post-test-span": HTMLPostTestSpanElement;
+        "post-test-target": HTMLPostTestTargetElement;
+        "post-test-target2": HTMLPostTestTarget2Element;
+        "post-test-target3": HTMLPostTestTarget3Element;
+        "post-test-target4": HTMLPostTestTarget4Element;
         "post-togglebutton": HTMLPostTogglebuttonElement;
         "post-tooltip": HTMLPostTooltipElement;
         "post-tooltip-trigger": HTMLPostTooltipTriggerElement;
@@ -924,12 +1183,14 @@ declare namespace LocalJSX {
         "headingLevel": HeadingLevel;
         /**
           * If `true`, multiple `post-accordion-item` can be open at the same time.
+          * @default false
          */
         "multiple"?: boolean;
     }
     interface PostAccordionItem {
         /**
           * If `true`, the element is collapsed otherwise it is displayed.
+          * @default false
          */
         "collapsed"?: boolean;
         /**
@@ -969,6 +1230,7 @@ declare namespace LocalJSX {
         "dismissLabel"?: string;
         /**
           * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
+          * @default false
          */
         "dismissible"?: boolean;
         /**
@@ -981,6 +1243,7 @@ declare namespace LocalJSX {
         "onPostDismissed"?: (event: PostBannerCustomEvent<void>) => void;
         /**
           * The type of the banner.
+          * @default 'neutral'
          */
         "type"?: BannerType;
     }
@@ -993,6 +1256,7 @@ declare namespace LocalJSX {
     interface PostBreadcrumbs {
         /**
           * The text label for the home breadcrumb item.
+          * @default 'Home'
          */
         "homeText"?: string;
         /**
@@ -1006,6 +1270,7 @@ declare namespace LocalJSX {
     interface PostCardControl {
         /**
           * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms' data.
+          * @default false
          */
         "checked"?: boolean;
         /**
@@ -1014,6 +1279,7 @@ declare namespace LocalJSX {
         "description"?: string;
         /**
           * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms' data.
+          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -1054,6 +1320,7 @@ declare namespace LocalJSX {
     interface PostCollapsible {
         /**
           * If `true`, the element is collapsed otherwise it is displayed.
+          * @default false
          */
         "collapsed"?: boolean;
         /**
@@ -1089,10 +1356,12 @@ declare namespace LocalJSX {
         "base"?: string;
         /**
           * When set to `true`, the icon will be flipped horizontally.
+          * @default false
          */
         "flipH"?: boolean;
         /**
           * When set to `true`, the icon will be flipped vertically.
+          * @default false
          */
         "flipV"?: boolean;
         /**
@@ -1149,6 +1418,7 @@ declare namespace LocalJSX {
         "description": string;
         /**
           * Whether the component is rendered as a list or a menu
+          * @default 'list'
          */
         "variant"?: SwitchVariant;
     }
@@ -1157,10 +1427,12 @@ declare namespace LocalJSX {
     interface PostList {
         /**
           * The list can become horizontal by setting `horizontal="true"` or just `horizontal`
+          * @default false
          */
         "horizontal"?: boolean;
         /**
           * If `true`, the list title will be hidden. Otherwise, it will be displayed.`
+          * @default false
          */
         "titleHidden"?: boolean;
     }
@@ -1193,6 +1465,7 @@ declare namespace LocalJSX {
         "onToggleMenu"?: (event: PostMenuCustomEvent<boolean>) => void;
         /**
           * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
+          * @default 'bottom'
          */
         "placement"?: Placement;
     }
@@ -1207,6 +1480,7 @@ declare namespace LocalJSX {
     interface PostPopover {
         /**
           * Show a little indicator arrow
+          * @default true
          */
         "arrow"?: boolean;
         /**
@@ -1215,24 +1489,29 @@ declare namespace LocalJSX {
         "closeButtonCaption": string;
         /**
           * Defines the position of the popover relative to its trigger. Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
+          * @default 'top'
          */
         "placement"?: Placement;
     }
     interface PostPopovercontainer {
         /**
           * Animation style
+          * @default null
          */
         "animation"?: 'pop-in' | null;
         /**
           * Whether or not to display a little pointer arrow
+          * @default false
          */
         "arrow"?: boolean;
         /**
           * Gap between the edge of the page and the popovercontainer
+          * @default 8
          */
         "edgeGap"?: number;
         /**
           * Whether or not the popovercontainer should close when user clicks outside of it
+          * @default false
          */
         "manualClose"?: boolean;
         /**
@@ -1241,6 +1520,7 @@ declare namespace LocalJSX {
         "onPostToggle"?: (event: PostPopovercontainerCustomEvent<boolean>) => void;
         /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * @default 'top'
          */
         "placement"?: Placement;
         /**
@@ -1251,10 +1531,12 @@ declare namespace LocalJSX {
     interface PostRating {
         /**
           * Defines the rating that the component should show.
+          * @default 0
          */
         "currentRating"?: number;
         /**
           * Defines a hidden label for the component.
+          * @default 'Rating'
          */
         "label"?: string;
         /**
@@ -1267,10 +1549,12 @@ declare namespace LocalJSX {
         "onPostInput"?: (event: PostRatingCustomEvent<{ value: number }>) => void;
         /**
           * Defines if the component is readonly or not. This usually should be used together with the `currentRating` property.
+          * @default false
          */
         "readonly"?: boolean;
         /**
           * Defines the total amount of stars rendered in the component.
+          * @default 5
          */
         "stars"?: number;
     }
@@ -1310,9 +1594,120 @@ declare namespace LocalJSX {
          */
         "variant"?: 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
+    interface PostTestButton {
+        /**
+          * Defines the ariaDescribedbyId
+         */
+        "ariaDescribedbyId"?: string;
+        /**
+          * Defines the ariaLabelledbyId
+         */
+        "ariaLabelledbyId"?: string;
+    }
+    interface PostTestButtonControl {
+        /**
+          * Defines the ariaContols id
+         */
+        "ariaControlsId"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
+    }
+    interface PostTestButtonControl2 {
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
+    }
+    interface PostTestButton2 {
+        /**
+          * Defines the selected ariaDescribedbyId
+         */
+        "ariaDescribedbyId"?: string;
+        /**
+          * Defines the selected ariaLabelledbyId
+         */
+        "ariaLabelledbyId"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
+    }
+    interface PostTestButton3 {
+        /**
+          * Defines the ariaDescribedbyId
+         */
+        "ariaDescribedbyId"?: string;
+        /**
+          * Defines the ariaLabelledbyId
+         */
+        "ariaLabelledbyId"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
+    }
+    interface PostTestDiv {
+    }
+    interface PostTestLabel {
+        /**
+          * Defines the for
+         */
+        "for"?: string;
+    }
+    interface PostTestList {
+    }
+    interface PostTestList2 {
+    }
+    interface PostTestListItem {
+    }
+    interface PostTestListItemGroup {
+    }
+    interface PostTestListItemGroup2 {
+    }
+    interface PostTestSpan {
+        /**
+          * Defines the id of the button to reference
+         */
+        "btnId"?: string;
+        /**
+          * Defines the label text
+         */
+        "labelText"?: string;
+        /**
+          * Defines the spanId
+         */
+        "spanId"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
+    }
+    interface PostTestTarget {
+        /**
+          * Defines the selected workaround
+         */
+        "ariaLabelledbyId"?: string;
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
+    }
+    interface PostTestTarget2 {
+        /**
+          * Defines the selected workaround
+         */
+        "workaround"?: string;
+    }
+    interface PostTestTarget3 {
+    }
+    interface PostTestTarget4 {
+    }
     interface PostTogglebutton {
         /**
           * If `true`, the button is in the "on" state, otherwise it is in the "off" state.
+          * @default false
          */
         "toggled"?: boolean;
     }
@@ -1323,20 +1718,24 @@ declare namespace LocalJSX {
         "animation"?: 'pop-in';
         /**
           * Whether or not to display a little pointer arrow
+          * @default false
          */
         "arrow"?: boolean;
         /**
           * Indicates the open state of the tooltip
+          * @default false
          */
         "open"?: boolean;
         /**
           * Defines the position of the tooltip relative to its trigger. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
+          * @default 'top'
          */
         "placement"?: Placement;
     }
     interface PostTooltipTrigger {
         /**
           * Delay (in milliseconds) before the tooltip is shown.
+          * @default 0
          */
         "delay"?: number;
         /**
@@ -1378,6 +1777,23 @@ declare namespace LocalJSX {
         "post-tab-panel": PostTabPanel;
         "post-tabs": PostTabs;
         "post-tag": PostTag;
+        "post-test-button": PostTestButton;
+        "post-test-button-control": PostTestButtonControl;
+        "post-test-button-control2": PostTestButtonControl2;
+        "post-test-button2": PostTestButton2;
+        "post-test-button3": PostTestButton3;
+        "post-test-div": PostTestDiv;
+        "post-test-label": PostTestLabel;
+        "post-test-list": PostTestList;
+        "post-test-list-2": PostTestList2;
+        "post-test-list-item": PostTestListItem;
+        "post-test-list-item-group": PostTestListItemGroup;
+        "post-test-list-item-group-2": PostTestListItemGroup2;
+        "post-test-span": PostTestSpan;
+        "post-test-target": PostTestTarget;
+        "post-test-target2": PostTestTarget2;
+        "post-test-target3": PostTestTarget3;
+        "post-test-target4": PostTestTarget4;
         "post-togglebutton": PostTogglebutton;
         "post-tooltip": PostTooltip;
         "post-tooltip-trigger": PostTooltipTrigger;
@@ -1426,6 +1842,23 @@ declare module "@stencil/core" {
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
             "post-tag": LocalJSX.PostTag & JSXBase.HTMLAttributes<HTMLPostTagElement>;
+            "post-test-button": LocalJSX.PostTestButton & JSXBase.HTMLAttributes<HTMLPostTestButtonElement>;
+            "post-test-button-control": LocalJSX.PostTestButtonControl & JSXBase.HTMLAttributes<HTMLPostTestButtonControlElement>;
+            "post-test-button-control2": LocalJSX.PostTestButtonControl2 & JSXBase.HTMLAttributes<HTMLPostTestButtonControl2Element>;
+            "post-test-button2": LocalJSX.PostTestButton2 & JSXBase.HTMLAttributes<HTMLPostTestButton2Element>;
+            "post-test-button3": LocalJSX.PostTestButton3 & JSXBase.HTMLAttributes<HTMLPostTestButton3Element>;
+            "post-test-div": LocalJSX.PostTestDiv & JSXBase.HTMLAttributes<HTMLPostTestDivElement>;
+            "post-test-label": LocalJSX.PostTestLabel & JSXBase.HTMLAttributes<HTMLPostTestLabelElement>;
+            "post-test-list": LocalJSX.PostTestList & JSXBase.HTMLAttributes<HTMLPostTestListElement>;
+            "post-test-list-2": LocalJSX.PostTestList2 & JSXBase.HTMLAttributes<HTMLPostTestList2Element>;
+            "post-test-list-item": LocalJSX.PostTestListItem & JSXBase.HTMLAttributes<HTMLPostTestListItemElement>;
+            "post-test-list-item-group": LocalJSX.PostTestListItemGroup & JSXBase.HTMLAttributes<HTMLPostTestListItemGroupElement>;
+            "post-test-list-item-group-2": LocalJSX.PostTestListItemGroup2 & JSXBase.HTMLAttributes<HTMLPostTestListItemGroup2Element>;
+            "post-test-span": LocalJSX.PostTestSpan & JSXBase.HTMLAttributes<HTMLPostTestSpanElement>;
+            "post-test-target": LocalJSX.PostTestTarget & JSXBase.HTMLAttributes<HTMLPostTestTargetElement>;
+            "post-test-target2": LocalJSX.PostTestTarget2 & JSXBase.HTMLAttributes<HTMLPostTestTarget2Element>;
+            "post-test-target3": LocalJSX.PostTestTarget3 & JSXBase.HTMLAttributes<HTMLPostTestTarget3Element>;
+            "post-test-target4": LocalJSX.PostTestTarget4 & JSXBase.HTMLAttributes<HTMLPostTestTarget4Element>;
             "post-togglebutton": LocalJSX.PostTogglebutton & JSXBase.HTMLAttributes<HTMLPostTogglebuttonElement>;
             "post-tooltip": LocalJSX.PostTooltip & JSXBase.HTMLAttributes<HTMLPostTooltipElement>;
             "post-tooltip-trigger": LocalJSX.PostTooltipTrigger & JSXBase.HTMLAttributes<HTMLPostTooltipTriggerElement>;

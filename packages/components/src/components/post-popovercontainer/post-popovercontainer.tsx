@@ -16,7 +16,7 @@ import {
 } from '@floating-ui/dom';
 
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
-import { apply, isSupported } from '@oddbird/popover-polyfill/dist/popover-fn.js';
+import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
 
 interface PopoverElement {
   showPopover: () => void;
