@@ -20,7 +20,7 @@ import {
   PostMegadropdown,
   PostMegadropdownTrigger,
   PostTogglebutton,
-} from '@swisspost/design-system-components-react';
+} from '@swisspost/design-system-components-react/server';
 
 export const metadata: Metadata = {
   title: 'Create Next App',

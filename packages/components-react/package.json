@@ -28,8 +28,14 @@
     "./post-components.css": "./dist/post-components.css",
     ".": {
       "types": "./dist/types/index.d.ts",
+      "node": "./dist/index.server.js",
       "import": "./dist/index.js",
       "require": "./dist/index.js"
+    },
+    "./server": {
+      "types": "./dist/types/index.server.d.ts",
+      "import": "./dist/index.server.js",
+      "require": "./dist/index.server.js"
     }
   },
   "scripts": {
