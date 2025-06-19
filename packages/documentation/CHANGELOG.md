@@ -1,5 +1,11 @@
 # @swisspost/design-system-documentation
 
+## 5.3.14
+
+### Patch Changes
+
+- Added a deprecation banner to inform users that this version of the design system is EOL. (by [@leagrdv](https://github.com/leagrdv) with [#5652](https://github.com/swisspost/design-system/pull/5652))
+
 ## 5.3.13
 
 ### Patch Changes
