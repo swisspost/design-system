@@ -33,6 +33,12 @@
     --post-logo-height: var(--post-global-header-height);
     --post-global-controls-top: 0;
   }
+
+  @include media.max(lg) {
+    position: fixed;
+    inset: 0;
+    bottom: auto;
+  }
 }
 
 :host(:not(:has([slot='title']))) {
@@ -62,8 +68,9 @@
   height: var(--post-global-header-height);
 
   @include media.max(lg) {
-    z-index: 3;
+    z-index: 4;
     inset-block-start: 0;
+    position: relative;
   }
 
   @include media.min(lg) {
@@ -154,8 +161,8 @@
   }
 
   @include media.max(lg) {
-    z-index: 2;
-    inset-block-start: var(--post-global-header-height);
+    z-index: 3;
+    position: relative;
     padding-block: 8px;
 
     flex-wrap: wrap;
@@ -214,7 +221,7 @@
 @include media.max(lg) {
   .navigation {
     position: sticky;
-    z-index: 1;
+    z-index: 2;
     inset-inline: 0;
     inset-block-start: var(--post-header-height);
   }
