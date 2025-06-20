@@ -333,11 +333,6 @@ export class PostHeader {
         style={{ '--post-header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
       >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
-          <div class="navigation-target-group">
-            {(this.device === 'mobile' || this.device === 'tablet') && (
-              <slot name="target-group"></slot>
-            )}
-          </div>
           <slot name="post-mainnavigation"></slot>
           {(this.device === 'mobile' || this.device === 'tablet') && (
             <div class="navigation-footer">

@@ -115,6 +115,7 @@ const Template = {
         : ''}
       ${args.targetGroup
         ? html`
+            <!-- TARGET GROUP FOR DESKTOP (shows in post-header global area) -->
             <ul slot="target-group" class="target-group">
               <li>
                 <a href="#" class="active">Private customers</a>
@@ -153,6 +154,24 @@ const Template = {
         <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
           <post-icon aria-hidden="true" name="arrowleft"></post-icon> Back
         </button>
+
+        ${args.targetGroup
+          ? html`
+              <!-- TARGET GROUP FOR MOBILE (shows in post-mainnavigation mobile menu) -->
+              <ul slot="target-group" class="target-group">
+                <li>
+                  <a href="#" class="active">Private customers</a>
+                </li>
+                <li>
+                  <a href="#">Business customers</a>
+                </li>
+                <li>
+                  <a href="#">Authorities</a>
+                </li>
+              </ul>
+            `
+          : ''}
+
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
           <!-- Link only level 1 -->

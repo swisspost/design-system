@@ -1,6 +1,10 @@
 import { Component, Host, h, State, Listen } from '@stencil/core';
 import { version } from '@root/package.json';
 
+/**
+ * @slot target-group - Holds the list of buttons to choose the target group.
+ */
+
 const SCROLL_REPEAT_INTERVAL = 100; // Interval for repeated scrolling when holding down scroll button
 const NAVBAR_DISABLE_DURATION = 400; // Duration to temporarily disable navbar interactions during scrolling
 
@@ -40,7 +44,7 @@ export class PostMainnavigation {
     // Observe the navbar for size changes
     this.resizeObserver.observe(this.navbar);
 
-    // Observe the navabar for mutation changes
+    // Observe the navbar for mutation changes
     this.mutationObserver.observe(this.navbar, { subtree: true, childList: true }); // Recheck scrollability when navigation list changes
 
     // Ensure the scroll buttons are correctly displayed or hidden whenever the navbar is scrolled
@@ -192,13 +196,13 @@ export class PostMainnavigation {
     }, NAVBAR_DISABLE_DURATION);
   }
 
-  render() {
+  render() {    
     return (
       <Host slot="post-mainnavigation" version={version}>
         <div onClick={() => this.handleBackButtonClick()} class="back-button">
           <slot name="back-button"></slot>
         </div>
-
+        <slot name="target-group"></slot>
         <div
           aria-hidden="true"
           class={{ 'scroll-control scroll-left': true, 'd-none': !this.canScrollLeft }}
