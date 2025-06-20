@@ -1,0 +1,50 @@
+name: 'Open PR If None Exists'
+description: 'Checks if a PR exists and create it otherwise'
+
+inputs:
+  access-token:
+    description: 'The access token to use for creating the PR'
+    required: true
+  base:
+    description: 'Name of the base branch'
+    required: false
+    default: 'main'
+  title:
+    description: 'Title of the PR if one must be created'
+    required: true
+  body:
+    description: 'Body of the PR if a new one must be created. Used if "body-file" is not provided.'
+    required: false
+    default: ''
+  body-file:
+    description: 'Path to a file containing the body of the PR. Takes precedence over "body".'
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: Get PR
+      id: pr
+      shell: bash
+      run: |
+        CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+        PR_LIST=$(gh pr list --head "$CURRENT_BRANCH" --limit 1)
+        if [[ -n "$PR_LIST" ]]; then
+          echo "exists=true" >> $GITHUB_OUTPUT
+        else
+          echo "exists=false" >> $GITHUB_OUTPUT
+        fi
+      env:
+        GITHUB_TOKEN: ${{ inputs.access-token }}
+
+    - name: Create PR
+      if: steps.pr.outputs.exists == 'false'
+      shell: bash
+      run: |
+        if [[ -n "${{ inputs.body-file }}" ]]; then
+          gh pr create --base "${{ inputs.base }}" --title "${{ inputs.title }}" --body-file "${{ inputs.body-file }}"
+        else
+          gh pr create --base "${{ inputs.base }}" --title "${{ inputs.title }}" --body "${{ inputs.body }}"
+        fi
+      env:
+        GITHUB_TOKEN: ${{ inputs.access-token }}

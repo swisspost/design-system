@@ -1,0 +1,25 @@
+name: 'Checkout or Create Branch'
+description: 'Checks out a branch if it exists locally or remotely, or creates it from a base branch.'
+
+inputs:
+  head:
+    description: 'Name of the branch to checkout or create'
+    required: true
+  base:
+    description: 'Base branch to create from if branch does not exist'
+    required: false
+    default: 'origin/main'
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout or create branch
+      shell: bash
+      run: |
+        if git show-ref --verify --quiet refs/heads/${{ inputs.head }}; then
+          git checkout "${{ inputs.head }}"
+        elif git ls-remote --exit-code --heads origin "${{ inputs.head }}"; then
+          git checkout -b "${{ inputs.head }}" "origin/${{ inputs.head }}"
+        else
+          git checkout -b "${{ inputs.head }}" "${{ inputs.base }}"
+        fi

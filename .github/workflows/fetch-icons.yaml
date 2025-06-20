@@ -44,6 +44,11 @@ jobs:
       - name: Configure GitHub User
         uses: ./.github/actions/configure-github-user
 
+      - name: Checkout Icon Branch
+        uses: ./.github/actions/checkout-or-create-branch
+        with:
+          head: 'update-icons'
+
       - name: Setup pnpm
         uses: ./.github/actions/setup-pnpm
 
@@ -102,7 +107,11 @@ jobs:
         if: steps.changed-files.outputs.any_modified != 'false'
         run: |
           git add .
-          git commit  --amend --no-edit
+          git commit --amend --no-edit
+
+      - name: Push Changes
+        if: steps.changed-files.outputs.any_modified != 'false'
+        run: git push -u origin HEAD
 
       - name: Write PR Body
         id: pr-body
@@ -112,19 +121,15 @@ jobs:
           PR_BODY_FILE: pr-body.md
           ICON_CHANGES: ${{ steps.changed-icons.outputs.result }}
         with:
+          result-encoding: string
           script: |
             const { writePrBody } = require('.github/workflows/scripts/icons.mjs')
             return writePrBody(process.env)
 
       - name: Create or Update PR
         if: steps.changed-files.outputs.any_modified != 'false'
-        uses: ./.github/actions/create-or-update-pr
+        uses: ./.github/actions/open-pr-if-none-exists
         with:
-          head: update-icons
           title: "chore(icons): ☝️ update icons"
           body-file: ${{ steps.pr-body.outputs.result }}
           access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-
-      - name: Push Changes
-        if: steps.changed-files.outputs.any_modified != 'false'
-        run: git push -u origin ${{ steps.current-branch.outputs.branch }}
