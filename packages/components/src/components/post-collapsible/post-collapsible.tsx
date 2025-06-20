@@ -36,7 +36,6 @@ export class PostCollapsible {
   @Watch('collapsed')
   collapsedChange() {
     checkEmptyOrType(this, 'collapsed', 'boolean');
-
     void this.toggle(!this.collapsed);
   }
 
