@@ -1,12 +1,4 @@
-import {
-  Component,
-  h,
-  Host,
-  State,
-  Element,
-  Method,
-  Watch,
-} from '@stencil/core';
+import { Component, h, Host, State, Element, Method, Watch } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
@@ -352,7 +344,7 @@ export class PostHeader {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={version} data-color-scheme="light">
         <div class="global-header">
           <div class="global-sub">
             <div class="logo">
