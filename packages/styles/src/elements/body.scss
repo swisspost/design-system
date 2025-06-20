@@ -24,4 +24,9 @@ body {
   letter-spacing: tokens.get('body-letter-spacing');
   font-variant-numeric: proportional-nums;
   min-height: 100vh;
+
+  [data-color-scheme] {
+    --post-current-fg: #{tokens.get('body-color-fg')};
+    color: var(--post-current-fg);
+  }
 }
