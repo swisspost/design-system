@@ -22,8 +22,7 @@ import { eventGuard } from '@/utils/event-guard';
  * @slot post-language-switch - Should be used with the `<post-language-switch>` component.
  * @slot title - Holds the application title.
  * @slot default - Custom controls or content, right aligned in the local header.
- * @slot post-mainnavigation - Has a default slot because it's only meant to be used in the `<post-header>`.
- * @slot target-group - Holds the list of buttons to choose the target group.
+ * @slot mainnavigation - Main navigation items including target-group and back-button.
  */
 
 @Component({
@@ -39,6 +38,7 @@ export class PostHeader {
   private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
+
   get scrollParent(): HTMLElement {
     const frozenScrollParent: HTMLElement | null = document.querySelector(
       '[data-post-scroll-locked]',
@@ -127,7 +127,6 @@ export class PostHeader {
     this.handleLocalHeaderResize();
   }
 
-  // Clean up possible side effects when post-header is disconnected
   disconnectedCallback() {
     const scrollParent = this.scrollParent;
 
@@ -173,11 +172,9 @@ export class PostHeader {
       ? slideUp(this.mobileMenu)
       : slideDown(this.mobileMenu);
 
-    // Update the state of the toggle button
     const menuButton = this.host.querySelector<HTMLPostTogglebuttonElement>('post-togglebutton');
     menuButton.toggled = force ?? !this.mobileMenuExtended;
 
-    // Toggle menu visibility before it slides down and after it slides back up
     if (this.mobileMenuExtended) await this.mobileMenuAnimation.finished;
     this.mobileMenuExtended = force ?? !this.mobileMenuExtended;
 
@@ -202,9 +199,7 @@ export class PostHeader {
     );
   };
 
-  // Get all the focusable elements in the post-header mobile menu
   private getFocusableElements() {
-    // Get elements in the correct order (different as the DOM order)
     const focusableEls = [
       ...Array.from(this.host.querySelectorAll('.list-inline:not([slot="meta-navigation"]) > li')),
       ...Array.from(
@@ -219,7 +214,6 @@ export class PostHeader {
       ),
     ];
 
-    // Add the main toggle menu button to the list of focusable children
     const focusableChildren = [
       this.host.querySelector('post-togglebutton'),
       ...focusableEls.flatMap(el => Array.from(getFocusableChildren(el))),
@@ -236,11 +230,9 @@ export class PostHeader {
   private keyboardHandler(e: KeyboardEvent) {
     if (e.key === 'Tab' && this.mobileMenuExtended) {
       if (e.shiftKey && document.activeElement === this.firstFocusableEl) {
-        // If back tab (Tab + Shift) and first element is focused, focus goes to the last element of the megadropdown
         e.preventDefault();
         this.lastFocusableEl.focus();
       } else if (!e.shiftKey && document.activeElement === this.lastFocusableEl) {
-        // If Tab and last element is focused, focus goes back to the first element of the megadropdown
         e.preventDefault();
         this.firstFocusableEl.focus();
       }
@@ -316,7 +308,6 @@ export class PostHeader {
 
   private renderNavigation() {
     const navigationClasses = ['navigation'];
-
     const mobileMenuScrollTop = this.mobileMenu?.scrollTop ?? 0;
 
     if (this.mobileMenuExtended) {
@@ -333,12 +324,10 @@ export class PostHeader {
         style={{ '--post-header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
       >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
-          <div class="navigation-target-group">
-            {(this.device === 'mobile' || this.device === 'tablet') && (
-              <slot name="target-group"></slot>
-            )}
-          </div>
-          <slot name="post-mainnavigation"></slot>
+          {/* Main navigation slot - contains everything including target-group and back-button */}
+          <slot name="mainnavigation"></slot>
+
+          {/* Navigation footer for mobile */}
           {(this.device === 'mobile' || this.device === 'tablet') && (
             <div class="navigation-footer">
               <slot name="meta-navigation"></slot>
@@ -360,7 +349,7 @@ export class PostHeader {
             </div>
           </div>
           <div class="global-sub">
-            {this.device === 'desktop' && <slot name="target-group"></slot>}
+            {/* Empty middle section - target group will be positioned here via CSS from mainnavigation */}
           </div>
           <div class="global-sub">
             {this.device === 'desktop' && <slot name="meta-navigation"></slot>}

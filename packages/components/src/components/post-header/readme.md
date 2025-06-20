@@ -26,16 +26,15 @@ Type: `Promise<void>`
 
 ## Slots
 
-| Slot                     | Description                                                                   |
-| ------------------------ | ----------------------------------------------------------------------------- |
-| `"default"`              | Custom controls or content, right aligned in the local header.                |
-| `"meta-navigation"`      | Holds an `<ul>` with meta navigation links.                                   |
-| `"post-language-switch"` | Should be used with the `<post-language-switch>` component.                   |
-| `"post-logo"`            | Should be used together with the `<post-logo>` component.                     |
-| `"post-mainnavigation"`  | Has a default slot because it's only meant to be used in the `<post-header>`. |
-| `"post-togglebutton"`    | Holds the mobile menu toggler.                                                |
-| `"target-group"`         | Holds the list of buttons to choose the target group.                         |
-| `"title"`                | Holds the application title.                                                  |
+| Slot                     | Description                                                    |
+| ------------------------ | -------------------------------------------------------------- |
+| `"default"`              | Custom controls or content, right aligned in the local header. |
+| `"mainnavigation"`       | Main navigation items including target-group and back-button.  |
+| `"meta-navigation"`      | Holds an `<ul>` with meta navigation links.                    |
+| `"post-language-switch"` | Should be used with the `<post-language-switch>` component.    |
+| `"post-logo"`            | Should be used together with the `<post-logo>` component.      |
+| `"post-togglebutton"`    | Holds the mobile menu toggler.                                 |
+| `"title"`                | Holds the application title.                                   |
 
 
 ----------------------------------------------

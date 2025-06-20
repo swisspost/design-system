@@ -11,6 +11,43 @@
 @use '@swisspost/design-system-styles/variables/color';
 
 post-mainnavigation {
+  // Force horizontal layout on desktop using CSS custom properties
+  @include media.min(lg) {
+    --post-list-direction: row;
+    --post-list-item-direction: row;
+  }
+
+  // Target group positioning - key change here
+  .target-group {
+    // Hide on desktop as it will be absolutely positioned to global header
+    @include media.min(lg) {
+      position: absolute;
+      top: calc(-1 * var(--post-main-navigation-height) - var(--post-local-header-height) + 18px);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      background: transparent;
+      padding: 0;
+      
+      // Override any list styles to match global header expectation
+      ul {
+        margin: 0 !important;
+        padding: 0 !important;
+        list-style: none !important;
+        display: flex !important;
+        gap: 1rem !important;
+      }
+    }
+    
+    @include media.max(lg) {
+      padding: 20px 0 28px;
+    }
+    
+    @include media.max(sm) {
+      padding: 0 16px;
+    }
+  }
+
   // reset links and buttons
   post-list-item {
     > a {
@@ -40,12 +77,6 @@ post-mainnavigation {
         outline-offset: -2px !important;
       }
     }
-  }
-
-  // Absolute positioned so that it goes over the target group if present
-  > .back-button {
-    position: absolute;
-    top: 16px;
   }
 
   .back-button {
@@ -80,7 +111,7 @@ post-mainnavigation {
 
   // desktop styles
   @include media.min(lg) {
-    display: block;
+    display: flex;
     position: relative;
     height: var(--post-main-navigation-height);
     background: color.$white;
@@ -90,6 +121,7 @@ post-mainnavigation {
       flex: 1 1 auto;
       overflow: hidden;
       scroll-behavior: smooth;
+      display: flex;
     }
 
     .scroll-control {
@@ -119,12 +151,34 @@ post-mainnavigation {
       }
     }
 
+    // Force horizontal layout for navigation items
+    ::slotted(post-list) {
+      display: flex !important;
+      flex-direction: row !important;
+      width: 100%;
+      
+      > [role='list'] {
+        display: flex !important;
+        flex-direction: row !important;
+        max-width: 100vw;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+    }
+
     post-list > [role='list'] {
       flex-direction: row;
       max-width: 100vw;
     }
 
     post-list-item {
+      flex: 0 0 auto; // Don't grow or shrink, natural width
+      
       > a,
       > button,
       post-megadropdown-trigger button {

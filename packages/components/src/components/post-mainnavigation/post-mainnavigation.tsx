@@ -1,8 +1,14 @@
 import { Component, Host, h, State, Listen } from '@stencil/core';
 import { version } from '@root/package.json';
 
-const SCROLL_REPEAT_INTERVAL = 100; // Interval for repeated scrolling when holding down scroll button
-const NAVBAR_DISABLE_DURATION = 400; // Duration to temporarily disable navbar interactions during scrolling
+/**
+ * @slot back-button - Back button for mobile navigation.
+ * @slot target-group - Target group buttons (appears in global header on desktop, mobile menu on mobile).
+ * @slot default - Main navigation items.
+ */
+
+const SCROLL_REPEAT_INTERVAL = 100;
+const NAVBAR_DISABLE_DURATION = 400;
 
 @Component({
   tag: 'post-mainnavigation',
@@ -11,10 +17,8 @@ const NAVBAR_DISABLE_DURATION = 400; // Duration to temporarily disable navbar i
 })
 export class PostMainnavigation {
   private navbar: HTMLElement;
-
   private scrollRepeatInterval: ReturnType<typeof setInterval>;
   private navbarDisableTimer: ReturnType<typeof setInterval>;
-
   private resizeObserver: ResizeObserver;
   private mutationObserver: MutationObserver;
 
@@ -37,28 +41,17 @@ export class PostMainnavigation {
       this.checkScrollability();
     });
 
-    // Observe the navbar for size changes
     this.resizeObserver.observe(this.navbar);
-
-    // Observe the navabar for mutation changes
-    this.mutationObserver.observe(this.navbar, { subtree: true, childList: true }); // Recheck scrollability when navigation list changes
-
-    // Ensure the scroll buttons are correctly displayed or hidden whenever the navbar is scrolled
+    this.mutationObserver.observe(this.navbar, { subtree: true, childList: true });
     this.navbar.addEventListener('scrollend', this.checkScrollability);
   }
 
-  /**
-   * Disconnects observers and remove event listeners when the main navigation is removed from the DOM.
-   */
   disconnectedCallback() {
     this.mutationObserver.disconnect();
     this.resizeObserver.disconnect();
     this.navbar.removeEventListener('scrollend', this.checkScrollability);
   }
 
-  /**
-   * Stops the repeated scrolling when the mouse button is released.
-   */
   @Listen('mouseup', { target: 'window' })
   @Listen('mouseleave', { target: 'window' })
   stopScrolling() {
@@ -70,7 +63,6 @@ export class PostMainnavigation {
       return Array.from(mutation.addedNodes);
     });
 
-    // Wait for all elements to be hydrated
     await Promise.all(
       addedNodes.map((item: HTMLPostListItemElement) =>
         item.componentOnReady ? item.componentOnReady() : Promise.resolve(item),
@@ -82,12 +74,10 @@ export class PostMainnavigation {
   }
 
   private get navigationItems(): HTMLElement[] {
-    return Array.from(this.navbar.querySelectorAll(':is(a, button):not(post-megadropdown *)'));
+    // Query the slotted post-list content for navigation items
+    return Array.from(this.navbar.querySelectorAll('post-list-item a, post-list-item button, post-megadropdown-trigger button'));
   }
 
-  /**
-   * Hack to fix the layout shift due to bold text on active elements
-   */
   private fixLayoutShift() {
     this.navigationItems
       .filter(item => !item.matches(':has(.nav-el-active)'))
@@ -104,55 +94,39 @@ export class PostMainnavigation {
     if (header) header.toggleMobileMenu();
   }
 
-  /**
-   * Returns whether scrolling is enabled in either the left or right direction.
-   */
   private get canScroll(): boolean {
     return this.canScrollLeft || this.canScrollRight;
   }
 
-  /**
-   * Checks if scrolling is possible in either direction (left or right) and updates the state accordingly.
-   */
   private checkScrollability() {
     const { scrollLeft, scrollWidth, clientWidth } = this.navbar;
     if (scrollWidth === clientWidth) {
-      // If scroll width equals client width, scrolling is disabled in both directions
       this.canScrollLeft = this.canScrollRight = false;
     } else {
-      this.canScrollLeft = Math.floor(scrollLeft) > 0; // Scrolling left is possible if not at the start
-      this.canScrollRight = Math.ceil(clientWidth + scrollLeft) < scrollWidth; // Scrolling right is possible if not at the end
+      this.canScrollLeft = Math.floor(scrollLeft) > 0;
+      this.canScrollRight = Math.ceil(clientWidth + scrollLeft) < scrollWidth;
     }
   }
 
-  /**
-   * Handles the scrolling behavior when a user clicks on the left or right scroll buttons.
-   */
   private handleScrollButtonClick(e: MouseEvent, direction: 'left' | 'right') {
     if (!this.canScroll || e.button !== 0) return;
 
-    // Disable interaction with the navbar during scrolling
     this.temporarilyDisableNavbar();
 
-    // Set up the correct scroll function
     const scroll = direction === 'right' ? this.scrollRight : this.scrollLeft;
     scroll();
 
-    // Repeat the scrolling action while the button is held down
     this.scrollRepeatInterval = setInterval(() => {
       scroll();
     }, SCROLL_REPEAT_INTERVAL);
   }
 
   private scrollRight() {
-    const scrollRightLeftEdge = document
-      .querySelector('.scroll-right')
-      .getBoundingClientRect().left;
+    const scrollRightLeftEdge = this.navbar.querySelector('.scroll-right')?.getBoundingClientRect().left || 0;
 
     for (const navigationItem of this.navigationItems) {
       const { right, width } = navigationItem.getBoundingClientRect();
 
-      // Scroll to the first navigation item that is less than 75% visible
       const isThreeQuartersVisible = right - 0.25 * width < scrollRightLeftEdge;
       if (!isThreeQuartersVisible) {
         this.navbar.scrollBy({ left: right - scrollRightLeftEdge });
@@ -162,14 +136,11 @@ export class PostMainnavigation {
   }
 
   private scrollLeft() {
-    const scrollLeftRightEdge = document
-      .querySelector('.scroll-left')
-      .getBoundingClientRect().right;
+    const scrollLeftRightEdge = this.navbar.querySelector('.scroll-left')?.getBoundingClientRect().right || 0;
 
     for (const navigationItem of this.navigationItems.reverse()) {
       const { left, width } = navigationItem.getBoundingClientRect();
 
-      // Scroll to the first navigation item that is less than 75% visible
       const isThreeQuartersVisible = left + 0.25 * width > scrollLeftRightEdge;
       if (!isThreeQuartersVisible) {
         this.navbar.scrollBy({ left: left - scrollLeftRightEdge });
@@ -178,10 +149,6 @@ export class PostMainnavigation {
     }
   }
 
-  /**
-   * Temporarily disables interactions with the navbar during scrolling to prevent accidental clicks.
-   * Re-enables interactions after a brief delay to avoid blocking the user entirely.
-   */
   private temporarilyDisableNavbar() {
     if (this.navbarDisableTimer) clearTimeout(this.navbarDisableTimer);
 
@@ -194,11 +161,18 @@ export class PostMainnavigation {
 
   render() {
     return (
-      <Host slot="post-mainnavigation" version={version}>
+      <Host version={version}>
+        {/* Back button */}
         <div onClick={() => this.handleBackButtonClick()} class="back-button">
           <slot name="back-button"></slot>
         </div>
 
+        {/* Target group - positioned via CSS for desktop/mobile */}
+        <div class="target-group">
+          <slot name="target-group"></slot>
+        </div>
+
+        {/* Scroll controls for desktop */}
         <div
           aria-hidden="true"
           class={{ 'scroll-control scroll-left': true, 'd-none': !this.canScrollLeft }}
@@ -207,6 +181,7 @@ export class PostMainnavigation {
           <post-icon aria-hidden="true" name="chevronleft"></post-icon>
         </div>
 
+        {/* Main navigation */}
         <nav ref={el => (this.navbar = el)}>
           <slot></slot>
         </nav>

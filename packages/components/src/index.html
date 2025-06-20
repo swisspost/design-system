@@ -51,18 +51,6 @@
       <!-- Application title (optional) -->
       <h1 slot="title">Application title</h1>
 
-      <ul slot="target-group" class="target-group">
-        <li>
-          <a href="#" class="active">Private customers</a>
-        </li>
-        <li>
-          <a href="#">Business customers</a>
-        </li>
-        <li>
-          <a href="#">Authorities</a>
-        </li>
-      </ul>
-
       <!-- Custom content (optional) -->
       <ul class="list-inline">
         <li>
@@ -79,11 +67,25 @@
         </li>
       </ul>
 
-      <!-- Main navigation -->
-      <post-mainnavigation caption="Hauptnavigation">
+      <!-- Main navigation - now contains everything in a single slot -->
+      <post-mainnavigation slot="mainnavigation">
+        <!-- Back button for mobile -->
         <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
           <post-icon aria-hidden="true" name="arrowleft"></post-icon> Back
         </button>
+
+        <!-- Target group - single slot that appears in different positions via CSS -->
+        <ul slot="target-group" class="target-group">
+          <li>
+            <a href="#" class="active">Private customers</a>
+          </li>
+          <li>
+            <a href="#">Business customers</a>
+          </li>
+          <li>
+            <a href="#">Authorities</a>
+          </li>
+        </ul>
 
         <post-list title-hidden="">
           <h2>Main Navigation</h2>

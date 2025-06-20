@@ -113,21 +113,7 @@ const Template = {
             <h1 slot="title">${args.title}</h1>
           `
         : ''}
-      ${args.targetGroup
-        ? html`
-            <ul slot="target-group" class="target-group">
-              <li>
-                <a href="#" class="active">Private customers</a>
-              </li>
-              <li>
-                <a href="#">Business customers</a>
-              </li>
-              <li>
-                <a href="#">Authorities</a>
-              </li>
-            </ul>
-          `
-        : ''}
+
       ${args.customControls
         ? html`
             <!-- Custom content (optional) -->
@@ -148,11 +134,30 @@ const Template = {
           `
         : ''}
 
-      <!-- Main navigation -->
-      <post-mainnavigation caption="Main navigation">
+      <!-- Main navigation - now contains everything including target-group -->
+      <post-mainnavigation slot="mainnavigation" caption="Main navigation">
+        <!-- Back button for mobile -->
         <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
           <post-icon aria-hidden="true" name="arrowleft"></post-icon> Back
         </button>
+
+        ${args.targetGroup
+          ? html`
+              <!-- Target group - single slot that appears in different positions via CSS -->
+              <ul slot="target-group" class="target-group">
+                <li>
+                  <a href="#" class="active">Private customers</a>
+                </li>
+                <li>
+                  <a href="#">Business customers</a>
+                </li>
+                <li>
+                  <a href="#">Authorities</a>
+                </li>
+              </ul>
+            `
+          : ''}
+
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
           <!-- Link only level 1 -->
@@ -256,4 +261,40 @@ export const WithTargetGroup: Story = {
   },
   ...Template,
   decorators: [story => html` <div style="min-height: 400px">${story()}</div>`],
+};
+
+export const WithoutTitle: Story = {
+  args: {
+    title: '',
+    targetGroup: true,
+  },
+  ...Template,
+  decorators: [story => html` <div style="min-height: 400px">${story()}</div>`],
+};
+
+export const MinimalHeader: Story = {
+  args: {
+    title: 'Minimal Header',
+    metaNavigation: false,
+    customControls: false,
+    targetGroup: false,
+  },
+  ...Template,
+  decorators: [story => html` <div style="min-height: 400px">${story()}</div>`],
+};
+
+export const FullFeatured: Story = {
+  args: {
+    title: 'Full Featured Header',
+    metaNavigation: true,
+    customControls: true,
+    targetGroup: true,
+  },
+  ...Template,
+  decorators: [
+    story =>
+      html` <div class="header-story-wrapper">
+        <div class="virtual-body">${story()} ${fakeContent()}</div>
+      </div>`,
+  ],
 };

@@ -94,9 +94,11 @@
       inset-block-start: var(--post-global-controls-top);
     }
 
-    // targets the target group
+    // targets the middle section where target group will be positioned
     &:not(:last-child):not(:first-child) {
       flex-grow: 1;
+      justify-content: center;
+      position: relative;
     }
   }
 }
@@ -237,8 +239,7 @@
   }
 
   ::slotted(post-mainnavigation),
-  .navigation-footer,
-  .navigation-target-group {
+  .navigation-footer {
     display: none;
     flex-direction: column;
 
@@ -271,6 +272,14 @@
 
   ::slotted(post-mainnavigation) {
     gap: 32px;
+  }
+
+  @include media.max(sm) {
+    :has([slot="target-group"]) {
+      ::slotted(post-mainnavigation) {
+        gap: 24px;
+      }
+    }
   }
 
   .navigation-footer {
