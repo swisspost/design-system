@@ -1,49 +1,223 @@
-export function eventGuard(
-  host: HTMLElement,
-  event: CustomEvent,
-  options: { targetLocalName: string; delegatorSelector?: string },
-  callback: () => void
-): void {
-  const target = event.target as HTMLElement | null;
+/**
+ * Decorator that guards event handlers to only execute when the event meets certain criteria.
+ * @param options - Configuration options for the event guard
+ * @param options.targetLocalName - The local name of the element that should be the target of the event
+ * @param options.delegatorSelector - Optional CSS selector to check if the event was delegated from a specific ancestor
+ */
+export function EventGuard(options: { targetLocalName: string; delegatorSelector?: string }) {
+  return function (
+    target: object,
+    propertyKey: string,
+    descriptor?: PropertyDescriptor
+  ) {
+    if (descriptor) {
+      const originalMethod = descriptor.value;
+      
+      descriptor.value = function (event: CustomEvent) {
+        if (!event || !event.target) return;
 
-  if (!target) return;
+        const eventTarget = event.target as HTMLElement;
+        
+        if (eventTarget.localName !== options.targetLocalName) return;
+        
+        if (options.delegatorSelector) {
+          const closest = shadowClosest(eventTarget, options.delegatorSelector);
+          if (closest !== this.host) return;
+        }
 
-  if (target.localName === options.targetLocalName) {
-    if (!options.delegatorSelector || shadowClosest(target, options.delegatorSelector) === host) {
-      callback();
+        return originalMethod.call(this, event);
+      };
+    } else {
+      const privateKey = `__${propertyKey}_original`;
+      
+      Object.defineProperty(target, privateKey, {
+        writable: true,
+        configurable: true
+      });
+
+      Object.defineProperty(target, propertyKey, {
+        get() {
+          return this[privateKey];
+        },
+        set(originalFunction: (event: CustomEvent) => void) {
+          if (typeof originalFunction === 'function') {
+            this[privateKey] = (event: CustomEvent) => {
+              if (!event || !event.target) return;
+
+              const eventTarget = event.target as HTMLElement;
+              
+              if (eventTarget.localName !== options.targetLocalName) return;
+              
+              if (options.delegatorSelector) {
+                const closest = shadowClosest(eventTarget, options.delegatorSelector);
+                if (closest !== this.host) return;
+              }
+
+              return originalFunction.call(this, event);
+            };
+          } else {
+            this[privateKey] = originalFunction;
+          }
+        },
+        configurable: true,
+        enumerable: true
+      });
     }
-  }
+  };
 }
 
 /**
- * Traverses up the DOM (including crossing shadow DOM boundaries) starting from the given element
- * to find and return the closest ancestor that matches the specified CSS selector.
- * If no matching element is found, returns null.
- *
- * @param element - The starting element from which the search begins.
- * @param selector - The CSS selector used to test each ancestor element.
- * @returns The closest matching ancestor element or null if none is found.
+ * Traverses up the DOM (including crossing shadow DOM boundaries) to find the closest ancestor
+ * that matches the specified CSS selector.
+ * @param element - The starting element
+ * @param selector - CSS selector to match
+ * @returns The closest matching ancestor or null if none found
  */
 function shadowClosest(element: Element, selector: string): Element | null {
-  let currentElement: Element | null = element;
-  while (currentElement) {
-    if (currentElement.matches(selector)) {
-      return currentElement;
+  let current: Element | null = element;
+  while (current) {
+    if (current.matches(selector)) {
+      return current;
     }
 
-    const parent = currentElement.parentElement;
-    if (parent) {
-      currentElement = parent;
-    } else {
-      const parentNode = currentElement.parentNode;
-      // When no parentElement exists, check if the current element is inside a shadow DOM.
-      // If so, move up to the shadow host to continue the search outside the shadow boundary.
-      if (parentNode instanceof ShadowRoot) {
-        currentElement = parentNode.host;
-      } else {
-        currentElement = null;
-      }
+    // Check regular parent first
+    if (current.parentElement) {
+      current = current.parentElement;
+    } 
+    // If no parentElement, check if we're in a shadow root
+    else if (current.parentNode instanceof ShadowRoot) {
+      current = current.parentNode.host;
+    } 
+    // No more parents to check
+    else {
+      current = null;
     }
   }
+  return null;
+}
+
+
+/**
+ * Validates if an event should be processed based on target and nesting criteria
+ * @param event - The event to validate
+ * @param tag - The expected local name of the event target
+ * @param host - The host element for nested component checking
+ * @param ignoreNestedComponents - Whether to ignore events from nested components
+ * @returns true if the event should be processed, false otherwise
+ */
+function shouldProcessEvent(
+  event: CustomEvent,
+  tag: string,
+  host: HTMLElement,
+  ignoreNestedComponents: boolean
+): boolean {
+  if (!event || !event.target) return false;
+
+  const eventTarget = event.target as HTMLElement;
+  
+  if (eventTarget.localName !== tag) return false;
+  
+  if (ignoreNestedComponents) {
+    const closest = isClosestParent(eventTarget, host.localName);
+    if (closest !== host) return false;
+  }
+
+  return true;
+}
+
+/**
+ * Decorator that guards event handlers to only execute when the event meets certain criteria.
+ * @param tag - The local name of the element that should be the target of the event
+ * @param option - Configuration options for the event guard
+ * @param option.ignoreNestedComponents - Whether to ignore events from nested components
+ */
+export function EventFrom(
+  tag: string, 
+  option: { ignoreNestedComponents: boolean } = { ignoreNestedComponents: true }
+) {
+  return function (
+    target: object,
+    propertyKey: string,
+    descriptor?: PropertyDescriptor
+  ) {
+    if (descriptor) {
+      const originalMethod = descriptor.value;
+      
+      descriptor.value = function (event: CustomEvent) {
+        if (!shouldProcessEvent(event, tag, this.host, option.ignoreNestedComponents)) {
+          return;
+        }
+
+        return originalMethod.call(this, event);
+      };
+    } else {
+      // Creates a hidden storage property for the original method using a 
+      // modified key format (__[property]_original) to avoid naming conflicts
+      const privateKey = `__${propertyKey}_original`;
+      
+      // Create hidden storage for original method
+      Object.defineProperty(target, privateKey, {
+        writable: true,
+        configurable: true
+      });
+
+      // Replace property with getter/setter
+      Object.defineProperty(target, propertyKey, {
+        // Getter returns original method
+        get() {
+          return this[privateKey];
+        },
+
+        // Setter wraps original method with extra code
+        set(originalFunction: (event: CustomEvent) => void) {
+          if (typeof originalFunction === 'function') {
+            // Store original and add new behavior
+            this[privateKey] = (event: CustomEvent) => {
+              if (!shouldProcessEvent(event, tag, this.host, option.ignoreNestedComponents)) {
+                return;
+              }
+
+              return originalFunction.call(this, event);
+            };
+          } else {
+            this[privateKey] = originalFunction;
+          }
+        },
+        configurable: true,
+        enumerable: true
+      });
+    }
+  };
+}
+
+/**
+ * Traverses up the DOM (including crossing shadow DOM boundaries) to find the closest ancestor
+ * that matches the specified CSS selector.
+ * @param element - The starting element
+ * @param selector - CSS selector to match
+ * @returns The closest matching ancestor or null if none found
+ */
+function isClosestParent(element: Element, selector: string): Element | null {
+  let current: Element | null = element;
+  
+  while (current) {
+    if (current.matches(selector)) {
+      return current;
+    }
+
+    // Check regular parent first
+    if (current.parentElement) {
+      current = current.parentElement;
+    } 
+    // If no parentElement, check if we're in a shadow root
+    else if (current.parentNode instanceof ShadowRoot) {
+      current = current.parentNode.host;
+    } 
+    // No more parents to check
+    else {
+      current = null;
+    }
+  }
+  
   return null;
 }
