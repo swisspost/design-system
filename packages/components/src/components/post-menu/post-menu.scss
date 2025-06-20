@@ -4,13 +4,8 @@
   display: block;
 }
 
-post-popovercontainer {
-  padding: var(--post-menu-padding);
-  background-color: var(--post-menu-bg, #ffffff);
-  border-color: var(--post-menu-bg, #ffffff);
-}
-
-.popover-container {
+:where([part="menu"]) {
   display: flex;
   flex-direction: column;
+  padding-block: .5rem;
 }
