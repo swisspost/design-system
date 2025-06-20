@@ -14,6 +14,9 @@ type Story = StoryObj;
 
 export const Hint: Story = {
   render: (_args: Args, context: StoryContext) => {
-    return schemes(() => html` ${renderHint({ ..._args }, context)} `);
+    return schemes((scheme: string) => {
+      const formControlId = `example-id-${scheme}`;
+      return html` ${renderHint({ ..._args }, context, formControlId)}`;
+    });
   },
 };

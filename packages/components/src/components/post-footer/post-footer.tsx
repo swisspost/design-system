@@ -92,7 +92,7 @@ export class PostFooter {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={version} data-color-scheme="light">
         <footer>
           <h2 class="visually-hidden">{this.label}</h2>
 
