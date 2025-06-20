@@ -18,9 +18,8 @@ tokens.$default-map: components.$post-palettes;
   color: var(--post-current-fg);
 
   @include color-scheme.set(tokens.get('palettes-scheme'));
+}
 
-  .palette-text {
-    color: tokens.get('palettes-accent');
-  }
-
+.palette-text {
+  color: tokens.get('palettes-accent');
 }
