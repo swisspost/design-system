@@ -73,7 +73,7 @@ function StylesSwitcher() {
 
     observer = new MutationObserver(
       debounce(() => {
-        setStories(preview.querySelectorAll('.sbdocs-preview, .sb-main-padded'));
+        setStories(preview.querySelectorAll('.sbdocs-preview'));
         setStylesCodeBlocks(preview.querySelectorAll('.docblock-source'));
       }, 200),
     );
