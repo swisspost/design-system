@@ -1,3 +1,8 @@
+
+// ============================================================================
+// HEADER GLOBAL STYLES (from your third SCSS file)
+// ============================================================================
+
 @use '../../mixins/media';
 @use '../../mixins/utilities';
 @use '../../variables/color';
@@ -34,7 +39,7 @@ tokens.$default-map: elements.$post-link;
     --post-global-header-height: 64px;
     --post-global-header-reduced-height: var(--post-global-header-height);
     --post-local-header-height: 48px;
-    --post-main-navigation-height: 0px; /* stylelint-disable-line length-zero-no-unit */ /* needed for calculation */
+    --post-main-navigation-height: 0px;
   }
 
   @include media.min(md) {
@@ -183,7 +188,7 @@ post-header {
   }
 }
 
-// Added to prevent Back-to-top button from showing up before header is hydrated
+// Prevent Back-to-top button from showing before header is hydrated
 body:has(post-header:not([data-hydrated])) post-back-to-top {
   visibility: hidden !important;
 }

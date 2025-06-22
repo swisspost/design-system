@@ -38,6 +38,20 @@ Type: `Promise<void>`
 | `"title"`                | Holds the application title.                                                  |
 
 
+## Dependencies
+
+### Depends on
+
+- [post-mainnavigation](../post-mainnavigation)
+
+### Graph
+```mermaid
+graph TD;
+  post-header --> post-mainnavigation
+  post-mainnavigation --> post-icon
+  style post-header fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

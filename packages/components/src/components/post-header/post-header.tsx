@@ -314,70 +314,78 @@ export class PostHeader {
     });
   }
 
-  private renderNavigation() {
-    const navigationClasses = ['navigation'];
+ private renderNavigation() {
+  const navigationClasses = ['navigation'];
+  const mobileMenuScrollTop = this.mobileMenu?.scrollTop ?? 0;
 
-    const mobileMenuScrollTop = this.mobileMenu?.scrollTop ?? 0;
+  if (this.mobileMenuExtended) {
+    navigationClasses.push('extended');
+  }
 
-    if (this.mobileMenuExtended) {
-      navigationClasses.push('extended');
-    }
+  if (this.megadropdownOpen) {
+    navigationClasses.push('megadropdown-open');
+  }
 
-    if (this.megadropdownOpen) {
-      navigationClasses.push('megadropdown-open');
-    }
-
-    return (
-      <div
-        class={navigationClasses.join(' ')}
-        style={{ '--post-header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
-      >
-        <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
-          <slot name="post-mainnavigation"></slot>
-          {(this.device === 'mobile' || this.device === 'tablet') && (
-            <div class="navigation-footer">
-              <slot name="meta-navigation"></slot>
-              <slot name="post-language-switch"></slot>
-            </div>
+  return (
+    <div
+      class={navigationClasses.join(' ')}
+      style={{ '--post-header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
+    >
+      <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
+        <post-mainnavigation>
+          {/* Pass through slots to main navigation */}
+          <slot name="back-button" slot="back-button"></slot>
+          {this.device !== 'desktop' && (
+            <slot name="target-group" slot="target-group"></slot>
           )}
+          <slot name="post-mainnavigation" slot="mainnavigation"></slot>
+        </post-mainnavigation>
+        
+        {(this.device === 'mobile' || this.device === 'tablet') && (
+          <div class="navigation-footer">
+            <slot name="meta-navigation"></slot>
+            <slot name="post-language-switch"></slot>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+render() {
+  return (
+    <Host data-version={version}>
+      <div class="global-header">
+        <div class="global-sub">
+          <div class="logo">
+            <slot name="post-logo"></slot>
+          </div>
+        </div>
+        <div class="global-sub">
+          {/* Target group only shows in global header on desktop */}
+          {this.device === 'desktop' && <slot name="target-group"></slot>}
+        </div>
+        <div class="global-sub">
+          {this.device === 'desktop' && <slot name="meta-navigation"></slot>}
+          <slot name="global-controls"></slot>
+          {this.device === 'desktop' && <slot name="post-language-switch"></slot>}
+          <div onClick={() => this.toggleMobileMenu()} class="mobile-toggle">
+            <slot name="post-togglebutton"></slot>
+          </div>
         </div>
       </div>
-    );
-  }
-
-  render() {
-    return (
-      <Host data-version={version}>
-        <div class="global-header">
-          <div class="global-sub">
-            <div class="logo">
-              <slot name="post-logo"></slot>
-            </div>
-          </div>
-          <div class="global-sub">
-            {this.device === 'desktop' && <slot name="target-group"></slot>}
-          </div>
-          <div class="global-sub">
-            {this.device === 'desktop' && <slot name="meta-navigation"></slot>}
-            <slot name="global-controls"></slot>
-            {this.device === 'desktop' && <slot name="post-language-switch"></slot>}
-            <div onClick={() => this.toggleMobileMenu()} class="mobile-toggle">
-              <slot name="post-togglebutton"></slot>
-            </div>
-          </div>
+      <div
+        class={'local-header ' + (this.mobileMenuExtended ? 'local-header-mobile-extended' : '')}
+      >
+        <slot name="title"></slot>
+        <div class="local-sub">
+          <slot name="local-controls"></slot>
+          <slot></slot>
         </div>
-        <div
-          class={'local-header ' + (this.mobileMenuExtended ? 'local-header-mobile-extended' : '')}
-        >
-          <slot name="title"></slot>
-          <div class="local-sub">
-            <slot name="local-controls"></slot>
-            <slot></slot>
-          </div>
-          {this.device === 'desktop' && this.renderNavigation()}
-        </div>
-        {this.device !== 'desktop' && this.renderNavigation()}
-      </Host>
-    );
-  }
+        {this.device === 'desktop' && this.renderNavigation()}
+      </div>
+      {this.device !== 'desktop' && this.renderNavigation()}
+    </Host>
+  );
+}
 }
