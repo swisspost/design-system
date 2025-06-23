@@ -1,9 +1,10 @@
 {
   "name": "@swisspost/internet-header",
-  "version": "1.15.13",
+  "version": "1.15.14",
   "description": "The header for client facing applications.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git"
@@ -20,7 +21,7 @@
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/swisspost-internet-header/swisspost-internet-header.esm.js",
   "publishConfig": {
-    "access": "public"
+    "access": "restricted"
   },
   "files": [
     "dist/",
@@ -42,7 +43,7 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@swisspost/design-system-styles": "workspace:8.10.1",
+    "@swisspost/design-system-styles": "workspace:8.11.0",
     "body-scroll-lock": "4.0.0-beta.0",
     "iframe-resizer": "4.4.5",
     "jquery": "3.7.1",
