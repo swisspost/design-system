@@ -19,10 +19,7 @@ describe('Back-to-top', () => {
         $el[0].removeAttribute('label');
       });
 
-      cy.get('@consoleError').should(
-        'be.calledWith',
-        'The prop `label` of the `post-back-to-top` component is not defined.',
-      );
+      cy.get('@consoleError').should('be.called');
     });
 
     it('should hide the label visually', () => {

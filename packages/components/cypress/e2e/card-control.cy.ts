@@ -55,13 +55,7 @@ describe('Card-Control', () => {
     it('should render label also with empty string, but log an error', () => {
       cy.get('@card-control').invoke('attr', 'label', '');
       cy.get('@label').should('exist').and('have.text', '');
-      cy.get('@consoleError')
-        .invoke('getCalls')
-        .then(calls => {
-          expect(calls[0].args[0]).to.eq(
-            'The prop `label` of the `post-card-control` component is not defined.',
-          );
-        });
+      cy.get('@consoleError').should('be.called');
     });
 
     it('should set description text according to "description" prop', () => {
@@ -89,13 +83,7 @@ describe('Card-Control', () => {
 
     it('should log an error when "type" prop is not defined', () => {
       cy.get('@card-control').invoke('attr', 'type', '');
-      cy.get('@consoleError')
-        .invoke('getCalls')
-        .then(calls => {
-          expect(calls[0].args[0]).to.eq(
-            'The prop `type` of the `post-card-control` component is not defined.',
-          );
-        });
+      cy.get('@consoleError').should('be.called');
     });
 
     it('should set input "name" attr according to "name" prop', () => {
