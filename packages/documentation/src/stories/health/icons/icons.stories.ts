@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/web-components';
 
 const meta: Meta = {
   title: 'Health/Icons',
+  tags: ['devOnly'],
 };
 
 export default meta;
