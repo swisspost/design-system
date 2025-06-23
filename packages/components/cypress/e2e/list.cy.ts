@@ -26,7 +26,7 @@ describe('PostList Component', { baseUrl: null, includeShadowDom: false }, () =>
     cy.window().then(win => {
       cy.spy(win.console, 'error').as('consoleError');
     });
-
+    // Removes the first child of the <post-list> component, which is the title element
     cy.get('post-list').within(() => {
       cy.get(':first-child').invoke('remove');
     });
