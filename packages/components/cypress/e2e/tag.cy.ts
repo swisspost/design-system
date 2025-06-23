@@ -30,7 +30,7 @@ describe('Tag', () => {
     });
 
     it('should set the tags background color according to the prop `variant`', () => {
-      ['white', 'info', 'success', 'error', 'warning', 'yellow'].forEach(bg => {
+      ['gray', 'white', 'info', 'success', 'danger', 'warning', 'yellow'].forEach(bg => {
         cy.get('@tag').invoke('attr', 'variant', bg).should('have.attr', 'variant', bg);
         cy.get('@wrapper').should('have.class', `tag-${bg}`);
       });
