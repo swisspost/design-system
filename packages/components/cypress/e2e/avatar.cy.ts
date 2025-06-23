@@ -13,23 +13,15 @@ describe('Avatar', () => {
       cy.get('@avatar').should('not.have.attr', 'lastname');
     });
 
-    it('should have a console error, when attribute "firstname" is not defined', () => {
-      cy.on('uncaught:exception', err => {
-        expect(err.message).to.include(
-          'The `firstname` property of the `post-avatar` component is not defined.',
-        );
-        return false;
+    it('should log a console error, when attribute "firstname" is not defined', () => {
+      cy.window().then(win => {
+        cy.spy(win.console, 'error').as('consoleError');
       });
       cy.get('@avatar').invoke('removeAttr', 'firstname');
+      cy.get('@consoleError').should('be.called');
     });
 
     it('should show initials when, firstname or firstname and lastname is defined', () => {
-      cy.on('uncaught:exception', err => {
-        expect(err.message).to.include(
-          'The `firstname` property of the `post-avatar` component is not defined.',
-        );
-        return false;
-      });
       cy.get('@avatar').find('.initials').as('initials');
 
       cy.get('@initials').should('exist');
