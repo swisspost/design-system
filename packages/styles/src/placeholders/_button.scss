@@ -1,23 +1,10 @@
 @use './../mixins/utilities';
-@use './../mixins/color' as color-mx;
-@use './../variables/color';
 @use './../variables/components/button';
 @use './../mixins/button' as button-mx;
 @use '../functions/tokens';
 @use '../tokens/components';
 
 tokens.$default-map: components.$post-button;
-
-%btn-transparent-background {
-  @include utilities.not-disabled-focus-hover() {
-    color: color.$black;
-  }
-
-  // Invert icon on dark backgrounds
-  @include color-mx.on-dark-background() {
-    color: color.$black;
-  }
-}
 
 %btn {
   // Resets
