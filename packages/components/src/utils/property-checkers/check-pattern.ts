@@ -11,6 +11,6 @@ export function checkPattern<T extends { host: HTMLElement }>(
   )}\` of the \`${componentName}\` component must follow the format \`${pattern}\`.`;
 
   if (typeof value !== 'string' || !pattern.test(value)) {
-    throw new Error(message);
+    console.error(message);
   }
 }

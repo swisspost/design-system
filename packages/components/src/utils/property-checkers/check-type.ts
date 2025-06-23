@@ -17,9 +17,9 @@ export function checkType<T extends { host: HTMLElement }>(
 
   if (typeIsArray || valueIsArray) {
     if (valueIsArray !== typeIsArray) {
-      throw new Error(message);
+      console.error(message);
     }
   } else if (typeof value !== type) {
-    throw new Error(message);
+    console.error(message);
   }
 }

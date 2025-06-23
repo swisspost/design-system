@@ -13,6 +13,6 @@ export function checkOneOf<T extends { host: HTMLElement }>(
   )}.`;
 
   if (!possibleValues.includes(value)) {
-    throw new Error(message);
+    console.error(message);
   }
 }

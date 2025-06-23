@@ -103,7 +103,6 @@ export class PostCardControl {
    * Defines the validation `validity` of the control.
    * To reset validity to an undefined state, simply remove the attribute from the control.
    */
-
   @Prop({ mutable: true }) validity?: boolean;
 
   /**
