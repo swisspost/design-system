@@ -33,16 +33,6 @@
     --post-logo-height: var(--post-global-header-height);
     --post-global-controls-top: 0;
   }
-
-  // Ensure hidden slots don't interfere with layout
-  .hidden-slots {
-    position: absolute;
-    visibility: hidden;
-    pointer-events: none;
-    height: 0;
-    width: 0;
-    overflow: hidden;
-  }
 }
 
 :host(:not(:has([slot='title']))) {
@@ -128,6 +118,17 @@
   padding-inline-start: 0;
   gap: 1rem;
   flex-shrink: 0 !important;
+}
+
+::slotted(.btn) {
+  @include media.max(lg) {
+    font-size: 16px !important;
+    padding: 0 !important;
+  }
+
+  @include media.max(sm) {
+    font-size: 14px !important;
+  }
 }
 
 .local-header {
@@ -230,6 +231,9 @@
 
   .mobile-menu {
     background-color: #fafafa;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
 
   // Target the post-mainnavigation component within mobile menu
@@ -238,6 +242,10 @@
     padding-inline: 32px;
     display: none;
     flex-direction: column;
+
+    @include media.max(lg) {
+      padding-inline: 16px;
+    }
 
     .navigation.extended & {
       display: flex;
@@ -249,6 +257,10 @@
     padding-inline: 32px;
     display: none;
     flex-direction: column;
+
+    @include media.max(sm) {
+      padding-inline: 16px;
+    }
 
     .navigation.extended & {
       display: flex;
@@ -294,13 +306,5 @@
   .navigation-footer {
     background-color: #f0efed;
     gap: 24px;
-  }
-}
-
-// Mobile-specific styles
-@include media.max(sm) {
-  ::slotted(post-mainnavigation),
-  .navigation-footer {
-    padding-inline: 16px;
   }
 }

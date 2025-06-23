@@ -86,7 +86,8 @@ export class PostMainnavigation {
   }
 
   private get navigationItems(): HTMLElement[] {
-    return Array.from(this.navbar.querySelectorAll(':is(a, button):not(post-megadropdown *)'));
+    const selector = ':is(post-megadropdown-trigger, post-list-item > a, post-list-item > post-megadropdown-trigger):not(post-megadropdown *)';
+    return Array.from(this.navbar.querySelectorAll(selector));
   }
 
   /**

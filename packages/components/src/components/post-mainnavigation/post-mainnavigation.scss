@@ -9,11 +9,6 @@
 @use '@swisspost/design-system-styles/components/header/mixins' as header-mx;
 @use '@swisspost/design-system-styles/variables/elevation';
 @use '@swisspost/design-system-styles/variables/color';
-
-post-mainnavigation:has(.target-group) {
-  
-}
-
 post-mainnavigation {
 
   .mobile-header-section {
@@ -26,6 +21,7 @@ post-mainnavigation {
       
       .navigation.extended & {
         display: flex;
+        flex-direction: column;
       }
     }
   }
@@ -63,11 +59,11 @@ post-mainnavigation {
 
   .back-button {
     @include media.max(lg) {
-      font-size: 16px;
+      padding: 16px 0 0 32px;
     }
 
     @include media.max(sm) {
-      font-size: 14px;
+      padding: 16px 0 0 16px;
     }
   }
 
@@ -101,7 +97,6 @@ post-mainnavigation {
 
     nav {
       flex: 1 1 auto;
-      overflow: hidden;
       scroll-behavior: smooth;
     }
 
@@ -136,6 +131,7 @@ post-mainnavigation {
     post-list > [role='list'] {
       flex-direction: row;
       max-width: 100vw;
+      
     }
 
     post-list-item {
@@ -277,8 +273,8 @@ post-list {
     
     @include media.max(lg) {
       flex-direction: column;
-    }
   }
+}
 }
 
 post-list-item {
