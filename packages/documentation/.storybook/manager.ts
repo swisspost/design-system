@@ -76,7 +76,7 @@ const applyFilter = () => {
       filters: {
         patterns: currentFilterFunction,
       },
-      renderLabel: renderLabel, // Add the custom renderLabel function
+      renderLabel: renderLabel,
     },
   });
   window.location.reload();
