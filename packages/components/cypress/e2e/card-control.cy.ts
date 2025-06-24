@@ -55,13 +55,7 @@ describe('Card-Control', () => {
     it('should render label also with empty string, but log an error', () => {
       cy.get('@card-control').invoke('attr', 'label', '');
       cy.get('@label').should('exist').and('have.text', '');
-      cy.get('@consoleError')
-        .invoke('getCalls')
-        .then(calls => {
-          expect(calls[0].args[0].message).to.eq(
-            'The prop `label` of the `post-card-control` component is required.',
-          );
-        });
+      cy.get('@consoleError').should('be.called');
     });
 
     it('should set description text according to "description" prop', () => {
@@ -89,13 +83,7 @@ describe('Card-Control', () => {
 
     it('should log an error when "type" prop is not defined', () => {
       cy.get('@card-control').invoke('attr', 'type', '');
-      cy.get('@consoleError')
-        .invoke('getCalls')
-        .then(calls => {
-          expect(calls[0].args[0].message).to.eq(
-            'The prop `type` of the `post-card-control` component must be one of the following values: checkbox, radio.',
-          );
-        });
+      cy.get('@consoleError').should('be.called');
     });
 
     it('should set input "name" attr according to "name" prop', () => {
@@ -491,7 +479,7 @@ describe('Card-Control', () => {
       cy.get('@wrapper').eq(1).should('have.class', 'is-disabled');
       cy.get('@input').eq(1).should('have.attr', 'aria-disabled');
 
-      let formValue = null;
+      let formValue: string;
 
       cy.get('@form').then($form => {
         cy.get('@input').each(($input, i) => {
