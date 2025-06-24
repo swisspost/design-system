@@ -90,20 +90,13 @@
     > a {
       display: flex;
       align-items: center;
-
-      // > div > svg {
-      //   margin-top: 0;
-      //   width: 1.2em;
-      //   height: 1.2em;
-      // }
     }
 
-    // Hide default SVG icons when there's a custom package icon span
+    // Hide default SVG icons
     > a > div > svg {
       display: none;
     }
 
-    // Keep default icon colors for items without package tags
     &[data-nodetype='group']:not(:has(span img)) > a > div > svg {
       color: post.$gray-60;
     }

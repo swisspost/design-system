@@ -105,12 +105,12 @@ addons.setConfig({
     renderLabel: renderLabel, // Add the custom renderLabel function here too
   },
   toolbar: {
-    remount: { hidden: true },
-    zoom: { hidden: true },
-    addons: { hidden: true },
-    fullscreen: { hidden: true },
-    eject: { hidden: true },
-    copy: { hidden: true },
+    remount: { hidden: true }, // controls the visibility of the "Remount component" button
+    zoom: { hidden: true }, // controls the visibility of the "Zoom in", "Zoom out", and "Reset zoom" buttons
+    addons: { hidden: true }, // controls the visibility of the "Show addons" button
+    fullscreen: { hidden: true }, // controls the visibility of the "Go full screen" button
+    eject: { hidden: true }, // controls the visibility of the "Open canvas in new tab" button
+    copy: { hidden: true }, // controls the visibility of the "Copy canvas link" button
   },
 });
 
