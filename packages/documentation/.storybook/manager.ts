@@ -102,7 +102,7 @@ addons.setConfig({
     filters: {
       patterns: currentFilterFunction,
     },
-    renderLabel: renderLabel, // Add the custom renderLabel function here too
+    renderLabel: renderLabel,
   },
   toolbar: {
     remount: { hidden: true }, // controls the visibility of the "Remount component" button
