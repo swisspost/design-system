@@ -16,12 +16,6 @@
     padding-right: 20vw;
   }
 
-  @include post.media-breakpoint-up(sm) {
-    .container {
-      padding-right: 35vw;
-    }
-  }
-
   @include post.media-breakpoint-up(xl) {
     background-position: center right;
   }

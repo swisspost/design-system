@@ -1,6 +1,6 @@
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { breakpoint } from '@/utils';
+import { checkRequiredAndType, breakpoint } from '@/utils';
 
 /**
  * @slot grid-{1|2|3|4}-title - Slot for the accordion headers (mobile).
@@ -25,6 +25,15 @@ export class PostFooter {
   @Prop() readonly label!: string;
 
   @State() isMobile: boolean = breakpoint.get('name') === 'mobile';
+
+  @Watch('label')
+  validateLabel() {
+    checkRequiredAndType(this, 'label', 'string');
+  }
+
+  componentWillLoad() {
+    this.validateLabel();
+  }
 
   connectedCallback() {
     window.addEventListener('postBreakpoint:name', this.breakpointChange);
