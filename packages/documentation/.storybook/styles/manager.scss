@@ -50,7 +50,7 @@
   .sidebar-item {
     position: relative;
     border-radius: 0;
-    overflow: visible!important;
+    overflow: visible !important;
 
     &:before,
     &:after {
@@ -83,30 +83,37 @@
   }
 
   .sidebar-item {
-    > span {
-      margin-top: 4px;
-    }
-
     + a:not([data-nodetype]) {
       display: none;
     }
 
-    > div > svg {
-      margin-top: 0;
-      width: 1.2em;
-      height: 1.2em;
+    > a {
+      display: flex;
+      align-items: center;
+
+      // > div > svg {
+      //   margin-top: 0;
+      //   width: 1.2em;
+      //   height: 1.2em;
+      // }
     }
 
-    &[data-nodetype='group'] svg {
+    // Hide default SVG icons when there's a custom package icon span
+    > a > div > svg {
+      display: none;
+    }
+
+    // Keep default icon colors for items without package tags
+    &[data-nodetype='group']:not(:has(span img)) > a > div > svg {
       color: post.$gray-60;
     }
-    &[data-nodetype='component'] svg {
+    &[data-nodetype='component']:not(:has(span img)) > a > div > svg {
       color: #0076a8;
     }
-    &[data-nodetype='document'] svg {
+    &[data-nodetype='document']:not(:has(span img)) > a > div > svg {
       color: #e03c31;
     }
-    &[data-nodetype='story'] svg {
+    &[data-nodetype='story']:not(:has(span img)) > a > div > svg {
       color: #7566a0;
     }
 
