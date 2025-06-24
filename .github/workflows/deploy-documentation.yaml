@@ -44,37 +44,38 @@ jobs:
               exit 1
           fi
           
+          CONFIG_CONTENT=$(cat "${{ steps.build.outputs.folder }}/netlify.config.json")
+          
           node -e "
           try {
-            const config = JSON.parse(process.env.CONFIG);
+            const config = JSON.parse(process.argv[1]);
             const { siteId, siteUrl } = config;
             
-            // Check if required fields exist
             if (!siteId || !siteUrl) {
               console.error('Error: Missing siteId or siteUrl in netlify config');
               process.exit(1);
             }
             
-            // Validate siteId format (alphanumeric and hyphens only)
-            if (!/^[a-zA-Z0-9-]+$/.test(siteId)) {
-              console.error('Error: Invalid site ID format. Must contain only letters, numbers, and hyphens.');
+            if (!/^[a-zA-Z0-9-]+\$/.test(siteId)) {
+              console.error('Error: Invalid site ID format.');
               process.exit(1);
             }
             
-            // Validate siteUrl format (alphanumeric, dots, and hyphens only)
-            if (!/^[a-zA-Z0-9.-]+$/.test(siteUrl)) {
-              console.error('Error: Invalid site URL format. Must contain only letters, numbers, dots, and hyphens.');
+            if (!/^[a-zA-Z0-9.-]+\$/.test(siteUrl)) {
+              console.error('Error: Invalid site URL format.');
               process.exit(1);
             }
+            
+          // Export environment variables for subsequent workflow steps
+          // These console.log outputs get redirected to GITHUB_ENV via >> operator
+          console.log('SITE_ID=' + siteId);
+          console.log('SITE_URL=' + siteUrl);
             
           } catch (error) {
-            console.error(error.message);
+            console.error('JSON parsing error:', error.message);
             process.exit(1);
           }
-          " >> $GITHUB_ENV
-        env:
-          CONFIG: $(cat "${{ steps.build.outputs.folder }}/netlify.config.json")
-
+          " "$CONFIG_CONTENT" >> $GITHUB_ENV
       - name: Remove netlify.config.json from artifact folder
         run: rm ${{ steps.build.outputs.folder }}/netlify.config.json
 
