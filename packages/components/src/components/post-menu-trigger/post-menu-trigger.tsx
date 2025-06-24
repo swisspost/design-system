@@ -1,6 +1,6 @@
 import { Component, Element, Prop, h, Host, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkType, getRoot } from '@/utils';
+import { getRoot, checkRequiredAndType } from '@/utils';
 
 @Component({
   tag: 'post-menu-trigger',
@@ -33,7 +33,7 @@ export class PostMenuTrigger {
    */
   @Watch('for')
   validateControlFor() {
-    checkType(this, 'for', 'string');
+    checkRequiredAndType(this, 'for', 'string');
   }
 
   private get menu(): HTMLPostMenuElement | null {
