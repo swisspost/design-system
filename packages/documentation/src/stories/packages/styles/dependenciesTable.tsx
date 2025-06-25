@@ -44,7 +44,7 @@ const DependenciesTable: React.FC = () => {
       <table aria-describedby="dependencies" className="table">
         <thead>
           <tr>
-            {['Version', 'Bootstrap', 'Angular', 'Ng-Bootstrap'].map(header => (
+            {['Version', 'Bootstrap', 'Angular', 'ng-Bootstrap'].map(header => (
               <th key={header} scope="col">
                 {header}
               </th>
