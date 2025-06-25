@@ -31,7 +31,7 @@ import * as CCR from './for.stories';
 
 ##### Possible Workarounds
 
-###### 1. `Element:ariaLabelledByElements` (Non SSR compatible: to be tested)
+###### 1. `Element:ariaLabelledByElements` (Non 100% SSR compatible)
 
 Define programmatically the `ariaLabelledByElements` property of the element. This solution creates the relationship without the use of an `id`.
 
@@ -47,7 +47,7 @@ Define programmatically the `ariaLabelledByElements` property of the element. Th
   <Controls of={CCR.Example3} />
 </div>
 
-###### 2. Set `aria-labelledby`on the host (for SSR Components : to be tested)
+###### 2. Set `aria-labelledby`on the host (SSR compatible)
 
 This solution involves setting the `aria-labelledby` directly on the host. In order for this solution to work, the host must have a set `role=""` along with `tabindex="0"`.
 This defines the label text as the Accessible Name of the component, but NVDA does not announce it when an interactive element (e.g. an `<input>`) exists inside the component.
@@ -79,14 +79,13 @@ Setting `aria-labelledby` via `ElementInternals`.
   the element's shadow-including tree.
 </p>
 
-<Canvas of={CCR.Example4} sourceState="shown" />
-
 ##### Possible Workaround
 
 The `Element:ariaLabelledByElements` does not work in this case.
 
 An alternative is to directly add an `id` on the host of the referencing element and an `aria-labelledby`on the target element.
 
+<Canvas of={CCR.Example4} sourceState="shown" />
 ### IV.Referencing From a Shadow DOM Out to another Shadow DOM ❌
 
 <ul>

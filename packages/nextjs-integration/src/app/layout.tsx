@@ -13,7 +13,12 @@ export default function RootLayout({ children }: { readonly children: React.Reac
     <html lang="en">
       <body>
         <main style={{ paddingBlock: '3rem' }}>
-          <div className="container">{children}</div>
+          <div
+            style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
+            className="container"
+          >
+            {children}
+          </div>
         </main>
       </body>
     </html>
