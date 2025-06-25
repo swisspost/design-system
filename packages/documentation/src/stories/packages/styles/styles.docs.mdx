@@ -1,0 +1,142 @@
+import { Meta, Source } from '@storybook/blocks';
+import * as PackageStories from './styles.stories';
+import SampleVariable from './styles-variable.sample.scss?raw';
+import changelog from '@/../../styles/CHANGELOG.md?raw';
+import PackageDocs from '@/shared/packages-docs-layout.mdx';
+import DependenciesTable from './dependenciesTable';
+
+<Meta of={PackageStories} />
+
+# @swisspost/design-system-styles
+
+<div className="npm-package-link">
+  [![npm
+  version](https://badge.fury.io/js/@swisspost%2Fdesign-system-styles.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-styles)
+</div>
+
+<div className="lead">
+  The styling package, including theming for [Bootstrap](https://getbootstrap.com/) and
+  [ng-bootstrap](https://ng-bootstrap.github.io/#/home) components.
+</div>
+
+<PackageDocs changelog={changelog}>
+  ## Current release lines
+
+  <div className="table-responsive table-fit-content text-start">
+    <table aria-describedby="releases" className="table">
+      <thead>
+        <tr>
+          <th scope="col">Release line</th>
+          <th scope="col">Status</th>
+          <th scope="col">First release</th>
+          <th scope="col">Last release</th>
+          <th scope="col">EOL Start</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th scope="col">10.x</th>
+          <td>Beta</td>
+          <td>01.10.2024</td>
+          <td>TBD</td>
+          <td>TBD</td>
+        </tr>
+        <tr>
+          <th scope="col">9.x</th>
+          <td>Current</td>
+          <td>12.05.2025</td>
+          <td>TBD</td>
+          <td>TBD</td>
+        </tr>
+        <tr>
+          <th scope="col">8.x</th>
+          <td>Deprecated</td>
+          <td>01.07.2024</td>
+          <td>TBD</td>
+          <td>TBD</td>
+        </tr>
+        <tr>
+          <th scope="col">7.x</th>
+          <td>Deprecated</td>
+          <td>17.04.2024</td>
+          <td>TBD</td>
+          <td>01.06.2025</td>
+        </tr>
+        <tr>
+          <th scope="col">6.0.0 - 6.6.4</th>
+          <td>EOL</td>
+          <td>01.01.2023</td>
+          <td>31.12.2024</td>
+          <td>31.12.2024</td>
+        </tr>
+        <tr>
+          <th scope="col">5.0.0 - 5.4.1</th>
+          <td>EOL</td>
+          <td>01.02.2022</td>
+          <td>31.12.2023</td>
+          <td>31.12.2023</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  ## Dependencies
+
+  <DependenciesTable />
+
+  ## Installation
+
+  <Source code={`npm install @swisspost/design-system-styles`} language="bash" />
+
+  ## Usage
+
+  Import one of our stylesheets into your project (for example into your `/src/styles.scss` file).
+
+  <Source
+    code={`@use '@swisspost/design-system-styles/<bundle-name>.<extension>';`}
+    language="scss"
+  />
+
+  ### Available bundles
+
+  <div className="table-responsive">
+    <table className="table">
+      <thead>
+        <tr>
+          <th>&lt;bundle-name&gt;</th>
+          <th>&lt;extension&gt;</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>`index`</td>
+          <td>`css`, `scss`</td>
+          <td>everything for internet facing applications</td>
+        </tr>
+        <tr>
+          <td>`intranet`</td>
+          <td>`css`, `scss`</td>
+          <td>everything for internal applications</td>
+        </tr>
+        <tr>
+          <td>`basics`</td>
+          <td>`css`, `scss`</td>
+          <td>atomic styles for font, buttons, lists, etc. (no component styles)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  ### Variables, mixins, functions and placeholders
+
+  Use the SCSS core for your custom styles and make sure you're always using the most up to date definitions:
+
+  <div className="banner banner-info banner-md mb-16">
+    NOTE: The core file itself, does not produce any CSS output. It only contains variables, functions
+    and mixins.
+  </div>
+
+  <Source code={SampleVariable} language="scss" />
+</PackageDocs>
