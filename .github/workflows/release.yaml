@@ -277,8 +277,8 @@ jobs:
             const currentVersion = versions.find(version => version.version.startsWith(release.old.major))
 
             if (!release.isMajor) {
-            currentVersion.version = release.new.version
-            currentVersion.dependencies = release.new.dependencies
+              currentVersion.version = release.new.version
+              currentVersion.dependencies = release.new.dependencies
             }
 
             if (release.isMajor) {
