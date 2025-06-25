@@ -197,42 +197,42 @@ export class PostMainnavigation {
     }, NAVBAR_DISABLE_DURATION);
   }
 
- render() {
-  return (
-    <Host slot="post-mainnavigation" version={version}>
-      {/* Mobile header section (back button + target group) - only shows on mobile/tablet */}
-      <div class="mobile-header-section">
-        <div onClick={() => this.handleBackButtonClick()} class="back-button">
-          <slot name="back-button"></slot>
+  render() {
+    return (
+      <Host slot="post-mainnavigation" version={version}>
+        {/* Mobile header section (back button + target group) - only shows on mobile/tablet */}
+        <div class="mobile-header-section">
+          <div onClick={() => this.handleBackButtonClick()} class="back-button">
+            <slot name="back-button"></slot>
+          </div>
+          <div class="target-group">
+            <slot name="target-group"></slot>
+          </div>
         </div>
-        <div class="target-group">
-          <slot name="target-group"></slot>
-        </div>
-      </div>
       
-      {/* Desktop scroll controls */}
-      <div
-        aria-hidden="true"
-        class={{ 'scroll-control scroll-left': true, 'd-none': !this.canScrollLeft }}
-        onMouseDown={e => this.handleScrollButtonClick(e, 'left')}
-      >
-        <post-icon aria-hidden="true" name="chevronleft"></post-icon>
-      </div>
+        {/* Desktop scroll controls */}
+        <div
+          aria-hidden="true"
+          class={{ 'scroll-control scroll-left': true, 'd-none': !this.canScrollLeft }}
+          onMouseDown={e => this.handleScrollButtonClick(e, 'left')}
+        >
+          <post-icon aria-hidden="true" name="chevronleft"></post-icon>
+        </div>
 
-      {/* Main navigation content */}
-      <nav ref={el => (this.navbar = el)}>
-        <slot name="mainnavigation"></slot>
-      </nav>
+        {/* Main navigation content */}
+        <nav ref={el => (this.navbar = el)}>
+          <slot name="mainnavigation"></slot>
+        </nav>
 
-      {/* Desktop scroll controls */}
-      <div
-        aria-hidden="true"
-        class={{ 'scroll-control scroll-right': true, 'd-none': !this.canScrollRight }}
-        onMouseDown={e => this.handleScrollButtonClick(e, 'right')}
-      >
-        <post-icon aria-hidden="true" name="chevronright"></post-icon>
-      </div>
-    </Host>
-  );
-}
+        {/* Desktop scroll controls */}
+        <div
+          aria-hidden="true"
+          class={{ 'scroll-control scroll-right': true, 'd-none': !this.canScrollRight }}
+          onMouseDown={e => this.handleScrollButtonClick(e, 'right')}
+        >
+          <post-icon aria-hidden="true" name="chevronright"></post-icon>
+        </div>
+      </Host>
+    );
+  }
 }
