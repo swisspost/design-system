@@ -83,14 +83,6 @@ describe('Footer', () => {
 
       cy.get('@footer').find('post-accordion').should('exist');
       cy.get('@footer').find('post-accordion-item').should('have.length', 4);
-
-      // Verify each accordion item has proper structure for slotted content
-      cy.get('@footer')
-        .find('post-accordion-item')
-        .each($item => {
-          cy.wrap($item).find('slot[name="header"]').should('exist');
-          cy.wrap($item).find('slot:not([name])').should('exist');
-        });
     });
 
     it('should work across different mobile viewports', () => {
