@@ -1,4 +1,4 @@
-# PrimeNg Styles Workspace
+# PrimeNG Styles Workspace
 
 This is the workspace package which holds the `@swisspost/design-system-styles-primeng-workspace` package. This package itself is not published anywhere.
 
