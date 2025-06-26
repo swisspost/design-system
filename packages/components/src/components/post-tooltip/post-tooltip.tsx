@@ -92,10 +92,11 @@ export class PostTooltip {
   render() {
     const popoverClass = `${this.arrow ? 'has-arrow' : ''}`;
     return (
-      <Host data-version={version} role="tooltip">
+      <Host data-version={version}>
         <post-popovercontainer
           safeSpace="trapezoid"
           class={popoverClass}
+          role="tooltip"
           arrow={this.arrow}
           animation={this.animation}
           placement={this.placement}
