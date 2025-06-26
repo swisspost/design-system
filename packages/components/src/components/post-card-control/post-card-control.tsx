@@ -11,7 +11,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { checkNonEmpty, checkOneOf } from '@/utils';
+import { checkRequiredAndType, checkEmptyOrType, checkRequiredAndOneOf } from '@/utils';
 import { version } from '@root/package.json';
 
 let cardControlIds = 0;
@@ -145,12 +145,34 @@ export class PostCardControl {
 
   @Watch('label')
   validateControlLabel() {
-    checkNonEmpty(this, 'label');
+    checkRequiredAndType(this, 'label', 'string');
+  }
+
+  @Watch('description')
+  validateControlDescription() {
+    checkEmptyOrType(this, 'description', 'string');
   }
 
   @Watch('type')
   validateControlType() {
-    checkOneOf(this, 'type', ['checkbox', 'radio']);
+    checkRequiredAndOneOf(this, 'type', ['checkbox', 'radio']);
+  }
+
+  @Watch('name')
+  validateControlName() {
+    checkEmptyOrType(this, 'name', 'string');
+  }
+
+  @Watch('value')
+  validateControlValue() {
+    if (this.type == 'radio') {
+      checkEmptyOrType(this, 'value', 'string');
+    }
+  }
+
+  @Watch('icon')
+  validateControlIcon() {
+    checkEmptyOrType(this, 'icon', 'string');
   }
 
   @Watch('checked')
@@ -403,7 +425,11 @@ export class PostCardControl {
 
   componentDidLoad() {
     this.validateControlLabel();
+    this.validateControlName();
+    this.validateControlValue();
+    this.validateControlDescription();
     this.validateControlType();
+    this.validateControlIcon();
   }
 
   formAssociatedCallback() {
