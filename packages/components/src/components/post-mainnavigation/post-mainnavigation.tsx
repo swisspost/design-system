@@ -1,6 +1,10 @@
 import { Component, Host, h, State, Listen } from '@stencil/core';
 import { version } from '@root/package.json';
 
+/**
+ * @slot target-group - Holds the list of buttons to choose the target group.
+ */
+
 const SCROLL_REPEAT_INTERVAL = 100; // Interval for repeated scrolling when holding down scroll button
 const NAVBAR_DISABLE_DURATION = 400; // Duration to temporarily disable navbar interactions during scrolling
 
@@ -40,7 +44,7 @@ export class PostMainnavigation {
     // Observe the navbar for size changes
     this.resizeObserver.observe(this.navbar);
 
-    // Observe the navabar for mutation changes
+    // Observe the navbar for mutation changes
     this.mutationObserver.observe(this.navbar, { subtree: true, childList: true }); // Recheck scrollability when navigation list changes
 
     // Ensure the scroll buttons are correctly displayed or hidden whenever the navbar is scrolled
@@ -81,27 +85,52 @@ export class PostMainnavigation {
     this.checkScrollability();
   }
 
-  private get navigationItems(): HTMLElement[] {
-    return Array.from(this.navbar.querySelectorAll(':is(a, button):not(post-megadropdown *)'));
+    private get navigationItems(): HTMLElement[] {
+    if (!this.navbar) return [];
+    
+    const selector = 'post-list-item a:not(post-megadropdown *), post-list-item post-megadropdown-trigger:not(post-megadropdown *)';
+    const elements = Array.from(this.navbar.querySelectorAll(selector));
+    
+    return elements as HTMLElement[];
   }
 
   /**
    * Hack to fix the layout shift due to bold text on active elements
    */
+  /**
+   * Hack to fix the layout shift due to bold text on active elements
+   */
   private fixLayoutShift() {
-    this.navigationItems
+    const items = this.navigationItems;
+    if (!Array.isArray(items)) return;
+    
+    items
       .filter(item => !item.matches(':has(.nav-el-active)'))
       .forEach(item => {
-        item.innerHTML = `
-          <span class="nav-el-active">${item.innerHTML}</span>
-          <span class="nav-el-inactive" aria-hidden="true">${item.innerHTML}</span>
-        `;
+        if (item.tagName.toLowerCase() === 'a') {
+          // Handle regular <a> elements
+          item.innerHTML = `
+            <span class="nav-el-active">${item.innerHTML}</span>
+            <span class="nav-el-inactive" aria-hidden="true">${item.innerHTML}</span>
+          `;
+        } else if (item.tagName.toLowerCase() === 'post-megadropdown-trigger') {
+          // Handle post-megadropdown-trigger elements - apply fix to their internal button
+          const button = item.querySelector('button');
+          if (button && !button.matches(':has(.nav-el-active)')) {
+            button.innerHTML = `
+              <span class="nav-el-active">${button.innerHTML}</span>
+              <span class="nav-el-inactive" aria-hidden="true">${button.innerHTML}</span>
+            `;
+          }
+        }
       });
   }
 
   private handleBackButtonClick() {
-    const header = this.navbar.closest<HTMLPostHeaderElement>('post-header');
-    if (header) header.toggleMobileMenu();
+    const header = document.querySelector<HTMLPostHeaderElement>('post-header');
+    if (header && typeof header.toggleMobileMenu === 'function') {
+      header.toggleMobileMenu(false);
+    }
   }
 
   /**
@@ -195,10 +224,17 @@ export class PostMainnavigation {
   render() {
     return (
       <Host slot="post-mainnavigation" version={version}>
-        <div onClick={() => this.handleBackButtonClick()} class="back-button">
-          <slot name="back-button"></slot>
+        {/* Mobile header section (back button + target group) - only shows on mobile/tablet */}
+        <div class="mobile-header-section">
+          <div onClick={() => this.handleBackButtonClick()} class="back-button">
+            <slot name="back-button"></slot>
+          </div>
+          <div class="target-group">
+            <slot name="target-group"></slot>
+          </div>
         </div>
-
+      
+        {/* Desktop scroll controls */}
         <div
           aria-hidden="true"
           class={{ 'scroll-control scroll-left': true, 'd-none': !this.canScrollLeft }}
@@ -207,10 +243,12 @@ export class PostMainnavigation {
           <post-icon aria-hidden="true" name="chevronleft"></post-icon>
         </div>
 
+        {/* Main navigation content - using default slot */}
         <nav ref={el => (this.navbar = el)}>
           <slot></slot>
         </nav>
 
+        {/* Desktop scroll controls */}
         <div
           aria-hidden="true"
           class={{ 'scroll-control scroll-right': true, 'd-none': !this.canScrollRight }}

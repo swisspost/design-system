@@ -15,7 +15,7 @@
   z-index: commons.$zindex-header;
   position: relative;
 
-  // The following variables will affect the header to minimize it on scroll
+  // Variables for header minimization on scroll
   --post-global-header-top: calc(
     (var(--post-global-header-height) - var(--post-global-header-reduced-height)) * -1
   );
@@ -25,7 +25,7 @@
   --post-logo-height: calc(var(--post-global-header-height) - var(--post-header-scroll-top, 0px));
   --post-global-controls-top: calc(min((var(--post-header-scroll-top) / 4), 20px) * -1);
 
-  // If focus is within the header (except the logo and the post-mainnavigation elements), the header should be shown fully
+  // Show header fully when focus is within (except logo and main navigation)
   &:has(.global-sub > *:not(.logo):focus-within),
   &:has(.local-sub:focus-within) {
     --post-global-header-top: 0;
@@ -87,14 +87,14 @@
   gap: 24px;
 
   @include media.min(lg) {
-    // targets the right links and language switch to hide them on scroll
+    // Target right links and language switch to hide them on scroll
     &:not(:has(.logo)) {
       position: relative;
       transition: inset-block-start 0.2s ease-in-out;
       inset-block-start: var(--post-global-controls-top);
     }
 
-    // targets the target group
+    // Target the target group
     &:not(:last-child):not(:first-child) {
       flex-grow: 1;
     }
@@ -113,7 +113,7 @@
   align-self: flex-end;
 
   @include media.min(lg) {
-    transition: height 0.2 ease-in-out;
+    transition: height 0.2s ease-in-out;
     height: var(--post-logo-height);
   }
 }
@@ -125,6 +125,17 @@
   padding-inline-start: 0;
   gap: 1rem;
   flex-shrink: 0 !important;
+}
+
+::slotted(.btn) {
+  @include media.max(lg) {
+    font-size: 16px !important;
+    padding: 0 !important;
+  }
+
+  @include media.max(sm) {
+    font-size: 14px !important;
+  }
 }
 
 .local-header {
@@ -164,7 +175,6 @@
     z-index: 3;
     position: relative;
     padding-block: 8px;
-
     flex-wrap: wrap;
     gap: 12px;
 
@@ -217,7 +227,7 @@
   }
 }
 
-// only for tablet and mobile
+// Tablet and mobile navigation styles
 @include media.max(lg) {
   .navigation {
     position: sticky;
@@ -228,19 +238,36 @@
 
   .mobile-menu {
     background-color: #fafafa;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
 
-  ::slotted(post-mainnavigation),
+  // Target the post-mainnavigation component within mobile menu
+  ::slotted(post-mainnavigation) {
+    padding-block: 16px 24px;
+    padding-inline: 32px;
+    display: none;
+    flex-direction: column;
+
+    @include media.max(lg) {
+      padding-inline: 16px;
+    }
+
+    .navigation.extended & {
+      display: flex;
+    }
+  }
+  
   .navigation-footer {
     padding-block: 16px 24px;
     padding-inline: 32px;
-  }
-
-  ::slotted(post-mainnavigation),
-  .navigation-footer,
-  .navigation-target-group {
     display: none;
     flex-direction: column;
+
+    @include media.max(sm) {
+      padding-inline: 16px;
+    }
 
     .navigation.extended & {
       display: flex;
@@ -269,20 +296,22 @@
     }
   }
 
+  // Spacing for post-mainnavigation content in mobile
   ::slotted(post-mainnavigation) {
     gap: 32px;
+  }
+
+  @include media.max(sm) {
+    // Adjust spacing when target group is present
+    :has([slot="target-group"]) {
+      ::slotted(post-mainnavigation) {
+        gap: 24px;
+      }
+    }
   }
 
   .navigation-footer {
     background-color: #f0efed;
     gap: 24px;
-  }
-}
-
-// only for mobile
-@include media.max(sm) {
-  ::slotted(post-mainnavigation),
-  .navigation-footer {
-    padding-inline: 16px;
   }
 }

@@ -316,7 +316,6 @@ export class PostHeader {
 
   private renderNavigation() {
     const navigationClasses = ['navigation'];
-
     const mobileMenuScrollTop = this.mobileMenu?.scrollTop ?? 0;
 
     if (this.mobileMenuExtended) {
@@ -333,12 +332,15 @@ export class PostHeader {
         style={{ '--post-header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
       >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
-          <div class="navigation-target-group">
-            {(this.device === 'mobile' || this.device === 'tablet') && (
-              <slot name="target-group"></slot>
+          <post-mainnavigation>
+            {/* Pass through slots to main navigation */}
+            <slot name="back-button" slot="back-button"></slot>
+            {this.device !== 'desktop' && (
+              <slot name="target-group" slot="target-group"></slot>
             )}
-          </div>
-          <slot name="post-mainnavigation"></slot>
+            <slot name="post-mainnavigation"></slot>
+          </post-mainnavigation>
+        
           {(this.device === 'mobile' || this.device === 'tablet') && (
             <div class="navigation-footer">
               <slot name="meta-navigation"></slot>
@@ -360,6 +362,7 @@ export class PostHeader {
             </div>
           </div>
           <div class="global-sub">
+            {/* Target group only shows in global header on desktop */}
             {this.device === 'desktop' && <slot name="target-group"></slot>}
           </div>
           <div class="global-sub">

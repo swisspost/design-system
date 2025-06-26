@@ -11,7 +11,23 @@
 @use '@swisspost/design-system-styles/variables/color';
 
 post-mainnavigation {
-  // reset links and buttons
+
+  .mobile-header-section {
+    @include media.min(lg) {
+      display: none; // Hide on desktop
+    }
+    
+    @include media.max(lg) {
+      display: none;
+      
+      .navigation.extended & {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  // Reset links and buttons - now targeting default slot content
   post-list-item {
     > a {
       text-decoration: none;
@@ -42,23 +58,17 @@ post-mainnavigation {
     }
   }
 
-  // Absolute positioned so that it goes over the target group if present
-  > .back-button {
-    position: absolute;
-    top: 16px;
-  }
-
   .back-button {
     @include media.max(lg) {
-      font-size: 16px;
+      padding: 16px 32px 0 32px;
     }
 
     @include media.max(sm) {
-      font-size: 14px;
+      padding: 16px 16px 0 16px;
     }
   }
 
-  // styles specific to for the mega-dropdown buttons
+  // Styles specific to mega-dropdown buttons
   > button,
   post-megadropdown-trigger button {
     &::after {
@@ -78,7 +88,7 @@ post-mainnavigation {
     }
   }
 
-  // desktop styles
+  // Desktop styles
   @include media.min(lg) {
     display: block;
     position: relative;
@@ -88,8 +98,8 @@ post-mainnavigation {
 
     nav {
       flex: 1 1 auto;
-      overflow: hidden;
       scroll-behavior: smooth;
+      overflow: hidden;
     }
 
     .scroll-control {
@@ -119,9 +129,11 @@ post-mainnavigation {
       }
     }
 
+    // Target post-list in default slot
     post-list > [role='list'] {
       flex-direction: row;
       max-width: 100vw;
+      
     }
 
     post-list-item {
@@ -178,7 +190,7 @@ post-mainnavigation {
         }
       }
 
-      // styles specific to for the mega-dropdown buttons
+      // Styles specific to mega-dropdown buttons
       > button,
       post-megadropdown-trigger button {
         padding-inline-end: 12px;
@@ -211,7 +223,7 @@ post-mainnavigation {
     }
   }
 
-  // tablet/mobile styles
+  // Tablet/mobile styles
   @include media.max(lg) {
     nav {
       transform: none !important;
@@ -233,7 +245,7 @@ post-mainnavigation {
       }
     }
 
-    // styles specific to for the mega-dropdown buttons
+    // Styles specific to mega-dropdown buttons
     > button::after,
     post-megadropdown-trigger button::after {
       transform: rotate(-90deg);
@@ -244,3 +256,22 @@ post-mainnavigation {
     padding-inline: 0;
   }
 }
+  
+  post-megadropdown-trigger button {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    width: 100%;
+    
+    @include media.min(lg) {
+      justify-content: space-between;
+    }
+    
+    @include media.max(lg) {
+      justify-content: flex-start;
+    }
+  }
+

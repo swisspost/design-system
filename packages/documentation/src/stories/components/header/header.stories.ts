@@ -113,8 +113,15 @@ const Template = {
             <h1 slot="title">${args.title}</h1>
           `
         : ''}
+      
+      <!-- Back button - shared by both header and mainnavigation -->
+      <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
+        <post-icon aria-hidden="true" name="arrowleft"></post-icon> Back
+      </button>
+
       ${args.targetGroup
         ? html`
+            <!-- Target group - shared by both header and mainnavigation -->
             <ul slot="target-group" class="target-group">
               <li>
                 <a href="#" class="active">Private customers</a>
@@ -128,6 +135,7 @@ const Template = {
             </ul>
           `
         : ''}
+      
       ${args.customControls
         ? html`
             <!-- Custom content (optional) -->
@@ -148,11 +156,9 @@ const Template = {
           `
         : ''}
 
-      <!-- Main navigation -->
+      <!-- FIXED: Main navigation wrapped properly -->
       <post-mainnavigation caption="Main navigation">
-        <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
-          <post-icon aria-hidden="true" name="arrowleft"></post-icon> Back
-        </button>
+        <!-- Main navigation content goes to default slot -->
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
           <!-- Link only level 1 -->
@@ -197,6 +203,7 @@ const Template = {
               </post-list>
             </post-megadropdown>
           </post-list-item>
+          
           <post-list-item slot="post-list-item">
             <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
             <post-megadropdown id="packages">
