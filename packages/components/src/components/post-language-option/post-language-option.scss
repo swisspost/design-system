@@ -1,4 +1,5 @@
 @use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/elements';
@@ -76,11 +77,22 @@ post-language-option {
       box-sizing: border-box;
       justify-content: flex-start;
       position: relative;
+      border-radius: 0;
 
       &:hover {
         color: white;
         background-color: #504f4b;
       }
+    }
+
+    &:first-child :is(a, button) {
+      border-start-start-radius: commons.$border-radius;
+      border-start-end-radius: commons.$border-radius;
+    }
+
+    &:last-child :is(a, button) {
+      border-end-start-radius: commons.$border-radius;
+      border-end-end-radius: commons.$border-radius;
     }
   }
 }

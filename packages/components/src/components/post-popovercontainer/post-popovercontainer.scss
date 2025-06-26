@@ -36,7 +36,6 @@
     color: var(--post-current-palette-fg);
     background-color: var(--post-current-palette-bg);
     border-radius: commons.$border-radius;
-    overflow: hidden;
 
     &.animate-pop-in {
       @include animation.pop-in-animation(0.25s);
