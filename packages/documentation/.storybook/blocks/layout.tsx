@@ -3,6 +3,7 @@ import { PropsWithChildren } from 'react';
 import '../styles/layout.scss';
 import Footer from './footer';
 import Header from './header';
+import EOLBanner from './eol-banner';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 function shouldShowHeader() {
@@ -24,6 +25,7 @@ export default (props: PropsWithChildren<DocsContainerProps>) => {
   return (
     <DocsContainer context={context}>
       <Unstyled>
+        <EOLBanner />
         {shouldShowHeader() && <Header />}
         <div className={container}>{children}</div>
         {shouldShowFooter() && <Footer pathToStoryFile={ifDefined(pathToStoryFile)} />}
