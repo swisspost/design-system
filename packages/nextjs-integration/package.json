@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-nextjs-integration",
-  "version": "0.1.32",
+  "version": "0.1.33",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@swisspost/design-system-components-react": "workspace:8.10.1",
-    "@swisspost/design-system-styles": "workspace:8.10.1",
+    "@swisspost/design-system-components-react": "workspace:8.11.0",
+    "@swisspost/design-system-styles": "workspace:8.11.0",
     "@swisspost/internet-header": "1.15.15",
     "next": "14.2.5",
     "react": "^18",
