@@ -16,7 +16,7 @@ export class PostTestLabel {
 
   componentDidLoad() {
     const targetEl = document.querySelector('#' + this.for);
-    targetEl.ariaLabelledByElements = [this.internalEl];
+    if (targetEl) targetEl.ariaLabelledByElements = [this.internalEl];
   }
 
   render() {

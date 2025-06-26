@@ -40,6 +40,9 @@ export class PostTestTarget {
   }
 
   componentDidLoad() {
+    setTimeout(() => {
+      this.host.setAttribute('data-test', '5');
+    }, 2000);
     this.setAriaLabelledByElements();
   }
 
