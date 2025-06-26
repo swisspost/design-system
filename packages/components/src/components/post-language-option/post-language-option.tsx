@@ -130,6 +130,7 @@ export class PostLanguageOption {
       <Host data-version={version}>
         {this.url ? (
           <a
+            role={this.variant === 'menu' ? 'menuitem' : undefined}
             aria-current={this.active ? 'page' : undefined}
             aria-label={this.name}
             href={this.url}
@@ -142,6 +143,7 @@ export class PostLanguageOption {
           </a>
         ) : (
           <button
+            role={this.variant === 'menu' ? 'menuitem' : undefined}
             aria-current={this.active ? 'true' : undefined}
             aria-label={this.name}
             lang={lang}
