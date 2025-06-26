@@ -157,7 +157,7 @@ const Template = {
         : ''}
 
       <!-- FIXED: Main navigation wrapped properly -->
-      <post-mainnavigation slot="post-mainnavigation" caption="Main navigation">
+      <post-mainnavigation caption="Main navigation">
         <!-- Main navigation content goes to default slot -->
         <post-list title-hidden="">
           <h2>Main Navigation</h2>

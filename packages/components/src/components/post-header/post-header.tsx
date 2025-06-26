@@ -338,7 +338,6 @@ export class PostHeader {
             {this.device !== 'desktop' && (
               <slot name="target-group" slot="target-group"></slot>
             )}
-            {/* Changed: Remove slot="mainnavigation" to use default slot */}
             <slot name="post-mainnavigation"></slot>
           </post-mainnavigation>
         

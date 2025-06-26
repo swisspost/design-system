@@ -99,6 +99,7 @@ post-mainnavigation {
     nav {
       flex: 1 1 auto;
       scroll-behavior: smooth;
+      overflow: hidden;
     }
 
     .scroll-control {
@@ -255,51 +256,6 @@ post-mainnavigation {
     padding-inline: 0;
   }
 }
-
-// Ensure post-list and post-list-item are visible and styled properly
-post-list {
-  display: block;
-  
-  > [role='list'] {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 0;
-    
-    @include media.min(lg) {
-      flex-direction: row;
-      max-width: 100vw;
-    }
-    
-    @include media.max(lg) {
-      flex-direction: column;
-  }
-}
-}
-
-post-list-item {
-  display: block;
-  
-  > a,
-  > button,
-  post-megadropdown-trigger {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    border: none;
-    background: none;
-    cursor: pointer;
-    width: 100%;
-    
-    @include media.min(lg) {
-      justify-content: space-between;
-    }
-    
-    @include media.max(lg) {
-      justify-content: flex-start;
-    }
-  }
   
   post-megadropdown-trigger button {
     display: flex;
@@ -318,4 +274,4 @@ post-list-item {
       justify-content: flex-start;
     }
   }
-}
+
