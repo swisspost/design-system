@@ -158,7 +158,7 @@ export class PostPopovercontainer {
    */
   @Method()
   async show(target: HTMLElement) {
-    if (this.toggleTimeoutId || !target) return;
+    if (this.toggleTimeoutId) return;
 
     this.eventTarget = target;
     this.calculatePosition();
