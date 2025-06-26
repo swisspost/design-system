@@ -85,28 +85,52 @@ export class PostMainnavigation {
     this.checkScrollability();
   }
 
-  private get navigationItems(): HTMLElement[] {
-    const selector = ':is(post-megadropdown-trigger, post-list-item > a, post-list-item > post-megadropdown-trigger):not(post-megadropdown *)';
-    return Array.from(this.navbar.querySelectorAll(selector));
+    private get navigationItems(): HTMLElement[] {
+    if (!this.navbar) return [];
+    
+    const selector = 'post-list-item a:not(post-megadropdown *), post-list-item post-megadropdown-trigger:not(post-megadropdown *)';
+    const elements = Array.from(this.navbar.querySelectorAll(selector));
+    
+    return elements as HTMLElement[];
   }
 
   /**
    * Hack to fix the layout shift due to bold text on active elements
    */
+  /**
+   * Hack to fix the layout shift due to bold text on active elements
+   */
   private fixLayoutShift() {
-    this.navigationItems
+    const items = this.navigationItems;
+    if (!Array.isArray(items)) return;
+    
+    items
       .filter(item => !item.matches(':has(.nav-el-active)'))
       .forEach(item => {
-        item.innerHTML = `
-          <span class="nav-el-active">${item.innerHTML}</span>
-          <span class="nav-el-inactive" aria-hidden="true">${item.innerHTML}</span>
-        `;
+        if (item.tagName.toLowerCase() === 'a') {
+          // Handle regular <a> elements
+          item.innerHTML = `
+            <span class="nav-el-active">${item.innerHTML}</span>
+            <span class="nav-el-inactive" aria-hidden="true">${item.innerHTML}</span>
+          `;
+        } else if (item.tagName.toLowerCase() === 'post-megadropdown-trigger') {
+          // Handle post-megadropdown-trigger elements - apply fix to their internal button
+          const button = item.querySelector('button');
+          if (button && !button.matches(':has(.nav-el-active)')) {
+            button.innerHTML = `
+              <span class="nav-el-active">${button.innerHTML}</span>
+              <span class="nav-el-inactive" aria-hidden="true">${button.innerHTML}</span>
+            `;
+          }
+        }
       });
   }
 
   private handleBackButtonClick() {
-    const header = this.navbar.closest<HTMLPostHeaderElement>('post-header');
-    if (header) header.toggleMobileMenu();
+    const header = document.querySelector<HTMLPostHeaderElement>('post-header');
+    if (header && typeof header.toggleMobileMenu === 'function') {
+      header.toggleMobileMenu(false);
+    }
   }
 
   /**
@@ -219,9 +243,9 @@ export class PostMainnavigation {
           <post-icon aria-hidden="true" name="chevronleft"></post-icon>
         </div>
 
-        {/* Main navigation content */}
+        {/* Main navigation content - using default slot */}
         <nav ref={el => (this.navbar = el)}>
-          <slot name="mainnavigation"></slot>
+          <slot></slot>
         </nav>
 
         {/* Desktop scroll controls */}
