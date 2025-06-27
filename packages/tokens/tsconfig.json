@@ -3,6 +3,7 @@
     "target": "es2021",
     "module": "esnext",
     "moduleResolution": "bundler",
+    "baseUrl": "./src",
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
@@ -15,7 +16,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "resolveJsonModule": true,
-    "baseUrl": ".",
     "lib": ["es2022"]
   },
   "include": ["**/*.ts", "**/*.js"],

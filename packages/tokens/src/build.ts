@@ -3,9 +3,8 @@ import {
   createTokenSetFiles,
   createOutputFiles,
   removeTokenSetFiles,
-} from '../src/_build/methods.js';
-
-import '../src/_build/configs/index.js';
+} from './_build/methods.js';
+import './_build/configs/index.js';
 
 /**
  * Build process

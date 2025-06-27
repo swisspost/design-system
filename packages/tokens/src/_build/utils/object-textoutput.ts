@@ -1,4 +1,4 @@
-import { CUSTOM_FORMAT_INDENT } from '../constants.ts';
+import { CUSTOM_FORMAT_INDENT } from '../constants.js';
 
 type NestedObject = {
   [key: string]: string | number | boolean | NestedObject;

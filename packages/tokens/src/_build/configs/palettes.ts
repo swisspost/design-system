@@ -1,6 +1,6 @@
 import { expandTypesMap } from '@tokens-studio/sd-transforms';
 import { registerConfigMethod } from '../methods.js';
-import { TOKENSET_NAMES } from '../constants.ts';
+import { TOKENSET_NAMES } from '../constants.js';
 
 /**
  * Registers a config getter method to generate output files for all code relevant tokens in the tokens.json.
@@ -8,7 +8,7 @@ import { TOKENSET_NAMES } from '../constants.ts';
 registerConfigMethod((tokenSets, { sourcePath, buildPath }) => {
   const paletteSet = tokenSets.output[TOKENSET_NAMES.Palettes];
 
-  if (!paletteSet) return;
+  if (!paletteSet) return [];
 
   const { type, layer, filePath, sets } = paletteSet;
 

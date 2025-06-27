@@ -1,2 +1,2 @@
-export { default as objectDeepmerge } from './object-deepmerge.ts';
-export { default as objectTextoutput } from './object-textoutput.ts';
+export { default as objectDeepmerge } from './object-deepmerge.js';
+export { default as objectTextoutput } from './object-textoutput.js';
