@@ -432,7 +432,11 @@ export function getTokenValue(
       for (const key in value) {
         if (Object.hasOwn(value, key)) {
           if (typeof value[key] === 'string') value[key] = replaceReferences(value[key]);
-          if (typeof value[key] === 'object') value[key] = replaceAllReferences(value[key]);
+          if (typeof value[key] === 'object') {
+            value[key] = replaceAllReferences(
+              value[key] as { [key: string]: TokenProperty },
+            ) as TokenProperty;
+          }
         }
       }
 
