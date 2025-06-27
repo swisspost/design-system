@@ -40,6 +40,9 @@ export const PostCardControl: Story = {
           `,
         )}
       `,
+      {
+        filter: (scheme: string) => scheme === 'light',
+      },
     );
   },
 };

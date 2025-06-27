@@ -3,6 +3,7 @@
 @use './core';
 @use './../mixins/tokens';
 
-:root {
+:root,
+[data-color-scheme] {
   @include tokens.from(channel.$post-idk);
 }
