@@ -1,5 +1,14 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.40
+
+### Patch Changes
+
+- Fixed a typo in the render function of the `post-footer` to use the correct `post-accordion` component. (by [@leagrdv](https://github.com/leagrdv) with [#5723](https://github.com/swisspost/design-system/pull/5723))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.40
+  - @swisspost/design-system-icons@10.0.0-next.40
+
 ## 10.0.0-next.39
 
 ### Major Changes
