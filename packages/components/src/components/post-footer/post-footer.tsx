@@ -2,6 +2,8 @@ import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { checkRequiredAndType, breakpoint } from '@/utils';
 
+const GRID_SLOTS = ['grid-1', 'grid-2', 'grid-3', 'grid-4'];
+
 /**
  * @slot grid-{1|2|3|4}-title - Slot for the accordion headers (mobile).
  * @slot grid-{1|2|3|4} - Slot for the accordion bodies (mobile) and the grid cells (tablet, desktop).
@@ -25,18 +27,25 @@ export class PostFooter {
   @Prop() readonly label!: string;
 
   @State() isMobile: boolean = breakpoint.get('name') === 'mobile';
+  @State() gridSlotDisplayed: Record<string, boolean> = {};
 
   @Watch('label')
   validateLabel() {
     checkRequiredAndType(this, 'label', 'string');
   }
 
+  connectedCallback() {
+    window.addEventListener('postBreakpoint:name', this.breakpointChange);
+  }
+
   componentWillLoad() {
     this.validateLabel();
   }
 
-  connectedCallback() {
-    window.addEventListener('postBreakpoint:name', this.breakpointChange);
+  componentDidLoad() {
+    GRID_SLOTS.forEach(slotName => {
+      this.updateGridSlotDisplay(this.host.shadowRoot.querySelector(`slot[name="${slotName}"]`));
+    });
   }
 
   disconnectedCallback() {
@@ -47,56 +56,34 @@ export class PostFooter {
     this.isMobile = e.detail === 'mobile';
   };
 
+  private updateGridSlotDisplay(slot: Element | EventTarget) {
+    if (slot instanceof HTMLSlotElement) {
+      const hasContent = slot.assignedElements().length > 0;
+      this.gridSlotDisplayed = {...this.gridSlotDisplayed, [slot.name]: hasContent};
+    }
+  }
+
   private renderAccordion() {
     return (
-      <div class="footer-grid">
-        <post-accordion headingLevel={3} multiple>
-          <post-accordion-item collapsed>
+      <post-accordion headingLevel={3} multiple={true}>
+        {GRID_SLOTS.map(slotName => (
+          <post-accordion-item class={{ 'd-none': !this.gridSlotDisplayed[slotName] }} collapsed={true}>
             <span slot="header">
-              <slot name="grid-1-title"></slot>
+              <slot name={slotName + '-title'}></slot>
             </span>
-            <slot name="grid-1"></slot>
+            <slot onSlotchange={(e) => this.updateGridSlotDisplay(e.target)} name={slotName}></slot>
           </post-accordion-item>
-          <post-accordion-item collapsed>
-            <span slot="header">
-              <slot name="grid-2-title"></slot>
-            </span>
-            <slot name="grid-2"></slot>
-          </post-accordion-item>
-          <post-accordion-item collapsed>
-            <span slot="header">
-              <slot name="grid-3-title"></slot>
-            </span>
-            <slot name="grid-3"></slot>
-          </post-accordion-item>
-          <post-accordion-item collapsed>
-            <span slot="header">
-              <slot name="grid-4-title"></slot>
-            </span>
-            <slot name="grid-4"></slot>
-          </post-accordion-item>
-        </post-accordion>
-      </div>
+        ))}
+      </post-accordion>
     );
   }
 
-  private renderGrid() {
-    return (
-      <div class="footer-grid">
-        <div>
-          <slot name="grid-1"></slot>
-        </div>
-        <div>
-          <slot name="grid-2"></slot>
-        </div>
-        <div>
-          <slot name="grid-3"></slot>
-        </div>
-        <div>
-          <slot name="grid-4"></slot>
-        </div>
+  private renderColumns() {
+    return GRID_SLOTS.map(slotName => (
+      <div class={{ 'd-none': !this.gridSlotDisplayed[slotName] }}>
+        <slot onSlotchange={(e) => this.updateGridSlotDisplay(e.target)} name={slotName}></slot>
       </div>
-    );
+    ));
   }
 
   render() {
@@ -106,7 +93,9 @@ export class PostFooter {
           <h2 class="visually-hidden">{this.label}</h2>
 
           <div class="footer-container">
-            {this.isMobile ? this.renderAccordion() : this.renderGrid()}
+            <div class="footer-grid">
+              {this.isMobile ? this.renderAccordion() : this.renderColumns()}
+            </div>
 
             <div class="footer-column">
               <div class="footer-socialmedia">
