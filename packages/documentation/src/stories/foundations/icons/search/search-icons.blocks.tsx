@@ -400,7 +400,7 @@ export class Search extends React.Component {
       <div className="container">
         <div className="search-form">{this.searchForm()}</div>
         <div className="search-results">
-          <a href="#results-top"></a>
+          <a href="#results-top" aria-hidden="true" tabindex="-1"></a>
           {this.paging()}
           {this.resultsList()}
           {this.paging()}
