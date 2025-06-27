@@ -52,3 +52,7 @@ export interface TokenSets {
   };
   output: ProcessedTokenSetsOutput;
 }
+
+export type TokenGroup = {
+  [key: string]: string | number | boolean | TokenGroup | undefined;
+};

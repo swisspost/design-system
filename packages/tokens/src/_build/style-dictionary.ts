@@ -5,8 +5,8 @@ import {
   FILE_HEADER,
   NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES,
   PX_TO_REM_TOKEN_TYPE,
-} from './constants.ts';
-
+} from './constants.js';
+import { TokenGroup } from './types.js';
 register(StyleDictionary);
 
 /**
@@ -39,9 +39,11 @@ StyleDictionary.registerTransform({
   type: 'value',
   filter: token => {
     const usesDtcg = token.$type && token.$value;
-    const transformType = NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES.includes(
-      usesDtcg ? token.$type : token.type,
-    );
+    let transformType = false;
+    if (typeof token.$type === 'string' && typeof token.type === 'string') {
+      const typeToCheck = usesDtcg ? token.$type : token.type;
+      transformType = NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES.includes(typeToCheck);
+    }
 
     if (transformType) {
       return token[usesDtcg ? '$value' : 'value'] === '0';
@@ -97,24 +99,26 @@ StyleDictionary.registerPreprocessor({
   preprocessor: dictionary => {
     traverse(dictionary);
 
-    function traverse(context) {
+    function traverse(context: TokenGroup) {
       Object.entries(context).forEach(([key, value]) => {
-        const usesDtcg = context[key].$type && context[key].$value;
-        const isToken = context[key][usesDtcg ? '$type' : 'type'] !== undefined;
+        if (typeof context[key] === 'object' && context[key] !== null) {
+          const usesDtcg = (context[key] as any).$type && (context[key] as any).$value;
+          const isToken = (context[key] as any)[usesDtcg ? '$type' : 'type'] !== undefined;
 
-        if (isToken) {
-          const tokenType = context[key][usesDtcg ? '$type' : 'type'];
-          const tokenValue = context[key][usesDtcg ? '$value' : 'value'];
+          if (isToken) {
+            const tokenType = (context[key] as any)[usesDtcg ? '$type' : 'type'];
+            const tokenValue = (context[key] as any)[usesDtcg ? '$value' : 'value'];
 
-          if (tokenType === 'shadow' && typeof tokenValue === 'string') {
-            context[key].$extensions[
-              'studio.tokens'
-            ].boxShadowKeepRefsWorkaroundValue = `${tokenValue.replace(/[{}]/g, match =>
-              match === '{' ? '[[' : ']]',
-            )}`;
+            if (tokenType === 'shadow' && typeof tokenValue === 'string') {
+              (context[key] as any).$extensions[
+                'studio.tokens'
+              ].boxShadowKeepRefsWorkaroundValue = `${tokenValue.replace(/[{}]/g, match =>
+                match === '{' ? '[[' : ']]',
+              )}`;
+            }
+          } else if (typeof value === 'object' && value !== null) {
+            traverse(value as TokenGroup);
           }
-        } else if (typeof context[key] === 'object') {
-          traverse(value);
         }
       });
     }
