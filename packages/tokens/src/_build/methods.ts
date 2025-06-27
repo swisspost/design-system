@@ -17,14 +17,7 @@ import {
   TOKENSET_PREFIX,
 } from './constants.js';
 
-import {
-  CliOptions,
-  RawTokenJson,
-  TokenDefinition,
-  TokenSets,
-  TokenProperty,
-  ProcessedTokenSetsOutput,
-} from './types.js';
+import { CliOptions, RawTokenJson, TokenDefinition, TokenSets, TokenProperty } from './types.js';
 import { objectDeepmerge } from './utils/index.js';
 import { LocalOptions } from 'style-dictionary/types';
 
@@ -101,7 +94,7 @@ function createTokenSets(tokensFile: RawTokenJson): TokenSets {
 
   // combine tokensets by group so they can be outputted in a single file
   const output = Object.entries(normalized).reduce(
-    (definition: ProcessedTokenSetsOutput, [name, set]) => {
+    (definition: TokenSets['output'], [name, set]) => {
       const { groupSlug, groupName, setName, baseDefinition } = getDefinition(name);
       const existingGroup = definition[groupSlug];
 
@@ -120,7 +113,7 @@ function createTokenSets(tokensFile: RawTokenJson): TokenSets {
         };
       }
     },
-    {} as ProcessedTokenSetsOutput,
+    {} as TokenSets['output'],
   );
 
   return {
@@ -150,6 +143,7 @@ function createTokenSets(tokensFile: RawTokenJson): TokenSets {
           (isComponent && TOKENSET_LAYERS.component) ||
           TOKENSET_LAYERS.semantic,
         filePath: `${groupName ?? setName}.json`,
+        sets: {}, // MYRTA: is this needed?
       },
     };
   }
