@@ -1,6 +1,6 @@
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { breakpoint } from '@/utils';
+import { checkRequiredAndType, breakpoint } from '@/utils';
 
 /**
  * @slot grid-{1|2|3|4}-title - Slot for the accordion headers (mobile).
@@ -26,6 +26,15 @@ export class PostFooter {
 
   @State() isMobile: boolean = breakpoint.get('name') === 'mobile';
 
+  @Watch('label')
+  validateLabel() {
+    checkRequiredAndType(this, 'label', 'string');
+  }
+
+  componentWillLoad() {
+    this.validateLabel();
+  }
+
   connectedCallback() {
     window.addEventListener('postBreakpoint:name', this.breakpointChange);
   }
@@ -41,7 +50,7 @@ export class PostFooter {
   private renderAccordion() {
     return (
       <div class="footer-grid">
-        <post-accorddion heading-level="3" multiple>
+        <post-accordion headingLevel={3} multiple>
           <post-accordion-item collapsed>
             <span slot="header">
               <slot name="grid-1-title"></slot>
@@ -66,7 +75,7 @@ export class PostFooter {
             </span>
             <slot name="grid-4"></slot>
           </post-accordion-item>
-        </post-accorddion>
+        </post-accordion>
       </div>
     );
   }

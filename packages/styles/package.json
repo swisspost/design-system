@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-styles",
-  "version": "10.0.0-next.38",
+  "version": "10.0.0-next.39",
   "description": "Design System Styles for the Swiss Post web platform.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -21,8 +21,9 @@
   "scripts": {
     "play": "vite --open",
     "start": "gulp watch",
-    "build": "pnpm clean && gulp build",
-    "clean": "rimraf out-tsc dist src/tokens/temp",
+    "build": "pnpm turbo run build:force",
+    "build:force": "pnpm clean && gulp build",
+    "clean": "rimraf dist src/tokens/temp",
     "unit": "gulp sass:tests",
     "lint": "stylelint src/**/*.scss !src/tokens/temp/**",
     "lint:fix": "stylelint src/**/*.scss !src/tokens/temp/** --fix",
@@ -50,8 +51,8 @@
     "gulp-sourcemaps": "3.0.0"
   },
   "devDependencies": {
-    "@swisspost/design-system-icons": "workspace:10.0.0-next.38",
-    "@swisspost/design-system-tokens": "workspace:10.0.0-next.38",
+    "@swisspost/design-system-icons": "workspace:10.0.0-next.39",
+    "@swisspost/design-system-tokens": "workspace:10.0.0-next.39",
     "@types/node": "22.10.5",
     "autoprefixer": "10.4.20",
     "copyfiles": "2.4.1",

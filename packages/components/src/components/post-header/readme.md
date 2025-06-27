@@ -5,13 +5,6 @@
 <!-- Auto Generated Below -->
 
 
-## Events
-
-| Event              | Description                                  | Type                                             |
-| ------------------ | -------------------------------------------- | ------------------------------------------------ |
-| `postUpdateDevice` | An event emitted when the device has changed | `CustomEvent<"desktop" \| "mobile" \| "tablet">` |
-
-
 ## Methods
 
 ### `toggleMobileMenu(force?: boolean) => Promise<void>`
@@ -41,7 +34,6 @@ Type: `Promise<void>`
 | `"post-logo"`            | Should be used together with the `<post-logo>` component.                     |
 | `"post-mainnavigation"`  | Has a default slot because it's only meant to be used in the `<post-header>`. |
 | `"post-togglebutton"`    | Holds the mobile menu toggler.                                                |
-| `"target-group"`         | Holds the list of buttons to choose the target group.                         |
 | `"title"`                | Holds the application title.                                                  |
 
 
