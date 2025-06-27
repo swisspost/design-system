@@ -101,14 +101,13 @@ StyleDictionary.registerPreprocessor({
 
     function traverse(context: TokenGroup) {
       Object.entries(context).forEach(([key, value]) => {
+        const usesDtcg = (context[key] as any).$type && (context[key] as any).$value;
+        const isToken = (context[key] as any)[usesDtcg ? '$type' : 'type'] !== undefined;
+        const tokenType = (context[key] as any)[usesDtcg ? '$type' : 'type'];
+        const tokenValue = (context[key] as any)[usesDtcg ? '$value' : 'value'];
+
         if (typeof context[key] === 'object' && context[key] !== null) {
-          const usesDtcg = (context[key] as any).$type && (context[key] as any).$value;
-          const isToken = (context[key] as any)[usesDtcg ? '$type' : 'type'] !== undefined;
-
           if (isToken) {
-            const tokenType = (context[key] as any)[usesDtcg ? '$type' : 'type'];
-            const tokenValue = (context[key] as any)[usesDtcg ? '$value' : 'value'];
-
             if (tokenType === 'shadow' && typeof tokenValue === 'string') {
               (context[key] as any).$extensions[
                 'studio.tokens'
