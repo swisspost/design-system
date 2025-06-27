@@ -21,9 +21,9 @@ $tag-sm-icon-size: $tag-font-size;
 $tag-default-background: color.$gray-10;
 $tag-backgrounds: (
   'white': color.$white,
-  'info': color.$info,
-  'success': color.$success,
-  'error': color.$error,
-  'warning': color.$warning,
   'yellow': color.$yellow,
+  'success': color.$success,
+  'warning': color.$warning,
+  'danger': color.$error,
+  'info': color.$info,
 );
