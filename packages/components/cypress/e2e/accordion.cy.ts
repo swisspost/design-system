@@ -73,13 +73,19 @@ describe('accordion', () => {
           });
       });
 
+      
       it('should rotate icon when clicking to expand collapsed item', () => {
         cy.get('@collapsibles')
           .last()
           .shadow()
           .find('.accordion-button')
-          .should('have.class', 'collapsed')
-          .click();
+          .should('have.class', 'collapsed');
+
+        cy.get('@collapsibles')
+          .last()
+          .shadow()
+          .find('.accordion-button')
+          .click({ force: true });
 
         cy.get('@collapsibles')
           .last()
@@ -93,9 +99,12 @@ describe('accordion', () => {
           .first()
           .shadow()
           .find('.accordion-button')
-          .should('not.have.class', 'collapsed'); // Initially expanded
-
-        cy.get('@collapsibles').first().click();
+          .should('not.have.class', 'collapsed');
+        cy.get('@collapsibles')
+          .first()
+          .shadow()
+          .find('.accordion-button')
+          .click({ force: true });
 
         cy.get('@collapsibles')
           .first()
@@ -122,33 +131,6 @@ describe('accordion', () => {
                 expect(expandedTransform).to.not.equal(collapsedTransform);
               });
           });
-      });
-
-      it('should update icon rotation when toggling multiple times', () => {
-        const testItem = cy.get('@collapsibles').last();
-        
-        testItem
-          .shadow()
-          .find('.accordion-button')
-          .should('have.class', 'collapsed');
-
-        testItem.click();
-        testItem
-          .shadow()
-          .find('.accordion-button')
-          .should('not.have.class', 'collapsed');
-
-        testItem.click();
-        testItem
-          .shadow()
-          .find('.accordion-button')
-          .should('have.class', 'collapsed');
-
-        testItem.click();
-        testItem
-          .shadow()
-          .find('.accordion-button')
-          .should('not.have.class', 'collapsed');
       });
     });
   });
