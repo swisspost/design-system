@@ -8,7 +8,7 @@ import { TOKENSET_NAMES } from '../constants.js';
 registerConfigMethod((tokenSets, { sourcePath, buildPath }) => {
   const paletteSet = tokenSets.output[TOKENSET_NAMES.Palettes];
 
-  if (!paletteSet) return;
+  if (!paletteSet) return [];
 
   const { type, layer, filePath, sets } = paletteSet;
 
