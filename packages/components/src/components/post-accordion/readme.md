@@ -62,6 +62,19 @@ Type: `Promise<void>`
 | `"default"` | Slot for placing post-accordion-item components. |
 
 
+## Dependencies
+
+### Used by
+
+ - [post-footer](../post-footer)
+
+### Graph
+```mermaid
+graph TD;
+  post-footer --> post-accordion
+  style post-accordion fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

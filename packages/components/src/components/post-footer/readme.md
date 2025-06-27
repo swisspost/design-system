@@ -29,11 +29,13 @@
 
 ### Depends on
 
+- [post-accordion](../post-accordion)
 - [post-accordion-item](../post-accordion-item)
 
 ### Graph
 ```mermaid
 graph TD;
+  post-footer --> post-accordion
   post-footer --> post-accordion-item
   post-accordion-item --> post-collapsible-trigger
   post-accordion-item --> post-icon

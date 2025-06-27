@@ -50,7 +50,7 @@ export class PostFooter {
   private renderAccordion() {
     return (
       <div class="footer-grid">
-        <post-accorddion heading-level="3" multiple>
+        <post-accordion headingLevel={3} multiple>
           <post-accordion-item collapsed>
             <span slot="header">
               <slot name="grid-1-title"></slot>
@@ -75,7 +75,7 @@ export class PostFooter {
             </span>
             <slot name="grid-4"></slot>
           </post-accordion-item>
-        </post-accorddion>
+        </post-accordion>
       </div>
     );
   }
