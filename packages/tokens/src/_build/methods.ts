@@ -23,12 +23,15 @@ import {
   TokenDefinition,
   TokenSets,
   TokenProperty,
-  TokenSetEntry,
   ProcessedTokenSetsOutput,
 } from './types.js';
 import { objectDeepmerge } from './utils/index.js';
+import { LocalOptions } from 'style-dictionary/types';
+
 let CLI_OPTIONS: CliOptions;
+
 let tokenSets: TokenSets;
+
 let registeredConfigMethods: Array<
   (tokenSets: TokenSets, options: { sourcePath: string; buildPath: string }) => Config[]
 >;
@@ -334,29 +337,27 @@ export function getSetName(_options: Config, setName: string): string {
  * | a       | b      | c      | desttop = a, tablet = b, mobile = c
  */
 
-interface ConfigWithOptions extends Config {
-  outputReferences?: boolean;
-  meta: {
-    type: string;
-    layer: string;
-    filePath: string;
-    setNames: string[];
-  };
-}
-export function getSet(options: ConfigWithOptions, dictionary: Dictionary, currentSetName: string) {
+export function getSet(
+  options: Config & LocalOptions,
+  dictionary: Dictionary,
+  currentSetName: string,
+) {
   const { meta } = options;
+
   let tokenSet: TransformedToken[] = [];
 
   if (meta.layer === 'semantic') {
     const baseSetName = meta.setNames[0];
-    const overrideSetNameIndex = meta.setNames.findIndex(setName => setName === currentSetName);
+    const overrideSetNameIndex = meta.setNames.findIndex(
+      (setName: string) => setName === currentSetName,
+    );
     const overrideSetNames = meta.setNames.slice(1, overrideSetNameIndex + 1);
 
     tokenSet = dictionary.allTokens
       .filter(token => token.path[0] === baseSetName)
       .map(normalizeToken);
 
-    overrideSetNames.forEach(overrideSetName => {
+    overrideSetNames.forEach((overrideSetName: string) => {
       const overrideTokenSet = dictionary.allTokens
         .filter(token => token.path[0] === overrideSetName)
         .map(normalizeToken);
@@ -410,7 +411,7 @@ export function getSet(options: ConfigWithOptions, dictionary: Dictionary, curre
  * @returns the tokens value, with referenced css custom-properties (if original value uses references)
  */
 export function getTokenValue(
-  options: ConfigWithOptions,
+  options: Config & LocalOptions,
   token: TransformedToken,
 ): string | number | boolean | object {
   const { outputReferences } = options;

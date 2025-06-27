@@ -54,5 +54,5 @@ export interface TokenSets {
 }
 
 export type TokenGroup = {
-  [key: string]: string | number | boolean | TokenGroup | undefined;
+  [key: string]: TokenProperty | TokenGroup;
 };
