@@ -39,7 +39,7 @@ jobs:
       #  - no new changesets (the preview PR got merged into github.ref branch): publish packages
       - name: Changeset Magic
         id: changesets
-        uses: changesets/action@04d574e831923498156e0b2b93152878063203a3
+        uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -141,19 +141,19 @@ jobs:
 
       - name: Check if changset-release/main Branch exists
         id: changeset-branch-exists
-        uses: GuillaumeFalourd/branch-exists@009290475dc3d75b5d7ec680c0c5b614b0d9855d
+        uses: GuillaumeFalourd/branch-exists@b59b6e80d7a9718439df11e733e26d4f88ffefd3
         with:
           branch: changeset-release/main
 
       - name: Check if release/v* Branch exists
         id: release-branch-exists
-        uses: GuillaumeFalourd/branch-exists@009290475dc3d75b5d7ec680c0c5b614b0d9855d
+        uses: GuillaumeFalourd/branch-exists@b59b6e80d7a9718439df11e733e26d4f88ffefd3
         with:
           branch: ${{ fromJSON(steps.release-data-pre.outputs.result).branchName }}
 
       - name: Check if changeset-release/release/v* Branch exists
         id: release-changeset-branch-exists
-        uses: GuillaumeFalourd/branch-exists@009290475dc3d75b5d7ec680c0c5b614b0d9855d
+        uses: GuillaumeFalourd/branch-exists@b59b6e80d7a9718439df11e733e26d4f88ffefd3
         with:
           branch: changeset-release/${{ fromJSON(steps.release-data-pre.outputs.result).branchName }}
 
@@ -303,7 +303,7 @@ jobs:
         run: rm -f monorepo.json
 
       - name: Commit Changes and Push Branch
-        uses: EndBug/add-and-commit@a94899bca583c204427a224a7af87c02f9b325d5
+        uses: EndBug/add-and-commit@b5fc3de01ef5614aa38ef8d911f023b0a7a04dca
         with:
           author_name: Swiss Post Bot
           author_email: 103635272+swisspost-bot@users.noreply.github.com
@@ -438,7 +438,7 @@ jobs:
 
       # Commit the changes to a new release/v* branch
       - name: Commit Changes and Push Release Branch
-        uses: EndBug/add-and-commit@a94899bca583c204427a224a7af87c02f9b325d5
+        uses: EndBug/add-and-commit@b5fc3de01ef5614aa38ef8d911f023b0a7a04dca
         with:
           author_name: Swiss Post Bot
           author_email: 103635272+swisspost-bot@users.noreply.github.com
