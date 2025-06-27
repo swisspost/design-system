@@ -1,5 +1,26 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.40
+
+### Minor Changes
+
+- Only show `health` and `raw-components` stories in development environment and filter them from the search in production mode. (by [@schaertim](https://github.com/schaertim) with [#5377](https://github.com/swisspost/design-system/pull/5377))
+
+### Patch Changes
+
+- Updated `post-popover` component documentation by adding missing `close-button-caption` attribute in component examples. (by [@myrta2302](https://github.com/myrta2302) with [#5501](https://github.com/swisspost/design-system/pull/5501))
+
+- Added a new page 'Header with Custom Logo Link' under Guidelines, on how to use post-header logo with a custom link wrapper. (by [@myrta2302](https://github.com/myrta2302) with [#5171](https://github.com/swisspost/design-system/pull/5171))
+
+- Updated the PrimeNG styles package documentation. (by [@alizedebray](https://github.com/alizedebray) with [#5488](https://github.com/swisspost/design-system/pull/5488))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.39
+  - @swisspost/design-system-components@10.0.0-next.39
+  - @swisspost/design-system-styles@10.0.0-next.39
+  - @swisspost/design-system-components-react@10.0.0-next.39
+  - @swisspost/internet-header@2.0.0-next.39
+  - @swisspost/design-system-tokens@10.0.0-next.39
+
 ## 6.0.0-next.39
 
 ### Patch Changes
