@@ -1,5 +1,7 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.40
+
 ## 10.0.0-next.39
 
 ### Patch Changes
