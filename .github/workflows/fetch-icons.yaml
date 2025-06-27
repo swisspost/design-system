@@ -84,10 +84,6 @@ jobs:
             const { getIconChanges } = require('.github/workflows/scripts/icons.mjs')
             return getIconChanges(process.env)
 
-      - name: Build styles
-        if: steps.changed-files.outputs.any_modified != 'false'
-        run: pnpm --filter design-system-styles... build
-
       - name: Create Changeset
         if: steps.changed-files.outputs.any_modified != 'false'
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b

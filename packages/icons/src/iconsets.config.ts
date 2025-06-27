@@ -10,10 +10,4 @@ export default [
     downloadDirectory: path.join(SOURCE_PATH, 'post'),
     expectedSourcesPerIcon: 1,
   },
-  {
-    name: 'ui',
-    apiUrl: urls.ui,
-    downloadDirectory: path.join(SOURCE_PATH, 'ui'),
-    expectedSourcesPerIcon: 6,
-  },
 ] as IconSet[];
