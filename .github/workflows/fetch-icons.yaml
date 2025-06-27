@@ -47,6 +47,15 @@ jobs:
       - name: Setup pnpm
         uses: ./.github/actions/setup-pnpm
 
+      - name: Create or Checkout Branch
+        uses: ./.github/actions/create-or-checkout-branch
+        with:
+          branch: update-icons
+
+      - name: Push Changes
+        if: steps.changed-files.outputs.any_modified != 'false'
+        run: git push -u origin ${{ steps.current-branch.outputs.branch }}
+
       - name: Fetch Icons
         run: |
           pnpm --filter design-system-icons... --filter design-system-styles... install
@@ -112,6 +121,10 @@ jobs:
             const { writePrBody } = require('.github/workflows/scripts/icons.mjs')
             return writePrBody(process.env)
 
+      - name: Push Changes
+        if: steps.changed-files.outputs.any_modified != 'false'
+        run: git push -u origin ${{ steps.current-branch.outputs.branch }}
+
       - name: Create or Update PR
         if: steps.changed-files.outputs.any_modified != 'false'
         uses: ./.github/actions/create-or-update-pr
@@ -120,7 +133,3 @@ jobs:
           title: "chore(icons): ☝️ update icons"
           body-file: ${{ steps.pr-body.outputs.result }}
           access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-
-      - name: Push Changes
-        if: steps.changed-files.outputs.any_modified != 'false'
-        run: git push -u origin ${{ steps.current-branch.outputs.branch }}

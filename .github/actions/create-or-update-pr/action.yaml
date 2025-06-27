@@ -31,26 +31,6 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Get Branch
-      id: branch
-      shell: bash
-      run: |
-        BRANCH_LIST=$(git ls-remote origin "${{ inputs.head }}")
-        [[ -n $BRANCH_LIST ]] && BRANCH_EXISTS=true || BRANCH_EXISTS=false
-        echo "exists=$BRANCH_EXISTS" >> $GITHUB_OUTPUT
-
-    - name: Create Branch
-      if: steps.branch.outputs.exists == 'false'
-      shell: bash
-      run: |
-        git checkout -b ${{ inputs.head }} origin/${{ inputs.base }}
-        git push --set-upstream origin ${{ inputs.head }}
-
-    - name: Checkout Branch
-      if: steps.branch.outputs.exists == 'true'
-      shell: bash
-      run: git checkout ${{ inputs.head }}
-
     - name: Get PR
       id: pr
       shell: bash

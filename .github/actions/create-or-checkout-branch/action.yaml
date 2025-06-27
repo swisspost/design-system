@@ -1,0 +1,35 @@
+name: Create or Checkout Branch
+description: Checks out a branch if it exists, creates it otherwise
+
+inputs:
+  branch:
+    description: Name of the branch to create or checkout
+    required: true
+    type: string
+  base:
+    description: Base branch to create the new branch from
+    required: false
+    default: main
+    type: string
+
+runs:
+  using: composite
+  steps:
+    - name: Create or Checkout Branch
+      shell: bash
+      run: |
+        set -x
+
+        # Check if branch exists on remote
+        git ls-remote --exit-code --heads origin "${{ inputs.branch }}"
+        CMD_EXIT_CODE=$?
+
+        # Check if branch exists based on the exit code
+        if [[ $CMD_EXIT_CODE -eq 0 ]]; then
+          echo "Branch '${{ inputs.branch }}' exists. Checking it out."
+          git checkout "${{ inputs.branch }}"
+        else
+          echo "Branch '${{ inputs.branch }}' does not exist. Creating from '${{ inputs.base }}'."
+          git checkout -b "${{ inputs.branch }}" "origin/${{ inputs.base }}"
+          git push --set-upstream origin "${{ inputs.branch }}"
+        fi
