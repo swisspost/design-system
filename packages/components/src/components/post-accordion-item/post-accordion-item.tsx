@@ -52,7 +52,7 @@ export class PostAccordionItem {
 
   // Capture to make sure the "collapsed" property is updated before the event is consumed
   @Listen('postToggle', { capture: true })
-  onCollapseToggle(event: CustomEvent<boolean>): void {   
+  onCollapseToggle(event: CustomEvent<boolean>): void {
     eventGuard(
       this.host,
       event,
