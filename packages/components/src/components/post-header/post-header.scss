@@ -111,6 +111,11 @@
   }
 }
 
+::slotted(post-mainnavigation) {
+    @include media.min(lg) {
+    display: none;
+  }
+}
 ::slotted(ul) {
   margin-block: 0 !important;
   list-style: none;
