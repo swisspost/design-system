@@ -15,7 +15,7 @@
   z-index: commons.$zindex-header;
   position: relative;
 
-  // Variables for header minimization on scroll
+  // The following variables will affect the header to minimize it on scroll
   --post-global-header-top: calc(
     (var(--post-global-header-height) - var(--post-global-header-reduced-height)) * -1
   );
@@ -25,7 +25,7 @@
   --post-logo-height: calc(var(--post-global-header-height) - var(--post-header-scroll-top, 0px));
   --post-global-controls-top: calc(min((var(--post-header-scroll-top) / 4), 20px) * -1);
 
-  // Show header fully when focus is within (except logo and main navigation)
+  // If focus is within the header (except the logo and the post-mainnavigation elements), the header should be shown fully
   &:has(.global-sub > *:not(.logo):focus-within),
   &:has(.local-sub:focus-within) {
     --post-global-header-top: 0;
@@ -224,8 +224,7 @@
     }
   }
 }
-
-// Tablet and mobile navigation styles
+//only for tablet and mobile
 @include media.max(lg) {
   .navigation {
     position: sticky;
@@ -249,6 +248,11 @@
     flex-direction: column;
 
     @include media.max(lg) {
+      padding-inline: 32px;
+      padding-block-start: 32px;
+    }
+
+    @include media.max(sm) {
       padding-inline: 16px;
     }
 
@@ -294,7 +298,6 @@
     }
   }
 
-  // Spacing for post-mainnavigation content in mobile
   ::slotted(post-mainnavigation) {
     gap: 32px;
   }
