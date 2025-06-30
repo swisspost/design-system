@@ -243,12 +243,10 @@ export class PostMainnavigation {
           <post-icon aria-hidden="true" name="chevronleft"></post-icon>
         </div>
 
-        {/* Main navigation content - using default slot */}
         <nav ref={el => (this.navbar = el)}>
           <slot></slot>
         </nav>
 
-        {/* Desktop scroll controls */}
         <div
           aria-hidden="true"
           class={{ 'scroll-control scroll-right': true, 'd-none': !this.canScrollRight }}

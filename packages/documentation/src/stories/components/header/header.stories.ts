@@ -156,7 +156,7 @@ const Template = {
           `
         : ''}
 
-      <!-- FIXED: Main navigation wrapped properly -->
+      <!-- Main navigation -->
       <post-mainnavigation caption="Main navigation">
         <!-- Main navigation content goes to default slot -->
         <post-list title-hidden="">
@@ -203,7 +203,6 @@ const Template = {
               </post-list>
             </post-megadropdown>
           </post-list-item>
-          
           <post-list-item slot="post-list-item">
             <post-megadropdown-trigger for="packages">Packages</post-megadropdown-trigger>
             <post-megadropdown id="packages">

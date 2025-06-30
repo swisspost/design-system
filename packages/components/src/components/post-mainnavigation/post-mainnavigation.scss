@@ -27,7 +27,6 @@ post-mainnavigation {
     }
   }
 
-  // Reset links and buttons - now targeting default slot content
   post-list-item {
     > a {
       text-decoration: none;
