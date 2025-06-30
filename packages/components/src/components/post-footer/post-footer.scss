@@ -152,11 +152,11 @@ footer {
   font-size: var(--post-footer-copyright-font-size);
 }
 
-post-accordion-item {
-  &.d-none {
-    display: none;
-  }
+.d-none {
+  display: none;
+}
 
+post-accordion-item {
   // make sure the first visible accordion item has a border top
   &.d-none + & {
     --post-accordion-button-border-top-width: unset;
