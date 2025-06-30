@@ -254,22 +254,3 @@ post-mainnavigation {
     padding-inline: 0;
   }
 }
-  
-  post-megadropdown-trigger button {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    border: none;
-    background: none;
-    cursor: pointer;
-    width: 100%;
-    
-    @include media.min(lg) {
-      justify-content: space-between;
-    }
-    
-    @include media.max(lg) {
-      justify-content: flex-start;
-    }
-  }
-

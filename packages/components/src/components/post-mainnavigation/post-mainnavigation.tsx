@@ -1,10 +1,6 @@
 import { Component, Host, h, State, Listen } from '@stencil/core';
 import { version } from '@root/package.json';
 
-/**
- * @slot target-group - Holds the list of buttons to choose the target group.
- */
-
 const SCROLL_REPEAT_INTERVAL = 100; // Interval for repeated scrolling when holding down scroll button
 const NAVBAR_DISABLE_DURATION = 400; // Duration to temporarily disable navbar interactions during scrolling
 
