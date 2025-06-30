@@ -85,7 +85,7 @@ export class PostMainnavigation {
     this.checkScrollability();
   }
 
-    private get navigationItems(): HTMLElement[] {
+  private get navigationItems(): HTMLElement[] {
     if (!this.navbar) return [];
     
     const selector = 'post-list-item a:not(post-megadropdown *), post-list-item post-megadropdown-trigger:not(post-megadropdown *)';
