@@ -68,7 +68,7 @@ post-mainnavigation {
     }
   }
 
-  // Styles specific to mega-dropdown buttons
+  // styles specific to mega-dropdown buttons
   > button,
   post-megadropdown-trigger button {
     &::after {
@@ -88,7 +88,7 @@ post-mainnavigation {
     }
   }
 
-  // Desktop styles
+  // desktop styles
   @include media.min(lg) {
     display: block;
     position: relative;
@@ -98,8 +98,8 @@ post-mainnavigation {
 
     nav {
       flex: 1 1 auto;
-      scroll-behavior: smooth;
       overflow: hidden;
+      scroll-behavior: smooth;
     }
 
     .scroll-control {
@@ -129,7 +129,6 @@ post-mainnavigation {
       }
     }
 
-    // Target post-list in default slot
     post-list > [role='list'] {
       flex-direction: row;
       max-width: 100vw;
@@ -190,7 +189,7 @@ post-mainnavigation {
         }
       }
 
-      // Styles specific to mega-dropdown buttons
+      // styles specific to mega-dropdown buttons
       > button,
       post-megadropdown-trigger button {
         padding-inline-end: 12px;

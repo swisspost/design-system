@@ -316,6 +316,7 @@ export class PostHeader {
 
   private renderNavigation() {
     const navigationClasses = ['navigation'];
+
     const mobileMenuScrollTop = this.mobileMenu?.scrollTop ?? 0;
 
     if (this.mobileMenuExtended) {
@@ -362,7 +363,6 @@ export class PostHeader {
             </div>
           </div>
           <div class="global-sub">
-            {/* Target group only shows in global header on desktop */}
             {this.device === 'desktop' && <slot name="target-group"></slot>}
           </div>
           <div class="global-sub">
