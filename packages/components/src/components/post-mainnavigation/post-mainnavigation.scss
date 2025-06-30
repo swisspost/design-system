@@ -57,7 +57,7 @@ post-mainnavigation {
     }
   }
 
-  .back-button {
+  .mobile-header-section .back-button {
     @include media.max(lg) {
       padding: 16px 32px 0 32px;
     }
