@@ -97,9 +97,6 @@ export class PostMainnavigation {
   /**
    * Hack to fix the layout shift due to bold text on active elements
    */
-  /**
-   * Hack to fix the layout shift due to bold text on active elements
-   */
   private fixLayoutShift() {
     const items = this.navigationItems;
     if (!Array.isArray(items)) return;

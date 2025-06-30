@@ -225,7 +225,7 @@
   }
 }
 
-//only for tablet and mobile
+// only for tablet and mobile
 @include media.max(lg) {
   .navigation {
     position: sticky;
