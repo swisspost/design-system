@@ -127,6 +127,12 @@
       <th scope="col" style="min-width: 10rem">
         <div class="flex align-items-center">Price</div>
       </th>
+      <th style="min-width: 10rem">
+        <div class="flex items-center">
+          Date
+          <p-columnFilter type="date" field="date" display="menu"></p-columnFilter>
+        </div>
+      </th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-product>
@@ -136,6 +142,7 @@
       <td>{{ product.category }}</td>
       <td>{{ product.quantity }}</td>
       <td>{{ product.price | currency : 'USD' }}</td>
+      <td>{{ product.date | date : 'MM/dd/yyyy' }}</td>
     </tr>
   </ng-template>
   <ng-template pTemplate="emptymessage">
