@@ -114,14 +114,13 @@ const Template = {
           `
         : ''}
       
-      <!-- Back button - shared by both header and mainnavigation -->
       <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
         <post-icon aria-hidden="true" name="arrowleft"></post-icon> Back
       </button>
 
       ${args.targetGroup
         ? html`
-            <!-- Target group - shared by both header and mainnavigation -->
+            <!-- Target group -->
             <ul slot="target-group" class="target-group">
               <li>
                 <a href="#" class="active">Private customers</a>
@@ -158,7 +157,6 @@ const Template = {
 
       <!-- Main navigation -->
       <post-mainnavigation caption="Main navigation">
-        <!-- Main navigation content goes to default slot -->
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
           <!-- Link only level 1 -->
