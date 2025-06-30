@@ -1,0 +1,25 @@
+<p-table [value]="products" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template #header>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Quantity</th>
+      <th style="min-width: 10rem">
+        <div class="flex items-center">
+          Date
+          <p-columnFilter type="date" field="date" display="menu"></p-columnFilter>
+        </div>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-product>
+    <tr>
+      <td>{{ product.code }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.category }}</td>
+      <td>{{ product.quantity }}</td>
+      <td>{{ product.date | date : 'MM/dd/yyyy' }}</td>
+    </tr>
+  </ng-template>
+</p-table>
