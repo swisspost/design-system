@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.40
+
+### Major Changes
+
+- Renamed the `List Group` component to `List Interactive`. (by [@schaertim](https://github.com/schaertim) with [#5675](https://github.com/swisspost/design-system/pull/5675))
+
 ## 10.0.0-next.39
 
 ### Major Changes
