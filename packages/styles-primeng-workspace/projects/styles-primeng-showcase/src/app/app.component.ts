@@ -11,6 +11,7 @@ interface Product {
   quantity: number;
   inventoryStatus: string;
   rating: number;
+  date: Date;
 }
 
 @Component({
@@ -36,6 +37,7 @@ export class AppComponent {
       quantity: 24,
       inventoryStatus: 'INSTOCK',
       rating: 5,
+      date: new Date('2025-06-30'),
     },
     {
       id: '1001',
@@ -48,6 +50,7 @@ export class AppComponent {
       quantity: 61,
       inventoryStatus: 'INSTOCK',
       rating: 4,
+      date: new Date('2025-06-30'),
     },
     {
       id: '1002',
@@ -60,6 +63,7 @@ export class AppComponent {
       quantity: 2,
       inventoryStatus: 'LOWSTOCK',
       rating: 3,
+      date: new Date('2025-06-30'),
     },
     {
       id: '1003',
@@ -72,6 +76,7 @@ export class AppComponent {
       quantity: 25,
       inventoryStatus: 'INSTOCK',
       rating: 5,
+      date: new Date('2025-06-30'),
     },
     {
       id: '1004',
@@ -84,6 +89,7 @@ export class AppComponent {
       quantity: 73,
       inventoryStatus: 'INSTOCK',
       rating: 4,
+      date: new Date('2025-06-30'),
     },
   ];
 

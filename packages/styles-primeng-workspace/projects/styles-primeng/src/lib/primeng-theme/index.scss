@@ -10,6 +10,7 @@
 @forward './components/paginator';
 @forward './components/radiobutton';
 @forward './components/select';
+@forward './components/datepicker';
 
 .p-button,
 .p-inputtext,
@@ -17,4 +18,9 @@
 .p-checkbox-box,
 .p-radiobutton-box {
   border-width: 2px !important;
+}
+
+.p-datepicker-month-view span.p-datepicker-month,
+.p-datepicker-year-view span.p-datepicker-year {
+  height: 34px;
 }
