@@ -227,7 +227,6 @@ export class PostMainnavigation {
           </div>
         </div>
       
-        {/* Desktop scroll controls */}
         <div
           aria-hidden="true"
           class={{ 'scroll-control scroll-left': true, 'd-none': !this.canScrollLeft }}
