@@ -14,7 +14,7 @@ post-mainnavigation {
 
   .mobile-header-section {
     @include media.min(lg) {
-      display: none; // Hide on desktop
+      display: none;
     }
     
     @include media.max(lg) {
