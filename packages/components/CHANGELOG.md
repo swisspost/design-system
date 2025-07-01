@@ -1,5 +1,20 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.40
+
+### Minor Changes
+
+- Updated the `post-footer` component to support fewer than four columns of links, allowing flexibility in the number of `grid-*` slots used. (by [@alizedebray](https://github.com/alizedebray) with [#5724](https://github.com/swisspost/design-system/pull/5724))
+
+### Patch Changes
+
+- Fixed a typo in the render function of the `post-footer` to use the correct `post-accordion` component. (by [@leagrdv](https://github.com/leagrdv) with [#5723](https://github.com/swisspost/design-system/pull/5723))
+
+- Fixed the `post-accordion-item` chevron no longer rotating. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5719](https://github.com/swisspost/design-system/pull/5719))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.40
+  - @swisspost/design-system-icons@10.0.0-next.40
+
 ## 10.0.0-next.39
 
 ### Major Changes
