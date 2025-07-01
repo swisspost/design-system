@@ -74,7 +74,7 @@ export const FullWidth: Story = {
   args: {
     fullWidth: true,
   },
-  decorators: [story => html`<div class="container" style="background:pink">${story()}</div>`],
+  decorators: [story => html`<div class="container">${story()}</div>`],
 };
 
 export const Async: Story = {
