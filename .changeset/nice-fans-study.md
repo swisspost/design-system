@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-styles': patch
+'@swisspost/design-system-styles': major
 ---
 
 Renamed the following CSS custom properties and Sass variables:
