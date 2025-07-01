@@ -312,6 +312,7 @@
     :has([slot="target-group"]) {
       ::slotted(post-mainnavigation) {
         gap: 24px;
+        padding-block-start: 24px;
       }
     }
   }
