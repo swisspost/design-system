@@ -245,27 +245,7 @@
     background-color: #fafafa;
   }
 
-  // Target the post-mainnavigation component within mobile menu
-  ::slotted(post-mainnavigation) {
-    padding-block: 16px 24px;
-    padding-inline: 32px;
-    display: none;
-    flex-direction: column;
-
-    @include media.max(lg) {
-      padding-inline: 32px;
-      padding-block-start: 32px;
-    }
-
-    @include media.max(sm) {
-      padding-inline: 16px;
-    }
-
-    .navigation.extended & {
-      display: flex;
-    }
-  }
-  
+  ::slotted(post-mainnavigation),
   .navigation-footer {
     padding-block: 16px 24px;
     padding-inline: 32px;
@@ -279,6 +259,17 @@
     .navigation.extended & {
       display: flex;
     }
+  }
+
+  ::slotted(post-mainnavigation) {
+    @include media.max(lg) {
+      padding-block-start: 32px;
+    }
+  }
+  
+  .navigation-footer {
+    background-color: #f0efed;
+    gap: 24px;
   }
 
   .navigation.extended {
@@ -315,10 +306,5 @@
         padding-block-start: 24px;
       }
     }
-  }
-
-  .navigation-footer {
-    background-color: #f0efed;
-    gap: 24px;
   }
 }
