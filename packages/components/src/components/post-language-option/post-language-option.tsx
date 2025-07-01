@@ -143,7 +143,7 @@ export class PostLanguageOption {
           </a>
         ) : (
           <button
-            role={this.variant === 'menu' ? 'menuitem' : undefined}
+            role={role}
             aria-current={this.active ? 'true' : undefined}
             aria-label={this.name}
             lang={lang}
