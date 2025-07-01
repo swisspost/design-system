@@ -15,17 +15,17 @@ describe('Footer', () => {
       cy.get('@label').should('have.text', 'Footer label');
     });
 
-    it('should render the post-accorddion on mobile', () => {
+    it('should render the post-accordion on mobile', () => {
       cy.viewport('iphone-3');
-      cy.get('@footer').find('post-accorddion').as('accorddion');
+      cy.get('@footer').find('post-accordion').as('accordion');
 
-      cy.get('@accorddion').should('exist');
+      cy.get('@accordion').should('exist');
     });
 
-    it('should have accorddion-items with slotted elements on mobile', () => {
+    it('should have accordion-items with slotted elements on mobile', () => {
       cy.viewport('iphone-3');
-      cy.get('@footer').find('post-accorddion').as('accorddion');
-      cy.get('@accorddion').find('post-accordion-item').as('accordionItems');
+      cy.get('@footer').find('post-accordion').as('accordion');
+      cy.get('@accordion').find('post-accordion-item').as('accordionItems');
 
       cy.get('@accordionItems').should('have.length', 4);
       cy.get('@accordionItems')
