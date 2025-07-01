@@ -20,12 +20,12 @@ class Breakpoint {
     const minWidths = this.getValues('--post-grid-breakpoint-min-widths');
 
     this.breakpoints = minWidths
-      .reverse()
       .map((minWidth, i) => ({
         minWidth: Number(minWidth),
         key: keys[i],
         device: devices[i],
-      }));
+      }))
+      .reverse();
 
     window.addEventListener('resize', () => this.updateCurrentBreakpoint(), { passive: true });
   }
