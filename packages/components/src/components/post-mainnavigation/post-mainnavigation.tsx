@@ -82,7 +82,6 @@ export class PostMainnavigation {
   }
 
   private get navigationItems(): HTMLElement[] {
-    console.log(this.navbar.querySelectorAll(':is(a, button):not(post-megadropdown *)'))
     return Array.from(this.navbar.querySelectorAll(':is(a, button):not(post-megadropdown *)'));
   }
 
