@@ -448,7 +448,7 @@ export namespace Components {
          */
         "activePanel"?: HTMLPostTabPanelElement['name'];
         /**
-          * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.
+          * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.  **Change is visible only in fullscreen**
          */
         "fullWidth"?: boolean;
         /**
@@ -1296,7 +1296,7 @@ declare namespace LocalJSX {
          */
         "activePanel"?: HTMLPostTabPanelElement['name'];
         /**
-          * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.
+          * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.  **Change is visible only in fullscreen**
          */
         "fullWidth"?: boolean;
         /**
