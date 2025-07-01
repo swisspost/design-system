@@ -10,7 +10,7 @@
 | Property      | Attribute      | Description                                                                                                                                                                           | Type      | Default     |
 | ------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
 | `activePanel` | `active-panel` | The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.** | `string`  | `undefined` |
-| `fullWidth`   | `full-width`   | When this property is set to true, the tabs container should extend across the * full width of the screen, spanning from edge to edge.                                                | `boolean` | `undefined` |
+| `fullWidth`   | `full-width`   | When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.                                                                    | `boolean` | `undefined` |
 
 
 ## Events

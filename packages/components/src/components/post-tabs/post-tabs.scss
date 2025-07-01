@@ -13,11 +13,12 @@ $container-max-width: var(--post-core-dimension-1280);
   $total-offset-per-side: calc(
     max(var(--post-core-dimension-40), 0.5 * var(--post-grid-gutter-x)) + $space-to-compensate
   );
+
   // Negative margin to make the tabs-wrapper fullwidth
   margin-inline: calc(-1 * $total-offset-per-side);
   padding-inline: 0;
 
-  //Internal padding to re-align the tabs header to the container
+  //Internal padding to align the tabs content to the container
   .tabs {
     padding-inline: $total-offset-per-side;
   }

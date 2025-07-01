@@ -22,6 +22,15 @@ const meta: MetaComponent<HTMLPostTabsElement> = {
       control: 'select',
       options: ['first', 'second', 'third'],
     },
+    fullWidth: {
+      name: 'fullWidth',
+      control: {
+        type: 'boolean',
+      },
+    },
+  },
+  args: {
+    fullWidth: false,
   },
 };
 
@@ -29,7 +38,10 @@ export default meta;
 
 function renderTabs(args: Partial<HTMLPostTabsElement>) {
   return html`
-    <post-tabs active-panel="${ifDefined(args.activePanel)}">
+    <post-tabs
+      active-panel="${ifDefined(args.activePanel)}"
+      fullwidth="${args.fullWidth ?? undefined}"
+    >
       <post-tab-header panel="first">First tab</post-tab-header>
       <post-tab-header panel="second">Second tab</post-tab-header>
       <post-tab-header panel="third">Third tab</post-tab-header>
@@ -56,6 +68,10 @@ export const ActivePanel: Story = {
   args: {
     activePanel: 'third',
   },
+};
+
+export const FullWidth: Story = {
+  decorators: [story => html`<div class="container">${story()}</div>`],
 };
 
 export const Async: Story = {
