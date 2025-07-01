@@ -82,40 +82,21 @@ export class PostMainnavigation {
   }
 
   private get navigationItems(): HTMLElement[] {
-    if (!this.navbar) return [];
-    
-    const selector = 'post-list-item a:not(post-megadropdown *), post-list-item post-megadropdown-trigger:not(post-megadropdown *)';
-    const elements = Array.from(this.navbar.querySelectorAll(selector));
-    
-    return elements as HTMLElement[];
+    console.log(this.navbar.querySelectorAll(':is(a, button):not(post-megadropdown *)'))
+    return Array.from(this.navbar.querySelectorAll(':is(a, button):not(post-megadropdown *)'));
   }
 
   /**
    * Hack to fix the layout shift due to bold text on active elements
    */
   private fixLayoutShift() {
-    const items = this.navigationItems;
-    if (!Array.isArray(items)) return;
-    
-    items
+    this.navigationItems
       .filter(item => !item.matches(':has(.nav-el-active)'))
       .forEach(item => {
-        if (item.tagName.toLowerCase() === 'a') {
-          // Handle regular <a> elements
-          item.innerHTML = `
-            <span class="nav-el-active">${item.innerHTML}</span>
-            <span class="nav-el-inactive" aria-hidden="true">${item.innerHTML}</span>
-          `;
-        } else if (item.tagName.toLowerCase() === 'post-megadropdown-trigger') {
-          // Handle post-megadropdown-trigger elements - apply fix to their internal button
-          const button = item.querySelector('button');
-          if (button && !button.matches(':has(.nav-el-active)')) {
-            button.innerHTML = `
-              <span class="nav-el-active">${button.innerHTML}</span>
-              <span class="nav-el-inactive" aria-hidden="true">${button.innerHTML}</span>
-            `;
-          }
-        }
+        item.innerHTML = `
+          <span class="nav-el-active">${item.innerHTML}</span>
+          <span class="nav-el-inactive" aria-hidden="true">${item.innerHTML}</span>
+        `;
       });
   }
 

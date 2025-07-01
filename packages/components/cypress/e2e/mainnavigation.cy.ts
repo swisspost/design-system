@@ -1,7 +1,7 @@
 describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
   function isVisible($el: JQuery<HTMLElement>) {
-    const mainNavigation = $el.parents('post-mainnavigation:visible').get(0);
-    console.log(mainNavigation)
+    const mainNavigation = $el.parents('post-mainnavigation').get(0);
+
     const { left, right } = $el.get(0).getBoundingClientRect();
     return (
       Math.floor(left) <= mainNavigation.getBoundingClientRect().right &&
@@ -10,7 +10,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
   }
 
   function isFullyVisible($el: JQuery<HTMLElement>) {
-    const mainNavigation = $el.parents('post-mainnavigation:visible').get(0);
+    const mainNavigation = $el.parents('post-mainnavigation').get(0);
     const scrollLeft = $el.parents('post-mainnavigation').children('.scroll-left').get(0);
     const scrollRight = $el.parents('post-mainnavigation').children('.scroll-right').get(0);
 
@@ -42,19 +42,7 @@ describe('mainnavigation', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('post-mainnavigation[data-hydrated]').as('mainnavigation');
 
       cy.get('@mainnavigation')
-        .find('post-list-item a:not(post-megadropdown *), post-list-item post-megadropdown-trigger:not(post-megadropdown *)')
-        .then($elements => {
-          console.log('All found elements:', $elements.length);
-          $elements.each((index, el) => {
-            console.log(`Element ${index}:`, {
-              tagName: el.tagName,
-              tabIndex: el.tabIndex,
-              focusable: el.tabIndex >= 0,
-              hasAriaExpanded: el.hasAttribute('aria-expanded')
-            });
-          });
-        })
-
+        .find('nav :is(a,button):not(post-megadropdown *)')
         .should('have.length', 20)
         .as('navigationItems');
 
