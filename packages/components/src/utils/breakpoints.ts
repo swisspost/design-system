@@ -13,20 +13,21 @@ class Breakpoint {
   private currentBreakpoint: BreakpointDefinition;
 
   constructor() {
-    if (IS_SERVER || !!this.breakpoints)  return;
+    if (IS_SERVER || !!this.breakpoints) return;
 
     const keys = this.getValues('--post-grid-breakpoint-keys');
     const devices = this.getValues('--post-grid-breakpoint-devices');
-    const minWidths = this.getValues('--post-grid-breakpoint-min-widths');
+    const widths = this.getValues('--post-grid-breakpoint-widths');
 
-    this.breakpoints = minWidths
-      .map((minWidth, i) => ({
-        minWidth: Number(minWidth),
+    this.breakpoints = widths
+      .map((width, i) => ({
         key: keys[i],
         device: devices[i],
+        minWidth: Number(width),
       }))
       .reverse();
 
+    this.updateCurrentBreakpoint({ emitEvents: false });
     window.addEventListener('resize', () => this.updateCurrentBreakpoint(), { passive: true });
   }
 
@@ -40,11 +41,13 @@ class Breakpoint {
       return breakpoint.minWidth <= innerWidth;
     });
 
-    if (!options.emitEvents) return;
+    if (options.emitEvents) {
+      Object.keys(newBreakpoint)
+        .filter(key => this.currentBreakpoint[key] !== newBreakpoint[key])
+        .forEach((key: BreakpointProperty) => this.dispatchEvent(key));
+    }
 
-    Object.keys(newBreakpoint)
-      .filter(key => this.currentBreakpoint[key] !== newBreakpoint[key])
-      .forEach((key: BreakpointProperty) => this.dispatchEvent(key));
+    this.currentBreakpoint = newBreakpoint;
   }
 
   private dispatchEvent(property: BreakpointProperty): void {
