@@ -38,9 +38,16 @@ export class PostTabs {
   @Prop() readonly activePanel?: HTMLPostTabPanelElement['name'];
 
   /**
+   * When this property is set to true, the tabs container should extend across the
+   * * full width of the screen, spanning from edge to edge.
+   */
+  @Prop({ reflect: true }) fullWidth?: boolean;
+
+  /**
    * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished.
    * The payload is the name of the newly shown panel.
    */
+
   @Event() postChange: EventEmitter<string>;
 
   componentDidLoad() {
@@ -194,7 +201,7 @@ export class PostTabs {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={version} fullwidth={this.fullWidth}>
         <div class="tabs-wrapper" part="tabs">
           <div class="tabs" role="tablist">
             <slot name="tabs" onSlotchange={() => this.enableTabs()} />

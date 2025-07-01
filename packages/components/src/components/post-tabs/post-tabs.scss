@@ -3,3 +3,22 @@
 :host {
   display: block;
 }
+
+$container-max-width: var(--post-core-dimension-1280);
+
+:host([fullwidth]) .tabs-wrapper {
+  // Extra space outside the container
+  $extra-space: calc((100vw - #{$container-max-width}) / 2);
+  $space-to-compensate: max(0px, $extra-space);
+  $total-offset-per-side: calc(
+    max(var(--post-core-dimension-40), 0.5 * var(--post-grid-gutter-x)) + $space-to-compensate
+  );
+  // Negative margin to make the tabs-wrapper fullwidth
+  margin-inline: calc(-1 * $total-offset-per-side);
+  padding-inline: 0;
+
+  //Internal padding to re-align the tabs header to the container
+  .tabs {
+    padding-inline: $total-offset-per-side;
+  }
+}
