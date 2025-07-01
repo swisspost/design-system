@@ -40,8 +40,6 @@ export class PostTabs {
   /**
    * When set to true, this property allows the tabs container to span the
    * full width of the screen, from edge to edge.
-   *
-   * **Change is visible only in fullscreen**
    */
   @Prop({ reflect: true }) fullWidth?: boolean;
 

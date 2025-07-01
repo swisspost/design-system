@@ -71,7 +71,10 @@ export const ActivePanel: Story = {
 };
 
 export const FullWidth: Story = {
-  decorators: [story => html`<div class="container">${story()}</div>`],
+  args: {
+    fullWidth: true,
+  },
+  decorators: [story => html`<div class="container" style="background:pink">${story()}</div>`],
 };
 
 export const Async: Story = {
