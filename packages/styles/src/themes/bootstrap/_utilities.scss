@@ -96,5 +96,6 @@ $utilities: map.remove($utilities, 'text-decoration');
 $utilities: map.remove($utilities, 'text-transform');
 $utilities: map.remove($utilities, 'white-space');
 $utilities: map.remove($utilities, 'word-wrap');
+$utilities: map.remove($utilities, 'z-index');
 
 @import 'bootstrap/scss/utilities/api';
