@@ -1,5 +1,5 @@
 import type { Args, StoryObj } from '@storybook/web-components';
-import meta, { renderListGroup } from './list-group.stories';
+import meta, { renderListGroup } from './list-interactive.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';
@@ -13,11 +13,11 @@ export default {
 
 type Story = StoryObj;
 
-export const ListGroup: Story = {
+export const ListInteractive: Story = {
   render: () => {
     return schemes(
       () => html`
-        <div class="list-group-example">
+        <div class="list-interactive-example">
           ${bombArgs({
             listType: ['link', 'document', 'switch'],
             label: [
