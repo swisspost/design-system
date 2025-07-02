@@ -1,6 +1,7 @@
 import { Meta, Source } from '@storybook/blocks';
 import * as GettingStartedStories from './styles.stories';
 import SampleVariable from './styles-variable.sample.scss?raw';
+import DependenciesTable from './dependenciesTable';
 
 <Meta of={GettingStartedStories} />
 
@@ -10,18 +11,22 @@ import SampleVariable from './styles-variable.sample.scss?raw';
 
 The styling package, including theming for [Bootstrap](https://getbootstrap.com/) and [ng-bootstrap](https://ng-bootstrap.github.io/#/home) components.
 
-## Installation
+## Dependencies
 
-<Source code={`npm install @swisspost/design-system-styles`} language="bash" />
+  <DependenciesTable />
 
-## Usage
+  ## Installation
 
-Import one of our stylesheets into your project (for example into your `/src/styles.scss` file).
+  <Source code={`npm install @swisspost/design-system-styles`} language="bash" />
 
-<Source
-  code={`@use '@swisspost/design-system-styles/<bundle-name>.<extension>';`}
-  language="scss"
-/>
+  ## Usage
+
+  Import one of our stylesheets into your project (for example into your `/src/styles.scss` file).
+
+  <Source
+    code={`@use '@swisspost/design-system-styles/<bundle-name>.<extension>';`}
+    language="scss"
+  />
 
 ### Available bundles
 
