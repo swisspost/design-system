@@ -5,6 +5,7 @@
 @use '@swisspost/design-system-styles/functions/tokens';
 @use '@swisspost/design-system-styles/tokens/utilities';
 @use '@swisspost/design-system-styles/tokens/elements';
+@use '@swisspost/design-system-styles/mixins/media';
 
 tokens.$default-map: utilities.$post-color;
 
@@ -202,6 +203,12 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     color: #0073bc;
   }
 
+  @include media.max(sm) {
+    .docs-story > div:first-child {
+      padding-bottom: 3rem;
+    }
+  }
+
   .docs-story > div:last-child {
     display: flex;
     width: 100%;
@@ -214,7 +221,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
       }
 
       &:nth-of-type(2) {
-        border-top-left-radius: 10px;
+        border-top-left-radius: 4px;
       }
     }
   }
@@ -223,22 +230,26 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
     margin-right: auto;
     border-radius: 0 4px 0 0;
 
-    &::before {
-      @include toolbar-icon('2052');
-      transition: all 0.3s ease;
-    }
+    @include media.min(md) {
+      &::before {
+        @include toolbar-icon('2052');
+        transition: all 0.3s ease;
+      }
 
-    &--expanded::before {
-      transform: rotate(180deg);
+      &--expanded::before {
+        transform: rotate(180deg);
+      }
     }
   }
 
   .docblock-code-toggle + button {
-    &::before { @include toolbar-icon('resizeexpand'); }
-    
-    + button::before { @include toolbar-icon('link'); }
-    
-    + button + button::before { @include toolbar-icon('code'); }
+    @include media.min(md) {
+      &::before { @include toolbar-icon('resizeexpand'); }
+      
+      + button::before { @include toolbar-icon('link'); }
+      
+      + button + button::before { @include toolbar-icon('code'); }
+    }
   }
 
   .docblock-source {
