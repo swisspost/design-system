@@ -1,3 +1,4 @@
+import { throttle } from 'throttle-debounce';
 import { IS_SERVER } from '@/utils/environment';
 
 interface BreakpointDefinition {
@@ -20,12 +21,12 @@ class Breakpoint {
     const widths = this.getValues('--post-grid-breakpoint-widths');
 
     this.breakpoints = widths
-      .map((width, i) => ({
+      .map((width, i): BreakpointDefinition => ({
         key: keys[i],
         device: devices[i],
         minWidth: Number(width),
       }))
-      .reverse();
+      .sort((a, b) => b.minWidth - a.minWidth);
 
     this.updateCurrentBreakpoint({ emitEvents: false });
     window.addEventListener('resize', () => this.updateCurrentBreakpoint(), { passive: true });
@@ -36,19 +37,20 @@ class Breakpoint {
     return values ? values.split(',').map(v => v.trim()) : [];
   }
 
-  private updateCurrentBreakpoint(options: { emitEvents: boolean } = { emitEvents: true }): void {
-    const newBreakpoint = this.breakpoints.find(breakpoint => {
-      return breakpoint.minWidth <= innerWidth;
-    });
+  private updateCurrentBreakpoint = throttle(50,
+    (options: { emitEvents: boolean } = { emitEvents: true }) => {
+      const previousBreakpoint = this.currentBreakpoint;
+      this.currentBreakpoint = this.breakpoints.find(breakpoint => {
+        return breakpoint.minWidth <= innerWidth;
+      });
 
-    if (options.emitEvents) {
-      Object.keys(newBreakpoint)
-        .filter(key => this.currentBreakpoint[key] !== newBreakpoint[key])
+      if (!options.emitEvents) return;
+
+      Object.keys(this.currentBreakpoint)
+        .filter(key => this.currentBreakpoint[key] !== previousBreakpoint[key])
         .forEach((key: BreakpointProperty) => this.dispatchEvent(key));
     }
-
-    this.currentBreakpoint = newBreakpoint;
-  }
+  );
 
   private dispatchEvent(property: BreakpointProperty): void {
     if (IS_SERVER) return;
