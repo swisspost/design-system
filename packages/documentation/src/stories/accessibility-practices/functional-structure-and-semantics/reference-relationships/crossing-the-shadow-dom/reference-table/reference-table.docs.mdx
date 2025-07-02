@@ -1,0 +1,58 @@
+import { Meta, Canvas, Source, Controls } from '@storybook/blocks';
+import * as CCR from './reference-table.stories';
+
+<Meta of={CCR} />
+
+# Cross-Component Referencing Table
+
+<div
+  className="table-responsive"
+  style={{ '--post-docs-tile-size': '100px', '--post-docs-tile-rg-size': '100px' }}
+>
+  <table className="table table-bordered">
+    <caption className="visually-hidden">Cross-component referencing table</caption>
+    <colgroup>
+      <col style={{ width: '15%' }} />
+      <col style={{ width: '32%' }} />
+      <col style={{ width: '13%' }} />
+      <col style={{ width: '13%' }} />
+      <col style={{ width: '18%' }} />
+      <col style={{ width: '15%' }} />
+    </colgroup>
+    <thead>
+      <tr>
+        <th scope="col">Attribute</th>
+        <th scope="col">Case</th>
+        <th scope="col" style={{ fontSize: '1.2rem' }}>Works Across Shadow DOM</th>
+        <th scope="col" style={{ fontSize: '1.2rem' }}>Workaround 1: Elements API</th>
+        <th scope="col" style={{ fontSize: '1.2rem' }}>Workaround 2: Programmatic setup (for SSR)</th>
+        <th scope="col">Link</th>
+      </tr>
+    </thead>
+   <tbody>
+  {CCR.referencingData.map(({ attribute, cases}) =>
+    cases.map((row, index) => (
+      <tr key={`${attribute}-${index}`}>
+        {/* Span the attribute cell only for the first case row */}
+        {index === 0 && <td rowSpan={cases.length} style={{ verticalAlign: 'middle' }} >{attribute}</td>}
+        <td style={{ fontSize: '1.1rem' }}>{row.case}</td>
+        <td style={{ textAlign: 'center' }}>{row.worksAcrossShadow}</td>
+        <td style={{ textAlign: 'center' }}>{row.workaround1}</td>
+        <td style={{ textAlign: 'center' }}>{row.workaround2}</td>
+      <td style={{ textAlign: 'center' }}>
+        {row.docPage ? (
+          <a href={row.docPage} style={{ textDecoration: 'none' }} target="_blank" rel="noopener noreferrer">
+            🔗
+          </a>
+        ) : (
+          null // or some placeholder
+        )}
+      </td>
+      </tr>
+    ))
+
+)}
+
+</tbody>
+  </table>
+</div>

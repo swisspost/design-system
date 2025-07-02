@@ -67,6 +67,10 @@ const preview: Preview = {
 
           // Category - Accessibility (INTERNAL ONLY)
           'Accessibility Practices',
+          [
+            'Foundational Structure And Semantics',
+            ['Reference Relationships', ['Crossing The Shadow Dom', ['*Reference Table*', 'For']]],
+          ],
 
           // Category - Misc
           'Misc',
