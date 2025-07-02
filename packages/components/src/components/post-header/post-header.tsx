@@ -174,10 +174,10 @@ export class PostHeader {
   @Method()
   async toggleMobileMenu(force?: boolean) {
     if (this.device === 'desktop') return;
-     if (this.megadropdownOpen) {
+    if (this.megadropdownOpen) {
       this.megadropdownOpen = false;
       return;
-     }
+    }
 
     this.mobileMenuAnimation = this.mobileMenuExtended
       ? slideUp(this.mobileMenu)
