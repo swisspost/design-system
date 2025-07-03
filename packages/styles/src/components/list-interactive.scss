@@ -10,7 +10,7 @@
 tokens.$default-map: components.$post-list;
 
 // Base class
-.list-group {
+.list-interactive {
   background-color: tokens.get('list-bg');
   list-style: none;
   padding: 0;
@@ -21,9 +21,9 @@ tokens.$default-map: components.$post-list;
   }
 }
 
-.list-group-link,
-.list-group-document,
-.list-group-switch {
+.list-interactive-link,
+.list-interactive-document,
+.list-interactive-switch {
   display: flex;
   position: relative;
   align-items: flex-start;
@@ -54,8 +54,8 @@ tokens.$default-map: components.$post-list;
   @include utilities-mx.focus-style;
 }
 
-.list-group-link,
-.list-group-document {
+.list-interactive-link,
+.list-interactive-document {
   text-decoration: none;
   gap: tokens.get('list-item-gap-inline');
 
@@ -76,7 +76,7 @@ tokens.$default-map: components.$post-list;
   }
 }
 
-.list-group-switch {
+.list-interactive-switch {
   justify-content: space-between;
   margin-bottom: 0;
   flex-wrap: nowrap;
@@ -95,12 +95,12 @@ tokens.$default-map: components.$post-list;
   }
 }
 
-.list-group-link:hover post-icon,
-.list-group-link:focus post-icon {
+.list-interactive-link:hover post-icon,
+.list-interactive-link:focus post-icon {
   transform: translateX(animation.$transition-distance-xsmall);
 }
 
-.list-group-link post-icon {
+.list-interactive-link post-icon {
   @include transition(
     transform animation.$transition-time-area-small animation.$transition-easing-default
   );
