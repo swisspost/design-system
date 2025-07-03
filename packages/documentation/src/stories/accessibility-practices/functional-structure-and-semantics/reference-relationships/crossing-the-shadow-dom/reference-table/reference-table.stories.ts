@@ -79,23 +79,23 @@ export const referencingData = [
         case: 'Light DOM/Slotted Content -> Shadow DOM',
         worksAcrossShadow: '❌',
         workaround1: '✔️',
-        workaround2: '✔️',
+        workaround2: '❓',
         docPage:
           '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa340f3g6--docs#ii-referencing-from-outside-a-shadow-dom-into-that-shadow-dom-',
       },
       {
         case: 'Shadow DOM -> Light DOM/Slotted Content',
         worksAcrossShadow: '❌',
-        workaround1: '❌',
-        workaround2: '✔️',
+        workaround1: '',
+        workaround2: '',
         docPage:
           '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa340f3g6--docs#ii-referencing-from-outside-a-shadow-dom-into-that-shadow-dom-',
       },
       {
         case: 'Shadow DOM -> Other Shadow DOM',
         worksAcrossShadow: '❌',
-        workaround1: '❌',
-        workaround2: '✔️',
+        workaround1: '',
+        workaround2: '',
         docPage:
           '/?path=/docs/76ade552-2c03-4d6d-9dce-28daa340f3g6--docs#ii-referencing-from-outside-a-shadow-dom-into-that-shadow-dom-',
       },
