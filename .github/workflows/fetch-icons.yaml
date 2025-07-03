@@ -46,13 +46,11 @@ jobs:
       - name: Configure GitHub User
         uses: ./.github/actions/configure-github-user
 
-      - name: Create Branch
+      - name: Create or Checkout Icon Branch
         id: current-branch
-        run: |
-          git checkout -b $BRANCH_NAME origin/main
-          echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
-        env:
-          BRANCH_NAME: update-icons
+        uses: ./.github/actions/create-or-checkout-branch
+        with:
+          branch: update-icons
 
       - name: Install icons & dependencies
         run: pnpm --filter design-system-icons... --filter design-system-styles... install
@@ -78,7 +76,7 @@ jobs:
           files: ./packages/icons/src/icons/**/*.svg
 
       - name: Exit if no changes
-        if: steps.changed-files.outputs.any_modified == 'false'
+        if: steps.changed-files.outputs.any_modified == 'false' && steps.current-branch.outputs.already_exited == 'false'
         run: |
           git checkout main
           git push origin --delete ${{ steps.current-branch.outputs.branch }}

@@ -1,0 +1,49 @@
+name: Create or Checkout Branch
+description: Checks a branch out if it exists, create it otherwise
+
+inputs:
+  branch:
+    description: Name of the branch
+    required: true
+    type: string
+  base:
+    description: Name of the base branch
+    required: false
+    default: main
+    type: string
+
+outputs:
+  branch:
+    description: The name of the branch
+    value: ${{ inputs.branch }}
+  already_exited:
+    description: Whether the branch already existed or not
+    value: ${{ steps.branch.outputs.exists }}
+
+runs:
+  using: composite
+  steps:
+    # Check if the branch already exists
+    - name: Get Branch
+      id: branch
+      shell: bash
+      run: |
+        if [[ -n $(git ls-remote origin "${{ inputs.branch }}") ]]; then
+          echo "exists=true" >> $GITHUB_OUTPUT
+        else
+          echo "exists=false" >> $GITHUB_OUTPUT
+        fi
+
+    # If the branch does not exit, create it
+    - name: Create Branch
+      if: steps.branch.outputs.exists == 'false'
+      shell: bash
+      run: |
+        git checkout -b ${{ inputs.branch }} origin/${{ inputs.base }}
+        git push --set-upstream origin ${{ inputs.branch }}
+
+    # If the branch exit, check it out
+    - name: Checkout Branch
+      if: steps.branch.outputs.exists == 'true'
+      shell: bash
+      run: git checkout ${{ inputs.branch }}
