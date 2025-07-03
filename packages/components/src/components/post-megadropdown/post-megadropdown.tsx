@@ -12,7 +12,7 @@ export class PostMegadropdown {
   private firstFocusableEl: HTMLElement | null;
   private lastFocusableEl: HTMLElement | null;
 
-  @State() device: string = breakpoint.get('name');
+  @State() device: string = breakpoint.get('device');
 
   @Element() host: HTMLPostMegadropdownElement;
 
@@ -46,7 +46,7 @@ export class PostMegadropdown {
 
   disconnectedCallback() {
     this.removeListeners();
-    window.removeEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
+    window.removeEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
     if (PostMegadropdown.activeDropdown === this) {
       PostMegadropdown.activeDropdown = null;
     }
@@ -114,7 +114,7 @@ export class PostMegadropdown {
   }
 
   connectedCallback() {
-    window.addEventListener('postBreakpoint:name', this.breakpointChange.bind(this));
+    window.addEventListener('postBreakpoint:device', this.breakpointChange.bind(this));
   }
 
   /**
