@@ -43,17 +43,13 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup-pnpm
 
-      - name: Get Date
-        id: current-date
-        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
-
       - name: Create Branch
         id: current-branch
         run: |
           git checkout -b $BRANCH_NAME origin/main
           echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
         env:
-          BRANCH_NAME: ${{ steps.current-date.outputs.date }}-update-icons
+          BRANCH_NAME: update-icons
 
       - name: Install icons & dependencies
         run: pnpm --filter design-system-icons... --filter design-system-styles... install
@@ -104,7 +100,6 @@ jobs:
         if: steps.changed-files.outputs.any_modified != 'false'
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         env:
-          DATE: ${{ steps.current-date.outputs.date }}
           ICON_CHANGES: ${{ steps.changed-icons.outputs.result }}
         with:
           script: |
