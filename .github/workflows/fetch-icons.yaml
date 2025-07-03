@@ -43,6 +43,9 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup-pnpm
 
+      - name: Configure GitHub User
+        uses: ./.github/actions/configure-github-user
+
       - name: Create Branch
         id: current-branch
         run: |
@@ -64,8 +67,6 @@ jobs:
 
       - name: Commit Changes
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           git commit -am "chore(icons): update icon SVGs"
           git push -u origin ${{ steps.current-branch.outputs.branch }}
