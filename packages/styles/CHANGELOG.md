@@ -1,5 +1,41 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.40
+
+### Major Changes
+
+- Renamed the `List Group` component to `List Interactive`. (by [@schaertim](https://github.com/schaertim) with [#5675](https://github.com/swisspost/design-system/pull/5675))
+
+## 10.0.0-next.39
+
+### Major Changes
+
+- Removed the file responsible for preventing fouc (flashes of unstyled content) for the web-components: `@swisspost/design-system-styles/components/not-defined.(scss|css)`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5696](https://github.com/swisspost/design-system/pull/5696))
+
+### Patch Changes
+
+- Fixed an issue on iOS Chrome where floating labels would appear above the mobile navigation menu after users interacted with multiple form inputs, by increasing the z-index hierarchy for `post-header` components on mobile and tablet devices to ensure proper layering and maintain the navigation menu's top-level priority. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5550](https://github.com/swisspost/design-system/pull/5550))
+
+- Adjusted label top position to prevent text from appearing between label and border on Windows at 125% scaling. (by [@myrta2302](https://github.com/myrta2302) with [#5547](https://github.com/swisspost/design-system/pull/5547))
+
+## 10.0.0-next.38
+
+## 10.0.0-next.37
+
+### Major Changes
+
+- Fixed the disappearing validation icons on text input fields when browser autocomplete is applied. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5339](https://github.com/swisspost/design-system/pull/5339))
+
+- Prefixed the following CSS custom variables with `post`:
+  - `--section-width` is now `--post-section-width`
+  - `--section-container-width` is now `--post-section-container-width`
+  - `--section-container-content-offset` is now `--post-section-container-content-offset`
+  - `--section-container-padding` is now `--post-section-container-padding` (by [@leagrdv](https://github.com/leagrdv) with [#5354](https://github.com/swisspost/design-system/pull/5354))
+
+### Patch Changes
+
+- Fixed background on disabled textarea labels to maintain readability when content overflows. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5453](https://github.com/swisspost/design-system/pull/5453))
+
 ## 9.0.0-next.36
 
 ## 9.0.0-next.35

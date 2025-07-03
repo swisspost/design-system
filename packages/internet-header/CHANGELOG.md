@@ -1,5 +1,35 @@
 # @swisspost/internet-header
 
+## 2.0.0-next.40
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.40
+
+## 2.0.0-next.39
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.39
+
+## 2.0.0-next.38
+
+### Patch Changes
+
+- Added the TikTok icon to the SVG sprite used in the footer. It can now be added to the footer using the icon name `8020_tiktok`. (by [@leagrdv](https://github.com/leagrdv) with [#5517](https://github.com/swisspost/design-system/pull/5517))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.38
+
+## 2.0.0-next.37
+
+### Patch Changes
+
+- Added cypress eslint plugin to enable linting for all cypress folders and files. (by [@schaertim](https://github.com/schaertim) with [#5102](https://github.com/swisspost/design-system/pull/5102))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.37
+
 ## 2.0.0-next.36
 
 ### Patch Changes

@@ -9,9 +9,14 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import { checkEmptyOrType, checkType } from '@/utils';
+import {
+  checkEmptyOrType,
+  checkRequiredAndType,
+  checkEmptyOrOneOf,
+  checkEmptyOrUrl,
+} from '@/utils';
 import { version } from '@root/package.json';
-import { SwitchVariant } from '../post-language-switch/switch-variants';
+import { SwitchVariant, SWITCH_VARIANTS } from '../post-language-switch/switch-variants';
 
 /**
  * @slot default - Slot for placing the content inside the anchor or button.
@@ -30,28 +35,28 @@ export class PostLanguageOption {
 
   @Watch('code')
   validateCode() {
-    checkType(this, 'code', 'string');
+    checkRequiredAndType(this, 'code', 'string');
   }
 
   /**
    * If set to `true`, the language option is considered the current language for the page.
    */
-  @Prop({ mutable: true, reflect: true }) active: boolean;
-
-  @Watch('active')
-  validateActiveProp() {
-    checkEmptyOrType(this, 'active', 'boolean');
-  }
+  @Prop({ mutable: true, reflect: true }) active?: boolean;
 
   /**
    * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
    */
-  @Prop() variant?: SwitchVariant | null;
+  @Prop() variant?: SwitchVariant;
+
+  @Watch('variant')
+  validateVariant() {
+    checkEmptyOrOneOf(this, 'variant', SWITCH_VARIANTS);
+  }
 
   /**
    * The full name of the language. For example, "Deutsch".
    */
-  @Prop() name: string;
+  @Prop() name?: string;
 
   @Watch('name')
   validateName() {
@@ -62,16 +67,15 @@ export class PostLanguageOption {
    * The URL used for the href attribute of the internal anchor.
    * This field is optional; if not provided, a button will be used internally instead of an anchor.
    */
-  @Prop() url: string;
+  @Prop() url?: string;
 
   @Watch('url')
   validateUrl() {
-    checkEmptyOrType(this, 'url', 'string');
+    checkEmptyOrUrl(this, 'url');
   }
 
   componentDidLoad() {
     this.validateCode();
-    this.validateActiveProp();
     this.validateName();
     this.validateUrl();
 
