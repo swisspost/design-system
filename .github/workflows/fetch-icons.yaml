@@ -66,9 +66,6 @@ jobs:
           CEN_URL_ICONSET_POST: ${{ secrets.CEN_URL_ICONSET_POST }}
           CEN_URL_ICONSET_UI: ${{ secrets.CEN_URL_ICONSET_UI }}
 
-      - name: Build styles
-        run: pnpm --filter design-system-styles... build
-
       - name: Commit Changes
         run: |
           git config --global user.name "github-actions[bot]"
