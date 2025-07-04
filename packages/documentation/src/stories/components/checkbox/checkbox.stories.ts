@@ -208,6 +208,7 @@ function renderCheckbox(args: Args, context: StoryContext) {
         ?disabled="${args.disabled}"
         .checked="${CHECKED_STATE_MAP[args.checked]}"
         @change="${handleChange}"
+        ?required="${args.requiredOptional === 'required'}"
       />
       ${args.hiddenLabel ? nothing : html`<label for="${context.id}">${getLabelText(args)}</label>`}
       ${args.validation !== 'null' ? getValidationFeedback(args, context) : nothing}

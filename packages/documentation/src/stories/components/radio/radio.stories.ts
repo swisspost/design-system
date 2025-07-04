@@ -155,6 +155,7 @@ function render(args: Args, context: StoryContext) {
         ? `${args.validation}-id-${context.id}`
         : nothing}"
       @change="${(e: Event) => updateArgs({ checked: (e.target as HTMLInputElement).checked })}"
+      ?required="${args.requiredOptional === 'required'}"
     />
   `;
 

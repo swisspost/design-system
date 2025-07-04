@@ -348,30 +348,50 @@ export const RequiredOptional: Story = {
             <option value="value_2">Mrs.</option>
             <option value="value_3">Ms.</option>
           </select>
-          <label class="form-label" for="select-el">Salutation (optional)</label>
+          <label class="form-label" for="select-el"
+            >Salutation <span aria-hidden="true">(optional)</span></label
+          >
         </div>
       </div>
       <div class="mb-16">
         <div class="form-floating">
-          <input id="input-first-name" class="form-control" type="text" placeholder="Placeholder" />
-          <label class="form-label" for="input-first-name">First name (required)</label>
+          <input
+            id="input-first-name"
+            class="form-control"
+            type="text"
+            placeholder="Placeholder"
+            required
+          />
+          <label class="form-label" for="input-first-name"
+            >First name <span aria-hidden="true">(required)</span></label
+          >
         </div>
       </div>
       <div class="mb-16">
         <div class="form-floating">
-          <input id="input-last-name" class="form-control" type="text" placeholder="Placeholder" />
-          <label class="form-label" for="input-last-name">Last name (required)</label>
+          <input
+            id="input-last-name"
+            class="form-control"
+            type="text"
+            placeholder="Placeholder"
+            required
+          />
+          <label class="form-label" for="input-last-name"
+            >Last name <span aria-hidden="true">(required)</span></label
+          >
         </div>
       </div>
       <div class="mb-16">
         <div class="form-floating">
-          <textarea id="textarea-subject" class="form-control" rows="4"></textarea>
-          <label class="form-label" for="textarea-subject">Subject (required)</label>
+          <textarea id="textarea-subject" class="form-control" rows="4" required></textarea>
+          <label class="form-label" for="textarea-subject"
+            >Subject <span aria-hidden="true">(required)</span></label
+          >
         </div>
       </div>
       <div class="mb-16">
         <fieldset>
-          <legend>Are you an existing customer? (required)</legend>
+          <legend>Are you an existing customer? <span aria-hidden="true">(optional)</span></legend>
           <div class="form-check">
             <input
               name="customer-group"
@@ -396,15 +416,16 @@ export const RequiredOptional: Story = {
         <div class="form-check form-switch">
           <input type="checkbox" role="switch" id="input-switch" class="form-check-input" />
           <label class="form-check-label" for="input-switch">
-            I want to receive the newsletter (optional)
+            I want to receive the newsletter <span aria-hidden="true">(optional)</span>
           </label>
         </div>
       </div>
       <div class="mb-16">
         <div class="form-check">
-          <input type="checkbox" id="input-checkbox" />
+          <input type="checkbox" id="input-checkbox" required />
           <label for="input-checkbox">
-            I hereby confirm that I acknowledge and accept the terms and conditions. (required)
+            I hereby confirm that I acknowledge and accept the terms and conditions.
+            <span aria-hidden="true">(required)</span>
           </label>
         </div>
       </div>

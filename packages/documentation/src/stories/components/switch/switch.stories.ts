@@ -182,6 +182,7 @@ function renderSwitch(args: Args, context: StoryContext) {
           ? `${args.validation}-id-${context.id}`
           : nothing}"
         @change=${() => updateArgs({ checked: !args.checked })}
+        ?required="${args.requiredOptional === 'required'}"
       />
       ${labelBefore} ${labelAfter} ${args.validation !== 'null' ? validationFeedback : nothing}
     </div>

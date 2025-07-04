@@ -224,6 +224,7 @@ function render(args: Args, context: StoryContext) {
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
       aria-describedby="${ariaDescribedBy}"
       @input="${(e: MouseEvent) => updateArgs({ value: (e.target as HTMLInputElement).value })}"
+      ?required="${args.requiredOptional === 'required'}"
     />
   `;
 

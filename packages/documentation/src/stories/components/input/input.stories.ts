@@ -197,6 +197,7 @@ function render(args: Args, context: StoryContext) {
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
       aria-describedby="${ariaDescribedBy}"
       value="${args.value ? args.value : nothing}"
+      ?required="${args.requiredOptional === 'required'}"
     />
   `;
   if (args.floatingLabel) {

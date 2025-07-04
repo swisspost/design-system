@@ -185,6 +185,7 @@ function renderTextarea(args: Args, context: StoryContext) {
       aria-invalid=${VALIDATION_STATE_MAP[args.validation] ?? nothing}
       aria-describedby="${ariaDescribedBy}"
       style=${args.resize ?? nothing}
+      ?required="${args.requiredOptional === 'required'}"
     >
 ${args.textInside ?? nothing}</textarea
     >

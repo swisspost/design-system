@@ -3,9 +3,9 @@ import { html } from 'lit';
 
 export function getLabelText({ label, requiredOptional }: Args) {
   if (requiredOptional === 'required') {
-    label = `${label} (required)`;
+    label = html`${label} <span aria-hidden="true">(required)</span>`;
   } else if (requiredOptional === 'optional') {
-    label = `${label} (optional)`;
+    label = html`${label} <span aria-hidden="true">(optional)</span>`;
   }
 
   return label;

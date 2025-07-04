@@ -235,6 +235,7 @@ const Template: Story = {
         @change="${(e: Event) => {
           updateArgs({ value: (e.target as HTMLSelectElement).value });
         }}"
+        ?required="${args.requiredOptional === 'required'}"
       >
         ${[
           options[0],
