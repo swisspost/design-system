@@ -35,11 +35,14 @@
     max-width: 100%;
     color: var(--post-current-palette-fg);
     background-color: var(--post-current-palette-bg);
-    border: 2px solid transparent; // Keeping the default border for HCM
     border-radius: commons.$border-radius;
-    
+
     &.animate-pop-in {
       @include animation.pop-in-animation(0.25s);
+    }
+
+    @include utilities.high-contrast-mode {
+      border: 2px solid transparent; // border is needed in HCM because the shadow is not visible
     }
   }
 
