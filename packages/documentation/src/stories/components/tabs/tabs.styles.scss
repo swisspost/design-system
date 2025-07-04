@@ -2,6 +2,6 @@
 
 .container-examples {
   &:is(.sb-main-padded *) {
-    margin-inline: -1rem;
+    margin-inline: -1rem !important;
   }
 }

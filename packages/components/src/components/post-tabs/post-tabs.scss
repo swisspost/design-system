@@ -14,7 +14,9 @@
     @include media.min($breakpoint) {
       $content-width: tokens.get('grid-max-width', components.$post-container);
       $padding: tokens.get('grid-padding-#{$breakpoint}', components.$post-container);
-      $container-inline-padding: max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x)));
+      $gutter: tokens.get('grid-gutter-#{$breakpoint}', components.$post-container);
+
+      $container-inline-padding: max(#{$padding}, calc(0.5 * #{$gutter}));
 
       // Extra space outside the container
       $extra-space: calc((100vw - $content-width) / 2);
@@ -24,6 +26,7 @@
       .tabs-wrapper {
         // Negative margin to make the tabs-wrapper fullwidth
         margin-inline: calc(-1 * $total-offset-per-side);
+        padding-inline: 0;
 
         //Internal padding to align the tabs content to the container
         .tabs {
