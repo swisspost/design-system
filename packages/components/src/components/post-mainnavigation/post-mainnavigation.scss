@@ -11,7 +11,22 @@
 @use '@swisspost/design-system-styles/variables/color';
 
 post-mainnavigation {
-  // reset links and buttons
+
+  .mobile-header-section {
+    @include media.min(lg) {
+      display: none;
+    }
+    
+    @include media.max(lg) {
+      display: none;
+      
+      .navigation.extended & {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
   post-list-item {
     > a {
       text-decoration: none;
@@ -42,23 +57,17 @@ post-mainnavigation {
     }
   }
 
-  // Absolute positioned so that it goes over the target group if present
-  > .back-button {
-    position: absolute;
-    top: 16px;
-  }
-
-  .back-button {
+  .mobile-header-section .back-button {
     @include media.max(lg) {
-      font-size: 16px;
+      padding: 16px 32px 0;
     }
 
     @include media.max(sm) {
-      font-size: 14px;
+      padding: 16px 16px 0;
     }
   }
 
-  // styles specific to for the mega-dropdown buttons
+  // styles specific to mega-dropdown buttons
   > button,
   post-megadropdown-trigger button {
     &::after {
@@ -122,6 +131,7 @@ post-mainnavigation {
     post-list > [role='list'] {
       flex-direction: row;
       max-width: 100vw;
+      
     }
 
     post-list-item {
@@ -178,7 +188,7 @@ post-mainnavigation {
         }
       }
 
-      // styles specific to for the mega-dropdown buttons
+      // styles specific to mega-dropdown buttons
       > button,
       post-megadropdown-trigger button {
         padding-inline-end: 12px;
@@ -211,7 +221,7 @@ post-mainnavigation {
     }
   }
 
-  // tablet/mobile styles
+  // Tablet/mobile styles
   @include media.max(lg) {
     nav {
       transform: none !important;
@@ -233,7 +243,7 @@ post-mainnavigation {
       }
     }
 
-    // styles specific to for the mega-dropdown buttons
+    // Styles specific to mega-dropdown buttons
     > button::after,
     post-megadropdown-trigger button::after {
       transform: rotate(-90deg);

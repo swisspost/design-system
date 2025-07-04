@@ -7,6 +7,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [post-header](../post-header)
+
 ### Depends on
 
 - [post-icon](../post-icon)
@@ -15,6 +19,7 @@
 ```mermaid
 graph TD;
   post-mainnavigation --> post-icon
+  post-header --> post-mainnavigation
   style post-mainnavigation fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

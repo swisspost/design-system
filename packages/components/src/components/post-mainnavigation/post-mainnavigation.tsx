@@ -40,7 +40,7 @@ export class PostMainnavigation {
     // Observe the navbar for size changes
     this.resizeObserver.observe(this.navbar);
 
-    // Observe the navabar for mutation changes
+    // Observe the navbar for mutation changes
     this.mutationObserver.observe(this.navbar, { subtree: true, childList: true }); // Recheck scrollability when navigation list changes
 
     // Ensure the scroll buttons are correctly displayed or hidden whenever the navbar is scrolled
@@ -100,8 +100,10 @@ export class PostMainnavigation {
   }
 
   private handleBackButtonClick() {
-    const header = this.navbar.closest<HTMLPostHeaderElement>('post-header');
-    if (header) header.toggleMobileMenu();
+    const header = document.querySelector<HTMLPostHeaderElement>('post-header');
+    if (header && typeof header.toggleMobileMenu === 'function') {
+      header.toggleMobileMenu(false);
+    }
   }
 
   /**
@@ -195,10 +197,16 @@ export class PostMainnavigation {
   render() {
     return (
       <Host slot="post-mainnavigation" version={version}>
-        <div onClick={() => this.handleBackButtonClick()} class="back-button">
-          <slot name="back-button"></slot>
+        {/* Mobile header section (back button + target group) - only shows on mobile/tablet */}
+        <div class="mobile-header-section">
+          <div onClick={() => this.handleBackButtonClick()} class="back-button">
+            <slot name="back-button"></slot>
+          </div>
+          <div class="target-group">
+            <slot name="target-group"></slot>
+          </div>
         </div>
-
+      
         <div
           aria-hidden="true"
           class={{ 'scroll-control scroll-left': true, 'd-none': !this.canScrollLeft }}

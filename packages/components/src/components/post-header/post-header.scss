@@ -87,14 +87,14 @@
   gap: 24px;
 
   @include media.min(lg) {
-    // targets the right links and language switch to hide them on scroll
+    // Target right links and language switch to hide them on scroll
     &:not(:has(.logo)) {
       position: relative;
       transition: inset-block-start 0.2s ease-in-out;
       inset-block-start: var(--post-global-controls-top);
     }
 
-    // targets the target group
+    // Target the target group
     &:not(:last-child):not(:first-child) {
       flex-grow: 1;
     }
@@ -113,11 +113,16 @@
   align-self: flex-end;
 
   @include media.min(lg) {
-    transition: height 0.2 ease-in-out;
+    transition: height 0.2s ease-in-out;
     height: var(--post-logo-height);
   }
 }
 
+::slotted(post-mainnavigation) {
+    @include media.min(lg) {
+    display: none;
+  }
+}
 ::slotted(ul) {
   margin-block: 0 !important;
   list-style: none;
@@ -125,6 +130,17 @@
   padding-inline-start: 0;
   gap: 1rem;
   flex-shrink: 0 !important;
+}
+
+::slotted(.btn) {
+  @include media.max(lg) {
+    font-size: 16px !important;
+    padding: 0 !important;
+  }
+
+  @include media.max(sm) {
+    font-size: 14px !important;
+  }
 }
 
 .local-header {
@@ -164,7 +180,6 @@
     z-index: 3;
     position: relative;
     padding-block: 8px;
-
     flex-wrap: wrap;
     gap: 12px;
 
@@ -234,17 +249,27 @@
   .navigation-footer {
     padding-block: 16px 24px;
     padding-inline: 32px;
-  }
-
-  ::slotted(post-mainnavigation),
-  .navigation-footer,
-  .navigation-target-group {
     display: none;
     flex-direction: column;
+
+    @include media.max(sm) {
+      padding-inline: 16px;
+    }
 
     .navigation.extended & {
       display: flex;
     }
+  }
+
+  ::slotted(post-mainnavigation) {
+    @include media.max(lg) {
+      padding-block-start: 32px;
+    }
+  }
+  
+  .navigation-footer {
+    background-color: #f0efed;
+    gap: 24px;
   }
 
   .navigation.extended {
@@ -273,16 +298,13 @@
     gap: 32px;
   }
 
-  .navigation-footer {
-    background-color: #f0efed;
-    gap: 24px;
-  }
-}
-
-// only for mobile
-@include media.max(sm) {
-  ::slotted(post-mainnavigation),
-  .navigation-footer {
-    padding-inline: 16px;
+  @include media.max(sm) {
+    // Adjust spacing when target group is present
+    :has([slot="target-group"]) {
+      ::slotted(post-mainnavigation) {
+        gap: 24px;
+        padding-block-start: 24px;
+      }
+    }
   }
 }
