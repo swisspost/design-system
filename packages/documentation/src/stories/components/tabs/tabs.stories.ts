@@ -54,11 +54,7 @@ function renderTabs(args: Partial<HTMLPostTabsElement>) {
 // STORIES
 type Story = StoryObj<HTMLPostTabsElement>;
 
-export const Default: Story = {
-  decorators: [
-    story => html`<div class="container-examples"><div class="container">${story()}</div></div>`,
-  ],
-};
+export const Default: Story = {};
 
 export const ActivePanel: Story = {
   args: {
