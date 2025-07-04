@@ -59,6 +59,7 @@ const meta: MetaComponent = {
       html` <div class="header-story-wrapper">
         <div class="virtual-body">${story()} ${fakeContent()}</div>
       </div>`,
+    clickBlocker,
   ],
 };
 
