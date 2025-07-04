@@ -13,7 +13,13 @@ const meta: MetaComponent = {
   parameters: {
     badges: [],
     controls: {
-      exclude: ['Custom Header', 'Custom Body', 'Custom Footer', 'Show Body', 'Show List Group'],
+      exclude: [
+        'Custom Header',
+        'Custom Body',
+        'Custom Footer',
+        'Show Body',
+        'Show List Interactive',
+      ],
     },
     design: {
       type: 'figma',
@@ -169,8 +175,8 @@ const meta: MetaComponent = {
       },
     },
     showListGroup: {
-      name: 'Show List Group',
-      description: 'When set to `true`, a list group is shown in the card.',
+      name: 'Show List Interactive',
+      description: 'When set to `true`, a list interactive is shown in the card.',
       control: {
         type: 'boolean',
       },
@@ -253,9 +259,9 @@ function getCardBody({ customBody, content, action, showTitle, showSubtitle }: A
 
 function getCardListGroup() {
   return html`
-    <ul class="list-group">
+    <ul class="list-interactive">
       ${['First Item', 'Second Item', 'Another Item'].map(
-        label => html` <li class="list-group-item">${label}</li> `,
+        label => html` <li class="list-interactive-item">${label}</li> `,
       )}
     </ul>
   `;
@@ -378,8 +384,8 @@ export const CustomContent: Story = {
     <span class="visually-hidden">Account Management</span>
   </a>
 </div>`,
-    customBody: `<ul class="list-group">
-  <li class="list-group-item d-flex align-items-center justify-content-between">
+    customBody: `<ul class="list-interactive">
+  <li class="list-interactive-item d-flex align-items-center justify-content-between">
     <address class="mb-0">
       Mr<br>First Name Last Name<br>Street 1<br>1234 City
     </address>
@@ -388,7 +394,7 @@ export const CustomContent: Story = {
       <span class="visually-hidden">Edit Address</span>
     </a>
   </li>
-  <li class="list-group-item d-flex align-items-center justify-content-between">
+  <li class="list-interactive-item d-flex align-items-center justify-content-between">
     <p class="mb-0">Language: <span class="fw-bold">English</span></p>
     <a href="#">
       <post-icon aria-label="Edit Language" scale="1.5" name="3193"></post-icon>

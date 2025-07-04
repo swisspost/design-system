@@ -106,6 +106,7 @@ function render(args: Args) {
       class="${args.palette}"
       id="${args.id}"
       placement="${args.placement}"
+      close-button-caption="${args.closeButtonCaption}"
       ?arrow="${args.arrow}"
       style="${args.maxWidth ? '--post-popover-max-width: ' + args.maxWidth : ''}"
     >

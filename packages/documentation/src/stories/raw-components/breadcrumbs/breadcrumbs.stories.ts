@@ -10,7 +10,7 @@ const meta: MetaComponent<HTMLSwisspostInternetBreadcrumbsElement> = {
   id: '4347e5bf-8bf2-4f44-9075-9faaa53591ed',
   title: 'Raw Components/Internet Header/Breadcrumbs',
   component: 'swisspost-internet-breadcrumbs',
-  tags: ['package:InternetHeader'],
+  tags: ['package:InternetHeader', 'devOnly'],
   render: renderInternetBreadcrumbs,
   decorators: [hiddenHeader, clickBlocker],
   parameters: {

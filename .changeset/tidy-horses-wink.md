@@ -10,3 +10,7 @@ Updated the following props to be `optional`:
 - `post-logo`: `url`
 - `post-tabs`: `activePanel`
 - `post-tag`: `variant`
+
+Updated prop type:
+
+- `post-card-control`: `validity` type changed to boolean.

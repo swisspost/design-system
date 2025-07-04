@@ -7,7 +7,7 @@ import { clickBlocker } from '@/shared/click-blocker';
 const meta: MetaComponent<HTMLPostMegadropdownElement> = {
   id: '212efc4e-875b-4497-912d-d28c6baf32f5',
   title: 'Raw Components/Megadropdown',
-  tags: ['package:WebComponents'],
+  tags: ['package:WebComponents', 'devOnly'],
   component: 'post-megadropdown',
   render: render,
   parameters: {

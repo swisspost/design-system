@@ -5,7 +5,7 @@ import { clickBlocker } from '@/shared/click-blocker';
 
 const meta: MetaComponent = {
   id: '5a47ba70-7831-4e59-b83e-81b6e6c32372',
-  title: 'Components/List Group',
+  title: 'Components/List Interactive',
   tags: ['package:HTML'],
   render: renderListGroup,
   decorators: [gridDecorator, clickBlocker],
@@ -22,7 +22,7 @@ const meta: MetaComponent = {
   argTypes: {
     listType: {
       name: 'List type',
-      description: 'Type of list elements to show in the list group.',
+      description: 'Type of list elements to show in the interactive list.',
       options: ['link', 'document', 'switch'],
       control: {
         type: 'radio',
@@ -56,7 +56,7 @@ function gridDecorator(story: StoryFn, context: StoryContext) {
 
 export function renderListGroup(args: Args) {
   return html`
-    <ul class="list-group">
+    <ul class="list-interactive">
       ${getContent(args, 3)}
     </ul>
   `;
@@ -80,7 +80,7 @@ export function renderListGroup(args: Args) {
           ${items.map(
             () => html`
               <li>
-                <a href="#" download=${isDoc || null} class="list-group-${args.listType}">
+                <a href="#" download=${isDoc || null} class="list-interactive-${args.listType}">
                   ${isDoc ? fileIcon : null}${args.label}${isDoc ? downloadIcon : linkIcon}
                 </a>
               </li>
@@ -92,7 +92,7 @@ export function renderListGroup(args: Args) {
           ${items.map(
             i => html`
               <li>
-                <div class="list-group-${args.listType} form-check form-switch">
+                <div class="list-interactive-${args.listType} form-check form-switch">
                   <!-- it's important to set custom ids here -->
                   <input
                     type="checkbox"
