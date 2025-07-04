@@ -78,15 +78,16 @@ button.chip-dismissible {
     @include chip-mx.chip-styles();
 
     .badge {
+      box-sizing: border-box;
       color: tokens.get('chip-selectable-badge-enabled-fg');
-      padding: 0;
+      padding-inline: tokens.get('chip-selectable-badge-padding-inline');
       background-color: tokens.get('chip-selectable-badge-enabled-bg');
       margin-left: tokens.get('chip-selectable-gap-inline-badge');
-      border: 1px solid transparent; // HCM
-      height: calc(tokens.get('chip-selectable-badge-size') - 2px); // Remove 2 * 1px border for HCM
-      min-width: calc(
-        tokens.get('chip-selectable-badge-size') - 2px
-      ); // Remove 2 * 1px border for HCM
+
+      // HCM
+      border: 1px solid transparent;
+      height: calc(tokens.get('chip-selectable-badge-size') - 2px);
+      min-width: calc(tokens.get('chip-selectable-badge-size') - 2px);
     }
   }
 
