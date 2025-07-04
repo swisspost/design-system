@@ -1,5 +1,18 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.41
+
+### Major Changes
+
+- Renamed the following CSS custom properties and Sass variables: - `--post-breakpoint-widths` → `--post-grid-breakpoint-widths`
+  - `--post-breakpoint-keys` → `--post-grid-breakpoint-keys`
+  - `--post-breakpoint-names` → `--post-grid-breakpoint-devices`
+  - `$grid-breakpoints-key-name-map` → `$grid-breakpoint-to-device` (by [@alizedebray](https://github.com/alizedebray) with [#5739](https://github.com/swisspost/design-system/pull/5739))
+
+### Minor Changes
+
+- Updated media utilities to support device names: `mobile`, `tablet`, and `desktop`. (by [@alizedebray](https://github.com/alizedebray) with [#5739](https://github.com/swisspost/design-system/pull/5739))
+
 ## 10.0.0-next.40
 
 ### Major Changes

@@ -1,5 +1,22 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.42
+
+### Patch Changes
+
+- Added an info banner to the styles for PrimeNG package documentation to clearly communicate that `@swisspost/design-system-styles-primeng` only provides styling for PrimeNG datatables. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5752](https://github.com/swisspost/design-system/pull/5752))
+
+- Add accessibility note in the Language Switch page to highlight the requirement for clear accessible `names` on language selection options. (by [@myrta2302](https://github.com/myrta2302) with [#5350](https://github.com/swisspost/design-system/pull/5350))
+
+- Reorganized `story action` buttons and added corresponding icons to improve user experience. Updated "Copy link" button label to "Copy deep link" for better clarity. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5598](https://github.com/swisspost/design-system/pull/5598))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.41
+  - @swisspost/design-system-styles@10.0.0-next.41
+  - @swisspost/design-system-components-react@10.0.0-next.41
+  - @swisspost/internet-header@2.0.0-next.41
+  - @swisspost/design-system-tokens@10.0.0-next.41
+  - @swisspost/design-system-icons@10.0.0-next.41
+
 ## 6.0.0-next.41
 
 ### Minor Changes
