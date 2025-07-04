@@ -26,7 +26,7 @@ export class PostFooter {
    */
   @Prop() readonly label!: string;
 
-  @State() device: string = breakpoint.get('name');
+  @State() device: string = breakpoint.get('device');
   @State() gridSlotDisplayed: Record<string, boolean> = {};
 
   @Watch('label')
@@ -39,7 +39,7 @@ export class PostFooter {
   }
 
   connectedCallback() {
-    window.addEventListener('postBreakpoint:name', this.breakpointChange);
+    window.addEventListener('postBreakpoint:device', this.breakpointChange);
   }
 
   componentWillLoad() {
@@ -53,7 +53,7 @@ export class PostFooter {
   }
 
   disconnectedCallback() {
-    window.removeEventListener('postBreakpoint:name', this.breakpointChange);
+    window.removeEventListener('postBreakpoint:device', this.breakpointChange);
   }
 
   private readonly breakpointChange = (e: CustomEvent) => {
