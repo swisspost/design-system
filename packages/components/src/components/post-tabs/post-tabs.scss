@@ -1,24 +1,36 @@
+@use 'sass:map';
 @use '@swisspost/design-system-styles/components/tabs/tabs-wrapper';
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/variables/breakpoints';
+@use '@swisspost/design-system-styles/mixins/media';
 
 :host {
   display: block;
 }
 
-:host([fullwidth='true']) .tabs-wrapper {
-  // Extra space outside the container
+:host([full-width='true']) {
+  @each $breakpoint in map.keys(breakpoints.$grid-breakpoints) {
+    @include media.min($breakpoint) {
+      $content-width: tokens.get('grid-max-width', components.$post-container);
+      $padding: tokens.get('grid-padding-#{$breakpoint}', components.$post-container);
+      $container-inline-padding: max(#{$padding}, calc(0.5 * var(--post-grid-gutter-x)));
 
-  $extra-space: calc((100vw - var(--post-core-dimension-1280)) / 2);
-  $space-to-compensate: max(0px, $extra-space);
-  $total-offset-per-side: calc(
-    max(var(--post-core-dimension-40), 0.5 * var(--post-grid-gutter-x)) + $space-to-compensate
-  );
+      // Extra space outside the container
+      $extra-space: calc((100vw - $content-width) / 2);
+      $space-to-compensate: max(0px, $extra-space);
+      $total-offset-per-side: calc($container-inline-padding + $space-to-compensate);
 
-  // Negative margin to make the tabs-wrapper fullwidth
-  margin-inline: calc(-1 * $total-offset-per-side);
-  padding-inline: 0;
+      .tabs-wrapper {
+        // Negative margin to make the tabs-wrapper fullwidth
+        margin-inline: calc(-1 * $total-offset-per-side);
+        padding-inline: 0;
 
-  //Internal padding to align the tabs content to the container
-  .tabs {
-    padding-inline: $total-offset-per-side;
+        //Internal padding to align the tabs content to the container
+        .tabs {
+          padding-inline: $total-offset-per-side;
+        }
+      }
+    }
   }
 }

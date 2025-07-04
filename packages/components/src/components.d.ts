@@ -450,7 +450,7 @@ export namespace Components {
         /**
           * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.
          */
-        "fullWidth"?: boolean;
+        "fullWidth": boolean;
         /**
           * Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
          */

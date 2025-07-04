@@ -2,6 +2,7 @@ import { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { MetaComponent } from '@root/types';
+import './tabs.styles.scss';
 
 const meta: MetaComponent<HTMLPostTabsElement> = {
   id: 'bb1291ca-4dbb-450c-a15f-596836d9f39e',
@@ -22,15 +23,6 @@ const meta: MetaComponent<HTMLPostTabsElement> = {
       control: 'select',
       options: ['first', 'second', 'third'],
     },
-    fullWidth: {
-      name: 'fullWidth',
-      control: {
-        type: 'boolean',
-      },
-    },
-  },
-  args: {
-    fullWidth: false,
   },
 };
 
@@ -40,7 +32,7 @@ function renderTabs(args: Partial<HTMLPostTabsElement>) {
   return html`
     <post-tabs
       active-panel="${ifDefined(args.activePanel)}"
-      fullwidth="${args.fullWidth ?? undefined}"
+      full-width="${args.fullWidth ? true : undefined}"
     >
       <post-tab-header panel="first">First tab</post-tab-header>
       <post-tab-header panel="second">Second tab</post-tab-header>
@@ -71,10 +63,10 @@ export const ActivePanel: Story = {
 };
 
 export const FullWidth: Story = {
-  args: {
-    fullWidth: true,
-  },
-  decorators: [story => html`<div class="container">${story()}</div>`],
+  args: { fullWidth: true },
+  decorators: [
+    story => html`<div class="container-examples"><div class="container">${story()}</div></div>`,
+  ],
 };
 
 export const Async: Story = {
