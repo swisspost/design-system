@@ -24,7 +24,6 @@
       .tabs-wrapper {
         // Negative margin to make the tabs-wrapper fullwidth
         margin-inline: calc(-1 * $total-offset-per-side);
-        padding-inline: 0;
 
         //Internal padding to align the tabs content to the container
         .tabs {
