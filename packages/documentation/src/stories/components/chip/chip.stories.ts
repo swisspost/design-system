@@ -209,7 +209,6 @@ export const SelectableCheckboxChip: Story = {
   },
 };
 
-//TODO: Badge amount needs to make badge bigger
 export const SelectableBadgeChip: Story = {
   render: ({ selected, ...args }, context) => {
     const checkboxChips = [
