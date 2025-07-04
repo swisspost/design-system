@@ -1,0 +1,12 @@
+<ng-container *ngFor="let item of items">
+  <post-tooltip-trigger [attr.for]="'tooltip-' + item.id">
+    <button class="btn btn-secondary">
+      {{ item.title }}
+    </button>
+  </post-tooltip-trigger>
+
+  <post-tooltip [attr.id]="'tooltip-' + item.id">
+    <p><strong>Status:</strong> {{ item.shippingInfo }}</p>
+    <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+  </post-tooltip>
+</ng-container>
