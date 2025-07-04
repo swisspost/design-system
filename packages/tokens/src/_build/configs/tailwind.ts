@@ -65,7 +65,7 @@ StyleDictionary.registerFormat({
       const tokenObj = token.path
         .slice(token.path.indexOf(TOKENSET_PREFIX) + 1)
         .reverse()
-        .reduce((res, p) => ({ [p]: res }), getTokenValue(options, token));
+        .reduce((res, p) => ({ [p]: res }), getTokenValue(options, token)) as object;
 
       return objectDeepmerge(allTokens, tokenObj);
     }, {});
