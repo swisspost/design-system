@@ -146,6 +146,7 @@ export class PostLanguageSwitch {
           id={this.menuId}
           class="post-language-switch-dropdown-container"
           aria-label={this.caption}
+          role="menu"
         >
           <slot></slot>
         </post-menu>

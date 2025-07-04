@@ -119,7 +119,7 @@ export class PostLanguageOption {
 
   render() {
     const lang = this.code.toLowerCase();
-
+    const role = this.variant === 'menu' ? 'menuitem' : undefined;
     const emitOnKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter' || e.key === ' ') {
         this.emitChange();
@@ -130,6 +130,7 @@ export class PostLanguageOption {
       <Host data-version={version}>
         {this.url ? (
           <a
+            role={role}
             aria-current={this.active ? 'page' : undefined}
             href={this.url}
             hrefLang={lang}
@@ -142,6 +143,7 @@ export class PostLanguageOption {
           </a>
         ) : (
           <button
+            role={role}
             aria-current={this.active ? 'true' : undefined}
             lang={lang}
             onClick={() => this.emitChange()}
