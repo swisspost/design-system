@@ -1,0 +1,36 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+.container-examples {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  z-index: 0;
+}
+
+.z-container {
+  width: 100px;
+  height: 100px;
+  background-color: post.$yellow;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid  ;
+
+}
+
+.z-container:nth-child(1) {
+  top: 0;
+  left: 0;
+}
+
+.z-container:nth-child(2) {
+  top: 35px;
+  left: 45px;
+}
+
+.z-container:nth-child(3) {
+  top: 70px;
+  left:90px;
+}

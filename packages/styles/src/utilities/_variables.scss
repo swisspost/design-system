@@ -567,6 +567,17 @@ $utilities: (
       reset: inherit,
     ),
   ),
+  'z-index': (
+    property: z-index,
+    class: z,
+    values: (
+      n1: -1,
+      0: 0,
+      1: 1,
+      2: 2,
+      3: 3,
+    ),
+  ),
 );
 
 /* IMPORTANT: When adding new utilities here, please ensure to remove the corresponding bootstrap utilities in `src/themes/bootstrap/_utilities.scss`. */
