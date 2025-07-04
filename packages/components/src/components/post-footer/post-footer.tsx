@@ -1,6 +1,8 @@
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { breakpoint } from '@/utils';
+import { checkRequiredAndType, breakpoint } from '@/utils';
+
+const GRID_SLOTS = ['grid-1', 'grid-2', 'grid-3', 'grid-4'];
 
 /**
  * @slot grid-{1|2|3|4}-title - Slot for the accordion headers (mobile).
@@ -24,70 +26,73 @@ export class PostFooter {
    */
   @Prop() readonly label!: string;
 
-  @State() isMobile: boolean = breakpoint.get('name') === 'mobile';
+  @State() device: string = breakpoint.get('device');
+  @State() gridSlotDisplayed: Record<string, boolean> = {};
+
+  @Watch('label')
+  validateLabel() {
+    checkRequiredAndType(this, 'label', 'string');
+  }
+
+  constructor() {
+    this.handleGridSlotChange = this.handleGridSlotChange.bind(this);
+  }
 
   connectedCallback() {
-    window.addEventListener('postBreakpoint:name', this.breakpointChange);
+    window.addEventListener('postBreakpoint:device', this.breakpointChange);
+  }
+
+  componentWillLoad() {
+    this.validateLabel();
+
+    // initialize grid visibility by checking the content of each slot
+    GRID_SLOTS.forEach(slotName => {
+      const assignedElements = this.host.querySelectorAll(`[slot="${slotName}"]`);
+      this.updateGridSlotDisplay(slotName, assignedElements.length > 0);
+    });
   }
 
   disconnectedCallback() {
-    window.removeEventListener('postBreakpoint:name', this.breakpointChange);
+    window.removeEventListener('postBreakpoint:device', this.breakpointChange);
   }
 
   private readonly breakpointChange = (e: CustomEvent) => {
-    this.isMobile = e.detail === 'mobile';
+    this.device = e.detail;
   };
+
+  private readonly handleGridSlotChange = (...devices: string[]) => (e: Event) => {
+    if (devices.includes(this.device) && e.target instanceof HTMLSlotElement) {
+      this.updateGridSlotDisplay(e.target.name, e.target.assignedElements().length > 0);
+    }
+  };
+
+  private updateGridSlotDisplay(slotName: string, hasContent: boolean) {
+    if (this.gridSlotDisplayed[slotName] !== hasContent) {
+      this.gridSlotDisplayed = {...this.gridSlotDisplayed, [slotName]: hasContent};
+    }
+  }
 
   private renderAccordion() {
     return (
-      <div class="footer-grid">
-        <post-accorddion heading-level="3" multiple>
-          <post-accordion-item collapsed>
+      <post-accordion headingLevel={3} multiple={true}>
+        {GRID_SLOTS.map(slotName => (
+          <post-accordion-item class={{ 'd-none': !this.gridSlotDisplayed[slotName] }} collapsed={true}>
             <span slot="header">
-              <slot name="grid-1-title"></slot>
+              <slot name={slotName + '-title'}></slot>
             </span>
-            <slot name="grid-1"></slot>
+            <slot onSlotchange={this.handleGridSlotChange('mobile')} name={slotName}></slot>
           </post-accordion-item>
-          <post-accordion-item collapsed>
-            <span slot="header">
-              <slot name="grid-2-title"></slot>
-            </span>
-            <slot name="grid-2"></slot>
-          </post-accordion-item>
-          <post-accordion-item collapsed>
-            <span slot="header">
-              <slot name="grid-3-title"></slot>
-            </span>
-            <slot name="grid-3"></slot>
-          </post-accordion-item>
-          <post-accordion-item collapsed>
-            <span slot="header">
-              <slot name="grid-4-title"></slot>
-            </span>
-            <slot name="grid-4"></slot>
-          </post-accordion-item>
-        </post-accorddion>
-      </div>
+        ))}
+      </post-accordion>
     );
   }
 
-  private renderGrid() {
-    return (
-      <div class="footer-grid">
-        <div>
-          <slot name="grid-1"></slot>
-        </div>
-        <div>
-          <slot name="grid-2"></slot>
-        </div>
-        <div>
-          <slot name="grid-3"></slot>
-        </div>
-        <div>
-          <slot name="grid-4"></slot>
-        </div>
+  private renderColumns() {
+    return GRID_SLOTS.map(slotName => (
+      <div class={{ 'd-none': !this.gridSlotDisplayed[slotName] }}>
+        <slot onSlotchange={this.handleGridSlotChange('tablet', 'desktop')} name={slotName}></slot>
       </div>
-    );
+    ));
   }
 
   render() {
@@ -97,7 +102,9 @@ export class PostFooter {
           <h2 class="visually-hidden">{this.label}</h2>
 
           <div class="footer-container">
-            {this.isMobile ? this.renderAccordion() : this.renderGrid()}
+            <div class="footer-grid">
+              {this.device === 'mobile' ? this.renderAccordion() : this.renderColumns()}
+            </div>
 
             <div class="footer-column">
               <div class="footer-socialmedia">

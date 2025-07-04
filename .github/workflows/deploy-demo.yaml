@@ -27,7 +27,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@09d2acae674a48949e3602304ab46fd20ae0c42f
         with:
-          ref: ${{ github.event.workflow_run.head_branch }}
+          ref: main
 
       - name: Setup
         uses: ./.github/actions/setup-pnpm
@@ -39,11 +39,34 @@ jobs:
           name: design-system-demo
           folder: build-output
 
+      - name: Validate issue number
+        id: validate
+        uses: actions/github-script@v6
+        with:
+          env:
+            RAW_ID: ${{ steps.build.outputs.id }}
+          script: |
+            const rawId = process.env.RAW_ID;
+            if (!/^\d{1,10}$/.test(rawId)) {
+              core.setFailed('Invalid issue number format - must be 1-10 digits');
+              return;
+            }
+            // Convert to number and validate range
+            const issueNumber = Number(rawId);
+            if (!Number.isInteger(issueNumber) || issueNumber <= 0) {
+              core.setFailed('Invalid issue number - must be a positive integer');
+              return;
+            }
+            
+            core.setOutput('safe_id', rawId);
+            core.setOutput('issue_number', issueNumber);
+
       - name: Deploy demo app to netlify
+        if: steps.validate.outcome == 'success'
         uses: swisspost/design-system/.github/actions/deploy-to-netlify@release/v8
         id: deploy
         with:
-          id: ${{ steps.build.outputs.id }}
+          id: ${{ steps.validate.outputs.safe_id }}
           netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           netlify_site_id: ${{ secrets.NETLIFY_SITE_ID }}
           netlify_site_url: swisspost-web-frontend.netlify.app
@@ -51,8 +74,19 @@ jobs:
           package_name: '@swisspost/design-system-demo'
 
       - name: Update preview message
-        uses: ./.github/actions/preview/message/update
+        if: steps.validate.outcome == 'success' && steps.deploy.outcome == 'success'
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         with:
-          access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-          issue-number: ${{ steps.build.outputs.id }}
-          preview-url: ${{ steps.deploy.outputs.preview-url }}
+          github-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+          env:
+            ISSUE_NUMBER: ${{ steps.validate.outputs.issue_number }}
+            PREVIEW_URL: ${{ steps.deploy.outputs.preview-url }}
+          script: |
+            const issueNumber = Number(process.env.ISSUE_NUMBER);
+            const previewUrl = process.env.PREVIEW_URL;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: `✅ Preview deployment is ready!\n\n[Preview URL](${previewUrl})`
+            });

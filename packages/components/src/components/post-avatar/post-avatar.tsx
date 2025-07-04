@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkNonEmpty } from '@/utils';
+import { checkRequiredAndType, checkEmptyOrPattern, checkEmptyOrType } from '@/utils';
 
 // https://docs.gravatar.com/api/avatars/images/
 const GRAVATAR_DEFAULT = '404';
@@ -8,6 +8,8 @@ const GRAVATAR_RATING = 'g';
 const GRAVATAR_SIZE = 80;
 
 const GRAVATAR_BASE_URL = `https://www.gravatar.com/avatar/{email}?s=${GRAVATAR_SIZE}&d=${GRAVATAR_DEFAULT}&r=${GRAVATAR_RATING}`;
+
+const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 enum AvatarType {
   Slotted = 'slotted',
@@ -57,7 +59,22 @@ export class PostAvatar {
 
   @Watch('firstname')
   validateFirstname() {
-    checkNonEmpty(this, 'firstname');
+    checkRequiredAndType(this, 'firstname', 'string');
+  }
+
+  @Watch('lastname')
+  validateLastname() {
+    checkEmptyOrType(this, 'lastname', 'string');
+  }
+
+  @Watch('userid')
+  validateUserid() {
+    checkEmptyOrType(this, 'userid', 'string');
+  }
+
+  @Watch('email')
+  validateEmail() {
+    if (this.email) checkEmptyOrPattern(this, 'email', emailPattern);
   }
 
   private async getAvatar() {
@@ -166,6 +183,9 @@ export class PostAvatar {
 
   componentDidLoad() {
     this.validateFirstname();
+    this.validateLastname();
+    this.validateUserid();
+    this.validateEmail();
   }
 
   render() {

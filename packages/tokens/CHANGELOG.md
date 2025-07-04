@@ -1,5 +1,9 @@
 # @swisspost/design-system-tokens
 
+## 10.0.0-next.40
+
+## 10.0.0-next.39
+
 ## 10.0.0-next.38
 
 ## 10.0.0-next.37

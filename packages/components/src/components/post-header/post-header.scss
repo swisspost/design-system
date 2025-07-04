@@ -33,6 +33,12 @@
     --post-logo-height: var(--post-global-header-height);
     --post-global-controls-top: 0;
   }
+
+  @include media.max(lg) {
+    position: fixed;
+    inset: 0;
+    bottom: auto;
+  }
 }
 
 :host(:not(:has([slot='title']))) {
@@ -64,6 +70,7 @@
   @include media.max(lg) {
     z-index: 4;
     inset-block-start: 0;
+    position: relative;
   }
 
   @include media.min(lg) {
@@ -85,11 +92,6 @@
       position: relative;
       transition: inset-block-start 0.2s ease-in-out;
       inset-block-start: var(--post-global-controls-top);
-    }
-
-    // targets the target group
-    &:not(:last-child):not(:first-child) {
-      flex-grow: 1;
     }
   }
 }
@@ -155,7 +157,7 @@
 
   @include media.max(lg) {
     z-index: 3;
-    inset-block-start: var(--post-global-header-height);
+    position: relative;
     padding-block: 8px;
 
     flex-wrap: wrap;
@@ -225,15 +227,10 @@
 
   ::slotted(post-mainnavigation),
   .navigation-footer {
-    padding-block: 16px 24px;
-    padding-inline: 32px;
-  }
-
-  ::slotted(post-mainnavigation),
-  .navigation-footer,
-  .navigation-target-group {
     display: none;
     flex-direction: column;
+    padding-block: 16px 24px;
+    padding-inline: 32px;
 
     .navigation.extended & {
       display: flex;
