@@ -1,5 +1,22 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.41
+
+### Major Changes
+
+- Renamed the custom event `postBreakpoint:name` to `postBreakpoint:device`. (by [@alizedebray](https://github.com/alizedebray) with [#5739](https://github.com/swisspost/design-system/pull/5739))
+
+### Patch Changes
+
+- Improved accessibility of the `post-language-switch` component by adding ARIA roles to trigger Screen Readers' focus mode navigation. (by [@myrta2302](https://github.com/myrta2302) with [#5578](https://github.com/swisspost/design-system/pull/5578))
+
+- Updated `post-tooltip-trigger` and `post-menu-trigger` components to prevent errors when they do not contain an internal HTML element. (by [@myrta2302](https://github.com/myrta2302) with [#5591](https://github.com/swisspost/design-system/pull/5591))
+
+- Enhanced accessibility of `post-language-switch` component by replacing `aria-labels` with `visually-hidden` spans and properly assigning semantic `role` attributes. (by [@myrta2302](https://github.com/myrta2302) with [#5350](https://github.com/swisspost/design-system/pull/5350))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.41
+  - @swisspost/design-system-icons@10.0.0-next.41
+
 ## 10.0.0-next.40
 
 ### Minor Changes
