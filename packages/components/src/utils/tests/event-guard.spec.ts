@@ -1,69 +1,149 @@
-import { eventGuard } from '../event-guard';
+import { EventFrom } from '../event-from';
 
-describe('eventGuard', () => {
+describe('EventFrom decorator', () => {
   let callback: jest.Mock;
   let mockHost: HTMLElement;
+  let decoratedMethod: (event: CustomEvent) => void;
 
   beforeEach(() => {
     callback = jest.fn();
     mockHost = document.createElement('div');
+    mockHost.setAttribute('data-testid', 'host');
+
+    class TestClass {
+      host = mockHost;
+
+      @EventFrom('button')
+      handleButtonEvent(event: CustomEvent) {
+        callback(event);
+      }
+
+      @EventFrom('button', { ignoreNestedComponents: false })
+      handleButtonEventAllowNested(event: CustomEvent) {
+        callback(event);
+      }
+    }
+
+    const instance = new TestClass();
+    decoratedMethod = instance.handleButtonEvent.bind(instance);
   });
 
   afterEach(() => {
     document.body.innerHTML = '';
   });
 
-  test('calls callback when event target matches targetLocalName', () => {
-    const mockEvent = {
-      target: { localName: 'button' } as HTMLElement,
-    } as unknown as CustomEvent<unknown>;
-
-    eventGuard(mockHost, mockEvent, { targetLocalName: 'button' }, callback);
-
-    expect(callback).toHaveBeenCalledTimes(1);
-  });
-
-  test('calls callback when the delegatorSelector is provided and matches', () => {
-    const container = document.createElement('div');
-    container.classList.add('container');
-
+  test('calls callback when event target matches tag', () => {
     const button = document.createElement('button');
-    container.appendChild(button);
+    mockHost.appendChild(button);
+    document.body.appendChild(mockHost);
 
     const mockEvent = {
       target: button,
     } as unknown as CustomEvent<unknown>;
 
-    document.body.appendChild(container);
+    decoratedMethod(mockEvent);
+    expect(callback).toHaveBeenCalledTimes(1);
+  });
 
-    eventGuard(container, mockEvent, { targetLocalName: 'button', delegatorSelector: '.container' }, callback);
+  test('calls callback when ignoreNestedComponents is false', () => {
+    const outerHost = document.createElement('div');
+    outerHost.setAttribute('data-testid', 'outer-host');
+
+    const innerHost = document.createElement('div');
+    innerHost.setAttribute('data-testid', 'inner-host');
+
+    const button = document.createElement('button');
+
+    outerHost.appendChild(innerHost);
+    innerHost.appendChild(button);
+    document.body.appendChild(outerHost);
+
+    const mockEvent = {
+      target: button,
+    } as unknown as CustomEvent<unknown>;
+
+    class TestClass {
+      host = outerHost;
+
+      @EventFrom('button', { ignoreNestedComponents: false })
+      handleButtonEventAllowNested(event: CustomEvent) {
+        callback(event);
+      }
+    }
+
+    const instance = new TestClass();
+    instance.handleButtonEventAllowNested(mockEvent);
 
     expect(callback).toHaveBeenCalledTimes(1);
   });
 
-  test('does not call callback when delegatorSelector does not match', () => {
-    const outerDiv = document.createElement('div');
-    const innerButton = document.createElement('button');
-    outerDiv.appendChild(innerButton);
+  test('does not call callback when ignoreNestedComponents is true and event comes from nested component', () => {
+    const outerHost = document.createElement('div');
+    outerHost.setAttribute('data-testid', 'outer-host');
+
+    const innerHost = document.createElement('div');
+    innerHost.setAttribute('data-testid', 'inner-host');
+
+    const button = document.createElement('button');
+
+    outerHost.appendChild(innerHost);
+    innerHost.appendChild(button);
+    document.body.appendChild(outerHost);
 
     const mockEvent = {
-      target: innerButton,
+      target: button,
     } as unknown as CustomEvent<unknown>;
 
-    document.body.appendChild(outerDiv);
+    class TestClass {
+      host = outerHost;
 
-    eventGuard(outerDiv, mockEvent, { targetLocalName: 'button', delegatorSelector: '.non-existent-container' }, callback);
+      @EventFrom('button', { ignoreNestedComponents: true })
+      handleButtonEvent(event: CustomEvent) {
+        callback(event);
+      }
+    }
+
+    const instance = new TestClass();
+    instance.handleButtonEvent(mockEvent);
 
     expect(callback).not.toHaveBeenCalled();
   });
 
-  test('calls callback when the delegatorSelector is undefined', () => {
+  test('calls callback when ignoreNestedComponents is true and event comes from direct child', () => {
+    const host = document.createElement('div');
+    const button = document.createElement('button');
+    host.appendChild(button);
+    document.body.appendChild(host);
+
     const mockEvent = {
-      target: { localName: 'button' } as HTMLElement,
+      target: button,
     } as unknown as CustomEvent<unknown>;
 
-    eventGuard(mockHost, mockEvent, { targetLocalName: 'button' }, callback);
+    class TestClass {
+      host = host;
 
+      @EventFrom('button', { ignoreNestedComponents: true })
+      handleButtonEvent(event: CustomEvent) {
+        callback(event);
+      }
+    }
+
+    const instance = new TestClass();
+    instance.handleButtonEvent(mockEvent);
+
+    expect(callback).toHaveBeenCalledTimes(1);
+  });
+
+  test('calls callback when ignoreNestedComponents is undefined (defaults to true)', () => {
+    const button = document.createElement('button');
+    mockHost.appendChild(button);
+    document.body.appendChild(mockHost);
+
+    const mockEvent = {
+      target: button,
+    } as unknown as CustomEvent<unknown>;
+
+    decoratedMethod(mockEvent);
     expect(callback).toHaveBeenCalledTimes(1);
   });
 
@@ -72,19 +152,25 @@ describe('eventGuard', () => {
       target: null,
     } as unknown as CustomEvent<unknown>;
 
-    expect(() =>
-      eventGuard(mockHost, mockEvent, { targetLocalName: 'button' }, callback)
-    ).not.toThrow();
+    expect(() => decoratedMethod(mockEvent)).not.toThrow();
     expect(callback).not.toHaveBeenCalled();
   });
 
-  test('does not call callback when targetLocalName is provided but does not match', () => {
+  test('does not call callback when tag does not match', () => {
+    const div = document.createElement('div');
+    mockHost.appendChild(div);
+    document.body.appendChild(mockHost);
+
     const mockEvent = {
-      target: { localName: 'div' } as HTMLElement,
+      target: div,
     } as unknown as CustomEvent<unknown>;
 
-    eventGuard(mockHost, mockEvent, { targetLocalName: 'button' }, callback);
+    decoratedMethod(mockEvent);
+    expect(callback).not.toHaveBeenCalled();
+  });
 
+  test('does not throw error if event is null', () => {
+    expect(() => decoratedMethod(null as unknown as CustomEvent)).not.toThrow();
     expect(callback).not.toHaveBeenCalled();
   });
 });
