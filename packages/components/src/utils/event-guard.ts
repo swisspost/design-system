@@ -1,29 +1,18 @@
-export function EventGuard(options: {
- targetLocalName: string;
- delegatorSelector: string;
-}) {
-  return function (
-    _target: object,
-    _propertyKey: string,
-    descriptor: PropertyDescriptor
-  ) {
-    const originalMethod = descriptor.value;
+export function eventGuard(
+  host: HTMLElement,
+  event: CustomEvent,
+  options: { targetLocalName: string; delegatorSelector?: string },
+  callback: () => void
+): void {
+  const target = event.target as HTMLElement | null;
 
-    descriptor.value = function (event: CustomEvent) {
-      const target = event.target as HTMLElement | null;
+  if (!target) return;
 
-      if (!target || target.localName !== options.targetLocalName) return;
-
-      if (options.delegatorSelector) {
-        const closest = shadowClosest(target, options.delegatorSelector);
-        if (closest !== this.host as HTMLElement) return;
-      }
-
-      return originalMethod.call(this, event);
-    };
-
-    return descriptor;
-  };
+  if (target.localName === options.targetLocalName) {
+    if (!options.delegatorSelector || shadowClosest(target, options.delegatorSelector) === host) {
+      callback();
+    }
+  }
 }
 
 /**
