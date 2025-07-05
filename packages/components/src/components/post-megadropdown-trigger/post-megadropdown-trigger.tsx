@@ -1,6 +1,6 @@
 import { Component, Element, Prop, h, Host, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkRequiredAndType } from '@/utils';
+import { checkRequiredAndType, EventFrom } from '@/utils';
 
 @Component({
   tag: 'post-megadropdown-trigger',

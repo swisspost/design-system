@@ -14,7 +14,7 @@ import { Placement } from '@floating-ui/dom';
 import { PLACEMENT_TYPES } from '@/types';
 import { version } from '@root/package.json';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
-import { getRoot, checkEmptyOrOneOf } from '@/utils';
+import { getRoot, checkEmptyOrOneOf, EventFrom } from '@/utils';
 
 @Component({
   tag: 'post-menu',

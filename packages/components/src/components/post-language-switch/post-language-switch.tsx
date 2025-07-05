@@ -1,5 +1,5 @@
 import { Component, Element, Host, h, Prop, Watch, State, Listen } from '@stencil/core';
-import { checkRequiredAndType, checkEmptyOrOneOf } from '@/utils';
+import { checkRequiredAndType, checkEmptyOrOneOf, EventFrom } from '@/utils';
 import { version } from '@root/package.json';
 import { SWITCH_VARIANTS, SwitchVariant } from './switch-variants';
 import { nanoid } from 'nanoid';
