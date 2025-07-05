@@ -15,8 +15,8 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    title: 'Titulum',
-    content: 'Contentus momentus vero siteos et accusam iretea et justo.',
+    title: 'Title',
+    content: 'This is a sample toast message to demonstrate the component functionality.',
     variant: 'toast-neutral',
     noIcon: false,
     icon: 'null',

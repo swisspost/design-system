@@ -1,5 +1,62 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.41
+
+### Minor Changes
+
+- Renamed the `List Group` component to `List Interactive`. (by [@schaertim](https://github.com/schaertim) with [#5675](https://github.com/swisspost/design-system/pull/5675))
+
+- Dynamically generate dependencies table for `styles` package. (by [@schaertim](https://github.com/schaertim) with [#5669](https://github.com/swisspost/design-system/pull/5669))
+
+### Patch Changes
+
+- Updated styles page by marking the design system version 7.x as end of life. (by [@schaertim](https://github.com/schaertim) with [#5582](https://github.com/swisspost/design-system/pull/5582))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.40
+  - @swisspost/design-system-styles@10.0.0-next.40
+  - @swisspost/design-system-components-react@10.0.0-next.40
+  - @swisspost/internet-header@2.0.0-next.40
+  - @swisspost/design-system-tokens@10.0.0-next.40
+  - @swisspost/design-system-icons@10.0.0-next.40
+
+## 6.0.0-next.40
+
+### Minor Changes
+
+- Only show `health` and `raw-components` stories in development environment and filter them from the search in production mode. (by [@schaertim](https://github.com/schaertim) with [#5377](https://github.com/swisspost/design-system/pull/5377))
+
+### Patch Changes
+
+- Updated `post-popover` component documentation by adding missing `close-button-caption` attribute in component examples. (by [@myrta2302](https://github.com/myrta2302) with [#5501](https://github.com/swisspost/design-system/pull/5501))
+
+- Added a new page 'Header with Custom Logo Link' under Guidelines, on how to use post-header logo with a custom link wrapper. (by [@myrta2302](https://github.com/myrta2302) with [#5171](https://github.com/swisspost/design-system/pull/5171))
+
+- Updated the PrimeNG styles package documentation. (by [@alizedebray](https://github.com/alizedebray) with [#5488](https://github.com/swisspost/design-system/pull/5488))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.39
+  - @swisspost/design-system-components@10.0.0-next.39
+  - @swisspost/design-system-styles@10.0.0-next.39
+  - @swisspost/design-system-components-react@10.0.0-next.39
+  - @swisspost/internet-header@2.0.0-next.39
+  - @swisspost/design-system-tokens@10.0.0-next.39
+
+## 6.0.0-next.39
+
+### Patch Changes
+
+- Added the migration guide for v8 to v9 and updated the migration guide for v9 to v10. (by [@leagrdv](https://github.com/leagrdv) with [#5485](https://github.com/swisspost/design-system/pull/5485))
+
+- Replaced fake text (lorem ipsum, esperanto) in documentation stories with meaningful English to improve clarity and usability. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5394](https://github.com/swisspost/design-system/pull/5394))
+
+- Updated the styles package version informations. (by [@leagrdv](https://github.com/leagrdv) with [#5512](https://github.com/swisspost/design-system/pull/5512))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.38
+  - @swisspost/internet-header@2.0.0-next.38
+  - @swisspost/design-system-components@10.0.0-next.38
+  - @swisspost/design-system-styles@10.0.0-next.38
+  - @swisspost/design-system-components-react@10.0.0-next.38
+  - @swisspost/design-system-tokens@10.0.0-next.38
+
 ## 6.0.0-next.38
 
 ### Major Changes

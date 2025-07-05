@@ -1,5 +1,33 @@
 # @swisspost/design-system-components-angular
 
+## 10.0.0-next.40
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.40
+
+## 10.0.0-next.39
+
+### Major Changes
+
+- Added the styles responsible for preventing fouc (flashes of unstyled content) for web-, angular- and react-components in the respective component packages:
+  - `@swisspost/design-system-components/post-components/post-components.css`
+  - `@swisspost/design-system-components-angular/post-components.css`
+  - `@swisspost/design-system-components-react/post-components.css` (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5165](https://github.com/swisspost/design-system/pull/5165))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.39
+
+## 10.0.0-next.38
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.38
+
 ## 10.0.0-next.37
 
 ### Patch Changes

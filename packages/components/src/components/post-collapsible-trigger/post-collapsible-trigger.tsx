@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Method, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkNonEmpty, checkType, eventGuard, getRoot } from '@/utils';
+import { checkRequiredAndType, eventGuard, getRoot } from '@/utils';
 
 @Component({
   tag: 'post-collapsible-trigger',
@@ -16,15 +16,14 @@ export class PostCollapsibleTrigger {
   /**
    * Link the trigger to a post-collapsible with this id
    */
-  @Prop({ reflect: true }) for: string;
+  @Prop({ reflect: true }) for!: string;
 
   /**
    * Set the "aria-controls" and "aria-expanded" attributes on the trigger to match the state of the controlled post-collapsible
    */
   @Watch('for')
   validateAriaAttributes() {
-    checkNonEmpty(this, 'for');
-    checkType(this, 'for', 'string', 'The post-collapsible-trigger "for" prop should be a id.');
+    checkRequiredAndType(this, 'for', 'string');
   }
 
   /**

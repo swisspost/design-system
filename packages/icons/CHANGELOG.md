@@ -1,5 +1,20 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.40
+
+## 10.0.0-next.39
+
+### Patch Changes
+
+- Updated icons:
+  - `money` (solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#5564](https://github.com/swisspost/design-system/pull/5564))
+
+## 10.0.0-next.38
+
+### Patch Changes
+
+- Updated icons: `2691` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#5522](https://github.com/swisspost/design-system/pull/5522))
+
 ## 10.0.0-next.37
 
 ### Minor Changes
@@ -12,7 +27,7 @@
 
 ### Patch Changes
 
-- Updated icons: 
+- Updated icons:
 
   - `letterreceived` (line & solid): 16, 24, 32, 40, 48 and 64px
   - `messagereceived` (line & solid): 16, 24, 32, 40, 48 and 64px
