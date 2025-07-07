@@ -1,4 +1,4 @@
-import type { Args, StoryObj, StoryFn, StoryContext } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './z-index.styles.scss';
 import { MetaExtended } from '@root/types';
