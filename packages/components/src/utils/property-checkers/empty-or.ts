@@ -1,13 +1,15 @@
-import { EMPTY_VALUES } from './constants';
+import { isValueEmpty } from '../is-value-empty';
 
-export function emptyOr<T extends unknown[]>(check: (...args: T) => void) {
-  return (...args: T) => {
-    const component = args[0];
-    const prop = args[1] as string;
+export function emptyOr<
+  T extends { host: HTMLElement },
+  K extends keyof T,
+  ExtraArgs extends unknown[],
+>(check: (component: T, prop: K, ...extraArgs: ExtraArgs) => void) {
+  return (component: T, prop: K, ...extraArgs: ExtraArgs) => {
     const value = component[prop];
 
-    if (!EMPTY_VALUES.some(v => v === value)) {
-      check(...args);
+    if (!isValueEmpty(value)) {
+      check(component, prop, ...extraArgs);
     }
   };
 }

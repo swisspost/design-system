@@ -6,6 +6,11 @@
   Gets a breakpoint from the map based on the key
 */
 @function min-width($key) {
+  @if (map.has-key(breakpoints.$device-to-grid-breakpoints, $key)) {
+    $device-breakpoints: map.get(breakpoints.$device-to-grid-breakpoints, $key);
+    $key: list.nth($device-breakpoints, 1);
+  }
+
   @return map.get(breakpoints.$grid-breakpoints, $key);
 }
 
@@ -13,14 +18,22 @@
   Gets a breakpoint infix
 */
 @function infix($key) {
+  @if (map.has-key(breakpoints.$device-to-grid-breakpoints, $key)) {
+    @error 'No infix defined for device "#{$key}". Use a breakpoint key instead.';
+  }
+
   @return if(min-width($key) == 0, '', '-#{$key}');
 }
 
 /**
-* Gets the next breakpoint key
+* Gets the next device or breakpoint key
 */
 @function next($key) {
-  $breakpoint-names: map.keys(breakpoints.$grid-breakpoints);
-  $n: list.index($breakpoint-names, $key);
-  @return if($n < list.length($breakpoint-names), list.nth($breakpoint-names, $n + 1), null);
+  $keys: if(
+    map.has-key(breakpoints.$device-to-grid-breakpoints, $key),
+    map.keys(breakpoints.$device-to-grid-breakpoints),
+    map.keys(breakpoints.$grid-breakpoints)
+  );
+  $n: list.index($keys, $key);
+  @return if($n < list.length($keys), list.nth($keys, $n + 1), null);
 }

@@ -11,7 +11,7 @@
     $breakpoint-list: list.append($breakpoint-list, $unitless-value, comma);
   }
 
-  --post-breakpoint-widths: #{list.join($breakpoint-list, comma)};
-  --post-breakpoint-keys: #{map.keys(breakpoints.$grid-breakpoints)};
-  --post-breakpoint-names: #{map.values(breakpoints.$grid-breakpoints-key-name-map)};
+  --post-grid-breakpoint-widths: #{$breakpoint-list};
+  --post-grid-breakpoint-keys: #{map.keys(breakpoints.$grid-breakpoints)};
+  --post-grid-breakpoint-devices: #{map.values(breakpoints.$grid-breakpoint-to-device)};
 }
