@@ -143,7 +143,8 @@ function createTokenSets(tokensFile: RawTokenJson): TokenSets {
           (isComponent && TOKENSET_LAYERS.component) ||
           TOKENSET_LAYERS.semantic,
         filePath: `${groupName ?? setName}.json`,
-        sets: {}, // MYRTA: is this needed?
+        setNames: [],
+        sets: {},
       },
     };
   }

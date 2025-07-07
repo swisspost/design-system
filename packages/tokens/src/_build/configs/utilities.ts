@@ -7,14 +7,14 @@ import { registerConfigMethod, getTokenValue } from '../methods.js';
  * Registers a config method to generate output files for utility tokens.
  */
 registerConfigMethod((tokenSets, { sourcePath, buildPath }) => {
-  const { type, layer, filePath, sets } = tokenSets.output[TOKENSET_NAMES.Utilities];
+  const { type, layer, filePath, setNames } = tokenSets.output[TOKENSET_NAMES.Utilities];
   return [
     {
       meta: {
         type,
         layer,
         filePath,
-        setNames: Object.keys(sets),
+        setNames: Object.keys(setNames),
       },
       source: [`${sourcePath}_temp/output/${filePath}`],
       include: [`${sourcePath}_temp/source/**/*.json`],

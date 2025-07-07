@@ -1,8 +1,8 @@
 import { fileHeader } from 'style-dictionary/utils';
 import { expandTypesMap } from '@tokens-studio/sd-transforms';
-import StyleDictionary, { type Config } from 'style-dictionary';
+import StyleDictionary from 'style-dictionary';
 import { getSetName, getSet, getTokenValue, registerConfigMethod } from '../methods.js';
-import { LocalOptions } from 'style-dictionary/types';
+import { ConfigWithMeta } from '_build/types.js';
 /**
  * Registers a config getter method to generate output files for all code relevant tokens in the tokens.json.
  */
@@ -60,7 +60,7 @@ registerConfigMethod((tokenSets, { sourcePath, buildPath }) => {
 StyleDictionary.registerFilter({
   name: 'swisspost/scss-filter',
   filter: (token, options) => {
-    const configOptions = options as Config & LocalOptions;
+    const configOptions = options as ConfigWithMeta;
     return token.filePath.includes(`/output/${configOptions.meta.filePath}`);
   },
 });
@@ -80,13 +80,14 @@ StyleDictionary.registerFilter({
 StyleDictionary.registerFormat({
   name: 'swisspost/scss-format',
   format: async ({ dictionary, options, file }) => {
-    const { meta } = options;
+    const { meta } = options as ConfigWithMeta;
+
     const header = await fileHeader({ file, commentStyle: 'short' });
 
     return (
       header +
       meta.setNames
-        .map((setName: string) => {
+        .map(setName => {
           const tokenSetName = getSetName(options, setName);
           const tokenSet = getSet(options, dictionary, setName)
             .map(token => {
@@ -97,7 +98,6 @@ StyleDictionary.registerFormat({
                 : `  ${token.name}: ${tokenValue},`;
             })
             .join('\n');
-
           return meta.layer === 'core'
             ? `:root {\n${tokenSet}\n}\n`
             : `$${tokenSetName}: (\n${tokenSet}\n);\n`;

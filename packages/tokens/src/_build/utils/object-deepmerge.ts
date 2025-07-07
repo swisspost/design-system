@@ -1,4 +1,4 @@
-type DeepMerged<T, U> = {
+export type DeepMerged<T, U> = {
   [K in keyof T | keyof U]: K extends keyof U
     ? K extends keyof T
       ? T[K] extends object
@@ -12,6 +12,7 @@ type DeepMerged<T, U> = {
     : never;
 };
 
+// This deepmerge function recursively combines two objects, prioritizing values from the second object and deeply merging nested objects
 export default function deepmerge<T extends object, U extends object>(
   obj1: T,
   obj2: U,

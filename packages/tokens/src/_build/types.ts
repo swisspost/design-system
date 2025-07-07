@@ -1,3 +1,4 @@
+import { Config } from 'style-dictionary/types';
 export type CliOptions = {
   verbosity: 'silent' | 'default' | 'verbose';
   [key: string]: string;
@@ -12,6 +13,7 @@ export interface TokenMeta {
   type: 'singleton' | 'collection';
   layer: 'core' | 'component' | 'semantic';
   filePath: string;
+  setNames: string[];
   sets: {
     [setName: string]: { [key: string]: TokenProperty };
   };
@@ -24,12 +26,13 @@ export interface TokenDefinition {
   baseDefinition: TokenMeta;
 }
 
+export interface ConfigWithMeta extends Config {
+  meta: TokenMeta;
+}
+
 export interface TokenSets {
   source: {
-    baseDefinition: TokenMeta;
-    sets: {
-      [setName: string]: { [key: string]: TokenProperty };
-    };
+    meta: TokenMeta;
   };
   output: { [groupName: string]: TokenMeta };
 }
