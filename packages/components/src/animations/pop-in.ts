@@ -1,8 +1,8 @@
-const DEFAULT_DURATION = 250;
-const DEFAULT_EASING = 'cubic-bezier(0.34, 1.56, 0.64, 1)';
+const duration = 250;
+const easing = 'ease-out';
 const FILL_MODE = 'forwards';
 
-export function popInAnimation(el: Element, duration = DEFAULT_DURATION, easing = DEFAULT_EASING) {
+export function popIn(el: Element) {
   if (!el) return;
 
   return el.animate(
