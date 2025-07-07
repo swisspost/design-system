@@ -42,12 +42,6 @@ post-mainnavigation {
     }
   }
 
-  // Absolute positioned so that it goes over the target group if present
-  > .back-button {
-    position: absolute;
-    top: 16px;
-  }
-
   .back-button {
     @include media.max(lg) {
       font-size: 16px;
