@@ -29,7 +29,7 @@ import { PLACEMENT_TYPES } from '@/types';
 
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
 import { apply, isSupported } from '@oddbird/popover-polyfill/dist/popover-fn.js';
-import { popInAnimation } from '@/animations/pop-in';
+import { popIn } from '@/animations/pop-in';
 
 interface PopoverElement {
   showPopover: () => void;
@@ -208,7 +208,7 @@ export class PostPopovercontainer {
       const content = this.host.querySelector('.popover-content');
       this.startAutoupdates();
       if (content) {
-        popInAnimation(content);
+        popIn(content);
       }
 
       if (this.safeSpace)
