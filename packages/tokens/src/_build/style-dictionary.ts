@@ -6,8 +6,8 @@ import {
   NO_UNITLESS_ZERO_VALUE_TOKEN_TYPES,
   PX_TO_REM_TOKEN_TYPE,
 } from './constants.js';
-import { TokenGroup } from './types.js';
 register(StyleDictionary);
+import { DesignToken } from 'style-dictionary/types';
 
 /**
  * @function StyleDictionary.registerFileHeader()
@@ -99,24 +99,24 @@ StyleDictionary.registerPreprocessor({
   preprocessor: dictionary => {
     traverse(dictionary);
 
-    function traverse(context: TokenGroup) {
+    function traverse(context: DesignToken) {
       Object.entries(context).forEach(([key, value]) => {
-        const usesDtcg = (context[key] as any).$type && (context[key] as any).$value;
-        const isToken = (context[key] as any)[usesDtcg ? '$type' : 'type'] !== undefined;
-        const tokenType = (context[key] as any)[usesDtcg ? '$type' : 'type'];
-        const tokenValue = (context[key] as any)[usesDtcg ? '$value' : 'value'];
+        const usesDtcg = context[key].$type && context[key].$value;
+        const isToken = context[key][usesDtcg ? '$type' : 'type'] !== undefined;
+        const tokenType = context[key][usesDtcg ? '$type' : 'type'];
+        const tokenValue = context[key][usesDtcg ? '$value' : 'value'];
 
         if (typeof context[key] === 'object' && context[key] !== null) {
           if (isToken) {
             if (tokenType === 'shadow' && typeof tokenValue === 'string') {
-              (context[key] as any).$extensions[
+              context[key].$extensions[
                 'studio.tokens'
               ].boxShadowKeepRefsWorkaroundValue = `${tokenValue.replace(/[{}]/g, match =>
                 match === '{' ? '[[' : ']]',
               )}`;
             }
           } else if (typeof value === 'object' && value !== null) {
-            traverse(value as TokenGroup);
+            traverse(value);
           }
         }
       });
