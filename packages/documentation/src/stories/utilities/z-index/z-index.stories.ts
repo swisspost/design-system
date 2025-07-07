@@ -13,22 +13,22 @@ const meta: MetaExtended = {
   },
   argTypes: {
     zIndex1: {
-      name: 'Box 1 zIndex',
-      description: 'z-index de la première boîte',
+      name: 'Box 1 z-Index',
+      description: 'z-index first box',
       control: { type: 'select' },
       options: ['n1', '0', '1', '2', '3'],
       table: { category: 'Boxes' },
     },
     zIndex2: {
-      name: 'Box 2 zIndex',
-      description: 'z-index de la deuxième boîte',
+      name: 'Box 2 z-Index',
+      description: 'z-index second box',
       control: { type: 'select' },
       options: ['n1', '0', '1', '2', '3'],
       table: { category: 'Boxes' },
     },
     zIndex3: {
-      name: 'Box 3 zIndex',
-      description: 'z-index de la troisième boîte',
+      name: 'Box 3 z-Index',
+      description: 'z-index third box ',
       control: { type: 'select' },
       options: ['n1', '0', '1', '2', '3'],
       table: { category: 'Boxes' },
@@ -36,24 +36,13 @@ const meta: MetaExtended = {
   },
   render: (args: Args) => {
     return html`
-      <div class="position-relative container-examples">
-        <div class="z-${args.zIndex1} position-absolute z-container rounded-4">
-          Box 1 (z-${args.zIndex1})
-        </div>
-        <div class="z-${args.zIndex2} position-absolute z-container rounded-4">
-          Box 2 (z-${args.zIndex2})
-        </div>
-        <div class="z-${args.zIndex3} position-absolute z-container rounded-4">
-          Box 3 (z-${args.zIndex3})
-        </div>
+      <div class="container-examples">
+        <div class="z-${args.zIndex1} position-absolute">Box 1 (z-${args.zIndex1})</div>
+        <div class="z-${args.zIndex2} position-absolute">Box 2 (z-${args.zIndex2})</div>
+        <div class="z-${args.zIndex3} position-absolute">Box 3 (z-${args.zIndex3})</div>
       </div>
     `;
   },
-  decorators: [
-    (story: StoryFn, context: StoryContext) => {
-      return story(context.args, context);
-    },
-  ],
 };
 
 export default meta;

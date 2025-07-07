@@ -2,35 +2,44 @@
 
 .container-examples {
   position: relative;
-  width: 300px;
-  height: 200px;
+  height: 250px;
   z-index: 0;
 }
 
-.z-container {
+.container-examples > div{
   width: 100px;
   height: 100px;
   background-color: post.$yellow;
-  color: white;
+  color: post.$black;
   font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid  ;
-
+  border: post.$white 2px solid  ;
+  border-radius: 0.5rem;
 }
 
-.z-container:nth-child(1) {
+.container-examples > div:nth-child(1) {
   top: 0;
   left: 0;
 }
 
-.z-container:nth-child(2) {
-  top: 35px;
-  left: 45px;
+.container-examples > div:nth-child(2) {
+  top: 20px;
+  left: 30px;
 }
 
-.z-container:nth-child(3) {
-  top: 70px;
-  left:90px;
+.container-examples > div:nth-child(3) {
+  top: 40px;
+  left: 60px;
+}
+
+.container-examples > div:nth-child(4) {
+  top: 60px;
+  left: 90px;
+}
+
+.container-examples > div:nth-child(5) {
+  top: 80px;
+  left: 120px;
 }
