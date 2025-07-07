@@ -2,7 +2,7 @@
 name: Component/Tokens
 about: Adding Design Tokens for a new component.
 title: '[tokens] componentnamehere'
-labels: '🔮 tokens'
+labels: '🔮 tokens', 'on hold'
 assignees: ''
 type: 'Task'
 ---

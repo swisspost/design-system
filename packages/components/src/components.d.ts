@@ -459,7 +459,7 @@ export namespace Components {
         /**
           * The name of the panel controlled by the tab header.
          */
-        "panel": HTMLPostTabPanelElement['name'];
+        "panel": string;
     }
     interface PostTabPanel {
         /**
@@ -1333,7 +1333,7 @@ declare namespace LocalJSX {
         /**
           * The name of the panel controlled by the tab header.
          */
-        "panel": HTMLPostTabPanelElement['name'];
+        "panel": string;
     }
     interface PostTabPanel {
         /**

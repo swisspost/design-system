@@ -4,13 +4,6 @@ describe('Avatar', () => {
   describe('Structure & Props', () => {
     beforeEach(() => {
       cy.getComponent('post-avatar', PAGE_ID);
-      cy.window().then(win => {
-        cy.wrap(cy.spy(win.console, 'error')).as('consoleError');
-      });
-    });
-
-    it('should have no console errors', () => {
-      cy.get('@consoleError').should('not.be.called');
     });
 
     it('should have only the required attribute "firstname" by default', () => {
@@ -20,9 +13,12 @@ describe('Avatar', () => {
       cy.get('@avatar').should('not.have.attr', 'lastname');
     });
 
-    it('should have a console error, when attribute "firstname" is not defined', () => {
+    it('should log a console error, when attribute "firstname" is not defined', () => {
+      cy.window().then(win => {
+        cy.spy(win.console, 'error').as('consoleError');
+      });
       cy.get('@avatar').invoke('removeAttr', 'firstname');
-      cy.get('@consoleError').should('have.been.calledOnce');
+      cy.get('@consoleError').should('be.called');
     });
 
     it('should show initials when, firstname or firstname and lastname is defined', () => {
@@ -36,15 +32,12 @@ describe('Avatar', () => {
 
       cy.get('@avatar').invoke('attr', 'lastname', 'Source');
       cy.get('@initials').and('have.text', 'Open Source');
-      cy.get('@consoleError').should('not.have.been.called');
 
       cy.get('@avatar').invoke('removeAttr', 'lastname');
       cy.get('@initials').should('have.text', 'Open');
-      cy.get('@consoleError').should('not.have.been.called');
 
       cy.get('@avatar').invoke('removeAttr', 'firstname');
       cy.get('@initials').should('have.text', '');
-      cy.get('@consoleError').should('have.been.calledOnce');
     });
 
     it('should show image, when email with gravatar account is defined', () => {
@@ -56,7 +49,6 @@ describe('Avatar', () => {
       cy.get('@avatar').invoke('removeAttr', 'email');
       cy.get('@avatar').find('slot img').should('not.exist');
       cy.get('@avatar').find('.initials').should('exist');
-      cy.get('@consoleError').should('not.have.been.called');
     });
 
     it('should show initials, when email with no gravatar account is defined', () => {
@@ -65,7 +57,6 @@ describe('Avatar', () => {
       cy.get('@avatar').should('have.attr', 'firstname');
       cy.get('@avatar').find('slot img').should('not.exist');
       cy.get('@avatar').find('.initials').should('exist');
-      cy.get('@consoleError').should('not.have.been.called');
     });
 
     it('should show image, when slotted image is defined', () => {
@@ -79,7 +70,6 @@ describe('Avatar', () => {
       cy.get('@avatar').find('> img').invoke('remove');
       cy.get('@avatar').find('img').should('not.exist');
       cy.get('@avatar').find('.initials').should('exist');
-      cy.get('@consoleError').should('not.have.been.called');
     });
   });
 

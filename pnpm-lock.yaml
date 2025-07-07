@@ -65,10 +65,10 @@ importers:
         specifier: 0.6.0
         version: 0.6.0
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.38
+        specifier: workspace:10.0.0-next.40
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.38
+        specifier: workspace:10.0.0-next.40
         version: link:../styles/dist
       ally.js:
         specifier: 1.4.1
@@ -201,10 +201,10 @@ importers:
         specifier: 19.2.0
         version: 19.2.0(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(@angular/platform-browser@19.2.0(@angular/animations@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0)))(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0)))(rxjs@7.8.1)
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.38
+        specifier: workspace:10.0.0-next.40
         version: link:../components
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.38
+        specifier: workspace:10.0.0-next.40
         version: link:../styles/dist
       rxjs:
         specifier: 7.8.1
@@ -226,13 +226,13 @@ importers:
         specifier: 19.2.0
         version: 19.2.0(@angular/compiler@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0)))(typescript@5.8.3)
       '@cypress/schematic':
-        specifier: 2.5.2
-        version: 2.5.2(@angular/cli@19.2.0(@types/node@22.10.5)(chokidar@4.0.1))(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))
+        specifier: 3.0.0
+        version: 3.0.0(@angular/cli@19.2.0(@types/node@22.10.5)(chokidar@4.0.1))(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))
       '@eslint/js':
         specifier: 9.18.0
         version: 9.18.0
       '@swisspost/design-system-components-angular':
-        specifier: workspace:10.0.0-next.38
+        specifier: workspace:10.0.0-next.40
         version: link:dist/components
       angular-eslint:
         specifier: 19.1.0
@@ -289,7 +289,7 @@ importers:
         specifier: ^19.0.0
         version: 19.2.0(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.0))(@angular/platform-browser@19.2.0(@angular/animations@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.0)))(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.0)))(rxjs@7.8.2)
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.38
+        specifier: workspace:10.0.0-next.40
         version: link:../../../components
       tslib:
         specifier: 2.8.1
@@ -305,7 +305,7 @@ importers:
         specifier: 0.1.1
         version: 0.1.1(next@15.3.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.1))(vite@6.3.4(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.89.2)(sass@1.85.1)(terser@5.39.0)(yaml@2.7.0))(webpack@5.98.0)
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.38
+        specifier: workspace:10.0.0-next.40
         version: link:../components
     devDependencies:
       '@eslint/js':
@@ -351,22 +351,22 @@ importers:
   packages/documentation:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.38
+        specifier: workspace:10.0.0-next.40
         version: link:../components
       '@swisspost/design-system-components-react':
-        specifier: workspace:10.0.0-next.38
+        specifier: workspace:10.0.0-next.40
         version: link:../components-react
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.38
+        specifier: workspace:10.0.0-next.40
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.38
+        specifier: workspace:10.0.0-next.40
         version: link:../styles/dist
       '@swisspost/design-system-tokens':
-        specifier: workspace:10.0.0-next.38
+        specifier: workspace:10.0.0-next.40
         version: link:../tokens/dist
       '@swisspost/internet-header':
-        specifier: workspace:2.0.0-next.38
+        specifier: workspace:2.0.0-next.40
         version: link:../internet-header
       bootstrap:
         specifier: 5.3.3
@@ -427,7 +427,7 @@ importers:
         specifier: 8.4.7
         version: 8.4.7(lit@3.3.0)(storybook@8.4.7(prettier@2.8.8))(vite@6.3.4(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.78.0)(sass@1.85.1)(terser@5.39.0)(yaml@2.7.0))
       '@swisspost/design-system-components-angular':
-        specifier: workspace:10.0.0-next.38
+        specifier: workspace:10.0.0-next.40
         version: link:../components-angular/dist/components
       '@types/css-modules':
         specifier: 1.0.5
@@ -653,7 +653,7 @@ importers:
   packages/internet-header:
     dependencies:
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.38
+        specifier: workspace:10.0.0-next.40
         version: link:../styles/dist
       body-scroll-lock:
         specifier: 4.0.0-beta.0
@@ -792,13 +792,13 @@ importers:
   packages/nextjs-integration:
     dependencies:
       '@swisspost/design-system-components-react':
-        specifier: workspace:10.0.0-next.38
+        specifier: workspace:10.0.0-next.40
         version: link:../components-react
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.38
+        specifier: workspace:10.0.0-next.40
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: workspace:2.0.0-next.38
+        specifier: workspace:2.0.0-next.40
         version: link:../internet-header
       next:
         specifier: 15.3.3
@@ -878,10 +878,10 @@ importers:
         version: 3.0.0
     devDependencies:
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.38
+        specifier: workspace:10.0.0-next.40
         version: link:../icons
       '@swisspost/design-system-tokens':
-        specifier: workspace:10.0.0-next.38
+        specifier: workspace:10.0.0-next.40
         version: link:../tokens/dist
       '@types/node':
         specifier: 22.10.5
@@ -975,7 +975,7 @@ importers:
         specifier: 19.0.9
         version: 19.0.9
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.38
+        specifier: workspace:10.0.0-next.40
         version: link:../styles/dist
       primeng:
         specifier: 19.0.9
@@ -1063,7 +1063,7 @@ importers:
   packages/styles-primeng-workspace/projects/styles-primeng:
     dependencies:
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.38
+        specifier: workspace:10.0.0-next.40
         version: link:../../../styles/dist
       primeng:
         specifier: ^19.0.0
@@ -2204,11 +2204,11 @@ packages:
     resolution: {integrity: sha512-h0NFgh1mJmm1nr4jCwkGHwKneVYKghUyWe6TMNrk0B9zsjAJxpg8C4/+BAcmLgCPa1vj1V8rNUaILl+zYRUWBQ==}
     engines: {node: '>= 6'}
 
-  '@cypress/schematic@2.5.2':
-    resolution: {integrity: sha512-H+V3ZP3KQVOs6b49N66jioXa+rkLzszVi+Bl3jiroVTURUNMOpSa4BOrt10Pn8F57TO0Bamhch2WOk/e9cq98w==}
+  '@cypress/schematic@3.0.0':
+    resolution: {integrity: sha512-LFT0sl4HOykGWwrDfvHnQxucSvT2P/VA+GOk89dbSRMkXLG8u8h9GfbqK+9keoJBGTnfJFU8MWTtwjyYwPZW6w==}
     peerDependencies:
-      '@angular/cli': '>=14'
-      '@angular/core': '>=14'
+      '@angular/cli': '>=17.2'
+      '@angular/core': '>=17.2'
 
   '@cypress/xvfb@1.2.4':
     resolution: {integrity: sha512-skbBzPggOVYCbnGgV+0dmBdW/s77ZkAOXIC1knS8NagwDjBrNC1LuXtQJeiN6l+m7lzmHtaoUw/ctJKdqkG57Q==}
@@ -8247,9 +8247,6 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
-  jsonc-parser@3.2.1:
-    resolution: {integrity: sha512-AilxAyFOAcK5wA1+LeaySVBrHsGQvUFCDWXKpZjzaL0PqW+xfBOttn8GNtWKFWqneyMZj41MWF9Kl6iPWLwgOA==}
-
   jsonc-parser@3.3.1:
     resolution: {integrity: sha512-HUgH65KyejrUFPvHFPbqOY0rsFip3Bo5wb4ngvdi1EpCYWUQDC5V+Y7mZws+DLkr4M//zQJoanu1SP+87Dv1oQ==}
 
@@ -10320,10 +10317,6 @@ packages:
 
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
-
-  rxjs@6.6.7:
-    resolution: {integrity: sha512-hTdwr+7yYNIT5n4AMYp85KA6yw2Va0FLa3Rguvbpa4W3I5xynaBZo41cM3XM+4Q6fRMj3sBYIR1VAmZMXYJvRQ==}
-    engines: {npm: '>=2.0.0'}
 
   rxjs@7.8.1:
     resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
@@ -14011,12 +14004,12 @@ snapshots:
       tunnel-agent: 0.6.0
       uuid: 8.3.2
 
-  '@cypress/schematic@2.5.2(@angular/cli@19.2.0(@types/node@22.10.5)(chokidar@4.0.1))(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))':
+  '@cypress/schematic@3.0.0(@angular/cli@19.2.0(@types/node@22.10.5)(chokidar@4.0.1))(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))':
     dependencies:
       '@angular/cli': 19.2.0(@types/node@22.10.5)(chokidar@4.0.1)
       '@angular/core': 19.2.0(rxjs@7.8.1)(zone.js@0.15.0)
-      jsonc-parser: 3.2.1
-      rxjs: 6.6.7
+      jsonc-parser: 3.3.1
+      rxjs: 7.8.1
 
   '@cypress/xvfb@1.2.4(supports-color@8.1.1)':
     dependencies:
@@ -20844,8 +20837,6 @@ snapshots:
 
   json5@2.2.3: {}
 
-  jsonc-parser@3.2.1: {}
-
   jsonc-parser@3.3.1: {}
 
   jsonfile@4.0.0:
@@ -23369,10 +23360,6 @@ snapshots:
   run-parallel@1.2.0:
     dependencies:
       queue-microtask: 1.2.3
-
-  rxjs@6.6.7:
-    dependencies:
-      tslib: 1.14.1
 
   rxjs@7.8.1:
     dependencies:
