@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': minor
 ---
 
-Added Z-index utility.
+Internalized bootstrap z-index utilities.
