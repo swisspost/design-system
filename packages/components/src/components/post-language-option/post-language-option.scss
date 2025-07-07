@@ -9,6 +9,9 @@ post-language-option {
 
   button {
     @include post.reset-button;
+    .visually-hidden {
+      @include utilities-mx.visuallyhidden();
+    }
   }
 
   a {
