@@ -9,9 +9,14 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import { checkEmptyOrType, checkType } from '@/utils';
+import {
+  checkEmptyOrType,
+  checkRequiredAndType,
+  checkEmptyOrOneOf,
+  checkEmptyOrUrl,
+} from '@/utils';
 import { version } from '@root/package.json';
-import { SwitchVariant } from '../post-language-switch/switch-variants';
+import { SwitchVariant, SWITCH_VARIANTS } from '../post-language-switch/switch-variants';
 
 /**
  * @slot default - Slot for placing the content inside the anchor or button.
@@ -30,7 +35,7 @@ export class PostLanguageOption {
 
   @Watch('code')
   validateCode() {
-    checkType(this, 'code', 'string');
+    checkRequiredAndType(this, 'code', 'string');
   }
 
   /**
@@ -38,15 +43,15 @@ export class PostLanguageOption {
    */
   @Prop({ mutable: true, reflect: true }) active?: boolean;
 
-  @Watch('active')
-  validateActiveProp() {
-    checkEmptyOrType(this, 'active', 'boolean');
-  }
-
   /**
    * To communicate the variant prop from the parent (post-language-switch) component to the child (post-language-option) component. See parent docs for a description about the property itself.
    */
   @Prop() variant?: SwitchVariant;
+
+  @Watch('variant')
+  validateVariant() {
+    checkEmptyOrOneOf(this, 'variant', SWITCH_VARIANTS);
+  }
 
   /**
    * The full name of the language. For example, "Deutsch".
@@ -66,12 +71,11 @@ export class PostLanguageOption {
 
   @Watch('url')
   validateUrl() {
-    checkEmptyOrType(this, 'url', 'string');
+    checkEmptyOrUrl(this, 'url');
   }
 
   componentDidLoad() {
     this.validateCode();
-    this.validateActiveProp();
     this.validateName();
     this.validateUrl();
 
@@ -115,7 +119,7 @@ export class PostLanguageOption {
 
   render() {
     const lang = this.code.toLowerCase();
-
+    const role = this.variant === 'menu' ? 'menuitem' : undefined;
     const emitOnKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter' || e.key === ' ') {
         this.emitChange();
@@ -126,8 +130,8 @@ export class PostLanguageOption {
       <Host data-version={version}>
         {this.url ? (
           <a
+            role={role}
             aria-current={this.active ? 'page' : undefined}
-            aria-label={this.name}
             href={this.url}
             hrefLang={lang}
             lang={lang}
@@ -135,16 +139,18 @@ export class PostLanguageOption {
             onKeyDown={emitOnKeyDown}
           >
             <slot />
+            <span class="visually-hidden">{this.name}</span>
           </a>
         ) : (
           <button
+            role={role}
             aria-current={this.active ? 'true' : undefined}
-            aria-label={this.name}
             lang={lang}
             onClick={() => this.emitChange()}
             onKeyDown={emitOnKeyDown}
           >
             <slot />
+            <span class="visually-hidden">{this.name}</span>
           </button>
         )}
       </Host>
