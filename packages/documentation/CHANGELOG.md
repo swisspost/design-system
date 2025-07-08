@@ -1,5 +1,24 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.41
+
+### Minor Changes
+
+- Renamed the `List Group` component to `List Interactive`. (by [@schaertim](https://github.com/schaertim) with [#5675](https://github.com/swisspost/design-system/pull/5675))
+
+- Dynamically generate dependencies table for `styles` package. (by [@schaertim](https://github.com/schaertim) with [#5669](https://github.com/swisspost/design-system/pull/5669))
+
+### Patch Changes
+
+- Updated styles page by marking the design system version 7.x as end of life. (by [@schaertim](https://github.com/schaertim) with [#5582](https://github.com/swisspost/design-system/pull/5582))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.40
+  - @swisspost/design-system-styles@10.0.0-next.40
+  - @swisspost/design-system-components-react@10.0.0-next.40
+  - @swisspost/internet-header@2.0.0-next.40
+  - @swisspost/design-system-tokens@10.0.0-next.40
+  - @swisspost/design-system-icons@10.0.0-next.40
+
 ## 6.0.0-next.40
 
 ### Minor Changes
