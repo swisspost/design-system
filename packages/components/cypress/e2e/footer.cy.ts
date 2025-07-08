@@ -80,87 +80,88 @@ describe('Footer', () => {
 
     it('should transform to accordion on mobile', () => {
       cy.viewport('iphone-3');
-    it('should render the post-accordion on mobile', () => {
-      cy.viewport('iphone-3');
-      cy.get('@footer').find('post-accordion').as('accordion');
+      it('should render the post-accordion on mobile', () => {
+        cy.viewport('iphone-3');
+        cy.get('@footer').find('post-accordion').as('accordion');
 
-      cy.get('@accordion').should('exist');
-    });
+        cy.get('@accordion').should('exist');
+      });
 
-    it('should have accordion-items with slotted elements on mobile', () => {
-      cy.viewport('iphone-3');
-      cy.get('@footer').find('post-accordion').as('accordion');
-      cy.get('@accordion').find('post-accordion-item').as('accordionItems');
+      it('should have accordion-items with slotted elements on mobile', () => {
+        cy.viewport('iphone-3');
+        cy.get('@footer').find('post-accordion').as('accordion');
+        cy.get('@accordion').find('post-accordion-item').as('accordionItems');
 
-      cy.get('@footer').find('post-accordion').should('exist');
-      cy.get('@footer').find('post-accordion-item').should('have.length', 4);
-
-      // Verify each accordion item has proper structure for slotted content
-      cy.get('@footer')
-        .find('post-accordion-item')
-        .each($item => {
-          cy.wrap($item).find('slot[name="header"]').should('exist');
-          cy.wrap($item).find('slot:not([name])').should('exist');
-        });
-    });
-
-    it('should work across different mobile viewports', () => {
-      const mobileViewports = [
-        { width: 375, height: 667 },
-        { width: 414, height: 896 },
-      ];
-
-      mobileViewports.forEach(viewport => {
-        cy.viewport(viewport.width, viewport.height);
         cy.get('@footer').find('post-accordion').should('exist');
         cy.get('@footer').find('post-accordion-item').should('have.length', 4);
+
+        // Verify each accordion item has proper structure for slotted content
+        cy.get('@footer')
+          .find('post-accordion-item')
+          .each($item => {
+            cy.wrap($item).find('slot[name="header"]').should('exist');
+            cy.wrap($item).find('slot:not([name])').should('exist');
+          });
+      });
+
+      it('should work across different mobile viewports', () => {
+        const mobileViewports = [
+          { width: 375, height: 667 },
+          { width: 414, height: 896 },
+        ];
+
+        mobileViewports.forEach(viewport => {
+          cy.viewport(viewport.width, viewport.height);
+          cy.get('@footer').find('post-accordion').should('exist');
+          cy.get('@footer').find('post-accordion-item').should('have.length', 4);
+        });
       });
     });
-  });
 
-  describe('Accessibility', () => {
-    beforeEach(() => {
-      cy.getComponent('footer', FOOTER_ID);
-    });
+    describe('Accessibility', () => {
+      beforeEach(() => {
+        cy.getComponent('footer', FOOTER_ID);
+      });
 
-    it('should have proper heading hierarchy', () => {
-      cy.get('@footer').find('h2.visually-hidden').should('exist');
-      cy.get('@footer').find('h3').should('have.length.at.least', 4);
-    });
+      it('should have proper heading hierarchy', () => {
+        cy.get('@footer').find('h2.visually-hidden').should('exist');
+        cy.get('@footer').find('h3').should('have.length.at.least', 4);
+      });
 
-    it('should have accessibility features', () => {
-      // Visually hidden content for screen readers
-      cy.get('@footer').find('.visually-hidden').should('have.length.at.least', 1);
+      it('should have accessibility features', () => {
+        // Visually hidden content for screen readers
+        cy.get('@footer').find('.visually-hidden').should('have.length.at.least', 1);
 
-      // Social media icons marked as decorative
-      cy.get('@footer')
-        .find('post-list[slot="socialmedia"] post-icon')
-        .each($icon => {
-          cy.wrap($icon).should('have.attr', 'aria-hidden', 'true');
-        });
-
-      // Links have proper accessibility
-      cy.get('@footer')
-        .find('a')
-        .each($link => {
-          cy.wrap($link).then($el => {
-            const hasText = $el.text().trim().length > 0;
-            const hasAriaLabel = $el.attr('aria-label');
-            const hasVisuallyHidden = $el.find('.visually-hidden').length > 0;
-
-            cy.wrap(hasText || hasAriaLabel || hasVisuallyHidden).should('be.true');
+        // Social media icons marked as decorative
+        cy.get('@footer')
+          .find('post-list[slot="socialmedia"] post-icon')
+          .each($icon => {
+            cy.wrap($icon).should('have.attr', 'aria-hidden', 'true');
           });
-        });
-    });
 
-    it('Has no detectable a11y violations', () => {
-      cy.getSnapshots('footer');
-      cy.checkA11y('#root-inner');
-    });
+        // Links have proper accessibility
+        cy.get('@footer')
+          .find('a')
+          .each($link => {
+            cy.wrap($link).then($el => {
+              const hasText = $el.text().trim().length > 0;
+              const hasAriaLabel = $el.attr('aria-label');
+              const hasVisuallyHidden = $el.find('.visually-hidden').length > 0;
 
-    it('Has no detectable a11y violations on mobile', () => {
-      cy.viewport('iphone-3');
-      cy.checkA11y('#root-inner');
+              cy.wrap(hasText || hasAriaLabel || hasVisuallyHidden).should('be.true');
+            });
+          });
+      });
+
+      it('Has no detectable a11y violations', () => {
+        cy.getSnapshots('footer');
+        cy.checkA11y('#root-inner');
+      });
+
+      it('Has no detectable a11y violations on mobile', () => {
+        cy.viewport('iphone-3');
+        cy.checkA11y('#root-inner');
+      });
     });
   });
 });
