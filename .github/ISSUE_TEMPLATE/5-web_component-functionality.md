@@ -11,16 +11,16 @@ type: 'Task'
 <!-- Detailed description of the component and a link to the design  -->
 
 ### ♿ Accessibility
-<!-- List accessibility considerations such as ARIA attributes, focus handling, and color contrast -->
+<!-- List accessibility considerations related to behavior, such as keyboard support, ARIA roles, and focus management -->
 
 ### ⚙️ Requirements
-<!-- List technical requirements like responsive behaviour, animations, interactions, ... -->
+<!-- List functional requirements such as interactions, event handling, and state management -->
 
 ### 🧪 Testing
-<!-- Describe how the component should be tested -->
+<!-- Describe test cases for functional tests and integration tests -->
 
 ### 💻 Proposed implementation
-<!-- If available, propose an implementation or hints that help with the implementation -->
+<!-- Suggest properties, events, methods, and HTML structure to help with the implementation -->
 
 ### 🔗 References
 <!-- If available reference to existing implementations in other Design Systems -->

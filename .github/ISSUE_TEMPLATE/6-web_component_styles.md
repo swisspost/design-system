@@ -11,19 +11,16 @@ type: 'Task'
 <!-- Detailed description of the component and a link to the design  -->
 
 ### ♿ Accessibility
-<!-- List accessibility considerations such as ARIA attributes, focus handling, and color contrast -->
+<!-- List accessibility considerations related to styles, such as color contrast, focus indicators, and HCM -->
 
 ### ⚙️ Requirements
-<!-- List technical requirements like responsive behaviour, animations, interactions, ... -->
+<!-- List style-related requirements beyond Figma such as animations -->
 
 ### 🧪 Testing
-<!-- Describe how the component should be tested -->
+<!-- Describe visual regression test cases and scenarios to cover -->
 
 ### 💻 Proposed implementation
-<!-- If available, propose an implementation or hints that help with the implementation -->
-
-### 🔗 References
-<!-- If available reference to existing implementations in other Design Systems -->
+<!-- For complex styles, add guidance on CSS/Sass techniques that could help with implementation -->
 
 ### 📃 Tasks
 <!-- Add any required tasks not listed, remove any unnecessary tasks -->
