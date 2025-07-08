@@ -12,15 +12,16 @@ function shouldProcessEvent(
   host: HTMLElement,
   ignoreNestedComponents: boolean
 ): boolean {
-  if (!event || !event.target) return false;
+  if (!(event instanceof CustomEvent && isHTMLElement(event.target))) return false;
 
   const eventTarget = event.target as HTMLElement;
   
   if (eventTarget.localName !== tag) return false;
   
   if (ignoreNestedComponents) {
-    const closest = isClosestParent(eventTarget, host.localName);
-    if (closest !== host) return false;
+    // Find the closest parent with the same tag as the host
+    const closestParentWithSameTag = findClosestParentWithTag(eventTarget, host.localName);
+    if (closestParentWithSameTag !== host) return false;
   }
 
   return true;
@@ -93,16 +94,16 @@ export function EventFrom(
 
 /**
  * Traverses up the DOM (including crossing shadow DOM boundaries) to find the closest ancestor
- * that matches the specified CSS selector.
+ * that matches the specified tag name.
  * @param element - The starting element
- * @param selector - CSS selector to match
+ * @param tagName - The tag name to match (e.g., 'post-accordion')
  * @returns The closest matching ancestor or null if none found
  */
-function isClosestParent(element: Element, selector: string): Element | null {
+function findClosestParentWithTag(element: Element, tagName: string): Element | null {
   let current: Element | null = element;
   
   while (current) {
-    if (current.matches(selector)) {
+    if (current.localName === tagName) {
       return current;
     }
 
@@ -121,4 +122,11 @@ function isClosestParent(element: Element, selector: string): Element | null {
   }
   
   return null;
+}
+
+function isHTMLElement(obj) {
+  return obj && 
+         typeof obj === 'object' && 
+         typeof obj.localName === 'string' &&
+         typeof obj.tagName === 'string';
 }
