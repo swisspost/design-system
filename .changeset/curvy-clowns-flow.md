@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Fixed `<post-header>` component layout shift on load. 
+Fixed visual gap regression in `<post-header>` component during initial page load.
