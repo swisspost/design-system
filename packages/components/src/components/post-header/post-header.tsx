@@ -38,6 +38,7 @@ export class PostHeader {
   private readonly throttledResize = throttle(50, () => this.updateLocalHeaderHeight());
   private scrollParentResizeObserver: ResizeObserver;
   private localHeaderResizeObserver: ResizeObserver;
+
   get scrollParent(): HTMLElement {
     const frozenScrollParent: HTMLElement | null = document.querySelector(
       '[data-post-scroll-locked]',
@@ -112,7 +113,6 @@ export class PostHeader {
     window.addEventListener('postBreakpoint:device', this.breakpointChange);
     this.switchLanguageSwitchMode();
 
-    this.updateLocalHeaderHeight();
     this.handleScrollParentResize();
     this.lockBody(false, this.mobileMenuExtended, 'mobileMenuExtended');
   }
