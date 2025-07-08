@@ -40,6 +40,11 @@ const renderLabel = (item: API_HashEntry) => {
     return item.name;
   }
 
+  // Only show icons in development mode
+  if (document.documentElement.getAttribute('data-env') !== 'development') {
+    return item.name;
+  }
+
   const tags = item.tags || [];
   const packageTags = tags.filter(tag => tag.startsWith('package:'));
 
