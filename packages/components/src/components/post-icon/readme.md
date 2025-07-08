@@ -32,7 +32,6 @@ some content
  - [post-language-switch](../post-language-switch)
  - [post-mainnavigation](../post-mainnavigation)
  - [post-rating](../post-rating)
- - [post-tag](../post-tag)
 
 ### Graph
 ```mermaid
@@ -47,7 +46,6 @@ graph TD;
   post-language-switch --> post-icon
   post-mainnavigation --> post-icon
   post-rating --> post-icon
-  post-tag --> post-icon
   style post-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
