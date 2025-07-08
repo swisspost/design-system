@@ -80,6 +80,17 @@ describe('Footer', () => {
 
     it('should transform to accordion on mobile', () => {
       cy.viewport('iphone-3');
+    it('should render the post-accordion on mobile', () => {
+      cy.viewport('iphone-3');
+      cy.get('@footer').find('post-accordion').as('accordion');
+
+      cy.get('@accordion').should('exist');
+    });
+
+    it('should have accordion-items with slotted elements on mobile', () => {
+      cy.viewport('iphone-3');
+      cy.get('@footer').find('post-accordion').as('accordion');
+      cy.get('@accordion').find('post-accordion-item').as('accordionItems');
 
       cy.get('@footer').find('post-accordion').should('exist');
       cy.get('@footer').find('post-accordion-item').should('have.length', 4);
