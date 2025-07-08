@@ -4,7 +4,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'caa89695-5c39-4cb5-8e62-579d918cbd2f',
   title: 'Components/Pagination',
-  tags: ['package:Angular'],
+  tags: ['package:NgBootstrap'],
   parameters: {
     badges: [],
     design: {

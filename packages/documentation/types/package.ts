@@ -1,7 +1,7 @@
 export enum PackageType {
-  Html = 'HTML',
+  Styles = 'Styles',
   Wc = 'WebComponents',
-  Angular = 'Angular',
+  NgBootstrap = 'NgBootstrap',
   React = 'React',
   InternetHeader = 'InternetHeader',
   Assets = 'Assets',

@@ -5,7 +5,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '87ceabbb-f552-46eb-8a47-4d84e7f8cef0',
   title: 'Components/Subnavigation',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   decorators: [clickBlocker],
   render: renderTest,
   parameters: {

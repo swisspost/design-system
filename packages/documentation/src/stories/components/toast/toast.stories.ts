@@ -6,7 +6,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '825b65c9-7eaf-4e0a-9e20-5f5ed406726d',
   title: 'Components/Toast',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   parameters: {
     badges: [],
     design: {
@@ -362,11 +362,12 @@ function render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
   updateAlignments(args, updateArgs);
-  
-  const timeoutStore = timeoutStores[context.name as keyof ITimeoutStores] || timeoutStores['Default'];
-  
+
+  const timeoutStore =
+    timeoutStores[context.name as keyof ITimeoutStores] || timeoutStores['Default'];
+
   const isFixed = args.position === 'fixed';
-  
+
   const classes = [
     'toast',
     args.variant,
@@ -412,12 +413,8 @@ function render(args: Args, context: StoryContext) {
   if (args.stacked) {
     wrappedContent = html` ${component} ${component} `;
   } else if (isFixed) {
-    wrappedContent = html`
-      <div style="${args.show ? '' : 'display: none;'}">
-        ${component}
-      </div>
-    `;
-    
+    wrappedContent = html` <div style="${args.show ? '' : 'display: none;'}">${component}</div> `;
+
     if (args.show) {
       createAutoHideTimeout(timeoutStore, args, updateArgs);
     }

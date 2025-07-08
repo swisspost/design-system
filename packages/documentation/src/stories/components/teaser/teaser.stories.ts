@@ -5,7 +5,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '68699b2c-ec1f-467d-81ae-8b3f48d7c595',
   title: 'Components/Card Teaser',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   parameters: {
     design: {
       type: 'figma',
@@ -93,9 +93,7 @@ export function renderTeaserSectionHeader(size?: string) {
   return html` <div class="d-flex align-items-end justify-content-between gap-24">
     <div class="d-flex flex-column gap-8">
       <h2 class="m-0">Teaser section ${size}</h2>
-      <p class="m-0">
-        This is a sample description for the teaser section component.
-      </p>
+      <p class="m-0">This is a sample description for the teaser section component.</p>
     </div>
     <a href="#" class="flex-shrink-0 btn btn-primary"
       >Let's go <post-icon name="arrowright"></post-icon

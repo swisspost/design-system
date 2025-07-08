@@ -5,7 +5,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '6561b345-9d64-4f95-8ea6-2389586410bd',
   title: 'Components/Datepicker',
-  tags: ['package:Angular'],
+  tags: ['package:NgBootstrap'],
   parameters: {
     badges: [],
     design: {

@@ -13,7 +13,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 const meta: MetaComponent = {
   id: 'bc251cd0-5173-463b-8729-586bb1bf1e1a',
   title: 'Components/Form Select',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   parameters: {
     badges: [],
     design: {
@@ -201,7 +201,9 @@ const Template: Story = {
         : null,
       args.validation === 'is-invalid'
         ? html`
-            <p class="invalid-feedback" id="${args.validation}-id-${context.id}">An error occurred!</p>
+            <p class="invalid-feedback" id="${args.validation}-id-${context.id}">
+              An error occurred!
+            </p>
           `
         : null,
       args.hint !== ''
@@ -237,10 +239,7 @@ const Template: Story = {
             .slice(1)
             .map(
               (option, index) => html`
-                <option
-                  value="value_${index + 1}"
-                  ?selected="${index === args.selectedOption - 2}"
-                >
+                <option value="value_${index + 1}" ?selected="${index === args.selectedOption - 2}">
                   Option ${index + 2}
                 </option>
               `,

@@ -12,7 +12,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 const meta: MetaComponent = {
   id: '4c5a4537-d663-4d2b-9c49-17af95443696',
   title: 'Components/Form Slider',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   render: render,
   parameters: {
     badges: [],
@@ -180,7 +180,9 @@ function render(args: Args, context: StoryContext) {
 
   const contextual: (TemplateResult | null)[] = [
     args.validation === 'is-valid' ? html` <p class="valid-feedback">Great success!</p> ` : null,
-    args.validation === 'is-invalid' ? html` <p class="invalid-feedback">An error occurred!</p> ` : null,
+    args.validation === 'is-invalid'
+      ? html` <p class="invalid-feedback">An error occurred!</p> `
+      : null,
   ];
 
   const control: TemplateResult = html`
