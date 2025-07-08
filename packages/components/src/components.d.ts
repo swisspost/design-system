@@ -452,20 +452,6 @@ export namespace Components {
          */
         "show": (panelName: string) => Promise<void>;
     }
-    interface PostTag {
-        /**
-          * Defines the icon `name` inside of the component. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs">icon library</a>.
-         */
-        "icon": string;
-        /**
-          * Defines the size of the component.
-         */
-        "size"?: 'sm';
-        /**
-          * Defines the color variant of the component.
-         */
-        "variant"?: 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
-    }
     interface PostTogglebutton {
         /**
           * If `true`, the button is in the "on" state, otherwise it is in the "off" state.
@@ -853,12 +839,6 @@ declare global {
         prototype: HTMLPostTabsElement;
         new (): HTMLPostTabsElement;
     };
-    interface HTMLPostTagElement extends Components.PostTag, HTMLStencilElement {
-    }
-    var HTMLPostTagElement: {
-        prototype: HTMLPostTagElement;
-        new (): HTMLPostTagElement;
-    };
     interface HTMLPostTogglebuttonElement extends Components.PostTogglebutton, HTMLStencilElement {
     }
     var HTMLPostTogglebuttonElement: {
@@ -910,7 +890,6 @@ declare global {
         "post-tab-header": HTMLPostTabHeaderElement;
         "post-tab-panel": HTMLPostTabPanelElement;
         "post-tabs": HTMLPostTabsElement;
-        "post-tag": HTMLPostTagElement;
         "post-togglebutton": HTMLPostTogglebuttonElement;
         "post-tooltip": HTMLPostTooltipElement;
         "post-tooltip-trigger": HTMLPostTooltipTriggerElement;
@@ -1296,20 +1275,6 @@ declare namespace LocalJSX {
          */
         "onPostChange"?: (event: PostTabsCustomEvent<string>) => void;
     }
-    interface PostTag {
-        /**
-          * Defines the icon `name` inside of the component. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs">icon library</a>.
-         */
-        "icon"?: string;
-        /**
-          * Defines the size of the component.
-         */
-        "size"?: 'sm';
-        /**
-          * Defines the color variant of the component.
-         */
-        "variant"?: 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
-    }
     interface PostTogglebutton {
         /**
           * If `true`, the button is in the "on" state, otherwise it is in the "off" state.
@@ -1377,7 +1342,6 @@ declare namespace LocalJSX {
         "post-tab-header": PostTabHeader;
         "post-tab-panel": PostTabPanel;
         "post-tabs": PostTabs;
-        "post-tag": PostTag;
         "post-togglebutton": PostTogglebutton;
         "post-tooltip": PostTooltip;
         "post-tooltip-trigger": PostTooltipTrigger;
@@ -1425,7 +1389,6 @@ declare module "@stencil/core" {
             "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
-            "post-tag": LocalJSX.PostTag & JSXBase.HTMLAttributes<HTMLPostTagElement>;
             "post-togglebutton": LocalJSX.PostTogglebutton & JSXBase.HTMLAttributes<HTMLPostTogglebuttonElement>;
             "post-tooltip": LocalJSX.PostTooltip & JSXBase.HTMLAttributes<HTMLPostTooltipElement>;
             "post-tooltip-trigger": LocalJSX.PostTooltipTrigger & JSXBase.HTMLAttributes<HTMLPostTooltipTriggerElement>;
