@@ -3,13 +3,13 @@ import { defineCustomElement as definePostIcon } from '@swisspost/design-system-
 import themes from './styles/themes';
 import { API_PreparedIndexEntry, API_StatusObject, API_HashEntry } from '@storybook/types';
 import cssIcon from '../public/assets/images/sidebar-icons/css.svg';
-import angularIcon from '../public/assets/images/sidebar-icons/angular.svg';
+import ngBootstrapIcon from '../public/assets/images/sidebar-icons/ngBootstrap.svg';
 import webComponentsIcon from '../public/assets/images/sidebar-icons/web_component.svg';
 import React from 'react';
 
 const TECH_ICONS: Record<string, string> = {
-  HTML: cssIcon,
-  Angular: angularIcon,
+  Styles: cssIcon,
+  NgBootstrap: ngBootstrapIcon,
   WebComponents: webComponentsIcon,
 };
 
