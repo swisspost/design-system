@@ -97,16 +97,16 @@
       display: none;
     }
 
-    &[data-nodetype='group']:not(:has(span img)) > a > div > svg {
+    &[data-nodetype='group'] svg {
       color: post.$gray-60;
     }
-    &[data-nodetype='component']:not(:has(span img)) > a > div > svg {
+    &[data-nodetype='component'] svg {
       color: #0076a8;
     }
-    &[data-nodetype='document']:not(:has(span img)) > a > div > svg {
+    &[data-nodetype='document'] svg {
       color: #e03c31;
     }
-    &[data-nodetype='story']:not(:has(span img)) > a > div > svg {
+    &[data-nodetype='story'] svg {
       color: #7566a0;
     }
 
