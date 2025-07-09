@@ -44,10 +44,5 @@
     "karma-jasmine-html-reporter": "2.1.0",
     "ng-packagr": "19.2.2",
     "typescript": "5.5.4"
-  },
-  "peerDependencies": {
-    "@angular/common": ">=19.0.0 <20.0.0",
-    "@angular/core": ">=19.0.0 <20.0.0",
-    "@angular/forms": ">=19.0.0 <20.0.0"
   }
 }
