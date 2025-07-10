@@ -23,7 +23,6 @@ import { eventGuard } from '@/utils/event-guard';
  * @slot title - Holds the application title.
  * @slot default - Custom controls or content, right aligned in the local header.
  * @slot post-mainnavigation - Has a default slot because it's only meant to be used in the `<post-header>`.
- * @slot target-group - Holds the list of buttons to choose the target group.
  */
 
 @Component({
@@ -63,7 +62,7 @@ export class PostHeader {
 
   @Element() host: HTMLPostHeaderElement;
 
-  @State() device: string = breakpoint.get('name');
+  @State() device: string = breakpoint.get('device');
   @State() mobileMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
 
@@ -110,7 +109,7 @@ export class PostHeader {
     });
     document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.addEventListener('click', this.handleLinkClick);
-    window.addEventListener('postBreakpoint:name', this.breakpointChange);
+    window.addEventListener('postBreakpoint:device', this.breakpointChange);
     this.switchLanguageSwitchMode();
 
     this.updateLocalHeaderHeight();
@@ -131,7 +130,7 @@ export class PostHeader {
   disconnectedCallback() {
     const scrollParent = this.scrollParent;
 
-    window.removeEventListener('postBreakpoint:name', this.breakpointChange);
+    window.removeEventListener('postBreakpoint:device', this.breakpointChange);
     window.removeEventListener('resize', this.throttledResize);
     window.removeEventListener('scroll', this.handleScrollEvent);
     scrollParent.removeEventListener('scroll', this.handleScrollEvent);
@@ -333,12 +332,8 @@ export class PostHeader {
         style={{ '--post-header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
       >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
-          <div class="navigation-target-group">
-            {(this.device === 'mobile' || this.device === 'tablet') && (
-              <slot name="target-group"></slot>
-            )}
-          </div>
           <slot name="post-mainnavigation"></slot>
+
           {(this.device === 'mobile' || this.device === 'tablet') && (
             <div class="navigation-footer">
               <slot name="meta-navigation"></slot>
@@ -358,9 +353,6 @@ export class PostHeader {
             <div class="logo">
               <slot name="post-logo"></slot>
             </div>
-          </div>
-          <div class="global-sub">
-            {this.device === 'desktop' && <slot name="target-group"></slot>}
           </div>
           <div class="global-sub">
             {this.device === 'desktop' && <slot name="meta-navigation"></slot>}

@@ -67,6 +67,9 @@ const preview: Preview = {
           // Category - Guidelines
           'Guidelines',
 
+          // Category - Accessibility (INTERNAL ONLY)
+          'Accessibility Practices',
+
           // Category - Misc
           'Misc',
           ['Mission', 'Design Principles', 'Migration'],
@@ -82,7 +85,7 @@ const preview: Preview = {
             onClick: openFullScreenDemo,
           },
           {
-            title: 'Copy link',
+            title: 'Copy deep link',
             onClick: copyStoryConfigUrl,
           },
           {
