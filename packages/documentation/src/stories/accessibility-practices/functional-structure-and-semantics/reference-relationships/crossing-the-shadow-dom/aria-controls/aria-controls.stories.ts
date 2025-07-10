@@ -1,6 +1,7 @@
 import { StoryObj, Args } from '@storybook/web-components';
 import { MetaExtended } from '@root/types';
 import { html } from 'lit';
+import '../../../../../../demo-components/demo-button.ts';
 
 const meta: MetaExtended = {
   id: '76ade552-2c03-4d6d-9dce-28daa346f3g3',
@@ -15,25 +16,9 @@ export default meta;
 
 type Story = StoryObj;
 
-// Case: Standard Light DOM to Light DOM
-function handleToggleClick(toggleId: string, textId: string): void {
-  const toggle = document.getElementById(toggleId);
-  const text = document.getElementById(textId);
-  if (toggle && text) {
-    const timestamp = Date.now(); // or use a counter
-    text.innerHTML = `<p>Text shown at ${timestamp}.</p>`;
-  }
-}
-
 export const ExampleHTML = () => {
-  return html`
-    <button id="toggle" aria-controls="text" @click=${() => handleToggleClick('toggle', 'text')}>
-      Button
-    </button>
-    <div id="text" aria-live="polite">
-      <p>Text shown at xxxxxxxxxxx.</p>
-    </div>
-  `;
+  return html`<span id="id_4">My Text</span>
+    <demo-button aria-labelledby-id="id_4">Demo Button</demo-button>`;
 };
 
 // Case: Referencing from Shadow DOM (Host Attribute) to Light DOM (Element)
