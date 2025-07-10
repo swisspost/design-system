@@ -12,7 +12,7 @@ function shouldProcessEvent(
   host: HTMLElement,
   ignoreNestedComponents: boolean
 ): boolean {
-  if (!(event instanceof CustomEvent && isHTMLElement(event.target))) return false;
+  if (!(event instanceof CustomEvent && event.target instanceof HTMLElement)) return false;
 
   const eventTarget = event.target as HTMLElement;
   
