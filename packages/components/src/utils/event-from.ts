@@ -123,10 +123,3 @@ function findClosestParentWithTag(element: Element, tagName: string): Element | 
   
   return null;
 }
-
-function isHTMLElement(obj) {
-  return obj && 
-         typeof obj === 'object' && 
-         typeof obj.localName === 'string' &&
-         typeof obj.tagName === 'string';
-}
