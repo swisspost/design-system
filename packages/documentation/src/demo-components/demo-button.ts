@@ -24,11 +24,6 @@ export class DemoButton extends HTMLElement {
   private render() {
     if (!this.shadowRoot) return;
     this.shadowRoot.innerHTML = `
-      <style>
-        .btn {
-          /* add your .btn and .btn-primary styles here or import CSS */
-        }
-      </style>
       <div 
         class="btn btn-primary"
         role="button"
@@ -45,4 +40,4 @@ export class DemoButton extends HTMLElement {
   }
 }
 
-customElements.define('post-test-button', DemoButton);
+customElements.define('demo-button', DemoButton);
