@@ -191,16 +191,17 @@ export function getIconChanges({
  * Writes markdown changeset files based on detected icon changes.
  *
  * @param {Object} param
+ * @param {string} param.DATE - Date identifier for the changeset.
  * @param {string} param.ICON_CHANGES - JSON string of icon changes.
  */
-export function writeChangesets({ ICON_CHANGES }) {
+export function writeChangesets({ DATE, ICON_CHANGES }) {
   /** @type {IconChangeSummary} */
   const iconChanges = JSON.parse(ICON_CHANGES);
 
   Object.entries(iconChanges).forEach(([bump, changes]) => {
     Object.entries(changes.sections).forEach(([set, { icons }]) => {
       if (icons) {
-        const filePath = `./.changeset/${bump}-${set}-icon-update.md`;
+        const filePath = `./.changeset/${DATE}-${bump}-${set}-icon-update.md`;
         const content = `---\n'@swisspost/design-system-icons': ${bump}\n---\n\n${changes.title}:\n${icons}`;
 
         try {
