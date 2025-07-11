@@ -1,11 +1,13 @@
 import type { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
+import { clickBlocker } from '@/shared/click-blocker';
 
 const meta: MetaComponent = {
   id: 'b7db7391-f893-4b1e-a125-b30c6f0b028b',
   title: 'Components/Breadcrumbs',
   tags: ['package:WebComponents'],
+  decorators: [clickBlocker],
   parameters: {
     badges: [],
     design: {
