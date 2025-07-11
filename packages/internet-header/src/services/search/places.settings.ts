@@ -1,5 +1,5 @@
 // Implement some TOPOS logic into the header search
-export const gisAPIUrl = 'https://places.post.ch/StandortSuche/StaoCacheService';
+export const gisAPIUrl = 'https://places.post.ch/StandortSuche/StaoCacheServiceV2/api/v1';
 export const placesUrl = 'https://places.post.ch';
 export const pois = [
   '001PST',

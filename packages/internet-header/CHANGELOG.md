@@ -1,5 +1,13 @@
 # @swisspost/internet-header
 
+## 1.15.16
+
+### Patch Changes
+
+- Updated `places.post.ch` API endpoint in `internet-header` from legacy version to current V2 endpoint to resolve CORS issues. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5624](https://github.com/swisspost/design-system/pull/5624))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.2
+
 ## 1.15.15
 
 ### Patch Changes
