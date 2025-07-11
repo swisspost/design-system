@@ -1,5 +1,12 @@
 # @swisspost/design-system-components-angular
 
+## 10.0.0-next.41
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.41
+
 ## 10.0.0-next.40
 
 ### Patch Changes
@@ -392,7 +399,6 @@
 ### Major Changes
 
 - Synchronized the versions of the following packages:
-
   - @swisspost/design-system-styles
   - @swisspost/design-system-components
   - @swisspost/design-system-components-react
@@ -436,7 +442,6 @@
 ### Major Changes
 
 - We are introducing the new package `@swisspost/design-system-components-angular` 🥳, which provides a corresponding Angular component for all our web-components. For those working on an Angular app this means:
-
   - Instead of the package `@swisspost/design-system-components`, which provides native web components, the new package can be used.
   - The manual creation of Angular wrapper components for our previous web components in every project is no longer necessary.
   - Full support of the standard Angular schema. The use of the `CUSTOM_ELEMENTS_SCHEMA` schema is history.

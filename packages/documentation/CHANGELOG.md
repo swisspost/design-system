@@ -1,5 +1,26 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.42
+
+### Patch Changes
+
+- Added an info banner to the styles for PrimeNG package documentation to clearly communicate that `@swisspost/design-system-styles-primeng` only provides styling for PrimeNG datatables. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5752](https://github.com/swisspost/design-system/pull/5752))
+
+- Add accessibility note in the Language Switch page to highlight the requirement for clear accessible `names` on language selection options. (by [@myrta2302](https://github.com/myrta2302) with [#5350](https://github.com/swisspost/design-system/pull/5350))
+
+- Fixed styling and contents of `Available bundles` table on the styles package page. (by [@schaertim](https://github.com/schaertim) with [#5673](https://github.com/swisspost/design-system/pull/5673))
+
+- Reorganized `story action` buttons and added corresponding icons to improve user experience. Updated "Copy link" button label to "Copy deep link" for better clarity. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5598](https://github.com/swisspost/design-system/pull/5598))
+
+- Made the scroll-to anchor on the icons search page unfocusable and hid it for screenreaders, since we only need it for our custom search-icons.block javascript logic. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5715](https://github.com/swisspost/design-system/pull/5715))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.41
+  - @swisspost/design-system-styles@10.0.0-next.41
+  - @swisspost/design-system-components-react@10.0.0-next.41
+  - @swisspost/internet-header@2.0.0-next.41
+  - @swisspost/design-system-tokens@10.0.0-next.41
+  - @swisspost/design-system-icons@10.0.0-next.41
+
 ## 6.0.0-next.41
 
 ### Minor Changes
@@ -693,7 +714,6 @@
 
 - Removed the `rg` and `xxl` grid breakpoints, reducing the grid to 5 breakpoints instead of the previous 7. This change affects all CSS classes tied to specific breakpoints (e.g., `col-rg-2`, `m-xxl-4`).  
   **Previous Breakpoints**:
-
   - `xs: 0px`
   - `sm: 400px`
   - `rg: 600px`
@@ -703,7 +723,6 @@
   - `xxl: 1440px`
 
   **New Breakpoints**:
-
   - `xs: 0px`
   - `sm: 600px`
   - `md: 780px`
@@ -711,7 +730,6 @@
   - `xl: 1280px`
 
   To maintain compatibility with the updated grid system, you need to update your code by replacing any `*-rg-*` classes with `*-sm-*`, and any `*-xxl-*` classes with `*-xl-*`. For example:
-
   - `col-rg-2` → `col-sm-2`
   - `m-xxl-4` → `m-xl-4` (by [@alizedebray](https://github.com/alizedebray) with [#3982](https://github.com/swisspost/design-system/pull/3982))
 
@@ -1127,7 +1145,6 @@
 - Merged toast live region section with accessibility page. (by [@imagoiq](https://github.com/imagoiq) with [#2731](https://github.com/swisspost/design-system/pull/2731))
 
 - Prefixed all web-component custom-events with the keyword `post`.
-
   - Changed `post-alert` component `dismissed` event to `postDismissed`.
   - Changed `post-card-control` component `input` and `change` events to `postInput` and `postChange`.
   - Changed `post-collapsible` component `collapseChange` event to `postToggle`.
@@ -1142,7 +1159,6 @@
 
 - Updated Sass color variables: - Removed variables `$success-green`, `$error-red`, `$warning-orange`, `$success-text`, `$error-text`, `$danger` as well as the Sass map `$contextual-colors`.
   Instead use the variables `$success`, `$error`, `$warning` and the Sass map `$signal-colors`.
-
   - Updated the Sass map `$signal-colors` keys and added a new Sass map `$signal-background-colors`.
   - Updated the Sass map `$background-colors` and all the dependant packages accordingly.
 
