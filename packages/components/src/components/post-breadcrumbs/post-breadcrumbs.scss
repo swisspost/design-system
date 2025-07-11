@@ -143,24 +143,6 @@ post-menu::part(popover-container) {
   justify-content: center;
   gap: tokens.get('breadcrumb-gap-inline-inner');
 
-  a {
-    text-decoration: none;
-    color: var(--post-current-fg);
-    line-height: 150%;
-    padding-block: tokens.get('breadcrumb-padding-block-text');
-    font-size: tokens.get('body-font-size', elements.$post-body);
-    @include utilities.focus-style;
-
-    &:hover {
-      color: tokens.get('breadcrumb-hover-fg');
-      text-decoration: tokens.get('breadcrumb-link-hover-text-decoration');
-    }
-
-    &:focus-visible {
-      border-radius: tokens.get('focus-border-radius', helpers.$post-focus);
-    }
-  }
-
   span {
     &:hover {
       color: tokens.get('breadcrumb-hover-fg');

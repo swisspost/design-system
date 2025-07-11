@@ -27,6 +27,14 @@ jobs:
       - name: Install & build Dependencies
         run: pnpm bootstrap
 
+      - name: Configure GitHub User
+        uses: ./.github/actions/configure-github-user
+
+      - name: Stage and commit build artifacts
+        run: |
+          git add .
+          git diff --staged --quiet || git commit -m "chore: add generated files for publish test"
+
       # This will fail the build if something in the publish setup is not correct
       # before changeset magic is starting to run
       - name: Test publish step
@@ -39,7 +47,7 @@ jobs:
       #  - no new changesets (the preview PR got merged into github.ref branch): publish packages
       - name: Changeset Magic
         id: changesets
-        uses: changesets/action@04d574e831923498156e0b2b93152878063203a3
+        uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
