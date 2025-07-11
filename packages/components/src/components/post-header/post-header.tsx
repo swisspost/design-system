@@ -125,6 +125,10 @@ export class PostHeader {
     this.handleLocalHeaderResize();
   }
 
+  componentDidLoad() {
+    this.updateLocalHeaderHeight();
+  }
+
   // Clean up possible side effects when post-header is disconnected
   disconnectedCallback() {
     const scrollParent = this.scrollParent;
@@ -252,12 +256,14 @@ export class PostHeader {
   }
 
   private updateLocalHeaderHeight() {
-    const localHeaderHeight =
-      this.host.shadowRoot.querySelector('.local-header')?.clientHeight || 0;
-    document.documentElement.style.setProperty(
-      '--post-local-header-height',
-      `${localHeaderHeight}px`,
-    );
+    const localHeaderElement = this.host.shadowRoot.querySelector('.local-header');
+    
+    if (localHeaderElement) {
+      document.documentElement.style.setProperty(
+        '--post-local-header-height',
+        `${localHeaderElement.clientHeight}px`,
+      );
+    }
   }
 
   private updateScrollParentHeight() {
