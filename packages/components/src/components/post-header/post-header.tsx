@@ -112,7 +112,6 @@ export class PostHeader {
     window.addEventListener('postBreakpoint:device', this.breakpointChange);
     this.switchLanguageSwitchMode();
 
-    this.updateLocalHeaderHeight();
     this.handleScrollParentResize();
     this.lockBody(false, this.mobileMenuExtended, 'mobileMenuExtended');
   }
@@ -124,6 +123,10 @@ export class PostHeader {
   componentDidRender() {
     this.getFocusableElements();
     this.handleLocalHeaderResize();
+  }
+
+  componentDidLoad() {
+    this.updateLocalHeaderHeight();
   }
 
   // Clean up possible side effects when post-header is disconnected
@@ -253,12 +256,14 @@ export class PostHeader {
   }
 
   private updateLocalHeaderHeight() {
-    const localHeaderHeight =
-      this.host.shadowRoot.querySelector('.local-header')?.clientHeight || 0;
-    document.documentElement.style.setProperty(
-      '--post-local-header-height',
-      `${localHeaderHeight}px`,
-    );
+    const localHeaderElement = this.host.shadowRoot.querySelector('.local-header');
+    
+    if (localHeaderElement) {
+      document.documentElement.style.setProperty(
+        '--post-local-header-height',
+        `${localHeaderElement.clientHeight}px`,
+      );
+    }
   }
 
   private updateScrollParentHeight() {
