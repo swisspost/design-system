@@ -1,0 +1,45 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+.container-examples {
+  position: relative;
+  height: 250px;
+  z-index: 0;
+}
+
+.container-examples > div{
+  width: 100px;
+  height: 100px;
+  background-color: post.$yellow;
+  color: post.$black;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: post.$white 2px solid  ;
+  border-radius: 0.5rem;
+}
+
+.container-examples > div:nth-child(1) {
+  top: 0;
+  left: 0;
+}
+
+.container-examples > div:nth-child(2) {
+  top: 20px;
+  left: 30px;
+}
+
+.container-examples > div:nth-child(3) {
+  top: 40px;
+  left: 60px;
+}
+
+.container-examples > div:nth-child(4) {
+  top: 60px;
+  left: 90px;
+}
+
+.container-examples > div:nth-child(5) {
+  top: 80px;
+  left: 120px;
+}
