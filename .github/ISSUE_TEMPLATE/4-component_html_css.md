@@ -1,8 +1,8 @@
 ---
-name: Component/Web Component
-about: For creating a web component implementation.
-title: '[web component] componentnamehere'
-labels: '📦 components'
+name: Component - HTML/CSS
+about: Sub-issue to implement an HTML/CSS component in the styles package.
+title: '[html/css] componentnamehere'
+labels: '📦 styles', 'needs: tokens'
 assignees: ''
 type: 'Task'
 ---
@@ -11,13 +11,13 @@ type: 'Task'
 <!-- Detailed description of the component and a link to the design  -->
 
 ### ♿ Accessibility
-<!-- List accessibility considerations such as ARIA attributes, focus handling, and color contrast -->
+<!-- List accessibility considerations such as ARIA attributes, focus states, and color contrast -->
 
 ### ⚙️ Requirements
 <!-- List technical requirements like responsive behaviour, animations, interactions, ... -->
 
 ### 🧪 Testing
-<!-- Describe how the component should be tested -->
+<!-- Describe how to manually test or what automated tests are required -->
 
 ### 💻 Proposed implementation
 <!-- If available, propose an implementation or hints that help with the implementation -->
@@ -27,10 +27,7 @@ type: 'Task'
 
 ### 📃 Tasks
 <!-- Add any required tasks not listed, remove any unnecessary tasks -->
-- [ ] Implement component according to design
+- [ ] Implement styles according to design
 - [ ] Create storybook documentation
-- [ ] Add functional tests
-- [ ] Add integration tests for react
-- [ ] Add integration tests for Angular
 - [ ] Add visual regression tests
 - [ ] Design review

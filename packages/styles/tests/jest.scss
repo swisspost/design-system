@@ -1,6 +1,6 @@
-@use "sass:meta";
-@use "sass:math";
-@use "sass:string";
+@use 'sass:meta';
+@use 'sass:math';
+@use 'sass:string';
 
 // $a should be equal to $b
 @mixin equal($a, $b) {
@@ -41,7 +41,7 @@
   }
 
   @each $key, $val in $map {
-    @if ($map-type == "list") {
+    @if ($map-type == 'list') {
       $val: $key;
       $prev-val: $prev-key;
     }
@@ -64,12 +64,12 @@
   $prev-val: null;
   $map-type: meta.type-of($map);
 
-  @if ($map-type != "map" and $map-type != "list") {
+  @if ($map-type != 'map' and $map-type != 'list') {
     @error string.unquote("Map #{meta.inspect($map)} has invalid map type of #{$map-type}");
   }
 
   @each $key, $val in $map {
-    @if ($map-type == "list") {
+    @if ($map-type == 'list') {
       $val: $key;
       $prev-val: $prev-key;
     }

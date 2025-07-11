@@ -1,6 +1,6 @@
 ---
-name: Component/Design
-about: For creating a new component design
+name: Component - Design
+about: Sub-issue to define the design and layout examples of a component.
 title: '[design] componentnamehere'
 labels: '🎨 figma'
 assignees: ''
