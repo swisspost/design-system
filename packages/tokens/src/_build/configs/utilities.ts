@@ -7,34 +7,35 @@ import { registerConfigMethod, getTokenValue } from '../methods.js';
  * Registers a config method to generate output files for utility tokens.
  */
 registerConfigMethod((tokenSets, { sourcePath, buildPath }) => {
-  const { type, layer, filePath, sets } = tokenSets.output[TOKENSET_NAMES.Utilities];
-
-  return {
-    meta: {
-      type,
-      layer,
-      filePath,
-      setNames: Object.keys(sets),
-    },
-    source: [`${sourcePath}_temp/output/${filePath}`],
-    include: [`${sourcePath}_temp/source/**/*.json`],
-    platforms: {
-      utilities: {
-        transforms: ['name/kebab'],
-        buildPath,
-        files: [
-          {
-            destination: `_utilities-formatted.scss`,
-            filter: 'swisspost/source-tokens-filter',
-            format: 'swisspost/utility-format',
-            options: {
-              outputReferences: true,
+  const { type, layer, filePath, setNames } = tokenSets.output[TOKENSET_NAMES.Utilities];
+  return [
+    {
+      meta: {
+        type,
+        layer,
+        filePath,
+        setNames: Object.keys(setNames),
+      },
+      source: [`${sourcePath}_temp/output/${filePath}`],
+      include: [`${sourcePath}_temp/source/**/*.json`],
+      platforms: {
+        utilities: {
+          transforms: ['name/kebab'],
+          buildPath,
+          files: [
+            {
+              destination: `_utilities-formatted.scss`,
+              filter: 'swisspost/source-tokens-filter',
+              format: 'swisspost/utility-format',
+              options: {
+                outputReferences: true,
+              },
             },
-          },
-        ],
+          ],
+        },
       },
     },
-  };
+  ];
 });
 
 /**
@@ -48,7 +49,7 @@ StyleDictionary.registerFormat({
     const utilityTokens = new Map();
 
     dictionary.allTokens.forEach(token => {
-      const { subitem, state } = token.attributes;
+      const { subitem, state } = token.attributes || {};
 
       const previousStates = utilityTokens.get(subitem) ?? [];
       const newState = `\n  ${state}: ${getTokenValue(options, token)},`;
