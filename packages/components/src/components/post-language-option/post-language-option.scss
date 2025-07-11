@@ -1,8 +1,6 @@
 @use '@swisspost/design-system-styles/core' as post;
 @use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/mixins/utilities' as utilities-mx;
-@use '@swisspost/design-system-styles/functions/tokens';
-@use '@swisspost/design-system-styles/tokens/elements';
 
 post-language-option {
   display: inline-block;
@@ -15,7 +13,7 @@ post-language-option {
   }
 
   a {
-    color: tokens.get('body-color', elements.$post-body);
+    color: var(--post-current-fg);
     text-decoration: none;
   }
 

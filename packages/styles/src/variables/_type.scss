@@ -46,7 +46,7 @@ $headings-margin-bottom: (spacing.$spacer * 0.5) !default;
 $headings-font-family: inherit !default;
 $headings-font-weight: 700 !default;
 $headings-line-height: $line-height-heading;
-$headings-color: tokens.get('body-color', element-tokens.$post-body) !default;
+$headings-color: var(--post-current-fg) !default;
 
 $small-font-size: 80% !default;
 

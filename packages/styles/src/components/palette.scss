@@ -1,0 +1,25 @@
+@use '../functions/tokens';
+@use '../tokens/components';
+@use '../mixins/color-scheme';
+@use '../mixins/supports';
+
+tokens.$default-map: components.$post-palettes;
+
+// NOTE: [data-color-scheme] attributes do not have an effect on a .palette element,
+// because of the selectors in the schemes-static.scss file.
+// However it can still be used on a parent or a child element and then in will take effect
+// on its child elements, which also includes palette components.
+
+.palette {
+  --post-current-bg: #{tokens.get('palettes-bg')};
+  --post-current-fg: #{tokens.get('palettes-fg')};
+
+  background-color: var(--post-current-bg);
+  color: var(--post-current-fg);
+
+  @include color-scheme.set(tokens.get('palettes-scheme'));
+
+  .palette-text {
+    color: tokens.get('palettes-fg-secondary');
+  }
+}
