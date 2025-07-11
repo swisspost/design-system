@@ -17,11 +17,16 @@ export const Tabs: Story = {
   render: (_args: HTMLPostTabsElement, context: StoryContext<HTMLPostTabsElement>) => {
     return schemes(
       () => html`
-        <div class="d-flex flex-column gap-16">
-          ${bombArgs({
-            activePanel: [undefined, 'tria'],
-          }).map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
-        </div>
+        ${['container', 'container-fluid', ''].map(
+          containerClass => html`
+            <div class="${containerClass}">
+              ${bombArgs({
+                activePanel: [undefined, 'third'],
+                fullWidth: [false, true],
+              }).map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
+            </div>
+          `,
+        )}
       `,
     );
   },
