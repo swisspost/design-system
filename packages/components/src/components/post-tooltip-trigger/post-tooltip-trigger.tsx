@@ -51,17 +51,15 @@ export class PostTooltipTrigger {
   @Watch('for')
   validateControlFor() {
     checkType(
-      this.for,  // The actual property value
-      'string',  // The expected type
-      'The "for" property must be a string'  // A meaningful error message
+      this.for, // The actual property value
+      'string', // The expected type
+      'The "for" property must be a string', // A meaningful error message
     );
   }
 
-  private get tooltip(): HTMLPostTooltipElement | null {    
+  private get tooltip(): HTMLPostTooltipElement | null {
     const ref = document.getElementById(this.for);
-    return ref?.localName === 'post-tooltip'
-      ? (ref as HTMLPostTooltipElement)
-      : null;
+    return ref?.localName === 'post-tooltip' ? (ref as HTMLPostTooltipElement) : null;
   }
 
   componentDidLoad() {
@@ -83,7 +81,7 @@ export class PostTooltipTrigger {
 
   private handleSlotChange() {
     this.cleanupTrigger();
-    
+
     this.setupTrigger();
   }
 
@@ -95,7 +93,7 @@ export class PostTooltipTrigger {
           .split(' ')
           .filter(id => id !== this.for)
           .join(' ');
-        
+
         if (newDescribedBy) {
           this.trigger.setAttribute('aria-describedby', newDescribedBy);
         } else {
@@ -120,7 +118,9 @@ export class PostTooltipTrigger {
         this.trigger.setAttribute('aria-describedby', `${describedBy} ${this.for}`.trim());
       }
     } else {
-      console.warn('No content found in the post-tooltip-trigger slot. Please insert a focusable element or content that can receive focus.');
+      console.warn(
+        'No content found in the post-tooltip-trigger slot. Please insert a focusable element or content that can receive focus.',
+      );
     }
   }
 
@@ -129,7 +129,7 @@ export class PostTooltipTrigger {
       this.host.addEventListener(event, this.boundTriggerHandler);
     });
   }
-  
+
   private removeListeners() {
     TRIGGER_EVENTS.forEach(event => {
       this.host.removeEventListener(event, this.boundTriggerHandler);
@@ -188,7 +188,7 @@ export class PostTooltipTrigger {
 
     if (
       (this.tooltip && newTarget && this.tooltip.contains(newTarget)) ||
-      (newTarget === this.trigger)
+      newTarget === this.trigger
     ) {
       return;
     }
@@ -197,13 +197,15 @@ export class PostTooltipTrigger {
   }
 
   private interestHandler() {
-    if (this.delay > 0) {
-      this.delayTimeout = window.setTimeout(() => {
+    if (this.trigger) {
+      if (this.delay > 0) {
+        this.delayTimeout = window.setTimeout(() => {
+          this.tooltip?.show(this.trigger);
+          this.delayTimeout = null;
+        }, this.delay);
+      } else {
         this.tooltip?.show(this.trigger);
-        this.delayTimeout = null;
-      }, this.delay);
-    } else {
-      this.tooltip?.show(this.trigger);
+      }
     }
   }
 
