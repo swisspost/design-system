@@ -11,7 +11,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 const meta: MetaComponent = {
   id: '2df77c32-5e33-402e-bd2e-54d54271ce19',
   title: 'Components/Form Input',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   render: render,
   parameters: {
     badges: [],
@@ -165,7 +165,9 @@ function render(args: Args, context: StoryContext) {
       : null,
     args.validation === 'is-invalid'
       ? html`
-          <p class="invalid-feedback" id="${args.validation}-id-${context.id}">An error occurred!</p>
+          <p class="invalid-feedback" id="${args.validation}-id-${context.id}">
+            An error occurred!
+          </p>
         `
       : null,
     args.hint !== '' ? html` <p class="form-hint" id="form-hint-${id}">${args.hint}</p> ` : null,

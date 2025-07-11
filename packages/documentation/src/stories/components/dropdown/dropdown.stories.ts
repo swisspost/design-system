@@ -3,7 +3,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: '63113d0a-6ceb-472c-ac6a-729404e862ca',
   title: 'Components/Dropdown',
-  tags: ['package:Angular'],
+  tags: ['package:NgBootstrap'],
   parameters: {
     badges: [],
     design: {

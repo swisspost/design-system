@@ -12,7 +12,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 const meta: MetaComponent = {
   id: '152b7268-cce0-43d7-b931-41a57370f9a0',
   title: 'Components/Form Textarea',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   render: renderTextarea,
   parameters: {
     badges: [],
@@ -146,12 +146,12 @@ function renderTextarea(args: Args, context: StoryContext) {
     : null;
   const contextual = [
     args.validation === 'is-valid'
-      ? html`<p class="valid-feedback" id="${args.validation}-id-${context.id}">
-          Great success!
-        </p>`
+      ? html`<p class="valid-feedback" id="${args.validation}-id-${context.id}">Great success!</p>`
       : null,
     args.validation === 'is-invalid'
-      ? html`<p class="invalid-feedback" id="${args.validation}-id-${context.id}">An error occurred!</p>`
+      ? html`<p class="invalid-feedback" id="${args.validation}-id-${context.id}">
+          An error occurred!
+        </p>`
       : null,
     args.hint !== ''
       ? html`<p class="form-hint" id="form-hint-${context.id}">${args.hint}</p>`
