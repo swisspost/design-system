@@ -65,10 +65,10 @@ importers:
         specifier: 0.6.0
         version: 0.6.0
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.40
+        specifier: workspace:10.0.0-next.41
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.40
+        specifier: workspace:10.0.0-next.41
         version: link:../styles/dist
       ally.js:
         specifier: 1.4.1
@@ -201,10 +201,10 @@ importers:
         specifier: 19.2.0
         version: 19.2.0(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(@angular/platform-browser@19.2.0(@angular/animations@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0)))(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.0(rxjs@7.8.1)(zone.js@0.15.0)))(rxjs@7.8.1)
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.40
+        specifier: workspace:10.0.0-next.41
         version: link:../components
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.40
+        specifier: workspace:10.0.0-next.41
         version: link:../styles/dist
       rxjs:
         specifier: 7.8.1
@@ -232,7 +232,7 @@ importers:
         specifier: 9.18.0
         version: 9.18.0
       '@swisspost/design-system-components-angular':
-        specifier: workspace:10.0.0-next.40
+        specifier: workspace:10.0.0-next.41
         version: link:dist/components
       angular-eslint:
         specifier: 19.1.0
@@ -289,7 +289,7 @@ importers:
         specifier: ^19.0.0
         version: 19.2.0(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.0))(@angular/platform-browser@19.2.0(@angular/animations@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.0)))(@angular/common@19.2.0(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.0(rxjs@7.8.2)(zone.js@0.15.0)))(rxjs@7.8.2)
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.40
+        specifier: workspace:10.0.0-next.41
         version: link:../../../components
       tslib:
         specifier: 2.8.1
@@ -305,7 +305,7 @@ importers:
         specifier: 0.1.1
         version: 0.1.1(next@15.3.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.1))(vite@6.3.4(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.89.2)(sass@1.85.1)(terser@5.39.0)(yaml@2.7.0))(webpack@5.98.0)
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.40
+        specifier: workspace:10.0.0-next.41
         version: link:../components
     devDependencies:
       '@eslint/js':
@@ -351,22 +351,22 @@ importers:
   packages/documentation:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:10.0.0-next.40
+        specifier: workspace:10.0.0-next.41
         version: link:../components
       '@swisspost/design-system-components-react':
-        specifier: workspace:10.0.0-next.40
+        specifier: workspace:10.0.0-next.41
         version: link:../components-react
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.40
+        specifier: workspace:10.0.0-next.41
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.40
+        specifier: workspace:10.0.0-next.41
         version: link:../styles/dist
       '@swisspost/design-system-tokens':
-        specifier: workspace:10.0.0-next.40
+        specifier: workspace:10.0.0-next.41
         version: link:../tokens/dist
       '@swisspost/internet-header':
-        specifier: workspace:2.0.0-next.40
+        specifier: workspace:2.0.0-next.41
         version: link:../internet-header
       bootstrap:
         specifier: 5.3.3
@@ -427,7 +427,7 @@ importers:
         specifier: 8.4.7
         version: 8.4.7(lit@3.3.0)(storybook@8.4.7(prettier@3.6.2))(vite@6.3.4(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.78.0)(sass@1.85.1)(terser@5.39.0)(yaml@2.7.0))
       '@swisspost/design-system-components-angular':
-        specifier: workspace:10.0.0-next.40
+        specifier: workspace:10.0.0-next.41
         version: link:../components-angular/dist/components
       '@types/css-modules':
         specifier: 1.0.5
@@ -653,7 +653,7 @@ importers:
   packages/internet-header:
     dependencies:
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.40
+        specifier: workspace:10.0.0-next.41
         version: link:../styles/dist
       body-scroll-lock:
         specifier: 4.0.0-beta.0
@@ -792,13 +792,13 @@ importers:
   packages/nextjs-integration:
     dependencies:
       '@swisspost/design-system-components-react':
-        specifier: workspace:10.0.0-next.40
+        specifier: workspace:10.0.0-next.41
         version: link:../components-react
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.40
+        specifier: workspace:10.0.0-next.41
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: workspace:2.0.0-next.40
+        specifier: workspace:2.0.0-next.41
         version: link:../internet-header
       next:
         specifier: 15.3.3
@@ -878,10 +878,10 @@ importers:
         version: 3.0.0
     devDependencies:
       '@swisspost/design-system-icons':
-        specifier: workspace:10.0.0-next.40
+        specifier: workspace:10.0.0-next.41
         version: link:../icons
       '@swisspost/design-system-tokens':
-        specifier: workspace:10.0.0-next.40
+        specifier: workspace:10.0.0-next.41
         version: link:../tokens/dist
       '@types/node':
         specifier: 22.10.5
@@ -975,7 +975,7 @@ importers:
         specifier: 19.0.9
         version: 19.0.9
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.40
+        specifier: workspace:10.0.0-next.41
         version: link:../styles/dist
       primeng:
         specifier: 19.0.9
@@ -1063,7 +1063,7 @@ importers:
   packages/styles-primeng-workspace/projects/styles-primeng:
     dependencies:
       '@swisspost/design-system-styles':
-        specifier: workspace:10.0.0-next.40
+        specifier: workspace:10.0.0-next.41
         version: link:../../../styles/dist
       primeng:
         specifier: ^19.0.0
@@ -7009,9 +7009,6 @@ packages:
 
   flatted@3.3.1:
     resolution: {integrity: sha512-X8cqMLLie7KsNUDSdzeN8FYK9rEt4Dt67OsG/DNGnYTSDBG4uFAJFBnUeiV+zCVAvwFy56IjM9sH51jVaEhNxw==}
-
-  flatted@3.3.2:
-    resolution: {integrity: sha512-AiwGJM8YcNOaobumgtng+6NHuOqC3A7MixFeDafM3X9cIUM+xUXoS5Vfgf+OihAYe20fxqNM9yPBXJzRtZ/4eA==}
 
   flatted@3.3.3:
     resolution: {integrity: sha512-GX+ysw4PBCz0PzosHDepZGANEuFCMLrnRTiEy9McGjmkCQYwRq4A/X786G/fjM/+OjsWSU1ZrY5qyARZmO/uwg==}
@@ -19313,8 +19310,6 @@ snapshots:
   flat@5.0.2: {}
 
   flatted@3.3.1: {}
-
-  flatted@3.3.2: {}
 
   flatted@3.3.3: {}
 

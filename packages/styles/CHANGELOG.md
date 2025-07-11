@@ -1,5 +1,18 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.41
+
+### Major Changes
+
+- Renamed the following CSS custom properties and Sass variables: - `--post-breakpoint-widths` → `--post-grid-breakpoint-widths`
+  - `--post-breakpoint-keys` → `--post-grid-breakpoint-keys`
+  - `--post-breakpoint-names` → `--post-grid-breakpoint-devices`
+  - `$grid-breakpoints-key-name-map` → `$grid-breakpoint-to-device` (by [@alizedebray](https://github.com/alizedebray) with [#5739](https://github.com/swisspost/design-system/pull/5739))
+
+### Minor Changes
+
+- Updated media utilities to support device names: `mobile`, `tablet`, and `desktop`. (by [@alizedebray](https://github.com/alizedebray) with [#5739](https://github.com/swisspost/design-system/pull/5739))
+
 ## 10.0.0-next.40
 
 ### Major Changes
@@ -435,7 +448,6 @@
 
 - Removed the `rg` and `xxl` grid breakpoints, reducing the grid to 5 breakpoints instead of the previous 7. This change affects all CSS classes tied to specific breakpoints (e.g., `col-rg-2`, `m-xxl-4`).  
   **Previous Breakpoints**:
-
   - `xs: 0px`
   - `sm: 400px`
   - `rg: 600px`
@@ -445,7 +457,6 @@
   - `xxl: 1440px`
 
   **New Breakpoints**:
-
   - `xs: 0px`
   - `sm: 600px`
   - `md: 780px`
@@ -453,7 +464,6 @@
   - `xl: 1280px`
 
   To maintain compatibility with the updated grid system, you need to update your code by replacing any `*-rg-*` classes with `*-sm-*`, and any `*-xxl-*` classes with `*-xl-*`. For example:
-
   - `col-rg-2` → `col-sm-2`
   - `m-xxl-4` → `m-xl-4` (by [@alizedebray](https://github.com/alizedebray) with [#3982](https://github.com/swisspost/design-system/pull/3982))
 
@@ -724,7 +734,6 @@
 - Fixed missing chevron in valid and invalid select entries. (by [@alizedebray](https://github.com/alizedebray) with [#3104](https://github.com/swisspost/design-system/pull/3104))
 
 - Updated popover styles. - Removed popover `min-width` and updated `max-width`.
-
   - Simplyfied popover arrow size definition.
   - Removed `:focus` selector fom `.text-auto` utility class (by [@alizedebray](https://github.com/alizedebray) with [#3104](https://github.com/swisspost/design-system/pull/3104))
 
@@ -751,7 +760,6 @@
   Updated the usage of said variables in dependant packages accordingly. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2861](https://github.com/swisspost/design-system/pull/2861))
 
 - Synchronized the versions of the following packages:
-
   - @swisspost/design-system-styles
   - @swisspost/design-system-components
   - @swisspost/design-system-components-react
@@ -766,7 +774,6 @@
 
 - Updated Sass color variables: - Removed variables `$success-green`, `$error-red`, `$warning-orange`, `$success-text`, `$error-text`, `$danger` as well as the Sass map `$contextual-colors`.
   Instead use the variables `$success`, `$error`, `$warning` and the Sass map `$signal-colors`.
-
   - Updated the Sass map `$signal-colors` keys and added a new Sass map `$signal-background-colors`.
   - Updated the Sass map `$background-colors` and all the dependant packages accordingly.
 
@@ -1015,13 +1022,11 @@
 
 - Updated alert and toast styles.  
   Deprecated classes for alerts/notifications:
-
   - alert-error becomes alert-danger
   - alert-notification becomes alert-primary
   - toast-notification becomes toast-primary (by [@alizedebray](https://github.com/alizedebray) with [#1350](https://github.com/swisspost/design-system/pull/1350))
 
 - Stepper:
-
   - Normalize font styles and weights.
   - Position the step label under the badge on small viewport.
   - Center the step label when its is multiline.
