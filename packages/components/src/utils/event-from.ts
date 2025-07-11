@@ -14,7 +14,7 @@ function shouldProcessEvent(
 ): boolean {
   if (!(event instanceof CustomEvent && event.target instanceof HTMLElement)) return false;
 
-  const eventTarget = event.target as HTMLElement;
+  const eventTarget = event.target;
   
   if (eventTarget.localName !== tag) return false;
   
