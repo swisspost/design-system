@@ -61,8 +61,16 @@ describe('EventFrom decorator', () => {
 
   // Helper to set up parent-child relationships
   function setParent(child: HTMLElement, parent: HTMLElement) {
-    (child as any).parentElement = parent;
-    (child as any).parentNode = parent;
+    Object.defineProperty(child, 'parentElement', {
+      value: parent,
+      writable: true,
+      configurable: true
+    });
+    Object.defineProperty(child, 'parentNode', {
+      value: parent,
+      writable: true,
+      configurable: true
+    });
   }
 
   test('calls callback when event target exactly matches tag', () => {
