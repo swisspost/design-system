@@ -12,7 +12,7 @@
 #
 ###
 
-name: Fetch Icons v8
+name: Fetch Icons v9
 
 on:
   workflow_dispatch:
@@ -50,10 +50,10 @@ jobs:
       - name: Create Branch
         id: current-branch
         run: |
-          git checkout -b $BRANCH_NAME origin/release/v8
+          git checkout -b $BRANCH_NAME origin/release/v9
           echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
         env:
-          BRANCH_NAME: ${{ steps.current-date.outputs.date }}-update-icons
+          BRANCH_NAME: v9/${{ steps.current-date.outputs.date }}-update-icons
 
       - name: Install icons & dependencies
         run: pnpm --filter design-system-icons... --filter design-system-styles... install
@@ -178,6 +178,6 @@ jobs:
       - name: Create PR
         if: steps.changed-files.outputs.any_modified != 'false'
         run: |
-          gh pr create --title "chore(icons): :point_up: update icons" --body-file ${{ steps.pr-body.outputs.file }} --base release/v8
+          gh pr create --title "chore(icons): :point_up: update icons (realease/v9)" --body-file ${{ steps.pr-body.outputs.file }} --base release/v9
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
