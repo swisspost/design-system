@@ -111,7 +111,8 @@ $switch-handle-icon: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='htt
           calc(
             tokens.get('switch-element-width') - tokens.get('switch-element-handle') - tokens.get(
                 'switch-padding-inline-handle'
-              ) * 2 - tokens.get('switch-border-width') * 2
+              ) *
+              2 - tokens.get('switch-border-width') * 2
           )
         );
       }
