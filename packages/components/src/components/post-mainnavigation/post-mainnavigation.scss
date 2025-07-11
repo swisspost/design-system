@@ -43,10 +43,6 @@ post-mainnavigation {
   }
 
   .back-button {
-    post-icon {
-      transform: rotate(180deg);
-    }
-
     @include media.max(lg) {
       font-size: 16px;
     }
@@ -132,6 +128,10 @@ post-mainnavigation {
         gap: 4px;
         font-size: 16px;
         z-index: 4;
+
+        @include media.max(lg) {
+          z-index: 5;
+        }
 
         .nav-el-active {
           font-weight: 700;

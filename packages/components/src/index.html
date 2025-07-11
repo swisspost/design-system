@@ -9,6 +9,7 @@
     <meta name="design-system-settings" data-post-icon-base="/assets/icons" />
     <title>Stencil Component Starter</title>
 
+    <link id="components-global-styles" rel="stylesheet" href="/build/post-components.css" />
     <link id="tokens" rel="stylesheet" href="/assets/css/post-tokens-default.css" />
     <link id="palette" rel="stylesheet" href="/assets/css/post-palettes.css" />
     <link rel="stylesheet" href="/assets/css/index.css" />
@@ -69,7 +70,7 @@
       <!-- Main navigation -->
       <post-mainnavigation caption="Hauptnavigation">
         <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
-          <post-icon aria-hidden="true" name="arrowright"></post-icon> Back
+          <post-icon aria-hidden="true" name="arrowleft"></post-icon> Back
         </button>
 
         <post-list title-hidden="">
@@ -84,7 +85,7 @@
             <post-megadropdown-trigger for="briefe">Briefe</post-megadropdown-trigger>
             <post-megadropdown id="briefe">
               <button slot="back-button" class="btn btn-tertiary btn-sm">
-                <post-icon name="arrowright"></post-icon>
+                <post-icon name="arrowleft"></post-icon>
                 Back
               </button>
               <post-closebutton slot="close-button">Schliessen</post-closebutton>
@@ -121,7 +122,7 @@
             <post-megadropdown-trigger for="pakete">Pakete</post-megadropdown-trigger>
             <post-megadropdown id="pakete">
               <button slot="back-button" class="btn btn-tertiary btn-sm">
-                <post-icon name="arrowright"></post-icon>
+                <post-icon name="arrowleft"></post-icon>
                 Back
               </button>
               <post-closebutton slot="close-button">Schliessen</post-closebutton>

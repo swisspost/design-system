@@ -8,6 +8,14 @@
 
 tokens.$default-map: utilities.$post-spacing;
 
+:host {
+  display: none;
+}
+
+:host([open]) {
+  display: contents;
+}
+
 post-popovercontainer {
   // Creates a safe space around the popovercontainer for save pointer crossing between trigger and tooltip
   &[arrow] {
@@ -21,7 +29,9 @@ post-popovercontainer {
 
   & > div {
     padding: tokens.get('utility-gap-4') tokens.get('utility-gap-8');
-    max-width: calc(2 * 112px - tokens.get('utility-gap-8'));
-    min-height: tokens.get('utility-gap-16');
+    max-width: 280px;
+    min-height: 32px;
+    word-wrap: break-word;
+    white-space: normal;
   }
 }

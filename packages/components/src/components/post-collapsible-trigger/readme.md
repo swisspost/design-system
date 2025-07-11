@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property | Attribute | Description                                         | Type     | Default     |
-| -------- | --------- | --------------------------------------------------- | -------- | ----------- |
-| `for`    | `for`     | Link the trigger to a post-collapsible with this id | `string` | `undefined` |
+| Property           | Attribute | Description                                         | Type     | Default     |
+| ------------------ | --------- | --------------------------------------------------- | -------- | ----------- |
+| `for` _(required)_ | `for`     | Link the trigger to a post-collapsible with this id | `string` | `undefined` |
 
 
 ## Methods

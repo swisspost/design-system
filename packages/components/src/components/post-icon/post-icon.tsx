@@ -1,12 +1,6 @@
 import { Component, Element, Host, h, Prop, Watch } from '@stencil/core';
-import { IS_BROWSER, checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '@/utils';
+import { IS_BROWSER, checkEmptyOrType, checkRequiredAndType, checkEmptyOrOneOf } from '@/utils';
 import { version } from '@root/package.json';
-
-type UrlDefinition = {
-  url: URL | null;
-  definesDomain: boolean;
-  definesSlug: boolean;
-};
 
 const CDN_URL = `https://unpkg.com/@swisspost/design-system-icons@${version}/public/post-icons/`;
 const ANIMATION_NAMES = [
@@ -36,17 +30,17 @@ export class PostIcon {
   /**
    * The name of the animation.
    */
-  @Prop() readonly animation?: Animation | null = null;
+  @Prop() readonly animation?: Animation;
 
   @Watch('animation')
-  validateAnimation(newValue = this.animation) {
-    if (newValue !== undefined) checkEmptyOrOneOf(this, 'animation', ANIMATION_KEYS);
+  validateAnimation() {
+    checkEmptyOrOneOf(this, 'animation', ANIMATION_KEYS);
   }
 
   /**
    * The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url.
    */
-  @Prop() readonly base?: string | null = null;
+  @Prop() readonly base?: string;
 
   @Watch('base')
   validateBase() {
@@ -58,20 +52,10 @@ export class PostIcon {
    */
   @Prop() readonly flipH?: boolean = false;
 
-  @Watch('flipH')
-  validateFlipH() {
-    checkEmptyOrType(this, 'flipH', 'boolean');
-  }
-
   /**
    * When set to `true`, the icon will be flipped vertically.
    */
   @Prop() readonly flipV?: boolean = false;
-
-  @Watch('flipV')
-  validateFlipV() {
-    checkEmptyOrType(this, 'flipV', 'boolean');
-  }
 
   /**
    * The name/id of the icon (e.g. 1000, 1001, ...).
@@ -80,14 +64,13 @@ export class PostIcon {
 
   @Watch('name')
   validateName() {
-    checkNonEmpty(this, 'name');
-    checkType(this, 'name', 'string');
+    checkRequiredAndType(this, 'name', 'string');
   }
 
   /**
    * The number of degree for the css rotate transformation.
    */
-  @Prop() readonly rotate?: number | null = null;
+  @Prop() readonly rotate?: number;
 
   @Watch('rotate')
   validateRotate() {
@@ -97,78 +80,64 @@ export class PostIcon {
   /**
    * The number for the css scale transformation.
    */
-  @Prop() readonly scale?: number | null = null;
+  @Prop() readonly scale?: number;
 
   @Watch('scale')
   validateScale() {
     checkEmptyOrType(this, 'scale', 'number');
   }
 
-  // Construct the icon url from different possible sources
-  private getUrl() {
+  // Construct the icon URL according to the following rules:
+  // - URL = current domain + base[href] + meta[data-post-icon-base] (or component base)
+  // - If base[href] is not relative, it's used instead of current domain + base[href]
+  // - If meta[data-post-icon-base] (or component base) is not relative, it's used as is
+  private getUrl(): string {
+    const fileName = `${this.name}.svg`;
+
+    if (!IS_BROWSER && !this.base) {
+      return `${CDN_URL}${fileName}`;
+    }
+
+    const currentDomain = IS_BROWSER ? window.location.origin : '';
+
+    const baseHref = IS_BROWSER
+      ? document.querySelector('base[href]')?.getAttribute('href') || ''
+      : '';
+    const isBaseHrefAbsolute = /^https?:\/\//.test(baseHref);
+    const metaIconBase = IS_BROWSER
+      ? document
+        .querySelector('meta[name="design-system-settings"]')
+        ?.getAttribute('data-post-icon-base') || ''
+      : '';
+    const iconBase = this.base || metaIconBase;
+
+    const isIconBaseAbsolute = /^https?:\/\//.test(iconBase);
+
+    const normalizedBaseHref = normalizeUrl(baseHref);
+    const normalizedIconBase = normalizeUrl(iconBase);
+
+    function normalizeUrl(url: string) {
+      if (!url) return '';
+      return url.endsWith('/') ? url : `${url}/`;
+    }
+
     let url: string;
-    const file = `${this.name}.svg`;
 
-    // the first definition object which defines a domain, will be used to set the domain of the file url
-    // the first definition object which defines a slug, will be used to set the slug of the file url
-    const urlDefinitions = [this.getUrlDefinition(this.base, 'both')];
-
-    if (IS_BROWSER) {
-      urlDefinitions.push(
-        this.getUrlDefinition(
-          document.head
-            .querySelector('meta[name="design-system-settings"][data-post-icon-base]')
-            ?.getAttribute('data-post-icon-base'),
-          'relative',
-        ),
-      );
-      urlDefinitions.push(
-        this.getUrlDefinition(document.querySelector('base[href]')?.getAttribute('href'), 'both'),
-      );
-    }
-
-    // in case no definition defines a domain, a relative url is used to load the icon
-    const origin = urlDefinitions.find(d => d.definesDomain)?.url?.origin;
-    // in case no definition defines a slug either, the cdn url is used as a fallback
-    const slug = urlDefinitions.find(d => d.definesSlug)?.url?.pathname;
-
-    if (origin && slug) {
-      url = `${origin}${slug}${file}`;
-    } else if (!origin && slug) {
-      url = `${slug}${file}`;
+    if (isIconBaseAbsolute) {
+      // If icon base is absolute, use it as is
+      url = `${normalizedIconBase}${fileName}`;
+    } else if (isBaseHrefAbsolute) {
+      // If baseHref is absolute, don't use current domain
+      url = `${normalizedBaseHref}${normalizedIconBase}${fileName}`;
+    } else if (iconBase || baseHref) {
+      // Standard case: domain + baseHref + iconBase
+      url = `${currentDomain}${normalizedBaseHref}${normalizedIconBase}${fileName}`;
     } else {
-      url = `${CDN_URL}${file}`;
+      // Fallback to CDN if no paths are specified
+      url = `${CDN_URL}${fileName}`;
     }
 
-    return url;
-  }
-
-  private getUrlDefinition(
-    url: string | undefined | null,
-    allow: 'both' | 'absolute' | 'relative',
-  ): UrlDefinition {
-    return {
-      url: this.getUrlObject(url),
-      definesDomain: allow !== 'relative' ? this.definesDomain(url) : false,
-      definesSlug: allow !== 'absolute' ? this.definesSlug(url) : false,
-    } as UrlDefinition;
-  }
-
-  private getUrlObject(url: string | undefined | null) {
-    if (url) {
-      url = url?.endsWith('/') ? url : `${url}/`;
-      return new URL(url, 'https://url.base');
-    } else {
-      return null;
-    }
-  }
-
-  private definesDomain(url: string | undefined | null) {
-    return url ? /^https?:\/\//.test(url) : false;
-  }
-
-  private definesSlug(url: string | undefined | null) {
-    return Boolean(/^\/.+/.test(this.getUrlObject(url)?.pathname));
+    return url.replace(/([^:])\/\//g, '$1/');
   }
 
   private getStyles() {
@@ -188,8 +157,6 @@ export class PostIcon {
   componentDidLoad() {
     this.validateBase();
     this.validateName();
-    this.validateFlipH();
-    this.validateFlipV();
     this.validateScale();
     this.validateRotate();
     this.validateAnimation();
