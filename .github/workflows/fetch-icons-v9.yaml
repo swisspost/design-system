@@ -45,7 +45,7 @@ jobs:
 
       - name: Get Date
         id: current-date
-        run: echo "date=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
+        run: echo "date=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_OUTPUT
 
       - name: Create Branch
         id: current-branch
