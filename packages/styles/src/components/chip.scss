@@ -7,10 +7,12 @@
 tokens.$default-map: components.$post-chip;
 
 button.chip-dismissible {
+  $button-size: tokens.get('close-size', components.$post-close);
+  $icon-size: tokens.get('close-icon-size', components.$post-close);
+
   position: relative;
   padding-inline: tokens.get('chip-dismissible-padding-inline');
   gap: tokens.get('chip-dismissible-gap-inline');
-  flex-direction: row-reverse;
   @include utilities.focus-style-none();
   @include chip-mx.chip-styles();
 
@@ -28,29 +30,19 @@ button.chip-dismissible {
   &::before {
     content: '';
     border-radius: 100%;
-    height: tokens.get('close-size', components.$post-close);
-    width: tokens.get('close-size', components.$post-close);
-    margin-right: calc(
-      -1 * (
-          tokens.get('close-size', components.$post-close) - tokens.get(
-              'close-icon-size',
-              components.$post-close
-            )
-        ) / 2
+    height: $button-size;
+    width: $button-size;
+    position: absolute;
+    right: calc(
+      tokens.get('chip-dismissible-padding-inline') - ((#{$button-size} - #{$icon-size}) / 2)
     );
   }
 
   // Close icon
   &::after {
     content: '';
-    @include icons-mx.post-icon(
-      $name: 'closex',
-      $height: tokens.get('close-icon-size', components.$post-close),
-      $width: tokens.get('close-icon-size', components.$post-close)
-    );
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    @include icons-mx.post-icon($name: 'closex', $height: $icon-size, $width: $icon-size);
+    margin-left: calc((#{$button-size} - #{$icon-size}) / 2);
 
     @include utilities.high-contrast-mode() {
       background-color: ButtonText;
@@ -72,7 +64,7 @@ button.chip-dismissible {
   border-radius: tokens.get('chip-border-radius');
   @include utilities.focus-style();
 
-  &-label {
+  label {
     cursor: pointer;
     padding-inline: tokens.get('chip-selectable-padding-inline');
     @include chip-mx.chip-styles();
@@ -91,11 +83,11 @@ button.chip-dismissible {
     }
   }
 
-  &-input {
+  input {
     @include utilities.visuallyhidden;
 
     &:checked {
-      + .chip-selectable-label {
+      + label {
         color: tokens.get('chip-selectable-selected-enabled-fg');
         background-color: tokens.get('chip-selectable-selected-enabled-bg');
         border-color: tokens.get('chip-selectable-selected-enabled-stroke');
@@ -140,7 +132,7 @@ button.chip-dismissible {
         }
       }
 
-      @include utilities.disabled-style('+ .chip-selectable-label') {
+      @include utilities.disabled-style('+ label') {
         color: tokens.get('chip-selectable-selected-disabled-fg');
         background-color: tokens.get('chip-selectable-selected-disabled-bg');
         border-color: tokens.get('chip-selectable-selected-disabled-stroke');
@@ -153,7 +145,7 @@ button.chip-dismissible {
     }
 
     &:not(:checked) {
-      + .chip-selectable-label:hover {
+      + label:hover {
         color: tokens.get('chip-hovered-fg');
         background-color: tokens.get('chip-hovered-bg');
         border-color: tokens.get('chip-hovered-stroke');
@@ -168,7 +160,7 @@ button.chip-dismissible {
         }
       }
 
-      @include utilities.disabled-style('+ .chip-selectable-label') {
+      @include utilities.disabled-style('+ label') {
         @include chip-mx.chip-styles-disabled();
 
         .badge {
@@ -178,8 +170,8 @@ button.chip-dismissible {
       }
     }
 
-    &:checked:disabled + .chip-selectable-label,
-    &:not(:checked):disabled + .chip-selectable-label {
+    &:checked:disabled + label,
+    &:not(:checked):disabled + label {
       &::before {
         background-color: GrayText;
       }

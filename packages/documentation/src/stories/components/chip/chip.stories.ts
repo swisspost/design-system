@@ -140,13 +140,12 @@ function getSelectableChip(
       <input
         id="${inputId}"
         name="${args.radio ? inputName : inputId}"
-        class="chip-selectable-input"
         type="${args.radio ? 'radio' : 'checkbox'}"
         ?checked="${args.selected}"
         ?disabled="${args.disabled}"
         @change="${handleChange}"
       />
-      <label class="chip-selectable-label" for="${inputId}">
+      <label for="${inputId}">
         <span class="chip-text">${args.text}</span>
         ${args.badge ? html` <span class="badge">${args.number}</span> ` : nothing}
       </label>
@@ -193,17 +192,14 @@ export const SelectableCheckboxChip: Story = {
     ];
 
     return html`
-      <fieldset>
+      <fieldset class="chip-selectable-group">
         <legend>Travel Itineraries</legend>
-        <div class="d-flex flex-wrap gap-8">
-          ${checkboxChips.map(({ text, selected }, index) =>
-            renderChip({ ...args, text, selected }, context, index),
-          )}
-        </div>
+        ${checkboxChips.map(({ text, selected }, index) =>
+          renderChip({ ...args, text, selected }, context, index),
+        )}
       </fieldset>
     `;
   },
-  decorators: [story => html`<div class="d-flex gap-56">${story()}</div>`],
   args: {
     type: 'filter',
   },
@@ -218,17 +214,14 @@ export const SelectableBadgeChip: Story = {
     ];
 
     return html`
-      <fieldset>
+      <fieldset class="chip-selectable-group">
         <legend>Travel Itineraries</legend>
-        <div class="chip-selectable-group">
-          ${checkboxChips.map(({ text, selected, badge, number }, index) =>
-            renderChip({ ...args, text, selected, badge, number }, context, index),
-          )}
-        </div>
+        ${checkboxChips.map(({ text, selected, badge, number }, index) =>
+          renderChip({ ...args, text, selected, badge, number }, context, index),
+        )}
       </fieldset>
     `;
   },
-  decorators: [story => html`<div class="d-flex gap-56">${story()}</div>`],
   args: {
     type: 'filter',
   },
@@ -244,17 +237,14 @@ export const SelectableRadioChip: Story = {
     ];
 
     return html`
-      <fieldset>
+      <fieldset class="chip-selectable-group">
         <legend class="">Search Results</legend>
-        <div class="chip-selectable-group">
-          ${radioChips.map(({ text, number, selected }, index) =>
-            renderChip({ ...args, text, number, selected }, context, index),
-          )}
-        </div>
+        ${radioChips.map(({ text, number, selected }, index) =>
+          renderChip({ ...args, text, number, selected }, context, index),
+        )}
       </fieldset>
     `;
   },
-  decorators: [story => html`<div class="d-flex gap-56">${story()}</div>`],
   args: {
     type: 'filter',
     radio: true,
