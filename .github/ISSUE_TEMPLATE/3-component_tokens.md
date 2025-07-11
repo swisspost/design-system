@@ -1,8 +1,8 @@
 ---
-name: Component/Tokens
-about: Adding Design Tokens for a new component.
+name: Component - Tokens
+about: Sub-issue to create design tokens for a component.
 title: '[tokens] componentnamehere'
-labels: '🔮 tokens', 'on hold'
+labels: '🔮 tokens', 'needs: design'
 assignees: ''
 type: 'Task'
 ---
