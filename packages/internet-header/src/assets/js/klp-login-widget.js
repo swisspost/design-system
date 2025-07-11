@@ -405,8 +405,8 @@ const vertx = window.vertx || {};
     const getLocation = function (url) {
       return new URL(url);
     };
-    const url = getLocation(logoutURL());
-    originUrl = url.origin;
+
+    originUrl = platform.selfAdminOrigin ? platform.selfAdminOrigin : getLocation(logoutURL()).origin;
     const menuLinks = [
       {
         description: texts[currentLang].userProfile,
