@@ -98,7 +98,6 @@ const preview: Preview = {
       source: {
         excludeDecorators: true,
         dark: SourceDarkScheme,
-        transform: (snippet: string) => format(snippet, prettierOptions),
       },
       components: resetComponents,
       extractArgTypes,
