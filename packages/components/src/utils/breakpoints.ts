@@ -44,11 +44,7 @@ class Breakpoint {
         return breakpoint.minWidth <= innerWidth;
       });
 
-      if (!this.currentBreakpoint) {
-        return;
-      }
-
-      if (!options.emitEvents) return;
+      if (!this.currentBreakpoint || !options.emitEvents) return;
 
       if (this.currentBreakpoint && previousBreakpoint) {
         Object.keys(this.currentBreakpoint)
