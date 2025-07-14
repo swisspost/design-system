@@ -5,7 +5,6 @@ import {
   fullScreenUrlDecorator,
   openFullScreenDemo,
   copyStoryConfigUrl,
-  prettierOptions,
   resetComponents,
   withUrlParams,
   openInCodePen,
