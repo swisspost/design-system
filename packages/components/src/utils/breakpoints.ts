@@ -46,14 +46,9 @@ class Breakpoint {
 
       if (!this.currentBreakpoint || !options.emitEvents) return;
 
-      if (this.currentBreakpoint && previousBreakpoint) {
-        Object.keys(this.currentBreakpoint)
-          .filter(key => this.currentBreakpoint[key] !== previousBreakpoint[key])
+      Object.keys(this.currentBreakpoint)
+          .filter(key => !previousBreakpoint || this.currentBreakpoint[key] !== previousBreakpoint[key])
           .forEach((key: BreakpointProperty) => this.dispatchEvent(key));
-      } else if (this.currentBreakpoint && !previousBreakpoint) {
-        Object.keys(this.currentBreakpoint)
-          .forEach((key: BreakpointProperty) => this.dispatchEvent(key));
-      }
     }
   );
 
