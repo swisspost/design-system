@@ -117,51 +117,51 @@ describe('Footer', () => {
         });
       });
     });
+  });
 
-    describe('Accessibility', () => {
-      beforeEach(() => {
-        cy.getComponent('footer', FOOTER_ID);
-      });
+  describe('Accessibility', () => {
+    beforeEach(() => {
+      cy.getComponent('footer', FOOTER_ID);
+    });
 
-      it('should have proper heading hierarchy', () => {
-        cy.get('@footer').find('h2.visually-hidden').should('exist');
-        cy.get('@footer').find('h3').should('have.length.at.least', 4);
-      });
+    it('should have proper heading hierarchy', () => {
+      cy.get('@footer').find('h2.visually-hidden').should('exist');
+      cy.get('@footer').find('h3').should('have.length.at.least', 4);
+    });
 
-      it('should have accessibility features', () => {
-        // Visually hidden content for screen readers
-        cy.get('@footer').find('.visually-hidden').should('have.length.at.least', 1);
+    it('should have accessibility features', () => {
+      // Visually hidden content for screen readers
+      cy.get('@footer').find('.visually-hidden').should('have.length.at.least', 1);
 
-        // Social media icons marked as decorative
-        cy.get('@footer')
-          .find('post-list[slot="socialmedia"] post-icon')
-          .each($icon => {
-            cy.wrap($icon).should('have.attr', 'aria-hidden', 'true');
+      // Social media icons marked as decorative
+      cy.get('@footer')
+        .find('post-list[slot="socialmedia"] post-icon')
+        .each($icon => {
+          cy.wrap($icon).should('have.attr', 'aria-hidden', 'true');
+        });
+
+      // Links have proper accessibility
+      cy.get('@footer')
+        .find('a')
+        .each($link => {
+          cy.wrap($link).then($el => {
+            const hasText = $el.text().trim().length > 0;
+            const hasAriaLabel = $el.attr('aria-label');
+            const hasVisuallyHidden = $el.find('.visually-hidden').length > 0;
+
+            cy.wrap(hasText || hasAriaLabel || hasVisuallyHidden).should('be.true');
           });
+        });
+    });
 
-        // Links have proper accessibility
-        cy.get('@footer')
-          .find('a')
-          .each($link => {
-            cy.wrap($link).then($el => {
-              const hasText = $el.text().trim().length > 0;
-              const hasAriaLabel = $el.attr('aria-label');
-              const hasVisuallyHidden = $el.find('.visually-hidden').length > 0;
+    it('Has no detectable a11y violations', () => {
+      cy.getSnapshots('footer');
+      cy.checkA11y('#root-inner');
+    });
 
-              cy.wrap(hasText || hasAriaLabel || hasVisuallyHidden).should('be.true');
-            });
-          });
-      });
-
-      it('Has no detectable a11y violations', () => {
-        cy.getSnapshots('footer');
-        cy.checkA11y('#root-inner');
-      });
-
-      it('Has no detectable a11y violations on mobile', () => {
-        cy.viewport('iphone-3');
-        cy.checkA11y('#root-inner');
-      });
+    it('Has no detectable a11y violations on mobile', () => {
+      cy.viewport('iphone-3');
+      cy.checkA11y('#root-inner');
     });
   });
 });
