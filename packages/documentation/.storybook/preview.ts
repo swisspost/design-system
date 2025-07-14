@@ -1,6 +1,5 @@
 import type { Preview } from '@storybook/web-components';
 import { extractArgTypes, extractComponentDescription } from '@kurbar/storybook-addon-docs-stencil';
-import { format } from 'prettier';
 import DocsLayout from './blocks/layout/layout';
 import {
   fullScreenUrlDecorator,
