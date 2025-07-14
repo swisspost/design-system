@@ -53,7 +53,6 @@ export class PostAccordionItem {
   // Capture to make sure the "collapsed" property is updated before the event is consumed
   @Listen('postToggle', { capture: true })
   @EventFrom('post-accordion-item')
-  @Listen('postToggle', { capture: true })
   onCollapseToggle(event: CustomEvent<boolean>): void {
     this.collapsed = !event.detail;
   }
