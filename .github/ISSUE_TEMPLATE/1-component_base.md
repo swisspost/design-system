@@ -1,6 +1,6 @@
 ---
-name: Component/Base
-about: Parent issue for adding sub-issues related to this component.
+name: Component - Base
+about: Parent task to organize related sub-issues for a component.
 title: '[base] componentnamehere'
 labels: '🧩 base component'
 assignees: ''
