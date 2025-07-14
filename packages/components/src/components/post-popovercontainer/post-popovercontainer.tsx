@@ -1,5 +1,16 @@
-import { Component, Element, Event, EventEmitter, Host, Method, Prop, h } from '@stencil/core';
-import { IS_BROWSER } from '@/utils';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  Host,
+  Method,
+  Prop,
+  h,
+  Watch,
+} from '@stencil/core';
+
+import { IS_BROWSER, checkEmptyOrOneOf, checkEmptyOrType } from '@/utils';
 import { version } from '@root/package.json';
 
 import {
@@ -14,9 +25,10 @@ import {
   shift,
   size,
 } from '@floating-ui/dom';
+import { PLACEMENT_TYPES } from '@/types';
 
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
-import { apply, isSupported } from '@oddbird/popover-polyfill/dist/popover-fn.js';
+import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
 
 interface PopoverElement {
   showPopover: () => void;
@@ -99,6 +111,20 @@ export class PostPopovercontainer {
    * Enables a safespace through which the cursor can be moved without the popover being disabled
    */
   @Prop({ reflect: true }) readonly safeSpace?: 'triangle' | 'trapezoid';
+  @Watch('placement')
+  validatePlacement() {
+    checkEmptyOrOneOf(this, 'placement', PLACEMENT_TYPES);
+  }
+
+  @Watch('edgeGap')
+  validateEdgeGap() {
+    checkEmptyOrType(this, 'edgeGap', 'number');
+  }
+
+  @Watch('safeSpace')
+  validateSafeSpace() {
+    checkEmptyOrOneOf(this, 'safeSpace', ['triangle', 'trapezoid']);
+  }
 
   /**
    * Updates cursor position for safe space feature when popover is open.
@@ -132,11 +158,11 @@ export class PostPopovercontainer {
    */
   @Method()
   async show(target: HTMLElement) {
-    if (!this.toggleTimeoutId) {
-      this.eventTarget = target;
-      this.calculatePosition();
-      this.host.showPopover();
-    }
+    if (this.toggleTimeoutId) return;
+
+    this.eventTarget = target;
+    this.calculatePosition();
+    this.host.showPopover();
   }
 
   /**
@@ -273,6 +299,7 @@ export class PostPopovercontainer {
 
   private async updateSafeSpaceBoundaries(currentPlacement: string) {
     const targetRect = this.eventTarget.getBoundingClientRect();
+
     const popoverRect = this.host.getBoundingClientRect();
 
     const isVertical = currentPlacement === 'top' || currentPlacement === 'bottom';

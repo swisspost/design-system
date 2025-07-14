@@ -36,7 +36,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
+        uses: actions/checkout@09d2acae674a48949e3602304ab46fd20ae0c42f
         with:
           fetch-depth: 0
 
@@ -45,7 +45,7 @@ jobs:
 
       - name: Get Date
         id: current-date
-        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+        run: echo "date=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_OUTPUT
 
       - name: Create Branch
         id: current-branch
@@ -79,7 +79,7 @@ jobs:
 
       - name: Get Changes
         id: changed-files
-        uses: step-security/changed-files@52f756978519f427e38a119d8c4f0c8f549d1402
+        uses: step-security/changed-files@93edf87999a88af96afc15072c8b52bbe8469fb1
         with:
           files: ./packages/icons/src/icons/**/*.svg
 
@@ -91,7 +91,7 @@ jobs:
 
       - name: Get Changed Icons
         id: changed-icons
-        uses: actions/github-script@e7aeb8c663f696059ebb5f9ab1425ed2ef511bdb
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         env:
           ADDED_FILES: ${{ steps.changed-files.outputs.added_files }}
           MODIFIED_FILES: ${{ steps.changed-files.outputs.modified_files }}
@@ -105,7 +105,7 @@ jobs:
 
       - name: Create Changeset
         if: steps.changed-files.outputs.any_modified != 'false'
-        uses: actions/github-script@e7aeb8c663f696059ebb5f9ab1425ed2ef511bdb
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         env:
           DATE: ${{ steps.current-date.outputs.date }}
           ICON_CHANGES: ${{ steps.changed-icons.outputs.result }}
@@ -124,7 +124,7 @@ jobs:
       - name: Write PR Body
         id: pr-body
         if: steps.changed-files.outputs.any_modified != 'false'
-        uses: actions/github-script@e7aeb8c663f696059ebb5f9ab1425ed2ef511bdb
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         env:
           PR_BODY_FILE: pr-body.md
           ICON_CHANGES: ${{ steps.changed-icons.outputs.result }}

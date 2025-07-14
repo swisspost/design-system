@@ -29,6 +29,7 @@ export namespace Components {
         "headingLevel": HeadingLevel;
         /**
           * If `true`, multiple `post-accordion-item` can be open at the same time.
+          * @default false
          */
         "multiple": boolean;
         /**
@@ -39,6 +40,7 @@ export namespace Components {
     interface PostAccordionItem {
         /**
           * If `true`, the element is collapsed otherwise it is displayed.
+          * @default false
          */
         "collapsed"?: boolean;
         /**
@@ -86,6 +88,7 @@ export namespace Components {
         "dismissLabel"?: string;
         /**
           * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
+          * @default false
          */
         "dismissible": boolean;
         /**
@@ -94,6 +97,7 @@ export namespace Components {
         "icon"?: string;
         /**
           * The type of the banner.
+          * @default 'neutral'
          */
         "type": BannerType;
     }
@@ -106,6 +110,7 @@ export namespace Components {
     interface PostBreadcrumbs {
         /**
           * The text label for the home breadcrumb item.
+          * @default 'Home'
          */
         "homeText": string;
         /**
@@ -119,6 +124,7 @@ export namespace Components {
     interface PostCardControl {
         /**
           * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms' data.
+          * @default false
          */
         "checked": boolean;
         /**
@@ -127,6 +133,7 @@ export namespace Components {
         "description"?: string;
         /**
           * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms' data.
+          * @default false
          */
         "disabled": boolean;
         /**
@@ -167,6 +174,7 @@ export namespace Components {
     interface PostCollapsible {
         /**
           * If `true`, the element is collapsed otherwise it is displayed.
+          * @default false
          */
         "collapsed"?: boolean;
         /**
@@ -210,10 +218,12 @@ export namespace Components {
         "base"?: string;
         /**
           * When set to `true`, the icon will be flipped horizontally.
+          * @default false
          */
         "flipH"?: boolean;
         /**
           * When set to `true`, the icon will be flipped vertically.
+          * @default false
          */
         "flipV"?: boolean;
         /**
@@ -266,6 +276,7 @@ export namespace Components {
         "description": string;
         /**
           * Whether the component is rendered as a list or a menu
+          * @default 'list'
          */
         "variant": SwitchVariant;
     }
@@ -274,10 +285,12 @@ export namespace Components {
     interface PostList {
         /**
           * The list can become horizontal by setting `horizontal="true"` or just `horizontal`
+          * @default false
          */
         "horizontal": boolean;
         /**
           * If `true`, the list title will be hidden. Otherwise, it will be displayed.`
+          * @default false
          */
         "titleHidden": boolean;
     }
@@ -322,6 +335,7 @@ export namespace Components {
         "hide": () => Promise<void>;
         /**
           * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
+          * @default 'bottom'
          */
         "placement"?: Placement;
         /**
@@ -345,6 +359,7 @@ export namespace Components {
     interface PostPopover {
         /**
           * Show a little indicator arrow
+          * @default true
          */
         "arrow"?: boolean;
         /**
@@ -357,6 +372,7 @@ export namespace Components {
         "hide": () => Promise<void>;
         /**
           * Defines the position of the popover relative to its trigger. Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
+          * @default 'top'
          */
         "placement"?: Placement;
         /**
@@ -374,14 +390,17 @@ export namespace Components {
     interface PostPopovercontainer {
         /**
           * Animation style
+          * @default null
          */
         "animation"?: 'pop-in' | null;
         /**
           * Whether or not to display a little pointer arrow
+          * @default false
          */
         "arrow"?: boolean;
         /**
           * Gap between the edge of the page and the popovercontainer
+          * @default 8
          */
         "edgeGap"?: number;
         /**
@@ -390,10 +409,12 @@ export namespace Components {
         "hide": () => Promise<void>;
         /**
           * Whether or not the popovercontainer should close when user clicks outside of it
+          * @default false
          */
         "manualClose": boolean;
         /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * @default 'top'
          */
         "placement"?: Placement;
         /**
@@ -415,18 +436,22 @@ export namespace Components {
     interface PostRating {
         /**
           * Defines the rating that the component should show.
+          * @default 0
          */
         "currentRating": number;
         /**
           * Defines a hidden label for the component.
+          * @default 'Rating'
          */
         "label": string;
         /**
           * Defines if the component is readonly or not. This usually should be used together with the `currentRating` property.
+          * @default false
          */
         "readonly": boolean;
         /**
           * Defines the total amount of stars rendered in the component.
+          * @default 5
          */
         "stars": number;
     }
@@ -434,7 +459,7 @@ export namespace Components {
         /**
           * The name of the panel controlled by the tab header.
          */
-        "panel": HTMLPostTabPanelElement['name'];
+        "panel": string;
     }
     interface PostTabPanel {
         /**
@@ -469,6 +494,7 @@ export namespace Components {
     interface PostTogglebutton {
         /**
           * If `true`, the button is in the "on" state, otherwise it is in the "off" state.
+          * @default false
          */
         "toggled": boolean;
     }
@@ -479,6 +505,7 @@ export namespace Components {
         "animation"?: 'pop-in';
         /**
           * Whether or not to display a little pointer arrow
+          * @default false
          */
         "arrow"?: boolean;
         /**
@@ -487,10 +514,12 @@ export namespace Components {
         "hide": () => Promise<void>;
         /**
           * Indicates the open state of the tooltip
+          * @default false
          */
         "open": boolean;
         /**
           * Defines the position of the tooltip relative to its trigger. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
+          * @default 'top'
          */
         "placement"?: Placement;
         /**
@@ -508,6 +537,7 @@ export namespace Components {
     interface PostTooltipTrigger {
         /**
           * Delay (in milliseconds) before the tooltip is shown.
+          * @default 0
          */
         "delay": number;
         /**
@@ -924,12 +954,14 @@ declare namespace LocalJSX {
         "headingLevel": HeadingLevel;
         /**
           * If `true`, multiple `post-accordion-item` can be open at the same time.
+          * @default false
          */
         "multiple"?: boolean;
     }
     interface PostAccordionItem {
         /**
           * If `true`, the element is collapsed otherwise it is displayed.
+          * @default false
          */
         "collapsed"?: boolean;
         /**
@@ -969,6 +1001,7 @@ declare namespace LocalJSX {
         "dismissLabel"?: string;
         /**
           * If `true`, a close button (×) is displayed and the banner can be dismissed by the user.
+          * @default false
          */
         "dismissible"?: boolean;
         /**
@@ -981,6 +1014,7 @@ declare namespace LocalJSX {
         "onPostDismissed"?: (event: PostBannerCustomEvent<void>) => void;
         /**
           * The type of the banner.
+          * @default 'neutral'
          */
         "type"?: BannerType;
     }
@@ -993,6 +1027,7 @@ declare namespace LocalJSX {
     interface PostBreadcrumbs {
         /**
           * The text label for the home breadcrumb item.
+          * @default 'Home'
          */
         "homeText"?: string;
         /**
@@ -1006,6 +1041,7 @@ declare namespace LocalJSX {
     interface PostCardControl {
         /**
           * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms' data.
+          * @default false
          */
         "checked"?: boolean;
         /**
@@ -1014,6 +1050,7 @@ declare namespace LocalJSX {
         "description"?: string;
         /**
           * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms' data.
+          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -1054,6 +1091,7 @@ declare namespace LocalJSX {
     interface PostCollapsible {
         /**
           * If `true`, the element is collapsed otherwise it is displayed.
+          * @default false
          */
         "collapsed"?: boolean;
         /**
@@ -1089,10 +1127,12 @@ declare namespace LocalJSX {
         "base"?: string;
         /**
           * When set to `true`, the icon will be flipped horizontally.
+          * @default false
          */
         "flipH"?: boolean;
         /**
           * When set to `true`, the icon will be flipped vertically.
+          * @default false
          */
         "flipV"?: boolean;
         /**
@@ -1149,6 +1189,7 @@ declare namespace LocalJSX {
         "description": string;
         /**
           * Whether the component is rendered as a list or a menu
+          * @default 'list'
          */
         "variant"?: SwitchVariant;
     }
@@ -1157,10 +1198,12 @@ declare namespace LocalJSX {
     interface PostList {
         /**
           * The list can become horizontal by setting `horizontal="true"` or just `horizontal`
+          * @default false
          */
         "horizontal"?: boolean;
         /**
           * If `true`, the list title will be hidden. Otherwise, it will be displayed.`
+          * @default false
          */
         "titleHidden"?: boolean;
     }
@@ -1193,6 +1236,7 @@ declare namespace LocalJSX {
         "onToggleMenu"?: (event: PostMenuCustomEvent<boolean>) => void;
         /**
           * Defines the position of the menu relative to its trigger. Menus are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
+          * @default 'bottom'
          */
         "placement"?: Placement;
     }
@@ -1207,6 +1251,7 @@ declare namespace LocalJSX {
     interface PostPopover {
         /**
           * Show a little indicator arrow
+          * @default true
          */
         "arrow"?: boolean;
         /**
@@ -1215,24 +1260,29 @@ declare namespace LocalJSX {
         "closeButtonCaption": string;
         /**
           * Defines the position of the popover relative to its trigger. Popovers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
+          * @default 'top'
          */
         "placement"?: Placement;
     }
     interface PostPopovercontainer {
         /**
           * Animation style
+          * @default null
          */
         "animation"?: 'pop-in' | null;
         /**
           * Whether or not to display a little pointer arrow
+          * @default false
          */
         "arrow"?: boolean;
         /**
           * Gap between the edge of the page and the popovercontainer
+          * @default 8
          */
         "edgeGap"?: number;
         /**
           * Whether or not the popovercontainer should close when user clicks outside of it
+          * @default false
          */
         "manualClose"?: boolean;
         /**
@@ -1241,6 +1291,7 @@ declare namespace LocalJSX {
         "onPostToggle"?: (event: PostPopovercontainerCustomEvent<boolean>) => void;
         /**
           * Defines the placement of the popovercontainer according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popovercontainers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * @default 'top'
          */
         "placement"?: Placement;
         /**
@@ -1251,10 +1302,12 @@ declare namespace LocalJSX {
     interface PostRating {
         /**
           * Defines the rating that the component should show.
+          * @default 0
          */
         "currentRating"?: number;
         /**
           * Defines a hidden label for the component.
+          * @default 'Rating'
          */
         "label"?: string;
         /**
@@ -1267,10 +1320,12 @@ declare namespace LocalJSX {
         "onPostInput"?: (event: PostRatingCustomEvent<{ value: number }>) => void;
         /**
           * Defines if the component is readonly or not. This usually should be used together with the `currentRating` property.
+          * @default false
          */
         "readonly"?: boolean;
         /**
           * Defines the total amount of stars rendered in the component.
+          * @default 5
          */
         "stars"?: number;
     }
@@ -1278,7 +1333,7 @@ declare namespace LocalJSX {
         /**
           * The name of the panel controlled by the tab header.
          */
-        "panel": HTMLPostTabPanelElement['name'];
+        "panel": string;
     }
     interface PostTabPanel {
         /**
@@ -1313,6 +1368,7 @@ declare namespace LocalJSX {
     interface PostTogglebutton {
         /**
           * If `true`, the button is in the "on" state, otherwise it is in the "off" state.
+          * @default false
          */
         "toggled"?: boolean;
     }
@@ -1323,20 +1379,24 @@ declare namespace LocalJSX {
         "animation"?: 'pop-in';
         /**
           * Whether or not to display a little pointer arrow
+          * @default false
          */
         "arrow"?: boolean;
         /**
           * Indicates the open state of the tooltip
+          * @default false
          */
         "open"?: boolean;
         /**
           * Defines the position of the tooltip relative to its trigger. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. For supported values and behavior details, see the [Floating UI placement documentation](https://floating-ui.com/docs/computePosition#placement).
+          * @default 'top'
          */
         "placement"?: Placement;
     }
     interface PostTooltipTrigger {
         /**
           * Delay (in milliseconds) before the tooltip is shown.
+          * @default 0
          */
         "delay"?: number;
         /**

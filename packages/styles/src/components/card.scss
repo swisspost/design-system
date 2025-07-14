@@ -50,14 +50,14 @@ post-linkarea:has(> .card) {
   }
 
   .card-header:first-child,
-  .list-group:first-child,
+  .list-interactive:first-child,
   .card-img-top {
     border-start-start-radius: tokens.get('card-border-radius');
     border-start-end-radius: tokens.get('card-border-radius');
   }
 
   .card-footer:last-child,
-  .list-group:last-child,
+  .list-interactive:last-child,
   .card-img-bottom {
     border-end-start-radius: tokens.get('card-border-radius');
     border-end-end-radius: tokens.get('card-border-radius');
@@ -73,11 +73,11 @@ post-linkarea:has(> .card) {
     }
   }
 
-  .list-group {
+  .list-interactive {
     margin-block: 0 !important;
   }
 
-  .list-group-item {
+  .list-interactive-item {
     padding: 1.25rem 1rem;
     border-color: tokens.get('card-non-interactive-stroke');
   }
@@ -92,7 +92,7 @@ post-linkarea:has(> .card) {
     }
   }
 
-  > .list-group + .card-footer,
+  > .list-interactive + .card-footer,
   .card-body ~ .card-body {
     border-block-start: 1px solid color.$gray-20;
   }
@@ -103,7 +103,7 @@ post-linkarea:has(> .card) {
 .card-header,
 .card-body,
 .card-footer,
-.list-group-item {
+.list-interactive-item {
   > *:first-child {
     margin-block-start: 0;
   }

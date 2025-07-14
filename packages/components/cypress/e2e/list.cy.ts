@@ -22,17 +22,19 @@ describe('PostList Component', { baseUrl: null, includeShadowDom: false }, () =>
       });
   });
 
-  it('should throw an error if the title is missing', () => {
-    // Check for the mandatory title accessibility error if no title is provided
-    cy.on('uncaught:exception', err => {
-      expect(err.message).to.include(
-        'Please provide a title to the list component. Title is mandatory for accessibility purposes.',
-      );
-      return false;
+  it('should log an error if the title is missing', () => {
+    cy.window().then(win => {
+      cy.spy(win.console, 'error').as('consoleError');
     });
+    // Removes the first child of the <post-list> component, which is the title element
     cy.get('post-list').within(() => {
-      cy.get('[slot="post-list-item"]').first().invoke('remove');
+      cy.get(':first-child').invoke('remove');
     });
+
+    cy.get('@consoleError').should(
+      'be.calledWith',
+      'Please provide a title to the list component. Title is mandatory for accessibility purposes.',
+    );
   });
 
   it('should hide the title when title-hidden is set', () => {

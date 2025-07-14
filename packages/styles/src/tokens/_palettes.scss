@@ -2,7 +2,7 @@
 @use './core';
 @use '../tokens/temp/palette';
 
-body,
+:root,
 .palette-default {
   @each $key, $value in palette.$post-default {
     --#{$key}: #{$value};

@@ -16,7 +16,7 @@ const THEME_PALETTE_DEFINITIONS: ThemeDefinition[] = [
     palettes: [
       { name: 'Default', scheme: 'even' },
       { name: 'Alternate', scheme: 'even' },
-      { name: 'Accent', scheme: 'dark' },
+      { name: 'Accent', scheme: 'swapped' },
       { name: 'Brand', scheme: 'light' },
     ],
   },

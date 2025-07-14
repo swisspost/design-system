@@ -104,8 +104,7 @@ $utilities: (
   'rounded': (
     property: border-radius,
     class: rounded,
-    values:
-      map.merge(
+    values: map.merge(
         utilities_formatted.$border-radius,
         (
           pill: 50rem,
@@ -116,8 +115,7 @@ $utilities: (
   'rounded-top': (
     property: border-start-start-radius border-start-end-radius,
     class: rounded-top,
-    values:
-      map.merge(
+    values: map.merge(
         utilities_formatted.$border-radius,
         (
           pill: 50rem,
@@ -128,8 +126,7 @@ $utilities: (
   'rounded-end': (
     property: border-start-end-radius border-end-end-radius,
     class: rounded-end,
-    values:
-      map.merge(
+    values: map.merge(
         utilities_formatted.$border-radius,
         (
           pill: 50rem,
@@ -140,8 +137,7 @@ $utilities: (
   'rounded-bottom': (
     property: border-end-end-radius border-end-start-radius,
     class: rounded-bottom,
-    values:
-      map.merge(
+    values: map.merge(
         utilities_formatted.$border-radius,
         (
           pill: 50rem,
@@ -152,8 +148,7 @@ $utilities: (
   'rounded-start': (
     property: border-end-start-radius border-start-start-radius,
     class: rounded-start,
-    values:
-      map.merge(
+    values: map.merge(
         utilities_formatted.$border-radius,
         (
           pill: 50rem,
