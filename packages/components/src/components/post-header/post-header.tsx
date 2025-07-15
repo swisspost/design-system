@@ -188,7 +188,7 @@ export class PostHeader {
   }
 
   @EventFrom('post-megadropdown')
-  private megadropdownStateHandler(event: CustomEvent) {
+  private megadropdownStateHandler = (event: CustomEvent) => {
     this.megadropdownOpen = event.detail.isVisible;
   }
 
