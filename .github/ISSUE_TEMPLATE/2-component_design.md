@@ -1,10 +1,10 @@
 ---
 name: Component - Design
 about: Sub-issue to define the design and layout examples of a component.
-title: '[design] componentnamehere'
-labels: '🎨 figma'
+title: "[design] componentnamehere"
+labels: "\U0001F3A8 figma"
 assignees: ''
-type: 'Task'
+
 ---
 
 ### 📝 Description

@@ -1,10 +1,10 @@
 ---
 name: Component - Web Component Functionality
 about: Sub-issue to implement the behavior and logic of a web component.
-title: '[web component func] componentnamehere'
-labels: '📦 components'
+title: "[web component func] componentnamehere"
+labels: "\U0001F4E6 components"
 assignees: ''
-type: 'Task'
+
 ---
 
 ### 📝 Description
