@@ -37,6 +37,9 @@ import { getLogoScale } from './logo-animation/logo-scale';
   shadow: true,
 })
 export class PostInternetHeader {
+  private static readonly VALID_ENVIRONMENTS: Environment[] = ['dev01', 'dev02', 'devs1', 'test', 'int01', 'int02', 'prod'];
+  private static readonly VALID_LANGUAGES = ['de', 'fr', 'it', 'en'] as const;
+
   /**
    * Your project id, previously passed as query string parameter serviceId.
    */
@@ -157,6 +160,15 @@ export class PostInternetHeader {
     return /^[a-z0-9.-]+$/.test(str);
   }
 
+  private isValidEnvironment(environment: string): boolean {
+    const sanitizedEnvironment = environment.toLowerCase() as Environment;
+    return PostInternetHeader.VALID_ENVIRONMENTS.includes(sanitizedEnvironment);
+  }
+
+  private isValidLanguage(language: string): boolean {
+    return PostInternetHeader.VALID_LANGUAGES.includes(language as any);
+  }
+
   @Watch('project')
   handleProjectChange(newValue: string) {
     if (!isValidProjectId(newValue)) {
@@ -168,11 +180,9 @@ export class PostInternetHeader {
 
   @Watch('environment')
   handleEnvironmentChange(newValue: string) {
-    const validEnvironments = ['dev01', 'dev02', 'devs1', 'test', 'int01', 'int02', 'prod'];
-    const sanitizedEnvironment = newValue.toLowerCase();
-    if (!validEnvironments.includes(sanitizedEnvironment)) {
+    if (!this.isValidEnvironment(newValue)) {
       throw new Error(
-        `Internet Header environment "${newValue}" is not valid. Please use one of: ${validEnvironments.join(', ')}`
+        `Internet Header environment "${newValue}" is not valid. Please use one of: ${PostInternetHeader.VALID_ENVIRONMENTS.join(', ')}`
       );
     }
   }
@@ -198,11 +208,9 @@ export class PostInternetHeader {
       );
     }
 
-    const validEnvironments = ['dev01', 'dev02', 'devs1', 'test', 'int01', 'int02', 'prod'];
-    const sanitizedEnvironment = this.environment.toLowerCase();
-    if (!validEnvironments.includes(sanitizedEnvironment)) {
+    if (!this.isValidEnvironment(this.environment)) {
       throw new Error(
-        `Internet Header environment "${this.environment}" is not valid. Please use one of: ${validEnvironments.join(', ')}`
+        `Internet Header environment "${this.environment}" is not valid. Please use one of: ${PostInternetHeader.VALID_ENVIRONMENTS.join(', ')}`
       );
     }
 
@@ -241,18 +249,15 @@ export class PostInternetHeader {
   }
 
   private validateAndSetEnvironment() {
-    const validEnvironments = ['dev01', 'dev02', 'devs1', 'test', 'int01', 'int02', 'prod'];
-    const sanitizedEnvironment = this.environment.toLowerCase();
-    if (!validEnvironments.includes(sanitizedEnvironment)) {
+    if (!this.isValidEnvironment(this.environment)) {
       throw new Error(`Invalid environment: ${this.environment}`);
     }
-    state.environment = sanitizedEnvironment as Environment;
+    state.environment = this.environment.toLowerCase() as Environment;
   }
 
   private validateAndSetLanguage() {
     if (this.language !== undefined) {
-      const validLanguages = ['de', 'fr', 'it', 'en'];
-      if (!validLanguages.includes(this.language)) {
+      if (!this.isValidLanguage(this.language)) {
         throw new Error(`Invalid language: ${this.language}`);
       }
       state.currentLanguage = this.language;
@@ -297,9 +302,14 @@ export class PostInternetHeader {
         parsedConfig = {};
       }
       
-      const langs = Object.keys(parsedConfig);
-      const lang = state.currentLanguage || getUserLang(langs, this.language);
-      state.localizedCustomConfig = getLocalizedCustomConfig(parsedConfig, lang);
+      try {
+        const langs = Object.keys(parsedConfig);
+        const lang = state.currentLanguage || getUserLang(langs, this.language);
+        state.localizedCustomConfig = getLocalizedCustomConfig(parsedConfig, lang);
+      } catch (error) {
+        console.error('Failed to process custom config', error);
+        state.localizedCustomConfig = undefined;
+      }
     }
   }
 
@@ -339,8 +349,7 @@ export class PostInternetHeader {
 
   @Watch('language')
   async handleLanguageChange(newValue: string) {
-    const validLanguages = ['de', 'fr', 'it', 'en'];
-    if (!validLanguages.includes(newValue)) {
+    if (!this.isValidLanguage(newValue)) {
       console.error(`Invalid language: ${newValue}`);
       return;
     }
@@ -398,7 +407,15 @@ export class PostInternetHeader {
   @Watch('customConfig')
   async handleCustomConfigChange(newValue: string | ICustomConfig) {
     if (this.language === undefined) return;
-    const localizedCustomConfig = getLocalizedCustomConfig(newValue, this.language);
+    
+    let localizedCustomConfig;
+    try {
+      localizedCustomConfig = getLocalizedCustomConfig(newValue, this.language);
+    } catch (error) {
+      console.error('Failed to process custom config change', error);
+      localizedCustomConfig = undefined;
+    }
+    
     state.localizedCustomConfig = localizedCustomConfig;
     state.localizedConfig = await getLocalizedConfig({
       projectId: this.project,
