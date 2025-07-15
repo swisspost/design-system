@@ -302,14 +302,9 @@ export class PostInternetHeader {
         parsedConfig = {};
       }
       
-      try {
-        const langs = Object.keys(parsedConfig);
-        const lang = state.currentLanguage || getUserLang(langs, this.language);
-        state.localizedCustomConfig = getLocalizedCustomConfig(parsedConfig, lang);
-      } catch (error) {
-        console.error('Failed to process custom config', error);
-        state.localizedCustomConfig = undefined;
-      }
+      const langs = Object.keys(parsedConfig);
+      const lang = state.currentLanguage || getUserLang(langs, this.language);
+      state.localizedCustomConfig = getLocalizedCustomConfig(parsedConfig, lang);
     }
   }
 
@@ -408,13 +403,7 @@ export class PostInternetHeader {
   async handleCustomConfigChange(newValue: string | ICustomConfig) {
     if (this.language === undefined) return;
     
-    let localizedCustomConfig;
-    try {
-      localizedCustomConfig = getLocalizedCustomConfig(newValue, this.language);
-    } catch (error) {
-      console.error('Failed to process custom config change', error);
-      localizedCustomConfig = undefined;
-    }
+    const localizedCustomConfig = getLocalizedCustomConfig(newValue, this.language);
     
     state.localizedCustomConfig = localizedCustomConfig;
     state.localizedConfig = await getLocalizedConfig({
