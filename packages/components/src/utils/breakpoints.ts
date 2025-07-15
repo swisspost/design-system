@@ -44,10 +44,10 @@ class Breakpoint {
         return breakpoint.minWidth <= innerWidth;
       });
 
-      if (!options.emitEvents) return;
+      if (!this.currentBreakpoint || !options.emitEvents) return;
 
       Object.keys(this.currentBreakpoint)
-        .filter(key => this.currentBreakpoint[key] !== previousBreakpoint[key])
+        .filter(key => !previousBreakpoint || this.currentBreakpoint[key] !== previousBreakpoint[key])
         .forEach((key: BreakpointProperty) => this.dispatchEvent(key));
     }
   );
