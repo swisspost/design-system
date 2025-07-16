@@ -2,10 +2,6 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './visual-tests',
-
-  // Match both .js and .ts spec files
-  testMatch: '**/*.spec.{js,ts}',
-
   timeout: 30000,
 
   expect: {

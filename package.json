@@ -114,6 +114,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "2.29.2",
+    "@types/node": "22.10.5",
     "start-server-and-test": "2.0.9",
     "turbo": "2.5.0"
   },
