@@ -18,9 +18,7 @@
     "linkDirectory": true
   },
   "exports": {
-    "./post-components.css": {
-      "css": "./post-components.css"
-    }
+    "./post-components.css": "./post-components.css"
   },
   "dependencies": {
     "@swisspost/design-system-components": "workspace:10.0.0-next.40",
