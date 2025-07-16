@@ -70,6 +70,12 @@
     "e2e:ci": "xvfb-run -a cypress run --browser chrome",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
+    "test:visual": "playwright test",
+    "test:visual:update": "playwright test --update-snapshots",
+    "test:visual:ui": "playwright test --ui",
+    "test:visual:chrome": "playwright test --project=chromium",
+    "test:visual:firefox": "playwright test --project=firefox",
+    "test:visual:safari": "playwright test --project=webkit",
     "generate": "stencil generate",
     "prebuild:script": "node --loader ts-node/esm prebuild.ts",
     "copy:styles:components-react": "copyfiles -f www/build/post-components.css ../components-react/src/stencil-generated/",
@@ -87,6 +93,7 @@
   "devDependencies": {
     "@eslint/compat": "1.2.5",
     "@eslint/js": "9.18.0",
+    "@playwright/test": "1.52.0",
     "@percy/cli": "1.30.6",
     "@percy/cypress": "3.1.2",
     "@stencil-community/eslint-plugin": "0.10.0",
@@ -113,6 +120,7 @@
     "sass": "1.78.0",
     "throttle-debounce": "5.0.2",
     "ts-jest": "29.2.5",
+    "http-server": "14.1.1",
     "ts-node": "10.9.2",
     "typescript": "5.8.3",
     "typescript-eslint": "8.20.0"

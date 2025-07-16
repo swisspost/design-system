@@ -28,3 +28,18 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 .env
+
+# Visual testing ignores
+test-results/
+test-results-*
+playwright-report/
+
+# Screenshot artifacts
+**/visual-tests/__screenshots__/**/*-actual.png
+**/visual-tests/__screenshots__/**/*-diff.png
+**/visual-tests/__screenshots__/**/*-expected.png
+
+# Playwright
+/playwright/.cache/
+playwright/.auth/
+*.tsbuildinfo
