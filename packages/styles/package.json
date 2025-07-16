@@ -27,8 +27,8 @@
     "lint:fix": "stylelint src/**/*.scss --fix"
   },
   "peerDependencies": {
-    "@ng-bootstrap/ng-bootstrap": "^17.0.0 || ^18.0.0",
-    "bootstrap": "~5.3.0"
+    "@ng-bootstrap/ng-bootstrap": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "bootstrap": "~5.3.6"
   },
   "peerDependenciesMeta": {
     "@ng-bootstrap/ng-bootstrap": {
@@ -40,11 +40,11 @@
   },
   "dependencies": {
     "@popperjs/core": "2.11.8",
-    "bootstrap": "5.3.3"
+    "bootstrap": "5.3.7"
   },
   "devDependencies": {
-    "@swisspost/design-system-tokens": "workspace:9.0.2",
     "@swisspost/design-system-icons": "workspace:9.0.2",
+    "@swisspost/design-system-tokens": "workspace:9.0.2",
     "@types/node": "20.14.14",
     "autoprefixer": "10.4.19",
     "copyfiles": "2.4.1",
