@@ -1,17 +1,21 @@
 @use '@swisspost/design-system-styles/tokens/components';
 @use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/variables/animation';
 @use '@swisspost/design-system-styles/core' as post;
 
 tokens.$default-map: components.$post-avatar;
 
 :host {
+  --post-avatar-size: #{tokens.get('avatar-size')};
   --post-avatar-bg: #{tokens.get('avatar-enabled-bg')};
   --post-avatar-fg: #{tokens.get('avatar-enabled-fg')};
 
+  $avatar-size: calc(var(--post-avatar-size) - 2 * #{tokens.get('avatar-border-width')});
+
   display: inline-flex;
   position: relative;
-  width: tokens.get('avatar-size');
-  height: tokens.get('avatar-size');
+  width: $avatar-size;
+  height: $avatar-size;
   background-color: tokens.get('avatar-border-color');
   border: tokens.get('avatar-border-width') solid tokens.get('avatar-border-color');
   border-radius: tokens.get('avatar-border-radius');
@@ -64,6 +68,7 @@ img,
   border-radius: tokens.get('avatar-border-radius');
   color: var(--post-avatar-fg);
   text-transform: uppercase;
+  transition: color animation.$transition-base-timing, background-color animation.$transition-base-timing;
 
   span {
     @include post.visually-hidden();
