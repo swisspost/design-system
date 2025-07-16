@@ -66,9 +66,9 @@ Type: `Promise<void>`
 
 ## Shadow Parts
 
-| Part                  | Description |
-| --------------------- | ----------- |
-| `"popover-container"` |             |
+| Part     | Description |
+| -------- | ----------- |
+| `"menu"` |             |
 
 
 ## Dependencies
