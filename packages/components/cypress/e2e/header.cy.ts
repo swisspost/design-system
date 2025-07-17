@@ -1,6 +1,50 @@
 const HEADER_ID = '27a2e64d-55ba-492d-ab79-5f7c5e818498';
+const TEST_FILES = ['post-header', 'post-header-without-title'];
+const VIEWPORTS: Record<string, Cypress.ViewportPreset>= {
+  desktop: 'macbook-15',
+  tablet: 'ipad-2',
+  mobile: 'iphone-6',
+};
 
-describe('Header', () => {
+describe('header', () => {
+  function getContentTop() {
+    return cy.get('main').then($main => Math.round($main.position().top));
+  }
+
+  function checkLayoutShift() {
+    cy.get('@header').should('exist');
+
+    // get the content position before the header is visible
+    let initialContentTop: number;
+    getContentTop().then(pos => {
+      initialContentTop = pos;
+      cy.get('@header').should('not.be.visible');
+    });
+
+    // check the content position did not change when the header is visible
+    cy.get('@header')
+      .should('be.visible')
+      .then(() => {
+        getContentTop().should('eq', initialContentTop);
+      });
+  }
+
+  TEST_FILES.forEach(testFile => {
+    Object.entries(VIEWPORTS).forEach(([viewportName, viewportPreset]) => {
+      describe(testFile.replaceAll('-', ' '), { baseUrl: null }, () => {
+        beforeEach(() => {
+          cy.viewport(viewportPreset);
+          cy.visit(`./cypress/fixtures/${testFile}.test.html`);
+          cy.get('post-header').as('header');
+        });
+
+        it(`should not shift layout on ${viewportName}`, () => {
+          checkLayoutShift();
+        });
+      });
+    });
+  });
+
   describe('React Navigation', { viewportHeight: 1000, viewportWidth: 400 }, () => {
     beforeEach(() => {
       cy.getComponent('header', HEADER_ID);
@@ -35,6 +79,18 @@ describe('Header', () => {
       removeAndReattachHeader();
 
       cy.get('[data-post-scroll-locked]').should('not.exist');
+    });
+  });
+
+  describe('Accessibility', { baseUrl: null }, () => {
+    beforeEach(() => {
+      cy.visit('./cypress/fixtures/post-header.test.html');
+      cy.get('post-header[data-hydrated]').should('be.visible');
+      cy.injectAxe();
+    });
+
+    it('Has no detectable a11y violations on load', () => {
+      cy.checkA11y('post-mainnavigation');
     });
   });
 });
