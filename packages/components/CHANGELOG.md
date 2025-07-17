@@ -1,5 +1,13 @@
 # @swisspost/design-system-components
 
+## 9.0.3
+
+### Patch Changes
+
+- Updated `post-tooltip-trigger` component to prevent errors when it does not contain an internal HTML element. (by [@myrta2302](https://github.com/myrta2302) with [#5740](https://github.com/swisspost/design-system/pull/5740))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.3
+
 ## 9.0.2
 
 ### Patch Changes
