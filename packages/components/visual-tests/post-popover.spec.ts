@@ -187,7 +187,6 @@ test.describe('Post Popover Component Visual Tests', () => {
     await expect(page).toHaveScreenshot('keyboard-nav-link-focused.png');
   });
 
-  // Tests for different content scenarios (long content, minimal content, etc.)
   test('popover - with long content', async ({ page }) => {
     await page.evaluate(() => {
       const popover = document.querySelector('post-popover#popover-one');
