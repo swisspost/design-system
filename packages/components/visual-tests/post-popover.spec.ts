@@ -135,8 +135,8 @@ test.describe('Post Popover Component Visual Tests', () => {
 
     await page.evaluate(() => {
       const popover = document.querySelector('post-popover#popover-one');
-      const closeButton = popover?.shadowRoot?.querySelector('.btn-close') as HTMLButtonElement;
-      if (closeButton) {
+      const closeButton = popover?.shadowRoot?.querySelector('.btn-close');
+      if (closeButton && closeButton instanceof HTMLButtonElement) {
         closeButton.focus();
       }
     });
