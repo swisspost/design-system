@@ -13,13 +13,9 @@
 post-mainnavigation {
 
   .mobile-header-section {
-    @include media.min(lg) {
-      display: none;
-    }
-    
+    display: none;
+
     @include media.max(lg) {
-      display: none;
-      
       .navigation.extended & {
         display: flex;
         flex-direction: column;

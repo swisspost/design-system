@@ -5,6 +5,13 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property    | Attribute | Description | Type                    | Default     |
+| ----------- | --------- | ----------- | ----------------------- | ----------- |
+| `headerRef` | --        |             | `HTMLPostHeaderElement` | `undefined` |
+
+
 ## Dependencies
 
 ### Used by

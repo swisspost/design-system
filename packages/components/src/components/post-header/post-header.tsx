@@ -334,7 +334,7 @@ export class PostHeader {
       >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
           {this.device !== 'desktop' && (
-            <post-mainnavigation>
+            <post-mainnavigation headerRef={this.host}>
               {/* Pass through slots to main navigation */}
               <slot name="back-button" slot="back-button"></slot>
               <slot name="target-group" slot="target-group"></slot>

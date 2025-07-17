@@ -290,6 +290,7 @@ export namespace Components {
         "url"?: string | URL;
     }
     interface PostMainnavigation {
+        "headerRef"?: HTMLPostHeaderElement;
     }
     interface PostMegadropdown {
         /**
@@ -1173,6 +1174,7 @@ declare namespace LocalJSX {
         "url"?: string | URL;
     }
     interface PostMainnavigation {
+        "headerRef"?: HTMLPostHeaderElement;
     }
     interface PostMegadropdown {
         /**
