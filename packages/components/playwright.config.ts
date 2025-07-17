@@ -20,13 +20,11 @@ export default defineConfig({
     ['list']
   ],
 
-  // Configure snapshot path to match your expected structure
   snapshotPathTemplate: '{testDir}/__screenshots__/{projectName}/{testFilePath}/{arg}{ext}',
 
   outputDir: 'test-results/artifacts',
 
   use: {
-    // Fix the baseURL to match your web server
     baseURL: 'http://localhost:9300',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
@@ -48,7 +46,6 @@ export default defineConfig({
     },
   ],
 
-  // Fix the web server configuration
   webServer: {
     command: 'npx http-server . -p 9300',
     url: 'http://localhost:9300',
