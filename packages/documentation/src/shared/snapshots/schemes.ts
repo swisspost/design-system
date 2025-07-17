@@ -19,7 +19,7 @@ export function schemes(renderFn: (scheme: string) => TemplateResult, options: I
     ${schemes.map(
       scheme => html`
         <div data-color-scheme="${scheme}">
-          <div class="p-16 palette palette-default">
+          <div class="palette palette-default">
             <p>Color Scheme: ${scheme}</p>
             ${renderFn(scheme)}
           </div>
