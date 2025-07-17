@@ -6,3 +6,9 @@ export enum PackageType {
   InternetHeader = 'InternetHeader',
   Assets = 'Assets',
 }
+
+declare global {
+  interface Element {
+    ariaControlsElements: Element[];
+  }
+}
