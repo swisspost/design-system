@@ -5,7 +5,6 @@ test.describe('Post Popover Component Visual Tests', () => {
     await page.goto('/visual-tests/components/post-popover.html');
     await page.waitForLoadState('networkidle');
 
-    // Wait for both Stencil components to be defined
     await page.waitForFunction(() => {
       return customElements.get('post-popover') && 
              customElements.get('post-popovercontainer');
@@ -14,11 +13,6 @@ test.describe('Post Popover Component Visual Tests', () => {
     await page.waitForTimeout(500);
   });
 
-  // =============================================================================
-  // TRIGGER BUTTON STATES
-  // Tests for different visual states of the popover trigger button
-  // =============================================================================
-  
   test('popover trigger - default state', async ({ page }) => {
     const trigger = page.locator('button[data-popover-target="popover-one"]');
     await expect(trigger).toHaveScreenshot('popover-trigger-default.png');
@@ -47,11 +41,6 @@ test.describe('Post Popover Component Visual Tests', () => {
     await page.mouse.up();
   });
 
-  // =============================================================================
-  // BASIC POPOVER FUNCTIONALITY
-  // Tests for basic open/close behavior of the popover
-  // =============================================================================
-  
   test('page with popover closed', async ({ page }) => {
     await expect(page).toHaveScreenshot('page-popover-closed.png');
   });
@@ -62,11 +51,6 @@ test.describe('Post Popover Component Visual Tests', () => {
     await page.waitForTimeout(1000);
     await expect(page).toHaveScreenshot('page-popover-opened.png');
   });
-
-  // =============================================================================
-  // RESPONSIVE BEHAVIOR
-  // Tests for popover behavior across different screen sizes
-  // =============================================================================
 
   test('page with popover opened - mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
@@ -91,12 +75,6 @@ test.describe('Post Popover Component Visual Tests', () => {
     await page.waitForTimeout(1000);
     await expect(page).toHaveScreenshot('page-popover-opened-desktop.png');
   });
-
-  // =============================================================================
-  // POSITIONING & EDGE CASES
-  // Tests for popover positioning when near viewport edges
-  // The popover should intelligently position itself to stay within viewport bounds
-  // =============================================================================
 
   test('popover - positioning near bottom edge (should render upward)', async ({ page }) => {
     await page.locator('.d-flex').evaluate((el: HTMLElement) => {
@@ -126,11 +104,6 @@ test.describe('Post Popover Component Visual Tests', () => {
     await expect(page).toHaveScreenshot('popover-positioning-right-edge.png');
   });
 
-  // =============================================================================
-  // CLOSE BUTTON STATES
-  // Tests for different visual states of the popover close button
-  // =============================================================================
-  
   test('popover close button - default state', async ({ page }) => {
     const trigger = page.locator('button[data-popover-target="popover-one"]');
     await trigger.click();
@@ -172,11 +145,6 @@ test.describe('Post Popover Component Visual Tests', () => {
     await expect(page).toHaveScreenshot('popover-close-button-focus.png');
   });
 
-  // =============================================================================
-  // KEYBOARD NAVIGATION
-  // Tests for keyboard navigation and accessibility features
-  // =============================================================================
-  
   test('keyboard navigation - trigger focused', async ({ page }) => {
     const trigger = page.locator('button[data-popover-target="popover-one"]');
     await trigger.focus();
@@ -213,17 +181,13 @@ test.describe('Post Popover Component Visual Tests', () => {
     await page.keyboard.press('Enter');
     await page.waitForTimeout(1000);
     
-    await page.keyboard.press('Tab'); // First tab: focuses the link
+    await page.keyboard.press('Tab');
     await page.waitForTimeout(500);
     
     await expect(page).toHaveScreenshot('keyboard-nav-link-focused.png');
   });
 
-  // =============================================================================
-  // CONTENT VARIATIONS
   // Tests for different content scenarios (long content, minimal content, etc.)
-  // =============================================================================
-  
   test('popover - with long content', async ({ page }) => {
     await page.evaluate(() => {
       const popover = document.querySelector('post-popover#popover-one');
