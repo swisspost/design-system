@@ -1,5 +1,14 @@
 # @swisspost/design-system-components-angular-workspace
 
+## 1.1.31
+
+### Patch Changes
+
+- chore(components-angular): add angular peer dependencies (by [@myrta2302](https://github.com/myrta2302) with [#5780](https://github.com/swisspost/design-system/pull/5780))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.3
+  - @swisspost/design-system-components@9.0.3
+
 ## 1.1.30
 
 ### Patch Changes
