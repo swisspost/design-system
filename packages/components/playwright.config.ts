@@ -5,11 +5,8 @@ export default defineConfig({
   timeout: 30000,
 
   expect: {
-    // Configure visual comparison
-    threshold: 0.2,
     toHaveScreenshot: {
       threshold: 0.2,
-      mode: 'strict'
     }
   },
 
