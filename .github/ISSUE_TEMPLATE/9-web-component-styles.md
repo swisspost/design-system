@@ -1,8 +1,8 @@
 ---
 name: Component - Web Component Styles
 about: Sub-issue to implement styles for a web component.
-title: "[web component styles] componentnamehere"
-labels: "\U0001F4E6 components, needs: tokens"
+title: '[web component styles] componentnamehere'
+labels: '📦 components, needs: logic, needs: tokens'
 assignees: ''
 
 ---

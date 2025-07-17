@@ -1,8 +1,8 @@
 ---
 name: Component - Base
 about: Parent task to organize related sub-issues for a component.
-title: "[base] componentnamehere"
-labels: "\U0001F9E9 base component"
+title: '[base] componentnamehere'
+labels: '🧩 base component'
 assignees: ''
 
 ---

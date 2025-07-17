@@ -1,8 +1,8 @@
 ---
 name: Component - Tokens
 about: Sub-issue to create design tokens for a component.
-title: "[tokens] componentnamehere"
-labels: "needs: design, \U0001F52E tokens"
+title: '[tokens] componentnamehere'
+labels: 'needs: design, 🔮 tokens'
 assignees: ''
 
 ---

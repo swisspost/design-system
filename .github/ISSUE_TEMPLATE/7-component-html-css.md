@@ -1,8 +1,8 @@
 ---
 name: Component - HTML/CSS
 about: Sub-issue to implement an HTML/CSS component in the styles package.
-title: "[html/css] componentnamehere"
-labels: "needs: tokens, \U0001F4E6 styles"
+title: '[html/css] componentnamehere'
+labels: 'needs: tokens, 📦 styles'
 assignees: ''
 
 ---
