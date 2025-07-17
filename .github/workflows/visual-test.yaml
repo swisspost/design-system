@@ -36,6 +36,10 @@ jobs:
         working-directory: packages/components
         run: npx playwright install --with-deps
 
+      # TEMPORARY: Clear old cache to force fresh snapshots
+      - name: Clear old cache (TEMPORARY)
+        run: rm -rf packages/components/visual-tests/__screenshots__
+
       - name: Get snapshot cache
         id: snapshot-cache
         uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
