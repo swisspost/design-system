@@ -6,7 +6,6 @@ interface IOptions {
 }
 
 export const COLOR_SCHEMES = {
-  none: 'preferred',
   light: 'light',
   dark: 'dark',
 };
