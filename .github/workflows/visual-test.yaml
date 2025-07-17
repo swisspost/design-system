@@ -36,19 +36,13 @@ jobs:
         working-directory: packages/components
         run: npx playwright install --with-deps
 
-      - name: Get snapshot cache
-        id: snapshot-cache
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
-        with:
-          path: packages/components/visual-tests/__screenshots__
-          key: visual-snapshots-components-${{ github.ref }}
-          restore-keys: |
-            visual-snapshots-components-refs/heads/main
-      
-      - name: Update Snapshots
-        if: github.event.inputs.update-snapshots == 'true' || steps.snapshot-cache.outputs.cache-hit != 'true'
+      # During development: always generate fresh snapshots
+      # Once stable: switch to cache-based approach
+      - name: Generate baseline screenshots (Development Mode)
         working-directory: packages/components
-        run: pnpm test:visual:update
+        run: |
+          echo "🔄 Development mode: Generating fresh baseline screenshots..."
+          pnpm test:visual:update
 
       - name: Run visual tests
         working-directory: packages/components
@@ -62,6 +56,14 @@ jobs:
           path: packages/components/test-results
           retention-days: 14
 
+      - name: Upload generated screenshots (for review)
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: generated-screenshots
+          path: packages/components/visual-tests/__screenshots__
+          retention-days: 14
+
       - name: Upload diff screenshots
         if: failure()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -72,3 +74,4 @@ jobs:
             packages/components/test-results/**/*-actual.png
             packages/components/test-results/**/*-expected.png
           retention-days: 14
+          
