@@ -1,36 +1,63 @@
-interface IA11yOptions {
+/**
+ * Adds accessibility tests for a snapshot URL (e.g. http://localhost:9000/iframe.html?id=snapshots--{storyName}).
+ *
+ * @param {IA11yOptions} options - Configuration options for the accessibility tests.
+ * @param {string} options.storyName - The name of the story to test.
+ * @param {string} options.storySelector - The CSS selector for the story element.
+ * @param {(scheme: string) => boolean} [options.filterSchemes] - Optional filter function to determine which color schemes to test.
+ * By default, all schemes are tested. The `scheme` parameter can be one of the values from the `testSchemes` enum.
+ * @param {(method: string) => boolean} [options.filterMethods] - Optional filter function to determine which implementation methods to test.
+ * By default, all methods are tested. The `method` parameter can be one of the values from the `testMethods` enum.
+ *
+ * @example
+ * ```typescript
+ * import { testMethods, addA11yTests } from '../shared/a11y';
+ *
+ * addA11yTests({
+ *   storyName: 'button-group',
+ *   storySelector: '.btn-group',
+ *   filterMethods: method => method === testMethods.Forced,
+ * });
+ * ```
+ *
+ * @remarks
+ * This function uses Cypress for end-to-end testing and relies on the Chrome DevTools Protocol (CDP) for certain features.
+ * These features are only supported in Chromium-based browsers. Non-Chromium browsers will skip parts of the test.
+ *
+ * The tests check for accessibility violations using the `axe-core` library, ensuring that the component adheres to WCAG standards.
+ *
+ * @see {@link https://chromedevtools.github.io/devtools-protocol/ | Chrome DevTools Protocol}
+ * @see {@link https://www.deque.com/axe/ | axe-core}
+ */
+
+export interface IA11yOptions {
   storyName: string;
   storySelector: string;
-  /**
-   * Optional filter function to determine which color schemes to test.
-   * By default, both schemes are tested.
-   * @param scheme values from SCHEMES const below
-   * @returns boolean
-   */
-  schemesFilter?: (scheme: string) => boolean;
-  /**
-   * Optional filter function to determine which color schemes implementation method to test.
-   * By default, both methods are tested.
-   * @param method values from METHODS const below
-   * @returns boolean
-   */
-  methodsFilter?: (method: string) => boolean;
+  filterSchemes?: (scheme: string) => boolean;
+  filterMethods?: (method: string) => boolean;
 }
 
-const SCHEMES = ['light', 'dark'];
-const METHODS = ['preferred', 'forced'];
+export enum testSchemes {
+  Light = 'light',
+  Dark = 'dark',
+}
+export enum testMethods {
+  Preferred = 'preferred',
+  Forced = 'forced',
+}
+
+const SCHEMES = Object.values(testSchemes);
+const METHODS = Object.values(testMethods);
 
 export function addA11yTests({
   storyName,
   storySelector,
-  schemesFilter = () => true,
-  methodsFilter = () => true,
+  filterSchemes = () => true,
+  filterMethods = () => true,
 }: IA11yOptions) {
   describe('Accessibility', () => {
-    SCHEMES.filter(schemesFilter).forEach(scheme => {
-      METHODS.filter(methodsFilter).forEach(method => {
-        // Parts of this test (Cypress.automation()) are dependent on the Chrome DevTools Protocol (CDP - https://chromedevtools.github.io/devtools-protocol/)
-        // and therefore only work in Chromium-based browsers. These parts are skipped in other browsers.
+    SCHEMES.filter(filterSchemes).forEach(scheme => {
+      METHODS.filter(filterMethods).forEach(method => {
         const runTest = method === 'forced' || Cypress.browser.family === 'chromium';
 
         if (runTest) {
