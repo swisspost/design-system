@@ -340,7 +340,7 @@ export class PostHeader {
       >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
           {((this.device === 'mobile' || this.device === 'tablet') && this.mobileMenuExtended) && (
-            <div class="mobile-header-section">
+            <div class="mobile-menu-top">
               <div class="back-button" onClick={() => this.handleBackButtonClick()}>
                 <slot name="back-button"></slot>
               </div>
