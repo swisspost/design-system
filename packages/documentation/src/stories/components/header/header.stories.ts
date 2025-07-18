@@ -113,21 +113,6 @@ const Template = {
             <h1 slot="title">${args.title}</h1>
           `
         : ''}
-      ${args.targetGroup
-        ? html`
-            <ul slot="target-group" class="target-group">
-              <li>
-                <a href="#" class="active">Private customers</a>
-              </li>
-              <li>
-                <a href="#">Business customers</a>
-              </li>
-              <li>
-                <a href="#">Authorities</a>
-              </li>
-            </ul>
-          `
-        : ''}
       ${args.customControls
         ? html`
             <!-- Custom content (optional) -->
@@ -147,12 +132,29 @@ const Template = {
             </ul>
           `
         : ''}
+      <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
+        <post-icon aria-hidden="true" name="arrowleft"></post-icon> Back
+      </button>
+
+      ${args.targetGroup
+        ? html`
+            <!-- Target group -->
+            <ul slot="target-group" class="target-group">
+              <li>
+                <a href="#" class="active">Private customers</a>
+              </li>
+              <li>
+                <a href="#">Business customers</a>
+              </li>
+              <li>
+                <a href="#">Authorities</a>
+              </li>
+            </ul>
+          `
+        : ''}
 
       <!-- Main navigation -->
       <post-mainnavigation caption="Main navigation">
-        <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
-          <post-icon aria-hidden="true" name="arrowleft"></post-icon> Back
-        </button>
         <post-list title-hidden="">
           <h2>Main Navigation</h2>
           <!-- Link only level 1 -->
