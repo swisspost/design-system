@@ -22,11 +22,11 @@
   },
   "scripts": {
     "build": "pnpm clean && tsc -p . && node ./dist/build.js && pnpm copy-files",
-    "build:verbose": "node ./build.js --verbosity=verbose",
+    "build:verbose": "pnpm clean && tsc -p . && node ./dist/build.js --verbosity=verbose && pnpm copy-files",
     "clean": "rimraf dist",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "copy-files": "copyfiles -f package.json README.md CONTRIBUTING.md CHANGELOG.md LICENSE dist"
+    "copy-files": "copyfiles -f package.json README.md CONTRIBUTING.md CHANGELOG.md LICENSE *.scss dist"
   },
   "devDependencies": {
     "@eslint/js": "9.18.0",
