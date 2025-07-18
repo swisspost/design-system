@@ -6,7 +6,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'b4800d9e-4837-4476-a327-bb4586eb7e97',
   title: 'Components/Card Product',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   decorators: [paddedContainer, clickBlocker],
   parameters: {
     badges: [],
@@ -149,7 +149,8 @@ export const Multipart: Story = {
                 <h3>Affordable</h3>
                 <h4 class="mb-16">Sample Product</h4>
                 <p class="lead">
-                  With SAMPLE PRODUCT, your letters arrive at their destination cost-effectively and reliably.
+                  With SAMPLE PRODUCT, your letters arrive at their destination cost-effectively and
+                  reliably.
                 </p>
               </div>
               <div>
@@ -243,7 +244,9 @@ export const Multipart: Story = {
                 <h3>Faster</h3>
                 <h4 class="mb-16">Sample Product</h4>
                 <p class="lead">
-                  This is a sample description with more detailed information about the product features and benefits. It demonstrates the layout and structure of the product card component.
+                  This is a sample description with more detailed information about the product
+                  features and benefits. It demonstrates the layout and structure of the product
+                  card component.
                 </p>
               </div>
               <div>

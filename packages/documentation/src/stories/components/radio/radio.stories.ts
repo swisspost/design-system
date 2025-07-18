@@ -13,7 +13,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 const meta: MetaComponent = {
   id: '151242aa-a074-4a55-a81c-db597c83cdad',
   title: 'Components/Form Radio Button',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   parameters: {
     controls: {
       exclude: ['Hidden Legend'],
@@ -129,7 +129,9 @@ function render(args: Args, context: StoryContext) {
       : null,
     args.validation === 'is-invalid'
       ? html`
-          <p class="invalid-feedback" id="${args.validation}-id-${context.id}">An error occurred!</p>
+          <p class="invalid-feedback" id="${args.validation}-id-${context.id}">
+            An error occurred!
+          </p>
         `
       : null,
   ];

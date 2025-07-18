@@ -50,7 +50,7 @@
   .sidebar-item {
     position: relative;
     border-radius: 0;
-    overflow: visible!important;
+    overflow: visible !important;
 
     &:before,
     &:after {
@@ -83,18 +83,18 @@
   }
 
   .sidebar-item {
-    > span {
-      margin-top: 4px;
-    }
-
     + a:not([data-nodetype]) {
       display: none;
     }
 
-    > div > svg {
-      margin-top: 0;
-      width: 1.2em;
-      height: 1.2em;
+    > a {
+      display: flex;
+      align-items: center;
+    }
+
+    // Hide default SVG icons
+    > a > div > svg {
+      display: none;
     }
 
     &[data-nodetype='group'] svg {

@@ -5,7 +5,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'a4c7d5fa-9f8d-4a95-820b-ae4ce9ab4f03',
   title: 'Components/Blockquote',
-  tags: ['package:HTML'],
+  tags: ['package:Styles'],
   render: renderBlockquote,
   parameters: {
     badges: [],

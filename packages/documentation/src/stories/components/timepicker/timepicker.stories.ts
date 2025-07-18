@@ -4,7 +4,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'a4d9f996-6e77-4fad-bb19-40fad1bb7a1d',
   title: 'Components/Timepicker',
-  tags: ['package:Angular'],
+  tags: ['package:NgBootstrap'],
   parameters: {
     badges: [],
   },
