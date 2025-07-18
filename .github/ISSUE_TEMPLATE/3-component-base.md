@@ -4,7 +4,7 @@ about: Parent task to organize related sub-issues for a component.
 title: '[base] componentnamehere'
 labels: '🧩 base component'
 assignees: ''
-type: 'Feature'
+
 ---
 
 ### 📝 Description
