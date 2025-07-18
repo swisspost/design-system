@@ -62,18 +62,18 @@ export const Textarea: Story = {
           ${getCombinations('floatingLabel', [true], combinations).map((args: Args) => {
             context.id = crypto.randomUUID();
             return html` <div class="col-md-6 mb-16">
-              <h4 class="h6">${args.title}</h4>
+              <h3 class="h6">${args.title}</h3>
               <div class="mb-4">${meta.render?.({ ...context.args, ...args }, context)}</div>
             </div>`;
           })}
         </div>
 
-        <h3 class="h4">Standard Label</h3>
+        <h2 class="h4">Standard Label</h2>
         <div class="row">
           ${getCombinations('floatingLabel', [false], combinations).map((args: Args) => {
             context.id = crypto.randomUUID();
             return html` <div class="col-md-6 mb-16">
-              <h4 class="h6">${args.title}</h4>
+              <h3 class="h6">${args.title}</h3>
               <div class="mb-4">${meta.render?.({ ...context.args, ...args }, context)}</div>
             </div>`;
           })}
