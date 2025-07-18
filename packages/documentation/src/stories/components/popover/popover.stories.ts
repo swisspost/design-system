@@ -2,6 +2,7 @@ import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@root/types';
+import { clickBlocker } from '@/shared/click-blocker';
 
 const meta: MetaComponent = {
   id: '9a636763-de2d-4f72-bc81-98daf10871f7',
@@ -91,6 +92,7 @@ const meta: MetaComponent = {
       name: 'Placement',
     },
   },
+  decorators: [clickBlocker],
 };
 
 function render(args: Args) {
