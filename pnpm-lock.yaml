@@ -64,6 +64,9 @@ importers:
       '@oddbird/popover-polyfill':
         specifier: 0.6.0
         version: 0.6.0
+      '@swisspost/design-system-eslint':
+        specifier: workspace:1.0.1-next.0
+        version: link:../eslint
       '@swisspost/design-system-icons':
         specifier: workspace:10.0.0-next.40
         version: link:../icons

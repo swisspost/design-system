@@ -195,8 +195,33 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
   }
 
   .docs-story {
+    padding: 1rem;
+    padding-block-end: 2rem;
+
     [scale] {
       transform: none;
+    }
+
+    > :first-child {
+      padding: 0;
+    }
+
+    > :last-child {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+      background: transparent;
+
+      button {
+        &:hover {
+          background-color: rgba(0, 115, 188, 0.08);
+        }
+
+        &:nth-of-type(2) {
+          border-top-left-radius: 4px;
+        }
+      }
     }
   }
 
@@ -209,23 +234,6 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
   @include media.max(sm) {
     .docs-story > div:first-child {
       padding-bottom: 3rem;
-    }
-  }
-
-  .docs-story > div:last-child {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    transition: all 0.3s ease;
-
-    button {
-      &:hover {
-        background-color: rgba(0, 115, 188, 0.08);
-      }
-
-      &:nth-of-type(2) {
-        border-top-left-radius: 4px;
-      }
     }
   }
 
@@ -248,9 +256,9 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
   .docblock-code-toggle + button {
     @include media.min(md) {
       &::before { @include toolbar-icon('resizeexpand'); }
-      
+
       + button::before { @include toolbar-icon('link'); }
-      
+
       + button + button::before { @include toolbar-icon('code'); }
     }
   }
