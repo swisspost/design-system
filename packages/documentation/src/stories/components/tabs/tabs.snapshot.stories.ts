@@ -20,18 +20,17 @@ export const Tabs: Story = {
   render: (_args: HTMLPostTabsElement, context: StoryContext<HTMLPostTabsElement>) => {
     return schemes(
       () => html`
-        <div style="padding: 0">
           ${['container', 'container-fluid', ''].map(
             containerClass => html`
-            <div class="${containerClass}">
-              ${bombArgs({
-                activePanel: [undefined, 'third'],
-                fullWidth: [false, true],
-              })
-                .filter(args => !(containerClass === '' && args.fullWidth === true))
-                .map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
-            </div> </div>
-          `,
+              <div class="${containerClass}">
+                ${bombArgs({
+                  activePanel: [undefined, 'third'],
+                  fullWidth: [false, true],
+                })
+                  .filter(args => !(containerClass === '' && args.fullWidth === true))
+                  .map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
+              </div>
+            `,
           )}
         </div>
       `,
