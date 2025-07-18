@@ -1,6 +1,6 @@
 import { Component, Element, Prop, h, Host, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkType, getRoot } from '@/utils';
+import { getRoot, checkRequiredAndType } from '@/utils';
 
 @Component({
   tag: 'post-menu-trigger',
@@ -33,7 +33,7 @@ export class PostMenuTrigger {
    */
   @Watch('for')
   validateControlFor() {
-    checkType(this, 'for', 'string');
+    checkRequiredAndType(this, 'for', 'string');
   }
 
   private get menu(): HTMLPostMenuElement | null {
@@ -68,7 +68,7 @@ export class PostMenuTrigger {
     // Check if the slottedButton is within a web component
     if (!this.slottedButton) {
       const webComponent = this.host.querySelector('.menu-trigger-webc');
-      if (webComponent.shadowRoot) {
+      if (webComponent?.shadowRoot) {
         const slottedButton = webComponent.shadowRoot.querySelector('button');
         if (slottedButton) {
           this.slottedButton = slottedButton;

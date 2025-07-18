@@ -14,6 +14,10 @@ tokens.$default-map: components.$post-button;
   justify-content: center;
   padding-inline-start: 32px;
 
+  @include media.max(lg) {
+    gap: 0;
+  }
+
   li {
     list-style: none;
   }
@@ -52,13 +56,13 @@ tokens.$default-map: components.$post-button;
   }
 
   @include media.max(lg) {
-    padding: 102px 0 36px;
+    padding: 54px 0 28px;
   }
 
   @include media.max(sm) {
     flex-direction: column;
     gap: 8px;
-    padding: 68px 16px 8px;
+    padding: 24px 16px 0;
 
     a {
       width: 100%;

@@ -1,9 +1,8 @@
 import { Component, Element, h, Host, Listen, Method, Prop, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { HEADING_LEVELS, HeadingLevel } from '@/types';
-import { checkEmptyOrOneOf } from '@/utils';
+import { checkEmptyOrOneOf, EventFrom } from '@/utils';
 import { nanoid } from 'nanoid';
-import { eventGuard } from '@/utils/event-guard';
 
 /**
  * @part button - The pseudo-element, used to override styles on the components internal header `button` element.
@@ -40,12 +39,7 @@ export class PostAccordionItem {
 
   @Watch('headingLevel')
   validateHeadingLevel() {
-    checkEmptyOrOneOf(
-      this,
-      'headingLevel',
-      HEADING_LEVELS,
-      'The `heading-level` property of the `post-accordion-item` must be a number between 1 and 6.',
-    );
+    checkEmptyOrOneOf(this, 'headingLevel', HEADING_LEVELS);
   }
 
   componentWillLoad() {
@@ -58,15 +52,9 @@ export class PostAccordionItem {
 
   // Capture to make sure the "collapsed" property is updated before the event is consumed
   @Listen('postToggle', { capture: true })
+  @EventFrom('post-accordion-item')
   onCollapseToggle(event: CustomEvent<boolean>): void {
-    eventGuard(
-      this.host,
-      event,
-      { targetLocalName: 'post-collapsible', delegatorSelector: 'post-accordion-item' },
-      () => {
-        this.collapsed = !event.detail;
-      }
-    );
+    this.collapsed = !event.detail;
   }
 
   /**
