@@ -28,7 +28,7 @@ import {
 import { PLACEMENT_TYPES } from '@/types';
 
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
-import { apply, isSupported } from '@oddbird/popover-polyfill/dist/popover-fn.js';
+import { apply, isSupported } from '@oddbird/popover-polyfill/fn';
 
 interface PopoverElement {
   showPopover: () => void;
@@ -158,11 +158,11 @@ export class PostPopovercontainer {
    */
   @Method()
   async show(target: HTMLElement) {
-    if (!this.toggleTimeoutId) {
-      this.eventTarget = target;
-      this.calculatePosition();
-      this.host.showPopover();
-    }
+    if (this.toggleTimeoutId) return;
+
+    this.eventTarget = target;
+    this.calculatePosition();
+    this.host.showPopover();
   }
 
   /**
@@ -299,6 +299,7 @@ export class PostPopovercontainer {
 
   private async updateSafeSpaceBoundaries(currentPlacement: string) {
     const targetRect = this.eventTarget.getBoundingClientRect();
+
     const popoverRect = this.host.getBoundingClientRect();
 
     const isVertical = currentPlacement === 'top' || currentPlacement === 'bottom';
