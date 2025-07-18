@@ -9,6 +9,9 @@ const { id, ...metaWithoutId } = meta;
 export default {
   ...metaWithoutId,
   title: 'Snapshots',
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
 type Story = StoryObj<HTMLPostTabsElement>;
@@ -17,16 +20,20 @@ export const Tabs: Story = {
   render: (_args: HTMLPostTabsElement, context: StoryContext<HTMLPostTabsElement>) => {
     return schemes(
       () => html`
-        ${['container', 'container-fluid', ''].map(
-          containerClass => html`
+        <div style="padding: 0">
+          ${['container', 'container-fluid', ''].map(
+            containerClass => html`
             <div class="${containerClass}">
               ${bombArgs({
                 activePanel: [undefined, 'third'],
                 fullWidth: [false, true],
-              }).map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
-            </div>
+              })
+                .filter(args => !(containerClass === '' && args.fullWidth === true))
+                .map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
+            </div> </div>
           `,
-        )}
+          )}
+        </div>
       `,
     );
   },

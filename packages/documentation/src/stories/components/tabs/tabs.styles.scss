@@ -1,7 +1,5 @@
 @use '@swisspost/design-system-styles/core' as post;
 
-.container-examples {
-  &:is(.sb-main-padded *) {
-    margin-inline: -1rem;
-  }
+[data-color-scheme] {
+  padding: 0 !important;
 }

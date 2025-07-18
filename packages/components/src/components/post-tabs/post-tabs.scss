@@ -10,29 +10,14 @@
 }
 
 :host([full-width='true']) {
-  @each $breakpoint in map.keys(breakpoints.$grid-breakpoints) {
-    @include media.min($breakpoint) {
-      $content-width: tokens.get('grid-max-width', components.$post-container);
-      $padding: tokens.get('grid-padding-#{$breakpoint}', components.$post-container);
-      $gutter: tokens.get('grid-gutter-#{$breakpoint}', components.$post-container);
+  .tabs-wrapper {
+    // Negative margin to make the tabs-wrapper fullwidth
+    margin-inline: calc(-1 * var(--post-container-offset));
+    padding-inline: 0;
 
-      $container-inline-padding: max(#{$padding}, calc(0.5 * #{$gutter}));
-
-      // Extra space outside the container
-      $extra-space: calc((100vw - $content-width) / 2);
-      $space-to-compensate: max(0px, $extra-space);
-      $total-offset-per-side: calc($container-inline-padding + $space-to-compensate);
-
-      .tabs-wrapper {
-        // Negative margin to make the tabs-wrapper fullwidth
-        margin-inline: calc(-1 * $total-offset-per-side);
-        padding-inline: 0;
-
-        //Internal padding to align the tabs content to the container
-        .tabs {
-          padding-inline: $total-offset-per-side;
-        }
-      }
+    //Internal padding to align the tabs content to the container
+    .tabs {
+      padding-inline: var(--post-container-offset);
     }
   }
 }
