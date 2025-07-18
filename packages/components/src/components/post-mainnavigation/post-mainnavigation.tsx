@@ -1,4 +1,4 @@
-import { Component, Host, h, State, Listen, Prop } from '@stencil/core';
+import { Component, Host, h, State, Listen } from '@stencil/core';
 import { version } from '@root/package.json';
 
 const SCROLL_REPEAT_INTERVAL = 100; // Interval for repeated scrolling when holding down scroll button
@@ -20,7 +20,6 @@ export class PostMainnavigation {
 
   @State() canScrollLeft = false;
   @State() canScrollRight = false;
-  @Prop() headerRef?: HTMLPostHeaderElement;
 
   constructor() {
     this.scrollRight = this.scrollRight.bind(this);
@@ -191,7 +190,6 @@ export class PostMainnavigation {
   render() {
     return (
       <Host slot="post-mainnavigation" version={version}>
-      
         <div
           aria-hidden="true"
           class={{ 'scroll-control scroll-left': true, 'd-none': !this.canScrollLeft }}
