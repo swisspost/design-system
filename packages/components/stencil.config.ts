@@ -10,24 +10,24 @@ export const config: Config = {
   buildDist: true,
   sourceMap: false,
   globalStyle: 'src/styles/index.scss',
-  validatePrimaryPackageOutputTarget: true,
   hydratedFlag: {
     name: 'data-hydrated',
     selector: 'attribute',
   },
+  invisiblePrehydration: false,
   outputTargets: [
     {
       type: 'dist',
       esmLoaderPath: '../loader',
-      isPrimaryPackageOutputTarget: true,
     },
     {
       type: 'dist-custom-elements',
+      customElementsExportBehavior: 'auto-define-custom-elements',
+      externalRuntime: false,
     },
     {
-      type: 'dist-custom-elements',
-      customElementsExportBehavior: 'single-export-module',
-      dir: 'loaders',
+      type: 'dist-hydrate-script',
+      dir: './hydrate',
     },
     {
       type: 'www',
@@ -55,9 +55,11 @@ export const config: Config = {
       file: 'dist/docs.json',
     },
     reactOutputTarget({
-      componentCorePackage: '@swisspost/design-system-components',
-      proxiesFile: '../components-react/src/components/stencil-generated/index.ts',
-      includeDefineCustomElements: true,
+      outDir: '../components-react/src/stencil-generated',
+    }),
+    reactOutputTarget({
+      outDir: '../components-react/src/stencil-generated/server',
+      hydrateModule: '@swisspost/design-system-components/hydrate',
     }),
     angularOutputTarget({
       componentCorePackage: '@swisspost/design-system-components',
@@ -96,6 +98,7 @@ export const config: Config = {
       '<rootDir>/dist/',
       '<rootDir>/loader/',
       '<rootDir>/loaders/',
+      '<rootDir>/hydrate/',
       '<rootDir>/www/',
       '<rootDir>/cypress',
     ],
