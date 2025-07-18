@@ -2,9 +2,9 @@
 name: Component - HTML/CSS
 about: Sub-issue to implement an HTML/CSS component in the styles package.
 title: '[html/css] componentnamehere'
-labels: '📦 styles', 'needs: tokens'
+labels: 'needs: tokens, 📦 styles'
 assignees: ''
-type: 'Task'
+
 ---
 
 ### 📝 Description

@@ -2,9 +2,9 @@
 name: Component - Web Component Styles
 about: Sub-issue to implement styles for a web component.
 title: '[web component styles] componentnamehere'
-labels: '📦 components', 'needs: tokens', 'needs: logic'
+labels: '📦 components, needs: logic, needs: tokens'
 assignees: ''
-type: 'Task'
+
 ---
 
 ### 📝 Description
