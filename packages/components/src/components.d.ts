@@ -474,6 +474,7 @@ export namespace Components {
         "activePanel"?: HTMLPostTabPanelElement['name'];
         /**
           * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.
+          * @default false
          */
         "fullWidth": boolean;
         /**
@@ -485,7 +486,7 @@ export namespace Components {
         /**
           * Defines the icon `name` inside of the component. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs">icon library</a>.
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Defines the size of the component.
          */
@@ -1352,6 +1353,7 @@ declare namespace LocalJSX {
         "activePanel"?: HTMLPostTabPanelElement['name'];
         /**
           * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.
+          * @default false
          */
         "fullWidth"?: boolean;
         /**
