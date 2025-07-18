@@ -245,33 +245,27 @@
     }
   }
 
-.mobile-header-section {
-  @include media.max(lg) {
-    padding: 16px 32px 0;
-  }
-
-  @include media.max(sm) {
-    padding: 16px 16px 0;
-  }
-}
-
-.mobile-header-section .back-button ::slotted(.btn) {
-  @include media.max(lg) {
-    font-size: 16px !important;
-    padding: 0 !important;
-  }
-
-  @include media.max(sm) {
-    font-size: 14px !important;
-  }
-}
-
-  ::slotted(post-mainnavigation) {
+  .mobile-header-section {
     @include media.max(lg) {
-      padding-block-start: 32px;
+      padding: 16px 32px 0;
+    }
+
+    @include media.max(sm) {
+      padding: 16px 16px 0;
+    }
+
+    & .back-button ::slotted(.btn) {
+      @include media.max(lg) {
+        font-size: 16px !important;
+        padding: 0 !important;
+      }
+
+      @include media.max(sm) {
+        font-size: 14px !important;
+      }
     }
   }
-  
+
   .navigation-footer {
     background-color: #f0efed;
     gap: 24px;

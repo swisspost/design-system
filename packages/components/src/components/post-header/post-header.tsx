@@ -307,6 +307,12 @@ export class PostHeader {
     }
   }
 
+  private handleBackButtonClick() {
+    if (this.mobileMenuExtended) {
+      this.toggleMobileMenu(false);
+    }
+  }
+
   private switchLanguageSwitchMode() {
     const variant: SwitchVariant = this.device === 'desktop' ? 'menu' : 'list';
     Array.from(this.host.querySelectorAll('post-language-switch')).forEach(languageSwitch => {
@@ -333,15 +339,15 @@ export class PostHeader {
         style={{ '--post-header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
       >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
-        {((this.device === 'mobile' || this.device === 'tablet') && this.mobileMenuExtended) && (
-          <div class="mobile-header-section">
-          <div class="back-button">
-            <slot name="back-button"></slot>
-          </div>
-          <div class="target-group">
-            <slot name="target-group"></slot>
-          </div>
-        </div>
+          {((this.device === 'mobile' || this.device === 'tablet') && this.mobileMenuExtended) && (
+            <div class="mobile-header-section">
+              <div class="back-button" onClick={() => this.handleBackButtonClick()}>
+                <slot name="back-button"></slot>
+              </div>
+              <div class="target-group">
+                <slot name="target-group"></slot>
+              </div>
+            </div>
           )}
           <slot name="post-mainnavigation"></slot>
           {(this.device === 'mobile' || this.device === 'tablet') && (
