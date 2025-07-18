@@ -113,7 +113,6 @@ const Template = {
             <h1 slot="title">${args.title}</h1>
           `
         : ''}
-      
       ${args.customControls
         ? html`
             <!-- Custom content (optional) -->
