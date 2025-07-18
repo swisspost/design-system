@@ -5,7 +5,7 @@ import { SwitchVariant } from '@/components';
 import { breakpoint } from '../../utils/breakpoints';
 import { slideDown, slideUp } from '@/animations/slide';
 import { getFocusableChildren } from '@/utils/get-focusable-children';
-import { eventGuard } from '@/utils/event-guard';
+import { EventFrom } from '@/utils/event-from';
 
 /**
  * @slot post-logo - Should be used together with the `<post-logo>` component.
@@ -104,7 +104,6 @@ export class PostHeader {
     window.addEventListener('postBreakpoint:device', this.breakpointChange);
     this.switchLanguageSwitchMode();
 
-    this.updateLocalHeaderHeight();
     this.handleScrollParentResize();
     this.lockBody(false, this.mobileMenuExtended, 'mobileMenuExtended');
   }
@@ -116,6 +115,10 @@ export class PostHeader {
   componentDidRender() {
     this.getFocusableElements();
     this.handleLocalHeaderResize();
+  }
+
+  componentDidLoad() {
+    this.updateLocalHeaderHeight();
   }
 
   // Clean up possible side effects when post-header is disconnected
@@ -179,19 +182,10 @@ export class PostHeader {
     }
   }
 
+  @EventFrom('post-megadropdown')
   private megadropdownStateHandler = (event: CustomEvent) => {
-    eventGuard(
-      this.host,
-      event,
-      {
-        targetLocalName: 'post-megadropdown',
-        delegatorSelector: 'post-header',
-      },
-      () => {
-        this.megadropdownOpen = event.detail.isVisible;
-      },
-    );
-  };
+      this.megadropdownOpen = event.detail.isVisible;
+    };
 
   // Get all the focusable elements in the post-header mobile menu
   private getFocusableElements() {
@@ -245,12 +239,14 @@ export class PostHeader {
   }
 
   private updateLocalHeaderHeight() {
-    const localHeaderHeight =
-      this.host.shadowRoot.querySelector('.local-header')?.clientHeight || 0;
-    document.documentElement.style.setProperty(
-      '--post-local-header-height',
-      `${localHeaderHeight}px`,
-    );
+    const localHeaderElement = this.host.shadowRoot.querySelector('.local-header');
+    
+    if (localHeaderElement) {
+      document.documentElement.style.setProperty(
+        '--post-local-header-height',
+        `${localHeaderElement.clientHeight}px`,
+      );
+    }
   }
 
   private updateScrollParentHeight() {

@@ -80,6 +80,7 @@
     "@oddbird/popover-polyfill": "0.6.0",
     "@swisspost/design-system-icons": "workspace:10.0.0-next.40",
     "@swisspost/design-system-styles": "workspace:10.0.0-next.40",
+    "@swisspost/design-system-eslint": "workspace:1.0.1-next.0",
     "ally.js": "1.4.1",
     "long-press-event": "2.5.0",
     "nanoid": "5.1.5"
