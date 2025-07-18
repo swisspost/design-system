@@ -100,12 +100,6 @@ export class PostMainnavigation {
       });
   }
 
-  private handleBackButtonClick() {
-    if (this.headerRef && typeof this.headerRef.toggleMobileMenu === 'function') {
-      this.headerRef.toggleMobileMenu(false);
-    }
-  }
-
   /**
    * Returns whether scrolling is enabled in either the left or right direction.
    */
@@ -197,15 +191,6 @@ export class PostMainnavigation {
   render() {
     return (
       <Host slot="post-mainnavigation" version={version}>
-        {/* Mobile header section (back button + target group) - only shows on mobile/tablet */}
-        <div class="mobile-header-section">
-          <div onClick={() => this.handleBackButtonClick()} class="back-button">
-            <slot name="back-button"></slot>
-          </div>
-          <div class="target-group">
-            <slot name="target-group"></slot>
-          </div>
-        </div>
       
         <div
           aria-hidden="true"

@@ -114,6 +114,25 @@ const Template = {
           `
         : ''}
       
+      ${args.customControls
+        ? html`
+            <!-- Custom content (optional) -->
+            <ul class="list-inline">
+              <li>
+                <a href="#">
+                  <span class="visually-hidden-sm">Search</span>
+                  <post-icon aria-hidden="true" name="search"></post-icon>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="visually-hidden-sm">Login</span>
+                  <post-icon aria-hidden="true" name="login"></post-icon>
+                </a>
+              </li>
+            </ul>
+          `
+        : ''}
       <button type="button" slot="back-button" class="btn btn-sm btn-tertiary">
         <post-icon aria-hidden="true" name="arrowleft"></post-icon> Back
       </button>
@@ -130,26 +149,6 @@ const Template = {
               </li>
               <li>
                 <a href="#">Authorities</a>
-              </li>
-            </ul>
-          `
-        : ''}
-      
-      ${args.customControls
-        ? html`
-            <!-- Custom content (optional) -->
-            <ul class="list-inline">
-              <li>
-                <a href="#">
-                  <span class="visually-hidden-sm">Search</span>
-                  <post-icon aria-hidden="true" name="search"></post-icon>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span class="visually-hidden-sm">Login</span>
-                  <post-icon aria-hidden="true" name="login"></post-icon>
-                </a>
               </li>
             </ul>
           `

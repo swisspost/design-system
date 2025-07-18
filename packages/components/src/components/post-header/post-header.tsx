@@ -333,15 +333,17 @@ export class PostHeader {
         style={{ '--post-header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
       >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
-          {this.device !== 'desktop' && (
-            <post-mainnavigation headerRef={this.host}>
-              {/* Pass through slots to main navigation */}
-              <slot name="back-button" slot="back-button"></slot>
-              <slot name="target-group" slot="target-group"></slot>
-            </post-mainnavigation>
+        {((this.device === 'mobile' || this.device === 'tablet') && this.mobileMenuExtended) && (
+          <div class="mobile-header-section">
+          <div class="back-button">
+            <slot name="back-button"></slot>
+          </div>
+          <div class="target-group">
+            <slot name="target-group"></slot>
+          </div>
+        </div>
           )}
           <slot name="post-mainnavigation"></slot>
-        
           {(this.device === 'mobile' || this.device === 'tablet') && (
             <div class="navigation-footer">
               <slot name="meta-navigation"></slot>
