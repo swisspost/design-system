@@ -1,72 +1,68 @@
-import { IS_BROWSER } from '@/utils/environment';
+import { throttle } from 'throttle-debounce';
+import { IS_SERVER } from '@/utils/environment';
 
-type MapItem = {
-  minWidth: number;
+interface BreakpointDefinition {
   key: string;
-  name: string;
-};
-type ListenerType = 'key' | 'name';
+  device: string;
+  minWidth: number;
+}
 
-export class Breakpoint {
-  private readonly breakpointMap: MapItem[];
-  private readonly current = {
-    key: '',
-    name: '',
-  };
+type BreakpointProperty = keyof BreakpointDefinition;
+
+class Breakpoint {
+  private readonly breakpoints: BreakpointDefinition[];
+  private currentBreakpoint: BreakpointDefinition;
 
   constructor() {
-    if (IS_BROWSER && !this.breakpointMap) {
-      const keys = this.getStyles('--post-breakpoint-keys');
-      const names = this.getStyles('--post-breakpoint-names');
-      const widths = this.getStyles('--post-breakpoint-widths');
+    if (IS_SERVER || !!this.breakpoints) return;
 
-      this.breakpointMap = widths
-        .map((width, i) => ({
-          minWidth: Number(width),
-          key: keys[i],
-          name: names[i],
-        }))
-        .reverse();
+    const keys = this.getValues('--post-grid-breakpoint-keys');
+    const devices = this.getValues('--post-grid-breakpoint-devices');
+    const widths = this.getValues('--post-grid-breakpoint-widths');
 
-      window.addEventListener('resize', () => this.updateHandler(), { passive: true });
-    }
+    this.breakpoints = widths
+      .map((width, i): BreakpointDefinition => ({
+        key: keys[i],
+        device: devices[i],
+        minWidth: Number(width),
+      }))
+      .sort((a, b) => b.minWidth - a.minWidth);
+
+    this.updateCurrentBreakpoint({ emitEvents: false });
+    window.addEventListener('resize', () => this.updateCurrentBreakpoint(), { passive: true });
   }
 
-  private getStyles(propertyName: string) {
-    const styles = getComputedStyle(document.documentElement);
-    return (
-      styles
-        .getPropertyValue(propertyName)
-        ?.split(',')
-        .map(w => w.trim()) ?? []
+  private getValues(cssCustomProperty: string): string[] {
+    const values = getComputedStyle(document.documentElement).getPropertyValue(cssCustomProperty);
+    return values ? values.split(',').map(v => v.trim()) : [];
+  }
+
+  private updateCurrentBreakpoint = throttle(50,
+    (options: { emitEvents: boolean } = { emitEvents: true }) => {
+      const previousBreakpoint = this.currentBreakpoint;
+      this.currentBreakpoint = this.breakpoints.find(breakpoint => {
+        return breakpoint.minWidth <= innerWidth;
+      });
+
+      if (!this.currentBreakpoint || !options.emitEvents) return;
+
+      Object.keys(this.currentBreakpoint)
+        .filter(key => !previousBreakpoint || this.currentBreakpoint[key] !== previousBreakpoint[key])
+        .forEach((key: BreakpointProperty) => this.dispatchEvent(key));
+    }
+  );
+
+  private dispatchEvent(property: BreakpointProperty): void {
+    if (IS_SERVER) return;
+
+    window.dispatchEvent(
+      new CustomEvent(`postBreakpoint:${property}`, { detail: this.currentBreakpoint[property] }),
     );
   }
 
-  private updateHandler(emitEvents: boolean = true) {
-    const calculated = this.breakpointMap.find(({ minWidth }) => innerWidth >= minWidth);
-
-    if (this.current.key !== calculated.key) {
-      this.current.key = calculated.key;
-      if (emitEvents) this.dispatchEvent('key');
-    }
-
-    if (this.current.name !== calculated.name) {
-      this.current.name = calculated.name;
-      if (emitEvents) this.dispatchEvent('name');
-    }
-  }
-
-  private dispatchEvent(type: ListenerType) {
-    if (IS_BROWSER) {
-      window.dispatchEvent(
-        new CustomEvent(`postBreakpoint:${type}`, { detail: this.current[type] }),
-      );
-    }
-  }
-
-  public get(type: ListenerType) {
-    this.updateHandler(false);
-    return this.current[type];
+  public get<T extends BreakpointProperty>(property: T): BreakpointDefinition[T] {
+    this.updateCurrentBreakpoint({ emitEvents: false });
+    return this.currentBreakpoint[property];
   }
 }
 
