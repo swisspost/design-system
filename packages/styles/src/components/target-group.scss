@@ -58,7 +58,7 @@ tokens.$default-map: components.$post-button;
   @include media.max(sm) {
     flex-direction: column;
     gap: 8px;
-    padding: 24px 16px 0;
+    padding: 68px 16px 8px;
 
     a {
       width: 100%;
