@@ -2,7 +2,6 @@ import { StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { MetaComponent } from '@root/types';
-import './tabs.styles.scss';
 
 const meta: MetaComponent<HTMLPostTabsElement> = {
   id: 'bb1291ca-4dbb-450c-a15f-596836d9f39e',
