@@ -25,6 +25,10 @@ export const Select: Story = {
         hint: [''],
       }),
       ...bombArgs({
+        label: [context.args.label],
+        requiredOptional: ['required', 'optional'],
+      }),
+      ...bombArgs({
         hiddenLabel: [true],
         hint: ['Hintus textus', context.args.hint],
       }),
