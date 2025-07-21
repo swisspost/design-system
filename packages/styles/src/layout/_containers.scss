@@ -12,6 +12,7 @@ tokens.$default-map: components.$post-container;
   width: 100%;
   margin-inline: auto;
 }
+
 .container {
   --post-container-max-width: #{tokens.get('grid-max-width')};
   max-width: var(--post-container-max-width);
