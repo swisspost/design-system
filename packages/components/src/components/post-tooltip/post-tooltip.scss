@@ -11,7 +11,7 @@
 }
 
 :host([open]) {
-  display: block;
+  display: contents;
 }
 
 post-popovercontainer {
