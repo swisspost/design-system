@@ -1,5 +1,17 @@
 # @swisspost/design-system-documentation
 
+## 5.6.0
+
+### Minor Changes
+
+- Dynamically generate dependencies table for `styles` package. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5738](https://github.com/swisspost/design-system/pull/5738))
+
+### Patch Changes
+
+- Added an info banner to the styles for PrimeNG package documentation to clearly communicate that `@swisspost/design-system-styles-primeng` only provides styling for PrimeNG datatables. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5757](https://github.com/swisspost/design-system/pull/5757))
+
+- Updated Design System Team members displayed in the documentation footer. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5821](https://github.com/swisspost/design-system/pull/5821))
+
 ## 5.5.18
 
 ### Patch Changes
