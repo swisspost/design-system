@@ -80,7 +80,6 @@
     "@oddbird/popover-polyfill": "0.6.0",
     "@swisspost/design-system-icons": "workspace:10.0.0-next.40",
     "@swisspost/design-system-styles": "workspace:10.0.0-next.40",
-    "@swisspost/design-system-eslint": "workspace:1.0.1-next.0",
     "ally.js": "1.4.1",
     "long-press-event": "2.5.0",
     "nanoid": "5.1.5"
@@ -95,6 +94,7 @@
     "@stencil/core": "4.35.0",
     "@stencil/react-output-target": "=0.8.2",
     "@stencil/sass": "3.0.12",
+    "@swisspost/design-system-eslint": "workspace:1.0.1-next.0",
     "@types/jest": "29.5.14",
     "@types/mock-fs": "4.13.4",
     "@types/node": "22.10.5",
