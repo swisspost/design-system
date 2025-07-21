@@ -2,9 +2,9 @@
 name: Component - Tokens
 about: Sub-issue to create design tokens for a component.
 title: '[tokens] componentnamehere'
-labels: '🔮 tokens', 'needs: design'
+labels: 'needs: design, 🔮 tokens'
 assignees: ''
-type: 'Task'
+
 ---
 
 ### 📃 Tasks
