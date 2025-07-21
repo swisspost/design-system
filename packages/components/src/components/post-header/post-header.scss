@@ -41,16 +41,6 @@
   }
 }
 
-:host(:not(:has([slot='title']))) {
-  .local-header {
-    padding-block-start: 0;
-  }
-
-  .local-sub {
-    display: none;
-  }
-}
-
 .d-flex {
   display: flex;
 }
@@ -150,9 +140,12 @@
   @include media.min(lg) {
     z-index: 3;
     inset-block-start: var(--post-local-header-top);
-    padding-block-start: 18px;
     box-shadow: elevation.$elevation-300;
     transition: box-shadow 0.2s ease-in-out, inset-block-start 0.2s ease-in-out;
+
+    &:has(> .local-sub) {
+      padding-block-start: 18px;
+    }
   }
 
   @include media.max(lg) {
@@ -171,6 +164,10 @@
 
     &:not(.local-header-mobile-extended) {
       box-shadow: elevation.$elevation-300;
+    }
+
+    &:not(:has(> .local-sub)) {
+      display: none;
     }
   }
 }

@@ -1,12 +1,4 @@
-import {
-  Component,
-  h,
-  Host,
-  State,
-  Element,
-  Method,
-  Watch,
-} from '@stencil/core';
+import { Component, h, Host, State, Element, Method, Watch } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { version } from '@root/package.json';
 import { SwitchVariant } from '@/components';
@@ -342,6 +334,8 @@ export class PostHeader {
   }
 
   render() {
+    const areLocalSubShown = this.host.querySelectorAll('[slot="title"]').length > 0;
+
     return (
       <Host data-version={version}>
         <div class="global-header">
@@ -363,10 +357,12 @@ export class PostHeader {
           class={'local-header ' + (this.mobileMenuExtended ? 'local-header-mobile-extended' : '')}
         >
           <slot name="title"></slot>
-          <div class="local-sub">
-            <slot name="local-controls"></slot>
-            <slot></slot>
-          </div>
+          {areLocalSubShown && (
+            <div class="local-sub">
+              <slot name="local-controls"></slot>
+              <slot></slot>
+            </div>
+          )}
           {this.device === 'desktop' && this.renderNavigation()}
         </div>
         {this.device !== 'desktop' && this.renderNavigation()}
