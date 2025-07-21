@@ -29,7 +29,7 @@ tokens.$default-map: components.$post-container;
       --post-container-padding-inline: max(#{$padding}, calc(0.5 * #{$gutter}));
       padding-inline: var(--post-container-padding-inline);
 
-      // Offset for `.container` will be-> padding-inline + max(0px, (100vw - container-max-width)/2))
+      // Offset for `.container` is: padding-inline + max(0px, (100vw - container-max-width) / 2)
       --post-container-offset: calc(
         var(--post-container-padding-inline) +
           max(0px, calc((100vw - var(--post-container-max-width)) / 2))
@@ -51,7 +51,7 @@ tokens.$default-map: components.$post-container;
       // a padding of at least half the gutter size to offset this negative margin.
       --post-container-padding-inline: max(#{$padding}, calc(0.5 * #{$gutter}));
       padding-inline: var(--post-container-padding-inline);
-      // Offset for `.container-fluid`will be-> padding-inline
+      // Offset for `.container-fluid` is the padding-inline
       --post-container-offset: var(--post-container-padding-inline);
     }
   }
