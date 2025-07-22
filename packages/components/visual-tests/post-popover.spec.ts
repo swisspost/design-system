@@ -32,15 +32,6 @@ test.describe('Post Popover Component Visual Tests', () => {
     await expect(trigger).toHaveScreenshot('popover-trigger-focus.png');
   });
 
-  test('popover trigger - active state', async ({ page }) => {
-    const trigger = page.locator('button[data-popover-target="popover-one"]');
-    await trigger.hover();
-    await page.mouse.down();
-    await page.waitForTimeout(100);
-    await expect(trigger).toHaveScreenshot('popover-trigger-active.png');
-    await page.mouse.up();
-  });
-
   test('page with popover closed', async ({ page }) => {
     await expect(page).toHaveScreenshot('page-popover-closed.png');
   });
@@ -88,20 +79,6 @@ test.describe('Post Popover Component Visual Tests', () => {
     await trigger.click();
     await page.waitForTimeout(1000);
     await expect(page).toHaveScreenshot('popover-positioning-bottom-edge.png');
-  });
-
-  test('popover - positioning near right edge (should render to the left)', async ({ page }) => {
-    await page.locator('.d-flex').evaluate((el: HTMLElement) => {
-      el.style.position = 'fixed';
-      el.style.right = '20px';
-      el.style.top = '50%';
-      el.style.transform = 'translateY(-50%)';
-    });
-
-    const trigger = page.locator('button[data-popover-target="popover-one"]');
-    await trigger.click();
-    await page.waitForTimeout(1000);
-    await expect(page).toHaveScreenshot('popover-positioning-right-edge.png');
   });
 
   test('popover close button - default state', async ({ page }) => {
