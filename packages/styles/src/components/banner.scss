@@ -1,8 +1,6 @@
 @use 'sass:map';
 @use 'sass:list';
 
-@use './../themes/bootstrap/core' as *;
-
 @use './../mixins/notification' as notification-mx;
 
 @use './../variables/breakpoints';
@@ -12,6 +10,7 @@
 @use './../variables/components/notification';
 @use '../tokens/components';
 @use '../functions/tokens';
+@use '../mixins/media';
 
 tokens.$default-map: components.$post-banner;
 
@@ -44,7 +43,7 @@ tokens.$default-map: components.$post-banner;
   margin-block-start: tokens.get('banner-actions-margin-top');
   gap: tokens.get('banner-actions-gap');
 
-  @include media-breakpoint-down(md) {
+  @include media.max(md) {
     flex-direction: column;
   }
 }
@@ -56,7 +55,7 @@ tokens.$default-map: components.$post-banner;
     @include notification-mx.notification-body(banner);
   }
 
-  @include media-breakpoint-down(md) {
+  @include media.max(md) {
     flex-direction: column;
     align-items: stretch;
 

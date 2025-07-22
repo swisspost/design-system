@@ -122,9 +122,6 @@ importers:
       '@typescript-eslint/parser':
         specifier: 7.18.0
         version: 7.18.0(eslint@9.18.0(jiti@2.4.2))(typescript@5.8.3)
-      bootstrap:
-        specifier: 5.3.3
-        version: 5.3.3(@popperjs/core@2.11.8)
       copyfiles:
         specifier: 2.4.1
         version: 2.4.1
@@ -371,9 +368,6 @@ importers:
       '@swisspost/internet-header':
         specifier: workspace:2.0.0-next.42
         version: link:../internet-header
-      bootstrap:
-        specifier: 5.3.3
-        version: 5.3.3(@popperjs/core@2.11.8)
     devDependencies:
       '@eslint/js':
         specifier: 9.18.0
@@ -870,9 +864,6 @@ importers:
       '@popperjs/core':
         specifier: 2.11.8
         version: 2.11.8
-      bootstrap:
-        specifier: 5.3.3
-        version: 5.3.3(@popperjs/core@2.11.8)
       gulp-sourcemaps:
         specifier: 3.0.0
         version: 3.0.0
@@ -15320,7 +15311,7 @@ snapshots:
       next: 15.3.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.85.1)
       recast: 0.23.9
       vite: 6.3.5(@types/node@22.10.5)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.89.2)(sass@1.85.1)(terser@5.39.0)(yaml@2.7.0)
-      webpack: 5.98.0
+      webpack: 5.98.0(esbuild@0.25.4)
 
   '@stencil/store@2.0.16(@stencil/core@4.19.2)':
     dependencies:
@@ -16690,7 +16681,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.26.0
       find-up: 5.0.0
-      webpack: 5.98.0
+      webpack: 5.98.0(esbuild@0.25.4)
 
   babel-loader@9.2.1(@babel/core@7.26.10)(webpack@5.98.0(esbuild@0.25.4)):
     dependencies:
@@ -19376,7 +19367,7 @@ snapshots:
     dependencies:
       source-map-js: 1.2.1
       strip-comments: 2.0.1
-      webpack: 5.98.0
+      webpack: 5.98.0(esbuild@0.25.4)
 
   imurmurhash@0.1.4: {}
 
@@ -23737,15 +23728,6 @@ snapshots:
     optionalDependencies:
       esbuild: 0.25.4
 
-  terser-webpack-plugin@5.3.14(webpack@5.98.0):
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.25
-      jest-worker: 27.5.1
-      schema-utils: 4.3.0
-      serialize-javascript: 6.0.2
-      terser: 5.39.0
-      webpack: 5.98.0
-
   terser@5.39.0:
     dependencies:
       '@jridgewell/source-map': 0.3.3
@@ -24541,36 +24523,6 @@ snapshots:
       webpack: 5.98.0(esbuild@0.25.4)
 
   webpack-virtual-modules@0.6.2: {}
-
-  webpack@5.98.0:
-    dependencies:
-      '@types/eslint-scope': 3.7.7
-      '@types/estree': 1.0.7
-      '@webassemblyjs/ast': 1.14.1
-      '@webassemblyjs/wasm-edit': 1.14.1
-      '@webassemblyjs/wasm-parser': 1.14.1
-      acorn: 8.14.1
-      browserslist: 4.25.0
-      chrome-trace-event: 1.0.3
-      enhanced-resolve: 5.17.1
-      es-module-lexer: 1.5.3
-      eslint-scope: 5.1.1
-      events: 3.3.0
-      glob-to-regexp: 0.4.1
-      graceful-fs: 4.2.11
-      json-parse-even-better-errors: 2.3.1
-      loader-runner: 4.3.0
-      mime-types: 2.1.35
-      neo-async: 2.6.2
-      schema-utils: 4.3.0
-      tapable: 2.2.1
-      terser-webpack-plugin: 5.3.14(webpack@5.98.0)
-      watchpack: 2.4.2
-      webpack-sources: 3.2.3
-    transitivePeerDependencies:
-      - '@swc/core'
-      - esbuild
-      - uglify-js
 
   webpack@5.98.0(esbuild@0.25.4):
     dependencies:

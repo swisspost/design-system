@@ -1,8 +1,5 @@
 @use 'sass:map';
 
-@use './../themes/bootstrap/core' as *;
-@use './../themes/bootstrap/breadcrumbs' as bb;
-
 @use './../variables/type';
 @use './../variables/spacing';
 @use './../variables/components/breadcrumbs';

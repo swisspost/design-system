@@ -1,11 +1,12 @@
 @use '@swisspost/design-system-styles/core' as post;
 @use '@swisspost/design-system-styles/functions/tokens' as tokens;
 @use '@swisspost/design-system-styles/tokens/utilities' as utilities;
+@use '@swisspost/design-system-styles/tokens/elements' as elements;
 
 tokens.$default-map: utilities.$post-spacing;
 
 .addon-label {
-  color: post.$body-color !important;
+  color: tokens.get('body-color', elements.$post-body) !important;
 }
 
 .addon-dropdown {
@@ -27,7 +28,7 @@ tokens.$default-map: utilities.$post-spacing;
     padding: tokens.get('utility-gap-8') tokens.get('utility-gap-12');
     border-radius: post.$border-radius-sm;
     text-decoration: none;
-    color: post.$body-color !important;
+    color: tokens.get('body-color', elements.$post-body) !important;
 
     &:hover {
       background-color: post.$gray-10;

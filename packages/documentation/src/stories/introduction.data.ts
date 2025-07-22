@@ -51,14 +51,6 @@ export const technologies: ITechnology[] = [
     },
   },
   {
-    name: 'Bootstrap',
-    href: `https://getbootstrap.com/docs/${getVersion(DEPENDENCIES['bootstrap'], 'Mm')}`,
-    img: {
-      src: '/assets/images/technologies/logo-bootstrap.svg',
-      alt: 'Bootstrap Logo',
-    },
-  },
-  {
     name: 'Typescript',
     href: 'https://www.typescriptlang.org/',
     img: {

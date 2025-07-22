@@ -569,6 +569,12 @@ export class MigrationV99Component extends LitElement {
               <ul>
                 <li class="mb-16">
                   <p>
+                    Removed the dependency to bootstrap.
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                </li>
+                <li class="mb-16">
+                  <p>
                     Removed the dependency to ng-bootstrap as well as all of the components built on it:
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
