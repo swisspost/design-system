@@ -1,5 +1,3 @@
-import { DEPENDENCIES, getVersion } from '@/utils/version';
-
 interface ITechnology {
   name: string;
   href: string;
