@@ -83,6 +83,20 @@ jobs:
         with:
           files: ./packages/icons/src/icons/**/*.svg
 
+      - name: Temp
+        env:
+          ADDED_FILES: ${{ steps.changed-files.outputs.added_files }}
+          MODIFIED_FILES: ${{ steps.changed-files.outputs.modified_files }}
+          RENAMED_FILES: ${{ steps.changed-files.outputs.renamed_files }}
+          COPIED_FILES: ${{ steps.changed-files.outputs.copied_files }}
+          DELETED_FILES: ${{ steps.changed-files.outputs.deleted_files }}
+        run: |
+          echo $ADDED_FILES
+          echo $MODIFIED_FILES
+          echo $RENAMED_FILES
+          echo $COPIED_FILES
+          echo $DELETED_FILES
+
       - name: Exit if no changes
         if: steps.changed-files.outputs.any_modified == 'false'
         run: |
@@ -91,6 +105,7 @@ jobs:
 
       - name: Get Changed Icons
         id: changed-icons
+        if: steps.changed-files.outputs.any_modified != 'false'
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         env:
           ADDED_FILES: ${{ steps.changed-files.outputs.added_files }}
