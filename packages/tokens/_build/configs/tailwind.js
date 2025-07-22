@@ -30,9 +30,9 @@ registerConfigMethod((tokenSets, { sourcePath, buildPath }) => {
             buildPath: `${buildPath}tailwind/`,
             files: [
               {
-                destination: `${name}.tailwind.css`,  // Changed from .js to .css
+                destination: `${name}.tailwind.css`,
                 filter: 'swisspost/source-tokens-filter',
-                format: 'swisspost/tailwind-v4-format',  // New format name
+                format: 'swisspost/tailwind-v4-format',
                 options: {
                   outputReferences: true,
                 },
