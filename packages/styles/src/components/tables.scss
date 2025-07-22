@@ -98,10 +98,6 @@ tokens.$default-map: utilities.$post-spacing;
   -webkit-overflow-scrolling: touch;
 }
 
-.table > :not(:first-child) {
-  border-width: 0;
-}
-
 .table-mono {
   // Set all border color
   > thead,
