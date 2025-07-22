@@ -27,6 +27,7 @@ tokens.$default-map: components.$post-container;
     }
   }
 }
+
 .container {
   --post-container-max-width: #{tokens.get('grid-max-width')};
   max-width: var(--post-container-max-width);
