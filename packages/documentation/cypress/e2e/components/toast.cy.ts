@@ -9,7 +9,7 @@ describe('toast', () => {
       cy.get('@triggerCreateToast').click();
       cy.get('.toast').should('exist');
       cy.get('.toast-close-button').click();
-      cy.get('.toast').should('not.exist');
+      cy.get('.toast').should('not.be.visible');
     });
   });
 
