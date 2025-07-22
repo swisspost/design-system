@@ -4,7 +4,7 @@ about: Sub-issue to implement the behavior and logic of a web component.
 title: '[web component func] componentnamehere'
 labels: '📦 components'
 assignees: ''
-type: 'Task'
+
 ---
 
 ### 📝 Description
