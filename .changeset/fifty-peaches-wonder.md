@@ -2,4 +2,4 @@
 '@swisspost/design-system-components-angular-workspace': patch
 ---
 
-Added peer dependencies for `@angular/common`, `@angular/core` and `@angular/forms`.
+Updated peer dependencies for `@angular/common`, `@angular/core` and `@angular/forms` to include "^20.0.0".
