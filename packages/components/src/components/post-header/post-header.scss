@@ -86,11 +86,6 @@
       transition: inset-block-start 0.2s ease-in-out;
       inset-block-start: var(--post-global-controls-top);
     }
-
-    // targets the target group
-    &:not(:last-child):not(:first-child) {
-      flex-grow: 1;
-    }
   }
 }
 
@@ -225,15 +220,10 @@
 
   ::slotted(post-mainnavigation),
   .navigation-footer {
-    padding-block: 16px 24px;
-    padding-inline: 32px;
-  }
-
-  ::slotted(post-mainnavigation),
-  .navigation-footer,
-  .navigation-target-group {
     display: none;
     flex-direction: column;
+    padding-block: 16px 24px;
+    padding-inline: 32px;
 
     .navigation.extended & {
       display: flex;

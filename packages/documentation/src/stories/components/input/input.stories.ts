@@ -1,6 +1,7 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing, TemplateResult } from 'lit';
 import { MetaComponent } from '@root/types';
+import { getLabelText, getValidationMessages } from '@/utils/form-elements';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -29,6 +30,7 @@ const meta: MetaComponent = {
     hint: 'This is helpful text that provides guidance or additional information to assist the user in filling out this field correctly.',
     disabled: false,
     validation: 'null',
+    requiredOptional: 'null',
   },
   argTypes: {
     label: {
@@ -137,6 +139,22 @@ const meta: MetaComponent = {
         category: 'States',
       },
     },
+    requiredOptional: {
+      name: 'Required / Optional',
+      description: 'Whether the field is required or optional.',
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          required: 'Required',
+          optional: 'Optional',
+        },
+      },
+      options: ['null', 'required', 'optional'],
+      table: {
+        category: 'States',
+      },
+    },
   },
 };
 
@@ -149,27 +167,16 @@ function render(args: Args, context: StoryContext) {
   const classes = ['form-control', args.validation].filter(c => c && c !== 'null').join(' ');
 
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
+
   const label: TemplateResult | null = !useAriaLabel
-    ? html` <label for="${id}" class="form-label">${args.label}</label> `
+    ? html` <label for="${id}" class="form-label">${getLabelText(args)}</label> `
     : null;
 
   if (args.floatingLabel && !args.placeholder) {
     args.placeholder = ' '; // a placeholder must always be defined for the floating label to work properly
   }
 
-  const contextual: (TemplateResult | null)[] = [
-    args.validation === 'is-valid'
-      ? html`
-          <p class="valid-feedback" id="${args.validation}-id-${context.id}">Great success!</p>
-        `
-      : null,
-    args.validation === 'is-invalid'
-      ? html`
-          <p class="invalid-feedback" id="${args.validation}-id-${context.id}">An error occurred!</p>
-        `
-      : null,
-    args.hint !== '' ? html` <p class="form-hint" id="form-hint-${id}">${args.hint}</p> ` : null,
-  ];
+  const contextual = getValidationMessages(args, context);
 
   const ariaDescribedByParts = [
     args.hint ? 'form-hint-' + context.id : '',
@@ -190,6 +197,7 @@ function render(args: Args, context: StoryContext) {
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
       aria-describedby="${ariaDescribedBy}"
       value="${args.value ? args.value : nothing}"
+      ?required="${args.requiredOptional === 'required'}"
     />
   `;
   if (args.floatingLabel) {

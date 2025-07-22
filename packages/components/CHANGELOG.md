@@ -1,5 +1,105 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.42
+
+### Patch Changes
+
+- Moved `@swisspost/design-system-eslint` from `dependencies` to `devDependencies`. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5835](https://github.com/swisspost/design-system/pull/5835))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.42
+  - @swisspost/design-system-icons@10.0.0-next.42
+
+## 10.0.0-next.41
+
+### Major Changes
+
+- Renamed the custom event `postBreakpoint:name` to `postBreakpoint:device`. (by [@alizedebray](https://github.com/alizedebray) with [#5739](https://github.com/swisspost/design-system/pull/5739))
+
+### Patch Changes
+
+- Fixed visual gap regression in `<post-header>` component during initial page load. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5772](https://github.com/swisspost/design-system/pull/5772))
+
+- Improved accessibility of the `post-language-switch` component by adding ARIA roles to trigger Screen Readers' focus mode navigation. (by [@myrta2302](https://github.com/myrta2302) with [#5578](https://github.com/swisspost/design-system/pull/5578))
+
+- Fixed `<post-header>` component overlapping content on tablet and mobile devices. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5826](https://github.com/swisspost/design-system/pull/5826))
+
+- Updated `post-tooltip-trigger` and `post-menu-trigger` components to prevent errors when they do not contain an internal HTML element. (by [@myrta2302](https://github.com/myrta2302) with [#5591](https://github.com/swisspost/design-system/pull/5591))
+
+- Improved URL handling in `post-icon` component:
+
+  - Enhanced URL construction to properly handle both absolute and relative URLs
+  - Fixed slug detection to correctly identify root paths ("/") as valid slugs
+  - Maintained priority order for URL sources: base property > base tag > data-post-icon-base meta attribute (by [@schaertim](https://github.com/schaertim) with [#5109](https://github.com/swisspost/design-system/pull/5109))
+
+- Enhanced accessibility of `post-language-switch` component by replacing `aria-labels` with `visually-hidden` spans and properly assigning semantic `role` attributes. (by [@myrta2302](https://github.com/myrta2302) with [#5350](https://github.com/swisspost/design-system/pull/5350))
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.41
+  - @swisspost/design-system-styles@10.0.0-next.41
+
+## 10.0.0-next.40
+
+### Minor Changes
+
+- Updated the `post-footer` component to support fewer than four columns of links, allowing flexibility in the number of `grid-*` slots used. (by [@alizedebray](https://github.com/alizedebray) with [#5724](https://github.com/swisspost/design-system/pull/5724))
+
+### Patch Changes
+
+- Fixed a typo in the render function of the `post-footer` to use the correct `post-accordion` component. (by [@leagrdv](https://github.com/leagrdv) with [#5723](https://github.com/swisspost/design-system/pull/5723))
+
+- Fixed the `post-accordion-item` chevron no longer rotating. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5719](https://github.com/swisspost/design-system/pull/5719))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.40
+  - @swisspost/design-system-icons@10.0.0-next.40
+
+## 10.0.0-next.39
+
+### Major Changes
+
+- Improved `post-header` component responsive behavior for better mobile and desktop experience. Removed `postUpdateDevice` event as part of internal refactoring - if you were listening to this event in your application, you'll need to remove those event listeners. Fixed a bug causing the `post-mainnavigation` to misplace after resizing from tablet to desktop and then back to tablet. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5490](https://github.com/swisspost/design-system/pull/5490))
+
+- Updated the following props to be `required`:
+
+  - `post-breadcrumbs`: `homeUrl` is now required.
+  - `post-collabpsible-trigger`: `for` is now required.
+  - `post-language-switch`: `caption` and `description` are now required.
+  - `post-tab-header`: `panel` is now required.
+  - `post-tab-panel`: `name` is now required. (by [@myrta2302](https://github.com/myrta2302) with [#5469](https://github.com/swisspost/design-system/pull/5469))
+
+- Added the styles responsible for preventing fouc (flashes of unstyled content) for web-, angular- and react-components in the respective component packages:
+
+  - `@swisspost/design-system-components/post-components/post-components.css`
+  - `@swisspost/design-system-components-angular/post-components.css`
+  - `@swisspost/design-system-components-react/post-components.css` (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5165](https://github.com/swisspost/design-system/pull/5165))
+
+- Fixed visual gap in the `post-header` component on iOS in Chrome browser. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5621](https://github.com/swisspost/design-system/pull/5621))
+
+### Patch Changes
+
+- Fixed `post-tooltip` text overflow by implementing proper word wrapping and updating width constraints. Tooltips now break correctly within a maximum width of 280px, preventing text from bleeding outside container boundaries. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5544](https://github.com/swisspost/design-system/pull/5544))
+
+- Updated validation error messages across the component library. (by [@myrta2302](https://github.com/myrta2302) with [#5471](https://github.com/swisspost/design-system/pull/5471))
+
+- Set `<post-tooltip>` to `display: contents` to avoid affecting document layout. (by [@myrta2302](https://github.com/myrta2302) with [#5574](https://github.com/swisspost/design-system/pull/5574))
+
+- Replaced thrown errors with console.errors for all property checker functions. (by [@myrta2302](https://github.com/myrta2302) with [#5471](https://github.com/swisspost/design-system/pull/5471))
+
+- Updated the following props to be `optional`:
+
+  - `post-banner`: `dismissLabel`, `icon`
+  - `post-card-control`: `description`
+  - `post-language-option`: `active`, `name`, `url`, `variant`
+  - `post-logo`: `url`
+  - `post-tabs`: `activePanel`
+  - `post-tag`: `variant`
+
+  Updated prop type:
+
+  - `post-card-control`: `validity` type changed to boolean. (by [@myrta2302](https://github.com/myrta2302) with [#5469](https://github.com/swisspost/design-system/pull/5469))
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@10.0.0-next.39
+  - @swisspost/design-system-styles@10.0.0-next.39
+
 ## 10.0.0-next.38
 
 ### Patch Changes

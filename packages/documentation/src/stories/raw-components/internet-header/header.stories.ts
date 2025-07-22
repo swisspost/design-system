@@ -9,7 +9,7 @@ import { MetaComponent } from '@root/types';
 const meta: MetaComponent = {
   id: 'ebb11274-091b-4cb7-9a3f-3e0451c9a865',
   title: 'Raw Components/Internet Header',
-  tags: ['package:InternetHeader'],
+  tags: ['package:InternetHeader', 'devOnly'],
   component: 'swisspost-internet-header',
   parameters: {
     badges: [],

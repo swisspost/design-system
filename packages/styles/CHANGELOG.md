@@ -1,5 +1,40 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.42
+
+## 10.0.0-next.41
+
+### Major Changes
+
+- Renamed the `chip-filter` to `chip-selectable` and removed the `chip-sm` variant. (by [@leagrdv](https://github.com/leagrdv) with [#5755](https://github.com/swisspost/design-system/pull/5755))
+
+- Renamed the following CSS custom properties and Sass variables: - `--post-breakpoint-widths` → `--post-grid-breakpoint-widths`
+  - `--post-breakpoint-keys` → `--post-grid-breakpoint-keys`
+  - `--post-breakpoint-names` → `--post-grid-breakpoint-devices`
+  - `$grid-breakpoints-key-name-map` → `$grid-breakpoint-to-device` (by [@alizedebray](https://github.com/alizedebray) with [#5739](https://github.com/swisspost/design-system/pull/5739))
+
+### Minor Changes
+
+- Updated media utilities to support device names: `mobile`, `tablet`, and `desktop`. (by [@alizedebray](https://github.com/alizedebray) with [#5739](https://github.com/swisspost/design-system/pull/5739))
+
+## 10.0.0-next.40
+
+### Major Changes
+
+- Renamed the `List Group` component to `List Interactive`. (by [@schaertim](https://github.com/schaertim) with [#5675](https://github.com/swisspost/design-system/pull/5675))
+
+## 10.0.0-next.39
+
+### Major Changes
+
+- Removed the file responsible for preventing fouc (flashes of unstyled content) for the web-components: `@swisspost/design-system-styles/components/not-defined.(scss|css)`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#5696](https://github.com/swisspost/design-system/pull/5696))
+
+### Patch Changes
+
+- Fixed an issue on iOS Chrome where floating labels would appear above the mobile navigation menu after users interacted with multiple form inputs, by increasing the z-index hierarchy for `post-header` components on mobile and tablet devices to ensure proper layering and maintain the navigation menu's top-level priority. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5550](https://github.com/swisspost/design-system/pull/5550))
+
+- Adjusted label top position to prevent text from appearing between label and border on Windows at 125% scaling. (by [@myrta2302](https://github.com/myrta2302) with [#5547](https://github.com/swisspost/design-system/pull/5547))
+
 ## 10.0.0-next.38
 
 ## 10.0.0-next.37
