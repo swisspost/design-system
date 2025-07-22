@@ -46,7 +46,7 @@ registerConfigMethod((tokenSets, { sourcePath, buildPath }) => {
 
 /**
  * @function StyleDictionary.registerFormat()
- * Defines a custom StyleDictionary format for Tailwind CSS v4.0 @theme directive.
+ * Defines a custom StyleDictionary format to be used at specific places in the build process.
  *
  * @param object {
  *   name: string,
@@ -54,35 +54,28 @@ registerConfigMethod((tokenSets, { sourcePath, buildPath }) => {
  * }
  *
  * swisspost/tailwind-v4-format:
- * Used to declare the format of the tailwind v4.0 CSS theme files.
+ * Used to declare the format of the tailwind output files.
  */
 StyleDictionary.registerFormat({
   name: 'swisspost/tailwind-v4-format',
   format: async ({ dictionary, options, file }) => {
     const header = await fileHeader({ file, commentStyle: 'long' }); // CSS comments
     
-    // Process tokens into theme variables
     const themeVariables = dictionary.allTokens.reduce((allTokens, token) => {
-      // Get the token path after the prefix
       const tokenPath = token.path.slice(token.path.indexOf(TOKENSET_PREFIX) + 1);
       
-      // Create CSS custom property name
-      // Convert: ['utility', 'margin', '0'] -> '--utility-margin-0'
       const cssVarName = `--${tokenPath.join('-')}`;
       
-      // Get the token value
       const tokenValue = getTokenValue(options, token);
       
       allTokens[cssVarName] = tokenValue;
       return allTokens;
     }, {});
 
-    // Convert theme variables to CSS format
     const themeCSS = Object.entries(themeVariables)
       .map(([name, value]) => `  ${name}: ${value};`)
       .join('\n');
 
-    // Return CSS with @theme directive
     return `${header}
 @import "tailwindcss";
 
