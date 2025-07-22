@@ -13,7 +13,6 @@
   .tabs-wrapper {
     // Negative margin to make the tabs-wrapper fullwidth
     margin-inline: calc(-1 * var(--post-container-offset));
-    padding-inline: 0;
 
     //Internal padding to align the tabs content to the container
     .tabs {

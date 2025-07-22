@@ -11,49 +11,34 @@ tokens.$default-map: components.$post-container;
 .container-fluid {
   width: 100%;
   margin-inline: auto;
-}
 
+  @each $breakpoint in map.keys(breakpoints.$grid-breakpoints) {
+    @include media.min($breakpoint) {
+      $gutter: tokens.get('grid-gutter-#{$breakpoint}');
+      $padding: tokens.get('grid-padding-#{$breakpoint}');
+
+      --post-grid-gutter-x: #{$gutter};
+
+      // The `.row` has a negative margin equal to half the gutter size.
+      // To prevent content from overflowing, the container needs to have
+      // a padding of at least half the gutter size to offset this negative margin.
+      --post-container-padding-inline: max(#{$padding}, calc(0.5 * #{$gutter}));
+      padding-inline: var(--post-container-padding-inline);
+    }
+  }
+}
 .container {
   --post-container-max-width: #{tokens.get('grid-max-width')};
   max-width: var(--post-container-max-width);
 
-  @each $breakpoint in map.keys(breakpoints.$grid-breakpoints) {
-    @include media.min($breakpoint) {
-      $gutter: tokens.get('grid-gutter-#{$breakpoint}');
-      $padding: tokens.get('grid-padding-#{$breakpoint}');
-
-      --post-grid-gutter-x: #{$gutter};
-
-      // The `.row` has a negative margin equal to half the gutter size.
-      // To prevent content from overflowing, the container needs to have
-      // a padding of at least half the gutter size to offset this negative margin.
-      --post-container-padding-inline: max(#{$padding}, calc(0.5 * #{$gutter}));
-      padding-inline: var(--post-container-padding-inline);
-
-      // Offset for `.container` is: padding-inline + max(0px, (100vw - container-max-width) / 2)
-      --post-container-offset: calc(
-        var(--post-container-padding-inline) +
-          max(0px, calc((100vw - var(--post-container-max-width)) / 2))
-      );
-    }
-  }
+  // Offset for `.container` is: padding-inline + max(0px, (100vw - container-max-width) / 2)
+  --post-container-offset: calc(
+    var(--post-container-padding-inline) +
+      max(0px, calc((100vw - var(--post-container-max-width)) / 2))
+  );
 }
 
 .container-fluid {
-  @each $breakpoint in map.keys(breakpoints.$grid-breakpoints) {
-    @include media.min($breakpoint) {
-      $gutter: tokens.get('grid-gutter-#{$breakpoint}');
-      $padding: tokens.get('grid-padding-#{$breakpoint}');
-
-      --post-grid-gutter-x: #{$gutter};
-
-      // The `.row` has a negative margin equal to half the gutter size.
-      // To prevent content from overflowing, the container needs to have
-      // a padding of at least half the gutter size to offset this negative margin.
-      --post-container-padding-inline: max(#{$padding}, calc(0.5 * #{$gutter}));
-      padding-inline: var(--post-container-padding-inline);
-      // Offset for `.container-fluid` is the padding-inline
-      --post-container-offset: var(--post-container-padding-inline);
-    }
-  }
+  // Offset for `.container-fluid` is the padding-inline
+  --post-container-offset: var(--post-container-padding-inline);
 }
