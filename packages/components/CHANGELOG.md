@@ -1,5 +1,14 @@
 # @swisspost/design-system-components
 
+## 10.0.0-next.42
+
+### Patch Changes
+
+- Moved `@swisspost/design-system-eslint` from `dependencies` to `devDependencies`. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5835](https://github.com/swisspost/design-system/pull/5835))
+- Updated dependencies:
+  - @swisspost/design-system-styles@10.0.0-next.42
+  - @swisspost/design-system-icons@10.0.0-next.42
+
 ## 10.0.0-next.41
 
 ### Major Changes
