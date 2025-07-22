@@ -9,7 +9,7 @@ import * as userMenuStories from './user-menu.stories';
   <link-design of={JSON.stringify(userMenuStories)}></link-design>
 </div>
 
-<p className="lead">Allows users to log in, access their profile, manage account settings, and sign out through a dynamic dropdown interface.</p>
+<p className="lead">Allows users to access their profile, manage account settings, and sign out through a dynamic dropdown interface.</p>
 
 <Canvas sourceState="shown" of={userMenuStories.Default} />
 
@@ -19,11 +19,3 @@ import * as userMenuStories from './user-menu.stories';
 
 The `<post-user-menu>` element is part of the `@swisspost/design-system-components` package.
 For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
-
-## Examples
-
-### User Not Logged In
-
-When no user data is provided, the component displays the content defined in the login slot.
-
-<Canvas of={userMenuStories.LoginButton} />

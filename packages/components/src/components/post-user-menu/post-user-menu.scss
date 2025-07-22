@@ -1,5 +1,6 @@
 @use '@swisspost/design-system-styles/components/avatar';
 @use '@swisspost/design-system-styles/mixins/media';
+@use '@swisspost/design-system-styles/mixins/utilities';
 
 button {
   cursor: pointer;
@@ -40,4 +41,8 @@ post-menu::part(menu) {
   .user-name {
     font-weight: 700;
   }
+}
+
+.visually-hidden {
+  @include utilities.visuallyhidden();
 }

@@ -549,6 +549,14 @@ export namespace Components {
     }
     interface PostUserMenu {
         /**
+          * A title for the user menu
+         */
+        "caption": string;
+        /**
+          * A descriptive text for the user avatar
+         */
+        "description": string;
+        /**
           * An Object containing the personal data of the user currently logged-in.
          */
         "user"?: User;
@@ -1420,6 +1428,14 @@ declare namespace LocalJSX {
         "for": string;
     }
     interface PostUserMenu {
+        /**
+          * A title for the user menu
+         */
+        "caption": string;
+        /**
+          * A descriptive text for the user avatar
+         */
+        "description": string;
         /**
           * An Object containing the personal data of the user currently logged-in.
          */

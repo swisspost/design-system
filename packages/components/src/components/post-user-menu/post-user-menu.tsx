@@ -1,7 +1,7 @@
 import { Component, Host, h, Prop, Watch, Element } from '@stencil/core';
 import { nanoid } from 'nanoid';
 import { version } from '@root/package.json';
-import { checkEmptyOrType } from '@/utils';
+import { checkRequiredAndType } from '@/utils';
 
 export interface User {
   name: string;
@@ -20,13 +20,39 @@ export class PostUserMenu {
   @Element() host: HTMLPostUserMenuElement;
 
   /**
+   * A title for the user menu
+   */
+  @Prop() caption!: string;
+
+  @Watch('caption')
+  validateCaption() {
+    checkRequiredAndType(this, 'caption', 'string');
+  }
+
+  /**
+   * A descriptive text for the user avatar
+   */
+  @Prop() description!: string;
+
+  @Watch('description')
+  validateDescription() {
+    checkRequiredAndType(this, 'description', 'string');
+  }
+
+  /**
    * An Object containing the personal data of the user currently logged-in.
    */
   @Prop() user?: User;
 
   @Watch('user')
   validateUser() {
-    checkEmptyOrType(this, 'user', 'object');
+    checkRequiredAndType(this, 'user', 'object');
+  }
+
+  componentWillLoad() {
+    this.validateCaption();
+    this.validateDescription();
+    this.validateUser();
   }
 
   private renderAvatar() {
@@ -42,20 +68,18 @@ export class PostUserMenu {
   render() {
     return (
       <Host data-version={version}>
-        {this.user ? [
-          <post-menu-trigger for={this.menuId}>
-            <button>{this.renderAvatar()}</button>
-          </post-menu-trigger>,
-          <post-menu id={this.menuId}>
-            <p class="user-profile">
-              {this.renderAvatar()}
-              <span class="user-name">{this.user.name} {this.user.surname}</span>
-            </p>
-            <slot></slot>
-          </post-menu>,
-        ] : (
-          <slot name="login" />
-        )}
+        <post-menu-trigger for={this.menuId}>
+          <button type="button">{this.renderAvatar()}</button>
+          <span class="visually-hidden">{this.description}</span>
+          <span class="visually-hidden">{this.caption}</span>
+        </post-menu-trigger>
+        <post-menu id={this.menuId} aria-label={this.caption}>
+          <p class="user-profile">
+            {this.renderAvatar()}
+            <span class="user-name">{this.user.name} {this.user.surname}</span>
+          </p>
+          <slot></slot>
+        </post-menu>
       </Host>
     );
   }

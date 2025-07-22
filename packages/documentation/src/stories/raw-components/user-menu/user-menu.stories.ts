@@ -1,13 +1,10 @@
 import type { StoryObj } from '@storybook/web-components';
-import { useArgs } from '@storybook/preview-api';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 import { spreadArgs } from '@/utils';
 import { clickBlocker } from '@/shared/decorators/click-blocker';
 
-type PostUserMenuArgs = HTMLPostUserMenuElement & {loggedIn: boolean};
-
-const meta: MetaComponent<PostUserMenuArgs> = {
+const meta: MetaComponent<HTMLPostUserMenuElement> = {
   id: 'e3cb7914-a3cd-4d84-ad0a-102c3452146f',
   title: 'Raw Components/User Menu',
   tags: ['package:WebComponents', 'devOnly'],
@@ -19,12 +16,10 @@ const meta: MetaComponent<PostUserMenuArgs> = {
       type: 'figma',
       url: 'https://www.figma.com/design/JIT5AdGYqv6bDRpfBPV8XR/Foundations---Components-Next-Level?node-id=2883-35906&t=S9WGw6hb21TlQxf0-4&m=dev',
     },
-    controls: {
-      exclude: ['loggedIn'],
-    },
   },
   args: {
-    loggedIn: true,
+    caption: 'Access user links',
+    description: 'You are currently logged in as John Doe.',
     user: {
       name: 'John',
       surname: 'Doe',
@@ -44,17 +39,9 @@ const meta: MetaComponent<PostUserMenuArgs> = {
 export default meta;
 
 // RENDERERS
-function renderUserMenu(args: Partial<PostUserMenuArgs>) {
-  const [_, updateArgs] = useArgs();
-
-  if (!args.loggedIn) args.user = undefined;
-
+function renderUserMenu(args: Partial<HTMLPostUserMenuElement>) {
   return html`
     <post-user-menu ${spreadArgs(args)}>
-      <a href="#" slot="login" class="btn btn-tertiary" @click=${() => updateArgs({loggedIn: true})}>
-        Login
-        <post-icon aria-hidden="true" name="login"></post-icon>
-      </a>
       <post-menu-item>
         <a href="#">
           <post-icon aria-hidden="true" name="profile"></post-icon>
@@ -74,7 +61,7 @@ function renderUserMenu(args: Partial<PostUserMenuArgs>) {
         </a>
       </post-menu-item>
       <post-menu-item>
-        <button type="button" @click=${() => updateArgs({loggedIn: false})}>
+        <button type="button">
           <post-icon aria-hidden="true" name="logout"></post-icon>
           Logout
         </button>
@@ -87,8 +74,3 @@ function renderUserMenu(args: Partial<PostUserMenuArgs>) {
 type Story = StoryObj<HTMLPostUserMenuElement>;
 
 export const Default: Story = {};
-export const LoginButton: Story = {
-  args: {
-    loggedIn: false,
-  }
-};

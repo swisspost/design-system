@@ -7,9 +7,11 @@
 
 ## Properties
 
-| Property | Attribute | Description                                                             | Type   | Default     |
-| -------- | --------- | ----------------------------------------------------------------------- | ------ | ----------- |
-| `user`   | `user`    | An Object containing the personal data of the user currently logged-in. | `User` | `undefined` |
+| Property                   | Attribute     | Description                                                             | Type     | Default     |
+| -------------------------- | ------------- | ----------------------------------------------------------------------- | -------- | ----------- |
+| `caption` _(required)_     | `caption`     | A title for the user menu                                               | `string` | `undefined` |
+| `description` _(required)_ | `description` | A descriptive text for the user avatar                                  | `string` | `undefined` |
+| `user`                     | `user`        | An Object containing the personal data of the user currently logged-in. | `User`   | `undefined` |
 
 
 ## Dependencies
