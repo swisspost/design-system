@@ -2,6 +2,7 @@ import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { useArgs } from '@storybook/preview-api';
 import { html, nothing, TemplateResult } from 'lit';
 import { MetaComponent } from '@root/types';
+import { getLabelText, getValidationMessages } from '@/utils/form-elements';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -32,6 +33,7 @@ const meta: MetaComponent = {
     showValue: 'none',
     disabled: false,
     validation: 'null',
+    requiredOptional: 'null',
   },
   argTypes: {
     label: {
@@ -160,6 +162,22 @@ const meta: MetaComponent = {
         category: 'States',
       },
     },
+    requiredOptional: {
+      name: 'Required / Optional',
+      description: 'Whether the field is required or optional.',
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          required: 'Required',
+          optional: 'Optional',
+        },
+      },
+      options: ['null', 'required', 'optional'],
+      table: {
+        category: 'States',
+      },
+    },
   },
 };
 
@@ -174,14 +192,22 @@ function render(args: Args, context: StoryContext) {
   const classes = ['form-range', args.validation].filter(c => c && c !== 'null').join(' ');
 
   const useAriaLabel = args.hiddenLabel;
+
   const label: TemplateResult | null = !useAriaLabel
-    ? html` <label class="form-label" for="${id}">${args.label}</label> `
+    ? html` <label class="form-label" for="${id}">${getLabelText(args)}</label> `
     : null;
 
-  const contextual: (TemplateResult | null)[] = [
-    args.validation === 'is-valid' ? html` <p class="valid-feedback">Great success!</p> ` : null,
-    args.validation === 'is-invalid' ? html` <p class="invalid-feedback">An error occurred!</p> ` : null,
+  const contextual: (TemplateResult | null)[] = getValidationMessages(args, context, false);
+
+  const ariaDescribedByParts = [
+    args.showValue === 'text' ? `form-hint-${context.id}` : '',
+    args.validation !== 'null' ? `${args.validation}-id-${context.id}` : '',
   ];
+
+  const ariaDescribedBy =
+    args.showValue === 'text' || args.validation !== 'null'
+      ? ariaDescribedByParts.join(' ')
+      : nothing;
 
   const control: TemplateResult = html`
     <input
@@ -196,8 +222,9 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
-      aria-describedby="${args.showValue === 'text' ? 'form-hint-' + id : ''}"
+      aria-describedby="${ariaDescribedBy}"
       @input="${(e: MouseEvent) => updateArgs({ value: (e.target as HTMLInputElement).value })}"
+      ?required="${args.requiredOptional === 'required'}"
     />
   `;
 

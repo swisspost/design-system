@@ -483,7 +483,7 @@ export namespace Components {
         /**
           * Defines the icon `name` inside of the component. <span className="banner banner-sm banner-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs">icon library</a>.
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Defines the size of the component.
          */
