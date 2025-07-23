@@ -1,5 +1,18 @@
 # @swisspost/design-system-documentation
 
+## 6.0.0-next.43
+
+### Patch Changes
+
+- Added the `components-react` package to the Getting started guide for developers. (by [@leagrdv](https://github.com/leagrdv) with [#5831](https://github.com/swisspost/design-system/pull/5831))
+- Updated dependencies:
+  - @swisspost/design-system-components@10.0.0-next.42
+  - @swisspost/design-system-components-react@10.0.0-next.42
+  - @swisspost/design-system-styles@10.0.0-next.42
+  - @swisspost/design-system-tokens@10.0.0-next.42
+  - @swisspost/design-system-icons@10.0.0-next.42
+  - @swisspost/internet-header@2.0.0-next.42
+
 ## 6.0.0-next.42
 
 ### Minor Changes
