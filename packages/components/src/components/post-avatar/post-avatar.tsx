@@ -57,6 +57,14 @@ export class PostAvatar {
   @State() imageAlt = '';
   @State() initials = '';
 
+  // To handle email or userid updates and reset the storage item
+  @State() private storageKeyTrigger: string = '';
+
+  private updateStorageKeyTrigger() {
+    // Combine relevant props into a single string.
+    this.storageKeyTrigger = `${this.userid || ''}_${this.email || ''}`;
+  }
+
   @Watch('firstname')
   validateFirstname() {
     checkRequiredAndType(this, 'firstname', 'string');
@@ -70,11 +78,18 @@ export class PostAvatar {
   @Watch('userid')
   validateUserid() {
     checkEmptyOrType(this, 'userid', 'string');
+    this.updateStorageKeyTrigger();
   }
 
   @Watch('email')
   validateEmail() {
     if (this.email) checkEmptyOrPattern(this, 'email', emailPattern);
+    this.updateStorageKeyTrigger();
+  }
+
+  @Watch('storageKeyTrigger')
+  onStorageKeyChanged() {
+    if (this.storageKeyTrigger !== '') this.refreshAvatar();
   }
 
   private async getAvatar() {
@@ -92,31 +107,66 @@ export class PostAvatar {
       if (!imageLoaded) this.getAvatarByInitials();
     }
   }
+  private async delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
   private async getImageByProp(prop: string, fetchImage: () => Promise<Response>) {
     if (!prop) return false;
 
-    const imageResponse = (await this.getStorageItem(prop)) ?? { ok: false, url: '' };
+    const cachedImageRes = await this.getStorageItem(prop);
+    if (cachedImageRes?.failed) return false;
 
-    if (!imageResponse.ok) {
+    if (cachedImageRes?.ok && cachedImageRes.url) {
+      this.imageUrl = cachedImageRes.url;
+      this.imageAlt = `${this.firstname} ${this.lastname} avatar`;
+      this.avatarType = AvatarType.Image;
+      return true;
+    }
+
+    const maxRetries = 2;
+    let delayMs = 100;
+
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {
-        const r = await fetchImage();
+        const response = await fetchImage();
 
-        imageResponse.ok = r.ok;
-        imageResponse.url = r.url;
+        if (response.ok) {
+          this.imageUrl = response.url;
+          this.imageAlt = `${this.firstname} ${this.lastname} avatar`;
+          this.avatarType = AvatarType.Image;
+          await this.setStorageItem(
+            prop,
+            JSON.stringify({ ok: true, url: response.url, failed: false }),
+          );
+          return true;
+        } else {
+          // If it's a 404 set as failed
+          if (response.status === 404) {
+            await this.setStorageItem(prop, JSON.stringify({ failed: true }));
+            console.info('Avatar not found (404).');
+            return false;
+          }
 
-        this.imageUrl = imageResponse.url;
-        this.imageAlt = `${this.firstname} ${this.lastname} avatar`;
-        this.avatarType = AvatarType.Image;
-
-        this.setStorageItem(this.userid, JSON.stringify(imageResponse));
+          // For other HTTP errors retry
+          console.info(`Attempt ${attempt}: Loading avatar failed with status ${response.status}.`);
+        }
       } catch (error) {
-        this.removeStorageItem(prop);
-        console.info(`Loading avatar by type "${AvatarType.Image}" failed.`);
+        console.info(`Attempt ${attempt}: Network error or fetch failed.`, error);
+      }
+
+      if (attempt < maxRetries) {
+        await this.delay(delayMs);
+        delayMs *= 2; // exponential backoff (3 attempts)
       }
     }
 
-    return imageResponse.ok;
+    // After retries exhausted, mark as failed
+    await this.setStorageItem(prop, JSON.stringify({ failed: true }));
+    console.info(
+      `Loading avatar by type "${AvatarType.Image}" failed after ${maxRetries} attempts.`,
+    );
+    return false;
   }
 
   private async fetchImageByUserId() {
@@ -163,6 +213,12 @@ export class PostAvatar {
     window?.sessionStorage?.removeItem(key);
   }
 
+  private async refreshAvatar() {
+    await this.removeStorageItem(this.userid);
+    await this.removeStorageItem(this.email);
+    this.getAvatar();
+  }
+
   private async cryptify(key: string) {
     return await crypto.subtle.digest('SHA-256', new TextEncoder().encode(key)).then(buffer => {
       return Array.from(new Uint8Array(buffer))
@@ -178,10 +234,9 @@ export class PostAvatar {
 
   componentWillRender() {
     this.slottedImage = this.host.querySelector('img');
-    this.getAvatar();
   }
 
-  componentDidLoad() {
+  componentWillLoad() {
     this.validateFirstname();
     this.validateLastname();
     this.validateUserid();
