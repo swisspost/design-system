@@ -1,0 +1,74 @@
+name: Visual Regression Tests
+on:
+  pull_request:
+    paths:
+      - 'packages/components/**'
+  workflow_dispatch:
+    inputs:
+      update-snapshots:
+        description: 'Update visual snapshots'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+
+jobs:
+  visual-tests-components:
+    name: Visual Tests - Components
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+
+      - name: Setup
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Install dependencies and build packages
+        run: pnpm bootstrap
+
+      - name: Install Playwright browsers
+        working-directory: packages/components
+        run: npx playwright install --with-deps
+
+      - name: Get snapshot cache
+        id: snapshot-cache
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+        with:
+          path: packages/components/visual-tests/__screenshots__
+          key: visual-snapshots-components-${{ github.ref }}
+          restore-keys: |
+            visual-snapshots-components-refs/heads/main
+      
+      - name: Update Snapshots
+        if: github.event.inputs.update-snapshots == 'true' || steps.snapshot-cache.outputs.cache-hit != 'true'
+        working-directory: packages/components
+        run: pnpm test:visual:update
+
+      - name: Run visual tests
+        working-directory: packages/components
+        run: pnpm test:visual
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: playwright-report-components
+          path: packages/components/test-results
+          retention-days: 14
+
+      - name: Upload diff screenshots
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: playwright-screenshots-components
+          path: |
+            packages/components/test-results/**/*-diff.png
+            packages/components/test-results/**/*-actual.png
+            packages/components/test-results/**/*-expected.png
+          retention-days: 14
