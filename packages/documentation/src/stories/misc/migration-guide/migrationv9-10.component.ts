@@ -656,6 +656,14 @@ export class MigrationV99Component extends LitElement {
                 </li>
                 <li class="mb-16">
                   <p>
+                    The <code>.chip-filter</code> has been renamed to
+                    <code>.chip-selectable</code> and the small variant of the chip
+                    <code>.chip-sm</code> has been removed.
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                </li>
+                <li class="mb-16">
+                  <p>
                     Some datatable scss variables have been removed
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>

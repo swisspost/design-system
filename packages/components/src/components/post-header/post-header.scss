@@ -33,12 +33,6 @@
     --post-logo-height: var(--post-global-header-height);
     --post-global-controls-top: 0;
   }
-
-  @include media.max(lg) {
-    position: fixed;
-    inset: 0;
-    bottom: auto;
-  }
 }
 
 :host(:not(:has([slot='title']))) {
@@ -70,7 +64,6 @@
   @include media.max(lg) {
     z-index: 4;
     inset-block-start: 0;
-    position: relative;
   }
 
   @include media.min(lg) {
@@ -157,7 +150,7 @@
 
   @include media.max(lg) {
     z-index: 3;
-    position: relative;
+    inset-block-start: var(--post-global-header-height);
     padding-block: 8px;
 
     flex-wrap: wrap;
