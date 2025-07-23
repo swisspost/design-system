@@ -69,9 +69,11 @@ export class PostUserMenu {
     return (
       <Host data-version={version}>
         <post-menu-trigger for={this.menuId}>
-          <button type="button">{this.renderAvatar()}</button>
-          <span class="visually-hidden">{this.description}</span>
-          <span class="visually-hidden">{this.caption}</span>
+          <button type="button">
+            {this.renderAvatar()}
+            <span class="visually-hidden">{this.description}</span>
+            <span class="visually-hidden">{this.caption}</span>
+          </button>
         </post-menu-trigger>
         <post-menu id={this.menuId} aria-label={this.caption}>
           <p class="user-profile">
