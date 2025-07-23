@@ -1,5 +1,13 @@
 # @swisspost/design-system-intranet-header
 
+## 9.0.3
+
+### Patch Changes
+
+- Updated `@angular/common` and `@angular/core` peer dependencies to include `^20.0.0`. Migrated the `sp-internet-header` template to use the control flow syntax. (by [@myrta2302](https://github.com/myrta2302) with [#5780](https://github.com/swisspost/design-system/pull/5780))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.3
+
 ## 9.0.2
 
 ### Patch Changes
