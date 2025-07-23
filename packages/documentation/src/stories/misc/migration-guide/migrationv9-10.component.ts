@@ -569,6 +569,21 @@ export class MigrationV99Component extends LitElement {
               <ul>
                 <li class="mb-16">
                   <p>
+                    Removed the dependency to ng-bootstrap as well as all of the components built on it:
+                    <span class="tag tag-sm tag-danger">breaking</span>
+                  </p>
+                  <ul>
+                    <li>datepicker</li>
+                    <li>timepicker</li>
+                    <li>pagination</li>
+                    <li>typeahead</li>
+                    <li>dropdown</li>
+                    <li>datatable</li>
+                    <li>progressbar</li>
+                  </ul>
+                </li>
+                <li class="mb-16">
+                  <p>
                     The card button CSS component has been removed.The <code>.card-button</code> and
                     <code>.card-buttons</code> are therefore no longer available.
                     <span class="tag tag-sm tag-danger">breaking</span>
