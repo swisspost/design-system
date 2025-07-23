@@ -44,7 +44,7 @@ export const Select: Story = {
     ]
       // remove disabled & validated examples
       .filter((args: Args) => !(args.disabled && args.validation !== 'null'))
-      .map(args => ({ ...args, id: `a-${crypto.randomUUID()}` }));
+      .map(args => ({ ...args }));
 
     //Arguments for Multiple Version
     const bombArgsGeneratedMultiple = [
@@ -69,7 +69,7 @@ export const Select: Story = {
     ]
       // remove disabled & validated examples
       .filter((args: Args) => !(args.disabled && args.validation !== 'null'))
-      .map(args => ({ ...args, id: `a-${crypto.randomUUID()}` }));
+      .map(args => ({ ...args }));
 
     return schemes(
       () => html`
@@ -81,11 +81,12 @@ export const Select: Story = {
                 <div>
                   ${FloatingLabel.render?.(
                     { ...context.args, ...FloatingLabel.args, ...args },
-                    { ...context, id: args.id },
+                    { ...context, id: `a-${crypto.randomUUID()}` },
                   )}
                 </div>
               `,
           )}
+
           <h2>Default</h2>
           ${bombArgsGeneratedDefault
             .map((args: Args) => ({ ...args, floatingLabel: false }))
@@ -94,7 +95,7 @@ export const Select: Story = {
                 <div>
                   ${Default.render?.(
                     { ...context.args, ...Default.args, ...args },
-                    { ...context, id: args.id },
+                    { ...context, id: `a-${crypto.randomUUID()}` },
                   )}
                 </div>
               `;
@@ -106,7 +107,7 @@ export const Select: Story = {
                 <div>
                   ${FloatingLabel.render?.(
                     { ...context.args, ...FloatingLabel.args, ...args },
-                    { ...context, id: args.id },
+                    { ...context, id: `a-${crypto.randomUUID()}` },
                   )}
                 </div>
               `,
@@ -118,7 +119,7 @@ export const Select: Story = {
                 <div>
                   ${Default.render?.(
                     { ...context.args, ...Default.args, ...args },
-                    { ...context, id: args.id },
+                    { ...context, id: `a-${crypto.randomUUID()}` },
                   )}
                 </div>
               `,

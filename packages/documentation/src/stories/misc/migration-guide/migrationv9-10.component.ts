@@ -569,7 +569,8 @@ export class MigrationV99Component extends LitElement {
               <ul>
                 <li class="mb-16">
                   <p>
-                    Removed the dependency to bootstrap.
+                    Removed the dependency to bootstrap as well as all of the overrides of its SCSS
+                    variables and classes.
                     <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                 </li>

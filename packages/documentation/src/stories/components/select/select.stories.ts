@@ -222,6 +222,7 @@ const Template: Story = {
     const ariaDescribedBy =
       args.hint || args.validation !== 'null' ? ariaDescribedByParts.join(' ') : nothing;
 
+    console.log('idis', context.id);
     const control = html`
       <select
         id="${context.id}"
