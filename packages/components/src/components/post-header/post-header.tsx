@@ -15,6 +15,7 @@ import { EventFrom } from '@/utils/event-from';
  * @slot title - Holds the application title.
  * @slot default - Custom controls or content, right aligned in the local header.
  * @slot post-mainnavigation - Has a default slot because it's only meant to be used in the `<post-header>`.
+ * @slot target-group - Holds the list of buttons to choose the target group.
  */
 
 @Component({
@@ -294,6 +295,12 @@ export class PostHeader {
     }
   }
 
+  private handleBackButtonClick() {
+    if (this.mobileMenuExtended) {
+      this.toggleMobileMenu(false);
+    }
+  }
+
   private switchLanguageSwitchMode() {
     const variant: SwitchVariant = this.device === 'desktop' ? 'menu' : 'list';
     Array.from(this.host.querySelectorAll('post-language-switch')).forEach(languageSwitch => {
@@ -320,8 +327,17 @@ export class PostHeader {
         style={{ '--post-header-navigation-current-inset': `${mobileMenuScrollTop}px` }}
       >
         <div class="mobile-menu" ref={el => (this.mobileMenu = el)}>
+          {((this.device === 'mobile' || this.device === 'tablet') && this.mobileMenuExtended) && (
+            <div class="mobile-menu-top">
+              <div class="back-button" onClick={() => this.handleBackButtonClick()}>
+                <slot name="back-button"></slot>
+              </div>
+              <div class="target-group">
+                <slot name="target-group"></slot>
+              </div>
+            </div>
+          )}
           <slot name="post-mainnavigation"></slot>
-
           {(this.device === 'mobile' || this.device === 'tablet') && (
             <div class="navigation-footer">
               <slot name="meta-navigation"></slot>
@@ -341,6 +357,9 @@ export class PostHeader {
             <div class="logo">
               <slot name="post-logo"></slot>
             </div>
+          </div>
+          <div class="global-sub">
+            {this.device === 'desktop' && <slot name="target-group"></slot>}
           </div>
           <div class="global-sub">
             {this.device === 'desktop' && <slot name="meta-navigation"></slot>}

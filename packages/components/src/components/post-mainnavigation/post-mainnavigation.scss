@@ -11,7 +11,6 @@
 @use '@swisspost/design-system-styles/variables/color';
 
 post-mainnavigation {
-  // reset links and buttons
   post-list-item {
     > a {
       text-decoration: none;
@@ -42,17 +41,7 @@ post-mainnavigation {
     }
   }
 
-  .back-button {
-    @include media.max(lg) {
-      font-size: 16px;
-    }
-
-    @include media.max(sm) {
-      font-size: 14px;
-    }
-  }
-
-  // styles specific to for the mega-dropdown buttons
+  // styles specific to mega-dropdown buttons
   > button,
   post-megadropdown-trigger button {
     &::after {
@@ -172,7 +161,7 @@ post-mainnavigation {
         }
       }
 
-      // styles specific to for the mega-dropdown buttons
+      // styles specific to mega-dropdown buttons
       > button,
       post-megadropdown-trigger button {
         padding-inline-end: 12px;
@@ -205,7 +194,7 @@ post-mainnavigation {
     }
   }
 
-  // tablet/mobile styles
+  // Tablet/mobile styles
   @include media.max(lg) {
     nav {
       transform: none !important;
@@ -227,14 +216,10 @@ post-mainnavigation {
       }
     }
 
-    // styles specific to for the mega-dropdown buttons
+    // Styles specific to mega-dropdown buttons
     > button::after,
     post-megadropdown-trigger button::after {
       transform: rotate(-90deg);
     }
-  }
-
-  .back-button .btn {
-    padding-inline: 0;
   }
 }

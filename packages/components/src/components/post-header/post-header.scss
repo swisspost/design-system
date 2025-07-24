@@ -80,11 +80,16 @@
   gap: 24px;
 
   @include media.min(lg) {
-    // targets the right links and language switch to hide them on scroll
+    // Target right links and language switch to hide them on scroll
     &:not(:has(.logo)) {
       position: relative;
       transition: inset-block-start 0.2s ease-in-out;
       inset-block-start: var(--post-global-controls-top);
+    }
+
+    // Target the target group
+    &:not(:last-child):not(:first-child) {
+      flex-grow: 1;
     }
   }
 }
@@ -101,7 +106,7 @@
   align-self: flex-end;
 
   @include media.min(lg) {
-    transition: height 0.2 ease-in-out;
+    transition: height 0.2s ease-in-out;
     height: var(--post-logo-height);
   }
 }
@@ -152,7 +157,6 @@
     z-index: 3;
     inset-block-start: var(--post-global-header-height);
     padding-block: 8px;
-
     flex-wrap: wrap;
     gap: 12px;
 
@@ -220,14 +224,44 @@
 
   ::slotted(post-mainnavigation),
   .navigation-footer {
-    display: none;
-    flex-direction: column;
     padding-block: 16px 24px;
     padding-inline: 32px;
+    display: none;
+    flex-direction: column;
+
+    @include media.max(sm) {
+      padding-inline: 16px;
+    }
 
     .navigation.extended & {
       display: flex;
     }
+  }
+
+  .mobile-menu-top {
+    @include media.max(lg) {
+      padding: 16px 32px 0;
+    }
+
+    @include media.max(sm) {
+      padding: 16px 16px 0;
+    }
+
+    & .back-button ::slotted(.btn) {
+      @include media.max(lg) {
+        font-size: 16px !important;
+        padding: 0 !important;
+      }
+
+      @include media.max(sm) {
+        font-size: 14px !important;
+      }
+    }
+  }
+
+  .navigation-footer {
+    background-color: #f0efed;
+    gap: 24px;
   }
 
   .navigation.extended {
@@ -254,18 +288,5 @@
 
   ::slotted(post-mainnavigation) {
     gap: 32px;
-  }
-
-  .navigation-footer {
-    background-color: #f0efed;
-    gap: 24px;
-  }
-}
-
-// only for mobile
-@include media.max(sm) {
-  ::slotted(post-mainnavigation),
-  .navigation-footer {
-    padding-inline: 16px;
   }
 }
