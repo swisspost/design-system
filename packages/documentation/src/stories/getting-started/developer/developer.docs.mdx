@@ -81,18 +81,14 @@ The design-system is formed with several packages and different compatibilities 
             </ti-le>
           )))}
         </td>
-        <td>TBD</td>
-      </tr>
-      <tr>
-        <td scope="row">
-          Angular components:
-          <developer-list-component packageType={PackageType.Angular}></developer-list-component>
-        </td>
-        <td>N/A</td>
         <td>
-          <a href="https://ng-bootstrap.github.io">Ng-Bootstrap</a> module specific to the component
+          {[packages.find(pkg => pkg.name === 'Components for React')].map((p => (
+            <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel} key={p.name}>
+              <img src={p.img.src} alt={p.img.alt}/>
+              <span>{p.version}</span>
+            </ti-le>
+          )))}
         </td>
-        <td >N/A</td>
       </tr>
       <tr>
         <td scope="row">

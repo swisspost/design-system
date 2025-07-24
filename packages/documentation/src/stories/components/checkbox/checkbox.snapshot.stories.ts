@@ -36,9 +36,11 @@ export const Checkbox: Story = {
               size: ['null', 'form-check-sm'],
               hiddenLabel: [false, true],
               disabled: [false, true],
+              requiredOptional: ['null', 'required', 'optional'],
             })
               .filter(
                 (args: Args) =>
+                  !(args.requiredOptional === 'required' && args.disabled === true) &&
                   (args.validation === 'null' || !args.disabled) &&
                   (!args.hiddenLabel || !args.disabled) &&
                   (args.validation === 'null' || args.hiddenLabel),

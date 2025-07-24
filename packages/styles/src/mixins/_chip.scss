@@ -1,24 +1,20 @@
-@use './../themes/bootstrap/core' as *;
+@use '../tokens/components';
+@use '../functions/tokens';
 
-@use './../variables/components/badge';
-@use './../variables/components/chip';
-@use './../mixins/utilities';
+tokens.$default-map: components.$post-chip;
 
 @mixin chip-styles {
-  @include border-radius(chip.$chip-border-radius);
+  position: relative;
+  font-size: tokens.get('chip-label-font-size');
+  font-weight: tokens.get('chip-label-font-weight');
+  color: tokens.get('chip-enabled-fg');
+  background-color: tokens.get('chip-enabled-bg');
+  border: tokens.get('chip-border-width') solid tokens.get('chip-enabled-stroke');
+  border-radius: tokens.get('chip-border-radius');
+  height: tokens.get('chip-height');
   display: inline-flex;
   align-items: center;
-  height: chip.$chip-height;
-  max-width: chip.$chip-max-width;
-  padding-inline: chip.$chip-padding-x;
-  border: chip.$chip-border-width solid chip.$chip-border-color;
-  gap: chip.$chip-gap;
-  line-height: chip.$chip-line-height;
-  font-size: chip.$chip-font-size;
-  font-weight: chip.$chip-font-weight;
-  color: chip.$chip-color;
-  background-color: chip.$chip-bg;
-  transition: chip.$chip-transition;
+  max-width: 100%;
 
   > .chip-text {
     text-overflow: ellipsis;
@@ -27,9 +23,8 @@
   }
 }
 
-@mixin chip-styles-sm {
-  height: chip.$chip-height-sm;
-  font-size: chip.$chip-font-size-sm;
-  gap: chip.$chip-gap-sm;
-  padding-inline: chip.$chip-padding-x-sm;
+@mixin chip-styles-disabled() {
+  color: tokens.get('chip-disabled-fg');
+  background-color: tokens.get('chip-disabled-bg');
+  border-color: tokens.get('chip-disabled-stroke');
 }

@@ -1,5 +1,22 @@
+@use 'sass:map';
 @use '@swisspost/design-system-styles/components/tabs/tabs-wrapper';
+@use '@swisspost/design-system-styles/tokens/components';
+@use '@swisspost/design-system-styles/functions/tokens';
+@use '@swisspost/design-system-styles/variables/breakpoints';
+@use '@swisspost/design-system-styles/mixins/media';
 
 :host {
   display: block;
+}
+
+:host([full-width='true']) {
+  .tabs-wrapper {
+    // Negative margin to make the tabs-wrapper fullwidth
+    margin-inline: calc(-1 * var(--post-container-offset));
+
+    //Internal padding to align the tabs content to the container
+    .tabs {
+      padding-inline: var(--post-container-offset);
+    }
+  }
 }

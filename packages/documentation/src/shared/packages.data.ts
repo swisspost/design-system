@@ -3,6 +3,7 @@ import { DEPENDENCIES, getVersion } from '@/utils/version';
 import metaStyles from '@/stories/packages/styles/styles.stories';
 import metaComponents from '@/stories/packages/components/components.stories';
 import metaComponentsAngular from '@/stories/packages/components-angular/components-angular.stories';
+import metaComponentsReact from '@/stories/packages/components-react/components-react.stories';
 import metaInternetHeader from '@/stories/packages/internet-header/internet-header.stories';
 import metaIcons from '@/stories/packages/icons/package-icons.stories';
 import metaTokens from '@/stories/packages/tokens/tokens.stories';
@@ -85,6 +86,26 @@ export const packages: IPackage[] = [
       alt: '',
     },
     version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-components-angular'])}`,
+  },
+  {
+    name: 'Components for React',
+    docsStoryId: metaComponentsReact.id,
+    type: PackageType.React,
+    link: {
+      github: {
+        href: 'https://github.com/swisspost/design-system/tree/main/packages/components-react',
+        ariaLabel: 'Source of Components for React package',
+      },
+      docs: {
+        href: generateDocsRelativeLink(metaComponentsReact.id),
+        ariaLabel: 'Getting started with Components for React package',
+      },
+    },
+    img: {
+      src: '/assets/images/packages/components-react.svg',
+      alt: '',
+    },
+    version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-components-react'])}`,
   },
   {
     name: 'Internet-Header',
