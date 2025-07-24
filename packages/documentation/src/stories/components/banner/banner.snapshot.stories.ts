@@ -89,6 +89,10 @@ export const Banner: Story = {
             )}
         </div>
       `,
+      {
+        // dark mode is not yet designed/implemented
+        filter: scheme => scheme === 'light',
+      },
     );
   },
 };
@@ -128,6 +132,10 @@ export const PostBanner: Story = {
           )}
         </div>
       `,
+      {
+        // dark mode is not yet designed/implemented
+        filter: scheme => scheme === 'light',
+      },
     );
   },
 };
