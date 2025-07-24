@@ -286,24 +286,6 @@ export const Validation: Story = {
         </div>
       </div>
 
-      <!-- Form Range -->
-      <div class="row mb-16">
-        <div class="col-md-6">
-          <div class="">
-            <label class="form-label" for="FormRangeInvalid">Invalid Range</label>
-            <input class="form-range is-invalid" id="FormRangeInvalid" type="range" />
-            <p class="invalid-feedback">Error message</p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="">
-            <label class="form-label" for="FormRangeValid">Valid Range</label>
-            <input class="form-range is-valid" id="FormRangeValid" type="range" />
-            <p class="valid-feedback">Success message (optional)</p>
-          </div>
-        </div>
-      </div>
-
       <!-- Form Switch -->
       <div class="row mb-16">
         <div class="col-md-6">
