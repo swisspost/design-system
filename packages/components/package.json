@@ -99,7 +99,6 @@
     "@types/mock-fs": "4.13.4",
     "@types/node": "22.10.5",
     "@typescript-eslint/parser": "7.18.0",
-    "bootstrap": "5.3.3",
     "copyfiles": "2.4.1",
     "cypress": "14.3.2",
     "cypress-axe": "1.6.0",
