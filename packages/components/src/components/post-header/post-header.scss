@@ -289,14 +289,4 @@
   ::slotted(post-mainnavigation) {
     gap: 32px;
   }
-
-  @include media.max(sm) {
-    // Adjust spacing when target group is present
-    :has([slot="target-group"]) {
-      ::slotted(post-mainnavigation) {
-        gap: 24px;
-        padding-block-start: 24px;
-      }
-    }
-  }
 }
