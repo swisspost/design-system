@@ -29,14 +29,6 @@
     "lint:fix": "stylelint src/**/*.scss !src/tokens/temp/** --fix",
     "format": "prettier src/**/*.scss --write"
   },
-  "peerDependencies": {
-    "@angular/core": "^19.0.0"
-  },
-  "peerDependenciesMeta": {
-    "@angular/core": {
-      "optional": true
-    }
-  },
   "dependencies": {
     "@popperjs/core": "2.11.8",
     "gulp-sourcemaps": "3.0.0"
