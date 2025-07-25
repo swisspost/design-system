@@ -408,7 +408,7 @@ export function getSet(
 export function getTokenValue(
   options: Config & LocalOptions,
   token: TransformedToken,
-): string | number | boolean | object {
+): TokenProperty {
   const { outputReferences } = options;
 
   const usesDtcg = token.$type && token.$value;
