@@ -1,5 +1,5 @@
-import { StoryFn, StoryContext, Args } from '@storybook/web-components';
-import { useArgs } from '@storybook/preview-api';
+import { StoryFn, StoryContext, Args } from '@storybook/web-components-vite';
+import { useArgs } from 'storybook/preview-api';
 
 // Compare the arg objects
 const argsMatch = (obj1: Args, obj2: Args): boolean => {

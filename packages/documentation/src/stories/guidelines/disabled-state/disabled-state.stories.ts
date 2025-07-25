@@ -1,4 +1,4 @@
-import { StoryObj } from '@storybook/web-components';
+import { StoryObj } from '@storybook/web-components-vite';
 import { MetaExtended } from '@root/types';
 import { html } from 'lit';
 

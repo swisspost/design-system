@@ -1,4 +1,4 @@
-import { Args } from '@storybook/web-components';
+import { Args } from '@storybook/web-components-vite';
 
 export const getBannerClasses = (args: Args): string =>
   [

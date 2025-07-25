@@ -1,4 +1,4 @@
-import { Args, StoryObj, StoryContext } from '@storybook/web-components';
+import { Args, StoryObj, StoryContext } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
 import { bombArgs } from '@/utils';

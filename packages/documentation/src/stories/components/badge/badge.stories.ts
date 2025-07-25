@@ -1,4 +1,4 @@
-import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { MetaComponent } from '@root/types';
 import backgroundColors from '@/shared/background-colors.module.scss';
