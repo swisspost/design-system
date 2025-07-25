@@ -1,5 +1,13 @@
 # @swisspost/design-system-components-angular
 
+## 8.12.1
+
+### Patch Changes
+
+- Added `@angular/forms` in peer dependencies. (by [@myrta2302](https://github.com/myrta2302) with [#5827](https://github.com/swisspost/design-system/pull/5827))
+- Updated dependencies:
+  - @swisspost/design-system-components@8.12.1
+
 ## 8.12.0
 
 ### Patch Changes
