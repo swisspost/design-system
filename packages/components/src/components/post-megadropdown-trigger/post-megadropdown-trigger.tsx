@@ -1,7 +1,6 @@
 import { Component, Element, Prop, h, Host, State, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
-import { checkRequiredAndType } from '@/utils';
-import { eventGuard } from '@/utils/event-guard';
+import { checkRequiredAndType, EventFrom } from '@/utils';
 
 @Component({
   tag: 'post-megadropdown-trigger',
@@ -67,10 +66,8 @@ export class PostMegadropdownTrigger {
     }
   };
 
-  private handleToggleMegadropdown = (
-    event: CustomEvent<{ isVisible: boolean; focusParent: boolean }>,
-  ) => {
-    eventGuard(this.host, event, { targetLocalName: 'post-megadropdown' }, () => {
+  @EventFrom('post-megadropdown', { ignoreNestedComponents: false })
+  private handleToggleMegadropdown = (event: CustomEvent<{ isVisible: boolean; focusParent: boolean }>) => {
       if ((event.target as HTMLPostMegadropdownElement).id === this.for) {
         this.ariaExpanded = event.detail.isVisible;
 
@@ -86,8 +83,7 @@ export class PostMegadropdownTrigger {
           this.slottedButton.setAttribute('aria-expanded', this.ariaExpanded.toString());
         }
       }
-    });
-  };
+    };
 
   componentDidLoad() {
     this.validateControlFor();

@@ -103,7 +103,7 @@ function render(args: Args) {
       </button>
     </div>
     <post-popover
-      class="${args.palette}"
+      class="palette ${args.palette}"
       id="${args.id}"
       placement="${args.placement}"
       close-button-caption="${args.closeButtonCaption}"

@@ -1,6 +1,7 @@
 @use 'sass:list';
 @use 'sass:map';
 @use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/layout' as layout;
 @use '../shared.module' as shared;
 
 :export {
@@ -13,7 +14,7 @@
 
   // Variables to expose under sass variables section
   variables_grid-columns: post.$grid-columns;
-  variables_grid-row-columns: post.$grid-row-columns;
+  variables_grid-row-columns: layout.$grid-row-columns;
 
   @each $breakpoint, $value in post.$grid-breakpoints {
     variables_grid-gutter-x_#{$breakpoint}: map.get(post.$grid-gutter-x, $breakpoint);

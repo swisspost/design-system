@@ -16,7 +16,7 @@
     padding-right: 20vw;
   }
 
-  @include post.media-breakpoint-up(xl) {
+  @include post.min(xl) {
     background-position: center right;
   }
 }

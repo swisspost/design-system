@@ -1,8 +1,7 @@
 import { Component, Element, h, Host, Listen, Method, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
 import { HEADING_LEVELS, HeadingLevel } from '@/types';
-import { checkRequiredAndOneOf } from '@/utils';
-import { eventGuard } from '@/utils/event-guard'; // Import eventGuard
+import { checkRequiredAndOneOf, EventFrom } from '@/utils';
 
 /**
  * @slot default - Slot for placing post-accordion-item components.
@@ -46,31 +45,25 @@ export class PostAccordion {
   }
 
   @Listen('postToggle')
+  @EventFrom('post-accordion-item')
   collapseToggleHandler(event: CustomEvent<boolean>) {
-    eventGuard(
-      this.host,
-      event,
-      { targetLocalName: 'post-accordion-item', delegatorSelector: 'post-accordion' },
-      () => {
-        const toggledAccordionItem = event.target as HTMLPostAccordionItemElement;
-        const isClosing = this.expandedItems.has(toggledAccordionItem);
+    const toggledAccordionItem = event.target as HTMLPostAccordionItemElement;
+    const isClosing = this.expandedItems.has(toggledAccordionItem);
 
-        if (isClosing) {
-          this.expandedItems.delete(toggledAccordionItem);
-        } else {
-          this.expandedItems.add(toggledAccordionItem);
-        }
+    if (isClosing) {
+      this.expandedItems.delete(toggledAccordionItem);
+    } else {
+      this.expandedItems.add(toggledAccordionItem);
+    }
 
-        if (this.multiple || isClosing) return;
+    if (this.multiple || isClosing) return;
 
-        // Close other open accordion items to ensure only one is open at a time
-        Array.from(this.expandedItems.values())
-          .filter(item => item !== toggledAccordionItem)
-          .forEach(item => {
-            item.toggle(false);
-          });
-      },
-    );
+    // Close other open accordion items to ensure only one is open at a time
+    Array.from(this.expandedItems.values())
+      .filter(item => item !== toggledAccordionItem)
+      .forEach(item => {
+        item.toggle(false);
+      });
   }
 
   /**
