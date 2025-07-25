@@ -7,7 +7,7 @@ tokens.$default-map: elements.$post-link;
 a {
   text-decoration: tokens.get('link-decoration');
   border-radius: tokens.get('link-border-radius');
-  color: tokens.get('body-color', elements.$post-body);
+  color: var(--post-current-fg);
 
   &:hover {
     color: tokens.get('link-hover-fg');

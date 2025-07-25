@@ -473,6 +473,11 @@ export namespace Components {
          */
         "activePanel"?: HTMLPostTabPanelElement['name'];
         /**
+          * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.
+          * @default false
+         */
+        "fullWidth": boolean;
+        /**
           * Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
          */
         "show": (panelName: string) => Promise<void>;
@@ -1325,6 +1330,11 @@ declare namespace LocalJSX {
           * The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.**
          */
         "activePanel"?: HTMLPostTabPanelElement['name'];
+        /**
+          * When set to true, this property allows the tabs container to span the full width of the screen, from edge to edge.
+          * @default false
+         */
+        "fullWidth"?: boolean;
         /**
           * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly shown panel.
          */
