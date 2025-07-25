@@ -91,12 +91,8 @@ export class PostAvatar {
   @Watch('storageKey')
   async onStorageKeyChanged(newValue: string, oldValue: string) {
     if (newValue !== oldValue) {
-      if (oldValue !== '') {
-        await this.removeStorageItem(oldValue);
-      }
+      await this.removeStorageItem(oldValue);
       this.getAvatar(); // Fetch avatar for the new key
-    } else if (newValue !== '') {
-      this.getAvatar();
     }
   }
 
@@ -221,11 +217,6 @@ export class PostAvatar {
     window?.sessionStorage?.removeItem(key);
   }
 
-  private async refreshAvatar() {
-    await this.removeStorageItem(this.storageKey);
-    this.getAvatar();
-  }
-
   private async cryptify(key: string) {
     return await crypto.subtle.digest('SHA-256', new TextEncoder().encode(key)).then(buffer => {
       return Array.from(new Uint8Array(buffer))
@@ -248,9 +239,7 @@ export class PostAvatar {
     this.validateLastname();
     this.validateUserid();
     this.validateEmail();
-    this.updateStorageKey().then(() => {
-      this.getAvatar();
-    });
+    this.updateStorageKey();
   }
 
   render() {
