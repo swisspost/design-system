@@ -73,7 +73,14 @@ function StylesSwitcher() {
 
     observer = new MutationObserver(
       debounce(() => {
-        setStories(preview.querySelectorAll('.sbdocs-preview, .sb-main-padded'));
+        const storySelectors = [
+          // Story in fullscreen mode (standalone)
+          'body.sb-main-padded',
+          // Story on docs page (nested)
+          'div.sbdocs-preview',
+        ];
+
+        setStories(preview.querySelectorAll(storySelectors.join(', ')));
         setStylesCodeBlocks(preview.querySelectorAll('.docblock-source'));
       }, 200),
     );
@@ -146,7 +153,7 @@ function StylesSwitcher() {
 
     stories.forEach(story => {
       story.setAttribute('data-color-scheme', currentScheme.toLowerCase());
-      if (!story.classList.contains('palette-default')) story.classList.add('palette-default');
+      story.querySelector('.docs-story')?.classList.add('palette', 'palette-default');
     });
   }, [stories, currentScheme]);
 
