@@ -1,4 +1,4 @@
-import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import customFooterConfig from './custom-footer-config';
 import { spread } from '@open-wc/lit-helpers';

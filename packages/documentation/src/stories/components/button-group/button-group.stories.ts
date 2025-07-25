@@ -1,6 +1,6 @@
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import { useArgs } from '@storybook/preview-api';
+import { useArgs } from 'storybook/preview-api';
 import { MetaComponent } from '@root/types';
 import { clickBlocker } from '@/shared/click-blocker';
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { IconButton, WithTooltip } from '@storybook/components';
+import { IconButton, WithTooltip } from 'storybook/internal/components';
 
 const THEMES = ['Post', 'Cargo'] as const;
 const APPEARANCE = ['Default', 'Compact'] as const;

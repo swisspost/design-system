@@ -1,7 +1,7 @@
-import type { StoryObj } from '@storybook/web-components';
+import type { StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
-import { StoryContext, StoryFn } from '@storybook/web-components';
+import { StoryContext, StoryFn } from '@storybook/web-components-vite';
 import { clickBlocker } from '@/shared/click-blocker';
 
 const meta: MetaComponent<HTMLPostMegadropdownElement> = {

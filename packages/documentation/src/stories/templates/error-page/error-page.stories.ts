@@ -1,5 +1,5 @@
 import { clickBlocker } from '@/shared/click-blocker';
-import { Meta, StoryObj } from '@storybook/web-components';
+import { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 
 const meta: Meta = {
