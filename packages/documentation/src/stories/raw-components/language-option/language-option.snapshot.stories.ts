@@ -1,4 +1,4 @@
-import type { StoryContext, StoryObj } from '@storybook/web-components';
+import type { StoryContext, StoryObj } from '@storybook/web-components-vite';
 import meta from './language-option.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
