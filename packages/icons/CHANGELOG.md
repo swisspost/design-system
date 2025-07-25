@@ -1,5 +1,17 @@
 # @swisspost/design-system-icons
 
+## 10.0.0-next.43
+
+### Major Changes
+
+- Renamed icons:
+  - `chevronend` is now `chevronendwide` (by [@swisspost-bot](https://github.com/swisspost-bot) with [#5843](https://github.com/swisspost/design-system/pull/5843))
+
+### Patch Changes
+
+- Updated icons:
+  - `sun` (line & solid): 16, 24, 32, 40, 48 and 64px (by [@swisspost-bot](https://github.com/swisspost-bot) with [#5843](https://github.com/swisspost/design-system/pull/5843))
+
 ## 10.0.0-next.42
 
 ## 10.0.0-next.41

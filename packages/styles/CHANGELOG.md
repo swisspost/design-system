@@ -1,5 +1,43 @@
 # @swisspost/design-system-styles
 
+## 10.0.0-next.43
+
+### Major Changes
+
+- Removed the slider (form range) component - as it was depending on bootstrap - which will be replaced by a web component in the future. (by [@leagrdv](https://github.com/leagrdv) with [#5850](https://github.com/swisspost/design-system/pull/5850))
+
+- - Updated color palettes to use the `light-dark()` CSS function for setting the color scheme of components on supporting browsers. A fallback solution is provided for unsupported browsers. The palettes now require the addition of a `.palette` class, alongside existing classes (e.g., `.palette-default`, `.palette-brand`, etc.). BEFORE:
+
+    ```html
+    <div class="palette-brand">Content</div>
+    ```
+
+    AFTER:
+
+    ```html
+    <div class="palette palette-brand">Content</div>
+    ```
+
+  - Removed the `--post-current-palette-fg` and `--post-current-palette-bg` CSS custom properties. (by [@alizedebray](https://github.com/alizedebray) with [#5250](https://github.com/swisspost/design-system/pull/5250))
+
+- Removed the bootstrap dependency. (by [@leagrdv](https://github.com/leagrdv) with [#5850](https://github.com/swisspost/design-system/pull/5850))
+
+- Removed all of the overrides of SCSS variables and classes of Bootstrap. (by [@leagrdv](https://github.com/leagrdv) with [#5850](https://github.com/swisspost/design-system/pull/5850))
+
+- Removed the `ng-bootstrap` dependency as well as all of the components built on it: - datepicker
+  - timepicker
+  - pagination
+  - typeahead
+  - dropdown
+  - datatable
+  - progressbar (by [@leagrdv](https://github.com/leagrdv) with [#5830](https://github.com/swisspost/design-system/pull/5830))
+
+### Patch Changes
+
+- Changed Tailwind token generation output format to meet the Tailwind v4 configuration requirements. (by [@alionazherdetska](https://github.com/alionazherdetska) with [#5812](https://github.com/swisspost/design-system/pull/5812))
+
+- Internalized bootstrap interactions utilities (pointer-events and user-select) into the design system. (by [@leagrdv](https://github.com/leagrdv) with [#5868](https://github.com/swisspost/design-system/pull/5868))
+
 ## 10.0.0-next.42
 
 ## 10.0.0-next.41
