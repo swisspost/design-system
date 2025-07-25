@@ -1,5 +1,5 @@
-import { useArgs } from '@storybook/preview-api';
-import { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import { useArgs } from 'storybook/preview-api';
+import { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 
@@ -354,7 +354,7 @@ function getToastIcon(args: Args) {
 
 function getDismissButton(args: Args, isFixed: boolean) {
   return args.dismissible || isFixed
-    ? html` <button class="toast-close-button" aria-label="close"></button> `
+    ? html` <button type="button" class="toast-close-button" aria-label="close"></button> `
     : null;
 }
 
@@ -362,11 +362,12 @@ function render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
   updateAlignments(args, updateArgs);
-  
-  const timeoutStore = timeoutStores[context.name as keyof ITimeoutStores] || timeoutStores['Default'];
-  
+
+  const timeoutStore =
+    timeoutStores[context.name as keyof ITimeoutStores] || timeoutStores['Default'];
+
   const isFixed = args.position === 'fixed';
-  
+
   const classes = [
     'toast',
     args.variant,
@@ -412,12 +413,8 @@ function render(args: Args, context: StoryContext) {
   if (args.stacked) {
     wrappedContent = html` ${component} ${component} `;
   } else if (isFixed) {
-    wrappedContent = html`
-      <div style="${args.show ? '' : 'display: none;'}">
-        ${component}
-      </div>
-    `;
-    
+    wrappedContent = html` <div style="${args.show ? '' : 'display: none;'}">${component}</div> `;
+
     if (args.show) {
       createAutoHideTimeout(timeoutStore, args, updateArgs);
     }
