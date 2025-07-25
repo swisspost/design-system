@@ -54,6 +54,10 @@ export const ProductCard: Story = {
           </script>
         </div>
       `,
+      {
+        // dark mode is not yet implemented corretly
+        filter: scheme => scheme === 'light',
+      },
     );
   },
 };

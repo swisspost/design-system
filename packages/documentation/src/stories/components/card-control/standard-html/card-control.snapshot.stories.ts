@@ -32,6 +32,9 @@ export const CardControl: StoryObj = {
           ${bombedArgs.map(args => html` <div class="col-sm-6">${Default.render(args)}</div> `)}
         </div>
       `,
+      {
+        filter: (scheme: string) => scheme === 'light',
+      },
     );
   },
 };

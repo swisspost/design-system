@@ -34,6 +34,10 @@ export const Tabs: Story = {
           )}
         </div>
       `,
+      {
+        // dark mode is not yet designed/implemented
+        filter: scheme => scheme === 'light',
+      },
     );
   },
 };
