@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/web-components';
+import { Meta, StoryObj } from '@storybook/web-components-vite';
 
 const meta: Meta = {
   id: 'd2112bed-c611-4098-a1ad-e654f7d622e7',

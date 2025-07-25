@@ -1,4 +1,4 @@
-import { DocsContainer, DocsContainerProps, Unstyled } from '@storybook/blocks';
+import { DocsContainer, DocsContainerProps, Unstyled } from '@storybook/addon-docs/blocks';
 import { PropsWithChildren } from 'react';
 import './layout.scss';
 import Footer from '../footer';

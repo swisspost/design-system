@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Source } from '@storybook/addon-docs';
+import { Source } from '@storybook/addon-docs/blocks';
 
 const code = `
 <post-header>

@@ -1,4 +1,4 @@
-import { Args, Meta } from '@storybook/web-components';
+import { Args, Meta } from '@storybook/web-components-vite';
 import { PackageType } from './package';
 import { DesignParameter } from '@/shared/link-design/link-design.component';
 
