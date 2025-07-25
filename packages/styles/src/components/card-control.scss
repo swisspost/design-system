@@ -5,7 +5,6 @@
 @use '../variables/components/form-check';
 @use '../mixins/utilities' as utilities-mx;
 @use '../functions/tokens';
-@use '../tokens/elements';
 @use '../tokens/utilities';
 
 tokens.$default-map: utilities.$post-spacing;
@@ -68,7 +67,7 @@ fieldset {
     }
 
     ~ label {
-      color: tokens.get('body-color', elements.$post-body) !important;
+      color: var(--post-current-fg) !important;
     }
   }
 

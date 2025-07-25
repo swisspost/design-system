@@ -22,6 +22,6 @@ post-list {
   }
 
   > .list-title.visually-hidden {
-    @include post.visually-hidden();
+    @include post.visuallyhidden();
   }
 }

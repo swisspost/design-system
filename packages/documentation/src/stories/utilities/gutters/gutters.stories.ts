@@ -1,4 +1,4 @@
-import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit/static-html.js';
 import { MetaExtended } from '@root/types';
 import { parse } from '@/utils/sass-export';
