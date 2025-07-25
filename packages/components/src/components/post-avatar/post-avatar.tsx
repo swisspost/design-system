@@ -60,7 +60,7 @@ export class PostAvatar {
   // To handle email or userid updates and reset the storage item
   @State() private storageKeyTrigger: string = '';
 
-  private updateStorageKeyTrigger() {
+  private async updateStorageKeyTrigger() {
     // Combine relevant props into a single string.
     this.storageKeyTrigger = `${this.userid || ''}_${this.email || ''}`;
   }
@@ -114,7 +114,7 @@ export class PostAvatar {
   private async getImageByProp(prop: string, fetchImage: () => Promise<Response>) {
     if (!prop) return false;
 
-    const cachedImageRes = await this.getStorageItem(prop);
+    const cachedImageRes = await this.getStorageItem(this.storageKeyTrigger);
     if (cachedImageRes?.failed) return false;
 
     if (cachedImageRes?.ok && cachedImageRes.url) {
@@ -124,7 +124,7 @@ export class PostAvatar {
       return true;
     }
 
-    const maxRetries = 2;
+    const maxRetries = 3;
     let delayMs = 100;
 
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -136,14 +136,14 @@ export class PostAvatar {
           this.imageAlt = `${this.firstname} ${this.lastname} avatar`;
           this.avatarType = AvatarType.Image;
           await this.setStorageItem(
-            prop,
+            this.storageKeyTrigger,
             JSON.stringify({ ok: true, url: response.url, failed: false }),
           );
           return true;
         } else {
           // If it's a 404 set as failed
           if (response.status === 404) {
-            await this.setStorageItem(prop, JSON.stringify({ failed: true }));
+            await this.setStorageItem(this.storageKeyTrigger, JSON.stringify({ failed: true }));
             console.info('Avatar not found (404).');
             return false;
           }
@@ -157,12 +157,12 @@ export class PostAvatar {
 
       if (attempt < maxRetries) {
         await this.delay(delayMs);
-        delayMs *= 2; // exponential backoff (3 attempts)
+        delayMs *= 3; // exponential backoff (3 attempts)
       }
     }
 
     // After retries exhausted, mark as failed
-    await this.setStorageItem(prop, JSON.stringify({ failed: true }));
+    await this.setStorageItem(this.storageKeyTrigger, JSON.stringify({ failed: true }));
     console.info(
       `Loading avatar by type "${AvatarType.Image}" failed after ${maxRetries} attempts.`,
     );
