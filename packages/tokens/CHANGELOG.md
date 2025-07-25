@@ -1,5 +1,23 @@
 # @swisspost/design-system-tokens
 
+## 10.0.0-next.43
+
+### Major Changes
+
+- - Updated color palettes to use the `light-dark()` CSS function for setting the color scheme of components on supporting browsers. A fallback solution is provided for unsupported browsers. The palettes now require the addition of a `.palette` class, alongside existing classes (e.g., `.palette-default`, `.palette-brand`, etc.). BEFORE:
+
+    ```html
+    <div class="palette-brand">Content</div>
+    ```
+
+    AFTER:
+
+    ```html
+    <div class="palette palette-brand">Content</div>
+    ```
+
+  - Removed the `--post-current-palette-fg` and `--post-current-palette-bg` CSS custom properties. (by [@alizedebray](https://github.com/alizedebray) with [#5250](https://github.com/swisspost/design-system/pull/5250))
+
 ## 10.0.0-next.42
 
 ## 10.0.0-next.41
