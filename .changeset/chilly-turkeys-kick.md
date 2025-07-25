@@ -2,4 +2,4 @@
 '@swisspost/design-system-components-angular': patch
 ---
 
-Added `@angular/forms in peer dependencies`.
+Added `@angular/forms` in peer dependencies.
