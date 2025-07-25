@@ -135,7 +135,7 @@ export default function Home() {
         </button>
       </div>
       <PostPopover
-        className="palette-alternate"
+        className="palette palette-alternate"
         id="popover-one"
         placement="top"
         closeButtonCaption="Close Popover"
@@ -178,7 +178,7 @@ export default function Home() {
           Button
         </button>
       </PostTooltipTrigger>
-      <PostTooltip id="tooltip-one" className="palette-accent" placement="top">
+      <PostTooltip id="tooltip-one" className="palette palette-accent" placement="top">
         Hi there 👋
       </PostTooltip>
     </>
