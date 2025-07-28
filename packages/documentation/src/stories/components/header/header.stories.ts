@@ -1,7 +1,8 @@
 import type { StoryObj } from '@storybook/web-components-vite';
 import { MetaComponent } from '@root/types';
-import { html } from 'lit';
+import { nothing } from 'lit';
 import { fakeContent } from '@/utils';
+import { html, unsafeStatic } from 'lit/static-html.js';
 
 const meta: MetaComponent = {
   id: '27a2e64d-55ba-492d-ab79-5f7c5e818498',
@@ -20,6 +21,7 @@ const meta: MetaComponent = {
     title: 'Application title',
     metaNavigation: true,
     customControls: true,
+    useHeadings: false,
   },
   argTypes: {
     title: {
@@ -41,6 +43,17 @@ const meta: MetaComponent = {
       table: {
         category: 'Content',
       },
+    },
+    useHeadings: {
+      name: 'Use headings',
+      description: 'Whether or not to use headings for the title and megadropdown titles.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content',
+      },
+      defaultValue: { summary: true },
     },
     customControls: {
       name: 'Custom controls',
@@ -64,6 +77,35 @@ const meta: MetaComponent = {
 export default meta;
 
 type Story = StoryObj;
+
+/**
+ * Get the heading element based on the provided parameters.
+ * @param useHeadings Whether to use semantic headings (h1, h2, etc.) or not.
+ * @param headingLevel The level of the heading (e.g., "h1", "h2", etc.).
+ * @param content The content to be displayed inside the heading.
+ * @param attributes Additional attributes to be added to the heading element.
+ * @returns A TemplateResult representing the heading element.
+ */
+const getHeading = (
+  useHeadings: boolean,
+  headingLevel: string,
+  content: string,
+  attributes?: Record<string, string>,
+) => {
+  const attrs = attributes
+    ? unsafeStatic(
+        Object.entries(attributes)
+          .map(([key, value]) => `${key}="${value}"`)
+          .join(' '),
+      )
+    : '';
+
+  const headingTag = unsafeStatic(headingLevel);
+
+  return useHeadings
+    ? html`<${headingTag} ${attrs}>${unsafeStatic(content)}</${headingTag}>`
+    : html`<p class="${headingLevel}" ${attrs}>${unsafeStatic(content)}</p>`;
+};
 
 export const Default: Story = {
   render: args => {
@@ -103,11 +145,9 @@ export const Default: Story = {
       </post-language-switch>
 
       ${args.title
-        ? html`
-            <!-- Application title (optional) -->
-            <h1 slot="title">${args.title}</h1>
-          `
-        : ''}
+        ? html` <!-- Application title (optional) -->
+            ${getHeading(args.useHeadings, 'h1', args.title, { slot: 'title' })}`
+        : nothing}
       ${args.customControls
         ? html`
             <!-- Custom content (optional) -->
@@ -134,7 +174,8 @@ export const Default: Story = {
           <post-icon aria-hidden="true" name="arrowleft"></post-icon> Back
         </button>
         <post-list title-hidden="">
-          <h2>Main Navigation</h2>
+          ${getHeading(args.useHeadings, 'h2', 'Main Navigation')}
+
           <!-- Link only level 1 -->
           <post-list-item slot="post-list-item"><a href="/letters">Letters</a></post-list-item>
           <post-list-item slot="post-list-item"><a href="/packages">Packages</a></post-list-item>
@@ -148,9 +189,12 @@ export const Default: Story = {
                 Back
               </button>
               <post-closebutton slot="close-button">Close</post-closebutton>
-              <h2 slot="megadropdown-title">Letters title</h2>
+
+              ${getHeading(args.useHeadings, 'h2', 'Letters title', {
+                slot: 'megadropdown-title',
+              })}
               <post-list>
-                <h3>Send letters</h3>
+                ${getHeading(args.useHeadings, 'h3', 'Send letters')}
                 <post-list-item slot="post-list-item"
                   ><a href="/sch">Letters Switzerland</a></post-list-item
                 >
@@ -163,7 +207,7 @@ export const Default: Story = {
                 >
               </post-list>
               <post-list>
-                <h3><a href="/step-by-step">Step by step</a></h3>
+                ${getHeading(args.useHeadings, 'h3', '<a href="/step-by-step">Step by step</a>')}
                 <post-list-item slot="post-list-item"
                   ><a href="/sch">Packages Switzerland</a></post-list-item
                 >
@@ -185,9 +229,12 @@ export const Default: Story = {
                 Back
               </button>
               <post-closebutton slot="close-button">Close</post-closebutton>
-              <h2 slot="megadropdown-title">Packages title</h2>
+
+              ${getHeading(args.useHeadings, 'h2', 'Packages title', {
+                slot: 'megadropdown-title',
+              })}
               <post-list>
-                <h3>Send packages</h3>
+                ${getHeading(args.useHeadings, 'h3', 'Send packages')}
                 <post-list-item slot="post-list-item"
                   ><a href="/sch">Packages Switzerland</a></post-list-item
                 >
@@ -200,7 +247,7 @@ export const Default: Story = {
                 >
               </post-list>
               <post-list>
-                <h3><a href="/step-by-step">Step by step</a></h3>
+                ${getHeading(args.useHeadings, 'h3', '<a href="/step-by-step">Step by step</a>')}
                 <post-list-item slot="post-list-item"
                   ><a href="/sch">Packages Switzerland</a></post-list-item
                 >
