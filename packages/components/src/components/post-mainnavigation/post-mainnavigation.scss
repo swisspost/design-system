@@ -42,16 +42,6 @@ post-mainnavigation {
     }
   }
 
-  .back-button {
-    @include media.max(lg) {
-      font-size: 16px;
-    }
-
-    @include media.max(sm) {
-      font-size: 14px;
-    }
-  }
-
   // styles specific to for the mega-dropdown buttons
   > button,
   post-megadropdown-trigger button {
@@ -199,10 +189,6 @@ post-mainnavigation {
         @include header-mx.mobile-header-interactive;
       }
     }
-
-    [slot='back-button'] {
-      display: none;
-    }
   }
 
   // tablet/mobile styles
@@ -232,9 +218,5 @@ post-mainnavigation {
     post-megadropdown-trigger button::after {
       transform: rotate(-90deg);
     }
-  }
-
-  .back-button .btn {
-    padding-inline: 0;
   }
 }
