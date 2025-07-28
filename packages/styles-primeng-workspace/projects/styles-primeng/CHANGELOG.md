@@ -1,5 +1,15 @@
 # @swisspost/design-system-styles-primeng
 
+## 9.0.3
+
+### Patch Changes
+
+- Updated `@angular/common` and `@angular/core` peer dependencies to include `^20.0.0`. (by [@myrta2302](https://github.com/myrta2302) with [#5780](https://github.com/swisspost/design-system/pull/5780))
+
+- Added styles for the datepicker component. (by [@myrta2302](https://github.com/myrta2302) with [#5731](https://github.com/swisspost/design-system/pull/5731))
+- Updated dependencies:
+  - @swisspost/design-system-styles@9.0.3
+
 ## 9.0.2
 
 ### Patch Changes
