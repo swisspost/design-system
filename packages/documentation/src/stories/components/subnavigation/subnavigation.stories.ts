@@ -63,7 +63,7 @@ function clickBlocker(story: StoryFn, context: StoryContext) {
 
 function renderTest(args: Args) {
   return html`
-    <div class="subnavigation ${args.palette}">
+    <div class="subnavigation palette ${args.palette}">
       <div class="container container-fluid-xs container-fluid-sm">
         <ul class="subnavigation-list">
           ${Array.from(
