@@ -16,7 +16,7 @@ $monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
 
 // Mixin for toolbar button icons
 @mixin toolbar-icon($icon-name) {
-  @include post.post-icon($name: $icon-name, $base: '/post-icons');
+  @include post.post-icon($name: $icon-name);
   content: '';
   margin-right: 0.5rem;
   width: 1em;

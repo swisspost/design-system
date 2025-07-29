@@ -7,6 +7,8 @@
 @use './../functions/icons' as icon-fn;
 @use './../mixins/utilities';
 @use './../utilities/env-variables' as icon-version;
+@use './../ui-icon-map' as ui-icons;
+@use './../svg-icon-map' as post-icons;
 
 @mixin icon($name) {
   $icon: icon-fn.get-svg-url($name);
@@ -17,8 +19,6 @@
 }
 
 @mixin post-icon(
-  $base:
-    'https://unpkg.com/@swisspost/design-system-icons@#{icon-version.$post-icon-version}/public/post-icons',
   $name,
   $color: inherit,
   $width: 1em,
@@ -30,9 +30,20 @@
   vertical-align: -0.15em;
   background-color: currentColor;
   color: $color;
-  /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-image: url('#{$base}/#{$name}.svg');
-  mask-image: url('#{$base}/#{$name}.svg');
+  
+  @if map.has-key(ui-icons.$ui-icon-map, $name) {
+    $icon-url: ui-icons.get-ui-icon($name);
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-mask-image: url('#{$icon-url}');
+    mask-image: url('#{$icon-url}');
+  }
+  @else if map.has-key(post-icons.$svg-icon-map, $name) {
+    $icon-url: map.get(post-icons.$svg-icon-map, $name);
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-mask-image: url('#{$icon-url}');
+    mask-image: url('#{$icon-url}');
+  }
+  
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-position: center center;
   mask-position: center center;
