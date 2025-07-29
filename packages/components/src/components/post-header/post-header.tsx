@@ -194,7 +194,7 @@ export class PostHeader {
       ...Array.from(this.host.querySelectorAll('.list-inline:not([slot="meta-navigation"]) > li')),
       ...Array.from(
         this.host.querySelectorAll(
-          'nav > post-list > div > post-list-item, post-mainnavigation > post-megadropdown-trigger',
+          'nav > post-list > div > post-list-item, post-megadropdown-trigger',
         ),
       ),
       ...Array.from(
