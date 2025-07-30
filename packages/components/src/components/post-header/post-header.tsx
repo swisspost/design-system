@@ -54,7 +54,7 @@ export class PostHeader {
 
   @Element() host: HTMLPostHeaderElement;
 
-  @State() device: string = breakpoint.get('device');
+  @State() device: string = breakpoint.get('name');
   @State() mobileMenuExtended: boolean = false;
   @State() megadropdownOpen: boolean = false;
 
@@ -101,7 +101,7 @@ export class PostHeader {
     });
     document.addEventListener('postToggleMegadropdown', this.megadropdownStateHandler);
     this.host.addEventListener('click', this.handleLinkClick);
-    window.addEventListener('postBreakpoint:device', this.breakpointChange);
+    window.addEventListener('postBreakpoint:name', this.breakpointChange);
     this.switchLanguageSwitchMode();
 
     this.handleScrollParentResize();
@@ -125,7 +125,7 @@ export class PostHeader {
   disconnectedCallback() {
     const scrollParent = this.scrollParent;
 
-    window.removeEventListener('postBreakpoint:device', this.breakpointChange);
+    window.removeEventListener('postBreakpoint:name', this.breakpointChange);
     window.removeEventListener('resize', this.throttledResize);
     window.removeEventListener('scroll', this.handleScrollEvent);
     scrollParent.removeEventListener('scroll', this.handleScrollEvent);

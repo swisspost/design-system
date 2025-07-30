@@ -1,6 +1,3 @@
-@use 'sass:list';
-@use 'sass:map';
-
 $grid-breakpoints: (
   xs: 0,
   sm: 600px,
@@ -9,25 +6,10 @@ $grid-breakpoints: (
   xl: 1280px,
 ) !default;
 
-$grid-breakpoint-to-device: (
+$grid-breakpoints-key-name-map: (
   xs: 'mobile',
   sm: 'tablet',
   md: 'tablet',
   lg: 'desktop',
   xl: 'desktop',
 );
-
-$device-to-grid-breakpoints: () !default;
-@each $breakpoint, $device in $grid-breakpoint-to-device {
-  $breakpoint-list: if(
-    map.has-key($device-to-grid-breakpoints, $device),
-    map.get($device-to-grid-breakpoints, $device),
-    ()
-  );
-
-  $device-to-grid-breakpoints: map.set(
-    $device-to-grid-breakpoints,
-    $device,
-    list.append($breakpoint-list, $breakpoint)
-  );
-}
