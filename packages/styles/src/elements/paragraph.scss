@@ -6,6 +6,7 @@ tokens.$default-map: elements.$post-paragraph;
 
 p {
   margin-block: tokens.get('paragraph-margin-block-start');
+  text-wrap: pretty; /* Prevents orphans on the last line of a paragraph */
 
   &:first-child {
     margin-block-start: 0;
