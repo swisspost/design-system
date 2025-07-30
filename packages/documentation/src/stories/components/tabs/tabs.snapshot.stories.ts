@@ -1,4 +1,4 @@
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import meta from './tabs.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
@@ -34,6 +34,10 @@ export const Tabs: Story = {
           )}
         </div>
       `,
+      {
+        // dark mode is not yet designed/implemented
+        filter: scheme => scheme === 'light',
+      },
     );
   },
 };

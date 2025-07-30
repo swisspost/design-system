@@ -54,7 +54,7 @@ tokens.$default-map: utilities.$post-spacing;
   .flex-doc-container__demo {
     padding: tokens.get('utility-gap-8');
 
-    @include post.media-breakpoint-up(lg) {
+    @include post.min(lg) {
       border: post.$border-width solid post.$border-color;
     }
   }
@@ -67,7 +67,7 @@ tokens.$default-map: utilities.$post-spacing;
     display: flex;
   }
 
-  @include post.media-breakpoint-down(md) {
+  @include post.max(md) {
     .flex-doc-container__description {
       border-top: none;
     }

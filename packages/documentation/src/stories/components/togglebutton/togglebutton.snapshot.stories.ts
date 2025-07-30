@@ -1,6 +1,7 @@
-import type { StoryObj } from '@storybook/web-components';
+import type { StoryObj } from '@storybook/web-components-vite';
 import meta from './togglebutton.stories';
 import { html } from 'lit';
+import { schemes } from '@/shared/snapshots/schemes';
 
 const { id, ...metaWithoutId } = meta;
 
@@ -9,7 +10,6 @@ export default {
   title: 'Snapshots',
 };
 
-const SCHEME = ['light', 'dark'];
 const BTN = ['btn-primary', 'btn-secondary', 'btn-terciary'];
 const SIZES = ['', 'btn-sm', 'btn-lg'];
 
@@ -19,28 +19,24 @@ export const Togglebutton: Story = {
   render: () => {
     const TOGGLED = [false, true];
 
-    return html`
-      ${SCHEME.map(
-        scheme => html`
-          <div data-color-scheme="${scheme}" class="palette-default px-48">
-            ${BTN.map(btn =>
-              SIZES.map(size =>
-                TOGGLED.map(
-                  isToggled => html`
-                    ${meta.render({
-                      variant: btn,
-                      size: size || 'null',
-                      toggled: isToggled,
-                      contentWhenUntoggled: 'Untoggled',
-                      contentWhenToggled: 'Toggled',
-                    })}
-                  `,
-                ),
-              ),
-            )}
-          </div>
-        `,
-      )}
-    `;
+    return schemes(
+      () => html`
+        ${BTN.map(btn =>
+          SIZES.map(size =>
+            TOGGLED.map(
+              isToggled => html`
+                ${meta.render({
+                  variant: btn,
+                  size: size || 'null',
+                  toggled: isToggled,
+                  contentWhenUntoggled: 'Untoggled',
+                  contentWhenToggled: 'Toggled',
+                })}
+              `,
+            ),
+          ),
+        )}
+      `,
+    );
   },
 };
