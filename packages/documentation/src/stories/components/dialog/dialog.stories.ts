@@ -146,7 +146,7 @@ const Template = {
 
     return html`
       <dialog
-        class="${args.palette}"
+        class="palette ${args.palette}"
         data-size="${args.size}"
         data-position="${args.position}"
         data-animation="${args.animation}"

@@ -61,7 +61,7 @@
     "prebuild": "pnpm clean && pnpm prebuild:script",
     "build": "stencil build --docs-readme",
     "postbuild": "pnpm copy:styles:components-react & pnpm copy:styles:components-angular",
-    "clean": "rimraf dist hydrate loader loaders www src/styles/generated ../components-react/**/stencil-generated/ ../components-angular/projects/components/src/lib/stencil-generated/",
+    "clean": "rimraf --glob dist hydrate loader loaders www src/styles/generated ../components-react/**/stencil-generated/ ../components-angular/projects/components/src/lib/stencil-generated/",
     "unit": "stencil test --spec",
     "unit:watch": "stencil test --spec --watchAll --silent",
     "unit:updatesnapshot": "stencil test --spec --updateSnapshot",

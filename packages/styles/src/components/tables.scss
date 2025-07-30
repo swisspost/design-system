@@ -27,6 +27,7 @@ tokens.$default-map: utilities.$post-spacing;
   margin-bottom: 1rem;
   vertical-align: top;
   border-color: var(--table-border-color);
+  caption-side: bottom;
 
   > :not(:first-child) {
     border-width: 0;
