@@ -366,7 +366,7 @@ importers:
         specifier: workspace:10.0.0-next.42
         version: link:../tokens/dist
       '@swisspost/internet-header':
-        specifier: workspace:2.0.0-next.42
+        specifier: workspace:10.0.0-next.42
         version: link:../internet-header
     devDependencies:
       '@eslint/js':
@@ -765,7 +765,7 @@ importers:
         specifier: workspace:10.0.0-next.42
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: workspace:2.0.0-next.42
+        specifier: workspace:10.0.0-next.42
         version: link:../internet-header
       next:
         specifier: 15.3.3
