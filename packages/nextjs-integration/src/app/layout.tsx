@@ -89,9 +89,6 @@ export default function RootLayout({ children }: { readonly children: React.Reac
           </ul>
 
           <PostMainnavigation>
-            <button type="button" slot="back-button" className="btn btn-sm btn-tertiary">
-              <PostIcon aria-hidden="true" name="arrowright"></PostIcon> Back
-            </button>
             <PostList title-hidden="">
               <h2>Main Navigation</h2>
               <PostListItem slot="post-list-item">
