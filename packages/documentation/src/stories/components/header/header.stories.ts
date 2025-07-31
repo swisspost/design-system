@@ -2,6 +2,7 @@ import type { StoryObj } from '@storybook/web-components-vite';
 import { MetaComponent } from '@root/types';
 import { html } from 'lit';
 import { fakeContent } from '@/utils';
+import { clickBlocker } from '@/shared/click-blocker';
 
 const meta: MetaComponent = {
   id: '27a2e64d-55ba-492d-ab79-5f7c5e818498',
@@ -58,6 +59,7 @@ const meta: MetaComponent = {
       html` <div class="header-story-wrapper">
         <div class="virtual-body">${story()} ${fakeContent()}</div>
       </div>`,
+    clickBlocker,
   ],
 };
 
