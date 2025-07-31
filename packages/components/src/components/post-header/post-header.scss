@@ -223,7 +223,7 @@
     display: none;
     flex-direction: column;
     padding-block: 16px 24px;
-    padding-inline: 32px;
+    padding-inline: 40px;
 
     .navigation.extended & {
       display: flex;
@@ -259,6 +259,14 @@
   .navigation-footer {
     background-color: #f0efed;
     gap: 24px;
+
+    ::slotted(post-language-switch) {
+      margin-top: 16px;
+    }
+
+    @include media.max(sm) {
+      gap: 16px;
+    }
   }
 }
 
