@@ -17,7 +17,6 @@ import {
   PostTabs,
   PostTabHeader,
   PostTabPanel,
-  PostTag,
   PostTooltipTrigger,
   PostTooltip,
 } from '@swisspost/design-system-components-react/server';
@@ -169,7 +168,6 @@ export default function Home() {
       </PostTabs>
 
       <h2>Tag</h2>
-      <PostTag>Tag</PostTag>
 
       <h2>Tooltip</h2>
       <PostTooltipTrigger for="tooltip-one">
