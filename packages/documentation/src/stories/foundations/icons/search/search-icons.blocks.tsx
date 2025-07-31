@@ -212,7 +212,7 @@ export class Search extends React.Component {
     const popover = document.querySelector('#icon-panel') as HTMLPostPopovercontainerElement;
 
     return (
-      <post-popovercontainer id="icon-panel" class="palette-default icon-panel">
+      <post-popovercontainer id="icon-panel" class="palette palette-default icon-panel">
         <div className="icon-panel-content">
           <div>
             <div className="resizer-container">

@@ -340,7 +340,7 @@ export const Palette: Story = {
   },
   render: () =>
     html`
-      <div class="palette-default">
+      <div class="palette palette-default">
         <div class="container py-32">
           <div class="row gy-16">
             <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
@@ -348,7 +348,7 @@ export const Palette: Story = {
           </div>
         </div>
       </div>
-      <div class="palette-alternate">
+      <div class="palette palette-alternate">
         <div class="container py-32">
           <div class="row gy-16">
             <div class="col-sm-6 col-12">${renderSimpleInteractiveCard}</div>
