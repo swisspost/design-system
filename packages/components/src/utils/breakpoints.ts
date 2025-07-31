@@ -17,7 +17,7 @@ export class Breakpoint {
   constructor() {
     if (IS_BROWSER && !this.breakpointMap) {
       const keys = this.getStyles('--post-grid-breakpoint-keys');
-      const devices = this.getStyles('--post-grid-breakpoint-names');
+      const devices = this.getStyles('--post-grid-breakpoint-devices');
       const widths = this.getStyles('--post-grid-breakpoint-widths');
 
       this.breakpointMap = widths
