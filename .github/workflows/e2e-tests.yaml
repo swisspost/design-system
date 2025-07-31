@@ -36,7 +36,7 @@ jobs:
           restore-keys: ${{ runner.os }}-cypress-
 
       - name: Install & build dependencies
-        run: pnpm bootstrap
+        run: pnpm install && pnpm -r build
 
       - name: Prepare Cypress – Spawn Xvfb server
         run: Xvfb :99 &
