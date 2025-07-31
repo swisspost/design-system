@@ -64,6 +64,12 @@ const meta: MetaComponent = {
       },
     },
   },
+  decorators: [
+    story =>
+      html` <div class="header-story-wrapper">
+        <div class="virtual-body">${story()} ${fakeContent()}</div>
+      </div>`,
+  ],
 };
 
 export default meta;
@@ -242,18 +248,12 @@ const Template = {
 
 export const Default: Story = {
   ...Template,
-  decorators: [
-    story =>
-      html` <div class="header-story-wrapper">
-        <div class="virtual-body">${story()} ${fakeContent()}</div>
-      </div>`,
-  ],
 };
 
+// Used in target group documentation
 export const WithTargetGroup: Story = {
   args: {
     targetGroup: true,
   },
   ...Template,
-  decorators: [story => html` <div style="min-height: 400px">${story()}</div>`],
 };
