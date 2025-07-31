@@ -4,10 +4,9 @@
 @use '../variables/animation';
 @use '../variables/elevation';
 
-@use './../themes/bootstrap/core' as *;
-
 @use '../functions/tokens';
 @use '../tokens/utilities';
+@use '../mixins/media';
 
 tokens.$default-map: utilities.$post-spacing;
 
@@ -102,7 +101,7 @@ dialog > .dialog-grid {
 
   // Larger icon for bigger notification dialogs
   dialog:not([size='small']) & {
-    @include media-breakpoint-up(sm) {
+    @include media.min(sm) {
       width: tokens.get('utility-gap-48');
       height: tokens.get('utility-gap-48');
     }
@@ -135,7 +134,7 @@ dialog > .dialog-grid {
   background-color: inherit;
 
   button {
-    @include media-breakpoint-down(sm) {
+    @include media.max(sm) {
       width: 100%;
     }
   }

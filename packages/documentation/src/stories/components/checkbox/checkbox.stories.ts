@@ -1,9 +1,10 @@
-import { useArgs } from '@storybook/preview-api';
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import { useArgs } from 'storybook/preview-api';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { mapClasses } from '@/utils';
 import { MetaComponent } from '@root/types';
+import { getLabelText } from '@/utils/form-elements';
 
 const meta: MetaComponent = {
   id: 'e6ecc86f-d148-413b-b796-614a89da54be',
@@ -25,6 +26,7 @@ const meta: MetaComponent = {
     checked: 'unchecked',
     disabled: false,
     validation: 'null',
+    requiredOptional: 'null',
   },
   argTypes: {
     hiddenLegend: {
@@ -121,6 +123,22 @@ const meta: MetaComponent = {
         category: 'States',
       },
     },
+    requiredOptional: {
+      name: 'Required / Optional',
+      description: 'Whether the field is required or optional.',
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          required: 'Required',
+          optional: 'Optional',
+        },
+      },
+      options: ['null', 'required', 'optional'],
+      table: {
+        category: 'States',
+      },
+    },
   },
 };
 
@@ -146,10 +164,6 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   valid: false,
   invalid: true,
 };
-
-function getLabel({ label }: Args, { id }: StoryContext) {
-  return html` <label for="${id}">${label}</label> `;
-}
 
 function getValidationFeedback({ validation }: Args, context: StoryContext) {
   return html`
@@ -194,8 +208,9 @@ function renderCheckbox(args: Args, context: StoryContext) {
         ?disabled="${args.disabled}"
         .checked="${CHECKED_STATE_MAP[args.checked]}"
         @change="${handleChange}"
+        ?required="${args.requiredOptional === 'required'}"
       />
-      ${args.hiddenLabel ? nothing : getLabel(args, context)}
+      ${args.hiddenLabel ? nothing : html`<label for="${context.id}">${getLabelText(args)}</label>`}
       ${args.validation !== 'null' ? getValidationFeedback(args, context) : nothing}
     </div>
   `;

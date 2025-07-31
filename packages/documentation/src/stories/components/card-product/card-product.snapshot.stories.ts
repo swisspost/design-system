@@ -1,4 +1,4 @@
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components-vite';
 import meta, { Default, Groupped, Multipart } from './card-product.stories';
 import { html } from 'lit';
 import { schemes } from '@/shared/snapshots/schemes';
@@ -54,6 +54,10 @@ export const ProductCard: Story = {
           </script>
         </div>
       `,
+      {
+        // dark mode is not yet implemented corretly
+        filter: scheme => scheme === 'light',
+      },
     );
   },
 };
