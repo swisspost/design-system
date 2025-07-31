@@ -16,6 +16,10 @@ tokens.$default-map: components.$post-button;
 
   li {
     list-style: none;
+
+    @include media.max(lg) {
+      flex-grow: 1;
+    }
   }
 
   a {
@@ -35,6 +39,10 @@ tokens.$default-map: components.$post-button;
     @include utilities.not-disabled-hover() {
       @include button-mx.button-variant-def('hover', 'tertiary');
     }
+
+    @include media.max(lg) {
+      width: 100%;
+    }
   }
 
   a.active {
@@ -52,13 +60,13 @@ tokens.$default-map: components.$post-button;
   }
 
   @include media.max(lg) {
-    padding: 102px 0 36px;
+    padding: 40px 32px 24px;
   }
 
   @include media.max(sm) {
     flex-direction: column;
     gap: 8px;
-    padding: 68px 16px 8px;
+    padding: 24px 16px 0;
 
     a {
       width: 100%;

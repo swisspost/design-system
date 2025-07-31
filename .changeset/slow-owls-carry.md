@@ -1,5 +1,7 @@
 ---
+'@swisspost/design-system-documentation': minor
 '@swisspost/design-system-components': minor
+'@swisspost/design-system-styles': minor
 ---
 
-Added an example of how to use the `.target-group` element in the `post-header` component, allowing users to choose between `Private Customers`, `Business Customers` and `Authorities`.
+Added the `target group` css component within the `post-header` component.
