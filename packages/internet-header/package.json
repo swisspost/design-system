@@ -83,7 +83,7 @@
     "rollup-plugin-scss": "4.0.1",
     "rollup-plugin-visualizer": "5.12.0",
     "sass": "1.89.2",
-    "start-server-and-test": "2.0.12",
+    "start-server-and-test": "2.0.13",
     "ts-jest": "29.2.5",
     "typescript": "5.8.3",
     "typescript-eslint": "8.20.0",
