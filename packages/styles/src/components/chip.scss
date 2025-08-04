@@ -3,6 +3,7 @@
 @use './../mixins/icons' as icons-mx;
 @use '../tokens/components';
 @use '../functions/tokens';
+@use './../styles/generated/icon-variables';
 
 tokens.$default-map: components.$post-chip;
 
@@ -41,7 +42,7 @@ button.chip-dismissible {
   // Close icon
   &::after {
     content: '';
-    @include icons-mx.post-icon($name: 'closex', $height: $icon-size, $width: $icon-size);
+    @include icons-mx.post-icon($name: 'closex', $height: $icon-size, $width: 48px);
     margin-left: calc((#{$button-size} - #{$icon-size}) / 2);
 
     @include utilities.high-contrast-mode() {
@@ -103,7 +104,7 @@ button.chip-dismissible {
         &::before {
           content: '';
           @include icons-mx.post-icon(
-            $name: 'checkmark',
+            $name: 'checkmark--24',
             $width: tokens.get('chip-selectable-icon'),
             $height: tokens.get('chip-selectable-icon')
           );

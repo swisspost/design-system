@@ -17,13 +17,12 @@
 }
 
 @mixin post-icon(
-  $base:
-    'https://unpkg.com/@swisspost/design-system-icons@#{icon-version.$post-icon-version}/public/post-icons',
   $name,
   $color: inherit,
   $width: 1em,
   $height: 1em
 ) {
+  $normalized-name: str-replace($name, '--', '-');
   display: inline-block;
   width: $width;
   height: $height;
@@ -31,8 +30,8 @@
   background-color: currentColor;
   color: $color;
   /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-image: url('#{$base}/#{$name}.svg');
-  mask-image: url('#{$base}/#{$name}.svg');
+  -webkit-mask-image: var(--post-icon--#{$name});
+  mask-image: var(--post-icon--#{$name});
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-position: center center;
   mask-position: center center;

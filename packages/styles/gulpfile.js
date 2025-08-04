@@ -12,6 +12,107 @@ const { globSync } = require('glob');
 const options = require('./package.json').sass;
 
 /**
+ * Generate CSS variables for all icons with consistent naming (DEBUG VERSION)
+ */
+gulp.task('generate-icon-variables', (done) => {
+  const outputDir = path.join(__dirname, 'src/styles/generated');
+  const outputFile = path.join(outputDir, '_icon-variables.scss');
+  const iconDir = path.join(__dirname, 'node_modules/@swisspost/design-system-icons/src/icons/ui');
+
+  if (!fs.existsSync(iconDir)) {
+    console.error(`❌ Icon directory does not exist: ${iconDir}`);
+    done(new Error('Icon directory not found'));
+    return;
+  }
+
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+  }
+
+  let cssVariables = ':root {\n';
+  let errorCount = 0;
+  const processedIcons = [];
+
+  try {
+    // Get all files - both .svg files and files without extensions
+    const allFiles = fs.readdirSync(iconDir);
+    const files = allFiles.filter(file => {
+      // Include .svg files OR files without any extension (no dot)
+      return file.endsWith('.svg') || !file.includes('.');
+    });
+
+    files.forEach(file => {
+      try {
+        // Get clean icon name - handle both .svg files and files without extensions
+        let iconName = file.endsWith('.svg')
+          ? path.basename(file, '.svg')
+          : file; // Use the filename as-is if no extension
+
+        iconName = iconName
+          .toLowerCase()
+          .replace(/--/g, '-')  // Fix double hyphens
+          .replace(/_/g, '-')   // Convert underscores
+          .replace(/-+$/g, ''); // Remove trailing hyphens
+
+        // Special handling for size suffixes
+        iconName = iconName.replace(/(\D)(\d+)$/, '$1-$2'); // Add hyphen before numbers
+
+        // Remove the word "shape" from the icon name
+        iconName = iconName
+          .replace(/-shape-/g, '-')  // Remove "-shape-" from middle
+          .replace(/^shape-/g, '')   // Remove "shape-" from beginning
+          .replace(/-shape$/g, '');  // Remove "-shape" from end
+
+        const svgPath = path.join(iconDir, file);
+
+        // Check if file exists and is readable
+        if (!fs.existsSync(svgPath)) {
+          console.warn(`⚠️  File not found: ${svgPath}`);
+          return;
+        }
+
+        let svgContent = fs.readFileSync(svgPath, 'utf8');
+
+        // Clean SVG content
+        svgContent = svgContent
+          .replace(/<\?xml.*?\?>/, '')
+          .replace(/<!DOCTYPE.*?>/, '')
+          .replace(/\s+/g, ' ')
+          .replace(/"/g, "'")
+          .replace(/%/g, '%25')
+          .replace(/</g, '%3C')
+          .replace(/>/g, '%3E')
+          .replace(/#/g, '%23');
+
+        // Use double hyphen to match the mixin expectation
+        cssVariables += `  --post-icon--${iconName}: url("data:image/svg+xml,${svgContent}");\n`;
+        processedIcons.push(iconName);
+
+        // Debug output for specific icons we're looking for
+        if (iconName.includes('code') || iconName.includes('ambulance') || iconName.includes('closex')) {
+          console.log(`✅ Found target icon: ${file} → --post-icon--${iconName}`);
+        }
+      } catch (error) {
+        console.error(`❌ Error processing ${file}:`, error);
+        errorCount++;
+      }
+    });
+
+    cssVariables += '}\n';
+    fs.writeFileSync(outputFile, cssVariables);
+
+    console.log(`✅ Generated ${outputFile} with ${processedIcons.length} icons (${errorCount} errors)`);
+
+    // Signal completion - this was missing!
+    done(errorCount > 0 ? new Error(`${errorCount} icons failed`) : null);
+
+  } catch (error) {
+    console.error('❌ Failed to generate icon variables:', error);
+    done(error);
+  }
+});
+
+/**
  * Copy task
  */
 gulp.task('copy', () => {
@@ -193,7 +294,7 @@ exports.default = gulp.task(
   gulp.series(
     'prebuild-env-vars',
     gulp.parallel(
-      gulp.series('map-icons', 'copy', 'autoprefixer', 'transform-package-json'),
+      gulp.series('map-icons', 'generate-icon-variables', 'copy', 'autoprefixer', 'transform-package-json'),
       gulp.series('temporarily-copy-token-files', 'sass'),
     ),
   ),
