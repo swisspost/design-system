@@ -90,6 +90,13 @@ export class PostHeader {
     if (this.device === 'desktop' && this.mobileMenuExtended) {
       this.closeMobileMenu();
     }
+    
+    if (this.device !== 'desktop') {
+      Array.from(this.host.querySelectorAll('post-megadropdown')).forEach(dropdown => {
+        dropdown.hide(false, true);
+      });
+      this.megadropdownOpen = false;
+    }
   };
 
   connectedCallback() {
@@ -163,6 +170,10 @@ export class PostHeader {
   @Method()
   async toggleMobileMenu(force?: boolean) {
     if (this.device === 'desktop') return;
+    if (this.megadropdownOpen) {
+      this.megadropdownOpen = false;
+      return;
+    }
 
     this.mobileMenuAnimation = this.mobileMenuExtended
       ? slideUp(this.mobileMenu)
