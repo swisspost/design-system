@@ -9,44 +9,64 @@
 tokens.$default-map: elements.$post-link;
 
 :root:has(post-header) {
+  // expanded height
+  --post-local-header-expanded-height: var(--post-local-header-expanded-min-height);
   --post-header-expanded-height: calc(
-    var(--post-global-header-height) + var(--post-local-header-height)
+    var(--post-global-header-expanded-height) + var(--post-local-header-expanded-height)
   );
+
+  // reduced height
+  --post-global-header-reduced-height: var(--post-global-header-expanded-height);
+  --post-local-header-reduced-height: var(--post-local-header-expanded-height);
   --post-header-reduced-height: calc(
-    var(--post-global-header-reduced-height) + var(--post-main-navigation-height)
-  );
-  --post-header-height: calc(
-    var(--post-header-expanded-height) - min(
-        var(--post-header-scroll-top, 0px),
-        calc(var(--post-header-expanded-height) - var(--post-header-reduced-height))
-      )
+    var(--post-global-header-reduced-height) + var(--post-local-header-reduced-height)
   );
 
-  @include media.min(lg) {
-    --post-global-header-height: 72px;
-    --post-global-header-reduced-height: 24px;
-    --post-main-navigation-height: 56px;
-    --post-local-header-height: 112px;
+  // total height (dynamic depending on the scroll position)
+  --post-header-height: max(
+    var(--post-header-expanded-height) - var(--post-header-scroll-top, 0px),
+    var(--post-header-reduced-height)
+  );
+
+  // microsite
+  &:has(post-header post-mainnavigation) {
+    @include media.only(desktop) {
+      --post-global-header-expanded-height: 4.5rem;
+      --post-local-header-expanded-min-height: 7rem;
+
+      // header reducing on desktop
+      --post-global-header-reduced-height: 1.5rem;
+      --post-local-header-reduced-height: 3.5rem;
+      --post-main-navigation-height: var(--post-local-header-reduced-height);
+    }
+    @include media.only(tablet) {
+      --post-global-header-expanded-height: 4rem;
+      --post-local-header-expanded-min-height: 3.5rem;
+    }
+    @include media.only(mobile) {
+      --post-global-header-expanded-height: 4rem;
+      --post-local-header-expanded-min-height: 3rem;
+    }
+
+    &:not(:has(post-header [slot='title'])) {
+      --post-local-header-expanded-min-height: var(--post-main-navigation-height, 0);
+    }
   }
 
-  @include media.max(lg) {
-    --post-header-reduced-height: var(--post-header-expanded-height);
-    --post-global-header-height: 64px;
-    --post-global-header-reduced-height: var(--post-global-header-height);
-    --post-local-header-height: 48px;
-    --post-main-navigation-height: 0px; /* stylelint-disable-line length-zero-no-unit */ /* needed for calculation */
-  }
-
-  @include media.min(md) {
-    --post-local-header-min-height: 56px;
-  }
-
-  @include media.max(md) {
-    --post-local-header-min-height: 48px;
-  }
-
-  &:not(:has(post-header [slot='title'])) {
-    --post-local-header-height: var(--post-main-navigation-height) !important;
+  // one pager
+  &:not(:has(post-header post-mainnavigation)) {
+    @include media.only(desktop) {
+      --post-global-header-expanded-height: 4.5rem;
+      --post-local-header-expanded-min-height: 4rem;
+    }
+    @include media.only(tablet) {
+      --post-global-header-expanded-height: 4rem;
+      --post-local-header-expanded-min-height: 3.5rem;
+    }
+    @include media.only(mobile) {
+      --post-global-header-expanded-height: 4rem;
+      --post-local-header-expanded-min-height: 3.5rem;
+    }
   }
 }
 
@@ -150,11 +170,13 @@ post-header {
   }
 
   button,
-  a:not(post-mainnavigation *, post-language-switch *) {
-    display: flex;
+  a {
+    &:not(post-mainnavigation *, post-language-switch *) {
+      display: flex;
 
-    @include media.max(sm) {
-      padding: 4px 10px;
+      @include media.max(sm) {
+        padding: 4px 10px;
+      }
     }
   }
 
