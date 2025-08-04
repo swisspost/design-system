@@ -10,7 +10,9 @@ tokens.$default-map: elements.$post-link;
 
 :root:has(post-header) {
   // expanded height
-  --post-local-header-expanded-height: var(--post-local-header-expanded-min-height);
+  --post-local-header-expanded-height: var(
+    --post-local-header-expanded-min-height
+  ); // default value later updated with JavaScript
   --post-header-expanded-height: calc(
     var(--post-global-header-expanded-height) + var(--post-local-header-expanded-height)
   );
@@ -30,6 +32,16 @@ tokens.$default-map: elements.$post-link;
 
   // microsite
   &:has(post-header post-mainnavigation) {
+    --post-global-header-expanded-height: 4rem;
+
+    @include media.only(mobile) {
+      --post-local-header-expanded-min-height: 3rem;
+    }
+
+    @include media.only(tablet) {
+      --post-local-header-expanded-min-height: 3.5rem;
+    }
+
     @include media.only(desktop) {
       --post-global-header-expanded-height: 4.5rem;
       --post-local-header-expanded-min-height: 7rem;
@@ -39,14 +51,6 @@ tokens.$default-map: elements.$post-link;
       --post-local-header-reduced-height: 3.5rem;
       --post-main-navigation-height: var(--post-local-header-reduced-height);
     }
-    @include media.only(tablet) {
-      --post-global-header-expanded-height: 4rem;
-      --post-local-header-expanded-min-height: 3.5rem;
-    }
-    @include media.only(mobile) {
-      --post-global-header-expanded-height: 4rem;
-      --post-local-header-expanded-min-height: 3rem;
-    }
 
     &:not(:has(post-header [slot='title'])) {
       --post-local-header-expanded-min-height: var(--post-main-navigation-height, 0);
@@ -55,17 +59,12 @@ tokens.$default-map: elements.$post-link;
 
   // one pager
   &:not(:has(post-header post-mainnavigation)) {
+    --post-global-header-expanded-height: 4rem;
+    --post-local-header-expanded-min-height: 3.5rem;
+
     @include media.only(desktop) {
       --post-global-header-expanded-height: 4.5rem;
       --post-local-header-expanded-min-height: 4rem;
-    }
-    @include media.only(tablet) {
-      --post-global-header-expanded-height: 4rem;
-      --post-local-header-expanded-min-height: 3.5rem;
-    }
-    @include media.only(mobile) {
-      --post-global-header-expanded-height: 4rem;
-      --post-local-header-expanded-min-height: 3.5rem;
     }
   }
 }
