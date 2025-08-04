@@ -38,7 +38,7 @@
     "@types/jest": "29.5.14",
     "@types/mock-fs": "4.13.4",
     "@types/node": "22.10.5",
-    "@types/node-fetch": "2.6.12",
+    "@types/node-fetch": "2.6.13",
     "@typescript-eslint/eslint-plugin": "7.18.0",
     "@typescript-eslint/parser": "7.18.0",
     "dotenv": "16.5.0",
